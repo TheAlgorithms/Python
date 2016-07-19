@@ -1,5 +1,3 @@
-
-
 array=[];
 
 # input
