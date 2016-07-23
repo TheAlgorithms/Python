@@ -1,10 +1,3 @@
-def search_linear(x,y):
-  n = len( x )
-  for i in range(n):
-	  if theValue[i] == y:
-		  return True
-  return false
-
 def sequentialSearch(alist, item):
 		pos = 0
 		found = False
