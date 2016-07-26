@@ -9,7 +9,7 @@ def binarySearch(alist, item):
         midpoint = (first + last)//2
         if alist[midpoint] == item:
              found = True
-             print("Found")
+             print("Found [ at position: %s ]" % (alist.index(item) + 1))
         else:
             
             if item < alist[midpoint]:
@@ -17,9 +17,10 @@ def binarySearch(alist, item):
                 last = midpoint-1
             else:
                 first = midpoint+1
+                
         if found == False:
-            
-            print("Not found")
+            continue
+            # print("Not found")
     return found
 print("Enter numbers seprated by space")
 s = input()
