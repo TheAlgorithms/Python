@@ -1,4 +1,3 @@
-print ("Enter numbers seprated by comma ")
 def selectionsort( aList ):
   for i in range( len( aList ) ):
     least = i
@@ -6,9 +5,16 @@ def selectionsort( aList ):
       if aList[k] < aList[least]:
         least = k
  
-    swap( aList, least, i )
+    aList = swap( aList, least, i )
+  print(aList)
  
 def swap( A, x, y ):
   tmp = A[x]
   A[x] = A[y]
   A[y] = tmp
+  return A
+
+print ("Enter numbers seprated by comma ")
+response = input()
+aList = list(response.split(','))
+selectionsort(aList)
