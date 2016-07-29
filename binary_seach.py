@@ -10,10 +10,32 @@ For manual testing run:
 python binary_search.py
 """
 from __future__ import print_function
+import bisect
+
+
+def assert_sorted(collection):
+    """Check if collection is sorted. If not raises :py:class:`ValueError`
+
+    :param collection: collection
+    :return: True if collection is sorted
+    :raise: :py:class:`ValueError` if collection is not sorted
+
+    Examples:
+    >>> assert_sorted([0, 1, 2, 4])
+    True
+
+    >>> assert_sorted([10, -1, 5])
+    Traceback (most recent call last):
+    ...
+    ValueError: Collection must be sorted
+    """
+    if collection != sorted(collection):
+        raise ValueError('Collection must be sorted')
+    return True
 
 
 def binary_search(sorted_collection, item):
-    """Pure implementation of binary sort algorithm in Python
+    """Pure implementation of binary search algorithm in Python
 
     :param sorted_collection: some sorted collection with comparable items
     :param item: item value to search
@@ -36,8 +58,7 @@ def binary_search(sorted_collection, item):
     ...
     ValueError: Collection must be sorted
     """
-    if sorted_collection != sorted(sorted_collection):
-        raise ValueError('Collection must be sorted')
+    assert_sorted(sorted_collection)
     left = 0
     right = len(sorted_collection) - 1
 
@@ -51,6 +72,37 @@ def binary_search(sorted_collection, item):
                 right = midpoint - 1
             else:
                 left = midpoint + 1
+    return None
+
+
+def binary_search_std_lib(sorted_collection, item):
+    """Pure implementation of binary search algorithm in Python using stdlib
+
+    :param sorted_collection: some sorted collection with comparable items
+    :param item: item value to search
+    :return: index of found item or None if item is not found
+
+    Examples:
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 0)
+    0
+
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 15)
+    4
+
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 5)
+    1
+
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
+
+    >>> binary_search_std_lib([5, 2, 1, 5], 2)
+    Traceback (most recent call last):
+    ...
+    ValueError: Collection must be sorted
+    """
+    assert_sorted(sorted_collection)
+    index = bisect.bisect_left(sorted_collection, item)
+    if index != len(sorted_collection) and sorted_collection[index] == item:
+        return index
     return None
 
 
