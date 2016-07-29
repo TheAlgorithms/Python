@@ -1,6 +1,6 @@
-# The Algoritms - Python
+# The Algorithms - Python
 
-### All Algorithms implemented in Python!
+### All algorithms implemented in Python (for education)
 
 These are for demonstration purposes only. There are many implementations of sorts in the Python standard library that are much better for performance reasons.
 
