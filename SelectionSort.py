@@ -16,5 +16,5 @@ def swap( A, x, y ):
 
 print ("Enter numbers seprated by comma ")
 response = input()
-aList = list(response.split(','))
+aList = [int(item) for item in (response.split(','))]
 selectionsort(aList)
