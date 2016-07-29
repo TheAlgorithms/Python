@@ -2,6 +2,7 @@
 
 ### **All Algorithms implemented in Python!**
 
+These are for demonstration purposes only. There are many implementations of sorts in the Python standard library that are much better for performance reasons.
 
 ## Sorting
 

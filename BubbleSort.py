@@ -12,13 +12,15 @@ def simple_bubble_sort(int_list):
 	return int_list
 
 
-def main(num):
-	inputs = []
-	print("Enter any {} numbers for unsorted list: ".format(num))
+def main():
 	try:
-		for i in range(num):
-			n = input()
-			inputs.append(n)
+		print("Enter numbers separated by spaces:")
+		s = raw_input()
+		inputs = list(map(int, s.split(' ')))
+		if len(inputs) < 2:
+			print('No Enough values to sort!')
+			raise Exception
+
 	except Exception as e:
 		print(e)
 	else:
@@ -27,5 +29,4 @@ def main(num):
 
 if __name__ == '__main__':
 	print('==== Bubble Sort ====\n')
-	list_count = 6
-	main(list_count)
+	main()

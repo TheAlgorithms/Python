@@ -1,21 +1,24 @@
-def sequentialSearch(alist, item):
-		pos = 0
-		found = False
-	
-		while pos < len(alist) and not found:
-				
-			if alist[pos] == item:
-				found = True
-				print("Found")
-			else:
-				pos = pos+1
-		if found == False:
-				print("Not found")
-		return found
-	
-print("Enter numbers seprated by space")
-s = input()
-numbers = list(map(int, s.split()))
-trgt =int( input('enter a single number to be found in the list '))
-sequentialSearch(numbers, trgt)
 
+def sequential_search(alist, target):
+	for index, item in enumerate(alist):
+		if item == target:
+			print("Found target {} at index {}".format(target, index))
+			break
+	else:
+		print("Not found")
+
+
+def main():
+	try:
+		print("Enter numbers separated by spaces")
+		s = raw_input()
+		inputs = list(map(int, s.split(' ')))
+		target = int(raw_input('\nEnter a single number to be found in the list: '))
+	except Exception as e:
+		print(e)
+	else:
+		sequential_search(inputs, target)
+
+if __name__ == '__main__':
+	print('==== Insertion Sort ====\n')
+	main()
