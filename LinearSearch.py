@@ -1,3 +1,5 @@
+import sys
+
 
 def sequential_search(alist, target):
     for index, item in enumerate(alist):
@@ -9,11 +11,17 @@ def sequential_search(alist, target):
 
 
 def main():
+    # Python 2's `raw_input` has been renamed to `input` in Python 3
+    if sys.version_info.major < 3:
+        input_function = raw_input
+    else:
+        input_function = input
+
     try:
         print("Enter numbers separated by spaces")
-        s = raw_input()
+        s = input_function()
         inputs = list(map(int, s.split(' ')))
-        target = int(raw_input('\nEnter a single number to be found in the list: '))
+        target = int(input_function('\nEnter a number to be found in list: '))
     except Exception as e:
         print(e)
     else:

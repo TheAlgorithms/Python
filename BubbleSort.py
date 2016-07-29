@@ -1,3 +1,4 @@
+import sys
 
 
 def simple_bubble_sort(int_list):
@@ -13,9 +14,15 @@ def simple_bubble_sort(int_list):
 
 
 def main():
+    # Python 2's `raw_input` has been renamed to `input` in Python 3
+    if sys.version_info.major < 3:
+        input_function = raw_input
+    else:
+        input_function = input
+
     try:
         print("Enter numbers separated by spaces:")
-        s = raw_input()
+        s = input_function()
         inputs = list(map(int, s.split(' ')))
         if len(inputs) < 2:
             print('No Enough values to sort!')

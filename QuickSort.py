@@ -1,3 +1,5 @@
+import sys
+
 
 def quick_sort(A, p, r):
     if p < r:
@@ -18,9 +20,15 @@ def partition(A, p, r):
 
 
 def main():
+    # Python 2's `raw_input` has been renamed to `input` in Python 3
+    if sys.version_info.major < 3:
+        input_function = raw_input
+    else:
+        input_function = input
+
     try:
         print("Enter numbers separated by spaces")
-        s = raw_input()
+        s = input_function()
         inputs = list(map(int, s.split(' ')))
     except Exception as e:
         print(e)

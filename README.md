@@ -19,12 +19,9 @@ __Properties__
 * Best case performance	O(n)
 * Average case performance	O(n^2)
 
-
 ###### View the algorithm in [action][bubble-toptal]
 
 
-### Caesar
-Add comments here
 
 ### Insertion
 ![alt text][insertion-image]
@@ -36,9 +33,21 @@ __Properties__
 * Best case performance	O(n)
 * Average case performance	O(n^2)
 
-
 ###### View the algorithm in [action][insertion-toptal]
 
+
+## Merge
+![alt text][merge-image]
+
+From [Wikipedia][merge-wiki]: In computer science, merge sort (also commonly spelled mergesort) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
+
+__Properties__
+* Worst case performance	O(n log n)
+* Best case performance	O(n)
+* Average case performance	O(n)
+
+
+###### View the algorithm in [action][merge-toptal]
 
 ## Quick
 ![alt text][quick-image]
@@ -50,8 +59,18 @@ __Properties__
 * Best case performance	O(n log n) or O(n) with three-way partition
 * Average case performance	O(n^2)
 
-
 ###### View the algorithm in [action][quick-toptal]
+
+
+## Search Algorithms
+
+### Linear
+Add comments here
+
+## Ciphers
+
+### Caesar
+Add comments here
 
 [bubble-toptal]: https://www.toptal.com/developers/sorting-algorithms/bubble-sort
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
@@ -64,3 +83,7 @@ __Properties__
 [quick-toptal]: https://www.toptal.com/developers/sorting-algorithms/quick-sort
 [quick-wiki]: https://en.wikipedia.org/wiki/Quicksort
 [quick-image]: https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif "Quick Sort"
+
+[merge-toptal]: https://www.toptal.com/developers/sorting-algorithms/merge-sort
+[merge-wiki]: https://en.wikipedia.org/wiki/Merge_sort
+[merge-image]: https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif "Merge Sort"
