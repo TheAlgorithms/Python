@@ -22,7 +22,9 @@ def partition(A, p, r):
 
 
 if __name__ == "__main__":
-    A = [8, 4, 5, 7, 1, 2, 3, 6]
+    print('Enter values seperated by space:')
+    A = [int (item) for item in input().split(' ')]
+    # A = [23, 45, 43, 12, 67, 98, 123, 99]
     # partition(A, 0, 7)
     print(A)
     quicksort(A, 0, 7)
