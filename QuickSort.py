@@ -1,31 +1,41 @@
+import sys
 
-def quicksort(A, p, r):
+
+def quick_sort(A, p, r):
     if p < r:
         q = partition(A, p, r)
-        quicksort(A, p, q - 1)
-        quicksort(A, q + 1, r)
+        quick_sort(A, p, q - 1)
+        quick_sort(A, q + 1, r)
+    return A
 
 
 def partition(A, p, r):
-    x = A[r]
     i = p - 1
     for j in range(p, r):
-        if A[j] <= x:
+        if A[j] <= A[r]:
             i += 1
-            tmp = A[i]
-            A[i] = A[j]
-            A[j] = tmp
-    tmp = A[i+1]
-    A[i+1] = A[r]
-    A[r] = tmp
+            A[i], A[j] = A[j], A[i]
+    A[i + 1], A[r] = A[r], A[i + 1]
     return i + 1
 
 
-if __name__ == "__main__":
-    print('Enter values seperated by space:')
-    A = [int (item) for item in input().split(' ')]
-    # A = [23, 45, 43, 12, 67, 98, 123, 99]
-    # partition(A, 0, 7)
-    print(A)
-    quicksort(A, 0, 7)
-    print(A)
+def main():
+    # Python 2's `raw_input` has been renamed to `input` in Python 3
+    if sys.version_info.major < 3:
+        input_function = raw_input
+    else:
+        input_function = input
+
+    try:
+        print("Enter numbers separated by spaces")
+        s = input_function()
+        inputs = list(map(int, s.split(' ')))
+    except Exception as e:
+        print(e)
+    else:
+        sorted_input = quick_sort(inputs, 0, len(inputs) - 1)
+        print('\nSorted list (min to max): {}'.format(sorted_input))
+
+if __name__ == '__main__':
+    print('==== Quick Sort ====\n')
+    main()

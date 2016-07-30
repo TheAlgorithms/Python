@@ -1,21 +1,32 @@
-def sequentialSearch(alist, item):
-		pos = 0
-		found = False
-	
-		while pos < len(alist) and not found:
-				
-			if alist[pos] == item:
-				found = True
-				print("Found")
-			else:
-				pos = pos+1
-		if found == False:
-				print("Not found")
-		return found
-	
-print("Enter numbers seprated by space")
-s = input()
-numbers = list(map(int, s.split()))
-trgt =int( input('enter a single number to be found in the list '))
-sequentialSearch(numbers, trgt)
+import sys
 
+
+def sequential_search(alist, target):
+    for index, item in enumerate(alist):
+        if item == target:
+            print("Found target {} at index {}".format(target, index))
+            break
+    else:
+        print("Not found")
+
+
+def main():
+    # Python 2's `raw_input` has been renamed to `input` in Python 3
+    if sys.version_info.major < 3:
+        input_function = raw_input
+    else:
+        input_function = input
+
+    try:
+        print("Enter numbers separated by spaces")
+        s = input_function()
+        inputs = list(map(int, s.split(' ')))
+        target = int(input_function('\nEnter a number to be found in list: '))
+    except Exception as e:
+        print(e)
+    else:
+        sequential_search(inputs, target)
+
+if __name__ == '__main__':
+    print('==== Linear Search ====\n')
+    main()
