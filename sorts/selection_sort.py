@@ -5,10 +5,14 @@ For doctests run following command:
 python -m doctest -v selection_sort.py
 or
 python3 -m doctest -v selection_sort.py
+
+For manual testing run:
+python selection_sort.py
 """
 from __future__ import print_function
 
-def selection_sort(sortable):
+
+def selection_sort(collection):
     """Pure implementation of selection sort algorithm in Python
 
     Examples:
@@ -21,20 +25,20 @@ def selection_sort(sortable):
     >>> selection_sort([-2, -5, -45])
     [-45, -5, -2]
 
-    :param sortable: some mutable ordered collection with heterogeneous
+    :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
     """
-    length = len(sortable)
+    length = len(collection)
     for i in range(length):
         least = i
         for k in range(i + 1, length):
-            if sortable[k] < sortable[least]:
+            if collection[k] < collection[least]:
                 least = k
-        sortable[least], sortable[i] = (
-            sortable[i], sortable[least]
+        collection[least], collection[i] = (
+            collection[i], collection[least]
         )
-    return sortable
+    return collection
 
 
 if __name__ == '__main__':
