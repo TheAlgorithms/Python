@@ -28,9 +28,17 @@ def checkValidKey(key):
         sys.exit('Error in the key or symbol set.')
 
 def encryptMessage(key, message):
+    """
+    >>> encryptMessage('LFWOAYUISVKMNXPBDCRJTQEGHZ', 'Harshil Darji')
+    'Ilcrism Olcvs'
+    """
     return translateMessage(key, message, 'encrypt')
 
 def decryptMessage(key, message):
+    """
+    >>> decryptMessage('LFWOAYUISVKMNXPBDCRJTQEGHZ', 'Ilcrism Olcvs')
+    'Harshil Darji'
+    """
     return translateMessage(key, message, 'decrypt')
 
 def translateMessage(key, message, mode):

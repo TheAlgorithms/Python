@@ -1,8 +1,11 @@
+import os
+
 UPPERLETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + ' \t\n'
 
 def loadDictionary():
-    dictionaryFile = open('Dictionary.txt')
+    path = os.path.split(os.path.realpath(__file__))
+    dictionaryFile = open(path[0] + '\Dictionary.txt')
     englishWords = {}
     for word in dictionaryFile.read().split('\n'):
         englishWords[word] = None
@@ -34,8 +37,19 @@ def removeNonLetters(message):
     return ''.join(lettersOnly)
 
 def isEnglish(message, wordPercentage = 20, letterPercentage = 85):
+    """
+    >>> isEnglish('Hello World')
+    True
+
+    >>> isEnglish('llold HorWd')
+    False
+    """
     wordsMatch = getEnglishCount(message) * 100 >= wordPercentage
     numLetters = len(removeNonLetters(message))
     messageLettersPercentage = (float(numLetters) / len(message)) * 100
     lettersMatch = messageLettersPercentage >= letterPercentage
     return wordsMatch and lettersMatch
+
+
+import doctest
+doctest.testmod()

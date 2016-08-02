@@ -14,6 +14,10 @@ def main():
     print('Output:\n%s' %(text + '|'))
 
 def encryptMessage(key, message):
+    """
+    >>> encryptMessage(6, 'Harshil Darji')
+    'Hlia rDsahrij'
+    """
     cipherText = [''] * key
     for col in range(key):
         pointer = col
@@ -23,6 +27,10 @@ def encryptMessage(key, message):
     return ''.join(cipherText)
 
 def decryptMessage(key, message):
+    """
+    >>> decryptMessage(6, 'Hlia rDsahrij')
+    'Harshil Darji'
+    """
     numCols = math.ceil(len(message) / key)
     numRows = key
     numShadedBoxes = (numCols * numRows) - len(message)
@@ -40,4 +48,6 @@ def decryptMessage(key, message):
     return "".join(plainText)
 
 if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
     main()

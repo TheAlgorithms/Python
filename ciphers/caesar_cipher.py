@@ -1,38 +1,51 @@
 # The Caesar Cipher Algorithm
 
-message = input("Enter message: ")
-key = int(input("Key [1-26]: "))
-mode = input("Encrypt or Decrypt [e/d]: ")
+def main():
+    message = input("Enter message: ")
+    key = int(input("Key [1-26]: "))
+    mode = input("Encrypt or Decrypt [e/d]: ")
 
-if mode.lower().startswith('e'):
-    mode = "encrypt"
-elif mode.lower().startswith('d'):
-    mode = "decrypt"
+    if mode.lower().startswith('e'):
+        mode = "encrypt"
+    elif mode.lower().startswith('d'):
+        mode = "decrypt"
 
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    translated = encdec(message, key, mode)
+    if mode == "encrypt":
+        print("Encryption:", translated)
+    elif mode == "decrypt":
+        print("Decryption:", translated)
+        
+def encdec(message, key, mode):
+    """
+    >>> encdec('Harshil Darji', 12, 'encrypt')
+    'TMDETUX PMDVU'
 
-translated = ""
+    >>> encdec('TMDETUX PMDVU', 12, 'decrypt')
+    'HARSHIL DARJI'
+    """
+    message = message.upper()
+    translated = ""
+    LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    for symbol in message:
+        if symbol in LETTERS:
+            num = LETTERS.find(symbol)
+            if mode == "encrypt":
+                num = num + key
+            elif mode == "decrypt":
+                num = num - key
 
-message = message.upper()
+            if num >= len(LETTERS):
+                num = num - len(LETTERS)
+            elif num < 0:
+                num = num + len(LETTERS)
 
-for symbol in message:
-    if symbol in LETTERS:
-        num = LETTERS.find(symbol)
-        if mode == "encrypt":
-            num = num + key
-        elif mode == "decrypt":
-            num = num - key
+            translated = translated + LETTERS[num]
+        else:
+            translated = translated + symbol
+    return translated
 
-        if num >= len(LETTERS):
-            num = num - len(LETTERS)
-        elif num < 0:
-            num = num + len(LETTERS)
-
-        translated = translated + LETTERS[num]
-    else:
-        translated = translated + symbol
-
-if mode == "encrypt":
-    print("Encryption:", translated)
-elif mode == "decrypt":
-    print("Decryption:", translated)
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
+    main()
