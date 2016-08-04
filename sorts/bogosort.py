@@ -12,7 +12,7 @@ from __future__ import print_function
 import random
 
 def bogosort(collection):
-    """Pure implementation of quick sort algorithm in Python
+    """Pure implementation of bogosort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
