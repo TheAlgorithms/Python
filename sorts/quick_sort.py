@@ -10,6 +10,12 @@ For manual testing run:
 python quick_sort.py
 """
 from __future__ import print_function
+from random import shuffle
+
+
+def sort(collection):
+    shuffle(collection)
+    return quick_sort(collection)
 
 
 def quick_sort(collection):
@@ -58,4 +64,4 @@ if __name__ == '__main__':
 
     user_input = input_function('Enter numbers separated by coma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
-    print(quick_sort(unsorted))
+    print(sort(unsorted))
