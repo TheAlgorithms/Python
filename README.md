@@ -61,6 +61,18 @@ __Properties__
 
 ###### View the algorithm in [action][quick-toptal]
 
+## Selection
+![alt text][selection-image]
+
+From [Wikipedia][selection-wiki]: The algorithm divides the input list into two parts: the sublist of items already sorted, which is built up from left to right at the front (left) of the list, and the sublist of items remaining to be sorted that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest (or largest, depending on sorting order) element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.
+
+__Properties__
+* Worst case performance	O(n^2)
+* Best case performance	O(n^2)
+* Average case performance	O(n^2)
+
+###### View the algorithm in [action][selection-toptal]
+
 
 ## Search Algorithms
 
@@ -70,8 +82,17 @@ Add comments here
 ## Ciphers
 
 ### Caesar
-Add comments here
+![alt text][caesar]<br>
+In cryptography, a **Caesar cipher**, also known as Caesar's cipher, the shift cipher, Caesar's code or Caesar shift, is one of the simplest and most widely known encryption techniques.<br>
+It is **a type of substitution cipher** in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be replaced by A, E would become B, and so on. <br>
+The method is named after **Julius Caesar**, who used it in his private correspondence.<br>
+The encryption step performed by a Caesar cipher is often incorporated as part of more complex schemes, such as the Vigenère cipher, and still has modern application in the ROT13 system. As with all single-alphabet substitution ciphers, the Caesar cipher is easily broken and in modern practice offers essentially no communication security.
+###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Caesar_cipher)
 
+### Transposition
+In cryptography, a **transposition cipher** is a method of encryption by which the positions held by units of plaintext (which are commonly characters or groups of characters) are shifted according to a regular system, so that the ciphertext constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br> 
+Mathematically a bijective function is used on the characters' positions to encrypt and an inverse function to decrypt.
+###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Transposition_cipher)
 [bubble-toptal]: https://www.toptal.com/developers/sorting-algorithms/bubble-sort
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
@@ -87,3 +108,8 @@ Add comments here
 [merge-toptal]: https://www.toptal.com/developers/sorting-algorithms/merge-sort
 [merge-wiki]: https://en.wikipedia.org/wiki/Merge_sort
 [merge-image]: https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif "Merge Sort"
+
+[selection-toptal]: https://www.toptal.com/developers/sorting-algorithms/selection-sort
+[selection-wiki]: https://en.wikipedia.org/wiki/Selection_sort
+[selection-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Selection_sort_animation.gif/250px-Selection_sort_animation.gif "Selection Sort Sort"
+[caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
