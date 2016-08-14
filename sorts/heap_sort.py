@@ -1,3 +1,7 @@
+
+from  __future__ import print_function
+
+
 def heapify(unsorted,index,heap_size):
 	largest = index
 	left_index = 2*index + 1
@@ -31,5 +35,5 @@ if __name__ == '__main__':
 
     user_input = input_function('Enter numbers separated by coma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
-    print heap_sort(unsorted)
+    print (heap_sort(unsorted))
 
