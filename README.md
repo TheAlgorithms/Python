@@ -77,7 +77,18 @@ __Properties__
 ## Search Algorithms
 
 ### Linear
-Add comments here
+![alt text][linear-image]
+
+From [Wikipedia][linear-wiki]: linear search or sequential search is a method for finding a target value within a list. It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched.
+  Linear search runs in at worst linear time and makes at most n comparisons, where n is the length of the list.
+
+__Properties__
+* Worst case performance	O(n)
+* Best case performance	O(1)
+* Average case performance	O(n)
+* Worst case space complexity	O(1) iterative
+
+
 
 ## Ciphers
 
@@ -113,3 +124,5 @@ Mathematically a bijective function is used on the characters' positions to encr
 [selection-wiki]: https://en.wikipedia.org/wiki/Selection_sort
 [selection-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Selection_sort_animation.gif/250px-Selection_sort_animation.gif "Selection Sort Sort"
 [caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
+[linear-wiki]: https://en.wikipedia.org/wiki/Linear_search
+[linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif
