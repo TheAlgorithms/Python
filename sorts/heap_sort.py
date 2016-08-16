@@ -42,13 +42,13 @@ def heap_sort(unsorted):
     >>> heap_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-	n=len(unsorted)
-	for i in range (n/2 - 1 , -1, -1):
-		heapify(unsorted,i,n)
-	for i in range(n - 1,  -1, -1):
-		unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
-		heapify(unsorted,0,i)
-	return unsorted
+    n=len(unsorted)
+    for i in range (n/2 - 1 , -1, -1):
+	heapify(unsorted,i,n)
+    for i in range(n - 1,  -1, -1):
+	unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
+	heapify(unsorted,0,i)
+    return unsorted
 
 
 if __name__ == '__main__':
