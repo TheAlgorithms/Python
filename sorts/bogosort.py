@@ -1,5 +1,5 @@
 """
-This is pure python implementation of the bogosort algorithm
+This is a pure python implementation of the bogosort algorithm
 For doctests run following command:
 python -m doctest -v bogosort.py
 or
@@ -12,7 +12,7 @@ from __future__ import print_function
 import random
 
 def bogosort(collection):
-    """Pure implementation of bogosort algorithm in Python
+    """Pure implementation of the bogosort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending

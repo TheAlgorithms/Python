@@ -2,9 +2,9 @@
 This is a pure python implementation of the heap sort algorithm.
 
 For doctests run following command:
-python -m doctest -v insertion_sort.py
+python -m doctest -v heap_sort.py
 or
-python3 -m doctest -v insertion_sort.py
+python3 -m doctest -v heap_sort.py
 
 For manual testing run:
 python insertion_sort.py
