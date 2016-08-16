@@ -1,5 +1,5 @@
 """
-This is pure python implementation of bogosort algorithm
+This is pure python implementation of the bogosort algorithm
 For doctests run following command:
 python -m doctest -v bogosort.py
 or
@@ -47,6 +47,6 @@ if __name__ == '__main__':
     else:
         input_function = input
 
-    user_input = input_function('Enter numbers separated by coma:\n')
+    user_input = input_function('Enter numbers separated by a comma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
     print(bogosort(unsorted))

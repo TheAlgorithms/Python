@@ -1,5 +1,5 @@
 """
-This is pure python implementation of merge sort algorithm
+This is a pure python implementation of the merge sort algorithm
 
 For doctests run following command:
 python -m doctest -v merge_sort.py
@@ -13,7 +13,7 @@ from __future__ import print_function
 
 
 def merge_sort(collection):
-    """Pure implementation of merge sort algorithm in Python
+    """Pure implementation of the merge sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -71,6 +71,6 @@ if __name__ == '__main__':
     else:
         input_function = input
 
-    user_input = input_function('Enter numbers separated by coma:\n')
+    user_input = input_function('Enter numbers separated by a comma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
     print(merge_sort(unsorted))
