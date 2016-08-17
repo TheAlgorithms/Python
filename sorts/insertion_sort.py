@@ -1,5 +1,5 @@
 """
-This is pure python implementation of insertion sort algorithm
+This is a pure python implementation of the insertion sort algorithm
 
 For doctests run following command:
 python -m doctest -v insertion_sort.py
@@ -13,7 +13,7 @@ from __future__ import print_function
 
 
 def insertion_sort(collection):
-    """Pure implementation of insertion sort algorithm in Python
+    """Pure implementation of the insertion sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -51,6 +51,6 @@ if __name__ == '__main__':
     else:
         input_function = input
 
-    user_input = input_function('Enter numbers separated by coma:\n')
+    user_input = input_function('Enter numbers separated by a comma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
     print(insertion_sort(unsorted))

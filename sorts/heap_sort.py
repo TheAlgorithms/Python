@@ -1,4 +1,14 @@
+"""
+This is a pure python implementation of the heap sort algorithm.
 
+For doctests run following command:
+python -m doctest -v heap_sort.py
+or
+python3 -m doctest -v heap_sort.py
+
+For manual testing run:
+python insertion_sort.py
+"""
 from  __future__ import print_function
 
 
@@ -17,13 +27,28 @@ def heapify(unsorted,index,heap_size):
 		heapify(unsorted,largest,heap_size)		
 		
 def heap_sort(unsorted):	
-	n=len(unsorted) 
-	for i in range (n/2 - 1 , -1, -1) :
-		heapify(unsorted,i,n)
-	for i in range(n - 1,  -1, -1):
-		unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
-		heapify(unsorted,0,i)
-	return unsorted
+    """Pure implementation of the heap sort algorithm in Python
+    :param collection: some mutable ordered collection with heterogeneous
+    comparable items inside
+    :return: the same collection ordered by ascending
+
+    Examples:
+    >>> heap_sort([0, 5, 3, 2, 2])
+    [0, 2, 2, 3, 5]
+
+    >>> heap_sort([])
+    []
+
+    >>> heap_sort([-2, -5, -45])
+    [-45, -5, -2]
+    """
+    n=len(unsorted)
+    for i in range (n/2 - 1 , -1, -1):
+	heapify(unsorted,i,n)
+    for i in range(n - 1,  -1, -1):
+	unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
+	heapify(unsorted,0,i)
+    return unsorted
 
 
 if __name__ == '__main__':
@@ -33,7 +58,6 @@ if __name__ == '__main__':
     else:
         input_function = input
 
-    user_input = input_function('Enter numbers separated by coma:\n')
+    user_input = input_function('Enter numbers separated by a comma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
     print (heap_sort(unsorted))
-

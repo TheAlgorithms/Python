@@ -1,5 +1,5 @@
 """
-This is pure python implementation of quick sort algorithm
+This is a pure python implementation of the quick sort algorithm
 
 For doctests run following command:
 python -m doctest -v quick_sort.py
@@ -62,6 +62,6 @@ if __name__ == '__main__':
     else:
         input_function = input
 
-    user_input = input_function('Enter numbers separated by coma:\n')
+    user_input = input_function('Enter numbers separated by a comma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
     print(sort(unsorted))

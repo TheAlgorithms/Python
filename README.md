@@ -73,6 +73,17 @@ __Properties__
 
 ###### View the algorithm in [action][selection-toptal]
 
+## Shell sort
+![alt text][shell-image]
+
+From [Wikipedia][shell-wiki]:  Shellsort is a generalization of insertion sort that allows the exchange of items that are far apart.  The idea is to arrange the list of elements so that, starting anywherem considereing every nth element gives a sorted list.  Such a list is said to be h-sorted.  Equivanelty, it can be thought of as h intterleaved lists, each individually sorted.
+
+__Properties__
+* Worst case performance O(nlog2 2n)
+* Best case performance O(n log n)
+* Average case performance depends on gap sequence
+
+###### View the algorithm in [action][shell-toptal]
 
 ## Search Algorithms
 
@@ -123,6 +134,11 @@ Mathematically a bijective function is used on the characters' positions to encr
 [selection-toptal]: https://www.toptal.com/developers/sorting-algorithms/selection-sort
 [selection-wiki]: https://en.wikipedia.org/wiki/Selection_sort
 [selection-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Selection_sort_animation.gif/250px-Selection_sort_animation.gif "Selection Sort Sort"
+
+[shell-toptal]: https://www.toptal.com/developers/sorting-algorithms/shell-sort
+[shell-wiki]: https://en.wikipedia.org/wiki/Shellsort
+[shell-image]: https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif "Shell Sort"
+
 [caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
 [linear-wiki]: https://en.wikipedia.org/wiki/Linear_search
 [linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif
