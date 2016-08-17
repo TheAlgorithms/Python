@@ -18,7 +18,7 @@ def shell_sort(collection):
     comparable items inside
     :return:  the same collection ordered by ascending
     
-    >>> shell_sort([0, 5, 3, 2, 2)]
+    >>> shell_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
 
     >>> shell_sort([])
