@@ -4,10 +4,8 @@
 
 These are for demonstration purposes only. There are many implementations of sorts in the Python standard library that are much better for performance reasons.
 
-## Sorting Algorithms
+## Sort Algorithms
 
-### Binary
-Add comments here
 
 ### Bubble
 ![alt text][bubble-image]
@@ -36,7 +34,7 @@ __Properties__
 ###### View the algorithm in [action][insertion-toptal]
 
 
-## Merge
+### Merge
 ![alt text][merge-image]
 
 From [Wikipedia][merge-wiki]: In computer science, merge sort (also commonly spelled mergesort) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
@@ -49,7 +47,7 @@ __Properties__
 
 ###### View the algorithm in [action][merge-toptal]
 
-## Quick
+### Quick
 ![alt text][quick-image]
 
 From [Wikipedia][quick-wiki]: Quicksort (sometimes called partition-exchange sort) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.
@@ -61,7 +59,7 @@ __Properties__
 
 ###### View the algorithm in [action][quick-toptal]
 
-## Selection
+### Selection
 ![alt text][selection-image]
 
 From [Wikipedia][selection-wiki]: The algorithm divides the input list into two parts: the sublist of items already sorted, which is built up from left to right at the front (left) of the list, and the sublist of items remaining to be sorted that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest (or largest, depending on sorting order) element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.
@@ -73,7 +71,7 @@ __Properties__
 
 ###### View the algorithm in [action][selection-toptal]
 
-## Shell sort
+### Shell
 ![alt text][shell-image]
 
 From [Wikipedia][shell-wiki]:  Shellsort is a generalization of insertion sort that allows the exchange of items that are far apart.  The idea is to arrange the list of elements so that, starting anywherem considereing every nth element gives a sorted list.  Such a list is said to be h-sorted.  Equivanelty, it can be thought of as h intterleaved lists, each individually sorted.
@@ -99,7 +97,16 @@ __Properties__
 * Average case performance	O(n)
 * Worst case space complexity	O(1) iterative
 
+### Binary
+![alt text][binary-image]
 
+From [Wikipedia][binary-wiki]: Binary search, also known as half-interval search or logarithmic search, is a search algorithm that finds the position of a target value within a sorted array. It compares the target value to the middle element of the array; if they are unequal, the half in which the target cannot lie is eliminated and the search continues on the remaining half until it is successful.
+
+__Properties__
+* Worst case performance	O(log n)
+* Best case performance	O(1)
+* Average case performance	O(log n)
+* Worst case space complexity	O(1) 
 
 ## Ciphers
 
@@ -115,6 +122,7 @@ The encryption step performed by a Caesar cipher is often incorporated as part o
 In cryptography, a **transposition cipher** is a method of encryption by which the positions held by units of plaintext (which are commonly characters or groups of characters) are shifted according to a regular system, so that the ciphertext constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br> 
 Mathematically a bijective function is used on the characters' positions to encrypt and an inverse function to decrypt.
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Transposition_cipher)
+
 [bubble-toptal]: https://www.toptal.com/developers/sorting-algorithms/bubble-sort
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
@@ -139,6 +147,11 @@ Mathematically a bijective function is used on the characters' positions to encr
 [shell-wiki]: https://en.wikipedia.org/wiki/Shellsort
 [shell-image]: https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif "Shell Sort"
 
-[caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
 [linear-wiki]: https://en.wikipedia.org/wiki/Linear_search
 [linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif
+
+[binary-wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
+[binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png
+
+
+[caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
