@@ -30,7 +30,7 @@ def bubble_sort(collection):
     [-45, -5, -2]
     """
     length = len(collection)
-    for i in range(length):
+    for i in range(length-1):
         for j in range(length-1):
             if collection[j] > collection[j+1]:
                 collection[j], collection[j+1] = collection[j+1], collection[j]
