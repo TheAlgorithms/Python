@@ -35,21 +35,20 @@ def quick_sort(collection):
     >>> quick_sort([-2, -5, -45])
     [-45, -5, -2]
     """
+    if len(collection) <= 1:
+        return collection
     less = []
     equal = []
     greater = []
-    if len(collection) > 1:
-        pivot = collection[0]
-        for x in collection:
-            if x < pivot:
-                less.append(x)
-            if x == pivot:
-                equal.append(x)
-            if x > pivot:
-                greater.append(x)
-        return quick_sort(less) + equal + quick_sort(greater)
-    else:
-        return collection
+    pivot = collection[0]
+    for x in collection:
+        if x < pivot:
+            less.append(x)
+        elif x == pivot:
+            equal.append(x)
+        else:
+            greater.append(x)
+    return quick_sort(less) + equal + quick_sort(greater)
 
 
 if __name__ == '__main__':
