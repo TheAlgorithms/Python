@@ -13,7 +13,7 @@ from __future__ import print_function
 
 
 def linear_search(sequence, target):
-    """Pure implementation of binary search algorithm in Python
+    """Pure implementation of linear search algorithm in Python
 
     :param sequence: some sorted collection with comparable items
     :param target: item value to search
