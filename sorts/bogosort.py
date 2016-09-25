@@ -11,6 +11,7 @@ python bogosort.py
 from __future__ import print_function
 import random
 
+
 def bogosort(collection):
     """Pure implementation of the bogosort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
@@ -28,13 +29,13 @@ def bogosort(collection):
     def isSorted(collection):
         if len(collection) < 2:
             return True
-        for i in range(len(collection)-1):
-            if collection[i] > collection[i+1]:
+        for i in range(len(collection) - 1):
+            if collection[i] > collection[i + 1]:
                 return False
         return True
 
     while not isSorted(collection):
-    	random.shuffle(collection)
+        random.shuffle(collection)
     return collection
 
 if __name__ == '__main__':

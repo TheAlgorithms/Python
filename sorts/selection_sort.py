@@ -17,7 +17,7 @@ def selection_sort(collection):
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
-    
+
 
     Examples:
     >>> selection_sort([0, 5, 3, 2, 2])
@@ -29,7 +29,7 @@ def selection_sort(collection):
     >>> selection_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-   
+
     length = len(collection)
     for i in range(length):
         least = i

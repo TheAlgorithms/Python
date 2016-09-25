@@ -9,6 +9,7 @@ python3 -m doctest -v bubble_sort.py
 For manual testing run:
 python bubble_sort.py
 """
+
 from __future__ import print_function
 
 
