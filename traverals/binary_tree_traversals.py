@@ -77,20 +77,29 @@ def level_order(node):
             q.put(node_dequeued.right)
 
 
-node = build_tree()
+if __name__ == '__main__':
+    import sys
+    print("\n********* Binary Tree Traversals ************\n")
+    # For python 2.x and 3.x compatibility: 3.x has not raw_input builtin
+    # otherwise 2.x's input builtin function is too "smart"
+    if sys.version_info.major < 3:
+        input_function = raw_input
+    else:
+        input_function = input
 
-print("\n********* Pre Order Traversal ************")
-pre_order(node)
-print("\n******************************************\n")
+    node = build_tree()
+    print("\n********* Pre Order Traversal ************")
+    pre_order(node)
+    print("\n******************************************\n")
 
-print("\n********* In Order Traversal ************")
-in_order(node)
-print("\n******************************************\n")
+    print("\n********* In Order Traversal ************")
+    in_order(node)
+    print("\n******************************************\n")
 
-print("\n********* Post Order Traversal ************")
-post_order(node)
-print("\n******************************************\n")
+    print("\n********* Post Order Traversal ************")
+    post_order(node)
+    print("\n******************************************\n")
 
-print("\n********* Level Order Traversal ************")
-level_order(node)
-print("\n******************************************\n")
+    print("\n********* Level Order Traversal ************")
+    level_order(node)
+    print("\n******************************************\n")
