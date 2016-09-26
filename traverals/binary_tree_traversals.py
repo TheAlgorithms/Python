@@ -50,9 +50,9 @@ def pre_order(node):
 def in_order(node):
     if not node:
         return
-    pre_order(node.left)
+    in_order(node.left)
     print(node.data, end=" ")
-    pre_order(node.right)
+    in_order(node.right)
 
 
 def post_order(node):
