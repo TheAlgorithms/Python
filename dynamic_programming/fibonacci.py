@@ -1,10 +1,13 @@
 """
 This is a pure Python implementation of Dynamic Programming solution to the fibonacci sequence problem.
 """
+
+
 class Fibonacci:
 
     def __init__(self, N=None):
         if N:
+            N = int(N)
             self.fib_array = [0] * (N + 1)
             self.fib_array[0] = 0
             self.fib_array[1] = 1
@@ -43,12 +46,13 @@ if __name__ == '__main__':
             "\n********* Enter different values to get the corresponding fibonacci sequence, enter any negative number to exit. ************\n")
         while True:
             print("Enter value: ", end=" ")
-            i = eval(input())
-            if i < 0:
-                print("\n********* Good Bye!! ************\n")
-                break
-            fib.get(i)
-    except NameError:
-        print("\nInvalid input, please try again.")
+            try:
+                i = eval(input())
+                if i < 0:
+                    print("\n********* Good Bye!! ************\n")
+                    break
+                fib.get(i)
+            except NameError:
+                print("\nInvalid input, please try again.")
     except NameError:
         print("\n********* Invalid input, good bye!! ************\n")
