@@ -4,6 +4,7 @@ This is a pure Python implementation of Dynamic Programming solution to the fibo
 
 
 class Fibonacci:
+
     def __init__(self, N=None):
         if N:
             N = int(N)
@@ -12,7 +13,7 @@ class Fibonacci:
             self.fib_array[1] = 1
             for i in range(2, N + 1):
                 self.fib_array[i] = self.fib_array[
-                                        i - 1] + self.fib_array[i - 2]
+                    i - 1] + self.fib_array[i - 2]
         else:
             self.fib_array = [None] * (N + 1)
 
