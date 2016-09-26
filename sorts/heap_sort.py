@@ -12,6 +12,7 @@ python heap_sort.py
 
 from __future__ import print_function
 
+
 def heapify(unsorted, index, heap_size):
     largest = index
     left_index = 2 * index + 1
@@ -25,6 +26,7 @@ def heapify(unsorted, index, heap_size):
     if largest != index:
         unsorted[largest], unsorted[index] = unsorted[index], unsorted[largest]
         heapify(unsorted, largest, heap_size)
+
 
 def heap_sort(unsorted):
     '''
@@ -44,7 +46,7 @@ def heap_sort(unsorted):
     [-45, -5, -2]
     '''
     n = len(unsorted)
-    for i in range(n//2 - 1, -1, -1):
+    for i in range(n // 2 - 1, -1, -1):
         heapify(unsorted, i, n)
     for i in range(n - 1, 0, -1):
         unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
