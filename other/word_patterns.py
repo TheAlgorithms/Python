@@ -17,9 +17,8 @@ def main():
     startTime = time.time()
     allPatterns = {}
 
-    fo = open('Dictionary.txt')
-    wordList = fo.read().split('\n')
-    fo.close()
+    with open('Dictionary.txt') as fo:
+        wordList = fo.read().split('\n')
 
     for word in wordList:
         pattern = getWordPattern(word)
@@ -29,9 +28,9 @@ def main():
         else:
             allPatterns[pattern].append(word)
 
-    fo = open('Word Patterns.txt', 'w')
-    fo.write(pprint.pformat(allPatterns))
-    fo.close()
+    with open('Word Patterns.txt', 'w') as fo:
+        fo.write(pprint.pformat(allPatterns))
+
     totalTime = round(time.time() - startTime, 2)
     print('Done! [', totalTime, 'seconds ]')
 
