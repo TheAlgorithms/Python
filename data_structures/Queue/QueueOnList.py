@@ -4,13 +4,17 @@ class Queue():
         self.entries = []
         self.length = 0
 
+    def __str__(self):
+        printed = '<' + str(self.entries)[1:-1] + '>'
+        return printed
+
     """Enqueues {@code item}
     @param item
         item to enqueue"""
     def put(self, item):
         self.entries.append(item)
         self.length = self.length + 1
-        print(self.entries)
+
 
     """Dequeues {@code item}
     @requirement: |self.length| > 0
@@ -22,6 +26,13 @@ class Queue():
         self.entries = self.entries[1:]
         return dequeued
 
+    """Rotates the queue {@code rotation} times
+    @param rotation
+        number of times to rotate queue"""
+    def rotate(self, rotation):
+        for i in range(rotation):
+            self.put(self.get())
+
     """Enqueues {@code item}
     @return item at front of self.entries"""
     def front(self):
@@ -30,6 +41,3 @@ class Queue():
     """Returns the length of this.entries"""
     def size(self):
         return self.length
-
-
-
