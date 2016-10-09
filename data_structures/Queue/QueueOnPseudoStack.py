@@ -15,7 +15,6 @@ class Queue():
         self.stack.append(item)
         self.length = self.length + 1
 
-
     """Dequeues {@code item}
     @requirement: |self.length| > 0
     @return dequeued
