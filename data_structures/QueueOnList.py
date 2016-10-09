@@ -7,7 +7,7 @@ class Queue():
     """Enqueues {@code item}
     @param item
         item to enqueue"""
-    def enqueue(self, item):
+    def put(self, item):
         self.entries.append(item)
         self.length = self.length + 1
         print(self.entries)
@@ -16,7 +16,7 @@ class Queue():
     @requirement: |self.length| > 0
     @return dequeued
         item that was dequeued"""
-    def dequeue(self):
+    def get(self):
         self.length = self.length - 1
         dequeued = self.entries[0]
         self.entries = self.entries[1:]
@@ -28,7 +28,7 @@ class Queue():
         return self.entries[0]
 
     """Returns the length of this.entries"""
-    def length(self):
+    def size(self):
         return self.length
 
 
