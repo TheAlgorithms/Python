@@ -40,7 +40,8 @@ def build_tree():
 
 
 def pre_order(node):
-    if not node:
+    if not isinstance(node, TreeNode) or not node:
+        print("Invalid input")
         return
     print(node.data, end=" ")
     pre_order(node.left)
@@ -48,7 +49,8 @@ def pre_order(node):
 
 
 def in_order(node):
-    if not node:
+     if not isinstance(node, TreeNode) or not node:
+        print("Invalid input")
         return
     in_order(node.left)
     print(node.data, end=" ")
@@ -56,7 +58,8 @@ def in_order(node):
 
 
 def post_order(node):
-    if not node:
+     if not isinstance(node, TreeNode) or not node:
+        print("Invalid input")
         return
     post_order(node.left)
     post_order(node.right)
@@ -64,7 +67,8 @@ def post_order(node):
 
 
 def level_order(node):
-    if not node:
+     if not isinstance(node, TreeNode) or not node:
+        print("Invalid input")
         return
     q = queue.Queue()
     q.put(node)
