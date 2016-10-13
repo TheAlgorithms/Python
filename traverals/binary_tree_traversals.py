@@ -6,7 +6,6 @@ import queue
 
 
 class TreeNode:
-
     def __init__(self, data):
         self.data = data
         self.right = None
@@ -49,8 +48,7 @@ def pre_order(node):
 
 
 def in_order(node):
-     if not isinstance(node, TreeNode) or not node:
-        print("Invalid input")
+    if not isinstance(node, TreeNode) or not node:
         return
     in_order(node.left)
     print(node.data, end=" ")
@@ -58,8 +56,7 @@ def in_order(node):
 
 
 def post_order(node):
-     if not isinstance(node, TreeNode) or not node:
-        print("Invalid input")
+    if not isinstance(node, TreeNode) or not node:
         return
     post_order(node.left)
     post_order(node.right)
@@ -67,8 +64,7 @@ def post_order(node):
 
 
 def level_order(node):
-     if not isinstance(node, TreeNode) or not node:
-        print("Invalid input")
+    if not isinstance(node, TreeNode) or not node:
         return
     q = queue.Queue()
     q.put(node)
@@ -83,6 +79,7 @@ def level_order(node):
 
 if __name__ == '__main__':
     import sys
+
     print("\n********* Binary Tree Traversals ************\n")
     # For python 2.x and 3.x compatibility: 3.x has not raw_input builtin
     # otherwise 2.x's input builtin function is too "smart"
