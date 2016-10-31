@@ -5,7 +5,7 @@ class Stack:
       self.top = 0
 
    def is_empty(self):
-      return self.top == 0
+      return (self.top == 0)
 
    def push(self, item):
       if self.top < len(self.stack):
