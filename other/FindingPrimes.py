@@ -16,6 +16,3 @@ def SOE(n):
     for i in range(n+1):
         if(sieve[i] == True):
             print(i, end=" ")
-
-n = int(input("Enter a positive number\n"))
-SOE(n)
