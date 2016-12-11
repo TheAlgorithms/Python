@@ -44,13 +44,13 @@ def is_balanced(S):
 
 def main():
 
-    S = input("Enter sequence of brackets within quotes: ")
+    S = input("Enter sequence of brackets: ")
 
     if is_balanced(S):
-        print S, "is balanced"
+        print(S, "is balanced")
     
     else:
-	print S, "is not balanced"
+        print(S, "is not balanced")
 
 
 if __name__ == "__main__":
