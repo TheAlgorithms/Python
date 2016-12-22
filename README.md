@@ -89,6 +89,8 @@ Comparing the complexity of sorting algorithms (Bubble Sort, Insertion Sort, Sel
 
 [Complexity Graphs](https://github.com/prateekiiest/Python/blob/master/sorts/sortinggraphs.png)
 
+----------------------------------------------------------------------------------
+
 ## Search Algorithms
 
 ### Linear
@@ -113,6 +115,8 @@ __Properties__
 * Best case performance	O(1)
 * Average case performance	O(log n)
 * Worst case space complexity	O(1) 
+
+----------------------------------------------------------------------------------------------------------------------
 
 ## Ciphers
 
