@@ -1,7 +1,7 @@
 '''
 Auther  : Yvonne
 
-This is a pure Python implementation of Dynamic Programming solution to the edit distance problem.
+This is a pure Python implementation of Dynamic Programming solution to the max_sum_contagious_subarray problem.
 
 The problem is  :
 Given an array, to find the longest and continuous sub array and get the max sum of the sub array in the given array.
