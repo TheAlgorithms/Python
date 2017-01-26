@@ -2,7 +2,7 @@ import random
 from tempfile import TemporaryFile
 import numpy as np
 import math
-
+import matplotlib.pyplot as plt
 
 
 def _inPlaceQuickSort(A,start,end):  
@@ -41,42 +41,30 @@ def _inPlacePartition(A,start,end):
     return newPivotIndex+1,count
     
 outfile = TemporaryFile()    
-print("Enter number of elements :")
-p = int(input())
-X = np.random.standard_normal(p)
+p = 1000 # 1000 elements are to be sorted
+
+
+
+
+mu, sigma = 0, 1 # mean and standard deviation
+X = np.random.normal(mu, sigma, p)
 np.save(outfile, X)
 print(X)
 
-z = _inPlaceQuickSort(X,0,len(X)-1)
-print(z) 
-mu, sigma = 0, 1 # mean and standard deviation
-s = np.random.normal(mu, sigma, p)
-np.save(outfile, s)
-print(s)
-
-count, bins, ignored = plt.hist(s, 30, normed=True)
+count, bins, ignored = plt.hist(X, 30, normed=True)
 
 plt.plot(bins , 1/(sigma * np.sqrt(2 * np.pi)) *np.exp( - (bins - mu)**2 / (2 * sigma**2) ),linewidth=2, color='r')
 plt.show()    
     
+
+
+
+outfile.seek(0)  # using the same array
+M = np.load(outfile)
+r = float(len(M)-1)
+i = 0
+while i < (math.log(r,2)):
+    z = _inPlaceQuickSort(M,0,pow(2,i)-1) # taking 0, 2 , 4, 8, 16 .... elements in succesion and printing the number of comparisons
+    print("No of Comprisons for %d elements is %d"%(pow(2,i)-1,z))
+    i += 1
  
-print("Do you want to use the same array: 1/2 ?")
-inpt = int(input()) 
-if(inpt == 1):
-    outfile.seek(0)
-    M = np.load(outfile)
-    r = float(len(M)-1)
-    i = 0
-    while i < (math.log(r,2)):
-        z = _inPlaceQuickSort(M,0,pow(2,i)-1)
-        print(z)
-        i += 1
-    
-    
-else:
-    N = np.random.normal(mu, sigma, p)
-    h = _inPlaceQuickSort(N,0,len(N)-1)
-    print(h)
-    
-
-
