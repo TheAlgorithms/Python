@@ -2,7 +2,7 @@ import random
 from tempfile import TemporaryFile
 import numpy as np
 import math
-import matplotlib.pyplot as plt
+
 
 
 def _inPlaceQuickSort(A,start,end):  
@@ -51,10 +51,7 @@ X = np.random.normal(mu, sigma, p)
 np.save(outfile, X)
 print(X)
 
-count, bins, ignored = plt.hist(X, 30, normed=True)
-
-plt.plot(bins , 1/(sigma * np.sqrt(2 * np.pi)) *np.exp( - (bins - mu)**2 / (2 * sigma**2) ),linewidth=2, color='r')
-plt.show()    
+  
     
 
 
