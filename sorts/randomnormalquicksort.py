@@ -26,7 +26,7 @@ def _inPlacePartition(A,start,end):
     A[end]=A[pivot]
     A[pivot]=temp
     newPivotIndex=start-1
-    for index in xrange(start,end):
+    for index in range(start,end):
                
         count += 1
         if A[index]<A[end]:#check if current val is less than pivot value
