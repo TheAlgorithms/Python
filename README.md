@@ -59,6 +59,12 @@ __Properties__
 
 ###### View the algorithm in [action][quick-toptal]
 
+
+
+
+![Normal Distribution QuickSort](https://github.com/prateekiiest/Python/blob/master/sorts/normal_distribution_QuickSort_README.md)
+
+
 ### Selection
 ![alt text][selection-image]
 
