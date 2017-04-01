@@ -68,8 +68,7 @@ class Heap:
 			curr = curr/2
 
 	def display(self):
-		for item in self.h:
-			print item,
+		print (self.h)
 
 def main():
 	l = list(map(int,raw_input().split()))
