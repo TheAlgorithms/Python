@@ -10,15 +10,9 @@ For manual testing run:
 python quick_sort.py
 """
 from __future__ import print_function
-from random import shuffle
 
 
-def sort(collection):
-    shuffle(collection)
-    return quick_sort(collection)
-
-
-def quick_sort(collection):
+def quick_sort(ARRAY):
     """Pure implementation of quick sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -35,27 +29,14 @@ def quick_sort(collection):
     >>> quick_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    total_elements = len(collection)
-
-    if total_elements <= 1:
-        return collection
-    less = []
-    equal = []
-    greater = []
-    pivot = collection[0]
-
-    equal.append(pivot)
-    
-    for i in range(1, total_elements):
-        element = collection[i]
-
-        if element < pivot:
-            less.append(element)
-        elif element == pivot:
-            equal.append(element)
-        else:
-            greater.append(element)
-    return quick_sort(less) + equal + quick_sort(greater)
+    ARRAY_LENGTH=len(ARRAY)
+    if(ARRAY_LENGTH<=1):
+        return ARRAY
+    else:
+        PIVOT=ARRAY[0]
+        GREATER=[element for element in ARRAY[1:] if element>PIVOT]
+        LESSER=[element for element in ARRAY[1:] if element<=PIVOT]
+        return quick_sort(LESSER)+[PIVOT]+quick_sort(GREATER)
 
 
 if __name__ == '__main__':
@@ -70,4 +51,4 @@ if __name__ == '__main__':
 
     user_input = input_function('Enter numbers separated by a comma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
-    print(sort(unsorted))
+    print(quick_sort(unsorted))
