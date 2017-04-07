@@ -16,8 +16,8 @@ def longestSub(ARRAY): 			#This function is recursive
 								#Else
 	PIVOT=ARRAY[0]
 	LONGEST_SUB=[]				#This array will contains the longest increasing sub array
-	for i in range(1,ARRAY_LENGTH):
-		if (ARRAY[i] < PIVOT):		#For each element from the array (except the pivot), if the element is smaller than the pivot, it won't figure on the sub array that contains the pivot
+	for i in range(1,ARRAY_LENGTH):			#For each element from the array (except the pivot),
+		if (ARRAY[i] < PIVOT):				#if the element is smaller than the pivot, it won't figure on the sub array that contains the pivot
 			TEMPORARY_ARRAY = [ element for element in ARRAY[i:] if element >= ARRAY[i] ]	#But it cas figure in an increasing sub array starting from this element
 			TEMPORARY_ARRAY = longestSub(TEMPORARY_ARRAY)									#We calculate the longest sub array that starts from this element
 			if ( len(TEMPORARY_ARRAY) > len(LONGEST_SUB) ):									#And we save the longest sub array that begins from an element smaller than the pivot (in LONGEST_SUB)
