@@ -6,25 +6,24 @@ This is a pure Python implementation of Dynamic Programming solution to the fibo
 class Fibonacci:
 
     def __init__(self, N=None):
+        self.fib_array = []
         if N:
             N = int(N)
-            self.fib_array = [0] * (N + 1)
-            self.fib_array[0] = 0
-            self.fib_array[1] = 1
+            self.fib_array.append(0)
+            self.fib_array.append(1)
             for i in range(2, N + 1):
-                self.fib_array[i] = self.fib_array[
-                    i - 1] + self.fib_array[i - 2]
-        else:
-            self.fib_array = [None] * (N + 1)
+                self.fib_array.append(self.fib_array[i - 1] + self.fib_array[i - 2])
+        elif N==0:
+            self.fib_array.append(0)
 
     def get(self, sequence_no=None):
-        if sequence_no:
+        if sequence_no!=None:
             if sequence_no < len(self.fib_array):
-                return print(self.fib_array[:sequence_no])
+                return print(self.fib_array[:sequence_no+1])
             else:
                 print("Out of bound.")
         else:
-            print("Please specify the a value")
+            print("Please specify a value")
 
 
 if __name__ == '__main__':
