@@ -13,13 +13,13 @@ class Fibonacci:
             self.fib_array.append(1)
             for i in range(2, N + 1):
                 self.fib_array.append(self.fib_array[i - 1] + self.fib_array[i - 2])
-        elif N==0:
+        elif N == 0:
             self.fib_array.append(0)
 
     def get(self, sequence_no=None):
-        if sequence_no!=None:
+        if sequence_no != None:
             if sequence_no < len(self.fib_array):
-                return print(self.fib_array[:sequence_no+1])
+                return print(self.fib_array[:sequence_no + 1])
             else:
                 print("Out of bound.")
         else:
