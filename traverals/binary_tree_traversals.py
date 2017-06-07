@@ -1,7 +1,7 @@
 """
 This is pure python implementation of tree traversal algorithms
 """
-
+from __future__ import print_function
 import queue
 
 
@@ -25,22 +25,25 @@ def build_tree():
             node_found = q.get()
             print("Enter the left node of %s: " % node_found.data, end="")
             left_data = eval(input())
-            if left_data >= 0:
+            if left_data < 0:
+            	return tree_node
+            elif left_data >= 0:
                 left_node = TreeNode(left_data)
                 node_found.left = left_node
                 q.put(left_node)
             print("Enter the right node of %s: " % node_found.data, end="")
             right_data = eval(input())
-            if right_data >= 0:
+            if right_data < 0:
+            	return tree_node
+            elif right_data >= 0:
                 right_node = TreeNode(right_data)
                 node_found.right = right_node
                 q.put(right_node)
-    return tree_node
 
 
 def pre_order(node):
     if not isinstance(node, TreeNode) or not node:
-        print("Invalid input")
+        #print("Invalid input")
         return
     print(node.data, end=" ")
     pre_order(node.left)
