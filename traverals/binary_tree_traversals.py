@@ -13,37 +13,37 @@ class TreeNode:
 
 
 def build_tree():
+    print("\n********Press N to stop entering at any point of time********\n")
     print("Enter the value of the root node: ", end="")
-    data = eval(input())
-    if data < 0:
-        return None
-    else:
-        q = queue.Queue()
-        tree_node = TreeNode(data)
-        q.put(tree_node)
-        while not q.empty():
-            node_found = q.get()
-            print("Enter the left node of %s: " % node_found.data, end="")
-            left_data = eval(input())
-            if left_data < 0:
-            	return tree_node
-            elif left_data >= 0:
-                left_node = TreeNode(left_data)
-                node_found.left = left_node
-                q.put(left_node)
-            print("Enter the right node of %s: " % node_found.data, end="")
-            right_data = eval(input())
-            if right_data < 0:
-            	return tree_node
-            elif right_data >= 0:
-                right_node = TreeNode(right_data)
-                node_found.right = right_node
-                q.put(right_node)
+    check=input()
+    if check=='N' or check=='n':
+        return None 
+    data=int(check)
+    q = queue.Queue()
+    tree_node = TreeNode(data)
+    q.put(tree_node)
+    while not q.empty():
+        node_found = q.get()
+        print("Enter the left node of %s: " % node_found.data, end="")
+        check=input()
+        if check=='N' or check =='n':
+            return tree_node
+        left_data = int(check)
+        left_node = TreeNode(left_data)
+        node_found.left = left_node
+        q.put(left_node)
+        print("Enter the right node of %s: " % node_found.data, end="")
+        check = input()
+        if check == 'N' or check == 'n':
+            return tree_node
+        right_data = int(check)
+        right_node = TreeNode(right_data)
+        node_found.right = right_node
+        q.put(right_node)
 
 
 def pre_order(node):
     if not isinstance(node, TreeNode) or not node:
-        #print("Invalid input")
         return
     print(node.data, end=" ")
     pre_order(node.left)
