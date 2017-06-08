@@ -44,7 +44,7 @@ def build_tree():
 def pre_order(node):
     no_of_nodes=0
     if not isinstance(node, TreeNode) or not node:
-        return 0
+        return 
     print(node.data, end=" ")
     return 1+pre_order(node.left)#counting number of left nodes
     return 1+pre_order(node.right)#counting number of right nodes
@@ -53,7 +53,7 @@ def pre_order(node):
 def in_order(node):
     leaf_count=0
     if not isinstance(node, TreeNode) or not node:
-        return 0
+        return 
     in_order(node.left)
     print(node.data, end=" ")
     return 1+in_order(node.right)#counting number of leaf nodes
