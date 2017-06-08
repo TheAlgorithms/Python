@@ -11,7 +11,6 @@ class TreeNode:
         self.right = None
         self.left = None
 
-
 def build_tree():
     print("\n********Press N to stop entering at any point of time********\n")
     print("Enter the value of the root node: ", end="")
@@ -43,19 +42,21 @@ def build_tree():
 
 
 def pre_order(node):
+    no_of_nodes=0
     if not isinstance(node, TreeNode) or not node:
-        return
+        return 0
     print(node.data, end=" ")
-    pre_order(node.left)
-    pre_order(node.right)
+    return 1+pre_order(node.left)#counting number of left nodes
+    return 1+pre_order(node.right)#counting number of right nodes
 
 
 def in_order(node):
+    leaf_count=0
     if not isinstance(node, TreeNode) or not node:
-        return
+        return 0
     in_order(node.left)
     print(node.data, end=" ")
-    in_order(node.right)
+    return 1+in_order(node.right)#counting number of leaf nodes
 
 
 def post_order(node):
@@ -90,14 +91,13 @@ if __name__ == '__main__':
         input_function = raw_input
     else:
         input_function = input
-
     node = build_tree()
     print("\n********* Pre Order Traversal ************")
-    pre_order(node)
+    no_of_nodes=pre_order(node)
     print("\n******************************************\n")
 
     print("\n********* In Order Traversal ************")
-    in_order(node)
+    leaf_count=in_order(node)
     print("\n******************************************\n")
 
     print("\n********* Post Order Traversal ************")
@@ -107,3 +107,6 @@ if __name__ == '__main__':
     print("\n********* Level Order Traversal ************")
     level_order(node)
     print("\n******************************************\n")
+    print("\nTotal number of nodes : ",no_of_nodes)
+    print("\nTotal number of leafs : ",leaf_count)
+
