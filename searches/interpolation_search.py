@@ -33,5 +33,5 @@ def interpolation_search(arr, target):
 arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 target = 2
 
-retval = interpolation_search(arr=arr.sort(), target=target)
-print(retval)
+retstr = interpolation_search(arr=sorted(arr), target=target)
+print(retstr)
