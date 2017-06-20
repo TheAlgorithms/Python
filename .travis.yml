@@ -6,7 +6,6 @@ python:
   - "3.5"
   - "3.6"
   - "3.6-dev"
-  - "3.7-dev"
   - "nightly"
 install: 
   - if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then travis_retry pip install coverage==3.7.1; fi
