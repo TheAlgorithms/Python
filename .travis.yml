@@ -13,4 +13,3 @@ install:
   - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
   - "pip install pytest pytest-cov"
 script: py.test --doctest-modules --cov ./
-os: osx
