@@ -8,7 +8,6 @@ class Graph:
     def add_edge(self, u, v):
         self.graph[u - 1][v - 1] = 1
         self.graph[v - 1][u - 1] = 1
-
     def show(self):
 
         for i in self.graph:
@@ -26,10 +25,9 @@ class Graph:
 
 
 g = Graph(5)
-
 g.add_edge(1,4)
 g.add_edge(4,2)
 g.add_edge(4,5)
 g.add_edge(2,5)
 g.add_edge(5,3)
-print(g.dfs(1))
+g.dfs(1)
