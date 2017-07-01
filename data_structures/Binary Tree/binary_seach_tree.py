@@ -12,7 +12,7 @@ class Node:
         return self.label
 
     def setLabel(self, label):
-         self.label = label
+        self.label = label
 
     def getLeft(self):
         return self.left
