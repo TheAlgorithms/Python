@@ -49,10 +49,6 @@ class AVL:
         self.root = None
         self.size = 0
 
-    # def __init__(self, root):
-    #     self.root = root
-    #     self.size = 1
-
     def insert(self, value):
         node = Node(value)
         if self.root is None:
@@ -91,13 +87,40 @@ class AVL:
                     break
 
     def rebalance(self, node):
+        if (node.getRight().getHeight() -
+                node.getLeft.getHeight() > 1):
+            if (node.getRight().getHeight() >
+                    node.getLeft.getHeight()):
+                pass
+            else:
+                pass
+            pass
+        elif (node.getRight().getHeight() -
+                node.getLeft.getHeight() > 2):
+            if (node.getRight().getHeight() >
+                    node.getLeft.getHeight()):
+                pass
+            else:
+                pass
+            pass
         pass
 
     def rotate_left(self, node):
-        pass
+        # TODO: is this pythonic enought?
+        aux = node.getLabel()
+        node = aux.getRight()
+        node.setHeight(node.getHeight() - 1)
+        node.setLeft(Node(aux))
+        node.getLeft().setHeight(node.getHeight() + 1)
+        node.getRight().setHeight(node.getRight().getHeight() - 1)
 
     def rotate_right(self, node):
-        pass
+        aux = node.getLabel()
+        node = aux.getLeft()
+        node.setHeight(node.getHeight() - 1)
+        node.setRight(Node(aux))
+        node.getLeft().setHeight(node.getHeight() + 1)
+        node.getLeft().setHeight(node.getLeft().getHeight() - 1)
 
     def double_rotate_left(self, node):
         pass
