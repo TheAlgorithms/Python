@@ -123,7 +123,9 @@ class AVL:
         node.getLeft().setHeight(node.getLeft().getHeight() - 1)
 
     def double_rotate_left(self, node):
-        pass
+        self.rotate_right(node.getRight().getRight())
+        self.rotate_left(node)
 
-    def double_rotate_righs(self, node):
-        pass
+    def double_rotate_right(self, node):
+        self.rotate_left(node.getLeft().getLeft())
+        self.rotate_right(node)
