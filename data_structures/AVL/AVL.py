@@ -23,18 +23,24 @@ class Node:
 
     def setLeft(self, left):
         self.left = left
-
+        self.left.setParent(self)
+        self.left.setHeight(self.height + 1)
+        
     def getRight(self):
         return self.rigt
 
     def setRight(self, right):
         self.rigt = right
+        self.rigt.setParent(self)
+        self.rigt.setHeight(self.height + 1)
 
     def getParent(self):
         return self.parent
 
     def setParent(self, parent):
         self.parent = parent
+        self.height = (self.parent.getHeight() + 1 if
+                        (self.parent is not None) else 0)
 
     def setHeight(self, height):
         self.height = height
@@ -53,6 +59,7 @@ class AVL:
         node = Node(value)
         if self.root is None:
             self.root = node
+            self.root.setHeight(0)
             self.size = 1
         else:
             # Same as Binary Tree
@@ -71,54 +78,59 @@ class AVL:
                 else:
                     if node.getLabel() < dad_node.getLabel():
                         dad_node.setLeft(node)
-                        dad_node.setHeight(dad_node.getHeight() + 1)
                     else:
                         dad_node.setRight(node)
-                        dad_node.setHeight(dad_node.getHeight() + 1)
+                    self.rebalance(dad_node)
                     break
 
     def rebalance(self, node):
         height_right = 0
         height_left = 0
+        n = node
+        while n is not None:
+            height_right = 0
+            height_left = 0
 
-        if node.getRight() is not None:
-            height_right = node.getRight().getHeight()
+            if node.getRight() is not None:
+                height_right = node.getRight().getHeight()
 
-        if node.getLeft() is not None:
-            height_left = node.getLeft().getHeight()
+            if node.getLeft() is not None:
+                height_left = node.getLeft().getHeight()
 
-        if abs(height_left - height_right) > 1:
-            if height_left > height_right:
-                right_child = node.getRight()
-                if (right_child.getLeft().getHeight() >
-                        right_child.getRight().getHeight()):
-                    self.rotate_left(node)
+            if abs(height_left - height_right) > 1:
+                if height_left > height_right:
+                    left_child = node.getRight()
+                    if ():
+                        self.rotate_left(n)
+                        break
+                    else:
+                        self.double_rotate_right(n)
+                        break
                 else:
-                    self.double_rotate_right(node)
-            else:
-                left_child = node.getLeft()
-                if (left_child.getLeft().getHeight() >
-                        left_child.getRight().getHeight()):
-                    self.double_rotate_left(node)
-                else:
-                    self.rotate_right(node)
+                    right_child = node.getRight()
+                    if right_child is not None:
+                        h_right = (right_child.getRight().getHeight()
+                            if (right_child.getRight() is not None) else 0)
+                        h_left = (right_child.getLeft().getHeight()
+                            if (right_child.getLeft() is not None) else 0)
+
+                    if (h_left > h_right):
+                        self.double_rotate_left(n)
+                        break
+                    else:
+                        self.rotate_right(n)
+                        print(n.getLabel())
+                        break
+            n = n.getParent()
 
     def rotate_left(self, node):
-        # TODO: is this pythonic enought?
-        aux = node.getLabel()
-        node = aux.getRight()
-        node.setHeight(node.getHeight() - 1)
-        node.setLeft(Node(aux))
-        node.getLeft().setHeight(node.getHeight() + 1)
-        node.getRight().setHeight(node.getRight().getHeight() - 1)
+        pass
 
     def rotate_right(self, node):
-        aux = node.getLabel()
-        node = aux.getLeft()
-        node.setHeight(node.getHeight() - 1)
-        node.setRight(Node(aux))
-        node.getLeft().setHeight(node.getHeight() + 1)
-        node.getLeft().setHeight(node.getLeft().getHeight() - 1)
+        n = Node(node.getLabel())
+        n.setRight(node.getRight())
+        n.setLeft(Node(node.getParent().getLabel()))
+        node = n
 
     def double_rotate_left(self, node):
         self.rotate_right(node.getRight().getRight())
@@ -139,23 +151,92 @@ class AVL:
             print(curr_node.getLabel(), end=" ")
             self.preShow(curr_node.getRight())
 
+    def preorden(self, curr_node):
+        if curr_node is not None:
+            self.preShow(curr_node.getLeft())
+            self.preShow(curr_node.getRight())
+            print(curr_node.getLabel(), end=" ")
+
     def getRoot(self):
         return self.root
 
 t = AVL()
-t.insert(11)
-t.insert(14)
-t.insert(3)
-t.insert(4)
-t.insert(5)
-t.insert(6)
-t.insert(7)
-t.insert(8)
-t.insert(9)
-t.insert(10)
+# t.insert(1)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(2)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(3)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# print(t.getRoot().getHeight())
+# print(t.getRoot().getRight().getHeight())
 t.insert(1)
-t.insert(12)
-t.insert(13)
 t.insert(2)
-t.insert(15)
-t.preShow(t.getRoot())
+t.insert(3)
+# t.insert(4)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(5)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(6)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(7)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(8)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(9)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(10)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(11)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(12)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(13)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(14)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
+# print("\n")
+# t.insert(15)
+# t.preShow(t.getRoot())
+# print("\n")
+# t.preorden(t.getRoot())
