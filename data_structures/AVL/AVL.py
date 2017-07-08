@@ -12,41 +12,32 @@ class Node:
         self.parent = None
         self.height = 0
 
-    def getLabel(self):
-        return self.label
+    @property
+    def right(self):
+        return self.right
 
-    def setLabel(self, label):
-        self.label = label
+    @right.setter
+    def right(self, node):
+        node.parent = self
+        self.right = node
 
-    def getLeft(self):
-        return self.left
-
-    def setLeft(self, left):
-        self.left = left
-        self.left.setParent(self)
-        self.left.setHeight(self.height + 1)
-        
-    def getRight(self):
-        return self.rigt
-
-    def setRight(self, right):
-        self.rigt = right
-        self.rigt.setParent(self)
-        self.rigt.setHeight(self.height + 1)
-
-    def getParent(self):
+    @property
+    def left(self):
         return self.parent
 
-    def setParent(self, parent):
-        self.parent = parent
-        self.height = (self.parent.getHeight() + 1 if
-                        (self.parent is not None) else 0)
+    @left.setter
+    def left(self, node):
+        node.parent = self
+        self.left = node
 
-    def setHeight(self, height):
-        self.height = height
+    @property
+    def parent(self):
+        return self.parent
 
-    def getHeight(self):
-        return self.height
+    @parent.setter
+    def parent(self, node):
+        self.parent = node
+        self.height = self.parent.height + 1
 
 
 class AVL:
@@ -59,7 +50,7 @@ class AVL:
         node = Node(value)
         if self.root is None:
             self.root = node
-            self.root.setHeight(0)
+            self.root.height = 0
             self.size = 1
         else:
             # Same as Binary Tree
@@ -71,16 +62,18 @@ class AVL:
 
                     dad_node = curr_node
 
-                    if node.getLabel() < curr_node.getLabel():
-                        curr_node = curr_node.getLeft()
+                    if node.label < curr_node.label:
+                        curr_node = curr_node.left
                     else:
-                        curr_node = curr_node.getRight()
+                        curr_node = curr_node.rigt
                 else:
-                    if node.getLabel() < dad_node.getLabel():
-                        dad_node.setLeft(node)
+                    if node.label < dad_node.label:
+                        dad_node.left = node
                     else:
-                        dad_node.setRight(node)
+                        dad_node.right = node
+
                     self.rebalance(dad_node)
+                    self.size += 1
                     break
 
     def rebalance(self, node):
@@ -119,7 +112,6 @@ class AVL:
                         break
                     else:
                         self.rotate_right(n)
-                        print(n.getLabel())
                         break
             n = n.getParent()
 
@@ -130,7 +122,6 @@ class AVL:
         n = Node(node.getLabel())
         n.setRight(node.getRight())
         n.setLeft(Node(node.getParent().getLabel()))
-        node = n
 
     def double_rotate_left(self, node):
         self.rotate_right(node.getRight().getRight())
