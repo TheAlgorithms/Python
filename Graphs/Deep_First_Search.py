@@ -1,33 +1,32 @@
-class Graph:
+class GRAPH:
+    """docstring for GRAPH"""
+    def __init__(self, nodes):
+        self.nodes=nodes
+        self.graph=[[0]*nodes for i in range (nodes)]
+        self.visited=[0]*nodes
 
-    def __init__(self, vertex):
-        self.vertex = vertex
-        self.graph = [[0] * vertex for i in range(vertex) ]
-        self.visited = [False] * vertex
 
-    def add_edge(self, u, v):
-        self.graph[u - 1][v - 1] = 1
-        self.graph[v - 1][u - 1] = 1
     def show(self):
+        print self.graph
 
-        for i in self.graph:
-            for j in i:
-                print(j, end=' ')
-            print(' ')
+    def add_edge(self, i, j):
+        self.graph[i][j]=1
+        self.graph[j][i]=1
 
-
-    def dfs(self, u):
-        self.visited[u - 1] = True
-        print('%d visited' % u)
-        for i in range(1, self.vertex + 1):
-            if self.graph[u - 1][i - 1] == 1 and self.visited[i - 1] == False:
+    def dfs(self,s):
+        self.visited[s]=1
+        print(s)
+        for i in range(0,self.nodes):
+            if self.visited[i]==0 and self.graph[s][i]==1:
                 self.dfs(i)
+            
 
-
-g = Graph(5)
-g.add_edge(1,4)
-g.add_edge(4,2)
-g.add_edge(4,5)
-g.add_edge(2,5)
-g.add_edge(5,3)
-g.dfs(1)
+n=int(input("Enter the number of Nodes : "))
+g=GRAPH(n)
+e=int(input("Enter the no of edges : "))
+print("Enter the edges (u v)")
+for i in range(0,e):
+    u,v=map(int, raw_input().split())
+    g.add_edge(u,v)
+s=int(input("Enter the source node :"))
+g.dfs(s)
