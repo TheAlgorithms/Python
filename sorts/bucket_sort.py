@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # Author: OMKAR PATHAK
 # This program will illustrate how to implement bucket sort algorithm
 
