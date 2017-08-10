@@ -74,7 +74,7 @@ __Properties__
 ### Shell
 ![alt text][shell-image]
 
-From [Wikipedia][shell-wiki]:  Shellsort is a generalization of insertion sort that allows the exchange of items that are far apart.  The idea is to arrange the list of elements so that, starting anywherem considereing every nth element gives a sorted list.  Such a list is said to be h-sorted.  Equivanelty, it can be thought of as h intterleaved lists, each individually sorted.
+From [Wikipedia][shell-wiki]:  Shellsort is a generalization of insertion sort that allows the exchange of items that are far apart.  The idea is to arrange the list of elements so that, starting anywhere, considering every nth element gives a sorted list.  Such a list is said to be h-sorted.  Equivalently, it can be thought of as h interleaved lists, each individually sorted.
 
 __Properties__
 * Worst case performance O(nlog2 2n)
