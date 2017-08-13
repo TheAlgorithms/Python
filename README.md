@@ -83,7 +83,7 @@ __Properties__
 
 ###### View the algorithm in [action][shell-toptal]
 
-###Time-Compexity Graphs
+### Time-Compexity Graphs
 
 Comparing the complexity of sorting algorithms (Bubble Sort, Insertion Sort, Selection Sort)
 
