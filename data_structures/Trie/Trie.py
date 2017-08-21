@@ -10,12 +10,12 @@ class TrieNode:
     def __init__(self):
         self.nodes = dict() # Mapping from char to TrieNode
 
-    def add_words(self, words: [str]):
+    def insert_many(self, words: [str]):
         for word in words:
-            self.add_word(word)
+            self.insert(word)
 
-    def add_word(self, word: str):
+    def insert(self, word: str):
         pass
 
-    def lookup_word(self, word: str) -> bool:
+    def find(self, word: str) -> bool:
         pass
