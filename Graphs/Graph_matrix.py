@@ -20,10 +20,10 @@ class Graph:
 
 g = Graph(100)
 
-for i in range(100):
-    for j in range(100):
-        g.add_edge(i,j)
-
-
+g.add_edge(1,4)
+g.add_edge(4,2)
+g.add_edge(4,5)
+g.add_edge(2,5)
+g.add_edge(5,3)
 g.show()
 

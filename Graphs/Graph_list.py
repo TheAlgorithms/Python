@@ -17,14 +17,12 @@ class Graph:
 
 g = Graph(100)
 
-'''g.add_edge(1,3)
+g.add_edge(1,3)
 g.add_edge(2,3)
 g.add_edge(3,4)
 g.add_edge(3,5)
-g.add_edge(4,5)'''
-for i in range(100):
-    for j in range(100):
-        g.add_edge(i,j)
+g.add_edge(4,5)
+
 
 g.show()
 
