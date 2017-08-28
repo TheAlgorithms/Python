@@ -1,6 +1,8 @@
 '''
 A binary search Tree
 '''
+
+
 class Node:
 
     def __init__(self, label):
@@ -12,7 +14,7 @@ class Node:
         return self.label
 
     def setLabel(self, label):
-         self.label = label
+        self.label = label
 
     def getLeft(self):
         return self.left
@@ -34,7 +36,7 @@ class BinarySearchTree:
 
     def insert(self, label):
 
-        #Create a new Node
+        # Create a new Node
 
         node = Node(label)
 
@@ -45,7 +47,7 @@ class BinarySearchTree:
             curr_node = self.root
 
             while True:
-                if curr_node != None:
+                if curr_node is not None:
 
                     dad_node = curr_node
 
@@ -61,12 +63,12 @@ class BinarySearchTree:
                     break
 
     def empty(self):
-        if self.root == None:
+        if self.root is None:
             return True
         return False
 
     def preShow(self, curr_node):
-        if curr_node != None:
+        if curr_node is None:
             print(curr_node.getLabel(), end=" ")
 
             self.preShow(curr_node.getLeft())
