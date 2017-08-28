@@ -52,6 +52,8 @@ class Perceptron:
             epoch_count = epoch_count + 1
             # if you want controle the epoch or just by erro
             if erro == False:
+                print('\nEpoch:\n',epoch_count)
+                print('------------------------\n')
             #if epoch_count > self.epoch_number or not erro:
                 break
 
@@ -105,6 +107,7 @@ samples = [
     [2.4482, 0.9455, 11.2095],
     [2.0149, 0.6192, 10.9263],
     [0.2012, 0.2611, 5.4631]
+
 ]
 
 exit = [-1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1]
@@ -114,12 +117,7 @@ network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=
 network.trannig()
 
 while True:
-    i = 0
     sample = []
-    while i < 3:
-        value = input('value: ')
-        value = float(value)
-        sample.insert(i, value)
-        i = i + 1
-
+    for i in range(3):
+        sample.insert(i, float(input('value: ')))
     network.sort(sample)
