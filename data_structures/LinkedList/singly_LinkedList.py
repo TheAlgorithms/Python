@@ -9,22 +9,22 @@ class Node:   #create a Node
 class Linked_List:
     pass
     def insert_tail(Head,data): #insert the data at tail
-        tamp=Head
-        if(tamp==None):
+        tamp=Head       #create a tamp as a head
+        if(tamp==None):   # if linkedlist is empty
             newNod=Node() #create newNode Node type and given data and next
             newNod.data=data
             newNod.next=None
             Head=newNod
 
         else:
-            while tamp.next!=None: #reaches the last Node
+            while tamp.next!=None: #find  the last Node
                 tamp=tamp.next
             newNod = Node()  #create a new node
             newNod.data = data
             newNod.next = None
             tamp.next=newNod  #put the newnode into last node
 
-        return Head
+        return Head             #return first node  of  linked list
     def insert_head(Head,data):
         tamp = Head
         if (tamp == None):
@@ -32,14 +32,13 @@ class Linked_List:
             newNod.data = data
             newNod.next = None
             Head = newNod   #make new node to Head
-            # print(Head.data)
             return Head
         else:
             newNod = Node()
             newNod.data = data
             newNod.next = Head  #put the Head at NewNode Next
             Head=newNod        # make a NewNode to Head
-            # print(tamp.data)
+          
             return Head
 
 
@@ -70,9 +69,9 @@ class Linked_List:
         else:
             tamp = Node()
             tamp = Head
-            while (tamp.next).next!= None:  #reach tha 2nd last element
+            while (tamp.next).next!= None:  #find the 2nd last element
                 tamp = tamp.next
-            tamp.next=None  #delet the last element by give next None to 2nd last Element
+            tamp.next=None  #delete the last element by give next None to 2nd last Element
 
 
 
@@ -85,26 +84,5 @@ class Linked_List:
             return False    #check False if it's not none
 
 
-
-##check
-
-Head=None
-Head=Linked_List.insert_tail(Head,5)
-Head=Linked_List.insert_tail(Head,6)
-Head=Linked_List.insert_head(Head,7)
-Head=Linked_List.insert_head(Head,9)
-
-Linked_List.Print(Head)
-
-print("delete_tail")
-Linked_List.delete_tail(Head)
-Linked_List.Print(Head)
-
-
-print("delete_head")
-Head=Linked_List.delete_head(Head)
-Linked_List.Print(Head)
-
-Linked_List.isEmpty(Head)
 
 
