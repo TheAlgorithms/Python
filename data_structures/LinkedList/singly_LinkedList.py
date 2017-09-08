@@ -3,9 +3,6 @@ class Node:   #create a Node
         self.data=data  #given data
         self.next=None  #given next to None
 
-
-
-
 class Linked_List:
     pass
     def insert_tail(Head,data): #insert the data at tail
@@ -32,14 +29,13 @@ class Linked_List:
             newNod.data = data
             newNod.next = None
             Head = newNod   #make new node to Head
-            return Head
+            
         else:
             newNod = Node()
             newNod.data = data
             newNod.next = Head  #put the Head at NewNode Next
             Head=newNod        # make a NewNode to Head
-          
-            return Head
+        return Head
 
 
 
@@ -53,10 +49,7 @@ class Linked_List:
 
 
     def delete_head(Head):   #delete from head
-        if Head==None:
-            print("List is empty cannot delete")
-
-        else:
+        if Head!=None:
             Head=Head.next
 
         return Head   #return new Head
@@ -64,24 +57,20 @@ class Linked_List:
 
 
     def delete_tail(Head):  #delete from tail
-        if Head==None:
-            print("List is empty cannot delete")
-        else:
+        if Head!=None:
             tamp = Node()
             tamp = Head
             while (tamp.next).next!= None:  #find the 2nd last element
                 tamp = tamp.next
-            tamp.next=None  #delete the last element by give next None to 2nd last Element
-
+            tamp.next=None      #delete the last element by give next None to 2nd last Element
+        return Head
 
 
     def isEmpty(Head):
         if(Head==None):  #check Head is None  or Not
-            print("list is empty")
-            return True   #return Ture if it is none
+            return True   #return Ture if list is empty
         else:
-            print("Not empty")
-            return False    #check False if it's not none
+            return False    #check False if it's not empty
 
 
 
