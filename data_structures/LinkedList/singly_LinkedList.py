@@ -12,7 +12,6 @@ class Linked_List:
             newNod.data=data
             newNod.next=None
             Head=newNod
-
         else:
             while tamp.next!=None: #find  the last Node
                 tamp=tamp.next
@@ -20,24 +19,21 @@ class Linked_List:
             newNod.data = data
             newNod.next = None
             tamp.next=newNod  #put the newnode into last node
-
         return Head             #return first node  of  linked list
+    
     def insert_head(Head,data):
         tamp = Head
         if (tamp == None):
             newNod = Node()  #create a new Node
             newNod.data = data
             newNod.next = None
-            Head = newNod   #make new node to Head
-            
+            Head = newNod   #make new node to Head       
         else:
             newNod = Node()
             newNod.data = data
             newNod.next = Head  #put the Head at NewNode Next
             Head=newNod        # make a NewNode to Head
         return Head
-
-
 
     def Print(Head):   #print every node data
         tamp=Node()
@@ -46,15 +42,10 @@ class Linked_List:
             print(tamp.data)
             tamp=tamp.next
 
-
-
     def delete_head(Head):   #delete from head
         if Head!=None:
             Head=Head.next
-
         return Head   #return new Head
-
-
 
     def delete_tail(Head):  #delete from tail
         if Head!=None:
@@ -64,7 +55,6 @@ class Linked_List:
                 tamp = tamp.next
             tamp.next=None      #delete the last element by give next None to 2nd last Element
         return Head
-
 
     def isEmpty(Head):
         if(Head==None):  #check Head is None  or Not
