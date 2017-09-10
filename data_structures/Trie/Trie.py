@@ -65,11 +65,15 @@ def print_words(node: TrieNode, word: str):
 
 
 def test():
-    words = ['banana', 'bananas', 'bandana', 'band', 'apple', 'all', 'beast']
+    words = []
+    # Load words from text file into Trie
+    with open("../../other/Dictionary.txt", "r") as ins:
+        for line in ins:
+            words.append(line.strip().lower())
     root = TrieNode()
     root.insert_many(words)
     # print_words(root, '')
-    assert root.find('banana')
+    assert root.find('bananas')
     assert not root.find('bandanas')
     assert not root.find('apps')
     assert root.find('apple')
