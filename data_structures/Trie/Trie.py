@@ -4,14 +4,13 @@ of words/patterns in a set of words. A basic Trie however has O(n^2) space compl
 making it impractical in practice. It however provides O(max(search_string, length of longest word)) lookup
 time making it an optimal approach when space is not an issue.
 
-This implementation assumes the character $ is not in any of the words. This character is used in the implementation
-to mark the end of a word.
 """
 
 
 class TrieNode:
     def __init__(self):
         self.nodes = dict()  # Mapping from char to TrieNode
+        self.is_leaf = False
 
     def insert_many(self, words: [str]):
         """
@@ -28,12 +27,12 @@ class TrieNode:
         :param word: word to be inserted
         :return: None
         """
-        word += '$'
         curr = self
         for char in word:
             if char not in curr.nodes:
                 curr.nodes[char] = TrieNode()
             curr = curr.nodes[char]
+        curr.is_leaf = True
 
     def find(self, word: str) -> bool:
         """
@@ -41,13 +40,12 @@ class TrieNode:
         :param word: word to look for
         :return: Returns True if word is found, False otherwise
         """
-        word += '$'
         curr = self
         for char in word:
             if char not in curr.nodes:
                 return False
             curr = curr.nodes[char]
-        return True
+        return curr.is_leaf
 
 
 def print_words(node: TrieNode, word: str):
@@ -57,7 +55,7 @@ def print_words(node: TrieNode, word: str):
     :param word: Word variable should be empty at start
     :return: None
     """
-    if '$' in node.nodes:
+    if node.is_leaf:
         print(word, end=' ')
 
     for key, value in node.nodes.items():
@@ -65,17 +63,13 @@ def print_words(node: TrieNode, word: str):
 
 
 def test():
-    words = []
-    # Load words from text file into Trie
-    with open("../../other/Dictionary.txt", "r") as ins:
-        for line in ins:
-            words.append(line.strip().lower())
+    words = ['banana', 'bananas', 'bandana', 'band', 'apple', 'all', 'beast']
     root = TrieNode()
     root.insert_many(words)
     # print_words(root, '')
-    assert root.find('bananas')
+    assert root.find('banana')
     assert not root.find('bandanas')
     assert not root.find('apps')
     assert root.find('apple')
 
-# test()
+test()
