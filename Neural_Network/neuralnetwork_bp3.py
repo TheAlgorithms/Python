@@ -49,9 +49,9 @@ class Bpnn():
         '''
         data_train = np.asarray(data_train)
         data_teach = np.asarray(data_teach)
-        print('-------------------Start Training-------------------------')
-        print(' - - Shape: Train_Data  ',np.shape(data_train))
-        print(' - - Shape: Teach_Data  ',np.shape(data_teach))
+        # print('-------------------Start Training-------------------------')
+        # print(' - - Shape: Train_Data  ',np.shape(data_train))
+        # print(' - - Shape: Teach_Data  ',np.shape(data_teach))
         rp = 0
         all_mse = []
         mse  = 10000
@@ -95,9 +95,9 @@ class Bpnn():
             plt.ylabel('All_mse')
             plt.grid(True,alpha = 0.7)
             plt.show()
-        print('------------------Training Complished---------------------')
-        print(' - - Training epoch: ', rp, '     - - Mse: %.6f'%mse)
-        print(' - - Last Output: ', final_out3)
+        # print('------------------Training Complished---------------------')
+        # print(' - - Training epoch: ', rp, '     - - Mse: %.6f'%mse)
+        # print(' - - Last Output: ', final_out3)
         if draw_e:
             draw_error()
 
@@ -108,9 +108,9 @@ class Bpnn():
         '''
         data_test = np.asarray(data_test)
         produce_out = []
-        print('-------------------Start Testing-------------------------')
-        print(' - - Shape: Test_Data  ',np.shape(data_test))
-        print(np.shape(data_test))
+        # print('-------------------Start Testing-------------------------')
+        # print(' - - Shape: Test_Data  ',np.shape(data_test))
+        # print(np.shape(data_test))
         for g in range(np.shape(data_test)[0]):
 
             net_i = data_test[g]
