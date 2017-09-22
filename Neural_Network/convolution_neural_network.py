@@ -11,30 +11,15 @@
             * Hiden layer of BP
             * Output layer of BP
     Author: Stephen Lee
-    Program: PYTHON
+    Github: 245885195@qq.com
     Date: 2017.9.20
     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
           '''
+
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 class CNN():
-    conv1 = []
-    w_conv1 = []
-    thre_conv1 = []
-    step_conv1 = 0
-    size_pooling1 = 0
-    num_bp1 = 0
-    num_bp2 = 0
-    num_bp3 = 0
-    thre_bp1 = []
-    thre_bp2 = []
-    wkj = np.mat([])
-    vji = np.mat([])
-    rate_weight = 0
-    rate_thre = 0
-
 
     def __init__(self,conv1_get,size_p1,bp_num1,bp_num2,bp_num3,rate_w=0.2,rate_t=0.2):
         '''
@@ -63,7 +48,7 @@ class CNN():
 
 
     def save_model(self,save_path):
-        #将模型保存
+        #save model dict with pickle
         import pickle
         model_dic = {'num_bp1':self.num_bp1,
                     'num_bp2':self.num_bp2,
@@ -82,35 +67,11 @@ class CNN():
         with open(save_path, 'wb') as f:
             pickle.dump(model_dic, f)
 
-        print('模型已经保存： %s'% save_path)
-
-
-    def paste_model(self,save_path):
-        #实例方法，
-        #虽然这么写一点也不简洁。。。。
-        #卸载这个里面的话，只是用于修改已经存在的模型，要根据读取的数据返回实例的模型，再写一个吧
-        import pickle
-        with open(save_path, 'rb') as f:
-            model_dic = pickle.load(f)
-        self.num_bp1 = model_dic.get('num_bp1')
-        self.num_bp2 = model_dic.get('num_bp2')
-        self.num_bp3 = model_dic.get('num_bp3')
-        self.conv1 = model_dic.get('conv1')
-        self.step_conv1 = model_dic.get('step_conv1')
-        self.size_pooling1 = model_dic.get('size_pooling1')
-        self.rate_weight = model_dic.get('rate_weight')
-        self.rate_thre = model_dic.get('rate_thre')
-        self.w_conv1 = model_dic.get('w_conv1')
-        self.wkj = model_dic.get('wkj')
-        self.vji = model_dic.get('vji')
-        self.thre_conv1 = model_dic.get('thre_conv1')
-        self.thre_bp2 = model_dic.get('thre_bp2')
-        self.thre_bp3 = model_dic.get('thre_bp3')
-        print('已经成功读取模型')
+        print('Model saved： %s'% save_path)
 
     @classmethod
     def ReadModel(cls,model_path):
-        #类方法，读取保存的模型，返回一个实例。
+        #read saved model
         import pickle
         with open(model_path, 'rb') as f:
             model_dic = pickle.load(f)
@@ -123,9 +84,9 @@ class CNN():
         bp3 = model_dic.get('num_bp3')
         r_w = model_dic.get('rate_weight')
         r_t = model_dic.get('rate_thre')
-        #创建实例
+        #create model instance
         conv_ins = CNN(conv_get,size_p1,bp1,bp2,bp3,r_w,r_t)
-        #修改实例的参数
+        #modify model parameter
         conv_ins.w_conv1 = model_dic.get('w_conv1')
         conv_ins.wkj = model_dic.get('wkj')
         conv_ins.vji = model_dic.get('vji')
@@ -137,20 +98,22 @@ class CNN():
 
     def sig(self,x):
         return 1 / (1 + np.exp(-1*x))
+
     def do_round(self,x):
         return round(x, 3)
-    #卷积
-    def Convolute(self,data,convs,w_convs,thre_convs,conv_step):
+
+    def convolute(self,data,convs,w_convs,thre_convs,conv_step):
+        #convolution process
         size_conv = convs[0]
         num_conv =convs[1]
         size_data = np.shape(data)[0]
-        #得到原图像滑动的小图，data_focus
+        #get the data slice of original image data, data_focus
         data_focus = []
         for i_focus in range(0, size_data - size_conv + 1, conv_step):
             for j_focus in range(0, size_data - size_conv + 1, conv_step):
                 focus = data[i_focus:i_focus + size_conv, j_focus:j_focus + size_conv]
                 data_focus.append(focus)
-        #计算所有卷积核得到的特征图，每个特征图以矩阵形式，存储为一个列表data_featuremap
+        #caculate the feature map of every single kernel, and saved as list of matrix
         data_featuremap = []
         Size_FeatureMap = int((size_data - size_conv) / conv_step + 1)
         for i_map in range(num_conv):
@@ -161,15 +124,15 @@ class CNN():
             featuremap = np.asmatrix(featuremap).reshape(Size_FeatureMap, Size_FeatureMap)
             data_featuremap.append(featuremap)
 
-        #将data_focus中的focus展开为一维
+        #expanding the data slice to One dimenssion
         focus1_list = []
         for each_focus in data_focus:
             focus1_list.extend(self.Expand_Mat(each_focus))
         focus_list = np.asarray(focus1_list)
         return focus_list,data_featuremap
 
-    # 池化
-    def Pooling(self,featuremaps,size_pooling):
+    def pooling(self,featuremaps,size_pooling,type='average_pool'):
+        #pooling process
         size_map = len(featuremaps[0])
         size_pooled = int(size_map/size_pooling)
         featuremap_pooled = []
@@ -179,39 +142,40 @@ class CNN():
             for i_focus in range(0,size_map,size_pooling):
                 for j_focus in range(0, size_map, size_pooling):
                     focus = map[i_focus:i_focus + size_pooling, j_focus:j_focus + size_pooling]
-                    #平均池化
-                    map_pooled.append(np.average(focus))
-                    #最大池化
-                    #map_pooled.append(np.max(focus))
+                    if type == 'average_pool':
+                        #average pooling
+                        map_pooled.append(np.average(focus))
+                    elif type == 'max_pooling':
+                        #max pooling
+                        map_pooled.append(np.max(focus))
             map_pooled = np.asmatrix(map_pooled).reshape(size_pooled,size_pooled)
             featuremap_pooled.append(map_pooled)
         return featuremap_pooled
 
-    def Expand(self,datas):
-        #将三元的数据展开为1为的list
+    def _expand(self,datas):
+        #expanding three dimension data to one dimension list
         data_expanded = []
         for i in range(len(datas)):
             shapes = np.shape(datas[i])
             data_listed = datas[i].reshape(1,shapes[0]*shapes[1])
             data_listed = data_listed.getA().tolist()[0]
             data_expanded.extend(data_listed)
-        #连接所有数据
         data_expanded = np.asarray(data_expanded)
         return data_expanded
 
-    def Expand_Mat(self,data_mat):
-        #用来展开矩阵为一维的list
+    def _expand_mat(self,data_mat):
+        #expanding matrix to one dimension list
         data_mat = np.asarray(data_mat)
         shapes = np.shape(data_mat)
         data_expanded = data_mat.reshape(1,shapes[0]*shapes[1])
         return data_expanded
 
-    def Getpd_From_Pool(self,out_map,pd_pool,num_map,size_map,size_pooling):
+    def _calculate_gradient_from_pool(self,out_map,pd_pool,num_map,size_map,size_pooling):
         '''
-        误差反传，从pooled到前一个map, 例如将池化层6*6的误差矩阵扩大为12*12的误差矩阵
-        pd_pool: 是采样层的误差，list形式。。。。要改要改
-        out_map: 前面特征图的输出，数量*size*size的列表形式
-        return: pd_all:前面层所有的特征图的pd， num*size_map*size_map的列表形式
+        calcluate the gradient from the data slice of pool layer
+        pd_pool: list of matrix
+        out_map: the shape of data slice(size_map*size_map)
+        return: pd_all: list of matrix, [num, size_map, size_map]
         '''
         pd_all = []
         i_pool = 0
@@ -226,6 +190,7 @@ class CNN():
         return pd_all
 
     def trian(self,patterns,datas_train, datas_teach, n_repeat, error_accuracy,draw_e = bool):
+        #model traning
         print('----------------------Start Training-------------------------')
         print(' - - Shape: Train_Data  ',np.shape(datas_train))
         print(' - - Shape: Teach_Data  ',np.shape(datas_teach))
@@ -234,58 +199,53 @@ class CNN():
         mse  = 10000
         while rp < n_repeat and mse >= error_accuracy:
             alle = 0
-            print('-------------进行第%d次学习--------------'%rp)
+            print('-------------Learning Time %d--------------'%rp)
             for p in range(len(datas_train)):
-                #print('------------学习第%d个图像--------------'%p)
+                #print('------------Learning Image: %d--------------'%p)
                 data_train = np.asmatrix(datas_train[p])
                 data_teach = np.asarray(datas_teach[p])
-                data_focus1,data_conved1 = self.Convolute(data_train,self.conv1,self.w_conv1,
+                data_focus1,data_conved1 = self.convolute(data_train,self.conv1,self.w_conv1,
                                            self.thre_conv1,conv_step=self.step_conv1)
-                data_pooled1 = self.Pooling(data_conved1,self.size_pooling1)
+                data_pooled1 = self.pooling(data_conved1,self.size_pooling1)
                 shape_featuremap1 = np.shape(data_conved1)
                 '''
                 print('  -----original shape   ', np.shape(data_train))
                 print('  ---- after convolution  ',np.shape(data_conv1))
                 print('  -----after pooling  ',np.shape(data_pooled1))
                '''
-                data_bp_input = self.Expand(data_pooled1)
-                # 计算第一层输入输出
+                data_bp_input = self._expand(data_pooled1)
                 bp_out1 = data_bp_input
-                # 计算第二层输入输出
+
                 bp_net_j = np.dot(bp_out1,self.vji.T) - self.thre_bp2
                 bp_out2 = self.sig(bp_net_j)
-                # 计算第三层输入输出
                 bp_net_k = np.dot(bp_out2 ,self.wkj.T) - self.thre_bp3
                 bp_out3 = self.sig(bp_net_k)
 
-                # 计算一般化误差
+                #--------------Model Leaning ------------------------
+                # calcluate error and gradient---------------
                 pd_k_all = np.multiply((data_teach - bp_out3), np.multiply(bp_out3, (1 - bp_out3)))
                 pd_j_all = np.multiply(np.dot(pd_k_all,self.wkj), np.multiply(bp_out2, (1 - bp_out2)))
                 pd_i_all = np.dot(pd_j_all,self.vji)
 
                 pd_conv1_pooled = pd_i_all / (self.size_pooling1*self.size_pooling1)
                 pd_conv1_pooled = pd_conv1_pooled.T.getA().tolist()
-                pd_conv1_all = self.Getpd_From_Pool(data_conved1,pd_conv1_pooled,shape_featuremap1[0],
+                pd_conv1_all = self._calculate_gradient_from_pool(data_conved1,pd_conv1_pooled,shape_featuremap1[0],
                                                     shape_featuremap1[1],self.size_pooling1)
-
-                #卷积层1的权重和阈值修正，每个卷积核的权重需要修正 12*12(map) 次
-                #修正量为featuremap中点的偏导值 乘以 前一层图像focus， 整个权重模板一起更新
+                #weight and threshold learning process---------
+                #convolution layer
                 for k_conv in range(self.conv1[1]):
-                    pd_conv_list = self.Expand_Mat(pd_conv1_all[k_conv])
+                    pd_conv_list = self._expand_mat(pd_conv1_all[k_conv])
                     delta_w = self.rate_weight * np.dot(pd_conv_list,data_focus1)
 
                     self.w_conv1[k_conv] = self.w_conv1[k_conv] + delta_w.reshape((self.conv1[0],self.conv1[0]))
 
                     self.thre_conv1[k_conv] = self.thre_conv1[k_conv] - np.sum(pd_conv1_all[k_conv]) * self.rate_thre
-                # 更新kj层的权重
-
+                #all connected layer
                 self.wkj = self.wkj + pd_k_all.T * bp_out2 * self.rate_weight
-                # 更新ji层的权重
                 self.vji = self.vji + pd_j_all.T * bp_out1 * self.rate_weight
-                # 更新阈值
                 self.thre_bp3 = self.thre_bp3 - pd_k_all * self.rate_thre
                 self.thre_bp2 = self.thre_bp2 - pd_j_all * self.rate_thre
-                # 计算总误差
+                # calculate the sum error of all single image
                 errors = np.sum(abs((data_teach - bp_out3)))
                 alle = alle + errors
                 #print('   ----Teach      ',data_teach)
@@ -307,24 +267,21 @@ class CNN():
             draw_error()
         return mse
 
-    def produce(self,datas_test):
-        #对验证和测试数据集进行输出
+    def predict(self,datas_test):
+        #model predict
         produce_out = []
         print('-------------------Start Testing-------------------------')
         print(' - - Shape: Test_Data  ',np.shape(datas_test))
         for p in range(len(datas_test)):
-            print('--------测试第%d个图像----------' % p)
             data_test = np.asmatrix(datas_test[p])
-            data_focus1, data_conved1 = self.Convolute(data_test, self.conv1, self.w_conv1,
+            data_focus1, data_conved1 = self.convolute(data_test, self.conv1, self.w_conv1,
                                                      self.thre_conv1, conv_step=self.step_conv1)
-            data_pooled1 = self.Pooling(data_conved1, self.size_pooling1)
-            data_bp_input = self.Expand(data_pooled1)
-            # 计算第一层输入输出
+            data_pooled1 = self.pooling(data_conved1, self.size_pooling1)
+            data_bp_input = self._expand(data_pooled1)
+
             bp_out1 = data_bp_input
-            # 计算第二层输入输出
             bp_net_j = bp_out1 * self.vji.T - self.thre_bp2
             bp_out2 = self.sig(bp_net_j)
-            # 计算第三层输入输出
             bp_net_k = bp_out2 * self.wkj.T - self.thre_bp3
             bp_out3 = self.sig(bp_net_k)
             produce_out.extend(bp_out3.getA().tolist())
@@ -332,12 +289,17 @@ class CNN():
         return np.asarray(res)
 
     def convolution(self,data):
-        #返回卷积和池化后的数据,用于查看图像
+        #return the data of image after convoluting process so we can check it out
         data_test = np.asmatrix(data)
-        data_focus1, data_conved1 = self.Convolute(data_test, self.conv1, self.w_conv1,
+        data_focus1, data_conved1 = self.convolute(data_test, self.conv1, self.w_conv1,
                                                      self.thre_conv1, conv_step=self.step_conv1)
-        data_pooled1 = self.Pooling(data_conved1, self.size_pooling1)
+        data_pooled1 = self.pooling(data_conved1, self.size_pooling1)
 
         return data_conved1,data_pooled1
 
 
+if __name__ == '__main__':
+    pass
+    '''
+    I will put the example on other file
+    '''
