@@ -67,12 +67,24 @@ class BinarySearchTree:
             return True
         return False
 
-    def preShow(self, curr_node):
-        if curr_node is None:
+    def preorderShow(self, curr_node):
+        if curr_node is not None:
             print(curr_node.getLabel(), end=" ")
 
-            self.preShow(curr_node.getLeft())
-            self.preShow(curr_node.getRight())
+            self.preorderShow(curr_node.getLeft())
+            self.preorderShow(curr_node.getRight())
+    
+    def postorderShow(self, curr_node):
+        if curr_node is not None:
+            self.postorderShow(curr_node.getLeft())
+            self.postorderShow(curr_node.getRight())
+            print(curr_node.getLabel(), end=" ")
+
+    def inorderShow(self, curr_node):
+        if curr_node is not None:
+            self.inorderShow(curr_node.getLeft())
+            print(curr_node.getLabel(), end=" ")
+            self.inorderShow(curr_node.getRight())
 
     def getRoot(self):
         return self.root
@@ -89,15 +101,18 @@ Example
           4   7 13 
 '''
 
-t = BinarySearchTree()
-t.insert(8)
-t.insert(3)
-t.insert(1)
-t.insert(6)
-t.insert(4)
-t.insert(7)
-t.insert(10)
-t.insert(14)
-t.insert(13)
+if __name__ == '__main__':
+    t = BinarySearchTree()
+    t.insert(8)
+    t.insert(3)
+    t.insert(1)
+    t.insert(6)
+    t.insert(4)
+    t.insert(7)
+    t.insert(10)
+    t.insert(14)
+    t.insert(13)
 
-t.preShow(t.getRoot())
+    t.preorderShow(t.getRoot())
+    t.inorderShow(t.getRoot())
+    t.postorderShow(t.getRoot())
