@@ -5,10 +5,14 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
-  - "3.6-dev"
-
+  - "3.7-dev"
 install: 
   - if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then travis_retry pip install coverage==3.7.1; fi
   - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
-  - "pip install pytest pytest-cov"
+  - "pip install flake8 pytest pytest-cov"
+before_script:
+  # stop the build if there are Python syntax errors or undefined names
+  - if [ "$TRAVIS_PYTHON_VERSION" == "3.6" ]; then flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics; fi
+  # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
+  - if [ "$TRAVIS_PYTHON_VERSION" == "3.6" ]; then flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics; fi
 script: py.test --doctest-modules --cov ./
