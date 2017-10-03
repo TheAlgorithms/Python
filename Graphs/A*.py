@@ -13,7 +13,7 @@ heuristic = [[9, 8, 7, 6, 5, 4],
              [5, 4, 3, 2, 1, 0]]'''
 
 init = [0, 0]
-goal = [len(grid)-1, len(grid[0])-1]
+goal = [len(grid)-1, len(grid[0])-1] #all coordinates are given in format [y,x] 
 cost = 1
 
 #the cost map which pushes the path closer to the goal
