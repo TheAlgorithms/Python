@@ -29,7 +29,7 @@ class GRAPH:
                         print('%d visited' % (u +1))
             queue.pop(0)
 
-        print self.graph
+        print(self.graph)
 
     def add_edge(self, i, j):
         self.graph[i][j]=1
@@ -51,7 +51,7 @@ g=GRAPH(n)
 e=int(input("Enter the no of edges : "))
 print("Enter the edges (u v)")
 for i in range(0,e):
-    u,v=map(int, raw_input().split())
+    u,v=map(int, input().split())
     g.add_edge(u,v)
 s=int(input("Enter the source node :"))
 g.bfs(s)
