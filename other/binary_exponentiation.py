@@ -23,7 +23,7 @@ def b_expo(a, b):
     return res
 
 
-def b_expo(a, b, c):
+def b_expo_mod(a, b, c):
     res = 1
     while b > 0:
         if b&1:
