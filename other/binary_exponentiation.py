@@ -1,5 +1,5 @@
 """
-* Binary Exponentiation
+* Binary Exponentiation for Powers
 * This is a method to find a^b in a time complexity of O(log b)
 * This is one of the most commonly used methods of finding powers.
 * Also useful in cases where solution to (a^b)%c is required,
