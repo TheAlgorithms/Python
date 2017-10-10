@@ -67,6 +67,6 @@ print("Enter the edges (u v)")
 for i in range(0, e):
     u ,v = map(int, raw_input().split())
     g.add_edge(u, v)
-    
+
 s = int(input("Enter the source node :"))
 g.bfs(s)
