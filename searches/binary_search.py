@@ -110,9 +110,9 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
     if sorted_collection[midpoint] == item:
         return midpoint
     elif sorted_collection[midpoint] > item:
-        return binary_search_by_recursion(sorted_collection, item, left, right-1)
+        return binary_search_by_recursion(sorted_collection, item, left, midpoint-1)
     else:
-        return binary_search_by_recursion(sorted_collection, item, left+1, right)
+        return binary_search_by_recursion(sorted_collection, item, midpoint+1, right)
 
 def __assert_sorted(collection):
     """Check if collection is sorted, if not - raises :py:class:`ValueError`
