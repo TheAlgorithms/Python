@@ -8,7 +8,7 @@ class Node:
     def __init__(self, label):
         self.label = label
         self.left = None
-        self.rigt = None
+        self.right = None
 
     def getLabel(self):
         return self.label
@@ -23,10 +23,10 @@ class Node:
         self.left = left
 
     def getRight(self):
-        return self.rigt
+        return self.right
 
     def setRight(self, right):
-        self.rigt = right
+        self.right = right
 
 
 class BinarySearchTree:
