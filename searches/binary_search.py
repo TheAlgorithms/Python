@@ -144,7 +144,7 @@ if __name__ == '__main__':
     else:
         input_function = input
 
-    user_input = input_function('Enter numbers separated by coma:\n')
+    user_input = input_function('Enter numbers separated by comma:\n')
     collection = [int(item) for item in user_input.split(',')]
     try:
         __assert_sorted(collection)
