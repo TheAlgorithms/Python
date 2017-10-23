@@ -68,7 +68,7 @@ class BinarySearchTree:
         return False
 
     def preShow(self, curr_node):
-        if curr_node is None:
+        if curr_node is not None:
             print(curr_node.getLabel(), end=" ")
 
             self.preShow(curr_node.getLeft())
