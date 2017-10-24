@@ -18,28 +18,20 @@ returns true if S is nested and false otherwise.
 def is_balanced(S):
 
     stack = []
-    
+    open_brackets = set({'(', '[', '{'})
+    closed_brackets = set({')', ']', '}'})
+    open_to_closed = dict({'{':'}', '[':']', '(':')'})
+
     for i in range(len(S)):
-        
-        if S[i] == '(' or S[i] == '{' or S[i] == '[':
+
+        if S[i] in open_brackets:
             stack.append(S[i])
-            
-        else:
-            
-            if len(stack) > 0:
-                
-                pair = stack.pop() + S[i]
-                
-                if pair != '[]' and pair != '()' and pair != '{}':
-                    return False
-                
-            else:
+
+        elif S[i] in closed_brackets:
+            if len(stack) == 0 or (len(stack) > 0 and open_to_closed[stack.pop()] != S[i]):
                 return False
-                
-    if len(stack) == 0:
-        return True
-        
-    return False
+
+    return len(stack) == 0
 
 
 def main():
@@ -48,7 +40,7 @@ def main():
 
     if is_balanced(S):
         print(S, "is balanced")
-    
+
     else:
         print(S, "is not balanced")
 
