@@ -48,3 +48,19 @@ class Linked_List:
 
     def isEmpty(Head):
         return Head is None #Return if Head is none
+    
+    def reverse(Head):
+        prev = None
+        current = Head
+        
+        while(current):
+            # Store the current node's next node. 
+            next_node = current.next
+            # Make the current node's next point backwards
+            current.next = prev
+            # Make the previous node be the current node
+            prev = current
+            # Make the current node the next node (to progress iteration)
+            current = next_node
+        # Return prev in order to put the head at the end 
+        Head = prev
