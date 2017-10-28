@@ -85,9 +85,12 @@ class BinarySearchTree:
                     self.__reassignNodes(node, node.getLeft())
                 #Has two children
                 else:
+                    #Gets the max value of the left branch
                     tmpNode = self.getMax(node.getLeft())
+                    #Deletes the tmpNode
                     self.delete(tmpNode.getLabel())
-                    self.__reassignNodes(node, tmpNode)
+                    #Assigns the value to the node to delete and keesp tree structure
+                    node.setLabel(tmpNode.getLabel())
     
     def getNode(self, label):
         curr_node = None
@@ -135,11 +138,13 @@ class BinarySearchTree:
             return True
         return False
 
-    def preShow(self, curr_node):
+    def __InOrderTraversal(self, curr_node):
+        nodeList = []
         if curr_node is not None:
-            print(curr_node.getLabel())
-            self.preShow(curr_node.getLeft())
-            self.preShow(curr_node.getRight())
+            nodeList.insert(0, curr_node)
+            nodeList = nodeList + self.__InOrderTraversal(curr_node.getLeft())
+            nodeList = nodeList + self.__InOrderTraversal(curr_node.getRight())
+        return nodeList
 
     def getRoot(self):
         return self.root
@@ -149,19 +154,44 @@ class BinarySearchTree:
             return True
         return False
 
-    def __reassignNodes(self,node, newChildren):
+    def __reassignNodes(self, node, newChildren):
         if(newChildren is not None):
             newChildren.setParent(node.getParent())
         if(node.getParent() is not None):
             #If it is the Right Children
-            if(self.__isRightChildren(node)):a
-                    node.getParent().setRight(newChildren)
+            if(self.__isRightChildren(node)):
+                node.getParent().setRight(newChildren)
             else:
                 #Else it is the left children
                 node.getParent().setLeft(newChildren)
+
+    #This function traversal the tree. By default it returns an
+    #In order traversal list. You can pass a function to traversal
+    #The tree as needed by client code
+    def traversalTree(self, traversalFunction = None, root = None):
+        if(traversalFunction is None):
+            #Returns a list of nodes in preOrder by default
+            return self.__InOrderTraversal(self.root)
         else:
-            #It is the root of the tree
-            node.setLabel(newChildren.getLabel())
+            #Returns a list of nodes in the order that the users wants to
+            return traversalFunction(self.root)
+
+    #Returns an string of all the nodes labels in the list 
+    #In Order Traversal
+    def __str__(self):
+        list = self.__InOrderTraversal(self.root)
+        str = ""
+        for x in list:
+            str = str + " " + x.getLabel().__str__()
+        return str
+
+def InPreOrder(curr_node):
+    nodeList = []
+    if curr_node is not None:
+        nodeList = nodeList + InPreOrder(curr_node.getLeft())
+        nodeList.insert(0, curr_node.getLabel())
+        nodeList = nodeList + InPreOrder(curr_node.getRight())
+    return nodeList
 
 def testBinarySearchTree():
     '''
@@ -179,16 +209,12 @@ def testBinarySearchTree():
     Example After Deletion
                   7
                  / \
-                3   14
-               / \    
-              1   6    
-                 /   
-                4   
+                1   4
+
     '''
     t = BinarySearchTree()
     t.insert(8)
     t.insert(3)
-    t.insert(10)
     t.insert(6)
     t.insert(1)
     t.insert(10)
@@ -197,7 +223,8 @@ def testBinarySearchTree():
     t.insert(4)
     t.insert(7)
 
-    t.preShow(t.getRoot())
+    #Prints all the elements of the list in order traversal
+    print(t.__str__())
 
     if(t.getNode(6) is not None):
         print("The label 6 exists")
@@ -216,8 +243,15 @@ def testBinarySearchTree():
     t.delete(13)
     t.delete(10)
     t.delete(8)
+    t.delete(3)
+    t.delete(6)
+    t.delete(14)
 
-    t.preShow(t.getRoot())
+    #Gets all the elements of the tree In pre order
+    #And it prints them
+    list = t.traversalTree(InPreOrder, t.root)
+    for x in list:
+        print(x)
 
 if __name__ == "__main__":
     testBinarySearchTree()
