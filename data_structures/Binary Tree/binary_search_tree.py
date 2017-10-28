@@ -66,11 +66,29 @@ class BinarySearchTree:
                 parent_node.setRight(new_node)
             #Set parent to the new node
             new_node.setParent(parent_node)      
-    '''
-    def delete(self):
+    
+    def delete(self, label):
         if (not self.empty()):
-            if()
-    '''
+            #Look for the node with that label
+            node = self.getNode(label)
+            #If the node exists
+            if(node is not None):
+                #If it has no children
+                if(node.getLeft() is None and node.getRight() is None):
+                    self.__reassignNodes(node, None)
+                    node = None
+                #Has only right children
+                elif(node.getLeft() is None and node.getRight() is not None):
+                    self.__reassignNodes(node, node.getRight())
+                #Has only left children
+                elif(node.getLeft() is not None and node.getRight() is None):
+                    self.__reassignNodes(node, node.getLeft())
+                #Has two children
+                else:
+                    tmpNode = self.getMax(node.getLeft())
+                    self.delete(tmpNode.getLabel())
+                    self.__reassignNodes(node, tmpNode)
+    
     def getNode(self, label):
         curr_node = None
         #If the tree is not empty
@@ -89,18 +107,23 @@ class BinarySearchTree:
                     curr_node = curr_node.getRight()
         return curr_node
 
-    def getMax(self):
-        #We go deep on the right branch
-        curr_node = None
-        if(not self.empty()):
+    def getMax(self, root = None):
+        if(root is not None):
+            curr_node = root
+        else:
+            #We go deep on the right branch
             curr_node = self.getRoot()
+        if(not self.empty()):
             while(curr_node.getRight() is not None):
                 curr_node = curr_node.getRight()
         return curr_node
 
-    def getMin(self):
-        #We go deep on the left branch
-        curr_node = None
+    def getMin(self, root = None):
+        if(root is not None):
+            curr_node = root
+        else:
+            #We go deep on the left branch
+            curr_node = self.getRoot()
         if(not self.empty()):
             curr_node = self.getRoot()
             while(curr_node.getLeft() is not None):
@@ -121,29 +144,58 @@ class BinarySearchTree:
     def getRoot(self):
         return self.root
 
+    def __isRightChildren(self, node):
+        if(node == node.getParent().getRight()):
+            return True
+        return False
+
+    def __reassignNodes(self,node, newChildren):
+        if(newChildren is not None):
+            newChildren.setParent(node.getParent())
+        if(node.getParent() is not None):
+            #If it is the Right Children
+            if(self.__isRightChildren(node)):a
+                    node.getParent().setRight(newChildren)
+            else:
+                #Else it is the left children
+                node.getParent().setLeft(newChildren)
+        else:
+            #It is the root of the tree
+            node.setLabel(newChildren.getLabel())
 
 def testBinarySearchTree():
     '''
     Example
-                8
-            / \
-            3   10
-            / \    \
-            1   6    14
-            / \   /
-            4   7 13 
+                  8
+                 / \
+                3   10
+               / \    \
+              1   6    14
+                 / \   /
+                4   7 13 
     '''
 
+    '''
+    Example After Deletion
+                  7
+                 / \
+                3   14
+               / \    
+              1   6    
+                 /   
+                4   
+    '''
     t = BinarySearchTree()
     t.insert(8)
     t.insert(3)
-    t.insert(1)
+    t.insert(10)
     t.insert(6)
-    t.insert(4)
-    t.insert(7)
+    t.insert(1)
     t.insert(10)
     t.insert(14)
     t.insert(13)
+    t.insert(4)
+    t.insert(7)
 
     t.preShow(t.getRoot())
 
@@ -160,6 +212,12 @@ def testBinarySearchTree():
     if(not t.empty()):
         print("Max Value: ", t.getMax().getLabel())
         print("Min Value: ", t.getMin().getLabel())
+    
+    t.delete(13)
+    t.delete(10)
+    t.delete(8)
+
+    t.preShow(t.getRoot())
 
 if __name__ == "__main__":
     testBinarySearchTree()
