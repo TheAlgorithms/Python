@@ -1,13 +1,14 @@
 '''
 A binary search Tree
 '''
-
 class Node:
 
-    def __init__(self, label):
+    def __init__(self, label, parent):
         self.label = label
         self.left = None
         self.right = None
+        #Added in order to delete a node easier
+        self.parent = parent
 
     def getLabel(self):
         return self.label
@@ -27,6 +28,11 @@ class Node:
     def setRight(self, right):
         self.right = right
 
+    def getParent(self):
+        return self.parent
+
+    def setParent(self, parent):
+        self.parent = parent
 
 class BinarySearchTree:
 
@@ -35,13 +41,12 @@ class BinarySearchTree:
 
     def insert(self, label):
         # Create a new Node
-        new_node = Node(label)
+        new_node = Node(label, None)
         # If Tree is empty
         if self.empty():
             self.root = new_node
         else:
             #If Tree is not empty
-            parent_node = None
             curr_node = self.root
             #While we don't get to a leaf
             while curr_node is not None:
@@ -58,8 +63,14 @@ class BinarySearchTree:
             if new_node.getLabel() < parent_node.getLabel():
                 parent_node.setLeft(new_node)
             else:
-                parent_node.setRight(new_node)        
-    
+                parent_node.setRight(new_node)
+            #Set parent to the new node
+            new_node.setParent(parent_node)      
+    '''
+    def delete(self):
+        if (not self.empty()):
+            if()
+    '''
     def getNode(self, label):
         curr_node = None
         #If the tree is not empty
@@ -78,6 +89,24 @@ class BinarySearchTree:
                     curr_node = curr_node.getRight()
         return curr_node
 
+    def getMax(self):
+        #We go deep on the right branch
+        curr_node = None
+        if(not self.empty()):
+            curr_node = self.getRoot()
+            while(curr_node.getRight() is not None):
+                curr_node = curr_node.getRight()
+        return curr_node
+
+    def getMin(self):
+        #We go deep on the left branch
+        curr_node = None
+        if(not self.empty()):
+            curr_node = self.getRoot()
+            while(curr_node.getLeft() is not None):
+                curr_node = curr_node.getLeft()
+        return curr_node
+
     def empty(self):
         if self.root is None:
             return True
@@ -92,19 +121,19 @@ class BinarySearchTree:
     def getRoot(self):
         return self.root
 
-'''
-Example
-            8
-           / \
-          3   10
-         / \    \
-        1   6    14
-           / \   /
-          4   7 13 
-'''
 
+def testBinarySearchTree():
+    '''
+    Example
+                8
+            / \
+            3   10
+            / \    \
+            1   6    14
+            / \   /
+            4   7 13 
+    '''
 
-if __name__ == "__main__":
     t = BinarySearchTree()
     t.insert(8)
     t.insert(3)
@@ -128,3 +157,9 @@ if __name__ == "__main__":
     else:
         print("The label -1 doesn't exist")
     
+    if(not t.empty()):
+        print("Max Value: ", t.getMax().getLabel())
+        print("Min Value: ", t.getMin().getLabel())
+
+if __name__ == "__main__":
+    testBinarySearchTree()
