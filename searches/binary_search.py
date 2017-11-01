@@ -113,7 +113,7 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
         return binary_search_by_recursion(sorted_collection, item, left, midpoint-1)
     else:
         return binary_search_by_recursion(sorted_collection, item, midpoint+1, right)
-
+      
 def __assert_sorted(collection):
     """Check if collection is sorted, if not - raises :py:class:`ValueError`
 
@@ -137,14 +137,14 @@ def __assert_sorted(collection):
 
 if __name__ == '__main__':
     import sys
-    # For python 2.x and 3.x compatibility: 3.x has not raw_input builtin
+    # For python 2.x and 3.x compatibility: 3.x has no raw_input builtin
     # otherwise 2.x's input builtin function is too "smart"
     if sys.version_info.major < 3:
         input_function = raw_input
     else:
         input_function = input
 
-    user_input = input_function('Enter numbers separated by coma:\n')
+    user_input = input_function('Enter numbers separated by comma:\n')
     collection = [int(item) for item in user_input.split(',')]
     try:
         __assert_sorted(collection)

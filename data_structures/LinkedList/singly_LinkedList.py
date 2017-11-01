@@ -3,22 +3,15 @@ class Node:#create a Node
         self.data=data#given data
         self.next=None#given next to None
 class Linked_List:
+    
     pass
-    def insert_tail(Head,data):#insert the data at tail
-        tamp=Head#create a tamp as a head
-        if(tamp==None):#if linkedlist is empty
-            newNod=Node()#create newNode Node type and given data and next
-            newNod.data=data
-            newNod.next=None
-            Head=newNod
+    
+    def insert_tail(Head,data):
+        if(Head.next is None):
+            Head.next = Node(data)
         else:
-            while tamp.next!=None:#find  the last Node
-                tamp=tamp.next
-            newNod = Node()#create a new node
-            newNod.data = data
-            newNod.next = None
-            tamp.next=newNod#put the newnode into last node
-        return Head#return first node  of  linked list  
+            insert_tail(Head.next, data)
+
     def insert_head(Head,data):
         tamp = Head
         if (tamp == None):
@@ -32,16 +25,18 @@ class Linked_List:
             newNod.next = Head#put the Head at NewNode Next
             Head=newNod#make a NewNode to Head
         return Head   
-    def Print(Head):#print every node data
-        tamp=Node()
+    
+    def printList(Head):#print every node data
         tamp=Head
         while tamp!=None:
             print(tamp.data)
             tamp=tamp.next
+    
     def delete_head(Head):#delete from head
         if Head!=None:
             Head=Head.next
         return Head#return new Head
+    
     def delete_tail(Head):#delete from tail
         if Head!=None:
             tamp = Node()
@@ -50,12 +45,22 @@ class Linked_List:
                 tamp = tamp.next
             tamp.next=None#delete the last element by give next None to 2nd last Element
         return Head
+
     def isEmpty(Head):
-        if(Head==None):#check Head is None  or Not
-            return True#return Ture if list is empty
-        else:
-            return False#check False if it's not empty
-
-
-
-
+        return Head is None #Return if Head is none
+    
+    def reverse(Head):
+        prev = None
+        current = Head
+        
+        while(current):
+            # Store the current node's next node. 
+            next_node = current.next
+            # Make the current node's next point backwards
+            current.next = prev
+            # Make the previous node be the current node
+            prev = current
+            # Make the current node the next node (to progress iteration)
+            current = next_node
+        # Return prev in order to put the head at the end 
+        Head = prev
