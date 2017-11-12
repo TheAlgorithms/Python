@@ -42,3 +42,10 @@ PROBLEMS:
     a^2 + b^2 = c^2
     There exists exactly one Pythagorean triplet for which a + b + c = 1000.
     Find the product abc.
+
+14. The following iterative sequence is defined for the set of positive integers:
+    n → n/2 (n is even)
+    n → 3n + 1 (n is odd)
+    Using the rule above and starting with 13, we generate the following sequence:
+    13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+    Which starting number, under one million, produces the longest chain?
