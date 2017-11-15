@@ -5,6 +5,8 @@ Date: 2017.9.21
 
 BP neural network with three layers
 '''
+''' '''
+
 
 import numpy as np
 import matplotlib.pyplot as plt
