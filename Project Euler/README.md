@@ -2,8 +2,8 @@
 
 Problems are taken from https://projecteuler.net/.
 
-Project Euler is a series of challenging mathematical/computer programming problems that will require more than just mathematical 
-insights to solve. Project Euler is ideal for mathematicians who are learning to code. 
+Project Euler is a series of challenging mathematical/computer programming problems that will require more than just mathematical
+insights to solve. Project Euler is ideal for mathematicians who are learning to code.
 
 Here the efficiency of your code is also checked.
 I've tried to provide all the best possible solutions.
@@ -18,22 +18,34 @@ PROBLEMS:
       1,2,3,5,8,13,21,34,55,89,..
    By considering the terms in the Fibonacci sequence whose values do not exceed n, find the sum of the even-valued terms.  
    e.g. for n=10, we have {2,8}, sum is 10.
-   
+
 3. The prime factors of 13195 are 5,7,13 and 29. What is the largest prime factor of a given number N?
    e.g. for 10, largest prime factor = 5. For 17, largest prime factor = 17.
 
 4. A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
    Find the largest palindrome made from the product of two 3-digit numbers which is less than N.
-   
-5. 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. 
+
+5. 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
    What is the smallest positive number that is evenly divisible(divisible with no remainder) by all of the numbers from 1 to N?
-   
+
 6. The sum of the squares of the first ten natural numbers is,
       1^2 + 2^2 + ... + 10^2 = 385
    The square of the sum of the first ten natural numbers is,
      (1 + 2 + ... + 10)^2 = 552 = 3025
    Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
-   Find the difference between the sum of the squares of the first N natural numbers and the square of the sum. 
-   
+   Find the difference between the sum of the squares of the first N natural numbers and the square of the sum.
+
 7. By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
    What is the Nth prime number?
+
+9. A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
+    a^2 + b^2 = c^2
+    There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+    Find the product abc.
+
+14. The following iterative sequence is defined for the set of positive integers:
+    n → n/2 (n is even)
+    n → 3n + 1 (n is odd)
+    Using the rule above and starting with 13, we generate the following sequence:
+    13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
+    Which starting number, under one million, produces the longest chain?
