@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 
 """ Here I implemented the scoring functions.
     MAE, MSE, RMSE, RMSLE are included.
@@ -41,7 +41,7 @@ def rmse(predict, actual):
     actual = np.array(actual)
 
     difference = predict - actual
-    square_diff = np.square(dfference)
+    square_diff = np.square(difference)
     mean_square_diff = square_diff.mean()
     score = np.sqrt(mean_square_diff)
     return score
@@ -59,5 +59,20 @@ def rmsle(predict, actual):
     mean_square_diff = square_diff.mean()
 
     score = np.sqrt(mean_square_diff)
+
+    return score
+
+#Mean Bias Deviation
+def mbd(predict, actual):
+    predict = np.array(predict)
+    actual = np.array(actual)
+
+    difference = predict - actual
+    numerator = np.sum(difference) / len(predict) 
+    denumerator =  np.sum(actual) / len(predict)
+    print str(numerator)
+    print str(denumerator)
+
+    score = float(numerator) / denumerator * 100
 
     return score
