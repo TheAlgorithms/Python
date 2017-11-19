@@ -49,3 +49,6 @@ PROBLEMS:
     Using the rule above and starting with 13, we generate the following sequence:
     13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
     Which starting number, under one million, produces the longest chain?
+
+16. 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+    What is the sum of the digits of the number 2^1000?
