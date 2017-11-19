@@ -26,22 +26,20 @@ def calculate_sum(limit):
     >>> calculate_sum(1000)
     233168
     """
-
-    # Strategy
-    #
-    # Utilize Arithmetic progression to calculate the total.
-    # https://en.wikipedia.org/wiki/Arithmetic_progression
-
     total = 0
-    terms = (limit - 1) // 3
+    terms = (limit - 1) / 3
+    print(total)
+    print(terms)
 
-    total += ((terms) * (6 + (terms - 1) * 3)) // 2
-    terms = (limit - 1) // 5
-
-    total += ((terms) * (10 + (terms - 1) * 5)) // 2
-    terms = (limit - 1) // 15
-
-    total -= ((terms) * (30 + (terms - 1) * 15)) // 2
+    total += ((terms) * (6 + (terms - 1) * 3)) / 2 #sum of an A.P.
+    terms = (limit - 1) / 5
+    print(total)
+    print(terms)
+    total += ((terms) * (10 + (terms - 1) * 5)) / 2
+    terms = (limit - 1) / 15
+    print(total)
+    print(terms)
+    total -= ((terms) * (30 + (terms - 1) * 15)) / 2
 
     return total
 
