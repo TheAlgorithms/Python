@@ -17,6 +17,32 @@ Project Euler is ideal for mathematicians who are learning to code.
 Here the efficiency of your code is also checked.
 We try to provide all the best possible solutions.
 
+## Contribution
+
+In order to contribute, it is highly recommended, that you follow the PEP08
+standard, as this is used for educational purposes. Altough it is
+not strictly required, make sure that your solution can run in Python 2 and 3,
+preferably Python 3.
+
+Create a new folder or add a solution file with the already established pattern.
+In the future, there will be an automatic performance evaluation of each solution,
+therefore stick as closely to the standard as possible.
+
+UnitTests in the docstring of functions, which are used to solve the problem, are
+highly appreciated.
+
+### Updating README.md
+
+To update the README.md (problem description), make sure that you have all of the
+requirements installed.
+
+    pip3 install -r _scripts/requirements.txt
+    python3 _scripts/readme.py
+
+There is no need to refresh the other problems, if no changes to the website
+were made.
+
+
 """
 
 def scrape_problem(problem):
