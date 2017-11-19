@@ -4,6 +4,7 @@ from glob import glob
 import re
 from urllib.request import urlopen
 import html2text
+from bs4 import BeautifulSoup
 
 INTRODUCTION = """
 # Project Euler
@@ -20,33 +21,27 @@ We try to provide all the best possible solutions.
 
 def scrape_problem(problem):
     """Scrapes the problem from the website."""
-    # Problem Problems: 6, 9, 13
-    # TODO: Fix markdown parsing
     response = urlopen("https://projecteuler.net/problem=" + str(problem))
-    html = str(response.read()).replace("\\n", ' ')
+    html = str(response.read()).replace("\\n", "").replace("\\r", "")
+    soup = BeautifulSoup(html, "lxml")
 
-    title = ""
-    subtitle = ""
-    description = ""
+    for exponent in soup.find_all("sup"):
+        html = html.replace(str(exponent), "^(" + exponent.text + ")")
+    soup = BeautifulSoup(html, "lxml")
 
     title = "# Problem " + str(problem)
-    subtitle = "## " + re.findall(r"<h2>.+?</h2>", html)[0].replace("<h2>", '') \
-                                                         .replace("</h2>", '')
-    description = re.findall('<div class="problem_content" role="problem">.+' +
-                             '</div>', html)[0]
+    subtitle = "## " + soup.find_all("h2")[0].text
+    description = str(soup.find_all("div", class_="problem_content")[0])
 
     markdown = html2text.HTML2Text()
-    desc = ""
-    for paragraph in re.findall(r"<p.*?>.+?<\/p>", description):
-        paragraph = paragraph.replace("\\xc3\\x97", "x")\
-                             .replace("\\xe2\\x86\\x92", "->")\
-                             .replace("\\xe2\\x88\\x92", "-")
-        desc += markdown.handle(paragraph)
+    description = markdown.handle(description).replace("\\xc3\\x97", "x")\
+                                              .replace("\\xe2\\x86\\x92", "->")\
+                                              .replace("\\xe2\\x88\\x92", "-")
 
     text = (
         title + "\n" +
         subtitle + "\n" +
-        desc
+        description
     )
     return text
 
