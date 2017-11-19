@@ -26,6 +26,12 @@ def calculate_sum(limit):
     >>> calculate_sum(1000)
     233168
     """
+
+    # Strategy:
+    #
+    # Iterate every number until the limit is reached,
+    # if the number is divisible by 3 or 5, add it to the total.
+
     total = 0
     for number in range(3, limit):
         if number % 3 == 0 or number % 5 == 0:
