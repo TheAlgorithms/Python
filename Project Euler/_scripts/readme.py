@@ -3,6 +3,7 @@
 from glob import glob
 import re
 from urllib.request import urlopen
+import html2text
 
 INTRODUCTION = """
 # Project Euler
@@ -19,6 +20,8 @@ We try to provide all the best possible solutions.
 
 def scrape_problem(problem):
     """Scrapes the problem from the website."""
+    # Problem Problems: 6, 9, 13
+    # TODO: Fix markdown parsing
     response = urlopen("https://projecteuler.net/problem=" + str(problem))
     html = str(response.read()).replace("\\n", ' ')
 
@@ -27,27 +30,23 @@ def scrape_problem(problem):
     description = ""
 
     title = "# Problem " + str(problem)
-    subtitle = "## " + re.findall("<h2>.+?</h2>", html)[0].replace("<h2>", '') \
+    subtitle = "## " + re.findall(r"<h2>.+?</h2>", html)[0].replace("<h2>", '') \
                                                          .replace("</h2>", '')
     description = re.findall('<div class="problem_content" role="problem">.+' +
                              '</div>', html)[0]
 
+    markdown = html2text.HTML2Text()
     desc = ""
-    for paragraph in re.findall("<p>.+?<\/p>", description):
-        paragraph = paragraph.replace("<p>", "").replace("</p>", "")
-        count = 0
-        for char in paragraph:
-            if count >= 75:
-                count = 0
-                desc += "\n"
-            desc += char
-            count += 1
-        desc += "\n\n"
+    for paragraph in re.findall(r"<p.*?>.+?<\/p>", description):
+        paragraph = paragraph.replace("\\xc3\\x97", "x")\
+                             .replace("\\xe2\\x86\\x92", "->")\
+                             .replace("\\xe2\\x88\\x92", "-")
+        desc += markdown.handle(paragraph)
 
     text = (
         title + "\n" +
-        subtitle + "\n\n" +
-        desc + "\n"
+        subtitle + "\n" +
+        desc
     )
     return text
 
