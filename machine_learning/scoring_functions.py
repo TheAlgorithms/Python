@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 
 """ Here I implemented the scoring functions.
     MAE, MSE, RMSE, RMSLE are included.
