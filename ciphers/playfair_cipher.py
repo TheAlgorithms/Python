@@ -85,7 +85,7 @@ def decode(ciphertext, key):
     plaintext = ""
 
     # https://en.wikipedia.org/wiki/Playfair_cipher#Description
-    for char1, char2 in chunk(ciphertext, 2):
+    for char1, char2 in chunker(ciphertext, 2):
         row1, col1 = divmod(table.index(char1), 5)
         row2, col2 = divmod(table.index(char2), 5)
 
