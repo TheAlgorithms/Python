@@ -1,4 +1,5 @@
 """example of simple chaos machine"""
+from __future__ import print_function
 
 # Chaos Machine (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]; t = 3; m = 5

@@ -1,3 +1,4 @@
+from __future__ import print_function
 # The Caesar Cipher Algorithm
 
 def main():
@@ -12,9 +13,9 @@ def main():
 
     translated = encdec(message, key, mode)
     if mode ==   "encrypt":
-        print("Encryption:", translated)
+        print(("Encryption:", translated))
     elif mode == "decrypt":
-        print("Decryption:", translated)
+        print(("Decryption:", translated))
         
 def encdec(message, key, mode):
     message    = message.upper()

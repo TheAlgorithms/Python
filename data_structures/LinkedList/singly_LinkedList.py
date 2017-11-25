@@ -1,3 +1,4 @@
+from __future__ import print_function
 class Node:#create a Node
     def __int__(self,data):
         self.data=data#given data

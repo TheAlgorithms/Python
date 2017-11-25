@@ -7,6 +7,7 @@ The problem is  :
 Given an ARRAY, to find the longest and increasing sub ARRAY in that given ARRAY and return it.
 Example: [10, 22, 9, 33, 21, 50, 41, 60, 80] as input will return [10, 22, 33, 41, 60, 80] as output
 '''
+from __future__ import print_function
 
 def longestSub(ARRAY): 			#This function is recursive
 	

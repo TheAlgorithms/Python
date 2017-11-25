@@ -27,26 +27,22 @@ class Fibonacci:
 
 
 if __name__ == '__main__':
-    import sys
-
     print("\n********* Fibonacci Series Using Dynamic Programming ************\n")
-    # For python 2.x and 3.x compatibility: 3.x has no raw_input builtin
-    # otherwise 2.x's input builtin function is too "smart"
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
+    try:
+        raw_input          # Python 2
+    except NameError:
+        raw_input = input  # Python 3
 
     print("\n Enter the upper limit for the fibonacci sequence: ", end="")
     try:
-        N = eval(input())
+        N = eval(raw_input().strip())
         fib = Fibonacci(N)
         print(
             "\n********* Enter different values to get the corresponding fibonacci sequence, enter any negative number to exit. ************\n")
         while True:
             print("Enter value: ", end=" ")
             try:
-                i = eval(input())
+                i = eval(raw_input().strip())
                 if i < 0:
                     print("\n********* Good Bye!! ************\n")
                     break

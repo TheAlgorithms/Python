@@ -1,6 +1,8 @@
+from __future__ import print_function
+from __future__ import absolute_import
 import string
 
-from Stack import Stack
+from .Stack import Stack
 
 __author__ = 'Omkar Pathak'
 

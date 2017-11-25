@@ -13,6 +13,7 @@
 #  Time Complexity of Solution:
 #  Best Case O(n); Average Case O(n); Worst Case O(n)
 
+from __future__ import print_function
 from P26_InsertionSort import insertionSort
 import math
 

@@ -1,4 +1,5 @@
-from union_find import UnionFind
+from __future__ import absolute_import
+from .union_find import UnionFind
 import unittest
 
 

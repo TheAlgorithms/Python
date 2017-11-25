@@ -1,3 +1,15 @@
+from __future__ import print_function
+
+try:
+    raw_input          # Python 2
+except NameError:
+    raw_input = input  # Python 3
+
+try:
+    xrange             # Python 2
+except NameError:
+    xrange = range     # Python 3
+
 # Accept No. of Nodes and edges
 n, m = map(int, raw_input().split(" "))
 
@@ -48,7 +60,7 @@ for _ in xrange(m):
 
 def dfs(G, s):
     vis, S = set([s]), [s]
-    print s
+    print(s)
     while S:
         flag = 0
         for i in G[S[-1]]:
@@ -56,7 +68,7 @@ def dfs(G, s):
                 S.append(i)
                 vis.add(i)
                 flag = 1
-                print i
+                print(i)
                 break
         if not flag:
             S.pop()
@@ -76,14 +88,14 @@ from collections import deque
 
 def bfs(G, s):
     vis, Q = set([s]), deque([s])
-    print s
+    print(s)
     while Q:
         u = Q.popleft()
         for v in G[u]:
             if v not in vis:
                 vis.add(v)
                 Q.append(v)
-                print v
+                print(v)
 
 
 """
@@ -116,7 +128,7 @@ def dijk(G, s):
                     path[v[0]] = u
     for i in dist:
         if i != s:
-            print dist[i]
+            print(dist[i])
 
 
 """
@@ -140,7 +152,7 @@ def topo(G, ind=None, Q=[1]):
     if len(Q) == 0:
         return
     v = Q.popleft()
-    print v
+    print(v)
     for w in G[v]:
         ind[w] -= 1
         if ind[w] == 0:
@@ -175,7 +187,8 @@ def adjm():
 """
 
 
-def floy((A, n)):
+def floy(xxx_todo_changeme):
+    (A, n) = xxx_todo_changeme
     dist = list(A)
     path = [[0] * n for i in xrange(n)]
     for k in xrange(n):
@@ -184,7 +197,7 @@ def floy((A, n)):
                 if dist[i][j] > dist[i][k] + dist[k][j]:
                     dist[i][j] = dist[i][k] + dist[k][j]
                     path[i][k] = k
-    print dist
+    print(dist)
 
 
 """
@@ -246,14 +259,15 @@ def edglist():
 """
 
 
-def krusk((E, n)):
+def krusk(xxx_todo_changeme1):
     # Sort edges on the basis of distance
+    (E, n) = xxx_todo_changeme1
     E.sort(reverse=True, key=lambda x: x[2])
     s = [set([i]) for i in range(1, n + 1)]
     while True:
         if len(s) == 1:
             break
-        print s
+        print(s)
         x = E.pop()
         for i in xrange(len(s)):
             if x[0] in s[i]:

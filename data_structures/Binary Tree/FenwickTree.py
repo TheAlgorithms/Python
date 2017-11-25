@@ -1,3 +1,4 @@
+from __future__ import print_function
 class FenwickTree:
 
     def __init__(self, SIZE): # create fenwick tree with size SIZE

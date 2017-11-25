@@ -1,5 +1,12 @@
 #!/usr/bin/python
 
+from __future__ import print_function
+
+try:
+    raw_input          # Python 2
+except NameError:
+    raw_input = input  # Python 3
+
 class Heap:
 	def __init__(self):
 	    self.h = []
@@ -68,10 +75,10 @@ class Heap:
 			curr = curr/2
 
 	def display(self):
-		print (self.h)
+		print(self.h)
 
 def main():
-	l = list(map(int,raw_input().split()))
+	l = list(map(int, raw_input().split()))
 	h = Heap()
 	h.buildHeap(l)
 	h.heapSort()

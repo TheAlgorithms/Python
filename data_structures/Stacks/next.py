@@ -1,3 +1,4 @@
+from __future__ import print_function
 # Function to print element and NGE pair for all elements of list
 def printNGE(arr):
  

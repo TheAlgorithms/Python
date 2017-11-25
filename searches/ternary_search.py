@@ -6,8 +6,14 @@ This is a type of divide and conquer algorithm which divides the search space in
 Time Complexity  : O(log3 N)
 Space Complexity : O(1)
 '''
+from __future__ import print_function
 
 import sys
+
+try:
+    raw_input          # Python 2
+except NameError:
+    raw_input = input  # Python 3
 
 # This is the precision for this function which can be altered.
 # It is recommended for users to keep this number greater than or equal to 10.
@@ -81,16 +87,7 @@ def __assert_sorted(collection):
 
 
 if __name__ == '__main__':
-    
-    # For python 2.x and 3.x compatibility: 3.x has not raw_input builtin
-    # otherwise 2.x's input builtin function is too "smart"
-    
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
-
-    user_input = input_function('Enter numbers separated by coma:\n')
+    user_input = raw_input('Enter numbers separated by coma:\n').strip()
     collection = [int(item) for item in user_input.split(',')]
 
     try:
@@ -98,9 +95,7 @@ if __name__ == '__main__':
     except ValueError:
         sys.exit('Sequence must be sorted to apply the ternary search')
 
-    target_input = input_function(
-        'Enter a single number to be found in the list:\n'
-    )
+    target_input = raw_input('Enter a single number to be found in the list:\n')
     target = int(target_input)
     result1 = ite_ternary_search(collection, target)
     result2 = rec_ternary_search(0, len(collection)-1, collection, target)
