@@ -41,7 +41,7 @@ def rmse(predict, actual):
     actual = np.array(actual)
 
     difference = predict - actual
-    square_diff = np.square(dfference)
+    square_diff = np.square(difference)
     mean_square_diff = square_diff.mean()
     score = np.sqrt(mean_square_diff)
     return score
