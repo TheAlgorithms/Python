@@ -46,6 +46,7 @@ Usage:
   5. Have fun..
   
 '''
+from __future__ import print_function
 from sklearn.metrics import pairwise_distances
 import numpy as np
 

@@ -1,4 +1,7 @@
 # Code contributed by Honey Sharma
+from __future__ import print_function
+
+
 def cycle_sort(array):
     ans = 0
 

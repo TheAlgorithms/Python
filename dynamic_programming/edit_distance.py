@@ -7,6 +7,8 @@ This is a pure Python implementation of Dynamic Programming solution to the edit
 The problem is :
 Given two strings A and B. Find the minimum number of operations to string B such that A = B. The permitted operations are removal,  insertion, and substitution.
 """
+from __future__ import print_function
+
 
 class EditDistance:
     """

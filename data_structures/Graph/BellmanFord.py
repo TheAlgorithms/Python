@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 def printDist(dist, V):
 	print("\nVertex Distance")
 	for i in range(V):

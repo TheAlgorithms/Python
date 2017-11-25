@@ -1,6 +1,7 @@
 """
 This is a pure Python implementation of Dynamic Programming solution to the fibonacci sequence problem.
 """
+from __future__ import print_function
 
 
 class Fibonacci:
