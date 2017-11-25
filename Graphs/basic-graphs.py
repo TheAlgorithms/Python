@@ -187,8 +187,8 @@ def adjm():
 """
 
 
-def floy(xxx_todo_changeme):
-    (A, n) = xxx_todo_changeme
+def floy(A_and_n):
+    (A, n) = A_and_n
     dist = list(A)
     path = [[0] * n for i in xrange(n)]
     for k in xrange(n):
@@ -259,9 +259,9 @@ def edglist():
 """
 
 
-def krusk(xxx_todo_changeme1):
+def krusk(E_and_n):
     # Sort edges on the basis of distance
-    (E, n) = xxx_todo_changeme1
+    (E, n) = E_and_n
     E.sort(reverse=True, key=lambda x: x[2])
     s = [set([i]) for i in range(1, n + 1)]
     while True:
