@@ -8,7 +8,9 @@ e.g. for n=10, we have {2,8}, sum is 10.
 '''
 
 n = int(raw_input().strip())
-i=1; j=2; sum=0
+i=1
+j=2 
+sum=0
 while(j<=n):
     if((j&1)==0): #can also use (j%2==0)
         sum+=j
