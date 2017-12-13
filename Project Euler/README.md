@@ -49,3 +49,10 @@ PROBLEMS:
     Using the rule above and starting with 13, we generate the following sequence:
     13 → 40 → 20 → 10 → 5 → 16 → 8 → 4 → 2 → 1
     Which starting number, under one million, produces the longest chain?
+
+16. 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
+    What is the sum of the digits of the number 2^1000?
+20. n! means n × (n − 1) × ... × 3 × 2 × 1
+    For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
+    and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
+    Find the sum of the digits in the number 100!

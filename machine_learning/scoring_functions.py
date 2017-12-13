@@ -61,3 +61,18 @@ def rmsle(predict, actual):
     score = np.sqrt(mean_square_diff)
 
     return score
+
+#Mean Bias Deviation
+def mbd(predict, actual):
+    predict = np.array(predict)
+    actual = np.array(actual)
+
+    difference = predict - actual
+    numerator = np.sum(difference) / len(predict) 
+    denumerator =  np.sum(actual) / len(predict)
+    print str(numerator)
+    print str(denumerator)
+
+    score = float(numerator) / denumerator * 100
+
+    return score

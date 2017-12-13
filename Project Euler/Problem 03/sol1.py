@@ -18,7 +18,7 @@ def isprime(no):
             return False
     return True
 
-max=0
+maxNumber = 0
 n=int(input())
 if(isprime(n)):
     print(n)
@@ -32,8 +32,8 @@ else:
         for i in range(3,n1,2):
             if(n%i==0):
                 if(isprime(n/i)):
-                    max=n/i
+                    maxNumber = n/i
                     break
                 elif(isprime(i)):
-                    max=i
-        print(max)
+                    maxNumber = i
+        print(maxNumber)
