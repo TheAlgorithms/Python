@@ -184,26 +184,26 @@ class XORCipher(object):
 
 
 # Tests
-crypt = XORCipher()
-key = 67
+# crypt = XORCipher()
+# key = 67
 
-# test enrcypt
-print crypt.encrypt("hallo welt",key)
-# test decrypt
-print crypt.decrypt(crypt.encrypt("hallo welt",key), key)
+# # test enrcypt
+# print crypt.encrypt("hallo welt",key)
+# # test decrypt
+# print crypt.decrypt(crypt.encrypt("hallo welt",key), key)
 
-# test encrypt_string
-print crypt.encrypt_string("hallo welt",key)
+# # test encrypt_string
+# print crypt.encrypt_string("hallo welt",key)
 
-# test decrypt_string
-print crypt.decrypt_string(crypt.encrypt_string("hallo welt",key),key)
+# # test decrypt_string
+# print crypt.decrypt_string(crypt.encrypt_string("hallo welt",key),key)
 
-if (crypt.encrypt_file("test.txt",key)):
-	print "encrypt successful"
-else:
-	print "encrypt unsuccessful"
+# if (crypt.encrypt_file("test.txt",key)):
+# 	print "encrypt successful"
+# else:
+# 	print "encrypt unsuccessful"
 
-if (crypt.decrypt_file("encrypt.out",key)):
-	print "decrypt successful"
-else:
-	print "decrypt unsuccessful"
+# if (crypt.decrypt_file("encrypt.out",key)):
+# 	print "decrypt successful"
+# else:
+# 	print "decrypt unsuccessful"
