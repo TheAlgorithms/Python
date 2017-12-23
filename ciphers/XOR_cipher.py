@@ -38,12 +38,7 @@ class XORCipher(object):
 		# precondition
 		assert (isinstance(key,int) and isinstance(content,str))
 
-		# testing for default arguments
-		if (key == 0):
-			if (self.__key == 0):
-				key = 1
-			else:
-				key = self.__key
+		key = key or self.__key or 1
 
 		# make sure key can be any size
 		while (key > 255):
@@ -51,7 +46,6 @@ class XORCipher(object):
 
 		# This will be returned
 		ans = []
-		resultNumber = 0
 
 		for ch in content:
 			ans.append(chr(ord(ch) ^ key))
@@ -69,12 +63,7 @@ class XORCipher(object):
 		# precondition
 		assert (isinstance(key,int) and isinstance(content,list))
 
-		# testing for default arguments
-		if (key == 0):
-			if (self.__key == 0):
-				key = 1
-			else:
-				key = self.__key
+		key = key or self.__key or 1
 
 		# make sure key can be any size
 		while (key > 255):
@@ -82,7 +71,6 @@ class XORCipher(object):
 
 		# This will be returned
 		ans = []
-		resultNumber = 0
 
 		for ch in content:
 			ans.append(chr(ord(ch) ^ key))
@@ -101,12 +89,7 @@ class XORCipher(object):
 		# precondition
 		assert (isinstance(key,int) and isinstance(content,str))
 
-		# testing for default arguments
-		if (key == 0):
-			if (self.__key == 0):
-				key = 1
-			else:
-				key = self.__key
+		key = key or self.__key or 1
 
 		# make sure key can be any size
 		while (key > 255):
@@ -114,7 +97,6 @@ class XORCipher(object):
 
 		# This will be returned
 		ans = ""
-		resultNumber = 0
 
 		for ch in content:
 			ans += chr(ord(ch) ^ key)
@@ -132,12 +114,7 @@ class XORCipher(object):
 		# precondition
 		assert (isinstance(key,int) and isinstance(content,str))
 
-		# testing for default arguments
-		if (key == 0):
-			if (self.__key == 0):
-				key = 1
-			else:
-				key = self.__key
+		key = key or self.__key or 1
 
 		# make sure key can be any size
 		while (key > 255):
@@ -145,8 +122,7 @@ class XORCipher(object):
 
 		# This will be returned
 		ans = ""
-		resultNumber = 0
-
+		
 		for ch in content:
 			ans += chr(ord(ch) ^ key)
 
@@ -166,15 +142,12 @@ class XORCipher(object):
 		assert (isinstance(file,str) and isinstance(key,int))
 
 		try:
-			fin = open(file,"r")
-			fout = open("encrypt.out","w+")
+			with open(file,"r") as fin:
+				with open("encrypt.out","w+") as fout:
 
-			# actual encrypt-process
-			for line in fin:
-				fout.write(self.encrypt_string(line,key))
-
-			fin.close()
-			fout.close()
+					# actual encrypt-process
+					for line in fin:
+						fout.write(self.encrypt_string(line,key))
 
 		except:
 			return False
@@ -195,15 +168,12 @@ class XORCipher(object):
 		assert (isinstance(file,str) and isinstance(key,int))
 
 		try:
-			fin = open(file,"r")
-			fout = open("decrypt.out","w+")
+			with open(file,"r") as fin:
+				with open("decrypt.out","w+") as fout:
 
-			# actual encrypt-process
-			for line in fin:
-				fout.write(self.decrypt_string(line,key))
-
-			fin.close()
-			fout.close()
+					# actual encrypt-process
+					for line in fin:
+						fout.write(self.decrypt_string(line,key))
 
 		except:
 			return False
@@ -233,7 +203,7 @@ class XORCipher(object):
 # else:
 # 	print "encrypt unsuccessful"
 
-# if (crypt.decrypt_file("a.out",key)):
+# if (crypt.decrypt_file("encrypt.out",key)):
 # 	print "decrypt successful"
 # else:
 # 	print "decrypt unsuccessful"
