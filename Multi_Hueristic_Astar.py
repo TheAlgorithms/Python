@@ -1,7 +1,13 @@
+from __future__ import print_function
 import heapq
 import numpy as np
 import math
 import copy
+
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
 
 
 class PriorityQueue:
@@ -95,22 +101,22 @@ def do_something(back_pointer, goal, start):
 	for i in xrange(n):
 		for j in range(n):
 			if (i, j) == (0, n-1):
-				print grid[i][j],
-				print "<-- End position",
+				print(grid[i][j], end=' ')
+				print("<-- End position", end=' ')
 			else:
-				print grid[i][j],
-		print
+				print(grid[i][j], end=' ')
+		print()
 	print("^")
 	print("Start position")
-	print
+	print()
 	print("# is an obstacle")
 	print("- is the path taken by algorithm")
 	print("PATH TAKEN BY THE ALGORITHM IS:-")
 	x = back_pointer[goal]
 	while x != start:
-		print x, 
+		print(x, end=' ') 
 		x = back_pointer[x]
-	print x
+	print(x)
 	quit()
 
 def valid(p):
@@ -239,24 +245,24 @@ def multi_a_star(start, goal, n_hueristic):
 					expand_state(get_s, 0, visited, g_function, close_list_anchor, close_list_inad, open_list, back_pointer)
 					close_list_anchor.append(get_s)
 	print("No path found to goal")
-	print
+	print()
 	for i in range(n-1,-1, -1):
 		for j in range(n):
 			if (j, i) in blocks:
-				print '#',
+				print('#', end=' ')
 			elif (j, i) in back_pointer:
 				if (j, i) == (n-1, n-1):
-					print '*',
+					print('*', end=' ')
 				else:
-					print '-',
+					print('-', end=' ')
 			else:
-				print '*',
+				print('*', end=' ')
 			if (j, i) == (n-1, n-1):
-				print '<-- End position',
-		print
+				print('<-- End position', end=' ')
+		print()
 	print("^")
 	print("Start position")
-	print
+	print()
 	print("# is an obstacle")
 	print("- is the path taken by algorithm")
 multi_a_star(start, goal, n_hueristic)

@@ -3,6 +3,7 @@ Problem:
 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 What is the smallest positive number that is evenly divisible(divisible with no remainder) by all of the numbers from 1 to N?
 '''
+from __future__ import print_function
 
 n = int(input())
 i = 0
@@ -16,5 +17,5 @@ while 1:
     if(nfound==0):
         if(i==0):
             i=1
-        print i
+        print(i)
         break

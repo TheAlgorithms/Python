@@ -15,6 +15,7 @@
     Date: 2017.9.20
     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
           '''
+from __future__ import print_function
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -192,8 +193,8 @@ class CNN():
     def trian(self,patterns,datas_train, datas_teach, n_repeat, error_accuracy,draw_e = bool):
         #model traning
         print('----------------------Start Training-------------------------')
-        print(' - - Shape: Train_Data  ',np.shape(datas_train))
-        print(' - - Shape: Teach_Data  ',np.shape(datas_teach))
+        print((' - - Shape: Train_Data  ',np.shape(datas_train)))
+        print((' - - Shape: Teach_Data  ',np.shape(datas_teach)))
         rp = 0
         all_mse = []
         mse  = 10000
@@ -262,7 +263,7 @@ class CNN():
             plt.grid(True, alpha=0.5)
             plt.show()
         print('------------------Training Complished---------------------')
-        print(' - - Training epoch: ', rp, '     - - Mse: %.6f' % mse)
+        print((' - - Training epoch: ', rp, '     - - Mse: %.6f' % mse))
         if draw_e:
             draw_error()
         return mse
@@ -271,7 +272,7 @@ class CNN():
         #model predict
         produce_out = []
         print('-------------------Start Testing-------------------------')
-        print(' - - Shape: Test_Data  ',np.shape(datas_test))
+        print((' - - Shape: Test_Data  ',np.shape(datas_test)))
         for p in range(len(datas_test)):
             data_test = np.asmatrix(datas_test[p])
             data_focus1, data_conved1 = self.convolute(data_test, self.conv1, self.w_conv1,

@@ -1,3 +1,4 @@
+from __future__ import print_function
 # n - no of nodes, m - no of edges
 n, m = list(map(int,input().split()))
 

@@ -1,3 +1,4 @@
+from __future__ import print_function
 num_nodes, num_edges = list(map(int,input().split()))
 
 edges = []

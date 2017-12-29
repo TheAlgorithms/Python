@@ -2,6 +2,7 @@
 # Author: Shubham Malik
 # References: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 
+from __future__ import print_function
 import math
 import sys
 # For storing the vertex set to retreive node with the lowest distance

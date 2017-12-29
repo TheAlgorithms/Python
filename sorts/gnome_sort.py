@@ -19,16 +19,12 @@ def gnome_sort(unsorted):
                 i = 1
                 
 if __name__ == '__main__':
-    import sys
-
-    # For python 2.x and 3.x compatibility: 3.x has no raw_input builtin
-    # otherwise 2.x's input builtin function is too "smart"
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
+    try:
+        raw_input          # Python 2
+    except NameError:
+        raw_input = input  # Python 3
     
-    user_input = input_function('Enter numbers separated by a comma:\n')
+    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     gnome_sort(unsorted)
     print(unsorted)

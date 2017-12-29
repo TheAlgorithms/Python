@@ -3,6 +3,7 @@ Problem:
 A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 x 99.
 Find the largest palindrome made from the product of two 3-digit numbers which is less than N.
 '''
+from __future__ import print_function
 limit = int(input("limit? "))
 
 # fetchs the next number
@@ -22,7 +23,7 @@ for number in range(limit-1,10000,-1):
             
             if((number % divisor == 0) and (len(str(number / divisor)) == 3)):
 
-                print number
+                print(number)
                 exit(0)
 
             divisor -=1

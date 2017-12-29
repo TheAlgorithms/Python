@@ -12,6 +12,7 @@ Constraints
 Note: The tree input will be such that it can always be decomposed into
 components containing an even number of nodes.
 """
+from __future__ import print_function
 # pylint: disable=invalid-name
 from collections import defaultdict
 
@@ -66,4 +67,4 @@ if __name__ == '__main__':
         tree[u].append(v)
         tree[v].append(u)
     even_tree()
-    print len(cuts) - 1
+    print(len(cuts) - 1)

@@ -3,6 +3,7 @@ By listing the first six prime numbers:
 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
 What is the Nth prime number?
 '''
+from __future__ import print_function
 from math import sqrt
 def isprime(n):
     if (n==2):
@@ -26,4 +27,4 @@ while(i!=n):
     j+=2
     if(isprime(j)):
         i+=1
-print j
+print(j)

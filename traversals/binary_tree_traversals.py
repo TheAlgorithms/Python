@@ -4,6 +4,11 @@ This is pure python implementation of tree traversal algorithms
 from __future__ import print_function
 import queue
 
+try:
+    raw_input          # Python 2
+except NameError:
+    raw_input = input  # Python 3
+
 
 class TreeNode:
     def __init__(self, data):
@@ -15,26 +20,26 @@ class TreeNode:
 def build_tree():
     print("\n********Press N to stop entering at any point of time********\n")
     print("Enter the value of the root node: ", end="")
-    check=input()
-    if check=='N' or check=='n':
+    check = raw_input().strip().lower()
+    if check == 'n':
         return None 
-    data=int(check)
+    data = int(check)
     q = queue.Queue()
     tree_node = TreeNode(data)
     q.put(tree_node)
     while not q.empty():
         node_found = q.get()
         print("Enter the left node of %s: " % node_found.data, end="")
-        check=input()
-        if check=='N' or check =='n':
+        check = raw_input().strip().lower()
+        if check == 'n':
             return tree_node
         left_data = int(check)
         left_node = TreeNode(left_data)
         node_found.left = left_node
         q.put(left_node)
         print("Enter the right node of %s: " % node_found.data, end="")
-        check = input()
-        if check == 'N' or check == 'n':
+        check = raw_input().strip().lower()
+        if check == 'n':
             return tree_node
         right_data = int(check)
         right_node = TreeNode(right_data)
@@ -81,15 +86,7 @@ def level_order(node):
 
 
 if __name__ == '__main__':
-    import sys
-
     print("\n********* Binary Tree Traversals ************\n")
-    # For python 2.x and 3.x compatibility: 3.x has no raw_input builtin
-    # otherwise 2.x's input builtin function is too "smart"
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
 
     node = build_tree()
     print("\n********* Pre Order Traversal ************")

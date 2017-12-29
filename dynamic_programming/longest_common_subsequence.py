@@ -3,6 +3,13 @@ LCS Problem Statement: Given two sequences, find the length of longest subsequen
 A subsequence is a sequence that appears in the same relative order, but not necessarily continious.
 Example:"abc", "abg" are subsequences of "abcdefgh".
 """
+from __future__ import print_function
+
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
+
 def lcs_dp(x, y):
     # find the length of strings
     m = len(x)
@@ -27,4 +34,4 @@ def lcs_dp(x, y):
 if __name__=='__main__':
     x = 'AGGTAB'
     y = 'GXTXAYB'
-    print lcs_dp(x, y)
+    print(lcs_dp(x, y))

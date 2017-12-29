@@ -1,6 +1,7 @@
 '''
 A AVL tree
 '''
+from __future__ import print_function
 
 
 class Node:

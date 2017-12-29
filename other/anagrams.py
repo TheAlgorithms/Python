@@ -1,3 +1,4 @@
+from __future__ import print_function
 import collections, pprint, time, os
 
 start_time = time.time()
@@ -25,4 +26,4 @@ with open('anagrams.txt', 'w') as file:
     file.write(pprint.pformat(all_anagrams))
 
 total_time = round(time.time() - start_time, 2)
-print('Done [', total_time, 'seconds ]')
+print(('Done [', total_time, 'seconds ]'))
