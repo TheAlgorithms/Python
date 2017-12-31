@@ -13,8 +13,8 @@ def chunker(seq, size):
 
 def prepare_input(dirty):
     """
-    Prepare the plaintext by uppcasing it 
-    and seperating repeated letters with X's
+    Prepare the plaintext by up-casing it
+    and separating repeated letters with X's
     """
     
     dirty = ''.join([c.upper() for c in dirty if c in string.ascii_letters])
@@ -38,7 +38,7 @@ def prepare_input(dirty):
 
 def generate_table(key):
 
-    # I and J are used interchangably to allow
+    # I and J are used interchangeably to allow
     # us to use a 5x5 table (25 letters)
     alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
     # we're using a list instead of a '2d' array because it makes the math 

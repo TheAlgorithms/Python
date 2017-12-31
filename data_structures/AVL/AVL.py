@@ -1,6 +1,6 @@
-'''
-A AVL tree
-'''
+"""
+An AVL tree
+"""
 from __future__ import print_function
 
 
@@ -101,10 +101,10 @@ class AVL:
                 if height_left > height_right:
                     left_child = n.left
                     if left_child is not None:
-                        h_right = (right_child.right.height
-                                    if (right_child.right is not None) else 0)
-                        h_left = (right_child.left.height
-                                    if (right_child.left is not None) else 0)
+                        h_right = (left_child.right.height
+                                    if (left_child.right is not None) else 0)
+                        h_left = (left_child.left.height
+                                    if (left_child.left is not None) else 0)
                     if (h_left > h_right):
                         self.rotate_left(n)
                         break
