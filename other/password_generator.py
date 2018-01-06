@@ -13,17 +13,23 @@ max_length = 16
 password = ''.join(random.choice(chars) for x in range(random.randint(min_length, max_length)))
 print('Password: ' + password)
 print('[ If you are thinking of using this passsword, You better save it. ]')
+
+
 # ALTERNATIVE METHODS  
 # ctbi= characters that must be in password
 # i= how many letters or characters the password length will be 
 def password_generator(ctbi, i):
   # Password generator = full boot with random_number, random_letters, and random_character FUNCTIONS
+  pass  # Put your code here...
+
+
 def random_number(ctbi, i):
-  
-  
-  
+  pass  # Put your code here...
+
+
 def random_letters(ctbi, i):
-  
-  
-  
+  pass  # Put your code here...
+
+
 def random_characters(ctbi, i):
+  pass  # Put your code here...
