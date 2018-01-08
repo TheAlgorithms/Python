@@ -1,5 +1,3 @@
-import math
-
 def newton(function,function1,startingInt): #function is the f(x) and function1 is the f'(x)
   x_n=startingInt
   while True:
@@ -9,9 +7,9 @@ def newton(function,function1,startingInt): #function is the f(x) and function1 
       x_n=x_n1
       
 def f(x):
-    return math.pow(x,3)-2*x-5
+    return (x**3)-2*x-5
 
 def f1(x):
-    return 3*math.pow(x,2)-2
+    return 3*(x**2)-2
 
 print(newton(f,f1,3))
