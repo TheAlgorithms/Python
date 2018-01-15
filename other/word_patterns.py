@@ -1,3 +1,4 @@
+from __future__ import print_function
 import pprint, time
 
 def getWordPattern(word):
@@ -32,7 +33,7 @@ def main():
         fo.write(pprint.pformat(allPatterns))
 
     totalTime = round(time.time() - startTime, 2)
-    print('Done! [', totalTime, 'seconds ]')
+    print(('Done! [', totalTime, 'seconds ]'))
 
 if __name__ == '__main__':
     main()

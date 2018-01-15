@@ -1,11 +1,26 @@
 language: python
+cache: pip
 python:
-  - "3.2"
-  - "3.3"
-  - "3.4"
-  - "3.5"
-install: 
-  - if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then travis_retry pip install coverage==3.7.1; fi
-  - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then travis_retry pip install coverage; fi
-  - "pip install pytest pytest-cov"
-script: py.test --doctest-modules --cov ./
+    - 2.7
+    - 3.6
+    #- nightly
+    #- pypy
+    #- pypy3
+matrix:
+    allow_failures:
+        - python: nightly
+        - python: pypy
+        - python: pypy3
+install:
+    #- pip install -r requirements.txt
+    - pip install flake8  # pytest  # add another testing frameworks later
+before_script:
+    # stop the build if there are Python syntax errors or undefined names
+    - flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
+    # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
+    - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+script:
+    - true  # pytest --capture=sys  # add other tests here
+notifications:
+    on_success: change
+    on_failure: change  # `always` will be the setting once code changes slow down

@@ -6,6 +6,7 @@ This is a pure Python implementation of Dynamic Programming solution to the long
 The problem is  :
 Given an array, to find the longest and continuous sub array and get the max sum of the sub array in the given array.
 '''
+from __future__ import print_function
 
 
 class SubArray:
@@ -13,7 +14,7 @@ class SubArray:
     def __init__(self, arr):
         # we need a list not a string, so do something to change the type
         self.array = arr.split(',')
-        print("the input array is:", self.array)
+        print(("the input array is:", self.array))
 
     def solve_sub_array(self):
         rear = [int(self.array[0])]*len(self.array)
@@ -28,5 +29,5 @@ if __name__ == '__main__':
     whole_array = input("please input some numbers:")
     array = SubArray(whole_array)
     re = array.solve_sub_array()
-    print("the results is:", re)
+    print(("the results is:", re))
 

@@ -1,3 +1,4 @@
+from __future__ import print_function
 # Primality Testing with the Rabin-Miller Algorithm
 
 import random
@@ -59,5 +60,5 @@ def generateLargePrime(keysize = 1024):
 
 if __name__ == '__main__':
     num = generateLargePrime()
-    print('Prime number:', num)
-    print('isPrime:', isPrime(num))
+    print(('Prime number:', num))
+    print(('isPrime:', isPrime(num)))
