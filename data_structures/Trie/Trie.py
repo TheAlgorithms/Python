@@ -12,7 +12,7 @@ class TrieNode:
         self.nodes = dict()  # Mapping from char to TrieNode
         self.is_leaf = False
 
-    def insert_many(self, words: [str]):
+    def insert_many(self, words: [str]):  # noqa: F821 This syntax is Python 3 only
         """
         Inserts a list of words into the Trie
         :param words: list of string words
@@ -34,7 +34,7 @@ class TrieNode:
             curr = curr.nodes[char]
         curr.is_leaf = True
 
-    def find(self, word: str) -> bool:
+    def find(self, word: str) -> bool:  # noqa: F821 This syntax is Python 3 only
         """
         Tries to find word in a Trie
         :param word: word to look for
@@ -48,7 +48,7 @@ class TrieNode:
         return curr.is_leaf
 
 
-def print_words(node: TrieNode, word: str):
+def print_words(node: TrieNode, word: str):  # noqa: F821 This syntax is Python 3 only
     """
     Prints all the words in a Trie
     :param node: root node of Trie
