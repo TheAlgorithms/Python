@@ -21,7 +21,7 @@ class TrieNode:
         for word in words:
             self.insert(word)
 
-    def insert(self, word: str):
+    def insert(self, word: str):  # noqa: F821 This syntax is Python 3 only
         """
         Inserts a word into the Trie
         :param word: word to be inserted
