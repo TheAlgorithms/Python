@@ -4,6 +4,107 @@
 
 These are for demonstration purposes only. There are many implementations of sorts in the Python standard library that are much better for performance reasons.
 
+## List of implemented algorithms 
+
+```
+├── Neural_Network
+│   ├── neuralnetwork_bp3.py
+│   └── perceptron.py
+├── ciphers
+│   ├── affine_cipher.py
+│   ├── brute-force_caesar_cipher.py
+│   ├── caesar_cipher.py
+│   ├── cryptomath_module.py
+│   ├── playfair_cipher.py
+│   ├── rabin_miller.py
+│   ├── rsa_cipher.py
+│   ├── rsa_key_generator.py
+│   ├── simple_substitution_cipher.py
+│   ├── transposition_cipher.py
+│   ├── transposition_cipher_encrypt-decrypt_file.py
+│   └── vigenere_cipher.py
+├── data_structures
+│   ├── AVL
+│   │   └── AVL.py
+│   ├── Binary\ Tree
+│   │   └── binary_seach_tree.py
+│   ├── Graph
+│   │   ├── BreadthFirstSearch.py
+│   │   ├── DepthFirstSearch.py
+│   │   ├── Graph.py
+│   │   ├── Graph_list.py
+│   │   └── Graph_matrix.py
+│   ├── Heap
+│   │   └── heap.py
+│   ├── LinkedList
+│   │   ├── DoublyLinkedList.py
+│   │   ├── _init_.py
+│   │   └── singly_LinkedList.py
+│   ├── Queue
+│   │   ├── QueueOnList.py
+│   │   ├── QueueOnPseudoStack.py
+│   │   └── _init_.py
+│   ├── Stacks
+│   │   ├── Balanced_Parentheses.py
+│   │   ├── Infix_To_Postfix_Conversion.py
+│   │   ├── Stack.py
+│   │   └── _init_.py
+│   ├── Trie
+│   │   └── Trie.py
+│   └── _init_.py
+├── dynamic_programming
+│   ├── edit_distance.py
+│   ├── fastfibonacci.py
+│   ├── fibonacci.py
+│   ├── k_means_clustering_tensorflow.py
+│   ├── knapsack.py
+│   ├── longest\ common\ subsequence.py
+│   ├── longest_increasing_subsequence.py
+│   ├── longest_sub_array.py
+│   ├── max_sub_array.py
+│   └── minimum_partition.py
+├── hashes
+│   ├── chaos_machine.py
+│   └── md5.py
+├── machine_learning
+│   ├── decision_tree.py
+│   ├── gradient_descent.py
+│   ├── linear_regression.py
+│   ├── perceptron.py
+│   └── scoring_functions.py
+├── other
+│   ├── FindingPrimes.py
+│   ├── anagrams.py
+│   ├── detecting_english_programmatically.py
+│   ├── frequency_finder.py
+│   ├── nested_brackets.py
+│   ├── password_generator.py
+│   ├── tower_of_hanoi.py
+│   ├── word_patterns.py
+├── searches
+│   ├── binary_search.py
+│   ├── linear_search.py
+│   └── quick_select.py
+├── sorts
+│   ├── bogosort.py
+│   ├── bubble_sort.py
+│   ├── bucket_sort.py
+│   ├── cocktail_shaker_sort.py
+│   ├── counting_sort.py
+│   ├── gnome_sort.py
+│   ├── heap_sort.py
+│   ├── insertion_sort.py
+│   ├── merge_sort.py
+│   ├── quick_sort.py
+│   ├── radix_sort.py
+│   ├── random_normaldistribution_quicksort.py
+│   ├── selection_sort.py
+│   ├── shell_sort.py
+│   └── topological_sort.py
+└── traverals
+    └── binary_tree_traversals.py
+```
+
 ## Sort Algorithms
 
 
