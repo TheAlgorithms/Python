@@ -1,3 +1,4 @@
+from __future__ import print_function
 import time, os, sys
 import transposition_cipher as transCipher
 
@@ -29,7 +30,7 @@ def main():
     outputObj.close()
     
     totalTime = round(time.time() - startTime, 2)
-    print('Done (', totalTime, 'seconds )')
+    print(('Done (', totalTime, 'seconds )'))
     
 if __name__ == '__main__':
     main()

@@ -29,28 +29,21 @@ def insertion_sort(collection):
     >>> insertion_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    length = len(collection)
-    for i in range(length):
-        current_item = collection[i]
-        j = i - 1
-        while j >= 0 and current_item < collection[j]:
-            collection[j+1] = collection[j]
-            j -= 1
-        collection[j+1] = current_item
+    for index in range(1, len(collection)):
+        while 0 < index and collection[index] < collection[index - 1]:
+            collection[index], collection[
+                index - 1] = collection[index - 1], collection[index]
+            index -= 1
 
     return collection
 
 
 if __name__ == '__main__':
-    import sys
+    try:
+        raw_input          # Python 2
+    except NameError:
+        raw_input = input  # Python 3
 
-    # For python 2.x and 3.x compatibility: 3.x has not raw_input builtin
-    # otherwise 2.x's input builtin function is too "smart"
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
-
-    user_input = input_function('Enter numbers separated by a comma:\n')
+    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     print(insertion_sort(unsorted))

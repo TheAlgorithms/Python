@@ -11,6 +11,7 @@ python bogosort.py
 from __future__ import print_function
 import random
 
+
 def bogosort(collection):
     """Pure implementation of the bogosort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
@@ -28,25 +29,21 @@ def bogosort(collection):
     def isSorted(collection):
         if len(collection) < 2:
             return True
-        for i in range(len(collection)-1):
-            if collection[i] > collection[i+1]:
+        for i in range(len(collection) - 1):
+            if collection[i] > collection[i + 1]:
                 return False
         return True
 
     while not isSorted(collection):
-    	random.shuffle(collection)
+        random.shuffle(collection)
     return collection
 
 if __name__ == '__main__':
-    import sys
+    try:
+        raw_input          # Python 2
+    except NameError:
+        raw_input = input  # Python 3
 
-    # For python 2.x and 3.x compatibility: 3.x has not raw_input builtin
-    # otherwise 2.x's input builtin function is too "smart"
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
-
-    user_input = input_function('Enter numbers separated by a comma:\n')
+    user_input = raw_input('Enter numbers separated by a comma:\n').stript()
     unsorted = [int(item) for item in user_input.split(',')]
     print(bogosort(unsorted))

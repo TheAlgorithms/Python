@@ -7,10 +7,11 @@ or
 python3 -m doctest -v heap_sort.py
 
 For manual testing run:
-python insertion_sort.py
+python heap_sort.py
 '''
 
 from __future__ import print_function
+
 
 def heapify(unsorted, index, heap_size):
     largest = index
@@ -25,6 +26,7 @@ def heapify(unsorted, index, heap_size):
     if largest != index:
         unsorted[largest], unsorted[index] = unsorted[index], unsorted[largest]
         heapify(unsorted, largest, heap_size)
+
 
 def heap_sort(unsorted):
     '''
@@ -44,20 +46,19 @@ def heap_sort(unsorted):
     [-45, -5, -2]
     '''
     n = len(unsorted)
-    for i in range(n//2 - 1, -1, -1):
+    for i in range(n // 2 - 1, -1, -1):
         heapify(unsorted, i, n)
-    for i in range(n - 1, -1, -1):
+    for i in range(n - 1, 0, -1):
         unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
         heapify(unsorted, 0, i)
     return unsorted
 
 if __name__ == '__main__':
-    import sys
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
+    try:
+        raw_input          # Python 2
+    except NameError:
+        raw_input = input  # Python 3
 
-    user_input = input_function('Enter numbers separated by a comma:\n')
+    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     print(heap_sort(unsorted))
