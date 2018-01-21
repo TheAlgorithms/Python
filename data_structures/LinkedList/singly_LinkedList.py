@@ -9,7 +9,7 @@ class Node:  # create a Node
 
 class Linked_List:
     def insert_tail(Head, data):
-        if(Head.next is None):
+        if Head.next is None:
             Head.next = Node(data)
         else:
             Head.next.insert_tail(data)
@@ -43,7 +43,7 @@ class Linked_List:
         if Head is not None:
             tamp = Node()
             tamp = Head
-            while (tamp.next).next is not None:  # find the 2nd last element
+            while tamp.next.next is not None:  # find the 2nd last element
                 tamp = tamp.next
             # delete the last element by give next None to 2nd last Element
             tamp.next = None
@@ -56,7 +56,7 @@ class Linked_List:
         prev = None
         current = Head
 
-        while(current):
+        while current:
             # Store the current node's next node.
             next_node = current.next
             # Make the current node's next point backwards
