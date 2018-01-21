@@ -7,14 +7,14 @@ import sys
 
 
 # returns F(n)
-def fibonacci(n: int):
+def fibonacci(n: int):  # noqa: F821 This syntax is Python 3 only
     if n < 0:
         raise ValueError("Negative arguments are not supported")
     return _fib(n)[0]
 
 
 # returns (F(n), F(n-1))
-def _fib(n: int):
+def _fib(n: int):  # noqa: F821 This syntax is Python 3 only
     if n == 0:
         # (F(0), F(1))
         return (0, 1)
