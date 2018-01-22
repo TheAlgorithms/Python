@@ -70,8 +70,8 @@ def mbd(predict, actual):
     difference = predict - actual
     numerator = np.sum(difference) / len(predict) 
     denumerator =  np.sum(actual) / len(predict)
-    print str(numerator)
-    print str(denumerator)
+    print(numerator)
+    print(denumerator)
 
     score = float(numerator) / denumerator * 100
 
