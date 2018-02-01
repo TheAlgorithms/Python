@@ -55,7 +55,7 @@ From [Wikipedia][quick-wiki]: Quicksort (sometimes called partition-exchange sor
 __Properties__
 * Worst case performance	O(n^2)
 * Best case performance	O(n log n) or O(n) with three-way partition
-* Average case performance	O(n^2)
+* Average case performance	O(n log n)
 
 ###### View the algorithm in [action][quick-toptal]
 
