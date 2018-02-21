@@ -29,7 +29,7 @@ def makePoints(a,b,h):
 		yield x
 		x = x + h
 		
-def f(x):
+def f(x): #enter your function here
 	y = (x-0)*(x-0)
 	return y
 
