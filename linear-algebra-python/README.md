@@ -29,6 +29,8 @@ This module contains some useful classes and functions for dealing with linear a
     - returns a unit basis vector with a One at index 'pos' (indexing at 0)  
 - function axpy(scalar,vector1,vector2)  
     - computes the axpy operation  
+- function randomVector(N,a,b)
+    - returns a random vector of size N, with random integer components between 'a' and 'b'.
 - class Matrix
     - This class represents a matrix of arbitrary size and operations on it.
 
@@ -45,6 +47,8 @@ This module contains some useful classes and functions for dealing with linear a
     - operator - _ implements the matrix-subtraction  
 - function squareZeroMatrix(N)  
     - returns a square zero-matrix of dimension NxN  
+- function randomMatrix(W,H,a,b)  
+    - returns a random matrix WxH with integer components between 'a' and 'b'  
 ---
 
 ## Documentation  
