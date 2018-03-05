@@ -14,12 +14,15 @@ Overview:
 - function zeroVector(dimension)
 - function unitBasisVector(dimension,pos)
 - function axpy(scalar,vector1,vector2)
+- function randomVector(N,a,b)
 - class Matrix
-- squareZeroMatrix(N)
+- function squareZeroMatrix(N)
+- function randomMatrix(W,H,a,b)
 """
 
 
 import math
+import random
 
 
 class Vector(object):
@@ -196,6 +199,20 @@ def axpy(scalar,x,y):
     return (x*scalar + y)
     
 
+def randomVector(N,a,b):
+    """
+        input: size (N) of the vector.
+               random range (a,b)
+        output: returns a random vector of size N, with 
+                random integer components between 'a' and 'b'.
+    """
+    ans = zeroVector(N)
+    random.seed(None)
+    for i in range(N):
+        ans.changeComponent(i,random.randint(a,b))
+    return ans
+
+
 class Matrix(object):
     """
     class: Matrix
@@ -328,5 +345,20 @@ def squareZeroMatrix(N):
             row.append(0)
         ans.append(row)
     return Matrix(ans,N,N)
+    
+    
+def randomMatrix(W,H,a,b):
+    """
+        returns a random matrix WxH with integer components
+        between 'a' and 'b'
+    """
+    matrix = []
+    random.seed(None)
+    for i in range(H):
+        row = []
+        for j in range(W):
+            row.append(random.randint(a,b))
+        matrix.append(row)
+    return Matrix(matrix,W,H)
             
         
