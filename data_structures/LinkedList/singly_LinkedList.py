@@ -2,7 +2,7 @@ from __future__ import print_function
 
 
 class Node:  # create a Node
-    def __int__(self, data):
+    def __init__(self, data):
         self.data = data  # given data
         self.next = None  # given next to None
 
