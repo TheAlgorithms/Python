@@ -16,7 +16,7 @@ def BFS(graph, s, t, parent):
                 parent[ind] = u
 
     return True if visited[t] else False
-
+ 
 def mincut(graph, source, sink):
     # This array is filled by BFS and to store path
     parent = [-1]*(len(graph))
