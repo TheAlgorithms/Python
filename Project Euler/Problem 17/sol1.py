@@ -12,7 +12,7 @@ NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-
 contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage.
 '''
 
-ones_counts = [0, 3, 3, 5, 4, 4, 3, 5, 5, 4, 3, 6, 6, 8, 8, 7, 7, 9, 8, 8] #number of letters in zero, one, two, ..., nineteen (0 for zero since its never said aloud)
+ones_counts = [0, 3, 3, 5, 4, 4, 3, 5, 5, 4, 3, 6, 6, 8, 8, 7, 7, 9, 8, 8] #number of letters in zero, one, two, ..., nineteen (0 for zero since it's never said aloud)
 tens_counts = [0, 0, 6, 6, 5, 5, 5, 7, 6, 6] #number of letters in twenty, thirty, ..., ninety (0 for numbers less than 20 due to inconsistency in teens)
 
 count = 0
