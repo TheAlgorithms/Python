@@ -43,7 +43,7 @@ def main():
 	steps = 10.0		#define number of steps or resolution
 	boundary = [a, b]	#define boundary of integration
 	y = method_2(boundary, steps)
-	print 'y = {0}'.format(y)
+	print('y = {0}'.format(y))
 
 if __name__ == '__main__':
         main()
