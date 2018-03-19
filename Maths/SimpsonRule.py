@@ -8,6 +8,8 @@ method 2:
 "Simpson Rule"
 
 '''
+from __future__ import print_function
+
 
 def method_2(boundary, steps):
 # "Simpson Rule"
