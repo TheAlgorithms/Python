@@ -1,5 +1,10 @@
 from __future__ import print_function
 
+try:
+	xrange			#Python 2
+except NameError:
+	xrange = range	#Python 3
+
 def fibonacci(n):
 	if n == 1 or type(n) is not int:
 		return 0
