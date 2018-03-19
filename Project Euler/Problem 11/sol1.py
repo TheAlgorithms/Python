@@ -24,6 +24,11 @@ What is the greatest product of four adjacent numbers (horizontally, vertically,
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 '''
 
+try:
+	xrange			#Python 2
+except NameError:
+	xrange = range	#Python 2
+
 def largest_product(grid):
 	nColumns = len(grid[0])
 	nRows = len(grid)
@@ -33,8 +38,8 @@ def largest_product(grid):
 	rlDiagProduct = 0
 
 	#Check vertically, horizontally, diagonally at the same time (only works for nxn grid)
-	for i in range(nColumns):
-		for j in range(nRows-3):
+	for i in xrange(nColumns):
+		for j in xrange(nRows-3):
 			vertProduct = grid[j][i]*grid[j+1][i]*grid[j+2][i]*grid[j+3][i]
 			horzProduct = grid[i][j]*grid[i][j+1]*grid[i][j+2]*grid[i][j+3]
 
@@ -58,6 +63,6 @@ if __name__ == '__main__':
 		for line in file:
 			grid.append(line.strip('\n').split(' '))
 
-	grid = [[int(i) for i in grid[j]] for j in range(len(grid))]
+	grid = [[int(i) for i in grid[j]] for j in xrange(len(grid))]
 
 	print(largest_product(grid))
