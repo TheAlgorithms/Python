@@ -5,7 +5,6 @@ try:
 except NameError:
 	xrange = range	#Python 3
 
-def compute_transform_tables(X, Y, cC, cR, cD, cI):
 '''
 Algorithm for calculating the most cost-efficient sequence for converting one string into another.
 The only allowed operations are
@@ -14,6 +13,7 @@ The only allowed operations are
 ---Delete character with cost cD
 ---Insert character with cost cI
 '''
+def compute_transform_tables(X, Y, cC, cR, cD, cI):
 	X = list(X)
 	Y = list(Y)
 	m = len(X)
@@ -81,13 +81,13 @@ if __name__ == '__main__':
 	i = 0
 	cost = 0
 	for op in sequence:
-		print ''.join(string)
+		print(''.join(string))
+
 		if op[0] == 'C':
 			file.write('%-16s' % 'Copy %c' % op[1])
 			file.write('\t\t\t' + ''.join(string))
 			file.write('\r\n')
 			
-			i += 1
 			cost -= 1
 		elif op[0] == 'R':
 			string[i] = op[2]
@@ -96,7 +96,6 @@ if __name__ == '__main__':
 			file.write('\t\t' + ''.join(string))
 			file.write('\r\n')
 			
-			i += 1
 			cost += 1
 		elif op[0] == 'D':
 			string.pop(i)
@@ -105,7 +104,6 @@ if __name__ == '__main__':
 			file.write('\t\t\t' + ''.join(string))
 			file.write('\r\n')
 			
-			i += 1
 			cost += 2
 		else:
 			string.insert(i, op[1])
@@ -114,11 +112,12 @@ if __name__ == '__main__':
 			file.write('\t\t\t' + ''.join(string))
 			file.write('\r\n')
 			
-			i += 1
 			cost += 2
 
-	print ''.join(string)
-	print 'Cost: ', cost
+		i += 1
+
+	print(''.join(string))
+	print('Cost: ', cost)
 	
 	file.write('\r\nMinimum cost: ' + str(cost))
 	file.close()
