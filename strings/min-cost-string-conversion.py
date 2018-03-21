@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 try:
-	xrange			#Python 2
+	xrange		#Python 2
 except NameError:
 	xrange = range	#Python 3
 
