@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 '''
 Problem Statement:
 If we list all the natural numbers below 10 that are multiples of 3 or 5,
@@ -7,7 +9,7 @@ Find the sum of all the multiples of 3 or 5 below N.
 '''
 This solution is based on the pattern that the successive numbers in the series follow: 0+3,+2,+1,+3,+1,+2,+3.
 '''
-from __future__ import print_function
+
 try:
     raw_input          # Python 2
 except NameError:
