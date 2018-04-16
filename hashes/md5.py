@@ -10,6 +10,13 @@ def rearrange(bitString32):
 	return newString
 
 def reformatHex(i):
+	"""[summary]
+	Converts the given integer into 8-digit hex number.
+
+	Arguments:
+		i {[int]} -- [integer]
+	"""
+
 	hexrep = format(i,'08x')
 	thing = ""
 	for i in [3,2,1,0]:
@@ -17,6 +24,16 @@ def reformatHex(i):
 	return thing
 
 def pad(bitString):
+	"""[summary]
+	Fills up the binary string to a 512 bit binary string
+
+	Arguments:
+		bitString {[string]} -- [binary string]
+	
+	Returns:
+		[string] -- [binary string]
+	"""
+
 	startLength = len(bitString)
 	bitString += '1'
 	while len(bitString) % 512 != 448:
@@ -26,6 +43,15 @@ def pad(bitString):
 	return bitString
 
 def getBlock(bitString):
+	"""[summary]
+	Iterator:
+		Returns by each call a list of length 16 with the 32 bit
+		integer blocks. 
+
+	Arguments:
+		bitString {[string]} -- [binary string >= 512]
+	"""
+
 	currPos = 0
 	while currPos < len(bitString):
 		currPart = bitString[currPos:currPos+512]
@@ -34,6 +60,7 @@ def getBlock(bitString):
 			mySplits.append(int(rearrange(currPart[32*i:32*i+32]),2))
 		yield mySplits
 		currPos += 512
+
 def not32(i):
 	i_str = format(i,'032b')
 	new_str = ''
@@ -48,6 +75,13 @@ def leftrot32(i,s):
 	return (i << s) ^ (i >> (32-s))
 
 def md5me(testString):
+	"""[summary]
+	Returns a 32-bit hash code of the string 'testString'
+
+	Arguments:
+		testString {[string]} -- [message]
+	"""
+
 	bs =''
 	for i in testString:
 		bs += format(ord(i),'08b')
