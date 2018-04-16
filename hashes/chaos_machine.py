@@ -38,8 +38,8 @@ def push(seed):
       r # Saving to Parameters Space
 
   # Logistic Map
-  assert(max(buffer_space) < 1)
-  assert(max(params_space) < 4)
+  assert max(buffer_space) < 1
+  assert max(params_space) < 4
 
   # Machine Time
   machine_time += 1
