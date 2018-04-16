@@ -1,6 +1,12 @@
 """example of simple chaos machine"""
 from __future__ import print_function
 
+try:
+  raw_input
+  input = raw_input
+except:
+  pass
+
 # Chaos Machine (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]; t = 3; m = 5
 
@@ -91,7 +97,11 @@ message = random.sample(range(0xFFFFFFFF), 100)
 for chunk in message:
   push(chunk)
 
+# for controlling 
+inp = ""
+
 # Pulling Data (Output)
-while True:
+while inp != "e" and inp != "E":
   print("%s" % format(pull(), '#04x'))
   print(buffer_space); print(params_space)
+  inp = input("(e)exit? ")
