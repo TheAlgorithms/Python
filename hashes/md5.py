@@ -2,6 +2,19 @@ from __future__ import print_function
 import math
 
 def rearrange(bitString32):
+	"""[summary]
+	Regroups the given binary string.
+	
+	Arguments:
+		bitString32 {[string]} -- [32 bit binary]
+	
+	Raises:
+		ValueError -- [if the given string not are 32 bit binary string]
+	
+	Returns:
+		[string] -- [32 bit binary string]
+	"""
+
 	if len(bitString32) != 32:
 		raise ValueError("Need length 32")
 	newString = ""
