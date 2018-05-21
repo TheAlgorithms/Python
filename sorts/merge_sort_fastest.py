@@ -7,15 +7,13 @@ Worst Case Scenario : O(n)
 def merge_sort(LIST):
     start = []
     end = []
-    while LIST:
+    while len(LIST) > 1:
         a = min(LIST)
         b = max(LIST)
         start.append(a)
         end.append(b)
-        try:
-            LIST.remove(a)
-            LIST.remove(b)
-        except ValueError:
-            continue
+        LIST.remove(a)
+        LIST.remove(b)
+    if LIST: start.append(LIST[0])
     end.reverse()
     return (start + end)
