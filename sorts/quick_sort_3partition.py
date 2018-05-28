@@ -1,13 +1,11 @@
 from __future__ import print_function
 
 def quick_sort_3partition(sorting, left, right):
-
     if right <= left:
         return
-    a = left
+    a = i = left
     b = right
     pivot = sorting[left]
-    i = left
     while i <= b:
         if sorting[i] < pivot:
             sorting[a], sorting[i] = sorting[i], sorting[a]
