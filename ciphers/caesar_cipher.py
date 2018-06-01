@@ -1,45 +1,69 @@
-from __future__ import print_function
-# The Caesar Cipher Algorithm
+def encrypt(strng, key):
+    encrypted = ''
+    for x in strng:
+        indx = (ord(x) + key) % 256
+        if indx > 126:
+            indx = indx - 95
+        encrypted = encrypted + chr(indx)
+    return encrypted
+
+
+def decrypt(strng, key):
+    decrypted = ''
+    for x in strng:
+        indx = (ord(x) - key) % 256
+        if indx < 32:
+            indx = indx + 95
+        decrypted = decrypted + chr(indx)
+    return decrypted
+
+def brute_force(strng):
+    key = 1
+    decrypted = ''
+    while key != 96:
+        for x in strng:
+            indx = (ord(x) - key) % 256
+            if indx < 32:
+                indx = indx + 95
+            decrypted = decrypted + chr(indx)
+        print(decrypted)
+        decrypted = ''
+        key += 1
+    return None
+
 
 def main():
-    message = input("Enter message: ")
-    key     = int(input("Key [1-26]: "))
-    mode    = input("Encrypt or Decrypt [e/d]: ")
+    print("**Menu**")
+    print("1.Encrpyt")
+    print("2.Decrypt")
+    print("3.BruteForce")
+    print("4.Quit")
+    while True:
+        choice = input("what would you like to do")
+        if choice not in ['1', '2', '3', '4']:
+            print ("Invalid choice")
+        elif choice == '1':
+            strng = input("Please enter the string to be ecrypted:")
+            while True:
+                key = int(input("Please enter off-set between 1-94"))
+                if key > 0 and key <= 94:
+                    print (encrypt(strng, key))
+                    main()
+        elif choice == '2':
+            strng = input("Please enter the string to be decrypted:")
+            while True:
+                key = int(input("Please enter off-set between 1-94"))
+                if key > 0 and key <= 94:
+                    print(decrypt(strng, key))
+                    main()
+        elif choice == '3':
+            strng = input("Please enter the string to be decrypted:")
+            brute_force(strng)
+            main()
+        elif choice == '4':
+            print ("GoodBye.")
+            break
 
-    if mode.lower().startswith('e'):
-        mode = "encrypt"
-    elif mode.lower().startswith('d'):
-        mode = "decrypt"
+main()
 
-    translated = encdec(message, key, mode)
-    if mode ==   "encrypt":
-        print(("Encryption:", translated))
-    elif mode == "decrypt":
-        print(("Decryption:", translated))
-        
-def encdec(message, key, mode):
-    message    = message.upper()
-    translated = ""
-    LETTERS    = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    for symbol in message:
-        if symbol in LETTERS:
-            num = LETTERS.find(symbol)
-            if mode ==   "encrypt":
-                num = num + key
-            elif mode == "decrypt":
-                num = num - key
 
-            if num >= len(LETTERS):
-                num -= len(LETTERS)
-            elif num < 0:
-                num += len(LETTERS)
-
-            translated += LETTERS[num]
-        else:
-            translated += symbol
-    return translated
-
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
-    main()
