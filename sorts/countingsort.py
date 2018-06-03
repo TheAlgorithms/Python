@@ -1,3 +1,4 @@
+from __future__ import print_function
 # Python program for counting sort
  
 # This is the main function that sort the given string arr[] in

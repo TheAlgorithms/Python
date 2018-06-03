@@ -9,6 +9,7 @@
 	p2 = 1
 
 '''
+from __future__ import print_function
 
 import random
 
@@ -52,7 +53,7 @@ class Perceptron:
             epoch_count = epoch_count + 1
             # if you want controle the epoch or just by erro
             if erro == False:
-                print('\nEpoch:\n',epoch_count)
+                print(('\nEpoch:\n',epoch_count))
                 print('------------------------\n')
             #if epoch_count > self.epoch_number or not erro:
                 break
@@ -66,10 +67,10 @@ class Perceptron:
         y = self.sign(u)
 
         if  y == -1:
-            print('Sample: ', sample)
+            print(('Sample: ', sample))
             print('classification: P1')
         else:
-            print('Sample: ', sample)
+            print(('Sample: ', sample))
             print('classification: P2')
 
     def sign(self, u):

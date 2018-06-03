@@ -1,3 +1,4 @@
+from __future__ import print_function
 __author__ = "Tobias Carryer"
 
 from time import time
@@ -31,4 +32,4 @@ if __name__ == "__main__":
     # Show the LCG in action.
     lcg = LinearCongruentialGenerator(1664525, 1013904223, 2<<31)
     while True :
-        print lcg.next_number()
+        print(lcg.next_number())

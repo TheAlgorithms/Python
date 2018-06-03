@@ -1,3 +1,4 @@
+from __future__ import print_function
 def moveTower(height, fromPole, toPole, withPole):  
     '''
     >>> moveTower(3, 'A', 'B', 'C')
@@ -15,7 +16,7 @@ def moveTower(height, fromPole, toPole, withPole):
         moveTower(height-1, withPole, toPole, fromPole)
 
 def moveDisk(fp,tp):
-    print('moving disk from', fp, 'to', tp)
+    print(('moving disk from', fp, 'to', tp))
 
 def main():
     height = int(input('Height of hanoi: '))

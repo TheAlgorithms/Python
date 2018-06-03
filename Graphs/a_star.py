@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 grid = [[0, 1, 0, 0, 0, 0],
         [0, 1, 0, 0, 0, 0],#0 are free path whereas 1's are obstacles
@@ -80,7 +81,7 @@ def search(grid,init,goal,cost,heuristic):
     y = goal[1]
     invpath.append([x, y])#we get the reverse path from here
     while x != init[0] or y != init[1]:
-    	x2 = x - delta[action[x][y]][0]
+        x2 = x - delta[action[x][y]][0]
         y2 = y - delta[action[x][y]][1]
         x = x2
         y = y2
@@ -89,13 +90,13 @@ def search(grid,init,goal,cost,heuristic):
     path = []
     for i in range(len(invpath)):
     	path.append(invpath[len(invpath) - 1 - i])
-    print "ACTION MAP"
+    print("ACTION MAP")
     for i in range(len(action)):
-        print action[i]
+        print(action[i])
                   
     return path
     
 a = search(grid,init,goal,cost,heuristic)
 for i in range(len(a)):
-	print a[i] 
+	print(a[i]) 
 

@@ -8,7 +8,7 @@ class Graph:
         self.dp = [[math.inf for j in range(0,N)] for i in range(0,N)] # dp[i][j] stores minimum distance from i to j
 
     def addEdge(self, u, v, w):
-        self.dp[u][v] = w;
+        self.dp[u][v] = w
 
     def floyd_warshall(self):
         for k in range(0,self.N):

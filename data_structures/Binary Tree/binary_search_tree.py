@@ -1,6 +1,7 @@
 '''
 A binary search Tree
 '''
+from __future__ import print_function
 class Node:
 
     def __init__(self, label, parent):
@@ -237,8 +238,8 @@ def testBinarySearchTree():
         print("The label -1 doesn't exist")
     
     if(not t.empty()):
-        print("Max Value: ", t.getMax().getLabel())
-        print("Min Value: ", t.getMin().getLabel())
+        print(("Max Value: ", t.getMax().getLabel()))
+        print(("Min Value: ", t.getMin().getLabel()))
     
     t.delete(13)
     t.delete(10)

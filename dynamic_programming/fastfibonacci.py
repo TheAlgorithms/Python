@@ -2,18 +2,19 @@
 This program calculates the nth Fibonacci number in O(log(n)).
 It's possible to calculate F(1000000) in less than a second.
 """
+from __future__ import print_function
 import sys
 
 
 # returns F(n)
-def fibonacci(n: int):
+def fibonacci(n: int):  # noqa: E999 This syntax is Python 3 only
     if n < 0:
         raise ValueError("Negative arguments are not supported")
     return _fib(n)[0]
 
 
 # returns (F(n), F(n-1))
-def _fib(n: int):
+def _fib(n: int):  # noqa: E999 This syntax is Python 3 only
     if n == 0:
         # (F(0), F(1))
         return (0, 1)

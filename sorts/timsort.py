@@ -1,3 +1,4 @@
+from __future__ import print_function
 def binary_search(lst, item, start, end):
     if start == end:
         if lst[start] > item:

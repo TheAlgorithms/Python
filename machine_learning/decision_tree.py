@@ -3,6 +3,7 @@ Implementation of a basic regression decision tree.
 Input data set: The input data set must be 1-dimensional with continuous labels.
 Output: The decision tree maps a real number input to a real number output. 
 """
+from __future__ import print_function
 
 import numpy as np
 

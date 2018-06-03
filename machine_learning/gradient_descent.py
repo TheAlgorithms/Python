@@ -1,6 +1,7 @@
 """
 Implementation of gradient descent algorithm for minimizing cost of a linear hypothesis function.
 """
+from __future__ import print_function
 import numpy
 
 # List of input, output pairs
@@ -106,13 +107,13 @@ def run_gradient_descent():
                           atol=absolute_error_limit, rtol=relative_error_limit):
             break
         parameter_vector = temp_parameter_vector
-    print("Number of iterations:", j)
+    print(("Number of iterations:", j))
 
 
 def test_gradient_descent():
     for i in range(len(test_data)):
-        print("Actual output value:", output(i, 'test'))
-        print("Hypothesis output:", calculate_hypothesis_value(i, 'test'))
+        print(("Actual output value:", output(i, 'test')))
+        print(("Hypothesis output:", calculate_hypothesis_value(i, 'test')))
 
 
 if __name__ == '__main__':

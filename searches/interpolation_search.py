@@ -4,6 +4,11 @@ This is pure python implementation of interpolation search algorithm
 from __future__ import print_function
 import bisect
 
+try:
+    raw_input          # Python 2
+except NameError:
+    raw_input = input  # Python 3
+
 
 def interpolation_search(sorted_collection, item):
     """Pure implementation of interpolation search algorithm in Python
@@ -77,23 +82,15 @@ def __assert_sorted(collection):
 
 if __name__ == '__main__':
     import sys
-    # For python 2.x and 3.x compatibility: 3.x has no raw_input builtin
-    # otherwise 2.x's input builtin function is too "smart"
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
 
-    user_input = input_function('Enter numbers separated by comma:\n')
+    user_input = raw_input('Enter numbers separated by comma:\n').strip()
     collection = [int(item) for item in user_input.split(',')]
     try:
         __assert_sorted(collection)
     except ValueError:
         sys.exit('Sequence must be sorted to apply interpolation search')
 
-    target_input = input_function(
-        'Enter a single number to be found in the list:\n'
-    )
+    target_input = raw_input('Enter a single number to be found in the list:\n')
     target = int(target_input)
     result = interpolation_search(collection, target)
     if result is not None:

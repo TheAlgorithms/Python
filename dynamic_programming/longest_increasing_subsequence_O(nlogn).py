@@ -1,3 +1,4 @@
+from __future__ import print_function
 #############################
 # Author: Aravind Kashyap
 # File: lis.py
@@ -37,4 +38,4 @@ def LongestIncreasingSubsequenceLength(v):
 	
 
 v = [2, 5, 3, 7, 11, 8, 10, 13, 6]
-print LongestIncreasingSubsequenceLength(v)
+print(LongestIncreasingSubsequenceLength(v))

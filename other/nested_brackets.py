@@ -13,6 +13,7 @@ The function called is_balanced takes as input a string S which is a sequence of
 returns true if S is nested and false otherwise.
 
 '''
+from __future__ import print_function
 
 
 def is_balanced(S):
@@ -39,10 +40,10 @@ def main():
     S = input("Enter sequence of brackets: ")
 
     if is_balanced(S):
-        print(S, "is balanced")
+        print((S, "is balanced"))
 
     else:
-        print(S, "is not balanced")
+        print((S, "is not balanced"))
 
 
 if __name__ == "__main__":

@@ -20,7 +20,7 @@ def findMin(arr):
             if (arr[i-1] <= j):
                 dp[i][j] = dp[i][j] or dp[i-1][j-arr[i-1]]
 
-    for j in range(s/2, -1, -1):
+    for j in range(int(s/2), -1, -1):
         if dp[n][j] == True:
             diff = s-2*j
             break;
