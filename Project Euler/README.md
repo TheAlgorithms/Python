@@ -37,5 +37,3 @@ PROBLEMS:
    
 7. By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
    What is the Nth prime number?
-
-13. Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
