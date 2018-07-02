@@ -2,10 +2,9 @@
 from __future__ import print_function
 
 try:
-  raw_input
-  input = raw_input
-except:
-  pass
+  raw_input          # Python 2
+except NameError:
+  input = raw_input  # Python 3
 
 # Chaos Machine (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]; t = 3; m = 5
