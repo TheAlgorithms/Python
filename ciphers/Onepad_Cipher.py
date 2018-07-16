@@ -1,11 +1,12 @@
+from __future__ import print_function
+
+
 class Onepad:
     def encrypt(self, text):
         '''Function to encrypt text using psedo-random numbers'''
-        plain = []
+        plain = [ord(i) for i in text]
         key = []
         cipher = []
-        for i in text:
-            plain.append(ord(i))
         for i in plain:
             k = random.randint(1, 300)
             c = (i+k)*k
@@ -21,8 +22,9 @@ class Onepad:
             plain.append(chr(p))
         plain = ''.join([i for i in plain])
         return plain
-        
+
+
 if __name__ == '__main__':
-    c,k = Onepad().encrypt('Hello')
-    print c, k
-    print Onepad().decrypt(c, k)
+    c, k = Onepad().encrypt('Hello')
+    print(c, k)
+    print(Onepad().decrypt(c, k))
