@@ -2,10 +2,9 @@
 from __future__ import print_function
 
 try:
-  raw_input
-  input = raw_input
-except:
-  pass
+  input = raw_input  # Python 2
+except NameError:
+  pass               # Python 3
 
 # Chaos Machine (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]; t = 3; m = 5
@@ -101,7 +100,7 @@ for chunk in message:
 inp = ""
 
 # Pulling Data (Output)
-while inp != "e" and inp != "E":
+while inp in ("e", "E"):
   print("%s" % format(pull(), '#04x'))
   print(buffer_space); print(params_space)
-  inp = input("(e)exit? ")
+  inp = input("(e)exit? ").strip()
