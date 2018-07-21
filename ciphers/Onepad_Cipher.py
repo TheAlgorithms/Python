@@ -1,5 +1,7 @@
 from __future__ import print_function
 
+import random
+
 
 class Onepad:
     def encrypt(self, text):
