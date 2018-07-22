@@ -12,7 +12,7 @@ def knapsack(W, wt, val, n):
                 dp[i][w] = dp[i-1][w]
 
     return dp[n][w]
-if name == "__main__":
+if __name__ == "__main__":
     val = [3,2,4,4]
     wt = [4,3,2,3]
     W = 6
