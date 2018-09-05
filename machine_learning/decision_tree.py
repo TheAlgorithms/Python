@@ -129,7 +129,7 @@ def main():
 
     test_cases = (np.random.rand(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
-    avg_error = np.mean((predictions - test_cases) ** 2)
+    avg_error = np.mean((predictions - np.sin(test_cases)) ** 2)
 
     print("Test values: " + str(test_cases))
     print("Predictions: " + str(predictions))
