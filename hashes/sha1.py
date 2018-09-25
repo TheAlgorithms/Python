@@ -33,7 +33,6 @@ class SHA1Hash:
     """
     Class to contain the entire pipeline for SHA1 Hashing Algorithm
     """
-
     def __init__(self, data):
         """
         Inititates the variables data and h. h is a list of 5 8-digit Hexadecimal
@@ -68,9 +67,8 @@ class SHA1Hash:
     # @staticmethod
     def expand_block(self, block):
         """
-        Takes block of 64 and returns list of length 80.
-        It is really a static method but
-        we need the rotate method inside, so we will have to use self
+        Takes a bytestring-block of length 64, unpacks it to a list of integers and returns a
+        list of 80 integers pafter some bit operations
         """
         w = list(struct.unpack('>16L', block)) + [0] * 64
         for i in range(16, 80):
@@ -79,7 +77,12 @@ class SHA1Hash:
 
     def final_hash(self):
         """
-        Calls all the other methods to process the input. Returns SHA1 hash
+        Calls all the other methods to process the input. Pads the data, then splits into
+        blocks and then does a series of operations for each block (including expansion).
+        For each block, the variable h that was initialized is copied to a,b,c,d,e
+        and these 5 variables a,b,c,d,e undergo several changes. After all the blocks are
+        processed, these 5 variables are pairwise added to h ie a to h[0], b to h[1] and so on.
+        This h becomes our final hash which is returned.
         """
         self.padded_data = self.padding()
         self.blocks = self.split_blocks()
@@ -106,7 +109,6 @@ class SHA1Hash:
                  self.h[2] + c & 0xffffffff,\
                  self.h[3] + d & 0xffffffff,\
                  self.h[4] + e & 0xffffffff
-
         return '%08x%08x%08x%08x%08x' %tuple(self.h)
 
 
@@ -115,20 +117,17 @@ class SHA1HashTest(unittest.TestCase):
     Test class for the SHA1Hash class. Inherits the TestCase class from unittest
     """
     def testMatchHashes(self):
-        msg = bytes("Hello World", 'utf-8')
+        msg = bytes('Test String', 'utf-8')
         self.assertEqual(SHA1Hash(msg).final_hash(), hashlib.sha1(msg).hexdigest())
 
-def run_test():
-    """
-    Run the unit test. Pulled this out of main because we probably dont want to run
-    the test each time.
-    """
-    unittest.main()
 
 def main():
     """
-    Provides option string or file to take input and prints the calculated SHA1 hash
+    Provides option 'string' or 'file' to take input and prints the calculated SHA1 hash.
+    unittest.main() has been commented because we probably dont want to run
+    the test each time.
     """
+    # unittest.main()
     parser = argparse.ArgumentParser(description='Process some strings or files')
     parser.add_argument('--string', dest='input_string',
                         default='Hello World!! Welcome to Cryptography',
@@ -142,6 +141,7 @@ def main():
     else:
         hash_input = bytes(input_string, 'utf-8')
     print(SHA1Hash(hash_input).final_hash())
+
 
 if __name__ == '__main__':
     main()
