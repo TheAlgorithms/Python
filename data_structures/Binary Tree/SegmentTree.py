@@ -1,71 +1,49 @@
-from __future__ import print_function
-import math
+# A special type of Data Structure for Range Minimum Query
+# Suppose an array is initialised and there are q queries of with lower and upper index.
+# The goal is to find the minimum element within that range.
+# Finding min can take O(n) time, therefore for q queries total time = O(q * n)
+# To reduce this time complexity we use Segment Tree.
+# Where finding min within a range takes O(logn) time.
+# Hence the total time complexity reduces to O(q * logn).
 
-class SegmentTree:
+import math, sys
+# st stands for segment tree
+
+def constructSegmentTree(ip, st, left, right, pos):
+    if left != right:
+        mid = int((left + right) / 2)
+        constructSegmentTree(ip, st, left, mid, 2*pos+1)
+        constructSegmentTree(ip, st, mid+1, right, 2*pos+2)
+        st[pos] = min(st[2*pos+1], st[2*pos+2])
+    else:
+        st[pos] = ip[left]
+
+def rangeMinQuery(ip, st, left, right, pos, qleft, qright):
+    # for total overlap
+    if left >= qleft and right <= qright:
+        return st[pos]
+    # for no overlap
+    elif qleft > right or qright < left:
+        return sys.maxsize
+    # for partial overlap
+    else:
+        mid = int((left + right) / 2)
+        x = rangeMinQuery(ip, st, left, mid, 2*pos+1, qleft, qright)
+        y = rangeMinQuery(ip, st, mid+1, right, 2*pos+2, qleft, qright)
+        return min(x, y)
+
+ip = [int(x) for x in input().split()]
+if math.floor(math.log2(len(ip))) == math.ceil(math.log2(len(ip))):
+    n = (len(ip))*2 - 1
+else:
+    n = (2**math.ceil(math.log2(len(ip))))*2 - 1
+st = [0] * n
+
+constructSegmentTree(ip, st, 0, (len(ip)-1), 0)
+print(st)
+p = rangeMinQuery(ip, st, 0, (len(ip)-1), 0, 1, 4)
+print(p)
+
     
-    def __init__(self, A):
-        self.N = len(A)
-        self.st = [0] * (4 * self.N) # approximate the overall size of segment tree with array N
-        self.build(1, 0, self.N - 1)
-        
-    def left(self, idx):
-        return idx * 2
-
-    def right(self, idx):
-        return idx * 2 + 1
-
-    def build(self, idx, l, r):
-        if l == r:
-            self.st[idx] = A[l]
-        else:
-            mid = (l + r) // 2
-            self.build(self.left(idx), l, mid)
-            self.build(self.right(idx), mid + 1, r)
-            self.st[idx] = max(self.st[self.left(idx)] , self.st[self.right(idx)])
     
-    def update(self, a, b, val):
-        return self.update_recursive(1, 0, self.N - 1, a - 1, b - 1, val)
-    
-    def update_recursive(self, idx, l, r, a, b, val): # update(1, 1, N, a, b, v) for update val v to [a,b]
-        if r < a or l > b:
-            return True
-        if l == r :
-            self.st[idx] = val
-            return True
-        mid = (l+r)//2
-        self.update_recursive(self.left(idx), l, mid, a, b, val)
-        self.update_recursive(self.right(idx), mid+1, r, a, b, val)
-        self.st[idx] = max(self.st[self.left(idx)] , self.st[self.right(idx)])
-        return True
-
-    def query(self, a, b):
-        return self.query_recursive(1, 0, self.N - 1, a - 1, b - 1)
-
-    def query_recursive(self, idx, l, r, a, b): #query(1, 1, N, a, b) for query max of [a,b]
-        if r < a or l > b:
-            return -math.inf
-        if l >= a and r <= b:
-            return self.st[idx]
-        mid = (l+r)//2
-        q1 = self.query_recursive(self.left(idx), l, mid, a, b)
-        q2 = self.query_recursive(self.right(idx), mid + 1, r, a, b)
-        return max(q1, q2)
-
-    def showData(self):
-        showList = []
-        for i in range(1,N+1):
-            showList += [self.query(i, i)]
-        print (showList)
-            
-
-if __name__ == '__main__':
-    A = [1,2,-4,7,3,-5,6,11,-20,9,14,15,5,2,-8]
-    N = 15
-    segt = SegmentTree(A)
-    print (segt.query(4, 6))
-    print (segt.query(7, 11))
-    print (segt.query(7, 12))
-    segt.update(1,3,111)
-    print (segt.query(1, 15))
-    segt.update(7,8,235)
-    segt.showData()
+         
