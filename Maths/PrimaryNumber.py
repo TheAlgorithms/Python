@@ -6,6 +6,8 @@ def main():
         print('resualt:' , pr(num))
 
 def pr(num):
+    #we know 2 is a primary number then next number if undivisibie with 2, it is primary
+    #Any number that not divisible by numbers smaller than itself is primary
     p = [2]
     i = num
     for i in range(3,i+1,2):
