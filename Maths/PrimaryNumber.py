@@ -15,6 +15,6 @@ def primary(num):
                 isPrime = False
                 break
         if isPrime:
-            p.append(i)
-    return p   
+            prime_numbers.append(i)
+    return prime_numbers 
 main()
