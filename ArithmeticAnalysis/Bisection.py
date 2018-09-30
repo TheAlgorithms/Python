@@ -3,7 +3,7 @@ import math
 
 def bisection(function, a, b):  # finds where the function becomes 0 in [a,b] using bolzano
 
-    start = a
+    start =
     end = b
     if function(a) == 0:  # one of the a or b is a root for the function
         return a
