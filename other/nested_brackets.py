@@ -13,33 +13,26 @@ The function called is_balanced takes as input a string S which is a sequence of
 returns true if S is nested and false otherwise.
 
 '''
+from __future__ import print_function
 
 
 def is_balanced(S):
 
     stack = []
-    
+    open_brackets = set({'(', '[', '{'})
+    closed_brackets = set({')', ']', '}'})
+    open_to_closed = dict({'{':'}', '[':']', '(':')'})
+
     for i in range(len(S)):
-        
-        if S[i] == '(' or S[i] == '{' or S[i] == '[':
+
+        if S[i] in open_brackets:
             stack.append(S[i])
-            
-        else:
-            
-            if len(stack) > 0:
-                
-                pair = stack.pop() + S[i]
-                
-                if pair != '[]' and pair != '()' and pair != '{}':
-                    return False
-                
-            else:
+
+        elif S[i] in closed_brackets:
+            if len(stack) == 0 or (len(stack) > 0 and open_to_closed[stack.pop()] != S[i]):
                 return False
-                
-    if len(stack) == 0:
-        return True
-        
-    return False
+
+    return len(stack) == 0
 
 
 def main():
@@ -47,10 +40,10 @@ def main():
     S = input("Enter sequence of brackets: ")
 
     if is_balanced(S):
-        print(S, "is balanced")
-    
+        print((S, "is balanced"))
+
     else:
-        print(S, "is not balanced")
+        print((S, "is not balanced"))
 
 
 if __name__ == "__main__":

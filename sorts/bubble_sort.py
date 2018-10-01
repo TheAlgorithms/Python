@@ -31,23 +31,22 @@ def bubble_sort(collection):
     [-45, -5, -2]
     """
     length = len(collection)
-    for i in range(length-1, -1, -1):#range(length-1, -1, -1)
-        for j in range(i):#range(1, i)
+    for i in range(length):
+        swapped = False
+        for j in range(length-1):
             if collection[j] > collection[j+1]:
+                swapped = True
                 collection[j], collection[j+1] = collection[j+1], collection[j]
-
+        if not swapped: break  # Stop iteration if the collection is sorted.
     return collection
 
 
 if __name__ == '__main__':
-    import sys
-    # For python 2.x and 3.x compatibility: 3.x has not raw_input builtin
-    # otherwise 2.x's input builtin function is too "smart"
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
+    try:
+        raw_input          # Python 2
+    except NameError:
+        raw_input = input  # Python 3
 
-    user_input = input_function('Enter numbers separated by a comma:\n')
+    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     print(bubble_sort(unsorted))

@@ -7,6 +7,8 @@ This is a pure Python implementation of Dynamic Programming solution to the edit
 The problem is :
 Given two strings A and B. Find the minimum number of operations to string B such that A = B. The permitted operations are removal,  insertion, and substitution.
 """
+from __future__ import print_function
+
 
 class EditDistance:
     """
@@ -51,11 +53,10 @@ class EditDistance:
         return self.__solveDP(len(A)-1, len(B)-1)
 
 if __name__ == '__main__':
-        import sys
-        if sys.version_info.major < 3:
-            input_function = raw_input
-        else:
-            input_function = input
+        try:
+            raw_input          # Python 2
+        except NameError:
+            raw_input = input  # Python 3
 
         solver = EditDistance()
 
@@ -63,10 +64,10 @@ if __name__ == '__main__':
         print()
 
         print("Enter the first string: ", end="")
-        S1 = input_function()
+        S1 = raw_input().strip()
 
         print("Enter the second string: ", end="")
-        S2 = input_function()
+        S2 = raw_input().strip()
 
         print()
         print("The minimum Edit Distance is: %d" % (solver.solve(S1, S2)))

@@ -54,12 +54,11 @@ def heap_sort(unsorted):
     return unsorted
 
 if __name__ == '__main__':
-    import sys
-    if sys.version_info.major < 3:
-        input_function = raw_input
-    else:
-        input_function = input
+    try:
+        raw_input          # Python 2
+    except NameError:
+        raw_input = input  # Python 3
 
-    user_input = input_function('Enter numbers separated by a comma:\n')
+    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     print(heap_sort(unsorted))
