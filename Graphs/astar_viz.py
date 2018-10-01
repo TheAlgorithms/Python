@@ -28,7 +28,7 @@ grid[goal_node] = 5
 parent_map = [[() for _ in range(n)] for _ in range(m)]
 
 X, Y = np.meshgrid([i for i in range(n)], [i for i in range(m)])
-heuristic_map = np.abs(X - goal_node[0]) + np.abs(Y - goal_node[1])
+heuristic_map = np.abs(X - goal_node[1]) + np.abs(Y - goal_node[0])
 explored_heuristic_map = np.full((m, n), np.inf)
 distance_map = np.full((m, n), np.inf)
 
