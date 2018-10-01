@@ -5,7 +5,7 @@ def gcd(a, b):
     return gcd(b%a, a)
 
 def main():
-	print(modularExponential(3, 200, 13))
+	print(gcd(3, 6))
 
 
 if __name__ == '__main__':
