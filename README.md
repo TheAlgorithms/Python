@@ -41,8 +41,8 @@ From [Wikipedia][merge-wiki]: In computer science, merge sort (also commonly spe
 
 __Properties__
 * Worst case performance	O(n log n)
-* Best case performance	O(n)
-* Average case performance	O(n)
+* Best case performance	O(n log n)
+* Average case performance	O(n log n)
 
 
 ###### View the algorithm in [action][merge-toptal]
@@ -55,7 +55,7 @@ From [Wikipedia][quick-wiki]: Quicksort (sometimes called partition-exchange sor
 __Properties__
 * Worst case performance	O(n^2)
 * Best case performance	O(n log n) or O(n) with three-way partition
-* Average case performance	O(n^2)
+* Average case performance	O(n log n)
 
 ###### View the algorithm in [action][quick-toptal]
 
@@ -83,7 +83,7 @@ __Properties__
 
 ###### View the algorithm in [action][shell-toptal]
 
-### Time-Compexity Graphs
+### Time-Complexity Graphs
 
 Comparing the complexity of sorting algorithms (Bubble Sort, Insertion Sort, Selection Sort)
 

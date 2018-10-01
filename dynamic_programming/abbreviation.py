@@ -10,6 +10,8 @@ Example:
 a=daBcd and b="ABC"
 daBcd -> capitalize a and c(dABCd) -> remove d (ABC)
 """
+
+
 def abbr(a, b):
     n = len(a)
     m = len(b)
@@ -26,4 +28,4 @@ def abbr(a, b):
 
 
 if __name__ == "__main__":
-    print abbr("daBcd", "ABC") # expect True
+    print(abbr("daBcd", "ABC"))  # expect True
