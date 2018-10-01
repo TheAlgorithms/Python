@@ -9,6 +9,6 @@ class TestQuickSort(TestSort):
         self.runSortingSuite(quick_sort)
 
     def test_sort_3partition(self):
-        self.runSortingSuite(quick_sort_3partition)
+        self.runSortingSuite(quick_sort_3partition, doesSortInPlace=True)
 
     # TODO: Random Normal Distribution Quick Sort

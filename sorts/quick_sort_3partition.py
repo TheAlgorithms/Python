@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-def quick_sort_3partition(sorting, left, right):
+def _quick_sort_3partition(sorting, left, right):
     if right <= left:
         return
     a = i = left
@@ -16,8 +16,12 @@ def quick_sort_3partition(sorting, left, right):
             b -= 1
         else:
             i += 1
-    quick_sort_3partition(sorting, left, a - 1)
-    quick_sort_3partition(sorting, b + 1, right)
+    _quick_sort_3partition(sorting, left, a - 1)
+    _quick_sort_3partition(sorting, b + 1, right)
+
+def quick_sort_3partition(collection):
+    return _quick_sort_3partition(collection, 0, len(collection) - 1)
+
 
 if __name__ == '__main__':
     try:
@@ -27,5 +31,5 @@ if __name__ == '__main__':
 
     user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [ int(item) for item in user_input.split(',') ]
-    quick_sort_3partition(unsorted,0,len(unsorted)-1)
+    quick_sort_3partition(unsorted)
     print(unsorted)

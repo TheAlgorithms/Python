@@ -4,6 +4,9 @@ def cocktail_shaker_sort(unsorted):
     """
     Pure implementation of the cocktail shaker sort algorithm in Python.
     """
+    if len(unsorted) < 2:
+        return
+        
     for i in range(len(unsorted)-1, 0, -1):
         swapped = False
         

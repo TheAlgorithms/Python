@@ -5,4 +5,5 @@ from ..radix_sort import radixsort
 
 class TestRadixSort(TestSort):
     def test_sort(self):
-        self.runSortingSuite(radixsort)
+        self.canSortNegativeValues = False
+        self.runSortingSuite(radixsort, doesSortInPlace=True)
