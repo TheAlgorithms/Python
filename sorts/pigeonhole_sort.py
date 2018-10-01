@@ -16,14 +16,14 @@ def pigeonhole_sort(a):
 	# Populate the pigeonholes. 
 	for x in a: 
 		assert type(x) is int, "integers only please"
-		holes[x - my_min] += 1
+		holes[x - min_val] += 1
 
 	# Putting the elements back into the array in an order. 
 	i = 0
 	for count in range(size): 
 		while holes[count] > 0: 
 			holes[count] -= 1
-			a[i] = count + my_min 
+			a[i] = count + min_val 
 			i += 1
 			
 def main():
