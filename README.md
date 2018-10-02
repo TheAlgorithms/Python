@@ -144,6 +144,43 @@ In cryptography, a **transposition cipher** is a method of encryption by which t
 Mathematically a bijective function is used on the characters' positions to encrypt and an inverse function to decrypt.
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Transposition_cipher)
 
+### Pancake
+![alt text][pancake-image]
+
+From [Wikipedia][pancake-wiki]: Pancake sorting is the colloquial term for the mathematical problem of sorting a disordered stack of pancakes in order of size when a spatula can be inserted at any point in the stack and used to flip all pancakes above it. A pancake number is the minimum number of flips required for a given number of pancakes. In this form, the problem was first discussed by American geometer Jacob E. Goodman.[1] It is a variation of the sorting problem in which the only allowed operation is to reverse the elements of some prefix of the sequence. Unlike a traditional sorting algorithm, which attempts to sort with the fewest comparisons possible, the goal is to sort the sequence in as few reversals as possible. A variant of the problem is concerned with burnt pancakes, where each pancake has a burnt side and all pancakes must, in addition, end up with the burnt side on bottom.
+
+
+### Cycle
+![alt text][cycle-image]
+
+From [Wikipedia][cycle-wiki]: Cycle sort is an in-place, unstable sorting algorithm, a comparison sort that is theoretically optimal in terms of the total number of writes to the original array, unlike any other in-place sorting algorithm. It is based on the idea that the permutation to be sorted can be factored into cycles, which can individually be rotated to give a sorted result. Unlike nearly every other sort, items are never written elsewhere in the array simply to push them out of the way of the action. Each value is either written zero times, if it's already in its correct position, or written one time to its correct position. This matches the minimal number of overwrites required for a completed in-place sort.
+
+__Properties__
+* Worst case performance	Θ(n^2)
+* Best case performance	Θ(n^2)
+* Average case performance	Θ(n^2)
+
+### Tree
+![alt text][tree-image]
+
+From [Wikipedia][tree-wiki]: A tree sort is a sort algorithm that builds a binary search tree from the elements to be sorted, and then traverses the tree (in-order) so that the elements come out in sorted order. Its typical use is sorting elements online: after each insertion, the set of elements seen so far is available in sorted order.
+
+__Properties__
+* Worst case performance	O(n^2) (unbalanced)
+* Best case performance	O(n log n) (balanced)
+* Average case performance	O(n log n)
+
+### Gnome
+![alt text][gnome-image]
+
+From [Wikipedia][gnome-wiki]: Gnome sort (or Stupid sort) is a sorting algorithm originally proposed by an Iranian computer scientist Hamid Sarbazi-Azad (Professor of Computer Engineering at Sharif University of Technology) in 2000 and called "stupid sort"[1] (not to be confused with bogosort), and then later on described by Dick Grune and named "gnome sort". It is a sorting algorithm which is similar to insertion sort, except that moving an element to its proper place is accomplished by a series of swaps, as in bubble sort. It is conceptually simple, requiring no nested loops. The average, or expected, running time is O(n2), but tends towards O(n) if the list is initially almost sorted. The algorithm always finds the first place where two adjacent elements are in the wrong order and swaps them. It takes advantage of the fact that performing a swap can introduce a new out-of-order adjacent pair only next to the two swapped elements. It does not assume that elements forward of the current position are sorted, so it only needs to check the position directly previous to the swapped elements.
+
+__Properties__
+* Worst case performance	O(n^2)
+* Best case performance	Ω(n)
+* Average case performance	O(n^2)
+
+
 [bubble-toptal]: https://www.toptal.com/developers/sorting-algorithms/bubble-sort
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
@@ -174,5 +211,16 @@ Mathematically a bijective function is used on the characters' positions to encr
 [binary-wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
 [binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png
 
-
 [caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
+
+[pancake-wiki]: https://en.wikipedia.org/wiki/Pancake
+[pancake-image]: https://en.wikipedia.org/wiki/Pancake_sorting#/media/File:Pancake_sort_operation.png "Pancake Sort"
+
+[cycle-wiki]: https://en.wikipedia.org/wiki/Cycle_sort
+[cycle-image]: https://en.wikipedia.org/wiki/Cycle_sort#/media/File:Cyclesort.png "Cycle Sort"
+
+[tree-wiki]: https://en.wikipedia.org/wiki/Tree_sort
+[tree-image]: https://en.wikipedia.org/wiki/Tree_sort#/media/File:Binary_tree_sort(2).png "Tree Sort"
+
+[gnome-wiki]: https://en.wikipedia.org/wiki/Gnome_sort
+[gnome-image]: https://en.wikipedia.org/wiki/Gnome_sort#/media/File:Sorting_gnomesort_anim.gif "Gnome Sort"
