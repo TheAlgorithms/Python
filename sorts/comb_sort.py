@@ -2,7 +2,7 @@
 Comb sort is a relatively simple sorting algorithm originally designed by Wlodzimierz Dobosiewicz in 1980.
 Later it was rediscovered by Stephen Lacey and Richard Box in 1991. Comb sort improves on bubble sort.
 
-This is pure python implementation of counting sort algorithm
+This is pure python implementation of comb sort algorithm
 For doctests run following command:
 python -m doctest -v comb_sort.py
 or
@@ -31,7 +31,7 @@ def comb_sort(data):
     i = 0
 
     while gap > 1 or swapped:
-    	# Update the gap value for a next comb
+        # Update the gap value for a next comb
         gap = int(float(gap) / shrink_factor)
 
         swapped = False
@@ -39,7 +39,7 @@ def comb_sort(data):
 
         while gap + i < len(data):
             if data[i] > data[i+gap]:
-            	# Swap values
+                # Swap values
                 data[i], data[i+gap] = data[i+gap], data[i]
                 swapped = True
             i += 1
