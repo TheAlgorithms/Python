@@ -41,8 +41,8 @@ From [Wikipedia][merge-wiki]: In computer science, merge sort (also commonly spe
 
 __Properties__
 * Worst case performance	O(n log n)
-* Best case performance	O(n)
-* Average case performance	O(n)
+* Best case performance	O(n log n)
+* Average case performance	O(n log n)
 
 
 ###### View the algorithm in [action][merge-toptal]
