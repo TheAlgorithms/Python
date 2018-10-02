@@ -1,6 +1,6 @@
 # Fibonacci Sequence Using Recursion
 
-def recur_fibo(n):
+def recur_fibo(n): #recursive funtion for fibonacci series
    if n <= 1:
        return n
    else:
@@ -14,3 +14,6 @@ else:
    print("Fibonacci series:")
    for i in range(limit):
        print(recur_fibo(i))
+
+         
+#fibonacci sequence is a sequence where every digit is sum of is previous two consecutive digits.
