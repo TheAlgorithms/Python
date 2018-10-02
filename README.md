@@ -120,6 +120,18 @@ __Properties__
 * Average case performance	O(log n)
 * Worst case space complexity	O(1) 
 
+
+
+### Interpolation Search
+![alt text][interpolation-image]
+
+From [Wikipedia][interpolation-wiki]: Interpolation search is an algorithm for searching for a key in an array that has been ordered by numerical values assigned to the keys (key values). It was first described by W. W. Peterson in 1957.[1] Interpolation search resembles the method by which people search a telephone directory for a name (the key value by which the book's entries are ordered): in each step the algorithm calculates where in the remaining search space the sought item might be, based on the key values at the bounds of the search space and the value of the sought key, usually via a linear interpolation.
+
+__Properties__
+* Worst case performance	O(n)
+* Best case performance	O(log log n)
+* Average case performance	O(n)
+
 ----------------------------------------------------------------------------------------------------------------------
 
 ## Ciphers
@@ -163,6 +175,12 @@ Mathematically a bijective function is used on the characters' positions to encr
 [selection-toptal]: https://www.toptal.com/developers/sorting-algorithms/selection-sort
 [selection-wiki]: https://en.wikipedia.org/wiki/Selection_sort
 [selection-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Selection_sort_animation.gif/250px-Selection_sort_animation.gif "Selection Sort Sort"
+
+
+[interpolation-wiki]: https://en.wikipedia.org/wiki/Interpolation_search
+
+[interpolation-image]:
+https://qph.fs.quoracdn.net/main-qimg-02f1f050de01608b9b1f2f27155d1b17.webp "Interpolation Search"
 
 [shell-toptal]: https://www.toptal.com/developers/sorting-algorithms/shell-sort
 [shell-wiki]: https://en.wikipedia.org/wiki/Shellsort
