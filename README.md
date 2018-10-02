@@ -89,6 +89,10 @@ Comparing the complexity of sorting algorithms (Bubble Sort, Insertion Sort, Sel
 
 [Complexity Graphs](https://github.com/prateekiiest/Python/blob/master/sorts/sortinggraphs.png)
 
+Choosing of a sort technique-Quicksort is a very fast algorithm but can be pretty tricky to implement ,Bubble sort is a slow algorithm but is very easy to implement. To sort small sets of data, bubble sort may be a better option since it can be implemented quickly, but for larger datasets, the speedup from quicksort might be worth the trouble implementing the algorithm.
+
+
+
 ----------------------------------------------------------------------------------
 
 ## Search Algorithms
