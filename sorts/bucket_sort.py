@@ -3,7 +3,7 @@
 # This program will illustrate how to implement bucket sort algorithm
 
 # Wikipedia says: Bucket sort, or bin sort, is a sorting algorithm that works by distributing the
-# elements of an array into a number of buckets. Each bucket is then sorted individually, either using 
+# elements of an array into a number of buckets. Each bucket is then sorted individually, either using
 # a different sorting algorithm, or by recursively applying the bucket sorting algorithm. It is a
 # distribution sort, and is a cousin of radix sort in the most to least significant digit flavour.
 # Bucket sort is a generalization of pigeonhole sort. Bucket sort can be implemented with comparisons
@@ -14,7 +14,7 @@
 #  Best Case O(n); Average Case O(n); Worst Case O(n)
 
 from __future__ import print_function
-from P26_InsertionSort import insertionSort
+from insertion_sort import insertion_sort
 import math
 
 DEFAULT_BUCKET_SIZE = 5
@@ -46,7 +46,7 @@ def bucketSort(myList, bucketSize=DEFAULT_BUCKET_SIZE):
     # Sort buckets and place back into input array
     sortedArray = []
     for i in range(0, len(buckets)):
-        insertionSort(buckets[i])
+        insertion_sort(buckets[i])
         for j in range(0, len(buckets[i])):
             sortedArray.append(buckets[i][j])
 
