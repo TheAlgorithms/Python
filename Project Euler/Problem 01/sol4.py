@@ -9,7 +9,6 @@ def mulitples(limit):
         if (result < limit):
             zmulti.append(result)
             temp += 1
-            continue
         else:
             temp = 1
             break
@@ -18,15 +17,14 @@ def mulitples(limit):
         if (result < limit):
             xmulti.append(result)
             temp += 1
-            continue
         else:
-            temp = 1
             break
-    return (sum(zmulti) + sum(xmulti))
+    collection = list(set(xmulti+zmulti))
+    return (sum(collection))
     
     
         
         
         
     
-print (mulitples(100))
+print (mulitples(1000))
