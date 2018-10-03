@@ -6,6 +6,9 @@ The span Si of the stock’s price on a given day i is defined as the maximum
 number of consecutive days just before the given day, for which the price of the stock 
 on the current day is less than or equal to its price on the given day.
 '''
+from __future__ import print_function
+
+
 def calculateSpan(price, S): 
       
     n = len(price) 
@@ -37,7 +40,7 @@ def calculateSpan(price, S):
 # A utility function to print elements of array 
 def printArray(arr, n): 
     for i in range(0,n): 
-        print arr[i], 
+        print(arr[i], end=' ') 
   
   
 # Driver program to test above function 
