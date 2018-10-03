@@ -37,7 +37,7 @@ def calculateSpan(price, S):
 # A utility function to print elements of array 
 def printArray(arr, n): 
     for i in range(0,n): 
-        print arr[i], 
+        print (arr[i]), 
   
   
 # Driver program to test above function 
