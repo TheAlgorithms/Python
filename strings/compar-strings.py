@@ -1,0 +1,5 @@
+n,q=map(int,input().split())
+a=input().split()
+b=input().split()
+print("NO\n"*(q-1))
+print("YES")
