@@ -19,6 +19,16 @@ __Properties__
 
 ###### View the algorithm in [action][bubble-toptal]
 
+### Bucket
+![alt text][bucket-image-1]
+![alt text][bucket-image-2]
+
+From [Wikipedia][bucket-wiki]: Bucket sort, or bin sort, is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
+
+__Properties__
+* Worst case performance	O(n^2)
+* Best case performance	O(n+k)
+* Average case performance	O(n+k)
 
 
 ### Insertion
@@ -147,6 +157,10 @@ Mathematically a bijective function is used on the characters' positions to encr
 [bubble-toptal]: https://www.toptal.com/developers/sorting-algorithms/bubble-sort
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
+
+[bucket-wiki]: https://en.wikipedia.org/wiki/Bucket_sort
+[bucket-image-1]: https://commons.wikimedia.org/wiki/File:Bucket_sort_1.svg#/media/File:Bucket_sort_1.svg
+[bucket-image-2]: https://commons.wikimedia.org/wiki/File:Bucket_sort_2.svg#/media/File:Bucket_sort_2.svg
 
 [insertion-toptal]: https://www.toptal.com/developers/sorting-algorithms/insertion-sort
 [insertion-wiki]: https://en.wikipedia.org/wiki/Insertion_sort
