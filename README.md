@@ -182,8 +182,8 @@ Mathematically a bijective function is used on the characters' positions to encr
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
 
 [bucket-wiki]: https://en.wikipedia.org/wiki/Bucket_sort
-[bucket-image-1]: https://commons.wikimedia.org/wiki/File:Bucket_sort_1.svg#/media/File:Bucket_sort_1.svg "Bucket Sort"
-[bucket-image-2]: https://commons.wikimedia.org/wiki/File:Bucket_sort_2.svg#/media/File:Bucket_sort_2.svg "Bucket Sort"
+[bucket-image-1]: https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Bucket_sort_1.svg/311px-Bucket_sort_1.svg.png "Bucket Sort"
+[bucket-image-2]: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Bucket_sort_2.svg/311px-Bucket_sort_2.svg.png "Bucket Sort"
 
 [cocktail-shaker-wiki]: https://en.wikipedia.org/wiki/Cocktail_shaker_sort
 [cocktail-shaker-image]: https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif "Cocktail Shaker Sort"
