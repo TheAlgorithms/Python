@@ -62,9 +62,22 @@ def eulerPhi(n):
         s *= (x - 1)/x 
     return s   
 
+def primeNumbers(n):
+    numbers = []
+    for i in range(n):
+        numbers.append(i)
+    primes = []
+    for i in range(2, n):
+        if numbers[i] != -1:
+            primes.append(numbers[i])
+            for j in range(i, n, i):
+                numbers[j] = -1
+    return primes
+
 print(primeFactors(100))
 print(numberOfDivisors(100))
 print(sumOfDivisors(100))
 print(eulerPhi(100))
+print(primeNumbers(100))
     
     
