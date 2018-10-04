@@ -19,6 +19,26 @@ __Properties__
 
 ###### View the algorithm in [action][bubble-toptal]
 
+### Bucket
+![alt text][bucket-image-1]
+![alt text][bucket-image-2]
+
+From [Wikipedia][bucket-wiki]: Bucket sort, or bin sort, is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
+
+__Properties__
+* Worst case performance	O(n^2)
+* Best case performance	O(n+k)
+* Average case performance	O(n+k)
+
+### Coctail shaker
+![alt text][cocktail-shaker-image]
+
+From [Wikipedia][cocktail-shaker-wiki]: Cocktail shaker sort, also known as bidirectional bubble sort, cocktail sort, shaker sort (which can also refer to a variant of selection sort), ripple sort, shuffle sort, or shuttle sort, is a variation of bubble sort that is both a stable sorting algorithm and a comparison sort. The algorithm differs from a bubble sort in that it sorts in both directions on each pass through the list.
+
+__Properties__
+* Worst case performance	O(n^2)
+* Best case performance	O(n)
+* Average case performance	O(n^2)
 
 
 ### Insertion
@@ -59,6 +79,15 @@ __Properties__
 
 ###### View the algorithm in [action][quick-toptal]
 
+### Radix
+
+From [Wikipedia][radix-wiki]: In computer science, radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
+
+__Properties__
+* Worst case performance	O(wn)
+* Best case performance	O(wn)
+* Average case performance	O(wn)
+
 ### Selection
 ![alt text][selection-image]
 
@@ -82,6 +111,10 @@ __Properties__
 * Average case performance depends on gap sequence
 
 ###### View the algorithm in [action][shell-toptal]
+
+### Topological
+
+From [Wikipedia][topological-wiki]: In the field of computer science, a topological sort or topological ordering of a directed graph is a linear ordering of its vertices such that for every directed edge uv from vertex u to vertex v, u comes before v in the ordering. For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks. A topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a directed acyclic graph (DAG). Any DAG has at least one topological ordering, and algorithms are known for constructing a topological ordering of any DAG in linear time.
 
 ### Time-Complexity Graphs
 
@@ -148,6 +181,13 @@ Mathematically a bijective function is used on the characters' positions to encr
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
 
+[bucket-wiki]: https://en.wikipedia.org/wiki/Bucket_sort
+[bucket-image-1]: https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Bucket_sort_1.svg/311px-Bucket_sort_1.svg.png "Bucket Sort"
+[bucket-image-2]: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Bucket_sort_2.svg/311px-Bucket_sort_2.svg.png "Bucket Sort"
+
+[cocktail-shaker-wiki]: https://en.wikipedia.org/wiki/Cocktail_shaker_sort
+[cocktail-shaker-image]: https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif "Cocktail Shaker Sort"
+
 [insertion-toptal]: https://www.toptal.com/developers/sorting-algorithms/insertion-sort
 [insertion-wiki]: https://en.wikipedia.org/wiki/Insertion_sort
 [insertion-image]: https://upload.wikimedia.org/wikipedia/commons/7/7e/Insertionsort-edited.png "Insertion Sort"
@@ -155,6 +195,8 @@ Mathematically a bijective function is used on the characters' positions to encr
 [quick-toptal]: https://www.toptal.com/developers/sorting-algorithms/quick-sort
 [quick-wiki]: https://en.wikipedia.org/wiki/Quicksort
 [quick-image]: https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif "Quick Sort"
+
+[radix-wiki]: https://en.wikipedia.org/wiki/Radix_sort
 
 [merge-toptal]: https://www.toptal.com/developers/sorting-algorithms/merge-sort
 [merge-wiki]: https://en.wikipedia.org/wiki/Merge_sort
@@ -167,6 +209,8 @@ Mathematically a bijective function is used on the characters' positions to encr
 [shell-toptal]: https://www.toptal.com/developers/sorting-algorithms/shell-sort
 [shell-wiki]: https://en.wikipedia.org/wiki/Shellsort
 [shell-image]: https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif "Shell Sort"
+
+[topological-wiki]: https://en.wikipedia.org/wiki/Topological_sorting
 
 [linear-wiki]: https://en.wikipedia.org/wiki/Linear_search
 [linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif
