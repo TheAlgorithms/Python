@@ -79,6 +79,15 @@ __Properties__
 
 ###### View the algorithm in [action][quick-toptal]
 
+### Radix
+
+From [Wikipedia][radix-wiki]: In computer science, radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
+
+__Properties__
+* Worst case performance	O(wn)
+* Best case performance	O(wn)
+* Average case performance	O(wn)
+
 ### Selection
 ![alt text][selection-image]
 
@@ -169,11 +178,11 @@ Mathematically a bijective function is used on the characters' positions to encr
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
 
 [bucket-wiki]: https://en.wikipedia.org/wiki/Bucket_sort
-[bucket-image-1]: https://commons.wikimedia.org/wiki/File:Bucket_sort_1.svg#/media/File:Bucket_sort_1.svg
-[bucket-image-2]: https://commons.wikimedia.org/wiki/File:Bucket_sort_2.svg#/media/File:Bucket_sort_2.svg
+[bucket-image-1]: https://commons.wikimedia.org/wiki/File:Bucket_sort_1.svg#/media/File:Bucket_sort_1.svg "Bucket Sort"
+[bucket-image-2]: https://commons.wikimedia.org/wiki/File:Bucket_sort_2.svg#/media/File:Bucket_sort_2.svg "Bucket Sort"
 
 [cocktail-shaker-wiki]: https://en.wikipedia.org/wiki/Cocktail_shaker_sort
-[cocktail-shaker-image]: https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif
+[cocktail-shaker-image]: https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif "Cocktail Shaker Sort"
 
 [insertion-toptal]: https://www.toptal.com/developers/sorting-algorithms/insertion-sort
 [insertion-wiki]: https://en.wikipedia.org/wiki/Insertion_sort
@@ -182,6 +191,8 @@ Mathematically a bijective function is used on the characters' positions to encr
 [quick-toptal]: https://www.toptal.com/developers/sorting-algorithms/quick-sort
 [quick-wiki]: https://en.wikipedia.org/wiki/Quicksort
 [quick-image]: https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif "Quick Sort"
+
+[radix-wiki]: https://en.wikipedia.org/wiki/Radix_sort
 
 [merge-toptal]: https://www.toptal.com/developers/sorting-algorithms/merge-sort
 [merge-wiki]: https://en.wikipedia.org/wiki/Merge_sort
