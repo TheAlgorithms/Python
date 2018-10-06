@@ -1,0 +1,29 @@
+euclidean_dist_sq(x1, x2, y1, y2)
+euclidean_dist(x1, x2, y1, y2):
+partitions_up_to(lim):
+factors(n):
+heron_area(side_a, side_b, side_c):
+strings_to_ints(str_arr):
+is_perm(a, b):
+is_palindromic(n):
+is_pandigital(n, s=9):
+totient(n):
+d(n):
+pal_list(k):
+sof_digits(n):
+fibonacci(n):
+_fib(n):
+sos_digits(n):
+pow_digits(n, e):
+is_prime(n):
+miller_rabin(n):
+miller_rabin_pass(a, s, d, n):
+prime_factor(n):
+gcd(a, b):
+perm(n, s):
+binomial(n, k):
+catalan_number(n):
+prime_sieve(n):
+bezout(a, b):
+dec2base(n, base):
+n2words(num, join=True):
