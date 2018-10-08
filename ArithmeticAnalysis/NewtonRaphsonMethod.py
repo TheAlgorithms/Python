@@ -1,4 +1,4 @@
-# Implementing Newton Raphson method in python
+# Implementing Newton Raphson method in Python
 # Author: Haseeb
 
 from sympy import diff
@@ -20,8 +20,8 @@ def NewtonRaphson(func, a):
 
 # Let's Execute
 if __name__ == '__main__':
-    # Find root of trignometric fucntion
-    # Find value of  pi
+    # Find root of trigonometric function
+    # Find value of pi
     print ('sin(x) = 0', NewtonRaphson('sin(x)', 2))
     
     # Find root of polynomial
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     # Find Square Root of 5
     print ('x**2 - 5 = 0', NewtonRaphson('x**2 - 5', 0.1))
 
-    #  Exponential Roots
+    # Exponential Roots
     print ('exp(x) - 1 = 0', NewtonRaphson('exp(x) - 1', 0))
     
     
