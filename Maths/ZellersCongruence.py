@@ -39,7 +39,7 @@ def zeller(date_input):
             print("The date " + date_input + ", is a " + weekdays[day] + ".")
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Find out what day of the week you were born on Accepts birthday as a string in mm-dd-yyyy or mm/dd/yyyy format')
+    parser = argparse.ArgumentParser(description='Find out what day of the week you were born on, or any other date. Accepts birthday as a string in mm-dd-yyyy or mm/dd/yyyy format.')
     parser.add_argument('date_input', type=str, help='Date as a string (mm-dd-yyyy or mm/dd/yyyy)')
     args = parser.parse_args()
     zeller(args.date_input)
