@@ -1,0 +1,33 @@
+sum=0
+num=0
+while(1):
+    num+=3
+    if(num>=n):
+        break
+    sum+=num
+    num+=2
+    if(num>=n):
+        break
+    sum+=num
+    num+=1
+    if(num>=n):
+        break
+    sum+=num
+    num+=3
+    if(num>=n):
+        break
+    sum+=num
+    num+=1
+    if(num>=n):
+        break
+    sum+=num
+    num+=2
+    if(num>=n):
+        break
+    sum+=num
+    num+=3
+    if(num>=n):
+        break
+    sum+=num
+
+print(sum);
