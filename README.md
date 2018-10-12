@@ -30,7 +30,7 @@ __Properties__
 * Best case performance	O(n+k)
 * Average case performance	O(n+k)
 
-### Coctail shaker
+### Cocktail shaker
 ![alt text][cocktail-shaker-image]
 
 From [Wikipedia][cocktail-shaker-wiki]: Cocktail shaker sort, also known as bidirectional bubble sort, cocktail sort, shaker sort (which can also refer to a variant of selection sort), ripple sort, shuffle sort, or shuttle sort, is a variation of bubble sort that is both a stable sorting algorithm and a comparison sort. The algorithm differs from a bubble sort in that it sorts in both directions on each pass through the list.
