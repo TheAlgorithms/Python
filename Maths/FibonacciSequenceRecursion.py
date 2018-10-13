@@ -8,7 +8,7 @@ def isPositiveInteger(limit):
 
 def main():
     limit = int(input("How many terms to include in fibonacci series: "))
-    if isPositiveInteger:
+    if isPositiveInteger(limit):
         print(f"The first {limit} terms of the fibonacci series are as follows:")
         print([recur_fibo(n) for n in range(limit)])
     else:
