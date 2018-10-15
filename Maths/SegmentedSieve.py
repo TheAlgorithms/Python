@@ -43,5 +43,6 @@ def sieve(n):
             
     return prime
 
+
 if __name__=='__main__':
     print(sieve(10**6))
