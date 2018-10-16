@@ -31,13 +31,13 @@ def sigmoid_function(z):
 def cost_function(h,y):
     return (-y*np.log(h)-(1-y)*np.log(1-h)).mean()
 
-# here alpha is the learning rate, X is the featue matrix,y is the target matrix
+# here alpha is the learning rate, X is the feature matrix,y is the target matrix
 def logistic_reg(alpha,X,y,max_iterations=70000):
     converged=False
     iterations=0
     theta=np.zeros(X.shape[1])
     
-    num_iterations=0
+    
     while not converged:
         z=np.dot(X,theta)
         h=sigmoid_function(z)
@@ -46,9 +46,9 @@ def logistic_reg(alpha,X,y,max_iterations=70000):
         
         z=np.dot(X,theta)
         h=sigmoid_function(z)
-        e=cost_function(h,y)
-        print('J=',e)
-        J=e
+        J=cost_function(h,y)
+       
+     
         
         iterations+=1   #update iterations
         
