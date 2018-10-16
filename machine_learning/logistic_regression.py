@@ -55,6 +55,7 @@ def logistic_reg(alpha,X,y,max_iterations=70000):
         
         if iterations== max_iterations:
             print("Maximum iterations exceeded!")
+            print("Minimal cost function J=",J)
             converged=True
             
     return theta
