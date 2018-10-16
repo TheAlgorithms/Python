@@ -1,7 +1,7 @@
 import numpy as np
 
 """ Here I implemented the scoring functions.
-    MAE, MSE, RMSE, RMSLE are included.
+    The funcions MAE, MSE, RMSE and RMSLE are included.
 
     Those are used for calculating differences between
     predicted values and actual values.
