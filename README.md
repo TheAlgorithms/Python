@@ -79,6 +79,20 @@ __Properties__
 
 ###### View the algorithm in [action][quick-toptal]
 
+
+### Heap
+
+From [Wikipedia][heap-wiki]: Heapsort is a comparison-based sorting algorithm. It can be thought of as an improved selection sort. It divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region
+
+__Properties__
+* Worst case performance	O(n log n)
+* Best case performance	O(n log n)
+* Average case performance	O(n log n)
+
+
+
+###### View the algorithm in [action](https://www.toptal.com/developers/sorting-algorithms/heap-sort)
+
 ### Radix
 
 From [Wikipedia][radix-wiki]: In computer science, radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
