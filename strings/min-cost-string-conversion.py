@@ -68,7 +68,6 @@ def assemble_transformation(ops, i, j):
 			return seq
 
 if __name__ == '__main__':
-	from time import sleep
 	_, operations = compute_transform_tables('Python', 'Algorithms', -1, 1, 2, 2)
 
 	m = len(operations)

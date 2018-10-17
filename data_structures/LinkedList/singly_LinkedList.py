@@ -67,3 +67,4 @@ class Linked_List:
             current = next_node
         # Return prev in order to put the head at the end
         Head = prev
+        return Head

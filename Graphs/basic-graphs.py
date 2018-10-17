@@ -140,7 +140,7 @@ from collections import deque
 
 
 def topo(G, ind=None, Q=[1]):
-    if ind == None:
+    if ind is None:
         ind = [0] * (len(G) + 1) 		# SInce oth Index is ignored
         for u in G:
             for v in G[u]:

@@ -3,7 +3,6 @@ a^2+b^2=c^2
 Given N, Check if there exists any Pythagorean triplet for which a+b+c=N
 Find maximum possible value of product of a,b,c among all such Pythagorean triplets, If there is no such Pythagorean triplet print -1."""
 #!/bin/python3
-import sys
 
 product=-1
 d=0

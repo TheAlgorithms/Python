@@ -4,7 +4,6 @@
 # Sort large text files in a minimum amount of memory
 #
 import os
-import sys
 import argparse
 
 class FileSplitter(object):

@@ -3,16 +3,14 @@
 
 from sympy import diff
 from decimal import Decimal
-from math import sin, cos, exp
 
 def NewtonRaphson(func, a):
     ''' Finds root from the point 'a' onwards by Newton-Raphson method '''
     while True:
-        x = a
         c = Decimal(a) - ( Decimal(eval(func)) / Decimal(eval(str(diff(func)))) )
         
-        x = c
         a = c
+
         # This number dictates the accuracy of the answer
         if  abs(eval(func)) < 10**-15:
             return  c
