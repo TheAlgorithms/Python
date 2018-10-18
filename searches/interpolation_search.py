@@ -2,7 +2,6 @@
 This is pure python implementation of interpolation search algorithm
 """
 from __future__ import print_function
-import bisect
 
 try:
     raw_input          # Python 2

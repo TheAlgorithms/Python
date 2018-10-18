@@ -1,7 +1,7 @@
-import math
 import numpy
 
-def LUDecompose (table): #table that contains our data
+def LUDecompose (table):
+    #table that contains our data
     #table has to be a square array so we need to check first
     rows,columns=numpy.shape(table)
     L=numpy.zeros((rows,columns))
