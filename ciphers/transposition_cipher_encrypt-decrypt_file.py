@@ -5,15 +5,15 @@ import transposition_cipher as transCipher
 def main():
     inputFile = 'Prehistoric Men.txt'
     outputFile = 'Output.txt'
-    key = int(input('Enter key: '))
-    mode = input('Encrypt/Decrypt [e/d]: ')
+    key = int(raw_input('Enter key: '))
+    mode = raw_input('Encrypt/Decrypt [e/d]: ')
 
     if not os.path.exists(inputFile):
         print('File %s does not exist. Quitting...' % inputFile)
         sys.exit()
     if os.path.exists(outputFile):
         print('Overwrite %s? [y/n]' % outputFile)
-        response = input('> ')
+        response = raw_input('> ')
         if not response.lower().startswith('y'):
             sys.exit()
             

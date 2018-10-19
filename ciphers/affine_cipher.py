@@ -4,9 +4,9 @@ import sys, random, cryptomath_module as cryptoMath
 SYMBOLS = """ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
 
 def main():
-    message = input('Enter message: ')
-    key = int(input('Enter key [2000 - 9000]: '))
-    mode = input('Encrypt/Decrypt [E/D]: ')
+    message = raw_input('Enter message: ')
+    key = int(raw_input('Enter key [2000 - 9000]: '))
+    mode = raw_input('Encrypt/Decrypt [E/D]: ')
 
     if mode.lower().startswith('e'):
               mode = 'encrypt'
@@ -68,8 +68,8 @@ def getRandomKey():
     while True:
         keyA = random.randint(2, len(SYMBOLS))
         keyB = random.randint(2, len(SYMBOLS))
-    if cryptoMath.gcd(keyA, len(SYMBOLS)) == 1:
-        return keyA * len(SYMBOLS) + keyB
+        if cryptoMath.gcd(keyA, len(SYMBOLS)) == 1:
+            return keyA * len(SYMBOLS) + keyB
 
 if __name__ == '__main__':
     import doctest

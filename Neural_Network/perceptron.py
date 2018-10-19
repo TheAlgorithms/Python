@@ -25,7 +25,7 @@ class Perceptron:
         self.col_sample = len(sample[0])
         self.weight = []
 
-    def trannig(self):
+    def training(self):
         for sample in self.sample:
             sample.insert(0, self.bias)
 
@@ -120,5 +120,5 @@ network.trannig()
 while True:
     sample = []
     for i in range(3):
-        sample.insert(i, float(input('value: ')))
+        sample.insert(i, float(raw_input('value: ')))
     network.sort(sample)

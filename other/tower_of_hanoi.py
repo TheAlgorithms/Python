@@ -19,7 +19,7 @@ def moveDisk(fp,tp):
     print(('moving disk from', fp, 'to', tp))
 
 def main():
-    height = int(input('Height of hanoi: '))
+    height = int(raw_input('Height of hanoi: '))
     moveTower(height, 'A', 'B', 'C')
 
 if __name__ == '__main__':

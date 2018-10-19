@@ -24,7 +24,7 @@ class LinkedList:
         temp = self.head
         self.head = self.head.next # oldHead <--> 2ndElement(head) 
         self.head.previous = None # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
-        if(self.head == None):
+        if(self.head is None):
             self.tail = None
         return temp
     
@@ -58,7 +58,7 @@ class LinkedList:
             current.next.previous = current.previous # 1 <--> 3
     
     def isEmpty(self): #Will return True if the list is empty
-        return(self.head == None)
+        return(self.head is None)
         
     def display(self): #Prints contents of the list
         current = self.head

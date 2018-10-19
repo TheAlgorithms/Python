@@ -19,4 +19,4 @@ class LinkedList:
             return item
 
     def is_empty(self):
-        return self.head == None
+        return self.head is None

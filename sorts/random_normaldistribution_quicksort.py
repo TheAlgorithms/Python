@@ -2,7 +2,6 @@ from __future__ import print_function
 from random import randint
 from tempfile import TemporaryFile
 import numpy as np
-import math
 
 
 
