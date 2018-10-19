@@ -23,7 +23,7 @@ __Properties__
 ![alt text][bucket-image-1]
 ![alt text][bucket-image-2]
 
-From [Wikipedia][bucket-wiki]: Bucket sort, or bin sort, is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
+From [Wikipedia][bucket-wiki]: **Bucket sort**, or _bin sort_, is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
@@ -33,7 +33,7 @@ __Properties__
 ### Cocktail shaker
 ![alt text][cocktail-shaker-image]
 
-From [Wikipedia][cocktail-shaker-wiki]: Cocktail shaker sort, also known as bidirectional bubble sort, cocktail sort, shaker sort (which can also refer to a variant of selection sort), ripple sort, shuffle sort, or shuttle sort, is a variation of bubble sort that is both a stable sorting algorithm and a comparison sort. The algorithm differs from a bubble sort in that it sorts in both directions on each pass through the list.
+From [Wikipedia][cocktail-shaker-wiki]: **Cocktail shaker sort**, also known as _bidirectional bubble sort_, _cocktail sort_, _shaker sort_ (which can also refer to a variant of _selection sort_), _ripple sort_, _shuffle sort_, or _shuttle sort_, is a variation of bubble sort that is both a stable sorting algorithm and a comparison sort. The algorithm differs from a bubble sort in that it sorts in both directions on each pass through the list.
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
@@ -82,7 +82,7 @@ __Properties__
 
 ### Heap
 
-From [Wikipedia][heap-wiki]: Heapsort is a comparison-based sorting algorithm. It can be thought of as an improved selection sort. It divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region
+From [Wikipedia][heap-wiki]: **Heapsort** is a _comparison-based_ sorting algorithm. It can be thought of as an improved selection sort. It divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region.
 
 __Properties__
 * Worst case performance	O(n log n)
@@ -95,7 +95,7 @@ __Properties__
 
 ### Radix
 
-From [Wikipedia][radix-wiki]: In computer science, radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
+From [Wikipedia][radix-wiki]: **Radix sort** is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
 
 __Properties__
 * Worst case performance	O(wn)
@@ -128,7 +128,7 @@ __Properties__
 
 ### Topological
 
-From [Wikipedia][topological-wiki]: In the field of computer science, a topological sort or topological ordering of a directed graph is a linear ordering of its vertices such that for every directed edge uv from vertex u to vertex v, u comes before v in the ordering. For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks. A topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a directed acyclic graph (DAG). Any DAG has at least one topological ordering, and algorithms are known for constructing a topological ordering of any DAG in linear time.
+From [Wikipedia][topological-wiki]: **Topological sort**, or _topological ordering of a directed graph_ is a linear ordering of its vertices such that for every directed edge _uv_ from vertex _u_ to vertex _v_, _u_ comes before _v_ in the ordering. For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks. A topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a _directed acyclic graph_ (DAG). Any DAG has at least one topological ordering, and algorithms are known for constructing a topological ordering of any DAG in linear time.
 
 ### Time-Complexity Graphs
 
@@ -167,7 +167,8 @@ __Properties__
 * Worst case space complexity	O(1)
 
 ## Interpolation
-Interpolation search is an algorithm for searching for a key in an array that has been ordered by numerical values assigned to the keys (key values). It was first described by W. W. Peterson in 1957.[1] Interpolation search resembles the method by which people search a telephone directory for a name (the key value by which the book's entries are ordered): in each step the algorithm calculates where in the remaining search space the sought item might be, based on the key values at the bounds of the search space and the value of the sought key, usually via a linear interpolation. The key value actually found at this estimated position is then compared to the key value being sought. If it is not equal, then depending on the comparison, the remaining search space is reduced to the part before or after the estimated position. This method will only work if calculations on the size of differences between key values are sensible.
+
+From [Wikipedia][interpolation-wiki]: Interpolation search is an algorithm for searching for a key in an array that has been ordered by numerical values assigned to the keys (key values). It was first described by W. W. Peterson in 1957.[1] Interpolation search resembles the method by which people search a telephone directory for a name (the key value by which the book's entries are ordered): in each step the algorithm calculates where in the remaining search space the sought item might be, based on the key values at the bounds of the search space and the value of the sought key, usually via a linear interpolation. The key value actually found at this estimated position is then compared to the key value being sought. If it is not equal, then depending on the comparison, the remaining search space is reduced to the part before or after the estimated position. This method will only work if calculations on the size of differences between key values are sensible.
 
 By comparison, binary search always chooses the middle of the remaining search space, discarding one half or the other, depending on the comparison between the key found at the estimated position and the key sought — it does not require numerical values for the keys, just a total order on them. The remaining search space is reduced to the part before or after the estimated position. The linear search uses equality only as it compares elements one-by-one from the start, ignoring any sorting.
 
@@ -204,14 +205,14 @@ These memory structures form what is known as the tabu list, a set of rules and 
 
 ### Caesar
 ![alt text][caesar]<br>
-**Caesar cipher**, also known as Caesar's cipher, the shift cipher, Caesar's code or Caesar shift, is one of the simplest and most widely known encryption techniques.<br>
+**Caesar cipher**, also known as _Caesar's cipher_, the _shift cipher_, _Caesar's code_ or _Caesar shift_, is one of the simplest and most widely known encryption techniques.<br>
 It is **a type of substitution cipher** in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be replaced by A, E would become B, and so on. <br>
 The method is named after **Julius Caesar**, who used it in his private correspondence.<br>
 The encryption step performed by a Caesar cipher is often incorporated as part of more complex schemes, such as the Vigenère cipher, and still has modern application in the ROT13 system. As with all single-alphabet substitution ciphers, the Caesar cipher is easily broken and in modern practice offers essentially no communication security.
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Caesar_cipher)
 
 ### Vigenère
-The **Vigenère cipher** is a method of encrypting alphabetic text by using a series of **interwoven Caesar ciphers** based on the letters of a keyword. It is **a form of polyalphabetic substitution**.<br>
+**Vigenère cipher** is a method of encrypting alphabetic text by using a series of **interwoven Caesar ciphers** based on the letters of a keyword. It is **a form of polyalphabetic substitution**.<br>
 The Vigenère cipher has been reinvented many times. The method was originally described by Giovan Battista Bellaso in his 1553 book La cifra del. Sig. Giovan Battista Bellaso; however, the scheme was later misattributed to Blaise de Vigenère in the 19th century, and is now widely known as the "Vigenère cipher".<br>
 Though the cipher is easy to understand and implement, for three centuries it resisted all attempts to break it; this earned it the description **le chiffre indéchiffrable**(French for 'the indecipherable cipher').
 Many people have tried to implement encryption schemes that are essentially Vigenère ciphers. Friedrich Kasiski was the first to publish a general method of deciphering a Vigenère cipher in 1863.
@@ -290,6 +291,7 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 [binary-wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
 [binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png
 
+[interpolation-wiki]: https://en.wikipedia.org/wiki/Interpolation_search
 
 [caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
 
