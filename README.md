@@ -290,6 +290,6 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 
 [caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
 
-[ROT13-image]: https://en.wikipedia.org/wiki/File:ROT13_table_with_example.svg
+[ROT13-image]: https://upload.wikimedia.org/wikipedia/commons/3/33/ROT13_table_with_example.svg
 
-[QuickSelect-image]: https://en.wikipedia.org/wiki/File:Selecting_quickselect_frames.gif
+[QuickSelect-image]: https://upload.wikimedia.org/wikipedia/commons/0/04/Selecting_quickselect_frames.gif
