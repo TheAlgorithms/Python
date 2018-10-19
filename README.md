@@ -269,6 +269,8 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 [quick-wiki]: https://en.wikipedia.org/wiki/Quicksort
 [quick-image]: https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif "Quick Sort"
 
+[heap-wiki]: https://en.wikipedia.org/wiki/Heapsort
+
 [radix-wiki]: https://en.wikipedia.org/wiki/Radix_sort
 
 [merge-toptal]: https://www.toptal.com/developers/sorting-algorithms/merge-sort
