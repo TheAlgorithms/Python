@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# encoding=utf8
+
 '''
 
 A Framework of Back Propagation Neural Network（BP） model

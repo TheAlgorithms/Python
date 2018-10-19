@@ -1,4 +1,7 @@
-# Author: OMKAR PATHAK
+#!/usr/bin/python
+# encoding=utf8
+
+""" Author: OMKAR PATHAK """
 from __future__ import print_function
 
 
