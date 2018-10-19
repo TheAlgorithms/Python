@@ -4,7 +4,7 @@ A palindromic number reads the same both ways. The largest palindrome made from 
 Find the largest palindrome made from the product of two 3-digit numbers which is less than N.
 '''
 from __future__ import print_function
-limit = int(input("limit? "))
+limit = int(raw_input("limit? "))
 
 # fetchs the next number
 for number in range(limit-1,10000,-1):

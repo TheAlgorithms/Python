@@ -168,7 +168,7 @@ def topo(G, ind=None, Q=[1]):
 
 
 def adjm():
-    n, a = input(), []
+    n, a = raw_input(), []
     for i in xrange(n):
         a.append(map(int, raw_input().split()))
     return a, n

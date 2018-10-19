@@ -2,9 +2,9 @@ from __future__ import print_function
 import math
 
 def main():
-    message = input('Enter message: ')
-    key = int(input('Enter key [2-%s]: ' % (len(message) - 1)))
-    mode = input('Encryption/Decryption [e/d]: ')
+    message = raw_input('Enter message: ')
+    key = int(raw_input('Enter key [2-%s]: ' % (len(message) - 1)))
+    mode = raw_input('Encryption/Decryption [e/d]: ')
 
     if mode.lower().startswith('e'):
         text = encryptMessage(key, message)

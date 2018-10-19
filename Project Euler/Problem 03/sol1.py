@@ -19,7 +19,7 @@ def isprime(no):
     return True
 
 maxNumber = 0
-n=int(input())
+n=int(raw_input())
 if(isprime(n)):
     print(n)
 else:

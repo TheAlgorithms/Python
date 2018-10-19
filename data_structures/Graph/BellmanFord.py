@@ -35,8 +35,8 @@ def BellmanFord(graph, V, E, src):
 			
 
 #MAIN
-V = int(input("Enter number of vertices: "))
-E = int(input("Enter number of edges: "))
+V = int(raw_input("Enter number of vertices: "))
+E = int(raw_input("Enter number of edges: "))
 
 graph = [dict() for j in range(E)]
 
@@ -45,10 +45,10 @@ for i in range(V):
 
 for i in range(E):
 	print("\nEdge ",i+1)
-	src = int(input("Enter source:"))
-	dst = int(input("Enter destination:"))
-	weight = float(input("Enter weight:"))
+	src = int(raw_input("Enter source:"))
+	dst = int(raw_input("Enter destination:"))
+	weight = float(raw_input("Enter weight:"))
 	graph[i] = {"src": src,"dst": dst, "weight": weight}
 	
-gsrc = int(input("\nEnter shortest path source:"))
+gsrc = int(raw_input("\nEnter shortest path source:"))
 BellmanFord(graph, V, E, gsrc)

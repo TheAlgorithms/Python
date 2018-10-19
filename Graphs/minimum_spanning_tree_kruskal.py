@@ -1,10 +1,10 @@
 from __future__ import print_function
-num_nodes, num_edges = list(map(int,input().split()))
+num_nodes, num_edges = list(map(int,raw_input().split()))
 
 edges = []
 
 for i in range(num_edges):
-	node1, node2, cost = list(map(int,input().split()))
+	node1, node2, cost = list(map(int,raw_input().split()))
 	edges.append((i,node1,node2,cost))
 
 edges = sorted(edges, key=lambda edge: edge[3])

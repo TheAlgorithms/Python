@@ -40,25 +40,25 @@ def main():
     print("3.BruteForce")
     print("4.Quit")
     while True:
-        choice = input("What would you like to do?: ")
+        choice = raw_input("What would you like to do?: ")
         if choice not in ['1', '2', '3', '4']:
             print ("Invalid choice")
         elif choice == '1':
-            strng = input("Please enter the string to be ecrypted: ")
+            strng = raw_input("Please enter the string to be ecrypted: ")
             while True:
                 key = int(input("Please enter off-set between 1-94: "))
                 if key in range(1, 95):
                     print (encrypt(strng, key))
                     main()
         elif choice == '2':
-            strng = input("Please enter the string to be decrypted: ")
+            strng = raw_input("Please enter the string to be decrypted: ")
             while True:
-                key = int(input("Please enter off-set between 1-94: "))
+                key = raw_int(input("Please enter off-set between 1-94: "))
                 if key > 0 and key <= 94:
                     print(decrypt(strng, key))
                     main()
         elif choice == '3':
-            strng = input("Please enter the string to be decrypted: ")
+            strng = raw_input("Please enter the string to be decrypted: ")
             brute_force(strng)
             main()
         elif choice == '4':
