@@ -1,6 +1,8 @@
 def primeCheck(number):
     prime = True
     for i in range(2, int(number**(1/2)+1), 2):
+        if i != 2:
+            i = i - 1
         if number % i == 0:
             prime = False
             break
@@ -9,6 +11,7 @@ def primeCheck(number):
 def main():
     print(primeCheck(37))
     print(primeCheck(100))
+    print(primeCheck(77))
 
 if __name__ == '__main__':
 	main()
