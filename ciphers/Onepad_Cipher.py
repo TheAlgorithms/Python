@@ -20,7 +20,7 @@ class Onepad:
         '''Function to decrypt text using psedo-random numbers.'''
         plain = []
         for i in range(len(key)):
-            p = (cipher[i]-(key[i])**2)/key[i]
+            p = int((cipher[i]-(key[i])**2)/key[i])
             plain.append(chr(p))
         plain = ''.join([i for i in plain])
         return plain
