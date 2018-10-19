@@ -1,0 +1,1360 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/619a6fac/
+- returns a random matrix WxH with integer components between 'a' and 'b'	linear_algebra_python/README.md	/^    - returns a random matrix WxH with integer components between 'a' and 'b'  $/;"	s
+A	data_structures/binary tree/lazy_segment_tree.py	/^    A = [1,2,-4,7,3,-5,6,11,-20,9,14,15,5,2,-8]$/;"	v
+AVL	data_structures/avl.py	/^class AVL:$/;"	c
+AdjacencyList	data_structures/graph/graph.py	/^class AdjacencyList(object):$/;"	c
+All algorithms implemented in Python (for education)	README.md	/^### All algorithms implemented in Python (for education)$/;"	S
+Array Elements	sorts/normal_distribution_quick_sort.md	/^## Array Elements$/;"	s
+BFS	data_structures/graph/breadth_first_search.py	/^    def BFS(self, startVertex):$/;"	m	class:Graph
+BFS	networking_flow/ford_fulkerson.py	/^def BFS(graph, s, t, parent):$/;"	f
+BFS	networking_flow/minimum_cut.py	/^def BFS(graph, s, t, parent):$/;"	f
+BLOCK_FILENAME_FORMAT	sorts/external-sort.py	/^    BLOCK_FILENAME_FORMAT = 'block_{0}.dat'$/;"	v	class:FileSplitter
+BPNN	neural_network/bpnn.py	/^class BPNN():$/;"	c
+BYTE_SIZE	ciphers/rsa_cipher.py	/^BYTE_SIZE = 256$/;"	v
+BellmanFord	data_structures/graph/bellman_ford.py	/^def BellmanFord(graph, V, E, src):$/;"	f
+Binary	README.md	/^### Binary$/;"	S
+BinarySearchTree	data_structures/binary tree/binary_search_tree.py	/^class BinarySearchTree:$/;"	c
+Bubble	README.md	/^### Bubble$/;"	S
+Bucket	README.md	/^### Bucket$/;"	S
+CNN	neural_network/convolution_neural_network.py	/^class CNN():$/;"	c
+Caesar	README.md	/^### Caesar$/;"	S
+CeilIndex	dynamic_programming/longest_increasing_subsequence_O(nlogn).py	/^def CeilIndex(v,l,r,key):$/;"	f
+Ciphers	README.md	/^## Ciphers$/;"	s
+Cocktail shaker	README.md	/^### Cocktail shaker$/;"	S
+DEFAULT_BLOCK_SIZE	ciphers/rsa_cipher.py	/^DEFAULT_BLOCK_SIZE = 128$/;"	v
+DEFAULT_BUCKET_SIZE	sorts/bucket_sort.py	/^DEFAULT_BUCKET_SIZE = 5$/;"	v
+DFS	data_structures/graph/depth_first_search.py	/^    def DFS(self):$/;"	m	class:Graph
+DFSRec	data_structures/graph/depth_first_search.py	/^    def DFSRec(self, startVertex, visited):$/;"	m	class:Graph
+DISTANCE	searches/test_tabu_search.py	/^DISTANCE = 105$/;"	v
+Decision_Tree	machine_learning/decision_tree.py	/^class Decision_Tree:$/;"	c
+DenseLayer	neural_network/bpnn.py	/^class DenseLayer():$/;"	c
+Dijkstra	data_structures/graph/dijkstra.py	/^def Dijkstra(graph, V, src):$/;"	f
+Documentation	linear_algebra_python/README.md	/^## Documentation  $/;"	s
+DoubleHash	data_structures/hashing/double_hash.py	/^class DoubleHash(HashTable):$/;"	c
+E	data_structures/graph/bellman_ford.py	/^E = int(raw_input("Enter number of edges: "))$/;"	v
+E	data_structures/graph/dijkstra.py	/^E = int(raw_input("Enter number of edges: "))$/;"	v
+E	data_structures/graph/floyd_warshall.py	/^E = int(raw_input("Enter number of edges: "))$/;"	v
+ENGLISH_WORDS	other/detecting_english_programmatically.py	/^ENGLISH_WORDS = loadDictionary()$/;"	v
+ETAOIN	other/frequency_finder.py	/^ETAOIN = 'ETAOINSHRDLCUMWFGYPBVKJXQZ'$/;"	v
+EditDistance	dynamic_programming/edit_distance.py	/^class EditDistance:$/;"	c
+ExternalSort	sorts/external-sort.py	/^class ExternalSort(object):$/;"	c
+F	dynamic_programming/knapsack.py	/^    F = [[0]*(w + 1)] + [[0] + [-1 for i in range(w + 1)] for j in range(n + 1)]$/;"	v
+FIRST_SOLUTION	searches/test_tabu_search.py	/^FIRST_SOLUTION = ['a', 'c', 'b', 'd', 'e', 'a']$/;"	v
+FYshuffle	other/fischer_yates_shuffle.py	/^def FYshuffle(LIST):$/;"	f
+FenwickTree	data_structures/binary tree/fenwick_tree.py	/^class FenwickTree:$/;"	c
+Fibonacci	dynamic_programming/fibonacci.py	/^class Fibonacci:$/;"	c
+FileMerger	sorts/external-sort.py	/^class FileMerger(object):$/;"	c
+FileSplitter	sorts/external-sort.py	/^class FileSplitter(object):$/;"	c
+FilesArray	sorts/external-sort.py	/^class FilesArray(object):$/;"	c
+FloydWarshall	data_structures/graph/floyd_warshall.py	/^def FloydWarshall(graph, V):$/;"	f
+FordFulkerson	networking_flow/ford_fulkerson.py	/^def FordFulkerson(graph, source, sink):$/;"	f
+Graph	data_structures/graph/breadth_first_search.py	/^class Graph():$/;"	c
+Graph	data_structures/graph/depth_first_search.py	/^class Graph():$/;"	c
+Graph	data_structures/graph/dijkstra_algorithm.py	/^class Graph:$/;"	c
+Graph	data_structures/graph/graph_list.py	/^class Graph:$/;"	c
+Graph	data_structures/graph/graph_matrix.py	/^class Graph:$/;"	c
+Graph	dynamic_programming/floyd_warshall.py	/^class Graph:$/;"	c
+HOST	simple_client_server/client.py	/^HOST, PORT = '127.0.0.1', 1400$/;"	v
+HOST	simple_client_server/server.py	/^HOST, PORT = '127.0.0.1', 1400$/;"	v
+HashTable	data_structures/hashing/hash_table.py	/^class HashTable:$/;"	c
+HashTableWithLinkedList	data_structures/hashing/hash_table_with_linked_list.py	/^class HashTableWithLinkedList(HashTable):$/;"	c
+Heap	README.md	/^### Heap$/;"	S
+Heap	data_structures/heap/heap.py	/^class Heap:$/;"	c
+InPreOrder	data_structures/binary tree/binary_search_tree.py	/^def InPreOrder(curr_node):$/;"	f
+Insertion	README.md	/^### Insertion$/;"	S
+Interpolation	README.md	/^## Interpolation$/;"	s
+Jump Search	README.md	/^## Jump Search$/;"	s
+K	hashes/chaos_machine.py	/^K = [0.33, 0.44, 0.55, 0.44, 0.33]; t = 3; m = 5$/;"	v
+L	arithmetic_analysis/lu_decomposition.py	/^L,U = LUDecompose(matrix)$/;"	v
+LEARNING_RATE	machine_learning/gradient_descent.py	/^LEARNING_RATE = 0.009$/;"	v
+LETTERS	ciphers/simple_substitution_cipher.py	/^LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'$/;"	v
+LETTERS	ciphers/vigenere_cipher.py	/^LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'$/;"	v
+LETTERS	other/frequency_finder.py	/^LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'$/;"	v
+LETTERS_AND_SPACE	other/detecting_english_programmatically.py	/^LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + ' \\t\\n'$/;"	v
+LUDecompose	arithmetic_analysis/lu_decomposition.py	/^def LUDecompose (table):$/;"	f
+Linear	README.md	/^### Linear$/;"	S
+Linear algebra library for Python	linear_algebra_python/README.md	/^# Linear algebra library for Python  $/;"	c
+LinearCongruentialGenerator	other/linear_congruential_generator.py	/^class LinearCongruentialGenerator(object):$/;"	c
+Link	data_structures/linked_list/doubly_linked_list.py	/^class Link:$/;"	c
+LinkedList	data_structures/linked_list/__init__.py	/^class LinkedList:$/;"	c
+LinkedList	data_structures/linked_list/doubly_linked_list.py	/^class LinkedList:$/;"	c
+Linked_List	data_structures/linked_list/singly_linked_list.py	/^class Linked_List:$/;"	c
+LongestIncreasingSubsequenceLength	dynamic_programming/longest_increasing_subsequence_O(nlogn).py	/^def LongestIncreasingSubsequenceLength(v):$/;"	f
+M	sorts/random_normal_distribution_quicksort.py	/^M = np.load(outfile)$/;"	v
+MF_knapsack	dynamic_programming/knapsack.py	/^def MF_knapsack(i,wt,val,j):$/;"	f
+Matrix	linear_algebra_python/src/lib.py	/^class Matrix(object):$/;"	c
+MatrixChainOrder	dynamic_programming/matrix_chain_order.py	/^def MatrixChainOrder(array):$/;"	f
+Merge	README.md	/^### Merge$/;"	S
+N	data_structures/binary tree/lazy_segment_tree.py	/^    N = 15$/;"	v
+N	project_euler/problem_09/sol2.py	/^N = int(raw_input())$/;"	v
+NEIGHBOURHOOD_OF_SOLUTIONS	searches/test_tabu_search.py	/^NEIGHBOURHOOD_OF_SOLUTIONS = [['a', 'e', 'b', 'd', 'c', 'a', 90],$/;"	v
+NEIGHBOURS_DICT	searches/test_tabu_search.py	/^NEIGHBOURS_DICT = {'a': [['b', '20'], ['c', '18'], ['d', '22'], ['e', '26']],$/;"	v
+NWayMerge	sorts/external-sort.py	/^class NWayMerge(object):$/;"	c
+NewtonRaphson	arithmetic_analysis/newton_raphson_method.py	/^def NewtonRaphson(func, a):$/;"	f
+Node	data_structures/avl.py	/^class Node:$/;"	c
+Node	data_structures/binary tree/binary_search_tree.py	/^class Node:$/;"	c
+Node	data_structures/linked_list/__init__.py	/^class Node:$/;"	c
+Node	data_structures/linked_list/singly_linked_list.py	/^class Node:  # create a Node$/;"	c
+Normal Distribution QuickSort	sorts/normal_distribution_quick_sort.md	/^# Normal Distribution QuickSort$/;"	c
+Note:	simple_client_server/README.md	/^#### Note:$/;"	t
+Onepad	ciphers/onepad_cipher.py	/^class Onepad:$/;"	c
+Overview	linear_algebra_python/README.md	/^## Overview  $/;"	s
+PORT	simple_client_server/client.py	/^HOST, PORT = '127.0.0.1', 1400$/;"	v
+PORT	simple_client_server/server.py	/^HOST, PORT = '127.0.0.1', 1400$/;"	v
+PROGNAME	other/sierpinski_triangle.py	/^PROGNAME = 'Sierpinski Triangle'$/;"	v
+Perceptron	machine_learning/perceptron.py	/^class Perceptron:$/;"	c
+Perceptron	neural_network/perceptron.py	/^class Perceptron:$/;"	c
+Plotting the function for Checking 'The Number of Comparisons' taking place between Normal Distribution QuickSort and Ordinary QuickSort	sorts/normal_distribution_quick_sort.md	/^## Plotting the function for Checking 'The Number of Comparisons' taking place between Normal Di/;"	s
+PrimsAlgorithm	graphs/minimum_spanning_tree_prims.py	/^def PrimsAlgorithm(l):$/;"	f
+PrintOptimalSolution	dynamic_programming/matrix_chain_order.py	/^def PrintOptimalSolution(OptimalSolution,i,j):$/;"	f
+PriorityQueue	data_structures/graph/dijkstra_algorithm.py	/^class PriorityQueue:$/;"	c
+PriorityQueue	graphs/multi_hueristic_astar.py	/^class PriorityQueue:$/;"	c
+ProjectEuler	project_euler/README.md	/^# ProjectEuler$/;"	c
+QuadraticProbing	data_structures/hashing/__init__.py	/^class QuadraticProbing(HashTable):$/;"	c
+QuadraticProbing	data_structures/hashing/quadratic_probing.py	/^class QuadraticProbing(HashTable):$/;"	c
+Queue	data_structures/queue/queue_on_list.py	/^class Queue():$/;"	c
+Queue	data_structures/queue/queue_on_pseudo_stack.py	/^class Queue():$/;"	c
+Quick	README.md	/^### Quick$/;"	S
+Quick Select	README.md	/^## Quick Select$/;"	s
+ROT13	README.md	/^## ROT13$/;"	s
+RSA (Rivest–Shamir–Adleman)	README.md	/^### RSA (Rivest–Shamir–Adleman)$/;"	S
+Radix	README.md	/^### Radix$/;"	S
+ReadModel	neural_network/convolution_neural_network.py	/^    def ReadModel(cls,model_path):$/;"	m	class:CNN
+ReceiveFile	file_transfer_protocol/ftp_send_receive.py	/^def ReceiveFile():$/;"	f
+Representational	analysis/compression_analysis/psnr.py	/^def Representational(r,g,b):$/;"	f
+S	data_structures/stacks/stock_span_problem.py	/^S = [0 for i in range(len(price)+1)] $/;"	v
+S1	dynamic_programming/edit_distance.py	/^        S1 = raw_input().strip()$/;"	v
+S2	dynamic_programming/edit_distance.py	/^        S2 = raw_input().strip()$/;"	v
+SHA1Hash	hashes/sha1.py	/^class SHA1Hash:$/;"	c
+SHA1HashTest	hashes/sha1.py	/^class SHA1HashTest(unittest.TestCase):$/;"	c
+SOE	other/findingPrimes.py	/^def SOE(n):$/;"	f
+SYMBOLS	ciphers/affine_cipher.py	/^SYMBOLS = """ !"#$%&'()*+,-.\/0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnop/;"	v
+Search Algorithms	README.md	/^## Search Algorithms$/;"	s
+SegmentTree	data_structures/binary tree/lazy_segment_tree.py	/^class SegmentTree:$/;"	c
+Selection	README.md	/^### Selection$/;"	S
+SendFile	file_transfer_protocol/ftp_send_receive.py	/^def SendFile():$/;"	f
+Shell	README.md	/^### Shell$/;"	S
+Sort Algorithms	README.md	/^## Sort Algorithms$/;"	s
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Caesar_cipher)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/Caesar_cipher)$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Interpolation_search)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/Interpolation_search)$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Jump_search)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/Jump_search)$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Quickselect)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/Quickselect)$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/ROT13)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/ROT13)$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/RSA_(cryptosystem))	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/RSA_(cryptosystem))$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Tabu_search)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/Tabu_search)$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Transposition_cipher)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/Transposition_cipher)$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/Vigen%C3%A8re_cipher)$/;"	u
+Source: [Wikipedia](https://en.wikipedia.org/wiki/XOR_cipher)	README.md	/^###### Source: [Wikipedia](https:\/\/en.wikipedia.org\/wiki\/XOR_cipher)$/;"	u
+Stack	data_structures/stacks/__init__.py	/^class Stack:$/;"	c
+Stack	data_structures/stacks/stack.py	/^class Stack(object):$/;"	c
+StackOverflowError	data_structures/stacks/stack.py	/^class StackOverflowError(BaseException):$/;"	c
+SubArray	dynamic_programming/longest_sub_array.py	/^class SubArray:$/;"	c
+T	project_euler/problem_02/sol2.py	/^T = int(input().strip())$/;"	v
+TAG	machine_learning/k_means_clust.py	/^TAG = 'K-MEANS-CLUST\/ '$/;"	v
+TEST_FILE	searches/test_tabu_search.py	/^TEST_FILE = os.path.join(os.path.dirname(__file__), '.\/tabuTestData.txt')$/;"	v
+TFKMeansCluster	dynamic_programming/k_means_clustering_tensorflow.py	/^def TFKMeansCluster(vectors, noofclusters):$/;"	f
+Tabu	README.md	/^## Tabu$/;"	s
+Test	linear_algebra_python/src/tests.py	/^class Test(unittest.TestCase):$/;"	c
+TestClass	searches/test_tabu_search.py	/^class TestClass(unittest.TestCase):$/;"	c
+TestUnionFind	data_structures/union_find/tests_union_find.py	/^class TestUnionFind(unittest.TestCase):$/;"	c
+Tests	linear_algebra_python/README.md	/^## Tests  $/;"	s
+The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->	README.md	/^# The Algorithms - Python <!-- [![Build Status](https:\/\/travis-ci.org\/TheAlgorithms\/Python.s/;"	c
+The Distribution of the Array elements.	sorts/normal_distribution_quick_sort.md	/^#### The Distribution of the Array elements.$/;"	t
+The code	sorts/normal_distribution_quick_sort.md	/^#### The code$/;"	t
+Time-Complexity Graphs	README.md	/^### Time-Complexity Graphs$/;"	S
+Topological	README.md	/^### Topological$/;"	S
+Transposition	README.md	/^### Transposition$/;"	S
+TreeNode	traversals/binary_tree_traversals.py	/^class TreeNode:$/;"	c
+TrieNode	data_structures/trie/trie.py	/^class TrieNode:$/;"	c
+U	arithmetic_analysis/lu_decomposition.py	/^L,U = LUDecompose(matrix)$/;"	v
+UPPERLETTERS	other/detecting_english_programmatically.py	/^UPPERLETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'$/;"	v
+UnionFind	data_structures/union_find/union_find.py	/^class UnionFind():$/;"	c
+Usage	linear_algebra_python/README.md	/^## Usage  $/;"	s
+V	data_structures/graph/bellman_ford.py	/^V = int(raw_input("Enter number of vertices: "))$/;"	v
+V	data_structures/graph/dijkstra.py	/^V = int(raw_input("Enter number of vertices: "))$/;"	v
+V	data_structures/graph/floyd_warshall.py	/^V = int(raw_input("Enter number of vertices: "))$/;"	v
+Vector	linear_algebra_python/src/lib.py	/^class Vector(object):$/;"	c
+View the algorithm in [action](https://www.toptal.com/developers/sorting-algorithms/heap-sort)	README.md	/^###### View the algorithm in [action](https:\/\/www.toptal.com\/developers\/sorting-algorithms\//;"	u
+View the algorithm in [action][bubble-toptal]	README.md	/^###### View the algorithm in [action][bubble-toptal]$/;"	u
+View the algorithm in [action][insertion-toptal]	README.md	/^###### View the algorithm in [action][insertion-toptal]$/;"	u
+View the algorithm in [action][merge-toptal]	README.md	/^###### View the algorithm in [action][merge-toptal]$/;"	u
+View the algorithm in [action][quick-toptal]	README.md	/^###### View the algorithm in [action][quick-toptal]$/;"	u
+View the algorithm in [action][selection-toptal]	README.md	/^###### View the algorithm in [action][selection-toptal]$/;"	u
+View the algorithm in [action][shell-toptal]	README.md	/^###### View the algorithm in [action][shell-toptal]$/;"	u
+Vigenère	README.md	/^### Vigenère$/;"	S
+W1	graphs/multi_hueristic_astar.py	/^W1 = 1$/;"	v
+W2	graphs/multi_hueristic_astar.py	/^W2 = 1$/;"	v
+X	sorts/random_normal_distribution_quicksort.py	/^X = np.random.normal(mu, sigma, p)$/;"	v
+XOR	README.md	/^## XOR$/;"	s
+XORCipher	ciphers/xor_cipher.py	/^class XORCipher(object):$/;"	c
+_	strings/min_cost_string_conversion.py	/^	_, operations = compute_transform_tables('Python', 'Algorithms', -1, 1, 2, 2)$/;"	v
+__InOrderTraversal	data_structures/binary tree/binary_search_tree.py	/^    def __InOrderTraversal(self, curr_node):$/;"	m	class:BinarySearchTree	file:
+__add__	linear_algebra_python/src/lib.py	/^    def __add__(self,other):$/;"	m	class:Matrix
+__add__	linear_algebra_python/src/lib.py	/^    def __add__(self,other):$/;"	m	class:Vector
+__assert_sorted	searches/binary_search.py	/^def __assert_sorted(collection):$/;"	f
+__assert_sorted	searches/interpolation_search.py	/^def __assert_sorted(collection):$/;"	f
+__assert_sorted	searches/ternary_search.py	/^def __assert_sorted(collection):$/;"	f
+__author__	data_structures/stacks/balanced_parentheses.py	/^__author__ = 'Omkar Pathak'$/;"	v
+__author__	data_structures/stacks/infix_to_postfix_conversion.py	/^__author__ = 'Omkar Pathak'$/;"	v
+__author__	data_structures/stacks/stack.py	/^__author__ = 'Omkar Pathak'$/;"	v
+__author__	other/linear_congruential_generator.py	/^__author__ = "Tobias Carryer"$/;"	v
+__bool__	data_structures/stacks/stack.py	/^    def __bool__(self):$/;"	m	class:Stack
+__hash_double_function	data_structures/hashing/double_hash.py	/^    def __hash_double_function(self, key, data, increment):$/;"	m	class:DoubleHash	file:
+__hash_function_2	data_structures/hashing/double_hash.py	/^    def __hash_function_2(self, value, data):$/;"	m	class:DoubleHash	file:
+__init__	ciphers/xor_cipher.py	/^	def __init__(self, key = 0):$/;"	m	class:XORCipher
+__init__	data_structures/avl.py	/^    def __init__(self):$/;"	m	class:AVL
+__init__	data_structures/avl.py	/^    def __init__(self, label):$/;"	m	class:Node
+__init__	data_structures/binary tree/binary_search_tree.py	/^    def __init__(self):$/;"	m	class:BinarySearchTree
+__init__	data_structures/binary tree/binary_search_tree.py	/^    def __init__(self, label, parent):$/;"	m	class:Node
+__init__	data_structures/binary tree/fenwick_tree.py	/^    def __init__(self, SIZE): # create fenwick tree with size SIZE$/;"	m	class:FenwickTree
+__init__	data_structures/binary tree/lazy_segment_tree.py	/^    def __init__(self, N):$/;"	m	class:SegmentTree
+__init__	data_structures/graph/breadth_first_search.py	/^    def __init__(self):$/;"	m	class:Graph
+__init__	data_structures/graph/depth_first_search.py	/^    def __init__(self):$/;"	m	class:Graph
+__init__	data_structures/graph/dijkstra_algorithm.py	/^    def __init__(self):$/;"	m	class:PriorityQueue
+__init__	data_structures/graph/dijkstra_algorithm.py	/^    def __init__(self, num):$/;"	m	class:Graph
+__init__	data_structures/graph/graph.py	/^    def __init__(self):$/;"	m	class:AdjacencyList
+__init__	data_structures/graph/graph_list.py	/^    def __init__(self, vertex):$/;"	m	class:Graph
+__init__	data_structures/graph/graph_matrix.py	/^    def __init__(self, vertex):$/;"	m	class:Graph
+__init__	data_structures/hashing/__init__.py	/^    def __init__(self):$/;"	m	class:QuadraticProbing
+__init__	data_structures/hashing/double_hash.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:DoubleHash
+__init__	data_structures/hashing/hash_table.py	/^    def __init__(self, size_table, charge_factor=None, lim_charge=None):$/;"	m	class:HashTable
+__init__	data_structures/hashing/hash_table_with_linked_list.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:HashTableWithLinkedList
+__init__	data_structures/hashing/quadratic_probing.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:QuadraticProbing
+__init__	data_structures/heap/heap.py	/^	def __init__(self):$/;"	m	class:Heap
+__init__	data_structures/linked_list/__init__.py	/^    def __init__(self):$/;"	m	class:LinkedList
+__init__	data_structures/linked_list/__init__.py	/^    def __init__(self, item, next):$/;"	m	class:Node
+__init__	data_structures/linked_list/doubly_linked_list.py	/^    def __init__(self):$/;"	m	class:LinkedList
+__init__	data_structures/linked_list/doubly_linked_list.py	/^    def __init__(self, x):$/;"	m	class:Link
+__init__	data_structures/linked_list/singly_linked_list.py	/^    def __init__(self, data):$/;"	m	class:Node
+__init__	data_structures/queue/queue_on_list.py	/^    def __init__(self):$/;"	m	class:Queue
+__init__	data_structures/queue/queue_on_pseudo_stack.py	/^    def __init__(self):$/;"	m	class:Queue
+__init__	data_structures/stacks/__init__.py	/^   def __init__(self):$/;"	m	class:Stack
+__init__	data_structures/stacks/stack.py	/^    def __init__(self, limit=10):$/;"	m	class:Stack
+__init__	data_structures/trie/trie.py	/^    def __init__(self):$/;"	m	class:TrieNode
+__init__	data_structures/union_find/union_find.py	/^    def __init__(self, size):$/;"	m	class:UnionFind
+__init__	dynamic_programming/edit_distance.py	/^    def __init__(self):$/;"	m	class:EditDistance
+__init__	dynamic_programming/fibonacci.py	/^    def __init__(self, N=None):$/;"	m	class:Fibonacci
+__init__	dynamic_programming/floyd_warshall.py	/^    def __init__(self, N = 0): # a graph with Node 0,1,...,N-1$/;"	m	class:Graph
+__init__	dynamic_programming/longest_sub_array.py	/^    def __init__(self, arr):$/;"	m	class:SubArray
+__init__	graphs/multi_hueristic_astar.py	/^	def __init__(self):$/;"	m	class:PriorityQueue
+__init__	hashes/sha1.py	/^    def __init__(self, data):$/;"	m	class:SHA1Hash
+__init__	linear_algebra_python/src/lib.py	/^    def __init__(self,components):$/;"	m	class:Vector
+__init__	linear_algebra_python/src/lib.py	/^    def __init__(self,matrix,w,h):$/;"	m	class:Matrix
+__init__	machine_learning/decision_tree.py	/^    def __init__(self, depth = 5, min_leaf_size = 5):$/;"	m	class:Decision_Tree
+__init__	machine_learning/perceptron.py	/^    def __init__(self, sample, exit, learn_rate=0.01, epoch_number=1000, bias=-1):$/;"	m	class:Perceptron
+__init__	neural_network/bpnn.py	/^    def __init__(self):$/;"	m	class:BPNN
+__init__	neural_network/bpnn.py	/^    def __init__(self,units,activation=None,learning_rate=None,is_input_layer=False):$/;"	m	class:DenseLayer
+__init__	neural_network/convolution_neural_network.py	/^    def __init__(self,conv1_get,size_p1,bp_num1,bp_num2,bp_num3,rate_w=0.2,rate_t=0.2):$/;"	m	class:CNN
+__init__	neural_network/perceptron.py	/^    def __init__(self, sample, exit, learn_rate=0.01, epoch_number=1000, bias=-1):$/;"	m	class:Perceptron
+__init__	other/linear_congruential_generator.py	/^    def __init__( self, multiplier, increment, modulo, seed=int(time()) ):$/;"	m	class:LinearCongruentialGenerator
+__init__	sorts/external-sort.py	/^    def __init__(self, block_size):$/;"	m	class:ExternalSort
+__init__	sorts/external-sort.py	/^    def __init__(self, filename):$/;"	m	class:FileSplitter
+__init__	sorts/external-sort.py	/^    def __init__(self, files):$/;"	m	class:FilesArray
+__init__	sorts/external-sort.py	/^    def __init__(self, merge_strategy):$/;"	m	class:FileMerger
+__init__	sorts/tree_sort.py	/^    def __init__(self, val):$/;"	m	class:node
+__init__	traversals/binary_tree_traversals.py	/^    def __init__(self, data):$/;"	m	class:TreeNode
+__isRightChildren	data_structures/binary tree/binary_search_tree.py	/^    def __isRightChildren(self, node):$/;"	m	class:BinarySearchTree	file:
+__judge_point	other/game_of_life/game_o_life.py	/^def __judge_point(pt,neighbours):$/;"	f
+__mul__	linear_algebra_python/src/lib.py	/^    def __mul__(self,other):$/;"	m	class:Matrix
+__mul__	linear_algebra_python/src/lib.py	/^    def __mul__(self,other):$/;"	m	class:Vector
+__prepare__	dynamic_programming/edit_distance.py	/^    def __prepare__(self, N = 0, M = 0):$/;"	m	class:EditDistance
+__reassignNodes	data_structures/binary tree/binary_search_tree.py	/^    def __reassignNodes(self, node, newChildren):$/;"	m	class:BinarySearchTree	file:
+__solveDP	dynamic_programming/edit_distance.py	/^    def __solveDP(self, x, y):$/;"	m	class:EditDistance	file:
+__str__	data_structures/binary tree/binary_search_tree.py	/^    def __str__(self):$/;"	m	class:BinarySearchTree
+__str__	data_structures/queue/queue_on_list.py	/^    def __str__(self):$/;"	m	class:Queue
+__str__	data_structures/queue/queue_on_pseudo_stack.py	/^    def __str__(self):$/;"	m	class:Queue
+__str__	data_structures/stacks/stack.py	/^    def __str__(self):$/;"	m	class:Stack
+__str__	linear_algebra_python/src/lib.py	/^    def __str__(self):$/;"	m	class:Matrix
+__str__	linear_algebra_python/src/lib.py	/^    def __str__(self):$/;"	m	class:Vector
+__sub__	linear_algebra_python/src/lib.py	/^    def __sub__(self,other):$/;"	m	class:Matrix
+__sub__	linear_algebra_python/src/lib.py	/^    def __sub__(self,other):$/;"	m	class:Vector
+_calculate_gradient_from_pool	neural_network/convolution_neural_network.py	/^    def _calculate_gradient_from_pool(self,out_map,pd_pool,num_map,size_map,size_pooling):$/;"	m	class:CNN
+_colision_resolution	data_structures/hashing/double_hash.py	/^    def _colision_resolution(self, key, data=None):$/;"	m	class:DoubleHash
+_colision_resolution	data_structures/hashing/hash_table.py	/^    def _colision_resolution(self, key, data=None):$/;"	m	class:HashTable
+_colision_resolution	data_structures/hashing/hash_table_with_linked_list.py	/^    def _colision_resolution(self, key, data=None):$/;"	m	class:HashTableWithLinkedList
+_colision_resolution	data_structures/hashing/quadratic_probing.py	/^    def _colision_resolution(self, key, data=None):$/;"	m	class:QuadraticProbing
+_error	machine_learning/gradient_descent.py	/^def _error(example_no, data_set='train'):$/;"	f
+_expand	neural_network/convolution_neural_network.py	/^    def _expand(self,datas):$/;"	m	class:CNN
+_expand_mat	neural_network/convolution_neural_network.py	/^    def _expand_mat(self,data_mat):$/;"	m	class:CNN
+_fib	dynamic_programming/fastfibonacci.py	/^def _fib(n: int):  # noqa: E999 This syntax is Python 3 only$/;"	f
+_hypothesis_value	machine_learning/gradient_descent.py	/^def _hypothesis_value(data_input_tuple):$/;"	f
+_inPlacePartition	sorts/random_normal_distribution_quicksort.py	/^def _inPlacePartition(A,start,end):$/;"	f
+_inPlaceQuickSort	sorts/random_normal_distribution_quicksort.py	/^def _inPlaceQuickSort(A,start,end):  $/;"	f
+_partition	searches/quick_select.py	/^def _partition(data, pivot):$/;"	f
+_root	data_structures/union_find/union_find.py	/^    def _root(self, u):$/;"	m	class:UnionFind
+_set_value	data_structures/hashing/hash_table.py	/^    def _set_value(self, key, data):$/;"	m	class:HashTable
+_set_value	data_structures/hashing/hash_table_with_linked_list.py	/^    def _set_value(self, key, data):$/;"	m	class:HashTableWithLinkedList
+_step_by_step	data_structures/hashing/hash_table.py	/^    def _step_by_step(self, step_ord):$/;"	m	class:HashTable
+_validate_element_range	data_structures/union_find/union_find.py	/^    def _validate_element_range(self, u, element_name):$/;"	m	class:UnionFind
+a	graphs/a_star.py	/^a = search(grid,init,goal,cost,heuristic)$/;"	v
+a	project_euler/problem_02/sol3.py	/^    a=b$/;"	v
+a	project_euler/problem_02/sol3.py	/^a=0$/;"	v
+abbr	dynamic_programming/abbreviation.py	/^def abbr(a, b):$/;"	f
+add	data_structures/linked_list/__init__.py	/^    def add(self, item):$/;"	m	class:LinkedList
+addEdge	data_structures/graph/breadth_first_search.py	/^    def addEdge(self, fromVertex, toVertex):$/;"	m	class:Graph
+addEdge	data_structures/graph/depth_first_search.py	/^    def addEdge(self, fromVertex, toVertex):$/;"	m	class:Graph
+addEdge	data_structures/graph/graph.py	/^    def addEdge(self, fromVertex, toVertex):$/;"	m	class:AdjacencyList
+addEdge	dynamic_programming/floyd_warshall.py	/^    def addEdge(self, u, v, w):$/;"	m	class:Graph
+add_edge	data_structures/graph/dijkstra_algorithm.py	/^    def add_edge(self, u, v, w):$/;"	m	class:Graph
+add_edge	data_structures/graph/graph_list.py	/^    def add_edge(self, u, v):$/;"	m	class:Graph
+add_edge	data_structures/graph/graph_matrix.py	/^    def add_edge(self, u, v):$/;"	m	class:Graph
+add_layer	neural_network/bpnn.py	/^    def add_layer(self,layer):$/;"	m	class:BPNN
+addr	file_transfer_protocol/ftp_client_server.py	/^    conn, addr = s.accept()     # Establish connection with client.$/;"	v
+addr	simple_client_server/server.py	/^conn, addr = s.accept()$/;"	v
+adjlist	graphs/minimum_spanning_tree_prims.py	/^adjlist = defaultdict(list)$/;"	v
+adjm	graphs/basic_graphs.py	/^def adjm():$/;"	f
+al	data_structures/graph/graph.py	/^    al = AdjacencyList()$/;"	v
+all_anagrams	other/anagrams.py	/^all_anagrams = {word: anagram(word)$/;"	v
+anagram	other/anagrams.py	/^def anagram(myword):$/;"	f
+answer	project_euler/problem_20/sol1.py	/^answer = split_and_add(factorial)$/;"	v
+args	dynamic_programming/fastfibonacci.py	/^    args = sys.argv[1:]$/;"	v
+arr	data_structures/arrays.py	/^arr = [10, 20, 30, 40]$/;"	v
+arr	data_structures/stacks/next.py	/^arr = [11,13,21,3]$/;"	v
+arr	project_euler/problem_04/sol2.py	/^arr = []$/;"	v
+arr	searches/jump_search.py	/^arr = [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]$/;"	v
+array	dynamic_programming/longest_sub_array.py	/^    array = SubArray(whole_array)$/;"	v
+array	project_euler/problem_13/sol1.py	/^array = []$/;"	v
+assemble_transformation	strings/min_cost_string_conversion.py	/^def assemble_transformation(ops, i, j):$/;"	f
+assign_clusters	machine_learning/k_means_clust.py	/^def assign_clusters(data, centroids):$/;"	f
+ax	other/game_of_life/game_o_life.py	/^    fig, ax = plt.subplots()$/;"	v
+axpy	linear_algebra_python/src/lib.py	/^def axpy(scalar,x,y):$/;"	f
+b	project_euler/problem_02/sol3.py	/^    b=c$/;"	v
+b	project_euler/problem_02/sol3.py	/^b=2$/;"	v
+b	project_euler/problem_09/sol2.py	/^    b=(N*N-2*a*N)\/\/(2*N-2*a)$/;"	v
+b_expo	other/binary_exponentiation.py	/^def b_expo(a, b):$/;"	f
+b_expo	other/binary_exponentiation_2.py	/^def b_expo(a, b):$/;"	f
+b_expo_mod	other/binary_exponentiation.py	/^def b_expo_mod(a, b, c):$/;"	f
+b_expo_mod	other/binary_exponentiation_2.py	/^def b_expo_mod(a, b, c):$/;"	f
+back_propagation	neural_network/bpnn.py	/^    def back_propagation(self,gradient):$/;"	m	class:DenseLayer
+balanced_factor	data_structures/hashing/hash_table.py	/^    def balanced_factor(self):$/;"	m	class:HashTable
+balanced_factor	data_structures/hashing/hash_table_with_linked_list.py	/^    def balanced_factor(self):$/;"	m	class:HashTableWithLinkedList
+balanced_parentheses	data_structures/stacks/balanced_parentheses.py	/^def balanced_parentheses(parentheses):$/;"	f
+bfs	graphs/basic_graphs.py	/^def bfs(G, s):$/;"	f
+bfs	graphs/check_bipartite_graph_bfs.py	/^    def bfs():$/;"	f	function:checkBipartite	file:
+binary_search	searches/binary_search.py	/^def binary_search(sorted_collection, item):$/;"	f
+binary_search	sorts/timsort.py	/^def binary_search(lst, item, start, end):$/;"	f
+binary_search_by_recursion	searches/binary_search.py	/^def binary_search_by_recursion(sorted_collection, item, left, right):$/;"	f
+binary_search_std_lib	searches/binary_search.py	/^def binary_search_std_lib(sorted_collection, item):$/;"	f
+bisection	arithmetic_analysis/bisection.py	/^def bisection(function, a, b):  # finds where the function becomes 0 in [a,b] using bolzano$/;"	f
+blocks	graphs/multi_hueristic_astar.py	/^blocks = blocks_blk$/;"	v
+blocks_all	graphs/multi_hueristic_astar.py	/^blocks_all = make_common_ground()$/;"	v
+blocks_blk	graphs/multi_hueristic_astar.py	/^blocks_blk = [(0, 1),(1, 1),(2, 1),(3, 1),(4, 1),(5, 1),(6, 1),(7, 1),(8, 1),(9, 1),(10, 1),(11,/;"	v
+blocks_no	graphs/multi_hueristic_astar.py	/^blocks_no = []$/;"	v
+bogosort	sorts/bogosort.py	/^def bogosort(collection):$/;"	f
+bottomToTop	graphs/minimum_spanning_tree_prims.py	/^    def bottomToTop(val, index, heap, position):$/;"	f	function:PrimsAlgorithm	file:
+brute_force	ciphers/caesar_cipher.py	/^def brute_force(strng):$/;"	f
+bubble_sort	sorts/bubble_sort.py	/^def bubble_sort(arr):$/;"	f
+bucketSort	sorts/bucket_sort.py	/^def bucketSort(myList, bucketSize=DEFAULT_BUCKET_SIZE):$/;"	f
+buffer_space	hashes/chaos_machine.py	/^buffer_space, params_space = [], []$/;"	v
+build	data_structures/binary tree/lazy_segment_tree.py	/^    def build(self, idx, l, r, A):$/;"	m	class:SegmentTree
+build	neural_network/bpnn.py	/^    def build(self):$/;"	m	class:BPNN
+buildHeap	data_structures/heap/heap.py	/^	def buildHeap(self,a):$/;"	m	class:Heap
+build_tree	traversals/binary_tree_traversals.py	/^def build_tree():$/;"	f
+bulk_insert	data_structures/hashing/hash_table.py	/^    def bulk_insert(self, values):$/;"	m	class:HashTable
+c	ciphers/onepad_cipher.py	/^    c, k = Onepad().encrypt('Hello')$/;"	v
+c	other/game_of_life/game_o_life.py	/^            c = run(c)            $/;"	v
+c	other/game_of_life/game_o_life.py	/^    c=create_canvas(canvas_size)$/;"	v
+c	project_euler/problem_02/sol3.py	/^    c=4*b+a$/;"	v
+c	project_euler/problem_09/sol2.py	/^    c=N-a-b$/;"	v
+cal_gradient	neural_network/bpnn.py	/^    def cal_gradient(self):$/;"	m	class:DenseLayer
+cal_loss	neural_network/bpnn.py	/^    def cal_loss(self,ydata,ydata_):$/;"	m	class:BPNN
+calculate	analysis/compression_analysis/psnr.py	/^def calculate(img):$/;"	f
+calculateSpan	data_structures/stacks/stock_span_problem.py	/^def calculateSpan(price, S): $/;"	f
+calculate_hypothesis_value	machine_learning/gradient_descent.py	/^def calculate_hypothesis_value(example_no, data_set):$/;"	f
+canvas_size	other/game_of_life/game_o_life.py	/^    canvas_size = int(sys.argv[1])$/;"	v
+centroid_pairwise_dist	machine_learning/k_means_clust.py	/^def centroid_pairwise_dist(X,centroids):$/;"	f
+centroids	machine_learning/k_means_clust.py	/^    centroids, cluster_assignment = kmeans(dataset['data'], k, initial_centroids, maxiter=400,$/;"	v
+changeComponent	linear_algebra_python/src/lib.py	/^    def changeComponent(self,pos,value):$/;"	m	class:Vector
+changeComponent	linear_algebra_python/src/lib.py	/^    def changeComponent(self,x,y, value):$/;"	m	class:Matrix
+chars	other/password_generator.py	/^chars = letters + digits + symbols$/;"	v
+check	boolean_algebra/quine_mc_cluskey.py	/^def check(binary):$/;"	f
+checkBipartite	graphs/check_bipartite_graph_bfs.py	/^def checkBipartite(l):$/;"	f
+checkKeys	ciphers/affine_cipher.py	/^def checkKeys(keyA, keyB, mode):$/;"	f
+checkValidKey	ciphers/simple_substitution_cipher.py	/^def checkValidKey(key):$/;"	f
+check_prime	data_structures/hashing/number_theory/prime_numbers.py	/^def check_prime(number):$/;"	f
+choice	other/game_of_life/game_o_life.py	/^choice = [0]*100 + [1]*10$/;"	v
+chunker	ciphers/playfair_cipher.py	/^def chunker(seq, size):$/;"	f
+cleanup	sorts/external-sort.py	/^    def cleanup(self):$/;"	m	class:FileSplitter
+cluster_assignment	machine_learning/k_means_clust.py	/^    centroids, cluster_assignment = kmeans(dataset['data'], k, initial_centroids, maxiter=400,$/;"	v
+cmap	other/game_of_life/game_o_life.py	/^    cmap = ListedColormap(['w','k'])$/;"	v
+cocktail_shaker_sort	sorts/cocktail_shaker_sort.py	/^def cocktail_shaker_sort(unsorted):$/;"	f
+collect_dataset	machine_learning/linear_regression.py	/^def collect_dataset():$/;"	f
+collection	searches/binary_search.py	/^    collection = [int(item) for item in user_input.split(',')]$/;"	v
+collection	searches/interpolation_search.py	/^    collection = [int(item) for item in user_input.split(',')]$/;"	v
+collection	searches/ternary_search.py	/^    collection = [int(item) for item in user_input.split(',')]$/;"	v
+comb_sort	sorts/comb_sort.py	/^def comb_sort(data):$/;"	f
+combinations	project_euler/problem_53/sol1.py	/^def combinations(n, r):$/;"	f
+compare_string	boolean_algebra/quine_mc_cluskey.py	/^def compare_string(string1, string2):$/;"	f
+component	graphs/scc_kosaraju.py	/^component = []$/;"	v
+component	linear_algebra_python/src/lib.py	/^    def component(self,i):$/;"	m	class:Vector
+component	linear_algebra_python/src/lib.py	/^    def component(self,x,y):$/;"	m	class:Matrix
+computeAP	graphs/articulation_points.py	/^def computeAP(l):$/;"	f
+computeBridges	graphs/finding_bridges.py	/^def computeBridges(l):$/;"	f
+compute_heterogeneity	machine_learning/k_means_clust.py	/^def compute_heterogeneity(data, k, centroids, cluster_assignment):$/;"	f
+compute_transform_tables	strings/min_cost_string_conversion.py	/^def compute_transform_tables(X, Y, cC, cR, cD, cI):$/;"	f
+conn	file_transfer_protocol/ftp_client_server.py	/^    conn, addr = s.accept()     # Establish connection with client.$/;"	v
+conn	simple_client_server/server.py	/^conn, addr = s.accept()$/;"	v
+consistent_hueristic	graphs/multi_hueristic_astar.py	/^def consistent_hueristic(P, goal):$/;"	f
+constant	project_euler/problem_40/sol1.py	/^constant = ''.join(constant)$/;"	v
+constant	project_euler/problem_40/sol1.py	/^constant = []$/;"	v
+convolute	neural_network/convolution_neural_network.py	/^    def convolute(self,data,convs,w_convs,thre_convs,conv_step):$/;"	m	class:CNN
+convolution	neural_network/convolution_neural_network.py	/^    def convolution(self,data):$/;"	m	class:CNN
+copy	linear_algebra_python/src/lib.py	/^    def copy(self):$/;"	m	class:Vector
+cost	graphs/a_star.py	/^cost = 1$/;"	v
+cost	graphs/minimum_spanning_tree_kruskal.py	/^	node1, node2, cost = list(map(int,raw_input().split()))$/;"	v
+cost	strings/min_cost_string_conversion.py	/^	cost = 0$/;"	v
+count	data_structures/graph/even_tree.py	/^    count = 0$/;"	v
+count	project_euler/problem_02/sol3.py	/^    count=count+a$/;"	v
+count	project_euler/problem_02/sol3.py	/^count=0$/;"	v
+count	project_euler/problem_17/sol1.py	/^count = 0$/;"	v
+count_divisors	project_euler/problem_12/sol1.py	/^def count_divisors(n):$/;"	f
+counter	project_euler/problem_14/sol1.py	/^    counter = 1$/;"	v
+counting_sort	sorts/counting_sort.py	/^def counting_sort(collection):$/;"	f
+counting_sort_string	sorts/counting_sort.py	/^def counting_sort_string(string):$/;"	f
+create_canvas	other/game_of_life/game_o_life.py	/^def create_canvas(size):$/;"	f
+create_graph	graphs/tarjans_scc.py	/^def create_graph(n, edges):$/;"	f
+cryptoMath	ciphers/affine_cipher.py	/^import sys, random, cryptomath_module as cryptoMath$/;"	I
+cryptoMath	ciphers/elgamal_key_generator.py	/^import rabin_miller as rabinMiller, cryptomath_module as cryptoMath$/;"	I
+cryptoMath	ciphers/rsa_key_generator.py	/^import rabin_miller as rabinMiller, cryptomath_module as cryptoMath$/;"	I
+cuts	data_structures/graph/even_tree.py	/^    cuts = []$/;"	v
+cycle_sort	sorts/cyclesort.py	/^def cycle_sort(array):$/;"	f
+d	project_euler/problem_09/sol2.py	/^        d=(a*b*c)$/;"	v
+d	project_euler/problem_09/sol2.py	/^d=0$/;"	v
+data	file_transfer_protocol/ftp_client_server.py	/^        data = s.recv(1024)$/;"	v
+data	file_transfer_protocol/ftp_client_server.py	/^    data = conn.recv(1024)$/;"	v
+data	simple_client_server/client.py	/^data = s.recv(1024)$/;"	v
+data	simple_client_server/server.py	/^    data = conn.recv(1024)$/;"	v
+dataset	machine_learning/k_means_clust.py	/^    dataset = ds.load_iris()$/;"	v
+day	project_euler/problem_19/sol1.py	/^			day = day-29$/;"	v
+day	project_euler/problem_19/sol1.py	/^			day = day-days_per_month[month-2]$/;"	v
+day	project_euler/problem_19/sol1.py	/^day = 6$/;"	v
+days_per_month	project_euler/problem_19/sol1.py	/^days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]$/;"	v
+de	data_structures/queue/deqeue.py	/^de = collections.deque([1, 2, 3,])$/;"	v
+decimal_to_binary	boolean_algebra/quine_mc_cluskey.py	/^def decimal_to_binary(no_of_variable, minterms):$/;"	f
+decode	ciphers/playfair_cipher.py	/^def decode(ciphertext, key):$/;"	f
+decrease_key	data_structures/graph/dijkstra_algorithm.py	/^    def decrease_key(self, tup, new_d):$/;"	m	class:PriorityQueue
+decrypt	ciphers/brute_force_caesar_cipher.py	/^def decrypt(message):$/;"	f
+decrypt	ciphers/caesar_cipher.py	/^def decrypt(strng, key):$/;"	f
+decrypt	ciphers/onepad_cipher.py	/^    def decrypt(self, cipher, key):$/;"	m	class:Onepad
+decrypt	ciphers/xor_cipher.py	/^	def decrypt(self,content,key):$/;"	m	class:XORCipher
+decryptMessage	ciphers/affine_cipher.py	/^def decryptMessage(key, message):$/;"	f
+decryptMessage	ciphers/rsa_cipher.py	/^def decryptMessage(encryptedBlocks, messageLength, key, blockSize=DEFAULT_BLOCK_SIZE):$/;"	f
+decryptMessage	ciphers/simple_substitution_cipher.py	/^def decryptMessage(key, message):$/;"	f
+decryptMessage	ciphers/transposition_cipher.py	/^def decryptMessage(key, message):$/;"	f
+decryptMessage	ciphers/vigenere_cipher.py	/^def decryptMessage(key, message):$/;"	f
+decrypt_file	ciphers/xor_cipher.py	/^	def decrypt_file(self,file, key):$/;"	m	class:XORCipher
+decrypt_string	ciphers/xor_cipher.py	/^	def decrypt_string(self,content,key = 0):$/;"	m	class:XORCipher
+delete	data_structures/binary tree/binary_search_tree.py	/^    def delete(self, label):$/;"	m	class:BinarySearchTree
+delete	data_structures/linked_list/doubly_linked_list.py	/^    def delete(self, x):$/;"	m	class:LinkedList
+deleteHead	data_structures/linked_list/doubly_linked_list.py	/^    def deleteHead(self):$/;"	m	class:LinkedList
+deleteMinimum	graphs/minimum_spanning_tree_prims.py	/^    def deleteMinimum(heap, positions):$/;"	f	function:PrimsAlgorithm	file:
+deleteTail	data_structures/linked_list/doubly_linked_list.py	/^    def deleteTail(self):$/;"	m	class:LinkedList
+delete_head	data_structures/linked_list/singly_linked_list.py	/^    def delete_head(Head):  # delete from head$/;"	m	class:Linked_List
+delete_tail	data_structures/linked_list/singly_linked_list.py	/^    def delete_tail(Head):  # delete from tail$/;"	m	class:Linked_List
+delta	graphs/a_star.py	/^delta = [[-1, 0 ], # go up$/;"	v
+dencrypt	ciphers/rot13.py	/^def dencrypt(s, n):$/;"	f
+dfs	data_structures/graph/even_tree.py	/^def dfs(start):$/;"	f
+dfs	graphs/articulation_points.py	/^    def dfs(root, at, parent, outEdgeCount):$/;"	f	function:computeAP	file:
+dfs	graphs/basic_graphs.py	/^def dfs(G, s):$/;"	f
+dfs	graphs/finding_bridges.py	/^    def dfs(at, parent, bridges, id):$/;"	f	function:computeBridges	file:
+dfs	graphs/scc_kosaraju.py	/^def dfs(u):$/;"	f
+dfs2	graphs/scc_kosaraju.py	/^def dfs2(u):$/;"	f
+diagonal_sum	project_euler/problem_28/sol1.py	/^def diagonal_sum(n):$/;"	f
+digits	other/password_generator.py	/^digits = [digit for digit in string.digits]$/;"	v
+dijk	graphs/basic_graphs.py	/^def dijk(G, s):$/;"	f
+dijkstra	data_structures/graph/dijkstra_algorithm.py	/^    def dijkstra(self, src):$/;"	m	class:Graph
+display	data_structures/heap/heap.py	/^	def display(self):$/;"	m	class:Heap
+display	data_structures/linked_list/doubly_linked_list.py	/^    def display(self): #Prints contents of the list$/;"	m	class:LinkedList
+displayLink	data_structures/linked_list/doubly_linked_list.py	/^    def displayLink(self):$/;"	m	class:Link
+divisor	project_euler/problem_04/sol1.py	/^        divisor = 999$/;"	v
+do_round	neural_network/convolution_neural_network.py	/^    def do_round(self,x):$/;"	m	class:CNN
+do_something	graphs/multi_hueristic_astar.py	/^def do_something(back_pointer, goal, start):$/;"	f
+double_rotate_left	data_structures/avl.py	/^    def double_rotate_left(self, node):$/;"	m	class:AVL
+double_rotate_right	data_structures/avl.py	/^    def double_rotate_right(self, node):$/;"	m	class:AVL
+dp_count	dynamic_programming/coin_change.py	/^def dp_count(S, m, n):$/;"	f
+draw_error	neural_network/convolution_neural_network.py	/^        def draw_error():$/;"	f	member:CNN.trian	file:
+ds	machine_learning/k_means_clust.py	/^    import sklearn.datasets as ds$/;"	I
+dst	data_structures/graph/bellman_ford.py	/^	dst = int(raw_input("Enter destination:"))$/;"	v
+dst	data_structures/graph/dijkstra.py	/^	dst = int(raw_input("Enter destination:"))$/;"	v
+dst	data_structures/graph/floyd_warshall.py	/^	dst = int(raw_input("Enter destination:"))$/;"	v
+e	graphs/minimum_spanning_tree_prims.py	/^e = int(raw_input("Enter number of edges: "))$/;"	v
+edges	data_structures/graph/even_tree.py	/^    edges = [$/;"	v
+edges	graphs/minimum_spanning_tree_kruskal.py	/^edges = []$/;"	v
+edges	graphs/minimum_spanning_tree_kruskal.py	/^edges = sorted(edges, key=lambda edge: edge[3])$/;"	v
+edges	graphs/tarjans_scc.py	/^    edges = [(u, v) for u, v in zip(source, target)]$/;"	v
+edges	sorts/topological_sort.py	/^edges = {'a': ['c', 'b'], 'b': ['d', 'e'], 'c': [], 'd': [], 'e': []}$/;"	v
+edglist	graphs/basic_graphs.py	/^def edglist():$/;"	f
+empty	data_structures/avl.py	/^    def empty(self):$/;"	m	class:AVL
+empty	data_structures/binary tree/binary_search_tree.py	/^    def empty(self):$/;"	m	class:BinarySearchTree
+empty	graphs/multi_hueristic_astar.py	/^	def empty(self):$/;"	m	class:PriorityQueue
+encode	ciphers/playfair_cipher.py	/^def encode(plaintext, key):$/;"	f
+encrypt	ciphers/caesar_cipher.py	/^def encrypt(strng, key):$/;"	f
+encrypt	ciphers/onepad_cipher.py	/^    def encrypt(self, text):$/;"	m	class:Onepad
+encrypt	ciphers/xor_cipher.py	/^	def encrypt(self, content, key):$/;"	m	class:XORCipher
+encryptAndWriteToFile	ciphers/rsa_cipher.py	/^def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=DEFAULT_BLOCK_SIZE):$/;"	f
+encryptMessage	ciphers/affine_cipher.py	/^def encryptMessage(key, message):$/;"	f
+encryptMessage	ciphers/rsa_cipher.py	/^def encryptMessage(message, key, blockSize=DEFAULT_BLOCK_SIZE):$/;"	f
+encryptMessage	ciphers/simple_substitution_cipher.py	/^def encryptMessage(key, message):$/;"	f
+encryptMessage	ciphers/transposition_cipher.py	/^def encryptMessage(key, message):$/;"	f
+encryptMessage	ciphers/vigenere_cipher.py	/^def encryptMessage(key, message):$/;"	f
+encrypt_file	ciphers/xor_cipher.py	/^	def encrypt_file(self, file, key = 0):$/;"	m	class:XORCipher
+encrypt_string	ciphers/xor_cipher.py	/^	def encrypt_string(self,content, key = 0):$/;"	m	class:XORCipher
+end	dynamic_programming/max_sub_array.py	/^        end=time.time()$/;"	v
+englishFreqMatchScore	other/frequency_finder.py	/^def englishFreqMatchScore(message):$/;"	f
+englishLetterFreq	other/frequency_finder.py	/^englishLetterFreq = {'E': 12.70, 'T': 9.06, 'A': 8.17, 'O': 7.51, 'I': 6.97,$/;"	v
+euclidean_gcd	other/euclidean_gcd.py	/^def euclidean_gcd(a, b):$/;"	f
+eulerPhi	maths/basic_maths.py	/^def eulerPhi(n):$/;"	f
+eulidLength	linear_algebra_python/src/lib.py	/^    def eulidLength(self):$/;"	m	class:Vector
+even_tree	data_structures/graph/even_tree.py	/^def even_tree():$/;"	f
+example	neural_network/bpnn.py	/^def example():$/;"	f
+examples	data_structures/stacks/balanced_parentheses.py	/^    examples = ['((()))', '((())']$/;"	v
+exit	machine_learning/perceptron.py	/^exit = [-1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1/;"	v
+exit	neural_network/perceptron.py	/^exit = [-1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1/;"	v
+expand_block	hashes/sha1.py	/^    def expand_block(self, block):$/;"	m	class:SHA1Hash
+expand_state	graphs/multi_hueristic_astar.py	/^def expand_state(s, j, visited, g_function, close_list_anchor, close_list_inad,  open_list, back/;"	f
+expression	data_structures/stacks/infix_to_postfix_conversion.py	/^    expression = 'a+b*(c^d-e)^(f+g*h)-i'$/;"	v
+extract_min	data_structures/graph/dijkstra_algorithm.py	/^    def extract_min(self):$/;"	m	class:PriorityQueue
+f	arithmetic_analysis/bisection.py	/^def f(x):$/;"	f
+f	arithmetic_analysis/intersection.py	/^def f(x):$/;"	f
+f	arithmetic_analysis/newton_method.py	/^def f(x):$/;"	f
+f	data_structures/binary tree/fenwick_tree.py	/^    f = FenwickTree(100)$/;"	v
+f	file_transfer_protocol/ftp_client_server.py	/^    f = open(filename, 'rb')$/;"	v
+f	maths/simpson_rule.py	/^def f(x): #enter your function here$/;"	f
+f	maths/trapezoidal_rule.py	/^def f(x): #enter your function here$/;"	f
+f1	arithmetic_analysis/newton_method.py	/^def f1(x):$/;"	f
+factorial	other/primelib.py	/^def factorial(n):$/;"	f
+factorial	project_euler/problem_20/sol1.py	/^def factorial(n):$/;"	f
+factorial	project_euler/problem_20/sol1.py	/^factorial = factorial(number)$/;"	v
+fib	dynamic_programming/fibonacci.py	/^        fib = Fibonacci(N)$/;"	v
+fib	other/primelib.py	/^def fib(n):$/;"	f
+fib	project_euler/problem_02/sol2.py	/^def fib(n):$/;"	f
+fibonacci	dynamic_programming/fastfibonacci.py	/^def fibonacci(n: int):  # noqa: E999 This syntax is Python 3 only$/;"	f
+fibonacci	project_euler/problem_25/sol1.py	/^def fibonacci(n):$/;"	f
+fibonacci_digits_index	project_euler/problem_25/sol1.py	/^def fibonacci_digits_index(n):$/;"	f
+fig	other/game_of_life/game_o_life.py	/^    fig, ax = plt.subplots()$/;"	v
+file	strings/min_cost_string_conversion.py	/^	file = open('min_cost.txt', 'w')$/;"	v
+filename	file_transfer_protocol/ftp_client_server.py	/^    filename = 'mytext.txt'$/;"	v
+final_hash	hashes/sha1.py	/^    def final_hash(self):$/;"	m	class:SHA1Hash
+find	data_structures/trie/trie.py	/^    def find(self, word: str) -> bool:  # noqa: E999 This syntax is Python 3 only$/;"	m	class:TrieNode
+findMin	dynamic_programming/minimum_partition.py	/^def findMin(arr):$/;"	f
+findModInverse	ciphers/cryptomath_module.py	/^def findModInverse(a, m):$/;"	f
+find_max_cross_sum	dynamic_programming/max_sub_array.py	/^def find_max_cross_sum(A,low,mid,high):$/;"	f
+find_max_sub_array	dynamic_programming/max_sub_array.py	/^def find_max_sub_array(A,low,high):$/;"	f
+find_neighborhood	searches/tabu_search.py	/^def find_neighborhood(solution, dict_of_neighbours):$/;"	f
+find_parent	graphs/minimum_spanning_tree_kruskal.py	/^def find_parent(i):$/;"	f
+first_word	strings/levenshtein_distance.py	/^    first_word = raw_input('Enter the first word:\\n').strip()$/;"	v
+floy	graphs/basic_graphs.py	/^def floy(A_and_n):$/;"	f
+floyd_warshall	dynamic_programming/floyd_warshall.py	/^    def floyd_warshall(self):$/;"	m	class:Graph
+forward_propagation	neural_network/bpnn.py	/^    def forward_propagation(self,xdata):$/;"	m	class:DenseLayer
+front	data_structures/queue/queue_on_list.py	/^    def front(self):$/;"	m	class:Queue
+front	data_structures/queue/queue_on_pseudo_stack.py	/^    def front(self):$/;"	m	class:Queue
+ftp	file_transfer_protocol/ftp_send_receive.py	/^ftp = FTP('xxx.xxx.x.x')  # Enter the ip address or the domain name here$/;"	v
+g	data_structures/graph/breadth_first_search.py	/^    g = Graph()$/;"	v
+g	data_structures/graph/depth_first_search.py	/^    g = Graph()$/;"	v
+g	data_structures/graph/graph_list.py	/^g = Graph(100)$/;"	v
+g	data_structures/graph/graph_matrix.py	/^g = Graph(100)$/;"	v
+g	graphs/basic_graphs.py	/^g = {}$/;"	v
+g	graphs/scc_kosaraju.py	/^g = [[] for i in range(n)] #graph$/;"	v
+g	graphs/tarjans_scc.py	/^    g = create_graph(n_vertices, edges)$/;"	v
+g	project_euler/problem_05/sol2.py	/^    g=lcm(g,i)$/;"	v
+g	project_euler/problem_05/sol2.py	/^g=1$/;"	v
+gcd	ciphers/cryptomath_module.py	/^def gcd(a, b):$/;"	f
+gcd	maths/greater_common_divisor.py	/^def gcd(a, b):$/;"	f
+gcd	other/primelib.py	/^def gcd(number1,number2):$/;"	f
+gcd	project_euler/problem_05/sol2.py	/^def gcd(x,y):$/;"	f
+generateKey	ciphers/elgamal_key_generator.py	/^def generateKey(keySize):$/;"	f
+generateKey	ciphers/rsa_key_generator.py	/^def generateKey(keySize):$/;"	f
+generateLargePrime	ciphers/rabin_miller.py	/^def generateLargePrime(keysize = 1024):$/;"	f
+generate_first_solution	searches/tabu_search.py	/^def generate_first_solution(path, dict_of_neighbours):$/;"	f
+generate_neighbours	searches/tabu_search.py	/^def generate_neighbours(path):$/;"	f
+generate_table	ciphers/playfair_cipher.py	/^def generate_table(key):$/;"	f
+get	data_structures/queue/queue_on_list.py	/^    def get(self):$/;"	m	class:Queue
+get	data_structures/queue/queue_on_pseudo_stack.py	/^    def get(self):$/;"	m	class:Queue
+get	dynamic_programming/fibonacci.py	/^    def get(self, sequence_no=None):$/;"	m	class:Fibonacci
+get	graphs/multi_hueristic_astar.py	/^	def get(self):$/;"	m	class:PriorityQueue
+getBlock	hashes/md5.py	/^def getBlock(bitString):$/;"	f
+getBlocksFromText	ciphers/rsa_cipher.py	/^def getBlocksFromText(message, blockSize=DEFAULT_BLOCK_SIZE):$/;"	f
+getDivisors	other/primelib.py	/^def getDivisors(n):$/;"	f
+getEnglishCount	other/detecting_english_programmatically.py	/^def getEnglishCount(message):$/;"	f
+getFrequencyOrder	other/frequency_finder.py	/^def getFrequencyOrder(message):$/;"	f
+getItemAtIndexZero	other/frequency_finder.py	/^def getItemAtIndexZero(x):$/;"	f
+getKeyParts	ciphers/affine_cipher.py	/^def getKeyParts(key):$/;"	f
+getLabel	data_structures/binary tree/binary_search_tree.py	/^    def getLabel(self):$/;"	m	class:Node
+getLeft	data_structures/binary tree/binary_search_tree.py	/^    def getLeft(self):$/;"	m	class:Node
+getLetterCount	other/frequency_finder.py	/^def getLetterCount(message):$/;"	f
+getMax	data_structures/binary tree/binary_search_tree.py	/^    def getMax(self, root = None):$/;"	m	class:BinarySearchTree
+getMax	data_structures/heap/heap.py	/^	def getMax(self):$/;"	m	class:Heap
+getMid	other/sierpinski_triangle.py	/^def getMid(p1,p2):$/;"	f
+getMin	data_structures/binary tree/binary_search_tree.py	/^    def getMin(self, root = None):$/;"	m	class:BinarySearchTree
+getNode	data_structures/binary tree/binary_search_tree.py	/^    def getNode(self, label):$/;"	m	class:BinarySearchTree
+getParent	data_structures/binary tree/binary_search_tree.py	/^    def getParent(self):$/;"	m	class:Node
+getPosition	graphs/minimum_spanning_tree_prims.py	/^    def getPosition(vertex):$/;"	f	function:PrimsAlgorithm	file:
+getPrime	other/primelib.py	/^def getPrime(n):$/;"	f
+getPrimeNumbers	other/primelib.py	/^def getPrimeNumbers(N):$/;"	f
+getPrimesBetween	other/primelib.py	/^def getPrimesBetween(pNumber1, pNumber2):$/;"	f
+getRandomKey	ciphers/affine_cipher.py	/^def getRandomKey():$/;"	f
+getRandomKey	ciphers/simple_substitution_cipher.py	/^def getRandomKey():$/;"	f
+getRight	data_structures/binary tree/binary_search_tree.py	/^    def getRight(self):$/;"	m	class:Node
+getRoot	data_structures/avl.py	/^    def getRoot(self):$/;"	m	class:AVL
+getRoot	data_structures/binary tree/binary_search_tree.py	/^    def getRoot(self):$/;"	m	class:BinarySearchTree
+getTextFromBlocks	ciphers/rsa_cipher.py	/^def getTextFromBlocks(blockInts, messageLength, blockSize=DEFAULT_BLOCK_SIZE):$/;"	f
+getWordPattern	other/word_patterns.py	/^def getWordPattern(word):$/;"	f
+get_block_filenames	sorts/external-sort.py	/^    def get_block_filenames(self):$/;"	m	class:FileSplitter
+get_cost_derivative	machine_learning/gradient_descent.py	/^def get_cost_derivative(index):$/;"	f
+get_dict	sorts/external-sort.py	/^    def get_dict(self):$/;"	m	class:FilesArray
+get_failure_array	strings/knuth_morris_pratt.py	/^def get_failure_array(pattern):$/;"	f
+get_file_handles	sorts/external-sort.py	/^    def get_file_handles(self, filenames, buffer_size):$/;"	m	class:FileMerger
+get_initial_centroids	machine_learning/k_means_clust.py	/^def get_initial_centroids(data, k, seed=None):$/;"	f
+get_number_blocks	sorts/external-sort.py	/^    def get_number_blocks(self, filename, block_size):$/;"	m	class:ExternalSort
+gnome_sort	sorts/gnome_sort.py	/^def gnome_sort(unsorted):$/;"	f
+goal	graphs/a_star.py	/^goal = [len(grid)-1, len(grid[0])-1] #all coordinates are given in format [y,x] $/;"	v
+goal	graphs/multi_hueristic_astar.py	/^goal = (n-1, n-1)$/;"	v
+goldbach	other/primelib.py	/^def goldbach(number):$/;"	f
+graph	data_structures/graph/bellman_ford.py	/^graph = [dict() for j in range(E)]$/;"	v
+graph	data_structures/graph/dijkstra.py	/^graph = [[float('inf') for i in range(V)] for j in range(V)]$/;"	v
+graph	data_structures/graph/dijkstra_algorithm.py	/^    graph = Graph(9)$/;"	v
+graph	data_structures/graph/floyd_warshall.py	/^graph = [[float('inf') for i in range(V)] for j in range(V)]$/;"	v
+graph	dynamic_programming/floyd_warshall.py	/^    graph = Graph(5)$/;"	v
+graph	networking_flow/ford_fulkerson.py	/^graph = [[0, 16, 13, 0, 0, 0],$/;"	v
+graph	networking_flow/minimum_cut.py	/^graph = [[0, 16, 13, 0, 0, 0],$/;"	v
+greatestPrimeFactor	other/primelib.py	/^def greatestPrimeFactor(number):$/;"	f
+grid	graphs/a_star.py	/^grid = [[0, 1, 0, 0, 0, 0],$/;"	v
+grid	project_euler/problem_11/sol1.py	/^	grid = [[int(i) for i in grid[j]] for j in xrange(len(grid))]$/;"	v
+grid	project_euler/problem_11/sol1.py	/^	grid = []$/;"	v
+gsrc	data_structures/graph/bellman_ford.py	/^gsrc = int(raw_input("\\nEnter shortest path source:"))$/;"	v
+gsrc	data_structures/graph/dijkstra.py	/^gsrc = int(raw_input("\\nEnter shortest path source:"))$/;"	v
+hash_function	data_structures/hashing/hash_table.py	/^    def hash_function(self, key):$/;"	m	class:HashTable
+heapSort	data_structures/heap/heap.py	/^	def heapSort(self):$/;"	m	class:Heap
+heap_sort	sorts/heap_sort.py	/^def heap_sort(unsorted):$/;"	f
+heapify	graphs/minimum_spanning_tree_prims.py	/^    def heapify(heap, positions):$/;"	f	function:PrimsAlgorithm	file:
+heapify	sorts/heap_sort.py	/^def heapify(unsorted, index, heap_size):$/;"	f
+height	linear_algebra_python/src/lib.py	/^    def height(self):$/;"	m	class:Matrix
+heterogeneity	machine_learning/k_means_clust.py	/^    heterogeneity = []$/;"	v
+heuristic	graphs/a_star.py	/^heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]$/;"	v
+host	file_transfer_protocol/ftp_client_server.py	/^host = socket.gethostname()     # Get local machine name$/;"	v
+hueristic_1	graphs/multi_hueristic_astar.py	/^def hueristic_1(P, goal):$/;"	f
+hueristic_2	graphs/multi_hueristic_astar.py	/^def hueristic_2(P, goal):$/;"	f
+hueristics	graphs/multi_hueristic_astar.py	/^hueristics = {0: consistent_hueristic, 1: hueristic_1, 2: hueristic_2}$/;"	v
+i	project_euler/problem_02/sol1.py	/^    i=j$/;"	v
+i	project_euler/problem_02/sol1.py	/^i=1$/;"	v
+i	project_euler/problem_03/sol2.py	/^i=2$/;"	v
+i	project_euler/problem_05/sol1.py	/^            i=1$/;"	v
+i	project_euler/problem_05/sol1.py	/^i = 0$/;"	v
+i	project_euler/problem_07/sol1.py	/^i=0$/;"	v
+i	project_euler/problem_12/sol1.py	/^i = 1$/;"	v
+i	project_euler/problem_40/sol1.py	/^i = 1$/;"	v
+i	project_euler/problem_52/sol1.py	/^i = 1$/;"	v
+i	strings/min_cost_string_conversion.py	/^	i = 0$/;"	v
+in_data	file_transfer_protocol/ftp_client_server.py	/^       in_data = f.read(1024)$/;"	v
+in_data	file_transfer_protocol/ftp_client_server.py	/^    in_data = f.read(1024)$/;"	v
+in_order	traversals/binary_tree_traversals.py	/^def in_order(node):$/;"	f
+index	searches/jump_search.py	/^index = jump_search(arr, x)$/;"	v
+infix_to_postfix	data_structures/stacks/infix_to_postfix_conversion.py	/^def infix_to_postfix(expression):$/;"	f
+init	graphs/a_star.py	/^init = [0, 0]$/;"	v
+initial_centroids	machine_learning/k_means_clust.py	/^    initial_centroids = get_initial_centroids(dataset['data'], k, seed=0)$/;"	v
+initializer	neural_network/bpnn.py	/^    def initializer(self,back_units):$/;"	m	class:DenseLayer
+inorder	sorts/tree_sort.py	/^def inorder(root, res):$/;"	f
+inp	hashes/chaos_machine.py	/^  inp = input("(e)exit? ").strip()$/;"	v
+inp	hashes/chaos_machine.py	/^inp = ""$/;"	v
+inputs	dynamic_programming/max_sub_array.py	/^    inputs=[10,100,1000,10000,50000,100000,200000,300000,400000,500000]$/;"	v
+insert	data_structures/avl.py	/^    def insert(self, value):$/;"	m	class:AVL
+insert	data_structures/binary tree/binary_search_tree.py	/^    def insert(self, label):$/;"	m	class:BinarySearchTree
+insert	data_structures/graph/dijkstra_algorithm.py	/^    def insert(self, tup):$/;"	m	class:PriorityQueue
+insert	data_structures/heap/heap.py	/^	def insert(self,data):$/;"	m	class:Heap
+insert	data_structures/trie/trie.py	/^    def insert(self, word: str):  # noqa: E999 This syntax is Python 3 only$/;"	m	class:TrieNode
+insert	sorts/tree_sort.py	/^    def insert(self,val):$/;"	m	class:node
+insertHead	data_structures/linked_list/doubly_linked_list.py	/^    def insertHead(self, x):$/;"	m	class:LinkedList
+insertTail	data_structures/linked_list/doubly_linked_list.py	/^    def insertTail(self, x):$/;"	m	class:LinkedList
+insert_data	data_structures/hashing/hash_table.py	/^    def insert_data(self, data):$/;"	m	class:HashTable
+insert_head	data_structures/linked_list/singly_linked_list.py	/^    def insert_head(Head, data):$/;"	m	class:Linked_List
+insert_many	data_structures/trie/trie.py	/^    def insert_many(self, words: [str]):  # noqa: E999 This syntax is Python 3 only$/;"	m	class:TrieNode
+insert_tail	data_structures/linked_list/singly_linked_list.py	/^    def insert_tail(Head, data):$/;"	m	class:Linked_List
+insertion_sort	sorts/insertion_sort.py	/^def insertion_sort(collection):$/;"	f
+insertion_sort	sorts/timsort.py	/^def insertion_sort(lst):$/;"	f
+integers	other/fischer_yates_shuffle.py	/^    integers = [0,1,2,3,4,5,6,7]$/;"	v
+interpolation_search	searches/interpolation_search.py	/^def interpolation_search(sorted_collection, item):$/;"	f
+interpolation_search_by_recursion	searches/interpolation_search.py	/^def interpolation_search_by_recursion(sorted_collection, item, left, right):$/;"	f
+intersection	arithmetic_analysis/intersection.py	/^def intersection(function,x0,x1): #function is the f we want to find its root and x0 and x1 are /;"	f
+isEmpty	data_structures/graph/dijkstra_algorithm.py	/^    def isEmpty(self):$/;"	m	class:PriorityQueue
+isEmpty	data_structures/linked_list/doubly_linked_list.py	/^    def isEmpty(self): #Will return True if the list is empty$/;"	m	class:LinkedList
+isEmpty	data_structures/linked_list/singly_linked_list.py	/^    def isEmpty(Head):$/;"	m	class:Linked_List
+isEnglish	other/detecting_english_programmatically.py	/^def isEnglish(message, wordPercentage = 20, letterPercentage = 85):$/;"	f
+isEven	other/primelib.py	/^def isEven(number):$/;"	f
+isOdd	other/primelib.py	/^def isOdd(number):$/;"	f
+isPerfectNumber	other/primelib.py	/^def isPerfectNumber(number):$/;"	f
+isPositiveInteger	maths/fibonacci_sequence_recursion.py	/^def isPositiveInteger(limit):$/;"	f
+isPrime	ciphers/rabin_miller.py	/^def isPrime(num):$/;"	f
+isPrime	other/primelib.py	/^def isPrime(number):$/;"	f
+isSorted	sorts/bogosort.py	/^    def isSorted(collection):$/;"	f	function:bogosort	file:
+is_balanced	other/nested_brackets.py	/^def is_balanced(S):$/;"	f
+is_empty	data_structures/linked_list/__init__.py	/^    def is_empty(self):$/;"	m	class:LinkedList
+is_empty	data_structures/stacks/__init__.py	/^   def is_empty(self):$/;"	m	class:Stack
+is_empty	data_structures/stacks/stack.py	/^    def is_empty(self):$/;"	m	class:Stack
+is_for_table	boolean_algebra/quine_mc_cluskey.py	/^def is_for_table(string1, string2, count):$/;"	f
+is_operand	data_structures/stacks/infix_to_postfix_conversion.py	/^def is_operand(char):$/;"	f
+is_palindrome	project_euler/problem_36/sol1.py	/^def is_palindrome(n):$/;"	f
+is_prime	project_euler/problem_10/sol1.py	/^def is_prime(n):$/;"	f
+isprime	project_euler/problem_03/sol1.py	/^def isprime(no):$/;"	f
+isprime	project_euler/problem_07/sol1.py	/^def isprime(n):$/;"	f
+isprime	project_euler/problem_07/sol2.py	/^def isprime(number):$/;"	f
+ite_ternary_search	searches/ternary_search.py	/^def ite_ternary_search(A, target):$/;"	f
+j	project_euler/problem_02/sol1.py	/^    j=temp+i$/;"	v
+j	project_euler/problem_02/sol1.py	/^j=2 $/;"	v
+j	project_euler/problem_07/sol1.py	/^j=1$/;"	v
+jump_search	searches/jump_search.py	/^def jump_search(arr, x):$/;"	f
+k	ciphers/onepad_cipher.py	/^    c, k = Onepad().encrypt('Hello')$/;"	v
+k	machine_learning/k_means_clust.py	/^    k = 3$/;"	v
+key	graphs/multi_hueristic_astar.py	/^def key(start, i, goal, g_function):$/;"	f
+keys	data_structures/hashing/hash_table.py	/^    def keys(self):$/;"	m	class:HashTable
+kgV	other/primelib.py	/^def kgV(number1, number2):$/;"	f
+kmeans	machine_learning/k_means_clust.py	/^def kmeans(data, k, initial_centroids, maxiter=500, record_heterogeneity=None, verbose=False):$/;"	f
+kmp	strings/knuth_morris_pratt.py	/^def kmp(pattern, text):$/;"	f
+knapsack	dynamic_programming/knapsack.py	/^def knapsack(W, wt, val, n):$/;"	f
+kosaraju	graphs/scc_kosaraju.py	/^def kosaraju():$/;"	f
+krusk	graphs/basic_graphs.py	/^def krusk(E_and_n):$/;"	f
+l	graphs/articulation_points.py	/^l = {0:[1,2], 1:[0,2], 2:[0,1,3,5], 3:[2,4], 4:[3], 5:[2,6,8], 6:[5,7], 7:[6,8], 8:[5,7]}$/;"	v
+l	graphs/check_bipartite_graph_bfs.py	/^l = {0:[1,3], 1:[0,2], 2:[1,3], 3:[0,2]}$/;"	v
+l	graphs/finding_bridges.py	/^l = {0:[1,2], 1:[0,2], 2:[0,1,3,5], 3:[2,4], 4:[3], 5:[2,6,8], 6:[5,7], 7:[6,8], 8:[5,7]}$/;"	v
+l	graphs/kahns_algorithm_long.py	/^l = {0:[2,3,4], 1:[2,7], 2:[5], 3:[5,7], 4:[7], 5:[6], 6:[7], 7:[]}$/;"	v
+l	graphs/kahns_algorithm_topo.py	/^l = {0:[1,2], 1:[3], 2:[3], 3:[4,5], 4:[], 5:[]}$/;"	v
+l	graphs/minimum_spanning_tree_prims.py	/^    l = [int(x) for x in input().split()]$/;"	v
+largest_number	project_euler/problem_14/sol1.py	/^        largest_number = input1$/;"	v
+largest_number	project_euler/problem_14/sol1.py	/^largest_number = 0$/;"	v
+largest_product	project_euler/problem_11/sol1.py	/^def largest_product(grid):$/;"	f
+lattice_paths	project_euler/problem_15/sol1.py	/^def lattice_paths(n):$/;"	f
+lcg	other/linear_congruential_generator.py	/^    lcg = LinearCongruentialGenerator(1664525, 1013904223, 2<<31)$/;"	v
+lcm	project_euler/problem_05/sol2.py	/^def lcm(x,y):$/;"	f
+lcs_dp	dynamic_programming/longest_common_subsequence.py	/^def lcs_dp(x, y):$/;"	f
+left	data_structures/avl.py	/^    def left(self):$/;"	m	class:Node
+left	data_structures/avl.py	/^    def left(self, node):$/;"	m	class:Node
+left	data_structures/binary tree/lazy_segment_tree.py	/^    def left(self, idx):$/;"	m	class:SegmentTree
+left	data_structures/graph/dijkstra_algorithm.py	/^    def left(self, i):$/;"	m	class:PriorityQueue
+leftChild	data_structures/heap/heap.py	/^	def leftChild(self,i):$/;"	m	class:Heap
+leftrot32	hashes/md5.py	/^def leftrot32(i,s):$/;"	f
+letters	other/password_generator.py	/^letters = [letter for letter in string.ascii_letters]$/;"	v
+level_order	traversals/binary_tree_traversals.py	/^def level_order(node):$/;"	f
+levenshtein_distance	strings/levenshtein_distance.py	/^def levenshtein_distance(first_word, second_word):$/;"	f
+li	dynamic_programming/max_sub_array.py	/^        li=[randint(1,i) for j in range(i)]$/;"	v
+limit	project_euler/problem_04/sol1.py	/^limit = int(raw_input("limit? "))$/;"	v
+lin_search	searches/ternary_search.py	/^def lin_search(left, right, A, target):$/;"	f
+linear_search	searches/linear_search.py	/^def linear_search(sequence, target):$/;"	f
+list_num	project_euler/problem_16/sol1.py	/^list_num = list(string_num)$/;"	v
+loadDictionary	other/detecting_english_programmatically.py	/^def loadDictionary():$/;"	f
+longestDistance	graphs/kahns_algorithm_long.py	/^def longestDistance(l):$/;"	f
+longestSub	dynamic_programming/longest_increasing_subsequence.py	/^def longestSub(ARRAY): 			#This function is recursive$/;"	f
+ls	project_euler/problem_02/sol2.py	/^ls = []$/;"	v
+m	data_structures/graph/even_tree.py	/^    n, m = 10, 9$/;"	v
+m	graphs/basic_graphs.py	/^n, m = map(int, raw_input().split(" "))$/;"	v
+m	graphs/scc_kosaraju.py	/^n, m = list(map(int,raw_input().split()))$/;"	v
+m	hashes/chaos_machine.py	/^K = [0.33, 0.44, 0.55, 0.44, 0.33]; t = 3; m = 5$/;"	v
+m	machine_learning/gradient_descent.py	/^m = len(train_data)$/;"	v
+m	strings/min_cost_string_conversion.py	/^	m = len(operations)$/;"	v
+machine_time	hashes/chaos_machine.py	/^machine_time = 0$/;"	v
+mae	machine_learning/scoring_functions.py	/^def mae(predict, actual):$/;"	f
+main	analysis/compression_analysis/psnr.py	/^def main():$/;"	f
+main	boolean_algebra/quine_mc_cluskey.py	/^def main():$/;"	f
+main	ciphers/affine_cipher.py	/^def main():$/;"	f
+main	ciphers/brute_force_caesar_cipher.py	/^def main():$/;"	f
+main	ciphers/caesar_cipher.py	/^def main():$/;"	f
+main	ciphers/elgamal_key_generator.py	/^def main():$/;"	f
+main	ciphers/rot13.py	/^def main():$/;"	f
+main	ciphers/rsa_cipher.py	/^def main():$/;"	f
+main	ciphers/rsa_key_generator.py	/^def main():$/;"	f
+main	ciphers/simple_substitution_cipher.py	/^def main():$/;"	f
+main	ciphers/transposition_cipher.py	/^def main():$/;"	f
+main	ciphers/transposition_cipher_encrypt_decrypt_file.py	/^def main():$/;"	f
+main	ciphers/vigenere_cipher.py	/^def main():$/;"	f
+main	data_structures/heap/heap.py	/^def main():$/;"	f
+main	dynamic_programming/matrix_chain_order.py	/^def main():$/;"	f
+main	hashes/sha1.py	/^def main():$/;"	f
+main	machine_learning/decision_tree.py	/^def main():$/;"	f
+main	machine_learning/linear_regression.py	/^def main():$/;"	f
+main	maths/basic_maths.py	/^def main():$/;"	f
+main	maths/fibonacci_sequence_recursion.py	/^def main():$/;"	f
+main	maths/greater_common_divisor.py	/^def main():$/;"	f
+main	maths/modular_exponential.py	/^def main():$/;"	f
+main	maths/simpson_rule.py	/^def main():$/;"	f
+main	maths/trapezoidal_rule.py	/^def main():$/;"	f
+main	other/euclidean_gcd.py	/^def main():$/;"	f
+main	other/nested_brackets.py	/^def main():$/;"	f
+main	other/tower_of_hanoi.py	/^def main():$/;"	f
+main	other/word_patterns.py	/^def main():$/;"	f
+main	project_euler/problem_08/sol1.py	/^def main():$/;"	f
+main	project_euler/problem_11/sol2.py	/^def main():$/;"	f
+main	project_euler/problem_20/sol2.py	/^def main():$/;"	f
+main	project_euler/problem_22/sol2.py	/^def main():$/;"	f
+main	project_euler/problem_24/sol1.py	/^def main():$/;"	f
+main	project_euler/problem_29/solution.py	/^def main():$/;"	f
+main	searches/tabu_search.py	/^def main(args=None):$/;"	f
+main	sorts/external-sort.py	/^def main():$/;"	f
+main	sorts/timsort.py	/^def main():$/;"	f
+makeKeyFiles	ciphers/elgamal_key_generator.py	/^def makeKeyFiles(name, keySize):$/;"	f
+makeKeyFiles	ciphers/rsa_key_generator.py	/^def makeKeyFiles(name, keySize):$/;"	f
+makePoints	maths/simpson_rule.py	/^def makePoints(a,b,h):$/;"	f
+makePoints	maths/trapezoidal_rule.py	/^def makePoints(a,b,h):$/;"	f
+make_common_ground	graphs/multi_hueristic_astar.py	/^def make_common_ground():$/;"	f
+matrix	arithmetic_analysis/lu_decomposition.py	/^matrix =numpy.array([[2,-2,1],[0,1,2],[5,3,1]])$/;"	v
+maxHeapify	data_structures/heap/heap.py	/^	def maxHeapify(self,node):$/;"	m	class:Heap
+maxNumber	project_euler/problem_03/sol1.py	/^                    maxNumber = i$/;"	v
+maxNumber	project_euler/problem_03/sol1.py	/^                    maxNumber = n\/i$/;"	v
+maxNumber	project_euler/problem_03/sol1.py	/^maxNumber = 0$/;"	v
+max_length	other/password_generator.py	/^max_length = 16$/;"	v
+mbd	machine_learning/scoring_functions.py	/^def mbd(predict, actual):$/;"	f
+md5me	hashes/md5.py	/^def md5me(testString):$/;"	f
+mean_squared_error	machine_learning/decision_tree.py	/^    def mean_squared_error(self, labels, prediction):$/;"	m	class:Decision_Tree
+merge	sorts/external-sort.py	/^    def merge(self, filenames, outfilename, buffer_size):$/;"	m	class:FileMerger
+merge	sorts/timsort.py	/^def merge(left, right):$/;"	f
+merge_sort	sorts/merge_sort.py	/^def merge_sort(collection):$/;"	f
+merge_sort	sorts/merge_sort_fastest.py	/^def merge_sort(LIST):$/;"	f
+message	hashes/chaos_machine.py	/^message = random.sample(range(0xFFFFFFFF), 100)$/;"	v
+method_1	maths/trapezoidal_rule.py	/^def method_1(boundary, steps):$/;"	f
+method_2	maths/simpson_rule.py	/^def method_2(boundary, steps):$/;"	f
+minDist	data_structures/graph/dijkstra.py	/^def minDist(mdist, vset, V):$/;"	f
+min_heapify	data_structures/graph/dijkstra_algorithm.py	/^    def min_heapify(self, idx):$/;"	m	class:PriorityQueue
+min_length	other/password_generator.py	/^min_length = 8$/;"	v
+min_primitive_root	ciphers/elgamal_key_generator.py	/^min_primitive_root = 3$/;"	v
+mincut	networking_flow/minimum_cut.py	/^def mincut(graph, source, sink):$/;"	f
+minimum_spanning_tree	graphs/minimum_spanning_tree_kruskal.py	/^minimum_spanning_tree = []$/;"	v
+minimum_spanning_tree_cost	graphs/minimum_spanning_tree_kruskal.py	/^minimum_spanning_tree_cost = 0$/;"	v
+minkey	graphs/multi_hueristic_astar.py	/^	def minkey(self):$/;"	m	class:PriorityQueue
+modularExponential	maths/modular_exponential.py	/^def modularExponential(base, power, mod):$/;"	f
+month	project_euler/problem_19/sol1.py	/^		month = 1$/;"	v
+month	project_euler/problem_19/sol1.py	/^month = 1$/;"	v
+moveDisk	other/tower_of_hanoi.py	/^def moveDisk(fp,tp):$/;"	f
+moveTower	other/tower_of_hanoi.py	/^def moveTower(height, fromPole, toPole, withPole):  $/;"	f
+mse	machine_learning/scoring_functions.py	/^def mse(predict, actual):$/;"	f
+mu	sorts/random_normal_distribution_quicksort.py	/^mu, sigma = 0, 1 # mean and standard deviation$/;"	v
+mulitples	project_euler/problem_01/sol4.py	/^def mulitples(limit):$/;"	f
+multi_a_star	graphs/multi_hueristic_astar.py	/^def multi_a_star(start, goal, n_hueristic):$/;"	f
+myPen	other/sierpinski_triangle.py	/^myPen = turtle.Turtle()$/;"	v
+n	data_structures/graph/even_tree.py	/^    n, m = 10, 9$/;"	v
+n	dynamic_programming/integer_partition.py	/^			n = int(sys.argv[1])$/;"	v
+n	dynamic_programming/knapsack.py	/^    n = 4$/;"	v
+n	graphs/basic_graphs.py	/^n, m = map(int, raw_input().split(" "))$/;"	v
+n	graphs/minimum_spanning_tree_prims.py	/^n = int(raw_input("Enter number of vertices: "))$/;"	v
+n	graphs/multi_hueristic_astar.py	/^n = 20$/;"	v
+n	graphs/scc_kosaraju.py	/^n, m = list(map(int,raw_input().split()))$/;"	v
+n	maths/sieve_of_eratosthenes.py	/^n = int(raw_input("Enter n: "))$/;"	v
+n	project_euler/problem_01/sol1.py	/^n = int(raw_input().strip())$/;"	v
+n	project_euler/problem_01/sol2.py	/^n = int(raw_input().strip())$/;"	v
+n	project_euler/problem_01/sol3.py	/^n = int(raw_input().strip())$/;"	v
+n	project_euler/problem_02/sol1.py	/^n = int(raw_input().strip())$/;"	v
+n	project_euler/problem_02/sol3.py	/^n = int(raw_input())$/;"	v
+n	project_euler/problem_03/sol1.py	/^        n=n\/2$/;"	v
+n	project_euler/problem_03/sol1.py	/^n=int(raw_input())$/;"	v
+n	project_euler/problem_03/sol2.py	/^n=int(raw_input())$/;"	v
+n	project_euler/problem_04/sol2.py	/^n=int(raw_input())$/;"	v
+n	project_euler/problem_05/sol1.py	/^n = int(raw_input())$/;"	v
+n	project_euler/problem_05/sol2.py	/^n = int(raw_input())$/;"	v
+n	project_euler/problem_06/sol1.py	/^n = int(raw_input())$/;"	v
+n	project_euler/problem_06/sol2.py	/^n = int(raw_input())$/;"	v
+n	project_euler/problem_07/sol1.py	/^n = int(raw_input())$/;"	v
+n	project_euler/problem_07/sol2.py	/^n = int(raw_input('Enter The N\\'th Prime Number You Want To Get: ')) # Ask For The N'th Prime N/;"	v
+n	project_euler/problem_10/sol1.py	/^			n = int(sys.argv[1])$/;"	v
+n	project_euler/problem_13/sol1.py	/^n = int(raw_input().strip())$/;"	v
+n	project_euler/problem_15/sol1.py	/^			n = int(sys.argv[1])$/;"	v
+n	project_euler/problem_21/sol1.py	/^	n = sum_of_divisors(i)$/;"	v
+n	project_euler/problem_28/sol1.py	/^			n = int(sys.argv[1])$/;"	v
+n	sorts/cyclesort.py	/^n = len(unsorted)$/;"	v
+n	strings/min_cost_string_conversion.py	/^	n = len(operations[0])$/;"	v
+n_hueristic	graphs/multi_hueristic_astar.py	/^n_hueristic = 3 # one consistent and two other inconsistent$/;"	v
+n_vertices	graphs/tarjans_scc.py	/^    n_vertices = 7$/;"	v
+name_score	project_euler/problem_22/sol1.py	/^	name_score = 0$/;"	v
+name_score	project_euler/problem_22/sol1.py	/^name_score = 0$/;"	v
+names	project_euler/problem_22/sol1.py	/^	names = names.replace('"', '').split(',')$/;"	v
+names	project_euler/problem_22/sol1.py	/^	names = str(file.readlines()[0])$/;"	v
+network	machine_learning/perceptron.py	/^network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=1000, bias=-1)$/;"	v
+network	neural_network/perceptron.py	/^network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=1000, bias=-1)$/;"	v
+newton	arithmetic_analysis/newton_method.py	/^def newton(function,function1,startingInt): #function is the f(x) and function1 is the f'(x)$/;"	f
+next	data_structures/linked_list/doubly_linked_list.py	/^    next = None #This points to the link in front of the new link$/;"	v	class:Link
+next_number	other/linear_congruential_generator.py	/^    def next_number( self ):$/;"	m	class:LinearCongruentialGenerator
+next_prime	data_structures/hashing/number_theory/prime_numbers.py	/^def next_prime(value, factor=1, **kwargs):$/;"	f
+nfound	project_euler/problem_05/sol1.py	/^            nfound=1$/;"	v
+nfound	project_euler/problem_05/sol1.py	/^    nfound=0$/;"	v
+node	sorts/tree_sort.py	/^class node():$/;"	c
+node	traversals/binary_tree_traversals.py	/^    node = build_tree()$/;"	v
+node1	graphs/minimum_spanning_tree_kruskal.py	/^	node1, node2, cost = list(map(int,raw_input().split()))$/;"	v
+node2	graphs/minimum_spanning_tree_kruskal.py	/^	node1, node2, cost = list(map(int,raw_input().split()))$/;"	v
+not32	hashes/md5.py	/^def not32(i):$/;"	f
+np	analysis/compression_analysis/psnr.py	/^import numpy as np$/;"	I
+np	graphs/multi_hueristic_astar.py	/^import numpy as np$/;"	I
+np	machine_learning/decision_tree.py	/^import numpy as np$/;"	I
+np	machine_learning/k_means_clust.py	/^import numpy as np$/;"	I
+np	machine_learning/linear_regression.py	/^import numpy as np$/;"	I
+np	machine_learning/scoring_functions.py	/^import numpy as np$/;"	I
+np	neural_network/bpnn.py	/^import numpy as np$/;"	I
+np	neural_network/convolution_neural_network.py	/^import numpy as np$/;"	I
+np	other/game_of_life/game_o_life.py	/^import numpy as np$/;"	I
+np	sorts/random_normal_distribution_quicksort.py	/^import numpy as np$/;"	I
+num	ciphers/rabin_miller.py	/^    num = generateLargePrime()$/;"	v
+num	project_euler/problem_01/sol3.py	/^num=0$/;"	v
+num	project_euler/problem_07/sol2.py	/^num = 2$/;"	v
+num	project_euler/problem_16/sol1.py	/^num = 2**power$/;"	v
+num_edges	graphs/minimum_spanning_tree_kruskal.py	/^num_nodes, num_edges = list(map(int,raw_input().split()))$/;"	v
+num_nodes	graphs/minimum_spanning_tree_kruskal.py	/^num_nodes, num_edges = list(map(int,raw_input().split()))$/;"	v
+number	project_euler/problem_14/sol1.py	/^    number = input1$/;"	v
+number	project_euler/problem_20/sol1.py	/^number = int(raw_input("Enter the Number: "))$/;"	v
+numberOfDivisors	maths/basic_maths.py	/^def numberOfDivisors(n):$/;"	f
+ones_counts	project_euler/problem_17/sol1.py	/^ones_counts = [0, 3, 3, 5, 4, 4, 3, 5, 5, 4, 3, 6, 6, 8, 8, 7, 7, 9, 8, 8] #number of letters in/;"	v
+operations	strings/min_cost_string_conversion.py	/^	_, operations = compute_transform_tables('Python', 'Algorithms', -1, 1, 2, 2)$/;"	v
+outfile	sorts/random_normal_distribution_quicksort.py	/^outfile = TemporaryFile()    $/;"	v
+output	machine_learning/gradient_descent.py	/^def output(example_no, data_set):$/;"	f
+p	sorts/random_normal_distribution_quicksort.py	/^p = 100 # 1000 elements are to be sorted$/;"	v
+pad	hashes/md5.py	/^def pad(bitString):$/;"	f
+padding	hashes/sha1.py	/^    def padding(self):$/;"	m	class:SHA1Hash
+pancakesort	sorts/pancake_sort.py	/^def pancakesort(arr):$/;"	f
+par	data_structures/graph/dijkstra_algorithm.py	/^    def par(self, i):$/;"	m	class:PriorityQueue
+parameter_vector	machine_learning/gradient_descent.py	/^parameter_vector = [2, 4, 1, 5]$/;"	v
+params_space	hashes/chaos_machine.py	/^buffer_space, params_space = [], []$/;"	v
+parent	data_structures/avl.py	/^    def parent(self):$/;"	m	class:Node
+parent	data_structures/avl.py	/^    def parent(self, node):$/;"	m	class:Node
+parent	graphs/minimum_spanning_tree_kruskal.py	/^parent = [i for i in range(num_nodes)]$/;"	v
+parent_a	graphs/minimum_spanning_tree_kruskal.py	/^	parent_a = find_parent(edge[1])$/;"	v
+parent_b	graphs/minimum_spanning_tree_kruskal.py	/^	parent_b = find_parent(edge[2])$/;"	v
+parse_memory	sorts/external-sort.py	/^def parse_memory(string):$/;"	f
+parser	searches/tabu_search.py	/^    parser = argparse.ArgumentParser(description="Tabu Search")$/;"	v
+partition	dynamic_programming/integer_partition.py	/^def partition(m):$/;"	f
+partition	project_euler/problem_76/sol1.py	/^def partition(m):$/;"	f
+password	other/password_generator.py	/^password = ''.join(random.choice(chars) for x in range(random.randint(min_length, max_length)))$/;"	v
+password_generator	other/password_generator.py	/^def password_generator(ctbi, i):$/;"	f
+path	other/anagrams.py	/^path = os.path.split(os.path.realpath(__file__))$/;"	v
+pattern	strings/knuth_morris_pratt.py	/^    pattern = "AAAB"$/;"	v
+pattern	strings/knuth_morris_pratt.py	/^    pattern = "ABABX"$/;"	v
+pattern	strings/knuth_morris_pratt.py	/^    pattern = "aabaabaaa"$/;"	v
+pattern	strings/knuth_morris_pratt.py	/^    pattern = "abc1abc12"$/;"	v
+pattern	strings/knuth_morris_pratt.py	/^    pattern = "abcdabcy"$/;"	v
+pattern	strings/rabin_karp.py	/^    pattern = "AAAB"$/;"	v
+pattern	strings/rabin_karp.py	/^    pattern = "ABABX"$/;"	v
+pattern	strings/rabin_karp.py	/^    pattern = "abc1abc12"$/;"	v
+pattern	strings/rabin_karp.py	/^    pattern = "abcdabcy"$/;"	v
+peek	data_structures/stacks/stack.py	/^    def peek(self):$/;"	m	class:Stack
+plot_heterogeneity	machine_learning/k_means_clust.py	/^def plot_heterogeneity(heterogeneity, k):$/;"	f
+plot_loss	neural_network/bpnn.py	/^    def plot_loss(self):$/;"	m	class:BPNN
+plt	dynamic_programming/max_sub_array.py	/^import matplotlib.pyplot as plt$/;"	I
+plt	machine_learning/k_means_clust.py	/^from matplotlib import pyplot as plt$/;"	x
+plt	neural_network/bpnn.py	/^import matplotlib.pyplot as plt$/;"	I
+plt	neural_network/convolution_neural_network.py	/^import matplotlib.pyplot as plt$/;"	I
+plt	other/game_of_life/game_o_life.py	/^from matplotlib import pyplot as plt$/;"	x
+points	other/sierpinski_triangle.py	/^points = [[-175,-125],[0,175],[175,-125]] #size of triangle$/;"	v
+pooling	neural_network/convolution_neural_network.py	/^    def pooling(self,featuremaps,size_pooling,type='average_pool'):$/;"	m	class:CNN
+pop	data_structures/stacks/__init__.py	/^   def pop(self):$/;"	m	class:Stack
+pop	data_structures/stacks/stack.py	/^    def pop(self):$/;"	m	class:Stack
+port	file_transfer_protocol/ftp_client_server.py	/^port = 60000                    # Reserve a port for your service.$/;"	v
+post_order	traversals/binary_tree_traversals.py	/^def post_order(node):$/;"	f
+power	project_euler/problem_16/sol1.py	/^power = int(raw_input("Enter the power of 2: "))$/;"	v
+preShow	data_structures/avl.py	/^    def preShow(self, curr_node):$/;"	m	class:AVL
+pre_counter	project_euler/problem_14/sol1.py	/^        pre_counter = counter$/;"	v
+pre_counter	project_euler/problem_14/sol1.py	/^pre_counter = 0$/;"	v
+pre_order	traversals/binary_tree_traversals.py	/^def pre_order(node):$/;"	f
+precedence	data_structures/stacks/infix_to_postfix_conversion.py	/^def precedence(char):$/;"	f
+precision	searches/ternary_search.py	/^precision = 10$/;"	v
+predict	machine_learning/decision_tree.py	/^    def predict(self, x):$/;"	m	class:Decision_Tree
+predict	neural_network/convolution_neural_network.py	/^    def predict(self,datas_test):$/;"	m	class:CNN
+preorder	data_structures/avl.py	/^    def preorder(self, curr_node):$/;"	m	class:AVL
+prepare_input	ciphers/playfair_cipher.py	/^def prepare_input(dirty):$/;"	f
+previous	data_structures/linked_list/doubly_linked_list.py	/^    previous = None #This points to the link behind the new link$/;"	v	class:Link
+price	data_structures/stacks/stock_span_problem.py	/^price = [10, 4, 5, 90, 120, 80] $/;"	v
+prim	graphs/basic_graphs.py	/^def prim(G, s):$/;"	f
+prime	project_euler/problem_03/sol2.py	/^        prime=i$/;"	v
+prime	project_euler/problem_03/sol2.py	/^    prime=n$/;"	v
+prime	project_euler/problem_03/sol2.py	/^prime=1$/;"	v
+primeFactorization	other/primelib.py	/^def primeFactorization(number):$/;"	f
+primeFactors	maths/basic_maths.py	/^def primeFactors(n):$/;"	f
+prime_implicant_chart	boolean_algebra/quine_mc_cluskey.py	/^def prime_implicant_chart(prime_implicants, binary):$/;"	f
+primes	project_euler/problem_07/sol2.py	/^primes = []$/;"	v
+primitiveRoot	ciphers/elgamal_key_generator.py	/^def primitiveRoot(p_val):$/;"	f
+printArray	data_structures/stacks/stock_span_problem.py	/^def printArray(arr, n): $/;"	f
+printDist	data_structures/graph/bellman_ford.py	/^def printDist(dist, V):$/;"	f
+printDist	data_structures/graph/dijkstra.py	/^def printDist(dist, V):$/;"	f
+printDist	data_structures/graph/floyd_warshall.py	/^def printDist(dist, V):$/;"	f
+printGraph	data_structures/graph/breadth_first_search.py	/^    def printGraph(self):$/;"	m	class:Graph
+printGraph	data_structures/graph/depth_first_search.py	/^    def printGraph(self):$/;"	m	class:Graph
+printList	data_structures/graph/graph.py	/^    def printList(self):$/;"	m	class:AdjacencyList
+printList	data_structures/linked_list/singly_linked_list.py	/^    def printList(Head):  # print every node data$/;"	m	class:Linked_List
+printNGE	data_structures/stacks/next.py	/^def printNGE(arr):$/;"	f
+print_words	data_structures/trie/trie.py	/^def print_words(node: TrieNode, word: str):  # noqa: E999 This syntax is Python 3 only$/;"	f
+product	project_euler/problem_09/sol2.py	/^            product=d$/;"	v
+product	project_euler/problem_09/sol2.py	/^product=-1$/;"	v
+pull	hashes/chaos_machine.py	/^def pull():$/;"	f
+push	data_structures/stacks/__init__.py	/^   def push(self, item):$/;"	m	class:Stack
+push	data_structures/stacks/stack.py	/^    def push(self, data):$/;"	m	class:Stack
+push	hashes/chaos_machine.py	/^def push(seed):$/;"	f
+put	data_structures/queue/queue_on_list.py	/^    def put(self, item):$/;"	m	class:Queue
+put	data_structures/queue/queue_on_pseudo_stack.py	/^    def put(self, item):$/;"	m	class:Queue
+put	graphs/multi_hueristic_astar.py	/^	def put(self, item, priority):$/;"	m	class:PriorityQueue
+query	data_structures/binary tree/fenwick_tree.py	/^    def query(self, i): # query cumulative data from index 0 to i in O(lg N)$/;"	m	class:FenwickTree
+query	data_structures/binary tree/lazy_segment_tree.py	/^    def query(self, idx, l, r, a, b): #query(1, 1, N, a, b) for query max of [a,b]$/;"	m	class:SegmentTree
+quickSelect	searches/quick_select.py	/^def quickSelect(list, k):$/;"	f
+quick_sort	sorts/quick_sort.py	/^def quick_sort(ARRAY):$/;"	f
+quick_sort_3partition	sorts/quick_sort_3_partition.py	/^def quick_sort_3partition(sorting, left, right):$/;"	f
+r	graphs/basic_graphs.py	/^    x, y, r = map(int, raw_input().split(" "))$/;"	v
+r	graphs/scc_kosaraju.py	/^r = [[] for i in range(n)] #reversed graph$/;"	v
+r	sorts/random_normal_distribution_quicksort.py	/^r = (len(M)-1)$/;"	v
+rabinMiller	ciphers/elgamal_key_generator.py	/^import rabin_miller as rabinMiller, cryptomath_module as cryptoMath$/;"	I
+rabinMiller	ciphers/rabin_miller.py	/^def rabinMiller(num):$/;"	f
+rabinMiller	ciphers/rsa_key_generator.py	/^import rabin_miller as rabinMiller, cryptomath_module as cryptoMath$/;"	I
+rabin_karp	strings/rabin_karp.py	/^def rabin_karp(pattern, text):$/;"	f
+radixsort	sorts/radix_sort.py	/^def radixsort(lst):$/;"	f
+randomMatrix	linear_algebra_python/src/lib.py	/^def randomMatrix(W,H,a,b):$/;"	f
+randomVector	linear_algebra_python/src/lib.py	/^def randomVector(N,a,b):$/;"	f
+random_characters	other/password_generator.py	/^def random_characters(ctbi, i):$/;"	f
+random_letters	other/password_generator.py	/^def random_letters(ctbi, i):$/;"	f
+random_number	other/password_generator.py	/^def random_number(ctbi, i):$/;"	f
+raw_input	data_structures/heap/heap.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	dynamic_programming/edit_distance.py	/^            raw_input = input  # Python 3$/;"	v
+raw_input	dynamic_programming/fibonacci.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	dynamic_programming/integer_partition.py	/^	raw_input = input	#Python 3$/;"	v
+raw_input	graphs/basic_graphs.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	project_euler/problem_01/sol1.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	project_euler/problem_01/sol2.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	project_euler/problem_01/sol3.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	project_euler/problem_02/sol1.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	searches/binary_search.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	searches/interpolation_search.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	searches/linear_search.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	searches/sentinel_linear_search.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	searches/ternary_search.py	/^    raw_input = input  # Python 3$/;"	v
+raw_input	sorts/bogosort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/bubble_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/cocktail_shaker_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/comb_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/counting_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/cyclesort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/gnome_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/heap_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/insertion_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/merge_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/quick_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/quick_sort_3_partition.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/selection_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	sorts/shell_sort.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	strings/levenshtein_distance.py	/^        raw_input = input  # Python 3$/;"	v
+raw_input	traversals/binary_tree_traversals.py	/^    raw_input = input  # Python 3$/;"	v
+re	dynamic_programming/longest_sub_array.py	/^    re = array.solve_sub_array()$/;"	v
+readFromFileAndDecrypt	ciphers/rsa_cipher.py	/^def readFromFileAndDecrypt(messageFilename, keyFilename):$/;"	f
+readKeyFile	ciphers/rsa_cipher.py	/^def readKeyFile(keyFilename):$/;"	f
+rearrange	hashes/md5.py	/^def rearrange(bitString32):$/;"	f
+rebalance	data_structures/avl.py	/^    def rebalance(self, node):$/;"	m	class:AVL
+rec_ternary_search	searches/ternary_search.py	/^def rec_ternary_search(left, right, A, target):$/;"	f
+recur_fibo	maths/fibonacci_sequence_recursion.py	/^def recur_fibo(n):$/;"	f
+reformatHex	hashes/md5.py	/^def reformatHex(i):$/;"	f
+refresh	sorts/external-sort.py	/^    def refresh(self):$/;"	m	class:FilesArray
+rehashing	data_structures/hashing/hash_table.py	/^    def rehashing(self):$/;"	m	class:HashTable
+remove	data_structures/linked_list/__init__.py	/^    def remove(self):$/;"	m	class:LinkedList
+removeNonLetters	other/detecting_english_programmatically.py	/^def removeNonLetters(message):$/;"	f
+remove_element	graphs/multi_hueristic_astar.py	/^	def remove_element(self, item):$/;"	m	class:PriorityQueue
+reset	hashes/chaos_machine.py	/^def reset():$/;"	f
+result	searches/binary_search.py	/^    result = binary_search(collection, target)$/;"	v
+result	searches/interpolation_search.py	/^    result = interpolation_search(collection, target)$/;"	v
+result	searches/linear_search.py	/^    result = linear_search(sequence, target)$/;"	v
+result	searches/sentinel_linear_search.py	/^    result = sentinel_linear_search(sequence, target)$/;"	v
+result	strings/levenshtein_distance.py	/^    result = levenshtein_distance(first_word, second_word)$/;"	v
+result1	searches/ternary_search.py	/^    result1 = ite_ternary_search(collection, target)$/;"	v
+result2	searches/ternary_search.py	/^    result2 = rec_ternary_search(0, len(collection)-1, collection, target)$/;"	v
+reverse	data_structures/linked_list/singly_linked_list.py	/^    def reverse(Head):$/;"	m	class:Linked_List
+revise_centroids	machine_learning/k_means_clust.py	/^def revise_centroids(data, k, cluster_assignment):$/;"	f
+right	data_structures/avl.py	/^    def right(self):$/;"	m	class:Node
+right	data_structures/avl.py	/^    def right(self, node):$/;"	m	class:Node
+right	data_structures/binary tree/lazy_segment_tree.py	/^    def right(self, idx):$/;"	m	class:SegmentTree
+right	data_structures/graph/dijkstra_algorithm.py	/^    def right(self, i):$/;"	m	class:PriorityQueue
+rightChild	data_structures/heap/heap.py	/^	def rightChild(self,i):$/;"	m	class:Heap
+rkg	ciphers/rsa_cipher.py	/^import sys, rsa_key_generator as rkg, os$/;"	I
+rmse	machine_learning/scoring_functions.py	/^def rmse(predict, actual):$/;"	f
+rmsle	machine_learning/scoring_functions.py	/^def rmsle(predict, actual):$/;"	f
+rotate	data_structures/queue/queue_on_list.py	/^    def rotate(self, rotation):$/;"	m	class:Queue
+rotate	data_structures/queue/queue_on_pseudo_stack.py	/^    def rotate(self, rotation):$/;"	m	class:Queue
+rotate	hashes/sha1.py	/^    def rotate(n, b):$/;"	m	class:SHA1Hash
+rotate_left	data_structures/avl.py	/^    def rotate_left(self, node):$/;"	m	class:AVL
+rotate_right	data_structures/avl.py	/^    def rotate_right(self, node):$/;"	m	class:AVL
+run	other/game_of_life/game_o_life.py	/^def run(canvas):$/;"	f
+run_gradient_descent	machine_learning/gradient_descent.py	/^def run_gradient_descent():$/;"	f
+run_linear_regression	machine_learning/linear_regression.py	/^def run_linear_regression(data_x, data_y):$/;"	f
+run_steep_gradient_descent	machine_learning/linear_regression.py	/^def run_steep_gradient_descent(data_x, data_y,$/;"	f
+s	file_transfer_protocol/ftp_client_server.py	/^s = socket.socket()             # Create a socket object$/;"	v
+s	simple_client_server/client.py	/^s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)$/;"	v
+s	simple_client_server/server.py	/^s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)$/;"	v
+same_set	data_structures/union_find/union_find.py	/^    def same_set(self, u, v):$/;"	m	class:UnionFind
+sample	machine_learning/perceptron.py	/^    sample = []$/;"	v
+sample	neural_network/perceptron.py	/^    sample = []$/;"	v
+samples	machine_learning/perceptron.py	/^samples = [$/;"	v
+samples	neural_network/perceptron.py	/^samples = [$/;"	v
+save_model	neural_network/convolution_neural_network.py	/^    def save_model(self,save_path):$/;"	m	class:CNN
+scc	graphs/scc_kosaraju.py	/^scc = []$/;"	v
+search	graphs/a_star.py	/^def search(grid,init,goal,cost,heuristic):$/;"	f
+second_word	strings/levenshtein_distance.py	/^    second_word = raw_input('Enter the second word:\\n').strip()$/;"	v
+seed	other/game_of_life/game_o_life.py	/^def seed(canvas):$/;"	f
+segt	data_structures/binary tree/lazy_segment_tree.py	/^    segt = SegmentTree(N)$/;"	v
+select	sorts/external-sort.py	/^    def select(self, choices):$/;"	m	class:NWayMerge
+selection	boolean_algebra/quine_mc_cluskey.py	/^def selection(chart, prime_implicants):$/;"	f
+selection_sort	sorts/selection_sort.py	/^def selection_sort(collection):$/;"	f
+sentinel_linear_search	searches/sentinel_linear_search.py	/^def sentinel_linear_search(sequence, target):$/;"	f
+sequence	searches/linear_search.py	/^    sequence = [int(item) for item in user_input.split(',')]$/;"	v
+sequence	searches/sentinel_linear_search.py	/^    sequence = [int(item) for item in user_input.split(',')]$/;"	v
+sequence	strings/min_cost_string_conversion.py	/^	sequence = assemble_transformation(operations, m-1, n-1)$/;"	v
+set	linear_algebra_python/src/lib.py	/^    def set(self,components):$/;"	m	class:Vector
+setLabel	data_structures/binary tree/binary_search_tree.py	/^    def setLabel(self, label):$/;"	m	class:Node
+setLeft	data_structures/binary tree/binary_search_tree.py	/^    def setLeft(self, left):$/;"	m	class:Node
+setParent	data_structures/binary tree/binary_search_tree.py	/^    def setParent(self, parent):$/;"	m	class:Node
+setPosition	graphs/minimum_spanning_tree_prims.py	/^    def setPosition(vertex, pos):$/;"	f	function:PrimsAlgorithm	file:
+setRight	data_structures/binary tree/binary_search_tree.py	/^    def setRight(self, right):$/;"	m	class:Node
+shell_sort	sorts/shell_sort.py	/^def shell_sort(collection):$/;"	f
+show	data_structures/graph/graph_list.py	/^    def show(self):$/;"	m	class:Graph
+show	data_structures/graph/graph_matrix.py	/^    def show(self):$/;"	m	class:Graph
+showData	data_structures/binary tree/lazy_segment_tree.py	/^    def showData(self):$/;"	m	class:SegmentTree
+showMin	dynamic_programming/floyd_warshall.py	/^    def showMin(self, u, v):$/;"	m	class:Graph
+show_distances	data_structures/graph/dijkstra_algorithm.py	/^    def show_distances(self, src):$/;"	m	class:Graph
+show_graph	data_structures/graph/dijkstra_algorithm.py	/^    def show_graph(self):$/;"	m	class:Graph
+show_path	data_structures/graph/dijkstra_algorithm.py	/^    def show_path(self, src, dest):$/;"	m	class:Graph
+sieve	maths/segmented_sieve.py	/^def sieve(n):$/;"	f
+sieve	maths/sieve_of_eratosthenes.py	/^def sieve(n):$/;"	f
+sieveEr	other/primelib.py	/^def sieveEr(N):$/;"	f
+sig	neural_network/convolution_neural_network.py	/^    def sig(self,x):$/;"	m	class:CNN
+sigma	sorts/random_normal_distribution_quicksort.py	/^mu, sigma = 0, 1 # mean and standard deviation$/;"	v
+sigmoid	neural_network/bpnn.py	/^def sigmoid(x):$/;"	f
+sign	machine_learning/perceptron.py	/^    def sign(self, u):$/;"	m	class:Perceptron
+sign	neural_network/perceptron.py	/^    def sign(self, u):$/;"	m	class:Perceptron
+signature	other/anagrams.py	/^def signature(word):$/;"	f
+simple client server	simple_client_server/README.md	/^# simple client server$/;"	c
+simplifyFraction	other/primelib.py	/^def simplifyFraction(numerator, denominator):$/;"	f
+sink	networking_flow/ford_fulkerson.py	/^source, sink = 0, 5$/;"	v
+sink	networking_flow/minimum_cut.py	/^source, sink = 0, 5$/;"	v
+size	data_structures/queue/queue_on_list.py	/^    def size(self):$/;"	m	class:Queue
+size	data_structures/queue/queue_on_pseudo_stack.py	/^    def size(self):$/;"	m	class:Queue
+size	data_structures/stacks/stack.py	/^    def size(self):$/;"	m	class:Stack
+size	linear_algebra_python/src/lib.py	/^    def size(self):$/;"	m	class:Vector
+smallestPrimeFactor	other/primelib.py	/^def smallestPrimeFactor(number):$/;"	f
+solve	dynamic_programming/edit_distance.py	/^    def solve(self, A, B):$/;"	m	class:EditDistance
+solve_sub_array	dynamic_programming/longest_sub_array.py	/^    def solve_sub_array(self):$/;"	m	class:SubArray
+solver	dynamic_programming/edit_distance.py	/^        solver = EditDistance()$/;"	v
+sort	machine_learning/perceptron.py	/^    def sort(self, sample):$/;"	m	class:Perceptron
+sort	neural_network/perceptron.py	/^    def sort(self, sample):$/;"	m	class:Perceptron
+sort	sorts/external-sort.py	/^    def sort(self, filename, sort_key=None):$/;"	m	class:ExternalSort
+sort	sorts/topological_sort.py	/^sort = topological_sort('a', [], [])$/;"	v
+sortedArray	sorts/bucket_sort.py	/^    sortedArray = bucketSort([12, 23, 4, 5, 3, 2, 12, 81, 56, 95])$/;"	v
+source	graphs/tarjans_scc.py	/^    source = [0, 0, 1, 2, 3, 3, 4, 4, 6]$/;"	v
+source	networking_flow/ford_fulkerson.py	/^source, sink = 0, 5$/;"	v
+source	networking_flow/minimum_cut.py	/^source, sink = 0, 5$/;"	v
+split	sorts/external-sort.py	/^    def split(self, block_size, sort_key=None):$/;"	m	class:FileSplitter
+split_and_add	project_euler/problem_20/sol1.py	/^def split_and_add(number):$/;"	f
+split_blocks	hashes/sha1.py	/^    def split_blocks(self):$/;"	m	class:SHA1Hash
+squareZeroMatrix	linear_algebra_python/src/lib.py	/^def squareZeroMatrix(N):$/;"	f
+src	data_structures/graph/bellman_ford.py	/^	src = int(raw_input("Enter source:"))$/;"	v
+src	data_structures/graph/dijkstra.py	/^	src = int(raw_input("Enter source:"))$/;"	v
+src	data_structures/graph/floyd_warshall.py	/^	src = int(raw_input("Enter source:"))$/;"	v
+stack	data_structures/stacks/stack.py	/^    stack = Stack()$/;"	v
+stack	graphs/scc_kosaraju.py	/^stack = []$/;"	v
+start	graphs/multi_hueristic_astar.py	/^start = (0, 0)$/;"	v
+start_time	other/anagrams.py	/^start_time = time.time()$/;"	v
+strNumber	project_euler/problem_04/sol1.py	/^    strNumber = str(number)$/;"	v
+string	strings/min_cost_string_conversion.py	/^	string = list('Python')$/;"	v
+string_num	project_euler/problem_16/sol1.py	/^string_num = str(num)$/;"	v
+strings	other/fischer_yates_shuffle.py	/^    strings = ['python', 'says', 'hello', '!']$/;"	v
+strong_connect	graphs/tarjans_scc.py	/^    def strong_connect(v, index, components):$/;"	f	function:tarjan	file:
+strt	dynamic_programming/max_sub_array.py	/^        strt=time.time()$/;"	v
+sum	project_euler/problem_01/sol1.py	/^sum=0$/;"	v
+sum	project_euler/problem_01/sol2.py	/^sum = 0$/;"	v
+sum	project_euler/problem_01/sol3.py	/^sum=0$/;"	v
+sum	project_euler/problem_02/sol1.py	/^sum=0$/;"	v
+sum	project_euler/problem_06/sol1.py	/^sum = sumb**2 - suma$/;"	v
+sum32	hashes/md5.py	/^def sum32(a,b):$/;"	f
+sumOfDivisors	maths/basic_maths.py	/^def sumOfDivisors(n):$/;"	f
+sum_of_divisors	project_euler/problem_21/sol1.py	/^def sum_of_divisors(n):$/;"	f
+sum_of_num	project_euler/problem_16/sol1.py	/^sum_of_num = 0$/;"	v
+sum_of_primes	project_euler/problem_10/sol1.py	/^def sum_of_primes(n):$/;"	f
+sum_of_square_error	machine_learning/linear_regression.py	/^def sum_of_square_error(data_x, data_y, len_data, theta):$/;"	f
+suma	project_euler/problem_06/sol1.py	/^suma = 0$/;"	v
+suma	project_euler/problem_06/sol2.py	/^suma = n*(n+1)\/2$/;"	v
+sumb	project_euler/problem_06/sol1.py	/^sumb = 0$/;"	v
+sumb	project_euler/problem_06/sol2.py	/^sumb = n*(n+1)*(2*n+1)\/6$/;"	v
+summary	neural_network/bpnn.py	/^    def summary(self):$/;"	m	class:BPNN
+summation_of_cost_derivative	machine_learning/gradient_descent.py	/^def summation_of_cost_derivative(index, end=m):$/;"	f
+sums	project_euler/problem_21/sol1.py	/^sums = []$/;"	v
+sundays	project_euler/problem_19/sol1.py	/^sundays = 0$/;"	v
+swap	data_structures/graph/dijkstra_algorithm.py	/^    def swap(self, i, j):$/;"	m	class:PriorityQueue
+symbols	other/password_generator.py	/^symbols = [symbol for symbol in string.punctuation]$/;"	v
+t	data_structures/avl.py	/^t = AVL()$/;"	v
+t	graphs/multi_hueristic_astar.py	/^t = 1$/;"	v
+t	hashes/chaos_machine.py	/^K = [0.33, 0.44, 0.55, 0.44, 0.33]; t = 3; m = 5$/;"	v
+t	project_euler/problem_04/sol2.py	/^        t = str(i*j)$/;"	v
+tNum	project_euler/problem_12/sol1.py	/^tNum = 1$/;"	v
+tabu_search	searches/tabu_search.py	/^def tabu_search(first_solution, distance_of_first_solution, dict_of_neighbours, iters, size):$/;"	f
+target	graphs/tarjans_scc.py	/^    target = [1, 3, 2, 0, 1, 4, 5, 6, 5]$/;"	v
+target	searches/binary_search.py	/^    target = int(target_input)$/;"	v
+target	searches/interpolation_search.py	/^    target = int(target_input)$/;"	v
+target	searches/linear_search.py	/^    target = int(target_input)$/;"	v
+target	searches/sentinel_linear_search.py	/^    target = int(target_input)$/;"	v
+target	searches/ternary_search.py	/^    target = int(target_input)$/;"	v
+target_input	searches/binary_search.py	/^    target_input = raw_input('Enter a single number to be found in the list:\\n')$/;"	v
+target_input	searches/interpolation_search.py	/^    target_input = raw_input('Enter a single number to be found in the list:\\n')$/;"	v
+target_input	searches/linear_search.py	/^    target_input = raw_input('Enter a single number to be found in the list:\\n')$/;"	v
+target_input	searches/sentinel_linear_search.py	/^    target_input = raw_input('Enter a single number to be found in the list:\\n')$/;"	v
+target_input	searches/ternary_search.py	/^    target_input = raw_input('Enter a single number to be found in the list:\\n')$/;"	v
+tarjan	graphs/tarjans_scc.py	/^def tarjan(g):$/;"	f
+temp	project_euler/problem_02/sol1.py	/^    temp=i$/;"	v
+tens_counts	project_euler/problem_17/sol1.py	/^tens_counts = [0, 0, 6, 6, 5, 5, 5, 7, 6, 6] #number of letters in twenty, thirty, ..., ninety (/;"	v
+terms	project_euler/problem_01/sol2.py	/^terms = (n-1)\/\/15$/;"	v
+terms	project_euler/problem_01/sol2.py	/^terms = (n-1)\/\/3$/;"	v
+terms	project_euler/problem_01/sol2.py	/^terms = (n-1)\/\/5$/;"	v
+test	data_structures/trie/trie.py	/^def test():$/;"	f
+test	hashes/md5.py	/^def test():$/;"	f
+testBinarySearchTree	data_structures/binary tree/binary_search_tree.py	/^def testBinarySearchTree():$/;"	f
+testMatchHashes	hashes/sha1.py	/^    def testMatchHashes(self):$/;"	m	class:SHA1HashTest
+test__add__matrix	linear_algebra_python/src/tests.py	/^    def test__add__matrix(self):$/;"	m	class:Test
+test__mul__matrix	linear_algebra_python/src/tests.py	/^    def test__mul__matrix(self):$/;"	m	class:Test
+test__sub__matrix	linear_algebra_python/src/tests.py	/^    def test__sub__matrix(self):$/;"	m	class:Test
+test_add	linear_algebra_python/src/tests.py	/^    def test_add(self):$/;"	m	class:Test
+test_axpy	linear_algebra_python/src/tests.py	/^    def test_axpy(self):$/;"	m	class:Test
+test_changeComponent	linear_algebra_python/src/tests.py	/^    def test_changeComponent(self):$/;"	m	class:Test
+test_changeComponent_matrix	linear_algebra_python/src/tests.py	/^    def test_changeComponent_matrix(self):$/;"	m	class:Test
+test_component	linear_algebra_python/src/tests.py	/^    def test_component(self):$/;"	m	class:Test
+test_component_matrix	linear_algebra_python/src/tests.py	/^    def test_component_matrix(self):$/;"	m	class:Test
+test_copy	linear_algebra_python/src/tests.py	/^    def test_copy(self):$/;"	m	class:Test
+test_data	machine_learning/gradient_descent.py	/^test_data = (((515, 22, 13), 555), ((61, 35, 49), 150))$/;"	v
+test_euclidLength	linear_algebra_python/src/tests.py	/^    def test_euclidLength(self):$/;"	m	class:Test
+test_find_neighbours	searches/test_tabu_search.py	/^    def test_find_neighbours(self):$/;"	m	class:TestClass
+test_generate_first_solutions	searches/test_tabu_search.py	/^    def test_generate_first_solutions(self):$/;"	m	class:TestClass
+test_generate_neighbours	searches/test_tabu_search.py	/^    def test_generate_neighbours(self):$/;"	m	class:TestClass
+test_gradient_descent	machine_learning/gradient_descent.py	/^def test_gradient_descent():$/;"	f
+test_init_with_invalid_size	data_structures/union_find/tests_union_find.py	/^    def test_init_with_invalid_size(self):$/;"	m	class:TestUnionFind
+test_init_with_valid_size	data_structures/union_find/tests_union_find.py	/^    def test_init_with_valid_size(self):$/;"	m	class:TestUnionFind
+test_mul	linear_algebra_python/src/tests.py	/^    def test_mul(self):$/;"	m	class:Test
+test_same_set_with_invalid_values	data_structures/union_find/tests_union_find.py	/^    def test_same_set_with_invalid_values(self):$/;"	m	class:TestUnionFind
+test_same_set_with_valid_values	data_structures/union_find/tests_union_find.py	/^    def test_same_set_with_valid_values(self):$/;"	m	class:TestUnionFind
+test_size	linear_algebra_python/src/tests.py	/^    def test_size(self):$/;"	m	class:Test
+test_squareZeroMatrix	linear_algebra_python/src/tests.py	/^    def test_squareZeroMatrix(self):$/;"	m	class:Test
+test_str	linear_algebra_python/src/tests.py	/^    def test_str(self):$/;"	m	class:Test
+test_str_matrix	linear_algebra_python/src/tests.py	/^    def test_str_matrix(self):$/;"	m	class:Test
+test_sub	linear_algebra_python/src/tests.py	/^    def test_sub(self):$/;"	m	class:Test
+test_tabu_search	searches/test_tabu_search.py	/^    def test_tabu_search(self):$/;"	m	class:TestClass
+test_union_with_invalid_values	data_structures/union_find/tests_union_find.py	/^    def test_union_with_invalid_values(self):$/;"	m	class:TestUnionFind
+test_union_with_valid_values	data_structures/union_find/tests_union_find.py	/^    def test_union_with_valid_values(self):$/;"	m	class:TestUnionFind
+test_unitBasisVector	linear_algebra_python/src/tests.py	/^    def test_unitBasisVector(self):$/;"	m	class:Test
+test_zeroVector	linear_algebra_python/src/tests.py	/^    def test_zeroVector(self):$/;"	m	class:Test
+text	strings/knuth_morris_pratt.py	/^    text = "ABAAAAAB"$/;"	v
+text	strings/knuth_morris_pratt.py	/^    text = "ABABZABABYABABX"$/;"	v
+text	strings/knuth_morris_pratt.py	/^    text = "abcxabcdabxabcdabcdabcy"$/;"	v
+text	strings/rabin_karp.py	/^    text = "ABAAAAAB"$/;"	v
+text	strings/rabin_karp.py	/^    text = "ABABZABABYABABX"$/;"	v
+text	strings/rabin_karp.py	/^    text = "abcxabcdabxabcdabcdabcy"$/;"	v
+text1	strings/knuth_morris_pratt.py	/^    text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"$/;"	v
+text1	strings/rabin_karp.py	/^    text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"$/;"	v
+text2	strings/knuth_morris_pratt.py	/^    text2 = "alskfjaldsk23adsfabcabc"$/;"	v
+text2	strings/rabin_karp.py	/^    text2 = "alskfjaldsk23adsfabcabc"$/;"	v
+tf	dynamic_programming/k_means_clustering_tensorflow.py	/^import tensorflow as tf$/;"	I
+tim	dynamic_programming/max_sub_array.py	/^    tim=[]$/;"	v
+timsort	sorts/timsort.py	/^def timsort(lst):$/;"	f
+topToBottom	graphs/minimum_spanning_tree_prims.py	/^    def topToBottom(heap, start, size, positions):$/;"	f	function:PrimsAlgorithm	file:
+top_show	graphs/multi_hueristic_astar.py	/^	def top_show(self):$/;"	m	class:PriorityQueue
+topo	graphs/basic_graphs.py	/^def topo(G, ind=None, Q=[1]):$/;"	f
+topologicalSort	graphs/kahns_algorithm_topo.py	/^def topologicalSort(l):$/;"	f
+topological_sort	sorts/topological_sort.py	/^def topological_sort(start, visited, sort):$/;"	f
+total	project_euler/problem_21/sol1.py	/^total = 0$/;"	v
+total	project_euler/problem_36/sol1.py	/^total = 0$/;"	v
+total	project_euler/problem_48/sol1.py	/^total = 0$/;"	v
+total	project_euler/problem_53/sol1.py	/^total = 0$/;"	v
+total_score	project_euler/problem_22/sol1.py	/^total_score = 0$/;"	v
+total_time	other/anagrams.py	/^total_time = round(time.time() - start_time, 2)$/;"	v
+train	machine_learning/decision_tree.py	/^    def train(self, X, y):$/;"	m	class:Decision_Tree
+train	neural_network/bpnn.py	/^    def train(self,xdata,ydata,train_round,accuracy):$/;"	m	class:BPNN
+train_data	machine_learning/gradient_descent.py	/^train_data = (((5, 2, 3), 15), ((6, 5, 9), 25),$/;"	v
+training	neural_network/perceptron.py	/^    def training(self):$/;"	m	class:Perceptron
+trannig	machine_learning/perceptron.py	/^    def trannig(self):$/;"	m	class:Perceptron
+transCipher	ciphers/transposition_cipher_encrypt_decrypt_file.py	/^import transposition_cipher as transCipher$/;"	I
+translateMessage	ciphers/simple_substitution_cipher.py	/^def translateMessage(key, message, mode):$/;"	f
+translateMessage	ciphers/vigenere_cipher.py	/^def translateMessage(key, message, mode):$/;"	f
+traversalTree	data_structures/binary tree/binary_search_tree.py	/^    def traversalTree(self, traversalFunction = None, root = None):$/;"	m	class:BinarySearchTree
+tree	data_structures/graph/even_tree.py	/^    tree = defaultdict(list)$/;"	v
+treesort	sorts/tree_sort.py	/^def treesort(arr):$/;"	f
+trian	neural_network/convolution_neural_network.py	/^    def trian(self,patterns,datas_train, datas_teach, n_repeat, error_accuracy,draw_e = bool):$/;"	m	class:CNN
+triangle	other/sierpinski_triangle.py	/^def triangle(points,depth):$/;"	f
+twoSum	other/two_sum.py	/^def twoSum(nums, target):$/;"	f
+u	graphs/scc_kosaraju.py	/^    u, v = list(map(int,raw_input().split()))$/;"	v
+union	data_structures/union_find/union_find.py	/^    def union(self, u, v):$/;"	m	class:UnionFind
+unitBasisVector	linear_algebra_python/src/lib.py	/^def unitBasisVector(dimension,pos):$/;"	f
+unshift	sorts/external-sort.py	/^    def unshift(self, index):$/;"	m	class:FilesArray
+unsorted	sorts/bogosort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/bubble_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/cocktail_shaker_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/comb_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/counting_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/cyclesort.py	/^unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/gnome_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/heap_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/insertion_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/merge_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/quick_sort.py	/^    unsorted = [ int(item) for item in user_input.split(',') ]$/;"	v
+unsorted	sorts/quick_sort_3_partition.py	/^    unsorted = [ int(item) for item in user_input.split(',') ]$/;"	v
+unsorted	sorts/selection_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+unsorted	sorts/shell_sort.py	/^    unsorted = [int(item) for item in user_input.split(',')]$/;"	v
+update	data_structures/binary tree/fenwick_tree.py	/^    def update(self, i, val): # update data (adding) in index i in O(lg N)$/;"	m	class:FenwickTree
+update	data_structures/binary tree/lazy_segment_tree.py	/^    def update(self, idx, l, r, a, b, val): # update(1, 1, N, a, b, v) for update val v to [a,b]$/;"	m	class:SegmentTree
+usage_doc	other/game_of_life/game_o_life.py	/^usage_doc='Usage of script: script_nama <size_of_canvas:int>'$/;"	v
+user_input	searches/binary_search.py	/^    user_input = raw_input('Enter numbers separated by comma:\\n').strip()$/;"	v
+user_input	searches/interpolation_search.py	/^    user_input = raw_input('Enter numbers separated by comma:\\n').strip()$/;"	v
+user_input	searches/linear_search.py	/^    user_input = raw_input('Enter numbers separated by coma:\\n').strip()$/;"	v
+user_input	searches/sentinel_linear_search.py	/^    user_input = raw_input('Enter numbers separated by comma:\\n').strip()$/;"	v
+user_input	searches/ternary_search.py	/^    user_input = raw_input('Enter numbers separated by coma:\\n').strip()$/;"	v
+user_input	sorts/bogosort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/bubble_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:').strip()$/;"	v
+user_input	sorts/cocktail_shaker_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/comb_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/counting_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/cyclesort.py	/^user_input = raw_input('Enter numbers separated by a comma:\\n')$/;"	v
+user_input	sorts/gnome_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/heap_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/insertion_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/merge_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/quick_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/quick_sort_3_partition.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/selection_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+user_input	sorts/shell_sort.py	/^    user_input = raw_input('Enter numbers separated by a comma:\\n').strip()$/;"	v
+v	dynamic_programming/longest_increasing_subsequence_O(nlogn).py	/^v = [2, 5, 3, 7, 11, 8, 10, 13, 6]$/;"	v
+v	graphs/scc_kosaraju.py	/^    u, v = list(map(int,raw_input().split()))$/;"	v
+val	dynamic_programming/knapsack.py	/^    val = [3,2,4,4]$/;"	v
+valid	graphs/multi_hueristic_astar.py	/^def valid(p):$/;"	f
+vertices	sorts/topological_sort.py	/^vertices = ['a', 'b', 'c', 'd', 'e']$/;"	v
+visit	graphs/scc_kosaraju.py	/^visit = [False]*n$/;"	v
+visited	data_structures/graph/even_tree.py	/^    visited = {}$/;"	v
+w	dynamic_programming/knapsack.py	/^    w = 6$/;"	v
+weight	data_structures/graph/bellman_ford.py	/^	weight = float(raw_input("Enter weight:"))$/;"	v
+weight	data_structures/graph/dijkstra.py	/^	weight = float(raw_input("Enter weight:"))$/;"	v
+weight	data_structures/graph/floyd_warshall.py	/^	weight = float(raw_input("Enter weight:"))$/;"	v
+whole_array	dynamic_programming/longest_sub_array.py	/^    whole_array = input("please input some numbers:")$/;"	v
+width	linear_algebra_python/src/lib.py	/^    def width(self):$/;"	m	class:Matrix
+word_bysig	other/anagrams.py	/^word_bysig = collections.defaultdict(list)$/;"	v
+word_list	other/anagrams.py	/^word_list = sorted(list(set([word.strip().lower() for word in open(path[0] + '\/words')])))$/;"	v
+write_block	sorts/external-sort.py	/^    def write_block(self, data, block_number):$/;"	m	class:FileSplitter
+wt	dynamic_programming/knapsack.py	/^    wt = [4,3,2,3]$/;"	v
+x	dynamic_programming/longest_common_subsequence.py	/^    x = 'AGGTAB'$/;"	v
+x	graphs/basic_graphs.py	/^    x, y = map(int, raw_input().split(" "))$/;"	v
+x	graphs/basic_graphs.py	/^    x, y, r = map(int, raw_input().split(" "))$/;"	v
+x	searches/jump_search.py	/^x = 55$/;"	v
+xorshift	hashes/chaos_machine.py	/^  def xorshift(X, Y):$/;"	f	function:pull	file:
+xrange	dynamic_programming/integer_partition.py	/^	xrange = range	#Python 3$/;"	v
+xrange	dynamic_programming/longest_common_subsequence.py	/^    xrange = range  # Python 3$/;"	v
+xrange	graphs/basic_graphs.py	/^    xrange = range     # Python 3$/;"	v
+xrange	graphs/multi_hueristic_astar.py	/^    xrange = range  # Python 3$/;"	v
+xrange	project_euler/problem_10/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	project_euler/problem_11/sol1.py	/^	xrange = range	#Python 2$/;"	v
+xrange	project_euler/problem_12/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	project_euler/problem_21/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	project_euler/problem_22/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	project_euler/problem_25/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	project_euler/problem_28/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	project_euler/problem_36/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	project_euler/problem_48/sol1.py	/^	xrange = range$/;"	v
+xrange	project_euler/problem_53/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	project_euler/problem_76/sol1.py	/^	xrange = range	#Python 3$/;"	v
+xrange	strings/min_cost_string_conversion.py	/^	xrange = range	#Python 3$/;"	v
+y	dynamic_programming/longest_common_subsequence.py	/^    y = 'GXTXAYB'$/;"	v
+y	graphs/basic_graphs.py	/^    x, y = map(int, raw_input().split(" "))$/;"	v
+y	graphs/basic_graphs.py	/^    x, y, r = map(int, raw_input().split(" "))$/;"	v
+year	project_euler/problem_19/sol1.py	/^year = 1901$/;"	v
+z	sorts/random_normal_distribution_quicksort.py	/^z = _inPlaceQuickSort(M,0,r) $/;"	v
+zeroVector	linear_algebra_python/src/lib.py	/^def zeroVector(dimension):$/;"	f
