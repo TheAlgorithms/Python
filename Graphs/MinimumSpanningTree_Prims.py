@@ -101,8 +101,8 @@ def PrimsAlgorithm(l):
     return TreeEdges
 
 # < --------- Prims Algorithm --------- >
-n = int(input("Enter number of vertices: "))
-e = int(input("Enter number of edges: "))
+n = int(raw_input("Enter number of vertices: "))
+e = int(raw_input("Enter number of edges: "))
 adjlist = defaultdict(list)
 for x in range(e):
     l = [int(x) for x in input().split()]
