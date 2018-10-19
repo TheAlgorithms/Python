@@ -16,6 +16,10 @@
 #importing all the required libraries
 import numpy as np
 import matplotlib.pyplot as plt
+try:
+     get_ipython
+except NameError:
+     from IPython import get_ipython
 get_ipython().run_line_magic('matplotlib', 'inline')
 from sklearn import datasets
 
