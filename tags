@@ -157,7 +157,7 @@ StackOverflowError	data_structures/stacks/stack.py	/^class StackOverflowError(Ba
 SubArray	dynamic_programming/longest_sub_array.py	/^class SubArray:$/;"	c
 T	project_euler/problem_02/sol2.py	/^T = int(input().strip())$/;"	v
 TAG	machine_learning/k_means_clust.py	/^TAG = 'K-MEANS-CLUST\/ '$/;"	v
-TEST_FILE	searches/test_tabu_search.py	/^TEST_FILE = os.path.join(os.path.dirname(__file__), '.\/tabuTestData.txt')$/;"	v
+TEST_FILE	searches/test_tabu_search.py	/^TEST_FILE = os.path.join(os.path.dirname(__file__), '.\/tabu_test_data.txt')$/;"	v
 TFKMeansCluster	dynamic_programming/k_means_clustering_tensorflow.py	/^def TFKMeansCluster(vectors, noofclusters):$/;"	f
 Tabu	README.md	/^## Tabu$/;"	s
 Test	linear_algebra_python/src/tests.py	/^class Test(unittest.TestCase):$/;"	c
