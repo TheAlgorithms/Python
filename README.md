@@ -19,6 +19,7 @@ __Properties__
 
 ###### View the algorithm in [action][bubble-toptal]
 
+
 ### Bucket
 ![alt text][bucket-image-1]
 ![alt text][bucket-image-2]
@@ -64,8 +65,8 @@ __Properties__
 * Best case performance	O(n log n)
 * Average case performance	O(n log n)
 
-
 ###### View the algorithm in [action][merge-toptal]
+
 
 ### Quick
 ![alt text][quick-image]
@@ -89,9 +90,8 @@ __Properties__
 * Best case performance	O(n log n)
 * Average case performance	O(n log n)
 
-
-
 ###### View the algorithm in [action](https://www.toptal.com/developers/sorting-algorithms/heap-sort)
+
 
 ### Radix
 
@@ -114,6 +114,7 @@ __Properties__
 
 ###### View the algorithm in [action][selection-toptal]
 
+
 ### Shell
 ![alt text][shell-image]
 
@@ -125,6 +126,7 @@ __Properties__
 * Average case performance depends on gap sequence
 
 ###### View the algorithm in [action][shell-toptal]
+
 
 ### Topological
 
