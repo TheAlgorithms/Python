@@ -1,15 +1,3 @@
-"""
-This is pure python implementation of bubble sort algorithm
-
-For doctests run following command:
-python -m doctest -v bubble_sort.py
-or
-python3 -m doctest -v bubble_sort.py
-
-For manual testing run:
-python bubble_sort.py
-"""
-
 from __future__ import print_function
 
 
@@ -46,7 +34,6 @@ if __name__ == '__main__':
         raw_input          # Python 2
     except NameError:
         raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
+    user_input = raw_input('Enter numbers separated by a comma:').strip()
     unsorted = [int(item) for item in user_input.split(',')]
-    print(bubble_sort(unsorted))
+    print(*bubble_sort(unsorted), sep=',')

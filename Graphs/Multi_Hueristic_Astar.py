@@ -1,8 +1,6 @@
 from __future__ import print_function
 import heapq
 import numpy as np
-import math
-import copy
 
 try:
     xrange          # Python 2

@@ -1,5 +1,5 @@
 from __future__ import print_function
-from math import factorial, ceil
+from math import factorial
 
 def lattice_paths(n):
 	n = 2*n #middle entry of odd rows starting at row 3 is the solution for n = 1, 2, 3,...

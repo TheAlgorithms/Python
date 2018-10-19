@@ -59,7 +59,6 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
     :param theta     : contains the feature vector
     :return          : sum of square error computed from given feature's
     """
-    error = 0.0
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
     sum_elem = np.sum(np.square(prod))

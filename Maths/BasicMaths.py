@@ -62,9 +62,13 @@ def eulerPhi(n):
         s *= (x - 1)/x 
     return s   
 
-print(primeFactors(100))
-print(numberOfDivisors(100))
-print(sumOfDivisors(100))
-print(eulerPhi(100))
+def main():
+    print(primeFactors(100))
+    print(numberOfDivisors(100))
+    print(sumOfDivisors(100))
+    print(eulerPhi(100))
+    
+if __name__ == '__main__':
+    main()
     
     
