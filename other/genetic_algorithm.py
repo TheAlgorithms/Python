@@ -23,7 +23,7 @@ class Item:
         for i in range(len(self.data)):
             if self.data[i] == self.target[i]:
                 score += 1
-        return score / len(self.data)
+        return score // len(self.data)
 
     def __str__(self):
         return 'String: ' + ''.join(self.data) + ', Score: ' + str(self.score)
@@ -70,7 +70,7 @@ while output != target:
             break
     best = None
     for i in range(len(data)):
-        if best == None:
+        if best is None:
             best = data[i]
         elif data[i].score > best.score:
             best = data[i]
