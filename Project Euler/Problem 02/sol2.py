@@ -9,4 +9,4 @@ T = int(input().strip())
 ls = []
 for _ in range(T):
     fib(int(input().strip()))
-print(*ls, sep = '\n')
+print(ls, sep = '\n')
