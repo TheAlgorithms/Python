@@ -99,8 +99,8 @@ def prime_implicant_chart(prime_implicants, binary):
 	return chart
 
 def main():
-	no_of_variable = int(input("Enter the no. of variables\n"))
-	minterms = [int(x) for x in input("Enter the decimal representation of Minterms 'Spaces Seprated'\n").split()]
+	no_of_variable = int(raw_input("Enter the no. of variables\n"))
+	minterms = [int(x) for x in raw_input("Enter the decimal representation of Minterms 'Spaces Seprated'\n").split()]
 	binary = decimal_to_binary(no_of_variable, minterms)
 	
 	prime_implicants = check(binary)

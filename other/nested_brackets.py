@@ -37,7 +37,7 @@ def is_balanced(S):
 
 def main():
 
-    S = input("Enter sequence of brackets: ")
+    S = raw_input("Enter sequence of brackets: ")
 
     if is_balanced(S):
         print((S, "is balanced"))

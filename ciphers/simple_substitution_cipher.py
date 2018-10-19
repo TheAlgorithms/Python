@@ -4,9 +4,9 @@ import sys, random
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def main():
-    message = input('Enter message: ')
+    message = raw_input('Enter message: ')
     key = 'LFWOAYUISVKMNXPBDCRJTQEGHZ'
-    resp = input('Encrypt/Decrypt [e/d]: ')
+    resp = raw_input('Encrypt/Decrypt [e/d]: ')
 
     checkValidKey(key)
 

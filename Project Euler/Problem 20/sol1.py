@@ -15,7 +15,7 @@ def split_and_add(number):
     return sum_of_digits
 
 # Taking the user input.
-number = int(input("Enter the Number: "))
+number = int(raw_input("Enter the Number: "))
 
 # Assigning the factorial from the factorial function.
 factorial = factorial(number)

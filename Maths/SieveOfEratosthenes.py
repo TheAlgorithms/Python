@@ -1,5 +1,5 @@
 import math
-n = int(input("Enter n: "))
+n = int(raw_input("Enter n: "))
 
 def sieve(n):
     l = [True] * (n+1)

@@ -6,7 +6,7 @@ Find maximum possible value of product of a,b,c among all such Pythagorean tripl
 
 product=-1
 d=0
-N = int(input())
+N = int(raw_input())
 for a in range(1,N//3):
     """Solving the two equations a**2+b**2=c**2 and a+b+c=N eliminating c """
     b=(N*N-2*a*N)//(2*N-2*a)
