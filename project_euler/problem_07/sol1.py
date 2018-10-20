@@ -16,7 +16,7 @@ def isprime(n):
             if(n%i==0):
                 return False
     return True
-n = int(raw_input())
+n = int(input())
 i=0
 j=1
 while(i!=n and j<3):

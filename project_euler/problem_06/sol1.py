@@ -12,7 +12,7 @@ from __future__ import print_function
 
 suma = 0
 sumb = 0
-n = int(raw_input())
+n = int(input())
 for i in range(1,n+1):
     suma += i**2
     sumb += i

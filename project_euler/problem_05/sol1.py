@@ -5,7 +5,7 @@ What is the smallest positive number that is evenly divisible(divisible with no 
 '''
 from __future__ import print_function
 
-n = int(raw_input())
+n = int(input())
 i = 0
 while 1:
     i+=n*(n-1)

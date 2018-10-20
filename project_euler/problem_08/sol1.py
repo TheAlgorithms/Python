@@ -1,7 +1,7 @@
 import sys
 def main():
     LargestProduct = -sys.maxsize-1
-    number=raw_input().strip()
+    number=input().strip()
     for i in range(len(number)-13):
         product=1
         for j in range(13):

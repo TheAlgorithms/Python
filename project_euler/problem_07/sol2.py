@@ -4,7 +4,7 @@ def isprime(number):
 		if number%i==0:
 			return False
 	return True
-n = int(raw_input('Enter The N\'th Prime Number You Want To Get: ')) # Ask For The N'th Prime Number Wanted
+n = int(input('Enter The N\'th Prime Number You Want To Get: ')) # Ask For The N'th Prime Number Wanted
 primes = []
 num = 2
 while len(primes) < n:

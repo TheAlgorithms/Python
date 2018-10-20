@@ -1,4 +1,4 @@
-power = int(raw_input("Enter the power of 2: "))
+power = int(input("Enter the power of 2: "))
 num = 2**power
 
 string_num = str(num)

@@ -7,7 +7,7 @@ By considering the terms in the Fibonacci sequence whose values do not exceed n,
 e.g. for n=10, we have {2,8}, sum is 10.
 '''
 """Python 3"""
-n = int(raw_input())
+n = int(input())
 a=0
 b=2
 count=0

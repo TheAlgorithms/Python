@@ -12,7 +12,7 @@ for i in range(999,100,-1):
             arr.append(i*j)
 arr.sort()
 
-n=int(raw_input())
+n=int(input())
 for i in arr[::-1]:
     if(i<n):
         print(i)

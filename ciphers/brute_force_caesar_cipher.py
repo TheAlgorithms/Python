@@ -44,7 +44,7 @@ def decrypt(message):
         print("Decryption using Key #%s: %s" % (key, translated))
 
 def main():
-    message = raw_input("Encrypted message: ")
+    message = input("Encrypted message: ")
     message = message.upper()
     decrypt(message)
 
