@@ -10,7 +10,7 @@ These are for demonstration purposes only. There are many implementations of sor
 ### Bubble
 ![alt text][bubble-image]
 
-From [Wikipedia][bubble-wiki]: Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
+From [Wikipedia][bubble-wiki]: **Bubble sort**, sometimes referred to as *sinking sort*, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
@@ -44,7 +44,7 @@ __Properties__
 ### Insertion
 ![alt text][insertion-image]
 
-From [Wikipedia][insertion-wiki]: Insertion sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on large lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
+From [Wikipedia][insertion-wiki]: **Insertion sort** is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on *large* lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
@@ -57,7 +57,7 @@ __Properties__
 ### Merge
 ![alt text][merge-image]
 
-From [Wikipedia][merge-wiki]: In computer science, merge sort (also commonly spelled mergesort) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
+From [Wikipedia][merge-wiki]: **Merge sort** (also commonly spelled *mergesort*) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
 
 __Properties__
 * Worst case performance	O(n log n)
@@ -70,7 +70,7 @@ __Properties__
 ### Quick
 ![alt text][quick-image]
 
-From [Wikipedia][quick-wiki]: Quicksort (sometimes called partition-exchange sort) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.
+From [Wikipedia][quick-wiki]: **Quicksort** (sometimes called *partition-exchange sort*) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
@@ -105,7 +105,7 @@ __Properties__
 ### Selection
 ![alt text][selection-image]
 
-From [Wikipedia][selection-wiki]: The algorithm divides the input list into two parts: the sublist of items already sorted, which is built up from left to right at the front (left) of the list, and the sublist of items remaining to be sorted that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest (or largest, depending on sorting order) element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.
+From [Wikipedia][selection-wiki]: **Selection sort** is an algorithm that divides the input list into two parts: the sublist of items already sorted, which is built up from left to right at the front (left) of the list, and the sublist of items remaining to be sorted that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest (or largest, depending on sorting order) element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
@@ -117,7 +117,7 @@ __Properties__
 ### Shell
 ![alt text][shell-image]
 
-From [Wikipedia][shell-wiki]:  Shellsort is a generalization of insertion sort that allows the exchange of items that are far apart.  The idea is to arrange the list of elements so that, starting anywhere, considering every nth element gives a sorted list.  Such a list is said to be h-sorted.  Equivalently, it can be thought of as h interleaved lists, each individually sorted.
+From [Wikipedia][shell-wiki]: **Shellsort** is a generalization of *insertion sort* that allows the exchange of items that are far apart.  The idea is to arrange the list of elements so that, starting anywhere, considering every nth element gives a sorted list.  Such a list is said to be h-sorted.  Equivalently, it can be thought of as h interleaved lists, each individually sorted.
 
 __Properties__
 * Worst case performance O(nlog2 2n)
@@ -132,7 +132,7 @@ From [Wikipedia][topological-wiki]: In the field of computer science, a topologi
 
 ### Time-Complexity Graphs
 
-Comparing the complexity of sorting algorithms (Bubble Sort, Insertion Sort, Selection Sort)
+Comparing the complexity of sorting algorithms (*Bubble Sort*, *Insertion Sort*, *Selection Sort*)
 
 ![Complexity Graphs](https://github.com/prateekiiest/Python/blob/master/sorts/sortinggraphs.png)
 
@@ -147,8 +147,7 @@ Choosing of a sort technique-Quicksort is a very fast algorithm but can be prett
 ### Linear
 ![alt text][linear-image]
 
-From [Wikipedia][linear-wiki]: linear search or sequential search is a method for finding a target value within a list. It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched.
-  Linear search runs in at worst linear time and makes at most n comparisons, where n is the length of the list.
+From [Wikipedia][linear-wiki]: **Linear search** or *sequential search* is a method for finding a target value within a list. It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched. Linear search runs in at worst linear time and makes at most n comparisons, where n is the length of the list.
 
 __Properties__
 * Worst case performance	O(n)
@@ -159,7 +158,7 @@ __Properties__
 ### Binary
 ![alt text][binary-image]
 
-From [Wikipedia][binary-wiki]: Binary search, also known as half-interval search or logarithmic search, is a search algorithm that finds the position of a target value within a sorted array. It compares the target value to the middle element of the array; if they are unequal, the half in which the target cannot lie is eliminated and the search continues on the remaining half until it is successful.
+From [Wikipedia][binary-wiki]: **Binary search**, also known as *half-interval search* or *logarithmic search*, is a search algorithm that finds the position of a target value within a sorted array. It compares the target value to the middle element of the array; if they are unequal, the half in which the target cannot lie is eliminated and the search continues on the remaining half until it is successful.
 
 __Properties__
 * Worst case performance	O(log n)
@@ -205,7 +204,7 @@ These memory structures form what is known as the tabu list, a set of rules and 
 
 ### Caesar
 ![alt text][caesar]<br>
-In cryptography, a **Caesar cipher**, also known as Caesar's cipher, the shift cipher, Caesar's code or Caesar shift, is one of the simplest and most widely known encryption techniques.<br>
+**Caesar cipher**, also known as Caesar's cipher, the shift cipher, Caesar's code or Caesar shift, is one of the simplest and most widely known encryption techniques.<br>
 It is **a type of substitution cipher** in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be replaced by A, E would become B, and so on. <br>
 The method is named after **Julius Caesar**, who used it in his private correspondence.<br>
 The encryption step performed by a Caesar cipher is often incorporated as part of more complex schemes, such as the Vigenère cipher, and still has modern application in the ROT13 system. As with all single-alphabet substitution ciphers, the Caesar cipher is easily broken and in modern practice offers essentially no communication security.
@@ -219,7 +218,11 @@ Many people have tried to implement encryption schemes that are essentially Vige
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)
 
 ### Transposition
+<<<<<<< HEAD
 In cryptography, a **transposition cipher** is a method of encryption by which the positions held by units of plaintext (which are commonly characters or groups of characters) are shifted according to a regular system, so that the ciphertext constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br>
+=======
+The **Transposition cipher** is a method of encryption by which the positions held by units of *plaintext* (which are commonly characters or groups of characters) are shifted according to a regular system, so that the *ciphertext* constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br> 
+>>>>>>> 3dab8e03a465397a7b671128c155c9c03f8e0154
 Mathematically a bijective function is used on the characters' positions to encrypt and an inverse function to decrypt.
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Transposition_cipher)
 
