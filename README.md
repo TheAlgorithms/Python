@@ -7,7 +7,7 @@ These are for demonstration purposes only. There are many implementations of sor
 ## Sort Algorithms
 
 
-### Bubble
+### Bubble Sort
 ![alt text][bubble-image]
 
 From [Wikipedia][bubble-wiki]: **Bubble sort**, sometimes referred to as *sinking sort*, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
@@ -19,7 +19,7 @@ __Properties__
 
 ###### View the algorithm in [action][bubble-toptal]
 
-### Bucket
+### Bucket Sort
 ![alt text][bucket-image-1]
 ![alt text][bucket-image-2]
 
@@ -41,7 +41,7 @@ __Properties__
 * Average case performance	O(n<sup>2</sup>)
 
 
-### Insertion
+### Insertion Sort
 ![alt text][insertion-image]
 
 From [Wikipedia][insertion-wiki]: **Insertion sort** is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on *large* lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
@@ -54,7 +54,7 @@ __Properties__
 ###### View the algorithm in [action][insertion-toptal]
 
 
-### Merge
+### Merge Sort
 ![alt text][merge-image]
 
 From [Wikipedia][merge-wiki]: **Merge sort** (also commonly spelled *mergesort*) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
@@ -67,7 +67,7 @@ __Properties__
 
 ###### View the algorithm in [action][merge-toptal]
 
-### Quick
+### Quick Sort
 ![alt text][quick-image]
 
 From [Wikipedia][quick-wiki]: **Quicksort** (sometimes called *partition-exchange sort*) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.
