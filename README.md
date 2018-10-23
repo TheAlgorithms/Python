@@ -249,6 +249,10 @@ A {\displaystyle \oplus } \oplus  A = 0,
 where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) operation. This operation is sometimes called modulus 2 addition (or subtraction, which is identical).[2] With this logic, a string of text can be encrypted by applying the bitwise XOR operator to every character using a given key. To decrypt the output, merely reapplying the XOR function with the key will remove the cipher.
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/XOR_cipher)
 
+## License
+ All algorithms are released under the permisive MIT license. See LICENSE included with the distribution for details.
+
+
 [bubble-toptal]: https://www.toptal.com/developers/sorting-algorithms/bubble-sort
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
