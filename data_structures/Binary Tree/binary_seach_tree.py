@@ -25,6 +25,9 @@ class Node:
 
     def setRight(self, right):
         self.rigt = right
+        
+    def sassLabel(self, label):
+         self.label = label
 
 
 class BinarySearchTree:
