@@ -59,17 +59,22 @@ class SmoSVM(object):
             try:
                 i1, i2 = self.choose_alpha.send(state)
                 state = None
-                # show non-obey-kkt samples' number
-                # from collections import Counter
-                # result = []
-                # for i in self._all_samples:
-                #     result.append(self._check_obey_KKT(i))
-                # print(Counter(result).get(True))
+                '''
+                #show non-obey-kkt samples' number
+                from collections import Counter
+                result = []
+                for i in self._all_samples:
+                    result.append(self._check_obey_KKT(i))
+                print(Counter(result).get(True))
+                '''
             except StopIteration:
                 print("Optimization done!\r\nEvery sample satisfy the KKT condition!")
-                # for i in self._all_samples:
-                #     if self._check_obey_KKT(i):
-                #         raise ValueError('some sample not fit KKT condition')
+                '''
+                # may cost time
+                for i in self._all_samples:
+                    if self._check_obey_KKT(i):
+                        raise ValueError('some sample not fit KKT condition')
+                '''
                 break
 
             # 2: calculate new alpha2 and new alpha1
@@ -235,13 +240,14 @@ class SmoSVM(object):
             f2 = y2 * (e2 + b) - a2 * K(i2, i2) - s * a1 * K(i1, i2)
             ol = l1 * f1 + L * f2 + 1 / 2 * l1 ** 2 * K(i1, i1) + 1 / 2 * L ** 2 * K(i2, i2) + s * L * l1 * K(i1, i2)
             oh = h1 * f1 + H * f2 + 1 / 2 * h1 ** 2 * K(i1, i1) + 1 / 2 * H ** 2 * K(i2, i2) + s * H * h1 * K(i1, i2)
-
+            '''
             # way 2
-            # tmp_alphas = self.alphas.copy()
-            # tmp_alphas[i1], tmp_alphas[i2] = l1, L
-            # ol = self._get_objective(tmp_alphas)
-            # tmp_alphas[i1], tmp_alphas[i2] = h1, H
-            # oh = self._get_objective(tmp_alphas)
+            tmp_alphas = self.alphas.copy()
+            tmp_alphas[i1], tmp_alphas[i2] = l1, L
+            ol = self._get_objective(tmp_alphas)
+            tmp_alphas[i1], tmp_alphas[i2] = h1, H
+            oh = self._get_objective(tmp_alphas)
+            '''
 
             if ol < (oh - self._eps):
                 a2_new = L
@@ -333,14 +339,15 @@ class SmoSVM(object):
 
     # Normalise data using min_max way
     def _norm(self, data):
+        '''
         # Use sklearn's normerlizer
-        # from sklearn.preprocessing import MinMaxScaler
-        # if self.init:
-        #     self.normer = MinMaxScaler()
-        #     return self.normer.fit_transform(data)
-        # else:
-        #     return self.normer.transform(data)
-
+        from sklearn.preprocessing import MinMaxScaler
+        if self.init:
+            self.normer = MinMaxScaler()
+            return self.normer.fit_transform(data)
+        else:
+            return self.normer.transform(data)
+        '''
         if self._init:
             self._min = np.min(data, axis=0)
             self._max = np.max(data, axis=0)
