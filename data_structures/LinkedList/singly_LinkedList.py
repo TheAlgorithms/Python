@@ -27,6 +27,17 @@ class Linked_List:
             newNod.next = Head  # put the Head at NewNode Next
             Head = newNod  # make a NewNode to Head
         return Head
+    def insert_atposition(Head, position, data):
+        temp = Head
+        if(position ==0): # insert a element at head
+            insert_head(temp, data)
+            return
+        for i in range(position-1):
+            temp=temp.next
+        temp1 = Node() # make a new node
+        temp1.data=data 
+        temp1.next=temp.next 
+        temp.next=temp1
 
     def printList(Head):  # print every node data
         tamp = Head
