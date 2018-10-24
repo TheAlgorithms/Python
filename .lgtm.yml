@@ -1,6 +1,7 @@
 extraction:
   python:
     python_setup:
+      requirements: flake8
       version: 3
     after_prepare:
       - flake8 --version
