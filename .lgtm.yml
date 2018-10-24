@@ -1,14 +1,9 @@
 extraction:
   python:
     python_setup:
-      requirements: flake8  # Upgrade flake8 3.5.0 --> >=3.6.0
       version: 3
-    #after_prepare:
-    #  - flake8 --version
-    #  - python3 -m flake8 --version
-    #  - python3 -m pip install --upgrade --user flake8
-    #  - flake8 --version
-    #  - python3 -m flake8 --version
+    after_prepare:
+      - python3 -m pip install --upgrade --user flake8
     before_index:
       - python3 -m flake8 --version
       # stop the build if there are Python syntax errors or undefined names
