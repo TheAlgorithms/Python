@@ -53,7 +53,7 @@ def main():
         elif choice == '2':
             strng = input("Please enter the string to be decrypted: ")
             while True:
-                key = raw_int(input("Please enter off-set between 1-94: "))
+                key = int(input("Please enter off-set between 1-94: "))
                 if key > 0 and key <= 94:
                     print(decrypt(strng, key))
                     main()
