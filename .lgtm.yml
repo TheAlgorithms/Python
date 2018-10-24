@@ -1,7 +1,7 @@
 extraction:
   python:
     python_setup:
-      version: 3
+      version: 3.7
     after_prepare:
       - python3 -m pip install flake8
     before_index:
