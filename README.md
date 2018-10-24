@@ -218,11 +218,9 @@ Many people have tried to implement encryption schemes that are essentially Vige
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)
 
 ### Transposition
-<<<<<<< HEAD
+
 In cryptography, a **transposition cipher** is a method of encryption by which the positions held by units of plaintext (which are commonly characters or groups of characters) are shifted according to a regular system, so that the ciphertext constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br>
-=======
-The **Transposition cipher** is a method of encryption by which the positions held by units of *plaintext* (which are commonly characters or groups of characters) are shifted according to a regular system, so that the *ciphertext* constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br> 
->>>>>>> 3dab8e03a465397a7b671128c155c9c03f8e0154
+
 Mathematically a bijective function is used on the characters' positions to encrypt and an inverse function to decrypt.
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Transposition_cipher)
 
