@@ -5,7 +5,7 @@ extraction:
     after_prepare:
       - flake8 --version
       - python3 -m flake8 --version
-      - python3 -m pip install --upgrade flake8
+      - python3 -m pip install --upgrade --user flake8
       - flake8 --version
       - python3 -m flake8 --version
     before_index:
