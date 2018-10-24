@@ -2,9 +2,9 @@ from __future__ import print_function
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def main():
-    message = raw_input('Enter message: ')
-    key = raw_input('Enter key [alphanumeric]: ')
-    mode = raw_input('Encrypt/Decrypt [e/d]: ')
+    message = input('Enter message: ')
+    key = input('Enter key [alphanumeric]: ')
+    mode = input('Encrypt/Decrypt [e/d]: ')
 
     if mode.lower().startswith('e'):
         mode = 'encrypt'

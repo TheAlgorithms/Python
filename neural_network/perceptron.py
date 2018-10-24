@@ -25,7 +25,7 @@ class Perceptron:
         self.col_sample = len(sample[0])
         self.weight = []
 
-    def trannig(self):
+    def training(self):
         for sample in self.sample:
             sample.insert(0, self.bias)
 
