@@ -34,8 +34,7 @@ class Linked_List:
             return
         for i in range(position-1):
             temp=temp.next
-        temp1 = Node() # make a new node
-        temp1.data=data 
+        temp1 = Node(data) # make a new node
         temp1.next=temp.next 
         temp.next=temp1
 
