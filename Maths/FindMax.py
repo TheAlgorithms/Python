@@ -1,5 +1,5 @@
 # NguyenU
-
+#try to improve the code and leave your pull request!
 import math
 def find_max(nums):
     max = 0
