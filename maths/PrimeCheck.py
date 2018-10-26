@@ -1,3 +1,4 @@
+#function to check whether a number is prime or not.
 def primeCheck(number):
     prime = True
     for i in range(2, int(number**(0.5)+1), 2):
