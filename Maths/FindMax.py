@@ -1,10 +1,11 @@
 # NguyenU
 
 import math
+#function to find the max number in the sequency.
 def find_max(nums):
     max = 0
     for x in nums:
-      if x > max:
+      if x > max: #any number greater than the maximum will become the new maximum.
         max = x
     print(max)
 
