@@ -31,6 +31,7 @@ Reference:
 from __future__ import division
 
 import os
+import sys
 import urllib.request
 
 import matplotlib.pyplot as plt
@@ -294,11 +295,8 @@ class SmoSVM(object):
             oh = h1 * f1 + H * f2 + 1 / 2 * h1 ** 2 * K(i1, i1) + 1 / 2 * H ** 2 * K(i2, i2) + s * H * h1 * K(i1, i2)
             """
             # way 2
-            tmp_alphas = self.alphas.copy()
-            tmp_alphas[i1], tmp_alphas[i2] = l1, L
-            ol = self._get_objectives(tmp_alphas)
-            tmp_alphas[i1], tmp_alphas[i2] = h1, H
-            oh = self._get_objectives(tmp_alphas)
+            Use objective function check which alpha2 new could get the minimal objectives
+
             """
             if ol < (oh - self._eps):
                 a2_new = L
@@ -449,8 +447,7 @@ def test_cancel_data():
 
 def test_demonstration():
     # change stdout
-    import os
-    import sys
+    print('\r\nStart plot,please wait!!!')
     sys.stdout = open(os.devnull, 'w')
 
     ax1 = plt.subplot2grid((2, 2), (0, 0))
@@ -466,14 +463,16 @@ def test_demonstration():
     ax4.set_title("rbf kernel svm,cost:500")
     test_rbf_kernel(ax4, cost=500)
 
+    sys.stdout = sys.__stdout__
+    print("Plot done!!!")
 
 def test_linear_kernel(ax, cost):
-    train_x, train_y = make_blobs(n_samples=1000, centers=2,
+    train_x, train_y = make_blobs(n_samples=500, centers=2,
                                   n_features=2, random_state=1)
     train_y[train_y == 0] = -1
     scaler = StandardScaler()
     train_x_scaled = scaler.fit_transform(train_x, train_y)
-    train_data = np.hstack((train_y.reshape(1000, 1), train_x_scaled))
+    train_data = np.hstack((train_y.reshape(500, 1), train_x_scaled))
     mykernel = Kernel(kernel='linear', degree=5, coef0=1, gamma=0.5)
     mysvm = SmoSVM(train=train_data, kernel_func=mykernel, cost=cost, tolerance=0.001, auto_norm=False)
     mysvm.fit()
@@ -526,3 +525,4 @@ if __name__ == '__main__':
     test_cancel_data()
     test_demonstration()
     plt.show()
+
