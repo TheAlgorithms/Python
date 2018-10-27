@@ -2,20 +2,18 @@ import sys
 def encrypt(strng, key):
     encrypted = ''
     for x in strng:
-        indx = (ord(x) + key) % 256
-        if indx > 126:
-            indx = indx - 95
-        encrypted = encrypted + chr(indx)
+        indx = ((ord(x) - 97) + key) % 26
+        t = indx + 97
+        encrypted = encrypted + chr(t)
     return encrypted
 
 
 def decrypt(strng, key):
     decrypted = ''
     for x in strng:
-        indx = (ord(x) - key) % 256
-        if indx < 32:
-            indx = indx + 95
-        decrypted = decrypted + chr(indx)
+        indx = ((ord(x) - 97) - key) % 26
+        t = indx + 97
+        decrypted = decrypted + chr(t)
     return decrypted
 
 def brute_force(strng):
