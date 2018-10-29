@@ -283,14 +283,14 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 [topological-wiki]: https://en.wikipedia.org/wiki/Topological_sorting
 
 [linear-wiki]: https://en.wikipedia.org/wiki/Linear_search
-[linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif
+[linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif "Linear Search"
 
 [binary-wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
-[binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png
+[binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png "Binary Search"
 
 
-[caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
+[caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg "Caesar"
 
-[ROT13-image]: https://upload.wikimedia.org/wikipedia/commons/3/33/ROT13_table_with_example.svg
+[ROT13-image]: https://upload.wikimedia.org/wikipedia/commons/3/33/ROT13_table_with_example.svg "ROT13"
 
-[QuickSelect-image]: https://upload.wikimedia.org/wikipedia/commons/0/04/Selecting_quickselect_frames.gif
+[QuickSelect-image]: https://upload.wikimedia.org/wikipedia/commons/0/04/Selecting_quickselect_frames.gif "Quick Select"
