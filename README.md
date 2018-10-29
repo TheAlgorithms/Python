@@ -294,3 +294,4 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 [ROT13-image]: https://upload.wikimedia.org/wikipedia/commons/3/33/ROT13_table_with_example.svg
 
 [QuickSelect-image]: https://upload.wikimedia.org/wikipedia/commons/0/04/Selecting_quickselect_frames.gif
+  . 
