@@ -6,7 +6,7 @@ HOST, PORT = '127.0.0.1', 1400
 
 s = socket.socket(
 
-            socket.AF_INET      #           ADDRESS FAMILIES
+            socket.AF_INET,     #           ADDRESS FAMILIES
                                 #Name                   Purpose
                                 #AF_UNIX, AF_LOCAL      Local communication
                                 #AF_INET                IPv4 Internet protocols
