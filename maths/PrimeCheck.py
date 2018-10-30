@@ -1,6 +1,6 @@
 def primeCheck(number):
     prime = True
-    for i in range(2, int(number**(0.5)+1), 2):
+    for i in range(2, int(number**(0.5)+2), 2):
         if i != 2:
             i = i - 1
         if number % i == 0:
