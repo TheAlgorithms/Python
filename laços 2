@@ -1,0 +1,7 @@
+print("--------ORDEM DECRESCENTE--------")
+lista= []
+for x in range(0,5):
+    numero=int(input("Digite o número: "))
+    lista.append(numero)
+lista.sort(reverse=False)
+print(lista)
