@@ -1,0 +1,22 @@
+Detalhesprint("---- Imprimir um nome N vezes -----")
+num = int(input("Digite um numero: "))
+nome = input("Digite um nome: ")
+opcao = int(input("Digite 1 para while e 2 para for"))
+
+while(opcao != 1 or opcao != 2):
+    if  (opcao==2):
+        for contador in range(0,num):
+            print(nome)
+    elif (opcao==1):
+        contador = 0
+        while (contador<num):
+            print(nome)
+            contador = contador + 1
+            print("Contador: ",contador)
+            print("Opcao: ",opcao)
+            break
+    else:
+        print("Opcao digitada inválida")
+        opcao = int(input("Digite 1 para while e 2 para for"))
+
+print ("Programa finalizado")
