@@ -1,0 +1,6 @@
+n1 = int(input("Digite um número: "))
+n2 = int(input("Digite outro número: "))
+menor = n1 < n2 and n2 < n1
+maior = n1 > n2 and n1 > n2
+if maior % menor == 0:
+    print("Múltiplo")
