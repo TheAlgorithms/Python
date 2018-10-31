@@ -1,0 +1,8 @@
+print("--------ORDEM CRESCENTE--------")
+elementos= int(input("Digite um número para indicar o tamanho da lista: "))
+lista= []
+for x in range(0,elementos):
+    numero=int(input("Digite o número: "))
+    lista.append(numero)
+lista.sort()
+print(lista)
