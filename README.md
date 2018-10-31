@@ -248,6 +248,13 @@ A ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/8b16e2bdaefee9eed8
 where ![](https://wikimedia.org/api/rest_v1/media/math/render/svg/8b16e2bdaefee9eed86d866e6eba3ac47c710f60)  denotes the exclusive disjunction (XOR) operation. This operation is sometimes called modulus 2 addition (or subtraction, which is identical). With this logic, a string of text can be encrypted by applying the bitwise XOR operator to every character using a given key. To decrypt the output, merely reapplying the XOR function with the key will remove the cipher.
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/XOR_cipher)
 
+## One-time pad
+## Not to confuse with a onetime password
+A format of one-time pad used by the U.S. National Security Agency, code named DIANA. The table on the right is an aid for converting between plaintext and ciphertext using the characters at left as the key.
+In cryptography, the one-time pad (OTP) is an encryption technique that cannot be cracked, but requires the use of a one-time pre-shared key the same size as, or longer than, the message being sent. In this technique, a plaintext is paired with a random secret key (also referred to as a one-time pad). Then, each bit or character of the plaintext is encrypted by combining it with the corresponding bit or character from the pad using modular addition. If the key is truly random, is at least as long as the plaintext, is never reused in whole or in part, and is kept completely secret, then the resulting ciphertext will be impossible to decrypt or break.[1][2] It has also been proven that any cipher with the perfect secrecy property must use keys with effectively the same requirements as OTP keys.[3] Digital versions of one-time pad ciphers have been used by nations for some critical diplomatic and military communication, but the problems of secure key distribution have made them impractical for most applications.
+
+##### Source: [Wikepedia](https://en.wikipedia.org/wiki/One-time_pad)
+
 [bubble-toptal]: https://www.toptal.com/developers/sorting-algorithms/bubble-sort
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
 [bubble-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bubblesort-edited-color.svg/220px-Bubblesort-edited-color.svg.png "Bubble Sort"
