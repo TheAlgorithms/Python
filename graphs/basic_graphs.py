@@ -1,14 +1,14 @@
 from __future__ import print_function
 
 try:
-    raw_input          # Python 2
+    raw_input  # Python 2
 except NameError:
     raw_input = input  # Python 3
 
 try:
-    xrange             # Python 2
+    xrange  # Python 2
 except NameError:
-    xrange = range     # Python 3
+    xrange = range  # Python 3
 
 # Accept No. of Nodes and edges
 n, m = map(int, raw_input().split(" "))
@@ -141,7 +141,7 @@ from collections import deque
 
 def topo(G, ind=None, Q=[1]):
     if ind is None:
-        ind = [0] * (len(G) + 1) 		# SInce oth Index is ignored
+        ind = [0] * (len(G) + 1)  # SInce oth Index is ignored
         for u in G:
             for v in G[u]:
                 ind[v] += 1
@@ -279,3 +279,12 @@ def krusk(E_and_n):
                 s[j].update(s[i])
                 s.pop(i)
                 break
+
+
+# find the isolated node in the graph
+def find_isolated_nodes(graph):
+    isolated = []
+    for node in graph:
+        if not graph[node]:
+            isolated.append(node)
+    return isolated
