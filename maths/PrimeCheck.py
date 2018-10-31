@@ -1,12 +1,8 @@
+import math
 def primeCheck(number):
-    prime = True
-    for i in range(2, int(number**(0.5)+2), 2):
-        if i != 2:
-            i = i - 1
-        if number % i == 0:
-            prime = False
-            break
-    return prime
+    if number % 2 == 0 and number > 2: 
+        return False
+    return all(number % i for i in range(3, int(math.sqrt(number)) + 1, 2))
 
 def main():
     print(primeCheck(37))
