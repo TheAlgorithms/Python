@@ -19,6 +19,7 @@ class last_index(object):
         Return -1 if letter not found in pattern.
         '''
         return self.index[letter]
+
 def boyer_moore(text, pattern):
     #Find index of pattern in text.
     alphabet = set(text)
@@ -39,6 +40,7 @@ def boyer_moore(text, pattern):
             i = i + m - min(j, 1 + l)
             j = m - 1
     return -1
+
 def show_result(text, pattern):
     print('Text:  %s' % text)
     p = boyer_moore(text, pattern)
@@ -47,6 +49,7 @@ def show_result(text, pattern):
     else:
         print('Match: %s%s' % ('.' * p, pattern))
         return True
+
 if __name__ == '__main__':
     '''
     manual operation
