@@ -8,53 +8,53 @@ class Node:  # create a Node
 
 
 class Linked_List:
-    def insert_tail(Head, data):
-        if Head.next is None:
-            Head.next = Node(data)
+    def __init__(self):
+        self.Head = None    # Initialize Head to None
+        
+    def insert_tail(self, data):
+        if(self.Head is None): self.insert_head(data)    #If this is first node, call insert_head
         else:
-            Head.next.insert_tail(data)
+            temp = self.Head
+            while(temp.next != None):    #traverse to last node
+                temp = temp.next
+            temp.next = Node(data)    #create node & link to tail
 
-    def insert_head(Head, data):
-        tamp = Head
-        if tamp is None:
-            newNod = Node()  # create a new Node
-            newNod.data = data
-            newNod.next = None
-            Head = newNod  # make new node to Head
-        else:
-            newNod = Node()
-            newNod.data = data
-            newNod.next = Head  # put the Head at NewNode Next
-            Head = newNod  # make a NewNode to Head
-        return Head
+    def insert_head(self, data):
+        newNod = Node(data)    # create a new node
+        if self.Head != None:
+            newNod.next = self.Head     # link newNode to head
+        self.Head = newNod    # make NewNode as Head
 
-    def printList(Head):  # print every node data
-        tamp = Head
+    def printList(self):  # print every node data
+        tamp = self.Head
         while tamp is not None:
             print(tamp.data)
             tamp = tamp.next
 
-    def delete_head(Head):  # delete from head
-        if Head is not None:
-            Head = Head.next
-        return Head  # return new Head
+    def delete_head(self):  # delete from head
+        temp = self.Head
+        if self.Head != None:
+            self.Head = self.Head.next
+            temp.next = None
+        return temp
+        
+    def delete_tail(self):  # delete from tail
+        tamp = self.Head
+        if self.Head != None:
+            if(self.Head.next is None):    # if Head is the only Node in the Linked List
+                self.Head = None
+            else:
+                while tamp.next.next is not None:  # find the 2nd last element
+                    tamp = tamp.next
+                tamp.next, tamp = None, tamp.next    #(2nd last element).next = None and tamp = last element 
+        return tamp
 
-    def delete_tail(Head):  # delete from tail
-        if Head is not None:
-            tamp = Node()
-            tamp = Head
-            while tamp.next.next is not None:  # find the 2nd last element
-                tamp = tamp.next
-            # delete the last element by give next None to 2nd last Element
-            tamp.next = None
-        return Head
+    def isEmpty(self):
+        return self.Head is None  # Return if Head is none
 
-    def isEmpty(Head):
-        return Head is None  # Return if Head is none
-
-    def reverse(Head):
+    def reverse(self):
         prev = None
-        current = Head
+        current = self.Head
 
         while current:
             # Store the current node's next node.
@@ -66,5 +66,32 @@ class Linked_List:
             # Make the current node the next node (to progress iteration)
             current = next_node
         # Return prev in order to put the head at the end
-        Head = prev
-        return Head
+        self.Head = prev
+
+def main():
+    A = Linked_List()
+    print("Inserting 10 at Head")
+    A.insert_head(10)
+    print("Inserting 0 at Head")
+    A.insert_head(0)
+    print("\nPrint List : ")
+    A.printList()
+    print("\nInserting 100 at Tail")
+    A.insert_tail(100)
+    print("Inserting 1000 at Tail")
+    A.insert_tail(1000)
+    print("\nPrint List : ")
+    A.printList()
+    print("\nDelete Head")
+    A.delete_head()
+    print("Delete Tail")
+    A.delete_tail()
+    print("\nPrint List : ")
+    A.printList()
+    print("\nReverse Linked List")
+    A.reverse()
+    print("\nPrint List : ")
+    A.printList()
+    
+if __name__ == '__main__':
+	main()
