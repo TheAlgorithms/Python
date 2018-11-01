@@ -12,7 +12,7 @@ class Linked_List:
         self.Head = None    # Initialize Head to None
         
     def insert_tail(self, data):
-        if(self.Head == None): self.insert_head(data)    #If this is first node, call insert_head
+        if(self.Head is None): self.insert_head(data)    #If this is first node, call insert_head
         else:
             temp = self.Head
             while(temp.next != None):    #traverse to last node
@@ -50,7 +50,7 @@ class Linked_List:
         return tamp
 
     def isEmpty(self):
-        return self.Head == None  # Return if Head is none
+        return self.Head is None  # Return if Head is none
 
     def reverse(self):
         prev = None
