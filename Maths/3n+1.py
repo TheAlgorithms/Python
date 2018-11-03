@@ -9,10 +9,11 @@ def main():
                 a = 3*a +1
             c += 1#counter
             l += [a]
-            print(a)#optional print
-        print("It took {0} steps.".format(c))#optional finish
+
         return l , c
     print(n31(43))
-    
+    print(n31(98)[0][-1])# = a
+    print("It took {0} steps.".format(n31(13))[1]))#optional finish
+
 if __name__ == '__main__':
     main()
