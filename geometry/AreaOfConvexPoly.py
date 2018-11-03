@@ -19,8 +19,6 @@ def AreaOfPoints(points):
     General algorithm to find area of any convex polygon given its verticies
     using a cross product. Implemented in Python.
 
-    python -m doctest -v AreaOfConvexPoly.py
-
     :param points: A collection containing the points describing the verticies
     of any convex polygon. A point is stored as a tuple: [(x1, y1), (x2, y2)...]
 
