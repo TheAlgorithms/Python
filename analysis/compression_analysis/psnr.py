@@ -1,7 +1,6 @@
 """
 	Peak signal-to-noise ratio - PSNR - https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio
-	1º Method: https://tutorials.techonical.com/how-to-calculate-psnr-value-of-two-images-using-python/
-	2º Method: Incorrect ????
+    Soruce: https://tutorials.techonical.com/how-to-calculate-psnr-value-of-two-images-using-python/
 """
 
 import math
@@ -9,7 +8,6 @@ import math
 import cv2
 import numpy as np
 
-# This method is the really work as expected, but however I want to preserve the other method (psnr2) 
 def psnr(original, contrast):
     mse = np.mean((original - contrast) ** 2)
     if mse == 0:
@@ -17,34 +15,6 @@ def psnr(original, contrast):
     PIXEL_MAX = 255.0
     PSNR = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
     return PSNR
-
-
-def Representational(r, g, b):
-    # Formula to determine brightness of RGB color
-    return (0.299*r+0.287*g+0.114*b)
-
-
-def calculate(img):
-    b, g, r = cv2.split(img)
-    return Representational(r, g, b)
-
-# The 1º Method really works better 
-def psnr2(original, contrast):
-    # Getting image height and width
-    height, width = original.shape[:2]
-
-    # Calculate the RGB Proportion for each Image and get the difference.
-    originalPixelAt = calculate(original)
-    compressedPixelAt = calculate(contrast)
-
-    diff = originalPixelAt - compressedPixelAt
-
-    # Calculate the error
-    error = np.sum(np.abs(diff) ** 2) / (height * width)
-
-    # MSR = error_sum/(height*width)
-    PSNR = -(10*math.log10(error/(255*255)))
-    return format(PSNR)
 
 
 def main():
@@ -58,13 +28,11 @@ def main():
 
     # Value expected: 29.73dB
     print("-- First Test --")
-    print(f"1º Method: \n PSNR value is {psnr(original, contrast)} dB")
-    print(f"2º Method: \n PSNR value is {psnr2(original, contrast)} dB \n")
+    print(f"PSNR value is {psnr(original, contrast)} dB")
     
     # # Value expected: 31.53dB (Wikipedia Example)
-    print("-- Second Test --")
-    print(f"1º Method: \n PSNR value is {psnr(original2, contrast2)} dB")
-    print(f"2º Method: \n PSNR value is {psnr2(original2, contrast2)} dB")
+    print("\n-- Second Test --")
+    print(f"PSNR value is {psnr(original2, contrast2)} dB")
 
 
 if __name__ == '__main__':
