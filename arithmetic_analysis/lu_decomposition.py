@@ -1,13 +1,14 @@
+# lower–upper (LU) decomposition - https://en.wikipedia.org/wiki/LU_decomposition
 import numpy
 
 def LUDecompose (table):
-    #table that contains our data
-    #table has to be a square array so we need to check first
+    # Table that contains our data
+    # Table has to be a square array so we need to check first
     rows,columns=numpy.shape(table)
     L=numpy.zeros((rows,columns))
     U=numpy.zeros((rows,columns))
     if rows!=columns:
-        return
+        return []
     for i in range (columns):
         for j in range(i-1):
             sum=0
@@ -22,13 +23,10 @@ def LUDecompose (table):
             U[i][j]=table[i][j]-sum1
     return L,U
 
-
-
-
-
-
-
-matrix =numpy.array([[2,-2,1],[0,1,2],[5,3,1]])
-L,U = LUDecompose(matrix)
-print(L)
-print(U)
+if __name__ == "__main__":
+    matrix =numpy.array([[2,-2,1],
+                         [0,1,2],
+                         [5,3,1]])
+    L,U = LUDecompose(matrix)
+    print(L)
+    print(U)

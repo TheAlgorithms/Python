@@ -21,7 +21,7 @@ def minDist(mdist, vset, V):
 def Dijkstra(graph, V, src):
 	mdist=[float('inf') for i in range(V)]
 	vset = [False for i in range(V)]
-	mdist[src] = 0.0;
+	mdist[src] = 0.0
 	
 	for i in range(V-1):
 		u = minDist(mdist, vset, V)
