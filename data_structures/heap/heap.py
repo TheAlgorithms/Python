@@ -40,7 +40,7 @@ class Heap:
 	def buildHeap(self,a):
 		self.currsize = len(a)
 		self.h = list(a)
-		for i in range(self.currsize/2,-1,-1):
+		for i in range(self.currsize//2,-1,-1):
 			self.maxHeapify(i)
 
 	def getMax(self):
