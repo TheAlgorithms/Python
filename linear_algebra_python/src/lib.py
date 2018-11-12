@@ -45,7 +45,7 @@ class Vector(object):
         changeComponent(pos,value) : changes the specified component.
         TODO: compare-operator
     """
-    def __init__(self,components):
+    def __init__(self,components=[]):
         """
             input: components or nothing
             simple constructor for init the vector
@@ -95,13 +95,11 @@ class Vector(object):
             returns a new vector that represents the sum.
         """
         size = len(self)
-        result = []
         if size == len(other):
-            for i in range(size):
-                result.append(self.__components[i] + other.component(i))
+            result = [self.__components[i] + other.component(i) for i in range(size)]
+            return Vector(result)
         else:
             raise Exception("must have the same size")
-        return Vector(result)
     def __sub__(self,other):
         """
             input: other vector
@@ -109,22 +107,19 @@ class Vector(object):
             returns a new vector that represents the differenz.
         """
         size = len(self)
-        result = []
         if size == len(other):
-            for i in range(size):
-                result.append(self.__components[i] - other.component(i))
+            result = [self.__components[i] - other.component(i) for i in range(size)]
+            return result
         else: # error case
             raise Exception("must have the same size")
-        return Vector(result)
     def __mul__(self,other):
         """
             mul implements the scalar multiplication 
             and the dot-product
         """
-        ans = []
         if isinstance(other,float) or isinstance(other,int):
-            for c in self.__components:
-                ans.append(c*other)
+            ans = [c*other for c in self.__components]
+            return ans
         elif (isinstance(other,Vector) and (len(self) == len(other))):
             size = len(self)
             summe = 0
@@ -133,7 +128,6 @@ class Vector(object):
             return summe
         else: # error case
             raise Exception("invalide operand!")
-        return Vector(ans)
     def copy(self):
         """
             copies this vector and returns it.
