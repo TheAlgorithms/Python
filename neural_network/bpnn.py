@@ -164,6 +164,8 @@ class BPNN():
             self.ax_loss.lines.remove(self.ax_loss.lines[0])
         self.ax_loss.plot(self.train_mse, 'r-')
         plt.ion()
+        plt.xlabel('step')
+        plt.ylabel('loss')
         plt.show()
         plt.pause(0.1)
 
