@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+'''
+An auto-balanced binary tree!
+'''
 import math
 class my_queue:
     def __init__(self):
