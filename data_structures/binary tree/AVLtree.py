@@ -53,7 +53,6 @@ class my_node:
         return
 
 def getheight(node):
-#    print("xxx")
     if node is None:
         return 0
     return node.getheight()
@@ -66,6 +65,17 @@ def my_max(a,b):
 
 
 def leftrotation(node):
+    '''
+            A                      B
+           / \                    / \
+          B   C                  Bl  A
+         / \       -->          /   / \
+        Bl  Br                 UB Br  C
+       /
+     UB
+  
+    UB = unbalanced node  
+    '''
     print("left rotation node:",node.getdata())
     ret = node.getleft()
     node.setleft(ret.getright())
@@ -77,6 +87,9 @@ def leftrotation(node):
     return ret
 
 def rightrotation(node):
+    '''
+        a mirror symmetry rotation of the leftrotation
+    '''
     print("right rotation node:",node.getdata())
     ret = node.getright()
     node.setright(ret.getleft())
@@ -87,24 +100,35 @@ def rightrotation(node):
     ret.setheight(h2)
     return ret
 
+def rlrotation(node):
+    '''
+            A              A                    Br      
+           / \            / \                  /  \
+          B   C    RR    Br  C       LR       B    A
+         / \       -->  /  \         -->    /     / \
+        Bl  Br         B   UB              Bl    UB  C  
+             \        /
+             UB     Bl
+    RR = rightrotation   LR = leftrotation
+    '''
+    node.setleft(rightrotation(node.getleft()))
+    return leftrotation(node)
+
 def lrrotation(node):
     node.setright(leftrotation(node.getright()))
     return rightrotation(node)
 
-def rlrotation(node):
-    node.setleft(rightrotation(node.getleft()))
-    return leftrotation(node)
 
 def insert_node(node,data):
     if node is None:
         return my_node(data)
     if data < node.getdata():
         node.setleft(insert_node(node.getleft(),data))
-        if getheight(node.getleft()) - getheight(node.getright()) == 2:
-            if data < node.getleft().getdata():
+        if getheight(node.getleft()) - getheight(node.getright()) == 2: #an unbalance detected
+            if data < node.getleft().getdata():       #new node is the left child of the left child
                 node = leftrotation(node)
             else:
-                node = rlrotation(node)
+                node = rlrotation(node)             #new node is the right child of the left child
     else:
         node.setright(insert_node(node.getright(),data))
         if getheight(node.getright()) - getheight(node.getleft()) == 2:
@@ -178,7 +202,7 @@ class AVLtree:
             print("Tree is empty!")
             return
         self.root = del_node(self.root,data)
-    def traversale(self):
+    def traversale(self): #a level traversale, gives a more intuitive look on the tree
         q = my_queue()
         q.push(self.root)
         layer = self.getheight()
