@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Sep 28 15:22:29 2018
-
-@author: Binish125
-"""
 import cv2 
 import matplotlib.pyplot as plt
 import numpy as np
