@@ -150,7 +150,7 @@ class Vector(object):
         """
         if not (isinstance(other, Vector)):
             raise Exception("Invalid Operand")
-        if (len(self)!= len(other):
+        if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
         return euclidLength(self)==euclidLenght(other)
     def __lt__(self, other):
@@ -159,7 +159,7 @@ class Vector(object):
         """
         if not (isinstance(other, Vector)):
             raise Exception("Invalid Operand")
-        if (len(self)!= len(other):
+        if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
         return euclidLength(self)<euclidLenght(other)
     def __le__(self, other):
@@ -168,7 +168,7 @@ class Vector(object):
         """
         if not (isinstance(other, Vector)):
             raise Exception("Invalid Operand")
-        if (len(self)!= len(other):
+        if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
         return euclidLength(self)<=euclidLenght(other)            
     def __gt__(self, other):
@@ -177,7 +177,7 @@ class Vector(object):
         """
         if not (isinstance(other, Vector)):
             raise Exception("Invalid Operand")
-        if (len(self)!= len(other):
+        if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
         return euclidLength(self)>euclidLenght(other)
     def __ge__(self, other):
@@ -186,7 +186,7 @@ class Vector(object):
         """
         if not (isinstance(other, Vector)):
             raise Exception("Invalid Operand")
-        if (len(self)!= len(other):
+        if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
         return euclidLength(self)>=euclidLenght(other)
     def __ne__(self, other):
@@ -195,7 +195,7 @@ class Vector(object):
         """
         if not (isinstance(other, Vector)):
             raise Exception("Invalid Operand")
-        if (len(self)!= len(other):
+        if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
         return euclidLength(self)!=euclidLenght(other)
                         
