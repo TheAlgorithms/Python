@@ -37,19 +37,21 @@ class Vector(object):
         __str__() : toString method
         component(i : int): gets the i-th component (start by 0)
         __len__() : gets the size of the vector (number of components)
-        euclidLength() : returns the eulidean length of the vector.
+        euclidLength() : returns the euclidean length of the vector.
         operator + : vector addition
         operator - : vector subtraction
         operator * : scalar multiplication and dot product
         copy() : copies this vector and returns it.
         changeComponent(pos,value) : changes the specified component.
-        TODO: compare-operator
     """
     def __init__(self,components=[]):
         """
             input: components or nothing
             simple constructor for init the vector
         """
+        for i in components:
+            if not (isinstance(i, int) or isinstance(i, float)):
+                raise Exception("Invalid list of components")
         self.__components = list(components)
     def set(self,components):
         """
@@ -80,9 +82,9 @@ class Vector(object):
             returns the size of the vector
         """
         return len(self.__components)
-    def eulidLength(self):
+    def euclidLength(self):
         """
-            returns the eulidean length of the vector
+            returns the euclidean length of the vector
         """
         summe = 0
         for c in self.__components:
@@ -99,7 +101,7 @@ class Vector(object):
             result = [self.__components[i] + other.component(i) for i in range(size)]
             return Vector(result)
         else:
-            raise Exception("must have the same size")
+            raise Exception("Must have the same size")
     def __sub__(self,other):
         """
             input: other vector
@@ -111,7 +113,7 @@ class Vector(object):
             result = [self.__components[i] - other.component(i) for i in range(size)]
             return result
         else: # error case
-            raise Exception("must have the same size")
+            raise Exception("Must have the same size")
     def __mul__(self,other):
         """
             mul implements the scalar multiplication 
@@ -127,7 +129,7 @@ class Vector(object):
                 summe += self.__components[i] * other.component(i)
             return summe
         else: # error case
-            raise Exception("invalide operand!")
+            raise Exception("Invalid operand!")
     def copy(self):
         """
             copies this vector and returns it.
@@ -142,7 +144,61 @@ class Vector(object):
         #precondition
         assert (-len(self.__components) <= pos < len(self.__components))
         self.__components[pos] = value
-    
+    def __eq__(self, other):
+        """
+            eq compares the euclidlength of both vectors.
+        """
+        if not (isinstance(other, Vector)):
+            raise Exception("Invalid Operand")
+        if (len(self)!= len(other):
+            raise Exception("Vectors do not same number of dimensions")
+        return euclidLength(self)==euclidLenght(other)
+    def __lt__(self, other):
+        """
+            lt compares the euclidlength of both vectors.
+        """
+        if not (isinstance(other, Vector)):
+            raise Exception("Invalid Operand")
+        if (len(self)!= len(other):
+            raise Exception("Vectors do not same number of dimensions")
+        return euclidLength(self)<euclidLenght(other)
+    def __le__(self, other):
+        """
+            le compares the euclidlength of both vectors.
+        """
+        if not (isinstance(other, Vector)):
+            raise Exception("Invalid Operand")
+        if (len(self)!= len(other):
+            raise Exception("Vectors do not same number of dimensions")
+        return euclidLength(self)<=euclidLenght(other)            
+    def __gt__(self, other):
+        """
+            gt compares the euclidlength of both vectors.
+        """
+        if not (isinstance(other, Vector)):
+            raise Exception("Invalid Operand")
+        if (len(self)!= len(other):
+            raise Exception("Vectors do not same number of dimensions")
+        return euclidLength(self)>euclidLenght(other)
+    def __ge__(self, other):
+        """
+            ge compares the euclidlength of both vectors.
+        """
+        if not (isinstance(other, Vector)):
+            raise Exception("Invalid Operand")
+        if (len(self)!= len(other):
+            raise Exception("Vectors do not same number of dimensions")
+        return euclidLength(self)>=euclidLenght(other)
+    def __ne__(self, other):
+        """
+            ne compares the euclidlength of both vectors.
+        """
+        if not (isinstance(other, Vector)):
+            raise Exception("Invalid Operand")
+        if (len(self)!= len(other):
+            raise Exception("Vectors do not same number of dimensions")
+        return euclidLength(self)!=euclidLenght(other)
+                        
 def zeroVector(dimension):
     """
         returns a zero-vector of size 'dimension'
