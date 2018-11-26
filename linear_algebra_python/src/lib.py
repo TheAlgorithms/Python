@@ -152,7 +152,7 @@ class Vector(object):
             raise Exception("Invalid Operand")
         if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
-        return euclidLength(self)==euclidLenght(other)
+        return self.euclidLength()==other.euclidLength()
     def __lt__(self, other):
         """
             lt compares the euclidlength of both vectors.
@@ -161,7 +161,7 @@ class Vector(object):
             raise Exception("Invalid Operand")
         if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
-        return euclidLength(self)<euclidLenght(other)
+        return self.euclidLength()<other.euclidLength()
     def __le__(self, other):
         """
             le compares the euclidlength of both vectors.
@@ -170,7 +170,7 @@ class Vector(object):
             raise Exception("Invalid Operand")
         if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
-        return euclidLength(self)<=euclidLenght(other)            
+        return self.euclidLength()<=other.euclidLength()         
     def __gt__(self, other):
         """
             gt compares the euclidlength of both vectors.
@@ -179,7 +179,7 @@ class Vector(object):
             raise Exception("Invalid Operand")
         if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
-        return euclidLength(self)>euclidLenght(other)
+        return self.euclidLength()>other.euclidLength()
     def __ge__(self, other):
         """
             ge compares the euclidlength of both vectors.
@@ -188,7 +188,7 @@ class Vector(object):
             raise Exception("Invalid Operand")
         if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
-        return euclidLength(self)>=euclidLenght(other)
+        return self.euclidLength()>=other.euclidLength()
     def __ne__(self, other):
         """
             ne compares the euclidlength of both vectors.
@@ -197,7 +197,7 @@ class Vector(object):
             raise Exception("Invalid Operand")
         if (len(self)!= len(other)):
             raise Exception("Vectors do not same number of dimensions")
-        return euclidLength(self)!=euclidLenght(other)
+        return self.euclidLength()!=other.euclidLength()
                         
 def zeroVector(dimension):
     """
