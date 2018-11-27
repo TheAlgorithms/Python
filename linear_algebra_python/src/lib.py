@@ -166,38 +166,22 @@ class Vector(object):
         """
             le compares the euclidlength of both vectors.
         """
-        if not (isinstance(other, Vector)):
-            raise Exception("Invalid Operand")
-        if (len(self)!= len(other)):
-            raise Exception("Vectors do not same number of dimensions")
-        return self.euclidLength()<=other.euclidLength()         
+        return self<other or self==other      
     def __gt__(self, other):
         """
             gt compares the euclidlength of both vectors.
         """
-        if not (isinstance(other, Vector)):
-            raise Exception("Invalid Operand")
-        if (len(self)!= len(other)):
-            raise Exception("Vectors do not same number of dimensions")
-        return self.euclidLength()>other.euclidLength()
+        return not self<=other
     def __ge__(self, other):
         """
             ge compares the euclidlength of both vectors.
         """
-        if not (isinstance(other, Vector)):
-            raise Exception("Invalid Operand")
-        if (len(self)!= len(other)):
-            raise Exception("Vectors do not same number of dimensions")
-        return self.euclidLength()>=other.euclidLength()
+        return not self<other
     def __ne__(self, other):
         """
             ne compares the euclidlength of both vectors.
         """
-        if not (isinstance(other, Vector)):
-            raise Exception("Invalid Operand")
-        if (len(self)!= len(other)):
-            raise Exception("Vectors do not same number of dimensions")
-        return self.euclidLength()!=other.euclidLength()
+        return not self==other
                         
 def zeroVector(dimension):
     """
