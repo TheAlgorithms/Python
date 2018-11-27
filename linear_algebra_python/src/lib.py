@@ -36,7 +36,7 @@ class Vector(object):
         set(components : list) : changes the vector components.
         __str__() : toString method
         component(i : int): gets the i-th component (start by 0)
-        size() : gets the size of the vector (number of components)
+        __len__() : gets the size of the vector (number of components)
         euclidLength() : returns the eulidean length of the vector.
         operator + : vector addition
         operator - : vector subtraction
@@ -45,12 +45,12 @@ class Vector(object):
         changeComponent(pos,value) : changes the specified component.
         TODO: compare-operator
     """
-    def __init__(self,components):
+    def __init__(self,components=[]):
         """
             input: components or nothing
             simple constructor for init the vector
         """
-        self.__components = components
+        self.__components = list(components)
     def set(self,components):
         """
             input: new components
@@ -58,33 +58,24 @@ class Vector(object):
             replace the components with newer one.
         """
         if len(components) > 0:
-            self.__components = components
+            self.__components = list(components)
         else:
             raise Exception("please give any vector")
     def __str__(self):
         """
             returns a string representation of the vector
         """
-        ans = "("
-        length = len(self.__components)
-        for i in range(length):
-            if i != length-1:
-                ans += str(self.__components[i]) + ","
-            else:
-                ans += str(self.__components[i]) + ")"
-        if len(ans) == 1:
-            ans += ")"
-        return ans
+        return "(" + ",".join(map(str, self.__components)) + ")"
     def component(self,i):
         """
             input: index (start at 0)
             output: the i-th component of the vector.
         """
-        if i < len(self.__components) and i >= 0:
+        if type(i) is int and -len(self.__components) <= i < len(self.__components) :
             return self.__components[i]
         else:
             raise Exception("index out of range")
-    def size(self):
+    def __len__(self):
         """
             returns the size of the vector
         """
@@ -103,52 +94,45 @@ class Vector(object):
             assumes: other vector has the same size
             returns a new vector that represents the sum.
         """
-        size = self.size()
-        result = []
-        if size == other.size():
-            for i in range(size):
-                result.append(self.__components[i] + other.component(i))
+        size = len(self)
+        if size == len(other):
+            result = [self.__components[i] + other.component(i) for i in range(size)]
+            return Vector(result)
         else:
             raise Exception("must have the same size")
-        return Vector(result)
     def __sub__(self,other):
         """
             input: other vector
             assumes: other vector has the same size
             returns a new vector that represents the differenz.
         """
-        size = self.size()
-        result = []
-        if size == other.size():
-            for i in range(size):
-                result.append(self.__components[i] - other.component(i))
+        size = len(self)
+        if size == len(other):
+            result = [self.__components[i] - other.component(i) for i in range(size)]
+            return result
         else: # error case
             raise Exception("must have the same size")
-        return Vector(result)
     def __mul__(self,other):
         """
             mul implements the scalar multiplication 
             and the dot-product
         """
-        ans = []
         if isinstance(other,float) or isinstance(other,int):
-            for c in self.__components:
-                ans.append(c*other)
-        elif (isinstance(other,Vector) and (self.size() == other.size())):
-            size = self.size()
+            ans = [c*other for c in self.__components]
+            return ans
+        elif (isinstance(other,Vector) and (len(self) == len(other))):
+            size = len(self)
             summe = 0
             for i in range(size):
                 summe += self.__components[i] * other.component(i)
             return summe
         else: # error case
             raise Exception("invalide operand!")
-        return Vector(ans)
     def copy(self):
         """
             copies this vector and returns it.
         """
-        components = [x for x in self.__components]
-        return Vector(components)
+        return Vector(self.__components)
     def changeComponent(self,pos,value):
         """
             input: an index (pos) and a value
@@ -156,7 +140,7 @@ class Vector(object):
             'value'
         """
         #precondition
-        assert (pos >= 0 and pos < len(self.__components))
+        assert (-len(self.__components) <= pos < len(self.__components))
         self.__components[pos] = value
     
 def zeroVector(dimension):
@@ -165,10 +149,7 @@ def zeroVector(dimension):
     """        
     #precondition
     assert(isinstance(dimension,int))
-    ans = []
-    for i in range(dimension):
-        ans.append(0)
-    return Vector(ans)
+    return Vector([0]*dimension)
 
 
 def unitBasisVector(dimension,pos):
@@ -178,12 +159,8 @@ def unitBasisVector(dimension,pos):
     """
     #precondition
     assert(isinstance(dimension,int) and (isinstance(pos,int)))
-    ans = []
-    for i in range(dimension):
-        if i != pos:
-            ans.append(0)
-        else:
-            ans.append(1)
+    ans = [0]*dimension
+    ans[pos] = 1
     return Vector(ans)
         
 
@@ -206,11 +183,9 @@ def randomVector(N,a,b):
         output: returns a random vector of size N, with 
                 random integer components between 'a' and 'b'.
     """
-    ans = zeroVector(N)
     random.seed(None)
-    for i in range(N):
-        ans.changeComponent(i,random.randint(a,b))
-    return ans
+    ans = [random.randint(a,b) for i in range(N)]
+    return Vector(ans)
 
 
 class Matrix(object):
@@ -220,7 +195,7 @@ class Matrix(object):
     
     Overview about the methods:
     
-         __str__() : returns a string representation 
+           __str__() : returns a string representation 
            operator * : implements the matrix vector multiplication
                         implements the matrix-scalar multiplication.
            changeComponent(x,y,value) : changes the specified component.
@@ -284,7 +259,7 @@ class Matrix(object):
             implements the matrix-scalar multiplication
         """
         if isinstance(other, Vector): # vector-matrix 
-            if (other.size() == self.__width):
+            if (len(other) == self.__width):
                 ans = zeroVector(self.__height)
                 for i in range(self.__height):
                     summe = 0
@@ -294,15 +269,9 @@ class Matrix(object):
                     summe = 0
                 return ans
             else:
-                raise Exception("vector must have the same size as the "
-                + "number of columns of the matrix!")
+                raise Exception("vector must have the same size as the " + "number of columns of the matrix!")
         elif isinstance(other,int) or isinstance(other,float): # matrix-scalar
-            matrix = []
-            for i in range(self.__height):
-                row = []
-                for j in range(self.__width):
-                    row.append(self.__matrix[i][j] * other)
-                matrix.append(row)
+            matrix = [[self.__matrix[i][j] * other for j in range(self.__width)] for i in range(self.__height)]
             return Matrix(matrix,self.__width,self.__height)
     def __add__(self,other):
         """
@@ -338,12 +307,7 @@ def squareZeroMatrix(N):
     """
         returns a square zero-matrix of dimension NxN
     """
-    ans = []
-    for i in range(N):
-        row = []
-        for j in range(N):
-            row.append(0)
-        ans.append(row)
+    ans = [[0]*N for i in range(N)]
     return Matrix(ans,N,N)
     
     
@@ -352,13 +316,8 @@ def randomMatrix(W,H,a,b):
         returns a random matrix WxH with integer components
         between 'a' and 'b'
     """
-    matrix = []
     random.seed(None)
-    for i in range(H):
-        row = []
-        for j in range(W):
-            row.append(random.randint(a,b))
-        matrix.append(row)
+    matrix = [[random.randint(a,b) for j in range(W)] for i in range(H)]
     return Matrix(matrix,W,H)
             
         

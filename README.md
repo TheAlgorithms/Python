@@ -2,15 +2,15 @@
 
 ### All algorithms implemented in Python (for education)
 
-These are for demonstration purposes only. There are many implementations of sorts in the Python standard library that are much better for performance reasons.
+These implementations are for demonstration purposes. They are less efficient than the implementations in the Python standard library.
 
-## Sort Algorithms
+## Sorting Algorithms
 
 
 ### Bubble Sort
 ![alt text][bubble-image]
 
-From [Wikipedia][bubble-wiki]: **Bubble sort**, sometimes referred to as *sinking sort*, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
+From [Wikipedia][bubble-wiki]: **Bubble sort**, sometimes referred to as *sinking sort*, is a simple sorting algorithm that repeatedly steps through the list, compares adjacent pairs and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
@@ -23,7 +23,7 @@ __Properties__
 ![alt text][bucket-image-1]
 ![alt text][bucket-image-2]
 
-From [Wikipedia][bucket-wiki]: Bucket sort, or bin sort, is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
+From [Wikipedia][bucket-wiki]: Bucket sort, or bin sort, is a sorting algorithm that distributes elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
@@ -57,7 +57,7 @@ __Properties__
 ### Merge Sort
 ![alt text][merge-image]
 
-From [Wikipedia][merge-wiki]: **Merge sort** (also commonly spelled *mergesort*) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
+From [Wikipedia][merge-wiki]: **Merge sort** (also commonly spelled *mergesort*) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means the order of equal items is the same in the input and output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
 
 __Properties__
 * Worst case performance	O(n log n)
@@ -95,7 +95,7 @@ __Properties__
 
 ### Radix
 
-From [Wikipedia][radix-wiki]: In computer science, radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
+From [Wikipedia][radix-wiki]: Radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
 
 __Properties__
 * Worst case performance	O(wn)
@@ -128,7 +128,7 @@ __Properties__
 
 ### Topological
 
-From [Wikipedia][topological-wiki]: In the field of computer science, a topological sort or topological ordering of a directed graph is a linear ordering of its vertices such that for every directed edge uv from vertex u to vertex v, u comes before v in the ordering. For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks. A topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a directed acyclic graph (DAG). Any DAG has at least one topological ordering, and algorithms are known for constructing a topological ordering of any DAG in linear time.
+From [Wikipedia][topological-wiki]: A topological sort or topological ordering of a directed graph is a linear ordering of its vertices such that for every directed edge uv from vertex u to vertex v, u comes before v in the ordering. For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks. A topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a directed acyclic graph (DAG). Any DAG has at least one topological ordering, and algorithms are known for constructing a topological ordering of any DAG in linear time.
 
 ### Time-Complexity Graphs
 
@@ -136,7 +136,7 @@ Comparing the complexity of sorting algorithms (*Bubble Sort*, *Insertion Sort*,
 
 ![Complexity Graphs](https://github.com/prateekiiest/Python/blob/master/sorts/sortinggraphs.png)
 
-Selecting a sort technique: Quicksort is a very fast algorithm but can be pretty tricky to implement while bubble sort is a slow algorithm which is very easy to implement. For a small value of n, bubble sort may be a better option since it can be implemented quickly, but for larger datasets, the speedup from quicksort might be worth the trouble implementing the algorithm.
+Selecting a sort technique: Quicksort is a very fast algorithm but can be pretty tricky to implement while bubble sort is a slow algorithm which is very easy to implement. For a small datasets bubble sort may be a better option since it can be implemented quickly, but for larger datasets, the speedup from quicksort might be worth the trouble implementing the algorithm.
 
 
 
@@ -147,7 +147,7 @@ Selecting a sort technique: Quicksort is a very fast algorithm but can be pretty
 ### Linear
 ![alt text][linear-image]
 
-From [Wikipedia][linear-wiki]: **Linear search** or *sequential search* is a method for finding a target value within a list. It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched. Linear search runs in at worst linear time and makes at most n comparisons, where n is the length of the list.
+From [Wikipedia][linear-wiki]: **Linear search** or *sequential search* is a method for finding an element in a list. It sequentially checks each element of the list until a match is found or all the elements have been searched.
 
 __Properties__
 * Worst case performance	O(n)
