@@ -1,9 +1,9 @@
 def absVal(num):
     """
     Function to fins absolute value of numbers.
-    >>>absVal(-5)
+    #>>>absVal(-5)
     5
-    >>>absVal(0)
+    #>>>absVal(0)
     0
     """
     if num < 0:
@@ -16,3 +16,10 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+"""
+
+绝对值
+
+"""
+

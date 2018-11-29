@@ -1,0 +1,12 @@
+Insert A       			APython
+Insert l       			AlPython
+Insert g       			AlgPython
+Insert o       			AlgoPython
+Replace P with r		Algorython
+Replace y with i		Algorithon
+Copy t         			Algorithon
+Copy h         			Algorithon
+Replace o with m		Algorithmn
+Replace n with s		Algorithms
+
+Minimum cost: 10
