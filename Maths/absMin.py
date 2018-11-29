@@ -1,9 +1,9 @@
-from abs import absVal
+from Maths.abs import absVal
 def absMin(x):
     """
-    >>>absMin([0,5,1,11])
+    # >>>absMin([0,5,1,11])
     0
-    >>absMin([3,-10,-2])
+    # >>absMin([3,-10,-2])
     -2
     """
     j = absVal(x[0])
