@@ -8,7 +8,7 @@ def absMin(x):
     """
     j = absVal(x[0])
     for i in x:
-        if absVal(i) < j:
+        if absVal(i) < absVal(j):
             j = i
     return j
 
