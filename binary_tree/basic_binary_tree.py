@@ -16,6 +16,19 @@ def depth_of_tree(tree):
         else:
             return 1 + depth_r_tree
 
+def diameter_of_tree(tree):
+	if tree is None:
+		return 0
+
+	l_Depth = depth_of_tree(tree.left)
+	r_Depth = depth_of_tree(tree.right)
+
+	l_Diameter = diameter_of_tree(tree.left)
+	r_Diameter = diameter_of_tree(tree.right)
+
+	return max(l_Depth + r_Depth, max(l_Diameter, r_Diameter))
+
+
 
 def is_full_binary_tree(tree):
     if tree is None:
@@ -41,6 +54,7 @@ def main():
 
     print(is_full_binary_tree(tree))
     print(depth_of_tree(tree))
+    print(diameter_of_tree(tree))
 
 
 if __name__ == '__main__':
