@@ -57,8 +57,14 @@ def counting_sort(collection):
 
     return ordered
 
+def counting_sort_string(string):
+    return ''.join([chr(i) for i in counting_sort([ord(c) for c in string])])
+
 
 if __name__ == '__main__':
+    # Test string sort
+    assert "eghhiiinrsssttt" == counting_sort_string("thisisthestring")
+
     try:
         raw_input          # Python 2
     except NameError:

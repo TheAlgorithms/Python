@@ -2,11 +2,11 @@ from __future__ import print_function
 import math
 def jump_search(arr, x):
     n = len(arr)
-    step = math.floor(math.sqrt(n))
+    step = int(math.floor(math.sqrt(n)))
     prev = 0
     while arr[min(step, n)-1] < x:
         prev = step
-        step += math.floor(math.sqrt(n))
+        step += int(math.floor(math.sqrt(n)))
         if prev >= n:
             return -1
 

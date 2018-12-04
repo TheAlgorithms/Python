@@ -290,7 +290,7 @@ def goldbach(number):
     
     while (i < lenPN and loop):
         
-        j = i+1;
+        j = i+1
         
         
         while (j < lenPN and loop):
@@ -300,9 +300,8 @@ def goldbach(number):
                 ans.append(primeNumbers[i])
                 ans.append(primeNumbers[j])
                 
-            j += 1;
-            
-            
+            j += 1
+
         i += 1
         
     # precondition

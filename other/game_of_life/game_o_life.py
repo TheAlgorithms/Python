@@ -28,9 +28,8 @@ Game-Of-Life Rules:
  comes a live cell, as if by reproduction.
  '''
 import numpy as np
-import random, time, sys
+import random, sys
 from matplotlib import pyplot as plt
-import matplotlib.animation as animation
 from matplotlib.colors import ListedColormap
 
 usage_doc='Usage of script: script_nama <size_of_canvas:int>'

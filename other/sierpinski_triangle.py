@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# encoding=utf8
+
 '''Author Anurag Kumar | anuragkumarak95@gmail.com | git/anuragkumarak95
 
 Simple example of Fractal generation using recursive function.
