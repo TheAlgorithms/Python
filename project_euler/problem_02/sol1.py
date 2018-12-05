@@ -18,9 +18,7 @@ i=1
 j=2 
 sum=0
 while(j<=n):
-    if((j&1)==0): #can also use (j%2==0)
+    if j%2 == 0:
         sum+=j
-    temp=i
-    i=j
-    j=temp+i
+    i , j = j, i+j
 print(sum)
