@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import copy
 import sys
 
@@ -213,10 +207,3 @@ def main():
 
 if (__name__ == "__main__"):
     main() #ABCDEFGHI
-
-
-# In[ ]:
-
-
-
-
