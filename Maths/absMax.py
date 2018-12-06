@@ -12,8 +12,7 @@ def absMax(x):
         if absVal(i) > absVal(j):
             j = i
     return j
-    #BUG: i is apparently a list, TypeError: '<' not supported between instances of 'list' and 'int' in absVal
-    #BUG fix
+ 
 
 def main():
     a = [-13, 2, -11, -12]
