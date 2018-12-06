@@ -5,7 +5,7 @@ def factorial(num):
     return fact
 
 def factorialRecursive(num):
-    if num==1:
+    if num<=1:
         return 1
     else:
         return num*factorialRecursive(num-1)
