@@ -5,12 +5,12 @@ import math as math
 # the dfault weight is 1 if not assigend but all the implementation is weighted
 
 class DirectedGraph:
-	# enter True or False for this constructor
 	def __init__(self):
 		self.graph = {}
 
 	# adding vertices and edges
-	# note that self loops are not supported in undirected simpl graphs but it is in multigraphs
+	# adding the weight is optional
+	# handels repetition
 	def add_pair(self, u, v, w = 1):
 		if self.graph.get(u):
 			if self.graph[u].count([w,v]) == 0:
@@ -19,6 +19,8 @@ class DirectedGraph:
 			self.graph[u] = [[w, v]]
 		if not self.graph.get(v):
 			self.graph[v] = []
+			
+	# handels if the input does not exist
 	def remove_pair(self, u, v):
 		if self.graph.get(u):
 			for _ in self.graph[u]:
@@ -93,3 +95,13 @@ class DirectedGraph:
 						d.append(__[1])
 						visited.append(__[1])
 		return visited
+
+if __name__ == "__main__":
+	g = DirectedGraph()
+	# add 50 random nodes to the graph
+	g.fill_graph_randomly(50)
+	# you can add or remove any edge and vertex
+	g.add_pair(3, 5)
+	g.remove_pair(3,5)
+	g.dfs()
+	g.bgs()
