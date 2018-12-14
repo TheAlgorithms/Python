@@ -106,6 +106,133 @@ class DirectedGraph:
 	def out_degree(self, u):
 		return len(self.graph[u])
 
+	def topological_sort(self, s = -2):
+		stack = []
+		visited = []
+		if s == -2:
+			s = list(self.graph.keys())[0]
+		stack.append(s)
+		visited.append(s)
+		ss = s
+		sorted_nodes = []
+
+		while True:
+			# check if there is any non isolated nodes
+			if len(self.graph[s]) != 0:
+				ss = s
+				for __ in self.graph[s]:
+					if visited.count(__[1]) < 1:
+						stack.append(__[1])
+						visited.append(__[1])
+						ss =__[1]
+						break
+
+			# check if all the children are visited
+			if s == ss :
+				sorted_nodes.append(stack.pop())
+				if len(stack) != 0:
+					s = stack[len(stack) - 1]
+			else:
+				s = ss
+
+			# check if se have reached the starting point
+			if len(stack) == 0:
+				return sorted_nodes
+
+	def cycle_nodes(self):
+		stack = []
+		visited = []
+		s = list(self.graph.keys())[0]
+		stack.append(s)
+		visited.append(s)
+		parent = -2
+		indirect_parents = []
+		ss = s
+		anticipating_nodes = set()
+
+		while True:
+			# check if there is any non isolated nodes
+			if len(self.graph[s]) != 0:
+				ss = s
+				for __ in self.graph[s]:
+					if visited.count(__[1]) > 0 and __[1] != parent and indirect_parents.count(__[1]) > 0 and not on_the_way_back:
+						l = len(stack) - 1
+						while True and l >= 0:
+							if stack[l] == __[1]:
+								anticipating_nodes.add(__[1])
+								break
+							else:
+								anticipating_nodes.add(stack[l])
+								l -= 1
+					if visited.count(__[1]) < 1:
+						stack.append(__[1])
+						visited.append(__[1])
+						ss =__[1]
+						break
+
+			# check if all the children are visited
+			if s == ss :
+				stack.pop()
+				on_the_way_back = True
+				if len(stack) != 0:
+					s = stack[len(stack) - 1]
+			else:
+				on_the_way_back = False
+				indirect_parents.append(parent)
+				parent = s
+				s = ss
+
+			# check if se have reached the starting point
+			if len(stack) == 0:
+				return list(anticipating_nodes)
+
+	def has_cycle(self):
+		stack = []
+		visited = []
+		s = list(self.graph.keys())[0]
+		stack.append(s)
+		visited.append(s)
+		parent = -2
+		indirect_parents = []
+		ss = s
+		anticipating_nodes = set()
+
+		while True:
+			# check if there is any non isolated nodes
+			if len(self.graph[s]) != 0:
+				ss = s
+				for __ in self.graph[s]:
+					if visited.count(__[1]) > 0 and __[1] != parent and indirect_parents.count(__[1]) > 0 and not on_the_way_back:
+						l = len(stack) - 1
+						while True and l >= 0:
+							if stack[l] == __[1]:
+								anticipating_nodes.add(__[1])
+								break
+							else:
+								return True
+								anticipating_nodes.add(stack[l])
+								l -= 1
+					if visited.count(__[1]) < 1:
+						stack.append(__[1])
+						visited.append(__[1])
+						ss =__[1]
+						break
+
+			# check if all the children are visited
+			if s == ss :
+				stack.pop()
+				on_the_way_back = True
+				if len(stack) != 0:
+					s = stack[len(stack) - 1]
+			else:
+				on_the_way_back = False
+				indirect_parents.append(parent)
+				parent = s
+				s = ss
+
+			# check if se have reached the starting point
+			if len(stack) == 0:
+				return False
 
 class Graph:
 	def __init__(self):
@@ -214,3 +341,98 @@ class Graph:
 		return visited
 	def degree(self, u):
 		return len(self.graph[u])
+
+	def cycle_nodes(self):
+		stack = []
+		visited = []
+		s = list(self.graph.keys())[0]
+		stack.append(s)
+		visited.append(s)
+		parent = -2
+		indirect_parents = []
+		ss = s
+		anticipating_nodes = set()
+
+		while True:
+			# check if there is any non isolated nodes
+			if len(self.graph[s]) != 0:
+				ss = s
+				for __ in self.graph[s]:
+					if visited.count(__[1]) > 0 and __[1] != parent and indirect_parents.count(__[1]) > 0 and not on_the_way_back:
+						l = len(stack) - 1
+						while True and l >= 0:
+							if stack[l] == __[1]:
+								anticipating_nodes.add(__[1])
+								break
+							else:
+								anticipating_nodes.add(stack[l])
+								l -= 1
+					if visited.count(__[1]) < 1:
+						stack.append(__[1])
+						visited.append(__[1])
+						ss =__[1]
+						break
+
+			# check if all the children are visited
+			if s == ss :
+				stack.pop()
+				on_the_way_back = True
+				if len(stack) != 0:
+					s = stack[len(stack) - 1]
+			else:
+				on_the_way_back = False
+				indirect_parents.append(parent)
+				parent = s
+				s = ss
+
+			# check if se have reached the starting point
+			if len(stack) == 0:
+				return list(anticipating_nodes)
+
+	def has_cycle(self):
+		stack = []
+		visited = []
+		s = list(self.graph.keys())[0]
+		stack.append(s)
+		visited.append(s)
+		parent = -2
+		indirect_parents = []
+		ss = s
+		anticipating_nodes = set()
+
+		while True:
+			# check if there is any non isolated nodes
+			if len(self.graph[s]) != 0:
+				ss = s
+				for __ in self.graph[s]:
+					if visited.count(__[1]) > 0 and __[1] != parent and indirect_parents.count(__[1]) > 0 and not on_the_way_back:
+						l = len(stack) - 1
+						while True and l >= 0:
+							if stack[l] == __[1]:
+								anticipating_nodes.add(__[1])
+								break
+							else:
+								return True
+								anticipating_nodes.add(stack[l])
+								l -= 1
+					if visited.count(__[1]) < 1:
+						stack.append(__[1])
+						visited.append(__[1])
+						ss =__[1]
+						break
+
+			# check if all the children are visited
+			if s == ss :
+				stack.pop()
+				on_the_way_back = True
+				if len(stack) != 0:
+					s = stack[len(stack) - 1]
+			else:
+				on_the_way_back = False
+				indirect_parents.append(parent)
+				parent = s
+				s = ss
+
+			# check if se have reached the starting point
+			if len(stack) == 0:
+				return False
