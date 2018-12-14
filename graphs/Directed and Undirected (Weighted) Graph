@@ -95,6 +95,16 @@ class DirectedGraph:
 						d.append(__[1])
 						visited.append(__[1])
 		return visited
+	def in_degree(self, u):
+		count = 0
+		for _ in self.graph:
+			for __ in self.graph[_]:
+				if __[1] == u:
+					count += 1
+		return count
+
+	def out_degree(self, u):
+		return len(self.graph[u])
 
 
 class Graph:
@@ -202,3 +212,5 @@ class Graph:
 						d.append(__[1])
 						visited.append(__[1])
 		return visited
+	def degree(self, u):
+		return len(self.graph[u])
