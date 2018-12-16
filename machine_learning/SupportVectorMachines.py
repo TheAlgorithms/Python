@@ -197,7 +197,7 @@ def getAlphas(X, Y, C, Kernel, gamma):
     N = len(Y)
     
     # Minimize (1/2)*(a.T)*H*a + (q.T)*a
-    if Kernel == None:
+    if Kernel is None:
         H = getHMatrix(X, Y)
     else:
         H = getKernelHMatrix(X, Y, N, Kernel, gamma)    
