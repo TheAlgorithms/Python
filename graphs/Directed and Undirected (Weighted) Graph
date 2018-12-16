@@ -1,6 +1,7 @@
 from collections import deque
 import random as rand
 import math as math
+import time
 
 # the dfault weight is 1 if not assigend but all the implementation is weighted
 
@@ -19,7 +20,10 @@ class DirectedGraph:
 			self.graph[u] = [[w, v]]
 		if not self.graph.get(v):
 			self.graph[v] = []
-			
+
+	def all_nodes(self):
+		return list(self.graph)
+
 	# handels if the input does not exist
 	def remove_pair(self, u, v):
 		if self.graph.get(u):
@@ -234,6 +238,18 @@ class DirectedGraph:
 			if len(stack) == 0:
 				return False
 
+	def dfs_time(self, s = -2, e = -1):
+		begin = time.time()
+		self.dfs(s,e)
+		end = time.time()
+		return end - begin
+
+	def bfs_time(self, s  = -2):
+		begin = time.time()
+		self.bfs(s)
+		end = time.time()
+		return end - begin
+
 class Graph:
 	def __init__(self):
 		self.graph = {}
@@ -436,3 +452,17 @@ class Graph:
 			# check if se have reached the starting point
 			if len(stack) == 0:
 				return False
+	def all_nodes(self):
+		return list(self.graph)
+
+	def dfs_time(self, s = -2, e = -1):
+		begin = time.time()
+		self.dfs(s,e)
+		end = time.time()
+		return end - begin
+
+	def bfs_time(self, s = -2):
+		begin = time.time()
+		self.bfs(s)
+		end = time.time()
+		return end - begin
