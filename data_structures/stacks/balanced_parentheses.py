@@ -12,8 +12,10 @@ def balanced_parentheses(parentheses):
         if parenthesis == '(':
             stack.push(parenthesis)
         elif parenthesis == ')':
+            if stack.is_empty():
+                return False
             stack.pop()
-    return not stack.is_empty()
+    return stack.is_empty()
 
 
 if __name__ == '__main__':
