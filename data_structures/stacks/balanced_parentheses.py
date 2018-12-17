@@ -17,7 +17,7 @@ def balanced_parentheses(parentheses):
 
 
 if __name__ == '__main__':
-    examples = ['((()))', '((())']
+    examples = ['((()))', '((())', '(()))']
     print('Balanced parentheses demonstration:\n')
     for example in examples:
         print(example + ': ' + str(balanced_parentheses(example)))
