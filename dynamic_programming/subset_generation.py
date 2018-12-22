@@ -7,9 +7,9 @@
 def combinationUtil(arr,n,r,index,data,i):
 #Current combination is ready to be printed,
 # print it
- if(index== r):
+ if(index == r):
   for j in range(r):
-   print(data[j],end=" ")
+   print(data[j],end =" ")
   print(" ")
   return
 #  When no more elements are there to put in data[]
@@ -17,7 +17,7 @@ def combinationUtil(arr,n,r,index,data,i):
   return
 #current is included, put next at next
 # location 
- data[index]=arr[i]
+ data[index] = arr[i]
  combinationUtil(arr,n,r,index+1,data,i+1)
  # current is excluded, replace it with
  # next (Note that i+1 is passed, but
