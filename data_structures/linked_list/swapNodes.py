@@ -22,6 +22,8 @@ class Linkedlist:
 
 # swapping nodes
     def swapNodes(self, d1, d2):
+        prevD1 = None
+        prevD2 = None
         if d1 == d2:
             return
         else:
@@ -65,7 +67,7 @@ if __name__ == '__main__':
 
     list.print_list()
 
-    list.swapNodes(2, 4)
+    list.swapNodes(1, 4)
     print("After swapping")
     list.print_list()
 
