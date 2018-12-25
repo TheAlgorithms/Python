@@ -1,12 +1,15 @@
 def fib(n):
-    a, b, s = 0, 1, 0
+    """
+    Returns a list of all the even terms in the Fibonacci sequence that are less than n.
+    """
+    ls = []
+    a, b = 0, 1
     while b < n:
-        if b % 2 == 0 and b < n: s += b
+        if b % 2 == 0:
+            ls.append(b)
         a, b = b, a+b
-    ls.append(s)
+    return ls
 
-T = int(input().strip())
-ls = []
-for _ in range(T):
-    fib(int(input().strip()))
-print(ls, sep = '\n')
+if __name__ == '__main__':
+    n = int(input("Enter max number: ").strip())
+    print(sum(fib(n)))
