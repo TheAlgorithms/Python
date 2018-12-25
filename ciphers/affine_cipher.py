@@ -4,9 +4,9 @@ import sys, random, cryptomath_module as cryptoMath
 SYMBOLS = """ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
 
 def main():
-    message = raw_input('Enter message: ')
-    key = int(raw_input('Enter key [2000 - 9000]: '))
-    mode = raw_input('Encrypt/Decrypt [E/D]: ')
+    message = input('Enter message: ')
+    key = int(input('Enter key [2000 - 9000]: '))
+    mode = input('Encrypt/Decrypt [E/D]: ')
 
     if mode.lower().startswith('e'):
               mode = 'encrypt'

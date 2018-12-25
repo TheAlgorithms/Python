@@ -2,12 +2,12 @@
 
 ### All algorithms implemented in Python (for education)
 
-These are for demonstration purposes only. There are many implementations of sorts in the Python standard library that are much better for performance reasons.
+These implementations are for demonstration purposes. They are less efficient than the implementations in the Python standard library.
 
-## Sort Algorithms
+## Sorting Algorithms
 
 
-### Bubble
+### Bubble Sort
 ![alt text][bubble-image]
 
 **Bubble sort**, sometimes referred to as *sinking sort*, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
@@ -19,7 +19,6 @@ __Properties__
 
 ###### Source: [Wikipedia][bubble-wiki] 
 ###### View the algorithm in [action][bubble-toptal]
-
 
 ### Bucket
 ![alt text][bucket-image-1]
@@ -48,7 +47,7 @@ __Properties__
 ###### Source: [Wikipedia][cocktail-shaker-wiki] 
 
 
-### Insertion
+### Insertion Sort
 ![alt text][insertion-image]
 
 **Insertion sort** is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on *large* lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
@@ -62,7 +61,7 @@ __Properties__
 ###### View the algorithm in [action][insertion-toptal]
 
 
-### Merge
+### Merge Sort
 ![alt text][merge-image]
 
 **Merge sort** (also commonly spelled *mergesort*) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
@@ -75,7 +74,6 @@ __Properties__
 ###### Source: [Wikipedia][merge-wiki] 
 ###### View the algorithm in [action][merge-toptal]
 
-
 ### Quick
 ![alt text][quick-image]
 
@@ -83,8 +81,8 @@ __Properties__
 
 __Properties__
 * Worst case performance	O(n<sup>2</sup>)
-* Best case performance	O(n log n) or O(n) with three-way partition
-* Average case performance	O(n log n)
+* Best case performance	O(*n* log *n*) or O(n) with three-way partition
+* Average case performance	O(*n* log *n*)
 
 ###### Source: [Wikipedia][quick-wiki]
 ###### View the algorithm in [action][quick-toptal]
@@ -95,9 +93,9 @@ __Properties__
 **Heapsort** is a _comparison-based_ sorting algorithm. It can be thought of as an improved selection sort. It divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region.
 
 __Properties__
-* Worst case performance	O(n log n)
-* Best case performance	O(n log n)
-* Average case performance	O(n log n)
+* Worst case performance	O(*n* log *n*)
+* Best case performance	O(*n* log *n*)
+* Average case performance	O(*n* log *n*)
 
 ###### Source: [Wikipedia][heap-wiki]
 ###### View the algorithm in [action](https://www.toptal.com/developers/sorting-algorithms/heap-sort)
@@ -105,7 +103,7 @@ __Properties__
 
 ### Radix
 
-**Radix sort** is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
+From [Wikipedia][radix-wiki]: Radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
 
 __Properties__
 * Worst case performance	O(wn)
@@ -135,8 +133,8 @@ __Properties__
 **Shellsort** is a generalization of *insertion sort* that allows the exchange of items that are far apart.  The idea is to arrange the list of elements so that, starting anywhere, considering every nth element gives a sorted list.  Such a list is said to be h-sorted.  Equivalently, it can be thought of as h interleaved lists, each individually sorted.
 
 __Properties__
-* Worst case performance O(nlog2 2n)
-* Best case performance O(n log n)
+* Worst case performance O(*n*log<sup>2</sup>*n*)
+* Best case performance O(*n* log *n*)
 * Average case performance depends on gap sequence
 
 ###### Source: [Wikipedia][shell-wiki]
@@ -156,8 +154,6 @@ Comparing the complexity of sorting algorithms (*Bubble Sort*, *Insertion Sort*,
 Comparing the sorting algorithms:
 <br>  -Quicksort is a very fast algorithm but can be pretty tricky to implement
 <br>  -Bubble sort is a slow algorithm but is very easy to implement. To sort small sets of data, bubble sort may be a better option since it can be implemented quickly, but for larger datasets, the speedup from quicksort might be worth the trouble implementing the algorithm.
-
-
 
 ----------------------------------------------------------------------------------
 
@@ -192,7 +188,6 @@ __Properties__
 
 
 ## Interpolation
-
 **Interpolation search** is an algorithm for searching for a key in an array that has been ordered by numerical values assigned to the keys (key values). It was first described by W. W. Peterson in 1957.[1] Interpolation search resembles the method by which people search a telephone directory for a name (the key value by which the book's entries are ordered): in each step the algorithm calculates where in the remaining search space the sought item might be, based on the key values at the bounds of the search space and the value of the sought key, usually via a linear interpolation. The key value actually found at this estimated position is then compared to the key value being sought. If it is not equal, then depending on the comparison, the remaining search space is reduced to the part before or after the estimated position. This method will only work if calculations on the size of differences between key values are sensible.
 
 By comparison, binary search always chooses the middle of the remaining search space, discarding one half or the other, depending on the comparison between the key found at the estimated position and the key sought — it does not require numerical values for the keys, just a total order on them. The remaining search space is reduced to the part before or after the estimated position. The linear search uses equality only as it compares elements one-by-one from the start, ignoring any sorting.
@@ -205,7 +200,6 @@ In interpolation-sequential search, interpolation is used to find an item near t
 
 
 ## Jump Search
-
 **Jump search** or _block search_ refers to a search algorithm for ordered lists. It works by first checking all items Lkm, where {\displaystyle k\in \mathbb {N} } k\in \mathbb {N}  and m is the block size, until an item is found that is larger than the search key. To find the exact position of the search key in the list a linear search is performed on the sublist L[(k-1)m, km].
 
 The optimal value of m is √n, where n is the length of the list L. Because both steps of the algorithm look at, at most, √n items the algorithm runs in O(√n) time. This is better than a linear search, but worse than a binary search. The advantage over the latter is that a jump search only needs to jump backwards once, while a binary can jump backwards up to log n times. This can be important if a jumping backwards takes significantly more time than jumping forward.
@@ -220,7 +214,7 @@ The algorithm can be modified by performing multiple levels of jump search on th
 
 **Quick Select** is a selection algorithm to find the kth smallest element in an unordered list. It is related to the quicksort sorting algorithm. Like quicksort, it was developed by Tony Hoare, and thus is also known as Hoare's selection algorithm.[1] Like quicksort, it is efficient in practice and has good average-case performance, but has poor worst-case performance. Quickselect and its variants are the selection algorithms most often used in efficient real-world implementations.
 
-Quickselect uses the same overall approach as quicksort, choosing one element as a pivot and partitioning the data in two based on the pivot, accordingly as less than or greater than the pivot. However, instead of recursing into both sides, as in quicksort, quickselect only recurses into one side – the side with the element it is searching for. This reduces the average complexity from O(n log n) to O(n), with a worst case of O(n2).
+Quickselect uses the same overall approach as quicksort, choosing one element as a pivot and partitioning the data in two based on the pivot, accordingly as less than or greater than the pivot. However, instead of recursing into both sides, as in quicksort, quickselect only recurses into one side – the side with the element it is searching for. This reduces the average complexity from O(n log n) to O(n), with a worst case of O(n<sup>2</sup>).
 
 As with quicksort, quickselect is generally implemented as an in-place algorithm, and beyond selecting the k'th element, it also partially sorts the data. See selection algorithm for further discussion of the connection with sorting.
 
@@ -228,13 +222,11 @@ As with quicksort, quickselect is generally implemented as an in-place algorithm
 
 
 ## Tabu
-
 **Tabu search** uses a local or neighborhood search procedure to iteratively move from one potential solution {\displaystyle x} x to an improved solution {\displaystyle x'} x' in the neighborhood of {\displaystyle x} x, until some stopping criterion has been satisfied (generally, an attempt limit or a score threshold). Local search procedures often become stuck in poor-scoring areas or areas where scores plateau. In order to avoid these pitfalls and explore regions of the search space that would be left unexplored by other local search procedures, tabu search carefully explores the neighborhood of each solution as the search progresses. The solutions admitted to the new neighborhood, {\displaystyle N^{*}(x)} N^*(x), are determined through the use of memory structures. Using these memory structures, the search progresses by iteratively moving from the current solution {\displaystyle x} x to an improved solution {\displaystyle x'} x' in {\displaystyle N^{*}(x)} N^*(x).
 
 These memory structures form what is known as the tabu list, a set of rules and banned solutions used to filter which solutions will be admitted to the neighborhood {\displaystyle N^{*}(x)} N^*(x) to be explored by the search. In its simplest form, a tabu list is a short-term set of the solutions that have been visited in the recent past (less than {\displaystyle n} n iterations ago, where {\displaystyle n} n is the number of previous solutions to be stored — is also called the tabu tenure). More commonly, a tabu list consists of solutions that have changed by the process of moving from one solution to another. It is convenient, for ease of description, to understand a “solution” to be coded and represented by such attributes.
 
 ###### Source: [Wikipedia][tabu-wiki] 
-
 
 ----------------------------------------------------------------------------------------------------------------------
 
@@ -264,14 +256,13 @@ Many people have tried to implement encryption schemes that are essentially Vige
 ### Transposition
 
 **Transposition cipher** is a method of encryption by which the positions held by units of *plaintext* (which are commonly characters or groups of characters) are shifted according to a regular system, so that the *ciphertext* constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br> 
->>>>>>> 3dab8e03a465397a7b671128c155c9c03f8e0154
+
 Mathematically a bijective function is used on the characters' positions to encrypt and an inverse function to decrypt.
 
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Transposition_cipher)
 
 
 ### RSA (Rivest–Shamir–Adleman)
-
 **RSA** _(Rivest–Shamir–Adleman)_ is one of the first public-key cryptosystems and is widely used for secure data transmission. In such a cryptosystem, the encryption key is public and it is different from the decryption key which is kept secret (private). In RSA, this asymmetry is based on the practical difficulty of the factorization of the product of two large prime numbers, the "factoring problem". The acronym RSA is made of the initial letters of the surnames of Ron Rivest, Adi Shamir, and Leonard Adleman, who first publicly described the algorithm in 1978. Clifford Cocks, an English mathematician working for the British intelligence agency Government Communications Headquarters (GCHQ), had developed an equivalent system in 1973, but this was not declassified until 1997.[1]
 
 A user of RSA creates and then publishes a public key based on two large prime numbers, along with an auxiliary value. The prime numbers must be kept secret. Anyone can use the public key to encrypt a message, but with currently published methods, and if the public key is large enough, only someone with knowledge of the prime numbers can decode the message feasibly.[2] Breaking RSA encryption is known as the RSA problem. Whether it is as difficult as the factoring problem remains an open question.
@@ -290,7 +281,6 @@ Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its o
 
 
 ## XOR
-
 **XOR cipher** is a simple type of additive cipher,[1] an encryption algorithm that operates according to the principles:
 
 A {\displaystyle \oplus } \oplus  0 = A,
@@ -340,10 +330,11 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 [topological-wiki]: https://en.wikipedia.org/wiki/Topological_sorting
 
 [linear-wiki]: https://en.wikipedia.org/wiki/Linear_search
-[linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif
+[linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif "Linear Search"
 
 [binary-wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
-[binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png
+[binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png "Binary Search"
+
 
 [interpolation-wiki]: https://en.wikipedia.org/wiki/Interpolation_search
 
@@ -353,8 +344,8 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 
 [tabu-wiki]: https://en.wikipedia.org/wiki/Tabu_search
 
-[caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
+[ROT13-image]: https://upload.wikimedia.org/wikipedia/commons/3/33/ROT13_table_with_example.svg "ROT13"
 
-[ROT13-image]: https://upload.wikimedia.org/wikipedia/commons/3/33/ROT13_table_with_example.svg
+[JumpSearch-image]: https://i1.wp.com/theoryofprogramming.com/wp-content/uploads/2016/11/jump-search-1.jpg "Jump Search"
 
-[QuickSelect-image]: https://upload.wikimedia.org/wikipedia/commons/0/04/Selecting_quickselect_frames.gif
+[QuickSelect-image]: https://upload.wikimedia.org/wikipedia/commons/0/04/Selecting_quickselect_frames.gif "Quick Select"

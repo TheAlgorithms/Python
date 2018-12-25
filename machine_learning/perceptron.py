@@ -120,5 +120,5 @@ network.trannig()
 while True:
     sample = []
     for i in range(3):
-        sample.insert(i, float(raw_input('value: ')))
+        sample.insert(i, float(input('value: ')))
     network.sort(sample)

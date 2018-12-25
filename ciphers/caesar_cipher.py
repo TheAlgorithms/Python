@@ -34,35 +34,30 @@ def brute_force(strng):
 
 
 def main():
-    print('-' * 10 + "\n**Menu**\n" + '-' * 10)
-    print("1.Encrpyt")
-    print("2.Decrypt")
-    print("3.BruteForce")
-    print("4.Quit")
     while True:
-        choice = raw_input("What would you like to do?: ")
+        print('-' * 10 + "\n**Menu**\n" + '-' * 10)
+        print("1.Encrpyt")
+        print("2.Decrypt")
+        print("3.BruteForce")
+        print("4.Quit")
+        choice = input("What would you like to do?: ")
         if choice not in ['1', '2', '3', '4']:
             print ("Invalid choice")
         elif choice == '1':
-            strng = raw_input("Please enter the string to be ecrypted: ")
-            while True:
-                key = int(input("Please enter off-set between 1-94: "))
-                if key in range(1, 95):
-                    print (encrypt(strng, key))
-                    main()
+            strng = input("Please enter the string to be ecrypted: ")
+            key = int(input("Please enter off-set between 1-94: "))
+            if key in range(1, 95):
+                print (encrypt(strng.lower(), key))
         elif choice == '2':
-            strng = raw_input("Please enter the string to be decrypted: ")
-            while True:
-                key = raw_int(input("Please enter off-set between 1-94: "))
-                if key > 0 and key <= 94:
-                    print(decrypt(strng, key))
-                    main()
+            strng = input("Please enter the string to be decrypted: ")
+            key = int(input("Please enter off-set between 1-94: "))
+            if key > 0 and key <= 94:
+                print(decrypt(strng, key))
         elif choice == '3':
-            strng = raw_input("Please enter the string to be decrypted: ")
+            strng = input("Please enter the string to be decrypted: ")
             brute_force(strng)
             main()
         elif choice == '4':
             print ("Goodbye.")
-            sys.exit()
-
+            break
 main()

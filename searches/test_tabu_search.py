@@ -2,7 +2,7 @@ import unittest
 import os
 from tabu_search import generate_neighbours, generate_first_solution, find_neighborhood, tabu_search
 
-TEST_FILE = os.path.join(os.path.dirname(__file__), './tabuTestData.txt')
+TEST_FILE = os.path.join(os.path.dirname(__file__), './tabu_test_data.txt')
 
 NEIGHBOURS_DICT = {'a': [['b', '20'], ['c', '18'], ['d', '22'], ['e', '26']],
                    'c': [['a', '18'], ['b', '10'], ['d', '23'], ['e', '24']],
