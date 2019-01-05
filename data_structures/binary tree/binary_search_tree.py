@@ -195,7 +195,7 @@ def InPreOrder(curr_node):
     return nodeList
 
 def testBinarySearchTree():
-    '''
+    r'''
     Example
                   8
                  / \
@@ -206,7 +206,7 @@ def testBinarySearchTree():
                 4   7 13 
     '''
 
-    '''
+    r'''
     Example After Deletion
                   7
                  / \
