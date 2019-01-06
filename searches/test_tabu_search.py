@@ -26,21 +26,21 @@ class TestClass(unittest.TestCase):
     def test_generate_neighbours(self):
         neighbours = generate_neighbours(TEST_FILE)
 
-        self.assertEquals(NEIGHBOURS_DICT, neighbours)
+        self.assertEqual(NEIGHBOURS_DICT, neighbours)
 
     def test_generate_first_solutions(self):
         first_solution, distance = generate_first_solution(TEST_FILE, NEIGHBOURS_DICT)
 
-        self.assertEquals(FIRST_SOLUTION, first_solution)
-        self.assertEquals(DISTANCE, distance)
+        self.assertEqual(FIRST_SOLUTION, first_solution)
+        self.assertEqual(DISTANCE, distance)
 
     def test_find_neighbours(self):
         neighbour_of_solutions = find_neighborhood(FIRST_SOLUTION, NEIGHBOURS_DICT)
 
-        self.assertEquals(NEIGHBOURHOOD_OF_SOLUTIONS, neighbour_of_solutions)
+        self.assertEqual(NEIGHBOURHOOD_OF_SOLUTIONS, neighbour_of_solutions)
 
     def test_tabu_search(self):
         best_sol, best_cost = tabu_search(FIRST_SOLUTION, DISTANCE, NEIGHBOURS_DICT, 4, 3)
 
-        self.assertEquals(['a', 'd', 'b', 'e', 'c', 'a'], best_sol)
-        self.assertEquals(87, best_cost)
+        self.assertEqual(['a', 'd', 'b', 'e', 'c', 'a'], best_sol)
+        self.assertEqual(87, best_cost)
