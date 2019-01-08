@@ -80,9 +80,8 @@ def decryptMessage(encryptedBlocks, messageLength, key, blockSize=DEFAULT_BLOCK_
 
 
 def readKeyFile(keyFilename):
-    fo = open(keyFilename)
-    content = fo.read()
-    fo.close()
+    with open(keyFilename) as fo:
+        content = fo.read()
     keySize, n, EorD = content.split(',')
     return (int(keySize), int(n), int(EorD))
 
@@ -98,16 +97,15 @@ def encryptAndWriteToFile(messageFilename, keyFilename, message, blockSize=DEFAU
         encryptedBlocks[i] = str(encryptedBlocks[i])
     encryptedContent = ','.join(encryptedBlocks)
     encryptedContent = '%s_%s_%s' % (len(message), blockSize, encryptedContent)
-    fo = open(messageFilename, 'w')
-    fo.write(encryptedContent)
-    fo.close()
+    with open(messageFilename, 'w') as fo:
+        fo.write(encryptedContent)
     return encryptedContent
 
 
 def readFromFileAndDecrypt(messageFilename, keyFilename):
     keySize, n, d = readKeyFile(keyFilename)
-    fo = open(messageFilename)
-    content = fo.read()
+    with open(messageFilename) as fo:
+        content = fo.read()
     messageLength, blockSize, encryptedMessage = content.split('_')
     messageLength = int(messageLength)
     blockSize = int(blockSize)

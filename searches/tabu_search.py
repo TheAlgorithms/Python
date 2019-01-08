@@ -45,24 +45,23 @@ def generate_neighbours(path):
     the node 'c' with distance 18, the node 'd' with distance 22 and the node 'e' with distance 26.
 
     """
-    f = open(path, "r")
 
     dict_of_neighbours = {}
 
-    for line in f:
-        if line.split()[0] not in dict_of_neighbours:
-            _list = list()
-            _list.append([line.split()[1], line.split()[2]])
-            dict_of_neighbours[line.split()[0]] = _list
-        else:
-            dict_of_neighbours[line.split()[0]].append([line.split()[1], line.split()[2]])
-        if line.split()[1] not in dict_of_neighbours:
-            _list = list()
-            _list.append([line.split()[0], line.split()[2]])
-            dict_of_neighbours[line.split()[1]] = _list
-        else:
-            dict_of_neighbours[line.split()[1]].append([line.split()[0], line.split()[2]])
-    f.close()
+    with open(path) as f:
+        for line in f:
+            if line.split()[0] not in dict_of_neighbours:
+                _list = list()
+                _list.append([line.split()[1], line.split()[2]])
+                dict_of_neighbours[line.split()[0]] = _list
+            else:
+                dict_of_neighbours[line.split()[0]].append([line.split()[1], line.split()[2]])
+            if line.split()[1] not in dict_of_neighbours:
+                _list = list()
+                _list.append([line.split()[0], line.split()[2]])
+                dict_of_neighbours[line.split()[1]] = _list
+            else:
+                dict_of_neighbours[line.split()[1]].append([line.split()[0], line.split()[2]])
 
     return dict_of_neighbours
 
@@ -84,8 +83,8 @@ def generate_first_solution(path, dict_of_neighbours):
 
     """
 
-    f = open(path, "r")
-    start_node = f.read(1)
+    with open(path) as f:
+        start_node = f.read(1)
     end_node = start_node
 
     first_solution = []
@@ -93,7 +92,6 @@ def generate_first_solution(path, dict_of_neighbours):
     visiting = start_node
 
     distance_of_first_solution = 0
-    f.close()
     while visiting not in first_solution:
         minim = 10000
         for k in dict_of_neighbours[visiting]:

@@ -15,31 +15,29 @@ class FileSplitter(object):
 
     def write_block(self, data, block_number):
         filename = self.BLOCK_FILENAME_FORMAT.format(block_number)
-        file = open(filename, 'w')
-        file.write(data)
-        file.close()
+        with open(filename, 'w') as file:
+            file.write(data)
         self.block_filenames.append(filename)
 
     def get_block_filenames(self):
         return self.block_filenames
 
     def split(self, block_size, sort_key=None):
-        file = open(self.filename, 'r')
         i = 0
+        with open(self.filename) as file:
+            while True:
+                lines = file.readlines(block_size)
 
-        while True:
-            lines = file.readlines(block_size)
+                if lines == []:
+                    break
 
-            if lines == []:
-                break
+                if sort_key is None:
+                    lines.sort()
+                else:
+                    lines.sort(key=sort_key)
 
-            if sort_key is None:
-                lines.sort()
-            else:
-                lines.sort(key=sort_key)
-
-            self.write_block(''.join(lines), i)
-            i += 1
+                self.write_block(''.join(lines), i)
+                i += 1
 
     def cleanup(self):
         map(lambda f: os.remove(f), self.block_filenames)
@@ -74,6 +72,7 @@ class FilesArray(object):
 
                 if self.buffers[i] == '':
                     self.empty.add(i)
+                    self.files[i].close()
 
         if len(self.empty) == self.num_buffers:
             return False
@@ -92,12 +91,11 @@ class FileMerger(object):
         self.merge_strategy = merge_strategy
 
     def merge(self, filenames, outfilename, buffer_size):
-        outfile = open(outfilename, 'w', buffer_size)
         buffers = FilesArray(self.get_file_handles(filenames, buffer_size))
-
-        while buffers.refresh():
-            min_index = self.merge_strategy.select(buffers.get_dict())
-            outfile.write(buffers.unshift(min_index))
+        with open(outfilename, 'w', buffer_size) as outfile:
+            while buffers.refresh():
+                min_index = self.merge_strategy.select(buffers.get_dict())
+                outfile.write(buffers.unshift(min_index))
 
     def get_file_handles(self, filenames, buffer_size):
         files = {}
