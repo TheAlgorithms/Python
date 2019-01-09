@@ -3,10 +3,12 @@
 
 
 from math import cos, sin, exp
+
+"Defining f(x)"
 def f(x):
     return 8*x-2*exp(-x);
 
-
+"The main secant method"
 def SecantMethod(lowerBound, upperBound, repeats):
     x0 = lowerBound;
     x1 = upperBound;
