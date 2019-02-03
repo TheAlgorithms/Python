@@ -15,3 +15,5 @@ for a in range(3,n):
     if(a%3==0 or a%5==0):
         sum+=a
 print(sum)
+pirnt('abhishek bisht.')
+print('this is done.')
