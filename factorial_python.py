@@ -1,11 +1,10 @@
 # Python program to find the factorial of a number provided by the user.
 
-# change the value for a different result
-num = 10
+# Uncomment next line to manually change the value for a different result
+#num = 10
 
-# uncomment lines 7, 8, 22, and 23 to take input from the user
-#try:
-#   num = int(input("Enter a number: "))
+try:
+   num = int(input("Enter a number: "))
 
    factorial = 1
 
@@ -19,5 +18,5 @@ num = 10
       for i in range(1,num + 1):
           factorial = factorial*i
       print("The factorial of",num,"is",factorial)
-#except ValueError:
-#   print("Sorry, you have not entered a number")
+except ValueError:
+   print("Sorry, you have not entered a number")
