@@ -2,7 +2,7 @@ def absVal(num):
     """Function which finds the absolute value of the passed
     parameter, `num`.
 
-    >>>> absVal(-5)
+    >>> absVal(-5)
     5
     >>> absVal(0)
     0
