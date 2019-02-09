@@ -137,7 +137,8 @@ def main():
     input_string = args.input_string
     #In any case hash input should be a bytestring
     if args.input_file:
-        hash_input = open(args.input_file, 'rb').read()
+        with open(args.input_file, 'rb') as f:
+            hash_input = f.read()
     else:
         hash_input = bytes(input_string, 'utf-8')
     print(SHA1Hash(hash_input).final_hash())

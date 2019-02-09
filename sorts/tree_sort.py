@@ -11,12 +11,12 @@ class node():
     def insert(self,val):
         if self.val:
             if val < self.val:
-                if self.left == None:
+                if self.left is None:
                     self.left = node(val)
                 else:
                     self.left.insert(val)
             elif val > self.val:
-                if self.right == None:
+                if self.right is None:
                     self.right = node(val)
                 else:
                     self.right.insert(val)
