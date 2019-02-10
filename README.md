@@ -13,9 +13,9 @@ These implementations are for demonstration purposes. They are less efficient th
 **Bubble sort**, sometimes referred to as *sinking sort*, is a simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
 
 __Properties__
-* Worst case performance	O(n<sup>2</sup>)
-* Best case performance	O(n)
-* Average case performance	O(n<sup>2</sup>)
+* Worst case performance    O(n<sup>2</sup>)
+* Best case performance    O(n)
+* Average case performance    O(n<sup>2</sup>)
 
 ###### Source: [Wikipedia][bubble-wiki] 
 ###### View the algorithm in [action][bubble-toptal]
@@ -24,12 +24,12 @@ __Properties__
 ![alt text][bucket-image-1]
 ![alt text][bucket-image-2]
 
-**Bucket sort**, or _bin sort_, is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
+**Bucket sort**, or _bin sort_, is a sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm or by recursively applying the bucket sorting algorithm.
 
 __Properties__
-* Worst case performance	O(n<sup>2</sup>)
-* Best case performance	O(n+k)
-* Average case performance	O(n+k)
+* Worst case performance    O(n<sup>2</sup>)
+* Best case performance    O(n+k)
+* Average case performance    O(n+k)
 
 ###### Source: [Wikipedia][bucket-wiki] 
 
@@ -40,9 +40,9 @@ __Properties__
 **Cocktail shaker sort**, also known as _bidirectional bubble sort_, _cocktail sort_, _shaker sort_ (which can also refer to a variant of _selection sort_), _ripple sort_, _shuffle sort_, or _shuttle sort_, is a variation of bubble sort that is both a stable sorting algorithm and a comparison sort. The algorithm differs from a bubble sort in that it sorts in both directions on each pass through the list.
 
 __Properties__
-* Worst case performance	O(n<sup>2</sup>)
-* Best case performance	O(n)
-* Average case performance	O(n<sup>2</sup>)
+* Worst case performance    O(n<sup>2</sup>)
+* Best case performance    O(n)
+* Average case performance    O(n<sup>2</sup>)
 
 ###### Source: [Wikipedia][cocktail-shaker-wiki] 
 
@@ -53,9 +53,9 @@ __Properties__
 **Insertion sort** is a simple sorting algorithm that builds the final sorted array (or list) one item at a time. It is much less efficient on *large* lists than more advanced algorithms such as quicksort, heapsort, or merge sort.
 
 __Properties__
-* Worst case performance	O(n<sup>2</sup>)
-* Best case performance	O(n)
-* Average case performance	O(n<sup>2</sup>)
+* Worst case performance    O(n<sup>2</sup>)
+* Best case performance    O(n)
+* Average case performance    O(n<sup>2</sup>)
 
 ###### Source: [Wikipedia][insertion-wiki]
 ###### View the algorithm in [action][insertion-toptal]
@@ -64,12 +64,12 @@ __Properties__
 ### Merge Sort
 ![alt text][merge-image]
 
-**Merge sort** (also commonly spelled *mergesort*) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquer algorithm that was invented by John von Neumann in 1945.
+**Merge sort** (also commonly spelled *mergesort*) is an efficient, general-purpose, comparison-based sorting algorithm. Most implementations produce a stable sort, which means that the implementation preserves the input order of equal elements in the sorted output. Mergesort is a divide and conquers algorithm that was invented by John von Neumann in 1945.
 
 __Properties__
-* Worst case performance	O(n log n)
-* Best case performance	O(n log n)
-* Average case performance	O(n log n)
+* Worst case performance    O(n log n)
+* Best case performance    O(n log n)
+* Average case performance    O(n log n)
 
 ###### Source: [Wikipedia][merge-wiki] 
 ###### View the algorithm in [action][merge-toptal]
@@ -80,9 +80,9 @@ __Properties__
 **Quicksort** (sometimes called *partition-exchange sort*) is an efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order.
 
 __Properties__
-* Worst case performance	O(n<sup>2</sup>)
-* Best case performance	O(*n* log *n*) or O(n) with three-way partition
-* Average case performance	O(*n* log *n*)
+* Worst case performance    O(n<sup>2</sup>)
+* Best case performance    O(*n* log *n*) or O(n) with three-way partition
+* Average case performance    O(*n* log *n*)
 
 ###### Source: [Wikipedia][quick-wiki]
 ###### View the algorithm in [action][quick-toptal]
@@ -93,9 +93,9 @@ __Properties__
 **Heapsort** is a _comparison-based_ sorting algorithm. It can be thought of as an improved selection sort. It divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region.
 
 __Properties__
-* Worst case performance	O(*n* log *n*)
-* Best case performance	O(*n* log *n*)
-* Average case performance	O(*n* log *n*)
+* Worst case performance    O(*n* log *n*)
+* Best case performance    O(*n* log *n*)
+* Average case performance    O(*n* log *n*)
 
 ###### Source: [Wikipedia][heap-wiki]
 ###### View the algorithm in [action](https://www.toptal.com/developers/sorting-algorithms/heap-sort)
@@ -106,9 +106,9 @@ __Properties__
 From [Wikipedia][radix-wiki]: Radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value.
 
 __Properties__
-* Worst case performance	O(wn)
-* Best case performance	O(wn)
-* Average case performance	O(wn)
+* Worst case performance    O(n)
+* Best case performance    O(n)
+* Average case performance    O(n)
 
 ###### Source: [Wikipedia][radix-wiki] 
 
@@ -119,9 +119,9 @@ __Properties__
 **Selection sort** is an algorithm that divides the input list into two parts: the sublist of items already sorted, which is built up from left to right at the front (left) of the list, and the sublist of items remaining to be sorted that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest (or largest, depending on sorting order) element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.
 
 __Properties__
-* Worst case performance	O(n<sup>2</sup>)
-* Best case performance	O(n<sup>2</sup>)
-* Average case performance	O(n<sup>2</sup>)
+* Worst case performance    O(n<sup>2</sup>)
+* Best case performance    O(n<sup>2</sup>)
+* Average case performance    O(n<sup>2</sup>)
 
 ###### Source: [Wikipedia][selection-wiki] 
 ###### View the algorithm in [action][selection-toptal]
@@ -143,7 +143,7 @@ __Properties__
 
 ### Topological
 
-From [Wikipedia][topological-wiki]: **Topological sort**, or _topological ordering of a directed graph_ is a linear ordering of its vertices such that for every directed edge _uv_ from vertex _u_ to vertex _v_, _u_ comes before _v_ in the ordering. For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks. A topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a _directed acyclic graph_ (DAG). Any DAG has at least one topological ordering, and algorithms are known for constructing a topological ordering of any DAG in linear time.
+From [Wikipedia][topological-wiki]: **Topological sort**, or _topological ordering of a directed graph_ is a linear ordering of its vertices such that for every directed edge _uv_ from vertex _u_ to vertex _v_, _u_ comes before _v_ in the ordering. For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks. A topological ordering is possible if and only if the graph has no directed cycles, that is if it is a _directed acyclic graph_ (DAG). Any DAG has at least one topological ordering, and algorithms are known for constructing a topological ordering of any DAG in linear time.
 
 ### Time-Complexity Graphs
 
@@ -162,13 +162,13 @@ Comparing the sorting algorithms:
 ### Linear
 ![alt text][linear-image]
 
-**Linear search** or *sequential search* is a method for finding a target value within a list. It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched. Linear search runs in at worst linear time and makes at most n comparisons, where n is the length of the list.
+**Linear search** or *sequential search* is a method for finding a target value within a list. It sequentially checks each element of the list for the target value until a match is found or until all the elements have been searched. The linear search runs in at the worst linear time and makes at most n comparisons, where n is the length of the list.
 
 __Properties__
-* Worst case performance	O(n)
-* Best case performance	O(1)
-* Average case performance	O(n)
-* Worst case space complexity	O(1) iterative
+* Worst case performance    O(n)
+* Best case performance    O(1)
+* Average case performance    O(n)
+* Worst case space complexity    O(1) iterative
 
 ###### Source: [Wikipedia][linear-wiki]
 
@@ -179,10 +179,10 @@ __Properties__
 **Binary search**, also known as *half-interval search* or *logarithmic search*, is a search algorithm that finds the position of a target value within a sorted array. It compares the target value to the middle element of the array; if they are unequal, the half in which the target cannot lie is eliminated and the search continues on the remaining half until it is successful.
 
 __Properties__
-* Worst case performance	O(log n)
-* Best case performance	O(1)
-* Average case performance	O(log n)
-* Worst case space complexity	O(1)
+* Worst case performance    O(log n)
+* Best case performance    O(1)
+* Average case performance    O(log n)
+* Worst case space complexity    O(1)
 
 ###### Source: [Wikipedia][binary-wiki]
 
@@ -194,17 +194,17 @@ By comparison, binary search always chooses the middle of the remaining search s
 
 On average the interpolation search makes about log(log(n)) comparisons (if the elements are uniformly distributed), where n is the number of elements to be searched. In the worst case (for instance where the numerical values of the keys increase exponentially) it can make up to O(n) comparisons.
 
-In interpolation-sequential search, interpolation is used to find an item near the one being searched for, then linear search is used to find the exact item.
+In interpolation-sequential search, interpolation is used to find an item near the one being searched for, then a linear search is used to find the exact item.
 
 ###### Source: [Wikipedia][interpolation-wiki] 
 
 
 ## Jump Search
-**Jump search** or _block search_ refers to a search algorithm for ordered lists. It works by first checking all items Lkm, where {\displaystyle k\in \mathbb {N} } k\in \mathbb {N}  and m is the block size, until an item is found that is larger than the search key. To find the exact position of the search key in the list a linear search is performed on the sublist L[(k-1)m, km].
+**Jump search** or _block search_ refers to a search algorithm for ordered lists. It works by first checking all items Lkm, where {\displaystyle k\in \mathbb {N} } k\in \mathbb {N}  and m is the block size until an item is found that is larger than the search key. To find the exact position of the search key in the list a linear search is performed on the sublist L[(k-1)m, km].
 
-The optimal value of m is √n, where n is the length of the list L. Because both steps of the algorithm look at, at most, √n items the algorithm runs in O(√n) time. This is better than a linear search, but worse than a binary search. The advantage over the latter is that a jump search only needs to jump backwards once, while a binary can jump backwards up to log n times. This can be important if a jumping backwards takes significantly more time than jumping forward.
+The optimal value of m is √n, where n is the length of the list L. Because of both steps of the algorithm look at, at most, √n items the algorithm runs in O(√n) time. This is better than a linear search but worse than a binary search. The advantage over the latter is that a jump search only needs to jump backward once, while a binary can jump back up to log n times. This can be important if a jumping backward takes significantly more time than jumping forward.
 
-The algorithm can be modified by performing multiple levels of jump search on the sublists, before finally performing the linear search. For an k-level jump search the optimum block size ml for the lth level (counting from 1) is n(k-l)/k. The modified algorithm will perform k backward jumps and runs in O(kn1/(k+1)) time.
+The algorithm can be modified by performing multiple levels of jump search on the sublists, before finally performing the linear search. For a k-level jump search the optimum block size ml for the lth level (counting from 1) is n(k-l)/k. The modified algorithm will perform k backward jumps and runs in O(kn1/(k+1)) time.
 
 ###### Source: [Wikipedia][jump-wiki]
 
@@ -222,7 +222,7 @@ As with quicksort, quickselect is generally implemented as an in-place algorithm
 
 
 ## Tabu
-**Tabu search** uses a local or neighborhood search procedure to iteratively move from one potential solution {\displaystyle x} x to an improved solution {\displaystyle x'} x' in the neighborhood of {\displaystyle x} x, until some stopping criterion has been satisfied (generally, an attempt limit or a score threshold). Local search procedures often become stuck in poor-scoring areas or areas where scores plateau. In order to avoid these pitfalls and explore regions of the search space that would be left unexplored by other local search procedures, tabu search carefully explores the neighborhood of each solution as the search progresses. The solutions admitted to the new neighborhood, {\displaystyle N^{*}(x)} N^*(x), are determined through the use of memory structures. Using these memory structures, the search progresses by iteratively moving from the current solution {\displaystyle x} x to an improved solution {\displaystyle x'} x' in {\displaystyle N^{*}(x)} N^*(x).
+**Tabu search** uses a local or neighborhood search procedure to iteratively move from one potential solution {\displaystyle x} x to an improved solution {\displaystyle x'} x' in the neighborhood of {\displaystyle x} x until some stopping criterion has been satisfied (generally, an attempt limit or a score threshold). Local search procedures often become stuck in poor-scoring areas or areas where scores plateau. In order to avoid these pitfalls and explore regions of the search space that would be left unexplored by other local search procedures, tabu search carefully explores the neighborhood of each solution as the search progresses. The solutions admitted to the new neighborhood, {\displaystyle N^{*}(x)} N^*(x), are determined through the use of memory structures. Using these memory structures, the search progresses by iteratively moving from the current solution {\displaystyle x} x to an improved solution {\displaystyle x'} x' in {\displaystyle N^{*}(x)} N^*(x).
 
 These memory structures form what is known as the tabu list, a set of rules and banned solutions used to filter which solutions will be admitted to the neighborhood {\displaystyle N^{*}(x)} N^*(x) to be explored by the search. In its simplest form, a tabu list is a short-term set of the solutions that have been visited in the recent past (less than {\displaystyle n} n iterations ago, where {\displaystyle n} n is the number of previous solutions to be stored — is also called the tabu tenure). More commonly, a tabu list consists of solutions that have changed by the process of moving from one solution to another. It is convenient, for ease of description, to understand a “solution” to be coded and represented by such attributes.
 
@@ -247,7 +247,7 @@ The encryption step performed by a Caesar cipher is often incorporated as part o
 
 **Vigenère cipher** is a method of encrypting alphabetic text by using a series of **interwoven Caesar ciphers** based on the letters of a keyword. It is **a form of polyalphabetic substitution**.<br>
 The Vigenère cipher has been reinvented many times. The method was originally described by Giovan Battista Bellaso in his 1553 book La cifra del. Sig. Giovan Battista Bellaso; however, the scheme was later misattributed to Blaise de Vigenère in the 19th century, and is now widely known as the "Vigenère cipher".<br>
-Though the cipher is easy to understand and implement, for three centuries it resisted all attempts to break it; this earned it the description **le chiffre indéchiffrable**(French for 'the indecipherable cipher').
+Though the cipher is easy to understand and implement, for three centuries it resisted all attempts to break it; this earned it the description **le Chiffre indéchiffrable**(French for 'the indecipherable cipher').
 Many people have tried to implement encryption schemes that are essentially Vigenère ciphers. Friedrich Kasiski was the first to publish a general method of deciphering a Vigenère cipher in 1863.
 
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher)
@@ -255,7 +255,7 @@ Many people have tried to implement encryption schemes that are essentially Vige
 
 ### Transposition
 
-**Transposition cipher** is a method of encryption by which the positions held by units of *plaintext* (which are commonly characters or groups of characters) are shifted according to a regular system, so that the *ciphertext* constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br> 
+**Transposition cipher** is a method of encryption by which the positions held by units of *plaintext* (which are commonly characters or groups of characters) are shifted according to a regular system so that the *ciphertext* constitutes a permutation of the plaintext. That is, the order of the units is changed (the plaintext is reordered).<br> 
 
 Mathematically a bijective function is used on the characters' positions to encrypt and an inverse function to decrypt.
 
@@ -275,7 +275,7 @@ A user of RSA creates and then publishes a public key based on two large prime n
 
 **ROT13** ("rotate by 13 places", sometimes hyphenated _ROT-13_) is a simple letter substitution cipher that replaces a letter with the 13th letter after it, in the alphabet. ROT13 is a special case of the Caesar cipher which was developed in ancient Rome.
 
-Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its own inverse; that is, to undo ROT13, the same algorithm is applied, so the same action can be used for encoding and decoding. The algorithm provides virtually no cryptographic security, and is often cited as a canonical example of weak encryption.[1]
+Because there are 26 letters (2×13) in the basic Latin alphabet, ROT13 is its own inverse; that is, to undo ROT13, the same algorithm is applied, so the same action can be used for encoding and decoding. The algorithm provides virtually no cryptographic security and is often cited as a canonical example of weak encryption.[1]
 
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/ROT13)
 
