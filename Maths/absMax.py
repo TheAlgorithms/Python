@@ -1,4 +1,3 @@
-from abs import absVal
 def absMax(x):
     """
     >>>absMax([0,5,1,11])
@@ -8,10 +7,9 @@ def absMax(x):
     """
     j = x[0]
     for i in x:
-        if absVal(i) > absVal(j):
+        if abs(i) > abs(j):
             j = i
     return j
-    #BUG: i is apparently a list, TypeError: '<' not supported between instances of 'list' and 'int' in absVal
 
 
 def main():
