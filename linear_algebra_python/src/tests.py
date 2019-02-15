@@ -29,13 +29,13 @@ class Test(unittest.TestCase):
             test for toString() method
         """
         x = Vector([0,0,0,0,0,1])
-        self.assertEqual(x.__str__(),"(0,0,0,0,0,1)")
+        self.assertEqual(str(x),"(0,0,0,0,0,1)")
     def test_size(self):
         """
             test for size()-method
         """
         x = Vector([1,2,3,4])
-        self.assertEqual(x.size(),4)
+        self.assertEqual(len(x),4)
     def test_euclidLength(self):
         """
             test for the eulidean length
@@ -67,32 +67,32 @@ class Test(unittest.TestCase):
         x = Vector([1,2,3])
         a = Vector([2,-1,4]) # for test of dot-product
         b = Vector([1,-2,-1])
-        self.assertEqual((x*3.0).__str__(),"(3.0,6.0,9.0)")
+        self.assertEqual(str(x*3.0),"(3.0,6.0,9.0)")
         self.assertEqual((a*b),0)
     def test_zeroVector(self):
         """
             test for the global function zeroVector(...)
         """
-        self.assertTrue(zeroVector(10).__str__().count("0") == 10)
+        self.assertTrue(str(zeroVector(10)).count("0") == 10)
     def test_unitBasisVector(self):
         """
             test for the global function unitBasisVector(...)
         """
-        self.assertEqual(unitBasisVector(3,1).__str__(),"(0,1,0)")
+        self.assertEqual(str(unitBasisVector(3,1)),"(0,1,0)")
     def test_axpy(self):
         """
             test for the global function axpy(...) (operation)
         """
         x = Vector([1,2,3])
         y = Vector([1,0,1])
-        self.assertEqual(axpy(2,x,y).__str__(),"(3,4,7)")
+        self.assertEqual(str(axpy(2,x,y)),"(3,4,7)")
     def test_copy(self):
         """
             test for the copy()-method
         """
         x = Vector([1,0,0,0,0,0])
         y = x.copy()
-        self.assertEqual(x.__str__(),y.__str__())
+        self.assertEqual(str(x),str(y))
     def test_changeComponent(self):
         """
             test for the changeComponent(...)-method
@@ -100,33 +100,33 @@ class Test(unittest.TestCase):
         x = Vector([1,0,0])
         x.changeComponent(0,0)
         x.changeComponent(1,1)
-        self.assertEqual(x.__str__(),"(0,1,0)")
+        self.assertEqual(str(x),"(0,1,0)")
     def test_str_matrix(self):
         A = Matrix([[1,2,3],[2,4,5],[6,7,8]],3,3)
-        self.assertEqual("|1,2,3|\n|2,4,5|\n|6,7,8|\n",A.__str__())
+        self.assertEqual("|1,2,3|\n|2,4,5|\n|6,7,8|\n",str(A))
     def test__mul__matrix(self):
         A = Matrix([[1,2,3],[4,5,6],[7,8,9]],3,3)
         x = Vector([1,2,3])
-        self.assertEqual("(14,32,50)",(A*x).__str__())
-        self.assertEqual("|2,4,6|\n|8,10,12|\n|14,16,18|\n",(A*2).__str__())
+        self.assertEqual("(14,32,50)",str(A*x))
+        self.assertEqual("|2,4,6|\n|8,10,12|\n|14,16,18|\n",str(A*2))
     def test_changeComponent_matrix(self):
         A = Matrix([[1,2,3],[2,4,5],[6,7,8]],3,3)
         A.changeComponent(0,2,5)
-        self.assertEqual("|1,2,5|\n|2,4,5|\n|6,7,8|\n",A.__str__())
+        self.assertEqual("|1,2,5|\n|2,4,5|\n|6,7,8|\n",str(A))
     def test_component_matrix(self):
         A = Matrix([[1,2,3],[2,4,5],[6,7,8]],3,3)
         self.assertEqual(7,A.component(2,1),0.01)
     def test__add__matrix(self):
         A = Matrix([[1,2,3],[2,4,5],[6,7,8]],3,3)
         B = Matrix([[1,2,7],[2,4,5],[6,7,10]],3,3)
-        self.assertEqual("|2,4,10|\n|4,8,10|\n|12,14,18|\n",(A+B).__str__())
+        self.assertEqual("|2,4,10|\n|4,8,10|\n|12,14,18|\n",str(A+B))
     def test__sub__matrix(self):
         A = Matrix([[1,2,3],[2,4,5],[6,7,8]],3,3)
         B = Matrix([[1,2,7],[2,4,5],[6,7,10]],3,3)
-        self.assertEqual("|0,0,-4|\n|0,0,0|\n|0,0,-2|\n",(A-B).__str__())
+        self.assertEqual("|0,0,-4|\n|0,0,0|\n|0,0,-2|\n",str(A-B))
     def test_squareZeroMatrix(self):
         self.assertEqual('|0,0,0,0,0|\n|0,0,0,0,0|\n|0,0,0,0,0|\n|0,0,0,0,0|' 
-        +'\n|0,0,0,0,0|\n',squareZeroMatrix(5).__str__())
+        +'\n|0,0,0,0,0|\n',str(squareZeroMatrix(5)))
         
 
 if __name__ == "__main__":

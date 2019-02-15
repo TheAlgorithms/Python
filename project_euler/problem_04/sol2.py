@@ -4,16 +4,14 @@ A palindromic number reads the same both ways. The largest palindrome made from 
 Find the largest palindrome made from the product of two 3-digit numbers which is less than N.
 '''
 from __future__ import print_function
-arr = []
-for i in range(999,100,-1):
-    for j in range(999,100,-1):
+n = int(input().strip())
+answer = 0
+for i in range(999,99,-1): #3 digit nimbers range from 999 down to 100
+    for j in range(999,99,-1):
         t = str(i*j)
-        if t == t[::-1]:
-            arr.append(i*j)
-arr.sort()
+        if t == t[::-1] and i*j < n:
+            answer = max(answer,i*j)
+print(answer)
+exit(0)
 
-n=int(input())
-for i in arr[::-1]:
-    if(i<n):
-        print(i)
-        exit(0)
+

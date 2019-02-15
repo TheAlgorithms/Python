@@ -13,9 +13,9 @@ This module contains some useful classes and functions for dealing with linear a
         
     - constructor(components : list) : init the vector  
     - set(components : list) : changes the vector components.  
-    - __str__() : toString method  
+    - \_\_str\_\_() : toString method  
     - component(i : int): gets the i-th component (start by 0)  
-    - size() : gets the size of the vector (number of components)  
+    - \_\_len\_\_() : gets the size / length of the vector (number of components)  
     - euclidLength() : returns the eulidean length of the vector.  
     - operator + : vector addition  
     - operator - : vector subtraction  
@@ -31,12 +31,13 @@ This module contains some useful classes and functions for dealing with linear a
     - computes the axpy operation  
 - function randomVector(N,a,b)
     - returns a random vector of size N, with random integer components between 'a' and 'b'.
+
 - class Matrix
     - This class represents a matrix of arbitrary size and operations on it.
 
     **Overview about the methods:**  
     
-    -  __str__() : returns a string representation  
+    -  \_\_str\_\_() : returns a string representation  
     - operator * : implements the matrix vector multiplication  
                    implements the matrix-scalar multiplication.  
     - changeComponent(x,y,value) : changes the specified component.  
@@ -45,6 +46,7 @@ This module contains some useful classes and functions for dealing with linear a
     - height() : returns the height of the matrix  
     - operator + : implements the matrix-addition.  
     - operator - _ implements the matrix-subtraction  
+
 - function squareZeroMatrix(N)  
     - returns a square zero-matrix of dimension NxN  
 - function randomMatrix(W,H,a,b)  

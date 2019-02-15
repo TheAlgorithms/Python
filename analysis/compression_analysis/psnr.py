@@ -4,6 +4,7 @@
 """
 
 import math
+import os
 
 import cv2
 import numpy as np
@@ -18,18 +19,18 @@ def psnr(original, contrast):
 
 
 def main():
-
+    dir_path = os.path.dirname(os.path.realpath(__file__))
     # Loading images (original image and compressed image)
-    original = cv2.imread('original_image.png')
-    contrast = cv2.imread('compressed_image.png', 1)
+    original = cv2.imread(os.path.join(dir_path, 'original_image.png'))
+    contrast = cv2.imread(os.path.join(dir_path, 'compressed_image.png'), 1)
 
-    original2 = cv2.imread('PSNR-example-base.png')
-    contrast2 = cv2.imread('PSNR-example-comp-10.jpg', 1)
+    original2 = cv2.imread(os.path.join(dir_path, 'PSNR-example-base.png'))
+    contrast2 = cv2.imread(os.path.join(dir_path, 'PSNR-example-comp-10.jpg'), 1)
 
     # Value expected: 29.73dB
     print("-- First Test --")
     print(f"PSNR value is {psnr(original, contrast)} dB")
-    
+
     # # Value expected: 31.53dB (Wikipedia Example)
     print("\n-- Second Test --")
     print(f"PSNR value is {psnr(original2, contrast2)} dB")

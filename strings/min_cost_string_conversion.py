@@ -73,50 +73,49 @@ if __name__ == '__main__':
 	m = len(operations)
 	n = len(operations[0])
 	sequence = assemble_transformation(operations, m-1, n-1)
-	
-	file = open('min_cost.txt', 'w')
 
 	string = list('Python')
 	i = 0
 	cost = 0
-	for op in sequence:
-		print(''.join(string))
-
-		if op[0] == 'C':
-			file.write('%-16s' % 'Copy %c' % op[1])
-			file.write('\t\t\t' + ''.join(string))
-			file.write('\r\n')
-			
-			cost -= 1
-		elif op[0] == 'R':
-			string[i] = op[2]
-
-			file.write('%-16s' % ('Replace %c' % op[1] + ' with ' + str(op[2])))
-			file.write('\t\t' + ''.join(string))
-			file.write('\r\n')
-			
-			cost += 1
-		elif op[0] == 'D':
-			string.pop(i)
-
-			file.write('%-16s' % 'Delete %c' % op[1])
-			file.write('\t\t\t' + ''.join(string))
-			file.write('\r\n')
-			
-			cost += 2
-		else:
-			string.insert(i, op[1])
-
-			file.write('%-16s' % 'Insert %c' % op[1])
-			file.write('\t\t\t' + ''.join(string))
-			file.write('\r\n')
-			
-			cost += 2
-
-		i += 1
-
-	print(''.join(string))
-	print('Cost: ', cost)
 	
-	file.write('\r\nMinimum cost: ' + str(cost))
-	file.close()
+	with open('min_cost.txt', 'w') as file:
+		for op in sequence:
+			print(''.join(string))
+
+			if op[0] == 'C':
+				file.write('%-16s' % 'Copy %c' % op[1])
+				file.write('\t\t\t' + ''.join(string))
+				file.write('\r\n')
+				
+				cost -= 1
+			elif op[0] == 'R':
+				string[i] = op[2]
+
+				file.write('%-16s' % ('Replace %c' % op[1] + ' with ' + str(op[2])))
+				file.write('\t\t' + ''.join(string))
+				file.write('\r\n')
+				
+				cost += 1
+			elif op[0] == 'D':
+				string.pop(i)
+
+				file.write('%-16s' % 'Delete %c' % op[1])
+				file.write('\t\t\t' + ''.join(string))
+				file.write('\r\n')
+				
+				cost += 2
+			else:
+				string.insert(i, op[1])
+
+				file.write('%-16s' % 'Insert %c' % op[1])
+				file.write('\t\t\t' + ''.join(string))
+				file.write('\r\n')
+				
+				cost += 2
+
+			i += 1
+
+		print(''.join(string))
+		print('Cost: ', cost)
+		
+		file.write('\r\nMinimum cost: ' + str(cost))
