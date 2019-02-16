@@ -42,16 +42,16 @@ def main():
         print("4.Quit")
         choice = input("What would you like to do?: ")
         if choice not in ['1', '2', '3', '4']:
-            print ("Invalid choice")
+            print ("Invalid choice, please enter a valid choice")
         elif choice == '1':
-            strng = input("Please enter the string to be ecrypted: ")
+            strng = input("Please enter the string to be encrypted: ")
             key = int(input("Please enter off-set between 1-94: "))
             if key in range(1, 95):
                 print (encrypt(strng.lower(), key))
         elif choice == '2':
             strng = input("Please enter the string to be decrypted: ")
             key = int(input("Please enter off-set between 1-94: "))
-            if key > 0 and key <= 94:
+            if key in range(1,95):
                 print(decrypt(strng, key))
         elif choice == '3':
             strng = input("Please enter the string to be decrypted: ")
