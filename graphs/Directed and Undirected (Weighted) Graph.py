@@ -152,6 +152,7 @@ class DirectedGraph:
 		parent = -2
 		indirect_parents = []
 		ss = s
+		on_the_way_back = False
 		anticipating_nodes = set()
 
 		while True:
@@ -199,6 +200,7 @@ class DirectedGraph:
 		parent = -2
 		indirect_parents = []
 		ss = s
+		on_the_way_back = False
 		anticipating_nodes = set()
 
 		while True:
@@ -367,6 +369,7 @@ class Graph:
 		parent = -2
 		indirect_parents = []
 		ss = s
+		on_the_way_back = False
 		anticipating_nodes = set()
 
 		while True:
@@ -414,6 +417,7 @@ class Graph:
 		parent = -2
 		indirect_parents = []
 		ss = s
+		on_the_way_back = False
 		anticipating_nodes = set()
 
 		while True:
