@@ -88,3 +88,6 @@ def test():
     assert not root.find('bandanas')
     assert not root.find('apps')
     assert root.find('apple')
+
+
+test()
