@@ -1,9 +1,8 @@
 """
 A Trie/Prefix Tree is a kind of search tree used to provide quick lookup
-of words/patterns in a set of words. A basic Trie however has O(n^2) space complexity
-making it impractical in practice. It however provides O(max(search_string, length of longest word)) lookup
-time making it an optimal approach when space is not an issue.
-
+of words/patterns in a set of words.
+Space Complexity of a Trie is O(Alphabet Size * key length * N) where N is the number of words in the trie.
+Insert and Search costs are O(key_length). Source: https://www.geeksforgeeks.org/trie-insert-and-search/
 """
 
 
@@ -47,6 +46,19 @@ class TrieNode:
             curr = curr.nodes[char]
         return curr.is_leaf
 
+    def starts_with(self, prefix: str) -> bool:
+        """
+            Tries to find prefix in a Trie
+            :param prefix check if a given prefix can be found.
+            :return: Returns if there is any word in the trie that starts with the given prefix.
+        """
+        curr = self
+        for char in prefix:
+            if char not in curr.nodes:
+                return False
+            curr = curr.nodes[char]
+        return True
+
 
 def print_words(node: TrieNode, word: str):  # noqa: E999 This syntax is Python 3 only
     """
@@ -68,8 +80,11 @@ def test():
     root.insert_many(words)
     # print_words(root, '')
     assert root.find('banana')
+    assert root.starts_with('ban')
+    assert root.starts_with('bana')
+    assert root.starts_with('banan')
+    assert not root.starts_with('bad')
+    assert not root.starts_with('bands')
     assert not root.find('bandanas')
     assert not root.find('apps')
     assert root.find('apple')
-
-test()
