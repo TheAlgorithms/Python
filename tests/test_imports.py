@@ -3,9 +3,6 @@ import re
 import importlib
 import pytest
 
-import thealgorithms
-
-
 def _split_path_rec(path):
     rest, tail = os.path.split(path)
     if rest == "":
@@ -15,14 +12,21 @@ def _split_path_rec(path):
 
 def _gather_modules():
     """Gather all modules that should be imported, but exclude __init__
-    modules.
+    modules and anything in the tests directory.
+    
+    Note that all top-level directories, except those listed in
+    ``exclude_dirs``, will be searched. This means that, for example,
+    virtual environments in the project directory will be "teste".
     """
-    testdir = os.path.dirname(__file__)
+    testdir = os.path.abspath(os.path.dirname(__file__))
     root = os.path.dirname(testdir)
-    algos_root = os.path.dirname(thealgorithms.__file__)
     modules = []
+    exclude_dirs = [os.path.abspath(p) for p in (testdir, root)]
 
-    for dirpath, dirnames, filenames in os.walk(algos_root):
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if os.path.abspath(d) not in exclude_dirs]
+        if dirpath == root: # skip root to avoid scripts
+            continue
         for filename in filenames:
             if not filename.endswith(".py") or filename.endswith("__init__.py"):
                 continue
@@ -34,8 +38,11 @@ def _gather_modules():
 
 
 @pytest.mark.parametrize("module", _gather_modules())
-@pytest.mark.timeout(1)
+@pytest.mark.timeout(2)
 def test_import_module(module):
     """Test that all modules from project root can be imported"""
     mod = importlib.import_module(module)
     assert mod
+
+if __name__ == "__main__":
+    print(_gather_modules())
