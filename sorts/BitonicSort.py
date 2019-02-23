@@ -42,15 +42,19 @@ def sort(a, N, up):
     bitonicSort(a, 0, N, up)
 
 
-# Driver code to test above
-a = []
+def main():
+    # Driver code to test above
+    a = []
 
-n = int(input())
-for i in range(n):
-    a.append(int(input()))
-up = 1
+    n = int(input())
+    for i in range(n):
+        a.append(int(input()))
+    up = 1
 
-sort(a, n, up)
-print("\n\nSorted array is")
-for i in range(n):
-    print("%d" % a[i])
+    sort(a, n, up)
+    print("\n\nSorted array is")
+    for i in range(n):
+        print("%d" % a[i])
+
+if __name__ == "__main__":
+    main()
