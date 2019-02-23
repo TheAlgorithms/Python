@@ -2,11 +2,6 @@ language: python
 cache: pip
 python:
     - 3.6
-matrix:
-    allow_failures:
-        - python: nightly
-        - python: pypy
-        - python: pypy3
 install:
     - pip install flake8
     - pip install -e .[TEST]
@@ -14,9 +9,10 @@ before_script:
     # stop the build if there are Python syntax errors or undefined names
     - flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
     # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
-    - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    # Prints an unmanageable amount of output (some 6000 lines)
+    #- flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 script:
-    - pytest tests --cov thealgorithms --cov-branch
+    - ./run_tests.sh
 notifications:
     on_success: change
     on_failure: change
