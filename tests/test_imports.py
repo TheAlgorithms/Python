@@ -3,6 +3,7 @@ import re
 import importlib
 import pytest
 
+
 def _split_path_rec(path):
     rest, tail = os.path.split(path)
     if rest == "":
@@ -24,8 +25,13 @@ def _gather_modules():
     exclude_dirs = [os.path.abspath(p) for p in (testdir, root)]
 
     for dirpath, dirnames, filenames in os.walk(root):
-        dirnames[:] = [d for d in dirnames if os.path.abspath(d) not in exclude_dirs]
-        if dirpath == root: # skip root to avoid scripts
+        dirnames[:] = [
+            d
+            for d in dirnames
+            if os.path.abspath(d) not in exclude_dirs
+            and "__init__.py" in os.listdir(os.path.join(dirpath, d))
+        ]
+        if dirpath == root:  # skip root to avoid scripts
             continue
         for filename in filenames:
             if not filename.endswith(".py") or filename.endswith("__init__.py"):
