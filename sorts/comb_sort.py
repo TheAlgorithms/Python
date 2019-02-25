@@ -33,6 +33,8 @@ def comb_sort(data):
     while gap > 1 or swapped:
         # Update the gap value for a next comb
         gap = int(float(gap) / shrink_factor)
+        if gap < 1:
+            gap = 1
 
         swapped = False
         i = 0
