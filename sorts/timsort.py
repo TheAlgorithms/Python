@@ -42,6 +42,9 @@ def merge(left, right):
 
 
 def timsort(lst):
+    if not lst:
+        return []
+
     runs, sorted_runs = [], []
     length = len(lst)
     new_run = [lst[0]]
