@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-def printDist(dist, V):
+def printDist(dist, V): #This function print the Distance.
 	print("\nThe shortest path matrix using Floyd Warshall algorithm\n")
 	for i in range(V):
 		for j in range(V):
