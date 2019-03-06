@@ -89,6 +89,7 @@ __Properties__
 
 
 ### Heap
+![alt text][heapsort-image]
 
 **Heapsort** is a _comparison-based_ sorting algorithm. It can be thought of as an improved selection sort. It divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region.
 
@@ -311,6 +312,7 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 [quick-wiki]: https://en.wikipedia.org/wiki/Quicksort
 [quick-image]: https://upload.wikimedia.org/wikipedia/commons/6/6a/Sorting_quicksort_anim.gif "Quick Sort"
 
+[heapsort-image]: https://upload.wikimedia.org/wikipedia/commons/4/4d/Heapsort-example.gif "Heap Sort"
 [heap-wiki]: https://en.wikipedia.org/wiki/Heapsort
 
 [radix-wiki]: https://en.wikipedia.org/wiki/Radix_sort
