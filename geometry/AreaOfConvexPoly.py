@@ -49,6 +49,9 @@ def Slope(p1, p2):
         return float(sys.maxsize)
     return (p2[1] - p1[1]) / (p2[0] - p1[0])
 
+
+#Finds the area of polygon by extracting the
+# determinant of the 2 x n matrix of points.
 def CrossProduct(points):
     points.append(points[0])
     suml = 0
@@ -65,7 +68,7 @@ if __name__ == '__main__':
     except NameError:
         raw_input = input  # Python 3
 
-    user_input = raw_input("Input points separated by commas in the following format: x1 y1 x2 y2... ").strip()
+    user_input = raw_input("Input points in the following format: x1 y1 x2 y2... ").strip()
     ints = list(map(int, user_input.split(" ")))
     points = [(ints[2 * i], ints[2*i+1]) for i in range(len(ints)//2)]
 
