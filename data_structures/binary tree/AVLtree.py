@@ -65,7 +65,7 @@ def my_max(a,b):
 
 
 def leftrotation(node):
-    '''
+    r'''
             A                      B
            / \                    / \
           B   C                  Bl  A
@@ -101,7 +101,7 @@ def rightrotation(node):
     return ret
 
 def rlrotation(node):
-    '''
+    r'''
             A              A                    Br      
            / \            / \                  /  \
           B   C    RR    Br  C       LR       B    A

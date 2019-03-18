@@ -2,10 +2,11 @@
 This is pure python implementation of tree traversal algorithms
 """
 from __future__ import print_function
+
 import queue
 
 try:
-    raw_input          # Python 2
+    raw_input  # Python 2
 except NameError:
     raw_input = input  # Python 3
 
@@ -22,7 +23,7 @@ def build_tree():
     print("Enter the value of the root node: ", end="")
     check = raw_input().strip().lower()
     if check == 'n':
-        return None 
+        return None
     data = int(check)
     q = queue.Queue()
     tree_node = TreeNode(data)
@@ -85,6 +86,73 @@ def level_order(node):
             q.put(node_dequeued.right)
 
 
+def level_order_actual(node):
+    if not isinstance(node, TreeNode) or not node:
+        return
+    q = queue.Queue()
+    q.put(node)
+    while not q.empty():
+        list = []
+        while not q.empty():
+            node_dequeued = q.get()
+            print(node_dequeued.data, end=" ")
+            if node_dequeued.left:
+                list.append(node_dequeued.left)
+            if node_dequeued.right:
+                list.append(node_dequeued.right)
+        print()
+        for node in list:
+            q.put(node)
+
+
+# iteration version
+def pre_order_iter(node):
+    if not isinstance(node, TreeNode) or not node:
+        return
+    stack = []
+    n = node
+    while n or stack:
+        while n:  # start from root node, find its left child
+            print(n.data, end=" ")
+            stack.append(n)
+            n = n.left
+        # end of while means current node doesn't have left child
+        n = stack.pop()
+        # start to traverse its right child
+        n = n.right
+
+
+def in_order_iter(node):
+    if not isinstance(node, TreeNode) or not node:
+        return
+    stack = []
+    n = node
+    while n or stack:
+        while n:
+            stack.append(n)
+            n = n.left
+        n = stack.pop()
+        print(n.data, end=" ")
+        n = n.right
+
+
+def post_order_iter(node):
+    if not isinstance(node, TreeNode) or not node:
+        return
+    stack1, stack2 = [], []
+    n = node
+    stack1.append(n)
+    while stack1:  # to find the reversed order of post order, store it in stack2
+        n = stack1.pop()
+        if n.left:
+            stack1.append(n.left)
+        if n.right:
+            stack1.append(n.right)
+        stack2.append(n)
+    while stack2:  # pop up from stack2 will be the post order
+        print(stack2.pop().data, end=" ")
+
+
 if __name__ == '__main__':
     print("\n********* Binary Tree Traversals ************\n")
 
@@ -103,4 +171,20 @@ if __name__ == '__main__':
 
     print("\n********* Level Order Traversal ************")
     level_order(node)
+    print("\n******************************************\n")
+
+    print("\n********* Actual Level Order Traversal ************")
+    level_order_actual(node)
+    print("\n******************************************\n")
+
+    print("\n********* Pre Order Traversal - Iteration Version ************")
+    pre_order_iter(node)
+    print("\n******************************************\n")
+
+    print("\n********* In Order Traversal - Iteration Version ************")
+    in_order_iter(node)
+    print("\n******************************************\n")
+
+    print("\n********* Post Order Traversal - Iteration Version ************")
+    post_order_iter(node)
     print("\n******************************************\n")

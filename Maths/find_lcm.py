@@ -1,10 +1,11 @@
 def find_lcm(num_1, num_2):
     max = num_1 if num_1 > num_2 else num_2
+    lcm = max
     while (True):
-        if ((max % num_1 == 0) and (max % num_2 == 0)):
+        if ((lcm % num_1 == 0) and (lcm % num_2 == 0)):
             break
-        max += 1
-    return max
+        lcm += max
+    return lcm
 
 
 def main():

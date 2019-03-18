@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from .Stack import Stack
+from stack import Stack
 
 __author__ = 'Omkar Pathak'
 
@@ -12,12 +12,14 @@ def balanced_parentheses(parentheses):
         if parenthesis == '(':
             stack.push(parenthesis)
         elif parenthesis == ')':
+            if stack.is_empty():
+                return False
             stack.pop()
-    return not stack.is_empty()
+    return stack.is_empty()
 
 
 if __name__ == '__main__':
-    examples = ['((()))', '((())']
+    examples = ['((()))', '((())', '(()))']
     print('Balanced parentheses demonstration:\n')
     for example in examples:
         print(example + ': ' + str(balanced_parentheses(example)))
