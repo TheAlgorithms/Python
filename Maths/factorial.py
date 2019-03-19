@@ -11,4 +11,8 @@ def Fac(n):
             result=result*i
         return result
  if __name__=='__main__':
-     print(Fac(8))
+     for i in range(-1,9):
+            if i==-1:
+                Fac(i)
+            else:
+                print("%d!=%d"%(i,Fac(i)))
