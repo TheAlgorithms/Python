@@ -29,14 +29,23 @@ def minor(matrix, row, column):
     minor = [row[:column] + row[column + 1:] for row in minor]
     return minor
 
+def determinant(matrix):
+    if len(matrix) == 1: return matrix[0][0]
+    
+    res = 0
+    for x in range(len(matrix)):
+        res += matrix[0][x] * determinant(minor(matrix , 0 , x)) * (-1) ** x
+    return res
+
 def main():
     matrix_a = [[12, 10], [3, 9]]
     matrix_b = [[3, 4], [7, 4]]
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
-    print(minor(matrix_c , 1 , 2))
+
     print(add(matrix_a, matrix_b))
     print(multiply(matrix_a, matrix_b))
-
+    print(minor(matrix_c , 1 , 2))
+    print(determinant(matrix_b))
 
 if __name__ == '__main__':
     main()
