@@ -153,7 +153,7 @@ class DirectedGraph:
 		indirect_parents = []
 		ss = s
 		anticipating_nodes = set()
-
+		on_the_way_back = False
 		while True:
 			# check if there is any non isolated nodes
 			if len(self.graph[s]) != 0:
@@ -200,7 +200,7 @@ class DirectedGraph:
 		indirect_parents = []
 		ss = s
 		anticipating_nodes = set()
-
+		on_the_way_back = False
 		while True:
 			# check if there is any non isolated nodes
 			if len(self.graph[s]) != 0:
@@ -415,7 +415,7 @@ class Graph:
 		indirect_parents = []
 		ss = s
 		anticipating_nodes = set()
-
+		on_the_way_back = False
 		while True:
 			# check if there is any non isolated nodes
 			if len(self.graph[s]) != 0:
