@@ -56,7 +56,6 @@ def main():
         elif choice == '3':
             strng = input("Please enter the string to be decrypted: ")
             brute_force(strng)
-            main()
         elif choice == '4':
             print ("Goodbye.")
             break
