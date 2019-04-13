@@ -1,30 +1,11 @@
 def add(matrix_a, matrix_b):
-    rows = len(matrix_a)
-    columns = len(matrix_a[0])
-    matrix_c = []
-    for i in range(rows):
-        list_1 = []
-        for j in range(columns):
-            val = matrix_a[i][j] + matrix_b[i][j]
-            list_1.append(val)
-        matrix_c.append(list_1)
-    return matrix_c
+    return [list(map(sum, zip(*t))) for t in zip(matrix_a, matrix_b)]
 
 def scalarMultiply(matrix , n):
     return [[x * n for x in row] for row in matrix]
 
 def multiply(matrix_a, matrix_b):
-    matrix_c = []
-    n = len(matrix_a)
-    for i in range(n):
-        list_1 = []
-        for j in range(n):
-            val = 0
-            for k in range(n):
-                val = val + matrix_a[i][k] * matrix_b[k][j]
-            list_1.append(val)
-        matrix_c.append(list_1)
-    return matrix_c
+    return [[sum(map(lambda a, b: a*b, a_row, b_col)) for b_col in transpose(matrix_b)] for a_row in matrix_a]
 
 def identity(n):
     return [[int(row == column) for column in range(n)] for row in range(n)] 
