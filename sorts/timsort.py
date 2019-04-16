@@ -54,12 +54,12 @@ def timsort(lst):
             break
 
         if lst[i] < lst[i - 1]:
-            if not new_run:
+            if not len(new_run) == 1:
                 runs.append([lst[i - 1]])
                 new_run.append(lst[i])
             else:
                 runs.append(new_run)
-                new_run = []
+                new_run = [lst[i]]
         else:
             new_run.append(lst[i])
 
@@ -73,10 +73,10 @@ def timsort(lst):
 
 
 def main():
-
-    lst = [5,9,10,3,-4,5,178,92,46,-18,0,7]
+    lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
     sorted_lst = timsort(lst)
     print(sorted_lst)
+
 
 if __name__ == '__main__':
     main()
