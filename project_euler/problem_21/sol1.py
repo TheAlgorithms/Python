@@ -24,19 +24,7 @@ def sum_of_divisors(n):
 			total += i + n//i
 		elif i == sqrt(n):
 			total += i
-
 	return total-n
 
-sums = []
-total = 0
-
-for i in xrange(1, 10000):
-	n = sum_of_divisors(i)
-	
-	if n < len(sums):
-		if sums[n-1] == i:
-			total += n + i
-
-	sums.append(n)
-
-print(total)
+total = [i for i in range(1,10000) if sum_of_divisors(sum_of_divisors(i)) == i and sum_of_divisors(i) != i]
+print(sum(total))
