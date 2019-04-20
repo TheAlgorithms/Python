@@ -4,6 +4,20 @@ class Node: # This is the Class Node with constructor that contains data variabl
         self.left = None
         self.right = None
 
+def display(tree): #In Order traversal of the tree
+
+    if tree is None: 
+        return
+
+    if tree.left is not None:
+        display(tree.left)
+
+    print(tree.data)
+
+    if tree.right is not None:
+        display(tree.right)
+
+    return
 
 def depth_of_tree(tree): #This is the recursive function to find the depth of binary tree.
     if tree is None:
@@ -41,6 +55,8 @@ def main(): # Main func for testing.
 
     print(is_full_binary_tree(tree))
     print(depth_of_tree(tree))
+    print("Tree is: ")
+    display(tree)
 
 
 if __name__ == '__main__':
