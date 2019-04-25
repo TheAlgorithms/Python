@@ -45,7 +45,7 @@ while year < 2001:
 		year += 1
 		month = 1
 
-	if year < 2001 and day is 1:
+	if year < 2001 and day == 1:
 		sundays += 1
 
 print(sundays)
