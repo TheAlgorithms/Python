@@ -54,7 +54,7 @@ def timsort(lst):
             break
 
         if lst[i] < lst[i - 1]:
-            if not len(new_run) == 1:
+            if len(new_run) != 1:
                 runs.append([lst[i - 1]])
                 new_run.append(lst[i])
             else:
@@ -73,6 +73,10 @@ def timsort(lst):
 
 
 def main():
+    assert timsort([]) == []
+    assert timsort([1]) == [1]
+    assert timsort([5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]) == sorted([5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7])
+    assert timsort([1, 2, 5, 8, 3, 6, 9, 4, 7]) == sorted([1, 2, 5, 8, 3, 6, 9, 4, 7])
     lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
     sorted_lst = timsort(lst)
     print(sorted_lst)
