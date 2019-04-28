@@ -9,24 +9,11 @@ pushed to the right side of the pivot value. Once every value is placed, the piv
 that keeps track of where the pivot's final position should be. Now a recursive call happens on the left and right side
 of where the pivot is places. A pivot point is picked on each and the steps are repeated all over again.
 
-Explaining the Partition Function
-----------------------
-def partition(A, left_index, right_index):
-    pivot = A[left_index]
-    i = left_index + 1 #position to swap the pivot point after it has been compared
-    for j in range(left_index + 1, right_index): #increments through the bounds to compare with the pivot
-        if A[j] < pivot:
-            A[j], A[i] = A[i], A[j]
-            i += 1 #increments if it finds a value smaller than the pivot. This ensures the pivot will be places in the correct point in the end
-    A[left_index], A[i - 1] = A[i - 1], A[left_index] #swapping the pivot into its final position
-    return i - 1
-
 Key Notes of Quick Sort
 ----------------------
-1. The pivot point is the major factor of the efficiency of this algorithm.
-	a. The worse possible pivot point every time leads to a run time of O(n^2)
-	b. The best possible pivot point every time leads to a run time of O(nlogn)
-	c. The interesting part is if on average a decent point is picked then the run time is O(nlogn)
+1. The pivot point is the major factor of the efficiency of this algorithm. The worse possible pivot point every time leads to a run time of O(n^2).
+   The best possible pivot point every time leads to a run time of O(nlogn). The interesting part is if on average a decent point is picked then the
+   run time is O(nlogn)
 2. Very little memory is used because all of the sorting is done within the array.
 
 This implementation uses 3 different ways to select the pivot point.
