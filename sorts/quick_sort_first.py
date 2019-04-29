@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-
+"""
+Picks the leftmost index as the pivot
+"""
 def partition(A, left_index, right_index):
     pivot = A[left_index]
     i = left_index + 1
@@ -17,16 +19,9 @@ def quick_sort_first(A, left, right):
         quick_sort_first(A, pivot_index + 1, right)
 
 if __name__ == "__main__":
-    file_name = input("Please enter a filename:\n")
+    user_input = input('Enter numbers separated by a comma:\n').strip()
+    arr = [int(item) for item in user_input.split(',')]
 
-    file = open(file_name, 'r')
+    quick_sort_first(arr, 0, len(arr))
 
-    arr = []
-    for i in file:
-        arr.append(int(i.strip()))
-
-    #NOTE: we start the left at 1 because the first number
-    #denotes the number of elements in the the text file
-    quick_sort_first(arr, 1, len(arr))
-
-    print(arr[1:])
+    print(arr)

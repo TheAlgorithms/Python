@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-
+"""
+Picks a pivot that is based on the median between 3 values
+"""
 def partition(A, left_index, right_index):
     pivot = A[left_index]
     i = left_index + 1
@@ -10,12 +12,12 @@ def partition(A, left_index, right_index):
     A[left_index], A[i - 1] = A[i - 1], A[left_index]
     return i - 1
 
-def quick_sort_median3(A, left, right):
+def quick_sort_median(A, left, right):
     if left < right:
         get_median(A, left, right - 1)
         pivot_index = partition(A, left, right)
-        quick_sort_median3(A, left, pivot_index)
-        quick_sort_median3(A, pivot_index + 1, right)
+        quick_sort_median(A, left, pivot_index)
+        quick_sort_median(A, pivot_index + 1, right)
 
 #Helper function to get the median value and then swap it into the left most position
 #at a given recursive call
@@ -34,16 +36,9 @@ def get_median(A, left, right):
             A[right], A[left] = first, last
 
 if __name__ == "__main__":
-    file_name = input("Please enter a filename:\n")
+    user_input = input('Enter numbers separated by a comma:\n').strip()
+    arr = [int(item) for item in user_input.split(',')]
 
-    file = open(file_name, 'r')
+    quick_sort_median(arr, 0, len(arr))
 
-    arr = []
-    for i in file:
-        arr.append(int(i.strip()))
-
-    #NOTE: we start the left at 1 because the first number
-    #denotes the number of elements in the the text file
-    quick_sort_median3(arr, 1, len(arr))
-
-    print(arr[1:])
+    print(arr)

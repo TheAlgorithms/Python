@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Picks the random index as the pivot
+"""
 import random
 
 def partition(A, left_index, right_index):
@@ -20,16 +23,9 @@ def quick_sort_random(A, left, right):
         quick_sort_random(A, pivot_index + 1, right) #recursive quicksort to the right of the pivot point
 
 if __name__ == "__main__":
-    file_name = input("Please enter a filename:\n")
+    user_input = input('Enter numbers separated by a comma:\n').strip()
+    arr = [int(item) for item in user_input.split(',')]
 
-    file = open(file_name, 'r')
+    quick_sort_random(arr, 0, len(arr))
 
-    arr = []
-    for i in file:
-        arr.append(int(i.strip()))
-
-    #NOTE: we start the left at 1 because the first number
-    #denotes the number of elements in the the text file
-    quick_sort_random(arr, 1, len(arr))
-
-    print(arr[1:])
+    print(arr)
