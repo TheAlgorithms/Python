@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Picks the leftmost index as the pivot
 """

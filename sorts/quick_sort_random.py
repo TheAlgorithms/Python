@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Picks the random index as the pivot
 """

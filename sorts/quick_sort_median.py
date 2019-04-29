@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Picks a pivot that is based on the median between 3 values
 """
