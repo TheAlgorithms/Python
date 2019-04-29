@@ -35,7 +35,12 @@ def get_median(A, left, right):
             A[right], A[left] = first, last
 
 if __name__ == "__main__":
-    user_input = input('Enter numbers separated by a comma:\n').strip()
+    try:
+        raw_input          # Python 2
+    except NameError:
+        raw_input = input  # Python 3
+        
+    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     arr = [int(item) for item in user_input.split(',')]
 
     quick_sort_median(arr, 0, len(arr))
