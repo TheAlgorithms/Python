@@ -1,6 +1,8 @@
 """
 Picks a pivot that is based on the median between 3 values
 """
+from __future__ import print_function
+
 def partition(A, left_index, right_index):
     pivot = A[left_index]
     i = left_index + 1
@@ -39,7 +41,7 @@ if __name__ == "__main__":
         raw_input          # Python 2
     except NameError:
         raw_input = input  # Python 3
-        
+
     user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     arr = [int(item) for item in user_input.split(',')]
 

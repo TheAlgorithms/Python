@@ -1,6 +1,7 @@
 """
 Picks the random index as the pivot
 """
+from __future__ import print_function
 import random
 
 def partition(A, left_index, right_index):

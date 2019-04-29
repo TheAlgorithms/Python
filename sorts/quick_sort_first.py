@@ -1,6 +1,8 @@
 """
 Picks the leftmost index as the pivot
 """
+from __future__ import print_function
+
 def partition(A, left_index, right_index):
     pivot = A[left_index]
     i = left_index + 1
