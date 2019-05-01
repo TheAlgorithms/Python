@@ -47,13 +47,13 @@ def main():
         if choice not in ['1', '2', '3', '4']:
             print("Invalid choice, please enter a valid choice")
         elif choice == '1':
-            string = input("Please enter t  he string to be encrypted: ")
+            string = input("Please enter the string to be encrypted: ")
             key = int(input("Please enter off-set between 1-94: "))
             if key in range(1, 95):
                 print(encrypt(string.lower(), key))
         elif choice == '2':
             string = input("Please enter the string to be decrypted: ")
-            key = int(input("Please enter off-set between 1-94: "))
+            key = int(input("Please enter offset between 1-94: "))
             if key in range(1, 95):
                 print(decrypt(string, key))
         elif choice == '3':
