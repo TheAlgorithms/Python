@@ -33,7 +33,7 @@ def mobius_function(n):
     if is_square_free(factors):
         if len(factors)%2 == 0:
             return 1
-        elif len(factors)%2 != 0:
+        else:
             return -1
     else:
         return 0
