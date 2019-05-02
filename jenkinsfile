@@ -4,19 +4,19 @@ node {
 
   if (env.BRANCH_NAME == 'master') {
     stage ('Some Stage 1 for master') {
-      sh 'do something'
+      sh 'echo master'
     }
     stage ('Another Stage for Master') {
-      sh 'do something else here'
+      sh 'echo master step 2'
     }
   }
 
-  else if (env.BRANCH_NAME == 'stage') {
+  else if (env.BRANCH_NAME == 'dev') {
     stage ('Some stage branch step') {
-      sh 'do something'
+      sh 'echo dev'
     }
     stage ('Deploy to stage target') {
-      sh 'do something else'
+      sh 'echo dev 2'
     }
   }
 
