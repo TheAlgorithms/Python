@@ -30,33 +30,27 @@ def merge_sort(collection):
     [-45, -5, -2]
     """
     length = len(collection)
-    if length > 1:
-        midpoint = length // 2
-        left_half = merge_sort(collection[:midpoint])
-        right_half = merge_sort(collection[midpoint:])
-        i = 0
-        j = 0
-        k = 0
-        left_length = len(left_half)
-        right_length = len(right_half)
-        while i < left_length and j < right_length:
-            if left_half[i] < right_half[j]:
-                collection[k] = left_half[i]
-                i += 1
-            else:
-                collection[k] = right_half[j]
-                j += 1
-            k += 1
+    if length <= 1:
+        return collection
 
-        while i < left_length:
-            collection[k] = left_half[i]
-            i += 1
-            k += 1
+    sorted_result = []
+    midpoint = length // 2
+    left_half_sorted = merge_sort(collection[:midpoint])
+    right_half_sorted = merge_sort(collection[midpoint:])
+    while len(left_half_sorted) > 0 and len(right_half_sorted) > 0:
+        min_element = (
+            left_half_sorted.pop(0) if left_half_sorted[0] <= right_half_sorted[0]
+            else right_half_sorted.pop(0)
+        )
+        sorted_result.append(min_element)
 
-        while j < right_length:
-            collection[k] = right_half[j]
-            j += 1
-            k += 1
+    # If there is some remaining elements, they should be added into the sorted collection's end
+    remaining_elements = left_half_sorted if len(left_half_sorted) > 0 else right_half_sorted
+    sorted_result += remaining_elements
+
+    # For more generic algorithm, making sure that the output and input types are the same
+    for index, element in enumerate(sorted_result):
+        collection[index] = element
 
     return collection
 
