@@ -21,7 +21,7 @@ DEFAULT_BUCKET_SIZE = 5
 
 def bucket_sort(myList, bucketSize=DEFAULT_BUCKET_SIZE):
     if(len(myList) == 0):
-        print('You don\'t have any elements in array!')
+        return myList
 
     minValue = myList[0]
     maxValue = myList[0]
