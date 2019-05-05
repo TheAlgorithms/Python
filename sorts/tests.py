@@ -55,3 +55,8 @@ TEST_FUNCTIONS = [
     tree_sort,
     wiggle_sort,
 ]
+
+
+for function in TEST_FUNCTIONS:
+    for case in TEST_CASES:
+        assert function(case['input']) == case['expected']
