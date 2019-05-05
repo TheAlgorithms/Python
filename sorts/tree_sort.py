@@ -42,4 +42,5 @@ def tree_sort(arr):
     inorder(root,res)
     return res
 
-print(tree_sort([10,1,3,2,9,14,13]))
+if __name__ == '__main__':
+    print(tree_sort([10,1,3,2,9,14,13]))

@@ -13,4 +13,5 @@ def pancake_sort(arr):
         cur -= 1
     return arr
 
-print(pancake_sort([0,10,15,3,2,9,14,13]))
+if __name__ == '__main__':
+    print(pancake_sort([0,10,15,3,2,9,14,13]))
