@@ -11,7 +11,7 @@ C 1 0 0
 
 '''
 
-DATA = [[0, 1, 1],
+graph = [[0, 1, 1],
     	[0, 0, 1],
     	[1, 0, 0]]
 
@@ -51,11 +51,11 @@ def page_rank(nodes, limit=3, d=0.85):
 
 
 def main():
-    names = list(input('Enter Names: ').split())
+    names = list(input('Enter Names of the Nodes: ').split())
 
     nodes = [Node(name) for name in names]
     
-    for ri, row in enumerate(DATA):
+    for ri, row in enumerate(graph):
         for ci, col in enumerate(row):
             if col == 1:
                 nodes[ci].add_inbound(names[ri])
@@ -70,7 +70,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
-	
-
-
