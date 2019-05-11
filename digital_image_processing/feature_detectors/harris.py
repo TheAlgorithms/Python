@@ -12,7 +12,7 @@ from scipy.signal import convolve2d
 
 # Read original image and get gaussian kernel
 img = cv.imread('example.png')
-img_gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
+img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
 G = cv.getGaussianKernel(3, 1)
 
