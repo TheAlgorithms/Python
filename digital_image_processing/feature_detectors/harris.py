@@ -3,7 +3,7 @@ Implementation of Harris Detector
 
 Reference:
 C. Harris and M. Stephens, “A Combined Corner and Edge Detector,”
-in Procedings of Alvey Vision Conference 1988, Manchester, 1988, pp. 23.1-23.6.
+in Proceedings of Alvey Vision Conference 1988, Manchester, 1988, pp. 23.1-23.6.
 """
 
 import cv2 as cv

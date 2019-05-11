@@ -17,4 +17,4 @@ Given image $I$, $n\times n$ size Gaussian Kernel $G_{n\times n}$,
 
 ## Reference
 
-C. Harris and M. Stephens, “A Combined Corner and Edge Detector,” in Procedings of Alvey Vision Conference 1988, Manchester, 1988, pp. 23.1-23.6.
+C. Harris and M. Stephens, “A Combined Corner and Edge Detector,” in Proceedings of Alvey Vision Conference 1988, Manchester, 1988, pp. 23.1-23.6.
