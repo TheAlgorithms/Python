@@ -1,3 +1,11 @@
+graph = {'A': ['B', 'C', 'E'],
+         'B': ['A','D', 'E'],
+         'C': ['A', 'F', 'G'],
+         'D': ['B'],
+         'E': ['A', 'B','D'],
+         'F': ['C'],
+         'G': ['C']}
+
 def bfs_shortest_path(graph, start, goal):
     # keep track of explored nodes
     explored = []
