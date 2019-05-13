@@ -18,7 +18,7 @@ class TreeNode:
 
 
 def parse_file(file_path):
-    """ 
+    """
     Read the file and build a dict of all letters and their
     frequences, then convert the dict into a list of Letters.
     """
@@ -29,15 +29,10 @@ def parse_file(file_path):
             if not c:
                 break
             chars[c] = chars[c] + 1 if c in chars.keys() else 1
-    letters = []
-    for char, freq in chars.items():
-        letter = Letter(char, freq)
-        letters.append(letter)
-    letters.sort(key=lambda l: l.freq)
-    return letters
+    return sorted([Letter(c, f) for c, f in chars.items()], key=lambda l: l.freq)
 
 def build_tree(letters):
-    """ 
+    """
     Run through the list of Letters and build the min heap
     for the Huffman Tree.
     """
@@ -51,7 +46,7 @@ def build_tree(letters):
     return letters[0]
 
 def traverse_tree(root, bitstring):
-    """ 
+    """
     Recursively traverse the Huffman Tree to set each
     Letter's bitstring, and return the list of Letters
     """
@@ -64,9 +59,9 @@ def traverse_tree(root, bitstring):
     return letters
 
 def huffman(file_path):
-    """ 
+    """
     Parse the file, build the tree, then run through the file
-    again, using the list of Letters to find and print out the 
+    again, using the list of Letters to find and print out the
     bitstring for each letter.
     """
     letters_list = parse_file(file_path)
