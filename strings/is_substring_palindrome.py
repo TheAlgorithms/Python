@@ -11,8 +11,8 @@ def preprocess(s):
     global text
     global dp
     text = s
-    dp = [[False for i in range(MAX_LEN)] for i in range(MAX_LEN)]
     n = len(s)
+    dp = [[False for i in range(n)] for i in range(n)]
 
     for i in range(n):
         dp[i][i] = True
