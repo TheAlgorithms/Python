@@ -377,5 +377,5 @@ Since the stack will only hold each value from the input in one position, this m
 
 [QuickSelect-image]: https://upload.wikimedia.org/wikipedia/commons/0/04/Selecting_quickselect_frames.gif "Quick Select"
 
-[shunting-yard-image]: https://commons.wikimedia.org/wiki/File:Shunting_yard.svg
-[shunting-yard-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
+[shunting-yard-image]: https://upload.wikimedia.org/wikipedia/commons/2/24/Shunting_yard.svg
+[shunting-yard-wiki]: https://en.wikipedia.org/wiki/Shunting-yard_algorithm
