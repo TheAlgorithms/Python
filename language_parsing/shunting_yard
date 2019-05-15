@@ -1,0 +1,327 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+###############################################################################
+# Edsger Dijkstra's Shunting Yard Algorithm
+###############################################################################
+class ShuntingYard:
+    """Description:
+    This class provides a very simple implementation of Djikstra's Shunting Yard 
+    algorithm to assist new users as they learn it's basic operation.
+    """
+    def __init__(self, userFormula):
+        self.outputQueue = []
+        self.operatorStack = []
+        self.userInput = userFormula
+        self.operatorTokens = ['+','-','*','/']
+        self.leftBracketTokens = ['(','[','{']
+        self.rightBracketTokens = [')',']','}']
+        
+    def isOperator(self, token):
+        """Description:
+        This function identifies if the given token matches one of the known
+        mathematical operators.  At present, in this simple example, we tokenize 
+        by character, so only single character operators (like '+', '/', or '^')
+        are handled.  The recognized mathematical operators are defined in 
+        self.operatorTokens.
+        
+        Parameters:
+        (string) token: The token (e.g., '(' or '*' or '2') of the character 
+        to evaluate
+        
+        Returns:
+        (int) output: An integer representing a boolean.  
+        1 = TRUE meaning the given token is a number
+        0 = FALSE meaning the given token is NOT a number
+        """
+        output = 0
+        if token in self.operatorTokens:
+            output = 1
+        return output
+
+    def isNumber(self, token):
+        """Description:
+        This function identifies if the given token matches number.  At present,
+        in this simple example, we tokenize by character, so '1', '0', or '9' 
+        are numbers this means the class only handles single-digit integers.
+        
+        Parameters:
+        (string) token: The token (e.g., '(' or '*' or '2') of the character 
+        to evaluate
+        
+        Returns:
+        (int) output: An integer representing a boolean.  
+        1 = TRUE meaning the given token is a number
+        0 = FALSE meaning the given token is NOT a number
+        """
+        output = 0
+        if token.isdigit():
+            output = 1
+        return output
+
+    def isLeftBracket(self, token):
+        """Description:
+        This function identifies if the given token matches a left bracket.  
+        The recognized left bracket characters are listed in 
+        self.leftBracketTokens.
+        
+        Parameters:
+        (string) token: The token (e.g., '(' or '*' or '2') of the character 
+        to evaluate
+        
+        Returns:
+        (int) output: An integer representing a boolean.  
+        1 = TRUE meaning the given token is a left bracket
+        0 = FALSE meaning the given token is NOT a left bracket
+        """
+        output = 0
+        if token in self.leftBracketTokens:
+            output = 1
+        return output
+
+    def isRightBracket(self, token):
+        """Description:
+        This function identifies if the given token matches a right bracket.
+        The recognized right bracket characters are listed in 
+        self.rightBracketTokens.
+        
+        Parameters:
+        (string) token: The token (e.g., '(' or '*' or '2') of the character 
+        to evaluate
+        
+        Returns:
+        (int) output: An integer representing a boolean.  
+        1 = TRUE meaning the given token is a right bracket
+        0 = FALSE meaning the given token is NOT a right bracket
+        """
+        output = 0
+        if token in self.rightBracketTokens:
+            output = 1
+        return output
+
+    def getPrecedence(self, token):
+        """Description:
+        According to the rules of BODMAS/PODMAS, some mathematical 
+        functions should be performed before others.  This function 
+        provides a numeric representation of that order.  Mathematical 
+        operations which should be performed earlier are given a 
+        higher integer rank than operations which should be performed 
+        later.
+
+        Parameters:
+        (string) token: The token (e.g., + or *) of the operator 
+        whose operational ordering should be evaluated.
+
+        Returns:
+        (int) An integer that designates the rank which should be 
+        assigned to this operation.  With higher numbers designating 
+        higher rank meaning that the operation should be performed 
+        before operations that are assigned a lower rank.
+        """
+        output = -1
+        fiveOperators = ['*','/']
+        zeroOperators = ['+','-']
+        if token in fiveOperators:
+            output = 5
+        elif token in zeroOperators:
+            output = 0
+        return output
+
+    def handleNumber(self, token):
+        """Description:
+        This function is called to process any number token that is 
+        encountered while iterating through the formula provided by 
+        the user.  It very simply takes that number and appends it to
+        the output queue (i.e., self.outputQueue).
+
+        Parameters:
+        (string) token: The token (e.g., '2' or '9') of the token 
+        encountered.  That token should have already been identified,
+        by self.isNumber(), as representing a number.
+
+        Returns:
+        No output is returned.
+        """
+        self.outputQueue.append(token)
+    
+    def computeWhileConditionForHandleOperator(self, token):
+        """Description:
+        This function is called while processing an operator token.
+        It determines whether the function should continue to pop
+        tokens from the stack of operators and push them into the 
+        output queue.  It should do this while the following conditions
+        are true:
+        1. self.operatorStack has elements in it
+        2. The element at the top of the operatorStack has higher 
+        precedence than the given token.
+
+        Parameters:
+        (string) token: The token (e.g., '+' or '/') of the token 
+        encountered.  That token should have already been identified, 
+        by self.isOperator(), as representing an operator.
+
+        Returns:
+        (int) An integer representing a boolean where
+        1 = TRUE meaning that the loop should continue to run
+        0 = FALSE meaning that the loop should NOT continue to run
+        """
+        output = 0
+        if len(self.operatorStack) > 0:
+            if self.getPrecedence(self.operatorStack[-1]) > self.getPrecedence(token):
+                output = 1
+        return output
+    
+    def handleOperator(self, token):
+        """Description:
+        This function is called to process any operator token that is 
+        encountered while iterating through the formula provided by 
+        the user.  It will get the given token's precedence rank and 
+        compare it to the precedence of each element at the top of 
+        self.operatorStack.  Once any higher precedence stack elements 
+        have been popped and added to the outputQueue, then this operator 
+        is added to the outputQueue.
+        
+        Parameters:
+        (string) token: The token (e.g., '-' or '*') of the token 
+        encountered.  That token should have already been identified,
+        by self.isOperator(), as representing a mathematical operator.
+
+        Returns:
+        No output is returned.
+        """
+        while self.computeWhileConditionForHandleOperator(token):
+            self.outputQueue.append(self.operatorStack.pop())
+        self.operatorStack.append(token)
+        
+    def handleLeftBracket(self, token):
+        """Description:
+        This function is called to process any left bracket tokens 
+        that are encountered while iterating through the formula provided 
+        by the user.  It very simply takes that operator and appends it to
+        the operator stack (i.e., self.operatorStack).
+
+        Parameters:
+        (string) token: The token (e.g., '(' or '[') of the token 
+        encountered.  That token should have already been identified,
+        by self.isLeftBracket(), as representing a left bracket operator.
+
+        Returns:
+        No output is returned.
+        """
+        self.operatorStack.append(token)
+        
+    def computeWhileConditionForHandleRightBracket(self):
+        """Description:
+        This function is called while processing an right bracket token.
+        It determines whether the function should continue to pop
+        tokens from the stack of operators and push them into the 
+        output queue.  It should do this while the following conditions
+        are true:
+        1. self.operatorStack has elements in it
+        2. The element at the top of the operatorStack is not a left 
+        bracket operator
+
+        Parameters:
+        There are no parameters for this function.
+
+        Returns:
+        (int) An integer representing a boolean where
+        1 = TRUE meaning that the loop should continue to run
+        0 = FALSE meaning that the loop should NOT continue to run
+        """
+        output = 0
+        if len(self.operatorStack) > 0:
+            if not self.isLeftBracket(self.operatorStack[-1]):
+                output = 1
+        return output
+    
+    def handleRightBracket(self, token):
+        """Description:
+        This function is called to process any right bracket tokens
+        that are encountered while iterating through the formula 
+        provided by the user.  While there is not a left bracket at 
+        the top of the self.operatorStack, then we pop that top-of-stack
+        operator and push it onto the self.outputQueue.  Then, we
+        check to see if the element at the top of the stack is a left
+        bracket, which would close out the right bracket which is the
+        token which we are currently processing.  If it is a left bracket,
+        we discard it.  Note, we also do not push this right bracket onto
+        the self.outputQueue.  Brackets are discarded.  They are not
+        necessary once we have established the correct order in which
+        to process these numbers with these mathematical operations.
+        
+        Parameters:
+        (string) token: The token (e.g., '}' or ')') of the token 
+        encountered.  That token should have already been identified,
+        by self.isRightBracket(), as representing a right bracket operator.
+
+        Returns:
+        No output is returned.
+        """
+        while self.computeWhileConditionForHandleRightBracket():
+            self.outputQueue.append(self.operatorStack.pop())
+        if len(self.operatorStack) > 0:
+            if self.isLeftBracket(self.operatorStack[-1]):
+                discard = self.operatorStack.pop()
+    
+    def moveLeftoversToQueue(self):
+        """Description:
+        Once all the tokens have been processed, they have been sorted
+        into either the self.outputQueue or the self.operatorStack.
+        Any operators left in the operatorStack should now be moved 
+        into the outputQueue.
+        
+        Parameters:
+        There are no parameters for this function.  It only uses the
+        already populated self.outputQueue and self.operatorStack.
+
+        Returns:
+        No output is returned.
+        """
+        while(len(self.operatorStack) > 0):
+            self.outputQueue.append(self.operatorStack.pop())
+    
+    def run(self):
+        """Description:
+        This function iterates over the given formula, tokenizing
+        it character-by-character.  Each token is then passed to
+        the appropriate processing channel depending on whether it
+        is a number, a mathematical operator, or a bracket (which
+        overrides the normal BODMAS/PODMAS order of mathematical 
+        operations.)
+        
+        Parameters:
+        There are no parameters for this function.  It only uses the
+        already populated self.userInput.
+
+        Returns:
+        No output is returned.
+        """
+        for c in self.userInput:
+            if self.isNumber(c):
+                self.handleNumber(c)
+            elif self.isOperator(c):
+                self.handleOperator(c)
+            elif self.isLeftBracket(c):
+                self.handleLeftBracket(c)
+            elif self.isRightBracket(c):
+                self.handleRightBracket(c)
+        self.moveLeftoversToQueue()
+
+
+###############################################################################
+### Use the ShuntingYard class
+###############################################################################
+
+# Declare a new instance of the ShuntingYard class providing a formula 
+# which you wish to convert from Infix notation to RPN notation
+algo = ShuntingYard('2*[3*(4+5)+1]')
+
+# Instruct the instance to perform the Shunting Yard algorithm to
+# convert the given infix formula into RPN.
+algo.run()
+
+# View the input and output
+print('Original Infix Formula: ' + algo.userInput)
+print('Finished RPN: ' + str(algo.outputQueue))
+
