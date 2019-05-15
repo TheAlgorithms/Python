@@ -294,6 +294,29 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 
 ###### Source: [Wikipedia](https://en.wikipedia.org/wiki/XOR_cipher)
 
+-------------------------------------------------------------------------------
+
+## Language Parsing Algorithms
+
+### Shunting Yard
+![alt text][shunting-yard-image]
+
+**Edsger Dijkstra's Shunting Yard algorithm**, is a method for converting mathematical expressions from infix notation into postfix notation.  Postfix notation places mathematical operators directly before the operands upon which they will act.
+
+__Properties__
+The Shunting Yard algorithm uses a stack and a queue to convert the input (in infix notation) into the output (in postfix notation).  Each token in the input formula is processed once.  It is pushed onto the stack only once and popped from it only once (on its journey to the output queue).
+
+This makes time complixity linear:
+* Worst case performance    O(n)
+* Best case performance O(n)
+* Average case performance  O(n)
+
+Since the stack will only hold each value from the input in one position, this makes the space complixity also linear:
+* Worst case performance    O(n)
+* Best case performance O(n)
+* Average case performance  O(n)
+
+###### Source: [Wikipedia][shunting-yard-wiki] 
 
 [bubble-toptal]: https://www.toptal.com/developers/sorting-algorithms/bubble-sort
 [bubble-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
@@ -353,3 +376,6 @@ where {\displaystyle \oplus } \oplus  denotes the exclusive disjunction (XOR) op
 [JumpSearch-image]: https://i1.wp.com/theoryofprogramming.com/wp-content/uploads/2016/11/jump-search-1.jpg "Jump Search"
 
 [QuickSelect-image]: https://upload.wikimedia.org/wikipedia/commons/0/04/Selecting_quickselect_frames.gif "Quick Select"
+
+[shunting-yard-image]: https://commons.wikimedia.org/wiki/File:Shunting_yard.svg
+[shunting-yard-wiki]: https://en.wikipedia.org/wiki/Bubble_sort
