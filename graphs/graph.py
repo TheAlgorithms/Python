@@ -4,7 +4,7 @@
 from __future__ import print_function
 # Author: OMKAR PATHAK
 
-# We can use Python's dictionary for constructing the graph
+# We can use Python's dictionary for constructing the graph.
 
 class AdjacencyList(object):
     def __init__(self):
