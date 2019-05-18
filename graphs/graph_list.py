@@ -1,31 +1,44 @@
+#!/usr/bin/python
+# encoding=utf8
+
 from __future__ import print_function
+# Author: OMKAR PATHAK
 
+# We can use Python's dictionary for constructing the graph.
 
-class Graph:
-    def __init__(self, vertex):
-        self.vertex = vertex
-        self.graph = [[0] for i in range(vertex)]
+class AdjacencyList(object):
+    def __init__(self):
+        self.List = {}
 
-    def add_edge(self, u, v):
-        self.graph[u - 1].append(v - 1)
+    def addEdge(self, fromVertex, toVertex):
+        # check if vertex is already present
+        if fromVertex in self.List.keys():
+            self.List[fromVertex].append(toVertex)
+        else:
+            self.List[fromVertex] = [toVertex]
 
-    def show(self):
-        for i in range(self.vertex):
-            print('%d: '% (i + 1), end=' ')
-            for j in self.graph[i]:
-                print('%d-> '% (j + 1), end=' ')
-            print(' ')
+    def printList(self):
+        for i  in self.List:
+            print((i,'->',' -> '.join([str(j) for j in self.List[i]])))
 
+if __name__ == '__main__':
+    al = AdjacencyList()
+    al.addEdge(0, 1)
+    al.addEdge(0, 4)
+    al.addEdge(4, 1)
+    al.addEdge(4, 3)
+    al.addEdge(1, 0)
+    al.addEdge(1, 4)
+    al.addEdge(1, 3)
+    al.addEdge(1, 2)
+    al.addEdge(2, 3)
+    al.addEdge(3, 4)
 
+    al.printList()
 
-g = Graph(100)
-
-g.add_edge(1,3)
-g.add_edge(2,3)
-g.add_edge(3,4)
-g.add_edge(3,5)
-g.add_edge(4,5)
-
-
-g.show()
-
+    # OUTPUT:
+    # 0 -> 1 -> 4
+    # 1 -> 0 -> 4 -> 3 -> 2
+    # 2 -> 3
+    # 3 -> 4
+    # 4 -> 1 -> 3
