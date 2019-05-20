@@ -22,7 +22,7 @@ for i in range(1, 1001):
 		if i >= 100:
 			count += ones_counts[i/100] + 7 #add number of letters for "n hundred"
 
-			if i%100 is not 0:
+			if i%100 != 0:
 				count += 3 #add number of letters for "and" if number is not multiple of 100
 
 		if 0 < i%100 < 20:
