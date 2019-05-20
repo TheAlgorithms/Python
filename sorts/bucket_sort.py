@@ -41,7 +41,7 @@ def bucket_sort(my_list,bucket_size=DEFAULT_BUCKET_SIZE):
 
 
 #test
-#besd on python 3.7.3
+#best on python 3.7.3
 user_input =input('Enter numbers separated by a comma:').strip()
 unsorted =[int(item) for item in user_input.split(',')]
 print(bucket_sort(unsorted))
