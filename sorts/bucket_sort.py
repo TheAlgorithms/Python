@@ -10,25 +10,26 @@
 # and therefore can also be considered a comparison sort algorithm. The computational complexity estimates
 # involve the number of buckets.
 
-# Time Complexity of Solution:
-# Best Case O(n); Average Case O(n); Worst Case O(n)
+#  Time Complexity of Solution:
+#  Best Case O(n); Average Case O(n); Worst Case O(n)
 
 DEFAULT_BUCKET_SIZE=5
+
 def bucket_sort(my_list, bucket_size=DEFAULT_BUCKET_SIZE):
     if len(my_list) == 0:
-        raise Exception("you don't have any elements in array!")
+        raise Exception("Please add some elements in the array.")
 
     min_value, max_value = (min(my_list), max(my_list))
-    bucket_count = ((max_value-min_value) // bucket_size+1)
-    buckets = [[] for _ in range(bucket_count)]
+    bucket_count = ((max_value - min_value) // bucket_size + 1)
+    buckets = [[] for _ in range(int(bucket_count))]
 
     for i in range(len(my_list)):
-        buckets[(my_list[i] - min_value) // bucket_size].append(my_list[i])
+        buckets[int((my_list[i] - min_value) // bucket_size)].append(my_list[i])
 
     return sorted([buckets[i][j] for i in range(len(buckets))
                                  for j in range(len(buckets[i]))])
 
 if __name__ == "__main__":
     user_input = input('Enter numbers separated by a comma:').strip()
-    unsorted = [int(n) for n in user_input.split(',') if len(user_input) > 0]
+    unsorted = [float(n) for n in user_input.split(',') if len(user_input) > 0]
     print(bucket_sort(unsorted))
