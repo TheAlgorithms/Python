@@ -30,6 +30,11 @@ def bucket_sort(my_list, bucket_size=DEFAULT_BUCKET_SIZE):
                                  for j in range(len(buckets[i]))])
 
 if __name__ == "__main__":
-    user_input = input('Enter numbers separated by a comma:').strip()
+    try:
+        raw_input
+    except:
+        raw_input = input
+
+    user_input = raw_input('Enter numbers separated by a comma:').strip()
     unsorted = [float(n) for n in user_input.split(',') if len(user_input) > 0]
     print(bucket_sort(unsorted))
