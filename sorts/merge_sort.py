@@ -29,30 +29,20 @@ def merge_sort(collection):
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    length = len(collection)
-    if length <= 1:
+    def merge(left, right):
+        '''merge left and right
+        :param left: left collection
+        :param right: right collection
+        :return: merge result
+        '''
+        result = []
+        while left and right:
+            result.append(left.pop(0) if left[0] <= right[0] else right.pop(0))
+        return result + left + right
+    if len(collection) <= 1:
         return collection
-
-    sorted_result = []
-    midpoint = length // 2
-    left_half_sorted = merge_sort(collection[:midpoint])
-    right_half_sorted = merge_sort(collection[midpoint:])
-    while len(left_half_sorted) > 0 and len(right_half_sorted) > 0:
-        min_element = (
-            left_half_sorted.pop(0) if left_half_sorted[0] <= right_half_sorted[0]
-            else right_half_sorted.pop(0)
-        )
-        sorted_result.append(min_element)
-
-    # If there is some remaining elements, they should be added into the sorted collection's end
-    remaining_elements = left_half_sorted if len(left_half_sorted) > 0 else right_half_sorted
-    sorted_result += remaining_elements
-
-    # For more generic algorithm, making sure that the output and input types are the same
-    for index, element in enumerate(sorted_result):
-        collection[index] = element
-
-    return collection
+    mid = len(collection) // 2
+    return merge(merge_sort(collection[:mid]), merge_sort(collection[mid:]))
 
 
 if __name__ == '__main__':
@@ -63,4 +53,4 @@ if __name__ == '__main__':
 
     user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
-    print(merge_sort(unsorted))
+    print(*merge_sort(unsorted), sep=',')
