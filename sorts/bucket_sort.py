@@ -32,7 +32,7 @@ def bucket_sort(my_list, bucket_size=DEFAULT_BUCKET_SIZE):
 if __name__ == "__main__":
     try:
         raw_input
-    except:
+    except NameError:
         raw_input = input
 
     user_input = raw_input('Enter numbers separated by a comma:').strip()
