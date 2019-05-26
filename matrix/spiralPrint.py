@@ -1,3 +1,11 @@
+"""
+This program print the matix in spiral form.
+This problem has been solved through recursive way.
+
+      Matrix must satisfy below conditions
+        i) matrix should be only one or two dimensional
+        ii)column of all the row should be equal
+"""
 def checkMatrix(a):
     # must be
     if type(a) == list and len(a) > 0:
@@ -19,10 +27,7 @@ def checkMatrix(a):
 
 
 def spiralPrint(a):
-    '''check for validity for matrix
-        i) matrix should be only one or two dimensional
-        ii)column of all the row should be equal
-    '''
+
     if checkMatrix(a) and len(a) > 0:
 
         matRow = len(a)
