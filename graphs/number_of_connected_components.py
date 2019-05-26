@@ -1,4 +1,4 @@
-d = {1:[2,3],2:[3],3:[],4:[]}
+graph = {1:[2,3],2:[3],3:[],4:[]}
 
 
 '''d = {}
@@ -9,14 +9,14 @@ for i in range(m):
     d[u].append(v) '''
 
 l = set()
-q = 0
+connected_comp = 0
 o = len(l)
 for key in d:
     l.add(key)
-    for j in range(len(d[key])):
-        l.add((d[key])[j])
+    for j in range(len(graph[key])):
+        l.add((graph[key])[j])
     p = len(l)
-    if(p-o==1+len(d[key])):
-        q+=1
+    if(p-o==1+len(grah[key])):
+        connected_comp+=1
         o = len(l)
-print(q)
+print(connected_comp)
