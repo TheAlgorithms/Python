@@ -16,7 +16,7 @@ for key in d:
     for j in range(len(graph[key])):
         l.add((graph[key])[j])
     p = len(l)
-    if(p-o==1+len(grah[key])):
+    if(p-o==1+len(graph[key])):
         connected_comp+=1
         o = len(l)
 print(connected_comp)
