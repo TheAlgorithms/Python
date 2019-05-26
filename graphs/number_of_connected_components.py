@@ -11,7 +11,7 @@ for i in range(m):
 l = set()
 connected_comp = 0
 o = len(l)
-for key in d:
+for key in graph:
     l.add(key)
     for j in range(len(graph[key])):
         l.add((graph[key])[j])
