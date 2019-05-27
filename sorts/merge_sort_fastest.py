@@ -2,7 +2,7 @@
 Python implementation of the fastest merge sort algorithm.
 Takes an average of 0.6 microseconds to sort a list of length 1000 items.
 Best Case Scenario : O(n)
-Worst Case Scenario : O(n)
+Worst Case Scenario : O(n^2) because native python functions:min, max and remove are already O(n)
 '''
 from __future__ import print_function
 

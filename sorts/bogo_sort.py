@@ -1,28 +1,28 @@
 """
 This is a pure python implementation of the bogosort algorithm
 For doctests run following command:
-python -m doctest -v bogosort.py
+python -m doctest -v bogo_sort.py
 or
-python3 -m doctest -v bogosort.py
+python3 -m doctest -v bogo_sort.py
 For manual testing run:
-python bogosort.py
+python bogo_sort.py
 """
 
 from __future__ import print_function
 import random
 
 
-def bogosort(collection):
+def bogo_sort(collection):
     """Pure implementation of the bogosort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
     Examples:
-    >>> bogosort([0, 5, 3, 2, 2])
+    >>> bogo_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
-    >>> bogosort([])
+    >>> bogo_sort([])
     []
-    >>> bogosort([-2, -5, -45])
+    >>> bogo_sort([-2, -5, -45])
     [-45, -5, -2]
     """
 
@@ -46,4 +46,4 @@ if __name__ == '__main__':
 
     user_input = raw_input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
-    print(bogosort(unsorted))
+    print(bogo_sort(unsorted))
