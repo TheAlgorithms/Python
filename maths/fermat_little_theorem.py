@@ -1,5 +1,4 @@
 # Python program to show the usage of Fermat's little theorem in a division
-# Time complexity: O(log p)
 # According to Fermat's little theorem, (a / b) mod p always equals a * (b ^ (p - 2)) mod p
 # Here we assume that p is a prime number, b divides a, and p doesn't divide b
 
@@ -23,7 +22,7 @@ p = 701
 a = 1000000000
 b = 10
 
-# using binary exponentiation function:
+# using binary exponentiation function, O(log(p)):
 print((a / b) % p == (a * binary_exponentiation(b, p - 2, p)) % p)
 
 # using Python operators:
