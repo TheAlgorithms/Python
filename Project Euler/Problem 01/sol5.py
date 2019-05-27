@@ -1,8 +1,9 @@
-a=3
+number=3
 result=0
-while a=<1000:
-  if(a%3==0 and a%5==0):
-    result+=a
-  elif(a%15==0):
-    result-=a
+while number<1000:
+  if(number%3==0 or number%5==0):
+    result+=number
+  elif(number%15==0):
+    result-=number
+  number+=1
 print(result)
