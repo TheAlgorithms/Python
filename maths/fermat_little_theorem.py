@@ -1,6 +1,6 @@
-# Python program to show the usage of fermat's little theorem in a division
+# Python program to show the usage of Fermat's little theorem in a division
 # Time complexity: O(log p)
-# According to fermat's little theorem, (a / b) mod p always equals a * (b ^ (p - 2)) mod p
+# According to Fermat's little theorem, (a / b) mod p always equals a * (b ^ (p - 2)) mod p
 # Here we assume that p is a prime number, b divides a, and p doesn't divide b
 
 
