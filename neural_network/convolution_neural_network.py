@@ -14,9 +14,10 @@
     Github: 245885195@qq.com
     Date: 2017.9.20
     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
-          '''
+'''
 from __future__ import print_function
 
+import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -50,21 +51,20 @@ class CNN():
 
     def save_model(self, save_path):
         #save model dict with pickle
-        import pickle
         model_dic = {'num_bp1':self.num_bp1,
-                    'num_bp2':self.num_bp2,
-                    'num_bp3':self.num_bp3,
-                    'conv1':self.conv1,
-                    'step_conv1':self.step_conv1,
-                    'size_pooling1':self.size_pooling1,
-                    'rate_weight':self.rate_weight,
-                    'rate_thre':self.rate_thre,
-                    'w_conv1':self.w_conv1,
-                    'wkj':self.wkj,
-                    'vji':self.vji,
-                    'thre_conv1':self.thre_conv1,
-                    'thre_bp2':self.thre_bp2,
-                     'thre_bp3':self.thre_bp3}
+                'num_bp2':self.num_bp2,
+                'num_bp3':self.num_bp3,
+                'conv1':self.conv1,
+                'step_conv1':self.step_conv1,
+                'size_pooling1':self.size_pooling1,
+                'rate_weight':self.rate_weight,
+                'rate_thre':self.rate_thre,
+                'w_conv1':self.w_conv1,
+                'wkj':self.wkj,
+                'vji':self.vji,
+                'thre_conv1':self.thre_conv1,
+                'thre_bp2':self.thre_bp2,
+                'thre_bp3':self.thre_bp3}
         with open(save_path, 'wb') as f:
             pickle.dump(model_dic, f)
 
@@ -73,7 +73,6 @@ class CNN():
     @classmethod
     def ReadModel(cls, model_path):
         #read saved model
-        import pickle
         with open(model_path, 'rb') as f:
             model_dic = pickle.load(f)
 
@@ -206,7 +205,7 @@ class CNN():
                 data_train = np.asmatrix(datas_train[p])
                 data_teach = np.asarray(datas_teach[p])
                 data_focus1,data_conved1 = self.convolute(data_train,self.conv1,self.w_conv1,
-                                           self.thre_conv1,conv_step=self.step_conv1)
+                        self.thre_conv1,conv_step=self.step_conv1)
                 data_pooled1 = self.pooling(data_conved1,self.size_pooling1)
                 shape_featuremap1 = np.shape(data_conved1)
                 '''
@@ -231,7 +230,7 @@ class CNN():
                 pd_conv1_pooled = pd_i_all / (self.size_pooling1*self.size_pooling1)
                 pd_conv1_pooled = pd_conv1_pooled.T.getA().tolist()
                 pd_conv1_all = self._calculate_gradient_from_pool(data_conved1,pd_conv1_pooled,shape_featuremap1[0],
-                                                    shape_featuremap1[1],self.size_pooling1)
+                        shape_featuremap1[1],self.size_pooling1)
                 #weight and threshold learning process---------
                 #convolution layer
                 for k_conv in range(self.conv1[1]):
@@ -276,7 +275,7 @@ class CNN():
         for p in range(len(datas_test)):
             data_test = np.asmatrix(datas_test[p])
             data_focus1, data_conved1 = self.convolute(data_test, self.conv1, self.w_conv1,
-                                                     self.thre_conv1, conv_step=self.step_conv1)
+                    self.thre_conv1, conv_step=self.step_conv1)
             data_pooled1 = self.pooling(data_conved1, self.size_pooling1)
             data_bp_input = self._expand(data_pooled1)
 
@@ -293,7 +292,7 @@ class CNN():
         #return the data of image after convoluting process so we can check it out
         data_test = np.asmatrix(data)
         data_focus1, data_conved1 = self.convolute(data_test, self.conv1, self.w_conv1,
-                                                     self.thre_conv1, conv_step=self.step_conv1)
+                self.thre_conv1, conv_step=self.step_conv1)
         data_pooled1 = self.pooling(data_conved1, self.size_pooling1)
 
         return data_conved1,data_pooled1
@@ -303,4 +302,4 @@ if __name__ == '__main__':
     pass
     '''
     I will put the example on other file
-    '''
+'''
