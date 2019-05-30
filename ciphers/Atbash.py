@@ -8,7 +8,7 @@ except NameError:  # Python 3
 
 def Atbash():
     output=""
-    for i in raw_input("Enter the sentence to be encrypted "):
+    for i in raw_input("Enter the sentence to be encrypted ").strip():
         extract = ord(i)
         if 65 <= extract <= 90:
             output += unichr(155-extract)
