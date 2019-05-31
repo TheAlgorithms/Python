@@ -5,7 +5,7 @@
 
 ### All algorithms implemented in Python (for education)
 
-These implementations are for learning purposes. They may be efficient than the implementations in the Python standard library.
+These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
 
 Run, edit and contribute using Gitpod.io a free online dev environment.
 
