@@ -30,7 +30,7 @@ def inorder(root, res):
         res.append(root.val)
         inorder(root.right,res)
 
-def treesort(arr):
+def tree_sort(arr):
     # Build BST
     if len(arr) == 0:
         return arr
@@ -42,4 +42,5 @@ def treesort(arr):
     inorder(root,res)
     return res
 
-print(treesort([10,1,3,2,9,14,13]))
+if __name__ == '__main__':
+    print(tree_sort([10,1,3,2,9,14,13]))

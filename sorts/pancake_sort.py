@@ -1,7 +1,7 @@
 # Pancake sort algorithm 
 # Only can reverse array from 0 to i
 
-def pancakesort(arr):
+def pancake_sort(arr):
     cur = len(arr)
     while cur > 1:
         # Find the maximum number in arr
@@ -13,4 +13,5 @@ def pancakesort(arr):
         cur -= 1
     return arr
 
-print(pancakesort([0,10,15,3,2,9,14,13]))
+if __name__ == '__main__':
+    print(pancake_sort([0,10,15,3,2,9,14,13]))
