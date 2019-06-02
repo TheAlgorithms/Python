@@ -20,8 +20,10 @@ def dfs(graph, start):
     while stack:
         v = stack.pop()  # one difference from BFS is to pop last element here instead of first one
         
-        if v not in explored:
-            explored.add(v)
+        if v in explored:
+            continue
+
+        explored.add(v)
 
         for w in graph[v]:
             if w not in explored:
