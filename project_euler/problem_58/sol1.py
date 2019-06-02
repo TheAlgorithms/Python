@@ -1,3 +1,10 @@
+from __future__ import print_function
+try:
+    input = raw_input #python3
+except NameError:
+    pass               #python 2
+
+
 from sympy import *
 numofprime=0
 con=1
