@@ -1,8 +1,8 @@
 from __future__ import print_function
 try:
-    input = raw_input #python3
+	xrange		#Python 2
 except NameError:
-    pass               #python 2
+	xrange = range	#Python 3
 
 
 from sympy import *
@@ -11,7 +11,7 @@ con=1
 lis=[1]
 i=3
 while True:
-    for j in range(4):
+    for j in xrange(4):
         con+=i-1
         lis.append(con)
   
