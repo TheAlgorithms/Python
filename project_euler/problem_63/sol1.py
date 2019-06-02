@@ -7,8 +7,8 @@ greater than x^25.
 
 count=0
 for i in range(1,25):
-  for t in range(1,25):
-    if len(str(t**i))==i:
-      count+=1
+    for t in range(1,25):
+        if len(str(t**i))==i:
+            count+=1
 print(count)
 # 49 -- answer
