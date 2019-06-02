@@ -15,10 +15,13 @@ def scalarMultiply(matrix , n):
 
 def multiply(matrix_a, matrix_b):
     matrix_c = []
-    n = len(matrix_a)
-    for i in range(n):
+    m = len(matrix_a)
+    n = len(matrix_a[0])
+    p = len(matrix_b[0])
+
+    for i in range(m):
         list_1 = []
-        for j in range(n):
+        for j in range(p):
             val = 0
             for k in range(n):
                 val = val + matrix_a[i][k] * matrix_b[k][j]
