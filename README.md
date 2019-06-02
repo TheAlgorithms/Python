@@ -1,24 +1,17 @@
 # The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/TheAlgorithms/100) &nbsp;
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/TheAlgorithms)
-
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/TheAlgorithms) &nbsp;
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
 
 ### All algorithms implemented in Python (for education)
 
 These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
 
-Run, edit and contribute using Gitpod.io a free online dev environment.
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
 
 ## Contribution Guidelines
 
-* File name should be in camel case.
-* Write proper documentation of the code.
-* Avoid input methods as far as possible. Assign values to the variables statically. This will make the code easy to understand and algorithm can be traced easily.
-* Add a corresponding explaination to [Algorithms-Explanation](https://github.com/TheAlgorithms/Algorithms-Explanation) (Optional but recommended).
-* Avoid importing external libraries for basic algorithms.
+Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## Community Channel
 
-https://gitter.im/TheAlgorithms
+We're on [Gitter](https://gitter.im/TheAlgorithms)! Please join us.
