@@ -17,9 +17,9 @@ class LRUCache:
         self.dq_store = deque()
         self.key_reference_map = set()
         if not n:
-            LRUCache._MAX_CAPACITY = sys.maxsize # n is None, set to maxsize.
-        elif n < 1:
-            raise ValueError('n should be an integer greater than 1.')
+            LRUCache._MAX_CAPACITY = sys.maxsize
+        elif n < 0:
+            raise ValueError('n should be an integer greater than 0.')
         else:
             LRUCache._MAX_CAPACITY = n
 
@@ -29,15 +29,15 @@ class LRUCache:
             Remove the least recently used key if the store is full.
             Update store to reflect recent access.
         """
-        if x not in self.dq_store:
+        if x not in self.key_reference_map:
             if len(self.dq_store) == LRUCache._MAX_CAPACITY:
                 last_element = self.dq_store.pop()
                 self.key_reference_map.remove(last_element)
         else:
             index_remove = 0
-            for ix, key in enumerate(self.dq_store):
+            for idx, key in enumerate(self.dq_store):
                 if key == x:
-                    index_remove = ix
+                    index_remove = idx
                     break
             self.dq_store.remove(index_remove)
 
