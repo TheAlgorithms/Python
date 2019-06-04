@@ -2,8 +2,8 @@ from __future__ import print_function
 
 class Node: #create a node
   def __init__(self,data):
-    self.data = data;   #giving data
-    self.next = None;   #giving next to None
+    self.data = data   #giving data
+    self.next = None   #giving next to None
 
 class Circular_Linked_List:
   def __init__(self):
@@ -39,7 +39,7 @@ class Circular_Linked_List:
     while temp.next is not self.last:   #Traversing the list
       temp=temp.next
     node = self.last
-    temp.next = self.last.next;   #set second last node's next to last's next
+    temp.next = self.last.next   #set second last node's next to last's next
     self.last = temp
     return node.data
   
