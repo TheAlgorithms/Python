@@ -1,3 +1,6 @@
+# Doc on link below should help understanding Prism algo. 
+#https://en.wikipedia.org/wiki/Prim%27s_algorithm
+
 """
 Prim's Algorithm.
 
