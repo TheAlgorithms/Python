@@ -1,14 +1,19 @@
 """
 Prim's Algorithm.
+
 Determines the minimum spanning tree(MST) of a graph using the Prim's Algorithm
+
 Create a list to store x the vertices.
 G = [vertex(n) for n in range(x)]
+
 For each vertex in G, add the neighbors:
 G[x].addNeighbor(G[y])
 G[y].addNeighbor(G[x])
+
 For each vertex in G, add the edges:
 G[x].addEdge(G[y], w)
 G[y].addEdge(G[x], w)
+
 To solve run:
 MST = prim(G, G[0])
 """
