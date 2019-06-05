@@ -14,6 +14,8 @@ These implementations are for learning purposes. They may be efficient than the 
 * Avoid input methods as far as possible. Assign values to the variables statically. This will make the code easy to understand and algorithm can be traced easily.
 * Add a corresponding explaination to [Algorithms-Explanation](https://github.com/TheAlgorithms/Algorithms-Explanation) (Optional but recommended).
 * Avoid importing external libraries for basic algorithms.
+* Please add readme file for each and every algorithm added, that shows problem description, input data and soultion and expected output.  
+
 
 ## Community Channel
 
