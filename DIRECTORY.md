@@ -73,4 +73,8 @@
   * [Trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
 * Union Find
   * [Union Find](https://github.com/TheAlgorithms/Python/blob/master/data_structures/union_find/union_find.py)
-  
+## Digital Image Processing
+* [Median Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/median_filter.py)
+## Dynamic Programming
+* [Bitmask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/bitmask.py)
+* [Coin Change](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/coin_change.py)
