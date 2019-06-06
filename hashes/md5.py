@@ -93,6 +93,8 @@ def md5me(testString):
 
 	Arguments:
 		testString {[string]} -- [message]
+	Returns:
+		[string] -- [binary string]
 	"""
 
 	bs =''
