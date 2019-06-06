@@ -70,7 +70,7 @@
   * [Stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stack.py)
   * [Stock Span Problem](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stock_span_problem.py)
 * Trie
-  *[Trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
+  * [Trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
 * Union Find
-  *[Union Find](https://github.com/TheAlgorithms/Python/blob/master/data_structures/union_find/union_find.py)
+  * [Union Find](https://github.com/TheAlgorithms/Python/blob/master/data_structures/union_find/union_find.py)
   
