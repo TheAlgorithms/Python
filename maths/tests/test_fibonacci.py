@@ -8,7 +8,7 @@ To run with slash:
 """
 
 import slash
-import fibonacci
+from .. import fibonacci
 
 default_fib = [0, 1, 1, 2, 3, 5, 8]
 
