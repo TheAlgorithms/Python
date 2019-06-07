@@ -82,7 +82,7 @@ def fib_iterative(n):
     :type n:int
     :return: Fibonacci sequence as a list
     """
-    n = int(n)  # to ensure number is an integer, even if input is float
+    n = int(n)
     if _check_number_input(n, 2):
         seq_out = [0, 1]
         a, b = 0, 1
@@ -100,7 +100,7 @@ def fib_formula(n):
     :return: Fibonacci sequence as a list
     """
     seq_out = [0, 1]
-    n = int(n)  # to ensure number is an integer, even if input is float
+    n = int(n)
     if _check_number_input(n, 2, 1000000):
         sqrt = Decimal(math.sqrt(5))
         phi_1 = Decimal(1 + sqrt) / Decimal(2)
