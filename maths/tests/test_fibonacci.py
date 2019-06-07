@@ -1,8 +1,8 @@
 """
 To run with slash:
 1. run pip install slash (may need to install C++ builds from Visual Studio website)
-2. in the command prompt navigate to your project folder
-3. then type--> slash run -vv -k tags:fibonacci .
+2. In the command prompt navigate to your project folder
+3. then type--> slash run -vv -k tags:fibonacci ..
     -vv indicates the level of verbosity (how much stuff you want the test to spit out after running)
     -k is a way to select the tests you want to run.  This becomes much more important in large scale projects.
 """
