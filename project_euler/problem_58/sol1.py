@@ -1,3 +1,4 @@
+# https://projecteuler.net/problem=58
 from sympy import *
 numofprime=0
 con=1
