@@ -1,3 +1,4 @@
+# https://projecteuler.net/problem=56
 high=0
 for a in range(1,100):
     for b in range(1,100):
