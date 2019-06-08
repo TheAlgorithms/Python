@@ -1,9 +1,3 @@
-a = 3
-result = 0
-while a <= 1000:
-  if a % 3 == 0 and a % 5 == 0:
-    result += a
-  elif a % 15 == 0:
-    result -= a
+"""Find the sum of all the multiples of 3 or 5 below 1000."""
 
-print(result)
+print(sum(i if 0 in (i % 3, i % 5) else 0 for i in range(1000)))
