@@ -6,7 +6,7 @@
 * [Lu Decomposition](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/lu_decomposition.py)
 * [Newton Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_method.py)
 * [Newton Raphson Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_raphson_method.py)
-## Bolean Algebra
+## Boolean Algebra
 * [Quine Mc Cluskey](https://github.com/TheAlgorithms/Python/blob/master/boolean_algebra/quine_mc_cluskey.py)
 ## Ciphers
 * [Atbash](https://github.com/TheAlgorithms/Python/blob/master/ciphers/Atbash.py)
@@ -61,7 +61,7 @@
   * [Double Ended Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/double_ended_queue.py)
   * [Queue On List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/queue_on_list.py)
   * [Queue On Stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/queue_on_pseudo_stack.py)
-* Stacks
+* Stack
   * [Balanced Parentheses](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/balanced_parentheses.py)
   * [Infix to Postfix](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/infix_to_postfix_conversion.py)
   * [Infix to Prefix](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/infix_to_prefix_conversion.py)
