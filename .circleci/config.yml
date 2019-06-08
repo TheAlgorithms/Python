@@ -49,7 +49,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python -m flake8 . --count --select=E9,F63,F72,F82 --show-source --statistics
+            python -m flake8 . --count --exclude=./venv --select=E9,F63,F72,F82 --show-source --statistics
 
       - store_artifacts:
           path: test-reports
