@@ -1,16 +1,4 @@
 language: python
-cache: pip
-python:
-    - 2.7
-    - 3.6
-    #- nightly
-    #- pypy
-    #- pypy3
-matrix:
-    allow_failures:
-        - python: nightly
-        - python: pypy
-        - python: pypy3
 install:
     #- pip install -r requirements.txt
     - pip install flake8  # pytest  # add another testing frameworks later
@@ -21,6 +9,12 @@ before_script:
     - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 script:
     - true  # pytest --capture=sys  # add other tests here
+after_success:
+  - sudo apt-get update
+  - sudo apt-get install tree
+  - echo -e "\`\`\`bash\n$(tree)\n\`\`\`" > directory.md
+  - cat directory.md
+
 notifications:
     on_success: change
     on_failure: change  # `always` will be the setting once code changes slow down
