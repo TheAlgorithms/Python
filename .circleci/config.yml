@@ -1,23 +1,56 @@
-version: 2.0
-
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
 jobs:
-  Python3:
+  build:
     docker:
+      # specify the version you desire here
+      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:3.7.3
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    working_directory: ~/repo
+
     steps:
       - checkout
-      #- run: sudo pip install -r requirements.txt
-      - run: pip install --user flake8  # pytest
-      - run: python -m flake8 --version ; pip --version
-      # stop the build if there are Python syntax errors or undefined names
-      - run: python -m flake8 . --count --select=E9,F63,F72,F82 --show-source --statistics
-      # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide      
-      - run: python -m flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      #- run: pytest
 
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-workflows:
-  version: 2
-  build:
-    jobs:
-      - Python3
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install --upgrade pip
+            pip install flake8  # -r requirements.txt
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+      # run tests!
+      # this example uses Django's built-in test-runner
+      # other common Python testing frameworks include pytest and nose
+      # https://pytest.org
+      # https://nose.readthedocs.io
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            python -m flake8 . --count --select=E9,F63,F72,F82 --show-source --statistics
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
