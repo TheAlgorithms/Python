@@ -1,3 +1,4 @@
+# https://projecteuler.net/problem=82
 from collections import defaultdict
 import PySimpleGUI as sg
 class graph:
