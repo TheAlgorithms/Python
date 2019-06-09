@@ -16,7 +16,7 @@ def tree(d, ignores, ignores_ext):
 
 def _markdown(parent, ignores, ignores_ext, depth):
     out = ""
-    dirs = []
+    dirs, files = [], []
     for i in os.listdir(parent):
         full = os.path.join(parent, i)
         name, ext = os.path.splitext(i)
@@ -27,9 +27,14 @@ def _markdown(parent, ignores, ignores_ext, depth):
             pre = parent.replace("./", "").replace(" ", "%20")
             # replace all spaces to safe URL
             child = i.replace(" ", "%20")
-            out += "  " * depth + "* [" + name.replace("_", " ") + "](" + URL + pre + "/" + child + ")\n"
+            files.append((pre, child, name))
         else:
             dirs.append(i)
+    # Sort files
+    files.sort(key=lambda e: e[2].lower())
+    for f in files:
+        pre, child, name = f
+        out += "  " * depth + "* [" + name.replace("_", " ") + "](" + URL + pre + "/" + child + ")\n"
     # Sort directories
     dirs.sort()
     for i in dirs:
@@ -58,6 +63,7 @@ ignores_ext = [
     ".jpg",
     ".yml"
 ]
+
 
 if __name__ == "__main__":
     with open("DIRECTORY.md", "w+") as f:
