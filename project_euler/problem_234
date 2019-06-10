@@ -11,7 +11,7 @@ def fib(a, b, n):
             c=str(a) + str(b)
             temp = b
             b = c
-            a=temp
+            a = temp
         return c
 
 
