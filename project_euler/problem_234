@@ -1,4 +1,4 @@
-def fib(a,b,n):
+def fib(a, b, n):
     temp = 0
     if n==1:
         return a
