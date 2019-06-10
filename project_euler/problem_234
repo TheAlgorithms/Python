@@ -10,7 +10,7 @@ def fib(a, b, n):
         for x in range(2,n):
             c=str(a) + str(b)
             temp = b
-            b=c
+            b = c
             a=temp
         return c
 
