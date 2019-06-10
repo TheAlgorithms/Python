@@ -1,5 +1,5 @@
 def fib(a,b,n):
-    temp=0
+    temp = 0
     if n==1:
         return a
     elif n==2:
