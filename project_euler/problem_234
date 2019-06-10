@@ -9,7 +9,7 @@ def fib(a, b, n):
     else:
         for x in range(2,n):
             c=str(a) + str(b)
-            temp=b
+            temp = b
             b=c
             a=temp
         return c
