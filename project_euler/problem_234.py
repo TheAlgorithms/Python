@@ -1,19 +1,20 @@
 # https://projecteuler.net/problem=234
 def fib(a, b, n):
-    temp = 0
+    
     if n==1:
         return a
     elif n==2:
         return b
     elif n==3:
         return str(a)+str(b)
-    else:
-        for x in range(2,n):
-            c=str(a) + str(b)
-            temp = b
-            b = c
-            a = temp
-        return c
+    
+    temp = 0
+    for x in range(2,n):
+        c=str(a) + str(b)
+        temp = b
+        b = c
+        a = temp
+    return c
 
 
 q=int(input())
