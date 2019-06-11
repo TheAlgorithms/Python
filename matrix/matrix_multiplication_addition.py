@@ -15,12 +15,19 @@ def scalarMultiply(matrix , n):
 
 def multiply(matrix_a, matrix_b):
     matrix_c = []
-    n = len(matrix_a)
-    for i in range(n):
+    num_rows_a = len(matrix_a)
+    num_cols_a = len(matrix_a[0])
+    num_rows_b = len(matrix_b)
+    num_cols_b = len(matrix_b[0])
+    
+    if num_cols_a != num_rows_b :
+        raise ValueError('Cannot multiply matrix of dimensions {},{} and {},{}'.format(num_rows_a,num_cols_a,num_rows_b,num_cols_b))
+                      
+    for i in range(num_rows_a):
         list_1 = []
-        for j in range(n):
+        for j in range(num_cols_b):
             val = 0
-            for k in range(n):
+            for k in range(num_rows_a):
                 val = val + matrix_a[i][k] * matrix_b[k][j]
             list_1.append(val)
         matrix_c.append(list_1)
