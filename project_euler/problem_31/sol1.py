@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+
 try:
-    raw_input          # Python 2
+    raw_input  # Python 2
 except NameError:
     raw_input = input  # Python 3
-'''
+"""
 Coin sums
 Problem 31
 In England the currency is made up of pound, £, and pence, p, and there are
@@ -15,7 +16,7 @@ It is possible to make £2 in the following way:
 
 1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
 How many different ways can £2 be made using any number of coins?
-'''
+"""
 
 
 def one_pence():

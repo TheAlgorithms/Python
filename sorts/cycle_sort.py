@@ -44,17 +44,17 @@ def cycle_sort(array):
 
 
 #  Main Code starts here
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
-        raw_input          # Python 2
+        raw_input  # Python 2
     except NameError:
         raw_input = input  # Python 3
-        
-    user_input = raw_input('Enter numbers separated by a comma:\n')
-    unsorted = [int(item) for item in user_input.split(',')]
+
+    user_input = raw_input("Enter numbers separated by a comma:\n")
+    unsorted = [int(item) for item in user_input.split(",")]
     n = len(unsorted)
     cycle_sort(unsorted)
 
     print("After sort : ")
     for i in range(0, n):
-        print(unsorted[i], end=' ')
+        print(unsorted[i], end=" ")

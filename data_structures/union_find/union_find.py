@@ -1,4 +1,4 @@
-class UnionFind():
+class UnionFind:
     """
     https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 
@@ -12,6 +12,7 @@ class UnionFind():
 
     The elements are in range [0, size]
     """
+
     def __init__(self, size):
         if size <= 0:
             raise ValueError("size should be greater than 0")
@@ -22,10 +23,10 @@ class UnionFind():
         # in range [0, size]. It makes more sense.
 
         # Every set begins with only itself
-        self.root = [i for i in range(size+1)]
+        self.root = [i for i in range(size + 1)]
 
         # This is used for heuristic union by rank
-        self.weight = [0 for i in range(size+1)]
+        self.weight = [0 for i in range(size + 1)]
 
     def union(self, u, v):
         """
@@ -81,7 +82,7 @@ class UnionFind():
         Raises ValueError if element is not in range
         """
         if u < 0 or u > self.size:
-            msg = ("element {0} with value {1} "
-                   "should be in range [0~{2}]")\
-                  .format(element_name, u, self.size)
+            msg = ("element {0} with value {1} " "should be in range [0~{2}]").format(
+                element_name, u, self.size
+            )
             raise ValueError(msg)

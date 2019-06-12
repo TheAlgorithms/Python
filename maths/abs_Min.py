@@ -1,4 +1,6 @@
 from Maths.abs import absVal
+
+
 def absMin(x):
     """
     # >>>absMin([0,5,1,11])
@@ -12,9 +14,11 @@ def absMin(x):
             j = i
     return j
 
+
 def main():
-    a = [-3,-1,2,-11]
+    a = [-3, -1, 2, -11]
     print(absMin(a))  # = -1
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

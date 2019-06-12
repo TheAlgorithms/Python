@@ -1,9 +1,9 @@
-# Python program for Bitonic Sort. Note that this program 
-# works only when size of input is a power of 2. 
+# Python program for Bitonic Sort. Note that this program
+# works only when size of input is a power of 2.
 
-# The parameter dir indicates the sorting direction, ASCENDING 
-# or DESCENDING; if (a[i] > a[j]) agrees with the direction, 
-# then a[i] and a[j] are interchanged.*/ 
+# The parameter dir indicates the sorting direction, ASCENDING
+# or DESCENDING; if (a[i] > a[j]) agrees with the direction,
+# then a[i] and a[j] are interchanged.*/
 def compAndSwap(a, i, j, dire):
     if (dire == 1 and a[i] > a[j]) or (dire == 0 and a[i] < a[j]):
         a[i], a[j] = a[j], a[i]
@@ -12,8 +12,8 @@ def compAndSwap(a, i, j, dire):
 
 
 # if dir = 1, and in descending order otherwise (means dir=0).
-# The sequence to be sorted starts at index position low, 
-# the parameter cnt is the number of elements to be sorted. 
+# The sequence to be sorted starts at index position low,
+# the parameter cnt is the number of elements to be sorted.
 def bitonicMerge(a, low, cnt, dire):
     if cnt > 1:
         k = int(cnt / 2)
@@ -26,7 +26,7 @@ def bitonicMerge(a, low, cnt, dire):
 
 
 # sorting its two halves in opposite sorting orders, and then
-# calls bitonicMerge to make them in the same order 
+# calls bitonicMerge to make them in the same order
 def bitonicSort(a, low, cnt, dire):
     if cnt > 1:
         k = int(cnt / 2)

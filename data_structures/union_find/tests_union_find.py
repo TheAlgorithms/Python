@@ -74,5 +74,5 @@ class TestUnionFind(unittest.TestCase):
             uf.same_set(11, 0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

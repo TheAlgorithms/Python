@@ -19,15 +19,15 @@ def main():
 
     currentPow = 0
 
-    N = 101     # maximum limit
+    N = 101  # maximum limit
 
     for a in range(2, N):
         for b in range(2, N):
-            currentPow = a**b   # calculates the current power
-            collectPowers.add(currentPow)   # adds the result to the set
+            currentPow = a ** b  # calculates the current power
+            collectPowers.add(currentPow)  # adds the result to the set
 
     print("Number of terms ", len(collectPowers))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

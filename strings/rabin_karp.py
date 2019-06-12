@@ -20,14 +20,13 @@ def rabin_karp(pattern, text):
     for i in range(0, len(text) - (p_len - 1)):
 
         # written like this t
-        text_hash = hash(text[i:i + p_len])
-        if text_hash == p_hash and \
-                text[i:i + p_len] == pattern:
+        text_hash = hash(text[i : i + p_len])
+        if text_hash == p_hash and text[i : i + p_len] == pattern:
             return True
     return False
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Test 1)
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"

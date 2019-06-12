@@ -5,7 +5,7 @@ def absMax(x):
     >>absMax([3,-10,-2])
     -10
     """
-    j =x[0]
+    j = x[0]
     for i in x:
         if abs(i) > abs(j):
             j = i
@@ -13,11 +13,11 @@ def absMax(x):
 
 
 def main():
-    a = [1,2,-11]
-    print(absMax(a)) # = -11
+    a = [1, 2, -11]
+    print(absMax(a))  # = -11
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
 """

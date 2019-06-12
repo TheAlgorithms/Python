@@ -6,7 +6,7 @@ def mulitples(limit):
     temp = 1
     while True:
         result = z * temp
-        if (result < limit):
+        if result < limit:
             zmulti.append(result)
             temp += 1
         else:
@@ -14,17 +14,13 @@ def mulitples(limit):
             break
     while True:
         result = x * temp
-        if (result < limit):
+        if result < limit:
             xmulti.append(result)
             temp += 1
         else:
             break
-    collection = list(set(xmulti+zmulti))
-    return (sum(collection))
-    
-    
-        
-        
-        
-    
-print (mulitples(1000))
+    collection = list(set(xmulti + zmulti))
+    return sum(collection)
+
+
+print(mulitples(1000))

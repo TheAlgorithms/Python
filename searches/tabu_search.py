@@ -55,13 +55,17 @@ def generate_neighbours(path):
                 _list.append([line.split()[1], line.split()[2]])
                 dict_of_neighbours[line.split()[0]] = _list
             else:
-                dict_of_neighbours[line.split()[0]].append([line.split()[1], line.split()[2]])
+                dict_of_neighbours[line.split()[0]].append(
+                    [line.split()[1], line.split()[2]]
+                )
             if line.split()[1] not in dict_of_neighbours:
                 _list = list()
                 _list.append([line.split()[0], line.split()[2]])
                 dict_of_neighbours[line.split()[1]] = _list
             else:
-                dict_of_neighbours[line.split()[1]].append([line.split()[0], line.split()[2]])
+                dict_of_neighbours[line.split()[1]].append(
+                    [line.split()[0], line.split()[2]]
+                )
 
     return dict_of_neighbours
 
@@ -111,8 +115,11 @@ def generate_first_solution(path, dict_of_neighbours):
             break
         position += 1
 
-    distance_of_first_solution = distance_of_first_solution + int(
-        dict_of_neighbours[first_solution[-2]][position][1]) - 10000
+    distance_of_first_solution = (
+        distance_of_first_solution
+        + int(dict_of_neighbours[first_solution[-2]][position][1])
+        - 10000
+    )
     return first_solution, distance_of_first_solution
 
 
@@ -167,7 +174,9 @@ def find_neighborhood(solution, dict_of_neighbours):
     return neighborhood_of_solution
 
 
-def tabu_search(first_solution, distance_of_first_solution, dict_of_neighbours, iters, size):
+def tabu_search(
+    first_solution, distance_of_first_solution, dict_of_neighbours, iters, size
+):
     """
     Pure implementation of Tabu search algorithm for a Travelling Salesman Problem in Python.
 
@@ -207,8 +216,10 @@ def tabu_search(first_solution, distance_of_first_solution, dict_of_neighbours, 
                     break
                 i = i + 1
 
-            if [first_exchange_node, second_exchange_node] not in tabu_list and [second_exchange_node,
-                                                                                 first_exchange_node] not in tabu_list:
+            if [first_exchange_node, second_exchange_node] not in tabu_list and [
+                second_exchange_node,
+                first_exchange_node,
+            ] not in tabu_list:
                 tabu_list.append([first_exchange_node, second_exchange_node])
                 found = True
                 solution = best_solution[:-1]
@@ -231,10 +242,17 @@ def tabu_search(first_solution, distance_of_first_solution, dict_of_neighbours, 
 def main(args=None):
     dict_of_neighbours = generate_neighbours(args.File)
 
-    first_solution, distance_of_first_solution = generate_first_solution(args.File, dict_of_neighbours)
+    first_solution, distance_of_first_solution = generate_first_solution(
+        args.File, dict_of_neighbours
+    )
 
-    best_sol, best_cost = tabu_search(first_solution, distance_of_first_solution, dict_of_neighbours, args.Iterations,
-                                      args.Size)
+    best_sol, best_cost = tabu_search(
+        first_solution,
+        distance_of_first_solution,
+        dict_of_neighbours,
+        args.Iterations,
+        args.Size,
+    )
 
     print("Best solution: {0}, with total distance: {1}.".format(best_sol, best_cost))
 
@@ -242,11 +260,22 @@ def main(args=None):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Tabu Search")
     parser.add_argument(
-        "-f", "--File", type=str, help="Path to the file containing the data", required=True)
+        "-f",
+        "--File",
+        type=str,
+        help="Path to the file containing the data",
+        required=True,
+    )
     parser.add_argument(
-        "-i", "--Iterations", type=int, help="How many iterations the algorithm should perform", required=True)
+        "-i",
+        "--Iterations",
+        type=int,
+        help="How many iterations the algorithm should perform",
+        required=True,
+    )
     parser.add_argument(
-        "-s", "--Size", type=int, help="Size of the tabu list", required=True)
+        "-s", "--Size", type=int, help="Size of the tabu list", required=True
+    )
 
     # Pass the arguments to main method
     sys.exit(main(parser.parse_args()))

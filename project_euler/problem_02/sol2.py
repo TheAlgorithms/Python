@@ -7,9 +7,10 @@ def fib(n):
     while b < n:
         if b % 2 == 0:
             ls.append(b)
-        a, b = b, a+b
+        a, b = b, a + b
     return ls
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     n = int(input("Enter max number: ").strip())
     print(sum(fib(n)))

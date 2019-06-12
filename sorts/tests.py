@@ -24,22 +24,25 @@ from wiggle_sort import wiggle_sort
 
 
 TEST_CASES = [
-    {'input': [8, 7, 6, 5, 4, 3, -2, -5], 'expected': [-5, -2, 3, 4, 5, 6, 7, 8]},
-    {'input': [-5, -2, 3, 4, 5, 6, 7, 8], 'expected': [-5, -2, 3, 4, 5, 6, 7, 8]},
-    {'input': [5, 6, 1, 4, 0, 1, -2, -5, 3, 7], 'expected': [-5, -2, 0, 1, 1, 3, 4, 5, 6, 7]},
-    {'input': [2, -2], 'expected': [-2, 2]},
-    {'input': [1], 'expected': [1]},
-    {'input': [], 'expected': []},
+    {"input": [8, 7, 6, 5, 4, 3, -2, -5], "expected": [-5, -2, 3, 4, 5, 6, 7, 8]},
+    {"input": [-5, -2, 3, 4, 5, 6, 7, 8], "expected": [-5, -2, 3, 4, 5, 6, 7, 8]},
+    {
+        "input": [5, 6, 1, 4, 0, 1, -2, -5, 3, 7],
+        "expected": [-5, -2, 0, 1, 1, 3, 4, 5, 6, 7],
+    },
+    {"input": [2, -2], "expected": [-2, 2]},
+    {"input": [1], "expected": [1]},
+    {"input": [], "expected": []},
 ]
 
-'''
+"""
     TODO:
     - Fix some broken tests in particular cases (as [] for example),
     - Unify the input format: should always be function(input_collection) (no additional args)
     - Unify the output format: should always be a collection instead of updating input elements
       and returning None
     - Rewrite some algorithms in function format (in case there is no function definition)
-'''
+"""
 
 TEST_FUNCTIONS = [
     bogo_sort,
@@ -70,5 +73,7 @@ TEST_FUNCTIONS = [
 
 for function in TEST_FUNCTIONS:
     for case in TEST_CASES:
-        result = function(case['input'])
-        assert result  == case['expected'], 'Executed function: {}, {} != {}'.format(function.__name__, result, case['expected'])
+        result = function(case["input"])
+        assert result == case["expected"], "Executed function: {}, {} != {}".format(
+            function.__name__, result, case["expected"]
+        )

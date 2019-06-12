@@ -7,8 +7,9 @@ from __future__ import print_function
 
 import numpy as np
 
+
 class Decision_Tree:
-    def __init__(self, depth = 5, min_leaf_size = 5):
+    def __init__(self, depth=5, min_leaf_size=5):
         self.depth = depth
         self.decision_boundary = 0
         self.left = None
@@ -60,8 +61,7 @@ class Decision_Tree:
             return
 
         best_split = 0
-        min_error = self.mean_squared_error(X,np.mean(y)) * 2
-
+        min_error = self.mean_squared_error(X, np.mean(y)) * 2
 
         """
         loop over all possible splits for the decision tree. find the best split.
@@ -88,8 +88,12 @@ class Decision_Tree:
             right_y = y[best_split:]
 
             self.decision_boundary = X[best_split]
-            self.left = Decision_Tree(depth = self.depth - 1, min_leaf_size = self.min_leaf_size)
-            self.right = Decision_Tree(depth = self.depth - 1, min_leaf_size = self.min_leaf_size)
+            self.left = Decision_Tree(
+                depth=self.depth - 1, min_leaf_size=self.min_leaf_size
+            )
+            self.right = Decision_Tree(
+                depth=self.depth - 1, min_leaf_size=self.min_leaf_size
+            )
             self.left.train(left_X, left_y)
             self.right.train(right_X, right_y)
         else:
@@ -115,17 +119,18 @@ class Decision_Tree:
             print("Error: Decision tree not yet trained")
             return None
 
+
 def main():
     """
     In this demonstration we're generating a sample data set from the sin function in numpy.
     We then train a decision tree on the data set and use the decision tree to predict the
     label of 10 different test values. Then the mean squared error over this test is displayed.
     """
-    X = np.arange(-1., 1., 0.005)
+    X = np.arange(-1.0, 1.0, 0.005)
     y = np.sin(X)
 
-    tree = Decision_Tree(depth = 10, min_leaf_size = 10)
-    tree.train(X,y)
+    tree = Decision_Tree(depth=10, min_leaf_size=10)
+    tree.train(X, y)
 
     test_cases = (np.random.rand(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
@@ -135,6 +140,6 @@ def main():
     print("Predictions: " + str(predictions))
     print("Average error: " + str(avg_error))
 
-            
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

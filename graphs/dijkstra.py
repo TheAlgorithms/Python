@@ -36,12 +36,14 @@ def dijkstra(graph, start, end):
     return (-1, -1)
 
 
-G = {'A': [['B', 2], ['C', 5]],
-     'B': [['A', 2], ['D', 3], ['E', 1]],
-     'C': [['A', 5], ['F', 3]],
-     'D': [['B', 3]],
-     'E': [['B', 1], ['F', 3]],
-     'F': [['C', 3], ['E', 3]]}
+G = {
+    "A": [["B", 2], ["C", 5]],
+    "B": [["A", 2], ["D", 3], ["E", 1]],
+    "C": [["A", 5], ["F", 3]],
+    "D": [["B", 3]],
+    "E": [["B", 1], ["F", 3]],
+    "F": [["C", 3], ["E", 3]],
+}
 
-shortDistance = dijkstra(G, 'E', 'C')
+shortDistance = dijkstra(G, "E", "C")
 print(shortDistance)

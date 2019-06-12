@@ -6,7 +6,8 @@ def main():
                 minNum = i
         return minNum
 
-    print(findMin([0,1,2,3,4,5,-3,24,-56])) # = -56
+    print(findMin([0, 1, 2, 3, 4, 5, -3, 24, -56]))  # = -56
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

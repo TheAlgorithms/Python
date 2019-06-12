@@ -11,8 +11,10 @@ def absVal(num):
     else:
         return num
 
-def main():
-    print(absVal(-34)) # = 34
 
-if __name__ == '__main__':
+def main():
+    print(absVal(-34))  # = 34
+
+
+if __name__ == "__main__":
     main()
