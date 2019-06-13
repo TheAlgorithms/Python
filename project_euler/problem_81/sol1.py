@@ -36,6 +36,7 @@ def dijkstra(initial,graph):
 
 with open('input.txt') as in_file:
     matrix = [[int(x) for x in line.split(',')] for line in in_file]
+in_file.close()
                                          
 #.   d{} which counts repeated node's frequency
 #.   matrix1 is used to calculate
