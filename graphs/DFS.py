@@ -16,7 +16,6 @@ def dfs(graph, start):
       to the node's children onto the iterator stack. When the iterator at the top of the stack terminates, we'll pop
        it off the stack."""
     explored, stack = set(), [start]
-    explored.add(start)
     while stack:
         v = stack.pop()  # one difference from BFS is to pop last element here instead of first one
         
