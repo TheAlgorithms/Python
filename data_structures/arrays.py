@@ -1,3 +1,6 @@
-arr = [10, 20, 30, 40]
-arr[1] = 30 # set element 1 (20) of array to 30
-print(arr)
+from array import array
+from random import random
+
+
+floats = array('d', (random() for _ in range(10**7)))
+print(floats)
