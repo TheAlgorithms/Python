@@ -20,9 +20,10 @@ def rabin_karp(pattern, text):
     for i in range(0, len(text) - (p_len - 1)):
 
         # written like this t
-        text_hash = hash(text[i:i + p_len])
+        pattern_temp = text[i:i + p_len]
+        text_hash = hash(pattern_temp)
         if text_hash == p_hash and \
-                text[i:i + p_len] == pattern:
+                pattern_temp == pattern:
             return True
     return False
 
