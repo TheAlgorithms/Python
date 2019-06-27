@@ -283,7 +283,7 @@ def goldbach(number):
 
     # run variable for while-loops.
     i = 0
-    j = 1
+    j = None
     
     # exit variable. for break up the loops
     loop = True
