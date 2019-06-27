@@ -4,7 +4,7 @@ function based version of matrix operations, which are just 2D arrays
 
 
 def add(matrix_a, matrix_b):
-    if _check_not_integer(matrix_a) & _check_not_integer(matrix_b):
+    if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
         matrix_c = []
         for i in range(rows[0]):
@@ -17,7 +17,7 @@ def add(matrix_a, matrix_b):
 
 
 def subtract(matrix_a, matrix_b):
-    if _check_not_integer(matrix_a) & _check_not_integer(matrix_b):
+    if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
         matrix_c = []
         for i in range(rows[0]):
@@ -34,7 +34,7 @@ def scalar_multiply(matrix, n):
 
 
 def multiply(matrix_a, matrix_b):
-    if _check_not_integer(matrix_a) & _check_not_integer(matrix_b):
+    if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         matrix_c = []
         rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
 
@@ -62,8 +62,16 @@ def identity(n):
     return [[int(row == column) for column in range(n)] for row in range(n)] 
 
 
-def transpose(matrix):
-    return map(list, zip(*matrix))
+def transpose(matrix, return_map=True):
+    if _check_not_integer(matrix):
+        if return_map:
+            return map(list, zip(*matrix))
+        else:
+            # mt = []
+            # for i in range(len(matrix[0])):
+            #     mt.append([row[i] for row in matrix])
+            # return mt
+            return [[row[i] for row in matrix] for i in range(len(matrix[0]))]
 
 
 def minor(matrix, row, column):
@@ -87,12 +95,12 @@ def inverse(matrix):
     if det == 0:
         return None
 
-    matrixMinor = [[] for _ in range(len(matrix))]
+    matrix_minor = [[] for _ in range(len(matrix))]
     for i in range(len(matrix)):
         for j in range(len(matrix)):
-            matrixMinor[i].append(determinant(minor(matrix, i, j)))
+            matrix_minor[i].append(determinant(minor(matrix, i, j)))
     
-    cofactors = [[x * (-1) ** (row + col) for col, x in enumerate(matrixMinor[row])] for row in range(len(matrix))]
+    cofactors = [[x * (-1) ** (row + col) for col, x in enumerate(matrix_minor[row])] for row in range(len(matrix))]
     adjugate = transpose(cofactors)
     return scalar_multiply(adjugate, 1/det)
 
@@ -100,7 +108,7 @@ def inverse(matrix):
 def _check_not_integer(matrix):
     try:
         rows = len(matrix)
-        cols = len(matrix)
+        cols = len(matrix[0])
         return True
     except TypeError:
         raise TypeError("Cannot input an integer value, it must be a matrix")
