@@ -48,7 +48,7 @@ def nqueens(board_width):
 	return board
 
 def print_board(board):
-	if (board == None):
+	if board is None:
 		return
 
 	board_width = len(board)
