@@ -1,3 +1,5 @@
+"""Test Sort Algorithms for Errors."""
+
 from bogo_sort import bogo_sort
 from bubble_sort import bubble_sort
 from bucket_sort import bucket_sort
@@ -36,8 +38,8 @@ TEST_CASES = [
     TODO:
     - Fix some broken tests in particular cases (as [] for example),
     - Unify the input format: should always be function(input_collection) (no additional args)
-    - Unify the output format: should always be a collection instead of updating input elements
-      and returning None
+    - Unify the output format: should always be a collection instead of
+    updating input elements and returning None
     - Rewrite some algorithms in function format (in case there is no function definition)
 '''
 
@@ -71,4 +73,4 @@ TEST_FUNCTIONS = [
 for function in TEST_FUNCTIONS:
     for case in TEST_CASES:
         result = function(case['input'])
-        assert result  == case['expected'], 'Executed function: {}, {} != {}'.format(function.__name__, result, case['expected'])
+        assert result == case['expected'], 'Executed function: {}, {} != {}'.format(function.__name__, result, case['expected'])
