@@ -1,6 +1,3 @@
-## Analysis
-  * Compression Analysis
-    * [psnr](https://github.com/TheAlgorithms/Python/blob/master/analysis/compression_analysis/psnr.py)
 ## Arithmetic Analysis
   * [bisection](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/bisection.py)
   * [intersection](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/intersection.py)
@@ -39,17 +36,19 @@
   * [xor cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/xor_cipher.py)
 ## Compression
   * [huffman](https://github.com/TheAlgorithms/Python/blob/master/compression/huffman.py)
+## Compression Analysis
+  * [psnr](https://github.com/TheAlgorithms/Python/blob/master/compression_analysis/psnr.py)
 ## Data Structures
   * [arrays](https://github.com/TheAlgorithms/Python/blob/master/data_structures/arrays.py)
   * [avl](https://github.com/TheAlgorithms/Python/blob/master/data_structures/avl.py)
   * [LCA](https://github.com/TheAlgorithms/Python/blob/master/data_structures/LCA.py)
   * Binary Tree
-    * [AVL tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary%20tree/AVL_tree.py)
-    * [binary search tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary%20tree/binary_search_tree.py)
-    * [fenwick tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary%20tree/fenwick_tree.py)
-    * [lazy segment tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary%20tree/lazy_segment_tree.py)
-    * [segment tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary%20tree/segment_tree.py)
-    * [treap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary%20tree/treap.py)
+    * [AVL tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/AVL_tree.py)
+    * [binary search tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_search_tree.py)
+    * [fenwick tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/fenwick_tree.py)
+    * [lazy segment tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lazy_segment_tree.py)
+    * [segment tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/segment_tree.py)
+    * [treap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/treap.py)
   * Hashing
     * [double hash](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/double_hash.py)
     * [hash table](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/hash_table.py)
@@ -192,8 +191,9 @@
   * Tests
     * [test fibonacci](https://github.com/TheAlgorithms/Python/blob/master/maths/tests/test_fibonacci.py)
 ## Matrix
-  * [matrix multiplication addition](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_multiplication_addition.py)
+  * [matrix operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_operation.py)
   * [searching in sorted matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/searching_in_sorted_matrix.py)
+  * [spiralPrint](https://github.com/TheAlgorithms/Python/blob/master/matrix/spiralPrint.py)
 ## Networking Flow
   * [ford fulkerson](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/ford_fulkerson.py)
   * [minimum cut](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/minimum_cut.py)
@@ -294,6 +294,8 @@
     * [p022 names](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_22/p022_names.txt)
     * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_22/sol1.py)
     * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_22/sol2.py)
+  * Problem 234
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_234/sol1.py)
   * Problem 24
     * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_24/sol1.py)
   * Problem 25
