@@ -46,7 +46,7 @@ class RedBlackTree:
                 parent.left = right
             else:
                 parent.right = right
-        self.parent.parent = parent
+        right.parent = parent
         return right
     
     def rotate_right(self):
@@ -67,7 +67,7 @@ class RedBlackTree:
                 parent.right = left
             else:
                 parent.left = left
-        self.parent.parent = parent
+        left.parent = parent
         return left
 
     def insert(self, label):
@@ -77,6 +77,10 @@ class RedBlackTree:
 
         This is guaranteed to run in O(log(n)) time.
         """
+        if self.label == None:
+            # Only possible with an empty tree
+            self.label = label
+            return self
         if self.label == label:
             return self
         elif self.label > label:
@@ -91,10 +95,7 @@ class RedBlackTree:
             else:
                 self.right = RedBlackTree(label, 1, self)
                 self.right._insert_repair()
-        if self.parent is not None:
-            return self.parent
-        else:
-            return self
+        return self.parent or self
 
     def _insert_repair(self):
         """Repair the coloring from inserting into a tree."""
@@ -105,44 +106,27 @@ class RedBlackTree:
             # If the parent is black, then it just needs to be red
             self.color = 1
         else:
-            if self.parent.parent.left is self.parent:
-                uncle = self.parent.parent.right
-            else:
-                uncle = self.parent.parent.left
+            uncle = self.parent.sibling
             if uncle is None or uncle.color == 0:
-                if self.parent.left is self \
-                        and self.parent.parent.right is self.parent:
+                if self.is_left() and self.parent.is_right():
                     self.parent.rotate_right()
                     self.right._insert_repair()
-                elif self.parent.right is self \
-                        and self.parent.parent.left is self.parent:
+                elif self.is_right() and self.parent.is_left():
                     self.parent.rotate_left()
                     self.left._insert_repair()
-                elif self.parent.left is self:
-                    self.parent.parent.rotate_right()
+                elif self.is_left():
+                    self.grandparent.rotate_right()
                     self.parent.color = 0
                     self.parent.right.color = 1
                 else:
-                    self.parent.parent.rotate_left()
+                    self.grandparent.rotate_left()
                     self.parent.color = 0
                     self.parent.left.color = 1
             else:
                 self.parent.color = 0
                 uncle.color = 0
-                self.parent.parent.color = 1
-                self.parent.parent._insert_repair()
-
-    def remove(self, label):
-        if self.label == label:
-            if self.left:
-                pass
-            elif self.right:
-                pass
-            else:
-                if self.parent.left is self:
-                    self.parent.left = None
-                else:
-                    self.parent.right = None
+                self.grandparent.color = 1
+                self.grandparent._insert_repair()
 
     def check_color_properties(self):
         """Check the coloring of the tree, and return True iff the tree
@@ -296,6 +280,32 @@ class RedBlackTree:
             return self.left.get_min()
         else:
             return self.label
+
+    @property
+    def grandparent(self):
+        """Get the current node's grandparent, or None if it doesn't exist."""
+        if self.parent is None:
+            return None
+        else:
+            return self.parent.parent
+    
+    @property
+    def sibling(self):
+        """Get the current node's sibling, or None if it doesn't exist."""
+        if self.parent is None:
+            return None
+        elif self.parent.left is self:
+            return self.parent.right
+        else:
+            return self.parent.left
+
+    def is_left(self):
+        """Returns true iff this node is the left child of its parent."""
+        return self.parent and self.parent.left is self
+
+    def is_right(self):
+        """Returns true iff this node is the right child of its parent."""
+        return self.parent and self.parent.right is self
 
     def __bool__(self):
         return True
