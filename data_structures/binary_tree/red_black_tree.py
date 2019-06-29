@@ -128,6 +128,110 @@ class RedBlackTree:
                 self.grandparent.color = 1
                 self.grandparent._insert_repair()
 
+    def remove(self, label):
+        """Remove label from this tree."""
+        if self.label == label:
+            if self.left and self.right:
+                # It's easier to balance a node with at most one child,
+                # so we replace this node with the greatest one less than
+                # it and remove that.
+                value = self.left.get_max()
+                self.label = value
+                self.left.remove(value)
+            else:
+                # This node has at most one non-None child, so we don't
+                # need to replace
+                child = self.left or self.right
+                if self.color == 1:
+                    # This node is red, and its child is black
+                    # The only way this happens to a node with one child
+                    # is if both children are None leaves.
+                    # We can just remove this node and call it a day.
+                    if self.is_left():
+                        self.parent.left = None
+                    else:
+                        self.parent.right = None
+                else:
+                    # The node is black
+                    if child is None:
+                        # This node and its child are black
+                        if self.parent is not None:
+                            self._delete_repair()
+                            if self.is_left():
+                                self.parent.left = None
+                            else:
+                                self.parent.right = None
+                        else:
+                            # The tree is now empty
+                            return RedBlackTree(None)
+                    else:
+                        # This node is black and its child is red
+                        # Move the child node here and make it black
+                        self.label = child.label
+                        self.left = child.left
+                        self.right = child.right
+                        if self.left:
+                            self.left.parent = self
+                        if self.right:
+                            self.right.parent = self
+        elif self.label > label:
+            if self.left:
+                self.left.remove(label)
+        else:
+            if self.right:
+                self.right.remove(label)
+        return self.parent or self
+
+    def _delete_repair(self):
+        """Repair the coloring of the tree that may have been messed up."""
+        if color(self) == 1:
+            self.color = 0
+            self.parent.color = 0
+            if self.is_left():
+                self.parent.rotate_right()
+            else:
+                self.parent.rotate_left()
+        if color(self.parent) == 0 and color(self.siblng) == 0 \
+                and color(self.sibling.left) == 0 \
+                and color(self.sibling.right) == 0:
+            self.sibling.color = 1
+            self.parent._delete_repair()
+            return
+        if color(self.parent) == 1 and color(self.siblng) == 0 \
+                and color(self.sibling.left) == 0 \
+                and color(self.sibling.right) == 0:
+            self.sibling.color = 1
+            self.parent.color = 0
+            return
+        if (self.is_left() 
+                and color(self.sibling) == 0
+                and color(self.sibling.right) == 0
+                and color(self.sibling.left) == 1):
+            self.sibling.rotate_right()
+            self.sibling.color = 1
+            self.sibling.right.color = 0
+        if (self.is_right()
+                and color(self.sibling) == 0
+                and color(self.sibling.right) == 1
+                and color(self.sibling.left) == 0):
+            self.sibling.rotate_left()
+            self.sibling.color = 1
+            self.sibling.left.color = 0
+        if (self.is_left()
+                and color(self.sibling) == 0
+                and color(self.sibling.right) == 1):
+            self.parent.rotate_left()
+            self.grandparent.color = self.parent.color
+            self.parent.color = 0
+            self.parent.sibling.color = 0
+        if (self.is_right()
+                and color(self.sibling) == 0
+                and color(self.sibling.left) == 1):
+            self.parent.rotate_right()
+            self.grandparent.color = self.parent.color
+            self.parent.color = 0
+            self.parent.sibling.color = 0
+
     def check_color_properties(self):
         """Check the coloring of the tree, and return True iff the tree
         is colored in a way which matches these five properties:
@@ -449,6 +553,30 @@ def test_insert_and_search():
         return False
     return True
 
+def test_insert_delete():
+    """Test the insert() and delete() method of the tree, verifying the
+    insertion and removal of elements, and the balancing of the tree.
+    """
+    tree = RedBlackTree(0)
+    tree.insert(-12)
+    tree.insert(8)
+    tree.insert(-8)
+    tree.insert(15)
+    tree.insert(4)
+    tree.insert(12)
+    tree.insert(10)
+    tree.insert(9)
+    tree.insert(11)
+    tree.remove(15)
+    tree.remove(-12)
+    tree.remove(9)
+    print(tree)
+    if not tree.check_color_properties():
+        return False
+    if list(tree.inorder_traverse()) != [-8, 0, 4, 8, 10, 11, 12]:
+        return False
+    return True
+
 def test_floor_ceil():
     """Tests the floor and ceiling functions in the tree."""
     tree = RedBlackTree(0)
@@ -507,6 +635,10 @@ def main():
         print('Searching works!')
     else:
         print('Searching doesn\'t work :(')
+    if test_insert_delete():
+        print('Deleting works!')
+    else:
+        print('Deleting doesn\'t work :(')
     if test_floor_ceil():
         print('Floor and ceil work!')
     else:
