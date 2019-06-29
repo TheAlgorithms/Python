@@ -102,12 +102,12 @@ class RedBlackTree:
         if self.parent is None:
             # This node is the root, so it just needs to be black
             self.color = 0
-        elif self.parent.color == 0:
+        elif color(self.parent) == 0:
             # If the parent is black, then it just needs to be red
             self.color = 1
         else:
             uncle = self.parent.sibling
-            if uncle is None or uncle.color == 0:
+            if color(uncle) == 0:
                 if self.is_left() and self.parent.is_right():
                     self.parent.rotate_right()
                     self.right._insert_repair()
@@ -166,8 +166,7 @@ class RedBlackTree:
         Red-Black Tree. See check_color_properties for more info.
         """
         if self.color == 1:
-            if self.left and self.left.color == 1 \
-                    or self.right and self.right.color == 1:
+            if color(self.left) == 1 or color(self.right) == 1:
                 return False
         if self.left and not check_coloring(self.left):
             return False
@@ -357,6 +356,13 @@ class RedBlackTree:
             return self.left == other.left and self.right == other.right
         else:
             return False
+
+def color(node):
+    """Returns the color of a node, allowing for None leaves."""
+    if node is None:
+        return 0
+    else:
+        return node.color
 
 """
 Code for testing the various functions of the red-black tree.
