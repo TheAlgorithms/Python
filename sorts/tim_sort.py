@@ -41,7 +41,7 @@ def merge(left, right):
     return [right[0]] + merge(left, right[1:])
 
 
-def timsort(lst):
+def tim_sort(lst):
     runs, sorted_runs = [], []
     length = len(lst)
     new_run = [lst[0]]
@@ -75,7 +75,7 @@ def timsort(lst):
 def main():
 
     lst = [5,9,10,3,-4,5,178,92,46,-18,0,7]
-    sorted_lst = timsort(lst)
+    sorted_lst = tim_sort(lst)
     print(sorted_lst)
 
 if __name__ == '__main__':
