@@ -1,5 +1,5 @@
-num = 2**1000
-sum = 0
+n = 2**1000
+r = 0
 while n:
-    sum, num = sum + num % 10, num // 10
-print(sum)
+    r, n = r + n % 10, n // 10
+print(r)
