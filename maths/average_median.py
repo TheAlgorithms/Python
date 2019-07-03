@@ -33,7 +33,7 @@ def main():
     """Call average module to find median of a specific list of numbers."""
     print("Odd number of numbers:")
     print(median([2, 4, 6, 8, 20, 50, 70]))
-    print("Odd number of numbers:")
+    print("Even number of numbers:")
     print(median([2, 4, 6, 8, 20, 50]))
 
 
