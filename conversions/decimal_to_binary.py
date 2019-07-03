@@ -12,12 +12,13 @@ def decimal_to_binary(num):
 
 def main():
     """Print binary equivelents of decimal numbers."""
-    print("2 in binary is:")
+    print("\n2 in binary is:")
     print(decimal_to_binary(2))  # = 10
     print("\n7 in binary is:")
     print(decimal_to_binary(7))  # = 111
     print("\n35 in binary is:")
     print(decimal_to_binary(35))  # = 100011
+    print("\n")
 
 
 if __name__ == '__main__':
