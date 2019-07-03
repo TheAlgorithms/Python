@@ -155,15 +155,16 @@ class RedBlackTree:
                     # The node is black
                     if child is None:
                         # This node and its child are black
-                        if self.parent is not None:
+                        if self.parent is None:
+                            # The tree is now empty
+                            return RedBlackTree(None)
+                        else:
                             self._delete_repair()
                             if self.is_left():
                                 self.parent.left = None
                             else:
                                 self.parent.right = None
-                        else:
-                            # The tree is now empty
-                            return RedBlackTree(None)
+                            self.parent = None
                     else:
                         # This node is black and its child is red
                         # Move the child node here and make it black
@@ -184,20 +185,20 @@ class RedBlackTree:
 
     def _delete_repair(self):
         """Repair the coloring of the tree that may have been messed up."""
-        if color(self) == 1:
-            self.color = 0
-            self.parent.color = 0
+        if color(self.sibling) == 1:
+            self.sibling.color = 0
+            self.parent.color = 1
             if self.is_left():
-                self.parent.rotate_right()
-            else:
                 self.parent.rotate_left()
-        if color(self.parent) == 0 and color(self.siblng) == 0 \
+            else:
+                self.parent.rotate_right()
+        if color(self.parent) == 0 and color(self.sibling) == 0 \
                 and color(self.sibling.left) == 0 \
                 and color(self.sibling.right) == 0:
             self.sibling.color = 1
             self.parent._delete_repair()
             return
-        if color(self.parent) == 1 and color(self.siblng) == 0 \
+        if color(self.parent) == 1 and color(self.sibling) == 0 \
                 and color(self.sibling.left) == 0 \
                 and color(self.sibling.right) == 0:
             self.sibling.color = 1
@@ -215,8 +216,8 @@ class RedBlackTree:
                 and color(self.sibling.right) == 1
                 and color(self.sibling.left) == 0):
             self.sibling.rotate_left()
-            self.sibling.color = 1
-            self.sibling.left.color = 0
+            self.sibling.color = 0
+            self.sibling.left.color = 1
         if (self.is_left()
                 and color(self.sibling) == 0
                 and color(self.sibling.right) == 1):
@@ -272,9 +273,9 @@ class RedBlackTree:
         if self.color == 1:
             if color(self.left) == 1 or color(self.right) == 1:
                 return False
-        if self.left and not check_coloring(self.left):
+        if self.left and not self.left.check_coloring():
             return False
-        if self.right and not check_coloring(self.right):
+        if self.right and not self.right.check_coloring():
             return False
         return True
 
@@ -558,18 +559,19 @@ def test_insert_delete():
     insertion and removal of elements, and the balancing of the tree.
     """
     tree = RedBlackTree(0)
-    tree.insert(-12)
-    tree.insert(8)
-    tree.insert(-8)
-    tree.insert(15)
-    tree.insert(4)
-    tree.insert(12)
-    tree.insert(10)
-    tree.insert(9)
-    tree.insert(11)
-    tree.remove(15)
-    tree.remove(-12)
-    tree.remove(9)
+    tree = tree.insert(-12)
+    tree = tree.insert(8)
+    tree = tree.insert(-8)
+    tree = tree.insert(15)
+    tree = tree.insert(4)
+    tree = tree.insert(12)
+    tree = tree.insert(10)
+    tree = tree.insert(9)
+    tree = tree.insert(11)
+    print(tree)
+    tree = tree.remove(15)
+    tree = tree.remove(-12)
+    tree = tree.remove(9)
     print(tree)
     if not tree.check_color_properties():
         return False
