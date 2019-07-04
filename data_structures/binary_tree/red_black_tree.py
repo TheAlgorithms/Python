@@ -28,6 +28,8 @@ class RedBlackTree:
         self.right = right
         self.color = color
 
+    # Here are functions which are specific to red-black trees
+
     def rotate_left(self):
         """Rotate the subtree rooted at this node to the left and
         returns the new root to this subtree.
@@ -77,7 +79,7 @@ class RedBlackTree:
 
         This is guaranteed to run in O(log(n)) time.
         """
-        if self.label == None:
+        if self.label is None:
             # Only possible with an empty tree
             self.label = label
             return self
@@ -159,7 +161,7 @@ class RedBlackTree:
                             # The tree is now empty
                             return RedBlackTree(None)
                         else:
-                            self._delete_repair()
+                            self._remove_repair()
                             if self.is_left():
                                 self.parent.left = None
                             else:
@@ -183,7 +185,7 @@ class RedBlackTree:
                 self.right.remove(label)
         return self.parent or self
 
-    def _delete_repair(self):
+    def _remove_repair(self):
         """Repair the coloring of the tree that may have been messed up."""
         if color(self.sibling) == 1:
             self.sibling.color = 0
@@ -196,7 +198,7 @@ class RedBlackTree:
                 and color(self.sibling.left) == 0 \
                 and color(self.sibling.right) == 0:
             self.sibling.color = 1
-            self.parent._delete_repair()
+            self.parent._remove_repair()
             return
         if color(self.parent) == 1 and color(self.sibling) == 0 \
                 and color(self.sibling.left) == 0 \
@@ -303,6 +305,8 @@ class RedBlackTree:
         # Return the black depth of children, plus one if this node is
         # black
         return left + (1-self.color)
+
+    # Here are functions which are general to all binary search trees
 
     def __contains__(self, label):
         """Search through the tree for label, returning True iff it is
