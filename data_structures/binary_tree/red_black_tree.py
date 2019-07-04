@@ -209,8 +209,8 @@ class RedBlackTree:
                 and color(self.sibling.right) == 0
                 and color(self.sibling.left) == 1):
             self.sibling.rotate_right()
-            self.sibling.color = 1
-            self.sibling.right.color = 0
+            self.sibling.color = 0
+            self.sibling.right.color = 1
         if (self.is_right()
                 and color(self.sibling) == 0
                 and color(self.sibling.right) == 1
@@ -253,6 +253,7 @@ class RedBlackTree:
         # Property 2
         if self.color:
             # The root was red
+            print('Property 2')
             return False;
 
         # Property 3 does not need to be checked, because None is assumed
@@ -260,11 +261,15 @@ class RedBlackTree:
 
         # Property 4
         if not self.check_coloring():
+            print('Property 4')
             return False
 
         # Property 5
-        if black_height(self) is None:
+        if self.black_height() is None:
+            print('Property 5')
             return False
+        # All properties were met
+        return True
 
     def check_coloring(self):
         """A helper function to recursively check Property 4 of a
@@ -568,11 +573,9 @@ def test_insert_delete():
     tree = tree.insert(10)
     tree = tree.insert(9)
     tree = tree.insert(11)
-    print(tree)
     tree = tree.remove(15)
     tree = tree.remove(-12)
     tree = tree.remove(9)
-    print(tree)
     if not tree.check_color_properties():
         return False
     if list(tree.inorder_traverse()) != [-8, 0, 4, 8, 10, 11, 12]:
