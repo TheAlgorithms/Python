@@ -28,7 +28,6 @@ class vertex():
         """
         Arguments:
             id - input an id to identify the vertex
-
         Attributes:
             neighbors - a list of the vertices it is linked to
             edges     - a dict to store the edges's weight
@@ -59,9 +58,7 @@ class vertex():
 def prim(graph, root):
     """
     Prim's Algorithm.
-
     Return a list with the edges of a Minimum Spanning Tree
-
     prim(graph, graph[0])
     """
     A = []

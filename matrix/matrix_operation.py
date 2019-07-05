@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 def add(matrix_a, matrix_b):
     rows = len(matrix_a)
     columns = len(matrix_a[0])
@@ -63,13 +65,12 @@ def main():
     matrix_b = [[3, 4], [7, 4]]
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
-
-    print(add(matrix_a, matrix_b))
-    print(multiply(matrix_a, matrix_b))
-    print(identity(5))
-    print(minor(matrix_c , 1 , 2))
-    print(determinant(matrix_b))
-    print(inverse(matrix_d))
+    print('Add Operation, %s + %s = %s \n' %(matrix_a, matrix_b, (add(matrix_a, matrix_b))))
+    print('Multiply Operation, %s * %s = %s \n' %(matrix_a, matrix_b, multiply(matrix_a, matrix_b)))
+    print('Identity:  %s \n' %identity(5))
+    print('Minor of %s = %s \n' %(matrix_c, minor(matrix_c , 1 , 2)))
+    print('Determinant of %s = %s \n' %(matrix_b, determinant(matrix_b)))
+    print('Inverse of %s = %s\n'%(matrix_d, inverse(matrix_d)))
 
 if __name__ == '__main__':
     main()
