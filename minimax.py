@@ -1,5 +1,13 @@
 import math 
 
+''' Minimax helps to achieve maximum score in a game by checking all possible moves
+    depth is current depth in game tree. 
+    nodeIndex is index of current node in scores[].
+    if move is of maximizer return true else false
+    leaves of game tree is stored in scores[]  
+    height is maximum height of Game tree
+'''
+
 def minimax (Depth, nodeIndex, isMax, scores, height):  
 
     if (Depth == height):  
