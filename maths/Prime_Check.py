@@ -1,9 +1,13 @@
+"""Prime Check."""
+
 import math
 import unittest
 
 
-def primeCheck(number):
+def prime_check(number):
     """
+    Check to See if a Number is Prime.
+
     A number is prime if it has exactly two dividers: 1 and itself.
     """
     if number < 2:
@@ -24,31 +28,30 @@ def primeCheck(number):
 
 class Test(unittest.TestCase):
     def test_primes(self):
-        self.assertTrue(primeCheck(2))
-        self.assertTrue(primeCheck(3))
-        self.assertTrue(primeCheck(5))
-        self.assertTrue(primeCheck(7))
-        self.assertTrue(primeCheck(11))
-        self.assertTrue(primeCheck(13))
-        self.assertTrue(primeCheck(17))
-        self.assertTrue(primeCheck(19))
-        self.assertTrue(primeCheck(23))
-        self.assertTrue(primeCheck(29))
+        self.assertTrue(prime_check(2))
+        self.assertTrue(prime_check(3))
+        self.assertTrue(prime_check(5))
+        self.assertTrue(prime_check(7))
+        self.assertTrue(prime_check(11))
+        self.assertTrue(prime_check(13))
+        self.assertTrue(prime_check(17))
+        self.assertTrue(prime_check(19))
+        self.assertTrue(prime_check(23))
+        self.assertTrue(prime_check(29))
 
     def test_not_primes(self):
-        self.assertFalse(primeCheck(-19),
-                "Negative numbers are not prime.")
-        self.assertFalse(primeCheck(0),
-                "Zero doesn't have any divider, primes must have two")
-        self.assertFalse(primeCheck(1),
-                "One just have 1 divider, primes must have two.")
-        self.assertFalse(primeCheck(2 * 2))
-        self.assertFalse(primeCheck(2 * 3))
-        self.assertFalse(primeCheck(3 * 3))
-        self.assertFalse(primeCheck(3 * 5))
-        self.assertFalse(primeCheck(3 * 5 * 7))
+        self.assertFalse(prime_check(-19),
+                         "Negative numbers are not prime.")
+        self.assertFalse(prime_check(0),
+                         "Zero doesn't have any divider, primes must have two")
+        self.assertFalse(prime_check(1),
+                         "One just have 1 divider, primes must have two.")
+        self.assertFalse(prime_check(2 * 2))
+        self.assertFalse(prime_check(2 * 3))
+        self.assertFalse(prime_check(3 * 3))
+        self.assertFalse(prime_check(3 * 5))
+        self.assertFalse(prime_check(3 * 5 * 7))
 
 
 if __name__ == '__main__':
     unittest.main()
-
