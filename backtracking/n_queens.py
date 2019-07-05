@@ -1,7 +1,7 @@
 '''
 
  The nqueens problem is of placing N queens on a N * N 
- chess board such that no queen can attack any other queen placed
+ chess board such that no queen can attack any other queens placed
  on that chess board.
  This means that one queen cannot have any other queen on its horizontal, vertical and 
  diagonal lines.
@@ -41,7 +41,6 @@ def solve(board, row):
     It creates a state space tree and calls the safe function untill it receives a 
     False Boolean and terminates that brach and backtracks to the next 
     poosible solution branch.
-
     '''
     if row >= len(board):
         '''
@@ -59,7 +58,6 @@ def solve(board, row):
         queen there.
         If all the combinations for that particaular branch are successfull the board is 
         reinitialized for the next possible combination.
-        
         '''
         if isSafe(board,row,i):
             board[row][i] = 1
@@ -70,7 +68,6 @@ def solve(board, row):
 def printboard(board):
     '''
     Prints the boards that have a successfull combination.
-    
     '''
     for i in range(len(board)):
         for j in range(len(board)):
