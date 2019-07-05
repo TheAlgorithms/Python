@@ -70,13 +70,11 @@ arr = the list to be sorted
 def OddEvenTransposition(arr):
 
     processArray = []
-    tempRrcv = None
-    tempLrcv = None
 
     resultPipe = []
 
     #initialize the list of pipes where the values will be retrieved
-    for a in arr:
+    for _ in arr:
         resultPipe.append(Pipe())
 
     #creates the processes
