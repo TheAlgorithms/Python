@@ -27,7 +27,7 @@ before_script:
       strings/levenshtein_distance.py
 script:
   - mypy --ignore-missing-imports .
-  - pytest --doctest-modules ./sorts || true
+  - pytest --doctest-modules ./ciphers ./other ./searches ./sorts ./strings || true
 after_success:
   - python ./~script.py
   - cat DIRECTORY.md
