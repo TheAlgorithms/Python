@@ -2,9 +2,10 @@ language: python
 dist: xenial  # required for Python >= 3.7
 python: 3.7
 cache: pip
-install: pip install flake8 mypy pytest
-before_script: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-script:
+install: pip install black flake8 mypy pytest
+before_script:
+  - black --check . || true
+  - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
   # - python -m doctest other/detecting_english_programmatically.py
   - python -m doctest
       ciphers/affine_cipher.py
@@ -24,5 +25,6 @@ script:
       sorts/selection_sort.py
       sorts/shell_sort.py
       strings/levenshtein_distance.py
+script:
   - mypy --ignore-missing-imports .
   - pytest || true
