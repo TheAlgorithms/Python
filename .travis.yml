@@ -8,7 +8,7 @@ before_script:
   - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
   - mypy --ignore-missing-imports .
-  - pytest --doctest-modules ./ciphers ./other ./searches ./sorts ./strings || true
+  - pytest --doctest-modules ./ciphers ./other ./searches ./sorts ./strings
 after_success:
   - python ./~script.py
   - cat DIRECTORY.md
