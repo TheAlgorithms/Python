@@ -1,11 +1,10 @@
-language: python
-dist: xenial  # required for Python >= 3.7
-python: 3.7
-install: pip install flake8
-script: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-
 matrix:
   include:
-    language: bash
-    install: chmod +x ./~script
-    script: ./~script
+    - language: python
+      dist: xenial  # required for Python >= 3.7
+      python: 3.7
+      install: pip install flake8
+      script: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    - language: bash
+      install: chmod +x ./~script.sh
+      script: ./~script.sh
