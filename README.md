@@ -129,7 +129,7 @@ We're on [Gitter](https://gitter.im/TheAlgorithms)! Please join us.
 
 ## Compression
 
-- [Peak Signal To Noise Ratio](./compression_analysis/peak_signal_to_noise_ratio.py)
+- [Peak Signal To Noise Ratio](./compression/peak_signal_to_noise_ratio.py)
 - [Huffman](./compression/huffman.py)
 
 ## Graphs
