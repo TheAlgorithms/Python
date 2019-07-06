@@ -64,4 +64,5 @@ def triangle(points,depth):
                    depth-1)
 
 
-triangle(points,int(sys.argv[1]))
+if __name__ == "__main__":
+    triangle(points,int(sys.argv[1]))
