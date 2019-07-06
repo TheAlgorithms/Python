@@ -107,6 +107,8 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - If you have modified/added documentation work, make sure your language is concise and contains no grammar mistake.
 
+- Update the README file if you have added any new algorithm. Only entry corresponding to the algorithm is to be made, not need to add sample data, test files or solutions to problems like Project Euler, in the README.
+
 - Add a corresponding explanation to [Algorithms-Explanation](https://github.com/TheAlgorithms/Algorithms-Explanation) (Optional but recommended).
 
 - Most importantly,
