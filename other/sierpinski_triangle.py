@@ -28,11 +28,6 @@ import turtle
 import sys
 PROGNAME = 'Sierpinski Triangle'
 
-myPen = turtle.Turtle()
-myPen.ht()
-myPen.speed(5)
-myPen.pencolor('red')
-
 points = [[-175,-125],[0,175],[175,-125]] #size of triangle
 
 def getMid(p1,p2):
@@ -62,8 +57,12 @@ def triangle(points,depth):
                    depth-1)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     if len(sys.argv) !=2: 
         raise ValueError('right format for using this script: '
                          '$python fractals.py <int:depth_for_fractal>')
+    myPen = turtle.Turtle()
+    myPen.ht()
+    myPen.speed(5)
+    myPen.pencolor('red')
     triangle(points,int(sys.argv[1]))
