@@ -5,7 +5,7 @@ install: pip install flake8 mypy pytest
 before_script: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
   # - python -m doctest other/detecting_english_programmatically.py
-  - python -m doctest |
+  - python -m doctest
       ciphers/affine_cipher.py
       ciphers/brute_force_caesar_cipher.py
       ciphers/transposition_cipher.py
