@@ -1,4 +1,3 @@
-import sys
 def encrypt(strng, key):
     encrypted = ''
     for x in strng:
