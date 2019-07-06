@@ -6,11 +6,11 @@ install: pip install black flake8 mypy pytest
 before_script:
   - black --check . || true
   - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-  # - python -m doctest other/detecting_english_programmatically.py
   - python -m doctest
       ciphers/affine_cipher.py
       ciphers/brute_force_caesar_cipher.py
       ciphers/transposition_cipher.py
+      other/detecting_english_programmatically.py
       other/frequency_finder.py
       searches/binary_search.py
       searches/linear_search.py
@@ -28,3 +28,6 @@ before_script:
 script:
   - mypy --ignore-missing-imports .
   - pytest || true
+after_success:
+  - python ./~script.py
+  - cat DIRECTORY.md
