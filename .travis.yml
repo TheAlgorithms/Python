@@ -1,6 +1,7 @@
 language: python
 dist: xenial  # required for Python >= 3.7
 python: 3.7
+cache: pip
 install: pip install flake8 mypy pytest
 before_script: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
@@ -24,4 +25,4 @@ script:
       sorts/shell_sort.py
       strings/levenshtein_distance.py
   - mypy --ignore-missing-imports .
-  - pytest
+  - pytest || true
