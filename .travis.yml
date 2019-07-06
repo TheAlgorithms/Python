@@ -27,7 +27,7 @@ before_script:
       strings/levenshtein_distance.py
 script:
   - mypy --ignore-missing-imports .
-  - pytest --doctest-glob='*.py' || true
+  - pytest --doctest-modules || true
 after_success:
   - python ./~script.py
   - cat DIRECTORY.md
