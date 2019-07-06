@@ -45,6 +45,8 @@ We're on [Gitter](https://gitter.im/TheAlgorithms)! Please join us.
 
 - [N Queens](./backtracking/n_queens.py)
 - [Sum Of Subsets](./backtracking/sum_of_subsets.py)
+- [All Subsequences](./backtracking/all_subsequences.py)
+- [All Permutations](./backtracking/all_permutations.py)
 
 ## Ciphers
 
@@ -220,7 +222,6 @@ We're on [Gitter](https://gitter.im/TheAlgorithms)! Please join us.
 ## Divide And Conquer
 
 - [Max Subarray Sum](./divide_and_conquer/max_subarray_sum.py)
-- [Max Sub Array Sum](./divide_and_conquer/max_sub_array_sum.py)
 - [Closest Pair Of Points](./divide_and_conquer/closest_pair_of_points.py)
 
 ## Strings
