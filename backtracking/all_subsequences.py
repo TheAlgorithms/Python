@@ -2,7 +2,7 @@
 	In this problem, we want to determine all possible subsequences
 	of the given sequence. We use backtracking to solve this problem.
 
-	Time complexity: O(2^n),
+	Time complexity: O(2^n * n),
 	where n denotes the length of the given sequence.
 '''
 
