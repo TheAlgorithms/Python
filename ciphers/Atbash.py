@@ -18,4 +18,5 @@ def Atbash():
             output+=i
     print(output)
 
-Atbash()
+if __name__ == '__main__':
+    Atbash()
