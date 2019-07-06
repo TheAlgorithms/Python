@@ -1,3 +1,0 @@
-# for digital_image_processing
-cv2
-numpy
