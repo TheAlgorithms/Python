@@ -3,4 +3,6 @@ dist: xenial  # required for Python >= 3.7
 python: 3.7
 install: pip install flake8
 script: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-after_success: python ./~script.py
+after_success:
+  - python ./~script.py
+  - cat DIRECTORY.md
