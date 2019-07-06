@@ -130,8 +130,7 @@ def find_neighborhood(solution, dict_of_neighbours):
 
 
     Example:
-    >>> dict_of_neighbours = {}
-    >>> find_neighborhood(['a','c','b','d','e','a'], dict_of_neighbours)
+    >>) find_neighborhood(['a','c','b','d','e','a'])
     [['a','e','b','d','c','a',90], [['a','c','d','b','e','a',90],['a','d','b','c','e','a',93],
     ['a','c','b','e','d','a',102], ['a','c','e','d','b','a',113], ['a','b','c','d','e','a',93]]
 
