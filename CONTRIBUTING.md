@@ -72,9 +72,9 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Write tests to illustrate your work.
 
-  The following "testing" approaches are not encouraged:
+  The following "testing" approaches are **not** encouraged:
 
-  ```python
+  ```python*
   input('Enter your input:') 
   # Or even worse...
   input = eval(raw_input("Enter your input: "))
@@ -97,13 +97,9 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 #### Other Standard While Submitting Your Work
 
-- File extension for code should be `.py`.
+- File extension for code should be `.py`. Jupiter notebook files are acceptable in machine learning algorithms.
 
-- Please file your work to let others use it in the future. Here are the examples that are acceptable:
-
-  - Camel cases
-  - `-` Hyphenated names
-  - `_` Underscore-separated names
+- Strictly use snake case (underscore separated) in your file name, as it will be easy to parse in future using scripts.
 
   If possible, follow the standard *within* the folder you are submitting to.
 
