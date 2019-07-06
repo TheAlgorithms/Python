@@ -37,7 +37,7 @@ def merge_sort(collection):
         '''
         result = []
         while left and right:
-            result.append(left.pop(0) if left[0] <= right[0] else right.pop(0))
+            result.append((left if left[0] <= right[0] else right).pop(0))
         return result + left + right
     if len(collection) <= 1:
         return collection

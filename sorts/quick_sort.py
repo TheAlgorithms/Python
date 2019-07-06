@@ -33,17 +33,16 @@ def quick_sort(collection):
     if length <= 1:
         return collection
     else:
-        pivot = collection[0]
-        # Modify the list comprehensions to reduce the number of judgments, the speed has increased by more than 50%.
-        greater = []
-        lesser = []
-        for element in collection[1:]:
+        # Use the last element as the first pivot
+        pivot = collection.pop()
+        # Put elements greater than pivot in greater list
+        # Put elements lesser than pivot in lesser list
+        greater, lesser = [], []
+        for element in collection:
             if element > pivot:
                 greater.append(element)
             else:
                 lesser.append(element)
-        # greater = [element for element in collection[1:] if element > pivot]
-        # lesser = [element for element in collection[1:] if element <= pivot]
         return quick_sort(lesser) + [pivot] + quick_sort(greater)
 
 
