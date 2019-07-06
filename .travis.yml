@@ -3,4 +3,4 @@ dist: xenial  # required for Python >= 3.7
 python: 3.7
 install: pip install flake8 mypy
 before_script: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-script: mypy .
+script: mypy --ignore-missing-stubs=cv2,numpy .
