@@ -27,8 +27,6 @@ Credits: This code was written by editing the code from http://www.riannetrujill
 import turtle
 import sys
 PROGNAME = 'Sierpinski Triangle'
-if len(sys.argv) !=2: 
-    raise Exception('right format for using this script: $python fractals.py <int:depth_for_fractal>')
 
 myPen = turtle.Turtle()
 myPen.ht()
@@ -65,4 +63,7 @@ def triangle(points,depth):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) !=2: 
+        raise ValueError('right format for using this script: '
+                         '$python fractals.py <int:depth_for_fractal>')
     triangle(points,int(sys.argv[1]))
