@@ -1,6 +1,8 @@
-"""pseudo-code"""
-
 """
+BFS.
+
+pseudo-code:
+
 BFS(graph G, start vertex s):
 // all nodes initially unexplored
 mark s as explored
