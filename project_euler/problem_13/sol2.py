@@ -1,4 +1,4 @@
-sum=0
+sum = 0
 with open("num.txt",'r') as f:
     for line in f:
         sum += int(line)
