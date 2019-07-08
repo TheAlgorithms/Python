@@ -28,7 +28,7 @@ We appreciate any contribution, from fixing a grammar mistake in a comment to im
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
 - Please write in Python 3.x.
-- Please consider running [__python/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not a requirement but it does make your code more readable.  There are other code formatters (autopep8, yapf) but the __black__ style is now the recommendation of the Python core team.
+- Please consider running [__python/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not a requirement but it does make your code more readable.  There are other code formatters (autopep8, yapf) but the __black__ style is now the recommendation of the Python core team. To use it,
     ```bash
     pip3 install black  # only required the first time
     black my-submission.py
