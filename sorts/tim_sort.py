@@ -42,36 +42,26 @@ def merge(left, right):
 
 
 def tim_sort(lst):
-    runs, sorted_runs = [], []
-    length = len(lst)
-    new_run = [lst[0]]
-    sorted_array = []
-
-    for i in range(1, length):
-        if i == length - 1:
-            new_run.append(lst[i])
+    length=len(lst)
+    runs,sorted_runs=[], []
+    new_run=[lst[0]]
+    sorted_array=[]
+    i=1
+    while i<length:
+        if lst[i]<lst[i-1]:
             runs.append(new_run)
-            break
-
-        if lst[i] < lst[i - 1]:
-            if not new_run:
-                runs.append([lst[i - 1]])
-                new_run.append(lst[i])
-            else:
-                runs.append(new_run)
-                new_run = []
+            new_run=[lst[i]]
         else:
             new_run.append(lst[i])
+        i+=1
+    runs.append(new_run)
 
     for run in runs:
         sorted_runs.append(insertion_sort(run))
-
     for run in sorted_runs:
         sorted_array = merge(sorted_array, run)
 
     return sorted_array
-
-
 def main():
 
     lst = [5,9,10,3,-4,5,178,92,46,-18,0,7]
