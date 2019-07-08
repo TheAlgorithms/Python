@@ -23,13 +23,11 @@ values = {
 def decimal_to_hexadecimal(decimal):
     """ take decimal value, return hexadecimal representation as str """
     hexadecimal = ''
-    power = 1
     while decimal > 0:
-        remainder = decimal % (16 ** power)
+        remainder = decimal % 16
         decimal -= remainder
         hexadecimal = values[remainder] + hexadecimal
-        decimal /= (16 ** power)
-        power += 1
+        decimal /= 16
     return hexadecimal
 
 def main():
@@ -39,6 +37,7 @@ def main():
     print("37 in hexadecimal is", decimal_to_hexadecimal(37))
     print("255 in hexadecimal is", decimal_to_hexadecimal(255))
     print("4096 in hexadecimal is", decimal_to_hexadecimal(4096))
+    print("999098 in hexadecimal is", decimal_to_hexadecimal(999098))
 
 if __name__ == '__main__':
     main()
