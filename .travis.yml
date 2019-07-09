@@ -9,8 +9,28 @@ before_script:
   - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
   - mypy --ignore-missing-imports .
-  - pytest . --doctest-modules
-      --ignore=data_structures,file_transfer_protocol,graphs,machine_learning,maths,neural_network,project_euler
+  - IGNORE="data_structures,file_transfer_protocol,graphs,machine_learning,maths,neural_network,project_euler"
+  - pytest . --doctest-modules --ignore=${IGNORE}
+  #- pytest --doctest-modules
+  #    arithmetic_analysis
+  #    backtracking
+  #    boolean_algebra
+  #    ciphers
+  #    compression
+  #    conversions
+  #    digital_image_processing
+  #    divide_and_conquer
+  #    dynamic_programming
+  #    hashes
+  #    linear_algebra_python
+  #    matrix
+  #    networking_flow
+  #    other
+  #    searches
+  #    sorts
+  #    strings
+  #    traversals
+
 after_success:
   - python ./~script.py
   - cat DIRECTORY.md
