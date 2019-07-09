@@ -8,7 +8,7 @@ before_script:
   - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
   - mypy --ignore-missing-imports .
-  - pytest --doctest-modules
+  - pytest . --doctest-modules
       --ignore=data_structures,file_transfer_protocol,graphs,machine_learning,maths,neural_network,project_euler
 after_success:
   - python ./~script.py
