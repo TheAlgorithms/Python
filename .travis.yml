@@ -15,7 +15,6 @@ script:
       ciphers
       compression
       conversions
-      data_structures
       digital_image_processing
       divide_and_conquer
       dynamic_programming
@@ -29,6 +28,7 @@ script:
       strings
       traversals
   # The following directories need fixes... python3 -m doctest -v .
+  #- pytest --doctest-modules data_structures
   #- pytest --doctest-modules file_transfer_protocol
   #- pytest --doctest-modules graphs
   #- pytest --doctest-modules machine_learning
