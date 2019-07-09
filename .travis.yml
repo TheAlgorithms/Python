@@ -8,31 +8,33 @@ before_script:
   - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
   - mypy --ignore-missing-imports .
-  - pytest --doctest-modules arithmetic_analysis	# Added Whitespace and Docstring (#924)	8 days ago
-  - pytest --doctest-modules backtracking 	# minimax (#947)	2 days ago
-  - pytest --doctest-modules boolean_algebra	 # all valid python 3	9 months ago
-  - pytest --doctest-modules ciphers	# Travis CI: Run black, doctest, flake8, mypy, and pytest (#964)	17 hours ago
-  - pytest --doctest-modules compression	# Updated README	3 days ago
-  - pytest --doctest-modules conversions	 # added decimal to hexadecimal conversion (#977)	2 hours ago
-  - pytest --doctest-modules data_structures	# Updated README	3 days ago
-  - pytest --doctest-modules digital_image_processing	# convolve and sobel (#971)	16 hours ago
-  - pytest --doctest-modules divide_and_conquer	# Fix readme and duplicate (#967)	3 days ago
-  - pytest --doctest-modules dynamic_programming	# Adding sum of subsets (#929)	7 days ago
-  #- pytest --doctest-modules file_transfer_protocol	# reduce indentation (#741)	3 months ago
-  #- pytest --doctest-modules graphs	#Corrected wrong Dijkstra priority queue implementation (#909)	16 days ago
-  - pytest --doctest-modules hashes	#added enigma machine algorithm (#932)	2 days ago
-  - pytest --doctest-modules linear_algebra_python	#Update README.md	8 months ago
-  #- pytest --doctest-modules machine_learning #	Updated README	3 days ago
-  #- pytest --doctest-modules maths	#moved Unnecessary Assignment for 'error' Var (#920)	2 days ago
-  - pytest --doctest-modules matrix	#Updated README	3 days ago
-  - pytest --doctest-modules networking_flow	#snake_case all the things	9 months ago
-  #- pytest --doctest-modules neural_network	#Updated README	3 days ago
-  - pytest --doctest-modules other	#Travis CI: Run black, doctest, flake8, mypy, and pytest (#964)	17 hours ago
-  #- pytest --doctest-modules project_euler	#Project Euler Problem #13 Python Solution (#935)	16 hours ago
-  - pytest --doctest-modules searches	#Travis CI: Run black, doctest, flake8, mypy, and pytest (#964)	17 hours ago
-  - pytest --doctest-modules sorts	#Travis CI: Run black, doctest, flake8, mypy, and pytest (#964)	17 hours ago
-  - pytest --doctest-modules strings	#add ons in string directory - Bayer_Moore_Search (#933)	7 days ago
-  - pytest --doctest-modules traversals
+  - pytest --doctest-modules
+      arithmetic_analysis
+      backtracking
+      boolean_algebra
+      ciphers
+      compression
+      conversions
+      data_structures
+      digital_image_processing
+      divide_and_conquer
+      dynamic_programming
+      hashes
+      linear_algebra_python
+      matrix
+      networking_flow
+      other
+      searches
+      sorts
+      strings
+      traversals
+  # The following directories need fixes... python3 -m doctest -v .
+  #- pytest --doctest-modules file_transfer_protocol
+  #- pytest --doctest-modules graphs
+  #- pytest --doctest-modules machine_learning
+  #- pytest --doctest-modules maths
+  #- pytest --doctest-modules neural_network
+  #- pytest --doctest-modules project_euler
 after_success:
   - python ./~script.py
   - cat DIRECTORY.md
