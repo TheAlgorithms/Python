@@ -1,6 +1,9 @@
 black
+cv2
 flake8
 matplotlib
 mypy
 numpy
 pytest
+sympy
+tensorflow
