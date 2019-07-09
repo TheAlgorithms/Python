@@ -9,32 +9,7 @@ before_script:
 script:
   - mypy --ignore-missing-imports .
   - pytest --doctest-modules
-      arithmetic_analysis
-      backtracking
-      boolean_algebra
-      ciphers
-      compression
-      conversions
-      digital_image_processing
-      divide_and_conquer
-      dynamic_programming
-      hashes
-      linear_algebra_python
-      matrix
-      networking_flow
-      other
-      searches
-      sorts
-      strings
-      traversals
-  # The following directories need fixes... python3 -m doctest -v .
-  #- pytest --doctest-modules data_structures
-  #- pytest --doctest-modules file_transfer_protocol
-  #- pytest --doctest-modules graphs
-  #- pytest --doctest-modules machine_learning
-  #- pytest --doctest-modules maths
-  #- pytest --doctest-modules neural_network
-  #- pytest --doctest-modules project_euler
+      --ignore=data_structures,file_transfer_protocol,graphs,machine_learning,maths,neural_network,project_euler
 after_success:
   - python ./~script.py
   - cat DIRECTORY.md
