@@ -19,7 +19,7 @@ def bubble_sort(collection):
     [-45, -5, -2]
     
     >>> bubble_sort([-23,0,6,-4,34])
-    [-23,-4,0,6,34]
+    [-23, -4, 0, 6, 34]
     """
     length = len(collection)
     for i in range(length-1):
