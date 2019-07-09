@@ -4,6 +4,8 @@ matplotlib
 mypy
 numpy
 opencv-python
+pandas
 pytest
+sklearn
 sympy
 tensorflow
