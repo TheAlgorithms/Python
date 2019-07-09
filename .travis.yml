@@ -18,7 +18,7 @@ script:
   - pytest --doctest-modules digital_image_processing	# convolve and sobel (#971)	16 hours ago
   - pytest --doctest-modules divide_and_conquer	# Fix readme and duplicate (#967)	3 days ago
   - pytest --doctest-modules dynamic_programming	# Adding sum of subsets (#929)	7 days ago
-  - pytest --doctest-modules file_transfer_protocol	# reduce indentation (#741)	3 months ago
+  #- pytest --doctest-modules file_transfer_protocol	# reduce indentation (#741)	3 months ago
   - pytest --doctest-modules graphs	#Corrected wrong Dijkstra priority queue implementation (#909)	16 days ago
   - pytest --doctest-modules hashes	#added enigma machine algorithm (#932)	2 days ago
   - pytest --doctest-modules linear_algebra_python	#Update README.md	8 months ago
