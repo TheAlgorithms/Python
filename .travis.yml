@@ -1,5 +1,14 @@
 language: python
 dist: xenial  # required for Python >= 3.7
 python: 3.7
-install: pip install flake8
-script: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+cache: pip
+install: pip install -r requirements.txt
+before_script:
+  - black --check . || true
+  - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+script:
+  - mypy --ignore-missing-imports .
+  - pytest --doctest-modules ./ciphers ./other ./searches ./sorts ./strings
+after_success:
+  - python ./~script.py
+  - cat DIRECTORY.md

@@ -1,0 +1,6 @@
+black
+flake8
+matplotlib
+mypy
+numpy
+pytest
