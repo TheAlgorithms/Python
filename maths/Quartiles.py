@@ -1,8 +1,8 @@
 def median(list):
     """
-    Returns the first quartile of a list. 
+    Returns the median of a list. 
     Ex.: list = [1,2,3,4,5,6] 
-    first quartile = 2
+    median = 11.5
     """ 
     media = 0
     for i in list:
@@ -12,9 +12,9 @@ def median(list):
 
 def FirstQuartile(list):
     """
-    Returns the median of a list. 
+    Returns the first quartile of a list. 
     Ex.: list = [1,2,3,4,5,6] 
-    median = 11.5
+    first quartile = 2
     """ 
     quartile1 = median(list[:len(list)//2])   
     return quartile1
