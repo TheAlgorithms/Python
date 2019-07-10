@@ -1,19 +1,19 @@
-def main():
-    def n31(a):# a = initial number
-        c = 0
-        l = [a]
-        while a != 1:
-            if a % 2 == 0:#if even divide it by 2
-                a = a // 2
-            elif a % 2 == 1:#if odd 3n+1
-                a = 3*a +1
-            c += 1#counter
-            l += [a]
+def n31(a):# a = initial number
+    counter = 0
+    path = [a]
+    while a != 1:
+        if a % 2 == 0:
+            a = a // 2
+        else:
+            a = 3*a +1
+        counter += 1
+        path += [a]
+    return path , counter
 
-        return l , c
-    print(n31(43))
-    print(n31(98)[0][-1])# = a
-    print("It took {0} steps.".format(n31(13)[1]))#optional finish
+def main():
+    num = 43
+    path , length = n31(num)
+    print("The Collatz sequence of {0} took {1} steps. \nPath: {2}".format(num,length, path))
 
 if __name__ == '__main__':
     main()
