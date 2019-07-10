@@ -1,12 +1,22 @@
-import statistics as st
-
-def FirstQuartile(list):
+def median(list):
     """
     Returns the first quartile of a list. 
     Ex.: list = [1,2,3,4,5,6] 
     first quartile = 2
     """ 
-    quartile1 = st.median(list[:len(list)//2])   
+    media = 0
+    for i in list:
+        media = media + i
+    media = media/len(list)
+    return media
+
+def FirstQuartile(list):
+    """
+    Returns the median of a list. 
+    Ex.: list = [1,2,3,4,5,6] 
+    median = 11.5
+    """ 
+    quartile1 = median(list[:len(list)//2])   
     return quartile1
 
 def SecondQuartile(list):
@@ -15,7 +25,7 @@ def SecondQuartile(list):
     Ex.: list = [1,2,3,4,5,6] 
     second quartile = 3.5
     """ 
-    quartile2 = st.median(list)   
+    quartile2 = median(list)   
     return quartile2
 
 def ThirdQuartile(list):
@@ -24,7 +34,7 @@ def ThirdQuartile(list):
     Ex.: list = [1,2,3,4,5,6] 
     third quartile = 5
     """ 
-    quartile3 = st.median(list[len(list)//2:])   
+    quartile3 = median(list[len(list)//2:])   
     return quartile3
 
 def main():
@@ -36,7 +46,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
-"""
-print Quartiles
-"""
