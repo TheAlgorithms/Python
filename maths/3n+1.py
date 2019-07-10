@@ -1,4 +1,11 @@
-def n31(a):# a = initial number
+def n31(a):
+    """
+    Returns Collatz sequence of number a
+    
+    >>> n31(4)
+    ([4,2,1],3)
+    
+    """
     counter = 0
     path = [a]
     while a != 1:
