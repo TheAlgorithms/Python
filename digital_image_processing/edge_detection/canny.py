@@ -32,9 +32,11 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
         for col in range(1, image_col - 1):
             direction = gradient_direction[row, col]
 
-            if (0 <= direction < 22.5) \
-                    or (15 * PI / 8 <= direction <= 2 * PI) \
-                    or (7 * PI / 8 <= direction <= 9 * PI / 8):
+            if (
+                0 <= direction < 22.5
+                    or 15 * PI / 8 <= direction <= 2 * PI
+                    or 7 * PI / 8 <= direction <= 9 * PI / 8
+            ):
                 W = sobel_grad[row, col - 1]
                 E = sobel_grad[row, col + 1]
                 if sobel_grad[row, col] >= W and sobel_grad[row, col] >= E:
@@ -79,14 +81,16 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
     for row in range(1, image_row):
         for col in range(1, image_col):
             if dst[row, col] == weak:
-                if dst[row, col + 1] == 255 \
-                        or dst[row, col - 1] == 255 \
-                        or dst[row - 1, col] == 255 \
-                        or dst[row + 1, col] == 255 \
-                        or dst[row - 1, col - 1] == 255 \
-                        or dst[row + 1, col - 1] == 255 \
-                        or dst[row - 1, col + 1] == 255 \
-                        or dst[row + 1, col + 1] == 255:
+                if 255 in (
+                        dst[row, col + 1],
+                        dst[row, col - 1],
+                        dst[row - 1, col],
+                        dst[row + 1, col],
+                        dst[row - 1, col - 1],
+                        dst[row + 1, col - 1],
+                        dst[row - 1, col + 1],
+                        dst[row + 1, col + 1],
+                ):
                     dst[row, col] = strong
                 else:
                     dst[row, col] = 0
