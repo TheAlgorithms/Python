@@ -14,7 +14,7 @@ while Q is non-empty:
 
 """
 
-import collections
+# import collections
 
 
 def bfs(graph, start):
