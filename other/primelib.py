@@ -44,7 +44,7 @@ def isPrime(number):
         input: positive integer 'number'
         returns true if 'number' is prime otherwise false.
     """
-    import math # for function sqrt
+    from math import sqrt
     
     # precondition
     assert isinstance(number,int) and (number >= 0) , \
@@ -56,7 +56,7 @@ def isPrime(number):
     if number <= 1:
         status = False
     
-    for divisor in range(2,int(round(math.sqrt(number)))+1):
+    for divisor in range(2,int(round(sqrt(number)))+1):
         
         # if 'number' divisible by 'divisor' then sets 'status'
         # of false and break up the loop. 
@@ -142,8 +142,6 @@ def primeFactorization(number):
         input: positive integer 'number' 
         returns a list of the prime number factors of 'number'
     """
-
-    import math    # for function sqrt
     
     # precondition
     assert isinstance(number,int) and number >= 0, \
@@ -496,8 +494,6 @@ def getDivisors(n):
     
     # precondition
     assert isinstance(n,int) and (n >= 1), "'n' must been int and >= 1"
-
-    from math import sqrt        
         
     ans = [] # will be returned.
     
