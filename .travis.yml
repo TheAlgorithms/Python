@@ -2,13 +2,35 @@ language: python
 dist: xenial  # required for Python >= 3.7
 python: 3.7
 cache: pip
+before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
 before_script:
   - black --check . || true
   - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
   - mypy --ignore-missing-imports .
-  - pytest --doctest-modules ./ciphers ./other ./searches ./sorts ./strings
+  #- IGNORE="data_structures,file_transfer_protocol,graphs,machine_learning,maths,neural_network,project_euler"
+  #- pytest . --doctest-modules --ignore=${IGNORE}
+  - pytest --doctest-modules
+      arithmetic_analysis
+      backtracking
+      boolean_algebra
+      ciphers
+      compression
+      conversions
+      digital_image_processing
+      divide_and_conquer
+      dynamic_programming
+      hashes
+      linear_algebra_python
+      matrix
+      networking_flow
+      other
+      searches
+      sorts
+      strings
+      traversals
+
 after_success:
   - python ./~script.py
   - cat DIRECTORY.md
