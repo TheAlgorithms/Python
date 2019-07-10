@@ -3,10 +3,6 @@ def rod_cutting_recursive(prices,length):
 	"""
 	Given a rod of length n and array of prices that indicate price at each length.
 	Determine the maximum value obtainable by cutting up the rod and selling the pieces
-	>>> rod_cutting_recursive([0,1,5,8,9],4) 
-	10
-	>>> rod_cutting_recursive([0,1,1,1],3) 
-	3
 	
 	Args:
 	    prices: list indicating price at each length, where prices[0] = 0 indicating rod of zero length has no value
@@ -14,6 +10,11 @@ def rod_cutting_recursive(prices,length):
 	    
 	Returns:
 	    Maximum revenue attainable by cutting up the rod in any way. 
+	    
+	>>> rod_cutting_recursive([0,1,5,8,9],4) 
+	10
+	>>> rod_cutting_recursive([0,1,1,1],3) 
+	3
 	"""
 	#base case 
 	if length == 0:
