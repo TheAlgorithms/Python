@@ -47,7 +47,7 @@ def max_sub_array(nums: List[int]) -> int:
     6
     >>> max_sub_array([])
     0
-    >>> max_sub_array([-1,-2.-3])
+    >>> max_sub_array([-1,-2,-3])
     0
     """
     best = 0 
