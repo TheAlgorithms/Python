@@ -52,6 +52,35 @@ class EditDistance:
 
         return self.__solveDP(len(A)-1, len(B)-1)
 
+
+def min_distance_bottom_up(word1: str, word2: str) -> int:
+    """
+    >>> min_distance_bottom_up("intention", "execution")
+    5
+    >>> min_distance_bottom_up("intention", "")
+    9
+    >>> min_distance_bottom_up("", "")
+    0
+    """
+    m = len(word1)
+    n = len(word2)
+    dp = [[0 for _ in range(n+1) ] for _ in range(m+1)]
+    for i in range(m+1):
+        for j in range(n+1):
+            
+            if i == 0:  #first string is empty
+                dp[i][j] = j
+            elif j == 0: #second string is empty 
+                dp[i][j] = i 
+            elif word1[i-1] == word2[j-1]: #last character of both substing is equal
+                dp[i][j] = dp[i-1][j-1]
+            else: 
+                insert = dp[i][j-1]
+                delete = dp[i-1][j]
+                replace = dp[i-1][j-1]
+                dp[i][j] = 1 + min(insert, delete, replace)
+    return dp[m][n]
+
 if __name__ == '__main__':
         try:
             raw_input          # Python 2
@@ -71,5 +100,10 @@ if __name__ == '__main__':
 
         print()
         print("The minimum Edit Distance is: %d" % (solver.solve(S1, S2)))
+        print("The minimum Edit Distance is: %d" % (min_distance_bottom_up(S1, S2)))
         print()
         print("*************** End of Testing Edit Distance DP Algorithm ***************")
+
+
+
+ 
