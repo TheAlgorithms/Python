@@ -1,4 +1,5 @@
 from abs import abs_val
+
 def absMin(x):
     """
     # >>>absMin([0,5,1,11])
