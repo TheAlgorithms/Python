@@ -2,6 +2,21 @@ language: python
 dist: xenial  # required for Python >= 3.7
 python: 3.7
 cache: pip
+matrix:
+  include:
+    - before_script: true
+      script: pytest --doctest-modules data_structures
+    - before_script: true
+      script: pytest --doctest-modules file_transfer_protocol
+    - before_script: true
+      script: pytest --doctest-modules graphs
+    - before_script: true
+      script: pytest --doctest-modules machine_learning
+    - before_script: true
+      script: pytest --doctest-modules maths
+    - before_script: true
+      script: pytest --doctest-modules project_euler
+
 before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
 before_script:
