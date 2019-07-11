@@ -1,4 +1,6 @@
-def abs_max(x):
+from typing import List 
+
+def abs_max(x: List[int]) -> int:
     """
     >>> abs_max([0,5,1,11])
     11
@@ -22,7 +24,7 @@ def abs_max_sort(x):
 
 def main():
     a = [1,2,-11]
-    assert absMax(a) == -11
+    assert abs_max(a) == -11
     assert abs_max_sort(a) == -11
 
 if __name__ == '__main__':
