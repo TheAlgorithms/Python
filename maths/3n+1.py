@@ -2,7 +2,7 @@ from typing import Tuple, List
 
 def n31(a: int) -> Tuple[List[int], int]: 
     """
-    Returns Collatz sequence of a number 
+    Returns the Collatz sequence and its length of any postiver integer.
     >>> n31(4)
     ([4, 2, 1], 3)
     """
@@ -11,17 +11,15 @@ def n31(a: int) -> Tuple[List[int], int]:
         raise TypeError('Must be int, not {0}'.format(type(a).__name__))
     if a < 1: 
         raise ValueError('Given integer must be greater than 1, not {0}'.format(a))
-
-    counter = 0
+    
     path = [a]
     while a != 1:
         if a % 2 == 0:
             a = a // 2
         else:
             a = 3*a +1
-        counter += 1
         path += [a]
-    return path, counter + 1
+    return path, len(path)
 
 def main():
     num = 4
