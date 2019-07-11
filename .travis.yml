@@ -4,7 +4,7 @@ python: 3.7
 cache: pip
 matrix:
   include:
-    - before_script: true
+    - before_script: true  # override
       script: pytest --doctest-modules data_structures
     - before_script: true
       script: pytest --doctest-modules file_transfer_protocol
