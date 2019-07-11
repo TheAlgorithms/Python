@@ -1,11 +1,17 @@
-def n31(a):
+from typing import Tuple, List
+
+def n31(a: int) -> Tuple[List[int], int]: 
     """
-    Returns Collatz sequence of number a
-    
+    Returns Collatz sequence of a number 
     >>> n31(4)
-    ([4,2,1],3)
-    
+    ([4, 2, 1], 3)
     """
+
+    if not isinstance(a, int):
+        raise TypeError('Must be int, not {0}'.format(type(a).__name__))
+    if a < 1: 
+        raise ValueError('Given integer must be greater than 1, not {0}'.format(a))
+
     counter = 0
     path = [a]
     while a != 1:
@@ -15,10 +21,10 @@ def n31(a):
             a = 3*a +1
         counter += 1
         path += [a]
-    return path , counter
+    return path, counter + 1
 
 def main():
-    num = 43
+    num = 4
     path , length = n31(num)
     print("The Collatz sequence of {0} took {1} steps. \nPath: {2}".format(num,length, path))
 
