@@ -20,16 +20,15 @@ def _markdown(parent, ignores, ignores_ext, depth):
     for i in os.listdir(parent):
         full = os.path.join(parent, i)
         name, ext = os.path.splitext(i)
-        if i in ignores or ext in ignores_ext:
-            continue
-        if os.path.isfile(full):
-            # generate list
-            pre = parent.replace("./", "").replace(" ", "%20")
-            # replace all spaces to safe URL
-            child = i.replace(" ", "%20")
-            files.append((pre, child, name))
-        else:
-            dirs.append(i)
+        if i not in ignores and ext not in ignores_ext:
+            if os.path.isfile(full):
+                # generate list
+                pre = parent.replace("./", "").replace(" ", "%20")
+                # replace all spaces to safe URL
+                child = i.replace(" ", "%20")
+                files.append((pre, child, name))
+            else:
+                dirs.append(i)   
     # Sort files
     files.sort(key=lambda e: e[2].lower())
     for f in files:
