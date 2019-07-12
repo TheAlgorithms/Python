@@ -27,6 +27,11 @@ from sklearn import datasets
 def sigmoid_function(z):
     return 1 / (1 + np.exp(-z))
 
+def log_likelihood(X, Y, weights):
+    scores = np.dot(features, weights)
+    ll = np.sum( target*scores - np.log(1 + np.exp(scores)) )
+    return ll
+
 
 def cost_function(h, y):
     return (-y * np.log(h) - (1 - y) * np.log(1 - h)).mean()
@@ -43,6 +48,8 @@ def logistic_reg(
     converged = False
     iterations = 0
     theta = np.zeros(X.shape[1])
+    weights = np.zeros(X.shape[1])
+
 
     while not converged:
         z = np.dot(X, theta)
@@ -55,6 +62,12 @@ def logistic_reg(
         J = cost_function(h, y)
 
         iterations += 1  # update iterations
+        
+         if step % 10000 == 0:
+          print log_likelihood(X,Y,weights)     # Print log-likelihood every so often
+
+        
+     return weights
 
         if iterations == max_iterations:
             print ('Maximum iterations exceeded!')
