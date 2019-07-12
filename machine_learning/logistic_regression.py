@@ -62,17 +62,13 @@ def logistic_reg(
 
         iterations += 1  # update iterations
         
-     for step in xrange(num_steps):
+     for step in range(num_steps):
           scores = np.dot(X, weights)
           predictions = sigmoid(scores)
-      
           if step % 10000 == 0:
                print log_likelihood(X,Y,weights)     # Print log-likelihood every so often
-     
-     
      return weights
-
-
+    
         if iterations == max_iterations:
             print ('Maximum iterations exceeded!')
             print ('Minimal cost function J=', J)
