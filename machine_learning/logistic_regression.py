@@ -31,6 +31,11 @@ def sigmoid_function(z):
 def cost_function(h, y):
     return (-y * np.log(h) - (1 - y) * np.log(1 - h)).mean()
 
+def log_likelihood(X, Y, weights):
+    scores = np.dot(features, weights)
+    ll = np.sum( target*scores - np.log(1 + np.exp(scores)) )
+    return ll
+
 
 # here alpha is the learning rate, X is the feature matrix,y is the target matrix
 
@@ -38,6 +43,7 @@ def logistic_reg(
     alpha,
     X,
     y,
+    num_steps,
     max_iterations=70000,
     ):
     converged = False
@@ -55,6 +61,17 @@ def logistic_reg(
         J = cost_function(h, y)
 
         iterations += 1  # update iterations
+        
+     for step in xrange(num_steps):
+          scores = np.dot(X, weights)
+          predictions = sigmoid(scores)
+      
+          if step % 10000 == 0:
+               print log_likelihood(X,Y,weights)     # Print log-likelihood every so often
+     
+     
+     return weights
+
 
         if iterations == max_iterations:
             print ('Maximum iterations exceeded!')
