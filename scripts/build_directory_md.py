@@ -51,7 +51,7 @@ def _markdown(parent, ignores, ignores_ext, depth):
 ignores = [".vs",
     ".gitignore",
     ".git",
-    "script",
+    "scripts",
     "__init__.py",
     "requirements.txt",
     ".github"
