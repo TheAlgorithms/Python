@@ -32,8 +32,8 @@ def cost_function(h, y):
     return (-y * np.log(h) - (1 - y) * np.log(1 - h)).mean()
 
 def log_likelihood(X, Y, weights):
-    scores = np.dot(features, weights)
-    return np.sum( target*scores - np.log(1 + np.exp(scores)) )
+    scores = np.dot(X, weights)
+    return np.sum(Y*scores - np.log(1 + np.exp(scores)) )
 
 # here alpha is the learning rate, X is the feature matrix,y is the target matrix
 def logistic_reg(
