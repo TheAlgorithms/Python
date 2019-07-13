@@ -56,7 +56,6 @@ def logistic_reg(
         z = np.dot(X, theta)
         h = sigmoid_function(z)
         J = cost_function(h, y)
-
         iterations += 1  # update iterations
         
     for step in range(num_steps):
