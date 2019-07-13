@@ -52,7 +52,6 @@ def logistic_reg(
         h = sigmoid_function(z)
         gradient = np.dot(X.T, h - y) / y.size
         theta = theta - alpha * gradient
-
         z = np.dot(X, theta)
         h = sigmoid_function(z)
         J = cost_function(h, y)
@@ -70,7 +69,6 @@ def logistic_reg(
         print ('Minimal cost function J=', J)
         converged = True
     return theta
-
 
 # In[68]:
 
