@@ -33,12 +33,9 @@ def cost_function(h, y):
 
 def log_likelihood(X, Y, weights):
     scores = np.dot(features, weights)
-    ll = np.sum( target*scores - np.log(1 + np.exp(scores)) )
-    return ll
-
+    return np.sum( target*scores - np.log(1 + np.exp(scores)) )
 
 # here alpha is the learning rate, X is the feature matrix,y is the target matrix
-
 def logistic_reg(
     alpha,
     X,
@@ -62,18 +59,17 @@ def logistic_reg(
 
         iterations += 1  # update iterations
         
-     for step in range(num_steps):
-          scores = np.dot(X, weights)
-          predictions = sigmoid(scores)
-          if step % 10000 == 0:
-               print log_likelihood(X,Y,weights)     # Print log-likelihood every so often
-     return weights
+    for step in range(num_steps):
+        scores = np.dot(X, weights)
+        predictions = sigmoid(scores)
+        if step % 10000 == 0:
+            print(log_likelihood(X,Y,weights))    # Print log-likelihood every so often
+    return weights
     
-        if iterations == max_iterations:
-            print ('Maximum iterations exceeded!')
-            print ('Minimal cost function J=', J)
-            converged = True
-
+    if iterations == max_iterations:
+        print ('Maximum iterations exceeded!')
+        print ('Minimal cost function J=', J)
+        converged = True
     return theta
 
 
@@ -85,7 +81,7 @@ if __name__ == '__main__':
     y = (iris.target != 0) * 1
 
     alpha = 0.1
-    theta = logistic_reg(alpha, X, y, max_iterations=70000)
+    theta = logistic_reg(alpha,X,y,max_iterations=70000,num_steps=30000)
     print (theta)
 
 
