@@ -32,5 +32,5 @@ script:
       traversals
 
 after_success:
-  - python ./~script.py
+  - python scripts/build_directory_md.py
   - cat DIRECTORY.md
