@@ -51,8 +51,10 @@ def _markdown(parent, ignores, ignores_ext, depth):
 ignores = [".vs",
     ".gitignore",
     ".git",
-    "~script.py",
+    "scripts",
     "__init__.py",
+    "requirements.txt",
+    ".github"
 ]
 # Files with given entensions will be ignored
 ignores_ext = [
