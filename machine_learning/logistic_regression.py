@@ -56,7 +56,7 @@ def logistic_reg(
         h = sigmoid_function(z)
         J = cost_function(h, y)
         iterations += 1  # update iterations
-        
+        weights = np.zeros(features.shape[1])
     for step in range(num_steps):
         scores = np.dot(X, weights)
         predictions = sigmoid(scores)
