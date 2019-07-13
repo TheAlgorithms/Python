@@ -59,9 +59,9 @@ def logistic_reg(
         weights = np.zeros(X.shape[1])
     for step in range(num_steps):
         scores = np.dot(X, weights)
-        predictions = sigmoid(scores)
+        predictions = sigmoid_function(scores)
         if step % 10000 == 0:
-            print(log_likelihood(X,Y,weights))    # Print log-likelihood every so often
+            print(log_likelihood(X,y,weights))    # Print log-likelihood every so often
     return weights
     
     if iterations == max_iterations:
