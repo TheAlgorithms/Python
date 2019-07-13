@@ -17,7 +17,12 @@
 # number of buckets.
 
 #  Time Complexity of Solution:
-#  Best Case O(n); Average Case O(n); Worst Case O(n)
+#  Worst case scenario occurs when all the elements are placed in a single bucket. The overall performance 
+#  would then be dominated by the algorithm used to sort each bucket. In this case, O(n log n), because of TimSort 
+#
+#  Average Case O(n + (n^2)/k + k), where k is the number of buckets
+#
+#  If k = O(n), time complexity is O(n)
 
 DEFAULT_BUCKET_SIZE = 5
 

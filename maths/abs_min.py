@@ -1,4 +1,5 @@
-from Maths.abs import absVal
+from abs import abs_val
+
 def absMin(x):
     """
     # >>>absMin([0,5,1,11])
@@ -8,7 +9,7 @@ def absMin(x):
     """
     j = x[0]
     for i in x:
-        if absVal(i) < absVal(j):
+        if abs_val(i) < abs_val(j):
             j = i
     return j
 
