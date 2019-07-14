@@ -6,6 +6,7 @@ numpy
 opencv-python
 pandas
 pytest
+requests
 sklearn
 sympy
 tensorflow
