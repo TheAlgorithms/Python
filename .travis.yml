@@ -23,6 +23,7 @@ script:
       dynamic_programming
       hashes
       linear_algebra_python
+      maths
       matrix
       networking_flow
       other
