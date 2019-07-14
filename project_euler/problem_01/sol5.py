@@ -6,11 +6,25 @@ Find the sum of all the multiples of 3 or 5 below N.
 '''
 from __future__ import print_function
 try:
-    input = raw_input #python3
+    raw_input          # Python 2
 except NameError:
-    pass               #python 2
+    raw_input = input  # Python 3
 
 """A straightforward pythonic solution using list comprehension"""
-n = int(input().strip())
-print(sum([i for i in range(n) if i%3==0 or i%5==0]))
+def solution(n):
+    """Returns the sum of all the multiples of 3 or 5 below n.
+    
+    >>> solution(3)
+    0
+    >>> solution(4)
+    3
+    >>> solution(10)
+    23
+    >>> solution(600)
+    83700
+    """
 
+    return sum([i for i in range(n) if i%3==0 or i%5==0])
+
+if __name__ == "__main__":
+    print(solution(int(raw_input().strip())))

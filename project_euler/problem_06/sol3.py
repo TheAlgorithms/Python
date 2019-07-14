@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 Problem:
 The sum of the squares of the first ten natural numbers is,
@@ -9,12 +10,27 @@ Find the difference between the sum of the squares of the first N natural number
 '''
 from __future__ import print_function
 import math
-def problem6(number=100):
-    sum_of_squares = sum([i*i for i in range(1,number+1)])
-    square_of_sum = int(math.pow(sum(range(1,number+1)),2))
-    return square_of_sum - sum_of_squares
-def main():
-    print(problem6())
 
-if __name__ == '__main__':
-    main()
+try:
+    raw_input          # Python 2
+except NameError:
+    raw_input = input  # Python 3
+
+def solution(n):
+    """Returns the difference between the sum of the squares of the first n natural numbers and the square of the sum.
+ 
+    >>> solution(10)
+    2640
+    >>> solution(15)
+    13160
+    >>> solution(20)
+    41230
+    >>> solution(50)
+    1582700
+    """
+    sum_of_squares = sum([i*i for i in range(1,n+1)])
+    square_of_sum = int(math.pow(sum(range(1,n+1)),2))
+    return square_of_sum - sum_of_squares
+
+if __name__ == "__main__":
+    print(solution(int(raw_input().strip())))

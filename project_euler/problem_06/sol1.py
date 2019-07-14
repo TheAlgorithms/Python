@@ -10,11 +10,30 @@ Find the difference between the sum of the squares of the first N natural number
 '''
 from __future__ import print_function
 
-suma = 0
-sumb = 0
-n = int(input())
-for i in range(1,n+1):
-    suma += i**2
-    sumb += i
-sum = sumb**2 - suma
-print(sum)
+try:
+    raw_input          # Python 2
+except NameError:
+    raw_input = input  # Python 3
+
+def solution(n):
+    """Returns the difference between the sum of the squares of the first n natural numbers and the square of the sum.
+ 
+    >>> solution(10)
+    2640
+    >>> solution(15)
+    13160
+    >>> solution(20)
+    41230
+    >>> solution(50)
+    1582700
+    """
+    suma = 0
+    sumb = 0
+    for i in range(1,n+1):
+        suma += i**2
+        sumb += i
+    sum = sumb**2 - suma
+    return sum
+
+if __name__ == "__main__":
+    print(solution(int(raw_input().strip())))
