@@ -31,13 +31,16 @@ def sigmoid_function(z):
 def cost_function(h, y):
     return (-y * np.log(h) - (1 - y) * np.log(1 - h)).mean()
 
+def log_likelihood(X, Y, weights):
+    scores = np.dot(X, weights)
+    return np.sum(Y*scores - np.log(1 + np.exp(scores)) )
 
 # here alpha is the learning rate, X is the feature matrix,y is the target matrix
-
 def logistic_reg(
     alpha,
     X,
     y,
+    num_steps,
     max_iterations=70000,
     ):
     converged = False
@@ -49,20 +52,23 @@ def logistic_reg(
         h = sigmoid_function(z)
         gradient = np.dot(X.T, h - y) / y.size
         theta = theta - alpha * gradient
-
         z = np.dot(X, theta)
         h = sigmoid_function(z)
         J = cost_function(h, y)
-
         iterations += 1  # update iterations
-
-        if iterations == max_iterations:
-            print ('Maximum iterations exceeded!')
-            print ('Minimal cost function J=', J)
-            converged = True
-
+        weights = np.zeros(X.shape[1])
+    for step in range(num_steps):
+        scores = np.dot(X, weights)
+        predictions = sigmoid_function(scores)
+        if step % 10000 == 0:
+            print(log_likelihood(X,y,weights))    # Print log-likelihood every so often
+    return weights
+    
+    if iterations == max_iterations:
+        print ('Maximum iterations exceeded!')
+        print ('Minimal cost function J=', J)
+        converged = True
     return theta
-
 
 # In[68]:
 
@@ -72,7 +78,7 @@ if __name__ == '__main__':
     y = (iris.target != 0) * 1
 
     alpha = 0.1
-    theta = logistic_reg(alpha, X, y, max_iterations=70000)
+    theta = logistic_reg(alpha,X,y,max_iterations=70000,num_steps=30000)
     print (theta)
 
 

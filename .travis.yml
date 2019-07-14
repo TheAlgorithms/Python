@@ -1,26 +1,36 @@
 language: python
+dist: xenial  # required for Python >= 3.7
+python: 3.7
 cache: pip
-python:
-    - 2.7
-    - 3.6
-    #- nightly
-    #- pypy
-    #- pypy3
-matrix:
-    allow_failures:
-        - python: nightly
-        - python: pypy
-        - python: pypy3
-install:
-    #- pip install -r requirements.txt
-    - pip install flake8  # pytest  # add another testing frameworks later
+before_install: pip install --upgrade pip setuptools
+install: pip install -r requirements.txt
 before_script:
-    # stop the build if there are Python syntax errors or undefined names
-    - flake8 . --count --select=E9,F63,F72,F82 --show-source --statistics
-    # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
-    - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+  - black --check . || true
+  - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
-    - true  # pytest --capture=sys  # add other tests here
-notifications:
-    on_success: change
-    on_failure: change  # `always` will be the setting once code changes slow down
+  - mypy --ignore-missing-imports .
+  #- IGNORE="data_structures,file_transfer_protocol,graphs,machine_learning,maths,neural_network,project_euler"
+  #- pytest . --doctest-modules --ignore=${IGNORE}
+  - pytest --doctest-modules
+      arithmetic_analysis
+      backtracking
+      boolean_algebra
+      ciphers
+      compression
+      conversions
+      digital_image_processing
+      divide_and_conquer
+      dynamic_programming
+      hashes
+      linear_algebra_python
+      matrix
+      networking_flow
+      other
+      searches
+      sorts
+      strings
+      traversals
+
+after_success:
+  - python scripts/build_directory_md.py
+  - cat DIRECTORY.md
