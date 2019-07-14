@@ -100,12 +100,13 @@ def PrimsAlgorithm(l):
                     Nbr_TV[ v[0] ] = vertex
     return TreeEdges
 
-# < --------- Prims Algorithm --------- >
-n = int(input("Enter number of vertices: "))
-e = int(input("Enter number of edges: "))
-adjlist = defaultdict(list)
-for x in range(e):
-    l = [int(x) for x in input().split()]
-    adjlist[l[0]].append([ l[1], l[2] ])
-    adjlist[l[1]].append([ l[0], l[2] ])
-print(PrimsAlgorithm(adjlist))
+if __name__ == "__main__":
+    # < --------- Prims Algorithm --------- >
+    n = int(input("Enter number of vertices: ").strip())
+    e = int(input("Enter number of edges: ").strip())
+    adjlist = defaultdict(list)
+    for x in range(e):
+        l = [int(x) for x in input().strip().split()]
+        adjlist[l[0]].append([ l[1], l[2] ])
+        adjlist[l[1]].append([ l[0], l[2] ])
+    print(PrimsAlgorithm(adjlist))

@@ -21,6 +21,7 @@ script:
       digital_image_processing
       divide_and_conquer
       dynamic_programming
+      graphs
       hashes
       linear_algebra_python
       matrix
