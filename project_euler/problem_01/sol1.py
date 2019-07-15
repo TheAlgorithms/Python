@@ -21,6 +21,8 @@ def solution(n):
     23
     >>> solution(600)
     83700
+    >>> solution(-7)
+    0
     """
 
     return sum([e for e in range(3, n) if e % 3 == 0 or e % 5 == 0])
