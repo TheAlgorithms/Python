@@ -7,19 +7,28 @@
 """
 
 
+def get_data() -> [[]]:
+    return [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
+
+
 def rotate_90(matrix: [[]]) -> [[]]:
     """
-    >>> rotate_90([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]])
+    >>> rotate_90(get_data())
     [[4, 8, 12, 16], [3, 7, 11, 15], [2, 6, 10, 14], [1, 5, 9, 13]]
+    >>> rotate_90(get_data()) == transpose(reverse_column(get_data())
+    True
     """
 
     return reverse_row(transpose(matrix))
+    # OR.. transpose(reverse_column(matrix))
 
 
 def rotate_180(matrix: [[]]) -> [[]]:
     """
-    >>> rotate_180([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]])
+    >>> rotate_180(get_data())
     [[16, 15, 14, 13], [12, 11, 10, 9], [8, 7, 6, 5], [4, 3, 2, 1]]
+    >>> rotate_180(get_data()) == reverse_column(reverse_row(get_data())
+    True
     """
 
     return reverse_row(reverse_column(matrix))
@@ -28,8 +37,10 @@ def rotate_180(matrix: [[]]) -> [[]]:
 
 def rotate_270(matrix: [[]]) -> [[]]:
     """
-    >>> rotate_270([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]])
+    >>> rotate_270(get_data())
     [[13, 9, 5, 1], [14, 10, 6, 2], [15, 11, 7, 3], [16, 12, 8, 4]]
+    >>> rotate_270(get_data()) == transpose(reverse_row(reverse_row(get_data())
+    True
     """
 
     return reverse_column(transpose(matrix))
