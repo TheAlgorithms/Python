@@ -8,7 +8,7 @@ from __future__ import print_function
 from math import sqrt, ceil
 
 def SOE(n):
-    check = ceil(sqrt(n)) #Need not check for multiples past the square root of n
+    check = int(ceil(sqrt(n))) #Need not check for multiples past the square root of n
     
     sieve = [False if i <2 else True for i in range(n+1)] #Set every index to False except for index 0 and 1
     
