@@ -1,23 +1,31 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Problem:
+
 The sum of the squares of the first ten natural numbers is,
             1^2 + 2^2 + ... + 10^2 = 385
+
 The square of the sum of the first ten natural numbers is,
             (1 + 2 + ... + 10)^2 = 552 = 3025
-Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 − 385 = 2640.
-Find the difference between the sum of the squares of the first N natural numbers and the square of the sum.
-'''
+
+Hence the difference between the sum of the squares of the first ten natural
+numbers and the square of the sum is 3025 − 385 = 2640.
+
+Find the difference between the sum of the squares of the first N natural
+numbers and the square of the sum.
+"""
 from __future__ import print_function
 import math
 
 try:
-    raw_input          # Python 2
+    raw_input  # Python 2
 except NameError:
     raw_input = input  # Python 3
 
+
 def solution(n):
-    """Returns the difference between the sum of the squares of the first n natural numbers and the square of the sum.
+    """Returns the difference between the sum of the squares of the first n
+    natural numbers and the square of the sum.
  
     >>> solution(10)
     2640
@@ -28,9 +36,10 @@ def solution(n):
     >>> solution(50)
     1582700
     """
-    sum_of_squares = sum([i*i for i in range(1,n+1)])
-    square_of_sum = int(math.pow(sum(range(1,n+1)),2))
+    sum_of_squares = sum([i * i for i in range(1, n + 1)])
+    square_of_sum = int(math.pow(sum(range(1, n + 1)), 2))
     return square_of_sum - sum_of_squares
+
 
 if __name__ == "__main__":
     print(solution(int(raw_input().strip())))

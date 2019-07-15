@@ -1,5 +1,6 @@
 """
-What is the greatest product of four adjacent numbers (horizontally, vertically, or diagonally) in this 20x20 array?
+What is the greatest product of four adjacent numbers (horizontally,
+vertically, or diagonally) in this 20x20 array?
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -29,6 +30,7 @@ try:
     xrange  # Python 2
 except NameError:
     xrange = range  # Python 2
+
 
 def solution():
     """Returns the sum of all the multiples of 3 or 5 below n.
@@ -60,17 +62,28 @@ def solution():
         # diagonal 1
         for i in xrange(17):
             for j in xrange(17):
-                temp = l[i][j] * l[i + 1][j + 1] * l[i + 2][j + 2] * l[i + 3][j + 3]
+                temp = (
+                    l[i][j]
+                    * l[i + 1][j + 1]
+                    * l[i + 2][j + 2]
+                    * l[i + 3][j + 3]
+                )
                 if temp > maximum:
                     maximum = temp
 
         # diagonal 2
         for i in xrange(17):
             for j in xrange(3, 20):
-                temp = l[i][j] * l[i + 1][j - 1] * l[i + 2][j - 2] * l[i + 3][j - 3]
+                temp = (
+                    l[i][j]
+                    * l[i + 1][j - 1]
+                    * l[i + 2][j - 2]
+                    * l[i + 3][j - 3]
+                )
                 if temp > maximum:
                     maximum = temp
         return maximum
+
 
 if __name__ == "__main__":
     print(solution())

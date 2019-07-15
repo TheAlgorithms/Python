@@ -1,5 +1,6 @@
 """
-What is the greatest product of four adjacent numbers (horizontally, vertically, or diagonally) in this 20x20 array?
+What is the greatest product of four adjacent numbers (horizontally,
+vertically, or diagonally) in this 20x20 array?
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -30,6 +31,7 @@ try:
 except NameError:
     xrange = range  # Python 2
 
+
 def largest_product(grid):
     nColumns = len(grid[0])
     nRows = len(grid)
@@ -38,11 +40,16 @@ def largest_product(grid):
     lrDiagProduct = 0
     rlDiagProduct = 0
 
-    # Check vertically, horizontally, diagonally at the same time (only works for nxn grid)
+    # Check vertically, horizontally, diagonally at the same time (only works
+    # for nxn grid)
     for i in xrange(nColumns):
         for j in xrange(nRows - 3):
-            vertProduct = grid[j][i] * grid[j + 1][i] * grid[j + 2][i] * grid[j + 3][i]
-            horzProduct = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
+            vertProduct = (
+                grid[j][i] * grid[j + 1][i] * grid[j + 2][i] * grid[j + 3][i]
+            )
+            horzProduct = (
+                grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
+            )
 
             # Left-to-right diagonal (\) product
             if i < nColumns - 3:
@@ -62,11 +69,14 @@ def largest_product(grid):
                     * grid[i - 3][j + 3]
                 )
 
-            maxProduct = max(vertProduct, horzProduct, lrDiagProduct, rlDiagProduct)
+            maxProduct = max(
+                vertProduct, horzProduct, lrDiagProduct, rlDiagProduct
+            )
             if maxProduct > largest:
                 largest = maxProduct
 
     return largest
+
 
 def solution():
     """Returns the sum of all the multiples of 3 or 5 below n.
@@ -82,6 +92,7 @@ def solution():
     grid = [[int(i) for i in grid[j]] for j in xrange(len(grid))]
 
     return largest_product(grid)
+
 
 if __name__ == "__main__":
     print(solution())

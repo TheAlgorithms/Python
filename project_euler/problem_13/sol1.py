@@ -1,13 +1,15 @@
-'''
+"""
 Problem Statement:
-Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
-'''
+Work out the first ten digits of the sum of the following one-hundred 50-digit
+numbers.
+"""
 from __future__ import print_function
 
 try:
-    raw_input          # Python 2
+    raw_input  # Python 2
 except NameError:
     raw_input = input  # Python 3
+
 
 def solution(array):
     """Returns the first ten digits of the sum of the array elements.
@@ -22,6 +24,7 @@ def solution(array):
     '5537376230'
     """
     return str(sum(array))[:10]
+
 
 if __name__ == "__main__":
     n = int(input().strip())
