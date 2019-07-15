@@ -33,7 +33,7 @@ def rotate_270(matrix: [[]]) -> [[]]:
     """
 
     return reverse_column(transpose(matrix))
-    # OR.. transpose(reverse_column(matrix))
+    # OR.. transpose(reverse_row(matrix))
 
 
 def transpose(matrix: [[]]) -> [[]]:
