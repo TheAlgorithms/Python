@@ -25,6 +25,7 @@ vertically, or diagonally) in this 20x20 array?
 """
 
 from __future__ import print_function
+import os
 
 try:
     xrange  # Python 2
@@ -85,7 +86,8 @@ def solution():
     70600674
     """
     grid = []
-    with open("grid.txt") as file:
+    path = os.path.split(os.path.realpath(__file__))
+    with open(path[0] + "/grid.txt") as file:
         for line in file:
             grid.append(line.strip("\n").split(" "))
 

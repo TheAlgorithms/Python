@@ -15,6 +15,7 @@ obtain a score of 938 × 53 = 49714.
 
 What is the total of all the name scores in the file?
 """
+import os
 
 
 def solution():
@@ -25,7 +26,8 @@ def solution():
     """
     total_sum = 0
     temp_sum = 0
-    with open("p022_names.txt") as file:
+    path = os.path.split(os.path.realpath(__file__))
+    with open(path[0] + "/p022_names.txt") as file:
         name = str(file.readlines()[0])
         name = name.replace('"', "").split(",")
 

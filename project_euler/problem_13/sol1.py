@@ -4,6 +4,7 @@ Work out the first ten digits of the sum of the following one-hundred 50-digit
 numbers.
 """
 from __future__ import print_function
+import os
 
 try:
     raw_input  # Python 2
@@ -16,7 +17,8 @@ def solution(array):
     
     >>> sum = 0
     >>> array = []
-    >>> with open("num.txt",'r') as f:
+    >>> path = os.path.split(os.path.realpath(__file__))
+    >>> with open(path[0] + "/num.txt","r") as f:
     ...     for line in f:
     ...         array.append(int(line))
     ...
