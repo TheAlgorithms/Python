@@ -1,29 +1,50 @@
-'''
+"""
 Problem:
-A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 x 99.
-Find the largest palindrome made from the product of two 3-digit numbers which is less than N.
-'''
+A palindromic number reads the same both ways. The largest palindrome made from
+the product of two 2-digit numbers is 9009 = 91 x 99.
+
+Find the largest palindrome made from the product of two 3-digit numbers which
+is less than N.
+"""
 from __future__ import print_function
-limit = int(input("limit? "))
 
-# fetchs the next number
-for number in range(limit-1,10000,-1):
+try:
+    raw_input  # Python 2
+except NameError:
+    raw_input = input  # Python 3
 
-    # converts number into string.
-    strNumber = str(number)
 
-    # checks whether 'strNumber' is a palindrome.
-    if(strNumber == strNumber[::-1]):
+def solution(n):
+    """Returns the largest palindrome made from the product of two 3-digit
+    numbers which is less than n.
+    
+    >>> solution(20000)
+    19591
+    >>> solution(30000)
+    29992
+    >>> solution(40000)
+    39893
+    """
+    # fetchs the next number
+    for number in range(n - 1, 10000, -1):
 
-        divisor = 999
+        # converts number into string.
+        strNumber = str(number)
 
-        # if 'number' is a product of two 3-digit numbers
-        # then number is the answer otherwise fetch next number.
-        while(divisor != 99): 
-            
-            if((number % divisor == 0) and (len(str(number / divisor)) == 3)):
+        # checks whether 'strNumber' is a palindrome.
+        if strNumber == strNumber[::-1]:
 
-                print(number)
-                exit(0)
+            divisor = 999
 
-            divisor -=1
+            # if 'number' is a product of two 3-digit numbers
+            # then number is the answer otherwise fetch next number.
+            while divisor != 99:
+                if (number % divisor == 0) and (
+                    len(str(int(number / divisor))) == 3
+                ):
+                    return number
+                divisor -= 1
+
+
+if __name__ == "__main__":
+    print(solution(int(raw_input().strip())))
