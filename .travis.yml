@@ -26,6 +26,7 @@ script:
       matrix
       networking_flow
       other
+      project_euler
       searches
       sorts
       strings
