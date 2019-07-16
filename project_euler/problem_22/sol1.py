@@ -30,8 +30,7 @@ def solution():
     >>> solution()
     871198282
     """
-    path = os.path.split(os.path.realpath(__file__))
-    with open(path[0] + "/p022_names.txt") as file:
+    with open(os.path.dirname(__file__) + "/p022_names.txt") as file:
         names = str(file.readlines()[0])
         names = names.replace('"', "").split(",")
 

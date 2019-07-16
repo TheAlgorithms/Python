@@ -39,8 +39,7 @@ def solution():
     >>> solution()
     70600674
     """
-    path = os.path.split(os.path.realpath(__file__))
-    with open(path[0] + "/grid.txt") as f:
+    with open(os.path.dirname(__file__) + "/grid.txt") as f:
         l = []
         for i in xrange(20):
             l.append([int(x) for x in f.readline().split()])

@@ -17,8 +17,7 @@ def solution(array):
     
     >>> sum = 0
     >>> array = []
-    >>> path = os.path.split(os.path.realpath(__file__))
-    >>> with open(path[0] + "/num.txt","r") as f:
+    >>> with open(os.path.dirname(__file__) + "/num.txt","r") as f:
     ...     for line in f:
     ...         array.append(int(line))
     ...

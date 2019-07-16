@@ -86,8 +86,7 @@ def solution():
     70600674
     """
     grid = []
-    path = os.path.split(os.path.realpath(__file__))
-    with open(path[0] + "/grid.txt") as file:
+    with open(os.path.dirname(__file__) + "/grid.txt") as file:
         for line in file:
             grid.append(line.strip("\n").split(" "))
 
