@@ -6,7 +6,7 @@ LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + ' \t\n'
 def loadDictionary():
     path = os.path.split(os.path.realpath(__file__))
     englishWords = {}
-    with open(path[0] + '/Dictionary.txt') as dictionaryFile:
+    with open(path[0] + '/dictionary.txt') as dictionaryFile:
         for word in dictionaryFile.read().split('\n'):
             englishWords[word] = None
     return englishWords

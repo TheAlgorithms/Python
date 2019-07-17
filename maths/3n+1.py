@@ -1,19 +1,30 @@
-def main():
-    def n31(a):# a = initial number
-        c = 0
-        l = [a]
-        while a != 1:
-            if a % 2 == 0:#if even divide it by 2
-                a = a // 2
-            elif a % 2 == 1:#if odd 3n+1
-                a = 3*a +1
-            c += 1#counter
-            l += [a]
+from typing import Tuple, List
 
-        return l , c
-    print(n31(43))
-    print(n31(98)[0][-1])# = a
-    print("It took {0} steps.".format(n31(13)[1]))#optional finish
+def n31(a: int) -> Tuple[List[int], int]: 
+    """
+    Returns the Collatz sequence and its length of any postiver integer.
+    >>> n31(4)
+    ([4, 2, 1], 3)
+    """
+
+    if not isinstance(a, int):
+        raise TypeError('Must be int, not {0}'.format(type(a).__name__))
+    if a < 1: 
+        raise ValueError('Given integer must be greater than 1, not {0}'.format(a))
+    
+    path = [a]
+    while a != 1:
+        if a % 2 == 0:
+            a = a // 2
+        else:
+            a = 3*a +1
+        path += [a]
+    return path, len(path)
+
+def main():
+    num = 4
+    path , length = n31(num)
+    print("The Collatz sequence of {0} took {1} steps. \nPath: {2}".format(num,length, path))
 
 if __name__ == '__main__':
     main()
