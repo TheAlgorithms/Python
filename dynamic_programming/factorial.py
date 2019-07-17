@@ -1,4 +1,6 @@
 #Factorial of a number using memoization
+result=[-1]*10
+result[0]=result[1]=1
 def factorial(num):
     """
     >>> factorial(7)
@@ -27,9 +29,6 @@ def factorial(num):
 # print(factorial(3))
 # print(factorial(7))
 
-
 if __name__ == "__main__":
     import doctest
-    result=[-1]*10
-    result[0]=result[1]=1
     doctest.testmod()
