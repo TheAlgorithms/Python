@@ -30,9 +30,8 @@ def solution(n):
     n → n/2 (n is even)
     n → 3n + 1 (n is odd)
  
-    # The code below has been commented due to slow execution affecting Travis.
-    # >>> solution(1000000)
-    # {'counter': 525, 'largest_number': 837799}
+    >>> solution(1000000)
+    {'counter': 525, 'largest_number': 837799}
     >>> solution(200)
     {'counter': 125, 'largest_number': 171}
     >>> solution(5000)
