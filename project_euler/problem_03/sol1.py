@@ -28,18 +28,22 @@ def isprime(no):
 
 def solution(n):
     """Returns the largest prime factor of a given number n.
-    
+
     >>> solution(13195)
     29
     >>> solution(10)
     5
     >>> solution(17)
     17
+    >>> solution(0)
+    -1
     """
     maxNumber = 0
     if isprime(n):
         return n
     else:
+        if n <= 0:
+            return -1
         while n % 2 == 0:
             n = n / 2
         if isprime(n):
@@ -54,7 +58,6 @@ def solution(n):
                     elif isprime(i):
                         maxNumber = i
             return maxNumber
-    return int(sum)
 
 
 if __name__ == "__main__":

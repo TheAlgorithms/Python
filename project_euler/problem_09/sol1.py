@@ -28,7 +28,6 @@ def solution():
                     if (a ** 2) + (b ** 2) == (c ** 2):
                         if (a + b + c) == 1000:
                             return a * b * c
-                            break
 
 
 if __name__ == "__main__":

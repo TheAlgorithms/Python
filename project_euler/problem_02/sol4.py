@@ -11,7 +11,7 @@ n, find the sum of the even-valued terms. e.g. for n=10, we have {2,8}, sum is
 """
 from __future__ import print_function
 import math
-from decimal import *
+from decimal import Decimal, getcontext
 
 try:
     raw_input  # Python 2

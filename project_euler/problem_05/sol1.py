@@ -39,7 +39,6 @@ def solution(n):
             if i == 0:
                 i = 1
             return i
-            break
 
 
 if __name__ == "__main__":
