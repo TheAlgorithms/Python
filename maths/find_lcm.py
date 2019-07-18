@@ -4,11 +4,11 @@
 
 
 def find_lcm(num_1, num_2):
-    """Find the Least common multiple of two numbers.
-       >>find_lcm(5,2)
-         10
-       >>find_lcm(12,76)
-         228
+    """Find the least common multiple of two numbers.
+       >>> find_lcm(5,2)
+       10
+       >>> find_lcm(12,76)
+       228
     """
     if num_1>=num_2:
         max_num=num_1
