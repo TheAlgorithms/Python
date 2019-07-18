@@ -34,7 +34,7 @@ def solution(n):
     >>> solution(34)
     44
     >>> solution(3.4)
-    3
+    2
     >>> solution(0)
     Traceback (most recent call last):
         ...
