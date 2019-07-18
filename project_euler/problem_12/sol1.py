@@ -45,8 +45,8 @@ def solution():
     """Returns the value of the first triangle number to have over five hundred
     divisors.
     
-    >>> solution()
-    76576500
+    #>>> solution()
+    #76576500
     """
     tNum = 1
     i = 1
