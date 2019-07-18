@@ -35,15 +35,35 @@ def solution(n):
     5
     >>> solution(17)
     17
+    >>> solution(3.4)
+    3
     >>> solution(0)
-    -1
+    Traceback (most recent call last):
+        ...
+    ValueError: Parameter n must be greater or equal to one.
+    >>> solution(-17)
+    Traceback (most recent call last):
+        ...
+    ValueError: Parameter n must be greater or equal to one.
+    >>> solution([])
+    Traceback (most recent call last):
+        ...
+    TypeError: Parameter n must be int or passive of cast to int.
+    >>> solution("asd")
+    Traceback (most recent call last):
+        ...
+    TypeError: Parameter n must be int or passive of cast to int.
     """
+    try:
+        n = int(n)
+    except (TypeError, ValueError) as e:
+        raise TypeError("Parameter n must be int or passive of cast to int.")
+    if n <= 0:
+        raise ValueError("Parameter n must be greater or equal to one.")
     maxNumber = 0
     if isprime(n):
         return n
     else:
-        if n <= 0:
-            return -1
         while n % 2 == 0:
             n = n / 2
         if isprime(n):

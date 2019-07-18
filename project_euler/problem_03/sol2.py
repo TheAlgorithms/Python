@@ -15,14 +15,38 @@ except NameError:
 
 def solution(n):
     """Returns the largest prime factor of a given number n.
-    
+
     >>> solution(13195)
     29
     >>> solution(10)
     5
     >>> solution(17)
     17
+    >>> solution(3.4)
+    3
+    >>> solution(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Parameter n must be greater or equal to one.
+    >>> solution(-17)
+    Traceback (most recent call last):
+        ...
+    ValueError: Parameter n must be greater or equal to one.
+    >>> solution([])
+    Traceback (most recent call last):
+        ...
+    TypeError: Parameter n must be int or passive of cast to int.
+    >>> solution("asd")
+    Traceback (most recent call last):
+        ...
+    TypeError: Parameter n must be int or passive of cast to int.
     """
+    try:
+        n = int(n)
+    except (TypeError, ValueError) as e:
+        raise TypeError("Parameter n must be int or passive of cast to int.")
+    if n <= 0:
+        raise ValueError("Parameter n must be greater or equal to one.")
     prime = 1
     i = 2
     while i * i <= n:
