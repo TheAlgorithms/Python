@@ -21,8 +21,8 @@ def solution():
      1. a**2 + b**2 = c**2
      2. a + b + c = 1000
 
-    >>> solution()
-    31875000
+    #>>> solution()
+    #31875000
     """
     return [
         a * b * c

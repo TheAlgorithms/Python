@@ -9,31 +9,19 @@ before_script:
   - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 script:
   - mypy --ignore-missing-imports .
-  #- IGNORE="data_structures,file_transfer_protocol,graphs,machine_learning,maths,neural_network,project_euler"
-  #- pytest . --doctest-modules --ignore=${IGNORE}
-  - pytest --doctest-modules
-      arithmetic_analysis
-      backtracking
-      boolean_algebra
-      ciphers
-      compression
-      conversions
-      digital_image_processing
-      divide_and_conquer
-      dynamic_programming
-      graphs
-      hashes
-      linear_algebra_python
-      matrix
-      networking_flow
-      neural_network
-      other
-      project_euler
-      searches
-      sorts
-      strings
-      traversals
-
+  - pytest . --doctest-modules
+      --ignore=data_structures/stacks/balanced_parentheses.py
+      --ignore=data_structures/stacks/infix_to_postfix_conversion.py
+      --ignore=file_transfer_protocol/ftp_send_receive.py
+      --ignore=file_transfer_protocol/ftp_client_server.py
+      --ignore=machine_learning/linear_regression.py
+      --ignore=machine_learning/perceptron.py
+      --ignore=machine_learning/random_forest_classification/random_forest_classification.py
+      --ignore=machine_learning/random_forest_regression/random_forest_regression.py
+      --ignore=maths/abs_min.py
+      --ignore=maths/binary_exponentiation.py
+      --ignore=maths/lucas_series.py
+      --ignore=maths/sieve_of_eratosthenes.py
 after_success:
   - python scripts/build_directory_md.py
   - cat DIRECTORY.md
