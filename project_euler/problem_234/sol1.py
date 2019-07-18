@@ -40,7 +40,6 @@ def solution(n):
     semidivisible = []
     for x in range(n):
         l=[i for i in input().split()]
-        c1=0
         c2=1
         while(1):
             if len(fib(l[0],l[1],c2))<int(l[2]):
