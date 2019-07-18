@@ -26,6 +26,7 @@ script:
       linear_algebra_python
       matrix
       networking_flow
+      neural_network
       other
       project_euler
       searches
