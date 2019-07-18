@@ -1,12 +1,12 @@
 '''
 
-	Perceptron
-	w = w + N * (d(k) - y) * x(k)
+    Perceptron
+    w = w + N * (d(k) - y) * x(k)
 
-	Using perceptron network for oil analysis,
-	with Measuring of 3 parameters that represent chemical characteristics we can classify the oil, in p1 or p2
-	p1 = -1
-	p2 = 1
+    Using perceptron network for oil analysis,
+    with Measuring of 3 parameters that represent chemical characteristics we can classify the oil, in p1 or p2
+    p1 = -1
+    p2 = 1
 
 '''
 from __future__ import print_function
@@ -113,12 +113,13 @@ samples = [
 
 exit = [-1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1]
 
-network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=1000, bias=-1)
+if __name__ == '__main__':
+    network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=1000, bias=-1)
 
-network.training()
+    network.training()
 
-while True:
-    sample = []
-    for i in range(3):
-        sample.insert(i, float(input('value: ')))
-    network.sort(sample)
+    while True:
+        sample = []
+        for i in range(3):
+            sample.insert(i, float(input('value: ').strip()))
+        network.sort(sample)
