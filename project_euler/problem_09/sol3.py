@@ -20,6 +20,7 @@ def solution():
 
      1. a**2 + b**2 = c**2
      2. a + b + c = 1000
+
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution()
     # 31875000
