@@ -4,7 +4,7 @@
         https://en.wikipedia.org/wiki/Lucas%E2%80%93Lehmer_primality_test
         
         A Mersenne number is a number that is one less than a power of two.
-        That is M_n = 2^n - 1
+        That is M_p = 2^p - 1
         https://en.wikipedia.org/wiki/Mersenne_prime
         
         The Lucas–Lehmer test is the primality test used by the 
@@ -12,6 +12,8 @@
 """
 
 
+# Primality test 2^p - 1
+# Return true if 2^p - 1 is prime
 def Lucas_Lehmer_test(p: int) -> bool:
     """
     >>> Lucas_Lehmer_test(p=7)
