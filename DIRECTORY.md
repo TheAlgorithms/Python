@@ -43,13 +43,11 @@
   * [huffman](https://github.com/TheAlgorithms/Python/blob/master/compression/huffman.py)
   * [peak signal to noise ratio](https://github.com/TheAlgorithms/Python/blob/master/compression/peak_signal_to_noise_ratio.py)
   * Image Data
-
 ## Conversions
   * [decimal to binary](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary.py)
   * [decimal to hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_hexadecimal.py)
   * [decimal to octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
 ## Data Structures
-
   * Binary Tree
     * [avl tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/avl_tree.py)
     * [basic binary tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/basic_binary_tree.py)
@@ -89,7 +87,6 @@
   * Trie
     * [trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
 ## Digital Image Processing
-
   * Edge Detection
     * [canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/edge_detection/canny.py)
   * Filters
@@ -98,7 +95,6 @@
     * [median filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/median_filter.py)
     * [sobel filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/sobel_filter.py)
   * Image Data
-
 ## Divide And Conquer
   * [closest pair of points](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/closest_pair_of_points.py)
   * [max subarray sum](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/max_subarray_sum.py)
@@ -167,7 +163,6 @@
   * [md5](https://github.com/TheAlgorithms/Python/blob/master/hashes/md5.py)
   * [sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 ## Linear Algebra Python
-
   * Src
     * [lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra_python/src/lib.py)
     * [tests](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra_python/src/tests.py)
@@ -254,7 +249,6 @@
   * [word patterns](https://github.com/TheAlgorithms/Python/blob/master/other/word_patterns.py)
   * [words](https://github.com/TheAlgorithms/Python/blob/master/other/words)
 ## Project Euler
-
   * Problem 01
     * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol1.py)
     * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol2.py)
