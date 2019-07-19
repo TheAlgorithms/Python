@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 This is a simple script that will scan through the current directory
 and generate the corresponding DIRECTORY.md file, can also specify
@@ -7,63 +8,47 @@ import os
 
 
 # Target URL (master)
-URL = "https://github.com/TheAlgorithms/Python/blob/master/"
+BASE_URL = "https://github.com/TheAlgorithms/Python/blob/master/"
 
 
 def tree(d, ignores, ignores_ext):
     return _markdown(d, ignores, ignores_ext, 0)
-    
+
 
 def _markdown(parent, ignores, ignores_ext, depth):
-    out = ""
     dirs, files = [], []
     for i in os.listdir(parent):
         full = os.path.join(parent, i)
         name, ext = os.path.splitext(i)
-        if i not in ignores and ext not in ignores_ext:
+        if i[0] != "." and i not in ignores and ext not in ignores_ext:
             if os.path.isfile(full):
-                # generate list
-                pre = parent.replace("./", "").replace(" ", "%20")
-                # replace all spaces to safe URL
-                child = i.replace(" ", "%20")
-                files.append((pre, child, name))
+                url = f"{BASE_URL}{parent.replace('./', '')}/{i}".replace(" ", "%20")
+                files.append((name.replace("_", " "), url))
             else:
-                dirs.append(i)   
-    # Sort files
-    files.sort(key=lambda e: e[2].lower())
-    for f in files:
-        pre, child, name = f
-        out += "  " * depth + "* [" + name.replace("_", " ") + "](" + URL + pre + "/" + child + ")\n"
-    # Sort directories
-    dirs.sort()
-    for i in dirs:
+                dirs.append(i)
+    out = (
+        "\n".join(
+            f"{'  ' * depth}* [{name}]({url})"
+            for name, url in sorted(files, key=lambda e: e[0].lower())
+        )
+        + "\n"
+    )
+    for i in sorted(dirs):
         full = os.path.join(parent, i)
         i = i.replace("_", " ").title()
         if depth == 0:
-            out += "## " + i + "\n"
+            out += f"## {i}\n"
         else:
-            out += "  " * depth + "* " + i + "\n"
-        out += _markdown(full, ignores, ignores_ext, depth+1)
+            out += f"{'  ' * depth}* {i}\n"
+        out += _markdown(full, ignores, ignores_ext, depth + 1)
     return out
 
 
 # Specific files or folders with the given names will be ignored
-ignores = [".vs",
-    ".gitignore",
-    ".git",
-    "scripts",
-    "__init__.py",
-    "requirements.txt",
-    ".github"
-]
+ignores = "__init__.py __pycache__ requirements.txt scripts".split()
+
 # Files with given entensions will be ignored
-ignores_ext = [
-    ".md",
-    ".ipynb",
-    ".png",
-    ".jpg",
-    ".yml"
-]
+ignores_ext = ".json .jpg .md .png .pyc .txt .yml".split()
 
 
 if __name__ == "__main__":
