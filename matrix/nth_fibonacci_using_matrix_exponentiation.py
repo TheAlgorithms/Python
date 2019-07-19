@@ -1,6 +1,7 @@
 """
 Implementation of finding nth fibonacci number using matrix exponentiation.
-Time Complexity is about O(log(n)*8)
+Time Complexity is about O(log(n)*8), where 8 is the complexity of matrix multiplication of size 2 by 2.
+And on the other hand complexity of bruteforce solution is O(n).
 As we know
     f[n] = f[n-1] + f[n-1]
 Converting to matrix,
@@ -9,9 +10,8 @@ Converting to matrix,
     ...
     ...
 ->  [f(n),f(n-1)] = [[1,1],[1,0]]^(n-1) * [f(1),f(0)]
-
 So we just need the n times multiplication of  the matrix [1,1],[1,0]].
-We can decrease the n times multiplication by following  the divide and conquer approach
+We can decrease the n times multiplication by following  the divide and conquer approach.
 
 """
 from __future__ import print_function
@@ -35,11 +35,13 @@ def identity(n):
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def zerro(n):
-    return [[int(row == column) for column in range(n)] for row in range(n)]
-
-
 def nth_fibonacci(n):
+    """
+    >>> nth_fibonacci(100)
+    354224848179261915075L
+    >>> nth_fibonacci(-100)
+    -100
+    """
     if n <= 1:
         return n
     res_matrix = identity(2)
@@ -53,7 +55,7 @@ def nth_fibonacci(n):
     return res_matrix[0][0]
 
 
-def nth_fibonnaci_test(n):
+def nth_fibonacci_test(n):
     if n <= 1:
         return n
     fib0 = 0
@@ -65,32 +67,32 @@ def nth_fibonnaci_test(n):
 
 def main():
     print(
-        "0th fibonnacsi number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci(0), nth_fibonnaci_test(0))
+        "0th fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
+        % (nth_fibonacci(0), nth_fibonacci_test(0))
     )
     print(
-        "1st fibonnacsi number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci(1), nth_fibonnaci_test(1))
+        "1st fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
+        % (nth_fibonacci(1), nth_fibonacci_test(1))
     )
     print(
-        "2nd fibonnacsi number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci(2), nth_fibonnaci_test(2))
+        "2nd fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
+        % (nth_fibonacci(2), nth_fibonacci_test(2))
     )
     print(
-        "3rd fibonnacsi number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci(3), nth_fibonnaci_test(3))
+        "3rd fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
+        % (nth_fibonacci(3), nth_fibonacci_test(3))
     )
     print(
-        "10th fibonnacsi number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci(10), nth_fibonnaci_test(10))
+        "10th fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
+        % (nth_fibonacci(10), nth_fibonacci_test(10))
     )
     print(
-        "100th fibonnacsi number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci(100), nth_fibonnaci_test(100))
+        "100th fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
+        % (nth_fibonacci(100), nth_fibonacci_test(100))
     )
     print(
-        "1000th fibonnacsi number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci(1000), nth_fibonnaci_test(1000))
+        "1000th fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
+        % (nth_fibonacci(1000), nth_fibonacci_test(1000))
     )
 
 
