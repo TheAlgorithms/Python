@@ -18,7 +18,7 @@ class HarmonicOscillator:
     mass
     k                            ==> stifness of the oscillator
     angular_frequency ==>
-    A                           ==> Amplitude
+    Amplitude
     """
 
     def __init__(self):
