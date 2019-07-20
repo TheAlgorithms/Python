@@ -6,7 +6,6 @@ python/black : True
 
 """
 from numpy import pi, sqrt, exp
-from typing import Dict
 
 
 def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
