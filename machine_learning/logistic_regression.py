@@ -62,9 +62,8 @@ def logistic_reg(
         J = cost_function(h, y)
 
         iterations += 1  # update iterations
-        
-         if step % 10000 == 0:
-          print log_likelihood(X,Y,weights)     # Print log-likelihood every so often
+        if step % 10000 == 0:
+            print log_likelihood(X,Y,weights)     # Print log-likelihood every so often
 
         
      return weights
