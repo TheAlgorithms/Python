@@ -117,8 +117,9 @@ network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=
 
 network.training()
 
-while True:
-    sample = []
-    for i in range(3):
-        sample.insert(i, float(input('value: ')))
-    network.sort(sample)
+if __name__ == '__main__':
+    while True:
+        sample = []
+        for i in range(3):
+            sample.insert(i, float(input('value: ')))
+        network.sort(sample)
