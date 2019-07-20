@@ -3,11 +3,11 @@
 
 def recur_luc(n):
     """
-  >>> recur_luc(1)
-  1
-  >>> recur_luc(0)
-  2
-  """
+    >>> recur_luc(1)
+    1
+    >>> recur_luc(0)
+    2
+    """
     if n == 1:
         return n
     if n == 0:
