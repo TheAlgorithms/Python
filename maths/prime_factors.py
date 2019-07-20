@@ -1,9 +1,9 @@
 """
 python/black : True
 """
+from typing import List
 
-
-def prime_factors(n: int) -> list:
+def prime_factors(n: int) -> List[int]:
     """
     Returns prime factors of n as a list.
     
