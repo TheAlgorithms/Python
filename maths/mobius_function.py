@@ -108,8 +108,7 @@ def mobius(n:int) -> int:
             return 1
         elif len(factors)%2 != 0:
             return -1
-    else:
-        return 0
+    return 0
 
 if __name__ == '__main__':
     import doctest
