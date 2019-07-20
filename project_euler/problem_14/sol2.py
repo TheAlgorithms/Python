@@ -47,8 +47,9 @@ def collatz_sequence(n):
 def solution(n):
     """Returns the number under n that generates the longest Collatz sequence.
 
-    >>> solution(1000000)
-    {'counter': 525, 'largest_number': 837799}
+    # The code below has been commented due to slow execution affecting Travis.
+    # >>> solution(1000000)
+    # {'counter': 525, 'largest_number': 837799}
     >>> solution(200)
     {'counter': 125, 'largest_number': 171}
     >>> solution(5000)

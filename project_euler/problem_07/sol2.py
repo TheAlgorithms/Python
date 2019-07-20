@@ -36,7 +36,31 @@ def solution(n):
     229
     >>> solution(100)
     541
+    >>> solution(3.4)
+    5
+    >>> solution(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Parameter n must be greater or equal to one.
+    >>> solution(-17)
+    Traceback (most recent call last):
+        ...
+    ValueError: Parameter n must be greater or equal to one.
+    >>> solution([])
+    Traceback (most recent call last):
+        ...
+    TypeError: Parameter n must be int or passive of cast to int.
+    >>> solution("asd")
+    Traceback (most recent call last):
+        ...
+    TypeError: Parameter n must be int or passive of cast to int.
     """
+    try:
+        n = int(n)
+    except (TypeError, ValueError) as e:
+        raise TypeError("Parameter n must be int or passive of cast to int.")
+    if n <= 0:
+        raise ValueError("Parameter n must be greater or equal to one.")
     primes = []
     num = 2
     while len(primes) < n:
