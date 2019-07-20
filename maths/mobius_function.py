@@ -6,81 +6,8 @@ flake8 : True
 """
 
 from typing import List
-
-
-def prime_factors(n: int) -> List[int]:
-    """
-    Returns prime factors of n as a list.
-    
-    >>> prime_factors(0)
-    []
-    >>> prime_factors(100)
-    [2, 2, 5, 5]
-    >>> prime_factors(2560)
-    [2, 2, 2, 2, 2, 2, 2, 2, 2, 5]
-    >>> prime_factors(10**-2)
-    []
-    >>> prime_factors(0.02)
-    []
-    >>> x = prime_factors(10**241) # doctest: +NORMALIZE_WHITESPACE
-    >>> x == [2]*241 + [5]*241
-    True
-    >>> prime_factors(10**-354)
-    []
-    >>> prime_factors('hello')
-    Traceback (most recent call last):
-        ...
-    TypeError: '<=' not supported between instances of 'int' and 'str'
-    >>> prime_factors([1, 2, 'hello'])
-    Traceback (most recent call last):
-        ...
-    TypeError: '<=' not supported between instances of 'int' and 'list'
-
-    """
-    i = 2
-    factors = []
-    while i * i <= n:
-        if n % i:
-            i += 1
-        else:
-            n //= i
-            factors.append(i)
-    if n > 1:
-        factors.append(n)
-    return factors
-
-
-def is_square_free(factors: List[int]) -> bool:
-    """
-    This functions takes a list of prime factors as input.
-    returns True if the factors are square free.
-
-    >>> is_square_free([1, 1, 2, 3, 4])
-    False
-
-    These are wrong but should return some value
-    it simply checks for repition in the numb
-    >>> is_square_free([1, 3, 4, 'sd', 0.0])
-    True
-    
-    >>> is_square_free([1, 0.5, 2, 0.0])
-    True
-    
-    >>> is_square_free([1, 2, 2, 5])
-    False
-    
-    >>> is_square_free('asd')
-    True
-    
-    >>> is_square_free(24)
-    Traceback (most recent call last):
-        ...
-    TypeError: 'int' object is not iterable
-    """
-    if len(set(factors)) != len(factors):
-        return False
-    return True
-
+from math.prime_factors import prime_factors
+from math.is_square_free import is_square_free
 
 def mobius(n: int) -> int:
     """
