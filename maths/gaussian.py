@@ -41,7 +41,7 @@ def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
         ...
     TypeError: unsupported operand type(s) for -: 'str' and 'float'
 
-    >>> gaussian(10**234)
+    >>> gaussian(10**234) # doctest: +IGNORE_EXCEPTION_DETAIL
     Traceback (most recent call last):
         ...
     OverflowError: (34, 'Result too large')
