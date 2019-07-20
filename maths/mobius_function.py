@@ -36,7 +36,6 @@ def mobius(n: int) -> int:
         return -1 if len(factors) % 2 else 1
     return 0
 
-
 if __name__ == "__main__":
     import doctest
 
