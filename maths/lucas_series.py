@@ -1,6 +1,5 @@
 # Lucas Sequence Using Recursion
 
-
 def recur_luc(n):
     """
     >>> recur_luc(1)
