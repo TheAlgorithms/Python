@@ -6,8 +6,8 @@ flake8 : True
 """
 
 from typing import List
-from math.prime_factors import prime_factors
-from math.is_square_free import is_square_free
+from maths.prime_factors import prime_factors
+from maths.is_square_free import is_square_free
 
 def mobius(n: int) -> int:
     """
