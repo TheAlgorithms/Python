@@ -5,9 +5,9 @@ python/black : True
 flake8 : True
 """
 
-from typing import List
 from maths.prime_factors import prime_factors
 from maths.is_square_free import is_square_free
+
 
 def mobius(n: int) -> int:
     """
@@ -35,6 +35,7 @@ def mobius(n: int) -> int:
     if is_square_free(factors):
         return -1 if len(factors) % 2 else 1
     return 0
+
 
 if __name__ == "__main__":
     import doctest
