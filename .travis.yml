@@ -14,6 +14,7 @@ script:
       --ignore=data_structures/stacks/infix_to_postfix_conversion.py
       --ignore=file_transfer_protocol/ftp_send_receive.py
       --ignore=file_transfer_protocol/ftp_client_server.py
+      --ignore=virtualenv  # do not test our dependencies
 after_success:
   - python scripts/build_directory_md.py
   - cat DIRECTORY.md
