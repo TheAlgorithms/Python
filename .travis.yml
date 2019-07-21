@@ -20,6 +20,7 @@ script:
       --ignore=maths/binary_exponentiation.py
       --ignore=maths/lucas_series.py
       --ignore=maths/sieve_of_eratosthenes.py
+      --ignore=virtualenv  # do not test our dependencies
 after_success:
   - python scripts/build_directory_md.py
   - cat DIRECTORY.md
