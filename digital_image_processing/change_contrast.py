@@ -17,7 +17,7 @@ def change_contrast(img: Image, level: int) -> Image:
     """
     factor = (259 * (level + 255)) / (255 * (259 - level))
 
-    def contrast(c: int) -> int:
+    def contrast(c: int) -> float:
         """
         Fundamental Transformation/Operation that'll be performed on
         every bit.
