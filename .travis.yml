@@ -11,10 +11,7 @@ env:
   - TEST_FILE=machine_learning/perceptron.py
   - TEST_FILE=machine_learning/random_forest_classification/random_forest_classification.py
   - TEST_FILE=machine_learning/random_forest_regression/random_forest_regression.py
-  - TEST_FILE=maths/abs_min.py
-  - TEST_FILE=maths/binary_exponentiation.py
-  - TEST_FILE=maths/lucas_series.py
-  - TEST_FILE=maths/sieve_of_eratosthenes.py
+  - TEST_FILE=maths
 
 before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
