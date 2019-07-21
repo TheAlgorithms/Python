@@ -11,13 +11,13 @@ flake8 : True
 from PIL import Image
 
 
-def change_contrast(img, level: int):
+def change_contrast(img: Image, level: int) -> Image:
     """
     Function to change contrast
     """
     factor = (259 * (level + 255)) / (255 * (259 - level))
 
-    def contrast(c):
+    def contrast(c: int) -> int:
         """
         Fundamental Transformation/Operation that'll be performed on
         every bit.
@@ -31,5 +31,5 @@ if __name__ == "__main__":
     # Load image
     img = Image.open("image_data/lena.jpg")
     # Change contrast to 170
-    cont_img = change_contrast(img, 170.0)
+    cont_img = change_contrast(img, 170)
     cont_img.save("image_data/lena_high_contrast.png", format="png")
