@@ -29,7 +29,7 @@ def change_contrast(img: Image, level: float) -> Image:
 
 if __name__ == "__main__":
     # Load image
-    img = Image.open("image_data/lena.jpg")
-    # Change contrast to 170
-    cont_img = change_contrast(img, 170)
-    cont_img.save("image_data/lena_high_contrast.png", format="png")
+    with Image.open("image_data/lena.jpg") as img:
+        # Change contrast to 170
+        cont_img = change_contrast(img, 170)
+        cont_img.save("image_data/lena_high_contrast.png", format="png")
