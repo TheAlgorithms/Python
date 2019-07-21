@@ -11,7 +11,7 @@ flake8 : True
 from PIL import Image
 
 
-def change_contrast(img: Image, level: int) -> Image:
+def change_contrast(img: Image, level: float) -> Image:
     """
     Function to change contrast
     """
