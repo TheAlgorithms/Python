@@ -1,26 +1,33 @@
+#!/bin/env python3
+# Python program for implementation of Radix Sort
+# Modified by CoolCat467
+
+__version__ = '0.1.0'
+
 def radix_sort(lst):
-    RADIX = 10
-    placement = 1
-
-    # get the maximum number
-    max_digit = max(lst)
-
-    while placement < max_digit:
-      # declare and initialize buckets
-      buckets = [list() for _ in range( RADIX )]
-
-      # split lst between lists
-      for i in lst:
-        tmp = int((i / placement) % RADIX)
-        buckets[tmp].append(i)
-
-      # empty lists into lst array
-      a = 0
-      for b in range( RADIX ):
-        buck = buckets[b]
-        for i in buck:
-          lst[a] = i
-          a += 1
-
-      # move to next
-      placement *= RADIX
+    sort = data
+    origmax = max(sort)
+    exp = 1
+    while origmax/exp > 0:
+        arr = list(sort)
+        n = len(arr)
+        output = [0] * (n)
+        count = [0] * (10)
+        for i in range(0, n):
+            index = (arr[i]/exp)
+            count[int((index)%10)] += 1
+        
+        for i in range(1,10):
+            count[i] += count[i-1]
+        i = n-1
+        while i>=0:
+            index = (arr[i]/exp)
+            output[count[int((index)%10)] - 1] = arr[i]
+            count[int((index)%10)] -= 1
+            i -= 1
+        i = 0
+        for i in range(0,len(arr)):
+            arr[i] = output[i]
+        sort = arr
+        exp *= 10
+    return sort
