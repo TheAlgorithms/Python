@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-    In this problem, we want to rotate the matrix elements by 90, 180, 270 (counterclockwise)
-    Discussion in stackoverflow:
-    https://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array
+In this problem, we want to rotate the matrix elements by 90, 180, 270 (counterclockwise)
+Discussion in stackoverflow:
+https://stackoverflow.com/questions/42519/how-do-you-rotate-a-two-dimensional-array
 """
 
 
