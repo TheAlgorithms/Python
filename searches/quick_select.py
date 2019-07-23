@@ -14,9 +14,9 @@ def _partition(data, pivot):
     """
     less, equal, greater = [], [], []
     for element in data:
-        if element.address < pivot.address:
+        if element < pivot:
             less.append(element)
-        elif element.address > pivot.address:
+        elif element > pivot:
             greater.append(element)
         else:
             equal.append(element)
@@ -24,6 +24,11 @@ def _partition(data, pivot):
     
 def quickSelect(list, k):
     #k = len(list) // 2 when trying to find the median (index that value would be when list is sorted)
+    
+    #invalid input
+    if k>=len(list) or k<0:
+        return None
+    
     smaller = []
     larger = []
     pivot = random.randint(0, len(list) - 1)

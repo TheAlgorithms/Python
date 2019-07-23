@@ -1,19 +1,5 @@
 from __future__ import print_function
-# n - no of nodes, m - no of edges
-n, m = list(map(int,input().split()))
 
-g = [[] for i in range(n)] #graph
-r = [[] for i in range(n)] #reversed graph
-# input graph data (edges)
-for i in range(m):
-    u, v = list(map(int,input().split()))
-    g[u].append(v)
-    r[v].append(u)
-
-stack = []
-visit = [False]*n
-scc = []
-component = []
 
 def dfs(u):
     global g, r, scc, component, visit, stack
@@ -43,4 +29,21 @@ def kosaraju():
         scc.append(component)
     return scc
 
-print(kosaraju())
+
+if __name__ == "__main__":
+    # n - no of nodes, m - no of edges
+    n, m = list(map(int,input().strip().split()))
+
+    g = [[] for i in range(n)] #graph
+    r = [[] for i in range(n)] #reversed graph
+    # input graph data (edges)
+    for i in range(m):
+        u, v = list(map(int,input().strip().split()))
+        g[u].append(v)
+        r[v].append(u)
+
+    stack = []
+    visit = [False]*n
+    scc = []
+    component = []
+    print(kosaraju())

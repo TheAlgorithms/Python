@@ -24,8 +24,9 @@ class Queue():
     def get(self):
         self.length = self.length - 1
         dequeued = self.entries[self.front]
-        self.front-=1
-        self.entries = self.entries[self.front:]
+        #self.front-=1
+        #self.entries = self.entries[self.front:]
+        self.entries = self.entries[1:]
         return dequeued
 
     """Rotates the queue {@code rotation} times

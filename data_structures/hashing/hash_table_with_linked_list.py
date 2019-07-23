@@ -1,4 +1,4 @@
-from .hash_table import HashTable
+from hash_table import HashTable
 from collections import deque
 
 

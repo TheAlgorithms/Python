@@ -1,0 +1,12 @@
+black
+flake8
+matplotlib
+mypy
+numpy
+opencv-python
+pandas
+pillow
+pytest
+sklearn
+sympy
+tensorflow
