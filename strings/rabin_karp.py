@@ -49,6 +49,10 @@ def rabin_karp(pattern, text):
 
 
 def test_rabin_karp():
+    """
+    >>> test_rabin_karp()
+    Success.
+    """
     # Test 1)
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
@@ -69,6 +73,7 @@ def test_rabin_karp():
     pattern = "abcdabcy"
     text = "abcxabcdabxabcdabcdabcy"
     assert rabin_karp(pattern, text)
+    print("Success.")
 
 
 if __name__ == "__main__":
