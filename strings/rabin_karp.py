@@ -48,7 +48,7 @@ def rabin_karp(pattern, text):
     return False
 
 
-if __name__ == "__main__":
+def test_rabin_karp():
     # Test 1)
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
@@ -69,3 +69,7 @@ if __name__ == "__main__":
     pattern = "abcdabcy"
     text = "abcxabcdabxabcdabcdabcy"
     assert rabin_karp(pattern, text)
+
+
+if __name__ == "__main__":
+    test_rabin_karp()
