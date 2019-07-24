@@ -1,5 +1,6 @@
 black
 flake8
+flake8-filename
 matplotlib
 mypy
 numpy
