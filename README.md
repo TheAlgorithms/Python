@@ -1,11 +1,11 @@
 # The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/TheAlgorithms/100) &nbsp;
 [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg?branch=master)](https://travis-ci.org/TheAlgorithms/Python)
+![Tested on Python 3.7](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/TheAlgorithms) &nbsp;
 [![HitCount](http://hits.dwyl.com/TheAlgorithms/Python.svg?style=flat)](http://hits.dwyl.com/TheAlgorithms/Python)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/TheAlgorithms/Python/issues)
 [![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg)]( https://www.python.org/downloads)
-![Tested on Python 3.7](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg)
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
 ### All algorithms implemented in Python (for education)
 
