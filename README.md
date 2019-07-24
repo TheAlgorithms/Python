@@ -1,4 +1,3 @@
-# The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal)](https://www.paypal.me/TheAlgorithms/100) &nbsp;
 [![Build Status](https://img.shields.io/travis/TheAlgorithms/Python.svg?label=Travis%20CI&logo=travis)](https://travis-ci.org/TheAlgorithms/Python)
 [![LGTM](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg?label=LGTM&logo=LGTM)](https://github.com/TheAlgorithms/Python/pull/1064/checks?check_run_id=176061821)
@@ -8,6 +7,7 @@
 [![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg?logo=python)]( https://www.python.org/downloads)
 ![](https://img.shields.io/github/repo-size/TheAlgorithms/Python.svg?label=Repo%20size)
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
+# The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->
 ### All algorithms implemented in Python (for education)
 
 These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
