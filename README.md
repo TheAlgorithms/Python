@@ -1,8 +1,7 @@
 # The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->
-
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/TheAlgorithms/100) &nbsp;
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/TheAlgorithms) &nbsp;
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
 [![HitCount](http://hits.dwyl.com/TheAlgorithms/Python.svg?style=flat)](http://hits.dwyl.com/TheAlgorithms/Python)
 [![Inline docs](http://inch-ci.org/github/TheAlgorithms/Python?branch=master)](http://inch-ci.org/github/TheAlgorithms/Python)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/TheAlgorithms/Python/issues)
