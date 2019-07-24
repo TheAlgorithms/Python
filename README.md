@@ -1,9 +1,9 @@
 # The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->
-[![Donate](https://img.shields.io/badge/Donate-PayPal-pink.svg?logo=paypal&style=flat-square)](https://www.paypal.me/TheAlgorithms/100)&nbsp;
+[![Donate](https://img.shields.io/badge/Donate-PayPal-orange.svg?logo=paypal&style=flat-square)](https://www.paypal.me/TheAlgorithms/100)&nbsp;
 [![Build Status](https://img.shields.io/travis/TheAlgorithms/Python.svg?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.org/TheAlgorithms/Python)&nbsp;
 [![LGTM](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg?label=LGTM&logo=LGTM&style=flat-square)](https://github.com/TheAlgorithms/Python/pull/1064/checks?check_run_id=176061821)&nbsp;
-[![Gitter chat](https://img.shields.io/badge/Chat-Gitter-green.svg?label=Chat&logo=gitter&style=flat-square)](https://gitter.im/TheAlgorithms)&nbsp;
-[![contributions welcome](https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=Green&style=flat-square)](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md)&nbsp;
+[![Gitter chat](https://img.shields.io/badge/Chat-Gitter-pink.svg?label=Chat&logo=gitter&style=flat-square)](https://gitter.im/TheAlgorithms)&nbsp;
+[![contributions welcome](https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=skyblue&style=flat-square)](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md)&nbsp;
 ![](https://img.shields.io/github/repo-size/TheAlgorithms/Python.svg?label=Repo%20size&style=flat-square)&nbsp;
 <!--[![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg?logo=python&style=flat-square)]( https://www.python.org/downloads) &nbsp;-->
 ### All algorithms implemented in Python (for education)
