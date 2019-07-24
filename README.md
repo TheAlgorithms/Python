@@ -4,7 +4,7 @@
 [![LGTM](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg?label=LGTM&logo=LGTM)](https://github.com/TheAlgorithms/Python/pull/1064/checks?check_run_id=176061821)
 [![Gitter chat](https://img.shields.io/badge/Chat-On%20Gitter-green.svg?label=Chat&logo=Gitter)](https://gitter.im/TheAlgorithms) &nbsp;
 [![HitCount](http://hits.dwyl.com/TheAlgorithms/Python.svg?style=flat)](http://hits.dwyl.com/TheAlgorithms/Python)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md)
+[![contributions welcome](https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=Green?style=flat)](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md)
 [![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg)]( https://www.python.org/downloads)
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
 ### All algorithms implemented in Python (for education)
