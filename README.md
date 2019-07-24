@@ -1,6 +1,6 @@
 # The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/TheAlgorithms/100) &nbsp;
-[![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg?branch=master)](https://travis-ci.org/TheAlgorithms/Python)
+[![Build Status](https://img.shields.io/travis/TheAlgorithms/Python.svg?label=Travis%20CI&logo=travis[Travis (.org)])](https://travis-ci.org/TheAlgorithms/Python)
 [![LGTM](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg)](https://github.com/TheAlgorithms/Python/pull/1064/checks?check_run_id=176061821)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/TheAlgorithms) &nbsp;
 [![HitCount](http://hits.dwyl.com/TheAlgorithms/Python.svg?style=flat)](http://hits.dwyl.com/TheAlgorithms/Python)
