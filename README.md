@@ -6,7 +6,7 @@
 [![HitCount](http://hits.dwyl.com/TheAlgorithms/Python.svg?style=flat)](http://hits.dwyl.com/TheAlgorithms/Python)
 [![Inline docs](http://inch-ci.org/github/TheAlgorithms/Python?branch=master)](http://inch-ci.org/github/TheAlgorithms/Python)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/TheAlgorithms/Python/issues)
-[![Tested on Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)]( https://www.python.org/downloads)
+[![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg)]( https://www.python.org/downloads)
 ![](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg)
 ### All algorithms implemented in Python (for education)
 
