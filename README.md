@@ -2,7 +2,7 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/TheAlgorithms/100) &nbsp;
 [![Build Status](https://img.shields.io/travis/TheAlgorithms/Python.svg?label=Travis%20CI&logo=travis)](https://travis-ci.org/TheAlgorithms/Python)
 [![LGTM](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg?label=LGTM&logo=LGTM)](https://github.com/TheAlgorithms/Python/pull/1064/checks?check_run_id=176061821)
-[![Gitter chat](https://img.shields.io/badge/Chat-on Gitter-greeb.svg?label=Chat&logo=Gitter](https://gitter.im/TheAlgorithms) &nbsp;
+[![Gitter chat](https://img.shields.io/badge/Chat-on Gitter-greeb.svg?label=Chat&logo=Gitter)](https://gitter.im/TheAlgorithms) &nbsp;
 [![HitCount](http://hits.dwyl.com/TheAlgorithms/Python.svg?style=flat)](http://hits.dwyl.com/TheAlgorithms/Python)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md)
 [![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg)]( https://www.python.org/downloads)
