@@ -71,34 +71,17 @@ def nth_fibonacci_bruteforce(n):
 
 
 def main():
-    print(
-        "0th fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci_matrix(0), nth_fibonacci_bruteforce(0))
-    )
-    print(
-        "1st fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci_matrix(1), nth_fibonacci_bruteforce(1))
-    )
-    print(
-        "2nd fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci_matrix(2), nth_fibonacci_bruteforce(2))
-    )
-    print(
-        "3rd fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci_matrix(3), nth_fibonacci_bruteforce(3))
-    )
-    print(
-        "10th fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci_matrix(10), nth_fibonacci_bruteforce(10))
-    )
-    print(
-        "100th fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci_matrix(100), nth_fibonacci_bruteforce(100))
-    )
-    print(
-        "1000th fibonacci number using matrix exponentiation is %s and using bruteforce is %s \n"
-        % (nth_fibonacci_matrix(1000), nth_fibonacci_bruteforce(1000))
-    )
+    fmt = "{} fibonacci number using matrix exponentiation is {} and using bruteforce is {}\n"
+    for ordinal in "0th 1st 2nd 3rd 10th 100th 1000th".split():
+        n = int("".join(c for c in ordinal if c in "0123456789"))  # 1000th --> 1000
+        print(fmt.format(ordinal, nth_fibonacci_matrix(n), nth_fibonacci_bruteforce(n)))
+    # from timeit import timeit
+    # print(timeit("nth_fibonacci_matrix(1000000)",
+    #              "from main import nth_fibonacci_matrix", number=5))
+    # print(timeit("nth_fibonacci_bruteforce(1000000)",
+    #              "from main import nth_fibonacci_bruteforce", number=5))
+    # 2.3342058970001744
+    # 57.256506615000035
 
 
 if __name__ == "__main__":

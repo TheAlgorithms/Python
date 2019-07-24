@@ -18,10 +18,6 @@ script:
       --ignore=machine_learning/perceptron.py
       --ignore=machine_learning/random_forest_classification/random_forest_classification.py
       --ignore=machine_learning/random_forest_regression/random_forest_regression.py
-      --ignore=maths/abs_min.py
-      --ignore=maths/binary_exponentiation.py
-      --ignore=maths/lucas_series.py
-      --ignore=maths/sieve_of_eratosthenes.py
 after_success:
   - python scripts/build_directory_md.py
   - cat DIRECTORY.md
