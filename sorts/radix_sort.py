@@ -5,7 +5,7 @@
 __version__ = '0.1.0'
 
 def radix_sort(lst):
-    sort = data
+    sort = lst
     origmax = max(sort)
     exp = 1
     while origmax/exp > 0:
