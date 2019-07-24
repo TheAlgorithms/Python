@@ -1,0 +1,4 @@
+# Please do not modify the content of this file.
+[flake8]
+filename_check1 = filter_regex=test_.+
+                  filename_regex=test_[\w-]+$
