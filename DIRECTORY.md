@@ -223,7 +223,6 @@
   * [searching in sorted matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/searching_in_sorted_matrix.py)
   * [spiral print](https://github.com/TheAlgorithms/Python/blob/master/matrix/spiral_print.py)
   * Tests
-    * [pytest](https://github.com/TheAlgorithms/Python/blob/master/matrix/tests/pytest.ini)
     * [test matrix operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/tests/test_matrix_operation.py)
 ## Networking Flow
   * [ford fulkerson](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/ford_fulkerson.py)
