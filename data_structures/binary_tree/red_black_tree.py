@@ -1,7 +1,8 @@
-'''
+"""
 python/black : true
 flake8 : passed
-'''
+"""
+
 
 class RedBlackTree:
     """
@@ -17,8 +18,8 @@ class RedBlackTree:
     terms of the size of the tree.
     """
 
-    def __init__(self, label=None, color=0,
-                 parent=None, left=None, right=None):
+    def __init__(self, label=None, color=0, parent=None,
+                 left=None, right=None):
         """Initialize a new Red-Black Tree node with the given values:
             label: The value associated with this node
             color: 0 if black, 1 if red
@@ -657,31 +658,27 @@ def test_tree_traversal():
     return True
 
 
+def print_results(msg: str, passes: bool) -> None:
+    print(
+        "{msg} {test}".format(
+            msg=msg, test="".join(["works!" if passes else "doesn't work :("])
+        )
+    )
+
+
 def main():
-    if test_rotations():
-        print("Rotating right and left works!")
-    else:
-        print("Rotating right and left doesn't work. :(")
-    if test_insert():
-        print("Inserting works!")
-    else:
-        print("Inserting doesn't work :(")
-    if test_insert_and_search():
-        print("Searching works!")
-    else:
-        print("Searching doesn't work :(")
-    if test_insert_delete():
-        print("Deleting works!")
-    else:
-        print("Deleting doesn't work :(")
-    if test_floor_ceil():
-        print("Floor and ceil work!")
-    else:
-        print("Floor and ceil don't work :(")
-    if test_tree_traversal():
-        print("Tree traversal works!")
-    else:
-        print("Tree traversal doesn't work :(")
+    print_results("Rotating right and left", test_rotations())
+
+    print_results("Inserting", test_insert())
+
+    print_results("Searching", test_insert_and_search())
+
+    print_results("Deleting", test_insert_delete())
+
+    print_results("Floor and ceil", test_floor_ceil())
+
+    print_results("Tree traversal", test_tree_traversal())
+
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
     test_insertion_speed()
