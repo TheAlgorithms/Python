@@ -21,7 +21,21 @@ values = {
 }
 
 def decimal_to_hexadecimal(decimal):
-    """ take decimal value, return hexadecimal representation as str """
+    """
+        take integer decimal value, return hexadecimal representation as str 
+        >>> decimal_to_hexadecimal(5)
+        '5'
+        >>> decimal_to_hexadecimal(15)
+        'f'
+        >>> decimal_to_hexadecimal(37)
+        '25'
+        >>> decimal_to_hexadecimal(255)
+        'ff'
+        >>> decimal_to_hexadecimal(4096)
+        '1000'
+        >>> decimal_to_hexadecimal(999098)
+        'f3eba'
+    """
     hexadecimal = ''
     while decimal > 0:
         remainder = decimal % 16
@@ -30,14 +44,6 @@ def decimal_to_hexadecimal(decimal):
         decimal /= 16
     return hexadecimal
 
-def main():
-    """ print test cases """
-    print("5 in hexadecimal is", decimal_to_hexadecimal(5))
-    print("15 in hexadecimal is", decimal_to_hexadecimal(15))
-    print("37 in hexadecimal is", decimal_to_hexadecimal(37))
-    print("255 in hexadecimal is", decimal_to_hexadecimal(255))
-    print("4096 in hexadecimal is", decimal_to_hexadecimal(4096))
-    print("999098 in hexadecimal is", decimal_to_hexadecimal(999098))
-
 if __name__ == '__main__':
-    main()
+    import doctest
+    doctest.testmod()
