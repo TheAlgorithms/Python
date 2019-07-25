@@ -48,7 +48,7 @@ def _markdown(parent, ignores, ignores_ext, depth):
 ignores = "__init__.py __pycache__ requirements.txt scripts".split()
 
 # Files with given entensions will be ignored
-ignores_ext = ".json .jpg .md .png .pyc .txt .yml".split()
+ignores_ext = ".ini .json .jpg .md .png .pyc .txt .yml".split()
 
 
 if __name__ == "__main__":
