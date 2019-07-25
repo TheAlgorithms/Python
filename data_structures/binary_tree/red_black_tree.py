@@ -643,7 +643,7 @@ def test_min_max():
 def test_tree_traversal():
     """Tests the three different tree traversal functions."""
     tree = RedBlackTree(0)
-    tree.insert(-16)
+    tree = tree.insert(-16)
     tree.insert(16)
     tree.insert(8)
     tree.insert(24)
@@ -657,15 +657,52 @@ def test_tree_traversal():
         return False
     return True
 
+def test_tree_traversal():
+    """Tests the three different tree traversal functions."""
+    tree = RedBlackTree(0)
+    tree.insert(-16)
+    tree.insert(16)
+    tree.insert(8)
+    tree.insert(24)
+    tree.insert(20)
+    tree.insert(22)
+    
+    if list(tree.inorder_traverse()) != [-16, 0, 8, 16, 20, 22, 24]:
+        return False
+    if list(tree.preorder_traverse()) != [0, -16, 16, 8, 22, 20, 24]:
+        return False
+    if list(tree.postorder_traverse()) != [-16, 8, 20, 24, 22, 16, 0]:
+        return False
+    return True
 
+def test_tree_chaining():
+    """Tests the three different tree chaning functions."""
+    tree = RedBlackTree(0)
+    tree = tree.insert(-16).insert(16).insert(8).insert(24).insert(20).insert(22)
+    if list(tree.inorder_traverse()) != [-16, 0, 8, 16, 20, 22, 24]:
+        return False
+    if list(tree.preorder_traverse()) != [0, -16, 16, 8, 22, 20, 24]:
+        return False
+    if list(tree.postorder_traverse()) != [-16, 8, 20, 24, 22, 16, 0]:
+        return False
+    return True
 def print_results(msg: str, passes: bool) -> None:
     print(
         "{} {}".format(msg,
                        "works!" if passes else "doesn't work :(")
         )
 
+def pytests():
+    assert test_rotations()
+    assert test_insert()
+    assert test_insert_and_search()
+    assert test_insert_delete()
+    assert test_floor_ceil()
+    assert test_tree_traversal()
+    assert test_tree_chaining()
 
 def main():
+    
     print_results("Rotating right and left", test_rotations())
 
     print_results("Inserting", test_insert())
@@ -678,6 +715,10 @@ def main():
 
     print_results("Tree traversal", test_tree_traversal())
 
+    print_results("Tree traversal", test_tree_chaining())
+    
+    pytests()
+    
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
     test_insertion_speed()
