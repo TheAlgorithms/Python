@@ -49,14 +49,14 @@ if __name__ == "__main__":
         [
             polar_force(718.4, 180 - 30),
             polar_force(879.54, 45),
-            polar_force(100, -90),  #
+            polar_force(100, -90)
         ]
     )
 
     location = array([[0, 0], [0, 0], [0, 0]])
 
-    status = in_static_equilibrium(forces, location)
-    assert status
+    assert in_static_equilibrium(forces, location)
+   
 
     # Problem 1 in image_data/2D_problems.jpg
     forces = array(
@@ -69,13 +69,13 @@ if __name__ == "__main__":
 
     location = array([[0, 0], [0, 0], [0, 0]])
 
-    status = in_static_equilibrium(forces, location)
-    assert status
+    assert in_static_equilibrium(forces, location)
+    
 
     # Problem in image_data/2D_problems_1.jpg
     forces = array([[0, -2000], [0, -1200], [0, 15600], [0, -12400]])
 
     location = array([[0, 0], [6, 0], [10, 0], [12, 0]])
 
-    status = in_static_equilibrium(forces, location)
-    assert status
+    assert in_static_equilibrium(forces, location)
+    
