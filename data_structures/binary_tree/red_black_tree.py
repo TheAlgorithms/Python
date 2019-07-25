@@ -660,10 +660,9 @@ def test_tree_traversal():
 
 def print_results(msg: str, passes: bool) -> None:
     print(
-        "{msg} {test}".format(
-            msg=msg, test="".join(["works!" if passes else "doesn't work :("])
+        "{} {}".format(msg,
+                       "works!" if passes else "doesn't work :(")
         )
-    )
 
 
 def main():
