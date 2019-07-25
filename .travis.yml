@@ -6,7 +6,7 @@ before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
 before_script:
   - black --check . || true
-  - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+  - flake8 . --count --select=E9,F401,F63,F7,F82 --show-source --statistics
 script:
   - mypy --ignore-missing-imports .
   - pytest . --doctest-modules
