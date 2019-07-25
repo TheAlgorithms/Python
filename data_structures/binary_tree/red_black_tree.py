@@ -18,8 +18,7 @@ class RedBlackTree:
     terms of the size of the tree.
     """
 
-    def __init__(self, label=None, color=0, parent=None,
-                 left=None, right=None):
+    def __init__(self, label=None, color=0, parent=None, left=None, right=None):
         """Initialize a new Red-Black Tree node with the given values:
             label: The value associated with this node
             color: 0 if black, 1 if red
@@ -472,8 +471,7 @@ class RedBlackTree:
         return pformat(
             {
                 "%s %s"
-                % (self.label, (self.color and "red") or "blk"):
-                (self.left, self.right)
+                % (self.label, (self.color and "red") or "blk"): (self.left, self.right)
             },
             indent=1,
         )
@@ -530,8 +528,7 @@ def test_rotations():
     right_rot.right.left = RedBlackTree(-5, parent=right_rot.right)
     right_rot.right.right = RedBlackTree(10, parent=right_rot.right)
     right_rot.right.right.left = RedBlackTree(5, parent=right_rot.right.right)
-    right_rot.right.right.right = RedBlackTree(20,
-                                               parent=right_rot.right.right)
+    right_rot.right.right.right = RedBlackTree(20, parent=right_rot.right.right)
     if tree != right_rot:
         return False
     return True
@@ -657,23 +654,6 @@ def test_tree_traversal():
         return False
     return True
 
-def test_tree_traversal():
-    """Tests the three different tree traversal functions."""
-    tree = RedBlackTree(0)
-    tree.insert(-16)
-    tree.insert(16)
-    tree.insert(8)
-    tree.insert(24)
-    tree.insert(20)
-    tree.insert(22)
-    
-    if list(tree.inorder_traverse()) != [-16, 0, 8, 16, 20, 22, 24]:
-        return False
-    if list(tree.preorder_traverse()) != [0, -16, 16, 8, 22, 20, 24]:
-        return False
-    if list(tree.postorder_traverse()) != [-16, 8, 20, 24, 22, 16, 0]:
-        return False
-    return True
 
 def test_tree_chaining():
     """Tests the three different tree chaning functions."""
@@ -686,11 +666,11 @@ def test_tree_chaining():
     if list(tree.postorder_traverse()) != [-16, 8, 20, 24, 22, 16, 0]:
         return False
     return True
+
+
 def print_results(msg: str, passes: bool) -> None:
-    print(
-        "{} {}".format(msg,
-                       "works!" if passes else "doesn't work :(")
-        )
+    print(str(msg), "works!" if passes else "doesn't work :("))
+
 
 def pytests():
     assert test_rotations()
@@ -701,8 +681,9 @@ def pytests():
     assert test_tree_traversal()
     assert test_tree_chaining()
 
+
 def main():
-    
+
     print_results("Rotating right and left", test_rotations())
 
     print_results("Inserting", test_insert())
@@ -716,9 +697,9 @@ def main():
     print_results("Tree traversal", test_tree_traversal())
 
     print_results("Tree traversal", test_tree_chaining())
-    
+
     pytests()
-    
+
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
     test_insertion_speed()
