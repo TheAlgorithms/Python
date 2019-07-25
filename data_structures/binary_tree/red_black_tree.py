@@ -669,7 +669,7 @@ def test_tree_chaining():
 
 
 def print_results(msg: str, passes: bool) -> None:
-    print(str(msg), "works!" if passes else "doesn't work :("))
+    print(str(msg), "works!" if passes else "doesn't work :(")
 
 
 def pytests():
@@ -683,7 +683,9 @@ def pytests():
 
 
 def main():
-
+    """
+    >>> pytests()
+    """
     print_results("Rotating right and left", test_rotations())
 
     print_results("Inserting", test_insert())
@@ -698,7 +700,6 @@ def main():
 
     print_results("Tree traversal", test_tree_chaining())
 
-    pytests()
 
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
