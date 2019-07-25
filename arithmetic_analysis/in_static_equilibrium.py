@@ -40,7 +40,7 @@ def in_static_equilibrium(
     # summation of moments is zero
     moments: array = cross(location, forces)
     sum_moments: float = sum(moments)
-    return True if (abs(sum_moments) < eps) else False
+    return abs(sum_moments) < eps
 
 
 if __name__ == "__main__":
