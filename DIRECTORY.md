@@ -42,7 +42,6 @@
   * [burrows wheeler](https://github.com/TheAlgorithms/Python/blob/master/compression/burrows_wheeler.py)
   * [huffman](https://github.com/TheAlgorithms/Python/blob/master/compression/huffman.py)
   * [peak signal to noise ratio](https://github.com/TheAlgorithms/Python/blob/master/compression/peak_signal_to_noise_ratio.py)
-  * Image Data
 ## Conversions
   * [decimal to binary](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary.py)
   * [decimal to hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_hexadecimal.py)
@@ -87,6 +86,7 @@
   * Trie
     * [trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
 ## Digital Image Processing
+  * [change contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
   * Edge Detection
     * [canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/edge_detection/canny.py)
   * Filters
@@ -94,7 +94,6 @@
     * [gaussian filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/gaussian_filter.py)
     * [median filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/median_filter.py)
     * [sobel filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/sobel_filter.py)
-  * Image Data
 ## Divide And Conquer
   * [closest pair of points](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/closest_pair_of_points.py)
   * [max subarray sum](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/max_subarray_sum.py)
@@ -203,11 +202,15 @@
   * [find lcm](https://github.com/TheAlgorithms/Python/blob/master/maths/find_lcm.py)
   * [find max](https://github.com/TheAlgorithms/Python/blob/master/maths/find_max.py)
   * [find min](https://github.com/TheAlgorithms/Python/blob/master/maths/find_min.py)
+  * [gaussian](https://github.com/TheAlgorithms/Python/blob/master/maths/gaussian.py)
   * [greater common divisor](https://github.com/TheAlgorithms/Python/blob/master/maths/greater_common_divisor.py)
+  * [is square free](https://github.com/TheAlgorithms/Python/blob/master/maths/is_square_free.py)
   * [lucas series](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_series.py)
+  * [mobius function](https://github.com/TheAlgorithms/Python/blob/master/maths/mobius_function.py)
   * [modular exponential](https://github.com/TheAlgorithms/Python/blob/master/maths/modular_exponential.py)
   * [newton raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
   * [prime check](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_check.py)
+  * [prime factors](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_factors.py)
   * [segmented sieve](https://github.com/TheAlgorithms/Python/blob/master/maths/segmented_sieve.py)
   * [sieve of eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/sieve_of_eratosthenes.py)
   * [simpson rule](https://github.com/TheAlgorithms/Python/blob/master/maths/simpson_rule.py)
@@ -219,6 +222,9 @@
   * [rotate matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/rotate_matrix.py)
   * [searching in sorted matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/searching_in_sorted_matrix.py)
   * [spiral print](https://github.com/TheAlgorithms/Python/blob/master/matrix/spiral_print.py)
+  * Tests
+    * [pytest](https://github.com/TheAlgorithms/Python/blob/master/matrix/tests/pytest.ini)
+    * [test matrix operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/tests/test_matrix_operation.py)
 ## Networking Flow
   * [ford fulkerson](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/ford_fulkerson.py)
   * [minimum cut](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/minimum_cut.py)
