@@ -15,10 +15,12 @@ are used in this step to reduce sorting time.
 Closest pair distance is found in the strip of points. (closest_in_strip)
 
 min(closest_pair_dis, closest_in_strip) would be the final answer.
- 
-Time complexity: O(n * log n)
-"""
 
+Time complexity: O(n * log n)
+
+Space complexity: O(n)
+
+"""
 
 def euclidean_distance_sqr(point1, point2):
     return (point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2
@@ -36,9 +38,9 @@ def dis_between_closest_pair(points, points_counts, min_dis = float("inf")):
     
     Returns : 
     min_dis (float):  distance between closest pair of points
-
+    
     """
-
+    
     for i in range(points_counts - 1):
         for j in range(i+1, points_counts):
             current_dis = euclidean_distance_sqr(points[i], points[j])
@@ -55,9 +57,9 @@ def dis_between_closest_in_strip(points, points_counts, min_dis = float("inf")):
     
     Returns : 
     min_dis (float):  distance btw closest pair of points in the strip (< min_dis)
-
+    
     """
-
+    
     for i in range(min(6, points_counts - 1), points_counts):
         for j in range(max(0, i-6), i):
             current_dis = euclidean_distance_sqr(points[i], points[j])
@@ -74,9 +76,9 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     
     Returns : 
     (float):  distance btw closest pair of points 
-
+    
     """
-
+    
     # base case
     if points_counts <= 3:
         return dis_between_closest_pair(points_sorted_on_x, points_counts)
@@ -94,23 +96,24 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     """ cross_strip contains the points, whose Xcoords are at a 
     distance(< closest_pair_dis) from mid's Xcoord
     """
-
+    
     cross_strip = []
     for point in points_sorted_on_x:
         if abs(point[0] - points_sorted_on_x[mid][0]) < closest_pair_dis:
             cross_strip.append(point)
-
+    
     closest_in_strip = dis_between_closest_in_strip(cross_strip, 
                      len(cross_strip), closest_pair_dis)
     return min(closest_pair_dis, closest_in_strip)
 
-    
+
+​    
 def closest_pair_of_points(points, points_counts):
-    points_sorted_on_x = column_based_sort(points, column = 0)
-    points_sorted_on_y = column_based_sort(points, column = 1)
-    return (closest_pair_of_points_sqr(points_sorted_on_x, 
-                                       points_sorted_on_y, 
-                                       points_counts)) ** 0.5
+​    points_sorted_on_x = column_based_sort(points, column = 0)
+​    points_sorted_on_y = column_based_sort(points, column = 1)
+​    return (closest_pair_of_points_sqr(points_sorted_on_x, 
+​                                       points_sorted_on_y, 
+​                                       points_counts)) ** 0.5
 
 
 if __name__ == "__main__":
