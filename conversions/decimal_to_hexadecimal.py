@@ -22,44 +22,34 @@ values = {
 
 def decimal_to_hexadecimal(decimal):
     """
-        take integer decimal value, return hexadecimal representation as str 
+        take integer decimal value, return hexadecimal representation as str beginning with 0x
         >>> decimal_to_hexadecimal(5)
-        '5'
+        '0x5'
         >>> decimal_to_hexadecimal(15)
-        'f'
+        '0xf'
         >>> decimal_to_hexadecimal(37)
-        '25'
+        '0x25'
         >>> decimal_to_hexadecimal(255)
-        'ff'
+        '0xff'
         >>> decimal_to_hexadecimal(4096)
-        '1000'
+        '0x1000'
         >>> decimal_to_hexadecimal(999098)
-        'f3eba'
+        '0xf3eba'
         >>> # negatives work too
         >>> decimal_to_hexadecimal(-256)
-        '-100'
+        '0x-100'
         >>> # floats are acceptable if equivalent to an int
         >>> decimal_to_hexadecimal(17.0)
-        '11'
+        '0x11'
         >>> # other floats will error
-        >>> decimal_to_hexadecimal(16.16)
+        >>> decimal_to_hexadecimal(16.16) # doctest: +ELLIPSIS
         Traceback (most recent call last):
-            File "doctest.py", line 1329, in __run
-                compileflags, 1), test.globs)
-            File "<doctest __main__.decimal_to_hexadecimal[8]>", line 1, in <module>
-                decimal_to_hexadecimal(16.16)
-            File "decimal_to_hexadecimal.py", line 51, in decimal_to_hexadecimal
-                assert type(decimal) in (int, float) and decimal == int(decimal)
+        ...
         AssertionError
         >>> # strings will error as well
-        >>> decimal_to_hexadecimal('0xfffff')
+        >>> decimal_to_hexadecimal('0xfffff') # doctest: +ELLIPSIS
         Traceback (most recent call last):
-            File "doctest.py", line 1329, in __run
-                compileflags, 1), test.globs)
-            File "<doctest __main__.decimal_to_hexadecimal[9]>", line 1, in <module>
-                decimal_to_hexadecimal('0xfffff')
-            File "decimal_to_hexadecimal.py", line 58, in decimal_to_hexadecimal
-                assert type(decimal) in (int, float) and decimal == int(decimal)
+        ...
         AssertionError
     """
     assert type(decimal) in (int, float) and decimal == int(decimal)
@@ -73,6 +63,7 @@ def decimal_to_hexadecimal(decimal):
         hexadecimal = values[remainder] + hexadecimal
     if negative:
         hexadecimal = '-' + hexadecimal
+    hexadecimal = '0x' + hexadecimal
     return hexadecimal
 
 if __name__ == '__main__':
