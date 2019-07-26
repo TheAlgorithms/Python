@@ -37,7 +37,7 @@ def decimal_to_hexadecimal(decimal):
         '0xf3eba'
         >>> # negatives work too
         >>> decimal_to_hexadecimal(-256)
-        '0x-100'
+        '-0x100'
         >>> # floats are acceptable if equivalent to an int
         >>> decimal_to_hexadecimal(17.0)
         '0x11'
@@ -51,6 +51,9 @@ def decimal_to_hexadecimal(decimal):
         Traceback (most recent call last):
         ...
         AssertionError
+        >>> # results are the same when compared to Python's default hex function
+        >>> decimal_to_hexadecimal(-256) == hex(-256)
+        True
     """
     assert type(decimal) in (int, float) and decimal == int(decimal)
     hexadecimal = ''
@@ -61,9 +64,9 @@ def decimal_to_hexadecimal(decimal):
     while decimal > 0:
         decimal, remainder = divmod(decimal, 16)
         hexadecimal = values[remainder] + hexadecimal
+    hexadecimal = '0x' + hexadecimal
     if negative:
         hexadecimal = '-' + hexadecimal
-    hexadecimal = '0x' + hexadecimal
     return hexadecimal
 
 if __name__ == '__main__':
