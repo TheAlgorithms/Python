@@ -19,5 +19,5 @@ script:
       --ignore=machine_learning/random_forest_classification/random_forest_classification.py
       --ignore=machine_learning/random_forest_regression/random_forest_regression.py
 after_success:
-  - python scripts/build_directory_md.py
+  - scripts/build_directory_md.py > DIRECTORY.md
   - cat DIRECTORY.md

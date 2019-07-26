@@ -1,71 +1,45 @@
-"""
-This is a simple script that will scan through the current directory
-and generate the corresponding DIRECTORY.md file, can also specify
-files or folders to be ignored.
-"""
+#!/usr/bin/env python3
+
 import os
+from typing import Iterator
+
+URL_BASE = "https://github.com/TheAlgorithms/Python/blob/master"
 
 
-# Target URL (master)
-URL = "https://github.com/TheAlgorithms/Python/blob/master/"
+def good_filepaths(top_dir: str = ".") -> Iterator[str]:
+    for dirpath, dirnames, filenames in os.walk(top_dir):
+        dirnames[:] = [d for d in dirnames if d != "scripts" and d[0] not in "._"]
+        for filename in filenames:
+            if filename == "__init__.py":
+                continue
+            if os.path.splitext(filename)[1] in (".py", ".ipynb"):
+                yield os.path.join(dirpath, filename).lstrip("./")
 
 
-def tree(d, ignores, ignores_ext):
-    return _markdown(d, ignores, ignores_ext, 0)
-    
-
-def _markdown(parent, ignores, ignores_ext, depth):
-    out = ""
-    dirs, files = [], []
-    for i in os.listdir(parent):
-        full = os.path.join(parent, i)
-        name, ext = os.path.splitext(i)
-        if i not in ignores and ext not in ignores_ext:
-            if os.path.isfile(full):
-                # generate list
-                pre = parent.replace("./", "").replace(" ", "%20")
-                # replace all spaces to safe URL
-                child = i.replace(" ", "%20")
-                files.append((pre, child, name))
-            else:
-                dirs.append(i)   
-    # Sort files
-    files.sort(key=lambda e: e[2].lower())
-    for f in files:
-        pre, child, name = f
-        out += "  " * depth + "* [" + name.replace("_", " ") + "](" + URL + pre + "/" + child + ")\n"
-    # Sort directories
-    dirs.sort()
-    for i in dirs:
-        full = os.path.join(parent, i)
-        i = i.replace("_", " ").title()
-        if depth == 0:
-            out += "## " + i + "\n"
-        else:
-            out += "  " * depth + "* " + i + "\n"
-        out += _markdown(full, ignores, ignores_ext, depth+1)
-    return out
+def md_prefix(i):
+    return f"{i * '  '}*" if i else "##"
 
 
-# Specific files or folders with the given names will be ignored
-ignores = [".vs",
-    ".gitignore",
-    ".git",
-    "scripts",
-    "__init__.py",
-    "requirements.txt",
-    ".github"
-]
-# Files with given entensions will be ignored
-ignores_ext = [
-    ".md",
-    ".ipynb",
-    ".png",
-    ".jpg",
-    ".yml"
-]
+def print_path(old_path: str, new_path: str) -> str:
+    old_parts = old_path.split(os.sep)
+    for i, new_part in enumerate(new_path.split(os.sep)):
+        if i + 1 > len(old_parts) or old_parts[i] != new_part:
+            if new_part:
+                print(f"{md_prefix(i)} {new_part.replace('_', ' ').title()}")
+    return new_path
+
+
+def print_directory_md(top_dir: str = ".") -> None:
+    old_path = ""
+    for filepath in sorted(good_filepaths()):
+        filepath, filename = os.path.split(filepath)
+        if filepath != old_path:
+            old_path = print_path(old_path, filepath)
+        indent = (filepath.count(os.sep) + 1) if filepath else 0
+        url = "/".join((URL_BASE, filepath, filename)).replace(" ", "%20")
+        filename = os.path.splitext(filename.replace("_", " "))[0]
+        print(f"{md_prefix(indent)} [{filename}]({url})")
 
 
 if __name__ == "__main__":
-    with open("DIRECTORY.md", "w+") as f:
-        f.write(tree(".", ignores, ignores_ext))
+    print_directory_md(".")
