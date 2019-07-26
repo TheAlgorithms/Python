@@ -35,13 +35,44 @@ def decimal_to_hexadecimal(decimal):
         '1000'
         >>> decimal_to_hexadecimal(999098)
         'f3eba'
+        >>> # negatives work too
+        >>> decimal_to_hexadecimal(-256)
+        '-100'
+        >>> # floats are acceptable if equivalent to an int
+        >>> decimal_to_hexadecimal(17.0)
+        '11'
+        >>> # other floats will error
+        >>> decimal_to_hexadecimal(16.16)
+        Traceback (most recent call last):
+            File "doctest.py", line 1329, in __run
+                compileflags, 1), test.globs)
+            File "<doctest __main__.decimal_to_hexadecimal[8]>", line 1, in <module>
+                decimal_to_hexadecimal(16.16)
+            File "decimal_to_hexadecimal.py", line 51, in decimal_to_hexadecimal
+                assert type(decimal) in (int, float) and decimal == int(decimal)
+        AssertionError
+        >>> # strings will error as well
+        >>> decimal_to_hexadecimal('0xfffff')
+        Traceback (most recent call last):
+            File "doctest.py", line 1329, in __run
+                compileflags, 1), test.globs)
+            File "<doctest __main__.decimal_to_hexadecimal[9]>", line 1, in <module>
+                decimal_to_hexadecimal('0xfffff')
+            File "decimal_to_hexadecimal.py", line 58, in decimal_to_hexadecimal
+                assert type(decimal) in (int, float) and decimal == int(decimal)
+        AssertionError
     """
+    assert type(decimal) in (int, float) and decimal == int(decimal)
     hexadecimal = ''
+    negative = False
+    if decimal < 0:
+        negative = True
+        decimal *= -1
     while decimal > 0:
-        remainder = decimal % 16
-        decimal -= remainder
+        decimal, remainder = divmod(decimal, 16)
         hexadecimal = values[remainder] + hexadecimal
-        decimal /= 16
+    if negative:
+        hexadecimal = '-' + hexadecimal
     return hexadecimal
 
 if __name__ == '__main__':
