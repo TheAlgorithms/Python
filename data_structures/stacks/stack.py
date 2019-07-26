@@ -30,19 +30,19 @@ class Stack(object):
 
     def pop(self):
         """ Pop an element off of the top of the stack."""
-        if self.stack:
+        if self:
             return self.stack.pop()
         else:
             raise IndexError('pop from an empty stack')
 
     def peek(self):
         """ Peek at the top-most element of the stack."""
-        if self.stack:
+        if self:
             return self.stack[-1]
 
     def is_empty(self):
         """ Check if a stack is empty."""
-        return not bool(self.stack)
+        return not self
 
     def size(self):
         """ Return the size of the stack."""
