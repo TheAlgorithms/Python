@@ -157,6 +157,5 @@ def main():
             sample.insert(i, float(input("value: ")))
         network.sort(sample)
 
-
 if __name__ == "__main__":
     main()
