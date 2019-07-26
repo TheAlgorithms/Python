@@ -251,7 +251,6 @@
   * [tower of hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
   * [two sum](https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py)
   * [word patterns](https://github.com/TheAlgorithms/Python/blob/master/other/word_patterns.py)
-## [out](https://github.com/TheAlgorithms/Python/blob/master//out.ipynb)
 ## Project Euler
   * Problem 01
     * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol1.py)
@@ -392,6 +391,5 @@
   * [min cost string conversion](https://github.com/TheAlgorithms/Python/blob/master/strings/min_cost_string_conversion.py)
   * [naive string search](https://github.com/TheAlgorithms/Python/blob/master/strings/naive_string_search.py)
   * [rabin karp](https://github.com/TheAlgorithms/Python/blob/master/strings/rabin_karp.py)
-## [test Bubba](https://github.com/TheAlgorithms/Python/blob/master//test_Bubba.py)
 ## Traversals
   * [binary tree traversals](https://github.com/TheAlgorithms/Python/blob/master/traversals/binary_tree_traversals.py)
