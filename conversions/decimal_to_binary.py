@@ -1,25 +1,43 @@
-"""Convert a Decimal Number to a Binary Number."""
+"""Convert ANY Decimal Number to a Binary Number."""
 
+def dtbconverter(num):
+    """ Function inputs a float value and returns a list as output """
+    decimal_accuracy = 7
 
-def decimal_to_binary(num):
-    """Convert a Decimal Number to a Binary Number."""
-    binary = []
-    while num > 0:
-        binary.insert(0, num % 2)
-        num >>= 1
-    return "".join(str(e) for e in binary)
+    # The part before decimal point in List<string> format
+    whole = []
+    # The part after decimal point in List<string> format
+    fractional = ['.']
 
+    # Extract fractional number part of decimal
+    mantissa = round(num % 1, decimal_accuracy)
+    # Extract whole number part of decimal.
+    w_num = int(num)
 
-def main():
-    """Print binary equivelents of decimal numbers."""
-    print("\n2 in binary is:")
-    print(decimal_to_binary(2))  # = 10
-    print("\n7 in binary is:")
-    print(decimal_to_binary(7))  # = 111
-    print("\n35 in binary is:")
-    print(decimal_to_binary(35))  # = 100011
-    print("\n")
+    i = 0     # Counter
+
+    # Loop to find binary of mantissa part
+    while i < decimal_accuracy:
+        mantissa = mantissa * 2
+        mantissa = int(mantissa // 1)
+        fractional.append(str(mantissa))
+        # Extacting mantissa
+        mantissa = round(mantissa % 1, decimal_accuracy)
+        if mantissa == 0:
+            break  # Removes trailing zeros.
+        i = i + 1
+
+    # Loop to find binary of whole number part.
+    while w_num != 0:
+        whole.append(w_num % 2)
+        w_num = w_num // 2
+    whole.reverse()
+
+    binary = whole + fractional
+    return "".join(binary)
 
 
 if __name__ == '__main__':
-    main()
+    # NUMBER = float(input("Enter ANY base-10 Number: "))
+    NUMBER = 55.55
+    print("The Binary Equivalant: " + dtbconverter(NUMBER))
