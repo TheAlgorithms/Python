@@ -14,12 +14,12 @@
 
 # Primality test 2^p - 1
 # Return true if 2^p - 1 is prime
-def Lucas_Lehmer_test(p: int) -> bool:
+def lucas_lehmer_test(p: int) -> bool:
     """
-    >>> Lucas_Lehmer_test(p=7)
+    >>> lucas_lehmer_test(p=7)
     True
     
-    >>> Lucas_Lehmer_test(p=11)
+    >>> lucas_lehmer_test(p=11)
     False
     
     # M_11 = 2^11 - 1 = 2047 = 23 * 89
@@ -27,21 +27,16 @@ def Lucas_Lehmer_test(p: int) -> bool:
 
     if p < 2:
         raise ValueError("p should not be less than 2!")
-
-    if p == 2:
+    elif p == 2:
         return True
 
     s = 4
     M = (1 << p) - 1
     for i in range(p - 2):
         s = ((s * s) - 2) % M
-
     return s == 0
 
 
 if __name__ == "__main__":
-    p = 7
-    print(Lucas_Lehmer_test(p))
-
-    p = 11
-    print(Lucas_Lehmer_test(p))
+    print(lucas_lehmer_test(7))
+    print(lucas_lehmer_test(11))
