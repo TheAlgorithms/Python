@@ -8,6 +8,7 @@ before_script:
   - black --check . || true
   - flake8 . --count --select=E9,F401,F63,F7,F82 --show-source --statistics
 script:
+  - scripts/validate_filenames.py  # no uppercase and no spaces
   - mypy --ignore-missing-imports .
   - pytest . --doctest-modules
       --ignore=data_structures/stacks/balanced_parentheses.py
