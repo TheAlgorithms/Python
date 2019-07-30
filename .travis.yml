@@ -8,6 +8,7 @@ before_script:
   - black --check . || true
   - flake8 . --count --select=E9,F401,F63,F7,F82 --show-source --statistics
 script:
+  - scripts/validate_filenames.py  # no uppercase and no spaces
   - mypy --ignore-missing-imports .
   - pytest . --doctest-modules
       --ignore=data_structures/stacks/balanced_parentheses.py
@@ -18,5 +19,5 @@ script:
       --ignore=machine_learning/random_forest_classification/random_forest_classification.py
       --ignore=machine_learning/random_forest_regression/random_forest_regression.py
 after_success:
-  - python scripts/build_directory_md.py
+  - scripts/build_directory_md.py > DIRECTORY.md
   - cat DIRECTORY.md
