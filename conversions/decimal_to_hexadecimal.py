@@ -21,23 +21,54 @@ values = {
 }
 
 def decimal_to_hexadecimal(decimal):
-    """ take decimal value, return hexadecimal representation as str """
+    """
+        take integer decimal value, return hexadecimal representation as str beginning with 0x
+        >>> decimal_to_hexadecimal(5)
+        '0x5'
+        >>> decimal_to_hexadecimal(15)
+        '0xf'
+        >>> decimal_to_hexadecimal(37)
+        '0x25'
+        >>> decimal_to_hexadecimal(255)
+        '0xff'
+        >>> decimal_to_hexadecimal(4096)
+        '0x1000'
+        >>> decimal_to_hexadecimal(999098)
+        '0xf3eba'
+        >>> # negatives work too
+        >>> decimal_to_hexadecimal(-256)
+        '-0x100'
+        >>> # floats are acceptable if equivalent to an int
+        >>> decimal_to_hexadecimal(17.0)
+        '0x11'
+        >>> # other floats will error
+        >>> decimal_to_hexadecimal(16.16) # doctest: +ELLIPSIS
+        Traceback (most recent call last):
+        ...
+        AssertionError
+        >>> # strings will error as well
+        >>> decimal_to_hexadecimal('0xfffff') # doctest: +ELLIPSIS
+        Traceback (most recent call last):
+        ...
+        AssertionError
+        >>> # results are the same when compared to Python's default hex function
+        >>> decimal_to_hexadecimal(-256) == hex(-256)
+        True
+    """
+    assert type(decimal) in (int, float) and decimal == int(decimal)
     hexadecimal = ''
+    negative = False
+    if decimal < 0:
+        negative = True
+        decimal *= -1
     while decimal > 0:
-        remainder = decimal % 16
-        decimal -= remainder
+        decimal, remainder = divmod(decimal, 16)
         hexadecimal = values[remainder] + hexadecimal
-        decimal /= 16
+    hexadecimal = '0x' + hexadecimal
+    if negative:
+        hexadecimal = '-' + hexadecimal
     return hexadecimal
 
-def main():
-    """ print test cases """
-    print("5 in hexadecimal is", decimal_to_hexadecimal(5))
-    print("15 in hexadecimal is", decimal_to_hexadecimal(15))
-    print("37 in hexadecimal is", decimal_to_hexadecimal(37))
-    print("255 in hexadecimal is", decimal_to_hexadecimal(255))
-    print("4096 in hexadecimal is", decimal_to_hexadecimal(4096))
-    print("999098 in hexadecimal is", decimal_to_hexadecimal(999098))
-
 if __name__ == '__main__':
-    main()
+    import doctest
+    doctest.testmod()
