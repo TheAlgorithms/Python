@@ -7,23 +7,22 @@
 import tkinter as tk
 from tkinter import messagebox
 if __name__ == '__main__':
-    root = tk.Tk()
-    root.title('Calculator')
+	root = tk.Tk()
+    	root.title('Calculator')
+    	label = tk.Label(root, text='Enter first number', pady=10)
+	label.pack()
 
-label = tk.Label(root, text='Enter first number', pady=10)
-label.pack()
+	first_number_entry = tk.Entry(root)
+	first_number_entry.pack()
 
-first_number_entry = tk.Entry(root)
-first_number_entry.pack()
+	label2 = tk.Label(root, text='Enter second number')
+	label2.pack()
 
-label2 = tk.Label(root, text='Enter second number')
-label2.pack()
+	second_number_entry = tk.Entry(root)
+	second_number_entry.pack()
 
-second_number_entry = tk.Entry(root)
-second_number_entry.pack()
-
-operations = tk.Label(root, text='Operations')
-operations.pack()
+	operations = tk.Label(root, text='Operations')
+	operations.pack()
 
 
 def addition():
