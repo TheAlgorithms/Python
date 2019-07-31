@@ -10,18 +10,24 @@ matrix:
     # The following files currently fail pytests.  See issues: #1016, #1044, #1080
     # Here they are run allow_failures mode and when each passes pytest, it can be
     # removed BOTH lists below.  Complex now but simple once all files pass pytest.
+    # - env: FILE=pytest file_transfer_protocol/ftp_client_server.py
     #   before_script: true
-    #   script: pytest file_transfer_protocol/ftp_client_server.py --doctest-modules
-    - before_script: true
-      script: pytest file_transfer_protocol/ftp_send_receive.py --doctest-modules
-    - before_script: true
-      script: pytest machine_learning/linear_regression.py --doctest-modules
-    - before_script: true
-      script: pytest machine_learning/perceptron.py --doctest-modules
-    - before_script: true
-      script: pytest machine_learning/random_forest_classification/random_forest_classification.py --doctest-modules
-    - before_script: true
-      script: pytest machine_learning/random_forest_regression/random_forest_regression.py --doctest-modules
+    #   script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest file_transfer_protocol/ftp_send_receive.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest machine_learning/linear_regression.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest machine_learning/perceptron.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest machine_learning/random_forest_classification/random_forest_classification.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest machine_learning/random_forest_regression/random_forest_regression.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
   allow_failures:
     - before_script: true
 before_script:
