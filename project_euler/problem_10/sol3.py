@@ -9,20 +9,13 @@ Find the sum of all the primes below two million.
 using Sieve_of_Eratosthenes : 
 
 The sieve of Eratosthenes is one of the most efficient ways to find all primes smaller than n when n is smaller than 10 million
+
+only for positive numbers
+
 """
 
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
-
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
-
-
 def prime_sum(n):
+    
     """Returns the sum of all the primes below n.
     
 
@@ -39,18 +32,18 @@ def prime_sum(n):
 
     """
     
-    list = [0 for i in xrange(n+1)]
+    list_ = [0 for i in range(n+1)]
 
-    list[0]=1
-    list[1]=1
+    list_[0]=1
+    list_[1]=1
 
-    for i in xrange(2,int(n**0.5)+1):
-        if list[i]==0:
-            for j in xrange(i * i, n+1, i):
-                    list[j]=1
+    for i in range(2,int(n**0.5)+1):
+        if list_[i]==0:
+            for j in range(i * i, n+1, i):
+                    list_[j]=1
     s=0
-    for i in xrange(n):
-        if list[i] == 0:
+    for i in range(n):
+        if list_[i] == 0:
             s+=i
     return(s)
 
@@ -59,6 +52,6 @@ if __name__ == '__main__':
     #import doctest
     #doctest.testmod()
     
-    print(prime_sum(int(raw_input())))
+    print(prime_sum(int(input().strip())))
 
 
