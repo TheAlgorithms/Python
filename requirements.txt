@@ -9,3 +9,4 @@ pytest
 sklearn
 sympy
 tensorflow
+seaborn
