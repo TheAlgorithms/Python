@@ -8,8 +8,8 @@ import tkinter as tk
 from tkinter import messagebox
 if __name__ == '__main__':
 	root = tk.Tk()
-    	root.title('Calculator')
-    	label = tk.Label(root, text='Enter first number', pady=10)
+	root.title('Calculator')
+	label = tk.Label(root, text='Enter first number', pady=10)
 	label.pack()
 
 	first_number_entry = tk.Entry(root)
