@@ -2,24 +2,23 @@
 
 
 def decimal_to_binary(num):
-    """Convert a Decimal Number to a Binary Number."""
 
     """
         Convert a Integer Decimal Number to a Binary Number as str.
         >>> decimal_to_binary(0)
-        '0'
+        '0b0'
         >>> decimal_to_binary(2)
-        '10'
+        '0b10'
         >>> decimal_to_binary(7)
-        '111'
+        '0b111'
         >>> decimal_to_binary(35)
-        '100011'
+        '0b100011'
         >>> # negatives work too
         >>> decimal_to_binary(-2)
-        '-10'
+        '-0b10'
         >>> # floats are acceptable if equivalent to an int
-        >>> decimal_to_binary(2)
-        '10'
+        >>> decimal_to_binary(2.0)
+        '0b10'
         >>> # other floats will error
         >>> decimal_to_binary(16.16) # doctest: +ELLIPSIS
         Traceback (most recent call last):
@@ -35,9 +34,9 @@ def decimal_to_binary(num):
         True
     """
     assert type(num) in (int, float) and num == int(num)
-
+    num = int(num)
     if num == 0:
-        return 0
+        return "0b0"
 
     negative = False
 
