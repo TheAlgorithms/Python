@@ -6,7 +6,7 @@ def decimal_to_binary(num):
 
     if num == 0:
         return 0
-    
+
     negative = False
 
     if num < 0:
@@ -34,7 +34,7 @@ def main():
     print(decimal_to_binary(7))  # = 111
     print("\n35 in binary is:")
     print(decimal_to_binary(35))  # = 100011
-    print("\n-2 in binary is:")  
+    print("\n-2 in binary is:")
     print(decimal_to_binary(-2))  # = -10
     print("\n-7 in binary is:")
     print(decimal_to_binary(7))  # = -111
@@ -43,5 +43,5 @@ def main():
     print("\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
