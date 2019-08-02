@@ -1,6 +1,6 @@
-# @Author  : lightXu
-# @File    : sobel_filter.py
-# @Time    : 2019/7/8 0008 下午 16:26
+"""
+Implementation of sobel filter algorithm
+"""
 import numpy as np
 from cv2 import imread, cvtColor, COLOR_BGR2GRAY, imshow, waitKey
 from digital_image_processing.filters.convolve import img_convolve

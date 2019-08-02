@@ -1,3 +1,6 @@
+"""
+Implementation of canny edge-detection algorithm
+"""
 import cv2
 import numpy as np
 from digital_image_processing.filters.convolve import img_convolve
