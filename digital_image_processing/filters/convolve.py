@@ -4,16 +4,15 @@
 from cv2 import imread, cvtColor, COLOR_BGR2GRAY, imshow, waitKey
 from numpy import array, zeros, ravel, pad, dot, uint8
 import math
-import numpy as np
 
 
 def im2col(image, block_size, row_stride, col_stride, dst_rows, dst_cols):
 
-    image_array = np.zeros((dst_rows * dst_cols, block_size[1] * block_size[0]))
+    image_array = zeros((dst_rows * dst_cols, block_size[1] * block_size[0]))
     row = 0
     for i in range(0, dst_rows, row_stride):
         for j in range(0, dst_cols, col_stride):
-            window = np.ravel(image[i:i + block_size[0], j:j + block_size[1]])
+            window = ravel(image[i:i + block_size[0], j:j + block_size[1]])
             image_array[row, :] = window
             row += 1
 
@@ -36,13 +35,13 @@ def img_convolve(image, kernel, mode='edge', row_stride=1, col_stride=1):
     pad_right = pad_w - pad_left
 
     # Pads image with the edge values of array.
-    image_tmp = np.pad(array=image,
-                       pad_width=((pad_top, pad_bottom), (pad_left, pad_right)),
-                       mode=mode)
+    image_tmp = pad(array=image,
+                    pad_width=((pad_top, pad_bottom), (pad_left, pad_right)),
+                    mode=mode)
 
     image_array = im2col(image_tmp, (k_size_row, k_size_col), row_stride, col_stride, dst_rows, dst_cols)
-    kernel_array = np.ravel(kernel)
-    dst = np.dot(image_array, kernel_array).reshape(height, width)
+    kernel_array = ravel(kernel)
+    dst = dot(image_array, kernel_array).reshape(height, width)
     return dst
 
 
