@@ -14,10 +14,6 @@ def decimal_to_binary(num):
         '111'
         >>> decimal_to_binary(35)
         '100011'
-        >>> decimal_to_hexadecimal(4096)
-        '0x1000'
-        >>> decimal_to_hexadecimal(999098)
-        '0xf3eba'
         >>> # negatives work too
         >>> decimal_to_binary(-2)
         '-10'
