@@ -4,6 +4,42 @@
 def decimal_to_binary(num):
     """Convert a Decimal Number to a Binary Number."""
 
+    """
+        Convert a Integer Decimal Number to a Binary Number as str.
+        >>> decimal_to_binary(0)
+        '0'
+        >>> decimal_to_binary(2)
+        '10'
+        >>> decimal_to_binary(7)
+        '111'
+        >>> decimal_to_binary(35)
+        '100011'
+        >>> decimal_to_hexadecimal(4096)
+        '0x1000'
+        >>> decimal_to_hexadecimal(999098)
+        '0xf3eba'
+        >>> # negatives work too
+        >>> decimal_to_binary(-2)
+        '-10'
+        >>> # floats are acceptable if equivalent to an int
+        >>> decimal_to_binary(2)
+        '10'
+        >>> # other floats will error
+        >>> decimal_to_binary(16.16) # doctest: +ELLIPSIS
+        Traceback (most recent call last):
+        ...
+        AssertionError
+        >>> # strings will error as well
+        >>> decimal_to_binary('0xfffff') # doctest: +ELLIPSIS
+        Traceback (most recent call last):
+        ...
+        AssertionError
+        >>> # results are the same when compared to Python's default bin function
+        >>> decimal_to_binary(-256) == bin(-256)
+        True
+    """
+    assert type(num) in (int, float) and num == int(num)
+
     if num == 0:
         return 0
 
@@ -19,29 +55,11 @@ def decimal_to_binary(num):
         num >>= 1
 
     if negative:
-        return "-" + "".join(str(e) for e in binary)
+        return "-0b" + "".join(str(e) for e in binary)
 
-    return "".join(str(e) for e in binary)
-
-
-def main():
-    """Print binary equivelents of decimal numbers."""
-    print("\n0 in binary is:")
-    print(decimal_to_binary(0))  # = 0
-    print("\n2 in binary is:")
-    print(decimal_to_binary(2))  # = 10
-    print("\n7 in binary is:")
-    print(decimal_to_binary(7))  # = 111
-    print("\n35 in binary is:")
-    print(decimal_to_binary(35))  # = 100011
-    print("\n-2 in binary is:")
-    print(decimal_to_binary(-2))  # = -10
-    print("\n-7 in binary is:")
-    print(decimal_to_binary(7))  # = -111
-    print("\n-35 in binary is:")
-    print(decimal_to_binary(-35))  # = -100011
-    print("\n")
+    return "0b" + "".join(str(e) for e in binary)
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+    doctest.testmod()
