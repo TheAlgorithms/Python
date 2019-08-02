@@ -33,7 +33,6 @@ def img_convolve(image, kernel, row_stride=1, col_stride=1):
     """
     :param image:  input image array
     :param kernel: filter kernel array
-    :param mode: padding mode, and 'edge' Pads with the edge values of array.
     :param row_stride: stride in row channels
     :param col_stride: stride in row channels
     :return: the filter result
