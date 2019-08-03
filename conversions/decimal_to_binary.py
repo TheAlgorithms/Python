@@ -26,15 +26,8 @@ def decimal_to_binary(num):
         Traceback (most recent call last):
         ...
         TypeError: 'str' object cannot be interpreted as an integer
-        >>> # results are the same when compared to Python's default bin function
-        >>> decimal_to_binary(-256) == bin(-256) # doctest: +ELLIPSIS
-        True
-        >>> bin("2") == decimal_to_binary("2") # doctest: +ELLIPSIS
-        True
-        >>> decimal_to_binary(2.0) == bin(2.0) # doctest: +ELLIPSIS
-        True
     """
-    
+
     if type(num) == float:
         raise TypeError("'float' object cannot be interpreted as an integer")
     if type(num) == str:
