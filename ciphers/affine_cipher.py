@@ -1,7 +1,7 @@
 from __future__ import print_function
 import sys, random, cryptomath_module as cryptoMath
 
-SYMBOLS = """ !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
+SYMBOLS = r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
 
 def main():
     message = input('Enter message: ')
@@ -68,8 +68,8 @@ def getRandomKey():
     while True:
         keyA = random.randint(2, len(SYMBOLS))
         keyB = random.randint(2, len(SYMBOLS))
-    if cryptoMath.gcd(keyA, len(SYMBOLS)) == 1:
-        return keyA * len(SYMBOLS) + keyB
+        if cryptoMath.gcd(keyA, len(SYMBOLS)) == 1:
+            return keyA * len(SYMBOLS) + keyB
 
 if __name__ == '__main__':
     import doctest

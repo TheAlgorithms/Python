@@ -1,8 +1,5 @@
-import collections
-import sys
 import random
-import time
-import math
+
 """
 A python implementation of the quick select algorithm, which is efficient for calculating the value that would appear in the index of a list if it would be sorted, even if it is not already sorted
 https://en.wikipedia.org/wiki/Quickselect
@@ -17,31 +14,36 @@ def _partition(data, pivot):
     """
     less, equal, greater = [], [], []
     for element in data:
-        if element.address < pivot.address:
+        if element < pivot:
             less.append(element)
-        elif element.address > pivot.address:
+        elif element > pivot:
             greater.append(element)
         else:
             equal.append(element)
     return less, equal, greater
     
-    def quickSelect(list, k):
+def quickSelect(list, k):
     #k = len(list) // 2 when trying to find the median (index that value would be when list is sorted)
-      smaller = []
-      larger = []
-      pivot = random.randint(0, len(list) - 1)
-      pivot = list[pivot]
-      count = 0
-      smaller, equal, larger =_partition(list, pivot)
-      count = len(equal)
-      m = len(smaller)
+    
+    #invalid input
+    if k>=len(list) or k<0:
+        return None
+    
+    smaller = []
+    larger = []
+    pivot = random.randint(0, len(list) - 1)
+    pivot = list[pivot]
+    count = 0
+    smaller, equal, larger =_partition(list, pivot)
+    count = len(equal)
+    m = len(smaller)
 
-      #k is the pivot
-      if m <= k < m + count:
+    #k is the pivot
+    if m <= k < m + count:
         return pivot
     # must be in smaller
-      elif m > k:
+    elif m > k:
         return quickSelect(smaller, k)
     #must be in larger
-      else:
+    else:
         return quickSelect(larger, k - (m + count))

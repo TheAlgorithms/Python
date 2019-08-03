@@ -1,6 +1,6 @@
 """
 Linear regression is the most basic type of regression commonly used for
-predictive analysis. The idea is preety simple, we have a dataset and we have
+predictive analysis. The idea is pretty simple, we have a dataset and we have
 a feature's associated with it. The Features should be choose very cautiously
 as they determine, how much our model will be able to make future predictions.
 We try to set these Feature weights, over many iterations, so that they best
@@ -59,7 +59,6 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
     :param theta     : contains the feature vector
     :return          : sum of square error computed from given feature's
     """
-    error = 0.0
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
     sum_elem = np.sum(np.square(prod))
