@@ -16,25 +16,30 @@ def decimal_to_binary(num):
         >>> # negatives work too
         >>> decimal_to_binary(-2)
         '-0b10'
-        >>> # floats are acceptable if equivalent to an int
-        >>> decimal_to_binary(2.0)
-        '0b10'
         >>> # other floats will error
         >>> decimal_to_binary(16.16) # doctest: +ELLIPSIS
         Traceback (most recent call last):
         ...
-        AssertionError
+        TypeError: 'float' object cannot be interpreted as an integer
         >>> # strings will error as well
         >>> decimal_to_binary('0xfffff') # doctest: +ELLIPSIS
         Traceback (most recent call last):
         ...
-        AssertionError
+        TypeError: 'str' object cannot be interpreted as an integer
         >>> # results are the same when compared to Python's default bin function
-        >>> decimal_to_binary(-256) == bin(-256)
+        >>> decimal_to_binary(-256) == bin(-256) # doctest: +ELLIPSIS
+        True
+        >>> bin("2") == decimal_to_binary("2") # doctest: +ELLIPSIS
+        True
+        >>> decimal_to_binary(2.0) == bin(2.0) # doctest: +ELLIPSIS
         True
     """
-    assert type(num) in (int, float) and num == int(num)
-    num = int(num)
+    
+    if type(num) == float:
+        raise TypeError("'float' object cannot be interpreted as an integer")
+    if type(num) == str:
+        raise TypeError("'str' object cannot be interpreted as an integer")
+
     if num == 0:
         return "0b0"
 
