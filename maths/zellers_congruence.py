@@ -68,7 +68,7 @@ def zeller(date_input: str) -> str:
 """
 
     # Days of the week for response
-    days: Dict[str, str] = {
+    days = {
         '0': 'Sunday',
         '1': 'Monday',
         '2': 'Tuesday',
@@ -78,7 +78,7 @@ def zeller(date_input: str) -> str:
         '6': 'Saturday'
     }
 
-    convert_datetime_days: Dict[int,int] = {
+    convert_datetime_days = {
         0:1,
         1:2,
         2:3,
@@ -87,6 +87,7 @@ def zeller(date_input: str) -> str:
         5:6,
         6:0
     }
+
     # Validate
     if not 0 < len(date_input) < 11:
         raise ValueError("Must be 10 characters long")
@@ -120,7 +121,7 @@ def zeller(date_input: str) -> str:
     if not 45 < y < 8500:
         raise ValueError("Year out of range. There has to be some sort of limit...right?")
 
-    # Get datetime obj
+    # Get datetime obj for validation
     dt_ck = datetime.date(int(y), int(m), int(d))
 
     # Start math
