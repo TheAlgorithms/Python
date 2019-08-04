@@ -1,13 +1,16 @@
+from __future__ import annotations
+import datetime
 import argparse
 
-def zeller(date_input):
+
+def zeller(date_input: str) -> str:
 
     """
     Zellers Congruence Algorithm
     Find the day of the week for nearly any Gregorian or Julian calendar date 
 
     >>> zeller('01-31-2010')
-    Your date 01-31-2010, is a Sunday!
+    'Your date 01-31-2010, is a Sunday!'
 
     Validate out of range month
     >>> zeller('13-31-2010')
@@ -65,7 +68,7 @@ def zeller(date_input):
 """
 
     # Days of the week for response
-    days = {
+    days: Dict[str, str] = {
         '0': 'Sunday',
         '1': 'Monday',
         '2': 'Tuesday',
@@ -75,57 +78,74 @@ def zeller(date_input):
         '6': 'Saturday'
     }
 
+    convert_datetime_days: Dict[int,int] = {
+        0:1,
+        1:2,
+        2:3,
+        3:4,
+        4:5,
+        5:6,
+        6:0
+    }
     # Validate
-    if len(date_input) >= 11 or len(date_input) <= 0:
+    if not 0 < len(date_input) < 11:
         raise ValueError("Must be 10 characters long")
 
     # Get month
-    m = int(date_input[0] + date_input[1])
+    m: int = int(date_input[0] + date_input[1])
     # Validate
-    if m >= 13 or m <= 0:
+    if not 0 < m < 13:
         raise ValueError("Month must be between 1 - 12")
 
-    sep_1 = str(date_input[2])
+    sep_1:str = date_input[2]
     # Validate
     if sep_1 not in ["-","/"]:
         raise ValueError("Date seperator must be '-' or '/'")
 
     # Get day
-    d = int(date_input[3] + date_input[4])
+    d: int = int(date_input[3] + date_input[4])
     # Validate
-    if d >= 32 or d <= 0:
+    if not 0 < d < 32:
         raise ValueError("Date must be between 1 - 31")
     
-    # Seperator 2
-    sep_2 = str(date_input[5])
+    # Get second seperator
+    sep_2: str = date_input[5]
     # Validate
     if sep_2 not in ["-","/"]:
         raise ValueError("Date seperator must be '-' or '/'")
 
     # Get year
-    y = int(date_input[6] + date_input[7] + date_input[8] + date_input[9])
+    y: int = int(date_input[6] + date_input[7] + date_input[8] + date_input[9])
     # Arbitrary year range
-    if y >= 8500 or y <= 45:
+    if not 45 < y < 8500:
         raise ValueError("Year out of range. There has to be some sort of limit...right?")
+
+    # Get datetime obj
+    dt_ck = datetime.date(int(y), int(m), int(d))
 
     # Start math
     if m <= 2:
         y = y - 1
         m = m + 12
-    c = int(str(y)[:2])
-    k = int(str(y)[2:])
-    t = int(2.6*m - 5.39)
-    u = int(c / 4)
-    v = int(k / 4)
-    x = d + k
-    z = t + u + v + x
-    w = z - (2 * c)
-    f = round(w%7)
+    # maths var
+    c: int = int(str(y)[:2])
+    k: int = int(str(y)[2:])
+    t: int = int(2.6*m - 5.39)
+    u: int = int(c / 4)
+    v: int = int(k / 4)
+    x: int = int(d + k)
+    z: int = int(t + u + v + x)
+    w: int = int(z - (2 * c))
+    f: int = round(w%7)
     # End math
 
-    for i in days:
-        if f == int(i):
-            print("Your date " + date_input + ", is a " + days[i] + "!")
+    # Validate math
+    if f != convert_datetime_days[dt_ck.weekday()]:
+        raise AssertionError("The date was evaluated incorrectly. Contact developer.")
+
+    # Response
+    response: str = f"Your date {date_input}, is a {days[str(f)]}!"
+    return response
 
 if __name__ == '__main__':
     import doctest
