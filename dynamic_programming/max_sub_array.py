@@ -2,7 +2,7 @@
 author : Mayank Kumar Jha (mk9440)
 """
 from __future__ import print_function
-
+from typing import List
 import time
 import matplotlib.pyplot as plt
 from random import randint
@@ -37,7 +37,27 @@ def find_max_cross_sum(A,low,mid,high):
             right_sum=summ
             max_right=i
     return max_left,max_right,(left_sum+right_sum)
-    
+
+def max_sub_array(nums: List[int]) -> int:
+    """
+     Finds the contiguous subarray (can be empty array) 
+     which has the largest sum and return its sum.
+
+    >>> max_sub_array([-2,1,-3,4,-1,2,1,-5,4])
+    6
+    >>> max_sub_array([])
+    0
+    >>> max_sub_array([-1,-2,-3])
+    0
+    """
+    best = 0 
+    current = 0 
+    for i in nums: 
+        current += i 
+        if current < 0:
+            current = 0
+        best = max(best, current)
+    return best 
 
 if __name__=='__main__':
     inputs=[10,100,1000,10000,50000,100000,200000,300000,400000,500000]

@@ -6,31 +6,17 @@ before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
 before_script:
   - black --check . || true
-  - flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+  - flake8 . --count --select=E9,F401,F63,F7,F82 --show-source --statistics
 script:
+  - scripts/validate_filenames.py  # no uppercase and no spaces
   - mypy --ignore-missing-imports .
-  #- IGNORE="data_structures,file_transfer_protocol,graphs,machine_learning,maths,neural_network,project_euler"
-  #- pytest . --doctest-modules --ignore=${IGNORE}
-  - pytest --doctest-modules
-      arithmetic_analysis
-      backtracking
-      boolean_algebra
-      ciphers
-      compression
-      conversions
-      digital_image_processing
-      divide_and_conquer
-      dynamic_programming
-      hashes
-      linear_algebra_python
-      matrix
-      networking_flow
-      other
-      searches
-      sorts
-      strings
-      traversals
-
+  - pytest . --doctest-modules
+      --ignore=file_transfer_protocol/ftp_send_receive.py
+      --ignore=file_transfer_protocol/ftp_client_server.py
+      --ignore=machine_learning/linear_regression.py
+      --ignore=machine_learning/perceptron.py
+      --ignore=machine_learning/random_forest_classification/random_forest_classification.py
+      --ignore=machine_learning/random_forest_regression/random_forest_regression.py
 after_success:
-  - python scripts/build_directory_md.py
+  - scripts/build_directory_md.py > DIRECTORY.md
   - cat DIRECTORY.md

@@ -1,5 +1,5 @@
 # Implementing Newton Raphson method in Python
-# Author: Haseeb
+# Author: Syed Haseeb Shah (github.com/QuantumNovice)
 
 from sympy import diff
 from decimal import Decimal
@@ -30,7 +30,3 @@ if __name__ == '__main__':
 
     # Exponential Roots
     print ('exp(x) - 1 = 0', NewtonRaphson('exp(x) - 1', 0))
-    
-    
-    
-
