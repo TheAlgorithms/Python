@@ -73,6 +73,13 @@ def test_rabin_karp():
     pattern = "abcdabcy"
     text = "abcxabcdabxabcdabcdabcy"
     assert rabin_karp(pattern, text)
+
+    # Test 5)
+    pattern = "Lü"
+    text = "Lüsai"
+    assert rabin_karp(pattern, text)
+    pattern = "Lue"
+    assert not rabin_karp(pattern, text)
     print("Success.")
 
 
