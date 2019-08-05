@@ -6,6 +6,12 @@ https://noivce.pythonanywhere.com/ python web app.
 
 python/black: True
 flake8 : True
+
+doctests:
+>>> change_contrast()
+Traceback (most recent call last):
+    ...
+TypeError: change_contrast() missing 2 required positional arguments: 'img' and 'level'
 """
 
 from PIL import Image
@@ -28,6 +34,8 @@ def change_contrast(img: Image, level: float) -> Image:
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     # Load image
     with Image.open("image_data/lena.jpg") as img:
         # Change contrast to 170
