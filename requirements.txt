@@ -5,6 +5,7 @@ mypy
 numpy
 opencv-python
 pandas
+pillow
 pytest
 sklearn
 sympy

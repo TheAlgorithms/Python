@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 import string
 
-from stack import Stack
+from .stack import Stack
 
 __author__ = 'Omkar Pathak'
 
