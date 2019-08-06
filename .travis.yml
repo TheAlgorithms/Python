@@ -4,11 +4,37 @@ python: 3.7
 cache: pip
 before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
+matrix:
+  include:
+    - name: "Main tests"
+    # The following files currently fail pytests.  See issues: #1016, #1044, #1080
+    # Here they are run allow_failures mode and when each passes pytest, it can be
+    # removed BOTH lists below.  Complex now but simple once all files pass pytest.
+    # - env: FILE=pytest file_transfer_protocol/ftp_client_server.py
+    #   before_script: true
+    #   script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest file_transfer_protocol/ftp_send_receive.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest machine_learning/linear_regression.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest machine_learning/perceptron.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest machine_learning/random_forest_classification/random_forest_classification.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+    - env: FILE=pytest machine_learning/random_forest_regression/random_forest_regression.py
+      before_script: true
+      script: pytest ${FILE} --doctest-modules
+  allow_failures:
+    - before_script: true
 before_script:
   - black --check . || true
   - flake8 . --count --select=E9,F401,F63,F7,F82 --show-source --statistics
 script:
-  - scripts/validate_filenames.py  # no uppercase and no spaces
+  - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
   - mypy --ignore-missing-imports .
   - pytest . --doctest-modules
       --ignore=file_transfer_protocol/ftp_send_receive.py
