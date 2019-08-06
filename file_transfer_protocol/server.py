@@ -1,5 +1,7 @@
 import socket                   # Import socket module
 
+ONE_CONNECTION_ONLY = True      # Set this to False if you wish to continuously accept connections
+
 port = 12312                    # Reserve a port for your service.
 s = socket.socket()             # Create a socket object
 host = socket.gethostname()     # Get local machine name
@@ -26,3 +28,7 @@ while True:
     print('Done sending')
     conn.send(b'Thank you for connecting')
     conn.close()
+    if ONE_CONNECTION_ONLY:  # This is to make sure that the program doesn't hang while testing
+        break
+s.shutdown(1)
+s.close()
