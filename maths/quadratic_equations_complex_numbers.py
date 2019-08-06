@@ -12,7 +12,7 @@ def QuadraticEquation(a,b,c):
         if Delta >= 0:
             Solution1 = (-b + math.sqrt(Delta))/(2*a)
             Solution2 = (-b - math.sqrt(Delta))/(2*a)
-            print ("The equation solutions are: ", Solution1," and ", Solution2)
+            print("The equation solutions are: ", Solution1," and ", Solution2)
         else:
             """
             Treats cases of Complexes Solutions(i = imaginary unit)
@@ -25,7 +25,7 @@ def QuadraticEquation(a,b,c):
                 print("The equation solutions are: (",b,"+",math.sqrt(-Delta),"*i)/2  and  (",b,"+",math.sqrt(-Delta),"*i/",2*a)
             if b == 0:
                 print("The equation solutions are: (",math.sqrt(-Delta),"*i)/2  and  ",math.sqrt(-Delta),"*i)/", 2*a)
-    else: 
+    else:
         print("Error. Please, coeficient 'a' must not be zero for quadratic equations.")
 def main():
     a = 5
@@ -33,7 +33,7 @@ def main():
     c = 1
 
     QuadraticEquation(a,b,c) # The equation solutions are:  -0.2  and  -1.0
-    
-    
+
+
 if __name__ == '__main__':
     main()
