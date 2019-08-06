@@ -19,6 +19,19 @@ min(closest_pair_dis, closest_in_strip) would be the final answer.
 Time complexity: O(n * log n)
 """
 
+"""
+	doctests
+	>>> euclidean_distance_sqr([1,2],[2,4])
+	5
+	>>> dis_between_closest_pair([[1,2],[2,4],[5,7],[8,9],[11,0]],5)
+	5
+	>>> dis_between_closest_in_strip([[1,2],[2,4],[5,7],[8,9],[11,0]],5)
+ 85
+	>>> points = [(2, 3), (12, 30), (40, 50), (5, 1), (12, 10), (3, 4)] 
+ >>> print("Distance:", closest_pair_of_points(points, len(points)))
+	"Distance: 1.4142135623730951"
+"""
+
 
 def euclidean_distance_sqr(point1, point2):
     return (point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2
