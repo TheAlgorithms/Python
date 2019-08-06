@@ -17,6 +17,6 @@ def FYshuffle(LIST):
 if __name__ == '__main__':
     integers = [0,1,2,3,4,5,6,7]
     strings = ['python', 'says', 'hello', '!']
-    print ('Fisher-Yates Shuffle:')
-    print ('List',integers, strings)
-    print ('FY Shuffle',FYshuffle(integers), FYshuffle(strings))
+    print('Fisher-Yates Shuffle:')
+    print('List',integers, strings)
+    print('FY Shuffle',FYshuffle(integers), FYshuffle(strings))
