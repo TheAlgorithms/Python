@@ -10,7 +10,6 @@ before_script:
 script:
   - scripts/validate_filenames.py  # no uppercase and no spaces
   - mypy --ignore-missing-imports .
-  - pytest . --doctest-modules
       --ignore=file_transfer_protocol/ftp_send_receive.py
       --ignore=file_transfer_protocol/ftp_client_server.py
       --ignore=machine_learning/linear_regression.py
