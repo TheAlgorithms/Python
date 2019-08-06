@@ -5,7 +5,7 @@ host = socket.gethostname()     # Get local machine name
 port = 12312
 
 s.connect((host, port))
-s.send("Hello server!")
+s.send(b'Hello server!')
 
 with open('received_file', 'wb') as f:
     print('file opened')
