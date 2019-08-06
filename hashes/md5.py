@@ -14,9 +14,9 @@ def rearrange(bitString32):
 
     Returns:
         [string] -- [32 bit binary string]
-        >>> rearrange('1234567890abcdfghijklmnopqrstuvw')
-        'pqrstuvwhijklmno90abcdfg12345678'
-        """
+    >>> rearrange('1234567890abcdfghijklmnopqrstuvw')
+    'pqrstuvwhijklmno90abcdfg12345678'
+    """
 
     if len(bitString32) != 32:
         raise ValueError("Need length 32")
