@@ -6,7 +6,6 @@ PyTest's for Digital Image Processing
 from PIL import Image
 import digital_image_processing.change_contrast as cc
 import digital_image_processing.edge_detection.canny as canny
-import cv2
 from cv2 import imread, cvtColor, COLOR_BGR2GRAY, imshow, waitKey
 from numpy import array, pi, mgrid, exp, square, zeros, ravel, dot, uint8
 import digital_image_processing.filters.gaussian_filter as gg
