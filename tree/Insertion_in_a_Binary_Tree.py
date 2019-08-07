@@ -1,4 +1,4 @@
-#creating node
+# creating node
 class node():
 
     def __init__(self, data):
@@ -13,9 +13,8 @@ def inorder(temp):
         return
 
     inorder(temp.left)
-    print(temp.data,end = " ")
+    print(temp.data, end=" ")
     inorder(temp.right)
-
 
 
 def build_tree():
@@ -28,9 +27,9 @@ def build_tree():
 
     temp = node(data)
 
-    q=[]
+    q = []
     q.append(temp)
-    #level order traversal until we find empty place
+    # level order traversal until we find empty place
     while (len(q)):
         temp = q[0]
         q.pop(0)
@@ -48,16 +47,15 @@ def build_tree():
             q.append(temp.right)
 
 
-
-def insert(temp,data):
+def insert(temp, data):
     """function to insert element in binary tree
        using level order traversal
 
        """
 
-    q=[]
+    q = []
     q.append(temp)
-    #level order traversal until we find empty place
+    # level order traversal until we find empty place
     while (len(q)):
         temp = q[0]
         q.pop(0)
@@ -85,7 +83,6 @@ if __name__ == '__main__':
     root.right = node(9)
     root.right.left = node(15)
     root.right.right = node(8)
-
 
     data = int(input().strip())
 

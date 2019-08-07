@@ -13,7 +13,9 @@ Problem Statement:
     a 22K text file containing one thousand lines with a base/exponent pair on each line,
     determine which line number has the greatest numerical value.
 
-
+Concept Used:
+    take log both side and Compare 632382^518061 = 632382*log(518061)
+    
 '''
 
 import csv
