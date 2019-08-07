@@ -1,7 +1,7 @@
-import socket                   # Import socket module
+import socket  # Import socket module
 
-sock = socket.socket()             # Create a socket object
-host = socket.gethostname()     # Get local machine name
+sock = socket.socket()  # Create a socket object
+host = socket.gethostname()  # Get local machine name
 port = 12312
 
 sock.connect((host, port))
@@ -15,8 +15,7 @@ with open('Received_file', 'wb') as in_file:
         print(f"data={data}")
         if not data:
             break
-        # write data to a file
-        in_file.write(data)
+        in_file.write(data)  # Write data to a file
 
 print('Successfully got the file')
 sock.close()
