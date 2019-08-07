@@ -11,7 +11,7 @@ with open('Received_file', 'wb') as in_file:
     print('File opened')
     print('Receiving data...')
     while True:
-        data = s.recv(1024)
+        data = sock.recv(1024)
         print(f"data={data}")
         if not data:
             break
