@@ -12,7 +12,7 @@ with open('Received_file', 'wb') as file:
     print('Receiving data...')
     while True:
         data = s.recv(1024)
-        print(f”data={data}”)
+        print(f"data={data}")
         if not data:
             break
         # write data to a file
