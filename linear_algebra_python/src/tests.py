@@ -9,7 +9,7 @@ This file contains the test-suite for the linear algebra library.
 """
 
 import unittest
-from lib import axpy, Matrix, Vector, unitBasisVector, zeroVector
+from lib import axpy, Matrix, squareZeroMatrix, unitBasisVector, Vector, zeroVector
 
 
 class Test(unittest.TestCase):
