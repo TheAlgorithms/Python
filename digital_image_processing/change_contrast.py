@@ -28,8 +28,6 @@ def change_contrast(img: Image, level: float) -> Image:
 
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
     # Load image
     with Image.open("image_data/lena.jpg") as img:
         # Change contrast to 170
