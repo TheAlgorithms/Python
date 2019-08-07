@@ -17,13 +17,13 @@ while True:
     print('Server received', repr(data))
 
     filename='mytext.txt'
-    file = open(filename,'rb')
-    data = file.read(1024)
+    out_file = open(filename,'rb')
+    data = out_file.read(1024)
     while (data):
        conn.send(data)
        print('Sent ',repr(data))
-       data = file.read(1024)
-    file.close()
+       data = out_file.read(1024)
+    out_file.close()
 
     print('Done sending')
     conn.send(b'Thank you for connecting')

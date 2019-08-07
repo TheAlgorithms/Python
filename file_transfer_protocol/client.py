@@ -7,7 +7,7 @@ port = 12312
 sock.connect((host, port))
 sock.send(b'Hello server!')
 
-with open('Received_file', 'wb') as file:
+with open('Received_file', 'wb') as in_file:
     print('File opened')
     print('Receiving data...')
     while True:
@@ -16,7 +16,7 @@ with open('Received_file', 'wb') as file:
         if not data:
             break
         # write data to a file
-        file.write(data)
+        in_file.write(data)
 
 print('Successfully got the file')
 sock.close()
