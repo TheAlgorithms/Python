@@ -38,7 +38,6 @@ script:
   - mypy --ignore-missing-imports .
   - pytest . --doctest-modules
       --ignore=file_transfer_protocol/ftp_send_receive.py
-      --ignore=file_transfer_protocol/ftp_client_server.py
       --ignore=machine_learning/linear_regression.py
       --ignore=machine_learning/perceptron.py
       --ignore=machine_learning/random_forest_classification/random_forest_classification.py
