@@ -40,34 +40,20 @@ def logistic_reg(
     alpha,
     X,
     y,
-    num_steps,
     max_iterations=70000,
     ):
-    converged = False
-    iterations = 0
     theta = np.zeros(X.shape[1])
 
-    while not converged:
+    for iterations in range(max_iterations):
         z = np.dot(X, theta)
         h = sigmoid_function(z)
         gradient = np.dot(X.T, h - y) / y.size
-        theta = theta - alpha * gradient
+        theta = theta - alpha * gradient  # updating the weights
         z = np.dot(X, theta)
         h = sigmoid_function(z)
         J = cost_function(h, y)
-        iterations += 1  # update iterations
-        weights = np.zeros(X.shape[1])
-    for step in range(num_steps):
-        scores = np.dot(X, weights)
-        predictions = sigmoid_function(scores)
-        if step % 10000 == 0:
-            print(log_likelihood(X,y,weights))    # Print log-likelihood every so often
-    return weights
-
-    if iterations == max_iterations:
-        print('Maximum iterations exceeded!')
-        print('Minimal cost function J=', J)
-        converged = True
+        if iterations % 100 == 0:
+            print(f'loss: {J} \t')  # printing the loss after every 100 iterations
     return theta
 
 # In[68]:
@@ -78,8 +64,8 @@ if __name__ == '__main__':
     y = (iris.target != 0) * 1
 
     alpha = 0.1
-    theta = logistic_reg(alpha,X,y,max_iterations=70000,num_steps=30000)
-    print(theta)
+    theta = logistic_reg(alpha,X,y,max_iterations=70000)
+    print("theta: ",theta)  # printing the theta i.e our weights vector
 
 
     def predict_prob(X):
@@ -105,3 +91,4 @@ if __name__ == '__main__':
         )
 
     plt.legend()
+    plt.show()
