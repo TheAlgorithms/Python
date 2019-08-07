@@ -21,7 +21,7 @@ while True:
         data = in_file.read(1024)
         while (data):
            conn.send(data)
-           print(f"Sent {data}")
+           print(f"Sent {data!r}")
            data = in_file.read(1024)
 
     print('Done sending')
