@@ -1,23 +1,23 @@
 import socket                   # Import socket module
 
-s = socket.socket()             # Create a socket object
+sock = socket.socket()             # Create a socket object
 host = socket.gethostname()     # Get local machine name
 port = 12312
 
-s.connect((host, port))
-s.send(b'Hello server!')
+sock.connect((host, port))
+sock.send(b'Hello server!')
 
-with open('Received_file', 'wb') as f:
+with open('Received_file', 'wb') as file:
     print('File opened')
     print('Receiving data...')
     while True:
-        data = s.recv(1024)
+        data = sock.recv(1024)
         print('data='+str(data))
         if not data:
             break
         # write data to a file
-        f.write(data)
+        file.write(data)
 
 print('Successfully got the file')
-s.close()
+sock.close()
 print('Connection closed')
