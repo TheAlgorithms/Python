@@ -17,12 +17,12 @@ while True:
     data = conn.recv(1024)
     print(f"Server received {data}")
 
-    with open(filename,'rb') as out_file:
-        data = out_file.read(1024)
+    with open(filename,'rb') as in_file:
+        data = in_file.read(1024)
         while (data):
            conn.send(data)
            print(f"Sent {data}")
-           data = out_file.read(1024)
+           data = in_file.read(1024)
 
     print('Done sending')
     conn.close()
