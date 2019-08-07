@@ -48,12 +48,12 @@ def logistic_reg(
         z = np.dot(X, theta)
         h = sigmoid_function(z)
         gradient = np.dot(X.T, h - y) / y.size
-        theta = theta - alpha * gradient # updating the weights
+        theta = theta - alpha * gradient  # updating the weights
         z = np.dot(X, theta)
         h = sigmoid_function(z)
         J = cost_function(h, y)
         if iterations % 100 == 0:
-            print(f'loss: {J} \t') # printing the loss after every 100 iterations
+            print(f'loss: {J} \t')  # printing the loss after every 100 iterations
     return theta
 
 # In[68]:
@@ -65,11 +65,11 @@ if __name__ == '__main__':
 
     alpha = 0.1
     theta = logistic_reg(alpha,X,y,max_iterations=70000)
-    print("theta: ",theta) # printing the theta i.e our weights vector
+    print("theta: ",theta)  # printing the theta i.e our weights vector
 
 
     def predict_prob(X):
-        return sigmoid_function(np.dot(X, theta)) # predicting the value of probability from the logistic regression algorithm
+        return sigmoid_function(np.dot(X, theta))  # predicting the value of probability from the logistic regression algorithm
 
 
     plt.figure(figsize=(10, 6))
