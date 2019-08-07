@@ -13,19 +13,18 @@ print('Server listening....')
 
 while True:
     conn, addr = sock.accept()  # Establish connection with client.
-    print('Got connection from', addr)
+    print(f"Got connection from {addr}")
     data = conn.recv(1024)
-    print('Server received', repr(data))
+    print(f"Server received {data}")
 
     with open(filename,'rb') as out_file:
         data = out_file.read(1024)
         while (data):
            conn.send(data)
-           print('Sent ',repr(data))
+           print(f"Sent {data}")
            data = out_file.read(1024)
 
     print('Done sending')
-    conn.send(b'Thank you for connecting')
     conn.close()
     if ONE_CONNECTION_ONLY:  # This is to make sure that the program doesn't hang while testing
         break
