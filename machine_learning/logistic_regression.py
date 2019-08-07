@@ -65,7 +65,7 @@ if __name__ == '__main__':
 
     alpha = 0.1
     theta = logistic_reg(alpha,X,y,max_iterations=70000)
-    print("theta: ",theta) # printing the theta i.e our weights vecto
+    print("theta: ",theta) # printing the theta i.e our weights vector
 
 
     def predict_prob(X):
