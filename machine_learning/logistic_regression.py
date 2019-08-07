@@ -9,7 +9,7 @@
 
 # importing all the required libraries
 
-''' Implementing logistic regression for classification problem 
+''' Implementing logistic regression for classification problem
      Helpful resources : 1.Coursera ML course    2.https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac'''
 
 import numpy as np
@@ -63,10 +63,10 @@ def logistic_reg(
         if step % 10000 == 0:
             print(log_likelihood(X,y,weights))    # Print log-likelihood every so often
     return weights
-    
+
     if iterations == max_iterations:
-        print ('Maximum iterations exceeded!')
-        print ('Minimal cost function J=', J)
+        print('Maximum iterations exceeded!')
+        print('Minimal cost function J=', J)
         converged = True
     return theta
 
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     alpha = 0.1
     theta = logistic_reg(alpha,X,y,max_iterations=70000,num_steps=30000)
-    print (theta)
+    print(theta)
 
 
     def predict_prob(X):
