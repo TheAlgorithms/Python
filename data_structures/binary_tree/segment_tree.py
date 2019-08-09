@@ -2,12 +2,12 @@ from __future__ import print_function
 import math
 
 class SegmentTree:
-    
+
     def __init__(self, A):
         self.N = len(A)
         self.st = [0] * (4 * self.N) # approximate the overall size of segment tree with array N
         self.build(1, 0, self.N - 1)
-        
+
     def left(self, idx):
         return idx * 2
 
@@ -22,10 +22,10 @@ class SegmentTree:
             self.build(self.left(idx), l, mid)
             self.build(self.right(idx), mid + 1, r)
             self.st[idx] = max(self.st[self.left(idx)] , self.st[self.right(idx)])
-    
+
     def update(self, a, b, val):
         return self.update_recursive(1, 0, self.N - 1, a - 1, b - 1, val)
-    
+
     def update_recursive(self, idx, l, r, a, b, val): # update(1, 1, N, a, b, v) for update val v to [a,b]
         if r < a or l > b:
             return True
@@ -55,17 +55,17 @@ class SegmentTree:
         showList = []
         for i in range(1,N+1):
             showList += [self.query(i, i)]
-        print (showList)
-            
+        print(showList)
+
 
 if __name__ == '__main__':
     A = [1,2,-4,7,3,-5,6,11,-20,9,14,15,5,2,-8]
     N = 15
     segt = SegmentTree(A)
-    print (segt.query(4, 6))
-    print (segt.query(7, 11))
-    print (segt.query(7, 12))
+    print(segt.query(4, 6))
+    print(segt.query(7, 11))
+    print(segt.query(7, 12))
     segt.update(1,3,111)
-    print (segt.query(1, 15))
+    print(segt.query(1, 15))
     segt.update(7,8,235)
     segt.showData()

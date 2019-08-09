@@ -2,13 +2,13 @@ from __future__ import print_function
 import math
 
 class SegmentTree:
-    
+
     def __init__(self, N):
         self.N = N
         self.st = [0 for i in range(0,4*N)] # approximate the overall size of segment tree with array N
         self.lazy = [0 for i in range(0,4*N)] # create array to store lazy update
         self.flag = [0 for i in range(0,4*N)] # flag for lazy update
-        
+
     def left(self, idx):
         return idx*2
 
@@ -34,7 +34,7 @@ class SegmentTree:
                 self.lazy[self.right(idx)] = self.lazy[idx]
                 self.flag[self.left(idx)] = True
                 self.flag[self.right(idx)] = True
-            
+
         if r < a or l > b:
             return True
         if l >= a and r <= b :
@@ -74,18 +74,18 @@ class SegmentTree:
         showList = []
         for i in range(1,N+1):
             showList += [self.query(1, 1, self.N, i, i)]
-        print (showList)
-            
+        print(showList)
+
 
 if __name__ == '__main__':
     A = [1,2,-4,7,3,-5,6,11,-20,9,14,15,5,2,-8]
     N = 15
     segt = SegmentTree(N)
     segt.build(1,1,N,A)
-    print (segt.query(1,1,N,4,6))
-    print (segt.query(1,1,N,7,11))
-    print (segt.query(1,1,N,7,12))
+    print(segt.query(1,1,N,4,6))
+    print(segt.query(1,1,N,7,11))
+    print(segt.query(1,1,N,7,12))
     segt.update(1,1,N,1,3,111)
-    print (segt.query(1,1,N,1,15))
+    print(segt.query(1,1,N,1,15))
     segt.update(1,1,N,7,8,235)
     segt.showData()
