@@ -13,7 +13,7 @@ matrix:
     # - env: FILE=pytest file_transfer_protocol/ftp_client_server.py
     #   before_script: true
     #   script: pytest ${FILE} --doctest-modules
-    - env: FILE=pytest file_transfer_protocol/ftp_send_receive.py
+    - env: FILE=pytest file_transfer/ftp_send_receive.py
       before_script: true
       script: pytest ${FILE} --doctest-modules
     - env: FILE=pytest machine_learning/linear_regression.py
@@ -37,7 +37,7 @@ script:
   - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
   - mypy --ignore-missing-imports .
   - pytest . --doctest-modules
-      --ignore=file_transfer_protocol/ftp_send_receive.py
+      --ignore=file_transfer/ftp_send_receive.py
       --ignore=machine_learning/linear_regression.py
       --ignore=machine_learning/perceptron.py
       --ignore=machine_learning/random_forest_classification/random_forest_classification.py
