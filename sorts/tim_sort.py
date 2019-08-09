@@ -25,16 +25,17 @@ def insertion_sort(lst):
 
 
 def merge(left, right):
-    if not left:
-        return right
-
-    if not right:
-        return left
-
-    if left[0] < right[0]:
-        return [left[0]] + merge(left[1:], right)
-
-    return [right[0]] + merge(left, right[1:])
+    if len(left):
+        i = 0
+        while len(right) > 0:
+            try:
+                if left[i] > right[0]:
+                    left.insert(i, right.pop(0))
+                i += 1
+            except IndexError:
+                return left + right
+        return left + right
+    return right
 
 
 def tim_sort(lst):
