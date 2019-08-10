@@ -1,4 +1,4 @@
-## Arithmetic Analysis
+## Arithmetic Analysis 
   * [bisection](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/bisection.py)
   * [in static equilibrium](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/in_static_equilibrium.py)
   * [intersection](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/intersection.py)
