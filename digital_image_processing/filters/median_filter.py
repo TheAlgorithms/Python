@@ -15,7 +15,7 @@ def median_filter(gray_img, mask=3):
     # set image borders
     bd = int(mask / 2)
     # copy image size
-    median_img = zeros_like(gray)
+    median_img = zeros_like(gray_img)
     for i in range(bd, gray_img.shape[0] - bd):
         for j in range(bd, gray_img.shape[1] - bd):
             # get mask according with mask

@@ -122,7 +122,7 @@ class XORCipher(object):
 
 		# This will be returned
 		ans = ""
-		
+
 		for ch in content:
 			ans += chr(ord(ch) ^ key)
 
@@ -188,22 +188,22 @@ class XORCipher(object):
 # key = 67
 
 # # test enrcypt
-# print crypt.encrypt("hallo welt",key)
+# print(crypt.encrypt("hallo welt",key))
 # # test decrypt
-# print crypt.decrypt(crypt.encrypt("hallo welt",key), key)
+# print(crypt.decrypt(crypt.encrypt("hallo welt",key), key))
 
 # # test encrypt_string
-# print crypt.encrypt_string("hallo welt",key)
+# print(crypt.encrypt_string("hallo welt",key))
 
 # # test decrypt_string
-# print crypt.decrypt_string(crypt.encrypt_string("hallo welt",key),key)
+# print(crypt.decrypt_string(crypt.encrypt_string("hallo welt",key),key))
 
 # if (crypt.encrypt_file("test.txt",key)):
-# 	print "encrypt successful"
+# 	print("encrypt successful")
 # else:
-# 	print "encrypt unsuccessful"
+# 	print("encrypt unsuccessful")
 
 # if (crypt.decrypt_file("encrypt.out",key)):
-# 	print "decrypt successful"
+# 	print("decrypt successful")
 # else:
-# 	print "decrypt unsuccessful"
+# 	print("decrypt unsuccessful")
