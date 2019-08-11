@@ -1,13 +1,15 @@
+    
+from decimal import *
+getcontext().prec=28
+
+
 def points_to_polynomial(coordinates):
     #the list (coordinates) is two dimensional: [[x, y],[x, y],...]
-    
-    from decimal import *
-    getcontext()
-    getcontext().prec=28
 
     if __name__ == "__main__" :
         #number of points you want to use
         try:
+            more_check=0
             d=coordinates[0][0]
             for j in range(len(coordinates)):
                 if j==0:
@@ -28,7 +30,10 @@ def points_to_polynomial(coordinates):
                 solved="x=0"
         except:
             check=3
-
+        
+        
+        x=len(coordinates)
+        
         if check==1:
             count_of_line=0
             matrix=[]
