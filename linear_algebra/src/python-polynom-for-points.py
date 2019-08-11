@@ -1,5 +1,5 @@
-def points_to_polynomial(coordinates[][]):
-    #the list is two dimensional: [[x, y],[x, y],...]
+def points_to_polynomial(coordinates):
+    #the list (coordinates) is two dimensional: [[x, y],[x, y],...]
     
     from decimal import *
     getcontext()
