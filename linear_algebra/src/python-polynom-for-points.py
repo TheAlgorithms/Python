@@ -5,7 +5,7 @@ def points_to_polynomial(coordinates[][]):
     getcontext()
     getcontext().prec=28
 
-    if __name__ == __main__ :
+    if __name__ == "__main__" :
         #number of points you want to use
         try:
             d=coordinates[0][0]
