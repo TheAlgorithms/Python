@@ -105,4 +105,4 @@ def points_to_polynomial(coordinates):
 if __name__ == "__main__":
     print(points_to_polynomial([]))
     print(points_to_polynomial([[]]))
-    print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))  # or some better matrix
+    print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))
