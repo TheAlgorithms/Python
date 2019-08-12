@@ -8,6 +8,7 @@ def points_to_polynomial(coordinates):
 
     #number of points you want to use
     try:
+        check=1
         more_check=0
         d=coordinates[0][0]
         for j in range(len(coordinates)):
