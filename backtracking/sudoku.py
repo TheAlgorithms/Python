@@ -97,7 +97,7 @@ def sudoku(grid):
 	'''
 
 	if is_completed(grid):
-		return True
+		return grid
 
 	row, column = find_empty_location(grid)	
 
