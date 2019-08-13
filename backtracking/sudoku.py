@@ -13,6 +13,17 @@
 
 '''
 
+# assigning initial values to the grid 
+initial_grid = [[3,0,6,5,0,8,4,0,0], 
+        		[5,2,0,0,0,0,0,0,0], 
+        		[0,8,7,0,0,0,0,3,1], 
+        		[0,0,3,0,1,0,0,8,0], 
+        		[9,0,0,8,6,3,0,0,5], 
+        		[0,5,0,0,9,0,6,0,0], 
+        		[1,3,0,0,0,0,2,5,0], 
+        		[0,0,0,0,0,0,0,7,4], 
+        		[0,0,5,2,0,6,3,0,0]] 
+
 def is_safe(grid, row, column, n):
 	'''
 	This function checks the grid to see if each row,
@@ -23,16 +34,16 @@ def is_safe(grid, row, column, n):
 	'''
 
 	for i in range(9):
-		if(grid[row][i] == n):
+		if grid[row][i] == n:
 			return False
 		
 	for i in range(9):
-		if(grid[i][column] == n):
+		if grid[i][column] == n:
 			return False		
 	
 	for i in range(3):
 		for j in range(3):
-			if(grid[(row - row%3) + i][(column - column%3) + j] == n):
+			if grid[(row - row%3) + i][(column - column%3) + j] == n:
 				return False
 
 	return True			
@@ -45,10 +56,10 @@ def is_completed(grid):
 	and There is no repeating number in any column, row or 3x3 subgrid.
 	
 	'''
-	
-	for i in range(9):
-		for j in range(9):
-			if(grid[i][j] == 0):
+
+	for row in grid:
+		for cell in row:
+			if cell == 0:
 				return False
 
 	return True
@@ -63,7 +74,7 @@ def find_empty_location(grid):
 
 	for i in range(9):
 		for j in range(9):
-			if(grid[i][j] == 0):
+			if grid[i][j] == 0:
 				return i, j	
 
 
@@ -75,17 +86,17 @@ def sudoku(grid):
 	
 	'''
 
-	if(is_completed(grid)):
+	if is_completed(grid):
 		return True
 
 	row, column = find_empty_location(grid)	
 
 	for digit in range(1, 10):	
-		if(is_safe(grid, row, column, digit)):
+		if is_safe(grid, row, column, digit):
 			grid[row][column] = digit
 			
-			if(sudoku(grid)):
-				return True
+			if sudoku(grid):
+				return grid
 			
 			grid[row][column] = 0
 	
@@ -99,26 +110,20 @@ def print_solution(grid):
 
 	'''
 
-	for i in range(9):
-		for j in range(9):
-			print(grid[i][j], end = ' ')
+	for row in grid:
+		for cell in row:
+			print(cell, end = ' ')
 		print()
 
 
 if __name__ == '__main__':
-	# assigning initial values to the grid 
-	grid = [[3,0,6,5,0,8,4,0,0], 
-           [5,2,0,0,0,0,0,0,0], 
-           [0,8,7,0,0,0,0,3,1], 
-           [0,0,3,0,1,0,0,8,0], 
-           [9,0,0,8,6,3,0,0,5], 
-           [0,5,0,0,9,0,6,0,0], 
-           [1,3,0,0,0,0,2,5,0], 
-           [0,0,0,0,0,0,0,7,4], 
-           [0,0,5,2,0,6,3,0,0]] 
 
-	if(sudoku(grid)):
-		print_solution(grid)
+	# make a copy of grid so that you can compare with the unmodified grid
+	grid1 = list(map(list, initial_grid))
+	ans = sudoku(grid1)
+	if ans:
+		print('grid after solving:\n')
+		print_solution(ans)
 	else:
 		print('Cannot find a solution')
 
