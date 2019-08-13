@@ -24,16 +24,17 @@ class LinkedList:           #making main class named linked list
     def deleteHead(self):
         temp = self.head
         self.head = self.head.next                   # oldHead <--> 2ndElement(head) 
-        self.head.previous = None                    # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
         if(self.head is None):
-            self.tail = None                         #if empty linked list
+            self.tail = None                         # if empty linked list
+        else:                                        # the following is required only the list still contains something
+            self.head.previous = None                # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
         return temp
     
     def insertTail(self, x):
         newLink = Link(x)
         newLink.next = None                         # currentTail(tail)    newLink -->
         self.tail.next = newLink                    # currentTail(tail) --> newLink -->
-        newLink.previous = self.tail                #currentTail(tail) <--> newLink -->
+        newLink.previous = self.tail                # currentTail(tail) <--> newLink -->
         self.tail = newLink                         # oldTail <--> newLink(tail) -->
     
     def deleteTail(self):
