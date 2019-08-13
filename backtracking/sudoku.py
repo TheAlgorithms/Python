@@ -23,6 +23,16 @@ initial_grid = [[3,0,6,5,0,8,4,0,0],
         		[1,3,0,0,0,0,2,5,0], 
         		[0,0,0,0,0,0,0,7,4], 
         		[0,0,5,2,0,6,3,0,0]] 
+# a grid with no solution
+no_solution =  [[5,0,6,5,0,8,4,0,3], 
+        		[5,2,0,0,0,0,0,0,2], 
+        		[1,8,7,0,0,0,0,3,1], 
+        		[0,0,3,0,1,0,0,8,0], 
+        		[9,0,0,8,6,3,0,0,5], 
+        		[0,5,0,0,9,0,6,0,0], 
+        		[1,3,0,0,0,0,2,5,0], 
+        		[0,0,0,0,0,0,0,7,4], 
+        		[0,0,5,2,0,6,3,0,0]] 
 
 def is_safe(grid, row, column, n):
 	'''
@@ -120,10 +130,12 @@ if __name__ == '__main__':
 
 	# make a copy of grid so that you can compare with the unmodified grid
 	grid1 = list(map(list, initial_grid))
-	ans = sudoku(grid1)
-	if ans:
+	grid2 = list(map(list, no_solution))
+	ans1 = sudoku(grid1)
+	ans2 = sudoku(grid2)
+	if ans1:
 		print('grid after solving:\n')
-		print_solution(ans)
+		print_solution(ans1)
 	else:
 		print('Cannot find a solution')
 
