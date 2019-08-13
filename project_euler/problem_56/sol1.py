@@ -1,4 +1,3 @@
-import typing
 
 
 def maximum_digital_sum(a,b) -> int:
