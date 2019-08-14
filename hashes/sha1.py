@@ -2,7 +2,7 @@
 Demonstrates implementation of SHA1 Hash function in a Python class and gives utilities
 to find hash of string or hash of text from a file.
 Usage: python sha1.py --string "Hello World!!"
-       pyhton sha1.py --file "hello_world.txt"
+       python sha1.py --file "hello_world.txt"
        When run without any arguments, it prints the hash of the string "Hello World!! Welcome to Cryptography"
 Also contains a Test class to verify that the generated Hash is same as that
 returned by the hashlib library
@@ -32,6 +32,8 @@ import unittest
 class SHA1Hash:
     """
     Class to contain the entire pipeline for SHA1 Hashing Algorithm
+    >>> SHA1Hash(bytes('Allan', 'utf-8')).final_hash()
+    '872af2d8ac3d8695387e7c804bf0e02c18df9e6e'
     """
     def __init__(self, data):
         """
@@ -47,6 +49,8 @@ class SHA1Hash:
     def rotate(n, b):
         """
         Static method to be used inside other methods. Left rotates n by b.
+        >>> SHA1Hash('').rotate(12,2)
+        48
         """
         return ((n << b) | (n >> (32 - b))) & 0xffffffff
 
@@ -68,7 +72,7 @@ class SHA1Hash:
     def expand_block(self, block):
         """
         Takes a bytestring-block of length 64, unpacks it to a list of integers and returns a
-        list of 80 integers pafter some bit operations
+        list of 80 integers after some bit operations
         """
         w = list(struct.unpack('>16L', block)) + [0] * 64
         for i in range(16, 80):
@@ -146,3 +150,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+    import doctest
+    doctest.testmod()

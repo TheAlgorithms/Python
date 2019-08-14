@@ -1,26 +1,16 @@
 language: python
+dist: xenial  # required for Python >= 3.7
+python: 3.7
 cache: pip
-python:
-    - 2.7
-    - 3.6
-    #- nightly
-    #- pypy
-    #- pypy3
-matrix:
-    allow_failures:
-        - python: nightly
-        - python: pypy
-        - python: pypy3
-install:
-    #- pip install -r requirements.txt
-    - pip install flake8  # pytest  # add another testing frameworks later
+before_install: pip install --upgrade pip setuptools
+install: pip install -r requirements.txt
 before_script:
-    # stop the build if there are Python syntax errors or undefined names
-    - flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
-    # exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
-    - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+  - black --check . || true
+  - flake8 . --count --select=E9,F401,F63,F7,F82 --show-source --statistics
 script:
-    - true  # pytest --capture=sys  # add other tests here
-notifications:
-    on_success: change
-    on_failure: change  # `always` will be the setting once code changes slow down
+  - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
+  - mypy --ignore-missing-imports .
+  - pytest . --doctest-modules
+after_success:
+  - scripts/build_directory_md.py > DIRECTORY.md
+  - cat DIRECTORY.md

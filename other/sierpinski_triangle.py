@@ -21,19 +21,12 @@ Python:
 Usage:
   - $python sierpinski_triangle.py <int:depth_for_fractal>
 
-Credits: This code was written by editing the code from http://www.lpb-riannetrujillo.com/blog/python-fractal/
+Credits: This code was written by editing the code from http://www.riannetrujillo.com/blog/python-fractal/
 
 '''
 import turtle
 import sys
 PROGNAME = 'Sierpinski Triangle'
-if len(sys.argv) !=2: 
-    raise Exception('right format for using this script: $python fractals.py <int:depth_for_fractal>')
-
-myPen = turtle.Turtle()
-myPen.ht()
-myPen.speed(5)
-myPen.pencolor('red')
 
 points = [[-175,-125],[0,175],[175,-125]] #size of triangle
 
@@ -64,4 +57,12 @@ def triangle(points,depth):
                    depth-1)
 
 
-triangle(points,int(sys.argv[1]))
+if __name__ == '__main__':
+    if len(sys.argv) !=2: 
+        raise ValueError('right format for using this script: '
+                         '$python fractals.py <int:depth_for_fractal>')
+    myPen = turtle.Turtle()
+    myPen.ht()
+    myPen.speed(5)
+    myPen.pencolor('red')
+    triangle(points,int(sys.argv[1]))

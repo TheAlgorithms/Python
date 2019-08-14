@@ -15,7 +15,7 @@ def median_filter(gray_img, mask=3):
     # set image borders
     bd = int(mask / 2)
     # copy image size
-    median_img = zeros_like(gray)
+    median_img = zeros_like(gray_img)
     for i in range(bd, gray_img.shape[0] - bd):
         for j in range(bd, gray_img.shape[1] - bd):
             # get mask according with mask
@@ -28,7 +28,7 @@ def median_filter(gray_img, mask=3):
 
 if __name__ == '__main__':
     # read original image
-    img = imread('lena.jpg')
+    img = imread('../image_data/lena.jpg')
     # turn image in gray scale value
     gray = cvtColor(img, COLOR_BGR2GRAY)
 

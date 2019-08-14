@@ -1,3 +1,18 @@
+"""
+	doctests
+
+	>>> decimal_to_binary(3,[1.5])
+	['0.00.01.5']
+
+	>>> check(['0.00.01.5'])
+	['0.00.01.5']
+
+	>>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
+	[[1]]
+
+	>>> selection([[1]],['0.00.01.5'])
+	['0.00.01.5']
+"""
 def compare_string(string1, string2):
 	l1 = list(string1); l2 = list(string2)
 	count = 0
@@ -113,4 +128,6 @@ def main():
 	print(essential_prime_implicants)
 
 if __name__ == '__main__':
+	import doctest
+	doctest.testmod()
 	main()

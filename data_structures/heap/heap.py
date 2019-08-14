@@ -7,8 +7,9 @@ try:
 except NameError:
     raw_input = input  # Python 3
 
+#This heap class start from here.
 class Heap:
-	def __init__(self):
+	def __init__(self): #Default constructor of heap class.
 	    self.h = []
 	    self.currsize = 0
 
@@ -37,13 +38,13 @@ class Heap:
 				self.h[m] = temp
 				self.maxHeapify(m)
 
-	def buildHeap(self,a):
+	def buildHeap(self,a): #This function is used to build the heap from the data container 'a'.
 		self.currsize = len(a)
 		self.h = list(a)
 		for i in range(self.currsize//2,-1,-1):
 			self.maxHeapify(i)
 
-	def getMax(self):
+	def getMax(self): #This function is used to get maximum value from the heap.
 		if self.currsize >= 1:
 			me = self.h[0]
 			temp = self.h[0]
@@ -54,7 +55,7 @@ class Heap:
 			return me
 		return None
 
-	def heapSort(self):
+	def heapSort(self): #This function is used to sort the heap.
 		size = self.currsize
 		while self.currsize-1 >= 0:
 			temp = self.h[0]
@@ -64,7 +65,7 @@ class Heap:
 			self.maxHeapify(0)
 		self.currsize = size
 
-	def insert(self,data):
+	def insert(self,data): #This function is used to insert data in the heap.
 		self.h.append(data)
 		curr = self.currsize
 		self.currsize+=1
@@ -74,7 +75,7 @@ class Heap:
 			self.h[curr] = temp
 			curr = curr/2
 
-	def display(self):
+	def display(self): #This function is used to print the heap.
 		print(self.h)
 
 def main():
