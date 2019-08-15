@@ -26,6 +26,15 @@ def count_inversions_bf(arr):
     -------
     num_inversions: The total number of inversions in `arr`
 
+    Examples
+    ---------
+
+     >>> count_inversions_bf([1, 4, 2, 4, 1])
+     4
+     >>> count_inversions_bf([1, 1, 2, 4, 4])
+     0
+     >>> count_inversions_bf([])
+     0
     """
 
     num_inversions = 0
@@ -53,6 +62,15 @@ def count_inversions_recursive(arr):
     C: a sorted copy of `arr`.
     num_inversions: int, the total number of inversions in 'arr'
 
+    Examples
+    --------
+
+    >>> count_inversions_recursive([1, 4, 2, 4, 1])
+    ([1, 1, 2, 4, 4], 4)
+    >>> count_inversions_recursive([1, 1, 2, 4, 4])
+    ([1, 1, 2, 4, 4], 0)
+    >>> count_inversions_recursive([])
+    ([], 0)
     """
     if len(arr) <= 1:
         return arr, 0
@@ -87,6 +105,13 @@ def _count_cross_inversions(P, Q):
     R: array-like, a sorted array of the elements of `P` and `Q`
     num_inversion: int, the number of inversions across `P` and `Q`
 
+    Examples
+    --------
+
+    >>> _count_cross_inversions([1, 2, 3], [0, 2, 5])
+    ([0, 1, 2, 2, 3, 5], 4)
+    >>> _count_cross_inversions([1, 2, 3], [3, 4, 5])
+    ([1, 2, 3, 3, 4, 5], 0)
     """
 
     R = []
