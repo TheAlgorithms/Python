@@ -93,8 +93,8 @@ def _count_cross_inversions(P, Q):
     i = j = num_inversion = 0
     while i < len(P) and j < len(Q):
         if P[i] > Q[j]:
-            # if P[1] is > Q[j], then P[k] for all k > i, P[K] > Q[j]
-            # and therefore are inversions. This claim emerges from the
+            # if P[1] > Q[j], then P[k] > Q[k] for all  i < k <= len(P)
+            # These are all inversions. The claim emerges from the
             # property that P is sorted.
             num_inversion += (len(P) - i)
             R.append(Q[j])
