@@ -12,6 +12,12 @@
 
 	>>> selection([[1]],['0.00.01.5'])
 	['0.00.01.5']
+	
+	>>> compare_string('0010','0110')
+	'0_10'
+	
+	>>> is_for_table('__1','011',2)
+	True
 """
 def compare_string(string1, string2):
 	l1 = list(string1); l2 = list(string2)
