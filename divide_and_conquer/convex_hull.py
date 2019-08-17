@@ -2,9 +2,17 @@ from __future__ import print_function, absolute_import, division
 
 from numbers import Number
 """
-Explain the convex hull problem
+The convex hull problem is problem of finding all the vertices of convex polygon, P of 
+a set of points in a plane such that all the points are either on the vertices of P or
+inside P. TH convex hull problem has several applications in geometrical problems, 
+computer graphics and game development. 
 
-code out the brute-force, divide and conquer, javis march etc
+Two algorithms have been implemented for the convex hull problem here. 
+1. A brute-force algorithm which runs in O(n^3)
+2. A divide-and-conquer algorithm which runs in O(n^3)
+
+There are other several other algorithms for the convex hull problem
+which have not been implemented here, yet. 
 
 """
 
@@ -137,7 +145,7 @@ def _validate_input(points):
 
     Parameters
     ---------
-    points: array-like, the list of 2d points to validate before using with
+    points: array-like, the 2d points to validate before using with
     a convex-hull algorithm. The elements of points must be either lists, tuples or
     Points.
 
@@ -150,7 +158,8 @@ def _validate_input(points):
     ---------
     ValueError: if points is empty or None, or if a wrong data structure like a scalar is passed
 
-    TypeError: if an iterable but non-indexable object (eg. set) is passed.
+    TypeError: if an iterable but non-indexable object (eg. dictionary) is passed.
+                The exception to this a set which we'll convert to a list before using
 
 
     Examples
@@ -159,6 +168,8 @@ def _validate_input(points):
     [(1, 2)]
     >>> _validate_input([(1, 2)])
     [(1, 2)]
+    >>> _validate_input([Point(2, 1), Point(-1, 2)])
+    [(2, 1), (-1, 2)]
     >>> _validate_input([])
     Traceback (most recent call last):
         ...
@@ -171,6 +182,10 @@ def _validate_input(points):
 
     if not points:
         raise ValueError("Expecting a list of points but got {}".format(points))
+
+    if isinstance(points, set):
+        points = list(points)
+
     try:
         if hasattr(points, "__iter__") and not isinstance(points[0], Point):
             if isinstance(points[0], (list, tuple)):
@@ -187,6 +202,41 @@ def _validate_input(points):
         raise
 
     return points
+
+
+def _det(a, b, c):
+    """
+    Computes the sign perpendicular distance of a 2d point c from a line segment
+    ab. The sign indicates the direction of c relative to ab.
+    A Positive value means c is above ab (to the left), while a negative value
+    means c is below ab (to the right). 0 means all three points are on a straight line.
+
+    As a side note, 0.5 * abs|det| is the area of triangle abc
+
+    Parameters
+    ----------
+    a: point, the point on the left end of line segment ab
+    b: point, the point on the right end of line segment ab
+    c: point, the point for which the direction and location is desired.
+
+    Returns
+    --------
+    det: float, abs(det) is the distance of c from ab. The sign
+    indicates which side of line segment ab c is. det is computed as
+    (a_xb_y + c_xa_y + b_xc_y) - (a_yb_x + c_ya_x + b_yc_x)
+
+    Examples
+    ----------
+    >>> _det(Point(1, 1), Point(1, 2), Point(1, 5))
+    0
+    >>> _det(Point(0, 0), Point(10, 0), Point(0, 10))
+    100
+    >>> _det(Point(0, 0), Point(10, 0), Point(0, -10))
+    -100
+    """
+
+    det = (a.x * b.y + b.x * c.y + c.x * a.y) - (a.y * b.x + b.y * c.x + c.y * a.x)
+    return det
 
 
 def convex_hull_bf(points):
@@ -262,41 +312,6 @@ def convex_hull_bf(points):
     return sorted(convex_set)
 
 
-def _det(a, b, c):
-    """
-    Computes the sign perpendicular distance of a 2d point c from a line segment
-    ab. The sign indicates the direction of c relative to ab.
-    A Positive value means c is above ab (to the left), while a negative value
-    means c is below ab (to the right). 0 means all three points are on a straight line.
-
-    As a side note, 0.5 * abs|det| is the area of triangle abc
-
-    Parameters
-    ----------
-    a: point, the point on the left end of line segment ab
-    b: point, the point on the right end of line segment ab
-    c: point, the point for which the direction and location is desired.
-
-    Returns
-    --------
-    det: float, abs(det) is the distance of c from ab. The sign
-    indicates which side of line segment ab c is. det is computed as
-    (a_xb_y + c_xa_y + b_xc_y) - (a_yb_x + c_ya_x + b_yc_x)
-
-    Examples
-    ----------
-    >>> _det(Point(1, 1), Point(1, 2), Point(1, 5))
-    0
-    >>> _det(Point(0, 0), Point(10, 0), Point(0, 10))
-    100
-    >>> _det(Point(0, 0), Point(10, 0), Point(0, -10))
-    -100
-    """
-
-    det = (a.x * b.y + b.x * c.y + c.x * a.y) - (a.y * b.x + b.y * c.x + c.y * a.x)
-    return det
-
-
 def convex_hull_recursive(points):
     """
     Constructs the convex hull of a set of 2D points using a divide-and-conquer strategy
@@ -317,13 +332,13 @@ def convex_hull_recursive(points):
 
     Examples
     ---------
-    >>> convex_hull_bf([[0, 0], [1, 0], [10, 1]])
+    >>> convex_hull_recursive([[0, 0], [1, 0], [10, 1]])
     [(0, 0), (1, 0), (10, 1)]
-    >>> convex_hull_bf([[0, 0], [1, 0], [10, 0]])
+    >>> convex_hull_recursive([[0, 0], [1, 0], [10, 0]])
     [(0, 0), (10, 0)]
-    >>> convex_hull_bf([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1], [-0.75, 1]])
+    >>> convex_hull_recursive([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1], [-0.75, 1]])
     [(-1, -1), (-1, 1), (1, -1), (1, 1)]
-    >>> convex_hull_bf([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3), (2, -1), (2, -4), (1, -3)])
+    >>> convex_hull_recursive([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3), (2, -1), (2, -4), (1, -3)])
     [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
 
     """
@@ -399,14 +414,24 @@ def _construct_hull(points, left, right, convex_set):
 
         if extreme_point:
             _construct_hull(candidate_points, left, extreme_point, convex_set)
-            convex_set.add(p)
+            convex_set.add(extreme_point)
             _construct_hull(candidate_points, extreme_point, right, convex_set)
 
 
-def convex_hull_javis_match(points):
-    # TODO: will implement tomorrow, another Olog n algorithm
-    pass
+def main():
+
+    points = [(0, 3), (2, 2), (1, 1), (2, 1),
+              (3, 0), (0, 0), (3, 3), (2, -1),
+              (2, -4), (1, -3)
+              ]
+    # the convex set of points is
+    # [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
+    results_recursive = convex_hull_recursive(points)
+    results_bf = convex_hull_bf(points)
+    assert results_bf == results_recursive
+
+    print(results_bf)
 
 
-
-convex_hull_bf([[-1, -1], [0.5, 0.5],[1, 1], [-0.75, 1]])
+if __name__ == '__main__':
+    main()
