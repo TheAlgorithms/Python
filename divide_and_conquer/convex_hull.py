@@ -275,9 +275,8 @@ def convex_hull_bf(points):
      [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
     """
 
-    points = _validate_input(points)
+    points = sorted(_validate_input(points))
     n = len(points)
-    points.sort()
     convex_set = set()
 
     for i in range(n-1):
@@ -341,9 +340,8 @@ def convex_hull_recursive(points):
     [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
 
     """
-    points = _validate_input(points)
+    points = sorted(_validate_input(points))
     n = len(points)
-    points.sort()
 
     # divide all the points into an upper hull and a lower hull
     # the left most point and the right most point are definitely
