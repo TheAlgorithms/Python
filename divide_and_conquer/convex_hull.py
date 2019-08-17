@@ -50,7 +50,7 @@ class Point:
                 x, y = float(x), float(y)
             except ValueError as e:
                 e.args = ("x and y must be both numeric types "
-                          "but got {}, {} instead".format(str(type(x)), str(type(y))), )
+                          "but got {}, {} instead".format(type(x), type(y)), )
                 raise
 
         self.x = x
@@ -285,7 +285,6 @@ def convex_hull_bf(points):
             points_left_of_ij = points_right_of_ij = False
             ij_part_of_convex_hull = True
             for k in range(n):
-
                 if k != i and k != j:
                     det_k = _det(points[i], points[j], points[k])
 
@@ -419,11 +418,8 @@ def _construct_hull(points, left, right, convex_set):
 
 
 def main():
-
-    points = [(0, 3), (2, 2), (1, 1), (2, 1),
-              (3, 0), (0, 0), (3, 3), (2, -1),
-              (2, -4), (1, -3)
-              ]
+    points = [(0, 3), (2, 2), (1, 1), (2, 1), (3, 0),
+              (0, 0), (3, 3), (2, -1), (2, -4), (1, -3)]
     # the convex set of points is
     # [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
     results_recursive = convex_hull_recursive(points)
