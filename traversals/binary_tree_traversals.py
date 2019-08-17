@@ -1,14 +1,8 @@
 """
 This is pure python implementation of tree traversal algorithms
 """
-from __future__ import print_function
-
 import queue
-
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
+from typing import List
 
 
 class TreeNode:
@@ -20,35 +14,31 @@ class TreeNode:
 
 def build_tree():
     print("\n********Press N to stop entering at any point of time********\n")
-    print("Enter the value of the root node: ", end="")
-    check = raw_input().strip().lower()
-    if check == 'n':
+    check = input("Enter the value of the root node: ").strip().lower() or "n"
+    if check == "n":
         return None
-    data = int(check)
-    q = queue.Queue()
-    tree_node = TreeNode(data)
+    q: queue.Queue = queue.Queue()
+    tree_node = TreeNode(int(check))
     q.put(tree_node)
     while not q.empty():
         node_found = q.get()
-        print("Enter the left node of %s: " % node_found.data, end="")
-        check = raw_input().strip().lower()
-        if check == 'n':
+        msg = "Enter the left node of %s: " % node_found.data
+        check = input(msg).strip().lower() or "n"
+        if check == "n":
             return tree_node
-        left_data = int(check)
-        left_node = TreeNode(left_data)
+        left_node = TreeNode(int(check))
         node_found.left = left_node
         q.put(left_node)
-        print("Enter the right node of %s: " % node_found.data, end="")
-        check = raw_input().strip().lower()
-        if check == 'n':
+        msg = "Enter the right node of %s: " % node_found.data
+        check = input(msg).strip().lower() or "n"
+        if check == "n":
             return tree_node
-        right_data = int(check)
-        right_node = TreeNode(right_data)
+        right_node = TreeNode(int(check))
         node_found.right = right_node
         q.put(right_node)
 
 
-def pre_order(node):
+def pre_order(node: TreeNode) -> None:
     if not isinstance(node, TreeNode) or not node:
         return
     print(node.data, end=" ")
@@ -56,7 +46,7 @@ def pre_order(node):
     pre_order(node.right)
 
 
-def in_order(node):
+def in_order(node: TreeNode) -> None:
     if not isinstance(node, TreeNode) or not node:
         return
     in_order(node.left)
@@ -64,7 +54,7 @@ def in_order(node):
     in_order(node.right)
 
 
-def post_order(node):
+def post_order(node: TreeNode) -> None:
     if not isinstance(node, TreeNode) or not node:
         return
     post_order(node.left)
@@ -72,10 +62,10 @@ def post_order(node):
     print(node.data, end=" ")
 
 
-def level_order(node):
+def level_order(node: TreeNode) -> None:
     if not isinstance(node, TreeNode) or not node:
         return
-    q = queue.Queue()
+    q: queue.Queue = queue.Queue()
     q.put(node)
     while not q.empty():
         node_dequeued = q.get()
@@ -86,10 +76,10 @@ def level_order(node):
             q.put(node_dequeued.right)
 
 
-def level_order_actual(node):
+def level_order_actual(node: TreeNode) -> None:
     if not isinstance(node, TreeNode) or not node:
         return
-    q = queue.Queue()
+    q: queue.Queue = queue.Queue()
     q.put(node)
     while not q.empty():
         list = []
@@ -106,10 +96,10 @@ def level_order_actual(node):
 
 
 # iteration version
-def pre_order_iter(node):
+def pre_order_iter(node: TreeNode) -> None:
     if not isinstance(node, TreeNode) or not node:
         return
-    stack = []
+    stack: List[TreeNode] = []
     n = node
     while n or stack:
         while n:  # start from root node, find its left child
@@ -122,10 +112,10 @@ def pre_order_iter(node):
         n = n.right
 
 
-def in_order_iter(node):
+def in_order_iter(node: TreeNode) -> None:
     if not isinstance(node, TreeNode) or not node:
         return
-    stack = []
+    stack: List[TreeNode] = []
     n = node
     while n or stack:
         while n:
@@ -136,7 +126,7 @@ def in_order_iter(node):
         n = n.right
 
 
-def post_order_iter(node):
+def post_order_iter(node: TreeNode) -> None:
     if not isinstance(node, TreeNode) or not node:
         return
     stack1, stack2 = [], []
@@ -153,38 +143,45 @@ def post_order_iter(node):
         print(stack2.pop().data, end=" ")
 
 
-if __name__ == '__main__':
-    print("\n********* Binary Tree Traversals ************\n")
+def prompt(s: str = "", width=50, char="*") -> str:
+    if not s:
+        return "\n" + width * char
+    left, extra = divmod(width - len(s) - 2, 2)
+    return f"{left * char} {s} {(left + extra) * char}"
+
+
+if __name__ == "__main__":
+    print(prompt("Binary Tree Traversals"))
 
     node = build_tree()
-    print("\n********* Pre Order Traversal ************")
+    print(prompt("Pre Order Traversal"))
     pre_order(node)
-    print("\n******************************************\n")
+    print(prompt() + "\n")
 
-    print("\n********* In Order Traversal ************")
+    print(prompt("In Order Traversal"))
     in_order(node)
-    print("\n******************************************\n")
+    print(prompt() + "\n")
 
-    print("\n********* Post Order Traversal ************")
+    print(prompt("Post Order Traversal"))
     post_order(node)
-    print("\n******************************************\n")
+    print(prompt() + "\n")
 
-    print("\n********* Level Order Traversal ************")
+    print(prompt("Level Order Traversal"))
     level_order(node)
-    print("\n******************************************\n")
+    print(prompt() + "\n")
 
-    print("\n********* Actual Level Order Traversal ************")
+    print(prompt("Actual Level Order Traversal"))
     level_order_actual(node)
-    print("\n******************************************\n")
+    print("*" * 50 + "\n")
 
-    print("\n********* Pre Order Traversal - Iteration Version ************")
+    print(prompt("Pre Order Traversal - Iteration Version"))
     pre_order_iter(node)
-    print("\n******************************************\n")
+    print(prompt() + "\n")
 
-    print("\n********* In Order Traversal - Iteration Version ************")
+    print(prompt("In Order Traversal - Iteration Version"))
     in_order_iter(node)
-    print("\n******************************************\n")
+    print(prompt() + "\n")
 
-    print("\n********* Post Order Traversal - Iteration Version ************")
+    print(prompt("Post Order Traversal - Iteration Version"))
     post_order_iter(node)
-    print("\n******************************************\n")
+    print(prompt())

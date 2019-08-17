@@ -3,7 +3,7 @@
 def __encryptPart(messagePart, character2Number):
     one, two, three = "", "", ""
     tmp = []
-    
+
     for character in messagePart:
         tmp.append(character2Number[character])
 
@@ -11,7 +11,7 @@ def __encryptPart(messagePart, character2Number):
         one += each[0]
         two += each[1]
         three += each[2]
-    
+
     return one+two+three
 
 def __decryptPart(messagePart, character2Number):
@@ -25,7 +25,7 @@ def __decryptPart(messagePart, character2Number):
         tmp += digit
         if len(tmp) == len(messagePart):
             result.append(tmp)
-            tmp = ""  
+            tmp = ""
 
     return result[0], result[1], result[2]
 
@@ -48,7 +48,7 @@ def __prepare(message, alphabet):
     for letter, number in zip(alphabet, numbers):
         character2Number[letter] = number
         number2Character[number] = letter
-    
+
     return message, alphabet, character2Number, number2Character
 
 def encryptMessage(message, alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period=5):
@@ -57,7 +57,7 @@ def encryptMessage(message, alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period=5):
 
     for i in range(0, len(message)+1, period):
         encrypted_numeric += __encryptPart(message[i:i+period], character2Number)
-    
+
     for i in range(0, len(encrypted_numeric), 3):
         encrypted += number2Character[encrypted_numeric[i:i+3]]
 
@@ -70,7 +70,7 @@ def decryptMessage(message, alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period=5):
 
     for i in range(0, len(message)+1, period):
         a,b,c = __decryptPart(message[i:i+period], character2Number)
-    
+
         for j in range(0, len(a)):
             decrypted_numeric.append(a[j]+b[j]+c[j])
 
@@ -83,4 +83,4 @@ if __name__ == '__main__':
     msg = "DEFEND THE EAST WALL OF THE CASTLE."
     encrypted = encryptMessage(msg,"EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
     decrypted = decryptMessage(encrypted, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
-    print ("Encrypted: {}\nDecrypted: {}".format(encrypted, decrypted))
+    print("Encrypted: {}\nDecrypted: {}".format(encrypted, decrypted))

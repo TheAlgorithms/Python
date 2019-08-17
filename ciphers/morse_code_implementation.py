@@ -71,11 +71,11 @@ def decrypt(message):
 def main():
     message = "Morse code here"
     result = encrypt(message.upper())
-    print (result)
+    print(result)
 
     message = result
     result = decrypt(message)
-    print (result)
+    print(result)
 
 
 if __name__ == '__main__':

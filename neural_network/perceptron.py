@@ -113,13 +113,13 @@ samples = [
 
 exit = [-1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1]
 
+network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=1000, bias=-1)
+
+network.training()
+
 if __name__ == '__main__':
-    network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=1000, bias=-1)
-
-    network.training()
-
     while True:
         sample = []
         for i in range(3):
-            sample.insert(i, float(input('value: ').strip()))
+            sample.insert(i, float(input('value: ')))
         network.sort(sample)
