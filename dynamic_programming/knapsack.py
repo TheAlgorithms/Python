@@ -3,7 +3,6 @@ Given weights and values of n items, put these items in a knapsack of capacity W
 
 Note that only the integer weights 0-1 knapsack problem is solvable using dynamic programming.
 """
-from typing import Union
 
 def MF_knapsack(i,wt,val,j):
     '''
