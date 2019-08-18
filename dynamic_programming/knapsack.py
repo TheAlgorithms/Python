@@ -1,8 +1,12 @@
 """
 Given weights and values of n items, put these items in a knapsack of capacity W to get the maximum total value in the knapsack.
-"""
 
-def MF_knapsack(i, wt, val, j):
+Note that only the integer weights 0-1 knapsack problem is solvable using dynamic programming.
+"""
+from __future__ import print_function, division, absolute_import
+
+
+def MF_knapsack(i,wt,val,j):
     '''
     This code involves the concept of memory functions. Here we solve the subproblems which are needed
     unlike the below example
@@ -13,8 +17,7 @@ def MF_knapsack(i, wt, val, j):
         if j < wt[i - 1]:
             val = MF_knapsack(i - 1,wt,val,j)
         else:
-            val = max(MF_knapsack(i - 1, wt, val, j),
-                      MF_knapsack(i - 1, wt, val, j - wt[i - 1]) + val[i - 1])
+            val = max(MF_knapsack(i - 1,wt,val,j),MF_knapsack(i - 1,wt,val,j - wt[i - 1]) + val[i - 1])
         F[i][j] = val
     return F[i][j]
 
@@ -123,8 +126,7 @@ if __name__ == '__main__':
     wt = [4, 3, 2, 3]
     n = 4
     w = 6
-    F = [[0]*(w + 1)] + [[0] + [-1 for i in range(w + 1)] for j in range(n + 1)]
-
+    F = [[0] * (w + 1)] + [[0] + [-1 for i in range(w + 1)] for j in range(n + 1)]
     optimal_solution, _ = knapsack(w,wt,val, n)
     print(optimal_solution)
     print(MF_knapsack(n,wt,val,w))  # switched the n and w
