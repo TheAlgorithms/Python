@@ -3,8 +3,7 @@ Given weights and values of n items, put these items in a knapsack of capacity W
 
 Note that only the integer weights 0-1 knapsack problem is solvable using dynamic programming.
 """
-from __future__ import print_function, division, absolute_import
-
+from typing import Union
 
 def MF_knapsack(i,wt,val,j):
     '''
@@ -35,7 +34,7 @@ def knapsack(W, wt, val, n):
     return dp[n][W], dp
 
 
-def knapsack_with_example_solution(W, wt, val):
+def knapsack_with_example_solution(W: int, wt: list, val:list):
     """
     Solves the integer weights knapsack problem returns one of
     the several possible optimal subsets.
@@ -87,7 +86,7 @@ def knapsack_with_example_solution(W, wt, val):
     return optimal_val, example_optional_set
 
 
-def _construct_solution(dp, wt, i, j, optimal_set):
+def _construct_solution(dp:list, wt:list, i:int, j:int, optimal_set:set):
     """
     Recursively reconstructs one of the optimal subsets given
     a filled DP table and the vector of weights
