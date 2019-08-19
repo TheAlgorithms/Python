@@ -6,7 +6,7 @@ Example:"abc", "abg" are subsequences of "abcdefgh".
 from __future__ import print_function
 
 
-def lcs_dp(x: str, y: str):
+def longest_common_subsequence(x: str, y: str):
     """
     Finds the longest common subsequence between two strings. Also returns the
     The subsequence found
@@ -22,11 +22,11 @@ def lcs_dp(x: str, y: str):
     L[m][n]: int, the length of the longest subsequence. Also equal to len(seq)
     Seq: str, the subsequence found
 
-    >>> lcs_dp("programming", "gaming")
+    >>> longest_common_subsequence("programming", "gaming")
     (6, 'gaming')
-    >>> lcs_dp("physics", "smartphone")
+    >>> longest_common_subsequence("physics", "smartphone")
     (2, 'ph')
-    >>> lcs_dp("computer", "food")
+    >>> longest_common_subsequence("computer", "food")
     (1, 'o')
     """
     # find the length of strings
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     expected_ln = 4
     expected_subseq = "GTAB"
 
-    ln, subseq = lcs_dp(a, b)
+    ln, subseq = longest_common_subsequence(a, b)
     assert expected_ln == ln
     assert expected_subseq == subseq
     print("len =", ln, ", sub-sequence =", subseq)
