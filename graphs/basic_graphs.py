@@ -141,7 +141,7 @@ def dijk(G, s):
 from collections import deque
 
 
-def topo(G, ind=None, Q=[1]):
+def topo(G, ind=None, Q):
     if ind is None:
         ind = [0] * (len(G) + 1)  # SInce oth Index is ignored
         for u in G:
