@@ -18,7 +18,7 @@ def bubble_sort(collection):
     >>> bubble_sort([-23, 0, 6, -4, 34])
     [-23, -4, 0, 6, 34]
 
-    >>> bubble_sort([-23, 0, 6, -4, 34]) == sort([-23, 0, 6, -4, 34])
+    >>> bubble_sort([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
     True
     """
     length = len(collection)
