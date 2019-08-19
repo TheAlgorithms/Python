@@ -3,7 +3,6 @@ LCS Problem Statement: Given two sequences, find the length of longest subsequen
 A subsequence is a sequence that appears in the same relative order, but not necessarily continuous.
 Example:"abc", "abg" are subsequences of "abcdefgh".
 """
-from __future__ import print_function
 
 
 def longest_common_subsequence(x: str, y: str):
@@ -80,4 +79,3 @@ if __name__ == '__main__':
     assert expected_ln == ln
     assert expected_subseq == subseq
     print("len =", ln, ", sub-sequence =", subseq)
-

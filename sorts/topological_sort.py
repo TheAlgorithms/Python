@@ -1,6 +1,5 @@
 """Topological Sort."""
 
-from __future__ import print_function
 #     a
 #    / \
 #   b  c

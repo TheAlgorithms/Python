@@ -17,13 +17,7 @@ It is not until n = 23, that a value exceeds one-million: 23C10 = 1144066.
 How many, not necessarily distinct, values of nCr, for 1 ≤ n ≤ 100, are greater
 than one-million?
 """
-from __future__ import print_function
 from math import factorial
-
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
 
 
 def combinations(n, r):
@@ -39,8 +33,8 @@ def solution():
     """
     total = 0
 
-    for i in xrange(1, 101):
-        for j in xrange(1, i + 1):
+    for i in range(1, 101):
+        for j in range(1, i + 1):
             if combinations(i, j) > 1e6:
                 total += 1
     return total

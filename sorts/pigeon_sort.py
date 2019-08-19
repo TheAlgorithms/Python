@@ -1,9 +1,6 @@
 '''
     This is an implementation of Pigeon Hole Sort.
 '''
-
-from __future__ import print_function
-
 def pigeon_sort(array):
     # Manually finds the minimum and maximum of the array.
     min = array[0]
@@ -38,12 +35,7 @@ def pigeon_sort(array):
     return array
 
 if __name__ == '__main__':
-    try:
-        raw_input           # Python2
-    except NameError:
-        raw_input = input   # Python 3
-    
-    user_input = raw_input('Enter numbers separated by comma:\n')
+    user_input = input('Enter numbers separated by comma:\n')
     unsorted = [int(x) for x in user_input.split(',')]
     sorted = pigeon_sort(unsorted)
 

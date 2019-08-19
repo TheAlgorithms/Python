@@ -1,4 +1,3 @@
-from __future__ import print_function
 __author__ = "Tobias Carryer"
 
 from time import time
@@ -7,11 +6,11 @@ class LinearCongruentialGenerator(object):
     """
     A pseudorandom number generator.
     """
-    
+
     def __init__( self, multiplier, increment, modulo, seed=int(time()) ):
         """
         These parameters are saved and used when nextNumber() is called.
-     
+
         modulo is the largest number that can be generated (exclusive). The most
         efficent values are powers of 2. 2^32 is a common value.
         """
@@ -19,7 +18,7 @@ class LinearCongruentialGenerator(object):
         self.increment = increment
         self.modulo = modulo
         self.seed = seed
-        
+
     def next_number( self ):
         """
         The smallest number that can be generated is zero.

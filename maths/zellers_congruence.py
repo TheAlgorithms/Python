@@ -1,4 +1,3 @@
-from __future__ import annotations
 import datetime
 import argparse
 
@@ -7,7 +6,7 @@ def zeller(date_input: str) -> str:
 
     """
     Zellers Congruence Algorithm
-    Find the day of the week for nearly any Gregorian or Julian calendar date 
+    Find the day of the week for nearly any Gregorian or Julian calendar date
 
     >>> zeller('01-31-2010')
     'Your date 01-31-2010, is a Sunday!'
@@ -108,7 +107,7 @@ def zeller(date_input: str) -> str:
     # Validate
     if not 0 < d < 32:
         raise ValueError("Date must be between 1 - 31")
-    
+
     # Get second seperator
     sep_2: str = date_input[5]
     # Validate

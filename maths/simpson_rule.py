@@ -8,9 +8,6 @@ method 2:
 "Simpson Rule"
 
 """
-from __future__ import print_function
-
-
 def method_2(boundary, steps):
 # "Simpson Rule"
 # int(f) = delta_x/2 * (b-a)/3*(f1 + 4f2 + 2f_3 + ... + fn)

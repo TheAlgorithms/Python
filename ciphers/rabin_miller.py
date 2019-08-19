@@ -1,4 +1,3 @@
-from __future__ import print_function
 # Primality Testing with the Rabin-Miller Algorithm
 
 import random

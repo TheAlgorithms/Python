@@ -56,7 +56,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
   ```python
       """
-  	This function sums a and b    
+  	This function sums a and b
   """
   def sum(a, b):
       return a + b
@@ -82,13 +82,13 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The following "testing" approaches are **not** encouraged:
 
   ```python
-  input('Enter your input:') 
+  input('Enter your input:')
   # Or even worse...
-  input = eval(raw_input("Enter your input: "))
+  input = eval(input("Enter your input: "))
   ```
-  
+
   However, if your code uses __input()__ then we encourage you to gracefully deal with leading and trailing whitespace in user input by adding __.strip()__ to the end as in:
-  
+
   ```python
   starting_value = int(input("Please enter a starting value: ").strip())
   ```
@@ -99,13 +99,13 @@ We want your work to be readable by others; therefore, we encourage you to note 
   def sumab(a, b):
       return a + b
   # Write tests this way:
-  print(sumab(1,2))	# 1+2 = 3
-  print(sumab(6,4))	# 6+4 = 10
+  print(sumab(1, 2))	# 1+2 = 3
+  print(sumab(6, 4))	# 6+4 = 10
   # Or this way:
-  print("1 + 2 = ", sumab(1,2))	# 1+2 = 3
-  print("6 + 4 = ", sumab(6,4))	# 6+4 = 10
+  print("1 + 2 = ", sumab(1, 2))	# 1+2 = 3
+  print("6 + 4 = ", sumab(6, 4))	# 6+4 = 10
   ```
-  
+
   Better yet, if you know how to write [__doctests__](https://docs.python.org/3/library/doctest.html), please consider adding them.
 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.

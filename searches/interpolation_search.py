@@ -1,12 +1,6 @@
 """
 This is pure python implementation of interpolation search algorithm
 """
-from __future__ import print_function
-
-try:
-    raw_input          # Python 2
-except NameError:
-    raw_input = input  # Python 3
 
 
 def interpolation_search(sorted_collection, item):
@@ -29,7 +23,7 @@ def interpolation_search(sorted_collection, item):
                 return None
 
         point = left + ((item - sorted_collection[left]) * (right - left)) // (sorted_collection[right] - sorted_collection[left])
-        
+
         #out of range check
         if point<0 or point>=len(sorted_collection):
             return None
@@ -42,9 +36,9 @@ def interpolation_search(sorted_collection, item):
                 right = left
                 left = point
             elif point>right:
-                left = right 
+                left = right
                 right = point
-            else:    
+            else:
                 if item < current_item:
                     right = point - 1
                 else:
@@ -70,7 +64,7 @@ def interpolation_search_by_recursion(sorted_collection, item, left, right):
             return None
 
     point = left + ((item - sorted_collection[left]) * (right - left)) // (sorted_collection[right] - sorted_collection[left])
-    
+
     #out of range check
     if point<0 or point>=len(sorted_collection):
         return None
@@ -86,7 +80,7 @@ def interpolation_search_by_recursion(sorted_collection, item, left, right):
             return interpolation_search_by_recursion(sorted_collection, item, left, point-1)
         else:
             return interpolation_search_by_recursion(sorted_collection, item, point+1, right)
-      
+
 def __assert_sorted(collection):
     """Check if collection is ascending sorted, if not - raises :py:class:`ValueError`
     :param collection: collection
@@ -107,16 +101,16 @@ def __assert_sorted(collection):
 
 if __name__ == '__main__':
     import sys
-    
+
     """
-	user_input = raw_input('Enter numbers separated by comma:\n').strip()
+	user_input = input('Enter numbers separated by comma:\n').strip()
     collection = [int(item) for item in user_input.split(',')]
     try:
         __assert_sorted(collection)
     except ValueError:
         sys.exit('Sequence must be ascending sorted to apply interpolation search')
 
-    target_input = raw_input('Enter a single number to be found in the list:\n')
+    target_input = input('Enter a single number to be found in the list:\n')
     target = int(target_input)
 	"""
 
@@ -128,7 +122,7 @@ if __name__ == '__main__':
         except ValueError:
             sys.exit('Sequence must be ascending sorted to apply interpolation search')
         target = 67
-        
+
     result = interpolation_search(collection, target)
     if result is not None:
         print('{} found at positions: {}'.format(target, result))

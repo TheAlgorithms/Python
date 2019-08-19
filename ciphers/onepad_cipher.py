@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import random
 
 
@@ -15,7 +13,7 @@ class Onepad:
             cipher.append(c)
             key.append(k)
         return cipher, key
-    
+
     def decrypt(self, cipher, key):
         '''Function to decrypt text using psedo-random numbers.'''
         plain = []

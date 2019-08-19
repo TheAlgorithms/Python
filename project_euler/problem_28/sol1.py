@@ -16,11 +16,6 @@ in the same way?
 
 from math import ceil
 
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
-
 
 def diagonal_sum(n):
     """Returns the sum of the numbers on the diagonals in a n by n spiral
@@ -39,7 +34,7 @@ def diagonal_sum(n):
     """
     total = 1
 
-    for i in xrange(1, int(ceil(n / 2.0))):
+    for i in range(1, int(ceil(n / 2.0))):
         odd = 2 * i + 1
         even = 2 * i
         total = total + 4 * odd ** 2 - 6 * even

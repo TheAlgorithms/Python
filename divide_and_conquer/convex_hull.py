@@ -1,18 +1,16 @@
-from __future__ import print_function, absolute_import, division
-
 from numbers import Number
 """
-The convex hull problem is problem of finding all the vertices of convex polygon, P of 
+The convex hull problem is problem of finding all the vertices of convex polygon, P of
 a set of points in a plane such that all the points are either on the vertices of P or
-inside P. TH convex hull problem has several applications in geometrical problems, 
-computer graphics and game development. 
+inside P. TH convex hull problem has several applications in geometrical problems,
+computer graphics and game development.
 
-Two algorithms have been implemented for the convex hull problem here. 
+Two algorithms have been implemented for the convex hull problem here.
 1. A brute-force algorithm which runs in O(n^3)
 2. A divide-and-conquer algorithm which runs in O(n^3)
 
 There are other several other algorithms for the convex hull problem
-which have not been implemented here, yet. 
+which have not been implemented here, yet.
 
 """
 

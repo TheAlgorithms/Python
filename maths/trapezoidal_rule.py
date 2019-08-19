@@ -7,8 +7,6 @@ method 1:
 "extended trapezoidal rule"
 
 """
-from __future__ import print_function
-
 def method_1(boundary, steps):
 # "extended trapezoidal rule"
 # int(f) = dx/2 * (f1 + 2f2 + ... + fn)
@@ -19,7 +17,7 @@ def method_1(boundary, steps):
 	y = 0.0
 	y += (h/2.0)*f(a)
 	for i in x_i:
-		#print(i)	
+		#print(i)
 		y += h*f(i)
 	y += (h/2.0)*f(b)
 	return y

@@ -1,5 +1,4 @@
-from __future__ import print_function
-def moveTower(height, fromPole, toPole, withPole):  
+def moveTower(height, fromPole, toPole, withPole):
     '''
     >>> moveTower(3, 'A', 'B', 'C')
     moving disk from A to B

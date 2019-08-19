@@ -1,23 +1,10 @@
-from __future__ import print_function
-
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
-
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
-
-
 if __name__ == "__main__":
     # Accept No. of Nodes and edges
-    n, m = map(int, raw_input().split(" "))
+    n, m = map(int, input().split(" "))
 
     # Initialising Dictionary of edges
     g = {}
-    for i in xrange(n):
+    for i in range(n):
         g[i + 1] = []
 
     """
@@ -25,8 +12,8 @@ if __name__ == "__main__":
         Accepting edges of Unweighted Directed Graphs
     ----------------------------------------------------------------------------
     """
-    for _ in xrange(m):
-        x, y = map(int, raw_input().strip().split(" "))
+    for _ in range(m):
+        x, y = map(int, input().strip().split(" "))
         g[x].append(y)
 
     """
@@ -34,8 +21,8 @@ if __name__ == "__main__":
         Accepting edges of Unweighted Undirected Graphs
     ----------------------------------------------------------------------------
     """
-    for _ in xrange(m):
-        x, y = map(int, raw_input().strip().split(" "))
+    for _ in range(m):
+        x, y = map(int, input().strip().split(" "))
         g[x].append(y)
         g[y].append(x)
 
@@ -44,8 +31,8 @@ if __name__ == "__main__":
         Accepting edges of Weighted Undirected Graphs
     ----------------------------------------------------------------------------
     """
-    for _ in xrange(m):
-        x, y, r = map(int, raw_input().strip().split(" "))
+    for _ in range(m):
+        x, y, r = map(int, input().strip().split(" "))
         g[x].append([y, r])
         g[y].append([x, r])
 
@@ -170,10 +157,10 @@ def topo(G, ind=None, Q=[1]):
 
 
 def adjm():
-    n = raw_input().strip()
+    n = input().strip()
     a = []
-    for i in xrange(n):
-        a.append(map(int, raw_input().strip().split()))
+    for i in range(n):
+        a.append(map(int, input().strip().split()))
     return a, n
 
 
@@ -193,10 +180,10 @@ def adjm():
 def floy(A_and_n):
     (A, n) = A_and_n
     dist = list(A)
-    path = [[0] * n for i in xrange(n)]
-    for k in xrange(n):
-        for i in xrange(n):
-            for j in xrange(n):
+    path = [[0] * n for i in range(n)]
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
                 if dist[i][j] > dist[i][k] + dist[k][j]:
                     dist[i][j] = dist[i][k] + dist[k][j]
                     path[i][k] = k
@@ -245,10 +232,10 @@ def prim(G, s):
 
 
 def edglist():
-    n, m = map(int, raw_input().split(" "))
+    n, m = map(int, input().split(" "))
     l = []
-    for i in xrange(m):
-        l.append(map(int, raw_input().split(' ')))
+    for i in range(m):
+        l.append(map(int, input().split(' ')))
     return l, n
 
 
@@ -272,10 +259,10 @@ def krusk(E_and_n):
             break
         print(s)
         x = E.pop()
-        for i in xrange(len(s)):
+        for i in range(len(s)):
             if x[0] in s[i]:
                 break
-        for j in xrange(len(s)):
+        for j in range(len(s)):
             if x[1] in s[j]:
                 if i == j:
                     break
