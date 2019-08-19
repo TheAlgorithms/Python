@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 class Node:  # create a Node
     def __init__(self, data):
         self.data = data  # given data
@@ -10,7 +7,7 @@ class Node:  # create a Node
 class Linked_List:
     def __init__(self):
         self.Head = None    # Initialize Head to None
-        
+
     def insert_tail(self, data):
         if(self.Head is None): self.insert_head(data)    #If this is first node, call insert_head
         else:
@@ -37,7 +34,7 @@ class Linked_List:
             self.Head = self.Head.next
             temp.next = None
         return temp
-        
+
     def delete_tail(self):  # delete from tail
         tamp = self.Head
         if self.Head != None:
@@ -46,7 +43,7 @@ class Linked_List:
             else:
                 while tamp.next.next is not None:  # find the 2nd last element
                     tamp = tamp.next
-                tamp.next, tamp = None, tamp.next    #(2nd last element).next = None and tamp = last element 
+                tamp.next, tamp = None, tamp.next    #(2nd last element).next = None and tamp = last element
         return tamp
 
     def isEmpty(self):
@@ -79,7 +76,7 @@ def main():
     print("\nPrint List : ")
     A.printList()
     print("\nInserting 1st at Tail")
-    a3=input()    
+    a3=input()
     A.insert_tail(a3)
     print("Inserting 2nd at Tail")
     a4=input()
@@ -96,6 +93,6 @@ def main():
     A.reverse()
     print("\nPrint List : ")
     A.printList()
-    
+
 if __name__ == '__main__':
 	main()

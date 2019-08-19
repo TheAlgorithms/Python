@@ -4,14 +4,8 @@ The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
 Find the sum of all the primes below two million.
 """
-from __future__ import print_function
 import math
 from itertools import takewhile
-
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
 
 
 def primeCheck(number):
@@ -30,7 +24,7 @@ def prime_generator():
 
 def solution(n):
     """Returns the sum of all the primes below n.
-    
+
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution(2000000)
     # 142913828922
@@ -47,4 +41,4 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    print(solution(int(raw_input().strip())))
+    print(solution(int(input().strip())))

@@ -9,12 +9,6 @@ base 10 and base 2.
 (Please note that the palindromic number, in either base, may not include
 leading zeros.)
 """
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
-
-
 def is_palindrome(n):
     n = str(n)
 
@@ -47,7 +41,7 @@ def solution(n):
     """
     total = 0
 
-    for i in xrange(1, n):
+    for i in range(1, n):
         if is_palindrome(i) and is_palindrome(bin(i).split("b")[1]):
             total += i
     return total

@@ -1,10 +1,4 @@
 """example of simple chaos machine"""
-from __future__ import print_function
-
-try:
-  input = raw_input  # Python 2
-except NameError:
-  pass               # Python 3
 
 # Chaos Machine (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]; t = 3; m = 5
@@ -96,7 +90,7 @@ message = random.sample(range(0xFFFFFFFF), 100)
 for chunk in message:
   push(chunk)
 
-# for controlling 
+# for controlling
 inp = ""
 
 # Pulling Data (Output)

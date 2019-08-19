@@ -13,9 +13,6 @@ The function called is_balanced takes as input a string S which is a sequence of
 returns true if S is nested and false otherwise.
 
 '''
-from __future__ import print_function
-
-
 def is_balanced(S):
 
     stack = []

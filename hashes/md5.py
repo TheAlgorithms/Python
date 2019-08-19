@@ -1,4 +1,3 @@
-from __future__ import print_function
 import math
 
 
@@ -66,7 +65,7 @@ def getBlock(bitString):
     """[summary]
     Iterator:
             Returns by each call a list of length 16 with the 32 bit
-            integer blocks. 
+            integer blocks.
 
     Arguments:
             bitString {[string]} -- [binary string >= 512]
@@ -95,7 +94,7 @@ def not32(i):
 
 def sum32(a, b):
     '''
-    
+
     '''
     return (a + b) % 2**32
 

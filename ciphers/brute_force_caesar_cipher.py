@@ -1,4 +1,3 @@
-from __future__ import print_function
 def decrypt(message):
     """
     >>> decrypt('TMDETUX PMDVU')

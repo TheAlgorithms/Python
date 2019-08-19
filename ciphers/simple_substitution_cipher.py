@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys, random
 
 LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -18,7 +17,7 @@ def main():
         translated = decryptMessage(key, message)
 
     print('\n%sion: \n%s' % (mode.title(), translated))
-    
+
 def checkValidKey(key):
     keyList = list(key)
     lettersList = list(LETTERS)
@@ -49,7 +48,7 @@ def translateMessage(key, message, mode):
 
     if mode == 'decrypt':
         charsA, charsB = charsB, charsA
-        
+
     for symbol in message:
         if symbol.upper() in charsA:
             symIndex = charsA.find(symbol.upper())

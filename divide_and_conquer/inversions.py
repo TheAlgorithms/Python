@@ -1,15 +1,13 @@
-from __future__ import print_function, absolute_import, division
-
 """
 Given an array-like data structure A[1..n], how many pairs
-(i, j) for all 1 <= i < j <= n such that A[i] > A[j]? These pairs are 
-called inversions. Counting the number of such inversions in an array-like 
-object is the important. Among other things, counting inversions  can help 
+(i, j) for all 1 <= i < j <= n such that A[i] > A[j]? These pairs are
+called inversions. Counting the number of such inversions in an array-like
+object is the important. Among other things, counting inversions  can help
 us determine how close a given array is to being sorted
- 
+
 In this implementation, I provide two algorithms, a divide-and-conquer
-algorithm which runs in nlogn and the brute-force n^2 algorithm. 
- 
+algorithm which runs in nlogn and the brute-force n^2 algorithm.
+
 """
 
 

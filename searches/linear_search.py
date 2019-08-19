@@ -9,12 +9,7 @@ python3 -m doctest -v linear_search.py
 For manual testing run:
 python linear_search.py
 """
-from __future__ import print_function
 
-try:
-    raw_input          # Python 2
-except NameError:
-    raw_input = input  # Python 3
 
 def linear_search(sequence, target):
     """Pure implementation of linear search algorithm in Python
@@ -43,10 +38,10 @@ def linear_search(sequence, target):
 
 
 if __name__ == '__main__':
-    user_input = raw_input('Enter numbers separated by comma:\n').strip()
+    user_input = input('Enter numbers separated by comma:\n').strip()
     sequence = [int(item) for item in user_input.split(',')]
 
-    target_input = raw_input('Enter a single number to be found in the list:\n')
+    target_input = input('Enter a single number to be found in the list:\n')
     target = int(target_input)
     result = linear_search(sequence, target)
     if result is not None:

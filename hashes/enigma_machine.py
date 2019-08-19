@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 alphabets = [chr(i) for i in range(32, 126)]
 gear_one = [i for i in range(len(alphabets))]
 gear_two = [i for i in range(len(alphabets))]

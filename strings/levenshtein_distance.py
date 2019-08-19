@@ -65,13 +65,8 @@ def levenshtein_distance(first_word, second_word):
 
 
 if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    first_word = raw_input('Enter the first word:\n').strip()
-    second_word = raw_input('Enter the second word:\n').strip()
+    first_word = input('Enter the first word:\n').strip()
+    second_word = input('Enter the second word:\n').strip()
 
     result = levenshtein_distance(first_word, second_word)
     print('Levenshtein distance between {} and {} is {}'.format(

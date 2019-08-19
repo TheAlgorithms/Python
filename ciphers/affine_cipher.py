@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys, random, cryptomath_module as cryptoMath
 
 SYMBOLS = r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""

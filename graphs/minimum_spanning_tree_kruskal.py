@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 if __name__ == "__main__":
     num_nodes, num_edges = list(map(int, input().strip().split()))
 

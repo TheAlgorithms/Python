@@ -14,11 +14,8 @@ following expression.
 
 d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000
 """
-from __future__ import print_function
-
-
 def solution():
-    """Returns 
+    """Returns
 
     >>> solution()
     210

@@ -1,4 +1,3 @@
-from __future__ import print_function
 import time, os, sys
 import transposition_cipher as transCipher
 
@@ -16,7 +15,7 @@ def main():
         response = input('> ')
         if not response.lower().startswith('y'):
             sys.exit()
-            
+
     startTime = time.time()
     if mode.lower().startswith('e'):
         with open(inputFile) as f:
@@ -29,9 +28,9 @@ def main():
 
     with open(outputFile, 'w') as outputObj:
         outputObj.write(translated)
-    
+
     totalTime = round(time.time() - startTime, 2)
     print(('Done (', totalTime, 'seconds )'))
-    
+
 if __name__ == '__main__':
     main()

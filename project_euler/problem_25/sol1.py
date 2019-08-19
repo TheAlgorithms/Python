@@ -25,12 +25,6 @@ What is the index of the first term in the Fibonacci sequence to contain 1000
 digits?
 """
 
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
-
-
 def fibonacci(n):
     if n == 1 or type(n) is not int:
         return 0
@@ -38,7 +32,7 @@ def fibonacci(n):
         return 1
     else:
         sequence = [0, 1]
-        for i in xrange(2, n + 1):
+        for i in range(2, n + 1):
             sequence.append(sequence[i - 1] + sequence[i - 2])
 
         return sequence[n]
