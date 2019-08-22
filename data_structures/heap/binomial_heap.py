@@ -1,60 +1,60 @@
-"""
-    Min-oriented priority queue implemented with the Binomial Heap data 
-    structure.
-"""
-
-
-class BinomialHeap:
-    class Node:
-        """
+class Node:
+    """
         Node in a doubly-linked binomial tree, containing:
             - value
             - size of left subtree
             - link to left, right and parent nodes
         """
 
-        def __init__(self, val):
-            """
+    def __init__(self, val):
+        """
                 Constructor for Node with value val.
                 Left, right and parent links are initiated as None
             """
-            self.val = val
-            self.left_tree_size = (
-                0
-            )  # Number of nodes in left subtree
-            self.left = None
-            self.right = None
-            self.parent = None
+        self.val = val
+        self.left_tree_size = (
+            0
+        )  # Number of nodes in left subtree
+        self.left = None
+        self.right = None
+        self.parent = None
 
-        def mergeTrees(self, other):
-            """
+    def mergeTrees(self, other):
+        """
                 In-place merge of two binomial trees of equal size. 
                 Returns the root of the resulting tree
             """
-            assert (
-                self.left_tree_size == other.left_tree_size
-            ), "Unequal Sizes of Blocks"
+        assert (
+            self.left_tree_size == other.left_tree_size
+        ), "Unequal Sizes of Blocks"
 
-            if self.val < other.val:
-                other.left = self.right
-                other.parent = None
-                if self.right:
-                    self.right.parent = other
-                self.right = other
-                self.left_tree_size = (
-                    self.left_tree_size * 2 + 1
-                )
-                return self
-            else:
-                self.left = other.right
-                self.parent = None
-                if other.right:
-                    other.right.parent = self
-                other.right = self
-                other.left_tree_size = (
-                    other.left_tree_size * 2 + 1
-                )
-                return other
+        if self.val < other.val:
+            other.left = self.right
+            other.parent = None
+            if self.right:
+                self.right.parent = other
+            self.right = other
+            self.left_tree_size = (
+                self.left_tree_size * 2 + 1
+            )
+            return self
+        else:
+            self.left = other.right
+            self.parent = None
+            if other.right:
+                other.right.parent = self
+            other.right = self
+            other.left_tree_size = (
+                other.left_tree_size * 2 + 1
+            )
+            return other
+
+
+class BinomialHeap:
+    """
+    Min-oriented priority queue implemented with the Binomial Heap data 
+    structure.
+    """
 
     def __init__(
         self, bottom_root=None, min_node=None, heap_size=0
