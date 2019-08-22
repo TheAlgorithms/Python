@@ -357,5 +357,5 @@ for number in permutation:
 TestHeap.NodePrint()
 
 # Deleting
-while 1:
-    print(TestHeap.deleteMin(), end=" ")  # 0, 1, 2, 3, ...
+for i in range(20):
+    print(TestHeap.deleteMin(), end=" ")  # 0, 1, 2, 3, ... , 19
