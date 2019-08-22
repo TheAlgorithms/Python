@@ -42,7 +42,7 @@ class contrastStretch:
                 num=self.img[j][i]
                 if num != self.last_list[num]:
                     self.img[j][i]=self.last_list[num]
-        cv2.imwrite('output_data/ouputImage.jpg',self.img)
+        cv2.imwrite('output_data/output.jpg',self.img)
 
     def plotHistogram(self):
          plt.hist(self.img.ravel(),256,[0,256])
@@ -55,6 +55,6 @@ class contrastStretch:
 
 stretcher=contrastStretch();
 
-stretcher.stretch("image_data/inputImage.jpg");
+stretcher.stretch("image_data/input.jpg");
 stretcher.plotHistogram();
 stretcher.showImage();
