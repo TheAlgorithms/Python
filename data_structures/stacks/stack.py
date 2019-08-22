@@ -1,4 +1,3 @@
-from __future__ import print_function
 __author__ = 'Omkar Pathak'
 
 
@@ -17,7 +16,7 @@ class Stack(object):
         self.limit = limit
 
     def __bool__(self):
-        return not bool(self.stack)
+        return bool(self.stack)
 
     def __str__(self):
         return str(self.stack)

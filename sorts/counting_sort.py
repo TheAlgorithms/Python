@@ -8,8 +8,6 @@ For manual testing run:
 python counting_sort.py
 """
 
-from __future__ import print_function
-
 
 def counting_sort(collection):
     """Pure implementation of counting sort algorithm in Python
@@ -58,6 +56,10 @@ def counting_sort(collection):
     return ordered
 
 def counting_sort_string(string):
+    """
+    >>> counting_sort_string("thisisthestring")
+    'eghhiiinrsssttt'
+    """
     return ''.join([chr(i) for i in counting_sort([ord(c) for c in string])])
 
 
@@ -65,11 +67,6 @@ if __name__ == '__main__':
     # Test string sort
     assert "eghhiiinrsssttt" == counting_sort_string("thisisthestring")
 
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
+    user_input = input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     print(counting_sort(unsorted))

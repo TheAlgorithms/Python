@@ -1,4 +1,5 @@
-from __future__ import print_function
+"""Topological Sort."""
+
 #     a
 #    / \
 #   b  c
@@ -29,5 +30,6 @@ def topological_sort(start, visited, sort):
     return sort
 
 
-sort = topological_sort('a', [], [])
-print(sort)
+if __name__ == '__main__':
+    sort = topological_sort('a', [], [])
+    print(sort)

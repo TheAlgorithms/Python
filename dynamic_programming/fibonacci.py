@@ -1,7 +1,6 @@
 """
 This is a pure Python implementation of Dynamic Programming solution to the fibonacci sequence problem.
 """
-from __future__ import print_function
 
 
 class Fibonacci:
@@ -29,21 +28,16 @@ class Fibonacci:
 
 if __name__ == '__main__':
     print("\n********* Fibonacci Series Using Dynamic Programming ************\n")
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
     print("\n Enter the upper limit for the fibonacci sequence: ", end="")
     try:
-        N = eval(raw_input().strip())
+        N = int(input().strip())
         fib = Fibonacci(N)
         print(
-            "\n********* Enter different values to get the corresponding fibonacci sequence, enter any negative number to exit. ************\n")
+            "\n********* Enter different values to get the corresponding fibonacci "
+            "sequence, enter any negative number to exit. ************\n")
         while True:
-            print("Enter value: ", end=" ")
             try:
-                i = eval(raw_input().strip())
+                i = int(input("Enter value: ").strip())
                 if i < 0:
                     print("\n********* Good Bye!! ************\n")
                     break

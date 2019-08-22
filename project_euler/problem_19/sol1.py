@@ -1,9 +1,9 @@
-from __future__ import print_function
-'''
+"""
 Counting Sundays
 Problem 19
 
-You are given the following information, but you may prefer to do some research for yourself.
+You are given the following information, but you may prefer to do some research
+for yourself.
 
 1 Jan 1900 was a Monday.
 Thirty days has September,
@@ -13,39 +13,52 @@ Saving February alone,
 Which has twenty-eight, rain or shine.
 And on leap years, twenty-nine.
 
-A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.
+A leap year occurs on any year evenly divisible by 4, but not on a century
+unless it is divisible by 400.
 
-How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
-'''
+How many Sundays fell on the first of the month during the twentieth century
+(1 Jan 1901 to 31 Dec 2000)?
+"""
 
-days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-day = 6
-month = 1
-year = 1901
+def solution():
+    """Returns the number of mondays that fall on the first of the month during
+    the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 
-sundays = 0
+    >>> solution()
+    171
+    """
+    days_per_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-while year < 2001:
-	day += 7
+    day = 6
+    month = 1
+    year = 1901
 
-	if (year%4 == 0 and not year%100 == 0) or (year%400 == 0):
-		if day > days_per_month[month-1] and month is not 2:
-			month += 1
-			day = day-days_per_month[month-2]
-		elif day > 29 and month is 2:
-			month += 1
-			day = day-29
-	else:
-		if day > days_per_month[month-1]:
-			month += 1
-			day = day-days_per_month[month-2]
-	
-	if month > 12:
-		year += 1
-		month = 1
+    sundays = 0
 
-	if year < 2001 and day is 1:
-		sundays += 1
+    while year < 2001:
+        day += 7
 
-print(sundays)
+        if (year % 4 == 0 and not year % 100 == 0) or (year % 400 == 0):
+            if day > days_per_month[month - 1] and month != 2:
+                month += 1
+                day = day - days_per_month[month - 2]
+            elif day > 29 and month == 2:
+                month += 1
+                day = day - 29
+        else:
+            if day > days_per_month[month - 1]:
+                month += 1
+                day = day - days_per_month[month - 2]
+
+        if month > 12:
+            year += 1
+            month = 1
+
+        if year < 2001 and day == 1:
+            sundays += 1
+    return sundays
+
+
+if __name__ == "__main__":
+    print(solution())

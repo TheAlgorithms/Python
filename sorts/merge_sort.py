@@ -9,9 +9,6 @@ python3 -m doctest -v merge_sort.py
 For manual testing run:
 python merge_sort.py
 """
-from __future__ import print_function
-
-
 def merge_sort(collection):
     """Pure implementation of the merge sort algorithm in Python
 
@@ -29,44 +26,23 @@ def merge_sort(collection):
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    length = len(collection)
-    if length > 1:
-        midpoint = length // 2
-        left_half = merge_sort(collection[:midpoint])
-        right_half = merge_sort(collection[midpoint:])
-        i = 0
-        j = 0
-        k = 0
-        left_length = len(left_half)
-        right_length = len(right_half)
-        while i < left_length and j < right_length:
-            if left_half[i] < right_half[j]:
-                collection[k] = left_half[i]
-                i += 1
-            else:
-                collection[k] = right_half[j]
-                j += 1
-            k += 1
-
-        while i < left_length:
-            collection[k] = left_half[i]
-            i += 1
-            k += 1
-
-        while j < right_length:
-            collection[k] = right_half[j]
-            j += 1
-            k += 1
-
-    return collection
+    def merge(left, right):
+        '''merge left and right
+        :param left: left collection
+        :param right: right collection
+        :return: merge result
+        '''
+        result = []
+        while left and right:
+            result.append((left if left[0] <= right[0] else right).pop(0))
+        return result + left + right
+    if len(collection) <= 1:
+        return collection
+    mid = len(collection) // 2
+    return merge(merge_sort(collection[:mid]), merge_sort(collection[mid:]))
 
 
 if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
+    user_input = input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
-    print(merge_sort(unsorted))
+    print(*merge_sort(unsorted), sep=',')

@@ -1,10 +1,10 @@
-from __future__ import print_function
 import collections, pprint, time, os
 
 start_time = time.time()
 print('creating word list...')
 path = os.path.split(os.path.realpath(__file__))
-word_list = sorted(list(set([word.strip().lower() for word in open(path[0] + '/words')])))
+with open(path[0] + '/words') as f:
+    word_list = sorted(list(set([word.strip().lower() for word in f])))
 
 def signature(word):
     return ''.join(sorted(word))

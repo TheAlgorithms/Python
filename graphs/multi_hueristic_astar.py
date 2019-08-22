@@ -1,11 +1,5 @@
-from __future__ import print_function
 import heapq
 import numpy as np
-
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
 
 
 class PriorityQueue:
@@ -18,7 +12,7 @@ class PriorityQueue:
 			return self.elements[0][0]
 		else:
 			return float('inf')
-	
+
 	def empty(self):
 		return len(self.elements) == 0
 
@@ -48,10 +42,10 @@ class PriorityQueue:
 				(pro, x) = heapq.heappop(self.elements)
 			for (prito, yyy) in temp:
 				heapq.heappush(self.elements, (prito, yyy))
-	
+
 	def top_show(self):
 		return self.elements[0][1]
-	
+
 	def get(self):
 		(priority, item) = heapq.heappop(self.elements)
 		self.set.remove(item)
@@ -65,7 +59,7 @@ def consistent_hueristic(P, goal):
 
 def hueristic_2(P, goal):
 	# integer division by time variable
-	return consistent_hueristic(P, goal) // t 
+	return consistent_hueristic(P, goal) // t
 
 def hueristic_1(P, goal):
 	# manhattan distance
@@ -74,13 +68,13 @@ def hueristic_1(P, goal):
 def key(start, i, goal, g_function):
 	ans = g_function[start] + W1 * hueristics[i](start, goal)
 	return ans
-	
+
 def do_something(back_pointer, goal, start):
 	grid = np.chararray((n, n))
 	for i in range(n):
 		for j in range(n):
 			grid[i][j] = '*'
-	
+
 	for i in range(n):
 		for j in range(n):
 			if (j, (n-1)-i) in blocks:
@@ -94,9 +88,9 @@ def do_something(back_pointer, goal, start):
 		grid[(n-1)-y_c][x_c] = "-"
 		x = back_pointer[x]
 	grid[(n-1)][0] = "-"
-	
 
-	for i in xrange(n):
+
+	for i in range(n):
 		for j in range(n):
 			if (i, j) == (0, n-1):
 				print(grid[i][j], end=' ')
@@ -112,7 +106,7 @@ def do_something(back_pointer, goal, start):
 	print("PATH TAKEN BY THE ALGORITHM IS:-")
 	x = back_pointer[goal]
 	while x != start:
-		print(x, end=' ') 
+		print(x, end=' ')
 		x = back_pointer[x]
 	print(x)
 	quit()
@@ -153,7 +147,7 @@ def expand_state(s, j, visited, g_function, close_list_anchor, close_list_inad, 
 							if key(neighbours, var, goal, g_function) <= W2 * key(neighbours, 0, goal, g_function):
 								# print("why not plssssssssss")
 								open_list[j].put(neighbours, key(neighbours, var, goal, g_function))
-			
+
 
 	# print
 
@@ -212,7 +206,7 @@ def multi_a_star(start, goal, n_hueristic):
 	for i in range(n_hueristic):
 		open_list.append(PriorityQueue())
 		open_list[i].put(start, key(start, i, goal, g_function))
-	
+
 	close_list_anchor = []
 	close_list_inad = []
 	while open_list[0].minkey() < float('inf'):
@@ -263,4 +257,7 @@ def multi_a_star(start, goal, n_hueristic):
 	print()
 	print("# is an obstacle")
 	print("- is the path taken by algorithm")
-multi_a_star(start, goal, n_hueristic)
+
+
+if __name__ == "__main__":
+    multi_a_star(start, goal, n_hueristic)

@@ -14,15 +14,14 @@
     Github: 245885195@qq.com
     Date: 2017.9.20
     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
-          '''
-from __future__ import print_function
-
+'''
+import pickle
 import numpy as np
 import matplotlib.pyplot as plt
 
 class CNN():
 
-    def __init__(self,conv1_get,size_p1,bp_num1,bp_num2,bp_num3,rate_w=0.2,rate_t=0.2):
+    def __init__(self, conv1_get, size_p1, bp_num1, bp_num2, bp_num3, rate_w=0.2, rate_t=0.2):
         '''
         :param conv1_get: [a,c,d]，size, number, step of convolution kernel
         :param size_p1: pooling size
@@ -48,32 +47,30 @@ class CNN():
         self.thre_bp3 = -2*np.random.rand(self.num_bp3)+1
 
 
-    def save_model(self,save_path):
+    def save_model(self, save_path):
         #save model dict with pickle
-        import pickle
         model_dic = {'num_bp1':self.num_bp1,
-                    'num_bp2':self.num_bp2,
-                    'num_bp3':self.num_bp3,
-                    'conv1':self.conv1,
-                    'step_conv1':self.step_conv1,
-                    'size_pooling1':self.size_pooling1,
-                    'rate_weight':self.rate_weight,
-                    'rate_thre':self.rate_thre,
-                    'w_conv1':self.w_conv1,
-                    'wkj':self.wkj,
-                    'vji':self.vji,
-                    'thre_conv1':self.thre_conv1,
-                    'thre_bp2':self.thre_bp2,
-                     'thre_bp3':self.thre_bp3}
+                'num_bp2':self.num_bp2,
+                'num_bp3':self.num_bp3,
+                'conv1':self.conv1,
+                'step_conv1':self.step_conv1,
+                'size_pooling1':self.size_pooling1,
+                'rate_weight':self.rate_weight,
+                'rate_thre':self.rate_thre,
+                'w_conv1':self.w_conv1,
+                'wkj':self.wkj,
+                'vji':self.vji,
+                'thre_conv1':self.thre_conv1,
+                'thre_bp2':self.thre_bp2,
+                'thre_bp3':self.thre_bp3}
         with open(save_path, 'wb') as f:
             pickle.dump(model_dic, f)
 
         print('Model saved： %s'% save_path)
 
     @classmethod
-    def ReadModel(cls,model_path):
+    def ReadModel(cls, model_path):
         #read saved model
-        import pickle
         with open(model_path, 'rb') as f:
             model_dic = pickle.load(f)
 
@@ -97,13 +94,13 @@ class CNN():
         return conv_ins
 
 
-    def sig(self,x):
+    def sig(self, x):
         return 1 / (1 + np.exp(-1*x))
 
-    def do_round(self,x):
+    def do_round(self, x):
         return round(x, 3)
 
-    def convolute(self,data,convs,w_convs,thre_convs,conv_step):
+    def convolute(self, data, convs, w_convs, thre_convs, conv_step):
         #convolution process
         size_conv = convs[0]
         num_conv =convs[1]
@@ -132,7 +129,7 @@ class CNN():
         focus_list = np.asarray(focus1_list)
         return focus_list,data_featuremap
 
-    def pooling(self,featuremaps,size_pooling,type='average_pool'):
+    def pooling(self, featuremaps, size_pooling, type='average_pool'):
         #pooling process
         size_map = len(featuremaps[0])
         size_pooled = int(size_map/size_pooling)
@@ -153,7 +150,7 @@ class CNN():
             featuremap_pooled.append(map_pooled)
         return featuremap_pooled
 
-    def _expand(self,datas):
+    def _expand(self, datas):
         #expanding three dimension data to one dimension list
         data_expanded = []
         for i in range(len(datas)):
@@ -164,14 +161,14 @@ class CNN():
         data_expanded = np.asarray(data_expanded)
         return data_expanded
 
-    def _expand_mat(self,data_mat):
+    def _expand_mat(self, data_mat):
         #expanding matrix to one dimension list
         data_mat = np.asarray(data_mat)
         shapes = np.shape(data_mat)
         data_expanded = data_mat.reshape(1,shapes[0]*shapes[1])
         return data_expanded
 
-    def _calculate_gradient_from_pool(self,out_map,pd_pool,num_map,size_map,size_pooling):
+    def _calculate_gradient_from_pool(self, out_map, pd_pool,num_map, size_map, size_pooling):
         '''
         calcluate the gradient from the data slice of pool layer
         pd_pool: list of matrix
@@ -190,7 +187,7 @@ class CNN():
             pd_all.append(pd_conv2)
         return pd_all
 
-    def trian(self,patterns,datas_train, datas_teach, n_repeat, error_accuracy,draw_e = bool):
+    def train(self, patterns, datas_train, datas_teach, n_repeat, error_accuracy, draw_e = bool):
         #model traning
         print('----------------------Start Training-------------------------')
         print((' - - Shape: Train_Data  ',np.shape(datas_train)))
@@ -206,7 +203,7 @@ class CNN():
                 data_train = np.asmatrix(datas_train[p])
                 data_teach = np.asarray(datas_teach[p])
                 data_focus1,data_conved1 = self.convolute(data_train,self.conv1,self.w_conv1,
-                                           self.thre_conv1,conv_step=self.step_conv1)
+                        self.thre_conv1,conv_step=self.step_conv1)
                 data_pooled1 = self.pooling(data_conved1,self.size_pooling1)
                 shape_featuremap1 = np.shape(data_conved1)
                 '''
@@ -231,7 +228,7 @@ class CNN():
                 pd_conv1_pooled = pd_i_all / (self.size_pooling1*self.size_pooling1)
                 pd_conv1_pooled = pd_conv1_pooled.T.getA().tolist()
                 pd_conv1_all = self._calculate_gradient_from_pool(data_conved1,pd_conv1_pooled,shape_featuremap1[0],
-                                                    shape_featuremap1[1],self.size_pooling1)
+                        shape_featuremap1[1],self.size_pooling1)
                 #weight and threshold learning process---------
                 #convolution layer
                 for k_conv in range(self.conv1[1]):
@@ -268,7 +265,7 @@ class CNN():
             draw_error()
         return mse
 
-    def predict(self,datas_test):
+    def predict(self, datas_test):
         #model predict
         produce_out = []
         print('-------------------Start Testing-------------------------')
@@ -276,7 +273,7 @@ class CNN():
         for p in range(len(datas_test)):
             data_test = np.asmatrix(datas_test[p])
             data_focus1, data_conved1 = self.convolute(data_test, self.conv1, self.w_conv1,
-                                                     self.thre_conv1, conv_step=self.step_conv1)
+                    self.thre_conv1, conv_step=self.step_conv1)
             data_pooled1 = self.pooling(data_conved1, self.size_pooling1)
             data_bp_input = self._expand(data_pooled1)
 
@@ -289,11 +286,11 @@ class CNN():
         res = [list(map(self.do_round,each)) for each in produce_out]
         return np.asarray(res)
 
-    def convolution(self,data):
+    def convolution(self, data):
         #return the data of image after convoluting process so we can check it out
         data_test = np.asmatrix(data)
         data_focus1, data_conved1 = self.convolute(data_test, self.conv1, self.w_conv1,
-                                                     self.thre_conv1, conv_step=self.step_conv1)
+                self.thre_conv1, conv_step=self.step_conv1)
         data_pooled1 = self.pooling(data_conved1, self.size_pooling1)
 
         return data_conved1,data_pooled1
@@ -303,4 +300,4 @@ if __name__ == '__main__':
     pass
     '''
     I will put the example on other file
-    '''
+'''
