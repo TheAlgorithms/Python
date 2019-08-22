@@ -7,33 +7,54 @@ Created on Fri Sep 28 15:22:29 2018
 import cv2 
 import matplotlib.pyplot as plt
 import numpy as np
+import copy
 
-last_list=[]
-rem=0
-L=256
-sk=0
-
-img=cv2.imread('image_data/inputImage.jpg',0)
-x,y,z=plt.hist(img.ravel(),256,[0,256],label='x')
-k=np.sum(x)
-for i in range(len(x)):
-    prk=x[i]/k
-    sk+=prk
-    last=(L-1)*sk        
-    if rem!=0:
-        rem=int(last % last)
-    last = int(last + 1 if rem >=0.5 else last)
-    last_list.append(last)
-
-number_of_rows=(int(np.ma.count(img)/img[1].size))
-number_of_cols=img[1].size
-
-for i in range(number_of_cols):
-    for j in range(number_of_rows):
-        num=img[j][i]
-        if num != last_list[num]:
-            img[j][i]=last_list[num]
+class contrastStretch:
+    def __init__(self):
+        self.img="";
+        self.original_image="";
+        self.last_list=[]
+        self.rem=0
+        self.L=256
+        self.sk=0
+        self.k=0
+        self.number_of_rows=0;
+        self.number_of_cols=0;
+        
     
-plt.hist(img.ravel(),256,[0,256])
+    def stretch(self,input_image):
+        self.img=cv2.imread(input_image,0);
+        self.original_image=copy.deepcopy(self.img);
+        x,y,z=plt.hist(self.img.ravel(),256,[0,256],label='x')
+        self.k=np.sum(x)
+        for i in range(len(x)):
+            prk=x[i]/self.k
+            self.sk+=prk
+            last=(self.L-1)*self.sk        
+            if self.rem!=0:
+                self.rem=int(last % last)
+            last = int(last + 1 if self.rem >=0.5 else last)
+            self.last_list.append(last)
+            self.number_of_rows=(int(np.ma.count(self.img)/self.img[1].size))
+            self.number_of_cols=self.img[1].size
+        for i in range(self.number_of_cols):
+            for j in range(self.number_of_rows):
+                num=self.img[j][i]
+                if num != self.last_list[num]:
+                    self.img[j][i]=self.last_list[num]
+        cv2.imwrite('output_data/ouputImage.jpg',self.img)
 
-cv2.imwrite('output_data/ouputImage.jpg',img)
+    def plotHistogram(self):
+         plt.hist(self.img.ravel(),256,[0,256])
+         
+    def showImage(self):
+        cv2.imshow("Output-Image",self.img);
+        cv2.imshow("Input-Image",self.original_image);
+        cv2.waitKey(5000)
+        cv2.destroyAllWindows()
+
+stretcher=contrastStretch();
+
+stretcher.stretch("image_data/inputImage.jpg");
+stretcher.plotHistogram();
+stretcher.showImage();
