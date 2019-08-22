@@ -1,7 +1,3 @@
-"""
-
-
-"""
 def compare_string(string1, string2):
 	"""
 	>>> compare_string('0010','0110')
