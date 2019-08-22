@@ -2,6 +2,9 @@ def compare_string(string1, string2):
 	"""
 	>>> compare_string('0010','0110')
 	'0_10'
+	
+	>>> compare_string('0110','1101')
+	-1
 	"""
 	l1 = list(string1); l2 = list(string2)
 	count = 0
@@ -56,6 +59,9 @@ def is_for_table(string1, string2, count):
 	"""
 	>>> is_for_table('__1','011',2)
 	True
+	
+	>>> is_for_table('01_','001',1)
+	False
 	"""
 	l1 = list(string1);l2=list(string2)
 	count_n = 0
