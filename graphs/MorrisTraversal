@@ -1,0 +1,33 @@
+# Python program to do inorder traversal 
+# without using recursion and stack, Morris inorder Traversal 
+
+class Node: 
+    def __init__(self, data): 
+        self.data = data  
+        self.left = None
+        self.right = None
+        
+def MorrisTraversal(root): 
+    current = root        
+    while(current is not None): 
+        if current.left is None: 
+            print (current.data) 
+            current = current.right 
+        else: 
+            previous = current.left 
+            while(previous.right is not None and previous.right != current): 
+                previous = previous.right 
+            if(previous.right is None): 
+                previous.right = current 
+                current = current.left 
+            else: 
+                previous.right = None
+                print (current.data) 
+                current = current.right
+                
+root = Node(1) 
+root.left = Node(2) 
+root.right = Node(3) 
+root.left.left = Node(4) 
+root.left.right = Node(5) 
+MorrisTraversal(root) 
