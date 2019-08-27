@@ -10,7 +10,7 @@ def NuSVC(train_x, train_y, test_x):
     predicted_NuSVC = svc_NuSVC.predict(test_x)
     score_NuSVC = accuracy_score(test_y, predicted_NuSVC)
     # outputs the accuracy
-    print("NuSVC score:{}%", score_NuSVC * 100)
+    print("NuSVC score:{} %".format(score_NuSVC * 100))
 
 
 def Linearsvc(train_x, train_y, test_x):
@@ -19,7 +19,7 @@ def Linearsvc(train_x, train_y, test_x):
     predicted_svc_linear = svc_linear.predict(test_x)
     score_svc_linear = accuracy_score(test_y, predicted_svc_linear)
     # outputs the accuracy
-    print("Linearsvc score:{}%", score_svc_linear * 100)
+    print("Linearsvc score:{} %".format(score_svc_linear * 100))
 
 
 def SVC(train_x, train_y, test_x):
@@ -30,7 +30,7 @@ def SVC(train_x, train_y, test_x):
     predicted_SVC = SVC.predict(test_x)
     score_SVC = accuracy_score(test_y, predicted_SVC)
     # outputs the accuracy
-    print("SVC score:{}%", score_SVC * 100)
+    print("SVC score:{} %".format(score_SVC * 100))
 
 
 # loading the iris dataset
@@ -45,3 +45,8 @@ print("\n Features: \n {}".format(iris.feature_names))
 NuSVC(train_x, train_y, test_x)
 Linearsvc(train_x, train_y, test_x)
 SVC(train_x, train_y, test_x)
+
+if __name__ == "__main__":
+    import doctest
+    
+    doctest.testmod()
