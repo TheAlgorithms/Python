@@ -10,11 +10,16 @@ import numpy as np
 class IndexCalculation:
     """
         # Class Summary
-            This algorithm consists in calculating vegetation indices, these indices can be used for precision agriculture for example (or remote sensing). There are functions to define the data and to calculate the implemented indices.
+                This algorithm consists in calculating vegetation indices, these indices 
+            can be used for precision agriculture for example (or remote sensing). There are
+            functions to define the data and to calculate the implemented indices.
 
         # Vegetation index
             https://en.wikipedia.org/wiki/Vegetation_Index
-            A Vegetation Index (VI) is a spectral transformation of two or more bands designed to enhance the contribution of vegetation properties and allow reliable spatial and temporal inter-comparisons of terrestrial photosynthetic activity and canopy structural variations
+            A Vegetation Index (VI) is a spectral transformation of two or more bands designed 
+            to enhance the contribution of vegetation properties and allow reliable spatial and 
+            temporal inter-comparisons of terrestrial photosynthetic activity and canopy 
+            structural variations
         
         # Information about channels (Wavelength range for each)
             * nir - near-infrared
@@ -79,9 +84,18 @@ class IndexCalculation:
                 #"NDRE"               --  redEdge, nir
 
         #list of all index implemented
-            #allIndex = ["ARVI2", "CCCI", "CVI", "GLI", "NDVI", "BNDVI", "redEdgeNDVI", "GNDVI", "GBNDVI", "GRNDVI", "RBNDVI", "PNDVI", "ATSAVI", "BWDRVI", "CIgreen", "CIrededge", "CI", "CTVI", "GDVI", "EVI", "GEMI", "GOSAVI", "GSAVI", "Hue", "IVI", "IPVI", "I", "RVI", "MRVI", "MSAVI", "NormG", "NormNIR", "NormR", "NGRDI", "RI", "S", "IF", "DVI", "TVI", "NDRE"]
+            #allIndex = ["ARVI2", "CCCI", "CVI", "GLI", "NDVI", "BNDVI", "redEdgeNDVI", "GNDVI", 
+                        "GBNDVI", "GRNDVI", "RBNDVI", "PNDVI", "ATSAVI", "BWDRVI", "CIgreen", 
+                        "CIrededge", "CI", "CTVI", "GDVI", "EVI", "GEMI", "GOSAVI", "GSAVI", 
+                        "Hue", "IVI", "IPVI", "I", "RVI", "MRVI", "MSAVI", "NormG", "NormNIR", 
+                        "NormR", "NGRDI", "RI", "S", "IF", "DVI", "TVI", "NDRE"]
+
         #list of index with not blue channel
-            #notBlueIndex = ["ARVI2", "CCCI", "CVI", "NDVI", "redEdgeNDVI", "GNDVI", "GRNDVI", "ATSAVI", "CIgreen", "CIrededge", "CTVI", "GDVI", "GEMI", "GOSAVI", "GSAVI", "IVI", "IPVI", "RVI", "MRVI", "MSAVI", "NormG", "NormNIR", "NormR", "NGRDI", "RI", "DVI", "TVI", "NDRE"]
+            #notBlueIndex = ["ARVI2", "CCCI", "CVI", "NDVI", "redEdgeNDVI", "GNDVI", "GRNDVI", 
+                            "ATSAVI", "CIgreen", "CIrededge", "CTVI", "GDVI", "GEMI", "GOSAVI", 
+                            "GSAVI", "IVI", "IPVI", "RVI", "MRVI", "MSAVI", "NormG", "NormNIR", 
+                            "NormR", "NGRDI", "RI", "DVI", "TVI", "NDRE"]
+
         #list of index just with RGB channels
             #RGBIndex = ["GLI", "CI", "Hue", "I", "NGRDI", "RI", "S", "IF"]
     """
@@ -199,7 +213,8 @@ class IndexCalculation:
 
     def NDVI(self):
         """
-            Normalized Difference self.nir/self.red Normalized Difference Vegetation Index, Calibrated NDVI - CDVI
+                Normalized Difference self.nir/self.red Normalized Difference Vegetation Index, 
+            Calibrated NDVI - CDVI
             https://www.indexdatabase.de/db/i-single.php?id=58
             :return: index
         """
@@ -207,7 +222,8 @@ class IndexCalculation:
 
     def BNDVI(self):
         """
-            Normalized Difference self.nir/self.blue self.blue-normalized difference vegetation index
+                Normalized Difference self.nir/self.blue self.blue-normalized difference 
+            vegetation index
             https://www.indexdatabase.de/db/i-single.php?id=135
             :return: index
         """
@@ -458,7 +474,8 @@ class IndexCalculation:
 
     def NGRDI(self):
         """
-            Normalized Difference self.green/self.red Normalized self.green self.red difference index, Visible Atmospherically Resistant Indices self.green (VIself.green)
+                Normalized Difference self.green/self.red Normalized self.green self.red 
+            difference index, Visible Atmospherically Resistant Indices self.green (VIself.green)
             https://www.indexdatabase.de/db/i-single.php?id=390
             :return: index
         """
@@ -492,7 +509,8 @@ class IndexCalculation:
 
     def DVI(self):
         """
-            Simple Ratio self.nir/self.red Difference Vegetation Index, Vegetation Index Number (VIN)
+                Simple Ratio self.nir/self.red Difference Vegetation Index, Vegetation Index 
+            Number (VIN)
             https://www.indexdatabase.de/db/i-single.php?id=12
             :return: index
         """
@@ -526,7 +544,8 @@ cl = IndexCalculation()
 # instantiating the class with the values
 #cl = indexCalculation(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
 
-# how set the values after instantiate the class cl, (for update the data or when dont instantiating the class with the values)
+# how set the values after instantiate the class cl, (for update the data or when dont 
+# instantiating the class with the values)
 cl.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
 
 # calculating the indices for the instantiated values in the class
@@ -534,7 +553,8 @@ cl.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
 indexValue_form1    = cl.calculation("CCCI", red=red, green=green, blue=blue, redEdge=redEdge, nir=nir).astype(np.float64)
 indexValue_form2    = cl.CCCI()
 
-# calculating the index with the values directly -- you can set just the values preferred -- note: the *calculation* fuction performs the function *setMatrices*
+# calculating the index with the values directly -- you can set just the values preferred -- 
+# note: the *calculation* fuction performs the function *setMatrices*
 indexValue_form3    = cl.calculation("CCCI", red=red, green=green, blue=blue, redEdge=redEdge, nir=nir).astype(np.float64)
 
 
