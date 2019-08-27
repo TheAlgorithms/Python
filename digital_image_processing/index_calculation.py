@@ -91,15 +91,15 @@ class IndexCalculation:
         self.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
 
     def setMatrices(self, red=None, green=None, blue=None, redEdge=None, nir=None):
-        if red is None:
+        if red is not None:
             self.red = red
-        if green is None:
+        if green is not None:
             self.green = green
-        if blue is None:
+        if blue is not None:
             self.blue = blue
-        if redEdge is None:
+        if redEdge is not None:
             self.redEdge = redEdge
-        if nir is None:
+        if nir is not None:
             self.nir = nir
         return True
 
@@ -165,9 +165,9 @@ class IndexCalculation:
             Atmospherically Resistant Vegetation Index 2
             https://www.indexdatabase.de/db/i-single.php?id=396
             :return: index
-             	−0.18+1.17*(NIR−RED)/(NIR+RED)
+             	−0.18+1.17*(self.nir−self.red)/(self.nir+self.red)
         """
-        return -0.18 + (1.17 * ((nir - red) / (nir + red)))
+        return -0.18 + (1.17 * ((self.nir - self.red) / (self.nir + self.red)))
 
     def CCCI(self):
         """
@@ -175,7 +175,9 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=224
             :return: index
         """
-        return ((nir - redEdge) / (nir + redEdge)) / ((nir - red) / (nir + red))
+        return ((self.nir - self.redEdge) / (self.nir + self.redEdge)) / (
+            (self.nir - self.red) / (self.nir + self.red)
+        )
 
     def CVI(self):
         """
@@ -183,71 +185,77 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=391
             :return: index
         """
-        return nir * (red / (green ** 2))
+        return self.nir * (self.red / (self.green ** 2))
 
     def GLI(self):
         """
-            Green leaf index
+            self.green leaf index
             https://www.indexdatabase.de/db/i-single.php?id=375
             :return: index
         """
-        return (2 * green - red - blue) / (2 * green + red + blue)
+        return (2 * self.green - self.red - self.blue) / (
+            2 * self.green + self.red + self.blue
+        )
 
     def NDVI(self):
         """
-            Normalized Difference NIR/Red Normalized Difference Vegetation Index, Calibrated NDVI - CDVI
+            Normalized Difference self.nir/self.red Normalized Difference Vegetation Index, Calibrated NDVI - CDVI
             https://www.indexdatabase.de/db/i-single.php?id=58
             :return: index
         """
-        return (nir - red) / (nir + red)
+        return (self.nir - self.red) / (self.nir + self.red)
 
     def BNDVI(self):
         """
-            Normalized Difference NIR/Blue Blue-normalized difference vegetation index
+            Normalized Difference self.nir/self.blue self.blue-normalized difference vegetation index
             https://www.indexdatabase.de/db/i-single.php?id=135
             :return: index
         """
-        return (nir - blue) / (nir + blue)
+        return (self.nir - self.blue) / (self.nir + self.blue)
 
     def redEdgeNDVI(self):
         """
-            Normalized Difference Rededge/Red
+            Normalized Difference self.rededge/self.red
             https://www.indexdatabase.de/db/i-single.php?id=235
             :return: index
         """
-        return (redEdge - red) / (redEdge + red)
+        return (self.redEdge - self.red) / (self.redEdge + self.red)
 
     def GNDVI(self):
         """
-            Normalized Difference NIR/Green Green NDVI
+            Normalized Difference self.nir/self.green self.green NDVI
             https://www.indexdatabase.de/db/i-single.php?id=401
             :return: index
         """
-        return (nir - green) / (nir + green)
+        return (self.nir - self.green) / (self.nir + self.green)
 
     def GBNDVI(self):
         """
-            Green-Blue NDVI
+            self.green-self.blue NDVI
             https://www.indexdatabase.de/db/i-single.php?id=186
             :return: index
         """
-        return (nir - (green + blue)) / (nir + (green + blue))
+        return (self.nir - (self.green + self.blue)) / (
+            self.nir + (self.green + self.blue)
+        )
 
     def GRNDVI(self):
         """
-            Green-Red NDVI
+            self.green-self.red NDVI
             https://www.indexdatabase.de/db/i-single.php?id=185
             :return: index
         """
-        return (nir - (green + red)) / (nir + (green + red))
+        return (self.nir - (self.green + self.red)) / (
+            self.nir + (self.green + self.red)
+        )
 
     def RBNDVI(self):
         """
-            Red-Blue NDVI
+            self.red-self.blue NDVI
             https://www.indexdatabase.de/db/i-single.php?id=187
             :return: index
         """
-        return (nir - (blue + red)) / (nir + (blue + red))
+        return (self.nir - (self.blue + self.red)) / (self.nir + (self.blue + self.red))
 
     def PNDVI(self):
         """
@@ -255,7 +263,9 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=188
             :return: index
         """
-        return (nir - (green + red + blue)) / (nir + (green + red + blue))
+        return (self.nir - (self.green + self.red + self.blue)) / (
+            self.nir + (self.green + self.red + self.blue)
+        )
 
     def ATSAVI(self, X=0.08, a=1.22, b=0.03):
         """
@@ -263,31 +273,34 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=209
             :return: index
         """
-        return a * ((nir - a * red - b) / (a * nir + red - a * b + X * (1 + a ** 2)))
+        return a * (
+            (self.nir - a * self.red - b)
+            / (a * self.nir + self.red - a * b + X * (1 + a ** 2))
+        )
 
     def BWDRVI(self):
         """
-            Blue-wide dynamic range vegetation index
+            self.blue-wide dynamic range vegetation index
             https://www.indexdatabase.de/db/i-single.php?id=136
             :return: index
         """
-        return (0.1 * nir - blue) / (0.1 * nir + blue)
+        return (0.1 * self.nir - self.blue) / (0.1 * self.nir + self.blue)
 
     def CIgreen(self):
         """
-            Chlorophyll Index Green
+            Chlorophyll Index self.green
             https://www.indexdatabase.de/db/i-single.php?id=128
             :return: index
         """
-        return (nir / green) - 1
+        return (self.nir / self.green) - 1
 
     def CIrededge(self):
         """
-            Chlorophyll Index RedEdge
+            Chlorophyll Index self.redEdge
             https://www.indexdatabase.de/db/i-single.php?id=131
             :return: index
         """
-        return (nir / redEdge) - 1
+        return (self.nir / self.redEdge) - 1
 
     def CI(self):
         """
@@ -295,7 +308,7 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=11
             :return: index
         """
-        return (red - blue) / red
+        return (self.red - self.blue) / self.red
 
     def CTVI(self):
         """
@@ -308,11 +321,11 @@ class IndexCalculation:
 
     def GDVI(self):
         """
-            Difference NIR/Green Green Difference Vegetation Index
+            Difference self.nir/self.green self.green Difference Vegetation Index
             https://www.indexdatabase.de/db/i-single.php?id=27
             :return: index
         """
-        return nir - green
+        return self.nir - self.green
 
     def EVI(self):
         """
@@ -320,7 +333,9 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=16
             :return: index
         """
-        return 2.5 * ((nir - red) / (nir + 6 * red - 7.5 * blue + 1))
+        return 2.5 * (
+            (self.nir - self.red) / (self.nir + 6 * self.red - 7.5 * self.blue + 1)
+        )
 
     def GEMI(self):
         """
@@ -328,26 +343,28 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=25
             :return: index
         """
-        n = (2 * (nir ** 2 - red ** 2) + 1.5 * nir + 0.5 * red) / (nir + red + 0.5)
-        return n * (1 - 0.25 * n) - (red - 0.125) / (1 - red)
+        n = (2 * (self.nir ** 2 - self.red ** 2) + 1.5 * self.nir + 0.5 * self.red) / (
+            self.nir + self.red + 0.5
+        )
+        return n * (1 - 0.25 * n) - (self.red - 0.125) / (1 - self.red)
 
     def GOSAVI(self, Y=0.16):
         """
-            Green Optimized Soil Adjusted Vegetation Index
+            self.green Optimized Soil Adjusted Vegetation Index
             https://www.indexdatabase.de/db/i-single.php?id=29
             mit Y = 0,16
             :return: index
         """
-        return (nir - green) / (nir + green + Y)
+        return (self.nir - self.green) / (self.nir + self.green + Y)
 
     def GSAVI(self, L=0.5):
         """
-            Green Soil Adjusted Vegetation Index
+            self.green Soil Adjusted Vegetation Index
             https://www.indexdatabase.de/db/i-single.php?id=31
             mit L = 0,5
             :return: index
         """
-        return ((nir - green) / (nir + green + L)) * (1 + L)
+        return ((self.nir - self.green) / (self.nir + self.green + L)) * (1 + L)
 
     def Hue(self):
         """
@@ -355,7 +372,12 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=34
             :return: index
         """
-        return np.arctan((((2 * red - green - blue) / 30.5) * (green - blue)))
+        return np.arctan(
+            (
+                ((2 * self.red - self.green - self.blue) / 30.5)
+                * (self.green - self.blue)
+            )
+        )
 
     def IVI(self, a=None, b=None):
         """
@@ -365,15 +387,15 @@ class IndexCalculation:
             a=soil line slope
             :return: index
         """
-        return (nir - b) / (a * red)
+        return (self.nir - b) / (a * self.red)
 
     def IPVI(self):
         """
-            Infrared percentage vegetation index
+            Infraself.red percentage vegetation index
             https://www.indexdatabase.de/db/i-single.php?id=35
             :return: index
         """
-        return (nir / ((nir + red) / 2)) * (self.NDVI() + 1)
+        return (self.nir / ((self.nir + self.red) / 2)) * (self.NDVI() + 1)
 
     def I(self):
         """
@@ -381,7 +403,7 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=36
             :return: index
         """
-        return (red + green + blue) / 30.5
+        return (self.red + self.green + self.blue) / 30.5
 
     def RVI(self):
         """
@@ -389,7 +411,7 @@ class IndexCalculation:
             http://www.seos-project.eu/modules/remotesensing/remotesensing-c03-s01-p01.html
             :return: index
         """
-        return nir / red
+        return self.nir / self.red
 
     def MRVI(self):
         """
@@ -405,7 +427,10 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=44
             :return: index
         """
-        return ((2 * nir + 1) - ((2 * nir + 1) ** 2 - 8 * (nir - red)) ** (1 / 2)) / 2
+        return (
+            (2 * self.nir + 1)
+            - ((2 * self.nir + 1) ** 2 - 8 * (self.nir - self.red)) ** (1 / 2)
+        ) / 2
 
     def NormG(self):
         """
@@ -413,15 +438,15 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=50
             :return: index
         """
-        return green / (nir + red + green)
+        return self.green / (self.nir + self.red + self.green)
 
     def NormNIR(self):
         """
-            Norm NIR
+            Norm self.nir
             https://www.indexdatabase.de/db/i-single.php?id=51
             :return: index
         """
-        return nir / (nir + red + green)
+        return self.nir / (self.nir + self.red + self.green)
 
     def NormR(self):
         """
@@ -429,23 +454,23 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=52
             :return: index
         """
-        return red / (nir + red + green)
+        return self.red / (self.nir + self.red + self.green)
 
     def NGRDI(self):
         """
-            Normalized Difference Green/Red Normalized green red difference index, Visible Atmospherically Resistant Indices Green (VIgreen)
+            Normalized Difference self.green/self.red Normalized self.green self.red difference index, Visible Atmospherically Resistant Indices self.green (VIself.green)
             https://www.indexdatabase.de/db/i-single.php?id=390
             :return: index
         """
-        return (green - red) / (green + red)
+        return (self.green - self.red) / (self.green + self.red)
 
     def RI(self):
         """
-            Normalized Difference Red/Green Redness Index
+            Normalized Difference self.red/self.green self.redness Index
             https://www.indexdatabase.de/db/i-single.php?id=74
             :return: index
         """
-        return (red - green) / (red + green)
+        return (self.red - self.green) / (self.red + self.green)
 
     def S(self):
         """
@@ -453,8 +478,8 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=77
             :return: index
         """
-        max = np.max([np.max(red), np.max(green), np.max(blue)])
-        min = np.min([np.min(red), np.min(green), np.min(blue)])
+        max = np.max([np.max(self.red), np.max(self.green), np.max(self.blue)])
+        min = np.min([np.min(self.red), np.min(self.green), np.min(self.blue)])
         return (max - min) / max
 
     def IF(self):
@@ -463,15 +488,15 @@ class IndexCalculation:
             https://www.indexdatabase.de/db/i-single.php?id=79
             :return: index
         """
-        return (2 * red - green - blue) / (green - blue)
+        return (2 * self.red - self.green - self.blue) / (self.green - self.blue)
 
     def DVI(self):
         """
-            Simple Ratio NIR/RED Difference Vegetation Index, Vegetation Index Number (VIN)
+            Simple Ratio self.nir/self.red Difference Vegetation Index, Vegetation Index Number (VIN)
             https://www.indexdatabase.de/db/i-single.php?id=12
             :return: index
         """
-        return nir / red
+        return self.nir / self.red
 
     def TVI(self):
         """
@@ -482,7 +507,7 @@ class IndexCalculation:
         return (self.NDVI() + 0.5) ** (1 / 2)
 
     def NDRE(self):
-        return (nir - redEdge) / (nir + redEdge)
+        return (self.nir - self.redEdge) / (self.nir + self.redEdge)
 
 
 """
@@ -506,7 +531,7 @@ cl.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
 
 # calculating the indices for the instantiated values in the class
     # Note: the CCCI index can be changed to any index implemented in the class.
-indexValue_form1    = cl.calculation("CCCI").astype(np.float64)
+indexValue_form1    = cl.calculation("CCCI", red=red, green=green, blue=blue, redEdge=redEdge, nir=nir).astype(np.float64)
 indexValue_form2    = cl.CCCI()
 
 # calculating the index with the values directly -- you can set just the values preferred -- note: the *calculation* fuction performs the function *setMatrices*
