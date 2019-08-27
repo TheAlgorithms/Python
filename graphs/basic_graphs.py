@@ -10,42 +10,44 @@ try:
 except NameError:
     xrange = range  # Python 3
 
-# Accept No. of Nodes and edges
-n, m = map(int, raw_input().split(" "))
 
-# Initialising Dictionary of edges
-g = {}
-for i in xrange(n):
-    g[i + 1] = []
+if __name__ == "__main__":
+    # Accept No. of Nodes and edges
+    n, m = map(int, raw_input().split(" "))
 
-"""
---------------------------------------------------------------------------------
-    Accepting edges of Unweighted Directed Graphs
---------------------------------------------------------------------------------
-"""
-for _ in xrange(m):
-    x, y = map(int, raw_input().split(" "))
-    g[x].append(y)
+    # Initialising Dictionary of edges
+    g = {}
+    for i in xrange(n):
+        g[i + 1] = []
 
-"""
---------------------------------------------------------------------------------
-    Accepting edges of Unweighted Undirected Graphs
---------------------------------------------------------------------------------
-"""
-for _ in xrange(m):
-    x, y = map(int, raw_input().split(" "))
-    g[x].append(y)
-    g[y].append(x)
+    """
+    ----------------------------------------------------------------------------
+        Accepting edges of Unweighted Directed Graphs
+    ----------------------------------------------------------------------------
+    """
+    for _ in xrange(m):
+        x, y = map(int, raw_input().strip().split(" "))
+        g[x].append(y)
 
-"""
---------------------------------------------------------------------------------
-    Accepting edges of Weighted Undirected Graphs
---------------------------------------------------------------------------------
-"""
-for _ in xrange(m):
-    x, y, r = map(int, raw_input().split(" "))
-    g[x].append([y, r])
-    g[y].append([x, r])
+    """
+    ----------------------------------------------------------------------------
+        Accepting edges of Unweighted Undirected Graphs
+    ----------------------------------------------------------------------------
+    """
+    for _ in xrange(m):
+        x, y = map(int, raw_input().strip().split(" "))
+        g[x].append(y)
+        g[y].append(x)
+
+    """
+    ----------------------------------------------------------------------------
+        Accepting edges of Weighted Undirected Graphs
+    ----------------------------------------------------------------------------
+    """
+    for _ in xrange(m):
+        x, y, r = map(int, raw_input().strip().split(" "))
+        g[x].append([y, r])
+        g[y].append([x, r])
 
 """
 --------------------------------------------------------------------------------
@@ -168,9 +170,10 @@ def topo(G, ind=None, Q=[1]):
 
 
 def adjm():
-    n, a = raw_input(), []
+    n = raw_input().strip()
+    a = []
     for i in xrange(n):
-        a.append(map(int, raw_input().split()))
+        a.append(map(int, raw_input().strip().split()))
     return a, n
 
 

@@ -29,11 +29,10 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6,logsteps=Fal
         a = a - f(a)/f1(a) #Calculate the next estimate
         if logsteps:
             steps.append(a)
-        error = abs(f(a))
         if error < maxerror:
             break
     else:
-        raise ValueError("Itheration limit reached, no converging solution found")
+        raise ValueError("Iteration limit reached, no converging solution found")
     if logsteps:
         #If logstep is true, then log intermediate steps
         return a, error, steps

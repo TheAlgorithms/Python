@@ -9,9 +9,12 @@ cwd here stands for current working directory
 """
 
 from ftplib import FTP
-ftp = FTP('xxx.xxx.x.x')  # Enter the ip address or the domain name here
-ftp.login(user='username', passwd='password')
-ftp.cwd('/Enter the directory here/')
+
+
+if __name__ == '__main__':
+	ftp = FTP('xxx.xxx.x.x')  # Enter the ip address or the domain name here
+	ftp.login(user='username', passwd='password')
+	ftp.cwd('/Enter the directory here/')
 
 """
 The file which will be received via the FTP server
