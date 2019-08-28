@@ -28,5 +28,5 @@ def max_sum(a):
             
     return max_val
     
-    a=[1 101 2 3 100 4 5]
+    a=[1,101,2,3,100,4,5]
     print(max_sum(a))
