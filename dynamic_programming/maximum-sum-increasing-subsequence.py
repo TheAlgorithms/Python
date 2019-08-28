@@ -17,12 +17,12 @@ def max_sum(a):
             if a[j]<a[i]:
                 if temp<a[i]+sum_list[j]:
                     temp=a[i]+sum_list[j]
-                if ans[j]==t:
+                if sum_list[j]==t:
                     #print("break",sum_list[j],i,j)
                     break
                     
             j-=1
-        ans.append(temp)
+        sum_list.append(temp)
         if temp>max_val:
             max_val=temp
             
