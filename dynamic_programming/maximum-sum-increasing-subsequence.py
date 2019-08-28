@@ -6,7 +6,7 @@
 #############################
 
 def max_sum(a):
-    n=len(arr)
+    n=len(a)
     
     sum_list=[a[0]]
     max_val=a[0]
@@ -17,7 +17,7 @@ def max_sum(a):
             if a[j]<a[i]:
                 if temp<a[i]+sum_list[j]:
                     temp=a[i]+sum_list[j]
-                if sum_list[j]==t:
+                if sum_list[j]==temp:
                     #print("break",sum_list[j],i,j)
                     break
                     
@@ -28,5 +28,5 @@ def max_sum(a):
             
     return max_val
     
-    a=[1,101,2,3,100,4,5]
-    print(max_sum(a))
+a=[1,101,2,3,100,4,5]
+print(max_sum(a))
