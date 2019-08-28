@@ -37,11 +37,6 @@ def test(X_new):
     'versicolor'
 
     """
-    prediction = current_model.predict([X_new])
-    return iris["target_names"][prediction][0]
-
-
-if __name__ == "__main__":
     iris = load_iris()
     # splitting the dataset to test and train
     train_x, test_x, train_y, test_y = train_test_split(
@@ -51,4 +46,9 @@ if __name__ == "__main__":
     # current_model=SVC(train_x, train_y)
     # current_model=NuSVC(train_x, train_y)
     current_model = Linearsvc(train_x, train_y)
+    prediction = current_model.predict([X_new])
+    return iris["target_names"][prediction][0]
+
+
+if __name__ == "__main__":
     doctest.testmod()
