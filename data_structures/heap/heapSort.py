@@ -34,7 +34,8 @@ def heapSort(data):
 
 
 from random import randint
-data=[randint(1,1000) for x in range(6)]
 # data=[13, 302, 602, 851, 351, 186]
+
+data=[randint(1,1000) for x in range(6)]
 data=heapSort(data)
 print(data)
