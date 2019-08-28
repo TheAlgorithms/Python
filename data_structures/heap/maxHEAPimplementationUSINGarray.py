@@ -72,8 +72,8 @@ from random import randint
 for i in range(20):
     heap.insert(randint(1,1000))
 
-# for i in range(19):
-#     print(heap.delete())
+for i in range(19):
+    print(heap.delete())
 print("\n\n\n")
 for i in range(19):
     print("max element>>",heap.delete())
