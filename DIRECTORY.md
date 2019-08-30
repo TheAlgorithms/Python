@@ -371,6 +371,8 @@
   * [reuters one vs rest classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/reuters_one_vs_rest_classifier.ipynb)
 
   * [scoring functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/scoring_functions.py)
+  
+  * [sorted_vector_machines.py](https://github.com/jai-dewani/Python/blob/master/machine_learning/sorted_vector_machines.py)
 
 ## Maths
 
@@ -702,9 +704,17 @@
 
     * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_53/sol1.py)
 
+  * Problem 56
+
+    * [sol1](https://github.com/jai-dewani/Python/blob/master/project_euler/problem_56/sol1.py)
+
   * Problem 76
 
     * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_76/sol1.py)
+
+## Script
+  * [build_directory_md.py](https://github.com/TheAlgorithms/Python/blob/master/scripts/build_directory_md.py)
+  * [validate_filenames.py](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_filenames.py)
 
 ## Searches
 
