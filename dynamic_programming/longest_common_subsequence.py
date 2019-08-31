@@ -50,7 +50,7 @@ def longest_common_subsequence(x: str, y: str):
 
     seq = ""
     i, j = m, n
-    while i > 0 and i > 0:
+    while i > 0 and j > 0:
         if x[i - 1] == y[j - 1]:
             match = 1
         else:
