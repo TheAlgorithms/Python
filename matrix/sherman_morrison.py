@@ -37,7 +37,13 @@ class Matrix:
         string_format_identifier = "%%%ds" % (max_element_length,)
 
         # Make string and return
-        s += "\n".join("[" + ", ".join(string_format_identifier % (obj,) for obj in row_vector) + "]" for row_vector in self.array)
+        def single_line(row_vector): 
+            nonlocal string_format_identifier
+            line = "["
+            line += ", ".join(string_format_identifier % (obj,) for obj in row_vector)
+            line += "]"
+            return line
+        s += "\n".join(single_line(row_vector) for row_vector in self.array)
         return s
 
     def __repr__(self): return str(self)
@@ -102,8 +108,8 @@ class Matrix:
         """
 
         # Validation
-        assert(isinstance(another, Matrix))
-        assert(self.row == another.row and self.column == another.column)
+        assert isinstance(another, Matrix)
+        assert self.row == another.row and self.column == another.column
 
         # Add
         result = Matrix(self.row, self.column)
@@ -213,9 +219,9 @@ class Matrix:
         """
 
         # Size validation
-        assert(isinstance(u, Matrix) and isinstance(v, Matrix))
-        assert(self.row == self.column == u.row == v.row) # u, v should be column vector
-        assert(u.column == v.column == 1) # u, v should be column vector
+        assert isinstance(u, Matrix) and isinstance(v, Matrix)
+        assert self.row == self.column == u.row == v.row # u, v should be column vector
+        assert u.column == v.column == 1 # u, v should be column vector
 
         # Calculate
         vT = v.transpose()
