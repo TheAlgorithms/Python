@@ -23,6 +23,9 @@ def next_term(a_i, k, i, n):
     smallest term for which c > 10^k when the terms are written in the form:
             a(i) = b * 10^k + c
 
+    For any a(i), if digitsum(b) and c have the same value, the difference
+    between subsequent terms will be the same until c >= 10^k.  This difference
+    is cached to greatly speed up the computation.
 
     Arguments:
     a_i -- array of digits starting from the one's place that represent 
@@ -36,6 +39,7 @@ def next_term(a_i, k, i, n):
     the number of terms calculated. ex. if starting term is a_0=1, and
     ending term is a_10=62, then (61, 9) is returned.
     """
+    # ds_b - digitsum(b)
     ds_b = 0
     for j in range(k, len(a_i)):
         ds_b += a_i[j]
@@ -43,7 +47,7 @@ def next_term(a_i, k, i, n):
     for j in range(min(len(a_i), k)):
         c += a_i[j] * base[j]
 
-    c_p, dn = 0, 0
+    diff, dn = 0, 0
     max_dn = n - i
 
     sub_memo = memo.get(ds_b)
@@ -60,13 +64,13 @@ def next_term(a_i, k, i, n):
                     break
 
             if max_jump >= 0:
-                c_p, dn, _kk = jumps[max_jump]
-                c_pp = c_p + c
+                diff, dn, _kk = jumps[max_jump]
+                # since the difference between jumps is cached, add c
+                new_c = diff + c
                 for j in range(min(k, len(a_i))):
-                    a_i[j] = c_pp % 10
-                    c_pp = c_pp // 10
-                if c_pp > 0:
-                    add(a_i, k, c_pp)
+                    new_c, a_i[j] = divmod(new_c, 10)
+                if new_c > 0:
+                    add(a_i, k, new_c)
 
         else:
             sub_memo[c] = []
@@ -74,32 +78,36 @@ def next_term(a_i, k, i, n):
         sub_memo = {c: []}
         memo[ds_b] = sub_memo
 
-    if dn >= max_dn or c + c_p >= base[k]:
-        return c_p, dn
+    if dn >= max_dn or c + diff >= base[k]:
+        return diff, dn
 
     if k > ks[0]:
         while True:
-            c_pp, ddn = next_term(a_i, k - 1, i + dn, n)
-            c_p += c_pp
-            dn += ddn
+            # keep doing smaller jumps
+            _diff, terms_jumped = next_term(a_i, k - 1, i + dn, n)
+            diff += _diff
+            dn += terms_jumped
 
-            if dn >= max_dn or c + c_p >= base[k]:
+            if dn >= max_dn or c + diff >= base[k]:
                 break
     else:
-        c_pp, ddn = compute(a_i, k, i + dn, n)
-        c_p += c_pp
-        dn += ddn
+        # would be too small a jump, just compute sequential terms instead
+        _diff, terms_jumped = compute(a_i, k, i + dn, n)
+        diff += _diff
+        dn += terms_jumped
 
     jumps = sub_memo[c]
+
+    # keep jumps sorted by # of terms skipped
     j = 0
     while j < len(jumps):
         if jumps[j][1] > dn:
             break
         j += 1
 
-    # keep jumps sorted by # of terms skipped
-    sub_memo[c].insert(j, (c_p, dn, k))
-    return (c_p, dn)
+    # cache the jump for this value digitsum(b) and c
+    sub_memo[c].insert(j, (diff, dn, k))
+    return (diff, dn)
 
 
 def compute(a_i, k, i, n):
@@ -113,6 +121,7 @@ def compute(a_i, k, i, n):
 
     # note: a_i -> b * 10^k + c
     # ds_b -> digitsum(b)
+    # ds_c -> digitsum(c)
     start_i = i
     ds_b, ds_c, diff = 0, 0, 0
     for j in range(len(a_i)):
@@ -128,8 +137,7 @@ def compute(a_i, k, i, n):
         ds_c = 0
         for j in range(k):
             s = a_i[j] + addend
-            a_i[j] = s % 10
-            addend = s // 10
+            addend, a_i[j] = divmod(s, 10)
 
             ds_c += a_i[j]
 
@@ -142,11 +150,15 @@ def compute(a_i, k, i, n):
 
 
 def add(digits, k, addend):
+    """
+    adds addend to digit array given in digits
+    starting at index k
+    """
     for j in range(k, len(digits)):
         s = digits[j] + addend
         if s >= 10:
-            digits[j] = s % 10
-            addend = addend // 10 + s // 10
+            quotient, digits[j] = divmod(s, 10)
+            addend = addend // 10 + quotient
         else:
             digits[j] = s
             addend = addend // 10
@@ -155,8 +167,8 @@ def add(digits, k, addend):
             break
 
     while addend > 0:
-        digits.append(addend % 10)
-        addend = addend // 10
+        addend, digit = divmod(addend, 10)
+        digits.append(digit)
 
 
 def solution(n):
@@ -173,18 +185,18 @@ def solution(n):
     73597483551591773
     """
 
-    a = [1]
+    digits = [1]
     i = 1
     dn = 0
     while True:
-        c_p, ddn = next_term(a, 20, i + dn, n)
-        dn += ddn
+        diff, terms_jumped = next_term(digits, 20, i + dn, n)
+        dn += terms_jumped
         if dn == n - i:
             break
 
     a_n = 0
-    for j in range(len(a)):
-        a_n += a[j] * 10 ** j
+    for j in range(len(digits)):
+        a_n += digits[j] * 10 ** j
     return a_n
 
 
