@@ -92,6 +92,37 @@ class Matrix:
     @property
     def order(self):
         return (self.num_rows, self.num_columns)
+    @property
+    def is_square(self):
+        if self.order[0] == self.order[1]:
+            return True
+        return False
+    @property
+    def determinant(self):
+        if not self.is_square:
+            return None
+        if self.order == (0, 0):
+            return 1
+        if self.order == (1, 1):
+            return self.rows[0][0]
+        if self.order == (2, 2):
+            return (self.rows[0][0] * self.rows[1][1]) - (self.rows[0][1] * self.rows[1][0])
+        else: 
+            return sum([self.rows[0][column] * self.cofactors[0][column] for column in range(self.num_columns)])
+    def get_minor(self, row, column):
+        values = [[self.rows[other_row][other_column] for other_column in range(self.num_columns) if  other_column != column] 
+                for other_row in range(self.num_rows) if other_row != row]
+        return Matrix(values).determinant
+    def get_cofactor(self, row, column):
+        if (row + column) % 2 == 0:
+            return self.get_minor(row, column)
+        return -1 * self.get_minor(row, column)
+    @property
+    def minors(self):
+        return Matrix([[self.get_minor(row, column) for column in range(self.num_columns)] for row in range(self.num_rows)])
+    @property
+    def cofactors(self):
+        return [[self.minors.rows[row][column] if (row + column) % 2 == 0 else self.minors.rows[row][column] * -1 for column in range(self.minors.num_columns)] for row in range(self.minors.num_rows)]
     def __repr__(self):
         return str(self.rows)
     def __str__(self):
