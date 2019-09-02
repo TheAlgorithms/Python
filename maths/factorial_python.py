@@ -1,7 +1,7 @@
 """Python program to find the factorial of a number provided by the user."""
 
 # change the value for a different result
-NUM = 10
+NUM = int(input("Enter the number: "))
 
 # uncomment to take input from the user
 # num = int(input("Enter a number: "))

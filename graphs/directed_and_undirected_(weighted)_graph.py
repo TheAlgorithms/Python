@@ -162,7 +162,7 @@ class DirectedGraph:
 				for __ in self.graph[s]:
 					if visited.count(__[1]) > 0 and __[1] != parent and indirect_parents.count(__[1]) > 0 and not on_the_way_back:
 						l = len(stack) - 1
-						while True and l >= 0:
+						while l >= 0:
 							if stack[l] == __[1]:
 								anticipating_nodes.add(__[1])
 								break
@@ -210,7 +210,7 @@ class DirectedGraph:
 				for __ in self.graph[s]:
 					if visited.count(__[1]) > 0 and __[1] != parent and indirect_parents.count(__[1]) > 0 and not on_the_way_back:
 						l = len(stack) - 1
-						while True and l >= 0:
+						while l >= 0:
 							if stack[l] == __[1]:
 								anticipating_nodes.add(__[1])
 								break
@@ -379,7 +379,7 @@ class Graph:
 				for __ in self.graph[s]:
 					if visited.count(__[1]) > 0 and __[1] != parent and indirect_parents.count(__[1]) > 0 and not on_the_way_back:
 						l = len(stack) - 1
-						while True and l >= 0:
+						while l >= 0:
 							if stack[l] == __[1]:
 								anticipating_nodes.add(__[1])
 								break
@@ -427,7 +427,7 @@ class Graph:
 				for __ in self.graph[s]:
 					if visited.count(__[1]) > 0 and __[1] != parent and indirect_parents.count(__[1]) > 0 and not on_the_way_back:
 						l = len(stack) - 1
-						while True and l >= 0:
+						while l >= 0:
 							if stack[l] == __[1]:
 								anticipating_nodes.add(__[1])
 								break
