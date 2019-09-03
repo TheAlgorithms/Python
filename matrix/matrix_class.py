@@ -57,7 +57,11 @@ class Matrix:
     >>> matrix.determinant
     0
 
-    Scalar multiplication, addition, subtraction, and multiplication are available
+    Negation, scalar multiplication, addition, subtraction, multiplication and exponentiation are available and all return a Matrix
+    >>> print(-matrix)
+    [-1, -2, -3]
+    [-4, -5, -6]
+    [-7, -8, -9]
     >>> matrix2 = matrix * 3
     >>> print(matrix2)
     [3, 6, 9]
@@ -71,10 +75,10 @@ class Matrix:
     [-2, -4, -6]
     [-8, -10, -12]
     [-14, -16, -18]
-    >>> print(matrix * matrix2)
-    [90, 108, 126]
-    [198, 243, 288]
-    [306, 378, 450]
+    >>> print(matrix ** 3)
+    [468, 576, 684]
+    [1062, 1305, 1548]
+    [1656, 2034, 2412]
 
     Matrices can also be modified
     >>> matrix.add_row([10, 11, 12])
@@ -273,6 +277,21 @@ class Matrix:
             ]
 
     # MATRIX OPERATIONS
+    def __eq__(self, other):
+        if not isinstance(other, Matrix):
+            raise TypeError("A Matrix can only be compared with another Matrix")
+        if self.rows == other.rows:
+            return True
+        return False
+
+    def __ne__(self, other):
+        if self == other:
+            return False
+        return True
+
+    def __neg__(self):
+        return self * -1
+
     def __add__(self, other):
         if self.order != other.order:
             raise ValueError("Addition requires matrices of the same order")
@@ -296,7 +315,7 @@ class Matrix:
     def __mul__(self, other):
         if not isinstance(other, (int, float, Matrix)):
             raise TypeError(
-                "A matrix can only be multiplied by an int, float, or another matrix"
+                "A Matrix can only be multiplied by an int, float, or another matrix"
             )
         if type(other) in (int, float):
             return Matrix([[element * other for element in row] for row in self.rows])
@@ -311,6 +330,24 @@ class Matrix:
                     for row in self.rows
                 ]
             )
+
+    def __pow__(self, other):
+        if not isinstance(other, int):
+            raise TypeError("A Matrix can only be raised to the power of an int")
+        if not self.is_square:
+            raise ValueError("Only square matrices can be raised to a power")
+        if other == 0:
+            return self.identity
+        if other < 0:
+            if self.is_invertable:
+                return self.inverse ** (-other)
+            raise ValueError(
+                "Only invertable matrices can be raised to a negative power"
+            )
+        result = self
+        for i in range(other - 1):
+            result *= self
+        return result
 
     @classmethod
     def dot_product(cls, row, column):
