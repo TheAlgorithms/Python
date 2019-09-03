@@ -1,20 +1,32 @@
+"""
+    Min-oriented priority queue implemented with the Binomial Heap data 
+    structure implemented with the BinomialHeap class. There is also a helper 
+    class Node. 
+    
+    Performance details:
+        - Insert element in a heap with n elemnts: Guaranteed logn, amoratized 1
+        - Merge (meld) heaps of size m and n: O(logn + logm)
+        - Delete Min: O(logn)
+        
+    Inserting and merging performance are the main advantages over a binary heap
+    
+    Reference: Advanced Data Structures, Peter Brass   
+"""
+
+
 class Node:
     """
-        Node in a doubly-linked binomial tree, containing:
-            - value
-            - size of left subtree
-            - link to left, right and parent nodes
-        """
+    Node in a doubly-linked binomial tree, containing:
+        - value
+        - size of left subtree
+        - link to left, right and parent nodes
+    """
 
     def __init__(self, val):
-        """
-                Constructor for Node with value val.
-                Left, right and parent links are initiated as None
-            """
         self.val = val
-        self.left_tree_size = (
+        self.left_tree_size = (  # Number of nodes in left subtree
             0
-        )  # Number of nodes in left subtree
+        )
         self.left = None
         self.right = None
         self.parent = None
@@ -51,25 +63,14 @@ class Node:
 
 
 class BinomialHeap:
-    """
-    Min-oriented priority queue implemented with the Binomial Heap data 
-    structure.
-    """
-
     def __init__(
         self, bottom_root=None, min_node=None, heap_size=0
     ):
-        """
-            Empty BinomialHeap 
-        """
         self.size = heap_size
         self.bottom_root = bottom_root
         self.min_node = min_node
 
     def mergeHeaps(self, other):
-        """
-            Merge two heaps in-place
-        """
 
         # Empty heaps corner cases
         if other.size == 0:
@@ -149,9 +150,6 @@ class BinomialHeap:
         self.bottom_root = i
 
     def insert(self, val):
-        """
-            Insert a value val in heap.
-        """
         if self.size == 0:
             self.bottom_root = Node(val)
             self.size = 1
@@ -193,21 +191,12 @@ class BinomialHeap:
                     next_node.left = self.bottom_root
 
     def peek(self):
-        """
-            Return minimal element without deleting it
-        """
         return self.min_node.val
 
     def isEmpty(self):
-        """
-            Check if heap is Empty
-        """
         return self.size == 0
 
     def deleteMin(self):
-        """
-            Delete minimal element and return it
-        """
         assert not self.isEmpty(), "Empty Heap"
 
         # Save minimal value
@@ -311,51 +300,57 @@ class BinomialHeap:
 
         return min_value
 
-    def __Print(self, curr_node, level=0):
+    def __traversal(self, curr_node, preorder, level=0):
         """
-            Pre-order traversal of nodes with print
+            Pre-order traversal of nodes 
         """
         if curr_node:
-            print(
-                "-" * level, end=str(curr_node.val) + "\n"
+            preorder.append((curr_node.val, level))
+            self.__traversal(
+                curr_node.left, preorder, level + 1
             )
-            self.__Print(curr_node.left, level + 1)
-            self.__Print(curr_node.right, level + 1)
+            self.__traversal(
+                curr_node.right, preorder, level + 1
+            )
         else:
-            print("-" * level, end="# \n")
+            preorder.append(("#", level))
 
-    def NodePrint(self):
+    def __str__(self):
         """
-            Pre-order prining of heap tree 
+            Overwriting str for a pre-order print of nodes in heap; 
+            Performance is poor, so use only for small examples
         """
-        assert not self.isEmpty(), "Empty Heap"
-
+        if self.isEmpty():
+            return ""
         # Find top root
-        i = self.bottom_root
-        while i.parent:
-            i = i.parent
-        # Print
-        self.__Print(i)
+        top_root = self.bottom_root
+        while top_root.parent:
+            top_root = top_root.parent
+        heap_as_list = []
+        self.__traversal(top_root, heap_as_list)
+        return "\n".join(
+            ("-" * level + str(value))
+            for value, level in heap_as_list
+        )
 
-
-#%%%
 
 # Unit Tests
+if __name__ == "__main__":
+    # A random permutation of 30 integers to be inserted
+    import numpy as np
 
-# A random permutation of 30 integers to be inserted
-import numpy as np
+    permutation = np.random.permutation(list(range(30)))
+    # Create a Heap and insert
+    TestHeap = BinomialHeap()
 
-permutation = np.random.permutation(list(range(30)))
+    # 30 inserts
+    for number in permutation:
+        TestHeap.insert(number)
 
-
-TestHeap = BinomialHeap()
-
-# 30 inserts
-for number in permutation:
-    TestHeap.insert(number)
-# Printing Heap
-TestHeap.NodePrint()
-
-# Deleting
-for i in range(20):
-    print(TestHeap.deleteMin(), end=" ")  # 0, 1, 2, 3, ... , 19
+        # Printing Heap
+        print(TestHeap)
+    # Deleting
+    for i in range(20):
+        print(
+            TestHeap.deleteMin(), end=" "
+        )  # 0, 1, 2, 3, ... , 19
