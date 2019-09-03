@@ -20,7 +20,7 @@ class Matrix:
     Matrix rows and columns are available as 2D arrays
     >>> print(matrix.rows)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    >>> print(matrix.columns)
+    >>> print(matrix.columns())
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
     
     Order is returned as a tuple
@@ -30,31 +30,31 @@ class Matrix:
     Squareness and invertability are represented as bool
     >>> matrix.is_square
     True
-    >>> matrix.is_invertable
+    >>> matrix.is_invertable()
     False
 
     Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be a Matrix or Nonetype
-    >>> print(matrix.identity)
+    >>> print(matrix.identity())
     [[1. 0. 0.]
      [0. 1. 0.]
      [0. 0. 1.]]
-    >>> print(matrix.minors)
+    >>> print(matrix.minors())
     [[-3. -6. -3.]
      [-6. -12. -6.]
      [-3. -6. -3.]]
-    >>> print(matrix.cofactors)
+    >>> print(matrix.cofactors())
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>> print(matrix.adjugate) # won't be apparent due to the nature of the cofactor matrix
+    >>> print(matrix.adjugate()) # won't be apparent due to the nature of the cofactor matrix
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>> print(matrix.inverse)
+    >>> print(matrix.inverse())
     None
 
     Determinant is an int, float, or Nonetype
-    >>> matrix.determinant
+    >>> matrix.determinant()
     0
 
     Negation, scalar multiplication, addition, subtraction, multiplication and exponentiation are available and all return a Matrix
@@ -120,7 +120,6 @@ class Matrix:
             self.rows = []
 
     # MATRIX INFORMATION
-    @property
     def columns(self):
         return [[row[i] for row in self.rows] for i in range(len(self.rows[0]))]
 
@@ -130,7 +129,7 @@ class Matrix:
 
     @property
     def num_columns(self):
-        return len(self.columns)
+        return len(self.rows[0])
 
     @property
     def order(self):
@@ -142,7 +141,6 @@ class Matrix:
             return True
         return False
 
-    @property
     def identity(self):
         values = [
             [0 if column_num != row_num else 1 for column_num in range(self.num_rows)]
@@ -150,7 +148,6 @@ class Matrix:
         ]
         return Matrix(values)
 
-    @property
     def determinant(self):
         if not self.is_square:
             return None
@@ -165,14 +162,13 @@ class Matrix:
         else:
             return sum(
                 [
-                    self.rows[0][column] * self.cofactors.rows[0][column]
+                    self.rows[0][column] * self.cofactors().rows[0][column]
                     for column in range(self.num_columns)
                 ]
             )
 
-    @property
     def is_invertable(self):
-        if self.determinant:
+        if self.determinant():
             return True
         return False
 
@@ -186,14 +182,13 @@ class Matrix:
             for other_row in range(self.num_rows)
             if other_row != row
         ]
-        return Matrix(values).determinant
+        return Matrix(values).determinant()
 
     def get_cofactor(self, row, column):
         if (row + column) % 2 == 0:
             return self.get_minor(row, column)
         return -1 * self.get_minor(row, column)
 
-    @property
     def minors(self):
         return Matrix(
             [
@@ -202,33 +197,30 @@ class Matrix:
             ]
         )
 
-    @property
     def cofactors(self):
         return Matrix(
             [
                 [
-                    self.minors.rows[row][column]
+                    self.minors().rows[row][column]
                     if (row + column) % 2 == 0
-                    else self.minors.rows[row][column] * -1
-                    for column in range(self.minors.num_columns)
+                    else self.minors().rows[row][column] * -1
+                    for column in range(self.minors().num_columns)
                 ]
-                for row in range(self.minors.num_rows)
+                for row in range(self.minors().num_rows)
             ]
         )
 
-    @property
     def adjugate(self):
         values = [
-            [self.cofactors.rows[column][row] for column in range(self.num_columns)]
+            [self.cofactors().rows[column][row] for column in range(self.num_columns)]
             for row in range(self.num_rows)
         ]
         return Matrix(values)
 
-    @property
     def inverse(self):
-        if not self.is_invertable:
+        if not self.is_invertable():
             return None
-        return self.adjugate * (1 / self.determinant)
+        return self.adjugate() * (1 / self.determinant())
 
     def __repr__(self):
         return str(self.rows)
@@ -337,7 +329,7 @@ class Matrix:
                 )
             return Matrix(
                 [
-                    [Matrix.dot_product(row, column) for column in other.columns]
+                    [Matrix.dot_product(row, column) for column in other.columns()]
                     for row in self.rows
                 ]
             )
@@ -348,10 +340,10 @@ class Matrix:
         if not self.is_square:
             raise ValueError("Only square matrices can be raised to a power")
         if other == 0:
-            return self.identity
+            return self.identity()
         if other < 0:
             if self.is_invertable:
-                return self.inverse ** (-other)
+                return self.inverse() ** (-other)
             raise ValueError(
                 "Only invertable matrices can be raised to a negative power"
             )
