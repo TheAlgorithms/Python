@@ -174,20 +174,25 @@ class FFT:
 
     # Overwrite __str__ for print(); Shows A, B and A*B
     def __str__(self):
-        A = "A = "
-        B = "B = "
-        C = "A*B = "
-        for i in range(self.len_A):
-            A += str(self.polyA[i]) + "*x^" + str(i) + " + "
-        for i in range(self.len_B):
-            B += str(self.polyB[i]) + "*x^" + str(i) + " + "
-        for i in range(self.len_B + self.len_A - 1):
-            C += (
-                str(self.product[i])
-                + "*x^"
-                + str(i)
-                + " + "
-            )
+        A = "A = " + " + ".join(
+            [
+                f"{self.polyA[i]}*x^{i}"
+                for i in range(self.len_A)
+            ]
+        )
+        B = "B = " + " + ".join(
+            [
+                f"{self.polyB[i]}*x^{i}"
+                for i in range(self.len_B)
+            ]
+        )
+        C = "A*B = " + " + ".join(
+            [
+                f"{self.product[i]}*x^{i}"
+                for i in range(len(self.product))
+            ]
+        )
+
         return A + "\n \n" + B + "\n \n" + C
 
 
@@ -197,6 +202,6 @@ if __name__ == "__main__":
     A = [0, 1, 0, 2]  # x+2x^3
     B = (2, 3, 4, 0)  # 2+3x+4x^2
     x = FFT(A, B)
-    print(x.product)  # 2x + 3x^2 + 8x^3 + 4x^4 + 6x^5, 
-                      # as [(-0+0j), (2+0j), (3+0j), (8+0j), (6+0j), (8+0j)]
-    print(x)  
+    print(x.product)  # 2x + 3x^2 + 8x^3 + 4x^4 + 6x^5,
+    # as [(-0+0j), (2+0j), (3+0j), (8+0j), (6+0j), (8+0j)]
+    print(x)
