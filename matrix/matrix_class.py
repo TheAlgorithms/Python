@@ -13,9 +13,9 @@ class Matrix:
     ... ]
     >>> matrix = Matrix(rows)
     >>> print(matrix)
-    [1, 2, 3]
-    [4, 5, 6]
-    [7, 8, 9]
+    [[1. 2. 3.]
+     [4. 5. 6.]
+     [7. 8. 9.]]
     
     Matrix rows and columns are available as 2D arrays
     >>> print(matrix.rows)
@@ -35,21 +35,21 @@ class Matrix:
 
     Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be a Matrix or Nonetype
     >>> print(matrix.identity)
-    [1, 0, 0]
-    [0, 1, 0]
-    [0, 0, 1]
+    [[1. 0. 0.]
+     [0. 1. 0.]
+     [0. 0. 1.]]
     >>> print(matrix.minors)
-    [-3, -6, -3]
-    [-6, -12, -6]
-    [-3, -6, -3]
+    [[-3. -6. -3.]
+     [-6. -12. -6.]
+     [-3. -6. -3.]]
     >>> print(matrix.cofactors)
-    [-3, 6, -3]
-    [6, -12, 6]
-    [-3, 6, -3]
+    [[-3. 6. -3.]
+     [6. -12. 6.]
+     [-3. 6. -3.]]
     >>> print(matrix.adjugate) # won't be apparent due to the nature of the cofactor matrix
-    [-3, 6, -3]
-    [6, -12, 6]
-    [-3, 6, -3]
+    [[-3. 6. -3.]
+     [6. -12. 6.]
+     [-3. 6. -3.]]
     >>> print(matrix.inverse)
     None
 
@@ -59,44 +59,44 @@ class Matrix:
 
     Negation, scalar multiplication, addition, subtraction, multiplication and exponentiation are available and all return a Matrix
     >>> print(-matrix)
-    [-1, -2, -3]
-    [-4, -5, -6]
-    [-7, -8, -9]
+    [[-1. -2. -3.]
+     [-4. -5. -6.]
+     [-7. -8. -9.]]
     >>> matrix2 = matrix * 3
     >>> print(matrix2)
-    [3, 6, 9]
-    [12, 15, 18]
-    [21, 24, 27]
+    [[3. 6. 9.]
+     [12. 15. 18.]
+     [21. 24. 27.]]
     >>> print(matrix + matrix2)
-    [4, 8, 12]
-    [16, 20, 24]
-    [28, 32, 36]
+    [[4. 8. 12.]
+     [16. 20. 24.]
+     [28. 32. 36.]]
     >>> print(matrix - matrix2)
-    [-2, -4, -6]
-    [-8, -10, -12]
-    [-14, -16, -18]
+    [[-2. -4. -6.]
+     [-8. -10. -12.]
+     [-14. -16. -18.]]
     >>> print(matrix ** 3)
-    [468, 576, 684]
-    [1062, 1305, 1548]
-    [1656, 2034, 2412]
+    [[468. 576. 684.]
+     [1062. 1305. 1548.]
+     [1656. 2034. 2412.]]
 
     Matrices can also be modified
     >>> matrix.add_row([10, 11, 12])
     >>> print(matrix)
-    [1, 2, 3]
-    [4, 5, 6]
-    [7, 8, 9]
-    [10, 11, 12]
+    [[1. 2. 3.]
+     [4. 5. 6.]
+     [7. 8. 9.]
+     [10. 11. 12.]]
     >>> matrix2.add_column([8, 16, 32])
     >>> print(matrix2)
-    [3, 6, 9, 8]
-    [12, 15, 18, 16]
-    [21, 24, 27, 32]
+    [[3. 6. 9. 8.]
+     [12. 15. 18. 16.]
+     [21. 24. 27. 32.]]
     >>> print(matrix *  matrix2)
-    [90, 108, 126, 136]
-    [198, 243, 288, 304]
-    [306, 378, 450, 472]
-    [414, 513, 612, 640]
+    [[90. 108. 126. 136.]
+     [198. 243. 288. 304.]
+     [306. 378. 450. 472.]
+     [414. 513. 612. 640.]]
 
     """
 
@@ -165,7 +165,7 @@ class Matrix:
         else:
             return sum(
                 [
-                    self.rows[0][column] * self.cofactors[0][column]
+                    self.rows[0][column] * self.cofactors.rows[0][column]
                     for column in range(self.num_columns)
                 ]
             )
@@ -204,20 +204,22 @@ class Matrix:
 
     @property
     def cofactors(self):
-        return [
+        return Matrix(
             [
-                self.minors.rows[row][column]
-                if (row + column) % 2 == 0
-                else self.minors.rows[row][column] * -1
-                for column in range(self.minors.num_columns)
+                [
+                    self.minors.rows[row][column]
+                    if (row + column) % 2 == 0
+                    else self.minors.rows[row][column] * -1
+                    for column in range(self.minors.num_columns)
+                ]
+                for row in range(self.minors.num_rows)
             ]
-            for row in range(self.minors.num_rows)
-        ]
+        )
 
     @property
     def adjugate(self):
         values = [
-            [self.cofactors[column][row] for column in range(self.num_columns)]
+            [self.cofactors.rows[column][row] for column in range(self.num_columns)]
             for row in range(self.num_rows)
         ]
         return Matrix(values)
@@ -233,10 +235,19 @@ class Matrix:
 
     def __str__(self):
         if self.num_rows == 0:
-            return str(self.rows)
+            return "[]"
         if self.num_rows == 1:
-            return str(self.rows[0])
-        return "\n".join([str(row) for row in self.rows])
+            return "[[" + ". ".join(self.rows[0]) + "]]"
+        return (
+            "["
+            + "\n ".join(
+                [
+                    "[" + ". ".join([str(value) for value in row]) + ".]"
+                    for row in self.rows
+                ]
+            )
+            + "]"
+        )
 
     # MATRIX MANIPULATION
     def add_row(self, row, position=None):
