@@ -175,25 +175,23 @@ class FFT:
     # Overwrite __str__ for print(); Shows A, B and A*B
     def __str__(self):
         A = "A = " + " + ".join(
-            [
-                f"{self.polyA[i]}*x^{i}"
-                for i in range(self.len_A)
-            ]
+            f"{coef}*x^{i}"
+            for coef, i in enumerate(
+                self.polyA[: self.len_A]
+            )
         )
         B = "B = " + " + ".join(
-            [
-                f"{self.polyB[i]}*x^{i}"
-                for i in range(self.len_B)
-            ]
+            f"{coef}*x^{i}"
+            for coef, i in enumerate(
+                self.polyB[: self.len_B]
+            )
         )
         C = "A*B = " + " + ".join(
-            [
-                f"{self.product[i]}*x^{i}"
-                for i in range(len(self.product))
-            ]
+            f"{coef}*x^{i}"
+            for coef, i in enumerate(self.product)
         )
 
-        return A + "\n \n" + B + "\n \n" + C
+        return "\n\n".join((A, B, C))
 
 
 # Unit tests
