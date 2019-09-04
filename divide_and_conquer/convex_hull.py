@@ -7,7 +7,7 @@ computer graphics and game development.
 
 Two algorithms have been implemented for the convex hull problem here.
 1. A brute-force algorithm which runs in O(n^3)
-2. A divide-and-conquer algorithm which runs in O(n^3)
+2. A divide-and-conquer algorithm which runs in O(n log(n))
 
 There are other several other algorithms for the convex hull problem
 which have not been implemented here, yet.
