@@ -154,11 +154,21 @@ def bottom_up_cut_rod(n: int, prices: list):
 
 
 def _enforce_args(n: int, prices: list):
+	"""
+	Basic checks on the arguments to the rod-cutting algorithms
+
+	n: int, the length of the rod
+	prices: list, the price list for each piece of rod.
+
+	Throws ValueError:
+
+	if n is negative or there are fewer items in the price list than the length of the rod
+	"""
 	if n < 0:
 		raise ValueError(f"n must be greater than or equal to 0. Got n = {n}")
 
 	if n > len(prices):
-		raise ValueError(f"Each integral piece of road must have a corresponding "
+		raise ValueError(f"Each integral piece of rod must have a corresponding "
 						 f"price. Got n = {n} but length of prices = {len(prices)}")
 
 
@@ -166,7 +176,7 @@ def main():
 	prices = [6, 10, 12, 15, 20, 23]
 	n = len(prices)
 
-	# the best revenue comes from cutting 6 pieces of the road, each
+	# the best revenue comes from cutting 6 pieces of the rod, each
 	# of length 1. Thus, yielding 6 * 6 = 36.
 	expected_max_revenue = 36
 
