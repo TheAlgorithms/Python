@@ -357,7 +357,6 @@ class BinomialHeap:
         """
         if self.isEmpty():
             return ""
-        print(self.preOrder())
         preorder_heap = self.preOrder()
 
         return "\n".join(
@@ -366,8 +365,9 @@ class BinomialHeap:
         )
 
 
+#%%
 # Unit Tests
-if __name__ == "__main__":
+def main():
     # A random permutation of 30 integers to be inserted and 19 of them deleted
     import numpy as np
 
@@ -380,12 +380,15 @@ if __name__ == "__main__":
     for number in permutation:
         first_heap.insert(number)
     # size test
+    print("Size:")
     print(first_heap.size)  # 30
+    print()
 
     # Deleting - delete() test
+    print("First 25 elements:")
     for i in range(25):
         print(first_heap.deleteMin(), end=" ")
-    print()
+    print("\n\n")
     # 0, 1, 2, 3, ... , 24
 
     # Create a new Heap
@@ -405,13 +408,22 @@ if __name__ == "__main__":
                       #    # #   #
     """
     # preOrder() test
+    print("Pre-order of heap:")
     print(second_heap.preOrder())
+    print()
 
     # Printing Heap - __str__() test
+    print("Heap: ")
     print(second_heap)
+    print()
 
     # mergeHeaps() test
     second_heap.mergeHeaps(first_heap)
     # preOrder of merged heap
+    print("Merged heap pre-oder")
     print(first_heap.preOrder())
     # Should include the values 17, 20, 25, 26, 27, 28, 29, 31, 34
+
+
+if __name__ == "__main__":
+    main()
