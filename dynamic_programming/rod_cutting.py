@@ -176,8 +176,8 @@ def main():
 	prices = [6, 10, 12, 15, 20, 23]
 	n = len(prices)
 
-	# the best revenue comes from cutting 6 pieces of the rod, each
-	# of length 1. Thus, yielding 6 * 6 = 36.
+	# the best revenue comes from cutting the rod into 6 pieces, each
+	# of length 1 resulting in a revenue of 6 * 6 = 36.
 	expected_max_revenue = 36
 
 	max_rev_top_down = top_down_cut_rod(n, prices)
