@@ -15,6 +15,14 @@ def good_filepaths(top_dir: str = ".") -> Iterator[str]:
             if os.path.splitext(filename)[1] in (".py", ".ipynb"):
                 yield os.path.join(dirpath, filename).lstrip("./")
 
+# for dirpath, dirnames, filenames in os.walk('.'):
+#     dirnames[:] = [d for d in dirnames if d != "scripts" and d[0] not in "._"]
+#     for filename in filenames:
+#         if filename == "__init__.py":
+#             continue
+#         if os.path.splitext(filename)[1] in (".py", ".ipynb"):
+#             a.append(os.path.join(dirpath, filename).lstrip("./"))
+
 
 def md_prefix(i):
     return f"{i * '  '}*" if i else "##"
@@ -25,7 +33,7 @@ def print_path(old_path: str, new_path: str) -> str:
     for i, new_part in enumerate(new_path.split(os.sep)):
         if i + 1 > len(old_parts) or old_parts[i] != new_part:
             if new_part:
-                print(f"{md_prefix(i)} {new_part.replace('_', ' ').title()}")
+                print(f"{md_prefix(i-1)} {new_part.replace('_', ' ').title()}")
     return new_path
 
 
