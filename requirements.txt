@@ -11,3 +11,4 @@ requests
 sklearn
 sympy
 tensorflow
+keras
