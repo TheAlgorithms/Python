@@ -47,6 +47,35 @@ class TrieNode:
             curr = curr.nodes[char]
         return curr.is_leaf
 
+    def delete(self, word: str):
+        """
+        Deletes a word in a Trie
+        :param word: word to delete
+        :return: None
+        """
+
+        def _delete(curr: TrieNode, word: str, index: int):
+            if index == len(word):
+                # If word does not exist
+                if not curr.is_leaf:
+                    return False
+                curr.is_leaf = False
+                return len(curr.nodes) == 0
+            char = word[index]
+            char_node = curr.nodes.get(char)
+            # If char not in current trie node
+            if not char_node:
+                return False
+            delete_curr = _delete(
+                char_node, word, index + 1
+            )  # Flag to check if node can be deleted
+            if delete_curr:
+                del curr.nodes[char]
+                return len(curr.nodes) == 0
+            return delete_curr
+
+        _delete(self, word, 0)
+
 
 def print_words(node: TrieNode, word: str):  # noqa: E999 This syntax is Python 3 only
     """
@@ -56,20 +85,25 @@ def print_words(node: TrieNode, word: str):  # noqa: E999 This syntax is Python 
     :return: None
     """
     if node.is_leaf:
-        print(word, end=' ')
+        print(word, end=" ")
 
     for key, value in node.nodes.items():
         print_words(value, word + key)
 
 
 def test():
-    words = ['banana', 'bananas', 'bandana', 'band', 'apple', 'all', 'beast']
+    words = ["banana", "bananas", "bandana", "band", "apple", "all", "beast"]
     root = TrieNode()
     root.insert_many(words)
     # print_words(root, '')
-    assert root.find('banana')
-    assert not root.find('bandanas')
-    assert not root.find('apps')
-    assert root.find('apple')
+    assert root.find("banana")
+    assert not root.find("bandanas")
+    assert not root.find("apps")
+    assert root.find("apple")
+    root.delete("all")
+    assert not root.find("all")
+    root.delete("banana")
+    assert not root.find("banana")
+
 
 test()
