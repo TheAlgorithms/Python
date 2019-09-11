@@ -47,8 +47,8 @@ def my_submission(arr, arrLen, requiredSum):
 
     for i in range(1, arrLen + 1):
         for j in range(1, requiredSum + 1):
-            if arr[i-1]>j:
-                subset[i%2][j] = subset[(i+1)%2][j]
+            if arr[i-1] > j:
+                subset[i % 2][j] = subset[(i+1)%2][j]
             if arr[i-1]<=j:
                 subset[i][j] = (subset[(i+1)%2][j] or subset[(i+1)%2][j-arr[i-1]])
 
@@ -59,7 +59,7 @@ def my_submission(arr, arrLen, requiredSum):
 arr = [2, 4, 6, 8]
 requiredSum =  5
 arrLen = len(arr)
-if isSumSubset(arr, arrLen, requiredSum):
-    print("Found a subset with required sum")
+if my_submission(arr, arrLen, requiredSum):
+    print("Found a subset with required sum\n")
 else:
-    print("No subset with required sum")
+    print("No subset with required sum\n")
