@@ -12,15 +12,15 @@ from cv2 import imread, cvtColor, COLOR_BGR2GRAY
 from numpy import array, uint8
 from PIL import Image
 
-img = imread(r"digital_image_processing/image_data/lena.jpg")
+img = imread(r"digital_image_processing/image_data/lena_small.jpg")
 gray = cvtColor(img, COLOR_BGR2GRAY)
 
 # Test: change_contrast()
 def test_change_contrast():
-    with Image.open("digital_image_processing/image_data/lena.jpg") as img:
+    with Image.open("digital_image_processing/image_data/lena_small.jpg") as img:
         # Work around assertion for response
         assert str(cc.change_contrast(img, 110)).startswith(
-            "<PIL.Image.Image image mode=RGB size=512x512 at"
+            "<PIL.Image.Image image mode=RGB size=100x100 at"
         )
 
 
@@ -33,7 +33,7 @@ def test_gen_gaussian_kernel():
 
 # canny.py
 def test_canny():
-    canny_img = imread("digital_image_processing/image_data/lena.jpg", 0)
+    canny_img = imread("digital_image_processing/image_data/lena_small.jpg", 0)
     # assert ambiguos array for all == True
     assert canny_img.all()
     canny_array = canny.canny(canny_img)
