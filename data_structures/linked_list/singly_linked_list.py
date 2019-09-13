@@ -13,7 +13,7 @@ class Linked_List:
     def __init__(self, *values):
         self.root = None
         self.end = None
-        self._length = 0
+        self._length = 0    # length of the list
 
         self.add_at_head(*values)
 
@@ -23,12 +23,12 @@ class Linked_List:
         :param values: a number or a sequence of numbers
         :return:
         """
-        for val in values[::-1]:
-            node = Node(val, self.root)
+        for val in values[::-1]:    # you can add many values
+            node = Node(val, self.root) # create a new node
             self.root = node
             if not self.root.next:
                 self.end = self.root
-        self._length += len(values)
+        self._length += len(values) # increase the length
 
     def add_at_tail(self, *values):
         """
@@ -36,7 +36,7 @@ class Linked_List:
         :param values: a number or a sequence of numbers
         :return:
         """
-        if not self.end:
+        if not self.end:    # if list is empty
             self.add_at_head(*values)
         else:
             for val in values:
@@ -130,14 +130,14 @@ class Linked_List:
             temp = temp.next
         return temp
 
-    def __len__(self):
+    def __len__(self):  # len(list)
         return self._length
 
-    def __iter__(self):
+    def __iter__(self): # for i in list
         for i in range(len(self)):
             yield (self._get(i)).val
 
-    def __getitem__(self, item):
+    def __getitem__(self, item):    # list[index], list[i:j:k]
         if isinstance(item, slice):
             start = 0 if not item.start else item.start
             stop = len(self) if not item.stop else item.stop
@@ -149,24 +149,21 @@ class Linked_List:
             return [(self._get(i)).val for i in range(start, stop, step)]
         return (self._get(item)).val
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, key, value):  # list[key] = value
         (self._get(key)).val = value
 
-    def __reversed__(self):
-        return Linked_List([i for i in self[::-1]])
-
-    def __contains__(self, item):
+    def __contains__(self, item):   # if item in list
         temp = self.root
         while temp and temp.val != item:
             temp = temp.next
         return temp is not None
 
-    def __add__(self, other):
+    def __add__(self, other):   # list1 + list2
         first = [i for i in self]
         second = [i for i in other]
         result = Linked_List(*first)
         result.add_at_tail(*second)
         return result
 
-    def __str__(self):
+    def __str__(self):  #   str(list)
         return ' -> '.join(str(i) for i in self)
