@@ -1,10 +1,8 @@
 """
 Implementation of a basic regression decision tree.
 Input data set: The input data set must be 1-dimensional with continuous labels.
-Output: The decision tree maps a real number input to a real number output. 
+Output: The decision tree maps a real number input to a real number output.
 """
-from __future__ import print_function
-
 import numpy as np
 
 class Decision_Tree:
@@ -19,7 +17,7 @@ class Decision_Tree:
     def mean_squared_error(self, labels, prediction):
         """
         mean_squared_error:
-        @param labels: a one dimensional numpy array 
+        @param labels: a one dimensional numpy array
         @param prediction: a floating point value
         return value: mean_squared_error calculates the error if prediction is used to estimate the labels
         """
@@ -32,7 +30,7 @@ class Decision_Tree:
         """
         train:
         @param X: a one dimensional numpy array
-        @param y: a one dimensional numpy array. 
+        @param y: a one dimensional numpy array.
         The contents of y are the labels for the corresponding X values
 
         train does not have a return value
@@ -135,6 +133,6 @@ def main():
     print("Predictions: " + str(predictions))
     print("Average error: " + str(avg_error))
 
-            
+
 if __name__ == '__main__':
     main()

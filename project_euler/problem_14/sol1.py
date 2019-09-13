@@ -16,20 +16,12 @@ that all starting numbers finish at 1.
 
 Which starting number, under one million, produces the longest chain?
 """
-from __future__ import print_function
-
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
-
-
 def solution(n):
     """Returns the number under n that generates the longest sequence using the
     formula:
     n → n/2 (n is even)
     n → 3n + 1 (n is odd)
- 
+
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution(1000000)
     # {'counter': 525, 'largest_number': 837799}
@@ -62,7 +54,7 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    result = solution(int(raw_input().strip()))
+    result = solution(int(input().strip()))
     print(
         (
             "Largest Number:",

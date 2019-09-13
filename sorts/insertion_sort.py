@@ -9,9 +9,6 @@ python3 -m doctest -v insertion_sort.py
 For manual testing run:
 python insertion_sort.py
 """
-from __future__ import print_function
-
-
 def insertion_sort(collection):
     """Pure implementation of the insertion sort algorithm in Python
 
@@ -40,11 +37,6 @@ def insertion_sort(collection):
 
 
 if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
+    user_input = input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     print(insertion_sort(unsorted))

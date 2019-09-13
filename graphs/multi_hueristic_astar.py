@@ -1,11 +1,5 @@
-from __future__ import print_function
 import heapq
 import numpy as np
-
-try:
-    xrange          # Python 2
-except NameError:
-    xrange = range  # Python 3
 
 
 class PriorityQueue:
@@ -96,7 +90,7 @@ def do_something(back_pointer, goal, start):
 	grid[(n-1)][0] = "-"
 
 
-	for i in xrange(n):
+	for i in range(n):
 		for j in range(n):
 			if (i, j) == (0, n-1):
 				print(grid[i][j], end=' ')

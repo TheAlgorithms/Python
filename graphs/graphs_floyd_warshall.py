@@ -4,8 +4,6 @@
     have negative edge weights.
 """
 
-from __future__ import print_function
-
 
 def _print_dist(dist, v):
 	print("\nThe shortest path matrix using Floyd Warshall algorithm\n")
@@ -34,9 +32,9 @@ def floyd_warshall(graph, v):
     4. The above is repeated for each vertex k in the graph.
     5. Whenever distance[i][j] is given a new minimum value, next vertex[i][j] is updated to the next vertex[i][k].
     """
-		
+
 	dist=[[float('inf') for _ in range(v)] for _ in range(v)]
-	
+
 	for i in range(v):
 		for j in range(v):
 			dist[i][j] = graph[i][j]
@@ -53,7 +51,7 @@ def floyd_warshall(graph, v):
 	_print_dist(dist, v)
 	return dist, v
 
-			
+
 
 if __name__== '__main__':
 	v = int(input("Enter number of vertices: "))

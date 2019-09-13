@@ -15,8 +15,6 @@
     Date: 2017.9.20
     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 '''
-from __future__ import print_function
-
 import pickle
 import numpy as np
 import matplotlib.pyplot as plt

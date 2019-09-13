@@ -6,13 +6,6 @@ to 10 without any remainder.
 What is the smallest positive number that is evenly divisible(divisible with no
 remainder) by all of the numbers from 1 to N?
 """
-from __future__ import print_function
-
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
-
 """ Euclidean GCD Algorithm """
 
 
@@ -30,7 +23,7 @@ def lcm(x, y):
 def solution(n):
     """Returns the smallest positive number that is evenly divisible(divisible
     with no remainder) by all of the numbers from 1 to n.
-    
+
     >>> solution(10)
     2520
     >>> solution(15)
@@ -47,4 +40,4 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    print(solution(int(raw_input().strip())))
+    print(solution(int(input().strip())))

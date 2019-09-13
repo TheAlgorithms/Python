@@ -9,9 +9,6 @@ python3 -m doctest -v selection_sort.py
 For manual testing run:
 python selection_sort.py
 """
-from __future__ import print_function
-
-
 def selection_sort(collection):
     """Pure implementation of the selection sort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
@@ -43,11 +40,6 @@ def selection_sort(collection):
 
 
 if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
+    user_input = input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     print(selection_sort(unsorted))

@@ -9,20 +9,14 @@ By considering the terms in the Fibonacci sequence whose values do not exceed
 n, find the sum of the even-valued terms. e.g. for n=10, we have {2,8}, sum is
 10.
 """
-from __future__ import print_function
 import math
 from decimal import Decimal, getcontext
-
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
 
 
 def solution(n):
     """Returns the sum of all fibonacci sequence even elements that are lower
     or equals to n.
-    
+
     >>> solution(10)
     10
     >>> solution(15)
@@ -68,4 +62,4 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    print(solution(int(raw_input().strip())))
+    print(solution(int(input().strip())))

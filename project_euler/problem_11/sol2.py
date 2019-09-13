@@ -24,45 +24,39 @@ vertically, or diagonally) in this 20x20 array?
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """
 
-from __future__ import print_function
 import os
-
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 2
 
 
 def solution():
     """Returns the sum of all the multiples of 3 or 5 below n.
-    
+
     >>> solution()
     70600674
     """
     with open(os.path.dirname(__file__) + "/grid.txt") as f:
         l = []
-        for i in xrange(20):
+        for i in range(20):
             l.append([int(x) for x in f.readline().split()])
 
         maximum = 0
 
         # right
-        for i in xrange(20):
-            for j in xrange(17):
+        for i in range(20):
+            for j in range(17):
                 temp = l[i][j] * l[i][j + 1] * l[i][j + 2] * l[i][j + 3]
                 if temp > maximum:
                     maximum = temp
 
         # down
-        for i in xrange(17):
-            for j in xrange(20):
+        for i in range(17):
+            for j in range(20):
                 temp = l[i][j] * l[i + 1][j] * l[i + 2][j] * l[i + 3][j]
                 if temp > maximum:
                     maximum = temp
 
         # diagonal 1
-        for i in xrange(17):
-            for j in xrange(17):
+        for i in range(17):
+            for j in range(17):
                 temp = (
                     l[i][j]
                     * l[i + 1][j + 1]
@@ -73,8 +67,8 @@ def solution():
                     maximum = temp
 
         # diagonal 2
-        for i in xrange(17):
-            for j in xrange(3, 20):
+        for i in range(17):
+            for j in range(3, 20):
                 temp = (
                     l[i][j]
                     * l[i + 1][j - 1]

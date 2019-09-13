@@ -1,19 +1,11 @@
-"""
-	doctests
-
-	>>> decimal_to_binary(3,[1.5])
-	['0.00.01.5']
-
-	>>> check(['0.00.01.5'])
-	['0.00.01.5']
-
-	>>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
-	[[1]]
-
-	>>> selection([[1]],['0.00.01.5'])
-	['0.00.01.5']
-"""
 def compare_string(string1, string2):
+	"""
+	>>> compare_string('0010','0110')
+	'0_10'
+	
+	>>> compare_string('0110','1101')
+	-1
+	"""
 	l1 = list(string1); l2 = list(string2)
 	count = 0
 	for i in range(len(l1)):
@@ -26,6 +18,10 @@ def compare_string(string1, string2):
 		return("".join(l1))
 
 def check(binary):
+	"""
+	>>> check(['0.00.01.5'])
+	['0.00.01.5']
+	"""
 	pi = []
 	while 1:
 		check1 = ['$']*len(binary)
@@ -45,6 +41,10 @@ def check(binary):
 		binary = list(set(temp))
 
 def decimal_to_binary(no_of_variable, minterms):
+	"""
+	>>> decimal_to_binary(3,[1.5])
+	['0.00.01.5']
+	"""
 	temp = []
 	s = ''
 	for m in minterms:
@@ -56,6 +56,13 @@ def decimal_to_binary(no_of_variable, minterms):
 	return temp
 
 def is_for_table(string1, string2, count):
+	"""
+	>>> is_for_table('__1','011',2)
+	True
+	
+	>>> is_for_table('01_','001',1)
+	False
+	"""
 	l1 = list(string1);l2=list(string2)
 	count_n = 0
 	for i in range(len(l1)):
@@ -67,6 +74,13 @@ def is_for_table(string1, string2, count):
 		return False 
 
 def selection(chart, prime_implicants):
+	"""
+	>>> selection([[1]],['0.00.01.5'])
+	['0.00.01.5']
+	
+	>>> selection([[1]],['0.00.01.5'])
+	['0.00.01.5']
+	"""
 	temp = []
 	select = [0]*len(chart)
 	for i in range(len(chart[0])):
@@ -104,6 +118,10 @@ def selection(chart, prime_implicants):
 					chart[j][i] = 0
 		
 def prime_implicant_chart(prime_implicants, binary):
+	"""
+	>>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
+	[[1]]
+	"""
 	chart = [[0 for x in range(len(binary))] for x in range(len(prime_implicants))]
 	for i in range(len(prime_implicants)):
 		count = prime_implicants[i].count('_')

@@ -7,7 +7,6 @@ For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
 There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
 """
-from __future__ import print_function
 
 
 def solution():
@@ -17,7 +16,7 @@ def solution():
      1. a < b < c
      2. a**2 + b**2 = c**2
      3. a + b + c = 1000
-    
+
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution()
     # 31875000

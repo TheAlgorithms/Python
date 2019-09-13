@@ -1,4 +1,3 @@
-from __future__ import print_function
 # Python code to demonstrate working of
 # extend(), extendleft(), rotate(), reverse()
 

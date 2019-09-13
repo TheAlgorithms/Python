@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 def dfs(u):
     global g, r, scc, component, visit, stack
     if visit[u]: return

@@ -14,18 +14,10 @@ numbers and the square of the sum is 3025 − 385 = 2640.
 Find the difference between the sum of the squares of the first N natural
 numbers and the square of the sum.
 """
-from __future__ import print_function
-
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
-
-
 def solution(n):
     """Returns the difference between the sum of the squares of the first n
     natural numbers and the square of the sum.
- 
+
     >>> solution(10)
     2640
     >>> solution(15)
@@ -45,4 +37,4 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    print(solution(int(raw_input().strip())))
+    print(solution(int(input().strip())))

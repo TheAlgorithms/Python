@@ -5,9 +5,6 @@ Can you determine number of ways of making change for n units using
 the given types of coins?
 https://www.hackerrank.com/challenges/coin-change/problem
 """
-from __future__ import print_function
-
-
 def dp_count(S, m, n):
 
     # table[i] represents the number of ways to get to amount i

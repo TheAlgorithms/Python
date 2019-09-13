@@ -1,7 +1,6 @@
 '''
 A binary search Tree
 '''
-from __future__ import print_function
 class Node:
 
     def __init__(self, label, parent):
@@ -66,8 +65,8 @@ class BinarySearchTree:
             else:
                 parent_node.setRight(new_node)
             #Set parent to the new node
-            new_node.setParent(parent_node)      
-    
+            new_node.setParent(parent_node)
+
     def delete(self, label):
         if (not self.empty()):
             #Look for the node with that label
@@ -92,7 +91,7 @@ class BinarySearchTree:
                     self.delete(tmpNode.getLabel())
                     #Assigns the value to the node to delete and keesp tree structure
                     node.setLabel(tmpNode.getLabel())
-    
+
     def getNode(self, label):
         curr_node = None
         #If the tree is not empty
@@ -177,7 +176,7 @@ class BinarySearchTree:
             #Returns a list of nodes in the order that the users wants to
             return traversalFunction(self.root)
 
-    #Returns an string of all the nodes labels in the list 
+    #Returns an string of all the nodes labels in the list
     #In Order Traversal
     def __str__(self):
         list = self.__InOrderTraversal(self.root)
@@ -203,7 +202,7 @@ def testBinarySearchTree():
                / \    \
               1   6    14
                  / \   /
-                4   7 13 
+                4   7 13
     '''
 
     r'''
@@ -236,11 +235,11 @@ def testBinarySearchTree():
         print("The label -1 exists")
     else:
         print("The label -1 doesn't exist")
-    
+
     if(not t.empty()):
         print(("Max Value: ", t.getMax().getLabel()))
         print(("Min Value: ", t.getMin().getLabel()))
-    
+
     t.delete(13)
     t.delete(10)
     t.delete(8)

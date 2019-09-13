@@ -9,13 +9,7 @@ python3 -m doctest -v binary_search.py
 For manual testing run:
 python binary_search.py
 """
-from __future__ import print_function
 import bisect
-
-try:
-    raw_input          # Python 2
-except NameError:
-    raw_input = input  # Python 3
 
 
 def binary_search(sorted_collection, item):
@@ -112,7 +106,7 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
     """
     if (right < left):
         return None
-    
+
     midpoint = left + (right - left) // 2
 
     if sorted_collection[midpoint] == item:
@@ -121,7 +115,7 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
         return binary_search_by_recursion(sorted_collection, item, left, midpoint-1)
     else:
         return binary_search_by_recursion(sorted_collection, item, midpoint+1, right)
-      
+
 def __assert_sorted(collection):
     """Check if collection is ascending sorted, if not - raises :py:class:`ValueError`
 
@@ -145,14 +139,14 @@ def __assert_sorted(collection):
 
 if __name__ == '__main__':
     import sys
-    user_input = raw_input('Enter numbers separated by comma:\n').strip()
+    user_input = input('Enter numbers separated by comma:\n').strip()
     collection = [int(item) for item in user_input.split(',')]
     try:
         __assert_sorted(collection)
     except ValueError:
         sys.exit('Sequence must be ascending sorted to apply binary search')
 
-    target_input = raw_input('Enter a single number to be found in the list:\n')
+    target_input = input('Enter a single number to be found in the list:\n')
     target = int(target_input)
     result = binary_search(collection, target)
     if result is not None:

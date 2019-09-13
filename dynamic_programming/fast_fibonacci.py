@@ -5,7 +5,6 @@
 This program calculates the nth Fibonacci number in O(log(n)).
 It's possible to calculate F(1000000) in less than a second.
 """
-from __future__ import print_function
 import sys
 
 

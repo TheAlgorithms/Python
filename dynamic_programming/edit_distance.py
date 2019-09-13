@@ -7,7 +7,6 @@ This is a pure Python implementation of Dynamic Programming solution to the edit
 The problem is :
 Given two strings A and B. Find the minimum number of operations to string B such that A = B. The permitted operations are removal,  insertion, and substitution.
 """
-from __future__ import print_function
 
 
 class EditDistance:
@@ -67,14 +66,14 @@ def min_distance_bottom_up(word1: str, word2: str) -> int:
     dp = [[0 for _ in range(n+1) ] for _ in range(m+1)]
     for i in range(m+1):
         for j in range(n+1):
-            
+
             if i == 0:  #first string is empty
                 dp[i][j] = j
-            elif j == 0: #second string is empty 
-                dp[i][j] = i 
+            elif j == 0: #second string is empty
+                dp[i][j] = i
             elif word1[i-1] == word2[j-1]: #last character of both substing is equal
                 dp[i][j] = dp[i-1][j-1]
-            else: 
+            else:
                 insert = dp[i][j-1]
                 delete = dp[i-1][j]
                 replace = dp[i-1][j-1]
@@ -82,21 +81,13 @@ def min_distance_bottom_up(word1: str, word2: str) -> int:
     return dp[m][n]
 
 if __name__ == '__main__':
-        try:
-            raw_input          # Python 2
-        except NameError:
-            raw_input = input  # Python 3
-
         solver = EditDistance()
 
         print("****************** Testing Edit Distance DP Algorithm ******************")
         print()
 
-        print("Enter the first string: ", end="")
-        S1 = raw_input().strip()
-
-        print("Enter the second string: ", end="")
-        S2 = raw_input().strip()
+        S1 = input("Enter the first string: ").strip()
+        S2 = input("Enter the second string: ").strip()
 
         print()
         print("The minimum Edit Distance is: %d" % (solver.solve(S1, S2)))
@@ -106,4 +97,4 @@ if __name__ == '__main__':
 
 
 
- 
+

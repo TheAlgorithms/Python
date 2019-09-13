@@ -13,9 +13,6 @@ Converting to matrix,
 So we just need the n times multiplication of the matrix [1,1],[1,0]].
 We can decrease the n times multiplication by following the divide and conquer approach.
 """
-from __future__ import print_function
-
-
 def multiply(matrix_a, matrix_b):
     matrix_c = []
     n = len(matrix_a)

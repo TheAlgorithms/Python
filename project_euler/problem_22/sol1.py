@@ -18,12 +18,6 @@ What is the total of all the name scores in the file?
 import os
 
 
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
-
-
 def solution():
     """Returns the total of all the name scores in the file.
 

@@ -14,12 +14,6 @@ It is possible to write five as a sum in exactly six different ways:
 How many different ways can one hundred be written as a sum of at least two
 positive integers?
 """
-from __future__ import print_function
-
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
 
 
 def partition(m):
@@ -43,12 +37,12 @@ def partition(m):
     >>> partition(1)
     0
     """
-    memo = [[0 for _ in xrange(m)] for _ in xrange(m + 1)]
-    for i in xrange(m + 1):
+    memo = [[0 for _ in range(m)] for _ in range(m + 1)]
+    for i in range(m + 1):
         memo[i][0] = 1
 
-    for n in xrange(m + 1):
-        for k in xrange(1, m):
+    for n in range(m + 1):
+        for k in range(1, m):
             memo[n][k] += memo[n][k - 1]
             if n > k:
                 memo[n][k] += memo[n - k - 1][k]
