@@ -66,9 +66,8 @@ class TrieNode:
             # If char not in current trie node
             if not char_node:
                 return False
-            delete_curr = _delete(
-                char_node, word, index + 1
-            )  # Flag to check if node can be deleted
+            # Flag to check if node can be deleted
+            delete_curr = _delete(char_node, word, index + 1)
             if delete_curr:
                 del curr.nodes[char]
                 return len(curr.nodes) == 0
@@ -100,10 +99,12 @@ def test():
     assert not root.find("bandanas")
     assert not root.find("apps")
     assert root.find("apple")
+    assert root.find("all")
     root.delete("all")
     assert not root.find("all")
     root.delete("banana")
     assert not root.find("banana")
+    assert root.find("bananas")
 
 
 test()
