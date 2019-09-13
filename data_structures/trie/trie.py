@@ -12,7 +12,7 @@ class TrieNode:
         self.nodes = dict()  # Mapping from char to TrieNode
         self.is_leaf = False
 
-    def insert_many(self, words: [str]):  # noqa: E999 This syntax is Python 3 only
+    def insert_many(self, words: [str]):
         """
         Inserts a list of words into the Trie
         :param words: list of string words
@@ -21,7 +21,7 @@ class TrieNode:
         for word in words:
             self.insert(word)
 
-    def insert(self, word: str):  # noqa: E999 This syntax is Python 3 only
+    def insert(self, word: str):
         """
         Inserts a word into the Trie
         :param word: word to be inserted
@@ -34,7 +34,7 @@ class TrieNode:
             curr = curr.nodes[char]
         curr.is_leaf = True
 
-    def find(self, word: str) -> bool:  # noqa: E999 This syntax is Python 3 only
+    def find(self, word: str) -> bool:
         """
         Tries to find word in a Trie
         :param word: word to look for
@@ -76,7 +76,7 @@ class TrieNode:
         _delete(self, word, 0)
 
 
-def print_words(node: TrieNode, word: str):  # noqa: E999 This syntax is Python 3 only
+def print_words(node: TrieNode, word: str):
     """
     Prints all the words in a Trie
     :param node: root node of Trie
@@ -90,11 +90,12 @@ def print_words(node: TrieNode, word: str):  # noqa: E999 This syntax is Python 
         print_words(value, word + key)
 
 
-def test():
+def test_trie():
     words = ["banana", "bananas", "bandana", "band", "apple", "all", "beast"]
     root = TrieNode()
     root.insert_many(words)
-    # print_words(root, '')
+    # print_words(root, "")
+    assert all(root.find(word) for word in words)
     assert root.find("banana")
     assert not root.find("bandanas")
     assert not root.find("apps")
@@ -105,6 +106,23 @@ def test():
     root.delete("banana")
     assert not root.find("banana")
     assert root.find("bananas")
+    return True
 
 
-test()
+def print_results(msg: str, passes: bool) -> None:
+    print(str(msg), "works!" if passes else "doesn't work :(")
+
+
+def pytests():
+    assert test_trie()
+
+
+def main():
+    """
+    >>> pytests()
+    """
+    print_results("Testing trie functionality", test_trie())
+
+
+if __name__ == "__main__":
+    main()
