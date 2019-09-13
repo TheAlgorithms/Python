@@ -1,63 +1,172 @@
-class Node:  # create a Node
-    def __init__(self, data):
-        self.data = data  # given data
-        self.next = None  # given next to None
+class Node:
+    def __init__(self, data=None, next=None):
+        self.val = data  # given data
+        self.next = next  # given next
 
 
 class Linked_List:
-    def __init__(self):
-        self.Head = None    # Initialize Head to None
+    """
+    A linked list class, whose elements are instances of the Node class.
+    :param root: The 1st element
+    :param end: The last element
+    """
+    def __init__(self, *values):
+        self.root = None
+        self.end = None
+        self._length = 0
 
-    def insert_tail(self, data):
-        if(self.Head is None): self.insert_head(data)    #If this is first node, call insert_head
+        self.add_at_head(*values)
+
+    def add_at_head(self, *values):
+        """
+        Add a node(s) with value(s) before the first element of a linked list.
+        :param values: a number or a sequence of numbers
+        :return:
+        """
+        for val in values[::-1]:
+            node = Node(val, self.root)
+            self.root = node
+            if not self.root.next:
+                self.end = self.root
+        self._length += len(values)
+
+    def add_at_tail(self, *values):
+        """
+        Append a node(s) with value(s) to the last element of a linked list.
+        :param values: a number or a sequence of numbers
+        :return:
+        """
+        if not self.end:
+            self.add_at_head(*values)
         else:
-            temp = self.Head
-            while(temp.next != None):    #traverse to last node
-                temp = temp.next
-            temp.next = Node(data)    #create node & link to tail
+            for val in values:
+                self.end.next = Node(val)
+                self.end = self.end.next
+            self._length += len(values)
 
-    def insert_head(self, data):
-        newNod = Node(data)    # create a new node
-        if self.Head != None:
-            newNod.next = self.Head     # link newNode to head
-        self.Head = newNod    # make NewNode as Head
+    def add_at_index(self, index, *values):
+        """
+        Add a node(s) with value(s) before the index-th node in a linked list. If the index equals to the length
+        of the linked list, the node will be appended to the end of the linked list.
+        :param index: the node index
+        :param values: a number or a sequence of numbers
+        :return:
+        """
+        if index == 0:
+            self.add_at_head(*values)
+        elif index == len(self):
+            self.add_at_tail(*values)
+        elif 0 < index < len(self):
+            for val in values[::-1]:
+                temp = self._get(index - 1)
+                node = Node(val, temp.next)
+                temp.next = node
+            self._length += len(values)
+        else:
+            raise IndexError
 
-    def printList(self):  # print every node data
-        tamp = self.Head
-        while tamp is not None:
-            print(tamp.data)
-            tamp = tamp.next
+    def delete_at_index(self, index):
+        """
+        Delete the index-th node in a linked list, if the index is valid.
+        :param index: the node index
+        :return:
+        """
+        if 0 <= index < len(self):
+            if len(self) == 1:
+                self.root = None
+                self.end = None
+            elif index == 0:
+                self.root = self.root.next
+            elif index == len(self) - 1:
+                self.end = self._get(len(self) - 2)
+                self.end.next = None
+            else:
+                temp = self._get(index - 1)
+                temp.next = temp.next.next
+            self._length -= 1
+        else:
+            raise IndexError
 
-    def delete_head(self):  # delete from head
-        temp = self.Head
-        if self.Head != None:
-            self.Head = self.Head.next
-            temp.next = None
+    def pop_root(self):
+        """
+        Remove the first node from a linked list and return its value.
+        :return value: The 1st node value
+        """
+        if not self:
+            return None
+        res = self.root.val
+        self.delete_at_index(0)
+        return res
+
+    def pop_end(self):
+        """
+        Remove the last node  from a linked list and return its value.
+        :return value: The last node value
+        """
+        if len(self) < 2:
+            return self.pop_root()
+        res = self.end.val
+        self.delete_at_index(len(self) - 1)
+        return res
+
+    def _get(self, index):
+        """
+        Get the index-th node in a linked list.
+        """
+        if not isinstance(index, int):
+            raise TypeError
+        if index >= len(self):
+            raise IndexError
+        if index == 0:
+            return self.root
+        if index == len(self) - 1:
+            return self.end
+        if index < 0:
+            if abs(index) > len(self):
+                raise IndexError
+            index += len(self)
+        temp = self.root
+        for i in range(index):
+            temp = temp.next
         return temp
 
-    def delete_tail(self):  # delete from tail
-        tamp = self.Head
-        if self.Head != None:
-            if(self.Head.next is None):    # if Head is the only Node in the Linked List
-                self.Head = None
-            else:
-                while tamp.next.next is not None:  # find the 2nd last element
-                    tamp = tamp.next
-                tamp.next, tamp = None, tamp.next    #(2nd last element).next = None and tamp = last element
-        return tamp
+    def __len__(self):
+        return self._length
 
-    def reverse(self):
-        prev = None
-        current = self.Head
+    def __iter__(self):
+        for i in range(len(self)):
+            yield (self._get(i)).val
 
-        while current:
-            # Store the current node's next node.
-            next_node = current.next
-            # Make the current node's next point backwards
-            current.next = prev
-            # Make the previous node be the current node
-            prev = current
-            # Make the current node the next node (to progress iteration)
-            current = next_node
-        # Return prev in order to put the head at the end
-        self.Head = prev
+    def __getitem__(self, item):
+        if isinstance(item, slice):
+            start = 0 if not item.start else item.start
+            stop = len(self) if not item.stop else item.stop
+            step = 1 if not item.step else item.step
+            if step < 0:
+                start, stop = stop, start
+                start -= 1
+                stop -= 1
+            return [(self._get(i)).val for i in range(start, stop, step)]
+        return (self._get(item)).val
+
+    def __setitem__(self, key, value):
+        (self._get(key)).val = value
+
+    def __reversed__(self):
+        return Linked_List([i for i in self[::-1]])
+
+    def __contains__(self, item):
+        temp = self.root
+        while temp and temp.val != item:
+            temp = temp.next
+        return temp is not None
+
+    def __add__(self, other):
+        first = [i for i in self]
+        second = [i for i in other]
+        result = Linked_List(*first)
+        result.add_at_tail(*second)
+        return result
+
+    def __str__(self):
+        return ' -> '.join(str(i) for i in self)
