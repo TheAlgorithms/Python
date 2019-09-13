@@ -17,7 +17,7 @@ gray = cvtColor(img, COLOR_BGR2GRAY)
 
 # Test: change_contrast()
 def test_change_contrast():
-    with Image.open("digital_image_processing/image_data/lena.jpg") as img:
+    with Image.open("digital_image_processing/image_data/lena_small.jpg") as img:
         # Work around assertion for response
         assert str(cc.change_contrast(img, 110)).startswith(
             "<PIL.Image.Image image mode=RGB size=512x512 at"
