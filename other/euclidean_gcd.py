@@ -1,4 +1,3 @@
-from __future__ import print_function
 # https://en.wikipedia.org/wiki/Euclidean_algorithm
 
 def euclidean_gcd(a, b):

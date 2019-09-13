@@ -1,4 +1,3 @@
-from __future__ import print_function
 import collections, pprint, time, os
 
 start_time = time.time()

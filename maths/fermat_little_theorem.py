@@ -5,13 +5,13 @@
 
 
 def binary_exponentiation(a, n, mod):
-    
+
     if (n == 0):
         return 1
-    
+
     elif (n % 2 == 1):
         return (binary_exponentiation(a, n - 1, mod) * a) % mod
-    
+
     else:
         b = binary_exponentiation(a, n / 2, mod)
         return (b * b) % mod

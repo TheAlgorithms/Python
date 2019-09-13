@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 def quick_sort_3partition(sorting, left, right):
     if right <= left:
         return
@@ -20,12 +18,7 @@ def quick_sort_3partition(sorting, left, right):
     quick_sort_3partition(sorting, b + 1, right)
 
 if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
+    user_input = input('Enter numbers separated by a comma:\n').strip()
     unsorted = [ int(item) for item in user_input.split(',') ]
     quick_sort_3partition(unsorted,0,len(unsorted)-1)
     print(unsorted)

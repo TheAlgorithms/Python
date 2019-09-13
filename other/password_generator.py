@@ -1,5 +1,4 @@
 """Password generator allows you to generate a random password of length N."""
-from __future__ import print_function
 from random import choice
 from string import ascii_letters, digits, punctuation
 

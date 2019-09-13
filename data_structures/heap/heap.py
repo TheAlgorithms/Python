@@ -1,15 +1,8 @@
 #!/usr/bin/python
 
-from __future__ import print_function, division
-
-try:
-    raw_input          # Python 2
-except NameError:
-    raw_input = input  # Python 3
-
-#This heap class start from here.
+# This heap class start from here.
 class Heap:
-	def __init__(self): #Default constructor of heap class.
+	def __init__(self): # Default constructor of heap class.
 	    self.h = []
 	    self.currsize = 0
 
@@ -79,7 +72,7 @@ class Heap:
 		print(self.h)
 
 def main():
-	l = list(map(int, raw_input().split()))
+	l = list(map(int, input().split()))
 	h = Heap()
 	h.buildHeap(l)
 	h.heapSort()

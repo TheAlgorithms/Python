@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # encoding=utf8
 
-from __future__ import print_function
 # Author: OMKAR PATHAK
 
 # We can use Python's dictionary for constructing the graph.

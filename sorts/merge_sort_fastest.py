@@ -4,9 +4,6 @@ Takes an average of 0.6 microseconds to sort a list of length 1000 items.
 Best Case Scenario : O(n)
 Worst Case Scenario : O(n^2) because native python functions:min, max and remove are already O(n)
 '''
-from __future__ import print_function
-
-
 def merge_sort(collection):
     """Pure implementation of the fastest merge sort algorithm in Python
 
@@ -36,11 +33,6 @@ def merge_sort(collection):
 
 
 if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
+    user_input = input('Enter numbers separated by a comma:\n').strip()
     unsorted = [int(item) for item in user_input.split(',')]
     print(*merge_sort(unsorted), sep=',')

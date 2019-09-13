@@ -1,7 +1,4 @@
 # Code contributed by Honey Sharma
-from __future__ import print_function
-
-
 def cycle_sort(array):
     ans = 0
 
@@ -45,12 +42,7 @@ def cycle_sort(array):
 
 #  Main Code starts here
 if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-        
-    user_input = raw_input('Enter numbers separated by a comma:\n')
+    user_input = input('Enter numbers separated by a comma:\n')
     unsorted = [int(item) for item in user_input.split(',')]
     n = len(unsorted)
     cycle_sort(unsorted)
