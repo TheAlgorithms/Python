@@ -46,9 +46,6 @@ class Linked_List:
                 tamp.next, tamp = None, tamp.next    #(2nd last element).next = None and tamp = last element
         return tamp
 
-    def isEmpty(self):
-        return self.Head is None  # Return if Head is none
-
     def reverse(self):
         prev = None
         current = self.Head
@@ -64,35 +61,3 @@ class Linked_List:
             current = next_node
         # Return prev in order to put the head at the end
         self.Head = prev
-
-def main():
-    A = Linked_List()
-    print("Inserting 1st at Head")
-    a1=input()
-    A.insert_head(a1)
-    print("Inserting 2nd at Head")
-    a2=input()
-    A.insert_head(a2)
-    print("\nPrint List : ")
-    A.printList()
-    print("\nInserting 1st at Tail")
-    a3=input()
-    A.insert_tail(a3)
-    print("Inserting 2nd at Tail")
-    a4=input()
-    A.insert_tail(a4)
-    print("\nPrint List : ")
-    A.printList()
-    print("\nDelete Head")
-    A.delete_head()
-    print("Delete Tail")
-    A.delete_tail()
-    print("\nPrint List : ")
-    A.printList()
-    print("\nReverse Linked List")
-    A.reverse()
-    print("\nPrint List : ")
-    A.printList()
-
-if __name__ == '__main__':
-	main()
