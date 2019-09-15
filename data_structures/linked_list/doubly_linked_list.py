@@ -6,71 +6,188 @@
  - Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficent'''
 
 
-class LinkedList:           #making main class named linked list
-    def __init__(self):
-        self.head = None
-        self.tail = None
 
-    def insertHead(self, x):
-        newLink = Link(x)                            #Create a new link with a value attached to it
-        if(self.isEmpty() == True):                  #Set the first element added to be the tail
-            self.tail = newLink
+class Node:
+    """
+    A linked list element class.
+    """
+    def __init__(self, value=None, prev=None, next=None):
+        self.val = value
+        self.prev = prev
+        self.next = next
+
+        
+class DLinkedList:
+    """
+    A linked list class, whose elements are an instance of the Node class.
+    :param root: The 1st element
+    :param end: The last element
+    """
+    def __init__(self, *values):
+        self.root = None
+        self.end = None
+        self._length = 0
+        
+        self.add_at_head(*values)
+
+    def add_at_head(self, *values):
+        """
+        Add a node(s) with value(s) before the first element of a linked list.
+        :param values: a number or a sequence of numbers
+        :return:
+        """
+        for val in values[::-1]:
+            node = Node(val, None, self.root)
+            try:
+                self.root.prev = node
+            except AttributeError:
+                pass
+            self.root = node
+            if not self.root.next:
+                self.end = self.root
+        self._length += len(values)
+
+    def add_at_tail(self, *values):
+        """
+        Append a node(s) with value(s) to the last element of a linked list.
+        :param values: additional values
+        :return:
+        """
+        if not self.end:
+            self.add_at_head(*values)
         else:
-            self.head.previous = newLink             # newLink <-- currenthead(head)
-        newLink.next = self.head                     # newLink <--> currenthead(head)
-        self.head = newLink                          # newLink(head) <--> oldhead
+            for val in values:
+                self.end.next = Node(val, self.end)
+                self.end = self.end.next
+            self._length += len(values)
 
-    def deleteHead(self):
-        temp = self.head
-        self.head = self.head.next                   # oldHead <--> 2ndElement(head)
-        self.head.previous = None                    # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
-        if(self.head is None):
-            self.tail = None                         #if empty linked list
+    def add_at_index(self, index, *values):
+        """
+        Add a node(s) with value(s) before the index-th node in a linked list. If the index equals to the length
+        of the linked list, the node will be appended to the end of the linked list.
+        :param index: the node index
+        :param values: a number or a sequence of numbers
+        :return:
+        """
+        if index == 0:
+            self.add_at_head(*values)
+        elif index == len(self):
+            self.add_at_tail(*values)
+        elif 0 < index < len(self):
+            for val in values:
+                temp = self._get(index - 1)
+                node = Node(val, temp, temp.next)
+                temp.next = node
+                node.next.prev = node
+            self._length += len(values)
+        else:
+            raise IndexError
+
+    def delete_at_index(self, index):
+        """
+        Delete the index-th node in a linked list, if the index is valid.
+        :param index: node index
+        :return:
+        """
+        if 0 <= index < len(self):
+            if len(self) == 1:
+                self.root = None
+                self.end = None
+            elif index == 0:
+                self.root = self.root.next
+                self.root.prev = None
+            elif index == len(self) - 1:
+                self.end = self.end.prev
+                self.end.next = None
+            else:
+                temp = self._get(index - 1)
+                temp.next = temp.next.next
+                temp.next.prev = temp
+            self._length -= 1
+        else:
+            raise IndexError
+
+    def pop_root(self):
+        """
+        Remove the first node from a linked list and return its value.
+        :return value: The 1st node value
+        """
+        if not self:
+            return None
+        res = self.root.val
+        self.delete_at_index(0)
+        return res
+
+    def pop_end(self):
+        """
+        Remove the last node from a linked list and return its value.
+        :return value: The last node value
+        """
+        if len(self) < 2:
+            return self.pop_root()
+        res = self.end.val
+        self.delete_at_index(len(self) - 1)
+        return res
+
+    def _get(self, index):
+        """
+        Get the index-th node in a linked list.
+        """
+        if index >= len(self):
+            raise IndexError
+        if index == 0:
+            return self.root
+        if index == len(self) - 1:
+            return self.end
+        if index < 0:
+            if abs(index) > len(self):
+                raise IndexError
+            index += len(self)
+        temp = None
+        if index <= len(self) // 2:
+            temp = self.root
+            for i in range(index):
+                temp = temp.next
+        else:
+            temp = self.end
+            for i in range(len(self) - index - 1):
+                temp = temp.prev
         return temp
 
-    def insertTail(self, x):
-        newLink = Link(x)
-        newLink.next = None                         # currentTail(tail)    newLink -->
-        self.tail.next = newLink                    # currentTail(tail) --> newLink -->
-        newLink.previous = self.tail                #currentTail(tail) <--> newLink -->
-        self.tail = newLink                         # oldTail <--> newLink(tail) -->
+    def __len__(self):  # len(list)
+        return self._length
 
-    def deleteTail(self):
-        temp = self.tail
-        self.tail = self.tail.previous              # 2ndLast(tail) <--> oldTail --> None
-        self.tail.next = None                       # 2ndlast(tail) --> None
-        return temp
+    def __iter__(self): # for i in list
+        for i in range(len(self)):
+            yield (self._get(i)).val
 
-    def delete(self, x):
-        current = self.head
+    def __getitem__(self, item):    # list[index], list[i, j, k]
+        if isinstance(item, slice):
+            start = 0 if not item.start else item.start
+            stop = len(self) if not item.stop else item.stop
+            step = 1 if not item.step else item.step
+            if step < 0:
+                start, stop = stop, start
+                start -= 1
+                stop -= 1
+            return [(self._get(i)).val for i in range(start, stop, step)]
+        return (self._get(item)).val
 
-        while(current.value != x):                  # Find the position to delete
-            current = current.next
+    def __setitem__(self, key, value):  # list[key] = value
+        (self._get(key)).val = value
 
-        if(current == self.head):
-            self.deleteHead()
+    def __contains__(self, item):   # if item in list
+        temp = self.root
+        while temp and temp.val != item:
+            temp = temp.next
+        return temp is not None
 
-        elif(current == self.tail):
-            self.deleteTail()
+    def __add__(self, other):   # list1 + list2
+        first = [i for i in self]
+        second = [i for i in other]
+        result = DLinkedList(*first)
+        result.add_at_tail(*second)
+        return result
 
-        else: #Before: 1 <--> 2(current) <--> 3
-            current.previous.next = current.next # 1 --> 3
-            current.next.previous = current.previous # 1 <--> 3
-
-    def isEmpty(self):                               #Will return True if the list is empty
-        return(self.head is None)
-
-    def display(self):                                #Prints contents of the list
-        current = self.head
-        while(current != None):
-            current.displayLink()
-            current = current.next
-        print()
-
-class Link:
-    next = None                                       #This points to the link in front of the new link
-    previous = None                                   #This points to the link behind the new link
-    def __init__(self, x):
-        self.value = x
-    def displayLink(self):
-        print("{}".format(self.value), end=" ")
+    def __str__(self):  # str(list)
+        return ' >< '.join(str(i) for i in self)
