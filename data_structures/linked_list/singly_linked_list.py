@@ -10,10 +10,11 @@ class Linked_List:
     :param root: The 1st element
     :param end: The last element
     """
+
     def __init__(self, *values):
         self.root = None
         self.end = None
-        self._length = 0    # length of the list
+        self._length = 0  # length of the list
 
         self.add_at_head(*values)
 
@@ -23,12 +24,12 @@ class Linked_List:
         :param values: a number or a sequence of numbers
         :return:
         """
-        for val in values[::-1]:    # you can add many values
-            node = Node(val, self.root) # create a new node
+        for val in values[::-1]:  # you can add many values
+            node = Node(val, self.root)  # create a new node
             self.root = node
             if not self.root.next:
                 self.end = self.root
-        self._length += len(values) # increase the length
+        self._length += len(values)  # increase the length
 
     def add_at_tail(self, *values):
         """
@@ -36,7 +37,7 @@ class Linked_List:
         :param values: a number or a sequence of numbers
         :return:
         """
-        if not self.end:    # if list is empty
+        if not self.end:  # if list is empty
             self.add_at_head(*values)
         else:
             for val in values:
@@ -133,11 +134,11 @@ class Linked_List:
     def __len__(self):  # len(list)
         return self._length
 
-    def __iter__(self): # for i in list
+    def __iter__(self):  # for i in list
         for i in range(len(self)):
             yield (self._get(i)).val
 
-    def __getitem__(self, item):    # list[index], list[i:j:k]
+    def __getitem__(self, item):  # list[index], list[i:j:k]
         if isinstance(item, slice):
             start = 0 if not item.start else item.start
             stop = len(self) if not item.stop else item.stop
@@ -152,13 +153,13 @@ class Linked_List:
     def __setitem__(self, key, value):  # list[key] = value
         (self._get(key)).val = value
 
-    def __contains__(self, item):   # if item in list
+    def __contains__(self, item):  # if item in list
         temp = self.root
         while temp and temp.val != item:
             temp = temp.next
         return temp is not None
 
-    def __add__(self, other):   # list1 + list2
+    def __add__(self, other):  # list1 + list2
         first = [i for i in self]
         second = [i for i in other]
         result = Linked_List(*first)
@@ -166,4 +167,4 @@ class Linked_List:
         return result
 
     def __str__(self):  #   str(list)
-        return ' -> '.join(str(i) for i in self)
+        return " -> ".join(str(i) for i in self)

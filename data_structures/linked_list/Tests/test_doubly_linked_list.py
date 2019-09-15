@@ -3,7 +3,6 @@ from doubly_linked_list import DLinkedList
 
 
 class TestList(TestCase):
-
     def setUp(self):
         self._list = DLinkedList()
 
@@ -162,17 +161,17 @@ class TestList(TestCase):
         self.assertIsNone(temp)
 
     def test_str(self):
-        self.assertEqual(str(self._list), '')
+        self.assertEqual(str(self._list), "")
 
         self._list.add_at_head(10)
-        self.assertEqual(str(self._list), '10')
+        self.assertEqual(str(self._list), "10")
 
         self._list.add_at_tail(4, 5, 13)
-        self.assertEqual(str(self._list), '10 >< 4 >< 5 >< 13')
+        self.assertEqual(str(self._list), "10 >< 4 >< 5 >< 13")
 
         self._list.delete_at_index(0)
-        self.assertEqual(str(self._list), '4 >< 5 >< 13')
+        self.assertEqual(str(self._list), "4 >< 5 >< 13")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

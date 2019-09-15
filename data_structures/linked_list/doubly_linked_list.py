@@ -1,33 +1,34 @@
-'''
+"""
 - A linked list is similar to an array, it holds values. However, links in a linked list do not have indexes.
 - This is an example of a double ended, doubly linked list.
 - Each link references the next link and the previous one.
 - A Doubly Linked List (DLL) contains an extra pointer, typically called previous pointer, together with next pointer and data which are there in singly linked list.
- - Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficent'''
-
+ - Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficent"""
 
 
 class Node:
     """
     A linked list element class.
     """
+
     def __init__(self, value=None, prev=None, next=None):
         self.val = value
         self.prev = prev
         self.next = next
 
-        
+
 class DLinkedList:
     """
     A linked list class, whose elements are an instance of the Node class.
     :param root: The 1st element
     :param end: The last element
     """
+
     def __init__(self, *values):
         self.root = None
         self.end = None
         self._length = 0
-        
+
         self.add_at_head(*values)
 
     def add_at_head(self, *values):
@@ -157,11 +158,11 @@ class DLinkedList:
     def __len__(self):  # len(list)
         return self._length
 
-    def __iter__(self): # for i in list
+    def __iter__(self):  # for i in list
         for i in range(len(self)):
             yield (self._get(i)).val
 
-    def __getitem__(self, item):    # list[index], list[i, j, k]
+    def __getitem__(self, item):  # list[index], list[i, j, k]
         if isinstance(item, slice):
             start = 0 if not item.start else item.start
             stop = len(self) if not item.stop else item.stop
@@ -176,13 +177,13 @@ class DLinkedList:
     def __setitem__(self, key, value):  # list[key] = value
         (self._get(key)).val = value
 
-    def __contains__(self, item):   # if item in list
+    def __contains__(self, item):  # if item in list
         temp = self.root
         while temp and temp.val != item:
             temp = temp.next
         return temp is not None
 
-    def __add__(self, other):   # list1 + list2
+    def __add__(self, other):  # list1 + list2
         first = [i for i in self]
         second = [i for i in other]
         result = DLinkedList(*first)
@@ -190,4 +191,4 @@ class DLinkedList:
         return result
 
     def __str__(self):  # str(list)
-        return ' >< '.join(str(i) for i in self)
+        return " >< ".join(str(i) for i in self)
