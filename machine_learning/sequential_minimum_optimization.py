@@ -7,9 +7,9 @@
     It was invented by John Platt in 1998.
 
 Input:
-    0: pandas dataframe
-    1: first column of dataframe must be tags of samples,should be 1 or -1.
-    2: rows of dataframe represent samples
+    0: type: numpy.ndarray.
+    1: first column of ndarray must be tags of samples, must be 1 or -1.
+    2: rows of ndarray represent samples.
 
 Usage:
     Command:
