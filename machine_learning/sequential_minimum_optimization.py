@@ -13,9 +13,9 @@ Input:
 
 Usage:
     Command:
-        python3 smo.py
+        python3 sequential_minimum_optimization.py
     Code:
-        from smo import SmoSVM, Kernel
+        from sequential_minimum_optimization import SmoSVM, Kernel
 
         kernel = Kernel(kernel='poly', degree=3., coef0=1., gamma=0.5)
         init_alphas = np.zeros(train.shape[0])
@@ -119,7 +119,7 @@ class SmoSVM(object):
     def predict(self, test_samples, classify=True):
 
         if test_samples.shape[1] > self.samples.shape[1]:
-            raise ValueError("Test samples' feature length not equal to train samples")
+            raise ValueError("Test samples' feature length does not equal to that of train samples")
 
         if self._auto_norm:
             test_samples = self._norm(test_samples)
@@ -128,10 +128,7 @@ class SmoSVM(object):
         for test_sample in test_samples:
             result = self._predict(test_sample)
             if classify:
-                if result > 0:
-                    results.append(1)
-                else:
-                    results.append(-1)
+                results.append(1 if result > 0 else -1)
             else:
                 results.append(result)
         return np.array(results)
