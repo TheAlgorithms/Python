@@ -38,26 +38,24 @@ def my_submission(arr, arrLen, requiredSum):
     subset = ([[False for i in range(requiredSum + 1)] for i in range(2)])
 
     #for each arr value, a sum of zero(0) can be formed by not taking any element hence True/1
-    for i in range(2):
-        subset[i][0] = True
 
-    #sum is not zero and set is empty then false
-    for i in range(1, requiredSum + 1):
-        subset[0][i] = False
-
-    for i in range(1, arrLen + 1):
-        for j in range(1, requiredSum + 1):
-            if arr[i-1] > j:
+    for i in range(0, arrLen + 1):
+        for j in range(0, requiredSum + 1):
+            if j == 0: 
+                subset[i % 2][j] = True;  
+            elif i == 0:
+                subset[i % 2][j] = False;  
+            elif arr[i-1] > j:
                 subset[i % 2][j] = subset[(i+1)%2][j]
-            if arr[i-1]<=j:
-                subset[i][j] = (subset[(i+1)%2][j] or subset[(i+1)%2][j-arr[i-1]])
+            else:
+                subset[i%2][j] = (subset[(i+1)%2][j] or subset[(i+1)%2][j-arr[i-1]])
 
  
     return subset[arrLen%2][requiredSum]
 
 
-arr = [2, 4, 6, 8]
-requiredSum =  5
+arr = [2, 4, 6, 8 , 11 , 29, 5]
+requiredSum =  13
 arrLen = len(arr)
 if my_submission(arr, arrLen, requiredSum):
     print("Found a subset with required sum\n")
