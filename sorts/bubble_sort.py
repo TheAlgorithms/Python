@@ -24,7 +24,7 @@ def bubble_sort(collection):
     length = len(collection)
     swapped = True
     i = 0
-    while swapped == True and i < n: # Stop iteration if the collection is sorted.
+    while swapped == True and i < length: # Stop iteration if the collection is sorted.
         swapped = False 
         for j in range(length-1-i):
             if collection[j] > collection[j+1]:
