@@ -1,5 +1,8 @@
+from typing import Optional, Union, List
+
+
 class Node:
-    def __init__(self, data=None, next=None):
+    def __init__(self, data: Union[int, float] = None, next: "Node" = None):
         self.val = data  # given data
         self.next = next  # given next
 
@@ -11,14 +14,14 @@ class Linked_List:
     :param end: The last element
     """
 
-    def __init__(self, *values):
+    def __init__(self, *values: Union[int, float]):
         self.root = None
         self.end = None
         self._length = 0  # length of the list
 
         self.add_at_head(*values)
 
-    def add_at_head(self, *values):
+    def add_at_head(self, *values: Union[int, float]):
         """
         Add a node(s) with value(s) before the first element of a linked list.
         :param values: a number or a sequence of numbers
@@ -31,7 +34,7 @@ class Linked_List:
                 self.end = self.root
         self._length += len(values)  # increase the length
 
-    def add_at_tail(self, *values):
+    def add_at_tail(self, *values: Union[int, float]):
         """
         Append a node(s) with value(s) to the last element of a linked list.
         :param values: a number or a sequence of numbers
@@ -45,10 +48,11 @@ class Linked_List:
                 self.end = self.end.next
             self._length += len(values)
 
-    def add_at_index(self, index, *values):
+    def add_at_index(self, index: int, *values: Union[int, float]):
         """
-        Add a node(s) with value(s) before the index-th node in a linked list. If the index equals to the length
-        of the linked list, the node will be appended to the end of the linked list.
+        Add a node(s) with value(s) before the index-th node in a linked list.
+        If the index equals to the length of the linked list, the node will be
+        appended to the end of the linked list.
         :param index: the node index
         :param values: a number or a sequence of numbers
         :return:
@@ -66,7 +70,7 @@ class Linked_List:
         else:
             raise IndexError
 
-    def delete_at_index(self, index):
+    def delete_at_index(self, index: int):
         """
         Delete the index-th node in a linked list, if the index is valid.
         :param index: the node index
@@ -88,7 +92,7 @@ class Linked_List:
         else:
             raise IndexError
 
-    def pop_root(self):
+    def pop_root(self) -> Union[int, float, None]:
         """
         Remove the first node from a linked list and return its value.
         :return value: The 1st node value
@@ -99,7 +103,7 @@ class Linked_List:
         self.delete_at_index(0)
         return res
 
-    def pop_end(self):
+    def pop_end(self) -> Union[int, float, None]:
         """
         Remove the last node  from a linked list and return its value.
         :return value: The last node value
@@ -110,7 +114,7 @@ class Linked_List:
         self.delete_at_index(len(self) - 1)
         return res
 
-    def _get(self, index):
+    def _get(self, index: int) -> Optional[Node]:
         """
         Get the index-th node in a linked list.
         """
@@ -131,14 +135,16 @@ class Linked_List:
             temp = temp.next
         return temp
 
-    def __len__(self):  # len(list)
+    def __len__(self) -> int:  # len(list)
         return self._length
 
-    def __iter__(self):  # for i in list
+    def __iter__(self) -> Union[int, float, None]:  # for i in list
         for i in range(len(self)):
             yield (self._get(i)).val
 
-    def __getitem__(self, item):  # list[index], list[i:j:k]
+    def __getitem__(
+        self, item
+    ) -> Union[int, float, List[Union[int, float]]]:  # list[index], list[i:j:k]
         if isinstance(item, slice):
             start = 0 if not item.start else item.start
             stop = len(self) if not item.stop else item.stop
@@ -150,21 +156,23 @@ class Linked_List:
             return [(self._get(i)).val for i in range(start, stop, step)]
         return (self._get(item)).val
 
-    def __setitem__(self, key, value):  # list[key] = value
+    def __setitem__(
+        self, key: int, value: Union[int, float, None]
+    ):  # list[key] = value
         (self._get(key)).val = value
 
-    def __contains__(self, item):  # if item in list
+    def __contains__(self, item: Union[int, float, None]) -> bool:  # if item in list
         temp = self.root
         while temp and temp.val != item:
             temp = temp.next
         return temp is not None
 
-    def __add__(self, other):  # list1 + list2
+    def __add__(self, other: "Linked_List") -> "Linked_List":  # list1 + list2
         first = [i for i in self]
         second = [i for i in other]
         result = Linked_List(*first)
         result.add_at_tail(*second)
         return result
 
-    def __str__(self):  #   str(list)
+    def __str__(self) -> str:  # str(list)
         return " -> ".join(str(i) for i in self)
