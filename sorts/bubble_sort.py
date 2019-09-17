@@ -22,15 +22,15 @@ def bubble_sort(collection):
     True
     """
     length = len(collection)
-    sorted = False
+    swapped = True
     i = 0
-    while sorted == False and i < n: # Stop iteration if the collection is sorted.
-        sorted = True 
+    while swapped == True and i < n: # Stop iteration if the collection is sorted.
+        swapped = False 
         for j in range(length-1-i):
             if collection[j] > collection[j+1]:
-                sorted = False
+                swapped = True
                 collection[j], collection[j+1] = collection[j+1], collection[j]
-         i += 1 
+        i += 1 
     return collection
 
 
