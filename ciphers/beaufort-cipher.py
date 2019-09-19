@@ -23,12 +23,12 @@ def filterInput(string):
     return string
 
 
-def assignKeyMask(input, key):
+def assignKeyMask(textlength, key):
     """Assigns a key mask with the same length of a given input"""
     keymask = str()
-    for i in range(0, len(input) // len(key)):
+    for i in range(0, textlength // len(key)):
         keymask += key
-    for i in range(0, len(input) % len(key)):
+    for i in range(0, textlength % len(key)):
         keymask += key[i]
     return keymask
 
@@ -38,7 +38,7 @@ def useCipher(text, key):
     result = str()
     text = filterInput(text)
     key = filterInput(key)
-    keymask = assignKeyMask(text, key)
+    keymask = assignKeyMask(len(text), key)
     for i in range(0, len(text)):
         result += translateCharacter(text[i], keymask[i])
     return result
