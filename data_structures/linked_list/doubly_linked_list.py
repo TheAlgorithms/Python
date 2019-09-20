@@ -4,7 +4,7 @@
 - Each link references the next link and the previous one.
 - A Doubly Linked List (DLL) contains an extra pointer, typically called previous pointer, together with next pointer and data which are there in singly linked list.
  - Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficent'''
-
+import unittest
 
 class LinkedList:           #making main class named linked list
     def __init__(self):
@@ -23,9 +23,10 @@ class LinkedList:           #making main class named linked list
     def deleteHead(self):
         temp = self.head
         self.head = self.head.next                   # oldHead <--> 2ndElement(head)
-        self.head.previous = None                    # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
         if(self.head is None):
             self.tail = None                         #if empty linked list
+        else:                                      
+            self.head.previous = None
         return temp
 
     def insertTail(self, x):
@@ -74,3 +75,12 @@ class Link:
         self.value = x
     def displayLink(self):
         print("{}".format(self.value), end=" ")
+     
+class Test_LinkedList(unittest.TestCase):
+    def test_deleteHead(self):
+        l = LinkedList()
+        l.insertHead(5)
+        l.deleteHead()                              # testing deletion over single elem list
+
+if __name__ == "__main__":
+    unittest.main()
