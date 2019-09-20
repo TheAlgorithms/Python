@@ -191,7 +191,7 @@ def _validate_input(points):
             else:
                 raise ValueError("Expecting an iterable of type Point, list or tuple. "
                                  "Found objects of type {} instead"
-                                 .format(["point", "list", "tuple"], type(points[0])))
+                                 .format(type(points[0])))
         elif not hasattr(points, "__iter__"):
             raise ValueError("Expecting an iterable object "
                              "but got an non-iterable type {}".format(points))
