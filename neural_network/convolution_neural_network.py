@@ -297,7 +297,6 @@ class CNN():
 
 
 if __name__ == '__main__':
-    pass
     '''
     I will put the example on other file
-'''
+    '''
