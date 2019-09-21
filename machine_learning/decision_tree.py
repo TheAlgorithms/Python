@@ -133,6 +133,7 @@ def main():
     print("Test values: " + str(test_cases_y))
     print("Predictions: " + str(predictions))
     print("Average error: " + str(avg_error))
+    import matplotlib.pyplot as plt
     plt.plot(X,y,label='y=sin(x)')
     plt.plot(test_cases_X,predictions,'ro',label='predictions')
     plt.xlabel('x')
