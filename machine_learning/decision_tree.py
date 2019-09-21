@@ -125,13 +125,19 @@ def main():
     tree = Decision_Tree(depth = 10, min_leaf_size = 10)
     tree.train(X,y)
 
-    test_cases = (np.random.rand(10) * 2) - 1
-    predictions = np.array([tree.predict(x) for x in test_cases])
-    avg_error = np.mean((predictions - test_cases) ** 2)
+    test_cases_X = (np.random.rand(10) * 2) - 1
+    test_cases_y = np.sin(test_cases_X)
+    predictions = np.array([tree.predict(x) for x in test_cases_X])
+    avg_error = np.mean((predictions - test_cases_y) ** 2)
 
-    print("Test values: " + str(test_cases))
+    print("Test values: " + str(test_cases_y))
     print("Predictions: " + str(predictions))
     print("Average error: " + str(avg_error))
+    plt.plot(X,y,label='y=sin(x)')
+    plt.plot(test_cases_X,predictions,'ro',label='predictions')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.legend()
 
 
 if __name__ == '__main__':
