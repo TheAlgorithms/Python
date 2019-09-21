@@ -307,7 +307,7 @@ class BinomialHeap:
         # No right subtree corner case
         # The structure of the tree implies that this should be the bottom root
         # and there is at least one other root
-        if self.min_node.right == None:
+        if self.min_node.right is None:
             # Update size
             self.size -= 1
 
