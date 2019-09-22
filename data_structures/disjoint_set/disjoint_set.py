@@ -10,8 +10,7 @@ def make_set(x):
     # rank is the distance from x to its' parent
     # root's rank is 0
     x.rank = 0
-    # p is x's parent
-    x.p = x
+    x.parent = x
 
 
 def union_set(x, y):
@@ -22,9 +21,9 @@ def union_set(x, y):
     """
     x, y = find_set(x), find_set(y)
     if x.rank > y.rank:
-        y.p = x
+        y.parent = x
     else:
-        x.p = y
+        x.parent = y
         if x.rank == y.rank:
             y.rank += 1
 
@@ -33,9 +32,9 @@ def find_set(x):
     """
     return the parent of x
     """
-    if x != x.p:
-        x.p = find_set(x.p)
-    return x.p
+    if x != x.parent:
+        x.parent = find_set(x.parent)
+    return x.parent
 
 
 def test_disjoint_set():
