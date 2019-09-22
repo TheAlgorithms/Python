@@ -1,9 +1,9 @@
-class node:
+class Node:
     def __init__(self, data):
         self.data = data
 
 
-def makeSet(x):
+def make_set(x):
     """
     make x as a set.
     """
@@ -14,13 +14,13 @@ def makeSet(x):
     x.p = x
 
 
-def unionSet(x, y):
+def union_set(x, y):
     """
     union two sets.
     set with bigger rank should be parent, so that the
     disjoint set tree will be more flat.
     """
-    x, y = findSet(x), findSet(y)
+    x, y = find_set(x), find_set(y)
     if x.rank > y.rank:
         y.p = x
     else:
@@ -29,34 +29,39 @@ def unionSet(x, y):
             y.rank += 1
 
 
-def findSet(x):
+def find_set(x):
     """
     return the parent of x
     """
     if x != x.p:
-        x.p = findSet(x.p)
+        x.p = find_set(x.p)
     return x.p
 
 
 def test_disjoint_set():
-    vertex = [node(i) for i in range(6)]
+    """
+    >>> test_disjoint_set()
+    """
+    vertex = [Node(i) for i in range(6)]
     for v in vertex:
-        makeSet(v)
-    unionSet(vertex[0], vertex[1])
-    unionSet(vertex[1], vertex[2])
-    unionSet(vertex[3], vertex[4])
-    unionSet(vertex[3], vertex[5])
+        make_set(v)
+
+    union_set(vertex[0], vertex[1])
+    union_set(vertex[1], vertex[2])
+    union_set(vertex[3], vertex[4])
+    union_set(vertex[3], vertex[5])
+
     # now there are two sets: {1, 2, 3}, {4, 5, 6}
-    assert findSet(vertex[0]) == findSet(vertex[1])
-    assert findSet(vertex[1]) == findSet(vertex[2])
-    assert findSet(vertex[2]) != findSet(vertex[3])
-    assert findSet(vertex[3]) == findSet(vertex[4])
-    assert findSet(vertex[4]) == findSet(vertex[5])
+    assert find_set(vertex[0]) == find_set(vertex[1])
+    assert find_set(vertex[1]) == find_set(vertex[2])
+    assert find_set(vertex[0]) == find_set(vertex[2])
 
+    assert find_set(vertex[2]) != find_set(vertex[3])
 
-def main():
-    test_disjoint_set()
+    assert find_set(vertex[3]) == find_set(vertex[4])
+    assert find_set(vertex[4]) == find_set(vertex[5])
+    assert find_set(vertex[3]) == find_set(vertex[5])
 
 
 if __name__ == "__main__":
-    main()
+    test_disjoint_set()
