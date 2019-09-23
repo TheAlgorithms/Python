@@ -12,7 +12,7 @@ python binary_search.py
 import bisect
 
 
-def binary_search(sorted_collection, item):
+def binary_search(sorted_collection, item , left, right):
     """Pure implementation of binary search algorithm in Python
 
     Be careful collection must be ascending sorted, otherwise result will be
@@ -23,20 +23,18 @@ def binary_search(sorted_collection, item):
     :return: index of found item or None if item is not found
 
     Examples:
-    >>> binary_search([0, 5, 7, 10, 15], 0)
+    >>> binary_search([0, 5, 7, 10, 15], 0 , 0 , 4)
     0
 
-    >>> binary_search([0, 5, 7, 10, 15], 15)
+    >>> binary_search([0, 5, 7, 10, 15], 15 , 0 , 4)
     4
 
-    >>> binary_search([0, 5, 7, 10, 15], 5)
+    >>> binary_search([0, 5, 7, 10, 15], 5 , 0 , 4)
     1
 
-    >>> binary_search([0, 5, 7, 10, 15], 6)
+    >>> binary_search([0, 5, 7, 10, 15], 6 , 0 , 4)
 
     """
-    left = 0
-    right = len(sorted_collection) - 1
 
     while left <= right:
         midpoint = left + (right - left) // 2
@@ -51,7 +49,7 @@ def binary_search(sorted_collection, item):
     return None
 
 
-def binary_search_std_lib(sorted_collection, item):
+def binary_search_std_lib(sorted_collection, item , left, right):
     """Pure implementation of binary search algorithm in Python using stdlib
 
     Be careful collection must be ascending sorted, otherwise result will be
@@ -62,16 +60,16 @@ def binary_search_std_lib(sorted_collection, item):
     :return: index of found item or None if item is not found
 
     Examples:
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 0)
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 0 , 0 , 4)
     0
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 15)
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 15 , 0 , 4)
     4
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 5)
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 5 , 0 , 4)
     1
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
+    >>> binary_search_std_lib([0, 5, 7, 10, 15], 6 , 0 , 4)
 
     """
     index = bisect.bisect_left(sorted_collection, item)
@@ -92,16 +90,16 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
     :return: index of found item or None if item is not found
 
     Examples:
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 0)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 0, 0 , 4)
     0
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 15)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 15 , 0 , 4)
     4
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 5)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 5 , 0 , 4)
     1
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6 , 0 , 4)
 
     """
     if (right < left):
