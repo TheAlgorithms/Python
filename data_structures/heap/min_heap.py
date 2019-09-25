@@ -21,8 +21,12 @@ class MinHeap:
     >>> a = Node("A", 3)
     >>> x = Node("X", 1)
     >>> e = Node("E", 4)
+    >>> print(b)
+    Node(B, 6)
     >>> myMinHeap = MinHeap([r, b, a, x, e])
     >>> myMinHeap.decrease_key(b, -17)
+    >>> print(b)
+    Node(B, -17)
     """
 
     def __init__(self, array):
