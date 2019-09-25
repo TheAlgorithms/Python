@@ -27,7 +27,7 @@ class MinHeap:
     >>> myMinHeap.decrease_key(b, -17)
     >>> print(b)
     Node(B, -17)
-    >>> print(myMinHeap.get_value("B"))
+    >>> print(myMinHeap["B"])
     -17
     """
 
@@ -35,6 +35,9 @@ class MinHeap:
         self.idx_of_element = {}
         self.heap_dict = {}
         self.heap = self.build_heap(array)
+
+    def __getitem__(self, key):
+        return self.get_value(key)
 
     def get_parent_idx(self, idx):
         return (idx - 1) // 2
