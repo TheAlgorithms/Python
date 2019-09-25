@@ -37,3 +37,15 @@ de.reverse()
 # printing modified deque
 print("The deque after reversing deque is : ")
 print(de)
+
+# get right-end value and eliminate
+startValue = de.pop()
+
+print("The deque after popping deque at end is : ")
+print(de)
+
+# get left-end value and eliminate
+endValue = de.popleft()
+
+print("The deque after popping deque at start is : ")
+print(de)
