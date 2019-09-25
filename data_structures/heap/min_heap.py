@@ -27,10 +27,13 @@ class MinHeap:
     >>> myMinHeap.decrease_key(b, -17)
     >>> print(b)
     Node(B, -17)
+    >>> print(myMinHeap.get_value("B"))
+    -17
     """
 
     def __init__(self, array):
         self.idx_of_element = {}
+        self.heap_dict = {}
         self.heap = self.build_heap(array)
 
     def get_parent_idx(self, idx):
@@ -42,12 +45,16 @@ class MinHeap:
     def get_right_child_idx(self, idx):
         return idx * 2 + 2
 
+    def get_value(self, key):
+        return self.heap_dict[key]
+
     def build_heap(self, array):
         lastIdx = len(array) - 1
         startFrom = self.get_parent_idx(lastIdx)
 
         for idx, i in enumerate(array):
             self.idx_of_element[i] = idx
+            self.heap_dict[i.name] = i.val
 
         for i in range(startFrom, -1, -1):
             self.sift_down(i, array)
@@ -103,20 +110,22 @@ class MinHeap:
         self.sift_down(0, self.heap)
         return x
 
-    def insert(self, value):
-        self.heap.append(value)
-        self.idx_of_element[value] = len(self.heap) - 1
+    def insert(self, node):
+        self.heap.append(node)
+        self.idx_of_element[node] = len(self.heap) - 1
+        self.heap_dict[node.name] = node.val
         self.sift_up(len(self.heap) - 1)
 
     def is_empty(self):
         return True if len(self.heap) == 0 else False
 
-    def decrease_key(self, key, newValue):
+    def decrease_key(self, node, newValue):
         assert (
-            self.heap[self.idx_of_element[key]].val > newValue
+            self.heap[self.idx_of_element[node]].val > newValue
         ), "newValue must be less that current value"
-        key.val = newValue
-        self.sift_up(self.idx_of_element[key])
+        node.val = newValue
+        self.heap_dict[node.name] = newValue
+        self.sift_up(self.idx_of_element[node])
 
 
 ## USAGE
@@ -150,7 +159,6 @@ myMinHeap.decrease_key(b, -17)
 # After
 for i in myMinHeap.heap:
     print(i)
-
 
 if __name__ == "__main__":
     import doctest
