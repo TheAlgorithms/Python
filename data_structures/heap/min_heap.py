@@ -3,12 +3,12 @@
 
 
 class Node:
-    def __init__(self, val, name):
-        self.val = val
+    def __init__(self, name, val):
         self.name = name
+        self.val = val
 
     def __str__(self):
-        return self.name
+        return f"{self.__class__.__name__}({self.name}, {self.val})"
 
     def __lt__(self, other):
         return self.val < other.val
@@ -16,11 +16,11 @@ class Node:
 
 class MinHeap:
     """
-    >>> r = Node(-1, "R")
-    >>> b = Node(6, "B")
-    >>> a = Node(3, "A")
-    >>> x = Node(1, "X")
-    >>> e = Node(4, "E")
+    >>> r = Node("R", -1)
+    >>> b = Node("B", 6)
+    >>> a = Node("A", 3)
+    >>> x = Node("X", 1)
+    >>> e = Node("E", 4)
     >>> myMinHeap = MinHeap([r, b, a, x, e])
     >>> myMinHeap.decrease_key(b, -17)
     """
@@ -117,11 +117,11 @@ class MinHeap:
 
 ## USAGE
 
-r = Node(-1, "R")
-b = Node(6, "B")
-a = Node(3, "A")
-x = Node(1, "X")
-e = Node(4, "E")
+r = Node("R", -1)
+b = Node("B", 6)
+a = Node("A", 3)
+x = Node("X", 1)
+e = Node("E", 4)
 
 # Use one of these two ways to generate Min-Heap
 
@@ -138,14 +138,14 @@ myMinHeap = MinHeap([r, b, a, x, e])
 # Before
 print("Min Heap - before decrease key")
 for i in myMinHeap.heap:
-    print(i, i.val)
+    print(i)
 
 print("Min Heap - After decrease key of node [B -> -17]")
 myMinHeap.decrease_key(b, -17)
 
 # After
 for i in myMinHeap.heap:
-    print(i, i.val)
+    print(i)
 
 
 if __name__ == "__main__":
