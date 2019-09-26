@@ -64,7 +64,7 @@ def simple_fibonacci(n, f1, f2):
         fn_1, fn_2 = fn_1 + fn_2, fn_1
         n -= 1
 
-    return fn
+    return fn_1
 
 
 def matrix_exponentiation_time():
