@@ -1,4 +1,4 @@
-def radixsort(lst):
+def radix_sort(lst):
     RADIX = 10
     placement = 1
 

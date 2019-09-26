@@ -38,7 +38,7 @@ def generate_neighbours(path):
     and the cost (distance) for each neighbor.
 
     Example of dict_of_neighbours:
-    >>> dict_of_neighbours[a]
+    >>) dict_of_neighbours[a]
     [[b,20],[c,18],[d,22],[e,26]]
 
     This indicates the neighbors of node (city) 'a', which has neighbor the node 'b' with distance 20,
@@ -130,7 +130,7 @@ def find_neighborhood(solution, dict_of_neighbours):
 
 
     Example:
-    >>> find_neighborhood(['a','c','b','d','e','a'])
+    >>) find_neighborhood(['a','c','b','d','e','a'])
     [['a','e','b','d','c','a',90], [['a','c','d','b','e','a',90],['a','d','b','c','e','a',93],
     ['a','c','b','e','d','a',102], ['a','c','e','d','b','a',113], ['a','b','c','d','e','a',93]]
 

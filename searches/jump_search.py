@@ -1,4 +1,3 @@
-from __future__ import print_function
 import math
 def jump_search(arr, x):
     n = len(arr)

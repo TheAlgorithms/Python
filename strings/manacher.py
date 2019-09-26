@@ -1,4 +1,4 @@
-# calculate palindromic length from center with incresmenting difference
+# calculate palindromic length from center with incrementing difference
 def palindromic_length( center, diff, string):
     if center-diff == -1 or center+diff == len(string) or string[center-diff] != string[center+diff] :
         return 0

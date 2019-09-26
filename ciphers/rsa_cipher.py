@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys, rsa_key_generator as rkg, os
 
 DEFAULT_BLOCK_SIZE = 128
@@ -16,7 +15,7 @@ def main():
     if mode == 'encrypt':
         if not os.path.exists('rsa_pubkey.txt'):
             rkg.makeKeyFiles('rsa', 1024)
-            
+
         message = input('\nEnter message: ')
         pubKeyFilename = 'rsa_pubkey.txt'
         print('Encrypting and writing to %s...' % (filename))
