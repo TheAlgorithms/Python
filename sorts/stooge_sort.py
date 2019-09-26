@@ -1,19 +1,16 @@
 def stoogesort(arr):
+    """
+    >>> arr = [2, 4, 5, 3, 1]
+    >>> stoogesort(arr)
+    >>> print(arr)
+    [1, 2, 3, 4, 5]
+    """
     stooge(arr,0,len(arr)-1)
 
+    
 def stooge(arr, i, h):
 
-    """
 
->>> arr = [2, 4, 5, 3, 1]
->>> stoogesort(arr)
->>> print(arr)
-[1, 2, 3, 4, 5]
-
-"""
-
-
- 
     if i >= h:
         return
   
