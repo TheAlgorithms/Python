@@ -1,7 +1,7 @@
-def stoogesort(arr):
+def stooge_sort(arr):
     """
     >>> arr = [2, 4, 5, 3, 1]
-    >>> stoogesort(arr)
+    >>> stooge_sort(arr)
     >>> print(arr)
     [1, 2, 3, 4, 5]
     """
