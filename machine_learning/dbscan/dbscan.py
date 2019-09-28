@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from matplotlib.pyplot import cm
 import numpy as np
 from sklearn.datasets import make_moons
 
@@ -42,9 +41,7 @@ def plot_cluster(DB, clusters, ax):
                 noise.append(k)
         temp.append(stack)
 
-    my_clus = {}
-
-    color = iter(cm.rainbow(np.linspace(0, 1, len(clusters))))
+    color = iter(plt.cm.rainbow(np.linspace(0, 1, len(clusters))))
     for i in range(0, len(temp)):
         c = next(color)
         x = [l[0] for l in temp[i]]
