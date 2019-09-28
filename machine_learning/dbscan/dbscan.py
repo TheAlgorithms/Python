@@ -3,26 +3,22 @@ import numpy as np
 from sklearn.datasets import make_moons
 
 
-def distFunc(Q, P):
+def euclidean_distance(Q, P):
     """
         Calculates the Euclidean distance
-        between pointd P and Q
+        between points P and Q
     """
     a = pow((Q[0] - P[0]), 2)
     b = pow((Q[1] - P[1]), 2)
     return pow((a + b), 0.5)
 
 
-def rangeQuery(DB, Q, eps):
+def find_neighbors(DB, Q, eps):
     """
         Finds all points in the DB that
         are within a distance of eps from Q
     """
-    Neighbors = []
-    for P in DB:
-        if distFunc(Q, P) <= eps:
-            Neighbors.append(P)
-    return Neighbors
+    return [P for P in DB if euclidean_distance(Q, P) <= eps]
 
 
 def plot_cluster(DB, clusters, ax):
@@ -53,7 +49,7 @@ def plot_cluster(DB, clusters, ax):
     ax.plot(x, y, "ro", c="0")
 
 
-def DBSCAN(DB, eps, min_pts):
+def dbscan(DB, eps, min_pts):
     """
         Implementation of the DBSCAN algorithm
     """
@@ -62,14 +58,14 @@ def DBSCAN(DB, eps, min_pts):
     for P in DB:
         if DB[P]["label"] != "undefined":
             continue
-        neighbors = rangeQuery(DB, P, eps)
+        neighbors = find_neighbors(DB, P, eps)
         if len(neighbors) < min_pts:
             DB[P]["label"] = "noise"
             continue
         C += 1
         clusters.append(C)
         DB[P]["label"] = C
-        neighbors.remove(P)  # remove itself
+        neighbors.remove(P)
         seed_set = neighbors.copy()
         while seed_set != []:
             Q = seed_set.pop(0)
@@ -78,9 +74,9 @@ def DBSCAN(DB, eps, min_pts):
             if DB[Q]["label"] != "undefined":
                 continue
             DB[Q]["label"] = C
-            neighbors_n = rangeQuery(DB, Q, eps)
+            neighbors_n = find_neighbors(DB, Q, eps)
             if len(neighbors_n) >= min_pts:
-                seed_set = seed_set + neighbors_n  ## seed_set U neighbors_n
+                seed_set = seed_set + neighbors_n
     return DB, clusters
 
 
@@ -98,7 +94,7 @@ if __name__ == "__main__":
 
     min_pts = 12
 
-    DB, clusters = DBSCAN(points, eps, min_pts)
+    DB, clusters = dbscan(points, eps, min_pts)
 
     plot_cluster(DB, clusters, axes[1])
 
