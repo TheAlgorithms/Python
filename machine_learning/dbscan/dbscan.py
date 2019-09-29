@@ -1,36 +1,146 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import make_moons
+import warnings
 
 
-def euclidean_distance(Q, P):
+def euclidean_distance(q, p):
     """
         Calculates the Euclidean distance
-        between points P and Q
+        between points q and p
+
+        Distance can only be calculated between numeric values
+        >>> euclidean_distance([1,'a'],[1,2])
+        Traceback (most recent call last):
+        ...
+        ValueError: Non-numeric input detected
+
+        The dimentions of both the points must be the same
+        >>> euclidean_distance([1,1,1],[1,2])
+        Traceback (most recent call last):
+        ...
+        ValueError: expected dimensions to be 2-d, instead got p:3 and q:2
+
+        Supports only two dimentional points
+        >>> euclidean_distance([1,1,1],[1,2])
+        Traceback (most recent call last):
+        ...
+        ValueError: expected dimensions to be 2-d, instead got p:3 and q:2
+
+        Input should be in the format [x,y] or (x,y)
+        >>> euclidean_distance(1,2)
+        Traceback (most recent call last):
+        ...
+        TypeError: inputs must be iterable, either list [x,y] or tuple (x,y)
     """
-    a = pow((Q[0] - P[0]), 2)
-    b = pow((Q[1] - P[1]), 2)
+    if not hasattr(q, "__iter__") or not hasattr(p, "__iter__"):
+        raise TypeError("inputs must be iterable, either list [x,y] or tuple (x,y)")
+
+    if isinstance(q, str) or isinstance(p, str):
+        raise TypeError("inputs cannot be str")
+
+    if len(q) != 2 or len(p) != 2:
+        raise ValueError(
+            "expected dimensions to be 2-d, instead got p:{} and q:{}".format(
+                len(q), len(p)
+            )
+        )
+
+    for num in q + p:
+        try:
+            num = int(num)
+        except:
+            raise ValueError("Non-numeric input detected")
+
+    a = pow((q[0] - p[0]), 2)
+    b = pow((q[1] - p[1]), 2)
     return pow((a + b), 0.5)
 
 
-def find_neighbors(DB, Q, eps):
+def find_neighbors(db, q, eps):
     """
-        Finds all points in the DB that
+        Finds all points in the db that
         are within a distance of eps from Q
+
+        eps value should be a number
+        >>> find_neighbors({ (1,2):{'label':'undefined'}, (2,3):{'label':'undefined'}}, (2,5),'a')
+        Traceback (most recent call last):
+        ...
+        ValueError: eps should be either int or float
+
+        Q must be a 2-d point as list or tuple
+        >>> find_neighbors({ (1,2):{'label':'undefined'}, (2,3):{'label':'undefined'}}, 2, 0.5)
+        Traceback (most recent call last):
+        ...
+        TypeError: Q must a 2-dimentional point in the format (x,y) or [x,y]
+
+        Points must be in correct format
+        >>> find_neighbors([], (2,2) ,0.4)
+        Traceback (most recent call last):
+        ...
+        TypeError: db must be a dict of points in the format {(x,y):{'label':'boolean/undefined'}}
     """
-    return [P for P in DB if euclidean_distance(Q, P) <= eps]
+
+    if not isinstance(eps, (int, float)):
+        raise ValueError("eps should be either int or float")
+
+    if not hasattr(q, "__iter__"):
+        raise TypeError("Q must a 2-dimentional point in the format (x,y) or [x,y]")
+
+    if not isinstance(db, dict):
+        raise TypeError(
+            "db must be a dict of points in the format {(x,y):{'label':'boolean/undefined'}}"
+        )
+
+    return [p for p in db if euclidean_distance(q, p) <= eps]
 
 
-def plot_cluster(DB, clusters, ax):
+def plot_cluster(db, clusters, ax):
     """
-        Extracts all the points in the DB and puts them together
+        Extracts all the points in the db and puts them together
         as seperate clusters and finally plots them
+
+        db cannot be empty
+        >>> fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(7, 5))
+        >>> plot_cluster({},[1,2], axes[1] )
+        Traceback (most recent call last):
+        ...
+        Exception: db is empty. No points to cluster
+
+        clusters cannot be empty
+        >>> fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(7, 5))
+        >>> plot_cluster({ (1,2):{'label':'undefined'}, (2,3):{'label':'undefined'}},[],axes[1] )
+        Traceback (most recent call last):
+        ...
+        Exception: nothing to cluster. Empty clusters
+
+        clusters cannot be empty
+        >>> fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(7, 5))
+        >>> plot_cluster({ (1,2):{'label':'undefined'}, (2,3):{'label':'undefined'}},[],axes[1] )
+        Traceback (most recent call last):
+        ...
+        Exception: nothing to cluster. Empty clusters
+
+        ax must be a plotable
+        >>> plot_cluster({ (1,2):{'label':'1'}, (2,3):{'label':'2'}},[1,2], [] )
+        Traceback (most recent call last):
+        ...
+        TypeError: ax must be an slot in a matplotlib figure
     """
+    if len(db) == 0:
+        raise Exception("db is empty. No points to cluster")
+
+    if len(clusters) == 0:
+        raise Exception("nothing to cluster. Empty clusters")
+
+    if not hasattr(ax, "plot"):
+        raise TypeError("ax must be an slot in a matplotlib figure")
+
     temp = []
     noise = []
     for i in clusters:
         stack = []
-        for k, v in DB.items():
+        for k, v in db.items():
             if v["label"] == i:
                 stack.append(k)
             elif v["label"] == "noise":
@@ -49,53 +159,113 @@ def plot_cluster(DB, clusters, ax):
     ax.plot(x, y, "ro", c="0")
 
 
-def dbscan(DB, eps, min_pts):
+def dbscan(db, eps, min_pts):
     """
         Implementation of the DBSCAN algorithm
+
+        Points must be in correct format
+        >>> dbscan([], (2,2) ,0.4)
+        Traceback (most recent call last):
+        ...
+        TypeError: db must be a dict of points in the format {(x,y):{'label':'boolean/undefined'}}
+
+        eps value should be a number
+        >>> dbscan({ (1,2):{'label':'undefined'}, (2,3):{'label':'undefined'}},'a',20 )
+        Traceback (most recent call last):
+        ...
+        ValueError: eps should be either int or float
+
+        min_pts value should be an integer
+        >>> dbscan({ (1,2):{'label':'undefined'}, (2,3):{'label':'undefined'}},0.4,20.0 )
+        Traceback (most recent call last):
+        ...
+        ValueError: min_pts should be int
+
+        db cannot be empty
+        >>> dbscan({},0.4,20.0 )
+        Traceback (most recent call last):
+        ...
+        Exception: db is empty, nothing to cluster
+
+        min_pts cannot be negative
+        >>> dbscan({ (1,2):{'label':'undefined'}, (2,3):{'label':'undefined'}}, 0.4, -20)
+        Traceback (most recent call last):
+        ...
+        ValueError: min_pts or eps cannot be negative
+
+        eps cannot be negative
+        >>> dbscan({ (1,2):{'label':'undefined'}, (2,3):{'label':'undefined'}},-0.4, 20)
+        Traceback (most recent call last):
+        ...
+        ValueError: min_pts or eps cannot be negative
+
     """
+    if not isinstance(db, dict):
+        raise TypeError(
+            "db must be a dict of points in the format {(x,y):{'label':'boolean/undefined'}}"
+        )
+
+    if len(db) == 0:
+        raise Exception("db is empty, nothing to cluster")
+
+    if not isinstance(eps, (int, float)):
+        raise ValueError("eps should be either int or float")
+
+    if not isinstance(min_pts, int):
+        raise ValueError("min_pts should be int")
+
+    if min_pts < 0 or eps < 0:
+        raise ValueError("min_pts or eps cannot be negative")
+
+    if min_pts == 0:
+        warnings.warn("min_pts is 0. Are you sure you want this ?")
+
+    if eps == 0:
+        warnings.warn("eps is 0. Are you sure you want this ?")
+
     clusters = []
-    C = 0
-    for P in DB:
-        if DB[P]["label"] != "undefined":
+    c = 0
+    for p in db:
+        if db[p]["label"] != "undefined":
             continue
-        neighbors = find_neighbors(DB, P, eps)
+        neighbors = find_neighbors(db, p, eps)
         if len(neighbors) < min_pts:
-            DB[P]["label"] = "noise"
+            db[p]["label"] = "noise"
             continue
-        C += 1
-        clusters.append(C)
-        DB[P]["label"] = C
-        neighbors.remove(P)
+        c += 1
+        clusters.append(c)
+        db[p]["label"] = c
+        neighbors.remove(p)
         seed_set = neighbors.copy()
         while seed_set != []:
-            Q = seed_set.pop(0)
-            if DB[Q]["label"] == "noise":
-                DB[Q]["label"] = C
-            if DB[Q]["label"] != "undefined":
+            q = seed_set.pop(0)
+            if db[q]["label"] == "noise":
+                db[q]["label"] = c
+            if db[q]["label"] != "undefined":
                 continue
-            DB[Q]["label"] = C
-            neighbors_n = find_neighbors(DB, Q, eps)
+            db[q]["label"] = c
+            neighbors_n = find_neighbors(db, q, eps)
             if len(neighbors_n) >= min_pts:
                 seed_set = seed_set + neighbors_n
-    return DB, clusters
+    return db, clusters
 
 
 if __name__ == "__main__":
 
     fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(7, 5))
 
-    X, label = make_moons(n_samples=200, noise=0.1, random_state=19)
+    x, label = make_moons(n_samples=200, noise=0.1, random_state=19)
 
-    axes[0].plot(X[:, 0], X[:, 1], "ro")
+    axes[0].plot(x[:, 0], x[:, 1], "ro")
 
-    points = {(point[0], point[1]): {"label": "undefined"} for point in X}
+    points = {(point[0], point[1]): {"label": "undefined"} for point in x}
 
     eps = 0.25
 
     min_pts = 12
 
-    DB, clusters = dbscan(points, eps, min_pts)
+    db, clusters = dbscan(points, eps, min_pts)
 
-    plot_cluster(DB, clusters, axes[1])
+    plot_cluster(db, clusters, axes[1])
 
     plt.show()
