@@ -17,7 +17,11 @@ init = [0, 0]
 goal = [len(grid)-1, len(grid[0])-1] #all coordinates are given in format [y,x] 
 cost = 1
 
-#the cost map which pushes the path closer to the goal
+#the cost 
+#map which 
+#pushes the 
+#path closer 
+#to the goal
 heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
 for i in range(len(grid)):    
     for j in range(len(grid[0])):            
