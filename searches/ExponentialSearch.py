@@ -55,5 +55,3 @@ if result == -1:
 	print ("Element not found in thye array")
 else: 
 	print ("Element is present at index %d" %(result)) 
-
-# This code is contributed by Harshit Agrawal 
