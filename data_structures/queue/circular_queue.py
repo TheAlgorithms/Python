@@ -2,12 +2,12 @@
 #!/usr/bin/env python
 class CircularQueue:                                #First in First out  
 
-    #Constructor
+    #Constructor to initialize the object of CircularQueue class
     def __init__(self):
         self.queue = list()
         self.head = 0
         self.tail = 0
-        self.maxSize = 8
+        self.maxSize = 5
 
     #Adding elements to the queue
     def enqueue(self,data):
@@ -32,20 +32,17 @@ class CircularQueue:                                #First in First out
             return (self.tail-self.head)
         return (self.maxSize - (self.head-self.tail))
 
+#testing 
 q = CircularQueue()
 print(q.enqueue(1))
 print(q.enqueue(2))
+print(q.dequeue())
 print(q.enqueue(3))
 print(q.enqueue(4))
 print(q.enqueue(5))
 print(q.enqueue(6))
-print(q.enqueue(7))
-print(q.enqueue(8))
-print(q.enqueue(9))
 print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
+print(q.enqueue(6))
 print(q.dequeue())
 print(q.dequeue())
 print(q.dequeue())
