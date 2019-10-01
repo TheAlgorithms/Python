@@ -1,3 +1,7 @@
+"""
+    Implemented an algorithm using opencv to convert a colored image into its negative
+"""
+
 from cv2 import imread, imshow, waitKey, destroyAllWindows
 
 
