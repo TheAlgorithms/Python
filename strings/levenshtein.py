@@ -1,29 +1,29 @@
-def levenshtein(A, B):
+def levenshtein(a, b):
     """Levenshtein Distance."""
-    m = len(A)
-    n = len(B)
-    M = []
+    m = len(a)
+    n = len(b)
+    s = []
 
     for x in range(m+1):
-        M.append([])
+        s.append([])
         for y in range(n+1):
-            M[x].append((0))
+            s[x].append(0)
 
     for i in range(0, m+1):
-        M[i][0] = i
+        s[i][0] = i
 
     for j in range(0, n+1):
-        M[0][j] = j
+        s[0][j] = j
 
     for x in range(1, m+1):
         for y in range(1, n+1):
-            if A[x-1] == B[y-1]:
+            if a[x - 1] == b[y - 1]:
                 cost = 0
             else:
                 cost = 1
 
-            M[x][y] = minimo((M[x-1][y-1] + cost,
-                              M[x-1][y] + 1,
-                              M[x][y-1] + 1,))
+            s[x][y] = min((s[x-1][y-1] + cost,
+                           s[x-1][y] + 1,
+                           s[x][y-1] + 1,))
 
-    return(M[m][n])
+    return s[m][n]
