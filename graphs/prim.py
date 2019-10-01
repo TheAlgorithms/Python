@@ -72,3 +72,21 @@ def prim(graph, root):
     for i in range(1, len(graph)):
         a.append((int(graph[i].id)+1, int(graph[i].pi.id)+1))
     return a
+
+
+if __name__ == "__main__":
+    # Creates a list to store x vertices.
+    x = 5
+    G = [Vertex(n) for n in range(x)]
+
+    connect(G, 1, 2, 15)
+    connect(G, 1, 3, 12)
+    connect(G, 2, 4, 13)
+    connect(G, 2, 5, 5)
+    connect(G, 3, 2, 6)
+    connect(G, 3, 4, 6)
+    connect(G, 0, 0, 0)
+    # Generate the minimum spanning tree:
+    MST = prim(G, G[0])
+    for i in MST:
+        print(i)
