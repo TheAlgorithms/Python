@@ -2,20 +2,6 @@
 Prim's Algorithm.
 
 Determines the minimum spanning tree(MST) of a graph using the Prim's Algorithm
-
-Create a list to store x the vertices.
-G = [vertex(n) for n in range(x)]
-
-For each vertex in G, add the neighbors:
-G[x].add_neighbor(G[y])
-G[y].add_neighbor(G[x])
-
-For each vertex in G, add the edges:
-G[x].add_edge(G[y], w)
-G[y].add_edge(G[x], w)
-
-To solve, run:
-MST = prim(G, G[0])
 """
 
 import math
@@ -36,7 +22,7 @@ class Vertex:
         self.key = None
         self.pi = None
         self.neighbors = []
-        self.edges = {}  # [vertex:distance]
+        self.edges = {}  # {vertex:distance}
 
     def __lt__(self, other):
         """Comparison rule to < operator."""
@@ -53,6 +39,15 @@ class Vertex:
     def add_edge(self, vertex, weight):
         """Destination vertex and weight."""
         self.edges[vertex.id] = weight
+
+
+def connect(graph, a, b, edge):
+    # add the neighbors:
+    graph[a-1].add_neighbor(graph[b-1])
+    graph[b-1].add_neighbor(graph[a-1])
+    # add the edges:
+    graph[a-1].add_edge(graph[b-1], edge)
+    graph[b-1].add_edge(graph[a-1], edge)
 
 
 def prim(graph, root):
@@ -75,5 +70,5 @@ def prim(graph, root):
                 v.pi = u
                 v.key = u.edges[v.id]
     for i in range(1, len(graph)):
-        a.append([graph[i].id, graph[i].pi.id])
+        a.append((int(graph[i].id)+1, int(graph[i].pi.id)+1))
     return a
