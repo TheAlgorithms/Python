@@ -29,6 +29,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg?style=flat-square)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
 
 ## Community Channel
+easy going
 
 We're on [Gitter](https://gitter.im/TheAlgorithms)! Please join us.
 
