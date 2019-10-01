@@ -1,10 +1,45 @@
-def bubble_sort(collection):
-    """Pure implementation of bubble sort algorithm in Python
 
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
+# An optimized version of Bubble Sort 
+def bubbleSort(arr): 
+    n = len(arr) 
+   
+    # Traverse through all array elements 
+    for i in range(n): 
+        swapped = False
+  
+        # Last i elements are already 
+        #  in place 
+        for j in range(0, n-i-1): 
+   
+            # traverse the array from 0 to 
+            # n-i-1. Swap if the element  
+            # found is greater than the 
+            # next element 
+            if arr[j] > arr[j+1] : 
+                arr[j], arr[j+1] = arr[j+1], arr[j] 
+                swapped = True
+  
+        # IF no two elements were swapped 
+        # by inner loop, then break 
+        if swapped == False: 
+            break
+           
+# Driver code to test above 
+arr = [64, 34, 25, 12, 22, 11, 90] 
+   
+bubbleSort(arr) 
+   
+print ("Sorted array :") 
+for i in range(len(arr)): 
+    print ("%d" %arr[i],end=" ") 
 
+
+
+
+
+
+"""
+    
     Examples:
     >>> bubble_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -20,20 +55,6 @@ def bubble_sort(collection):
 
     >>> bubble_sort([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
     True
+    
     """
-    length = len(collection)
-    for i in range(length-1):
-        swapped = False
-        for j in range(length-1-i):
-            if collection[j] > collection[j+1]:
-                swapped = True
-                collection[j], collection[j+1] = collection[j+1], collection[j]
-        if not swapped:
-            break  # Stop iteration if the collection is sorted.
-    return collection
-
-
-if __name__ == '__main__':
-    user_input = input('Enter numbers separated by a comma:').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
-    print(*bubble_sort(unsorted), sep=',')
+    
