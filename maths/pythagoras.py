@@ -15,3 +15,9 @@ class Point:
 
 def distance(a, b):
     return math.sqrt(abs(((b.x - a.x)**2 + (b.y - a.y)**2 + (b.z - a.z)**2)))
+
+
+if __name__ == "__main__":
+    point1 = Point(2, -1, 7)
+    point2 = Point(1, -3, 5)
+    print("Distance: ", distance(point1, point2))
