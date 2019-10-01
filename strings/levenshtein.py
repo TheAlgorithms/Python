@@ -1,5 +1,15 @@
 def levenshtein(a, b):
-    """Levenshtein Distance."""
+    """Levenshtein Distance.
+
+    "...the Levenshtein distance is a string metric for measuring the
+        difference between two sequences."
+        https://en.wikipedia.org/wiki/Levenshtein_distance
+
+    Example:
+    >>> levenshtein("everything", "anything")
+    >>> 4
+    """
+
     m = len(a)
     n = len(b)
     s = []
