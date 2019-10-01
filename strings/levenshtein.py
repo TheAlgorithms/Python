@@ -37,3 +37,8 @@ def levenshtein(a, b):
                            s[x][y-1] + 1,))
 
     return s[m][n]
+
+
+if __name__ == "__main__":
+    distance = levenshtein("everything", "anything")
+    print(distance)
