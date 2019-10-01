@@ -7,21 +7,21 @@ Create a list to store x the vertices.
 G = [vertex(n) for n in range(x)]
 
 For each vertex in G, add the neighbors:
-G[x].addNeighbor(G[y])
-G[y].addNeighbor(G[x])
+G[x].add_neighbor(G[y])
+G[y].add_neighbor(G[x])
 
 For each vertex in G, add the edges:
-G[x].addEdge(G[y], w)
-G[y].addEdge(G[x], w)
+G[x].add_edge(G[y], w)
+G[y].add_edge(G[x], w)
 
-To solve run:
+To solve, run:
 MST = prim(G, G[0])
 """
 
 import math
 
 
-class vertex():
+class Vertex:
     """Class Vertex."""
 
     def __init__(self, id):
@@ -40,17 +40,17 @@ class vertex():
 
     def __lt__(self, other):
         """Comparison rule to < operator."""
-        return (self.key < other.key)
+        return self.key < other.key
 
     def __repr__(self):
         """Return the vertex id."""
         return self.id
 
-    def addNeighbor(self, vertex):
+    def add_neighbor(self, vertex):
         """Add a pointer to a vertex at neighbor's list."""
         self.neighbors.append(vertex)
 
-    def addEdge(self, vertex, weight):
+    def add_edge(self, vertex, weight):
         """Destination vertex and weight."""
         self.edges[vertex.id] = weight
 
@@ -61,19 +61,19 @@ def prim(graph, root):
     Return a list with the edges of a Minimum Spanning Tree
     prim(graph, graph[0])
     """
-    A = []
+    a = []
     for u in graph:
         u.key = math.inf
         u.pi = None
     root.key = 0
-    Q = graph[:]
-    while Q:
-        u = min(Q)
-        Q.remove(u)
+    q = graph[:]
+    while q:
+        u = min(q)
+        q.remove(u)
         for v in u.neighbors:
-            if (v in Q) and (u.edges[v.id] < v.key):
+            if (v in q) and (u.edges[v.id] < v.key):
                 v.pi = u
                 v.key = u.edges[v.id]
     for i in range(1, len(graph)):
-        A.append([graph[i].id, graph[i].pi.id])
-    return(A)
+        a.append([graph[i].id, graph[i].pi.id])
+    return a
