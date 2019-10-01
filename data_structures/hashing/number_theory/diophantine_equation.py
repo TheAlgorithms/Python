@@ -1,8 +1,23 @@
 # Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the diophantine equation
 # a*x + b*y = c has a solution (where x and y are integers) iff gcd(a,b) divides c.
 
+# import testmod for testing our function
+from doctest import testmod
+
 
 def diophantine(a, b, c):
+    """
+    >>> diophantine(10,6,14)
+    (-7.0, 14.0)
+
+    >>> diophantine(391,299,-69)
+    (9.0, -12.0)
+
+    But above equation has one more solution i.e., x = -4, y = 5.
+    That's why we need diophantine all solution function.
+
+    """
+
     assert c % gcd(a, b) == 0  # gcd(a,b) function implemented below
 
     (d, x, y) = extended_gcd(a, b)  # extended_gcd(a,b) function implemented below
@@ -20,6 +35,24 @@ def diophantine(a, b, c):
 # n is the number of solution you want, n = 2 by default
 
 def diophantine_all_soln(a, b, c, n=2):
+    """
+    >>> diophantine_all_soln(10, 6, 14)
+    -7.0 14.0
+    -4.0 9.0
+
+    >>> diophantine_all_soln(10, 6, 14, 4)
+    -7.0 14.0
+    -4.0 9.0
+    -1.0 4.0
+    2.0 -1.0
+
+    >>> diophantine_all_soln(391, 299, -69, n = 4)
+    9.0 -12.0
+    22.0 -29.0
+    35.0 -46.0
+    48.0 -63.0
+
+    """
     (x0, y0) = diophantine(a, b, c)
     d = gcd(a, b)
     p = a // d
@@ -62,3 +95,8 @@ def extended_gcd(a, b):
     assert d == a * x + b * y
 
     return (d, x, y)
+
+
+if __name__ == '__main__':
+    testmod(name='diophantine', verbose=True)
+    testmod(name='diophantine_all_soln', verbose=True)
