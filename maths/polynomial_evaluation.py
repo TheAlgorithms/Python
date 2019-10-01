@@ -6,13 +6,12 @@ def evaluate_poly(poly, x):
             poly: tuple of numbers - value of cofficients
             x: value for x in f(x)
         Return: value of f(x)
+
+        >>> evaluate_poly((0.0, 0.0, 5.0, 9.3, 7.0), 10)
+        79800.0
     """
-    i = 0
-    res = 0
-    for c in poly:
-        res += c * (x ** i)
-        i += 1
-    return res
+
+    return sum(c*(x**i) for i, c in enumerate(poly))
 
 
 if __name__ == "__main__":
