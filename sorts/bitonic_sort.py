@@ -55,3 +55,4 @@ if __name__ == "__main__":
     print("\n\nSorted array is")
     for i in range(n):
         print("%d" % a[i])
+        print("hello")
