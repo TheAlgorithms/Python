@@ -1,25 +1,25 @@
-"""
-Greater Common Divisor.
+# Python program to find the G.C.D of two input number
 
-Wikipedia reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
-"""
+# define a function
+def computeGCD(x, y):
 
+# choose the smaller number
+    if x > y:
+        smaller = y
+    else:
+        smaller = x
+    for i in range(1, smaller+1):
+        if((x % i == 0) and (y % i == 0)):
+            gcd = i
+            
+    return gcd
 
-def gcd(a, b):
-    """Calculate Greater Common Divisor (GCD)."""
-    return b if a == 0 else gcd(b % a, a)
+num1 = 54 
+num2 = 24
 
+# take input from the user
+# num1 = int(input("Enter first number: "))
+# num2 = int(input("Enter second number: "))
 
-def main():
-    """Call GCD Function."""
-    try:
-        nums = input("Enter two Integers separated by comma (,): ").split(',')
-        num_1 = int(nums[0])
-        num_2 = int(nums[1])
-    except (IndexError, UnboundLocalError, ValueError):
-        print("Wrong Input")
-    print(f"gcd({num_1}, {num_2}) = {gcd(num_1, num_2)}")
+print("The G.C.D of", num1,"and", num2,"is", computeGCD(num1, num2))
 
-
-if __name__ == '__main__':
-    main()
