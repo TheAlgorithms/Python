@@ -50,11 +50,6 @@ We want your work to be readable by others; therefore, we encourage you to note 
     flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
     ```
 
-- We highly encourage the use of [doctests on all functions](https://docs.python.org/3/library/doctest.html).  These will also be run by pytest as part of our automated testing so they must pass before your submission will be accepted.
-    ```bash
-    python3 -m doctest -v my_submission.py
-    ```
-
 - Original code submission require docstrings or comments to describe your work.
 
 - More on docstrings and comments:
@@ -74,19 +69,35 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ```python
   def sumab(a, b):
       """
-      This function returns the sums of two integers a and b
+      This function returns the sum of two integers a and b
   	  Return: a + b
-      >>> sum(2, 2)
-      4
       """
       return a + b
   ```
 
-- [__list comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
+- Write tests (especially [__doctests__](https://docs.python.org/3/library/doctest.html)) to illustrate and verify your work.  We highly encourage the use of _doctests on all functions_.
 
-- Write tests (especially [__doctests__](https://docs.python.org/3/library/doctest.html)) to illustrate and verify your work.
+  ```python
+  def sumab(a, b):
+      """
+      This function returns the sum of two integers a and b
+  	  Return: a + b
+      >>> sum(2, 2)
+      4
+      >>> sum(-2, 3)
+      1
+      >>> sum(4.9, 6.1)
+      10.0
+      """
+      return a + b
+  ```
 
-  The use of the builtin __input()__ function is **not** encouraged:
+  These doctests will be run by pytest as part of our automated testing so please try to run your doctests locally and make sure that they are found and pass:
+    ```bash
+    python3 -m doctest -v my_submission.py
+    ```
+
+  The use of the Python builtin __input()__ function is **not** encouraged:
 
   ```python
   input('Enter your input:')
@@ -99,19 +110,14 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ```python
   starting_value = int(input("Please enter a starting value: ").strip())
   ```
-
-  Please write down your test case, like the following:
-
-  ```python
-  def sumab(a, b):
-      return a + b
-  # Write tests this way:
-  print(sumab(1, 2))	# 1+2 = 3
-  print(sumab(6, 4))	# 6+4 = 10
-  # Or this way:
-  print("1 + 2 = ", sumab(1, 2))	# 1+2 = 3
-  print("6 + 4 = ", sumab(6, 4))	# 6+4 = 10
+  
+  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](http://mypy-lang.org) so run that locally before making your submission.
+```python
+def sumab(a: int, b: int) --> int:
+    pass
   ```
+
+- [__list comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
 
