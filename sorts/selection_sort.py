@@ -9,6 +9,8 @@ python3 -m doctest -v selection_sort.py
 For manual testing run:
 python selection_sort.py
 """
+
+
 def selection_sort(collection):
     """Pure implementation of the selection sort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
@@ -33,13 +35,11 @@ def selection_sort(collection):
         for k in range(i + 1, length):
             if collection[k] < collection[least]:
                 least = k
-        collection[least], collection[i] = (
-            collection[i], collection[least]
-        )
+        collection[least], collection[i] = (collection[i], collection[least])
     return collection
 
 
-if __name__ == '__main__':
-    user_input = input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
     print(selection_sort(unsorted))
