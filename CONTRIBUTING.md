@@ -23,26 +23,43 @@ We are very happy that you consider implementing algorithms and data structure f
 
 We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
+Your contribution will be tested by our [automated testing on Travis CI](https://travis-ci.org/TheAlgorithms/Python/pull_requests) to save time and mental energy.  After you have submitted your pull request, you should see the Travis tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the Travis output to understand the failure.  If you do not understand, please leave a comment on your your submission page and a community member will try to help.
+
 #### Coding Style
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in Python 3.x.
-- Please consider running [__python/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not a requirement but it does make your code more readable.  There are other code formatters (autopep8, yapf) but the __black__ style is now the recommendation of the Python core team. To use it,
+- Please write in Python 3.7+.  __print()__ is a function in Python 3 so __print "Hello"__ will _not_ work but __print("Hello")__ will.
+
+- Please focus hard on naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
+    - Single letter variable names are _old school_ so please avoid them unless their life only spans a few lines.
+    - Expand acronyms because __gcd()__ is hard to understand but __greatest common_divisor()__ is not.
+    - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
+
+- We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where the make the code easier to read.
+
+- Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/).  There are other code formatters (autopep8, yapf) but the __black__ style is now the recommendation of the Python Core Team. To use it,
     ```bash
     pip3 install black  # only required the first time
-    black my-submission.py
+    black .
     ```
 
 - All submissions will need to pass the test __flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+    ```bash
+    pip3 install flake8  # only required the first time
+    flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+    ```
 
-- If you know [PEP 8](https://www.python.org/dev/peps/pep-0008/) already, you will have no problem in coding style, though we do not follow it strictly. Read the remaining section and have fun coding!
+- We highly encourage the use of [doctests on all functions](https://docs.python.org/3/library/doctest.html).  These will also be run by pytest as part of our automated testing so they must pass before your submission will be accepted.
+    ```bash
+    python3 -m doctest -v my_submission.py
+    ```
 
-- Always use 4 spaces to indent.
+- Original code submission require docstrings or comments to describe your work.
 
-- Original code submission requires comments to describe your work.
+- More on docstrings and comments:
 
-- More on comments and docstrings:
+  If you are using a Wikipedia article or some other source material to create your algorithm, please add the URL in a docstring or comment to help your reader.
 
   The following are considered to be bad and may be requested to be improved:
 
@@ -73,11 +90,9 @@ We want your work to be readable by others; therefore, we encourage you to note 
       return a + b
   ```
 
-- `lambda`, `map`, `filter`, `reduce` and complicated list comprehension are welcome and acceptable to demonstrate the power of Python, as long as they are simple enough to read.
+- list comprehensions and generators are preferred over `lambda`, `map`, `filter`, `reduce` but the key is to demonstrate the power of Python in code that is easy to read and maintain.
 
-  - This is arguable: **write comments** and assign appropriate variable names, so that the code is easy to read!
-
-- Write tests to illustrate your work.
+- Write tests (espcially doctests) to illustrate your work.
 
   The following "testing" approaches are **not** encouraged:
 
@@ -110,11 +125,15 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
 
+- If you need a thrid party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
+
 #### Other Standard While Submitting Your Work
 
 - File extension for code should be `.py`. Jupiter notebook files are acceptable in machine learning algorithms.
 
-- Strictly use snake case (underscore separated) in your file name, as it will be easy to parse in future using scripts.
+- Please avoid creating new directories if at all possible.  Try to fit your work into the existing directory structue.
+
+- Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
 
   If possible, follow the standard *within* the folder you are submitting to.
 
