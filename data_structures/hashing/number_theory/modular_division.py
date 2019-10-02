@@ -26,7 +26,7 @@ def modular_division(a, b, n):
     4
 
     """
-    assert n > 1 and a > 0 and gcd(a, n) == 1
+    assert n > 1 and a > 0 and greatest_common_divisor(a, n) == 1
     (d, t, s) = extended_gcd(n, a)  # Implemented below
     x = (b * s) % n
     return x
