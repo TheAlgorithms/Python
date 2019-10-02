@@ -88,6 +88,18 @@ def extended_euclid(a, b):
     k = a // b
     return (y, x - k * y)
 
+# Euclid's Lemma :  d divides a and b, if and only if d divides a-b and b
+# Euclid's Algorithm
+
+def gcd(a, b):
+    if a < b:
+        a, b = b, a
+
+    while a % b != 0:
+        a, b = b, a % b
+
+    return b
+
 
 if __name__ == '__main__':
     testmod(name='modular_division', verbose=True)
