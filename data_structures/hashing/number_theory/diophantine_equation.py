@@ -1,8 +1,7 @@
 # Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the diophantine equation
 # a*x + b*y = c has a solution (where x and y are integers) iff gcd(a,b) divides c.
 
-# import testmod for testing our function
-from doctest import testmod
+# GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
 
 
 def diophantine(a, b, c):
@@ -18,8 +17,7 @@ def diophantine(a, b, c):
 
     """
 
-    assert c % gcd(a, b) == 0  # gcd(a,b) function implemented below
-
+    assert c % greatest_common_divisor(a, b) == 0  # greatest_common_divisor(a,b) function implemented below
     (d, x, y) = extended_gcd(a, b)  # extended_gcd(a,b) function implemented below
     r = c / d
     return (r * x, r * y)
@@ -53,8 +51,8 @@ def diophantine_all_soln(a, b, c, n=2):
     48.0 -63.0
 
     """
-    (x0, y0) = diophantine(a, b, c)
-    d = gcd(a, b)
+    (x0, y0) = diophantine(a, b, c)  # Initial value
+    d = greatest_common_divisor(a, b)
     p = a // d
     q = b // d
 
@@ -68,7 +66,18 @@ def diophantine_all_soln(a, b, c, n=2):
 
 # Euclid's Algorithm
 
-def gcd(a, b):
+def greatest_common_divisor(a, b):
+    """
+    >>> greatest_common_divisor(7,5)
+    1
+
+    Note : In number theory, two integers a and b are said to be relatively prime, mutually prime, or co-prime
+           if the only positive integer (factor) that divides both of them is 1  i.e., gcd(a,b) = 1.
+
+    >>> greatest_common_divisor(121, 11)
+    11
+
+    """
     if a < b:
         a, b = b, a
 
@@ -82,6 +91,14 @@ def gcd(a, b):
 
 
 def extended_gcd(a, b):
+    """
+    >>> extended_gcd(10, 6)
+    (2, -1, 2)
+
+    >>> extended_gcd(7, 5)
+    (1, -2, 3)
+
+    """
     assert a >= 0 and b >= 0
 
     if b == 0:
@@ -97,6 +114,11 @@ def extended_gcd(a, b):
     return (d, x, y)
 
 
+# import testmod for testing our function
+from doctest import testmod
+
 if __name__ == '__main__':
     testmod(name='diophantine', verbose=True)
     testmod(name='diophantine_all_soln', verbose=True)
+    testmod(name='extended_gcd', verbose=True)
+    testmod(name='greatest_common_divisor', verbose=True)
