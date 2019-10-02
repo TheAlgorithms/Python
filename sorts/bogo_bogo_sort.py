@@ -11,18 +11,18 @@ import random
 
 def bogo_bogo_sort(collection):
     """
-	returns the collection sorted in ascending order
-	:param collection: list of comparable items
-	:return: the list sorted in ascending order
+    returns the collection sorted in ascending order
+    :param collection: list of comparable items
+    :return: the list sorted in ascending order
 
-	Examples:
-	>>> bogo_bogo_sort([0, 5, 3, 2, 2])
-	[0, 2, 2, 3, 5]
-	>>> bogo_bogo_sort([-2, -5, -45])
-	[-45, -5, -2]
-	>>> bogo_bogo_sort([420, 69])
-	[69, 420]
-	"""
+    Examples:
+    >>> bogo_bogo_sort([0, 5, 3, 2, 2])
+    [0, 2, 2, 3, 5]
+    >>> bogo_bogo_sort([-2, -5, -45])
+    [-45, -5, -2]
+    >>> bogo_bogo_sort([420, 69])
+    [69, 420]
+    """
 
     def is_sorted(collection):
         if len(collection) == 1:
