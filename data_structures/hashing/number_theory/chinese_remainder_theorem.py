@@ -13,28 +13,28 @@ from doctest import testmod
 
 
 # Extended Euclid
-def ExtendedEuclid(a, b):
+def extended_euclid(a, b):
     if b == 0:
         return (1, 0)
-    (x, y) = ExtendedEuclid(b, a % b)
+    (x, y) = extended_euclid(b, a % b)
     k = a // b
     return (y, x - k * y)
 
 
 # Uses ExtendedEuclid to find inverses
-def ChineseRemainderTheorem(n1, r1, n2, r2):
+def chinese_remainder_theorem(n1, r1, n2, r2):
     """
-    >>> ChineseRemainderTheorem(5,1,7,3)
+    >>> chinese_remainder_theorem(5,1,7,3)
     31
 
     Explanation : 31 is the smallest number such that
                 (i)  When we divide it by 5, we get remainder 1
                 (ii) When we divide it by 7, we get remainder 3
 
-    >>> ChineseRemainderTheorem(6,1,4,3)
+    >>> chinese_remainder_theorem(6,1,4,3)
     14
     """
-    (x, y) = ExtendedEuclid(n1, n2)
+    (x, y) = extended_euclid(n1, n2)
     m = n1 * n2
     n = r2 * x * n1 + r1 * y * n2
     return ((n % m + m) % m)
@@ -43,28 +43,28 @@ def ChineseRemainderTheorem(n1, r1, n2, r2):
 # ----------SAME SOLUTION USING InvertModulo instead ExtendedEuclid----------------
 
 # This function find the inverses of a i.e., a^(-1)
-def InvertModulo(a, n):
-    (b, x) = ExtendedEuclid(a, n)
+def invert_modulo(a, n):
+    (b, x) = extended_euclid(a, n)
     if b < 0:
         b = (b % n + n) % n
     return b
 
 
 # Same a above using InvertingModulo
-def ChineseRemainderTheorem2(n1, r1, n2, r2):
+def chinese_remainder_theorem2(n1, r1, n2, r2):
     """
-    >>> ChineseRemainderTheorem2(5,1,7,3)
+    >>> chinese_remainder_theorem2(5,1,7,3)
     31
 
-    >>> ChineseRemainderTheorem2(6,1,4,3)
+    >>> chinese_remainder_theorem2(6,1,4,3)
     14
     """
-    x, y = InvertModulo(n1, n2), InvertModulo(n2, n1)
+    x, y = invert_modulo(n1, n2), invert_modulo(n2, n1)
     m = n1 * n2
     n = r2 * x * n1 + r1 * y * n2
     return (n % m + m) % m
 
 
 if __name__ == '__main__':
-    testmod(name='ChineseRemainderTheorem', verbose=True)
-    testmod(name='ChineseRemainderTheorem2', verbose=True)
+    testmod(name='chinese_remainder_theorem', verbose=True)
+    testmod(name='chinese_remainder_theorem2', verbose=True)
