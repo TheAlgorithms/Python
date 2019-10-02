@@ -23,7 +23,7 @@ We are very happy that you consider implementing algorithms and data structure f
 
 We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
-Your contribution will be tested by our [automated testing on Travis CI](https://travis-ci.org/TheAlgorithms/Python/pull_requests) to save time and mental energy.  After you have submitted your pull request, you should see the Travis tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the Travis output to understand the failure.  If you do not understand, please leave a comment on your your submission page and a community member will try to help.
+Your contribution will be tested by our [automated testing on Travis CI](https://travis-ci.org/TheAlgorithms/Python/pull_requests) to save time and mental energy.  After you have submitted your pull request, you should see the Travis tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the Travis output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
 
 #### Coding Style
 
@@ -33,7 +33,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Please focus hard on naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
     - Single letter variable names are _old school_ so please avoid them unless their life only spans a few lines.
-    - Expand acronyms because __gcd()__ is hard to understand but __greatest common_divisor()__ is not.
+    - Expand acronyms because __gcd()__ is hard to understand but __greatest_common_divisor()__ is not.
     - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
 - We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where the make the code easier to read.
@@ -69,32 +69,24 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
   This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on or below a line of code, as long as you are consistent within the same piece of code.
 
-  *Sometimes, docstrings are avoided.* This will happen if you are using some editors and not careful with indentation:
-
-  ```python
-      """
-  	This function sums a and b
-  """
-  def sum(a, b):
-      return a + b
-  ```
-
-  However, if you insist to use docstrings, we encourage you to put docstrings inside functions. Also, please pay attention to indentation to docstrings. The following is acceptable in this case:
+  We encourage you to put docstrings inside your functions but please pay attention to indentation of docstrings. The following is acceptable in this case:
 
   ```python
   def sumab(a, b):
       """
-  	This function sums two integers a and b
-  	Return: a + b
+      This function returns the sums of two integers a and b
+  	  Return: a + b
+      >>> sum(2, 2)
+      4
       """
       return a + b
   ```
 
-- list comprehensions and generators are preferred over `lambda`, `map`, `filter`, `reduce` but the key is to demonstrate the power of Python in code that is easy to read and maintain.
+- [__list comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
 
-- Write tests (espcially doctests) to illustrate your work.
+- Write tests (especially [__doctests__](https://docs.python.org/3/library/doctest.html)) to illustrate and verify your work.
 
-  The following "testing" approaches are **not** encouraged:
+  The use of the builtin __input()__ function is **not** encouraged:
 
   ```python
   input('Enter your input:')
@@ -102,7 +94,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   input = eval(input("Enter your input: "))
   ```
 
-  However, if your code uses __input()__ then we encourage you to gracefully deal with leading and trailing whitespace in user input by adding __.strip()__ to the end as in:
+  However, if your code uses __input()__ then we encourage you to gracefully deal with leading and trailing whitespace in user input by adding __.strip()__ as in:
 
   ```python
   starting_value = int(input("Please enter a starting value: ").strip())
@@ -121,11 +113,9 @@ We want your work to be readable by others; therefore, we encourage you to note 
   print("6 + 4 = ", sumab(6, 4))	# 6+4 = 10
   ```
 
-  Better yet, if you know how to write [__doctests__](https://docs.python.org/3/library/doctest.html), please consider adding them.
-
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
 
-- If you need a thrid party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
+- If you need a third party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
 
 #### Other Standard While Submitting Your Work
 
@@ -152,7 +142,6 @@ We want your work to be readable by others; therefore, we encourage you to note 
   - **Be consistent in the use of these guidelines when submitting.**
   - **Join** [Gitter](https://gitter.im/TheAlgorithms) **now!**
   - Happy coding!
-
 
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.
