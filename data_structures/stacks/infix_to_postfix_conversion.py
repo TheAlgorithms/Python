@@ -17,7 +17,7 @@ def precedence(char):
     """
     dictionary = {'+': 1, '-': 1,
                   '*': 2, '/': 2,
-                  '^': 3}
+                  '%': 2, '^': 3}
     return dictionary.get(char, -1)
 
 
