@@ -86,7 +86,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
       4
       >>> sum(-2, 3)
       1
-      >>> sum(4.9, 6.1)
+      >>> sum(4.9, 5.1)
       10.0
       """
       return a + b
