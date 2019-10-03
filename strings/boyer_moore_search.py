@@ -70,7 +70,7 @@ class BoyerMooreSearch:
                 positions.append(i)
             else:
                 match_index = self.match_in_pattern(self.text[mismatch_index])
-                i = mismatch_index - match_index   #shifting index
+                i = mismatch_index - match_index   #shifting index lgtm [py/multiple-definition]
         return positions
 
  
