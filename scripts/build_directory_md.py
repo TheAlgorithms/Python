@@ -38,7 +38,7 @@ def print_directory_md(top_dir: str = ".") -> None:
         indent = (filepath.count(os.sep) + 1) if filepath else 0
         url = "/".join((URL_BASE, filepath, filename)).replace(" ", "%20")
         filename = os.path.splitext(filename.replace("_", " "))[0]
-        print(f"{md_prefix(indent)} [{filename}]({url})", end="")
+        print(f"{md_prefix(indent)} [{filename}]({url})")
 
 
 if __name__ == "__main__":
