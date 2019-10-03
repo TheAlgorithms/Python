@@ -1,9 +1,9 @@
 """
 This is a pure python implementation of the pancake sort algorithm
 For doctests run following command:
-python -m doctest -v pancake_sort.py
-or
 python3 -m doctest -v pancake_sort.py
+or
+python -m doctest -v pancake_sort.py
 For manual testing run:
 python pancake_sort.py
 """
