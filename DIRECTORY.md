@@ -50,53 +50,57 @@
   * [decimal to octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
 ## Data Structures
   * Binary Tree
-    * [avl tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/avl_tree.py)
-    * [basic binary tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/basic_binary_tree.py)
-    * [binary search tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_search_tree.py)
-    * [fenwick tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/fenwick_tree.py)
-    * [lazy segment tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/lazy_segment_tree.py)
-    * [lca](https://github.com/TheAlgorithms/Python/blob/master/data_structures/lca.py)
-    * [red black tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/red_black_tree.py)
-    * [segment tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/segment_tree.py)
-    * [treap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/treap.py)
+    * [avl tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/avl_tree.py)
+    * [basic binary tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/basic_binary_tree.py)
+    * [binary search tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_search_tree.py)
+    * [fenwick tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/fenwick_tree.py)
+    * [lazy segment tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lazy_segment_tree.py)
+    * [lca](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lca.py)
+    * [red black tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/red_black_tree.py)
+    * [segment tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/segment_tree.py)
+    * [treap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/treap.py)
+  * Disjoint Set
+    * [disjoint set](https://github.com/TheAlgorithms/Python/blob/master/data_structures/disjoint_set/disjoint_set.py)
   * Hashing
-    * [double hash](https://github.com/TheAlgorithms/Python/blob/master/data_structures/double_hash.py)
-    * [hash table](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hash_table.py)
-    * [hash table with linked list](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hash_table_with_linked_list.py)
-  * Number Theory
-    * [prime numbers](https://github.com/TheAlgorithms/Python/blob/master/data_structures/prime_numbers.py)
-    * [quadratic probing](https://github.com/TheAlgorithms/Python/blob/master/data_structures/quadratic_probing.py)
+    * [double hash](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/double_hash.py)
+    * [hash table](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/hash_table.py)
+    * [hash table with linked list](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/hash_table_with_linked_list.py)
+    * Number Theory
+      * [prime numbers](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/number_theory/prime_numbers.py)
+    * [quadratic probing](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/quadratic_probing.py)
   * Heap
-    * [heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap.py)
+    * [binomial heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/binomial_heap.py)
+    * [heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/heap.py)
+    * [min heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/min_heap.py)
   * Linked List
-    * [doubly linked list](https://github.com/TheAlgorithms/Python/blob/master/data_structures/doubly_linked_list.py)
-    * [is palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/is_palindrome.py)
-    * [singly linked list](https://github.com/TheAlgorithms/Python/blob/master/data_structures/singly_linked_list.py)
-    * [swap nodes](https://github.com/TheAlgorithms/Python/blob/master/data_structures/swap_nodes.py)
+    * [doubly linked list](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/doubly_linked_list.py)
+    * [is palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/is_palindrome.py)
+    * [singly linked list](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py)
+    * [swap nodes](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/swap_nodes.py)
   * Queue
-    * [double ended queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/double_ended_queue.py)
-    * [queue on list](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue_on_list.py)
-    * [queue on pseudo stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue_on_pseudo_stack.py)
+    * [double ended queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/double_ended_queue.py)
+    * [queue on list](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/queue_on_list.py)
+    * [queue on pseudo stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/queue_on_pseudo_stack.py)
   * Stacks
-    * [balanced parentheses](https://github.com/TheAlgorithms/Python/blob/master/data_structures/balanced_parentheses.py)
-    * [infix to postfix conversion](https://github.com/TheAlgorithms/Python/blob/master/data_structures/infix_to_postfix_conversion.py)
-    * [infix to prefix conversion](https://github.com/TheAlgorithms/Python/blob/master/data_structures/infix_to_prefix_conversion.py)
-    * [next greater element](https://github.com/TheAlgorithms/Python/blob/master/data_structures/next_greater_element.py)
-    * [postfix evaluation](https://github.com/TheAlgorithms/Python/blob/master/data_structures/postfix_evaluation.py)
-    * [stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stack.py)
-    * [stock span problem](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stock_span_problem.py)
+    * [balanced parentheses](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/balanced_parentheses.py)
+    * [infix to postfix conversion](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/infix_to_postfix_conversion.py)
+    * [infix to prefix conversion](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/infix_to_prefix_conversion.py)
+    * [next greater element](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/next_greater_element.py)
+    * [postfix evaluation](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/postfix_evaluation.py)
+    * [stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stack.py)
+    * [stock span problem](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stock_span_problem.py)
   * Trie
-    * [trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie.py)
+    * [trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
 ## Digital Image Processing
-    * [change contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
+  * [change contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
   * Edge Detection
-    * [canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/canny.py)
+    * [canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/edge_detection/canny.py)
   * Filters
-    * [convolve](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/convolve.py)
-    * [gaussian filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/gaussian_filter.py)
-    * [median filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/median_filter.py)
-    * [sobel filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/sobel_filter.py)
-    * [test digital image processing](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/test_digital_image_processing.py)
+    * [convolve](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/convolve.py)
+    * [gaussian filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/gaussian_filter.py)
+    * [median filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/median_filter.py)
+    * [sobel filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/sobel_filter.py)
+  * [test digital image processing](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/test_digital_image_processing.py)
 ## Divide And Conquer
   * [closest pair of points](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/closest_pair_of_points.py)
   * [convex hull](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/convex_hull.py)
@@ -168,10 +172,13 @@
   * [sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 ## Linear Algebra
   * Src
-    * [lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/lib.py)
-    * [polynom-for-points](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/polynom-for-points.py)
-    * [tests](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/tests.py)
+    * [lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/lib.py)
+    * [polynom-for-points](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/polynom-for-points.py)
+    * [tests](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/tests.py)
 ## Machine Learning
+  * Dbscan
+    * [dbscan](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/dbscan/dbscan.ipynb)
+    * [dbscan](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/dbscan/dbscan.py)
   * [decision tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
   * [gradient descent](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gradient_descent.py)
   * [k means clust](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/k_means_clust.py)
@@ -180,14 +187,15 @@
   * [logistic regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
   * [naive bayes](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/naive_bayes.ipynb)
   * Random Forest Classification
-    * [random forest classification](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classification.py)
-    * [random forest classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classifier.ipynb)
+    * [random forest classification](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classification/random_forest_classification.py)
+    * [random forest classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classification/random_forest_classifier.ipynb)
   * Random Forest Regression
-    * [random forest regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_regression.ipynb)
-    * [random forest regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_regression.py)
+    * [random forest regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_regression/random_forest_regression.ipynb)
+    * [random forest regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_regression/random_forest_regression.py)
   * [reuters one vs rest classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/reuters_one_vs_rest_classifier.ipynb)
   * [scoring functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/scoring_functions.py)
-  * [sorted vector machines](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/sorted_vector_machines.py)
+  * [sequential minimum optimization](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/sequential_minimum_optimization.py)
+  * [support vector machines](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/support_vector_machines.py)
 ## Maths
   * [3n+1](https://github.com/TheAlgorithms/Python/blob/master/maths/3n+1.py)
   * [abs](https://github.com/TheAlgorithms/Python/blob/master/maths/abs.py)
@@ -210,15 +218,19 @@
   * [gaussian](https://github.com/TheAlgorithms/Python/blob/master/maths/gaussian.py)
   * [greater common divisor](https://github.com/TheAlgorithms/Python/blob/master/maths/greater_common_divisor.py)
   * [is square free](https://github.com/TheAlgorithms/Python/blob/master/maths/is_square_free.py)
+  * [kth lexicographic permutation](https://github.com/TheAlgorithms/Python/blob/master/maths/kth_lexicographic_permutation.py)
   * [largest of very large numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/largest_of_very_large_numbers.py)
   * [lucas lehmer primality test](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_lehmer_primality_test.py)
   * [lucas series](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_series.py)
+  * [matrix exponentiation](https://github.com/TheAlgorithms/Python/blob/master/maths/matrix_exponentiation.py)
   * [mobius function](https://github.com/TheAlgorithms/Python/blob/master/maths/mobius_function.py)
   * [modular exponential](https://github.com/TheAlgorithms/Python/blob/master/maths/modular_exponential.py)
   * [newton raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
+  * [polynomial evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
   * [prime check](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_check.py)
   * [prime factors](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_factors.py)
   * [quadratic equations complex numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/quadratic_equations_complex_numbers.py)
+  * [radix2 fft](https://github.com/TheAlgorithms/Python/blob/master/maths/radix2_fft.py)
   * [segmented sieve](https://github.com/TheAlgorithms/Python/blob/master/maths/segmented_sieve.py)
   * [sieve of eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/sieve_of_eratosthenes.py)
   * [simpson rule](https://github.com/TheAlgorithms/Python/blob/master/maths/simpson_rule.py)
@@ -227,13 +239,15 @@
   * [volume](https://github.com/TheAlgorithms/Python/blob/master/maths/volume.py)
   * [zellers congruence](https://github.com/TheAlgorithms/Python/blob/master/maths/zellers_congruence.py)
 ## Matrix
+  * [matrix class](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_class.py)
   * [matrix operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_operation.py)
   * [nth fibonacci using matrix exponentiation](https://github.com/TheAlgorithms/Python/blob/master/matrix/nth_fibonacci_using_matrix_exponentiation.py)
   * [rotate matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/rotate_matrix.py)
   * [searching in sorted matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/searching_in_sorted_matrix.py)
+  * [sherman morrison](https://github.com/TheAlgorithms/Python/blob/master/matrix/sherman_morrison.py)
   * [spiral print](https://github.com/TheAlgorithms/Python/blob/master/matrix/spiral_print.py)
   * Tests
-    * [test matrix operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/test_matrix_operation.py)
+    * [test matrix operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/tests/test_matrix_operation.py)
 ## Networking Flow
   * [ford fulkerson](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/ford_fulkerson.py)
   * [minimum cut](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/minimum_cut.py)
@@ -263,102 +277,104 @@
   * [word patterns](https://github.com/TheAlgorithms/Python/blob/master/other/word_patterns.py)
 ## Project Euler
   * Problem 01
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
-    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol3.py)
-    * [sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol4.py)
-    * [sol5](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol5.py)
-    * [sol6](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol6.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol2.py)
+    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol3.py)
+    * [sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol4.py)
+    * [sol5](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol5.py)
+    * [sol6](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol6.py)
   * Problem 02
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
-    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol3.py)
-    * [sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol4.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol2.py)
+    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol3.py)
+    * [sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol4.py)
   * Problem 03
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_03/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_03/sol2.py)
   * Problem 04
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_04/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_04/sol2.py)
   * Problem 05
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_05/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_05/sol2.py)
   * Problem 06
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
-    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol3.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol2.py)
+    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol3.py)
   * Problem 07
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
-    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol3.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol2.py)
+    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol3.py)
   * Problem 08
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_08/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_08/sol2.py)
   * Problem 09
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
-    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol3.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_09/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_09/sol2.py)
+    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_09/sol3.py)
   * Problem 10
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
-    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol3.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_10/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_10/sol2.py)
+    * [sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_10/sol3.py)
   * Problem 11
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_11/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_11/sol2.py)
   * Problem 12
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_12/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_12/sol2.py)
   * Problem 13
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_13/sol1.py)
   * Problem 14
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_14/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_14/sol2.py)
   * Problem 15
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_15/sol1.py)
   * Problem 16
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_16/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_16/sol2.py)
   * Problem 17
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-  * Problem 18
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_17/sol1.py)
   * Problem 19
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_19/sol1.py)
   * Problem 20
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol2.py)
   * Problem 21
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_21/sol1.py)
   * Problem 22
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_22/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_22/sol2.py)
   * Problem 234
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_234/sol1.py)
   * Problem 24
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_24/sol1.py)
   * Problem 25
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
-    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol2.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_25/sol1.py)
+    * [sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_25/sol2.py)
   * Problem 28
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_28/sol1.py)
   * Problem 29
-    * [solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/solution.py)
+    * [solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/solution.py)
   * Problem 31
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_31/sol1.py)
   * Problem 36
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_36/sol1.py)
   * Problem 40
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_40/sol1.py)
   * Problem 48
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_48/sol1.py)
   * Problem 52
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_52/sol1.py)
   * Problem 53
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_53/sol1.py)
+  * Problem 551
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_551/sol1.py)
   * Problem 56
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_56/sol1.py)
+  * Problem 67
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_67/sol1.py)
   * Problem 76
-    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/sol1.py)
+    * [sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_76/sol1.py)
 ## Searches
   * [binary search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)
   * [interpolation search](https://github.com/TheAlgorithms/Python/blob/master/searches/interpolation_search.py)
@@ -394,6 +410,7 @@
   * [random pivot quick sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/random_pivot_quick_sort.py)
   * [selection sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/selection_sort.py)
   * [shell sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/shell_sort.py)
+  * [stooge sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/stooge_sort.py)
   * [tim sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/tim_sort.py)
   * [topological sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/topological_sort.py)
   * [tree sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/tree_sort.py)
@@ -408,4 +425,3 @@
   * [rabin karp](https://github.com/TheAlgorithms/Python/blob/master/strings/rabin_karp.py)
 ## Traversals
   * [binary tree traversals](https://github.com/TheAlgorithms/Python/blob/master/traversals/binary_tree_traversals.py)
-
