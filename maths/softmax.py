@@ -1,8 +1,10 @@
 """
 This script demonstrates the implementation of the Softmax function.
 
-Its a function that takes as input a vector of K real numbers, and normalizes it into a probability distribution consisting of K probabilities proportional to the exponentials of the input numbers. After softmax, the elements of the vector always
-sum up to 1.
+Its a function that takes as input a vector of K real numbers, and normalizes
+it into a probability distribution consisting of K probabilities proportional
+to the exponentials of the input numbers. After softmax, the elements of the
+vector always sum up to 1.
 
 Script inspired from its corresponding Wikipedia article
 https://en.wikipedia.org/wiki/Softmax_function
@@ -16,13 +18,16 @@ def softmax(vector):
         Implements the softmax function
 
         Parameters:
-            vector (np.array,list,tuple): A  numpy array of shape (1,n) consisting
-                                      of real values or a similar list,tuple
+            vector (np.array,list,tuple): A  numpy array of shape (1,n)
+            consisting of real values or a similar list,tuple
+
 
         Returns:
-            softmax_vec (np.array): The input numpy array  after applying softmax.
+            softmax_vec (np.array): The input numpy array  after applying
+            softmax.
 
-        The softmax vector adds up to one. We need to ceil to mitigate for precision
+        The softmax vector adds up to one. We need to ceil to mitigate for
+        precision
         >>> np.ceil(np.sum(softmax([1,2,3,4])))
         1.0
 
@@ -34,7 +39,8 @@ def softmax(vector):
         array([1.])
     """
 
-    # Calculate e^x for each x in your vector where e is Euler's number (approximately 2.718)
+    # Calculate e^x for each x in your vector where e is Euler's
+    # number (approximately 2.718)
     exponentVector = np.exp(vector)
 
     # Add up the all the exponentials
