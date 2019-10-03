@@ -6,7 +6,7 @@ https://en.wikipedia.org/wiki/Euclidean_algorithm#Implementations
 
 def gcd(a, b):
     """Calculate Greater Common Divisor (GCD)."""
-    if a = 0
+    if a = 0:
        return b
     while b != 0:
         if a > b:
