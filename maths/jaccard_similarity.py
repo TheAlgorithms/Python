@@ -1,5 +1,5 @@
 """
-The Jaccard similarity coefficient is a commonly used indicator of the
+Jaccard similarity coefficient is a commonly used indicator of the
 similarity between two sets. Let U be a set and A and B be subsets of U,
 then the Jaccard index/similarity is defined to be the ratio of the number
 of elements of their intersection and the number of elements of their union.
