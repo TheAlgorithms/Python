@@ -88,7 +88,7 @@
   * Trie
     * [trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie.py)
 ## Digital Image Processing
-    * [change contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
+  * [change contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
   * Edge Detection
     * [canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/canny.py)
   * Filters
