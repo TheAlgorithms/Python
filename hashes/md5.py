@@ -20,8 +20,8 @@ def rearrange(bitString32):
     if len(bitString32) != 32:
         raise ValueError("Need length 32")
     newString = ""
-    for i in [3, 2,1,0]:
-        newString += bitString32[8*i:8*i+8]
+    for i in [3, 2, 1, 0]:
+        newString += bitString32[8 * i : 8 * i + 8]
     return newString
 
 
@@ -35,10 +35,10 @@ def reformatHex(i):
     '9a020000'
     """
 
-    hexrep = format(i, '08x')
+    hexrep = format(i, "08x")
     thing = ""
-    for i in [3, 2,1,0]:
-        thing += hexrep[2*i:2*i+2]
+    for i in [3, 2, 1, 0]:
+        thing += hexrep[2 * i : 2 * i + 2]
     return thing
 
 
@@ -53,10 +53,10 @@ def pad(bitString):
             [string] -- [binary string]
     """
     startLength = len(bitString)
-    bitString += '1'
+    bitString += "1"
     while len(bitString) % 512 != 448:
-        bitString += '0'
-    lastPart = format(startLength, '064b')
+        bitString += "0"
+    lastPart = format(startLength, "064b")
     bitString += rearrange(lastPart[32:]) + rearrange(lastPart[:32])
     return bitString
 
@@ -73,33 +73,35 @@ def getBlock(bitString):
 
     currPos = 0
     while currPos < len(bitString):
-        currPart = bitString[currPos:currPos+512]
+        currPart = bitString[currPos : currPos + 512]
         mySplits = []
         for i in range(16):
-            mySplits.append(int(rearrange(currPart[32*i:32*i+32]), 2))
+            mySplits.append(int(rearrange(currPart[32 * i : 32 * i + 32]), 2))
         yield mySplits
         currPos += 512
 
 
 def not32(i):
-    '''
+    """
     >>> not32(34)
     4294967261
-    '''
-    i_str = format(i, '032b')
-    new_str = ''
+    """
+    i_str = format(i, "032b")
+    new_str = ""
     for c in i_str:
-        new_str += '1' if c == '0' else '0'
+        new_str += "1" if c == "0" else "0"
     return int(new_str, 2)
 
-def sum32(a, b):
-    '''
 
-    '''
-    return (a + b) % 2**32
+def sum32(a, b):
+    """
+
+    """
+    return (a + b) % 2 ** 32
+
 
 def leftrot32(i, s):
-    return (i << s) ^ (i >> (32-s))
+    return (i << s) ^ (i >> (32 - s))
 
 
 def md5me(testString):
@@ -110,22 +112,84 @@ def md5me(testString):
             testString {[string]} -- [message]
     """
 
-    bs = ''
+    bs = ""
     for i in testString:
-        bs += format(ord(i), '08b')
+        bs += format(ord(i), "08b")
     bs = pad(bs)
 
-    tvals = [int(2**32 * abs(math.sin(i+1))) for i in range(64)]
+    tvals = [int(2 ** 32 * abs(math.sin(i + 1))) for i in range(64)]
 
     a0 = 0x67452301
-    b0 = 0xefcdab89
-    c0 = 0x98badcfe
+    b0 = 0xEFCDAB89
+    c0 = 0x98BADCFE
     d0 = 0x10325476
 
-    s = [7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,  7, 12, 17, 22,
-         5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20,  5,  9, 14, 20, \
-         4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23,  4, 11, 16, 23, \
-         6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21,  6, 10, 15, 21 ]
+    s = [
+        7,
+        12,
+        17,
+        22,
+        7,
+        12,
+        17,
+        22,
+        7,
+        12,
+        17,
+        22,
+        7,
+        12,
+        17,
+        22,
+        5,
+        9,
+        14,
+        20,
+        5,
+        9,
+        14,
+        20,
+        5,
+        9,
+        14,
+        20,
+        5,
+        9,
+        14,
+        20,
+        4,
+        11,
+        16,
+        23,
+        4,
+        11,
+        16,
+        23,
+        4,
+        11,
+        16,
+        23,
+        4,
+        11,
+        16,
+        23,
+        6,
+        10,
+        15,
+        21,
+        6,
+        10,
+        15,
+        21,
+        6,
+        10,
+        15,
+        21,
+        6,
+        10,
+        15,
+        21,
+    ]
 
     for m in getBlock(bs):
         A = a0
@@ -134,42 +198,44 @@ def md5me(testString):
         D = d0
         for i in range(64):
             if i <= 15:
-                #f = (B & C) | (not32(B) & D)
+                # f = (B & C) | (not32(B) & D)
                 f = D ^ (B & (C ^ D))
                 g = i
             elif i <= 31:
-                #f = (D & B) | (not32(D) & C)
+                # f = (D & B) | (not32(D) & C)
                 f = C ^ (D & (B ^ C))
-                g = (5*i+1) % 16
+                g = (5 * i + 1) % 16
             elif i <= 47:
                 f = B ^ C ^ D
-                g = (3*i+5) % 16
+                g = (3 * i + 5) % 16
             else:
                 f = C ^ (B | not32(D))
-                g = (7*i) % 16
+                g = (7 * i) % 16
             dtemp = D
             D = C
             C = B
-            B = sum32(B, leftrot32((A + f + tvals[i] + m[g]) % 2**32, s[i]))
+            B = sum32(B, leftrot32((A + f + tvals[i] + m[g]) % 2 ** 32, s[i]))
             A = dtemp
         a0 = sum32(a0, A)
         b0 = sum32(b0, B)
         c0 = sum32(c0, C)
         d0 = sum32(d0, D)
 
-    digest = reformatHex(a0) + reformatHex(b0) + \
-                         reformatHex(c0) + reformatHex(d0)
+    digest = reformatHex(a0) + reformatHex(b0) + reformatHex(c0) + reformatHex(d0)
     return digest
 
 
 def test():
     assert md5me("") == "d41d8cd98f00b204e9800998ecf8427e"
-    assert md5me(
-        "The quick brown fox jumps over the lazy dog") == "9e107d9d372bb6826bd81d3542a419d6"
+    assert (
+        md5me("The quick brown fox jumps over the lazy dog")
+        == "9e107d9d372bb6826bd81d3542a419d6"
+    )
     print("Success.")
 
 
 if __name__ == "__main__":
     test()
     import doctest
+
     doctest.testmod()

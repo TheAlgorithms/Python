@@ -6,6 +6,8 @@ This problem has been solved through recursive way.
         i) matrix should be only one or two dimensional
         ii)column of all the row should be equal
 """
+
+
 def checkMatrix(a):
     # must be
     if type(a) == list and len(a) > 0:
@@ -51,7 +53,7 @@ def spiralPrint(a):
         # vertical printing up
         for i in range(matRow - 2, 0, -1):
             print(a[i][0]),
-        remainMat = [row[1:matCol - 1] for row in a[1:matRow - 1]]
+        remainMat = [row[1 : matCol - 1] for row in a[1 : matRow - 1]]
         if len(remainMat) > 0:
             spiralPrint(remainMat)
         else:
@@ -62,5 +64,5 @@ def spiralPrint(a):
 
 
 # driver code
-a = [[1 , 2, 3, 4],[5, 6, 7, 8],[9, 10, 11, 12]]
+a = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
 spiralPrint(a)

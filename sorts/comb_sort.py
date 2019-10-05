@@ -12,6 +12,7 @@ For manual testing run:
 python comb_sort.py
 """
 
+
 def comb_sort(data):
     """Pure implementation of comb sort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
@@ -38,16 +39,16 @@ def comb_sort(data):
         i = 0
 
         while gap + i < len(data):
-            if data[i] > data[i+gap]:
+            if data[i] > data[i + gap]:
                 # Swap values
-                data[i], data[i+gap] = data[i+gap], data[i]
+                data[i], data[i + gap] = data[i + gap], data[i]
                 swapped = True
             i += 1
 
     return data
 
 
-if __name__ == '__main__':
-    user_input = input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
     print(comb_sort(unsorted))

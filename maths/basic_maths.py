@@ -49,7 +49,7 @@ def sum_of_divisors(n):
         temp += 1
         n = int(n / 2)
     if temp > 1:
-        s *= (2**temp - 1) / (2 - 1)
+        s *= (2 ** temp - 1) / (2 - 1)
 
     for i in range(3, int(math.sqrt(n)) + 1, 2):
         temp = 1
@@ -57,7 +57,7 @@ def sum_of_divisors(n):
             temp += 1
             n = int(n / i)
         if temp > 1:
-            s *= (i**temp - 1) / (i - 1)
+            s *= (i ** temp - 1) / (i - 1)
 
     return s
 
@@ -80,5 +80,5 @@ def main():
     print(euler_phi(100))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

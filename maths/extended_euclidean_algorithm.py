@@ -61,12 +61,12 @@ def extended_euclidean_algorithm(m, n):
 def main():
     """Call Extended Euclidean Algorithm."""
     if len(sys.argv) < 3:
-        print('2 integer arguments required')
+        print("2 integer arguments required")
         exit(1)
     m = int(sys.argv[1])
     n = int(sys.argv[2])
     print(extended_euclidean_algorithm(m, n))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

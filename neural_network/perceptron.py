@@ -1,4 +1,4 @@
-'''
+"""
 
     Perceptron
     w = w + N * (d(k) - y) * x(k)
@@ -8,7 +8,7 @@
     p1 = -1
     p2 = 1
 
-'''
+"""
 import random
 
 
@@ -28,7 +28,7 @@ class Perceptron:
             sample.insert(0, self.bias)
 
         for i in range(self.col_sample):
-           self.weight.append(random.random())
+            self.weight.append(random.random())
 
         self.weight.insert(0, self.bias)
 
@@ -45,15 +45,18 @@ class Perceptron:
 
                     for j in range(self.col_sample + 1):
 
-                        self.weight[j] = self.weight[j] + self.learn_rate * (self.exit[i] - y) * self.sample[i][j]
+                        self.weight[j] = (
+                            self.weight[j]
+                            + self.learn_rate * (self.exit[i] - y) * self.sample[i][j]
+                        )
                     erro = True
-            #print('Epoch: \n',epoch_count)
+            # print('Epoch: \n',epoch_count)
             epoch_count = epoch_count + 1
             # if you want controle the epoch or just by erro
             if erro == False:
-                print(('\nEpoch:\n',epoch_count))
-                print('------------------------\n')
-            #if epoch_count > self.epoch_number or not erro:
+                print(("\nEpoch:\n", epoch_count))
+                print("------------------------\n")
+                # if epoch_count > self.epoch_number or not erro:
                 break
 
     def sort(self, sample):
@@ -64,12 +67,12 @@ class Perceptron:
 
         y = self.sign(u)
 
-        if  y == -1:
-            print(('Sample: ', sample))
-            print('classification: P1')
+        if y == -1:
+            print(("Sample: ", sample))
+            print("classification: P1")
         else:
-            print(('Sample: ', sample))
-            print('classification: P2')
+            print(("Sample: ", sample))
+            print("classification: P2")
 
     def sign(self, u):
         return 1 if u >= 0 else -1
@@ -105,19 +108,51 @@ samples = [
     [-0.1013, 0.5989, 7.1812],
     [2.4482, 0.9455, 11.2095],
     [2.0149, 0.6192, 10.9263],
-    [0.2012, 0.2611, 5.4631]
-
+    [0.2012, 0.2611, 5.4631],
 ]
 
-exit = [-1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1]
+exit = [
+    -1,
+    -1,
+    -1,
+    1,
+    1,
+    -1,
+    1,
+    -1,
+    1,
+    1,
+    -1,
+    1,
+    -1,
+    -1,
+    -1,
+    -1,
+    1,
+    1,
+    1,
+    1,
+    -1,
+    1,
+    1,
+    1,
+    1,
+    -1,
+    -1,
+    1,
+    -1,
+    1,
+]
 
-network = Perceptron(sample=samples, exit = exit, learn_rate=0.01, epoch_number=1000, bias=-1)
+network = Perceptron(
+    sample=samples, exit=exit, learn_rate=0.01, epoch_number=1000, bias=-1
+)
 
 network.training()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     while True:
         sample = []
         for i in range(3):
-            sample.insert(i, float(input('value: ')))
+            sample.insert(i, float(input("value: ")))
         network.sort(sample)

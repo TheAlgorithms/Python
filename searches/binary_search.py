@@ -79,6 +79,7 @@ def binary_search_std_lib(sorted_collection, item):
         return index
     return None
 
+
 def binary_search_by_recursion(sorted_collection, item, left, right):
 
     """Pure implementation of binary search algorithm in Python by recursion
@@ -104,7 +105,7 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
     >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
 
     """
-    if (right < left):
+    if right < left:
         return None
 
     midpoint = left + (right - left) // 2
@@ -112,9 +113,10 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
     if sorted_collection[midpoint] == item:
         return midpoint
     elif sorted_collection[midpoint] > item:
-        return binary_search_by_recursion(sorted_collection, item, left, midpoint-1)
+        return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
     else:
-        return binary_search_by_recursion(sorted_collection, item, midpoint+1, right)
+        return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
+
 
 def __assert_sorted(collection):
     """Check if collection is ascending sorted, if not - raises :py:class:`ValueError`
@@ -133,23 +135,24 @@ def __assert_sorted(collection):
     ValueError: Collection must be ascending sorted
     """
     if collection != sorted(collection):
-        raise ValueError('Collection must be ascending sorted')
+        raise ValueError("Collection must be ascending sorted")
     return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import sys
-    user_input = input('Enter numbers separated by comma:\n').strip()
-    collection = [int(item) for item in user_input.split(',')]
+
+    user_input = input("Enter numbers separated by comma:\n").strip()
+    collection = [int(item) for item in user_input.split(",")]
     try:
         __assert_sorted(collection)
     except ValueError:
-        sys.exit('Sequence must be ascending sorted to apply binary search')
+        sys.exit("Sequence must be ascending sorted to apply binary search")
 
-    target_input = input('Enter a single number to be found in the list:\n')
+    target_input = input("Enter a single number to be found in the list:\n")
     target = int(target_input)
     result = binary_search(collection, target)
     if result is not None:
-        print('{} found at positions: {}'.format(target, result))
+        print("{} found at positions: {}".format(target, result))
     else:
-        print('Not found')
+        print("Not found")

@@ -16,5 +16,5 @@ def main():
     average([2, 4, 6, 8, 20, 50, 70])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
