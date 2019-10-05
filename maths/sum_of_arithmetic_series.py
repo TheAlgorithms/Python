@@ -1,5 +1,5 @@
 # DarkCoder
-def sum_of_series(first_term, common_difference, number_of_terms):
+def sum_of_series(first_term, common_diff, num_of_terms):
     """
     Find the sum of n terms in an arithmetic progression.
 
@@ -8,7 +8,8 @@ def sum_of_series(first_term, common_difference, number_of_terms):
     >>> sum_of_series(1, 10, 100)
     49600.0
     """
-    sum = ((number_of_terms / 2) * (2 * first_term + (number_of_terms - 1) * common_difference))  # formula for sum of series
+    sum = ((num_of_terms/2)*(2*first_term+(num_of_terms-1)*common_diff))
+    # formula for sum of series
     return sum
 
 
