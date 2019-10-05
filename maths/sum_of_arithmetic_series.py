@@ -1,12 +1,21 @@
 # DarkCoder
-def sumOfSeries(a, d, n):
-    sum = ((n / 2) * (2 * a * (n - 1) * d))  # formula for sum of series
-    print(sum)
+def sum_of_series(first_term, common_difference, number_of_terms):
+    """
+    Find the sum of n terms in an arithmetic progression.
+
+    >>> sum_of_series(1, 1, 10)
+    55.0
+    >>> sum_of_series(1, 10, 100)
+    49600.0
+    """
+    sum = ((number_of_terms / 2) * (2 * first_term + (number_of_terms - 1) * common_difference))  # formula for sum of series
+    return sum
 
 
 def main():
-    sumOfSeries(3, 4, 100)
+    print(sum_of_series(1, 1, 10))
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+    doctest.testmod()
