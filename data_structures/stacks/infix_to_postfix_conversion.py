@@ -2,7 +2,7 @@ import string
 
 from .stack import Stack
 
-__author__ = 'Omkar Pathak'
+__author__ = "Omkar Pathak"
 
 
 def is_operand(char):
@@ -15,9 +15,7 @@ def precedence(char):
 
     https://en.wikipedia.org/wiki/Order_of_operations
     """
-    dictionary = {'+': 1, '-': 1,
-                  '*': 2, '/': 2,
-                  '^': 3}
+    dictionary = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
     return dictionary.get(char, -1)
 
 
@@ -34,29 +32,28 @@ def infix_to_postfix(expression):
     for char in expression:
         if is_operand(char):
             postfix.append(char)
-        elif char not in {'(', ')'}:
-            while (not stack.is_empty()
-                    and precedence(char) <= precedence(stack.peek())):
+        elif char not in {"(", ")"}:
+            while not stack.is_empty() and precedence(char) <= precedence(stack.peek()):
                 postfix.append(stack.pop())
             stack.push(char)
-        elif char == '(':
+        elif char == "(":
             stack.push(char)
-        elif char == ')':
-            while not stack.is_empty() and stack.peek() != '(':
+        elif char == ")":
+            while not stack.is_empty() and stack.peek() != "(":
                 postfix.append(stack.pop())
             # Pop '(' from stack. If there is no '(', there is a mismatched
             # parentheses.
-            if stack.peek() != '(':
-                raise ValueError('Mismatched parentheses')
+            if stack.peek() != "(":
+                raise ValueError("Mismatched parentheses")
             stack.pop()
     while not stack.is_empty():
         postfix.append(stack.pop())
-    return ' '.join(postfix)
+    return " ".join(postfix)
 
 
-if __name__ == '__main__':
-    expression = 'a+b*(c^d-e)^(f+g*h)-i'
+if __name__ == "__main__":
+    expression = "a+b*(c^d-e)^(f+g*h)-i"
 
-    print('Infix to Postfix Notation demonstration:\n')
-    print('Infix notation: ' + expression)
-    print('Postfix notation: ' + infix_to_postfix(expression))
+    print("Infix to Postfix Notation demonstration:\n")
+    print("Infix notation: " + expression)
+    print("Postfix notation: " + infix_to_postfix(expression))

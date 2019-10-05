@@ -26,9 +26,7 @@ class Node:
             In-place merge of two binomial trees of equal size. 
             Returns the root of the resulting tree
         """
-        assert (
-            self.left_tree_size == other.left_tree_size
-        ), "Unequal Sizes of Blocks"
+        assert self.left_tree_size == other.left_tree_size, "Unequal Sizes of Blocks"
 
         if self.val < other.val:
             other.left = self.right
@@ -36,9 +34,7 @@ class Node:
             if self.right:
                 self.right.parent = other
             self.right = other
-            self.left_tree_size = (
-                self.left_tree_size * 2 + 1
-            )
+            self.left_tree_size = self.left_tree_size * 2 + 1
             return self
         else:
             self.left = other.right
@@ -46,9 +42,7 @@ class Node:
             if other.right:
                 other.right.parent = self
             other.right = self
-            other.left_tree_size = (
-                other.left_tree_size * 2 + 1
-            )
+            other.left_tree_size = other.left_tree_size * 2 + 1
             return other
 
 
@@ -132,9 +126,7 @@ class BinomialHeap:
         
     """
 
-    def __init__(
-        self, bottom_root=None, min_node=None, heap_size=0
-    ):
+    def __init__(self, bottom_root=None, min_node=None, heap_size=0):
         self.size = heap_size
         self.bottom_root = bottom_root
         self.min_node = min_node
@@ -165,10 +157,7 @@ class BinomialHeap:
         combined_roots_list = []
         i, j = self.bottom_root, other.bottom_root
         while i or j:
-            if i and (
-                (not j)
-                or i.left_tree_size < j.left_tree_size
-            ):
+            if i and ((not j) or i.left_tree_size < j.left_tree_size):
                 combined_roots_list.append((i, True))
                 i = i.parent
             else:
@@ -176,29 +165,17 @@ class BinomialHeap:
                 j = j.parent
         # Insert links between them
         for i in range(len(combined_roots_list) - 1):
-            if (
-                combined_roots_list[i][1]
-                != combined_roots_list[i + 1][1]
-            ):
-                combined_roots_list[i][
-                    0
-                ].parent = combined_roots_list[i + 1][0]
-                combined_roots_list[i + 1][
-                    0
-                ].left = combined_roots_list[i][0]
+            if combined_roots_list[i][1] != combined_roots_list[i + 1][1]:
+                combined_roots_list[i][0].parent = combined_roots_list[i + 1][0]
+                combined_roots_list[i + 1][0].left = combined_roots_list[i][0]
         # Consecutively merge roots with same left_tree_size
         i = combined_roots_list[0][0]
         while i.parent:
             if (
-                (
-                    i.left_tree_size
-                    == i.parent.left_tree_size
-                )
-                and (not i.parent.parent)
+                (i.left_tree_size == i.parent.left_tree_size) and (not i.parent.parent)
             ) or (
                 i.left_tree_size == i.parent.left_tree_size
-                and i.left_tree_size
-                != i.parent.parent.left_tree_size
+                and i.left_tree_size != i.parent.parent.left_tree_size
             ):
 
                 # Neighbouring Nodes
@@ -264,9 +241,7 @@ class BinomialHeap:
                 next_node = self.bottom_root.parent.parent
 
                 # Merge
-                self.bottom_root = self.bottom_root.mergeTrees(
-                    self.bottom_root.parent
-                )
+                self.bottom_root = self.bottom_root.mergeTrees(self.bottom_root.parent)
 
                 # Update Links
                 self.bottom_root.parent = next_node
@@ -337,9 +312,7 @@ class BinomialHeap:
             if bottom_of_new.val < min_of_new.val:
                 min_of_new = bottom_of_new
         # Corner case of single root on top left path
-        if (not self.min_node.left) and (
-            not self.min_node.parent
-        ):
+        if (not self.min_node.left) and (not self.min_node.parent):
             self.size = size_of_new
             self.bottom_root = bottom_of_new
             self.min_node = min_of_new
@@ -348,9 +321,7 @@ class BinomialHeap:
         # Remaining cases
         # Construct heap of right subtree
         newHeap = BinomialHeap(
-            bottom_root=bottom_of_new,
-            min_node=min_of_new,
-            heap_size=size_of_new,
+            bottom_root=bottom_of_new, min_node=min_of_new, heap_size=size_of_new
         )
 
         # Update size
@@ -411,12 +382,8 @@ class BinomialHeap:
         """
         if curr_node:
             preorder.append((curr_node.val, level))
-            self.__traversal(
-                curr_node.left, preorder, level + 1
-            )
-            self.__traversal(
-                curr_node.right, preorder, level + 1
-            )
+            self.__traversal(curr_node.left, preorder, level + 1)
+            self.__traversal(curr_node.right, preorder, level + 1)
         else:
             preorder.append(("#", level))
 
@@ -429,10 +396,7 @@ class BinomialHeap:
             return ""
         preorder_heap = self.preOrder()
 
-        return "\n".join(
-            ("-" * level + str(value))
-            for value, level in preorder_heap
-        )
+        return "\n".join(("-" * level + str(value)) for value, level in preorder_heap)
 
 
 # Unit Tests

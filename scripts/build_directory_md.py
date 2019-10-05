@@ -14,7 +14,7 @@ def good_filepaths(top_dir: str = ".") -> Iterator[str]:
                 continue
             if os.path.splitext(filename)[1] in (".py", ".ipynb"):
                 yield os.path.join(dirpath, filename).lstrip("./")
-                
+
 
 def md_prefix(i):
     return f"{i * '  '}*" if i else "##"
@@ -36,7 +36,9 @@ def print_directory_md(top_dir: str = ".") -> None:
         if filepath != old_path:
             old_path = print_path(old_path, filepath)
         indent = (filepath.count(os.sep) + 1) if filepath else 0
-        url = "/".join((URL_BASE, filepath.split(os.sep)[1], filename)).replace(" ", "%20")
+        url = "/".join((URL_BASE, filepath.split(os.sep)[1], filename)).replace(
+            " ", "%20"
+        )
         filename = os.path.splitext(filename.replace("_", " "))[0]
         print(f"{md_prefix(indent)} [{filename}]({url})")
 

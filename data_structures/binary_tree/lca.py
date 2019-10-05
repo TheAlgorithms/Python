@@ -75,7 +75,7 @@ def main():
         10: [],
         11: [],
         12: [],
-        13: []
+        13: [],
     }
     level, parent = bfs(level, parent, max_node, graph, 1)
     parent = creatSparse(max_node, parent)

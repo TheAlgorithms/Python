@@ -22,5 +22,5 @@ def main():
     print(abs_val(-34))  # = 34
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

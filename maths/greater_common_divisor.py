@@ -13,7 +13,7 @@ def gcd(a, b):
 def main():
     """Call GCD Function."""
     try:
-        nums = input("Enter two Integers separated by comma (,): ").split(',')
+        nums = input("Enter two Integers separated by comma (,): ").split(",")
         num_1 = int(nums[0])
         num_2 = int(nums[1])
     except (IndexError, UnboundLocalError, ValueError):
@@ -21,5 +21,5 @@ def main():
     print(f"gcd({num_1}, {num_2}) = {gcd(num_1, num_2)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

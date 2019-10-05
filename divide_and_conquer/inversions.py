@@ -38,7 +38,7 @@ def count_inversions_bf(arr):
     num_inversions = 0
     n = len(arr)
 
-    for i in range(n-1):
+    for i in range(n - 1):
         for j in range(i + 1, n):
             if arr[i] > arr[j]:
                 num_inversions += 1
@@ -73,7 +73,7 @@ def count_inversions_recursive(arr):
     if len(arr) <= 1:
         return arr, 0
     else:
-        mid = len(arr)//2
+        mid = len(arr) // 2
         P = arr[0:mid]
         Q = arr[mid:]
 
@@ -119,7 +119,7 @@ def _count_cross_inversions(P, Q):
             # if P[1] > Q[j], then P[k] > Q[k] for all  i < k <= len(P)
             # These are all inversions. The claim emerges from the
             # property that P is sorted.
-            num_inversion += (len(P) - i)
+            num_inversion += len(P) - i
             R.append(Q[j])
             j += 1
         else:
@@ -127,9 +127,9 @@ def _count_cross_inversions(P, Q):
             i += 1
 
     if i < len(P):
-       R.extend(P[i:])
+        R.extend(P[i:])
     else:
-       R.extend(Q[j:])
+        R.extend(Q[j:])
 
     return R, num_inversion
 
@@ -166,6 +166,4 @@ def main():
 
 
 if __name__ == "__main__":
-   main()
-
-
+    main()

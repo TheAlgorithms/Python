@@ -700,7 +700,6 @@ def main():
 
     print_results("Tree traversal", test_tree_chaining())
 
-
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
     test_insertion_speed()

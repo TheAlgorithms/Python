@@ -22,10 +22,10 @@ def recursive_palindrome(str):
 
 
 def main():
-    str = 'ama'
+    str = "ama"
     print(recursive_palindrome(str.lower()))
     print(is_palindrome(str.lower()))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
