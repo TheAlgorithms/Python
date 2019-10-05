@@ -82,11 +82,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
       """
       This function returns the sum of two integers a and b
   	  Return: a + b
-      >>> sum(2, 2)
+      >>> sumab(2, 2)
       4
-      >>> sum(-2, 3)
+      >>> sumab(-2, 3)
       1
-      >>> sum(4.9, 6.1)
+      >>> sumab(4.9, 5.1)
       10.0
       """
       return a + b
