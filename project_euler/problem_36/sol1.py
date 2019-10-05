@@ -9,6 +9,8 @@ base 10 and base 2.
 (Please note that the palindromic number, in either base, may not include
 leading zeros.)
 """
+
+
 def is_palindrome(n):
     n = str(n)
 

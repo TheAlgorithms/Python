@@ -115,4 +115,5 @@ print(shortDistance)  # E -- 2 --> G -- 1 --> F == 3
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

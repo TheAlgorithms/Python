@@ -37,14 +37,14 @@ def linear_search(sequence, target):
     return None
 
 
-if __name__ == '__main__':
-    user_input = input('Enter numbers separated by comma:\n').strip()
-    sequence = [int(item) for item in user_input.split(',')]
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by comma:\n").strip()
+    sequence = [int(item) for item in user_input.split(",")]
 
-    target_input = input('Enter a single number to be found in the list:\n')
+    target_input = input("Enter a single number to be found in the list:\n")
     target = int(target_input)
     result = linear_search(sequence, target)
     if result is not None:
-        print('{} found at positions: {}'.format(target, result))
+        print("{} found at positions: {}".format(target, result))
     else:
-        print('Not found')
+        print("Not found")

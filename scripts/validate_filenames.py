@@ -25,4 +25,5 @@ if nodir_files:
 bad_files = len(upper_files + space_files + nodir_files)
 if bad_files:
     import sys
+
     sys.exit(bad_files)

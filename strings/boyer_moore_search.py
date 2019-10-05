@@ -20,12 +20,9 @@ Time Complexity : O(n/m)
 
 
 class BoyerMooreSearch:
-
-
     def __init__(self, text, pattern):
         self.text, self.pattern = text, pattern
         self.textLen, self.patLen = len(text), len(pattern)
-    
 
     def match_in_pattern(self, char):
         """ finds the index of char in pattern in reverse order
@@ -36,13 +33,12 @@ class BoyerMooreSearch:
         Returns :
             i (int): index of char from last in pattern
             -1 (int): if char is not found in pattern 
-        """ 
+        """
 
-        for i in range(self.patLen-1, -1, -1):
+        for i in range(self.patLen - 1, -1, -1):
             if char == self.pattern[i]:
                 return i
         return -1
-
 
     def mismatch_in_text(self, currentPos):
         """ finds the index of mis-matched character in text when compared with pattern from last
@@ -55,14 +51,13 @@ class BoyerMooreSearch:
             -1 (int): if there is no mis-match between pattern and text block
         """
 
-        for i in range(self.patLen-1, -1, -1):
+        for i in range(self.patLen - 1, -1, -1):
             if self.pattern[i] != self.text[currentPos + i]:
                 return currentPos + i
         return -1
 
-        
     def bad_character_heuristic(self):
-        # searches pattern in text and returns index positions 
+        # searches pattern in text and returns index positions
         positions = []
         for i in range(self.textLen - self.patLen + 1):
             mismatch_index = self.mismatch_in_text(i)
@@ -70,12 +65,14 @@ class BoyerMooreSearch:
                 positions.append(i)
             else:
                 match_index = self.match_in_pattern(self.text[mismatch_index])
-                i = mismatch_index - match_index   #shifting index lgtm [py/multiple-definition]
+                i = (
+                    mismatch_index - match_index
+                )  # shifting index lgtm [py/multiple-definition]
         return positions
 
- 
+
 text = "ABAABA"
-pattern = "AB" 
+pattern = "AB"
 bms = BoyerMooreSearch(text, pattern)
 positions = bms.bad_character_heuristic()
 
@@ -84,5 +81,3 @@ if len(positions) == 0:
 else:
     print("Pattern found in following positions: ")
     print(positions)
-    
-

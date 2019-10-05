@@ -1,4 +1,5 @@
 from numbers import Number
+
 """
 The convex hull problem is problem of finding all the vertices of convex polygon, P of
 a set of points in a plane such that all the points are either on the vertices of P or
@@ -47,8 +48,10 @@ class Point:
             try:
                 x, y = float(x), float(y)
             except ValueError as e:
-                e.args = ("x and y must be both numeric types "
-                          "but got {}, {} instead".format(type(x), type(y)), )
+                e.args = (
+                    "x and y must be both numeric types "
+                    "but got {}, {} instead".format(type(x), type(y)),
+                )
                 raise
 
         self.x = x
@@ -85,7 +88,7 @@ class Point:
         return False
 
     def __repr__(self):
-        return "({}, {})".format(self.x,  self.y)
+        return "({}, {})".format(self.x, self.y)
 
     def __hash__(self):
         return hash(self.x)
@@ -132,8 +135,10 @@ def _construct_points(list_of_tuples):
             try:
                 points.append(Point(p[0], p[1]))
             except (IndexError, TypeError):
-                print("Ignoring deformed point {}. All points"
-                      " must have at least 2 coordinates.".format(p))
+                print(
+                    "Ignoring deformed point {}. All points"
+                    " must have at least 2 coordinates.".format(p)
+                )
     return points
 
 
@@ -189,12 +194,15 @@ def _validate_input(points):
             if isinstance(points[0], (list, tuple)):
                 points = _construct_points(points)
             else:
-                raise ValueError("Expecting an iterable of type Point, list or tuple. "
-                                 "Found objects of type {} instead"
-                                 .format(type(points[0])))
+                raise ValueError(
+                    "Expecting an iterable of type Point, list or tuple. "
+                    "Found objects of type {} instead".format(type(points[0]))
+                )
         elif not hasattr(points, "__iter__"):
-            raise ValueError("Expecting an iterable object "
-                             "but got an non-iterable type {}".format(points))
+            raise ValueError(
+                "Expecting an iterable object "
+                "but got an non-iterable type {}".format(points)
+            )
     except TypeError as e:
         print("Expecting an iterable of type Point, list or tuple.")
         raise
@@ -277,7 +285,7 @@ def convex_hull_bf(points):
     n = len(points)
     convex_set = set()
 
-    for i in range(n-1):
+    for i in range(n - 1):
         for j in range(i + 1, n):
             points_left_of_ij = points_right_of_ij = False
             ij_part_of_convex_hull = True
@@ -353,13 +361,13 @@ def convex_hull_recursive(points):
     # convex hull
 
     left_most_point = points[0]
-    right_most_point = points[n-1]
+    right_most_point = points[n - 1]
 
     convex_set = {left_most_point, right_most_point}
     upperhull = []
     lowerhull = []
 
-    for i in range(1, n-1):
+    for i in range(1, n - 1):
         det = _det(left_most_point, right_most_point, points[i])
 
         if det > 0:
@@ -394,7 +402,7 @@ def _construct_hull(points, left, right, convex_set):
     """
     if points:
         extreme_point = None
-        extreme_point_distance = float('-inf')
+        extreme_point_distance = float("-inf")
         candidate_points = []
 
         for p in points:
@@ -414,8 +422,18 @@ def _construct_hull(points, left, right, convex_set):
 
 
 def main():
-    points = [(0, 3), (2, 2), (1, 1), (2, 1), (3, 0),
-              (0, 0), (3, 3), (2, -1), (2, -4), (1, -3)]
+    points = [
+        (0, 3),
+        (2, 2),
+        (1, 1),
+        (2, 1),
+        (3, 0),
+        (0, 0),
+        (3, 3),
+        (2, -1),
+        (2, -4),
+        (1, -3),
+    ]
     # the convex set of points is
     # [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
     results_recursive = convex_hull_recursive(points)
@@ -425,5 +443,5 @@ def main():
     print(results_bf)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
