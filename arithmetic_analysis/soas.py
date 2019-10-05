@@ -8,5 +8,4 @@ def sum_of_arithmetic(a, d, n):
         i = i + 1
         a = a + d   
     return sum
-print(sum_of_arithmetic(1, 3, 10))
 
