@@ -1,11 +1,14 @@
 def stooge_sort(arr):
     """
-    >>> arr = [2, 4, 5, 3, 1]
-    >>> stooge_sort(arr)
-    >>> print(arr)
-    [1, 2, 3, 4, 5]
+    Examples:
+    >>> stooge_sort([18.1, 0, -7.1, -1, 2, 2])
+    [-7.1, -1, 0, 2, 2, 18.1]
+
+    >>> stooge_sort([])
+    []
     """
     stooge(arr, 0, len(arr) - 1)
+    return arr
 
 
 def stooge(arr, i, h):
@@ -29,3 +32,8 @@ def stooge(arr, i, h):
 
         # Recursively sort first 2/3 elements
         stooge(arr, i, (h - t))
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(stooge_sort(unsorted))
