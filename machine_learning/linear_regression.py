@@ -1,11 +1,29 @@
 """
-Linear regression is the most basic type of regression commonly used for
-predictive analysis. The idea is pretty simple, we have a dataset and we have
-a feature's associated with it. The Features should be choose very cautiously
-as they determine, how much our model will be able to make future predictions.
-We try to set these Feature weights, over many iterations, so that they best
-fits our dataset. In this particular code, i had used a CSGO dataset (ADR vs
-Rating). We try to best fit a line through dataset and estimate the parameters.
+Linear regression is the most basic type of regression algorithms, commonly
+used for predictive analysis.
+
+The idea is pretty simple, we have a dataset with 'n' number of features
+(input parameters) and its associated outputs. For example, our dataset could
+represent the price of housing (outputs) based on its size and location
+(features). Features should be chosen carefully, since they are one of the key
+factors in making accurate predictions.
+
+To find the function that best fits our data, we need to multiply every feature
+by a certain value and then sum them all up. Those values we use to multiply the
+features are generally known as 'thetas', and the function they form looks like:
+
+predicted_value = theta1*x1 + theta2*x2 + thetaN*xN...
+
+So, in order to shape our model to fit a certain dataset (this process is known
+as 'training the model') we need to find every theta value so that the prediction
+is as close as possible to the given output. To do this, we use a cost function
+(in this particular example we use sum of square error) that tells us how well
+the model is working when compared to the real data. In each step, the goal is to
+reduce the output value of this cost function, as that means the predictions
+are getting more accurate.
+
+In this particular example, a CS:GO dataset (Average Damage per Round (ADR) vs
+Rating) is used to train the model.
 """
 import requests
 import numpy as np
