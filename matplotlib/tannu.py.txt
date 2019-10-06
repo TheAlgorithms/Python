@@ -1,0 +1,18 @@
+#creating two arrays, year and population in billions
+	year = [1990, 2000, 2010 , 2020, 2030]
+	pop = [4,5,6,7,8]
+
+# Print the last item from year and pop
+	print(year[2])
+	print(pop[2])
+
+
+# Import matplotlib.pyplot as plt
+	import matplotlib.pyplot as plt
+
+# Make a line plot: year on the x-axis, pop on the y-axis
+	plt.plot(year, pop)
+	
+
+# Display the plot with plt.show()
+	plt.show()
