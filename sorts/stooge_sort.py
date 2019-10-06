@@ -1,14 +1,11 @@
 def stooge_sort(arr):
     """
     Examples:
-    >>> stooge_sort([0, 5, 3, 2, 2])
-    [0, 2, 2, 3, 5]
+    >>> stooge_sort([18.1, 0, -7.1, -1, 2, 2])
+    [-7.1, -1, 0, 2, 2, 18.1]
 
     >>> stooge_sort([])
     []
-
-    >>> stooge_sort([-2, -5, -45])
-    [-45, -5, -2]
     """
     stooge(arr, 0, len(arr) - 1)
     return arr
