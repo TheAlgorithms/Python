@@ -27,6 +27,7 @@ def ll(arr):
 from sys import setrecursionlimit
 setrecursionlimit(10000)            # setting recursion limit as 10**4 (at pax)
 
-arr=list(int(i) for i in input().strip().split(' '))          # reading input array
+n = int(input('Enter number of elements: '))
+arr=list(int(i) for i in input().strip().split(' ')[:n])          # reading input array
 l = ll(arr)                                                   # passing entire input array to linked list creation 
 print_linkedlist_spl(l)
