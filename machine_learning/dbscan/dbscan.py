@@ -48,7 +48,7 @@ def euclidean_distance(q, p):
 
     for num in q + p:
         try:
-            num = int(num)
+            temp = int(num)
         except:
             raise ValueError("Non-numeric input detected")
 
