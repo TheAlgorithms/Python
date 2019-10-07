@@ -126,6 +126,8 @@
   * [rod cutting](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/rod_cutting.py)
   * [subset generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
   * [sum of subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
+## Election
+  * [MJRTY](https://github.com/TheAlgorithms/Python/blob/master/election/mjrty.py)
 ## File Transfer
   * [recieve file](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/recieve_file.py)
   * [send file](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/send_file.py)
