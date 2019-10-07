@@ -10,11 +10,7 @@ def abs_val(num):
     >>abs_val(0)
     0
     """
-    if num < 0:
-        return -num
-
-    # Returns if number is not < 0
-    return num
+    return -num if num < 0 else num
 
 
 def main():
