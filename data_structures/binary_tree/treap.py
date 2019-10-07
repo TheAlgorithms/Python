@@ -7,6 +7,7 @@ class Node:
     Treap's node
     Treap is a binary tree by key and heap by priority
     """
+
     def __init__(self, key: int):
         self.key = key
         self.prior = random()

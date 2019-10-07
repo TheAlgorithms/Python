@@ -11,7 +11,7 @@ def evaluate_poly(poly, x):
         79800.0
     """
 
-    return sum(c*(x**i) for i, c in enumerate(poly))
+    return sum(c * (x ** i) for i, c in enumerate(poly))
 
 
 if __name__ == "__main__":

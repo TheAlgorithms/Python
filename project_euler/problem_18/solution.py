@@ -39,12 +39,12 @@ def solution():
     1074
     """
     script_dir = os.path.dirname(os.path.realpath(__file__))
-    triangle = os.path.join(script_dir, 'triangle.txt')
+    triangle = os.path.join(script_dir, "triangle.txt")
 
-    with open(triangle, 'r') as f:
+    with open(triangle, "r") as f:
         triangle = f.readlines()
 
-    a = [[int(y) for y in x.rstrip('\r\n').split(' ')] for x in triangle]
+    a = [[int(y) for y in x.rstrip("\r\n").split(" ")] for x in triangle]
 
     for i in range(1, len(a)):
         for j in range(len(a[i])):

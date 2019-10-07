@@ -18,7 +18,8 @@ Find the sum of all the positive integers which cannot be written as the sum
 of two abundant numbers.
 """
 
-def solution(limit = 28123):
+
+def solution(limit=28123):
     """
     Finds the sum of all the positive integers which cannot be written as
     the sum of two abundant numbers
@@ -42,7 +43,7 @@ def solution(limit = 28123):
             abundants.add(n)
 
         if not any((n - a in abundants) for a in abundants):
-            res+=n
+            res += n
 
     return res
 

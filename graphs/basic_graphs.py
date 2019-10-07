@@ -237,7 +237,7 @@ def edglist():
     n, m = map(int, input().split(" "))
     l = []
     for i in range(m):
-        l.append(map(int, input().split(' ')))
+        l.append(map(int, input().split(" ")))
     return l, n
 
 

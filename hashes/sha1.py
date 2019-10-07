@@ -25,7 +25,7 @@ Reference: https://deadhacker.com/2006/02/21/sha-1-illustrated/
 
 import argparse
 import struct
-import hashlib #hashlib is only used inside the Test class
+import hashlib  # hashlib is only used inside the Test class
 import unittest
 
 
@@ -35,6 +35,7 @@ class SHA1Hash:
     >>> SHA1Hash(bytes('Allan', 'utf-8')).final_hash()
     '872af2d8ac3d8695387e7c804bf0e02c18df9e6e'
     """
+
     def __init__(self, data):
         """
         Inititates the variables data and h. h is a list of 5 8-digit Hexadecimal
@@ -52,21 +53,23 @@ class SHA1Hash:
         >>> SHA1Hash('').rotate(12,2)
         48
         """
-        return ((n << b) | (n >> (32 - b))) & 0xffffffff
+        return ((n << b) | (n >> (32 - b))) & 0xFFFFFFFF
 
     def padding(self):
         """
         Pads the input message with zeros so that padded_data has 64 bytes or 512 bits
         """
-        padding = b'\x80' + b'\x00'*(63 - (len(self.data) + 8) % 64)
-        padded_data = self.data + padding + struct.pack('>Q', 8 * len(self.data))
+        padding = b"\x80" + b"\x00" * (63 - (len(self.data) + 8) % 64)
+        padded_data = self.data + padding + struct.pack(">Q", 8 * len(self.data))
         return padded_data
 
     def split_blocks(self):
         """
         Returns a list of bytestrings each of length 64
         """
-        return [self.padded_data[i:i+64] for i in range(0, len(self.padded_data), 64)]
+        return [
+            self.padded_data[i : i + 64] for i in range(0, len(self.padded_data), 64)
+        ]
 
     # @staticmethod
     def expand_block(self, block):
@@ -74,9 +77,9 @@ class SHA1Hash:
         Takes a bytestring-block of length 64, unpacks it to a list of integers and returns a
         list of 80 integers after some bit operations
         """
-        w = list(struct.unpack('>16L', block)) + [0] * 64
+        w = list(struct.unpack(">16L", block)) + [0] * 64
         for i in range(16, 80):
-            w[i] = self.rotate((w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16]), 1)
+            w[i] = self.rotate((w[i - 3] ^ w[i - 8] ^ w[i - 14] ^ w[i - 16]), 1)
         return w
 
     def final_hash(self):
@@ -106,22 +109,30 @@ class SHA1Hash:
                 elif 60 <= i < 80:
                     f = b ^ c ^ d
                     k = 0xCA62C1D6
-                a, b, c, d, e = self.rotate(a, 5) + f + e + k + expanded_block[i] & 0xffffffff,\
-                                a, self.rotate(b, 30), c, d
-        self.h = self.h[0] + a & 0xffffffff,\
-                 self.h[1] + b & 0xffffffff,\
-                 self.h[2] + c & 0xffffffff,\
-                 self.h[3] + d & 0xffffffff,\
-                 self.h[4] + e & 0xffffffff
-        return '%08x%08x%08x%08x%08x' %tuple(self.h)
+                a, b, c, d, e = (
+                    self.rotate(a, 5) + f + e + k + expanded_block[i] & 0xFFFFFFFF,
+                    a,
+                    self.rotate(b, 30),
+                    c,
+                    d,
+                )
+        self.h = (
+            self.h[0] + a & 0xFFFFFFFF,
+            self.h[1] + b & 0xFFFFFFFF,
+            self.h[2] + c & 0xFFFFFFFF,
+            self.h[3] + d & 0xFFFFFFFF,
+            self.h[4] + e & 0xFFFFFFFF,
+        )
+        return "%08x%08x%08x%08x%08x" % tuple(self.h)
 
 
 class SHA1HashTest(unittest.TestCase):
     """
     Test class for the SHA1Hash class. Inherits the TestCase class from unittest
     """
+
     def testMatchHashes(self):
-        msg = bytes('Test String', 'utf-8')
+        msg = bytes("Test String", "utf-8")
         self.assertEqual(SHA1Hash(msg).final_hash(), hashlib.sha1(msg).hexdigest())
 
 
@@ -132,23 +143,27 @@ def main():
     the test each time.
     """
     # unittest.main()
-    parser = argparse.ArgumentParser(description='Process some strings or files')
-    parser.add_argument('--string', dest='input_string',
-                        default='Hello World!! Welcome to Cryptography',
-                        help='Hash the string')
-    parser.add_argument('--file', dest='input_file', help='Hash contents of a file')
+    parser = argparse.ArgumentParser(description="Process some strings or files")
+    parser.add_argument(
+        "--string",
+        dest="input_string",
+        default="Hello World!! Welcome to Cryptography",
+        help="Hash the string",
+    )
+    parser.add_argument("--file", dest="input_file", help="Hash contents of a file")
     args = parser.parse_args()
     input_string = args.input_string
-    #In any case hash input should be a bytestring
+    # In any case hash input should be a bytestring
     if args.input_file:
-        with open(args.input_file, 'rb') as f:
+        with open(args.input_file, "rb") as f:
             hash_input = f.read()
     else:
-        hash_input = bytes(input_string, 'utf-8')
+        hash_input = bytes(input_string, "utf-8")
     print(SHA1Hash(hash_input).final_hash())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
     import doctest
+
     doctest.testmod()

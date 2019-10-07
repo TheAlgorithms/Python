@@ -14,7 +14,7 @@
 def b_expo(a, b):
     res = 1
     while b > 0:
-        if b&1:
+        if b & 1:
             res *= a
 
         a *= a
@@ -26,13 +26,14 @@ def b_expo(a, b):
 def b_expo_mod(a, b, c):
     res = 1
     while b > 0:
-        if b&1:
-            res = ((res%c) * (a%c)) % c
+        if b & 1:
+            res = ((res % c) * (a % c)) % c
 
         a *= a
         b >>= 1
 
     return res
+
 
 """
 * Wondering how this method works !

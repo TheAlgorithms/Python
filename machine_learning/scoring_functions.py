@@ -131,6 +131,7 @@ def mbd(predict, actual):
     numerator = np.sum(difference) / len(predict)
     denumerator = np.sum(actual) / len(predict)
     # print(numerator, denumerator)
+
     score = float(numerator) / denumerator * 100
 
     return score

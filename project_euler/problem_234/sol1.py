@@ -17,18 +17,19 @@ up to 1000 is 34825.
 What is the sum of all semidivisible numbers not exceeding 999966663333 ?
 """
 
+
 def fib(a, b, n):
-    
-    if n==1:
+
+    if n == 1:
         return a
-    elif n==2:
+    elif n == 2:
         return b
-    elif n==3:
-        return str(a)+str(b)
-    
+    elif n == 3:
+        return str(a) + str(b)
+
     temp = 0
-    for x in range(2,n):
-        c=str(a) + str(b)
+    for x in range(2, n):
+        c = str(a) + str(b)
         temp = b
         b = c
         a = temp
@@ -39,14 +40,14 @@ def solution(n):
     """Returns the sum of all semidivisible numbers not exceeding n."""
     semidivisible = []
     for x in range(n):
-        l=[i for i in input().split()]
-        c2=1
-        while(1):
-            if len(fib(l[0],l[1],c2))<int(l[2]):
-                c2+=1
+        l = [i for i in input().split()]
+        c2 = 1
+        while 1:
+            if len(fib(l[0], l[1], c2)) < int(l[2]):
+                c2 += 1
             else:
                 break
-        semidivisible.append(fib(l[0],l[1],c2+1)[int(l[2])-1])
+        semidivisible.append(fib(l[0], l[1], c2 + 1)[int(l[2]) - 1])
     return semidivisible
 
 

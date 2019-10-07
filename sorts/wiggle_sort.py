@@ -16,7 +16,7 @@ def wiggle_sort(nums):
             nums[i - 1], nums[i] = nums[i], nums[i - 1]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("Enter the array elements:\n")
     array = list(map(int, input().split()))
     print("The unsorted array is:\n")
