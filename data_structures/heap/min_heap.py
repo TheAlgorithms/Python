@@ -13,6 +13,16 @@ class Node:
     def __lt__(self, other):
         return self.val < other.val
 
+    # The three functions below are not necessary in any way, but are provided just for completions sake.
+
+    def __le__(self, other):
+        return self.val <= other.val
+
+    def __gt__(self, other):
+        return self.val > other.val
+
+    def __ge__(self, other):
+        return self.val >= other.val
 
 class MinHeap:
     """
