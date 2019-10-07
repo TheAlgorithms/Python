@@ -40,6 +40,7 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
+    # Insert a new node in Binary Search Tree with value label
     def insert(self, label):
         # Create a new Node
         new_node = Node(label, None)
