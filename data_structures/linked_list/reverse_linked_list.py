@@ -28,5 +28,5 @@ from sys import setrecursionlimit
 setrecursionlimit(10000)            # setting recursion limit as 10**4 (at pax)
 
 arr=list(int(i) for i in input().strip().split(' '))          # reading input array
-l = ll(arr[:-1])                                              # passing input array to linked list creation 
+l = ll(arr)                                                   # passing entire input array to linked list creation 
 print_linkedlist_spl(l)
