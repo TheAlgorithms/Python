@@ -68,6 +68,12 @@ class LinkedList:  # making main class named linked list
             current.displayLink()
             current = current.next
         print()
+    def displayreverse(self): #prints contents of the list in reverse
+       current=self.tail
+       while current!=None:
+           current.displayLink()
+           current=current.previous
+       print()
 
 
 class Link:
