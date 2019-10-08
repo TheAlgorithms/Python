@@ -5,6 +5,7 @@ def karatsuba(a, b):
     >>> karatsuba(15463, 23489) == 15463 * 23489
     True
     >>> karatsuba(3, 9) == 3 * 9
+    True
     """
     if len(str(a)) == 1 or len(str(b)) == 1:
         return (a * b)
