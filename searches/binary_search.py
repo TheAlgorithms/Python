@@ -43,11 +43,10 @@ def binary_search(sorted_collection, item):
         current_item = sorted_collection[midpoint]
         if current_item == item:
             return midpoint
+        elif item < current_item:
+            right = midpoint - 1
         else:
-            if item < current_item:
-                right = midpoint - 1
-            else:
-                left = midpoint + 1
+            left = midpoint + 1
     return None
 
 
