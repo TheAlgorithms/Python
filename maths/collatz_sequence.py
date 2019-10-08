@@ -10,10 +10,10 @@ def collatz_sequence(n):
     """
     sequence = [n]
     while n != 1:
-        if n % 2 == 0:# even
-            n //= 2 
+        if n % 2 == 0:  # even
+            n //= 2
         else:
-            n = 3*n +1
+            n = 3 * n + 1
         sequence.append(n)
     return sequence
 
@@ -22,7 +22,8 @@ def main():
     n = 43
     sequence = collatz_sequence(n)
     print(sequence)
-    print("collatz sequence from %d took %d steps."%(n,len(sequence)))
+    print("collatz sequence from %d took %d steps." % (n, len(sequence)))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

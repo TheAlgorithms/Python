@@ -14,7 +14,7 @@ import numpy as np
     and types of data
 """
 
-#Mean Absolute Error
+# Mean Absolute Error
 def mae(predict, actual):
     predict = np.array(predict)
     actual = np.array(actual)
@@ -24,7 +24,8 @@ def mae(predict, actual):
 
     return score
 
-#Mean Squared Error
+
+# Mean Squared Error
 def mse(predict, actual):
     predict = np.array(predict)
     actual = np.array(actual)
@@ -35,7 +36,8 @@ def mse(predict, actual):
     score = square_diff.mean()
     return score
 
-#Root Mean Squared Error
+
+# Root Mean Squared Error
 def rmse(predict, actual):
     predict = np.array(predict)
     actual = np.array(actual)
@@ -46,13 +48,14 @@ def rmse(predict, actual):
     score = np.sqrt(mean_square_diff)
     return score
 
-#Root Mean Square Logarithmic Error
+
+# Root Mean Square Logarithmic Error
 def rmsle(predict, actual):
     predict = np.array(predict)
     actual = np.array(actual)
 
-    log_predict = np.log(predict+1)
-    log_actual = np.log(actual+1)
+    log_predict = np.log(predict + 1)
+    log_actual = np.log(actual + 1)
 
     difference = log_predict - log_actual
     square_diff = np.square(difference)
@@ -62,14 +65,15 @@ def rmsle(predict, actual):
 
     return score
 
-#Mean Bias Deviation
+
+# Mean Bias Deviation
 def mbd(predict, actual):
     predict = np.array(predict)
     actual = np.array(actual)
 
     difference = predict - actual
-    numerator = np.sum(difference) / len(predict) 
-    denumerator =  np.sum(actual) / len(predict)
+    numerator = np.sum(difference) / len(predict)
+    denumerator = np.sum(actual) / len(predict)
     print(numerator)
     print(denumerator)
 

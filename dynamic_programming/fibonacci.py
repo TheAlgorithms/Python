@@ -4,7 +4,6 @@ This is a pure Python implementation of Dynamic Programming solution to the fibo
 
 
 class Fibonacci:
-
     def __init__(self, N=None):
         self.fib_array = []
         if N:
@@ -19,14 +18,14 @@ class Fibonacci:
     def get(self, sequence_no=None):
         if sequence_no != None:
             if sequence_no < len(self.fib_array):
-                return print(self.fib_array[:sequence_no + 1])
+                return print(self.fib_array[: sequence_no + 1])
             else:
                 print("Out of bound.")
         else:
             print("Please specify a value")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("\n********* Fibonacci Series Using Dynamic Programming ************\n")
     print("\n Enter the upper limit for the fibonacci sequence: ", end="")
     try:
@@ -34,7 +33,8 @@ if __name__ == '__main__':
         fib = Fibonacci(N)
         print(
             "\n********* Enter different values to get the corresponding fibonacci "
-            "sequence, enter any negative number to exit. ************\n")
+            "sequence, enter any negative number to exit. ************\n"
+        )
         while True:
             try:
                 i = int(input("Enter value: ").strip())

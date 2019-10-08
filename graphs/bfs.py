@@ -16,12 +16,14 @@ while Q is non-empty:
 
 """
 
-G = {'A': ['B', 'C'],
-     'B': ['A', 'D', 'E'],
-     'C': ['A', 'F'],
-     'D': ['B'],
-     'E': ['B', 'F'],
-     'F': ['C', 'E']}
+G = {
+    "A": ["B", "C"],
+    "B": ["A", "D", "E"],
+    "C": ["A", "F"],
+    "D": ["B"],
+    "E": ["B", "F"],
+    "F": ["C", "E"],
+}
 
 
 def bfs(graph, start):
@@ -40,5 +42,5 @@ def bfs(graph, start):
     return explored
 
 
-if __name__ == '__main__':
-    print(bfs(G, 'A'))
+if __name__ == "__main__":
+    print(bfs(G, "A"))

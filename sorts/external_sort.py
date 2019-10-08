@@ -6,8 +6,9 @@
 import os
 import argparse
 
+
 class FileSplitter(object):
-    BLOCK_FILENAME_FORMAT = 'block_{0}.dat'
+    BLOCK_FILENAME_FORMAT = "block_{0}.dat"
 
     def __init__(self, filename):
         self.filename = filename
@@ -15,7 +16,7 @@ class FileSplitter(object):
 
     def write_block(self, data, block_number):
         filename = self.BLOCK_FILENAME_FORMAT.format(block_number)
-        with open(filename, 'w') as file:
+        with open(filename, "w") as file:
             file.write(data)
         self.block_filenames.append(filename)
 
@@ -36,7 +37,7 @@ class FileSplitter(object):
                 else:
                     lines.sort(key=sort_key)
 
-                self.write_block(''.join(lines), i)
+                self.write_block("".join(lines), i)
                 i += 1
 
     def cleanup(self):
@@ -63,14 +64,16 @@ class FilesArray(object):
         self.buffers = {i: None for i in range(self.num_buffers)}
 
     def get_dict(self):
-        return {i: self.buffers[i] for i in range(self.num_buffers) if i not in self.empty}
+        return {
+            i: self.buffers[i] for i in range(self.num_buffers) if i not in self.empty
+        }
 
     def refresh(self):
         for i in range(self.num_buffers):
             if self.buffers[i] is None and i not in self.empty:
                 self.buffers[i] = self.files[i].readline()
 
-                if self.buffers[i] == '':
+                if self.buffers[i] == "":
                     self.empty.add(i)
                     self.files[i].close()
 
@@ -92,7 +95,7 @@ class FileMerger(object):
 
     def merge(self, filenames, outfilename, buffer_size):
         buffers = FilesArray(self.get_file_handles(filenames, buffer_size))
-        with open(outfilename, 'w', buffer_size) as outfile:
+        with open(outfilename, "w", buffer_size) as outfile:
             while buffers.refresh():
                 min_index = self.merge_strategy.select(buffers.get_dict())
                 outfile.write(buffers.unshift(min_index))
@@ -101,10 +104,9 @@ class FileMerger(object):
         files = {}
 
         for i in range(len(filenames)):
-            files[i] = open(filenames[i], 'r', buffer_size)
+            files[i] = open(filenames[i], "r", buffer_size)
 
         return files
-
 
 
 class ExternalSort(object):
@@ -118,7 +120,7 @@ class ExternalSort(object):
 
         merger = FileMerger(NWayMerge())
         buffer_size = self.block_size / (num_blocks + 1)
-        merger.merge(splitter.get_block_filenames(), filename + '.out', buffer_size)
+        merger.merge(splitter.get_block_filenames(), filename + ".out", buffer_size)
 
         splitter.cleanup()
 
@@ -127,32 +129,29 @@ class ExternalSort(object):
 
 
 def parse_memory(string):
-    if string[-1].lower() == 'k':
+    if string[-1].lower() == "k":
         return int(string[:-1]) * 1024
-    elif string[-1].lower() == 'm':
+    elif string[-1].lower() == "m":
         return int(string[:-1]) * 1024 * 1024
-    elif string[-1].lower() == 'g':
+    elif string[-1].lower() == "g":
         return int(string[:-1]) * 1024 * 1024 * 1024
     else:
         return int(string)
 
 
-
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-m',
-                        '--mem',
-                        help='amount of memory to use for sorting',
-                        default='100M')
-    parser.add_argument('filename',
-                        metavar='<filename>',
-                        nargs=1,
-                        help='name of file to sort')
+    parser.add_argument(
+        "-m", "--mem", help="amount of memory to use for sorting", default="100M"
+    )
+    parser.add_argument(
+        "filename", metavar="<filename>", nargs=1, help="name of file to sort"
+    )
     args = parser.parse_args()
 
     sorter = ExternalSort(parse_memory(args.mem))
     sorter.sort(args.filename[0])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

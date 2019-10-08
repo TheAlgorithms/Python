@@ -57,24 +57,14 @@ def solution():
         # diagonal 1
         for i in range(17):
             for j in range(17):
-                temp = (
-                    l[i][j]
-                    * l[i + 1][j + 1]
-                    * l[i + 2][j + 2]
-                    * l[i + 3][j + 3]
-                )
+                temp = l[i][j] * l[i + 1][j + 1] * l[i + 2][j + 2] * l[i + 3][j + 3]
                 if temp > maximum:
                     maximum = temp
 
         # diagonal 2
         for i in range(17):
             for j in range(3, 20):
-                temp = (
-                    l[i][j]
-                    * l[i + 1][j - 1]
-                    * l[i + 2][j - 2]
-                    * l[i + 3][j - 3]
-                )
+                temp = l[i][j] * l[i + 1][j - 1] * l[i + 2][j - 2] * l[i + 3][j - 3]
                 if temp > maximum:
                     maximum = temp
         return maximum

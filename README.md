@@ -10,18 +10,6 @@
 
 These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
 
-## Owners
-
-Anup Kumar Panwar
-&nbsp; [[Gmail](mailto:1anuppanwar@gmail.com?Subject=The%20Algorithms%20-%20Python)
-&nbsp; [GitHub](https://github.com/anupkumarpanwar)
-&nbsp; [LinkedIn](https://www.linkedin.com/in/anupkumarpanwar/)]
-
-Chetan Kaushik
-&nbsp; [[Gmail](mailto:dynamitechetan@gmail.com?Subject=The%20Algorithms%20-%20Python)
-&nbsp; [GitHub](https://github.com/dynamitechetan)
-&nbsp; [LinkedIn](https://www.linkedin.com/in/chetankaushik/)]
-
 ## Contribution Guidelines
 
 Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.

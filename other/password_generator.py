@@ -17,7 +17,7 @@ def password_generator(length=8):
     0
     """
     chars = tuple(ascii_letters) + tuple(digits) + tuple(punctuation)
-    return ''.join(choice(chars) for x in range(length))
+    return "".join(choice(chars) for x in range(length))
 
 
 # ALTERNATIVE METHODS
@@ -42,11 +42,10 @@ def random_characters(ctbi, i):
 
 
 def main():
-    length = int(
-        input('Please indicate the max length of your password: ').strip())
-    print('Password generated:', password_generator(length))
-    print('[If you are thinking of using this passsword, You better save it.]')
+    length = int(input("Please indicate the max length of your password: ").strip())
+    print("Password generated:", password_generator(length))
+    print("[If you are thinking of using this passsword, You better save it.]")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

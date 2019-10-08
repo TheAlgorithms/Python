@@ -28,14 +28,13 @@ class FlowNetwork:
             for i in sources:
                 maxInputFlow += sum(self.graph[i])
 
-
             size = len(self.graph) + 1
             for room in self.graph:
                 room.insert(0, 0)
             self.graph.insert(0, [0] * size)
             for i in sources:
                 self.graph[0][i + 1] = maxInputFlow
-            self.sourceIndex  = 0
+            self.sourceIndex = 0
 
             size = len(self.graph) + 1
             for room in self.graph:
@@ -44,7 +43,6 @@ class FlowNetwork:
             for i in sinks:
                 self.graph[i + 1][size - 1] = maxInputFlow
             self.sinkIndex = size - 1
-
 
     def findMaximumFlow(self):
         if self.maximumFlowAlgorithm is None:
@@ -80,7 +78,6 @@ class FlowNetworkAlgorithmExecutor(object):
         pass
 
 
-
 class MaximumFlowAlgorithmExecutor(FlowNetworkAlgorithmExecutor):
     def __init__(self, flowNetwork):
         super(MaximumFlowAlgorithmExecutor, self).__init__(flowNetwork)
@@ -92,6 +89,7 @@ class MaximumFlowAlgorithmExecutor(FlowNetworkAlgorithmExecutor):
             raise Exception("You should execute algorithm before using its result!")
 
         return self.maximumFlow
+
 
 class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
     def __init__(self, flowNetwork):
@@ -112,8 +110,11 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
             self.excesses[nextVertexIndex] += bandwidth
 
         # Relabel-to-front selection rule
-        verticesList = [i for i in range(self.verticesCount)
-                        if i != self.sourceIndex and i != self.sinkIndex]
+        verticesList = [
+            i
+            for i in range(self.verticesCount)
+            if i != self.sourceIndex and i != self.sinkIndex
+        ]
 
         # move through list
         i = 0
@@ -135,15 +136,21 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
         while self.excesses[vertexIndex] > 0:
             for neighbourIndex in range(self.verticesCount):
                 # if it's neighbour and current vertex is higher
-                if self.graph[vertexIndex][neighbourIndex] - self.preflow[vertexIndex][neighbourIndex] > 0\
-                        and self.heights[vertexIndex] > self.heights[neighbourIndex]:
+                if (
+                    self.graph[vertexIndex][neighbourIndex]
+                    - self.preflow[vertexIndex][neighbourIndex]
+                    > 0
+                    and self.heights[vertexIndex] > self.heights[neighbourIndex]
+                ):
                     self.push(vertexIndex, neighbourIndex)
 
             self.relabel(vertexIndex)
 
     def push(self, fromIndex, toIndex):
-        preflowDelta = min(self.excesses[fromIndex],
-                           self.graph[fromIndex][toIndex] - self.preflow[fromIndex][toIndex])
+        preflowDelta = min(
+            self.excesses[fromIndex],
+            self.graph[fromIndex][toIndex] - self.preflow[fromIndex][toIndex],
+        )
         self.preflow[fromIndex][toIndex] += preflowDelta
         self.preflow[toIndex][fromIndex] -= preflowDelta
         self.excesses[fromIndex] -= preflowDelta
@@ -152,14 +159,18 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
     def relabel(self, vertexIndex):
         minHeight = None
         for toIndex in range(self.verticesCount):
-            if self.graph[vertexIndex][toIndex] - self.preflow[vertexIndex][toIndex] > 0:
+            if (
+                self.graph[vertexIndex][toIndex] - self.preflow[vertexIndex][toIndex]
+                > 0
+            ):
                 if minHeight is None or self.heights[toIndex] < minHeight:
                     minHeight = self.heights[toIndex]
 
         if minHeight is not None:
             self.heights[vertexIndex] = minHeight + 1
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     entrances = [0]
     exits = [3]
     # graph = [

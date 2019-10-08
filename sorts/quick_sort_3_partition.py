@@ -17,8 +17,9 @@ def quick_sort_3partition(sorting, left, right):
     quick_sort_3partition(sorting, left, a - 1)
     quick_sort_3partition(sorting, b + 1, right)
 
-if __name__ == '__main__':
-    user_input = input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [ int(item) for item in user_input.split(',') ]
-    quick_sort_3partition(unsorted,0,len(unsorted)-1)
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    quick_sort_3partition(unsorted, 0, len(unsorted) - 1)
     print(unsorted)

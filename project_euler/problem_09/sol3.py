@@ -10,6 +10,8 @@ For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
 There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product abc.
 """
+
+
 def solution():
     """
      Returns the product of a,b,c which are Pythagorean Triplet that satisfies
