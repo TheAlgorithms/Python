@@ -6,7 +6,7 @@ N = 4
 def printSolution(board): 
     for i in range(N): 
         for j in range(N): 
-            print (board[i][j], end = " ") 
+            print(board[i][j], end = " ") 
         print() 
   
 # A utility function to check if a queen can 
@@ -74,13 +74,13 @@ def solveNQUtil(board, col):
 # solutions, this function prints one of the 
 # feasible solutions. 
 def solveNQ(): 
-    board = [ [0, 0, 0, 0], 
+    board = [[0, 0, 0, 0], 
               [0, 0, 0, 0], 
               [0, 0, 0, 0], 
-              [0, 0, 0, 0] ] 
+              [0, 0, 0, 0]] 
   
     if solveNQUtil(board, 0) == False: 
-        print ("Solution does not exist") 
+        print("Solution does not exist") 
         return False
   
     printSolution(board) 
