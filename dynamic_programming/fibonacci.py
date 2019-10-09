@@ -14,8 +14,20 @@ class Fibonacci:
                 self.fib_array.append(self.fib_array[i - 1] + self.fib_array[i - 2])
         elif N == 0:
             self.fib_array.append(0)
+        print(self.fib_array)
 
     def get(self, sequence_no=None):
+        """
+        >>> Fibonacci(5).get(3)
+        [0, 1, 1, 2, 3, 5]
+        [0, 1, 1, 2]
+        >>> Fibonacci(5).get(6)
+        [0, 1, 1, 2, 3, 5]
+        Out of bound.
+        >>> Fibonacci(5).get(-1)
+        [0, 1, 1, 2, 3, 5]
+        []
+        """
         if sequence_no != None:
             if sequence_no < len(self.fib_array):
                 return print(self.fib_array[: sequence_no + 1])
@@ -46,3 +58,7 @@ if __name__ == "__main__":
                 print("\nInvalid input, please try again.")
     except NameError:
         print("\n********* Invalid input, good bye!! ************\n")
+        
+    import doctest
+
+    doctest.testmod()
