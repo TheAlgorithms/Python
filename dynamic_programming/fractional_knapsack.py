@@ -24,4 +24,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-##    print("%.0f" % fracKnapsack([60, 100, 120], [10, 20, 30], 50, 3))
