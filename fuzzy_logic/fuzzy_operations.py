@@ -1,3 +1,11 @@
+"""README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
+Requirements:
+  - skfuzzy
+  - numpy
+  - matplotlib
+Python:
+  - 3.5
+"""
 # Create universe of discourse in python using linspace ()
 import numpy as np
 X = np.linspace(start=0, stop=75, num=75, endpoint=True, retstep=False)
