@@ -5,8 +5,8 @@ def merge(a,b,m,e):
     i=0
     j=0
     while i<len(l) and j<len(r):
-        #change sign for ascending order
-        if l[i]>r[j]: 
+        #change sign for Descending order
+        if l[i]<r[j]: 
             a[k]=l[i]
             i+=1
         else:
@@ -24,6 +24,12 @@ def merge(a,b,m,e):
     return a
     
 def mergesort(a,b,e):
+    """
+    >>> mergesort([3,2,1],0,2)
+    [1, 2, 3]
+    >>> mergesort([3,2,1,0,1,2,3,5,4],0,8)
+    [0, 1, 1, 2, 2, 3, 3, 4, 5]
+    """
     if b<e:
         m = (b+e)//2
         #print("ms1",a,b,m)
@@ -34,6 +40,6 @@ def mergesort(a,b,e):
         merge(a,b,m,e)
         return a
 
-
-a=[3,2,1,0,1,2,3,5,4]
-print("Descending order",mergesort(a,0,len(a)-1))
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
