@@ -33,6 +33,6 @@ class common_words:
 			'''
 			return words_list
 		else:
-			return null
+			return 0
 	
 
