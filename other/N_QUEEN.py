@@ -66,20 +66,20 @@
    
    
    
-   >>> from nqueens import NQueens
-  >>> _ = NQueens(4)
-  . Q . .
-  . . . Q
-  Q . . .
-  . . Q .
+ #  >>> from nqueens import NQueens
+ # >>> _ = NQueens(4)
+ # . Q . .
+ # . . . Q
+ # Q . . .
+ # . . Q .
   
   
- . . Q .
- Q . . .
- . . . Q
- . Q . .
+ #. . Q .
+ #Q . . .
+ #. . . Q
+ #. Q . .
  
  
- Found 2 solutions.
- >>>
+ #Found 2 solutions.
+ #>>>
    
