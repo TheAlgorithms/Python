@@ -1,7 +1,14 @@
+"""README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
+Requirements:
+  - skfuzzy
+  - numpy
+Python:
+  - 3.5
+"""
+
 import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 import numpy as np
-import matplotlib.pyplot as plt
 
 #wash time depend on amount of dirt and grease
 dirt = ctrl.Antecedent(np.arange(0, 100, 1), 'dirt') #scale
