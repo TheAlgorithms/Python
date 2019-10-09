@@ -1,6 +1,6 @@
 """README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
 Requirements:
-  - skfuzzy
+  - scikit-fuzzy
   - numpy
 Python:
   - 3.5
