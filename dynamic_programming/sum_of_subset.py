@@ -1,5 +1,10 @@
 def isSumSubset(arr, arrLen, requiredSum):
-
+    """
+    >>> isSumSubset([2, 4, 6, 8], 4, 5)
+    False
+    >>> isSumSubset([2, 4, 6, 8], 4, 14)
+    True
+    """
     # a subset value says 1 if that subset sum can be formed else 0
     # initially no subsets can be formed hence False/0
     subset = [[False for i in range(requiredSum + 1)] for i in range(arrLen + 1)]
@@ -22,14 +27,9 @@ def isSumSubset(arr, arrLen, requiredSum):
     # uncomment to print the subset
     # for i in range(arrLen+1):
     #     print(subset[i])
+    print(subset[arrLen][requiredSum])
 
-    return subset[arrLen][requiredSum]
+if __name__ == "__main__":
+    import doctest
 
-
-arr = [2, 4, 6, 8]
-requiredSum = 5
-arrLen = len(arr)
-if isSumSubset(arr, arrLen, requiredSum):
-    print("Found a subset with required sum")
-else:
-    print("No subset with required sum")
+    doctest.testmod()
