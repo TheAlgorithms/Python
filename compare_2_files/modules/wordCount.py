@@ -13,7 +13,7 @@ class wordCount:
 		words_from_file1 = file1.read().split()
 		words_in_file1 = len(words_from_file1)
 		file1.close()
-		file2 =open("..//files//"+add_file2 , "r")
+		file2 =open(add_file2 , "r")
 		words_from_file2 = file2.read().split()
 		words_in_file2 = len(words_from_file2)
 		file2.close()
