@@ -6,7 +6,7 @@ def recur_fibo(n):
     >>> [recur_fibo(i) for i in range(12)]
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
     """
-    return n if n <= 1 else recur_fibo(n-1) + recur_fibo(n-2)
+    return n if n <= 1 else recur_fibo(n - 1) + recur_fibo(n - 2)
 
 
 def main():
