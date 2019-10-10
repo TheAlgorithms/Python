@@ -50,7 +50,7 @@ def top_sort(graph):
         if not visited[v]:
             dfs(v)
 
-
-top_sort(graph)
-print(stack)
-print_stack(stack, clothes)
+if __name__ == '__main__':
+    top_sort(graph)
+    print(stack)    
+    print_stack(stack, clothes)
