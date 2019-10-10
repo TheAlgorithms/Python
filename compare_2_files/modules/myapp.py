@@ -12,24 +12,23 @@
 	5) Fifth function returns the percentage of similarity in both files
 
 '''
-from comparision import compare
+#from comparision import compare
 def main():
-	
-	word_function = compare("file1.txt","file2.txt")
-
+	print("please remove the comments to test the example")
+	#word_function = compare("file1.txt","file2.txt")
 
 	# First Function
-	print("Number of word in both files "+str(word_function.word_count()))
+	#print("Number of word in both files "+str(word_function.word_count()))
 
 	# Second Function
-	print("All words in file 1 "+str(word_function.word_list()[1]))
+	#print("All words in file 1 "+str(word_function.word_list()[1]))
 
 	# Third Function
-	print("Common Words"+str(word_function.common_words_function()))
+	#print("Common Words"+str(word_function.common_words_function()))
 	
 	# Fouth Function
-	print("Similar words in Both files"+str(word_function.diff_list_no_common_words()))
+	#print("Similar words in Both files"+str(word_function.diff_list_no_common_words()))
 
 	# Fifth Function
-	print("percentage of similarity "+str(word_function.similarity_percentile()))
+	#print("percentage of similarity "+str(word_function.similarity_percentile()))
 main()

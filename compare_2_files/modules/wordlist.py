@@ -9,7 +9,7 @@ class wordList:
 	def words(self):
 		add_file1=self.add_file1
 		add_file2=self.add_file2
-		file1 =open("..//files//"+add_file1 , "r")
+		file1 =open(add_file1 , "r")
 		words_from_file1 = file1.read().split()
 		file1.close()
 		file2 =open("..//files//"+add_file2 , "r")

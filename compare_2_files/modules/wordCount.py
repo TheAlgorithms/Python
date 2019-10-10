@@ -9,7 +9,7 @@ class wordCount:
 	def word_Count(self):
 		add_file1=self.add_file1
 		add_file2=self.add_file2
-		file1 =open("..//files//"+add_file1 , "r")
+		file1 =open(add_file1 , "r")
 		words_from_file1 = file1.read().split()
 		words_in_file1 = len(words_from_file1)
 		file1.close()
