@@ -8,6 +8,18 @@ https://www.hackerrank.com/challenges/coin-change/problem
 
 
 def dp_count(S, m, n):
+    """
+    >>> dp_count([1, 2, 3], 3, 4)
+    4
+    >>> dp_count([1, 2, 3], 3, 7)
+    8
+    >>> dp_count([2, 5, 3, 6], 4, 10)
+    5
+    >>> dp_count([10], 1, 99)
+    0
+    >>> dp_count([4, 5, 6], 3, 0)
+    1
+    """
 
     # table[i] represents the number of ways to get to amount i
     table = [0] * (n + 1)
@@ -24,7 +36,7 @@ def dp_count(S, m, n):
 
     return table[n]
 
-
 if __name__ == "__main__":
-    print(dp_count([1, 2, 3], 3, 4))  # answer 4
-    print(dp_count([2, 5, 3, 6], 4, 10))  # answer 5
+    import doctest
+
+    doctest.testmod()
