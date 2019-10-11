@@ -58,6 +58,7 @@ class DenseLayer:
             self.activation = sigmoid
 
     def cal_gradient(self):
+        #activation function may be sigmoid or linear
         if self.activation == sigmoid:
             gradient_mat = np.dot(self.output, (1 - self.output).T)
             gradient_activation = np.diag(np.diag(gradient_mat))
@@ -93,7 +94,7 @@ class DenseLayer:
         # -----------the Negative gradient direction --------
         self.weight = self.weight - self.learn_rate * self.gradient_weight
         self.bias = self.bias - self.learn_rate * self.gradient_bias.T
-
+        #updates the weights and bias according to learning rate(0.3 if undefined)
         return self.gradient
 
 
