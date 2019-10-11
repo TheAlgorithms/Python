@@ -3,11 +3,12 @@ Greater Common Divisor.
 
 Wikipedia reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 """
+import math
 
 
 def gcd(a, b):
     """Calculate Greater Common Divisor (GCD)."""
-    return b if a == 0 else gcd(b % a, a)
+    return abs(a - b) if a == 0 or b == 0 else gcd(b % a, a)
 
 
 def main():
