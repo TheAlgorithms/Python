@@ -1,3 +1,5 @@
+#run using python fibonacci_search.py -v
+
 '''
 @params
 arr: input array
@@ -6,6 +8,15 @@ output: the index of element in the array or -1 if not found
 return 0 if input array is empty
 '''
 def fibonacci_search(arr, val):
+
+    """
+    >>> fibonacci_search([1,6,7,0,0,0], 6)
+    1
+    >>> fibonacci_search([1,-1, 5, 2, 9], 10)
+    -1
+    >>> fibonacci_search([], 9)
+    0
+    """
     fib_N_2 = 0
     fib_N_1 = 1
     fibNext = fib_N_1 + fib_N_2
@@ -33,5 +44,7 @@ def fibonacci_search(arr, val):
     if (fib_N_1 and index < length-1) and (arr[index+1] == val):
         return index+1;
     return -1
-#Testing the code
-print(fibonacci_search([1,6,7,0,0,0], 6))
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
