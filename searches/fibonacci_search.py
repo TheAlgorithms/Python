@@ -34,4 +34,4 @@ def fibonacci_search(arr, val):
         return index+1;
     return -1
 #Testing the code
-print(FibonacciSearch([1,6,7,0,0,0], 6))
+print(fibonacci_search([1,6,7,0,0,0], 6))
