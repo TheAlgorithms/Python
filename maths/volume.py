@@ -3,33 +3,31 @@ Find Volumes of Various Shapes.
 
 Wikipedia reference: https://en.wikipedia.org/wiki/Volume
 """
+from typing import Union
+from math import pi, pow
 
-from math import pi
 
-
-def vol_cube(side_length):
+def vol_cube(side_length: Union[int, float]) -> float:
     """Calculate the Volume of a Cube."""
-    # Cube side_length.
-    return float(side_length ** 3)
+    return pow(side_length, 3)
 
 
-def vol_cuboid(width, height, length):
+def vol_cuboid(width: float, height: float, length: float) -> float:
     """Calculate the Volume of a Cuboid."""
-    # Multiply lengths together.
     return float(width * height * length)
 
 
-def vol_cone(area_of_base, height):
+def vol_cone(area_of_base: float, height: float) -> float:
     """
     Calculate the Volume of a Cone.
 
     Wikipedia reference: https://en.wikipedia.org/wiki/Cone
     volume = (1/3) * area_of_base * height
     """
-    return (float(1) / 3) * area_of_base * height
+    return area_of_base * height / 3.0
 
 
-def vol_right_circ_cone(radius, height):
+def vol_right_circ_cone(radius: float, height: float) -> float:
     """
     Calculate the Volume of a Right Circular Cone.
 
@@ -37,10 +35,10 @@ def vol_right_circ_cone(radius, height):
     volume = (1/3) * pi * radius^2 * height
     """
 
-    return (float(1) / 3) * pi * (radius ** 2) * height
+    return pi * pow(radius, 2) * height / 3.0
 
 
-def vol_prism(area_of_base, height):
+def vol_prism(area_of_base: float, height: float) -> float:
     """
     Calculate the Volume of a Prism.
 
@@ -50,33 +48,33 @@ def vol_prism(area_of_base, height):
     return float(area_of_base * height)
 
 
-def vol_pyramid(area_of_base, height):
+def vol_pyramid(area_of_base: float, height: float) -> float:
     """
     Calculate the Volume of a Prism.
 
     V = (1/3) * Bh
     Wikipedia reference: https://en.wikipedia.org/wiki/Pyramid_(geometry)
     """
-    return (float(1) / 3) * area_of_base * height
+    return area_of_base * height / 3.0
 
 
-def vol_sphere(radius):
+def vol_sphere(radius: float) -> float:
     """
     Calculate the Volume of a Sphere.
 
     V = (4/3) * pi * r^3
     Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
     """
-    return (float(4) / 3) * pi * radius ** 3
+    return 4 / 3 * pi * pow(radius, 3)
 
 
-def vol_circular_cylinder(radius, height):
+def vol_circular_cylinder(radius: float, height: float) -> float:
     """Calculate the Volume of a Circular Cylinder.
 
     Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
     volume = pi * radius^2 * height
     """
-    return pi * radius ** 2 * height
+    return pi * pow(radius, 2) * height
 
 
 def main():
