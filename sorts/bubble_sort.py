@@ -24,8 +24,7 @@ def bubble_sort(collection):
     length = len(collection)
     for i in range(length - 1):
         for j in range(length - 1 - i):
-            if collection[j] > collection[j + 1]:
-                swapped = True
+            if collection[j] > collection[j + 1]
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
     return collection
 
