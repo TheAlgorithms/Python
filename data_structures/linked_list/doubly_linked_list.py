@@ -69,7 +69,7 @@ class LinkedList:  # making main class named linked list
             current = current.next
         print()
 
-
+#class link
 class Link:
     next = None  # This points to the link in front of the new link
     previous = None  # This points to the link behind the new link
