@@ -1,4 +1,4 @@
-def encrypt(input_string, key):
+def encrypt(input_string: str, key: int) -> str:
     result = ''
     for x in input_string:
         if not x.isalpha():
@@ -10,7 +10,7 @@ def encrypt(input_string, key):
     return result
 
 
-def decrypt(input_string, key):
+def decrypt(input_string: str, key: int) -> str:
     result = ''
     for x in input_string:
         if not x.isalpha():
@@ -22,7 +22,7 @@ def decrypt(input_string, key):
     return result
 
 
-def brute_force(input_string):
+def brute_force(input_string: str) -> None:
     key = 1
     result = ''
     while key <= 94:
@@ -33,7 +33,6 @@ def brute_force(input_string):
             result = result + chr(indx)
         print(f'Key: {key}\t| Message: {result}')
         result = ''
-
         key += 1
     return None
 
