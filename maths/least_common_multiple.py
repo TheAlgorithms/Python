@@ -1,10 +1,8 @@
-"""Find Least Common Multiple."""
-
-# https://en.wikipedia.org/wiki/Least_common_multiple
-
-
 def find_lcm(num_1: int, num_2: int) -> int:
     """Find the least common multiple of two numbers.
+
+       Learn more: https://en.wikipedia.org/wiki/Least_common_multiple
+
        >>> find_lcm(5,2)
        10
        >>> find_lcm(12,76)
