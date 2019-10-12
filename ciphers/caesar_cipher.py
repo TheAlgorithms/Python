@@ -1,6 +1,6 @@
-def encrypt(strng, key):
+def encrypt(input_string, key):
     encrypted = ""
-    for x in strng:
+    for x in input_string:
         indx = (ord(x) + key) % 256
         if indx > 126:
             indx = indx - 95
@@ -8,9 +8,9 @@ def encrypt(strng, key):
     return encrypted
 
 
-def decrypt(strng, key):
+def decrypt(input_string, key):
     decrypted = ""
-    for x in strng:
+    for x in input_string:
         indx = (ord(x) - key) % 256
         if indx < 32:
             indx = indx + 95
@@ -18,11 +18,11 @@ def decrypt(strng, key):
     return decrypted
 
 
-def brute_force(strng):
+def brute_force(input_string):
     key = 1
     decrypted = ""
     while key <= 94:
-        for x in strng:
+        for x in input_string:
             indx = (ord(x) - key) % 256
             if indx < 32:
                 indx = indx + 95
@@ -44,18 +44,18 @@ def main():
         if choice not in ["1", "2", "3", "4"]:
             print("Invalid choice, please enter a valid choice")
         elif choice == "1":
-            strng = input("Please enter the string to be encrypted: ")
+            input_string = input("Please enter the string to be encrypted: ")
             key = int(input("Please enter off-set between 1-94: "))
             if key in range(1, 95):
-                print(encrypt(strng.lower(), key))
+                print(encrypt(input_string.lower(), key))
         elif choice == "2":
-            strng = input("Please enter the string to be decrypted: ")
+            input_string = input("Please enter the string to be decrypted: ")
             key = int(input("Please enter off-set between 1-94: "))
             if key in range(1, 95):
-                print(decrypt(strng, key))
+                print(decrypt(input_string, key))
         elif choice == "3":
-            strng = input("Please enter the string to be decrypted: ")
-            brute_force(strng)
+            input_string = input("Please enter the string to be decrypted: ")
+            brute_force(input_string)
             main()
         elif choice == "4":
             print("Goodbye.")
