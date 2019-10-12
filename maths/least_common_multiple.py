@@ -17,7 +17,7 @@ def find_lcm(num_1, num_2):
 
     lcm = max_num
     while True:
-        if (lcm % num_1 == 0) and (lcm % num_2 == 0):
+        if all(lcm % num_1 == 0) and (lcm % num_2 == 0):
             break
         lcm += max_num
     return lcm
