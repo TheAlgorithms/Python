@@ -1,34 +1,36 @@
 def encrypt(input_string, key):
-    encrypted = ""
+    result = ""
     for x in input_string:
-        indx = (ord(x) + key) % 256
-        if indx > 126:
-            indx = indx - 95
-        encrypted = encrypted + chr(indx)
-    return encrypted
+        if not x.isalpha():
+            result += x
+        elif x.isupper():
+            result += chr((ord(x) + key - 65) % 26 + 65)
+        elif x.islower():
+            result += chr((ord(x) + key - 97) % 26 + 97)
+    return result
 
 
 def decrypt(input_string, key):
-    decrypted = ""
+    result = ""
     for x in input_string:
         indx = (ord(x) - key) % 256
-        if indx < 32:
-            indx = indx + 95
-        decrypted = decrypted + chr(indx)
-    return decrypted
+        if indx < 65:
+            indx = indx + 26
+        result = result + chr(indx)
+    return result
 
 
 def brute_force(input_string):
     key = 1
-    decrypted = ""
+    result = ""
     while key <= 94:
         for x in input_string:
             indx = (ord(x) - key) % 256
             if indx < 32:
                 indx = indx + 95
-            decrypted = decrypted + chr(indx)
-        print("Key: {}\t| Message: {}".format(key, decrypted))
-        decrypted = ""
+            result = result + chr(indx)
+        print("Key: {}\t| Message: {}".format(key, result))
+        result = ""
         key += 1
     return None
 
@@ -45,7 +47,7 @@ def main():
             print("Invalid choice, please enter a valid choice")
         elif choice == "1":
             input_string = input("Please enter the string to be encrypted: ")
-            key = int(input("Please enter off-set between 1-94: "))
+            key = int(input("Please enter off-set between 0-25: "))
             if key in range(1, 95):
                 print(encrypt(input_string.lower(), key))
         elif choice == "2":
