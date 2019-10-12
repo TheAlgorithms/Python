@@ -33,6 +33,7 @@ def brute_force(input_string):
             result = result + chr(indx)
         print(f'Key: {key}\t| Message: {result}')
         result = ''
+
         key += 1
     return None
 
