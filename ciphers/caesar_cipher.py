@@ -31,7 +31,7 @@ def brute_force(input_string):
             if indx < 32:
                 indx = indx + 95
             result = result + chr(indx)
-        print("Key: {}\t| Message: {}".format(key, result))
+        print(f"Key: {key}\t| Message: {result}")
         result = ""
         key += 1
     return None
