@@ -1,4 +1,4 @@
-def find_lcm(num_1: int, num_2: int) -> int:
+def find_lcm(first_num: int, second_num: int) -> int:
     """Find the least common multiple of two numbers.
 
        Learn more: https://en.wikipedia.org/wiki/Least_common_multiple
@@ -8,24 +8,18 @@ def find_lcm(num_1: int, num_2: int) -> int:
        >>> find_lcm(12,76)
        228
     """
-    if num_1 >= num_2:
-        max_num = num_1
-    else:
-        max_num = num_2
-
-    lcm = max_num
-    while True:
-        if (lcm % num_1 == 0) and (lcm % num_2 == 0):
-            break
-        lcm += max_num
-    return lcm
+    max_num = first_num if first_num >= second_num else second_num
+    common_mult = max_num
+    while (common_mult % first_num != 0) and (common_mult % second_num != 0):
+        common_mult += max_num
+    return common_mult
 
 
 def main():
     """Use test numbers to run the find_lcm algorithm."""
-    num_1 = int(input().strip())
-    num_2 = int(input().strip())
-    print(find_lcm(num_1, num_2))
+    first_num = int(input().strip())
+    second_num = int(input().strip())
+    print(find_lcm(first_num, second_num))
 
 
 if __name__ == "__main__":
