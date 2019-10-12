@@ -1,5 +1,5 @@
 def encrypt(input_string, key):
-    result = ""
+    result = ''
     for x in input_string:
         if not x.isalpha():
             result += x
@@ -11,7 +11,7 @@ def encrypt(input_string, key):
 
 
 def decrypt(input_string, key):
-    result = ""
+    result = ''
     for x in input_string:
         if not x.isalpha():
             result += x
@@ -24,26 +24,23 @@ def decrypt(input_string, key):
 
 def brute_force(input_string):
     key = 1
-    result = ""
+    result = ''
     while key <= 94:
         for x in input_string:
             indx = (ord(x) - key) % 256
             if indx < 32:
                 indx = indx + 95
             result = result + chr(indx)
-        print(f"Key: {key}\t| Message: {result}")
-        result = ""
+        print(f'Key: {key}\t| Message: {result}')
+        result = ''
         key += 1
     return None
 
 
 def main():
     while True:
-        print("-" * 10 + "\n**Menu**\n" + "-" * 10)
-        print("1.Encrpyt")
-        print("2.Decrypt")
-        print("3.BruteForce")
-        print("4.Quit")
+        print(f'{"-" * 10}\n Menu\n{"-", * 10}')
+        print(*["1.Encrpyt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep='\n')
         choice = input("What would you like to do?: ")
         if choice not in ["1", "2", "3", "4"]:
             print("Invalid choice, please enter a valid choice")
