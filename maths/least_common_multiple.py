@@ -3,7 +3,7 @@
 # https://en.wikipedia.org/wiki/Least_common_multiple
 
 
-def find_lcm(num_1, num_2):
+def find_lcm(num_1: int, num_2: int) -> int:
     """Find the least common multiple of two numbers.
        >>> find_lcm(5,2)
        10
@@ -17,7 +17,7 @@ def find_lcm(num_1, num_2):
 
     lcm = max_num
     while True:
-        if all(lcm % num_1 == 0) and (lcm % num_2 == 0):
+        if (lcm % num_1 == 0) and (lcm % num_2 == 0):
             break
         lcm += max_num
     return lcm
