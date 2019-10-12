@@ -13,10 +13,12 @@ def encrypt(input_string, key):
 def decrypt(input_string, key):
     result = ""
     for x in input_string:
-        indx = (ord(x) - key) % 256
-        if indx < 65:
-            indx = indx + 26
-        result = result + chr(indx)
+        if not x.isalpha():
+            result += x
+        elif x.isupper():
+            result += chr((ord(x) - key - 65) % 26 + 65)
+        elif x.islower():
+            result += chr((ord(x) - key - 97) % 26 + 97)
     return result
 
 
