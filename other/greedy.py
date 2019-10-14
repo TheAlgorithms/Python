@@ -1,11 +1,14 @@
-class things(object):
-    def ___init__(self, n, v, w):
+class things:
+    def __init__(self, n, v, w):
         self.name=n
         self.value=v
         self.weight=w
 
     def get_value(self):
         return self.value
+    
+    def get_name(self):
+        return self.name
 
     def get_weight(self):
         return self.weight
@@ -27,14 +30,16 @@ def greedy(item,maxCost,keyFunc):
         if (total_cost+itemsCopy[i].get_weight()) <= maxCost:
             result.append(itemsCopy[i])
             total_cost+=itemsCopy[i].get_weight()
-            totalValue+=itemsCopy.get_value()
+            totalValue+=itemsCopy[i].get_value()
     return (result,totalValue)
 
 
-def testgreedy(foods,max):
-    greedy(foods,max,things.get_value)
-food=['Burger','Pizza','CocaCola','Rice','Sambhar','Chicken','Fries','Milk']
-value=[80,100,90,70,50,110,90,60]
+def testgreedy(max):
+    result,totalValue=greedy(foods,max,things.get_value)
+    for i in range(len(result)):
+        print(result[i].get_name(),result[i].get_value())
+food=['Burger','Pizza','Coca Cola','Rice','Sambhar','Chicken','Fries','Milk']
+value=[80,100,60,70,50,110,90,60]
 weight=[40,60,40,70,100,85,55,70]
 foods=build_menu(food,value,weight)
-testgreedy(800)
+testgreedy(500)
