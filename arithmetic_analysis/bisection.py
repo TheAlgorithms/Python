@@ -1,6 +1,5 @@
 import math
 
-
 def bisection(
     function, a, b
 ):  # finds where the function becomes 0 in [a,b] using bolzano
@@ -36,3 +35,7 @@ def f(x):
 
 if __name__ == "__main__":
     print(bisection(f, 1, 1000))
+
+def addition(variable1,variable2):
+    value = variable1+variable2
+    
