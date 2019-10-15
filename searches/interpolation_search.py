@@ -124,7 +124,7 @@ if __name__ == "__main__":
     target = int(target_input)
 	"""
 
-    debug = 0
+    debug = 1
     if debug == 1:
         collection = [10, 30, 40, 45, 50, 66, 77, 93]
         try:
