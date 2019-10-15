@@ -65,12 +65,7 @@ class FFT:
 
         # Add 0 to make lengths equal a power of 2
         self.C_max_length = int(
-            2
-            ** np.ceil(
-                np.log2(
-                    len(self.polyA) + len(self.polyB) - 1
-                )
-            )
+            2 ** np.ceil(np.log2(len(self.polyA) + len(self.polyB) - 1))
         )
 
         while len(self.polyA) < self.C_max_length:
@@ -78,9 +73,7 @@ class FFT:
         while len(self.polyB) < self.C_max_length:
             self.polyB.append(0)
         # A complex root used for the fourier transform
-        self.root = complex(
-            mpmath.root(x=1, n=self.C_max_length, k=1)
-        )
+        self.root = complex(mpmath.root(x=1, n=self.C_max_length, k=1))
 
         # The product
         self.product = self.__multiply()
@@ -102,27 +95,15 @@ class FFT:
 
             # First half of next step
             current_root = 1
-            for j in range(
-                self.C_max_length // (next_ncol * 2)
-            ):
+            for j in range(self.C_max_length // (next_ncol * 2)):
                 for i in range(next_ncol):
-                    new_dft[i].append(
-                        dft[i][j]
-                        + current_root
-                        * dft[i + next_ncol][j]
-                    )
+                    new_dft[i].append(dft[i][j] + current_root * dft[i + next_ncol][j])
                 current_root *= root
             # Second half of next step
             current_root = 1
-            for j in range(
-                self.C_max_length // (next_ncol * 2)
-            ):
+            for j in range(self.C_max_length // (next_ncol * 2)):
                 for i in range(next_ncol):
-                    new_dft[i].append(
-                        dft[i][j]
-                        - current_root
-                        * dft[i + next_ncol][j]
-                    )
+                    new_dft[i].append(dft[i][j] - current_root * dft[i + next_ncol][j])
                 current_root *= root
             # Update
             dft = new_dft
@@ -133,12 +114,7 @@ class FFT:
     def __multiply(self):
         dftA = self.__DFT("A")
         dftB = self.__DFT("B")
-        inverseC = [
-            [
-                dftA[i] * dftB[i]
-                for i in range(self.C_max_length)
-            ]
-        ]
+        inverseC = [[dftA[i] * dftB[i] for i in range(self.C_max_length)]]
         del dftA
         del dftB
 
@@ -158,11 +134,7 @@ class FFT:
                     new_inverseC[i].append(
                         (
                             inverseC[i][j]
-                            + inverseC[i][
-                                j
-                                + self.C_max_length
-                                // next_ncol
-                            ]
+                            + inverseC[i][j + self.C_max_length // next_ncol]
                         )
                         / 2
                     )
@@ -170,11 +142,7 @@ class FFT:
                     new_inverseC[i + next_ncol // 2].append(
                         (
                             inverseC[i][j]
-                            - inverseC[i][
-                                j
-                                + self.C_max_length
-                                // next_ncol
-                            ]
+                            - inverseC[i][j + self.C_max_length // next_ncol]
                         )
                         / (2 * current_root)
                     )
@@ -183,10 +151,7 @@ class FFT:
             inverseC = new_inverseC
             next_ncol *= 2
         # Unpack
-        inverseC = [
-            round(x[0].real, 8) + round(x[0].imag, 8) * 1j
-            for x in inverseC
-        ]
+        inverseC = [round(x[0].real, 8) + round(x[0].imag, 8) * 1j for x in inverseC]
 
         # Remove leading 0's
         while inverseC[-1] == 0:
@@ -196,20 +161,13 @@ class FFT:
     # Overwrite __str__ for print(); Shows A, B and A*B
     def __str__(self):
         A = "A = " + " + ".join(
-            f"{coef}*x^{i}"
-            for coef, i in enumerate(
-                self.polyA[: self.len_A]
-            )
+            f"{coef}*x^{i}" for coef, i in enumerate(self.polyA[: self.len_A])
         )
         B = "B = " + " + ".join(
-            f"{coef}*x^{i}"
-            for coef, i in enumerate(
-                self.polyB[: self.len_B]
-            )
+            f"{coef}*x^{i}" for coef, i in enumerate(self.polyB[: self.len_B])
         )
         C = "A*B = " + " + ".join(
-            f"{coef}*x^{i}"
-            for coef, i in enumerate(self.product)
+            f"{coef}*x^{i}" for coef, i in enumerate(self.product)
         )
 
         return "\n".join((A, B, C))

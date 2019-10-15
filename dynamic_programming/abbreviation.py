@@ -11,8 +11,13 @@ a=daBcd and b="ABC"
 daBcd -> capitalize a and c(dABCd) -> remove d (ABC)
 """
 
-
 def abbr(a, b):
+    """
+    >>> abbr("daBcd", "ABC")
+    True
+    >>> abbr("dBcd", "ABC")
+    False
+    """
     n = len(a)
     m = len(b)
     dp = [[False for _ in range(m + 1)] for _ in range(n + 1)]
@@ -28,4 +33,7 @@ def abbr(a, b):
 
 
 if __name__ == "__main__":
-    print(abbr("daBcd", "ABC"))  # expect True
+    # print(abbr("daBcd", "ABC"))  # expect True
+    import doctest
+
+    doctest.testmod()

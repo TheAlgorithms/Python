@@ -266,6 +266,7 @@ def prompt(s: str = "", width=50, char="*") -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print(prompt("Binary Tree Traversals"))
 

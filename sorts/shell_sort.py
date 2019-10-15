@@ -9,6 +9,8 @@ python3 -m doctest -v shell_sort.py
 For manual testing run:
 python shell_sort.py
 """
+
+
 def shell_sort(collection):
     """Pure implementation of shell sort algorithm in Python
     :param collection:  Some mutable ordered collection with heterogeneous
@@ -40,7 +42,8 @@ def shell_sort(collection):
 
     return collection
 
-if __name__ == '__main__':
-    user_input = input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
     print(shell_sort(unsorted))

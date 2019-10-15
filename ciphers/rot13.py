@@ -1,17 +1,17 @@
 def dencrypt(s, n):
-    out = ''
+    out = ""
     for c in s:
-        if c >= 'A' and c <= 'Z':
-            out += chr(ord('A') + (ord(c) - ord('A') + n) % 26)
-        elif c >= 'a' and c <= 'z':
-            out += chr(ord('a') + (ord(c) - ord('a') + n) % 26)
+        if c >= "A" and c <= "Z":
+            out += chr(ord("A") + (ord(c) - ord("A") + n) % 26)
+        elif c >= "a" and c <= "z":
+            out += chr(ord("a") + (ord(c) - ord("a") + n) % 26)
         else:
             out += c
     return out
 
 
 def main():
-    s0 = 'HELLO'
+    s0 = "HELLO"
 
     s1 = dencrypt(s0, 13)
     print(s1)  # URYYB
@@ -20,5 +20,5 @@ def main():
     print(s2)  # HELLO
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

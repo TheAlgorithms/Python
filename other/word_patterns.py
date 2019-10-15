@@ -1,5 +1,6 @@
 import pprint, time
 
+
 def getWordPattern(word):
     word = word.upper()
     nextNum = 0
@@ -11,14 +12,15 @@ def getWordPattern(word):
             letterNums[letter] = str(nextNum)
             nextNum += 1
         wordPattern.append(letterNums[letter])
-    return '.'.join(wordPattern)
+    return ".".join(wordPattern)
+
 
 def main():
     startTime = time.time()
     allPatterns = {}
 
-    with open('Dictionary.txt') as fo:
-        wordList = fo.read().split('\n')
+    with open("Dictionary.txt") as fo:
+        wordList = fo.read().split("\n")
 
     for word in wordList:
         pattern = getWordPattern(word)
@@ -28,11 +30,12 @@ def main():
         else:
             allPatterns[pattern].append(word)
 
-    with open('Word Patterns.txt', 'w') as fo:
+    with open("Word Patterns.txt", "w") as fo:
         fo.write(pprint.pformat(allPatterns))
 
     totalTime = round(time.time() - startTime, 2)
-    print(('Done! [', totalTime, 'seconds ]'))
+    print(("Done! [", totalTime, "seconds ]"))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

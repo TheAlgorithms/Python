@@ -7,16 +7,18 @@ wikipedia/Fischer-Yates-Shuffle.
 """
 import random
 
+
 def FYshuffle(LIST):
     for i in range(len(LIST)):
-        a = random.randint(0, len(LIST)-1)
-        b = random.randint(0, len(LIST)-1)
+        a = random.randint(0, len(LIST) - 1)
+        b = random.randint(0, len(LIST) - 1)
         LIST[a], LIST[b] = LIST[b], LIST[a]
     return LIST
 
-if __name__ == '__main__':
-    integers = [0,1,2,3,4,5,6,7]
-    strings = ['python', 'says', 'hello', '!']
-    print('Fisher-Yates Shuffle:')
-    print('List',integers, strings)
-    print('FY Shuffle',FYshuffle(integers), FYshuffle(strings))
+
+if __name__ == "__main__":
+    integers = [0, 1, 2, 3, 4, 5, 6, 7]
+    strings = ["python", "says", "hello", "!"]
+    print("Fisher-Yates Shuffle:")
+    print("List", integers, strings)
+    print("FY Shuffle", FYshuffle(integers), FYshuffle(strings))

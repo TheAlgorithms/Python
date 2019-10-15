@@ -141,15 +141,10 @@ def reverse_bwt(bwt_string: str, idx_original_string: int) -> str:
             )
         )
     if idx_original_string < 0:
-        raise ValueError(
-            "The parameter idx_original_string must not be lower than 0."
-        )
+        raise ValueError("The parameter idx_original_string must not be lower than 0.")
     if idx_original_string >= len(bwt_string):
         raise ValueError(
-            (
-                "The parameter idx_original_string must be lower than"
-                " len(bwt_string)."
-            )
+            ("The parameter idx_original_string must be lower than" " len(bwt_string).")
         )
 
     ordered_rotations = [""] * len(bwt_string)
@@ -166,9 +161,7 @@ if __name__ == "__main__":
     result = bwt_transform(s)
     bwt_output_msg = "Burrows Wheeler tranform for string '{}' results in '{}'"
     print(bwt_output_msg.format(s, result["bwt_string"]))
-    original_string = reverse_bwt(
-        result["bwt_string"], result["idx_original_string"]
-    )
+    original_string = reverse_bwt(result["bwt_string"], result["idx_original_string"])
     fmt = (
         "Reversing Burrows Wheeler tranform for entry '{}' we get original"
         " string '{}'"
