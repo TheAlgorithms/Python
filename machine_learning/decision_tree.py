@@ -15,6 +15,7 @@ class Decision_Tree:
         self.min_leaf_size = min_leaf_size
         self.prediction = None
 
+    @staticmethod
     def mean_squared_error(self, labels, prediction):
         """
         mean_squared_error:
@@ -116,6 +117,41 @@ class Decision_Tree:
         else:
             print("Error: Decision tree not yet trained")
             return None
+
+class Test_Decision_Tree:
+    """Decision Tres test class
+    To execute
+            pip install pytest
+            pytest decision_tree.py
+    If all test functions are passed a success message shall be displayed
+    
+    """
+
+    @staticmethod
+    def helper_mean_squared_error_test(labels, prediction):
+        """
+        helper_mean_squared_error_test:
+        @param labels: a one dimensional numpy array
+        @param prediction: a floating point value
+        return value: helper_mean_squared_error_test calculates the mean squared error 
+        """
+        squared_error_sum = np.float(0)
+        for label in labels:
+            squared_error_sum += ((label-prediction) ** 2)
+
+        return np.float(squared_error_sum/labels.size)
+         
+    
+    def test_one_mean_sqaurred_error(self):
+        """
+        test_one_mean_squared_error:
+        return value: test_one_mean_squared_error verifies the mean_squared_error function value for the given test case 
+        """       
+        test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
+        test_prediction = np.float(6)
+        assert Decision_Tree.mean_squared_error(self,test_labels,test_prediction) == Test_Decision_Tree.helper_mean_squared_error_test(test_labels,test_prediction)
+    
+    
 
 
 def main():
