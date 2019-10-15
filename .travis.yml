@@ -1,6 +1,5 @@
 language: python
-dist: xenial  # required for Python >= 3.7
-python: 3.7
+python: 3.8
 cache: pip
 before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
