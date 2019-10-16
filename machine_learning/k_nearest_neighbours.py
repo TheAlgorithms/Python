@@ -8,7 +8,7 @@ data = datasets.load_iris()
 X = np.array(data['data'])
 y = np.array(data['target'])
 classes = data['target_names']
-
+#spliting the data set
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 
 def euclidean_distance(a, b):
