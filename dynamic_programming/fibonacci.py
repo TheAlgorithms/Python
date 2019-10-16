@@ -5,15 +5,15 @@ This is a pure Python implementation of Dynamic Programming solution to the fibo
 
 class Fibonacci:
     def __init__(self, N=None):
-        self.fib_array = []
+        self.fib_array = [0,1]
         if N:
             N = int(N)
-            self.fib_array.append(0)
-            self.fib_array.append(1)
             for i in range(2, N + 1):
                 self.fib_array.append(self.fib_array[i - 1] + self.fib_array[i - 2])
         elif N == 0:
-            self.fib_array.append(0)
+            self.fib_array = [0]
+        else:
+        	self.fib_array = []
         print(self.fib_array)
 
     def get(self, sequence_no=None):
