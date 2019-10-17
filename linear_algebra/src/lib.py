@@ -251,7 +251,7 @@ class Matrix(object):
         """
             changes the x-y component of this matrix
         """
-        if x >= 0 and x < self.__height and y >= 0 and y < self.__width:
+        if 0 <= x < self.__height and 0 <= y < self.__width:
             self.__matrix[x][y] = value
         else:
             raise Exception("changeComponent: indices out of bounds")
@@ -260,7 +260,7 @@ class Matrix(object):
         """
             returns the specified (x,y) component
         """
-        if x >= 0 and x < self.__height and y >= 0 and y < self.__width:
+        if 0 <= x < self.__height and 0 <= y < self.__width:
             return self.__matrix[x][y]
         else:
             raise Exception("changeComponent: indices out of bounds")
