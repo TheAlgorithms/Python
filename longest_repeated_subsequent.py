@@ -1,4 +1,4 @@
-Longest Repeated Subsequence
+"""Longest Repeated Subsequence
 Given a string, print the longest repeating subsequence such that the two subsequence don’t have same string character at same position, 
 i.e., any i’th character in the two subsequences shouldn’t have the same index in the original string.
 
@@ -19,7 +19,7 @@ is the input string with the restriction that when both the characters are same,
 they shouldn’t be on the same index in the two strings.
 
 
-PROGRAM:
+PROGRAM:"""
 
 def findLongestRepeatingSubSeq(str): 
     n = len(str) 
@@ -41,4 +41,4 @@ def findLongestRepeatingSubSeq(str):
     return dp[n][n] 
   
 
-Time Complexity: O(n^2)
+#Time Complexity: O(n^2)
