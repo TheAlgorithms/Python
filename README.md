@@ -1,4 +1,4 @@
-# The Algorithms - Python <!-- [![Build Status](https://travis-ci.org/TheAlgorithms/Python.svg)](https://travis-ci.org/TheAlgorithms/Python) -->
+# The Algorithms - Python
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=flat-square)](https://www.paypal.me/TheAlgorithms/100)&nbsp;
 [![Build Status](https://img.shields.io/travis/TheAlgorithms/Python.svg?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.com/TheAlgorithms/Python)&nbsp;
 [![LGTM](https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg?label=LGTM&logo=LGTM&style=flat-square)](https://lgtm.com/projects/g/TheAlgorithms/Python/alerts)&nbsp;
