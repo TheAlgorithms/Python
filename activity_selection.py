@@ -9,7 +9,7 @@ single person, one at a time"""
   
 def printMaxActivities(s, f ): 
     n = len(f) 
-    print(The following activities are selected)
+    print("The following activities are selected")
   
     # The first activity is always selected 
     i = 0
