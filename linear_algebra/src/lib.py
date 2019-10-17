@@ -27,7 +27,7 @@ import random
 
 class Vector(object):
     """
-        This class represents a vector of arbitray size.
+        This class represents a vector of arbitrary size.
         You need to give the vector components. 
         
         Overview about the methods:
@@ -114,7 +114,7 @@ class Vector(object):
         """
             input: other vector
             assumes: other vector has the same size
-            returns a new vector that represents the differenz.
+            returns a new vector that represents the difference.
         """
         size = len(self)
         if size == len(other):
@@ -138,7 +138,7 @@ class Vector(object):
                 summe += self.__components[i] * other.component(i)
             return summe
         else:  # error case
-            raise Exception("invalide operand!")
+            raise Exception("invalid operand!")
 
     def copy(self):
         """
@@ -225,7 +225,7 @@ class Matrix(object):
 
     def __init__(self, matrix, w, h):
         """
-            simple constructor for initialzes 
+            simple constructor for initialize
             the matrix with components.
         """
         self.__matrix = matrix
