@@ -46,11 +46,13 @@ class Vector(object):
         TODO: compare-operator
     """
 
-    def __init__(self, components=[]):
+    def __init__(self, components=None):
         """
             input: components or nothing
             simple constructor for init the vector
         """
+        if components is None:
+            components = []
         self.__components = list(components)
 
     def set(self, components):
