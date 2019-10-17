@@ -225,7 +225,7 @@ class Matrix(object):
 
     def __init__(self, matrix, w, h):
         """
-            simple constructor for initialize
+            simple constructor for initializing
             the matrix with components.
         """
         self.__matrix = matrix
