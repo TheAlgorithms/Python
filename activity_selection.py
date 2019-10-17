@@ -9,11 +9,11 @@ single person, one at a time"""
   
 def printMaxActivities(s, f ): 
     n = len(f) 
-    print "The following activities are selected"
+    print(The following activities are selected)
   
     # The first activity is always selected 
     i = 0
-    print i, 
+    print(i),
   
     # Consider rest of the activities 
     for j in xrange(n): 
@@ -22,7 +22,7 @@ def printMaxActivities(s, f ):
         # or equal to the finish time of previously 
         # selected activity, then select it 
         if s[j] >= f[i]: 
-            print j, 
+            print(j)
             i = j 
   
 # Driver program to test above function 
