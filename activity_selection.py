@@ -16,7 +16,7 @@ def printMaxActivities(s, f ):
     print(i),
   
     # Consider rest of the activities 
-    for j in xrange(n): 
+    for j in range(n): 
   
         # If this activity has start time greater than 
         # or equal to the finish time of previously 
