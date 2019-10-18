@@ -15,13 +15,20 @@ class Decision_Tree:
         self.min_leaf_size = min_leaf_size
         self.prediction = None
 
-    @staticmethod
     def mean_squared_error(self, labels, prediction):
         """
         mean_squared_error:
         @param labels: a one dimensional numpy array
         @param prediction: a floating point value
         return value: mean_squared_error calculates the error if prediction is used to estimate the labels
+        >>> tester = Decision_Tree()
+        >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
+        >>> test_prediction = np.float(6)
+        >>> assert tester.mean_squared_error(test_labels, test_prediction) == Test_Decision_Tree.helper_mean_squared_error_test(test_labels, test_prediction)
+        >>> test_labels = np.array([1,2,3])
+        >>> test_prediction = np.float(2)
+        >>> assert tester.mean_squared_error(test_labels, test_prediction) == Test_Decision_Tree.helper_mean_squared_error_test(test_labels, test_prediction)
+
         """
         if labels.ndim != 1:
             print("Error: Input labels must be one dimensional")
@@ -120,11 +127,6 @@ class Decision_Tree:
 
 class Test_Decision_Tree:
     """Decision Tres test class
-    To execute
-            pip install pytest
-            pytest decision_tree.py
-    If all test functions are passed a success message shall be displayed
-    
     """
 
     @staticmethod
@@ -140,16 +142,7 @@ class Test_Decision_Tree:
             squared_error_sum += ((label-prediction) ** 2)
 
         return np.float(squared_error_sum/labels.size)
-         
     
-    def test_one_mean_sqaurred_error(self):
-        """
-        test_one_mean_squared_error:
-        return value: test_one_mean_squared_error verifies the mean_squared_error function value for the given test case 
-        """       
-        test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
-        test_prediction = np.float(6)
-        assert Decision_Tree.mean_squared_error(self,test_labels,test_prediction) == Test_Decision_Tree.helper_mean_squared_error_test(test_labels,test_prediction)
     
     
 
@@ -177,3 +170,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    import doctest
+
+    doctest.testmod(name="mean_squarred_error", verbose=True)
