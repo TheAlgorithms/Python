@@ -1,3 +1,4 @@
+beautifulsoup4
 black
 flake8
 matplotlib
