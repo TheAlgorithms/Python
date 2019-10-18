@@ -3,7 +3,7 @@ def printNGE(arr):
     Function to print element and Next Greatest Element (NGE) pair for all elements of list
     NGE - Maximum element present afterwards the current one which is also greater than current one
     >>> printNGE([11,13,21,3])
-    11 -- 21
+    11 -- 13
     13 -- 21 
     21 -- -1
     3 -- -1
