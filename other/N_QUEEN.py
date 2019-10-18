@@ -1,11 +1,11 @@
 """The n queens puzzle"""
-  class NQueens:
-      """Generate all valid solutions for the n queens puzzle"""
-      def __init__(self, size):
-          # Store the puzzle (problem) size and the number of valid solutions
-          self.size = size
-          self.solutions = 0
-          self.solve()
+class NQueens:
+"""Generate all valid solutions for the n queens puzzle"""
+   def __init__(self, size):
+      # Store the puzzle (problem) size and the number of valid solutions
+       self.size = size
+       self.solutions = 0
+       self.solve()
   
      def solve(self):
          """Solve the n queens puzzle and print the number of solutions"""
@@ -56,7 +56,7 @@
              print(line)
             print("\n")
 
- def main():
+def main():
 """Initialize and solve the n queens puzzle"""
  NQueens(8)
 
