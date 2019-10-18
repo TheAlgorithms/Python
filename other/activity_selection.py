@@ -29,7 +29,7 @@ def printMaxActivities(start, finish):
         # or equal to the finish time of previously 
         # selected activity, then select it 
         if start[j] >= finish[i]: 
-            print(j)
+            print(j, end=" ")
             i = j 
   
 # Driver program to test above function 
