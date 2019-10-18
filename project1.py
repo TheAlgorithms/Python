@@ -3,7 +3,7 @@ import requests
 #from urllib.request import urlopen
 import webbrowser
 import sys
-from fake_useragent import UserAgent
+from fake_useragent import UserAgent  #This is needed for intialazing the User agent of the system otherwise it act like bot
 ua = {"UserAgent":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0"}
 print("Googling.....")
 res=requests.get('https://www.google.com/search?q='+ ' '.join(sys.argv[1:]),headers=ua)
