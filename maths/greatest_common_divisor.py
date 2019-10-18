@@ -2,10 +2,7 @@
 Greatest Common Divisor.
 
 Wikipedia reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
-"""
-
-
-    
+"""  
     
 def gcd(a, b):
     """Calculate Greatest Common Divisor (GCD)."""
@@ -13,7 +10,7 @@ def gcd(a, b):
 
 
 """
-This method is more efficient.
+Below method is more efficient.
 This method is not acquire more memory cause is no use of any stacks(chunk of a memory space).
 while above method is good one but acquire more memory for huge number because of more recursive call. 
  
@@ -23,7 +20,6 @@ def gcd_by_iterative(x,y):
         x,y=y,x%y
     """Now return final answer that is GCD"""	
     return x
-
 
 def main():
     """Call GCD Function."""
@@ -37,8 +33,7 @@ def main():
        
     except (IndexError, UnboundLocalError, ValueError):
         print("Wrong Input")
-
-    
+        
 if __name__ == "__main__":
     main()
     
