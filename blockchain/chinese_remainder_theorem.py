@@ -44,7 +44,7 @@ def chinese_remainder_theorem(n1, r1, n2, r2):
     (x, y) = extended_euclid(n1, n2)
     m = n1 * n2
     n = r2 * x * n1 + r1 * y * n2
-    return ((n % m + m) % m)
+    return (n % m + m) % m
 
 
 # ----------SAME SOLUTION USING InvertModulo instead ExtendedEuclid----------------
@@ -84,8 +84,8 @@ def chinese_remainder_theorem2(n1, r1, n2, r2):
 # import testmod for testing our function
 from doctest import testmod
 
-if __name__ == '__main__':
-    testmod(name='chinese_remainder_theorem', verbose=True)
-    testmod(name='chinese_remainder_theorem2', verbose=True)
-    testmod(name='invert_modulo', verbose=True)
-    testmod(name='extended_euclid', verbose=True)
+if __name__ == "__main__":
+    testmod(name="chinese_remainder_theorem", verbose=True)
+    testmod(name="chinese_remainder_theorem2", verbose=True)
+    testmod(name="invert_modulo", verbose=True)
+    testmod(name="extended_euclid", verbose=True)

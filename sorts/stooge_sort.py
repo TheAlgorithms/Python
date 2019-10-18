@@ -33,6 +33,7 @@ def stooge(arr, i, h):
         # Recursively sort first 2/3 elements
         stooge(arr, i, (h - t))
 
+
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
