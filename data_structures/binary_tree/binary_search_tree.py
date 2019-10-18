@@ -60,11 +60,11 @@ class BinarySearchTree:
         Insert a new node in Binary Search Tree with value label
         """
         new_node = Node(value, None)    # Create a new Node
-        if self.empty():    # If Tree is empty
-            self.root = new_node    # 则作为根节点 set its root
-        else:   # If Tree is not empty
-            parent_node = self.root # from root
-            while True: # While we don't get to a leaf
+        if self.empty():    #  If Tree is empty
+            self.root = new_node    #  set its root
+        else:   #  If Tree is not empty
+            parent_node = self.root #  from root
+            while True: #  While we don't get to a leaf
                 if value < parent_node.value:   # We go left
                     if parent_node.left == None:
                         parent_node.left = new_node # We insert the new node in a leaf
@@ -86,10 +86,10 @@ class BinarySearchTree:
 
     def search(self, value):
         if self.empty():
-            raise IndexError("Warning: Tree is empty! please use another. ")  # Warning: Tree is empty! please use another.
+            raise IndexError(" Warning: Tree is empty! please use another. ")
         else:
             node = self.root
-            while node is not None and node.value is not value:    # Using lazy evaluation here to avoid NoneType Attribute error
+            while node is not None and node.value is not value:    #  using lazy evaluation here to avoid NoneType Attribute error
                 if value < node.value:
                     node = node.left
                 else:
@@ -130,13 +130,13 @@ class BinarySearchTree:
             elif(node.right is None):   # Has only left children
                 self.__reassign_nodes(node, node.left)
             else:
-                tmpNode = self.get_max(node.left)   # Gets the max value of the left branch
+                tmpNode = self.get_max(node.left)   #  Gets the max value of the left branch
                 self.remove(tmpNode.value)
-                node.value = tmpNode.value  # Assigns the value to the node to delete and keesp tree structure
+                node.value = tmpNode.value  #  Assigns the value to the node to delete and keesp tree structure
         
     def preorder_traverse(self, node):
         if node is not None:
-            yield node    # Preorder Traversal
+            yield node    # 先根遍历 Preorder Traversal
             yield from self.preorder_traverse(node.left)
             yield from self.preorder_traverse(node.right)
 
