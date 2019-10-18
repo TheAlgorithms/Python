@@ -8,7 +8,7 @@ single person, one at a time"""
 # finish[] --> An array that contains finish time of all activities 
   
 def printMaxActivities(start, finish): 
-    n = len(f) 
+    n = len(finish) 
     print("The following activities are selected")
   
     # The first activity is always selected 
