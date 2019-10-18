@@ -37,7 +37,7 @@ class Vector(object):
         __str__() : toString method
         component(i : int): gets the i-th component (start by 0)
         __len__() : gets the size of the vector (number of components)
-        euclidLength() : returns the eulidean length of the vector.
+        euclidLength() : returns the euclidean length of the vector.
         operator + : vector addition
         operator - : vector subtraction
         operator * : scalar multiplication and dot product
@@ -88,9 +88,9 @@ class Vector(object):
         """
         return len(self.__components)
 
-    def eulidLength(self):
+    def euclidLength(self):
         """
-            returns the eulidean length of the vector
+            returns the euclidean length of the vector
         """
         summe = 0
         for c in self.__components:
