@@ -12,7 +12,7 @@ res = requests.get(url, headers={"UserAgent": UserAgent().random})
 with open("project1a.html", "wb") as out_file:  # only for knowing the class
     for data in res.iter_content(10000):
         out_file.write(data)
-soup = BeautifulSoup(res.text, "lxml")
+soup = BeautifulSoup(res.text, "html.parser")
 links = list(soup.select(".eZt8xd"))[:5]
 
 print(len(links))
