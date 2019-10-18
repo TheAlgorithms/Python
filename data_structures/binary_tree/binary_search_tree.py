@@ -86,7 +86,7 @@ class BinarySearchTree:
 
     def search(self, value):
         if self.empty():
-            raise IndexError(" Warning: Tree is empty! please use another. ")
+            raise IndexError("Warning: Tree is empty! please use another. ")
         else:
             node = self.root
             while node is not None and node.value is not value:    #  using lazy evaluation here to avoid NoneType Attribute error
