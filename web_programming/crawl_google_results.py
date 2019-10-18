@@ -17,4 +17,4 @@ links = list(soup.select(".eZt8xd"))[:5]
 
 print(len(links))
 for link in links:
-    webbrowser.open(f"http://google.com{links.get('href')}")
+    webbrowser.open(f"http://google.com{link.get('href')}")
