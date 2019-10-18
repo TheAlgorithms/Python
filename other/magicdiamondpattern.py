@@ -41,8 +41,8 @@ def pretty_print(n):
 
 
 if __name__ == "__main__":
-	print("| /\ | |- |  |-  |--| |\  /| |-")
-	print("|/  \| |- |_ |_  |__| | \/ | |_")
+	print(r"| /\ | |- |  |-  |--| |\  /| |-")
+	print(r"|/  \| |- |_ |_  |__| | \/ | |_")
 	K = 1
 	while(K):
 		user_number = int(input("enter the number and , and see the magic : "))
