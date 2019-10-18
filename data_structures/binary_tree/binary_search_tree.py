@@ -136,7 +136,7 @@ class BinarySearchTree:
         
     def preorder_traverse(self, node):
         if node is not None:
-            yield node    # 先根遍历 Preorder Traversal
+            yield node    #  Preorder Traversal
             yield from self.preorder_traverse(node.left)
             yield from self.preorder_traverse(node.right)
 
