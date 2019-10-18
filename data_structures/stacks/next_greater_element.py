@@ -4,7 +4,7 @@ def printNGE(arr):
     NGE - Maximum element present afterwards the current one which is also greater than current one
     >>> printNGE([11,13,21,3])
     11 -- 13
-    13 -- 21 
+    13 -- 21
     21 -- -1
     3 -- -1
     """
