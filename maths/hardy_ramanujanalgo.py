@@ -38,3 +38,9 @@ print ("The number of distinct prime factors is/are {}".
 print ("The value of log(log(n)) is {0:.4f}"
 			.format(math.log(math.log(n)))) 
 
+"""
+n = 51242183
+The number of distinct prime factors is/are 3
+The value of log(log(n)) is 2.8765
+"""
+
