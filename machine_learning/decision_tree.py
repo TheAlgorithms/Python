@@ -21,6 +21,14 @@ class Decision_Tree:
         @param labels: a one dimensional numpy array
         @param prediction: a floating point value
         return value: mean_squared_error calculates the error if prediction is used to estimate the labels
+        >>> tester = Decision_Tree()
+        >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
+        >>> test_prediction = np.float(6)
+        >>> assert tester.mean_squared_error(test_labels, test_prediction) == Test_Decision_Tree.helper_mean_squared_error_test(test_labels, test_prediction)
+        >>> test_labels = np.array([1,2,3])
+        >>> test_prediction = np.float(2)
+        >>> assert tester.mean_squared_error(test_labels, test_prediction) == Test_Decision_Tree.helper_mean_squared_error_test(test_labels, test_prediction)
+
         """
         if labels.ndim != 1:
             print("Error: Input labels must be one dimensional")
@@ -117,6 +125,27 @@ class Decision_Tree:
             print("Error: Decision tree not yet trained")
             return None
 
+class Test_Decision_Tree:
+    """Decision Tres test class
+    """
+
+    @staticmethod
+    def helper_mean_squared_error_test(labels, prediction):
+        """
+        helper_mean_squared_error_test:
+        @param labels: a one dimensional numpy array
+        @param prediction: a floating point value
+        return value: helper_mean_squared_error_test calculates the mean squared error 
+        """
+        squared_error_sum = np.float(0)
+        for label in labels:
+            squared_error_sum += ((label-prediction) ** 2)
+
+        return np.float(squared_error_sum/labels.size)
+    
+    
+    
+
 
 def main():
     """
@@ -141,3 +170,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    import doctest
+
+    doctest.testmod(name="mean_squarred_error", verbose=True)
