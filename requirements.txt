@@ -8,6 +8,7 @@ pandas
 pillow
 pytest
 requests
+scikit-fuzzy
 sklearn
 sympy
 tensorflow
