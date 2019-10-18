@@ -9,7 +9,7 @@ class Node:
         self.right = None
         self.parent = parent    # Added in order to delete a node easier
 
-    def getdata(self):
+    def get_data(self):
         return self.data
 
     def getleft(self):
@@ -43,7 +43,7 @@ class BinarySearchTree:
             In Order Traversal
         """
         nodelist = self.__InOrderTraversal(self.root)
-        str = " ".join([repr(i.getdata()) for i in nodelist])
+        str = " ".join([repr(i.get_data()) for i in nodelist])
         return str
 
     def __InOrderTraversal(self, node):
@@ -86,7 +86,7 @@ class BinarySearchTree:
         else:   # If Tree is not empty
             parent_node = self.root # from root
             while True: # While we don't get to a leaf
-                if data < parent_node.getdata():    # We go left
+                if data < parent_node.get_data():    # We go left
                     if parent_node.getleft() == None:
                         parent_node.setleft(new_node)   # We insert the new node in a leaf
                         break
@@ -102,11 +102,11 @@ class BinarySearchTree:
 
     def getNode(self, data):
         if self.empty():
-            raise IndexError("Warning: 树是空的! 请使用非空的二叉树. ")
+            raise IndexError("Warning: Tree is empty! please use another. ")
         else:   # If the tree is not empty
             node = self.getRoot()
-            while node is not None and node.getdata() is not data:    # using lazy evaluation here to avoid NoneType Attribute error
-                if data < node.getdata():
+            while node is not None and node.get_data() is not data:    # using lazy evaluation here to avoid NoneType Attribute error
+                if data < node.get_data():
                     node = node.getleft()   # We go left
                 else:
                     node = node.getright()  # Else we go right
@@ -150,8 +150,8 @@ class BinarySearchTree:
                 self.__reassignNodes(node, node.getleft())
             else:   # Has two children
                 tmpNode = self.getMax(node.getleft())   # Gets the max value of the left branch
-                self.delete(tmpNode.getdata())
-                node.setdata(tmpNode.getdata()) # Assigns the value to the node to delete and keesp tree structure
+                self.delete(tmpNode.get_data())
+                node.setdata(tmpNode.get_data()) # Assigns the value to the node to delete and keesp tree structure
 
     def traversalTree(self, traversalFunction = None, root = None):
         """
@@ -193,7 +193,7 @@ def binary_search_tree():
     #Gets all the elements of the tree In pre order
     #And it prints them
     nodelist = t.traversalTree(postOrder, t.root)
-    print(" ".join([repr(i.getdata()) for i in nodelist]))
+    print(" ".join([repr(i.get_data()) for i in nodelist]))
     
     if(t.getNode(6) is not None):
         print("The data 6 exists")
@@ -206,8 +206,8 @@ def binary_search_tree():
         print("The data -1 doesn't exist")
 
     if(not t.empty()):
-        print(("Max Value: ", t.getMax().getdata()))
-        print(("Min Value: ", t.getMin().getdata()))
+        print(("Max Value: ", t.getMax().get_data()))
+        print(("Min Value: ", t.getMin().get_data()))
 
     for i in testlist:
         t.delete(i)
