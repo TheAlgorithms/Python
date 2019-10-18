@@ -20,7 +20,7 @@ def printMaxActivities(start, finish):
   
     # The first activity is always selected 
     i = 0
-    print(i)
+    print(i, end=" ")
   
     # Consider rest of the activities 
     for j in range(n): 
