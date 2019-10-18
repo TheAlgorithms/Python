@@ -27,7 +27,7 @@ import random
 
 class Vector(object):
     """
-        This class represents a vector of arbitray size.
+        This class represents a vector of arbitrary size.
         You need to give the vector components. 
         
         Overview about the methods:
@@ -46,11 +46,13 @@ class Vector(object):
         TODO: compare-operator
     """
 
-    def __init__(self, components=[]):
+    def __init__(self, components=None):
         """
             input: components or nothing
             simple constructor for init the vector
         """
+        if components is None:
+            components = []
         self.__components = list(components)
 
     def set(self, components):
@@ -112,7 +114,7 @@ class Vector(object):
         """
             input: other vector
             assumes: other vector has the same size
-            returns a new vector that represents the differenz.
+            returns a new vector that represents the difference.
         """
         size = len(self)
         if size == len(other):
@@ -136,7 +138,7 @@ class Vector(object):
                 summe += self.__components[i] * other.component(i)
             return summe
         else:  # error case
-            raise Exception("invalide operand!")
+            raise Exception("invalid operand!")
 
     def copy(self):
         """
@@ -223,7 +225,7 @@ class Matrix(object):
 
     def __init__(self, matrix, w, h):
         """
-            simple constructor for initialzes 
+            simple constructor for initializing
             the matrix with components.
         """
         self.__matrix = matrix
@@ -249,7 +251,7 @@ class Matrix(object):
         """
             changes the x-y component of this matrix
         """
-        if x >= 0 and x < self.__height and y >= 0 and y < self.__width:
+        if 0 <= x < self.__height and 0 <= y < self.__width:
             self.__matrix[x][y] = value
         else:
             raise Exception("changeComponent: indices out of bounds")
@@ -258,7 +260,7 @@ class Matrix(object):
         """
             returns the specified (x,y) component
         """
-        if x >= 0 and x < self.__height and y >= 0 and y < self.__width:
+        if 0 <= x < self.__height and 0 <= y < self.__width:
             return self.__matrix[x][y]
         else:
             raise Exception("changeComponent: indices out of bounds")
