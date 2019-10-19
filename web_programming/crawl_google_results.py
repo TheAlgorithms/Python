@@ -15,6 +15,6 @@ with open("project1a.html", "wb") as out_file:  # only for knowing the class
 soup = BeautifulSoup(res.text, "html.parser")
 links = list(soup.select(".eZt8xd"))[:5]
 
-print(len(links))
-for link in links:
-    webbrowser.open(f"http://google.com{link.get('href')}")
+print(len(link))
+for I in link:
+    webbrowser.open(f"http://google.com{I.get('href')}")
