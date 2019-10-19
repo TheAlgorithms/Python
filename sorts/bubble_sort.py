@@ -21,7 +21,6 @@ def bubble_sort(collection):
     >>> bubble_sort([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
     True
     """
-    start = time.process_time()
     length = len(collection)
     for i in range(length - 1):
         swapped = False
