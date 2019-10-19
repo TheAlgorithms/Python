@@ -1,5 +1,5 @@
 import time
-start = time.process_time()
+start = 0
 def bubble_sort(collection):
     """Pure implementation of bubble sort algorithm in Python
 
@@ -23,6 +23,7 @@ def bubble_sort(collection):
     >>> bubble_sort([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
     True
     """
+    start = time.process_time()
     length = len(collection)
     for i in range(length - 1):
         swapped = False
@@ -31,12 +32,16 @@ def bubble_sort(collection):
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
         if not swapped:
-            break  # Stop iteration if the collection is sorted.
+            break  # Stop iteration if the collection is sorted.    
     return collection
+    
 
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:").strip()
     unsorted = [int(item) for item in user_input.split(",")]
+    start = 0
     print(*bubble_sort(unsorted), sep=",")
-print(time.process_time() - start)
+    print(time.process_time() - start)
+
+
