@@ -18,5 +18,13 @@ def main():
     print(abs_val(-34))  # = 34
 
 
+def testAbs():
+    assert 0 == abs_val(0)
+
+    assert 34 == abs_val(34)
+
+    assert 100000000000 == abs_val(-100000000000)
+
 if __name__ == "__main__":
     main()
+    testAbs()
