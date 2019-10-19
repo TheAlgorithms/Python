@@ -37,6 +37,6 @@ if __name__ == "__main__":
     import time
     user_input = input("Enter numbers separated by a comma:").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    start = 0
+    start = time.process_time()
     print(*bubble_sort(unsorted), sep=",")
     print(f"Processing time: {time.process_time() - start}")
