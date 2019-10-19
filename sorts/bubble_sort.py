@@ -6,13 +6,13 @@ def bubble_sort(collection):
     :return: the same collection ordered by ascending
 
     Examples:
-    >>> bubble_sort([0, 5, 3, 2, 2])
+    >>> bubble_sort([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
 
     >>> bubble_sort([])
     []
 
-    >>> bubble_sort([-2, -5, -45])
+    >>> bubble_sort([-2, -45, -5])
     [-45, -5, -2]
 
     >>> bubble_sort([-23, 0, 6, -4, 34])
@@ -29,11 +29,14 @@ def bubble_sort(collection):
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
         if not swapped:
-            break  # Stop iteration if the collection is sorted.
+            break  # Stop iteration if the collection is sorted.    
     return collection
 
 
 if __name__ == "__main__":
+    import time
     user_input = input("Enter numbers separated by a comma:").strip()
     unsorted = [int(item) for item in user_input.split(",")]
+    start = time.process_time()
     print(*bubble_sort(unsorted), sep=",")
+    print(f"Processing time: {time.process_time() - start}")
