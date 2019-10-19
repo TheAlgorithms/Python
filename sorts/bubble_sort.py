@@ -1,3 +1,5 @@
+import time
+start = time.process_time()
 def bubble_sort(collection):
     """Pure implementation of bubble sort algorithm in Python
 
@@ -37,3 +39,4 @@ if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(*bubble_sort(unsorted), sep=",")
+print(time.process_time() - start)
