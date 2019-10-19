@@ -26,8 +26,9 @@ def double_sort(lst):
                 lst[no_of_elements-1-j]=lst[no_of_elements-2-j]
                 lst[no_of_elements-2-j]=temp
     return lst
-print("enter the list to be sorted")
-lst = [int(x) for x in input().split()] # inputing elements of the list in one line
+if __name__ == "__main__":
+    print("enter the list to be sorted")
+    lst = [int(x) for x in input().split()] # inputing elements of the list in one line
 sorted_lst=double_sort(lst)
 print("the sorted list is")
 print(sorted_lst)
