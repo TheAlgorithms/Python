@@ -1,14 +1,11 @@
 #Contributed by : Ghulam Mohiyuddin
 """
-what is this: Here I am going to detect cycle in graph,return 1 if any otherwise 0.
+What's this: Here I am going to detect cycle in graph,return 1 if any otherwise 0.
 
 Data Structure Used:
-        DisJoint Set (Union, parent)
+        DisJoint Set (Union, parent)-link:https://en.wikipedia.org/wiki/Disjoint-set_data_structure
         Dictionary
         List
-
-
-link:https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 
 
 Input style:
@@ -19,6 +16,22 @@ Input style:
     5 4                 #--------->No. of nodes is5, and edges is 4.
     0 1 2 3 3 4 4 2     #--------->edges are (0<-->1),(2<-->3),(3<-->4) and (4<-->2).
     Output: 1           #----> 1 means cycle exist.
+    
+    
+    The following graph has a cycle 2-3-4-2
+                0---------1\
+                            '\
+                              2,
+                             / '\
+                            |    3,
+                            |     /
+                            |   /
+                            | /'
+                             4
+               
+    
+    
+    
 
 
     eg 2:
@@ -36,12 +49,12 @@ from collections import defaultdict
 #Graph Class:
 class Graph():
     def __init__(self,vertices):
-        self.graph = defaultdict(list)# Initialize
+        self.graph = defaultdict(list)          # Initialize
 
-        self.V = vertices # Initialize no. of vertices
+        self.V = vertices                        # Initialize no. of vertices
 
 
-    def addEdge(self,u,v): # add directed edge from u to v.
+    def addEdge(self,u,v):                       # add directed edge from u to v.
         self.graph[u].append(v)
 
 
@@ -64,8 +77,8 @@ def isCyclic(g,n):
     :param n: no of nodes in graph
 
     '''
-    # code here
-    visit={i:False for i in range(n)}# dictionary for trace a node is visited or not by true or false
+ 
+    visit={i:False for i in range(n)}                    # dictionary for trace a node is visited or not by true or false
     parentA=[-1]*n
     
     for i in g:
@@ -74,16 +87,15 @@ def isCyclic(g,n):
                 
                 x=parent(parentA,i)
                 y=parent(parentA,j)
-                #print(i,x,j,y)
-                if x==y:
-                    #return 1 if any
-                    
+           
+                if x==y:                                     
                     return 1
+        
                 union(parentA,i,j)
         visit[i]=True
             
-    #return 0 if not cycle
-    return 0
+    
+    return 0                                            #return 0 if not cycle
     
 
 
@@ -93,14 +105,14 @@ def isCyclic(g,n):
 if __name__ == '__main__':
     #test_cases = int(input())
     #for cases in range(test_cases) :
-        N,E = map(int,input().strip().split())      #N=5,E=4(pair of u,v)
+        N,E = map(int,input().strip().split())          #N=5,E=4(pair of u,v)
 
         g = Graph(N)# make an object of Graph Class
         edges = list(map(int,input().strip().split()))
         for i in range(0,len(edges),2):
             u,v = edges[i],edges[i+1]
-            g.addEdge(u,v) # add an undirected edge from u to v
-            g.addEdge(v,u)# add an undirected edge from v to u
+            g.addEdge(u,v)                              # add an undirected edge from u to v
+            g.addEdge(v,u)                              # add an undirected edge from v to u
         print(isCyclic(g.graph,N))
 
 
