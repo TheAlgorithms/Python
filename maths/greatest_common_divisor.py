@@ -15,10 +15,9 @@ while above method is good one but acquire more memory for huge number because o
  
 """
 def gcd_by_iterative(x,y):
-    while y:
+    while y:   #-->when y=0 then loop will  terminate and return x as final GCD.
         x,y=y,x%y
-    """Now return final answer that is GCD"""	
-    return x
+    return x 
 
 def main():
     """Call GCD Function."""
