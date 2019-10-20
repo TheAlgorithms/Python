@@ -32,7 +32,7 @@ class Trie:
         return result
 
 trie = Trie()
-words = ['depart', 'detergent', 'daring', 'dog', 'deer', 'deal', ]
+words = ['depart', 'detergent', 'daring', 'dog', 'deer', 'deal']
 for word in words:
     trie.insert_word(word)
 
