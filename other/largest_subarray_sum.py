@@ -1,5 +1,10 @@
 from sys import maxsize 
-def maxSubArraySum(a,size): 
+def maxSubArraySum(a: list, size: int = 0):
+    """
+    >>> max_sub_array_sum([-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7])
+    -3
+    """
+    size=size or len(a)
        
     max_so_far = -maxsize - 1
     max_ending_here = 0
