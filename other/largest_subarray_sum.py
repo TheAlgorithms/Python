@@ -1,7 +1,7 @@
-from sys import maxint 
-def maxSubArraySum(a, size): 
+from sys import maxsize 
+def maxSubArraySum(a,size): 
        
-    max_so_far= -maxint - 1
+    max_so_far = -maxsize - 1
     max_ending_here = 0
        
     for i in range(0, size): 
@@ -11,8 +11,7 @@ def maxSubArraySum(a, size):
   
         if max_ending_here < 0: 
             max_ending_here = 0   
-    return max_so_far 
-   
-# Driver function to check the above function  
-a=[-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7] 
-print("Maximum contiguous sum is", maxSubArraySum(a, len(a))) 
+    return max_so_far  
+ 
+a= [-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7] 
+print(("Maximum contiguous sum is", maxSubArraySum(a,len(a)))) 
