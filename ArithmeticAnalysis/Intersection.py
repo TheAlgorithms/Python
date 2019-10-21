@@ -8,6 +8,7 @@ def intersection(function,x0,x1): #function is the f we want to find its root an
         if abs(x_n2 - x_n1)<0.00001 :
             return x_n2
         x_n=x_n1
+        #foujji don
         x_n1=x_n2
 
 def f(x):
