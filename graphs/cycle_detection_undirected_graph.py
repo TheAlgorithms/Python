@@ -63,6 +63,17 @@ def isCyclic(g,n):
     :param g: given adjacency list representation of graph
     :param n: no of nodes in graph
 
+    >>> graph = Graph([0, 1, 2, 3, 4])
+    >>> graph.addEdge(0, 1)
+    >>> graph.addEdge(1, 2)
+    >>> graph.addEdge(2, 3)
+    >>> is_cyclic(graph.graph, 5)
+    0
+    >>> graph.addEdge(4, 2)
+    >>> is_cyclic(graph.graph, 5)
+    1
+    >>> is_cyclic(graph.graph, 6)
+    1
     '''
     # code here
     visit={i:False for i in range(n)}# dictionary for trace a node is visited or not by true or false
