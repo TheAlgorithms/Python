@@ -41,7 +41,7 @@ class Graph():
         self.V = vertices # Initialize no. of vertices
 
 
-    def addEdge(self,u,v): # add directed edge from u to v.
+    def add_edge(self,u,v): # add directed edge from u to v.
         self.graph[u].append(v)
 
 
@@ -58,7 +58,7 @@ def parent(parentA,k):
     return parent(parentA,parentA[k])
 
 
-def isCyclic(graph,n):
+def is_cyclic(graph,n):
   
     visit={i:False for i in range(n)}# dictionary for trace a node is visited or not by true or false
     parentA=[-1]*n
@@ -72,7 +72,7 @@ def isCyclic(graph,n):
                 #print(i,x,j,y)
                 if x==y:  #checking above both vertices are belonging from same parent or not.
                     
-                    return 1    #if both vertices have same parent then return 1 ,thats mean cycle is exist in graph.
+                    return True    #if both vertices have same parent then return true ,thats mean cycle is exist in graph.
 
 
 
@@ -80,7 +80,7 @@ def isCyclic(graph,n):
         visit[i]=True
             
     
-    return 0        #return 0 if not cycle
+    return False        #return false if not cycle
     
 
 
@@ -89,12 +89,12 @@ if __name__ == '__main__':
         V,E = map(int,input().strip().split())      #N=5,E=4(pair of u,v)
 
         graph = Graph(V)# make an object of Graph Class
-        edges = list(map(int,input().strip().split()))
+        edges = list(map(int,input().split()))      #[map(int,input().split())]
         for i in range(0,len(edges),2):
             u,v = edges[i],edges[i+1]
-            graph.addEdge(u,v) # add an undirected edge from u to v
-            graph.addEdge(v,u)# add an undirected edge from v to u
-        print(isCyclic(graph.graph,V))
+            graph.add_edge(u,v) # add an undirected edge from u to v
+            graph.add_edge(v,u)# add an undirected edge from v to u
+        print(is_cyclic(graph.graph,V))
         """
         >>> 5 4
         >>> 0 1 2 3 3 4 4 2
@@ -103,7 +103,7 @@ if __name__ == '__main__':
         >>> graph.addEdge(2, 3)
         >>> graph.addEdge(3, 4)
         >>> graph.addEdge(4, 2)
-        >>> isCyclic(graph.graph, 5)
+        >>> is_cyclic(graph.graph, 5)
         
         """
 
