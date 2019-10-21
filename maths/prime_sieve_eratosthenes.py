@@ -11,13 +11,13 @@ you can read in detail about this at
 https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 '''
 
-def primeNumbers(num):
+def prime_sieve_eratosthenes(num):
     """
     print the prime numbers upto n
     
-    >>> primeNumbers(10)
+    >>> prime_sieve_eratosthenes(10)
     2 3 5 7 
-    >>> primeNumbers(20)
+    >>> prime_sieve_eratosthenes(20)
     2 3 5 7 11 13 17 19 
     """
     
@@ -38,4 +38,4 @@ def primeNumbers(num):
 if __name__ == "__main__":
     num = int(input())
     
-    primeNumbers(num)
+    prime_sieve_eratosthenes(num)
