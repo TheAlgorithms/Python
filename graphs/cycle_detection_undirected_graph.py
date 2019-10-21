@@ -30,27 +30,23 @@ Input style:
 
 """
 
-
 from collections import defaultdict
 
 #Graph Class:
 class Graph():
     def __init__(self,vertices):
         self.graph = defaultdict(list)# Initialize
-
         self.V = vertices # Initialize no. of vertices
-
 
     def addEdge(self,u,v): # add directed edge from u to v.
         self.graph[u].append(v)
-
-
 
 
 def union(parentA,d,e):
     x_=parent(parentA,d)
     y_=parent(parentA,e)
     parentA[x_]=y_
+
 
 def parent(parentA,k):
     if parentA[k]==-1:
@@ -67,12 +63,12 @@ def isCyclic(g,n):
     >>> graph.addEdge(0, 1)
     >>> graph.addEdge(1, 2)
     >>> graph.addEdge(2, 3)
-    >>> is_cyclic(graph.graph, 5)
+    >>> isCyclic(graph.graph, 5)
     0
     >>> graph.addEdge(4, 2)
-    >>> is_cyclic(graph.graph, 5)
+    >>> isCyclic(graph.graph, 5)
     1
-    >>> is_cyclic(graph.graph, 6)
+    >>> isCyclic(graph.graph, 6)
     1
     '''
     # code here
@@ -97,10 +93,6 @@ def isCyclic(g,n):
     return 0
     
 
-
-
-
-
 if __name__ == '__main__':
     #test_cases = int(input())
     #for cases in range(test_cases) :
@@ -113,7 +105,3 @@ if __name__ == '__main__':
             g.addEdge(u,v) # add an undirected edge from u to v
             g.addEdge(v,u)# add an undirected edge from v to u
         print(isCyclic(g.graph,N))
-
-
-    
-   
