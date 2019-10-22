@@ -1,5 +1,5 @@
 graph = {
-    "A": ["B", "C", "E"],
+    "Z": ["K", "C", "E"],
     "B": ["A", "D", "E"],
     "C": ["A", "F", "G"],
     "D": ["B"],
@@ -44,4 +44,4 @@ def bfs_shortest_path(graph, start, goal):
     return "So sorry, but a connecting path doesn't exist :("
 
 
-bfs_shortest_path(graph, "G", "D")  # returns ['G', 'C', 'A', 'B', 'D']
+bfs_shortest_path(graph, "G", "D")  # returns ['G', 'C', 'Z', 'B', 'D']
