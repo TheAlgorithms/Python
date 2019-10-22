@@ -39,7 +39,9 @@ def main():
         nums = input("Enter two integers separated by comma (,): ").split(",")
         num_1 = int(nums[0])
         num_2 = int(nums[1])
-        print(f"greatest_common_divisor({num_1}, {num_2}) = {greatest_common_divisor(num_1, num_2)}")
+        print(
+            f"greatest_common_divisor({num_1}, {num_2}) = {greatest_common_divisor(num_1, num_2)}"
+        )
         print(f"By iterative gcd({num_1}, {num_2}) = {gcd_by_iterative(num_1, num_2)}")
     except (IndexError, UnboundLocalError, ValueError):
         print("Wrong input")

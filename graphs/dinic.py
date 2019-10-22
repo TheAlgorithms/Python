@@ -1,5 +1,6 @@
 INF = float("inf")
 
+
 class Dinic:
     def __init__(self, n):
         self.lvl = [0] * n
@@ -7,16 +8,17 @@ class Dinic:
         self.q = [0] * n
         self.adj = [[] for _ in range(n)]
 
-    '''
+    """
     Here we will add our edges containing with the following parameters:
     vertex closest to source, vertex closest to sink and flow capacity
     through that edge ...
-    '''
+    """
+
     def add_edge(self, a, b, c, rcap=0):
         self.adj[a].append([b, len(self.adj[b]), c, 0])
         self.adj[b].append([a, len(self.adj[a]) - 1, rcap, 0])
 
-    #This is a sample depth first search to be used at max_flow
+    # This is a sample depth first search to be used at max_flow
     def depth_first_search(self, vertex, sink, flow):
         if vertex == sink or not flow:
             return flow
@@ -31,8 +33,8 @@ class Dinic:
                     return p
             self.ptr[vertex] = self.ptr[vertex] + 1
         return 0
-    
-    #Here we calculate the flow that reaches the sink
+
+    # Here we calculate the flow that reaches the sink
     def max_flow(self, source, sink):
         flow, self.q[0] = 0, source
         for l in range(31):  # l = 30 maybe faster for random data
@@ -58,36 +60,35 @@ class Dinic:
 
         return flow
 
-#Example to use
 
-'''
+# Example to use
+
+"""
 Will be a bipartite graph, than it has the vertices near the source(4)
 and the vertices near the sink(4)
-'''
-#Here we make a graphs with 10 vertex(source and sink includes)
+"""
+# Here we make a graphs with 10 vertex(source and sink includes)
 graph = Dinic(10)
 source = 0
 sink = 9
-'''
+"""
 Now we add the vertices next to the font in the font with 1 capacity in this edge
 (source -> source vertices)
-'''
+"""
 for vertex in range(1, 5):
-	graph.add_edge(source, vertex, 1)
-'''
+    graph.add_edge(source, vertex, 1)
+"""
 We will do the same thing for the vertices near the sink, but from vertex to sink
 (sink vertices -> sink)
-'''
+"""
 for vertex in range(5, 9):
-	graph.add_edge(vertex, sink, 1)
-'''
+    graph.add_edge(vertex, sink, 1)
+"""
 Finally we add the verices near the sink to the vertices near the source.
 (source vertices -> sink vertices)
-'''
+"""
 for vertex in range(1, 5):
-	graph.add_edge(vertex, vertex+4, 1)
+    graph.add_edge(vertex, vertex + 4, 1)
 
-#Now we can know that is the maximum flow(source -> sink)
+# Now we can know that is the maximum flow(source -> sink)
 print(graph.max_flow(source, sink))
-
-        

@@ -58,7 +58,7 @@ if __name__ == "__main__":
                 print("\nInvalid input, please try again.")
     except NameError:
         print("\n********* Invalid input, good bye!! ************\n")
-        
+
     import doctest
 
     doctest.testmod()

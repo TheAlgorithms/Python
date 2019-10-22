@@ -7,6 +7,7 @@ class Node(object):
     Treap's node
     Treap is a binary tree by value and heap by priority
     """
+
     def __init__(self, value: int = None):
         self.value = value
         self.prior = random()
@@ -20,10 +21,7 @@ class Node(object):
             return "'%s: %.5s'" % (self.value, self.prior)
         else:
             return pformat(
-                {
-                    "%s: %.5s"
-                    % (self.value, self.prior): (self.left, self.right)
-                },
+                {"%s: %.5s" % (self.value, self.prior): (self.left, self.right)},
                 indent=1,
             )
 
@@ -32,6 +30,7 @@ class Node(object):
         left = str(self.left or "")
         right = str(self.right or "")
         return value + left + right
+
 
 def split(root: Node, value: int) -> Tuple[Node, Node]:
     """
@@ -61,12 +60,13 @@ def split(root: Node, value: int) -> Tuple[Node, Node]:
             root.right, right = split(root.right, value)
             return (root, right)
 
+
 def merge(left: Node, right: Node) -> Node:
     """
     We merge 2 trees into one.
     Note: all left tree's values must be less than all right tree's
     """
-    if (not left) or (not right):   # If one node is None, return the other
+    if (not left) or (not right):  # If one node is None, return the other
         return left or right
     elif left.prior < right.prior:
         """
@@ -82,6 +82,7 @@ def merge(left: Node, right: Node) -> Node:
         right.left = merge(left, right.left)
         return right
 
+
 def insert(root: Node, value: int) -> Node:
     """
     Insert element
@@ -94,6 +95,7 @@ def insert(root: Node, value: int) -> Node:
     left, right = split(root, value)
     return merge(merge(left, node), right)
 
+
 def erase(root: Node, value: int) -> Node:
     """
     Erase element
@@ -102,15 +104,16 @@ def erase(root: Node, value: int) -> Node:
     Split all nodes with values greater into right.
     Merge left, right
     """
-    left, right = split(root, value-1)
+    left, right = split(root, value - 1)
     _, right = split(right, value)
     return merge(left, right)
+
 
 def inorder(root: Node):
     """
     Just recursive print of a tree
     """
-    if not root:    # None
+    if not root:  # None
         return
     else:
         inorder(root.left)
@@ -154,13 +157,16 @@ def interactTreap(root, args):
 
     return root
 
+
 def main():
     """After each command, program prints treap"""
     root = None
-    print("enter numbers to creat a tree, + value to add value into treap, - value to erase all nodes with value. 'q' to quit. ")
+    print(
+        "enter numbers to creat a tree, + value to add value into treap, - value to erase all nodes with value. 'q' to quit. "
+    )
 
     args = input()
-    while args != 'q':
+    while args != "q":
         root = interactTreap(root, args)
         print(root)
         args = input()
@@ -168,7 +174,9 @@ def main():
     print("good by!")
     pass
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()

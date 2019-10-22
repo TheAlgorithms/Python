@@ -51,21 +51,21 @@ def qr_householder(A):
         # determine scaling factor
         alpha = np.linalg.norm(x)
         # construct vector v for Householder reflection
-        v = x + np.sign(x[0])*alpha*e1
+        v = x + np.sign(x[0]) * alpha * e1
         v /= np.linalg.norm(v)
 
         # construct the Householder matrix
-        Q_k = np.eye(m - k) - 2.0*v@v.T
+        Q_k = np.eye(m - k) - 2.0 * v @ v.T
         # pad with ones and zeros as necessary
-        Q_k = np.block([[np.eye(k),            np.zeros((k, m - k))],
-                        [np.zeros((m - k, k)), Q_k                 ]])
+        Q_k = np.block([[np.eye(k), np.zeros((k, m - k))], [np.zeros((m - k, k)), Q_k]])
 
-        Q = Q@Q_k.T
-        R = Q_k@R
+        Q = Q @ Q_k.T
+        R = Q_k @ R
 
     return Q, R
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
