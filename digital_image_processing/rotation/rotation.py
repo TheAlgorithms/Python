@@ -1,6 +1,6 @@
-from cv2 import getAffineTransform, warpAffine, imread, cvtColor, COLOR_BGR2GRAY
 from matplotlib import pyplot as plt
 from numpy import float32
+import cv2
 
 
 def get_rotation(img, pt1, pt2, rows, cols):
@@ -13,15 +13,15 @@ def get_rotation(img, pt1, pt2, rows, cols):
     :param cols: rows image shape
     :return: np.array
     """
-    matrix = getAffineTransform(pt1, pt2)
-    return warpAffine(img, matrix, (rows, cols))
+    matrix = cv2.getAffineTransform(pt1, pt2)
+    return cv2.warpAffine(img, matrix, (rows, cols))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # read original image
-    image = imread('lena.jpg')
+    image = cv2.imread("lena.jpg")
     # turn image in gray scale value
-    gray_img = cvtColor(image, COLOR_BGR2GRAY)
+    gray_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # get image shape
     img_rows, img_cols = gray_img.shape
 
@@ -32,22 +32,19 @@ if __name__ == '__main__':
     pts4 = float32([[10, 100], [80, 50], [180, 250]])
 
     # add all rotated images in a list
-    images = [gray_img,
-              get_rotation(gray_img, pts1, pts2, img_rows, img_cols),
-              get_rotation(gray_img, pts2, pts3, img_rows, img_cols),
-              get_rotation(gray_img, pts2, pts4, img_rows, img_cols)
-              ]
+    images = [
+        gray_img,
+        get_rotation(gray_img, pts1, pts2, img_rows, img_cols),
+        get_rotation(gray_img, pts2, pts3, img_rows, img_cols),
+        get_rotation(gray_img, pts2, pts4, img_rows, img_cols),
+    ]
 
     # plot different image rotations
     fig = plt.figure(1)
-    titles = ['Original', 'Rotation 1', 'Rotation 2', 'Rotation 3']
+    titles = ["Original", "Rotation 1", "Rotation 2", "Rotation 3"]
     for i in range(0, len(images)):
-        plt.subplot(2, 2, i + 1), plt.imshow(images[i], 'gray')
+        plt.subplot(2, 2, i + 1), plt.imshow(images[i], "gray")
         plt.title(titles[i])
-        plt.axis('off')
-        plt.subplots_adjust(left=0.0,
-                            bottom=0.05,
-                            right=1.0,
-                            top=0.95,
-                            wspace=0.0)
+        plt.axis("off")
+        plt.subplots_adjust(left=0.0, bottom=0.05, right=1.0, top=0.95)
     plt.show()
