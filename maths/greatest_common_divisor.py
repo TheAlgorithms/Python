@@ -11,7 +11,7 @@ def greatest_common_divisor(a, b):
     >>> greatest_common_divisor(24, 40)
     8
     """
-    return b if a == 0 else gcd(b % a, a)
+    return b if a == 0 else greatest_common_divisor(b % a, a)
 
 
 """
