@@ -35,8 +35,8 @@ def bubble_sort(collection):
 
 if __name__ == "__main__":
     import time
-    user_input = input("Enter numbers separated by a comma:").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
+    user_input = eval(input("Enter numbers separated by a comma:").strip())
+    unsorted = [eval(item) for item in user_input.split(",")]
     start = time.process_time()
     print(*bubble_sort(unsorted), sep=",")
     print(f"Processing time: {time.process_time() - start}")
