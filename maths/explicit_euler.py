@@ -22,13 +22,13 @@ def explicit_euler(ode_func, y0, x0, stepsize, x_end):
     >>> y[-1]
     144.77277243257308
     """
-    N = int(np.ceil((x_end - x0)/stepsize))
+    N = int(np.ceil((x_end - x0) / stepsize))
     y = np.zeros((N + 1,))
     y[0] = y0
     x = x0
 
     for k in range(N):
-        y[k + 1] = y[k] + stepsize*ode_func(x, y[k])
+        y[k + 1] = y[k] + stepsize * ode_func(x, y[k])
         x += stepsize
 
     return y
@@ -38,4 +38,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-

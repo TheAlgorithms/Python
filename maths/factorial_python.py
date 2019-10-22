@@ -11,7 +11,7 @@ def factorial(input_number: int) -> int:
     """
 
     if input_number < 0:
-        raise ValueError('Input input_number should be non-negative')
+        raise ValueError("Input input_number should be non-negative")
     elif input_number == 0:
         return 1
     else:

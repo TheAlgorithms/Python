@@ -27,11 +27,11 @@ def solution(n):
     44
     """
 
-    a = [0,1]
+    a = [0, 1]
     i = 0
     while a[i] <= n:
-        a.append(a[i] + a[i+1])
-        if a[i+2] > n:
+        a.append(a[i] + a[i + 1])
+        if a[i + 2] > n:
             break
         i += 1
     sum = 0

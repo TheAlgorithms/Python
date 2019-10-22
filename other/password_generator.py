@@ -27,21 +27,27 @@ def alternative_password_generator(ctbi, i):
     # Password generator = full boot with random_number, random_letters, and
     # random_character FUNCTIONS
     # Put your code here...
-	i = i - len(ctbi)
-	quotient = int(i / 3)
-	remainder = i % 3
-	#chars = ctbi + random_letters(ascii_letters, i / 3 + remainder) + random_number(digits, i / 3) + random_characters(punctuation, i / 3)
-	chars = ctbi + random(ascii_letters, quotient + remainder) + random(digits, quotient) + random(punctuation, quotient)
-	chars = list(chars)
-	shuffle(chars)
-	return "".join(chars)
+    i = i - len(ctbi)
+    quotient = int(i / 3)
+    remainder = i % 3
+    # chars = ctbi + random_letters(ascii_letters, i / 3 + remainder) + random_number(digits, i / 3) + random_characters(punctuation, i / 3)
+    chars = (
+        ctbi
+        + random(ascii_letters, quotient + remainder)
+        + random(digits, quotient)
+        + random(punctuation, quotient)
+    )
+    chars = list(chars)
+    shuffle(chars)
+    return "".join(chars)
 
-	
-	#random is a generalised function for letters, characters and numbers
+    # random is a generalised function for letters, characters and numbers
+
+
 def random(ctbi, i):
-	return "".join(choice(ctbi) for x in range(i))
-	
-	
+    return "".join(choice(ctbi) for x in range(i))
+
+
 def random_number(ctbi, i):
     pass  # Put your code here...
 
@@ -56,9 +62,13 @@ def random_characters(ctbi, i):
 
 def main():
     length = int(input("Please indicate the max length of your password: ").strip())
-    ctbi = input("Please indicate the characters that must be in your password: ").strip()
+    ctbi = input(
+        "Please indicate the characters that must be in your password: "
+    ).strip()
     print("Password generated:", password_generator(length))
-    print("Alternative Password generated:", alternative_password_generator(ctbi, length))
+    print(
+        "Alternative Password generated:", alternative_password_generator(ctbi, length)
+    )
     print("[If you are thinking of using this passsword, You better save it.]")
 
 

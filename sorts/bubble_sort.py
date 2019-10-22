@@ -29,12 +29,13 @@ def bubble_sort(collection):
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
         if not swapped:
-            break  # Stop iteration if the collection is sorted.    
+            break  # Stop iteration if the collection is sorted.
     return collection
 
 
 if __name__ == "__main__":
     import time
+
     user_input = input("Enter numbers separated by a comma:").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     start = time.process_time()
