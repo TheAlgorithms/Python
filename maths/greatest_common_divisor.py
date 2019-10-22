@@ -35,7 +35,7 @@ def gcd_by_iterative(x, y):
 
 
 def main():
-    """Call GCD gunction."""
+    """Call GCD function."""
     try:
         nums = input("Enter two integers separated by comma (,): ").split(",")
         num_1 = int(nums[0])
