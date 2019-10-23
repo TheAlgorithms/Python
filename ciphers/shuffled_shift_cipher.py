@@ -26,7 +26,7 @@ class ShuffledShiftCipher(object):
     cip2 = ShuffledShiftCipher()
     """
 
-    def __init__(self, passcode=None):
+    def __init__(self, passcode: str = None):
         """
         Initializes a cipher object with a passcode as it's entity
         Note: No new passcode is generated if user provides a passcode
@@ -42,31 +42,19 @@ class ShuffledShiftCipher(object):
         """
         return "Passcode is: " + "".join(self.__passcode)
 
-    def __make_one_digit(self, digit):
-        """
-        Implements an algorithm to return a single digit integer
-        Doesn't keep the value of input 'digit' intact
-
-        :param digit: takes in a positive number
-        :return: the number itself; if its single digit
-                 else, converts to single digit and returns
-        """
-        while digit > 10:
-            digit = sum(int(x) for x in str(digit))
-        return digit
-
-    def __neg_pos(self, iterlist):
+    def __neg_pos(self, iterlist: list) -> list:
         """
         Mutates the list by changing the sign of each alternate element
 
         :param iterlist: takes a list iterable
         :return: the mutated list
+
         """
         for i in range(1, len(iterlist), 2):
             iterlist[i] *= -1
         return iterlist
 
-    def __passcode_creator(self):
+    def __passcode_creator(self) -> list:
         """
         Creates a random password from the selection buffer of
         1. uppercase letters of the English alphabet
@@ -80,7 +68,7 @@ class ShuffledShiftCipher(object):
         password = [random.choice(choices) for i in range(random.randint(10, 20))]
         return password
 
-    def __make_key_list(self):
+    def __make_key_list(self) -> list:
         """
         Shuffles the ordered character choices by pivoting at breakpoints
         Breakpoints are the set of characters in the passcode
@@ -123,7 +111,7 @@ class ShuffledShiftCipher(object):
         # returning a shuffled keys_l to prevent brute force guessing of shift key
         return keys_l
 
-    def __make_shift_key(self):
+    def __make_shift_key(self) -> int:
         """
         sum() of the mutated list of ascii values of all characters where the
         mutated list is the one returned by __neg_pos()
@@ -131,10 +119,15 @@ class ShuffledShiftCipher(object):
         num = sum(self.__neg_pos([ord(x) for x in self.__passcode]))
         return num if num > 0 else len(self.__passcode)
 
-    def decrypt(self, encoded_message):
+    def decrypt(self, encoded_message: str) -> str:
         """
         Performs shifting of the encoded_message w.r.t. the shuffled __key_list
         to create the decoded_message
+
+        >>> ssc = ShuffledShiftCipher('4PYIXyqeQZr44')
+        >>> ssc.decrypt("d>**-1z6&'5z'5z:z+-='$'>=zp:>5:#z<'.&>#")
+        'Hello, this is a modified Caesar cipher'
+
         """
         decoded_message = ""
 
@@ -147,10 +140,15 @@ class ShuffledShiftCipher(object):
 
         return decoded_message
 
-    def encrypt(self, plaintext):
+    def encrypt(self, plaintext: str) -> str:
         """
         Performs shifting of the plaintext w.r.t. the shuffled __key_list
         to create the encoded_message
+
+        >>> ssc = ShuffledShiftCipher('4PYIXyqeQZr44')
+        >>> ssc.encrypt('Hello, this is a modified Caesar cipher')
+        "d>**-1z6&'5z'5z:z+-='$'>=zp:>5:#z<'.&>#"
+
         """
         encoded_message = ""
 
@@ -165,9 +163,11 @@ class ShuffledShiftCipher(object):
 
 
 if __name__ == "__main__":
-    # cip1 = ShuffledShiftCipher('d4usr9TWxw9wMD')
-    cip1 = ShuffledShiftCipher()
-    ciphertext = cip1.encrypt("Hello, this is a modified Caesar cipher")
-    print(ciphertext)
-    print(cip1)
-    print(cip1.decrypt(ciphertext))
+    # cip1 = ShuffledShiftCipher()
+    # ciphertext = cip1.encrypt("Hello, this is a modified Caesar cipher")
+    # print(ciphertext)
+    # print(cip1)
+    # print(cip1.decrypt(ciphertext))
+    import doctest
+
+    doctest.testmod()
