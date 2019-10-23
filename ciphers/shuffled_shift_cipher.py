@@ -162,12 +162,16 @@ class ShuffledShiftCipher(object):
         return encoded_message
 
 
+def test_end_to_end(msg: str = "Hello, this is a modified Caesar cipher"):
+    """
+    >>> test_end_to_end()
+    """
+    cip1 = ShuffledShiftCipher()
+    ciphertext = cip1.encrypt(msg)
+    cip1.decrypt(ciphertext)
+
+
 if __name__ == "__main__":
-    # cip1 = ShuffledShiftCipher()
-    # ciphertext = cip1.encrypt("Hello, this is a modified Caesar cipher")
-    # print(ciphertext)
-    # print(cip1)
-    # print(cip1.decrypt(ciphertext))
     import doctest
 
     doctest.testmod()
