@@ -2,9 +2,9 @@ import random
 import string
 
 
-class shuffled_shift_cipher(object):
+class ShuffledShiftCipher(object):
     """
-    This algorithm uses the Caeser Cipher algorithm but removes the option to
+    This algorithm uses the Caesar Cipher algorithm but removes the option to
     use brute force to decrypt the message.
 
     The passcode is a a random password from the selection buffer of
@@ -22,20 +22,17 @@ class shuffled_shift_cipher(object):
 
     Each cipher object can possess an optional argument as passcode, without which a
     new passcode is generated for that object automatically.
-    cip1 = shuffled_shift_cipher('d4usr9TWxw9wMD')
-    cip2 = shuffled_shift_cipher()
+    cip1 = ShuffledShiftCipher('d4usr9TWxw9wMD')
+    cip2 = ShuffledShiftCipher()
     """
 
-    def __init__(self, passkey=None):
+    def __init__(self, passcode=None):
         """
         Initializes a cipher object with a passcode as it's entity
         Note: No new passcode is generated if user provides a passcode
         while creating the object
         """
-        if passkey == None:
-            self.__passcode = self.__passcode_creator()
-        else:
-            self.__passcode = passkey
+        self.__passcode = passcode or self.__passcode_creator()
         self.__key_list = self.__make_key_list()
         self.__shift_key = self.__make_shift_key()
 
@@ -44,16 +41,6 @@ class shuffled_shift_cipher(object):
         :return: passcode of the cipher object
         """
         return "Passcode is: " + "".join(self.__passcode)
-
-    def __sum_of_digits(self, num):
-        """
-        Calculates the sum of all digits in 'num'
-
-        :param num: a positive natural number
-        :return: an integer which stores the sum of digits
-        """
-        sum_ = sum(map(int, str(num)))
-        return sum_
 
     def __make_one_digit(self, digit):
         """
@@ -65,7 +52,7 @@ class shuffled_shift_cipher(object):
                  else, converts to single digit and returns
         """
         while digit > 10:
-            digit = self.__sum_of_digits(digit)
+            digit = sum(int(x) for x in str(digit))
         return digit
 
     def __neg_pos(self, iterlist):
@@ -141,7 +128,7 @@ class shuffled_shift_cipher(object):
         sum() of the mutated list of ascii values of all characters where the
         mutated list is the one returned by __neg_pos()
         """
-        num = sum(self.__neg_pos(list(map(ord, self.__passcode))))
+        num = sum(self.__neg_pos([ord(x) for x in self.__passcode]))
         return num if num > 0 else len(self.__passcode)
 
     def decrypt(self, encoded_message):
@@ -151,7 +138,7 @@ class shuffled_shift_cipher(object):
         """
         decoded_message = ""
 
-        # decoding shift like caeser cipher algorithm implementing negative shift or reverse shift or left shift
+        # decoding shift like Caesar cipher algorithm implementing negative shift or reverse shift or left shift
         for i in encoded_message:
             position = self.__key_list.index(i)
             decoded_message += self.__key_list[
@@ -167,7 +154,7 @@ class shuffled_shift_cipher(object):
         """
         encoded_message = ""
 
-        # encoding shift like caeser cipher algorithm implementing positive shift or forward shift or right shift
+        # encoding shift like Caesar cipher algorithm implementing positive shift or forward shift or right shift
         for i in plaintext:
             position = self.__key_list.index(i)
             encoded_message += self.__key_list[
@@ -178,9 +165,9 @@ class shuffled_shift_cipher(object):
 
 
 if __name__ == "__main__":
-    # cip1 = shuffled_shift_cipher('d4usr9TWxw9wMD')
-    cip1 = shuffled_shift_cipher()
-    ciphertext = cip1.encrypt("Hello, this is a modified caeser cipher")
+    # cip1 = ShuffledShiftCipher('d4usr9TWxw9wMD')
+    cip1 = ShuffledShiftCipher()
+    ciphertext = cip1.encrypt("Hello, this is a modified Caesar cipher")
     print(ciphertext)
     print(cip1)
     print(cip1.decrypt(ciphertext))
