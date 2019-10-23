@@ -165,10 +165,10 @@ class ShuffledShiftCipher(object):
 def test_end_to_end(msg: str = "Hello, this is a modified Caesar cipher"):
     """
     >>> test_end_to_end()
+    'Hello, this is a modified Caesar cipher'
     """
     cip1 = ShuffledShiftCipher()
-    ciphertext = cip1.encrypt(msg)
-    cip1.decrypt(ciphertext)
+    return cip1.decrypt(cip1.encrypt(msg))
 
 
 if __name__ == "__main__":
