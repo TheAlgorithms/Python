@@ -68,6 +68,18 @@ class Linked_List:
             current = next_node
         # Return prev in order to put the head at the end
         self.head = prev
+        
+    def detectLoop(self): 
+        slow_p = self.head 
+        fast_p = self.head 
+        while(slow_p and fast_p and fast_p.next): 
+            slow_p = slow_p.next
+            fast_p = fast_p.next.next
+            if slow_p == fast_p: 
+                print "Found Loop"
+                return 
+        print "No loop detected"
+        return
 
 
 def main():
@@ -98,6 +110,7 @@ def main():
     A.reverse()
     print("\nPrint List : ")
     A.printList()
+    A.detectLoop()
 
 
 if __name__ == "__main__":
