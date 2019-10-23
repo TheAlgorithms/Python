@@ -1,5 +1,6 @@
 import sys
 
+
 class Letter:
     def __init__(self, letter, freq):
         self.letter = letter
@@ -7,7 +8,7 @@ class Letter:
         self.bitstring = ""
 
     def __repr__(self):
-        return f'{self.letter}:{self.freq}'
+        return f"{self.letter}:{self.freq}"
 
 
 class TreeNode:
@@ -31,6 +32,7 @@ def parse_file(file_path):
             chars[c] = chars[c] + 1 if c in chars.keys() else 1
     return sorted([Letter(c, f) for c, f in chars.items()], key=lambda l: l.freq)
 
+
 def build_tree(letters):
     """
     Run through the list of Letters and build the min heap
@@ -45,6 +47,7 @@ def build_tree(letters):
         letters.sort(key=lambda l: l.freq)
     return letters[0]
 
+
 def traverse_tree(root, bitstring):
     """
     Recursively traverse the Huffman Tree to set each
@@ -58,6 +61,7 @@ def traverse_tree(root, bitstring):
     letters += traverse_tree(root.right, bitstring + "1")
     return letters
 
+
 def huffman(file_path):
     """
     Parse the file, build the tree, then run through the file
@@ -67,7 +71,7 @@ def huffman(file_path):
     letters_list = parse_file(file_path)
     root = build_tree(letters_list)
     letters = traverse_tree(root, "")
-    print(f'Huffman Coding of {file_path}: ')
+    print(f"Huffman Coding of {file_path}: ")
     with open(file_path) as f:
         while True:
             c = f.read(1)
@@ -76,6 +80,7 @@ def huffman(file_path):
             le = list(filter(lambda l: l.letter == c, letters))[0]
             print(le.bitstring, end=" ")
     print()
+
 
 if __name__ == "__main__":
     # pass the file path to the huffman function

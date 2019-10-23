@@ -17,8 +17,10 @@ def dfs(graph, start):
        it off the stack."""
     explored, stack = set(), [start]
     while stack:
-        v = stack.pop()  # one difference from BFS is to pop last element here instead of first one
-        
+        v = (
+            stack.pop()
+        )  # one difference from BFS is to pop last element here instead of first one
+
         if v in explored:
             continue
 
@@ -30,11 +32,13 @@ def dfs(graph, start):
     return explored
 
 
-G = {'A': ['B', 'C'],
-     'B': ['A', 'D', 'E'],
-     'C': ['A', 'F'],
-     'D': ['B'],
-     'E': ['B', 'F'],
-     'F': ['C', 'E']}
+G = {
+    "A": ["B", "C"],
+    "B": ["A", "D", "E"],
+    "C": ["A", "F"],
+    "D": ["B"],
+    "E": ["B", "F"],
+    "F": ["C", "E"],
+}
 
-print(dfs(G, 'A'))
+print(dfs(G, "A"))

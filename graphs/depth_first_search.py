@@ -4,7 +4,7 @@
 """ Author: OMKAR PATHAK """
 
 
-class Graph():
+class Graph:
     def __init__(self):
         self.vertex = {}
 
@@ -12,7 +12,7 @@ class Graph():
     def printGraph(self):
         print(self.vertex)
         for i in self.vertex.keys():
-            print(i,' -> ', ' -> '.join([str(j) for j in self.vertex[i]]))
+            print(i, " -> ", " -> ".join([str(j) for j in self.vertex[i]]))
 
     # for adding the edge beween two vertexes
     def addEdge(self, fromVertex, toVertex):
@@ -36,14 +36,15 @@ class Graph():
         # mark start vertex as visited
         visited[startVertex] = True
 
-        print(startVertex, end = ' ')
+        print(startVertex, end=" ")
 
         # Recur for all the vertexes that are adjacent to this node
         for i in self.vertex.keys():
             if visited[i] == False:
                 self.DFSRec(i, visited)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     g = Graph()
     g.addEdge(0, 1)
     g.addEdge(0, 2)
@@ -53,7 +54,7 @@ if __name__ == '__main__':
     g.addEdge(3, 3)
 
     g.printGraph()
-    print('DFS:')
+    print("DFS:")
     g.DFS()
 
     # OUTPUT:
@@ -62,4 +63,4 @@ if __name__ == '__main__':
     # 2  ->  0 -> 3
     # 3  ->  3
     # DFS:
-    # 0 1 2 3
+    #  0 1 2 3

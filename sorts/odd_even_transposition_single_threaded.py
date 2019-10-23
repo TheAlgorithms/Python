@@ -5,6 +5,7 @@ Normally the swaps in each set happen simultaneously, without that the algorithm
 is no better than bubble sort.
 """
 
+
 def OddEvenTransposition(arr):
     for i in range(0, len(arr)):
         for i in range(i % 2, len(arr) - 1, 2):
@@ -14,7 +15,8 @@ def OddEvenTransposition(arr):
 
     return arr
 
-#creates a list and sorts it
+
+# creates a list and sorts it
 def main():
     list = []
 
@@ -27,6 +29,7 @@ def main():
 
     print("Sorted List\n")
     print(*list)
+
 
 if __name__ == "__main__":
     main()

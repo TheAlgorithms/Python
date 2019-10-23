@@ -13,7 +13,7 @@ def topologicalSort(l):
         if indegree[i] == 0:
             queue.append(i)
 
-    while(queue):
+    while queue:
         vertex = queue.pop(0)
         cnt += 1
         topo.append(vertex)
@@ -27,6 +27,7 @@ def topologicalSort(l):
     else:
         print(topo)
 
+
 # Adjacency List of Graph
-l = {0:[1,2], 1:[3], 2:[3], 3:[4,5], 4:[], 5:[]}
+l = {0: [1, 2], 1: [3], 2: [3], 3: [4, 5], 4: [], 5: []}
 topologicalSort(l)

@@ -39,12 +39,8 @@ def largest_product(grid):
     # for nxn grid)
     for i in range(nColumns):
         for j in range(nRows - 3):
-            vertProduct = (
-                grid[j][i] * grid[j + 1][i] * grid[j + 2][i] * grid[j + 3][i]
-            )
-            horzProduct = (
-                grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
-            )
+            vertProduct = grid[j][i] * grid[j + 1][i] * grid[j + 2][i] * grid[j + 3][i]
+            horzProduct = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
 
             # Left-to-right diagonal (\) product
             if i < nColumns - 3:
@@ -64,9 +60,7 @@ def largest_product(grid):
                     * grid[i - 3][j + 3]
                 )
 
-            maxProduct = max(
-                vertProduct, horzProduct, lrDiagProduct, rlDiagProduct
-            )
+            maxProduct = max(vertProduct, horzProduct, lrDiagProduct, rlDiagProduct)
             if maxProduct > largest:
                 largest = maxProduct
 

@@ -21,5 +21,5 @@ def main():
     print(modular_exponential(3, 200, 13))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
