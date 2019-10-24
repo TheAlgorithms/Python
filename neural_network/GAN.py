@@ -9,7 +9,7 @@ from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
-random_numer = int(input("Please Input a Random Number to Seed"))
+random_numer = 42
 
 
 np.random.seed(random_numer)
