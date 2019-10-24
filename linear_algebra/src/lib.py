@@ -293,7 +293,7 @@ class Matrix(object):
                                 self.__matrix[0:x] + self.__matrix[x + 1 :],
                                 self.__width - 1,
                                 self.__height - 1,
-                            ).det()
+                            ).determinate()
                         )
             else:
                 return (
