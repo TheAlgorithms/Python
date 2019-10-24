@@ -176,7 +176,7 @@ class HiddenLayer(object):
 
 
         self.activation = activation
-    
+
     def output(self, input=None):
         if input is not None:
             self.x = input
