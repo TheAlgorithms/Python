@@ -155,6 +155,7 @@ class Test(unittest.TestCase):
             "|0,0,0,0,0|\n|0,0,0,0,0|\n|0,0,0,0,0|\n|0,0,0,0,0|" + "\n|0,0,0,0,0|\n",
             str(squareZeroMatrix(5)),
         )
-    
+
+
 if __name__ == "__main__":
     unittest.main()
