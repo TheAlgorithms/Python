@@ -1,4 +1,3 @@
-import numpy as np
 from binary_exp_mod import bin_exp_mod
 import random
 

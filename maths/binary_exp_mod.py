@@ -1,5 +1,3 @@
-import math
-
 def bin_exp_mod(a, n, b):
   # mod b
   assert(not (b == 0)), "This cannot accept modulo that is == 0"
