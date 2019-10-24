@@ -24,7 +24,7 @@
 #
 #  If k = O(n), time complexity is O(n)
 
-DEFAULT_BUCKET_SIZE = 5
+DEFAULT_BUCKET_SIZE = 6
 
 
 def bucket_sort(my_list, bucket_size=DEFAULT_BUCKET_SIZE):
@@ -45,5 +45,5 @@ def bucket_sort(my_list, bucket_size=DEFAULT_BUCKET_SIZE):
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:").strip()
-    unsorted = [float(n) for n in user_input.split(",") if len(user_input) > 0]
+    unsorted = [eval(n1) for n1 in user_input.split(",") if len(user_input) > 0]
     print(bucket_sort(unsorted))
