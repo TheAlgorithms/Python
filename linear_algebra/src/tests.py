@@ -156,6 +156,12 @@ class Test(unittest.TestCase):
             str(squareZeroMatrix(5)),
         )
 
-
+def force_test() -> None:
+    """
+    This will ensure that pytest runs the unit tests above.
+    >>> unittest.main()
+    """
+    pass
+    
 if __name__ == "__main__":
     unittest.main()
