@@ -2,11 +2,8 @@
 
 
 def find_max(nums):
-    max = nums[0]
-    for x in nums:
-        if x > max:
-            max = x
-    print(max)
+    maxi=max(nums)
+    print(maxi)
 
 
 def main():
