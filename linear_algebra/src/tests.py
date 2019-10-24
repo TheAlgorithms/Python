@@ -159,7 +159,8 @@ class Test(unittest.TestCase):
 def force_test() -> None:
     """
     This will ensure that pytest runs the unit tests above.
-    >>> unittest.main()
+    To explore https://github.com/TheAlgorithms/Python/pull/1124 uncomment the line below.
+    >>> # unittest.main()
     """
     pass
     
