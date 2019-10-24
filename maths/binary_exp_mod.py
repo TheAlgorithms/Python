@@ -1,3 +1,5 @@
+import unittest
+
 def bin_exp_mod(a, n, b):
   # mod b
   assert(not (b == 0)), "This cannot accept modulo that is == 0"
@@ -10,6 +12,11 @@ def bin_exp_mod(a, n, b):
   r = bin_exp_mod(a, n/2, b)
   return (r * r) % b
 
+class Test(unittest.TestCase):
+  def test_mod(self):
+    self.assertTrue(bin_exp_mod(3, 4, 5) == 1)
+    self.assertTrue(bin_exp_mod(7, 13, 10) == 7)
+
 if __name__ == '__main__':
   try:
     BASE = int(input("Enter Base : ").strip())
@@ -19,3 +26,4 @@ if __name__ == '__main__':
     print("Invalid literal for integer")
 
   print(bin_exp_mod(BASE, POWER, MODULO))
+  unittest.main()
