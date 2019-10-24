@@ -277,7 +277,7 @@ class Matrix(object):
         """
         return self.__height
 
-    def det(self):
+    def determinate(self) -> float:
         """
             returns the determinate of an nxn matrix using Laplace expansion
         """
