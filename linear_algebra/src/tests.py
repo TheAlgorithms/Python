@@ -118,6 +118,13 @@ class Test(unittest.TestCase):
         A = Matrix([[1, 2, 3], [2, 4, 5], [6, 7, 8]], 3, 3)
         self.assertEqual("|1,2,3|\n|2,4,5|\n|6,7,8|\n", str(A))
 
+    def test_determinate(self):
+        """
+            test for determinate()
+        """
+        A = Matrix([[1, 1, 4, 5], [3, 3, 3, 2], [5, 1, 9, 0], [9, 7, 7, 9]], 4, 4)
+        self.assertEqual(-376, A.determinate())
+
     def test__mul__matrix(self):
         A = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3, 3)
         x = Vector([1, 2, 3])
@@ -149,6 +156,13 @@ class Test(unittest.TestCase):
             str(squareZeroMatrix(5)),
         )
 
-
+def force_test() -> None:
+    """
+    This will ensure that pytest runs the unit tests above.
+    To explore https://github.com/TheAlgorithms/Python/pull/1124 uncomment the line below.
+    >>> # unittest.main()
+    """
+    pass
+    
 if __name__ == "__main__":
     unittest.main()

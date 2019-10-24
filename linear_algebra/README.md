@@ -45,7 +45,8 @@ This module contains some useful classes and functions for dealing with linear a
     - changeComponent(x,y,value) : changes the specified component.  
     - component(x,y) : returns the specified component.  
     - width() : returns the width of the matrix  
-    - height() : returns the height of the matrix  
+    - height() : returns the height of the matrix
+    - determinate() : returns the determinate of the matrix if it is square 
     - operator + : implements the matrix-addition.  
     - operator - _ implements the matrix-subtraction  
 
