@@ -27,7 +27,7 @@ def isDigitCancelling(num,den):
 def solve():
     solutions = []
     den = 11 
-    for num in range(11,99):
+    for num in range(11,100):
         while den <= 99:
             if (num != den) and (num % 10 == den // 10) and (den%10 != 0):
                 if isDigitCancelling(num,den):
