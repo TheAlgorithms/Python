@@ -119,7 +119,7 @@ class Vector(object):
         size = len(self)
         if size == len(other):
             result = [self.__components[i] - other.component(i) for i in range(size)]
-            return result
+            return Vector(result)
         else:  # error case
             raise Exception("must have the same size")
 
@@ -130,7 +130,7 @@ class Vector(object):
         """
         if isinstance(other, float) or isinstance(other, int):
             ans = [c * other for c in self.__components]
-            return ans
+            return Vector(ans)
         elif isinstance(other, Vector) and (len(self) == len(other)):
             size = len(self)
             summe = 0

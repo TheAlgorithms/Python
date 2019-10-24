@@ -45,7 +45,7 @@ class Test(unittest.TestCase):
             test for the eulidean length
         """
         x = Vector([1, 2])
-        self.assertAlmostEqual(x.eulidLength(), 2.236, 3)
+        self.assertAlmostEqual(x.euclidLength(), 2.236, 3)
 
     def test_add(self):
         """
@@ -156,13 +156,6 @@ class Test(unittest.TestCase):
             str(squareZeroMatrix(5)),
         )
 
-def force_test() -> None:
-    """
-    This will ensure that pytest runs the unit tests above.
-    To explore https://github.com/TheAlgorithms/Python/pull/1124 uncomment the line below.
-    >>> # unittest.main()
-    """
-    pass
-    
+
 if __name__ == "__main__":
     unittest.main()
