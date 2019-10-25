@@ -92,7 +92,7 @@ class Dropout(object):
             dropout_masks = []  # create different masks in each training epoch
 
             # forward hidden_layers
-            for i in xrange(self.n_layers):
+            for i in range(self.n_layers):
                 if i == 0:
                     layer_input = self.x
 
