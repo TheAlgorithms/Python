@@ -207,6 +207,7 @@
 - [knn sklearn](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/knn_sklearn.py)
 - [linear regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_regression.py)
 - [logistic regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
+- [Isotonic regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/isotonic.py)
 - [naive bayes](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/naive_bayes.ipynb)
 - Random Forest Classification
   - [random forest classification](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classification/random_forest_classification.py)
