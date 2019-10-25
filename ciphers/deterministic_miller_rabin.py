@@ -1,4 +1,6 @@
-"""Created by Nathan Damon, @bizzfitch on github"""
+"""Created by Nathan Damon, @bizzfitch on github
+>>> test_miller_rabin()
+"""
 
 
 def miller_rabin(n, allow_probable=False):
