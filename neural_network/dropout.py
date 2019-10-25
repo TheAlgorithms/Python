@@ -1,4 +1,3 @@
-import sys
 import numpy
 
 numpy.seterr(all='ignore')
@@ -55,7 +54,7 @@ class Dropout(object):
 
 
         # construct multi-layer
-        for i in xrange(self.n_layers):
+        for i in range(self.n_layers):
 
             # layer_size
             if i == 0:
@@ -89,7 +88,7 @@ class Dropout(object):
 
     def train(self, epochs=5000, dropout=True, p_dropout=0.5, rng=None):
 
-        for epoch in xrange(epochs):
+        for epoch in range(epochs):
             dropout_masks = []  # create different masks in each training epoch
 
             # forward hidden_layers
@@ -111,7 +110,7 @@ class Dropout(object):
 
 
             # backward hidden_layers
-            for i in reversed(xrange(0, self.n_layers)):
+            for i in reversed(range(0, self.n_layers)):
                 if i == self.n_layers-1:
                     prev_layer = self.log_layer
                 else:
@@ -126,7 +125,7 @@ class Dropout(object):
     def predict(self, x, dropout=True, p_dropout=0.5):
         layer_input = x
 
-        for i in xrange(self.n_layers):
+        for i in range(self.n_layers):
             if dropout == True:
                 self.hidden_layers[i].W = p_dropout * self.hidden_layers[i].W
                 self.hidden_layers[i].b = p_dropout * self.hidden_layers[i].b
