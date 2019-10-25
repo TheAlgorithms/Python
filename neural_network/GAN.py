@@ -1,9 +1,6 @@
 import numpy as np
 from sklearn.utils import shuffle
-import matplotlib.pyplot as plt
 from tensorflow.examples.tutorials.mnist import input_data
-import numpy as np,sys
-from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
