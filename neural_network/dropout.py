@@ -37,9 +37,7 @@ def dReLU(x):
 Dropout
 '''
 class Dropout(object):
-    def __init__(self, input, label,\
-                 n_in, hidden_layer_sizes, n_out,\
-                 rng=None, activation=ReLU):
+    def __init__(self, input, label,n_in, hidden_layer_sizes, n_out,rng=None, activation=ReLU):
 
         self.x = input
         self.y = label
@@ -139,8 +137,7 @@ class Dropout(object):
 Hidden Layer
 '''
 class HiddenLayer(object):
-    def __init__(self, input, n_in, n_out,\
-                 W=None, b=None, rng=None, activation=tanh):
+    def __init__(self, input, n_in, n_out,W=None, b=None, rng=None, activation=tanh):
 
         if rng is None:
             rng = numpy.random.RandomState(1234)
@@ -278,13 +275,10 @@ def test_dropout(n_epochs=5000, dropout=True, p_dropout=0.5):
     rng = numpy.random.RandomState(123)
 
     # construct Dropout MLP
-    classifier = Dropout(input=x, label=y, \
-                         n_in=2, hidden_layer_sizes=[10, 10], n_out=2, \
-                         rng=rng, activation=ReLU)
+    classifier = Dropout(input=x, label=y,n_in=2, hidden_layer_sizes=[10, 10], n_out=2,rng=rng, activation=ReLU)
 
     # train
-    classifier.train(epochs=n_epochs, dropout=dropout, \
-                     p_dropout=p_dropout, rng=rng)
+    classifier.train(epochs=n_epochs, dropout=dropout,p_dropout=p_dropout, rng=rng)
 
     # test
     print(classifier.predict(x))
