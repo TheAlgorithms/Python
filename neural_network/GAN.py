@@ -1,9 +1,7 @@
-import numpy as np,sys,time
+import numpy as np
 from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
-import matplotlib
 from tensorflow.examples.tutorials.mnist import input_data
-import os
 import numpy as np,sys
 from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
