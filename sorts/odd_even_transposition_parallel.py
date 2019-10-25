@@ -144,7 +144,7 @@ def main():
     print("Initial List")
     print(*arr)
 
-    list = OddEvenTransposition(arr)
+   
 
     print("Sorted List\n")
     print(*arr)
