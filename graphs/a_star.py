@@ -26,7 +26,7 @@ for i in range(len(grid)):
             heuristic[i][j] = 99  # added extra penalty in the heuristic map
 
 
-# the actions we can take
+# The action we can take
 delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # go up  # go left  # go down  # go right
 
 
