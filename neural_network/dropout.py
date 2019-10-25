@@ -288,7 +288,7 @@ def test_dropout(n_epochs=5000, dropout=True, p_dropout=0.5):
                      p_dropout=p_dropout, rng=rng)
 
     # test
-    print classifier.predict(x)
+    print(classifier.predict(x))
 
 if __name__ == "__main__":
     test_dropout()
