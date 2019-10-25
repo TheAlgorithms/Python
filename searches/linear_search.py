@@ -31,10 +31,12 @@ def linear_search(sequence, target):
     >>> linear_search([0, 5, 7, 10, 15], 6)
 
     """
-    for index, item in enumerate(sequence):
-        if item == target:
-            return index
+    
+    for i in range(len(sequence)):
+        if sequence(i) ==target:
+            return i
     return None
+
 
 
 if __name__ == "__main__":
