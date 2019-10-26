@@ -2,7 +2,7 @@ import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.utils import shuffle
-from tensorflow.examples.tutorials.mnist import input_data
+import input_data
 
 random_numer = 42
 
