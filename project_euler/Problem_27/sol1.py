@@ -36,4 +36,7 @@ def findMaxN(a,b):
 			if (n > max):
 				max = n++
 		return max
+
+if __name__ == "__main__":
+    print(solution(int(input().strip())))
 	
