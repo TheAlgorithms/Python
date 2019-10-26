@@ -40,6 +40,9 @@ class CircularQueue:
     #Calculating the size of the queue
     def size(self):
         """
+        >>> CQ=CircularQueue()
+        >>> CQ.enqueue(5)
+        True
         >>> CQ.size()
         1
         """
