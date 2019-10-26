@@ -39,6 +39,10 @@ class CircularQueue:
 
     #Calculating the size of the queue
     def size(self):
+        """
+        >>> CQ.size()
+        1
+        """
         if self.tail>=self.head:
             return (self.tail-self.head)
         return (self.maxSize - (self.head-self.tail))
