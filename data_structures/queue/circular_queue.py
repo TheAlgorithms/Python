@@ -14,6 +14,8 @@ class CircularQueue:
         >>> CQ=CircularQueue()
         >>> CQ.enqueue(5)
         True
+        >>> CQ.size()
+        1
         """
         if self.size() == self.maxSize-1:
             return ("Queue Full!")
@@ -30,6 +32,8 @@ class CircularQueue:
         True
         >>> CQ.dequeue()
         5
+        >>> CQ.size()
+        0
         """
         if self.size()==0:
             return ("Queue Empty!")
