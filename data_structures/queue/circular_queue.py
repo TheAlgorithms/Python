@@ -55,21 +55,9 @@ class CircularQueue:
         return (self.maxSize - (self.head-self.tail))
 
 q = CircularQueue()
-print(q.enqueue(1))
-print(q.enqueue(2))
-print(q.enqueue(3))
-print(q.enqueue(4))
-print(q.enqueue(5))
-print(q.enqueue(6))
-print(q.enqueue(7))
-print(q.enqueue(8))
-print(q.enqueue(9))
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
-print(q.dequeue())
+
+for i in range(10):
+    print(q.enqueue(i))
+
+while q.size():
+    print(q.dequeue())
