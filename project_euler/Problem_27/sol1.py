@@ -25,7 +25,7 @@ def findMaxN(a,b):
 		n = 2
 		while (isPrime(n*n + a*n + b)==True):
 			if (n > max):
-				max = n++
+				max = n+1
     return max
 
   
@@ -34,7 +34,7 @@ def findMaxN(a,b):
 		n = 2
 		while (isPrime(n*n + a*n + b)==True):
 			if (n > max):
-				max = n++
+				max = n+1
 		return max
 
 if __name__ == "__main__":
