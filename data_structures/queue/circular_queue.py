@@ -9,6 +9,12 @@ class CircularQueue:
 
     #Adding elements to the queue
     def enqueue(self,data):
+        """
+        Insert the element in the Queue
+        >>> CQ=CircularQueue()
+        >>> CQ.enqueue(5)
+        True
+        """
         if self.size() == self.maxSize-1:
             return ("Queue Full!")
         self.queue.append(data)
@@ -17,6 +23,14 @@ class CircularQueue:
 
     #Removing elements from the queue
     def dequeue(self):
+        """
+        Delete the element from the Queue
+        >>> CQ=CircularQueue()
+        >>> CQ.enqueue(5)
+        True
+        >>> CQ.dequeue()
+        5
+        """
         if self.size()==0:
             return ("Queue Empty!")
         data = self.queue[self.head]
