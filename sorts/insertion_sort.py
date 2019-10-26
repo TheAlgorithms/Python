@@ -29,18 +29,13 @@ def insertion_sort(collection):
     [-45, -5, -2]
     """
 
-    for loop_index in range(1, len(collection)):
-        insertion_index = loop_index
-        while (
-            insertion_index > 0
-            and collection[insertion_index - 1] > collection[insertion_index]
-        ):
-            collection[insertion_index], collection[insertion_index - 1] = (
-                collection[insertion_index - 1],
-                collection[insertion_index],
-            )
-            insertion_index -= 1
-
+    for i in range(1, len(collection)):
+        insert_value = collection[i]
+        j = i - 1
+        while j >= 0 and insert_value < collection[j]:
+            collection[j + 1] = collection[j]
+            j -= 1
+        collection[j + 1] = insert_value
     return collection
 
 
