@@ -1,21 +1,18 @@
-
 from bs4 import BeautifulSoup
 import requests
 
+
 def imdb_top(imdb_top_n):
-   base_url = "https://www.imdb.com/search/title?title_type=feature&sort=num_votes,desc&count="+imdb_top_n
-   r = requests.get(base_url)
-   source = BeautifulSoup(r.content, "lxml")
-
-   top250 = source.findAll("div", attrs={"class": "lister-item mode-advanced"})
-
-   for i in top250:
-               print("\n"+i.find("h3").find("a").text) #movie's name
-               print(i.find("span", attrs={"class": "genre"}).text) #genre
-               print(i.find("strong").text) # movie's rating
-               print("https://www.imdb.com"+i.find("a").get("href")) #movie's page link
-               print("\n**************************************")
+    base_url = (f"https://www.imdb.com/search/title?title_type="
+                f"feature&sort=num_votes,desc&count={imdb_top_n}")
+    source = BeautifulSoup(requests.get(base_url).content, "html.parser")
+    for m in source.findAll("div", class_="lister-item mode-advanced"):
+        print("\n" + m.h3.a.text)  # movie's name
+        print(m.find("span", attrs={"class": "genre"}).text)  # genre
+        print(m.strong.text)  # movie's rating
+        print(f"https://www.imdb.com{m.a.get('href')}")  # movie's page link
+        print("*" * 40)
 
 
 if __name__ == "__main__":
-    print(imdb_top(str(input())))
+    imdb_top(input("How many movies would you like to see? "))
