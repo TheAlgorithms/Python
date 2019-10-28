@@ -1,5 +1,5 @@
-key=input('Enter key: ')
-pt=input("Enter the plaintext:")
+key="college"
+pt="UNIVERSITY"
 
 def mixed_keyword(key,pt):
     """
