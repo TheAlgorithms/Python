@@ -51,11 +51,11 @@ def max_sub_array(nums: List[int]) -> int:
     
     If all elements are negative, the largest subarray would be the empty array, 
     having the sum 0.
-    >>> max_sub_array([-1,-2,-3])
+    >>> max_sub_array([-1, -2, -3])
     0
-    >>> max_sub_array([5,-2,-3])
+    >>> max_sub_array([5, -2, -3])
     5
-    >>> max_sub_array([31, −41, 59, 26, −53, 58, 97, −93, −23, 84])
+    >>> max_sub_array([31, -41, 59, 26, -53, 58, 97, -93, -23, 84])
     187
     """
     best = 0
