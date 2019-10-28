@@ -16,8 +16,7 @@ def decimal_to_octal(num):
         counter += 1
         num = math.floor(num / 8)  # basically /= 8 without remainder if any
         # This formatting removes trailing '.0' from `octal`.
-    return "{0:g}".format(float(octal))
-
+    return int(octal)
 
 def main():
     """Print octal equivelents of decimal numbers."""
