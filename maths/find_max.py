@@ -1,17 +1,9 @@
-# NguyenU
-
-
-def find_max(nums):
-    max = nums[0]
-    for x in nums:
-        if x > max:
-            max = x
-    print(max)
-
-
-def main():
-    find_max([2, 4, 9, 7, 19, 94, 5])
-
-
-if __name__ == "__main__":
-    main()
+def max(l):
+    m=l[0]
+    for i in l[1:]:
+        if i>m:
+            m=i
+    return m
+a=[1,2,3,4,22]
+s=max(a)
+print("max of the given list is",s)
