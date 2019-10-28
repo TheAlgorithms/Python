@@ -10,11 +10,11 @@ def find_max(nums):
     True
     True
     """
-    max = nums[0]
+    max_num = nums[0]
     for x in nums:
-        if x > max:
-            max = x
-    return max
+        if x > max_num:
+            max_num = x
+    return max_num
 
 
 def main():
