@@ -3,19 +3,19 @@ key=input('Enter key: ')
 pt=input("Enter the plaintext:")
 
 def mixed_keyword(key,pt):
-"""
+    """
 
-For key:hello
+    For key:hello
 
-H E L O
-A B C D
-F G I J
-K M N P
-Q R S T
-U V W X
-Y Z
-and map vertically
-"""
+    H E L O
+    A B C D
+    F G I J
+    K M N P
+    Q R S T
+    U V W X
+    Y Z
+    and map vertically
+    """
     key=key.upper()
     pt=pt.upper()
     l=len(key)
@@ -88,3 +88,4 @@ Enter the plaintext:UNIVERSITY
 {'A': 'C', 'B': 'A', 'C': 'I', 'D': 'P', 'E': 'U', 'F': 'Z', 'G': 'O', 'H': 'B', 'I': 'J', 'J': 'Q', 'K': 'V', 'L': 'L', 'M': 'D', 'N': 'K', 'O': 'R', 'P': 'W', 'Q': 'E', 'R': 'F', 'S': 'M', 'T': 'S', 'U': 'X', 'V': 'G', 'W': 'H', 'X': 'N', 'Y': 'T', 'Z': 'Y'}
 XKJGUFMJST
 '''
+
