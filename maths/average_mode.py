@@ -13,7 +13,7 @@ def mode(input_list):                    					#Defining function "mode."
 	"""
 	check_list = input_list.copy()    					#Copying inputlist to check with the index number later.
 	result = list()								#Empty list to store the counts of elements in inputlist
-	for x in inputlist:
+	for x in input_list:
 		result.append(input_list.count(x))		
 		input_list.remove(x)
 		y=max(result)							#Gets the maximum value in the result list.
