@@ -40,8 +40,7 @@ def find_max_cross_sum(A, low, mid, high):
 
 def max_sub_array(nums: List[int]) -> int:
     """
-    Finds the contiguous subarray 
-    which has the largest sum and return its sum.
+    Finds the contiguous subarray which has the largest sum and return its sum.
 
     >>> max_sub_array([-2, 1, -3, 4, -1, 2, 1, -5, 4])
     6
