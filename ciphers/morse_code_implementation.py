@@ -97,7 +97,7 @@ def main():
     message = "Morse code here"
     result = encrypt(message.upper())
     print(result)
-    
+
     message = result
     result = decrypt(message)
     print(result)
