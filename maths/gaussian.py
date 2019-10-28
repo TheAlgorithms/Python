@@ -6,6 +6,7 @@ python : 3.7.3
 
 """
 from numpy import pi, sqrt, exp
+import math
 
 
 def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
@@ -50,8 +51,8 @@ def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
     >>> gaussian(2523, mu=234234, sigma=3425)
     0.0
   """
-    return 1 / sqrt(2 * pi * sigma ** 2) * exp(-(x - mu) ** 2 / 2 * sigma ** 2)
-
+    x = float(x-mu)/sigma
+    return math.exp(-x*x/2.0) / math.sqrt(2.0*math.pi) / sigma
 
 if __name__ == "__main__":
     import doctest
