@@ -2,7 +2,7 @@ def mode(inputlist):                    					#Defining function "mode."
 	"""
 	This function returns the mode(Mode as in the measures of central tendency) of the input data.
 	
-	>>>mode([2,3,4,5,3,4,2,5,2,2,4,2,2,2])
+	>>> mode([2,3,4,5,3,4,2,5,2,2,4,2,2,2])
 	2
 	
 	the input list may contain any Datastructure or any Datatype.
