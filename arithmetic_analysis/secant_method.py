@@ -2,7 +2,7 @@
 # Author: dimgrichr
 
 
-from math import exp, sin
+from math import exp
 
 
 def f(x):
