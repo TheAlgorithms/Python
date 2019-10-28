@@ -14,6 +14,14 @@ def mixed_keyword(key,pt):
     U V W X
     Y Z
     and map vertically
+    
+    
+    
+    
+    Enter key: COLLEGE 
+    Enter the plaintext:UNIVERSITY
+    {'A': 'C', 'B': 'A', 'C': 'I', 'D': 'P', 'E': 'U', 'F': 'Z', 'G': 'O', 'H': 'B', 'I': 'J', 'J': 'Q', 'K': 'V', 'L': 'L', 'M': 'D', 'N': 'K', 'O': 'R', 'P': 'W', 'Q': 'E', 'R': 'F', 'S': 'M', 'T': 'S', 'U': 'X', 'V': 'G', 'W': 'H', 'X': 'N', 'Y': 'T', 'Z': 'Y'}
+    XKJGUFMJST
     """
     key=key.upper()
     pt=pt.upper()
@@ -81,10 +89,4 @@ def mixed_keyword(key,pt):
 print(mixed_keyword(key,pt))
 
 
-'''
-Enter key: COLLEGE 
-Enter the plaintext:UNIVERSITY
-{'A': 'C', 'B': 'A', 'C': 'I', 'D': 'P', 'E': 'U', 'F': 'Z', 'G': 'O', 'H': 'B', 'I': 'J', 'J': 'Q', 'K': 'V', 'L': 'L', 'M': 'D', 'N': 'K', 'O': 'R', 'P': 'W', 'Q': 'E', 'R': 'F', 'S': 'M', 'T': 'S', 'U': 'X', 'V': 'G', 'W': 'H', 'X': 'N', 'Y': 'T', 'Z': 'Y'}
-XKJGUFMJST
-'''
 
