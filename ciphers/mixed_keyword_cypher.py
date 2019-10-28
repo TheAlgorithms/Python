@@ -1,4 +1,3 @@
-import math
 key=input('Enter key: ')
 pt=input("Enter the plaintext:")
 
