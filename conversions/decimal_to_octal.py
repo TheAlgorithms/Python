@@ -7,7 +7,6 @@ import math
 
 
 def decimal_to_octal(num: int) -> str:
-    
     """Convert a Decimal Number to an Octal Number.
     
     >>> for i in (0, 2, 8, 64, 65, 216, 255, 256, 512):
