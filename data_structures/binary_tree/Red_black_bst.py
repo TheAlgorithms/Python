@@ -123,7 +123,7 @@ class RedBlackTree():
                 node = node.left
 
         if z == self.TNULL:
-            print ("Couldn't find key in the tree")
+            print("Couldn't find key in the tree")
             return
 
         y = z
@@ -206,7 +206,7 @@ class RedBlackTree():
                 indent += "|    "
 
             s_color = "RED" if node.color == 1 else "BLACK"
-            print (str(node.data) + "(" + s_color + ")")
+            print(str(node.data) + "(" + s_color + ")")
             self.__print_helper(node.left, indent, False)
             self.__print_helper(node.right, indent, True)
     
