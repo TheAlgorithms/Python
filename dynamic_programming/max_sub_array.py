@@ -2,9 +2,6 @@
 author : Mayank Kumar Jha (mk9440)
 """
 from typing import List
-import time
-import matplotlib.pyplot as plt
-from random import randint
 
 
 def find_max_sub_array(A, low, high):
@@ -48,9 +45,11 @@ def max_sub_array(nums: List[int]) -> int:
 
     >>> max_sub_array([-2, 1, -3, 4, -1, 2, 1, -5, 4])
     6
+    
     An empty (sub)array has sum 0.
     >>> max_sub_array([])
     0
+    
     If all elements are negative, the largest subarray would be the empty array, 
     having the sum 0.
     >>> max_sub_array([-1,-2,-3])
@@ -74,6 +73,9 @@ if __name__ == "__main__":
     """
     A random simulation of this algorithm.
     """
+    import time
+    import matplotlib.pyplot as plt
+    from random import randint
     inputs = [10, 100, 1000, 10000, 50000, 100000, 200000, 300000, 400000, 500000]
     tim = []
     for i in inputs:
