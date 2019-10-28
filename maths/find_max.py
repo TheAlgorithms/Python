@@ -1,5 +1,5 @@
-n = [34,54,56,34,90]
+n = [34, 54, 56, 90]
 n.sort()
 n = set(n)
 n = list(n)
-print ("Largest number : ",l[-1])
+print("Largest number : ", n[len(n)-2])
