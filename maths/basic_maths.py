@@ -64,10 +64,8 @@ def sum_of_divisors(n):
 
 def euler_phi(n):
     """Calculte Euler's Phi Function."""
-    l = prime_factors(n)
-    l = set(l)
     s = n
-    for x in l:
+    for x in set(prime_factors(n)):
         s *= (x - 1) / x
     return s
 
