@@ -90,7 +90,7 @@ class Perceptron:
         >>> data = [[2.0149, 0.6192, 10.9263]]
         >>> targets = [-1]
         >>> perceptron = Perceptron(data,targets)
-        >>> perceptron.training() # doctest:+ELLIPSIS
+        >>> perceptron.training() # doctest: +ELLIPSIS
         ('\\nEpoch:\\n', ...)
         ...
         >>> perceptron.sort([-0.6508, 0.1097, 4.0009]) # doctest: +ELLIPSIS
