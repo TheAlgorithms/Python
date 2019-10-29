@@ -1,41 +1,44 @@
-import pprint, time
-
-
-def getWordPattern(word):
+def get_word_pattern(word: str) -> str:
+    """
+    >>> get_word_pattern("pattern")
+    '0.1.2.2.3.4.5'
+    >>> get_word_pattern("word pattern")
+    '0.1.2.3.4.5.6.7.7.8.2.9'
+    >>> get_word_pattern("get word pattern")
+    '0.1.2.3.4.5.6.7.3.8.9.2.2.1.6.10'
+    """
     word = word.upper()
-    nextNum = 0
-    letterNums = {}
-    wordPattern = []
+    next_num = 0
+    letter_nums = {}
+    word_pattern = []
 
     for letter in word:
-        if letter not in letterNums:
-            letterNums[letter] = str(nextNum)
-            nextNum += 1
-        wordPattern.append(letterNums[letter])
-    return ".".join(wordPattern)
-
-
-def main():
-    startTime = time.time()
-    allPatterns = {}
-
-    with open("Dictionary.txt") as fo:
-        wordList = fo.read().split("\n")
-
-    for word in wordList:
-        pattern = getWordPattern(word)
-
-        if pattern not in allPatterns:
-            allPatterns[pattern] = [word]
-        else:
-            allPatterns[pattern].append(word)
-
-    with open("Word Patterns.txt", "w") as fo:
-        fo.write(pprint.pformat(allPatterns))
-
-    totalTime = round(time.time() - startTime, 2)
-    print(("Done! [", totalTime, "seconds ]"))
+        if letter not in letter_nums:
+            letter_nums[letter] = str(next_num)
+            next_num += 1
+        word_pattern.append(letter_nums[letter])
+    return ".".join(word_pattern)
 
 
 if __name__ == "__main__":
-    main()
+    import pprint
+    import time
+
+    start_time = time.time()
+    with open("dictionary.txt") as in_file:
+        wordList = in_file.read().splitlines()
+
+    all_patterns = {}
+    for word in wordList:
+        pattern = get_word_pattern(word)
+        if pattern in all_patterns:
+            all_patterns[pattern].append(word)
+        else:
+            all_patterns[pattern] = [word]
+
+    with open("word_patterns.txt", "w") as out_file:
+        out_file.write(pprint.pformat(all_patterns))
+
+    totalTime = round(time.time() - start_time, 2)
+    print(f"Done!  {len(all_patterns):,} word patterns found in {totalTime} seconds.")
+    # Done!  9,581 word patterns found in 0.58 seconds.
