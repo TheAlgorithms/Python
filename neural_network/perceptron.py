@@ -95,7 +95,7 @@ class Perceptron:
         ...
         >>> perceptron.sort([-0.6508, 0.1097, 4.0009]) # doctest: +ELLIPSIS
         ('Sample: ', ...)
-        classification: P1
+        classification: P2
 
         """
         if len(self.sample) == 0:
