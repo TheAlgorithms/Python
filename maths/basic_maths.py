@@ -3,7 +3,10 @@ import math
 
 
 def prime_factors(n):
-    """Find Prime Factors."""
+    """Find Prime Factors.
+    >>> prime_factors(10)
+    [2,5]
+    """
     pf = []
     while n % 2 == 0:
         pf.append(2)
@@ -21,7 +24,10 @@ def prime_factors(n):
 
 
 def number_of_divisors(n):
-    """Calculate Number of Divisors of an Integer."""
+    """Calculate Number of Divisors of an Integer.
+    >>> number_of_divisors(24)
+    8
+    """
     div = 1
 
     temp = 1
@@ -41,7 +47,10 @@ def number_of_divisors(n):
 
 
 def sum_of_divisors(n):
-    """Calculate Sum of Divisors."""
+    """Calculate Sum of Divisors.
+    >>> sum_of_divisors(72)
+    195
+    """
     s = 1
 
     temp = 1
