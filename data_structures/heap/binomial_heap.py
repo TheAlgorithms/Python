@@ -118,7 +118,7 @@ class BinomialHeap:
     values in merged heap; (merge is inplace)
     >>> while not first_heap.isEmpty():
     ...     print(first_heap.deleteMin(), end=" ")
-    17 20 25 26 27 28 29 31 34
+    17 20 25 26 27 28 29 31 34 
     """
 
     def __init__(self, bottom_root=None, min_node=None, heap_size=0):
