@@ -14,3 +14,5 @@ scikit-fuzzy
 sklearn
 sympy
 tensorflow
+collections
+itertools
