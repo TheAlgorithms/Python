@@ -1,23 +1,21 @@
 """
-
     Perceptron
     w = w + N * (d(k) - y) * x(k)
 
-    Using perceptron network for oil analysis,
-    with Measuring of 3 parameters that represent chemical characteristics we can classify the oil, in p1 or p2
+    Using perceptron network for oil analysis, with Measuring of 3 parameters
+    that represent chemical characteristics we can classify the oil, in p1 or p2
     p1 = -1
     p2 = 1
-
 """
 import random
-import  doctest
+
 
 class Perceptron:
     def __init__(self, sample, target, learning_rate=0.01, epoch_number=1000, bias=-1):
         """
         Initializes a Perceptron network for oil analysis
         :param sample: sample dataset of 3 parameters with shape [30,3]
-        :param target: target variable for classification with two possible states -1 or 1
+        :param target: variable for classification with two possible states -1 or 1
         :param learning_rate: learning rate used in optimizing.
         :param epoch_number: number of epochs to train network on.
         :param bias: bias value for the network.
@@ -29,7 +27,9 @@ class Perceptron:
         if len(self.target) == 0:
             raise AttributeError("Target data can not be empty")
         if len(self.sample) != len(self.target):
-            raise AttributeError("Sample data and Target data do not have matching lengths")
+            raise AttributeError(
+                "Sample data and Target data do not have matching lengths"
+            )
         self.learning_rate = learning_rate
         self.epoch_number = epoch_number
         self.bias = bias
@@ -37,7 +37,7 @@ class Perceptron:
         self.col_sample = len(sample[0])  # number of columns in dataset
         self.weight = []
 
-    def training(self):
+    def training(self) -> None:
         """
         Trains perceptron for epochs <= given number of epochs
         :return: None
@@ -68,8 +68,10 @@ class Perceptron:
                 if y != self.target[i]:
                     for j in range(self.col_sample + 1):
                         self.weight[j] = (
-                                self.weight[j]
-                                + self.learning_rate * (self.target[i] - y) * self.sample[i][j]
+                            self.weight[j]
+                            + self.learning_rate
+                            * (self.target[i] - y)
+                            * self.sample[i][j]
                         )
                     has_misclassified = True
             # print('Epoch: \n',epoch_count)
@@ -81,7 +83,7 @@ class Perceptron:
                 # if epoch_count > self.epoch_number or not erro:
                 break
 
-    def sort(self, sample):
+    def sort(self, sample) -> None:
         """
         :param sample: example row to classify as P1 or P2
         :return: None
@@ -91,7 +93,7 @@ class Perceptron:
         >>> perceptron.training() # doctest:+ELLIPSIS
         ('\\nEpoch:\\n', ...)
         ...
-        >>> perceptron.sort([-0.6508, 0.1097, 4.0009]) # doctest:+ELLIPSIS
+        >>> perceptron.sort([-0.6508, 0.1097, 4.0009]) # doctest: +ELLIPSIS
         ('Sample: ', ...)
         classification: P1
 
@@ -112,7 +114,7 @@ class Perceptron:
             print(("Sample: ", sample))
             print("classification: P2")
 
-    def sign(self, u):
+    def sign(self, u: float) -> int:
         """
         threshold function for classification
         :param u: input number
@@ -198,6 +200,8 @@ exit = [
 
 
 if __name__ == "__main__":
+    import doctest
+
     doctest.testmod()
 
     network = Perceptron(
