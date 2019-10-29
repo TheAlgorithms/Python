@@ -1,7 +1,7 @@
-"""Prime numbers calculation."""
+from typing import List
 
 
-def primes(max: int) -> int:
+def primes(max: int) -> List[int]:
     """
     Return a list of all primes up to max.
     >>> primes(10)
