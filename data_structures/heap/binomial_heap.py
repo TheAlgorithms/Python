@@ -47,7 +47,7 @@ class Node:
 
 
 class BinomialHeap:
-    """
+    r"""
         Min-oriented priority queue implemented with the Binomial Heap data 
         structure implemented with the BinomialHeap class. It supports:
     
@@ -123,7 +123,6 @@ class BinomialHeap:
         >>> while not first_heap.isEmpty():
         ...     print(first_heap.deleteMin(), end=" ")
         17 20 25 26 27 28 29 31 34 
-        
     """
 
     def __init__(self, bottom_root=None, min_node=None, heap_size=0):
