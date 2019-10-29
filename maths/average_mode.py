@@ -12,10 +12,10 @@ def mode(input_list):  # Defining function "mode."
     2
     >>> input_list = [2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2]
     >>> mode(input_list) == statistics.mode(input_list)
-	True
-	"""
+    True
+    """
     # Copying inputlist to check with the index number later.
-    check_list = input_list[:]
+    check_list = input_list.copy()
     result = list()  # Empty list to store the counts of elements in input_list
     for x in input_list:
         result.append(input_list.count(x))
