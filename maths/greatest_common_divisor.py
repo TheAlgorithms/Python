@@ -10,6 +10,16 @@ def greatest_common_divisor(a, b):
     Calculate Greatest Common Divisor (GCD).
     >>> greatest_common_divisor(24, 40)
     8
+    >>> greatest_common_divisor(1, 1)
+    1
+    >>> greatest_common_divisor(1, 800)
+    1
+    >>> greatest_common_divisor(11, 37)
+    1
+    >>> greatest_common_divisor(3, 5)
+    1
+    >>> greatest_common_divisor(16, 4)
+    4
     """
     return b if a == 0 else greatest_common_divisor(b % a, a)
 
