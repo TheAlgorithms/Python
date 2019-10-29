@@ -67,10 +67,8 @@ def euler_phi(n: int) -> int:
     >>> euler_phi(100)
     40
     """
-    l = prime_factors(n)
-    l = set(l)
     s = n
-    for x in l:
+    for x in set(prime_factors(n)):
         s *= (x - 1) / x
     return int(s)
 
