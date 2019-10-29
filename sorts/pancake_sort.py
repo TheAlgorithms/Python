@@ -20,6 +20,10 @@ def pancake_sort(arr):
     []
     >>> pancake_sort([-2, -5, -45])
     [-45, -5, -2]
+    >>> pancake_sort([-4, -1, 5])
+    [-4, -1, 5]
+    >>> pancake_sort([-9, 1, -45])
+    [-45, -9, 1]  
     """
     cur = len(arr)
     while cur > 1:
