@@ -26,6 +26,16 @@ def _partition(data, pivot):
 
 
 def quickSelect(list, k):
+    """
+    >>> quickSelect([2,4,5,7,899,54,32], 5)
+    54
+    >>> quickSelect([2,4,5,7,899,54,32], 1)
+    4
+    >>> quickSelect([5,4,3,2], 2)
+    4
+    >>> quickSelect([3,5,7,10,2,12],3)
+    7
+    """
     # k = len(list) // 2 when trying to find the median (index that value would be when list is sorted)
 
     # invalid input
