@@ -1,5 +1,5 @@
 # https://projecteuler.net/problem=58
-from sympy import *
+from sympy import isprime
 numofprime=0
 con=1
 lis=[1]
