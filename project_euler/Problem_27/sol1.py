@@ -8,35 +8,41 @@ n² + an + b, where |a| &lt; 1000 and |b| &lt; 1000
 where |n| is the modulus/absolute value of ne.g. |11| = 11 and |−4| = 4
 Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0.
 """
-def isPrime(input):
-		if (input == 2): 
-			return True
-		if (input <= 1): 
-			return False
-		if (input % 2 == 0):
-			return False
-		for (int i = input - 2; i >= math.sqrt(input); i -= 2):
-			if (input % i == 0):
-				return False
-		return True
-	
-def findMaxN(a,b):
-		max = 0
-		n = 2
-		while (isPrime(n*n + a*n + b)==True):
-			if (n > max):
-				max = n+1
-    return max
 
-  
-def findMaxN(a,b):
-		max = 0
-		n = 2
-		while (isPrime(n*n + a*n + b)==True):
-			if (n > max):
-				max = n+1
-		return max
+import math
+
+def isPrime(k):
+	# checks if a number is prime
+	if k < 2: return False
+	elif k == 2: return True
+	elif k % 2 == 0: return False
+	else:
+		for x in range(3, int(math.sqrt(k)+1), 2):
+			if k % x == 0: return False
+
+	return True
+
+
+def solution(a_limit, b_limit):
+    longest = [0, 0, 0]
+	# length, a, b
+    for a in range((a_limit * -1) + 1, a_limit):
+        for b in range(2, b_limit):
+            if isPrime(b):
+                count = 0
+                n = 0
+                while isPrime((n**2) + (a*n) + b):
+                    count += 1
+                    n += 1
+
+                if count > longest[0]:
+                    longest = [count, a, b]
+
+    ans=longest[1]*longest[2]
+    return ans
+
+
+
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
-	
+	print(solution(1000, 1000))
