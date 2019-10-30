@@ -4,6 +4,7 @@
 # comments: This programme outputs the Longest Strictly Increasing Subsequence in O(NLogN)
 #           Where N is the Number of elements in the list
 #############################
+from typing import List
 
 def CeilIndex(v, l, r, key):
     while r - l > 1:
@@ -15,7 +16,7 @@ def CeilIndex(v, l, r, key):
     return r
 
 
-def LongestIncreasingSubsequenceLength(v):
+def LongestIncreasingSubsequenceLength(v: List[int]) -> int:
     """
     >>> LongestIncreasingSubsequenceLength([2, 5, 3, 7, 11, 8, 10, 13, 6])
     6
