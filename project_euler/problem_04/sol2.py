@@ -6,6 +6,8 @@ the product of two 2-digit numbers is 9009 = 91 x 99.
 Find the largest palindrome made from the product of two 3-digit numbers which
 is less than N.
 """
+
+
 def solution(n):
     """Returns the largest palindrome made from the product of two 3-digit
     numbers which is less than n.

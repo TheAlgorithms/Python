@@ -35,9 +35,7 @@ bruno@bruno-laptop:~/git/Python/project_euler/problem_15$ python3 sol1.py 1
     2
 
     """
-    n = (
-        2 * n
-    )  # middle entry of odd rows starting at row 3 is the solution for n = 1,
+    n = 2 * n  # middle entry of odd rows starting at row 3 is the solution for n = 1,
     # 2, 3,...
     k = n / 2
 

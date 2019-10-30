@@ -21,7 +21,7 @@ MST = prim(G, G[0])
 import math
 
 
-class vertex():
+class vertex:
     """Class Vertex."""
 
     def __init__(self, id):
@@ -40,7 +40,7 @@ class vertex():
 
     def __lt__(self, other):
         """Comparison rule to < operator."""
-        return (self.key < other.key)
+        return self.key < other.key
 
     def __repr__(self):
         """Return the vertex id."""
@@ -76,4 +76,4 @@ def prim(graph, root):
                 v.key = u.edges[v.id]
     for i in range(1, len(graph)):
         A.append([graph[i].id, graph[i].pi.id])
-    return(A)
+    return A

@@ -5,7 +5,7 @@ Build a BST and in order traverse.
 """
 
 
-class node():
+class node:
     # BST data structure
     def __init__(self, val):
         self.val = val
@@ -49,5 +49,5 @@ def tree_sort(arr):
     return res
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(tree_sort([10, 1, 3, 2, 9, 14, 13]))

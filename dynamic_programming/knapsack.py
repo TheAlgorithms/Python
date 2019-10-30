@@ -8,36 +8,38 @@ Note that only the integer weights 0-1 knapsack problem is solvable
 
 
 def MF_knapsack(i, wt, val, j):
-    '''
+    """
     This code involves the concept of memory functions. Here we solve the subproblems which are needed
     unlike the below example
     F is a 2D array with -1s filled up
-    '''
+    """
     global F  # a global dp table for knapsack
     if F[i][j] < 0:
-        if j < wt[i-1]:
-            val = MF_knapsack(i-1, wt, val, j)
+        if j < wt[i - 1]:
+            val = MF_knapsack(i - 1, wt, val, j)
         else:
-            val = max(MF_knapsack(i-1, wt, val, j),
-                      MF_knapsack(i-1, wt, val, j - wt[i-1]) + val[i-1])
+            val = max(
+                MF_knapsack(i - 1, wt, val, j),
+                MF_knapsack(i - 1, wt, val, j - wt[i - 1]) + val[i - 1],
+            )
         F[i][j] = val
     return F[i][j]
 
 
 def knapsack(W, wt, val, n):
-    dp = [[0 for i in range(W+1)]for j in range(n+1)]
+    dp = [[0 for i in range(W + 1)] for j in range(n + 1)]
 
-    for i in range(1,n+1):
-        for w in range(1, W+1):
-            if wt[i-1] <= w:
-                dp[i][w] = max(val[i-1] + dp[i-1][w-wt[i-1]], dp[i-1][w])
+    for i in range(1, n + 1):
+        for w in range(1, W + 1):
+            if wt[i - 1] <= w:
+                dp[i][w] = max(val[i - 1] + dp[i - 1][w - wt[i - 1]], dp[i - 1][w])
             else:
-                dp[i][w] = dp[i-1][w]
+                dp[i][w] = dp[i - 1][w]
 
     return dp[n][W], dp
 
 
-def knapsack_with_example_solution(W: int, wt: list, val:list):
+def knapsack_with_example_solution(W: int, wt: list, val: list):
     """
     Solves the integer weights knapsack problem returns one of
     the several possible optimal subsets.
@@ -70,17 +72,23 @@ def knapsack_with_example_solution(W: int, wt: list, val:list):
     But got 4 weights and 3 values
     """
     if not (isinstance(wt, (list, tuple)) and isinstance(val, (list, tuple))):
-        raise ValueError("Both the weights and values vectors must be either lists or tuples")
+        raise ValueError(
+            "Both the weights and values vectors must be either lists or tuples"
+        )
 
     num_items = len(wt)
     if num_items != len(val):
-        raise ValueError("The number of weights must be the "
-                         "same as the number of values.\nBut "
-                         "got {} weights and {} values".format(num_items, len(val)))
+        raise ValueError(
+            "The number of weights must be the "
+            "same as the number of values.\nBut "
+            "got {} weights and {} values".format(num_items, len(val))
+        )
     for i in range(num_items):
         if not isinstance(wt[i], int):
-            raise TypeError("All weights must be integers but "
-                            "got weight of type {} at index {}".format(type(wt[i]), i))
+            raise TypeError(
+                "All weights must be integers but "
+                "got weight of type {} at index {}".format(type(wt[i]), i)
+            )
 
     optimal_val, dp_table = knapsack(W, wt, val, num_items)
     example_optional_set = set()
@@ -89,7 +97,7 @@ def knapsack_with_example_solution(W: int, wt: list, val:list):
     return optimal_val, example_optional_set
 
 
-def _construct_solution(dp:list, wt:list, i:int, j:int, optimal_set:set):
+def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
     """
     Recursively reconstructs one of the optimal subsets given
     a filled DP table and the vector of weights
@@ -117,21 +125,21 @@ def _construct_solution(dp:list, wt:list, i:int, j:int, optimal_set:set):
             _construct_solution(dp, wt, i - 1, j, optimal_set)
         else:
             optimal_set.add(i)
-            _construct_solution(dp, wt, i - 1, j - wt[i-1], optimal_set)
+            _construct_solution(dp, wt, i - 1, j - wt[i - 1], optimal_set)
 
 
-if __name__ == '__main__':
-    '''
+if __name__ == "__main__":
+    """
     Adding test case for knapsack
-    '''
+    """
     val = [3, 2, 4, 4]
     wt = [4, 3, 2, 3]
     n = 4
     w = 6
     F = [[0] * (w + 1)] + [[0] + [-1 for i in range(w + 1)] for j in range(n + 1)]
-    optimal_solution, _ = knapsack(w,wt,val, n)
+    optimal_solution, _ = knapsack(w, wt, val, n)
     print(optimal_solution)
-    print(MF_knapsack(n,wt,val,w))  # switched the n and w
+    print(MF_knapsack(n, wt, val, w))  # switched the n and w
 
     # testing the dynamic programming problem with example
     # the optimal subset for the above example are items 3 and 4
@@ -140,4 +148,3 @@ if __name__ == '__main__':
     assert optimal_subset == {3, 4}
     print("optimal_value = ", optimal_solution)
     print("An optimal subset corresponding to the optimal value", optimal_subset)
-

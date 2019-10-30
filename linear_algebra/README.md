@@ -6,7 +6,8 @@ This module contains some useful classes and functions for dealing with linear a
 
 ## Overview  
 
-- class Vector  
+### class Vector  
+-
     - This class represents a vector of arbitray size and operations on it.  
 
     **Overview about the methods:**    
@@ -32,7 +33,8 @@ This module contains some useful classes and functions for dealing with linear a
 - function randomVector(N,a,b)
     - returns a random vector of size N, with random integer components between 'a' and 'b'.
 
-- class Matrix
+### class Matrix
+-
     - This class represents a matrix of arbitrary size and operations on it.
 
     **Overview about the methods:**  
@@ -43,7 +45,8 @@ This module contains some useful classes and functions for dealing with linear a
     - changeComponent(x,y,value) : changes the specified component.  
     - component(x,y) : returns the specified component.  
     - width() : returns the width of the matrix  
-    - height() : returns the height of the matrix  
+    - height() : returns the height of the matrix
+    - determinate() : returns the determinate of the matrix if it is square 
     - operator + : implements the matrix-addition.  
     - operator - _ implements the matrix-subtraction  
 
