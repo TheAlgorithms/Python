@@ -10,6 +10,16 @@ Example: [10, 22, 9, 33, 21, 50, 41, 60, 80] as input will return [10, 22, 33, 4
 
 
 def longestSub(ARRAY):  # This function is recursive
+    """
+    >>> longestSub([7,6,3,4,9,21,45])
+    [7,6,3,4,9,21,45]
+    >>> longestSub([-1,5,7,-6,0,1,56])
+    [-6,0,1,56]
+    >>> longestSub([5,8,10,23,12,14,3])
+    [5,8,10,12,14]
+    >>> longestSub([34,21,45,67,32,12])
+    [21,45,67] 
+    """
 
     ARRAY_LENGTH = len(ARRAY)
     if (
