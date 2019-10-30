@@ -4,6 +4,21 @@ import math
 
 
 def res(x, y):
+    """
+    This function return the x^y.
+    >>> res(3,4)
+    81
+    >>> res(1,1)
+    1
+    >>> res(1,0)
+    1
+    >>> res(0,1)
+    0
+    >>> res(10,1)
+    10
+    >>> res(10,2)
+    100
+    """
     if 0 not in (x, y):
         # We use the relation x^y = y*log10(x), where 10 is the base.
         return y * math.log10(x)
