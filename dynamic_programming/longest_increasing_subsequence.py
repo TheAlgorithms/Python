@@ -7,10 +7,19 @@ The problem is  :
 Given an ARRAY, to find the longest and increasing sub ARRAY in that given ARRAY and return it.
 Example: [10, 22, 9, 33, 21, 50, 41, 60, 80] as input will return [10, 22, 33, 41, 60, 80] as output
 """
+from typing import List
 
 
-def longestSub(ARRAY):  # This function is recursive
-
+def longestSub(ARRAY: List[int]) -> List[int]:  # This function is recursive
+    """
+    Some examples
+    >>> longestSub([10, 22, 9, 33, 21, 50, 41, 60, 80])
+    [10, 22, 33, 41, 60, 80]
+    >>> longestSub([4, 8, 7, 5, 1, 12, 2, 3, 9])
+    [1, 2, 3, 9]
+    >>> longestSub([9, 8, 7, 6, 5, 7])
+    [8]
+    """
     ARRAY_LENGTH = len(ARRAY)
     if (
         ARRAY_LENGTH <= 1
@@ -37,9 +46,8 @@ def longestSub(ARRAY):  # This function is recursive
         return TEMPORARY_ARRAY
     else:
         return LONGEST_SUB
+    
 
-
-# Some examples
-
-print(longestSub([4, 8, 7, 5, 1, 12, 2, 3, 9]))
-print(longestSub([9, 8, 7, 6, 5, 7]))
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
