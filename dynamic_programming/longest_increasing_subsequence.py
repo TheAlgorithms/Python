@@ -19,6 +19,8 @@ def longestSub(ARRAY: List[int]) -> List[int]:  # This function is recursive
     [1, 2, 3, 9]
     >>> longestSub([9, 8, 7, 6, 5, 7])
     [8]
+    >>> longestSub([1, 1, 1])
+    [1, 1, 1]
     """
     ARRAY_LENGTH = len(ARRAY)
     if (
