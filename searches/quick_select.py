@@ -44,8 +44,6 @@ def quick_select(items: list, index: int):
     if index >= len(items) or index < 0:
         return None
 
-    smaller: list = []
-    larger: list = []
     pivot = random.randint(0, len(items) - 1)
     pivot = items[pivot]
     count = 0
@@ -53,7 +51,7 @@ def quick_select(items: list, index: int):
     count = len(equal)
     m = len(smaller)
 
-    # k is the pivot
+    # index is the pivot
     if m <= index < m + count:
         return pivot
     # must be in smaller
