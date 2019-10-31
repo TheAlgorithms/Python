@@ -1,7 +1,8 @@
 language: python
 python: 3.7
 cache: pip
-before_install: pip install --upgrade pip setuptools
+before_install: 
+  - pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
 before_script:
   - black --check . || true
@@ -13,5 +14,4 @@ script:
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
   - echo $TRAVIS_PULL_REQUEST && echo $TRAVIS_PULL_REQUEST_BRANCH
-  - git update-index --add --chmod=+x scripts/build_directory_md.py
-  - scripts/push_directory_md.sh
+  - sh scripts/push_directory_md.sh
