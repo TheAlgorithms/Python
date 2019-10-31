@@ -19,7 +19,13 @@ import math
 
 
 def is_prime(k: int) -> bool:
-    # checks if a number is prime
+    """
+    Determine if a number is prime
+    >>> is_prime(10)
+    False
+    >>> is_prime(11)
+    True
+    """
     if k < 2 or k % 2 == 0:
         return False
     elif k == 2:
