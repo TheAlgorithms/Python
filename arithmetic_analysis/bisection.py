@@ -3,7 +3,15 @@ import math
 
 def bisection(
     function, a, b
-):  # finds where the function becomes 0 in [a,b] using bolzano
+):  """
+    # finds where the function becomes 0 in [a,b] using bolzano
+    >>> bisection(f,0,10)
+    2.09455
+    >>> bisection(f,3,2)
+    2.09455
+    >>> bisection(f,2,5)
+    2.09455
+    """
 
     start = a
     end = b
