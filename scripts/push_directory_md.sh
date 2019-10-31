@@ -7,17 +7,18 @@ setup_git() {
   git config --global user.name "${gh_user}"
 }
 
-commit_website_files() {
-  git checkout $TRAVIS_PULL_REQUEST_BRANCH
+commit_directory_file() {
   git add .
+  git fetch origin pull/$TRAVIS_PULL_REQUEST/head:$TRAVIS_PULL_REQUEST_BRANCH
+  git checkout $TRAVIS_PULL_REQUEST_BRANCH
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
 upload_files() {
   git remote add origin https://${gh_token}@github.com/$TRAVIS_REPO_SLUG > /dev/null 2>&1
-  git push origin pull/$TRAVIS_PULL_REQUEST/head:$TRAVIS_PULL_REQUEST_BRANCH 
+  git push origin $TRAVIS_PULL_REQUEST_BRANCH 
 }
 
 setup_git
-commit_website_files
+commit_directory_file
 upload_files
