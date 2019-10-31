@@ -7,10 +7,10 @@ setup_git() {
   git config --global user.name "${gh_user}"
 }
 
-commit_website_files() {
+commit_directory_file() {
+  git add .
   git fetch origin pull/$TRAVIS_PULL_REQUEST/head:$TRAVIS_PULL_REQUEST_BRANCH
   git checkout $TRAVIS_PULL_REQUEST_BRANCH
-  git add .
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
@@ -20,5 +20,5 @@ upload_files() {
 }
 
 setup_git
-commit_website_files
+commit_directory_file
 upload_files
