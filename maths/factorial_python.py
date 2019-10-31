@@ -12,10 +12,13 @@ def factorial(input_number: int) -> int:
 
     if input_number < 0:
         raise ValueError("Input input_number should be non-negative")
-    elif input_number == 0:
-        return 1
-    else:
-        result = 1
-        for i in range(input_number):
-            result = result * (i + 1)
+    result = 1
+    for i in range(1, input_number):
+        result = result * (i + 1)
     return result
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
