@@ -8,6 +8,7 @@ setup_git() {
 }
 
 commit_website_files() {
+  git fetch origin pull/$TRAVIS_PULL_REQUEST/head:$TRAVIS_PULL_REQUEST_BRANCH
   git checkout $TRAVIS_PULL_REQUEST_BRANCH
   git add .
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
@@ -15,7 +16,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add origin https://${gh_token}@github.com/$TRAVIS_REPO_SLUG > /dev/null 2>&1
-  git push origin pull/$TRAVIS_PULL_REQUEST/head:$TRAVIS_PULL_REQUEST_BRANCH 
+  git push origin $TRAVIS_PULL_REQUEST_BRANCH 
 }
 
 setup_git
