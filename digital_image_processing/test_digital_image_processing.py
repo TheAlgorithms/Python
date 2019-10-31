@@ -9,7 +9,8 @@ import digital_image_processing.filters.sobel_filter as sob
 import digital_image_processing.filters.convolve as conv
 import digital_image_processing.change_contrast as cc
 from cv2 import imread, cvtColor, COLOR_BGR2GRAY
-from numpy import array, uint8
+from numpy import array
+from numpy import uint8
 from PIL import Image
 
 img = imread(r"digital_image_processing/image_data/lena_small.jpg")
