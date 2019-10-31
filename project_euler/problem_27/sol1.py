@@ -11,14 +11,12 @@ Find the product of the coefficients, a and b, for the quadratic expression that
 
 import math
 
-def isprime(k):
+def is_prime(k):
 	# checks if a number is prime
-	if k < 2:
+	if k < 2 or k % 2 == 0:
 	    return False
 	elif k == 2:
 	    return True
-	elif k % 2 == 0:
-	    return False
 	else:
 	    for x in range(3, int(math.sqrt(k) + 1), 2):
 	        if k % x == 0:
@@ -36,16 +34,15 @@ def solution(a_limit, b_limit):
 	0
 	>>> solution(-1000, -1000)
 	0
-
 	"""
 	longest = [0, 0, 0]
 	# length, a, b
 	for a in range((a_limit * -1) + 1, a_limit):
 	    for b in range(2, b_limit):
-	        if isprime(b):
+	        if is_prime(b):
 	            count = 0
 	            n = 0
-	            while isprime((n ** 2) + (a * n) + b):
+	            while is_prime((n ** 2) + (a * n) + b):
 	                count += 1
 	                n += 1
 
