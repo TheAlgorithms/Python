@@ -9,9 +9,12 @@ setup_git() {
 
 commit_directory_file() {
   git add .
+  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
+}
+
+fetch_get() {
   git fetch origin pull/$TRAVIS_PULL_REQUEST/head:$TRAVIS_PULL_REQUEST_BRANCH
   git checkout $TRAVIS_PULL_REQUEST_BRANCH
-  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
 upload_files() {
@@ -19,6 +22,7 @@ upload_files() {
   git push origin $TRAVIS_PULL_REQUEST_BRANCH 
 }
 
-setup_git
 commit_directory_file
+setup_git
+fetch_get
 upload_files
