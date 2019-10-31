@@ -4,7 +4,6 @@ cache: pip
 before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
 before_script:
-  - chmod 644 scripts/push_directory_md.sh
   - black --check . || true
   - flake8 . --count --select=E9,F4,F63,F7,F82 --show-source --statistics
 script:
@@ -14,4 +13,5 @@ script:
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
   - echo $TRAVIS_PULL_REQUEST && echo $TRAVIS_PULL_REQUEST_BRANCH
+  - git update-index --add --chmod=+x scripts/build_directory_md.py
   - scripts/push_directory_md.sh
