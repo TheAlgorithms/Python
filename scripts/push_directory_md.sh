@@ -15,7 +15,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add origin https://${gh_token}@github.com/$TRAVIS_REPO_SLUG > /dev/null 2>&1
-  git push --set-upstream origin $TRAVIS_PULL_REQUEST_BRANCH 
+  git push origin pull/$TRAVIS_PULL_REQUEST/head:$TRAVIS_PULL_REQUEST_BRANCH 
 }
 
 setup_git
