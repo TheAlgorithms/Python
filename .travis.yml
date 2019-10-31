@@ -11,6 +11,4 @@ script:
   - mypy --ignore-missing-imports .
   - pytest . --doctest-modules
 after_success:
-  - scripts/build_directory_md.py 2&>1 tee DIRECTORY.md
-  - cat DIRECTORY.md
-  - echo $TRAVIS_PULL_REQUEST_BRANCH
+  - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
