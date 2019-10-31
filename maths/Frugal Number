@@ -1,0 +1,89 @@
+# Program to check for Frugal number 
+"""
+A frugal number is a natural number that has more digits than 
+the number of digits in its prime factorization (including exponents).
+"""
+# Finding primes upto entered number 
+def primes(n): 
+  
+    # Finding primes by Seive 
+    # of Eratosthenes method 
+    prime = [True] * (n + 1); 
+      
+    i = 2; 
+    while (i * i <= n): 
+          
+        # If prime[i] is not changed, 
+        # then it is prime 
+        if (prime[i] == True): 
+              
+            # Update all multiples of p 
+            j = i * 2; 
+            while (j <= n): 
+                prime[j] = False; 
+                j += i; 
+        i += 1; 
+      
+    # Forming array of the prime 
+    # numbers found 
+    arr = [];  
+    for i in range(2, n):  
+        if (prime[i]): 
+            arr.append(i);  
+  
+    return arr; 
+  
+# Returns number of digits in n 
+def countDigits(n): 
+  
+    temp = n; 
+    c = 0; 
+    while (temp != 0): 
+        temp = int(temp / 10); 
+        c += 1; 
+    return c; 
+  
+# Checking whether a number is 
+# Frugal or not 
+def frugal(n): 
+  
+    r = primes(n);  
+    t = n; 
+      
+    # Finding number of digits  
+    # in prime factorization  
+    # of the number 
+    s = 0; 
+    for i in range(len(r)): 
+        if (t % r[i] == 0):  
+              
+            # Exponent for current factor 
+            k = 0;  
+              
+            # Counting number of times  
+            # this prime factor divides  
+            # (Finding exponent) 
+            while (t % r[i] == 0): 
+                t = int(t / r[i]); 
+                k += 1; 
+              
+            # Finding number of digits 
+            # in the exponent Avoiding 
+            # exponents of value 1 
+            if (k == 1):  
+                s = s + countDigits(r[i]); 
+            elif (k != 1):  
+                s = (s + countDigits(r[i]) +
+                         countDigits(k));      
+      
+    # Checking condition 
+    # for frugal number 
+    return (countDigits(n) > s and s != 0); 
+  
+
+n = 343; 
+if (frugal(n)): 
+    print("A Frugal number"); 
+else: 
+    print("Not a frugal number"); 
+      
