@@ -1,7 +1,6 @@
-def factorial(n):
+def factorial(n: int) -> int:
     """
-    Return 1, if n is 1 or 0,
-    otherwise, return n * fact(n-1).
+    Calculate the factorial of specified number
 
     >>> factorial(1)
     1
@@ -9,15 +8,23 @@ def factorial(n):
     720
     >>> factorial(0)
     1
+    >>> factorial(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: factorial() not defined for negative values
+    >>> factorial(0.1)
+    Traceback (most recent call last):
+        ...
+    ValueError: factorial() only accepts integral values
     """
     if n < 0:
-        raise ValueError(n, "is negative")
+        raise ValueError("factorial() not defined for negative values")
+    if not isinstance(n, int):
+        raise ValueError("factorial() only accepts integral values")
     return 1 if n == 0 or n == 1 else n * factorial(n - 1)
 
 
-"""
-Show factorial for i,
-where i ranges from 0 to 20.
-"""
-for i in range(21):
-    print(i, ": ", factorial(i), sep="")
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
