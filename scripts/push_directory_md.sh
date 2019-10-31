@@ -9,13 +9,13 @@ setup_git() {
 
 commit_website_files() {
   git checkout $TRAVIS_PULL_REQUEST_BRANCH
-  git add DIRECTORY.md
+  git add .
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
 upload_files() {
   git remote add origin https://${gh_token}@github.com/$TRAVIS_REPO_SLUG > /dev/null 2>&1
-  git push --quiet --set-upstream origin $TRAVIS_PULL_REQUEST_BRANCH 
+  git push --set-upstream origin $TRAVIS_PULL_REQUEST_BRANCH 
 }
 
 setup_git
