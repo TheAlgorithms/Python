@@ -13,6 +13,7 @@ script:
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
   - echo $TRAVIS_PULL_REQUEST && echo $TRAVIS_PULL_REQUEST_BRANCH
+  - composer config github-oauth.github.com ${gh_token}
   - git fetch origin pull/$TRAVIS_PULL_REQUEST/head:$TRAVIS_PULL_REQUEST_BRANCH
   - git checkout $TRAVIS_PULL_REQUEST_BRANCH
   - git push origin $TRAVIS_PULL_REQUEST_BRANCH
