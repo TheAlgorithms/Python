@@ -1,7 +1,7 @@
 import math
 
 
-def perfect_square(num):
+def perfect_square(num: int) -> bool:
     """
     Check if a number is perfect square number or not
     :param num: the number to be checked
