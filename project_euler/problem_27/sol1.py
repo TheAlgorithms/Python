@@ -18,7 +18,7 @@ n = 0.
 import math
 
 
-def is_prime(k):
+def is_prime(k: int) -> bool:
     # checks if a number is prime
     if k < 2 or k % 2 == 0:
         return False
@@ -31,7 +31,7 @@ def is_prime(k):
     return True
 
 
-def solution(a_limit, b_limit):
+def solution(a_limit: int, b_limit: int) -> int:
     """
 	>>> solution(1000, 1000)
 	-59231
