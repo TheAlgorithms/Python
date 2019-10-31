@@ -13,5 +13,3 @@ script:
   - pytest . --doctest-modules
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
-  - echo $TRAVIS_PULL_REQUEST && echo $TRAVIS_PULL_REQUEST_BRANCH
-  - sh scripts/push_directory_md.sh
