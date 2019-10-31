@@ -3,7 +3,7 @@ def maxSubArraySum(nums):
   n = len(nums)
   s = [0] * n
   res, s, s_pre = nums[0], nums[0], nums[0]
-  for i in xrange(1, n):
+  for i in range(1, n):
       s = max(nums[i], s_pre + nums[i])
       s_pre = s
       res = max(res, s)
