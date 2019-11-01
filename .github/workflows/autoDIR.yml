@@ -13,10 +13,9 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Build DIRECTORY
-        run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
-      - name: Push DIRECTORY
+      - name: Update DIRECTORY
         run: |
+          scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
           git config --global user.name 'mrvnmchm'
           git config --global user.email 'mrvnmchm@gmail.com'
           git remote set-url origin https://x-access-token:${{ secrets.gh_token }}@github.com/$GITHUB_REPOSITORY
