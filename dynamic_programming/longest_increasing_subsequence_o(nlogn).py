@@ -6,6 +6,7 @@
 #############################
 from typing import List
 
+
 def CeilIndex(v, l, r, key):
     while r - l > 1:
         m = (l + r) // 2
@@ -49,4 +50,5 @@ def LongestIncreasingSubsequenceLength(v: List[int]) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
