@@ -24,5 +24,7 @@ jobs:
           git commit -am "Update: DIRECTORY.md"
       - name: Push DIRECTORY
         if: success()
-        run: |
-          git push
+        run: git push
+      - name: If no change, exit clean
+        if: failure()
+        run: exit 0
