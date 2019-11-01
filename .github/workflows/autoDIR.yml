@@ -15,7 +15,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Update DIRECTORY
-        run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
           git config --global user.name 'autoDIR'
@@ -23,7 +22,7 @@ jobs:
           git remote set-url origin https://x-access-token:${{ secrets.gh_token }}@github.com/$GITHUB_REPOSITORY
           git checkout $GITHUB_HEAD_REF
           git commit -am "Update: DIRECTORY.md"
-      - name: commit
+      - name: Push DIRECTORY
         if: success()
         run: |
           git push
