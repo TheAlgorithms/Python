@@ -24,7 +24,7 @@ def factorial(n: int) -> int:
     return 1 if n == 0 or n == 1 else n * factorial(n - 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
