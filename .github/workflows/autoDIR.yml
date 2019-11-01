@@ -21,10 +21,12 @@ jobs:
           git config --global user.email 'mrvnmchm@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.gh_token }}@github.com/$GITHUB_REPOSITORY
           git checkout $GITHUB_HEAD_REF
-          git commit -am "Update: DIRECTORY.md"
+          git diff-files --quiet
       - name: Push DIRECTORY
         if: success()
-        run: git push
+        run: |
+          git commit -am "Update: DIRECTORY.md"
+          git push
       - name: If no change, exit clean
         if: failure()
         run: exit 0
