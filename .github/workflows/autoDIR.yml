@@ -8,18 +8,22 @@ jobs:
       matrix:
         python-version: [3.7]
     steps:
+
       - uses: actions/checkout@v1
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
       - name: Update DIRECTORY
+        run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
-          git config --global user.name 'mrvnmchm'
-          git config --global user.email 'mrvnmchm@gmail.com'
+          git config --global user.name 'autoDIR'
+          git config --global user.email 'mrvnmchm@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.gh_token }}@github.com/$GITHUB_REPOSITORY
           git checkout $GITHUB_HEAD_REF
-          git add DIRECTORY.md
           git commit -am "Update: DIRECTORY.md"
+      - name: commit
+        if: success()
+        run: |
           git push
