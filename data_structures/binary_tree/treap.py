@@ -172,7 +172,7 @@ def main():
         args = input()
 
     print("good by!")
-    pass
+    
 
 
 if __name__ == "__main__":

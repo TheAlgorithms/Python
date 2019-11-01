@@ -11,5 +11,4 @@ script:
   - mypy --ignore-missing-imports .
   - pytest . --doctest-modules
 after_success:
-  - scripts/build_directory_md.py > DIRECTORY.md
-  - cat DIRECTORY.md
+  - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
