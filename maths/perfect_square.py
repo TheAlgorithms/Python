@@ -21,7 +21,7 @@ def perfect_square(num: int) -> bool:
     return math.sqrt(num) * math.sqrt(num) == num
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()

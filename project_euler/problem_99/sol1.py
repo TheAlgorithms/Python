@@ -14,15 +14,13 @@ import os
 from math import log10
 
 
-def find_largest(data_file: str="base_exp.txt") -> int:
+def find_largest(data_file: str = "base_exp.txt") -> int:
     """
     >>> find_largest()
     709
     """
     largest = [0, 0]
-    for i, line in enumerate(
-        open(os.path.join(os.path.dirname(__file__), data_file))
-    ):
+    for i, line in enumerate(open(os.path.join(os.path.dirname(__file__), data_file))):
         a, x = list(map(int, line.split(",")))
         if x * log10(a) > largest[0]:
             largest = [x * log10(a), i + 1]

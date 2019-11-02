@@ -172,7 +172,6 @@ def main():
         args = input()
 
     print("good by!")
-    
 
 
 if __name__ == "__main__":
