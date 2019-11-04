@@ -1,71 +1,69 @@
 alphabet = {
-    "A": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]], "B": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]],
-    "C": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["Z", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"]], "D": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["Z", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y"]],
-    "E": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["Y", "Z", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"]], "F": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["Y", "Z", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"]],
-    "G": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["X", "Y", "Z", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"]], "H": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["X", "Y", "Z", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"]],
-    "I": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["W", "X", "Y", "Z", "N", "O", "P", "Q", "R", "S", "T", "U", "V"]], "J": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["W", "X", "Y", "Z", "N", "O", "P", "Q", "R", "S", "T", "U", "V"]],
-    "K": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["V", "W", "X", "Y", "Z", "N", "O", "P", "Q", "R", "S", "T", "U"]], "L": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["V", "W", "X", "Y", "Z", "N", "O", "P", "Q", "R", "S", "T", "U"]],
-    "M": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["U", "V", "W", "X", "Y", "Z", "N", "O", "P", "Q", "R", "S", "T"]], "N": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["U", "V", "W", "X", "Y", "Z", "N", "O", "P", "Q", "R", "S", "T"]],
-    "O": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["T", "U", "V", "W", "X", "Y", "Z", "N", "O", "P", "Q", "R", "S"]], "P": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["T", "U", "V", "W", "X", "Y", "Z", "N", "O", "P", "Q", "R", "S"]],
-    "Q": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["S", "T", "U", "V", "W", "X", "Y", "Z", "N", "O", "P", "Q", "R"]], "R": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["S", "T", "U", "V", "W", "X", "Y", "Z", "N", "O", "P", "Q", "R"]],
-    "S": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["R", "S", "T", "U", "V", "W", "X", "Y", "Z", "N", "O", "P", "Q"]], "T": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["R", "S", "T", "U", "V", "W", "X", "Y", "Z", "N", "O", "P", "Q"]],
-    "U": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "N", "O", "P"]], "V": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "N", "O", "P"]],
-    "W": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "N", "O"]], "X": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "N", "O"]],
-    "Y": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"],
-          ["O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "N"]], "Z": [["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"], ["O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "N"]]}
+    "A": ("ABCDEFGHIJKLM", "NOPQRSTUVWXYZ"),
+    "B": ("ABCDEFGHIJKLM", "NOPQRSTUVWXYZ"),
+    "C": ("ABCDEFGHIJKLM", "ZNOPQRSTUVWXY"),
+    "D": ("ABCDEFGHIJKLM", "ZNOPQRSTUVWXY"),
+    "E": ("ABCDEFGHIJKLM", "YZNOPQRSTUVWX"),
+    "F": ("ABCDEFGHIJKLM", "YZNOPQRSTUVWX"),
+    "G": ("ABCDEFGHIJKLM", "XYZNOPQRSTUVW"),
+    "H": ("ABCDEFGHIJKLM", "XYZNOPQRSTUVW"),
+    "I": ("ABCDEFGHIJKLM", "WXYZNOPQRSTUV"),
+    "J": ("ABCDEFGHIJKLM", "WXYZNOPQRSTUV"),
+    "K": ("ABCDEFGHIJKLM", "VWXYZNOPQRSTU"),
+    "L": ("ABCDEFGHIJKLM", "VWXYZNOPQRSTU"),
+    "M": ("ABCDEFGHIJKLM", "UVWXYZNOPQRST"),
+    "N": ("ABCDEFGHIJKLM", "UVWXYZNOPQRST"),
+    "O": ("ABCDEFGHIJKLM", "TUVWXYZNOPQRS"),
+    "P": ("ABCDEFGHIJKLM", "TUVWXYZNOPQRS"),
+    "Q": ("ABCDEFGHIJKLM", "STUVWXYZNOPQR"),
+    "R": ("ABCDEFGHIJKLM", "STUVWXYZNOPQR"),
+    "S": ("ABCDEFGHIJKLM", "RSTUVWXYZNOPQ"),
+    "T": ("ABCDEFGHIJKLM", "RSTUVWXYZNOPQ"),
+    "U": ("ABCDEFGHIJKLM", "QRSTUVWXYZNOP"),
+    "V": ("ABCDEFGHIJKLM", "QRSTUVWXYZNOP"),
+    "W": ("ABCDEFGHIJKLM", "PQRSTUVWXYZNO"),
+    "X": ("ABCDEFGHIJKLM", "PQRSTUVWXYZNO"),
+    "Y": ("ABCDEFGHIJKLM", "OPQRSTUVWXYZN"),
+    "Z": ("ABCDEFGHIJKLM", "OPQRSTUVWXYZN"),
+}
 
 
-def generateTable(key):
+def generate_table(key):
     """
-    >>> generateTable('marvin')
-    [[['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T']]]
-    """
-    table = []
-    for char in key.upper():
-        table.append(alphabet[char])
-    return table
+      >>> generate_table('marvin')
+      [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+      """
+    return [alphabet[char] for char in key.upper()]
 
 
 def encrypt(key, words):
     """
-    >>> encrypt('marvin', 'jessica')
-    'QRACRWU'
-    """
+      >>> encrypt('marvin', 'jessica')
+      'QRACRWU'
+      """
     cipher = ""
     count = 0
-    table = generateTable(key)
+    table = generate_table(key)
     for char in words.upper():
-        cipher += getOpponent(table[count], char)
+        cipher += get_opponent(table[count], char)
         count = (count + 1) % len(table)
     return cipher
 
 
 def decrypt(key, words):
     """
-    >>> decrypt('marvin', 'QRACRWU')
-    'JESSICA'
-    """
+      >>> decrypt('marvin', 'QRACRWU')
+      'JESSICA'
+      """
     return encrypt(key, words)
 
 
-def getPosition(table, char):
+def get_position(table, char):
     """
-    >>> table = [[['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T']]]
-    >>> getPosition(table, 'A')
-    (None, None)
-    """
+      >>> table = [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+      >>> get_position(table, 'A')
+      (None, None)
+      """
     row = -1
 
     if char in table[0]:
@@ -73,35 +71,30 @@ def getPosition(table, char):
     elif char in table[1]:
         row = 1
 
-    if row != -1:
-        return (row, table[row].index(char))
-    else:
-        return (None, None)
+    return (None, None) if row == -1 else (row, table[row].index(char))
 
 
-def getOpponent(table, char):
+def get_opponent(table, char):
     """
-    >>> table = [[['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V']], [['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'], ['U', 'V', 'W', 'X', 'Y', 'Z', 'N', 'O', 'P', 'Q', 'R', 'S', 'T']]]
-    >>> getOpponent(table, 'A')
-    'A'
-    """
-    row, col = getPosition(table, char.upper())
+      >>> table = [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+      >>> get_opponent(table, 'A')
+      'A'
+      """
+    row, col = get_position(table, char.upper())
 
     if row == 1:
         return table[0][col]
-    elif row == 0:
-        return table[1][col]
     else:
-        return char
+        return table[1][col] if row == 0 else char
 
 
 if __name__ == "__main__":
     """
-    ENTER KEY: marvin
-    ENTER TEXT TO ENCRYPT: jessica
-    ENCRYPTED: QRACRWU
-    DECRYPTED WITH KEY: JESSICA
-    """
+      ENTER KEY: marvin
+      ENTER TEXT TO ENCRYPT: jessica
+      ENCRYPTED: QRACRWU
+      DECRYPTED WITH KEY: JESSICA
+      """
     key = input("ENTER KEY: ")
     text = input("ENTER TEXT TO ENCRYPT: ")
     cipher_text = encrypt(key, text)
@@ -110,4 +103,5 @@ if __name__ == "__main__":
     print("DECRYPTED WITH KEY: " + decrypt(key, cipher_text))
 
     import doctest
+
     doctest.testmod()
