@@ -30,17 +30,17 @@ alphabet = {
 
 def generate_table(key):
     """
-      >>> generate_table('marvin')
-      [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
-      """
+    >>> generate_table('marvin')
+    [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+    """
     return [alphabet[char] for char in key.upper()]
 
 
 def encrypt(key, words):
     """
-      >>> encrypt('marvin', 'jessica')
-      'QRACRWU'
-      """
+    >>> encrypt('marvin', 'jessica')
+    'QRACRWU'
+    """
     cipher = ""
     count = 0
     table = generate_table(key)
@@ -52,18 +52,18 @@ def encrypt(key, words):
 
 def decrypt(key, words):
     """
-      >>> decrypt('marvin', 'QRACRWU')
-      'JESSICA'
-      """
+    >>> decrypt('marvin', 'QRACRWU') 
+    'JESSICA'
+    """
     return encrypt(key, words)
 
 
 def get_position(table, char):
     """
-      >>> table = [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
-      >>> get_position(table, 'A')
-      (None, None)
-      """
+    >>> table = [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+    >>> get_position(table, 'A')
+    (None, None)
+    """
     row = -1
 
     if char in table[0]:
@@ -76,10 +76,10 @@ def get_position(table, char):
 
 def get_opponent(table, char):
     """
-      >>> table = [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
-      >>> get_opponent(table, 'A')
-      'A'
-      """
+    >>> table = [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+    >>> get_opponent(table, 'A')
+    'A'
+    """
     row, col = get_position(table, char.upper())
 
     if row == 1:
@@ -90,11 +90,11 @@ def get_opponent(table, char):
 
 if __name__ == "__main__":
     """
-      ENTER KEY: marvin
-      ENTER TEXT TO ENCRYPT: jessica
-      ENCRYPTED: QRACRWU
-      DECRYPTED WITH KEY: JESSICA
-      """
+    ENTER KEY: marvin
+    ENTER TEXT TO ENCRYPT: jessica
+    ENCRYPTED: QRACRWU
+    DECRYPTED WITH KEY: JESSICA
+    """
     key = input("ENTER KEY: ")
     text = input("ENTER TEXT TO ENCRYPT: ")
     cipher_text = encrypt(key, text)
