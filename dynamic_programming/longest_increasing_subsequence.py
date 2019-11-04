@@ -4,13 +4,13 @@ Author  : Mehdi ALAOUI
 This is a pure Python implementation of Dynamic Programming solution to the longest increasing subsequence of a given sequence.
 
 The problem is  :
-Given an array, to find the longest and increasing sub ARRAY in that given array and return it.
+Given an array, to find the longest and increasing sub-array in that given array and return it.
 Example: [10, 22, 9, 33, 21, 50, 41, 60, 80] as input will return [10, 22, 33, 41, 60, 80] as output
 """
 from typing import List
 
 
-def longest_subsequence(Array: List[int]) -> List[int]:  # This function is recursive
+def longest_subsequence(array: List[int]) -> List[int]:  # This function is recursive
     """
     Some examples
     >>> longest_subsequence([10, 22, 9, 33, 21, 50, 41, 60, 80])
@@ -22,32 +22,32 @@ def longest_subsequence(Array: List[int]) -> List[int]:  # This function is recu
     >>> longest_subsequence([1, 1, 1])
     [1, 1, 1]
     """
-    ArrayLength = len(Array)
+    array_length = len(array)
     if (
-        ArrayLength <= 1
+        array_length <= 1
     ):  # If the array contains only one element, we return it (it's the stop condition of recursion)
-        return Array
+        return array
         # Else
-    Pivot = Array[0]
+    pivot = array[0]
     isFound = False
     i = 1
-    LongestSubseq = []
-    while not isFound and i < ArrayLength:
-        if Array[i] < Pivot:
+    longest_subseq = []
+    while not isFound and i < array_length:
+        if array[i] < pivot:
             isFound = True
-            TempArray = [element for element in Array[i:] if element >= Array[i]]
-            TempArray = longest_subsequence(TempArray)
-            if len(TempArray) > len(LongestSubseq):
-                LongestSubseq = TempArray
+            temp_array = [element for element in array[i:] if element >= array[i]]
+            temp_array = longest_subsequence(temp_array)
+            if len(temp_array) > len(longest_subseq):
+                longest_subseq = temp_array
         else:
             i += 1
 
-    TempArray = [element for element in Array[1:] if element >= Pivot]
-    TempArray = [Pivot] + longest_subsequence(TempArray)
-    if len(TempArray) > len(LongestSubseq):
-        return TempArray
+    temp_array = [element for element in array[1:] if element >= pivot]
+    temp_array = [pivot] + longest_subsequence(temp_array)
+    if len(temp_array) > len(longest_subseq):
+        return temp_array
     else:
-        return LongestSubseq
+        return longest_subseq
     
 
 if __name__ == "__main__":
