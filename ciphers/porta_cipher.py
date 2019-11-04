@@ -30,8 +30,10 @@ alphabet = {
 
 def generate_table(key):
     """
-    >>> generate_table('marvin')
-    [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+    >>> generate_table('marvin')  # doctest: +NORMALIZE_WHITESPACE
+    [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
+     ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'),
+     ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
     """
     return [alphabet[char] for char in key.upper()]
 
@@ -52,7 +54,7 @@ def encrypt(key, words):
 
 def decrypt(key, words):
     """
-    >>> decrypt('marvin', 'QRACRWU') 
+    >>> decrypt('marvin', 'QRACRWU')
     'JESSICA'
     """
     return encrypt(key, words)
@@ -60,28 +62,30 @@ def decrypt(key, words):
 
 def get_position(table, char):
     """
-    >>> table = [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+    >>> table = [
+    ...     ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
+    ...     ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'),
+    ...     ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
     >>> get_position(table, 'A')
     (None, None)
     """
-    row = -1
-
     if char in table[0]:
         row = 0
-    elif char in table[1]:
-        row = 1
-
+    else:
+        row = 1 if char in table[1] else -1
     return (None, None) if row == -1 else (row, table[row].index(char))
 
 
 def get_opponent(table, char):
     """
-    >>> table = [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'), ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'), ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
+    >>> table = [
+    ...     ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
+    ...     ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'),
+    ...     ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
     >>> get_opponent(table, 'A')
     'A'
     """
     row, col = get_position(table, char.upper())
-
     if row == 1:
         return table[0][col]
     else:
@@ -89,19 +93,18 @@ def get_opponent(table, char):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()  # Fist ensure that all our tests are passing...
     """
     ENTER KEY: marvin
     ENTER TEXT TO ENCRYPT: jessica
     ENCRYPTED: QRACRWU
     DECRYPTED WITH KEY: JESSICA
     """
-    key = input("ENTER KEY: ")
-    text = input("ENTER TEXT TO ENCRYPT: ")
+    key = input("ENTER KEY: ").strip()
+    text = input("ENTER TEXT TO ENCRYPT: ").strip()
     cipher_text = encrypt(key, text)
 
-    print("ENCRYPTED: " + cipher_text)
-    print("DECRYPTED WITH KEY: " + decrypt(key, cipher_text))
-
-    import doctest
-
-    doctest.testmod()
+    print(f"ENCRYPTED: {cipher_text}")
+    print(f"DECRYPTED WITH KEY: {decrypt(key, cipher_text)}")
