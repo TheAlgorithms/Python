@@ -1,18 +1,28 @@
-def absVal(num):
+"""Absolute Value."""
+
+
+def abs_val(num):
     """
-    Function to fins absolute value of numbers.
-    >>absVal(-5)
-    5
-    >>absVal(0)
+    Find the absolute value of a number.
+
+    >>> abs_val(-5.1)
+    5.1
+    >>> abs_val(-5) == abs_val(5)
+    True
+    >>> abs_val(0)
     0
     """
-    if num < 0:
-        return -num
-    else:
-        return num
+    return -num if num < 0 else num
 
-def main():
-    print(absVal(-34)) # = 34
 
-if __name__ == '__main__':
-    main()
+def test_abs_val():
+    """
+    >>> test_abs_val()
+    """
+    assert 0 == abs_val(0)
+    assert 34 == abs_val(34)
+    assert 100000000000 == abs_val(-100000000000)
+
+
+if __name__ == "__main__":
+    print(abs_val(-34))  # --> 34

@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 def bubble_sort(collection):
     """Pure implementation of bubble sort algorithm in Python
 
@@ -9,34 +6,38 @@ def bubble_sort(collection):
     :return: the same collection ordered by ascending
 
     Examples:
-    >>> bubble_sort([0, 5, 3, 2, 2])
+    >>> bubble_sort([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
 
     >>> bubble_sort([])
     []
 
-    >>> bubble_sort([-2, -5, -45])
+    >>> bubble_sort([-2, -45, -5])
     [-45, -5, -2]
-    
-    >>> bubble_sort([-23,0,6,-4,34])
-    [-23,-4,0,6,34]
+
+    >>> bubble_sort([-23, 0, 6, -4, 34])
+    [-23, -4, 0, 6, 34]
+
+    >>> bubble_sort([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
+    True
     """
     length = len(collection)
-    for i in range(length-1):
+    for i in range(length - 1):
         swapped = False
-        for j in range(length-1-i):
-            if collection[j] > collection[j+1]:
+        for j in range(length - 1 - i):
+            if collection[j] > collection[j + 1]:
                 swapped = True
-                collection[j], collection[j+1] = collection[j+1], collection[j]
-        if not swapped: break  # Stop iteration if the collection is sorted.
+                collection[j], collection[j + 1] = collection[j + 1], collection[j]
+        if not swapped:
+            break  # Stop iteration if the collection is sorted.
     return collection
 
 
-if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-    user_input = raw_input('Enter numbers separated by a comma:').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
-    print(*bubble_sort(unsorted), sep=',')
+if __name__ == "__main__":
+    import time
+
+    user_input = input("Enter numbers separated by a comma:").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    start = time.process_time()
+    print(*bubble_sort(unsorted), sep=",")
+    print(f"Processing time: {time.process_time() - start}")

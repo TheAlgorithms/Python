@@ -1,14 +1,12 @@
 """
 Linear regression is the most basic type of regression commonly used for
-predictive analysis. The idea is preety simple, we have a dataset and we have
+predictive analysis. The idea is pretty simple, we have a dataset and we have
 a feature's associated with it. The Features should be choose very cautiously
 as they determine, how much our model will be able to make future predictions.
 We try to set these Feature weights, over many iterations, so that they best
 fits our dataset. In this particular code, i had used a CSGO dataset (ADR vs
 Rating). We try to best fit a line through dataset and estimate the parameters.
 """
-from __future__ import print_function
-
 import requests
 import numpy as np
 
@@ -18,21 +16,22 @@ def collect_dataset():
     The dataset contains ADR vs Rating of a Player
     :return : dataset obtained from the link, as matrix
     """
-    response = requests.get('https://raw.githubusercontent.com/yashLadha/' +
-                            'The_Math_of_Intelligence/master/Week1/ADRvs' +
-                            'Rating.csv')
+    response = requests.get(
+        "https://raw.githubusercontent.com/yashLadha/"
+        + "The_Math_of_Intelligence/master/Week1/ADRvs"
+        + "Rating.csv"
+    )
     lines = response.text.splitlines()
     data = []
     for item in lines:
-        item = item.split(',')
+        item = item.split(",")
         data.append(item)
     data.pop(0)  # This is for removing the labels from the list
     dataset = np.matrix(data)
     return dataset
 
 
-def run_steep_gradient_descent(data_x, data_y,
-                               len_data, alpha, theta):
+def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     """ Run steep gradient descent and updates the Feature vector accordingly_
     :param data_x   : contains the dataset
     :param data_y   : contains the output associated with each data-entry
@@ -81,10 +80,9 @@ def run_linear_regression(data_x, data_y):
     theta = np.zeros((1, no_features))
 
     for i in range(0, iterations):
-        theta = run_steep_gradient_descent(data_x, data_y,
-                                           len_data, alpha, theta)
+        theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
         error = sum_of_square_error(data_x, data_y, len_data, theta)
-        print('At Iteration %d - Error is %.5f ' % (i + 1, error))
+        print("At Iteration %d - Error is %.5f " % (i + 1, error))
 
     return theta
 
@@ -99,10 +97,10 @@ def main():
 
     theta = run_linear_regression(data_x, data_y)
     len_result = theta.shape[1]
-    print('Resultant Feature vector : ')
+    print("Resultant Feature vector : ")
     for i in range(0, len_result):
-        print('%.5f' % (theta[0, i]))
+        print("%.5f" % (theta[0, i]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
