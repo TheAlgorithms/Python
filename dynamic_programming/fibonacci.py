@@ -41,7 +41,7 @@ if __name__ == "__main__":
     print("\n********* Fibonacci Series Using Dynamic Programming ************\n")
     print("\n Enter the upper limit for the fibonacci sequence: ", end="")
     try:
-        N = int(input().strip())
+        N = int(input())
         fib = Fibonacci(N)
         print(
             "\n********* Enter different values to get the corresponding fibonacci "
@@ -49,7 +49,7 @@ if __name__ == "__main__":
         )
         while True:
             try:
-                i = int(input("Enter value: ").strip())
+                i = int(input("Enter value: "))
                 if i < 0:
                     print("\n********* Good Bye!! ************\n")
                     break
