@@ -15,12 +15,18 @@ def rsafactor(d: int, e: int, N: int) -> List[int]:
     """
     This function returns the factors of N, where p*q=N
       Return: [p, q]
+    
+    We call N the RSA modulus, e the encryption exponent, and d the decryption exponent.
+    The pair (N, e) is the public key. As its name suggests, it is public and is used to
+        encrypt messages.
+    The pair (N, d) is the secret key or private key and is known only to the recipient
+        of encrypted messages.
 
-    >>> rsafactor(3,16971,25777)
+    >>> rsafactor(3, 16971, 25777)
     [149, 173]
-    >>> rsafactor(7331,11,27233)
+    >>> rsafactor(7331, 11, 27233)
     [113, 241]
-    >>> rsafactor(4021,13,17711)
+    >>> rsafactor(4021, 13, 17711)
     [89, 199]
     """
     k = d * e - 1
