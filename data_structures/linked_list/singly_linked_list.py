@@ -3,7 +3,7 @@ class Node:  # create a Node
         self.data = data  # given data
         self.next = None  # given next to None
 
-    def __repr__(self):
+    def __repr__(self): # String Representation of a Node
         return f"<Node: {self.data}>"
 
 
@@ -72,27 +72,38 @@ class LinkedList:
         # Return prev in order to put the head at the end
         self.head = prev
 
-    def __repr__(self):
+    def __repr__(self): # String representation/visualization of a Linked Lists 
         current = self.head
         string_repr = ""
         while current != None:
             string_repr += f"{current} ---> "
             current = current.next
+        # END represents end of the LinkedList
         string_repr += "END"
         return string_repr
 
+    # Indexing Support. Used to get a node at particaular position
     def __getitem__(self, index):
         current = self.head
-        for i in range(index):
+
+        # If LinkedList is Empty
+        if current is None:
+            raise IndexError("The Linked List is empty")
+
+        # Move Forward 'index' times
+        for _  in range(index):
+            # If the LinkedList ends before reaching specified node
             if current.next is None:
                 raise IndexError("Index out of range.")
             current = current.next
         return current
     
+    # Used to change the data of a particular node
     def __setitem__(self, index, data):
         current = self.head
+        # If list is empty
         if current is None:
-            raise IndexError("Index out of range")
+            raise IndexError("The Linked List is empty")
         for i in range(index):
             if current.next is None:
                 raise IndexError("Index out of range.")
