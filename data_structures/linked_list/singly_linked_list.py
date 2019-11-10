@@ -3,8 +3,11 @@ class Node:  # create a Node
         self.data = data  # given data
         self.next = None  # given next to None
 
+    def __repr__(self):
+        return f"<Node: {self.data}>"
 
-class Linked_List:
+
+class LinkedList:
     def __init__(self):
         self.head = None  # Initialize head to None
 
@@ -69,9 +72,36 @@ class Linked_List:
         # Return prev in order to put the head at the end
         self.head = prev
 
+    def __repr__(self):
+        current = self.head
+        string_repr = ""
+        while current != None:
+            string_repr += f"{current} ---> "
+            current = current.next
+        string_repr += "END"
+        return string_repr
+
+    def __getitem__(self, index):
+        current = self.head
+        for i in range(index):
+            if current.next is None:
+                raise IndexError("Index out of range.")
+            current = current.next
+        return current
+    
+    def __setitem__(self, index, data):
+        current = self.head
+        if current is None:
+            raise IndexError("Index out of range")
+        for i in range(index):
+            if current.next is None:
+                raise IndexError("Index out of range.")
+            current = current.next
+        current.data = data
+
 
 def main():
-    A = Linked_List()
+    A = LinkedList()
     print("Inserting 1st at head")
     a1 = input()
     A.insert_head(a1)
@@ -98,6 +128,15 @@ def main():
     A.reverse()
     print("\nPrint List : ")
     A.printList()
+    print("\nString Representation of Linked List:")
+    print(A)
+    print("\n Reading/Changing Node Data using Indexing:")
+    print(f"Element at Position 1: {A[1]}")
+    p1 = input("Enter New Value: ")
+    A[1] = p1
+    print("New List:")
+    print(A)
+    
 
 
 if __name__ == "__main__":
