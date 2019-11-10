@@ -16,36 +16,36 @@ class LinkedList:
             self.insert_head(data)  # If this is first node, call insert_head
         else:
             temp = self.head
-            while temp.next is not None:  # traverse to last node
+            while temp.next:  # traverse to last node
                 temp = temp.next
             temp.next = Node(data)  # create node & link to tail
 
     def insert_head(self, data):
         newNod = Node(data)  # create a new node
-        if self.head is not None:
+        if self.head:
             newNod.next = self.head  # link newNode to head
         self.head = newNod  # make NewNode as head
 
     def printList(self):  # print every node data
         temp = self.head
-        while temp is not None:
+        while temp:
             print(temp.data)
             temp = temp.next
 
     def delete_head(self):  # delete from head
         temp = self.head
-        if self.head is not None:
+        if self.head:
             self.head = self.head.next
             temp.next = None
         return temp
 
     def delete_tail(self):  # delete from tail
         temp = self.head
-        if self.head is not None:
+        if self.head:
             if self.head.next is None:  # if head is the only Node in the Linked List
                 self.head = None
             else:
-                while temp.next.next is not None:  # find the 2nd last element
+                while temp.next.next:  # find the 2nd last element
                     temp = temp.next
                 temp.next, temp = (
                     None,
@@ -75,7 +75,7 @@ class LinkedList:
     def __repr__(self):  # String representation/visualization of a Linked Lists
         current = self.head
         string_repr = ""
-        while current is not None:
+        while current:
             string_repr += f"{current} ---> "
             current = current.next
         # END represents end of the LinkedList

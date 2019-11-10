@@ -9,7 +9,7 @@ class Node:
         """Returns a visual representation of the node and all its following nodes."""
         string_rep = ""
         temp = self
-        while temp is not None:
+        while temp:
             string_rep += f"<{temp.data}> ---> "
             temp = temp.next
         string_rep += "<END>"
