@@ -3,7 +3,7 @@ class Node:  # create a Node
         self.data = data  # given data
         self.next = None  # given next to None
 
-    def __repr__(self): # String Representation of a Node
+    def __repr__(self):  # String Representation of a Node
         return f"<Node: {self.data}>"
 
 
@@ -16,13 +16,13 @@ class LinkedList:
             self.insert_head(data)  # If this is first node, call insert_head
         else:
             temp = self.head
-            while temp.next != None:  # traverse to last node
+            while temp.next is not None:  # traverse to last node
                 temp = temp.next
             temp.next = Node(data)  # create node & link to tail
 
     def insert_head(self, data):
         newNod = Node(data)  # create a new node
-        if self.head != None:
+        if self.head is not None:
             newNod.next = self.head  # link newNode to head
         self.head = newNod  # make NewNode as head
 
@@ -34,14 +34,14 @@ class LinkedList:
 
     def delete_head(self):  # delete from head
         temp = self.head
-        if self.head != None:
+        if self.head is not None:
             self.head = self.head.next
             temp.next = None
         return temp
 
     def delete_tail(self):  # delete from tail
         temp = self.head
-        if self.head != None:
+        if self.head is not None:
             if self.head.next is None:  # if head is the only Node in the Linked List
                 self.head = None
             else:
@@ -72,10 +72,10 @@ class LinkedList:
         # Return prev in order to put the head at the end
         self.head = prev
 
-    def __repr__(self): # String representation/visualization of a Linked Lists 
+    def __repr__(self):  # String representation/visualization of a Linked Lists
         current = self.head
         string_repr = ""
-        while current != None:
+        while current is not None:
             string_repr += f"{current} ---> "
             current = current.next
         # END represents end of the LinkedList
@@ -91,13 +91,13 @@ class LinkedList:
             raise IndexError("The Linked List is empty")
 
         # Move Forward 'index' times
-        for _  in range(index):
+        for _ in range(index):
             # If the LinkedList ends before reaching specified node
             if current.next is None:
                 raise IndexError("Index out of range.")
             current = current.next
         return current
-    
+
     # Used to change the data of a particular node
     def __setitem__(self, index, data):
         current = self.head
@@ -147,7 +147,6 @@ def main():
     A[1] = p1
     print("New List:")
     print(A)
-    
 
 
 if __name__ == "__main__":
