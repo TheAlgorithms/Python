@@ -2,7 +2,6 @@
 
 import requests
 
-# Enter Your API Key in following URL
 _NEWS_API = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey="
 
 
@@ -14,5 +13,5 @@ def fetch_bbc_news(bbc_news_api_key: str) -> None:
         print(f"{i}.) {article['title']}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fetch_bbc_news(bbc_news_api_key="<Your BBC News API key goes here>")
