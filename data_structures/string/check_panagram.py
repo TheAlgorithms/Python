@@ -19,5 +19,6 @@ def check_panagram(input_str: str) -> None:
     else:
         print(f"{input_str} is not a Panagram String")
 
+
 if __name__ == "main":
     check_panagram("INPUT STRING")
