@@ -2,6 +2,13 @@
 
 
 def check_palindrome(input_str: str) -> None:
+    """
+    >>> check_palindrome("PALINDROME")
+    Entered String PALINDROME is not Palindrome
+    >>> check_palindrome("SSASS")
+    Entered String SSASS is Palindrome
+    """
+
     reverse_str = "".join(
         reversed(input_str)
     )  # Use reversed to reverse the input string
