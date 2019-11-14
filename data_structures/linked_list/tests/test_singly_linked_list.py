@@ -109,7 +109,7 @@ class TestList(TestCase):
 
     def test_get(self):
         with self.assertRaises(IndexError):
-            x = self._list[0]
+            self._list[0]
 
         self._list.add_at_head(4, 3)
 
@@ -118,7 +118,7 @@ class TestList(TestCase):
         self.assertEqual(self._list[1], 3)
 
         with self.assertRaises(IndexError):
-            x = self._list[4]
+            self._list[4]
 
     def test_len(self):
         self.assertFalse(len(self._list))
