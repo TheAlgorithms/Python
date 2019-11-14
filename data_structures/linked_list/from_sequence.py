@@ -1,6 +1,7 @@
 # Recursive Prorgam to create a Linked List from a sequence and
 # print a string representation of it.
 
+
 class Node:
     def __init__(self, data=None):
         self.data = data
@@ -15,7 +16,6 @@ class Node:
             temp = temp.next
         string_rep += "<END>"
         return string_rep
-
 
 
 def make_linked_list(elements_list):
@@ -36,8 +36,7 @@ def make_linked_list(elements_list):
     return head
 
 
-
-list_data = [1,3,5,32,44,12,43]
+list_data = [1, 3, 5, 32, 44, 12, 43]
 print(f"List: {list_data}")
 print("Creating Linked List from List.")
 linked_list = make_linked_list(list_data)

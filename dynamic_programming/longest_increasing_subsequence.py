@@ -48,8 +48,9 @@ def longest_subsequence(array: List[int]) -> List[int]:  # This function is recu
         return temp_array
     else:
         return longest_subseq
-    
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

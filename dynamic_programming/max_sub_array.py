@@ -75,6 +75,7 @@ if __name__ == "__main__":
     import time
     import matplotlib.pyplot as plt
     from random import randint
+
     inputs = [10, 100, 1000, 10000, 50000, 100000, 200000, 300000, 400000, 500000]
     tim = []
     for i in inputs:
