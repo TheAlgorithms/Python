@@ -24,7 +24,7 @@ class Linked_List:
         self.root = None
         self.end = None
 
-        self._length = 0  # length of the list
+        self.__length = 0  # length of the list
 
         self.add_at_head(*values)
 
@@ -38,7 +38,7 @@ class Linked_List:
             self.root = node
             if not self.root.next:
                 self.end = self.root
-        self._length += len(values)  # increase the length
+        self.__length += len(values)  # increase the length
 
     def add_at_tail(self, *values: Union[int, float]):
         """Add a node(s) after the last element of a linked list.
@@ -51,7 +51,7 @@ class Linked_List:
             for val in values:
                 self.end.next = Node(val)
                 self.end = self.end.next
-            self._length += len(values)
+            self.__length += len(values)
 
     def add_at_index(self, index: int, *values: Union[int, float]):
         """Add a node(s) before the index-th node in a linked list.
@@ -71,7 +71,7 @@ class Linked_List:
                 temp = self._get(index - 1)
                 node = Node(val, temp.next)
                 temp.next = node
-            self._length += len(values)
+            self.__length += len(values)
         else:
             raise IndexError
 
@@ -92,7 +92,7 @@ class Linked_List:
             else:
                 temp = self._get(index - 1)
                 temp.next = temp.next.next
-            self._length -= 1
+            self.__length -= 1
         else:
             raise IndexError
 
@@ -141,7 +141,7 @@ class Linked_List:
         return temp
 
     def __len__(self) -> int:  # len(list)
-        return self._length
+        return self.__length
 
     def __iter__(self) -> Union[int, float, None]:  # for i in list
         for i in range(len(self)):
