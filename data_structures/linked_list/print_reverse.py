@@ -1,5 +1,6 @@
 # Program to print the elements of a linked list in reverse
 
+
 class Node:
     def __init__(self, data=None):
         self.data = data
@@ -14,7 +15,6 @@ class Node:
             temp = temp.next
         string_rep += "<END>"
         return string_rep
-
 
 
 def make_linked_list(elements_list):
@@ -34,6 +34,7 @@ def make_linked_list(elements_list):
         current = current.next
     return head
 
+
 def print_reverse(head_node):
     """Prints the elements of the given Linked List in reverse order"""
 
@@ -46,8 +47,7 @@ def print_reverse(head_node):
         print(head_node.data)
 
 
-
-list_data = [14,52,14,12,43]
+list_data = [14, 52, 14, 12, 43]
 linked_list = make_linked_list(list_data)
 print("Linked List:")
 print(linked_list)
