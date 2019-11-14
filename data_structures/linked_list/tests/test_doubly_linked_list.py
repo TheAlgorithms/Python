@@ -1,4 +1,4 @@
-from unittest import TestCase, main
+from unittest import main, TestCase
 
 from doubly_linked_list import DLinkedList
 

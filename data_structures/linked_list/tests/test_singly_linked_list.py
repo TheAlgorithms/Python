@@ -1,4 +1,4 @@
-from unittest import TestCase, main
+from unittest import main, TestCase
 
 from singly_linked_list import Linked_List
 
