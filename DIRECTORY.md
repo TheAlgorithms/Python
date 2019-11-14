@@ -377,6 +377,7 @@
   * Problem 08
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_08/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_08/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_08/sol3.py)
   * Problem 09
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_09/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_09/sol2.py)
