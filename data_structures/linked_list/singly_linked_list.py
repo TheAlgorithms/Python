@@ -2,30 +2,36 @@ from typing import Optional, Union, List
 
 
 class Node:
+    """A linked list element class."""
+
     def __init__(self, data: Union[int, float] = None, next: "Node" = None):
         self.val = data  # given data
         self.next = next  # given next
 
 
 class Linked_List:
-    """
-    A linked list class, whose elements are instances of the Node class.
-    :param root: The 1st element
-    :param end: The last element
+    """A linked list class, whose elements are instances of the Node class.
+
+    Args:
+        *values: 1 or more values of a list
+
+    Attributes:
+        root: the 1st element
+        end: the last element
     """
 
     def __init__(self, *values: Union[int, float]):
         self.root = None
         self.end = None
+
         self._length = 0  # length of the list
 
         self.add_at_head(*values)
 
     def add_at_head(self, *values: Union[int, float]):
-        """
-        Add a node(s) with value(s) before the first element of a linked list.
-        :param values: a number or a sequence of numbers
-        :return:
+        """Add a node(s) before the first element of a linked list.
+
+        :param *values: 1 or more values of the node(s)
         """
         for val in values[::-1]:  # you can add many values
             node = Node(val, self.root)  # create a new node
@@ -35,10 +41,9 @@ class Linked_List:
         self._length += len(values)  # increase the length
 
     def add_at_tail(self, *values: Union[int, float]):
-        """
-        Append a node(s) with value(s) to the last element of a linked list.
-        :param values: a number or a sequence of numbers
-        :return:
+        """Add a node(s) after the last element of a linked list.
+
+        :param *values: 1 or more values of the node(s)
         """
         if not self.end:  # if list is empty
             self.add_at_head(*values)
@@ -49,13 +54,13 @@ class Linked_List:
             self._length += len(values)
 
     def add_at_index(self, index: int, *values: Union[int, float]):
-        """
-        Add a node(s) with value(s) before the index-th node in a linked list.
+        """Add a node(s) before the index-th node in a linked list.
+
         If the index equals to the length of the linked list, the node will be
         appended to the end of the linked list.
+
         :param index: the node index
-        :param values: a number or a sequence of numbers
-        :return:
+        :param *values: 1 or more values of the node(s)
         """
         if index == 0:
             self.add_at_head(*values)
@@ -71,10 +76,9 @@ class Linked_List:
             raise IndexError
 
     def delete_at_index(self, index: int):
-        """
-        Delete the index-th node in a linked list, if the index is valid.
+        """Delete the index-th node in a linked list, if the index is valid.
+
         :param index: the node index
-        :return:
         """
         if 0 <= index < len(self):
             if len(self) == 1:
@@ -93,9 +97,9 @@ class Linked_List:
             raise IndexError
 
     def pop_root(self) -> Union[int, float, None]:
-        """
-        Remove the first node from a linked list and return its value.
-        :return value: The 1st node value
+        """Remove the first node from a linked list and return its value.
+
+        :return: the 1st node value
         """
         if not self:
             return None
@@ -104,9 +108,9 @@ class Linked_List:
         return res
 
     def pop_end(self) -> Union[int, float, None]:
-        """
-        Remove the last node  from a linked list and return its value.
-        :return value: The last node value
+        """Remove the last node  from a linked list and return its value.
+
+        :return: the last node value
         """
         if len(self) < 2:
             return self.pop_root()
@@ -115,8 +119,9 @@ class Linked_List:
         return res
 
     def _get(self, index: int) -> Optional[Node]:
-        """
-        Get the index-th node in a linked list.
+        """Get the index-th node in a linked list.
+
+        :return: the index-th node
         """
         if not isinstance(index, int):
             raise TypeError
