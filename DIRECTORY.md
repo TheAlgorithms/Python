@@ -8,6 +8,7 @@
   * [Newton Forward Interpolation](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_forward_interpolation.py)
   * [Newton Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_method.py)
   * [Newton Raphson Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_raphson_method.py)
+  * [Secant Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/secant_method.py)
 
 ## Backtracking
   * [All Combinations](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_combinations.py)
@@ -36,14 +37,19 @@
   * [Brute Force Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/brute_force_caesar_cipher.py)
   * [Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/caesar_cipher.py)
   * [Cryptomath Module](https://github.com/TheAlgorithms/Python/blob/master/ciphers/cryptomath_module.py)
+  * [Deterministic Miller Rabin](https://github.com/TheAlgorithms/Python/blob/master/ciphers/deterministic_miller_rabin.py)
+  * [Diffie](https://github.com/TheAlgorithms/Python/blob/master/ciphers/diffie.py)
   * [Elgamal Key Generator](https://github.com/TheAlgorithms/Python/blob/master/ciphers/elgamal_key_generator.py)
   * [Hill Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/hill_cipher.py)
+  * [Mixed Keyword Cypher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/mixed_keyword_cypher.py)
   * [Morse Code Implementation](https://github.com/TheAlgorithms/Python/blob/master/ciphers/morse_code_implementation.py)
   * [Onepad Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/onepad_cipher.py)
   * [Playfair Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/playfair_cipher.py)
+  * [Porta Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/porta_cipher.py)
   * [Rabin Miller](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rabin_miller.py)
   * [Rot13](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rot13.py)
   * [Rsa Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rsa_cipher.py)
+  * [Rsa Factorization](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rsa_factorization.py)
   * [Rsa Key Generator](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rsa_key_generator.py)
   * [Shuffled Shift Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/shuffled_shift_cipher.py)
   * [Simple Substitution Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/simple_substitution_cipher.py)
@@ -71,6 +77,7 @@
     * [Fenwick Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/fenwick_tree.py)
     * [Lazy Segment Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lazy_segment_tree.py)
     * [Lca](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lca.py)
+    * [Non Recursive Segment Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/non_recursive_segment_tree.py)
     * [Red Black Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/red_black_tree.py)
     * [Segment Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/segment_tree.py)
     * [Treap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/treap.py)
@@ -89,7 +96,9 @@
     * [Min Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/min_heap.py)
   * Linked List
     * [Doubly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/doubly_linked_list.py)
+    * [From Sequence](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/from_sequence.py)
     * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/is_palindrome.py)
+    * [Print Reverse](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/print_reverse.py)
     * [Singly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py)
     * [Swap Nodes](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/swap_nodes.py)
   * Queue
@@ -149,6 +158,7 @@
   * [Longest Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_sub_array.py)
   * [Matrix Chain Order](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/matrix_chain_order.py)
   * [Max Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sub_array.py)
+  * [Max Sum Contigous Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sum_contigous_subsequence.py)
   * [Minimum Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/minimum_partition.py)
   * [Rod Cutting](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/rod_cutting.py)
   * [Subset Generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
@@ -228,13 +238,17 @@
   * [Abs Min](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_min.py)
   * [Average Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mean.py)
   * [Average Median](https://github.com/TheAlgorithms/Python/blob/master/maths/average_median.py)
+  * [Average Mode](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mode.py)
   * [Basic Maths](https://github.com/TheAlgorithms/Python/blob/master/maths/basic_maths.py)
   * [Binary Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/maths/binary_exponentiation.py)
+  * [Binomial Coefficient](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_coefficient.py)
+  * [Ceil](https://github.com/TheAlgorithms/Python/blob/master/maths/ceil.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
   * [Explicit Euler](https://github.com/TheAlgorithms/Python/blob/master/maths/explicit_euler.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
   * [Factorial Python](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_python.py)
   * [Factorial Recursive](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_recursive.py)
+  * [Factors](https://github.com/TheAlgorithms/Python/blob/master/maths/factors.py)
   * [Fermat Little Theorem](https://github.com/TheAlgorithms/Python/blob/master/maths/fermat_little_theorem.py)
   * [Fibonacci](https://github.com/TheAlgorithms/Python/blob/master/maths/fibonacci.py)
   * [Fibonacci Sequence Recursion](https://github.com/TheAlgorithms/Python/blob/master/maths/fibonacci_sequence_recursion.py)
@@ -242,6 +256,7 @@
   * [Find Max Recursion](https://github.com/TheAlgorithms/Python/blob/master/maths/find_max_recursion.py)
   * [Find Min](https://github.com/TheAlgorithms/Python/blob/master/maths/find_min.py)
   * [Find Min Recursion](https://github.com/TheAlgorithms/Python/blob/master/maths/find_min_recursion.py)
+  * [Floor](https://github.com/TheAlgorithms/Python/blob/master/maths/floor.py)
   * [Gaussian](https://github.com/TheAlgorithms/Python/blob/master/maths/gaussian.py)
   * [Greatest Common Divisor](https://github.com/TheAlgorithms/Python/blob/master/maths/greatest_common_divisor.py)
   * [Hardy Ramanujanalgo](https://github.com/TheAlgorithms/Python/blob/master/maths/hardy_ramanujanalgo.py)
@@ -257,9 +272,11 @@
   * [Mobius Function](https://github.com/TheAlgorithms/Python/blob/master/maths/mobius_function.py)
   * [Modular Exponential](https://github.com/TheAlgorithms/Python/blob/master/maths/modular_exponential.py)
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
+  * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
   * [Polynomial Evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
   * [Prime Check](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_check.py)
   * [Prime Factors](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_factors.py)
+  * [Prime Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_numbers.py)
   * [Prime Sieve Eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_sieve_eratosthenes.py)
   * [Qr Decomposition](https://github.com/TheAlgorithms/Python/blob/master/maths/qr_decomposition.py)
   * [Quadratic Equations Complex Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/quadratic_equations_complex_numbers.py)
@@ -293,6 +310,8 @@
 ## Neural Network
   * [Back Propagation Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/convolution_neural_network.py)
+  * [Gan](https://github.com/TheAlgorithms/Python/blob/master/neural_network/gan.py)
+  * [Input Data](https://github.com/TheAlgorithms/Python/blob/master/neural_network/input_data.py)
   * [Perceptron](https://github.com/TheAlgorithms/Python/blob/master/neural_network/perceptron.py)
 
 ## Other
@@ -304,17 +323,18 @@
   * [Detecting English Programmatically](https://github.com/TheAlgorithms/Python/blob/master/other/detecting_english_programmatically.py)
   * [Euclidean Gcd](https://github.com/TheAlgorithms/Python/blob/master/other/euclidean_gcd.py)
   * [Fischer Yates Shuffle](https://github.com/TheAlgorithms/Python/blob/master/other/fischer_yates_shuffle.py)
-  * [Food Wastage Analysis From 1961-2013 Fao](https://github.com/TheAlgorithms/Python/blob/master/other/food_wastage_analysis_from_1961-2013_fao.ipynb)
   * [Frequency Finder](https://github.com/TheAlgorithms/Python/blob/master/other/frequency_finder.py)
   * [Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/other/game_of_life.py)
   * [Greedy](https://github.com/TheAlgorithms/Python/blob/master/other/greedy.py)
   * [Largest Subarray Sum](https://github.com/TheAlgorithms/Python/blob/master/other/largest_subarray_sum.py)
+  * [Least Recently Used](https://github.com/TheAlgorithms/Python/blob/master/other/least_recently_used.py)
   * [Linear Congruential Generator](https://github.com/TheAlgorithms/Python/blob/master/other/linear_congruential_generator.py)
   * [Magicdiamondpattern](https://github.com/TheAlgorithms/Python/blob/master/other/magicdiamondpattern.py)
   * [Nested Brackets](https://github.com/TheAlgorithms/Python/blob/master/other/nested_brackets.py)
   * [Palindrome](https://github.com/TheAlgorithms/Python/blob/master/other/palindrome.py)
   * [Password Generator](https://github.com/TheAlgorithms/Python/blob/master/other/password_generator.py)
   * [Primelib](https://github.com/TheAlgorithms/Python/blob/master/other/primelib.py)
+  * [Sdes](https://github.com/TheAlgorithms/Python/blob/master/other/sdes.py)
   * [Sierpinski Triangle](https://github.com/TheAlgorithms/Python/blob/master/other/sierpinski_triangle.py)
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
   * [Two Sum](https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py)
@@ -338,6 +358,7 @@
   * Problem 03
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_03/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_03/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_03/sol3.py)
   * Problem 04
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_04/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_04/sol2.py)
@@ -390,6 +411,7 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol2.py)
     * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol3.py)
+    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol4.py)
   * Problem 21
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_21/sol1.py)
   * Problem 22
@@ -404,6 +426,9 @@
   * Problem 25
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_25/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_25/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_25/sol3.py)
+  * Problem 27
+    * [Problem 27 Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_27/problem_27_sol1.py)
   * Problem 28
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_28/sol1.py)
   * Problem 29
@@ -412,6 +437,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_31/sol1.py)
   * Problem 32
     * [Sol32](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_32/sol32.py)
+  * Problem 33
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_33/sol1.py)
   * Problem 36
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_36/sol1.py)
   * Problem 40
@@ -432,6 +459,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_67/sol1.py)
   * Problem 76
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_76/sol1.py)
+  * Problem 99
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_99/sol1.py)
 
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)
@@ -471,6 +500,7 @@
   * [Radix Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/radix_sort.py)
   * [Random Normal Distribution Quicksort](https://github.com/TheAlgorithms/Python/blob/master/sorts/random_normal_distribution_quicksort.py)
   * [Random Pivot Quick Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/random_pivot_quick_sort.py)
+  * [Recursive-Quick-Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive-quick-sort.py)
   * [Selection Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/selection_sort.py)
   * [Shell Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/shell_sort.py)
   * [Stooge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/stooge_sort.py)
@@ -482,15 +512,133 @@
 ## Strings
   * [Aho-Corasick](https://github.com/TheAlgorithms/Python/blob/master/strings/aho-corasick.py)
   * [Boyer Moore Search](https://github.com/TheAlgorithms/Python/blob/master/strings/boyer_moore_search.py)
+  * [Check Panagram](https://github.com/TheAlgorithms/Python/blob/master/strings/check_panagram.py)
   * [Knuth Morris Pratt](https://github.com/TheAlgorithms/Python/blob/master/strings/knuth_morris_pratt.py)
   * [Levenshtein Distance](https://github.com/TheAlgorithms/Python/blob/master/strings/levenshtein_distance.py)
   * [Manacher](https://github.com/TheAlgorithms/Python/blob/master/strings/manacher.py)
   * [Min Cost String Conversion](https://github.com/TheAlgorithms/Python/blob/master/strings/min_cost_string_conversion.py)
   * [Naive String Search](https://github.com/TheAlgorithms/Python/blob/master/strings/naive_string_search.py)
   * [Rabin Karp](https://github.com/TheAlgorithms/Python/blob/master/strings/rabin_karp.py)
+  * [Remove Duplicate](https://github.com/TheAlgorithms/Python/blob/master/strings/remove_duplicate.py)
 
 ## Traversals
   * [Binary Tree Traversals](https://github.com/TheAlgorithms/Python/blob/master/traversals/binary_tree_traversals.py)
 
+## Venv
+  * Lib
+    * Python3.7
+      * Site-Packages
+        * Certifi
+          * [  Main  ](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/certifi/__main__.py)
+          * [Core](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/certifi/core.py)
+        * Chardet
+          * [Big5Freq](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/big5freq.py)
+          * [Big5Prober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/big5prober.py)
+          * [Chardistribution](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/chardistribution.py)
+          * [Charsetgroupprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/charsetgroupprober.py)
+          * [Charsetprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/charsetprober.py)
+          * Cli
+            * [Chardetect](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/cli/chardetect.py)
+          * [Codingstatemachine](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/codingstatemachine.py)
+          * [Compat](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/compat.py)
+          * [Cp949Prober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/cp949prober.py)
+          * [Enums](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/enums.py)
+          * [Escprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/escprober.py)
+          * [Escsm](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/escsm.py)
+          * [Eucjpprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/eucjpprober.py)
+          * [Euckrfreq](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/euckrfreq.py)
+          * [Euckrprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/euckrprober.py)
+          * [Euctwfreq](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/euctwfreq.py)
+          * [Euctwprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/euctwprober.py)
+          * [Gb2312Freq](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/gb2312freq.py)
+          * [Gb2312Prober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/gb2312prober.py)
+          * [Hebrewprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/hebrewprober.py)
+          * [Jisfreq](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/jisfreq.py)
+          * [Jpcntx](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/jpcntx.py)
+          * [Langbulgarianmodel](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/langbulgarianmodel.py)
+          * [Langcyrillicmodel](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/langcyrillicmodel.py)
+          * [Langgreekmodel](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/langgreekmodel.py)
+          * [Langhebrewmodel](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/langhebrewmodel.py)
+          * [Langhungarianmodel](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/langhungarianmodel.py)
+          * [Langthaimodel](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/langthaimodel.py)
+          * [Langturkishmodel](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/langturkishmodel.py)
+          * [Latin1Prober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/latin1prober.py)
+          * [Mbcharsetprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/mbcharsetprober.py)
+          * [Mbcsgroupprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/mbcsgroupprober.py)
+          * [Mbcssm](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/mbcssm.py)
+          * [Sbcharsetprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/sbcharsetprober.py)
+          * [Sbcsgroupprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/sbcsgroupprober.py)
+          * [Sjisprober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/sjisprober.py)
+          * [Universaldetector](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/universaldetector.py)
+          * [Utf8Prober](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/utf8prober.py)
+          * [Version](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/chardet/version.py)
+        * Idna
+          * [Codec](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/idna/codec.py)
+          * [Compat](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/idna/compat.py)
+          * [Core](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/idna/core.py)
+          * [Idnadata](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/idna/idnadata.py)
+          * [Intranges](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/idna/intranges.py)
+          * [Package Data](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/idna/package_data.py)
+          * [Uts46Data](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/idna/uts46data.py)
+        * [Ordered Set](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/ordered_set.py)
+        * Pip-19.0.3-Py3.7.Egg
+          * Pip
+            * [  Main  ](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/pip-19.0.3-py3.7.egg/pip/__main__.py)
+        * Requests
+          * [  Version  ](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/__version__.py)
+          * [ Internal Utils](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/_internal_utils.py)
+          * [Adapters](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/adapters.py)
+          * [Api](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/api.py)
+          * [Auth](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/auth.py)
+          * [Certs](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/certs.py)
+          * [Compat](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/compat.py)
+          * [Cookies](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/cookies.py)
+          * [Exceptions](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/exceptions.py)
+          * [Help](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/help.py)
+          * [Hooks](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/hooks.py)
+          * [Models](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/models.py)
+          * [Packages](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/packages.py)
+          * [Sessions](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/sessions.py)
+          * [Status Codes](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/status_codes.py)
+          * [Structures](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/structures.py)
+          * [Utils](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/requests/utils.py)
+        * Urllib3
+          * [ Collections](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/_collections.py)
+          * [Connection](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/connection.py)
+          * [Connectionpool](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/connectionpool.py)
+          * Contrib
+            * [ Appengine Environ](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/contrib/_appengine_environ.py)
+            * [Appengine](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/contrib/appengine.py)
+            * [Ntlmpool](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/contrib/ntlmpool.py)
+            * [Pyopenssl](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/contrib/pyopenssl.py)
+            * [Securetransport](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/contrib/securetransport.py)
+            * [Socks](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/contrib/socks.py)
+          * [Exceptions](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/exceptions.py)
+          * [Fields](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/fields.py)
+          * [Filepost](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/filepost.py)
+          * Packages
+            * Backports
+              * [Makefile](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/packages/backports/makefile.py)
+            * [Six](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/packages/six.py)
+            * Ssl Match Hostname
+              * [ Implementation](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/packages/ssl_match_hostname/_implementation.py)
+          * [Poolmanager](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/poolmanager.py)
+          * [Request](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/request.py)
+          * [Response](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/response.py)
+          * Util
+            * [Connection](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/connection.py)
+            * [Queue](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/queue.py)
+            * [Request](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/request.py)
+            * [Response](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/response.py)
+            * [Retry](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/retry.py)
+            * [Ssl ](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/ssl_.py)
+            * [Timeout](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/timeout.py)
+            * [Url](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/url.py)
+            * [Wait](https://github.com/TheAlgorithms/Python/blob/master/venv/lib/python3.7/site-packages/urllib3/util/wait.py)
+
 ## Web Programming
   * [Crawl Google Results](https://github.com/TheAlgorithms/Python/blob/master/web_programming/crawl_google_results.py)
+  * [Fetch Bbc News](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_bbc_news.py)
+  * [Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_github_info.py)
+  * [Get Imdbtop](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdbtop.py)
+  * [Slack Message](https://github.com/TheAlgorithms/Python/blob/master/web_programming/slack_message.py)
