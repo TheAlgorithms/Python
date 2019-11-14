@@ -1,6 +1,7 @@
-# The objective of this GitHub Action is to add a new DIRECTORY.md file to a pull request if needed.
+# The objective of this GitHub Action is to update the DIRECTORY.md file (if needed)
+# when doing a git push
 name: directory_writer
-on: [pull_request]
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -8,8 +9,8 @@ jobs:
       max-parallel: 1
       matrix:
         python-version: [3.7]
-    steps:
 
+    steps:
       - uses: actions/checkout@v1
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1
@@ -18,8 +19,8 @@ jobs:
       - name: Update DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
-          git config --global user.name 'directory_writer'
-          git config --global user.email 'mrvnmchm@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.gh_token }}@github.com/$GITHUB_REPOSITORY
-          git checkout $GITHUB_HEAD_REF
-          if git diff-files --quiet; then echo 0; else git commit -am "fixup: DIRECTORY.md" && git push; fi
+          git config --global user.name github-actions
+          git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git commit -am "updating DIRECTORY.md"
+          git push --force origin HEAD:$GITHUB_REF
