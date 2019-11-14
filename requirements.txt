@@ -14,4 +14,3 @@ scikit-fuzzy
 sklearn
 sympy
 tensorflow
-ordered_set
