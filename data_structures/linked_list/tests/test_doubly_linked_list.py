@@ -1,16 +1,9 @@
-import os
-import sys
-import inspect
 from unittest import TestCase, main
-
-current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parent_dir = os.path.dirname(current_dir)
-sys.path.insert(1, parent_dir)
 
 from doubly_linked_list import DLinkedList
 
 
-class TestList(TestCase):
+class TestDList(TestCase):
     def setUp(self):
         self._list = DLinkedList()
 
@@ -180,6 +173,6 @@ class TestList(TestCase):
         self._list.delete_at_index(0)
         self.assertEqual(str(self._list), "4 >< 5 >< 13")
 
-
-if __name__ == "__main__":
-    main()
+    @staticmethod
+    def run_test():
+        main()
