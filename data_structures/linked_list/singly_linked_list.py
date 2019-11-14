@@ -147,9 +147,8 @@ class Linked_List:
         for i in range(len(self)):
             yield (self._get(i)).val
 
-    def __getitem__(
-        self, item
-    ) -> Union[int, float, List[Union[int, float]]]:  # list[index], list[i:j:k]
+    # list[index], list[i:j:k]
+    def __getitem__(self, item) -> Union[int, float, List[Union[int, float]]]:
         if isinstance(item, slice):
             start = 0 if not item.start else item.start
             stop = len(self) if not item.stop else item.stop
@@ -166,7 +165,8 @@ class Linked_List:
     ):  # list[key] = value
         (self._get(key)).val = value
 
-    def __contains__(self, item: Union[int, float, None]) -> bool:  # if item in list
+    # if item in the list
+    def __contains__(self, item: Union[int, float, None]) -> bool:
         temp = self.root
         while temp and temp.val != item:
             temp = temp.next
