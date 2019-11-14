@@ -1,34 +1,24 @@
-# GitHub Action that uses Black to reformat the Python code in an incoming pull request.
-# If all Python code in the pull request is complient with Black then this Action does nothing.
-# Othewrwise, Black is run and its changes are committed back to the incoming pull request.
+# GitHub Action that uses Black to reformat Python code (if needed) when doing a git push.
+# If all Python code in the repo is complient with Black then this Action does nothing.
+# Otherwise, Black is run and its changes are committed to the repo.
 # https://github.com/cclauss/autoblack
 
-name: autoblack
-on: [pull_request]
+name: autoblack_push
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      matrix:
-        python-version: [3.7]
     steps:
       - uses: actions/checkout@v1
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v1
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install psf/black
-        run: pip install black
-      - name: Run black --check .
-        run: black --check .
-      - name: If needed, commit black changes to the pull request
+      - uses: actions/setup-python@v1
+      - run: pip install black
+      - run: black --check .
+      - name: If needed, commit black changes to a new pull request
         if: failure()
         run: |
           black .
-          git config --global user.name 'autoblack'
-          git config --global user.email 'cclauss@users.noreply.github.com'
+          git config --global user.name github-actions
+          git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'          
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout $GITHUB_HEAD_REF
-          git commit -am "fixup: Format Python code with psf/black"
-          git push
+          git commit -am "fixup! Format Python code with psf/black push"
+          git push --force origin HEAD:$GITHUB_REF
