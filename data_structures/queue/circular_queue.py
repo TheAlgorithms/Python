@@ -23,7 +23,7 @@ class CircularQueue:
 
     def enqueue(self, data):
         if self.size >= self.n:
-            raise "QUEUE IS FULL"
+            return False
 
         self.array[self.rear] = data
         self.rear = (self.rear+1)%self.n
@@ -32,7 +32,7 @@ class CircularQueue:
 
     def dequeue(self):
         if self.size == 0:
-            raise "UNDERFLOW"
+            return False
 
         temp = self.array[self.front]
         self.array[self.front] = None
