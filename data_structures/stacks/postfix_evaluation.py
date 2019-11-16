@@ -14,7 +14,7 @@ Enter a Postfix Equation (space separated) = 5 6 9 * +
          | pop(5)       |
        + | push(5+54)   | 59
 
-	Result =  59
+        Result =  59
 """
 
 import operator as op

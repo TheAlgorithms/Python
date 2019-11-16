@@ -1,9 +1,9 @@
 """
-	In this problem, we want to determine all possible permutations
-	of the given sequence. We use backtracking to solve this problem.
+        In this problem, we want to determine all possible permutations
+        of the given sequence. We use backtracking to solve this problem.
 
-	Time complexity: O(n! * n),
-	where n denotes the length of the given sequence.
+        Time complexity: O(n! * n),
+        where n denotes the length of the given sequence.
 """
 
 
@@ -13,10 +13,10 @@ def generate_all_permutations(sequence):
 
 def create_state_space_tree(sequence, current_sequence, index, index_used):
     """
-	Creates a state space tree to iterate through each branch using DFS.
-	We know that each state has exactly len(sequence) - index children.
-	It terminates when it reaches the end of the given sequence.
-	"""
+        Creates a state space tree to iterate through each branch using DFS.
+        We know that each state has exactly len(sequence) - index children.
+        It terminates when it reaches the end of the given sequence.
+        """
 
     if index == len(sequence):
         print(current_sequence)
@@ -32,7 +32,7 @@ def create_state_space_tree(sequence, current_sequence, index, index_used):
 
 
 """
-remove the comment to take an input from the user 
+remove the comment to take an input from the user
 
 print("Enter the elements")
 sequence = list(map(int, input().split()))
