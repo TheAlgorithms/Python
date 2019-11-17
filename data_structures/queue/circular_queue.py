@@ -68,7 +68,9 @@ class CircularQueue:
         index
         >>> cq = CircularQueue(5)
         >>> cq.dequeue()
-        False
+        Traceback (most recent call last):
+           ...
+        Exception: UNDERFLOW
         >>> cq.enqueue("A")
         >>> cq.enqueue("B")
         >>> cq.dequeue()
