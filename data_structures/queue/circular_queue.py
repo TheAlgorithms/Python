@@ -79,7 +79,7 @@ class CircularQueue:
         False
         """
         if self.size == 0:
-            raise Exception ("UNDERFLOW")
+            raise Exception("UNDERFLOW")
 
         temp = self.array[self.front]
         self.array[self.front] = None
