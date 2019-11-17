@@ -15,7 +15,8 @@ class CircularQueue:
         >>> cq = CircularQueue(5)
         >>> len(cq)
         0
-        >>> cq.enqueue("A")
+        >>> cq.enqueue("A")  # doctest: +ELLIPSIS
+        <circular_queue.CircularQueue object at ...
         >>> len(cq)
         1
         """
@@ -26,7 +27,8 @@ class CircularQueue:
         >>> cq = CircularQueue(5)
         >>> cq.is_empty()
         True
-        >>> cq.enqueue("A")
+        >>> cq.enqueue("A")  # doctest: +ELLIPSIS
+        <circular_queue.CircularQueue object at ...
         >>> cq.is_empty()
         False
         """
@@ -37,7 +39,8 @@ class CircularQueue:
         >>> cq = CircularQueue(5)
         >>> cq.first()
         False
-        >>> cq.enqueue("A")
+        >>> cq.enqueue("A")  # doctest: +ELLIPSIS
+        <circular_queue.CircularQueue object at ...
         >>> cq.first()
         'A'
         """
@@ -47,10 +50,12 @@ class CircularQueue:
         """
         This function insert an element in the queue using self.rear value as an index
         >>> cq = CircularQueue(5)
-        >>> cq.enqueue("A")
+        >>> cq.enqueue("A")  # doctest: +ELLIPSIS
+        <circular_queue.CircularQueue object at ...
         >>> (cq.size, cq.first(), cq.last())
         1, 'A', 'A'
-        >>> cq.enqueue("B")
+        >>> cq.enqueue("B")  # doctest: +ELLIPSIS
+        <circular_queue.CircularQueue object at ...
         >>> (cq.size, cq.first(), cq.last())
         2, 'A', 'B'
         """
@@ -71,8 +76,10 @@ class CircularQueue:
         Traceback (most recent call last):
            ...
         Exception: UNDERFLOW
-        >>> cq.enqueue("A")
-        >>> cq.enqueue("B")
+        >>> cq.enqueue("A")  # doctest: +ELLIPSIS
+        <circular_queue.CircularQueue object at ...
+        >>> cq.enqueue("B")  # doctest: +ELLIPSIS
+        <circular_queue.CircularQueue object at ...
         >>> cq.dequeue()
         'B'
         >>> (cq.size, cq.first(), cq.last())
