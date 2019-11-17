@@ -1,3 +1,4 @@
 [report]
+sort = Miss
 omit =
     .env/*
