@@ -75,20 +75,25 @@ if __name__ == "__main__":
     print("--------- Declare Hyper Parameters ----------")
     # 2. Declare Weights
     D_W1 = (
-        np.random.normal(size=(784, hidden_input), scale=(1.0 / np.sqrt(784 / 2.0))) * 0.002
+        np.random.normal(size=(784, hidden_input), scale=(1.0 / np.sqrt(784 / 2.0)))
+        * 0.002
     )
     # D_b1 = np.random.normal(size=(128),scale=(1. / np.sqrt(128 / 2.)))       *0.002
     D_b1 = np.zeros(hidden_input)
 
     D_W2 = (
-        np.random.normal(size=(hidden_input, 1), scale=(1.0 / np.sqrt(hidden_input / 2.0)))
+        np.random.normal(
+            size=(hidden_input, 1), scale=(1.0 / np.sqrt(hidden_input / 2.0))
+        )
         * 0.002
     )
     # D_b2 = np.random.normal(size=(1),scale=(1. / np.sqrt(1 / 2.)))           *0.002
     D_b2 = np.zeros(1)
 
     G_W1 = (
-        np.random.normal(size=(G_input, hidden_input), scale=(1.0 / np.sqrt(G_input / 2.0)))
+        np.random.normal(
+            size=(G_input, hidden_input), scale=(1.0 / np.sqrt(G_input / 2.0))
+        )
         * 0.002
     )
     # G_b1 = np.random.normal(size=(128),scale=(1. / np.sqrt(128 / 2.)))      *0.002
@@ -96,7 +101,8 @@ if __name__ == "__main__":
 
     G_W2 = (
         np.random.normal(
-            size=(hidden_input, hidden_input2), scale=(1.0 / np.sqrt(hidden_input / 2.0))
+            size=(hidden_input, hidden_input2),
+            scale=(1.0 / np.sqrt(hidden_input / 2.0)),
         )
         * 0.002
     )
@@ -105,7 +111,8 @@ if __name__ == "__main__":
 
     G_W3 = (
         np.random.normal(
-            size=(hidden_input2, hidden_input3), scale=(1.0 / np.sqrt(hidden_input2 / 2.0))
+            size=(hidden_input2, hidden_input3),
+            scale=(1.0 / np.sqrt(hidden_input2 / 2.0)),
         )
         * 0.002
     )
@@ -114,7 +121,8 @@ if __name__ == "__main__":
 
     G_W4 = (
         np.random.normal(
-            size=(hidden_input3, hidden_input4), scale=(1.0 / np.sqrt(hidden_input3 / 2.0))
+            size=(hidden_input3, hidden_input4),
+            scale=(1.0 / np.sqrt(hidden_input3 / 2.0)),
         )
         * 0.002
     )
@@ -123,7 +131,8 @@ if __name__ == "__main__":
 
     G_W5 = (
         np.random.normal(
-            size=(hidden_input4, hidden_input5), scale=(1.0 / np.sqrt(hidden_input4 / 2.0))
+            size=(hidden_input4, hidden_input5),
+            scale=(1.0 / np.sqrt(hidden_input4 / 2.0)),
         )
         * 0.002
     )
@@ -132,7 +141,8 @@ if __name__ == "__main__":
 
     G_W6 = (
         np.random.normal(
-            size=(hidden_input5, hidden_input6), scale=(1.0 / np.sqrt(hidden_input5 / 2.0))
+            size=(hidden_input5, hidden_input6),
+            scale=(1.0 / np.sqrt(hidden_input5 / 2.0)),
         )
         * 0.002
     )
