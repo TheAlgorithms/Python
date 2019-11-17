@@ -15,6 +15,6 @@ def word_occurence(sentence: str) -> dict:
 
 
 if __name__ == "__main__":
-    count = word_occurence("INPUT STRING")
-    for word, count in count.items():
+    count_dict = word_occurence("INPUT STRING")
+    for word, count in count_dict.items():
         print(f"{word}: {count}")
