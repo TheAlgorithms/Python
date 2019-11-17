@@ -9,6 +9,6 @@ before_script:
 script:
   - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
   - mypy --ignore-missing-imports .
-  - pytest . --doctest-modules
+  - pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=. .
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
