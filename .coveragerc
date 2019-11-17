@@ -1,4 +1,4 @@
 [report]
-sort = Miss
+sort = Cover
 omit =
     .env/*
