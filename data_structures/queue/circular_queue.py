@@ -1,7 +1,7 @@
 # Implementation of Circular Queue (using Python lists)
 
 class CircularQueue:
-    """ Circular queue with fixed capacity """
+    """Circular FIFO queue with a fixed capacity"""
 
     def __init__(self, n: int):
         self.n = n
@@ -27,9 +27,7 @@ class CircularQueue:
         >>> cq = CircularQueue(5)
         >>> cq.is_empty()
         True
-        >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <circular_queue.CircularQueue object at ...
-        >>> cq.is_empty()
+        >>> cq.enqueue("A").is_empty()
         False
         """
         return self.size == 0
@@ -39,9 +37,7 @@ class CircularQueue:
         >>> cq = CircularQueue(5)
         >>> cq.first()
         False
-        >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <circular_queue.CircularQueue object at ...
-        >>> cq.first()
+        >>> cq.enqueue("A").first()
         'A'
         """
         return False if self.is_empty() else self.array[self.front]
@@ -52,12 +48,12 @@ class CircularQueue:
         >>> cq = CircularQueue(5)
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
         <circular_queue.CircularQueue object at ...
-        >>> (cq.size, cq.first(), cq.last())
-        1, 'A', 'A'
+        >>> (cq.size, cq.first())
+        (1, 'A')
         >>> cq.enqueue("B")  # doctest: +ELLIPSIS
         <circular_queue.CircularQueue object at ...
-        >>> (cq.size, cq.first(), cq.last())
-        2, 'A', 'B'
+        >>> (cq.size, cq.first())
+        (2, 'A')
         """
         if self.size >= self.n:
             raise Exception("QUEUE IS FULL")
@@ -76,16 +72,16 @@ class CircularQueue:
         Traceback (most recent call last):
            ...
         Exception: UNDERFLOW
-        >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <circular_queue.CircularQueue object at ...
-        >>> cq.enqueue("B")  # doctest: +ELLIPSIS
-        <circular_queue.CircularQueue object at ...
+        >>> cq.enqueue("A").enqueue("B").dequeue()
+        'A'
+        >>> (cq.size, cq.first())
+        (1, 'B')
         >>> cq.dequeue()
         'B'
-        >>> (cq.size, cq.first(), cq.last())
-        1, 'A', 'A'
         >>> cq.dequeue()
-        False
+        Traceback (most recent call last):
+           ...
+        Exception: UNDERFLOW
         """
         if self.size == 0:
             raise Exception("UNDERFLOW")
