@@ -36,8 +36,9 @@ def viz_polymonial():
     return
 
 
-viz_polymonial()
+if __name__ == "__main__":
+    viz_polymonial()
 
-# Predicting a new result with Polymonial Regression
-pol_reg.predict(poly_reg.fit_transform([[5.5]]))
-# output should be 132148.43750003
+    # Predicting a new result with Polymonial Regression
+    pol_reg.predict(poly_reg.fit_transform([[5.5]]))
+    # output should be 132148.43750003
