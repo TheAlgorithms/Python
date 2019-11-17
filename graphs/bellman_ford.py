@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
     graph = [dict() for j in range(E)]
 
-    for i in range(V):
+    for i in range(E):
         graph[i][i] = 0.0
 
     for i in range(E):
