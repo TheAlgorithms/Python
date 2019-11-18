@@ -15,7 +15,6 @@ def word_occurence(sentence: str) -> dict:
     # Creating a dictionary containing count of each word
     for word in sentence.split(" "):
         occurence[word] += 1
-
     return occurence
 
 
