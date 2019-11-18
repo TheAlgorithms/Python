@@ -7,7 +7,6 @@ def reverse_words(input_str: str) -> str:
     >>> sentence = "I love Python"
     >>> reverse_words(sentence) == " ".join(sentence.split()[::-1])
     True
-    >>> sentence = "I love Python"
     >>> reverse_words(sentence)
     'Python love I'
     """
