@@ -125,7 +125,7 @@ class CircularLinkedList:
         Removes the 1st node from the CircularLinkedList
         >>> cll = CircularLinkedList()
         >>> cll.delete_rear()
-        Traceback
+        Traceback (most recent call last):
         ...
         IndexError: Deleting from an empty list
         >>> cll.append(1)
@@ -157,7 +157,7 @@ class CircularLinkedList:
         Removes the last node from the CircularLinkedList
         >>> cll = CircularLinkedList()
         >>> cll.delete_rear()
-        Traceback
+        Traceback (most recent call last):
         ...
         IndexError: Deleting from an empty list
         >>> cll.append(1)
@@ -183,3 +183,9 @@ class CircularLinkedList:
             temp_node.next_ptr = current_node.next_ptr
 
         self.length -= 1
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
