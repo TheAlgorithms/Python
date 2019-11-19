@@ -3,7 +3,7 @@ from typing import Dict, List
 
 def printDist(dist, V):
     print("Vertex Distance")
-    distances = ('INF' if d == float('inf') else d for d in dist)
+    distances = ("INF" if d == float("inf") else d for d in dist)
     print("\t".join(f"{i}\t{d}" for i, d in enumerate(distances)))
 
 
