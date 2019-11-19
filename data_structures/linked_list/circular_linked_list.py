@@ -57,3 +57,29 @@ class CircularLinkedList:
             new_node.set_next(self.head)
 
         self.length += 1
+
+    def prepend(self, data):
+        current_node = self.head
+
+        new_node = Node(data)
+        new_node.set_next(new_node)
+
+        if current_node is None:
+            self.head = new_node
+        else:
+            while current_node.get_next() != self.head:
+                current_node = current_node.get_next()
+
+            current_node.set_next(new_node)
+            new_node.set_next(self.head)
+
+            self.head = new_node
+
+        self.length += 1
+
+
+if __name__ == "__main__":
+    temp = CircularLinkedList()
+    for i in range(10):
+        temp.prepend(i)
+    print(temp)
