@@ -171,14 +171,13 @@ class CircularLinkedList:
         """
         Removes the 1st node from the CircularLinkedList
         >>> cll = CircularLinkedList()
-        >>> for i in range(5)
-        ...     cll.append(i)
-        ...
+        >>> cll.append(1)
+        >>> cll.append(2)
         >>> print(cll)
-        <Node data=0> => <Node data=1> => <Node data=2> => <Node data=3> => <Node data=4>
+        <Node data=1> => <Node data=2>
         >>> cll.delete_front()
         >>> print(cll)
-        <Node data=1> => <Node data=2> => <Node data=3> => <Node data=4>
+        <Node data=2>
         """
         if self.head is None:
             raise IndexError()
@@ -200,14 +199,13 @@ class CircularLinkedList:
         """
         Removes the last node from the CircularLinkedList
         >>> cll = CircularLinkedList()
-        >>> for i in range(5)
-        ...     cll.append(i)
-        ...
+        >>> cll.append(1)
+        >>> cll.append(2)
         >>> print(cll)
-        <Node data=0> => <Node data=1> => <Node data=2> => <Node data=3> => <Node data=4>
+        <Node data=1> => <Node data=2>
         >>> cll.delete_rear()
         >>> print(cll)
-        <Node data=0> => <Node data=1> => <Node data=2> => <Node data=3>
+        <Node data=1>
         """
         if self.head is None:
             raise IndexError()
