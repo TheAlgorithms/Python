@@ -94,12 +94,29 @@ class CircularLinkedList:
 
         self.length -= 1
 
+    def delete_rear(self):
+        if self.head is None:
+            raise IndexError()
+
+        temp_node, current_node = self.head, self.head
+
+        if current_node.get_next() == current_node:
+            self.head, self.length = None, 0
+        else:
+            while current_node.get_next() != self.head:
+                temp_node = current_node
+                current_node = current_node.get_next()
+
+            temp_node.set_next(current_node.get_next())
+
+        self.length -= 1
+
 
 if __name__ == "__main__":
     temp = CircularLinkedList()
-    for i in range(1):
+    for i in range(10):
         temp.prepend(i)
     print(temp)
 
-    temp.delete_front()
+    temp.delete_rear()
     print(temp)
