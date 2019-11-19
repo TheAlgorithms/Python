@@ -3,12 +3,8 @@ from typing import Dict, List
 
 def printDist(dist, V):
     print("Vertex Distance")
-    for i in range(V):
-        if dist[i] != float("inf"):
-            print(i, "\t", int(dist[i]), end="\t")
-        else:
-            print(i, "\t", "INF", end="\t")
-        print()
+    distances = ('INF' if d == float('inf') else d for d in dist)
+    print("\t".join(f"{i}\t{d}" for i, d in enumerate(distances)))
 
 
 def BellmanFord(graph: List[Dict[str, int]], V: int, E: int, src: int) -> int:
