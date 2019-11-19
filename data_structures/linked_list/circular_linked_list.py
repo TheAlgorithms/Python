@@ -1,3 +1,6 @@
+import typing
+
+
 class Node:
     """
     Class to represent a single node.
@@ -7,37 +10,54 @@ class Node:
     * next_ptr
     """
 
-    def __init__(self, data):
+    def __init__(self, data: typing.Any):
         self.data = data
         self.next_ptr = None
 
-    def set_data(self, value):
+    def set_data(self, value: typing.Any):
         """
         Set the data field of the node to given value.
+        >>> node = Node(1)
+        >>> node.set_data(2)
+        >>> node.get_data()
+        2
         """
         self.data = value
 
-    def get_data(self):
+    def get_data(self) -> typing.Any:
         """
-        Returns the data field of the current node,
+        Returns the data field of the current node.
+        >>> node = Node(1)
+        >>> node.get_data()
+        1
         """
         return self.data
 
-    def set_next(self, value):
+    def set_next(self, value: typing.Type['Node']):
         """
         Sets the next pointer of the current node.
+        >>> node, node1 = Node(1), Node(2)
+        >>> node.set_next(node1)
+        >>> node.get_next().get_data()
+        2
         """
         self.next_ptr = value
 
-    def get_next(self):
+    def get_next(self) -> typing.Type['Node']:
         """
         Returns the next pointer of the current node.
+        >>> node = Node(1)
+        >>> node.get_next() is None
+        True
         """
         return self.next_ptr
 
-    def has_next(self):
+    def has_next(self) -> bool:
         """
         Checks if the current node has a valid next node.
+        >>> node = Node(1)
+        >>> node.has_next()
+        False
         """
         return self.next_ptr is not None
 
@@ -55,15 +75,28 @@ class CircularLinkedList:
         self.head = None
         self.length = 0
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Dunder method to return length of the CircularLinkedList
+        >>> cll = CircularLinkedList()
+        >>> len(cll)
+        0
+        >>> cll.append(1)
+        >>> len(cll)
+        1
         """
         return self.length
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Dunder method to represent the string representation of the CircularLinkedList
+        >>> cll = CircularLinkedList()
+        >>> print(cll)
+        Empty linked list
+        >>> cll.append(1)
+        >>> cll.append(2)
+        >>> print(cll)
+        <Node data=1> => <Node data=2>
         """
         current_node = self.head
         if not current_node:
@@ -78,9 +111,16 @@ class CircularLinkedList:
 
         return " => ".join(result)
 
-    def append(self, data):
+    def append(self, data: typing.Any):
         """
         Adds a node with given data to the end of the CircularLinkedList
+        >>> cll = CircularLinkedList()
+        >>> cll.append(1)
+        >>> cll.append(2)
+        >>> len(cll)
+        2
+        >>> print(cll)
+        <Node data=1> => <Node data=2>
         """
         current_node = self.head
 
@@ -98,9 +138,16 @@ class CircularLinkedList:
 
         self.length += 1
 
-    def prepend(self, data):
+    def prepend(self, data: typing.Any):
         """
         Adds a ndoe with given data to the front of the CircularLinkedList
+        >>> cll = CircularLinkedList()
+        >>> cll.prepend(1)
+        >>> cll.prepend(2)
+        >>> len(cll)
+        2
+        >>> print(cll)
+        <Node data=2> => <Node data=1>
         """
         current_node = self.head
 
@@ -123,6 +170,15 @@ class CircularLinkedList:
     def delete_front(self):
         """
         Removes the 1st node from the CircularLinkedList
+        >>> cll = CircularLinkedList()
+        >>> for i in range(5)
+        ...     cll.append(i)
+        ...
+        >>> print(cll)
+        <Node data=0> => <Node data=1> => <Node data=2> => <Node data=3> => <Node data=4>
+        >>> cll.delete_front()
+        >>> print(cll)
+        <Node data=1> => <Node data=2> => <Node data=3> => <Node data=4>
         """
         if self.head is None:
             raise IndexError()
@@ -143,6 +199,15 @@ class CircularLinkedList:
     def delete_rear(self):
         """
         Removes the last node from the CircularLinkedList
+        >>> cll = CircularLinkedList()
+        >>> for i in range(5)
+        ...     cll.append(i)
+        ...
+        >>> print(cll)
+        <Node data=0> => <Node data=1> => <Node data=2> => <Node data=3> => <Node data=4>
+        >>> cll.delete_rear()
+        >>> print(cll)
+        <Node data=0> => <Node data=1> => <Node data=2> => <Node data=3>
         """
         if self.head is None:
             raise IndexError()
