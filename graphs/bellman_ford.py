@@ -1,14 +1,17 @@
+from typing import Dict, List
+
+
 def printDist(dist, V):
-    print("\nVertex Distance")
-    for i in range(V):
-        if dist[i] != float("inf"):
-            print(i, "\t", int(dist[i]), end="\t")
-        else:
-            print(i, "\t", "INF", end="\t")
-        print()
+    print("Vertex Distance")
+    distances = ("INF" if d == float("inf") else d for d in dist)
+    print("\t".join(f"{i}\t{d}" for i, d in enumerate(distances)))
 
 
-def BellmanFord(graph, V, E, src):
+def BellmanFord(graph: List[Dict[str, int]], V: int, E: int, src: int) -> int:
+    r"""
+    Returns shortest paths from a vertex src to all 
+    other vertices.
+    """
     mdist = [float("inf") for i in range(V)]
     mdist[src] = 0.0
 
@@ -30,6 +33,7 @@ def BellmanFord(graph, V, E, src):
             return
 
     printDist(mdist, V)
+    return src
 
 
 if __name__ == "__main__":
@@ -38,7 +42,7 @@ if __name__ == "__main__":
 
     graph = [dict() for j in range(E)]
 
-    for i in range(V):
+    for i in range(E):
         graph[i][i] = 0.0
 
     for i in range(E):
