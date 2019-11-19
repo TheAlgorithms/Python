@@ -55,16 +55,16 @@ class CircularLinkedList:
         if not current_node:
             return "Empty linked list"
 
-        result = [f"<Node data={current_node.data}>"]
+        results = [current_node.data]
         current_node = current_node.next_ptr
 
         while current_node != self.head:
-            result.append(f"<Node data={current_node.data}>")
+            results.append(current_node.data)
             current_node = current_node.next_ptr
 
-        return " => ".join(result)
+        return " => ".join(f"<Node data={result}>" for result in results)
 
-    def append(self, data: Any):
+    def append(self, data: Any) -> None:
         """
         Adds a node with given data to the end of the CircularLinkedList
         >>> cll = CircularLinkedList()
@@ -80,63 +80,58 @@ class CircularLinkedList:
         new_node = Node(data)
         new_node.next_ptr = new_node
 
-        if current_node is None:
-            self.head = new_node
-        else:
+        if current_node:
             while current_node.next_ptr != self.head:
                 current_node = current_node.next_ptr
 
             current_node.next_ptr = new_node
             new_node.next_ptr = self.head
+        else:
+            self.head = new_node
 
         self.length += 1
 
-    def prepend(self, data: Any):
+    def prepend(self, data: Any) -> None:
         """
         Adds a ndoe with given data to the front of the CircularLinkedList
         >>> cll = CircularLinkedList()
         >>> cll.prepend(1)
         >>> cll.prepend(2)
-        >>> len(cll)
-        2
-        >>> print(cll)
-        <Node data=2> => <Node data=1>
+        >>> print(f"{len(cll)}: {cll}")
+        2: <Node data=2> => <Node data=1>
         """
         current_node = self.head
 
         new_node = Node(data)
         new_node.next_ptr = new_node
 
-        if current_node is None:
-            self.head = new_node
-        else:
+        if current_node:
             while current_node.next_ptr != self.head:
                 current_node = current_node.next_ptr
 
             current_node.next_ptr = new_node
             new_node.next_ptr = self.head
 
-            self.head = new_node
-
+        self.head = new_node
         self.length += 1
 
-    def delete_front(self):
+    def delete_front(self) -> None:
         """
         Removes the 1st node from the CircularLinkedList
         >>> cll = CircularLinkedList()
-        >>> cll.delete_rear()
+        >>> cll.delete_front()
         Traceback (most recent call last):
         ...
         IndexError: Deleting from an empty list
         >>> cll.append(1)
         >>> cll.append(2)
-        >>> print(cll)
-        <Node data=1> => <Node data=2>
+        >>> print(f"{len(cll)}: {cll}")
+        2: <Node data=1> => <Node data=2>
         >>> cll.delete_front()
-        >>> print(cll)
-        <Node data=2>
+        >>> print(f"{len(cll)}: {cll}")
+        1: <Node data=2>
         """
-        if self.head is None:
+        if not self.head:
             raise IndexError("Deleting from an empty list")
 
         current_node = self.head
@@ -152,7 +147,7 @@ class CircularLinkedList:
 
         self.length -= 1
 
-    def delete_rear(self):
+    def delete_rear(self) -> None:
         """
         Removes the last node from the CircularLinkedList
         >>> cll = CircularLinkedList()
@@ -162,13 +157,13 @@ class CircularLinkedList:
         IndexError: Deleting from an empty list
         >>> cll.append(1)
         >>> cll.append(2)
-        >>> print(cll)
-        <Node data=1> => <Node data=2>
+        >>> print(f"{len(cll)}: {cll}")
+        2: <Node data=1> => <Node data=2>
         >>> cll.delete_rear()
-        >>> print(cll)
-        <Node data=1>
+        >>> print(f"{len(cll)}: {cll}")
+        1: <Node data=1>
         """
-        if self.head is None:
+        if not self.head:
             raise IndexError("Deleting from an empty list")
 
         temp_node, current_node = self.head, self.head
