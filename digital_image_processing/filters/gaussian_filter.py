@@ -3,6 +3,7 @@ Implementation of gaussian filter algorithm
 """
 from cv2 import imread, cvtColor, COLOR_BGR2GRAY, imshow, waitKey
 from numpy import pi, mgrid, exp, square, zeros, ravel, dot, uint8
+from itertools import product
 
 
 def gen_gaussian_kernel(k_size, sigma):
@@ -21,8 +22,7 @@ def gaussian_filter(image, k_size, sigma):
     # im2col, turn the k_size*k_size pixels into a row and np.vstack all rows
     image_array = zeros((dst_height * dst_width, k_size * k_size))
     row = 0
-    for i in range(0, dst_height):
-        for j in range(0, dst_width):
+    for i, j in product(range(dst_height), range(dst_width)): 
             window = ravel(image[i : i + k_size, j : j + k_size])
             image_array[row, :] = window
             row += 1

@@ -11,7 +11,7 @@ Enter an Infix Equation = a + b ^c
    a     | +       | cb^a
          |         | cb^a+
 
-	 a+b^c (Infix) ->  +a^bc (Prefix)
+         a+b^c (Infix) ->  +a^bc (Prefix)
 """
 
 

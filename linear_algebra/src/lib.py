@@ -119,7 +119,7 @@ class Vector(object):
         size = len(self)
         if size == len(other):
             result = [self.__components[i] - other.component(i) for i in range(size)]
-            return result
+            return Vector(result)
         else:  # error case
             raise Exception("must have the same size")
 
@@ -130,7 +130,7 @@ class Vector(object):
         """
         if isinstance(other, float) or isinstance(other, int):
             ans = [c * other for c in self.__components]
-            return ans
+            return Vector(ans)
         elif isinstance(other, Vector) and (len(self) == len(other)):
             size = len(self)
             summe = 0
@@ -276,6 +276,33 @@ class Matrix(object):
             getter for the height
         """
         return self.__height
+
+    def determinate(self) -> float:
+        """
+            returns the determinate of an nxn matrix using Laplace expansion
+        """
+        if self.__height == self.__width and self.__width >= 2:
+            total = 0
+            if self.__width > 2:
+                for x in range(0, self.__width):
+                    for y in range(0, self.__height):
+                        total += (
+                            self.__matrix[x][y]
+                            * (-1) ** (x + y)
+                            * Matrix(
+                                self.__matrix[0:x] + self.__matrix[x + 1 :],
+                                self.__width - 1,
+                                self.__height - 1,
+                            ).determinate()
+                        )
+            else:
+                return (
+                    self.__matrix[0][0] * self.__matrix[1][1]
+                    - self.__matrix[0][1] * self.__matrix[1][0]
+                )
+            return total
+        else:
+            raise Exception("matrix is not square")
 
     def __mul__(self, other):
         """

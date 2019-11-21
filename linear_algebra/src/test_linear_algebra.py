@@ -45,7 +45,7 @@ class Test(unittest.TestCase):
             test for the eulidean length
         """
         x = Vector([1, 2])
-        self.assertAlmostEqual(x.eulidLength(), 2.236, 3)
+        self.assertAlmostEqual(x.euclidLength(), 2.236, 3)
 
     def test_add(self):
         """
@@ -117,6 +117,13 @@ class Test(unittest.TestCase):
     def test_str_matrix(self):
         A = Matrix([[1, 2, 3], [2, 4, 5], [6, 7, 8]], 3, 3)
         self.assertEqual("|1,2,3|\n|2,4,5|\n|6,7,8|\n", str(A))
+
+    def test_determinate(self):
+        """
+            test for determinate()
+        """
+        A = Matrix([[1, 1, 4, 5], [3, 3, 3, 2], [5, 1, 9, 0], [9, 7, 7, 9]], 4, 4)
+        self.assertEqual(-376, A.determinate())
 
     def test__mul__matrix(self):
         A = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 3, 3)

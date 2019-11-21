@@ -54,7 +54,7 @@ class Automaton:
                 self.adlist[child]["fail_state"] = self.find_next_state(
                     state, self.adlist[child]["value"]
                 )
-                if self.adlist[child]["fail_state"] == None:
+                if self.adlist[child]["fail_state"] is None:
                     self.adlist[child]["fail_state"] = 0
                 self.adlist[child]["output"] = (
                     self.adlist[child]["output"]
@@ -71,7 +71,7 @@ class Automaton:
         current_state = 0
         for i in range(len(string)):
             while (
-                self.find_next_state(current_state, string[i]) == None
+                self.find_next_state(current_state, string[i]) is None
                 and current_state != 0
             ):
                 current_state = self.adlist[current_state]["fail_state"]
