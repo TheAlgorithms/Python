@@ -22,10 +22,10 @@ def gaussian_filter(image, k_size, sigma):
     # im2col, turn the k_size*k_size pixels into a row and np.vstack all rows
     image_array = zeros((dst_height * dst_width, k_size * k_size))
     row = 0
-    for i, j in product(range(dst_height), range(dst_width)): 
-            window = ravel(image[i : i + k_size, j : j + k_size])
-            image_array[row, :] = window
-            row += 1
+    for i, j in product(range(dst_height), range(dst_width)):
+        window = ravel(image[i : i + k_size, j : j + k_size])
+        image_array[row, :] = window
+        row += 1
 
     #  turn the kernel into shape(k*k, 1)
     gaussian_kernel = gen_gaussian_kernel(k_size, sigma)
