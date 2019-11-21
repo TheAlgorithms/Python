@@ -1,5 +1,6 @@
 # Implementation of Circular Queue (using Python lists)
 
+
 class CircularQueue:
     """Circular FIFO queue with a fixed capacity"""
 
@@ -59,7 +60,7 @@ class CircularQueue:
             raise Exception("QUEUE IS FULL")
 
         self.array[self.rear] = data
-        self.rear = (self.rear+1)%self.n
+        self.rear = (self.rear + 1) % self.n
         self.size += 1
         return self
 
@@ -88,6 +89,6 @@ class CircularQueue:
 
         temp = self.array[self.front]
         self.array[self.front] = None
-        self.front = (self.front + 1)%self.n
+        self.front = (self.front + 1) % self.n
         self.size -= 1
         return temp
