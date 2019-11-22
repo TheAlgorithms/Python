@@ -1,6 +1,6 @@
 # Linear algebra library for Python  
 
-This module contains some useful classes and functions for dealing with linear algebra in python 2.  
+This module classes and functions for linear algebra in python 2.  
 
 ---
 
@@ -8,7 +8,7 @@ This module contains some useful classes and functions for dealing with linear a
 
 ### class Vector  
 -
-    - This class represents a vector of arbitray size and operations on it.  
+    - This class represents a vector of arbitray size and related operations.  
 
     **Overview about the methods:**    
         
@@ -58,22 +58,16 @@ This module contains some useful classes and functions for dealing with linear a
 
 ## Documentation  
 
-The module is well documented. You can use the python in-built ```help(...)``` function.  
-For instance: ```help(Vector)``` gives you all information about the Vector-class.  
-Or ```help(unitBasisVector)``` gives you all information you needed about the  
-global function ```unitBasisVector(...)```. If you need informations about a certain  
-method you type ```help(CLASSNAME.METHODNAME)```.  
+You can use the python in-built ```help(...)``` function. For instance: ```help(Vector)``` provides information about the Vector-class. ```help(unitBasisVector)``` provides information about the global function ```unitBasisVector(...)```. ```help(CLASSNAME.METHODNAME)``` provides information about method 'METHODNAME' from class 'CLASSNAME'.  
 
 ---
 
 ## Usage  
 
-You will find the module in the **src** directory its called ```lib.py```. You need to  
-import this module in your project. Alternative you can also use the file ```lib.pyc``` in python-bytecode.   
+Import the module ```lib.py``` from the **src** directory into your project. Alternatively, you can use the file ```lib.pyc``` in python-bytecode.   
 
 ---
 
 ## Tests  
 
-In the **src** directory you also find the test-suite, its called ```tests.py```.  
-The test-suite uses the built-in python-test-framework **unittest**.  
+The test-suite ```tests.py``` found in the **src** directory uses the built-in python-test-framework **unittest**.  
