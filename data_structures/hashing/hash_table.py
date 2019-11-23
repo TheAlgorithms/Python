@@ -39,12 +39,20 @@ class HashTable:
         print([i for i in range(len(self.values))])
         print(self.values)
 
+    def __str__(self):
+        output = "{"
+        for key in self._keys:
+            if self._keys[key] is not None:
+                output += str(key) + ": " + str(self._keys[key] + ", ")
+        output = output[0: len(output) - 2]
+        output += "}"
+        return output
+
     def bulk_insert(self, values):
         i = 1
         self.__aux_list = values
         for value in values:
             self.insert_data(value)
-            self._step_by_step(i)
             i += 1
 
     def _set_value(self, key, data):
@@ -69,7 +77,7 @@ class HashTable:
         self.size_table = next_prime(self.size_table, factor=2)
         self._keys.clear()
         self.values = [None] * self.size_table  # hell's pointers D: don't DRY ;/
-        map(self.insert_data, survivor_values)
+        self.bulk_insert(survivor_values)
 
     def insert_data(self, data):
         key = self.hash_function(data)
