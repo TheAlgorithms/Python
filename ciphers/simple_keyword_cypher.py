@@ -1,6 +1,3 @@
-import sys
-
-
 def main():
     """
     Handles I/O
@@ -55,7 +52,7 @@ def remove_duplicates(key: str) -> str:
 
     key_no_dups = ""
     for ch in key:
-        if (ch not in key_no_dups and ch.isalpha()) or ch == ' ':
+        if (ch not in key_no_dups and ch.isalpha()) or ch == " ":
             key_no_dups += ch
     return key_no_dups
 
