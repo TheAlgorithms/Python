@@ -24,7 +24,14 @@ class HashTable:
         )
 
     def hash_function(self, key):
-        return key % self.size_table
+        try:
+            return abs(hash(key)) % self.size_table
+        except RuntimeError:
+            try:
+                return key % self.size_table
+            except RuntimeError:
+                print("Object needs hash function!")
+                exit(0)
 
     def _step_by_step(self, step_ord):
 
