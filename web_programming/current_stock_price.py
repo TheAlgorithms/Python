@@ -1,17 +1,14 @@
-import bs4
 import requests
 from bs4 import BeautifulSoup
 
 
-def parsePrice():
-    page = requests.get('https://in.finance.yahoo.com/quote/%5EIXIC?p=^IXIC')
-    soup = bs4.BeautifulSoup(page.content , 'lxml')
-    price = soup.find_all('div' , {'class' : 'My(6px) Pos(r) smartphone_Mt(6px)'})[0].find_all('span')[0].text
+def stock_price(symbol: str = "AAPL") -> str:
+    url = f"https://in.finance.yahoo.com/quote/{symbol}?s={symbol}"
+    soup = BeautifulSoup(requests.get(url).text, "html.parser")
+    class_ = "My(6px) Pos(r) smartphone_Mt(6px)"
+    return soup.find("div", class_=class_).find("span").text
 
-    return price
 
-
-while True:
-    print('Current price is ' + str(parsePrice()))  
-
-    
+if __name__ == "__main__":
+    for symbol in "AAPL AMZN IBM GOOG MSFT ORCL".split():
+        print(f"Current {symbol:<4} stock price is {stock_price(symbol):>8}")
