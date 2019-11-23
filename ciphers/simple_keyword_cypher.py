@@ -1,74 +1,113 @@
+import sys
+
+
 def main():
-    message = input("Enter message to encode or decode: ")
-    key = input("Enter keyword: ")
-    option = input("Encipher or decipher? E/D: ")
+    """
+    Handles I/O
+    :return: void
+    """
+    print("Enter message to encode or decode:", end=" ")
+    message = sys.stdin.readline().strip()
+    print("Enter keyword:", end=" ")
+    key = sys.stdin.readline().strip()
+    print("Encipher or decipher? E/D:", end=" ")
+    option = sys.stdin.readline().strip()
     key = key.upper()
-    message = message.upper()
-    cipher = encode(key)
-    if option.lower() == 'e':
-        enciphered = encipher(message, cipher)
-        print(enciphered)
-    elif option.lower() == 'd':
-        deciphered = decipher(message, cipher)
-        print(deciphered)
+    message = message.upper().strip()
+    cipher_map = create_cipher_map(key)
+    if option.lower().startswith("e"):
+        enciphered_message = encipher(message, cipher_map)
+        print(enciphered_message)
+    elif option.lower().startswith("d"):
+        deciphered_message = decipher(message, cipher_map)
+        print(deciphered_message)
     else:
         print("Invalid input option")
 
 
-def encode(key):
+def create_cipher_map(key: str) -> dict:
+    """
+    Returns a cipher map given a keyword.
+    :param key: keyword to use
+    :return: dictionary cipher map
+    """
     alphabet = []
-    cipherAlphabet = {}
+    cipher_alphabet = {}
     # Create alphabet list
     for i in range(26):
         alphabet.append(chr(i + 65))
     # Remove duplicate characters from key
-    key = removeDuplicates(key)
+    key = remove_duplicates(key)
     offset = len(key)
     # First fill cipher with key characters
     for i in range(len(key)):
-        cipherAlphabet[alphabet[i]] = key[i]
+        cipher_alphabet[alphabet[i]] = key[i]
     # Then map remaining characters in alphabet to
     # the alphabet from the beginning
-    for i in range(len(cipherAlphabet.keys()), 26):
+    for i in range(len(cipher_alphabet.keys()), 26):
         char = alphabet[i - offset]
         # Ensure we are not mapping letters to letters previously mapped
         while key.find(char) != -1:
             offset -= 1
             char = alphabet[i - offset]
-        cipherAlphabet[alphabet[i]] = char
-    return cipherAlphabet
+        cipher_alphabet[alphabet[i]] = char
+    return cipher_alphabet
 
 
-def removeDuplicates(key):
-    keyNoDups = ""
+def remove_duplicates(key: str) -> str:
+    """
+    Removes duplicate characters in a keyword (removed after first appearance).
+    :param key: Keyword to use
+    :return: String with duplicates removed
+    """
+    """
+    >>> remove_duplicates('hellol')
+    'helo'
+    """
+
+    key_no_dups = ""
     for ch in key:
-        if keyNoDups.find(ch) == -1:
-            keyNoDups += ch
-    return keyNoDups
+        if key_no_dups.find(ch) == -1:
+            key_no_dups += ch
+    return key_no_dups
 
 
-def encipher(message, cipher):
-    enciphered = ""
+def encipher(message: str, cipher_map: dict) -> str:
+    """
+    Enciphers a message given a cipher map.
+    :param message: Message to encipher
+    :param cipher_map: Cipher map
+    :return:
+    """
+    enciphered_message = ""
     for ch in message:
         if ch.isalpha():
-            enciphered += cipher[ch.upper()]
+            enciphered_message += cipher_map[ch.upper()]
         else:
-            enciphered += ' '
-    return enciphered
+            enciphered_message += ch
+    return enciphered_message
 
 
-def decipher(message, cipher):
+def decipher(message: str, cipher_map: dict) -> str:
+    """
+    Deciphers a message given a cipher map
+    :param message: Message to decipher
+    :param cipher_map: Dictionary mapping to use
+    :return: Deciphered string
+    """
     # Reverse our cipher mappings
-    revCipher = dict((v, k) for k, v in cipher.items())
-    deciphered = ""
-    print(cipher)
+    rev_cipher_map = dict((v, k) for k, v in cipher_map.items())
+    deciphered_message = ""
     for ch in message:
         if ch.isalpha():
-            deciphered += revCipher[ch.upper()]
+            deciphered_message += rev_cipher_map[ch.upper()]
         else:
-            deciphered += ch
-    return deciphered
+            deciphered_message += ch
+    return deciphered_message
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
