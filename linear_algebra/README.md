@@ -1,6 +1,6 @@
 # Linear algebra library for Python  
 
-This module classes and functions for linear algebra in python 2.  
+This module contains classes and functions for doing linear algebra.  
 
 ---
 
@@ -58,16 +58,18 @@ This module classes and functions for linear algebra in python 2.
 
 ## Documentation  
 
-You can use the python in-built ```help(...)``` function. For instance: ```help(Vector)``` provides information about the Vector-class. ```help(unitBasisVector)``` provides information about the global function ```unitBasisVector(...)```. ```help(CLASSNAME.METHODNAME)``` provides information about method 'METHODNAME' from class 'CLASSNAME'.  
+This module uses docstrings to enable the use of Python's in-built `help(...)` function.
+For instance, try `help(Vector)`, `help(unitBasisVector)`, and `help(CLASSNAME.METHODNAME)`.
 
 ---
 
 ## Usage  
 
-Import the module ```lib.py``` from the **src** directory into your project. Alternatively, you can use the file ```lib.pyc``` in python-bytecode.   
+Import the module `lib.py` from the **src** directory into your project.
+Alternatively, you can directly use the Python bytecode file `lib.pyc`.   
 
 ---
 
 ## Tests  
 
-The test-suite ```tests.py``` found in the **src** directory uses the built-in python-test-framework **unittest**.  
+`src/tests.py` contains Python unit tests which can be run with `python3 -m unittest -v`.
