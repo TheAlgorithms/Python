@@ -43,3 +43,21 @@
 from random import gauss
 from math import log
 from os import system, name     # to use < clear > or < cls > commands in terminal or cmd
+
+
+# Making training dataset drawn from a gaussian distribution
+def Normal_gen(mean: float, std_dev: float, instance_count: int) -> list:
+    """ This function generates gaussian distribution instances
+        based-on given mean and standard deviation
+        :param mean: mean value of class
+        :param std_dev: value of standard deviation entered by usr or default value of it
+        :param instance_count: instance number of class
+        :return: a list containing generated values based-on given mean, std_dev and instance_count
+        """
+    generated_instances = []  # An empty list to store generated instances
+    # for loop iterates over instance_count
+    for r in range(instance_count):
+        # appending corresponding gaussian distribution to 'generated_instances' list
+        generated_instances.append(gauss(mean, std_dev))
+
+    return generated_instances
