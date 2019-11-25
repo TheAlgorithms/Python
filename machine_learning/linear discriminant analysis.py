@@ -90,3 +90,16 @@ def mean_calc(instance_count: int, items: list) -> float:
     # the sum of all items divided by number of instances
     class_mean = sum(items) / instance_count
     return class_mean
+
+
+# Calculating the class probabilities
+def prob_calc(instance_count: int, total_count: int) -> float:
+    """ This function calculates the probability that a given instance
+        will belong to which class
+        :param instance_count: number of instances in class
+        :param total_count: the number of all instances
+        :return: value of probability for considered class
+        """
+    # number of instances in specific class divided by number of all instances
+    probability = instance_count / total_count
+    return probability
