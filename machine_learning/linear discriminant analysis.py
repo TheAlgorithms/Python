@@ -38,3 +38,8 @@
     Author: @EverLookNeverSee
 
 """
+
+# importing modules
+from random import gauss
+from math import log
+from os import system, name     # to use < clear > or < cls > commands in terminal or cmd
