@@ -103,3 +103,27 @@ def prob_calc(instance_count: int, total_count: int) -> float:
     # number of instances in specific class divided by number of all instances
     probability = instance_count / total_count
     return probability
+
+
+# Calculating the variance
+def var_calc(items: list, means: list, total_count: int) -> float:
+    """ This function calculates the variance
+    :param items: a list containing all items(gaussian distribution of all classes)
+    :param means: a list containing real mean values of each class
+    :param total_count: the number of all instances
+    :return: calculated variance for considered dataset
+    """
+
+    squared_diff = []  # An empty list to store all squared differences
+    n_classes = len(means)  # Number of classes in dataSet
+
+    # for loo iterates over number of elements in items
+    for i in range(len(items)):
+        # for loop iterates over number of elements in inner layer of items
+        for j in range(len(items[i])):
+            # appending squared differences to 'squared_diff' list
+            squared_diff.append((items[i][j] - means[i]) ** 2)
+
+    # one divided by (the number of all instances - number of classes) multiplied by sum of all squared differences
+    variance = 1 / (total_count - n_classes) * sum(squared_diff)
+    return variance
