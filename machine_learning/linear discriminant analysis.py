@@ -127,3 +127,38 @@ def var_calc(items: list, means: list, total_count: int) -> float:
     # one divided by (the number of all instances - number of classes) multiplied by sum of all squared differences
     variance = 1 / (total_count - n_classes) * sum(squared_diff)
     return variance
+
+
+# Making predictions
+def predict(x_items: list, means: list, variance: float, probabilities: list) -> list:
+    """ This function predicts new indexes(groups for our data)
+    :param x_items: a list containing all items(gaussian distribution of all classes)
+    :param means: a list containing real mean values of each class
+    :param variance: calculated value of variance by var_calc function
+    :param probabilities: a list containing all probabilities of classes
+    :return: a list containing predicted Y values
+    """
+
+    results = []    # An empty list to store generated discriminant values of all items in dataset for each class
+    # for loop iterates over number of elements in list
+    for i in range(len(x_items)):
+        # for loop iterates over number of inner items of each element
+        for j in range(len(x_items[i])):
+            temp = []   # to store all discriminant values of each item as a list
+            # for loop iterates over number of classes we have in our dataset
+            for k in range(len(x_items)):
+                # appending values of discriminants for each class to 'temp' list
+                temp.append(x_items[i][j] * (means[k] / variance) - (means[k] ** 2 / (2 * variance)) +
+                            log(probabilities[k]))
+            # appending discriminant values of each item to 'results' list
+            results.append(temp)
+
+    print("Generated Discriminants: \n", results)
+
+    predicted_index = []    # An empty list to store predicted indexes
+    # for loop iterates over elements in 'results'
+    for l in results:
+        # after calculating the discriminant value for each class , the class with the largest
+        # discriminant value is taken as the prediction, than we try to get index of that.
+        predicted_index.append(l.index(max(l)))
+    return predicted_index
