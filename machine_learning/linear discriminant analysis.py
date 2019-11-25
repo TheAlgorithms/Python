@@ -78,3 +78,15 @@ def Y_gen(class_count: int, instance_count: list) -> list:
             # appending corresponding Ys to 'ys' list
             ys.append(k)
     return ys
+
+
+# Calculating the class means
+def mean_calc(instance_count: int, items: list) -> float:
+    """ This function calculates given class mean
+    :param instance_count: Number of instances in class
+    :param items: items that related to specific class(data grouping)
+    :return: calculated actual mean of considered class
+    """
+    # the sum of all items divided by number of instances
+    class_mean = sum(items) / instance_count
+    return class_mean
