@@ -76,7 +76,7 @@ class LinkedList:
         current = self.head
         string_repr = ""
         while current:
-            string_repr += f"{current} ---> "
+            string_repr += f"{current.data} ---> "
             current = current.next
         # END represents end of the LinkedList
         string_repr += "END"
