@@ -61,3 +61,20 @@ def Normal_gen(mean: float, std_dev: float, instance_count: int) -> list:
         generated_instances.append(gauss(mean, std_dev))
 
     return generated_instances
+
+
+# Making corresponding Y flags to detecting classes
+def Y_gen(class_count: int, instance_count: list) -> list:
+    """ This function generates y values for corresponding classes
+    :param class_count: Number of classes(data groupings) in dataset
+    :param instance_count: number of instances in class
+    :return: corresponding values for data groupings in dataset
+    """
+    ys = []  # An empty list to store generated corresponding Ys
+    # for loop iterates over class_count
+    for k in range(class_count):
+        # for loop iterates over related number of instances of each class
+        for p in range(instance_count[k]):
+            # appending corresponding Ys to 'ys' list
+            ys.append(k)
+    return ys
