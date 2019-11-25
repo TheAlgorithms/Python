@@ -182,3 +182,168 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     # all data and multiplied by 100
     percentage = (correct / len(actual_y)) * 100
     return percentage
+
+
+# Main Function
+def main():
+    """ This function starts execution phase """
+
+    while True:
+
+        print(" Linear Discriminant Analysis ".center(100, "*"))
+        print("*" * 100, "\n")
+        print("First of all we should specify the number of classes that \n"
+              "we want to generate as training dataset")
+
+        # Trying to get number of classes
+        n_classes = 0
+        while True:
+            try:
+                user_input = int(input("Enter the number of classes (Data Groupings): "))
+                if user_input > 0:
+                    n_classes = user_input
+                    break
+                else:
+                    print("Your entered value is {} , Number of classes should be positive!".format(user_input))
+                    continue
+            except ValueError:
+                print("Your entered value is not numerical!")
+
+        print("-" * 100)
+
+        std_dev = 1.0  # Default value for standard deviation of dataset
+        # Trying to get the value of standard deviation
+        while True:
+            try:
+                user_sd = float(input("Enter the value of standard deviation"
+                                      "(Default value is 1.0 for all classes): ") or "1.0")
+                if user_sd >= 0.0:
+                    std_dev = user_sd
+                    break
+                else:
+                    print("Your entered value is {}, Standard deviation should not be negative!".format(user_sd))
+                    continue
+            except ValueError:
+                print("Your entered value is not numerical!")
+
+        print("-" * 100)
+
+        # Trying to get number of instances in classes and theirs means to generate dataset
+        counts = []  # An empty list to store instance counts of classes in dataset
+        for i in range(n_classes):
+            while True:
+                try:
+                    user_count = int(input("Enter The number of instances for class_{}: ".format(i + 1)))
+                    if user_count > 0:
+                        counts.append(user_count)
+                        break
+                    else:
+                        print("Your entered value is {}, Number of instances should be positive!".format(user_count))
+                        continue
+                except ValueError:
+                    print("Your entered value is not numerical!")
+
+        print("-" * 100)
+
+        user_means = []  # An empty list to store values of user-entered means of classes
+        for a in range(n_classes):
+            while True:
+                try:
+                    user_mean = float(input("Enter the value of mean for class_{}: ".format(a + 1)))
+                    if isinstance(user_mean, float):
+                        user_means.append(user_mean)
+                        break
+                    else:
+                        print("Your entered value is {}, And this is not valid!".format(user_mean))
+
+                except ValueError:
+                    print("Your entered value is not numerical!")
+
+        print("-" * 100)
+
+        print("Standard deviation: ", std_dev)
+
+        # print out the number of instances in classes in separated line
+        for b in range(len(counts)):
+            print("Number of instances in class_{} is: {}".format(b + 1, counts[b]))
+
+        print("-" * 100)
+
+        # print out mean values of classes separated line
+        for c in range(len(user_means)):
+            print("Mean of class_{} is: {}".format(c + 1, user_means[c]))
+
+        print("-" * 100)
+
+        # Generating training dataset drawn from gaussian distribution
+        x = []  # An empty list to store generated values of gaussian distribution
+        # for loop iterates over number of classes
+        for j in range(n_classes):
+            # appending return values of 'Normal_gen' function to 'x' list
+            x.append(Normal_gen(user_means[j], std_dev, counts[j]))
+        print("Generated Normal Distribution: \n", x)
+
+        print("-" * 100)
+
+        # Generating Ys to detecting corresponding classes
+        y = Y_gen(n_classes, counts)
+        print("Generated Corresponding Ys: \n", y)
+
+        print("-" * 100)
+
+        # Calculating the value of actual mean for each class
+        actual_means = []  # An empty list to store value of actual means
+        # for loop iterates over number of classes(data groupings)
+        for k in range(n_classes):
+            # appending return values of 'mean_calc' function to 'actual_means' list
+            actual_means.append(mean_calc(counts[k], x[k]))
+        # for loop iterates over number of elements in 'actual_means' list and print out them in separated line
+        for d in range(len(actual_means)):
+            print("Actual(Real) mean of class_{} is: {}".format(d + 1, actual_means[d]))
+
+        print("-" * 100)
+
+        # Calculating the value of probabilities for each class
+        probabilities = []  # An empty list to store values of probabilities for each class
+        # # for loop iterates over number of classes(data groupings)
+        for l in range(n_classes):
+            # appending return values of 'prob_calc' function to 'probabilities' list
+            probabilities.append(prob_calc(counts[l], sum(counts)))
+        # for loop iterates over number of elements in 'probabilities' list and print out them in separated line
+        for e in range(len(probabilities)):
+            print("Probability of class_{} is: {}".format(e + 1, probabilities[e]))
+
+        print("-" * 100)
+
+        # Calculating the values of variance for each class
+        variance = var_calc(x, actual_means, sum(counts))
+        print("Variance: ", variance)
+
+        print("-" * 100)
+
+        # Predicting Y values
+        # storing predicted Y values in 'pre_indexes' variable
+        pre_indexes = predict(x, actual_means, variance, probabilities)
+
+        print("-" * 100)
+
+        # Calculating Accuracy of the model
+        print("Accuracy: ", accuracy(y, pre_indexes))
+        print("-" * 100)
+        print(" DONE ".center(100, "+"))
+
+        command = input("Press any key to restart and 'q' for quit: ")
+        if command.lower() == "q":
+            print("\n" + "GoodBye!".center(100, "-") + "\n")
+            break
+        else:
+            if name == "nt":  # Related to Windows OS
+                system("cls")
+                continue
+            else:  # Related to Mac OSX and Linux OS
+                system("clear")
+                continue
+
+
+if __name__ == '__main__':
+    main()
