@@ -334,8 +334,8 @@ def main():
             if name == "nt":  # Related to Windows OS
                 system("cls")
                 continue
-            else:  # Related to Mac OSX and Linux OS
-                system("clear")
+            else:
+                system("cls" if name == "nt" else "clear")
                 continue
 
 
