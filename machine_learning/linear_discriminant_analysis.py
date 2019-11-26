@@ -66,9 +66,7 @@ def y_generator(class_count: int, instance_count: list) -> list:
     :return: corresponding values for data groupings in dataset
     """
 
-    # for loop iterates over class_count
-    for k in range(class_count):
-        return [k for _ in range(instance_count[k]) for k in range(class_count)]
+    return [k for k in range(class_count) for _ in range(instance_count[k])]
 
 
 # Calculating the class means
