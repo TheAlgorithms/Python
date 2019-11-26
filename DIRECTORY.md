@@ -52,6 +52,7 @@
   * [Rsa Factorization](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rsa_factorization.py)
   * [Rsa Key Generator](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rsa_key_generator.py)
   * [Shuffled Shift Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/shuffled_shift_cipher.py)
+  * [Simple Keyword Cypher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/simple_keyword_cypher.py)
   * [Simple Substitution Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/simple_substitution_cipher.py)
   * [Trafid Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/trafid_cipher.py)
   * [Transposition Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/transposition_cipher.py)
@@ -95,6 +96,7 @@
     * [Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/heap.py)
     * [Min Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/min_heap.py)
   * Linked List
+    * [Circular Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/circular_linked_list.py)
     * [Doubly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/doubly_linked_list.py)
     * [From Sequence](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/from_sequence.py)
     * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/is_palindrome.py)
@@ -102,6 +104,7 @@
     * [Singly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py)
     * [Swap Nodes](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/swap_nodes.py)
   * Queue
+    * [Circular Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/circular_queue.py)
     * [Double Ended Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/double_ended_queue.py)
     * [Linked Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/linked_queue.py)
     * [Queue On List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/queue_on_list.py)
@@ -149,6 +152,7 @@
   * [Fibonacci](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/fibonacci.py)
   * [Floyd Warshall](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/floyd_warshall.py)
   * [Fractional Knapsack](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/fractional_knapsack.py)
+  * [Fractional Knapsack 2](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/fractional_knapsack_2.py)
   * [Integer Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/integer_partition.py)
   * [K Means Clustering Tensorflow](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/knapsack.py)
@@ -224,6 +228,7 @@
   * [K Means Clust](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/k_nearest_neighbours.py)
   * [Knn Sklearn](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/knn_sklearn.py)
+  * [Linear Discriminant Analysis](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_discriminant_analysis.py)
   * [Linear Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_regression.py)
   * [Logistic Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
   * [Polymonial Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/polymonial_regression.py)
@@ -521,6 +526,7 @@
   * [Naive String Search](https://github.com/TheAlgorithms/Python/blob/master/strings/naive_string_search.py)
   * [Rabin Karp](https://github.com/TheAlgorithms/Python/blob/master/strings/rabin_karp.py)
   * [Remove Duplicate](https://github.com/TheAlgorithms/Python/blob/master/strings/remove_duplicate.py)
+  * [Reverse Words](https://github.com/TheAlgorithms/Python/blob/master/strings/reverse_words.py)
   * [Word Occurence](https://github.com/TheAlgorithms/Python/blob/master/strings/word_occurence.py)
 
 ## Traversals
@@ -528,6 +534,7 @@
 
 ## Web Programming
   * [Crawl Google Results](https://github.com/TheAlgorithms/Python/blob/master/web_programming/crawl_google_results.py)
+  * [Current Stock Price](https://github.com/TheAlgorithms/Python/blob/master/web_programming/current_stock_price.py)
   * [Fetch Bbc News](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_github_info.py)
   * [Get Imdbtop](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdbtop.py)
