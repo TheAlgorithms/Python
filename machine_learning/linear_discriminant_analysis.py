@@ -103,7 +103,9 @@ def calculate_variance(items: list, means: list, total_count: int) -> float:
     :return: calculated variance for considered dataset
     """
 
-    squared_diff = []  # An empty list to store all squared differences
+    squared_diff = (
+        []
+    )  # An empty list to store all squared differences
     n_classes = len(means)  # Number of classes in dataSet
 
     # for loo iterates over number of elements in items
@@ -114,8 +116,7 @@ def calculate_variance(items: list, means: list, total_count: int) -> float:
             squared_diff.append((items[i][j] - means[i]) ** 2)
 
     # one divided by (the number of all instances - number of classes) multiplied by sum of all squared differences
-    variance = 1 / (total_count - n_classes) * sum(squared_diff)
-    return variance
+    return 1 / (total_count - n_classes) * sum(squared_diff)
 
 
 # Making predictions
@@ -128,7 +129,9 @@ def predict_y_values(x_items: list, means: list, variance: float, probabilities:
     :return: a list containing predicted Y values
     """
 
-    results = []    # An empty list to store generated discriminant values of all items in dataset for each class
+    results = (
+        []
+    )    # An empty list to store generated discriminant values of all items in dataset for each class
     # for loop iterates over number of elements in list
     for i in range(len(x_items)):
         # for loop iterates over number of inner items of each element
@@ -144,7 +147,9 @@ def predict_y_values(x_items: list, means: list, variance: float, probabilities:
 
     print("Generated Discriminants: \n", results)
 
-    predicted_index = []    # An empty list to store predicted indexes
+    predicted_index = (
+        []
+    )    # An empty list to store predicted indexes
     # for loop iterates over elements in 'results'
     for l in results:
         # after calculating the discriminant value for each class , the class with the largest
@@ -169,8 +174,7 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
             correct += 1
     # percentage of accuracy equals to number of correct predictions divided by number of
     # all data and multiplied by 100
-    percentage = (correct / len(actual_y)) * 100
-    return percentage
+    return (correct / len(actual_y)) * 100
 
 
 # Main Function
@@ -218,7 +222,9 @@ def main():
         print("-" * 100)
 
         # Trying to get number of instances in classes and theirs means to generate dataset
-        counts = []  # An empty list to store instance counts of classes in dataset
+        counts = (
+            []
+        )  # An empty list to store instance counts of classes in dataset
         for i in range(n_classes):
             while True:
                 try:
@@ -234,7 +240,9 @@ def main():
 
         print("-" * 100)
 
-        user_means = []  # An empty list to store values of user-entered means of classes
+        user_means = (
+            []
+        )  # An empty list to store values of user-entered means of classes
         for a in range(n_classes):
             while True:
                 try:
@@ -265,7 +273,9 @@ def main():
         print("-" * 100)
 
         # Generating training dataset drawn from gaussian distribution
-        x = []  # An empty list to store generated values of gaussian distribution
+        x = (
+            []
+        )  # An empty list to store generated values of gaussian distribution
         # for loop iterates over number of classes
         for j in range(n_classes):
             # appending return values of 'gaussian_distribution' function to 'x' list
@@ -281,7 +291,9 @@ def main():
         print("-" * 100)
 
         # Calculating the value of actual mean for each class
-        actual_means = []  # An empty list to store value of actual means
+        actual_means = (
+            []
+        )  # An empty list to store value of actual means
         # for loop iterates over number of classes(data groupings)
         for k in range(n_classes):
             # appending return values of 'calculate_mean' function to 'actual_means' list
