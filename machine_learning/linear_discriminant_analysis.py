@@ -54,7 +54,7 @@ def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> l
         :param instance_count: instance number of class
         :return: a list containing generated values based-on given mean, std_dev and instance_count
         """
-    generated_instances = []  # An empty list to store generated instances
+
     return [gauss(mean, std_dev) for _ in range(instance_count)]
 
 
@@ -65,7 +65,7 @@ def y_generator(class_count: int, instance_count: list) -> list:
     :param instance_count: number of instances in class
     :return: corresponding values for data groupings in dataset
     """
-    ys = []  # An empty list to store generated corresponding Ys
+
     # for loop iterates over class_count
     for k in range(class_count):
         return [k for _ in range(instance_count[k]) for k in range(class_count)]
