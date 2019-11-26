@@ -145,15 +145,7 @@ def predict_y_values(x_items: list, means: list, variance: float, probabilities:
 
     print("Generated Discriminants: \n", results)
 
-    predicted_index = (
-        []
-    )    # An empty list to store predicted indexes
-    # for loop iterates over elements in 'results'
-    for l in results:
-        # after calculating the discriminant value for each class , the class with the largest
-        # discriminant value is taken as the prediction, than we try to get index of that.
-        predicted_index.append(l.index(max(l)))
-    return predicted_index
+    return [l.index(max(l)) for l in results]
 
 
 # Calculating Accuracy
