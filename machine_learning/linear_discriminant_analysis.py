@@ -55,12 +55,7 @@ def Normal_gen(mean: float, std_dev: float, instance_count: int) -> list:
         :return: a list containing generated values based-on given mean, std_dev and instance_count
         """
     generated_instances = []  # An empty list to store generated instances
-    # for loop iterates over instance_count
-    for r in range(instance_count):
-        # appending corresponding gaussian distribution to 'generated_instances' list
-        generated_instances.append(gauss(mean, std_dev))
-
-    return generated_instances
+    return [gauss(mean, std_dev) for _ in range(instance_count)]
 
 
 # Making corresponding Y flags to detecting classes
@@ -73,11 +68,7 @@ def Y_gen(class_count: int, instance_count: list) -> list:
     ys = []  # An empty list to store generated corresponding Ys
     # for loop iterates over class_count
     for k in range(class_count):
-        # for loop iterates over related number of instances of each class
-        for p in range(instance_count[k]):
-            # appending corresponding Ys to 'ys' list
-            ys.append(k)
-    return ys
+        return [k for _ in range(instance_count[k]) for k in range(class_count)]
 
 
 # Calculating the class means
@@ -88,12 +79,11 @@ def mean_calc(instance_count: int, items: list) -> float:
     :return: calculated actual mean of considered class
     """
     # the sum of all items divided by number of instances
-    class_mean = sum(items) / instance_count
-    return class_mean
+    return sum(items) / instance_count
 
 
 # Calculating the class probabilities
-def prob_calc(instance_count: int, total_count: int) -> float:
+def calculate_probabilities(instance_count: int, total_count: int) -> float:
     """ This function calculates the probability that a given instance
         will belong to which class
         :param instance_count: number of instances in class
@@ -101,8 +91,7 @@ def prob_calc(instance_count: int, total_count: int) -> float:
         :return: value of probability for considered class
         """
     # number of instances in specific class divided by number of all instances
-    probability = instance_count / total_count
-    return probability
+    return instance_count / total_count
 
 
 # Calculating the variance
@@ -308,7 +297,7 @@ def main():
         # # for loop iterates over number of classes(data groupings)
         for l in range(n_classes):
             # appending return values of 'prob_calc' function to 'probabilities' list
-            probabilities.append(prob_calc(counts[l], sum(counts)))
+            probabilities.append(calculate_probabilities(counts[l], sum(counts)))
         # for loop iterates over number of elements in 'probabilities' list and print out them in separated line
         for e in range(len(probabilities)):
             print("Probability of class_{} is: {}".format(e + 1, probabilities[e]))
