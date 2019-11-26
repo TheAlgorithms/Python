@@ -3,30 +3,30 @@ class Node:  # create a Node
         self.data = data  # given data
         self.next = None  # given next to None
 
-    def __repr__(self):  # String Representation of a Node
-        return f"<Node: {self.data}>"
+    def __repr__(self):  # string representation of a Node
+        return f"Node({self.data})"
 
 
 class LinkedList:
     def __init__(self):
-        self.head = None  # Initialize head to None
+        self.head = None  # initialize head to None
 
-    def insert_tail(self, data):
+    def insert_tail(self, data) -> None:
         if self.head is None:
-            self.insert_head(data)  # If this is first node, call insert_head
+            self.insert_head(data)  # if this is first node, call insert_head
         else:
             temp = self.head
             while temp.next:  # traverse to last node
                 temp = temp.next
             temp.next = Node(data)  # create node & link to tail
 
-    def insert_head(self, data):
+    def insert_head(self, data) -> None:
         newNod = Node(data)  # create a new node
         if self.head:
             newNod.next = self.head  # link newNode to head
         self.head = newNod  # make NewNode as head
 
-    def printList(self):  # print every node data
+    def print_list(self) -> None:  # print every node data
         temp = self.head
         while temp:
             print(temp.data)
@@ -47,14 +47,12 @@ class LinkedList:
             else:
                 while temp.next.next:  # find the 2nd last element
                     temp = temp.next
-                temp.next, temp = (
-                    None,
-                    temp.next,
-                )  # (2nd last element).next = None and temp = last element
+                # (2nd last element).next = None and temp = last element
+                temp.next, temp = None, temp.next
         return temp
 
-    def isEmpty(self):
-        return self.head is None  # Return if head is none
+    def is_empty(self) -> bool:
+        return self.head is None  # return True if head is none
 
     def reverse(self):
         prev = None
@@ -76,17 +74,16 @@ class LinkedList:
         current = self.head
         string_repr = ""
         while current:
-            string_repr += f"{current} ---> "
+            string_repr += f"{current} --> "
             current = current.next
         # END represents end of the LinkedList
-        string_repr += "END"
-        return string_repr
+        return string_repr + "END"
 
     # Indexing Support. Used to get a node at particaular position
     def __getitem__(self, index):
         current = self.head
 
-        # If LinkedList is Empty
+        # If LinkedList is empty
         if current is None:
             raise IndexError("The Linked List is empty")
 
@@ -113,39 +110,30 @@ class LinkedList:
 
 def main():
     A = LinkedList()
-    print("Inserting 1st at head")
-    a1 = input()
-    A.insert_head(a1)
-    print("Inserting 2nd at head")
-    a2 = input()
-    A.insert_head(a2)
-    print("\nPrint List : ")
-    A.printList()
-    print("\nInserting 1st at Tail")
-    a3 = input()
-    A.insert_tail(a3)
-    print("Inserting 2nd at Tail")
-    a4 = input()
-    A.insert_tail(a4)
-    print("\nPrint List : ")
-    A.printList()
+    A.insert_head(input("Inserting 1st at head ").strip())
+    A.insert_head(input("Inserting 2nd at head ").strip())
+    print("\nPrint list:")
+    A.print_list()
+    A.insert_tail(input("\nInserting 1st at tail ").strip())
+    A.insert_tail(input("Inserting 2nd at tail ").strip())
+    print("\nPrint list:")
+    A.print_list()
     print("\nDelete head")
     A.delete_head()
-    print("Delete Tail")
+    print("Delete tail")
     A.delete_tail()
-    print("\nPrint List : ")
-    A.printList()
-    print("\nReverse Linked List")
+    print("\nPrint list:")
+    A.print_list()
+    print("\nReverse linked list")
     A.reverse()
-    print("\nPrint List : ")
-    A.printList()
-    print("\nString Representation of Linked List:")
+    print("\nPrint list:")
+    A.print_list()
+    print("\nString representation of linked list:")
     print(A)
-    print("\n Reading/Changing Node Data using Indexing:")
+    print("\nReading/changing Node data using indexing:")
     print(f"Element at Position 1: {A[1]}")
-    p1 = input("Enter New Value: ")
-    A[1] = p1
-    print("New List:")
+    A[1] = input("Enter New Value: ").strip()
+    print("New list:")
     print(A)
 
 
