@@ -77,7 +77,7 @@ class LinkedList:
             string_repr += f"{current} --> "
             current = current.next
         # END represents end of the LinkedList
-        return string_repr += "END"
+        return string_repr + "END"
 
     # Indexing Support. Used to get a node at particaular position
     def __getitem__(self, index):
