@@ -193,7 +193,7 @@ def main():
                     n_classes = user_input
                     break
                 else:
-                    print("Your entered value is {} , Number of classes should be positive!".format(user_input))
+                    print(f"Your entered value is {user_input} , Number of classes should be positive!")
                     continue
             except ValueError:
                 print("Your entered value is not numerical!")
@@ -210,7 +210,7 @@ def main():
                     std_dev = user_sd
                     break
                 else:
-                    print("Your entered value is {}, Standard deviation should not be negative!".format(user_sd))
+                    print(f"Your entered value is {user_sd}, Standard deviation should not be negative!")
                     continue
             except ValueError:
                 print("Your entered value is not numerical!")
@@ -222,12 +222,12 @@ def main():
         for i in range(n_classes):
             while True:
                 try:
-                    user_count = int(input("Enter The number of instances for class_{}: ".format(i + 1)))
+                    user_count = int(input(f"Enter The number of instances for class_{i+1}: "))
                     if user_count > 0:
                         counts.append(user_count)
                         break
                     else:
-                        print("Your entered value is {}, Number of instances should be positive!".format(user_count))
+                        print(f"Your entered value is {user_count}, Number of instances should be positive!")
                         continue
                 except ValueError:
                     print("Your entered value is not numerical!")
@@ -238,12 +238,12 @@ def main():
         for a in range(n_classes):
             while True:
                 try:
-                    user_mean = float(input("Enter the value of mean for class_{}: ".format(a + 1)))
+                    user_mean = float(input(f"Enter the value of mean for class_{a+1}: "))
                     if isinstance(user_mean, float):
                         user_means.append(user_mean)
                         break
                     else:
-                        print("Your entered value is {}, And this is not valid!".format(user_mean))
+                        print(f"Your entered value is {user_mean}, And this is not valid!")
 
                 except ValueError:
                     print("Your entered value is not numerical!")
@@ -254,13 +254,13 @@ def main():
 
         # print out the number of instances in classes in separated line
         for b in range(len(counts)):
-            print("Number of instances in class_{} is: {}".format(b + 1, counts[b]))
+            print(f"Number of instances in class_{b+1} is: {counts[b]}")
 
         print("-" * 100)
 
         # print out mean values of classes separated line
         for c in range(len(user_means)):
-            print("Mean of class_{} is: {}".format(c + 1, user_means[c]))
+            print(f"Mean of class_{c+1} is: {user_means[c]}")
 
         print("-" * 100)
 
@@ -288,12 +288,14 @@ def main():
             actual_means.append(calculate_mean(counts[k], x[k]))
         # for loop iterates over number of elements in 'actual_means' list and print out them in separated line
         for d in range(len(actual_means)):
-            print("Actual(Real) mean of class_{} is: {}".format(d + 1, actual_means[d]))
+            print(f"Actual(Real) mean of class_{d+1} is: {actual_means[d]}")
 
         print("-" * 100)
 
         # Calculating the value of probabilities for each class
-        probabilities = []  # An empty list to store values of probabilities for each class
+        probabilities = (
+            []
+        )  # An empty list to store values of probabilities for each class
         # # for loop iterates over number of classes(data groupings)
         for l in range(n_classes):
             # appending return values of 'prob_calc' function to 'probabilities' list
