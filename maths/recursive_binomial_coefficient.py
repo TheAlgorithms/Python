@@ -2,6 +2,14 @@ def recursive_binomial_coefficient(n,k):
     """Calculates the binomial coefficient, C(n,k), with n>=k using recursion
     Time complexity is O(k), so can calculate fairly quickly for large values of k.
 
+    >>> recursive_binomial_coefficient(5,0)
+    0
+
+    >>> recursive_binomial_coefficient(8,2)
+    28
+
+    >>> recursive_binomial_coefficient(500,300)
+    5054949849935535817667719165973249533761635252733275327088189563256013971725761702359997954491403585396607971745777019273390505201262259748208640
     """
 
     if k == 0 or n == k:
@@ -15,6 +23,3 @@ def recursive_binomial_coefficient(n,k):
         return int((n/k)*recursive_binomial_coefficient(n-1,k-1))
 
 
-print(recursive_binomial_coefficient(8,2))
-print(recursive_binomial_coefficient(4,0))
-print(recursive_binomial_coefficient(500,300))
