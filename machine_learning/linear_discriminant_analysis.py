@@ -299,6 +299,10 @@ def main():
         probabilities = (
             calculate_probabilities(counts[i], sum(counts)) for i in range(n_classes)
         )
+
+        # converting generator object to list object
+        probabilities = list(probabilities)
+
         # for loop iterates over number of elements in 'probabilities' list and print
         # out them in separated line
         for i, probability in enumerate(probabilities, 1):
