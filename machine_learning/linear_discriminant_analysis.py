@@ -295,10 +295,10 @@ def main():
         print("-" * 100)
 
         # Calculating the value of probabilities for each class
-        # An empty list to store values of probabilities for each class
-        probabilities = (
+        probabilities = [
             calculate_probabilities(counts[i], sum(counts)) for i in range(n_classes)
-        )
+        ]
+
         # for loop iterates over number of elements in 'probabilities' list and print
         # out them in separated line
         for i, probability in enumerate(probabilities, 1):
