@@ -1,5 +1,5 @@
 # GitHub Action that uses Black to reformat Python code (if needed) when doing a git push.
-# If all Python code in the repo is complient with Black then this Action does nothing.
+# If all Python code in the repo is compliant with Black then this Action does nothing.
 # Otherwise, Black is run and its changes are committed to the repo.
 # https://github.com/cclauss/autoblack
 
