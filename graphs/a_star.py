@@ -33,13 +33,11 @@ delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # go up  # go left  # go down  # go 
 # function to search the path
 def search(grid, init, goal, cost, heuristic):
 
-    closed = [
-        [0 for col in range(len(grid[0]))] for row in range(len(grid))
-    ]  # the referrence grid
+    # the referrence grid
+    closed = [[0 for col in range(len(grid[0]))] for row in range(len(grid))]
     closed[init[0]][init[1]] = 1
-    action = [
-        [0 for col in range(len(grid[0]))] for row in range(len(grid))
-    ]  # the action grid
+    # the action grid
+    action = [[0 for col in range(len(grid[0]))] for row in range(len(grid))]
 
     x = init[0]
     y = init[1]
@@ -48,7 +46,6 @@ def search(grid, init, goal, cost, heuristic):
     cell = [[f, g, x, y]]
 
     found = False  # flag that is set when search is complete
-    resign = False  # flag set if we can't find expand
 
     while not found and not resign:
         if len(cell) == 0:
