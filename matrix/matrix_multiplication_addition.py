@@ -1,10 +1,10 @@
 def add(matrix_a, matrix_b):
-    if(not is_matrix(matrix_a) or not is_matrix(matrix_b)):
-        raise Exception('One or more of the arguments of multiply is not a matrix!')
+    if not is_matrix(matrix_a) or not is_matrix(matrix_b):
+        raise ValueError('One or more of the arguments of multiply is not a matrix!')
     size_a = matrix_size(matrix_a)
     size_b = matrix_size(matrix_b)
-    if(not size_a[0] == size_b[0] or not size_a[1] == size_b[1]):
-        raise Exception('Matrices are incompatible in size')
+    if size_a[0] != size_b[0] or size_a[1] != size_b[1]:
+        raise ValueError('Matrices are incompatible in size')
     rows = size_a[0]
     columns = size_a[1]
     matrix_c = []
@@ -22,12 +22,12 @@ def scalarMultiply(matrix , n):
 def multiply(matrix_a, matrix_b):
     '''Returns the matrix product of two matrices, expressed as a list of lists'''
 
-    if(not is_matrix(matrix_a) or not is_matrix(matrix_b)):
-        raise Exception('One or more of the arguments of multiply is not a matrix!')
+    if not is_matrix(matrix_a) or not is_matrix(matrix_b):
+        raise ValueError('One or more of the arguments of multiply is not a matrix!')
     size_a = matrix_size(matrix_a)
     size_b = matrix_size(matrix_b)
     if(not size_a[0] == size_b[1]):
-        raise Exception('Matrices are incompatible in size')
+        raise ValueError('Matrices are incompatible in size')
     matrix_c = []
     iteration_num = 0
     
@@ -46,20 +46,20 @@ def identity(n):
     return [[int(row == column) for column in range(n)] for row in range(n)] 
 
 def transpose(matrix):
-    if(not is_matrix(matrix)):
-        raise Exception('Argument is not a matrix!')
+    if not is_matrix(matrix):
+        raise ValueError('Argument is not a matrix!')
     return map(list , zip(*matrix))
 
 def minor(matrix, row, column):
-    if(not is_matrix(matrix)):
-        raise Exception('Argument is not a matrix!')
+    if not is_matrix(matrix):
+        raise ValueError('Argument is not a matrix!')
     minor = matrix[:row] + matrix[row + 1:]
     minor = [row[:column] + row[column + 1:] for row in minor]
     return minor
 
 def determinant(matrix):
-    if(not is_matrix(matrix)):
-        raise Exception('Argument is not a matrix!')
+    if not is_matrix(matrix):
+        raise ValueError('Argument is not a matrix!')
     if len(matrix) == 1: return matrix[0][0]
     
     res = 0
@@ -68,8 +68,8 @@ def determinant(matrix):
     return res
 
 def inverse(matrix):
-    if(not is_matrix(matrix)):
-        raise Exception('Argument is not a matrix!')
+    if not is_matrix(matrix):
+        raise ValueError('Argument is not a matrix!')
     det = determinant(matrix)
     if det == 0: return None
 
@@ -94,17 +94,11 @@ def check_matrix_size_consistency(matrix):
 
 def is_list(element):
     '''Checks is a variable is a list'''
-    if(type(element) == type([])):
-        return True;
-    else:
-        return False;
+    return isinstance(element, list)
 
 def is_int_or_float(element):
     '''Checks is a variable is an int or a float'''
-    if(type(element) == type(1) or type(element) == type(1.1)):
-        return True
-    else:
-        return False;
+    isinstance(element, (int, float))
         
 def is_matrix(matrix):
     '''Checks is a variable is a matrix'''
@@ -124,7 +118,7 @@ def is_matrix(matrix):
 def matrix_size(matrix):
     '''Returns the size of a matrix as a list [rows, columns]'''
     if(not is_matrix(matrix)):
-       raise Exception('argument is not a matrix!')
+       raise ValueError('argument is not a matrix!')
     return [len(matrix), len(matrix[0])]
 
 def main():
