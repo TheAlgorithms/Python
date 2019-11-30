@@ -115,44 +115,51 @@ class Heap(object):
         return top_item_tuple
 
 
-# # Usage
-# # =================================================
-#
-# # Max-heap
-# h = Heap()
-# h.insert_item(5, 34)
-# h.insert_item(6, 31)
-# h.insert_item(7, 37)
-# print(h.get_top())
-# # > [7, 37]
-# print(h.extract_top())
-# # > [7, 37]
-# print(h.extract_top())
-# # > [5, 31]
-# print(h.extract_top())
-# # > [6, 34]
-#
-# # Min-heap
-# h = Heap(key=lambda x: -x)
-# h.insert_item(5, 34)
-# h.insert_item(6, 31)
-# h.insert_item(7, 37)
-# print(h.get_top())
-# # > [6, -31]
-# print(h.extract_top())
-# # > [6, -31]
-# print(h.extract_top())
-# # > [5, -34]
-# print(h.extract_top())
-# # > [7, -37]
-# h.insert_item(8, 45)
-# h.insert_item(9, 40)
-# h.insert_item(10, 50)
-# print(h.get_top())
-# # > [9, -40]
-# h.update_item(10, 30)
-# print(h.get_top())
-# # > [10, -30]
-# h.delete_item(10)
-# print(h.get_top())
-# # > [9, -40]
+def test_heap() -> None:
+    """
+    # Max-heap
+    >>> h = Heap()
+    >>> h.insert_item(5, 34)
+    >>> h.insert_item(6, 31)
+    >>> h.insert_item(7, 37)
+    >>> h.get_top()
+    >>> [7, 37]
+    >>> h.extract_top()
+    >>> [7, 37]
+    >>> h.extract_top()
+    >>> [5, 31]
+    >>> h.extract_top()
+    >>> [6, 34]
+
+    # Min-heap
+    >>> h = Heap(key=lambda x: -x)
+    >>> h.insert_item(5, 34)
+    >>> h.insert_item(6, 31)
+    >>> h.insert_item(7, 37)
+    >>> h.get_top()
+    >>> [6, -31]
+    >>> h.extract_top()
+    >>> [6, -31]
+    >>> h.extract_top()
+    >>> [5, -34]
+    >>> h.extract_top()
+    >>> [7, -37]
+    >>> h.insert_item(8, 45)
+    >>> h.insert_item(9, 40)
+    >>> h.insert_item(10, 50)
+    >>> h.get_top()
+    >>> [9, -40]
+    >>> h.update_item(10, 30)
+    >>> h.get_top()
+    >>> [10, -30]
+    >>> h.delete_item(10)
+    >>> h.get_top()
+    >>> [9, -40]
+    """
+    pass
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
