@@ -117,44 +117,41 @@ class Heap(object):
 
 def test_heap() -> None:
     """
-    # Max-heap
-    >>> h = Heap()
+    >>> h = Heap()  # Max-heap
     >>> h.insert_item(5, 34)
     >>> h.insert_item(6, 31)
     >>> h.insert_item(7, 37)
     >>> h.get_top()
-    >>> [7, 37]
+    [7, 37]
     >>> h.extract_top()
-    >>> [7, 37]
+    [7, 37]
     >>> h.extract_top()
-    >>> [5, 31]
+    [5, 31]
     >>> h.extract_top()
-    >>> [6, 34]
-
-    # Min-heap
-    >>> h = Heap(key=lambda x: -x)
+    [6, 34]
+    >>> h = Heap(key=lambda x: -x)  # Min heap
     >>> h.insert_item(5, 34)
     >>> h.insert_item(6, 31)
     >>> h.insert_item(7, 37)
     >>> h.get_top()
-    >>> [6, -31]
+    [6, -31]
     >>> h.extract_top()
-    >>> [6, -31]
+    [6, -31]
     >>> h.extract_top()
-    >>> [5, -34]
+    [5, -34]
     >>> h.extract_top()
-    >>> [7, -37]
+    [7, -37]
     >>> h.insert_item(8, 45)
     >>> h.insert_item(9, 40)
     >>> h.insert_item(10, 50)
     >>> h.get_top()
-    >>> [9, -40]
+    [9, -40]
     >>> h.update_item(10, 30)
     >>> h.get_top()
-    >>> [10, -30]
+    [10, -30]
     >>> h.delete_item(10)
     >>> h.get_top()
-    >>> [9, -40]
+    [9, -40]
     """
     pass
 
