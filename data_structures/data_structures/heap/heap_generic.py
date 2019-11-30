@@ -126,9 +126,9 @@ def test_heap() -> None:
     >>> h.extract_top()
     [7, 37]
     >>> h.extract_top()
-    [5, 31]
+    [5, 34]
     >>> h.extract_top()
-    [6, 34]
+    [6, 31]
     >>> h = Heap(key=lambda x: -x)  # Min heap
     >>> h.insert_item(5, 34)
     >>> h.insert_item(6, 31)
