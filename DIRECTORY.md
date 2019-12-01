@@ -82,6 +82,9 @@
     * [Red Black Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/red_black_tree.py)
     * [Segment Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/segment_tree.py)
     * [Treap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/treap.py)
+  * Data Structures
+    * Heap
+      * [Heap Generic](https://github.com/TheAlgorithms/Python/blob/master/data_structures/data_structures/heap/heap_generic.py)
   * Disjoint Set
     * [Disjoint Set](https://github.com/TheAlgorithms/Python/blob/master/data_structures/disjoint_set/disjoint_set.py)
   * Hashing
