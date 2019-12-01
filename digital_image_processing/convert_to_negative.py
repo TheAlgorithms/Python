@@ -19,7 +19,7 @@ def convert_to_negative(img):
 
 if __name__ == "__main__":
     # read original image
-    img = imread(r"image_data/lena.jpg", 1)
+    img = imread("image_data/lena.jpg", 1)
 
     # convert to its negative
     neg = convert_to_negative(img)
