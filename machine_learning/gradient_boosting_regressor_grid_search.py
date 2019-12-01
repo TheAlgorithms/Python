@@ -11,12 +11,12 @@
 from sklearn.datasets import fetch_mldata
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from sklearn.model_selection import GridSearchCV #, RandomizedSearchCV
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import r2_score, make_scorer
 from sklearn.model_selection import cross_val_score
 import numpy as np
-import warnings
+#import warnings
 
 mnist = fetch_mldata('MNIST original', transpose_data=True, data_home='../../')
 
