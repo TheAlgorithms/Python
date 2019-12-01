@@ -9,15 +9,25 @@ class Point:
         self.y = y
         self.z = z
 
-    def __repr__(self):
-        return "(%d, %d, %d)" % (self.x, self.y, self.z)
+    def __repr__(self) -> str:
+        return f"Point({self.x}, {self.y}, {self.z})"
 
 
-def distance(a, b):
-    return math.sqrt(abs(((b.x - a.x)**2 + (b.y - a.y)**2 + (b.z - a.z)**2)))
+def distance(a: Point, b: Point) -> float:
+    return math.sqrt(abs(((b.x - a.x) ** 2 + (b.y - a.y) ** 2 + (b.z - a.z) ** 2)))
+
+
+def test_distance() -> None:
+    """
+    >>> point1 = Point(2, -1, 7)
+    >>> point2 = Point(1, -3, 5)
+    >>> print(f"Distance from {point1} to {point2} is {distance(point1, point2)}")
+    Distance from Point(2, -1, 7) to Point(1, -3, 5) is 3.0
+    """
+    pass
 
 
 if __name__ == "__main__":
-    point1 = Point(2, -1, 7)
-    point2 = Point(1, -3, 5)
-    print("Distance: ", distance(point1, point2))
+    import doctest
+
+    doctest.testmod()
