@@ -1,6 +1,6 @@
 class Node:
     def __init__(self, data):
-        self.data = data;
+        self.data = data
         self.next = None
 
 
@@ -14,13 +14,13 @@ class Linkedlist:
             print(temp.data)
             temp = temp.next
 
-# adding nodes
+    # adding nodes
     def push(self, new_data):
         new_node = Node(new_data)
         new_node.next = self.head
         self.head = new_node
 
-# swapping nodes
+    # swapping nodes
     def swapNodes(self, d1, d2):
         prevD1 = None
         prevD2 = None
@@ -53,11 +53,11 @@ class Linkedlist:
             D1.next = D2.next
             D2.next = temp
 
+
 # swapping code ends here
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     list = Linkedlist()
     list.push(5)
     list.push(4)
@@ -70,6 +70,3 @@ if __name__ == '__main__':
     list.swapNodes(1, 4)
     print("After swapping")
     list.print_list()
-
-
-

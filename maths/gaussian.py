@@ -1,4 +1,3 @@
-
 """
 Reference: https://en.wikipedia.org/wiki/Gaussian_function
 
@@ -7,7 +6,6 @@ python : 3.7.3
 
 """
 from numpy import pi, sqrt, exp
-
 
 
 def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
@@ -52,7 +50,7 @@ def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
     >>> gaussian(2523, mu=234234, sigma=3425)
     0.0
   """
-    return 1 / sqrt(2 * pi * sigma ** 2) * exp(-(x - mu) ** 2 / 2 * sigma ** 2)
+    return 1 / sqrt(2 * pi * sigma ** 2) * exp(-((x - mu) ** 2) / 2 * sigma ** 2)
 
 
 if __name__ == "__main__":

@@ -55,4 +55,5 @@ def decimal_to_binary(num):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
