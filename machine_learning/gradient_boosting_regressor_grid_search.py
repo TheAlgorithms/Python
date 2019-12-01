@@ -57,7 +57,7 @@ print('Best parameters\n\t{}\n'.format(best_model .best_params_))
 
 cross_validation_score = cross_val_score(best_model.best_estimator_, test_image,test_label, cv=3, scoring=score)
 # print('CrossValScore: {}'.format(cross_validation_score))
-print('CrossValScore: {}'.format(cross_valisation_score.mean()))
+print('CrossValScore: {}'.format(cross_validation_score.mean()))
 
 
 # In[ ]:
