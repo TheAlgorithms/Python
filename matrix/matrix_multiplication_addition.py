@@ -15,9 +15,9 @@ def scalarMultiply(matrix , n):
 
 def multiply(matrix_a, matrix_b):
     matrix_c = []
-    n = len(matrix_a)       #no of rows in Mat_a
-    l = len(matrix_b[0])    #no of cols in Mat_b
-    m = len(matrix_a[0])    #no of cols in Mat_a = no of rows in Mat b
+    n = len(matrix_a)       #no of rows in matrix_a
+    l = len(matrix_b[0])    #no of cols in matrix_b
+    m = len(matrix_a[0])    #no of cols in matrix_a = no of rows in matrix_b
     for i in range(n):
         list_1 = []
         for j in range(l):
