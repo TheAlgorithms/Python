@@ -1,5 +1,6 @@
 from sklearn.neural_network import MLPClassifier
 
+
 X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
 y = [0, 1, 0, 0]
 
@@ -14,4 +15,16 @@ clf.fit(X, y)
 test = [[0.0, 0.0], [0.0, 1.0], [1.0, 1.0]]
 Y = clf.predict(test)
 
-assert list(Y), [0, 0, 1]
+
+def wrapper(Y):
+    """
+    >>> wrapper(Y)
+    [0, 0, 1]
+    """
+    return list(Y)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
