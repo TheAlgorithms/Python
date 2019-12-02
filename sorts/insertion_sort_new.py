@@ -16,7 +16,7 @@ def insertion_sort(arr):
               j = j - 1
 
 
-'''create a random list in order to test insertion sort algorithm'''
+"""Create a random list in order to test insertion sort algorithm"""
 from random import shuffle
 arr = list(range(2000))    #very huge list!
 shuffle(arr)
