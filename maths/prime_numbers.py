@@ -1,7 +1,6 @@
-from typing import List, Generator
+from typing import Generator, List
 
-
-def primes(max: int) -> Generator[int]:
+def primes(max: int) -> Generator[int, None, None]:
     """
     Return a list of all primes numbers up to max.
     >>> primes(10)
