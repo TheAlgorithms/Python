@@ -4,7 +4,7 @@ import math
 
 def fillEdges():	
     for edge in range(numEdge):
-	print('input 3 numbers:starting vertex, ending vertex, weight')
+        print('input 3 numbers:starting vertex, ending vertex, weight')
 	    u, v, w=input().split()
 	    edges.append((int(u), int(v), int(w)))
 
