@@ -76,6 +76,14 @@ def y_generator(class_count: int, instance_count: list) -> list:
     :param class_count: Number of classes(data groupings) in dataset
     :param instance_count: number of instances in class
     :return: corresponding values for data groupings in dataset
+
+    >>> y_generator(1, [10])
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    >>> y_generator(2, [5, 10])
+    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    >>> y_generator(4, [10, 5, 15, 20]) # doctest: +NORMALIZE_WHITESPACE
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+     2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     """
 
     return [k for k in range(class_count) for _ in range(instance_count[k])]
