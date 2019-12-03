@@ -130,6 +130,12 @@ def calculate_variance(items: list, means: list, total_count: int) -> float:
     :param means: a list containing real mean values of each class
     :param total_count: the number of all instances
     :return: calculated variance for considered dataset
+
+    >>> items = gaussian_distribution(5.0, 1.0, 20)
+    >>> means = [5.011267842911003]
+    >>> total_count = 20
+    >>> calculate_variance([items], means, total_count)
+    0.9618530973487491
     """
     squared_diff = []  # An empty list to store all squared differences
     # iterate over number of elements in items
