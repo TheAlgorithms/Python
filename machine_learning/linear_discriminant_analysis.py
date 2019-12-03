@@ -112,6 +112,11 @@ def calculate_probabilities(instance_count: int, total_count: int) -> float:
     :param instance_count: number of instances in class
     :param total_count: the number of all instances
     :return: value of probability for considered class
+
+    >>> calculate_probabilities(20, 60)
+    0.3333333333333333
+    >>> calculate_probabilities(30, 100)
+    0.3
     """
     # number of instances in specific class divided by number of all instances
     return instance_count / total_count
