@@ -45,6 +45,7 @@
 from math import log
 from os import name, system
 from random import gauss
+from random import seed
 
 
 # Make a training dataset drawn from a gaussian distribution
@@ -56,7 +57,15 @@ def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> l
     :param instance_count: instance number of class
     :return: a list containing generated values based-on given mean, std_dev and
         instance_count
+
+    >>> gaussian_distribution(5.0, 1.0, 20) # doctest: +NORMALIZE_WHITESPACE
+    [6.288184753155463, 6.4494456086997705, 5.066335808938262, 4.235456349028368,
+     3.9078267848958586, 5.031334516831717, 3.977896829989127, 3.56317055489747,
+      5.199311976483754, 5.133374604658605, 5.546468300338232, 4.086029056264687,
+       5.005005283626573, 4.935258239627312, 3.494170998739258, 5.537997178661033,
+        5.320711100998849, 7.3891120432406865, 5.202969177309964, 4.855297691835079]
     """
+    seed(1)
     return [gauss(mean, std_dev) for _ in range(instance_count)]
 
 
