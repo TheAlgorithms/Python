@@ -4,6 +4,12 @@ from typing import Generator, List
 def primes(max: int) -> Generator[int, None, None]:
     """
     Return a list of all primes numbers up to max.
+    >>> list(primes(0))
+    []
+    >>> list(primes(-1))
+    []
+    >>> list(primes(-10))
+    []
     >>> list(primes(25))
     [2, 3, 5, 7, 11, 13, 17, 19, 23]
     >>> list(primes(11))
