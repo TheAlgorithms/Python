@@ -75,6 +75,7 @@ def is_completed(grid):
     """
     return all(all(cell != 0 for cell in row) for row in grid)
 
+
 def find_empty_location(grid):
     """
     This function finds an empty location so that we can assign a number
