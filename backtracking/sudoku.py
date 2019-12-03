@@ -58,11 +58,22 @@ def is_safe(grid, row, column, n):
 def is_completed(grid):
     """
     This function checks if the puzzle is completed or not.
-    it is completed when all the cells are assigned with a number(not zero)
-    and There is no repeating number in any column, row or 3x3 subgrid.
-    """
-    return all(cell != 0 for cell in row for row in grid)
+    it is completed when all the cells are assigned with a non-zero number.
 
+    >>> is_completed([[0]])
+    False
+    >>> is_completed([[1]])
+    True
+    >>> is_completed([[1, 2], [0, 4]])
+    False
+    >>> is_completed([[1, 2], [3, 4]])
+    True
+    >>> is_completed(initial_grid)
+    False
+    >>> is_completed(no_solution)
+    False
+    """
+    return all(all(cell != 0 for cell in row) for row in grid)
 
 def find_empty_location(grid):
     """
