@@ -96,6 +96,10 @@ def calculate_mean(instance_count: int, items: list) -> float:
     :param instance_count: Number of instances in class
     :param items: items that related to specific class(data grouping)
     :return: calculated actual mean of considered class
+
+    >>> items = gaussian_distribution(5.0, 1.0, 20)
+    >>> calculate_mean(len(items), items)
+    5.011267842911003
     """
     # the sum of all items divided by number of instances
     return sum(items) / instance_count
