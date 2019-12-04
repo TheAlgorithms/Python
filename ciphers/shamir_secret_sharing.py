@@ -40,8 +40,3 @@ def shares(n,m,secret):
     for i in range(1,n+1):
         shares.append([i,polynom(i,cfs)])
     return shares
-
-
-
-
-    
