@@ -5,16 +5,7 @@
 #           Where N is the Number of elements in the list
 #############################
 from typing import List
-
-
-def CeilIndex(v, l, r, key):
-    while r - l > 1:
-        m = (l + r) // 2
-        if v[m] >= key:
-            r = m
-        else:
-            l = m
-    return r
+from bisect import bisect_left
 
 
 def LongestIncreasingSubsequenceLength(v: List[int]) -> int:
@@ -28,7 +19,7 @@ def LongestIncreasingSubsequenceLength(v: List[int]) -> int:
     >>> LongestIncreasingSubsequenceLength([5, 4, 3, 2, 1])
     1
     """
-    if len(v) == 0:
+    if not v:
         return 0
 
     tail = [0] * len(v)
@@ -36,14 +27,14 @@ def LongestIncreasingSubsequenceLength(v: List[int]) -> int:
 
     tail[0] = v[0]
 
-    for i in range(1, len(v)):
-        if v[i] < tail[0]:
-            tail[0] = v[i]
-        elif v[i] > tail[length - 1]:
-            tail[length] = v[i]
+    for n in v:
+        if n < tail[0]:
+            tail[0] = n
+        elif n > tail[length - 1]:
+            tail[length] = n
             length += 1
         else:
-            tail[CeilIndex(tail, -1, length - 1, v[i])] = v[i]
+            tail[bisect_left(tail, n, hi=length)] = n
 
     return length
 
