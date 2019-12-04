@@ -22,21 +22,17 @@ def LongestIncreasingSubsequenceLength(v: List[int]) -> int:
     if not v:
         return 0
 
-    tail = [0] * len(v)
-    length = 1
-
-    tail[0] = v[0]
+    tail = [v[0]]
 
     for n in v:
         if n < tail[0]:
             tail[0] = n
-        elif n > tail[length - 1]:
-            tail[length] = n
-            length += 1
+        elif n > tail[-1]:
+            tail.append(n)
         else:
-            tail[bisect_left(tail, n, hi=length)] = n
+            tail[bisect_left(tail, n)] = n
 
-    return length
+    return len(tail)
 
 
 if __name__ == "__main__":
