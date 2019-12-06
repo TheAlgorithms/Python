@@ -39,7 +39,7 @@ def brute_force(input_string: str) -> None:
 
 def main():
     while True:
-        print(f'{"-" * 10}\n Menu\n{"-", * 10}')
+        print(f'{"-" * 10}\n Menu\n{"-" * 10}')
         print(*["1.Encrpyt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
         choice = input("What would you like to do?: ")
         if choice not in ["1", "2", "3", "4"]:
