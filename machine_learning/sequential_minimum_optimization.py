@@ -446,7 +446,7 @@ def count_time(func):
         start_time = time.time()
         func(*args, **kwargs)
         end_time = time.time()
-        print("smo algorithm cost {} seconds".format(end_time - start_time))
+        print(f"smo algorithm cost {end_time - start_time} seconds")
 
     return call_func
 
@@ -500,11 +500,9 @@ def test_cancel_data():
         if test_tags[i] == predict[i]:
             score += 1
     print(
-        "\r\nall: {}\r\nright: {}\r\nfalse: {}".format(
-            test_num, score, test_num - score
-        )
+        f"\r\nall: {test_num}\r\nright: {score}\r\nfalse: {test_num - score}"
     )
-    print("Rough Accuracy: {}".format(score / test_tags.shape[0]))
+    print(f"Rough Accuracy: {score / test_tags.shape[0]}")
 
 
 def test_demonstration():
