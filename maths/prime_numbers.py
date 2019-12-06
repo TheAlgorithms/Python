@@ -20,7 +20,7 @@ def primes(max: int) -> Generator[int, None, None]:
     9973
     """
     numbers: Generator = (i for i in range(1, (max + 1)))
-    for i in filter(lambda x: x > 1, numbers):
+    for i in (n for n in numbers if n > 1):
         for j in range(2, i):
             if (i % j) == 0:
                 break
