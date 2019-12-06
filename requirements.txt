@@ -13,4 +13,4 @@ requests
 scikit-fuzzy
 sklearn
 sympy
-tensorflow
+tensorflow>=2.1.0-rc0
