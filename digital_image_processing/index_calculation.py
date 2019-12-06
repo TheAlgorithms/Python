@@ -550,13 +550,14 @@ cl.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
 
 # calculating the indices for the instantiated values in the class
     # Note: the CCCI index can be changed to any index implemented in the class.
-indexValue_form1    = cl.calculation("CCCI", red=red, green=green, blue=blue, redEdge=redEdge, nir=nir).astype(np.float64)
+indexValue_form1    = cl.calculation("CCCI", red=red, green=green, blue=blue,
+                                     redEdge=redEdge, nir=nir).astype(np.float64)
 indexValue_form2    = cl.CCCI()
 
 # calculating the index with the values directly -- you can set just the values preferred -- 
 # note: the *calculation* fuction performs the function *setMatrices*
-indexValue_form3    = cl.calculation("CCCI", red=red, green=green, blue=blue, redEdge=redEdge, nir=nir).astype(np.float64)
-
+indexValue_form3    = cl.calculation("CCCI", red=red, green=green, blue=blue,
+                                     redEdge=redEdge, nir=nir).astype(np.float64)
 
 print("Form 1: "+np.array2string(indexValue_form1, precision=20, separator=', ', floatmode='maxprec_equal'))
 print("Form 2: "+np.array2string(indexValue_form2, precision=20, separator=', ', floatmode='maxprec_equal'))
