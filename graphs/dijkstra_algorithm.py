@@ -141,7 +141,7 @@ class Graph:
     def show_distances(self, src):
         print(f"Distance from node: {src}")
         for u in range(self.num_nodes):
-            print("Node {u} has distance: {self.dist[u]}")
+            print(f"Node {u} has distance: {self.dist[u]}")
 
     def show_path(self, src, dest):
         # To show the shortest path from src to dest
