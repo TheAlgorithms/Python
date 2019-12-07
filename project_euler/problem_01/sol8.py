@@ -7,7 +7,8 @@ Find the sum of all the multiples of 3 or 5 below N.
 
 """
 
-def solution(n,target):
+
+def solution(n, target):
     """
     Efficient Solution for Sum Multiple of 3 or 5
     
@@ -32,15 +33,15 @@ def solution(n,target):
    """
     if target > 0:  # check for positive or negative
         p = target // n
-        return (n*(p*(p+1))) //2
+        return (n * (p * (p + 1))) // 2
     else:
         return 0
 
 
 if __name__ == "__main__":
     N = int(input())
-    m = N-1
-    print(solution(3,m) + solution(5,m) - solution(15,m))
-    
-  # For detail explanation of the above problem head to the below link: 
-  # https://github.com/BigOh-Koders/INCF2019/blob/master/MUL35/explanation.pdf
+    m = N - 1
+    print(solution(3, m) + solution(5, m) - solution(15, m))
+
+# For detail explanation of the above problem head to the below link:
+# https://github.com/BigOh-Koders/INCF2019/blob/master/MUL35/explanation.pdf
