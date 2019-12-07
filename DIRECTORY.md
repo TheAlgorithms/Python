@@ -133,6 +133,7 @@
     * [Gaussian Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/gaussian_filter.py)
     * [Median Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/median_filter.py)
     * [Sobel Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/sobel_filter.py)
+  * [Index Calculation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/index_calculation.py)
   * Rotation
     * [Rotation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/rotation/rotation.py)
   * [Test Digital Image Processing](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/test_digital_image_processing.py)
@@ -216,6 +217,7 @@
 ## Hashes
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
   * [Enigma Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/enigma_machine.py)
+  * [Hamming Code](https://github.com/TheAlgorithms/Python/blob/master/hashes/hamming_code.py)
   * [Md5](https://github.com/TheAlgorithms/Python/blob/master/hashes/md5.py)
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 
@@ -234,6 +236,7 @@
   * [Linear Discriminant Analysis](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_discriminant_analysis.py)
   * [Linear Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_regression.py)
   * [Logistic Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
+  * [Multilayer Perceptron Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/multilayer_perceptron_classifier.py)
   * [Polymonial Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/polymonial_regression.py)
   * [Scoring Functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/scoring_functions.py)
   * [Sequential Minimum Optimization](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/sequential_minimum_optimization.py)
@@ -252,6 +255,7 @@
   * [Binomial Coefficient](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_coefficient.py)
   * [Ceil](https://github.com/TheAlgorithms/Python/blob/master/maths/ceil.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
+  * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Explicit Euler](https://github.com/TheAlgorithms/Python/blob/master/maths/explicit_euler.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
   * [Factorial Python](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_python.py)
@@ -286,6 +290,7 @@
   * [Prime Factors](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_factors.py)
   * [Prime Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_numbers.py)
   * [Prime Sieve Eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_sieve_eratosthenes.py)
+  * [Pythagoras](https://github.com/TheAlgorithms/Python/blob/master/maths/pythagoras.py)
   * [Qr Decomposition](https://github.com/TheAlgorithms/Python/blob/master/maths/qr_decomposition.py)
   * [Quadratic Equations Complex Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/quadratic_equations_complex_numbers.py)
   * [Radix2 Fft](https://github.com/TheAlgorithms/Python/blob/master/maths/radix2_fft.py)
@@ -499,11 +504,11 @@
   * [I Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/i_sort.py)
   * [Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/insertion_sort.py)
   * [Merge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_sort.py)
-  * [Merge Sort Fastest](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_sort_fastest.py)
   * [Odd Even Transposition Parallel](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_parallel.py)
   * [Odd Even Transposition Single Threaded](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_single_threaded.py)
   * [Pancake Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pancake_sort.py)
   * [Pigeon Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pigeon_sort.py)
+  * [Pigeonhole Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pigeonhole_sort.py)
   * [Quick Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/quick_sort.py)
   * [Quick Sort 3 Partition](https://github.com/TheAlgorithms/Python/blob/master/sorts/quick_sort_3_partition.py)
   * [Radix Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/radix_sort.py)
@@ -516,6 +521,7 @@
   * [Tim Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/tim_sort.py)
   * [Topological Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/topological_sort.py)
   * [Tree Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/tree_sort.py)
+  * [Unknown Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/unknown_sort.py)
   * [Wiggle Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/wiggle_sort.py)
 
 ## Strings
