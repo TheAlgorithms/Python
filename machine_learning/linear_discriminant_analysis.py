@@ -174,8 +174,8 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
 def main():
     """ This function starts execution phase """
     while True:
-        print(" Linear Discriminant Analysis ".center(100, "*"))
-        print("*" * 100, "\n")
+        print(" Linear Discriminant Analysis ".center(50, "*"))
+        print("*" * 50, "\n")
         print("First of all we should specify the number of classes that")
         print("we want to generate as training dataset")
         # Trying to get number of classes
@@ -239,7 +239,7 @@ def main():
                     else:
                         print(
                             f"Your entered value is {user_count}, Number of "
-                            f"instances should be positive!"
+                            "instances should be positive!"
                         )
                         continue
                 except ValueError:
@@ -302,7 +302,7 @@ def main():
         # for loop iterates over number of elements in 'probabilities' list and print
         # out them in separated line
         for i, probability in enumerate(probabilities, 1):
-            print("Probability of class_{} is: {}".format(i, probability))
+            print(f"Probability of class_{i} is: {probability}")
         print("-" * 100)
 
         # Calculating the values of variance for each class

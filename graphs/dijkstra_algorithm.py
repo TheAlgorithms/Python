@@ -106,7 +106,7 @@ class Graph:
             print(
                 u,
                 "->",
-                " -> ".join(str("{}({})".format(v, w)) for v, w in self.adjList[u]),
+                " -> ".join(str(f"{v}({w})") for v, w in self.adjList[u]),
             )
 
     def dijkstra(self, src):
@@ -139,9 +139,9 @@ class Graph:
         self.show_distances(src)
 
     def show_distances(self, src):
-        print("Distance from node: {}".format(src))
+        print(f"Distance from node: {src}")
         for u in range(self.num_nodes):
-            print("Node {} has distance: {}".format(u, self.dist[u]))
+            print(f"Node {u} has distance: {self.dist[u]}")
 
     def show_path(self, src, dest):
         # To show the shortest path from src to dest
@@ -161,9 +161,9 @@ class Graph:
         path.append(src)
         path.reverse()
 
-        print("----Path to reach {} from {}----".format(dest, src))
+        print(f"----Path to reach {dest} from {src}----")
         for u in path:
-            print("{}".format(u), end=" ")
+            print(f"{u}", end=" ")
             if u != dest:
                 print("-> ", end="")
 

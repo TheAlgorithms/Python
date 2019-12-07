@@ -135,6 +135,6 @@ if __name__ == "__main__":
 
     result = interpolation_search(collection, target)
     if result is not None:
-        print("{} found at positions: {}".format(target, result))
+        print(f"{target} found at positions: {result}")
     else:
         print("Not found")
