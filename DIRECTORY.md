@@ -193,7 +193,6 @@
   * [Dfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/dfs.py)
   * [Dijkstra](https://github.com/TheAlgorithms/Python/blob/master/graphs/dijkstra.py)
   * [Dijkstra 2](https://github.com/TheAlgorithms/Python/blob/master/graphs/dijkstra_2.py)
-  * [Dijkstra Algorithm](https://github.com/TheAlgorithms/Python/blob/master/graphs/dijkstra_algorithm.py)
   * [Dinic](https://github.com/TheAlgorithms/Python/blob/master/graphs/dinic.py)
   * [Directed And Undirected (Weighted) Graph](https://github.com/TheAlgorithms/Python/blob/master/graphs/directed_and_undirected_(weighted)_graph.py)
   * [Edmonds Karp Multiple Source And Sink](https://github.com/TheAlgorithms/Python/blob/master/graphs/edmonds_karp_multiple_source_and_sink.py)
