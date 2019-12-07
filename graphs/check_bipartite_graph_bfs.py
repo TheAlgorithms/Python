@@ -11,7 +11,7 @@ def checkBipartite(l):
     color = [-1] * len(l)
 
     def bfs():
-        while(queue):
+        while queue:
             u = queue.pop(0)
             visited[u] = True
 
@@ -38,6 +38,7 @@ def checkBipartite(l):
 
     return True
 
+
 # Adjacency List of graph
-l = {0:[1,3], 1:[0,2], 2:[1,3], 3:[0,2]}
+l = {0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}
 print(checkBipartite(l))

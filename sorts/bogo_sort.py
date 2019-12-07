@@ -37,7 +37,8 @@ def bogo_sort(collection):
         random.shuffle(collection)
     return collection
 
-if __name__ == '__main__':
-    user_input = input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
     print(bogo_sort(unsorted))

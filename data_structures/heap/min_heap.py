@@ -77,9 +77,10 @@ class MinHeap:
 
             if smallest != idx:
                 array[idx], array[smallest] = array[smallest], array[idx]
-                self.idx_of_element[array[idx]], self.idx_of_element[
-                    array[smallest]
-                ] = (
+                (
+                    self.idx_of_element[array[idx]],
+                    self.idx_of_element[array[smallest]],
+                ) = (
                     self.idx_of_element[array[smallest]],
                     self.idx_of_element[array[idx]],
                 )

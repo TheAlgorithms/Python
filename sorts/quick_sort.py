@@ -9,6 +9,8 @@ python3 -m doctest -v quick_sort.py
 For manual testing run:
 python quick_sort.py
 """
+
+
 def quick_sort(collection):
     """Pure implementation of quick sort algorithm in Python
 
@@ -43,7 +45,7 @@ def quick_sort(collection):
         return quick_sort(lesser) + [pivot] + quick_sort(greater)
 
 
-if __name__ == '__main__':
-    user_input = input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [ int(item) for item in user_input.split(',') ]
-    print( quick_sort(unsorted) )
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(quick_sort(unsorted))

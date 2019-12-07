@@ -1,9 +1,11 @@
 import sys
 from collections import defaultdict
 
+
 def PrimsAlgorithm(l):
 
     nodePosition = []
+
     def getPosition(vertex):
         return nodePosition[vertex]
 
@@ -36,11 +38,11 @@ def PrimsAlgorithm(l):
     def bottomToTop(val, index, heap, position):
         temp = position[index]
 
-        while(index != 0):
+        while index != 0:
             if index % 2 == 0:
-                parent = int( (index-2) / 2 )
+                parent = int((index - 2) / 2)
             else:
-                parent = int( (index-1) / 2 )
+                parent = int((index - 1) / 2)
 
             if val < heap[parent]:
                 heap[index] = heap[parent]
@@ -69,9 +71,9 @@ def PrimsAlgorithm(l):
         return temp
 
     visited = [0 for i in range(len(l))]
-    Nbr_TV  = [-1 for i in range(len(l))] # Neighboring Tree Vertex of selected vertex
+    Nbr_TV = [-1 for i in range(len(l))]  # Neighboring Tree Vertex of selected vertex
     # Minimum Distance of explored vertex with neighboring vertex of partial tree formed in graph
-    Distance_TV = [] # Heap of Distance of vertices from their neighboring vertex
+    Distance_TV = []  # Heap of Distance of vertices from their neighboring vertex
     Positions = []
 
     for x in range(len(l)):
@@ -84,8 +86,8 @@ def PrimsAlgorithm(l):
     visited[0] = 1
     Distance_TV[0] = sys.maxsize
     for x in l[0]:
-        Nbr_TV[ x[0] ] = 0
-        Distance_TV[ x[0] ] = x[1]
+        Nbr_TV[x[0]] = 0
+        Distance_TV[x[0]] = x[1]
     heapify(Distance_TV, Positions)
 
     for i in range(1, len(l)):
@@ -94,11 +96,12 @@ def PrimsAlgorithm(l):
             TreeEdges.append((Nbr_TV[vertex], vertex))
             visited[vertex] = 1
             for v in l[vertex]:
-                if visited[v[0]] == 0 and v[1] < Distance_TV[ getPosition(v[0]) ]:
-                    Distance_TV[ getPosition(v[0]) ] = v[1]
+                if visited[v[0]] == 0 and v[1] < Distance_TV[getPosition(v[0])]:
+                    Distance_TV[getPosition(v[0])] = v[1]
                     bottomToTop(v[1], getPosition(v[0]), Distance_TV, Positions)
-                    Nbr_TV[ v[0] ] = vertex
+                    Nbr_TV[v[0]] = vertex
     return TreeEdges
+
 
 if __name__ == "__main__":
     # < --------- Prims Algorithm --------- >
@@ -107,6 +110,6 @@ if __name__ == "__main__":
     adjlist = defaultdict(list)
     for x in range(e):
         l = [int(x) for x in input().strip().split()]
-        adjlist[l[0]].append([ l[1], l[2] ])
-        adjlist[l[1]].append([ l[0], l[2] ])
+        adjlist[l[0]].append([l[1], l[2]])
+        adjlist[l[1]].append([l[0], l[2]])
     print(PrimsAlgorithm(adjlist))

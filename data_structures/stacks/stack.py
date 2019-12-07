@@ -1,4 +1,4 @@
-__author__ = 'Omkar Pathak'
+__author__ = "Omkar Pathak"
 
 
 class Stack(object):
@@ -32,7 +32,7 @@ class Stack(object):
         if self.stack:
             return self.stack.pop()
         else:
-            raise IndexError('pop from an empty stack')
+            raise IndexError("pop from an empty stack")
 
     def peek(self):
         """ Peek at the top-most element of the stack."""
@@ -52,17 +52,17 @@ class StackOverflowError(BaseException):
     pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     stack = Stack()
     for i in range(10):
         stack.push(i)
 
-    print('Stack demonstration:\n')
-    print('Initial stack: ' + str(stack))
-    print('pop(): ' + str(stack.pop()))
-    print('After pop(), the stack is now: ' + str(stack))
-    print('peek(): ' + str(stack.peek()))
+    print("Stack demonstration:\n")
+    print("Initial stack: " + str(stack))
+    print("pop(): " + str(stack.pop()))
+    print("After pop(), the stack is now: " + str(stack))
+    print("peek(): " + str(stack.peek()))
     stack.push(100)
-    print('After push(100), the stack is now: ' + str(stack))
-    print('is_empty(): ' + str(stack.is_empty()))
-    print('size(): ' + str(stack.size()))
+    print("After push(100), the stack is now: " + str(stack))
+    print("is_empty(): " + str(stack.is_empty()))
+    print("size(): " + str(stack.size()))

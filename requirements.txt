@@ -1,4 +1,6 @@
+beautifulsoup4
 black
+fake_useragent
 flake8
 matplotlib
 mypy
@@ -7,7 +9,9 @@ opencv-python
 pandas
 pillow
 pytest
+pytest-cov
 requests
+scikit-fuzzy
 sklearn
 sympy
 tensorflow

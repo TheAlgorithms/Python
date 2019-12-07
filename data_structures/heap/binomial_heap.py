@@ -1,7 +1,6 @@
 """
-    Binomial Heap 
-    
-    Reference: Advanced Data Structures, Peter Brass   
+Binomial Heap
+Reference: Advanced Data Structures, Peter Brass
 """
 
 
@@ -10,7 +9,7 @@ class Node:
     Node in a doubly-linked binomial tree, containing:
         - value
         - size of left subtree
-        - link to left, right and parent nodes    
+        - link to left, right and parent nodes
     """
 
     def __init__(self, val):
@@ -23,12 +22,10 @@ class Node:
 
     def mergeTrees(self, other):
         """
-            In-place merge of two binomial trees of equal size. 
-            Returns the root of the resulting tree
+        In-place merge of two binomial trees of equal size.
+        Returns the root of the resulting tree
         """
-        assert (
-            self.left_tree_size == other.left_tree_size
-        ), "Unequal Sizes of Blocks"
+        assert self.left_tree_size == other.left_tree_size, "Unequal Sizes of Blocks"
 
         if self.val < other.val:
             other.left = self.right
@@ -36,9 +33,7 @@ class Node:
             if self.right:
                 self.right.parent = other
             self.right = other
-            self.left_tree_size = (
-                self.left_tree_size * 2 + 1
-            )
+            self.left_tree_size = self.left_tree_size * 2 + 1
             return self
         else:
             self.left = other.right
@@ -46,103 +41,95 @@ class Node:
             if other.right:
                 other.right.parent = self
             other.right = self
-            other.left_tree_size = (
-                other.left_tree_size * 2 + 1
-            )
+            other.left_tree_size = other.left_tree_size * 2 + 1
             return other
 
 
 class BinomialHeap:
-    """
-        Min-oriented priority queue implemented with the Binomial Heap data 
-        structure implemented with the BinomialHeap class. It supports:
-    
+    r"""
+    Min-oriented priority queue implemented with the Binomial Heap data
+    structure implemented with the BinomialHeap class. It supports:
         - Insert element in a heap with n elemnts: Guaranteed logn, amoratized 1
         - Merge (meld) heaps of size m and n: O(logn + logm)
-        - Delete Min: O(logn) 
+        - Delete Min: O(logn)
         - Peek (return min without deleting it): O(1)
-            
-        Example:
-            
-        Create a random permutation of 30 integers to be inserted and 
-        19 of them deleted
-        >>> import numpy as np
-        >>> permutation = np.random.permutation(list(range(30)))
 
-        Create a Heap and insert the 30 integers 
-        
-        __init__() test
-        >>> first_heap = BinomialHeap()
+    Example:
 
-        30 inserts - insert() test
-        >>> for number in permutation:
-        ...     first_heap.insert(number)
-        
-        Size test
-        >>> print(first_heap.size)  
-        30
-        
-        Deleting - delete() test
-        >>> for i in range(25):
-        ...     print(first_heap.deleteMin(), end=" ")
-        0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 
+    Create a random permutation of 30 integers to be inserted and 19 of them deleted
+    >>> import numpy as np
+    >>> permutation = np.random.permutation(list(range(30)))
 
-        Create a new Heap
-        >>> second_heap = BinomialHeap()
-        >>> vals = [17, 20, 31, 34]
-        >>> for value in vals:
-        ...     second_heap.insert(value)
-        
-        
-        The heap should have the following structure:
-            
-                        17
-                       /  \
-                      #    31
-                          /  \
-                        20    34
-                       /  \  /  \
-                      #    # #   #
-        
-        preOrder() test
-        >>> print(second_heap.preOrder())
-        [(17, 0), ('#', 1), (31, 1), (20, 2), ('#', 3), ('#', 3), (34, 2), ('#', 3), ('#', 3)]
-        
-        printing Heap - __str__() test
-        >>> print(second_heap)
-        17
-        -#
-        -31
-        --20
-        ---#
-        ---#
-        --34
-        ---#
-        ---#
+    Create a Heap and insert the 30 integers
+    __init__() test
+    >>> first_heap = BinomialHeap()
 
-        mergeHeaps() test
-        >>> merged = second_heap.mergeHeaps(first_heap)
-        >>> merged.peek()
-        17
-        
-        values in merged heap; (merge is inplace) 
-        >>> while not first_heap.isEmpty():
-        ...     print(first_heap.deleteMin(), end=" ")
-        17 20 25 26 27 28 29 31 34 
-        
+    30 inserts - insert() test
+    >>> for number in permutation:
+    ...     first_heap.insert(number)
+
+    Size test
+    >>> print(first_heap.size)
+    30
+
+    Deleting - delete() test
+    >>> for i in range(25):
+    ...     print(first_heap.deleteMin(), end=" ")
+    0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 
+
+    Create a new Heap
+    >>> second_heap = BinomialHeap()
+    >>> vals = [17, 20, 31, 34]
+    >>> for value in vals:
+    ...     second_heap.insert(value)
+
+
+    The heap should have the following structure:
+
+                    17
+                   /  \
+                  #    31
+                      /  \
+                    20    34
+                   /  \  /  \
+                  #    # #   #
+
+    preOrder() test
+    >>> print(second_heap.preOrder())
+    [(17, 0), ('#', 1), (31, 1), (20, 2), ('#', 3), ('#', 3), (34, 2), ('#', 3), ('#', 3)]
+
+    printing Heap - __str__() test
+    >>> print(second_heap)
+    17
+    -#
+    -31
+    --20
+    ---#
+    ---#
+    --34
+    ---#
+    ---#
+
+    mergeHeaps() test
+    >>> merged = second_heap.mergeHeaps(first_heap)
+    >>> merged.peek()
+    17
+
+    values in merged heap; (merge is inplace)
+    >>> while not first_heap.isEmpty():
+    ...     print(first_heap.deleteMin(), end=" ")
+    17 20 25 26 27 28 29 31 34 
     """
 
-    def __init__(
-        self, bottom_root=None, min_node=None, heap_size=0
-    ):
+    def __init__(self, bottom_root=None, min_node=None, heap_size=0):
         self.size = heap_size
         self.bottom_root = bottom_root
         self.min_node = min_node
 
     def mergeHeaps(self, other):
         """
-            In-place merge of two binomial heaps. 
-            Both of them become the resulting merged heap
+        In-place merge of two binomial heaps.
+        Both of them become the resulting merged heap
         """
 
         # Empty heaps corner cases
@@ -165,10 +152,7 @@ class BinomialHeap:
         combined_roots_list = []
         i, j = self.bottom_root, other.bottom_root
         while i or j:
-            if i and (
-                (not j)
-                or i.left_tree_size < j.left_tree_size
-            ):
+            if i and ((not j) or i.left_tree_size < j.left_tree_size):
                 combined_roots_list.append((i, True))
                 i = i.parent
             else:
@@ -176,29 +160,17 @@ class BinomialHeap:
                 j = j.parent
         # Insert links between them
         for i in range(len(combined_roots_list) - 1):
-            if (
-                combined_roots_list[i][1]
-                != combined_roots_list[i + 1][1]
-            ):
-                combined_roots_list[i][
-                    0
-                ].parent = combined_roots_list[i + 1][0]
-                combined_roots_list[i + 1][
-                    0
-                ].left = combined_roots_list[i][0]
+            if combined_roots_list[i][1] != combined_roots_list[i + 1][1]:
+                combined_roots_list[i][0].parent = combined_roots_list[i + 1][0]
+                combined_roots_list[i + 1][0].left = combined_roots_list[i][0]
         # Consecutively merge roots with same left_tree_size
         i = combined_roots_list[0][0]
         while i.parent:
             if (
-                (
-                    i.left_tree_size
-                    == i.parent.left_tree_size
-                )
-                and (not i.parent.parent)
+                (i.left_tree_size == i.parent.left_tree_size) and (not i.parent.parent)
             ) or (
                 i.left_tree_size == i.parent.left_tree_size
-                and i.left_tree_size
-                != i.parent.parent.left_tree_size
+                and i.left_tree_size != i.parent.parent.left_tree_size
             ):
 
                 # Neighbouring Nodes
@@ -232,7 +204,7 @@ class BinomialHeap:
 
     def insert(self, val):
         """
-            insert a value in the heap
+        insert a value in the heap
         """
         if self.size == 0:
             self.bottom_root = Node(val)
@@ -264,9 +236,7 @@ class BinomialHeap:
                 next_node = self.bottom_root.parent.parent
 
                 # Merge
-                self.bottom_root = self.bottom_root.mergeTrees(
-                    self.bottom_root.parent
-                )
+                self.bottom_root = self.bottom_root.mergeTrees(self.bottom_root.parent)
 
                 # Update Links
                 self.bottom_root.parent = next_node
@@ -276,7 +246,7 @@ class BinomialHeap:
 
     def peek(self):
         """
-            return min element without deleting it
+        return min element without deleting it
         """
         return self.min_node.val
 
@@ -285,7 +255,7 @@ class BinomialHeap:
 
     def deleteMin(self):
         """
-            delete min element and return it
+        delete min element and return it
         """
         # assert not self.isEmpty(), "Empty Heap"
 
@@ -337,9 +307,7 @@ class BinomialHeap:
             if bottom_of_new.val < min_of_new.val:
                 min_of_new = bottom_of_new
         # Corner case of single root on top left path
-        if (not self.min_node.left) and (
-            not self.min_node.parent
-        ):
+        if (not self.min_node.left) and (not self.min_node.parent):
             self.size = size_of_new
             self.bottom_root = bottom_of_new
             self.min_node = min_of_new
@@ -348,9 +316,7 @@ class BinomialHeap:
         # Remaining cases
         # Construct heap of right subtree
         newHeap = BinomialHeap(
-            bottom_root=bottom_of_new,
-            min_node=min_of_new,
-            heap_size=size_of_new,
+            bottom_root=bottom_of_new, min_node=min_of_new, heap_size=size_of_new
         )
 
         # Update size
@@ -392,9 +358,9 @@ class BinomialHeap:
 
     def preOrder(self):
         """
-            Returns the Pre-order representation of the heap including 
-            values of nodes plus their level distance from the root;
-            Empty nodes appear as #
+        Returns the Pre-order representation of the heap including
+        values of nodes plus their level distance from the root;
+        Empty nodes appear as #
         """
         # Find top root
         top_root = self.bottom_root
@@ -407,32 +373,25 @@ class BinomialHeap:
 
     def __traversal(self, curr_node, preorder, level=0):
         """
-            Pre-order traversal of nodes 
+        Pre-order traversal of nodes
         """
         if curr_node:
             preorder.append((curr_node.val, level))
-            self.__traversal(
-                curr_node.left, preorder, level + 1
-            )
-            self.__traversal(
-                curr_node.right, preorder, level + 1
-            )
+            self.__traversal(curr_node.left, preorder, level + 1)
+            self.__traversal(curr_node.right, preorder, level + 1)
         else:
             preorder.append(("#", level))
 
     def __str__(self):
         """
-            Overwriting str for a pre-order print of nodes in heap; 
-            Performance is poor, so use only for small examples
+        Overwriting str for a pre-order print of nodes in heap;
+        Performance is poor, so use only for small examples
         """
         if self.isEmpty():
             return ""
         preorder_heap = self.preOrder()
 
-        return "\n".join(
-            ("-" * level + str(value))
-            for value, level in preorder_heap
-        )
+        return "\n".join(("-" * level + str(value)) for value, level in preorder_heap)
 
 
 # Unit Tests
