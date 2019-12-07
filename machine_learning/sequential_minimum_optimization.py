@@ -499,9 +499,7 @@ def test_cancel_data():
     for i in range(test_tags.shape[0]):
         if test_tags[i] == predict[i]:
             score += 1
-    print(
-        f"\r\nall: {test_num}\r\nright: {score}\r\nfalse: {test_num - score}"
-    )
+    print(f"\r\nall: {test_num}\r\nright: {score}\r\nfalse: {test_num - score}")
     print(f"Rough Accuracy: {score / test_tags.shape[0]}")
 
 
