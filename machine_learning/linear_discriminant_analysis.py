@@ -45,6 +45,7 @@
 from math import log
 from os import name, system
 from random import gauss
+from random import seed
 
 
 # Make a training dataset drawn from a gaussian distribution
@@ -56,7 +57,15 @@ def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> l
     :param instance_count: instance number of class
     :return: a list containing generated values based-on given mean, std_dev and
         instance_count
+
+    >>> gaussian_distribution(5.0, 1.0, 20) # doctest: +NORMALIZE_WHITESPACE
+    [6.288184753155463, 6.4494456086997705, 5.066335808938262, 4.235456349028368,
+     3.9078267848958586, 5.031334516831717, 3.977896829989127, 3.56317055489747,
+      5.199311976483754, 5.133374604658605, 5.546468300338232, 4.086029056264687,
+       5.005005283626573, 4.935258239627312, 3.494170998739258, 5.537997178661033,
+        5.320711100998849, 7.3891120432406865, 5.202969177309964, 4.855297691835079]
     """
+    seed(1)
     return [gauss(mean, std_dev) for _ in range(instance_count)]
 
 
@@ -67,6 +76,14 @@ def y_generator(class_count: int, instance_count: list) -> list:
     :param class_count: Number of classes(data groupings) in dataset
     :param instance_count: number of instances in class
     :return: corresponding values for data groupings in dataset
+
+    >>> y_generator(1, [10])
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    >>> y_generator(2, [5, 10])
+    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    >>> y_generator(4, [10, 5, 15, 20]) # doctest: +NORMALIZE_WHITESPACE
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+     2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     """
 
     return [k for k in range(class_count) for _ in range(instance_count[k])]
@@ -79,6 +96,10 @@ def calculate_mean(instance_count: int, items: list) -> float:
     :param instance_count: Number of instances in class
     :param items: items that related to specific class(data grouping)
     :return: calculated actual mean of considered class
+
+    >>> items = gaussian_distribution(5.0, 1.0, 20)
+    >>> calculate_mean(len(items), items)
+    5.011267842911003
     """
     # the sum of all items divided by number of instances
     return sum(items) / instance_count
@@ -91,6 +112,11 @@ def calculate_probabilities(instance_count: int, total_count: int) -> float:
     :param instance_count: number of instances in class
     :param total_count: the number of all instances
     :return: value of probability for considered class
+
+    >>> calculate_probabilities(20, 60)
+    0.3333333333333333
+    >>> calculate_probabilities(30, 100)
+    0.3
     """
     # number of instances in specific class divided by number of all instances
     return instance_count / total_count
@@ -104,6 +130,12 @@ def calculate_variance(items: list, means: list, total_count: int) -> float:
     :param means: a list containing real mean values of each class
     :param total_count: the number of all instances
     :return: calculated variance for considered dataset
+
+    >>> items = gaussian_distribution(5.0, 1.0, 20)
+    >>> means = [5.011267842911003]
+    >>> total_count = 20
+    >>> calculate_variance([items], means, total_count)
+    0.9618530973487491
     """
     squared_diff = []  # An empty list to store all squared differences
     # iterate over number of elements in items
@@ -129,6 +161,36 @@ def predict_y_values(
     :param variance: calculated value of variance by calculate_variance function
     :param probabilities: a list containing all probabilities of classes
     :return: a list containing predicted Y values
+
+    >>> x_items = [[6.288184753155463, 6.4494456086997705, 5.066335808938262,
+    ...                4.235456349028368, 3.9078267848958586, 5.031334516831717,
+    ...                3.977896829989127, 3.56317055489747, 5.199311976483754,
+    ...                5.133374604658605, 5.546468300338232, 4.086029056264687,
+    ...                5.005005283626573, 4.935258239627312, 3.494170998739258,
+    ...                5.537997178661033, 5.320711100998849, 7.3891120432406865,
+    ...                5.202969177309964, 4.855297691835079], [11.288184753155463,
+    ...                11.44944560869977, 10.066335808938263, 9.235456349028368,
+    ...                8.907826784895859, 10.031334516831716, 8.977896829989128,
+    ...                8.56317055489747, 10.199311976483754, 10.133374604658606,
+    ...                10.546468300338232, 9.086029056264687, 10.005005283626572,
+    ...                9.935258239627313, 8.494170998739259, 10.537997178661033,
+    ...                10.320711100998848, 12.389112043240686, 10.202969177309964,
+    ...                9.85529769183508], [16.288184753155463, 16.449445608699772,
+    ...                15.066335808938263, 14.235456349028368, 13.907826784895859,
+    ...                15.031334516831716, 13.977896829989128, 13.56317055489747,
+    ...                15.199311976483754, 15.133374604658606, 15.546468300338232,
+    ...                14.086029056264687, 15.005005283626572, 14.935258239627313,
+    ...                13.494170998739259, 15.537997178661033, 15.320711100998848,
+    ...                17.389112043240686, 15.202969177309964, 14.85529769183508]]
+
+    >>> means = [5.011267842911003, 10.011267842911003, 15.011267842911002]
+    >>> variance = 0.9618530973487494
+    >>> probabilities = [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+    >>> predict_y_values(x_items, means, variance, probabilities) # doctest: +NORMALIZE_WHITESPACE
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    2, 2, 2, 2, 2, 2, 2, 2, 2]
+
     """
     # An empty list to store generated discriminant values of all items in dataset for
     # each class
@@ -148,7 +210,7 @@ def predict_y_values(
                 )
             # appending discriminant values of each item to 'results' list
             results.append(temp)
-    print("Generated Discriminants: \n", results)
+
     return [l.index(max(l)) for l in results]
 
 
@@ -161,6 +223,20 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     :param predicted_y: a list containing predicted Y values generated by
         'predict_y_values' function
     :return: percentage of accuracy
+
+    >>> actual_y = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+    ... 1, 1 ,1 ,1 ,1 ,1 ,1]
+    >>> predicted_y = [0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0,
+    ... 0, 0, 1, 1, 1, 0, 1, 1, 1]
+    >>> accuracy(actual_y, predicted_y)
+    50.0
+
+    >>> actual_y = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+    ... 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+    >>> predicted_y = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
+    ... 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+    >>> accuracy(actual_y, predicted_y)
+    100.0
     """
     # iterate over one element of each list at a time (zip mode)
     # prediction is correct if actual Y value equals to predicted Y value
