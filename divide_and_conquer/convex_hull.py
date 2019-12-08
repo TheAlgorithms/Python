@@ -40,7 +40,7 @@ class Point:
     >>> Point("pi", "e")
     Traceback (most recent call last):
         ...
-    ValueError: x and y must be both numeric types but got <class 'str'>, <class 'str'> instead
+    ValueError("x and y must be both numeric types but got <class 'str'>, <class 'str'> instead")
      """
 
     def __init__(self, x, y):
