@@ -1,5 +1,3 @@
-from numbers import Number
-
 """
 The convex hull problem is problem of finding all the vertices of convex polygon, P of
 a set of points in a plane such that all the points are either on the vertices of P or
@@ -40,21 +38,12 @@ class Point:
     >>> Point("pi", "e")
     Traceback (most recent call last):
         ...
-    ValueError: "x and y must be both numeric types but got <class 'str'>, <class 'str'> instead"
-     """
+    ValueError: could not convert string to float: 'pi'
+    """
 
     def __init__(self, x, y):
-        if not (isinstance(x, Number) and isinstance(y, Number)):
-            try:
-                x, y = float(x), float(y)
-            except ValueError as e:
-                e.args[0] = (
-                    "x and y must be both numeric types but got "
-                    f"{type(x)}, {type(y)} instead"
-                )
-                raise
-        self.x = x
-        self.y = y
+        self.x = float(x)
+        self.y = float(y)
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
