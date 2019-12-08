@@ -52,8 +52,6 @@ class Point:
                     "x and y must be both numeric types but got "
                     f"{type(x)}, {type(y)} instead"
                 )
-                raise
-
         self.x = x
         self.y = y
 
@@ -88,7 +86,7 @@ class Point:
         return False
 
     def __repr__(self):
-        return "({}, {})".format(self.x, self.y)
+        return f"({self.x}, {self.y})"
 
     def __hash__(self):
         return hash(self.x)
@@ -136,8 +134,8 @@ def _construct_points(list_of_tuples):
                 points.append(Point(p[0], p[1]))
             except (IndexError, TypeError):
                 print(
-                    "Ignoring deformed point {}. All points"
-                    " must have at least 2 coordinates.".format(p)
+                    f"Ignoring deformed point {p}. All points"
+                    " must have at least 2 coordinates."
                 )
     return points
 
@@ -184,7 +182,7 @@ def _validate_input(points):
     """
 
     if not points:
-        raise ValueError("Expecting a list of points but got {}".format(points))
+        raise ValueError(f"Expecting a list of points but got {points}")
 
     if isinstance(points, set):
         points = list(points)
@@ -196,12 +194,12 @@ def _validate_input(points):
             else:
                 raise ValueError(
                     "Expecting an iterable of type Point, list or tuple. "
-                    "Found objects of type {} instead".format(type(points[0]))
+                    f"Found objects of type {type(points[0])} instead"
                 )
         elif not hasattr(points, "__iter__"):
             raise ValueError(
                 "Expecting an iterable object "
-                "but got an non-iterable type {}".format(points)
+                f"but got an non-iterable type {points}"
             )
     except TypeError as e:
         print("Expecting an iterable of type Point, list or tuple.")
