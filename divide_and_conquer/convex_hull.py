@@ -40,7 +40,7 @@ class Point:
     >>> Point("pi", "e")
     Traceback (most recent call last):
         ...
-    ValueError("x and y must be both numeric types but got <class 'str'>, <class 'str'> instead")
+    ValueError: "x and y must be both numeric types but got <class 'str'>, <class 'str'> instead"
      """
 
     def __init__(self, x, y):
@@ -48,10 +48,11 @@ class Point:
             try:
                 x, y = float(x), float(y)
             except ValueError as e:
-                raise ValueError(
+                e.args[0] = (
                     "x and y must be both numeric types but got "
                     f"{type(x)}, {type(y)} instead"
                 )
+                raise
         self.x = x
         self.y = y
 
