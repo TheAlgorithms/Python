@@ -48,9 +48,9 @@ class Point:
             try:
                 x, y = float(x), float(y)
             except ValueError as e:
-                e.args = (
-                    "x and y must be both numeric types "
-                    "but got {}, {} instead".format(type(x), type(y)),
+                raise ValueError(
+                    "x and y must be both numeric types but got "
+                    f"{type(x)}, {type(y)} instead"
                 )
                 raise
 
