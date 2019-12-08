@@ -6,8 +6,12 @@ import math
 # https://github.com/TheAlgorithms/Javascript/blob/master/Conversions/DecimalToOctal.js
 
 
-def decimal_to_octal(num):
-    """Convert a Decimal Number to an Octal Number."""
+def decimal_to_octal(num: int) -> str:
+    """Convert a Decimal Number to an Octal Number.
+    
+    >>> all(decimal_to_octal(i) == oct(i) for i in (0, 2, 8, 64, 65, 216, 255, 256, 512))
+    True
+    """
     octal = 0
     counter = 0
     while num > 0:
@@ -16,7 +20,7 @@ def decimal_to_octal(num):
         counter += 1
         num = math.floor(num / 8)  # basically /= 8 without remainder if any
         # This formatting removes trailing '.0' from `octal`.
-    return "{0:g}".format(float(octal))
+    return f"0o{int(octal)}"
 
 
 def main():
