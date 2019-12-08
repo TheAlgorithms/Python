@@ -1,3 +1,5 @@
+from numbers import Number
+
 """
 The convex hull problem is problem of finding all the vertices of convex polygon, P of
 a set of points in a plane such that all the points are either on the vertices of P or
@@ -26,7 +28,7 @@ class Point:
     Examples
     --------
     >>> Point(1, 2)
-    (1, 2)
+    (1.0, 2.0)
     >>> Point("1", "2")
     (1.0, 2.0)
     >>> Point(1, 2) > Point(0, 1)
@@ -38,12 +40,22 @@ class Point:
     >>> Point("pi", "e")
     Traceback (most recent call last):
         ...
-    ValueError: could not convert string to float: 'pi'
+    ValueError: x and y must be both numeric types but got <class 'str'>, <class 'str'> instead
     """
 
     def __init__(self, x, y):
-        self.x = float(x)
-        self.y = float(y)
+        if not (isinstance(x, Number) and isinstance(y, Number)):
+            try:
+                x, y = float(x), float(y)
+            except ValueError as e:
+                e.args = (
+                    "x and y must be both numeric types "
+                    f"but got {type(x)}, {type(y)} instead"
+                )
+                raise
+
+        self.x = x
+        self.y = y
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y
@@ -188,7 +200,8 @@ def _validate_input(points):
                 )
         elif not hasattr(points, "__iter__"):
             raise ValueError(
-                "Expecting an iterable object " f"but got an non-iterable type {points}"
+                "Expecting an iterable object "
+                f"but got an non-iterable type {points}"
             )
     except TypeError as e:
         print("Expecting an iterable of type Point, list or tuple.")
