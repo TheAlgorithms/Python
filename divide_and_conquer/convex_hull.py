@@ -181,7 +181,7 @@ def _validate_input(points):
                 )
         elif not hasattr(points, "__iter__"):
             raise ValueError(
-                "Expecting an iterable object " f"but got an non-iterable type {points}"
+                f"Expecting an iterable object but got an non-iterable type {points}"
             )
     except TypeError:
         print("Expecting an iterable of type Point, list or tuple.")
