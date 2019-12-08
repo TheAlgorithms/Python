@@ -28,7 +28,7 @@ class Point:
     Examples
     --------
     >>> Point(1, 2)
-    (1, 2)
+    (1.0, 2.0)
     >>> Point("1", "2")
     (1.0, 2.0)
     >>> Point(1, 2) > Point(0, 1)
@@ -41,7 +41,7 @@ class Point:
     Traceback (most recent call last):
         ...
     ValueError: x and y must be both numeric types but got <class 'str'>, <class 'str'> instead
-     """
+    """
 
     def __init__(self, x, y):
         if not (isinstance(x, Number) and isinstance(y, Number)):
@@ -200,8 +200,7 @@ def _validate_input(points):
                 )
         elif not hasattr(points, "__iter__"):
             raise ValueError(
-                "Expecting an iterable object "
-                f"but got an non-iterable type {points}"
+                "Expecting an iterable object " f"but got an non-iterable type {points}"
             )
     except TypeError as e:
         print("Expecting an iterable of type Point, list or tuple.")
