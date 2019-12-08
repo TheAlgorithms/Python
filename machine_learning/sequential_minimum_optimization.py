@@ -85,7 +85,7 @@ class SmoSVM(object):
                 i1, i2 = self.choose_alpha.send(state)
                 state = None
             except StopIteration:
-                print("Optimization done!\r\nEvery sample satisfy the KKT condition!")
+                print("Optimization done!\nEvery sample satisfy the KKT condition!")
                 break
 
             # 2: calculate new alpha2 and new alpha1
@@ -453,7 +453,7 @@ def count_time(func):
 
 @count_time
 def test_cancel_data():
-    print("Hello!\r\nStart test svm by smo algorithm!")
+    print("Hello!\nStart test svm by smo algorithm!")
     # 0: download dataset and load into pandas' dataframe
     if not os.path.exists(r"cancel_data.csv"):
         request = urllib.request.Request(
@@ -499,13 +499,13 @@ def test_cancel_data():
     for i in range(test_tags.shape[0]):
         if test_tags[i] == predict[i]:
             score += 1
-    print(f"\r\nall: {test_num}\r\nright: {score}\r\nfalse: {test_num - score}")
+    print(f"\nall: {test_num}\nright: {score}\nfalse: {test_num - score}")
     print(f"Rough Accuracy: {score / test_tags.shape[0]}")
 
 
 def test_demonstration():
     # change stdout
-    print("\r\nStart plot,please wait!!!")
+    print("\nStart plot,please wait!!!")
     sys.stdout = open(os.devnull, "w")
 
     ax1 = plt.subplot2grid((2, 2), (0, 0))
