@@ -88,7 +88,7 @@ class Point:
         return False
 
     def __repr__(self):
-        return f"({self.x}, {self.y})"
+        return "({}, {})".format(self.x, self.y)
 
     def __hash__(self):
         return hash(self.x)

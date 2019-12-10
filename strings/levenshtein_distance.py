@@ -70,7 +70,5 @@ if __name__ == "__main__":
 
     result = levenshtein_distance(first_word, second_word)
     print(
-        "Levenshtein distance between {} and {} is {}".format(
-            first_word, second_word, result
-        )
+    f"Levenshtein distance between {first_word} and {second_word} is {result}"
     )
