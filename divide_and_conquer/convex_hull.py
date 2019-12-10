@@ -1,5 +1,3 @@
-from numbers import Number
-
 """
 The convex hull problem is problem of finding all the vertices of convex polygon, P of
 a set of points in a plane such that all the points are either on the vertices of P or
@@ -28,7 +26,7 @@ class Point:
     Examples
     --------
     >>> Point(1, 2)
-    (1, 2)
+    (1.0, 2.0)
     >>> Point("1", "2")
     (1.0, 2.0)
     >>> Point(1, 2) > Point(0, 1)
@@ -40,8 +38,8 @@ class Point:
     >>> Point("pi", "e")
     Traceback (most recent call last):
         ...
-    ValueError: x and y must be both numeric types but got <class 'str'>, <class 'str'> instead
-     """
+    ValueError: could not convert string to float: 'pi'
+    """
 
     def __init__(self, x, y):
         if not (isinstance(x, Number) and isinstance(y, Number)):
@@ -88,7 +86,7 @@ class Point:
         return False
 
     def __repr__(self):
-        return "({}, {})".format(self.x, self.y)
+        return f"({self.x}, {self.y})"
 
     def __hash__(self):
         return hash(self.x)
@@ -112,13 +110,7 @@ def _construct_points(list_of_tuples):
     Examples
     -------
     >>> _construct_points([[1, 1], [2, -1], [0.3, 4]])
-    [(1, 1), (2, -1), (0.3, 4)]
-    >>> _construct_points(([1, 1], [2, -1], [0.3, 4]))
-    [(1, 1), (2, -1), (0.3, 4)]
-    >>> _construct_points([(1, 1), (2, -1), (0.3, 4)])
-    [(1, 1), (2, -1), (0.3, 4)]
-    >>> _construct_points([[1, 1], (2, -1), [0.3, 4]])
-    [(1, 1), (2, -1), (0.3, 4)]
+    [(1.0, 1.0), (2.0, -1.0), (0.3, 4.0)]
     >>> _construct_points([1, 2])
     Ignoring deformed point 1. All points must have at least 2 coordinates.
     Ignoring deformed point 2. All points must have at least 2 coordinates.
@@ -168,11 +160,11 @@ def _validate_input(points):
     Examples
     -------
     >>> _validate_input([[1, 2]])
-    [(1, 2)]
+    [(1.0, 2.0)]
     >>> _validate_input([(1, 2)])
-    [(1, 2)]
+    [(1.0, 2.0)]
     >>> _validate_input([Point(2, 1), Point(-1, 2)])
-    [(2, 1), (-1, 2)]
+    [(2.0, 1.0), (-1.0, 2.0)]
     >>> _validate_input([])
     Traceback (most recent call last):
         ...
@@ -203,7 +195,7 @@ def _validate_input(points):
                 "Expecting an iterable object "
                 f"but got an non-iterable type {points}"
             )
-    except TypeError as e:
+    except TypeError:
         print("Expecting an iterable of type Point, list or tuple.")
         raise
 
@@ -234,11 +226,11 @@ def _det(a, b, c):
     Examples
     ----------
     >>> _det(Point(1, 1), Point(1, 2), Point(1, 5))
-    0
+    0.0
     >>> _det(Point(0, 0), Point(10, 0), Point(0, 10))
-    100
+    100.0
     >>> _det(Point(0, 0), Point(10, 0), Point(0, -10))
-    -100
+    -100.0
     """
 
     det = (a.x * b.y + b.x * c.y + c.x * a.y) - (a.y * b.x + b.y * c.x + c.y * a.x)
@@ -272,13 +264,13 @@ def convex_hull_bf(points):
      Examples
      ---------
      >>> convex_hull_bf([[0, 0], [1, 0], [10, 1]])
-     [(0, 0), (1, 0), (10, 1)]
+     [(0.0, 0.0), (1.0, 0.0), (10.0, 1.0)]
      >>> convex_hull_bf([[0, 0], [1, 0], [10, 0]])
-     [(0, 0), (10, 0)]
+     [(0.0, 0.0), (10.0, 0.0)]
      >>> convex_hull_bf([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1], [-0.75, 1]])
-     [(-1, -1), (-1, 1), (1, -1), (1, 1)]
+     [(-1.0, -1.0), (-1.0, 1.0), (1.0, -1.0), (1.0, 1.0)]
      >>> convex_hull_bf([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3), (2, -1), (2, -4), (1, -3)])
-     [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
+     [(0.0, 0.0), (0.0, 3.0), (1.0, -3.0), (2.0, -4.0), (3.0, 0.0), (3.0, 3.0)]
     """
 
     points = sorted(_validate_input(points))
@@ -337,13 +329,13 @@ def convex_hull_recursive(points):
     Examples
     ---------
     >>> convex_hull_recursive([[0, 0], [1, 0], [10, 1]])
-    [(0, 0), (1, 0), (10, 1)]
+    [(0.0, 0.0), (1.0, 0.0), (10.0, 1.0)]
     >>> convex_hull_recursive([[0, 0], [1, 0], [10, 0]])
-    [(0, 0), (10, 0)]
+    [(0.0, 0.0), (10.0, 0.0)]
     >>> convex_hull_recursive([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1], [-0.75, 1]])
-    [(-1, -1), (-1, 1), (1, -1), (1, 1)]
+    [(-1.0, -1.0), (-1.0, 1.0), (1.0, -1.0), (1.0, 1.0)]
     >>> convex_hull_recursive([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3), (2, -1), (2, -4), (1, -3)])
-    [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
+    [(0.0, 0.0), (0.0, 3.0), (1.0, -3.0), (2.0, -4.0), (3.0, 0.0), (3.0, 3.0)]
 
     """
     points = sorted(_validate_input(points))

@@ -30,7 +30,8 @@ class Heap(object):
         """Performs changes required for swapping two elements in the heap"""
         # First update the indexes of the items in index map.
         self.pos_map[self.arr[i][0]], self.pos_map[self.arr[j][0]] = (
-            self.pos_map[self.arr[j][0]], self.pos_map[self.arr[i][0]]
+            self.pos_map[self.arr[j][0]],
+            self.pos_map[self.arr[i][0]],
         )
         # Then swap the items in the list.
         self.arr[i], self.arr[j] = self.arr[j], self.arr[i]

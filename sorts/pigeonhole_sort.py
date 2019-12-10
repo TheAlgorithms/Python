@@ -36,8 +36,9 @@ def pigeonhole_sort(a):
 
 
 def main():
-    pigeonhole_sort([8, 3, 2, 7, 4, 6, 8])
-    print("Sorted order is: ", " ", join(a))
+    a = [8, 3, 2, 7, 4, 6, 8]
+    pigeonhole_sort(a)
+    print("Sorted order is:", " ".join(a))
 
 
 if __name__ == "__main__":

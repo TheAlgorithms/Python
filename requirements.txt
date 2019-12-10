@@ -4,7 +4,7 @@ fake_useragent
 flake8
 matplotlib
 mypy
-numpy
+numpy>=1.17.4
 opencv-python
 pandas
 pillow
