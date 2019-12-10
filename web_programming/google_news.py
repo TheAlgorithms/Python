@@ -1,6 +1,3 @@
-
-
-
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
@@ -60,51 +57,51 @@ def news_india(url, ua , url1):
         
         
     return len(data)    
-        
-bold_start = '\033[1m'
-bold_end = '\033[0m'
-print("\033[5;31;40m")
-print(bold_start,"                                      HERE YOU WILL GET ALL THE NEWS JUST IN ONE SEARCH                       ",bold_end)
-print("\n")
-localtime = time.asctime( time.localtime(time.time()) )
-print (bold_start, localtime,bold_end)
-url="https://timesofindia.indiatimes.com/india/"
-ua={"UserAgent":'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0'}
-print(bold_start,"\n\033[1;35;40m Search any news (state , city ,Country , AnyThings etc) : ",bold_end,end=" ")
-num=input()
-url+=num
-url1="https://timesofindia.indiatimes.com/india/"
-url2="https://www.indiatoday.in/topic/"
-url2+=num
-url3 =""
-print(bold_start,"\033[1;33;40m \n")
-print("Which news channel data would you prefer")
-print("1. Times of india")
-print("2. India's Today",bold_end,)
-say = int(input())
-if say==1:
-    length = Times_of_India(url,ua,url1)
-    if length==0:
-        print("Sorry Here No News Available","\N{expressionless face}")
-        print("\n")
-        print("Would you like to go for India's Today (y/n):: ","\N{thinking face}",end="  ")
-        speak= input()
-        if speak=='y':
-            length=news_india(url2,ua,url3)
-            if length==0:
-                print("Sorry No news","\N{expressionless face}")
+if __name__=="__main__":
+    bold_start = '\033[1m'
+    bold_end = '\033[0m'
+    print("\033[5;31;40m")
+    print(bold_start,"                                      HERE YOU WILL GET ALL THE NEWS JUST IN ONE SEARCH                       ",bold_end)
+    print("\n")
+    localtime = time.asctime( time.localtime(time.time()) )
+    print (bold_start, localtime,bold_end)
+    url="https://timesofindia.indiatimes.com/india/"
+    ua={"UserAgent":'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0'}
+    print(bold_start,"\n\033[1;35;40m Search any news (state , city ,Country , AnyThings etc) : ",bold_end,end=" ")
+    num=input()
+    url+=num
+    url1="https://timesofindia.indiatimes.com/india/"
+    url2="https://www.indiatoday.in/topic/"
+    url2+=num
+    url3 =""
+    print(bold_start,"\033[1;33;40m \n")
+    print("Which news channel data would you prefer")
+    print("1. Times of india")
+    print("2. India's Today",bold_end,)
+    say = int(input())
+    if say==1:
+        length = Times_of_India(url,ua,url1)
+        if length==0:
+            print("Sorry Here No News Available","\N{expressionless face}")
+            print("\n")
+            print("Would you like to go for India's Today (y/n):: ","\N{thinking face}",end="  ")
+            speak= input()
+            if speak=='y':
+                length=news_india(url2,ua,url3)
+                if length==0:
+                    print("Sorry No news","\N{expressionless face}")
+                else:
+                    print("\nThank you","\U0001f600")   
             else:
-                print("\nThank you","\U0001f600")   
-        else:
-            print("\nThank you","\U0001f600")    
-elif say ==2:
-   length=news_india(url2,ua,url3)
-   if length==0:
-       print("Sorry No news")
-   else:
-        print("\nThank you","\U0001f600")       
-else:
-    print("Sorry","\N{expressionless face}")       
+                print("\nThank you","\U0001f600")    
+    elif say ==2:
+       length=news_india(url2,ua,url3)
+       if length==0:
+           print("Sorry No news")
+       else:
+            print("\nThank you","\U0001f600")       
+    else:
+        print("Sorry","\N{expressionless face}")       
 
 
     
