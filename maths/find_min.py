@@ -2,7 +2,7 @@ def find_min(nums):
     """
     Find Minimum Number in a List
     :param nums: contains elements
-    :return: max number in list
+    :return: min number in list
 
     >>> for nums in ([3, 2, 1], [-3, -2, -1], [3, -3, 0], [3.0, 3.1, 2.9]):
     ...     find_min(nums) == min(nums)
