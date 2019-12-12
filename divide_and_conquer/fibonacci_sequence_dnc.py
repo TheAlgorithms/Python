@@ -29,10 +29,10 @@ def get_fibonacci(n):
         return matrix[0][1]
     else:
         matrix = [[1, 1], [1, 0]]
-        return pow(matrix, n)[0][1]
+        return get_squared(matrix, n)[0][1]
 
 
-def get_pow(matrix, n):
+def get_squared(matrix, n):
     if n == 1:
         return matrix
     elif n % 2 == 0:
