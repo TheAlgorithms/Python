@@ -1,16 +1,16 @@
 """
 We can find the Fibonacci sequence more effectively than naive bottom-up algorithm
+    We use One of the well-known properties of Fibonacci number is:
 
-	 We use One of the well-known properties of Fibonacci number is:
+    | F(n+1) ,  F(n)   |       | 1 , 1 | ^ n
+    |                  |   =   |       |
+    | F(n)   ,  F(n-1) |       | 1 , 0 |
 
-	 | F(n+1) ,  F(n)   |       | 1 , 1 | ^ n
-	 |                  |   =   |       |
-	 | F(n)   ,  F(n-1) |       | 1 , 0 |
+    We can therefore compute the (n)th power of A = ((1,1),(1,0)) using recursive squaring
 
-	 We can therefore compute the (n)th power of A = ((1,1),(1,0)) using recursive squaring
-
-	 Time complexity: O(log(n)), because it is a divide and conquer algorithm
+    Time complexity: O(log(n)), because it is a divide and conquer algorithm
 """
+
 
 def get_fibonacci(n):
     """
@@ -32,7 +32,7 @@ def get_fibonacci(n):
         return pow(matrix, n)[0][1]
 
 
-def pow(matrix, n):
+def get_pow(matrix, n):
     if n == 1:
         return matrix
     elif n % 2 == 0:
@@ -56,6 +56,7 @@ def mul(left_matrix, right_matrix):
             for k in range(n):
                 multiplied_matrix[i][j] = int(multiplied_matrix[i][j] + left_matrix[i][k] * right_matrix[k][j]);
     return multiplied_matrix
+
 
 if __name__ == "__main__":
     import doctest
