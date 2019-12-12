@@ -36,10 +36,10 @@ def get_squared(matrix, n):
     if n == 1:
         return matrix
     elif n % 2 == 0:
-        temp = pow(matrix, n / 2)
+        temp = get_squared(matrix, n / 2)
         return mul(temp, temp);
     else:
-        temp = pow(matrix, (n - 1) / 2)
+        temp = get_squared(matrix, (n - 1) / 2)
         temp2 = mul(temp, temp)
         return mul(temp2, matrix)
 
@@ -56,7 +56,6 @@ def mul(left_matrix, right_matrix):
             for k in range(n):
                 multiplied_matrix[i][j] = int(multiplied_matrix[i][j] + left_matrix[i][k] * right_matrix[k][j]);
     return multiplied_matrix
-
 
 if __name__ == "__main__":
     import doctest
