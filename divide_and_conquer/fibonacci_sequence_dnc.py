@@ -12,14 +12,25 @@ We can find the Fibonacci sequence more effectively than naive bottom-up algorit
 	 Time complexity: O(log(n)), because it is a divide and conquer algorithm
 """
 
-# return (n)th term of Fibonacci sequence
-def getFibonacci(n):
+def get_fibonacci(n):
+    """
+    :param n: number of Sequence
+    :return: (n)th sequence of Fibonacci sequence
+
+    >>> get_fibonacci(5)
+    5
+    >>> get_fibonacci(10)
+    55
+    >>> get_fibonacci(20)
+    6765
+    """
     if n < 2:
         matrix = [[1, n], [1, 0]]
         return matrix[0][1]
     else:
         matrix = [[1, 1], [1, 0]]
         return pow(matrix, n)[0][1]
+
 
 def pow(matrix, n):
     if n == 1:
@@ -32,19 +43,21 @@ def pow(matrix, n):
         temp2 = mul(temp, temp)
         return mul(temp2, matrix)
 
+
 # perform matrix multiplication
-def mul(a, b):
+def mul(left_matrix, right_matrix):
     n = 2
-    c = [[0, 0], [0, 0]]
+    multiplied_matrix  = [[0, 0], [0, 0]]
 
     for i in range(n):
         for j in range(n):
-            c[i][j] = 0
+            multiplied_matrix[i][j] = 0
 
             for k in range(n):
-                c[i][j] = int(c[i][j] + a[i][k] * b[k][j]);
+                multiplied_matrix[i][j] = int(multiplied_matrix[i][j] + left_matrix[i][k] * right_matrix[k][j]);
+    return multiplied_matrix
 
-    return c
+if __name__ == "__main__":
+    import doctest
 
-
-
+    doctest.testmod()
