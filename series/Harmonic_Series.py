@@ -61,4 +61,5 @@ def Harmonic_Series(n_term):
 
 if __name__ == "__main__":
     userInput = input("Enter the Last number (n term) of the Harmonic Series")
+    print("Formula of Harmonic Series => 1+1/2+1/3 ..... 1/n")
     print(Harmonic_Series(userInput))
