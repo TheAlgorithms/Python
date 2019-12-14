@@ -4,16 +4,24 @@
 # quickly find a good approximation for the root of a real-valued function
 from sympy import diff
 from decimal import Decimal
-from math import sin,log,exp
+from math import *
 
-
-a,b,c = sin(10),log(10),exp(10)
 
 PRECISION = 10 ** -10
 
 
 def NewtonRaphson(func, a):
-    """ Finds root from the point 'a' onwards by Newton-Raphson method """
+    """ Finds root from the point 'a' onwards by Newton-Raphson method
+    >>> NewtonRaphson("sin(x)", 2))
+    3.141592653680804119362982272
+    >>> NewtonRaphson("x**2 - 5*x +2", 0.4))
+    0.4384471871911695062638833812
+    >>> NewtonRaphson("x**2 - 5", 0.1))
+    2.236067977499789696465261251
+    >>> NewtonRaphson("log(x)- 1", 2))
+    2.718281828458937968804105873
+    """
+    
     x = a
     while True:
 
@@ -35,6 +43,6 @@ if __name__ == "__main__":
 
     # Find Square Root of 5
     print("The root of log(x) - 1 = 0 is ", NewtonRaphson("log(x)- 1", 2))
-
+    
     # Exponential Roots
     print("The root of exp(x) - 1 = 0 is", NewtonRaphson("exp(x) - 1", 0))
