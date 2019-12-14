@@ -4,7 +4,7 @@
 # quickly find a good approximation for the root of a real-valued function
 from sympy import diff
 from decimal import Decimal
-from math import sin,cos,tan,log,exp
+from math import sin,log,exp
 
 
 PRECISION = 10 ** -10
