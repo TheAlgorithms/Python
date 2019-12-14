@@ -5,7 +5,9 @@
 from sympy import diff
 from decimal import Decimal
 from math import sin,log,exp
-# noqa, flake8 issue
+
+
+a,b,c = sin(10),log(10),exp(10)
 
 PRECISION = 10 ** -10
 
