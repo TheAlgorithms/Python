@@ -7,7 +7,7 @@ from decimal import Decimal
 from math import sin,cos,tan,log,exp
 
 
-precision = 10 ** -10
+PRECISION = 10 ** -10
 
 
 def NewtonRaphson(func, a):
@@ -18,7 +18,7 @@ def NewtonRaphson(func, a):
         x = Decimal(x) - (Decimal(eval(func)) / Decimal(eval(str(diff(func)))))
 
         # This number dictates the accuracy of the answer
-        if abs(eval(func)) < precision:
+        if abs(eval(func)) < PRECISION:
             return x
 
 
