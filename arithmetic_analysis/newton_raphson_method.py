@@ -4,10 +4,10 @@
 # quickly find a good approximation for the root of a real-valued function
 from sympy import diff
 from decimal import Decimal
-from math import *
+from math import sin,cos,tan,log,exp
 
 
-PRECISION = 10 ** -10
+precision = 10 ** -10
 
 
 def NewtonRaphson(func, a):
@@ -18,7 +18,7 @@ def NewtonRaphson(func, a):
         x = Decimal(x) - (Decimal(eval(func)) / Decimal(eval(str(diff(func)))))
 
         # This number dictates the accuracy of the answer
-        if abs(eval(func)) < PRECISION:
+        if abs(eval(func)) < precision:
             return x
 
 
