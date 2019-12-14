@@ -2,12 +2,12 @@
 This is a pure python implementation of the P-Series algorithm
 
 For doctests run following command:
-python -m doctest -v P-Series.py
+python -m doctest -v P_Series.py
 or
-python3 -m doctest -v P-Series.py
+python3 -m doctest -v P_Series.py
 
 For manual testing run:
-python3 P-Series.py
+python3 P_Series.py
 """
 
 
