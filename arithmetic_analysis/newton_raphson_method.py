@@ -13,11 +13,11 @@ def newton_raphson(func: str, a: int, precision: int=10 ** -10) -> float:
     >>> newton_raphson("sin(x)", 2)
     3.1415926536808043
     >>> newton_raphson("x**2 - 5*x +2", 0.4)
-    0.4384471871911695062638833812
+    0.4384471871911695
     >>> newton_raphson("x**2 - 5", 0.1)
-    2.236067977499789696465261251
+    2.2360679774997896
     >>> newton_raphson("log(x)- 1", 2)
-    2.718281828458937968804105873
+    2.7182818284589379
     """
     x = a
     while True:
