@@ -11,7 +11,7 @@ from sympy import diff
 def newton_raphson(func: str, a: int, precision: int=10 ** -10) -> float:
     """ Finds root from the point 'a' onwards by Newton-Raphson method
     >>> newton_raphson("sin(x)", 2)
-    3.141592653680804119362982272
+    3.1415926536808043
     >>> newton_raphson("x**2 - 5*x +2", 0.4)
     0.4384471871911695062638833812
     >>> newton_raphson("x**2 - 5", 0.1)
