@@ -24,7 +24,7 @@ def newton_raphson(func: str, a: int, precision: int=10 ** -10) -> float:
         x = Decimal(x) - (Decimal(eval(func)) / Decimal(eval(str(diff(func)))))
         # This number dictates the accuracy of the answer
         if abs(eval(func)) < precision:
-            return x
+            return float(x)
 
 
 # Let's Execute
