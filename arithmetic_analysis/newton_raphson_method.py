@@ -8,7 +8,7 @@ from math import *  # noqa: F821
 from sympy import diff
 
 
-def NewtonRaphson(func: str, a: int, precision=int: 10 ** -10) -> float:
+def NewtonRaphson(func: str, a: int, precision=10 ** -10) -> float:
     """ Finds root from the point 'a' onwards by Newton-Raphson method
     >>> NewtonRaphson("sin(x)", 2))
     3.141592653680804119362982272
