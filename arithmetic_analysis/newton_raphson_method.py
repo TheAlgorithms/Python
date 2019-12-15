@@ -4,7 +4,7 @@
 # quickly find a good approximation for the root of a real-valued function
 
 from decimal import Decimal
-from math import *  # noqa: F821
+from math import *  # noqa: F401, F403
 from sympy import diff
 
 
