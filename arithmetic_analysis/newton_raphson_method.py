@@ -8,15 +8,15 @@ from math import *  # noqa: F401, F403
 from sympy import diff
 
 
-def NewtonRaphson(func: str, a: int, precision=10 ** -10) -> float:
+def newton_raphson(func: str, a: int, precisionm int=10 ** -10) -> float:
     """ Finds root from the point 'a' onwards by Newton-Raphson method
-    >>> NewtonRaphson("sin(x)", 2))
+    >>> newton_raphson("sin(x)", 2)
     3.141592653680804119362982272
-    >>> NewtonRaphson("x**2 - 5*x +2", 0.4))
+    >>> newton_raphson("x**2 - 5*x +2", 0.4)
     0.4384471871911695062638833812
-    >>> NewtonRaphson("x**2 - 5", 0.1))
+    >>> newton_raphson("x**2 - 5", 0.1)
     2.236067977499789696465261251
-    >>> NewtonRaphson("log(x)- 1", 2))
+    >>> newton_raphson("log(x)- 1", 2)
     2.718281828458937968804105873
     """
     x = a
@@ -31,10 +31,10 @@ def NewtonRaphson(func: str, a: int, precision=10 ** -10) -> float:
 if __name__ == "__main__":
     # Find root of trigonometric function
     # Find value of pi
-    print(f"The root of sin(x) = 0 is {NewtonRaphson('sin(x)', 2)}")
+    print(f"The root of sin(x) = 0 is {newton_raphson('sin(x)', 2)}")
     # Find root of polynomial
-    print(f"The root of x**2 - 5*x + 2 = 0 is {NewtonRaphson('x**2 - 5*x + 2', 0.4)}")
+    print(f"The root of x**2 - 5*x + 2 = 0 is {newton_raphson('x**2 - 5*x + 2', 0.4)}")
     # Find Square Root of 5
-    print(f"The root of log(x) - 1 = 0 is {NewtonRaphson('log(x) - 1', 2)}")
+    print(f"The root of log(x) - 1 = 0 is {newton_raphson('log(x) - 1', 2)}")
     # Exponential Roots
-    print(f"The root of exp(x) - 1 = 0 is {NewtonRaphson('exp(x) - 1', 0)}")
+    print(f"The root of exp(x) - 1 = 0 is {newton_raphson('exp(x) - 1', 0)}")
