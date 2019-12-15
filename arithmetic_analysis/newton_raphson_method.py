@@ -17,7 +17,7 @@ def newton_raphson(func: str, a: int, precision: int=10 ** -10) -> float:
     >>> newton_raphson("x**2 - 5", 0.1)
     2.23606797749979
     >>> newton_raphson("log(x)- 1", 2)
-    2.7182818284589379
+    2.718281828458938
     """
     x = a
     while True:
