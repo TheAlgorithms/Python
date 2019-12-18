@@ -1,0 +1,578 @@
+[33mcommit b3946094a78e1ccbcddf80130082ef76a0e000d0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: faizan2700 <syedfaizan824@gmail.com>
+Date:   Wed Dec 18 10:38:21 2019 +0530
+
+    iterating_through_submasks.py is added in dynamic_programming
+
+[33mcommit 00351ca8992cc9b8a959274861a25d19123e81ba[m
+Author: faizan2700 <syedfaizan824@gmail.com>
+Date:   Wed Dec 18 10:27:19 2019 +0530
+
+    iterating_through_submasks is added with doctests
+
+[33mcommit 6e484d8e7ca1cd13af0c6e901d8a23d34acf2ae5[m
+Author: faizan2700 <syedfaizan824@gmail.com>
+Date:   Tue Dec 17 22:56:06 2019 +0530
+
+    *iterating_through_submasks.py is added in dynamic_programming
+
+[33mcommit ac5b41ca40b4713619b836b513c0116ddcc33848[m
+Author: faizan2700 <syedfaizan824@gmail.com>
+Date:   Tue Dec 17 22:48:50 2019 +0530
+
+    no changes
+
+[33mcommit 01121afa65ed6a175a3e976515ed604e90a1623f[m
+Author: faizan2700 <syedfaizan824@gmail.com>
+Date:   Tue Dec 17 22:44:44 2019 +0530
+
+    new file *iterating_through_submasks* is added in dynamic_programming section
+
+[33mcommit f4779bc04ae706b0c548e2fe6d7a59efe8b85524[m
+Author: Rohit Joshi <34398948+rohitjoshi21@users.noreply.github.com>
+Date:   Sun Dec 15 13:12:07 2019 +0545
+
+    Bug Fixed in newton_raphson_method.py (#1634)
+    
+    * Bug Fixed
+    
+    * Fixed newton_raphson_method.py
+    
+    * Fixed newton_raphson_method.py 2
+    
+    * Fixed newton_raphson_method.py 3
+    
+    * Fixed newton_raphson_method.py 4
+    
+    * Fixed newton_raphson_method.py 5
+    
+    * Fixed newton_raphson_method.py 6
+    
+    * Update newton_raphson_method.py
+    
+    * Update newton_raphson_method.py
+    
+    * # noqa: F401, F403
+    
+    * newton_raphson
+    
+    * newton_raphson
+    
+    * precision: int=10 ** -10
+    
+    * return float(x)
+    
+    * 3.1415926536808043
+    
+    * Update newton_raphson_method.py
+    
+    * 2.23606797749979
+    
+    * Update newton_raphson_method.py
+    
+    * Rename newton_raphson_method.py to newton_raphson.py
+
+[33mcommit bc5b92f7f9de09bbaba96cd7fc8b2853dc0c080c[m
+Author: Muhammad Ibtihaj Naeem <i.ibtihajnaeem@gmail.com>
+Date:   Sat Dec 14 10:46:02 2019 +0500
+
+    Harmonic Geometric and P-Series Added (#1633)
+    
+    * Harmonic Geometric and P-Series Added
+    
+    * Editing comments
+    
+    * Update and rename series/Geometric_Series.py to maths/series/geometric_series.py
+    
+    * Update and rename series/Harmonic_Series.py to maths/series/harmonic_series.py
+    
+    * Update and rename series/P_Series.py to maths/series/p_series.py
+
+[33mcommit d385472c6fe5abda18759f89e81efe1f0bf6da0f[m
+Author: heartsmoking <327899144@qq.com>
+Date:   Wed Dec 11 14:57:08 2019 +0800
+
+    Update find_min.py (#1627)
+    
+    Line 5:     :return: max number in list
+    "max" must be "min"
+
+[33mcommit b9bff8f3a72427b5d2ae3f2f174dc5db11df0d50[m
+Author: Christian Clauss <cclauss@me.com>
+Date:   Tue Dec 10 15:53:50 2019 +0100
+
+    Remove \r from strings (#1622)
+    
+    * Remove \r from strings
+    
+    * Satisfy tensorflow with numpy>=1.17.4
+
+[33mcommit 1cbeaa252ad5822c9197b385a99e550f7aa2f897[m
+Author: Binish Manandhar <37204996+binish784@users.noreply.github.com>
+Date:   Tue Dec 10 12:37:40 2019 +0545
+
+    Image processing algorithms added (#616)
+    
+    * Image processing algorithms added
+    
+    * Example images included
+    
+    * Issues resolved
+    
+    * class added
+    
+    * Naming issues fixes
+    
+    * Create file_path
+
+[33mcommit 9316618611967c26b98ce275fab238f735f2864e[m
+Author: Shoaib Asgar <shoaib.mca19.du@gmail.com>
+Date:   Mon Dec 9 07:59:01 2019 +0530
+
+    digital_image_processing/convert_to_negative (#1216)
+    
+    * digital_image_processing/convert_to_negative
+    
+    * added doc
+    
+    * added test code
+    
+    * Update convert_to_negative.py
+
+[33mcommit 02b717e364cd6623e303d4cc2378d1448779dc2b[m
+Author: Samarth Sehgal <samarthsehgal97@gmail.com>
+Date:   Mon Dec 9 09:43:56 2019 +1100
+
+    Update odd_even_transposition_parallel.py (#1458)
+    
+    * Update odd_even_transposition_parallel.py
+    
+    * arr = OddEvenTransposition(arr)
+
+[33mcommit 74d96ab3558120b6810aa3f613e091774aefeca3[m
+Author: Jawpral <34590600+Jawpral@users.noreply.github.com>
+Date:   Mon Dec 9 03:57:42 2019 +0530
+
+    Fixed issue #1368 (#1482)
+    
+    * Changed as suggested
+    
+    Now return in same format as oct() returns
+    
+    * Slight change
+    
+    * Fixed issue #1368, return values for large number now is fixed and does not return in scientific notation
+    
+    * Update decimal_to_octal.py
+
+[33mcommit 43905efe298172e9e9280661d80af8f7e2105517[m
+Author: ELNS <57490926+EverLookNeverSee@users.noreply.github.com>
+Date:   Mon Dec 9 01:45:17 2019 +0330
+
+    Adding doctests into LDA algorithm (#1621)
+    
+    * Adding doctests into <gaussian_distribution> function
+    
+    * Adding doctests into <y_generator> function
+    
+    * Adding doctests into <calculate_mean> function
+    
+    * Adding doctests into <calculate_probabilities> function
+    
+    * Adding doctests into <calculate_variance> function
+    
+    * Adding doctests into <predict_y_values> function
+    
+    * Adding doctests into <accuracy> function
+    
+    * fixup! Format Python code with psf/black push
+    
+    * Update convex_hull.py
+    
+    * Update convex_hull.py
+
+[33mcommit 26b0803319b6cf14f623769356c79343e3d43d14[m
+Author: Christian Clauss <cclauss@me.com>
+Date:   Sun Dec 8 22:42:17 2019 +0100
+
+    Simplify sudoku.is_completed() using builtin all() (#1608)
+    
+    * Simplify sudoku.is_completed() using builtin all()
+    
+    Simplify __sudoku.is_completed()__ using Python builtin function [__all()__](https://docs.python.org/3/library/functions.html#all).
+    
+    * fixup! Format Python code with psf/black push
+    
+    * Update sudoku.py
+    
+    * fixup! Format Python code with psf/black push
+    
+    * Old style exception -> new style for Python 3
+    
+    * updating DIRECTORY.md
+    
+    * Update convex_hull.py
+    
+    * fixup! Format Python code with psf/black push
+    
+    * e.args[0] = "msg"
+    
+    * ValueError: could not convert string to float: 'pi'
+    
+    * Update convex_hull.py
+    
+    * fixup! Format Python code with psf/black push
+
+[33mcommit 9eb50cc223f7a8da8d7299bf4db8e4d3313b8bff[m
+Author: GeorgeChambi <charalambous99@gmail.com>
+Date:   Sat Dec 7 05:39:59 2019 +0000
+
+    Improved readability (#1615)
+    
+    * improved readability
+    
+    * further readability improvements
+    
+    * removed csv file and added f
+
+[33mcommit 938dd0bbb5145aa7c60127745ae0571cb20a2387[m
+Author: Níkolas Vargas <vargasnikolass@gmail.com>
+Date:   Sat Dec 7 02:39:08 2019 -0300
+
+    improved prime numbers implementation (#1606)
+    
+    * improved prime numbers implementation
+    
+    * fixup! Format Python code with psf/black push
+    
+    * fix type hint
+    
+    * fixup! Format Python code with psf/black push
+    
+    * fix doctests
+    
+    * updating DIRECTORY.md
+    
+    * added prime tests with negative numbers
+    
+    * using for instead filter
+    
+    * updating DIRECTORY.md
+    
+    * Remove unused typing.List
+    
+    * Remove tab indentation
+    
+    * print("Sorted order is:", " ".join(a))
+
+[33mcommit ccc1ff2ce89af2a569f1fbfa16ff70ad22ed9e89[m
+Author: SHAKTI SINGH <mohittanwar2323@gmail.com>
+Date:   Fri Dec 6 12:04:21 2019 +0530
+
+    pigeonhole sorting in python (#364)
+    
+    * pigeonhole sorting in python
+    
+    * variable name update in pigeonhole_sort.py
+    
+    * Add doctest
+
+[33mcommit 3cfca42f17e4e5f3d31da30eb80f7c0baa66eb4b[m
+Author: João Gustavo A. Amorim <joaogustavoamorim@gmail.com>
+Date:   Fri Dec 6 03:13:10 2019 -0300
+
+    add the index calculation class at digital_image_processing and the hamming code algorithm at hashes (#1152)
+    
+    * add the index calculation at difital_image_processing file
+    
+    * make changes at index_calculation
+    
+    * update the variables to self variables at functions
+    
+    * update the word wrap in comments at index_calculation
+    
+    * add the hamming code algorithm
+    
+    * Wrap long lines
+
+[33mcommit 494fb4fb490c49d46c693933c5583ac2fb4f665b[m
+Author: Bardia Alavi <bardia_alavi@yahoo.com>
+Date:   Wed Dec 4 23:06:41 2019 -0500
+
+    address merge_soft duplicate files (#1612)
+    
+    Here the old file merge_sort_fastest is renamed to unknown_sort. Because it is not merge sort algorithm.
+    
+    Comments are updated accordingly.
+
+[33mcommit caad74466aaa6a98465e10bd7adf828482d2de63[m
+Author: QuantumNovice <43876848+QuantumNovice@users.noreply.github.com>
+Date:   Tue Dec 3 16:17:42 2019 +0500
+
+    Added Multilayer Perceptron (sklearn) (#1609)
+    
+    * Added Multilayer Perceptron ( sklearn)
+    
+    * Rename MLPClassifier.py to multilayer_preceptron_classifier.py
+    
+    * Rename multilayer_preceptron_classifier.py to multilayer_perceptron_classifier.py
+    
+    * Update multilayer_perceptron_classifier.py
+
+[33mcommit 8ffc4f8706dc5ecb7cd015839f1cb92997217c63[m
+Author: GeorgeChambi <charalambous99@gmail.com>
+Date:   Tue Dec 3 11:14:30 2019 +0000
+
+    fixed bug (#1610)
+    
+    Removed comma from print statement causing and error.
+
+[33mcommit 74aeaa333f81912b696e0cf069e4993bc94113cc[m
+Author: Abhijit Patil <abhi175668@gmail.com>
+Date:   Sun Dec 1 11:28:25 2019 +0530
+
+    Code for Eulers Totient function (#1229)
+    
+    * Create eulersTotient.py
+    
+    * Rename eulersTotient.py to eulers_totient.py
+    
+    * Update eulers_totient.py
+
+[33mcommit 4dca9571dba5b6d0ce31fe49e8928451573a34af[m
+Author: Bruno Santos <7022432+dunderbruno@users.noreply.github.com>
+Date:   Sun Dec 1 02:29:23 2019 -0300
+
+    Pythagoras (#1243)
+    
+    * add pythagoras.py
+    
+    * function distance
+    
+    * run as script
+    
+    * Update pythagoras.py
+
+[33mcommit 415c9f5e6547457eb3546b467283cbd9e82e4eec[m
+Author: Bruno Santos <7022432+dunderbruno@users.noreply.github.com>
+Date:   Sun Dec 1 02:13:28 2019 -0300
+
+    Improve prim.py (#1226)
+    
+    * suiting PEP8
+    
+    * create auxiliary function
+    
+    * running example
+    
+    * updating DIRECTORY.md
+
+[33mcommit 5d20dbfb98a19634db0961318f5378f50e94c428[m
+Author: Saurabh Goyal <saurabh.2561@gmail.com>
+Date:   Sat Nov 30 10:47:13 2019 +0530
+
+    add a generic heap (#906)
+    
+    * add a generic heap
+    
+    * Delete __init__.py
+    
+    * Rename data_structures/Heap/heap_generic.py to data_structures/heap/heap_generic.py
+    
+    * Add doctests
+    
+    * Fix doctests
+    
+    * Fix doctests again
+
+[33mcommit 2fb6f786ceff9fef94494d73d541a4e7e5feafed[m
+Author: Christian Clauss <cclauss@me.com>
+Date:   Thu Nov 28 19:53:37 2019 +0100
+
+    Typo in a comment (#1603)
+
+[33mcommit f4a7c5066c1921842a158976e349b4c6a6955d72[m
+Author: ELNS <57490926+EverLookNeverSee@users.noreply.github.com>
+Date:   Thu Nov 28 19:51:34 2019 +0330
+
+    converting generator object to a list object (#1602)
+    
+    * converting generator object to a list object
+    
+    * Refactor: converting generator object to a list object
+    
+    * fixup! Format Python code with psf/black push
+
+[33mcommit 4baf3972e1fc8b8e366e509762e4731bb158f0f5[m
+Author: Christian Clauss <cclauss@me.com>
+Date:   Wed Nov 27 11:30:21 2019 +0100
+
+    GitHub Action to mark stale issues and pull requests (#1594)
+
+[33mcommit 140b79b4b2a184e041ce2e50e503d7a87b235b68[m
+Author: ELNS <57490926+EverLookNeverSee@users.noreply.github.com>
+Date:   Tue Nov 26 15:27:53 2019 +0330
+
+    Adding Linear Discriminant Analysis (#1592)
+    
+    * Adding new file to the machine_learning directory
+    
+    * Adding initial documentation
+    
+    * importing modules
+    
+    * Adding Normal_gen function
+    
+    * Adding Y_gen function
+    
+    * Adding mean_calc function
+    
+    * Adding prob_calc function
+    
+    * Adding var_calc function
+    
+    * Adding predict function
+    
+    * Adding accuracy function
+    
+    * Adding main function
+    
+    * Renaming LDA file
+    
+    * Adding requested changes
+    
+    * Renaming some of functions
+    
+    * Refactoring str.format() statements to f-string
+    
+    * Removing unnecessary list objects inside two functions
+    
+    * changing code style in some lines
+    
+    * Fixing y_generator function
+    
+    * Refactoring 'predict_y_values' function by using list comprehensions
+    
+    * Changing code style in import statements
+    
+    * Refactoring CLI code block
+    
+    * fixup! Format Python code with psf/black push
+    
+    * No lines longer than 88 characters
+
+[33mcommit 0d3c9d586ca3e4642aa88e1bbf88a008993e0019[m
+Author: Vikas Kumar <54888022+vikasit12@users.noreply.github.com>
+Date:   Tue Nov 26 11:15:28 2019 +0530
+
+    Update singly_linked_list.py (#1593)
+    
+    * Update singly_linked_list.py
+    
+    printing current.data rather than node address in __repr__ for a more readable print statement
+    
+    * eval(repr(c)) == c
+    
+    The output of `__repr__()` _should look like a valid Python expression that could be used to recreate an object with the same value_.
+    
+    https://docs.python.org/3.4/reference/datamodel.html#object.__repr__
+    
+    * += --> +
+
+[33mcommit 2ad5a1f0836f9d8b8da77457f163a183d98a0bda[m
+Author: achance6 <45263295+achance6@users.noreply.github.com>
+Date:   Sat Nov 23 10:52:32 2019 -0500
+
+    Implemented simple keyword cipher (#1589)
+    
+    * Implemented simple keyword cipher
+    
+    * Added documentation and improved input processing
+    
+    * Allow object's hash function to be called
+    
+    * added to string functionality
+    
+    * reverted
+    
+    * Revised according to pull request #1589
+    
+    * Optimized imports
+    
+    * Update simple_keyword_cypher.py
+    
+    * Update hash_table.py
+
+[33mcommit 4c75f863c84e049026135d5ae04e6969fc569add[m
+Author: vansh bhardwaj <39709733+vansh1999@users.noreply.github.com>
+Date:   Sat Nov 23 18:24:06 2019 +0530
+
+    added current stock price (#1590)
+    
+    * added current stock price
+    
+    * Ten lines or less
+
+[33mcommit e09bf696488b83b090330c1baaf51ec938ed2d3a[m
+Author: BryanChan777 <43082778+BryanChan777@users.noreply.github.com>
+Date:   Fri Nov 22 19:06:52 2019 -0800
+
+    Update README.md (#1588)
+    
+    * Update README.md
+    
+    * python -m unittest -v
+
+[33mcommit c5fd075f1ea9b6dc11cca2d36605aaddbd0ab5fa[m
+Author: Arun Babu PT <36483987+ptarun@users.noreply.github.com>
+Date:   Fri Nov 22 20:25:19 2019 +0530
+
+    Fractional knapsack (#1524)
+    
+    * Add files via upload
+    
+    * Added doctests, type hints, f-strings, URLs
+    
+    * Rename knapsack.py to fractional_knapsack.py
+    
+    * Rename graphs/fractional_knapsack.py to dynamic_programming/fractional_knapsack_2.py
+
+[33mcommit ec7bc7c7cde95afbc8a7d7f826358cc221edfb6b[m
+Author: Christian Clauss <cclauss@me.com>
+Date:   Thu Nov 21 15:21:40 2019 +0100
+
+    Tabs --> spaces in quine_mc_cluskey.py (#1426)
+    
+    * Tabs --> spaces in quine_mc_cluskey.py
+    
+    * fixup! Format Python code with psf/black push
+
+[33mcommit e8aa81297a6291a7d0994d71605f07d654aae17c[m
+Author: Fakher Mokadem <fmokadem@umich.edu>
+Date:   Wed Nov 20 06:36:32 2019 +0100
+
+    Update gaussian_filter.py (#1548)
+    
+    * Update gaussian_filter.py
+    
+    Changed embedded for loops with product. This way range(dst_height) is called only once, instead of being called $dst_height.
+    
+    * Update gaussian_filter.py
+    
+    fixed missing width
+
+[33mcommit 28c02a1f21b07627c98dd38e2cb933c1b9c14c6c[m
+Author: John Law <johnlaw.po@gmail.com>
+Date:   Tue Nov 19 13:52:55 2019 -0800
+
+    Improve bellman_ford.py (#1575)
+    
+    * Fix out of range error in bellman_ford.py
+    
+    * Update bellman_ford.py
+    
+    * fixup! Format Python code with psf/black push
+    
+    * Enhance the print function
+    
+    * fixup! Format Python code with psf/black push
