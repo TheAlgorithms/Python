@@ -35,7 +35,7 @@ def list_of_submasks(mask) -> list:
     
     """
 
-    fmt = "n needs to be positive integer, your input {}"
+    fmt = "mask needs to be positive integer, your input {}"
     assert isinstance(mask, int) and mask > 0, fmt.format(mask)
 
     """
