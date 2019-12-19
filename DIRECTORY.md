@@ -147,6 +147,7 @@
 
 ## Dynamic Programming
   * [Abbreviation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/abbreviation.py)
+  * [All Submasks of Mask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/iterating_through_submasks.py)
   * [Bitmask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/bitmask.py)
   * [Climbing Stairs](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/climbing_stairs.py)
   * [Coin Change](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/coin_change.py)
@@ -171,8 +172,7 @@
   * [Rod Cutting](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/rod_cutting.py)
   * [Subset Generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
-  * [Submask of Mask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/iterating_through_submasks.py)
-  
+
 ## File Transfer
   * [Recieve File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/recieve_file.py)
   * [Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/send_file.py)
@@ -340,6 +340,7 @@
   * [Frequency Finder](https://github.com/TheAlgorithms/Python/blob/master/other/frequency_finder.py)
   * [Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/other/game_of_life.py)
   * [Greedy](https://github.com/TheAlgorithms/Python/blob/master/other/greedy.py)
+  * [Integeration](https://github.com/TheAlgorithms/Python/blob/master/other/integeration_by_simpson_approx.py)
   * [Largest Subarray Sum](https://github.com/TheAlgorithms/Python/blob/master/other/largest_subarray_sum.py)
   * [Least Recently Used](https://github.com/TheAlgorithms/Python/blob/master/other/least_recently_used.py)
   * [Linear Congruential Generator](https://github.com/TheAlgorithms/Python/blob/master/other/linear_congruential_generator.py)
@@ -353,7 +354,6 @@
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
   * [Two Sum](https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py)
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/other/word_patterns.py)
-  * [Integeration](https://github.com/TheAlgorithms/Python/blob/master/other/integeration_by_simpson_approx.py)
 
 ## Project Euler
   * Problem 01
