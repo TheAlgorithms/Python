@@ -6,6 +6,15 @@
     Manual test:
     python bfs_shortest_path.py
 """
+graph = {
+    "A": ["B", "C", "E"],
+    "B": ["A", "D", "E"],
+    "C": ["A", "F", "G"],
+    "D": ["B"],
+    "E": ["A", "B", "D"],
+    "F": ["C"],
+    "G": ["C"],
+}
 
 
 def bfs_shortest_path(graph: dict, start, goal) -> str:
@@ -21,15 +30,7 @@ def bfs_shortest_path(graph: dict, start, goal) -> str:
             'Not found' string if no path found.
 
         Example:
-            >>> bfs_shortest_path(
-            ... {'A': ['B', 'C', 'E'],
-            ... 'B': ['A', 'D', 'E'],
-            ... 'C': ['A', 'F', 'G'],
-            ... 'D': ['B'],
-            ... 'E': ['A', 'B', 'D'],
-            ... 'F': ['C'],
-            ... 'G': ['C']
-            ... }, 'G', 'D')
+            >>> bfs_shortest_path(graph, "G", "D")
             ['G', 'C', 'A', 'B', 'D']
     """
     # keep track of explored nodes
@@ -79,19 +80,11 @@ def bfs_shortest_path_distance(graph: dict, start, target) -> int:
             -1 if no path exists.
 
         Example:
-            >>> bfs_shortest_path_distance(
-            ... {'A': ['B', 'C', 'E'],
-            ... 'B': ['A', 'D', 'E'],
-            ... 'C': ['A', 'F', 'G'],
-            ... 'D': ['B'],
-            ... 'E': ['A', 'B', 'D'],
-            ... 'F': ['C'],
-            ... 'G': ['C']
-            ... }, 'G', 'D')
+            >>> bfs_shortest_path_distance(graph, "G", "D")
             4
-            >>> bfs_shortest_path_distance({'A': ['B'], 'B': ['A']}, 'A', 'A')
+            >>> bfs_shortest_path_distance(graph, "A", "A")
             0
-            >>> bfs_shortest_path_distance({'A': ['B'], 'B': ['A']}, 'A', 'C')
+            >>> bfs_shortest_path_distance(graph, "A", "H")
             -1
     """
     if not graph or start not in graph or target not in graph:
@@ -117,14 +110,5 @@ def bfs_shortest_path_distance(graph: dict, start, target) -> int:
 
 
 if __name__ == "__main__":
-    graph = {
-        "A": ["B", "C", "E"],
-        "B": ["A", "D", "E"],
-        "C": ["A", "F", "G"],
-        "D": ["B"],
-        "E": ["A", "B", "D"],
-        "F": ["C"],
-        "G": ["C"],
-    }
     print(bfs_shortest_path(graph, "G", "D"))  # returns ['G', 'C', 'A', 'B', 'D']
     print(bfs_shortest_path_distance(graph, "G", "D"))  # returns 4
