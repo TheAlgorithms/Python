@@ -8,7 +8,7 @@
 """
 
 
-def bfs_shortest_path(graph, start, goal) -> str:
+def bfs_shortest_path(graph: dict, start, goal) -> str:
     """Find shortest path between `start` and `goal` nodes.
 
         Args:
@@ -66,6 +66,56 @@ def bfs_shortest_path(graph, start, goal) -> str:
     return "So sorry, but a connecting path doesn't exist :("
 
 
+def bfs_shortest_path_distance(graph: dict, start, target) -> int:
+    """Find shortest path distance between `start` and `target` nodes.
+
+        Args:
+            graph: node/list of neighboring nodes key/value pairs.
+            start: node to start search from.
+            target: node to search for.
+
+        Returns:
+            Number of edges in shortest path between `start` and `target` nodes.
+            -1 if no path exists.
+
+        Example:
+            >>> bfs_shortest_path_distance(
+            ... {'A': ['B', 'C', 'E'],
+            ... 'B': ['A', 'D', 'E'],
+            ... 'C': ['A', 'F', 'G'],
+            ... 'D': ['B'],
+            ... 'E': ['A', 'B', 'D'],
+            ... 'F': ['C'],
+            ... 'G': ['C']
+            ... }, 'G', 'D')
+            4
+            >>> bfs_shortest_path_distance({'A': ['B'], 'B': ['A']}, 'A', 'A')
+            0
+            >>> bfs_shortest_path_distance({'A': ['B'], 'B': ['A']}, 'A', 'C')
+            -1
+    """
+    if not graph or start not in graph or target not in graph:
+        return -1
+    if start == target:
+        return 0
+    queue = [start]
+    visited = [start]
+    # Keep tab on distances from `start` node.
+    dist = {start: 0, target: -1}
+    while queue:
+        node = queue.pop(0)
+        if node == target:
+            dist[target] = (
+                dist[node] if dist[target] == -1 else min(dist[target], dist[node])
+            )
+        for adjacent in graph[node]:
+            if adjacent not in visited:
+                visited.append(adjacent)
+                queue.append(adjacent)
+                dist[adjacent] = dist[node] + 1
+    return dist[target]
+
+
 if __name__ == "__main__":
     graph = {
         "A": ["B", "C", "E"],
@@ -76,4 +126,5 @@ if __name__ == "__main__":
         "F": ["C"],
         "G": ["C"],
     }
-    bfs_shortest_path(graph, "G", "D")  # returns ['G', 'C', 'A', 'B', 'D']
+    print(bfs_shortest_path(graph, "G", "D"))  # returns ['G', 'C', 'A', 'B', 'D']
+    print(bfs_shortest_path_distance(graph, "G", "D"))  # returns 4
