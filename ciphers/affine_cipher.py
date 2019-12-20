@@ -1,56 +1,63 @@
-import sys, random, cryptomath_module as cryptoMath
+import random
+import sys
 
-SYMBOLS = r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
+import cryptomath_module as cryptomath
+
+SYMBOLS = (r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
+           r"""abcdefghijklmnopqrstuvwxyz{|}~""")
 
 
 def main():
-    message = input("Enter message: ")
-    key = int(input("Enter key [2000 - 9000]: "))
-    mode = input("Encrypt/Decrypt [E/D]: ")
+    """
+    >>> key = get_random_key()
+    >>> msg = "This is a test!"
+    >>> decrypt_message(key, encrypt_message(key, msg)) == msg
+    True
+    """
+    message = input("Enter message: ").strip()
+    key = int(input("Enter key [2000 - 9000]: ").strip())
+    mode = input("Encrypt/Decrypt [E/D]: ").strip().lower()
 
-    if mode.lower().startswith("e"):
+    if mode.startswith("e"):
         mode = "encrypt"
-        translated = encryptMessage(key, message)
-    elif mode.lower().startswith("d"):
+        translated = encrypt_message(key, message)
+    elif mode.startswith("d"):
         mode = "decrypt"
-        translated = decryptMessage(key, message)
-    print("\n%sed text: \n%s" % (mode.title(), translated))
+        translated = decrypt_message(key, message)
+    print(f"\n{mode.title()}ed text: \n{translated}")
 
 
-def getKeyParts(key):
-    keyA = key // len(SYMBOLS)
-    keyB = key % len(SYMBOLS)
-    return (keyA, keyB)
-
-
-def checkKeys(keyA, keyB, mode):
-    if keyA == 1 and mode == "encrypt":
-        sys.exit(
-            "The affine cipher becomes weak when key A is set to 1. Choose different key"
-        )
-    if keyB == 0 and mode == "encrypt":
-        sys.exit(
-            "The affine cipher becomes weak when key A is set to 1. Choose different key"
-        )
+def check_keys(keyA, keyB, mode):
+    if mode == "encrypt":
+        if keyA == 1:
+            sys.exit(
+                "The affine cipher becomes weak when key "
+                "A is set to 1. Choose different key"
+            )
+        if keyB == 0:
+            sys.exit(
+                "The affine cipher becomes weak when key "
+                "B is set to 0. Choose different key"
+            )
     if keyA < 0 or keyB < 0 or keyB > len(SYMBOLS) - 1:
         sys.exit(
-            "Key A must be greater than 0 and key B must be between 0 and %s."
-            % (len(SYMBOLS) - 1)
+            "Key A must be greater than 0 and key B must "
+            f"be between 0 and {len(SYMBOLS) - 1}."
         )
-    if cryptoMath.gcd(keyA, len(SYMBOLS)) != 1:
+    if cryptomath.gcd(keyA, len(SYMBOLS)) != 1:
         sys.exit(
-            "Key A %s and the symbol set size %s are not relatively prime. Choose a different key."
-            % (keyA, len(SYMBOLS))
+            f"Key A {keyA} and the symbol set size {len(SYMBOLS)} "
+            "are not relatively prime. Choose a different key."
         )
 
 
-def encryptMessage(key, message):
+def encrypt_message(key: int, message: str) -> str:
     """
-    >>> encryptMessage(4545, 'The affine cipher is a type of monoalphabetic substitution cipher.')
+    >>> encrypt_message(4545, 'The affine cipher is a type of monoalphabetic substitution cipher.')
     'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF{xIp~{HL}Gi'
     """
-    keyA, keyB = getKeyParts(key)
-    checkKeys(keyA, keyB, "encrypt")
+    keyA, keyB = divmod(key, len(SYMBOLS))
+    check_keys(keyA, keyB, "encrypt")
     cipherText = ""
     for symbol in message:
         if symbol in SYMBOLS:
@@ -61,15 +68,15 @@ def encryptMessage(key, message):
     return cipherText
 
 
-def decryptMessage(key, message):
+def decrypt_message(key: int, message: str) -> str:
     """
-    >>> decryptMessage(4545, 'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF{xIp~{HL}Gi')
+    >>> decrypt_message(4545, 'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF{xIp~{HL}Gi')
     'The affine cipher is a type of monoalphabetic substitution cipher.'
     """
-    keyA, keyB = getKeyParts(key)
-    checkKeys(keyA, keyB, "decrypt")
+    keyA, keyB = divmod(key, len(SYMBOLS))
+    check_keys(keyA, keyB, "decrypt")
     plainText = ""
-    modInverseOfkeyA = cryptoMath.findModInverse(keyA, len(SYMBOLS))
+    modInverseOfkeyA = cryptomath.findModInverse(keyA, len(SYMBOLS))
     for symbol in message:
         if symbol in SYMBOLS:
             symIndex = SYMBOLS.find(symbol)
@@ -79,11 +86,11 @@ def decryptMessage(key, message):
     return plainText
 
 
-def getRandomKey():
+def get_random_key():
     while True:
         keyA = random.randint(2, len(SYMBOLS))
         keyB = random.randint(2, len(SYMBOLS))
-        if cryptoMath.gcd(keyA, len(SYMBOLS)) == 1:
+        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1:
             return keyA * len(SYMBOLS) + keyB
 
 
