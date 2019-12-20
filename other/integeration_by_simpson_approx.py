@@ -89,21 +89,19 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
     """
     assert callable(
         function
-    ), "the function(object) passed should be callable your input : {}".format(function)
+    ), f"the function(object) passed should be callable your input : {function}"
     assert isinstance(a, float) or isinstance(
         a, int
-    ), "a should be float or integer your input : {}".format(a)
+    ), f"a should be float or integer your input : {a}"
     assert isinstance(function(a), float) or isinstance(
         function(a), int
-    ), "the function should return integer or float return type of your function, {}".format(
-        type(function(a))
-    )
+    ), f"the function should return integer or float return type of your function, {type(a)}"
     assert isinstance(b, float) or isinstance(
         b, int
-    ), "b should be float or integer your input : {}".format(b)
+    ), f"b should be float or integer your input : {b}"
     assert (
         isinstance(precision, int) and precision > 0
-    ), "precision should be positive integer your input : {}".format(precision)
+    ), f"precision should be positive integer your input : {precision}"
 
     # just applying the formula of simpson for approximate integraion written in
     # mentioned article in first comment of this file and above this function
@@ -113,11 +111,7 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
 
     for i in range(1, N_STEPS):
         a1 = a + h * i
-
-        if i % 2:
-            result += function(a1) * 4
-        else:
-            result += function(a1) * 2
+        result += function(a1) * (4 if i%2 else 2)
 
     result *= h / 3
     return round(result, precision)

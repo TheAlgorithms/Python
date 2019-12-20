@@ -147,7 +147,6 @@
 
 ## Dynamic Programming
   * [Abbreviation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/abbreviation.py)
-  * [All Submasks of Mask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/iterating_through_submasks.py)
   * [Bitmask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/bitmask.py)
   * [Climbing Stairs](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/climbing_stairs.py)
   * [Coin Change](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/coin_change.py)
@@ -340,7 +339,6 @@
   * [Frequency Finder](https://github.com/TheAlgorithms/Python/blob/master/other/frequency_finder.py)
   * [Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/other/game_of_life.py)
   * [Greedy](https://github.com/TheAlgorithms/Python/blob/master/other/greedy.py)
-  * [Integeration](https://github.com/TheAlgorithms/Python/blob/master/other/integeration_by_simpson_approx.py)
   * [Largest Subarray Sum](https://github.com/TheAlgorithms/Python/blob/master/other/largest_subarray_sum.py)
   * [Least Recently Used](https://github.com/TheAlgorithms/Python/blob/master/other/least_recently_used.py)
   * [Linear Congruential Generator](https://github.com/TheAlgorithms/Python/blob/master/other/linear_congruential_generator.py)
