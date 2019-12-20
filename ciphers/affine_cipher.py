@@ -11,7 +11,7 @@ def main():
     """
     >>> key = get_random_key()
     >>> msg = "This is a test!"
-    >>> encrypt_message(key, encrypt_message(key, msg)) == msg
+    >>> decrypt_message(key, encrypt_message(key, msg)) == msg
     True
     """
     message = input("Enter message: ").strip()
