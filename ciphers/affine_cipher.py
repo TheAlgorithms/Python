@@ -30,7 +30,7 @@ def checkKeys(keyA, keyB, mode):
         )
     if keyB == 0 and mode == "encrypt":
         sys.exit(
-            "The affine cipher becomes weak when key A is set to 1. Choose different key"
+            "The affine cipher becomes weak when key B is set to 0. Choose different key"
         )
     if keyA < 0 or keyB < 0 or keyB > len(SYMBOLS) - 1:
         sys.exit(
