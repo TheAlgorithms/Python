@@ -254,7 +254,7 @@ def main(args=None):
         args.Size,
     )
 
-    print("Best solution: {0}, with total distance: {1}.".format(best_sol, best_cost))
+    print(f"Best solution: {best_sol}, with total distance: {best_cost}.")
 
 
 if __name__ == "__main__":
