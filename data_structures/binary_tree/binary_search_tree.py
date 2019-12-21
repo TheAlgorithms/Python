@@ -4,15 +4,15 @@ A binary search Tree
 class Node:
     def __init__(self, value, parent):
         self.value = value
+        self.parent = parent  # Added in order to delete a node easier
         self.left = None
         self.right = None
-        self.parent = parent    # Added in order to delete a node easier
 
     def __repr__(self):
         from pprint import pformat
 
         if self.left is None and self.right is None:
-            return "'%s" % (self.value)
+            return str(self.value)
         return pformat(
             {
                 "%s"
@@ -27,16 +27,15 @@ class BinarySearchTree:
 
     def __str__(self):
         """
-        Return a string of all the Nodes. 
-        In Order Traversal
+        Return a string of all the Nodes using in order traversal
         """
         return str(self.root)
 
     def __reassign_nodes(self, node, newChildren):
-        if(newChildren is not None):    # reset its kids
+        if(newChildren is not None):  # reset its kids
             newChildren.parent = node.parent
-        if(node.parent is not None):    # reset its parenst
-            if(self.is_right(node)):    # If it is the Right Children
+        if(node.parent is not None):  # reset its parent
+            if(self.is_right(node)):  # If it is the right children
                 node.parent.right = newChildren
             else:
                 node.parent.left = newChildren
@@ -44,30 +43,24 @@ class BinarySearchTree:
             self.root = newChildren
 
     def is_right(self, node):
-        if(node == node.parent.right):
-            return True
-        else:
-            return False
+        return node == node.parent.right
 
     def empty(self):
-        if self.root is None:
-            return True
-        else:
-            return False
+        return self.root is None
 
     def __insert(self, value):
         """
         Insert a new node in Binary Search Tree with value label
         """
-        new_node = Node(value, None)    # Create a new Node
-        if self.empty():    #  If Tree is empty
-            self.root = new_node    #  set its root
-        else:   #  If Tree is not empty
-            parent_node = self.root #  from root
-            while True: #  While we don't get to a leaf
-                if value < parent_node.value:   # We go left
+        new_node = Node(value, None)  # create a new Node
+        if self.empty():  # if Tree is empty
+            self.root = new_node  # set its root
+        else: # Tree is not empty
+            parent_node = self.root # from root
+            while True:  # While we don't get to a leaf
+                if value < parent_node.value: # We go left
                     if parent_node.left == None:
-                        parent_node.left = new_node # We insert the new node in a leaf
+                        parent_node.left = new_node  # We insert the new node in a leaf
                         break
                     else:
                         parent_node = parent_node.left
@@ -89,20 +82,18 @@ class BinarySearchTree:
             raise IndexError("Warning: Tree is empty! please use another. ")
         else:
             node = self.root
-            while node is not None and node.value is not value:    #  using lazy evaluation here to avoid NoneType Attribute error
-                if value < node.value:
-                    node = node.left
-                else:
-                    node = node.right
+            # use lazy evaluation here to avoid NoneType Attribute error
+            while node is not None and node.value is not value:
+                node = node.left if value < node.value else node.right
             return node
 
     def get_max(self, node = None):
         """
         We go deep on the right branch
         """
-        if(node is None):
+        if node is None:
             node = self.root
-        if(not self.empty()):
+        if not self.empty():
             while(node.right is not None):
                 node = node.right
         return node
@@ -136,7 +127,7 @@ class BinarySearchTree:
         
     def preorder_traverse(self, node):
         if node is not None:
-            yield node    #  Preorder Traversal
+            yield node  #  Preorder Traversal
             yield from self.preorder_traverse(node.left)
             yield from self.preorder_traverse(node.right)
 
@@ -171,9 +162,9 @@ def binary_search_tree():
                 4   7 13
 
         >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
-        >>> print(" ".join([repr(i.value) for i in t.traversal_tree()]))
+        >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
         8 3 1 6 4 7 10 14 13
-        >>> print(" ".join([repr(i.value) for i in t.traversal_tree(postorder)]))
+        >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
         1 4 7 6 3 13 14 10 8
         >>> BinarySearchTree().search(6)
         Traceback (most recent call last):
@@ -181,8 +172,7 @@ def binary_search_tree():
         IndexError: Warning: Tree is empty! please use another. 
     '''
     t = BinarySearchTree()
-    testlist = [8, 3, 6, 1, 10, 14, 13, 4, 7]
-    for i in testlist:
+    for i in (8, 3, 6, 1, 10, 14, 13, 4, 7):
         t.insert(i)
 
     # Prints all the elements of the list in order traversal
@@ -205,6 +195,7 @@ def binary_search_tree():
     for i in testlist:
         t.remove(i)
         print(t)
+
 二叉搜索树 = binary_search_tree
 
 if __name__ == "__main__":
