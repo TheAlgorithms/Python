@@ -1,204 +1,157 @@
-"""
+'''
 A binary search Tree
-"""
-
-
+'''
 class Node:
-    def __init__(self, label, parent):
-        self.label = label
+    def __init__(self, value, parent):
+        self.value = value
+        self.parent = parent  # Added in order to delete a node easier
         self.left = None
         self.right = None
-        # Added in order to delete a node easier
-        self.parent = parent
 
-    def getLabel(self):
-        return self.label
+    def __repr__(self):
+        from pprint import pformat
 
-    def setLabel(self, label):
-        self.label = label
-
-    def getLeft(self):
-        return self.left
-
-    def setLeft(self, left):
-        self.left = left
-
-    def getRight(self):
-        return self.right
-
-    def setRight(self, right):
-        self.right = right
-
-    def getParent(self):
-        return self.parent
-
-    def setParent(self, parent):
-        self.parent = parent
-
+        if self.left is None and self.right is None:
+            return str(self.value)
+        return pformat(
+            {
+                "%s"
+                % (self.value): (self.left, self.right)
+            },
+            indent=1,
+        )
 
 class BinarySearchTree:
-    def __init__(self):
-        self.root = None
+    def __init__(self, root = None):
+        self.root = root
 
-    # Insert a new node in Binary Search Tree with value label
-    def insert(self, label):
-        # Create a new Node
-        new_node = Node(label, None)
-        # If Tree is empty
-        if self.empty():
-            self.root = new_node
-        else:
-            # If Tree is not empty
-            curr_node = self.root
-            # While we don't get to a leaf
-            while curr_node is not None:
-                # We keep reference of the parent node
-                parent_node = curr_node
-                # If node label is less than current node
-                if new_node.getLabel() < curr_node.getLabel():
-                    # We go left
-                    curr_node = curr_node.getLeft()
-                else:
-                    # Else we go right
-                    curr_node = curr_node.getRight()
-            # We insert the new node in a leaf
-            if new_node.getLabel() < parent_node.getLabel():
-                parent_node.setLeft(new_node)
+    def __str__(self):
+        """
+        Return a string of all the Nodes using in order traversal
+        """
+        return str(self.root)
+
+    def __reassign_nodes(self, node, newChildren):
+        if(newChildren is not None):  # reset its kids
+            newChildren.parent = node.parent
+        if(node.parent is not None):  # reset its parent
+            if(self.is_right(node)):  # If it is the right children
+                node.parent.right = newChildren
             else:
-                parent_node.setRight(new_node)
-            # Set parent to the new node
-            new_node.setParent(parent_node)
-
-    def delete(self, label):
-        if not self.empty():
-            # Look for the node with that label
-            node = self.getNode(label)
-            # If the node exists
-            if node is not None:
-                # If it has no children
-                if node.getLeft() is None and node.getRight() is None:
-                    self.__reassignNodes(node, None)
-                    node = None
-                # Has only right children
-                elif node.getLeft() is None and node.getRight() is not None:
-                    self.__reassignNodes(node, node.getRight())
-                # Has only left children
-                elif node.getLeft() is not None and node.getRight() is None:
-                    self.__reassignNodes(node, node.getLeft())
-                # Has two children
-                else:
-                    # Gets the max value of the left branch
-                    tmpNode = self.getMax(node.getLeft())
-                    # Deletes the tmpNode
-                    self.delete(tmpNode.getLabel())
-                    # Assigns the value to the node to delete and keesp tree structure
-                    node.setLabel(tmpNode.getLabel())
-
-    def getNode(self, label):
-        curr_node = None
-        # If the tree is not empty
-        if not self.empty():
-            # Get tree root
-            curr_node = self.getRoot()
-            # While we don't find the node we look for
-            # I am using lazy evaluation here to avoid NoneType Attribute error
-            while curr_node is not None and curr_node.getLabel() is not label:
-                # If node label is less than current node
-                if label < curr_node.getLabel():
-                    # We go left
-                    curr_node = curr_node.getLeft()
-                else:
-                    # Else we go right
-                    curr_node = curr_node.getRight()
-        return curr_node
-
-    def getMax(self, root=None):
-        if root is not None:
-            curr_node = root
+                node.parent.left = newChildren
         else:
-            # We go deep on the right branch
-            curr_node = self.getRoot()
-        if not self.empty():
-            while curr_node.getRight() is not None:
-                curr_node = curr_node.getRight()
-        return curr_node
+            self.root = newChildren
 
-    def getMin(self, root=None):
-        if root is not None:
-            curr_node = root
-        else:
-            # We go deep on the left branch
-            curr_node = self.getRoot()
-        if not self.empty():
-            curr_node = self.getRoot()
-            while curr_node.getLeft() is not None:
-                curr_node = curr_node.getLeft()
-        return curr_node
+    def is_right(self, node):
+        return node == node.parent.right
 
     def empty(self):
-        if self.root is None:
-            return True
-        return False
+        return self.root is None
 
-    def __InOrderTraversal(self, curr_node):
-        nodeList = []
-        if curr_node is not None:
-            nodeList.insert(0, curr_node)
-            nodeList = nodeList + self.__InOrderTraversal(curr_node.getLeft())
-            nodeList = nodeList + self.__InOrderTraversal(curr_node.getRight())
-        return nodeList
+    def __insert(self, value):
+        """
+        Insert a new node in Binary Search Tree with value label
+        """
+        new_node = Node(value, None)  # create a new Node
+        if self.empty():  # if Tree is empty
+            self.root = new_node  # set its root
+        else: # Tree is not empty
+            parent_node = self.root # from root
+            while True:  # While we don't get to a leaf
+                if value < parent_node.value: # We go left
+                    if parent_node.left == None:
+                        parent_node.left = new_node  # We insert the new node in a leaf
+                        break
+                    else:
+                        parent_node = parent_node.left
+                else:
+                    if parent_node.right == None:
+                        parent_node.right = new_node
+                        break
+                    else:
+                        parent_node = parent_node.right
+            new_node.parent = parent_node
 
-    def getRoot(self):
-        return self.root
+    def insert(self, *values):
+        for value in values:
+            self.__insert(value)
+        return self
 
-    def __isRightChildren(self, node):
-        if node == node.getParent().getRight():
-            return True
-        return False
-
-    def __reassignNodes(self, node, newChildren):
-        if newChildren is not None:
-            newChildren.setParent(node.getParent())
-        if node.getParent() is not None:
-            # If it is the Right Children
-            if self.__isRightChildren(node):
-                node.getParent().setRight(newChildren)
-            else:
-                # Else it is the left children
-                node.getParent().setLeft(newChildren)
-
-    # This function traversal the tree. By default it returns an
-    # In order traversal list. You can pass a function to traversal
-    # The tree as needed by client code
-    def traversalTree(self, traversalFunction=None, root=None):
-        if traversalFunction is None:
-            # Returns a list of nodes in preOrder by default
-            return self.__InOrderTraversal(self.root)
+    def search(self, value):
+        if self.empty():
+            raise IndexError("Warning: Tree is empty! please use another. ")
         else:
-            # Returns a list of nodes in the order that the users wants to
+            node = self.root
+            # use lazy evaluation here to avoid NoneType Attribute error
+            while node is not None and node.value is not value:
+                node = node.left if value < node.value else node.right
+            return node
+
+    def get_max(self, node = None):
+        """
+        We go deep on the right branch
+        """
+        if node is None:
+            node = self.root
+        if not self.empty():
+            while(node.right is not None):
+                node = node.right
+        return node
+
+    def get_min(self, node = None):
+        """
+        We go deep on the left branch
+        """
+        if(node is None):
+            node = self.root
+        if(not self.empty()):
+            node = self.root
+            while(node.left is not None):
+                node = node.left
+        return node
+
+    def remove(self, value):
+        node = self.search(value)    # Look for the node with that label
+        if(node is not None):
+            if(node.left is None and node.right is None):   # If it has no children
+                self.__reassign_nodes(node, None)
+                node = None
+            elif(node.left is None):    # Has only right children
+                self.__reassign_nodes(node, node.right)
+            elif(node.right is None):   # Has only left children
+                self.__reassign_nodes(node, node.left)
+            else:
+                tmpNode = self.get_max(node.left)   #  Gets the max value of the left branch
+                self.remove(tmpNode.value)
+                node.value = tmpNode.value  #  Assigns the value to the node to delete and keesp tree structure
+        
+    def preorder_traverse(self, node):
+        if node is not None:
+            yield node  #  Preorder Traversal
+            yield from self.preorder_traverse(node.left)
+            yield from self.preorder_traverse(node.right)
+
+    def traversal_tree(self, traversalFunction = None):
+        """
+        This function traversal the tree.
+        You can pass a function to traversal the tree as needed by client code
+        """
+        if(traversalFunction is None):
+            return self.preorder_traverse(self.root)
+        else:
             return traversalFunction(self.root)
 
-    # Returns an string of all the nodes labels in the list
-    # In Order Traversal
-    def __str__(self):
-        list = self.__InOrderTraversal(self.root)
-        str = ""
-        for x in list:
-            str = str + " " + x.getLabel().__str__()
-        return str
-
-
-def InPreOrder(curr_node):
-    nodeList = []
+def postorder(curr_node):
+    """
+    postOrder (left, right, self)
+    """
+    nodeList = list()
     if curr_node is not None:
-        nodeList = nodeList + InPreOrder(curr_node.getLeft())
-        nodeList.insert(0, curr_node.getLabel())
-        nodeList = nodeList + InPreOrder(curr_node.getRight())
+        nodeList = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
     return nodeList
 
-
-def testBinarySearchTree():
-    r"""
+def binary_search_tree():
+    r'''
     Example
                   8
                  / \
@@ -207,56 +160,46 @@ def testBinarySearchTree():
               1   6    14
                  / \   /
                 4   7 13
-    """
 
-    r"""
-    Example After Deletion
-                  7
-                 / \
-                1   4
-
-    """
+        >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+        >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+        8 3 1 6 4 7 10 14 13
+        >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
+        1 4 7 6 3 13 14 10 8
+        >>> BinarySearchTree().search(6)
+        Traceback (most recent call last):
+        ...
+        IndexError: Warning: Tree is empty! please use another. 
+    '''
+    testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
     t = BinarySearchTree()
-    t.insert(8)
-    t.insert(3)
-    t.insert(6)
-    t.insert(1)
-    t.insert(10)
-    t.insert(14)
-    t.insert(13)
-    t.insert(4)
-    t.insert(7)
+    for i in testlist:
+        t.insert(i)
 
     # Prints all the elements of the list in order traversal
-    print(t.__str__())
-
-    if t.getNode(6) is not None:
-        print("The label 6 exists")
+    print(t)
+    
+    if(t.search(6) is not None):
+        print("The value 6 exists")
     else:
-        print("The label 6 doesn't exist")
+        print("The value 6 doesn't exist")
 
-    if t.getNode(-1) is not None:
-        print("The label -1 exists")
+    if(t.search(-1) is not None):
+        print("The value -1 exists")
     else:
-        print("The label -1 doesn't exist")
+        print("The value -1 doesn't exist")
 
-    if not t.empty():
-        print(("Max Value: ", t.getMax().getLabel()))
-        print(("Min Value: ", t.getMin().getLabel()))
+    if(not t.empty()):
+        print("Max Value: ", t.get_max().value)
+        print("Min Value: ", t.get_min().value)
 
-    t.delete(13)
-    t.delete(10)
-    t.delete(8)
-    t.delete(3)
-    t.delete(6)
-    t.delete(14)
+    for i in testlist:
+        t.remove(i)
+        print(t)
 
-    # Gets all the elements of the tree In pre order
-    # And it prints them
-    list = t.traversalTree(InPreOrder, t.root)
-    for x in list:
-        print(x)
-
+二叉搜索树 = binary_search_tree
 
 if __name__ == "__main__":
-    testBinarySearchTree()
+    import doctest
+    doctest.testmod()
+    binary_search_tree()
