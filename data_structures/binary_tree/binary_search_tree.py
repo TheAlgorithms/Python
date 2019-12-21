@@ -171,8 +171,9 @@ def binary_search_tree():
         ...
         IndexError: Warning: Tree is empty! please use another. 
     '''
+    testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
     t = BinarySearchTree()
-    for i in (8, 3, 6, 1, 10, 14, 13, 4, 7):
+    for i in testlist:
         t.insert(i)
 
     # Prints all the elements of the list in order traversal
