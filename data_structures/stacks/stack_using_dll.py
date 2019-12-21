@@ -24,7 +24,7 @@ class Stack:
     3->2->1->0->
     >>> stack.top()
     3
-    >>> stack.size()
+    >>> len(stack)
     4
     >>> stack.pop()
     3
@@ -105,7 +105,7 @@ if __name__=='__main__':
     print("\nTop element is ", stack.top()) 
   
     # Print the stack size 
-    print("Size of the stack is ", stack.size()) 
+    print("Size of the stack is ", len(stack)) 
   
     # pop the top element 
     stack.pop() 
