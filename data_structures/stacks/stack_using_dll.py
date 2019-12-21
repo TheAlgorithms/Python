@@ -69,7 +69,7 @@ class Stack:
         return count 
 
     def is_empty(self):
-        return self.head is None: 
+        return self.head is None
 
     def print_stack(self): 
         print("stack elements are:") 
