@@ -19,7 +19,7 @@ class Stack:
     ...
     >>> stack.is_empty()
     False
-    >>> stack.printstack()
+    >>> stack.print_stack()
     stack elements are:
     3->2->1->0->
     >>> stack.top()
@@ -28,7 +28,7 @@ class Stack:
     4
     >>> stack.pop()
     3
-    >>> stack.printstack()
+    >>> stack.print_stack()
     stack elements are:
     2->1->0->
     """
