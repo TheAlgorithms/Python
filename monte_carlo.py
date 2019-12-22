@@ -1,6 +1,9 @@
-""" In this file we are interested in finding which all portfolio values 
-have the best sharpe ratio. 
+"""
+In this file we are interested in finding which all portfolio values
+have the best sharpe ratio.
+
 Monte Carlo simulation :- Random values
+https://en.wikipedia.org/wiki/Monte_Carlo_algorithm
 """
 import datetime
 import numpy as np
