@@ -14,7 +14,8 @@ def bin_exp_mod(a, n, b):
 
 class Test(unittest.TestCase):
   """
-  >>> unittest.main()  # doctest: +ELLIPSIS
+  #>>> unittest.main()  # doctest: +ELLIPSIS
+  >>> Test().test_mod()  # doctest: +ELLIPSIS
   ...
   """
   def test_mod(self):
