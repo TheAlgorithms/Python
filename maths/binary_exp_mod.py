@@ -13,6 +13,10 @@ def bin_exp_mod(a, n, b):
   return (r * r) % b
 
 class Test(unittest.TestCase):
+  """
+  >>> unittest.main()  # doctest: +ELLIPSIS
+  ...
+  """
   def test_mod(self):
     self.assertTrue(bin_exp_mod(3, 4, 5) == 1)
     self.assertTrue(bin_exp_mod(7, 13, 10) == 7)
