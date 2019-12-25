@@ -69,10 +69,11 @@ class Bankers_algorithm:
         This function builds an index control dictionary to track original ids/indices
         of processes when altered during execution of method "main"
             Return: {0: [a: int, b: int], 1: [c: int, d: int]}
-        >>> __need_index_manager([[1, 2, 0, 3], [0, 1, 3, 1], [1, 1, 0, 2], [1, 3, 2, 0], [2, 0, 0, 3]])
+        >>> test_1_claim_vector = [8, 5, 9, 7]
+        >>> test_1_allocated_res_table = [[2, 0, 1, 1],[0, 1, 2, 1],[4, 0, 0, 3],[0, 2, 1, 0],[1, 0, 3, 0]]
+        >>> test_1_maximum_claim_table = [[3, 2, 1, 4],[0, 2, 5, 2],[5, 1, 0, 5],[1, 5, 3, 0],[3, 0, 3, 3]]
+        >>> Bankers_algorithm(test_1_claim_vector, test_1_allocated_res_table, test_1_maximum_claim_table)._Bankers_algorithm__need_index_manager()
         {0: [1, 2, 0, 3], 1: [0, 1, 3, 1], 2: [1, 1, 0, 2], 3: [1, 3, 2, 0], 4: [2, 0, 0, 3]}
-        >>> __need_index_manager([[1, 3, 0, 1], [2, 0, 3, 1], [1, 0, 3, 2], [1, 1, 2, 3], [2, 1, 2, 3]])
-        {0: [1, 3, 0, 1], 1: [2, 0, 3, 1], 2: [1, 0, 3, 2], 3: [1, 1, 2, 3], 4: [2, 1, 2, 3]}
         '''
         ni_manager = dict()
         for i in self.__need():
@@ -83,60 +84,56 @@ class Bankers_algorithm:
         ''' 
         This method utilized the various methods in this class to simulate the Banker's algorithm
         Return: None
-        >>> Bankers_algorithm([8, 5, 9, 7], [[2, 0, 1, 1],
-                                [0, 1, 2, 1],
-                                [4, 0, 0, 3],
-                                [0, 2, 1, 0],
-                                [1, 0, 3, 0]], [[3, 2, 1, 4],
-                                [0, 2, 5, 2],
-                                [5, 1, 0, 5],
-                                [1, 5, 3, 0],
-                                [3, 0, 3, 3]]).main(describe=true)
+        >>> test_1_claim_vector = [8, 5, 9, 7]
+        >>> test_1_allocated_res_table = [[2, 0, 1, 1],[0, 1, 2, 1],[4, 0, 0, 3],[0, 2, 1, 0],[1, 0, 3, 0]]
+        >>> test_1_maximum_claim_table = [[3, 2, 1, 4],[0, 2, 5, 2],[5, 1, 0, 5],[1, 5, 3, 0],[3, 0, 3, 3]]
+        >>> Bankers_algorithm(test_1_claim_vector, test_1_allocated_res_table, test_1_maximum_claim_table).main(describe=True)
               Allocated Resource Table
         P1    2        0        1        1     
-
+        <BLANKLINE>
         P2    0        1        2        1     
-
+        <BLANKLINE>
         P3    4        0        0        3     
-
+        <BLANKLINE>
         P4    0        2        1        0     
-
+        <BLANKLINE>
         P5    1        0        3        0     
-
-            System Resource Table
+        <BLANKLINE>
+              System Resource Table
         P1    3        2        1        4     
-
+        <BLANKLINE>
         P2    0        2        5        2     
-
+        <BLANKLINE>
         P3    5        1        0        5     
-
+        <BLANKLINE>
         P4    1        5        3        0     
-
+        <BLANKLINE>
         P5    3        0        3        3     
-
+        <BLANKLINE>
         Current Usage by Active Processes:     8 5 9 7
         Initial Available Resources:         1 2 2 2
         __________________________________________________
-
+        <BLANKLINE>
         Process 3 is executing.
         Updated available resource stack for processes: 5 2 2 5
         The process is in a safe state.
-
+        <BLANKLINE>
         Process 1 is executing.
         Updated available resource stack for processes: 7 2 3 6
         The process is in a safe state.
-
+        <BLANKLINE>
         Process 2 is executing.
         Updated available resource stack for processes: 7 3 5 7
         The process is in a safe state.
-
+        <BLANKLINE>
         Process 4 is executing.
         Updated available resource stack for processes: 7 5 6 7
         The process is in a safe state.
-
+        <BLANKLINE>
         Process 5 is executing.
         Updated available resource stack for processes: 8 5 9 7
-        The process is in a safe state.                                
+        The process is in a safe state.
+        <BLANKLINE>                            
         '''
         need_list = self.__need()
         alloc_resources_table = self.__allocated_resources_table
@@ -230,4 +227,18 @@ def test():
                     test_1_maximum_claim_table).main(describe=True)
 
 if __name__ == "__main__":
+    import doctest
+    test_1_claim_vector = [8, 5, 9, 7]
+    test_1_allocated_res_table = [[2, 0, 1, 1],
+                                [0, 1, 2, 1],
+                                [4, 0, 0, 3],
+                                [0, 2, 1, 0],
+                                [1, 0, 3, 0]]
+    test_1_maximum_claim_table = [[3, 2, 1, 4],
+                                [0, 2, 5, 2],
+                                [5, 1, 0, 5],
+                                [1, 5, 3, 0],
+                                [3, 0, 3, 3]]
+    doctest.testmod(extraglobs={'m': Bankers_algorithm(test_1_claim_vector, test_1_allocated_res_table,
+                    test_1_maximum_claim_table).main(describe=True)})
     test()
