@@ -19,7 +19,7 @@ import numpy as np
 import time
 
 
-class Bankers_algorithm:
+class BankersAlgorithm:
 
     def __init__(self, claim_vector: list, allocated_resources_table: list, maximum_claim_table: list) -> None:
         '''
@@ -72,7 +72,7 @@ class Bankers_algorithm:
         >>> test_1_claim_vector = [8, 5, 9, 7]
         >>> test_1_allocated_res_table = [[2, 0, 1, 1],[0, 1, 2, 1],[4, 0, 0, 3],[0, 2, 1, 0],[1, 0, 3, 0]]
         >>> test_1_maximum_claim_table = [[3, 2, 1, 4],[0, 2, 5, 2],[5, 1, 0, 5],[1, 5, 3, 0],[3, 0, 3, 3]]
-        >>> Bankers_algorithm(test_1_claim_vector, test_1_allocated_res_table, test_1_maximum_claim_table)._Bankers_algorithm__need_index_manager()
+        >>> BankersAlgorithm(test_1_claim_vector, test_1_allocated_res_table, test_1_maximum_claim_table)._BankersAlgorithm__need_index_manager()
         {0: [1, 2, 0, 3], 1: [0, 1, 3, 1], 2: [1, 1, 0, 2], 3: [1, 3, 2, 0], 4: [2, 0, 0, 3]}
         '''
         ni_manager = dict()
@@ -87,7 +87,7 @@ class Bankers_algorithm:
         >>> test_1_claim_vector = [8, 5, 9, 7]
         >>> test_1_allocated_res_table = [[2, 0, 1, 1],[0, 1, 2, 1],[4, 0, 0, 3],[0, 2, 1, 0],[1, 0, 3, 0]]
         >>> test_1_maximum_claim_table = [[3, 2, 1, 4],[0, 2, 5, 2],[5, 1, 0, 5],[1, 5, 3, 0],[3, 0, 3, 3]]
-        >>> Bankers_algorithm(test_1_claim_vector, test_1_allocated_res_table, test_1_maximum_claim_table).main(describe=True)
+        >>> BankersAlgorithm(test_1_claim_vector, test_1_allocated_res_table, test_1_maximum_claim_table).main(describe=True)
               Allocated Resource Table
         P1    2        0        1        1     
         <BLANKLINE>
@@ -142,7 +142,8 @@ class Bankers_algorithm:
         for kw, val in kwargs.items():
             if kw and val is True:
                 self.__pretty_data()
-        print("{:_^50}\n".format("_"))
+        print("{:_^50}".format("_"))
+        print()
         while len(need_list) != 0:
             safe = False
             for each_need in need_list:
@@ -168,9 +169,11 @@ class Bankers_algorithm:
                           .format(" ".join([str(x) for x in available_resources])))
                     break
             if safe:
-                print("The process is in a safe state.\n")
+                print("The process is in a safe state.")
+                print()
             else:
-                print("System in unsafe state. Aborting...\n")
+                print("System in unsafe state. Aborting...")
+                print()
                 break
 
     def __pretty_data(self):
@@ -182,14 +185,16 @@ class Bankers_algorithm:
             print("P{}".format(str(self.__allocated_resources_table.index(item) + 1)), end=" ")
             for it in item:
                 print("{:^8}".format(it), end=" ")
-            print("\n")
+            print()
+            print()
 
         print("{:>8}".format("      System Resource Table"))
         for item in self.__maximum_claim_table:
             print("P{}".format(str(self.__maximum_claim_table.index(item) + 1)), end=" ")
             for it in item:
                 print("{:^8}".format(it), end=" ")
-            print("\n")
+            print()
+            print()
 
         print("Current Usage by Active Processes: {:>11}"
               .format(str(" ".join([str(x) for x in self.__claim_vector]))))
@@ -198,33 +203,6 @@ class Bankers_algorithm:
               .format(str(" ".join([str(x) for x in
                                     self.__available_resources()]))))
         time.sleep(1)
-
-
-# test algorithm
-def test():
-    # test 1
-    test_1_claim_vector = [8, 5, 9, 7]
-    test_1_allocated_res_table = [[2, 0, 1, 1],
-                                [0, 1, 2, 1],
-                                [4, 0, 0, 3],
-                                [0, 2, 1, 0],
-                                [1, 0, 3, 0]]
-    test_1_maximum_claim_table = [[3, 2, 1, 4],
-                                [0, 2, 5, 2],
-                                [5, 1, 0, 5],
-                                [1, 5, 3, 0],
-                                [3, 0, 3, 3]]
-    # test 2
-    test_2_claim_vector = [6, 5, 7, 6]
-    test_2_allocated_res_table = [[1, 2, 2, 1],
-                                [1, 0, 3, 3],
-                                [1, 2, 1, 0]]
-    test_2_maximum_claim_table = [[3, 3, 2, 2],
-                                [1, 2, 3, 4],
-                                [1, 3, 5, 0]]
-
-    Bankers_algorithm(test_1_claim_vector, test_1_allocated_res_table,
-                    test_1_maximum_claim_table).main(describe=True)
 
 if __name__ == "__main__":
     import doctest
@@ -239,6 +217,5 @@ if __name__ == "__main__":
                                 [5, 1, 0, 5],
                                 [1, 5, 3, 0],
                                 [3, 0, 3, 3]]
-    doctest.testmod(extraglobs={'m': Bankers_algorithm(test_1_claim_vector, test_1_allocated_res_table,
+    doctest.testmod(extraglobs={'m': BankersAlgorithm(test_1_claim_vector, test_1_allocated_res_table,
                     test_1_maximum_claim_table).main(describe=True)})
-    test()
