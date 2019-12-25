@@ -53,15 +53,15 @@ class Bankers_algorithm:
         return np.array(self.__claim_vector) - np.array(self.__processes_resource_summation())
 
     def __need(self) -> list:
-    '''
-    This method implements safety checker by ensuring that
-    max_claim[i][j] - alloc_table[i][j] <= avail[j]
-    In order words, calculating for the needs
-    '''
+        '''
+        This method implements safety checker by ensuring that
+        max_claim[i][j] - alloc_table[i][j] <= avail[j]
+        In order words, calculating for the needs
+        '''
         need = list()
         for i in range(len(self.__allocated_resources_table)):
             need.append(list(np.array(self.__maximum_claim_table[i])
-                                     - np.array(self.__allocated_resources_table[i])))
+                                        - np.array(self.__allocated_resources_table[i])))
         return need
 
     def __need_index_manager(self) -> dict:
