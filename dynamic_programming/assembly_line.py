@@ -3,6 +3,18 @@ def assembly_line_scheduling(line1_entry: int, line2_entry: int, line1_stations_
                                line2_stations_times: list, line1_exit: int, line2_exit: int,
                                line1_stations_transfer_time: list, line2_stations_transfer_time: list) -> None:
     '''
+    Parameters
+    ----------
+    *line1_entry: The time taken for an auto to mount assembly line 1
+    *line2_entry: The time taken for an auto to mount assembly line 2
+    *line1_stations_times: A list of times taken for each station on line 1 to finish its task
+    *line2_stations_times: A list of times taken for each station on line 2 to finish its task
+    *line1_exit: The time taken for an auto to exit assembly line 1
+    *line2_exit: The time taken for an auto to exit assembly line 2
+    *line1_stations_transfer_time: A list of times taken for an auto to be moved from line 1 to
+    an equivalent/similar station on line 2
+    *line2_stations_transfer_time: A list of times taken for an auto to be moved from line 1 to
+    an equivalent/similar station on line 1
     Scenario
     --------
     The Colonel Motors Corporation produces automobiles in a factory that has two assem-
