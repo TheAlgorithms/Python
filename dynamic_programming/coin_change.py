@@ -6,6 +6,8 @@ the given types of coins?
 https://www.hackerrank.com/challenges/coin-change/problem
 """
 from __future__ import print_function
+
+
 def dp_count(S, m, n):
     table = [0] * (n + 1)
 
@@ -21,6 +23,7 @@ def dp_count(S, m, n):
 
     return table[n]
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(dp_count([1, 2, 3], 3, 4))  # answer 4
     print(dp_count([2, 5, 3, 6], 4, 10))  # answer 5

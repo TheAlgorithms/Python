@@ -5,7 +5,6 @@ from __future__ import print_function
 
 
 class Fibonacci:
-
     def __init__(self, N=None):
         self.fib_array = []
         if N:
@@ -20,17 +19,17 @@ class Fibonacci:
     def get(self, sequence_no=None):
         if sequence_no != None:
             if sequence_no < len(self.fib_array):
-                return print(self.fib_array[:sequence_no + 1])
+                return print(self.fib_array[: sequence_no + 1])
             else:
                 print("Out of bound.")
         else:
             print("Please specify a value")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("\n********* Fibonacci Series Using Dynamic Programming ************\n")
     try:
-        raw_input          # Python 2
+        raw_input  # Python 2
     except NameError:
         raw_input = input  # Python 3
 
@@ -39,7 +38,8 @@ if __name__ == '__main__':
         N = eval(raw_input().strip())
         fib = Fibonacci(N)
         print(
-            "\n********* Enter different values to get the corresponding fibonacci sequence, enter any negative number to exit. ************\n")
+            "\n********* Enter different values to get the corresponding fibonacci sequence, enter any negative number to exit. ************\n"
+        )
         while True:
             print("Enter value: ", end=" ")
             try:
