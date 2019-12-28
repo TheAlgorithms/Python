@@ -20,56 +20,61 @@ class EditDistance:
     def __init__(self):
         self.__prepare__()
 
-    def __prepare__(self, N = 0, M = 0):
-        self.dp = [[-1 for y in range(0,M)] for x in range(0,N)]
+    def __prepare__(self, N=0, M=0):
+        self.dp = [[-1 for y in range(0, M)] for x in range(0, N)]
 
     def __solveDP(self, x, y):
-        if (x==-1):
-            return y+1
-        elif (y==-1):
-            return x+1
-        elif (self.dp[x][y]>-1):
+        if x == -1:
+            return y + 1
+        elif y == -1:
+            return x + 1
+        elif self.dp[x][y] > -1:
             return self.dp[x][y]
         else:
-            if (self.A[x]==self.B[y]):
-                self.dp[x][y] = self.__solveDP(x-1,y-1)
+            if self.A[x] == self.B[y]:
+                self.dp[x][y] = self.__solveDP(x - 1, y - 1)
             else:
-                self.dp[x][y] = 1+min(self.__solveDP(x,y-1), self.__solveDP(x-1,y), self.__solveDP(x-1,y-1))
+                self.dp[x][y] = 1 + min(
+                    self.__solveDP(x, y - 1),
+                    self.__solveDP(x - 1, y),
+                    self.__solveDP(x - 1, y - 1),
+                )
 
             return self.dp[x][y]
 
     def solve(self, A, B):
-        if isinstance(A,bytes):
-            A = A.decode('ascii')
+        if isinstance(A, bytes):
+            A = A.decode("ascii")
 
-        if isinstance(B,bytes):
-            B = B.decode('ascii')
+        if isinstance(B, bytes):
+            B = B.decode("ascii")
 
         self.A = str(A)
         self.B = str(B)
 
         self.__prepare__(len(A), len(B))
 
-        return self.__solveDP(len(A)-1, len(B)-1)
+        return self.__solveDP(len(A) - 1, len(B) - 1)
 
-if __name__ == '__main__':
-        try:
-            raw_input          # Python 2
-        except NameError:
-            raw_input = input  # Python 3
 
-        solver = EditDistance()
+if __name__ == "__main__":
+    try:
+        raw_input  # Python 2
+    except NameError:
+        raw_input = input  # Python 3
 
-        print("****************** Testing Edit Distance DP Algorithm ******************")
-        print()
+    solver = EditDistance()
 
-        print("Enter the first string: ", end="")
-        S1 = raw_input().strip()
+    print("****************** Testing Edit Distance DP Algorithm ******************")
+    print()
 
-        print("Enter the second string: ", end="")
-        S2 = raw_input().strip()
+    print("Enter the first string: ", end="")
+    S1 = raw_input().strip()
 
-        print()
-        print("The minimum Edit Distance is: %d" % (solver.solve(S1, S2)))
-        print()
-        print("*************** End of Testing Edit Distance DP Algorithm ***************")
+    print("Enter the second string: ", end="")
+    S2 = raw_input().strip()
+
+    print()
+    print("The minimum Edit Distance is: %d" % (solver.solve(S1, S2)))
+    print()
+    print("*************** End of Testing Edit Distance DP Algorithm ***************")
