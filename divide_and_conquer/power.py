@@ -1,9 +1,10 @@
 
-"""
-Function using divide and conquer to calculate a^b.
-It only works for integer a,b.
-"""
+
 def power(a,b):
+    """
+    Function using divide and conquer to calculate a^b.
+    It only works for integer a,b.
+    """
     if b == 0:
         return 1
     elif ( (b%2) == 0 ):
