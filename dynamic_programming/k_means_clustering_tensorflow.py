@@ -1,5 +1,5 @@
 import tensorflow as tf
-from random import choice, shuffle
+from random import shuffle
 from numpy import array
 
 

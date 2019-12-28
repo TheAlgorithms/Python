@@ -19,8 +19,9 @@ class HashTable:
         return self._keys
 
     def balanced_factor(self):
-        return sum([1 for slot in self.values
-                    if slot is not None]) / (self.size_table * self.charge_factor)
+        return sum([1 for slot in self.values if slot is not None]) / (
+            self.size_table * self.charge_factor
+        )
 
     def hash_function(self, key):
         return key % self.size_table
@@ -46,8 +47,7 @@ class HashTable:
     def _colision_resolution(self, key, data=None):
         new_key = self.hash_function(key + 1)
 
-        while self.values[new_key] is not None \
-                and self.values[new_key] != key:
+        while self.values[new_key] is not None and self.values[new_key] != key:
 
             if self.values.count(None) > 0:
                 new_key = self.hash_function(new_key + 1)
@@ -61,7 +61,7 @@ class HashTable:
         survivor_values = [value for value in self.values if value is not None]
         self.size_table = next_prime(self.size_table, factor=2)
         self._keys.clear()
-        self.values = [None] * self.size_table #hell's pointers D: don't DRY ;/
+        self.values = [None] * self.size_table  # hell's pointers D: don't DRY ;/
         map(self.insert_data, survivor_values)
 
     def insert_data(self, data):
@@ -80,5 +80,3 @@ class HashTable:
             else:
                 self.rehashing()
                 self.insert_data(data)
-
-

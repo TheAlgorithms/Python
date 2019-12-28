@@ -1,0 +1,17 @@
+beautifulsoup4
+black
+fake_useragent
+flake8
+matplotlib
+mypy
+numpy>=1.17.4
+opencv-python
+pandas
+pillow
+pytest
+pytest-cov
+requests
+scikit-fuzzy
+sklearn
+sympy
+tensorflow

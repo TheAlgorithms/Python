@@ -1,11 +1,15 @@
 """
 author : Mayank Kumar Jha (mk9440)
 """
+<<<<<<< HEAD
 from __future__ import print_function
 
 import time
 import matplotlib.pyplot as plt
 from random import randint
+=======
+from typing import List
+>>>>>>> upstream/master
 
 
 def find_max_sub_array(A, low, high):
@@ -40,9 +44,52 @@ def find_max_cross_sum(A, low, mid, high):
             right_sum = summ
             max_right = i
     return max_left, max_right, (left_sum + right_sum)
+<<<<<<< HEAD
 
 
 if __name__ == "__main__":
+=======
+
+
+def max_sub_array(nums: List[int]) -> int:
+    """
+    Finds the contiguous subarray which has the largest sum and return its sum.
+
+    >>> max_sub_array([-2, 1, -3, 4, -1, 2, 1, -5, 4])
+    6
+    
+    An empty (sub)array has sum 0.
+    >>> max_sub_array([])
+    0
+    
+    If all elements are negative, the largest subarray would be the empty array, 
+    having the sum 0.
+    >>> max_sub_array([-1, -2, -3])
+    0
+    >>> max_sub_array([5, -2, -3])
+    5
+    >>> max_sub_array([31, -41, 59, 26, -53, 58, 97, -93, -23, 84])
+    187
+    """
+    best = 0
+    current = 0
+    for i in nums:
+        current += i
+        if current < 0:
+            current = 0
+        best = max(best, current)
+    return best
+
+
+if __name__ == "__main__":
+    """
+    A random simulation of this algorithm.
+    """
+    import time
+    import matplotlib.pyplot as plt
+    from random import randint
+
+>>>>>>> upstream/master
     inputs = [10, 100, 1000, 10000, 50000, 100000, 200000, 300000, 400000, 500000]
     tim = []
     for i in inputs:
@@ -53,7 +100,11 @@ if __name__ == "__main__":
         tim.append(end - strt)
     print("No of Inputs       Time Taken")
     for i in range(len(inputs)):
+<<<<<<< HEAD
         print((inputs[i], "\t\t", tim[i]))
+=======
+        print(inputs[i], "\t\t", tim[i])
+>>>>>>> upstream/master
     plt.plot(inputs, tim)
     plt.xlabel("Number of Inputs")
     plt.ylabel("Time taken in seconds ")

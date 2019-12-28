@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import sys
 
 """
@@ -14,8 +12,11 @@ def MatrixChainOrder(array):
     N = len(array)
     Matrix = [[0 for x in range(N)] for x in range(N)]
     Sol = [[0 for x in range(N)] for x in range(N)]
+<<<<<<< HEAD
     for i in range(1, N):
         Matrix[i][i] = 0
+=======
+>>>>>>> upstream/master
 
     for ChainLength in range(2, N):
         for a in range(1, N - ChainLength + 1):

@@ -6,7 +6,10 @@ This is a pure Python implementation of Dynamic Programming solution to the long
 The problem is  :
 Given an array, to find the longest and continuous sub array and get the max sum of the sub array in the given array.
 """
+<<<<<<< HEAD
 from __future__ import print_function
+=======
+>>>>>>> upstream/master
 
 
 class SubArray:
