@@ -40,10 +40,10 @@ class MinHeap:
         return self.get_value(key)
 
     def get_parent_idx(self, idx):
-        if len(self.heap_dict) % 2 == 0:
-            return idx // 2
+        if (len(self.heap_dict) - 1) % 2 == 0:
+            return (idx - 1) // 2
         else:
-            return (idx // 2) - 1
+            return (idx // 2)
 
     def get_left_child_idx(self, idx):
         return idx * 2 + 1
