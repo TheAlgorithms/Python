@@ -58,13 +58,13 @@ class LinkedDeque(_DoublyLinkedBase):
     def first(self):
         """ return first element """ 
         if self.is_empty():
-            raise Exception('Duffer!! first insert something')
+            raise Exception('List is empty')
         return self._header._next._data
     
     def last(self):
         """ return last element """
         if self.is_empty():
-            raise Exception('Duffer!! first insert something')
+            raise Exception('List is empty')
         return self._trailer._prev._data
     
     ### DEque Insert Operations (At the front, At the end) ###
@@ -79,10 +79,10 @@ class LinkedDeque(_DoublyLinkedBase):
     
     def remove_first(self):
         if self.is_empty():
-            raise Exception('NOthing to Lose')
+            raise Exception('List is empty')
         return self._delete(self._header._next)
     
     def remove_last(self):
         if self.is_empty():
-            raise Exception('NOthing to Lose')
+            raise Exception('List is empty')
         return self._delete(self._trailer._prev)
