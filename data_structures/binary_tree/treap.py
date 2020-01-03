@@ -21,8 +21,7 @@ class Node:
             return f"'{self.value}: {self.prior:.5}'"
         else:
             return pformat(
-                {f"{self.value}: {self.prior:.5}": (self.left, self.right)},
-                indent=1,
+                {f"{self.value}: {self.prior:.5}": (self.left, self.right)}, indent=1,
             )
 
     def __str__(self):
