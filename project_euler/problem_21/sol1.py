@@ -1,4 +1,3 @@
-# -.- coding: latin-1 -.-
 from math import sqrt
 
 """

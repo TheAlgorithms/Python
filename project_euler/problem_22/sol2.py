@@ -1,4 +1,3 @@
-# -*- coding: latin-1 -*-
 """
 Name scores
 Problem 22

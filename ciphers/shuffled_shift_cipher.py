@@ -2,7 +2,7 @@ import random
 import string
 
 
-class ShuffledShiftCipher(object):
+class ShuffledShiftCipher:
     """
     This algorithm uses the Caesar Cipher algorithm but removes the option to
     use brute force to decrypt the message.

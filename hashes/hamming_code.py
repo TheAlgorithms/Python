@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Author: João Gustavo A. Amorim & Gabriel Kunz
 # Author email: joaogustavoamorim@gmail.com and gabriel-kunz@uergs.edu.br
 # Coding date:  apr 2019
@@ -100,7 +99,7 @@ def emitterConverter(sizePar, data):
         # Performs a template of bit positions - who should be given,
         # and who should be parity
         if qtdBP < sizePar:
-            if ((np.log(x) / np.log(2))).is_integer():
+            if (np.log(x) / np.log(2)).is_integer():
                 dataOutGab.append("P")
                 qtdBP = qtdBP + 1
             else:
@@ -170,7 +169,7 @@ def receptorConverter(sizePar, data):
         # Performs a template of bit positions - who should be given,
         #  and who should be parity
         if qtdBP < sizePar:
-            if ((np.log(x) / np.log(2))).is_integer():
+            if (np.log(x) / np.log(2)).is_integer():
                 dataOutGab.append("P")
                 qtdBP = qtdBP + 1
             else:
@@ -204,7 +203,7 @@ def receptorConverter(sizePar, data):
         # Performs a template position of bits - who should be given,
         # and who should be parity
         if qtdBP < sizePar:
-            if ((np.log(x) / np.log(2))).is_integer():
+            if (np.log(x) / np.log(2)).is_integer():
                 dataOutGab.append("P")
                 qtdBP = qtdBP + 1
             else:

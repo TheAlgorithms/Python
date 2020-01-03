@@ -82,7 +82,7 @@ class Automaton:
                 for key in self.adlist[current_state]["output"]:
                     if not (key in result):
                         result[key] = []
-                    result[key].append((i - len(key) + 1))
+                    result[key].append(i - len(key) + 1)
         return result
 
 
