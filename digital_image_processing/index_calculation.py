@@ -389,10 +389,7 @@ class IndexCalculation:
             :return: index
         """
         return np.arctan(
-            (
-                ((2 * self.red - self.green - self.blue) / 30.5)
-                * (self.green - self.blue)
-            )
+            ((2 * self.red - self.green - self.blue) / 30.5) * (self.green - self.blue)
         )
 
     def IVI(self, a=None, b=None):

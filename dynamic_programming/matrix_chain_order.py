@@ -46,7 +46,7 @@ def main():
     # 30*35 35*15 15*5 5*10 10*20 20*25
     Matrix, OptimalSolution = MatrixChainOrder(array)
 
-    print("No. of Operation required: " + str((Matrix[1][n - 1])))
+    print("No. of Operation required: " + str(Matrix[1][n - 1]))
     PrintOptimalSolution(OptimalSolution, 1, n - 1)
 
 

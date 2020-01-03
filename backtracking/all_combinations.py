@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
         In this problem, we want to determine all possible combinations of k
         numbers out of 1 ... n. We use backtracking to solve this problem.

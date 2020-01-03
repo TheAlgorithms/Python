@@ -467,7 +467,7 @@ class RedBlackTree:
         from pprint import pformat
 
         if self.left is None and self.right is None:
-            return "'%s %s'" % (self.label, (self.color and "red") or "blk")
+            return "'{} {}'".format(self.label, (self.color and "red") or "blk")
         return pformat(
             {
                 "%s %s"

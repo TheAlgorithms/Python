@@ -1,4 +1,3 @@
-# coding: utf-8
 """
     Implementation of sequential minimal optimization(SMO) for support vector machines(SVM).
 
@@ -29,7 +28,6 @@ Reference:
     http://web.cs.iastate.edu/~honavar/smo-svm.pdf
 """
 
-from __future__ import division
 
 import os
 import sys
@@ -44,7 +42,7 @@ from sklearn.preprocessing import StandardScaler
 CANCER_DATASET_URL = "http://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data"
 
 
-class SmoSVM(object):
+class SmoSVM:
     def __init__(
         self,
         train,
@@ -405,7 +403,7 @@ class SmoSVM(object):
         return self.samples.shape[0]
 
 
-class Kernel(object):
+class Kernel:
     def __init__(self, kernel, degree=1.0, coef0=0.0, gamma=1.0):
         self.degree = np.float64(degree)
         self.coef0 = np.float64(coef0)

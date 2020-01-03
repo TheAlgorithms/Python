@@ -78,7 +78,7 @@ class HillCipher:
         req_l = len(self.key_string)
         if gcd(det, len(self.key_string)) != 1:
             raise ValueError(
-                "discriminant modular {0} of encryption key({1}) is not co prime w.r.t {2}.\nTry another key.".format(
+                "discriminant modular {} of encryption key({}) is not co prime w.r.t {}.\nTry another key.".format(
                     req_l, det, req_l
                 )
             )

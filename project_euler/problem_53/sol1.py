@@ -1,4 +1,3 @@
-# -.- coding: latin-1 -.-
 """
 Combinatoric selections
 Problem 53

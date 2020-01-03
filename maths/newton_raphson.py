@@ -52,4 +52,4 @@ if __name__ == "__main__":
     plt.xlabel("step")
     plt.ylabel("error")
     plt.show()
-    print("solution = {%f}, error = {%f}" % (solution, error))
+    print(f"solution = {{{solution:f}}}, error = {{{error:f}}}")

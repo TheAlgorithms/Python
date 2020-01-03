@@ -46,13 +46,11 @@ def solution():
     """
 
     return sum(
-        set(
-            [
-                int("".join(pandigital[5:9]))
-                for pandigital in itertools.permutations("123456789")
-                if isCombinationValid(pandigital)
-            ]
-        )
+        {
+            int("".join(pandigital[5:9]))
+            for pandigital in itertools.permutations("123456789")
+            if isCombinationValid(pandigital)
+        }
     )
 
 

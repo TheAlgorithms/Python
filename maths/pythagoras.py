@@ -14,7 +14,7 @@ class Point:
 
 
 def distance(a: Point, b: Point) -> float:
-    return math.sqrt(abs(((b.x - a.x) ** 2 + (b.y - a.y) ** 2 + (b.z - a.z) ** 2)))
+    return math.sqrt(abs((b.x - a.x) ** 2 + (b.y - a.y) ** 2 + (b.z - a.z) ** 2))
 
 
 def test_distance() -> None:

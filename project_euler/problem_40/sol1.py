@@ -1,4 +1,3 @@
-# -.- coding: latin-1 -.-
 """
 Champernowne's constant
 Problem 40

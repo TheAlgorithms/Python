@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 Sieve of Eratosthones
 

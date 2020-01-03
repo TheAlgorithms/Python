@@ -9,9 +9,9 @@ def n31(a: int) -> Tuple[List[int], int]:
     """
 
     if not isinstance(a, int):
-        raise TypeError("Must be int, not {0}".format(type(a).__name__))
+        raise TypeError("Must be int, not {}".format(type(a).__name__))
     if a < 1:
-        raise ValueError("Given integer must be greater than 1, not {0}".format(a))
+        raise ValueError(f"Given integer must be greater than 1, not {a}")
 
     path = [a]
     while a != 1:

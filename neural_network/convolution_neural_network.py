@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
      - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
     Name - - CNN - Convolution Neural Network For Photo Recognizing
@@ -286,7 +284,7 @@ class CNN:
                 self.thre_bp3 = self.thre_bp3 - pd_k_all * self.rate_thre
                 self.thre_bp2 = self.thre_bp2 - pd_j_all * self.rate_thre
                 # calculate the sum error of all single image
-                errors = np.sum(abs((data_teach - bp_out3)))
+                errors = np.sum(abs(data_teach - bp_out3))
                 alle = alle + errors
                 # print('   ----Teach      ',data_teach)
                 # print('   ----BP_output  ',bp_out3)

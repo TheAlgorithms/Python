@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# encoding=utf8
 
 """
 
@@ -31,6 +30,7 @@ class DenseLayer:
     """
     Layers of BP neural network
     """
+
     def __init__(
         self, units, activation=None, learning_rate=None, is_input_layer=False
     ):
@@ -99,6 +99,7 @@ class BPNN:
     """
     Back Propagation Neural Network model
     """
+
     def __init__(self):
         self.layers = []
         self.train_mse = []
