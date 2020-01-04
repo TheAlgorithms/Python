@@ -2,7 +2,22 @@ def bubble_sort(list1):
     """
     It is similar is bubble sort but recursive.
     :param list1: mutable ordered sequence of elements
-    :return: the same list in ascending order    
+    :return: the same list in ascending order
+
+    >>> bubble_sort([0, 5, 2, 3, 2])
+    [0, 2, 2, 3, 5]
+
+    >>> bubble_sort([])
+    []
+
+    >>> bubble_sort([-2, -45, -5])
+    [-45, -5, -2]
+
+    >>> bubble_sort([-23, 0, 6, -4, 34])
+    [-23, -4, 0, 6, 34]
+
+    >>> bubble_sort([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
+    True
     """
 
     for i, num in enumerate(list1): 
@@ -16,11 +31,6 @@ def bubble_sort(list1):
     return list1 
 
 if __name__ == "__main__":     
-    list1 = [22,66,33,99,11]    
-    bubble_sort(list1) 
-    if(len(list1) == 0):
-        print("Empty list")
-    else:
-        print("Sorted array:")
-        for i in range(0, len(list1)): 
-            print(list1[i], end=' ') 
+    list1 = [22,11,99,44,66]    
+    bubble_sort(list1)     
+    print(list1)
