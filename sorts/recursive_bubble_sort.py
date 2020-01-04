@@ -1,20 +1,9 @@
 def bubble_sort(list1):
-    """It is similar is bubble sort but recursive.
+    """
+    It is similar is bubble sort but recursive.
     :param list1: mutable ordered sequence of elements
     :return: the same list in ascending order    
-    Examples:
-    
-    >>> bubble_sort([22,66,33,11,99])
-    Sorted array:
-    11 22 33 66 99
-    
-    >>> bubble_sort([])
-    Empty list
-    
-    >>> bubble_sort([-22,-99,-11])
-    Sorted array:
-    -99 -22 -11
-    """ 
+    """
 
     for i, num in enumerate(list1): 
         try: 
