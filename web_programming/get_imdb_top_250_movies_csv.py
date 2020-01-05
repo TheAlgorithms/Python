@@ -24,7 +24,6 @@ def movies(filename,path):
         Writer=csv.writer(newfile)
         for Movie,Ratings in Movies.items():
             Writer.writerow([Movie,Ratings])
-        newfile.close()
     
 
 
