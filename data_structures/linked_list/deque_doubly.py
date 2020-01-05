@@ -135,4 +135,4 @@ class LinkedDeque(_DoublyLinkedBase):
         """
         if self.is_empty():
             raise IndexError('remove_first from empty list')
-        return self._delete(self._trailer._prev
+        return self._delete(self._trailer._prev)
