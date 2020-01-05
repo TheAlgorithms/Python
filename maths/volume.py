@@ -12,9 +12,9 @@ def vol_cube(side_length: Union[int, float]) -> float:
     Calculate the Volume of a Cube.
 
     >>> vol_cube(1)
-    1
+    1.0
     >>> vol_cube(3)
-    27
+    27.0
     """
     return pow(side_length, 3)
 
@@ -25,9 +25,9 @@ def vol_cuboid(width: float, height: float, length: float) -> float:
     :return multiple of width, length and height
 
     >>> vol_cuboid(1, 1, 1)
-    1
+    1.0
     >>> vol_cuboid(1, 2, 3)
-    6
+    6.0
     """
     return float(width * height * length)
 
@@ -40,7 +40,7 @@ def vol_cone(area_of_base: float, height: float) -> float:
     :return (1/3) * area_of_base * height
 
     >>> vol_cone(10, 3)
-    10
+    10.0
     >>> vol_cone(1, 1)
     0.3333333333333333
     """
@@ -67,21 +67,21 @@ def vol_prism(area_of_base: float, height: float) -> float:
     :return V = Bh
 
     >>> vol_prism(10, 2)
-    20
+    20.0
     >>> vol_prism(11, 1)
-    11
+    11.0
     """
     return float(area_of_base * height)
 
 
 def vol_pyramid(area_of_base: float, height: float) -> float:
     """
-    Calculate the Volume of a Prism.
+    Calculate the Volume of a Pyramid.
     Wikipedia reference: https://en.wikipedia.org/wiki/Pyramid_(geometry)
     :return  (1/3) * Bh
 
     >>> vol_pyramid(10, 3)
-    10
+    10.0
     >>> vol_pyramid(1.5, 3)
     1.5
     """
