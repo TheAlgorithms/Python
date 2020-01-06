@@ -53,6 +53,22 @@ class Linkedlist:
             D1.next = D2.next
             D2.next = temp
 
+    def swapNodes2(self, d1, d2):
+        if d1 == d2:
+            return
+        else:
+            D1 = self.head
+            while D1 is not None and D1.data != d1:
+                D1 = D1.next
+
+            D2 = self.head
+            while D2 is not None and D2.data != d2:
+                D2 = D2.next
+
+            if D1 is None or D2 is None:
+                return
+
+            D1.data, D2.data = D2.data, D1.data
 
 # swapping code ends here
 
@@ -68,5 +84,9 @@ if __name__ == "__main__":
     list.print_list()
 
     list.swapNodes(1, 4)
+    print("After swapping")
+    list.print_list()
+
+    list.swapNodes2(1, 4)
     print("After swapping")
     list.print_list()
