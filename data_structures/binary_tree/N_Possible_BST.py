@@ -100,6 +100,7 @@ def CountBT(n):
     factorial_value = factorial(n)  #find the factorial Value
     count = catalan_value * factorial_value #find the Count of Binary Tree
     return count  #return the Count
+
 if __name__ == '__main__':
     n = int(input('Enter the Number of Node: '))
     print('Total Number of Possible Binary Search Tree from ',n, ' Number of node ',CountBST(n))
