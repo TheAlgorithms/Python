@@ -6,6 +6,13 @@ from bs4 import BeautifulSoup
 
 
 def get_imdb_top_250_movies(url: str = "") -> Dict[str, float]:
+    '''
+    
+    This function scrapes the title and ratings data and returns dictionary
+    containing all 250 movies and ratings
+    
+    '''
+    
     url = url or "https://www.imdb.com/chart/top/?ref_=nv_mv_250"
     soup = BeautifulSoup(requests.get(url).text, "html.parser")
     titles = soup.find_all("td", attrs="titleColumn")
@@ -17,6 +24,12 @@ def get_imdb_top_250_movies(url: str = "") -> Dict[str, float]:
 
 
 def write_movies(filename: str = "IMDb_Top_250_Movies.csv") -> None:
+    '''
+    This function gives a csv file of movies and ratings
+    
+    '''
+    
+    
     movies = get_imdb_top_250_movies()
     with open(filename, "w", newline="") as out_file:
         writer = csv.writer(out_file)
