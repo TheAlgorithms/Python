@@ -157,7 +157,7 @@ if __name__ == "__main__":
     def test_f1(x, y):
         return (x ** 2) + (y ** 2)
 
-    # starting the problem with initial co_ordinates (3, 4)
+    # starting the problem with initial coordinates (3, 4)
     prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
     local_min = hill_climbing(prob, find_max=False)
     print(
@@ -165,7 +165,7 @@ if __name__ == "__main__":
         f"{local_min.score()}"
     )
 
-    # starting the problem with initial co_ordinates (12, 47)
+    # starting the problem with initial coordinates (12, 47)
     prob = SearchProblem(x=12, y=47, step_size=1, function_to_optimize=test_f1)
     local_min = hill_climbing(
         prob, find_max=False, max_x=100, min_x=5, max_y=50, min_y=-5, visualization=True
