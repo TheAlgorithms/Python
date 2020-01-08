@@ -1,3 +1,6 @@
+# https://en.wikipedia.org/wiki/Lowest_common_ancestor
+# https://en.wikipedia.org/wiki/Breadth-first_search
+
 import queue
 
 
