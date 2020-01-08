@@ -7,31 +7,36 @@ Operations:
     4. remove from the end -> O(1)
 """
 
+
 class _DoublyLinkedBase:
     """ A Private class (to be inherited) """
+
     class _Node:
-        __slots__ = '_prev', '_data', '_next'
+        __slots__ = "_prev", "_data", "_next"
+
         def __init__(self, link_p, element, link_n):
             self._prev = link_p
             self._data = element
             self._next = link_n
-        
+
         def has_next_and_prev(self):
-            return " Prev -> {0}, Next -> {1}".format(self._prev != None, self._next != None)
-    
+            return " Prev -> {0}, Next -> {1}".format(
+                self._prev != None, self._next != None
+            )
+
     def __init__(self):
         self._header = self._Node(None, None, None)
         self._trailer = self._Node(None, None, None)
         self._header._next = self._trailer
         self._trailer._prev = self._header
         self._size = 0
-    
+
     def __len__(self):
         return self._size
-    
+
     def is_empty(self):
         return self.__len__() == 0
-    
+
     def _insert(self, predecessor, e, successor):
         # Create new_node by setting it's prev.link -> header
         # setting it's next.link -> trailer
@@ -40,11 +45,11 @@ class _DoublyLinkedBase:
         successor._prev = new_node
         self._size += 1
         return self
-    
+
     def _delete(self, node):
         predecessor = node._prev
         successor = node._next
-        
+
         predecessor._next = successor
         successor._prev = predecessor
         self._size -= 1
@@ -53,8 +58,8 @@ class _DoublyLinkedBase:
         del node
         return temp
 
+
 class LinkedDeque(_DoublyLinkedBase):
-    
     def first(self):
         """ return first element 
         >>> d = LinkedDeque()
@@ -62,11 +67,11 @@ class LinkedDeque(_DoublyLinkedBase):
         'A'
         >>> d.add_first('B').first()
         'B'
-        """ 
+        """
         if self.is_empty():
-            raise Exception('List is empty')
+            raise Exception("List is empty")
         return self._header._next._data
-    
+
     def last(self):
         """ return last element
         >>> d = LinkedDeque()
@@ -76,27 +81,27 @@ class LinkedDeque(_DoublyLinkedBase):
         'B'
         """
         if self.is_empty():
-            raise Exception('List is empty')
+            raise Exception("List is empty")
         return self._trailer._prev._data
-    
+
     ### DEque Insert Operations (At the front, At the end) ###
-    
+
     def add_first(self, element):
         """ insertion in the front
         >>> LinkedDeque().add_first('AV').first()
         'AV'
         """
         return self._insert(self._header, element, self._header._next)
-    
+
     def add_last(self, element):
         """ insertion in the end
         >>> LinkedDeque().add_last('B').last()
         'B'
         """
         return self._insert(self._trailer._prev, element, self._trailer)
-    
+
     ### DEqueu Remove Operations (At the front, At the end) ###
-    
+
     def remove_first(self):
         """ removal from the front
         >>> d = LinkedDeque()
@@ -114,9 +119,9 @@ class LinkedDeque(_DoublyLinkedBase):
         True
         """
         if self.is_empty():
-            raise IndexError('remove_first from empty list')
+            raise IndexError("remove_first from empty list")
         return self._delete(self._header._next)
-    
+
     def remove_last(self):
         """ removal in the end
         >>> d = LinkedDeque()
@@ -134,5 +139,5 @@ class LinkedDeque(_DoublyLinkedBase):
         True
         """
         if self.is_empty():
-            raise IndexError('remove_first from empty list')
+            raise IndexError("remove_first from empty list")
         return self._delete(self._trailer._prev)
