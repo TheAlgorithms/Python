@@ -113,7 +113,7 @@ if __name__ == "__main__":
     import sys
 
     """
-	user_input = input('Enter numbers separated by comma:\n').strip()
+        user_input = input('Enter numbers separated by comma:\n').strip()
     collection = [int(item) for item in user_input.split(',')]
     try:
         __assert_sorted(collection)
@@ -122,7 +122,7 @@ if __name__ == "__main__":
 
     target_input = input('Enter a single number to be found in the list:\n')
     target = int(target_input)
-	"""
+        """
 
     debug = 0
     if debug == 1:
@@ -135,6 +135,6 @@ if __name__ == "__main__":
 
     result = interpolation_search(collection, target)
     if result is not None:
-        print("{} found at positions: {}".format(target, result))
+        print(f"{target} found at positions: {result}")
     else:
         print("Not found")

@@ -7,7 +7,7 @@ import os
 import argparse
 
 
-class FileSplitter(object):
+class FileSplitter:
     BLOCK_FILENAME_FORMAT = "block_{0}.dat"
 
     def __init__(self, filename):
@@ -44,7 +44,7 @@ class FileSplitter(object):
         map(lambda f: os.remove(f), self.block_filenames)
 
 
-class NWayMerge(object):
+class NWayMerge:
     def select(self, choices):
         min_index = -1
         min_str = None
@@ -56,7 +56,7 @@ class NWayMerge(object):
         return min_index
 
 
-class FilesArray(object):
+class FilesArray:
     def __init__(self, files):
         self.files = files
         self.empty = set()
@@ -89,7 +89,7 @@ class FilesArray(object):
         return value
 
 
-class FileMerger(object):
+class FileMerger:
     def __init__(self, merge_strategy):
         self.merge_strategy = merge_strategy
 
@@ -109,7 +109,7 @@ class FileMerger(object):
         return files
 
 
-class ExternalSort(object):
+class ExternalSort:
     def __init__(self, block_size):
         self.block_size = block_size
 

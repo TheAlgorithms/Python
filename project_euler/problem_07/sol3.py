@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 By listing the first six prime numbers:
 

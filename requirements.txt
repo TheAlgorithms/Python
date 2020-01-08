@@ -9,6 +9,7 @@ opencv-python
 pandas
 pillow
 pytest
+pytest-cov
 requests
 scikit-fuzzy
 sklearn

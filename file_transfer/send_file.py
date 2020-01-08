@@ -2,8 +2,8 @@ if __name__ == "__main__":
     import socket  # Import socket module
 
     ONE_CONNECTION_ONLY = (
-        True
-    )  # Set this to False if you wish to continuously accept connections
+        True  # Set this to False if you wish to continuously accept connections
+    )
 
     filename = "mytext.txt"
     port = 12312  # Reserve a port for your service.

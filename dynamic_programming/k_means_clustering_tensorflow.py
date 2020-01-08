@@ -40,7 +40,7 @@ def TFKMeansCluster(vectors, noofclusters):
         ##First lets ensure we have a Variable vector for each centroid,
         ##initialized to one of the vectors from the available data points
         centroids = [
-            tf.Variable((vectors[vector_indices[i]])) for i in range(noofclusters)
+            tf.Variable(vectors[vector_indices[i]]) for i in range(noofclusters)
         ]
         ##These nodes will assign the centroid Variables the appropriate
         ##values

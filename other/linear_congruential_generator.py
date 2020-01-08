@@ -3,7 +3,7 @@ __author__ = "Tobias Carryer"
 from time import time
 
 
-class LinearCongruentialGenerator(object):
+class LinearCongruentialGenerator:
     """
     A pseudorandom number generator.
     """

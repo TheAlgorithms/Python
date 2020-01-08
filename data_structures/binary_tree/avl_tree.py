@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 An auto-balanced binary tree!
 """

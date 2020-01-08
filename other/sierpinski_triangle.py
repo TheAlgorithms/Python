@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# encoding=utf8
 
 """Author Anurag Kumar | anuragkumarak95@gmail.com | git/anuragkumarak95
 

@@ -1,4 +1,3 @@
-# coding: utf-8
 """
     Implementation of sequential minimal optimization(SMO) for support vector machines(SVM).
 
@@ -29,7 +28,6 @@ Reference:
     http://web.cs.iastate.edu/~honavar/smo-svm.pdf
 """
 
-from __future__ import division
 
 import os
 import sys
@@ -44,7 +42,7 @@ from sklearn.preprocessing import StandardScaler
 CANCER_DATASET_URL = "http://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data"
 
 
-class SmoSVM(object):
+class SmoSVM:
     def __init__(
         self,
         train,
@@ -85,7 +83,7 @@ class SmoSVM(object):
                 i1, i2 = self.choose_alpha.send(state)
                 state = None
             except StopIteration:
-                print("Optimization done!\r\nEvery sample satisfy the KKT condition!")
+                print("Optimization done!\nEvery sample satisfy the KKT condition!")
                 break
 
             # 2: calculate new alpha2 and new alpha1
@@ -405,7 +403,7 @@ class SmoSVM(object):
         return self.samples.shape[0]
 
 
-class Kernel(object):
+class Kernel:
     def __init__(self, kernel, degree=1.0, coef0=0.0, gamma=1.0):
         self.degree = np.float64(degree)
         self.coef0 = np.float64(coef0)
@@ -446,14 +444,14 @@ def count_time(func):
         start_time = time.time()
         func(*args, **kwargs)
         end_time = time.time()
-        print("smo algorithm cost {} seconds".format(end_time - start_time))
+        print(f"smo algorithm cost {end_time - start_time} seconds")
 
     return call_func
 
 
 @count_time
 def test_cancel_data():
-    print("Hello!\r\nStart test svm by smo algorithm!")
+    print("Hello!\nStart test svm by smo algorithm!")
     # 0: download dataset and load into pandas' dataframe
     if not os.path.exists(r"cancel_data.csv"):
         request = urllib.request.Request(
@@ -499,17 +497,13 @@ def test_cancel_data():
     for i in range(test_tags.shape[0]):
         if test_tags[i] == predict[i]:
             score += 1
-    print(
-        "\r\nall: {}\r\nright: {}\r\nfalse: {}".format(
-            test_num, score, test_num - score
-        )
-    )
-    print("Rough Accuracy: {}".format(score / test_tags.shape[0]))
+    print(f"\nall: {test_num}\nright: {score}\nfalse: {test_num - score}")
+    print(f"Rough Accuracy: {score / test_tags.shape[0]}")
 
 
 def test_demonstration():
     # change stdout
-    print("\r\nStart plot,please wait!!!")
+    print("\nStart plot,please wait!!!")
     sys.stdout = open(os.devnull, "w")
 
     ax1 = plt.subplot2grid((2, 2), (0, 0))

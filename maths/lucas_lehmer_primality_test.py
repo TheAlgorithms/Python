@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
         In mathematics, the Lucas–Lehmer test (LLT) is a primality test for Mersenne numbers.
         https://en.wikipedia.org/wiki/Lucas%E2%80%93Lehmer_primality_test

@@ -20,6 +20,7 @@ def fracKnapsack(vl, wt, W, n):
         else sum(vl[:k])
     )
 
+
 if __name__ == "__main__":
     import doctest
 

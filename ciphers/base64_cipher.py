@@ -18,7 +18,7 @@ def encode_base64(text):
     i = 0
     while i < len(s):
         if i > 0 and ((i / 3 * 4) % 76) == 0:
-            r = r + "\r\n" # for unix newline, put "\n"
+            r = r + "\r\n"  # for unix newline, put "\n"
 
         n = (s[i] << 16) + (s[i + 1] << 8) + s[i + 2]
 

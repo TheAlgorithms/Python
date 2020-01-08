@@ -125,6 +125,7 @@ class Decision_Tree:
             print("Error: Decision tree not yet trained")
             return None
 
+
 class Test_Decision_Tree:
     """Decision Tres test class
     """
@@ -139,12 +140,9 @@ class Test_Decision_Tree:
         """
         squared_error_sum = np.float(0)
         for label in labels:
-            squared_error_sum += ((label-prediction) ** 2)
+            squared_error_sum += (label - prediction) ** 2
 
-        return np.float(squared_error_sum/labels.size)
-    
-    
-    
+        return np.float(squared_error_sum / labels.size)
 
 
 def main():

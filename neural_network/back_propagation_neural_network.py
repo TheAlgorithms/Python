@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# encoding=utf8
 
 """
 
@@ -58,6 +57,7 @@ class DenseLayer:
             self.activation = sigmoid
 
     def cal_gradient(self):
+        # activation function may be sigmoid or linear
         if self.activation == sigmoid:
             gradient_mat = np.dot(self.output, (1 - self.output).T)
             gradient_activation = np.diag(np.diag(gradient_mat))
@@ -78,7 +78,6 @@ class DenseLayer:
             return self.output
 
     def back_propagation(self, gradient):
-
         gradient_activation = self.cal_gradient()  # i * i 维
         gradient = np.asmatrix(np.dot(gradient.T, gradient_activation))
 
@@ -89,11 +88,10 @@ class DenseLayer:
         self.gradient_weight = np.dot(gradient.T, self._gradient_weight.T)
         self.gradient_bias = gradient * self._gradient_bias
         self.gradient = np.dot(gradient, self._gradient_x).T
-        # ----------------------upgrade
-        # -----------the Negative gradient direction --------
+        # upgrade: the Negative gradient direction
         self.weight = self.weight - self.learn_rate * self.gradient_weight
         self.bias = self.bias - self.learn_rate * self.gradient_bias.T
-
+        # updates the weights and bias according to learning rate (0.3 if undefined)
         return self.gradient
 
 
@@ -144,8 +142,7 @@ class BPNN:
                 loss, gradient = self.cal_loss(_ydata, _xdata)
                 all_loss = all_loss + loss
 
-                # back propagation
-                # the input_layer does not upgrade
+                # back propagation: the input_layer does not upgrade
                 for layer in self.layers[:0:-1]:
                     gradient = layer.back_propagation(gradient)
 
@@ -176,7 +173,6 @@ class BPNN:
 
 
 def example():
-
     x = np.random.randn(10, 10)
     y = np.asarray(
         [
@@ -192,17 +188,11 @@ def example():
             [0.1, 0.5],
         ]
     )
-
     model = BPNN()
-    model.add_layer(DenseLayer(10))
-    model.add_layer(DenseLayer(20))
-    model.add_layer(DenseLayer(30))
-    model.add_layer(DenseLayer(2))
-
+    for i in (10, 20, 30, 2):
+        model.add_layer(DenseLayer(i))
     model.build()
-
     model.summary()
-
     model.train(xdata=x, ydata=y, train_round=100, accuracy=0.01)
 
 

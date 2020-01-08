@@ -117,4 +117,4 @@ if __name__ == "__main__":
     msg = "DEFEND THE EAST WALL OF THE CASTLE."
     encrypted = encryptMessage(msg, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
     decrypted = decryptMessage(encrypted, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
-    print("Encrypted: {}\nDecrypted: {}".format(encrypted, decrypted))
+    print(f"Encrypted: {encrypted}\nDecrypted: {decrypted}")
