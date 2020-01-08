@@ -23,7 +23,7 @@ class SearchProblem:
 
     def score(self) -> int:
         """
-        Returns the output for the function called with current x and y coordinates.
+        Returns the output of the function called with current x and y coordinates.
         >>> def test_function(x, y):
         ...     return x + y
         >>> SearchProblem(0, 0, 1, test_function).score()  # 0 + 0 = 0
@@ -91,7 +91,7 @@ def hill_climbing(
         have any neighbors which can improve the solution.
         Args:
             search_prob: The search state at the start.
-            find_max: If True, the algorithm should find the minimum else the minimum.
+            find_max: If True, the algorithm should find the maximum else the minimum.
             max_x, min_x, max_y, min_y: the maximum and minimum bounds of x and y.
             visualization: If True, a matplotlib graph is displayed.
             max_iter: number of times to run the iteration.
