@@ -3,9 +3,10 @@ LCS Problem Statement: Given two sequences, find the length of longest subsequen
 A subsequence is a sequence that appears in the same relative order, but not necessarily continuous.
 Example:"abc", "abg" are subsequences of "abcdefgh".
 """
-'''
+"""
 Hey This Is the Bottom-Up Approach of the Dynamic Programming.
-'''
+"""
+
 
 def longest_common_subsequence(x: str, y: str):
     """
@@ -69,18 +70,22 @@ def longest_common_subsequence(x: str, y: str):
             j -= 1
 
     return L[m][n], seq
-'''
+
+
+"""
 This is the Top-Down Approach (Memoization) of Dynamic Programming.
-'''
+"""
+
+
 def longest_common_subsequence_memoization(X, Y, m, n, dp):
-    '''
+    """
     :param X: String 1st
     :param Y: String 2nc
     :param m: length of String 1
     :param n: length of String 2
     :param dp: Array for Storage of The Pre Calculate Value
     :return: length of Common Subsequence
-    '''
+    """
     """
     >>> longest_common_subsequence_memoization("programming", "gaming")
     6
@@ -90,30 +95,35 @@ def longest_common_subsequence_memoization(X, Y, m, n, dp):
     1
     """
     # base case
-    if (m == 0 or n == 0):
+    if m == 0 or n == 0:
         return 0
 
     # if the same state has already been
     # computed
-    if (dp[m - 1][n - 1] != -1):
+    if dp[m - 1][n - 1] != -1:
         return dp[m - 1][n - 1]
 
         # if equal, then we store the value of the
     # function call
-    if (X[m - 1] == Y[n - 1]):
+    if X[m - 1] == Y[n - 1]:
 
         # store it in arr to avoid further repetitive
         # work in future function calls
-        dp[m - 1][n - 1] = 1 + longest_common_subsequence_memoization(X, Y, m - 1, n - 1, dp)
+        dp[m - 1][n - 1] = 1 + longest_common_subsequence_memoization(
+            X, Y, m - 1, n - 1, dp
+        )
         return dp[m - 1][n - 1]
 
     else:
 
         # store it in arr to avoid further repetitive
         # work in future function calls
-        dp[m - 1][n - 1] = max(longest_common_subsequence_memoization(X, Y, m, n - 1, dp),
-                               longest_common_subsequence_memoization(X, Y, m - 1, n, dp))
+        dp[m - 1][n - 1] = max(
+            longest_common_subsequence_memoization(X, Y, m, n - 1, dp),
+            longest_common_subsequence_memoization(X, Y, m - 1, n, dp),
+        )
         return dp[m - 1][n - 1]
+
 
 if __name__ == "__main__":
     a = "AGGTAB"
@@ -122,15 +132,13 @@ if __name__ == "__main__":
     expected_subseq = "GTAB"
     m = len(a)
     n = len(b)
-    maximum  = 1000
+    maximum = 1000
     ln, subseq = longest_common_subsequence(a, b)
     ##    print("len =", ln, ", sub-sequence =", subseq)
 
     dp = [[-1 for _ in range(maximum)] for _ in range(m)]
-    lcsm = longest_common_subsequence_memoization(a,b,m,n,dp)
+    lcsm = longest_common_subsequence_memoization(a, b, m, n, dp)
     ##print(lcsm)
     import doctest
 
     doctest.testmod()
-
-

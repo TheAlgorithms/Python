@@ -24,17 +24,18 @@ def bubble_sort(list1):
     
     """
 
-    for i, num in enumerate(list1): 
-        try: 
-            if list1[i+1] < num: 
-                list1[i] = list1[i+1] 
-                list1[i+1] = num 
-                bubble_sort(list1) 
-        except IndexError: 
+    for i, num in enumerate(list1):
+        try:
+            if list1[i + 1] < num:
+                list1[i] = list1[i + 1]
+                list1[i + 1] = num
+                bubble_sort(list1)
+        except IndexError:
             pass
-    return list1 
+    return list1
 
-if __name__ == "__main__":     
-    list1 = [33,99,22,11,66]    
-    bubble_sort(list1)     
+
+if __name__ == "__main__":
+    list1 = [33, 99, 22, 11, 66]
+    bubble_sort(list1)
     print(list1)
