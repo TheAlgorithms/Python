@@ -127,6 +127,7 @@
     * [Stock Span Problem](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stock_span_problem.py)
   * Trie
     * [Trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
+    * [Prefix Evaluation](https://github.com/TheAlgorithms/Python/blob/master/data_structures/prefix_evaluation.py)
 
 ## Digital Image Processing
   * [Change Contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
