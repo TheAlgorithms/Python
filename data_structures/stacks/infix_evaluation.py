@@ -27,9 +27,9 @@ def evaluate(expression):
     Evaluate a given expression in prefix notation.
     Asserts that the given expression is valid.
 
-     >>> evaluate("+ 9 * 2 6")
+    >>> evaluate("+ 9 * 2 6")
     21
-    >>> evaluate("/ * 10 2 + 4 2 ")
+    >>> evaluate("/ * 10 2 + 4 1 ")
     4.0
     """
     stack = []
