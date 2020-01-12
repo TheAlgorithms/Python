@@ -35,9 +35,12 @@ def simulated_annealing(
     current_temp = start_temperate
     scores = []
     iterations = 0
+    best_state = None
 
     while not search_end:
         current_score = current_state.score()
+        if best_state is None or current_score > best_state.score():
+            best_state = current_state
         scores.append(current_score)
         iterations += 1
         next_state = None
@@ -55,6 +58,8 @@ def simulated_annealing(
                 if random.random() < probabililty: #random number within probability
                     next_state = picked_neighbor
         current_temp = current_temp - (current_temp * rate_of_decrease)
+
+
         if current_temp < threshold_temp or next_state is None: #temperature below threshold, or
             # couldnt find a suitaable neighbor
             search_end = True
@@ -67,7 +72,7 @@ def simulated_annealing(
         plt.xlabel("Iterations")
         plt.ylabel("Function values")
         plt.show()
-    return current_state
+    return best_state
 
 if __name__ == "__main__":
     def test_f1(x, y):
@@ -93,6 +98,15 @@ if __name__ == "__main__":
         f"and 50 > y > - 5 found via hill climbing: {local_min.score()}"
     )
 
+    def test_f2(x, y):
+        return (3 * x ** 2) - (6 * y)
+
+    prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
+    local_min = simulated_annealing(prob, find_max=False, visualization = True)
+    print(
+        "The minimum score for f(x, y) = 3*x^2 - 6*y found via hill climbing: "
+        f"{local_min.score()}"
+    )
 
 
 
