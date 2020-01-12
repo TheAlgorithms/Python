@@ -145,7 +145,7 @@ def strassen(matrix1: List, matrix2: List) -> List:
 
 
 if __name__ == "__main__":
-    matrix1= [
+    matrix1 = [
         [2, 3, 4, 5],
         [6, 4, 3, 1],
         [2, 3, 6, 7],
