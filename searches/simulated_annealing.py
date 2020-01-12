@@ -2,18 +2,19 @@
 import math, random
 from hill_climbing import SearchProblem
 
+
 def simulated_annealing(
     search_prob,
-        find_max: bool = True,
-        max_x: float = math.inf,
-        min_x: float = -math.inf,
-        max_y: float = math.inf,
-        min_y: float = -math.inf,
-        visualization: bool = False,
-        start_temperate: float = 100,
-        rate_of_decrease: float = 0.01,
-        threshold_temp: float = 1
-    ) -> SearchProblem:
+    find_max: bool = True,
+    max_x: float = math.inf,
+    min_x: float = -math.inf,
+    max_y: float = math.inf,
+    min_y: float = -math.inf,
+    visualization: bool = False,
+    start_temperate: float = 100,
+    rate_of_decrease: float = 0.01,
+    threshold_temp: float = 1,
+) -> SearchProblem:
     """
         implementation of the simulated annealing algorithm. We start with a given state, find
             all its neighbors. Pick a random neighbor, if that neighbor improves the solution, we move
@@ -45,22 +46,27 @@ def simulated_annealing(
         iterations += 1
         next_state = None
         neighbors = current_state.get_neighbors()
-        while next_state is None and neighbors: #till we do not find a neighbor that we can move to
-            index = random.randint(0, len(neighbors) -1) #picking a random neighbor
+        while (
+            next_state is None and neighbors
+        ):  # till we do not find a neighbor that we can move to
+            index = random.randint(0, len(neighbors) - 1)  # picking a random neighbor
             picked_neighbor = neighbors.pop(index)
             change = picked_neighbor.score() - current_score
             if not find_max:
-                change = change * -1 #incase we are finding minimum
-            if change > 0: #improves the solution
+                change = change * -1  # incase we are finding minimum
+            if change > 0:  # improves the solution
                 next_state = picked_neighbor
             else:
-                probabililty = (math.e) ** (change/current_temp) #probability generation function
-                if random.random() < probabililty: #random number within probability
+                probabililty = (math.e) ** (
+                    change / current_temp
+                )  # probability generation function
+                if random.random() < probabililty:  # random number within probability
                     next_state = picked_neighbor
         current_temp = current_temp - (current_temp * rate_of_decrease)
 
-
-        if current_temp < threshold_temp or next_state is None: #temperature below threshold, or
+        if (
+            current_temp < threshold_temp or next_state is None
+        ):  # temperature below threshold, or
             # couldnt find a suitaable neighbor
             search_end = True
         else:
@@ -68,13 +74,16 @@ def simulated_annealing(
 
     if visualization:
         import matplotlib.pyplot as plt
+
         plt.plot(range(iterations), scores)
         plt.xlabel("Iterations")
         plt.ylabel("Function values")
         plt.show()
     return best_state
 
+
 if __name__ == "__main__":
+
     def test_f1(x, y):
         return (x ** 2) + (y ** 2)
 
@@ -102,16 +111,8 @@ if __name__ == "__main__":
         return (3 * x ** 2) - (6 * y)
 
     prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
-    local_min = simulated_annealing(prob, find_max=False, visualization = True)
+    local_min = simulated_annealing(prob, find_max=False, visualization=True)
     print(
         "The minimum score for f(x, y) = 3*x^2 - 6*y found via hill climbing: "
         f"{local_min.score()}"
     )
-
-
-
-
-
-
-
-
