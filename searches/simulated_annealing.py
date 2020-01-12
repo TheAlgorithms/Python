@@ -52,6 +52,15 @@ def simulated_annealing(
             index = random.randint(0, len(neighbors) - 1)  # picking a random neighbor
             picked_neighbor = neighbors.pop(index)
             change = picked_neighbor.score() - current_score
+
+            if (
+                picked_neighbor.x > max_x
+                or picked_neighbor.x < min_x
+                or picked_neighbor.y > max_y
+                or picked_neighbor.y < min_y
+            ):
+                continue  # neighbor outside our bounds
+
             if not find_max:
                 change = change * -1  # incase we are finding minimum
             if change > 0:  # improves the solution
@@ -103,7 +112,7 @@ if __name__ == "__main__":
         prob, find_max=True, max_x=100, min_x=5, max_y=50, min_y=-5, visualization=True
     )
     print(
-        "The minimum score for f(x, y) = x^2 + y^2 with the domain 100 > x > 5 "
+        "The maximum score for f(x, y) = x^2 + y^2 with the domain 100 > x > 5 "
         f"and 50 > y > - 5 found via hill climbing: {local_min.score()}"
     )
 
@@ -114,5 +123,12 @@ if __name__ == "__main__":
     local_min = simulated_annealing(prob, find_max=False, visualization=True)
     print(
         "The minimum score for f(x, y) = 3*x^2 - 6*y found via hill climbing: "
+        f"{local_min.score()}"
+    )
+
+    prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
+    local_min = simulated_annealing(prob, find_max=True, visualization=True)
+    print(
+        "The maximum score for f(x, y) = 3*x^2 - 6*y found via hill climbing: "
         f"{local_min.score()}"
     )
