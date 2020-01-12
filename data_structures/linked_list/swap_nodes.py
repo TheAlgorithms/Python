@@ -11,8 +11,9 @@ class Linkedlist:
     def print_list(self):
         temp = self.head
         while temp is not None:
-            print(temp.data)
+            print(temp.data, end=' ')
             temp = temp.next
+        print()
 
     # adding nodes
     def push(self, new_data):
@@ -21,72 +22,32 @@ class Linkedlist:
         self.head = new_node
 
     # swapping nodes
-    def swapNodes(self, d1, d2):
-        prevD1 = None
-        prevD2 = None
-        if d1 == d2:
+    def swap_nodes(self, node_data_1, node_data_2):
+        if node_data_1 == node_data_2:
             return
         else:
-            # find d1
-            D1 = self.head
-            while D1 is not None and D1.data != d1:
-                prevD1 = D1
-                D1 = D1.next
-                # find d2
-            D2 = self.head
-            while D2 is not None and D2.data != d2:
-                prevD2 = D2
-                D2 = D2.next
-            if D1 is None and D2 is None:
-                return
-            # if D1 is head
-            if prevD1 is not None:
-                prevD1.next = D2
-            else:
-                self.head = D2
-            # if D2 is head
-            if prevD2 is not None:
-                prevD2.next = D1
-            else:
-                self.head = D1
-            temp = D1.next
-            D1.next = D2.next
-            D2.next = temp
+            node_1 = self.head
+            while node_1 is not None and node_1.data != node_data_1:
+                node_1 = node_1.next
 
-    def swapNodes2(self, d1, d2):
-        if d1 == d2:
-            return
-        else:
-            D1 = self.head
-            while D1 is not None and D1.data != d1:
-                D1 = D1.next
+            node_2 = self.head
+            while node_2 is not None and node_2.data != node_data_2:
+                node_2 = node_2.next
 
-            D2 = self.head
-            while D2 is not None and D2.data != d2:
-                D2 = D2.next
-
-            if D1 is None or D2 is None:
+            if node_1 is None or node_2 is None:
                 return
 
-            D1.data, D2.data = D2.data, D1.data
+            node_1.data, node_2.data = node_2.data, node_1.data
 
-# swapping code ends here
 
 
 if __name__ == "__main__":
     list = Linkedlist()
-    list.push(5)
-    list.push(4)
-    list.push(3)
-    list.push(2)
-    list.push(1)
+    for i in range(5, 0, -1):
+        list.push(i)
 
     list.print_list()
 
-    list.swapNodes(1, 4)
-    print("After swapping")
-    list.print_list()
-
-    list.swapNodes2(1, 4)
+    list.swap_nodes(1, 4)
     print("After swapping")
     list.print_list()
