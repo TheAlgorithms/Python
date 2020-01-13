@@ -1,7 +1,7 @@
 Describe your change:
 
 
-* [ ] Add a algorithm?
+* [ ] Add an algorithm?
 * [ ] Fix a bug or typo in an existing algorithm?
 * [ ] Documentation change?
 
