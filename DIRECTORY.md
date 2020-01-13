@@ -122,12 +122,12 @@
     * [Linked Stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/linked_stack.py)
     * [Next Greater Element](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/next_greater_element.py)
     * [Postfix Evaluation](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/postfix_evaluation.py)
+    * [Prefix Evaluation](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/prefix_evaluation.py)
     * [Stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stack.py)
     * [Stack Using Dll](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stack_using_dll.py)
     * [Stock Span Problem](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stock_span_problem.py)
   * Trie
     * [Trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
-    * [Prefix Evaluation](https://github.com/TheAlgorithms/Python/blob/master/data_structures/prefix_evaluation.py)
 
 ## Digital Image Processing
   * [Change Contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
@@ -152,6 +152,8 @@
   * [Inversions](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/inversions.py)
   * [Max Subarray Sum](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/max_subarray_sum.py)
   * [Mergesort](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/mergesort.py)
+  * [Power](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/power.py)
+  * [Strassen Matrix Multiplication](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/strassen_matrix_multiplication.py)
 
 ## Dynamic Programming
   * [Abbreviation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/abbreviation.py)
@@ -537,6 +539,7 @@
   * [Random Pivot Quick Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/random_pivot_quick_sort.py)
   * [Recursive-Quick-Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive-quick-sort.py)
   * [Recursive Bubble Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive_bubble_sort.py)
+  * [Recursive Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive_insertion_sort.py)
   * [Selection Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/selection_sort.py)
   * [Shell Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/shell_sort.py)
   * [Stooge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/stooge_sort.py)
