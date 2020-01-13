@@ -1,0 +1,17 @@
+Describe your change:
+
+
+* [ ] Add a algorithm?
+* [ ] Fix a bug or typo in an existing algorithm?
+* [ ] Documentation change?
+
+Checklist:
+* [ ] I have read CONTRIBUTING.md.
+* [ ] This pull request is all my own work -- I have not plagerized.
+* [ ] I know that pull request will not be merged if they the automated tests.
+* [ ] All new Python files are placed inside an existing directory.
+* [ ] All files are in all lowercase characters with no spaces or dashes.
+* [ ] All functions and variable names follow Python naming conventions.
+* [ ] All function parameters and return values are annotated with Python type hints.
+* [ ] All functions have doctests that pass the automated testing.
+* [ ] All new algorithms have a URL that points to Wikipedia or other similar explaination.
