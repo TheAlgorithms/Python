@@ -33,7 +33,7 @@ class Heap(object):
             return left_child_index
         return None
 
-    def get_right_child(self, i):
+    def get_right_child_index(self, i):
         right_child_index = 2 * i + 2
         if right_child_index < self.curr_size:
             return right_child_index
@@ -43,7 +43,7 @@ class Heap(object):
         if index < self.curr_size:
             largest = index
             lc = self.get_left_child_index(index)
-            rc = self.get_right_child(index)
+            rc = self.get_right_child_index(index)
             if lc is not None and self.h[lc] > self.h[largest]:
                 largest = lc
             if rc is not None and self.h[rc] > self.h[largest]:
