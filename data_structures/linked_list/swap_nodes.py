@@ -44,12 +44,12 @@ class LinkedList:
 
 
 if __name__ == "__main__":
-    list = LinkedList()
+    ll = LinkedList()
     for i in range(5, 0, -1):
-        list.push(i)
+        ll.push(i)
 
-    list.print_list()
+    ll.print_list()
 
-    list.swap_nodes(1, 4)
+    ll.swap_nodes(1, 4)
     print("After swapping")
-    list.print_list()
+    ll.print_list()
