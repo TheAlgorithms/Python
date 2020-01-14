@@ -21,10 +21,10 @@ class LinkedList:
             temp.next = Node(data)  # create node & link to tail
 
     def insert_head(self, data) -> None:
-        newNod = Node(data)  # create a new node
+        new_node = Node(data)  # create a new node
         if self.head:
-            newNod.next = self.head  # link newNode to head
-        self.head = newNod  # make NewNode as head
+            new_node.next = self.head  # link new_node to head
+        self.head = new_node  # make NewNode as head
 
     def print_list(self) -> None:  # print every node data
         temp = self.head
