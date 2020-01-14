@@ -27,13 +27,13 @@ class Heap(object):
         self.h = []
         self.curr_size = 0
 
-    def get_left_child_index(self, i):
+    def get_index_of_left_child(self, i):
         left_child_index = 2 * i + 1
         if left_child_index < self.curr_size:
             return left_child_index
         return None
 
-    def get_right_child_index(self, i):
+    def get_index_of_right_child(self, i):
         right_child_index = 2 * i + 2
         if right_child_index < self.curr_size:
             return right_child_index
@@ -42,8 +42,8 @@ class Heap(object):
     def max_heapify(self, index):
         if index < self.curr_size:
             largest = index
-            lc = self.get_left_child_index(index)
-            rc = self.get_right_child_index(index)
+            lc = self.get_index_of_left_child(index)
+            rc = self.get_index_of_right_child(index)
             if lc is not None and self.h[lc] > self.h[largest]:
                 largest = lc
             if rc is not None and self.h[rc] > self.h[largest]:
