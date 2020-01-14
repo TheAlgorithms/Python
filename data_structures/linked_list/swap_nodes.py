@@ -1,10 +1,13 @@
+from typing import Any
+
+
 class Node:
-    def __init__(self, data):
+    def __init__(self, data: Any):
         self.data = data
         self.next = None
 
 
-class Linkedlist:
+class LinkedList:
     def __init__(self):
         self.head = None
 
@@ -16,7 +19,7 @@ class Linkedlist:
         print()
 
     # adding nodes
-    def push(self, new_data):
+    def push(self, new_data: Any):
         new_node = Node(new_data)
         new_node.next = self.head
         self.head = new_node
@@ -40,9 +43,8 @@ class Linkedlist:
             node_1.data, node_2.data = node_2.data, node_1.data
 
 
-
 if __name__ == "__main__":
-    list = Linkedlist()
+    list = LinkedList()
     for i in range(5, 0, -1):
         list.push(i)
 
