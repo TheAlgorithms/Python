@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# encoding=utf8
 
 """
 This program calculates the nth Fibonacci number in O(log(n)).

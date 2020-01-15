@@ -18,7 +18,7 @@
 """
 
 
-class XORCipher(object):
+class XORCipher:
     def __init__(self, key=0):
         """
                         simple constructor that receives a key or uses

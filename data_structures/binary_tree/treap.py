@@ -2,7 +2,7 @@ from random import random
 from typing import Tuple
 
 
-class Node(object):
+class Node:
     """
     Treap's node
     Treap is a binary tree by value and heap by priority
@@ -18,11 +18,10 @@ class Node(object):
         from pprint import pformat
 
         if self.left is None and self.right is None:
-            return "'%s: %.5s'" % (self.value, self.prior)
+            return f"'{self.value}: {self.prior:.5}'"
         else:
             return pformat(
-                {"%s: %.5s" % (self.value, self.prior): (self.left, self.right)},
-                indent=1,
+                {f"{self.value}: {self.prior:.5}": (self.left, self.right)}, indent=1,
             )
 
     def __str__(self):

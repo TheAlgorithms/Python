@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Collatz conjecture: start with any positive integer n. Next term obtained from
 the previous term as follows:

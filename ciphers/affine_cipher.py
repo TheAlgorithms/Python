@@ -3,8 +3,10 @@ import sys
 
 import cryptomath_module as cryptomath
 
-SYMBOLS = (r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
-           r"""abcdefghijklmnopqrstuvwxyz{|}~""")
+SYMBOLS = (
+    r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
+    r"""abcdefghijklmnopqrstuvwxyz{|}~"""
+)
 
 
 def main():

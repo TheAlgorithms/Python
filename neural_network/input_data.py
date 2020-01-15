@@ -17,9 +17,6 @@
 This module and all its submodules are deprecated.
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
 
 import collections
 import gzip
@@ -115,7 +112,7 @@ def _extract_labels(f, one_hot=False, num_classes=10):
         return labels
 
 
-class _DataSet(object):
+class _DataSet:
     """Container class for a _DataSet (deprecated).
 
   THIS CLASS IS DEPRECATED.
@@ -165,7 +162,7 @@ class _DataSet(object):
         else:
             assert (
                 images.shape[0] == labels.shape[0]
-            ), "images.shape: %s labels.shape: %s" % (images.shape, labels.shape)
+            ), f"images.shape: {images.shape} labels.shape: {labels.shape}"
             self._num_examples = images.shape[0]
 
             # Convert shape from [num examples, rows, columns, depth]

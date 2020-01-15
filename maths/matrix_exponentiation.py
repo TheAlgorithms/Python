@@ -10,7 +10,7 @@ https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 """
 
 
-class Matrix(object):
+class Matrix:
     def __init__(self, arg):
         if isinstance(arg, list):  # Initialzes a matrix identical to the one provided.
             self.t = arg

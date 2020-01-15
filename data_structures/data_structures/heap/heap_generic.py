@@ -1,4 +1,4 @@
-class Heap(object):
+class Heap:
     """A generic Heap class, can be used as min or max by passing the key function accordingly.
     """
 

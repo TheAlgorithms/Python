@@ -148,9 +148,9 @@ def main():
         % (matrix_a, matrix_b, multiply(matrix_a, matrix_b))
     )
     print("Identity:  %s \n" % identity(5))
-    print("Minor of %s = %s \n" % (matrix_c, minor(matrix_c, 1, 2)))
-    print("Determinant of %s = %s \n" % (matrix_b, determinant(matrix_b)))
-    print("Inverse of %s = %s\n" % (matrix_d, inverse(matrix_d)))
+    print("Minor of {} = {} \n".format(matrix_c, minor(matrix_c, 1, 2)))
+    print("Determinant of {} = {} \n".format(matrix_b, determinant(matrix_b)))
+    print("Inverse of {} = {}\n".format(matrix_d, inverse(matrix_d)))
 
 
 if __name__ == "__main__":

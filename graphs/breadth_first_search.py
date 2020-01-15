@@ -1,5 +1,4 @@
 #!/usr/bin/python
-# encoding=utf8
 
 """ Author: OMKAR PATHAK """
 

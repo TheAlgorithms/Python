@@ -57,7 +57,7 @@ class FlowNetwork:
         self.maximumFlowAlgorithm = Algorithm(self)
 
 
-class FlowNetworkAlgorithmExecutor(object):
+class FlowNetworkAlgorithmExecutor:
     def __init__(self, flowNetwork):
         self.flowNetwork = flowNetwork
         self.verticesCount = flowNetwork.verticesCount
@@ -80,7 +80,7 @@ class FlowNetworkAlgorithmExecutor(object):
 
 class MaximumFlowAlgorithmExecutor(FlowNetworkAlgorithmExecutor):
     def __init__(self, flowNetwork):
-        super(MaximumFlowAlgorithmExecutor, self).__init__(flowNetwork)
+        super().__init__(flowNetwork)
         # use this to save your result
         self.maximumFlow = -1
 
@@ -93,7 +93,7 @@ class MaximumFlowAlgorithmExecutor(FlowNetworkAlgorithmExecutor):
 
 class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
     def __init__(self, flowNetwork):
-        super(PushRelabelExecutor, self).__init__(flowNetwork)
+        super().__init__(flowNetwork)
 
         self.preflow = [[0] * self.verticesCount for i in range(self.verticesCount)]
 

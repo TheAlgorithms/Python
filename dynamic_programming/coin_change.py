@@ -36,6 +36,7 @@ def dp_count(S, m, n):
 
     return table[n]
 
+
 if __name__ == "__main__":
     import doctest
 

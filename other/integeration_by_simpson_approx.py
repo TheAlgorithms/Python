@@ -111,7 +111,7 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
 
     for i in range(1, N_STEPS):
         a1 = a + h * i
-        result += function(a1) * (4 if i%2 else 2)
+        result += function(a1) * (4 if i % 2 else 2)
 
     result *= h / 3
     return round(result, precision)
