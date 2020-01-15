@@ -18,7 +18,9 @@ def get_initial_point(a: float) -> float:
     return start
 
 
-def square_root_iterative(a, max_iter=9999, tolerance=0.00000000000001):
+def square_root_iterative(
+    a: float, max_iter: int = 9999, tolerance: float = 0.00000000000001
+) -> float:
     """
     Sqaure root is aproximated using Newtons method.
     https://en.wikipedia.org/wiki/Newton%27s_method
