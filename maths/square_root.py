@@ -9,7 +9,7 @@ def fx_derivative(x: float) -> float:
     return 2 * x
 
 
-def get_initial_point(a: float) -> float:
+def get_initial_point(a: float) -> int:
     start = 2
 
     while start <= a:
