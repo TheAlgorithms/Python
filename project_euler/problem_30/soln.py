@@ -28,7 +28,7 @@ def digitsum(s: str) -> int:
     i = sum(pow(int(c), 5) for c in s)
     return i if i == int(s) else 0
 
-count = sum(digitsum(str(i)) for i in range(1000,1000000))
-print(count)
 
-#ans = 443839
+if __name__ == "__main__":
+    count = sum(digitsum(str(i)) for i in range(1000,1000000))
+    print(count)  # --> 443839
