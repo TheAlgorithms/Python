@@ -20,18 +20,15 @@ and hence a bound between (1000,1000000)
 """
 
 
-def digitsum(s):
-    c=0
-    for j in range(len(s)):
-        c+=pow(int(s[j]),5)
-    if c==int(s):
-        return c
-    else:
-        return 0
+def digitsum(s: str) -> int:
+    """
+    >>> all(digitsum(str(i)) == (1 if i == 1 else 0) for i in range(100))
+    True
+    """
+    i = sum(pow(int(c), 5) for c in s)
+    return i if i == int(s) else 0
 
-count=0
-for i in range(1000,1000000):
-    count+=digitsum(str(i))
+count = sum(digitsum(str(i)) for i in range(1000,1000000))
 print(count)
 
 #ans = 443839
