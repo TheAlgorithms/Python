@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v1
       - run: pip install codespell flake8
-      - run: codespell -L ans --skip="./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt,*.jpg,*.png,*.jpeg,*.gif,./.git/*,./.github/*"
+      - run: codespell -L ans --skip="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt,*.jpg,*.png,*.jpeg,*.gif"
