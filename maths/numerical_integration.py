@@ -37,12 +37,13 @@ def trapezoidal_area(fnc: Callable[[Union[int, float]], Union[int, float]],
 
     for i in range(steps):
 
-        #approx small segments of curve as linear and solve for trapezoidal area
+        # Approximates small segments of curve as linear and solve
+        # for trapezoidal area
         x2 = (x_end - x_start)/steps + x1
         fx2 = fnc(x2)
         area += abs(fx2 + fx1) * (x2 - x1)/2
 
-        #increment step
+        # Increment step
         x1 = x2
         fx1 = fx2
     return area

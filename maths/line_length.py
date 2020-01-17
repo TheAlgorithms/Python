@@ -37,12 +37,12 @@ def line_length(fnc: Callable[[Union[int, float]], Union[int, float]],
 
     for i in range(steps):
 
-        #approximates curve as a sequence of linear lines and sums their length
+        # Approximates curve as a sequence of linear lines and sums their length
         x2 = (x_end - x_start) / steps + x1
         fx2 = fnc(x2)
         length += m.hypot(x2 - x1, fx2 - fx1)
 
-        #increment step
+        # Increment step
         x1 = x2
         fx1 = fx2
 
