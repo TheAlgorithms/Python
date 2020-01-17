@@ -30,5 +30,5 @@ def digitsum(s: str) -> int:
 
 
 if __name__ == "__main__":
-    count = sum(digitsum(str(i)) for i in range(1000,1000000))
+    count = sum(digitsum(str(i)) for i in range(1000, 1000000))
     print(count)  # --> 443839
