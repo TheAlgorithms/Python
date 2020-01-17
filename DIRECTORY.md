@@ -319,6 +319,7 @@
   * [Sieve Of Eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/sieve_of_eratosthenes.py)
   * [Simpson Rule](https://github.com/TheAlgorithms/Python/blob/master/maths/simpson_rule.py)
   * [Softmax](https://github.com/TheAlgorithms/Python/blob/master/maths/softmax.py)
+  * [Square Root](https://github.com/TheAlgorithms/Python/blob/master/maths/square_root.py)
   * [Sum Of Arithmetic Series](https://github.com/TheAlgorithms/Python/blob/master/maths/sum_of_arithmetic_series.py)
   * [Test Prime Check](https://github.com/TheAlgorithms/Python/blob/master/maths/test_prime_check.py)
   * [Trapezoidal Rule](https://github.com/TheAlgorithms/Python/blob/master/maths/trapezoidal_rule.py)
@@ -469,6 +470,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_28/sol1.py)
   * Problem 29
     * [Solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/solution.py)
+  * Problem 30
+    * [Soln](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_30/soln.py)
   * Problem 31
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_31/sol1.py)
   * Problem 32
