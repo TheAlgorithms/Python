@@ -18,7 +18,7 @@ def line_length(fnc: Callable[[Union[int, float]], Union[int, float]],
     >>> def f(x):
     ...    return x
     >>> '%.6f' % line_length(f, 0, 1, 10)
-    '1.414213'
+    '1.414214'
 
     >>> def f(x):
     ...    return 1
