@@ -17,17 +17,17 @@ def line_length(fnc: Callable[[Union[int, float]], Union[int, float]],
 
     >>> def f(x):
     ...    return x
-    >>> '%.6f' % line_length(f, 0, 1, 10)
+    >>> f"{line_length(f, 0, 1, 10):.6f}"
     '1.414214'
 
     >>> def f(x):
     ...    return 1
-    >>> '%.6f' % line_length(f, -5.5, 4.5, 100)
+    >>> f"{line_length(f, -5.5, 4.5):.6f}"
     '10.000000'
 
     >>> def f(x):
     ...    return m.sin(5 * x) + m.cos(10 * x) + x * x/10
-    >>> '%.6f' % line_length(f, 0.0, 10.0, 10000)
+    >>> f"{line_length(f, 0.0, 10.0, 10000):.6f}"
     '69.534930'
     """
 
@@ -57,6 +57,5 @@ if __name__ == "__main__":
     print("The length of the curve from x = -10 to x = 10 is:")
     i = 10
     while i <= 100000:
-        length = line_length(f, -10, 10, i)
-        print("With {} steps: {}".format(i, length))
+        print(f"With {i} steps: {line_length(f, -10, 10, i)}")
         i *= 10
