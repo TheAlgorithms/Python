@@ -8,7 +8,7 @@ Also contains a Test class to verify that the generated Hash is same as that
 returned by the hashlib library
 
 SHA1 hash or SHA1 sum of a string is a crytpographic function which means it is easy
-to calculate forwards but extemely difficult to calculate backwards. What this means
+to calculate forwards but extremely difficult to calculate backwards. What this means
 is, you can easily calculate the hash of  a string, but it is extremely difficult to
 know the original string if you have its hash. This property is useful to communicate
 securely, send encrypted messages and is very useful in payment systems, blockchain
@@ -139,7 +139,7 @@ class SHA1HashTest(unittest.TestCase):
 def main():
     """
     Provides option 'string' or 'file' to take input and prints the calculated SHA1 hash.
-    unittest.main() has been commented because we probably dont want to run
+    unittest.main() has been commented because we probably don't want to run
     the test each time.
     """
     # unittest.main()

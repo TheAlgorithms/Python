@@ -5,7 +5,7 @@
 import math
 import sys
 
-# For storing the vertex set to retreive node with the lowest distance
+# For storing the vertex set to retrieve node with the lowest distance
 
 
 class PriorityQueue:
@@ -103,9 +103,7 @@ class Graph:
     def show_graph(self):
         # u -> v(w)
         for u in self.adjList:
-            print(
-                u, "->", " -> ".join(str(f"{v}({w})") for v, w in self.adjList[u]),
-            )
+            print(u, "->", " -> ".join(str(f"{v}({w})") for v, w in self.adjList[u]))
 
     def dijkstra(self, src):
         # Flush old junk values in par[]

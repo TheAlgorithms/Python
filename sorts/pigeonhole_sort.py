@@ -7,7 +7,7 @@ def pigeonhole_sort(a):
     """
     >>> a = [8, 3, 2, 7, 4, 6, 8]
     >>> b = sorted(a)  # a nondestructive sort
-    >>> pigeonhole_sort(a)  # a distructive sort
+    >>> pigeonhole_sort(a)  # a destructive sort
     >>> a == b
     True
     """

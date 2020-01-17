@@ -188,7 +188,7 @@ def tabu_search(
     and the cost (distance) for each neighbor.
     :param iters: The number of iterations that Tabu search will execute.
     :param size: The size of Tabu List.
-    :return best_solution_ever: The solution with the lowest distance that occured during the execution of Tabu search.
+    :return best_solution_ever: The solution with the lowest distance that occurred during the execution of Tabu search.
     :return best_cost: The total distance that Travelling Salesman will travel, if he follows the path in best_solution
     ever.
 

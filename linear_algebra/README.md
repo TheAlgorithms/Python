@@ -8,7 +8,7 @@ This module contains classes and functions for doing linear algebra.
 
 ### class Vector  
 -
-    - This class represents a vector of arbitray size and related operations.  
+    - This class represents a vector of arbitrary size and related operations.  
 
     **Overview about the methods:**    
         

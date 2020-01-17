@@ -21,7 +21,7 @@ def calculateSpan(price, S):
     # Calculate span values for rest of the elements
     for i in range(1, n):
 
-        # Pop elements from stack whlie stack is not
+        # Pop elements from stack while stack is not
         # empty and top of stack is smaller than price[i]
         while len(st) > 0 and price[st[0]] <= price[i]:
             st.pop()

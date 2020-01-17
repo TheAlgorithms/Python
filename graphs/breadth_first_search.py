@@ -7,12 +7,12 @@ class Graph:
     def __init__(self):
         self.vertex = {}
 
-    # for printing the Graph vertexes
+    # for printing the Graph vertices
     def printGraph(self):
         for i in self.vertex.keys():
             print(i, " -> ", " -> ".join([str(j) for j in self.vertex[i]]))
 
-    # for adding the edge beween two vertexes
+    # for adding the edge between two vertices
     def addEdge(self, fromVertex, toVertex):
         # check if vertex is already present,
         if fromVertex in self.vertex.keys():
@@ -22,10 +22,10 @@ class Graph:
             self.vertex[fromVertex] = [toVertex]
 
     def BFS(self, startVertex):
-        # Take a list for stoting already visited vertexes
+        # Take a list for stoting already visited vertices
         visited = [False] * len(self.vertex)
 
-        # create a list to store all the vertexes for BFS
+        # create a list to store all the vertices for BFS
         queue = []
 
         # mark the source node as visited and enqueue it

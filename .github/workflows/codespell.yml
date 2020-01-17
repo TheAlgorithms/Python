@@ -1,0 +1,14 @@
+# GitHub Action to automate the identification of common misspellings in text files
+# https://github.com/codespell-project/codespell
+name: codespell
+on: [push, pull_request]
+jobs:
+  codespell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+      - run: pip install codespell flake8
+      - run: |
+          SKIP="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt,*.bak,*.gif,*.jpeg,*.jpg,*.json,*.png,*.pyc"
+          codespell -L ans,fo,hist,iff,secant,tim --skip=$SKIP

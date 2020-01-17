@@ -12,7 +12,7 @@ https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 
 class Matrix:
     def __init__(self, arg):
-        if isinstance(arg, list):  # Initialzes a matrix identical to the one provided.
+        if isinstance(arg, list):  # Initializes a matrix identical to the one provided.
             self.t = arg
             self.n = len(arg)
         else:  # Initializes a square matrix of the given size and set the values to zero.
@@ -50,7 +50,7 @@ def fibonacci_with_matrix_exponentiation(n, f1, f2):
 
 
 def simple_fibonacci(n, f1, f2):
-    # Trival Cases
+    # Trivial Cases
     if n == 1:
         return f1
     elif n == 2:

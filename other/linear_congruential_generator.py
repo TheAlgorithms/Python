@@ -13,7 +13,7 @@ class LinearCongruentialGenerator:
         These parameters are saved and used when nextNumber() is called.
 
         modulo is the largest number that can be generated (exclusive). The most
-        efficent values are powers of 2. 2^32 is a common value.
+        efficient values are powers of 2. 2^32 is a common value.
         """
         self.multiplier = multiplier
         self.increment = increment

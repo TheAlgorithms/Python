@@ -88,7 +88,7 @@ def sieveEr(N):
     # precondition
     assert isinstance(N, int) and (N > 2), "'N' must been an int and > 2"
 
-    # beginList: conatins all natural numbers from 2 upt to N
+    # beginList: contains all natural numbers from 2 up to N
     beginList = [x for x in range(2, N + 1)]
 
     ans = []  # this list will be returns.
@@ -480,8 +480,8 @@ def getPrimesBetween(pNumber1, pNumber2):
     """
         input: prime numbers 'pNumber1' and 'pNumber2'
                 pNumber1 < pNumber2
-        returns a list of all prime numbers between 'pNumber1' (exclusiv)
-                and 'pNumber2' (exclusiv)
+        returns a list of all prime numbers between 'pNumber1' (exclusive)
+                and 'pNumber2' (exclusive)
     """
 
     # precondition

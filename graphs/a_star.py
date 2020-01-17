@@ -35,7 +35,7 @@ def search(grid, init, goal, cost, heuristic):
 
     closed = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))
-    ]  # the referrence grid
+    ]  # the reference grid
     closed[init[0]][init[1]] = 1
     action = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))

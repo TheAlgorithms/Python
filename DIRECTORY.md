@@ -177,14 +177,14 @@
   * [Longest Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_sub_array.py)
   * [Matrix Chain Order](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/matrix_chain_order.py)
   * [Max Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sub_array.py)
-  * [Max Sum Contigous Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sum_contigous_subsequence.py)
+  * [Max Sum Contiguous Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sum_contiguous_subsequence.py)
   * [Minimum Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/minimum_partition.py)
   * [Rod Cutting](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/rod_cutting.py)
   * [Subset Generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
 
 ## File Transfer
-  * [Recieve File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/recieve_file.py)
+  * [Receive File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/receive_file.py)
   * [Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/send_file.py)
 
 ## Fuzzy Logic
@@ -219,7 +219,7 @@
   * [Kahns Algorithm Topo](https://github.com/TheAlgorithms/Python/blob/master/graphs/kahns_algorithm_topo.py)
   * [Minimum Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/minimum_spanning_tree_kruskal.py)
   * [Minimum Spanning Tree Prims](https://github.com/TheAlgorithms/Python/blob/master/graphs/minimum_spanning_tree_prims.py)
-  * [Multi Hueristic Astar](https://github.com/TheAlgorithms/Python/blob/master/graphs/multi_hueristic_astar.py)
+  * [Multi Heuristic Astar](https://github.com/TheAlgorithms/Python/blob/master/graphs/multi_heuristic_astar.py)
   * [Page Rank](https://github.com/TheAlgorithms/Python/blob/master/graphs/page_rank.py)
   * [Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/prim.py)
   * [Scc Kosaraju](https://github.com/TheAlgorithms/Python/blob/master/graphs/scc_kosaraju.py)
@@ -319,6 +319,7 @@
   * [Sieve Of Eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/sieve_of_eratosthenes.py)
   * [Simpson Rule](https://github.com/TheAlgorithms/Python/blob/master/maths/simpson_rule.py)
   * [Softmax](https://github.com/TheAlgorithms/Python/blob/master/maths/softmax.py)
+  * [Square Root](https://github.com/TheAlgorithms/Python/blob/master/maths/square_root.py)
   * [Sum Of Arithmetic Series](https://github.com/TheAlgorithms/Python/blob/master/maths/sum_of_arithmetic_series.py)
   * [Test Prime Check](https://github.com/TheAlgorithms/Python/blob/master/maths/test_prime_check.py)
   * [Trapezoidal Rule](https://github.com/TheAlgorithms/Python/blob/master/maths/trapezoidal_rule.py)
@@ -469,6 +470,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_28/sol1.py)
   * Problem 29
     * [Solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/solution.py)
+  * Problem 30
+    * [Soln](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_30/soln.py)
   * Problem 31
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_31/sol1.py)
   * Problem 32
@@ -508,6 +511,7 @@
   * [Quick Select](https://github.com/TheAlgorithms/Python/blob/master/searches/quick_select.py)
   * [Sentinel Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/sentinel_linear_search.py)
   * [Simple-Binary-Search](https://github.com/TheAlgorithms/Python/blob/master/searches/simple-binary-search.py)
+  * [Simulated Annealing](https://github.com/TheAlgorithms/Python/blob/master/searches/simulated_annealing.py)
   * [Tabu Search](https://github.com/TheAlgorithms/Python/blob/master/searches/tabu_search.py)
   * [Ternary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/ternary_search.py)
 
@@ -564,7 +568,7 @@
   * [Reverse Words](https://github.com/TheAlgorithms/Python/blob/master/strings/reverse_words.py)
   * [Split](https://github.com/TheAlgorithms/Python/blob/master/strings/split.py)
   * [Upper](https://github.com/TheAlgorithms/Python/blob/master/strings/upper.py)
-  * [Word Occurence](https://github.com/TheAlgorithms/Python/blob/master/strings/word_occurence.py)
+  * [Word Occurrence](https://github.com/TheAlgorithms/Python/blob/master/strings/word_occurrence.py)
 
 ## Traversals
   * [Binary Tree Traversals](https://github.com/TheAlgorithms/Python/blob/master/traversals/binary_tree_traversals.py)

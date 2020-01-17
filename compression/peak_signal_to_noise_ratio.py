@@ -1,6 +1,6 @@
 """
         Peak signal-to-noise ratio - PSNR - https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio
-    Soruce: https://tutorials.techonical.com/how-to-calculate-psnr-value-of-two-images-using-python/
+    Source: https://tutorials.techonical.com/how-to-calculate-psnr-value-of-two-images-using-python/
 """
 
 import math

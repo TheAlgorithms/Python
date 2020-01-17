@@ -18,7 +18,7 @@ def Linearsvc(train_x, train_y):
 
 def SVC(train_x, train_y):
     # svm.SVC(C=1.0, kernel='rbf', degree=3, gamma=0.0, coef0=0.0, shrinking=True, probability=False,tol=0.001, cache_size=200, class_weight=None, verbose=False, max_iter=-1, random_state=None)
-    # various parameters like "kernal","gamma","C" can effectively tuned for a given machine learning model.
+    # various parameters like "kernel","gamma","C" can effectively tuned for a given machine learning model.
     SVC = svm.SVC(gamma="auto")
     SVC.fit(train_x, train_y)
     return SVC
