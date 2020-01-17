@@ -33,7 +33,7 @@ def line_length(fnc: Callable[[Union[int, float]], Union[int, float]],
 
     x1 = x_start
     fx1 = fnc(x_start)
-    length = 0
+    length = 0.0
 
     for i in range(steps):
 

@@ -33,7 +33,7 @@ def trapezoidal_area(fnc: Callable[[Union[int, float]], Union[int, float]],
     """
     x1 = x_start
     fx1 = fnc(x_start)
-    area = 0
+    area = 0.0
 
     for i in range(steps):
 
