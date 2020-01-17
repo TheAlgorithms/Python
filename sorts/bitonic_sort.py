@@ -22,7 +22,7 @@ def bitonicMerge(a, low, cnt, dire):
         bitonicMerge(a, low, k, dire)
         bitonicMerge(a, low + k, k, dire)
 
-        # This funcion first produces a bitonic sequence by recursively
+        # This function first produces a bitonic sequence by recursively
 
 
 # sorting its two halves in opposite sorting orders, and then

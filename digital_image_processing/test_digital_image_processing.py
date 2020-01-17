@@ -42,7 +42,7 @@ def test_gen_gaussian_kernel():
 # canny.py
 def test_canny():
     canny_img = imread("digital_image_processing/image_data/lena_small.jpg", 0)
-    # assert ambiguos array for all == True
+    # assert ambiguous array for all == True
     assert canny_img.all()
     canny_array = canny.canny(canny_img)
     # assert canny array for at least one True

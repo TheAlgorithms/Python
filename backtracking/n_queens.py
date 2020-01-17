@@ -40,8 +40,8 @@ def isSafe(board, row, column):
 
 def solve(board, row):
     """
-    It creates a state space tree and calls the safe function untill it receives a 
-    False Boolean and terminates that brach and backtracks to the next 
+    It creates a state space tree and calls the safe function until it receives a 
+    False Boolean and terminates that branch and backtracks to the next 
     poosible solution branch.
     """
     if row >= len(board):
@@ -58,7 +58,7 @@ def solve(board, row):
         """
         For every row it iterates through each column to check if it is feesible to place a 
         queen there.
-        If all the combinations for that particaular branch are successfull the board is 
+        If all the combinations for that particular branch are successful the board is 
         reinitialized for the next possible combination.
         """
         if isSafe(board, row, i):
@@ -70,7 +70,7 @@ def solve(board, row):
 
 def printboard(board):
     """
-    Prints the boards that have a successfull combination.
+    Prints the boards that have a successful combination.
     """
     for i in range(len(board)):
         for j in range(len(board)):

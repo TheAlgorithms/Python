@@ -49,7 +49,7 @@ class BinomialHeap:
     r"""
     Min-oriented priority queue implemented with the Binomial Heap data
     structure implemented with the BinomialHeap class. It supports:
-        - Insert element in a heap with n elemnts: Guaranteed logn, amoratized 1
+        - Insert element in a heap with n elements: Guaranteed logn, amoratized 1
         - Merge (meld) heaps of size m and n: O(logn + logm)
         - Delete Min: O(logn)
         - Peek (return min without deleting it): O(1)

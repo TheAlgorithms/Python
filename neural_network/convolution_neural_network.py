@@ -1,12 +1,12 @@
 """
      - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
     Name - - CNN - Convolution Neural Network For Photo Recognizing
-    Goal - - Recognize Handing Writting Word Photo
+    Goal - - Recognize Handing Writing Word Photo
     Detail：Total 5 layers neural network
             * Convolution layer
             * Pooling layer
             * Input layer layer of BP
-            * Hiden layer of BP
+            * Hidden layer of BP
             * Output layer of BP
     Author: Stephen Lee
     Github: 245885195@qq.com
@@ -116,7 +116,7 @@ class CNN:
                     i_focus : i_focus + size_conv, j_focus : j_focus + size_conv
                 ]
                 data_focus.append(focus)
-        # caculate the feature map of every single kernel, and saved as list of matrix
+        # calculate the feature map of every single kernel, and saved as list of matrix
         data_featuremap = []
         Size_FeatureMap = int((size_data - size_conv) / conv_step + 1)
         for i_map in range(num_conv):
@@ -163,12 +163,12 @@ class CNN:
             featuremap_pooled.append(map_pooled)
         return featuremap_pooled
 
-    def _expand(self, datas):
+    def _expand(self, data):
         # expanding three dimension data to one dimension list
         data_expanded = []
-        for i in range(len(datas)):
-            shapes = np.shape(datas[i])
-            data_listed = datas[i].reshape(1, shapes[0] * shapes[1])
+        for i in range(len(data)):
+            shapes = np.shape(data[i])
+            data_listed = data[i].reshape(1, shapes[0] * shapes[1])
             data_listed = data_listed.getA().tolist()[0]
             data_expanded.extend(data_listed)
         data_expanded = np.asarray(data_expanded)
@@ -185,7 +185,7 @@ class CNN:
         self, out_map, pd_pool, num_map, size_map, size_pooling
     ):
         """
-        calcluate the gradient from the data slice of pool layer
+        calculate the gradient from the data slice of pool layer
         pd_pool: list of matrix
         out_map: the shape of data slice(size_map*size_map)
         return: pd_all: list of matrix, [num, size_map, size_map]
@@ -217,7 +217,7 @@ class CNN:
         all_mse = []
         mse = 10000
         while rp < n_repeat and mse >= error_accuracy:
-            alle = 0
+            error_count = 0
             print("-------------Learning Time %d--------------" % rp)
             for p in range(len(datas_train)):
                 # print('------------Learning Image: %d--------------'%p)
@@ -246,7 +246,7 @@ class CNN:
                 bp_out3 = self.sig(bp_net_k)
 
                 # --------------Model Leaning ------------------------
-                # calcluate error and gradient---------------
+                # calculate error and gradient---------------
                 pd_k_all = np.multiply(
                     (data_teach - bp_out3), np.multiply(bp_out3, (1 - bp_out3))
                 )
@@ -285,11 +285,11 @@ class CNN:
                 self.thre_bp2 = self.thre_bp2 - pd_j_all * self.rate_thre
                 # calculate the sum error of all single image
                 errors = np.sum(abs(data_teach - bp_out3))
-                alle = alle + errors
+                error_count += errors
                 # print('   ----Teach      ',data_teach)
                 # print('   ----BP_output  ',bp_out3)
             rp = rp + 1
-            mse = alle / patterns
+            mse = error_count / patterns
             all_mse.append(mse)
 
         def draw_error():

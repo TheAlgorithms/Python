@@ -3,15 +3,15 @@
 Hill Cipher:
 The below defined class 'HillCipher' implements the Hill Cipher algorithm.
 The Hill Cipher is an algorithm that implements modern linear algebra techniques
-In this algortihm, you have an encryption key matrix. This is what will be used
+In this algorithm, you have an encryption key matrix. This is what will be used
 in encoding and decoding your text.
 
-Algortihm:
+Algorithm:
 Let the order of the encryption key be N (as it is a square matrix).
 Your text is divided into batches of length N and converted to numerical vectors
 by a simple mapping starting with A=0 and so on.
 
-The key is then mulitplied with the newly created batch vector to obtain the
+The key is then multiplied with the newly created batch vector to obtain the
 encoded vector. After each multiplication modular 36 calculations are performed
 on the vectors so as to bring the numbers between 0 and 36 and then mapped with
 their corresponding alphanumerics.

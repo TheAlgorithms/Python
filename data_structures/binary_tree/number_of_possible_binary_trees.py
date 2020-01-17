@@ -41,7 +41,7 @@ def binomial_coefficient(n: int, k: int) -> int:
 
 def catalan_number(node_count: int) -> int:
     """
-    We can find Catalan number many ways but here we use Binomial Coefficent because it
+    We can find Catalan number many ways but here we use Binomial Coefficient because it
     does the job in O(n)
 
     return the Catalan number of n using 2nCn/(n+1).

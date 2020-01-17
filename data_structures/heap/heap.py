@@ -23,6 +23,7 @@ class Heap(object):
     [1, 5, 7, 9, 11, 15, 25, 100, 103, 107, 201]
     >>>
     """
+
     def __init__(self):
         self.h = []
         self.curr_size = 0
@@ -107,28 +108,28 @@ def main():
         [2, 5, 3, 0, 2, 3, 0, 3],
         [6, 1, 2, 7, 9, 3, 4, 5, 10, 8],
         [103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5],
-        [-45, -2, -5]
+        [-45, -2, -5],
     ]:
-        print('source unsorted list: %s' % unsorted)
+        print("source unsorted list: %s" % unsorted)
 
         h = Heap()
         h.build_heap(unsorted)
-        print('after build heap: ', end=' ')
+        print("after build heap: ", end=" ")
         h.display()
 
-        print('max value: %s' % h.get_max())
-        print('delete max value: ', end=' ')
+        print("max value: %s" % h.get_max())
+        print("delete max value: ", end=" ")
         h.display()
 
         h.insert(100)
-        print('after insert new value 100: ', end=' ')
+        print("after insert new value 100: ", end=" ")
         h.display()
 
         h.heap_sort()
-        print('heap sort: ', end=' ')
+        print("heap sort: ", end=" ")
         h.display()
         print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

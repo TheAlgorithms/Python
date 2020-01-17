@@ -87,7 +87,7 @@ def hill_climbing(
     """
     implementation of the hill climbling algorithm. We start with a given state, find
         all its neighbors, move towards the neighbor which provides the maximum (or
-        minimum) change. We keep doing this untill we are at a state where we do not
+        minimum) change. We keep doing this until we are at a state where we do not
         have any neighbors which can improve the solution.
         Args:
             search_prob: The search state at the start.

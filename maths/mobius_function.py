@@ -1,5 +1,5 @@
 """
-Refrences: https://en.wikipedia.org/wiki/M%C3%B6bius_function
+References: https://en.wikipedia.org/wiki/M%C3%B6bius_function
 References: wikipedia:square free number
 python/black : True
 flake8 : True

@@ -1,4 +1,4 @@
-# An OOP aproach to representing and manipulating matrices
+# An OOP approach to representing and manipulating matrices
 
 
 class Matrix:

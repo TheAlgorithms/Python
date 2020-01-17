@@ -22,7 +22,7 @@ def square_root_iterative(
     a: float, max_iter: int = 9999, tolerance: float = 0.00000000000001
 ) -> float:
     """
-    Sqaure root is aproximated using Newtons method.
+    Square root is aproximated using Newtons method.
     https://en.wikipedia.org/wiki/Newton%27s_method
     
     >>> all(abs(square_root_iterative(i)-math.sqrt(i)) <= .00000000000001  for i in range(0, 500))

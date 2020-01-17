@@ -7,13 +7,13 @@ class Graph:
     def __init__(self):
         self.vertex = {}
 
-    # for printing the Graph vertexes
+    # for printing the Graph vertices
     def printGraph(self):
         print(self.vertex)
         for i in self.vertex.keys():
             print(i, " -> ", " -> ".join([str(j) for j in self.vertex[i]]))
 
-    # for adding the edge beween two vertexes
+    # for adding the edge between two vertices
     def addEdge(self, fromVertex, toVertex):
         # check if vertex is already present,
         if fromVertex in self.vertex.keys():
@@ -37,7 +37,7 @@ class Graph:
 
         print(startVertex, end=" ")
 
-        # Recur for all the vertexes that are adjacent to this node
+        # Recur for all the vertices that are adjacent to this node
         for i in self.vertex.keys():
             if visited[i] == False:
                 self.DFSRec(i, visited)
