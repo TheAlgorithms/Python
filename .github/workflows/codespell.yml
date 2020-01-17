@@ -1,0 +1,12 @@
+# GitHub Action to automate the identification of common misspellings in text files
+# https://github.com/codespell-project/codespell
+name: codespell
+on: [push, pull_request]
+jobs:
+  codespell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+      - run: pip install codespell flake8
+      - run: codespell
