@@ -14,8 +14,8 @@ the point of mismatch in the text.
 If there no mismatch then the pattern matches with text block.
 
 Time Complexity : O(n/m)
-    n=length of main string
-    m=length of pattern string
+    n = length of main string
+    m = length of pattern string
 """
 
 

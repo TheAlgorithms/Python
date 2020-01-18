@@ -1,10 +1,10 @@
 """
 Algorithm for calculating the most cost-efficient sequence for converting one string into another.
 The only allowed operations are
----Copy character with cost cC
----Replace character with cost cR
----Delete character with cost cD
----Insert character with cost cI
+ --- Copy character with cost cC
+ --- Replace character with cost cR
+ --- Delete character with cost cD
+ --- Insert character with cost cI
 """
 
 
@@ -41,9 +41,7 @@ def compute_transform_tables(X, Y, cC, cR, cD, cI):
             if costs[i][j - 1] + cI < costs[i][j]:
                 costs[i][j] = costs[i][j - 1] + cI
                 ops[i][j] = "I%c" % Y[j - 1]
-
     return costs, ops
-
 
 def assemble_transformation(ops, i, j):
     if i == 0 and j == 0:
