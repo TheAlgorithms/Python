@@ -6,6 +6,12 @@ Counting word in a sentence using dictionary comprehension
 from collections import defaultdict
 
 def word_occurence(sentence: str) -> dict:
+    """
+    >>> from collections import Counter
+    >>> all(word_occurence(s) == Counter(s.split()) for s in
+    ...     ("a b a b c a", "I love to love Python ❤️ 💕 ❤️", ""))
+    True
+    """
     occurence_count = defaultdict(int)
     words = sentence.split(' ')
     unique_words = list(set(words))
