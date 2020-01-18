@@ -5,6 +5,7 @@ def factorial(n):
         raise ValueError("ValueError: factorial() not defined for negative  values")
     else:
         return n*factorial(n-1)
-    
-n=int(input("Enter a number"))
+
+if __name__=="__main__":
+    n=int(input("Enter a number"))
 factorial(n)
