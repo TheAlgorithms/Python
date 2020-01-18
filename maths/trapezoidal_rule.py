@@ -1,7 +1,7 @@
 """
 Numerical integration or quadrature for a smooth function f with known values at x_i
 
-This method is the classical approch of suming 'Equally Spaced Abscissas'
+This method is the classical approach of suming 'Equally Spaced Abscissas'
 
 method 1:
 "extended trapezoidal rule"

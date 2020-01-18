@@ -12,7 +12,7 @@ class RedBlackTree:
     less strict, so it will perform faster for writing/deleting nodes
     and slower for reading in the average case, though, because they're
     both balanced binary search trees, both will get the same asymptotic
-    perfomance.
+    performance.
     To read more about them, https://en.wikipedia.org/wiki/Red–black_tree
     Unless otherwise specified, all asymptotic runtimes are specified in
     terms of the size of the tree.
@@ -37,7 +37,7 @@ class RedBlackTree:
     def rotate_left(self):
         """Rotate the subtree rooted at this node to the left and
         returns the new root to this subtree.
-        Perfoming one rotation can be done in O(1).
+        Performing one rotation can be done in O(1).
         """
         parent = self.parent
         right = self.right
@@ -656,7 +656,7 @@ def test_tree_traversal():
 
 
 def test_tree_chaining():
-    """Tests the three different tree chaning functions."""
+    """Tests the three different tree chaining functions."""
     tree = RedBlackTree(0)
     tree = tree.insert(-16).insert(16).insert(8).insert(24).insert(20).insert(22)
     if list(tree.inorder_traverse()) != [-16, 0, 8, 16, 20, 22, 24]:

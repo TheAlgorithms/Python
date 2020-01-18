@@ -22,7 +22,7 @@ DIJKSTRA(graph G, start vertex s, destination vertex d):
 13 -     add (total_cost,V) to H
 
 You can think at cost as a distance where Dijkstra finds the shortest distance
-between vertexes s and v in a graph G. The use of a min heap as H guarantees
+between vertices s and v in a graph G. The use of a min heap as H guarantees
 that if a vertex has already been explored there will be no other path with
 shortest distance, that happens because heapq.heappop will always return the
 next vertex with the shortest distance, considering that the heap stores not
@@ -35,7 +35,7 @@ import heapq
 
 
 def dijkstra(graph, start, end):
-    """Return the cost of the shortest path between vertexes start and end.
+    """Return the cost of the shortest path between vertices start and end.
 
     >>> dijkstra(G, "E", "C")
     6

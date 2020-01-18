@@ -11,11 +11,11 @@ def word_occurence(sentence: str) -> dict:
     ...     in Counter(SENTENCE.split()).items())
     True
     """
-    occurence = defaultdict(int)
+    occurrence = defaultdict(int)
     # Creating a dictionary containing count of each word
     for word in sentence.split(" "):
-        occurence[word] += 1
-    return occurence
+        occurrence[word] += 1
+    return occurrence
 
 
 if __name__ == "__main__":

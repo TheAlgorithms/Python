@@ -3,7 +3,7 @@ Implementing Deque using DoublyLinkedList ...
 Operations:
     1. insertion in the front -> O(1)
     2. insertion in the end -> O(1)
-    3. remove fron the front -> O(1)
+    3. remove from the front -> O(1)
     4. remove from the end -> O(1)
 """
 

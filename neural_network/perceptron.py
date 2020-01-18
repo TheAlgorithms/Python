@@ -76,11 +76,11 @@ class Perceptron:
                     has_misclassified = True
             # print('Epoch: \n',epoch_count)
             epoch_count = epoch_count + 1
-            # if you want controle the epoch or just by erro
+            # if you want control the epoch or just by error
             if not has_misclassified:
                 print(("\nEpoch:\n", epoch_count))
                 print("------------------------\n")
-                # if epoch_count > self.epoch_number or not erro:
+                # if epoch_count > self.epoch_number or not error:
                 break
 
     def sort(self, sample) -> None:

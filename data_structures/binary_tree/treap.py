@@ -21,7 +21,7 @@ class Node:
             return f"'{self.value}: {self.prior:.5}'"
         else:
             return pformat(
-                {f"{self.value}: {self.prior:.5}": (self.left, self.right)}, indent=1,
+                {f"{self.value}: {self.prior:.5}": (self.left, self.right)}, indent=1
             )
 
     def __str__(self):
@@ -161,7 +161,7 @@ def main():
     """After each command, program prints treap"""
     root = None
     print(
-        "enter numbers to creat a tree, + value to add value into treap, - value to erase all nodes with value. 'q' to quit. "
+        "enter numbers to create a tree, + value to add value into treap, - value to erase all nodes with value. 'q' to quit. "
     )
 
     args = input()

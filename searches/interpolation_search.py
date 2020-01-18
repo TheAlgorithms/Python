@@ -15,7 +15,7 @@ def interpolation_search(sorted_collection, item):
     right = len(sorted_collection) - 1
 
     while left <= right:
-        # avoid devided by 0 during interpolation
+        # avoid divided by 0 during interpolation
         if sorted_collection[left] == sorted_collection[right]:
             if sorted_collection[left] == item:
                 return left
@@ -59,7 +59,7 @@ def interpolation_search_by_recursion(sorted_collection, item, left, right):
     :return: index of found item or None if item is not found
     """
 
-    # avoid devided by 0 during interpolation
+    # avoid divided by 0 during interpolation
     if sorted_collection[left] == sorted_collection[right]:
         if sorted_collection[left] == item:
             return left

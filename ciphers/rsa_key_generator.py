@@ -42,12 +42,12 @@ def makeKeyFiles(name, keySize):
 
     publicKey, privateKey = generateKey(keySize)
     print("\nWriting public key to file %s_pubkey.txt..." % name)
-    with open("%s_pubkey.txt" % name, "w") as fo:
-        fo.write("{},{},{}".format(keySize, publicKey[0], publicKey[1]))
+    with open("%s_pubkey.txt" % name, "w") as out_file:
+        out_file.write("{},{},{}".format(keySize, publicKey[0], publicKey[1]))
 
     print("Writing private key to file %s_privkey.txt..." % name)
-    with open("%s_privkey.txt" % name, "w") as fo:
-        fo.write("{},{},{}".format(keySize, privateKey[0], privateKey[1]))
+    with open("%s_privkey.txt" % name, "w") as out_file:
+        out_file.write("{},{},{}".format(keySize, privateKey[0], privateKey[1]))
 
 
 if __name__ == "__main__":

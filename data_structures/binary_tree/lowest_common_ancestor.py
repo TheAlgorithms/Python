@@ -11,7 +11,7 @@ def swap(a, b):
     return a, b
 
 
-# creating sparse table which saves each nodes 2^ith parent
+# creating sparse table which saves each nodes 2^i-th parent
 def creatSparse(max_node, parent):
     j = 1
     while (1 << j) < max_node:

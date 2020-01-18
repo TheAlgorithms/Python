@@ -62,7 +62,7 @@ def simulated_annealing(
                 continue  # neighbor outside our bounds
 
             if not find_max:
-                change = change * -1  # incase we are finding minimum
+                change = change * -1  # in case we are finding minimum
             if change > 0:  # improves the solution
                 next_state = picked_neighbor
             else:
@@ -73,10 +73,8 @@ def simulated_annealing(
                     next_state = picked_neighbor
         current_temp = current_temp - (current_temp * rate_of_decrease)
 
-        if (
-            current_temp < threshold_temp or next_state is None
-        ):  # temperature below threshold, or
-            # couldnt find a suitaable neighbor
+        if current_temp < threshold_temp or next_state is None:
+            # temperature below threshold, or could not find a suitaable neighbor
             search_end = True
         else:
             current_state = next_state

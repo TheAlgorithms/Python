@@ -541,7 +541,7 @@ cl = IndexCalculation()
 # instantiating the class with the values
 #cl = indexCalculation(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
 
-# how set the values after instantiate the class cl, (for update the data or when dont 
+# how set the values after instantiate the class cl, (for update the data or when don't
 # instantiating the class with the values)
 cl.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
 
@@ -551,8 +551,8 @@ indexValue_form1    = cl.calculation("CCCI", red=red, green=green, blue=blue,
                                      redEdge=redEdge, nir=nir).astype(np.float64)
 indexValue_form2    = cl.CCCI()
 
-# calculating the index with the values directly -- you can set just the values preferred -- 
-# note: the *calculation* fuction performs the function *setMatrices*
+# calculating the index with the values directly -- you can set just the values
+# preferred  note: the *calculation* function performs the function *setMatrices*
 indexValue_form3    = cl.calculation("CCCI", red=red, green=green, blue=blue,
                                      redEdge=redEdge, nir=nir).astype(np.float64)
 

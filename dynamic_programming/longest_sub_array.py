@@ -1,5 +1,5 @@
 """
-Auther  : Yvonne
+Author  : Yvonne
 
 This is a pure Python implementation of Dynamic Programming solution to the longest_sub_array problem.
 

@@ -1,8 +1,10 @@
 """
-    Implementation of sequential minimal optimization(SMO) for support vector machines(SVM).
+    Implementation of sequential minimal optimization (SMO) for support vector machines
+    (SVM).
 
-    Sequential minimal optimization (SMO) is an algorithm for solving the quadratic programming (QP) problem
-    that arises during the training of support vector machines.
+    Sequential minimal optimization (SMO) is an algorithm for solving the quadratic
+    programming (QP) problem that arises during the training of support vector
+    machines.
     It was invented by John Platt in 1998.
 
 Input:
@@ -18,7 +20,8 @@ Usage:
 
         kernel = Kernel(kernel='poly', degree=3., coef0=1., gamma=0.5)
         init_alphas = np.zeros(train.shape[0])
-        SVM = SmoSVM(train=train, alpha_list=init_alphas, kernel_func=kernel, cost=0.4, b=0.0, tolerance=0.001)
+        SVM = SmoSVM(train=train, alpha_list=init_alphas, kernel_func=kernel, cost=0.4,
+                     b=0.0, tolerance=0.001)
         SVM.fit()
         predict = SVM.predict(test_samples)
 
@@ -72,7 +75,7 @@ class SmoSVM:
 
         self.choose_alpha = self._choose_alphas()
 
-    # Calculate alphas using SMO algorithsm
+    # Calculate alphas using SMO algorithm
     def fit(self):
         K = self._k
         state = None
@@ -227,7 +230,7 @@ class SmoSVM:
     def _choose_a1(self):
         """
         Choose first alpha ;steps:
-           1:Fisrt loop over all sample
+           1:First loop over all sample
            2:Second loop over all non-bound samples till all non-bound samples does not voilate kkt condition.
            3:Repeat this two process endlessly,till all samples does not voilate kkt condition samples after first loop.
         """
@@ -261,9 +264,11 @@ class SmoSVM:
     def _choose_a2(self, i1):
         """
         Choose the second alpha by using heuristic algorithm ;steps:
-           1:Choosed alpha2 which get the maximum step size (|E1 - E2|).
-           2:Start in a random point,loop over all non-bound samples till alpha1 and alpha2 are optimized.
-           3:Start in a random point,loop over all samples till alpha1 and alpha2 are optimized.
+           1: Choose alpha2 which gets the maximum step size (|E1 - E2|).
+           2: Start in a random point,loop over all non-bound samples till alpha1 and
+               alpha2 are optimized.
+           3: Start in a random point,loop over all samples till alpha1 and alpha2 are
+               optimized.
         """
         self._unbound = [i for i in self._all_samples if self._is_unbound(i)]
 
@@ -316,7 +321,7 @@ class SmoSVM:
         # select the new alpha2 which could get the minimal objectives
         if eta > 0.0:
             a2_new_unc = a2 + (y2 * (e1 - e2)) / eta
-            # a2_new has a boundry
+            # a2_new has a boundary
             if a2_new_unc >= H:
                 a2_new = H
             elif a2_new_unc <= L:
@@ -357,7 +362,7 @@ class SmoSVM:
             else:
                 a2_new = a2
 
-        # a1_new has a boundry too
+        # a1_new has a boundary too
         a1_new = a1 + s * (a2 - a2_new)
         if a1_new < 0:
             a2_new += s * a1_new
@@ -471,7 +476,7 @@ def test_cancel_data():
     data = data.replace({"M": np.float64(1), "B": np.float64(-1)})
     samples = np.array(data)[:, :]
 
-    # 2: deviding data into train_data data and test_data data
+    # 2: dividing data into train_data data and test_data data
     train_data, test_data = samples[:328, :], samples[328:, :]
     test_tags, test_samples = test_data[:, 0], test_data[:, 1:]
 
@@ -568,7 +573,7 @@ def plot_partition_boundary(
 ):
     """
     We can not get the optimum w of our kernel svm model which is different from linear svm.
-    For this reason, we generate randomly destributed points with high desity and prediced values of these points are
+    For this reason, we generate randomly distributed points with high desity and prediced values of these points are
     calculated by using our tained model. Then we could use this prediced values to draw contour map.
     And this contour map can represent svm's partition boundary.
 

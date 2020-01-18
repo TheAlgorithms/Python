@@ -10,7 +10,7 @@ import numpy as np
     even log is used.
 
     Using log and roots can be perceived as tools for penalizing big
-    erors. However, using appropriate metrics depends on the situations,
+    errors. However, using appropriate metrics depends on the situations,
     and types of data
 """
 

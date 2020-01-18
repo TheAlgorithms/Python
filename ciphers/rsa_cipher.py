@@ -6,7 +6,7 @@ BYTE_SIZE = 256
 
 def main():
     filename = "encrypted_file.txt"
-    response = input(r"Encrypte\Decrypt [e\d]: ")
+    response = input(r"Encrypt\Decrypt [e\d]: ")
 
     if response.lower().startswith("e"):
         mode = "encrypt"

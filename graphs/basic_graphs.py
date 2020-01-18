@@ -69,7 +69,7 @@ def dfs(G, s):
         Args :  G - Dictionary of edges
                 s - Starting Node
         Vars :  vis - Set of visited nodes
-                Q - Traveral Stack
+                Q - Traversal Stack
 --------------------------------------------------------------------------------
 """
 from collections import deque

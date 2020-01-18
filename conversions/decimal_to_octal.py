@@ -24,7 +24,7 @@ def decimal_to_octal(num: int) -> str:
 
 
 def main():
-    """Print octal equivelents of decimal numbers."""
+    """Print octal equivalents of decimal numbers."""
     print("\n2 in octal is:")
     print(decimal_to_octal(2))  # = 2
     print("\n8 in octal is:")

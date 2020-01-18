@@ -49,9 +49,9 @@ def knapsack_with_example_solution(W: int, wt: list, val: list):
 
     W: int, the total maximum weight for the given knapsack problem.
     wt: list, the vector of weights for all items where wt[i] is the weight
-    of the ith item.
+    of the i-th item.
     val: list, the vector of values for all items where val[i] is the value
-    of te ith item
+    of the i-th item
 
     Returns
     -------

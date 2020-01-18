@@ -157,11 +157,11 @@ if __name__ == "__main__":
     entry_msg = "Provide a string that I will generate its BWT transform: "
     s = input(entry_msg).strip()
     result = bwt_transform(s)
-    bwt_output_msg = "Burrows Wheeler tranform for string '{}' results in '{}'"
+    bwt_output_msg = "Burrows Wheeler transform for string '{}' results in '{}'"
     print(bwt_output_msg.format(s, result["bwt_string"]))
     original_string = reverse_bwt(result["bwt_string"], result["idx_original_string"])
     fmt = (
-        "Reversing Burrows Wheeler tranform for entry '{}' we get original"
+        "Reversing Burrows Wheeler transform for entry '{}' we get original"
         " string '{}'"
     )
     print(fmt.format(result["bwt_string"], original_string))
