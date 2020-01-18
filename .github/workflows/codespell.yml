@@ -11,4 +11,4 @@ jobs:
       - run: pip install codespell flake8
       - run: |
           SKIP="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt,*.bak,*.gif,*.jpeg,*.jpg,*.json,*.png,*.pyc"
-          codespell -L ans,fo,hist --skip=$SKIP
+          codespell -L ans,fo,hist,iff,Secant,Tim,tim --skip=$SKIP
