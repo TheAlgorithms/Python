@@ -14,7 +14,7 @@ class LinkedList:
     def print_list(self):
         temp = self.head
         while temp is not None:
-            print(temp.data, end=' ')
+            print(temp.data, end=" ")
             temp = temp.next
         print()
 
