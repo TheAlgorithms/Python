@@ -11,4 +11,9 @@ def factorial(n):
 if n>=0:
     print(factorial(n))
 else:
-    print("number should be positive")
+    raise ValueError("ValueError: factorial() not defined for negative vlaues")
+    
+
+    
+    
+
