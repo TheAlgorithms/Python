@@ -1,26 +1,24 @@
 def factorial(n: int) -> int:
     """
-    Calculate the factorial of specified number
+    Calculate the factorial of a positive integer
+    https://en.wikipedia.org/wiki/Factorial
 
-    >>> factorial(1)
-    1
-    >>> factorial(6)
-    720
-    >>> factorial(0)
-    1
-    >>> factorial(-1)
-    Traceback (most recent call last):
-        ...
-    ValueError: factorial() not defined for negative values
+    >>> import math
+    >>> all(factorial(i) == math.factorial(i) for i in range(20))
+    True
     >>> factorial(0.1)
     Traceback (most recent call last):
         ...
     ValueError: factorial() only accepts integral values
+    >>> factorial(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: factorial() not defined for negative values
     """
-    if n < 0:
-        raise ValueError("factorial() not defined for negative values")
     if not isinstance(n, int):
         raise ValueError("factorial() only accepts integral values")
+    if n < 0:
+        raise ValueError("factorial() not defined for negative values")
     return 1 if n == 0 or n == 1 else n * factorial(n - 1)
 
 
