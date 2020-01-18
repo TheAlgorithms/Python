@@ -23,9 +23,7 @@ class LinkedList:  # making main class named linked list
     def deleteHead(self):
         temp = self.head
         self.head = self.head.next  # oldHead <--> 2ndElement(head)
-        self.head.previous = (
-            None
-        )  # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
+        self.head.previous = None  # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
         if self.head is None:
             self.tail = None  # if empty linked list
         return temp
