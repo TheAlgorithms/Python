@@ -1,8 +1,8 @@
+# factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
+
+
 def factorial(n: int) -> int:
     """
-    Calculate the factorial of a positive integer
-    https://en.wikipedia.org/wiki/Factorial
-
     >>> import math
     >>> all(factorial(i) == math.factorial(i) for i in range(20))
     True
@@ -15,14 +15,16 @@ def factorial(n: int) -> int:
         ...
     ValueError: factorial() not defined for negative values
     """
-    if not isinstance(n, int):
+    if n != int(n):
         raise ValueError("factorial() only accepts integral values")
     if n < 0:
         raise ValueError("factorial() not defined for negative values")
-    return 1 if n == 0 or n == 1 else n * factorial(n - 1)
+    value = 1
+    for i in range(1, n + 1):
+        value *= i
+    return value
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    n = int(input("Enter a positivve integer: ").strip() or 0)
+    print(f"factorial{n} is {factorial(n)}")
