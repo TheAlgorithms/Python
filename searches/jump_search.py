@@ -20,7 +20,7 @@ def jump_search(arr, x):
     return -1
 
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     arr = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610]
     x = 55
     print(f"Number {x} is at index {jump_search(arr, x)}")
