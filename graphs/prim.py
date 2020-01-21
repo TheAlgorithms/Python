@@ -1,10 +1,13 @@
-"""
-Prim's Algorithm.
+"""Prim's Algorithm.
 
-Determines the minimum spanning tree(MST) of a graph using the Prim's Algorithm
+    Determines the minimum spanning tree(MST) of a graph using the Prim's Algorithm.
+
+    Details: https://en.wikipedia.org/wiki/Prim%27s_algorithm
 """
 
+import heapq as hq
 import math
+from typing import Iterator
 
 
 class Vertex:
@@ -50,11 +53,17 @@ def connect(graph, a, b, edge):
     graph[b - 1].add_edge(graph[a - 1], edge)
 
 
-def prim(graph, root):
-    """
-    Prim's Algorithm.
-    Return a list with the edges of a Minimum Spanning Tree
-    prim(graph, graph[0])
+def prim(graph: list, root: Vertex) -> list:
+    """Prim's Algorithm.
+
+        Runtime:
+            O(mn) with `m` edges and `n` vertices
+
+        Return:
+            List with the edges of a Minimum Spanning Tree
+
+        Usage:
+            prim(graph, graph[0])
     """
     a = []
     for u in graph:
@@ -74,6 +83,38 @@ def prim(graph, root):
     return a
 
 
+def prim_heap(graph: list, root: Vertex) -> Iterator[tuple]:
+    """Prim's Algorithm with min heap.
+
+        Runtime:
+            O((m + n)log n) with `m` edges and `n` vertices
+
+        Yield:
+            Edges of a Minimum Spanning Tree
+
+        Usage:
+            prim(graph, graph[0])
+    """
+    for u in graph:
+        u.key = math.inf
+        u.pi = None
+    root.key = 0
+
+    h = [v for v in graph]
+    hq.heapify(h)
+
+    while h:
+        u = hq.heappop(h)
+        for v in u.neighbors:
+            if (v in h) and (u.edges[v.id] < v.key):
+                v.pi = u
+                v.key = u.edges[v.id]
+                hq.heapify(h)
+
+    for i in range(1, len(graph)):
+        yield (int(graph[i].id) + 1, int(graph[i].pi.id) + 1)
+
+
 def test_vector() -> None:
     """
     # Creates a list to store x vertices.
@@ -87,8 +128,16 @@ def test_vector() -> None:
     >>> connect(G, 3, 2, 6)
     >>> connect(G, 3, 4, 6)
     >>> connect(G, 0, 0, 0)  # Generate the minimum spanning tree:
+    >>> G_heap = G[:]
     >>> MST = prim(G, G[0])
+    >>> MST_heap = prim_heap(G, G[0])
     >>> for i in MST:
+    ...     print(i)
+    (2, 3)
+    (3, 1)
+    (4, 3)
+    (5, 2)
+    >>> for i in MST_heap:
     ...     print(i)
     (2, 3)
     (3, 1)
