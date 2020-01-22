@@ -2,6 +2,7 @@
 Makes function composition possible in a mathematical way.
 f( g( x ) ) = (f*g)(x)
 f(g) = f*g
+https://en.wikipedia.org/wiki/Function_composition
 """
 
 
