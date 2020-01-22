@@ -4,7 +4,7 @@ An Armstrong number is often called Narcissistic number.
 """
 
 
-def armstrong_number(n):
+def armstrong_number(n: int) -> bool:
     """
         This function checks if a number is Armstrong or not.
 
@@ -14,37 +14,42 @@ def armstrong_number(n):
         False
         >>> armstrong_number(1634)
         True
-        """
-    # Initialization of sum and number of digits.
-    sum = 0
-    number_of_digits = 0
-    temp = n
-    # Calculation of digits of the number
-    while temp > 0:
-        number_of_digits += 1
-        temp //= 10
-    # Dividing number into separate digits and find Armstrong number
-    temp = n
-    while temp > 0:
-        rem = temp % 10
-        sum = sum + (rem ** number_of_digits)
-        temp //= 10
-    return n == sum
+        >>> armstrong_number(0)
+        False
+        >>> armstrong_number(-1)
+        False
+        >>> armstrong_number(1.2)
+        False
+    """
+    if isinstance(n, float) or n < 1:
+        return False
+    else:
+        # Initialization of sum and number of digits.
+        sum = 0
+        number_of_digits = 0
+        temp = n
+        # Calculation of digits of the number
+        while temp > 0:
+            number_of_digits += 1
+            temp //= 10
+        # Dividing number into separate digits and find Armstrong number
+        temp = n
+        while temp > 0:
+            rem = temp % 10
+            sum += (rem ** number_of_digits)
+            temp //= 10
+        return n == sum
 
 
 # In main function user inputs a number to find out if it's an Armstrong or not. Th function armstrong_number is called.
 def main():
-    num = int(input("Enter a number to check if it is Armstrong or not: ").strip())
-    armstrong_number(num)
-    if armstrong_number(num):
-        print(num, " is an Armstrong number")
-    else:
-        print(num, " is not an Armstrong number")
+    num = int(input("Enter an integer number to check if it is Armstrong or not: ").strip())
+    print(f"{num} is {'' if armstrong_number(num) else 'not '}an Armstrong number.")
 
 
 if __name__ == '__main__':
-    main()
     import doctest
 
     doctest.testmod()
+    main()
 
