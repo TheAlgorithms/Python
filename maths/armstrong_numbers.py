@@ -29,10 +29,7 @@ def armstrong_number(n):
         rem = temp % 10
         sum = sum + (rem ** number_of_digits)
         temp //= 10
-    if n == sum:
-        return True
-
-    return False
+    return n == sum
 
 
 # In main function user inputs a number to find out if it's an Armstrong or not. Th function armstrong_number is called.
@@ -50,3 +47,4 @@ if __name__ == '__main__':
     import doctest
 
     doctest.testmod()
+
