@@ -5,11 +5,12 @@ from sklearn.model_selection import train_test_split
 
 data = datasets.load_iris()
 
-X = np.array(data['data'])
-y = np.array(data['target'])
-classes = data['target_names']
+X = np.array(data["data"])
+y = np.array(data["target"])
+classes = data["target_names"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y)
+
 
 def euclidean_distance(a, b):
     """
@@ -20,6 +21,7 @@ def euclidean_distance(a, b):
     10.0
     """
     return np.linalg.norm(np.array(a) - np.array(b))
+
 
 def classifier(train_data, train_target, classes, point, k=5):
     """
@@ -43,9 +45,9 @@ def classifier(train_data, train_target, classes, point, k=5):
     for data_point in data:
         distance = euclidean_distance(data_point[0], point)
         distances.append((distance, data_point[1]))
-    # Choosing 'k' points with the least distances. 
+    # Choosing 'k' points with the least distances.
     votes = [i[1] for i in sorted(distances)[:k]]
-    # Most commonly occuring class among them 
+    # Most commonly occuring class among them
     # is the class into which the point is classified
     result = Counter(votes).most_common(1)[0][0]
     return classes[result]

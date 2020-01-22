@@ -3,6 +3,10 @@ from bisect import bisect
 
 
 def fracKnapsack(vl, wt, W, n):
+    """
+    >>> fracKnapsack([60, 100, 120], [10, 20, 30], 50, 3)
+    240.0
+    """
 
     r = list(sorted(zip(vl, wt), key=lambda x: x[0] / x[1], reverse=True))
     vl, wt = [i[0] for i in r], [i[1] for i in r]
@@ -17,4 +21,7 @@ def fracKnapsack(vl, wt, W, n):
     )
 
 
-print("%.0f" % fracKnapsack([60, 100, 120], [10, 20, 30], 50, 3))
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

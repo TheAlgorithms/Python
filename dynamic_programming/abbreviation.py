@@ -11,6 +11,7 @@ a=daBcd and b="ABC"
 daBcd -> capitalize a and c(dABCd) -> remove d (ABC)
 """
 
+
 def abbr(a, b):
     """
     >>> abbr("daBcd", "ABC")
