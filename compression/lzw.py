@@ -1,4 +1,4 @@
-from src.dictionary import Dictionary
+from .dictionary import Dictionary
 
 
 class LZW:

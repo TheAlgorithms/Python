@@ -1,4 +1,4 @@
-from src.lzw import LZW
+from .lzw import LZW
 import sys
 
 
