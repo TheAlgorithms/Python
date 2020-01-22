@@ -29,6 +29,7 @@ def isSumSubset(arr, arrLen, requiredSum):
     #     print(subset[i])
     print(subset[arrLen][requiredSum])
 
+
 if __name__ == "__main__":
     import doctest
 

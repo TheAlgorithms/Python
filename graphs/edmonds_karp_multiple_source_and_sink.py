@@ -190,4 +190,4 @@ if __name__ == "__main__":
     # and calculate
     maximumFlow = flowNetwork.findMaximumFlow()
 
-    print("maximum flow is {}".format(maximumFlow))
+    print(f"maximum flow is {maximumFlow}")

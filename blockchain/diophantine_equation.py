@@ -17,7 +17,9 @@ def diophantine(a, b, c):
 
     """
 
-    assert c % greatest_common_divisor(a, b) == 0  # greatest_common_divisor(a,b) function implemented below
+    assert (
+        c % greatest_common_divisor(a, b) == 0
+    )  # greatest_common_divisor(a,b) function implemented below
     (d, x, y) = extended_gcd(a, b)  # extended_gcd(a,b) function implemented below
     r = c / d
     return (r * x, r * y)
@@ -31,6 +33,7 @@ def diophantine(a, b, c):
 # a*x0 + b*y0 = c, then all the solutions have the form a(x0 + t*q) + b(y0 - t*p) = c, where t is an arbitrary integer.
 
 # n is the number of solution you want, n = 2 by default
+
 
 def diophantine_all_soln(a, b, c, n=2):
     """
@@ -65,6 +68,7 @@ def diophantine_all_soln(a, b, c, n=2):
 # Euclid's Lemma :  d divides a and b, if and only if d divides a-b and b
 
 # Euclid's Algorithm
+
 
 def greatest_common_divisor(a, b):
     """
@@ -117,8 +121,8 @@ def extended_gcd(a, b):
 # import testmod for testing our function
 from doctest import testmod
 
-if __name__ == '__main__':
-    testmod(name='diophantine', verbose=True)
-    testmod(name='diophantine_all_soln', verbose=True)
-    testmod(name='extended_gcd', verbose=True)
-    testmod(name='greatest_common_divisor', verbose=True)
+if __name__ == "__main__":
+    testmod(name="diophantine", verbose=True)
+    testmod(name="diophantine_all_soln", verbose=True)
+    testmod(name="extended_gcd", verbose=True)
+    testmod(name="greatest_common_divisor", verbose=True)

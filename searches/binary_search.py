@@ -152,6 +152,6 @@ if __name__ == "__main__":
     target = int(target_input)
     result = binary_search(collection, target)
     if result is not None:
-        print("{} found at positions: {}".format(target, result))
+        print(f"{target} found at positions: {result}")
     else:
         print("Not found")
