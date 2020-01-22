@@ -126,6 +126,7 @@
 
 ## Digital Image Processing
   * [Change Contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
+  * [Convert To Negative](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/convert_to_negative.py)
   * Edge Detection
     * [Canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/edge_detection/canny.py)
   * Filters
@@ -133,6 +134,8 @@
     * [Gaussian Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/gaussian_filter.py)
     * [Median Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/median_filter.py)
     * [Sobel Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/sobel_filter.py)
+  * Histogram Equalization
+    * [Histogram Stretch](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/histogram_equalization/histogram_stretch.py)
   * [Index Calculation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/index_calculation.py)
   * Rotation
     * [Rotation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/rotation/rotation.py)
@@ -178,6 +181,8 @@
 
 ## Fuzzy Logic
   * [Fuzzy Operations](https://github.com/TheAlgorithms/Python/blob/master/fuzzy_logic/fuzzy_operations.py)
+
+## [Google News](https://github.com/TheAlgorithms/Python/blob/master//google_news.py)
 
 ## Graphs
   * [A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/a_star.py)
