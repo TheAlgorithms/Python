@@ -1,5 +1,5 @@
 """
-An Armstrong number is a number that is equal to the sum of the cubes of its digits.
+An Armstrong number is equal to the sum of the cubes of its digits.
 For example, 370 is an Armstrong number because 3*3*3 + 7*7*7 + 0*0*0 = 370.
 An Armstrong number is often called Narcissistic number.
 """
@@ -7,7 +7,7 @@ An Armstrong number is often called Narcissistic number.
 
 def armstrong_number(n: int) -> bool:
     """
-    This function checks if a number is Armstrong or not.
+    Return True if n is an Armstrong number or False if it is not.
 
     >>> armstrong_number(153)
     True
@@ -42,9 +42,11 @@ def armstrong_number(n: int) -> bool:
     return n == sum
 
 
-# In main function user inputs a number to find out if it's an Armstrong or not. Th function armstrong_number is called.
 def main():
-    num = int(input("Enter an integer number to check if it is Armstrong or not: ").strip())
+    """
+    Request that user input an integer and tell them if it is Armstrong number.
+    """
+    num = int(input("Enter an integer to see if it is an Armstrong number: ").strip())
     print(f"{num} is {'' if armstrong_number(num) else 'not '}an Armstrong number.")
 
 
