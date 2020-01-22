@@ -1,4 +1,4 @@
-from .dictionary import Dictionary
+from .lzw_dictionary import Dictionary
 
 
 class LZW:
