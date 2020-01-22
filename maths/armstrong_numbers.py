@@ -42,7 +42,11 @@ def armstrong_number(n: int) -> bool:
     return n == sum
 
 
-# In main function user inputs a number to find out if it's an Armstrong or not. Th function armstrong_number is called.
+"""
+In main function user inputs a number to find out if it's an Armstrong or not.
+The function armstrong_number is called.
+"""
+
 def main():
     num = int(input("Enter an integer number to check if it is Armstrong or not: ").strip())
     print(f"{num} is {'' if armstrong_number(num) else 'not '}an Armstrong number.")
