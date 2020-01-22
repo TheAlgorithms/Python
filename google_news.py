@@ -39,7 +39,7 @@ def Times_of_India(userInput, ua):
             url += data1.get("href")
             print("%s" % url)
 
-            webbrowser.open(url1)
+            webbrowser.open(url)
 
     return len(data)
 
