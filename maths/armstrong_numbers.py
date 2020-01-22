@@ -9,11 +9,11 @@ def armstrong_number(n):
         This function checks if a number is Armstrong or not.
 
         >>> armstrong_number(153)
-        153 is an Armstrong number
+        True
         >>> armstrong_number(200)
-        200 is not an Armstrong number
+        False
         >>> armstrong_number(1634)
-        1634 is an Armstrong number
+        True
         """
     # Initialization of sum and number of digits.
     sum = 0
@@ -30,15 +30,19 @@ def armstrong_number(n):
         sum = sum + (rem ** number_of_digits)
         temp //= 10
     if n == sum:
-        print(n, "is an Armstrong number")
-    else:
-        print(n, "is not an Armstrong number")
+        return True
+
+    return False
 
 
 # In main function user inputs a number to find out if it's an Armstrong or not. Th function armstrong_number is called.
 def main():
     num = int(input("Enter a number to check if it is Armstrong or not: ").strip())
     armstrong_number(num)
+    if armstrong_number(num):
+        print(num, " is an Armstrong number")
+    else:
+        print(num, " is not an Armstrong number")
 
 
 if __name__ == '__main__':
