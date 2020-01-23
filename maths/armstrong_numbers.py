@@ -24,7 +24,7 @@ def armstrong_number(n: int) -> bool:
     """
     if not isinstance(n, int) or n < 1:
         return False
-    
+
     # Initialization of sum and number of digits.
     sum = 0
     number_of_digits = 0
@@ -37,7 +37,7 @@ def armstrong_number(n: int) -> bool:
     temp = n
     while temp > 0:
         rem = temp % 10
-        sum += (rem ** number_of_digits)
+        sum += rem ** number_of_digits
         temp //= 10
     return n == sum
 
@@ -50,7 +50,7 @@ def main():
     print(f"{num} is {'' if armstrong_number(num) else 'not '}an Armstrong number.")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
