@@ -1,10 +1,13 @@
 from typing import Callable, Union
 import math as m
 
-def line_length(fnc: Callable[[Union[int, float]], Union[int, float]],
-                x_start: Union[int, float],
-                x_end: Union[int, float],
-                steps: int = 100) -> float:
+
+def line_length(
+    fnc: Callable[[Union[int, float]], Union[int, float]],
+    x_start: Union[int, float],
+    x_end: Union[int, float],
+    steps: int = 100,
+) -> float:
 
     """
     Approximates the arc length of a line segment by treating the curve as a
@@ -48,10 +51,11 @@ def line_length(fnc: Callable[[Union[int, float]], Union[int, float]],
 
     return length
 
+
 if __name__ == "__main__":
 
     def f(x):
-        return m.sin(10*x)
+        return m.sin(10 * x)
 
     print("f(x) = sin(10 * x)")
     print("The length of the curve from x = -10 to x = 10 is:")
