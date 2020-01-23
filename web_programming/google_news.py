@@ -26,7 +26,7 @@ def times_of_india(userInput, ua):
     if not data:
         return 0
 
-   print("News available :", "\N{slightly smiling face}")
+    print("News available :", "\N{slightly smiling face}")
     for i, article in enumerate(data):
         print(BOLD_START, "\033[1;32;40m \nNEWS : ", i + 1, BOLD_END, end="  ")
         data1 = article.find("a")
