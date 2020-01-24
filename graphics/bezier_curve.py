@@ -62,7 +62,7 @@ class BezierCurve:
         y = 0.0
         for i in range(
             len(self.list_of_points)
-        ):  # summing up the product of ith basis function and ith point, for all points
+        ):  # summing up the product of i-th basis function and ith point, for all points
             x += basis_function[i] * self.list_of_points[i][0]
             y += basis_function[i] * self.list_of_points[i][1]
 
