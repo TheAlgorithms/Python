@@ -2,7 +2,7 @@
 # https://www.tutorialspoint.com/computer_graphics/computer_graphics_curves.htm
 
 from typing import List, Tuple
-import scipy.special as sp
+from scipy.special import comb
 
 
 class BezierCurve:
@@ -36,7 +36,7 @@ class BezierCurve:
         output_values: List[float] = list()
         for i in range(len(self.list_of_points)):
             output_values.append(
-                sp.comb(self.degree, i) * ((1 - t) ** (self.degree - i)) * (t ** i)
+                comb(self.degree, i) * ((1 - t) ** (self.degree - i)) * (t ** i)
             )  # basis function for each i
 
         assert (
