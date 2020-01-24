@@ -56,8 +56,10 @@ def estimate_pi(number_of_simulations: int) -> float:
 
 
 if __name__ == "__main__":
-    number_of_simulations = int(
-        input("Please enter the number of Monte Carlo simulations: ").strip()
-    )
+    # import doctest
 
-    print(f"An estimate of PI is: {estimate_pi(number_of_simulations)}")
+    # doctest.testmod()
+    from math import pi
+    prompt = "Please enter the desired number of Monte Carlo simulations: "
+    my_pi = estimate_pi(int(input(prompt).strip()))
+    print(f"An estimate of PI is {my_pi} with an accuracy of {abs(my_pi - pi)}")
