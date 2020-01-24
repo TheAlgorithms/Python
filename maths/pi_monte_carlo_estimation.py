@@ -2,16 +2,16 @@ import random
 
 
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x: float, y: float) -> None:
         self.x = x
         self.y = y
 
-    def is_in_unit_circle(self):
+    def is_in_unit_circle(self) -> bool:
         """
         True, if the point lies in the unit circle
         False, otherwise
         """
-        return self.x ** 2 + self.y ** 2 <= 1
+        return (self.x ** 2 + self.y ** 2) <= 1
 
     @classmethod
     def random_unit_square(cls):
@@ -24,7 +24,7 @@ class Point:
         return cls(x, y)
 
 
-def estimate_pi(number_of_simulations):
+def estimate_pi(number_of_simulations: int) -> float:
     """
     Generates an estimate of the mathematical constant PI (see https://en.wikipedia.org/wiki/Monte_Carlo_method#Overview).
 
