@@ -8,6 +8,28 @@
 ![](https://img.shields.io/github/repo-size/TheAlgorithms/Python.svg?label=Repo%20size&style=flat-square)&nbsp;
 <!--[![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg?logo=python&style=flat-square)]( https://www.python.org/downloads) &nbsp;-->
 
+
+### Description
+
+This repository contains all the algorithms implemented in Python 
+Just copy search the repository for the algorithm you want to implement and use
+
+### Requirements
+
+Requirements for the codes are [here](requirements.txt).
+Install requirements by:<br>
+
+Python 2
+<pre>pip install -r requirements.txt</pre>  
+or 
+<pre>python -m install -r requirements.txt </pre>
+
+Python 3
+<pre>pip3 install -r requirements.txt </pre>
+or 
+<pre>py -m install -r requirements.txt </pre>
+
+
 ### All algorithms implemented in Python (for education)
 
 These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
