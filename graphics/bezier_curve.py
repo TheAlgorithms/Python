@@ -7,9 +7,9 @@ from scipy.special import comb
 
 class BezierCurve:
     """
-    Bezier curve is a weighted sum of the control points.
+    Bezier curve is a weighted sum of a set of control points.
     Generate Bezier curves from a given set of control points.
-    The implementation works only for 2d points in the xy plane.
+    This implementation works only for 2d coordinates in the xy plane.
     """
 
     def __init__(self, list_of_points: List[Tuple[float, float]]):
