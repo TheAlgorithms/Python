@@ -18,6 +18,43 @@ class SegmentTreeNode(object):
 
 
 class NumArray:
+    """NumArray is sum tree of object. Parent node is sum of two child nodes.
+    >>> num_arr = NumArray([2, 1, 5, 3, 4])
+    >>> for node in num_arr.traverse():
+    ...     print(node)
+    ...
+    val: 15, start: 0, end: 4
+    val: 8, start: 0, end: 2
+    val: 7, start: 3, end: 4
+    val: 3, start: 0, end: 1
+    val: 5, start: 2, end: 2
+    val: 3, start: 3, end: 3
+    val: 4, start: 4, end: 4
+    val: 2, start: 0, end: 0
+    val: 1, start: 1, end: 1
+    >>>
+    >>> num_arr.update(1, 5)
+    >>> for node in num_arr.traverse():
+    ...     print(node)
+    ...
+    val: 19, start: 0, end: 4
+    val: 12, start: 0, end: 2
+    val: 7, start: 3, end: 4
+    val: 7, start: 0, end: 1
+    val: 5, start: 2, end: 2
+    val: 3, start: 3, end: 3
+    val: 4, start: 4, end: 4
+    val: 2, start: 0, end: 0
+    val: 5, start: 1, end: 1
+    >>>
+    >>> num_arr.sum_range(3, 4)
+    7
+    >>> num_arr.sum_range(2, 2)
+    5
+    >>> num_arr.sum_range(1, 3)
+    13
+    >>>
+    """
     def __init__(self, nums):
         self.nums = nums
         if self.nums:
@@ -79,6 +116,43 @@ class NumArray:
 
 
 class MaxArray:
+    """MaxArray is max tree of object. Parent node is max of two child nodes.
+    >>> max_arr = MaxArray([2, 1, 5, 3, 4])
+    >>> for node in max_arr.traverse():
+    ...     print(node)
+    ...
+    val: 5, start: 0, end: 4
+    val: 5, start: 0, end: 2
+    val: 4, start: 3, end: 4
+    val: 2, start: 0, end: 1
+    val: 5, start: 2, end: 2
+    val: 3, start: 3, end: 3
+    val: 4, start: 4, end: 4
+    val: 2, start: 0, end: 0
+    val: 1, start: 1, end: 1
+    >>>
+    >>> max_arr.update(1, 5)
+    >>> for node in max_arr.traverse():
+    ...     print(node)
+    ...
+    val: 5, start: 0, end: 4
+    val: 5, start: 0, end: 2
+    val: 4, start: 3, end: 4
+    val: 5, start: 0, end: 1
+    val: 5, start: 2, end: 2
+    val: 3, start: 3, end: 3
+    val: 4, start: 4, end: 4
+    val: 2, start: 0, end: 0
+    val: 5, start: 1, end: 1
+    >>>
+    >>> max_arr.max_range(3, 4)
+    4
+    >>> max_arr.max_range(2, 2)
+    5
+    >>> max_arr.max_range(1, 3)
+    5
+    >>>
+    """
     def __init__(self, nums):
         self.nums = nums
         if self.nums:
@@ -140,6 +214,43 @@ class MaxArray:
 
 
 class MinArray:
+    """MinArray is min tree of object. Parent node is min of two child nodes.
+    >>> min_arr = MinArray([2, 1, 5, 3, 4])
+    >>> for node in min_arr.traverse():
+    ...     print(node)
+    ...
+    val: 1, start: 0, end: 4
+    val: 1, start: 0, end: 2
+    val: 3, start: 3, end: 4
+    val: 1, start: 0, end: 1
+    val: 5, start: 2, end: 2
+    val: 3, start: 3, end: 3
+    val: 4, start: 4, end: 4
+    val: 2, start: 0, end: 0
+    val: 1, start: 1, end: 1
+    >>>
+    >>> min_arr.update(1, 5)
+    >>> for node in min_arr.traverse():
+    ...     print(node)
+    ...
+    val: 2, start: 0, end: 4
+    val: 2, start: 0, end: 2
+    val: 3, start: 3, end: 4
+    val: 2, start: 0, end: 1
+    val: 5, start: 2, end: 2
+    val: 3, start: 3, end: 3
+    val: 4, start: 4, end: 4
+    val: 2, start: 0, end: 0
+    val: 5, start: 1, end: 1
+    >>>
+    >>> min_arr.min_range(3, 4)
+    3
+    >>> min_arr.min_range(2, 2)
+    5
+    >>> min_arr.min_range(1, 3)
+    3
+    >>>
+    """
     def __init__(self, nums):
         self.nums = nums
         if self.nums:
