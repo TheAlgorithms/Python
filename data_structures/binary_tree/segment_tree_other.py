@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from queue import Queue
+from collections.abc import Sequence
 
 
 class SegmentTreeNode(object):
@@ -55,10 +56,10 @@ class NumArray:
     13
     >>>
     """
-    def __init__(self, nums):
-        self.nums = nums
-        if self.nums:
-            self.root = self._build_tree(0, len(nums) - 1)
+    def __init__(self, collection: Sequence):
+        self.collection = collection
+        if self.collection:
+            self.root = self._build_tree(0, len(collection) - 1)
 
     def update(self, i, val):
         self._update_tree(self.root, i, val)
@@ -68,7 +69,7 @@ class NumArray:
 
     def _build_tree(self, start, end):
         if start == end:
-            return SegmentTreeNode(start, end, self.nums[start])
+            return SegmentTreeNode(start, end, self.collection[start])
         mid = (start + end) // 2
         left = self._build_tree(start, mid)
         right = self._build_tree(mid + 1, end)
@@ -153,10 +154,10 @@ class MaxArray:
     5
     >>>
     """
-    def __init__(self, nums):
-        self.nums = nums
-        if self.nums:
-            self.root = self._build_tree(0, len(nums) - 1)
+    def __init__(self, collection: Sequence):
+        self.collection = collection
+        if self.collection:
+            self.root = self._build_tree(0, len(collection) - 1)
 
     def update(self, i, val):
         self._update_tree(self.root, i, val)
@@ -166,7 +167,7 @@ class MaxArray:
 
     def _build_tree(self, start, end):
         if start == end:
-            return SegmentTreeNode(start, end, self.nums[start])
+            return SegmentTreeNode(start, end, self.collection[start])
         mid = (start + end) // 2
         left = self._build_tree(start, mid)
         right = self._build_tree(mid + 1, end)
@@ -251,10 +252,10 @@ class MinArray:
     3
     >>>
     """
-    def __init__(self, nums):
-        self.nums = nums
-        if self.nums:
-            self.root = self._build_tree(0, len(nums) - 1)
+    def __init__(self, collection: Sequence):
+        self.collection = collection
+        if self.collection:
+            self.root = self._build_tree(0, len(collection) - 1)
 
     def update(self, i, val):
         self._update_tree(self.root, i, val)
@@ -264,7 +265,7 @@ class MinArray:
 
     def _build_tree(self, start, end):
         if start == end:
-            return SegmentTreeNode(start, end, self.nums[start])
+            return SegmentTreeNode(start, end, self.collection[start])
         mid = (start + end) // 2
         left = self._build_tree(start, mid)
         right = self._build_tree(mid + 1, end)
