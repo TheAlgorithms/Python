@@ -11,23 +11,21 @@
 
 ### Description
 
-This repository contains all the algorithms implemented in Python 
-Just copy search the repository for the algorithm you want to implement and use
+This repository contains algorithms implemented in Python 
+Just search the repository for the algorithm(s) you want to use and copy them. You can also improve these algorithms or add new ones by creating pull requests.
 
 ### Requirements
 
 Requirements for the codes are [here](requirements.txt).
 Install requirements by:<br>
 
-Python 2
-<pre>pip install -r requirements.txt</pre>  
-or 
-<pre>python -m install -r requirements.txt </pre>
+Python 3 
 
-Python 3
-<pre>pip3 install -r requirements.txt </pre>
-or 
-<pre>py -m install -r requirements.txt </pre>
+`pip3 install -r requirements.txt `
+ 
+ or 
+ 
+`py -m install -r requirements.txt `
 
 
 ### All algorithms implemented in Python (for education)
