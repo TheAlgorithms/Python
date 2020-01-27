@@ -138,9 +138,32 @@ class SegmentTree(object):
             self.root = self._build_tree(0, len(collection) - 1)
 
     def update(self, i, val):
+        """
+        update value in collection
+        :param i: index of collection
+        :param val: new value
+        :return:
+        >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
+        >>> num_arr.update(1, 5)
+        """
         self._update_tree(self.root, i, val)
 
     def query_range(self, i, j):
+        """
+        Sum, Max, Min operation in intervals i and j([i, j])
+        :param i:  left index
+        :param j:  right index
+        :return:  Sum, Max, Min
+        >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
+        >>> num_arr.update(1, 5)
+        >>> num_arr.query_range(3, 4)
+        7
+        >>> num_arr.query_range(2, 2)
+        5
+        >>> num_arr.query_range(1, 3)
+        13
+        >>>
+        """
         return self._query_range(self.root, i, j)
 
     def _build_tree(self, start, end):
