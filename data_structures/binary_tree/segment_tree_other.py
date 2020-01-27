@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Segment_tree creates a segment tree with a given array and function,
 allowing queries to be done later in log(N) time
