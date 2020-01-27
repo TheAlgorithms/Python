@@ -17,3 +17,4 @@
 * [ ] All function parameters and return values are annotated with Python [type hints](https://docs.python.org/3/library/typing.html).
 * [ ] All functions have [doctests](https://docs.python.org/3/library/doctest.html) that pass the automated testing.
 * [ ] All new algorithms have a URL in its comments that points to Wikipedia or other similar explanation.
+* [ ] I am referencing the issue with this PR for auto cleanup. For eg. `fixes: #{$ISSUE_NO}`

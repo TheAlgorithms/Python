@@ -25,6 +25,8 @@ We appreciate any contribution, from fixing a grammar mistake in a comment to im
 
 Your contribution will be tested by our [automated testing on Travis CI](https://travis-ci.org/TheAlgorithms/Python/pull_requests) to save time and mental energy.  After you have submitted your pull request, you should see the Travis tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the Travis output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
 
+It would help us a lot in cleanup if you are mentioning your Issue no. in your Pull Request. For eg. Adding this text(`fixes: #{$ISSUE_NO}`) as a comment in your PR
+
 #### Coding Style
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
