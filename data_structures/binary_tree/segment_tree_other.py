@@ -143,6 +143,7 @@ class SegmentTree(object):
         :param i: index of collection
         :param val: new value
         :return:
+        >>> import operator
         >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
         >>> num_arr.update(1, 5)
         """
@@ -154,6 +155,7 @@ class SegmentTree(object):
         :param i:  left index
         :param j:  right index
         :return:  Sum, Max, Min
+        >>> import operator
         >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
         >>> num_arr.update(1, 5)
         >>> num_arr.query_range(3, 4)
