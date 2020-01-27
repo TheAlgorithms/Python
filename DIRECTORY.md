@@ -190,6 +190,9 @@
 ## Fuzzy Logic
   * [Fuzzy Operations](https://github.com/TheAlgorithms/Python/blob/master/fuzzy_logic/fuzzy_operations.py)
 
+## Graphics
+  * [Bezier Curve](https://github.com/TheAlgorithms/Python/blob/master/graphics/bezier_curve.py)
+
 ## Graphs
   * [A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/a_star.py)
   * [Articulation Points](https://github.com/TheAlgorithms/Python/blob/master/graphs/articulation_points.py)
@@ -258,6 +261,8 @@
   * [Abs](https://github.com/TheAlgorithms/Python/blob/master/maths/abs.py)
   * [Abs Max](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_max.py)
   * [Abs Min](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_min.py)
+  * [Area Under Curve](https://github.com/TheAlgorithms/Python/blob/master/maths/area_under_curve.py)
+  * [Armstrong Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/armstrong_numbers.py)
   * [Average Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mean.py)
   * [Average Median](https://github.com/TheAlgorithms/Python/blob/master/maths/average_median.py)
   * [Average Mode](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mode.py)
@@ -271,6 +276,7 @@
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Explicit Euler](https://github.com/TheAlgorithms/Python/blob/master/maths/explicit_euler.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
+  * [Factorial Iterative](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_iterative.py)
   * [Factorial Python](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_python.py)
   * [Factorial Recursive](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_recursive.py)
   * [Factors](https://github.com/TheAlgorithms/Python/blob/master/maths/factors.py)
@@ -292,6 +298,7 @@
   * [Kth Lexicographic Permutation](https://github.com/TheAlgorithms/Python/blob/master/maths/kth_lexicographic_permutation.py)
   * [Largest Of Very Large Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/largest_of_very_large_numbers.py)
   * [Least Common Multiple](https://github.com/TheAlgorithms/Python/blob/master/maths/least_common_multiple.py)
+  * [Line Length](https://github.com/TheAlgorithms/Python/blob/master/maths/line_length.py)
   * [Lucas Lehmer Primality Test](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_lehmer_primality_test.py)
   * [Lucas Series](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_series.py)
   * [Matrix Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/maths/matrix_exponentiation.py)
@@ -299,6 +306,7 @@
   * [Mobius Function](https://github.com/TheAlgorithms/Python/blob/master/maths/mobius_function.py)
   * [Modular Exponential](https://github.com/TheAlgorithms/Python/blob/master/maths/modular_exponential.py)
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
+  * [Numerical Integration](https://github.com/TheAlgorithms/Python/blob/master/maths/numerical_integration.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
   * [Polynomial Evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
   * [Prime Check](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_check.py)
