@@ -1,5 +1,5 @@
 """
-This is pure python implementation of binary search algorithm
+This is pure python implementation of binary search algorithms
 
 For doctests run following command:
 python -m doctest -v binary_search.py
@@ -10,6 +10,168 @@ For manual testing run:
 python binary_search.py
 """
 import bisect
+
+
+def bisect_left(sorted_collection, item, lo=0, hi=None):
+    """
+    Locates the first element in a sorted array that is larger or equal to a given value.
+
+    It has the same interface as https://docs.python.org/3/library/bisect.html#bisect.bisect_left .
+
+    :param sorted_collection: some ascending sorted collection with comparable items
+    :param item: item to bisect
+    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
+    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
+    :return: index i such that all values in sorted_collection[lo:i] are < item and all values in sorted_collection[i:hi] are >= item.
+
+    Examples:
+    >>> bisect_left([0, 5, 7, 10, 15], 0)
+    0
+
+    >>> bisect_left([0, 5, 7, 10, 15], 6)
+    2
+
+    >>> bisect_left([0, 5, 7, 10, 15], 20)
+    5
+
+    >>> bisect_left([0, 5, 7, 10, 15], 15, 1, 3)
+    3
+
+    >>> bisect_left([0, 5, 7, 10, 15], 6, 2)
+    2
+    """
+    if hi is None:
+        hi = len(sorted_collection)
+
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if sorted_collection[mid] < item:
+            lo = mid + 1
+        else:
+            hi = mid
+
+    return lo
+
+
+def bisect_right(sorted_collection, item, lo=0, hi=None):
+    """
+    Locates the first element in a sorted array that is larger than a given value.
+
+    It has the same interface as https://docs.python.org/3/library/bisect.html#bisect.bisect_right .
+
+    :param sorted_collection: some ascending sorted collection with comparable items
+    :param item: item to bisect
+    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
+    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
+    :return: index i such that all values in sorted_collection[lo:i] are <= item and all values in sorted_collection[i:hi] are > item.
+
+    Examples:
+    >>> bisect_right([0, 5, 7, 10, 15], 0)
+    1
+
+    >>> bisect_right([0, 5, 7, 10, 15], 15)
+    5
+
+    >>> bisect_right([0, 5, 7, 10, 15], 6)
+    2
+
+    >>> bisect_right([0, 5, 7, 10, 15], 15, 1, 3)
+    3
+
+    >>> bisect_right([0, 5, 7, 10, 15], 6, 2)
+    2
+    """
+    if hi is None:
+        hi = len(sorted_collection)
+
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if sorted_collection[mid] <= item:
+            lo = mid + 1
+        else:
+            hi = mid
+
+    return lo
+
+
+def insort_left(sorted_collection, item, lo=0, hi=None):
+    """
+    Inserts a given value into a sorted array before other values with the same value.
+
+    It has the same interface as https://docs.python.org/3/library/bisect.html#bisect.insort_left .
+
+    :param sorted_collection: some ascending sorted collection with comparable items
+    :param item: item to insert
+    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
+    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
+
+    Examples:
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_left(sorted_collection, 6)
+    >>> sorted_collection
+    [0, 5, 6, 7, 10, 15]
+
+    >>> sorted_collection = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
+    >>> item = (5, 5)
+    >>> insort_left(sorted_collection, item)
+    >>> sorted_collection
+    [(0, 0), (5, 5), (5, 5), (7, 7), (10, 10), (15, 15)]
+    >>> item is sorted_collection[1]
+    True
+    >>> item is sorted_collection[2]
+    False
+
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_left(sorted_collection, 20)
+    >>> sorted_collection
+    [0, 5, 7, 10, 15, 20]
+
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_left(sorted_collection, 15, 1, 3)
+    >>> sorted_collection
+    [0, 5, 7, 15, 10, 15]
+    """
+    sorted_collection.insert(bisect_left(sorted_collection, item, lo, hi), item)
+
+
+def insort_right(sorted_collection, item, lo=0, hi=None):
+    """
+    Inserts a given value into a sorted array after other values with the same value.
+
+    It has the same interface as https://docs.python.org/3/library/bisect.html#bisect.insort_right .
+
+    :param sorted_collection: some ascending sorted collection with comparable items
+    :param item: item to insert
+    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
+    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
+
+    Examples:
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_right(sorted_collection, 6)
+    >>> sorted_collection
+    [0, 5, 6, 7, 10, 15]
+
+    >>> sorted_collection = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
+    >>> item = (5, 5)
+    >>> insort_right(sorted_collection, item)
+    >>> sorted_collection
+    [(0, 0), (5, 5), (5, 5), (7, 7), (10, 10), (15, 15)]
+    >>> item is sorted_collection[1]
+    False
+    >>> item is sorted_collection[2]
+    True
+
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_right(sorted_collection, 20)
+    >>> sorted_collection
+    [0, 5, 7, 10, 15, 20]
+
+    >>> sorted_collection = [0, 5, 7, 10, 15]
+    >>> insort_right(sorted_collection, 15, 1, 3)
+    >>> sorted_collection
+    [0, 5, 7, 15, 10, 15]
+    """
+    sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
 
 def binary_search(sorted_collection, item):
