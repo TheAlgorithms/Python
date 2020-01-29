@@ -169,6 +169,40 @@ class SegmentTree(object):
         return self._query_range(self.root, i, j)
 
     def _build_tree(self, start, end):
+        r"""build segment tree
+        collection: [2, 1, 5, 3, 4]
+
+        _build_tree(0, 4)  -> 15 = 8 + 7
+            _build_tree(0, 2)  -> 8 = 3 + 5
+                _build_tree(0, 1)  -> 3 = 2 + 1
+                    _build_tree(0, 0) -> 2
+                    _build_tree(1, 1) -> 1
+                _build_tree(2, 2)  -> 5
+            _build_tree(3, 4)  -> 7 = 3 + 4
+                _build_tree(3, 3)  -> 3
+                _build_tree(4, 4)  -> 4
+
+        1. determine the interval of each node
+
+                    0-4(2)
+                   /     \
+               0-2(1)   3-4(3)
+              /    \     / \
+           0-1(0) 2-2  3-3 4-4
+          /  \
+        0-0 1-1
+
+        2. determine the value of each node.
+
+               15
+             /    \
+            8      7
+           / \    / \
+          3   5  3   4
+         / \
+        2   1
+
+        """
         if start == end:
             return SegmentTreeNode(start, end, self.collection[start])
         mid = (start + end) // 2
@@ -177,6 +211,12 @@ class SegmentTree(object):
         return SegmentTreeNode(start, end, self.fn(left.val, right.val), left, right)
 
     def _update_tree(self, root, i, val):
+        r"""update segment tree
+        _update_tree(15, 1, 5)  -> update value of node with value of left child add value of right child
+            _update_tree(8, 1, 5)  -> update value of node with value of left child add value of right child
+                _update_tree(3, 1, 5)  -> update value of node with value of left child add value of right child
+                    _update_tree(1, 1, 5)  -> update value of leaf node
+        """
         if root.start == i and root.end == i:
             root.val = val
             return
@@ -193,10 +233,13 @@ class SegmentTree(object):
          [i, j] [i, j] [i, j]
         [start mid] [mid+1 end]
         """
+        # interval in left child tree
         if j <= root.mid:
             return self._query_range(root.left, i, j)
+        # interval in child child tree
         elif i > root.mid:
             return self._query_range(root.right, i, j)
+        # interval in left child tree and right child tree
         else:
             return self.fn(self._query_range(root.left, i, root.mid), self._query_range(root.right, root.mid + 1, j))
 
