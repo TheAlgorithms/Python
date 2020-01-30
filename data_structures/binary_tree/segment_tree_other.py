@@ -145,7 +145,7 @@ class SegmentTree(object):
         >>> import operator
         >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
         >>> num_arr.update(1, 5)
-        >>> max_arr.query_range(1, 3)
+        >>> num_arr.query_range(1, 3)
         5
         """
         self._update_tree(self.root, i, val)
