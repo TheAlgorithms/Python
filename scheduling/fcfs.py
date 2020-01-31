@@ -1,4 +1,4 @@
-# Implementation of First Come First Served CPU sheduling Algorithm
+# Implementation of First Come First Served CPU scheduling Algorithm
 # In this Algorithm we just care about the order that the processes arrived
 # without carring about their duration time
 
