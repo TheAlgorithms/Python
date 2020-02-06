@@ -4,7 +4,7 @@ fake_useragent
 flake8
 matplotlib
 mypy
-numpy>=1.17.4
+numpy>=1.18.1
 opencv-python
 pandas
 pillow
@@ -14,4 +14,4 @@ requests
 scikit-fuzzy
 sklearn
 sympy
-tensorflow
+tensorflow==2.1.0rc2
