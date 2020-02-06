@@ -1,4 +1,4 @@
-# Implementation of First Come First Served CPU scheduling Algorithm
+# Implementation of First Come First Served scheduling algorithm
 # In this Algorithm we just care about the order that the processes arrived
 # without carring about their duration time
 # https://en.wikipedia.org/wiki/Scheduling_(computing)#First_come,_first_served
@@ -10,9 +10,9 @@ def calculate_waiting_times(duration_times: List[int]) -> List[int]:
     This function calculates the waiting time of some processes that have a
     specified duration time.
         Return: The waiting time for each process.
-    >>> calculate_waiting_times([5,10,15])
+    >>> calculate_waiting_times([5, 10, 15])
     [0, 5, 15]
-    >>> calculate_waiting_times([1,2,3,4,5])
+    >>> calculate_waiting_times([1, 2, 3, 4, 5])
     [0, 1, 3, 6, 10]
     >>> calculate_waiting_times([10, 3])
     [0, 10]
@@ -38,7 +38,7 @@ def calculate_turnaround_times(
     >>> calculate_turnaround_times([10, 3], [0, 10])
     [10, 13]
     """
-    return [duration_times[i] + waiting_times[i] for i in range(len(duration_times))]
+    return [duration_time + waiting_times[i] for i, duration_time in enumerate(duration_times)]
 
 
 def calculate_average_turnaround_time(turnaround_times: List[int]) -> float:
@@ -70,11 +70,10 @@ def calculate_average_waiting_time(waiting_times: List[int]) -> float:
 
 
 if __name__ == "__main__":
-
     # process id's
     processes = [1, 2, 3]
 
-    # ensure that we actually have prosecces
+    # ensure that we actually have processes
     if len(processes) == 0:
         print("Zero amount of processes")
         exit()
@@ -97,9 +96,9 @@ if __name__ == "__main__":
 
     # print all the results
     print("Process ID\tDuration Time\tWaiting Time\tTurnaround Time")
-    for i in range(len(processes)):
+    for i, process in enumerate(processes):
         print(
-            f"{processes[i]}\t\t{duration_times[i]}\t\t{waiting_times[i]}\t\t{turnaround_times[i]}"
+            f"{process}\t\t{duration_times[i]}\t\t{waiting_times[i]}\t\t{turnaround_times[i]}"
         )
     print(f"Average waiting time = {average_waiting_time}")
     print(f"Average turn around time = {average_turnaround_time}")
