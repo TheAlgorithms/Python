@@ -229,7 +229,7 @@ def receptorConverter(sizePar, data):
             if x != None:
                 try:
                     aux = (binPos[contLoop])[-1 * (bp)]
-                except IOError:
+                except IndexError:
                     aux = "0"
                 if aux == "1":
                     if x == "1":
