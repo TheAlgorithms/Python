@@ -19,11 +19,7 @@ class Test(unittest.TestCase):
         x = Vector([1, 2, 3])
         self.assertEqual(x.component(0), 1)
         self.assertEqual(x.component(2), 3)
-        try:
-            y = Vector()
-            self.assertTrue(False)
-        except:
-            self.assertTrue(True)
+        y = Vector()
 
     def test_str(self):
         """

@@ -5,7 +5,7 @@ before_install: pip install --upgrade pip setuptools
 install: pip install -r requirements.txt
 before_script:
   - black --check . || true
-  - flake8 . --count --select=E101,E9,F4,F63,F7,F82,W191 --show-source --statistics
+  - flake8 . --count --select=E101,E722,E9,F4,F63,F7,F82,W191 --show-source --statistics
   - flake8 . --count --exit-zero --max-line-length=127 --statistics
 script:
   - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
