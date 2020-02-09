@@ -1,4 +1,4 @@
-from .dictionary import Dictionary
+from .lzw_dictionary import Dictionary
 
 
 class LZW:
@@ -9,12 +9,17 @@ class LZW:
         """
         self.dictionary = Dictionary()
 
-    def compression(self, text):
+    def compression(self, text: str):
         """
         Compress the string with the LZW method
 
         :param text: The string that you want to compress
         :return: return the compress string in ASCII part into "_"
+        Examples:
+        >>>compression("barbapapa")
+        {'string':'98_97_114_257_112_97_261'}
+        >>>compression("TOBEORNOTTOBEORTOBEORNOT")
+        {'string':'84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264'}
         """
         string = ""
         turn = 0
@@ -38,12 +43,17 @@ class LZW:
             turn += i - 1
         return string
 
-    def decompression(self, text):
+    def decompression(self, text: str):
         """
         Decompress a string with the method LZW
 
         :param text: The string that you want to decompress (in ASCII part into "_")
         :return: return the decompress string
+        Examples:
+        >>>decompression("98_97_114_257_112_97_261")
+        {'string':'barbapapa'}
+        >>>decompression("84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264")
+        {'string':'TOBEORNOTTOBEORTOBEORNOT'}
         """
         string = ""
         turn = 0
@@ -68,7 +78,7 @@ class LZW:
                     self.dictionary.add_to_dictionary(save)
                     save = save[len(save) - 1]
                 else:
-                    save = save[1 : len(save)]
+                    save = save[1: len(save)]
             turn += 1
             i += 1
         return string

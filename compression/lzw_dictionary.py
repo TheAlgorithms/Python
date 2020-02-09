@@ -5,7 +5,7 @@ class Dictionary:
         """
         self.dictionary = dict()
 
-    def search(self, letter):
+    def search(self, letter: str):
         """
         Search a char or a string in dictionary
         :param letter:  char or string that you want to search
@@ -22,7 +22,7 @@ class Dictionary:
             else:
                 return -1
 
-    def add_to_dictionary(self, add):
+    def add_to_dictionary(self, add: str):
         """
         Add a string to dictionary with the following ASCII code (start at 257)
         :param add: string that you want to add to dictionary
@@ -36,7 +36,7 @@ class Dictionary:
         for key, word in enumerate(self.dictionary):
             print(str(key) + " : " + word)
 
-    def search_number(self, number):
+    def search_number(self, number: int):
         """
         Search and return a letter or a string with it ASCII code
         :param number: ASCII code number
