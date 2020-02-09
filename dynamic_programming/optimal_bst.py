@@ -49,8 +49,22 @@ def print_BST(root, key, i, j, parent, is_left):
 
 def find_optimal_BST(nodes):
     """
+    Precondition: Node keys are sorted in an increasing order.
+    
     This function calculates and prints the optimal BST.
-    The dynamic programming algorithm below runs in O(n^2) time
+    The dynamic programming algorithm below runs in O(n^2) time.
+    Implemented from CLRS book.
+    
+    >>> nodes = [Node(12, 8), Node(10, 34), Node(20, 50), Node(42, 3), Node(25, 40), Node(37, 30)]
+    >>> nodes.sort(key=lambda node: node.key)
+    >>> find_optimal_BST(nodes)
+    The cost of optimal BST is 324.
+    20 is the root of the BST.
+    10 is the left child of key 20.
+    12 is the right child of key 10.
+    25 is the right child of key 20.
+    37 is the right child of key 25.
+    42 is the right child of key 37.
     """
     n = len(nodes)
 
@@ -69,9 +83,7 @@ def find_optimal_BST(nodes):
             j = i + l - 1
 
             dp[i][j] = sys.maxsize  # set the value to "infinity"
-            sum[i][j] = (
-                sum[i][j - 1] + freq[j]
-            )  # (sum in range [i...j]) = (sum in range [i...j - 1]) + freq[j]
+            sum[i][j] = sum[i][j - 1] + freq[j]  # (sum in range [i...j]) = (sum in range [i...j - 1]) + freq[j]
 
             # Apply Knuth's optimization
             # Loop without optimization: for r in range(i, j + 1):
@@ -84,6 +96,7 @@ def find_optimal_BST(nodes):
                     dp[i][j] = cost
                     root[i][j] = r
 
+    print(f"The cost of optimal BST is {dp[0][n - 1]}.")
     print_BST(root, key, 0, n - 1, -1, False)
 
 
@@ -99,4 +112,6 @@ def main():
 
 
 if __name__ == "__main__":
+    # import doctest
+    # doctest.testmod()
     main()
