@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # This Python program provides O(n^2) dynamic programming solution
-# to an optimal BST problem.
+# to an optimal binary search tree (abbreviated BST) problem.
 #
 # The goal of the optimal BST problem is to build a low-cost BST for a
 # given set of nodes, each with its own key and frequency. The frequency
@@ -25,7 +25,7 @@ class Node:
         self.freq = freq
 
 
-def print_BST(root, key, i, j, parent, is_left):
+def print_binary_search_tree(root, key, i, j, parent, is_left):
     """Recursive function to print a BST from a root table."""
     if i > j or i < 0 or j > len(root) - 1:
         return
@@ -39,15 +39,15 @@ def print_BST(root, key, i, j, parent, is_left):
     else:
         print(f"{key[root[i][j]]} is the right child of key {parent}.")
 
-    print_BST(
+    print_binary_search_tree(
         root, key, i, root[i][j] - 1, key[root[i][j]], True
     )  # recur to left child
-    print_BST(
+    print_binary_search_tree(
         root, key, root[i][j] + 1, j, key[root[i][j]], False
     )  # recur to right child
 
 
-def find_optimal_BST(nodes):
+def find_optimal_binary_search_tree(nodes):
     """
     Precondition: Node keys are sorted in an increasing order.
     
@@ -57,7 +57,7 @@ def find_optimal_BST(nodes):
     
     >>> nodes = [Node(12, 8), Node(10, 34), Node(20, 50), Node(42, 3), Node(25, 40), Node(37, 30)]
     >>> nodes.sort(key=lambda node: node.key)
-    >>> find_optimal_BST(nodes)
+    >>> find_optimal_binary_search_tree(nodes)
     The cost of optimal BST is 324.
     20 is the root of the BST.
     10 is the left child of key 20.
@@ -97,7 +97,7 @@ def find_optimal_BST(nodes):
                     root[i][j] = r
 
     print(f"The cost of optimal BST is {dp[0][n - 1]}.")
-    print_BST(root, key, 0, n - 1, -1, False)
+    print_binary_search_tree(root, key, 0, n - 1, -1, False)
 
 
 def main():
@@ -108,7 +108,7 @@ def main():
     # increasing order and rearrange its frequencies accordingly.
     nodes.sort(key=lambda node: node.key)
 
-    find_optimal_BST(nodes)
+    find_optimal_binary_search_tree(nodes)
 
 
 if __name__ == "__main__":
