@@ -1,14 +1,15 @@
-'''Given a function f(x) on floating number x and two numbers ‘a’ and ‘b’ 
-such that f(a)*f(b) < 0 and f(x) is continuous in [a, b]. Here f(x) represents algebraic or transcendental equation. 
-Find root of function in interval [a, b] (Or find a value of x such that f(x) is 0)
+'''Given a function f(x) on floating number x and two numbers ‘a’ and ‘b’ we test if there is 
+a root between a and b. The bisection theory can be applied for algebraic or transcendental equations.
 '''
 
 
 import math
 
+#Put here the equation you want
 def equation(x):
     return math.cos(x) + x
 
+#Finds the root and prints it
 def bisection(a, b):
     #Bolzano theory in order to find if there is a root between a and b
     if equation(a) * equation(b) >= 0:
