@@ -49,15 +49,11 @@ def print_binary_search_tree(root, key, i, j, parent, is_left):
 
 def find_optimal_binary_search_tree(nodes):
     """
-    Precondition: Node keys are sorted in an increasing order.
-    
     This function calculates and prints the optimal BST.
     The dynamic programming algorithm below runs in O(n^2) time.
     Implemented from CLRS book.
     
-    >>> nodes = [Node(12, 8), Node(10, 34), Node(20, 50), Node(42, 3), Node(25, 40), Node(37, 30)]
-    >>> nodes.sort(key=lambda node: node.key)
-    >>> find_optimal_binary_search_tree(nodes)
+    >>> find_optimal_binary_search_tree([Node(12, 8), Node(10, 34), Node(20, 50), Node(42, 3), Node(25, 40), Node(37, 30)])
     The cost of optimal BST is 324.
     20 is the root of the BST.
     10 is the left child of key 20.
@@ -66,6 +62,10 @@ def find_optimal_binary_search_tree(nodes):
     37 is the right child of key 25.
     42 is the right child of key 37.
     """
+    # Tree nodes must be sorted first, the code below sorts the keys in
+    # increasing order and rearrange its frequencies accordingly.
+    nodes.sort(key=lambda node: node.key)
+
     n = len(nodes)
 
     key = [nodes[i].key for i in range(n)]
@@ -103,15 +103,8 @@ def find_optimal_binary_search_tree(nodes):
 def main():
     # A sample BST
     nodes = [Node(i, randint(1, 50)) for i in range(10, 0, -1)]
-
-    # Tree nodes must be sorted first, the code below sorts the keys in
-    # increasing order and rearrange its frequencies accordingly.
-    nodes.sort(key=lambda node: node.key)
-
     find_optimal_binary_search_tree(nodes)
 
 
 if __name__ == "__main__":
-    # import doctest
-    # doctest.testmod()
     main()
