@@ -5,7 +5,7 @@ Find root of function in interval [a, b] (Or find a value of x such that f(x) is
 import doctest
 
 
-def equation(x: int) -> float:
+def equation(x: int) -> int:
     return 10 - x * x
 
 
