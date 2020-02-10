@@ -5,13 +5,13 @@
 
 """
     * This code implement the Hamming code:
-        https://en.wikipedia.org/wiki/Hamming_code - In telecommunication, 
+        https://en.wikipedia.org/wiki/Hamming_code - In telecommunication,
     Hamming codes are a family of linear error-correcting codes. Hamming
-    codes can detect up to two-bit errors or correct one-bit errors 
-    without detection of uncorrected errors. By contrast, the simple 
-    parity code cannot correct errors, and can detect only an odd number 
-    of bits in error. Hamming codes are perfect codes, that is, they 
-    achieve the highest possible rate for codes with their block length 
+    codes can detect up to two-bit errors or correct one-bit errors
+    without detection of uncorrected errors. By contrast, the simple
+    parity code cannot correct errors, and can detect only an odd number
+    of bits in error. Hamming codes are perfect codes, that is, they
+    achieve the highest possible rate for codes with their block length
     and minimum distance of three.
 
     * the implemented code consists of:
@@ -19,15 +19,15 @@
             * return the encoded message
         * a function responsible for decoding the message (receptorConverter)
             * return the decoded message and a ack of data integrity
-    
+
     * how to use:
-            to be used you must declare how many parity bits (sizePari) 
+            to be used you must declare how many parity bits (sizePari)
         you want to include in the message.
             it is desired (for test purposes) to select a bit to be set
         as an error. This serves to check whether the code is working correctly.
-            Lastly, the variable of the message/word that must be desired to be 
+            Lastly, the variable of the message/word that must be desired to be
         encoded (text).
-    
+
     * how this work:
             declaration of variables (sizePari, be, text)
 
@@ -71,7 +71,7 @@ def emitterConverter(sizePar, data):
     """
     :param sizePar: how many parity bits the message must have
     :param data:  information bits
-    :return: message to be transmitted by unreliable medium 
+    :return: message to be transmitted by unreliable medium
             - bits of information merged with parity bits
 
     >>> emitterConverter(4, "101010111111")
@@ -84,7 +84,6 @@ def emitterConverter(sizePar, data):
     dataOut = []
     parity = []
     binPos = [bin(x)[2:] for x in range(1, sizePar + len(data) + 1)]
-    pos = [x for x in range(1, sizePar + len(data) + 1)]
 
     # sorted information data for the size of the output data
     dataOrd = []
@@ -188,7 +187,6 @@ def receptorConverter(sizePar, data):
     dataOut = []
     parity = []
     binPos = [bin(x)[2:] for x in range(1, sizePar + len(dataOutput) + 1)]
-    pos = [x for x in range(1, sizePar + len(dataOutput) + 1)]
 
     #  sorted information data for the size of the output data
     dataOrd = []

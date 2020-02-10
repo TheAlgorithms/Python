@@ -112,7 +112,6 @@ class BinarySearchTree:
         if node is not None:
             if node.left is None and node.right is None:  # If it has no children
                 self.__reassign_nodes(node, None)
-                node = None
             elif node.left is None:  # Has only right children
                 self.__reassign_nodes(node, node.right)
             elif node.right is None:  # Has only left children
@@ -172,7 +171,7 @@ def binary_search_tree():
         >>> BinarySearchTree().search(6)
         Traceback (most recent call last):
         ...
-        IndexError: Warning: Tree is empty! please use another. 
+        IndexError: Warning: Tree is empty! please use another.
     """
     testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
     t = BinarySearchTree()
@@ -200,8 +199,6 @@ def binary_search_tree():
         t.remove(i)
         print(t)
 
-
-二叉搜索树 = binary_search_tree
 
 if __name__ == "__main__":
     import doctest

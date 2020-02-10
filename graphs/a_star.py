@@ -52,7 +52,6 @@ def search(grid, init, goal, cost, heuristic):
 
     while not found and not resign:
         if len(cell) == 0:
-            resign = True
             return "FAIL"
         else:
             cell.sort()  # to choose the least costliest action so as to move closer to the goal
@@ -61,7 +60,6 @@ def search(grid, init, goal, cost, heuristic):
             x = next[2]
             y = next[3]
             g = next[1]
-            f = next[0]
 
             if x == goal[0] and y == goal[1]:
                 found = True
