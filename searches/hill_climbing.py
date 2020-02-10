@@ -63,6 +63,14 @@ class SearchProblem:
         """
         return hash(str(self))
 
+    def __eq__(self, obj):
+        """
+        hash the string represetation of the current search state.
+        """
+        if isinstance(obj, SearchProblem):
+            return hash(str(self)) == hash(str(obj))
+        return False
+
     def __str__(self):
         """
         string representation of the current search state.
