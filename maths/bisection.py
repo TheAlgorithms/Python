@@ -23,7 +23,7 @@ def bisection(a: int, b: int) -> float:
     if equation(a) * equation(b) >= 0:
         return c
 
-    half = a
+    c = a
     while (b - a) >= 0.01:
 
         # Find middle point
