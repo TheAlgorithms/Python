@@ -4,6 +4,7 @@
 from numpy import pi, sqrt
 from random import uniform
 
+
 def pi_estimator(iterations: int):
     """An implementation of the Monte Carlo method used to find pi.
     1. Draw a 2x2 square centred at (0,0).
@@ -14,7 +15,6 @@ def pi_estimator(iterations: int):
     5. Multiply this value by 4 to get your estimate of pi.
     6. Print the estimated and numpy value of pi
     """
-
 
     circle_dots = 0
 
