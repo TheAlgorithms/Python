@@ -18,10 +18,9 @@ def bisection(a: int, b: int) -> float:
     >>> bisection(2,3)
     False
     """
-    c = False
     # Bolzano theory in order to find if there is a root between a and b
     if equation(a) * equation(b) >= 0:
-        return c
+        return False
 
     c = a
     while (b - a) >= 0.01:
