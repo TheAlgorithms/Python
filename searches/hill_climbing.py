@@ -4,17 +4,18 @@ import math
 
 class SearchProblem:
     """
-    A interface to define search problems. The interface will be illustrated using
-        the example of mathematical function.
+    An interface to define search problems.
+    The interface will be illustrated using the example of mathematical function.
     """
 
     def __init__(self, x: int, y: int, step_size: int, function_to_optimize):
         """
         The constructor of the search problem.
-            x: the x coordinate of the current search state.
-            y: the y coordinate of the current search state.
-            step_size: size of the step to take when looking for neighbors.
-            function_to_optimize: a function to optimize having the signature f(x, y).
+
+        x: the x coordinate of the current search state.
+        y: the y coordinate of the current search state.
+        step_size: size of the step to take when looking for neighbors.
+        function_to_optimize: a function to optimize having the signature f(x, y).
         """
         self.x = x
         self.y = y
@@ -63,6 +64,14 @@ class SearchProblem:
         """
         return hash(str(self))
 
+    def __eq__(self, obj):
+        """
+        Check if the 2 objects are equal.
+        """
+        if isinstance(obj, SearchProblem):
+            return hash(str(self)) == hash(str(obj))
+        return False
+
     def __str__(self):
         """
         string representation of the current search state.
@@ -85,10 +94,11 @@ def hill_climbing(
     max_iter: int = 10000,
 ) -> SearchProblem:
     """
-    implementation of the hill climbling algorithm. We start with a given state, find
-        all its neighbors, move towards the neighbor which provides the maximum (or
-        minimum) change. We keep doing this until we are at a state where we do not
-        have any neighbors which can improve the solution.
+    Implementation of the hill climbling algorithm.
+    We start with a given state, find all its neighbors,
+    move towards the neighbor which provides the maximum (or minimum) change.
+    We keep doing this until we are at a state where we do not have any
+    neighbors which can improve the solution.
         Args:
             search_prob: The search state at the start.
             find_max: If True, the algorithm should find the maximum else the minimum.
