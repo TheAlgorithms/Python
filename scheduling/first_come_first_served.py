@@ -38,7 +38,10 @@ def calculate_turnaround_times(
     >>> calculate_turnaround_times([10, 3], [0, 10])
     [10, 13]
     """
-    return [duration_time + waiting_times[i] for i, duration_time in enumerate(duration_times)]
+    return [
+        duration_time + waiting_times[i]
+        for i, duration_time in enumerate(duration_times)
+    ]
 
 
 def calculate_average_turnaround_time(turnaround_times: List[int]) -> float:
