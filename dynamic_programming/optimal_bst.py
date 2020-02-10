@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # This Python program provides O(n^2) dynamic programming solution
 # to an optimal binary search tree (abbreviated BST) problem.
@@ -18,7 +18,7 @@ from random import randint
 
 
 class Node:
-    """BST Node"""
+    """Binary Search Tree Node"""
 
     def __init__(self, key, freq):
         self.key = key
@@ -26,7 +26,7 @@ class Node:
 
 
 def print_binary_search_tree(root, key, i, j, parent, is_left):
-    """Recursive function to print a BST from a root table."""
+    """Recursive function to print a BST from a root table. (TODO: doctest)"""
     if i > j or i < 0 or j > len(root) - 1:
         return
 
@@ -41,19 +41,20 @@ def print_binary_search_tree(root, key, i, j, parent, is_left):
 
     print_binary_search_tree(
         root, key, i, root[i][j] - 1, key[root[i][j]], True
-    )  # recur to left child
+    )
     print_binary_search_tree(
         root, key, root[i][j] + 1, j, key[root[i][j]], False
-    )  # recur to right child
+    )
 
 
 def find_optimal_binary_search_tree(nodes):
     """
     This function calculates and prints the optimal BST.
     The dynamic programming algorithm below runs in O(n^2) time.
-    Implemented from CLRS book.
+    Implemented from CLRS (Introduction to Algorithms) book.
     
-    >>> find_optimal_binary_search_tree([Node(12, 8), Node(10, 34), Node(20, 50), Node(42, 3), Node(25, 40), Node(37, 30)])
+    >>> find_optimal_binary_search_tree([Node(12, 8), Node(10, 34), Node(20, 50), \
+                                         Node(42, 3), Node(25, 40), Node(37, 30)])
     The cost of optimal BST is 324.
     20 is the root of the BST.
     10 is the left child of key 20.
@@ -71,7 +72,8 @@ def find_optimal_binary_search_tree(nodes):
     key = [nodes[i].key for i in range(n)]
     freq = [nodes[i].freq for i in range(n)]
 
-    # This 2D array stores the overall tree cost (which's as minimized as possible); for a single key, cost is equal to frequency of the key.
+    # This 2D array stores the overall tree cost (which's as minimized as possible);
+    # for a single key, cost is equal to frequency of the key.
     dp = [[freq[i] if i == j else 0 for j in range(n)] for i in range(n)]
     # sum[i][j] stores the sum of key frequencies between i and j inclusive in nodes array
     sum = [[freq[i] if i == j else 0 for j in range(n)] for i in range(n)]
@@ -83,7 +85,7 @@ def find_optimal_binary_search_tree(nodes):
             j = i + l - 1
 
             dp[i][j] = sys.maxsize  # set the value to "infinity"
-            sum[i][j] = sum[i][j - 1] + freq[j]  # (sum in range [i...j]) = (sum in range [i...j - 1]) + freq[j]
+            sum[i][j] = sum[i][j - 1] + freq[j]
 
             # Apply Knuth's optimization
             # Loop without optimization: for r in range(i, j + 1):
