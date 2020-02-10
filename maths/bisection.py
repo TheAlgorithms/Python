@@ -21,11 +21,14 @@ def bisection(a: int, b: int) -> float:
     >>> bisection(0, 6)
     3.158203125
     >>> bisection(2, 3)
-    False
+    Traceback (most recent call last):
+    ...
+    ValueError: Wrong space!
     """
     # Bolzano theory in order to find if there is a root between a and b
     if equation(a) * equation(b) >= 0:
-        return False
+        raise ValueError('Wrong space!')
+
     c = a
     while (b - a) >= 0.01:
         # Find middle point
@@ -44,5 +47,5 @@ def bisection(a: int, b: int) -> float:
 if __name__ == '__main__':
     print(bisection(-2, 5))
     print(bisection(0, 6))
-    print(bisection(2, 3))
+
     doctest.testmod()
