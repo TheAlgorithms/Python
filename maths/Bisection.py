@@ -1,23 +1,30 @@
-'''Given a function f(x) on floating number x and two numbers ‘a’ and ‘b’ we test if there is 
-a root between a and b. The bisection theory can be applied for algebraic or transcendental equations.
-'''
+"""Given a function f(x) on floating number x and two numbers ‘a’ and ‘b’
+such that f(a)*f(b) < 0 and f(x) is continuous in [a, b]. Here f(x) represents algebraic or transcendental equation.
+Find root of function in interval [a, b] (Or find a value of x such that f(x) is 0)
+"""
+import doctest
 
 
-import math
+def equation(x: int) -> float:
+    return 10 - x * x
 
-#Put here the equation you want
-def equation(x):
-    return math.cos(x) + x
 
-#Finds the root and prints it
-def bisection(a, b):
-    #Bolzano theory in order to find if there is a root between a and b
+def bisection(a: int, b: int) -> float:
+    """
+    >>> bisection(-2,5)
+    3.1611328125
+    >>> bisection(0, 6)
+    3.158203125
+    >>> bisection(2,3)
+    False
+    """
+    c = False
+    # Bolzano theory in order to find if there is a root between a and b
     if equation(a) * equation(b) >= 0:
-        print("There is not a root between a and b\n")
-        return
+        return c
 
     half = a
-    while ((b - a) >= 0.01):
+    while (b - a) >= 0.01:
 
         # Find middle point
         c = (a + b) / 2
@@ -32,20 +39,11 @@ def bisection(a, b):
         else:
             a = c
 
-    print("The value of root is : ", "%.4f" % c)
+    return c
 
-#Testing
-print("Testing for a = -3 and b = 2")
-a = -3
-b = 2
-bisection(a, b)
 
-a = 1
-b = 3
-print("\nTesting for a = 1 and b = 3")
-bisection(a, b)
-
-print("\nTesting for a = -5 and b = 0")
-a = -5
-b=0
-bisection(a,b)
+if __name__ == '__main__':
+    print(bisection(-2, 5))
+    print(bisection(0, 6))
+    print(bisection(2, 3))
+    doctest.testmod()
