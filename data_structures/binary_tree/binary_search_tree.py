@@ -56,13 +56,13 @@ class BinarySearchTree:
             parent_node = self.root  # from root
             while True:  # While we don't get to a leaf
                 if value < parent_node.value:  # We go left
-                    if parent_node.left == None:
+                    if parent_node.left is None:
                         parent_node.left = new_node  # We insert the new node in a leaf
                         break
                     else:
                         parent_node = parent_node.left
                 else:
-                    if parent_node.right == None:
+                    if parent_node.right is None:
                         parent_node.right = new_node
                         break
                     else:
