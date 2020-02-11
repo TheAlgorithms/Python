@@ -49,9 +49,7 @@ def rayleigh_quotient(A, v) -> float:
 
 def tests() -> None:
     A = np.matrix([[2, 2 + 1j, 4], [2 - 1j, 3, 1j], [4, -1j, 1]])
-
     v = np.matrix([[1], [2], [3]])
-
     assert is_hermitian(A) == True
     print(rayleigh_quotient(A, v))
 
