@@ -6,11 +6,15 @@
 # The goal of the optimal BST problem is to build a low-cost BST for a
 # given set of nodes, each with its own key and frequency. The frequency
 # of the node is defined as how many time the node is being searched.
-# The characteristic of low-cost BSTs is having a faster overall search
-# time than other BSTs. The reason for their fast search time is that
-# the nodes with high frequencies will be placed near the root of the
-# tree while the nodes with low frequencies will be placed near the tree
-# leaves thus reducing the search time.
+# The search cost of BST is given by this formula:
+#
+# cost(1, n) = sum{i = 1 to n}((depth(node_i) + 1) * node_i_freq)
+#
+# where n is number of nodes in the BST. The characteristic of low-cost
+# BSTs is having a faster overall search time than other BSTs. The reason
+# for their fast search time is that the nodes with high frequencies will
+# be placed near the root of the tree while the nodes with low frequencies
+# will be placed near the tree leaves thus reducing the search time.
 
 import sys
 
@@ -24,9 +28,25 @@ class Node:
         self.key = key
         self.freq = freq
 
+    def __str__(self):
+        return f"Node(key={self.key}, freq={self.freq})"
+
 
 def print_binary_search_tree(root, key, i, j, parent, is_left):
-    """Recursive function to print a BST from a root table. (TODO: doctest)"""
+    """
+    Recursive function to print a BST from a root table.
+    
+    >>> key = [3, 8, 9, 10, 17, 21]
+    >>> root = [[0, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 3], [0, 0, 2, 3, 3, 3], \
+                [0, 0, 0, 3, 3, 3], [0, 0, 0, 0, 4, 5], [0, 0, 0, 0, 0, 5]]
+    >>> print_binary_search_tree(root, key, 0, 5, -1, False)
+    8 is the root of the BST.
+    3 is the left child of key 8.
+    10 is the right child of key 8.
+    9 is the left child of key 10.
+    21 is the right child of key 10.
+    17 is the left child of key 21.
+    """
     if i > j or i < 0 or j > len(root) - 1:
         return
 
@@ -39,12 +59,8 @@ def print_binary_search_tree(root, key, i, j, parent, is_left):
     else:
         print(f"{key[root[i][j]]} is the right child of key {parent}.")
 
-    print_binary_search_tree(
-        root, key, i, root[i][j] - 1, key[root[i][j]], True
-    )
-    print_binary_search_tree(
-        root, key, root[i][j] + 1, j, key[root[i][j]], False
-    )
+    print_binary_search_tree(root, key, i, root[i][j] - 1, key[root[i][j]], True)
+    print_binary_search_tree(root, key, root[i][j] + 1, j, key[root[i][j]], False)
 
 
 def find_optimal_binary_search_tree(nodes):
@@ -98,7 +114,11 @@ def find_optimal_binary_search_tree(nodes):
                     dp[i][j] = cost
                     root[i][j] = r
 
-    print(f"The cost of optimal BST is {dp[0][n - 1]}.")
+    print("BST Nodes:")
+    for node in nodes:
+        print(node)
+
+    print(f"\nThe cost of optimal BST for given tree nodes is {dp[0][n - 1]}.")
     print_binary_search_tree(root, key, 0, n - 1, -1, False)
 
 
