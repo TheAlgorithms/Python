@@ -31,7 +31,7 @@ class Node:
     def __str__(self):
         """
         >>> str(Node(1, 2))
-        Node(key=1, freq=2)
+        'Node(key=1, freq=2)'
         """
         return f"Node(key={self.key}, freq={self.freq})"
 
@@ -44,7 +44,7 @@ def print_binary_search_tree(root, key, i, j, parent, is_left):
     >>> root = [[0, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 3], [0, 0, 2, 3, 3, 3], \
                 [0, 0, 0, 3, 3, 3], [0, 0, 0, 0, 4, 5], [0, 0, 0, 0, 0, 5]]
     >>> print_binary_search_tree(root, key, 0, 5, -1, False)
-    8 is the root of the BST.
+    8 is the root of the binary search tree.
     3 is the left child of key 8.
     10 is the right child of key 8.
     9 is the left child of key 10.
