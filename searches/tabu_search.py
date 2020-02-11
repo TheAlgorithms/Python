@@ -25,7 +25,6 @@ e.g. python tabu_search.py -f tabudata2.txt -i 4 -s 3
 
 import copy
 import argparse
-import sys
 
 
 def generate_neighbours(path):
