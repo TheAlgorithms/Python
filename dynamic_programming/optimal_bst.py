@@ -71,7 +71,15 @@ def find_optimal_binary_search_tree(nodes):
     
     >>> find_optimal_binary_search_tree([Node(12, 8), Node(10, 34), Node(20, 50), \
                                          Node(42, 3), Node(25, 40), Node(37, 30)])
-    The cost of optimal BST is 324.
+    BST Nodes:
+    Node(key=10, freq=34)
+    Node(key=12, freq=8)
+    Node(key=20, freq=50)
+    Node(key=25, freq=40)
+    Node(key=37, freq=30)
+    Node(key=42, freq=3)
+    <BLANKLINE>
+    The cost of optimal BST for given tree nodes is 324.
     20 is the root of the BST.
     10 is the left child of key 20.
     12 is the right child of key 10.
