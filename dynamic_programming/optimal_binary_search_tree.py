@@ -24,6 +24,7 @@ from random import randint
 
 class Node:
     """Binary Search Tree Node"""
+
     def __init__(self, key, freq):
         self.key = key
         self.freq = freq
