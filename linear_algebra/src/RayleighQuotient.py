@@ -4,7 +4,7 @@ https://en.wikipedia.org/wiki/Rayleigh_quotient
 import numpy as np
 
 
-def isHermitian(matrix) -> bool:
+def is_hermitian(matrix) -> bool:
     '''
     Checks if a matrix is Hermitian.
 
@@ -13,7 +13,7 @@ def isHermitian(matrix) -> bool:
     ... [2,    2+1j, 4],
     ... [2-1j,  3,  1j],
     ... [4,    -1j,  1]])
-    >>> isHermitian(A)
+    >>> is_hermitian(A)
     True
     '''
     return np.array_equal(matrix, matrix.H)
@@ -53,7 +53,7 @@ def tests() -> None:
     [3]
     ])
 
-    assert isHermitian(A) == True
+    assert is_hermitian(A) == True
     print( rayleigh_quotient(A, v))
 
     A = np.matrix([
@@ -61,7 +61,7 @@ def tests() -> None:
     [2,  3,  -1],
     [4, -1,  1]
     ])
-    assert isHermitian(A) == True
+    assert is_hermitian(A) == True
     assert rayleigh_quotient(A, v) == float(3)
 
 if __name__=='__main__':
