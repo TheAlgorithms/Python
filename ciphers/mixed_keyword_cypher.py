@@ -29,9 +29,6 @@ def mixed_keyword(key="college", pt="UNIVERSITY"):
     # print(temp)
     alpha = []
     modalpha = []
-    # modalpha.append(temp)
-    dic = dict()
-    c = 0
     for i in range(65, 91):
         t = chr(i)
         alpha.append(t)

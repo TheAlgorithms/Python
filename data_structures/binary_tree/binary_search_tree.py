@@ -76,7 +76,7 @@ class BinarySearchTree:
 
     def search(self, value):
         if self.empty():
-            raise IndexError("Warning: Tree is empty! please use another. ")
+            raise IndexError("Warning: Tree is empty! please use another.")
         else:
             node = self.root
             # use lazy evaluation here to avoid NoneType Attribute error
@@ -112,7 +112,6 @@ class BinarySearchTree:
         if node is not None:
             if node.left is None and node.right is None:  # If it has no children
                 self.__reassign_nodes(node, None)
-                node = None
             elif node.left is None:  # Has only right children
                 self.__reassign_nodes(node, node.right)
             elif node.right is None:  # Has only left children
@@ -154,7 +153,7 @@ def postorder(curr_node):
 
 
 def binary_search_tree():
-    r"""
+    """
     Example
                   8
                  / \
@@ -164,15 +163,15 @@ def binary_search_tree():
                  / \   /
                 4   7 13
 
-        >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
-        >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
-        8 3 1 6 4 7 10 14 13
-        >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
-        1 4 7 6 3 13 14 10 8
-        >>> BinarySearchTree().search(6)
-        Traceback (most recent call last):
-        ...
-        IndexError: Warning: Tree is empty! please use another. 
+    >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+    8 3 1 6 4 7 10 14 13
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
+    1 4 7 6 3 13 14 10 8
+    >>> BinarySearchTree().search(6)
+    Traceback (most recent call last):
+    ...
+    IndexError: Warning: Tree is empty! please use another.
     """
     testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
     t = BinarySearchTree()
@@ -201,10 +200,8 @@ def binary_search_tree():
         print(t)
 
 
-二叉搜索树 = binary_search_tree
-
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    binary_search_tree()
+    # binary_search_tree()
