@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# This Python program implements a binary search tree (abbreviated BST)
-# dynamic programming algorithm that delivers O(n^2) performance.
+# This Python program implements an optimal binary search tree (abbreviated BST)
+# building dynamic programming algorithm that delivers O(n^2) performance.
 #
 # The goal of the optimal BST problem is to build a low-cost BST for a
 # given set of nodes, each with its own key and frequency. The frequency
