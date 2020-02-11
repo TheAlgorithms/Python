@@ -278,4 +278,4 @@ if __name__ == "__main__":
     )
 
     # Pass the arguments to main method
-    sys.exit(main(parser.parse_args()))
+    main(parser.parse_args())
