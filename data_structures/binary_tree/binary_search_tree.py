@@ -76,7 +76,7 @@ class BinarySearchTree:
 
     def search(self, value):
         if self.empty():
-            raise IndexError("Warning: Tree is empty! please use another. ")
+            raise IndexError("Warning: Tree is empty! please use another.")
         else:
             node = self.root
             # use lazy evaluation here to avoid NoneType Attribute error
@@ -154,7 +154,7 @@ def postorder(curr_node):
 
 
 def binary_search_tree():
-    r"""
+    """
     Example
                   8
                  / \
