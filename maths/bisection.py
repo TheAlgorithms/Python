@@ -6,6 +6,8 @@ Find root of function in interval [a, b] (Or find a value of x such that f(x) is
 
 https://en.wikipedia.org/wiki/Bisection_method
 """
+
+
 def equation(x: float) -> float:
     """
     >>> equation(5)

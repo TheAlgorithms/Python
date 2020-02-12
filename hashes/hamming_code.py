@@ -140,7 +140,7 @@ def emitterConverter(sizePar, data):
     # Mount the message
     ContBP = 0  # parity bit counter
     for x in range(0, sizePar + len(data)):
-        if dataOrd[x] == None:
+        if dataOrd[x] is None:
             dataOut.append(str(parity[ContBP]))
             ContBP += 1
         else:
@@ -243,7 +243,7 @@ def receptorConverter(sizePar, data):
     # Mount the message
     ContBP = 0  # Parity bit counter
     for x in range(0, sizePar + len(dataOutput)):
-        if dataOrd[x] == None:
+        if dataOrd[x] is None:
             dataOut.append(str(parity[ContBP]))
             ContBP += 1
         else:
