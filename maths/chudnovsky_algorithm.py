@@ -63,7 +63,7 @@ def pi(precision: int) -> str:
     exponential_term = 1
     linear_term = 13591409
 
-    partial_sum = linear_term
+    partial_sum = Decimal(linear_term)
 
     for k in range(1, num_iterations):
         multinomial_term = factorial(6 * k) // (factorial(3 * k) * factorial(k) ** 3)
