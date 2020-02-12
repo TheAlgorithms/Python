@@ -2,7 +2,7 @@ from decimal import Decimal, getcontext
 from math import ceil, factorial
 
 
-def pi(precision: int) -> float:
+def pi(precision: int) -> str:
     """
         The Chudnovsky algorithm is a fast method for calculating the digits
         of PI, based on Ramanujan’s PI formulae.
