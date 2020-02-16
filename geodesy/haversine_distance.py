@@ -1,7 +1,7 @@
 from math import asin, atan, cos, sin, sqrt, tan, pow, radians
 
 
-def haversine_distance(lat1, lon1, lat2, lon2):
+def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
     """
     Calculate great circle distance between two points in a sphere,
     given longitudes and latitudes. 
