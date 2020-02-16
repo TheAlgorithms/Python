@@ -5,7 +5,7 @@ Created on Sat Feb  8 19:25:41 2020
 """
 
 
-def false_position(f, lower_bound: float, upper_bound: float, error: float):
+def main(f, lower_bound: float, upper_bound: float, error: float):
     """An implementation of the false position method used for root-finding.
     The algorithm is extremely similar to the secant method in that it uses
     the x-intercept of the line connecting f(lower_bound) and f(upper_bound) 
