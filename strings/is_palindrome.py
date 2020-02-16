@@ -4,12 +4,11 @@ def is_palindrome(s):
     :param s:
     :return: Boolean
     """
-    if s == s[::-1]:
-        return True
-    return False
+    return s == s[::-1]
 
 
-s = input("Enter string to determine whether its palindrome or not: ")
+
+s = str(input("Enter string to determine whether its palindrome or not: ").strip())
 if is_palindrome(s):
     print("Given string is palindrome")
 else:
