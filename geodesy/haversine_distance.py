@@ -10,7 +10,6 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     Args:
         lat1, lon1: latitude and longitude of coordinate 1
         lat2, lon2: latitude and longitude of coordinate 2
-        returnAngle: Toggle to return distance or angle
         
     Returns: 
         geographical distance between two points in metres
