@@ -4,10 +4,13 @@ Approximates the area under the curve using the trapezoidal rule
 
 from typing import Callable, Union
 
-def trapezoidal_area(fnc: Callable[[Union[int, float]], Union[int, float]],
-                     x_start: Union[int, float],
-                     x_end: Union[int, float],
-                     steps: int = 100) -> float:
+
+def trapezoidal_area(
+    fnc: Callable[[Union[int, float]], Union[int, float]],
+    x_start: Union[int, float],
+    x_end: Union[int, float],
+    steps: int = 100,
+) -> float:
 
     """
     Treats curve as a collection of linear lines and sums the area of the
@@ -39,9 +42,9 @@ def trapezoidal_area(fnc: Callable[[Union[int, float]], Union[int, float]],
 
         # Approximates small segments of curve as linear and solve
         # for trapezoidal area
-        x2 = (x_end - x_start)/steps + x1
+        x2 = (x_end - x_start) / steps + x1
         fx2 = fnc(x2)
-        area += abs(fx2 + fx1) * (x2 - x1)/2
+        area += abs(fx2 + fx1) * (x2 - x1) / 2
 
         # Increment step
         x1 = x2
@@ -52,7 +55,7 @@ def trapezoidal_area(fnc: Callable[[Union[int, float]], Union[int, float]],
 if __name__ == "__main__":
 
     def f(x):
-        return x**3
+        return x ** 3
 
     print("f(x) = x^3")
     print("The area between the curve, x = -10, x = 10 and the x axis is:")
@@ -60,4 +63,4 @@ if __name__ == "__main__":
     while i <= 100000:
         area = trapezoidal_area(f, -5, 5, i)
         print("with {} steps: {}".format(i, area))
-        i*=10
+        i *= 10

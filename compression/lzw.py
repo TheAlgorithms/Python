@@ -78,7 +78,7 @@ class LZW:
                     self.dictionary.add_to_dictionary(save)
                     save = save[len(save) - 1]
                 else:
-                    save = save[1: len(save)]
+                    save = save[1 : len(save)]
             turn += 1
             i += 1
         return string
