@@ -31,13 +31,10 @@ def throw_dice(num_throws: int, num_dice: int=2) -> List[float]:
     >>> throw_dice(10000, 2)
     [2.74, 5.6, 7.99, 11.26, 13.92, 16.7, 14.44, 10.63, 8.05, 5.92, 2.75]
     """
-
     dices = [Dice() for i in range(num_dice)]
     count_of_sum = [0] * (len(dices) * Dice.NUM_SIDES + 1)
-
     for i in range(num_throws):
         count_of_sum[sum([dice.roll() for dice in dices])] += 1
-
     probability = [round((count * 100) / num_throws, 2) for count in count_of_sum]
     return probability[num_dice:]  # remove probability of sums that never appear
 
