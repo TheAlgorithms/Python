@@ -38,7 +38,7 @@ def throw_dice(num_throws, num_dice=2):
         count_of_sum[sum([dice.roll() for dice in dices])] += 1
 
     probability = [round((count * 100) / num_throws, 2) for count in count_of_sum]
-    return probability[num_dice:]  # remove counts of sums that never appear
+    return probability[num_dice:]  # remove probability of sums that never appear
 
 
 if __name__ == "__main__":
