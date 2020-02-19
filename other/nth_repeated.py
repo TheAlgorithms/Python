@@ -3,17 +3,18 @@
 from collections import Counter
 
 
-def second_repeated(sequence: list) -> str:
+def second_repeated(sequence: list, nth_repeated: int) -> str:
     """
     >>> sequence = ['Algorithms','Algorithm','Python','Python','The','Python','The']
-    >>> print(second_repeated(sequence))
+    >>> nth_repeated = 2
+    >>> print(second_repeated(sequence, nth_repeated))
     The
     """
     sequence_dict = Counter(sequence)
     sequence_value = sorted(sequence_dict.values(), reverse=True)
-    second_largest = sequence_value[1]
+    largest = sequence_value[nth_repeated - 1]
     for (key, value) in sequence_dict.items():
-        if value == second_largest:
+        if value == largest:
             return key
     return ""
 
@@ -31,4 +32,5 @@ if __name__ == "__main__":
         "Love",
         "Python",
     ]
-    print(second_repeated(input_sequence))
+    nth_repeated = 2
+    print(second_repeated(input_sequence, nth_repeated))
