@@ -1,4 +1,3 @@
-#Credit to "Jakob Aungiers" for code and inpiration
 
 import os
 import json
