@@ -1,12 +1,11 @@
 #!/usr/bin/python
-# encoding=utf8
 
 # Author: OMKAR PATHAK
 
 # We can use Python's dictionary for constructing the graph.
 
 
-class AdjacencyList(object):
+class AdjacencyList:
     def __init__(self):
         self.List = {}
 

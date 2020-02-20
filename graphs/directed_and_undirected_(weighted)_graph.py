@@ -3,7 +3,7 @@ import random as rand
 import math as math
 import time
 
-# the dfault weight is 1 if not assigend but all the implementation is weighted
+# the dfault weight is 1 if not assigned but all the implementation is weighted
 
 
 class DirectedGraph:
@@ -12,7 +12,7 @@ class DirectedGraph:
 
     # adding vertices and edges
     # adding the weight is optional
-    # handels repetition
+    # handles repetition
     def add_pair(self, u, v, w=1):
         if self.graph.get(u):
             if self.graph[u].count([w, v]) == 0:
@@ -25,14 +25,14 @@ class DirectedGraph:
     def all_nodes(self):
         return list(self.graph)
 
-    # handels if the input does not exist
+    # handles if the input does not exist
     def remove_pair(self, u, v):
         if self.graph.get(u):
             for _ in self.graph[u]:
                 if _[1] == v:
                     self.graph[u].remove(_)
 
-    # if no destination is meant the defaut value is -1
+    # if no destination is meant the default value is -1
     def dfs(self, s=-2, d=-1):
         if s == d:
             return []
@@ -71,7 +71,7 @@ class DirectedGraph:
             if len(stack) == 0:
                 return visited
 
-    # c is the count of nodes you want and if you leave it or pass -1 to the funtion the count
+    # c is the count of nodes you want and if you leave it or pass -1 to the function the count
     # will be random from 10 to 10000
     def fill_graph_randomly(self, c=-1):
         if c == -1:
@@ -271,7 +271,7 @@ class Graph:
 
     # adding vertices and edges
     # adding the weight is optional
-    # handels repetition
+    # handles repetition
     def add_pair(self, u, v, w=1):
         # check if the u exists
         if self.graph.get(u):
@@ -290,7 +290,7 @@ class Graph:
             # if u does not exist
             self.graph[v] = [[w, u]]
 
-    # handels if the input does not exist
+    # handles if the input does not exist
     def remove_pair(self, u, v):
         if self.graph.get(u):
             for _ in self.graph[u]:
@@ -302,7 +302,7 @@ class Graph:
                 if _[1] == u:
                     self.graph[v].remove(_)
 
-    # if no destination is meant the defaut value is -1
+    # if no destination is meant the default value is -1
     def dfs(self, s=-2, d=-1):
         if s == d:
             return []
@@ -341,7 +341,7 @@ class Graph:
             if len(stack) == 0:
                 return visited
 
-    # c is the count of nodes you want and if you leave it or pass -1 to the funtion the count
+    # c is the count of nodes you want and if you leave it or pass -1 to the function the count
     # will be random from 10 to 10000
     def fill_graph_randomly(self, c=-1):
         if c == -1:

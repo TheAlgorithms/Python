@@ -28,7 +28,7 @@ class HashTable:
 
     def _step_by_step(self, step_ord):
 
-        print("step {0}".format(step_ord))
+        print(f"step {step_ord}")
         print([i for i in range(len(self.values))])
         print(self.values)
 

@@ -19,7 +19,7 @@ def solution(n):
     >>> solution(40000)
     39893
     """
-    # fetchs the next number
+    # fetches the next number
     for number in range(n - 1, 10000, -1):
 
         # converts number into string.

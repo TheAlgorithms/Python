@@ -70,6 +70,7 @@ def modular_division2(a, b, n):
 
 # Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers x and y, then d = gcd(a,b)
 
+
 def extended_gcd(a, b):
     """
     >>> extended_gcd(10, 6)
@@ -116,6 +117,7 @@ def extended_euclid(a, b):
 # Euclid's Lemma :  d divides a and b, if and only if d divides a-b and b
 # Euclid's Algorithm
 
+
 def greatest_common_divisor(a, b):
     """
     >>> greatest_common_divisor(7,5)
@@ -140,10 +142,10 @@ def greatest_common_divisor(a, b):
 # Import testmod for testing our function
 from doctest import testmod
 
-if __name__ == '__main__':
-    testmod(name='modular_division', verbose=True)
-    testmod(name='modular_division2', verbose=True)
-    testmod(name='invert_modulo', verbose=True)
-    testmod(name='extended_gcd', verbose=True)
-    testmod(name='extended_euclid', verbose=True)
-    testmod(name='greatest_common_divisor', verbose=True)
+if __name__ == "__main__":
+    testmod(name="modular_division", verbose=True)
+    testmod(name="modular_division2", verbose=True)
+    testmod(name="invert_modulo", verbose=True)
+    testmod(name="extended_gcd", verbose=True)
+    testmod(name="extended_euclid", verbose=True)
+    testmod(name="greatest_common_divisor", verbose=True)

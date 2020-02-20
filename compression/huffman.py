@@ -21,7 +21,7 @@ class TreeNode:
 def parse_file(file_path):
     """
     Read the file and build a dict of all letters and their
-    frequences, then convert the dict into a list of Letters.
+    frequencies, then convert the dict into a list of Letters.
     """
     chars = {}
     with open(file_path) as f:

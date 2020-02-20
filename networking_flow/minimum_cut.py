@@ -35,7 +35,7 @@ def mincut(graph, source, sink):
     parent = [-1] * (len(graph))
     max_flow = 0
     res = []
-    temp = [i[:] for i in graph]  # Record orignial cut, copy.
+    temp = [i[:] for i in graph]  # Record original cut, copy.
     while BFS(graph, source, sink, parent):
         path_flow = float("Inf")
         s = sink

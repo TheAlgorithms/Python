@@ -25,7 +25,6 @@ e.g. python tabu_search.py -f tabudata2.txt -i 4 -s 3
 
 import copy
 import argparse
-import sys
 
 
 def generate_neighbours(path):
@@ -188,7 +187,7 @@ def tabu_search(
     and the cost (distance) for each neighbor.
     :param iters: The number of iterations that Tabu search will execute.
     :param size: The size of Tabu List.
-    :return best_solution_ever: The solution with the lowest distance that occured during the execution of Tabu search.
+    :return best_solution_ever: The solution with the lowest distance that occurred during the execution of Tabu search.
     :return best_cost: The total distance that Travelling Salesman will travel, if he follows the path in best_solution
     ever.
 
@@ -254,7 +253,7 @@ def main(args=None):
         args.Size,
     )
 
-    print("Best solution: {0}, with total distance: {1}.".format(best_sol, best_cost))
+    print(f"Best solution: {best_sol}, with total distance: {best_cost}.")
 
 
 if __name__ == "__main__":
@@ -278,4 +277,4 @@ if __name__ == "__main__":
     )
 
     # Pass the arguments to main method
-    sys.exit(main(parser.parse_args()))
+    main(parser.parse_args())

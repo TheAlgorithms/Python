@@ -40,7 +40,7 @@ def decrypt(message):
                 translated = translated + LETTERS[num]
             else:
                 translated = translated + symbol
-        print("Decryption using Key #%s: %s" % (key, translated))
+        print(f"Decryption using Key #{key}: {translated}")
 
 
 def main():

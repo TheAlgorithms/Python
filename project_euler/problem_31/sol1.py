@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Coin sums
 Problem 31

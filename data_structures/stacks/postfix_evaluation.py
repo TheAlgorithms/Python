@@ -14,7 +14,7 @@ Enter a Postfix Equation (space separated) = 5 6 9 * +
          | pop(5)       |
        + | push(5+54)   | 59
 
-	Result =  59
+        Result =  59
 """
 
 import operator as op
@@ -54,7 +54,7 @@ def Solve(Postfix):
 
             Stack.append(
                 str(Opr[x](int(A), int(B)))
-            )  # evaluate the 2 values poped from stack & push result to stack
+            )  # evaluate the 2 values popped from stack & push result to stack
             print(
                 x.rjust(8),
                 ("push(" + A + x + B + ")").ljust(12),

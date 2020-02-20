@@ -3,7 +3,7 @@
 - This is an example of a double ended, doubly linked list.
 - Each link references the next link and the previous one.
 - A Doubly Linked List (DLL) contains an extra pointer, typically called previous pointer, together with next pointer and data which are there in singly linked list.
- - Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficent"""
+ - Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficient"""
 
 
 class LinkedList:  # making main class named linked list
@@ -23,9 +23,7 @@ class LinkedList:  # making main class named linked list
     def deleteHead(self):
         temp = self.head
         self.head = self.head.next  # oldHead <--> 2ndElement(head)
-        self.head.previous = (
-            None
-        )  # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
+        self.head.previous = None  # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
         if self.head is None:
             self.tail = None  # if empty linked list
         return temp
@@ -78,4 +76,4 @@ class Link:
         self.value = x
 
     def displayLink(self):
-        print("{}".format(self.value), end=" ")
+        print(f"{self.value}", end=" ")

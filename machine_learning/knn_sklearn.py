@@ -7,8 +7,8 @@ iris = load_iris()
 iris.keys()
 
 
-print("Target names: \n {} ".format(iris.target_names))
-print("\n Features: \n {}".format(iris.feature_names))
+print(f"Target names: \n {iris.target_names} ")
+print(f"\n Features: \n {iris.feature_names}")
 
 # Train set e Test set
 X_train, X_test, y_train, y_test = train_test_split(

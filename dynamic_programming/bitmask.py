@@ -42,7 +42,7 @@ class AssignmentUsingBitmask:
         if self.dp[mask][taskno] != -1:
             return self.dp[mask][taskno]
 
-        # Number of ways when we dont this task in the arrangement
+        # Number of ways when we don't this task in the arrangement
         total_ways_util = self.CountWaysUtil(mask, taskno + 1)
 
         # now assign the tasks one by one to all possible persons and recursively assign for the remaining tasks.

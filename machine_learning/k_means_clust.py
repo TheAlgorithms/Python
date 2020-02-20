@@ -126,7 +126,7 @@ def plot_heterogeneity(heterogeneity, k):
     plt.plot(heterogeneity, linewidth=4)
     plt.xlabel("# Iterations")
     plt.ylabel("Heterogeneity")
-    plt.title("Heterogeneity of clustering over time, K={0:d}".format(k))
+    plt.title(f"Heterogeneity of clustering over time, K={k:d}")
     plt.rcParams.update({"font.size": 16})
     plt.show()
 
@@ -164,7 +164,7 @@ def kmeans(
             num_changed = np.sum(prev_cluster_assignment != cluster_assignment)
             if verbose:
                 print(
-                    "    {0:5d} elements changed their cluster assignment.".format(
+                    "    {:5d} elements changed their cluster assignment.".format(
                         num_changed
                     )
                 )

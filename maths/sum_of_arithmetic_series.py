@@ -8,7 +8,7 @@ def sum_of_series(first_term, common_diff, num_of_terms):
     >>> sum_of_series(1, 10, 100)
     49600.0
     """
-    sum = ((num_of_terms/2)*(2*first_term+(num_of_terms-1)*common_diff))
+    sum = (num_of_terms / 2) * (2 * first_term + (num_of_terms - 1) * common_diff)
     # formula for sum of series
     return sum
 
@@ -19,4 +19,5 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
