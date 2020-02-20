@@ -45,7 +45,7 @@ def lamberts_ellipsoidal_distance(
     # Distance in metres(m)
     AXIS_A = 6378137.0
     AXIS_B = 6356752.314245
-    RADIUS = 6378137
+    EQUATORIAL_RADIUS = 6378137
 
     # Equation Parameters
     # https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
@@ -55,8 +55,8 @@ def lamberts_ellipsoidal_distance(
     b_lat2 = atan((1 - flattening) * tan(radians(lat2)))
 
     # Compute central angle between two points
-    # using haversine theta. sigma =  haversine_distance / radius
-    sigma = haversine_distance(lat1, lon1, lat2, lon2) / RADIUS
+    # using haversine theta. sigma =  haversine_distance / equatorial radius
+    sigma = haversine_distance(lat1, lon1, lat2, lon2) / EQUATORIAL_RADIUS
 
     # Intermediate P and Q values
     P_value = (b_lat1 + b_lat2) / 2
@@ -74,7 +74,7 @@ def lamberts_ellipsoidal_distance(
     Y_denominator = sin(sigma / 2) ** 2
     Y_value = (sigma + sin(sigma)) * (Y_numerator / Y_denominator)
 
-    return RADIUS * (sigma - ((flattening / 2) * (X_value + Y_value)))
+    return EQUATORIAL_RADIUS * (sigma - ((flattening / 2) * (X_value + Y_value)))
 
 
 if __name__ == "__main__":
