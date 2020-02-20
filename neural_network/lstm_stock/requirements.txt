@@ -1,0 +1,5 @@
+numpy==1.15.0
+pandas==0.23.3
+tensorflow-gpu==1.10.0
+keras==2.2.2
+matplotlib==2.2.2

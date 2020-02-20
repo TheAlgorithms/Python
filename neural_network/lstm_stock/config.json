@@ -1,0 +1,53 @@
+{
+	"data": {
+		"filename": "sp500.csv",
+		"columns": [
+			"Close",
+			"Volume"
+		],
+		"sequence_length": 50,
+		"train_test_split": 0.85,
+		"normalise": true
+	},
+	"training": {
+		"epochs": 2,
+		"batch_size": 32
+	},
+	"model": {
+		"loss": "mse",
+		"optimizer": "adam",
+		"save_dir": "saved_models",
+		"layers": [
+			{
+				"type": "lstm",
+				"neurons": 100,
+				"input_timesteps": 49,
+				"input_dim": 2,
+				"return_seq": true
+			},
+			{
+				"type": "dropout",
+				"rate": 0.2
+			},
+			{
+				"type": "lstm",
+				"neurons": 100,
+				"return_seq": true
+			},
+			{
+				"type": "lstm",
+				"neurons": 100,
+				"return_seq": false
+			},
+			{
+				"type": "dropout",
+				"rate": 0.2
+			},
+			{
+				"type": "dense",
+				"neurons": 1,
+				"activation": "linear"
+			}
+		]
+	}
+}
