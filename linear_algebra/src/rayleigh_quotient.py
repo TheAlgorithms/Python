@@ -4,7 +4,7 @@ https://en.wikipedia.org/wiki/Rayleigh_quotient
 import numpy as np
 
 
-def is_hermitian(matrix:np.matrix) -> bool:
+def is_hermitian(matrix: np.matrix) -> bool:
     """
     Checks if a matrix is Hermitian.
 
@@ -25,7 +25,7 @@ def is_hermitian(matrix:np.matrix) -> bool:
     return np.array_equal(matrix, matrix.H)
 
 
-def rayleigh_quotient(A:np.matrix, v:np.matrix) -> float:
+def rayleigh_quotient(A: np.matrix, v: np.matrix) -> float:
     """
     Returns the Rayleigh quotient of a Hermitian matrix A and
     vector v.

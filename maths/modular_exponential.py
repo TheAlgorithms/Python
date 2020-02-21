@@ -5,7 +5,9 @@
 """
 
 """Calculate Modular Exponential."""
-def modular_exponential(base : int, power : int, mod : int):
+
+
+def modular_exponential(base: int, power: int, mod: int):
     """
     >>> modular_exponential(5, 0, 10)
     1

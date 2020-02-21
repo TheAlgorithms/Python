@@ -1,6 +1,7 @@
 import random
 from typing import List
 
+
 class Dice:
     NUM_SIDES = 6
 
@@ -15,7 +16,7 @@ class Dice:
         return "Fair Dice"
 
 
-def throw_dice(num_throws: int, num_dice: int=2) -> List[float]:
+def throw_dice(num_throws: int, num_dice: int = 2) -> List[float]:
     """
     Return probability list of all possible sums when throwing dice.
 
