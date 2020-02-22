@@ -169,7 +169,6 @@
   * [Fractional Knapsack 2](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/fractional_knapsack_2.py)
   * [Integer Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/iterating_through_submasks.py)
-  * [K Means Clustering Tensorflow](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/knapsack.py)
   * [Longest Common Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_common_subsequence.py)
   * [Longest Increasing Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_increasing_subsequence.py)
