@@ -20,7 +20,8 @@ def pi_estimator(iterations: int):
     # A local function to see if a dot lands in the circle.
     def in_circle(x: float, y: float) -> bool:
         distance_from_centre = sqrt((x ** 2) + (y ** 2))
-        # Our circle has a radius of 1, so a distance greater than 1 would land outside the circle.
+        # Our circle has a radius of 1, so a distance
+        # greater than 1 would land outside the circle.
         return distance_from_centre <= 1
 
     # The proportion of guesses that landed in the circle
@@ -34,7 +35,9 @@ def pi_estimator(iterations: int):
     print("The total error is ", abs(pi - pi_estimate))
 
 
-def area_under_line_estimator(iterations: int, min_value: float=0.0, max_value: float=1.0) -> float:
+def area_under_line_estimator(iterations: int,
+                              min_value: float=0.0,
+                              max_value: float=1.0) -> float:
     """
     An implementation of the Monte Carlo method to find area under
        y = x where x lies between min_value to max_value
