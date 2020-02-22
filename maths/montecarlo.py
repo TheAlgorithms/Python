@@ -58,6 +58,7 @@ def area_under_line_estimator_check(iterations: int) -> None:
     1. Calls "area_under_line_estimator" function
     2. Compares with the expected value
     3. Prints estimated, expected and error value
+    >>> area_under_line_estimator_check()
     """
     estimate = area_under_line_estimator(iterations)
     print("******************")
