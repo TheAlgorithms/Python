@@ -37,7 +37,7 @@ def pi_estimator(iterations: int):
     print("The total error is ", abs(pi - pi_estimate))
 
 
-def area_under_line_estimator(iterations: int):
+def area_under_line_estimator(iterations: int) -> float:
     """An implementation of the Monte Carlo method to find area under
        y = x where x lies between 0 to 1
     1. Let x be a uniformly distributed random variable between 0 and 1
@@ -46,10 +46,22 @@ def area_under_line_estimator(iterations: int):
         a. Repeatedly draw x from uniform distribution
         b. expected value = average of those values
     4. Actual value = 1/2
-    5. Print the estimated, actual and error value
+    5. Returns estimated value
     """
     
     estimate = sum(uniform(0,1) for i in range(iterations)) / iterations
+    
+    return estimate
+
+
+def area_under_line_estimator_check(iterations: int):
+    """ Checks estimation error for area_under_line_estimator func
+    1. Calls "area_under_line_estimator" function
+    2. Compares with the expected value
+    3. Prints estimated, expected and error value
+    """
+
+    estimate = area_under_line_estimator(iterations)
     
     print("******************")
     print("Estimating area under y=x where x varies from 0 to 1")
@@ -59,6 +71,7 @@ def area_under_line_estimator(iterations: int):
     print("******************")
     
     return
+
 
 if __name__ == "__main__":
     import doctest
