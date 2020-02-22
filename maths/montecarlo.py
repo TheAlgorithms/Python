@@ -50,9 +50,7 @@ def area_under_line_estimator(iterations: int) -> float:
     5. Returns estimated value
     """
     
-    estimate = mean(uniform(0,1) for i in range(iterations))
-    
-    return estimate
+    return mean(uniform(0,1) for i in range(iterations))
 
 
 def area_under_line_estimator_check(iterations: int):
