@@ -3,6 +3,7 @@
 """
 from numpy import pi, sqrt
 from random import uniform
+from statistics import mean
 
 
 def pi_estimator(iterations: int):
@@ -49,7 +50,7 @@ def area_under_line_estimator(iterations: int) -> float:
     5. Returns estimated value
     """
     
-    estimate = sum(uniform(0,1) for i in range(iterations)) / iterations
+    estimate = mean(uniform(0,1) for i in range(iterations))
     
     return estimate
 
