@@ -362,7 +362,6 @@
 ## Neural Network
   * [Back Propagation Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/convolution_neural_network.py)
-  * [Gan](https://github.com/TheAlgorithms/Python/blob/master/neural_network/gan.py)
   * [Input Data](https://github.com/TheAlgorithms/Python/blob/master/neural_network/input_data.py)
   * [Perceptron](https://github.com/TheAlgorithms/Python/blob/master/neural_network/perceptron.py)
 
