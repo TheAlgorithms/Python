@@ -60,9 +60,6 @@ def area_under_line_estimator_check(iterations: int,
     1. Calls "area_under_line_estimator" function
     2. Compares with the expected value
     3. Prints estimated, expected and error value
-    
-    >>> area_under_line_estimator_check(100, 0, 2)
-    >>> area_under_line_estimator_check(100)
     """
     
     estimated_value = area_under_line_estimator(iterations, min_value, max_value)
