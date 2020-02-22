@@ -42,29 +42,34 @@ def area_under_line_estimator(iterations: int,
     An implementation of the Monte Carlo method to find area under
        y = x where x lies between min_value to max_value
     1. Let x be a uniformly distributed random variable between min_value to max_value
-    2. Expected value of x = integration of x from min_value to max_value
+    2. Expected value of x = (integration of x from min_value to max_value) / (max_value - min_value)
     3. Finding expected value of x:
         a. Repeatedly draw x from uniform distribution
         b. Expected value = average of those values
-    4. Actual value = 1/2
+    4. Actual value = (max_value^2 - min_value^2) / 2
     5. Returns estimated value
     """
-    return mean(uniform(min_value, max_value) for _ in range(iterations))
+    return mean(uniform(min_value, max_value) for _ in range(iterations)) * (max_value - min_value)
 
 
-def area_under_line_estimator_check(iterations: int) -> None:
+def area_under_line_estimator_check(iterations: int,
+                                    min_value: float=0.0,
+                                    max_value: float=1.0) -> None:
     """
     Checks estimation error for area_under_line_estimator func
     1. Calls "area_under_line_estimator" function
     2. Compares with the expected value
     3. Prints estimated, expected and error value
     """
-    estimate = area_under_line_estimator(iterations)
+    
+    estimated_value = area_under_line_estimator(iterations, min_value, max_value)
+    expected_value = (max_value*max_value - min_value*min_value) / 2
+    
     print("******************")
-    print("Estimating area under y=x where x varies from 0 to 1")
-    print("Expected value is ", 0.5)
-    print("Estimated value is ", estimate)
-    print("Total error is ", abs(estimate - 0.5))
+    print("Estimating area under y=x where x varies from ",min_value, " to ",max_value)
+    print("Estimated value is ", estimated_value)
+    print("Expected value is ", expected_value)
+    print("Total error is ", abs(estimated_value - expected_value))
     print("******************")
 
 
