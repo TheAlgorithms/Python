@@ -1,7 +1,7 @@
 """
 @author: MatteoRaso
 """
-from numpy import pi, sqrt
+from math import pi, sqrt
 from random import uniform
 from statistics import mean
 from typing import Callable
@@ -19,7 +19,7 @@ def pi_estimator(iterations: int):
     6. Print the estimated and numpy value of pi
     """
     # A local function to see if a dot lands in the circle.
-    def in_circle(x: float, y: float) -> bool:
+    def is_in_circle(x: float, y: float) -> bool:
         distance_from_centre = sqrt((x ** 2) + (y ** 2))
         # Our circle has a radius of 1, so a distance
         # greater than 1 would land outside the circle.
@@ -27,14 +27,14 @@ def pi_estimator(iterations: int):
 
     # The proportion of guesses that landed in the circle
     proportion = mean(
-        int(in_circle(uniform(-1.0, 1.0), uniform(-1.0, 1.0)))
+        int(is_in_circle(uniform(-1.0, 1.0), uniform(-1.0, 1.0)))
         for _ in range(iterations)
     )
     # The ratio of the area for circle to square is pi/4.
     pi_estimate = proportion * 4
-    print("The estimated value of pi is ", pi_estimate)
-    print("The numpy value of pi is ", pi)
-    print("The total error is ", abs(pi - pi_estimate))
+    print(f"The estimated value of pi is {pi_estimate}")
+    print(f"The numpy value of pi is {pi}")
+    print(f"The total error is {abs(pi - pi_estimate)}")
 
 
 def area_under_curve_estimator(
@@ -91,21 +91,16 @@ def area_under_line_estimator_check(
     expected_value = (max_value * max_value - min_value * min_value) / 2
 
     print("******************")
-    print(
-        "Estimating area under y=x where x varies from ", min_value, " to ", max_value
-    )
-    print("Estimated value is ", estimated_value)
-    print("Expected value is ", expected_value)
-    print("Total error is ", abs(estimated_value - expected_value))
+    print(f"Estimating area under y=x where x varies from {min_value} to {max_value}")
+    print(f"Estimated value is {estimated_value}")
+    print(f"Expected value is {expected_value}")
+    print(f"Total error is {abs(estimated_value - expected_value)}")
     print("******************")
-
-    return
 
 
 def pi_estimator_using_area_under_curve(iterations: int) -> None:
     """
-    Area under curve y = sqrt(4 - x^2) where x lies in 0 to 2
-    is equal to pi
+    Area under curve y = sqrt(4 - x^2) where x lies in 0 to 2 is equal to pi
     """
 
     def function_to_integrate(x: float) -> float:
@@ -122,12 +117,10 @@ def pi_estimator_using_area_under_curve(iterations: int) -> None:
 
     print("******************")
     print("Estimating pi using area_under_curve_estimator")
-    print("Estimated value is ", estimated_value)
-    print("Expected value is ", pi)
-    print("Total error is ", abs(estimated_value - pi))
+    print(f"Estimated value is {estimated_value}")
+    print(f"Expected value is {pi}")
+    print(f"Total error is {abs(estimated_value - pi)}")
     print("******************")
-
-    return
 
 
 if __name__ == "__main__":
