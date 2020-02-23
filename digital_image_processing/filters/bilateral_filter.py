@@ -73,6 +73,6 @@ if __name__ == '__main__':
     out = bilateral_filter(out, varS, varI, N)
     out = out*255
     out = np.uint8(out)
-    cv2.imshow('gray output',out)
+    cv2.imshow('output image',out)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
