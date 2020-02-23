@@ -52,8 +52,8 @@ def bilateral_filter(img, varS, varI, N):
 
 if __name__ == '__main__':
     filename = '../image_data/lena.jpg'
-    varS = 1
-    varI = 1
+    varS = 1.0
+    varI = 1.0
     N = 5
     if(len(sys.argv) >= 2):
         filename = sys.argv[1]
