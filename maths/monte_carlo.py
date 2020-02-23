@@ -4,6 +4,7 @@
 from numpy import pi, sqrt
 from random import uniform
 from statistics import mean
+from typing import Callable
 
 
 def pi_estimator(iterations: int):
@@ -35,34 +36,43 @@ def pi_estimator(iterations: int):
     print("The total error is ", abs(pi - pi_estimate))
 
 
-def area_under_line_estimator(iterations: int,
+def area_under_curve_estimator(iterations: int,
+                              function_to_integrate: Callable[[float], float],
                               min_value: float=0.0,
                               max_value: float=1.0) -> float:
     """
     An implementation of the Monte Carlo method to find area under
-       y = x where x lies between min_value to max_value
+       a single variable non-negative real-valued continuous function, say f(x), 
+       where x lies within a continuous bounded interval, say [min_value, max_value], 
+       where min_value and max_value are finite numbers
     1. Let x be a uniformly distributed random variable between min_value to max_value
-    2. Expected value of x = (integration of x from min_value to max_value) / (max_value - min_value)
-    3. Finding expected value of x:
+    2. Expected value of f(x) = (integration of f(x) from min_value to max_value) / (max_value - min_value)
+    3. Finding expected value of f(x):
         a. Repeatedly draw x from uniform distribution
-        b. Expected value = average of those values
-    4. Actual value = (max_value^2 - min_value^2) / 2
+        b. Evaluate f(x) at each of the drawn x values
+        c. Expected value = average of the function evaluations
+    4. Estimated value of integral = Expected value * (max_value - min_value)
     5. Returns estimated value
     """
-    return mean(uniform(min_value, max_value) for _ in range(iterations)) * (max_value - min_value)
+    
+    return mean(function_to_integrate(uniform(min_value, max_value)) for _ in range(iterations)) * (max_value - min_value)
 
 
 def area_under_line_estimator_check(iterations: int,
                                     min_value: float=0.0,
                                     max_value: float=1.0) -> None:
     """
-    Checks estimation error for area_under_line_estimator func
-    1. Calls "area_under_line_estimator" function
+    Checks estimation error for area_under_curve_estimator function
+    for f(x) = x where x lies in 0 to 1
+    1. Calls "area_under_curve_estimator" function
     2. Compares with the expected value
     3. Prints estimated, expected and error value
     """
     
-    estimated_value = area_under_line_estimator(iterations, min_value, max_value)
+    def identity_function(x: float) -> float:
+        return x
+    
+    estimated_value = area_under_curve_estimator(iterations, identity_function, min_value, max_value)
     expected_value = (max_value*max_value - min_value*min_value) / 2
     
     print("******************")
@@ -71,6 +81,29 @@ def area_under_line_estimator_check(iterations: int,
     print("Expected value is ", expected_value)
     print("Total error is ", abs(estimated_value - expected_value))
     print("******************")
+
+    return
+
+
+def pi_estimator_using_area_under_curve(iterations: int) -> None:
+    """
+    Area under curve y = sqrt(4 - x^2) where x lies in 0 to 2
+    is equal to pi
+    """
+
+    def function_to_integrate(x: float) -> float:
+        return sqrt(4.0 - x*x)
+    
+    estimated_value = area_under_curve_estimator(iterations, function_to_integrate, 0.0, 2.0)
+    
+    print("******************")
+    print("Estimating pi using area_under_curve_estimator")
+    print("Estimated value is ", estimated_value)
+    print("Expected value is ", pi)
+    print("Total error is ", abs(estimated_value - pi))
+    print("******************")
+    
+    return
 
 
 if __name__ == "__main__":
