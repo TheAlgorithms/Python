@@ -16,7 +16,7 @@ import math
 import sys
 
 
-def vec_gaussian(img, var):
+def vec_gaussian(img: np.ndarray, var: float) -> np.ndarray:
     # For applying gaussian function for each element in matrix.
     sigma = math.sqrt(var)
     cons = 1 / (sigma * math.sqrt(2 * math.pi))
@@ -24,11 +24,11 @@ def vec_gaussian(img, var):
     return fImg
 
 
-def getSlice(img, x, y, N):
+def getSlice(img: np.ndarray, x: int, y: int, N: int) -> np.ndarray:
     return img[x - N // 2 : x + N // 2 + 1, y - N // 2 : y + N // 2 + 1]
 
 
-def getGaussKernel(N, varS):
+def getGaussKernel(N: int, varS: float) -> np.ndarray:
     # Creates a gaussian kernel of given dimension.
     arr = np.zeros((N, N))
     for i in range(0, N):
@@ -38,7 +38,7 @@ def getGaussKernel(N, varS):
     return arr
 
 
-def bilateral_filter(img, varS, varI, N):
+def bilateral_filter(img: np.ndarray, varS: float, varI: float, N: int) -> np.ndarray:
     img2 = np.zeros(img.shape)
     gaussKer = getGaussKernel(N, varS)
     sizeX, sizeY = img.shape
