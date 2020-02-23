@@ -169,7 +169,6 @@
   * [Fractional Knapsack 2](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/fractional_knapsack_2.py)
   * [Integer Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/iterating_through_submasks.py)
-  * [K Means Clustering Tensorflow](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/knapsack.py)
   * [Longest Common Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_common_subsequence.py)
   * [Longest Increasing Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_increasing_subsequence.py)
@@ -179,6 +178,7 @@
   * [Max Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sub_array.py)
   * [Max Sum Contiguous Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sum_contiguous_subsequence.py)
   * [Minimum Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/minimum_partition.py)
+  * [Optimal Binary Search Tree](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/optimal_binary_search_tree.py)
   * [Rod Cutting](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/rod_cutting.py)
   * [Subset Generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
@@ -189,6 +189,10 @@
 
 ## Fuzzy Logic
   * [Fuzzy Operations](https://github.com/TheAlgorithms/Python/blob/master/fuzzy_logic/fuzzy_operations.py)
+
+## Geodesy
+  * [Haversine Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/haversine_distance.py)
+  * [Lamberts Ellipsoidal Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/lamberts_ellipsoidal_distance.py)
 
 ## Graphics
   * [Bezier Curve](https://github.com/TheAlgorithms/Python/blob/master/graphics/bezier_curve.py)
@@ -239,6 +243,7 @@
   * Src
     * [Lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/lib.py)
     * [Polynom-For-Points](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/polynom-for-points.py)
+    * [Rayleigh Quotient](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/rayleigh_quotient.py)
     * [Test Linear Algebra](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/test_linear_algebra.py)
 
 ## Machine Learning
@@ -252,6 +257,7 @@
   * [Logistic Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
   * [Multilayer Perceptron Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/multilayer_perceptron_classifier.py)
   * [Polymonial Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/polymonial_regression.py)
+  * [Random Forest Regressor](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_regressor.py)
   * [Scoring Functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/scoring_functions.py)
   * [Sequential Minimum Optimization](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/sequential_minimum_optimization.py)
   * [Support Vector Machines](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/support_vector_machines.py)
@@ -270,7 +276,9 @@
   * [Binary Exp Mod](https://github.com/TheAlgorithms/Python/blob/master/maths/binary_exp_mod.py)
   * [Binary Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/maths/binary_exponentiation.py)
   * [Binomial Coefficient](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_coefficient.py)
+  * [Bisection](https://github.com/TheAlgorithms/Python/blob/master/maths/bisection.py)
   * [Ceil](https://github.com/TheAlgorithms/Python/blob/master/maths/ceil.py)
+  * [Chudnovsky Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
@@ -305,6 +313,8 @@
   * [Miller Rabin](https://github.com/TheAlgorithms/Python/blob/master/maths/miller_rabin.py)
   * [Mobius Function](https://github.com/TheAlgorithms/Python/blob/master/maths/mobius_function.py)
   * [Modular Exponential](https://github.com/TheAlgorithms/Python/blob/master/maths/modular_exponential.py)
+  * [Monte Carlo Dice](https://github.com/TheAlgorithms/Python/blob/master/maths/monte_carlo_dice.py)
+  * [Montecarlo](https://github.com/TheAlgorithms/Python/blob/master/maths/montecarlo.py)
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
   * [Numerical Integration](https://github.com/TheAlgorithms/Python/blob/master/maths/numerical_integration.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
@@ -352,8 +362,6 @@
 ## Neural Network
   * [Back Propagation Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/convolution_neural_network.py)
-  * [Gan](https://github.com/TheAlgorithms/Python/blob/master/neural_network/gan.py)
-  * [Input Data](https://github.com/TheAlgorithms/Python/blob/master/neural_network/input_data.py)
   * [Perceptron](https://github.com/TheAlgorithms/Python/blob/master/neural_network/perceptron.py)
 
 ## Other
@@ -508,6 +516,9 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_76/sol1.py)
   * Problem 99
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_99/sol1.py)
+
+## Scheduling
+  * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
 
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)

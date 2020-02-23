@@ -1,7 +1,7 @@
 language: python
-python: 3.7
+python: 3.8
 cache: pip
-before_install: pip install --upgrade pip setuptools
+before_install: pip install --upgrade pip setuptools six
 install: pip install -r requirements.txt
 before_script:
   - black --check . || true
