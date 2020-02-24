@@ -24,14 +24,14 @@ def vec_gaussian(img: np.ndarray, variance: float) -> np.ndarray:
     return fImg
 
 
-def getSlice(img: np.ndarray, x: int, y: int, kernel_size: int) -> np.ndarray:
+def get_slice(img: np.ndarray, x: int, y: int, kernel_size: int) -> np.ndarray:
     return img[
         x - kernel_size // 2 : x + kernel_size // 2 + 1,
         y - kernel_size // 2 : y + kernel_size // 2 + 1,
     ]
 
 
-def getGaussKernel(kernel_size: int, spatial_variance: float) -> np.ndarray:
+def get_gauss_kernel(kernel_size: int, spatial_variance: float) -> np.ndarray:
     # Creates a gaussian kernel of given dimension.
     arr = np.zeros((kernel_size, kernel_size))
     for i in range(0, kernel_size):
@@ -50,12 +50,12 @@ def bilateral_filter(
     kernel_size: int,
 ) -> np.ndarray:
     img2 = np.zeros(img.shape)
-    gaussKer = getGaussKernel(kernel_size, spatial_variance)
+    gaussKer = get_gauss_kernel(kernel_size, spatial_variance)
     sizeX, sizeY = img.shape
     for i in range(kernel_size // 2, sizeX - kernel_size // 2):
         for j in range(kernel_size // 2, sizeY - kernel_size // 2):
 
-            imgS = getSlice(img, i, j, kernel_size)
+            imgS = get_slice(img, i, j, kernel_size)
             imgI = imgS - imgS[kernel_size // 2, kernel_size // 2]
             imgIG = vec_gaussian(imgI, intensity_variance)
             weights = np.multiply(gaussKer, imgIG)
