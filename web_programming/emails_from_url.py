@@ -13,22 +13,22 @@ from html.parser import HTMLParser
 
 
 class Parser(HTMLParser):
-    ''' class use to parse HTML
-         handle_starttag  function takes url from
-         anchor tag
-    '''
     def __init__(self, domain):
         HTMLParser.__init__(self)
         self.data = []
         self.domain = domain
 
     def handle_starttag(self, tag, attrs):
+        """
+             This function parse html to take takes url from
+              tags
+        """
         # Only parse the 'anchor' tag.
         if tag == "a":
             # Check the list of defined attributes.
             for name, value in attrs:
                 # If href is defined, and not empty nor # print it.
-                if name == "href" and value != "#" and value != '':
+                if name == "href" and value != "#" and value != "":
                     # If not already in data.
                     if value not in self.data:
                         url = parse.urljoin(self.domain, value)
@@ -37,14 +37,24 @@ class Parser(HTMLParser):
 
 # Get main domain name (example.com)
 def get_domain_name(url):
-    return '.'.join(get_sub_domain_name(url).split('.')[-2:])
+    """
+      This function get the main domain name
+    """
+    return ".".join(get_sub_domain_name(url).split(".")[-2:])
 
 
 # Get sub domain name (sub.example.com)
 def get_sub_domain_name(url):
-        return parse.urlparse(url).netloc
+    """
+      This function get sub domin name
+    """
+    return parse.urlparse(url).netloc
 
-if __name__ == '__main__':
+
+def emails_from_url(url: str = "https://github.com") -> list:
+    """
+    This function takes url and return all valid urls
+    """
     # Get the url
     url = "https://github.com"
     # Get the base domain from the url
@@ -54,7 +64,7 @@ if __name__ == '__main__':
     parser = Parser(domain)
 
     # Validate Email regx.
-    emailRegx = '[a-zA-Z0-9]+@' + domain
+    emailRegx = "[a-zA-Z0-9]+@" + domain
 
     # Open URL
     r = requests.get(url)
@@ -84,4 +94,8 @@ if __name__ == '__main__':
                 ValidEmails.append(e)
 
     # Finally print list of email.
-    print(ValidEmails)
+    return ValidEmails
+
+
+if __name__ == "__main__":
+    emails_from_url("https://github.com")
