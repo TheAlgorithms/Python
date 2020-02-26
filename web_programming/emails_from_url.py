@@ -14,12 +14,12 @@ import requests
 
 
 class Parser(HTMLParser):
-    def __init__(self, domain):
+    def __init__(self, domain: str):
         HTMLParser.__init__(self)
         self.data = []
         self.domain = domain
 
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self, tag: str, attrs: str) -> None:
         """
         This function parse html to take takes url from tags
         """
@@ -36,7 +36,7 @@ class Parser(HTMLParser):
 
 
 # Get main domain name (example.com)
-def get_domain_name(url):
+def get_domain_name(url: str) -> str:
     """
     This function get the main domain name
 
@@ -49,7 +49,7 @@ def get_domain_name(url):
 
 
 # Get sub domain name (sub.example.com)
-def get_sub_domain_name(url):
+def get_sub_domain_name(url: str) -> str:
     """
     This function get sub domin name
 
