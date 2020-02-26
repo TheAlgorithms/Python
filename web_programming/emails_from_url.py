@@ -54,44 +54,47 @@ def emails_from_url(url: str = "https://github.com") -> list:
     """
     This function takes url and return all valid urls
     """
+    # Store Email Data structure.
+    emails = []
+    valid_emails = []
+
     # Get the base domain from the url
     domain = get_domain_name(url)
 
     # Initialize the parser
     parser = Parser(domain)
 
-    # Validate Email regx.
-    emailRegx = "[a-zA-Z0-9]+@" + domain
+    try:
+        # Open URL
+        r = requests.get(url)
 
-    # Open URL
-    r = requests.get(url)
+        # pass the raw HTML to the parser to get links
+        parser.feed(r.text)
 
-    # pass the raw HTML to the parser to get links
-    parser.feed(r.text)
+        # Get links and loop through
+        for link in parser.data:
+            # open URL.
+            # read = requests.get(link)
+            try:
+                read = requests.get(link)
+                # Get the valid email.
+                email = re.findall("[a-zA-Z0-9]+@" + domain, read.text)
+                # If not in list then append it.
+                if email not in emails:
+                    emails.append(email)
+            except ValueError:
+                pass
 
-    # Store Email Data structure.
-    Emails = []
-    # Get links and loop through
-    for link in parser.data:
-        # open URL.
-        # read = requests.get(link)
-        read = requests.get(link)
-        # Get the valid email.
-        email = re.findall(emailRegx, read.text)
-        # If not in list then append it.
-        if email not in Emails:
-            Emails.append(email)
-
-    ValidEmails = []
-
-    # Remove duplicates email address.
-    for Email in Emails:
-        for e in Email:
-            if e not in ValidEmails:
-                ValidEmails.append(e)
+        # Remove duplicates email address.
+        for Email in emails:
+            for e in Email:
+                if e not in valid_emails:
+                    valid_emails.append(e)
+    except ValueError:
+        exit(-1)
 
     # Finally print list of email.
-    return ValidEmails
+    return valid_emails
 
 
 if __name__ == "__main__":
