@@ -3,25 +3,56 @@ Based on "Skip Lists: A Probabilistic Alternative to Balanced Trees" by William 
 https://epaperpress.com/sortsearch/download/skiplist.pdf
 """
 
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, TypeVar, Generic
 from random import random
 
+KT = TypeVar("KT")
+VT = TypeVar("VT")
 
-class Node:
+
+class Node(Generic[KT, VT]):
+    def __init__(self, key: KT, value: VT):
+        self.key = key
+        self.value = value
+        self.forward: List[Node[KT, VT]] = []
+
     def __repr__(self):
+        """
+        :return: Visual representation of Node
+
+        >>> node = Node("Key", 2)
+        >>> repr(node)
+        'Node(Key: 2)'
+        """
+
         return f"Node({self.key}: {self.value})"
 
     @property
     def level(self) -> int:
+        """
+        :return: Number of forward references
+
+        >>> node = Node("Key", 2)
+        >>> node.level
+        0
+        >>> node.forward.append(Node("Key2", 4))
+        >>> node.level
+        1
+        >>> node.forward.append(Node("Key3", 6))
+        >>> node.level
+        2
+        """
+
         return len(self.forward)
 
-    def __init__(self, key, value):
-        self.key = key
-        self.value = value
-        self.forward: List[Node] = []
 
+class SkipList(Generic[KT, VT]):
+    def __init__(self, p: float = 0.5, max_level: int = 16):
+        self.head: Node = Node("root", None)
+        self.level: int = 0
+        self.p = p
+        self.max_level = max_level
 
-class SkipList:
     def __str__(self):
         items = list(self)
 
@@ -66,7 +97,7 @@ class SkipList:
 
         return level
 
-    def _locate_node(self, key) -> Tuple[Optional[Node], List[Node]]:
+    def _locate_node(self, key) -> Tuple[Optional[Node[KT, VT]], List[Node[KT, VT]]]:
         """
         :param key: Searched key,
         :return: Tuple with searched node (or None if given key is not present)
@@ -76,7 +107,7 @@ class SkipList:
         # Nodes with refer or should refer to output node
         update_vector = []
 
-        node: Node = self.head
+        node = self.head
 
         for i in reversed(range(self.level)):
             # i < node.level - When node level is lesser than `i` decrement `i`.
@@ -99,7 +130,7 @@ class SkipList:
         else:
             return None, update_vector
 
-    def delete(self, key):
+    def delete(self, key: KT):
         """
         :param key: Key to remove from list.
 
@@ -109,7 +140,7 @@ class SkipList:
         >>> skip_list.insert(3, "Three")
         >>> list(skip_list)
         [1, 2, 3]
-        >>> skip_list.delete(2,)
+        >>> skip_list.delete(2)
         >>> list(skip_list)
         [1, 3]
         """
@@ -125,7 +156,7 @@ class SkipList:
                     else:
                         update_node.forward = update_node.forward[:i]
 
-    def insert(self, key, value):
+    def insert(self, key: KT, value: VT):
         """
         :param key: Key to insert.
         :param value: Value associated with given key.
@@ -162,7 +193,7 @@ class SkipList:
                 else:
                     update_node.forward[i] = new_node
 
-    def find(self, key):
+    def find(self, key: VT) -> Optional[VT]:
         """
         :param key: Search key.
         :return: Value associated with given key or None if given key is not present.
@@ -182,11 +213,7 @@ class SkipList:
         if node is not None:
             return node.value
 
-    def __init__(self, p: float = 0.5, max_level: int = 16):
-        self.head = Node("root", None)
-        self.level = 0
-        self.p = p
-        self.max_level = max_level
+        return None
 
 
 def test_insert():
