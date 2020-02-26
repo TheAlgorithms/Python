@@ -20,15 +20,12 @@ def vec_gaussian(img: np.ndarray, variance: float) -> np.ndarray:
     # For applying gaussian function for each element in matrix.
     sigma = math.sqrt(variance)
     cons = 1 / (sigma * math.sqrt(2 * math.pi))
-    fImg = cons * np.exp(-((img / sigma) ** 2) * 0.5)
-    return fImg
+    return cons * np.exp(-((img / sigma) ** 2) * 0.5)
 
 
 def get_slice(img: np.ndarray, x: int, y: int, kernel_size: int) -> np.ndarray:
-    return img[
-        x - kernel_size // 2 : x + kernel_size // 2 + 1,
-        y - kernel_size // 2 : y + kernel_size // 2 + 1,
-    ]
+    half = kernel_size // 2
+    return img[x - half : x + half + 1, y - half : y + half + 1]
 
 
 def get_gauss_kernel(kernel_size: int, spatial_variance: float) -> np.ndarray:
@@ -39,8 +36,7 @@ def get_gauss_kernel(kernel_size: int, spatial_variance: float) -> np.ndarray:
             arr[i, j] = math.sqrt(
                 abs(i - kernel_size // 2) ** 2 + abs(j - kernel_size // 2) ** 2
             )
-    arr = vec_gaussian(arr, spatial_variance)
-    return arr
+    return vec_gaussian(arr, spatial_variance)
 
 
 def bilateral_filter(
@@ -65,21 +61,20 @@ def bilateral_filter(
     return img2
 
 
-if __name__ == "__main__":
-    filename = "../image_data/lena.jpg"
-    spatial_variance = 1.0
-    intensity_variance = 1.0
-    kernel_size = 5
-    if len(sys.argv) >= 2:
-        filename = sys.argv[1]
-    if len(sys.argv) >= 3:
-        spatial_variance = float(sys.argv[2])
-    if len(sys.argv) >= 4:
-        intensity_variance = float(sys.argv[3])
-    if len(sys.argv) >= 5:
-        kernel_size = int(sys.argv[4])
+def parse_args(args: list) -> tuple:
+    filename = args[1] if args[1:] else "../image_data/lena.jpg"
+    spatial_variance = float(args[2]) if args[2:] else 1.0
+    intensity_variance = float(args[3]) if args[3:] else 1.0
+    if args[4:]:
+        kernel_size = int(args[4])
         kernel_size = kernel_size + abs(kernel_size % 2 - 1)
+    else:
+        kernel_size = 5
+    return filename, spatial_variance, intensity_variance, kernel_size
 
+
+if __name__ == "__main__":
+    filename, spatial_variance, intensity_variance, kernel_size = parse_args(sys.argv)
     img = cv2.imread(filename, 0)
     cv2.imshow("input image", img)
 
