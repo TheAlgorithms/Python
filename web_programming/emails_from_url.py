@@ -4,12 +4,12 @@ __license__ = "MIT"
 __version__ = "1.0.0"
 __maintainer__ = "Muhammad Umer Farooq"
 __email__ = "contact@muhammadumerfarooq.me"
-__status__ = "Production"
+__status__ = "Alpha"
 
 import re
 import requests
-from urllib import parse
 from html.parser import HTMLParser
+from urllib import parse
 
 
 class Parser(HTMLParser):
@@ -20,8 +20,7 @@ class Parser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         """
-             This function parse html to take takes url from
-              tags
+        This function parse html to take takes url from tags
         """
         # Only parse the 'anchor' tag.
         if tag == "a":
@@ -38,7 +37,7 @@ class Parser(HTMLParser):
 # Get main domain name (example.com)
 def get_domain_name(url):
     """
-      This function get the main domain name
+    This function get the main domain name
     """
     return ".".join(get_sub_domain_name(url).split(".")[-2:])
 
@@ -46,7 +45,7 @@ def get_domain_name(url):
 # Get sub domain name (sub.example.com)
 def get_sub_domain_name(url):
     """
-      This function get sub domin name
+    This function get sub domin name
     """
     return parse.urlparse(url).netloc
 
@@ -55,8 +54,6 @@ def emails_from_url(url: str = "https://github.com") -> list:
     """
     This function takes url and return all valid urls
     """
-    # Get the url
-    url = "https://github.com"
     # Get the base domain from the url
     domain = get_domain_name(url)
 
@@ -98,4 +95,6 @@ def emails_from_url(url: str = "https://github.com") -> list:
 
 
 if __name__ == "__main__":
-    emails_from_url("https://github.com")
+    emails = emails_from_url("https://github.com")
+    print(f"{len(emails)} emails found:")
+    print("\n".join(sorted(emails)))
