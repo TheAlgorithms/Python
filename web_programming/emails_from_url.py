@@ -7,9 +7,10 @@ __email__ = "contact@muhammadumerfarooq.me"
 __status__ = "Alpha"
 
 import re
-import requests
 from html.parser import HTMLParser
 from urllib import parse
+
+import requests
 
 
 class Parser(HTMLParser):
@@ -38,6 +39,11 @@ class Parser(HTMLParser):
 def get_domain_name(url):
     """
     This function get the main domain name
+
+    >>> get_domain_name("https://a.b.c.d/e/f?g=h,i=j#k")
+    'c.d'
+    >>> get_domain_name("Not a URL!")
+    ''
     """
     return ".".join(get_sub_domain_name(url).split(".")[-2:])
 
@@ -46,6 +52,11 @@ def get_domain_name(url):
 def get_sub_domain_name(url):
     """
     This function get sub domin name
+
+    >>> get_sub_domain_name("https://a.b.c.d/e/f?g=h,i=j#k")
+    'a.b.c.d'
+    >>> get_sub_domain_name("Not a URL!")
+    ''
     """
     return parse.urlparse(url).netloc
 
@@ -54,10 +65,6 @@ def emails_from_url(url: str = "https://github.com") -> list:
     """
     This function takes url and return all valid urls
     """
-    # Store Email Data structure.
-    emails = []
-    valid_emails = []
-
     # Get the base domain from the url
     domain = get_domain_name(url)
 
@@ -72,29 +79,24 @@ def emails_from_url(url: str = "https://github.com") -> list:
         parser.feed(r.text)
 
         # Get links and loop through
+        valid_emails = set()
         for link in parser.data:
             # open URL.
             # read = requests.get(link)
             try:
                 read = requests.get(link)
                 # Get the valid email.
-                email = re.findall("[a-zA-Z0-9]+@" + domain, read.text)
+                emails = re.findall("[a-zA-Z0-9]+@" + domain, read.text)
                 # If not in list then append it.
-                if email not in emails:
-                    emails.append(email)
+                for email in emails:
+                    valid_emails.add(email)
             except ValueError:
                 pass
-
-        # Remove duplicates email address.
-        for Email in emails:
-            for e in Email:
-                if e not in valid_emails:
-                    valid_emails.append(e)
     except ValueError:
         exit(-1)
 
     # Finally print list of email.
-    return valid_emails
+    return sorted(valid_emails)
 
 
 if __name__ == "__main__":
