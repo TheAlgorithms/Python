@@ -54,9 +54,31 @@ class SkipList(Generic[KT, VT]):
         self.max_level = max_level
 
     def __str__(self):
+        """
+        :return: Visual representation of SkipList
+
+        >>> skip_list = SkipList()
+        >>> print(skip_list)
+        SkipList(level=0)
+        >>> skip_list.insert("Key1", "Value")
+        >>> print(skip_list) # doctest: +ELLIPSIS
+        SkipList...
+        [root]...
+        [Key1]...
+        >>> skip_list.insert("Key2", "OtherValue")
+        >>> print(skip_list) # doctest: +ELLIPSIS
+        SkipList...
+        [root]...
+        [Key1]...
+        [Key2]...
+        """
+
         items = list(self)
 
-        label_size = max(len(str(item)) for item in items)
+        if len(items) == 0:
+            return f"SkipList(level={self.level})"
+
+        label_size = max((len(str(item)) for item in items), default=4)
         label_size = max(label_size, 4) + 4
 
         node = self.head
