@@ -7,7 +7,7 @@ def count_repeated(sequence: list, nth_repeated: int) -> str:
     """
     >>> sequence = ['Algorithms','Algorithm','Python','Python','The','Python','The']
     >>> nth_repeated = 2
-    >>> print(nth_repeated(sequence, nth_repeated))
+    >>> print(count_repeated(sequence, nth_repeated))
     The
     """
     if nth_repeated < 1:
