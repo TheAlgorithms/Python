@@ -10,16 +10,7 @@ def count_repeated(sequence: list, nth_repeated: int) -> str:
     >>> print(count_repeated(sequence, nth_repeated))
     The
     """
-    if nth_repeated < 1:
-        return ""
-    sequence_dict = Counter(sequence)
-    sequence_value = sorted(sequence_dict.values(), reverse=True)
-    largest = sequence_value[nth_repeated - 1]
-    for (key, value) in sequence_dict.items():
-        if value == largest:
-            return key
-    return ""
-
+    return "" if nth_repeated < 1 else Counter(sequence).most_common()[nth_repeated - 1][0]
 
 if __name__ == "__main__":
     input_sequence = [
