@@ -3,7 +3,7 @@
 from collections import Counter
 
 
-def nth_repeated(sequence: list, nth_repeated: int) -> str:
+def count_repeated(sequence: list, nth_repeated: int) -> str:
     """
     >>> sequence = ['Algorithms','Algorithm','Python','Python','The','Python','The']
     >>> nth_repeated = 2
@@ -35,4 +35,4 @@ if __name__ == "__main__":
         "Python",
     ]
     nth_repeated = 2
-    print(nth_repeated(input_sequence, nth_repeated))
+    print(count_repeated(input_sequence, nth_repeated))
