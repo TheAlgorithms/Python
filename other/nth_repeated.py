@@ -3,13 +3,15 @@
 from collections import Counter
 
 
-def second_repeated(sequence: list, nth_repeated: int) -> str:
+def nth_repeated(sequence: list, nth_repeated: int) -> str:
     """
     >>> sequence = ['Algorithms','Algorithm','Python','Python','The','Python','The']
     >>> nth_repeated = 2
-    >>> print(second_repeated(sequence, nth_repeated))
+    >>> print(nth_repeated(sequence, nth_repeated))
     The
     """
+    if nth_repeated < 1:
+        return ""
     sequence_dict = Counter(sequence)
     sequence_value = sorted(sequence_dict.values(), reverse=True)
     largest = sequence_value[nth_repeated - 1]
