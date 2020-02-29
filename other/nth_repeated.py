@@ -35,4 +35,4 @@ if __name__ == "__main__":
         "Python",
     ]
     nth_repeated = 2
-    print(second_repeated(input_sequence, nth_repeated))
+    print(nth_repeated(input_sequence, nth_repeated))
