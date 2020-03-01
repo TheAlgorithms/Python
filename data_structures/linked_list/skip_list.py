@@ -3,8 +3,8 @@ Based on "Skip Lists: A Probabilistic Alternative to Balanced Trees" by William 
 https://epaperpress.com/sortsearch/download/skiplist.pdf
 """
 
-from typing import List, Tuple, Optional, TypeVar, Generic
 from random import random
+from typing import Generic, List, Optional, Tuple, TypeVar
 
 KT = TypeVar("KT")
 VT = TypeVar("VT")
@@ -16,7 +16,7 @@ class Node(Generic[KT, VT]):
         self.value = value
         self.forward: List[Node[KT, VT]] = []
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         :return: Visual representation of Node
 
@@ -48,12 +48,12 @@ class Node(Generic[KT, VT]):
 
 class SkipList(Generic[KT, VT]):
     def __init__(self, p: float = 0.5, max_level: int = 16):
-        self.head: Node = Node("root", None)
-        self.level: int = 0
+        self.head = Node("root", None)
+        self.level = 0
         self.p = p
         self.max_level = max_level
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         :return: Visual representation of SkipList
 
@@ -62,15 +62,17 @@ class SkipList(Generic[KT, VT]):
         SkipList(level=0)
         >>> skip_list.insert("Key1", "Value")
         >>> print(skip_list) # doctest: +ELLIPSIS
-        SkipList...
-        [root]...
-        [Key1]...
+        SkipList(level=...
+        [root]--...
+        [Key1]--Key1...
+        None    *...
         >>> skip_list.insert("Key2", "OtherValue")
         >>> print(skip_list) # doctest: +ELLIPSIS
-        SkipList...
-        [root]...
-        [Key1]...
-        [Key2]...
+        SkipList(level=...
+        [root]--...
+        [Key1]--Key1...
+        [Key2]--Key2...
+        None    *...
         """
 
         items = list(self)
@@ -91,11 +93,12 @@ class SkipList(Generic[KT, VT]):
         while len(node.forward) != 0:
             node = node.forward[0]
 
-            lines.append(f"[{node.key}]".ljust(label_size, "-") + " ".join(
-                str(n.key) if n.key == node.key else "|"
-                for n in forwards))
+            lines.append(
+                f"[{node.key}]".ljust(label_size, "-")
+                + " ".join(str(n.key) if n.key == node.key else "|" for n in forwards)
+            )
             lines.append(" " * label_size + "| " * len(forwards))
-            forwards[:node.level] = node.forward
+            forwards[: node.level] = node.forward
 
         lines.append("None".ljust(label_size) + "* " * len(forwards))
         return f"SkipList(level={self.level})\n" + "\n".join(lines)
@@ -423,18 +426,18 @@ def main():
     >>> pytests()
     """
 
-    lst = SkipList()
-    lst.insert(2, "2")
-    lst.insert(4, "4")
-    lst.insert(6, "4")
-    lst.insert(4, "5")
-    lst.insert(8, "4")
-    lst.insert(9, "4")
+    skip_list = SkipList()
+    skip_list.insert(2, "2")
+    skip_list.insert(4, "4")
+    skip_list.insert(6, "4")
+    skip_list.insert(4, "5")
+    skip_list.insert(8, "4")
+    skip_list.insert(9, "4")
 
-    lst.delete(4)
+    skip_list.delete(4)
 
-    print(lst)
+    print(skip_list)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
