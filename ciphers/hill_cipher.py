@@ -65,11 +65,11 @@ class HillCipher:
         encrypt_key is an NxN numpy matrix
         """
         self.encrypt_key = self.modulus(encrypt_key)  # mod36 calc's on the encrypt key
-        self.checkDeterminant()  # validate the determinant of the encryption key
+        self.check_determinant()  # validate the determinant of the encryption key
         self.decrypt_key = None
         self.break_key = encrypt_key.shape[0]
 
-    def checkDeterminant(self):
+    def check_determinant(self):
         det = round(numpy.linalg.det(self.encrypt_key))
 
         if det < 0:
@@ -83,7 +83,7 @@ class HillCipher:
                 )
             )
 
-    def processText(self, text):
+    def process_text(self, text):
         text = list(text.upper())
         text = [char for char in text if char in self.key_string]
 
@@ -94,7 +94,7 @@ class HillCipher:
         return "".join(text)
 
     def encrypt(self, text):
-        text = self.processText(text.upper())
+        text = self.process_text(text.upper())
         encrypted = ""
 
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
@@ -109,7 +109,7 @@ class HillCipher:
 
         return encrypted
 
-    def makeDecryptKey(self):
+    def make_decrypt_key(self):
         det = round(numpy.linalg.det(self.encrypt_key))
 
         if det < 0:
@@ -129,8 +129,8 @@ class HillCipher:
         return self.toInt(self.modulus(inv_key))
 
     def decrypt(self, text):
-        self.decrypt_key = self.makeDecryptKey()
-        text = self.processText(text.upper())
+        self.decrypt_key = self.make_decrypt_key()
+        text = self.process_text(text.upper())
         decrypted = ""
 
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
