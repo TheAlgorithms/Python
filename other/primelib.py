@@ -3,7 +3,7 @@ Created on Thu Oct  5 16:44:23 2017
 
 @author: Christian Bender
 
-This python library contains some useful functions to deal with
+This Python library contains some useful functions to deal with
 prime numbers and whole numbers.
 
 Overview:

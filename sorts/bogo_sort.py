@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the bogosort algorithm
+This is a pure Python implementation of the bogosort algorithm
 For doctests run following command:
 python -m doctest -v bogo_sort.py
 or

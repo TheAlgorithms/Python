@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the selection sort algorithm
+This is a pure Python implementation of the selection sort algorithm
 
 For doctests run following command:
 python -m doctest -v selection_sort.py

@@ -1,6 +1,6 @@
 """
 
-This is a python implementation for questions involving task assignments between people.
+This is a Python implementation for questions involving task assignments between people.
 Here Bitmasking and DP are used for solving this.
 
 Question :-

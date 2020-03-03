@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the merge sort algorithm
+This is a pure Python implementation of the merge sort algorithm
 
 For doctests run following command:
 python -m doctest -v merge_sort.py

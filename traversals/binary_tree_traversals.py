@@ -1,5 +1,5 @@
 """
-This is pure python implementation of tree traversal algorithms
+This is pure Python implementation of tree traversal algorithms
 """
 import queue
 from typing import List

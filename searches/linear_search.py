@@ -1,5 +1,5 @@
 """
-This is pure python implementation of linear search algorithm
+This is pure Python implementation of linear search algorithm
 
 For doctests run following command:
 python -m doctest -v linear_search.py
