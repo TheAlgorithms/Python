@@ -74,7 +74,7 @@ def simulated_annealing(
         current_temp = current_temp - (current_temp * rate_of_decrease)
 
         if current_temp < threshold_temp or next_state is None:
-            # temperature below threshold, or could not find a suitaable neighbor
+            # temperature below threshold, or could not find a suitable neighbor
             search_end = True
         else:
             current_state = next_state
