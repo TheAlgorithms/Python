@@ -177,28 +177,30 @@ class SegmentTree(object):
         right = self._build_tree(mid + 1, end)
         return SegmentTreeNode(start, end, self.fn(left.val, right.val), left, right)
 
-    def _update_tree(self, root, i, val):
-        if root.start == i and root.end == i:
-            root.val = val
+    def _update_tree(self, node, i, val):
+        if node.start == i and node.end == i:
+            node.val = val
             return
-        if i <= root.mid:
-            self._update_tree(root.left, i, val)
+        if i <= node.mid:
+            self._update_tree(node.left, i, val)
         else:
-            self._update_tree(root.right, i, val)
-        root.val = self.fn(root.left.val, root.right.val)
+            self._update_tree(node.right, i, val)
+        node.val = self.fn(node.left.val, node.right.val)
 
-    def _query_range(self, root, i, j):
-        if root.start == i and root.end == j:
-            return root.val
-        # range in left child tree
-        if j <= root.mid:
-            return self._query_range(root.left, i, j)
-        # range in child child tree
-        elif i > root.mid:
-            return self._query_range(root.right, i, j)
-        # range in left child tree and right child tree
+    def _query_range(self, node, i, j):
+        if node.start == i and node.end == j:
+            return node.val
+
+        if i <= node.mid:
+            if j <= node.mid:
+                # range in left child tree
+                return self._query_range(node.left, i, j)
+            else:
+                # range in left child tree and right child tree
+                return self.fn(self._query_range(node.left, i, node.mid), self._query_range(node.right, node.mid + 1, j))
         else:
-            return self.fn(self._query_range(root.left, i, root.mid), self._query_range(root.right, root.mid + 1, j))
+            # range in right child tree
+            return self._query_range(node.right, i, j)
 
     def traverse(self):
         if self.root is not None:
