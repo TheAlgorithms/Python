@@ -37,7 +37,7 @@ def comb_sort(data: list) -> list:
     while not completed:
 
         # Update the gap value for a next comb
-        gap //= shrink_factor
+        gap = int(gap / shrink_factor)
         if gap <= 1:
             completed = True
 
