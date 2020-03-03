@@ -18,7 +18,7 @@ python comb_sort.py
 """
 
 
-def comb_sort(data):
+def comb_sort(data: list) -> list:
     """Pure implementation of comb sort algorithm in Python
     :param data: mutable collection with comparable items
     :return: the same collection in ascending order
