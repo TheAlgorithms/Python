@@ -1,5 +1,5 @@
 """
-This is pure python implementation of comb sort algorithm.
+This is pure Python implementation of comb sort algorithm.
 Comb sort is a relatively simple sorting algorithm originally designed by Wlodzimierz Dobosiewicz in 1980.
 It was rediscovered by Stephen Lacey and Richard Box in 1991. Comb sort improves on bubble sort algorithm.
 In bubble sort, distance (or gap) between two compared elements is always one.
@@ -37,7 +37,7 @@ def comb_sort(data: list) -> list:
     while not completed:
 
         # Update the gap value for a next comb
-        gap = int(gap / shrink_factor)
+        gap //= shrink_factor
         if gap <= 1:
             completed = True
 
