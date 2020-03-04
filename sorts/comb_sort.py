@@ -53,7 +53,6 @@ def comb_sort(data: list) -> list:
 
 
 if __name__ == "__main__":
-
     import doctest
     doctest.testmod()
 
