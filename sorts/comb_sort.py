@@ -27,7 +27,7 @@ def comb_sort(data: list) -> list:
     [0, 2, 2, 3, 5]
     >>> comb_sort([])
     []
-    >>> comb_sort([99,45,-7,8,2,0,-15,3])
+    >>> comb_sort([99, 45, -7, 8, 2, 0, -15, 3])
     [-15, -7, 0, 2, 3, 8, 45, 99]
     """
     shrink_factor = 1.3
