@@ -263,7 +263,7 @@
   * [Support Vector Machines](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/support_vector_machines.py)
 
 ## Maths
-  * [3N+1](https://github.com/TheAlgorithms/Python/blob/master/maths/3n+1.py)
+  * [3N+1](https://github.com/TheAlgorithms/Python/blob/master/maths/3n_plus_1.py)
   * [Abs](https://github.com/TheAlgorithms/Python/blob/master/maths/abs.py)
   * [Abs Max](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_max.py)
   * [Abs Min](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_min.py)
