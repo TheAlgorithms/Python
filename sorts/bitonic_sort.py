@@ -14,36 +14,36 @@ def compAndSwap(a, i, j, dire):
 # if dir = 1, and in descending order otherwise (means dir=0).
 # The sequence to be sorted starts at index position low,
 # the parameter cnt is the number of elements to be sorted.
-def bitonicMerge(a, low, cnt, dire):
+def bitonic_merge(a, low, cnt, dire):
     if cnt > 1:
         k = int(cnt / 2)
         for i in range(low, low + k):
             compAndSwap(a, i, i + k, dire)
-        bitonicMerge(a, low, k, dire)
-        bitonicMerge(a, low + k, k, dire)
+        bitonic_merge(a, low, k, dire)
+        bitonic_merge(a, low + k, k, dire)
 
         # This function first produces a bitonic sequence by recursively
 
 
 # sorting its two halves in opposite sorting orders, and then
-# calls bitonicMerge to make them in the same order
-def bitonicSort(a, low, cnt, dire):
+# calls bitonic_merge to make them in the same order
+def bitonic_sort(a, low, cnt, dire):
     if cnt > 1:
         k = int(cnt / 2)
-        bitonicSort(a, low, k, 1)
-        bitonicSort(a, low + k, k, 0)
-        bitonicMerge(a, low, cnt, dire)
+        bitonic_sort(a, low, k, 1)
+        bitonic_sort(a, low + k, k, 0)
+        bitonic_merge(a, low, cnt, dire)
 
-        # Caller of bitonicSort for sorting the entire array of length N
+        # Caller of bitonic_sort for sorting the entire array of length N
 
 
 # in ASCENDING order
 def sort(a, N, up):
-    bitonicSort(a, 0, N, up)
+    bitonic_sort(a, 0, N, up)
 
 
 if __name__ == "__main__":
-    # Driver code to test above
+
     a = []
 
     n = int(input().strip())

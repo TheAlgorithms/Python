@@ -66,10 +66,10 @@ def simulated_annealing(
             if change > 0:  # improves the solution
                 next_state = picked_neighbor
             else:
-                probabililty = (math.e) ** (
+                probability = (math.e) ** (
                     change / current_temp
                 )  # probability generation function
-                if random.random() < probabililty:  # random number within probability
+                if random.random() < probability:  # random number within probability
                     next_state = picked_neighbor
         current_temp = current_temp - (current_temp * rate_of_decrease)
 

@@ -18,7 +18,7 @@ processLock = Lock()
 """
 The function run by the processes that sorts the list
 
-position = the position in the list the prcoess represents, used to know which
+position = the position in the list the process represents, used to know which
             neighbor we pass our value to
 value = the initial value at list[position]
 LSend, RSend = the pipes we use to send to our left and right neighbors

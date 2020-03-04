@@ -63,7 +63,7 @@ def sum_of_divisors(n: int) -> int:
 
 
 def euler_phi(n: int) -> int:
-    """Calculte Euler's Phi Function.
+    """Calculate Euler's Phi Function.
     >>> euler_phi(100)
     40
     """
