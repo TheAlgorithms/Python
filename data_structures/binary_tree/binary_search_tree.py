@@ -28,16 +28,16 @@ class BinarySearchTree:
         """
         return str(self.root)
 
-    def __reassign_nodes(self, node, newChildren):
-        if newChildren is not None:  # reset its kids
-            newChildren.parent = node.parent
+    def __reassign_nodes(self, node, new_children):
+        if new_children is not None:  # reset its kids
+            new_children.parent = node.parent
         if node.parent is not None:  # reset its parent
             if self.is_right(node):  # If it is the right children
-                node.parent.right = newChildren
+                node.parent.right = new_children
             else:
-                node.parent.left = newChildren
+                node.parent.left = new_children
         else:
-            self.root = newChildren
+            self.root = new_children
 
     def is_right(self, node):
         return node == node.parent.right
@@ -117,39 +117,39 @@ class BinarySearchTree:
             elif node.right is None:  # Has only left children
                 self.__reassign_nodes(node, node.left)
             else:
-                tmpNode = self.get_max(
+                tmp_node = self.get_max(
                     node.left
-                )  #  Gets the max value of the left branch
-                self.remove(tmpNode.value)
+                )  # Gets the max value of the left branch
+                self.remove(tmp_node.value)
                 node.value = (
-                    tmpNode.value
-                )  #  Assigns the value to the node to delete and keesp tree structure
+                    tmp_node.value
+                )  # Assigns the value to the node to delete and keep tree structure
 
     def preorder_traverse(self, node):
         if node is not None:
-            yield node  #  Preorder Traversal
+            yield node  # Preorder Traversal
             yield from self.preorder_traverse(node.left)
             yield from self.preorder_traverse(node.right)
 
-    def traversal_tree(self, traversalFunction=None):
+    def traversal_tree(self, traversal_function=None):
         """
         This function traversal the tree.
         You can pass a function to traversal the tree as needed by client code
         """
-        if traversalFunction is None:
+        if traversal_function is None:
             return self.preorder_traverse(self.root)
         else:
-            return traversalFunction(self.root)
+            return traversal_function(self.root)
 
 
 def postorder(curr_node):
     """
     postOrder (left, right, self)
     """
-    nodeList = list()
+    node_list = list()
     if curr_node is not None:
-        nodeList = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
-    return nodeList
+        node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
+    return node_list
 
 
 def binary_search_tree():

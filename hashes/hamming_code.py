@@ -121,7 +121,7 @@ def emitterConverter(sizePar, data):
         # counter to control the loop reading
         contLoop = 0
         for x in dataOrd:
-            if x != None:
+            if x is not None:
                 try:
                     aux = (binPos[contLoop])[-1 * (bp)]
                 except IndexError:
@@ -224,7 +224,7 @@ def receptorConverter(sizePar, data):
         # Counter to control loop reading
         contLoop = 0
         for x in dataOrd:
-            if x != None:
+            if x is not None:
                 try:
                     aux = (binPos[contLoop])[-1 * (bp)]
                 except IndexError:

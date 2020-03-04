@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the insertion sort algorithm
+This is a pure Python implementation of the insertion sort algorithm
 
 For doctests run following command:
 python -m doctest -v insertion_sort.py

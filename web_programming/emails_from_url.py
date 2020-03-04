@@ -51,8 +51,6 @@ def get_domain_name(url: str) -> str:
 # Get sub domain name (sub.example.com)
 def get_sub_domain_name(url: str) -> str:
     """
-    This function get sub domin name
-
     >>> get_sub_domain_name("https://a.b.c.d/e/f?g=h,i=j#k")
     'a.b.c.d'
     >>> get_sub_domain_name("Not a URL!")

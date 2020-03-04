@@ -16,8 +16,8 @@ for word in word_list:
     word_bysig[signature(word)].append(word)
 
 
-def anagram(myword):
-    return word_bysig[signature(myword)]
+def anagram(my_word):
+    return word_bysig[signature(my_word)]
 
 
 print("finding anagrams...")

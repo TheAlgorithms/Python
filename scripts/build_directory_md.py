@@ -6,14 +6,14 @@ from typing import Iterator
 URL_BASE = "https://github.com/TheAlgorithms/Python/blob/master"
 
 
-def good_filepaths(top_dir: str = ".") -> Iterator[str]:
-    for dirpath, dirnames, filenames in os.walk(top_dir):
-        dirnames[:] = [d for d in dirnames if d != "scripts" and d[0] not in "._"]
+def good_file_paths(top_dir: str = ".") -> Iterator[str]:
+    for dir_path, dir_names, filenames in os.walk(top_dir):
+        dir_names[:] = [d for d in dir_names if d != "scripts" and d[0] not in "._"]
         for filename in filenames:
             if filename == "__init__.py":
                 continue
             if os.path.splitext(filename)[1] in (".py", ".ipynb"):
-                yield os.path.join(dirpath, filename).lstrip("./")
+                yield os.path.join(dir_path, filename).lstrip("./")
 
 
 def md_prefix(i):
@@ -31,7 +31,7 @@ def print_path(old_path: str, new_path: str) -> str:
 
 def print_directory_md(top_dir: str = ".") -> None:
     old_path = ""
-    for filepath in sorted(good_filepaths()):
+    for filepath in sorted(good_file_paths()):
         filepath, filename = os.path.split(filepath)
         if filepath != old_path:
             old_path = print_path(old_path, filepath)

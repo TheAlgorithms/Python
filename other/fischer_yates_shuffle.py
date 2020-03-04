@@ -7,12 +7,12 @@ wikipedia/Fischer-Yates-Shuffle.
 import random
 
 
-def FYshuffle(LIST):
-    for i in range(len(LIST)):
-        a = random.randint(0, len(LIST) - 1)
-        b = random.randint(0, len(LIST) - 1)
-        LIST[a], LIST[b] = LIST[b], LIST[a]
-    return LIST
+def FYshuffle(list):
+    for i in range(len(list)):
+        a = random.randint(0, len(list) - 1)
+        b = random.randint(0, len(list) - 1)
+        list[a], list[b] = list[b], list[a]
+    return list
 
 
 if __name__ == "__main__":

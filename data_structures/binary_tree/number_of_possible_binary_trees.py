@@ -82,7 +82,7 @@ def binary_tree_count(node_count: int) -> int:
     """
     Return the number of possible of binary trees.
     :param n: number of nodes
-    :return: Number of possilble binary trees
+    :return: Number of possible binary trees
 
     >>> binary_tree_count(5)
     5040

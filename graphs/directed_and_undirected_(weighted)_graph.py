@@ -3,7 +3,7 @@ import random as rand
 import math as math
 import time
 
-# the dfault weight is 1 if not assigned but all the implementation is weighted
+# the default weight is 1 if not assigned but all the implementation is weighted
 
 
 class DirectedGraph:

@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def explicit_euler(ode_func, y0, x0, stepsize, x_end):
+def explicit_euler(ode_func, y0, x0, step_size, x_end):
     """
     Calculate numeric solution at each step to an ODE using Euler's Method
 
@@ -22,14 +22,14 @@ def explicit_euler(ode_func, y0, x0, stepsize, x_end):
     >>> y[-1]
     144.77277243257308
     """
-    N = int(np.ceil((x_end - x0) / stepsize))
+    N = int(np.ceil((x_end - x0) / step_size))
     y = np.zeros((N + 1,))
     y[0] = y0
     x = x0
 
     for k in range(N):
-        y[k + 1] = y[k] + stepsize * ode_func(x, y[k])
-        x += stepsize
+        y[k + 1] = y[k] + step_size * ode_func(x, y[k])
+        x += step_size
 
     return y
 

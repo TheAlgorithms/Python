@@ -3,7 +3,7 @@ from typing import Tuple, List
 
 def n31(a: int) -> Tuple[List[int], int]:
     """
-    Returns the Collatz sequence and its length of any postiver integer.
+    Returns the Collatz sequence and its length of any positive integer.
     >>> n31(4)
     ([4, 2, 1], 3)
     """

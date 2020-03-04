@@ -18,7 +18,7 @@ processLock = Lock()
 """
 The function run by the processes that sorts the list
 
-position = the position in the list the prcoess represents, used to know which
+position = the position in the list the process represents, used to know which
             neighbor we pass our value to
 value = the initial value at list[position]
 LSend, RSend = the pipes we use to send to our left and right neighbors
@@ -35,7 +35,7 @@ def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
     # find out we are sorted as it does to sort the list with this algorithm
     for i in range(0, 10):
 
-        if (i + position) % 2 == 0 and RSend != None:
+        if (i + position) % 2 == 0 and RSend is not None:
             # send your value to your right neighbor
             processLock.acquire()
             RSend[1].send(value)
@@ -48,7 +48,7 @@ def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
 
             # take the lower value since you are on the left
             value = min(value, temp)
-        elif (i + position) % 2 != 0 and LSend != None:
+        elif (i + position) % 2 != 0 and LSend is not None:
             # send your value to your left neighbor
             processLock.acquire()
             LSend[1].send(value)

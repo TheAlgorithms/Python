@@ -1,5 +1,5 @@
 """
-This is pure python implementation of binary search algorithms
+This is pure Python implementation of binary search algorithms
 
 For doctests run following command:
 python -m doctest -v binary_search.py
