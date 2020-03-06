@@ -11,13 +11,13 @@ def dencrypt(s, n):
 
 
 def main():
-    s0 = "HELLO"
+    s0 = input("Enter message: ")
 
     s1 = dencrypt(s0, 13)
-    print(s1)  # URYYB
+    print("Encryption: "+s1)  
 
     s2 = dencrypt(s1, 13)
-    print(s2)  # HELLO
+    print("Decryption: "+s2)  
 
 
 if __name__ == "__main__":
