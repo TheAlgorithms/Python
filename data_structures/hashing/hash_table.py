@@ -44,7 +44,7 @@ class HashTable:
         self.values[key] = data
         self._keys[key] = data
 
-    def _colision_resolution(self, key, data=None):
+    def _collision_resolution(self, key, data=None):
         new_key = self.hash_function(key + 1)
 
         while self.values[new_key] is not None and self.values[new_key] != key:
@@ -74,9 +74,9 @@ class HashTable:
             pass
 
         else:
-            colision_resolution = self._colision_resolution(key, data)
-            if colision_resolution is not None:
-                self._set_value(colision_resolution, data)
+            collision_resolution = self._collision_resolution(key, data)
+            if collision_resolution is not None:
+                self._set_value(collision_resolution, data)
             else:
                 self.rehashing()
                 self.insert_data(data)
