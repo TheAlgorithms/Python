@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1  # Use v1, NOT v2
       - uses: actions/setup-python@v1
       - run: pip install black
       - run: black --check .
