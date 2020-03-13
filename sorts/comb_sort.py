@@ -54,6 +54,7 @@ def comb_sort(data: list) -> list:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     user_input = input("Enter numbers separated by a comma:\n").strip()
