@@ -18,10 +18,7 @@ class Point:
         """
         Generates a point randomly drawn from the unit square [0, 1) x [0, 1).
         """
-        x = random.random()
-        y = random.random()
-
-        return cls(x, y)
+        return cls(x = random.random(), y = random.random())
 
 def estimate_pi(number_of_simulations: int) -> float:
     """
