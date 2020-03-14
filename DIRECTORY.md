@@ -321,6 +321,7 @@
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
   * [Numerical Integration](https://github.com/TheAlgorithms/Python/blob/master/maths/numerical_integration.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
+  * [Pi Monte Carlo Estimation](https://github.com/TheAlgorithms/Python/blob/master/maths/pi_monte_carlo_estimation.py)
   * [Polynomial Evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
   * [Prime Check](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_check.py)
   * [Prime Factors](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_factors.py)
