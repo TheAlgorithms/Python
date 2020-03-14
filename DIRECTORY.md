@@ -27,6 +27,8 @@
 ## Boolean Algebra
   * [Quine Mc Cluskey](https://github.com/TheAlgorithms/Python/blob/master/boolean_algebra/quine_mc_cluskey.py)
 
+## [Bye-World](https://github.com/TheAlgorithms/Python/blob/master//bye-world.py)
+
 ## Ciphers
   * [Affine Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/affine_cipher.py)
   * [Atbash](https://github.com/TheAlgorithms/Python/blob/master/ciphers/atbash.py)
@@ -241,6 +243,8 @@
   * [Md5](https://github.com/TheAlgorithms/Python/blob/master/hashes/md5.py)
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 
+## [Hello-World](https://github.com/TheAlgorithms/Python/blob/master//hello-world.py)
+
 ## Linear Algebra
   * Src
     * [Lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/lib.py)
@@ -358,6 +362,8 @@
   * [Spiral Print](https://github.com/TheAlgorithms/Python/blob/master/matrix/spiral_print.py)
   * Tests
     * [Test Matrix Operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/tests/test_matrix_operation.py)
+
+## [Nano-World](https://github.com/TheAlgorithms/Python/blob/master//nano-world.py)
 
 ## Networking Flow
   * [Ford Fulkerson](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/ford_fulkerson.py)
