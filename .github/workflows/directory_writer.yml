@@ -6,16 +6,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - uses: actions/setup-python@v1
         with:
           python-version: 3.x
-      - name: Update DIRECTORY.md
+      - name: Write DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
-          git config --global user.name github-actions
-          git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git add DIRECTORY.md
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
           git commit -am "updating DIRECTORY.md" ||  true
-          git push --force origin HEAD:$GITHUB_REF || true
+      - name: Push DIRECTORY.md
+        if: github.ref == 'refs/heads/master'
+        run: |
+          git push "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git" ${master} --force
