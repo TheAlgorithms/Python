@@ -21,6 +21,8 @@ class LZW:
         '98_97_114_257_112_97_261'
         >>> lzw.compression("TOBEORNOTTOBEORTOBEORNOT")
         '84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264'
+        >>> lzw.compression("Let's try Üñîçødē characters: 🌧 or 🌞")
+        
         """
         string = ""
         turn = 0
