@@ -19,4 +19,4 @@ jobs:
       - name: Push DIRECTORY.md
         if: github.ref == 'refs/heads/master'
         run: |
-          git push "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git" ${master} --force
+          git push "https://${GITHUB_ACTOR}:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git" HEAD:${master} --force
