@@ -111,12 +111,9 @@ def inverse(matrix):
 
 
 def _check_not_integer(matrix):
-    try:
-        rows = len(matrix)
-        cols = len(matrix[0])
+    if not isinstance(matrix, int) and not isinstance(matrix[0], int):
         return True
-    except TypeError:
-        raise TypeError("Cannot input an integer value, it must be a matrix")
+    raise TypeError("Expected a matrix, got int/list instead")
 
 
 def _shape(matrix):

@@ -28,16 +28,16 @@ class BinarySearchTree:
         """
         return str(self.root)
 
-    def __reassign_nodes(self, node, newChildren):
-        if newChildren is not None:  # reset its kids
-            newChildren.parent = node.parent
+    def __reassign_nodes(self, node, new_children):
+        if new_children is not None:  # reset its kids
+            new_children.parent = node.parent
         if node.parent is not None:  # reset its parent
             if self.is_right(node):  # If it is the right children
-                node.parent.right = newChildren
+                node.parent.right = new_children
             else:
-                node.parent.left = newChildren
+                node.parent.left = new_children
         else:
-            self.root = newChildren
+            self.root = new_children
 
     def is_right(self, node):
         return node == node.parent.right
@@ -56,13 +56,13 @@ class BinarySearchTree:
             parent_node = self.root  # from root
             while True:  # While we don't get to a leaf
                 if value < parent_node.value:  # We go left
-                    if parent_node.left == None:
+                    if parent_node.left is None:
                         parent_node.left = new_node  # We insert the new node in a leaf
                         break
                     else:
                         parent_node = parent_node.left
                 else:
-                    if parent_node.right == None:
+                    if parent_node.right is None:
                         parent_node.right = new_node
                         break
                     else:
@@ -76,7 +76,7 @@ class BinarySearchTree:
 
     def search(self, value):
         if self.empty():
-            raise IndexError("Warning: Tree is empty! please use another. ")
+            raise IndexError("Warning: Tree is empty! please use another.")
         else:
             node = self.root
             # use lazy evaluation here to avoid NoneType Attribute error
@@ -112,49 +112,48 @@ class BinarySearchTree:
         if node is not None:
             if node.left is None and node.right is None:  # If it has no children
                 self.__reassign_nodes(node, None)
-                node = None
             elif node.left is None:  # Has only right children
                 self.__reassign_nodes(node, node.right)
             elif node.right is None:  # Has only left children
                 self.__reassign_nodes(node, node.left)
             else:
-                tmpNode = self.get_max(
+                tmp_node = self.get_max(
                     node.left
-                )  #  Gets the max value of the left branch
-                self.remove(tmpNode.value)
+                )  # Gets the max value of the left branch
+                self.remove(tmp_node.value)
                 node.value = (
-                    tmpNode.value
-                )  #  Assigns the value to the node to delete and keesp tree structure
+                    tmp_node.value
+                )  # Assigns the value to the node to delete and keep tree structure
 
     def preorder_traverse(self, node):
         if node is not None:
-            yield node  #  Preorder Traversal
+            yield node  # Preorder Traversal
             yield from self.preorder_traverse(node.left)
             yield from self.preorder_traverse(node.right)
 
-    def traversal_tree(self, traversalFunction=None):
+    def traversal_tree(self, traversal_function=None):
         """
         This function traversal the tree.
         You can pass a function to traversal the tree as needed by client code
         """
-        if traversalFunction is None:
+        if traversal_function is None:
             return self.preorder_traverse(self.root)
         else:
-            return traversalFunction(self.root)
+            return traversal_function(self.root)
 
 
 def postorder(curr_node):
     """
     postOrder (left, right, self)
     """
-    nodeList = list()
+    node_list = list()
     if curr_node is not None:
-        nodeList = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
-    return nodeList
+        node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
+    return node_list
 
 
 def binary_search_tree():
-    r"""
+    """
     Example
                   8
                  / \
@@ -164,15 +163,15 @@ def binary_search_tree():
                  / \   /
                 4   7 13
 
-        >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
-        >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
-        8 3 1 6 4 7 10 14 13
-        >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
-        1 4 7 6 3 13 14 10 8
-        >>> BinarySearchTree().search(6)
-        Traceback (most recent call last):
-        ...
-        IndexError: Warning: Tree is empty! please use another. 
+    >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+    8 3 1 6 4 7 10 14 13
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
+    1 4 7 6 3 13 14 10 8
+    >>> BinarySearchTree().search(6)
+    Traceback (most recent call last):
+    ...
+    IndexError: Warning: Tree is empty! please use another.
     """
     testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
     t = BinarySearchTree()
@@ -201,10 +200,8 @@ def binary_search_tree():
         print(t)
 
 
-二叉搜索树 = binary_search_tree
-
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    binary_search_tree()
+    # binary_search_tree()

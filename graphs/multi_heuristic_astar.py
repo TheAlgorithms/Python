@@ -52,25 +52,25 @@ class PriorityQueue:
         return (priority, item)
 
 
-def consistent_hueristic(P, goal):
+def consistent_heuristic(P, goal):
     # euclidean distance
     a = np.array(P)
     b = np.array(goal)
     return np.linalg.norm(a - b)
 
 
-def hueristic_2(P, goal):
+def heuristic_2(P, goal):
     # integer division by time variable
-    return consistent_hueristic(P, goal) // t
+    return consistent_heuristic(P, goal) // t
 
 
-def hueristic_1(P, goal):
+def heuristic_1(P, goal):
     # manhattan distance
     return abs(P[0] - goal[0]) + abs(P[1] - goal[1])
 
 
 def key(start, i, goal, g_function):
-    ans = g_function[start] + W1 * hueristics[i](start, goal)
+    ans = g_function[start] + W1 * heuristics[i](start, goal)
     return ans
 
 
@@ -134,7 +134,7 @@ def expand_state(
     open_list,
     back_pointer,
 ):
-    for itera in range(n_hueristic):
+    for itera in range(n_heuristic):
         open_list[itera].remove_element(s)
     # print("s", s)
     # print("j", j)
@@ -158,30 +158,24 @@ def expand_state(
                 if neighbours not in close_list_anchor:
                     open_list[0].put(neighbours, key(neighbours, 0, goal, g_function))
                     if neighbours not in close_list_inad:
-                        for var in range(1, n_hueristic):
+                        for var in range(1, n_heuristic):
                             if key(neighbours, var, goal, g_function) <= W2 * key(
                                 neighbours, 0, goal, g_function
                             ):
-                                # print("why not plssssssssss")
                                 open_list[j].put(
                                     neighbours, key(neighbours, var, goal, g_function)
                                 )
 
-    # print
-
 
 def make_common_ground():
     some_list = []
-    # block 1
     for x in range(1, 5):
         for y in range(1, 6):
             some_list.append((x, y))
 
-    # line
     for x in range(15, 20):
         some_list.append((x, 17))
 
-    # block 2 big
     for x in range(10, 19):
         for y in range(1, 15):
             some_list.append((x, y))
@@ -196,7 +190,7 @@ def make_common_ground():
     return some_list
 
 
-hueristics = {0: consistent_hueristic, 1: hueristic_1, 2: hueristic_2}
+heuristics = {0: consistent_heuristic, 1: heuristic_1, 2: heuristic_2}
 
 blocks_blk = [
     (0, 1),
@@ -229,7 +223,7 @@ blocks = blocks_blk
 W1 = 1
 W2 = 1
 n = 20
-n_hueristic = 3  # one consistent and two other inconsistent
+n_heuristic = 3  # one consistent and two other inconsistent
 
 # start and end destination
 start = (0, 0)
@@ -238,26 +232,24 @@ goal = (n - 1, n - 1)
 t = 1
 
 
-def multi_a_star(start, goal, n_hueristic):
+def multi_a_star(start, goal, n_heuristic):
     g_function = {start: 0, goal: float("inf")}
     back_pointer = {start: -1, goal: -1}
     open_list = []
     visited = set()
 
-    for i in range(n_hueristic):
+    for i in range(n_heuristic):
         open_list.append(PriorityQueue())
         open_list[i].put(start, key(start, i, goal, g_function))
 
     close_list_anchor = []
     close_list_inad = []
     while open_list[0].minkey() < float("inf"):
-        for i in range(1, n_hueristic):
-            # print("i", i)
+        for i in range(1, n_heuristic):
             # print(open_list[0].minkey(), open_list[i].minkey())
             if open_list[i].minkey() <= W2 * open_list[0].minkey():
                 global t
                 t += 1
-                # print("less prio")
                 if g_function[goal] <= open_list[i].minkey():
                     if g_function[goal] < float("inf"):
                         do_something(back_pointer, goal, start)
@@ -276,12 +268,10 @@ def multi_a_star(start, goal, n_hueristic):
                     )
                     close_list_inad.append(get_s)
             else:
-                # print("more prio")
                 if g_function[goal] <= open_list[0].minkey():
                     if g_function[goal] < float("inf"):
                         do_something(back_pointer, goal, start)
                 else:
-                    # print("hoolla")
                     get_s = open_list[0].top_show()
                     visited.add(get_s)
                     expand_state(
@@ -319,4 +309,4 @@ def multi_a_star(start, goal, n_hueristic):
 
 
 if __name__ == "__main__":
-    multi_a_star(start, goal, n_hueristic)
+    multi_a_star(start, goal, n_heuristic)

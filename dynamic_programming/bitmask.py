@@ -1,6 +1,6 @@
 """
 
-This is a python implementation for questions involving task assignments between people.
+This is a Python implementation for questions involving task assignments between people.
 Here Bitmasking and DP are used for solving this.
 
 Question :-
@@ -25,41 +25,41 @@ class AssignmentUsingBitmask:
 
         self.task = defaultdict(list)  # stores the list of persons for each task
 
-        # finalmask is used to check if all persons are included by setting all bits to 1
-        self.finalmask = (1 << len(task_performed)) - 1
+        # final_mask is used to check if all persons are included by setting all bits to 1
+        self.final_mask = (1 << len(task_performed)) - 1
 
-    def CountWaysUtil(self, mask, taskno):
+    def CountWaysUtil(self, mask, task_no):
 
         # if mask == self.finalmask all persons are distributed tasks, return 1
-        if mask == self.finalmask:
+        if mask == self.final_mask:
             return 1
 
         # if not everyone gets the task and no more tasks are available, return 0
-        if taskno > self.total_tasks:
+        if task_no > self.total_tasks:
             return 0
 
         # if case already considered
-        if self.dp[mask][taskno] != -1:
-            return self.dp[mask][taskno]
+        if self.dp[mask][task_no] != -1:
+            return self.dp[mask][task_no]
 
         # Number of ways when we don't this task in the arrangement
-        total_ways_util = self.CountWaysUtil(mask, taskno + 1)
+        total_ways_util = self.CountWaysUtil(mask, task_no + 1)
 
         # now assign the tasks one by one to all possible persons and recursively assign for the remaining tasks.
-        if taskno in self.task:
-            for p in self.task[taskno]:
+        if task_no in self.task:
+            for p in self.task[task_no]:
 
                 # if p is already given a task
                 if mask & (1 << p):
                     continue
 
                 # assign this task to p and change the mask value. And recursively assign tasks with the new mask value.
-                total_ways_util += self.CountWaysUtil(mask | (1 << p), taskno + 1)
+                total_ways_util += self.CountWaysUtil(mask | (1 << p), task_no + 1)
 
         # save the value.
-        self.dp[mask][taskno] = total_ways_util
+        self.dp[mask][task_no] = total_ways_util
 
-        return self.dp[mask][taskno]
+        return self.dp[mask][task_no]
 
     def countNoOfWays(self, task_performed):
 

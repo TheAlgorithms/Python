@@ -42,7 +42,7 @@ def solve(board, row):
     """
     It creates a state space tree and calls the safe function until it receives a 
     False Boolean and terminates that branch and backtracks to the next 
-    poosible solution branch.
+    possible solution branch.
     """
     if row >= len(board):
         """
@@ -56,7 +56,7 @@ def solve(board, row):
         return
     for i in range(len(board)):
         """
-        For every row it iterates through each column to check if it is feesible to place a 
+        For every row it iterates through each column to check if it is feasible to place a 
         queen there.
         If all the combinations for that particular branch are successful the board is 
         reinitialized for the next possible combination.

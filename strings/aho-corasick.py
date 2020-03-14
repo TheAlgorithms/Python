@@ -47,7 +47,7 @@ class Automaton:
                 q.append(child)
                 state = self.adlist[r]["fail_state"]
                 while (
-                    self.find_next_state(state, self.adlist[child]["value"]) == None
+                    self.find_next_state(state, self.adlist[child]["value"]) is None
                     and state != 0
                 ):
                     state = self.adlist[state]["fail_state"]

@@ -68,7 +68,6 @@ def points_to_polynomial(coordinates):
         # put the y values into a vector
         vector = []
         while count_of_line < x:
-            count_in_line = 0
             vector.append(coordinates[count_of_line][1])
             count_of_line += 1
 

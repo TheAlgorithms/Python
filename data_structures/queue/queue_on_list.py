@@ -1,4 +1,4 @@
-"""Queue represented by a python list"""
+"""Queue represented by a Python list"""
 
 
 class Queue:

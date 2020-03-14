@@ -6,7 +6,7 @@ def max_subarray_sum(nums: list) -> int:
     if not nums:
         return 0
     n = len(nums)
-    s = [0] * n
+
     res, s, s_pre = nums[0], nums[0], nums[0]
     for i in range(1, n):
         s = max(nums[i], s_pre + nums[i])

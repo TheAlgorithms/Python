@@ -10,5 +10,5 @@ jobs:
       - uses: actions/setup-python@v1
       - run: pip install codespell flake8
       - run: |
-          SKIP="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt,*.bak,*.gif,*.jpeg,*.jpg,*.json,*.png,*.pyc"
-          codespell -L ans,fo,hist,iff,secant,tim --skip=$SKIP
+          SKIP="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt"
+          codespell -L ans,fo,hist,iff,secant,tim --skip=$SKIP --quiet-level=2

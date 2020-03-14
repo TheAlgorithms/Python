@@ -1,5 +1,5 @@
 """
-This is pure python implementation of Tabu search algorithm for a Travelling Salesman Problem, that the distances
+This is pure Python implementation of Tabu search algorithm for a Travelling Salesman Problem, that the distances
 between the cities are symmetric (the distance between city 'a' and city 'b' is the same between city 'b' and city 'a').
 The TSP can be represented into a graph. The cities are represented by nodes and the distance between them is
 represented by the weight of the ark between the nodes.
@@ -25,7 +25,6 @@ e.g. python tabu_search.py -f tabudata2.txt -i 4 -s 3
 
 import copy
 import argparse
-import sys
 
 
 def generate_neighbours(path):
@@ -278,4 +277,4 @@ if __name__ == "__main__":
     )
 
     # Pass the arguments to main method
-    sys.exit(main(parser.parse_args()))
+    main(parser.parse_args())

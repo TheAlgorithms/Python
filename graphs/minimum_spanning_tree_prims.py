@@ -6,13 +6,13 @@ def PrimsAlgorithm(l):
 
     nodePosition = []
 
-    def getPosition(vertex):
+    def get_position(vertex):
         return nodePosition[vertex]
 
-    def setPosition(vertex, pos):
+    def set_position(vertex, pos):
         nodePosition[vertex] = pos
 
-    def topToBottom(heap, start, size, positions):
+    def top_to_bottom(heap, start, size, positions):
         if start > size // 2 - 1:
             return
         else:
@@ -28,14 +28,14 @@ def PrimsAlgorithm(l):
                 heap[m], positions[m] = heap[start], positions[start]
                 heap[start], positions[start] = temp, temp1
 
-                temp = getPosition(positions[m])
-                setPosition(positions[m], getPosition(positions[start]))
-                setPosition(positions[start], temp)
+                temp = get_position(positions[m])
+                set_position(positions[m], get_position(positions[start]))
+                set_position(positions[start], temp)
 
-                topToBottom(heap, m, size, positions)
+                top_to_bottom(heap, m, size, positions)
 
     # Update function if value of any node in min-heap decreases
-    def bottomToTop(val, index, heap, position):
+    def bottom_to_top(val, index, heap, position):
         temp = position[index]
 
         while index != 0:
@@ -47,27 +47,27 @@ def PrimsAlgorithm(l):
             if val < heap[parent]:
                 heap[index] = heap[parent]
                 position[index] = position[parent]
-                setPosition(position[parent], index)
+                set_position(position[parent], index)
             else:
                 heap[index] = val
                 position[index] = temp
-                setPosition(temp, index)
+                set_position(temp, index)
                 break
             index = parent
         else:
             heap[0] = val
             position[0] = temp
-            setPosition(temp, 0)
+            set_position(temp, 0)
 
     def heapify(heap, positions):
         start = len(heap) // 2 - 1
         for i in range(start, -1, -1):
-            topToBottom(heap, i, len(heap), positions)
+            top_to_bottom(heap, i, len(heap), positions)
 
     def deleteMinimum(heap, positions):
         temp = positions[0]
         heap[0] = sys.maxsize
-        topToBottom(heap, 0, len(heap), positions)
+        top_to_bottom(heap, 0, len(heap), positions)
         return temp
 
     visited = [0 for i in range(len(l))]
@@ -96,9 +96,9 @@ def PrimsAlgorithm(l):
             TreeEdges.append((Nbr_TV[vertex], vertex))
             visited[vertex] = 1
             for v in l[vertex]:
-                if visited[v[0]] == 0 and v[1] < Distance_TV[getPosition(v[0])]:
-                    Distance_TV[getPosition(v[0])] = v[1]
-                    bottomToTop(v[1], getPosition(v[0]), Distance_TV, Positions)
+                if visited[v[0]] == 0 and v[1] < Distance_TV[get_position(v[0])]:
+                    Distance_TV[get_position(v[0])] = v[1]
+                    bottom_to_top(v[1], get_position(v[0]), Distance_TV, Positions)
                     Nbr_TV[v[0]] = vertex
     return TreeEdges
 

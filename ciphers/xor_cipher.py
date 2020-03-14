@@ -148,7 +148,7 @@ class XORCipher:
                     for line in fin:
                         fout.write(self.encrypt_string(line, key))
 
-        except:
+        except IOError:
             return False
 
         return True
@@ -173,7 +173,7 @@ class XORCipher:
                     for line in fin:
                         fout.write(self.decrypt_string(line, key))
 
-        except:
+        except IOError:
             return False
 
         return True

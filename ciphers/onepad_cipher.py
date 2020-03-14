@@ -3,7 +3,7 @@ import random
 
 class Onepad:
     def encrypt(self, text):
-        """Function to encrypt text using psedo-random numbers"""
+        """Function to encrypt text using pseudo-random numbers"""
         plain = [ord(i) for i in text]
         key = []
         cipher = []
@@ -15,7 +15,7 @@ class Onepad:
         return cipher, key
 
     def decrypt(self, cipher, key):
-        """Function to decrypt text using psedo-random numbers."""
+        """Function to decrypt text using pseudo-random numbers."""
         plain = []
         for i in range(len(key)):
             p = int((cipher[i] - (key[i]) ** 2) / key[i])

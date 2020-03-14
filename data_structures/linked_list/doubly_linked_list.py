@@ -62,7 +62,7 @@ class LinkedList:  # making main class named linked list
 
     def display(self):  # Prints contents of the list
         current = self.head
-        while current != None:
+        while current is not None:
             current.displayLink()
             current = current.next
         print()

@@ -28,7 +28,7 @@ class Fibonacci:
         [0, 1, 1, 2, 3, 5]
         []
         """
-        if sequence_no != None:
+        if sequence_no is not None:
             if sequence_no < len(self.fib_array):
                 return print(self.fib_array[: sequence_no + 1])
             else:

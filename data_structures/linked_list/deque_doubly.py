@@ -21,7 +21,7 @@ class _DoublyLinkedBase:
 
         def has_next_and_prev(self):
             return " Prev -> {0}, Next -> {1}".format(
-                self._prev != None, self._next != None
+                self._prev is not None, self._next is not None
             )
 
     def __init__(self):

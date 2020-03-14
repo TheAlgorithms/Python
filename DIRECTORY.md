@@ -111,6 +111,7 @@
     * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/is_palindrome.py)
     * [Print Reverse](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/print_reverse.py)
     * [Singly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py)
+    * [Skip List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/skip_list.py)
     * [Swap Nodes](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/swap_nodes.py)
   * Queue
     * [Circular Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/circular_queue.py)
@@ -138,6 +139,7 @@
   * Edge Detection
     * [Canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/edge_detection/canny.py)
   * Filters
+    * [Bilateral Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/bilateral_filter.py)
     * [Convolve](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/convolve.py)
     * [Gaussian Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/gaussian_filter.py)
     * [Median Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/median_filter.py)
@@ -172,7 +174,6 @@
   * [Fractional Knapsack 2](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/fractional_knapsack_2.py)
   * [Integer Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/iterating_through_submasks.py)
-  * [K Means Clustering Tensorflow](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/knapsack.py)
   * [Longest Common Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_common_subsequence.py)
   * [Longest Increasing Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_increasing_subsequence.py)
@@ -182,6 +183,7 @@
   * [Max Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sub_array.py)
   * [Max Sum Contiguous Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sum_contiguous_subsequence.py)
   * [Minimum Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/minimum_partition.py)
+  * [Optimal Binary Search Tree](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/optimal_binary_search_tree.py)
   * [Rod Cutting](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/rod_cutting.py)
   * [Subset Generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
@@ -192,6 +194,13 @@
 
 ## Fuzzy Logic
   * [Fuzzy Operations](https://github.com/TheAlgorithms/Python/blob/master/fuzzy_logic/fuzzy_operations.py)
+
+## Geodesy
+  * [Haversine Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/haversine_distance.py)
+  * [Lamberts Ellipsoidal Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/lamberts_ellipsoidal_distance.py)
+
+## Graphics
+  * [Bezier Curve](https://github.com/TheAlgorithms/Python/blob/master/graphics/bezier_curve.py)
 
 ## Graphs
   * [A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/a_star.py)
@@ -239,6 +248,7 @@
   * Src
     * [Lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/lib.py)
     * [Polynom-For-Points](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/polynom-for-points.py)
+    * [Rayleigh Quotient](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/rayleigh_quotient.py)
     * [Test Linear Algebra](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/test_linear_algebra.py)
 
 ## Machine Learning
@@ -252,16 +262,19 @@
   * [Logistic Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
   * [Multilayer Perceptron Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/multilayer_perceptron_classifier.py)
   * [Polymonial Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/polymonial_regression.py)
+  * [Random Forest Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classifier.py)
+  * [Random Forest Regressor](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_regressor.py)
   * [Scoring Functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/scoring_functions.py)
   * [Sequential Minimum Optimization](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/sequential_minimum_optimization.py)
   * [Support Vector Machines](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/support_vector_machines.py)
 
 ## Maths
-  * [3N+1](https://github.com/TheAlgorithms/Python/blob/master/maths/3n+1.py)
+  * [3N Plus 1](https://github.com/TheAlgorithms/Python/blob/master/maths/3n_plus_1.py)
   * [Abs](https://github.com/TheAlgorithms/Python/blob/master/maths/abs.py)
   * [Abs Max](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_max.py)
   * [Abs Min](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_min.py)
   * [Area Under Curve](https://github.com/TheAlgorithms/Python/blob/master/maths/area_under_curve.py)
+  * [Armstrong Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/armstrong_numbers.py)
   * [Average Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mean.py)
   * [Average Median](https://github.com/TheAlgorithms/Python/blob/master/maths/average_median.py)
   * [Average Mode](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mode.py)
@@ -269,7 +282,9 @@
   * [Binary Exp Mod](https://github.com/TheAlgorithms/Python/blob/master/maths/binary_exp_mod.py)
   * [Binary Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/maths/binary_exponentiation.py)
   * [Binomial Coefficient](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_coefficient.py)
+  * [Bisection](https://github.com/TheAlgorithms/Python/blob/master/maths/bisection.py)
   * [Ceil](https://github.com/TheAlgorithms/Python/blob/master/maths/ceil.py)
+  * [Chudnovsky Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
@@ -304,6 +319,8 @@
   * [Miller Rabin](https://github.com/TheAlgorithms/Python/blob/master/maths/miller_rabin.py)
   * [Mobius Function](https://github.com/TheAlgorithms/Python/blob/master/maths/mobius_function.py)
   * [Modular Exponential](https://github.com/TheAlgorithms/Python/blob/master/maths/modular_exponential.py)
+  * [Monte Carlo](https://github.com/TheAlgorithms/Python/blob/master/maths/monte_carlo.py)
+  * [Monte Carlo Dice](https://github.com/TheAlgorithms/Python/blob/master/maths/monte_carlo_dice.py)
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
   * [Numerical Integration](https://github.com/TheAlgorithms/Python/blob/master/maths/numerical_integration.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
@@ -317,6 +334,7 @@
   * [Quadratic Equations Complex Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/quadratic_equations_complex_numbers.py)
   * [Radians](https://github.com/TheAlgorithms/Python/blob/master/maths/radians.py)
   * [Radix2 Fft](https://github.com/TheAlgorithms/Python/blob/master/maths/radix2_fft.py)
+  * [Relu](https://github.com/TheAlgorithms/Python/blob/master/maths/relu.py)
   * [Runge Kutta](https://github.com/TheAlgorithms/Python/blob/master/maths/runge_kutta.py)
   * [Segmented Sieve](https://github.com/TheAlgorithms/Python/blob/master/maths/segmented_sieve.py)
   * Series
@@ -351,8 +369,6 @@
 ## Neural Network
   * [Back Propagation Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/convolution_neural_network.py)
-  * [Gan](https://github.com/TheAlgorithms/Python/blob/master/neural_network/gan.py)
-  * [Input Data](https://github.com/TheAlgorithms/Python/blob/master/neural_network/input_data.py)
   * [Perceptron](https://github.com/TheAlgorithms/Python/blob/master/neural_network/perceptron.py)
 
 ## Other
@@ -508,6 +524,9 @@
   * Problem 99
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_99/sol1.py)
 
+## Scheduling
+  * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
+
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)
   * [Fibonacci Search](https://github.com/TheAlgorithms/Python/blob/master/searches/fibonacci_search.py)
@@ -583,6 +602,7 @@
 ## Web Programming
   * [Crawl Google Results](https://github.com/TheAlgorithms/Python/blob/master/web_programming/crawl_google_results.py)
   * [Current Stock Price](https://github.com/TheAlgorithms/Python/blob/master/web_programming/current_stock_price.py)
+  * [Emails From Url](https://github.com/TheAlgorithms/Python/blob/master/web_programming/emails_from_url.py)
   * [Fetch Bbc News](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_github_info.py)
   * [Get Imdb Top 250 Movies Csv](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdb_top_250_movies_csv.py)

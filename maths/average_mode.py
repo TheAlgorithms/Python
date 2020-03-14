@@ -14,7 +14,7 @@ def mode(input_list):  # Defining function "mode."
     >>> mode(input_list) == statistics.mode(input_list)
     True
     """
-    # Copying inputlist to check with the index number later.
+    # Copying input_list to check with the index number later.
     check_list = input_list.copy()
     result = list()  # Empty list to store the counts of elements in input_list
     for x in input_list:
