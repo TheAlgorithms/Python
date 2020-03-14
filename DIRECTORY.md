@@ -108,6 +108,7 @@
     * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/is_palindrome.py)
     * [Print Reverse](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/print_reverse.py)
     * [Singly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py)
+    * [Skip List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/skip_list.py)
     * [Swap Nodes](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/swap_nodes.py)
   * Queue
     * [Circular Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/circular_queue.py)
@@ -135,6 +136,7 @@
   * Edge Detection
     * [Canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/edge_detection/canny.py)
   * Filters
+    * [Bilateral Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/bilateral_filter.py)
     * [Convolve](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/convolve.py)
     * [Gaussian Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/gaussian_filter.py)
     * [Median Filter](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/filters/median_filter.py)
@@ -257,13 +259,14 @@
   * [Logistic Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
   * [Multilayer Perceptron Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/multilayer_perceptron_classifier.py)
   * [Polymonial Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/polymonial_regression.py)
+  * [Random Forest Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classifier.py)
   * [Random Forest Regressor](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_regressor.py)
   * [Scoring Functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/scoring_functions.py)
   * [Sequential Minimum Optimization](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/sequential_minimum_optimization.py)
   * [Support Vector Machines](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/support_vector_machines.py)
 
 ## Maths
-  * [3N+1](https://github.com/TheAlgorithms/Python/blob/master/maths/3n_plus_1.py)
+  * [3N Plus 1](https://github.com/TheAlgorithms/Python/blob/master/maths/3n_plus_1.py)
   * [Abs](https://github.com/TheAlgorithms/Python/blob/master/maths/abs.py)
   * [Abs Max](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_max.py)
   * [Abs Min](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_min.py)
@@ -313,8 +316,8 @@
   * [Miller Rabin](https://github.com/TheAlgorithms/Python/blob/master/maths/miller_rabin.py)
   * [Mobius Function](https://github.com/TheAlgorithms/Python/blob/master/maths/mobius_function.py)
   * [Modular Exponential](https://github.com/TheAlgorithms/Python/blob/master/maths/modular_exponential.py)
+  * [Monte Carlo](https://github.com/TheAlgorithms/Python/blob/master/maths/monte_carlo.py)
   * [Monte Carlo Dice](https://github.com/TheAlgorithms/Python/blob/master/maths/monte_carlo_dice.py)
-  * [Montecarlo](https://github.com/TheAlgorithms/Python/blob/master/maths/montecarlo.py)
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
   * [Numerical Integration](https://github.com/TheAlgorithms/Python/blob/master/maths/numerical_integration.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
@@ -328,6 +331,7 @@
   * [Quadratic Equations Complex Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/quadratic_equations_complex_numbers.py)
   * [Radians](https://github.com/TheAlgorithms/Python/blob/master/maths/radians.py)
   * [Radix2 Fft](https://github.com/TheAlgorithms/Python/blob/master/maths/radix2_fft.py)
+  * [Relu](https://github.com/TheAlgorithms/Python/blob/master/maths/relu.py)
   * [Runge Kutta](https://github.com/TheAlgorithms/Python/blob/master/maths/runge_kutta.py)
   * [Segmented Sieve](https://github.com/TheAlgorithms/Python/blob/master/maths/segmented_sieve.py)
   * Series
@@ -595,6 +599,7 @@
 ## Web Programming
   * [Crawl Google Results](https://github.com/TheAlgorithms/Python/blob/master/web_programming/crawl_google_results.py)
   * [Current Stock Price](https://github.com/TheAlgorithms/Python/blob/master/web_programming/current_stock_price.py)
+  * [Emails From Url](https://github.com/TheAlgorithms/Python/blob/master/web_programming/emails_from_url.py)
   * [Fetch Bbc News](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_github_info.py)
   * [Get Imdb Top 250 Movies Csv](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdb_top_250_movies_csv.py)
