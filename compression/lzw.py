@@ -16,9 +16,10 @@ class LZW:
         :param text: The string that you want to compress
         :return: return the compress string in ASCII part into "_"
         Examples:
-        >>> compression("barbapapa")
+        >>> lzw = LZW()
+        >>> lzw.compression("barbapapa")
         {'string':'98_97_114_257_112_97_261'}
-        >>> compression("TOBEORNOTTOBEORTOBEORNOT")
+        >>> lzw.compression("TOBEORNOTTOBEORTOBEORNOT")
         {'string':'84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264'}
         """
         string = ""
@@ -50,9 +51,10 @@ class LZW:
         :param text: The string that you want to decompress (in ASCII part into "_")
         :return: return the decompress string
         Examples:
-        >>> decompression("98_97_114_257_112_97_261")
+        >>> lzw = LZW()
+        >>> lzw.decompression("98_97_114_257_112_97_261")
         {'string':'barbapapa'}
-        >>> decompression("84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264")
+        >>> lzw.decompression("84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264")
         {'string':'TOBEORNOTTOBEORTOBEORNOT'}
         """
         string = ""
