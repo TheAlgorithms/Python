@@ -23,7 +23,6 @@ class Point:
 
         return cls(x, y)
 
-
 def estimate_pi(number_of_simulations: int) -> float:
     """
     Generates an estimate of the mathematical constant PI (see https://en.wikipedia.org/wiki/Monte_Carlo_method#Overview).
@@ -62,4 +61,4 @@ if __name__ == "__main__":
     from math import pi
     prompt = "Please enter the desired number of Monte Carlo simulations: "
     my_pi = estimate_pi(int(input(prompt).strip()))
-    print(f"An estimate of PI is {my_pi} with an accuracy of {abs(my_pi - pi)}")
+    print(f"An estimate of PI is {my_pi} with an error of {abs(my_pi - pi)}")
