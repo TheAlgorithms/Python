@@ -9,7 +9,7 @@ class LZW:
         """
         self.dictionary = Dictionary()
 
-    def compression(self, text: str):
+    def compression(self, text: str) -> str:
         """
         Compress the string with the LZW method
 
@@ -18,9 +18,9 @@ class LZW:
         Examples:
         >>> lzw = LZW()
         >>> lzw.compression("barbapapa")
-        {'string':'98_97_114_257_112_97_261'}
+        '98_97_114_257_112_97_261'
         >>> lzw.compression("TOBEORNOTTOBEORTOBEORNOT")
-        {'string':'84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264'}
+        '84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264'
         """
         string = ""
         turn = 0
@@ -44,7 +44,7 @@ class LZW:
             turn += i - 1
         return string
 
-    def decompression(self, text: str):
+    def decompression(self, text: str) -> str:
         """
         Decompress a string with the method LZW
 
@@ -53,9 +53,9 @@ class LZW:
         Examples:
         >>> lzw = LZW()
         >>> lzw.decompression("98_97_114_257_112_97_261")
-        {'string':'barbapapa'}
+        'barbapapa'
         >>> lzw.decompression("84_79_66_69_79_82_78_79_84_257_259_261_266_260_262_264")
-        {'string':'TOBEORNOTTOBEORTOBEORNOT'}
+        'TOBEORNOTTOBEORTOBEORNOT'
         """
         string = ""
         turn = 0
