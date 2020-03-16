@@ -62,7 +62,8 @@ class HashTable:
         self.size_table = next_prime(self.size_table, factor=2)
         self._keys.clear()
         self.values = [None] * self.size_table  # hell's pointers D: don't DRY ;/
-        map(self.insert_data, survivor_values)
+        for value in survivor_values:
+            self.insert_data(value)
 
     def insert_data(self, data):
         key = self.hash_function(data)

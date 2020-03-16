@@ -24,7 +24,7 @@ class DoubleHash(HashTable):
     def __hash_double_function(self, key, data, increment):
         return (increment * self.__hash_function_2(key, data)) % self.size_table
 
-    def _colision_resolution(self, key, data=None):
+    def _collision_resolution(self, key, data=None):
         i = 1
         new_key = self.hash_function(data)
 
