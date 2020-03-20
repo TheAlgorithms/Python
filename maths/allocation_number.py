@@ -4,6 +4,12 @@
 def allocation_num(num, x) -> int:
     """
     Divide the numbers into x parts.
+    
+    This algorithm can be used in multi thread Download.
+    For byte splitting.
+    For example:
+        for i in allocation_list:
+            requests.get(url,headers={'Range':f'bytes={i}'})
 
     parameter
     ------------
@@ -24,7 +30,7 @@ def allocation_num(num, x) -> int:
         ...
     ValueError: param x can't past or be equal to the param num!
 
-    >>> allocation_num(888, 111)
+    >>> allocation_num(888, 999)
     Traceback (most recent call last):
         ...
     ValueError: param x can't past or be equal to the param num!
@@ -46,7 +52,7 @@ def allocation_num(num, x) -> int:
 
 
 if __name__ == '__main__':
-    the_list = allocation_num(888,888)
-    print(the_list)
+    import doctest
+    doctest.testmod()
 
 
