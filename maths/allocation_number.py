@@ -1,7 +1,7 @@
 #-*- coding:utf-8 -*-
 
 
-def allocation_num(num, x) -> int:
+def allocation_num(num, x) -> list:
     """
     Divide the numbers into x parts.
     
