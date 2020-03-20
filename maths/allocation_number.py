@@ -27,12 +27,18 @@ def allocation_num(number_of_bytes: int, partitions: int) -> List[str]:
     >>> allocation_num(888, 888)
     Traceback (most recent call last):
         ...
-    ValueError: param x can't past or be equal to the param num!
+    ValueError: partitions can not >= number_of_bytes!
     >>> allocation_num(888, 999)
     Traceback (most recent call last):
         ...
-    ValueError: param x can't past or be equal to the param num!
+    ValueError: partitions can not >= number_of_bytes!
+    >>> allocation_num(888, -4)
+    Traceback (most recent call last):
+        ...
+    ValueError: partitions must be a positive number!
     """
+    if partitions <= 0:
+        raise ValueError('partitions must be a positive number!')
     if partitions >= number_of_bytes:
         raise ValueError('partitions can not >= number_of_bytes!')
     bytes_per_partition = number_of_bytes // partitions
@@ -40,7 +46,8 @@ def allocation_num(number_of_bytes: int, partitions: int) -> List[str]:
     for i in range(1, partitions - 1):
         length = f'{bytes_per_partition * i + 1}-{bytes_per_partition * (i + 1)}'
         allocation_list.append(length)
-    allocation_list.append(f'{(bytes_per_partition * (x - 1)) + 1}-{number_of_bytes}')
+    allocation_list.append(f'{(bytes_per_partition * (partitions - 1)) + 1}-'
+                           f'{number_of_bytes}')
     return allocation_list
 
 
