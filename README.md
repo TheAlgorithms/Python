@@ -6,11 +6,16 @@
 [![contributions welcome](https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=0059b3&style=flat-square)](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md)&nbsp;
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg?logo=paypal&style=flat-square)](https://www.paypal.me/TheAlgorithms/100)&nbsp;
 ![](https://img.shields.io/github/repo-size/TheAlgorithms/Python.svg?label=Repo%20size&style=flat-square)&nbsp;
+
 <!--[![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg?logo=python&style=flat-square)]( https://www.python.org/downloads) &nbsp;-->
 
 ### All algorithms implemented in Python (for education)
 
 These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
+
+You can run and edit the algorithms or contribute to them using [Gitpod.io](https://www.gitpod.io/), a free online development environment, with a single click.
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](http://gitpod.io/#https://github.com/TheAlgorithms/Python)
 
 ## Contribution Guidelines
 
@@ -23,3 +28,7 @@ We're on [Gitter](https://gitter.im/TheAlgorithms)! Please join us.
 ## List of Algorithms
 
 See our [directory](DIRECTORY.md).
+
+## License
+
+Licensed under the [MIT License](LICENSE.md) 
