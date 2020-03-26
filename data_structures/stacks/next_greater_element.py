@@ -57,7 +57,7 @@ next_greatest_element(arr)
 import numpy as np
 import time
 
-l = np.random.randint(10**5 , size = 10**5)
+l = np.random.randint(10**1 , size = 10**1)
 
 start = time.time()
 next_greatest_element_slow(l)
