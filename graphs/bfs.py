@@ -17,12 +17,15 @@ while Q is non-empty:
 """
 
 G = {
-    "A": ["B", "C"],
-    "B": ["A", "D", "E"],
-    "C": ["A", "F"],
-    "D": ["B"],
-    "E": ["B", "F"],
-    "F": ["C", "E"],
+    "A": ["B", "E", "C"],
+    "B": ["A", "F", "C"],
+    "C": ["A", "B", "E", "I", "H"],
+    "D": ["F"],
+    "E": ["A", "C"],
+    "F": ["G", "D", "B"],
+    "G": ["F"],
+    "H": ["I", "C"],
+    "I": ["H", "C"]
 }
 
 
@@ -31,13 +34,12 @@ def bfs(graph, start):
     >>> ''.join(sorted(bfs(G, 'A')))
     'ABCDEF'
     """
-    explored, queue = set(), [start]  # collections.deque([start])
-    explored.add(start)
+    explored, queue = [start], [start]
     while queue:
-        v = queue.pop(0)  # queue.popleft()
+        v = queue.pop(0)
         for w in graph[v]:
             if w not in explored:
-                explored.add(w)
+                explored.append(w)
                 queue.append(w)
     return explored
 
