@@ -1,9 +1,11 @@
+arr = [-10, -5, 0, 5, 5.1, 11, 13, 21, 3, 4, -21, -10, -5, -1, 0]
+
 def next_greatest_element_slow(arr):
     """
     Function to get Next Greatest Element (NGE) pair for all elements of list
     Maximum element present afterwards the current one which is also greater than current one
-    >>> next_greatest_element_slow([11, 13, 21, 3])
-    [13, 21, -1, -1]
+    >>> next_greatest_element_slow(arr)
+    [-5, 0, 5, 5.1, 11, 13, 21, -1, 4, -1, -10, -5, -1, 0, -1]
     """
     result = []
     for i in range(0, len(arr), 1):
@@ -21,8 +23,8 @@ def next_greatest_element_fast(arr):
     Like next_greatest_element_slow() but changes the loops to use
     enumerate() instead of range(len()) for the outer loop and
     for in a slice of arr in the inner loop.
-    >>> next_greatest_element_fast([11, 13, 21, 3])
-    [13, 21, -1, -1]
+    >>> next_greatest_element_fast(arr)
+    [-5, 0, 5, 5.1, 11, 13, 21, -1, 4, -1, -10, -5, -1, 0, -1]
     """
     result = []
     for i, outer in enumerate(arr):
@@ -44,8 +46,8 @@ def next_greatest_element(arr):
     time complexity as O(n^2). The better way to solve this would be to use a stack to keep track of maximum
     number givig a linear time complex solution.
     
-    >>> next_greatest_element([11, 13, 21, 3])
-    [13, 21, -1, -1]
+    >>> next_greatest_element(arr)
+    [-5, 0, 5, 5.1, 11, 13, 21, -1, 4, -1, -10, -5, -1, 0, -1]
     """
     stack = []              
     result = [-1]*len(arr)
@@ -66,9 +68,10 @@ def next_greatest_element(arr):
 
 
 if __name__ == "__main__":
+    from doctest import testmod
     from timeit import timeit
 
-    arr = [-10, -5, 0, 5, 5.1, 11, 13, 21, 3, 4, -21, -10, -5, -1, 0]
+    testmod()
     print(next_greatest_element_slow(arr))
     print(next_greatest_element_fast(arr))
     print(next_greatest_element(arr))
