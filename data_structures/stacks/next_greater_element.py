@@ -52,21 +52,3 @@ def next_greatest_element(arr):
 arr = [11, 13, 21, 3]
 next_greatest_element_slow(arr)
 next_greatest_element(arr)
-
-# To check for speed differnce lets give our function much more complex array
-import numpy as np
-import time
-
-l = np.random.randint(10**1 , size = 10**1)
-
-start = time.time()
-next_greatest_element_slow(l)
-end = time.time()
-
-print(end - start)
-
-start = time.time()
-next_greatest_element(l)
-end = time.time()
-
-print(end - start)
