@@ -7,15 +7,33 @@ def next_greatest_element_slow(arr):
     """
     result = []
     for i in range(0, len(arr), 1):
-
         next = -1
         for j in range(i + 1, len(arr), 1):
             if arr[i] < arr[j]:
                 next = arr[j]
                 break
         result.append(next)
-        
     return result
+
+
+def next_greatest_element_fast(arr):
+    """
+    Like next_greatest_element_slow() but changes the loops to use
+    enumerate() instead of range(len()) for the outer loop and
+    for in a slice of arr in the inner loop.
+    >>> next_greatest_element_fast([11, 13, 21, 3])
+    [13, 21, -1, -1]
+    """
+    result = []
+    for i, outer in enumerate(arr):
+        next = -1
+        for inner in arr[i + 1:]:
+            if outer < inner:
+                next = inner
+                break
+        result.append(next)
+    return result
+
 
 def next_greatest_element(arr):
     """
@@ -50,13 +68,16 @@ def next_greatest_element(arr):
 if __name__ == "__main__":
     from timeit import timeit
 
-    arr = [11, 13, 21, 3]
+    arr = [-10, -5, 0, 5, 5.1, 11, 13, 21, 3, 4, -21, -10, -5, -1, 0]
     print(next_greatest_element_slow(arr))
+    print(next_greatest_element_fast(arr))
     print(next_greatest_element(arr))
 
     setup = ("from __main__ import arr, next_greatest_element_slow, "
              "next_greatest_element")
     print("next_greatest_element_slow():",
           timeit("next_greatest_element_slow(arr)", setup=setup))
+    print("next_greatest_element_fast():",
+          timeit("next_greatest_element_fast(arr)", setup=setup))
     print("     next_greatest_element():",
           timeit("next_greatest_element(arr)", setup=setup))
