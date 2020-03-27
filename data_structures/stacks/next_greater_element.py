@@ -22,7 +22,7 @@ def next_greatest_element_fast(arr):
     """
     Like next_greatest_element_slow() but changes the loops to use
     enumerate() instead of range(len()) for the outer loop and
-    for in a slice of arr in the inner loop.
+    for in a slice of arr for the inner loop.
     >>> next_greatest_element_fast(arr)
     [-5, 0, 5, 5.1, 11, 13, 21, -1, 4, -1, -10, -5, -1, 0, -1]
     """
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     print(next_greatest_element(arr))
 
     setup = ("from __main__ import arr, next_greatest_element_slow, "
-             "next_greatest_element")
+             "next_greatest_element_fast, next_greatest_element")
     print("next_greatest_element_slow():",
           timeit("next_greatest_element_slow(arr)", setup=setup))
     print("next_greatest_element_fast():",
