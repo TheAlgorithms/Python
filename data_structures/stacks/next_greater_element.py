@@ -3,7 +3,7 @@ def next_greatest_element_slow(arr):
     Function to get Next Greatest Element (NGE) pair for all elements of list
     Maximum element present afterwards the current one which is also greater than current one
     >>> next_greatest_element_slow([11,13,21,3])
-    [13,21,-1,-1]
+    [13, 21, -1, -1]
     """
     result = []
     for i in range(0, len(arr), 1):
