@@ -27,7 +27,7 @@ def next_greatest_element(arr):
     number givig a linear time complex solution.
     
     >>> printNGE([11,13,21,3])
-    [13,21,-1,-1]
+    [13, 21, -1, -1]
     """
     stack = []              
     result = [-1]*len(arr)
