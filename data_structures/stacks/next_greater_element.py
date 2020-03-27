@@ -26,7 +26,7 @@ def next_greatest_element(arr):
     time complexity as O(n^2). The better way to solve this would be to use a stack to keep track of maximum
     number givig a linear time complex solution.
     
-    >>> printNGE([11,13,21,3])
+    >>> next_greatest_element([11,13,21,3])
     [13, 21, -1, -1]
     """
     stack = []              
