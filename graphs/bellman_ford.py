@@ -1,56 +1,40 @@
-from typing import Dict, List
+class Graph:
+  def __init__(self,vertices):
+    self.v=vertices
+    self.graph=[]
+  def addEdge(self,u,v,w):
+    self.graph.append([u,v,w])
+  def BellmanFord(self,source):
+    dic=[float("Inf")]*self.v
+    dic[source]=0
+
+    for i in range(self.v-1):
+      for u,v,w in self.graph:
+        if dic[u]!=float("Inf") and dic[u]+w<dic[v]:
+          dic[v]=dic[u]+w
+    
+    for u,v,w in self.graph:
+      if dic[u]!=float("Inf") and dic[u]+w<dic[v]:
+        print("Negative cycle found")
+        return
+    
+    self.printPath(dic)
+  def printPath(self,dic):
+    print("Vertex Distance from source")
+    for i in range(len(dic)):
+      print("%d \t\t %d" %(i,dic[i]))
+
+g = Graph(7) 
+g.addEdge(0,1, 6) 
+g.addEdge(0,2, 5) 
+g.addEdge(0,3, 5) 
+g.addEdge(1,4, -1) 
+g.addEdge(3,2, -2) 
+g.addEdge(2,1, -2) 
+g.addEdge(4,6, 3) 
+g.addEdge(5,6, 3) 
+g.addEdge(3,5, -1) 
+g.addEdge(2,4, 1) 
 
 
-def printDist(dist, V):
-    print("Vertex Distance")
-    distances = ("INF" if d == float("inf") else d for d in dist)
-    print("\t".join(f"{i}\t{d}" for i, d in enumerate(distances)))
-
-
-def BellmanFord(graph: List[Dict[str, int]], V: int, E: int, src: int) -> int:
-    """
-    Returns shortest paths from a vertex src to all 
-    other vertices.
-    """
-    mdist = [float("inf") for i in range(V)]
-    mdist[src] = 0.0
-
-    for i in range(V - 1):
-        for j in range(E):
-            u = graph[j]["src"]
-            v = graph[j]["dst"]
-            w = graph[j]["weight"]
-
-            if mdist[u] != float("inf") and mdist[u] + w < mdist[v]:
-                mdist[v] = mdist[u] + w
-    for j in range(E):
-        u = graph[j]["src"]
-        v = graph[j]["dst"]
-        w = graph[j]["weight"]
-
-        if mdist[u] != float("inf") and mdist[u] + w < mdist[v]:
-            print("Negative cycle found. Solution not possible.")
-            return
-
-    printDist(mdist, V)
-    return src
-
-
-if __name__ == "__main__":
-    V = int(input("Enter number of vertices: ").strip())
-    E = int(input("Enter number of edges: ").strip())
-
-    graph = [dict() for j in range(E)]
-
-    for i in range(E):
-        graph[i][i] = 0.0
-
-    for i in range(E):
-        print("\nEdge ", i + 1)
-        src = int(input("Enter source:").strip())
-        dst = int(input("Enter destination:").strip())
-        weight = float(input("Enter weight:").strip())
-        graph[i] = {"src": src, "dst": dst, "weight": weight}
-
-    gsrc = int(input("\nEnter shortest path source:").strip())
-    BellmanFord(graph, V, E, gsrc)
+g.BellmanFord(0) 
