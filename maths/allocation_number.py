@@ -38,19 +38,21 @@ def allocation_num(number_of_bytes: int, partitions: int) -> List[str]:
     ValueError: partitions must be a positive number!
     """
     if partitions <= 0:
-        raise ValueError('partitions must be a positive number!')
+        raise ValueError("partitions must be a positive number!")
     if partitions >= number_of_bytes:
-        raise ValueError('partitions can not >= number_of_bytes!')
+        raise ValueError("partitions can not >= number_of_bytes!")
     bytes_per_partition = number_of_bytes // partitions
-    allocation_list = [f'0-{bytes_per_partition}']
+    allocation_list = [f"0-{bytes_per_partition}"]
     for i in range(1, partitions - 1):
-        length = f'{bytes_per_partition * i + 1}-{bytes_per_partition * (i + 1)}'
+        length = f"{bytes_per_partition * i + 1}-{bytes_per_partition * (i + 1)}"
         allocation_list.append(length)
-    allocation_list.append(f'{(bytes_per_partition * (partitions - 1)) + 1}-'
-                           f'{number_of_bytes}')
+    allocation_list.append(
+        f"{(bytes_per_partition * (partitions - 1)) + 1}-" f"{number_of_bytes}"
+    )
     return allocation_list
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
