@@ -40,7 +40,7 @@ def rabin_karp(pattern, text):
             return True
         if i == t_len - p_len:
             continue
-        # Calculating the ruling hash
+        # Calculating the rolling hash
         text_hash = (
             (text_hash - ord(text[i]) * modulus_power) * alphabet_size
             + ord(text[i + p_len])
