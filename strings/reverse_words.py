@@ -1,4 +1,5 @@
 # Created by sarathkaul on 18/11/19
+# Edited by farnswj1 on 4/4/20
 
 
 def reverse_words(input_str: str) -> str:
@@ -13,10 +14,7 @@ def reverse_words(input_str: str) -> str:
     input_str = input_str.split(" ")
     new_str = list()
 
-    for a_word in input_str:
-        new_str.insert(0, a_word)
-
-    return " ".join(new_str)
+    return ' '.join(reversed(input_str))
 
 
 if __name__ == "__main__":
