@@ -1,4 +1,4 @@
-class Node:  # This is the Class Node with constructor that contains data variable to type data and left,right pointers.
+class Node:  # This is the Class Node with a constructor that contains data variable to type data and left, right pointers.
     def __init__(self, data):
         self.data = data
         self.left = None
@@ -37,7 +37,7 @@ def depth_of_tree(
 
 def is_full_binary_tree(
     tree,
-):  # This functions returns that is it full binary tree or not?
+):  # This function returns that is it full binary tree or not?
     if tree is None:
         return True
     if (tree.left is None) and (tree.right is None):
@@ -48,7 +48,7 @@ def is_full_binary_tree(
         return False
 
 
-def main():  # Main func for testing.
+def main():  # Main function for testing.
     tree = Node(1)
     tree.left = Node(2)
     tree.right = Node(3)
