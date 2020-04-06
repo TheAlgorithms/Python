@@ -1,8 +1,8 @@
 class things:
-    def __init__(self, n, v, w):
-        self.name = n
-        self.value = v
-        self.weight = w
+    def __init__(self, name, value, weight):
+        self.name = name
+        self.value = value
+        self.weight = weight
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.name}, {self.value}, {self.weight})"
