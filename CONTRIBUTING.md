@@ -70,7 +70,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   We encourage you to put docstrings inside your functions but please pay attention to indentation of docstrings. The following is a good example:
 
   ```python
-  def sumab(a, b):
+  def sum_ab(a, b):
       """
       Return the sum of two integers a and b.
       """
