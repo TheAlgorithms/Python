@@ -1,4 +1,4 @@
-# Welcome to Quatum Algorithms
+# Welcome to Quantum Algorithms
 
 Started at https://github.com/TheAlgorithms/Python/issues/1831
 
