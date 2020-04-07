@@ -1,16 +1,16 @@
 # Created by sarathkaul on 12/11/19
 
 
-def check_panagram(
+def check_pangram(
     input_str: str = "The quick brown fox jumps over the lazy dog",
 ) -> bool:
     """
-    A Panagram String contains all the alphabets at least once.
-    >>> check_panagram("The quick brown fox jumps over the lazy dog")
+    A Pangram String contains all the alphabets at least once.
+    >>> check_pangram("The quick brown fox jumps over the lazy dog")
     True
-    >>> check_panagram("My name is Unknown")
+    >>> check_pangram("My name is Unknown")
     False
-    >>> check_panagram("The quick brown fox jumps over the la_y dog")
+    >>> check_pangram("The quick brown fox jumps over the la_y dog")
     False
     """
     frequency = set()
@@ -26,5 +26,5 @@ def check_panagram(
 
 if __name__ == "main":
     check_str = "INPUT STRING"
-    status = check_panagram(check_str)
-    print(f"{check_str} is {'not ' if status else ''}a panagram string")
+    status = check_pangram(check_str)
+    print(f"{check_str} is {'not ' if status else ''}a pangram string")
