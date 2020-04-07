@@ -2,7 +2,6 @@
 
 
 def decimal_to_binary(num):
-
     """
         Convert a Integer Decimal Number to a Binary Number as str.
         >>> decimal_to_binary(0)
@@ -44,7 +43,11 @@ def decimal_to_binary(num):
 
     binary = []
     while num > 0:
-        binary.insert(0, num % 2)
+        # Using the & operation, we can check if a number x is even because
+        # num & 1 = 0 if num is even
+        # More generally , num is divisible by 2k exactly when num & (2k − 1) = 0
+        # what better way to convert to binary than using bit operators
+        binary.insert(0, num & 1)
         num >>= 1
 
     if negative:
