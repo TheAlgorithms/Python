@@ -21,9 +21,7 @@ def display(tree):  # In Order traversal of the tree
     return
 
 
-def depth_of_tree(
-    tree,
-):  # This is the recursive function to find the depth of binary tree.
+def depth_of_tree(tree):  # This is the recursive function to find the depth of binary tree.
     if tree is None:
         return 0
     else:
@@ -35,9 +33,7 @@ def depth_of_tree(
             return 1 + depth_r_tree
 
 
-def is_full_binary_tree(
-    tree,
-):  # This function returns that is it full binary tree or not?
+def is_full_binary_tree(tree):  # This function returns that is it full binary tree or not?
     if tree is None:
         return True
     if (tree.left is None) and (tree.right is None):
