@@ -271,6 +271,7 @@
   * [Abs](https://github.com/TheAlgorithms/Python/blob/master/maths/abs.py)
   * [Abs Max](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_max.py)
   * [Abs Min](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_min.py)
+  * [Allocation Number](https://github.com/TheAlgorithms/Python/blob/master/maths/allocation_number.py)
   * [Area Under Curve](https://github.com/TheAlgorithms/Python/blob/master/maths/area_under_curve.py)
   * [Armstrong Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/armstrong_numbers.py)
   * [Average Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mean.py)
@@ -581,7 +582,7 @@
 ## Strings
   * [Aho-Corasick](https://github.com/TheAlgorithms/Python/blob/master/strings/aho-corasick.py)
   * [Boyer Moore Search](https://github.com/TheAlgorithms/Python/blob/master/strings/boyer_moore_search.py)
-  * [Check Panagram](https://github.com/TheAlgorithms/Python/blob/master/strings/check_panagram.py)
+  * [Check Pangram](https://github.com/TheAlgorithms/Python/blob/master/strings/check_pangram.py)
   * [Knuth Morris Pratt](https://github.com/TheAlgorithms/Python/blob/master/strings/knuth_morris_pratt.py)
   * [Levenshtein Distance](https://github.com/TheAlgorithms/Python/blob/master/strings/levenshtein_distance.py)
   * [Lower](https://github.com/TheAlgorithms/Python/blob/master/strings/lower.py)
