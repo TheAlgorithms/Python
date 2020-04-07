@@ -139,7 +139,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 #### Other Standard While Submitting Your Work
 
-- File extension for code should be `.py`. Jupiter notebook files are acceptable in machine learning algorithms.
+- File extension for code should be `.py`. Jupyter notebook files are acceptable in machine learning algorithms.
 - Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
 - If possible, follow the standard *within* the folder you are submitting to.
