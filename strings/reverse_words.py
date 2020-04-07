@@ -14,7 +14,7 @@ def reverse_words(input_str: str) -> str:
     input_str = input_str.split(" ")
     new_str = list()
 
-    return ' '.join(reversed(input_str))
+    return " ".join(reversed(input_str))
 
 
 if __name__ == "__main__":
