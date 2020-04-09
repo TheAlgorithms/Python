@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, data):  
+    def __init__(self, data:int) -> int:  
         self.data = data  
         self.next = None 
 
@@ -7,12 +7,12 @@ class LinkedList:
     def __init__(self): 
         self.head = None
 
-    def push(self, new_data): 
+    def push(self, new_data:int) -> int: 
         new_node = Node(new_data) 
         new_node.next = self.head 
         self.head = new_node
 
-    def middle_element(self):
+    def middle_element(self) -> int:
         slow_pointer = self.head
         fast_pointer = self.head
 
@@ -25,9 +25,9 @@ class LinkedList:
 
 if __name__ == "__main__":
     link = LinkedList()
-    N = int(input())
+    N = int(input().strip())
 
     for i in range(N):
-        data = int(input())
+        data = int(input().strip())
         link.push(data)
     print(link.middle_element())
