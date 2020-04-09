@@ -1,42 +1,24 @@
-# From Google Find the middle element of a linked list.....
-
-#Node Setup
 class Node:
+    def __init__(self, data):  
+        self.data = data  
+        self.next = None 
 
-    def __init__(self, data, next):
+class LinkedList: 
+    def __init__(self): 
+        self.head = None
 
-        self.data = data
-        self.next = next
+    def push(self, new_data): 
+        new_node = Node(new_data) 
+        new_node.next = self.head 
+        self.head = new_node
 
-# setup some nodes and connect them to each other
-# the linked list looks like:
-# (head) n5 -> n4 -> n3 -> n2 -> n1 -> None
+    def middle_element(self):
+        slow_pointer = self.head
+        fast_pointer = self.head
 
-if __name__ == "__main__":
-    node1 = Node("hello", None)
-    node2 = Node("Deniel", node1)
-    node3 = Node("Blue", node2)
-    node4 = Node("Green", node3)
-    node5 = Node("Me", node4)
-
-    # assign a node to the head which functions
-    # as the entry into our linked list
-
-    head = node5
-
-    # setup pointers to both start
-    # at the head of the linked list
-
-    fastPointer = head
-    slowPointer = head
-
-    # loop through the linked list
-    # when fastPointer reaches the end of the list
-    # then slowPointer will be at the middle node
-
-    while fastPointer.next != None and fastPointer.next.next != None:
-        fastPointer = fastPointer.next.next
-        slowPointer = slowPointer.next
-
-    # slowPointer is now at the middle node in the linked list
-    print(slowPointer.data)
+        if self.head is not None: 
+            while (fast_pointer is not None and fast_pointer.next is not None): 
+                fast_pointer = fast_pointer.next.next
+                slow_pointer = slow_pointer.next
+            
+            return slow_pointer.data
