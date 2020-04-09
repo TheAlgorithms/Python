@@ -22,3 +22,12 @@ class LinkedList:
                 slow_pointer = slow_pointer.next
             
             return slow_pointer.data
+
+if __name__ == "__main__":
+    link = LinkedList()
+    N = int(input())
+
+    for i in range(N):
+        data = int(input())
+        link.push(data)
+    print(link.middle_element())
