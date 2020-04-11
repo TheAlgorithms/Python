@@ -13,6 +13,16 @@ class LinkedList:
         self.head = new_node
 
     def middle_element(self) -> int:
+        '''
+        >>> link = LinkedList()
+        >>> link.push(4)
+        >>> link.push(3)
+        >>> link.push(8)
+        >>> link.push(7)
+        >>> link.push(9)
+        >>> link.push(11)
+        >>> link.middle_element()
+        '''
         slow_pointer = self.head
         fast_pointer = self.head
 
@@ -24,16 +34,6 @@ class LinkedList:
             return slow_pointer.data
 
 if __name__ == "__main__":
-    '''
-    >>> link = LinkedList()
-    >>> link.push(4)
-    >>> link.push(3)
-    >>> link.push(8)
-    >>> link.push(7)
-    >>> link.push(9)
-    >>> link.push(11)
-    >>> link.middle_element()
-    '''
     link = LinkedList()
     N = int(input().strip())
 
