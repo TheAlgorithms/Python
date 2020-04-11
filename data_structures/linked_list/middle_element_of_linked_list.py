@@ -16,11 +16,17 @@ class LinkedList:
         '''
         >>> link = LinkedList()
         >>> link.push(4)
+        4
         >>> link.push(3)
+        3
         >>> link.push(8)
+        8
         >>> link.push(7)
+        7
         >>> link.push(9)
+        9
         >>> link.push(11)
+        11
         >>> link.middle_element()
         '''
         slow_pointer = self.head
