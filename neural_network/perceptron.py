@@ -40,9 +40,7 @@ class Perceptron:
         if len(self.target) == 0:
             raise ValueError("Target data can not be empty")
         if len(self.sample) != len(self.target):
-            raise ValueError(
-                "Sample data and Target data do not have matching lengths"
-            )
+            raise ValueError("Sample data and Target data do not have matching lengths")
         self.learning_rate = learning_rate
         self.epoch_number = epoch_number
         self.bias = bias
