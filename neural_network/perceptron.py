@@ -98,7 +98,7 @@ class Perceptron:
         """
         :param sample: example row to classify as P1 or P2
         :return: None
-        >>> Perceptron((0, 1, 2), (0, 1, 2)).sort([])
+        >>> Perceptron(([0], 1, 2), (0, 1, 2)).sort([])
         Traceback (most recent call last):
         ...
         ValueError: Sample data can not be empty
