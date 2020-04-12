@@ -34,8 +34,12 @@ class LinkedList:
         7
         >>> link.push(3)
         3
+        >>> link.push(20)
+        20
+        >>> link.push(-20)
+        -20
         >>> link.middle_element()
-        10
+        12
         >>> 
         '''
         slow_pointer = self.head
