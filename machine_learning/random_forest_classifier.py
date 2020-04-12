@@ -10,11 +10,11 @@ import matplotlib.pyplot as plt
 def main():
 
     """
-    Random Tree Classifier Example using sklearn function.
+    Random Forest Classifier Example using sklearn function.
     Iris type dataset is used to demonstrate algorithm.
     """
 
-    # Load Iris house price dataset
+    # Load Iris dataset
     iris = load_iris()
 
     # Split dataset into train and test data
