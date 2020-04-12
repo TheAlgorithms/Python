@@ -28,7 +28,7 @@ class Perceptron:
         Traceback (most recent call last):
         ...
         ValueError: Target data can not be empty
-        >>> p = Perceptron((0, 1, 2), (0, 1))
+        >>> p = Perceptron(([0], 1, 2), (0, 1))
         Traceback (most recent call last):
         ...
         ValueError: Sample data and Target data do not have matching lengths
