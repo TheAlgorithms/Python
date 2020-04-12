@@ -24,7 +24,7 @@ class Perceptron:
         Traceback (most recent call last):
         ...
         ValueError: Sample data can not be empty
-        >>> p = Perceptron((0, 1, 2), [])
+        >>> p = Perceptron(([0], 1, 2), [])
         Traceback (most recent call last):
         ...
         ValueError: Target data can not be empty
