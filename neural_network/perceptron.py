@@ -19,15 +19,28 @@ class Perceptron:
         :param learning_rate: learning rate used in optimizing.
         :param epoch_number: number of epochs to train network on.
         :param bias: bias value for the network.
+
+        >>> p = Perceptron([], (0, 1, 2))
+        Traceback (most recent call last):
+        ...
+        ValueError: Sample data can not be empty
+        >>> p = Perceptron((0, 1, 2), [])
+        Traceback (most recent call last):
+        ...
+        ValueError: Target data can not be empty
+        >>> p = Perceptron((0, 1, 2), (0, 1))
+        Traceback (most recent call last):
+        ...
+        ValueError: Sample data and Target data do not have matching lengths
         """
         self.sample = sample
         if len(self.sample) == 0:
-            raise AttributeError("Sample data can not be empty")
+            raise ValueError("Sample data can not be empty")
         self.target = target
         if len(self.target) == 0:
-            raise AttributeError("Target data can not be empty")
+            raise ValueError("Target data can not be empty")
         if len(self.sample) != len(self.target):
-            raise AttributeError(
+            raise ValueError(
                 "Sample data and Target data do not have matching lengths"
             )
         self.learning_rate = learning_rate
@@ -87,6 +100,10 @@ class Perceptron:
         """
         :param sample: example row to classify as P1 or P2
         :return: None
+        >>> Perceptron((0, 1, 2), (0, 1, 2)).sort([])
+        Traceback (most recent call last):
+        ...
+        ValueError: Sample data can not be empty
         >>> data = [[2.0149, 0.6192, 10.9263]]
         >>> targets = [-1]
         >>> perceptron = Perceptron(data,targets)
@@ -98,7 +115,7 @@ class Perceptron:
         classification: P...
         """
         if len(self.sample) == 0:
-            raise AttributeError("Sample data can not be empty")
+            raise ValueError("Sample data can not be empty")
         sample.insert(0, self.bias)
         u = 0
         for i in range(self.col_sample + 1):
