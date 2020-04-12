@@ -82,7 +82,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ```python
   def sum_ab(a, b):
       """
-      Returns the sum of two integers a and b
+      Return the sum of two integers a and b
       >>> sum_ab(2, 2)
       4
       >>> sum_ab(-2, 3)
@@ -116,8 +116,8 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](http://mypy-lang.org) so run that locally before making your submission.
 
   ```python
-  def sumab(a: int, b: int) --> int:
-      pass
+  def sum_ab(a: int, b: int) --> int:
+      return a + b
   ```
 
 - [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
