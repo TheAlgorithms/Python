@@ -91,7 +91,7 @@ class HillCipher:
         >>> HillCipher(numpy.matrix([[2,5],[1,6]])).check_determinant()
         >>>
         """
-        det = round(numpy.linalg.det(self.encrypt_key))
+        det: int = round(numpy.linalg.det(self.encrypt_key))
 
         if det < 0:
             det = det % len(self.key_string)
@@ -110,8 +110,8 @@ class HillCipher:
         'TESTINGHILLCIPHERR'
         >>>
         """
-        text = list(text.upper())
-        text = [char for char in text if char in self.key_string]
+        text: list = list(text.upper())
+        text: list = [char for char in text if char in self.key_string]
 
         last = text[-1]
         while len(text) % self.break_key != 0:
@@ -147,10 +147,10 @@ class HillCipher:
         matrix([[  6.,  25.],
                 [  5.,  26.]])
         """
-        det = round(numpy.linalg.det(self.encrypt_key))
+        det: int = round(numpy.linalg.det(self.encrypt_key))
 
         if det < 0:
-            det = det % len(self.key_string)
+            det: int = det % len(self.key_string)
         det_inv = None
         for i in range(len(self.key_string)):
             if (det * i) % len(self.key_string) == 1:
@@ -208,7 +208,7 @@ Your encrypted text is:
 WHXYJOLM9C6XT085LL
 """
     N = int(input("Enter the order of the encryption key: "))
-    hill_matrix = []
+    hill_matrix: list = []
 
     print("Enter each row of the encryption key with space separated integers")
     for i in range(N):
