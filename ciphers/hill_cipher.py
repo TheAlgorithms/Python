@@ -56,9 +56,6 @@ class HillCipher:
     # This cipher takes alphanumerics into account
     # i.e. a total of 36 characters
 
-    # replaceLetters = lambda self, letter: self.key_string.index(letter)
-    # replaceNumbers = lambda self, num: self.key_string[int(round(num))]
-
     # take x and return x % len(key_string)
     modulus = numpy.vectorize(lambda x: x % 36)
 
