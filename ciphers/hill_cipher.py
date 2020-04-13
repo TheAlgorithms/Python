@@ -144,8 +144,8 @@ class HillCipher:
     def make_decrypt_key(self):
         """
         >>> HillCipher(numpy.matrix([[2,5],[1,6]])).make_decrypt_key()
-        matrix([[  6.,  25.],
-                [  5.,  26.]])
+        matrix([[ 6., 25.],
+                [ 5., 26.]])
         """
         det: int = round(numpy.linalg.det(self.encrypt_key))
 
