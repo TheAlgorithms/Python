@@ -58,8 +58,9 @@ def get_FT(EA):
     support=[]
     for i in range(len(Sorted_FT)): 
         nodes.setdefault(Sorted_FT[i][2],[]).append(Sorted_FT[i][0])
-    for i in nodes.keys():
-        cluster.setdefault(i.count('1'),{})[i]=nodes[i]
+    for key, value in nodes.items():
+        cluster.setdefault(key.count('1'), {})[key] = value
+
     for i in cluster.keys():
         support.append(i*100/len(cluster.keys())) 
         
