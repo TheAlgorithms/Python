@@ -14,9 +14,9 @@ def get_distinct_edge(edge_array):
     '''
     distinct_edge=set()
 
-    for i in enumerate(edge_array):    
-        for j in enumerate(i[1]):
-            distinct_edge.add(j[1][0])
+    for i,row in enumerate(edge_array):    
+        for j,item in enumerate(row):
+            distinct_edge.add(item[0])
 
     return list(distinct_edge)
 
@@ -26,11 +26,12 @@ def get_bitcode(edge_array,distinct_edge):
     '''
     bitcode=['0' for i in enumerate(edge_array)]
     
-    for i in enumerate(edge_array):
-        for j in enumerate(i[1]):
-            if distinct_edge in j[1][0]:
-                bitcode[i[0]]='1'
+    for i,row in enumerate(edge_array):
+        for j,item in enumerate(row):
+            if distinct_edge in item[0]:
+                bitcode[i]='1'
                 break
+
             
     return bitcode
 
@@ -41,11 +42,11 @@ def get_frequency_table(edge_array):
     distinct_edge=get_distinct_edge(edge_array) 
     frequency_table=dict()
     
-    for i in enumerate(distinct_edge):
-        bit=get_bitcode(edge_array,i[1])
+    for i,item in enumerate(distinct_edge):
+        bit=get_bitcode(edge_array,item)
         bt=''.join(bit)
         s=bt.count('1')
-        frequency_table[i[1]]=[s,bt]
+        frequency_table[item]=[s,bt]
     '''
     Store [Distinct edge, WT(Bitcode), Bitcode] in Descending order
     '''
@@ -60,8 +61,8 @@ def get_frequency_table(edge_array):
     nodes={}
     support=[]
 
-    for i in enumerate(sorted_frequency_table):
-        nodes.setdefault(i[1][2],[]).append(i[1][0])
+    for i,item in enumerate(sorted_frequency_table):
+        nodes.setdefault(item[2],[]).append(item[0])
         
     for key,value in nodes.items():
         cluster.setdefault(key.count('1'),{})[key]=value
