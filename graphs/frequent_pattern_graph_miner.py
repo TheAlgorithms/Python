@@ -8,7 +8,9 @@ This graph can be used to efficiently mine frequent subgraphs including maximal 
 URL:https://www.researchgate.net/publication/235255851_FP-GraphMiner_-_A_Fast_Frequent_Pattern_Mining_Algorithm_for_Network_Graphs
 
 '''
-def get_distinct_edge(edge_array):
+from typing import List
+
+def get_distinct_edge(edge_array: List[List[str]]) -> List[str]:
     '''
     Return Distinct edges from edge array of multiple graphs
     '''
