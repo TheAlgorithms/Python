@@ -16,8 +16,7 @@ def get_DE(EA):
     for i in range(len(EA)):
         for j in range(len(EA[i])):
             DE.add(EA[i][j][0])
-    de=list(DE)
-    return(de) 
+    return list(DE)  # avoid unneeded parens and avoid creating variables that only last for one line.
 
 def get_bitcode(EA,DE):
     '''
