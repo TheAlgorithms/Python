@@ -27,7 +27,7 @@ def main():
     )
 
     # Random Forest Classifier
-    XGB_model = XGBClassifier()
+    XGB_model = XGBClassifier(n_estimators = 200, learning_rate = 0.1)
     XGB_model.fit(x_train, y_train)
 
     # Display Confusion Matrix of XGBClassifier
