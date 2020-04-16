@@ -9,7 +9,7 @@ clothes = {
     5: "socks",
     6: "shirt",
     7: "tie",
-    8: "clock",
+    8: "watch",
 }
 
 graph = [[1, 4], [2, 4], [3], [], [], [4], [2, 7], [3], []]
@@ -21,27 +21,27 @@ stack = []
 def print_stack(stack, clothes):
     order = 1
     while stack:
-        cur_clothe = stack.pop()
-        print(order, clothes[cur_clothe])
+        current_clothing = stack.pop()
+        print(order, clothes[current_clothing])
         order += 1
 
 
-def dfs(u, visited, graph):
+def depth_first_search(u, visited, graph):
     visited[u] = 1
     for v in graph[u]:
         if not visited[v]:
-            dfs(v, visited, graph)
+            depth_first_search(v, visited, graph)
 
     stack.append(u)
 
 
-def top_sort(graph, visited):
+def topological_sort(graph, visited):
     for v in range(len(graph)):
         if not visited[v]:
-            dfs(v, visited, graph)
+            depth_first_search(v, visited, graph)
 
 
 if __name__ == "__main__":
-    top_sort(graph, visited)
+    topological_sort(graph, visited)
     print(stack)
     print_stack(stack, clothes)
