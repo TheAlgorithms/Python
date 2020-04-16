@@ -1,6 +1,6 @@
 # XG Boost Classifier Example
 
-pip3 install xgboost   # run only for first time if you don't have xgboost
+#pip install xgboost   # run only for first time if you don't have xgboost
 
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
