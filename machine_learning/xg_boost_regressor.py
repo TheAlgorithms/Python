@@ -36,6 +36,10 @@ def main():
     print(f"Mean Absolute Error:\t {mean_absolute_error(y_test, predictions)}")
     print(f"Mean Square Error  :\t {mean_squared_error(y_test, predictions)}")
 
+    """      Output
+    Mean Absolute Error:	 2.058791602285285
+    Mean Square Error  :	 7.040962967644178  """
+    
 
 if __name__ == "__main__":
     main()
