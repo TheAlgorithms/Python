@@ -1,5 +1,5 @@
 """
-    Implemented an algorithm using opencv to tone an image with sepia technic
+    Implemented an algorithm using opencv to tone an image with sepia technique
 """
 
 from cv2 import imread, imshow, waitKey, destroyAllWindows
