@@ -38,7 +38,7 @@ class Graph:
         print(startVertex, end=" ")
 
         # Recur for all the vertices that are adjacent to this node
-        for i in self.vertex.keys():
+        for i in self.vertex[startVertex]:
             if visited[i] == False:
                 self.DFSRec(i, visited)
 
