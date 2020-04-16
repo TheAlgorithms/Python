@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the quick sort algorithm
+This is a pure Python implementation of the quick sort algorithm
 
 For doctests run following command:
 python -m doctest -v quick_sort.py
@@ -9,10 +9,9 @@ python3 -m doctest -v quick_sort.py
 For manual testing run:
 python quick_sort.py
 """
-from __future__ import print_function
 
 
-def quick_sort(ARRAY):
+def quick_sort(collection):
     """Pure implementation of quick sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -29,22 +28,24 @@ def quick_sort(ARRAY):
     >>> quick_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    ARRAY_LENGTH = len(ARRAY)
-    if( ARRAY_LENGTH <= 1):
-        return ARRAY
+    length = len(collection)
+    if length <= 1:
+        return collection
     else:
-        PIVOT = ARRAY[0]
-        GREATER = [ element for element in ARRAY[1:] if element > PIVOT ]
-        LESSER = [ element for element in ARRAY[1:] if element <= PIVOT ]
-        return quick_sort(LESSER) + [PIVOT] + quick_sort(GREATER)
+        # Use the last element as the first pivot
+        pivot = collection.pop()
+        # Put elements greater than pivot in greater list
+        # Put elements lesser than pivot in lesser list
+        greater, lesser = [], []
+        for element in collection:
+            if element > pivot:
+                greater.append(element)
+            else:
+                lesser.append(element)
+        return quick_sort(lesser) + [pivot] + quick_sort(greater)
 
 
-if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [ int(item) for item in user_input.split(',') ]
-    print( quick_sort(unsorted) )
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(quick_sort(unsorted))

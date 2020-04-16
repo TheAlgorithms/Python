@@ -1,7 +1,7 @@
 # Finding Bridges in Undirected Graph
 def computeBridges(l):
     id = 0
-    n = len(l) # No of vertices in graph
+    n = len(l)  # No of vertices in graph
     low = [0] * n
     visited = [False] * n
 
@@ -23,9 +23,20 @@ def computeBridges(l):
 
     bridges = []
     for i in range(n):
-        if (not visited[i]):
+        if not visited[i]:
             dfs(i, -1, bridges, id)
     print(bridges)
-            
-l = {0:[1,2], 1:[0,2], 2:[0,1,3,5], 3:[2,4], 4:[3], 5:[2,6,8], 6:[5,7], 7:[6,8], 8:[5,7]}
+
+
+l = {
+    0: [1, 2],
+    1: [0, 2],
+    2: [0, 1, 3, 5],
+    3: [2, 4],
+    4: [3],
+    5: [2, 6, 8],
+    6: [5, 7],
+    7: [6, 8],
+    8: [5, 7],
+}
 computeBridges(l)

@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the selection sort algorithm
+This is a pure Python implementation of the selection sort algorithm
 
 For doctests run following command:
 python -m doctest -v selection_sort.py
@@ -9,7 +9,6 @@ python3 -m doctest -v selection_sort.py
 For manual testing run:
 python selection_sort.py
 """
-from __future__ import print_function
 
 
 def selection_sort(collection):
@@ -36,18 +35,12 @@ def selection_sort(collection):
         for k in range(i + 1, length):
             if collection[k] < collection[least]:
                 least = k
-        collection[least], collection[i] = (
-            collection[i], collection[least]
-        )
+        if least != i:
+            collection[least], collection[i] = (collection[i], collection[least])
     return collection
 
 
-if __name__ == '__main__':
-    try:
-        raw_input          # Python 2
-    except NameError:
-        raw_input = input  # Python 3
-
-    user_input = raw_input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [int(item) for item in user_input.split(',')]
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
     print(selection_sort(unsorted))
