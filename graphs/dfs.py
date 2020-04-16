@@ -15,19 +15,14 @@ def dfs(graph, start):
      behaviour precisely using a stack of iterators. Instead of recursively calling with a node, we'll push an iterator
       to the node's children onto the iterator stack. When the iterator at the top of the stack terminates, we'll pop
        it off the stack."""
-    explored, stack = set(), [start]
+    explored, stack = set(start), [start]
     while stack:
         v = (
             stack.pop()
         )  # one difference from BFS is to pop last element here instead of first one
-
-        if v in explored:
-            continue
-
-        explored.add(v)
-
         for w in graph[v]:
             if w not in explored:
+                explored.add(w)
                 stack.append(w)
     return explored
 
