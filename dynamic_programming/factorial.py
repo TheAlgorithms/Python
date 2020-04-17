@@ -1,6 +1,4 @@
 # Factorial of a number using memoization
-result = [-1] * 10
-result[0] = result[1] = 1
 
 
 def factorial(num):
@@ -12,25 +10,25 @@ def factorial(num):
     >>> [factorial(i) for i in range(5)]
     [1, 1, 2, 6, 24]
     """
+    result = [-1] * (num + 1)
 
     if num < 0:
         return "Number should not be negative."
+
+    return factorial_aux(num, result)
+
+
+def factorial_aux(num, result):
+
+    if num == 0 or num == 1:
+        return 1
+
     if result[num] != -1:
         return result[num]
     else:
-        result[num] = num * factorial(num - 1)
-        # uncomment the following to see how recalculations are avoided
-        # print(result)
+        result[num] = num * factorial_aux(num - 1, result)
         return result[num]
 
-
-# factorial of num
-# uncomment the following to see how recalculations are avoided
-##result=[-1]*10
-##result[0]=result[1]=1
-##print(factorial(5))
-# print(factorial(3))
-# print(factorial(7))
 
 if __name__ == "__main__":
     import doctest
