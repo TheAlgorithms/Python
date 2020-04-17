@@ -43,4 +43,4 @@ G = {
 }
 
 if __name__ == "__main__":
-    print(dfs(G, "A"))
+    print(depth_first_search(G, "A"))
