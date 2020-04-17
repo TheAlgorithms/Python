@@ -10,8 +10,8 @@ from sklearn.metrics import mean_squared_error
 def main():
 
     """
-    Random Tree Regressor Example using sklearn function.
-    Boston house price dataset is used to demonstrate algorithm.
+    Random Forest Regressor Example using sklearn function.
+    Boston house price dataset is used to demonstrate the algorithm.
     """
 
     # Load Boston house price dataset
