@@ -15,7 +15,7 @@ Pseudocode:
 from typing import Set, Dict
 
 
-def dfs(graph: Dict, start: str) -> Set[int]:
+def depth_first_search(graph: Dict, start: str) -> Set[int]:
     """Depth First Search on Graph
 
        :param graph: directed graph in dictionary format
