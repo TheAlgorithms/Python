@@ -24,9 +24,7 @@ def dfs(graph: Dict, start: str) -> Set[int]:
     """
     explored, stack = set(start), [start]
     while stack:
-        v = (
-            stack.pop()
-        )
+        v = stack.pop()
         # one difference from BFS is to pop last element here instead of first one
         for w in graph[v]:
             if w not in explored:
