@@ -1,65 +1,59 @@
-#!/usr/bin/python
+"""The DFS function simply calls itself recursively for every unvisited child of 
+its argument. We can emulate that behaviour precisely using a stack of iterators. 
+Instead of recursively calling with a node, we'll push an iterator to the node's 
+children onto the iterator stack. When the iterator at the top of the stack
+terminates, we'll pop it off the stack.
 
-""" Author: OMKAR PATHAK """
+Pseudocode:
+    all nodes initially unexplored
+    mark s as explored
+    for every edge (s, v):
+        if v unexplored:
+            DFS(G, v)
+"""
+
+from typing import Set, Dict
 
 
-class Graph:
-    def __init__(self):
-        self.vertex = {}
+def depth_first_search(graph: Dict, start: str) -> Set[int]:
+    """Depth First Search on Graph
 
-    # for printing the Graph vertices
-    def printGraph(self):
-        print(self.vertex)
-        for i in self.vertex.keys():
-            print(i, " -> ", " -> ".join([str(j) for j in self.vertex[i]]))
+       :param graph: directed graph in dictionary format
+       :param vertex: starting vectex as a string
+       :returns: the trace of the search
+       >>> G = { "A": ["B", "C", "D"], "B": ["A", "D", "E"], 
+       ... "C": ["A", "F"], "D": ["B", "D"], "E": ["B", "F"],
+       ... "F": ["C", "E", "G"], "G": ["F"] }
+       >>> start = "A"
+       >>> output_G = list({'A', 'B', 'C', 'D', 'E', 'F', 'G'})
+       >>> all(x in output_G for x in list(depth_first_search(G, "A")))
+       True
+       >>> all(x in output_G for x in list(depth_first_search(G, "G")))
+       True
+    """
+    explored, stack = set(start), [start]
+    while stack:
+        v = stack.pop()
+        # one difference from BFS is to pop last element here instead of first one
+        for w in graph[v]:
+            if w not in explored:
+                explored.add(w)
+                stack.append(w)
+    return explored
 
-    # for adding the edge between two vertices
-    def addEdge(self, fromVertex, toVertex):
-        # check if vertex is already present,
-        if fromVertex in self.vertex.keys():
-            self.vertex[fromVertex].append(toVertex)
-        else:
-            # else make a new vertex
-            self.vertex[fromVertex] = [toVertex]
 
-    def DFS(self):
-        # visited array for storing already visited nodes
-        visited = [False] * len(self.vertex)
-
-        # call the recursive helper function
-        for i in range(len(self.vertex)):
-            if visited[i] == False:
-                self.DFSRec(i, visited)
-
-    def DFSRec(self, startVertex, visited):
-        # mark start vertex as visited
-        visited[startVertex] = True
-
-        print(startVertex, end=" ")
-
-        # Recur for all the vertices that are adjacent to this node
-        for i in self.vertex.keys():
-            if visited[i] == False:
-                self.DFSRec(i, visited)
-
+G = {
+    "A": ["B", "C", "D"],
+    "B": ["A", "D", "E"],
+    "C": ["A", "F"],
+    "D": ["B", "D"],
+    "E": ["B", "F"],
+    "F": ["C", "E", "G"],
+    "G": ["F"],
+}
 
 if __name__ == "__main__":
-    g = Graph()
-    g.addEdge(0, 1)
-    g.addEdge(0, 2)
-    g.addEdge(1, 2)
-    g.addEdge(2, 0)
-    g.addEdge(2, 3)
-    g.addEdge(3, 3)
+    import doctest
 
-    g.printGraph()
-    print("DFS:")
-    g.DFS()
-
-    # OUTPUT:
-    # 0  ->  1 -> 2
-    # 1  ->  2
-    # 2  ->  0 -> 3
-    # 3  ->  3
-    # DFS:
-    #  0 1 2 3
+    doctest.testmod()
+    print(depth_first_search(G, "A"))
