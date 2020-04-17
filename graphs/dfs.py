@@ -42,11 +42,18 @@ def depth_first_search(graph: Dict, start: str) -> Set[int]:
     return explored
 
 
-G = { "A": ["B", "C", "D"], "B": ["A", "D", "E"], 
-      "C": ["A", "F"], "D": ["B", "D"], "E": ["B", "F"],
-      "F": ["C", "E", "G"], "G": ["F"] }
+G = {
+    "A": ["B", "C", "D"],
+    "B": ["A", "D", "E"],
+    "C": ["A", "F"],
+    "D": ["B", "D"],
+    "E": ["B", "F"],
+    "F": ["C", "E", "G"],
+    "G": ["F"],
+}
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print(depth_first_search(G, "A"))
