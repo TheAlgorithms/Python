@@ -252,6 +252,7 @@
 
 ## Machine Learning
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
+  * [Gaussian Naive Bayes](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gaussian_naive_bayes.py)
   * [Gradient Descent](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gradient_descent.py)
   * [K Means Clust](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/k_nearest_neighbours.py)

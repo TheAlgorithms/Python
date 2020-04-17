@@ -27,6 +27,28 @@ Your contribution will be tested by our [automated testing on Travis CI](https:/
 
 Please help us keep our issue list small by adding fixes: #{$ISSUE_NO} to the commit message of pull requests that resolve open issues. GitHub will use this tag to auto close the issue when the PR is merged.
 
+#### What is an Algorithm?
+
+An Algorithm is one or more functions (or classes) that:
+* take one or more inputs,
+* perform some internal calculations or data manipulations,
+* return one or more outputs,
+* have minimal side effects (Ex. print(), plot(), read(), write()).
+
+Algorithms should be packaged in a way that would make it easy for readers to put them into larger programs.
+
+Algorithms should:
+* have intuitive class and function names that make their purpose clear to readers
+* use Python naming conventions and intuitive variable names to ease comprehension
+* be flexible to take different input values
+* have Python type hints for their input parameters and return values
+* raise Python exceptions (ValueError, etc.) on erroneous input values
+* have docstrings with clear explanations and/or URLs to source materials
+* contain doctests that test both valid and erroneous input values
+* return all calculation results instead of printing or plotting them
+
+Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+
 #### Coding Style
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
