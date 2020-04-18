@@ -21,7 +21,12 @@ edge_array=[
 def get_distinct_edge(edge_array: List[List[str]]) -> List[str]:
     '''
     Return Distinct edges from edge array of multiple graphs
+    >>> sorted(get_distinct_edge(edge_array))
+    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+    >>> sorted(get_distinct_edge(edge_array))
+    ['z', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     '''
+
     distinct_edge=set()
 
     for i,row in enumerate(edge_array):    
