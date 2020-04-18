@@ -171,7 +171,8 @@ def freq_subgraphs_edge_list(paths):
         freq_sub_EL.append(EL)
         
     return freq_sub_EL 
-def preprocess(edge_array: List[List[str]) -> List[List[List[str]]]:
+def preprocess(edge_array: List[List[str]]) -> List[List[List[str]]]:
+
     for i in range(len(edge_array)):
         for j in range(len(edge_array[i])):
             t=edge_array[i][j].split('-')
