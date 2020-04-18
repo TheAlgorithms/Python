@@ -61,9 +61,7 @@ def get_frequency_table(edge_array):
     sorted_frequency_table=[[k,v[0],v[1]] for k,v in sorted(frequency_table.items(),key=lambda v:v[1][0],reverse=True)]
     # format cluster:{WT(bitcode):nodes with same WT}
     cluster={}
-    '''
-    format nodes={bitcode:edges that represent the bitcode}
-    '''
+    # format nodes={bitcode:edges that represent the bitcode}
     nodes={}
     support=[]
 
