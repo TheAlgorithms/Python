@@ -82,9 +82,9 @@ def print_all():
         print(key,value)
     print("\nSupport\n")
     print(support)
-    '''print("\n Edge List\n")
-    for i in EL:
-        print(i)'''
+    # print("\n Edge List\n")
+    # for i in EL:
+    #   print(i)
     print("\n Cluster \n")
     for key,value in sorted(cluster.items(),reverse=True):
         print(key, value)
