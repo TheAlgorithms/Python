@@ -10,6 +10,14 @@ URL:https://www.researchgate.net/publication/235255851_FP-GraphMiner_-_A_Fast_Fr
 '''
 from typing import List
 
+edge_array=[
+    ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','be-e6','bh-e12','cd-e2','ce-e4','de-e1','df-e8','dg-e5','dh-e10','ef-e3','eg-e2','fg-e6','gh-e6','hi-e3'],
+    ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','be-e6','cd-e2','de-e1','df-e8','ef-e3','eg-e2','fg-e6'],
+    ['ab-e1','ac-e3','bc-e4','bd-e2','de-e1','df-e8','dg-e5','ef-e3','eg-e2','eh-e12','fg-e6','fh-e10','gh-e6'],
+    ['ab-e1','ac-e3','bc-e4','bd-e2','bh-e12','cd-e2','df-e8','dh-e10'],
+    ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','cd-e2','ce-e4','de-e1','df-e8','dg-e5','ef-e3','eg-e2','fg-e6']
+    ]
+
 def get_distinct_edge(edge_array: List[List[str]]) -> List[str]:
     '''
     Return Distinct edges from edge array of multiple graphs
@@ -169,20 +177,15 @@ def freq_subgraphs_edge_list(paths):
         freq_sub_EL.append(EL)
         
     return freq_sub_EL 
-
-if __name__ == "__main__":
-    edge_array=[
-    ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','be-e6','bh-e12','cd-e2','ce-e4','de-e1','df-e8','dg-e5','dh-e10','ef-e3','eg-e2','fg-e6','gh-e6','hi-e3'],
-    ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','be-e6','cd-e2','de-e1','df-e8','ef-e3','eg-e2','fg-e6'],
-    ['ab-e1','ac-e3','bc-e4','bd-e2','de-e1','df-e8','dg-e5','ef-e3','eg-e2','eh-e12','fg-e6','fh-e10','gh-e6'],
-    ['ab-e1','ac-e3','bc-e4','bd-e2','bh-e12','cd-e2','df-e8','dh-e10'],
-    ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','cd-e2','ce-e4','de-e1','df-e8','dg-e5','ef-e3','eg-e2','fg-e6']
-    ]
+def preprocess(edge_array: List[List[str]) -> List[List[List[str]]]:
     for i in range(len(edge_array)):
         for j in range(len(edge_array[i])):
             t=edge_array[i][j].split('-')
             edge_array[i][j]=t
-    
+                                
+if __name__ == "__main__":
+                                
+    preprocess(edge_array)
     frequency_table,cluster,nodes,support=get_frequency_table(edge_array)
     graph=construct_graph(cluster,nodes)
     paths = []
