@@ -9,6 +9,7 @@ URL:https://www.researchgate.net/publication/235255851_FP-GraphMiner_-_A_Fast_Fr
 
 '''
 from typing import List
+from typing import Dict
 
 edge_array=[
     ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','be-e6','bh-e12','cd-e2','ce-e4','de-e1','df-e8','dg-e5','dh-e10','ef-e3','eg-e2','fg-e6','gh-e6','hi-e3'],
