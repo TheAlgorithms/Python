@@ -29,8 +29,8 @@ def get_distinct_edge(edge_array: List[List[str]]) -> List[str]:
 
     distinct_edge=set()
 
-    for i,row in enumerate(edge_array):    
-        for j,item in enumerate(row):
+    for row in edge_array:    
+        for item in row:
             distinct_edge.add(item[0])
 
     return list(distinct_edge)
