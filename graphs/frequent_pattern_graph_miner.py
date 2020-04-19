@@ -35,7 +35,7 @@ def get_distinct_edge(edge_array: List[List[str]]) -> List[str]:
 
     return list(distinct_edge)
 
-def get_bitcode(edge_array,distinct_edge):
+def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> str:
     '''
     Return bitcode of distinct_edge
     '''
@@ -51,7 +51,7 @@ def get_bitcode(edge_array,distinct_edge):
             
     return bitcode
 
-def get_frequency_table(edge_array):
+def get_frequency_table(edge_array:List[List[str]]) -> List[List[str]]:
     '''
     Returns Frequency Table,cluster,nodes,support
     '''
@@ -82,7 +82,7 @@ def get_frequency_table(edge_array):
         
     return sorted_frequency_table,cluster,nodes,support   
 
-def print_all():
+def print_all() -> None:
     print("\nNodes\n")
     for key,value in nodes.items():
         print(key,value)
@@ -101,7 +101,7 @@ def print_all():
     for edge_list in freq_subgraph_edge_list:
         print(edge_list)
        
-def create_edge(nodes,graph,cluster,c1):
+def create_edge(nodes: Dict[str,List[str]],graph: Dict[tuple,List[List[str]]],cluster: Dict[int,Dict[str,List[str]]],c1: int) -> None:
     '''
     create edge between the nodes 
     '''
@@ -124,7 +124,7 @@ def create_edge(nodes,graph,cluster,c1):
             else:
                 break
 
-def construct_graph(cluster,nodes): 
+def construct_graph(cluster: Dict[int,Dict[str,List[str]]],nodes: Dict[str,List[str]]) -> Dict[tuple,List[List[str]]]: 
     X=cluster[max(cluster.keys())]
     cluster[max(cluster.keys())+1]='Header'
     graph={}
@@ -142,7 +142,7 @@ def construct_graph(cluster,nodes):
         
     return graph
 
-def myDFS(graph,start,end,path=[]): 
+def myDFS(graph: Dict[tuple,List[List[str]]],start: tuple,end: tuple,path=[]): 
     '''
     find different DFS walk from given node to Header node
     '''
@@ -153,7 +153,7 @@ def myDFS(graph,start,end,path=[]):
         if tuple(node) not in path:
             myDFS(graph,tuple(node),end,path)
             
-def find_freq_subgraph_given_support(s,cluster,graph):
+def find_freq_subgraph_given_support(s: int,cluster: Dict[int,Dict[str,List[str]]],graph: Dict[tuple,List[List[str]]]) -> None:
     '''
     find edges of multiple frequent subgraphs
     '''
@@ -162,7 +162,7 @@ def find_freq_subgraph_given_support(s,cluster,graph):
     for i in cluster[k].keys():
         myDFS(graph,tuple(cluster[k][i]),tuple(['Header']))
 
-def freq_subgraphs_edge_list(paths):
+def freq_subgraphs_edge_list(paths: List[List[tuple]]) -> List[List[tuple]]:
     '''
     returns Edge list for frequent subgraphs
     '''
