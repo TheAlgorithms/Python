@@ -46,6 +46,57 @@ class TrieNode:
             curr = curr.nodes[char]
         return curr.is_leaf
 
+    def match(self, prefix: str) -> [str]:
+        """
+        gets the list of all the words that
+        are followed by certain prefix.
+    
+        long-url: https://www.geeksforgeeks.org/prefix-matching-python-using-pytrie-module/
+        :param prefix: the prefix to be matched
+        :return: List of prefix-matched words.
+
+        """
+        pass
+
+
+        def search(t: TrieNode, prefix: str) -> TrieNode:
+
+            '''
+            Different search function that returns the sub trie
+            instead of True or False
+            :param t: self
+            :param prefix: prefix to be searched
+            :return: a new sub-trie
+            
+            '''
+            curr = t
+            for char in prefix:
+                if char not in curr.nodes:
+                    return False
+                    break
+                curr = curr.nodes[char]
+            return curr
+
+        def dfs(root: TrieNode, s: str, prefix: str, lst):
+            """Returns a list with prefixes and their TrieNode"""
+            for i in root.nodes:
+                if root.is_leaf:
+                    lst.append((prefix + s, root.nodes[i]))
+                else:
+                    dfs(root.nodes[i], s + i, prefix, lst)
+            return lst
+
+        sub_trie= search(self, prefix)
+        if sub_trie==False:
+            return False
+        else:
+            lst=[]
+            l= dfs(sub_trie, '', prefix, lst)
+            return l
+
+
+
+
     def delete(self, word: str):
         """
         Deletes a word in a Trie
@@ -105,6 +156,7 @@ def test_trie():
     root.delete("banana")
     assert not root.find("banana")
     assert root.find("bananas")
+    assert root.match("ban")
     return True
 
 
