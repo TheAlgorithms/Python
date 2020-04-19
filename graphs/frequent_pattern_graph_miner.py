@@ -39,7 +39,8 @@ def get_bitcode(edge_array,distinct_edge):
     '''
     Return bitcode of distinct_edge
     '''
-    bitcode=['0' for i in enumerate(edge_array)]
+    bitcode=['0' for i in range(edge_array)]
+
     
     for i,row in enumerate(edge_array):
         for j,item in enumerate(row):
