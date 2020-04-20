@@ -34,7 +34,7 @@ def get_distinct_edge(edge_array: List[List[str]]) -> List[str]:
 
     return list(distinct_edge)
 
-def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> str:
+def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> List[str]:
     '''
     Return bitcode of distinct_edge
     >>> get_bitcode(edge_array, get_distinct_edge(edge_array))
