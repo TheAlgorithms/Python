@@ -56,7 +56,6 @@ class TrieNode:
         :return: List of prefix-matched words.
 
         """
-        pass
 
 
         def search(t: TrieNode, prefix: str) -> TrieNode:
