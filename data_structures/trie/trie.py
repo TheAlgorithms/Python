@@ -79,20 +79,28 @@ class TrieNode:
                 curr = curr.nodes[char]
             return curr
 
-        def depth_first_search(root: TrieNode, s: str, prefix: str, lst):
-            """Returns a list with prefixes and their TrieNode"""
-            for i in root.nodes:
-                if root.is_leaf:
-                    lst.append((prefix + s, root.nodes[i]))
-                else:
-                    dfs(root.nodes[i], s + i, prefix, lst)
+        def depth_first_search(node: TrieNode, word: str, lst):
+            """
+            resturns a list of all the nodes in a trie
+            :param node: root node of Trie
+            :param word: prefix
+            :return: list of strings
+            """
+            if node.is_leaf:
+                lst.append(word)
+
+            for key, value in node.nodes.items():
+                print_words(value, word + key, lst)
+
             return lst
 
         sub_trie= get_trie_for_prefix(self, prefix)
         if sub_trie==False:
             return False
         else:
-            print_words(sub_trie, prefix)
+            lst=[]
+            depth_first_search(sub_trie, prefix, lst)
+            return lst
 
 
 
@@ -157,7 +165,7 @@ def test_trie():
     root.delete("banana")
     assert not root.find("banana")
     assert root.find("bananas")
-    root.get_words_starting_with("ban")
+    assert root.get_words_starting_with("ban")
     return True
 
 
