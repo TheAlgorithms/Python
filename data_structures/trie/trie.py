@@ -58,7 +58,7 @@ class TrieNode:
         """
 
 
-        def get_trie_for_prefix(t: TrieNode, prefix: str) -> TrieNode:
+        def get_trie_for_prefix(t: TrieNode, prefix: str):
 
             '''
             Different search function that returns the sub trie
@@ -72,7 +72,7 @@ class TrieNode:
             for char in prefix:
                 if char not in curr.nodes:
                     return False
-                    break
+                    
                 curr = curr.nodes[char]
             return curr
 
