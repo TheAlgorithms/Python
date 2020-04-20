@@ -54,6 +54,9 @@ class TrieNode:
         long-url: https://www.geeksforgeeks.org/prefix-matching-python-using-pytrie-module/
         :param prefix: the prefix to be matched
         :return: List of prefix-matched words.
+        
+        >>> get_words_starting_with("a")
+        apple all
 
         """
 
@@ -89,9 +92,7 @@ class TrieNode:
         if sub_trie==False:
             return False
         else:
-            lst=[]
-            l= depth_first_search(sub_trie, '', prefix, lst)
-            return l
+            print_words(sub_trie, prefix)
 
 
 
@@ -143,6 +144,7 @@ def test_trie():
     words = "banana bananas bandana band apple all beast".split()
     root = TrieNode()
     root.insert_many(words)
+    
     # print_words(root, "")
     assert all(root.find(word) for word in words)
     assert root.find("banana")
@@ -155,7 +157,7 @@ def test_trie():
     root.delete("banana")
     assert not root.find("banana")
     assert root.find("bananas")
-    assert root.get_words_starting_with("ban")
+    root.get_words_starting_with("ban")
     return True
 
 
