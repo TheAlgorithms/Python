@@ -46,10 +46,10 @@ class TrieNode:
             curr = curr.nodes[char]
         return curr.is_leaf
 
-    def match(self, prefix: str) -> [str]:
+    def get_words_starting_with(self, prefix: str) -> [str]:
         """
         gets the list of all the words that
-        are followed by certain prefix.
+        are followed by a certain prefix.
     
         long-url: https://www.geeksforgeeks.org/prefix-matching-python-using-pytrie-module/
         :param prefix: the prefix to be matched
@@ -156,7 +156,7 @@ def test_trie():
     root.delete("banana")
     assert not root.find("banana")
     assert root.find("bananas")
-    assert root.match("ban")
+    assert root.get_words_starting_with("ban")
     return True
 
 
