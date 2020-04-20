@@ -1,4 +1,5 @@
 # Created by sarathkaul on 17/11/19
+# Modified by Arkadip Bhattacharya(@darkmatter18) on 20/04/2020
 from collections import defaultdict
 
 
@@ -15,6 +16,7 @@ def word_occurence(sentence: str) -> dict:
     # Creating a dictionary containing count of each word
     for word in sentence.split(" "):
         occurrence[word] += 1
+    if '' in occurrence.keys(): occurrence.pop('')
     return occurrence
 
 
