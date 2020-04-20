@@ -586,6 +586,7 @@
   * [Aho-Corasick](https://github.com/TheAlgorithms/Python/blob/master/strings/aho-corasick.py)
   * [Boyer Moore Search](https://github.com/TheAlgorithms/Python/blob/master/strings/boyer_moore_search.py)
   * [Check Pangram](https://github.com/TheAlgorithms/Python/blob/master/strings/check_pangram.py)
+  * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/strings/is_palindrome.py)
   * [Knuth Morris Pratt](https://github.com/TheAlgorithms/Python/blob/master/strings/knuth_morris_pratt.py)
   * [Levenshtein Distance](https://github.com/TheAlgorithms/Python/blob/master/strings/levenshtein_distance.py)
   * [Lower](https://github.com/TheAlgorithms/Python/blob/master/strings/lower.py)
