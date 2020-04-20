@@ -48,7 +48,7 @@ class TrieNode:
 
     def get_words_starting_with(self, prefix: str) -> [str]:
         """
-        gets the list of all the words that
+        return a list of all words that start with the given prefix.
         are followed by a certain prefix.
     
         long-url: https://www.geeksforgeeks.org/prefix-matching-python-using-pytrie-module/
