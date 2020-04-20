@@ -58,7 +58,7 @@ class TrieNode:
         """
 
 
-        def search(t: TrieNode, prefix: str) -> TrieNode:
+        def get_trie_for_prefix(t: TrieNode, prefix: str) -> TrieNode:
 
             '''
             Different search function that returns the sub trie
@@ -76,7 +76,7 @@ class TrieNode:
                 curr = curr.nodes[char]
             return curr
 
-        def dfs(root: TrieNode, s: str, prefix: str, lst):
+        def depth_first_search(root: TrieNode, s: str, prefix: str, lst):
             """Returns a list with prefixes and their TrieNode"""
             for i in root.nodes:
                 if root.is_leaf:
@@ -85,12 +85,12 @@ class TrieNode:
                     dfs(root.nodes[i], s + i, prefix, lst)
             return lst
 
-        sub_trie= search(self, prefix)
+        sub_trie= get_trie_for_prefix(self, prefix)
         if sub_trie==False:
             return False
         else:
             lst=[]
-            l= dfs(sub_trie, '', prefix, lst)
+            l= depth_first_search(sub_trie, '', prefix, lst)
             return l
 
 
