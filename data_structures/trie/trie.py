@@ -90,7 +90,7 @@ class TrieNode:
                 lst.append(word)
 
             for key, value in node.nodes.items():
-                print_words(value, word + key, lst)
+                depth_first_search(value, word + key, lst)
 
             return lst
 
