@@ -38,7 +38,7 @@ def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> List[st
     '''
     Return bitcode of distinct_edge
     >>> get_bitcode(edge_array, get_distinct_edge(edge_array)[0])
-    ['1', '1', '0', '1', '0']
+    ['1', '1', '1', '1', '1']
     '''
     bitcode=['0'] * len(edge_array)
 
