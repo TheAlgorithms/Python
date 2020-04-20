@@ -167,6 +167,8 @@ def print_results(msg: str, passes: bool) -> None:
 
 def pytests():
     assert test_trie()
+    import doctest
+    doctest.testmod()
 
 
 def main():
