@@ -34,11 +34,11 @@ def get_distinct_edge(edge_array: List[List[str]]) -> List[str]:
 
     return list(distinct_edge)
 
-def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> List[str]:
+def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> str:
     '''
     Return bitcode of distinct_edge
     >>> get_bitcode(edge_array, get_distinct_edge(edge_array)[0])
-    ['1', '0', '1', '0', '0']
+    '11111'
     '''
     bitcode=['0'] * len(edge_array)
 
@@ -51,7 +51,7 @@ def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> List[st
                 break
 
             
-    return bitcode
+    return ''.join(bitcode)
 
 def get_frequency_table(edge_array:List[List[str]]) -> List[List[str]]:
     '''
@@ -62,9 +62,9 @@ def get_frequency_table(edge_array:List[List[str]]) -> List[List[str]]:
     
     for i,item in enumerate(distinct_edge):
         bit=get_bitcode(edge_array,item)
-        bt=''.join(bit)
-        s=bt.count('1')
-        frequency_table[item]=[s,bt]
+        #bt=''.join(bit)
+        s=bit.count('1')
+        frequency_table[item]=[s, bit]
     # Store [Distinct edge, WT(Bitcode), Bitcode] in Descending order
     sorted_frequency_table=[[k,v[0],v[1]] for k,v in sorted(frequency_table.items(),key=lambda v:v[1][0],reverse=True)]
     # format cluster:{WT(bitcode):nodes with same WT}
