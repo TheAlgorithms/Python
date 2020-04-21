@@ -11,6 +11,8 @@ def word_occurence(sentence: str) -> dict:
     >>> all(occurence_dict[word] == count for word, count
     ...     in Counter(SENTENCE.split()).items())
     True
+    >>> dict(word_occurence("Two  spaces"))
+    {'Two': 1, 'spaces': 1}
     """
     occurrence = defaultdict(int)
     # Creating a dictionary containing count of each word
