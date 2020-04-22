@@ -11,6 +11,7 @@ class LinkedList:           #making main class named linked list
     def __init__(self):
         self.head = None
         self.tail = None
+        self.size=0
         
     def insertHead(self, x):
         newLink = Link(x)                            #Create a new link with a value attached to it
@@ -20,6 +21,7 @@ class LinkedList:           #making main class named linked list
             self.head.previous = newLink             # newLink <-- currenthead(head)
         newLink.next = self.head                     # newLink <--> currenthead(head)
         self.head = newLink                          # newLink(head) <--> oldhead
+        self.size+=1
     
     def deleteHead(self):
         temp = self.head
@@ -27,6 +29,7 @@ class LinkedList:           #making main class named linked list
         self.head.previous = None                    # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
         if(self.head is None):
             self.tail = None                         #if empty linked list
+        self.size-=1
         return temp
     
     def insertTail(self, x):
@@ -35,11 +38,13 @@ class LinkedList:           #making main class named linked list
         self.tail.next = newLink                    # currentTail(tail) --> newLink -->
         newLink.previous = self.tail                #currentTail(tail) <--> newLink -->
         self.tail = newLink                         # oldTail <--> newLink(tail) -->
+        self.size+=1
     
     def deleteTail(self):
         temp = self.tail
         self.tail = self.tail.previous              # 2ndLast(tail) <--> oldTail --> None
         self.tail.next = None                       # 2ndlast(tail) --> None
+        self.size-=1
         return temp
     
     def delete(self, x):
@@ -57,7 +62,7 @@ class LinkedList:           #making main class named linked list
         else: #Before: 1 <--> 2(current) <--> 3
             current.previous.next = current.next # 1 --> 3
             current.next.previous = current.previous # 1 <--> 3
-    
+       self.size-=1
     def isEmpty(self):                               #Will return True if the list is empty
         return(self.head is None)
         
@@ -67,7 +72,8 @@ class LinkedList:           #making main class named linked list
             current.displayLink()
             current = current.next  
         print()
-
+    def size(self):
+        return self.size
 class Link:
     next = None                                       #This points to the link in front of the new link
     previous = None                                   #This points to the link behind the new link
