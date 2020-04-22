@@ -96,7 +96,7 @@ class TrieNode:
 
         sub_trie= get_trie_for_prefix(self, prefix)
         if sub_trie==False:
-            return False
+            return []
         else:
             lst=[]
             depth_first_search(sub_trie, prefix, lst)
