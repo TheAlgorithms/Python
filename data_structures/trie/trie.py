@@ -55,7 +55,7 @@ class TrieNode:
         :param prefix: the prefix to be matched
         :return: List of prefix-matched words.
         
-        >>> get_words_starting_with("a")
+        >>> t.get_words_starting_with("a")
         apple all
 
         """
@@ -176,7 +176,7 @@ def print_results(msg: str, passes: bool) -> None:
 def pytests():
     assert test_trie()
     import doctest
-    doctest.testmod()
+    doctest.testmod(extraglobs={'t': TrieNode()})
 
 
 def main():
