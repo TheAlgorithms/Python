@@ -41,16 +41,11 @@ def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> str:
     '11101'
     '''
     bitcode=['0'] * len(edge_array)
-
-
-    
-    for i,row in enumerate(edge_array):
-        for j,item in enumerate(row):
+    for i, row in enumerate(edge_array):
+        for item in row:
             if distinct_edge in item[0]:
                 bitcode[i]='1'
                 break
-
-            
     return ''.join(bitcode)
 
 def get_frequency_table(edge_array:List[List[str]]) -> List[List[str]]:
