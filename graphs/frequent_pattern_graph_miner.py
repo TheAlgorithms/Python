@@ -50,44 +50,67 @@ def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> str:
 
 def get_frequency_table(edge_array:List[List[str]]) -> List[List[str]]:
     '''
-    Returns Frequency Table,cluster,nodes,support
+    Returns Frequency Table
     '''
     distinct_edge=get_distinct_edge(edge_array) 
     frequency_table=dict()
     
-    for i,item in enumerate(distinct_edge):
+
+    for item in distinct_edge:
         bit=get_bitcode(edge_array,item)
+        #print('bit',bit)
         #bt=''.join(bit)
         s=bit.count('1')
-        frequency_table[item]=[s, bit]
-    # Store [Distinct edge, WT(Bitcode), Bitcode] in Descending order
+        frequency_table[item]=[s,bit]
+    '''
+    Store [Distinct edge, WT(Bitcode), Bitcode] in Descending order
+    '''
     sorted_frequency_table=[[k,v[0],v[1]] for k,v in sorted(frequency_table.items(),key=lambda v:v[1][0],reverse=True)]
-    # format cluster:{WT(bitcode):nodes with same WT}
-    cluster={}
-    # format nodes={bitcode:edges that represent the bitcode}
-    nodes={}
-    support=[]
+    
+    return sorted_frequency_table
 
-    for i,item in enumerate(sorted_frequency_table):
+def get_nodes(frequency_table: List[List[str]]) -> Dict[str,List[str]]:
+    '''
+    Returns nodes
+    format nodes={bitcode:edges that represent the bitcode}
+    '''
+    
+    nodes={}
+
+    for i,item in enumerate(frequency_table):
         nodes.setdefault(item[2],[]).append(item[0])
-        
+
+    return nodes
+
+def get_cluster(nodes: Dict[str,List[str]]) -> Dict[int,Dict[str,List[str]]]:
+    '''
+    Returns cluster
+    format cluster:{WT(bitcode):nodes with same WT}
+    '''
+    
+    cluster={}
     for key,value in nodes.items():
         cluster.setdefault(key.count('1'),{})[key]=value
         
+    return cluster
+
+def get_support(cluster :Dict[int,Dict[str,List[str]]])-> List[float]:
+    '''
+    Returns support
+    format cluster:{WT(bitcode):nodes with same WT}
+    '''
+    
+    support=[]       
     for i in cluster:
         support.append(i*100/len(cluster)) 
         
-    return sorted_frequency_table,cluster,nodes,support   
-
+    return support
 def print_all() -> None:
     print("\nNodes\n")
     for key,value in nodes.items():
         print(key,value)
     print("\nSupport\n")
     print(support)
-    # print("\n Edge List\n")
-    # for i in EL:
-    #   print(i)
     print("\n Cluster \n")
     for key,value in sorted(cluster.items(),reverse=True):
         print(key, value)
@@ -184,8 +207,13 @@ def preprocess(edge_array: List[List[str]]) -> List[List[List[str]]]:
 if __name__ == "__main__":
                                 
     preprocess(edge_array)
-    frequency_table,cluster,nodes,support=get_frequency_table(edge_array)
+    
+    frequency_table=get_frequency_table(edge_array)
+    nodes=get_nodes(frequency_table)
+    cluster=get_cluster(nodes)
+    support=get_support(cluster)
     graph=construct_graph(cluster,nodes)
+    
     paths = []
     find_freq_subgraph_given_support(60,cluster,graph)
     freq_subgraph_edge_list=freq_subgraphs_edge_list(paths)
