@@ -56,7 +56,7 @@ class TrieNode:
         :return: List of prefix-matched words.
         
         >>> t.get_words_starting_with("a")
-        apple all
+        ['apple', 'all']
 
         """
 
