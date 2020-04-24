@@ -63,7 +63,10 @@ def new_generation(CELLS,RULE,time):
     #returns new generation
     return new_row
 
-def generate_image(CELLS):
+def generate_image(CELLS: list) -> Image:
+    """
+    Convert the cells into a PIL.Image and return it to the caller.
+    """
     # Creates the outputting image
 
     RESULT = Image.new('RGB', (31, 16))
