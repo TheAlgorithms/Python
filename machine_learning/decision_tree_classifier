@@ -1,6 +1,6 @@
 # Decision Tree Classifier Example
 
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier,plot_tree
 from sklearn.metrics import plot_confusion_matrix
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -10,10 +10,18 @@ import matplotlib.pyplot as plt
 def main():
 
     """
-    Decision Tree Classifier Example using sklearn function.
-    Iris type dataset is used to demonstrate algorithm.
+    Decision tree learning is one of the predictive modeling approaches used in Machine Learning.
+    
+    >>> from sklearn.tree import DecisionTreeClassifier
+    >>> X = [[0, 0], [1, 1]]
+    >>> Y = [0, 1]
+    >>> dtc = DecisionTreeClassifier()
+    >>> dtc = dtc.fit(X, Y)
+    >>> dtc.predict([[2., 2.]])
+       array([1]) 
     """
-
+   
+    # Iris type dataset is used to demonstrate algorithm. 
     # Load Iris dataset
     iris = load_iris()
 
@@ -21,12 +29,12 @@ def main():
     X = iris["data"]  # features
     Y = iris["target"]
     x_train, x_test, y_train, y_test = train_test_split(
-        X, Y, test_size=0.3, random_state=1
-    )
+        X, Y, test_size=0.3, random_state=1    # test_size is 0.3 so 70% data will be used for trianing
+    )                                          # and 30% will be used for testing
 
     # Decision Tree Classifier model
     DTC_model = DecisionTreeClassifier(random_state = 1)
-    DTC_model.fit(x_train, y_train)
+    DTC_model.fit(x_train, y_train)   # Build a decision tree classifier from the training set (x_train, y_train).
 
     # Display Confusion Matrix
     plot_confusion_matrix(
@@ -39,7 +47,10 @@ def main():
     )
     plt.title("Normalized Confusion Matrix - IRIS Dataset")
     plt.show()
-
+  
+    # we can also plot the tree we trained using plot_tree method
+    print("\n\t Tree for Iris dataset")
+    plot_tree(DTC_model.fit(iris.data, iris.target))
 
 if __name__ == "__main__":
     main()
