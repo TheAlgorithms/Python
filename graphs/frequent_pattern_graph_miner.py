@@ -178,7 +178,7 @@ def find_freq_subgraph_given_support(s: int,cluster: Dict[int,Dict[str,List[str]
     find edges of multiple frequent subgraphs
     '''
     k=int(s/100*(len(cluster)-1))
-    freq_subgraphs=[]
+    
     for i in cluster[k].keys():
         myDFS(graph,tuple(cluster[k][i]),tuple(['Header']))
 
