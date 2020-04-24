@@ -4,8 +4,7 @@ one-dimensional cellular automata
 based on a given ruleset number
 https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
 '''
-# Formats inputted ruleset
-def format_ruleset(RULE_NUM):
+def format_ruleset(ruleset: int) -> list:
     '''
     >>> format_ruleset(11100)
     [0,0,0,1,1,1,0,0]
@@ -14,14 +13,7 @@ def format_ruleset(RULE_NUM):
     >>> format_ruleset(11111111)
     [1,1,1,1,1,1,1,1]
     '''
-    RULE = [int(a) for a in RULE_NUM]
-    while True:
-        if len(RULE) == 8:
-            break
-        else:
-            RULE.insert(0, 0)
-    #returns formatted ruleset
-    return(RULE)
+    return [int(c) for c in f"{ruleset:08}"[:8]]
 
 # Defines the first generation of cells
 
