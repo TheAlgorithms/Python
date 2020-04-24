@@ -45,6 +45,6 @@ if __name__ == "__main__":
     target = int(target_input)
     result = linear_search(sequence, target)
     if result is not None:
-        print(f"{target} found at positions: {result}")
+        print(f"{target} found at position : {result}")
     else:
         print("Not found")
