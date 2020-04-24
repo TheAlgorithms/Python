@@ -1,3 +1,4 @@
+from PIL import Image
 '''
 Returns an image of 16 generations of
 one-dimensional cellular automata 
@@ -77,7 +78,6 @@ def generate_image(CELLS: list) -> Image:
     RESULT.show()
 
 if __name__ == '__main__':
-    from PIL import Image
 
     RULE_NUM = bin(int(input('Rule\n')))[2:]
     RULE = format_ruleset(RULE_NUM)
