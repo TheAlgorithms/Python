@@ -8,11 +8,11 @@ https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
 def format_ruleset(ruleset: int) -> list:
     '''
     >>> format_ruleset(11100)
-    [0,0,0,1,1,1,0,0]
+    [0, 0, 0, 1, 1, 1, 0, 0]
     >>> format_ruleset(0)
-    [0,0,0,0,0,0,0,0]
+    [0, 0, 0, 0, 0, 0, 0, 0]
     >>> format_ruleset(11111111)
-    [1,1,1,1,1,1,1,1]
+    [1, 1, 1, 1, 1, 1, 1, 1]
     '''
     return [int(c) for c in f"{ruleset:08}"[:8]]
 
