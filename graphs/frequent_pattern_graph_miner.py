@@ -99,7 +99,8 @@ def get_cluster(nodes: Dict[str,List[str]]) -> Dict[int,Dict[str,List[str]]]:
 def get_support(cluster :Dict[int,Dict[str,List[str]]])-> List[float]:
     '''
     Returns support
-    >>> get_support({5: {'11111': ['ab', 'ac', 'df', 'bd', 'bc']}, 4: {'11101': ['ef', 'eg', 'de', 'fg'], '11011': ['cd']}, 3: {'11001': ['ad'], '10101': ['dg']}, 2: {'10010': ['dh', 'bh'], '11000': ['be'], '10100': ['gh'], '10001': ['ce']}, 1: {'00100': ['fh', 'eh'], '10000': ['hi']}})
+    >>> get_support({5: {'11111': ['ab', 'ac', 'df', 'bd', 'bc']}, 4: {'11101': ['ef', 'eg', 'de', 'fg'], '11011': ['cd']}, 3: {'11001': ['ad'], '10101': ['dg']}, \
+                    2: {'10010': ['dh', 'bh'], '11000': ['be'], '10100': ['gh'], '10001': ['ce']}, 1: {'00100': ['fh', 'eh'], '10000': ['hi']}})
     [100.0, 80.0, 60.0, 40.0, 20.0]
     '''
     
