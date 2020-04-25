@@ -77,7 +77,7 @@ def generate_image(CELLS: list) -> Image:
         for h in range(16):
             color = 255 - 255 * CELLS[h][w]
             PIXELS[w, h] = (color, color, color)
-
+    return RESULT
     # Uncomment for saving the image
     # RESULT.save('RULE '+str(RULE_NUM))
 
