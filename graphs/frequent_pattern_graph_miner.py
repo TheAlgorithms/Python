@@ -73,6 +73,8 @@ def get_nodes(frequency_table: List[List[str]]) -> Dict[str,List[str]]:
     '''
     Returns nodes
     format nodes={bitcode:edges that represent the bitcode}
+    >>> get_nodes([['ab', 5, '11111'], ['ac', 5, '11111'], ['df', 5, '11111'], ['bd', 5, '11111'], ['bc', 5, '11111']])
+    {'11111': ['ab', 'ac', 'df', 'bd', 'bc']}
     '''
     
     nodes={}
@@ -97,7 +99,8 @@ def get_cluster(nodes: Dict[str,List[str]]) -> Dict[int,Dict[str,List[str]]]:
 def get_support(cluster :Dict[int,Dict[str,List[str]]])-> List[float]:
     '''
     Returns support
-    format cluster:{WT(bitcode):nodes with same WT}
+    >>> get_support({5: {'11111': ['ab', 'ac', 'df', 'bd', 'bc']}, 4: {'11101': ['ef', 'eg', 'de', 'fg'], '11011': ['cd']}, 3: {'11001': ['ad'], '10101': ['dg']}, 2: {'10010': ['dh', 'bh'], '11000': ['be'], '10100': ['gh'], '10001': ['ce']}, 1: {'00100': ['fh', 'eh'], '10000': ['hi']}})
+    [20.0, 40.0, 60.0, 80.0, 100.0]
     '''
     
     support=[]       
@@ -198,7 +201,11 @@ def freq_subgraphs_edge_list(paths: List[List[tuple]]) -> List[List[tuple]]:
         
     return freq_sub_EL 
 def preprocess(edge_array: List[List[str]]) -> List[List[List[str]]]:
-
+    '''
+    Preprocess the edge array
+    >>> preprocess([['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','be-e6','bh-e12','cd-e2','ce-e4','de-e1','df-e8','dg-e5','dh-e10','ef-e3','eg-e2','fg-e6','gh-e6','hi-e3']])
+    
+    '''
     for i in range(len(edge_array)):
         for j in range(len(edge_array[i])):
             t=edge_array[i][j].split('-')
