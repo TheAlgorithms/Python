@@ -58,7 +58,14 @@ def new_generation(CELLS,RULE,time):
 
 def generate_image(CELLS: list) -> Image:
     """
-    Convert the cells into a PIL.Image and return it to the caller.
+    Convert the cells into a PIL.Image.Image and return it to the caller.
+    >>> from random import randint
+    >>> cells = [[randint(0, 1) for w in range(31)] for h in range(16)]
+    >>> img = generate_image(cells)
+    >>> isinstance(img, PIL.Image.Image)
+    True
+    >>> img.size
+    (31, 16)
     """
     # Creates the outputting image
 
