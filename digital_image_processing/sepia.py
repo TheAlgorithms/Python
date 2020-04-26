@@ -34,16 +34,12 @@ def make_sepia(img, factor: int):
 
 if __name__ == "__main__":
     # read original image
-    img = imread("image_data/lena.jpg", 1)
-    img1 = imread("image_data/lena.jpg", 1)
-    img2 = imread("image_data/lena.jpg", 1)
-    img3 = imread("image_data/lena.jpg", 1)
-
-    # convert with sepia with different factor's value
-    sepia_10 = make_sepia(img, 10)
-    sepia_20 = make_sepia(img1, 20)
-    sepia_30 = make_sepia(img2, 30)
-    sepia_40 = make_sepia(img3, 40)
+    images = {percentage: imread("image_data/lena.jpg", 1)
+              for percentage in (10, 20, 30, 40)}
+    for i, percentage, img in enumerate(images.items()):
+        images[i] = make_sepia(img, percentage)
+    for i, percentage, img in enumerate(images.items()):
+        imshow(f"Original image with sepia (factor: {percentage})", img)
 
     # show result images
     imshow("Original image with sepia (factor: 10)", img)
