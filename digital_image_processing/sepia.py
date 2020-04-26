@@ -38,10 +38,10 @@ if __name__ == "__main__":
         percentage: imread("image_data/lena.jpg", 1) for percentage in (10, 20, 30, 40)
     }
 
-    for i, percentage, img in enumerate(images.items()):
-        images[i] = make_sepia(img, percentage)
+    for percentage, img in images.items():
+        make_sepia(img, percentage)
 
-    for i, percentage, img in enumerate(images.items()):
+    for percentage, img in images.items():
         imshow(f"Original image with sepia (factor: {percentage})", img)
 
     waitKey(0)
