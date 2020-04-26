@@ -9,6 +9,7 @@ import digital_image_processing.filters.sobel_filter as sob
 import digital_image_processing.filters.convolve as conv
 import digital_image_processing.change_contrast as cc
 import digital_image_processing.convert_to_negative as cn
+import digital_image_processing.sepia as sp
 from cv2 import imread, cvtColor, COLOR_BGR2GRAY
 from numpy import array, uint8
 from PIL import Image
@@ -68,3 +69,8 @@ def test_median_filter():
 def test_sobel_filter():
     grad, theta = sob.sobel_filter(gray)
     assert grad.any() and theta.any()
+
+
+def test_sepia():
+    sepia = sp.make_sepia(img, 20)
+    assert sepia.all()
