@@ -28,18 +28,12 @@ def format_ruleset(ruleset: int) -> List[int]:
 
 
 def new_generation(cells: List[List[int]], rule: List[int], time: int) -> List[int]:
+    population = len(cells[0])  # 31
     next_generation = []
-    for i in range(31):
+    for i in range(population):
         # Get the neighbors of each cell
-        if i == 0:  # leftmost cell
-            left_neighbor = 0
-            right_neighbor = cells[time][i + 1]
-        elif i == 30:  # rightmost cell
-            left_neighbor = cells[time][i - 1]
-            right_neighbor = 0
-        else:  # All other cells
-            left_neighbor = cells[time][i - 1]
-            right_neighbor = cells[time][i + 1]
+        left_neighbor = 0 if i == 0 else cells[time][i - 1]  # special: leftmost cell
+        right_neighbor = 0 if i = population - 1 else cells[time][i + 1]  # rightmost 
         # Define a new cell and add it to the new generation
         situation = 7 - int(f"{left_neighbor}{cells[time][i]}{right_neighbor}", 2)
         next_generation.append(rule[situation])
@@ -74,6 +68,6 @@ if __name__ == "__main__":
     for time in range(16):
         CELLS.append(new_generation(CELLS, rule, time))
     img = generate_image(CELLS)
-    # Uncomment for saving the image
+    # Uncomment to save the image
     # img.save(f"rule_{rule_num}.png")
     img.show()
