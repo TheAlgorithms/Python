@@ -27,6 +27,9 @@
 ## Boolean Algebra
   * [Quine Mc Cluskey](https://github.com/TheAlgorithms/Python/blob/master/boolean_algebra/quine_mc_cluskey.py)
 
+## Cellular Automata
+  * [One Dimensional](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/one_dimensional.py)
+
 ## Ciphers
   * [Affine Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/affine_cipher.py)
   * [Atbash](https://github.com/TheAlgorithms/Python/blob/master/ciphers/atbash.py)
@@ -148,6 +151,7 @@
   * [Index Calculation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/index_calculation.py)
   * Rotation
     * [Rotation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/rotation/rotation.py)
+  * [Sepia](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/sepia.py)
   * [Test Digital Image Processing](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/test_digital_image_processing.py)
 
 ## Divide And Conquer
