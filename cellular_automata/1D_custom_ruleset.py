@@ -1,7 +1,7 @@
 from PIL import Image
 
 
-#Creates the outputing image
+#Creates the outputting image
 RESULT = Image.new('RGB', (31, 16))
 PIXELS = RESULT.load()
 
