@@ -1,6 +1,8 @@
 """Breath First Search (BFS) can be used when finding the shortest path 
 from a given source node to a target node in an unweighted graph.
 """
+
+
 class Graph:
     def __init__(self, graph, source_vertex):
         """Graph is implemented as dictionary of adjancency lists. Also,
