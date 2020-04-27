@@ -36,7 +36,7 @@ class Graph:
         """
         if target_vertex == self.source_vertex:
             return f"{self.source_vertex}"
-        elif target_vertex not in self.parent or not self.parent[target_vertex]:
+        elif not self.parent.get(target_vertex):
             return f"No path from vertex:{self.source_vertex} to vertex:{target_vertex}"
         else:
             return self.shortest_path(self.parent[target_vertex]) + f"->{target_vertex}"
