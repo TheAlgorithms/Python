@@ -1,5 +1,5 @@
 os: linux
-dist: bionic
+dist: focal
 language: python
 python: 3.8
 cache: pip
