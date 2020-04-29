@@ -1,7 +1,7 @@
 """
 Implementation Burke's algorithm (dithering)
 """
-from cv2 import imread, imshow, waitKey, destroyAllWindows, IMREAD_GRAYSCALE
+from cv2 import imread, imshow, waitKey, destroyAllWindows
 import numpy as np
 
 
@@ -24,25 +24,26 @@ class Burkes:
         self.threshold = threshold
         self.width, self.height = self.input_img.shape[1], self.input_img.shape[0]
 
-        # error table size (+2 columns and +1 row) greater than input image because of lack of if statements
+        # error table size (+4 columns and +1 row) greater than input image because of lack of if statements
         self.error_table = [
-            [0 for _ in range(self.width + 4)] for __ in range(self.height + 1)
+            [0 for _ in range(self.height + 4)] for __ in range(self.width + 1)
         ]
-        self.output_img = np.ones((self.height, self.width, 3), np.uint8) * 255
+        self.output_img = np.ones((self.width, self.height, 3), np.uint8) * 255
 
     @staticmethod
-    def get_greyscale(red: int, green: int, blue: int):
+    def get_greyscale(blue: int, green: int, red: int):
         return 0.2126 * red + 0.587 * green + 0.114 * blue
 
     def process(self):
         for y in range(self.height):
             for x in range(self.width):
-                if self.threshold > self.input_img[y][x] + self.error_table[y][x]:
+                greyscale = int(self.get_greyscale(*self.input_img[y][x]))
+                if self.threshold > greyscale + self.error_table[y][x]:
                     self.output_img[y][x] = (0, 0, 0)
-                    current_error = self.input_img[y][x] + self.error_table[y][x]
+                    current_error = greyscale + self.error_table[x][y]
                 else:
                     self.output_img[y][x] = (255, 255, 255)
-                    current_error = self.input_img[y][x] + self.error_table[y][x] - 255
+                    current_error = greyscale + self.error_table[x][y] - 255
 
                 """
                 Burkes error propagation (`*` is current pixel):
@@ -76,8 +77,8 @@ class Burkes:
 if __name__ == "__main__":
     # create Burke's instances with original images in greyscale
     burkes_instances = [
-        Burkes(imread("image_data/lena.jpg", IMREAD_GRAYSCALE), threshold)
-        for threshold in (80, 100, 120, 200, 215)
+        Burkes(imread("image_data/lena.jpg", 1), threshold)
+        for threshold in (1, 126, 180, 200)
     ]
 
     for burkes in burkes_instances:

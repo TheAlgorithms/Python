@@ -80,8 +80,7 @@ def test_sepia():
 
 def test_burkes():
     burkes = bs.Burkes(
-        imread("digital_image_processing/image_data/lena_small.jpg", IMREAD_GRAYSCALE),
-        120,
+        imread("digital_image_processing/image_data/lena_small.jpg", 1), 120,
     )
     burkes.process()
     assert burkes.output_img.any()
