@@ -117,7 +117,7 @@ class BresenhamLine:
     def __append_line_vectors(self) -> None:
         """
         Initiates the algorithm, by appending the first vector
-        and finding the appropiate axis to follow by comparing deltas
+        and finding the appropriate axis to follow by comparing deltas
         """
         self.vectors.append((self.__x0, self.__y0))
         decision: int
