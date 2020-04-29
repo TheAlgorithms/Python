@@ -12,10 +12,7 @@ def encode(plain : str) -> list:
     >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
     """
-    result = []
-    for elem in plain:
-        result.append(ord(elem) - 96)
-    return result
+    return [ord(elem) - 96 for elem in plain]
 
 def decode(encoded : list) -> str:
     """
