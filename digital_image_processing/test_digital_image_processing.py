@@ -11,7 +11,7 @@ import digital_image_processing.change_contrast as cc
 import digital_image_processing.convert_to_negative as cn
 import digital_image_processing.sepia as sp
 import digital_image_processing.dithering.burkes as bs
-from cv2 import imread, cvtColor, COLOR_BGR2GRAY, IMREAD_GRAYSCALE
+from cv2 import imread, cvtColor, COLOR_BGR2GRAY
 from numpy import array, uint8
 from PIL import Image
 
