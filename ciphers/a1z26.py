@@ -1,6 +1,6 @@
 def encode(plain : str) -> list:
     """
-    >>> encode("MyName")
+    >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
     """
     result = []
@@ -11,7 +11,7 @@ def encode(plain : str) -> list:
 def decode(encoded : list) -> str:
     """
     >>> decode([13, 25, 14, 1, 13, 5])
-    myname
+    'myname'
     """
     result = ""
     for elem in encoded:
