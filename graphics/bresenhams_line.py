@@ -23,12 +23,12 @@ class BresenhamLine:
 
         >>> line = BresenhamLine((0, 0), (7, 5))
         >>> line.vectors
-        [(0, 0), (1, 0), (2, 1), (3, 2), (4, 2), (5, 3), (6, 4), (7, 5)]
+        [(0, 0), (1, 1), (2, 1), (3, 2), (4, 3), (5, 4), (6, 4), (7, 5)]
         >>> line.end_vec
         (7, 5)
         >>> line.end_vec = (7, 12)
         >>> line.vectors
-        [(0, 0), (0, 1), (1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (4, 7), (4, 8), (5, 9), (5, 10), (6, 11), (7, 12)]
+        [(0, 0), (1, 1), (1, 2), (2, 3), (2, 4), (3, 5), (4, 6), (4, 7), (5, 8), (5, 9), (6, 10), (6, 11), (7, 12)]
         """
         # list to hold all vectors on the line
         self.vectors:     Vectors2D = []
@@ -76,6 +76,9 @@ class BresenhamLine:
         self.__x_inc:   int       = get_increment_value(self.__delta_x)
         self.__y_inc:   int       = get_increment_value(self.__delta_y)
 
+        self.__delta_x = abs(self.__delta_x) * 2
+        self.__delta_y = abs(self.__delta_y) * 2
+
     def __append_line_vectors(self) -> None:
         """
         initiates the algorithm, by appending the first vector
@@ -86,10 +89,10 @@ class BresenhamLine:
         self.vectors.append((self.__x0, self.__y0))
         decision: int
         if (self.__delta_x >= self.__delta_y):
-            decision = self.__delta_y - self.__delta_x
+            decision = self.__delta_y - int(self.__delta_x / 2)
             self.__move_along_x(decision)
         else:
-            decision = self.__delta_x - self.__delta_y
+            decision = self.__delta_x - int(self.__delta_y / 2)
             self.__move_along_y(decision)
 
     def __move_along_x(self, decision: int) -> None:
