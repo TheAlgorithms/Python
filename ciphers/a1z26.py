@@ -19,10 +19,7 @@ def decode(encoded : list) -> str:
     >>> decode([13, 25, 14, 1, 13, 5])
     'myname'
     """
-    result = ""
-    for elem in encoded:
-        result += chr(elem + 96)
-    return result
+    return "".join(map(lambda elem : chr(elem + 96), encoded))
 
 def main():
     inp = input("->")
