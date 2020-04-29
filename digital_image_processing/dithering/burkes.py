@@ -9,6 +9,10 @@ class Burkes:
     """
     Burke's algorithm is using for converting grayscale image to black and white version
     Source: Source: https://en.wikipedia.org/wiki/Dither
+
+    Note:
+        * Best results are given with threshold= ~1/2 * max greyscale value.
+        * This implementation get RGB image and converts it to greyscale in runtime.
     """
 
     def __init__(self, input_img, threshold: int):
@@ -78,7 +82,7 @@ if __name__ == "__main__":
     # create Burke's instances with original images in greyscale
     burkes_instances = [
         Burkes(imread("image_data/lena.jpg", 1), threshold)
-        for threshold in (1, 126, 180, 200)
+        for threshold in (1, 126, 130, 140)
     ]
 
     for burkes in burkes_instances:
