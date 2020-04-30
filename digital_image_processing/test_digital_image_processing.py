@@ -10,12 +10,14 @@ import digital_image_processing.filters.convolve as conv
 import digital_image_processing.change_contrast as cc
 import digital_image_processing.convert_to_negative as cn
 import digital_image_processing.sepia as sp
+import digital_image_processing.dithering.burkes as bs
 from cv2 import imread, cvtColor, COLOR_BGR2GRAY
 from numpy import array, uint8
 from PIL import Image
 
 img = imread(r"digital_image_processing/image_data/lena_small.jpg")
 gray = cvtColor(img, COLOR_BGR2GRAY)
+
 
 # Test: convert_to_negative()
 def test_convert_to_negative():
@@ -74,3 +76,9 @@ def test_sobel_filter():
 def test_sepia():
     sepia = sp.make_sepia(img, 20)
     assert sepia.all()
+
+
+def test_burkes(file_path: str="digital_image_processing/image_data/lena_small.jpg"):
+    burkes = bs.Burkes(imread(file_path, 1), 120)
+    burkes.process()
+    assert burkes.output_img.any()
