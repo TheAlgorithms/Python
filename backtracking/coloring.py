@@ -9,12 +9,17 @@ def util_color(graph, max_colors, colored_vertices, index):
     """ 
     Pseudo-Code
 
-    Itterates over each color:
-        Check if coloring is possible:
-            1. Color given vertex
-            2. Do recursive call check if this coloring leads to solving problem
-            4. if coloring is valid return
-            5. Uncolor given vertex
+    BaseCase:
+    1. Check if coloring is complete 
+        1.1 If complete return True (meaning that we successfully colored graph)
+
+    RecursiveStep:
+    2. Itterates over each color:
+        Check if current coloring is valid:
+            2.1. Color given vertex
+            2.2. Do recursive call check if this coloring leads to solving problem
+            2.4. if current coloring leads to solution return
+            2.5. Uncolor given vertex
 
     >>> graph = [[0, 1, 0, 0, 0],
     ...          [1, 0, 1, 0, 1],
@@ -32,13 +37,13 @@ def util_color(graph, max_colors, colored_vertices, index):
     >>> util_color(graph, max_colors, colored_vertices, index)
     False
     """
-    pass
 
 
 def color(graph, max_colors):
-    """ Wrapper function to call subroutine called util_color
-        which will either return True or False.
-        If True is returned colored_vertices list is filled with correct colorings
+    """ 
+    Wrapper function to call subroutine called util_color
+    which will either return True or False.
+    If True is returned colored_vertices list is filled with correct colorings
         
     >>> graph = [[0, 1, 0, 0, 0],
     ...          [1, 0, 1, 0, 1],
