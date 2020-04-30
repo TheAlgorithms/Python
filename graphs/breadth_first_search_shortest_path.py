@@ -13,8 +13,9 @@ graph = {
 
 from typing import Dict
 
+
 class Graph:
-    def __init__(self, graph: Dict[str,str], source_vertex: str) -> None:
+    def __init__(self, graph: Dict[str, str], source_vertex: str) -> None:
         """Graph is implemented as dictionary of adjancency lists. Also,
         Source vertex have to be defined upon initialization.
         """
@@ -68,6 +69,7 @@ class Graph:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     g = Graph(graph, "G")
     g.breath_first_search()
