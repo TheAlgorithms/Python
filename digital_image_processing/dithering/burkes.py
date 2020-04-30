@@ -55,9 +55,7 @@ class Burkes:
                                  *	    8/32	4/32
                 2/32	4/32	8/32	4/32	2/32
                 """
-                self.error_table[y][x + 1] = (
-                    self.error_table[y][x + 1] + 8 / 32 * current_error
-                )
+                self.error_table[y][x + 1] += 8 / 32 * current_error
                 self.error_table[y][x + 2] = (
                     self.error_table[y][x + 2] + 4 / 32 * current_error
                 )
