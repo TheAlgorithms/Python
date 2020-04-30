@@ -34,8 +34,8 @@ class Burkes:
         ]
         self.output_img = np.ones((self.width, self.height, 3), np.uint8) * 255
 
-    @staticmethod
-    def get_greyscale(blue: int, green: int, red: int) -> float:
+    @classmethod
+    def get_greyscale(cls, blue: int, green: int, red: int) -> float:
         """
         >>> Burkes.get_greyscale(5, 4, 3)
         3.753
