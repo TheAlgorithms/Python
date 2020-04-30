@@ -42,6 +42,16 @@ class Graph:
         1.) No path is found. The string is a human readable message to indicate this.
         2.) The shortest path is found. The string is in the form `v1(->v2->v3->...->vn)`,
             where v1 is the source vertex and vn is the target vertex, if it exists separately.
+
+        >>> g = Graph(graph, "G")
+        >>> g.breath_first_search()
+
+        Case 1 - No path is found.
+        >>> assert(g.shortest_path("Foo") == "No path from vertex:G to vertex:Foo")
+
+        Case 2 - The path is found.
+        >>> assert(g.shortest_path("D") == "G->C->A->B->D")
+        >>> assert(g.shortest_path("G") == "G")
         """
         if target_vertex == self.source_vertex:
             return f"{self.source_vertex}"
@@ -52,6 +62,8 @@ class Graph:
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     g = Graph(graph, "G")
     g.breath_first_search()
     print(g.shortest_path("D"))
