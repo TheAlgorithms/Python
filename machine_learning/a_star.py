@@ -1,38 +1,39 @@
-import numpy as np 
+import numpy as np
 
 '''
-The A* algorithm combines features of uniform-cost search and pure 
+The A* algorithm combines features of uniform-cost search and pure
 heuristic search to efficiently compute optimal solutions.
-A* algorithm is a best-first search algorithm in which the cost 
-associated with a node is f(n) = g(n) + h(n), 
-where g(n) is the cost of the path from the initial state to node n and 
-h(n) is the heuristic estimate or the cost or a path 
-from node n to a goal.A* algorithm introduces a heuristic into a 
+A* algorithm is a best-first search algorithm in which the cost
+associated with a node is f(n) = g(n) + h(n),
+where g(n) is the cost of the path from the initial state to node n and
+h(n) is the heuristic estimate or the cost or a path
+from node n to a goal.A* algorithm introduces a heuristic into a
 regular graph-searching algorithm,
-essentially planning ahead at each step so a more optimal decision 
+essentially planning ahead at each step so a more optimal decision
 is made.A* also known as the algorithm with brains
 '''
+
 
 class Cell(object):
     '''
     Class cell represents a cell in the world which have the property
-    position : The position of the represented by  tupleof x and y 
+    position : The position of the represented by  tupleof x and y
     co-ordinates initially set to (0,0)
-    parent : This contains the parent cell object which we visited 
-    before arrinving this cell   
+    parent : This contains the parent cell object which we visited
+    before arrinving this cell
     g,h,f : The parameters for constructing the heuristic function
-    which can be any function. for simplicity used line 
+    which can be any function. for simplicity used line
     distance
     '''
     def __init__(self):
-        self.position=(0,0)
-        self.parent=None
+        self.position = (0, 0)
+        self.parent = None
 
         self.g = 0
         self.h = 0
         self.f = 0
     '''
-    overrides equals method because otherwise cell assign will give 
+    overrides equals method because otherwise cell assign will give
     wrong results
     '''
     def __eq__(self, cell):
@@ -45,47 +46,51 @@ class Cell(object):
 class Gridworld(object):
 
     '''
-    Gridworld class represents the  external world here a grid M*M 
+    Gridworld class represents the  external world here a grid M*M
     matrix
     w    : create a numpy array with the given world_size default is 5
     '''
-    
+
     def __init__(self, world_size=(5, 5)):
         self.w = np.zeros(world_size)
         self.world_x_limit = world_size[0]
         self.world_y_limit = world_size[1]
-    
+
     def show(self):
         print(self.w)
 
     '''
     get_neighbours
-    as the name suggests this function will return the neighbours of 
-    the a particular cell 
+    as the name suggests this function will return the neighbours of
+    the a particular cell
     '''
     def get_neigbours(self, cell):
-        neughbour_cord = [(-1, -1), (-1, 0), (-1, 1),
-                            (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+        neughbour_cord = [
+            (-1, -1), (-1, 0), (-1, 1), (0, -1),
+            (0, 1), (1, -1), (1, 0), (1, 1)]
         current_x = cell.position[0]
         current_y = cell.position[1]
         neighbours = []
         for n in neughbour_cord:
             x = current_x + n[0]
             y = current_y + n[1]
-            if (x >=0 and x < self.world_x_limit and 
-                y >=0 and y < self.world_y_limit):
+            if (
+               (x >= 0 and x < self.world_x_limit) and
+               (y >= 0 and y < self.world_y_limit)):
                 c = Cell()
-                c.position = (x,y)
+                c.position = (x, y)
                 c.parent = cell
                 neighbours.append(c)
         return neighbours
 
 '''
-Implementation of a start algorithm 
-world : Object of the world object 
+Implementation of a start algorithm
+world : Object of the world object
 start : Object of the cell as  start position
 stop  : Object of the cell as goal position
 '''
+
+
 def astar(world, start, goal):
     '''
     >>> p = Gridworld()
@@ -105,11 +110,8 @@ def astar(world, start, goal):
         min_f = np.argmin([n.f for n in _open])
         current = _open[min_f]
         _closed.append(_open.pop(min_f))
-        
-
         if current == goal:
             break
-
         for n in world.get_neigbours(current):
             for c in _closed:
                 if c == n:
@@ -137,16 +139,16 @@ if __name__ == '__main__':
     '''
     sample run
     '''
-    # object for the world
+#   object for the world
     p = Gridworld()
-    #stat position and Goal
+#   stat position and Goal
     start = Cell()
-    start.position = (0,0)
+    start.position = (0, 0)
     goal = Cell()
-    goal.position = (4,4)
+    goal.position = (4, 4)
     print("path from {} to {} ".format(start.position, goal.position))
-    s=astar(p, start, goal)
-    #Just for visual Purpose
+    s = astar(p, start, goal)
+#   Just for visual Purpose
     for i in s:
         p.w[i] = 1
     print(p.w)
