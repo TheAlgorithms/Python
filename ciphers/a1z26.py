@@ -6,12 +6,14 @@ https://www.dcode.fr/letter-number-cipher
 http://bestcodes.weebly.com/a1z26.html
 """
 
+
 def encode(plain: str) -> list:
     """
     >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
     """
     return [ord(elem) - 96 for elem in plain]
+
 
 def decode(encoded: list) -> str:
     """
@@ -20,10 +22,12 @@ def decode(encoded: list) -> str:
     """
     return "".join(chr(elem + 96) for elem in encoded)
 
+
 def main():
     encoded = encode(input("->").strip().lower())
     print("Encoded: ", encoded)
     print("Decoded:", decode(encoded))
+
 
 if __name__ == "__main__":
     main()

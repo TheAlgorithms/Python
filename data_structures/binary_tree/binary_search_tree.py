@@ -153,7 +153,7 @@ def postorder(curr_node):
 
 
 def binary_search_tree():
-    """
+    r"""
     Example
                   8
                  / \

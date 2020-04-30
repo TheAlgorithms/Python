@@ -78,7 +78,7 @@ def test_sepia():
     assert sepia.all()
 
 
-def test_burkes(file_path: str="digital_image_processing/image_data/lena_small.jpg"):
+def test_burkes(file_path: str = "digital_image_processing/image_data/lena_small.jpg"):
     burkes = bs.Burkes(imread(file_path, 1), 120)
     burkes.process()
     assert burkes.output_img.any()
