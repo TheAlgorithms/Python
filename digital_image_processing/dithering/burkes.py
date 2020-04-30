@@ -1,7 +1,7 @@
 """
 Implementation Burke's algorithm (dithering)
 """
-from cv2 import imread, imshow, waitKey, destroyAllWindows
+from cv2 import destroyAllWindows, imread, imshow, waitKey
 import numpy as np
 
 
@@ -35,10 +35,14 @@ class Burkes:
         self.output_img = np.ones((self.width, self.height, 3), np.uint8) * 255
 
     @staticmethod
-    def get_greyscale(blue: int, green: int, red: int):
+    def get_greyscale(blue: int, green: int, red: int) -> float:
+        """
+        >>> get_greyscale(5, 4, 3)
+        3.753
+        """
         return 0.2126 * red + 0.587 * green + 0.114 * blue
 
-    def process(self):
+    def process(self) -> None:
         for y in range(self.height):
             for x in range(self.width):
                 greyscale = int(self.get_greyscale(*self.input_img[y][x]))
@@ -48,7 +52,6 @@ class Burkes:
                 else:
                     self.output_img[y][x] = (255, 255, 255)
                     current_error = greyscale + self.error_table[x][y] - 255
-
                 """
                 Burkes error propagation (`*` is current pixel):
                 
@@ -56,24 +59,12 @@ class Burkes:
                 2/32	4/32	8/32	4/32	2/32
                 """
                 self.error_table[y][x + 1] += 8 / 32 * current_error
-                self.error_table[y][x + 2] = (
-                    self.error_table[y][x + 2] + 4 / 32 * current_error
-                )
-                self.error_table[y + 1][x] = (
-                    self.error_table[y + 1][x] + 8 / 32 * current_error
-                )
-                self.error_table[y + 1][x + 1] = (
-                    self.error_table[y + 1][x + 1] + 4 / 32 * current_error
-                )
-                self.error_table[y + 1][x + 2] = (
-                    self.error_table[y + 1][x + 2] + 2 / 32 * current_error
-                )
-                self.error_table[y + 1][x - 1] = (
-                    self.error_table[y + 1][x - 1] + 4 / 32 * current_error
-                )
-                self.error_table[y + 1][x - 2] = (
-                    self.error_table[y + 1][x - 2] + 2 / 32 * current_error
-                )
+                self.error_table[y][x + 2] += 4 / 32 * current_error
+                self.error_table[y + 1][x] += 8 / 32 * current_error
+                self.error_table[y + 1][x + 1] += 4 / 32 * current_error
+                self.error_table[y + 1][x + 2] += 2 / 32 * current_error
+                self.error_table[y + 1][x - 1] += 4 / 32 * current_error
+                self.error_table[y + 1][x - 2] += 2 / 32 * current_error
 
 
 if __name__ == "__main__":
