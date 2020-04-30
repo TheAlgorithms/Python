@@ -14,7 +14,7 @@ def valid_coloring(
 ) -> bool:
     """
     For each neighbour check if coloring constraint is satisfied
-    If any of the neighbours fail the contraint return False
+    If any of the neighbours fail the constraint return False
     If all neighbours validate constraint return True
 
     >>> neighbours = [0,1,0,1,0]
