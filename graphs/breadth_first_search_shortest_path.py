@@ -11,9 +11,10 @@ graph = {
     "G": ["C"],
 }
 
+from typing import Dict
 
 class Graph:
-    def __init__(self, graph, source_vertex):
+    def __init__(self, graph: Dict[str,str], source_vertex: str) -> None:
         """Graph is implemented as dictionary of adjancency lists. Also,
         Source vertex have to be defined upon initialization.
         """
@@ -22,7 +23,7 @@ class Graph:
         self.parent = {}
         self.source_vertex = source_vertex
 
-    def breath_first_search(self):
+    def breath_first_search(self) -> None:
         """This function is a helper for running breath first search on this graph.
         >>> g = Graph(graph, "G")
         >>> g.breath_first_search()
@@ -41,7 +42,7 @@ class Graph:
                     self.parent[adjancent_vertex] = vertex
                     queue.append(adjancent_vertex)
 
-    def shortest_path(self, target_vertex):
+    def shortest_path(self, target_vertex: str) -> str:
         """This shortest path function returns a string, describing the result:
         1.) No path is found. The string is a human readable message to indicate this.
         2.) The shortest path is found. The string is in the form `v1(->v2->v3->...->vn)`,
@@ -67,7 +68,6 @@ class Graph:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     g = Graph(graph, "G")
     g.breath_first_search()
