@@ -58,13 +58,13 @@ class Burkes:
                                  *	    8/32	4/32
                 2/32	4/32	8/32	4/32	2/32
                 """
-                self.error_table[y][x + 1] += 8 / 32 * current_error
-                self.error_table[y][x + 2] += 4 / 32 * current_error
-                self.error_table[y + 1][x] += 8 / 32 * current_error
-                self.error_table[y + 1][x + 1] += 4 / 32 * current_error
-                self.error_table[y + 1][x + 2] += 2 / 32 * current_error
-                self.error_table[y + 1][x - 1] += 4 / 32 * current_error
-                self.error_table[y + 1][x - 2] += 2 / 32 * current_error
+                self.error_table[y][x + 1] += int(8 / 32 * current_error)
+                self.error_table[y][x + 2] += int(4 / 32 * current_error)
+                self.error_table[y + 1][x] += int(8 / 32 * current_error)
+                self.error_table[y + 1][x + 1] += int(4 / 32 * current_error)
+                self.error_table[y + 1][x + 2] += int(2 / 32 * current_error)
+                self.error_table[y + 1][x - 1] += int(4 / 32 * current_error)
+                self.error_table[y + 1][x - 2] += int(2 / 32 * current_error)
 
 
 if __name__ == "__main__":
