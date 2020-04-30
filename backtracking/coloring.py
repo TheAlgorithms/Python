@@ -1,3 +1,5 @@
+from typing import List, Tuple, Union
+
 """
     Graph Coloring also called "m coloring problem"
     consists of coloring given graph with at most m colors
@@ -5,7 +7,9 @@
 """
 
 
-def valid_coloring(neighbours, colored_vertices, color):
+def valid_coloring(
+    neighbours: List[int], colored_vertices: List[int], color: int
+) -> bool:
     """
     For each neighbour check if coloring constraint is satisfied
     If any of the neighbours fail the contraint return False
@@ -30,7 +34,9 @@ def valid_coloring(neighbours, colored_vertices, color):
     return True
 
 
-def util_color(graph, max_colors, colored_vertices, index):
+def util_color(
+    graph: List[List[int]], max_colors: int, colored_vertices: List[int], index: int
+) -> bool:
     """ 
     Pseudo-Code
 
@@ -80,7 +86,9 @@ def util_color(graph, max_colors, colored_vertices, index):
     return False
 
 
-def color(graph, max_colors):
+def color(
+    graph: List[List[int]], max_colors: int
+) -> Tuple[bool, Union[List[int], None]]:
     """ 
     Wrapper function to call subroutine called util_color
     which will either return True or False.
