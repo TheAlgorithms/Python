@@ -86,7 +86,7 @@ def util_color(
     return False
 
 
-def color(graph: List[List[int]], max_colors: int) -> Tuple[bool, List[int]]:
+def color(graph: List[List[int]], max_colors: int) -> List[int]:
     """ 
     Wrapper function to call subroutine called util_color
     which will either return True or False.
@@ -100,15 +100,15 @@ def color(graph: List[List[int]], max_colors: int) -> Tuple[bool, List[int]]:
 
     >>> max_colors = 3
     >>> color(graph, max_colors)
-    (True, [0, 1, 0, 2, 0])
+    [0, 1, 0, 2, 0]
 
     >>> max_colors = 2
     >>> color(graph, max_colors)
-    (False, None)
+    []
     """
     colored_vertices = [-1] * len(graph)
 
     if util_color(graph, max_colors, colored_vertices, 0):
-        return True, colored_vertices
+        return colored_vertices
 
-    return False, []
+    return []
