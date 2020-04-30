@@ -40,7 +40,7 @@ class Burkes:
         >>> Burkes.get_greyscale(5, 4, 3)
         3.753
         """
-        return 0.2126 * red + 0.587 * green + 0.114 * blue
+        return 0.114 * blue + 0.587 * green + 0.2126 * red
 
     def process(self) -> None:
         for y in range(self.height):
