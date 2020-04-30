@@ -11,6 +11,7 @@ graph = {
     "G": ["C"],
 }
 
+
 class Graph:
     def __init__(self, graph, source_vertex):
         """Graph is implemented as dictionary of adjancency lists. Also,
