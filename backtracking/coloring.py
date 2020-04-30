@@ -5,7 +5,7 @@
 
     Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
 """
-from typing import List, Tuple, Union
+from typing import List, Tuple
 
 
 def valid_coloring(
