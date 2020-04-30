@@ -76,7 +76,7 @@ def util_color(
         return True
 
     # Recursive Step
-    for i in range(0, max_colors):
+    for i in range(max_colors):
         if valid_coloring(graph[index], colored_vertices, i):
             # Color current vertex
             colored_vertices[index] = i
