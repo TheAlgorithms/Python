@@ -28,7 +28,8 @@ class Burkes:
         self.threshold = threshold
         self.width, self.height = self.input_img.shape[1], self.input_img.shape[0]
 
-        # error table size (+4 columns and +1 row) greater than input image because of lack of if statements
+        # error table size (+4 columns and +1 row) greater than input image because of
+        # lack of if statements
         self.error_table = [
             [0 for _ in range(self.height + 4)] for __ in range(self.width + 1)
         ]
