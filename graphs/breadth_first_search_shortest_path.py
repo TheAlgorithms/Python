@@ -24,6 +24,10 @@ class Graph:
 
     def breath_first_search(self):
         """This function is a helper for running breath first search on this graph.
+        >>> g = Graph(graph, "G")
+        >>> g.breath_first_search()
+        >>> g.parent
+        {'G': None, 'C': 'G', 'A': 'C', 'F': 'C', 'B': 'A', 'E': 'A', 'D': 'B'}
         """
         visited = {self.source_vertex}
         self.parent[self.source_vertex] = None
