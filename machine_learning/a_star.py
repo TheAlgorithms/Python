@@ -61,7 +61,7 @@ class Gridworld(object):
 
     '''
     get_neighbours
-    as the name suggests this function will return the neighbours of
+    As the name suggests this function will return the neighbours of
     the a particular cell
     '''
     def get_neigbours(self, cell):
