@@ -1,5 +1,3 @@
-from typing import List, Tuple, Union
-
 """
     Graph Coloring also called "m coloring problem"
     consists of coloring given graph with at most m colors
@@ -7,6 +5,7 @@ from typing import List, Tuple, Union
 
     Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
 """
+from typing import List, Tuple, Union
 
 
 def valid_coloring(
@@ -29,8 +28,10 @@ def valid_coloring(
     False
     """
     # Does any neighbour not satisfy the constraints
-    return not any(neighbour == 1 and colored_vertices[i] == color
-                   for i, neighbour in enumerate(neighbours))
+    return not any(
+        neighbour == 1 and colored_vertices[i] == color
+        for i, neighbour in enumerate(neighbours)
+    )
 
 
 def util_color(
