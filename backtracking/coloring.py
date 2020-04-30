@@ -28,12 +28,9 @@ def valid_coloring(
     >>> valid_coloring(neighbours, colored_vertices, color)
     False
     """
-    for i in range(len(neighbours)):
-        # Constraint Failed
-        if neighbours[i] == 1 and colored_vertices[i] == color:
-            return False
-    # All neighbours satisfy constraint
-    return True
+    # Does any neighbour not satisfy the constraints
+    return not any(neighbour == 1 and colored_vertices[i] == color
+                   for i, neighbour in enumerate(neighbours))
 
 
 def util_color(
