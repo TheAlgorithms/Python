@@ -17,9 +17,8 @@ class Burkes:
 
     def __init__(self, input_img, threshold: int):
         self.min_threshold = 0
-        self.max_threshold = int(
-            self.get_greyscale(255, 255, 255)
-        )  # max greyscale value for #FFFFFF
+        # max greyscale value for #FFFFFF
+        self.max_threshold = int(self.get_greyscale(255, 255, 255))
 
         if not self.min_threshold < threshold < self.max_threshold:
             raise ValueError(f"Factor value should be from 0 to {self.max_threshold}")
