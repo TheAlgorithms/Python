@@ -4,56 +4,55 @@ https://en.wikipedia.org/wiki/Rayleigh_quotient
 import numpy as np
 
 
-def is_hermitian(matrix: np.matrix) -> bool:
+def is_hermitian(matrix: np.array) -> bool:
     """
     Checks if a matrix is Hermitian.
-
     >>> import numpy as np
-    >>> A = np.matrix([
+    >>> A = np.array([
     ... [2,    2+1j, 4],
     ... [2-1j,  3,  1j],
     ... [4,    -1j,  1]])
     >>> is_hermitian(A)
     True
-    >>> A = np.matrix([
+    >>> A = np.array([
     ... [2,    2+1j, 4+1j],
     ... [2-1j,  3,  1j],
     ... [4,    -1j,  1]])
     >>> is_hermitian(A)
     False
     """
-    return np.array_equal(matrix, matrix.H)
+    return np.array_equal(matrix, matrix.conjugate().T)
 
 
-def rayleigh_quotient(A: np.matrix, v: np.matrix) -> float:
+def rayleigh_quotient(A: np.array, v: np.array) -> float:
     """
     Returns the Rayleigh quotient of a Hermitian matrix A and
     vector v.
     >>> import numpy as np
-    >>> A = np.matrix([
+    >>> A = np.array([
     ... [1,  2, 4],
     ... [2,  3,  -1],
     ... [4, -1,  1]
     ... ])
-    >>> v = np.matrix([
+    >>> v = np.array([
     ... [1],
     ... [2],
     ... [3]
     ... ])
     >>> rayleigh_quotient(A, v)
-    matrix([[3.]])
+    array([[3.]])
     """
-    v_star = v.H
-    return (v_star * A * v) / (v_star * v)
+    v_star = v.conjugate().T
+    return (v_star.dot(A).dot(v)) / (v_star.dot(v))
 
 
 def tests() -> None:
-    A = np.matrix([[2, 2 + 1j, 4], [2 - 1j, 3, 1j], [4, -1j, 1]])
-    v = np.matrix([[1], [2], [3]])
+    A = np.array([[2, 2 + 1j, 4], [2 - 1j, 3, 1j], [4, -1j, 1]])
+    v = np.array([[1], [2], [3]])
     assert is_hermitian(A), f"{A} is not hermitian."
     print(rayleigh_quotient(A, v))
 
-    A = np.matrix([[1, 2, 4], [2, 3, -1], [4, -1, 1]])
+    A = np.array([[1, 2, 4], [2, 3, -1], [4, -1, 1]])
     assert is_hermitian(A), f"{A} is not hermitian."
     assert rayleigh_quotient(A, v) == float(3)
 
