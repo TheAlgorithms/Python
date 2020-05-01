@@ -40,7 +40,7 @@ def makeKeyFiles(name, keySize):
         print("\nWARNING:")
         print(
             '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \n'
-            'Use a different name or delete these files and re-run this program.'
+            "Use a different name or delete these files and re-run this program."
             % (name, name)
         )
         sys.exit()

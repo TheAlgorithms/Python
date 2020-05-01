@@ -164,8 +164,8 @@ class Matrix:
             )
         else:
             return sum(
-                    self.rows[0][column] * self.cofactors().rows[0][column]
-                    for column in range(self.num_columns)
+                self.rows[0][column] * self.cofactors().rows[0][column]
+                for column in range(self.num_columns)
             )
 
     def is_invertable(self):
