@@ -15,4 +15,6 @@ markComment: >
   recent activity. It will be closed if no further activity occurs. Thank you
   for your contributions.
 # Comment to post when closing a stale issue. Set to `false` to disable
-closeComment: true
+closeComment: >
+  Please reopen this issue once you commit the changes requested or 
+  make improvements on the code. Thank you for your contributions.
