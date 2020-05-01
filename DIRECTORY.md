@@ -213,6 +213,7 @@
   * [Bfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs.py)
   * [Bfs Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs_shortest_path.py)
   * [Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search.py)
+  * [Breadth First Search Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search_shortest_path.py)
   * [Check Bipartite Graph Bfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/check_bipartite_graph_bfs.py)
   * [Check Bipartite Graph Dfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/check_bipartite_graph_dfs.py)
   * [Depth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/depth_first_search.py)
