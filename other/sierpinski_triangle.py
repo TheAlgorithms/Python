@@ -5,11 +5,14 @@
 Simple example of Fractal generation using recursive function.
 
 What is Sierpinski Triangle?
->>The Sierpinski triangle (also with the original orthography Sierpinski), also called the Sierpinski gasket or the Sierpinski Sieve, 
-is a fractal and attractive fixed set with the overall shape of an equilateral triangle, subdivided recursively into smaller 
-equilateral triangles. Originally constructed as a curve, this is one of the basic examples of self-similar sets, i.e., 
-it is a mathematically generated pattern that can be reproducible at any magnification or reduction. It is named after 
-the Polish mathematician Wacław Sierpinski, but appeared as a decorative pattern many centuries prior to the work of Sierpinski.
+>>The Sierpinski triangle (also with the original orthography Sierpinski), also called
+the Sierpinski gasket or the Sierpinski Sieve, is a fractal and attractive fixed set
+with the overall shape of an equilateral triangle, subdivided recursively into smaller
+equilateral triangles. Originally constructed as a curve, this is one of the basic
+examples of self-similar sets, i.e., it is a mathematically generated pattern that can
+be reproducible at any magnification or reduction. It is named after the Polish
+mathematician Wacław Sierpinski, but appeared as a decorative pattern many centuries
+prior to the work of Sierpinski.
 
 Requirements(pip):
   - turtle
@@ -20,7 +23,8 @@ Python:
 Usage:
   - $python sierpinski_triangle.py <int:depth_for_fractal>
 
-Credits: This code was written by editing the code from http://www.riannetrujillo.com/blog/python-fractal/
+Credits: This code was written by editing the code from
+http://www.riannetrujillo.com/blog/python-fractal/
 
 """
 import turtle
