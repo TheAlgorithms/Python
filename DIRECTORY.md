@@ -14,6 +14,7 @@
   * [All Combinations](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_combinations.py)
   * [All Permutations](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_permutations.py)
   * [All Subsequences](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_subsequences.py)
+  * [Coloring](https://github.com/TheAlgorithms/Python/blob/master/backtracking/coloring.py)
   * [Minimax](https://github.com/TheAlgorithms/Python/blob/master/backtracking/minimax.py)
   * [N Queens](https://github.com/TheAlgorithms/Python/blob/master/backtracking/n_queens.py)
   * [Sudoku](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sudoku.py)
@@ -31,6 +32,7 @@
   * [One Dimensional](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/one_dimensional.py)
 
 ## Ciphers
+  * [A1Z26](https://github.com/TheAlgorithms/Python/blob/master/ciphers/a1z26.py)
   * [Affine Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/affine_cipher.py)
   * [Atbash](https://github.com/TheAlgorithms/Python/blob/master/ciphers/atbash.py)
   * [Base16](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base16.py)
@@ -138,6 +140,8 @@
 ## Digital Image Processing
   * [Change Contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
   * [Convert To Negative](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/convert_to_negative.py)
+  * Dithering
+    * [Burkes](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/dithering/burkes.py)
   * Edge Detection
     * [Canny](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/edge_detection/canny.py)
   * Filters
