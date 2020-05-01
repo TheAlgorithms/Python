@@ -55,6 +55,7 @@ class Graph:
         Case 1 - No path is found.
         >>> g.shortest_path("Foo")
         'No path from vertex:G to vertex:Foo'
+
         Case 2 - The path is found.
         >>> g.shortest_path("D")
         'G->C->A->B->D'
