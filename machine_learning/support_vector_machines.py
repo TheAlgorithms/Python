@@ -3,6 +3,7 @@ from sklearn import svm
 from sklearn.model_selection import train_test_split
 import doctest
 
+
 # different functions implementing different types of SVM's
 def NuSVC(train_x, train_y):
     svc_NuSVC = svm.NuSVC()
@@ -17,8 +18,11 @@ def Linearsvc(train_x, train_y):
 
 
 def SVC(train_x, train_y):
-    # svm.SVC(C=1.0, kernel='rbf', degree=3, gamma=0.0, coef0=0.0, shrinking=True, probability=False,tol=0.001, cache_size=200, class_weight=None, verbose=False, max_iter=-1, random_state=None)
-    # various parameters like "kernel","gamma","C" can effectively tuned for a given machine learning model.
+    # svm.SVC(C=1.0, kernel='rbf', degree=3, gamma=0.0, coef0=0.0, shrinking=True,
+    # probability=False,tol=0.001, cache_size=200, class_weight=None, verbose=False,
+    # max_iter=-1, random_state=None)
+    # various parameters like "kernel","gamma","C" can effectively tuned for a given
+    # machine learning model.
     SVC = svm.SVC(gamma="auto")
     SVC.fit(train_x, train_y)
     return SVC
@@ -27,8 +31,8 @@ def SVC(train_x, train_y):
 def test(X_new):
     """
     3 test cases to be passed
-    an array containing the sepal length (cm), sepal width (cm),petal length (cm),petal width (cm)
-    based on which  the target name will be predicted
+    an array containing the sepal length (cm), sepal width (cm), petal length (cm),
+    petal width (cm) based on which  the target name will be predicted
     >>> test([1,2,1,4])
     'virginica'
     >>> test([5, 2, 4, 1])

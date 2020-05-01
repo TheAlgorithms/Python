@@ -1,9 +1,12 @@
 """
-- A linked list is similar to an array, it holds values. However, links in a linked list do not have indexes.
+- A linked list is similar to an array, it holds values. However, links in a linked
+    list do not have indexes.
 - This is an example of a double ended, doubly linked list.
 - Each link references the next link and the previous one.
-- A Doubly Linked List (DLL) contains an extra pointer, typically called previous pointer, together with next pointer and data which are there in singly linked list.
- - Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficient"""
+- A Doubly Linked List (DLL) contains an extra pointer, typically called previous
+    pointer, together with next pointer and data which are there in singly linked list.
+ - Advantages over SLL - IT can be traversed in both forward and backward direction.,
+     Delete operation is more efficient"""
 
 
 class LinkedList:  # making main class named linked list
@@ -13,7 +16,7 @@ class LinkedList:  # making main class named linked list
 
     def insertHead(self, x):
         newLink = Link(x)  # Create a new link with a value attached to it
-        if self.isEmpty() == True:  # Set the first element added to be the tail
+        if self.isEmpty():  # Set the first element added to be the tail
             self.tail = newLink
         else:
             self.head.previous = newLink  # newLink <-- currenthead(head)
@@ -23,7 +26,9 @@ class LinkedList:  # making main class named linked list
     def deleteHead(self):
         temp = self.head
         self.head = self.head.next  # oldHead <--> 2ndElement(head)
-        self.head.previous = None  # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
+        # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be
+        # removed
+        self.head.previous = None
         if self.head is None:
             self.tail = None  # if empty linked list
         return temp

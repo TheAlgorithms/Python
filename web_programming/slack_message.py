@@ -14,5 +14,6 @@ def send_slack_message(message_body: str, slack_url: str) -> None:
 
 
 if __name__ == "main":
-    # Set the slack url to the one provided by Slack when you create the webhook at https://my.slack.com/services/new/incoming-webhook/
+    # Set the slack url to the one provided by Slack when you create the webhook at
+    # https://my.slack.com/services/new/incoming-webhook/
     send_slack_message("<YOUR MESSAGE BODY>", "<SLACK CHANNEL URL>")
