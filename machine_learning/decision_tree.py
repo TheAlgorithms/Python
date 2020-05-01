@@ -28,11 +28,13 @@ class Decision_Tree:
         >>> tester.mean_squared_error(test_labels, test_prediction) == (
         ...     Test_Decision_Tree.helper_mean_squared_error_test(test_labels,
         ...         test_prediction))
+        True
         >>> test_labels = np.array([1,2,3])
         >>> test_prediction = np.float(2)
-        >>> assert tester.mean_squared_error(test_labels, test_prediction) == (
+        >>> tester.mean_squared_error(test_labels, test_prediction) == (
         ...     Test_Decision_Tree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction)
+        ...         test_prediction))
+        True
         """
         if labels.ndim != 1:
             print("Error: Input labels must be one dimensional")
