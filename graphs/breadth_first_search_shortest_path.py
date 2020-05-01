@@ -53,11 +53,13 @@ class Graph:
         >>> g.breath_first_search()
 
         Case 1 - No path is found.
-        >>> assert(g.shortest_path("Foo") == "No path from vertex:G to vertex:Foo")
-
+        >>> g.shortest_path("Foo")
+        'No path from vertex:G to vertex:Foo'
         Case 2 - The path is found.
-        >>> assert(g.shortest_path("D") == "G->C->A->B->D")
-        >>> assert(g.shortest_path("G") == "G")
+        >>> g.shortest_path("D")
+        'G->C->A->B->D'
+        >>> g.shortest_path("G")
+        'G'
         """
         if target_vertex == self.source_vertex:
             return f"{self.source_vertex}"
