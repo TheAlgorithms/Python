@@ -12,7 +12,7 @@ def NuSVC(train_x, train_y):
 
 
 def Linearsvc(train_x, train_y):
-    svc_linear = svm.LinearSVC()
+    svc_linear = svm.LinearSVC(tol=10e-2)
     svc_linear.fit(train_x, train_y)
     return svc_linear
 
@@ -20,7 +20,7 @@ def Linearsvc(train_x, train_y):
 def SVC(train_x, train_y):
     # svm.SVC(C=1.0, kernel='rbf', degree=3, gamma=0.0, coef0=0.0, shrinking=True,
     # probability=False,tol=0.001, cache_size=200, class_weight=None, verbose=False,
-    # max_iter=-1, random_state=None)
+    # max_iter=1000, random_state=None)
     # various parameters like "kernel","gamma","C" can effectively tuned for a given
     # machine learning model.
     SVC = svm.SVC(gamma="auto")
@@ -39,7 +39,6 @@ def test(X_new):
     'versicolor'
     >>> test([6,3,4,1])
     'versicolor'
-
     """
     iris = load_iris()
     # splitting the dataset to test and train
@@ -51,6 +50,7 @@ def test(X_new):
     # current_model=NuSVC(train_x, train_y)
     current_model = Linearsvc(train_x, train_y)
     prediction = current_model.predict([X_new])
+
     return iris["target_names"][prediction][0]
 
 
