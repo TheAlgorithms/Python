@@ -31,6 +31,7 @@ def valid_connection(
     >>> next_ver = 1
     >>> valid_connection(graph, next_ver, curr_ind, path)
     True
+
     Case 2: Same graph, but trying to connect to node that is already in path
     >>> path = [0, 1, 2, 4, -1, 0]
     >>> curr_ind = 4
@@ -73,6 +74,7 @@ def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr_ind: int) 
     True
     >>> print(path)
     [0, 1, 2, 4, 3, 0]
+
     Case 2: Use exact graph as in previous case, but in the properties taken from middle of calculation
     >>> graph = [[0, 1, 0, 1, 0],
     ...          [1, 0, 1, 1, 1],
@@ -146,6 +148,7 @@ def hamilton_cycle(graph: List[List[int]], start_index: int = 0) -> List[int]:
     ...          [0, 1, 1, 1, 0]]
     >>> hamilton_cycle(graph, 3)
     [3, 0, 1, 2, 4, 3]
+    
     Case 3:
     Following Graph is exactly what it was before, but edge 3-4 is removed.
     Result is that there is no Hamiltonian Cycle anymore.
