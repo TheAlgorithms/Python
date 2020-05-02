@@ -9,7 +9,15 @@ jobs:
     - uses: actions/stale@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        stale-issue-message: 'Stale issue message'
-        stale-pr-message: 'Stale pull request message'
+        stale-issue-message: >
+          Please reopen this issue once you add more information and updates here.
+          If this is not the case and you need some help, feel free to seek help
+          from our [Gitter](https://gitter.im/TheAlgorithms) or ping one of the
+          reviewers. Thank you for your contributions!
+        stale-pr-message: >
+          Please reopen this pull request once you commit the changes requested
+          or make improvements on the code. If this is not the case and you need
+          some help, feel free to seek help from our [Gitter](https://gitter.im/TheAlgorithms)
+          or ping one of the reviewers. Thank you for your contributions!
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
