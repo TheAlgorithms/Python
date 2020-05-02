@@ -68,7 +68,7 @@ def util_hamilton_cycle(graph, path, curr_vertex):
     # Base Case
     if curr_vertex == len(graph):
         # return whether path exists between current and starting vertices
-        return graph[path[curr_vertex - 1]][0] == 1
+        return graph[path[curr_vertex - 1]][path[0]] == 1
 
     # Recursive Step
     for next_vertex in range(len(graph)):
@@ -83,7 +83,7 @@ def util_hamilton_cycle(graph, path, curr_vertex):
     return False
 
 
-def hamilton_cycle(graph):
+def hamilton_cycle(graph, start_index=0):
     """
     Wrapper function to call subroutine called util_hamilton_cycle,
     which will either return array of vertices indicating hamiltonian cycle
@@ -107,7 +107,24 @@ def hamilton_cycle(graph):
     ...          [0, 1, 1, 1, 0]]
     >>> hamilton_cycle(graph)
     [0, 1, 2, 4, 3, 0]
-    Case 2:
+    
+    Case 2: 
+    Same Graph as it was in Case 1, changed starting index from default to 3
+    
+    (0)---(1)---(2)
+     |   /   \   |
+     |  /     \  |
+     | /       \ |
+     |/         \|
+    (3)---------(4)
+    >>> graph = [[0, 1, 0, 1, 0],
+    ...          [1, 0, 1, 1, 1],
+    ...          [0, 1, 0, 0, 1],
+    ...          [1, 1, 0, 0, 1],
+    ...          [0, 1, 1, 1, 0]]
+    >>> hamilton_cycle(graph, 3)
+    [3, 0, 1, 2, 4, 3]
+    Case 3:
     Following Graph is exactly what it was before, but edge 3-4 is removed.
     Result is that there is no Hamiltonian Cycle anymore.
     
@@ -122,14 +139,14 @@ def hamilton_cycle(graph):
     ...          [0, 1, 0, 0, 1],
     ...          [1, 1, 0, 0, 0],
     ...          [0, 1, 1, 0, 0]]
-    >>> hamilton_cycle(graph)
+    >>> hamilton_cycle(graph,4)
     []
     """
 
     # Initialize path with -1, indicating that we have not visited them yet
     path = [-1] * (len(graph) + 1)
     # initialize start and end of path with starting index
-    path[0] = path[-1] = 0
+    path[0] = path[-1] = start_index
     # evaluate and if we find answer return path either return empty array
     if util_hamilton_cycle(graph, path, 1):
         return path
