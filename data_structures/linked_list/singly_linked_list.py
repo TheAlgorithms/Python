@@ -109,13 +109,13 @@ class LinkedList:
        
     def __len__(self):
         """Return length of linked list i.e. number of nodes """
-        curNode = self.head
+        cur_node = self.head
         count = 0
         
-        if not curNode: return count #if list is empty
-        while curNode.next:
+        if not cur_node: return count #if list is empty
+        while cur_node.next:
             count+=1
-            curNode = curNode.next
+            cur_node = cur_node.next
         return count+1
 
 def main():
@@ -145,6 +145,7 @@ def main():
     A[1] = input("Enter New Value: ").strip()
     print("New list:")
     print(A)
+    print(f"length of A is : {len(A)}")
 
 
 if __name__ == "__main__":
