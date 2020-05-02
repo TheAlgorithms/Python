@@ -1,5 +1,3 @@
-from typing import List
-
 """
     A Hamiltonian cycle (Hamiltonian circuit) is a graph cycle 
     through a graph that visits each node exactly once.
@@ -8,6 +6,7 @@ from typing import List
     
     Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path
 """
+from typing import List
 
 
 def valid_connection(
@@ -173,6 +172,4 @@ def hamilton_cycle(graph: List[List[int]], start_index: int = 0) -> List[int]:
     # initialize start and end of path with starting index
     path[0] = path[-1] = start_index
     # evaluate and if we find answer return path either return empty array
-    if util_hamilton_cycle(graph, path, 1):
-        return path
-    return []
+    return path if util_hamilton_cycle(graph, path, 1) else []
