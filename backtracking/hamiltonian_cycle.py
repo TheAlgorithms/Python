@@ -107,7 +107,7 @@ def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr_ind: int) 
 
 
 def hamilton_cycle(graph: List[List[int]], start_index: int = 0) -> List[int]:
-    """
+    r"""
     Wrapper function to call subroutine called util_hamilton_cycle,
     which will either return array of vertices indicating hamiltonian cycle
     or an empty list indicating that hamiltonian cycle was not found.
