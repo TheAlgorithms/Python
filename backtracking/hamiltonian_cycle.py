@@ -11,25 +11,43 @@ from typing import List
 
 
 def valid_connection(
-    graph: List[List[int]], next: int, curr: int, path: List[int]
+    graph: List[List[int]], next_ver: int, curr_ind: int, path: List[int]
 ) -> bool:
     """
     Checks whether it is possible to add next into path by validating 2 statements
     1. There should be path between current and next vertex
     2. Next vertex should not be in path
     If both validations succeeds we return true saying that it is possible to connect this vertices
-    either we return false    
+    either we return false
+    
+    Case 1:Use exact graph as in main function, with initialized values
+    >>> graph = [[0, 1, 0, 1, 0],
+    ...          [1, 0, 1, 1, 1],
+    ...          [0, 1, 0, 0, 1],
+    ...          [1, 1, 0, 0, 1],
+    ...          [0, 1, 1, 1, 0]]
+    >>> path = [0, -1, -1, -1, -1, 0]
+    >>> curr_ind = 1
+    >>> next_ver = 1
+    >>> valid_connection(graph, next_ver, curr_ind, path)
+    True
+    Case 2: Same graph, but trying to connect to node that is already in path
+    >>> path = [0, 1, 2, 4, -1, 0]
+    >>> curr_ind = 4
+    >>> next_ver = 1
+    >>> valid_connection(graph, next_ver, curr_ind, path)
+    False
     """
 
     # 1. Validate that path exists between current and next vertices
-    if graph[path[curr - 1]][next] == 0:
+    if graph[path[curr_ind - 1]][next_ver] == 0:
         return False
 
     # 2. Validate that next vertex is not already in path
-    return not any(vertex == next for vertex in path)
+    return not any(vertex == next_ver for vertex in path)
 
 
-def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr: int) -> bool:
+def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr_ind: int) -> bool:
     """
     Pseudo-Code
     Base Case:
@@ -50,8 +68,8 @@ def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr: int) -> b
     ...          [1, 1, 0, 0, 1],
     ...          [0, 1, 1, 1, 0]]
     >>> path = [0, -1, -1, -1, -1, 0]
-    >>> curr = 1
-    >>> util_hamilton_cycle(graph, path, curr)
+    >>> curr_ind = 1
+    >>> util_hamilton_cycle(graph, path, curr_ind)
     True
     >>> print(path)
     [0, 1, 2, 4, 3, 0]
@@ -62,28 +80,28 @@ def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr: int) -> b
     ...          [1, 1, 0, 0, 1],
     ...          [0, 1, 1, 1, 0]]
     >>> path = [0, 1, 2, -1, -1, 0]
-    >>> curr = 3
-    >>> util_hamilton_cycle(graph, path, curr)
+    >>> curr_ind = 3
+    >>> util_hamilton_cycle(graph, path, curr_ind)
     True
     >>> print(path)
     [0, 1, 2, 4, 3, 0]
     """
 
     # Base Case
-    if curr == len(graph):
+    if curr_ind == len(graph):
         # return whether path exists between current and starting vertices
-        return graph[path[curr - 1]][path[0]] == 1
+        return graph[path[curr_ind - 1]][path[0]] == 1
 
     # Recursive Step
     for next in range(0, len(graph)):
-        if valid_connection(graph, next, curr, path):
+        if valid_connection(graph, next, curr_ind, path):
             # Insert current vertex  into path as next transition
-            path[curr] = next
+            path[curr_ind] = next
             # Validate created path
-            if util_hamilton_cycle(graph, path, curr + 1):
+            if util_hamilton_cycle(graph, path, curr_ind + 1):
                 return True
             # Backtrack
-            path[curr] = -1
+            path[curr_ind] = -1
     return False
 
 
