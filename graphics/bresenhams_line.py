@@ -1,6 +1,6 @@
 # https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
 
-from typing import Tuple, List, Callable, Any, Optional
+from typing import Tuple, List, Any, Optional
 
 #                (x,   y)
 Vector2D = Tuple[int, int]
@@ -155,28 +155,19 @@ class BresenhamLine:
         Traceback (most recent call last):
         TypeError: "end_vec" must be an indexable type, not type <class 'int'>
         """
-
-        def test_arg(arg: Any, arg_name: str) -> bool:
-            """
-            Check that we have an indexable object which contains at least two values
-            Check that the two values contained in the indexable object can be converted to ints
-
-                arg     : the argument itself that should be tested
-                arg_name: the name of the argument parameter
-            return true if all tests are passed
-            """
-            try:
-                int(arg[0])
-                int(arg[1])
-            except TypeError:
-                raise TypeError(
-                    f'"{arg_name}" must be an indexable type, not type {type(arg)}'
-                )
-            except ValueError:
-                raise ValueError(f'"{arg_name}" must contain two integers, not {arg}')
-            return True
-
-        return test_arg(first_arg, "start_vec") and test_arg(second_arg, "end_vec")
+        if not is_indexable(first_arg):
+            raise TypeError(
+                f'"start_vec" must be an indexable type, not type {type(first_arg)}'
+            )
+        if not is_indexable(second_arg):
+            raise TypeError(
+                f'"end_vec" must be an indexable type, not type {type(second_arg)}'
+            )
+        if not is_int(first_arg[0]) or not is_int(first_arg[1]):
+            raise ValueError(f'"start_vec" must contain two integers, not {first_arg}')
+        if not is_int(second_arg[0]) or not is_int(second_arg[1]):
+            raise ValueError(f'"end_vec" must contain two integers, not {second_arg}')
+        return True
 
     def _set_private_variables(
         self, start_vec: Optional[Vector2D] = None, end_vec: Optional[Vector2D] = None
@@ -199,6 +190,47 @@ class BresenhamLine:
         self.__y_inc: int = int((self.__delta_y > 0) - (self.__delta_y < 0))
         self.__delta_x = abs(self.__delta_x) * 2
         self.__delta_y = abs(self.__delta_y) * 2
+
+
+def is_indexable(arg: Any) -> bool:
+    """
+        arg     : the argument itself that should be tested
+    return true if object is indexable
+
+    >>> is_indexable((10, 10))
+    True
+
+    >>> is_indexable(10)
+    False
+    """
+    try:
+        arg[0]
+        arg[1]
+    except TypeError:
+        return False
+    except IndexError:
+        return False
+    return True
+
+
+def is_int(arg: Any) -> bool:
+    """
+        arg     : the argument itself that should be tested
+    return true if object is or can be converted into an int
+
+    >>> is_int((10, 10))
+    False
+
+    >>> is_int("10")
+    True
+    """
+    try:
+        int(arg)
+    except TypeError:
+        return False
+    except ValueError:
+        return False
+    return True
 
 
 if __name__ == "__main__":
