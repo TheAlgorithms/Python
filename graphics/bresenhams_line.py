@@ -60,10 +60,11 @@ class BresenhamLine:
         Traceback (most recent call last):
         TypeError: "start_vec" must be an indexable type, not type <class 'int'>
         """
+        var_set: bool = False
         if self._validate_input(new_start_vec, self.__end_vec):
             self._set_private_variables(start_vec=new_start_vec)
-            return self._append_line_vectors()
-        return False
+            var_set = True
+        return self._append_line_vectors() and var_set
 
     @property
     def end_vec(self) -> Vector2D:
@@ -82,10 +83,11 @@ class BresenhamLine:
         Traceback (most recent call last):
         ValueError: "end_vec" must contain two integers, not (50, 'b')
         """
+        var_set: bool = False
         if self._validate_input(self.__start_vec, new_end_vec):
             self._set_private_variables(end_vec=new_end_vec)
-            return self._append_line_vectors()
-        return False
+            var_set = True
+        return self._append_line_vectors() and var_set
 
     def _append_line_vectors(self) -> bool:
         """
@@ -100,6 +102,12 @@ class BresenhamLine:
 
         >>> line._append_line_vectors()
         True
+
+        >>> line.set_start_vec((100, 100))
+        True
+
+        >>> line._append_line_vectors()
+        False
         """
         self.vectors.clear()
         self.vectors.append((self.__x0, self.__y0))
@@ -144,7 +152,7 @@ class BresenhamLine:
         """
             first_arg : first  argument of the BresenhamLine(first_arg, second_arg) call
             second_arg: second argument of the BresenhamLine(first_arg, second_arg) call
-        return true if all tests are passed for both arguments
+        return true if all tests are passed for both arguments, otherwise raise an exception
 
         >>> line = BresenhamLine((0, 0), (0, 0))
 
@@ -195,7 +203,7 @@ class BresenhamLine:
 def is_indexable(arg: Any) -> bool:
     """
         arg     : the argument itself that should be tested
-    return true if object is indexable
+    return true if object is indexable with at least two items
 
     >>> is_indexable((10, 10))
     True
