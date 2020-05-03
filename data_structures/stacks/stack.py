@@ -47,8 +47,8 @@ class Stack:
         """ Return the size of the stack."""
         return len(self.stack)
     
-    def is_exist(self, item):
-        """Check if a particular item is in set"""
+    def __contains__(self, item):
+        """Check if a particular item is in stack"""
         return item in self.stack
     
 
