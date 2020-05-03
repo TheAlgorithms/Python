@@ -12,9 +12,6 @@ def find_digit(numerator: int, digit: int) -> int:
     """
     Considering any range can be provided,
     because as per the problem, the digit d < 1000
-    :param n:
-    :param d:
-    :return:
     >>> find_digit(1, 10)
     7
     >>> find_digit(10, 100)
