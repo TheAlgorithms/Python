@@ -47,8 +47,8 @@ class Stack:
         """ Return the size of the stack."""
         return len(self.stack)
     
-    def __contains__(self, item):
-        """Check if a particular item is in stack"""
+    def __contains__(self, item) -> bool:
+        """Check if item is in stack"""
         return item in self.stack
     
 
@@ -71,4 +71,6 @@ if __name__ == "__main__":
     print("is_empty(): " + str(stack.is_empty()))
     print("size(): " + str(stack.size()))
     num = 5
-    if stack.is_exist(num): print("num is in stack")
+    if num in stack:
+        print(f"{num} is in stack")
+        
