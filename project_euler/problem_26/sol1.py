@@ -24,7 +24,7 @@ def find_digit(numerator: int, digit: int) -> int:
 
     for divide_by_number in range(numerator, digit + 1):
         has_been_divided = []
-        now_divide = NUM
+        now_divide = numerator
         for division_cycle in range(1, digit + 1):
             if now_divide in has_been_divided:
                 if longest_list_length < len(has_been_divided):
