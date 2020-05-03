@@ -18,7 +18,7 @@ class SegmentTreeNode(object):
         self.right = right
 
     def __str__(self):
-        return 'val: %s, start: %s, end: %s' % (self.val, self.start, self.end)
+        return "val: %s, start: %s, end: %s" % (self.val, self.start, self.end)
 
 
 class SegmentTree(object):
@@ -131,6 +131,7 @@ class SegmentTree(object):
     >>>
 
     """
+
     def __init__(self, collection: Sequence, function):
         self.collection = collection
         self.fn = function
@@ -197,7 +198,10 @@ class SegmentTree(object):
                 return self._query_range(node.left, i, j)
             else:
                 # range in left child tree and right child tree
-                return self.fn(self._query_range(node.left, i, node.mid), self._query_range(node.right, node.mid + 1, j))
+                return self.fn(
+                    self._query_range(node.left, i, node.mid),
+                    self._query_range(node.right, node.mid + 1, j),
+                )
         else:
             # range in right child tree
             return self._query_range(node.right, i, j)
@@ -217,10 +221,11 @@ class SegmentTree(object):
                     queue.put(node.right)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import operator
+
     for fn in [operator.add, max, min]:
-        print('*' * 50)
+        print("*" * 50)
         arr = SegmentTree([2, 1, 5, 3, 4], fn)
         for node in arr.traverse():
             print(node)
