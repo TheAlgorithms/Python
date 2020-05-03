@@ -19,8 +19,6 @@ def find_digit(numerator: int, digit: int) -> int:
     >>> find_digit(10, 1000)
     983
     """
-    global NUM
-    NUM = numerator
     the_digit = 1
     longest_list_length = 0
 
