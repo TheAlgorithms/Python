@@ -46,7 +46,11 @@ class Stack:
     def size(self):
         """ Return the size of the stack."""
         return len(self.stack)
-
+    
+    def __contains__(self, item) -> bool:
+        """Check if item is in stack"""
+        return item in self.stack
+    
 
 class StackOverflowError(BaseException):
     pass
@@ -66,3 +70,7 @@ if __name__ == "__main__":
     print("After push(100), the stack is now: " + str(stack))
     print("is_empty(): " + str(stack.is_empty()))
     print("size(): " + str(stack.size()))
+    num = 5
+    if num in stack:
+        print(f"{num} is in stack")
+        
