@@ -29,7 +29,7 @@ def find_digit(numerator: int, digit: int) -> int:
                     the_digit = divide_by_number
             else:
                 has_been_divided.append(now_divide)
-                now_divide *= 10 % divide_by_number
+                now_divide = now_divide * 10 % divide_by_number
 
     return the_digit
 
