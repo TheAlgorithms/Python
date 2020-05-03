@@ -11,7 +11,7 @@ NUM = 1
 def find_digit(numerator: int, digit: int) -> int:
     """
     Considering any range can be provided,
-    becasue as per the problem, the digit d < 1000
+    because as per the problem, the digit d < 1000
     :param n:
     :param d:
     :return:
