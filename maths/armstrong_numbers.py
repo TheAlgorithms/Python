@@ -42,7 +42,7 @@ def armstrong_number(n: int) -> bool:
     return n == sum
 
 def narcissistic_number(n:int) -> bool:
-    """Return True if n is a armstrong number or False if it is not"""
+    """Return True if n is a narcissistic number or False if it is not"""
     
     expo = len(str(n)) #power, all number will be raised to
     temp = [(int(i)**expo) for i in str(n)] # each digit will be multiplied expo times
