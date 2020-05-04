@@ -99,7 +99,7 @@ def astar(world, start, goal):
     >>> goal = Cell()
     >>> goal.position = (4,4)
     >>> astar(p, start, goal)
-
+    [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
     '''
     _open = []
     _closed = []
