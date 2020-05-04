@@ -8,8 +8,7 @@ This graph can be used to efficiently mine frequent subgraphs including maximal 
 URL:https://www.researchgate.net/publication/235255851_FP-GraphMiner_-_A_Fast_Frequent_Pattern_Mining_Algorithm_for_Network_Graphs
 
 '''
-from typing import List
-from typing import Dict
+from typing import Dict, List
 
 edge_array=[
     ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','be-e6','bh-e12','cd-e2','ce-e4','de-e1','df-e8','dg-e5','dh-e10','ef-e3','eg-e2','fg-e6','gh-e6','hi-e3'],
@@ -19,20 +18,19 @@ edge_array=[
     ['ab-e1','ac-e3','ad-e5','bc-e4','bd-e2','cd-e2','ce-e4','de-e1','df-e8','dg-e5','ef-e3','eg-e2','fg-e6']
     ]
 
+
 def get_distinct_edge(edge_array: List[List[str]]) -> List[str]:
     '''
     Return Distinct edges from edge array of multiple graphs
     >>> sorted(get_distinct_edge(edge_array))
     ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     '''
-
     distinct_edge=set()
-
     for row in edge_array:    
         for item in row:
             distinct_edge.add(item[0])
-
     return list(distinct_edge)
+
 
 def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> str:
     '''
@@ -46,13 +44,13 @@ def get_bitcode(edge_array: List[List[str]],distinct_edge: List[str]) -> str:
                 break
     return ''.join(bitcode)
 
+
 def get_frequency_table(edge_array:List[List[str]]) -> List[List[str]]:
     '''
     Returns Frequency Table
     '''
     distinct_edge=get_distinct_edge(edge_array) 
     frequency_table=dict()
-    
 
     for item in distinct_edge:
         bit=get_bitcode(edge_array,item)
@@ -63,9 +61,9 @@ def get_frequency_table(edge_array:List[List[str]]) -> List[List[str]]:
     '''
     Store [Distinct edge, WT(Bitcode), Bitcode] in Descending order
     '''
-    sorted_frequency_table=[[k,v[0],v[1]] for k,v in sorted(frequency_table.items(),key=lambda v:v[1][0],reverse=True)]
-    
+    sorted_frequency_table=[[k,v[0],v[1]] for k,v in sorted(frequency_table.items(),key=lambda v:v[1][0],reverse=True)]    
     return sorted_frequency_table
+
 
 def get_nodes(frequency_table: List[List[str]]) -> Dict[str,List[str]]:
     '''
@@ -74,13 +72,11 @@ def get_nodes(frequency_table: List[List[str]]) -> Dict[str,List[str]]:
     >>> get_nodes([['ab', 5, '11111'], ['ac', 5, '11111'], ['df', 5, '11111'], ['bd', 5, '11111'], ['bc', 5, '11111']])
     {'11111': ['ab', 'ac', 'df', 'bd', 'bc']}
     '''
-    
     nodes={}
-
     for i,item in enumerate(frequency_table):
         nodes.setdefault(item[2],[]).append(item[0])
-
     return nodes
+
 
 def get_cluster(nodes: Dict[str,List[str]]) -> Dict[int,Dict[str,List[str]]]:
     '''
@@ -122,7 +118,8 @@ def print_all() -> None:
     print("\n Edge List of Frequent subgraphs \n")
     for edge_list in freq_subgraph_edge_list:
         print(edge_list)
-       
+
+
 def create_edge(nodes: Dict[str,List[str]],graph: Dict[tuple,List[List[str]]],cluster: Dict[int,Dict[str,List[str]]],c1: int) -> None:
     '''
     create edge between the nodes 
@@ -146,6 +143,7 @@ def create_edge(nodes: Dict[str,List[str]],graph: Dict[tuple,List[List[str]]],cl
             else:
                 break
 
+
 def construct_graph(cluster: Dict[int,Dict[str,List[str]]],nodes: Dict[str,List[str]]) -> Dict[tuple,List[List[str]]]: 
     X=cluster[max(cluster.keys())]
     cluster[max(cluster.keys())+1]='Header'
@@ -164,6 +162,7 @@ def construct_graph(cluster: Dict[int,Dict[str,List[str]]],nodes: Dict[str,List[
         
     return graph
 
+
 def myDFS(graph: Dict[tuple,List[List[str]]],start: tuple,end: tuple,path=[]): 
     '''
     find different DFS walk from given node to Header node
@@ -174,7 +173,8 @@ def myDFS(graph: Dict[tuple,List[List[str]]],start: tuple,end: tuple,path=[]):
     for node in graph[start]:
         if tuple(node) not in path:
             myDFS(graph,tuple(node),end,path)
-            
+
+
 def find_freq_subgraph_given_support(s: int,cluster: Dict[int,Dict[str,List[str]]],graph: Dict[tuple,List[List[str]]]) -> None:
     '''
     find edges of multiple frequent subgraphs
@@ -183,6 +183,7 @@ def find_freq_subgraph_given_support(s: int,cluster: Dict[int,Dict[str,List[str]
     
     for i in cluster[k].keys():
         myDFS(graph,tuple(cluster[k][i]),tuple(['Header']))
+
 
 def freq_subgraphs_edge_list(paths: List[List[tuple]]) -> List[List[tuple]]:
     '''
@@ -196,9 +197,10 @@ def freq_subgraphs_edge_list(paths: List[List[tuple]]) -> List[List[tuple]]:
             for e in temp:
                 edge=(e[0],e[1])
                 EL.append(edge)
-        freq_sub_EL.append(EL)
-        
+        freq_sub_EL.append(EL)        
     return freq_sub_EL 
+
+
 def preprocess(edge_array: List[List[str]]) -> List[List[List[str]]]:
     '''
     Preprocess the edge array
@@ -209,19 +211,16 @@ def preprocess(edge_array: List[List[str]]) -> List[List[List[str]]]:
         for j in range(len(edge_array[i])):
             t=edge_array[i][j].split('-')
             edge_array[i][j]=t
-                                
-if __name__ == "__main__":
-                                
+
+
+if __name__ == "__main__":                   
     preprocess(edge_array)
-    
     frequency_table=get_frequency_table(edge_array)
     nodes=get_nodes(frequency_table)
     cluster=get_cluster(nodes)
     support=get_support(cluster)
     graph=construct_graph(cluster,nodes)
-    
-    paths = []
     find_freq_subgraph_given_support(60,cluster,graph)
+    paths = []
     freq_subgraph_edge_list=freq_subgraphs_edge_list(paths)
-    
     print_all()
