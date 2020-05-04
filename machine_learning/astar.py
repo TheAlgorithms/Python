@@ -131,7 +131,6 @@ def astar(world, start, goal):
         current = current.parent
     path.append(current.position)
     path = path[::-1]
-    print(path)
     return path
 
 if __name__ == '__main__':
