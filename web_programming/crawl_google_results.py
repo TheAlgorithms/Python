@@ -18,5 +18,7 @@ if __name__ == "__main__":
     links = list(soup.select(".eZt8xd"))[:5]
 
     print(len(links))
-    for link in links:
+    if link.text == "Maps":
+        webbrowser.open(link.get('href'))
+    else:
         webbrowser.open(f"http://google.com{link.get('href')}")
