@@ -1,6 +1,4 @@
-"""
-
-Coin sums
+"""Coin sums
 
 In England the currency is made up of pound, £, and pence, p, and there are
 eight coins in general circulation:
@@ -32,8 +30,8 @@ Example:
 
 
 def solution(pence: int) -> int:
-    """Returns the number of different ways to make X pence using any number of coins. solution is
-    based on dynamic programming paradigm in bottom up fashion.
+    """Returns the number of different ways to make X pence using any number of coins. 
+    The solution is based on dynamic programming paradigm in a bottom-up fashion.
 
     >>> solution(500)
     6295434
