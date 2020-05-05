@@ -46,9 +46,8 @@ def narcissistic_number(n: int) -> bool:
     """Return True if n is a narcissistic number or False if it is not"""
 
     expo = len(str(n))  # power, all number will be raised to
-    temp = [
-        (int(i) ** expo) for i in str(n)
-    ]  # each digit will be multiplied expo times
+    # each digit will be multiplied expo times
+    temp = [(int(i) ** expo) for i in str(n)]
 
     # check if sum of cube of each digit is equal to number
     return n == sum(temp)
