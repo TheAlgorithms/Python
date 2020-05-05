@@ -1,14 +1,4 @@
-# -*- coding: utf-8 -*-
 
-
-### **SRTF**
-"""
-
-# -*- coding: utf-8 -*-
-"""
-
-@author: Harshil Panchal
-"""
 
 # Shortest job remainig first
 # PLease note that arriaval time and burst time are inputted as space separated
