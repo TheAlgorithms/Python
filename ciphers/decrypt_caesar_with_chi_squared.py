@@ -106,7 +106,10 @@ def decrypt_caesar_with_chi_squared(
     >>> decrypt_caesar_with_chi_squared('dof pz aol jhlzhy jpwoly zv wvwbshy? pa pz avv lhzf av jyhjr!')
     [7, 3129.228005747531, 'why is the caesar cipher so popular? it is too easy to crack!']
     """
-    if cipher_alphabet == []:
+    cipher_alphabet = cipher_alphabet or []
+    frequencies_dict = frequencies_dict or {}
+
+    if not cipher_alphabet:
         # get list of all leters in english alphabet
         alphabet_letters = [chr(i) for i in range(97, 123)]
     else:
