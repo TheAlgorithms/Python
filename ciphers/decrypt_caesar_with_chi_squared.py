@@ -60,7 +60,7 @@ def decrypt_caesar_with_chi_squared(
     -------------------
     Each letter in the english alphabet has a frequency, or the amount of times
     it shows up compared to other letters (usually expressed as a decimal
-    representing the percentage likelyhood). The most common letter in the
+    representing the percentage likelihood). The most common letter in the
     english language is "e" with a frequency of 0.11162 or 11.162%. The test is
     completed in the following fashion.
 
@@ -81,7 +81,7 @@ def decrypt_caesar_with_chi_squared(
         - n be the number of times the letter actually appears
         - p be the predicted value of the number of times the letter should
           appear (see #2)
-        - let v be the chi-squared test result (reffered to here as chi-squared
+        - let v be the chi-squared test result (referred to here as chi-squared
           value/statistic)
 
         (n - p)^2
@@ -186,26 +186,26 @@ def decrypt_caesar_with_chi_squared(
             if case_sensetive:
                 if letter in frequencies:
                     # Get the amount of times the letter occurs in the message
-                    occurences = decrypted_with_shift.count(letter)
+                    occurrences = decrypted_with_shift.count(letter)
 
                     # Get the excepcted amount of times the letter should appear based on letter frequencies
-                    expected = frequencies[letter] * occurences
+                    expected = frequencies[letter] * occurrences
 
                     # Complete the chi squared statistic formula
-                    chi_letter_value = ((occurences - expected) ** 2) / expected
+                    chi_letter_value = ((occurrences - expected) ** 2) / expected
 
                     # Add the margin of error to the total chi squared statistic
                     chi_squared_statistic += chi_letter_value
             else:
                 if letter.lower() in frequencies:
                     # Get the amount of times the letter occurs in the message
-                    occurences = decrypted_with_shift.count(letter)
+                    occurrences = decrypted_with_shift.count(letter)
 
                     # Get the excepcted amount of times the letter should appear based on letter frequencies
-                    expected = frequencies[letter] * occurences
+                    expected = frequencies[letter] * occurrences
 
                     # Complete the chi squared statistic formula
-                    chi_letter_value = ((occurences - expected) ** 2) / expected
+                    chi_letter_value = ((occurrences - expected) ** 2) / expected
 
                     # Add the margin of error to the total chi squared statistic
                     chi_squared_statistic += chi_letter_value
