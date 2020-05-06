@@ -20,12 +20,12 @@ def decrypt_caesar_with_chi_squared(
       decryption, False if it doesn't
 
     Returns:
-    * A list in the form of:
-      [
+    * A tuple in the form of:
+      (
         most_likely_cipher,
         most_likely_cipher_chi_squared_value,
         decoded_most_likely_cipher
-      ]
+      )
 
       where...
       - most_likely_cipher is an integer representing the shift of the smallest
@@ -221,8 +221,8 @@ def decrypt_caesar_with_chi_squared(
     decoded_most_likely_cipher = chi_squared_statistic_values[most_likely_cipher][1]
 
     # Return the data on the most likely shift
-    return [
+    return (
         most_likely_cipher,
         most_likely_cipher_chi_squared_value,
         decoded_most_likely_cipher,
-    ]
+    )
