@@ -113,15 +113,8 @@ def decrypt_caesar_with_chi_squared(
     Traceback (most recent call last):
     AttributeError: 'int' object has no attribute 'lower'
     """
-    cipher_alphabet = cipher_alphabet or []
+    alphabet_letters = cipher_alphabet or [chr(i) for i in range(97, 123)]
     frequencies_dict = frequencies_dict or {}
-
-    if cipher_alphabet == []:
-        # get list of all leters in english alphabet
-        alphabet_letters = [chr(i) for i in range(97, 123)]
-    else:
-        # Set alphabet_letters to the custom alphabet
-        alphabet_letters = cipher_alphabet
 
     if frequencies_dict == {}:
         # Frequencies of letters in the english language (how much they show up)
