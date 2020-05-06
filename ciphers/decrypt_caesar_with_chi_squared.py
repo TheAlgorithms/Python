@@ -1,7 +1,7 @@
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
-    cipher_alphabet = None,
-    frequencies_dict = None,
+    cipher_alphabet=None,
+    frequencies_dict=None,
     case_sensetive: bool = False,
 ) -> list:
     """
