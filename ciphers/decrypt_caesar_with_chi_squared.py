@@ -116,7 +116,7 @@ def decrypt_caesar_with_chi_squared(
     cipher_alphabet = cipher_alphabet or []
     frequencies_dict = frequencies_dict or {}
 
-    if not cipher_alphabet:
+    if cipher_alphabet == []:
         # get list of all leters in english alphabet
         alphabet_letters = [chr(i) for i in range(97, 123)]
     else:
