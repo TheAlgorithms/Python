@@ -104,7 +104,14 @@ def decrypt_caesar_with_chi_squared(
     Doctests
     ========
     >>> decrypt_caesar_with_chi_squared('dof pz aol jhlzhy jpwoly zv wvwbshy? pa pz avv lhzf av jyhjr!')
-    [7, 3129.228005747531, 'why is the caesar cipher so popular? it is too easy to crack!']
+    (7, 3129.228005747531, 'why is the caesar cipher so popular? it is too easy to crack!')
+
+    >>> decrypt_caesar_with_chi_squared('crybd cdbsxq')
+    (10, 233.35343938980898, 'short string')
+
+    >>> decrypt_caesar_with_chi_squared(12)
+    Traceback (most recent call last):
+    AttributeError: 'int' object has no attribute 'lower'
     """
     cipher_alphabet = cipher_alphabet or []
     frequencies_dict = frequencies_dict or {}
