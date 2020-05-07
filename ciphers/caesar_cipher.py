@@ -2,6 +2,52 @@ from itertools import chain
 
 
 def encrypt(input_string: str, key: int, alphabet=None) -> str:
+    """
+    encrypt
+    =======
+    Encodes a given string with the caesar cipher and returns the encoded
+    message
+
+    Parameters:
+    -----------
+    *   input_string: the plain-text that needs to be encoded
+    *   key: the number of letters to shift the message by
+
+    Optional:
+    *   alphabet (None): the alphabet used to encode the cipher, if not
+        specified, the standard english alphabet with upper and lowercase
+        letters is used
+
+    Returns:
+    *   A string containing the encoded cipher-text
+
+    More on the caesar cipher
+    =========================
+    The caesar cipher is named after Julius Caesar who used it when sending
+    secret military messages to his troops. This is a simple substitution cipher
+    where very character in the plain-text is shifted by a certain number known
+    as the "key" or "shift".
+
+    Example:
+    Say we have the following message:
+    "Hello, captain"
+
+    And our alphabet is made up of lower and uppercase letters:
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    And our shift is "2"
+
+    We can then encode the message, one letter at a time. "H" would become "J",
+    since "J" is two letters away, and so on. If the shift is ever two large, or
+    our letter is at the end of the alphabet, we just start at the beginning
+    ("Z" would shift to "a" then "b" and so on).
+
+    Our final message would be "Jgnnq, ecrvckp"
+
+    Further reading
+    ===============
+    *   https://en.m.wikipedia.org/wiki/Caesar_cipher
+    """
     # Set default alphabet to lower and upper case english chars
     alpha = alphabet or [chr(i) for i in chain(range(65, 91), range(97, 123))]
 
@@ -23,6 +69,53 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
 
 
 def decrypt(input_string: str, key: int, alphabet=None) -> str:
+    """
+    decrypt
+    =======
+    Decodes a given string of cipher-text and returns the decoded plain-text
+
+    Parameters:
+    -----------
+    *   input_string: the cipher-text that needs to be decoded
+    *   key: the number of letters to shift the message backwards by to decode
+
+    Optional:
+    *   alphabet (None): the alphabet used to decode the cipher, if not
+        specified, the standard english alphabet with upper and lowercase
+        letters is used
+
+    Returns:
+    *   A string containing the decoded plain-text
+
+    More on the caesar cipher
+    =========================
+    The caesar cipher is named after Julius Caesar who used it when sending
+    secret military messages to his troops. This is a simple substitution cipher
+    where very character in the plain-text is shifted by a certain number known
+    as the "key" or "shift". Please keep in mind, here we will be focused on
+    decryption.
+
+    Example:
+    Say we have the following cipher-text:
+    "Jgnnq, ecrvckp"
+
+    And our alphabet is made up of lower and uppercase letters:
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    And our shift is "2"
+
+    To decode the message, we would do the same thing as encoding, but in
+    reverse. The first letter, "J" would become "H" (remember: we are decoding)
+    because "H" is two letters in reverse (to the left) of "J". We would
+    continue doing this. A letter like "a" would shift back to the end of
+    the alphabet, and would become "Z" or "Y" and so on.
+
+    Our final message would be "Hello, captain"
+
+    Further reading
+    ===============
+    *   https://en.m.wikipedia.org/wiki/Caesar_cipher
+    """
     # Turn on decode mode by making the key negative
     key *= -1
 
@@ -30,6 +123,42 @@ def decrypt(input_string: str, key: int, alphabet=None) -> str:
 
 
 def brute_force(input_string: str, alphabet=None) -> dict:
+    """
+    brute_force
+    ===========
+    Returns all the possible combinations of keys and the decoded strings in the
+    form of a dictionary
+
+    Parameters:
+    -----------
+    *   input_string: the cipher-text that needs to be used during brute-force
+
+    Optional:
+    *   alphabet:  (None): the alphabet used to decode the cipher, if not
+        specified, the standard english alphabet with upper and lowercase
+        letters is used
+
+    More about brute force
+    ======================
+    Brute force is when a person intercepts a message or password, not knowing
+    the key and tries every single combination. This is easy with the caesar
+    cipher since there are only all the letters in the alphabet. The more
+    complex the cipher, the larger amount of time it will take to do brute force
+
+    Ex:
+    Say we have a 5 letter alphabet (abcde), for simplicity and we intercepted the
+    following message:
+
+    "dbc"
+
+    we could then just write out every combination:
+    ecd... and so on, until we reach a combination that makes sense:
+    "cab"
+
+    Further reading
+    ===============
+    *   https://en.wikipedia.org/wiki/Brute_force
+    """
     # Set default alphabet to lower and upper case english chars
     alpha = alphabet or [chr(i) for i in chain(range(65, 91), range(97, 123))]
 
@@ -44,8 +173,8 @@ def brute_force(input_string: str, alphabet=None) -> dict:
 
     # Cycle through each combination
     while key <= len(alpha):
-        # Encrypt the message
-        result = encrypt(input_string, key, alpha)
+        # Decrypt the message
+        result = decrypt(input_string, key, alpha)
 
         # Update the data
         brute_force_data[key] = result
