@@ -47,6 +47,17 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
     Further reading
     ===============
     *   https://en.m.wikipedia.org/wiki/Caesar_cipher
+
+    Doctests
+    ========
+    >>> encrypt('The quick brown fox jumps over the lazy dog', 8)
+    'bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo'
+
+    >>> encrypt('A very large key', 8000)
+    's nWjq dSjYW cWq'
+
+    >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
+    'f qtbjwhfxj fqumfgjy'
     """
     # Set default alphabet to lower and upper case english chars
     alpha = alphabet or [chr(i) for i in chain(range(65, 91), range(97, 123))]
@@ -115,6 +126,17 @@ def decrypt(input_string: str, key: int, alphabet=None) -> str:
     Further reading
     ===============
     *   https://en.m.wikipedia.org/wiki/Caesar_cipher
+
+    Doctests
+    ========
+    >>> decrypt('bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo', 8)
+    'The quick brown fox jumps over the lazy dog'
+
+    >>> decrypt('s nWjq dSjYW cWq', 8000)
+    'A very large key'
+
+    >>> decrypt('f qtbjwhfxj fqumfgjy', 5, 'abcdefghijklmnopqrstuvwxyz')
+    'a lowercase alphabet'
     """
     # Turn on decode mode by making the key negative
     key *= -1
@@ -158,6 +180,15 @@ def brute_force(input_string: str, alphabet=None) -> dict:
     Further reading
     ===============
     *   https://en.wikipedia.org/wiki/Brute_force
+
+    Doctests
+    ========
+    >>> brute_force("jFyuMy xIH'N vLONy zILwy Gy!")[20]
+    "Please don't brute force me!"
+
+    >>> brute_force(1)
+    Traceback (most recent call last):
+    TypeError: 'int' object is not iterable
     """
     # Set default alphabet to lower and upper case english chars
     alpha = alphabet or [chr(i) for i in chain(range(65, 91), range(97, 123))]
@@ -199,7 +230,7 @@ def main():
             print("Invalid choice, please enter a valid choice")
         elif choice == "1":
             input_string = input("Please enter the string to be encrypted: ")
-            key = int(input("Please enter off-set between: ").strip())
+            key = int(input("Please enter off-set: ").strip())
 
             print(encrypt(input_string, key))
         elif choice == "2":
@@ -220,4 +251,5 @@ def main():
 
 
 if __name__ == "__main__":
+    brute_force(1)
     main()
