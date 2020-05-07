@@ -109,29 +109,30 @@ def calculate_average_times(waiting_time,turn_around_time, no_of_processes):
     print("Average turn around time = ", 
     total_turn_around_time / no_of_processes) 
     
+if __name__ == "__main__":
+    
+    print("Enter How Many Process You want To Enter")
+    no_of_processes=int(input())
+    burst_time=[0]*no_of_processes
+    arrival_time=[0]*no_of_processes
+    processes=list(range(1,no_of_processes+1))
 
-print("Enter How Many Process You want To Enter")
-no_of_processes=int(input())
-burst_time=[0]*no_of_processes
-arrival_time=[0]*no_of_processes
-processes=list(range(1,no_of_processes+1))
+    for i in range(no_of_processes):
+        print("Enter The  Arrival time and  Brust time for Process:--"+str(i+1))
+        arrival_time[i], burst_time[i]=map(int,input().split())
+    waiting_time=calculate_Waitingtime(arrival_time,burst_time,no_of_processes)
+    bt=burst_time
+    n=no_of_processes
+    wt=waiting_time
+    turn_around_time=calculate_TurnAroundTime(bt,n,wt)
+    calculate_average_times(waiting_time,turn_around_time, no_of_processes)
+    processes=list(range(1,no_of_processes+1))       
+    FCFS=pd.DataFrame(list(zip(processes,burst_time,
+    arrival_time,waiting_time,turn_around_time)),
+    columns=['Process','BurstTime','ArrivalTime','WaitingTime','TurnAroundTime'])
 
-for i in range(no_of_processes):
-    print("Enter The  Arrival time and  Brust time for Process:--"+str(i+1))
-    arrival_time[i], burst_time[i]=map(int,input().split())
-waiting_time=calculate_Waitingtime(arrival_time,burst_time,no_of_processes)
-bt=burst_time
-n=no_of_processes
-wt=waiting_time
-turn_around_time=calculate_TurnAroundTime(bt,n,wt)
-calculate_average_times(waiting_time,turn_around_time, no_of_processes)
-processes=list(range(1,no_of_processes+1))       
-FCFS=pd.DataFrame(list(zip(processes,burst_time,
-arrival_time,waiting_time,turn_around_time)),
-columns=['Process','BurstTime','ArrivalTime','WaitingTime','TurnAroundTime'])
-
-# Printing the dataFrame 
-pd.set_option('display.max_rows', FCFS.shape[0]+1)
-print(FCFS)      
+    # Printing the dataFrame 
+    pd.set_option('display.max_rows', FCFS.shape[0]+1)
+    print(FCFS)      
  
     
