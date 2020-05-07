@@ -15,5 +15,5 @@ requests
 scikit-fuzzy
 sklearn
 sympy
-tensorflow; python_version < '3.8'
+tensorflow
 xgboost
