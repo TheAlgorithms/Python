@@ -5,10 +5,12 @@
 #time are inputted as space separated
 
 import pandas as pd
-
+from typing import List
        
 
-def calculate_waitingtime(arrival_time,burst_time,no_of_processes):
+def calculate_waitingtime(
+    arrival_time: List[int],burst_time: List[int],no_of_processes: int
+) -> List[int]:
     
     """
     This function calculates the Waiting Times of each Processes
@@ -34,25 +36,25 @@ def calculate_waitingtime(arrival_time,burst_time,no_of_processes):
 
     # Process until all processes gets 
     # completed 
-    while (complete != no_of_processes):
+    while complete != no_of_processes:
         for j in range(no_of_processes):
-            if(arrival_time[j]<=increment_time):
-                if(remaining_time[j]>0):
-                    if(remaining_time[j]<minm):
+            if arrival_time[j]<=increment_time:
+                if remaining_time[j]>0:
+                    if remaining_time[j]<minm:
                         minm=remaining_time[j]
                         short=j
                         check=True
             
-        if (check == False): 
+        if check == False: 
             increment_time += 1
             continue
         remaining_time[short]-=1
         
         minm = remaining_time[short] 
-        if (minm == 0): 
+        if minm == 0: 
             minm = 999999999
         
-        if (remaining_time[short] == 0): 
+        if remaining_time[short] == 0: 
             complete += 1
             check = False
 
@@ -64,13 +66,15 @@ def calculate_waitingtime(arrival_time,burst_time,no_of_processes):
             finar=finish_time - arrival_time[short]
             waiting_time[short] = (finar - burst_time[short]) 
 
-            if (waiting_time[short] < 0): 
+            if waiting_time[short] < 0: 
                 waiting_time[short] = 0
         
         # Increment time 
         increment_time += 1
     return waiting_time
-def calculate_turnaroundtime(burst_time, no_of_processes, waiting_time): 
+def calculate_turnaroundtime(
+    burst_time: List[int], no_of_processes: int, waiting_time: List[int]
+) -> List[int]: 
     """
     This function calculates the Turn Around Times of each Processes
     Return: list of Turn Around Time.
@@ -85,7 +89,9 @@ def calculate_turnaroundtime(burst_time, no_of_processes, waiting_time):
     for i in range(no_of_processes): 
         turn_around_time[i] = burst_time[i] + waiting_time[i] 
     return turn_around_time
-def calculate_average_times(waiting_time,turn_around_time, no_of_processes): 
+def calculate_average_times(
+    waiting_time: List[int],turn_around_time: List[int], no_of_processes: int
+): 
     """
     This function calculates the average of the waiting & turnaround times
     Prints: Average Waiting time & Average Turn Around Time
@@ -104,7 +110,7 @@ def calculate_average_times(waiting_time,turn_around_time, no_of_processes):
     for i in range(no_of_processes): 
         total_waiting_time = total_waiting_time + waiting_time[i] 
         total_turn_around_time = total_turn_around_time + turn_around_time[i] 
-    print("\nAverage waiting time = %.5f "%(
+    print("Average waiting time = %.5f "%(
     total_waiting_time /no_of_processes) ) 
     print("Average turn around time = ", 
     total_turn_around_time / no_of_processes) 
@@ -134,4 +140,3 @@ if __name__ == "__main__":
     # Printing the dataFrame 
     pd.set_option('display.max_rows', fcfs.shape[0]+1)
     print(fcfs)      
-    
