@@ -8,16 +8,16 @@ import pandas as pd
 
        
 
-def calculate_Waitingtime(arrival_time,burst_time,no_of_processes):
+def calculate_waitingtime(arrival_time,burst_time,no_of_processes):
     
     """
     This function calculates the Waiting Times of each Processes
     Return: list of Waiting Time.
-    >>> calculate_Waitingtime([1,2,3,4],[3,3,5,1],4)
+    >>> calculate_waitingtime([1,2,3,4],[3,3,5,1],4)
     [0, 3, 5, 0]
-    >>> calculate_Waitingtime([1,2,3],[2,5,1],3)
+    >>> calculate_waitingtime([1,2,3],[2,5,1],3)
     [0, 2, 0]
-    >>> calculate_Waitingtime([2,3],[5,1],2)
+    >>> calculate_waitingtime([2,3],[5,1],2)
     [1, 0]
     """
     remaining_time=[0]*no_of_processes 
@@ -70,15 +70,15 @@ def calculate_Waitingtime(arrival_time,burst_time,no_of_processes):
         # Increment time 
         increment_time += 1
     return waiting_time
-def calculate_TurnAroundTime(burst_time, no_of_processes, waiting_time): 
+def calculate_turnaroundtime(burst_time, no_of_processes, waiting_time): 
     """
     This function calculates the Turn Around Times of each Processes
     Return: list of Turn Around Time.
-    >>> calculate_TurnAroundTime([3,3,5,1], 4, [0,3,5,0])
+    >>> calculate_turnaroundtime([3,3,5,1], 4, [0,3,5,0])
     [3, 6, 10, 1]
-    >>> calculate_TurnAroundTime([3,3], 2, [0,3])
+    >>> calculate_turnaroundtime([3,3], 2, [0,3])
     [3, 6]
-    >>> calculate_TurnAroundTime([8,10,1], 3, [1,0,3])
+    >>> calculate_turnaroundtime([8,10,1], 3, [1,0,3])
     [9, 10, 4]
     """
     turn_around_time=[0]*no_of_processes
@@ -120,19 +120,18 @@ if __name__ == "__main__":
     for i in range(no_of_processes):
         print("Enter The  Arrival time and  Brust time for Process:--"+str(i+1))
         arrival_time[i], burst_time[i]=map(int,input().split())
-    waiting_time=calculate_Waitingtime(arrival_time,burst_time,no_of_processes)
+    waiting_time=calculate_waitingtime(arrival_time,burst_time,no_of_processes)
     bt=burst_time
     n=no_of_processes
     wt=waiting_time
-    turn_around_time=calculate_TurnAroundTime(bt,n,wt)
+    turn_around_time=calculate_turnaroundtime(bt,n,wt)
     calculate_average_times(waiting_time,turn_around_time, no_of_processes)
     processes=list(range(1,no_of_processes+1))       
-    FCFS=pd.DataFrame(list(zip(processes,burst_time,
+    fcfs=pd.DataFrame(list(zip(processes,burst_time,
     arrival_time,waiting_time,turn_around_time)),
     columns=['Process','BurstTime','ArrivalTime','WaitingTime','TurnAroundTime'])
 
     # Printing the dataFrame 
-    pd.set_option('display.max_rows', FCFS.shape[0]+1)
-    print(FCFS)      
- 
+    pd.set_option('display.max_rows', fcfs.shape[0]+1)
+    print(fcfs)      
     
