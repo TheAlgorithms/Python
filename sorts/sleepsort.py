@@ -28,13 +28,13 @@ def sleepsort(values: List[int]) -> List[int]:
     [1, 2, 2, 3, 4, 8, 9]
     """
     sleepsort.result = []
-    def add1(x):
+    def append_to_result(x):
         sleepsort.result.append(x)
     mx = values[0]
     for v in values:
         if mx < v:
             mx = v
-        Timer(v, add1, [v]).start()
+        Timer(v, append_to_result, [v]).start()
     sleep(mx+1)
     return sleepsort.result
  
