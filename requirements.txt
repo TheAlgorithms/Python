@@ -2,6 +2,7 @@ beautifulsoup4
 black
 fake_useragent
 flake8
+keras
 matplotlib
 mypy
 numpy>=1.17.4
@@ -14,5 +15,5 @@ requests
 scikit-fuzzy
 sklearn
 sympy
-tensorflow; python_version < '3.8'
+tensorflow
 xgboost
