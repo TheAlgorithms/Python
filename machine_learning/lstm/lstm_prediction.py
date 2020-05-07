@@ -1,21 +1,25 @@
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import MinMaxScaler
+"""
+    Create a Long Short Term Memory (LSTM) network model
+    An LSTM is a type of Recurrent Neural Network (RNN) as discussed at:
+    * http://colah.github.io/posts/2015-08-Understanding-LSTMs
+    * https://en.wikipedia.org/wiki/Long_short-term_memory
+"""
+
+from keras.layers import Dense, LSTM
 from keras.models import Sequential
-from keras.layers import LSTM, Dense
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
 
 
-if __name__ == '__main__':
-
-    '''
-
+if __name__ == "__main__":
+    """
     First part of building a model is to get the data and prepare
     it for our model. You can use any dataset for stock prediction
-    make sure you set the price column on line number 21.Here i've
-    used a dataset which have the price on 3rd column
-
-    '''
-    df = pd.read_csv('sample_data.csv', header=None)
+    make sure you set the price column on line number 21.  Here we
+    use a dataset which have the price on 3rd column.
+    """
+    df = pd.read_csv("sample_data.csv", header=None)
     len_data = df.shape[:1][0]
     # If you're using some other dataset input the target column
     actual_data = df.iloc[:, 1:2]
@@ -24,34 +28,29 @@ if __name__ == '__main__':
     look_back = 10
     forward_days = 5
     periods = 20
-    division = len_data - periods*look_back
+    division = len_data - periods * look_back
     train_data = actual_data[:division]
-    test_data = actual_data[division-look_back:]
+    test_data = actual_data[division - look_back :]
     train_x, train_y = [], []
     test_x, test_y = [], []
-    for i in range(0, len(train_data) - forward_days - look_back + 1):
-        train_x.append(train_data[i:i + look_back])
-        train_y.append(train_data[i + look_back:i + look_back + forward_days])
 
+    for i in range(0, len(train_data) - forward_days - look_back + 1):
+        train_x.append(train_data[i : i + look_back])
+        train_y.append(train_data[i + look_back : i + look_back + forward_days])
     for i in range(0, len(test_data) - forward_days - look_back + 1):
-        test_x.append(test_data[i:i + look_back])
-        test_y.append(test_data[i + look_back:i + look_back + forward_days])
+        test_x.append(test_data[i : i + look_back])
+        test_y.append(test_data[i + look_back : i + look_back + forward_days])
     x_train = np.array(train_x)
     x_test = np.array(test_x)
     y_train = np.array([list(i.ravel()) for i in train_y])
     y_test = np.array([list(i.ravel()) for i in test_y])
-    '''
-    Create our lstm model
-    LSTM ?
-    Stands for long term short memory, which is a type of Recurrent
-    Nueral Networks
-    http://colah.github.io/posts/2015-08-Understanding-LSTMs/
-    '''
+
     model = Sequential()
     model.add(LSTM(128, input_shape=(look_back, 1), return_sequences=True))
     model.add(LSTM(64, input_shape=(128, 1)))
     model.add(Dense(forward_days))
-    model.compile(loss='mean_squared_error', optimizer='adam')
+    model.compile(loss="mean_squared_error", optimizer="adam")
     history = model.fit(
-        x_train, y_train, epochs=150, verbose=1, shuffle=True, batch_size=4)
+        x_train, y_train, epochs=150, verbose=1, shuffle=True, batch_size=4
+    )
     pred = model.predict(x_test)
