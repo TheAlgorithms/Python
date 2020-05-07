@@ -31,7 +31,9 @@ def check_palindrome(input_string: str, exact_string: bool=True) -> bool:
   True
   >>> check_palindrome("Was it a car or a cat I saw?")
   False
-  >>> check_palindrome("Was it a car or a cat I saw?",False)
+  >>> check_palindrome("Was it a car or a cat I saw?", False)
+  True
+  >>> check_palindrome("A man, a plan, a canal, Panama.", False)
   True
   """
 
