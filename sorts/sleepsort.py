@@ -12,6 +12,8 @@ and calls n functions, each with a sleep time equal to its number.
 Hence each of the functions wake in sorted form.
 
 This function is not stable for very large values.
+
+https://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort
 """
 
 from time import sleep
@@ -41,6 +43,6 @@ def sleepsort(values: List[int]) -> List[int]:
 if __name__ == '__main__':
     import doctest
     doctest.testmod
-    x = [3,2,4,7,3,6,9,1]
-    sorted_x=sleepsort(x)
+    x = [3, 2, 4, 7, 3, 6, 9, 1]
+    sorted_x = sleepsort(x)
     print(sorted_x)
