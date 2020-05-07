@@ -42,7 +42,7 @@ def sleepsort(values: List[int]) -> List[int]:
  
 if __name__ == '__main__':
     import doctest
-    doctest.testmod
+    doctest.testmod()
     x = [3, 2, 4, 7, 3, 6, 9, 1]
     sorted_x = sleepsort(x)
     print(sorted_x)
