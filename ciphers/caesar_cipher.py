@@ -199,12 +199,12 @@ def main():
             print("Invalid choice, please enter a valid choice")
         elif choice == "1":
             input_string = input("Please enter the string to be encrypted: ")
-            key = int(input("Please enter off-set between 0-25: ").strip())
+            key = int(input("Please enter off-set between: ").strip())
 
             print(encrypt(input_string, key))
         elif choice == "2":
             input_string = input("Please enter the string to be decrypted: ")
-            key = int(input("Please enter off-set between 1-94: ").strip())
+            key = int(input("Please enter off-set: ").strip())
 
             print(decrypt(input_string, key))
         elif choice == "3":
