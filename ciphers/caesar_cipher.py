@@ -251,5 +251,4 @@ def main():
 
 
 if __name__ == "__main__":
-    brute_force(1)
     main()
