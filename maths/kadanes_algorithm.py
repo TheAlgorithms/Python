@@ -1,5 +1,5 @@
 """
-    Link for the explaination of this algorithm :- 
+    Link for the explanation of this algorithm :- 
     https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
     Kadane's algorithm to get maximum subarray sum
     Please enter the decimal values only and use spaces as separator
