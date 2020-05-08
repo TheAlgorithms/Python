@@ -1,4 +1,6 @@
 """
+    Link for the explaination of this algorithm :- 
+    https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
     Kadane's algorithm to get maximum subarray sum
     Please enter the decimal values only and use spaces as separator
 """
@@ -80,5 +82,4 @@ if __name__ == "__main__":
         arr = [int(x) for x in input().split()]
         print("Maximum subarray sum of ",arr,"is :-",kadanes_implementation(arr))
     except ValueError:
-        print("Please,enter decimal values")
-    
+        print("Please,enter decimal values")    
