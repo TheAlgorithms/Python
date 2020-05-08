@@ -1,4 +1,4 @@
-from itertools import chain
+from string import ascii_letters
 
 
 def encrypt(input_string: str, key: int, alphabet=None) -> str:
@@ -60,7 +60,7 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
     'f qtbjwhfxj fqumfgjy'
     """
     # Set default alphabet to lower and upper case english chars
-    alpha = alphabet or [chr(i) for i in chain(range(65, 91), range(97, 123))]
+    alpha = alphabet or ascii_letters
 
     # The final result string
     result = ""
@@ -191,7 +191,7 @@ def brute_force(input_string: str, alphabet=None) -> dict:
     TypeError: 'int' object is not iterable
     """
     # Set default alphabet to lower and upper case english chars
-    alpha = alphabet or [chr(i) for i in chain(range(65, 91), range(97, 123))]
+    alpha = alphabet or ascii_letters
 
     # The key during testing (will increase)
     key = 1
