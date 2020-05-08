@@ -223,10 +223,10 @@ def main():
         print(*["1.Encrpyt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
 
         # get user input
-        choice = input("\nWhat would you like to do?: ").strip()
+        choice = input("\nWhat would you like to do?: ").strip() or "4"
 
         # run functions based on what the user chose
-        if choice not in ["1", "2", "3", "4"]:
+        if choice not in ("1", "2", "3", "4"):
             print("Invalid choice, please enter a valid choice")
         elif choice == "1":
             input_string = input("Please enter the string to be encrypted: ")
