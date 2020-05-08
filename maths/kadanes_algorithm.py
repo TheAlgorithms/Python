@@ -7,20 +7,8 @@
 def negative_exist(arr):
 
     """
-     checks whether the max value in -ve or not
-     eg :- 
       >>> negative_exist([-2,-8,-9])
       -2
-      >>> negative_exist([-2,1,5,9])
-      0
-      so max element is negative i.e. -2
-      so answer is -2
-
-      and if max value is positive it will return 0
-      and then apply the kadane's algorithm
-      eg :- 
-      arr = [2,8,-9]
-      positive number exist so it will return 0
     """
     max=arr[0]
     for i in arr:
@@ -49,9 +37,6 @@ def kadanes(arr):
 
        >>> kadanes([2,3,-9,8,-2])
        8
-
-       >>> kadanes([-1 ,-2 ,-3 ,-8 ])
-       -1
     """
     if negative_exist(arr) < 0:
         return negative_exist(arr)
