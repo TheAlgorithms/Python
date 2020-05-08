@@ -84,6 +84,7 @@ def test_burkes(file_path: str = "digital_image_processing/image_data/lena_small
     burkes.process()
     assert burkes.output_img.any()
 
+
 def test_nearest_neighbour(
     file_path: str = "digital_image_processing/image_data/lena_small.jpg",
 ):

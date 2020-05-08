@@ -30,18 +30,22 @@ def sleepsort(values: List[int]) -> List[int]:
     [1, 2, 2, 3, 4, 8, 9]
     """
     sleepsort.result = []
+
     def append_to_result(x):
         sleepsort.result.append(x)
+
     mx = values[0]
     for v in values:
         if mx < v:
             mx = v
         Timer(v, append_to_result, [v]).start()
-    sleep(mx+1)
+    sleep(mx + 1)
     return sleepsort.result
- 
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     x = [3, 2, 4, 7, 3, 6, 9, 1]
     sorted_x = sleepsort(x)
