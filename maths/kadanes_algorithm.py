@@ -4,8 +4,6 @@
     Kadane's algorithm to get maximum subarray sum
     Please enter the decimal values only and use spaces as separator
 """
-import doctest
-
 def negative_exist(arr):
 
     """
@@ -33,7 +31,7 @@ def negative_exist(arr):
     return max 
 
 
-def kadanes_implementation(arr):
+def kadanes(arr):
 
 
     """
@@ -49,10 +47,10 @@ def kadanes_implementation(arr):
 
        So the output for above arr is :- 8
 
-       >>> kadanes_implementation([2,3,-9,8,-2])
+       >>> kadanes([2,3,-9,8,-2])
        8
 
-       >>> kadanes_implementation([-1 ,-2 ,-3 ,-8 ])
+       >>> kadanes([-1 ,-2 ,-3 ,-8 ])
        -1
     """
     if negative_exist(arr) < 0:
@@ -73,6 +71,6 @@ if __name__ == "__main__":
     try:
         print("Enter the element of array with spaces  :- ")
         arr = [int(x) for x in input().split()]
-        print(f"Maximum subarray sum of {arr} is {kadanes_implementation(arr)}")
+        print(f"Maximum subarray sum of {arr} is {kadanes(arr)}")
     except ValueError:
         print("Please,enter decimal values")   
