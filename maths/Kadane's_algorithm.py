@@ -1,11 +1,26 @@
 """
     Kadane's algorithm to get maximum subarray sum
-    Please enter the decimal values only and use spaces as seperator
+    Please enter the decimal values only and use spaces as separator
+"""
+
+
+"""
+Doc-Test :-
+ 
+Enter the element of array with spaces  :-
+>>> 2 3 -9 8 -2 
+Maximum subarray sum of  [2, 3, -9, 8, -2] is :- 8
+
+
+Enter the element of array with spaces  :-
+>>> -9 -8 -7 -6 -2
+Maximum subarray sum of  [-9, -8, -7, -6, -2] is :- -2
+
 """
 def negative_exist(arr):
 
     """
-     checks wether the max value in -ve or not
+     checks whether the max value in -ve or not
      eg :- 
       arr = [-2,-8,-9]
       so max element is negative i.e. -2
@@ -40,9 +55,9 @@ def kadanes_implementation(arr):
        and when value of max_till_sum is less than 0 it will assign 0 to i
        and after whole process it will return the value
 
-       So th output for above arr is :- 8
+       So the output for above arr is :- 8
     """
-    if(negative_exist(arr)<0):
+    if negative_exist(arr) < 0:
         return negative_exist(arr)
 
     max_sum = 0
@@ -62,8 +77,8 @@ def kadanes_implementation(arr):
 if __name__ == "__main__":
     try:
         print("Enter the element of array with spaces  :- ")
-        arr = list(map(int, input().split()))
-        print(kadanes_implementation(arr))
+        arr = [int(x) for x in input().split()]
+        print("Maximum subarray sum of ",arr,"is :-",kadanes_implementation(arr))
     except ValueError:
         print("Please,enter decimal values")
     
