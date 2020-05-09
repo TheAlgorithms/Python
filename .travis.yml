@@ -7,7 +7,7 @@ before_install: pip install --upgrade pip setuptools six
 install: pip install -r requirements.txt
 before_script:
   - black --check . || true
-  - IGNORE=E203,E265,E266,E302,E401,E402,E712,E731,E741,E743,F811,F841,W291,W293
+  - IGNORE=E123,E203,E265,E266,E302,E401,E402,E712,E731,E741,E743,F811,F841,W291,W293,W503
   - flake8 . --count --ignore=$IGNORE --max-complexity=25 --max-line-length=127 --show-source --statistics
 script:
   - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
