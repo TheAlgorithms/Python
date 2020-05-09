@@ -43,6 +43,7 @@
   * [Brute Force Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/brute_force_caesar_cipher.py)
   * [Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/caesar_cipher.py)
   * [Cryptomath Module](https://github.com/TheAlgorithms/Python/blob/master/ciphers/cryptomath_module.py)
+  * [Decrypt Caesar With Chi Squared](https://github.com/TheAlgorithms/Python/blob/master/ciphers/decrypt_caesar_with_chi_squared.py)
   * [Deterministic Miller Rabin](https://github.com/TheAlgorithms/Python/blob/master/ciphers/deterministic_miller_rabin.py)
   * [Diffie](https://github.com/TheAlgorithms/Python/blob/master/ciphers/diffie.py)
   * [Elgamal Key Generator](https://github.com/TheAlgorithms/Python/blob/master/ciphers/elgamal_key_generator.py)
@@ -155,6 +156,8 @@
   * Histogram Equalization
     * [Histogram Stretch](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/histogram_equalization/histogram_stretch.py)
   * [Index Calculation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/index_calculation.py)
+  * Resize
+    * [Resize](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/resize/resize.py)
   * Rotation
     * [Rotation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/rotation/rotation.py)
   * [Sepia](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/sepia.py)
@@ -233,6 +236,7 @@
   * [Eulerian Path And Circuit For Undirected Graph](https://github.com/TheAlgorithms/Python/blob/master/graphs/eulerian_path_and_circuit_for_undirected_graph.py)
   * [Even Tree](https://github.com/TheAlgorithms/Python/blob/master/graphs/even_tree.py)
   * [Finding Bridges](https://github.com/TheAlgorithms/Python/blob/master/graphs/finding_bridges.py)
+  * [Frequent Pattern Graph Miner](https://github.com/TheAlgorithms/Python/blob/master/graphs/frequent_pattern_graph_miner.py)
   * [G Topological Sort](https://github.com/TheAlgorithms/Python/blob/master/graphs/g_topological_sort.py)
   * [Graph List](https://github.com/TheAlgorithms/Python/blob/master/graphs/graph_list.py)
   * [Graph Matrix](https://github.com/TheAlgorithms/Python/blob/master/graphs/graph_matrix.py)
@@ -271,6 +275,8 @@
   * [Linear Discriminant Analysis](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_discriminant_analysis.py)
   * [Linear Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_regression.py)
   * [Logistic Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
+  * Lstm
+    * [Lstm Prediction](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/lstm/lstm_prediction.py)
   * [Multilayer Perceptron Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/multilayer_perceptron_classifier.py)
   * [Polymonial Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/polymonial_regression.py)
   * [Random Forest Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classifier.py)
@@ -543,6 +549,7 @@
 
 ## Scheduling
   * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
+  * [Shortest Job First Algorithm](https://github.com/TheAlgorithms/Python/blob/master/scheduling/shortest_job_first_algorithm.py)
 
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)
@@ -589,6 +596,7 @@
   * [Recursive Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive_insertion_sort.py)
   * [Selection Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/selection_sort.py)
   * [Shell Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/shell_sort.py)
+  * [Sleep Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/sleep_sort.py)
   * [Stooge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/stooge_sort.py)
   * [Tim Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/tim_sort.py)
   * [Topological Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/topological_sort.py)
