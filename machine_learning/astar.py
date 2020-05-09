@@ -1,6 +1,6 @@
 import numpy as np
 
-'''
+"""
 The A* algorithm combines features of uniform-cost search and pure
 heuristic search to efficiently compute optimal solutions.
 A* algorithm is a best-first search algorithm in which the cost
@@ -11,11 +11,11 @@ from node n to a goal.A* algorithm introduces a heuristic into a
 regular graph-searching algorithm,
 essentially planning ahead at each step so a more optimal decision
 is made.A* also known as the algorithm with brains
-'''
+"""
 
 
 class Cell(object):
-    '''
+    """
     Class cell represents a cell in the world which have the property
     position : The position of the represented by  tupleof x and y
     co-ordinates initially set to (0,0)
@@ -24,7 +24,8 @@ class Cell(object):
     g,h,f : The parameters for constructing the heuristic function
     which can be any function. for simplicity used line
     distance
-    '''
+    """
+
     def __init__(self):
         self.position = (0, 0)
         self.parent = None
@@ -32,10 +33,12 @@ class Cell(object):
         self.g = 0
         self.h = 0
         self.f = 0
-    '''
+
+    """
     overrides equals method because otherwise cell assign will give
     wrong results
-    '''
+    """
+
     def __eq__(self, cell):
         return self.position == cell.position
 
@@ -45,11 +48,11 @@ class Cell(object):
 
 class Gridworld(object):
 
-    '''
+    """
     Gridworld class represents the  external world here a grid M*M
     matrix
     w    : create a numpy array with the given world_size default is 5
-    '''
+    """
 
     def __init__(self, world_size=(5, 5)):
         self.w = np.zeros(world_size)
@@ -59,40 +62,49 @@ class Gridworld(object):
     def show(self):
         print(self.w)
 
-    '''
+    """
     get_neighbours
     As the name suggests this function will return the neighbours of
     the a particular cell
-    '''
+    """
+
     def get_neigbours(self, cell):
         neughbour_cord = [
-            (-1, -1), (-1, 0), (-1, 1), (0, -1),
-            (0, 1), (1, -1), (1, 0), (1, 1)]
+            (-1, -1),
+            (-1, 0),
+            (-1, 1),
+            (0, -1),
+            (0, 1),
+            (1, -1),
+            (1, 0),
+            (1, 1),
+        ]
         current_x = cell.position[0]
         current_y = cell.position[1]
         neighbours = []
         for n in neughbour_cord:
             x = current_x + n[0]
             y = current_y + n[1]
-            if (
-               (x >= 0 and x < self.world_x_limit) and
-               (y >= 0 and y < self.world_y_limit)):
+            if (x >= 0 and x < self.world_x_limit) and (
+                y >= 0 and y < self.world_y_limit
+            ):
                 c = Cell()
                 c.position = (x, y)
                 c.parent = cell
                 neighbours.append(c)
         return neighbours
 
-'''
+
+"""
 Implementation of a start algorithm
 world : Object of the world object
 start : Object of the cell as  start position
 stop  : Object of the cell as goal position
-'''
+"""
 
 
 def astar(world, start, goal):
-    '''
+    """
     >>> p = Gridworld()
     >>> start = Cell()
     >>> start.position = (0,0)
@@ -100,7 +112,7 @@ def astar(world, start, goal):
     >>> goal.position = (4,4)
     >>> astar(p, start, goal)
     [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4)]
-    '''
+    """
     _open = []
     _closed = []
     _open.append(start)
@@ -118,7 +130,7 @@ def astar(world, start, goal):
             n.g = current.g + 1
             x1, y1 = n.position
             x2, y2 = goal.position
-            n.h = (y2 - y1)**2 + (x2 - x1)**2
+            n.h = (y2 - y1) ** 2 + (x2 - x1) ** 2
             n.f = n.h + n.g
 
             for c in _open:
@@ -133,20 +145,21 @@ def astar(world, start, goal):
     path = path[::-1]
     return path
 
-if __name__ == '__main__':
-    '''
+
+if __name__ == "__main__":
+    """
     sample run
-    '''
-#   object for the world
+    """
+    #   object for the world
     p = Gridworld()
-#   stat position and Goal
+    #   stat position and Goal
     start = Cell()
     start.position = (0, 0)
     goal = Cell()
     goal.position = (4, 4)
     print("path from {} to {} ".format(start.position, goal.position))
     s = astar(p, start, goal)
-#   Just for visual Purpose
+    #   Just for visual Purpose
     for i in s:
         p.w[i] = 1
     print(p.w)
