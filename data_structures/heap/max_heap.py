@@ -20,7 +20,7 @@ class BinaryHeap:
         self.__heap = [0]
         self.__size = 0
 
-    def __swap_up(self, i):
+    def __swap_up(self, i: int) -> None:
         """ Swap the element up """
         temporary = self.__heap[i]
         while i // 2 > 0:
@@ -29,13 +29,13 @@ class BinaryHeap:
                 self.__heap[i // 2] = temporary
             i //= 2
 
-    def insert(self, value):
+    def insert(self, value: int) -> None:
         """ Insert new element """
         self.__heap.append(value)
         self.__size += 1
         self.__swap_up(self.__size)
 
-    def __swap_down(self, i):
+    def __swap_down(self, i: int) -> None:
         """ Swap the element down """
         while self.__size >= 2*i:
             if 2 * i + 1 > self.__size:
@@ -50,7 +50,7 @@ class BinaryHeap:
                 self.__heap[bigger_child] = temporary
             i = bigger_child
 
-    def pop(self):
+    def pop(self) -> int:
         """ Pop the root element """
         max_value = self.__heap[1]
         self.__heap[1] = self.__heap[self.__size]
