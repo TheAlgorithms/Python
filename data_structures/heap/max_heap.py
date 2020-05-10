@@ -1,18 +1,18 @@
 class BinaryHeap:
     """
     A max-heap implementation in Python
-    >>> sample = BinaryHeap()
-    >>> sample.insert(6)
-    >>> sample.insert(10)
-    >>> sample.insert(15)
-    >>> sample.insert(12)
-    >>> print(sample.pop())
+    >>> binary_heap = BinaryHeap()
+    >>> binary_heap.insert(6)
+    >>> binary_heap.insert(10)
+    >>> binary_heap.insert(15)
+    >>> binary_heap.insert(12)
+    >>> binary_heap.pop()
     15
-    >>> print(sample.pop())
+    >>> binary_heap.pop()
     12
-    >>> print(sample.get_list)
+    >>> binary_heap.get_list
     [10, 6]
-    >>> print(len(sample))
+    >>> len(binary_heap)
     2
     """
 
@@ -69,22 +69,19 @@ class BinaryHeap:
         return self.__size
 
 
-# example
-# create an instance of BinaryHeap object
-sample = BinaryHeap()
-# insert values
-sample.insert(6)
-sample.insert(10)
-sample.insert(15)
-sample.insert(12)
-# pop root(max-values because it is max heap)
-print(sample.pop())  # 15
-print(sample.pop())  # 12
-# get the list and size after operations
-print(sample.get_list)
-print(len(sample))
-
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    # create an instance of BinaryHeap
+    binary_heap = BinaryHeap()
+    binary_heap.insert(6)
+    binary_heap.insert(10)
+    binary_heap.insert(15)
+    binary_heap.insert(12)
+    # pop root(max-values because it is max heap)
+    print(binary_heap.pop())  # 15
+    print(binary_heap.pop())  # 12
+    # get the list and size after operations
+    print(binary_heap.get_list)
+    print(len(binary_heap))
