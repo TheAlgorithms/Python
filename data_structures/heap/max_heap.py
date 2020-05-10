@@ -37,13 +37,13 @@ class BinaryHeap:
 
     def __swap_down(self, i: int) -> None:
         """ Swap the element down """
-        while self.__size >= 2*i:
+        while self.__size >= 2 * i:
             if 2 * i + 1 > self.__size:
                 bigger_child = 2 * i
             else:
                 bigger_child = 2 * \
-                    i if self.__heap[2 * i] > self.__heap[2 *
-                                                          i + 1] else 2 * i + 1
+                               i if self.__heap[2 * i] > self.__heap[2 *
+                                                                     i + 1] else 2 * i + 1
             temporary = self.__heap[i]
             if self.__heap[i] < self.__heap[bigger_child]:
                 self.__heap[i] = self.__heap[bigger_child]
@@ -85,4 +85,5 @@ print(sample.get_size)
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
