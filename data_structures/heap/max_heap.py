@@ -12,7 +12,7 @@ class BinaryHeap:
     12
     >>> print(sample.get_list)
     [10, 6]
-    >>> print(sample.get_size)
+    >>> print(len(sample))
     2
     """
 
@@ -64,8 +64,8 @@ class BinaryHeap:
     def get_list(self):
         return self.__heap[1:]
 
-    @property
-    def get_size(self):
+    def __len__(self):
+        """ Length of the array """
         return self.__size
 
 
@@ -82,7 +82,7 @@ print(sample.pop())  # 15
 print(sample.pop())  # 12
 # get the list and size after operations
 print(sample.get_list)
-print(sample.get_size)
+print(len(sample))
 
 if __name__ == "__main__":
     import doctest
