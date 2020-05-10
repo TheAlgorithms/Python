@@ -266,6 +266,7 @@
     * [Test Linear Algebra](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/test_linear_algebra.py)
 
 ## Machine Learning
+  * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
   * [Gaussian Naive Bayes](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gaussian_naive_bayes.py)
   * [Gradient Descent](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gradient_descent.py)
@@ -327,6 +328,7 @@
   * [Hardy Ramanujanalgo](https://github.com/TheAlgorithms/Python/blob/master/maths/hardy_ramanujanalgo.py)
   * [Is Square Free](https://github.com/TheAlgorithms/Python/blob/master/maths/is_square_free.py)
   * [Jaccard Similarity](https://github.com/TheAlgorithms/Python/blob/master/maths/jaccard_similarity.py)
+  * [Kadanes](https://github.com/TheAlgorithms/Python/blob/master/maths/kadanes.py)
   * [Karatsuba](https://github.com/TheAlgorithms/Python/blob/master/maths/karatsuba.py)
   * [Kth Lexicographic Permutation](https://github.com/TheAlgorithms/Python/blob/master/maths/kth_lexicographic_permutation.py)
   * [Largest Of Very Large Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/largest_of_very_large_numbers.py)

@@ -3,7 +3,7 @@ Kadane's algorithm to get maximum subarray sum
 https://medium.com/@rsinghal757/kadanes-algorithm-dynamic-programming-how-and-why-does-it-work-3fd8849ed73d
 https://en.wikipedia.org/wiki/Maximum_subarray_problem
 """
-test_data = ([-2, -8, -9], [2, 8, 9], [-1, 0, 1], [0, 0], [])
+test_data: tuple = ([-2, -8, -9], [2, 8, 9], [-1, 0, 1], [0, 0], [])
 
 
 def negative_exist(arr: list) -> int:
