@@ -4,10 +4,9 @@ This is a Python implementation for questions involving task assignments between
 Here Bitmasking and DP are used for solving this.
 
 Question :-
-We have N tasks and M people. Each person in M can do only certain of these tasks. Also a person can do only one task and a task is performed only by one person.
+We have N tasks and M people. Each person in M can do only certain of these tasks. Also
+a person can do only one task and a task is performed only by one person.
 Find the total no of ways in which the tasks can be distributed.
-
-
 """
 from collections import defaultdict
 
@@ -25,7 +24,8 @@ class AssignmentUsingBitmask:
 
         self.task = defaultdict(list)  # stores the list of persons for each task
 
-        # final_mask is used to check if all persons are included by setting all bits to 1
+        # final_mask is used to check if all persons are included by setting all bits
+        # to 1
         self.final_mask = (1 << len(task_performed)) - 1
 
     def CountWaysUtil(self, mask, task_no):
@@ -45,7 +45,8 @@ class AssignmentUsingBitmask:
         # Number of ways when we don't this task in the arrangement
         total_ways_util = self.CountWaysUtil(mask, task_no + 1)
 
-        # now assign the tasks one by one to all possible persons and recursively assign for the remaining tasks.
+        # now assign the tasks one by one to all possible persons and recursively
+        # assign for the remaining tasks.
         if task_no in self.task:
             for p in self.task[task_no]:
 
@@ -53,7 +54,8 @@ class AssignmentUsingBitmask:
                 if mask & (1 << p):
                     continue
 
-                # assign this task to p and change the mask value. And recursively assign tasks with the new mask value.
+                # assign this task to p and change the mask value. And recursively
+                # assign tasks with the new mask value.
                 total_ways_util += self.CountWaysUtil(mask | (1 << p), task_no + 1)
 
         # save the value.
@@ -85,6 +87,7 @@ if __name__ == "__main__":
     )
     """
     For the particular example the tasks can be distributed as
-    (1,2,3), (1,2,4), (1,5,3), (1,5,4), (3,1,4), (3,2,4), (3,5,4), (4,1,3), (4,2,3), (4,5,3)
+    (1,2,3), (1,2,4), (1,5,3), (1,5,4), (3,1,4),
+    (3,2,4), (3,5,4), (4,1,3), (4,2,3), (4,5,3)
     total 10
     """
