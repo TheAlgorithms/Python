@@ -3,18 +3,16 @@ This is pure implementation of iterative merge sort in python
 Author: Aman Gupta
 
 For doctests run following command:
-python -m doctest -v shell_sort.py
-or
-python3 -m doctest -v shell_sort.py
+python3 -m doctest -v iterative_merge_sort.py
 
 For manual testing run:
-python shell_sort.py
+python3 iterative_merge_sort.py
 """
 
 from typing import List
 
 
-def merge(low: int, mid: int, high: int, inputlist: List) -> List:
+def merge(inputlist: List, low: int, mid: int, high: int) -> List:
     """
     sorting left-half and right-half individually
     then merging them into result
@@ -40,6 +38,9 @@ def iter_merge_sort(inputlist: List) -> List:
     >>> iter_merge_sort([6])
     [6]
 
+    >>> iter_merge_sort([])
+    []
+
     >>> iter_merge_sort([-2,-9,-1,-4])
     [-9, -4, -2, -1]
     
@@ -56,11 +57,11 @@ def iter_merge_sort(inputlist: List) -> List:
             low = i
             high = i + p - 1
             mid = (low + high + 1) // 2
-            inputlist = merge(low, mid, high, inputlist)
+            inputlist = merge(inputlist, low, mid, high)
         # final merge of last two parts
         if p * 2 >= len(inputlist):
             mid = i
-            inputlist = merge(0, mid, len(inputlist) - 1, inputlist)
+            inputlist = merge(inputlist, 0, mid, len(inputlist) - 1)
 
         p *= 2
 
@@ -69,5 +70,5 @@ def iter_merge_sort(inputlist: List) -> List:
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
+    unsorted = [int(item.strip()) for item in user_input.split(",")]
     print(*iter_merge_sort(unsorted), sep=",")
