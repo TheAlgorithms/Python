@@ -1,29 +1,28 @@
-from functools import partial
 import operator
 
 
-def strand_sort(arr: list, solution: list, _operator: callable):
+def strand_sort(arr: list, reverse: bool=False, solution: list=None):
     """
     Strand sort implementation
     source: https://en.wikipedia.org/wiki/Strand_sort
 
     :param arr: Unordered input list
-    :param solution: Ordered output list
-    :param _operator: Operator lt/gt to specify ascent/descent version
+    :param reverse: Descent ordering flag
+    :param solution: Ordered items container
 
     Examples:
-    >>> solution_1 = []
-    >>> strand_sort([4, 2, 5, 3, 0, 1], solution_1, operator.gt)
-    >>> solution_1
+    >>> strand_sort([4, 2, 5, 3, 0, 1])
     [0, 1, 2, 3, 4, 5]
 
-    >>> solution_2 = []
-    >>> strand_sort([4, 2, 5, 3, 0, 1], solution_2, operator.lt)
-    >>> solution_2
+    >>> strand_sort([4, 2, 5, 3, 0, 1], reverse=True)
     [5, 4, 3, 2, 1, 0]
     """
+    _operator = operator.lt if reverse else operator.gt
+    solution = solution or []
+
     if not arr:
-        return
+        print(solution)
+        return solution
 
     sublist = [arr.pop(0)]
     for i, item in enumerate(arr):
@@ -44,17 +43,10 @@ def strand_sort(arr: list, solution: list, _operator: callable):
             else:
                 solution.append(item)
 
-    strand_sort(arr, solution, _operator)
+    strand_sort(arr, reverse, solution)
+    return solution
 
-
-strand_asc = partial(strand_sort, _operator=operator.gt)
-strand_desc = partial(strand_sort, _operator=operator.lt)
 
 if __name__ == "__main__":
-    solution = []
-    strand_asc([4, 3, 5, 1, 2], solution)
-    assert solution == [1, 2, 3, 4, 5]
-
-    solution = []
-    strand_desc([4, 3, 5, 1, 2], solution)
-    assert solution == [5, 4, 3, 2, 1]
+    assert strand_sort([4, 3, 5, 1, 2]) == [1, 2, 3, 4, 5]
+    assert strand_sort([4, 3, 5, 1, 2], reverse=True) == [5, 4, 3, 2, 1]
