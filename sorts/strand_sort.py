@@ -21,7 +21,6 @@ def strand_sort(arr: list, reverse: bool=False, solution: list=None):
     solution = solution or []
 
     if not arr:
-        print(solution)
         return solution
 
     sublist = [arr.pop(0)]
