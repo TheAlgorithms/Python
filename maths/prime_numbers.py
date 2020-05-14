@@ -67,4 +67,3 @@ if __name__ == "__main__":
     from timeit import timeit
     print(timeit("slow_primes(1_000_000)", setup="from __main__ import slow_primes"))
     print(timeit("primes(1_000_000)", setup="from __main__ import primes"))
-
