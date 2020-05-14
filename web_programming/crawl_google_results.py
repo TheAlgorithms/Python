@@ -19,4 +19,7 @@ if __name__ == "__main__":
 
     print(len(links))
     for link in links:
-        webbrowser.open(f"http://google.com{link.get('href')}")
+        if link.text == "Maps":
+            webbrowser.open(link.get("href"))
+        else:
+            webbrowser.open(f"http://google.com{link.get('href')}")

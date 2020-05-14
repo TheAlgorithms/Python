@@ -11,7 +11,7 @@ class NearestNeighbour:
 
     def __init__(self, img, dst_width: int, dst_height: int):
         if dst_width < 0 or dst_height < 0:
-            raise ValueError(f"Destination width/height should be > 0")
+            raise ValueError("Destination width/height should be > 0")
 
         self.img = img
         self.src_w = img.shape[1]
