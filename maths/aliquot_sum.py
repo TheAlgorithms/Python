@@ -28,7 +28,7 @@ def aliquot_sum(input_num: int) -> int:
     >>> aliquot_sum(19)
     1
     """
-    if !isinstance(input_num, int) && input_num <= 0:
+    if (not isinstance(input_num, int)) or (input_num <= 0):
         raise ValueError
     sum = 0
     for divisor in range(1, input_num):
