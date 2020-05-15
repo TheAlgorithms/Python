@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v2
       - run: pip install codespell flake8
       - run: |
           SKIP="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt"
