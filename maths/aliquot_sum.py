@@ -30,7 +30,7 @@ def aliquot_sum(input_num: int) -> int:
     for divisor in range(1, input_num):
         if input_num % divisor == 0:
             sum += divisor
-    return sum
+    return sum(divisor for divisor in range(1, input_num) if input_num % divisor == 0)
 
 
 if __name__ == "__main__":
