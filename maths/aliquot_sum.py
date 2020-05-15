@@ -15,22 +15,28 @@ def aliquot_sum(input_num: int) -> int:
     >>> aliquot_sum(6)
     6
     >>> aliquot_sum(-1)
-    ValueError
+    Traceback (most recent call last):
+      ...
+    ValueError: Input must be positive
     >>> aliquot_sum(0)
-    ValueError
+    Traceback (most recent call last):
+      ...
+    ValueError: Input must be positive
     >>> aliquot_sum(1.6)
-    ValueError
+    Traceback (most recent call last):
+      ...
+    ValueError: Input must be an integer
     >>> aliquot_sum(12)
     16
+    >>> aliquot_sum(1)
+    0
     >>> aliquot_sum(19)
     1
     """
-    if (not isinstance(input_num, int)) or (input_num <= 0):
-        raise ValueError
-    sum = 0
-    for divisor in range(1, input_num):
-        if input_num % divisor == 0:
-            sum += divisor
+    if not isinstance(input_num, int): 
+        raise ValueError("Input must be an integer")
+    if input_num <= 0:
+        raise ValueError("Input must be positive")
     return sum(divisor for divisor in range(1, input_num) if input_num % divisor == 0)
 
 
