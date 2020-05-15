@@ -7,7 +7,7 @@ def aliquot_sum(input_num: int) -> int:
     a simple O(n) implementation.
     @param input_num: a positive integer whose aliquot sum is to be found
     @return: the aliquot sum of input_num, if input_num is positive.
-    Otherwise, return the string "Please enter a positive integer"
+    Otherwise, raise a ValueError
     Wikipedia Explanation: https://en.wikipedia.org/wiki/Aliquot_sum
     
     >>> aliquot_sum(15)
