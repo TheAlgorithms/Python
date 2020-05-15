@@ -1,6 +1,3 @@
-from typing import Union
-
-
 def aliquot_sum(input_num: int) -> int:
     """
     Finds the aliquot sum of an input integer, where the
