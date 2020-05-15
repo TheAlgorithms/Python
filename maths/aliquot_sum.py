@@ -1,4 +1,7 @@
-def aliquot_sum(input_num):
+from typing import Union
+
+
+def aliquot_sum(input_num: int) -> Union[int, str]:
     """
     Finds the aliquot sum of an input integer, where the
     aliquot sum of a number n is defined as the sum of all
@@ -8,6 +11,7 @@ def aliquot_sum(input_num):
     @param input_num: a positive integer whose aliquot sum is to be found
     @return: the aliquot sum of input_num, if input_num is positive.
     Otherwise, return the string "Please enter a positive integer"
+    Wikipedia Explanation: https://en.wikipedia.org/wiki/Aliquot_sum
     
     >>> aliquot_sum(15)
     9
