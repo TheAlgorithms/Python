@@ -33,7 +33,7 @@ def aliquot_sum(input_num: int) -> int:
     >>> aliquot_sum(19)
     1
     """
-    if not isinstance(input_num, int): 
+    if not isinstance(input_num, int):
         raise ValueError("Input must be an integer")
     if input_num <= 0:
         raise ValueError("Input must be positive")
