@@ -18,14 +18,18 @@ def aliquot_sum(input_num: int) -> int:
     >>> aliquot_sum(6)
     6
     >>> aliquot_sum(-1)
-    'Please enter a positive integer'
+    ValueError
+    >>> aliquot_sum(0)
+    ValueError
+    >>> aliquot_sum(1.6)
+    ValueError
     >>> aliquot_sum(12)
     16
     >>> aliquot_sum(19)
     1
     """
-    if input_num <= 0:
-        return "Please enter a positive integer"
+    if !isinstance(input_num, int) && input_num <= 0:
+        raise ValueError
     sum = 0
     for divisor in range(1, input_num):
         if input_num % divisor == 0:
