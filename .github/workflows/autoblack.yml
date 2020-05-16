@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1  # Use v1, NOT v2
-      - uses: actions/setup-python@v1
+      - uses: actions/setup-python@v2
       - run: pip install black
       - run: black --check .
       - name: If needed, commit black changes to a new pull request

@@ -293,6 +293,7 @@
   * [Abs Max](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_max.py)
   * [Abs Min](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_min.py)
   * [Add](https://github.com/TheAlgorithms/Python/blob/master/maths/add.py)
+  * [Aliquot Sum](https://github.com/TheAlgorithms/Python/blob/master/maths/aliquot_sum.py)
   * [Allocation Number](https://github.com/TheAlgorithms/Python/blob/master/maths/allocation_number.py)
   * [Area Under Curve](https://github.com/TheAlgorithms/Python/blob/master/maths/area_under_curve.py)
   * [Armstrong Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/armstrong_numbers.py)
