@@ -1,7 +1,7 @@
 """
 A Trie/Prefix Tree is a kind of search tree used to provide quick lookup
 of words/patterns in a set of words. A basic Trie however has O(n^2) space complexity
-making it impractical in practice. It however provides O(max(search_string, length of longest word)) 
+making it impractical in practice. It however provides O(max(search_string, length of longest word))
 lookup time making it an optimal approach when space is not an issue.
 """
 
@@ -50,32 +50,31 @@ class TrieNode:
         """
         return a list of all words that start with the given prefix.
         are followed by a certain prefix.
-    
+
         long-url: https://www.geeksforgeeks.org/prefix-matching-python-using-pytrie-module/
         :param prefix: the prefix to be matched
         :return: List of prefix-matched words.
-        
+
         >>> t.get_words_starting_with("a")
         ['apple', 'all']
 
         """
 
-
         def get_trie_for_prefix(t: TrieNode, prefix: str):
 
-            '''
+            """
             Different search function that returns the sub trie
             instead of True or False
             :param t: self
             :param prefix: prefix to be searched
             :return: a new sub-trie
-            
-            '''
+
+            """
             curr = t
             for char in prefix:
                 if char not in curr.nodes:
                     return False
-                    
+
                 curr = curr.nodes[char]
             return curr
 
@@ -94,16 +93,13 @@ class TrieNode:
 
             return lst
 
-        sub_trie= get_trie_for_prefix(self, prefix)
-        if sub_trie==False:
+        sub_trie = get_trie_for_prefix(self, prefix)
+        if sub_trie == False:
             return []
         else:
-            lst=[]
+            lst = []
             depth_first_search(sub_trie, prefix, lst)
             return lst
-
-
-
 
     def delete(self, word: str):
         """
@@ -152,7 +148,7 @@ def test_trie():
     words = "banana bananas bandana band apple all beast".split()
     root = TrieNode()
     root.insert_many(words)
-    
+
     # print_words(root, "")
     assert all(root.find(word) for word in words)
     assert root.find("banana")
@@ -176,7 +172,8 @@ def print_results(msg: str, passes: bool) -> None:
 def pytests():
     assert test_trie()
     import doctest
-    doctest.testmod(extraglobs={'t': TrieNode()})
+
+    doctest.testmod(TrieNode())
 
 
 def main():
