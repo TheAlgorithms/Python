@@ -80,7 +80,7 @@ class TrieNode:
 
         def depth_first_search(node: TrieNode, word: str, lst):
             """
-            resturns a list of all the nodes in a trie
+            returns a list of all the nodes in a trie
             :param node: root node of Trie
             :param word: prefix
             :return: list of strings
