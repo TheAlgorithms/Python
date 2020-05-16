@@ -1,9 +1,11 @@
 """
 A Trie/Prefix Tree is a kind of search tree used to provide quick lookup
 of words/patterns in a set of words. A basic Trie however has O(n^2) space complexity
-making it impractical in practice. It however provides O(max(search_string, length of longest word))
-lookup time making it an optimal approach when space is not an issue.
+making it impractical in practice. It however provides
+O(max(search_string, length of longest word)) lookup time making it an optimal approach
+when space is not an issue.
 """
+from typing import List
 
 
 class TrieNode:
@@ -11,18 +13,18 @@ class TrieNode:
         self.nodes = dict()  # Mapping from char to TrieNode
         self.is_leaf = False
 
-    def insert_many(self, words: [str]):
+    def insert_many(self, words: List[str]) -> None:
         """
-        Inserts a list of words into the Trie
+        Insert a list of words into the Trie
         :param words: list of string words
         :return: None
         """
         for word in words:
             self.insert(word)
 
-    def insert(self, word: str):
+    def insert(self, word: str) -> None:
         """
-        Inserts a word into the Trie
+        Insert a word into the Trie
         :param word: word to be inserted
         :return: None
         """
@@ -46,7 +48,7 @@ class TrieNode:
             curr = curr.nodes[char]
         return curr.is_leaf
 
-    def get_words_starting_with(self, prefix: str) -> [str]:
+    def get_words_starting_with(self, prefix: str) -> List[str]:
         """
         return a list of all words that start with the given prefix.
         are followed by a certain prefix.
@@ -78,7 +80,7 @@ class TrieNode:
                 curr = curr.nodes[char]
             return curr
 
-        def depth_first_search(node: TrieNode, word: str, lst):
+        def depth_first_search(node: TrieNode, word: str, lst: List[str]) -> List[str]:
             """
             returns a list of all the nodes in a trie
             :param node: root node of Trie
@@ -101,14 +103,14 @@ class TrieNode:
             depth_first_search(sub_trie, prefix, lst)
             return lst
 
-    def delete(self, word: str):
+    def delete(self, word: str) -> None:
         """
         Deletes a word in a Trie
         :param word: word to delete
         :return: None
         """
 
-        def _delete(curr: TrieNode, word: str, index: int):
+        def _delete(curr: TrieNode, word: str, index: int) -> bool:
             if index == len(word):
                 # If word does not exist
                 if not curr.is_leaf:
@@ -130,7 +132,7 @@ class TrieNode:
         _delete(self, word, 0)
 
 
-def print_words(node: TrieNode, word: str):
+def print_words(node: TrieNode, word: str) -> None:
     """
     Prints all the words in a Trie
     :param node: root node of Trie
@@ -144,7 +146,7 @@ def print_words(node: TrieNode, word: str):
         print_words(value, word + key)
 
 
-def test_trie():
+def test_trie() -> bool:
     words = "banana bananas bandana band apple all beast".split()
     root = TrieNode()
     root.insert_many(words)
@@ -169,7 +171,7 @@ def print_results(msg: str, passes: bool) -> None:
     print(str(msg), "works!" if passes else "doesn't work :(")
 
 
-def pytests():
+def pytests() -> None:
     assert test_trie()
     import doctest
 
