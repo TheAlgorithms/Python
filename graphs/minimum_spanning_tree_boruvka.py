@@ -181,7 +181,7 @@ class Graph:
     def boruvka_mst(graph):
         '''
         Implementation of Boruvka's algorithm
-        Time Complexity: 
+        https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
         '''
         num_components = graph.num_vertices
 
