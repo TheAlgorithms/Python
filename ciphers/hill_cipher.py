@@ -36,7 +36,7 @@ https://www.youtube.com/watch?v=4RhLNDqcjpA
 
 """
 
-from string import ascii_upper 
+from string import ascii_upper
 import numpy
 
 
@@ -221,6 +221,7 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     main()
