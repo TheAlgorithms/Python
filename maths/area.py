@@ -31,7 +31,7 @@ def area_triangle(length, breadth):
     Calculate the area of a triangle
 
     >>> area_triangle(10,10)
-    50
+    50.0
     """
     return 1 / 2 * length * breadth
 
