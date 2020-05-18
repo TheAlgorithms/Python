@@ -81,10 +81,9 @@ def chinese_remainder_theorem2(n1, r1, n2, r2):
     return (n % m + m) % m
 
 
-# import testmod for testing our function
-from doctest import testmod
-
 if __name__ == "__main__":
+    from doctest import testmod
+
     testmod(name="chinese_remainder_theorem", verbose=True)
     testmod(name="chinese_remainder_theorem2", verbose=True)
     testmod(name="invert_modulo", verbose=True)
