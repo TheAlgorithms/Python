@@ -603,6 +603,7 @@
   * [Shell Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/shell_sort.py)
   * [Sleep Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/sleep_sort.py)
   * [Stooge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/stooge_sort.py)
+  * [Strand Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/strand_sort.py)
   * [Tim Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/tim_sort.py)
   * [Topological Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/topological_sort.py)
   * [Tree Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/tree_sort.py)
