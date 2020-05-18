@@ -13,7 +13,7 @@ def bailey_borwein_plouffe(digit_position: int, precision: int = 1000) -> str:
     
     >>> "".join(bailey_borwein_plouffe(i) for i in range(1, 11))
     '243f6a8885'
-    >>> bbp_extract_pi_hex_digit(5, 10000)
+    >>> bailey_borwein_plouffe(5, 10000)
     '6'
     >>> bailey_borwein_plouffe(-10)
     Traceback (most recent call last):
