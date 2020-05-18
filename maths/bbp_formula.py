@@ -1,6 +1,6 @@
 def bbp_extract_pi_hex_digit(digit_position: int, precision: int = 1000) -> str:
     """
-    Uses a popular pi-digit-extraction algorithm known as the 
+    Implement a popular pi-digit-extraction algorithm known as the 
     Bailey-Borwein-Plouffe (BBP) formula to calulate the nth hex digit of pi.
     Wikipedia page:
     https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula
