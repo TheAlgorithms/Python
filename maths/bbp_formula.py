@@ -89,7 +89,7 @@ def _subsum(
         exponential_term = 0.0
         if sum_index < digit_pos_to_extract:
             # if the exponential term is an integer and we mod it by the denominator before
-            # dividing, only the fractional part of the sum will change; the integer part will not
+            # dividing, only the integer part of the sum will change; the fractional part will not
             exponential_term = pow(
                 16, digit_pos_to_extract - 1 - sum_index, denominator
             )
