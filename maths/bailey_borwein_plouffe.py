@@ -11,7 +11,7 @@ def bailey_borwein_plouffe(digit_position: int, precision: int = 1000) -> str:
     @return: a hexadecimal digit representing the digit at the nth position
     in pi's decimal expansion.
     
-    >>> "".join(bailey_borwein_plouffe(i) for i in range(1, 11))
+    >>> "".join(bailey_borwein_plouffe(i) for i in range(1, 12))
     '243f6a88856'
     >>> bailey_borwein_plouffe(-10)
     Traceback (most recent call last):
