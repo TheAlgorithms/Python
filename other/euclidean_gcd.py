@@ -22,10 +22,10 @@ def euclidean_gcd_recursive(a: int, b: int) -> int:
     Recursive method for euclicedan gcd algorithm
 
     Examples:
-    >>> euclidean_gcd(3, 5)
+    >>> euclidean_gcd_recursive(3, 5)
     1
 
-    >>> euclidean_gcd(6, 3)
+    >>> euclidean_gcd_recursive(6, 3)
     3
     """
     if b == 0:
