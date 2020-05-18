@@ -25,7 +25,7 @@ The determinant of the encryption key matrix must be relatively prime w.r.t 36.
 Note:
 This implementation only considers alphanumerics in the text.  If the length of
 the text to be encrypted is not a multiple of the break key(the length of one
-batch of letters),the last character of the text is added to the text until the
+batch of letters), the last character of the text is added to the text until the
 length of the text reaches a multiple of the break_key. So the text after
 decrypting might be a little different than the original text.
 
@@ -66,7 +66,7 @@ class HillCipher:
 
     def __init__(self, encrypt_key):
         """
-        encrypt_key is an NxN numpy matrix
+        encrypt_key is an NxN numpy array
         """
         self.encrypt_key = self.modulus(encrypt_key)  # mod36 calc's on the encrypt key
         self.check_determinant()  # validate the determinant of the encryption key
@@ -75,7 +75,7 @@ class HillCipher:
 
     def replace_letters(self, letter: str) -> int:
         """
-        >>> hill_cipher = HillCipher(numpy.matrix([[2, 5], [1, 6]]))
+        >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.replace_letters('T')
         19
         >>> hill_cipher.replace_letters('0')
@@ -85,7 +85,7 @@ class HillCipher:
 
     def replace_digits(self, num: int) -> str:
         """
-        >>> hill_cipher = HillCipher(numpy.matrix([[2, 5], [1, 6]]))
+        >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.replace_digits(19)
         'T'
         >>> hill_cipher.replace_digits(26)
@@ -95,7 +95,7 @@ class HillCipher:
 
     def check_determinant(self) -> None:
         """
-        >>> hill_cipher = HillCipher(numpy.matrix([[2, 5], [1, 6]]))
+        >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.check_determinant()
         """
         det = round(numpy.linalg.det(self.encrypt_key))
@@ -111,9 +111,11 @@ class HillCipher:
 
     def process_text(self, text: str) -> str:
         """
-        >>> hill_cipher = HillCipher(numpy.matrix([[2, 5], [1, 6]]))
+        >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.process_text('Testing Hill Cipher')
         'TESTINGHILLCIPHERR'
+        >>> hill_cipher.process_text('hello')
+        'HELLOO'
         """
         chars = [char for char in text.upper() if char in self.key_string]
 
@@ -125,9 +127,11 @@ class HillCipher:
 
     def encrypt(self, text: str) -> str:
         """
-        >>> hill_cipher = HillCipher(numpy.matrix([[2, 5], [1, 6]]))
+        >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.encrypt('testing hill cipher')
         'WHXYJOLM9C6XT085LL'
+        >>> hill_cipher.encrypt('hello')
+        '85FF00'
         """
         text = self.process_text(text.upper())
         encrypted = ""
@@ -135,7 +139,7 @@ class HillCipher:
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             batch = text[i : i + self.break_key]
             batch_vec = [self.replace_letters(char) for char in batch]
-            batch_vec = numpy.matrix([batch_vec]).T
+            batch_vec = numpy.array([batch_vec]).T
             batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[
                 0
             ]
@@ -148,10 +152,10 @@ class HillCipher:
 
     def make_decrypt_key(self):
         """
-        >>> hill_cipher = HillCipher(numpy.matrix([[2, 5], [1, 6]]))
+        >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.make_decrypt_key()
-        matrix([[ 6., 25.],
-                [ 5., 26.]])
+        array([[ 6., 25.],
+               [ 5., 26.]])
         """
         det = round(numpy.linalg.det(self.encrypt_key))
 
@@ -173,9 +177,11 @@ class HillCipher:
 
     def decrypt(self, text: str) -> str:
         """
-        >>> hill_cipher = HillCipher(numpy.matrix([[2, 5], [1, 6]]))
+        >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.decrypt('WHXYJOLM9C6XT085LL')
         'TESTINGHILLCIPHERR'
+        >>> hill_cipher.decrypt('85FF00')
+        'HELLOO'
         """
         self.decrypt_key = self.make_decrypt_key()
         text = self.process_text(text.upper())
@@ -184,7 +190,7 @@ class HillCipher:
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             batch = text[i : i + self.break_key]
             batch_vec = [self.replace_letters(char) for char in batch]
-            batch_vec = numpy.matrix([batch_vec]).T
+            batch_vec = numpy.array([batch_vec]).T
             batch_decrypted = self.modulus(self.decrypt_key.dot(batch_vec)).T.tolist()[
                 0
             ]
@@ -205,7 +211,7 @@ def main():
         row = [int(x) for x in input().split()]
         hill_matrix.append(row)
 
-    hc = HillCipher(numpy.matrix(hill_matrix))
+    hc = HillCipher(numpy.array(hill_matrix))
 
     print("Would you like to encrypt or decrypt some text? (1 or 2)")
     option = input("\n1. Encrypt\n2. Decrypt\n")
