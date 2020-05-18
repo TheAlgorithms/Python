@@ -1,6 +1,5 @@
 """
-finding areas of various geomitrical shapes
-
+Find the area of various geometric shapes
 """
 
 import math
@@ -67,7 +66,7 @@ def area_circle(radius):
 
 
 def main():
-    print("Areas of several geometric shapes: \n")
+    print("Areas of various geometric shapes: \n")
     print(f"Rectangle: {area_rectangle(10, 20)=}")
     print(f"Square: {area_square(10)=}")
     print(f"Triangle: {area_triangle(10, 10)=}")
