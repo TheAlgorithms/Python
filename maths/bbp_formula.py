@@ -14,23 +14,23 @@ def bbp_extract_pi_hex_digit(digit_position: int, precision: int = 1000) -> str:
     >>> bbp_extract_pi_hex_digit(-10)
     Traceback (most recent call last):
       ...
-    ValueError: Please input a positive integer for the digit position
+    ValueError: Digit position must be a positive integer
     >>> bbp_extract_pi_hex_digit(1.7)
     Traceback (most recent call last):
       ...
-    ValueError: Please input a positive integer for the digit position
+    ValueError: Digit position must be a positive integer
     >>> bbp_extract_pi_hex_digit(0)
     Traceback (most recent call last):
       ...
-    ValueError: Please input a positive integer for the digit position
+    ValueError: Digit position must be a positive integer
     >>> bbp_extract_pi_hex_digit(2, -10)
     Traceback (most recent call last):
       ...
-    ValueError: Please input a nonnegative integer for the precision
+    ValueError: Precision must be a nonnegative integer
     >>> bbp_extract_pi_hex_digit(2, 1.6)
     Traceback (most recent call last):
       ...
-    ValueError: Please input a nonnegative integer for the precision
+    ValueError: Precision must be a nonnegative integer
     >>> bbp_extract_pi_hex_digit(1)
     '2'
     >>> bbp_extract_pi_hex_digit(2)
