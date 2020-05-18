@@ -36,7 +36,7 @@ https://www.youtube.com/watch?v=4RhLNDqcjpA
 
 """
 
-from string import ascii_upper
+import string
 import numpy
 
 
