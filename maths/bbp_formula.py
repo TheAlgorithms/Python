@@ -55,7 +55,7 @@ def bbp_extract_pi_hex_digit(digit_position: int, precision: int = 1000) -> str:
     '6'
     """
     if (not isinstance(digit_position, int)) or (digit_position <= 0):
-        raise ValueError("Please input a positive integer for the digit position")
+        raise ValueError("Digit position must be a positive integer")
     elif (not isinstance(precision, int)) or (precision < 0):
         raise ValueError("Please input a nonnegative integer for the precision")
 
