@@ -106,7 +106,7 @@ class LinkedList:
                 raise IndexError("Index out of range.")
             current = current.next
         current.data = data
-       
+
     def __len__(self):
         """
         Return length of linked list i.e. number of nodes
