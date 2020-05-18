@@ -1,4 +1,4 @@
-def bbp_extract_pi_hex_digit(digit_position: int, precision: int = 1000) -> str:
+def bailey_borwein_plouffe(digit_position: int, precision: int = 1000) -> str:
     """
     Implement a popular pi-digit-extraction algorithm known as the 
     Bailey-Borwein-Plouffe (BBP) formula to calulate the nth hex digit of pi.
@@ -11,48 +11,28 @@ def bbp_extract_pi_hex_digit(digit_position: int, precision: int = 1000) -> str:
     @return: a hexadecimal digit representing the digit at the nth position
     in pi's decimal expansion.
     
-    >>> bbp_extract_pi_hex_digit(-10)
+    >>> "".join(bailey_borwein_plouffe(i) for i in range(1, 11))
+    '243f6a88856'
+    >>> bailey_borwein_plouffe(-10)
     Traceback (most recent call last):
       ...
     ValueError: Digit position must be a positive integer
-    >>> bbp_extract_pi_hex_digit(1.7)
+    >>> bailey_borwein_plouffe(0)
     Traceback (most recent call last):
       ...
     ValueError: Digit position must be a positive integer
-    >>> bbp_extract_pi_hex_digit(0)
+    >>> bailey_borwein_plouffe(1.7)
     Traceback (most recent call last):
       ...
     ValueError: Digit position must be a positive integer
-    >>> bbp_extract_pi_hex_digit(2, -10)
+    >>> bailey_borwein_plouffe(2, -10)
     Traceback (most recent call last):
       ...
     ValueError: Precision must be a nonnegative integer
-    >>> bbp_extract_pi_hex_digit(2, 1.6)
+    >>> bailey_borwein_plouffe(2, 1.6)
     Traceback (most recent call last):
       ...
     ValueError: Precision must be a nonnegative integer
-    >>> bbp_extract_pi_hex_digit(1)
-    '2'
-    >>> bbp_extract_pi_hex_digit(2)
-    '4'
-    >>> bbp_extract_pi_hex_digit(3)
-    '3'
-    >>> bbp_extract_pi_hex_digit(4)
-    'f'
-    >>> bbp_extract_pi_hex_digit(5)
-    '6'
-    >>> bbp_extract_pi_hex_digit(6)
-    'a'
-    >>> bbp_extract_pi_hex_digit(7)
-    '8'
-    >>> bbp_extract_pi_hex_digit(8)
-    '8'
-    >>> bbp_extract_pi_hex_digit(9)
-    '8'
-    >>> bbp_extract_pi_hex_digit(10)
-    '5'
-    >>> bbp_extract_pi_hex_digit(5, 10000)
-    '6'
     """
     if (not isinstance(digit_position, int)) or (digit_position <= 0):
         raise ValueError("Digit position must be a positive integer")
