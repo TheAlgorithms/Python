@@ -300,6 +300,7 @@
   * [Average Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mean.py)
   * [Average Median](https://github.com/TheAlgorithms/Python/blob/master/maths/average_median.py)
   * [Average Mode](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mode.py)
+  * [Bailey Borwein Plouffe](https://github.com/TheAlgorithms/Python/blob/master/maths/bailey_borwein_plouffe.py)
   * [Basic Maths](https://github.com/TheAlgorithms/Python/blob/master/maths/basic_maths.py)
   * [Binary Exp Mod](https://github.com/TheAlgorithms/Python/blob/master/maths/binary_exp_mod.py)
   * [Binary Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/maths/binary_exponentiation.py)
