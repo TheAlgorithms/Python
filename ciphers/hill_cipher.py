@@ -100,7 +100,6 @@ class HillCipher:
         """
         >>> hill_cipher = HillCipher(numpy.matrix([[2, 5], [1, 6]]))
         >>> hill_cipher.check_determinant()
-        >>>
         """
         det = round(numpy.linalg.det(self.encrypt_key))
 
