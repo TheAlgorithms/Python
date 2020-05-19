@@ -140,7 +140,6 @@ def greatest_common_divisor(a, b):
 
 
 if __name__ == "__main__":
-    # Import testmod for testing our function
     from doctest import testmod
 
     testmod(name="modular_division", verbose=True)
