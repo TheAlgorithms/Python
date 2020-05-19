@@ -1,3 +1,7 @@
+"""
+https://en.wikipedia.org/wiki/Bidirectional_search
+"""
+
 import time
 from typing import List, Tuple
 
