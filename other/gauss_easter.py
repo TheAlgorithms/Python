@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Computus#Gauss'_Easter_algorithm
 """
+import math
 from datetime import datetime, timedelta
 
 
@@ -23,8 +24,8 @@ def gauss_easter(year: int) -> datetime:
     a = year % 19
     b = year % 4
     c = year % 7
-    k = year // 100
-    p = (13 + 8 * k) / 25
+    k = math.floor(year / 100)
+    p = math.floor((13 + 8 * k) / 25)
     q = k / 4
     M = (15 - p + k - q) % 30
     N = (4 + k - q) % 7
@@ -36,8 +37,12 @@ def gauss_easter(year: int) -> datetime:
     elif d == 28 and e == 6:
         return datetime(year, 4, 18)
     else:
-        print(22, 22 + d + e, d + e)
         return datetime(year, 3, 22) + timedelta(days=int(d + e))
 
+
 if __name__ == '__main__':
-    print(gauss_easter(2021))
+    print(f"Easter in 2023 will be {gauss_easter(2023)}")
+    print(f"Easter in 2021 will be {gauss_easter(2021)}")
+    print(f"Easter in 2010 was {gauss_easter(2010)}")
+    print(f"Easter in 1994 was {gauss_easter(1994)}")
+    print(f"Easter in 2000 was {gauss_easter(2000)}")
