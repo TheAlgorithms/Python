@@ -82,7 +82,6 @@ def chinese_remainder_theorem2(n1, r1, n2, r2):
 
 
 if __name__ == "__main__":
-    # import testmod for testing our function
     from doctest import testmod
 
     testmod(name="chinese_remainder_theorem", verbose=True)
