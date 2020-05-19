@@ -2,7 +2,6 @@
 https://en.wikipedia.org/wiki/Best-first_search#Greedy_BFS
 """
 
-import time
 from typing import List, Tuple
 
 grid = [
