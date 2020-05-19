@@ -39,7 +39,7 @@ def bailey_borwein_plouffe(digit_position: int, precision: int = 1000) -> str:
     if (not isinstance(digit_position, int)) or (digit_position <= 0):
         raise ValueError("Digit position must be a positive integer")
     elif (not isinstance(precision, int)) or (precision < 0):
-        raise ValueError("Please input a nonnegative integer for the precision")
+        raise ValueError("Precision must be a nonnegative integer")
 
     # compute an approximation of (16 ** (n - 1)) * pi whose fractional part is mostly accurate
     sum_result = (
