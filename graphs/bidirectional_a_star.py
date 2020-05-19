@@ -111,12 +111,7 @@ class AStar:
         for action in delta:
             pos_x = parent.pos_x + action[1]
             pos_y = parent.pos_y + action[0]
-            if (
-                pos_x < 0
-                or pos_x > len(grid[0]) - 1
-                or pos_y < 0
-                or pos_y > len(grid) - 1
-            ):
+            if not (0 < pos_x < len(grid[0]) - 1 and 0 < pos_y < len(grid) - 1):
                 continue
 
             if grid[pos_y][pos_x] != 0:
@@ -214,10 +209,10 @@ start_time = time.time()
 a_star = AStar(init, goal)
 a_star.search()
 end_time = time.time() - start_time
-print("AStar execution time = ", end_time, " seconds")
+print(f"AStar execution time = {end_time:f} seconds")
 
 bd_start_time = time.time()
 bidir_astar = BidirectionalAStar(init, goal)
 bidir_astar.search()
 bd_end_time = time.time() - bd_start_time
-print("BidirectionalAStar execution time = ", bd_end_time, " seconds")
+print(f"BidirectionalAStar execution time = {bd_end_time:f} seconds")
