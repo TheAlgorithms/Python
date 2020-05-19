@@ -1,4 +1,5 @@
 import time
+from typing import List, Tuple
 
 grid = [
     [0, 0, 0, 0, 0, 0, 0],
@@ -40,7 +41,7 @@ class Node:
         self.h_cost = self.calculate_heuristic()
         self.f_cost = self.g_cost + self.h_cost
 
-    def calculate_heuristic(self):
+    def calculate_heuristic(self) -> float:
         """
         The heuristic here is the Manhattan Distance
         Could elaborate to offer more than one choice
@@ -98,7 +99,7 @@ class AStar:
         if not (self.reached):
             print("No path found")
 
-    def get_successors(self, parent):
+    def get_successors(self, parent: Node) -> List[Node]:
         """
         Returns a list of successors (both in the grid and free spaces)
         """
@@ -128,7 +129,7 @@ class AStar:
             successors.append(node_)
         return successors
 
-    def retrace_path(self, node):
+    def retrace_path(self, node: Node) -> List[Tuple[int]]:
         """
         Retrace the path from parents to parents until start node
         """
@@ -189,7 +190,7 @@ class BidirectionalAStar:
                         else:
                             astar.open_nodes.append(better_node)
 
-    def retrace_bidirectional_path(self, fwd_node, bwd_node):
+    def retrace_bidirectional_path(self, fwd_node: Node, bwd_node: Node) -> List[Tuple[int]]:
         fwd_path = self.fwd_astar.retrace_path(fwd_node)
         bwd_path = self.bwd_astar.retrace_path(bwd_node)
         fwd_path.reverse()
