@@ -119,7 +119,6 @@ def extended_gcd(a, b):
 
 
 if __name__ == "__main__":
-    # import testmod for testing our function
     from doctest import testmod
 
     testmod(name="diophantine", verbose=True)
