@@ -194,16 +194,19 @@ class BidirectionalAStar:
                         else:
                             astar.open_nodes.append(better_node)
 
-    def retrace_bidirectional_path(self, fwd_node: Node, bwd_node: Node) -> List[Tuple[int]]:
+    def retrace_bidirectional_path(
+        self, fwd_node: Node, bwd_node: Node
+    ) -> List[Tuple[int]]:
         fwd_path = self.fwd_astar.retrace_path(fwd_node)
         bwd_path = self.bwd_astar.retrace_path(bwd_node)
         fwd_path.reverse()
         path = fwd_path + bwd_path
         return path
 
+
 # all coordinates are given in format [y,x]
 init = (0, 0)
-goal = (len(grid) - 1, len(grid[0]) - 1)  
+goal = (len(grid) - 1, len(grid[0]) - 1)
 for elem in grid:
     print(elem)
 
