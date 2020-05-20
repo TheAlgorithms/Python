@@ -59,6 +59,8 @@ class Node:
 class GreedyBestFirst:
     """
     >>> gbf = GreedyBestFirst((0, 0), (len(grid) - 1, len(grid[0]) - 1))
+    >>> [x.pos for x in gbf.get_successors(gbf.start)]
+    [(1, 0), (0, 1)]
     >>> (gbf.start.pos_y + delta[3][0], gbf.start.pos_x + delta[3][1])
     (0, 1)
     >>> (gbf.start.pos_y + delta[2][0], gbf.start.pos_x + delta[2][1])
