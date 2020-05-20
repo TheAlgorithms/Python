@@ -11,12 +11,7 @@ def _abs(value):
     # 10
     # >>> _abs(10)
     # 10
-    if value < 0:
-        value = -value
-    else:
-        value = value
-
-    return value
+    return -value if value < 0 else value
 
 
 def _power(value, n):
