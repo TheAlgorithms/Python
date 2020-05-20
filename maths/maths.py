@@ -49,27 +49,6 @@ def _sqrt(value):
     return x
 
 
-def _sin(value):
-    value = value * Pi / 180
-    t = value
-    x = 0
-    n = 1
-
-    while _abs(t) > 1e-15:
-        x = x + t
-        n = n + 1
-        t = -t * value * value / (2 * n - 1) / (2 * n - 2)
-
-    if x > 0 and x < 1e-15:
-        x = 0
-
-    # >>> _sin(90)
-    # 1
-    # >>> _sin(0)
-    # 0    
-    return x
-
-
 # factorial
 def _factor(value):
     # regulations 0! = 1
