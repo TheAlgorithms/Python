@@ -57,6 +57,18 @@ class Node:
 
 
 class GreedyBestFirst:
+    """
+    >>> gbf = GreedyBestFirst((0, 0), (len(grid) - 1, len(grid[0]) - 1))
+    >>> (gbf.start.pos_y + delta[3][0], gbf.start.pos_x + delta[3][1])
+    (0, 1)
+    >>> (gbf.start.pos_y + delta[2][0], gbf.start.pos_x + delta[2][1])
+    (1, 0)
+    >>> gbf.retrace_path(gbf.start)
+    [(0, 0)]
+    >>> gbf.search()
+    [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (5, 1), (6, 1), (6, 2), (6, 3), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
+    """
+
     def __init__(self, start, goal):
         self.start = Node(start[1], start[0], goal[1], goal[0], 0, None)
         self.target = Node(goal[1], goal[0], goal[1], goal[0], 99999, None)
@@ -66,10 +78,11 @@ class GreedyBestFirst:
 
         self.reached = False
 
-        self.path = [(self.start.pos_y, self.start.pos_x)]
-        self.costs = [0]
-
-    def search(self):
+    def search(self) -> List[Tuple[int]]:
+        """
+        Search for the path,
+        if a path is not found, only the starting position is returned
+        """
         while self.open_nodes:
             # Open Nodes are sorted using __lt__
             self.open_nodes.sort()
@@ -77,8 +90,7 @@ class GreedyBestFirst:
 
             if current_node.pos == self.target.pos:
                 self.reached = True
-                self.path = self.retrace_path(current_node)
-                break
+                return self.retrace_path(current_node)
 
             self.closed_nodes.append(current_node)
             successors = self.get_successors(current_node)
@@ -100,6 +112,7 @@ class GreedyBestFirst:
 
         if not (self.reached):
             print("No path found")
+            return [self.start.pos]
 
     def get_successors(self, parent: Node) -> List[Node]:
         """
@@ -109,26 +122,23 @@ class GreedyBestFirst:
         for action in delta:
             pos_x = parent.pos_x + action[1]
             pos_y = parent.pos_y + action[0]
-            if (
-                pos_x < 0
-                or pos_x > len(grid[0]) - 1
-                or pos_y < 0
-                or pos_y > len(grid) - 1
-            ):
+
+            if not (0 <= pos_x <= len(grid[0]) - 1 and 0 <= pos_y <= len(grid) - 1):
                 continue
 
             if grid[pos_y][pos_x] != 0:
                 continue
 
-            node_ = Node(
-                pos_x,
-                pos_y,
-                self.target.pos_y,
-                self.target.pos_x,
-                parent.g_cost + 1,
-                parent,
+            successors.append(
+                Node(
+                    pos_x,
+                    pos_y,
+                    self.target.pos_y,
+                    self.target.pos_x,
+                    parent.g_cost + 1,
+                    parent,
+                )
             )
-            successors.append(node_)
         return successors
 
     def retrace_path(self, node: Node) -> List[Tuple[int]]:
@@ -144,19 +154,19 @@ class GreedyBestFirst:
         return path
 
 
-# all coordinates are given in format [y,x]
-init = (0, 0)
-goal = (len(grid) - 1, len(grid[0]) - 1)
-for elem in grid:
-    print(elem)
+if __name__ == "__main__":
+    init = (0, 0)
+    goal = (len(grid) - 1, len(grid[0]) - 1)
+    for elem in grid:
+        print(elem)
 
-print("------")
+    print("------")
 
-greedy_bf = GreedyBestFirst(init, goal)
-greedy_bf.search()
+    greedy_bf = GreedyBestFirst(init, goal)
+    path = greedy_bf.search()
 
-for elem in greedy_bf.path:
-    grid[elem[0]][elem[1]] = 2
+    for elem in path:
+        grid[elem[0]][elem[1]] = 2
 
-for elem in grid:
-    print(elem)
+    for elem in grid:
+        print(elem)
