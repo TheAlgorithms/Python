@@ -42,7 +42,7 @@ def _sqrt(value):
     >>> _sqrt(9)
     3.0
     >>> _sqrt(25)
-    5
+    5.0
     '''
     if value < 0:
         print("_sqrt: Value must be greater than or equal to 0")
@@ -61,7 +61,7 @@ def _factor(value):
     """
     regulations 0! = 1
     >>> from math import factorial
-    >>> for i in range (360):
+    >>> for i in range(360):
     >>>     assert _factor(i) == factorial(i), (i, _factor(i), factorial(i))
     
     >>> _factor(5)
@@ -129,7 +129,7 @@ def _cos(value):
     >>> _cos(90)
     6.428707379885143e-17
     >>> _cos(0)
-    1
+    1.0
     '''
     value = value * Pi / 180
     n = 0
@@ -147,11 +147,11 @@ def _cos(value):
 def _tan(value):
     """
     >>> _tan(0)
-    0
+    0.0
     >>> _tan(45)
     1
     >>> from math import tan
-    >>> for i in range (360):
+    >>> for i in range(360):
     >>>     assert _tan(i) == tan(i), (i, _tan(i), tan(i))
     """
     return _sin(value) / _cos(value)
