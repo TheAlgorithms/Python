@@ -14,7 +14,7 @@ grid = [
     [0, 0, 0, 0, 1, 0, 0],
 ]
 
-delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # up, left, down, right
+delta = ([-1, 0], [0, -1], [1, 0], [0, 1])  # up, left, down, right
 
 
 class Node:
@@ -52,7 +52,7 @@ class Node:
         dx = abs(self.pos_y - self.goal_y)
         return dx + dy
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         return self.f_cost < other.f_cost
 
 
@@ -67,8 +67,9 @@ class GreedyBestFirst:
     (1, 0)
     >>> gbf.retrace_path(gbf.start)
     [(0, 0)]
-    >>> gbf.search()
-    [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (5, 1), (6, 1), (6, 2), (6, 3), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
+    >>> gbf.search()  # doctest: +NORMALIZE_WHITESPACE
+    [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (5, 1), (6, 1),
+     (6, 2), (6, 3), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
 
     def __init__(self, start, goal):
@@ -113,7 +114,6 @@ class GreedyBestFirst:
                         self.open_nodes.append(better_node)
 
         if not (self.reached):
-            print("No path found")
             return [self.start.pos]
 
     def get_successors(self, parent: Node) -> List[Node]:
