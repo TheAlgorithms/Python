@@ -1,15 +1,22 @@
-def atbash():
-    output = ""
-    for i in input("Enter the sentence to be encrypted ").strip():
-        extract = ord(i)
-        if 65 <= extract <= 90:
-            output += chr(155 - extract)
-        elif 97 <= extract <= 122:
-            output += chr(219 - extract)
-        else:
-            output += i
-    print(output)
+""" https://en.wikipedia.org/wiki/Atbash """
+import string
+
+
+def atbash(sequence: str) -> str:
+    """
+    >>> atbash("ABCDEFG")
+    'ZYXWVUT'
+
+    >>> atbash("aW;;123BX")
+    'zD;;123YC'
+    """
+    letters = string.ascii_letters
+    letters_reversed = string.ascii_lowercase[::-1] + string.ascii_uppercase[::-1]
+    return "".join(
+        letters_reversed[letters.index(_)] if _ in letters else _ for _ in sequence
+    )
 
 
 if __name__ == "__main__":
-    atbash()
+    for sequence in ["ABCDEFGH", "123GGjj", "testStringtest", "with space"]:
+        print(f"{sequence} encrypted in atbash: {atbash(sequence)}")
