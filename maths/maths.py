@@ -40,7 +40,7 @@ def _sqrt(value):
     X(k+1) = 1/2 * (X(k) + vale/X(k))
 
     >>> _sqrt(9)
-    3
+    3.0
     >>> _sqrt(25)
     5
     '''
@@ -61,7 +61,7 @@ def _factor(value):
     """
     regulations 0! = 1
     >>> from math import factorial
-    >>> for i in range 360:
+    >>> for i in range (360):
     >>>     assert _factor(i) == factorial(i), (i, _factor(i), factorial(i))
     
     >>> _factor(5)
@@ -84,7 +84,7 @@ def _factor(value):
 def __sin(value):
     '''
     >>> __sin(90)
-    1
+    1.0
     >>> __sin(0)
     0  
     '''
@@ -107,7 +107,7 @@ def __sin(value):
 def _sin(value):
     '''
     >>> _sin(90)
-    1
+    1.0
     >>> _sin(0)
     0
     '''
@@ -127,7 +127,7 @@ def _sin(value):
 def _cos(value):
     '''
     >>> _cos(90)
-    0
+    6.428707379885143e-17
     >>> _cos(0)
     1
     '''
@@ -146,12 +146,12 @@ def _cos(value):
 
 def _tan(value):
     """
-    >>> _tan(90)
+    >>> _tan(0)
     0
     >>> _tan(45)
     1
     >>> from math import tan
-    >>> for i in range 360:
+    >>> for i in range (360):
     >>>     assert _tan(i) == tan(i), (i, _tan(i), tan(i))
     """
     return _sin(value) / _cos(value)
