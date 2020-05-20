@@ -107,7 +107,7 @@ def _sin(value):
 
 def _cos(value):
     value = value * Pi / 180
-    n = 0;
+    n = 0
     t = 1 
     x = 0
     
