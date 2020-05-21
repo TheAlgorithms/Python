@@ -1,7 +1,9 @@
 import os
 import random
 import sys
-import rabin_miller as rabinMiller, cryptomath_module as cryptoMath
+
+import cryptomath_module as cryptoMath
+import rabin_miller as rabinMiller
 
 min_primitive_root = 3
 

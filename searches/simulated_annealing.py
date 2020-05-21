@@ -1,5 +1,7 @@
 # https://en.wikipedia.org/wiki/Simulated_annealing
-import math, random
+import math
+import random
+
 from hill_climbing import SearchProblem
 
 

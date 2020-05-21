@@ -26,9 +26,9 @@ def factorial(num):
 
 # factorial of num
 # uncomment the following to see how recalculations are avoided
-##result=[-1]*10
-##result[0]=result[1]=1
-##print(factorial(5))
+# result=[-1]*10
+# result[0]=result[1]=1
+# print(factorial(5))
 # print(factorial(3))
 # print(factorial(7))
 

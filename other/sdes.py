@@ -44,9 +44,9 @@ def function(expansion, s0, s1, key, message):
     right = message[4:]
     temp = apply_table(right, expansion)
     temp = XOR(temp, key)
-    l = apply_sbox(s0, temp[:4])
+    l = apply_sbox(s0, temp[:4])  # noqa: E741
     r = apply_sbox(s1, temp[4:])
-    l = "0" * (2 - len(l)) + l
+    l = "0" * (2 - len(l)) + l  # noqa: E741
     r = "0" * (2 - len(r)) + r
     temp = apply_table(l + r, p4_table)
     temp = XOR(left, temp)

@@ -47,6 +47,7 @@
 # Imports
 import numpy as np
 
+
 # Functions of binary conversion--------------------------------------
 def text_to_bits(text, encoding="utf-8", errors="surrogatepass"):
     """

@@ -40,7 +40,7 @@ class Node:
 def print_binary_search_tree(root, key, i, j, parent, is_left):
     """
     Recursive function to print a BST from a root table.
-    
+
     >>> key = [3, 8, 9, 10, 17, 21]
     >>> root = [[0, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 3], [0, 0, 2, 3, 3, 3], \
                 [0, 0, 0, 3, 3, 3], [0, 0, 0, 0, 4, 5], [0, 0, 0, 0, 0, 5]]
@@ -73,7 +73,7 @@ def find_optimal_binary_search_tree(nodes):
     The dynamic programming algorithm below runs in O(n^2) time.
     Implemented from CLRS (Introduction to Algorithms) book.
     https://en.wikipedia.org/wiki/Introduction_to_Algorithms
-    
+
     >>> find_optimal_binary_search_tree([Node(12, 8), Node(10, 34), Node(20, 50), \
                                          Node(42, 3), Node(25, 40), Node(37, 30)])
     Binary search tree nodes:

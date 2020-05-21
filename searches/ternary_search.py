@@ -12,6 +12,7 @@ import sys
 # It is recommended for users to keep this number greater than or equal to 10.
 precision = 10
 
+
 # This is the linear search that will occur after the search space has become smaller.
 def lin_search(left, right, A, target):
     for i in range(left, right + 1):

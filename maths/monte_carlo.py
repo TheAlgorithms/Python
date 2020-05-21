@@ -45,13 +45,13 @@ def area_under_curve_estimator(
 ) -> float:
     """
     An implementation of the Monte Carlo method to find area under
-       a single variable non-negative real-valued continuous function, 
-       say f(x), where x lies within a continuous bounded interval, 
-       say [min_value, max_value], where min_value and max_value are 
+       a single variable non-negative real-valued continuous function,
+       say f(x), where x lies within a continuous bounded interval,
+       say [min_value, max_value], where min_value and max_value are
        finite numbers
-    1. Let x be a uniformly distributed random variable between min_value to 
+    1. Let x be a uniformly distributed random variable between min_value to
        max_value
-    2. Expected value of f(x) = 
+    2. Expected value of f(x) =
        (integrate f(x) from min_value to max_value)/(max_value - min_value)
     3. Finding expected value of f(x):
         a. Repeatedly draw x from uniform distribution

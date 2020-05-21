@@ -43,7 +43,7 @@ class LinkedList:
         -20
         >>> link.middle_element()
         12
-        >>> 
+        >>>
         """
         slow_pointer = self.head
         fast_pointer = self.head

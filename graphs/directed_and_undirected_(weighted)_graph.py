@@ -71,8 +71,8 @@ class DirectedGraph:
             if len(stack) == 0:
                 return visited
 
-    # c is the count of nodes you want and if you leave it or pass -1 to the function the count
-    # will be random from 10 to 10000
+    # c is the count of nodes you want and if you leave it or pass -1 to the function
+    # the count will be random from 10 to 10000
     def fill_graph_randomly(self, c=-1):
         if c == -1:
             c = (math.floor(rand.random() * 10000)) + 10
@@ -168,14 +168,14 @@ class DirectedGraph:
                         and indirect_parents.count(__[1]) > 0
                         and not on_the_way_back
                     ):
-                        l = len(stack) - 1
-                        while True and l >= 0:
-                            if stack[l] == __[1]:
+                        len_stack = len(stack) - 1
+                        while True and len_stack >= 0:
+                            if stack[len_stack] == __[1]:
                                 anticipating_nodes.add(__[1])
                                 break
                             else:
-                                anticipating_nodes.add(stack[l])
-                                l -= 1
+                                anticipating_nodes.add(stack[len_stack])
+                                len_stack -= 1
                     if visited.count(__[1]) < 1:
                         stack.append(__[1])
                         visited.append(__[1])
@@ -221,15 +221,15 @@ class DirectedGraph:
                         and indirect_parents.count(__[1]) > 0
                         and not on_the_way_back
                     ):
-                        l = len(stack) - 1
-                        while True and l >= 0:
-                            if stack[l] == __[1]:
+                        len_stack_minus_one = len(stack) - 1
+                        while True and len_stack_minus_one >= 0:
+                            if stack[len_stack_minus_one] == __[1]:
                                 anticipating_nodes.add(__[1])
                                 break
                             else:
                                 return True
-                                anticipating_nodes.add(stack[l])
-                                l -= 1
+                                anticipating_nodes.add(stack[len_stack_minus_one])
+                                len_stack_minus_one -= 1
                     if visited.count(__[1]) < 1:
                         stack.append(__[1])
                         visited.append(__[1])
@@ -341,8 +341,8 @@ class Graph:
             if len(stack) == 0:
                 return visited
 
-    # c is the count of nodes you want and if you leave it or pass -1 to the function the count
-    # will be random from 10 to 10000
+    # c is the count of nodes you want and if you leave it or pass -1 to the function
+    # the count will be random from 10 to 10000
     def fill_graph_randomly(self, c=-1):
         if c == -1:
             c = (math.floor(rand.random() * 10000)) + 10
@@ -397,14 +397,14 @@ class Graph:
                         and indirect_parents.count(__[1]) > 0
                         and not on_the_way_back
                     ):
-                        l = len(stack) - 1
-                        while True and l >= 0:
-                            if stack[l] == __[1]:
+                        len_stack = len(stack) - 1
+                        while True and len_stack >= 0:
+                            if stack[len_stack] == __[1]:
                                 anticipating_nodes.add(__[1])
                                 break
                             else:
-                                anticipating_nodes.add(stack[l])
-                                l -= 1
+                                anticipating_nodes.add(stack[len_stack])
+                                len_stack -= 1
                     if visited.count(__[1]) < 1:
                         stack.append(__[1])
                         visited.append(__[1])
@@ -450,15 +450,15 @@ class Graph:
                         and indirect_parents.count(__[1]) > 0
                         and not on_the_way_back
                     ):
-                        l = len(stack) - 1
-                        while True and l >= 0:
-                            if stack[l] == __[1]:
+                        len_stack_minus_one = len(stack) - 1
+                        while True and len_stack_minus_one >= 0:
+                            if stack[len_stack_minus_one] == __[1]:
                                 anticipating_nodes.add(__[1])
                                 break
                             else:
                                 return True
-                                anticipating_nodes.add(stack[l])
-                                l -= 1
+                                anticipating_nodes.add(stack[len_stack_minus_one])
+                                len_stack_minus_one -= 1
                     if visited.count(__[1]) < 1:
                         stack.append(__[1])
                         visited.append(__[1])

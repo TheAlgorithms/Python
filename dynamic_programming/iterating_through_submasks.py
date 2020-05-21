@@ -1,5 +1,5 @@
 """
-Author : Syed Faizan (3rd Year Student IIIT Pune) 
+Author : Syed Faizan (3rd Year Student IIIT Pune)
 github : faizan2700
 You are given a bitmask m and you want to efficiently iterate through all of
 its submasks. The mask s is submask of m if only bits that were included in
@@ -33,7 +33,7 @@ def list_of_submasks(mask: int) -> List[int]:
     Traceback (most recent call last):
         ...
     AssertionError: mask needs to be positive integer, your input 0
-    
+
     """
 
     fmt = "mask needs to be positive integer, your input {}"

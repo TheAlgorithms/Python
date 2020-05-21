@@ -6,7 +6,7 @@ def find_max(nums, left, right):
     :param left: index of first element
     :param right: index of last element
     :return: max in nums
-    
+
     >>> nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
     >>> find_max(nums, 0, len(nums) - 1) == max(nums)
     True

@@ -1,14 +1,14 @@
 def upper(word: str) -> str:
-    """ 
-    Will convert the entire string to uppercase letters 
-    
+    """
+    Will convert the entire string to uppercase letters
+
     >>> upper("wow")
     'WOW'
     >>> upper("Hello")
     'HELLO'
     >>> upper("WHAT")
     'WHAT'
-    
+
     >>> upper("wh[]32")
     'WH[]32'
     """

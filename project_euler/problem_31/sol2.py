@@ -30,7 +30,7 @@ Example:
 
 
 def solution(pence: int) -> int:
-    """Returns the number of different ways to make X pence using any number of coins. 
+    """Returns the number of different ways to make X pence using any number of coins.
     The solution is based on dynamic programming paradigm in a bottom-up fashion.
 
     >>> solution(500)

@@ -76,7 +76,7 @@ if __name__ == "__main__":
     expected_subseq = "GTAB"
 
     ln, subseq = longest_common_subsequence(a, b)
-    ##    print("len =", ln, ", sub-sequence =", subseq)
+    print("len =", ln, ", sub-sequence =", subseq)
     import doctest
 
     doctest.testmod()

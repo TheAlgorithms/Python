@@ -1,5 +1,5 @@
 """
-Implementing Deque using DoublyLinkedList ... 
+Implementing Deque using DoublyLinkedList ...
 Operations:
     1. insertion in the front -> O(1)
     2. insertion in the end -> O(1)
@@ -61,7 +61,7 @@ class _DoublyLinkedBase:
 
 class LinkedDeque(_DoublyLinkedBase):
     def first(self):
-        """ return first element 
+        """ return first element
         >>> d = LinkedDeque()
         >>> d.add_first('A').first()
         'A'
@@ -84,7 +84,7 @@ class LinkedDeque(_DoublyLinkedBase):
             raise Exception("List is empty")
         return self._trailer._prev._data
 
-    ### DEque Insert Operations (At the front, At the end) ###
+    # DEque Insert Operations (At the front, At the end)
 
     def add_first(self, element):
         """ insertion in the front
@@ -100,7 +100,7 @@ class LinkedDeque(_DoublyLinkedBase):
         """
         return self._insert(self._trailer._prev, element, self._trailer)
 
-    ### DEqueu Remove Operations (At the front, At the end) ###
+    # DEqueu Remove Operations (At the front, At the end)
 
     def remove_first(self):
         """ removal from the front

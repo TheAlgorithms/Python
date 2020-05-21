@@ -15,8 +15,8 @@ def lamberts_ellipsoidal_distance(
 
     Representing the earth as an ellipsoid allows us to approximate distances between points
     on the surface much better than a sphere. Ellipsoidal formulas treat the Earth as an
-    oblate ellipsoid which means accounting for the flattening that happens at the North 
-    and South poles. Lambert's formulae provide accuracy on the order of 10 meteres over 
+    oblate ellipsoid which means accounting for the flattening that happens at the North
+    and South poles. Lambert's formulae provide accuracy on the order of 10 meteres over
     thousands of kilometeres. Other methods can provide millimeter-level accuracy but this
     is a simpler method to calculate long range distances without increasing computational
     intensity.

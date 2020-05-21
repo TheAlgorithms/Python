@@ -28,7 +28,7 @@ def calculate_turnaround_times(
 ) -> List[int]:
     """
     This function calculates the turnaround time of some processes.
-        Return: The time difference between the completion time and the 
+        Return: The time difference between the completion time and the
                 arrival time.
                 Practically waiting_time + duration_time
     >>> calculate_turnaround_times([5, 10, 15], [0, 5, 15])

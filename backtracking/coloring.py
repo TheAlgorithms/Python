@@ -18,7 +18,7 @@ def valid_coloring(
 
     >>> neighbours = [0,1,0,1,0]
     >>> colored_vertices = [0, 2, 1, 2, 0]
-    
+
     >>> color = 1
     >>> valid_coloring(neighbours, colored_vertices, color)
     True
@@ -37,11 +37,11 @@ def valid_coloring(
 def util_color(
     graph: List[List[int]], max_colors: int, colored_vertices: List[int], index: int
 ) -> bool:
-    """ 
+    """
     Pseudo-Code
 
     Base Case:
-    1. Check if coloring is complete 
+    1. Check if coloring is complete
         1.1 If complete return True (meaning that we successfully colored graph)
 
     Recursive Step:
@@ -60,7 +60,7 @@ def util_color(
     >>> max_colors = 3
     >>> colored_vertices = [0, 1, 0, 0, 0]
     >>> index = 3
-    
+
     >>> util_color(graph, max_colors, colored_vertices, index)
     True
 
@@ -87,11 +87,11 @@ def util_color(
 
 
 def color(graph: List[List[int]], max_colors: int) -> List[int]:
-    """ 
+    """
     Wrapper function to call subroutine called util_color
     which will either return True or False.
     If True is returned colored_vertices list is filled with correct colorings
-        
+
     >>> graph = [[0, 1, 0, 0, 0],
     ...          [1, 0, 1, 0, 1],
     ...          [0, 1, 0, 1, 0],

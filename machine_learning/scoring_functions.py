@@ -14,6 +14,7 @@ import numpy as np
     and types of data
 """
 
+
 # Mean Absolute Error
 def mae(predict, actual):
     """
