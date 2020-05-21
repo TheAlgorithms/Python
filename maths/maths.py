@@ -1,7 +1,9 @@
 
-# package maths.py
-# implement some math.py
-# trigonometric algorithm
+'''
+package maths.py
+implement some math.py
+trigonometric algorithm
+'''
 
 Pi = 3.14159265358979323846
 
@@ -45,7 +47,7 @@ def _sqrt(value):
     5.0
     '''
     if value < 0:
-        print("_sqrt: Value must be greater than or equal to 0")
+        print("Error: Value must be greater than or equal to 0")
     else:
         x = value
         t = 0 
@@ -60,8 +62,7 @@ def _sqrt(value):
 def _factor(value):
     """
     regulations 0! = 1
-    >>> from math import factorial
-    
+ 
     >>> _factor(5)
     120
     >>> _factor(2)
@@ -148,8 +149,5 @@ def _tan(value):
     0.0
     >>> _tan(45)
     1.0
-    >>> from math import tan
-    >>> for i in range(360):
-    >>>     assert _tan(i) == tan(i), (i, _tan(i), tan(i))
     """
     return _sin(value) / _cos(value)
