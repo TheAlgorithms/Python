@@ -3,7 +3,7 @@
 
 def bead_sort(sequence: list) -> list:
     """
-    >>> bead_sort([6,11, 12, 4, 1, 5])
+    >>> bead_sort([6, 11, 12, 4, 1, 5])
     [1, 4, 5, 6, 11, 12]
 
     >>> bead_sort([9, 8, 7, 6, 5, 4 ,3, 2, 1])
