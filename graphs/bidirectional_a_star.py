@@ -60,7 +60,7 @@ class Node:
         else:
             return sqrt(dy ** 2 + dx ** 2)
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> bool:
         return self.f_cost < other.f_cost
 
 
@@ -75,8 +75,9 @@ class AStar:
     (1, 0)
     >>> astar.retrace_path(astar.start)
     [(0, 0)]
-    >>> astar.search()
-    [(0, 0), (1, 0), (2, 0), (2, 1), (2, 2), (2, 3), (3, 3), (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6)]
+    >>> astar.search()  # doctest: +NORMALIZE_WHITESPACE
+    [(0, 0), (1, 0), (2, 0), (2, 1), (2, 2), (2, 3), (3, 3),
+     (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
 
     def __init__(self, start, goal):
@@ -117,7 +118,6 @@ class AStar:
                         self.open_nodes.append(better_node)
 
         if not (self.reached):
-            print("No path found")
             return [(self.start.pos)]
 
     def get_successors(self, parent: Node) -> List[Node]:
@@ -164,10 +164,12 @@ class BidirectionalAStar:
     >>> bd_astar = BidirectionalAStar((0, 0), (len(grid) - 1, len(grid[0]) - 1))
     >>> bd_astar.fwd_astar.start.pos == bd_astar.bwd_astar.target.pos
     True
-    >>> bd_astar.retrace_bidirectional_path(bd_astar.fwd_astar.start, bd_astar.bwd_astar.start)
+    >>> bd_astar.retrace_bidirectional_path(bd_astar.fwd_astar.start,
+    ...                                     bd_astar.bwd_astar.start)
     [(0, 0)]
-    >>> bd_astar.search()
-    [(0, 0), (0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (2, 4), (2, 5), (3, 5), (4, 5), (5, 5), (5, 6), (6, 6)]
+    >>> bd_astar.search()  # doctest: +NORMALIZE_WHITESPACE
+    [(0, 0), (0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (2, 4),
+     (2, 5), (3, 5), (4, 5), (5, 5), (5, 6), (6, 6)]
     """
 
     def __init__(self, start, goal):
@@ -218,7 +220,6 @@ class BidirectionalAStar:
                             astar.open_nodes.append(better_node)
 
         if not self.reached:
-            print("No path found")
             return [self.fwd_astar.start.pos]
 
     def retrace_bidirectional_path(
@@ -235,6 +236,7 @@ class BidirectionalAStar:
 if __name__ == "__main__":
     # all coordinates are given in format [y,x]
     import doctest
+
     doctest.testmod()
     init = (0, 0)
     goal = (len(grid) - 1, len(grid[0]) - 1)
