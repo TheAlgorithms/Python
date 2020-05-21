@@ -12,9 +12,25 @@ def bead_sort(sequence: list) -> list:
     >>> bead_sort([5, 0, 4, 3])
     [0, 3, 4, 5]
 
-    >>> bead_sort([8, 2, -1])
-    [-1, 2, 8]
+    >>> bead_sort([8, 2, 1])
+    [1, 2, 8]
+
+    >>> bead_sort([1, .9, 0.0, 0, -1, -.9])
+    Traceback (most recent call last):
+    ...
+    TypeError: Sequence must be list of positive integers
+
+    >>> bead_sort("Hello world")
+    Traceback (most recent call last):
+    ...
+    TypeError: Sequence must be list of positive integers
     """
+    if isinstance(sequence, str):
+        raise TypeError("Sequence must be list of positive integers")
+
+    if min(sequence) < 0:
+        raise TypeError("Sequence must be list of positive integers")
+
     for _ in range(len(sequence)):
         for i, (rod_upper, rod_lower) in enumerate(zip(sequence, sequence[1:])):
             if rod_upper > rod_lower:
