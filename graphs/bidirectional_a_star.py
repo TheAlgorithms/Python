@@ -6,7 +6,7 @@ import time
 from math import sqrt
 from typing import List, Tuple
 
-# 1 for manhattan, 0 for euclidian
+# 1 for manhattan, 0 for euclidean
 HEURISTIC = 0
 
 grid = [
