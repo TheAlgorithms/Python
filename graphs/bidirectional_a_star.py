@@ -234,6 +234,8 @@ class BidirectionalAStar:
 
 if __name__ == "__main__":
     # all coordinates are given in format [y,x]
+    import doctest
+    doctest.testmod()
     init = (0, 0)
     goal = (len(grid) - 1, len(grid[0]) - 1)
     for elem in grid:
