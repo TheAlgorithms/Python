@@ -66,7 +66,7 @@ def _factor(value):
     >>> _factor(5)
     120
     >>> _factor(2)
-    2  
+    2
     """
     f = 1
     if value:
@@ -85,7 +85,7 @@ def __sin(value):
     >>> __sin(90)
     1.0
     >>> __sin(0)
-    0  
+    0
     '''
     value = value * Pi / 180
     t = value
