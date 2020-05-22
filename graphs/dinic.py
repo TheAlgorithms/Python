@@ -37,7 +37,7 @@ class Dinic:
     # Here we calculate the flow that reaches the sink
     def max_flow(self, source, sink):
         flow, self.q[0] = 0, source
-        for l in range(31):  # l = 30 maybe faster for random data
+        for l in range(31):  # noqa: E741  l = 30 maybe faster for random data
             while True:
                 self.lvl, self.ptr = [0] * len(self.q), [0] * len(self.q)
                 qi, qe, self.lvl[source] = 0, 1, 1

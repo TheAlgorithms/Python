@@ -104,14 +104,15 @@ def find_optimal_binary_search_tree(nodes):
     # This 2D array stores the overall tree cost (which's as minimized as possible);
     # for a single key, cost is equal to frequency of the key.
     dp = [[freqs[i] if i == j else 0 for j in range(n)] for i in range(n)]
-    # sum[i][j] stores the sum of key frequencies between i and j inclusive in nodes array
+    # sum[i][j] stores the sum of key frequencies between i and j inclusive in nodes
+    # array
     sum = [[freqs[i] if i == j else 0 for j in range(n)] for i in range(n)]
     # stores tree roots that will be used later for constructing binary search tree
     root = [[i if i == j else 0 for j in range(n)] for i in range(n)]
 
-    for l in range(2, n + 1):  # l is an interval length
-        for i in range(n - l + 1):
-            j = i + l - 1
+    for interval_length in range(2, n + 1):
+        for i in range(n - interval_length + 1):
+            j = i + interval_length - 1
 
             dp[i][j] = sys.maxsize  # set the value to "infinity"
             sum[i][j] = sum[i][j - 1] + freqs[j]

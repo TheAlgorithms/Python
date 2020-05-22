@@ -2,7 +2,7 @@ import sys
 from collections import defaultdict
 
 
-def PrimsAlgorithm(l):
+def PrimsAlgorithm(l):  # noqa: E741
 
     nodePosition = []
 
