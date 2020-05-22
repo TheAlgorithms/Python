@@ -2,6 +2,7 @@
 
 import math
 
+
 # for calculating u value
 def ucal(u, p):
     """

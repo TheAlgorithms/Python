@@ -54,9 +54,9 @@ class Burkes:
                     current_error = greyscale + self.error_table[x][y] - 255
                 """
                 Burkes error propagation (`*` is current pixel):
-                
-                                 *	    8/32	4/32
-                2/32	4/32	8/32	4/32	2/32
+
+                                 *          8/32        4/32
+                2/32    4/32    8/32    4/32    2/32
                 """
                 self.error_table[y][x + 1] += int(8 / 32 * current_error)
                 self.error_table[y][x + 2] += int(4 / 32 * current_error)

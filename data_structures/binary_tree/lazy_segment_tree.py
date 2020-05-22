@@ -16,8 +16,8 @@ class SegmentTree:
     def right(self, idx):
         return idx * 2 + 1
 
-    def build(self, idx, l, r, A):
-        if l == r:
+    def build(self, idx, l, r, A):  # noqa: E741
+        if l == r:  # noqa: E741
             self.st[idx] = A[l - 1]
         else:
             mid = (l + r) // 2
@@ -25,14 +25,16 @@ class SegmentTree:
             self.build(self.right(idx), mid + 1, r, A)
             self.st[idx] = max(self.st[self.left(idx)], self.st[self.right(idx)])
 
-    # update with O(lg N) (Normal segment tree without lazy update will take O(Nlg N) for each update)
-    def update(
-        self, idx, l, r, a, b, val
-    ):  # update(1, 1, N, a, b, v) for update val v to [a,b]
-        if self.flag[idx] == True:
+    # update with O(lg N) (Normal segment tree without lazy update will take O(Nlg N)
+    # for each update)
+    def update(self, idx, l, r, a, b, val):  # noqa: E741
+        """
+        update(1, 1, N, a, b, v) for update val v to [a,b]
+        """
+        if self.flag[idx] is True:
             self.st[idx] = self.lazy[idx]
             self.flag[idx] = False
-            if l != r:
+            if l != r:  # noqa: E741
                 self.lazy[self.left(idx)] = self.lazy[idx]
                 self.lazy[self.right(idx)] = self.lazy[idx]
                 self.flag[self.left(idx)] = True
@@ -40,9 +42,9 @@ class SegmentTree:
 
         if r < a or l > b:
             return True
-        if l >= a and r <= b:
+        if l >= a and r <= b:  # noqa: E741
             self.st[idx] = val
-            if l != r:
+            if l != r:  # noqa: E741
                 self.lazy[self.left(idx)] = val
                 self.lazy[self.right(idx)] = val
                 self.flag[self.left(idx)] = True
@@ -55,18 +57,21 @@ class SegmentTree:
         return True
 
     # query with O(lg N)
-    def query(self, idx, l, r, a, b):  # query(1, 1, N, a, b) for query max of [a,b]
-        if self.flag[idx] == True:
+    def query(self, idx, l, r, a, b):  # noqa: E741
+        """
+        query(1, 1, N, a, b) for query max of [a,b]
+        """
+        if self.flag[idx] is True:
             self.st[idx] = self.lazy[idx]
             self.flag[idx] = False
-            if l != r:
+            if l != r:  # noqa: E741
                 self.lazy[self.left(idx)] = self.lazy[idx]
                 self.lazy[self.right(idx)] = self.lazy[idx]
                 self.flag[self.left(idx)] = True
                 self.flag[self.right(idx)] = True
         if r < a or l > b:
             return -math.inf
-        if l >= a and r <= b:
+        if l >= a and r <= b:  # noqa: E741
             return self.st[idx]
         mid = (l + r) // 2
         q1 = self.query(self.left(idx), l, mid, a, b)

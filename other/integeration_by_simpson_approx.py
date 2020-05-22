@@ -43,14 +43,14 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
 
     Returns:
         result : the value of the approximated integration of function in range a to b
-        
+
     Raises:
         AssertionError: function is not callable
         AssertionError: a is not float or integer
         AssertionError: function should return float or integer
         AssertionError: b is not float or integer
         AssertionError: precision is not positive integer
-        
+
     >>> simpson_integration(lambda x : x*x,1,2,3)
     2.333
 
@@ -72,7 +72,7 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
     Traceback (most recent call last):
         ...
     AssertionError: the function(object) passed should be callable your input : wrong_input
-    
+
     >>> simpson_integration(lambda x : x*x,3.45,3.2,1)
     -2.8
 
@@ -85,7 +85,7 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
     Traceback (most recent call last):
         ...
     AssertionError: precision should be positive integer your input : -1
-        
+
     """
     assert callable(
         function

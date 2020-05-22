@@ -1,10 +1,10 @@
-""" 
-Given a array of length n, max_subarray_sum() finds 
+"""
+Given a array of length n, max_subarray_sum() finds
 the maximum of sum of contiguous sub-array using divide and conquer method.
 
 Time complexity : O(n log n)
 
-Ref : INTRODUCTION TO ALGORITHMS THIRD EDITION 
+Ref : INTRODUCTION TO ALGORITHMS THIRD EDITION
 (section : 4, sub-section : 4.1, page : 70)
 
 """
@@ -13,10 +13,10 @@ Ref : INTRODUCTION TO ALGORITHMS THIRD EDITION
 def max_sum_from_start(array):
     """ This function finds the maximum contiguous sum of array from 0 index
 
-    Parameters : 
+    Parameters :
     array (list[int]) : given array
-    
-    Returns : 
+
+    Returns :
     max_sum (int) : maximum contiguous sum of array from 0 index
 
     """
@@ -32,10 +32,10 @@ def max_sum_from_start(array):
 def max_cross_array_sum(array, left, mid, right):
     """ This function finds the maximum contiguous sum of left and right arrays
 
-    Parameters : 
-    array, left, mid, right (list[int], int, int, int) 
-    
-    Returns : 
+    Parameters :
+    array, left, mid, right (list[int], int, int, int)
+
+    Returns :
     (int) :  maximum of sum of contiguous sum of left and right arrays
 
     """
@@ -48,11 +48,11 @@ def max_cross_array_sum(array, left, mid, right):
 def max_subarray_sum(array, left, right):
     """ Maximum contiguous sub-array sum, using divide and conquer method
 
-    Parameters : 
-    array, left, right (list[int], int, int) : 
+    Parameters :
+    array, left, right (list[int], int, int) :
     given array, current left index and current right index
-    
-    Returns : 
+
+    Returns :
     int :  maximum of sum of contiguous sub-array
 
     """

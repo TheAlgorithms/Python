@@ -21,7 +21,7 @@ def bubble_sort(list1):
 
     >>> bubble_sort(['z','a','y','b','x','c'])
     ['a', 'b', 'c', 'x', 'y', 'z']
-    
+
     """
 
     for i, num in enumerate(list1):

@@ -145,7 +145,7 @@ class BankersAlgorithm:
         Process 5 is executing.
         Updated available resource stack for processes: 8 5 9 7
         The process is in a safe state.
-        <BLANKLINE>                            
+        <BLANKLINE>
         """
         need_list = self.__need()
         alloc_resources_table = self.__allocated_resources_table

@@ -24,7 +24,7 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
     a = x0  # set the initial guess
     steps = [a]
     error = abs(f(a))
-    f1 = lambda x: calc_derivative(f, x, h=step)  # Derivative of f(x)
+    f1 = lambda x: calc_derivative(f, x, h=step)  # noqa: E731  Derivative of f(x)
     for _ in range(maxiter):
         if f1(a) == 0:
             raise ValueError("No converging solution found")
@@ -44,7 +44,7 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
-    f = lambda x: m.tanh(x) ** 2 - m.exp(3 * x)
+    f = lambda x: m.tanh(x) ** 2 - m.exp(3 * x)  # noqa: E731
     solution, error, steps = newton_raphson(
         f, x0=10, maxiter=1000, step=1e-6, logsteps=True
     )

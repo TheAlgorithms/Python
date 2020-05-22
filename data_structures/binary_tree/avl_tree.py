@@ -89,8 +89,8 @@ def leftrotation(node):
         Bl  Br                 UB Br  C
        /
      UB
-  
-    UB = unbalanced node  
+
+    UB = unbalanced node
     """
     print("left rotation node:", node.getdata())
     ret = node.getleft()
@@ -120,11 +120,11 @@ def rightrotation(node):
 
 def rlrotation(node):
     r"""
-            A              A                    Br      
+            A              A                    Br
            / \            / \                  /  \
           B   C    RR    Br  C       LR       B    A
          / \       -->  /  \         -->    /     / \
-        Bl  Br         B   UB              Bl    UB  C  
+        Bl  Br         B   UB              Bl    UB  C
              \        /
              UB     Bl
     RR = rightrotation   LR = leftrotation
@@ -276,13 +276,13 @@ class AVLtree:
 if __name__ == "__main__":
     t = AVLtree()
     t.traversale()
-    l = list(range(10))
-    random.shuffle(l)
-    for i in l:
+    lst = list(range(10))
+    random.shuffle(lst)
+    for i in lst:
         t.insert(i)
         t.traversale()
 
-    random.shuffle(l)
-    for i in l:
+    random.shuffle(lst)
+    for i in lst:
         t.del_node(i)
         t.traversale()

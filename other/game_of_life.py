@@ -1,4 +1,4 @@
-"""Conway's Game Of Life, Author Anurag Kumar(mailto:anuragkumarak95@gmail.com) 
+"""Conway's Game Of Life, Author Anurag Kumar(mailto:anuragkumarak95@gmail.com)
 
 Requirements:
   - numpy
@@ -13,7 +13,7 @@ Usage:
   - $python3 game_o_life <canvas_size:int>
 
 Game-Of-Life Rules:
- 
+
  1.
  Any live cell with fewer than two live neighbours
  dies, as if caused by under-population.
@@ -27,8 +27,10 @@ Game-Of-Life Rules:
  Any dead cell with exactly three live neighbours be-
  comes a live cell, as if by reproduction.
  """
+import random
+import sys
+
 import numpy as np
-import random, sys
 from matplotlib import pyplot as plt
 from matplotlib.colors import ListedColormap
 

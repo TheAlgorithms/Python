@@ -1,3 +1,5 @@
+# flake8: noqa
+
 """
 This is pure Python implementation of tree traversal algorithms
 """
@@ -144,7 +146,7 @@ def level_order_actual(node: TreeNode) -> None:
     >>> root.left, root.right = tree_node2, tree_node3
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> level_order_actual(root)
+    >>> level_order_actual(root) 
     1 
     2 3 
     4 5 6 7 

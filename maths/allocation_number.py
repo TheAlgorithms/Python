@@ -4,8 +4,8 @@ from typing import List
 def allocation_num(number_of_bytes: int, partitions: int) -> List[str]:
     """
     Divide a number of bytes into x partitions.
-    
-    In a multi-threaded download, this algorithm could be used to provide 
+
+    In a multi-threaded download, this algorithm could be used to provide
     each worker thread with a block of non-overlapping bytes to download.
     For example:
         for i in allocation_list:

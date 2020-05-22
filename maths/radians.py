@@ -14,8 +14,8 @@ def radians(degree: float) -> float:
     4.782202150464463
     >>> radians(109.82)
     1.9167205845401725
-    
-    >>> from math import radians as math_radians    
+
+    >>> from math import radians as math_radians
     >>> all(abs(radians(i)-math_radians(i)) <= 0.00000001  for i in range(-2, 361))
     True
     """

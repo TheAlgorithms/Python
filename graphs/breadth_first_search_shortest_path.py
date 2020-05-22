@@ -1,6 +1,8 @@
-"""Breath First Search (BFS) can be used when finding the shortest path 
+"""Breath First Search (BFS) can be used when finding the shortest path
 from a given source node to a target node in an unweighted graph.
 """
+from typing import Dict
+
 graph = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],
@@ -10,8 +12,6 @@ graph = {
     "F": ["C"],
     "G": ["C"],
 }
-
-from typing import Dict
 
 
 class Graph:
@@ -46,8 +46,9 @@ class Graph:
     def shortest_path(self, target_vertex: str) -> str:
         """This shortest path function returns a string, describing the result:
         1.) No path is found. The string is a human readable message to indicate this.
-        2.) The shortest path is found. The string is in the form `v1(->v2->v3->...->vn)`,
-            where v1 is the source vertex and vn is the target vertex, if it exists separately.
+        2.) The shortest path is found. The string is in the form
+            `v1(->v2->v3->...->vn)`, where v1 is the source vertex and vn is the target
+            vertex, if it exists separately.
 
         >>> g = Graph(graph, "G")
         >>> g.breath_first_search()

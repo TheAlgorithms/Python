@@ -9,7 +9,7 @@ def printDist(dist, V):
 
 def BellmanFord(graph: List[Dict[str, int]], V: int, E: int, src: int) -> int:
     """
-    Returns shortest paths from a vertex src to all 
+    Returns shortest paths from a vertex src to all
     other vertices.
     """
     mdist = [float("inf") for i in range(V)]

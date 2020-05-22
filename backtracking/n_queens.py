@@ -1,9 +1,9 @@
 """
 
- The nqueens problem is of placing N queens on a N * N 
+ The nqueens problem is of placing N queens on a N * N
  chess board such that no queen can attack any other queens placed
  on that chess board.
- This means that one queen cannot have any other queen on its horizontal, vertical and 
+ This means that one queen cannot have any other queen on its horizontal, vertical and
  diagonal lines.
 
 """
@@ -12,7 +12,7 @@ solution = []
 
 def isSafe(board, row, column):
     """
-    This function returns a boolean value True if it is safe to place a queen there considering 
+    This function returns a boolean value True if it is safe to place a queen there considering
     the current state of the board.
 
     Parameters :
@@ -40,13 +40,13 @@ def isSafe(board, row, column):
 
 def solve(board, row):
     """
-    It creates a state space tree and calls the safe function until it receives a 
-    False Boolean and terminates that branch and backtracks to the next 
+    It creates a state space tree and calls the safe function until it receives a
+    False Boolean and terminates that branch and backtracks to the next
     possible solution branch.
     """
     if row >= len(board):
         """
-        If the row number exceeds N we have board with a successful combination 
+        If the row number exceeds N we have board with a successful combination
         and that combination is appended to the solution list and the board is printed.
 
         """
@@ -56,9 +56,9 @@ def solve(board, row):
         return
     for i in range(len(board)):
         """
-        For every row it iterates through each column to check if it is feasible to place a 
+        For every row it iterates through each column to check if it is feasible to place a
         queen there.
-        If all the combinations for that particular branch are successful the board is 
+        If all the combinations for that particular branch are successful the board is
         reinitialized for the next possible combination.
         """
         if isSafe(board, row, i):
