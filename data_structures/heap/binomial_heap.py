@@ -1,3 +1,5 @@
+# flake8: noqa
+
 """
 Binomial Heap
 Reference: Advanced Data Structures, Peter Brass
@@ -75,7 +77,7 @@ class BinomialHeap:
     Deleting - delete() test
     >>> for i in range(25):
     ...     print(first_heap.deleteMin(), end=" ")
-    0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+    0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 
 
     Create a new Heap
     >>> second_heap = BinomialHeap()
@@ -118,7 +120,7 @@ class BinomialHeap:
     values in merged heap; (merge is inplace)
     >>> while not first_heap.isEmpty():
     ...     print(first_heap.deleteMin(), end=" ")
-    17 20 25 26 27 28 29 31 34
+    17 20 25 26 27 28 29 31 34 
     """
 
     def __init__(self, bottom_root=None, min_node=None, heap_size=0):
