@@ -16,13 +16,8 @@ def is_palindrome(s: str) -> bool:
     """
     # Since Punctuation, capitalization, and spaces are usually ignored while checking Palindrome,
     # we first remove them from our string.
-    cleaned_string = "".join([character for character in s if character.isalnum()])
-
-    # Palindromes are usually case insensitive.
-    # So we convert the string to lower case to make checking easier.
-    cleaned_string = cleaned_string.lower()
-
-    return cleaned_string == cleaned_string[::-1]
+    s = "".join([character for character in s.lower() if character.isalnum()])
+    return s == s[::-1]
 
 
 if __name__ == "__main__":
