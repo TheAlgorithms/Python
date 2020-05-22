@@ -1,4 +1,4 @@
-def is_palindrome(s):
+def is_palindrome(s: str) -> bool:
     """
     Determine whether the string is palindrome
     :param s:
@@ -7,8 +7,25 @@ def is_palindrome(s):
     True
     >>> is_palindrome("Hello")
     False
+    >>> is_palindrome("Able was I ere I saw Elba")
+    True
+    >>> is_palindrome("racecar")
+    True
+    >>> is_palindrome("Mr. Owl ate my metal worm?")
+    True
     """
-    return s == s[::-1]
+    # Since Punctuation, capitalization, and spaces are usually ignored while checking Palindrome,
+    # we first remove them from our string.
+    cleaned_string = ""
+    for character in s:
+        if character.isalnum():
+            cleaned_string += character
+
+    # Palindromes are usually case insensitive.
+    # So we convert the string to lower case to make checking easier.
+    cleaned_string = cleaned_string.lower()
+
+    return cleaned_string == cleaned_string[::-1]
 
 
 if __name__ == "__main__":
