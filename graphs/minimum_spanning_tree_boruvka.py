@@ -146,16 +146,16 @@ class Graph:
         """
         Implementation of Boruvka's algorithm
         >>> g = Graph()
-        >>> g = Graph.build([0, 1, 2, 3], [[0, 1, 1], [0, 2, 1],
-                               [0, 3, 1], [1, 2, 1], [2, 3, 1]])
+        >>> g = Graph.build([0, 1, 2, 3], [[0, 1, 1], [0, 2, 1],[2, 3, 1]])
         >>> g.distinct_weight()
-        >>> Graph.boruvka_mst(g)
+        >>> bg = Graph.boruvka_mst(g)
+        >>> print(bg)
         1 -> 0 == 1
         2 -> 0 == 2
-        3 -> 0 == 3
         0 -> 1 == 1
         0 -> 2 == 2
-        0 -> 3 == 3
+        3 -> 2 == 3
+        2 -> 3 == 3
 
         """
         num_components = graph.num_vertices
@@ -190,11 +190,3 @@ class Graph:
                         num_components = num_components - 1
         mst = Graph.build(edges=mst_edges)
         return mst
-
-
-g = Graph()
-g = Graph.build([0, 1, 2, 3], [[0, 1, 1], [0, 2, 1], [0, 3, 1], [1, 2, 1], [2, 3, 1]])
-
-g.distinct_weight()
-bg = Graph.boruvka_mst(g)
-print(bg)
