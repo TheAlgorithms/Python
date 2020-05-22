@@ -4,13 +4,13 @@ language: python
 python: 3.8
 cache: pip
 before_install: pip install --upgrade pip setuptools six
-install: pip install -r requirements.txt
+install: pip install black flake8
 before_script:
-  - black --check . || true
-  - IGNORE=E123,E203,E265,E266,E302,E401,E402,E712,E731,E741,E743,F811,F841,W291,W293,W503
-  - flake8 . --count --ignore=$IGNORE --max-complexity=25 --max-line-length=127 --show-source --statistics
-script:
+  - black --check .
+  - flake8 --ignore=E203,W503 --max-complexity=25 --max-line-length=120 --statistics --count .
   - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
+  - pip install -r requirements.txt  # fast fail on black, flake8, validate_filenames
+script:
   - mypy --ignore-missing-imports .
   - pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=. .
 after_success:
