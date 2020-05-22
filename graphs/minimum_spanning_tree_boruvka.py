@@ -34,11 +34,11 @@ class Graph:
         self.adjacency[tail][head] = weight
 
     def distinct_weight(self):
-        '''
+        """
         For Boruvks's algorithm the weights should be distinct
         Converts the weights to be distinct
 
-        '''
+        """
         edges = self.get_edges()
         for edge in edges:
             head, tail, weight = edge
@@ -193,8 +193,7 @@ class Graph:
 
 
 g = Graph()
-g = Graph.build([0, 1, 2, 3], [[0, 1, 1], [0, 2, 1],
-                               [0, 3, 1], [1, 2, 1], [2, 3, 1]])
+g = Graph.build([0, 1, 2, 3], [[0, 1, 1], [0, 2, 1], [0, 3, 1], [1, 2, 1], [2, 3, 1]])
 
 g.distinct_weight()
 bg = Graph.boruvka_mst(g)
