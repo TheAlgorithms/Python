@@ -1,12 +1,15 @@
 # Python program to print all subset combinations of n element in given set of r element.
-# arr[]  ---> Input Array
-# data[] ---> Temporary array to store current combination
-# start & end ---> Staring and Ending indexes in arr[]
-# index  ---> Current index in data[]
-# r ---> Size of a combination to be printed
+
+
 def combination_util(arr, n, r, index, data, i):
-    # Current combination is ready to be printed,
-    # print it
+    """
+    Current combination is ready to be printed, print it
+    arr[]  ---> Input Array
+    data[] ---> Temporary array to store current combination
+    start & end ---> Staring and Ending indexes in arr[]
+    index  ---> Current index in data[]
+    r ---> Size of a combination to be printed
+    """
     if index == r:
         for j in range(r):
             print(data[j], end=" ")

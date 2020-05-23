@@ -1,9 +1,12 @@
+#!/usr/bin/env python3
+
+
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
     cipher_alphabet=None,
     frequencies_dict=None,
     case_sensetive: bool = False,
-) -> list:
+) -> tuple:
     """
     Basic Usage
     ===========
@@ -96,15 +99,19 @@ def decrypt_caesar_with_chi_squared(
     Further Reading
     ================
 
-    * http://practicalcryptography.com/cryptanalysis/text-characterisation/chi-squared-statistic/
+    * http://practicalcryptography.com/cryptanalysis/text-characterisation/chi-squared-
+        statistic/
     * https://en.wikipedia.org/wiki/Letter_frequency
     * https://en.wikipedia.org/wiki/Chi-squared_test
     * https://en.m.wikipedia.org/wiki/Caesar_cipher
 
     Doctests
     ========
-    >>> decrypt_caesar_with_chi_squared('dof pz aol jhlzhy jpwoly zv wvwbshy? pa pz avv lhzf av jyhjr!')
-    (7, 3129.228005747531, 'why is the caesar cipher so popular? it is too easy to crack!')
+    >>> decrypt_caesar_with_chi_squared(
+    ...    'dof pz aol jhlzhy jpwoly zv wvwbshy? pa pz avv lhzf av jyhjr!'
+    ... )  # doctest: +NORMALIZE_WHITESPACE
+    (7, 3129.228005747531,
+     'why is the caesar cipher so popular? it is too easy to crack!')
 
     >>> decrypt_caesar_with_chi_squared('crybd cdbsxq')
     (10, 233.35343938980898, 'short string')
@@ -172,7 +179,7 @@ def decrypt_caesar_with_chi_squared(
                 # Append the character if it isn't in the alphabet
                 decrypted_with_shift += letter
 
-        chi_squared_statistic = 0
+        chi_squared_statistic = 0.0
 
         # Loop through each letter in the decoded message with the shift
         for letter in decrypted_with_shift:
@@ -181,7 +188,8 @@ def decrypt_caesar_with_chi_squared(
                     # Get the amount of times the letter occurs in the message
                     occurrences = decrypted_with_shift.count(letter)
 
-                    # Get the excepcted amount of times the letter should appear based on letter frequencies
+                    # Get the excepcted amount of times the letter should appear based
+                    # on letter frequencies
                     expected = frequencies[letter] * occurrences
 
                     # Complete the chi squared statistic formula
@@ -194,7 +202,8 @@ def decrypt_caesar_with_chi_squared(
                     # Get the amount of times the letter occurs in the message
                     occurrences = decrypted_with_shift.count(letter)
 
-                    # Get the excepcted amount of times the letter should appear based on letter frequencies
+                    # Get the excepcted amount of times the letter should appear based
+                    # on letter frequencies
                     expected = frequencies[letter] * occurrences
 
                     # Complete the chi squared statistic formula
@@ -209,7 +218,8 @@ def decrypt_caesar_with_chi_squared(
             decrypted_with_shift,
         ]
 
-    # Get the most likely cipher by finding the cipher with the smallest chi squared statistic
+    # Get the most likely cipher by finding the cipher with the smallest chi squared
+    # statistic
     most_likely_cipher = min(
         chi_squared_statistic_values, key=chi_squared_statistic_values.get
     )

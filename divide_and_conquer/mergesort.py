@@ -1,5 +1,5 @@
 def merge(a, b, m, e):
-    l = a[b : m + 1]
+    l = a[b : m + 1]  # noqa: E741
     r = a[m + 1 : e + 1]
     k = b
     i = 0

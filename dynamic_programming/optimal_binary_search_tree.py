@@ -40,7 +40,7 @@ class Node:
 def print_binary_search_tree(root, key, i, j, parent, is_left):
     """
     Recursive function to print a BST from a root table.
-    
+
     >>> key = [3, 8, 9, 10, 17, 21]
     >>> root = [[0, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 3], [0, 0, 2, 3, 3, 3], \
                 [0, 0, 0, 3, 3, 3], [0, 0, 0, 0, 4, 5], [0, 0, 0, 0, 0, 5]]
@@ -73,7 +73,7 @@ def find_optimal_binary_search_tree(nodes):
     The dynamic programming algorithm below runs in O(n^2) time.
     Implemented from CLRS (Introduction to Algorithms) book.
     https://en.wikipedia.org/wiki/Introduction_to_Algorithms
-    
+
     >>> find_optimal_binary_search_tree([Node(12, 8), Node(10, 34), Node(20, 50), \
                                          Node(42, 3), Node(25, 40), Node(37, 30)])
     Binary search tree nodes:
@@ -104,14 +104,15 @@ def find_optimal_binary_search_tree(nodes):
     # This 2D array stores the overall tree cost (which's as minimized as possible);
     # for a single key, cost is equal to frequency of the key.
     dp = [[freqs[i] if i == j else 0 for j in range(n)] for i in range(n)]
-    # sum[i][j] stores the sum of key frequencies between i and j inclusive in nodes array
+    # sum[i][j] stores the sum of key frequencies between i and j inclusive in nodes
+    # array
     sum = [[freqs[i] if i == j else 0 for j in range(n)] for i in range(n)]
     # stores tree roots that will be used later for constructing binary search tree
     root = [[i if i == j else 0 for j in range(n)] for i in range(n)]
 
-    for l in range(2, n + 1):  # l is an interval length
-        for i in range(n - l + 1):
-            j = i + l - 1
+    for interval_length in range(2, n + 1):
+        for i in range(n - interval_length + 1):
+            j = i + interval_length - 1
 
             dp[i][j] = sys.maxsize  # set the value to "infinity"
             sum[i][j] = sum[i][j - 1] + freqs[j]

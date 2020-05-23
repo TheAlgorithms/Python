@@ -1,4 +1,9 @@
-class Node:  # This is the Class Node with a constructor that contains data variable to type data and left, right pointers.
+class Node:
+    """
+    This is the Class Node with a constructor that contains data variable to type data
+    and left, right pointers.
+    """
+
     def __init__(self, data):
         self.data = data
         self.left = None

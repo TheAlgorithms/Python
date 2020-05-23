@@ -40,7 +40,7 @@ def solution(n):
     """Returns the sum of all semidivisible numbers not exceeding n."""
     semidivisible = []
     for x in range(n):
-        l = [i for i in input().split()]
+        l = [i for i in input().split()]  # noqa: E741
         c2 = 1
         while 1:
             if len(fib(l[0], l[1], c2)) < int(l[2]):

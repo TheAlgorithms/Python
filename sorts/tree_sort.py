@@ -29,7 +29,7 @@ class node:
 
 
 def inorder(root, res):
-    # Recursive travesal
+    # Recursive traversal
     if root:
         inorder(root.left, res)
         res.append(root.val)

@@ -2,7 +2,7 @@ import sys
 from collections import defaultdict
 
 
-def PrimsAlgorithm(l):
+def PrimsAlgorithm(l):  # noqa: E741
 
     nodePosition = []
 
@@ -109,7 +109,7 @@ if __name__ == "__main__":
     e = int(input("Enter number of edges: ").strip())
     adjlist = defaultdict(list)
     for x in range(e):
-        l = [int(x) for x in input().strip().split()]
+        l = [int(x) for x in input().strip().split()]  # noqa: E741
         adjlist[l[0]].append([l[1], l[2]])
         adjlist[l[1]].append([l[0], l[2]])
     print(PrimsAlgorithm(adjlist))

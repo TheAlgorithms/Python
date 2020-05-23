@@ -60,7 +60,7 @@ def streval(s: str) -> int:
 def solution(n: str) -> int:
     """Find the thirteen adjacent digits in the 1000-digit number n that have
     the greatest product and returns it.
- 
+
     >>> solution(N)
     23514624000
     """

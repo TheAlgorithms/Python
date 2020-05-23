@@ -28,7 +28,7 @@ def next_term(a_i, k, i, n):
     is cached to greatly speed up the computation.
 
     Arguments:
-    a_i -- array of digits starting from the one's place that represent 
+    a_i -- array of digits starting from the one's place that represent
            the i-th term in the sequence
     k --  k when terms are written in the from a(i) = b*10^k + c.
           Term are calulcated until c > 10^k or the n-th term is reached.

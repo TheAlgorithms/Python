@@ -17,7 +17,7 @@ class Cell(object):
     """
     Class cell represents a cell in the world which have the property
     position : The position of the represented by  tupleof x and y
-    co-ordinates initially set to (0,0)
+    coordinates initially set to (0,0)
     parent : This contains the parent cell object which we visited
     before arrinving this cell
     g,h,f : The parameters for constructing the heuristic function

@@ -19,7 +19,7 @@ edge_array = [
     ['ab-e1', 'ac-e3', 'bc-e4', 'bd-e2', 'bh-e12', 'cd-e2', 'df-e8', 'dh-e10'],
     ['ab-e1', 'ac-e3', 'ad-e5', 'bc-e4', 'bd-e2', 'cd-e2', 'ce-e4', 'de-e1', 'df-e8',
      'dg-e5', 'ef-e3', 'eg-e2', 'fg-e6']
-    ]
+]
 # fmt: on
 
 

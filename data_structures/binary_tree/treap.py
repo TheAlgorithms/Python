@@ -1,3 +1,5 @@
+# flake8: noqa
+
 from random import random
 from typing import Tuple
 
@@ -161,7 +163,8 @@ def main():
     """After each command, program prints treap"""
     root = None
     print(
-        "enter numbers to create a tree, + value to add value into treap, - value to erase all nodes with value. 'q' to quit. "
+        "enter numbers to create a tree, + value to add value into treap, "
+        "- value to erase all nodes with value. 'q' to quit. "
     )
 
     args = input()

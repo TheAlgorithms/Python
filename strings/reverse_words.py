@@ -11,10 +11,7 @@ def reverse_words(input_str: str) -> str:
     >>> reverse_words(sentence)
     'Python love I'
     """
-    input_str = input_str.split(" ")
-    new_str = list()
-
-    return " ".join(reversed(input_str))
+    return " ".join(reversed(input_str.split(" ")))
 
 
 if __name__ == "__main__":

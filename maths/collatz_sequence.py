@@ -18,8 +18,9 @@ def collatz_sequence(n: int) -> List[int]:
     Traceback (most recent call last):
         ...
     Exception: Sequence only defined for natural numbers
-    >>> collatz_sequence(43)
-    [43, 130, 65, 196, 98, 49, 148, 74, 37, 112, 56, 28, 14, 7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+    >>> collatz_sequence(43)  # doctest: +NORMALIZE_WHITESPACE
+    [43, 130, 65, 196, 98, 49, 148, 74, 37, 112, 56, 28, 14, 7,
+     22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
     """
 
     if not isinstance(n, int) or n < 1:

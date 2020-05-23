@@ -28,7 +28,7 @@ class Graph:
 
         # call the recursive helper function
         for i in range(len(self.vertex)):
-            if visited[i] == False:
+            if visited[i] is False:
                 self.DFSRec(i, visited)
 
     def DFSRec(self, startVertex, visited):
@@ -39,7 +39,7 @@ class Graph:
 
         # Recur for all the vertices that are adjacent to this node
         for i in self.vertex.keys():
-            if visited[i] == False:
+            if visited[i] is False:
                 self.DFSRec(i, visited)
 
 

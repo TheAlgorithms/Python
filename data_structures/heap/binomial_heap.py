@@ -1,3 +1,5 @@
+# flake8: noqa
+
 """
 Binomial Heap
 Reference: Advanced Data Structures, Peter Brass
