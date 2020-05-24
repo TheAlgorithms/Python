@@ -15,8 +15,8 @@ def mergeSort(array):
 		left_index = array[:middle_index] 					  # Dividing the array elements 
 		right_index = array[middle_index:]	 	 	 		  # into 2 halves - Left_index & Right Index. 
 
-		mergeSort(left_index) 								  # Sorting the first half of the array. 
-		mergeSort(right_index) 								  # Sorting the second half of the array.
+		mergeSort(left_index) 							  # Sorting the first half of the array. 
+		mergeSort(right_index) 							  # Sorting the second half of the array.
 
 		i = j = k = 0
 		
@@ -29,7 +29,7 @@ def mergeSort(array):
 				j+=1
 			k+=1
 		 
-		while i < len(left_index): 							  # Checking if any element was left
+		while i < len(left_index): 						  # Checking if any element was left
 			array[k] = left_index[i] 
 			i+=1
 			k+=1
@@ -40,7 +40,7 @@ def mergeSort(array):
 			k+=1
 	sorted_output(array) 
 
-def sorted_output(array):									  # Returns the sorted array.
+def sorted_output(array):								  # Returns the sorted array.
     """
     >>> mergeSort([3,2,1])
     [1, 2, 3]
