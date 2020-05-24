@@ -1,7 +1,6 @@
 import doctest
 
-def mergeSort(array):
-    """
+"""
      This Function Implements Merge Sorting on the array passed as an parameter.
      Merge Sort is a sorting algorithm, which is commonly used in computer science.
      Merge Sort is a divide and conquer algorithm.
@@ -9,9 +8,16 @@ def mergeSort(array):
      until these become simple enough to be solved directly.
      The solutions to the sub-problems are then combined to give a solution to the original problem.
      So Merge Sort first divides the array into equal halves and then combines them in a sorted manner.
-     """ 
+    """ 
 
-    if len(array) >1: 
+def mergeSort(array):
+    """
+        >>> mergeSort([9,7,5,3,1,1,2,4,6,8])
+        [1, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        >>> mergeSort([9,8,7,6,5])
+        [5, 6, 7, 8, 9]
+    """
+    if len(array) >1:
         middle_index = len(array)//2 						  #Finding the middle_index of the array
         left_index = array[:middle_index] 					  # Dividing the array elements 
         right_index = array[middle_index:]	 	 	 		  # into 2 halves - Left_index & Right Index. 
@@ -39,19 +45,7 @@ def mergeSort(array):
             array[k] = right_index[j] 
             j+=1
             k+=1
-    return sorted_output(array)
-
-def sorted_output(array):							  # Returns the sorted array.
-    """
-    >>> mergeSort([3,2,1])
-    [1, 2, 3]
-    >>> mergeSort([3,2,1,0,1,2,3,5,4])
-    [0, 1, 1, 2, 2, 3, 3, 4, 5]
-    """
-    for i in range(len(array)):		 
-        print(array[i], end=', ') 
-
-
+    return array
 
 if __name__ == "__main__":
     doctest.testmod()
