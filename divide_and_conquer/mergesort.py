@@ -1,8 +1,8 @@
 def merge(arr, left, mid, right): 
     # overall array will divided into 2 array
-    # left_arr contain left portion of array from left to mid of array
-    # right_arr contain right portion of array from mid+1 to till last of array
-    left_arr = arr[left : mid + 1]  # noqa: E741
+    # left_arr contains the left portion of array from left to mid
+    # right_arr contains the right portion of array from mid + 1 to right
+    left_arr = arr[left : mid + 1]
     right_arr = arr[mid + 1 : right + 1]
     k = left
     i = 0
@@ -29,9 +29,9 @@ def merge(arr, left, mid, right):
 
 def mergesort(arr, left, right):
     """
-    >>> mergesort([3,2,1],0,2)
+    >>> mergesort([3, 2, 1], 0, 2)
     [1, 2, 3]
-    >>> mergesort([3,2,1,0,1,2,3,5,4],0,8)
+    >>> mergesort([3, 2, 1, 0, 1, 2, 3, 5, 4], 0, 8)
     [0, 1, 1, 2, 2, 3, 3, 4, 5]
     """
     if left < right:
