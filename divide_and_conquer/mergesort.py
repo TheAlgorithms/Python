@@ -1,45 +1,48 @@
-def merge(a, b, m, e):
-    l = a[b : m + 1]  # noqa: E741
-    r = a[m + 1 : e + 1]
-    k = b
+def merge(arr, left, mid, right):
+    # overall array will divided into 2 array
+    # left_arr contains the left portion of array from left to mid
+    # right_arr contains the right portion of array from mid + 1 to right
+    left_arr = arr[left : mid + 1]
+    right_arr = arr[mid + 1 : right + 1]
+    k = left
     i = 0
     j = 0
-    while i < len(l) and j < len(r):
+    while i < len(left_arr) and j < len(right_arr):
         # change sign for Descending order
-        if l[i] < r[j]:
-            a[k] = l[i]
+        if left_arr[i] < right_arr[j]:
+            arr[k] = left_arr[i]
             i += 1
         else:
-            a[k] = r[j]
+            arr[k] = right_arr[j]
             j += 1
         k += 1
-    while i < len(l):
-        a[k] = l[i]
+    while i < len(left_arr):
+        arr[k] = left_arr[i]
         i += 1
         k += 1
-    while j < len(r):
-        a[k] = r[j]
+    while j < len(right_arr):
+        arr[k] = right_arr[j]
         j += 1
         k += 1
-    return a
+    return arr
 
 
-def mergesort(a, b, e):
+def mergesort(arr, left, right):
     """
-    >>> mergesort([3,2,1],0,2)
+    >>> mergesort([3, 2, 1], 0, 2)
     [1, 2, 3]
-    >>> mergesort([3,2,1,0,1,2,3,5,4],0,8)
+    >>> mergesort([3, 2, 1, 0, 1, 2, 3, 5, 4], 0, 8)
     [0, 1, 1, 2, 2, 3, 3, 4, 5]
     """
-    if b < e:
-        m = (b + e) // 2
+    if left < right:
+        mid = (left + right) // 2
         # print("ms1",a,b,m)
-        mergesort(a, b, m)
+        mergesort(arr, left, mid)
         # print("ms2",a,m+1,e)
-        mergesort(a, m + 1, e)
+        mergesort(arr, mid + 1, right)
         # print("m",a,b,m,e)
-        merge(a, b, m, e)
-        return a
+        merge(arr, left, mid, right)
+        return arr
 
 
 if __name__ == "__main__":
