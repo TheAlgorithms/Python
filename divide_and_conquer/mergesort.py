@@ -1,4 +1,4 @@
-def merge(arr, left, mid, right): 
+def merge(arr, left, mid, right):
     # overall array will divided into 2 array
     # left_arr contains the left portion of array from left to mid
     # right_arr contains the right portion of array from mid + 1 to right
@@ -27,13 +27,14 @@ def merge(arr, left, mid, right):
     return arr
 
 
-def mergesort(arr, left, right):
+def mergesort(arr, left=0, right=0):
     """
     >>> mergesort([3, 2, 1], 0, 2)
     [1, 2, 3]
     >>> mergesort([3, 2, 1, 0, 1, 2, 3, 5, 4], 0, 8)
     [0, 1, 1, 2, 2, 3, 3, 4, 5]
     """
+    right = right or (len(arr) - 1)
     if left < right:
         mid = (left + right) // 2
         # print("ms1",a,b,m)
