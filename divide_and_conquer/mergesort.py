@@ -1,27 +1,27 @@
 def merge(arr, left, mid, right): 
     # overall array will divided into 2 array
-    # l contain left portion of array from left to mid of array
-    # r contain right portion of array from mid+1 to till last of array
-    l = arr[left : mid + 1]  # noqa: E741
-    r = arr[mid + 1 : right + 1]
+    # left_arr contain left portion of array from left to mid of array
+    # right_arr contain right portion of array from mid+1 to till last of array
+    left_arr = arr[left : mid + 1]  # noqa: E741
+    right_arr = arr[mid + 1 : right + 1]
     k = left
     i = 0
     j = 0
-    while i < len(l) and j < len(r):
+    while i < len(left_arr) and j < len(right_arr):
         # change sign for Descending order
-        if l[i] < r[j]:
-            arr[k] = l[i]
+        if left_arr[i] < right_arr[j]:
+            arr[k] = left_arr[i]
             i += 1
         else:
-            arr[k] = r[j]
+            arr[k] = right_arr[j]
             j += 1
         k += 1
-    while i < len(l):
-        arr[k] = l[i]
+    while i < len(left_arr):
+        arr[k] = left_arr[i]
         i += 1
         k += 1
-    while j < len(r):
-        arr[k] = r[j]
+    while j < len(right_arr):
+        arr[k] = right_arr[j]
         j += 1
         k += 1
     return arr
