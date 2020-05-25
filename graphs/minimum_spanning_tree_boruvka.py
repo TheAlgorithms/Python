@@ -60,7 +60,7 @@ class Graph:
         """
         return [(tail, head, self.adjacency[head][tail])
                 for head in self.adjacency[tail]
-                for tail in self.adjacency)]
+                for tail in self.adjacency]
 
     def get_vertices(self):
         """
