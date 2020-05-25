@@ -246,6 +246,7 @@
   * [Greedy Best First](https://github.com/TheAlgorithms/Python/blob/master/graphs/greedy_best_first.py)
   * [Kahns Algorithm Long](https://github.com/TheAlgorithms/Python/blob/master/graphs/kahns_algorithm_long.py)
   * [Kahns Algorithm Topo](https://github.com/TheAlgorithms/Python/blob/master/graphs/kahns_algorithm_topo.py)
+  * [Minimum Spanning Tree Boruvka](https://github.com/TheAlgorithms/Python/blob/master/graphs/minimum_spanning_tree_boruvka.py)
   * [Minimum Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/minimum_spanning_tree_kruskal.py)
   * [Minimum Spanning Tree Prims](https://github.com/TheAlgorithms/Python/blob/master/graphs/minimum_spanning_tree_prims.py)
   * [Multi Heuristic Astar](https://github.com/TheAlgorithms/Python/blob/master/graphs/multi_heuristic_astar.py)
