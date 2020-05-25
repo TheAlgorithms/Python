@@ -4,13 +4,15 @@ class Graph:
     """
 
     def __init__(self):
+
         self.num_vertices = 0
         self.num_edges = 0
         self.adjacency = {}
 
     def add_vertex(self, vertex):
         """
-        Add a vertex to the graph
+        Adds a vertex to the graph
+
         """
         if vertex not in self.adjacency:
             self.adjacency[vertex] = {}
@@ -18,19 +20,24 @@ class Graph:
 
     def add_edge(self, head, tail, weight):
         """
-        Add an edge to the graph
+        Adds an edge to the graph
+
         """
+
         self.add_vertex(head)
         self.add_vertex(tail)
+
         if head == tail:
             return
+
         self.adjacency[head][tail] = weight
         self.adjacency[tail][head] = weight
 
     def distinct_weight(self):
         """
         For Boruvks's algorithm the weights should be distinct
-        Convert the weights to be distinct
+        Converts the weights to be distinct
+
         """
         edges = self.get_edges()
         for edge in edges:
@@ -38,6 +45,7 @@ class Graph:
             edges.remove((tail, head, weight))
         for i in range(len(edges)):
             edges[i] = list(edges[i])
+
         edges.sort(key=lambda e: e[2])
         for i in range(len(edges) - 1):
             if edges[i][2] >= edges[i + 1][2]:
@@ -49,13 +57,18 @@ class Graph:
 
     def __str__(self):
         """
-        Return a string representation of the graph
+        Returns string representation of the graph
         """
-        return "\n".join("{} -> {} == {}".format(*edge) for edge in self.get_edges())
+        string = ""
+        for tail in self.adjacency:
+            for head in self.adjacency[tail]:
+                weight = self.adjacency[head][tail]
+                string += "%d -> %d == %d\n" % (head, tail, weight)
+        return string.rstrip("\n")
 
     def get_edges(self):
         """
-        Return all edges in the graph
+        Returna all edges in the graph
         """
         output = []
         for tail in self.adjacency:
@@ -65,18 +78,21 @@ class Graph:
 
     def get_vertices(self):
         """
-        Return all vertices in the graph
+        Returns all vertices in the graph
         """
         return self.adjacency.keys()
 
     @staticmethod
     def build(vertices=None, edges=None):
         """
-        Build a graph from the given set of vertices and edges
+        Builds a graph from the given set of vertices and edges
+
         """
-        vertices = vertices or []  # Avoid mutable default values
-        edges = edges or []
         g = Graph()
+        if vertices is None:
+            vertices = []
+        if edges is None:
+            edge = []
         for vertex in vertices:
             g.add_vertex(vertex)
         for edge in edges:
@@ -98,6 +114,7 @@ class Graph:
         def make_set(self, item):
             if item in self.parent:
                 return self.find(item)
+
             self.parent[item] = item
             self.rank[item] = 0
             return item
@@ -112,14 +129,18 @@ class Graph:
         def union(self, item1, item2):
             root1 = self.find(item1)
             root2 = self.find(item2)
+
             if root1 == root2:
                 return root1
+
             if self.rank[root1] > self.rank[root2]:
                 self.parent[root2] = root1
                 return root1
+
             if self.rank[root1] < self.rank[root2]:
                 self.parent[root1] = root2
                 return root2
+
             if self.rank[root1] == self.rank[root2]:
                 self.rank[root1] += 1
                 self.parent[root2] = root1
@@ -141,12 +162,14 @@ class Graph:
         2 -> 3 == 3
         """
         num_components = graph.num_vertices
+
         union_find = Graph.UnionFind()
         mst_edges = []
         while num_components > 1:
             cheap_edge = {}
             for vertex in graph.get_vertices():
                 cheap_edge[vertex] = -1
+
             edges = graph.get_edges()
             for edge in edges:
                 head, tail, weight = edge
@@ -168,4 +191,5 @@ class Graph:
                         union_find.union(head, tail)
                         mst_edges.append(cheap_edge[vertex])
                         num_components = num_components - 1
-        return Graph.build(edges=mst_edges)
+        mst = Graph.build(edges=mst_edges)
+        return mst
