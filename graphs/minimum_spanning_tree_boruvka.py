@@ -2,17 +2,14 @@ class Graph:
     """
     Data structure to store graphs (based on adjacency lists)
     """
-
     def __init__(self):
-
         self.num_vertices = 0
         self.num_edges = 0
         self.adjacency = {}
 
     def add_vertex(self, vertex):
         """
-        Adds a vertex to the graph
-
+        Add a vertex to the graph
         """
         if vertex not in self.adjacency:
             self.adjacency[vertex] = {}
@@ -20,24 +17,19 @@ class Graph:
 
     def add_edge(self, head, tail, weight):
         """
-        Adds an edge to the graph
-
+        Add an edge to the graph
         """
-
         self.add_vertex(head)
         self.add_vertex(tail)
-
         if head == tail:
             return
-
         self.adjacency[head][tail] = weight
         self.adjacency[tail][head] = weight
 
     def distinct_weight(self):
         """
         For Boruvks's algorithm the weights should be distinct
-        Converts the weights to be distinct
-
+        Convert the weights to be distinct
         """
         edges = self.get_edges()
         for edge in edges:
@@ -45,7 +37,6 @@ class Graph:
             edges.remove((tail, head, weight))
         for i in range(len(edges)):
             edges[i] = list(edges[i])
-
         edges.sort(key=lambda e: e[2])
         for i in range(len(edges) - 1):
             if edges[i][2] >= edges[i + 1][2]:
@@ -57,37 +48,33 @@ class Graph:
 
     def __str__(self):
         """
-        Returns string representation of the graph
+        Return a string representation of the graph
         """
-        string = ""
-        for tail in self.adjacency:
-            for head in self.adjacency[tail]:
-                weight = self.adjacency[head][tail]
-                string += "%d -> %d == %d\n" % (head, tail, weight)
-        return string
+        return "\n".join(f"{head} -> {tail} == {self.adjacency[head][tail]}"
+                         for head in self.adjacency[tail]
+                         for tail in self.adjacency)
 
     def get_edges(self):
         """
-        Returna all edges in the graph
+        Return all edges in the graph
         """
-        output = []
-        for tail in self.adjacency:
-            for head in self.adjacency[tail]:
-                output.append((tail, head, self.adjacency[head][tail]))
-        return output
+        return [(tail, head, self.adjacency[head][tail])
+                for head in self.adjacency[tail]
+                for tail in self.adjacency)]
 
     def get_vertices(self):
         """
-        Returns all vertices in the graph
+        Return all vertices in the graph
         """
         return self.adjacency.keys()
 
     @staticmethod
     def build(vertices=[], edges=[]):
         """
-        Builds a graph from the given set of vertices and edges
-
+        Build a graph from the given set of vertices and edges
         """
+        vertices = vertices or []  # Avoid mutable default values
+        edges = edges or []
         g = Graph()
         for vertex in vertices:
             g.add_vertex(vertex)
@@ -99,7 +86,6 @@ class Graph:
         """
         Disjoint set Union and Find for Boruvka's algorithm
         """
-
         def __init__(self):
             self.parent = {}
             self.rank = {}
@@ -110,7 +96,6 @@ class Graph:
         def make_set(self, item):
             if item in self.parent:
                 return self.find(item)
-
             self.parent[item] = item
             self.rank[item] = 0
             return item
@@ -125,18 +110,14 @@ class Graph:
         def union(self, item1, item2):
             root1 = self.find(item1)
             root2 = self.find(item2)
-
             if root1 == root2:
                 return root1
-
             if self.rank[root1] > self.rank[root2]:
                 self.parent[root2] = root1
                 return root1
-
             if self.rank[root1] < self.rank[root2]:
                 self.parent[root1] = root2
                 return root2
-
             if self.rank[root1] == self.rank[root2]:
                 self.rank[root1] += 1
                 self.parent[root2] = root1
@@ -156,17 +137,14 @@ class Graph:
         0 -> 2 == 2
         3 -> 2 == 3
         2 -> 3 == 3
-        <BLANKLINE>
         """
         num_components = graph.num_vertices
-
         union_find = Graph.UnionFind()
         mst_edges = []
         while num_components > 1:
             cheap_edge = {}
             for vertex in graph.get_vertices():
                 cheap_edge[vertex] = -1
-
             edges = graph.get_edges()
             for edge in edges:
                 head, tail, weight = edge
@@ -188,5 +166,4 @@ class Graph:
                         union_find.union(head, tail)
                         mst_edges.append(cheap_edge[vertex])
                         num_components = num_components - 1
-        mst = Graph.build(edges=mst_edges)
-        return mst
+        return Graph.build(edges=mst_edges)
