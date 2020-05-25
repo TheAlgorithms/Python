@@ -69,7 +69,7 @@ class Graph:
         return self.adjacency.keys()
 
     @staticmethod
-    def build(vertices=[], edges=[]):
+    def build(vertices=None, edges=None):
         """
         Build a graph from the given set of vertices and edges
         """
