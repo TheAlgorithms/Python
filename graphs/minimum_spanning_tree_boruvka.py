@@ -156,8 +156,6 @@ class Graph:
         0 -> 2 == 2
         3 -> 2 == 3
         2 -> 3 == 3
-
-
         """
         num_components = graph.num_vertices
 
