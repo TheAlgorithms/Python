@@ -2,6 +2,7 @@ class Graph:
     """
     Data structure to store graphs (based on adjacency lists)
     """
+
     def __init__(self):
         self.num_vertices = 0
         self.num_edges = 0
@@ -50,17 +51,21 @@ class Graph:
         """
         Return a string representation of the graph
         """
-        return "\n".join(f"{head} -> {tail} == {self.adjacency[head][tail]}"
-                         for head in self.adjacency[tail]
-                         for tail in self.adjacency)
+        return "\n".join(
+            f"{head} -> {tail} == {self.adjacency[head][tail]}"
+            for head in self.adjacency[tail]
+            for tail in self.adjacency
+        )
 
     def get_edges(self):
         """
         Return all edges in the graph
         """
-        return [(tail, head, self.adjacency[head][tail])
-                for head in self.adjacency[tail]
-                for tail in self.adjacency]
+        return [
+            (tail, head, self.adjacency[head][tail])
+            for head in self.adjacency[tail]
+            for tail in self.adjacency
+        ]
 
     def get_vertices(self):
         """
@@ -86,6 +91,7 @@ class Graph:
         """
         Disjoint set Union and Find for Boruvka's algorithm
         """
+
         def __init__(self):
             self.parent = {}
             self.rank = {}
