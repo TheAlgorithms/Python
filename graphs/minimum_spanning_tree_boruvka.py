@@ -51,21 +51,17 @@ class Graph:
         """
         Return a string representation of the graph
         """
-        return "\n".join(
-            f"{head} -> {tail} == {self.adjacency[head][tail]}"
-            for head in self.adjacency[tail]
-            for tail in self.adjacency
-        )
+        return "\n".join("{} -> {} == {}".format(*edge) for edge in self.get_edges())
 
     def get_edges(self):
         """
         Return all edges in the graph
         """
-        return [
-            (tail, head, self.adjacency[head][tail])
-            for head in self.adjacency[tail]
-            for tail in self.adjacency
-        ]
+        output = []
+        for tail in self.adjacency:
+            for head in self.adjacency[tail]:
+                output.append((tail, head, self.adjacency[head][tail]))
+        return output
 
     def get_vertices(self):
         """
