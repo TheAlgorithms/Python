@@ -43,10 +43,10 @@ def jaro_winkler(first_string: str, second_string: str) -> float:
     if not match_count:
         jaro = 0
     else:
-        jaro = 1/3 * (
-                match_count/len(first_string) +
-                match_count/len(second_string) +
-                (match_count - not_match/2)/match_count)
+        jaro = 1 / 3 * (
+            match_count / len(first_string)
+            + match_count / len(second_string)
+            + (match_count - not_match / 2) / match_count)
 
     # common prefix up to 4 characters
     prefix_len = 0
