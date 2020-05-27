@@ -35,13 +35,12 @@ def jaro_winkler(first_string: str, second_string: str) -> float:
                 match_count += 1
 
     # transposition
-    not_match = 0
-    for c1, c2 in zip(first_string, second_string):
-        if c1 != c2:
-            not_match += 1
+    not_match = len(
+        [(c1, c2) for c1, c2 in zip(first_string, second_string) if c1 != c2]
+    )
 
     if not match_count:
-        jaro = 0
+        jaro = 0.0
     else:
         jaro = 1 / 3 * (
             match_count / len(first_string)
