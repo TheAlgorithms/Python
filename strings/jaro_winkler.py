@@ -34,7 +34,7 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
     def get_matched_characters(_str1, _str2):
         matched = []
-        limit = math.floor(min(len(_str1), len(_str2)) / 2)
+        limit = min(len(_str1), len(_str2)) // 2
         for i, l in enumerate(_str1):
             left = int(max(0, i - limit))
             right = int(min(i + limit + 1, len(_str2)))
