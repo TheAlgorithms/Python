@@ -36,10 +36,11 @@ def jaro_winkler(str1: str, str2: str) -> float:
         matched = []
         limit = math.floor(min(len(_str1), len(_str2)) / 2)
         for i, l in enumerate(_str1):
-            left, right = int(max(0, i - limit)), int(min(i + limit + 1, len(_str2)))
+            left = int(max(0, i - limit))
+            right = int(min(i + limit + 1, len(_str2)))
             if l in _str2[left:right]:
                 matched.append(l)
-                _str2 = _str2[0:_str2.index(l)] + " " + _str2[_str2.index(l) + 1:]
+                _str2 = f"{_str2[0:_str2.index(l)]} {_str2[_str2.index(l) + 1:]}"
 
         return ''.join(matched)
 
