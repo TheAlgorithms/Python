@@ -1,5 +1,4 @@
 """ https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance """
-import math
 
 
 def jaro_winkler(str1: str, str2: str) -> float:
@@ -50,9 +49,9 @@ def jaro_winkler(str1: str, str2: str) -> float:
     match_count = len(matching_1)
 
     # transposition
-    transpositions = math.floor(len(
+    transpositions = len(
         [(c1, c2) for c1, c2 in zip(matching_1, matching_2) if c1 != c2]
-    )) / 2
+    ) // 2
 
     if not match_count:
         jaro = 0.0
