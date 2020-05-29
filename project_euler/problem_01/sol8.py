@@ -18,7 +18,7 @@ def solution(n):
     >>> solution(600)
     83700
     """
-    return sum(set(range(0,n,3)).union(set(range(0,n,5))))
+    return sum(set(range(0, n, 3)).union(set(range(0, n, 5))))
 
 
 if __name__ == "__main__":
