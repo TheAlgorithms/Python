@@ -5,6 +5,7 @@ we get 3,5,6 and 9. The sum of these multiples is 23.
 Find the sum of all the multiples of 3 or 5 below N.
 """
 
+
 def solution(n: int) -> int:
     """Returns the sum of all the multiples of 3 or 5 below n.
     What unique about this solution?
