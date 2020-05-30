@@ -72,7 +72,7 @@ class LinkedList:           #making main class named linked list
             current.displayLink()
             current = current.next  
         print()
-    def size(self):
+    def __len__(self):
         return self.size
 class Link:
     next = None                                       #This points to the link in front of the new link
