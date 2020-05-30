@@ -9,7 +9,7 @@ def current_weather(q: str = "Chicago", appid: str = APPID) -> dict:
     return requests.get(URL_BASE + "weather", params=locals()).json()
 
 
-def weather_forecast(q: str = "New York", appid: str = APPID) -> dict:
+def weather_forecast(q: str = "Kolkata, India", appid: str = APPID) -> dict:
     """https://openweathermap.org/forecast5"""
     return requests.get(URL_BASE + "forecast", params=locals()).json()
 
