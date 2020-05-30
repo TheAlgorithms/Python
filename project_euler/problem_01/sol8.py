@@ -9,7 +9,7 @@ Find the sum of all the multiples of 3 or 5 below N.
 def solution(n):
     """Returns the sum of all the multiples of 3 or 5 below n.
     What unique about this solution?
-    Although this solution is slower than previous solutions, 
+    Although this solution is slower than previous solutions,
     but it is more elegant and clear.
     It uses Python features to do some logic,
     like using range's step to check for only multiples of 3 and 5
