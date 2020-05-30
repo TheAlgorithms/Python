@@ -8,7 +8,7 @@ e.g. for 10, largest prime factor = 5. For 17, largest prime factor = 17.
 from math import sqrt, ceil
 
 
-def solution(n):
+def solution(n: int) -> int:
     """Returns the largest prime factor of a given number n.
 
     What unique about this solution?
@@ -31,21 +31,12 @@ def solution(n):
     Traceback (most recent call last):
         ...
     ValueError: Parameter n must be greater or equal to one.
-    >>> solution([])
-    Traceback (most recent call last):
-        ...
-    TypeError: Parameter n must be int or passive of cast to int.
-    >>> solution("asd")
-    Traceback (most recent call last):
-        ...
-    TypeError: Parameter n must be int or passive of cast to int.
     """
-    try:
-        n = int(n)
-    except (TypeError, ValueError):
-        raise TypeError("Parameter n must be int or passive of cast to int.")
+    n = int(n)
     if n <= 0:
         raise ValueError("Parameter n must be greater or equal to one.")
+    if n == 1:
+        return n
     p, s = 2, set()
     while p <= ceil(sqrt(n)):
         while n % p == 0:
