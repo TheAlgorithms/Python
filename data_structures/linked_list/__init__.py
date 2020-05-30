@@ -5,7 +5,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-        self.size=0
+        self.size = 0
 
     def add(self, item):
         self.head = Node(item, self.head)
