@@ -2,7 +2,6 @@ class Node:
     def __init__(self, item, next):
         self.item = item
         self.next = next
-
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -20,8 +19,7 @@ class LinkedList:
             self.head = self.head.next
             self.size-=1
             return item
-
     def is_empty(self):
         return self.head is None
-    def size(self):
+    def __len__(self):
         return self.size
