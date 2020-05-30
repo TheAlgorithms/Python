@@ -1,4 +1,4 @@
-""" https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance """
+"""https://en.wikipedia.org/wiki/Jaro%E2%80%93Winkler_distance"""
 
 
 def jaro_winkler(str1: str, str2: str) -> float:
@@ -8,30 +8,23 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
     >>> jaro_winkler("martha", "marhta")
     0.9611111111111111
-
     >>> jaro_winkler("CRATE", "TRACE")
     0.7333333333333334
-
     >>> jaro_winkler("test", "dbdbdbdb")
     0.0
-
     >>> jaro_winkler("test", "test")
     1.0
-
     >>> jaro_winkler("hello world", "HeLLo W0rlD")
     0.6363636363636364
-
     >>> jaro_winkler("test", "")
     0.0
-
     >>> jaro_winkler("hello", "world")
     0.4666666666666666
-
     >>> jaro_winkler("hell**o", "*world")
     0.4365079365079365
     """
 
-    def get_matched_characters(_str1, _str2):
+    def get_matched_characters(_str1: str, _str2: str) -> str:
         matched = []
         limit = min(len(_str1), len(_str2)) // 2
         for i, l in enumerate(_str1):
@@ -73,4 +66,6 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
 
 if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
     print(jaro_winkler("hello", "world"))
