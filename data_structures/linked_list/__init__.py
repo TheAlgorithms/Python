@@ -21,5 +21,5 @@ class LinkedList:
             return item
     def is_empty(self):
         return self.head is None
-    def __len__(self):
+    def __len__(self): #add python predefined len function
         return self.size
