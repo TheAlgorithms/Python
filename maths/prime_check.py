@@ -25,6 +25,7 @@ def prime_check(number):
     odd_numbers = range(3, int(math.sqrt(number)) + 1, 2)
     return not any(number % i == 0 for i in odd_numbers)
 
+
 class Test(unittest.TestCase):
     def test_primes(self):
         self.assertTrue(prime_check(2))
