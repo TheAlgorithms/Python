@@ -12,12 +12,12 @@
 class LinkedList:  # making main class named linked list
     """
     >>> linked_list = LinkedList()
-    >>> linked_list.insert_head("a")
-    >>> linked_list.insert_tail("b")
-    >>> _ = linked_list.delete_tail()
+    >>> linked_list.insertHead("a")
+    >>> linked_list.insertTail("b")
+    >>> _ = linked_list.deleteTail()
     >>> linked_list.isEmpty()
     True
-    >>> linked_list.delete_head()
+    >>> linked_list.deleteHead()
     None
     >>> linked_list.isEmpty()
     False
