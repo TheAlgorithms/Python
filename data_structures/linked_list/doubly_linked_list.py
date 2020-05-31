@@ -41,7 +41,7 @@ class LinkedList:
         temp = self.head
         self.head = self.head.next  # oldHead <--> 2ndElement(head) 
         self.head.previous = None  # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
-        if(self.head is None):
+        if not self.head:
             self.tail = None  # if empty linked list
         self.size-=1
         return temp
