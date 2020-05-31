@@ -10,6 +10,18 @@
 
 
 class LinkedList:  # making main class named linked list
+    """
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert_head("a")
+    >>> linked_list.insert_tail("b")
+    >>> _ = linked_list.delete_tail()
+    >>> linked_list.isEmpty()
+    True
+    >>> linked_list.delete_head()
+    None
+    >>> linked_list.isEmpty()
+    False
+    """
     def __init__(self):
         self.head = None
         self.tail = None
