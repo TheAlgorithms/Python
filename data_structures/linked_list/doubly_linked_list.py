@@ -11,7 +11,7 @@
 
 
 class Link:
-    next = None      # This points to the link in front of the new link
+    next = None  # This points to the link in front of the new link
     previous = None  # This points to the link behind the new link
 
     def __init__(self, x):
@@ -25,8 +25,8 @@ class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
-        self.size=0
-        
+        self.size = 0
+
     def insert_head(self, x):
         newLink = Link(x)  # Create a new link with a value attached to it
         if self.isEmpty():  # Set the first element added to be the tail
@@ -35,15 +35,15 @@ class LinkedList:
             self.head.previous = newLink  # newLink <-- currenthead(head)
         newLink.next = self.head  # newLink <--> currenthead(head)
         self.head = newLink  # newLink(head) <--> oldhead
-        self.size+=1
-    
+        self.size += 1
+
     def delete_head(self):
         temp = self.head
-        self.head = self.head.next  # oldHead <--> 2ndElement(head) 
+        self.head = self.head.next  # oldHead <--> 2ndElement(head)
         self.head.previous = None  # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
         if not self.head:
             self.tail = None  # if empty linked list
-        self.size-=1
+        self.size -= 1
         return temp
 
     def insert_tail(self, x):
@@ -52,21 +52,21 @@ class LinkedList:
         self.tail.next = newLink  # currentTail(tail) --> newLink -->
         newLink.previous = self.tail  # currentTail(tail) <--> newLink -->
         self.tail = newLink  # oldTail <--> newLink(tail) -->
-        self.size+=1
-    
+        self.size += 1
+
     def delete_tail(self):
         temp = self.tail
         self.tail = self.tail.previous  # 2ndLast(tail) <--> oldTail --> None
         self.tail.next = None  # 2ndlast(tail) --> None
-        self.size-=1
+        self.size -= 1
         return temp
-    
+
     def delete(self, x):
         current = self.head
-        
+
         while current.value != x:  # Find the position to delete
             current = current.next
-            
+
         if current == self.head:
             self.deleteHead()
         elif current == self.tail:
@@ -78,12 +78,12 @@ class LinkedList:
 
     def is_empty(self):  # Will return True if the list is empty
         return self.head is None
-        
+
     def display(self):  # Prints contents of the list
         current = self.head
         while current != None:
             current.displayLink()
-            current = current.next  
+            current = current.next
         print()
 
     def __len__(self):
