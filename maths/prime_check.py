@@ -22,9 +22,8 @@ def prime_check(number):
 
     # Except 2, all primes are odd. If any odd value divide
     # the number, then that number is not prime.
-    # prime number all are in 6k+1 or 6k-1 form where k belongs to integers so i have modified range(5,root(n),6)
-    special_number=range(5,int(math.sqrt(number)),6)
-    return not any((number % i == 0 or number%(i+2)==0) for i in special_number)
+    odd_numbers = range(3, int(math.sqrt(number)) + 1, 2)
+    return not any(number % i == 0 for i in odd_numbers)
 
 
 class Test(unittest.TestCase):
