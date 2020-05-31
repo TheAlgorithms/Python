@@ -34,7 +34,7 @@ def jaro_winkler(str1: str, str2: str) -> float:
                 matched.append(l)
                 _str2 = f"{_str2[0:_str2.index(l)]} {_str2[_str2.index(l) + 1:]}"
 
-        return ''.join(matched)
+        return "".join(matched)
 
     # matching characters
     matching_1 = get_matched_characters(str1, str2)
@@ -42,17 +42,22 @@ def jaro_winkler(str1: str, str2: str) -> float:
     match_count = len(matching_1)
 
     # transposition
-    transpositions = len(
-        [(c1, c2) for c1, c2 in zip(matching_1, matching_2) if c1 != c2]
-    ) // 2
+    transpositions = (
+        len([(c1, c2) for c1, c2 in zip(matching_1, matching_2) if c1 != c2]) // 2
+    )
 
     if not match_count:
         jaro = 0.0
     else:
-        jaro = 1 / 3 * (
-            match_count / len(str1)
-            + match_count / len(str2)
-            + (match_count - transpositions) / match_count)
+        jaro = (
+            1
+            / 3
+            * (
+                match_count / len(str1)
+                + match_count / len(str2)
+                + (match_count - transpositions) / match_count
+            )
+        )
 
     # common prefix up to 4 characters
     prefix_len = 0
@@ -65,7 +70,8 @@ def jaro_winkler(str1: str, str2: str) -> float:
     return jaro + 0.1 * prefix_len * (1 - jaro)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print(jaro_winkler("hello", "world"))
