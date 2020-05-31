@@ -28,13 +28,13 @@ class LinkedList:
         self.size = 0
 
     def insert_head(self, x):
-        newLink = Link(x)  # Create a new link with a value attached to it
-        if self.isEmpty():  # Set the first element added to be the tail
-            self.tail = newLink
+        new_link = Link(x)  # Create a new link with a value attached to it
+        if self.is_empty():  # Set the first element added to be the tail
+            self.tail = new_link
         else:
-            self.head.previous = newLink  # newLink <-- currenthead(head)
-        newLink.next = self.head  # newLink <--> currenthead(head)
-        self.head = newLink  # newLink(head) <--> oldhead
+            self.head.previous = new_link  # new_link <-- currenthead(head)
+        new_link.next = self.head  # new_link <--> currenthead(head)
+        self.head = new_link  # new_link(head) <--> oldhead
         self.size += 1
 
     def delete_head(self):
