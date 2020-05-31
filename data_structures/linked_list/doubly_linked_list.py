@@ -3,19 +3,29 @@
 - This is an example of a double ended, doubly linked list.
 - Each link references the next link and the previous one.
 - A Doubly Linked List (DLL) contains an extra pointer, typically called previous pointer, together with next pointer and data which are there in singly linked list.
- - Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficent'''
-from __future__ import print_function
+- Advantages over SLL - IT can be traversed in both forward and backward direction.,Delete operation is more efficent
+'''
+
+class Link:
+    next = None                                       #This points to the link in front of the new link
+    previous = None                                   #This points to the link behind the new link
+
+    def __init__(self, x):
+        self.value = x
+
+    def displayLink(self):
+        print(self.value, end=" ")
 
 
-class LinkedList:           #making main class named linked list
+class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
         self.size=0
         
-    def insertHead(self, x):
-        newLink = Link(x)                            #Create a new link with a value attached to it
-        if(self.isEmpty() == True):                  #Set the first element added to be the tail
+    def insert_head(self, x):
+        newLink = Link(x)                            # Create a new link with a value attached to it
+        if self.isEmpty():                           # Set the first element added to be the tail
             self.tail = newLink
         else:
             self.head.previous = newLink             # newLink <-- currenthead(head)
@@ -23,7 +33,7 @@ class LinkedList:           #making main class named linked list
         self.head = newLink                          # newLink(head) <--> oldhead
         self.size+=1
     
-    def deleteHead(self):
+    def delete_head(self):
         temp = self.head
         self.head = self.head.next                   # oldHead <--> 2ndElement(head) 
         self.head.previous = None                    # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be removed
@@ -32,7 +42,7 @@ class LinkedList:           #making main class named linked list
         self.size-=1
         return temp
     
-    def insertTail(self, x):
+    def insert_tail(self, x):
         newLink = Link(x)
         newLink.next = None                         # currentTail(tail)    newLink -->
         self.tail.next = newLink                    # currentTail(tail) --> newLink -->
@@ -40,7 +50,7 @@ class LinkedList:           #making main class named linked list
         self.tail = newLink                         # oldTail <--> newLink(tail) -->
         self.size+=1
     
-    def deleteTail(self):
+    def delete_tail(self):
         temp = self.tail
         self.tail = self.tail.previous              # 2ndLast(tail) <--> oldTail --> None
         self.tail.next = None                       # 2ndlast(tail) --> None
@@ -63,21 +73,33 @@ class LinkedList:           #making main class named linked list
             current.previous.next = current.next # 1 --> 3
             current.next.previous = current.previous # 1 <--> 3
        self.size-=1
-    def isEmpty(self):                               #Will return True if the list is empty
-        return(self.head is None)
+
+    def is_empty(self):                               #Will return True if the list is empty
+        return self.head is None
         
     def display(self):                                #Prints contents of the list
         current = self.head
-        while(current != None):
+        while current != None:
             current.displayLink()
             current = current.next  
         print()
+
     def __len__(self):
+        """
+        >>> linked_list = LinkedList()
+        >>> len(linked_list)
+        0
+        >>> linked_list.insert_head("a")
+        >>> len(linked_list)
+        1
+        >>> linked_list.insert_tail("b")
+        >>> len(linked_list)
+        2
+        >>> _ = linked_list.delete_tail()
+        >>> len(linked_list)
+        1
+        >>> _ = linked_list.delete_head()
+        >>> len(linked_list)
+        0
+        """
         return self.size
-class Link:
-    next = None                                       #This points to the link in front of the new link
-    previous = None                                   #This points to the link behind the new link
-    def __init__(self, x):
-        self.value = x
-    def displayLink(self):
-        print("{}".format(self.value), end=" ")
