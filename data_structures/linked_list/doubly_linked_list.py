@@ -11,7 +11,7 @@
 
 
 class Link:
-    next = None.     # This points to the link in front of the new link
+    next = None      # This points to the link in front of the new link
     previous = None  # This points to the link behind the new link
 
     def __init__(self, x):
