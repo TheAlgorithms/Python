@@ -45,7 +45,7 @@ class LinkedList:
             self.tail = None  # if empty linked list
         self.size-=1
         return temp
-    
+
     def insert_tail(self, x):
         newLink = Link(x)
         newLink.next = None  # currentTail(tail)    newLink -->
