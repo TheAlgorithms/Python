@@ -37,7 +37,7 @@ class CircularLinkedList:
         >>> cll.append(1)
         >>> len(cll)
         1
-        >>> cll.preappend(0)
+        >>> cll.prepend(0)
         >>> len(cll)
         2
         >>> cll.delete_front()
