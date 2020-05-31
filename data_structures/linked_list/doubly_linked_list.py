@@ -16,11 +16,11 @@ class LinkedList:  # making main class named linked list
     >>> linked_list.insertTail("b")
     >>> _ = linked_list.deleteTail()
     >>> linked_list.isEmpty()
-    True
+    False
     >>> linked_list.deleteHead()
     None
     >>> linked_list.isEmpty()
-    False
+    True
     """
 
     def __init__(self):
