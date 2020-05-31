@@ -146,15 +146,15 @@ class CircularLinkedList:
         current_node = self.head
 
         if current_node.next_ptr == current_node:
-            self.head, self.length = None, 0
+            self.head = None
+            self.length = 0
         else:
             while current_node.next_ptr != self.head:
                 current_node = current_node.next_ptr
 
             current_node.next_ptr = self.head.next_ptr
             self.head = self.head.next_ptr
-
-        self.length -= 1
+            self.length -= 1
 
     def delete_rear(self) -> None:
         """
@@ -178,15 +178,15 @@ class CircularLinkedList:
         temp_node, current_node = self.head, self.head
 
         if current_node.next_ptr == current_node:
-            self.head, self.length = None, 0
+            self.head = None
+            self.length = 0
         else:
             while current_node.next_ptr != self.head:
                 temp_node = current_node
                 current_node = current_node.next_ptr
 
             temp_node.next_ptr = current_node.next_ptr
-
-        self.length -= 1
+            self.length -= 1
 
 
 if __name__ == "__main__":
