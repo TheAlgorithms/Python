@@ -139,6 +139,9 @@ class CircularLinkedList:
         >>> cll.delete_front()
         >>> print(f"{len(cll)}: {cll}")
         1: <Node data=2>
+        >>> cll.delete_front()
+        >>> print(f"{len(cll)}: {cll}")
+        0: Empty linked list
         """
         if not self.head:
             raise IndexError("Deleting from an empty list")
@@ -147,14 +150,16 @@ class CircularLinkedList:
 
         if current_node.next_ptr == current_node:
             self.head = None
-            self.length = 0
         else:
             while current_node.next_ptr != self.head:
                 current_node = current_node.next_ptr
 
             current_node.next_ptr = self.head.next_ptr
             self.head = self.head.next_ptr
-            self.length -= 1
+
+        self.length -= 1
+        if not self.head:
+            assert self.length == 0
 
     def delete_rear(self) -> None:
         """
@@ -171,6 +176,9 @@ class CircularLinkedList:
         >>> cll.delete_rear()
         >>> print(f"{len(cll)}: {cll}")
         1: <Node data=1>
+        >>> cll.delete_rear()
+        >>> print(f"{len(cll)}: {cll}")
+        0: Empty linked list
         """
         if not self.head:
             raise IndexError("Deleting from an empty list")
@@ -179,14 +187,16 @@ class CircularLinkedList:
 
         if current_node.next_ptr == current_node:
             self.head = None
-            self.length = 0
         else:
             while current_node.next_ptr != self.head:
                 temp_node = current_node
                 current_node = current_node.next_ptr
 
             temp_node.next_ptr = current_node.next_ptr
-            self.length -= 1
+
+        self.length -= 1
+        if not self.head:
+            assert self.length == 0
 
 
 if __name__ == "__main__":
