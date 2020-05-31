@@ -22,6 +22,7 @@ class LinkedList:  # making main class named linked list
     >>> linked_list.isEmpty()
     False
     """
+
     def __init__(self):
         self.head = None
         self.tail = None
