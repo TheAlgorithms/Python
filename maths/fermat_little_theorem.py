@@ -6,10 +6,10 @@
 
 def binary_exponentiation(a, n, mod):
 
-    if (n == 0):
+    if n == 0:
         return 1
 
-    elif (n % 2 == 1):
+    elif n % 2 == 1:
         return (binary_exponentiation(a, n - 1, mod) * a) % mod
 
     else:

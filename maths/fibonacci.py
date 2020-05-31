@@ -21,10 +21,11 @@ def timer_decorator(func):
         func(*args, **kwargs)
         end = time.time()
         if int(end - start) > 0:
-            print(f'Run time for {func.__name__}: {(end - start):0.2f}s')
+            print(f"Run time for {func.__name__}: {(end - start):0.2f}s")
         else:
-            print(f'Run time for {func.__name__}: {(end - start)*1000:0.2f}ms')
+            print(f"Run time for {func.__name__}: {(end - start)*1000:0.2f}ms")
         return func(*args, **kwargs)
+
     return timer_wrapper
 
 
@@ -69,9 +70,13 @@ def _check_number_input(n, min_thresh, max_thresh=None):
     except ValueLessThanZero:
         print("Incorrect Input: number must not be less than 0")
     except ValueTooSmallError:
-        print(f'Incorrect Input: input number must be > {min_thresh} for the recursive calculation')
+        print(
+            f"Incorrect Input: input number must be > {min_thresh} for the recursive calculation"
+        )
     except ValueTooLargeError:
-        print(f'Incorrect Input: input number must be < {max_thresh} for the recursive calculation')
+        print(
+            f"Incorrect Input: input number must be < {max_thresh} for the recursive calculation"
+        )
     return False
 
 
@@ -86,8 +91,8 @@ def fib_iterative(n):
     if _check_number_input(n, 2):
         seq_out = [0, 1]
         a, b = 0, 1
-        for _ in range(n-len(seq_out)):
-            a, b = b, a+b
+        for _ in range(n - len(seq_out)):
+            a, b = b, a + b
             seq_out.append(b)
         return seq_out
 
@@ -106,12 +111,14 @@ def fib_formula(n):
         phi_1 = Decimal(1 + sqrt) / Decimal(2)
         phi_2 = Decimal(1 - sqrt) / Decimal(2)
         for i in range(2, n):
-            temp_out = ((phi_1**Decimal(i)) - (phi_2**Decimal(i))) * (Decimal(sqrt) ** Decimal(-1))
+            temp_out = ((phi_1 ** Decimal(i)) - (phi_2 ** Decimal(i))) * (
+                Decimal(sqrt) ** Decimal(-1)
+            )
             seq_out.append(int(temp_out))
         return seq_out
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     num = 20
     # print(f'{fib_recursive(num)}\n')
     # print(f'{fib_iterative(num)}\n')

@@ -9,7 +9,7 @@
 def dfs(u, graph, visited_edge, path=[]):
     path = path + [u]
     for v in graph[u]:
-        if visited_edge[u][v] == False:
+        if visited_edge[u][v] is False:
             visited_edge[u][v], visited_edge[v][u] = True, True
             path = dfs(v, graph, visited_edge, path)
     return path
@@ -50,32 +50,10 @@ def check_euler(graph, max_node):
 
 
 def main():
-    G1 = {
-        1: [2, 3, 4],
-        2: [1, 3],
-        3: [1, 2],
-        4: [1, 5],
-        5: [4]
-    }
-    G2 = {
-        1: [2, 3, 4, 5],
-        2: [1, 3],
-        3: [1, 2],
-        4: [1, 5],
-        5: [1, 4]
-    }
-    G3 = {
-        1: [2, 3, 4],
-        2: [1, 3, 4],
-        3: [1, 2],
-        4: [1, 2, 5],
-        5: [4]
-    }
-    G4 = {
-        1: [2, 3],
-        2: [1, 3],
-        3: [1, 2],
-    }
+    G1 = {1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [4]}
+    G2 = {1: [2, 3, 4, 5], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [1, 4]}
+    G3 = {1: [2, 3, 4], 2: [1, 3, 4], 3: [1, 2], 4: [1, 2, 5], 5: [4]}
+    G4 = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
     G5 = {
         1: [],
         2: []

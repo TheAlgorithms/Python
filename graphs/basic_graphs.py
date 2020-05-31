@@ -1,51 +1,43 @@
-from __future__ import print_function
+from collections import deque
 
-try:
-    raw_input  # Python 2
-except NameError:
-    raw_input = input  # Python 3
 
-try:
-    xrange  # Python 2
-except NameError:
-    xrange = range  # Python 3
+if __name__ == "__main__":
+    # Accept No. of Nodes and edges
+    n, m = map(int, input().split(" "))
 
-# Accept No. of Nodes and edges
-n, m = map(int, raw_input().split(" "))
+    # Initialising Dictionary of edges
+    g = {}
+    for i in range(n):
+        g[i + 1] = []
 
-# Initialising Dictionary of edges
-g = {}
-for i in xrange(n):
-    g[i + 1] = []
+    """
+    ----------------------------------------------------------------------------
+        Accepting edges of Unweighted Directed Graphs
+    ----------------------------------------------------------------------------
+    """
+    for _ in range(m):
+        x, y = map(int, input().strip().split(" "))
+        g[x].append(y)
 
-"""
---------------------------------------------------------------------------------
-    Accepting edges of Unweighted Directed Graphs
---------------------------------------------------------------------------------
-"""
-for _ in xrange(m):
-    x, y = map(int, raw_input().split(" "))
-    g[x].append(y)
+    """
+    ----------------------------------------------------------------------------
+        Accepting edges of Unweighted Undirected Graphs
+    ----------------------------------------------------------------------------
+    """
+    for _ in range(m):
+        x, y = map(int, input().strip().split(" "))
+        g[x].append(y)
+        g[y].append(x)
 
-"""
---------------------------------------------------------------------------------
-    Accepting edges of Unweighted Undirected Graphs
---------------------------------------------------------------------------------
-"""
-for _ in xrange(m):
-    x, y = map(int, raw_input().split(" "))
-    g[x].append(y)
-    g[y].append(x)
-
-"""
---------------------------------------------------------------------------------
-    Accepting edges of Weighted Undirected Graphs
---------------------------------------------------------------------------------
-"""
-for _ in xrange(m):
-    x, y, r = map(int, raw_input().split(" "))
-    g[x].append([y, r])
-    g[y].append([x, r])
+    """
+    ----------------------------------------------------------------------------
+        Accepting edges of Weighted Undirected Graphs
+    ----------------------------------------------------------------------------
+    """
+    for _ in range(m):
+        x, y, r = map(int, input().strip().split(" "))
+        g[x].append([y, r])
+        g[y].append([x, r])
 
 """
 --------------------------------------------------------------------------------
@@ -59,7 +51,7 @@ for _ in xrange(m):
 
 
 def dfs(G, s):
-    vis, S = set([s]), [s]
+    vis, S = {s}, [s]
     print(s)
     while S:
         flag = 0
@@ -80,14 +72,13 @@ def dfs(G, s):
         Args :  G - Dictionary of edges
                 s - Starting Node
         Vars :  vis - Set of visited nodes
-                Q - Traveral Stack
+                Q - Traversal Stack
 --------------------------------------------------------------------------------
 """
-from collections import deque
 
 
 def bfs(G, s):
-    vis, Q = set([s]), deque([s])
+    vis, Q = {s}, deque([s])
     print(s)
     while Q:
         u = Q.popleft()
@@ -136,10 +127,11 @@ def dijk(G, s):
     Topological Sort
 --------------------------------------------------------------------------------
 """
-from collections import deque
 
 
-def topo(G, ind=None, Q=[1]):
+def topo(G, ind=None, Q=None):
+    if Q is None:
+        Q = [1]
     if ind is None:
         ind = [0] * (len(G) + 1)  # SInce oth Index is ignored
         for u in G:
@@ -168,9 +160,10 @@ def topo(G, ind=None, Q=[1]):
 
 
 def adjm():
-    n, a = raw_input(), []
-    for i in xrange(n):
-        a.append(map(int, raw_input().split()))
+    n = input().strip()
+    a = []
+    for i in range(n):
+        a.append(map(int, input().strip().split()))
     return a, n
 
 
@@ -190,10 +183,10 @@ def adjm():
 def floy(A_and_n):
     (A, n) = A_and_n
     dist = list(A)
-    path = [[0] * n for i in xrange(n)]
-    for k in xrange(n):
-        for i in xrange(n):
-            for j in xrange(n):
+    path = [[0] * n for i in range(n)]
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
                 if dist[i][j] > dist[i][k] + dist[k][j]:
                     dist[i][j] = dist[i][k] + dist[k][j]
                     path[i][k] = k
@@ -242,11 +235,11 @@ def prim(G, s):
 
 
 def edglist():
-    n, m = map(int, raw_input().split(" "))
-    l = []
-    for i in xrange(m):
-        l.append(map(int, raw_input().split(' ')))
-    return l, n
+    n, m = map(int, input().split(" "))
+    edges = []
+    for i in range(m):
+        edges.append(map(int, input().split(" ")))
+    return edges, n
 
 
 """
@@ -263,16 +256,16 @@ def krusk(E_and_n):
     # Sort edges on the basis of distance
     (E, n) = E_and_n
     E.sort(reverse=True, key=lambda x: x[2])
-    s = [set([i]) for i in range(1, n + 1)]
+    s = [{i} for i in range(1, n + 1)]
     while True:
         if len(s) == 1:
             break
         print(s)
         x = E.pop()
-        for i in xrange(len(s)):
+        for i in range(len(s)):
             if x[0] in s[i]:
                 break
-        for j in xrange(len(s)):
+        for j in range(len(s)):
             if x[1] in s[j]:
                 if i == j:
                     break

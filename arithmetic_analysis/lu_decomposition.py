@@ -28,9 +28,7 @@ def LUDecompose(table):
 
 
 if __name__ == "__main__":
-    matrix = numpy.array([[2, -2, 1],
-                          [0, 1, 2],
-                          [5, 3, 1]])
+    matrix = numpy.array([[2, -2, 1], [0, 1, 2], [5, 3, 1]])
     L, U = LUDecompose(matrix)
     print(L)
     print(U)

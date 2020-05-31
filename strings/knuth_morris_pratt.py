@@ -46,14 +46,14 @@ def get_failure_array(pattern):
         if pattern[i] == pattern[j]:
             i += 1
         elif i > 0:
-            i = failure[i-1]
+            i = failure[i - 1]
             continue
         j += 1
         failure.append(i)
     return failure
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Test 1)
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"

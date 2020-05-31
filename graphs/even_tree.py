@@ -12,7 +12,6 @@ Constraints
 Note: The tree input will be such that it can always be decomposed into
 components containing an even number of nodes.
 """
-from __future__ import print_function
 # pylint: disable=invalid-name
 from collections import defaultdict
 
@@ -46,23 +45,13 @@ def even_tree():
     dfs(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     n, m = 10, 9
     tree = defaultdict(list)
     visited = {}
     cuts = []
     count = 0
-    edges = [
-        (2, 1),
-        (3, 1),
-        (4, 3),
-        (5, 2),
-        (6, 1),
-        (7, 2),
-        (8, 6),
-        (9, 8),
-        (10, 8),
-    ]
+    edges = [(2, 1), (3, 1), (4, 3), (5, 2), (6, 1), (7, 2), (8, 6), (9, 8), (10, 8)]
     for u, v in edges:
         tree[u].append(v)
         tree[v].append(u)

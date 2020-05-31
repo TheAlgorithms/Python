@@ -24,11 +24,13 @@ def median(nums):
         med = sorted_list[mid_index]
     return med
 
+
 def main():
     print("Odd number of numbers:")
     print(median([2, 4, 6, 8, 20, 50, 70]))
     print("Even number of numbers:")
     print(median([2, 4, 6, 8, 20, 50]))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

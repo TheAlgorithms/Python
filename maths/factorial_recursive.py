@@ -1,14 +1,28 @@
-def fact(n):
+def factorial(n: int) -> int:
     """
-    Return 1, if n is 1 or below,
-    otherwise, return n * fact(n-1).
+    Calculate the factorial of a positive integer
+    https://en.wikipedia.org/wiki/Factorial
+
+    >>> import math
+    >>> all(factorial(i) == math.factorial(i) for i in range(20))
+    True
+    >>> factorial(0.1)
+    Traceback (most recent call last):
+        ...
+    ValueError: factorial() only accepts integral values
+    >>> factorial(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: factorial() not defined for negative values
     """
-    return 1 if n <= 1 else n * fact(n - 1)
+    if not isinstance(n, int):
+        raise ValueError("factorial() only accepts integral values")
+    if n < 0:
+        raise ValueError("factorial() not defined for negative values")
+    return 1 if n == 0 or n == 1 else n * factorial(n - 1)
 
 
-"""
-Show factorial for i,
-where i ranges from 1 to 20.
-"""
-for i in range(1, 21):
-    print(i, ": ", fact(i), sep='')
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

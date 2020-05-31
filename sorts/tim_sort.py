@@ -1,10 +1,6 @@
-from __future__ import print_function
 def binary_search(lst, item, start, end):
     if start == end:
-        if lst[start] > item:
-            return start
-        else:
-            return start + 1
+        return start if lst[start] > item else start + 1
     if start > end:
         return start
 
@@ -23,7 +19,7 @@ def insertion_sort(lst):
     for index in range(1, length):
         value = lst[index]
         pos = binary_search(lst, value, 0, index - 1)
-        lst = lst[:pos] + [value] + lst[pos:index] + lst[index+1:]
+        lst = lst[:pos] + [value] + lst[pos:index] + lst[index + 1 :]
 
     return lst
 
@@ -42,30 +38,34 @@ def merge(left, right):
 
 
 def tim_sort(lst):
-    runs, sorted_runs = [], []
+    """
+    >>> tim_sort("Python")
+    ['P', 'h', 'n', 'o', 't', 'y']
+    >>> tim_sort((1.1, 1, 0, -1, -1.1))
+    [-1.1, -1, 0, 1, 1.1]
+    >>> tim_sort(list(reversed(list(range(7)))))
+    [0, 1, 2, 3, 4, 5, 6]
+    >>> tim_sort([3, 2, 1]) == insertion_sort([3, 2, 1])
+    True
+    >>> tim_sort([3, 2, 1]) == sorted([3, 2, 1])
+    True
+    """
     length = len(lst)
+    runs, sorted_runs = [], []
     new_run = [lst[0]]
     sorted_array = []
-
-    for i in range(1, length):
-        if i == length - 1:
-            new_run.append(lst[i])
-            runs.append(new_run)
-            break
-
+    i = 1
+    while i < length:
         if lst[i] < lst[i - 1]:
-            if not new_run:
-                runs.append([lst[i - 1]])
-                new_run.append(lst[i])
-            else:
-                runs.append(new_run)
-                new_run = []
+            runs.append(new_run)
+            new_run = [lst[i]]
         else:
             new_run.append(lst[i])
+        i += 1
+    runs.append(new_run)
 
     for run in runs:
         sorted_runs.append(insertion_sort(run))
-
     for run in sorted_runs:
         sorted_array = merge(sorted_array, run)
 
@@ -74,9 +74,10 @@ def tim_sort(lst):
 
 def main():
 
-    lst = [5,9,10,3,-4,5,178,92,46,-18,0,7]
+    lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
     sorted_lst = tim_sort(lst)
     print(sorted_lst)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

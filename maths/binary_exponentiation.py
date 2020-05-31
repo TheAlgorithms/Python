@@ -6,10 +6,10 @@
 
 def binary_exponentiation(a, n):
 
-    if (n == 0):
+    if n == 0:
         return 1
 
-    elif (n % 2 == 1):
+    elif n % 2 == 1:
         return binary_exponentiation(a, n - 1) * a
 
     else:
@@ -17,11 +17,12 @@ def binary_exponentiation(a, n):
         return b * b
 
 
-try:
-    BASE = int(input('Enter Base : '))
-    POWER = int(input("Enter Power : "))
-except ValueError:
-    print("Invalid literal for integer")
+if __name__ == "__main__":
+    try:
+        BASE = int(input("Enter Base : ").strip())
+        POWER = int(input("Enter Power : ").strip())
+    except ValueError:
+        print("Invalid literal for integer")
 
-RESULT = binary_exponentiation(BASE, POWER)
-print("{}^({}) : {}".format(BASE, POWER, RESULT))
+    RESULT = binary_exponentiation(BASE, POWER)
+    print(f"{BASE}^({POWER}) : {RESULT}")
