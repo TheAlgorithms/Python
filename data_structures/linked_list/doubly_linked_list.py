@@ -32,9 +32,9 @@ class LinkedList:
         if self.isEmpty():  # Set the first element added to be the tail
             self.tail = newLink
         else:
-            self.head.previous = newLink. # newLink <-- currenthead(head)
-        newLink.next = self.head. # newLink <--> currenthead(head)
-        self.head = newLink. # newLink(head) <--> oldhead
+            self.head.previous = newLink  # newLink <-- currenthead(head)
+        newLink.next = self.head  # newLink <--> currenthead(head)
+        self.head = newLink  # newLink(head) <--> oldhead
         self.size+=1
     
     def delete_head(self):
