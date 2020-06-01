@@ -15,7 +15,7 @@ def naive_pattern_search(s: str, pattern: str) -> list:
     """
     >>> naive_pattern_search("ABAAABCDBBABCDDEBCABC", "ABC")
     [4, 10, 18]
-    >>> naive_pattern_search("ABAAABCDBBABCDDEBCABC", "ABC")
+    >>> naive_pattern_search("ABC", "ABAAABCDBBABCDDEBCABC")
     []
     >>> naive_pattern_search("", "ABC")
     []
