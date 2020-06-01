@@ -11,34 +11,33 @@ Complexity : O(n*m)
 """
 
 
-def naive_pattern_search(main_string: str, pattern: str) -> list:
+def naivePatternSearch(mainString: str, pattern: str) -> list:
     """
-    >>> naive_pattern_search("ABAAABCDBBABCDDEBCABC", "ABC")
+    >>> naivePatternSearch("ABAAABCDBBABCDDEBCABC", "ABC")
     [4, 10, 18]
 
-    >>> naive_pattern_search("", "ABC")
+    >>> naivePatternSearch("", "ABC")
     []
 
-    >>> naive_pattern_search("TEST", "TEST")
+    >>> naivePatternSearch("TEST", "TEST")
     [0]
 
-    >>> naive_pattern_search("ABCDEGFTEST", "TEST")
+    >>> naivePatternSearch("ABCDEGFTEST", "TEST")
     [7]
     """
-    pat_len, str_len = len(pattern), len(main_string)
-    positions = []
-    for i in range(str_len - pat_len + 1):
-        found = True
-        for j in range(pat_len):
-            if main_string[i + j] != pattern[j]:
-                found = False
+    patLen = len(pattern)
+    strLen = len(mainString)
+    position = []
+    for i in range(strLen - patLen + 1):
+        match_found = True
+        for j in range(patLen):
+            if mainString[i + j] != pattern[j]:
+                match_found = False
                 break
-
-        if found:
-            positions.append(i)
-
-    return positions
+        if match_found:
+            position.append(i)
+    return position
 
 
 if __name__ == "__main__":
-    assert naive_pattern_search("ABCDEFG", "DE") == [3]
+    assert naivePatternSearch("ABCDEFG", "DE") == [3]
