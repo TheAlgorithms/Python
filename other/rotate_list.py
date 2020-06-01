@@ -19,7 +19,5 @@ def rotate(nums, rotate_index):
     """
     :type nums: List[int]
     :type rotate_index: int
-    :return: List[int]
     """
     nums[:] = nums[len(nums) - rotate_index:] + nums[:len(nums) - rotate_index]
-    return nums
