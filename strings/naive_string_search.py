@@ -38,3 +38,7 @@ def naive_pattern_search(main_string: str, pattern: str) -> list:
             positions.append(i)
 
     return positions
+
+
+if __name__ == "__main__":
+    assert [3] == naive_pattern_search("ABCDEFG", "DE")
