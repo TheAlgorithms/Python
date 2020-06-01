@@ -20,8 +20,8 @@ def rotate(nums: List[int], rotate_index: int) -> List[int]:
     >>> rotate([1, 2, 3, 4, 5, 6, 7], 3)
     [5, 6, 7, 1, 2, 3, 4]
     >>> rotate([1, 2, 3, 4, 5, 6, 7], -3)
-    ["?"]
-    >>> rotate([1, 2, 3, 4, 5, 6, 7], -3.0)
+    [1, 2, 3, 4, 5, 6, 7]
+    >>> rotate([1, 2, 3, 4, 5, 6, 7], 3.0)
     ["?"]
     >>> rotate("TheAlgorithms/Python", -6)
     ["?"]
