@@ -3,7 +3,7 @@ import requests, json
 # beautifulsoup4
 from bs4 import BeautifulSoup
 
-def searchDisplay(username):
+def searchDisplay(username='nike'):
     # base url for the data
     url = 'https://www.instagram.com/{}/'.format(username)
     try:
