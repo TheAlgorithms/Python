@@ -41,4 +41,4 @@ def naive_pattern_search(main_string: str, pattern: str) -> list:
 
 
 if __name__ == "__main__":
-    assert [3] == naive_pattern_search("ABCDEFG", "DE")
+    assert naive_pattern_search("ABCDEFG", "DE") == [3]
