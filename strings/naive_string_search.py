@@ -15,6 +15,8 @@ def naive_pattern_search(s: str, pattern: str) -> list:
     """
     >>> naive_pattern_search("ABAAABCDBBABCDDEBCABC", "ABC")
     [4, 10, 18]
+    >>> naive_pattern_search("ABAAABCDBBABCDDEBCABC", "ABC")
+    []
     >>> naive_pattern_search("", "ABC")
     []
     >>> naive_pattern_search("TEST", "TEST")
@@ -27,7 +29,7 @@ def naive_pattern_search(s: str, pattern: str) -> list:
     for i in range(len(s) - pat_len + 1):
         match_found = True
         for j in range(pat_len):
-            if main_string[i + j] != pattern[j]:
+            if s[i + j] != pattern[j]:
                 match_found = False
                 break
         if match_found:
