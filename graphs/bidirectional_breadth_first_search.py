@@ -3,7 +3,6 @@ https://en.wikipedia.org/wiki/Bidirectional_search
 """
 
 import time
-from math import sqrt
 from typing import List, Tuple
 
 grid = [
