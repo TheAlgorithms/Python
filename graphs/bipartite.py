@@ -41,6 +41,7 @@ the black color.
 
 """
 
+
 def bipartite(partition: list, adjacent_edges: list) -> int:
     test = 0
     while test < len(partition):
@@ -81,9 +82,9 @@ def colour(adjacent_edges):  # Assigning alternative colours to the nodes of the
 if __name__ == '__main__':
     user_input = sys.stdin.read()
     data = list(map(int, user_input.split()))
-    n, m, *data = data
-    edges = list(zip(data[0:(2 * m):2], data[1:(2 * m):2]))
-    adjacent_edges = [[] for _ in range(n)]
+    vertices, no_of_edges, *data = data
+    edges = list(zip(data[0:(2 * no_of_edges):2], data[1:(2 * no_of_edges):2]))
+    adjacent_edges = [[] for _ in range(vertices)]
     for (a, b) in edges:
         adjacent_edges[a - 1].append(b - 1)
         adjacent_edges[b - 1].append(a - 1)
