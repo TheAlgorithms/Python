@@ -9,7 +9,7 @@ An alternative definition is the following: a graph is bipartite if its vertices
 (say, black and white) such that the endpoints of each edge have different colors.
 """
 
-def bipartite(partition, adj):
+def bipartite(partition: list, adj: list) -> int:
     test = 0
     while test < len(partition):
         node = partition[test]
