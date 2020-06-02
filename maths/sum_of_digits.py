@@ -2,9 +2,9 @@ def sum_of_digits(n: int) -> int:
     """
     Find the sum of digits of a number.
 
-    >>> digit_sum(12345)
+    >>> sum_of_digits(12345)
     15
-    >>> digit_sum(123)
+    >>> sum_of_digits(123)
     6
     """
     res = 0
@@ -15,4 +15,4 @@ def sum_of_digits(n: int) -> int:
 
 
 if __name__ == "__main__":
-    print(digit_sum(12345))  # ===> 15
+    print(sum_of_digits(12345))  # ===> 15
