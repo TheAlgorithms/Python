@@ -15,4 +15,4 @@ def sum_of_digits(n: int) -> int:
 
 
 if __name__ == "__main__":
-    print(digit_sum(12345))   # ===> 15
+    print(digit_sum(12345))  # ===> 15
