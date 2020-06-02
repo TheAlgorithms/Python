@@ -12,7 +12,6 @@ An alternative definition is the following: a graph is bipartite if its vertices
 """
 
 Sample 1.
-
 Input:
 4 4
 1 2
@@ -21,10 +20,6 @@ Input:
 3 1
 Output:
 0
-
-Explaination: This graph is not bipartite. To see this assume that the vertex 1 is colored white.
-Then the vertices 2 and 3 should be colored black since the graph contains the edges
-{1, 2} and {1, 3}. But then the edge {2, 3} has both endpoints of the same color.
 
 Sample 2.
 Input:
@@ -35,9 +30,6 @@ Input:
 1 4
 Output:
 1
-
-Explaination: This graph is bipartite: assign the vertices 4 and 5 the white color, assign all the remaining vertices
-the black color.
 
 """
 
