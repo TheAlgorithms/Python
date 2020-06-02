@@ -1,4 +1,4 @@
-def digit_sum(n: int) -> int:
+def sum_of_digits(n: int) -> int:
     """
     Find the sum of digits of a number.
 
