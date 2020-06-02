@@ -9,11 +9,11 @@ An alternative definition is the following: a graph is bipartite if its vertices
 (say, black and white) such that the endpoints of each edge have different colors.
 """
 
-def bipartite(partition: list, adj: list) -> int:
+def bipartite(partition: list, adjacent_edges: list) -> int:
     test = 0
     while test < len(partition):
         node = partition[test]
-        for i in adj[test]:
+        for i in adjacent_edges[test]:
             if node == 'W':
                 if partition[i] == 'W':
                     return 0
@@ -24,16 +24,16 @@ def bipartite(partition: list, adj: list) -> int:
     return 1
 
 
-def colour(adj):  # Assigning alternative colours to the nodes of the graph
+def colour(adjacent_edges):  # Assigning alternative colours to the nodes of the graph
     queue = []
     queue.append(0)
-    partition = ['c'] * len(adj)
+    partition = ['c'] * len(adjacent_edges)
     partition[0] = 'W'
     step = 2
     while queue:
         node = queue.pop(0)
         flag = 0
-        for i in adj[node]:
+        for i in adjacent_edges[node]:
             if partition[i] == 'c':
                 flag = 1
                 queue.append(i)
@@ -43,7 +43,7 @@ def colour(adj):  # Assigning alternative colours to the nodes of the graph
                     partition[i] = 'W'
         if flag == 1:
             step += 1
-    return bipartite(partition, adj)  # return 1 if the graph is bipartite and 0 otherwise.
+    return bipartite(partition, adjacent_edges)  # return 1 if the graph is bipartite and 0 otherwise.
 
 
 if __name__ == '__main__':
@@ -51,8 +51,8 @@ if __name__ == '__main__':
     data = list(map(int, user_input.split()))
     n, m, *data = data
     edges = list(zip(data[0:(2 * m):2], data[1:(2 * m):2]))
-    adj = [[] for _ in range(n)]
+    adjacent_edges = [[] for _ in range(n)]
     for (a, b) in edges:
-        adj[a - 1].append(b - 1)
-        adj[b - 1].append(a - 1)
-    print(colour(adj))
+        adjacent_edges[a - 1].append(b - 1)
+        adjacent_edges[b - 1].append(a - 1)
+    print(colour(adjacent_edges))
