@@ -40,7 +40,7 @@ class BreadthFirstSearch:
     >>> bfs.retrace_path(bfs.start)
     [(0, 0)]
     >>> bfs.search()  # doctest: +NORMALIZE_WHITESPACE
-    [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), 
+    [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1),
      (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
     def __init__(self, start, goal):
@@ -107,7 +107,7 @@ class BidirectionalBreadthFirstSearch:
     ...                                     bd_bfs.bwd_bfs.start)
     [(0, 0)]
     >>> bd_bfs.search()  # doctest: +NORMALIZE_WHITESPACE
-    [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3), 
+    [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3),
      (2, 4), (3, 4), (3, 5), (3, 6), (4, 6), (5, 6), (6, 6)]
     """
     def __init__(self, start, goal):
