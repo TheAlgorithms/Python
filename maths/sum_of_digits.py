@@ -7,11 +7,10 @@ def digit_sum(n: int) -> int:
     >>> digit_sum(123)
     6
     """
-    res=0
+    res = 0
     while n > 0:
         res += n % 10
         n = n // 10
-    
     return res
 
 
