@@ -15,4 +15,4 @@ def num_digits(n: int) -> int:
 
 
 if __name__ == "__main__":
-    print(num_digits(12345))   # ===> 5
+    print(num_digits(12345))  # ===> 5
