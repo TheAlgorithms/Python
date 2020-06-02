@@ -9,6 +9,38 @@ An alternative definition is the following: a graph is bipartite if its vertices
 (say, black and white) such that the endpoints of each edge have different colors.
 """
 
+"""
+
+Sample 1.
+
+Input:
+4 4
+1 2
+4 1
+2 3
+3 1
+Output:
+0
+
+Explaination: This graph is not bipartite. To see this assume that the vertex 1 is colored white.
+Then the vertices 2 and 3 should be colored black since the graph contains the edges
+{1, 2} and {1, 3}. But then the edge {2, 3} has both endpoints of the same color.
+
+Sample 2.
+Input:
+5 4
+5 2
+4 2
+3 4
+1 4
+Output:
+1
+
+Explaination: This graph is bipartite: assign the vertices 4 and 5 the white color, assign all the remaining vertices
+the black color.
+
+"""
+
 def bipartite(partition: list, adjacent_edges: list) -> int:
     test = 0
     while test < len(partition):
