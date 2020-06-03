@@ -7,7 +7,7 @@ and is same as the prefix of the same size
 
 e.x.  for string 'abab' for second index value would be 2
 
-The main adventage of the algoirthm is that it's linear, using dynamic programming
+The main adventage of the algorithm is that it's linear, using dynamic programming
 
 Time Complexity: O(n)  - where n is the length of the string
 
