@@ -1,5 +1,5 @@
 """
-https://cp-algorithms.com/string/z-function.html#:~:text=The%20Z%2Dfunction%20for%20this,Note.
+https://cp-algorithms.com/string/z-function.html
 
 For given string this algorithm computes value for each index,
 which represents the maximal length substring starting from the index
