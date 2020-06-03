@@ -12,6 +12,6 @@ def odd_or_even(n: int) -> str:
         return "Even"
 
 
-if(__name__=='__main__'):
+if(__name__ == '__main__'):
     num = 11
     print(num , " is " , odd_or_even(num))
