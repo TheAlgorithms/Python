@@ -9,19 +9,24 @@ https://en.wikipedia.org/wiki/Harris_Corner_Detector
 
 class Harris_Corner():
 
-    def __init__(self, k, window_size):
+    def __init__(self, k: float, window_size: int):
 
-        if k in [0.04, 0.06]:
+        '''
+        k : is an empirically determined constant in [0.04,0.06]
+        window_size : neighbourhoods considered
+        '''
+
+        if k in (0.04, 0.06):
             self.k = k
             self.window_size = window_size
         else:
-            print("invalid k value")
-            exit()
+            raise ValueError("invalid k value")
 
     def __str__(self):
-        return "Harris Corner  detection with k : {}".format(self.k)
 
-    def detect(self, img_path):
+        return f"Harris Corner  detection with k : {self.k}"
+
+    def detect(self, img_path: str):
         '''
         Returns the image with corners identified
         img_path  : path of the image
