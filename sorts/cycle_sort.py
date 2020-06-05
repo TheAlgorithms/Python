@@ -18,32 +18,42 @@ def cycle_sort(array: list) -> list:
     >>> cycle_sort([])
     []
     """
-    array_len = len(array)
-    for cycle_start in range(0, array_len - 1):
-        item = array[cycle_start]
+    ans = 0
 
-        pos = cycle_start
-        for i in range(cycle_start + 1, array_len):
+    # Pass through the array to find cycles to rotate.
+    for cycleStart in range(0, len(array) - 1):
+        item = array[cycleStart]
+
+        # finding the position for putting the item.
+        pos = cycleStart
+        for i in range(cycleStart + 1, len(array)):
             if array[i] < item:
                 pos += 1
 
-        if pos == cycle_start:
+        # If the item is already present-not a cycle.
+        if pos == cycleStart:
             continue
 
+        # Otherwise, put the item there or right after any duplicates.
         while item == array[pos]:
             pos += 1
-
         array[pos], item = item, array[pos]
-        while pos != cycle_start:
-            pos = cycle_start
-            for i in range(cycle_start + 1, array_len):
+        ans += 1
+
+        # Rotate the rest of the cycle.
+        while pos != cycleStart:
+
+            # Find where to put the item.
+            pos = cycleStart
+            for i in range(cycleStart + 1, len(array)):
                 if array[i] < item:
                     pos += 1
 
+            # Put the item there or right after any duplicates.
             while item == array[pos]:
                 pos += 1
-
             array[pos], item = item, array[pos]
+            ans += 1
 
     return array
 
