@@ -35,6 +35,12 @@ Output:
 
 
 def bipartite(partition: list, adjacent_edges: list) -> int:
+    """
+    >>> bipartite([4, 1, 4, 2, 3], [4, 2, 1, 3, 1])
+    0
+    >>> bipartite([5, 5, 4, 2, 1], [4, 2, 2, 4, 4])
+    1
+    """
     test = 0
     while test < len(partition):
         node = partition[test]
