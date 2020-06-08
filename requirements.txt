@@ -16,6 +16,6 @@ scikit-fuzzy
 sklearn
 sympy
 tensorflow
-xgboost
 torch
 torchvision
+xgboost
