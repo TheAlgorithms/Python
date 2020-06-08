@@ -1,33 +1,51 @@
 #!/usr/bin/env python
 
-"""Illustrate how to implement bucket sort algorithm."""
+"""
+Illustrate how to implement bucket sort algorithm.
 
-# Author: OMKAR PATHAK
-# This program will illustrate how to implement bucket sort algorithm
+Author: OMKAR PATHAK
+This program will illustrate how to implement bucket sort algorithm
 
-# Wikipedia says: Bucket sort, or bin sort, is a sorting algorithm that works
-# by distributing the elements of an array into a number of buckets.
-# Each bucket is then sorted individually, either using a different sorting
-# algorithm, or by recursively applying the bucket sorting algorithm. It is a
-# distribution sort, and is a cousin of radix sort in the most to least
-# significant digit flavour.
-# Bucket sort is a generalization of pigeonhole sort. Bucket sort can be
-# implemented with comparisons and therefore can also be considered a
-# comparison sort algorithm. The computational complexity estimates involve the
-# number of buckets.
+Wikipedia says: Bucket sort, or bin sort, is a sorting algorithm that works
+by distributing the elements of an array into a number of buckets.
+Each bucket is then sorted individually, either using a different sorting
+algorithm, or by recursively applying the bucket sorting algorithm. It is a
+distribution sort, and is a cousin of radix sort in the most to least
+significant digit flavour.
+Bucket sort is a generalization of pigeonhole sort. Bucket sort can be
+implemented with comparisons and therefore can also be considered a
+comparison sort algorithm. The computational complexity estimates involve the
+number of buckets.
 
-#  Time Complexity of Solution:
-#  Worst case scenario occurs when all the elements are placed in a single bucket. The overall performance
-#  would then be dominated by the algorithm used to sort each bucket. In this case, O(n log n), because of TimSort
-#
-#  Average Case O(n + (n^2)/k + k), where k is the number of buckets
-#
-#  If k = O(n), time complexity is O(n)
+Time Complexity of Solution:
+Worst case scenario occurs when all the elements are placed in a single bucket. The overall performance
+would then be dominated by the algorithm used to sort each bucket. In this case, O(n log n), because of TimSort
 
+Average Case O(n + (n^2)/k + k), where k is the number of buckets
+
+If k = O(n), time complexity is O(n)
+
+Source: https://en.wikipedia.org/wiki/Bucket_sort
+"""
 DEFAULT_BUCKET_SIZE = 5
 
 
-def bucket_sort(my_list, bucket_size=DEFAULT_BUCKET_SIZE):
+def bucket_sort(my_list: list, bucket_size=DEFAULT_BUCKET_SIZE) -> list:
+    """
+    >>> bucket_sort([-1, 2, -5, 0])
+    [-5, -1, 0, 2]
+
+    >>> bucket_sort([9, 8, 7, 6, -12])
+    [-12, 6, 7, 8, 9]
+
+    >>> bucket_sort([.4, 1.2, .1, .2, -.9])
+    [-0.9, 0.1, 0.2, 0.4, 1.2]
+
+    >>> bucket_sort([])
+    Traceback (most recent call last):
+      ...
+    Exception: Please add some elements in the array.
+    """
     if len(my_list) == 0:
         raise Exception("Please add some elements in the array.")
 
@@ -44,6 +62,5 @@ def bucket_sort(my_list, bucket_size=DEFAULT_BUCKET_SIZE):
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:").strip()
-    unsorted = [float(n) for n in user_input.split(",") if len(user_input) > 0]
-    print(bucket_sort(unsorted))
+    assert bucket_sort([4, 5, 3, 2, 1]) == [1, 2, 3, 4, 5]
+    assert bucket_sort([0, 1, -10, 15, 2, -2]) == [-10, -2, 0, 1, 2, 15]
