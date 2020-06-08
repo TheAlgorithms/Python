@@ -1,6 +1,7 @@
 """Convert a positive Decimal Number to Any Other Representation"""
 
-def decimal_to_any(num:int, base:int) -> str:
+
+def decimal_to_any(num: int, base: int) -> str:
 
     """
         Convert a Integer Decimal Number to a Binary Number as str.
@@ -34,14 +35,11 @@ def decimal_to_any(num:int, base:int) -> str:
         TypeError: 'str' object cannot be interpreted as an integer
     """
     if type(num) == float:
-        raise TypeError("'float' object cannot be interpreted as an integer")
-    
+        raise TypeError("'float' object cannot be interpreted as an integer")    
     if num < 0:
         raise ValueError("parameter must be positive int")
-
     if type(base) == str:
         raise TypeError("'str' object cannot be interpreted as an integer")
-
     if type(base) == float:
         raise TypeError("'float' object cannot be interpreted as an integer")
 
@@ -76,7 +74,6 @@ def decimal_to_any(num:int, base:int) -> str:
                 return new_value[::-1]
 
     return new_value[::-1]
-
     
 if __name__ == "__main__":
     import doctest
