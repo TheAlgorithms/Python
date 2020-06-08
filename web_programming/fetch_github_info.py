@@ -3,8 +3,9 @@
 """
 Created by sarathkaul on 14/11/19
 
-Depending on your settings, you may need a two-factor authentication OTP code.
-Documentation_url: https://developer.github.com/v3/auth#working-with-two-factor-authentication
+Basic authentication using an API password is deprecated and will soon no longer work.
+Visit https://developer.github.com/changes/2020-02-14-deprecating-password-auth
+for more information around suggested workarounds and removal dates.
 """
 
 
