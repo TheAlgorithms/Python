@@ -17,3 +17,5 @@ sklearn
 sympy
 tensorflow
 xgboost
+torch
+torchvision
