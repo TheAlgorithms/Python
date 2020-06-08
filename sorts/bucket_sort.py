@@ -30,7 +30,7 @@ Source: https://en.wikipedia.org/wiki/Bucket_sort
 DEFAULT_BUCKET_SIZE = 5
 
 
-def bucket_sort(my_list: list, bucket_size=DEFAULT_BUCKET_SIZE) -> list:
+def bucket_sort(my_list: list, bucket_size: int = DEFAULT_BUCKET_SIZE) -> list:
     """
     >>> bucket_sort([-1, 2, -5, 0])
     [-5, -1, 0, 2]
