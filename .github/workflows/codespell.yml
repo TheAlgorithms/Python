@@ -12,3 +12,6 @@ jobs:
       - run: |
           SKIP="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt"
           codespell -L ans,fo,hist,iff,secant,tim --skip=$SKIP --quiet-level=2
+      - name: Codespell comment
+          if: ${{ failure() }}
+          uses: plettich/python_codespell_action@master
