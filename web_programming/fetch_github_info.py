@@ -13,5 +13,5 @@ def fetch_github_info(auth_user: str, auth_pass: str) -> None:
         print(f"{a_info}: {a_detail}")
 
 
-if __name__ == "main":
+if __name__ == "__main__":
     fetch_github_info("<USER NAME>", "<PASSWORD>")
