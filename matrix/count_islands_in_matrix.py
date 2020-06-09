@@ -1,5 +1,5 @@
 # An island in matrix is a group of linked areas, all having the same value.
-# This code couts number of islands in a given matrix, with including diagonal
+# This code counts number of islands in a given matrix, with including diagonal
 # connections.
 
 
@@ -18,12 +18,9 @@ class matrix:  # Public class to implement a graph
         )
 
     def diffs(self, i, j, visited):  # Checking all 8 elements surrounding nth element
-
         rowNbr = [-1, -1, -1, 0, 0, 1, 1, 1]  # Coordinate order
         colNbr = [-1, 0, 1, -1, 1, -1, 0, 1]
-
         visited[i][j] = True  # Make those cells visited
-
         for k in range(8):
             if self.is_safe(i + rowNbr[k], j + colNbr[k], visited):
                 self.diffs(i + rowNbr[k], j + colNbr[k], visited)
