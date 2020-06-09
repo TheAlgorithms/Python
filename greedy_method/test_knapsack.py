@@ -9,13 +9,13 @@ class TestClass(unittest.TestCase):
 
     def test_sorted(self):
         """
-        kp.calc_Profit takes the required argument (profit, weight, max_weight)
+        kp.calc_profit takes the required argument (profit, weight, max_weight)
         and returns whether the answer matches to the expected ones
         """
         profit = [10, 20, 30, 40, 50, 60]
         weight = [2, 4, 6, 8, 10, 12]
         max_Weight = 100
-        self.assertEqual(kp.Calc_Profit(profit, weight, max_Weight), 210)
+        self.assertEqual(kp.calc_profit(profit, weight, max_Weight), 210)
 
     def test_negative_maxWeight(self):
         """

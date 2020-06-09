@@ -18,7 +18,7 @@ Calculate the max profit the shopkeeper can make for the given max_Weight that c
 from typing import Union
 
 
-def Calc_Profit(profit: list, weight: list, max_Weight: int) -> Union[str, int]:
+def calc_profit(profit: list, weight: list, max_Weight: int) -> Union[str, int]:
     """
     Function description is as follows-
     :param profit: Take a list of profits
@@ -26,9 +26,9 @@ def Calc_Profit(profit: list, weight: list, max_Weight: int) -> Union[str, int]:
     :param max_Weight: Max. weight that could be carried
     :return: Max expected gain
 
-    >>> Calc_Profit([1,2,3], [3,4,5], 15)
+    >>> calc_profit([1,2,3], [3,4,5], 15)
     6
-    >>> Calc_Profit([10, 9 , 8], [3 ,4 , 5], 25)
+    >>> calc_profit([10, 9 , 8], [3 ,4 , 5], 25)
     27
     """
     if len(profit) != len(weight):
@@ -115,4 +115,4 @@ if __name__ == "__main__":
     max_Weight = int(input("Max weight allowed: "))
 
     # Function Call
-    Calc_Profit(profit, weight, max_Weight)
+    calc_profit(profit, weight, max_Weight)
