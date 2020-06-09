@@ -7,23 +7,23 @@ You have bags of wheat with different weights and a different profits for each.
 eg.
 profit 5 8 7 1 12 3 4
 weight 2 7 1 6 4  2 5
-max_weight 100
+max_Weight 100
 
 Constraints:
-max_weight > 0
+max_Weight > 0
 profit[i] >= 0
 weight[i] >= 0
-Calculate the max profit the shopkeeper can make for the given max_weight that could be carried.
+Calculate the max profit the shopkeeper can make for the given max_Weight that could be carried.
 """
 from typing import Union
 
 
-def calc_profit(profit: list, weight: list, max_weight: int) -> Union[str, int]:
+def calc_profit(profit: list, weight: list, max_Weight: int) -> Union[str, int]:
     """
     Function description is as follows-
     :param profit: Take a list of profits
     :param weight: Take a list of weight if bags corresponding to the profits
-    :param max_weight: Max. weight that could be carried
+    :param max_Weight: Max. weight that could be carried
     :return: Max expected gain
 
     >>> calc_profit([1,2,3], [3,4,5], 15)
@@ -36,9 +36,9 @@ def calc_profit(profit: list, weight: list, max_weight: int) -> Union[str, int]:
             "<< The length of both the arrays must be same! Try again.. >>"
         )
 
-    if max_weight <= 0:
+    if max_Weight <= 0:
         raise ValueError(
-            "<< Gotcha! max_weight is a positive quantity greater than zero! >>"
+            "<< Gotcha! max_Weight is a positive quantity greater than zero! >>"
         )
 
     for i in range(len(profit)):
@@ -69,7 +69,7 @@ def calc_profit(profit: list, weight: list, max_weight: int) -> Union[str, int]:
     i = 0
 
     # loop till the total weight do not reach max limit e.g. 15 kg and till i<length
-    while limit <= max_weight and i < length:
+    while limit <= max_Weight and i < length:
 
         # flag value for encountered greatest element in temp_PBW
         flag = temp_PBW[length - i - 1]
@@ -86,7 +86,7 @@ def calc_profit(profit: list, weight: list, max_weight: int) -> Union[str, int]:
 
         # check if the weight encountered is less than the total weight
         # encountered before.
-        if max_weight - limit >= weight[index]:
+        if max_Weight - limit >= weight[index]:
 
             limit += weight[index]
             # Adding profit gained for the given weight 1 ===
@@ -98,7 +98,7 @@ def calc_profit(profit: list, weight: list, max_weight: int) -> Union[str, int]:
             # remaining kgs
             # and Calculate profit for it.
             # weight remaining/ weight[index]
-            gain += ((max_weight - limit) / weight[index]) * profit[index]
+            gain += ((max_Weight - limit) / weight[index]) * profit[index]
             break
         i += 1
 
@@ -107,11 +107,11 @@ def calc_profit(profit: list, weight: list, max_weight: int) -> Union[str, int]:
 
 if __name__ == "__main__":
 
-    # Input profit, weight and max_weight (all positive values).
+    # Input profit, weight and max_Weight (all positive values).
 
     profit = [int(x) for x in input().split()]
     weight = [int(x) for x in input().split()]
-    max_weight = int(input("Max weight allowed: "))
+    max_Weight = int(input("Max weight allowed: "))
 
     # Function Call
-    calc_profit(profit, weight, max_weight)
+    calc_profit(profit, weight, max_Weight)

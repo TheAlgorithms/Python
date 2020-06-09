@@ -9,25 +9,25 @@ class TestClass(unittest.TestCase):
 
     def test_sorted(self):
         """
-        kp.calc_profit takes the required argument (profit, weight, max_weight)
+        kp.calc_profit takes the required argument (profit, weight, max_Weight)
         and returns whether the answer matches to the expected ones
         """
         profit = [10, 20, 30, 40, 50, 60]
         weight = [2, 4, 6, 8, 10, 12]
-        max_weight = 100
-        self.assertEqual(kp.calc_profit(profit, weight, max_weight), 210)
+        max_Weight = 100
+        self.assertEqual(kp.calc_profit(profit, weight, max_Weight), 210)
 
     def test_negative_maxWeight(self):
         """
-        Returns ValueError for any negative max_weight value
+        Returns ValueError for any negative max_Weight value
         :return: ValueError
         """
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
-        # max_weight = -15
+        # max_Weight = -15
         self.assertRaisesRegex(
             ValueError,
-            "<< Gotcha! max_weight is a positive quantity greater than zero! >>",
+            "<< Gotcha! max_Weight is a positive quantity greater than zero! >>",
         )
 
     def test_negative_profit_Value(self):
@@ -37,7 +37,7 @@ class TestClass(unittest.TestCase):
         """
         # profit = [10, -20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
-        # max_weight = 15
+        # max_Weight = 15
         self.assertRaisesRegex(
             ValueError,
             "<< Oops! Could not accept a negative value for weight. Try Again.. >>",
@@ -50,22 +50,22 @@ class TestClass(unittest.TestCase):
         """
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, -4, 6, -8, 10, 12]
-        # max_weight = 15
+        # max_Weight = 15
         self.assertRaisesRegex(
             ValueError, "<< Ono! Profit means positive value. Better luck next time! >>"
         )
 
-    def test_zero_maxWeight(self):
+    def test_null_maxWeight(self):
         """
-        Returns ValueError for any zero max_weight value
+        Returns ValueError for any zero max_Weight value
         :return: ValueError
         """
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
-        # max_weight = 0
+        # max_Weight = null
         self.assertRaisesRegex(
             ValueError,
-            "<< Gotcha! max_weight is a positive quantity greater than zero! >>",
+            "<< Gotcha! max_Weight is a positive quantity greater than zero! >>",
         )
 
     def test_unequal_list_length(self):
@@ -75,7 +75,7 @@ class TestClass(unittest.TestCase):
         """
         # profit = [10, 20, 30, 40, 50]
         # weight = [2, 4, 6, 8, 10, 12]
-        # max_weight = 100
+        # max_Weight = 100
         self.assertRaisesRegex(
             IndexError, "<< The length of both the arrays must be same! Try again.. >>"
         )
