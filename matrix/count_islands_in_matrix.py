@@ -3,7 +3,7 @@
 
 class matrix: # Public class to implement a graph
  
-	def __init__(self, row, col, g): # Class constructor
+	def __init__(self, row: int, col: int, graph: list): # Class constructor
 		self.ROW = row 
 		self.COL = col 
 		self.graph = g
