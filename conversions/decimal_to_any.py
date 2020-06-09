@@ -47,7 +47,7 @@ def decimal_to_any(num: int, base: int) -> str:
     new_value = ""
     mod = 0
     div = 0
-    if base == 0 or base == 1:
+    if base in (0, 1):
         return
     while ((div != 1) or (div != 0)):
         mod = num % base
