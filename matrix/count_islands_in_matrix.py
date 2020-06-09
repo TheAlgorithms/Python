@@ -9,7 +9,7 @@ class matrix: # Public class to implement a graph
 		self.graph = g
 
 	def is_safe(self, i, j, visited): 
-		return (i >= 0 and i < self.ROW and j >= 0 and j < self.COL and not visited[i][j] and self.graph[i][j]) 
+		return 0 <= i < self.ROW and 0 <= j < self.COL and not visited[i][j] and self.graph[i][j]
 			 
 	def diffs(self, i, j, visited): # Checking all 8 elements surrounding nth element
  
