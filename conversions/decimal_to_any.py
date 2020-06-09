@@ -40,7 +40,7 @@ def decimal_to_any(num: int, base: int) -> str:
         raise ValueError("parameter must be positive int")
     if type(base) == str:
         raise TypeError("'str' object cannot be interpreted as an integer")
-    if type(base) == float:
+    if isinstance(base, float):
         raise TypeError("'float' object cannot be interpreted as an integer")
 
     HEXADECIMAL = {'10': 'A', '11': 'B', '12': 'C', '13': 'D', '14': 'E', '15': 'F'}
