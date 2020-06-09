@@ -57,7 +57,7 @@ def calc_profit(profit: list, weight: list, max_Weight: int) -> Union[str, int]:
     profit_By_Weight = list()
 
     # Calculate and append profit/weight for each element
-    profit_by_weight = [p / w for p, w in zip(profit, weight)]
+    profit_by_Weight = [p / w for p, w in zip(profit, weight)]
 
     # Creating a copy of the list and sorting profit/weight in ascending order
     temp_PBW = sorted(profit_By_Weight)
