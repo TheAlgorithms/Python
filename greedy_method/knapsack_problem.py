@@ -8,14 +8,17 @@ eg.
 profit 5 8 7 1 12 3 4
 weight 2 7 1 6 4  2 5
 max_Weight 100
+
+Constraints:
+Max_Weight > 0
+profit[i] >= 0
+weight[i] >= 0
 Calculate the max profit the shopkeeper can make for the given max_Weight that could be carried.
 """
-
-# Importing copy module for deepcopy operations
-import copy
+from typing import Union
 
 
-def calc_Profit(profit: list, weight: list, max_Weight: int) -> int:
+def Calc_Profit(profit: list, weight: list, max_Weight: int) -> Union[str, int]:
     """
     Function description is as follows-
     :param profit: Take a list of profits
@@ -23,12 +26,31 @@ def calc_Profit(profit: list, weight: list, max_Weight: int) -> int:
     :param max_Weight: Max. weight that could be carried
     :return: Max expected gain
 
-    >>> calc_Profit([1,2,3], [3,4,5], 15)
+    >>> Calc_Profit([1,2,3], [3,4,5], 15)
     6
-    >>> calc_Profit([10, 9 , 8], [3 ,4 , 5], 25)
+    >>> Calc_Profit([10, 9 , 8], [3 ,4 , 5], 25)
     27
-
     """
+    if len(profit) != len(weight):
+        raise IndexError(
+            "<< The length of both the arrays must be same! Try again.. >>"
+        )
+
+    if max_Weight <= 0:
+        raise ValueError(
+            "<< Gotcha! Max_Weight is a positive quantity greater than zero! >>"
+        )
+
+    for i in range(len(profit)):
+        if profit[i] < 0:
+            raise ValueError(
+                "<< Ono! Profit means positive value. Better luck next time! >>"
+            )
+
+        if weight[i] < 0:
+            raise ValueError(
+                "<< Oops! Could not accept a negative value for weight. Try Again.. >>"
+            )
 
     # List created to store profit gained for the 1kg in case of each weight
     # respectively
@@ -38,8 +60,8 @@ def calc_Profit(profit: list, weight: list, max_Weight: int) -> int:
     for i in range(len(weight)):
         profit_By_Weight.append(profit[i] / weight[i])
 
-    # Creating a copy of the list and sorting proit/weight in ascending order
-    temp_PBW = sorted(copy.deepcopy(profit_By_Weight))
+    # Creating a copy of the list and sorting profit/weight in ascending order
+    temp_PBW = sorted(profit_By_Weight)
 
     # declaring useful variables
     length = len(temp_PBW)
@@ -47,15 +69,16 @@ def calc_Profit(profit: list, weight: list, max_Weight: int) -> int:
     gain = 0
     i = 0
 
-    # loop till the total weight do not reach max limit i.e. 15 kg and till i<l
-    while limit <= 15 and i < length:
+    # loop till the total weight do not reach max limit e.g. 15 kg and till i<length
+    while limit <= max_Weight and i < length:
 
         # flag value for encountered greatest element in temp_PBW
         flag = temp_PBW[length - i - 1]
         """
-        calculating index of the same flag in profit_By_Weight list.
+        Calculating index of the same flag in profit_By_Weight list.
         This will give the index of the first encountered element which is same as of flag.
-        There may be one or more values same as that of flag but .index always encounter the very first element only.
+        There may be one or more values same as that of flag but .index always encounter the
+        very first element only.
         To curb this alter the values in profit_By_Weight once they are used Here it is done to -1
         because neither profit nor weight can be in negative.
         """
@@ -64,7 +87,7 @@ def calc_Profit(profit: list, weight: list, max_Weight: int) -> int:
 
         # check if the weight encountered is less than the total weight
         # encountered before.
-        if 15 - limit >= weight[index]:
+        if max_Weight - limit >= weight[index]:
 
             limit += weight[index]
             # Adding profit gained for the given weight 1 ===
@@ -72,10 +95,11 @@ def calc_Profit(profit: list, weight: list, max_Weight: int) -> int:
             gain += 1 * profit[index]
 
         else:
-            # Since the weight encountered is greater than limit, therefore take the required number of remaining kgs
-            # and calculate profit for it.
+            # Since the weight encountered is greater than limit, therefore take the required number of
+            # remaining kgs
+            # and Calculate profit for it.
             # weight remaining/ weight[index]
-            gain += ((15 - limit) / weight[index]) * profit[index]
+            gain += ((max_Weight - limit) / weight[index]) * profit[index]
             break
         i += 1
 
@@ -88,17 +112,7 @@ if __name__ == "__main__":
 
     profit = [int(x) for x in input().split()]
     weight = [int(x) for x in input().split()]
-    max_Weight = int(input())
+    max_Weight = int(input("Max weight allowed: "))
 
-    if len(profit) != len(weight):
-        print("The length of both the arrays must be same! Try again!")
-
-    if max_Weight < 0:
-        print("Gotcha! Weight is a positive quantity")
-
-    for i in range(len(profit)):
-        if (profit[i] or weight[i]) < 0:
-            print("Ono! Input positive values only! Better luck next time")
-            break
-        else:
-            calc_Profit(profit, weight, max_Weight)
+    # Function Call
+    Calc_Profit(profit, weight, max_Weight)
