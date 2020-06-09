@@ -28,7 +28,7 @@ class matrix: # Public class to implement a graph
 		count = 0
 		for i in range(self.ROW): 
 			for j in range(self.COL): 
-				if visited[i][j] == False and self.graph[i][j] == 1: 
+				if visited[i][j] is False and self.graph[i][j] == 1: 
 					self.diffs(i, j, visited) 
 					count += 1
 		return count 
