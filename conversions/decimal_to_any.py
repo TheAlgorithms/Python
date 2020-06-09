@@ -4,7 +4,7 @@
 def decimal_to_any(num: int, base: int) -> str:
 
     """
-        Convert a Integer Decimal Number to a Binary Number as str.
+        Convert a positive integer to another base as str.
         >>> decimal_to_any(0, 2)
         '0'
         >>> decimal_to_any(5, 4)
@@ -22,7 +22,7 @@ def decimal_to_any(num: int, base: int) -> str:
         >>> decimal_to_any(34.4, 6) # doctest: +ELLIPSIS
         Traceback (most recent call last):
         ...
-        TypeError: 'float' object cannot be interpreted as an integer
+        TypeError: int() can't convert non-string with explicit base
         >>> #a float base will error
         >>> decimal_to_any(5, 2.5) # doctest: +ELLIPSIS
         Traceback (most recent call last):
@@ -33,15 +33,22 @@ def decimal_to_any(num: int, base: int) -> str:
         Traceback (most recent call last):
         ...
         TypeError: 'str' object cannot be interpreted as an integer
+        >>> # a base less than 2 will error
+        >>> decimal_to_any(7, 0)  # doctest: +ELLIPSIS
+        Traceback (most recent call last):
+        ...
+        ValueError: base must be >= 2
     """
     if isinstance(num, float):
-        raise TypeError("'float' object cannot be interpreted as an integer")
+        raise TypeError("int() can't convert non-string with explicit base")
     if num < 0:
         raise ValueError("parameter must be positive int")
     if isinstance(base, str):
         raise TypeError("'str' object cannot be interpreted as an integer")
     if isinstance(base, float):
         raise TypeError("'float' object cannot be interpreted as an integer")
+    if base in (0, 1):
+        raise ValueError("base must be >= 2")
 
     HEXADECIMAL = {'10': 'A', '11': 'B', '12': 'C', '13': 'D', '14': 'E', '15': 'F'}
     new_value = ""
@@ -49,7 +56,7 @@ def decimal_to_any(num: int, base: int) -> str:
     div = 0
     if base in (0, 1):
         return
-    while div not in (0, 1):
+    while div != 1:
         div, mod = divmod(num, base)
         if base == 16 and 9 < mod < 16:
             actual_value = HEXADECIMAL[str(mod)]
