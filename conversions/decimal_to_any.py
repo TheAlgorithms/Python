@@ -23,7 +23,7 @@ def decimal_to_any(num: int, base: int) -> str:
         Traceback (most recent call last):
         ...
         TypeError: int() can't convert non-string with explicit base
-        >>> #a float base will error
+        >>> # a float base will error
         >>> decimal_to_any(5, 2.5) # doctest: +ELLIPSIS
         Traceback (most recent call last):
         ...
