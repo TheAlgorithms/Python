@@ -34,7 +34,7 @@ def decimal_to_any(num: int, base: int) -> str:
         ...
         TypeError: 'str' object cannot be interpreted as an integer
     """
-    if type(num) == float:
+    if isinstance(num, float):
         raise TypeError("'float' object cannot be interpreted as an integer")
     if num < 0:
         raise ValueError("parameter must be positive int")
