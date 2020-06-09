@@ -14,8 +14,8 @@ class TestClass(unittest.TestCase):
         """
         profit = [10, 20, 30, 40, 50, 60]
         weight = [2, 4, 6, 8, 10, 12]
-        max_Weight = 100
-        self.assertEqual(kp.calc_profit(profit, weight, max_Weight), 210)
+        max_weight = 100
+        self.assertEqual(kp.calc_profit(profit, weight, max_weight), 210)
 
     def test_negative_maxWeight(self):
         """
@@ -24,10 +24,10 @@ class TestClass(unittest.TestCase):
         """
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
-        # max_Weight = -15
+        # max_weight = -15
         self.assertRaisesRegex(
             ValueError,
-            "<< Gotcha! Max_Weight is a positive quantity greater than zero! >>",
+            "<< Gotcha! max_weight is a positive quantity greater than zero! >>",
         )
 
     def test_negative_profit_Value(self):
@@ -37,7 +37,7 @@ class TestClass(unittest.TestCase):
         """
         # profit = [10, -20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
-        # max_Weight = 15
+        # max_weight = 15
         self.assertRaisesRegex(
             ValueError,
             "<< Oops! Could not accept a negative value for weight. Try Again.. >>",
@@ -50,7 +50,7 @@ class TestClass(unittest.TestCase):
         """
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, -4, 6, -8, 10, 12]
-        # max_Weight = 15
+        # max_weight = 15
         self.assertRaisesRegex(
             ValueError, "<< Ono! Profit means positive value. Better luck next time! >>"
         )
@@ -62,10 +62,10 @@ class TestClass(unittest.TestCase):
         """
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
-        # max_Weight = 0
+        # max_weight = 0
         self.assertRaisesRegex(
             ValueError,
-            "<< Gotcha! Max_Weight is a positive quantity greater than zero! >>",
+            "<< Gotcha! max_weight is a positive quantity greater than zero! >>",
         )
 
     def test_unequal_list_length(self):
@@ -75,7 +75,7 @@ class TestClass(unittest.TestCase):
         """
         # profit = [10, 20, 30, 40, 50]
         # weight = [2, 4, 6, 8, 10, 12]
-        # max_Weight = 100
+        # max_weight = 100
         self.assertRaisesRegex(
             IndexError, "<< The length of both the arrays must be same! Try again.. >>"
         )
