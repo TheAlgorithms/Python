@@ -54,8 +54,6 @@ def decimal_to_any(num: int, base: int) -> str:
     new_value = ""
     mod = 0
     div = 0
-    if base in (0, 1):
-        return
     while div != 1:
         div, mod = divmod(num, base)
         if base == 16 and 9 < mod < 16:
