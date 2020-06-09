@@ -49,7 +49,7 @@ def decimal_to_any(num: int, base: int) -> str:
     div = 0
     if base in (0, 1):
         return
-    while ((div != 1) or (div != 0)):
+    while div not in (0, 1):
         mod = num % base
         if base == 16 and (mod > 9 and mod < 16):
             actual_value = HEXADECIMAL[str(mod)]
