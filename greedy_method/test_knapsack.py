@@ -1,5 +1,5 @@
 import unittest
-import .knapsack as kp
+import knapsack as kp
 
 
 class TestClass(unittest.TestCase):
@@ -26,8 +26,7 @@ class TestClass(unittest.TestCase):
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = -15
         self.assertRaisesRegex(
-            ValueError,
-            "max_weight must greater than zero.",
+            ValueError, "max_weight must greater than zero.",
         )
 
     def test_negative_profit_Value(self):
@@ -39,8 +38,7 @@ class TestClass(unittest.TestCase):
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = 15
         self.assertRaisesRegex(
-            ValueError,
-            "Weight can not be negative.",
+            ValueError, "Weight can not be negative.",
         )
 
     def test_negative_weight_Value(self):
@@ -51,9 +49,7 @@ class TestClass(unittest.TestCase):
         # profit = [10, 20, 30, 40, 50, 60]
         # weight = [2, -4, 6, -8, 10, 12]
         # max_weight = 15
-        self.assertRaisesRegex(
-            ValueError, "Profit can not be negative."
-        )
+        self.assertRaisesRegex(ValueError, "Profit can not be negative.")
 
     def test_null_max_weight(self):
         """
@@ -64,8 +60,7 @@ class TestClass(unittest.TestCase):
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = null
         self.assertRaisesRegex(
-            ValueError,
-            "max_weight must greater than zero.",
+            ValueError, "max_weight must greater than zero.",
         )
 
     def test_unequal_list_length(self):
