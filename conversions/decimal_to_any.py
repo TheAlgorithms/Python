@@ -14,7 +14,7 @@ def decimal_to_any(num: int, base: int) -> str:
         >>> decimal_to_any(58, 16)
         '3A'
         >>> # negatives will error
-        >>> decimal_to_any(-45, 8) # doctest: +ELLIPSIS
+        >>> decimal_to_any(-45, 8)  # doctest: +ELLIPSIS
         Traceback (most recent call last):
         ...
         ValueError: parameter must be positive int
