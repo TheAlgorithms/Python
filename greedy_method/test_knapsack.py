@@ -67,7 +67,9 @@ class TestClass(unittest.TestCase):
         # profit = [10, 20, 30, 40, 50]
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = 100
-        self.assertRaisesRegex(IndexError, "The length of profit and weight must be same.")
+        self.assertRaisesRegex(
+            IndexError, "The length of profit and weight must be same."
+        )
 
 
 if __name__ == "__main__":
