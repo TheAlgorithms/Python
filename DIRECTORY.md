@@ -258,6 +258,10 @@
   * [Scc Kosaraju](https://github.com/TheAlgorithms/Python/blob/master/graphs/scc_kosaraju.py)
   * [Tarjans Scc](https://github.com/TheAlgorithms/Python/blob/master/graphs/tarjans_scc.py)
 
+## Greedy Method
+  * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/greedy_knapsack.py)
+  * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/test_knapsack.py)
+
 ## Hashes
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
   * [Enigma Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/enigma_machine.py)
