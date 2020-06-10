@@ -61,14 +61,14 @@ def decimal_to_any(num: int, base: int) -> str:
     if base > 36:
         raise ValueError("base must be <= 36")
 
-    HEXADECIMAL = {'10':'A','11':'B','12':'C','13':'D','14':'E','15':'F','16':'G','17':'H','18':'I','19':'J','20':'K','21':'L','22':'M','23':'N','24':'O','25':'P','26':'Q','27':'R','28':'S','29':'T','30':'U','31':'V','32':'W','33':'X','34':'Y','35':'Z'}
+    ALPHABET_VALUES = {'10':'A','11':'B','12':'C','13':'D','14':'E','15':'F','16':'G','17':'H','18':'I','19':'J','20':'K','21':'L','22':'M','23':'N','24':'O','25':'P','26':'Q','27':'R','28':'S','29':'T','30':'U','31':'V','32':'W','33':'X','34':'Y','35':'Z'}
     new_value = ""
     mod = 0
     div = 0
     while div != 1:
         div, mod = divmod(num, base)
         if base >= 16 and 9 < mod < 36:
-            actual_value = HEXADECIMAL[str(mod)]
+            actual_value = ALPHABET_VALUES[str(mod)]
             mod = actual_value
         new_value += str(mod)
         div = num // base
@@ -77,16 +77,16 @@ def decimal_to_any(num: int, base: int) -> str:
             if base != 16:
                 return str(new_value[::-1])
             else:
-                if new_value[::-1] in HEXADECIMAL:
-                    return HEXADECIMAL[new_value[::-1]]
+                if new_value[::-1] in ALPHABET_VALUES:
+                    return ALPHABET_VALUES[new_value[::-1]]
                 return new_value[::-1]
         elif div == 1:
             new_value += str(div)
             if base != 16:
                 return str(new_value[::-1])
             else:
-                if new_value[::-1] in HEXADECIMAL:
-                    return HEXADECIMAL[new_value[::-1]]
+                if new_value[::-1] in ALPHABET_VALUES:
+                    return ALPHABET_VALUES[new_value[::-1]]
                 return new_value[::-1]
 
     return new_value[::-1]
