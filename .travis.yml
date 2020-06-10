@@ -7,6 +7,7 @@ before_install: pip install --upgrade pip setuptools six
 install: pip install black flake8
 notifications:
     webhooks: https://www.travisbuddy.com/
+    on_success: never
 before_script:
   - black --check . || true
   - flake8 --ignore=E203,W503 --max-complexity=25 --max-line-length=120 --statistics --count .
