@@ -13,6 +13,10 @@ def decimal_to_any(num: int, base: int) -> str:
         '202'
         >>> decimal_to_any(58, 16)
         '3A'
+        >>> decimal_to_any(243, 17)
+        'E5'
+        >>> decimal_to_any(34923, 36)
+        'QY3'
         >>> # negatives will error
         >>> decimal_to_any(-45, 8)  # doctest: +ELLIPSIS
         Traceback (most recent call last):
@@ -34,10 +38,15 @@ def decimal_to_any(num: int, base: int) -> str:
         ...
         TypeError: 'str' object cannot be interpreted as an integer
         >>> # a base less than 2 will error
-        >>> decimal_to_any(7, 0)  # doctest: +ELLIPSIS
+        >>> decimal_to_any(7, 0) # doctest: +ELLIPSIS
         Traceback (most recent call last):
         ...
         ValueError: base must be >= 2
+        >>> # a base greater than 36 will error
+        >>> decimal_to_any(34, 37) # doctest: +ELLIPSIS
+        Traceback (most recent call last):
+        ...
+        ValueError: base must be <= 36
     """
     if isinstance(num, float):
         raise TypeError("int() can't convert non-string with explicit base")
@@ -49,14 +58,16 @@ def decimal_to_any(num: int, base: int) -> str:
         raise TypeError("'float' object cannot be interpreted as an integer")
     if base in (0, 1):
         raise ValueError("base must be >= 2")
+    if base > 36:
+        raise ValueError("base must be <= 36")
 
-    HEXADECIMAL = {'10': 'A', '11': 'B', '12': 'C', '13': 'D', '14': 'E', '15': 'F'}
+    HEXADECIMAL = {'10':'A','11':'B','12':'C','13':'D','14':'E','15':'F','16':'G','17':'H','18':'I','19':'J','20':'K','21':'L','22':'M','23':'N','24':'O','25':'P','26':'Q','27':'R','28':'S','29':'T','30':'U','31':'V','32':'W','33':'X','34':'Y','35':'Z'}
     new_value = ""
     mod = 0
     div = 0
     while div != 1:
         div, mod = divmod(num, base)
-        if base == 16 and 9 < mod < 16:
+        if base >= 16 and 9 < mod < 36:
             actual_value = HEXADECIMAL[str(mod)]
             mod = actual_value
         new_value += str(mod)
