@@ -15,10 +15,9 @@ weight[i] >= 0
 Calculate the maximum profit that the shopkeeper can make given maxmum weight that can
 be carried.
 """
-from typing import Union
 
 
-def calc_profit(profit: list, weight: list, max_weight: int) -> Union[str, int]:
+def calc_profit(profit: list, weight: list, max_weight: int) -> int:
     """
     Function description is as follows-
     :param profit: Take a list of profits
