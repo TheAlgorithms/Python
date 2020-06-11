@@ -17,6 +17,12 @@ def decimal_to_any(num: int, base: int) -> str:
         'E5'
         >>> decimal_to_any(34923, 36)
         'QY3'
+        >>> decimal_to_any(10, 11)
+        'A'
+        >>> decimal_to_any(16, 16)
+        '10'
+        >>> decimal_to_any(36, 36)
+        '10'
         >>> # negatives will error
         >>> decimal_to_any(-45, 8)  # doctest: +ELLIPSIS
         Traceback (most recent call last):
@@ -70,27 +76,17 @@ def decimal_to_any(num: int, base: int) -> str:
     div = 0
     while div != 1:
         div, mod = divmod(num, base)
-        if base >= 16 and 9 < mod < 36:
+        if base >= 11 and 9 < mod < 36:
             actual_value = ALPHABET_VALUES[str(mod)]
             mod = actual_value
         new_value += str(mod)
         div = num // base
         num = div
         if div == 0:
-            if base != 16:
-                return str(new_value[::-1])
-            else:
-                if new_value[::-1] in ALPHABET_VALUES:
-                    return ALPHABET_VALUES[new_value[::-1]]
-                return new_value[::-1]
+            return str(new_value[::-1])
         elif div == 1:
             new_value += str(div)
-            if base != 16:
-                return str(new_value[::-1])
-            else:
-                if new_value[::-1] in ALPHABET_VALUES:
-                    return ALPHABET_VALUES[new_value[::-1]]
-                return new_value[::-1]
+            return str(new_value[::-1])
 
     return new_value[::-1]
 
