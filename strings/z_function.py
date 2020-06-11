@@ -5,16 +5,16 @@ Z-function or Z algorithm
 
 Efficient algorithm for pattern occurrence in a string
 
-Time Complexity: O(n)  - where n is the length of the string
+Time Complexity: O(n) - where n is the length of the string
 
 """
 
 
 def z_function(input_str: str) -> list:
     """
-    For given string this function computes value for each index,
+    For the given string this function computes value for each index,
     which represents the maximal length substring starting from the index
-    and is same as the prefix of the same size
+    and is the same as the prefix of the same size
 
     e.x.  for string 'abab' for second index value would be 2
 
@@ -62,7 +62,7 @@ def go_next(i, z_result, s):
 def find_pattern(pattern: str, input_str: str) -> int:
     """
     Example of using z-function for pattern occurrence
-    Given function returns the number of times 'pattern' 
+    Given function returns the number of times 'pattern'
     appears in 'input_str' as a substring
 
     >>> find_pattern("abr", "abracadabra")
@@ -71,7 +71,6 @@ def find_pattern(pattern: str, input_str: str) -> int:
     4
     >>> find_pattern("xz", "zxxzxxz")
     2
-
     """
     answer = 0
     # concatenate 'pattern' and 'input_str' and call z_function
