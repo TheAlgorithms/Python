@@ -16,7 +16,7 @@ _GITHUB_API = "https://api.github.com/user"
 
 def fetch_github_info(auth_user: str, auth_pass: str) -> dict:
     """
-    Fetch GitHub info using the requests module
+    Fetch GitHub info of a user using the requests module
     """
     return requests.get(_GITHUB_API, auth=(auth_user, auth_pass)).json()
 
