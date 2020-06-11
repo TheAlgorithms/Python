@@ -26,9 +26,7 @@ def z_function(input_str: str) -> list:
     [0, 3, 2, 1]
     >>> z_function("zxxzxxz")
     [0, 0, 0, 4, 0, 0, 1]
-
     """
-
     z_result = [0] * len(input_str)
 
     # initialize interval's left pointer and right pointer
@@ -53,8 +51,7 @@ def z_function(input_str: str) -> list:
 
 def go_next(i, z_result, s):
     """
-    Helping function, which checks if we have to
-    move forward to the next characters or not
+    Check if we have to move forward to the next characters or not
     """
     return i + z_result[i] < len(s) and s[z_result[i]] == s[i + z_result[i]]
 
