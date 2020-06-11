@@ -11,6 +11,6 @@ def perfect_cube(n: int) -> bool:
     return (val * val * val) == n
 
 
-if(__name__ == '__main__'):
+if __name__ == "__main__":
     print(perfect_cube(27))
     print(perfect_cube(4))
