@@ -2,7 +2,6 @@
 
 
 def decimal_to_any(num: int, base: int) -> str:
-
     """
         Convert a positive integer to another base as str.
         >>> decimal_to_any(0, 2)
@@ -102,5 +101,4 @@ if __name__ == "__main__":
                 num,
                 base,
                 decimal_to_any(num, base),
-                int(decimal_to_any(num, base), base),
-            )
+                int(decimal_to_any(num, base), base))
