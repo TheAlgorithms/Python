@@ -95,3 +95,10 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
+    for base in range(2, 37):
+        for num in range(1000):
+            assert int(decimal_to_any(num, base), base) == num, (
+                num, base, decimal_to_any(num, base),
+                int(decimal_to_any(num, base), base)
+                )
