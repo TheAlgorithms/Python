@@ -21,11 +21,11 @@ def fill_matrix(matrix, i, j):
 
 def solveMaze(maze, size):
     """
-    This method solves rat in maze algorithm. 
+    This method solves rat in maze algorithm.
     In this problem we have n by n matrix and we have start point and end point
     we want to go from source to distination. In this matrix 0 are block paths
-    1 are open paths we can use. 
-    Parameters : 
+    1 are open paths we can use.
+    Parameters :
         maze(2D matrix) : maze
         size : size of our maze(square)
     Returns:
