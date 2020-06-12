@@ -210,7 +210,7 @@ def ReportGenerator(df, ClusteringVariables, FillMissingReport=None):
     """
     Function generates easy-erading clustering report. It takes 2 arguments as an input:
         DataFrame - dataframe with predicted cluester column;
-        FillMissingReport - dcitionary of rules how we are going to fill missing 
+        FillMissingReport - dcitionary of rules how we are going to fill missing
         values of for final report generate (not included in modeling);
     in order to run the function following libraries must be imported:
         import pandas as pd
