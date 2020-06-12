@@ -6,7 +6,8 @@ def print_matrix(matrix):
         matrix(2D matrix) : matrix
     """
     for i in matrix:
-        print (i)
+        print(i)
+
 
 def fill_matrix(matrix, i, j):
     """
@@ -15,7 +16,8 @@ def fill_matrix(matrix, i, j):
         matrix(2D matrix) : matrix
         i, j : coordinates of the matrix.
     """
-    matrix[i][j] = 1;
+    matrix[i][j] = 1
+
 
 def solveMaze(maze, size):
     """
@@ -37,6 +39,7 @@ def solveMaze(maze, size):
     else:
         print("Solution does not exists!")
 
+
 """
 This method is recursive method which starts from i and j
 and goes with 4 direction option up, down, left, right
@@ -50,18 +53,20 @@ Parameters:
 Returns:
     Boolean if path is found True, Otherwise False.
 """
+
+
 def runmaze(maze, size, i, j, solutions):
-    # Final check point. 
-    if ((i == (size - 1)) and (j == (size - 1))):
+    # Final check point.
+    if (i == (size - 1)) and (j == (size - 1)):
         fill_matrix(solutions, i, j)
         return True
 
-    lower_flag = ((not(i < 0)) and (not(j < 0)))  # Check lower bounds
-    upper_flag = ((i < size) and (j < size))  # Check upper bounds
-    
+    lower_flag = (not (i < 0)) and (not (j < 0))  # Check lower bounds
+    upper_flag = (i < size) and (j < size)  # Check upper bounds
+
     if lower_flag and upper_flag:
         # check for already visited and block points.
-        block_flag = ((not(solutions[i][j])) and (not(maze[i][j])))
+        block_flag = (not (solutions[i][j])) and (not (maze[i][j]))
         if block_flag:
             # check visited
             fill_matrix(solutions, i, j)
@@ -69,31 +74,31 @@ def runmaze(maze, size, i, j, solutions):
             # check for directions
             if runmaze(maze, size, i + 1, j, solutions):
                 return True
-            
-            if runmaze(maze, size, i, j +1, solutions):
+
+            if runmaze(maze, size, i, j + 1, solutions):
                 return True
-            
+
             if runmaze(maze, size, i - 1, j, solutions):
                 return True
-            
+
             if runmaze(maze, size, i, j - 1, solutions):
                 return True
-            
+
             solutions[i][j] = 0
             return False
 
 
 def main():
     maze = [
-    [0,1,0,1,1],
-    [0,0,0,0,0],
-    [1,0,1,0,1],
-    [0,0,1,0,0],
-    [1,0,0,1,0]
+        [0, 1, 0, 1, 1],
+        [0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 1],
+        [0, 0, 1, 0, 0],
+        [1, 0, 0, 1, 0],
     ]
     size = 5
     solveMaze(maze, size)
-    
+
 
 if __name__ == "__main__":
     main()
