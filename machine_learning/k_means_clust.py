@@ -216,69 +216,115 @@ def ReportGenerator(df, ClusteringVariables, FillMissingReport=None):
         import pandas as pd
         import numpy as np
     """
-    #Fill missing values with given rules
+    # Fill missing values with given rules
     if FillMissingReport is None:
         pass
     else:
         df.fillna(value=FillMissingReport, inplace=True)
-    df['dummy'] = 1
+    df["dummy"] = 1
     numeric_cols = df.select_dtypes(np.number).columns
-    report = (df  # constract report dataframe
-              .groupby(['Cluster'])[numeric_cols]  # group by cluster number
-              .agg([("sum", np.sum),
-                    ("mean_with_zeros", lambda x: np.mean(np.nan_to_num(x))),
-                    ("mean_without_zeros", lambda x : x.replace(0, np.NaN).mean()),
-                    ("mean_25-75", lambda x : np.mean(np.nan_to_num(sorted(x)[round((len(x)*25/100)):round(len(x)*75/100)]))),
-                    ("mean_with_na", np.mean),
-                    ('min', lambda x: x.min()),
-                    ("5%",lambda x: x.quantile(0.05)), 
-                    ("25%",lambda x: x.quantile(0.25)),
-                    ("50%", lambda x:x.quantile(0.50)),
-                    ("75%", lambda x:x.quantile(0.75)),
-                    ("95%",lambda x: x.quantile(0.95)),
-                    ('max', lambda x:x.max()),
-                    ("count", lambda x:x.count()),
-                    ('stdev', lambda x:x.std()),
-                    ('mode', lambda x: x.mode()[0]),
-                    ('median', lambda x:x.median()),                  
-                    ("# > 0", lambda x:(x>0).sum())])
-              .T
-              .reset_index()
-              .rename(index=str, columns={"level_0": "Features", 'level_1': 'Type'}))  # rename columns
+    report = (
+        df.groupby(["Cluster"])[  # constract report dataframe
+            numeric_cols
+        ]  # group by cluster number
+        .agg(
+            [
+                ("sum", np.sum),
+                ("mean_with_zeros", lambda x: np.mean(np.nan_to_num(x))),
+                ("mean_without_zeros", lambda x: x.replace(0, np.NaN).mean()),
+                (
+                    "mean_25-75",
+                    lambda x: np.mean(
+                        np.nan_to_num(
+                            sorted(x)[
+                                round((len(x) * 25 / 100)) : round(len(x) * 75 / 100)
+                            ]
+                        )
+                    ),
+                ),
+                ("mean_with_na", np.mean),
+                ("min", lambda x: x.min()),
+                ("5%", lambda x: x.quantile(0.05)),
+                ("25%", lambda x: x.quantile(0.25)),
+                ("50%", lambda x: x.quantile(0.50)),
+                ("75%", lambda x: x.quantile(0.75)),
+                ("95%", lambda x: x.quantile(0.95)),
+                ("max", lambda x: x.max()),
+                ("count", lambda x: x.count()),
+                ("stdev", lambda x: x.std()),
+                ("mode", lambda x: x.mode()[0]),
+                ("median", lambda x: x.median()),
+                ("# > 0", lambda x: (x > 0).sum()),
+            ]
+        )
+        .T.reset_index()
+        .rename(index=str, columns={"level_0": "Features", "level_1": "Type"})
+    )  # rename columns
 
-    clustersize = report[(report['Features'] == 'dummy') \
-                         & (report['Type'] == 'count')]  # caclulating size of cluster(count of clientID's)
-    clustersize.Type = 'ClusterSize'  # rename created cluster df to match report column names
-    clustersize.Features = '# of Customers'
-    clusterproportion = pd.DataFrame(clustersize.iloc[:, 2:].values /  # caclulating proportion of cluster
-                                     clustersize.iloc[:, 2:].values.sum())
-    clusterproportion['Type'] = '% of Customers'  # rename created cluster df to match report column names
-    clusterproportion['Features'] = 'ClusterProportion'
+    clustersize = report[
+        (report["Features"] == "dummy") & (report["Type"] == "count")
+    ]  # caclulating size of cluster(count of clientID's)
+    clustersize.Type = (
+        "ClusterSize"  # rename created cluster df to match report column names
+    )
+    clustersize.Features = "# of Customers"
+    clusterproportion = pd.DataFrame(
+        clustersize.iloc[:, 2:].values
+        / clustersize.iloc[:, 2:].values.sum()  # caclulating proportion of cluster
+    )
+    clusterproportion[
+        "Type"
+    ] = "% of Customers"  # rename created cluster df to match report column names
+    clusterproportion["Features"] = "ClusterProportion"
     cols = clusterproportion.columns.tolist()
     cols = cols[-2:] + cols[:-2]
     clusterproportion = clusterproportion[cols]  # rearrange columns to match report
     clusterproportion.columns = report.columns
-    a = pd.DataFrame(abs(report[report['Type'] == 'count'] \
-                         .iloc[:, 2:].values - clustersize.iloc[:, 2:].values))  # generating df with count of nan values
-    a['Features'] = 0
-    a['Type'] = '# of nan'
-    a.Features = report[report['Type'] == 'count'].Features.tolist()  # filling values in order to match report  
+    a = pd.DataFrame(
+        abs(
+            report[report["Type"] == "count"].iloc[:, 2:].values
+            - clustersize.iloc[:, 2:].values
+        )
+    )  # generating df with count of nan values
+    a["Features"] = 0
+    a["Type"] = "# of nan"
+    a.Features = report[
+        report["Type"] == "count"
+    ].Features.tolist()  # filling values in order to match report
     cols = a.columns.tolist()
     cols = cols[-2:] + cols[:-2]
     a = a[cols]  # rearrange columns to match report
     a.columns = report.columns  # rename columns to match report
-    report = report.drop(report[report.Type == 'count'].index)  # drop count values except cluster size
-    report = pd.concat([report, a, clustersize, clusterproportion],
-                       axis=0)  # concat report with clustert size and nan values
-    report['Mark'] = report['Features'].isin(ClusteringVariables)
+    report = report.drop(
+        report[report.Type == "count"].index
+    )  # drop count values except cluster size
+    report = pd.concat(
+        [report, a, clustersize, clusterproportion], axis=0
+    )  # concat report with clustert size and nan values
+    report["Mark"] = report["Features"].isin(ClusteringVariables)
     cols = report.columns.tolist()
     cols = cols[0:2] + cols[-1:] + cols[2:-1]
     report = report[cols]
-    sorter1 = {'ClusterSize': 9, 'ClusterProportion': 8, 'mean_with_zeros': 7, 'mean_with_na': 6, 'max': 5, '50%': 4, 'min': 3, '25%': 2, '75%': 1,
-              '# of nan': 0, "# > 0": -1, "sum_with_na": -2}
-    report = (report.assign(Sorter1 = lambda x:x.Type.map(sorter1),
-                            Sorter2 = lambda x:list(reversed(range(len(x)))))
-                    .sort_values(['Sorter1', 'Mark', "Sorter2"], ascending=False)
-                    .drop(['Sorter1', "Sorter2"], axis=1))
+    sorter1 = {
+        "ClusterSize": 9,
+        "ClusterProportion": 8,
+        "mean_with_zeros": 7,
+        "mean_with_na": 6,
+        "max": 5,
+        "50%": 4,
+        "min": 3,
+        "25%": 2,
+        "75%": 1,
+        "# of nan": 0,
+        "# > 0": -1,
+        "sum_with_na": -2,
+    }
+    report = (
+        report.assign(
+            Sorter1=lambda x: x.Type.map(sorter1),
+            Sorter2=lambda x: list(reversed(range(len(x)))),
+        )
+        .sort_values(["Sorter1", "Mark", "Sorter2"], ascending=False)
+        .drop(["Sorter1", "Sorter2"], axis=1)
+    )
     return report
-
