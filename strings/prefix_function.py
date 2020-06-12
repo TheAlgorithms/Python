@@ -64,4 +64,5 @@ def longest_prefix(input_str: str) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
