@@ -86,4 +86,5 @@ def find_pattern(pattern: str, input_str: str) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
