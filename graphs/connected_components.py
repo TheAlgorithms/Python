@@ -1,9 +1,9 @@
-'''
+"""
 https://en.wikipedia.org/wiki/Component_(graph_theory)
 
 Finding connected components in graph
 
-'''
+"""
 
 test_graph_1 = {
     0: [1, 2],
@@ -74,4 +74,5 @@ def connected_components(graph):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
