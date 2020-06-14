@@ -1,9 +1,9 @@
-'''
+"""
 https://en.wikipedia.org/wiki/Strongly_connected_component
 
 Finding strongly connected components in directed graph
 
-'''
+"""
 
 test_graph_1 = {
     0: [2, 3],
@@ -100,4 +100,5 @@ def strongly_connected_components(graph: dict) -> list:
 if __name__ == "__main__":
 
     import doctest
+
     doctest.testmod()
