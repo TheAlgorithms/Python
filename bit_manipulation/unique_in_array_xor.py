@@ -1,6 +1,6 @@
 def find_non_duplicate(nums: list) -> int:
     '''
-    >>>find_non_duplicate([1, 2, 1, 2, 3, 4, 3])
+    >>> find_non_duplicate([1, 2, 1, 2, 3, 4, 3])
     4
     This occurs as:
     1. Any number xor itself is 0.
