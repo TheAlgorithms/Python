@@ -264,6 +264,7 @@
   * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/test_knapsack.py)
 
 ## Hashes
+  * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
   * [Enigma Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/enigma_machine.py)
   * [Hamming Code](https://github.com/TheAlgorithms/Python/blob/master/hashes/hamming_code.py)
