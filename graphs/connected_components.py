@@ -44,7 +44,7 @@ def dfs(graph, vert, visited):
     return [vert] + connected_verts
 
 
-def connected_components(graph):
+def connected_components(graph: dict) -> list:
     """
     This function takes graph as a parameter
     and then returns the list of connected components
