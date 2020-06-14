@@ -41,7 +41,7 @@ def topology_sort(graph, vert, visited, order):
 def find_components(reverse_graph, vert, visited, component):
     """
     Use depth first search to find strongliy connected
-    vertices. Now graph is reversed 
+    vertices. Now graph is reversed
     """
 
     visited[vert] = True
