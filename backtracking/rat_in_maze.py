@@ -1,14 +1,3 @@
-def print_matrix(matrix):
-    """
-    This method takes matrix as parameter and print the solution
-    In this matrix 1 s are the path to the destination.
-    Parameters :
-        matrix(2D matrix) : matrix
-    """
-    for i in matrix:
-        print(i)
-
-
 def fill_matrix(matrix, i, j):
     """
     This method just fills matrix i, j with value
@@ -19,7 +8,7 @@ def fill_matrix(matrix, i, j):
     matrix[i][j] = 1
 
 
-def solveMaze(maze, size):
+def solveMaze(maze):
     """
     This method solves rat in maze algorithm.
     In this problem we have n by n matrix and we have start point and end point
@@ -30,12 +19,58 @@ def solveMaze(maze, size):
         size : size of our maze(square)
     Returns:
         This method returns true and array if solution found otherwise false and None
+
+    >>> maze = [[0, 1, 0, 1, 1],
+    ...         [0, 0, 0, 0, 0],
+    ...         [1, 0, 1, 0, 1],
+    ...         [0, 0, 1, 0, 0],
+    ...         [1, 0, 0, 1, 0]]
+    >>> solveMaze(maze)
+    [1, 0, 0, 0, 0]
+    [1, 1, 1, 1, 0]
+    [0, 0, 0, 1, 0]
+    [0, 0, 0, 1, 1]
+    [0, 0, 0, 0, 1]
+
+    >>> maze = [[0, 1, 0, 1, 1],
+    ...         [0, 0, 0, 0, 0],
+    ...         [0, 0, 0, 0, 1],
+    ...         [0, 0, 0, 0, 0],
+    ...         [0, 0, 0, 0, 0]]
+    >>> solveMaze(maze)
+    [1, 0, 0, 0, 0]
+    [1, 0, 0, 0, 0]
+    [1, 0, 0, 0, 0]
+    [1, 0, 0, 0, 0]
+    [1, 1, 1, 1, 1]
+
+    >>> maze = [[0, 0, 0],
+    ...         [0, 1, 0],
+    ...         [1, 0, 0]]
+    >>> solveMaze(maze)
+    [1, 1, 1]
+    [0, 0, 1]
+    [0, 0, 1]
+
+    >>> maze = [[0, 1, 0],
+    ...         [0, 1, 0],
+    ...         [1, 0, 0]]
+    >>> solveMaze(maze)
+    Solution does not exists!
+
+    >>> maze = [[0, 1],
+    ...         [1, 0]]
+    >>> solveMaze(maze)
+    Solution does not exists!
     """
+    size = len(maze)
     # We need to create solution object to save path.
     solutions = [[0 for _ in range(size)] for _ in range(size)]
-    flag = runmaze(maze, size, 0, 0, solutions)
-    if flag:
-        print_matrix(solutions)
+    solved = runmaze(maze, 0, 0, solutions)
+
+    if solved:
+        result = "".join(str(row) + "\n" for row in solutions)
+        print(result[: len(result) - 1])  # For last \n
     else:
         print("Solution does not exists!")
 
@@ -52,10 +87,44 @@ Parameters:
     solutions(2D matrix) : solutions
 Returns:
     Boolean if path is found True, Otherwise False.
+
+    >>> maze = [[0, 1, 0, 1, 1],
+    ...         [0, 0, 0, 0, 0],
+    ...         [1, 0, 1, 0, 1],
+    ...         [0, 0, 1, 0, 0],
+    ...         [1, 0, 0, 1, 0]]
+    >>> solveMaze(maze)
+    True
+
+    >>> maze = [[0, 1, 0, 1, 1],
+    ...         [0, 0, 0, 0, 0],
+    ...         [0, 0, 0, 0, 1],
+    ...         [0, 0, 0, 0, 0],
+    ...         [0, 0, 0, 0, 0]]
+    >>> solveMaze(maze)
+    True
+
+    >>> maze = [[0, 0, 0],
+    ...         [0, 1, 0],
+    ...         [1, 0, 0]]
+    >>> solveMaze(maze)
+    True
+
+    >>> maze = [[0, 1, 0],
+    ...         [0, 1, 0],
+    ...         [1, 0, 0]]
+    >>> solveMaze(maze)
+    False
+
+    >>> maze = [[0, 1],
+    ...         [1, 0]]
+    >>> solveMaze(maze)
+    False
 """
 
 
-def runmaze(maze, size, i, j, solutions):
+def runmaze(maze, i, j, solutions):
+    size = len(maze)
     # Final check point.
     if (i == (size - 1)) and (j == (size - 1)):
         fill_matrix(solutions, i, j)
@@ -72,16 +141,16 @@ def runmaze(maze, size, i, j, solutions):
             fill_matrix(solutions, i, j)
 
             # check for directions
-            if runmaze(maze, size, i + 1, j, solutions):
+            if runmaze(maze, i + 1, j, solutions):
                 return True
 
-            if runmaze(maze, size, i, j + 1, solutions):
+            if runmaze(maze, i, j + 1, solutions):
                 return True
 
-            if runmaze(maze, size, i - 1, j, solutions):
+            if runmaze(maze, i - 1, j, solutions):
                 return True
 
-            if runmaze(maze, size, i, j - 1, solutions):
+            if runmaze(maze, i, j - 1, solutions):
                 return True
 
             solutions[i][j] = 0
@@ -89,15 +158,9 @@ def runmaze(maze, size, i, j, solutions):
 
 
 def main():
-    maze = [
-        [0, 1, 0, 1, 1],
-        [0, 0, 0, 0, 0],
-        [1, 0, 1, 0, 1],
-        [0, 0, 1, 0, 0],
-        [1, 0, 0, 1, 0],
-    ]
-    size = 5
-    solveMaze(maze, size)
+    import doctest
+
+    doctest.testmod()
 
 
 if __name__ == "__main__":
