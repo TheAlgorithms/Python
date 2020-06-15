@@ -19,7 +19,8 @@ def solveMaze(maze: list) -> bool:
     [0, 0, 0, 1, 0]
     [0, 0, 0, 1, 1]
     [0, 0, 0, 0, 1]
-
+    True
+    
     >>> maze = [[0, 1, 0, 1, 1],
     ...         [0, 0, 0, 0, 0],
     ...         [0, 0, 0, 0, 1],
@@ -31,6 +32,7 @@ def solveMaze(maze: list) -> bool:
     [1, 0, 0, 0, 0]
     [1, 0, 0, 0, 0]
     [1, 1, 1, 1, 1]
+    True
 
     >>> maze = [[0, 0, 0],
     ...         [0, 1, 0],
@@ -39,17 +41,20 @@ def solveMaze(maze: list) -> bool:
     [1, 1, 1]
     [0, 0, 1]
     [0, 0, 1]
+    True
 
     >>> maze = [[0, 1, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solveMaze(maze)
     Solution does not exists!
+    False
 
     >>> maze = [[0, 1],
     ...         [1, 0]]
     >>> solveMaze(maze)
     Solution does not exists!
+    False
     """
     size = len(maze)
     # We need to create solution object to save path.
@@ -58,9 +63,10 @@ def solveMaze(maze: list) -> bool:
 
     if solved:
         print("\n".join(str(row) for row in solutions))
+        return True
     else:
         print("Solution does not exists!")
-
+        return False
 
 def runmaze(maze, i, j, solutions):
     """
@@ -73,40 +79,7 @@ def runmaze(maze, i, j, solutions):
         i, j : coordinates of matrix
         solutions(2D matrix) : solutions
     Returns:
-        Boolean if path is found True, Otherwise False.
-
-    >>> maze = [[0, 1, 0, 1, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [1, 0, 1, 0, 1],
-    ...         [0, 0, 1, 0, 0],
-    ...         [1, 0, 0, 1, 0]]
-    >>> solveMaze(maze)
-    True
-
-    >>> maze = [[0, 1, 0, 1, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [0, 0, 0, 0, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [0, 0, 0, 0, 0]]
-    >>> solveMaze(maze)
-    True
-
-    >>> maze = [[0, 0, 0],
-    ...         [0, 1, 0],
-    ...         [1, 0, 0]]
-    >>> solveMaze(maze)
-    True
-
-    >>> maze = [[0, 1, 0],
-    ...         [0, 1, 0],
-    ...         [1, 0, 0]]
-    >>> solveMaze(maze)
-    False
-
-    >>> maze = [[0, 1],
-    ...         [1, 0]]
-    >>> solveMaze(maze)
-    False
+        Boolean if path is found True, Otherwise False.  
     """
     size = len(maze)
     # Final check point.
