@@ -1,4 +1,4 @@
-def solveMaze(maze: list):
+def solveMaze(maze: list) -> bool:
     """
     This method solves rat in maze algorithm.
     In this problem we have n by n matrix and we have start point and end point
