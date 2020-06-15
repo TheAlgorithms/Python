@@ -1,14 +1,4 @@
-def fill_matrix(matrix, i, j):
-    """
-    This method just fills matrix i, j with value
-    Parameters :
-        matrix(2D matrix) : matrix
-        i, j : coordinates of the matrix.
-    """
-    matrix[i][j] = 1
-
-
-def solveMaze(maze):
+def solveMaze(maze: list):
     """
     This method solves rat in maze algorithm.
     In this problem we have n by n matrix and we have start point and end point
@@ -16,10 +6,8 @@ def solveMaze(maze):
     1 are open paths we can use.
     Parameters :
         maze(2D matrix) : maze
-        size : size of our maze(square)
     Returns:
-        This method returns true and array if solution found otherwise false and None
-
+        Return: True is maze has a solution or False if it does not.
     >>> maze = [[0, 1, 0, 1, 1],
     ...         [0, 0, 0, 0, 0],
     ...         [1, 0, 1, 0, 1],
@@ -69,24 +57,23 @@ def solveMaze(maze):
     solved = runmaze(maze, 0, 0, solutions)
 
     if solved:
-        result = "".join(str(row) + "\n" for row in solutions)
-        print(result[: len(result) - 1])  # For last \n
+        print("\n".join(str(row) for row in solutions))
     else:
         print("Solution does not exists!")
 
 
-"""
-This method is recursive method which starts from i and j
-and goes with 4 direction option up, down, left, right
-if path found to destination it breaks and return True
-otherwise False
-Parameters:
-    maze(2D matrix) : maze
-    size : size of our maze(square)
-    i, j : coordinates of matrix
-    solutions(2D matrix) : solutions
-Returns:
-    Boolean if path is found True, Otherwise False.
+def runmaze(maze, i, j, solutions):
+    """
+    This method is recursive method which starts from i and j
+    and goes with 4 direction option up, down, left, right
+    if path found to destination it breaks and return True
+    otherwise False
+    Parameters:
+        maze(2D matrix) : maze
+        i, j : coordinates of matrix
+        solutions(2D matrix) : solutions
+    Returns:
+        Boolean if path is found True, Otherwise False.
 
     >>> maze = [[0, 1, 0, 1, 1],
     ...         [0, 0, 0, 0, 0],
@@ -120,14 +107,11 @@ Returns:
     ...         [1, 0]]
     >>> solveMaze(maze)
     False
-"""
-
-
-def runmaze(maze, i, j, solutions):
+    """
     size = len(maze)
     # Final check point.
-    if (i == (size - 1)) and (j == (size - 1)):
-        fill_matrix(solutions, i, j)
+    if i == j == (size - 1):
+        solutions[i][j] = 1
         return True
 
     lower_flag = (not (i < 0)) and (not (j < 0))  # Check lower bounds
@@ -138,7 +122,7 @@ def runmaze(maze, i, j, solutions):
         block_flag = (not (solutions[i][j])) and (not (maze[i][j]))
         if block_flag:
             # check visited
-            fill_matrix(solutions, i, j)
+            solutions[i][j] = 1
 
             # check for directions
             if runmaze(maze, i + 1, j, solutions):
