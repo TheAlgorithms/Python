@@ -57,9 +57,8 @@ def longest_prefix(input_str: str) -> int:
     2
     """
 
-    prefix_result = prefix_function(input_str)
     # just returning maximum value of the array gives us answer
-    return max(prefix_result)
+    return max(prefix_function(input_str))
 
 
 if __name__ == "__main__":
