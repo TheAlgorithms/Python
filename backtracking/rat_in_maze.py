@@ -1,4 +1,4 @@
-def solveMaze(maze: list) -> bool:
+def solve_maze(maze: list) -> bool:
     """
     This method solves rat in maze algorithm.
     In this problem we have n by n matrix and we have start point and end point
@@ -13,7 +13,7 @@ def solveMaze(maze: list) -> bool:
     ...         [1, 0, 1, 0, 1],
     ...         [0, 0, 1, 0, 0],
     ...         [1, 0, 0, 1, 0]]
-    >>> solveMaze(maze)
+    >>> solve_maze(maze)
     [1, 0, 0, 0, 0]
     [1, 1, 1, 1, 0]
     [0, 0, 0, 1, 0]
@@ -26,7 +26,7 @@ def solveMaze(maze: list) -> bool:
     ...         [0, 0, 0, 0, 1],
     ...         [0, 0, 0, 0, 0],
     ...         [0, 0, 0, 0, 0]]
-    >>> solveMaze(maze)
+    >>> solve_maze(maze)
     [1, 0, 0, 0, 0]
     [1, 0, 0, 0, 0]
     [1, 0, 0, 0, 0]
@@ -37,7 +37,7 @@ def solveMaze(maze: list) -> bool:
     >>> maze = [[0, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
-    >>> solveMaze(maze)
+    >>> solve_maze(maze)
     [1, 1, 1]
     [0, 0, 1]
     [0, 0, 1]
@@ -46,30 +46,28 @@ def solveMaze(maze: list) -> bool:
     >>> maze = [[0, 1, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
-    >>> solveMaze(maze)
+    >>> solve_maze(maze)
     Solution does not exists!
     False
 
     >>> maze = [[0, 1],
     ...         [1, 0]]
-    >>> solveMaze(maze)
+    >>> solve_maze(maze)
     Solution does not exists!
     False
     """
     size = len(maze)
     # We need to create solution object to save path.
     solutions = [[0 for _ in range(size)] for _ in range(size)]
-    solved = runmaze(maze, 0, 0, solutions)
-
+    solved = run_maze(maze, 0, 0, solutions)
     if solved:
         print("\n".join(str(row) for row in solutions))
-        return True
     else:
         print("Solution does not exists!")
-        return False
+    return solved
 
 
-def runmaze(maze, i, j, solutions):
+def run_maze(maze, i, j, solutions):
     """
     This method is recursive method which starts from i and j
     and goes with 4 direction option up, down, left, right
@@ -99,27 +97,17 @@ def runmaze(maze, i, j, solutions):
             solutions[i][j] = 1
 
             # check for directions
-            if runmaze(maze, i + 1, j, solutions):
-                return True
-
-            if runmaze(maze, i, j + 1, solutions):
-                return True
-
-            if runmaze(maze, i - 1, j, solutions):
-                return True
-
-            if runmaze(maze, i, j - 1, solutions):
+            if (run_maze(maze, i + 1, j, solutions) or
+                run_maze(maze, i, j + 1, solutions) or
+                run_maze(maze, i - 1, j, solutions) or
+                run_maze(maze, i, j - 1, solutions)):
                 return True
 
             solutions[i][j] = 0
             return False
 
 
-def main():
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-
-if __name__ == "__main__":
-    main()
