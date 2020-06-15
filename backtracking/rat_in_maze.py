@@ -20,7 +20,7 @@ def solveMaze(maze: list) -> bool:
     [0, 0, 0, 1, 1]
     [0, 0, 0, 0, 1]
     True
-    
+
     >>> maze = [[0, 1, 0, 1, 1],
     ...         [0, 0, 0, 0, 0],
     ...         [0, 0, 0, 0, 1],
@@ -68,6 +68,7 @@ def solveMaze(maze: list) -> bool:
         print("Solution does not exists!")
         return False
 
+
 def runmaze(maze, i, j, solutions):
     """
     This method is recursive method which starts from i and j
@@ -79,7 +80,7 @@ def runmaze(maze, i, j, solutions):
         i, j : coordinates of matrix
         solutions(2D matrix) : solutions
     Returns:
-        Boolean if path is found True, Otherwise False.  
+        Boolean if path is found True, Otherwise False.
     """
     size = len(maze)
     # Final check point.
