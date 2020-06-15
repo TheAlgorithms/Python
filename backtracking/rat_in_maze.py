@@ -97,10 +97,12 @@ def run_maze(maze, i, j, solutions):
             solutions[i][j] = 1
 
             # check for directions
-            if (run_maze(maze, i + 1, j, solutions) or
-                run_maze(maze, i, j + 1, solutions) or
-                run_maze(maze, i - 1, j, solutions) or
-                run_maze(maze, i, j - 1, solutions)):
+            if (
+                run_maze(maze, i + 1, j, solutions)
+                or run_maze(maze, i, j + 1, solutions)
+                or run_maze(maze, i - 1, j, solutions)
+                or run_maze(maze, i, j - 1, solutions)
+            ):
                 return True
 
             solutions[i][j] = 0
