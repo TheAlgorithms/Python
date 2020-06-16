@@ -1,5 +1,5 @@
 """
-    This algorithm (k=33) was first reported by dan bernstein many years ago in comp.lang.c.
+    This algorithm (k=33) was first reported by Dan Bernstein many years ago in comp.lang.c.
     Another version of this algorithm (now favored by bernstein) uses xor:
         hash(i) = hash(i - 1) * 33 ^ str[i];
 
