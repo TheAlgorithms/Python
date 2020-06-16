@@ -5,7 +5,7 @@ def change_brightness(img: Image, level: float) -> Image:
     """
     Change the brightness of a PIL Image to a given level.
     """
-    
+
     def brightness(c: int) -> float:
         """
         Fundamental Transformation/Operation that'll be performed on
