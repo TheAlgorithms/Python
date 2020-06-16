@@ -100,7 +100,8 @@ class BreadthFirstSearch:
 
 class BidirectionalBreadthFirstSearch:
     """
-    >>> bd_bfs = BidirectionalBreadthFirstSearch((0, 0), (len(grid) - 1, len(grid[0]) - 1))
+    >>> bd_bfs = BidirectionalBreadthFirstSearch((0, 0), (len(grid) - 1,
+    ...                                                   len(grid[0]) - 1))
     >>> bd_bfs.fwd_bfs.start.pos == bd_bfs.bwd_bfs.target.pos
     True
     >>> bd_bfs.retrace_bidirectional_path(bd_bfs.fwd_bfs.start,
