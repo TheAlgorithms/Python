@@ -29,7 +29,8 @@ def gamma(num: float) -> float:
     40320.0
 
     >>> from math import gamma as math_gamma
-    >>> all(gamma(i)/math_gamma(i) <= 1.000000001 and abs(gamma(i)/math_gamma(i)) > .99999999 for i in range(1, 50))
+    >>> all(.99999999 < gamma(i) / math_gamma(i) <= 1.000000001
+    ...     for i in range(1, 50))
     True
 
 
