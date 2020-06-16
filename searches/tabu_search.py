@@ -139,10 +139,19 @@ def find_neighborhood(solution, dict_of_neighbours):
         from the solution that the method took as an input
 
     Example:
-    >>> find_neighborhood(['a','c','b','d','e','a'])  # doctest: +NORMALIZE_WHITESPACE
-    [['a','e','b','d','c','a',90], [['a','c','d','b','e','a',90],
-     ['a','d','b','c','e','a',93], ['a','c','b','e','d','a',102],
-     ['a','c','e','d','b','a',113], ['a','b','c','d','e','a',93]]
+    >>> find_neighborhood(['a', 'c', 'b', 'd', 'e', 'a'],
+    ...                   {'a': [['b', '20'], ['c', '18'], ['d', '22'], ['e', '26']],
+    ...                    'c': [['a', '18'], ['b', '10'], ['d', '23'], ['e', '24']],
+    ...                    'b': [['a', '20'], ['c', '10'], ['d', '11'], ['e', '12']],
+    ...                    'e': [['a', '26'], ['b', '12'], ['c', '24'], ['d', '40']],
+    ...                    'd': [['a', '22'], ['b', '11'], ['c', '23'], ['e', '40']]}
+    ...                   )  # doctest: +NORMALIZE_WHITESPACE
+    [['a', 'e', 'b', 'd', 'c', 'a', 90],
+     ['a', 'c', 'd', 'b', 'e', 'a', 90],
+     ['a', 'd', 'b', 'c', 'e', 'a', 93],
+     ['a', 'c', 'b', 'e', 'd', 'a', 102],
+     ['a', 'c', 'e', 'd', 'b', 'a', 113],
+     ['a', 'b', 'c', 'd', 'e', 'a', 119]]
     """
 
     neighborhood_of_solution = []
@@ -209,7 +218,7 @@ def tabu_search(
         best_cost_index = len(best_solution) - 1
 
         found = False
-        while found is False:
+        while not found:
             i = 0
             while i < len(best_solution):
 

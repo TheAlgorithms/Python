@@ -18,6 +18,7 @@
   * [Hamiltonian Cycle](https://github.com/TheAlgorithms/Python/blob/master/backtracking/hamiltonian_cycle.py)
   * [Minimax](https://github.com/TheAlgorithms/Python/blob/master/backtracking/minimax.py)
   * [N Queens](https://github.com/TheAlgorithms/Python/blob/master/backtracking/n_queens.py)
+  * [Rat In Maze](https://github.com/TheAlgorithms/Python/blob/master/backtracking/rat_in_maze.py)
   * [Sudoku](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sudoku.py)
   * [Sum Of Subsets](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sum_of_subsets.py)
 
