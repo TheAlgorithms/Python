@@ -1,6 +1,6 @@
 """
     This algorithm (k=33) was first reported by Dan Bernstein many years ago in comp.lang.c.
-    Another version of this algorithm (now favored by bernstein) uses xor:
+    Another version of this algorithm (now favored by Bernstein) uses xor:
         hash(i) = hash(i - 1) * 33 ^ str[i];
 
     First Magic constant 33:
