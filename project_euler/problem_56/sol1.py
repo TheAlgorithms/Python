@@ -15,7 +15,8 @@ def maximum_digital_sum(a: int, b: int) -> int:
         1872
     """
 
-    # RETURN the MAXIMUM from the list of SUMs of the list of INT converted from STR of BASE raised to the POWER
+    # RETURN the MAXIMUM from the list of SUMs of the list of INT converted from STR of
+    # BASE raised to the POWER
     return max(
         [
             sum([int(x) for x in str(base ** power)])

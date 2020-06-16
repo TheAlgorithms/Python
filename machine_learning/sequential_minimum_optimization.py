@@ -42,7 +42,10 @@ import pandas as pd
 from sklearn.datasets import make_blobs, make_circles
 from sklearn.preprocessing import StandardScaler
 
-CANCER_DATASET_URL = "http://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/wdbc.data"
+CANCER_DATASET_URL = (
+    "http://archive.ics.uci.edu/ml/machine-learning-databases/"
+    "breast-cancer-wisconsin/wdbc.data"
+)
 
 
 class SmoSVM:
@@ -124,7 +127,8 @@ class SmoSVM:
             b_old = self._b
             self._b = b
 
-            # 4:  update error value,here we only calculate those non-bound samples' error
+            # 4:  update error value,here we only calculate those non-bound samples'
+            #     error
             self._unbound = [i for i in self._all_samples if self._is_unbound(i)]
             for s in self.unbound:
                 if s == i1 or s == i2:
@@ -231,8 +235,10 @@ class SmoSVM:
         """
         Choose first alpha ;steps:
            1:First loop over all sample
-           2:Second loop over all non-bound samples till all non-bound samples does not voilate kkt condition.
-           3:Repeat this two process endlessly,till all samples does not voilate kkt condition samples after first loop.
+           2:Second loop over all non-bound samples till all non-bound samples does not
+               voilate kkt condition.
+           3:Repeat this two process endlessly,till all samples does not voilate kkt
+               condition samples after first loop.
         """
         while True:
             all_not_obey = True
@@ -352,8 +358,8 @@ class SmoSVM:
             )
             """
             # way 2
-            Use objective function check which alpha2 new could get the minimal objectives
-
+            Use objective function check which alpha2 new could get the minimal
+            objectives
             """
             if ol < (oh - self._eps):
                 a2_new = L
@@ -572,11 +578,11 @@ def plot_partition_boundary(
     model, train_data, ax, resolution=100, colors=("b", "k", "r")
 ):
     """
-    We can not get the optimum w of our kernel svm model which is different from linear svm.
-    For this reason, we generate randomly distributed points with high desity and prediced values of these points are
-    calculated by using our tained model. Then we could use this prediced values to draw contour map.
+    We can not get the optimum w of our kernel svm model which is different from linear
+    svm.  For this reason, we generate randomly distributed points with high desity and
+    prediced values of these points are calculated by using our tained model. Then we
+    could use this prediced values to draw contour map.
     And this contour map can represent svm's partition boundary.
-
     """
     train_data_x = train_data[:, 1]
     train_data_y = train_data[:, 2]

@@ -88,9 +88,11 @@ class BankersAlgorithm:
         This function builds an index control dictionary to track original ids/indices
         of processes when altered during execution of method "main"
             Return: {0: [a: int, b: int], 1: [c: int, d: int]}
-        >>> BankersAlgorithm(test_claim_vector, test_allocated_res_table,
+        >>> (BankersAlgorithm(test_claim_vector, test_allocated_res_table,
         ...     test_maximum_claim_table)._BankersAlgorithm__need_index_manager()
-        {0: [1, 2, 0, 3], 1: [0, 1, 3, 1], 2: [1, 1, 0, 2], 3: [1, 3, 2, 0], 4: [2, 0, 0, 3]}
+        ...     )  # doctest: +NORMALIZE_WHITESPACE
+        {0: [1, 2, 0, 3], 1: [0, 1, 3, 1], 2: [1, 1, 0, 2], 3: [1, 3, 2, 0],
+         4: [2, 0, 0, 3]}
         """
         return {self.__need().index(i): i for i in self.__need()}
 

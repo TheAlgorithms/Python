@@ -5,19 +5,20 @@ def tarjan(g):
     """
     Tarjan's algo for finding strongly connected components in a directed graph
 
-    Uses two main attributes of each node to track reachability, the index of that node within a component(index),
-    and the lowest index reachable from that node(lowlink).
+    Uses two main attributes of each node to track reachability, the index of that node
+    within a component(index), and the lowest index reachable from that node(lowlink).
 
-    We then perform a dfs of the each component making sure to update these parameters for each node and saving the
-    nodes we visit on the way.
+    We then perform a dfs of the each component making sure to update these parameters
+    for each node and saving the nodes we visit on the way.
 
-    If ever we find that the lowest reachable node from a current node is equal to the index of the current node then it
-    must be the root of a strongly connected component and so we save it and it's equireachable vertices as a strongly
+    If ever we find that the lowest reachable node from a current node is equal to the
+    index of the current node then it must be the root of a strongly connected
+    component and so we save it and it's equireachable vertices as a strongly
     connected component.
 
-    Complexity: strong_connect() is called at most once for each node and has a complexity of O(|E|) as it is DFS.
+    Complexity: strong_connect() is called at most once for each node and has a
+    complexity of O(|E|) as it is DFS.
     Therefore this has complexity O(|V| + |E|) for a graph G = (V, E)
-
     """
 
     n = len(g)

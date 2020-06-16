@@ -1,5 +1,6 @@
 """
-Algorithm for calculating the most cost-efficient sequence for converting one string into another.
+Algorithm for calculating the most cost-efficient sequence for converting one string
+into another.
 The only allowed operations are
 ---Copy character with cost cC
 ---Replace character with cost cR

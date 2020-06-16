@@ -4,7 +4,8 @@ Github : faizan2700
 
 Purpose : You have one function f(x) which takes float integer and returns
 float you have to integrate the function in limits a to b.
-The approximation proposed by Thomas Simpsons in 1743 is one way to calculate integration.
+The approximation proposed by Thomas Simpsons in 1743 is one way to calculate
+integration.
 
 ( read article : https://cp-algorithms.com/num_methods/simpson-integration.html )
 
@@ -25,7 +26,8 @@ def f(x: float) -> float:
 Summary of Simpson Approximation :
 
 By simpsons integration :
-1.integration of fxdx with limit a to b is = f(x0) + 4 * f(x1) + 2 * f(x2) + 4 * f(x3) + 2 * f(x4)..... + f(xn)
+1. integration of fxdx with limit a to b is =
+    f(x0) + 4 * f(x1) + 2 * f(x2) + 4 * f(x3) + 2 * f(x4)..... + f(xn)
 where x0 = a
 xi = a + i * h
 xn = b
@@ -71,7 +73,7 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
     >>> simpson_integration('wrong_input',2,3,4)
     Traceback (most recent call last):
         ...
-    AssertionError: the function(object) passed should be callable your input : wrong_input
+    AssertionError: the function(object) passed should be callable your input : ...
 
     >>> simpson_integration(lambda x : x*x,3.45,3.2,1)
     -2.8
@@ -93,9 +95,10 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
     assert isinstance(a, float) or isinstance(
         a, int
     ), f"a should be float or integer your input : {a}"
-    assert isinstance(function(a), float) or isinstance(
-        function(a), int
-    ), f"the function should return integer or float return type of your function, {type(a)}"
+    assert isinstance(function(a), float) or isinstance(function(a), int), (
+        "the function should return integer or float return type of your function, "
+        f"{type(a)}"
+    )
     assert isinstance(b, float) or isinstance(
         b, int
     ), f"b should be float or integer your input : {b}"
