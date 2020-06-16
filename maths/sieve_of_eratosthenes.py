@@ -1,8 +1,10 @@
 """
 Sieve of Eratosthones
 
-The sieve of Eratosthenes is an algorithm used to find prime numbers, less than or equal to a given value.
-Illustration: https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif
+The sieve of Eratosthenes is an algorithm used to find prime numbers, less than or
+equal to a given value.
+Illustration:
+https://upload.wikimedia.org/wikipedia/commons/b/b9/Sieve_of_Eratosthenes_animation.gif
 Reference: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
 doctest provider: Bruno Simas Hadlich (https://github.com/brunohadlich)

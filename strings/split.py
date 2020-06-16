@@ -1,6 +1,7 @@
 def split(string: str, separator: str = " ") -> list:
     """
-    Will split the string up into all the values separated by the separator (defaults to spaces)
+    Will split the string up into all the values separated by the separator
+    (defaults to spaces)
 
     >>> split("apple#banana#cherry#orange",separator='#')
     ['apple', 'banana', 'cherry', 'orange']

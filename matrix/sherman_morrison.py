@@ -207,8 +207,10 @@ class Matrix:
         """
         <method Matrix.ShermanMorrison>
         Apply Sherman-Morrison formula in O(n^2).
-        To learn this formula, please look this: https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula
-        This method returns (A + uv^T)^(-1) where A^(-1) is self. Returns None if it's impossible to calculate.
+        To learn this formula, please look this:
+        https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula
+        This method returns (A + uv^T)^(-1) where A^(-1) is self. Returns None if it's
+        impossible to calculate.
         Warning: This method doesn't check if self is invertible.
             Make sure self is invertible before execute this method.
 

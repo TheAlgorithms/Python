@@ -11,15 +11,16 @@ def lamberts_ellipsoidal_distance(
     two points on the surface of earth given longitudes and latitudes
     https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
 
-    NOTE: This algorithm uses geodesy/haversine_distance.py to compute central angle, sigma
+    NOTE: This algorithm uses geodesy/haversine_distance.py to compute central angle,
+        sigma
 
-    Representing the earth as an ellipsoid allows us to approximate distances between points
-    on the surface much better than a sphere. Ellipsoidal formulas treat the Earth as an
-    oblate ellipsoid which means accounting for the flattening that happens at the North
-    and South poles. Lambert's formulae provide accuracy on the order of 10 meteres over
-    thousands of kilometeres. Other methods can provide millimeter-level accuracy but this
-    is a simpler method to calculate long range distances without increasing computational
-    intensity.
+    Representing the earth as an ellipsoid allows us to approximate distances between
+    points on the surface much better than a sphere. Ellipsoidal formulas treat the
+    Earth as an oblate ellipsoid which means accounting for the flattening that happens
+    at the North and South poles. Lambert's formulae provide accuracy on the order of
+    10 meteres over thousands of kilometeres. Other methods can provide
+    millimeter-level accuracy but this is a simpler method to calculate long range
+    distances without increasing computational intensity.
 
     Args:
         lat1, lon1: latitude and longitude of coordinate 1
@@ -50,7 +51,8 @@ def lamberts_ellipsoidal_distance(
     # Equation Parameters
     # https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
     flattening = (AXIS_A - AXIS_B) / AXIS_A
-    # Parametric latitudes https://en.wikipedia.org/wiki/Latitude#Parametric_(or_reduced)_latitude
+    # Parametric latitudes
+    # https://en.wikipedia.org/wiki/Latitude#Parametric_(or_reduced)_latitude
     b_lat1 = atan((1 - flattening) * tan(radians(lat1)))
     b_lat2 = atan((1 - flattening) * tan(radians(lat2)))
 

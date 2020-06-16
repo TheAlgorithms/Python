@@ -1,5 +1,7 @@
 class Heap:
-    """A generic Heap class, can be used as min or max by passing the key function accordingly.
+    """
+    A generic Heap class, can be used as min or max by passing the key function
+    accordingly.
     """
 
     def __init__(self, key=None):
@@ -9,7 +11,8 @@ class Heap:
         self.pos_map = {}
         # Stores current size of heap.
         self.size = 0
-        # Stores function used to evaluate the score of an item on which basis ordering will be done.
+        # Stores function used to evaluate the score of an item on which basis ordering
+        # will be done.
         self.key = key or (lambda x: x)
 
     def _parent(self, i):
@@ -41,7 +44,10 @@ class Heap:
         return self.arr[i][1] < self.arr[j][1]
 
     def _get_valid_parent(self, i):
-        """Returns index of valid parent as per desired ordering among given index and both it's children"""
+        """
+        Returns index of valid parent as per desired ordering among given index and
+        both it's children
+        """
         left = self._left(i)
         right = self._right(i)
         valid_parent = i
@@ -87,8 +93,8 @@ class Heap:
         self.arr[index] = self.arr[self.size - 1]
         self.pos_map[self.arr[self.size - 1][0]] = index
         self.size -= 1
-        # Make sure heap is right in both up and down direction.
-        # Ideally only one of them will make any change- so no performance loss in calling both.
+        # Make sure heap is right in both up and down direction. Ideally only one
+        # of them will make any change- so no performance loss in calling both.
         if self.size > index:
             self._heapify_up(index)
             self._heapify_down(index)
@@ -109,7 +115,10 @@ class Heap:
         return self.arr[0] if self.size else None
 
     def extract_top(self):
-        """Returns top item tuple (Calculated value, item) from heap and removes it as well if present"""
+        """
+        Return top item tuple (Calculated value, item) from heap and removes it as well
+        if present
+        """
         top_item_tuple = self.get_top()
         if top_item_tuple:
             self.delete_item(top_item_tuple[0])

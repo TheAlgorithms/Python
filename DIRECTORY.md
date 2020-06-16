@@ -18,6 +18,7 @@
   * [Hamiltonian Cycle](https://github.com/TheAlgorithms/Python/blob/master/backtracking/hamiltonian_cycle.py)
   * [Minimax](https://github.com/TheAlgorithms/Python/blob/master/backtracking/minimax.py)
   * [N Queens](https://github.com/TheAlgorithms/Python/blob/master/backtracking/n_queens.py)
+  * [Rat In Maze](https://github.com/TheAlgorithms/Python/blob/master/backtracking/rat_in_maze.py)
   * [Sudoku](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sudoku.py)
   * [Sum Of Subsets](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sum_of_subsets.py)
 
@@ -264,6 +265,7 @@
   * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/test_knapsack.py)
 
 ## Hashes
+  * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
   * [Enigma Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/enigma_machine.py)
   * [Hamming Code](https://github.com/TheAlgorithms/Python/blob/master/hashes/hamming_code.py)
@@ -393,6 +395,7 @@
   * [Zellers Congruence](https://github.com/TheAlgorithms/Python/blob/master/maths/zellers_congruence.py)
 
 ## Matrix
+  * [Count Islands In Matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/count_islands_in_matrix.py)
   * [Matrix Class](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_class.py)
   * [Matrix Operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_operation.py)
   * [Nth Fibonacci Using Matrix Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/matrix/nth_fibonacci_using_matrix_exponentiation.py)
