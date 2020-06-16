@@ -14,7 +14,8 @@ if __name__ == "__main__":
     # Create universe of discourse in Python using linspace ()
     X = np.linspace(start=0, stop=75, num=75, endpoint=True, retstep=False)
 
-    # Create two fuzzy sets by defining any membership function (trapmf(), gbellmf(),gaussmf(), etc).
+    # Create two fuzzy sets by defining any membership function
+    # (trapmf(), gbellmf(), gaussmf(), etc).
     abc1 = [0, 25, 50]
     abc2 = [25, 50, 75]
     young = fuzz.membership.trimf(X, abc1)

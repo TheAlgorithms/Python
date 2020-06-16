@@ -16,7 +16,8 @@ def main():
 
 # I have written my code naively same as definition of primitive root
 # however every time I run this program, memory exceeded...
-# so I used 4.80 Algorithm in Handbook of Applied Cryptography(CRC Press, ISBN : 0-8493-8523-7, October 1996)
+# so I used 4.80 Algorithm in
+# Handbook of Applied Cryptography(CRC Press, ISBN : 0-8493-8523-7, October 1996)
 # and it seems to run nicely!
 def primitiveRoot(p_val):
     print("Generating primitive root of p")

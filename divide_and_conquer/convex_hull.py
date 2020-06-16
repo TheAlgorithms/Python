@@ -140,7 +140,8 @@ def _validate_input(points):
 
     Exception
     ---------
-    ValueError: if points is empty or None, or if a wrong data structure like a scalar is passed
+    ValueError: if points is empty or None, or if a wrong data structure like a scalar
+                 is passed
 
     TypeError: if an iterable but non-indexable object (eg. dictionary) is passed.
                 The exception to this a set which we'll convert to a list before using
@@ -229,10 +230,10 @@ def convex_hull_bf(points):
     """
     Constructs the convex hull of a set of 2D points using a brute force algorithm.
     The algorithm basically considers all combinations of points (i, j) and uses the
-    definition of convexity to determine whether (i, j) is part of the convex hull or not.
-    (i, j) is part of the convex hull if and only iff there are no points on both sides
-    of the line segment connecting the ij, and there is no point k such that k is on either end
-    of the ij.
+    definition of convexity to determine whether (i, j) is part of the convex hull or
+    not.  (i, j) is part of the convex hull if and only iff there are no points on both
+    sides of the line segment connecting the ij, and there is no point k such that k is
+    on either end of the ij.
 
     Runtime: O(n^3) - definitely horrible
 
@@ -255,9 +256,11 @@ def convex_hull_bf(points):
      [(0.0, 0.0), (1.0, 0.0), (10.0, 1.0)]
      >>> convex_hull_bf([[0, 0], [1, 0], [10, 0]])
      [(0.0, 0.0), (10.0, 0.0)]
-     >>> convex_hull_bf([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1], [-0.75, 1]])
+     >>> convex_hull_bf([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1],
+     ...                 [-0.75, 1]])
      [(-1.0, -1.0), (-1.0, 1.0), (1.0, -1.0), (1.0, 1.0)]
-     >>> convex_hull_bf([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3), (2, -1), (2, -4), (1, -3)])
+     >>> convex_hull_bf([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3),
+     ...                 (2, -1), (2, -4), (1, -3)])
      [(0.0, 0.0), (0.0, 3.0), (1.0, -3.0), (2.0, -4.0), (3.0, 0.0), (3.0, 3.0)]
     """
 
@@ -299,9 +302,10 @@ def convex_hull_bf(points):
 def convex_hull_recursive(points):
     """
     Constructs the convex hull of a set of 2D points using a divide-and-conquer strategy
-    The algorithm exploits the geometric properties of the problem by repeatedly partitioning
-    the set of points into smaller hulls, and finding the convex hull of these smaller hulls.
-    The union of the convex hull from smaller hulls is the solution to the convex hull of the larger problem.
+    The algorithm exploits the geometric properties of the problem by repeatedly
+    partitioning the set of points into smaller hulls, and finding the convex hull of
+    these smaller hulls.  The union of the convex hull from smaller hulls is the
+    solution to the convex hull of the larger problem.
 
     Parameter
     ---------
@@ -320,9 +324,11 @@ def convex_hull_recursive(points):
     [(0.0, 0.0), (1.0, 0.0), (10.0, 1.0)]
     >>> convex_hull_recursive([[0, 0], [1, 0], [10, 0]])
     [(0.0, 0.0), (10.0, 0.0)]
-    >>> convex_hull_recursive([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1], [-0.75, 1]])
+    >>> convex_hull_recursive([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1],
+                               [-0.75, 1]])
     [(-1.0, -1.0), (-1.0, 1.0), (1.0, -1.0), (1.0, 1.0)]
-    >>> convex_hull_recursive([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3), (2, -1), (2, -4), (1, -3)])
+    >>> convex_hull_recursive([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3),
+                               (2, -1), (2, -4), (1, -3)])
     [(0.0, 0.0), (0.0, 3.0), (1.0, -3.0), (2.0, -4.0), (3.0, 0.0), (3.0, 3.0)]
 
     """
@@ -335,10 +341,12 @@ def convex_hull_recursive(points):
     # use these two anchors to divide all the points into two hulls,
     # an upper hull and a lower hull.
 
-    # all points to the left (above) the line joining the extreme points belong to the upper hull
-    # all points to the right (below) the line joining the extreme points below to the lower hull
-    # ignore all points on the line joining the extreme points since they cannot be part of the
-    # convex hull
+    # all points to the left (above) the line joining the extreme points belong to the
+    # upper hull
+    # all points to the right (below) the line joining the extreme points below to the
+    # lower hull
+    # ignore all points on the line joining the extreme points since they cannot be
+    # part of the convex hull
 
     left_most_point = points[0]
     right_most_point = points[n - 1]
@@ -366,10 +374,12 @@ def _construct_hull(points, left, right, convex_set):
 
     Parameters
     ---------
-    points: list or None, the hull of points from which to choose the next convex-hull point
+    points: list or None, the hull of points from which to choose the next convex-hull
+        point
     left: Point, the point to the left  of line segment joining left and right
     right: The point to the right of the line segment joining left and right
-    convex_set: set, the current convex-hull. The state of convex-set gets updated by this function
+    convex_set: set, the current convex-hull. The state of convex-set gets updated by
+        this function
 
     Note
     ----

@@ -10,7 +10,8 @@ from sklearn.preprocessing import PolynomialFeatures
 
 # Importing the dataset
 dataset = pd.read_csv(
-    "https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/position_salaries.csv"
+    "https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/"
+    "position_salaries.csv"
 )
 X = dataset.iloc[:, 1:2].values
 y = dataset.iloc[:, 2].values

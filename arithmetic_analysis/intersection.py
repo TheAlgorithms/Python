@@ -1,9 +1,11 @@
 import math
 
 
-def intersection(
-    function, x0, x1
-):  # function is the f we want to find its root and x0 and x1 are two random starting points
+def intersection(function, x0, x1):
+    """
+    function is the f we want to find its root
+    x0 and x1 are two random starting points
+    """
     x_n = x0
     x_n1 = x1
     while True:

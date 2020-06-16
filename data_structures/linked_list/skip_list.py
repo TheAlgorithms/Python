@@ -126,7 +126,8 @@ class SkipList(Generic[KT, VT]):
         """
         :param key: Searched key,
         :return: Tuple with searched node (or None if given key is not present)
-                 and list of nodes that refer (if key is present) of should refer to given node.
+                 and list of nodes that refer (if key is present) of should refer to
+                 given node.
         """
 
         # Nodes with refer or should refer to output node
@@ -141,7 +142,8 @@ class SkipList(Generic[KT, VT]):
             #                             in skipping searched key.
             while i < node.level and node.forward[i].key < key:
                 node = node.forward[i]
-            # Each leftmost node (relative to searched node) will potentially have to be updated.
+            # Each leftmost node (relative to searched node) will potentially have to
+            # be updated.
             update_vector.append(node)
 
         update_vector.reverse()  # Note that we were inserting values in reverse order.

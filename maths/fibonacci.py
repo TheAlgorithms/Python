@@ -4,7 +4,8 @@
 
 2. Calculates the fibonacci sequence with a formula
     an = [ Phin - (phi)n ]/Sqrt[5]
-    reference-->Su, Francis E., et al. "Fibonacci Number Formula." Math Fun Facts. <http://www.math.hmc.edu/funfacts>
+    reference-->Su, Francis E., et al. "Fibonacci Number Formula." Math Fun Facts.
+    <http://www.math.hmc.edu/funfacts>
 """
 import math
 import functools
@@ -71,11 +72,13 @@ def _check_number_input(n, min_thresh, max_thresh=None):
         print("Incorrect Input: number must not be less than 0")
     except ValueTooSmallError:
         print(
-            f"Incorrect Input: input number must be > {min_thresh} for the recursive calculation"
+            f"Incorrect Input: input number must be > {min_thresh} for the recursive "
+            "calculation"
         )
     except ValueTooLargeError:
         print(
-            f"Incorrect Input: input number must be < {max_thresh} for the recursive calculation"
+            f"Incorrect Input: input number must be < {max_thresh} for the recursive "
+            "calculation"
         )
     return False
 
