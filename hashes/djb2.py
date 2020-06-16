@@ -18,7 +18,7 @@ Another version of this algorithm (now favored by Bernstein) uses xor:
 """
 
 
-def djb2(s):
+def djb2(s: str) -> int:
     """
     Implementation of djb2 hash algorithm that
     is popular because of it's magic constants.
