@@ -1,7 +1,7 @@
 """
-    This algorithm (k=33) was first reported by Dan Bernstein many years ago in comp.lang.c.
-    Another version of this algorithm (now favored by Bernstein) uses xor:
-        hash(i) = hash(i - 1) * 33 ^ str[i];
+This algorithm (k=33) was first reported by Dan Bernstein many years ago in comp.lang.c
+Another version of this algorithm (now favored by Bernstein) uses xor:
+    hash(i) = hash(i - 1) * 33 ^ str[i];
 
     First Magic constant 33:
     It has never been adequately explained.
@@ -20,7 +20,8 @@
 
 def djb2(s):
     """
-    Function implements djb2 hash algorithm, it's popular because of it's magic constants
+    Implementation of djb2 hash algorithm that
+    is popular because of it's magic constants.
 
     >>> djb2('Algorithms')
     3782405311
