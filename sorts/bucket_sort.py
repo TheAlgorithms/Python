@@ -37,11 +37,11 @@ def bucket_sort(my_list: list, bucket_size: int = DEFAULT_BUCKET_SIZE) -> list:
     >>> bucket_sort(data) == sorted(data)
     True
 
-    >>> data = [9, 8, 7, 6, -12])
+    >>> data = [9, 8, 7, 6, -12]
     >>> bucket_sort(data) == sorted(data)
     True
 
-    >>> data = [.4, 1.2, .1, .2, -.9])
+    >>> data = [.4, 1.2, .1, .2, -.9]
     >>> bucket_sort(data) == sorted(data)
     True
 
