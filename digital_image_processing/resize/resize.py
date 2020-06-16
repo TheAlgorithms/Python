@@ -50,7 +50,7 @@ class NearestNeighbour:
         :param y: Destination X coordinate
         :return: Parent X coordinate based on `y ratio`
         >>> nn = NearestNeighbour(imread("digital_image_processing/image_data/lena.jpg",
-                                         1), 100, 100)
+        ...                              1), 100, 100)
         >>> nn.ratio_y = 0.5
         >>> nn.get_y(4)
         2
