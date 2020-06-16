@@ -3,7 +3,8 @@ Demonstrates implementation of SHA1 Hash function in a Python class and gives ut
 to find hash of string or hash of text from a file.
 Usage: python sha1.py --string "Hello World!!"
        python sha1.py --file "hello_world.txt"
-       When run without any arguments, it prints the hash of the string "Hello World!! Welcome to Cryptography"
+       When run without any arguments, it prints the hash of the string "Hello World!!
+       Welcome to Cryptography"
 Also contains a Test class to verify that the generated Hash is same as that
 returned by the hashlib library
 
@@ -39,7 +40,8 @@ class SHA1Hash:
     def __init__(self, data):
         """
         Inititates the variables data and h. h is a list of 5 8-digit Hexadecimal
-        numbers corresponding to (1732584193, 4023233417, 2562383102, 271733878, 3285377520)
+        numbers corresponding to
+        (1732584193, 4023233417, 2562383102, 271733878, 3285377520)
         respectively. We will start with this as a message digest. 0x is how you write
         Hexadecimal numbers in Python
         """
@@ -74,8 +76,8 @@ class SHA1Hash:
     # @staticmethod
     def expand_block(self, block):
         """
-        Takes a bytestring-block of length 64, unpacks it to a list of integers and returns a
-        list of 80 integers after some bit operations
+        Takes a bytestring-block of length 64, unpacks it to a list of integers and
+        returns a list of 80 integers after some bit operations
         """
         w = list(struct.unpack(">16L", block)) + [0] * 64
         for i in range(16, 80):
@@ -84,12 +86,13 @@ class SHA1Hash:
 
     def final_hash(self):
         """
-        Calls all the other methods to process the input. Pads the data, then splits into
-        blocks and then does a series of operations for each block (including expansion).
+        Calls all the other methods to process the input. Pads the data, then splits
+        into blocks and then does a series of operations for each block (including
+        expansion).
         For each block, the variable h that was initialized is copied to a,b,c,d,e
-        and these 5 variables a,b,c,d,e undergo several changes. After all the blocks are
-        processed, these 5 variables are pairwise added to h ie a to h[0], b to h[1] and so on.
-        This h becomes our final hash which is returned.
+        and these 5 variables a,b,c,d,e undergo several changes. After all the blocks
+        are processed, these 5 variables are pairwise added to h ie a to h[0], b to h[1]
+        and so on.  This h becomes our final hash which is returned.
         """
         self.padded_data = self.padding()
         self.blocks = self.split_blocks()
@@ -138,8 +141,8 @@ class SHA1HashTest(unittest.TestCase):
 
 def main():
     """
-    Provides option 'string' or 'file' to take input and prints the calculated SHA1 hash.
-    unittest.main() has been commented because we probably don't want to run
+    Provides option 'string' or 'file' to take input and prints the calculated SHA1
+    hash.  unittest.main() has been commented because we probably don't want to run
     the test each time.
     """
     # unittest.main()

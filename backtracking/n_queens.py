@@ -12,8 +12,8 @@ solution = []
 
 def isSafe(board, row, column):
     """
-    This function returns a boolean value True if it is safe to place a queen there considering
-    the current state of the board.
+    This function returns a boolean value True if it is safe to place a queen there
+    considering the current state of the board.
 
     Parameters :
     board(2D matrix) : board
@@ -56,8 +56,8 @@ def solve(board, row):
         return
     for i in range(len(board)):
         """
-        For every row it iterates through each column to check if it is feasible to place a
-        queen there.
+        For every row it iterates through each column to check if it is feasible to
+        place a queen there.
         If all the combinations for that particular branch are successful the board is
         reinitialized for the next possible combination.
         """

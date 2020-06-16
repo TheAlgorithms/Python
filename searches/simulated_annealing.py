@@ -18,21 +18,23 @@ def simulated_annealing(
     threshold_temp: float = 1,
 ) -> SearchProblem:
     """
-        implementation of the simulated annealing algorithm. We start with a given state, find
-            all its neighbors. Pick a random neighbor, if that neighbor improves the solution, we move
-            in that direction, if that neighbor does not improve the solution, we generate a random
-            real number between 0 and 1, if the number is within a certain range (calculated using
-            temperature) we move in that direction, else we pick another neighbor randomly and repeat the process.
-            Args:
-                search_prob: The search state at the start.
-                find_max: If True, the algorithm should find the minimum else the minimum.
-                max_x, min_x, max_y, min_y: the maximum and minimum bounds of x and y.
-                visualization: If True, a matplotlib graph is displayed.
-                start_temperate: the initial temperate of the system when the program starts.
-                rate_of_decrease: the rate at which the temperate decreases in each iteration.
-                threshold_temp: the threshold temperature below which we end the search
-            Returns a search state having the maximum (or minimum) score.
-        """
+    Implementation of the simulated annealing algorithm. We start with a given state,
+    find all its neighbors. Pick a random neighbor, if that neighbor improves the
+    solution, we move in that direction, if that neighbor does not improve the solution,
+    we generate a random real number between 0 and 1, if the number is within a certain
+    range (calculated using temperature) we move in that direction, else we pick
+    another neighbor randomly and repeat the process.
+
+    Args:
+        search_prob: The search state at the start.
+        find_max: If True, the algorithm should find the minimum else the minimum.
+        max_x, min_x, max_y, min_y: the maximum and minimum bounds of x and y.
+        visualization: If True, a matplotlib graph is displayed.
+        start_temperate: the initial temperate of the system when the program starts.
+        rate_of_decrease: the rate at which the temperate decreases in each iteration.
+        threshold_temp: the threshold temperature below which we end the search
+    Returns a search state having the maximum (or minimum) score.
+    """
     search_end = False
     current_state = search_prob
     current_temp = start_temperate

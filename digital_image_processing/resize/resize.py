@@ -36,7 +36,8 @@ class NearestNeighbour:
         Get parent X coordinate for destination X
         :param x: Destination X coordinate
         :return: Parent X coordinate based on `x ratio`
-        >>> nn = NearestNeighbour(imread("digital_image_processing/image_data/lena.jpg", 1), 100, 100)
+        >>> nn = NearestNeighbour(imread("digital_image_processing/image_data/lena.jpg",
+        ...                              1), 100, 100)
         >>> nn.ratio_x = 0.5
         >>> nn.get_x(4)
         2
@@ -48,7 +49,8 @@ class NearestNeighbour:
         Get parent Y coordinate for destination Y
         :param y: Destination X coordinate
         :return: Parent X coordinate based on `y ratio`
-        >>> nn = NearestNeighbour(imread("digital_image_processing/image_data/lena.jpg", 1), 100, 100)
+        >>> nn = NearestNeighbour(imread("digital_image_processing/image_data/lena.jpg",
+                                         1), 100, 100)
         >>> nn.ratio_y = 0.5
         >>> nn.get_y(4)
         2

@@ -72,7 +72,8 @@ def PrimsAlgorithm(l):  # noqa: E741
 
     visited = [0 for i in range(len(l))]
     Nbr_TV = [-1 for i in range(len(l))]  # Neighboring Tree Vertex of selected vertex
-    # Minimum Distance of explored vertex with neighboring vertex of partial tree formed in graph
+    # Minimum Distance of explored vertex with neighboring vertex of partial tree
+    # formed in graph
     Distance_TV = []  # Heap of Distance of vertices from their neighboring vertex
     Positions = []
 

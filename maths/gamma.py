@@ -8,7 +8,8 @@ def gamma(num: float) -> float:
     https://en.wikipedia.org/wiki/Gamma_function
     In mathematics, the gamma function is one commonly
     used extension of the factorial function to complex numbers.
-    The gamma function is defined for all complex numbers except the non-positive integers
+    The gamma function is defined for all complex numbers except the non-positive
+    integers
 
 
     >>> gamma(-1)

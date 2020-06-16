@@ -1,7 +1,8 @@
 """
-The number of partitions of a number n into at least k parts equals the number of partitions into exactly k parts
-plus the number of partitions into at least k-1 parts. Subtracting 1 from each part of a partition of n into k parts
-gives a partition of n-k into k parts. These two facts together are used for this algorithm.
+The number of partitions of a number n into at least k parts equals the number of
+partitions into exactly k parts plus the number of partitions into at least k-1 parts.
+Subtracting 1 from each part of a partition of n into k parts gives a partition of n-k
+into k parts. These two facts together are used for this algorithm.
 """
 
 
