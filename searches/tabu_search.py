@@ -139,10 +139,6 @@ def find_neighborhood(solution, dict_of_neighbours):
         from the solution that the method took as an input
 
     Example:
-    >>> find_neighborhood(['a','c','b','d','e','a'])  # doctest: +NORMALIZE_WHITESPACE
-    [['a','e','b','d','c','a',90], [['a','c','d','b','e','a',90],
-     ['a','d','b','c','e','a',93], ['a','c','b','e','d','a',102],
-     ['a','c','e','d','b','a',113], ['a','b','c','d','e','a',93]]
     >>> find_neighborhood(['a', 'c', 'b', 'd', 'e', 'a'],
     ...                   {'a': [['b', '20'], ['c', '18'], ['d', '22'], ['e', '26']],
     ...                    'c': [['a', '18'], ['b', '10'], ['d', '23'], ['e', '24']],
