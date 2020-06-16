@@ -42,8 +42,10 @@ import pandas as pd
 from sklearn.datasets import make_blobs, make_circles
 from sklearn.preprocessing import StandardScaler
 
-CANCER_DATASET_URL = ("http://archive.ics.uci.edu/ml/machine-learning-databases/"
-                      "breast-cancer-wisconsin/wdbc.data")
+CANCER_DATASET_URL = (
+    "http://archive.ics.uci.edu/ml/machine-learning-databases/"
+    "breast-cancer-wisconsin/wdbc.data"
+)
 
 
 class SmoSVM:

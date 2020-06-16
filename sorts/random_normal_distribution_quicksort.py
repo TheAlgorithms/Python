@@ -56,6 +56,8 @@ M = np.load(outfile)
 r = len(M) - 1
 z = _inPlaceQuickSort(M, 0, r)
 
-print("No of Comparisons for 100 elements selected from a standard normal distribution"
-      "is :")
+print(
+    "No of Comparisons for 100 elements selected from a standard normal distribution"
+    "is :"
+)
 print(z)

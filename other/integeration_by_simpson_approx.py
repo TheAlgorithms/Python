@@ -95,10 +95,10 @@ def simpson_integration(function, a: float, b: float, precision: int = 4) -> flo
     assert isinstance(a, float) or isinstance(
         a, int
     ), f"a should be float or integer your input : {a}"
-    assert isinstance(function(a), float) or isinstance(
-        function(a), int
-    ), ("the function should return integer or float return type of your function, "
-        f"{type(a)}")
+    assert isinstance(function(a), float) or isinstance(function(a), int), (
+        "the function should return integer or float return type of your function, "
+        f"{type(a)}"
+    )
     assert isinstance(b, float) or isinstance(
         b, int
     ), f"b should be float or integer your input : {b}"
