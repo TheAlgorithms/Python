@@ -4,12 +4,12 @@
 
 
 class matrix:  # Public class to implement a graph
-    def __init__(self, row: int, col: int, graph: list):  # Class constructor
+    def __init__(self, row: int, col: int, graph: list):
         self.ROW = row
         self.COL = col
         self.graph = graph
 
-    def is_safe(self, i, j, visited):
+    def is_safe(self, i, j, visited) -> bool:
         return (
             0 <= i < self.ROW
             and 0 <= j < self.COL
@@ -25,7 +25,7 @@ class matrix:  # Public class to implement a graph
             if self.is_safe(i + rowNbr[k], j + colNbr[k], visited):
                 self.diffs(i + rowNbr[k], j + colNbr[k], visited)
 
-    def count_islands(self):  # And finally, count all islands.
+    def count_islands(self) -> int:  # And finally, count all islands.
         visited = [[False for j in range(self.COL)] for i in range(self.ROW)]
         count = 0
         for i in range(self.ROW):
