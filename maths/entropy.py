@@ -54,7 +54,7 @@ def calculate_prob(text: str) -> None:
     3.0
     """
     single_char_strings, two_char_strings = analyze_text(text)
-    my_alphas = list(' ' + ascii_lowercase)
+    my_alphas = list(" " + ascii_lowercase)
     # what is our total sum of probabilities.
     all_sum = sum(single_char_strings.values())
 
