@@ -8,7 +8,6 @@ Different algorithm than Knuth-Morris-Pratt pattern finding
 E.x. Finding longest prefix which is also suffix
 
 Time Complexity: O(n) - where n is the length of the string
-
 """
 
 
@@ -24,7 +23,6 @@ def prefix_function(input_string: str) -> list:
     [0, 1, 0, 0, 0, 1, 2, 3, 4]
     >>> prefix_function("asdasdad")
     [0, 0, 0, 1, 2, 3, 4, 0]
-
     """
 
     # list for the result values
