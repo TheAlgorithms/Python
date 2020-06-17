@@ -73,7 +73,8 @@ def compress_data(data_bits: str) -> str:
 
 def add_file_length(source_path: str, compressed: str) -> str:
     """
-    Adds given file's length in front (using Elias  gamma coding) of the compressed string
+    Adds given file's length in front (using Elias  gamma coding) of the compressed
+    string
     """
     file_length = os.path.getsize(source_path)
     file_length_binary = bin(file_length)[2:]
@@ -84,7 +85,8 @@ def add_file_length(source_path: str, compressed: str) -> str:
 
 def write_file_binary(file_path: str, to_write: str) -> None:
     """
-    Writes given to_write string (should only consist of 0's and 1's) as bytes in the file
+    Writes given to_write string (should only consist of 0's and 1's) as bytes in the
+    file
     """
     byte_length = 8
     try:
@@ -110,7 +112,8 @@ def write_file_binary(file_path: str, to_write: str) -> None:
 
 def compress(source_path, destination_path: str) -> None:
     """
-    Reads source file, compresses it and writes the compressed result in destination file
+    Reads source file, compresses it and writes the compressed result in destination
+    file
     """
     data_bits = read_file_binary(source_path)
     compressed = compress_data(data_bits)

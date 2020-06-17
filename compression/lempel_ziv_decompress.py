@@ -56,7 +56,8 @@ def decompress_data(data_bits: str) -> str:
 
 def write_file_binary(file_path: str, to_write: str) -> None:
     """
-    Writes given to_write string (should only consist of 0's and 1's) as bytes in the file
+    Writes given to_write string (should only consist of 0's and 1's) as bytes in the
+    file
     """
     byte_length = 8
     try:
