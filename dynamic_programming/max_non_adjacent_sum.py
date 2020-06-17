@@ -5,21 +5,10 @@ from typing import List
 
 def maximum_non_adjacent_sum(nums: List[int]) -> int:
     '''
-    Function to find the maximum non-adjacent sum of the elements in the input list
-
-    Parameters
-    ----------
-    nums : List[int]
-        List of integers for the maximum non-adjacent sum computation
-
-    Returns
-    -------
-    int
-        maximum non-adjacent sum
+    Find the maximum non-adjacent sum of the integers in the nums input list
 
     Examples
     --------
-    These are written in doctest format, and should illustrate how to use the function
 
     >>> print(maximum_non_adjacent_sum([1, 2, 3]))
     4
