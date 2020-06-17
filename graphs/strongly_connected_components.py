@@ -45,7 +45,7 @@ def topology_sort(graph: dict, vert: int, visited: list) -> list:
     return order
 
 
-def find_components(reverse_graph: dict, vert: int, visited: list) -> list:
+def find_components(reversed_graph: dict, vert: int, visited: list) -> list:
     """
     Use depth first search to find strongliy connected
     vertices. Now graph is reversed
@@ -56,12 +56,11 @@ def find_components(reverse_graph: dict, vert: int, visited: list) -> list:
     """
 
     visited[vert] = True
-
     component = [vert]
 
-    for neighbour in reverse_graph[vert]:
+    for neighbour in reversed_graph[vert]:
         if not visited[neighbour]:
-            component += find_components(reverse_graph, neighbour, visited)
+            component += find_components(reversed_graph, neighbour, visited)
 
     return component
 
@@ -75,43 +74,31 @@ def strongly_connected_components(graph: dict) -> list:
     >>> strongly_connected_components(test_graph_2)
     [[0, 2, 1], [3, 5, 4]]
     """
-
-    n = len(graph)
-
-    visited = n * [False]
-
-    # describe reversed graph (All edges reversed)
-    reverse_graph = {vert: [] for vert in range(n)}
+    
+    visited = len(graph) * [False]
+    reversed_graph = {vert: [] for vert in range(n)}
 
     for vert, neighbours in graph.items():
         for neighbour in neighbours:
-            reverse_graph[neighbour].append(vert)
+            reversed_graph[neighbour].append(vert)
 
     order = []
-
-    # topology sort
-    for i in range(n):
+    for i in range(len(graph)):
         if not visited[i]:
             order += topology_sort(graph, i, visited)
-            # print(order, 'aeee\n')
 
-    # answer list
     components_list = []
-    # reinitialize visited list
-    visited = n * [False]
+    visited = len(graph) * [False]
 
-    # finding stongly connected components
-    for i in range(n):
-        vert = order[n - i - 1]
+    for i in range(len(graph)):
+        vert = order[len(graph) - i - 1]
         if not visited[vert]:
-            component = find_components(reverse_graph, vert, visited)
+            component = find_components(reversed_graph, vert, visited)
             components_list.append(component)
 
     return components_list
 
 
 if __name__ == "__main__":
-
     import doctest
-
     doctest.testmod()
