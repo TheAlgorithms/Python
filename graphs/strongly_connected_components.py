@@ -74,7 +74,7 @@ def strongly_connected_components(graph: dict) -> list:
     >>> strongly_connected_components(test_graph_2)
     [[0, 2, 1], [3, 5, 4]]
     """
-    
+
     visited = len(graph) * [False]
     reversed_graph = {vert: [] for vert in range(n)}
 
@@ -101,4 +101,5 @@ def strongly_connected_components(graph: dict) -> list:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
