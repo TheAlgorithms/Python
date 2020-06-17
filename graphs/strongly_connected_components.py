@@ -83,8 +83,8 @@ def strongly_connected_components(graph: dict) -> list:
             reversed_graph[neighbour].append(vert)
 
     order = []
-    for i in range(len(graph)):
-        if not visited[i]:
+    for i, was_visited in enumerate(visited):
+        if not was_visited:
             order += topology_sort(graph, i, visited)
 
     components_list = []
