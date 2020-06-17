@@ -1,5 +1,6 @@
 from typing import List
 
+
 def max_non_adj_sum(nums: List[int]) -> int:
     '''
     Function to find the maximum non-adjacent sum of the elements in the input list
@@ -41,8 +42,9 @@ def max_non_adj_sum(nums: List[int]) -> int:
         temp = max_including
         max_including = max_excluding + num
         max_excluding = max(temp, max_excluding)
-    
+
     return max(max_excluding, max_including)
+
 
 if __name__ == "__main__":
     import doctest
