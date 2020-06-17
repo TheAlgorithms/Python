@@ -47,7 +47,7 @@ class HashTable:
     def _collision_resolution(self, key, data=None):
         new_key = self.hash_function(key + 1)
 
-        while self.values[new_key] is not None and self.values[new_key] != key:
+        while self.values[new_key] is not None:
 
             if self.values.count(None) > 0:
                 new_key = self.hash_function(new_key + 1)
