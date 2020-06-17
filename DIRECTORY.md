@@ -147,6 +147,7 @@
     * [Trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
 
 ## Digital Image Processing
+  * [Change Brightness](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_brightness.py)
   * [Change Contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
   * [Convert To Negative](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/convert_to_negative.py)
   * Dithering
@@ -268,6 +269,7 @@
 ## Hashes
   * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
+  * [Djb2](https://github.com/TheAlgorithms/Python/blob/master/hashes/djb2.py)
   * [Enigma Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/enigma_machine.py)
   * [Hamming Code](https://github.com/TheAlgorithms/Python/blob/master/hashes/hamming_code.py)
   * [Md5](https://github.com/TheAlgorithms/Python/blob/master/hashes/md5.py)
