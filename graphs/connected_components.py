@@ -59,7 +59,6 @@ def connected_components(graph: dict) -> list:
     visited = graph_size * [False]
     components_list = []
 
-    
     for i in range(graph_size):
         if not visited[i]:
             i_connected = dfs(graph, i, visited)
@@ -70,4 +69,5 @@ def connected_components(graph: dict) -> list:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
