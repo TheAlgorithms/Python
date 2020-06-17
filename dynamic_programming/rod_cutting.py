@@ -13,8 +13,9 @@ pieces separately or not cutting it at all if the price of it is the maximum obt
 
 def naive_cut_rod_recursive(n: int, prices: list):
     """
-        Solves the rod-cutting problem via naively without using the benefit of dynamic programming.
-        The results is the same sub-problems are solved several times leading to an exponential runtime
+        Solves the rod-cutting problem via naively without using the benefit of dynamic
+        programming. The results is the same sub-problems are solved several times
+        leading to an exponential runtime
 
         Runtime: O(2^n)
 
@@ -26,7 +27,8 @@ def naive_cut_rod_recursive(n: int, prices: list):
 
         Returns
         -------
-        The maximum revenue obtainable for a rod of length n given the list of prices for each piece.
+        The maximum revenue obtainable for a rod of length n given the list of prices
+        for each piece.
 
         Examples
         --------
@@ -50,8 +52,9 @@ def naive_cut_rod_recursive(n: int, prices: list):
 
 def top_down_cut_rod(n: int, prices: list):
     """
-        Constructs a top-down dynamic programming solution for the rod-cutting problem
-        via memoization. This function serves as a wrapper for _top_down_cut_rod_recursive
+        Constructs a top-down dynamic programming solution for the rod-cutting
+        problem via memoization. This function serves as a wrapper for
+        _top_down_cut_rod_recursive
 
         Runtime: O(n^2)
 
@@ -63,12 +66,13 @@ def top_down_cut_rod(n: int, prices: list):
 
         Note
         ----
-        For convenience and because Python's lists using 0-indexing, length(max_rev) = n + 1,
-        to accommodate for the revenue obtainable from a rod of length 0.
+        For convenience and because Python's lists using 0-indexing, length(max_rev) =
+        n + 1, to accommodate for the revenue obtainable from a rod of length 0.
 
         Returns
         -------
-        The maximum revenue obtainable for a rod of length n given the list of prices for each piece.
+        The maximum revenue obtainable for a rod of length n given the list of prices
+        for each piece.
 
         Examples
         -------
@@ -99,7 +103,8 @@ def _top_down_cut_rod_recursive(n: int, prices: list, max_rev: list):
 
         Returns
         -------
-        The maximum revenue obtainable for a rod of length n given the list of prices for each piece.
+        The maximum revenue obtainable for a rod of length n given the list of prices
+        for each piece.
         """
     if max_rev[n] >= 0:
         return max_rev[n]
@@ -144,7 +149,8 @@ def bottom_up_cut_rod(n: int, prices: list):
         """
     _enforce_args(n, prices)
 
-    # length(max_rev) = n + 1, to accommodate for the revenue obtainable from a rod of length 0.
+    # length(max_rev) = n + 1, to accommodate for the revenue obtainable from a rod of
+    # length 0.
     max_rev = [float("-inf") for _ in range(n + 1)]
     max_rev[0] = 0
 
@@ -167,7 +173,8 @@ def _enforce_args(n: int, prices: list):
 
         Throws ValueError:
 
-        if n is negative or there are fewer items in the price list than the length of the rod
+        if n is negative or there are fewer items in the price list than the length of
+        the rod
         """
     if n < 0:
         raise ValueError(f"n must be greater than or equal to 0. Got n = {n}")

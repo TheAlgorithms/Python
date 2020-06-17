@@ -4,7 +4,8 @@ def bailey_borwein_plouffe(digit_position: int, precision: int = 1000) -> str:
     Bailey-Borwein-Plouffe (BBP) formula to calculate the nth hex digit of pi.
     Wikipedia page:
     https://en.wikipedia.org/wiki/Bailey%E2%80%93Borwein%E2%80%93Plouffe_formula
-    @param digit_position: a positive integer representing the position of the digit to extract.
+    @param digit_position: a positive integer representing the position of the digit to
+    extract.
     The digit immediately after the decimal point is located at position 1.
     @param precision: number of terms in the second summation to calculate.
     A higher number reduces the chance of an error but increases the runtime.
@@ -41,7 +42,8 @@ def bailey_borwein_plouffe(digit_position: int, precision: int = 1000) -> str:
     elif (not isinstance(precision, int)) or (precision < 0):
         raise ValueError("Precision must be a nonnegative integer")
 
-    # compute an approximation of (16 ** (n - 1)) * pi whose fractional part is mostly accurate
+    # compute an approximation of (16 ** (n - 1)) * pi whose fractional part is mostly
+    # accurate
     sum_result = (
         4 * _subsum(digit_position, 1, precision)
         - 2 * _subsum(digit_position, 4, precision)
@@ -70,8 +72,9 @@ def _subsum(
         denominator = 8 * sum_index + denominator_addend
         exponential_term = 0.0
         if sum_index < digit_pos_to_extract:
-            # if the exponential term is an integer and we mod it by the denominator before
-            # dividing, only the integer part of the sum will change; the fractional part will not
+            # if the exponential term is an integer and we mod it by the denominator
+            # before dividing, only the integer part of the sum will change;
+            # the fractional part will not
             exponential_term = pow(
                 16, digit_pos_to_extract - 1 - sum_index, denominator
             )

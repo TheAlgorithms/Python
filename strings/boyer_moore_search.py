@@ -41,7 +41,9 @@ class BoyerMooreSearch:
         return -1
 
     def mismatch_in_text(self, currentPos):
-        """ finds the index of mis-matched character in text when compared with pattern from last
+        """
+        find the index of mis-matched character in text when compared with pattern
+        from last
 
         Parameters :
             currentPos (int): current index position of text

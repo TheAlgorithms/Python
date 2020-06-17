@@ -1,4 +1,4 @@
-# Created by sarathkaul on 14/11/19
+""" Created by sarathkaul on 14/11/19 """
 
 
 def remove_duplicates(sentence: str) -> str:
@@ -7,13 +7,7 @@ def remove_duplicates(sentence: str) -> str:
     >>> remove_duplicates("Python is great and Java is also great")
     'Java Python also and great is'
     """
-    sen_list = sentence.split(" ")
-    check = set()
-
-    for a_word in sen_list:
-        check.add(a_word)
-
-    return " ".join(sorted(check))
+    return " ".join(sorted(set(sentence.split(" "))))
 
 
 if __name__ == "__main__":

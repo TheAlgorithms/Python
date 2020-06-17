@@ -18,6 +18,7 @@
   * [Hamiltonian Cycle](https://github.com/TheAlgorithms/Python/blob/master/backtracking/hamiltonian_cycle.py)
   * [Minimax](https://github.com/TheAlgorithms/Python/blob/master/backtracking/minimax.py)
   * [N Queens](https://github.com/TheAlgorithms/Python/blob/master/backtracking/n_queens.py)
+  * [Rat In Maze](https://github.com/TheAlgorithms/Python/blob/master/backtracking/rat_in_maze.py)
   * [Sudoku](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sudoku.py)
   * [Sum Of Subsets](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sum_of_subsets.py)
 
@@ -76,6 +77,7 @@
   * [Harriscorner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harriscorner.py)
 
 ## Conversions
+  * [Decimal To Any](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_any.py)
   * [Decimal To Binary](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary.py)
   * [Decimal To Hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
@@ -226,6 +228,7 @@
   * [Bfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs.py)
   * [Bfs Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs_shortest_path.py)
   * [Bidirectional A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/bidirectional_a_star.py)
+  * [Bidirectional Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/bidirectional_breadth_first_search.py)
   * [Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search.py)
   * [Breadth First Search Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search_shortest_path.py)
   * [Check Bipartite Graph Bfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/check_bipartite_graph_bfs.py)
@@ -258,11 +261,17 @@
   * [Scc Kosaraju](https://github.com/TheAlgorithms/Python/blob/master/graphs/scc_kosaraju.py)
   * [Tarjans Scc](https://github.com/TheAlgorithms/Python/blob/master/graphs/tarjans_scc.py)
 
+## Greedy Method
+  * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/greedy_knapsack.py)
+  * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/test_knapsack.py)
+
 ## Hashes
+  * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
   * [Enigma Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/enigma_machine.py)
   * [Hamming Code](https://github.com/TheAlgorithms/Python/blob/master/hashes/hamming_code.py)
   * [Md5](https://github.com/TheAlgorithms/Python/blob/master/hashes/md5.py)
+  * [Sdbm](https://github.com/TheAlgorithms/Python/blob/master/hashes/sdbm.py)
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 
 ## Linear Algebra
@@ -317,6 +326,7 @@
   * [Chudnovsky Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
+  * [Entropy](https://github.com/TheAlgorithms/Python/blob/master/maths/entropy.py)
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Explicit Euler](https://github.com/TheAlgorithms/Python/blob/master/maths/explicit_euler.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
@@ -355,6 +365,7 @@
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/maths/newton_raphson.py)
   * [Number Of Digits](https://github.com/TheAlgorithms/Python/blob/master/maths/number_of_digits.py)
   * [Numerical Integration](https://github.com/TheAlgorithms/Python/blob/master/maths/numerical_integration.py)
+  * [Perfect Cube](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_cube.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
   * [Pi Monte Carlo Estimation](https://github.com/TheAlgorithms/Python/blob/master/maths/pi_monte_carlo_estimation.py)
   * [Polynomial Evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
@@ -386,6 +397,7 @@
   * [Zellers Congruence](https://github.com/TheAlgorithms/Python/blob/master/maths/zellers_congruence.py)
 
 ## Matrix
+  * [Count Islands In Matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/count_islands_in_matrix.py)
   * [Matrix Class](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_class.py)
   * [Matrix Operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_operation.py)
   * [Nth Fibonacci Using Matrix Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/matrix/nth_fibonacci_using_matrix_exponentiation.py)
@@ -640,6 +652,7 @@
   * [Split](https://github.com/TheAlgorithms/Python/blob/master/strings/split.py)
   * [Upper](https://github.com/TheAlgorithms/Python/blob/master/strings/upper.py)
   * [Word Occurrence](https://github.com/TheAlgorithms/Python/blob/master/strings/word_occurrence.py)
+  * [Z Function](https://github.com/TheAlgorithms/Python/blob/master/strings/z_function.py)
 
 ## Traversals
   * [Binary Tree Traversals](https://github.com/TheAlgorithms/Python/blob/master/traversals/binary_tree_traversals.py)

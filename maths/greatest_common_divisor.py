@@ -25,9 +25,9 @@ def greatest_common_divisor(a, b):
 
 
 """
-Below method is more memory efficient because it does not use the stack (chunk of memory).
-While above method is good, uses more memory for huge numbers because of the recursive calls
-required to calculate the greatest common divisor.
+Below method is more memory efficient because it does not use the stack (chunk of
+memory).  While above method is good, uses more memory for huge numbers because of the
+recursive calls required to calculate the greatest common divisor.
 """
 
 
@@ -50,7 +50,8 @@ def main():
         num_1 = int(nums[0])
         num_2 = int(nums[1])
         print(
-            f"greatest_common_divisor({num_1}, {num_2}) = {greatest_common_divisor(num_1, num_2)}"
+            f"greatest_common_divisor({num_1}, {num_2}) = "
+            f"{greatest_common_divisor(num_1, num_2)}"
         )
         print(f"By iterative gcd({num_1}, {num_2}) = {gcd_by_iterative(num_1, num_2)}")
     except (IndexError, UnboundLocalError, ValueError):

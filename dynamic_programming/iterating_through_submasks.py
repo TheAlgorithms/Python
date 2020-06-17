@@ -12,7 +12,8 @@ def list_of_submasks(mask: int) -> List[int]:
 
     """
     Args:
-        mask : number which shows mask ( always integer > 0, zero does not have any submasks )
+        mask : number which shows mask ( always integer > 0, zero does not have any
+            submasks )
 
     Returns:
         all_submasks : the list of submasks of mask (mask s is called submask of mask

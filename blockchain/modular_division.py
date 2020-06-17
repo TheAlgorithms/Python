@@ -3,8 +3,8 @@
 
 # GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
 
-# Given three integers a, b, and n, such that gcd(a,n)=1 and n>1, the algorithm should return an integer x such that
-#        0≤x≤n−1, and  b/a=x(modn) (that is, b=ax(modn)).
+# Given three integers a, b, and n, such that gcd(a,n)=1 and n>1, the algorithm should
+# return an integer x such that 0≤x≤n−1, and  b/a=x(modn) (that is, b=ax(modn)).
 
 # Theorem:
 # a has a multiplicative inverse modulo n iff gcd(a,n) = 1
@@ -68,7 +68,8 @@ def modular_division2(a, b, n):
     return x
 
 
-# Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers x and y, then d = gcd(a,b)
+# Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers x
+# and y, then d = gcd(a,b)
 
 
 def extended_gcd(a, b):
@@ -123,8 +124,9 @@ def greatest_common_divisor(a, b):
     >>> greatest_common_divisor(7,5)
     1
 
-    Note : In number theory, two integers a and b are said to be relatively prime, mutually prime, or co-prime
-           if the only positive integer (factor) that divides both of them is 1  i.e., gcd(a,b) = 1.
+    Note : In number theory, two integers a and b are said to be relatively prime,
+        mutually prime, or co-prime if the only positive integer (factor) that divides
+        both of them is 1  i.e., gcd(a,b) = 1.
 
     >>> greatest_common_divisor(121, 11)
     11

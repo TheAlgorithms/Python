@@ -1,9 +1,10 @@
 """
-        The sum-of-subsetsproblem states that a set of non-negative integers, and a value M,
-        determine all possible subsets of the given set whose summation sum equal to given M.
+        The sum-of-subsetsproblem states that a set of non-negative integers, and a
+        value M, determine all possible subsets of the given set whose summation sum
+        equal to given M.
 
-        Summation of the chosen numbers must be equal to given number M and one number can
-        be used only once.
+        Summation of the chosen numbers must be equal to given number M and one number
+        can be used only once.
 """
 
 
@@ -21,7 +22,8 @@ def create_state_space_tree(nums, max_sum, num_index, path, result, remaining_nu
         Creates a state space tree to iterate through each branch using DFS.
         It terminates the branching of a node when any of the two conditions
         given below satisfy.
-        This algorithm follows depth-fist-search and backtracks when the node is not branchable.
+        This algorithm follows depth-fist-search and backtracks when the node is not
+        branchable.
 
         """
     if sum(path) > max_sum or (remaining_nums_sum + sum(path)) < max_sum:
