@@ -76,7 +76,7 @@ def strongly_connected_components(graph: dict) -> list:
     """
 
     visited = len(graph) * [False]
-    reversed_graph = {vert: [] for vert in range(n)}
+    reversed_graph = {vert: [] for vert in range(len(graph))}
 
     for vert, neighbours in graph.items():
         for neighbour in neighbours:
