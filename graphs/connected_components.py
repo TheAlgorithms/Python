@@ -36,11 +36,8 @@ def dfs(graph: dict, vert: int, visited: list) -> list:
     """
 
     visited[vert] = True
-
     connected_verts = []
 
-    # iterate over neighbours and
-    # call the same function for not-visited vertexes
     for neighbour in graph[vert]:
         if not visited[neighbour]:
             connected_verts += dfs(graph, neighbour, visited)
@@ -58,19 +55,14 @@ def connected_components(graph: dict) -> list:
     [[0, 1, 3, 2], [4], [5]]
     """
 
-    n = len(graph)
-
-    visited = n * [False]
-
+    graph_size = len(graph)
+    visited = graph_size * [False]
     components_list = []
 
-    # for each unused vertexes
-    # we have to call dfs function
-    # and get its components
-    for i in range(n):
+    
+    for i in range(graph_size):
         if not visited[i]:
             i_connected = dfs(graph, i, visited)
-            # when we get components append them to answer list
             components_list.append(i_connected)
 
     return components_list
@@ -78,5 +70,4 @@ def connected_components(graph: dict) -> list:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
