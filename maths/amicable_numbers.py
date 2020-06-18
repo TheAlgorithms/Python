@@ -1,10 +1,11 @@
 """
-Amicable Numbers are two different numbers such that sum of the proper divisor 
+Amicable Numbers are two different numbers such that sum of the proper divisor
 of each number is equal to the other number.
 
-Wikipedia link for Reference: https://en.wikipedia.org/wiki/Amicable_numbers 
+Wikipedia link for Reference: https://en.wikipedia.org/wiki/Amicable_numbers
 """
 import math
+
 
 def sum_of_divisor(number: int) -> int:
     """
@@ -21,17 +22,18 @@ def sum_of_divisor(number: int) -> int:
     if number <= 0:
         raise ValueError("Number should br greater than zero")
     total = 0
-    for divisor in range(2, int(math.sqrt(number)+1)):
+    for divisor in range(2, int(math.sqrt(number) + 1)):
         # Check number is divisible by divisor.
         if number % divisor == 0:
             # If both divisor are the same, add one to the total.
-            if divisor == int(number/divisor):
+            if divisor == int(number / divisor):
                 total += divisor
             # If both divisor are not the same, add both to total.
             else:
-                total += (divisor + int(number/divisor))
+                total += (divisor + int(number / divisor))
     # Add 1 to the total because all numbers are divisible by 1
     return total + 1
+
 
 def is_amicable(x: int, y: int) -> bool:
     """
@@ -46,6 +48,7 @@ def is_amicable(x: int, y: int) -> bool:
     if sum_of_divisor(x) != y:
         return False
     return sum_of_divisor(y) == x
+
 
 if __name__ == "__main__":
     import doctest
