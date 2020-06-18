@@ -5,7 +5,7 @@ from typing import List, Tuple
 
 def get_valid_pos(position: Tuple[int], n: int) -> List[Tuple[int]]:
     '''
-    Find all the valid positions a knight can move to from the current position
+    Find all the valid positions a knight can move to from the current position.
 
     >>> get_valid_pos((1, 3), 4)
     [(2, 1), (0, 1), (3, 2)]
@@ -26,7 +26,7 @@ def get_valid_pos(position: Tuple[int], n: int) -> List[Tuple[int]]:
 
     for position in positions:
         y_test, x_test = position
-        if (y_test < n and y_test >= 0) and (x_test < n and x_test >= 0):
+        if 0 <= y_test < n and 0 <= x_test < n:
             permissible_positions.append(position)
 
     return permissible_positions
@@ -34,7 +34,7 @@ def get_valid_pos(position: Tuple[int], n: int) -> List[Tuple[int]]:
 
 def is_complete(board: List[List[int]]) -> bool:
     '''
-    Check if the board (matrix) has been completely filled with non-zero values
+    Check if the board (matrix) has been completely filled with non-zero values.
 
     >>> is_complete([[1]])
     True
@@ -43,16 +43,12 @@ def is_complete(board: List[List[int]]) -> bool:
     False
     '''
 
-    for row in board:
-        for elem in row:
-            if (elem == 0):
-                return False
-    return True
+    return not any(elem == 0 for row in board for elem in row)
 
 
 def open_knight_tour_helper(board: List[List[int]], pos: Tuple[int], curr: int) -> bool:
     '''
-    Helper function to solve knight tour problem
+    Helper function to solve knight tour problem.
     '''
 
     if is_complete(board):
@@ -72,12 +68,16 @@ def open_knight_tour_helper(board: List[List[int]], pos: Tuple[int], curr: int) 
 
 def open_knight_tour(n: int) -> List[List[int]]:
     '''
-    Find the solution for the knight tour problem for a board of size n
+    Find the solution for the knight tour problem for a board of size n. Raises
+    ValueError if the tour cannot be performed for the given size.
 
     >>> open_knight_tour(1)
     [[1]]
 
-    >>> open_knight_tour(2) # None returned
+    >>> open_knight_tour(2)
+    Traceback (most recent call last):
+    ...
+    ValueError: Open Kight Tour cannot be performed on a board of size 2
     '''
 
     board = [[0 for i in range(n)] for j in range(n)]
@@ -89,7 +89,7 @@ def open_knight_tour(n: int) -> List[List[int]]:
                 return board
             board[i][j] = 0
 
-    return None
+    raise ValueError(f"Open Kight Tour cannot be performed on a board of size {n}")
 
 
 if __name__ == "__main__":
