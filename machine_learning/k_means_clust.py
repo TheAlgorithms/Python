@@ -55,6 +55,9 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.metrics import pairwise_distances
+import warnings
+
+warnings.filterwarnings("ignore")
 
 TAG = "K-MEANS-CLUST/ "
 
@@ -206,15 +209,39 @@ if False:  # change to true to run this test case.
     plot_heterogeneity(heterogeneity, k)
 
 
-def ReportGenerator(df, ClusteringVariables, FillMissingReport=None):
+def ReportGenerator(
+    df: pd.DataFrame, ClusteringVariables: np.array, FillMissingReport=None
+) -> pd.DataFrame:
     """
     Function generates easy-erading clustering report. It takes 2 arguments as an input:
         DataFrame - dataframe with predicted cluester column;
-        FillMissingReport - dcitionary of rules how we are going to fill missing
+        FillMissingReport - dictionary of rules how we are going to fill missing
         values of for final report generate (not included in modeling);
     in order to run the function following libraries must be imported:
         import pandas as pd
         import numpy as np
+
+    >>> data = pd.DataFrame()
+    >>> data['numbers'] = [1, 2, 3]
+    >>> data['col1'] = [0.5, 2.5, 4.5]
+    >>> data['col2'] = [100, 200, 300]
+    >>> data['col3'] = [10, 20, 30]
+    >>> data['Cluster'] = [1, 1, 2]
+    >>> ReportGenerator(data, ['col1', 'col2'], 0)
+               Features               Type   Mark           1           2
+    0    # of Customers        ClusterSize  False    2.000000    1.000000
+    1    % of Customers  ClusterProportion  False    0.666667    0.333333
+    2              col1    mean_with_zeros   True    1.500000    4.500000
+    3              col2    mean_with_zeros   True  150.000000  300.000000
+    4           numbers    mean_with_zeros  False    1.500000    3.000000
+    ..              ...                ...    ...         ...         ...
+    99            dummy                 5%  False    1.000000    1.000000
+    100           dummy                95%  False    1.000000    1.000000
+    101           dummy              stdev  False    0.000000         NaN
+    102           dummy               mode  False    1.000000    1.000000
+    103           dummy             median  False    1.000000    1.000000
+    <BLANKLINE>
+    [104 rows x 5 columns]
     """
     # Fill missing values with given rules
     if FillMissingReport is None:
@@ -327,4 +354,13 @@ def ReportGenerator(df, ClusteringVariables, FillMissingReport=None):
         .sort_values(["Sorter1", "Mark", "Sorter2"], ascending=False)
         .drop(["Sorter1", "Sorter2"], axis=1)
     )
+    report.columns.name = ""
+    report = report.reset_index()
+    report.drop(columns=["index"], inplace=True)
     return report
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
