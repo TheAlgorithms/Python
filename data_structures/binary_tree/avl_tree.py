@@ -80,7 +80,7 @@ def my_max(a, b):
     return b
 
 
-def leftrotation(node):
+def rightrotation(node):
     r"""
             A                      B
            / \                    / \
@@ -92,7 +92,7 @@ def leftrotation(node):
 
     UB = unbalanced node
     """
-    print("left rotation node:", node.getdata())
+    print("right rotation node:", node.getdata())
     ret = node.getleft()
     node.setleft(ret.getright())
     ret.setright(node)
@@ -103,11 +103,11 @@ def leftrotation(node):
     return ret
 
 
-def rightrotation(node):
+def leftrotation(node):
     """
         a mirror symmetry rotation of the leftrotation
     """
-    print("right rotation node:", node.getdata())
+    print("left rotation node:", node.getdata())
     ret = node.getright()
     node.setright(ret.getleft())
     ret.setleft(node)
@@ -118,11 +118,11 @@ def rightrotation(node):
     return ret
 
 
-def rlrotation(node):
+def lrrotation(node):
     r"""
             A              A                    Br
            / \            / \                  /  \
-          B   C    RR    Br  C       LR       B    A
+          B   C    LR    Br  C       RR       B    A
          / \       -->  /  \         -->    /     / \
         Bl  Br         B   UB              Bl    UB  C
              \        /
@@ -133,7 +133,7 @@ def rlrotation(node):
     return leftrotation(node)
 
 
-def lrrotation(node):
+def rlrotation(node):
     node.setright(leftrotation(node.getright()))
     return rightrotation(node)
 
