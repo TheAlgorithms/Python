@@ -47,8 +47,8 @@ Usage:
             k
         )
 
-  5. Transfers Dataframe into excel format it must have feature called 
-  'Clust' with clust numbers in it.
+  5. Transfers Dataframe into excel format it must have feature called
+      'Clust' with k means clustering numbers in it.
 
 
 """
