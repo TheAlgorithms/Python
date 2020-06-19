@@ -245,9 +245,7 @@ def ReportGenerator(
     [104 rows x 5 columns]
     """
     # Fill missing values with given rules
-    if FillMissingReport is None:
-        pass
-    else:
+    if FillMissingReport:
         df.fillna(value=FillMissingReport, inplace=True)
     df["dummy"] = 1
     numeric_cols = df.select_dtypes(np.number).columns
