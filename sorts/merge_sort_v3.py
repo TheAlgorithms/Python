@@ -5,9 +5,10 @@ MergeSort :
     It divides input array in two halves,
     calls itself for the two halves and then merges the two sorted halves.
 """
+from typing import List
 
 
-def mergeSort(arr):
+def mergeSort(arr: List[int]):
     """
     This Function implements merge sort
     this function finds the mid of array,
@@ -32,16 +33,18 @@ def mergeSort(arr):
     """
     if len(arr) > 1:
         # Finding the mid of the array
-        mid = len(arr) // 2
+        mid: int = len(arr) // 2
         # Dividing the array elements
-        left_array = arr[:mid]
-        right_array = arr[mid:]
+        left_array: List = arr[:mid]
+        right_array: List = arr[mid:]
 
         # recursive calls
         mergeSort(left_array)  # Sorting the first half
         mergeSort(right_array)  # Sorting the second half
 
-        i = j = k = 0
+        i: int = 0
+        j: int = 0
+        k: int = 0
 
         # Copy data to temp arrays left_array[] and right_array[]
         while i < len(left_array) and j < len(right_array):
@@ -69,7 +72,7 @@ def main():
     """
     driver code for local testing of the above code
     """
-    arr = [12, 11, 13, 5, 6, 7]
+    arr: List = [12, 11, 13, 5, 6, 7]
     print("Given array is: {}".format(arr))
     mergeSort(arr)
     print("Sorted array is: {}".format(arr))
