@@ -1,49 +1,86 @@
-# Python program for implementation of MergeSort 
-def mergeSort(arr): 
-	if len(arr) >1: 
-		mid = len(arr)//2 #Finding the mid of the array 
-		L = arr[:mid] # Dividing the array elements 
-		R = arr[mid:] # into 2 halves 
+"""
+Program for implementation of MergeSort
+MergeSort :
+    merge sort is a Divide and Conquer algorithm.
+    It divides input array in two halves,
+    calls itself for the two halves and then merges the two sorted halves.
+"""
 
-		mergeSort(L) # Sorting the first half 
-		mergeSort(R) # Sorting the second half 
 
-		i = j = k = 0
-		
-		# Copy data to temp arrays L[] and R[] 
-		while i < len(L) and j < len(R): 
-			if L[i] < R[j]: 
-				arr[k] = L[i] 
-				i+=1
-			else: 
-				arr[k] = R[j] 
-				j+=1
-			k+=1
-		
-		# Checking if any element was left 
-		while i < len(L): 
-			arr[k] = L[i] 
-			i+=1
-			k+=1
-		
-		while j < len(R): 
-			arr[k] = R[j] 
-			j+=1
-			k+=1
+def mergeSort(arr):
+    """
+    This Function implements merge sort
+    this function finds the mid of array,
+    divides array into two parts,
+    recursively and join them in sorted order
 
-# Code to print the list 
-def printList(arr): 
-	for i in range(len(arr)):		 
-		print(arr[i],end=" ") 
-	print() 
+    variables:
+        left_array
+        right_array
+        mid
+        i,j,k (support variables)
+    testing:
+        ------------------------
+    >>> arr = [3, 2, 1]
+    >>> mergeSort(arr)
+    >>> arr
+    [1, 2, 3]
+    >>> arr = [3, 2, 1, 0, 1, 2, 3, 5, 4]
+    >>> mergeSort(arr)
+    >>> arr
+    [0, 1, 1, 2, 2, 3, 3, 4, 5]
+    """
+    if len(arr) > 1:
+        # Finding the mid of the array
+        mid = len(arr) // 2
+        # Dividing the array elements
+        left_array = arr[:mid]
+        right_array = arr[mid:]
 
-# driver code to test the above code 
-if __name__ == '__main__': 
-	arr = [12, 11, 13, 5, 6, 7] 
-	print ("Given array is", end="\n") 
-	printList(arr) 
-	mergeSort(arr) 
-	print("Sorted array is: ", end="\n") 
-	printList(arr) 
+        # recursive calls
+        mergeSort(left_array)  # Sorting the first half
+        mergeSort(right_array)  # Sorting the second half
+
+        i = j = k = 0
+
+        # Copy data to temp arrays left_array[] and right_array[]
+        while i < len(left_array) and j < len(right_array):
+            if left_array[i] < right_array[j]:
+                arr[k] = left_array[i]
+                i += 1
+            else:
+                arr[k] = right_array[j]
+                j += 1
+            k += 1
+
+        # Checking if any element was left
+        while i < len(left_array):
+            arr[k] = left_array[i]
+            i += 1
+            k += 1
+
+        while j < len(right_array):
+            arr[k] = right_array[j]
+            j += 1
+            k += 1
+
+
+def main():
+    """
+    driver code for local testing of the above code
+    """
+    arr = [12, 11, 13, 5, 6, 7]
+    print("Given array is: {}".format(arr))
+    mergeSort(arr)
+    print("Sorted array is: {}".format(arr))
+
+
+if __name__ == "__main__":
+    # main()
+    import doctest
+	
+    doctest.testmod()
+
 
 # This code is contributed by Mahesh
+# improved by @itsvinayak
