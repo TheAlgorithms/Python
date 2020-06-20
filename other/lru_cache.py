@@ -1,6 +1,6 @@
 class Double_Linked_List_Node():
     '''
-    Double Linked List Node for LRU Cache
+    Double Linked List Node built specifically for LRU Cache
     '''
 
     def __init__(self, key, val):
@@ -12,33 +12,29 @@ class Double_Linked_List_Node():
 
 class Double_Linked_List():
     '''
-    Double Linked List for LRU Cache
-
-    Methods:
-        add:        Adds the given node to the end of the list
-        remove:     Removes the given node from the list
+    Double Linked List built specifically for LRU Cache
     '''
 
     def __init__(self):
         self.head = Double_Linked_List_Node(None, None)
         self.rear = Double_Linked_List_Node(None, None)
-        self.head.next = self.rear
-        self.rear.prev = self.head
+        self.head.next, self.rear.prev = self.rear, self.head
 
     def add(self, node: Double_Linked_List_Node) -> None:
+        '''
+        Adds the given node to the end of the list (before rear)
+        '''
         temp = self.rear.prev
-        temp.next = node
-        node.prev = temp
-        self.rear.prev = node
-        node.next = self.rear
+        temp.next, node.prev = node, temp
+        self.rear.prev, node.next = node, self.rear
 
     def remove(self, node: Double_Linked_List_Node) -> Double_Linked_List_Node:
-        temp_last = node.prev
-        temp_next = node.next
-        node.prev = None
-        node.next = None
-        temp_last.next = temp_next
-        temp_next.prev = temp_last
+        '''
+        Removes and returns the given node from the list
+        '''
+        temp_last, temp_next = node.prev, node.next
+        node.prev, node.next = None, None
+        temp_last.next, temp_next.prev = temp_next, temp_last
 
         return node
 
@@ -46,12 +42,6 @@ class Double_Linked_List():
 class Lru_Cache:
     '''
     LRU Cache to store a given capacity of data
-
-    Methods:
-        get:        Returns the value for the input key. Raises Value Error if key is
-                    not present in cache
-        set:        Sets the value for the input key
-        has_key:    Checks if the input key is present in cache
 
     >>> cache = Lru_Cache(2)
 
@@ -96,12 +86,19 @@ class Lru_Cache:
         self.cache = {}
 
     def get(self, key: int) -> int:
+        '''
+        Returns the value for the input key and updates the Double Linked List. Raises
+        Value Error if key is not present in cache
+        '''
         if key in self.cache:
             self.list.add(self.list.remove(self.cache[key]))
             return self.cache[key].val
         raise ValueError(f"Key '{key}' not found in cache")
 
     def set(self, key: int, value: int) -> None:
+        '''
+        Sets the value for the input key and updates the Double Linked List
+        '''
         if key not in self.cache:
             if self.num_keys >= self.capacity:
                 key_to_delete = self.list.head.next.key
@@ -118,6 +115,9 @@ class Lru_Cache:
             self.list.add(node)
 
     def has_key(self, key: int) -> bool:
+        '''
+        Checks if the input key is present in cache
+        '''
         return key in self.cache
 
 
