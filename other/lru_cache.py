@@ -1,4 +1,4 @@
-from typing import Optional, Callable
+from typing import Callable, Optional
 
 
 class DoubleLinkedListNode:
@@ -44,12 +44,12 @@ class DoubleLinkedList:
         return node
 
 
-class LruCache:
+class LRUCache:
     '''
     LRU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.
 
-    >>> cache = LruCache(2)
+    >>> cache = LRUCache(2)
 
     >>> cache.set(1, 1)
 
@@ -72,10 +72,10 @@ class LruCache:
     >>> cache.get(4)
     4
 
-    >>> cache.cache_info()
-    'CacheInfo(hits=3, misses=2, capacity=2, current size=2)'
+    >>> cache
+    CacheInfo(hits=3, misses=2, capacity=2, current size=2)
 
-    >>> @LruCache.decorator(100)
+    >>> @LRUCache.decorator(100)
     ... def fib(num):
     ...     if num in (1, 2):
     ...         return 1
@@ -85,7 +85,7 @@ class LruCache:
     ...     res = fib(i)
 
     >>> fib.cache_info()
-    'CacheInfo(hits=194, misses=99, capacity=100, current size=99)'
+    CacheInfo(hits=194, misses=99, capacity=100, current size=99)
     '''
 
     # class variable to map the decorator functions to their respective instance
@@ -98,6 +98,30 @@ class LruCache:
         self.hits = 0
         self.miss = 0
         self.cache = {}
+
+    def __repr__(self) -> str:
+        '''
+        Return the details for the cache instance
+        [hits, misses, capacity, current_size]
+        '''
+
+        return (f'CacheInfo(hits={self.hits}, misses={self.miss}, '
+                f'capacity={self.capacity}, current size={self.num_keys})')
+
+    def __contains__(self, key: int) -> bool:
+        '''
+        >>> cache = LRUCache(1)
+
+        >>> 1 in cache
+        False
+
+        >>> cache.set(1, 1)
+
+        >>> 1 in cache
+        True
+        '''
+
+        return key in self.cache
 
     def get(self, key: int) -> Optional[int]:
         '''
@@ -132,15 +156,6 @@ class LruCache:
             node.val = value
             self.list.add(node)
 
-    def cache_info(self) -> str:
-        '''
-        Returns the details for the cache instance
-        [hits, misses, capacity, current size]
-        '''
-
-        return f'CacheInfo(hits={self.hits}, misses={self.miss}, \
-capacity={self.capacity}, current size={self.num_keys})'
-
     @staticmethod
     def decorator(size: int = 128):
         '''
@@ -150,22 +165,19 @@ capacity={self.capacity}, current size={self.num_keys})'
         def cache_decorator_inner(func: Callable):
 
             def cache_decorator_wrapper(*args, **kwargs):
-                if func not in LruCache.decorator_function_to_instance_map:
-                    LruCache.decorator_function_to_instance_map[func] = LruCache(size)
+                if func not in LRUCache.decorator_function_to_instance_map:
+                    LRUCache.decorator_function_to_instance_map[func] = LRUCache(size)
 
-                result = LruCache.decorator_function_to_instance_map[func].get(args[0])
-
-                if result is not None:
-                    return result
-
-                result = func(*args, **kwargs)
-                LruCache.decorator_function_to_instance_map[func].set(args[0], result)
+                result = LRUCache.decorator_function_to_instance_map[func].get(args[0])
+                if result is None:
+                    result = func(*args, **kwargs)
+                    LRUCache.decorator_function_to_instance_map[func].set(
+                        args[0], result
+                    )
                 return result
 
             def cache_info():
-                if func not in LruCache.decorator_function_to_instance_map:
-                    return "Cache for function not initialized"
-                return LruCache.decorator_function_to_instance_map[func].cache_info()
+                return LRUCache.decorator_function_to_instance_map[func]
 
             cache_decorator_wrapper.cache_info = cache_info
 
