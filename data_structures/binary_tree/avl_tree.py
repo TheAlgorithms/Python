@@ -84,7 +84,7 @@ def my_max(a, b):
     return b
 
 
-def rightrotation(node):
+def right_rotation(node):
     r"""
             A                      B
            / \                    / \
