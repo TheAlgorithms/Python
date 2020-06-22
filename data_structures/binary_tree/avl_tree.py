@@ -1,5 +1,5 @@
 """
-This is a pure Python implementation of An auto-balanced binary tree!
+Implementation of an auto-balanced binary tree!
 For doctests run following command:
 python -m doctest -v avl_tree.py
 or
