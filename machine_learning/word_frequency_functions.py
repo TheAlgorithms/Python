@@ -54,16 +54,10 @@ def term_frequency(term : str, document : str) -> int:
     >>> term_frequency("to", "To be, or not to be")
     2
 
-<<<<<<< HEAD
     >>> document = "Natural Language Processing is a subfield of
     Artificial Intelligence concerned with interactions
     between computers and human languages"
     >>> term = "NLP"
-=======
-    >>> document = ("Natural Language Processing is a subfield of Artificial Intelligence "
-         ...            "concerned with interactions between computers and human languages")
-    >>> term_frequency("NLP", document)
->>>>>>> aa61ec8247eff5145823e5d2de9e3915d6cdbd45
     0
     """
     # strip all punctuation and newlines and replace it with ''
