@@ -51,7 +51,7 @@ def term_frequency(term : str, document : str) -> int:
 
     @examples:
     >>> document = "To be, or not to be"
-    >>> term = "to"
+    >>> term_frequency("to", "To be, or not to be")
     2
 
     >>> document = "Natural Language Processing is a subfield of Artificial Intelligence
