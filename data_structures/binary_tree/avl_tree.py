@@ -1,6 +1,13 @@
 """
-An auto-balanced binary tree!
+This is a pure Python implementation of An auto-balanced binary tree!
+For doctests run following command:
+python -m doctest -v avl_tree.py
+or
+python3 -m doctest -v avl_tree.py
+For testing run:
+python avl_tree.py
 """
+
 import math
 import random
 
@@ -80,7 +87,7 @@ def my_max(a, b):
     return b
 
 
-def leftrotation(node):
+def rightrotation(node):
     r"""
             A                      B
            / \                    / \
@@ -89,7 +96,6 @@ def leftrotation(node):
         Bl  Br                 UB Br  C
        /
      UB
-
     UB = unbalanced node
     """
     print("left rotation node:", node.getdata())
@@ -103,7 +109,7 @@ def leftrotation(node):
     return ret
 
 
-def rightrotation(node):
+def leftrotation(node):
     """
         a mirror symmetry rotation of the leftrotation
     """
@@ -118,24 +124,24 @@ def rightrotation(node):
     return ret
 
 
-def rlrotation(node):
+def lrrotation(node):
     r"""
             A              A                    Br
            / \            / \                  /  \
-          B   C    RR    Br  C       LR       B    A
+          B   C    LR    Br  C       RR       B    A
          / \       -->  /  \         -->    /     / \
         Bl  Br         B   UB              Bl    UB  C
              \        /
              UB     Bl
     RR = rightrotation   LR = leftrotation
     """
-    node.setleft(rightrotation(node.getleft()))
-    return leftrotation(node)
-
-
-def lrrotation(node):
-    node.setright(leftrotation(node.getright()))
+    node.setleft(leftrotation(node.getleft()))
     return rightrotation(node)
+
+
+def rlrotation(node):
+    node.setright(rightrotation(node.getright()))
+    return leftrotation(node)
 
 
 def insert_node(node, data):
@@ -149,16 +155,16 @@ def insert_node(node, data):
             if (
                 data < node.getleft().getdata()
             ):  # new node is the left child of the left child
-                node = leftrotation(node)
+                node = rightrotation(node)
             else:
-                node = rlrotation(node)  # new node is the right child of the left child
+                node = lrrotation(node)  # new node is the right child of the left child
     else:
         node.setright(insert_node(node.getright(), data))
         if getheight(node.getright()) - getheight(node.getleft()) == 2:
             if data < node.getright().getdata():
-                node = lrrotation(node)
+                node = rlrotation(node)
             else:
-                node = rightrotation(node)
+                node = leftrotation(node)
     h1 = my_max(getheight(node.getright()), getheight(node.getleft())) + 1
     node.setheight(h1)
     return node
@@ -201,20 +207,52 @@ def del_node(root, data):
         return root
     if getheight(root.getright()) - getheight(root.getleft()) == 2:
         if getheight(root.getright().getright()) > getheight(root.getright().getleft()):
-            root = rightrotation(root)
-        else:
-            root = lrrotation(root)
-    elif getheight(root.getright()) - getheight(root.getleft()) == -2:
-        if getheight(root.getleft().getleft()) > getheight(root.getleft().getright()):
             root = leftrotation(root)
         else:
             root = rlrotation(root)
+    elif getheight(root.getright()) - getheight(root.getleft()) == -2:
+        if getheight(root.getleft().getleft()) > getheight(root.getleft().getright()):
+            root = rightrotation(root)
+        else:
+            root = lrrotation(root)
     height = my_max(getheight(root.getright()), getheight(root.getleft())) + 1
     root.setheight(height)
     return root
 
 
 class AVLtree:
+    """
+    An AVL tree doctest
+    Examples:
+    >>> t = AVLtree()
+    >>> t.insert(4)
+    insert:4
+    >>> t.traversale()
+     4 
+    *************************************
+    >>> t.insert(2)
+    insert:2
+    >>> t.traversale()
+      4  
+     2  * 
+    *************************************
+    >>> t.insert(3)
+    insert:3
+    right rotation node: 2
+    left rotation node: 4
+    >>> t.traversale()
+      3  
+     2  4 
+    *************************************
+    >>> t.getheight()
+    2
+    >>> t.del_node(3)
+    delete:3
+    >>> t.traversale()
+      4  
+     2  * 
+    *************************************
+    """
     def __init__(self):
         self.root = None
 
@@ -274,6 +312,8 @@ class AVLtree:
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     t = AVLtree()
     t.traversale()
     lst = list(range(10))
@@ -281,7 +321,6 @@ if __name__ == "__main__":
     for i in lst:
         t.insert(i)
         t.traversale()
-
     random.shuffle(lst)
     for i in lst:
         t.del_node(i)
