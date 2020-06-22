@@ -106,7 +106,7 @@ def right_rotation(node):
     return ret
 
 
-def leftrotation(node):
+def left_rotation(node):
     """
         a mirror symmetry rotation of the leftrotation
     """
