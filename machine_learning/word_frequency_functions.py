@@ -54,8 +54,8 @@ def term_frequency(term : str, document : str) -> int:
     >>> term_frequency("to", "To be, or not to be")
     2
 
-    >>> document = "Natural Language Processing is a subfield of
-    Artificial Intelligence concerned with interactions
+    >>> document = "Natural Language Processing is a subfield of \
+    Artificial Intelligence concerned with interactions \
     between computers and human languages"
     >>> term = "NLP"
     0
@@ -80,7 +80,7 @@ def document_frequency(term: str, corpus: str) -> int:
     @returns : the number of documents in the corpus that contain the term you are
                searching for and the number of documents in the corpus
     @examples :
-    >>> corpus =
+    >>> corpus = \
                 "This is the first document in the corpus.\n
                 ThIs is the second document in the corpus.\n
                 THIS is the third document in the corpus."
@@ -102,7 +102,7 @@ def document_frequency(term: str, corpus: str) -> int:
     return document_frequency, len(documents)
 
 
-def inverse_document_frequency(df : int, N: int) -> int:
+def inverse_document_frequency(df : int, N: int) -> float:
     """
     A function that returns an integer denoting the importance
     of a word. This measure of importance is
@@ -128,7 +128,7 @@ def inverse_document_frequency(df : int, N: int) -> int:
         print("The term you searched for is not in the corpus.")
 
 
-def tf_idf(tf : int, idf: int) -> int:
+def tf_idf(tf : int, idf: int) -> float:
     """
     A function that combines the term frequency
     and inverse document frequency functions to
