@@ -132,8 +132,8 @@ def lr_rotation(node):
              UB     Bl
     RR = rightrotation   LR = leftrotation
     """
-    node.setleft(leftrotation(node.getleft()))
-    return rightrotation(node)
+    node.setleft(left_rotation(node.get_left()))
+    return right_rotation(node)
 
 
 def rlrotation(node):
