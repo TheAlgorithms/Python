@@ -1,8 +1,6 @@
 """
 Implementation of an auto-balanced binary tree!
 For doctests run following command:
-python -m doctest -v avl_tree.py
-or
 python3 -m doctest -v avl_tree.py
 For testing run:
 python avl_tree.py
