@@ -56,7 +56,7 @@ def term_frequency(term : str, document : str) -> int:
 
     >>> document = ("Natural Language Processing is a subfield of Artificial Intelligence "
          ...            "concerned with interactions between computers and human languages")
-    >>> term = "NLP"
+    >>> term_frequency("NLP", document)
     0
     """
     # strip all punctuation and newlines and replace it with ''
