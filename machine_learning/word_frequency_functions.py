@@ -54,8 +54,9 @@ def term_frequency(term : str, document : str) -> int:
     >>> term = "to"
     2
 
-    >>> document = "Natural Language Processing is a subfield of Artificial Intelligence
-                    concerned with interactions between computers and human languages"
+    >>> document = "Natural Language Processing is a subfield of
+    Artificial Intelligence concerned with interactions
+    between computers and human languages"
     >>> term = "NLP"
     0
     """
