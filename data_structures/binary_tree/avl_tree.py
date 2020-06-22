@@ -206,7 +206,7 @@ def del_node(root, data):
         if getheight(root.getright().getright()) > getheight(root.getright().getleft()):
             root = left_rotation(root)
         else:
-            root = rlrotation(root)
+            root = rl_rotation(root)
     elif getheight(root.getright()) - getheight(root.getleft()) == -2:
         if getheight(root.getleft().getleft()) > getheight(root.getleft().getright()):
             root = rightrotation(root)
