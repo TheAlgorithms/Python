@@ -1,4 +1,3 @@
-
 """
 This is a pure Python implementation of An auto-balanced binary tree!
 For doctests run following command:
