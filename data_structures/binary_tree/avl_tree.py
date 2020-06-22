@@ -1,3 +1,4 @@
+
 """
 This is a pure Python implementation of An auto-balanced binary tree!
 For doctests run following command:
@@ -7,7 +8,6 @@ python3 -m doctest -v avl_tree.py
 For testing run:
 python avl_tree.py
 """
-
 import math
 import random
 
@@ -228,29 +228,29 @@ class AVLtree:
     >>> t.insert(4)
     insert:4
     >>> t.traversale()
-     4 
+     4
     *************************************
     >>> t.insert(2)
     insert:2
     >>> t.traversale()
-      4  
-     2  * 
+      4
+     2  *
     *************************************
     >>> t.insert(3)
     insert:3
     right rotation node: 2
     left rotation node: 4
     >>> t.traversale()
-      3  
-     2  4 
+      3
+     2  4
     *************************************
     >>> t.getheight()
     2
     >>> t.del_node(3)
     delete:3
     >>> t.traversale()
-      4  
-     2  * 
+      4
+     2  *
     *************************************
     """
     def __init__(self):
