@@ -121,7 +121,7 @@ def left_rotation(node):
     return ret
 
 
-def lrrotation(node):
+def lr_rotation(node):
     r"""
             A              A                    Br
            / \            / \                  /  \
