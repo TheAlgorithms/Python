@@ -5,6 +5,7 @@ python3 -m doctest -v avl_tree.py
 For testing run:
 python avl_tree.py
 """
+
 import math
 import random
 
@@ -154,7 +155,7 @@ def insert_node(node, data):
             ):  # new node is the left child of the left child
                 node = right_rotation(node)
             else:
-                node = lr_rotation(node)  # new node is the right child of the left child
+                node = lr_rotation(node)
     else:
         node.set_right(insert_node(node.get_right(), data))
         if get_height(node.get_right()) - get_height(node.get_left()) == 2:
@@ -203,12 +204,14 @@ def del_node(root, data):
     if root is None:
         return root
     if get_height(root.get_right()) - get_height(root.get_left()) == 2:
-        if get_height(root.get_right().get_right()) > get_height(root.get_right().get_left()):
+        if get_height(root.get_right().get_right()) > \
+           get_height(root.get_right().get_left()):
             root = left_rotation(root)
         else:
             root = rl_rotation(root)
     elif get_height(root.get_right()) - get_height(root.get_left()) == -2:
-        if get_height(root.get_left().get_left()) > get_height(root.get_left().get_right()):
+        if get_height(root.get_left().get_left()) > \
+           get_height(root.get_left().get_right()):
             root = right_rotation(root)
         else:
             root = lr_rotation(root)
@@ -304,12 +307,12 @@ class AVLtree:
 
 def _test():
     import doctest
-    doctest.testmod()    
+    doctest.testmod()
 
 
 if __name__ == "__main__":
     _test()
-    t = AVLtree()   
+    t = AVLtree()
     lst = list(range(10))
     random.shuffle(lst)
     for i in lst:
