@@ -1,22 +1,31 @@
 import string
 from math import log10
 
-""" Here I've implemented several word frequency functions
+"""
+    tf-idf Wikipedia: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
+    tf-idf and other word frequency algorithms are often used
+    as a weighting factor in information retrieval and text
+    mining. 83% of text-based recommender systems use
+    tf-idf for term weighting. In Layman's terms, tf-idf
+    is a statistic intended to reflect how important a word
+    is to a document in a corpus (a collection of documents)
+
+
+    Here I've implemented several word frequency algorithms
     that are commonly used in information retrieval: Term Frequency,
     Document Frequency, and TF-IDF (Term-Frequency*Inverse-Document-Frequency)
     are included.
 
     Term Frequency is a statistical function that
     returns a number representing how frequently
-    an expression occurs in a document.This
+    an expression occurs in a document. This
     indicates how significant a particular term is in
     a given document.
 
     Document Frequency is a statistical function that returns
-    an integer representing
-    the number of documents in a corpus that a term occurs in
-    (where the max integer returned would be the number of
-    documents in the corpus).
+    an integer representing the number of documents in a
+    corpus that a term occurs in (where the max number returned
+    would be the number of documents in the corpus).
 
     Inverse Document Frequency is mathematically written as
     log10(N/df), where N is the number of documents in your
@@ -31,7 +40,7 @@ from math import log10
 """
 
 
-def term_frequency(term, document):
+def term_frequency(term : str, document : str) -> int:
     """
     A function that returns the number of times a term occurs within
     a given document.
@@ -61,7 +70,7 @@ def term_frequency(term, document):
     return term_frequency
 
 
-def document_frequency(term, corpus):
+def document_frequency(term: str, corpus: str) -> int:
     """
     A function that calculates the number of documents in a corpus that contain a
     given term
@@ -92,23 +101,19 @@ def document_frequency(term, corpus):
     return document_frequency, len(documents)
 
 
-def inverse_document_frequency(df, N):
+def inverse_document_frequency(df : int, N: int) -> int:
     """
     A function that returns an integer denoting the importance
     of a word. This measure of importance is
     calculated by log10(N/df), where N is the
     number of documents and df is
     the Document Frequency.
-    @params : df, the Document Frequency, and corpus,
-    a collection of documents separated
-             by a newline.
+    @params : df, the Document Frequency, and N,
+    the number of documents in the corpus.
     @returns : log10(N/df)
     @examples :
     >>> df = 1
-    >>> corpus =
-                "This is the first document in the corpus.\n
-                ThIs is the second document in the corpus.\n
-                THIS is the third document in the corpus."
+    >>> N = 3
     log10(3/1) = .477
     >>> df = 3
     log10(3/3) = log10(1) = 0
@@ -122,7 +127,7 @@ def inverse_document_frequency(df, N):
         print("The term you searched for is not in the corpus.")
 
 
-def tf_idf(tf, idf):
+def tf_idf(tf : int, idf: int) -> int:
     """
     A function that combines the term frequency
     and inverse document frequency functions to
