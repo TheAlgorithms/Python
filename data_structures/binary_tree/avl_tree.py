@@ -209,7 +209,7 @@ def del_node(root, data):
             root = rl_rotation(root)
     elif getheight(root.getright()) - getheight(root.getleft()) == -2:
         if getheight(root.getleft().getleft()) > getheight(root.getleft().getright()):
-            root = rightrotation(root)
+            root = right_rotation(root)
         else:
             root = lrrotation(root)
     height = my_max(getheight(root.getright()), getheight(root.getleft())) + 1
