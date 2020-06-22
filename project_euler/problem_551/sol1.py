@@ -40,12 +40,8 @@ def next_term(a_i, k, i, n):
     ending term is a_10=62, then (61, 9) is returned.
     """
     # ds_b - digitsum(b)
-    ds_b = 0
-    for j in range(k, len(a_i)):
-        ds_b += a_i[j]
-    c = 0
-    for j in range(min(len(a_i), k)):
-        c += a_i[j] * base[j]
+    ds_b = sum(a_i[j] for j in range(k, len(a_i)))
+    c = sum(a_i[j] * base[j] for j in range(min(len(a_i), k)))
 
     diff, dn = 0, 0
     max_dn = n - i
