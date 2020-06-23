@@ -16,6 +16,7 @@
   * [All Subsequences](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_subsequences.py)
   * [Coloring](https://github.com/TheAlgorithms/Python/blob/master/backtracking/coloring.py)
   * [Hamiltonian Cycle](https://github.com/TheAlgorithms/Python/blob/master/backtracking/hamiltonian_cycle.py)
+  * [Knight Tour](https://github.com/TheAlgorithms/Python/blob/master/backtracking/knight_tour.py)
   * [Minimax](https://github.com/TheAlgorithms/Python/blob/master/backtracking/minimax.py)
   * [N Queens](https://github.com/TheAlgorithms/Python/blob/master/backtracking/n_queens.py)
   * [Rat In Maze](https://github.com/TheAlgorithms/Python/blob/master/backtracking/rat_in_maze.py)
@@ -71,6 +72,8 @@
 ## Compression
   * [Burrows Wheeler](https://github.com/TheAlgorithms/Python/blob/master/compression/burrows_wheeler.py)
   * [Huffman](https://github.com/TheAlgorithms/Python/blob/master/compression/huffman.py)
+  * [Lempel Ziv](https://github.com/TheAlgorithms/Python/blob/master/compression/lempel_ziv.py)
+  * [Lempel Ziv Decompress](https://github.com/TheAlgorithms/Python/blob/master/compression/lempel_ziv_decompress.py)
   * [Peak Signal To Noise Ratio](https://github.com/TheAlgorithms/Python/blob/master/compression/peak_signal_to_noise_ratio.py)
 
 ## Computer Vision
@@ -199,6 +202,7 @@
   * [Longest Increasing Subsequence O(Nlogn)](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
   * [Longest Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_sub_array.py)
   * [Matrix Chain Order](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/matrix_chain_order.py)
+  * [Max Non Adjacent Sum](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_non_adjacent_sum.py)
   * [Max Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sub_array.py)
   * [Max Sum Contiguous Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sum_contiguous_subsequence.py)
   * [Minimum Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/minimum_partition.py)
@@ -440,6 +444,7 @@
   * [Least Recently Used](https://github.com/TheAlgorithms/Python/blob/master/other/least_recently_used.py)
   * [Linear Congruential Generator](https://github.com/TheAlgorithms/Python/blob/master/other/linear_congruential_generator.py)
   * [Magicdiamondpattern](https://github.com/TheAlgorithms/Python/blob/master/other/magicdiamondpattern.py)
+  * [Markov Chain](https://github.com/TheAlgorithms/Python/blob/master/other/markov_chain.py)
   * [Nested Brackets](https://github.com/TheAlgorithms/Python/blob/master/other/nested_brackets.py)
   * [Palindrome](https://github.com/TheAlgorithms/Python/blob/master/other/palindrome.py)
   * [Password Generator](https://github.com/TheAlgorithms/Python/blob/master/other/password_generator.py)

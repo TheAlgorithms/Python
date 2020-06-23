@@ -4,9 +4,9 @@ from typing import Dict, List, Tuple
 
 
 class MarkovChainGraphUndirectedUnweighted:
-    '''
+    """
     Undirected Unweighted Graph for running Markov Chain Algorithm
-    '''
+    """
 
     def __init__(self):
         self.connections = {}
@@ -14,9 +14,9 @@ class MarkovChainGraphUndirectedUnweighted:
     def add_node(self, node: str) -> None:
         self.connections[node] = {}
 
-    def add_transition_probability(self, node1: str,
-                                   node2: str,
-                                   probability: float) -> None:
+    def add_transition_probability(
+        self, node1: str, node2: str, probability: float
+    ) -> None:
         if node1 not in self.connections:
             self.add_node(node1)
         if node2 not in self.connections:
@@ -36,10 +36,10 @@ class MarkovChainGraphUndirectedUnweighted:
                 return dest
 
 
-def get_transitions(start: str,
-                    transitions: List[Tuple[str, str, float]],
-                    steps: int) -> Dict[str, int]:
-    '''
+def get_transitions(
+    start: str, transitions: List[Tuple[str, str, float]], steps: int
+) -> Dict[str, int]:
+    """
     Running Markov Chain algorithm and calculating the number of times each node is
     visited
 
@@ -59,7 +59,7 @@ def get_transitions(start: str,
 
     >>> result['a'] > result['b'] > result['c']
     True
-    '''
+    """
 
     graph = MarkovChainGraphUndirectedUnweighted()
 
