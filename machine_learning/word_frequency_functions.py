@@ -75,9 +75,7 @@ def document_frequency(term: str, corpus: str) -> int:
                searching for and the number of documents in the corpus
     @examples :
     >>> corpus = \
-                "This is the first document in the corpus.\n \
-                ThIs is the second document in the corpus.\n \
-                THIS is the third document in the corpus."
+                "This is the first document in the corpus.\n ThIs is the second document in the corpus. \n THIS is the third document in the corpus."
     >>> term = "first"
     1
     >>> term = "document"
@@ -110,10 +108,6 @@ def inverse_document_frequency(df : int, N: int) -> float:
     >>> df = 1
     >>> N = 3
     .477
-    >>> df = 3
-    0
-    >>> df = 0
-    log10(3/0) -> throws ZeroDivisionError
     """
     try:
         idf = round(log10(N / df), 3)
