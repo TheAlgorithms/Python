@@ -1,6 +1,7 @@
 """
 A non-recursive Segment Tree implementation with range query and single element update,
-works virtually with any list of the same type of elements with a "commutative" combiner.
+works virtually with any list of the same type of elements with a "commutative"
+combiner.
 
 Explanation:
 https://www.geeksforgeeks.org/iterative-segment-tree-range-minimum-query/
@@ -22,7 +23,8 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 >>> st.update(4, 1)
 >>> st.query(3, 4)
 0
->>> st = SegmentTree([[1, 2, 3], [3, 2, 1], [1, 1, 1]], lambda a, b: [a[i] + b[i] for i in range(len(a))])
+>>> st = SegmentTree([[1, 2, 3], [3, 2, 1], [1, 1, 1]], lambda a, b: [a[i] + b[i] for i
+...                                                                   in range(len(a))])
 >>> st.query(0, 1)
 [4, 4, 4]
 >>> st.query(1, 2)
@@ -47,7 +49,8 @@ class SegmentTree:
 
         >>> SegmentTree(['a', 'b', 'c'], lambda a, b: '{}{}'.format(a, b)).query(0, 2)
         'abc'
-        >>> SegmentTree([(1, 2), (2, 3), (3, 4)], lambda a, b: (a[0] + b[0], a[1] + b[1])).query(0, 2)
+        >>> SegmentTree([(1, 2), (2, 3), (3, 4)],
+        ...             lambda a, b: (a[0] + b[0], a[1] + b[1])).query(0, 2)
         (6, 9)
         """
         self.N = len(arr)
@@ -78,7 +81,7 @@ class SegmentTree:
             p = p // 2
             self.st[p] = self.fn(self.st[p * 2], self.st[p * 2 + 1])
 
-    def query(self, l: int, r: int) -> T:
+    def query(self, l: int, r: int) -> T:  # noqa: E741
         """
         Get range query value in log(N) time
         :param l: left element index
@@ -95,9 +98,9 @@ class SegmentTree:
         >>> st.query(2, 3)
         7
         """
-        l, r = l + self.N, r + self.N
+        l, r = l + self.N, r + self.N  # noqa: E741
         res = None
-        while l <= r:
+        while l <= r:  # noqa: E741
             if l % 2 == 1:
                 res = self.st[l] if res is None else self.fn(res, self.st[l])
             if r % 2 == 0:

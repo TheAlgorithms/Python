@@ -37,6 +37,15 @@ class CircularLinkedList:
         >>> cll.append(1)
         >>> len(cll)
         1
+        >>> cll.prepend(0)
+        >>> len(cll)
+        2
+        >>> cll.delete_front()
+        >>> len(cll)
+        1
+        >>> cll.delete_rear()
+        >>> len(cll)
+        0
         """
         return self.length
 
@@ -130,6 +139,9 @@ class CircularLinkedList:
         >>> cll.delete_front()
         >>> print(f"{len(cll)}: {cll}")
         1: <Node data=2>
+        >>> cll.delete_front()
+        >>> print(f"{len(cll)}: {cll}")
+        0: Empty linked list
         """
         if not self.head:
             raise IndexError("Deleting from an empty list")
@@ -137,7 +149,7 @@ class CircularLinkedList:
         current_node = self.head
 
         if current_node.next_ptr == current_node:
-            self.head, self.length = None, 0
+            self.head = None
         else:
             while current_node.next_ptr != self.head:
                 current_node = current_node.next_ptr
@@ -146,6 +158,8 @@ class CircularLinkedList:
             self.head = self.head.next_ptr
 
         self.length -= 1
+        if not self.head:
+            assert self.length == 0
 
     def delete_rear(self) -> None:
         """
@@ -162,6 +176,9 @@ class CircularLinkedList:
         >>> cll.delete_rear()
         >>> print(f"{len(cll)}: {cll}")
         1: <Node data=1>
+        >>> cll.delete_rear()
+        >>> print(f"{len(cll)}: {cll}")
+        0: Empty linked list
         """
         if not self.head:
             raise IndexError("Deleting from an empty list")
@@ -169,7 +186,7 @@ class CircularLinkedList:
         temp_node, current_node = self.head, self.head
 
         if current_node.next_ptr == current_node:
-            self.head, self.length = None, 0
+            self.head = None
         else:
             while current_node.next_ptr != self.head:
                 temp_node = current_node
@@ -178,6 +195,8 @@ class CircularLinkedList:
             temp_node.next_ptr = current_node.next_ptr
 
         self.length -= 1
+        if not self.head:
+            assert self.length == 0
 
 
 if __name__ == "__main__":

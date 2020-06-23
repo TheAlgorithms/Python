@@ -31,7 +31,7 @@ def print_path(old_path: str, new_path: str) -> str:
 
 def print_directory_md(top_dir: str = ".") -> None:
     old_path = ""
-    for filepath in sorted(good_file_paths()):
+    for filepath in sorted(good_file_paths(top_dir)):
         filepath, filename = os.path.split(filepath)
         if filepath != old_path:
             old_path = print_path(old_path, filepath)

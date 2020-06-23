@@ -6,26 +6,28 @@
 # Imports
 import numpy as np
 
+
 # Class implemented to calculus the index
 class IndexCalculation:
     """
         # Class Summary
-                This algorithm consists in calculating vegetation indices, these indices 
-            can be used for precision agriculture for example (or remote sensing). There are
-            functions to define the data and to calculate the implemented indices.
+                This algorithm consists in calculating vegetation indices, these
+            indices can be used for precision agriculture for example (or remote
+            sensing). There are functions to define the data and to calculate the
+            implemented indices.
 
         # Vegetation index
             https://en.wikipedia.org/wiki/Vegetation_Index
-            A Vegetation Index (VI) is a spectral transformation of two or more bands designed 
-            to enhance the contribution of vegetation properties and allow reliable spatial and 
-            temporal inter-comparisons of terrestrial photosynthetic activity and canopy 
-            structural variations
-        
+            A Vegetation Index (VI) is a spectral transformation of two or more bands
+            designed to enhance the contribution of vegetation properties and allow
+            reliable spatial and temporal inter-comparisons of terrestrial
+            photosynthetic activity and canopy structural variations
+
         # Information about channels (Wavelength range for each)
             * nir - near-infrared
                 https://www.malvernpanalytical.com/br/products/technology/near-infrared-spectroscopy
                 Wavelength Range 700 nm to 2500 nm
-            * Red Edge 
+            * Red Edge
                 https://en.wikipedia.org/wiki/Red_edge
                 Wavelength Range 680 nm to 730 nm
             * red
@@ -38,7 +40,7 @@ class IndexCalculation:
                 https://en.wikipedia.org/wiki/Color
                 Wavelength Range 520 nm to 560 nm
 
-                
+
         # Implemented index list
                 #"abbreviationOfIndexName" -- list of channels used
 
@@ -84,17 +86,19 @@ class IndexCalculation:
                 #"NDRE"               --  redEdge, nir
 
         #list of all index implemented
-            #allIndex = ["ARVI2", "CCCI", "CVI", "GLI", "NDVI", "BNDVI", "redEdgeNDVI", "GNDVI", 
-                        "GBNDVI", "GRNDVI", "RBNDVI", "PNDVI", "ATSAVI", "BWDRVI", "CIgreen", 
-                        "CIrededge", "CI", "CTVI", "GDVI", "EVI", "GEMI", "GOSAVI", "GSAVI", 
-                        "Hue", "IVI", "IPVI", "I", "RVI", "MRVI", "MSAVI", "NormG", "NormNIR", 
-                        "NormR", "NGRDI", "RI", "S", "IF", "DVI", "TVI", "NDRE"]
+            #allIndex = ["ARVI2", "CCCI", "CVI", "GLI", "NDVI", "BNDVI", "redEdgeNDVI",
+                        "GNDVI", "GBNDVI", "GRNDVI", "RBNDVI", "PNDVI", "ATSAVI",
+                        "BWDRVI", "CIgreen", "CIrededge", "CI", "CTVI", "GDVI", "EVI",
+                        "GEMI", "GOSAVI", "GSAVI", "Hue", "IVI", "IPVI", "I", "RVI",
+                        "MRVI", "MSAVI", "NormG", "NormNIR", "NormR", "NGRDI", "RI",
+                        "S", "IF", "DVI", "TVI", "NDRE"]
 
         #list of index with not blue channel
-            #notBlueIndex = ["ARVI2", "CCCI", "CVI", "NDVI", "redEdgeNDVI", "GNDVI", "GRNDVI", 
-                            "ATSAVI", "CIgreen", "CIrededge", "CTVI", "GDVI", "GEMI", "GOSAVI", 
-                            "GSAVI", "IVI", "IPVI", "RVI", "MRVI", "MSAVI", "NormG", "NormNIR", 
-                            "NormR", "NGRDI", "RI", "DVI", "TVI", "NDRE"]
+            #notBlueIndex = ["ARVI2", "CCCI", "CVI", "NDVI", "redEdgeNDVI", "GNDVI",
+                             "GRNDVI", "ATSAVI", "CIgreen", "CIrededge", "CTVI", "GDVI",
+                             "GEMI", "GOSAVI", "GSAVI", "IVI", "IPVI", "RVI", "MRVI",
+                             "MSAVI", "NormG", "NormNIR", "NormR", "NGRDI", "RI", "DVI",
+                             "TVI", "NDRE"]
 
         #list of index just with RGB channels
             #RGBIndex = ["GLI", "CI", "Hue", "I", "NGRDI", "RI", "S", "IF"]
@@ -121,8 +125,8 @@ class IndexCalculation:
         self, index="", red=None, green=None, blue=None, redEdge=None, nir=None
     ):
         """
-            performs the calculation of the index with the values instantiated in the class
-            :str index: abbreviation of index name to perform
+        performs the calculation of the index with the values instantiated in the class
+        :str index: abbreviation of index name to perform
         """
         self.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
         funcs = {
@@ -213,8 +217,8 @@ class IndexCalculation:
 
     def NDVI(self):
         """
-                Normalized Difference self.nir/self.red Normalized Difference Vegetation Index, 
-            Calibrated NDVI - CDVI
+            Normalized Difference self.nir/self.red Normalized Difference Vegetation
+            Index, Calibrated NDVI - CDVI
             https://www.indexdatabase.de/db/i-single.php?id=58
             :return: index
         """
@@ -222,7 +226,7 @@ class IndexCalculation:
 
     def BNDVI(self):
         """
-                Normalized Difference self.nir/self.blue self.blue-normalized difference 
+                Normalized Difference self.nir/self.blue self.blue-normalized difference
             vegetation index
             https://www.indexdatabase.de/db/i-single.php?id=135
             :return: index
@@ -410,7 +414,7 @@ class IndexCalculation:
         """
         return (self.nir / ((self.nir + self.red) / 2)) * (self.NDVI() + 1)
 
-    def I(self):
+    def I(self):  # noqa: E741,E743
         """
             Intensity
             https://www.indexdatabase.de/db/i-single.php?id=36
@@ -471,8 +475,9 @@ class IndexCalculation:
 
     def NGRDI(self):
         """
-                Normalized Difference self.green/self.red Normalized self.green self.red 
-            difference index, Visible Atmospherically Resistant Indices self.green (VIself.green)
+                Normalized Difference self.green/self.red Normalized self.green self.red
+            difference index, Visible Atmospherically Resistant Indices self.green
+            (VIself.green)
             https://www.indexdatabase.de/db/i-single.php?id=390
             :return: index
         """
@@ -506,7 +511,7 @@ class IndexCalculation:
 
     def DVI(self):
         """
-                Simple Ratio self.nir/self.red Difference Vegetation Index, Vegetation Index 
+            Simple Ratio self.nir/self.red Difference Vegetation Index, Vegetation Index
             Number (VIN)
             https://www.indexdatabase.de/db/i-single.php?id=12
             :return: index
@@ -535,7 +540,7 @@ nir     = np.ones((1000,1000, 1),dtype="float64") * 52200
 
 # Examples of how to use the class
 
-# instantiating the class 
+# instantiating the class
 cl = IndexCalculation()
 
 # instantiating the class with the values
@@ -556,9 +561,12 @@ indexValue_form2    = cl.CCCI()
 indexValue_form3    = cl.calculation("CCCI", red=red, green=green, blue=blue,
                                      redEdge=redEdge, nir=nir).astype(np.float64)
 
-print("Form 1: "+np.array2string(indexValue_form1, precision=20, separator=', ', floatmode='maxprec_equal'))
-print("Form 2: "+np.array2string(indexValue_form2, precision=20, separator=', ', floatmode='maxprec_equal'))
-print("Form 3: "+np.array2string(indexValue_form3, precision=20, separator=', ', floatmode='maxprec_equal'))
+print("Form 1: "+np.array2string(indexValue_form1, precision=20, separator=', ',
+      floatmode='maxprec_equal'))
+print("Form 2: "+np.array2string(indexValue_form2, precision=20, separator=', ',
+      floatmode='maxprec_equal'))
+print("Form 3: "+np.array2string(indexValue_form3, precision=20, separator=', ',
+      floatmode='maxprec_equal'))
 
 # A list of examples results for different type of data at NDVI
 # float16 ->    0.31567383              #NDVI (red = 50, nir = 100)

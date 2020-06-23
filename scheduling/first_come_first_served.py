@@ -28,7 +28,7 @@ def calculate_turnaround_times(
 ) -> List[int]:
     """
     This function calculates the turnaround time of some processes.
-        Return: The time difference between the completion time and the 
+        Return: The time difference between the completion time and the
                 arrival time.
                 Practically waiting_time + duration_time
     >>> calculate_turnaround_times([5, 10, 15], [0, 5, 15])
@@ -101,7 +101,8 @@ if __name__ == "__main__":
     print("Process ID\tDuration Time\tWaiting Time\tTurnaround Time")
     for i, process in enumerate(processes):
         print(
-            f"{process}\t\t{duration_times[i]}\t\t{waiting_times[i]}\t\t{turnaround_times[i]}"
+            f"{process}\t\t{duration_times[i]}\t\t{waiting_times[i]}\t\t"
+            f"{turnaround_times[i]}"
         )
     print(f"Average waiting time = {average_waiting_time}")
     print(f"Average turn around time = {average_turnaround_time}")

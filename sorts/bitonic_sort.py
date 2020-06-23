@@ -1,9 +1,10 @@
 # Python program for Bitonic Sort. Note that this program
 # works only when size of input is a power of 2.
 
+
 # The parameter dir indicates the sorting direction, ASCENDING
 # or DESCENDING; if (a[i] > a[j]) agrees with the direction,
-# then a[i] and a[j] are interchanged.*/
+# then a[i] and a[j] are interchanged.
 def compAndSwap(a, i, j, dire):
     if (dire == 1 and a[i] > a[j]) or (dire == 0 and a[i] < a[j]):
         a[i], a[j] = a[j], a[i]

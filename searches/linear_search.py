@@ -14,7 +14,8 @@ python linear_search.py
 def linear_search(sequence, target):
     """Pure implementation of linear search algorithm in Python
 
-    :param sequence: some sorted collection with comparable items
+    :param sequence: a collection with comparable items (as sorted items not required
+        in Linear Search)
     :param target: item value to search
     :return: index of found item or None if item is not found
 
@@ -45,6 +46,6 @@ if __name__ == "__main__":
     target = int(target_input)
     result = linear_search(sequence, target)
     if result is not None:
-        print(f"{target} found at positions: {result}")
+        print(f"{target} found at position : {result}")
     else:
         print("Not found")

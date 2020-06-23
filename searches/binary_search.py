@@ -14,15 +14,18 @@ import bisect
 
 def bisect_left(sorted_collection, item, lo=0, hi=None):
     """
-    Locates the first element in a sorted array that is larger or equal to a given value.
+    Locates the first element in a sorted array that is larger or equal to a given
+    value.
 
-    It has the same interface as https://docs.python.org/3/library/bisect.html#bisect.bisect_left .
+    It has the same interface as
+    https://docs.python.org/3/library/bisect.html#bisect.bisect_left .
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item to bisect
     :param lo: lowest index to consider (as in sorted_collection[lo:hi])
     :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
-    :return: index i such that all values in sorted_collection[lo:i] are < item and all values in sorted_collection[i:hi] are >= item.
+    :return: index i such that all values in sorted_collection[lo:i] are < item and all
+        values in sorted_collection[i:hi] are >= item.
 
     Examples:
     >>> bisect_left([0, 5, 7, 10, 15], 0)
@@ -57,13 +60,15 @@ def bisect_right(sorted_collection, item, lo=0, hi=None):
     """
     Locates the first element in a sorted array that is larger than a given value.
 
-    It has the same interface as https://docs.python.org/3/library/bisect.html#bisect.bisect_right .
+    It has the same interface as
+    https://docs.python.org/3/library/bisect.html#bisect.bisect_right .
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item to bisect
     :param lo: lowest index to consider (as in sorted_collection[lo:hi])
     :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
-    :return: index i such that all values in sorted_collection[lo:i] are <= item and all values in sorted_collection[i:hi] are > item.
+    :return: index i such that all values in sorted_collection[lo:i] are <= item and
+        all values in sorted_collection[i:hi] are > item.
 
     Examples:
     >>> bisect_right([0, 5, 7, 10, 15], 0)
@@ -98,7 +103,8 @@ def insort_left(sorted_collection, item, lo=0, hi=None):
     """
     Inserts a given value into a sorted array before other values with the same value.
 
-    It has the same interface as https://docs.python.org/3/library/bisect.html#bisect.insort_left .
+    It has the same interface as
+    https://docs.python.org/3/library/bisect.html#bisect.insort_left .
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item to insert
@@ -138,7 +144,8 @@ def insort_right(sorted_collection, item, lo=0, hi=None):
     """
     Inserts a given value into a sorted array after other values with the same value.
 
-    It has the same interface as https://docs.python.org/3/library/bisect.html#bisect.insort_right .
+    It has the same interface as
+    https://docs.python.org/3/library/bisect.html#bisect.insort_right .
 
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item to insert

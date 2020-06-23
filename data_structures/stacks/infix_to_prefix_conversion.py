@@ -49,10 +49,8 @@ def infix_2_postfix(Infix):
         else:
             if len(Stack) == 0:
                 Stack.append(x)  # If stack is empty, push x to stack
-            else:
-                while (
-                    len(Stack) > 0 and priority[x] <= priority[Stack[-1]]
-                ):  # while priority of x is not greater than priority of element in the stack
+            else:  # while priority of x is not > priority of element in the stack
+                while len(Stack) > 0 and priority[x] <= priority[Stack[-1]]:
                     Postfix.append(Stack.pop())  # pop stack & add to Postfix
                 Stack.append(x)  # push x to stack
 

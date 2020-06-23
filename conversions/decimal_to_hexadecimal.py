@@ -23,7 +23,8 @@ values = {
 
 def decimal_to_hexadecimal(decimal):
     """
-        take integer decimal value, return hexadecimal representation as str beginning with 0x
+        take integer decimal value, return hexadecimal representation as str beginning
+        with 0x
         >>> decimal_to_hexadecimal(5)
         '0x5'
         >>> decimal_to_hexadecimal(15)

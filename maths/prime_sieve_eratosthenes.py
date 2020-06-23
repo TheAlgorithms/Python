@@ -1,11 +1,13 @@
+# flake8: noqa
+
 """
 Sieve of Eratosthenes
 
 Input : n =10
-Output : 2 3 5 7 
+Output: 2 3 5 7 
 
 Input : n = 20
-Output: 2 3 5 7 11 13 17 19
+Output: 2 3 5 7 11 13 17 19 
 
 you can read in detail about this at
 https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes

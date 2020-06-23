@@ -1,9 +1,9 @@
-class Node:  # create a Node
+class Node:
     def __init__(self, data):
-        self.data = data  # given data
-        self.next = None  # given next to None
+        self.data = data
+        self.next = None
 
-    def __repr__(self):  # string representation of a Node
+    def __repr__(self):
         return f"Node({self.data})"
 
 
@@ -107,6 +107,35 @@ class LinkedList:
             current = current.next
         current.data = data
 
+    def __len__(self):
+        """
+        Return length of linked list i.e. number of nodes
+        >>> linked_list = LinkedList()
+        >>> len(linked_list)
+        0
+        >>> linked_list.insert_tail("head")
+        >>> len(linked_list)
+        1
+        >>> linked_list.insert_head("head")
+        >>> len(linked_list)
+        2
+        >>> _ = linked_list.delete_tail()
+        >>> len(linked_list)
+        1
+        >>> _ = linked_list.delete_head()
+        >>> len(linked_list)
+        0
+        """
+        if not self.head:
+            return 0
+
+        count = 0
+        cur_node = self.head
+        while cur_node.next:
+            count += 1
+            cur_node = cur_node.next
+        return count + 1
+
 
 def main():
     A = LinkedList()
@@ -135,6 +164,7 @@ def main():
     A[1] = input("Enter New Value: ").strip()
     print("New list:")
     print(A)
+    print(f"length of A is : {len(A)}")
 
 
 if __name__ == "__main__":

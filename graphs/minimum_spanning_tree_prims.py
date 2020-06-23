@@ -2,7 +2,7 @@ import sys
 from collections import defaultdict
 
 
-def PrimsAlgorithm(l):
+def PrimsAlgorithm(l):  # noqa: E741
 
     nodePosition = []
 
@@ -72,7 +72,8 @@ def PrimsAlgorithm(l):
 
     visited = [0 for i in range(len(l))]
     Nbr_TV = [-1 for i in range(len(l))]  # Neighboring Tree Vertex of selected vertex
-    # Minimum Distance of explored vertex with neighboring vertex of partial tree formed in graph
+    # Minimum Distance of explored vertex with neighboring vertex of partial tree
+    # formed in graph
     Distance_TV = []  # Heap of Distance of vertices from their neighboring vertex
     Positions = []
 
@@ -109,7 +110,7 @@ if __name__ == "__main__":
     e = int(input("Enter number of edges: ").strip())
     adjlist = defaultdict(list)
     for x in range(e):
-        l = [int(x) for x in input().strip().split()]
+        l = [int(x) for x in input().strip().split()]  # noqa: E741
         adjlist[l[0]].append([l[1], l[2]])
         adjlist[l[1]].append([l[0], l[2]])
     print(PrimsAlgorithm(adjlist))

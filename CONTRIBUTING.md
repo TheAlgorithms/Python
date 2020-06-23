@@ -68,11 +68,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
   black .
   ```
 
-- All submissions will need to pass the test __flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test __flake8 . --ignore=E203,W503 --max-line-length=88__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
   pip3 install flake8  # only required the first time
-  flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+  flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
   ```
 
 - Original code submission require docstrings or comments to describe your work.
@@ -138,7 +138,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](http://mypy-lang.org) so run that locally before making your submission.
 
   ```python
-  def sum_ab(a: int, b: int) --> int:
+  def sum_ab(a: int, b: int) -> int:
       return a + b
   ```
 

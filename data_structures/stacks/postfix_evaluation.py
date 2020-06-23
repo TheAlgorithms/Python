@@ -22,7 +22,7 @@ import operator as op
 
 def Solve(Postfix):
     Stack = []
-    Div = lambda x, y: int(x / y)  # integer division operation
+    Div = lambda x, y: int(x / y)  # noqa: E731 integer division operation
     Opr = {
         "^": op.pow,
         "*": op.mul,
@@ -38,29 +38,27 @@ def Solve(Postfix):
     for x in Postfix:
         if x.isdigit():  # if x in digit
             Stack.append(x)  # append x to stack
-            print(
-                x.rjust(8), ("push(" + x + ")").ljust(12), ",".join(Stack), sep=" | "
-            )  # output in tabular format
+            # output in tabular format
+            print(x.rjust(8), ("push(" + x + ")").ljust(12), ",".join(Stack), sep=" | ")
         else:
             B = Stack.pop()  # pop stack
-            print(
-                "".rjust(8), ("pop(" + B + ")").ljust(12), ",".join(Stack), sep=" | "
-            )  # output in tabular format
+            # output in tabular format
+            print("".rjust(8), ("pop(" + B + ")").ljust(12), ",".join(Stack), sep=" | ")
 
             A = Stack.pop()  # pop stack
-            print(
-                "".rjust(8), ("pop(" + A + ")").ljust(12), ",".join(Stack), sep=" | "
-            )  # output in tabular format
+            # output in tabular format
+            print("".rjust(8), ("pop(" + A + ")").ljust(12), ",".join(Stack), sep=" | ")
 
             Stack.append(
                 str(Opr[x](int(A), int(B)))
             )  # evaluate the 2 values popped from stack & push result to stack
+            # output in tabular format
             print(
                 x.rjust(8),
                 ("push(" + A + x + B + ")").ljust(12),
                 ",".join(Stack),
                 sep=" | ",
-            )  # output in tabular format
+            )
 
     return int(Stack[0])
 

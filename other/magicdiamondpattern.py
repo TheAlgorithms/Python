@@ -1,5 +1,6 @@
 # Python program for generating diamond pattern in Python 3.7+
 
+
 # Function to print upper half of diamond (pyramid)
 def floyd(n):
     """

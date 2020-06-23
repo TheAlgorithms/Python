@@ -83,19 +83,21 @@ class ShuffledShiftCipher:
         Shuffling only 26 letters of the english alphabet can generate 26!
         combinations for the shuffled list. In the program we consider, a set of
         97 characters (including letters, digits, punctuation and whitespaces),
-        thereby creating a possibility of 97! combinations (which is a 152 digit number in itself),
-        thus diminishing the possibility of a brute force approach. Moreover,
-        shift keys even introduce a multiple of 26 for a brute force approach
+        thereby creating a possibility of 97! combinations (which is a 152 digit number
+        in itself), thus diminishing the possibility of a brute force approach.
+        Moreover, shift keys even introduce a multiple of 26 for a brute force approach
         for each of the already 97! combinations.
         """
-        # key_list_options contain nearly all printable except few elements from string.whitespace
+        # key_list_options contain nearly all printable except few elements from
+        # string.whitespace
         key_list_options = (
             string.ascii_letters + string.digits + string.punctuation + " \t\n"
         )
 
         keys_l = []
 
-        # creates points known as breakpoints to break the key_list_options at those points and pivot each substring
+        # creates points known as breakpoints to break the key_list_options at those
+        # points and pivot each substring
         breakpoints = sorted(set(self.__passcode))
         temp_list = []
 
@@ -103,7 +105,8 @@ class ShuffledShiftCipher:
         for i in key_list_options:
             temp_list.extend(i)
 
-            # checking breakpoints at which to pivot temporary sublist and add it into keys_l
+            # checking breakpoints at which to pivot temporary sublist and add it into
+            # keys_l
             if i in breakpoints or i == key_list_options[-1]:
                 keys_l.extend(temp_list[::-1])
                 temp_list = []
@@ -131,7 +134,8 @@ class ShuffledShiftCipher:
         """
         decoded_message = ""
 
-        # decoding shift like Caesar cipher algorithm implementing negative shift or reverse shift or left shift
+        # decoding shift like Caesar cipher algorithm implementing negative shift or
+        # reverse shift or left shift
         for i in encoded_message:
             position = self.__key_list.index(i)
             decoded_message += self.__key_list[
@@ -152,7 +156,8 @@ class ShuffledShiftCipher:
         """
         encoded_message = ""
 
-        # encoding shift like Caesar cipher algorithm implementing positive shift or forward shift or right shift
+        # encoding shift like Caesar cipher algorithm implementing positive shift or
+        # forward shift or right shift
         for i in plaintext:
             position = self.__key_list.index(i)
             encoded_message += self.__key_list[

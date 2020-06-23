@@ -53,7 +53,7 @@ N = """73167176531330624919225119674426574742355349194934\
 def solution(n):
     """Find the thirteen adjacent digits in the 1000-digit number n that have
     the greatest product and returns it.
- 
+
     >>> solution(N)
     23514624000
     """

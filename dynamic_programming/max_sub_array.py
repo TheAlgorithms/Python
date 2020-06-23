@@ -44,12 +44,12 @@ def max_sub_array(nums: List[int]) -> int:
 
     >>> max_sub_array([-2, 1, -3, 4, -1, 2, 1, -5, 4])
     6
-    
+
     An empty (sub)array has sum 0.
     >>> max_sub_array([])
     0
-    
-    If all elements are negative, the largest subarray would be the empty array, 
+
+    If all elements are negative, the largest subarray would be the empty array,
     having the sum 0.
     >>> max_sub_array([-1, -2, -3])
     0

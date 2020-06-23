@@ -27,10 +27,10 @@ import random
 class Vector:
     """
         This class represents a vector of arbitrary size.
-        You need to give the vector components. 
-        
+        You need to give the vector components.
+
         Overview about the methods:
-        
+
         constructor(components : list) : init the vector
         set(components : list) : changes the vector components.
         __str__() : toString method
@@ -124,7 +124,7 @@ class Vector:
 
     def __mul__(self, other):
         """
-            mul implements the scalar multiplication 
+            mul implements the scalar multiplication
             and the dot-product
         """
         if isinstance(other, float) or isinstance(other, int):
@@ -167,7 +167,7 @@ def zeroVector(dimension):
 
 def unitBasisVector(dimension, pos):
     """
-        returns a unit basis vector with a One 
+        returns a unit basis vector with a One
         at index 'pos' (indexing at 0)
     """
     # precondition
@@ -196,7 +196,7 @@ def randomVector(N, a, b):
     """
         input: size (N) of the vector.
                random range (a,b)
-        output: returns a random vector of size N, with 
+        output: returns a random vector of size N, with
                 random integer components between 'a' and 'b'.
     """
     random.seed(None)
@@ -208,10 +208,10 @@ class Matrix:
     """
     class: Matrix
     This class represents a arbitrary matrix.
-    
+
     Overview about the methods:
-    
-           __str__() : returns a string representation 
+
+           __str__() : returns a string representation
            operator * : implements the matrix vector multiplication
                         implements the matrix-scalar multiplication.
            changeComponent(x,y,value) : changes the specified component.

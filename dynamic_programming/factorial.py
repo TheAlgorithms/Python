@@ -5,8 +5,10 @@ def factorial(num):
     """
     >>> factorial(7)
     5040
+    
     >>> factorial(-1)
     'Number should not be negative.'
+    
     >>> [factorial(i) for i in range(5)]
     [1, 1, 2, 6, 24]
     """
