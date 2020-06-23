@@ -29,8 +29,6 @@ class LinkedList:
         self.tail = None  # Last node in list
 
     def __str__(self):
-        if self.is_empty:
-            return "List is empty"
         current = self.head
         nodes = []
         while current is not None:
