@@ -73,8 +73,8 @@ def document_frequency(term: str, corpus: str) -> int:
     @returns : the number of documents in the corpus that contain the term you are
                searching for and the number of documents in the corpus
     @examples :
-    >>> document_frequency("first", "This is the first document in the corpus.\\nThIs is\
-the second document in the corpus.\\nTHIS is \
+    >>> document_frequency("first", "This is the first document in the corpus.\\nThIs\
+is the second document in the corpus.\\nTHIS is \
 the third document in the corpus.")
     (1, 3)
     """
@@ -120,7 +120,7 @@ def tf_idf(tf : int, idf: int) -> float:
     frequency : tf-idf = TF * IDF
     @params : tf, the term frequency, and idf, the inverse document
     frequency
-    @examples : 
+    @examples :
     >>> tf_idf(2, 0.477)
     0.954
     """
