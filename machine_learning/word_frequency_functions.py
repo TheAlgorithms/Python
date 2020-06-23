@@ -50,7 +50,6 @@ def term_frequency(term : str, document : str) -> int:
             found within the document
 
     @examples:
-    >>> document = "To be, or not to be"
     >>> term_frequency("to", "To be, or not to be")
     2
     """
@@ -74,16 +73,10 @@ def document_frequency(term: str, corpus: str) -> int:
     @returns : the number of documents in the corpus that contain the term you are
                searching for and the number of documents in the corpus
     @examples :
-    >>> corpus = \
-                "This is the first document in the corpus.\n ThIs is \
-                    the second document in the corpus. \n THIS is \
-                        the third document in the corpus."
-    >>> term = "first"
-    1
-    >>> term = "document"
-    3
-    >>> term = "this"
-    3
+    >>> document_frequency("first", "This is the first document in the corpus.\\nThIs is\
+the second document in the corpus.\\nTHIS is \
+the third document in the corpus.")
+    (1, 3)
     """
     corpus_without_punctuation = corpus.translate(
         str.maketrans("", "", string.punctuation)
@@ -107,9 +100,8 @@ def inverse_document_frequency(df : int, N: int) -> float:
     the number of documents in the corpus.
     @returns : log10(N/df)
     @examples :
-    >>> df = 1
-    >>> N = 3
-    .477
+    >>> inverse_document_frequency(1, 3)
+    0.477
     """
     try:
         idf = round(log10(N / df), 3)
@@ -128,5 +120,8 @@ def tf_idf(tf : int, idf: int) -> float:
     frequency : tf-idf = TF * IDF
     @params : tf, the term frequency, and idf, the inverse document
     frequency
+    @examples : 
+    >>> tf_idf(2, 0.477)
+    0.954
     """
     return round(tf * idf, 3)
