@@ -75,7 +75,9 @@ def document_frequency(term: str, corpus: str) -> int:
                searching for and the number of documents in the corpus
     @examples :
     >>> corpus = \
-                "This is the first document in the corpus.\n ThIs is the second document in the corpus. \n THIS is the third document in the corpus."
+                "This is the first document in the corpus.\n ThIs is \
+                    the second document in the corpus. \n THIS is \
+                        the third document in the corpus."
     >>> term = "first"
     1
     >>> term = "document"
