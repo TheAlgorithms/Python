@@ -1,3 +1,4 @@
+from collections import Counter
 from random import random
 from typing import Dict, List, Tuple
 
@@ -23,7 +24,7 @@ class MarkovChainGraphUndirectedUnweighted:
         self.connections[node1][node2] = probability
 
     def get_nodes(self) -> List[str]:
-        return list(self.connections.keys())
+        return list(self.connections)
 
     def transition(self, node: str) -> str:
         current_probability = 0
@@ -56,7 +57,8 @@ def get_transitions(start: str,
 
     >>> result = get_transitions('a', transitions, 5000)
 
-    >>> assert result['a'] > result['b'] > result['c']
+    >>> result['a'] > result['b'] > result['c']
+    True
     '''
 
     graph = MarkovChainGraphUndirectedUnweighted()
@@ -64,7 +66,7 @@ def get_transitions(start: str,
     for node1, node2, probability in transitions:
         graph.add_transition_probability(node1, node2, probability)
 
-    visited = {node: 0 for node in graph.get_nodes()}
+    visited = Counter(graph.get_nodes())
     node = start
 
     for _ in range(steps):
