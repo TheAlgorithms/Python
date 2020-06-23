@@ -28,6 +28,16 @@ class LinkedList:
         self.head = None  # First node in list
         self.tail = None  # Last node in list
 
+    def __str__(self):
+        if self.is_empty:
+            return "List is empty"
+        current = self.head
+        nodes = []
+        while current is not None:
+            nodes.append(current)
+            current = current.next
+        return " ".join(str(node) for node in nodes)
+
     def insert_at_head(self, data):
         new_node = Node(data)
         if self.is_empty:
@@ -55,9 +65,13 @@ class LinkedList:
 
     def insert_at_tail(self, data):
         new_node = Node(data)
-        self.tail.next = new_node
-        new_node.previous = self.tail
-        self.tail = new_node
+        if self.is_empty:
+            self.tail = new_node
+            self.head = new_node
+        else:
+            self.tail.next = new_node
+            new_node.previous = self.tail
+            self.tail = new_node
 
     def delete_tail(self) -> str:
         if self.is_empty:
@@ -94,17 +108,8 @@ class LinkedList:
         return data
 
     @property
-    def is_empty(self):  # Will return True if the list is empty
+    def is_empty(self):  # return True if the list is empty
         return self.head is None
-
-    def display(self):  # Prints contents of the list
-        if self.is_empty:
-            return "List is empty"
-        current = self.head
-        while current is not None:
-            current.display_node()
-            current = current.next
-        print()
 
 
 class Node:
@@ -113,5 +118,5 @@ class Node:
         self.previous = None
         self.next = None
 
-    def display_node(self):
-        print(f"{self.data}", end=" ")
+    def __str__(self):
+        return f"{self.data}"
