@@ -53,12 +53,6 @@ def term_frequency(term : str, document : str) -> int:
     >>> document = "To be, or not to be"
     >>> term_frequency("to", "To be, or not to be")
     2
-
-    >>> document = "Natural Language Processing is a subfield of \
-    Artificial Intelligence concerned with interactions \
-    between computers and human languages"
-    >>> term = "NLP"
-    0
     """
     # strip all punctuation and newlines and replace it with ''
     document_without_punctuation = document.translate(
@@ -81,8 +75,8 @@ def document_frequency(term: str, corpus: str) -> int:
                searching for and the number of documents in the corpus
     @examples :
     >>> corpus = \
-                "This is the first document in the corpus.\n
-                ThIs is the second document in the corpus.\n
+                "This is the first document in the corpus.\n \
+                ThIs is the second document in the corpus.\n \
                 THIS is the third document in the corpus."
     >>> term = "first"
     1
@@ -115,9 +109,9 @@ def inverse_document_frequency(df : int, N: int) -> float:
     @examples :
     >>> df = 1
     >>> N = 3
-    log10(3/1) = .477
+    .477
     >>> df = 3
-    log10(3/3) = log10(1) = 0
+    0
     >>> df = 0
     log10(3/0) -> throws ZeroDivisionError
     """
