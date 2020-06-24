@@ -102,7 +102,7 @@ def solution(N: int = 4) -> int:
     134043
     """
     results = run(N)
-    if len(results) > 0:
+    return results[0] if len(results) else None
         return results[0]
 
 
