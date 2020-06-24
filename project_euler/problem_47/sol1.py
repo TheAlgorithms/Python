@@ -95,7 +95,7 @@ def run(n: int) -> list:
         i += 1
 
 
-def solution(N: int = 4) -> int:
+def solution(n: int = 4) -> int:
     """Returns the first value of the first four consecutive integers to have four
     distinct prime factors each.
     >>> solution()
