@@ -79,7 +79,7 @@ def run(n: int) -> list:
 
     success = 0
 
-    while success < 1:
+    while True:
         # Increment each value of a generated range
         group = list(map(lambda x, y=i: y + x, [i for i in range(n)]))
 
