@@ -66,7 +66,7 @@ def term_frequency(term : str, document : str) -> int:
 
 def document_frequency(term: str, corpus: str) -> int:
     """
-    A function that calculates the number of documents in a corpus that contain a
+    Calculate the number of documents in a corpus that contain a
     given term
     @params : term, the term to search each document for, and corpus, a collection of
              documents. Each document should be separated by a newline.
