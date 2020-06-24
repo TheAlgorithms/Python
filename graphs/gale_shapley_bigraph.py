@@ -8,7 +8,7 @@ def stable_matching(n: int, men_preferences: list, women_preferences: list) -> l
     n = 4
     men_preferences = [[0, 1, 3, 2], [0, 2, 3, 1], [1, 0, 2, 3], [0, 3, 1, 2]]
     women_preferences = [[3, 1, 2, 0], [3, 1, 0, 2], [0, 3, 1, 2], [1, 0, 3, 2]]
-    >>>print(stable_matching(n,men_preferences,women_preferences))
+    >>> print(stable_matching(n,men_preferences,women_preferences))
     [1,2,3,0]
     P.S: Marriages are heterosexual since it is a bipartite graph where there must be 2 distinct sets of objects to be matched - i.e
     patients and organ donors.
