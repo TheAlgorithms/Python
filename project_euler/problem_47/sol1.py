@@ -23,7 +23,7 @@ from functools import lru_cache
 
 def unique_prime_factors(n: int) -> set:
     """
-    Function to find unique prime factors of an integer.
+    Find unique prime factors of an integer.
     Tests include sorting because only the set really matters,
     not the order in which it is produced.
     >>> sorted(set(unique_prime_factors(14)))
@@ -46,10 +46,10 @@ def unique_prime_factors(n: int) -> set:
     return factors
 
 
-@lru_cache(maxsize=None)
+@lru_cache
 def upf_len(num: int) -> int:
     """
-    Helper function to memoize upf() length results for a given value.
+    Memoize upf() length results for a given value.
     >>> upf_len(14)
     2
     """
@@ -71,7 +71,7 @@ def equality(iterable: list) -> bool:
 
 def run(n: int) -> list:
     """
-    Function that runs core process to find problem solution.
+    Runs core process to find problem solution.
     >>> run(3)
     [644, 645, 646]
     """
@@ -99,7 +99,7 @@ def run(n: int) -> list:
 
 
 def solution(n: int = 4) -> int:
-    """Returns the first value of the first four consecutive integers to have four
+    """Return the first value of the first four consecutive integers to have four
     distinct prime factors each.
     >>> solution()
     134043
