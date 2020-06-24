@@ -93,7 +93,7 @@ def run(n: int) -> list:
         # If all numbers in the list are equal, return the group variable.
         if equality(checker):
             return group
- 
+
         # Increment our base variable by 1
         base += 1
 
