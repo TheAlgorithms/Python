@@ -75,7 +75,7 @@ def run(n: int) -> list:
     >>> run(3)
     [644, 645, 646]
     """
-    
+
     # Incrementor variable for our group list comprehension.
     # This serves as the first number in each list of values
     # to test.
@@ -93,8 +93,8 @@ def run(n: int) -> list:
         # If all numbers in the list are equal, return the group variable.
         if equality(checker):
             return group
-        
-        # Increment our base variable by 1 
+ 
+        # Increment our base variable by 1
         base += 1
 
 
