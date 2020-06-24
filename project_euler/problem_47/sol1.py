@@ -63,6 +63,8 @@ def equality(iterable: list) -> bool:
     False
     >>> equality([2,2,2,2])
     True
+    >>> equality([1, 2, 3, 2, 1])
+    True
     """
     return len(set(iterable)) in (0, 1)
         return iterable[1:] == iterable[:-1]
