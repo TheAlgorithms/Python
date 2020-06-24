@@ -42,7 +42,7 @@ from math import log10
 
 def term_frequency(term : str, document : str) -> int:
     """
-    A function that returns the number of times a term occurs within
+    Return the number of times a term occurs within
     a given document.
     @params: term, the term to search a document for, and document,
             the document to search within
