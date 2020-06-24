@@ -91,7 +91,6 @@ def run(n: int) -> list:
         # If all numbers in the list are equal, increment our success variable
         # to exit the while loop and return the current group of numbers.
         if equality(checker):
-            success += 1
             return group
         i += 1
 
