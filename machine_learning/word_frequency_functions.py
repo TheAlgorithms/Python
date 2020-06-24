@@ -91,7 +91,7 @@ the third document in the corpus.")
 
 def inverse_document_frequency(df : int, N: int) -> float:
     """
-    A function that returns an integer denoting the importance
+    Return an integer denoting the importance
     of a word. This measure of importance is
     calculated by log10(N/df), where N is the
     number of documents and df is
