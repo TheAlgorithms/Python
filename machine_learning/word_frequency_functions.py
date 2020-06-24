@@ -112,7 +112,7 @@ def inverse_document_frequency(df : int, N: int) -> float:
 
 def tf_idf(tf : int, idf: int) -> float:
     """
-    A function that combines the term frequency
+    Combine the term frequency
     and inverse document frequency functions to
     calculate the originality of a term. This
     'originality' is calculated by multiplying
