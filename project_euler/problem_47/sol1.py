@@ -61,7 +61,7 @@ def equality(iterable: list) -> bool:
     Check equality of ALL elements in an interable.
     >>> equality([1,2,3,4])
     False
-    >>> equality([2,2,2,2])
+    >>> equality([2, 2, 2, 2])
     True
     >>> equality([1, 2, 3, 2, 1])
     True
