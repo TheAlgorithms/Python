@@ -42,7 +42,7 @@ from math import log10
 
 def term_frequency(term : str, document : str) -> int:
     """
-    A function that returns the number of times a term occurs within
+    Return the number of times a term occurs within
     a given document.
     @params: term, the term to search a document for, and document,
             the document to search within
@@ -58,15 +58,14 @@ def term_frequency(term : str, document : str) -> int:
         str.maketrans("", "", string.punctuation)
     ).replace("\n", "")
     tokenize_document = document_without_punctuation.split(" ")  # word tokenization
-    term_frequency = len(
+    return len(
         [word for word in tokenize_document if word.lower() == term.lower()]
     )
-    return term_frequency
 
 
 def document_frequency(term: str, corpus: str) -> int:
     """
-    A function that calculates the number of documents in a corpus that contain a
+    Calculate the number of documents in a corpus that contain a
     given term
     @params : term, the term to search each document for, and corpus, a collection of
              documents. Each document should be separated by a newline.
@@ -83,15 +82,14 @@ the third document in the corpus.")
     )  # strip all punctuation and replace it with ''
     documents = corpus_without_punctuation.split("\n")
     lowercase_documents = [document.lower() for document in documents]
-    document_frequency = len(
+    return len(
         [document for document in lowercase_documents if term.lower() in document]
-    )  # number of documents that contain the term
-    return document_frequency, len(documents)
+    ), len(documents)
 
 
 def inverse_document_frequency(df : int, N: int) -> float:
     """
-    A function that returns an integer denoting the importance
+    Return an integer denoting the importance
     of a word. This measure of importance is
     calculated by log10(N/df), where N is the
     number of documents and df is
@@ -100,19 +98,27 @@ def inverse_document_frequency(df : int, N: int) -> float:
     the number of documents in the corpus.
     @returns : log10(N/df)
     @examples :
+    >>> inverse_document_frequency(3, 0)
+    Traceback (most recent call last):
+     ...
+    ValueError: log10(0) is undefined.
     >>> inverse_document_frequency(1, 3)
     0.477
+    >>> inverse_document_frequency(0, 3)
+    Traceback (most recent call last):
+     ...
+    ZeroDivisionError: df must be > 0
     """
-    try:
-        idf = round(log10(N / df), 3)
-        return idf
-    except ZeroDivisionError:
-        print("The term you searched for is not in the corpus.")
+    if df == 0:
+        raise ZeroDivisionError("df must be > 0")
+    elif N == 0:
+        raise ValueError("log10(0) is undefined.")
+    return round(log10(N / df), 3)
 
 
 def tf_idf(tf : int, idf: int) -> float:
     """
-    A function that combines the term frequency
+    Combine the term frequency
     and inverse document frequency functions to
     calculate the originality of a term. This
     'originality' is calculated by multiplying
