@@ -88,7 +88,7 @@ def run(n: int) -> list:
         checker = [upf_len(x) for x in group]
         checker.append(n)
 
-        # If all numbers in the list are euqal, increment our success variable
+        # If all numbers in the list are equal, increment our success variable
         # to exit the while loop and return the current group of numbers.
         if equality(checker):
             success += 1
