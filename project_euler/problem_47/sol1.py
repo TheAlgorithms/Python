@@ -27,11 +27,11 @@ def unique_prime_factors(n: int) -> set:
     Tests include sorting because only the set really matters,
     not the order in which it is produced.
     >>> sorted(set(unique_prime_factors(14)))
-    {2, 7}
+    [2, 7]
     >>> set(sorted(unique_prime_factors(644)))
-    {2, 23, 7}
+    [2, 7, 23]
     >>> set(sorted(unique_prime_factors(646)))
-    {17, 2, 19}
+    [2, 17, 19]
     """
     i = 2
     factors = set()
@@ -46,7 +46,7 @@ def unique_prime_factors(n: int) -> set:
     return factors
 
 
-@lru_cache(maxsize=5)
+@lru_cache(maxsize=None)
 def upf_len(num: int) -> int:
     """
     Helper function to memoize upf() length results for a given value.
@@ -67,7 +67,6 @@ def equality(iterable: list) -> bool:
     True
     """
     return len(set(iterable)) in (0, 1)
-        return iterable[1:] == iterable[:-1]
 
 
 def run(n: int) -> list:
@@ -76,24 +75,27 @@ def run(n: int) -> list:
     >>> run(3)
     [644, 645, 646]
     """
-
-    i = 2
-
+    
+    # Incrementor variable for our group list comprehension.
+    # This serves as the first number in each list of values
+    # to test.
+    base = 2
 
     while True:
         # Increment each value of a generated range
-        group = list(map(lambda x, y=i: y + x, [i for i in range(n)]))
+        group = [base + i for i in range(n)]
 
         # Run elements through out unique_prime_factors function
         # Append our target number to the end.
         checker = [upf_len(x) for x in group]
         checker.append(n)
 
-        # If all numbers in the list are equal, increment our success variable
-        # to exit the while loop and return the current group of numbers.
+        # If all numbers in the list are equal, return the group variable.
         if equality(checker):
             return group
-        i += 1
+        
+        # Increment our base variable by 1 
+        base += 1
 
 
 def solution(n: int = 4) -> int:
@@ -104,7 +106,6 @@ def solution(n: int = 4) -> int:
     """
     results = run(N)
     return results[0] if len(results) else None
-        return results[0]
 
 
 if __name__ == "__main__":
