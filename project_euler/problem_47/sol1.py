@@ -26,7 +26,7 @@ def unique_prime_factors(n: int) -> set:
     Function to find unique prime factors of an integer.
     Tests include sorting because only the set really matters,
     not the order in which it is produced.
-    >>> set(sorted(unique_prime_factors(14)))
+    >>> sorted(set(unique_prime_factors(14)))
     {2, 7}
     >>> set(sorted(unique_prime_factors(644)))
     {2, 23, 7}
