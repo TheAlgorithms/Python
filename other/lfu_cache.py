@@ -61,31 +61,22 @@ class LFUCache:
     or as a function decorator.
 
     >>> cache = LFUCache(2)
-
     >>> cache.set(1, 1)
-
     >>> cache.set(2, 2)
-
     >>> cache.get(1)
     1
-
     >>> cache.set(3, 3)
-
-    >>> cache.get(2)    # None returned
-
+    >>> cache.get(2)
+    None
     >>> cache.set(4, 4)
-
-    >>> cache.get(1)    # None returned
-
+    >>> cache.get(1)
+    None
     >>> cache.get(3)
     3
-
     >>> cache.get(4)
     4
-
     >>> cache
     CacheInfo(hits=3, misses=2, capacity=2, current size=2)
-
     >>> @LFUCache.decorator(100)
     ... def fib(num):
     ...     if num in (1, 2):
@@ -122,16 +113,12 @@ class LFUCache:
     def __contains__(self, key: int) -> bool:
         '''
         >>> cache = LFUCache(1)
-
         >>> 1 in cache
         False
-
         >>> cache.set(1, 1)
-
         >>> 1 in cache
         True
         '''
-
         return key in self.cache
 
     def get(self, key: int) -> Optional[int]:
