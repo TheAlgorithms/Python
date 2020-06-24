@@ -77,7 +77,6 @@ def run(n: int) -> list:
 
     i = 2
 
-    success = 0
 
     while True:
         # Increment each value of a generated range
