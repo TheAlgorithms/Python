@@ -85,7 +85,7 @@ def run(n: int) -> list:
 
         # Run elements through out unique_prime_factors function
         # Append our target number to the end.
-        checker = list(map(upf_len, group))
+        checker = [upf_len(x) for x in group]
         checker.append(n)
 
         # If all numbers in the list are euqal, increment our success variable
