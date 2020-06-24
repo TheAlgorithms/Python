@@ -21,7 +21,18 @@ What is the first of these numbers?
 from functools import lru_cache
 
 
-def unique_prime_factors(n):
+def unique_prime_factors(n: int) -> set:
+    """
+    Function to find unique prime factors of an integer.
+    Tests include sorting because only the set really matters,
+    not the order in which it is produced.
+    >>> set(sorted(unique_prime_factors(14)))
+    {2, 7}
+    >>> set(sorted(unique_prime_factors(644)))
+    {2, 23, 7}
+    >>> set(sorted(unique_prime_factors(646)))
+    {17, 2, 19}
+    """
     i = 2
     factors = set()
     while i * i <= n:
@@ -35,37 +46,39 @@ def unique_prime_factors(n):
     return factors
 
 
-# Tests based on given problem solutions
-def test_upf():
-    assert (unique_prime_factors(14) == set([2, 7])), "Error: unique_prime_factors(14)"
-    assert (unique_prime_factors(15) == set([3, 5])), "Error: unique_prime_factors(15)"
-    assert (unique_prime_factors(644) == set([2, 7, 23])), "Error: unique_prime_factors(644)"
-    assert (unique_prime_factors(645) == set([3, 5, 43])), "Error: unique_prime_factors(645)"
-    assert (unique_prime_factors(646) == set([2, 17, 19])), "Error: unique_prime_factors(646)"
-
-
 @lru_cache(maxsize=5)
-def upf_len(num):
-    """Helper function to memoize upf() length results for a given value."""
+def upf_len(num: int) -> int:
+    """
+    Helper function to memoize upf() length results for a given value.
+    >>> upf_len(14)
+    2
+    """
     return len(unique_prime_factors(num))
-    
 
 
-def equality(iterable):
-    """Check equality of all elements in hashable interable."""
+def equality(iterable: list) -> bool:
+    """
+    Check equality of ALL elements in an interable.
+    >>> equality([1,2,3,4])
+    False
+    >>> equality([2,2,2,2])
+    True
+    """
     if iterable[:1]:
         return iterable[1:] == iterable[:-1]
 
 
-def run(n):
-    """Run core process to find solution."""
-    
+def run(n: int) -> list:
+    """
+    Function that runs core process to find problem solution.
+    >>> run(3)
+    [644, 645, 646]
+    """
+
     i = 2
-    
+
     success = 0
-    
-    out = []
-    
+
     while success < 1:
         # Increment each value of a generated range
         group = list(map(lambda x, y=i: y + x, [i for i in range(n)]))
@@ -82,8 +95,10 @@ def run(n):
             return group
         i += 1
 
-def solution(N=4):
-    """Returns the first value of the first four consecutive integers to have four distinct prime factors each.
+
+def solution(N: int = 4) -> int:
+    """Returns the first value of the first four consecutive integers to have four
+    distinct prime factors each.
     >>> solution()
     134043
     """
@@ -93,5 +108,4 @@ def solution(N=4):
 
 
 if __name__ == "__main__":
-    test_upf()
-    print(solution())        
+    print(solution())
