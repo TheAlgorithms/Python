@@ -33,7 +33,8 @@ def breadth_first_search(graph: Dict, start: str) -> Set[int]:
     >>> ''.join(sorted(bfs(G, 'A')))
     'ABCDEF'
     """
-    explored, queue = set(start), [start]  # collections.deque([start])
+    explored = {start}
+    queue = [start]
     while queue:
         v = queue.pop(0)  # queue.popleft()
         for w in graph[v]:
