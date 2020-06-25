@@ -72,7 +72,7 @@ class LFUCache:
     >>> cache.get(4)
     4
     >>> cache
-    CacheInfo(hits=3, misses=2, capacity=2, current size=2)
+    CacheInfo(hits=3, misses=2, capacity=2, current_size=2)
     >>> @LFUCache.decorator(100)
     ... def fib(num):
     ...     if num in (1, 2):
@@ -83,7 +83,7 @@ class LFUCache:
     ...     res = fib(i)
 
     >>> fib.cache_info()
-    CacheInfo(hits=196, misses=100, capacity=100, current size=100)
+    CacheInfo(hits=196, misses=100, capacity=100, current_size=100)
     """
 
     # class variable to map the decorator functions to their respective instance
@@ -105,7 +105,7 @@ class LFUCache:
 
         return (
             f"CacheInfo(hits={self.hits}, misses={self.miss}, "
-            f"capacity={self.capacity}, current size={self.num_keys})"
+            f"capacity={self.capacity}, current_size={self.num_keys})"
         )
 
     def __contains__(self, key: int) -> bool:
