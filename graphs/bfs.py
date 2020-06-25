@@ -1,7 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Breadth-first_search
 pseudo-code:
-BFS(graph G, start vertex s):
+breadth_first_search(graph G, start vertex s):
 // all nodes initially unexplored
 mark s as explored
 let Q = queue data structure, initialized with s
