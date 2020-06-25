@@ -75,14 +75,14 @@ is the second document in the corpus.\\nTHIS is \
 the third document in the corpus.")
     (1, 3)
     """
-    corpus_without_punctuation = corpus.translate(
+    corpus_without_punctuation = corpus..lower().translate(
         str.maketrans("", "", string.punctuation)
     )  # strip all punctuation and replace it with ''
-    documents = corpus_without_punctuation.split("\n")
-    lowercase_documents = [document.lower() for document in documents]
+    docs = corpus_without_punctuation.split("\n")
+    term = term.lower()
     return (
-        len([document for document in lowercase_documents if term.lower() in document]),
-        len(documents),
+        len([doc for doc in docs if term in doc]),
+        len(docs),
     )
 
 
