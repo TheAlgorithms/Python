@@ -1,8 +1,6 @@
 """https://en.wikipedia.org/wiki/Breadth-first_search
 BFS.
-
 pseudo-code:
-
 BFS(graph G, start vertex s):
 // all nodes initially unexplored
 mark s as explored
@@ -13,7 +11,6 @@ while Q is non-empty:
         if w unexplored:
             mark w as explored
             add w to Q (at the end)
-
 """
 
 from typing import Set, Dict
@@ -46,4 +43,3 @@ def breadth_first_search(graph: Dict, start: str) -> Set[str]:
 
 if __name__ == "__main__":
     print(breadth_first_search(G, "A"))
-
