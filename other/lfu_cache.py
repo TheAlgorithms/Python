@@ -2,9 +2,9 @@ from typing import Callable, Optional
 
 
 class DoubleLinkedListNode:
-    '''
+    """
     Double Linked List Node built specifically for LFU Cache
-    '''
+    """
 
     def __init__(self, key: int, val: int):
         self.key = key
@@ -15,9 +15,9 @@ class DoubleLinkedListNode:
 
 
 class DoubleLinkedList:
-    '''
+    """
     Double Linked List built specifically for LFU Cache
-    '''
+    """
 
     def __init__(self):
         self.head = DoubleLinkedListNode(None, None)
@@ -25,9 +25,9 @@ class DoubleLinkedList:
         self.head.next, self.rear.prev = self.rear, self.head
 
     def add(self, node: DoubleLinkedListNode) -> None:
-        '''
+        """
         Adds the given node at the head of the list and shifting it to proper position
-        '''
+        """
 
         temp = self.rear.prev
 
@@ -43,9 +43,9 @@ class DoubleLinkedList:
             node1.next, node2.prev = node2, node1
 
     def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode:
-        '''
+        """
         Removes and returns the given node from the list
-        '''
+        """
 
         temp_last, temp_next = node.prev, node.next
         node.prev, node.next = None, None
@@ -54,7 +54,7 @@ class DoubleLinkedList:
 
 
 class LFUCache:
-    '''
+    """
     LFU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.
 
@@ -72,7 +72,7 @@ class LFUCache:
     >>> cache.get(4)
     4
     >>> cache
-    CacheInfo(hits=3, misses=2, capacity=2, current size=2)
+    CacheInfo(hits=3, misses=2, capacity=2, current_size=2)
     >>> @LFUCache.decorator(100)
     ... def fib(num):
     ...     if num in (1, 2):
@@ -83,8 +83,8 @@ class LFUCache:
     ...     res = fib(i)
 
     >>> fib.cache_info()
-    CacheInfo(hits=196, misses=100, capacity=100, current size=100)
-    '''
+    CacheInfo(hits=196, misses=100, capacity=100, current_size=100)
+    """
 
     # class variable to map the decorator functions to their respective instance
     decorator_function_to_instance_map = {}
@@ -98,30 +98,32 @@ class LFUCache:
         self.cache = {}
 
     def __repr__(self) -> str:
-        '''
+        """
         Return the details for the cache instance
         [hits, misses, capacity, current_size]
-        '''
+        """
 
-        return (f'CacheInfo(hits={self.hits}, misses={self.miss}, '
-                f'capacity={self.capacity}, current size={self.num_keys})')
+        return (
+            f"CacheInfo(hits={self.hits}, misses={self.miss}, "
+            f"capacity={self.capacity}, current_size={self.num_keys})"
+        )
 
     def __contains__(self, key: int) -> bool:
-        '''
+        """
         >>> cache = LFUCache(1)
         >>> 1 in cache
         False
         >>> cache.set(1, 1)
         >>> 1 in cache
         True
-        '''
+        """
         return key in self.cache
 
     def get(self, key: int) -> Optional[int]:
-        '''
+        """
         Returns the value for the input key and updates the Double Linked List. Returns
         None if key is not present in cache
-        '''
+        """
 
         if key in self.cache:
             self.hits += 1
@@ -131,9 +133,9 @@ class LFUCache:
         return None
 
     def set(self, key: int, value: int) -> None:
-        '''
+        """
         Sets the value for the input key and updates the Double Linked List
-        '''
+        """
 
         if key not in self.cache:
             if self.num_keys >= self.capacity:
@@ -152,12 +154,11 @@ class LFUCache:
 
     @staticmethod
     def decorator(size: int = 128):
-        '''
+        """
         Decorator version of LFU Cache
-        '''
+        """
 
         def cache_decorator_inner(func: Callable):
-
             def cache_decorator_wrapper(*args, **kwargs):
                 if func not in LFUCache.decorator_function_to_instance_map:
                     LFUCache.decorator_function_to_instance_map[func] = LFUCache(size)

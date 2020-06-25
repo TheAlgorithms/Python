@@ -204,14 +204,16 @@ def del_node(root, data):
     if root is None:
         return root
     if get_height(root.get_right()) - get_height(root.get_left()) == 2:
-        if get_height(root.get_right().get_right()) > \
-           get_height(root.get_right().get_left()):
+        if get_height(root.get_right().get_right()) > get_height(
+            root.get_right().get_left()
+        ):
             root = left_rotation(root)
         else:
             root = rl_rotation(root)
     elif get_height(root.get_right()) - get_height(root.get_left()) == -2:
-        if get_height(root.get_left().get_left()) > \
-           get_height(root.get_left().get_right()):
+        if get_height(root.get_left().get_left()) > get_height(
+            root.get_left().get_right()
+        ):
             root = right_rotation(root)
         else:
             root = lr_rotation(root)
@@ -253,6 +255,7 @@ class AVLtree:
      2  *
     *************************************
     """
+
     def __init__(self):
         self.root = None
 
@@ -307,6 +310,7 @@ class AVLtree:
 
 def _test():
     import doctest
+
     doctest.testmod()
 
 
