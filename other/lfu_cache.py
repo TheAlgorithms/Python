@@ -66,11 +66,9 @@ class LFUCache:
     >>> cache.get(1)
     1
     >>> cache.set(3, 3)
-    >>> cache.get(2)
-    None
+    >>> cache.get(2)  # None is returned
     >>> cache.set(4, 4)
-    >>> cache.get(1)
-    None
+    >>> cache.get(1)  # None is returned
     >>> cache.get(3)
     3
     >>> cache.get(4)
