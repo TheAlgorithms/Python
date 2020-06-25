@@ -28,9 +28,9 @@ def unique_prime_factors(n: int) -> set:
     not the order in which it is produced.
     >>> sorted(set(unique_prime_factors(14)))
     [2, 7]
-    >>> set(sorted(unique_prime_factors(644)))
+    >>> sorted(set(unique_prime_factors(644)))
     [2, 7, 23]
-    >>> set(sorted(unique_prime_factors(646)))
+    >>> sorted(set(unique_prime_factors(646)))
     [2, 17, 19]
     """
     i = 2
@@ -64,7 +64,7 @@ def equality(iterable: list) -> bool:
     >>> equality([2, 2, 2, 2])
     True
     >>> equality([1, 2, 3, 2, 1])
-    True
+    False
     """
     return len(set(iterable)) in (0, 1)
 
