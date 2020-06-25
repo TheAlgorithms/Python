@@ -16,6 +16,8 @@ while Q is non-empty:
 
 """
 
+from typing import Set, Dict
+
 G = {
     "A": ["B", "C"],
     "B": ["A", "D", "E"],
@@ -26,13 +28,12 @@ G = {
 }
 
 
-def bfs(graph, start):
+def bfs(graph: Dict, start: str) -> Set[int]:
     """
     >>> ''.join(sorted(bfs(G, 'A')))
     'ABCDEF'
     """
-    explored, queue = set(), [start]  # collections.deque([start])
-    explored.add(start)
+    explored, queue = set(start), [start]  # collections.deque([start])
     while queue:
         v = queue.pop(0)  # queue.popleft()
         for w in graph[v]:
