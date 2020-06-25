@@ -30,7 +30,7 @@ G = {
 
 def breadth_first_search(graph: Dict, start: str) -> Set[str]:
     """
-    >>> ''.join(sorted(bfs(G, 'A')))
+    >>> ''.join(sorted(breadth_first_search(G, 'A')))
     'ABCDEF'
     """
     explored = {start}
