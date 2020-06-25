@@ -36,10 +36,9 @@ class DoubleLinkedList:
         node.freq += 1
         self._position_node(node)
 
-    def _position_node(self, node):
+    def _position_node(self, node: DoubleLinkedListNode) -> None:
         while node.prev.key and node.prev.freq > node.freq:
             node1, node2 = node, node.prev
-
             node1.prev, node2.next = node2.prev, node1.prev
             node1.next, node2.prev = node2, node1
 
@@ -51,7 +50,6 @@ class DoubleLinkedList:
         temp_last, temp_next = node.prev, node.next
         node.prev, node.next = None, None
         temp_last.next, temp_next.prev = temp_next, temp_last
-
         return node
 
 
