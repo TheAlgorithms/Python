@@ -1,4 +1,4 @@
-"""
+"""https://en.wikipedia.org/wiki/Breadth-first_search
 BFS.
 
 pseudo-code:
