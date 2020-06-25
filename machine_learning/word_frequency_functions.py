@@ -75,7 +75,7 @@ is the second document in the corpus.\\nTHIS is \
 the third document in the corpus.")
     (1, 3)
     """
-    corpus_without_punctuation = corpus..lower().translate(
+    corpus_without_punctuation = corpus.lower().translate(
         str.maketrans("", "", string.punctuation)
     )  # strip all punctuation and replace it with ''
     docs = corpus_without_punctuation.split("\n")
