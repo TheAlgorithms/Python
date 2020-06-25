@@ -28,7 +28,7 @@ G = {
 }
 
 
-def bfs(graph: Dict, start: str) -> Set[int]:
+def breadth_first_search(graph: Dict, start: str) -> Set[int]:
     """
     >>> ''.join(sorted(bfs(G, 'A')))
     'ABCDEF'
