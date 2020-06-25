@@ -25,20 +25,6 @@ def OddEvenTransposition(arr):
     return arr
 
 
-# creates a list and sorts it
-def main():
-    list = []
-
-    for i in range(10, 0, -1):
-        list.append(i)
-    print("Initial List")
-    print(*list)
-
-    list = OddEvenTransposition(list)
-
-    print("Sorted List\n")
-    print(*list)
-
-
 if __name__ == "__main__":
-    main()
+    arr = list(range(10, 0, -1))
+    print(f"Original: {arr}. Sorted: {OddEvenTransposition(arr)}")
