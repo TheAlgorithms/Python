@@ -40,7 +40,7 @@ from math import log10
 """
 
 
-def term_frequency(term : str, document : str) -> int:
+def term_frequency(term: str, document: str) -> int:
     """
     Return the number of times a term occurs within
     a given document.
@@ -58,9 +58,7 @@ def term_frequency(term : str, document : str) -> int:
         str.maketrans("", "", string.punctuation)
     ).replace("\n", "")
     tokenize_document = document_without_punctuation.split(" ")  # word tokenization
-    return len(
-        [word for word in tokenize_document if word.lower() == term.lower()]
-    )
+    return len([word for word in tokenize_document if word.lower() == term.lower()])
 
 
 def document_frequency(term: str, corpus: str) -> int:
@@ -82,12 +80,13 @@ the third document in the corpus.")
     )  # strip all punctuation and replace it with ''
     documents = corpus_without_punctuation.split("\n")
     lowercase_documents = [document.lower() for document in documents]
-    return len(
-        [document for document in lowercase_documents if term.lower() in document]
-    ), len(documents)
+    return (
+        len([document for document in lowercase_documents if term.lower() in document]),
+        len(documents),
+    )
 
 
-def inverse_document_frequency(df : int, N: int) -> float:
+def inverse_document_frequency(df: int, N: int) -> float:
     """
     Return an integer denoting the importance
     of a word. This measure of importance is
@@ -116,7 +115,7 @@ def inverse_document_frequency(df : int, N: int) -> float:
     return round(log10(N / df), 3)
 
 
-def tf_idf(tf : int, idf: int) -> float:
+def tf_idf(tf: int, idf: int) -> float:
     """
     Combine the term frequency
     and inverse document frequency functions to
