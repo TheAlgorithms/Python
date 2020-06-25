@@ -1,5 +1,5 @@
-"""https://en.wikipedia.org/wiki/Breadth-first_search
-BFS.
+"""
+https://en.wikipedia.org/wiki/Breadth-first_search
 pseudo-code:
 BFS(graph G, start vertex s):
 // all nodes initially unexplored
