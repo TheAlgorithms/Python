@@ -14,15 +14,15 @@ def double_linear_search(array, x):
     """:param array: the array to be searched
        :param x: the value to be searched (float, int or string)
        :returns index of x, if x is in array, else -1
-       
+
        Examples:
-       
+
        >>>double_linear_search([1, 5, 5, 10], 5)
        1
-       
+
        >>>double_linear_search([1, 5, 5, 10], 100)
        -1
-       
+
        >>>double_linear_search([1, 5, 5, 10], 10)
        3
        """
