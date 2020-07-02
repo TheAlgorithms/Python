@@ -45,3 +45,4 @@ if __name__ == "__main__":
     # print(array)
 
     print(double_linear_search(array, x))
+    # output: 40
