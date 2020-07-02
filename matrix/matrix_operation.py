@@ -74,7 +74,7 @@ def identity(n: int) -> List[list]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(matrix: List[list], return_map=True) -> List[list]:
+def transpose(matrix: List[list], return_map: bool=True) -> List[list]:
     '''
     >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
