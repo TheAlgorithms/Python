@@ -35,9 +35,7 @@ class TestClass(unittest.TestCase):
         # profit = [10, -20, 30, 40, 50, 60]
         # weight = [2, 4, 6, 8, 10, 12]
         # max_weight = 15
-        self.assertRaisesRegex(
-            ValueError, "Weight can not be negative.",
-        )
+        self.assertRaisesRegex(ValueError, "Weight can not be negative.")
 
     def test_negative_weight_value(self):
         """
