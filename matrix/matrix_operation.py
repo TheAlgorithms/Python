@@ -2,8 +2,10 @@
 function based version of matrix operations, which are just 2D arrays
 """
 
+from typing import List, Tuple
 
-def add(matrix_a, matrix_b):
+
+def add(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     '''
     >>> add([[1,2],[3,4]],[[2,3],[4,5]])
     [[3, 5], [7, 9]]
@@ -15,7 +17,7 @@ def add(matrix_a, matrix_b):
         return matrix_c
 
 
-def subtract(matrix_a, matrix_b):
+def subtract(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     '''
     >>> subtract([[1,2],[3,4]],[[2,3],[4,5]])
     [[-1, -1], [-1, -1]]
@@ -27,7 +29,7 @@ def subtract(matrix_a, matrix_b):
         return matrix_c
 
 
-def scalar_multiply(matrix, n):
+def scalar_multiply(matrix: List[list], n: int) -> List[list]:
     '''
     >>> scalar_multiply([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
@@ -35,7 +37,7 @@ def scalar_multiply(matrix, n):
     return [[x * n for x in row] for row in matrix]
 
 
-def multiply(matrix_a, matrix_b):
+def multiply(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     '''
     >>> multiply([[1,2],[3,4]],[[5,5],[7,5]])
     [[19, 15], [43, 35]]
@@ -60,7 +62,7 @@ def multiply(matrix_a, matrix_b):
         return matrix_c
 
 
-def identity(n):
+def identity(n: int) -> List[list]:
     """
     :param n: dimension for nxn matrix
     :type n: int
@@ -72,7 +74,7 @@ def identity(n):
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(matrix, return_map=True):
+def transpose(matrix: List[list], return_map=True) -> List[list]:
     '''
     >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
@@ -86,7 +88,7 @@ def transpose(matrix, return_map=True):
             return [[row[i] for row in matrix] for i in range(len(matrix[0]))]
 
 
-def minor(matrix, row, column):
+def minor(matrix: List[list], row: int, column: int) -> List[list]:
     '''
     >>> minor([[1, 2], [3, 4]], 1, 1)
     [[1]]
@@ -96,7 +98,7 @@ def minor(matrix, row, column):
     return minor
 
 
-def determinant(matrix):
+def determinant(matrix: List[list]) -> int:
     '''
     >>> determinant([[1, 2], [3, 4]])
     -2
@@ -110,7 +112,7 @@ def determinant(matrix):
     return res
 
 
-def inverse(matrix):
+def inverse(matrix: List[list]) -> List[list]:
     '''
     >>> inverse([[1, 2], [3, 4]])
     [[-2.0, 1.0], [1.5, -0.5]]
@@ -134,17 +136,18 @@ def inverse(matrix):
     return scalar_multiply(adjugate, 1 / det)
 
 
-def _check_not_integer(matrix):
+def _check_not_integer(matrix: List[list]) -> bool:
     if not isinstance(matrix, int) and not isinstance(matrix[0], int):
         return True
     raise TypeError("Expected a matrix, got int/list instead")
 
 
-def _shape(matrix):
+def _shape(matrix: List[list]) -> list:
     return list((len(matrix), len(matrix[0])))
 
 
-def _verify_matrix_sizes(matrix_a, matrix_b):
+def _verify_matrix_sizes(
+        matrix_a: List[list], matrix_b: List[list]) -> Tuple[list]:
     shape = _shape(matrix_a)
     shape += _shape(matrix_b)
     if shape[0] != shape[2] or shape[1] != shape[3]:
