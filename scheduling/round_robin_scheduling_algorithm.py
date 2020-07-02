@@ -12,7 +12,7 @@ def calculate_waiting_time(processes, n, burst_time, waiting_time, quantum):
         Return: The waiting time for each process.
     >>> calculate_waiting_time([5, 10, 15])
     [0, 5, 15]
-    >>> calculate_waiting_times([1, 2, 3, 4, 5])
+    >>> calculate_waiting_time([1, 2, 3, 4, 5])
     [0, 1, 3, 6, 10]
     >>> calculate_waiting_times([10, 3])
     [0, 10]
