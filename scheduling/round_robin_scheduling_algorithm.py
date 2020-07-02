@@ -42,7 +42,7 @@ def calculate_turn_around_time(
 ):
 
     """
-    This function calculates the turnaround time of some processes.
+    Calculate the turnaround time of some processes.
         Return: The time difference between the completion time and the
                 arrival time.
                 Practically waiting_time + duration_time
