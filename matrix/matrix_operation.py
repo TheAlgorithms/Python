@@ -1,5 +1,5 @@
 """
-function based version of matrix operations, which are just 2D arrays
+Functions for 2D matrix operations
 """
 
 from typing import List, Tuple
