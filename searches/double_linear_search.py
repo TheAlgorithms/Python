@@ -17,13 +17,13 @@ def double_linear_search(array, x):
 
        Examples:
 
-       >>>double_linear_search([1, 5, 5, 10], 5)
+       >>> double_linear_search([1, 5, 5, 10], 5)
        1
 
-       >>>double_linear_search([1, 5, 5, 10], 100)
+       >>> double_linear_search([1, 5, 5, 10], 100)
        -1
 
-       >>>double_linear_search([1, 5, 5, 10], 10)
+       >>> double_linear_search([1, 5, 5, 10], 10)
        3
        """
 
