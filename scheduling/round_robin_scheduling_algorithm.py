@@ -7,7 +7,7 @@ https://en.wikipedia.org/wiki/Round-robin_scheduling
 
 def calculate_waiting_time(processes, n, burst_time, waiting_time, quantum):
     """
-    This function calculates the waiting time of some processes that have a
+    Calculate the waiting time of some processes that have a
     specified duration time.
         Return: The waiting time for each process.
     >>> calculate_waiting_times([5, 10, 15])
