@@ -9,7 +9,7 @@ def add(matrix_a, matrix_b):
     [[3, 5], [7, 9]]
     '''
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
-        matrix_c = [[i+j for i, j in zip(m, n)]
+        matrix_c = [[i + j for i, j in zip(m, n)]
                     for m, n in zip(matrix_a, matrix_b)]
         return matrix_c
 
@@ -20,7 +20,7 @@ def subtract(matrix_a, matrix_b):
     [[-1, -1], [-1, -1]]
     '''
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
-        matrix_c = [[i-j for i, j in zip(m, n)]
+        matrix_c = [[i - j for i, j in zip(m, n)]
                     for m, n in zip(matrix_a, matrix_b)]
         return matrix_c
 
