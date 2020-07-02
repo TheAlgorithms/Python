@@ -4,12 +4,12 @@ from typing import List, Tuple
 
 
 def get_valid_pos(position: Tuple[int], n: int) -> List[Tuple[int]]:
-    '''
+    """
     Find all the valid positions a knight can move to from the current position.
 
     >>> get_valid_pos((1, 3), 4)
     [(2, 1), (0, 1), (3, 2)]
-    '''
+    """
 
     y, x = position
     positions = [
@@ -20,7 +20,7 @@ def get_valid_pos(position: Tuple[int], n: int) -> List[Tuple[int]]:
         (y + 2, x + 1),
         (y + 2, x - 1),
         (y - 2, x + 1),
-        (y - 2, x - 1)
+        (y - 2, x - 1),
     ]
     permissible_positions = []
 
@@ -33,7 +33,7 @@ def get_valid_pos(position: Tuple[int], n: int) -> List[Tuple[int]]:
 
 
 def is_complete(board: List[List[int]]) -> bool:
-    '''
+    """
     Check if the board (matrix) has been completely filled with non-zero values.
 
     >>> is_complete([[1]])
@@ -41,15 +41,15 @@ def is_complete(board: List[List[int]]) -> bool:
 
     >>> is_complete([[1, 2], [3, 0]])
     False
-    '''
+    """
 
     return not any(elem == 0 for row in board for elem in row)
 
 
 def open_knight_tour_helper(board: List[List[int]], pos: Tuple[int], curr: int) -> bool:
-    '''
+    """
     Helper function to solve knight tour problem.
-    '''
+    """
 
     if is_complete(board):
         return True
@@ -67,7 +67,7 @@ def open_knight_tour_helper(board: List[List[int]], pos: Tuple[int], curr: int) 
 
 
 def open_knight_tour(n: int) -> List[List[int]]:
-    '''
+    """
     Find the solution for the knight tour problem for a board of size n. Raises
     ValueError if the tour cannot be performed for the given size.
 
@@ -78,7 +78,7 @@ def open_knight_tour(n: int) -> List[List[int]]:
     Traceback (most recent call last):
     ...
     ValueError: Open Kight Tour cannot be performed on a board of size 2
-    '''
+    """
 
     board = [[0 for i in range(n)] for j in range(n)]
 
