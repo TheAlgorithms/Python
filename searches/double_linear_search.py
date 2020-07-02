@@ -36,7 +36,7 @@ def double_linear_search(array, x):
 
 if __name__ == "__main__":
     # should be at index 40
-    x = 100
+    x = 40
 
     # this creates an array, which goes up to the number
     # ARRAY_LENGTH --> [0, 1, ... , 99, 100]
