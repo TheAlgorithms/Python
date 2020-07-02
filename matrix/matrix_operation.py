@@ -171,7 +171,7 @@ def main():
         f"Multiply Operation, {matrix_a} * {matrix_b}",
         f"= {multiply(matrix_a, matrix_b)} \n"
     )
-    print(f"Identity:  {identity(5)}\n")
+    print(f"Identity: {identity(5)}\n")
     print(f"Minor of {matrix_c} = {minor(matrix_c, 1, 2)} \n")
     print(f"Determinant of {matrix_b} = {determinant(matrix_b)} \n")
     print(f"Inverse of {matrix_d} = {inverse(matrix_d)}\n")
