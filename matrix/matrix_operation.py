@@ -156,7 +156,8 @@ def _shape(matrix: List[list]) -> list:
     return list((len(matrix), len(matrix[0])))
 
 
-def _verify_matrix_sizes(matrix_a: List[list], matrix_b: List[list]) -> Tuple[list]:
+def _verify_matrix_sizes(
+        matrix_a: List[list], matrix_b: List[list]) -> Tuple[list]:
     shape = _shape(matrix_a)
     shape += _shape(matrix_b)
     if shape[0] != shape[2] or shape[1] != shape[3]:
@@ -165,8 +166,6 @@ def _verify_matrix_sizes(matrix_a: List[list], matrix_b: List[list]) -> Tuple[li
             f"({shape[0], shape[1]}), ({shape[2], shape[3]})"
         )
     return [shape[0], shape[2]], [shape[1], shape[3]]
-    j += 1
-    print(f"Key {key} not found")
 
 
 def main():
@@ -176,7 +175,8 @@ def main():
                 [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
     print(
-        f"Add Operation, {matrix_a} + {matrix_b} = {add(matrix_a, matrix_b)} \n")
+        f"Add Operation, {matrix_a} + {matrix_b}",
+        f" = {add(matrix_a, matrix_b)} \n")
     print(
         f"Multiply Operation, {matrix_a} * {matrix_b}",
         f"= {multiply(matrix_a, matrix_b)} \n",
