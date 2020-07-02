@@ -9,6 +9,8 @@ def add(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     '''
     >>> add([[1,2],[3,4]],[[2,3],[4,5]])
     [[3, 5], [7, 9]]
+    >>> add([[1.2,2.4],[3,4]],[[2,3],[4,5]])
+    [[3.2, 5.4], [7, 9]]
     '''
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         _verify_matrix_sizes(matrix_a, matrix_b)
@@ -21,6 +23,8 @@ def subtract(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     '''
     >>> subtract([[1,2],[3,4]],[[2,3],[4,5]])
     [[-1, -1], [-1, -1]]
+    >>> subtract([[1,2.5],[3,4]],[[2,3],[4,5.5]])
+    [[-1, -0.5], [-1, -1.5]]
     '''
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         _verify_matrix_sizes(matrix_a, matrix_b)
@@ -33,6 +37,8 @@ def scalar_multiply(matrix: List[list], n: int) -> List[list]:
     '''
     >>> scalar_multiply([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
+    >>> scalar_multiply([[1.4,2.3],[3,4]],5)
+    [[7.0, 11.5], [15, 20]]
     '''
     return [[x * n for x in row] for row in matrix]
 
@@ -41,6 +47,8 @@ def multiply(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     '''
     >>> multiply([[1,2],[3,4]],[[5,5],[7,5]])
     [[19, 15], [43, 35]]
+    >>> multiply([[1,2.5],[3,4.5]],[[5,5],[7,5]])
+    [[22.5, 17.5], [46.5, 37.5]]
     '''
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         matrix_c = []
@@ -74,7 +82,7 @@ def identity(n: int) -> List[list]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(matrix: List[list], return_map: bool=True) -> List[list]:
+def transpose(matrix: List[list], return_map: bool = True) -> List[list]:
     '''
     >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
@@ -102,6 +110,8 @@ def determinant(matrix: List[list]) -> int:
     '''
     >>> determinant([[1, 2], [3, 4]])
     -2
+    >>> determinant([[1.5, 2.5], [3, 4]])
+    -1.5
     '''
     if len(matrix) == 1:
         return matrix[0][0]
