@@ -13,7 +13,20 @@ ARRAY_LENGTH = 100
 def double_linear_search(array, x):
     """:param array: the array to be searched
        :param x: the value to be searched (float, int or string)
-       :returns index of x, if x is in array, else -1 """
+       :returns index of x, if x is in array, else -1 
+       
+       Examples:
+       
+       >>> test_array = [1, 5, 5, 2, 60, 12, 50]
+       >>> double_linear_search(test_array, 2)
+       3
+       
+       >>> double_linear_search(test_array, 5)
+       1
+       
+       >>> double_linear_search(test_array, 100)
+       -1
+    """
 
     # define the start and end index of the given array
     start_ind, end_ind = 0, len(array) - 1
