@@ -80,10 +80,7 @@ the third document in the corpus.")
     )  # strip all punctuation and replace it with ''
     docs = corpus_without_punctuation.split("\n")
     term = term.lower()
-    return (
-        len([doc for doc in docs if term in doc]),
-        len(docs),
-    )
+    return (len([doc for doc in docs if term in doc]), len(docs))
 
 
 def inverse_document_frequency(df: int, N: int) -> float:

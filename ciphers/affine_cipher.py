@@ -33,18 +33,15 @@ def check_keys(keyA, keyB, mode):
     if mode == "encrypt":
         if keyA == 1:
             sys.exit(
-                "The affine cipher becomes weak when key "
-                "A is set to 1. Choose different key"
+                "The affine cipher becomes weak when key " "A is set to 1. Choose different key"
             )
         if keyB == 0:
             sys.exit(
-                "The affine cipher becomes weak when key "
-                "B is set to 0. Choose different key"
+                "The affine cipher becomes weak when key " "B is set to 0. Choose different key"
             )
     if keyA < 0 or keyB < 0 or keyB > len(SYMBOLS) - 1:
         sys.exit(
-            "Key A must be greater than 0 and key B must "
-            f"be between 0 and {len(SYMBOLS) - 1}."
+            "Key A must be greater than 0 and key B must " f"be between 0 and {len(SYMBOLS) - 1}."
         )
     if cryptomath.gcd(keyA, len(SYMBOLS)) != 1:
         sys.exit(
@@ -102,4 +99,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
+    # main()
