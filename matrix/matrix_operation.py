@@ -45,8 +45,7 @@ def multiply(matrix_a, matrix_b):
         if cols[0] != rows[1]:
             raise ValueError(
                 f"Cannot multiply matrix of dimensions ({rows[0]},{cols[0]}) "
-                f"and ({rows[1]},{cols[1]})"
-            )
+                f"and ({rows[1]},{cols[1]})")
         for i in range(rows[0]):
             list_1 = []
             for j in range(cols[1]):
@@ -104,7 +103,7 @@ def determinant(matrix):
 
     res = 0
     for x in range(len(matrix)):
-        res += matrix[0][x] * determinant(minor(matrix, 0, x)) * (-1) ** x
+        res += matrix[0][x] * determinant(minor(matrix, 0, x)) * (-1)**x
     return res
 
 
@@ -124,10 +123,9 @@ def inverse(matrix):
         for j in range(len(matrix)):
             matrix_minor[i].append(determinant(minor(matrix, i, j)))
 
-    cofactors = [
-        [x * (-1) ** (row + col) for col, x in enumerate(matrix_minor[row])]
-        for row in range(len(matrix))
-    ]
+    cofactors = [[
+        x * (-1)**(row + col) for col, x in enumerate(matrix_minor[row])
+    ] for row in range(len(matrix))]
     adjugate = transpose(cofactors)
     return scalar_multiply(adjugate, 1 / det)
 
@@ -148,24 +146,21 @@ def _verify_matrix_sizes(matrix_a, matrix_b):
     if shape[0] != shape[2] or shape[1] != shape[3]:
         raise ValueError(
             f"operands could not be broadcast together with shape "
-            f"({shape[0], shape[1]}), ({shape[2], shape[3]})"
-        )
+            f"({shape[0], shape[1]}), ({shape[2], shape[3]})")
     return [shape[0], shape[2]], [shape[1], shape[3]]
 
 
 def main():
     matrix_a = [[12, 10], [3, 9]]
     matrix_b = [[3, 4], [7, 4]]
-    matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24],
-                [31, 32, 33, 34], [41, 42, 43, 44]]
+    matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34],
+                [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
     print(
         f"Add Operation, {matrix_a} +{matrix_b} = {add(matrix_a, matrix_b)} \n"
     )
-    print(
-        f"Multiply Operation, {matrix_a} * {matrix_b}",
-        f"= {multiply(matrix_a, matrix_b)} \n"
-    )
+    print(f"Multiply Operation, {matrix_a} * {matrix_b}",
+          f"= {multiply(matrix_a, matrix_b)} \n")
     print(f"Identity:  {identity(5)}\n")
     print(f"Minor of {matrix_c} = {minor(matrix_c, 1, 2)} \n")
     print(f"Determinant of {matrix_b} = {determinant(matrix_b)} \n")
