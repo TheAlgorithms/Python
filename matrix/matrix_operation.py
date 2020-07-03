@@ -14,8 +14,7 @@ def add(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     """
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         _verify_matrix_sizes(matrix_a, matrix_b)
-        matrix_c = [[i + j for i, j in zip(m, n)]
-                    for m, n in zip(matrix_a, matrix_b)]
+        matrix_c = [[i + j for i, j in zip(m, n)] for m, n in zip(matrix_a, matrix_b)]
         return matrix_c
 
 
@@ -28,8 +27,7 @@ def subtract(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     """
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         _verify_matrix_sizes(matrix_a, matrix_b)
-        matrix_c = [[i - j for i, j in zip(m, n)]
-                    for m, n in zip(matrix_a, matrix_b)]
+        matrix_c = [[i - j for i, j in zip(m, n)] for m, n in zip(matrix_a, matrix_b)]
         return matrix_c
 
 
@@ -101,8 +99,8 @@ def minor(matrix: List[list], row: int, column: int) -> List[list]:
     >>> minor([[1, 2], [3, 4]], 1, 1)
     [[1]]
     """
-    minor = matrix[:row] + matrix[row + 1:]
-    minor = [row[:column] + row[column + 1:] for row in minor]
+    minor = matrix[:row] + matrix[row + 1 :]
+    minor = [row[:column] + row[column + 1 :] for row in minor]
     return minor
 
 
@@ -156,8 +154,7 @@ def _shape(matrix: List[list]) -> list:
     return list((len(matrix), len(matrix[0])))
 
 
-def _verify_matrix_sizes(
-        matrix_a: List[list], matrix_b: List[list]) -> Tuple[list]:
+def _verify_matrix_sizes(matrix_a: List[list], matrix_b: List[list]) -> Tuple[list]:
     shape = _shape(matrix_a)
     shape += _shape(matrix_b)
     if shape[0] != shape[2] or shape[1] != shape[3]:
@@ -171,12 +168,9 @@ def _verify_matrix_sizes(
 def main():
     matrix_a = [[12, 10], [3, 9]]
     matrix_b = [[3, 4], [7, 4]]
-    matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24],
-                [31, 32, 33, 34], [41, 42, 43, 44]]
+    matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
-    print(
-        f"Add Operation, {matrix_a} + {matrix_b}"
-        f" = {add(matrix_a, matrix_b)} \n")
+    print(f"Add Operation, {matrix_a} + {matrix_b}" f" = {add(matrix_a, matrix_b)} \n")
     print(
         f"Multiply Operation, {matrix_a} * {matrix_b}",
         f"= {multiply(matrix_a, matrix_b)} \n",
