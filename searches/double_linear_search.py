@@ -1,19 +1,11 @@
 """Implementation of a double-linear-search,
-which iterates through the array from both sides: start and end.
-
-Change ARRAY_LENGTH to a number you want to generate an example array,
-which goes up to the number you define:
-ARRAY_LENGTH = 50 --> [0, 1, 2, ..., 49, 50]
-"""
-
-# change for bigger/smaller arrays
-ARRAY_LENGTH = 100
+which iterates through the array from both sides: start and end."""
 
 
-def double_linear_search(array, x):
+def double_linear_search(array: list, search_item: int) -> int:
     """:param array: the array to be searched
-       :param x: the value to be searched (float, int or string)
-       :returns index of x, if x is in array, else -1
+       :param search_item: the item to be searched
+       :returns index of search_item, if search_item is in array, else -1
 
        Examples:
 
@@ -32,9 +24,9 @@ def double_linear_search(array, x):
 
     while start_ind <= end_ind:
 
-        if array[start_ind] == x:
+        if array[start_ind] == search_item:
             return start_ind
-        elif array[end_ind] == x:
+        elif array[end_ind] == search_item:
             return end_ind
 
         else:
@@ -47,13 +39,19 @@ def double_linear_search(array, x):
 
 
 if __name__ == "__main__":
+    """
+    Change ARRAY_LENGTH to a number you want to generate an example array,
+    which goes up to the number you define:
+    ARRAY_LENGTH = 50 --> [0, 1, 2, ..., 49, 50]
+    """
+    # change for bigger/smaller arrays
+    ARRAY_LENGTH = 100
+    
     # should be at index 40
-    x = 40
+    search_item = 40
 
     # this creates an array, which goes up to the number
     # ARRAY_LENGTH --> [0, 1, ... , 99, 100]
     array = [x for x in range(ARRAY_LENGTH + 1)]
 
-    # print(array)
-
-    print(double_linear_search(array, x))
+    print(double_linear_search(array, search_item))
