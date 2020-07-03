@@ -23,7 +23,7 @@ def calculate_waiting_times(burst_times: List[int]) -> List[int]:
     rem_burst_times = list(burst_times)
     waiting_times = [0] * len(burst_times)
     t = 0
-    while 1:
+    while True:
         done = True
         for i, burst_time in enumerate(burst_times):
             if rem_burst_times[i] > 0:
@@ -33,7 +33,7 @@ def calculate_waiting_times(burst_times: List[int]) -> List[int]:
                     rem_burst_times[i] -= quantum
                 else:
                     t += rem_burst_times[i]
-                    waiting_times[i] = t - burst_times[i]
+                    waiting_times[i] = t - burst_time
                     rem_burst_times[i] = 0
         if done is True:
             return waiting_times
