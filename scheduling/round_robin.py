@@ -10,7 +10,7 @@ from typing import List
 def calculate_waiting_times(burst_times: List[int]) -> List[int]:
     """
     Calculate the waiting times of a list of processes that have a specified duration.
-    
+
     Return: The waiting time for each process.
     >>> calculate_waiting_times([10, 5, 8])
     [13, 10, 13]
@@ -20,7 +20,7 @@ def calculate_waiting_times(burst_times: List[int]) -> List[int]:
     [12, 2, 12]
     """
     quantum = 2
-    rem_burst_times = [i for i in burst_times]
+    rem_burst_times = list(burst_times)
     waiting_times = [0] * len(burst_times)
     t = 0
     while 1:
@@ -39,7 +39,9 @@ def calculate_waiting_times(burst_times: List[int]) -> List[int]:
             return waiting_times
 
 
-def calculate_turn_around_times(burst_times: List[int], waiting_times: List[int]) -> List[int]:
+def calculate_turn_around_times(
+    burst_times: List[int], waiting_times: List[int]
+) -> List[int]:
     """
     >>> calculate_turn_around_times([1, 2, 3, 4], [0, 1, 3])
     [1, 3, 6]
@@ -55,6 +57,8 @@ if __name__ == "__main__":
     turn_around_times = calculate_turn_around_times(burst_times, waiting_times)
     print("Process ID \tBurst Time \tWaiting Time \tTurnaround Time")
     for i, burst_time in enumerate(burst_times):
-        print(f" {i + 1}\t\t{burst_time}\t\t{waiting_times[i]}\t\t{turn_around_times[i]}")
+        print(
+            f" {i + 1}\t\t{burst_time}\t\t{waiting_times[i]}\t\t{turn_around_times[i]}"
+        )
     print(f"\nAverage waiting time = {mean(waiting_times):.5f}")
     print(f"Average turn around time = {mean(turn_around_times):.5f}")
