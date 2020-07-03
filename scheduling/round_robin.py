@@ -58,7 +58,7 @@ if __name__ == "__main__":
     print("Process ID \tBurst Time \tWaiting Time \tTurnaround Time")
     for i, burst_time in enumerate(burst_times):
         print(
-            f" {i + 1}\t\t{burst_time}\t\t{waiting_times[i]}\t\t{turn_around_times[i]}"
+            f"  {i + 1}\t\t  {burst_time}\t\t  {waiting_times[i]}\t\t  {turn_around_times[i]}"
         )
     print(f"\nAverage waiting time = {mean(waiting_times):.5f}")
     print(f"Average turn around time = {mean(turn_around_times):.5f}")
