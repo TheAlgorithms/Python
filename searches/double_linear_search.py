@@ -46,7 +46,7 @@ if __name__ == "__main__":
     """
     # change for bigger/smaller arrays
     ARRAY_LENGTH = 100
-    
+
     # should be at index 40
     search_item = 40
 
