@@ -591,7 +591,8 @@
 
 ## Scheduling
   * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
-  * [Shortest Job First Algorithm](https://github.com/TheAlgorithms/Python/blob/master/scheduling/shortest_job_first_algorithm.py)
+  * [Round Robin](https://github.com/TheAlgorithms/Python/blob/master/scheduling/round_robin.py)
+  * [Shortest Job First](https://github.com/TheAlgorithms/Python/blob/master/scheduling/shortest_job_first.py)
 
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)
