@@ -111,7 +111,7 @@ def inverse_document_frequency(df: int, N: int, smoothing=False) -> float:
     if smoothing:
         if N == 0:
             raise ValueError("log10(0) is undefined.")
-        return round(1 + log10(N / (1+df)), 3)
+        return round(1 + log10(N / (1 + df)), 3)
 
     if df == 0:
         raise ZeroDivisionError("df must be > 0")
