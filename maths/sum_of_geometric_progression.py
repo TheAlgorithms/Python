@@ -7,7 +7,7 @@ def sum_of_gp(first_term, common_ratio, num_of_terms):
     11111.0
     """
     if common_ratio == 1:
-        sum = num_of_terms * first_term
+        return num_of_terms * first_term
         return sum
     # formula for sum if common ratio is 1
 
