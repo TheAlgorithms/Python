@@ -5,7 +5,8 @@ class sparse_vector():
     # we pass number of zeros in the list
     # so, at first we have n zeros in the list
     # list[0] = 0; list[1] = 0 ... list[n-1] = 0
-    # Sparse vector's trong side is that we are saving memory
+    # Sparse vector's strong side is 
+    # that we are saving memory
     # There is no 0s in the memory
 
     def __init__(self, n):
