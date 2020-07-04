@@ -99,7 +99,6 @@ def minor(matrix: List[list], row: int, column: int) -> List[list]:
     """
     minor = matrix[:row] + matrix[row + 1 :]
     return [row[:column] + row[column + 1 :] for row in minor]
-    return minor
 
 
 def determinant(matrix: List[list]) -> int:
