@@ -1,9 +1,9 @@
 def sum_of_geometric_progression(first_term, common_ratio, num_of_terms):
     """"
     Find the sum of n terms in a geometric progression.
-    >>> sum_of_gp(1, 2, 10)
+    >>> sum_of_geometric_progression(1, 2, 10)
     1023.0
-    >>> sum_of_gp(1, 10, 5)
+    >>> sum_of_geometric_progression(1, 10, 5)
     11111.0
     """
     if common_ratio == 1:
