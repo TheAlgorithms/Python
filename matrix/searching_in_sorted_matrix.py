@@ -1,8 +1,8 @@
-from typing import List
+from typing import List, Union
 
 
 def search_in_a_sorted_matrix(
-    mat: List[list], m: int, n: int, key: int or float
+    mat: List[list], m: int, n: int, key: Union[int, float]
 ) -> None:
     """
     >>> search_in_a_sorted_matrix(\
