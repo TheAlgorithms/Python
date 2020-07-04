@@ -1,9 +1,10 @@
-from typing import List
+from typing import List, Union
 
 
 def search_in_a_sorted_matrix(
-        mat: List[list], m: int, n: int, key: int or float) -> None:
-    '''
+    mat: List[list], m: int, n: int, key: Union[int, float]
+) -> None:
+    """
     >>> search_in_a_sorted_matrix(\
         [[2, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 5)
     Key 5 found at row- 1 column- 2
@@ -16,7 +17,7 @@ def search_in_a_sorted_matrix(
     >>> search_in_a_sorted_matrix(\
         [[2.1, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 2.2)
     Key 2.2 not found
-    '''
+    """
     i, j = m - 1, 0
     while i >= 0 and j < n:
         if key == mat[i][j]:
@@ -38,5 +39,6 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
