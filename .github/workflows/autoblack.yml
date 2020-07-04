@@ -11,12 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1  # Use v1, NOT v2
       - uses: actions/setup-python@v2
-      - run: pip install black
+      - run: pip install black isort
       - run: black --check .
       - name: If needed, commit black changes to a new pull request
         if: failure()
         run: |
           black .
+          isort --profile black --recursive .
           git config --global user.name github-actions
           git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'          
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
