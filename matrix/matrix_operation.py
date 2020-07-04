@@ -100,7 +100,7 @@ def minor(matrix: List[list], row: int, column: int) -> List[list]:
     [[1]]
     """
     minor = matrix[:row] + matrix[row + 1 :]
-    minor = [row[:column] + row[column + 1 :] for row in minor]
+    return [row[:column] + row[column + 1 :] for row in minor]
     return minor
 
 
