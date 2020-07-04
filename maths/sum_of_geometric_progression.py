@@ -11,7 +11,8 @@ def sum_of_gp(first_term, common_ratio, num_of_terms):
         return sum
     # formula for sum if common ratio is 1
 
-    sum = (first_term / (1 - common_ratio)) * (1 - common_ratio ** num_of_terms)
+    return (first_term / (1 - common_ratio)) * (1 - common_ratio ** num_of_terms)
+
     return sum
     # Formula for finding sum of n terms of a GeometricProgression
 
