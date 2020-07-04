@@ -15,7 +15,6 @@ def add(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         _verify_matrix_sizes(matrix_a, matrix_b)
         return [[i + j for i, j in zip(m, n)] for m, n in zip(matrix_a, matrix_b)]
-        return matrix_c
 
 
 def subtract(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
@@ -28,7 +27,6 @@ def subtract(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         _verify_matrix_sizes(matrix_a, matrix_b)
         return [[i - j for i, j in zip(m, n)] for m, n in zip(matrix_a, matrix_b)]
-        return matrix_c
 
 
 def scalar_multiply(matrix: List[list], n: int) -> List[list]:
