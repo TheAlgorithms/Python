@@ -170,7 +170,7 @@ def main():
     matrix_b = [[3, 4], [7, 4]]
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
-    print(f"Add Operation, {matrix_a} + {matrix_b}" f" = {add(matrix_a, matrix_b)} \n")
+    print(f"Add Operation, {matrix_a} + {matrix_b} = {add(matrix_a, matrix_b)} \n")
     print(
         f"Multiply Operation, {matrix_a} * {matrix_b}",
         f"= {multiply(matrix_a, matrix_b)} \n",
