@@ -1,43 +1,37 @@
-def stable_matching(n: int, men_pref: list, women_pref: list) -> list:
+def stable_matching(n: int, donor_pref: list, recipient_pref: list) -> list:
     '''
-    Finds the stable match in any bipartite graph, i.e a pairing where no 2 
+    Finds the stable match in any bipartite graph, i.e a pairing where no 2
     objects prefer each other over their partner.
-    Here marriage is used to make the variable names easier and so the algorithm 
-    can be intuitively understood.
-    The function accepts the preferences of the men and women (where both are 
-    named from 0 to n-1) and returns a list where index position corresponds 
-    to the man and value at the index is the woman he is marrying.
+    The function accepts the preferences of the donors and recipients (where
+    both arecnamed from 0 to n-1) and returns a list where the index position
+    corresponds to the donor and value at the index is the recipient (of the organ).
     E.g:
     n = 4
-    men_pref = [[0, 1, 3, 2], [0, 2, 3, 1], [1, 0, 2, 3], [0, 3, 1, 2]]
-    women_pref = [[3, 1, 2, 0], [3, 1, 0, 2], [0, 3, 1, 2], [1, 0, 3, 2]]
-    >>> print(stable_matching(n,men_pref,women_pref))
+    donor_pref = [[0, 1, 3, 2], [0, 2, 3, 1], [1, 0, 2, 3], [0, 3, 1, 2]]
+    recipient_pref = [[3, 1, 2, 0], [3, 1, 0, 2], [0, 3, 1, 2], [1, 0, 3, 2]]
+    >>> print(stable_matching(n,donor_pref,recipient_pref))
     [1,2,3,0]
-    P.S: Marriages are heterosexual since it is a bipartite graph where there 
-    must 
-    be 2 distinct sets of objects to be matched - i.e
-    patients and organ donors.
     To better understand the algorithm, see also:
     https://github.com/akashvshroff/Gale_Shapley_Stable_Matching (README).
     https://www.youtube.com/watch?v=Qcv1IqHWAzg&t=13s (Numberphile YouTube).
     '''
-    unmarried_men = [i for i in range(n)]
-    man_spouse = [None for i in range(n)]
-    woman_spouse = [None for i in range(n)]
-    num_proposals = [0 for i in range(n)]
-    while unmarried_men:
-        man = unmarried_men[0]
-        his_preferences = men_pref[man]
-        woman = his_preferences[num_proposals[man]]
-        num_proposals[man] += 1
-        her_preferences = women_pref[woman]
-        husb = woman_spouse[woman]
-        if husb is not None:
-            if her_preferences.index(husb) > her_preferences.index(man):
-                woman_spouse[woman], man_spouse[man] = man, woman
-                unmarried_men.append(husb)
-                unmarried_men.remove(man)
+    undonated_donors = [i for i in range(n)]
+    donor_record = [None for i in range(n)]  # who the donor has donated to
+    recipient_record = [None for i in range(n)]  # donor received from
+    num_donations = [0 for i in range(n)]
+    while undonated_donors:
+        donor = undonated_donors[0]
+        donor_preference = donor_pref[donor]
+        recipient = donor_preference[num_donations[donor]]
+        num_donations[donor] += 1
+        recipient_preference = recipient_pref[recipient]
+        prev_donor = recipient_record[recipient]
+        if prev_donor is not None:
+            if recipient_preference.index(prev_donor) > recipient_preference.index(donor):
+                recipient_record[recipient], donor_record[donor] = donor, recipient
+                undonated_donors.append(prev_donor)
+                undonated_donors.remove(donor)
         else:
-            woman_spouse[woman], man_spouse[man] = man, woman
-            unmarried_men.remove(man)
-    return man_spouse
+            recipient_record[recipient], donor_record[donor] = donor, recipient
+            undonated_donors.remove(donor)
+    return donor_record
