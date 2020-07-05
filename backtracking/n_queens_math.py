@@ -15,7 +15,8 @@
 
  We can visualize it like this: left diagonal = \ and right diagonal = /
 
- On a chessboard vertical movement could be the rows and horizontal movement could be the columns.
+ On a chessboard vertical movement could be the rows and horizontal movement could be
+ the columns.
  In programming we can use an array, and in this array each index could be the rows and
  each value in the array could be the column. For example:
 
@@ -136,5 +137,4 @@ def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boa
 
 
 n_queens_solution(4)
-
 
