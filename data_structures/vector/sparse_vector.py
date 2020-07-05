@@ -52,7 +52,7 @@ class sparse_vector():
 
 
 if __name__ == "__main__":
-    
+
     # 10 zeros
     # size: 10
     sv = sparse_vector(10)
