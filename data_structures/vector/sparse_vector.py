@@ -1,3 +1,4 @@
+import typing
 __author__ = "Shota Nozadze"
 
 
@@ -11,11 +12,11 @@ class sparse_vector():
     # that we are saving memory
     # There is no 0s in the memory
 
-    def __init__(self, n: int):
+    def __init__(self, n):
         self.data = list()
         self.zeros = n
 
-    def push(self, i: int, val: int):
+    def push(self, i, val):
         incidx = False
         insertidx = -1
         nelem = (i, val)
@@ -35,13 +36,13 @@ class sparse_vector():
 
         self.data.append(nelem)
 
-    def get(self, i: int) -> int:
+    def get(self, i):
         for k in self.data:
             if k[0] == i:
                 return k[1]
         return 0
 
-    def count(self) -> int:
+    def count(self):
         return len(self.data) + self.zeros
 
     def print_vector(self):
