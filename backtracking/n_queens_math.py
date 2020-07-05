@@ -77,7 +77,7 @@ def n_queens_solution(n):
     in where the queens not attack to each other """
     boards = []
 
-    """ dfs is the function in where we found all the boards. 
+    """ dfs is the function in where we found all the boards.
     
     - First paramether: we pass the possible current board to add to our variable boards
     - Second paramether: Is a variable to store diagonal right collisions for the queens in the
@@ -137,4 +137,3 @@ def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boa
 
 
 n_queens_solution(4)
-
