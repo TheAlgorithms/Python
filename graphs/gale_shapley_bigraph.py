@@ -3,7 +3,7 @@ def stable_matching(n: int, donor_pref: list, recipient_pref: list) -> list:
     Finds the stable match in any bipartite graph, i.e a pairing where no 2
     objects prefer each other over their partner.
     The function accepts the preferences of the donors and recipients (where
-    both arecnamed from 0 to n-1) and returns a list where the index position
+    both are assigned numbers from 0 to n-1) and returns a list where the index position
     corresponds to the donor and value at the index is the recipient (of the organ).
     E.g:
     n = 4
