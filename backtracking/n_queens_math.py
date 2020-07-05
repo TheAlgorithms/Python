@@ -1,4 +1,4 @@
-"""
+r"""
  Problem:
 
  The n queens problem is of placing N queens on a N * N
