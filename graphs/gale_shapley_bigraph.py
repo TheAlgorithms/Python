@@ -15,7 +15,7 @@ def stable_matching(n: int, donor_pref: list, recipient_pref: list) -> list:
     https://github.com/akashvshroff/Gale_Shapley_Stable_Matching (README).
     https://www.youtube.com/watch?v=Qcv1IqHWAzg&t=13s (Numberphile YouTube).
     '''
-    undonated_donors = [i for i in range(n)]
+    unmatched_donors = [i for i in range(n)]
     donor_record = [None for i in range(n)]  # who the donor has donated to
     recipient_record = [None for i in range(n)]  # donor received from
     num_donations = [0 for i in range(n)]
