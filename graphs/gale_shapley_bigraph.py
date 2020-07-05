@@ -31,7 +31,7 @@ def stable_matching(donor_pref: List[int], recipient_pref: List[int]) -> List[in
         num_donations[donor] += 1
         rec_preference = recipient_pref[recipient]
         prev_donor = rec_record[recipient]
-        if prev_donor is not -1:
+        if prev_donor != -1:
             if rec_preference.index(prev_donor) > rec_preference.index(donor):
                 rec_record[recipient] = donor
                 donor_record[donor] = recipient
