@@ -4,7 +4,7 @@ def stable_matching(n: int, donor_pref: list, recipient_pref: list) -> list:
     objects prefer each other over their partner.
     The function accepts the preferences of the donors and recipients (where
     both are assigned numbers from 0 to n-1) and returns a list where the index position
-    corresponds to the donor and value at the index is the recipient (of the organ).
+    corresponds to the donor and value at the index is the organ recipient.
     E.g:
     n = 4
     donor_pref = [[0, 1, 3, 2], [0, 2, 3, 1], [1, 0, 2, 3], [0, 3, 1, 2]]
