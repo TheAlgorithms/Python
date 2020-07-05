@@ -11,15 +11,15 @@ class sparse_vector():
     # that we are saving memory
     # There is no 0s in the memory
 
-    def __init__(self, n):
+    def __init__(self, n: int):
         self.data = list()
         self.zeros = n
 
-    def push(self, i, val):
+    def push(self, i: int, val: int):
         incidx = False
         insertidx = -1
-
         nelem = (i, val)
+
         for idx in range(0, len(self.data)):
             elem = self.data[idx]
             if elem[0] >= i and incidx is False:
@@ -35,13 +35,13 @@ class sparse_vector():
 
         self.data.append(nelem)
 
-    def get(self, i):
+    def get(self, i: int) -> int:
         for k in self.data:
             if k[0] == i:
                 return k[1]
         return 0
 
-    def count(self):
+    def count(self) -> int:
         return len(self.data) + self.zeros
 
     def print_vector(self):
@@ -53,3 +53,22 @@ class sparse_vector():
 
 if __name__ == "__main__":
     
+    # 10 zeros
+    # size: 10
+    sv = sparse_vector(10)
+    sv.print_vector()
+
+    # on index 3 - 100
+    # size: 11
+    sv.push(3, 100)
+    sv.print_vector()
+
+    # index 3 - 100, index 5 - 69
+    # size: 12
+    sv.push(5, 69)
+    sv.print_vector()
+
+    # index 3 - 100, index 5 - 66, index 6 - 69
+    # size: 13
+    sv.push(5, 66)
+    sv.print_vector()
