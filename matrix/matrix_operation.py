@@ -5,17 +5,20 @@ Functions for 2D matrix operations
 from typing import List, Tuple
 
 
-def add(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
+def add(*matrix_s: List[list]) -> List[list]:
     """
     >>> add([[1,2],[3,4]],[[2,3],[4,5]])
     [[3, 5], [7, 9]]
     >>> add([[1.2,2.4],[3,4]],[[2,3],[4,5]])
     [[3.2, 5.4], [7, 9]]
+    >>> add([[1, 2], [4, 5]], [[3, 7], [3, 4]], [[3, 5], [5, 7]])
+    [[7, 14], [12, 16]]
     """
-    if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
-        _verify_matrix_sizes(matrix_a, matrix_b)
-        return [[i + j for i, j in zip(m, n)] for m, n in zip(matrix_a, matrix_b)]
-
+    if all(map(_check_not_integer, matrix_s)):
+        a, *b = matrix_s
+        for matrix in b:
+            _verify_matrix_sizes(a, matrix)
+        return [[sum(t) for t in zip(*m)] for m in zip(*matrix_s)]
 
 def subtract(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     """
@@ -26,7 +29,7 @@ def subtract(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     """
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         _verify_matrix_sizes(matrix_a, matrix_b)
-        return [[i - j for i, j in zip(m, n)] for m, n in zip(matrix_a, matrix_b)]
+        return [[i - j for i, j in zip(*m)] for m in zip(matrix_a, matrix_b)]
 
 
 def scalar_multiply(matrix: List[list], n: int) -> List[list]:
