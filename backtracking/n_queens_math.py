@@ -92,11 +92,11 @@ def n_queens_solution(n):
     boards = []
 
     """ dfs is the function in where we found all the boards.
-    - First paramether: we pass the possible current board 
+    - First paramether: we pass the possible current board
     to add to our variable boards
-    - Second paramether: Is a variable to store diagonal right 
-    collisions for the queens in the First paramether (possible_board). 
-    - Third paramether: Same as Second paramether but 
+    - Second paramether: Is a variable to store diagonal right
+    collisions for the queens in the First paramether (possible_board).
+    - Third paramether: Same as Second paramether but
     for diagonal left collisions.
     """
     dfs([], [], [], boards, n)
@@ -117,11 +117,11 @@ def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boa
     row = len(possible_board)
 
     """ If row is equal to the size of the board it
-     means there are a queen in each row 
+     means there are a queen in each row
      in the current board (possible_board) """
     if row == n:
-        """ We convert the variable possible_board that 
-        looks like this: [1, 3, 0, 2] 
+        """ We convert the variable possible_board that
+        looks like this: [1, 3, 0, 2]
         to this: ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . '] """
         possible_board = ['. ' * i + 'Q ' + '. ' * (n - 1 - i) for i in possible_board]
 
@@ -129,29 +129,30 @@ def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boa
         boards.append(possible_board)
         return
 
-    """ We iterate each column in the row to find all 
+    """ We iterate each column in the row to find all
     possible results in each row """
     for col in range(n):
 
-        """ We apply that we learned previously. First we check 
-        that in the current board (possible_board) there are 
-        not other same value because if there is it means that there 
-        are a collision in vertical. Then we apply the two formulas 
-        we learned before: 
-         
+        """ We apply that we learned previously. First we check
+        that in the current board (possible_board) there are
+        not other same value because if there is it means that there
+        are a collision in vertical. Then we apply the two formulas
+        we learned before:
+        
          45º: y - x = b or 45: row - col = b
          135º: y + x = b or row + col = b.
          
-         And we verify if the results of this two formulas not 
-         exist in their variables respectively. 
+         And we verify if the results of this two formulas not
+         exist in their variables respectively.
          (diagonal_right_collisions, diagonal_left_collisions)
          
-         If some of this is True we continue to the other value in 
+         If some of this is True we continue to the other value in
          the for loop because it means there are a collision """
-        if col in possible_board or row - col in diagonal_right_collisions or row + col in diagonal_left_collisions:
+        if col in possible_board or row - col in diagonal_right_collisions \
+                or row + col in diagonal_left_collisions:
             continue
 
-        """ If it is False we call dfs function again and 
+        """ If it is False we call dfs function again and
         we update the inputs """
         dfs(possible_board + [col],
             diagonal_right_collisions + [row - col],
