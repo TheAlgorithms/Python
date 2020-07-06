@@ -113,7 +113,6 @@ def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boa
     :type diagonal_left_collisions: list
     :type boards: list
     :type n: int
-    :return: None
     """
 
     """ Get next row in the current board (possible_board) to
