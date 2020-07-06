@@ -21,7 +21,6 @@ from sklearn import datasets
 # get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-
 # In[67]:
 
 # sigmoid function or logistic function is used as a hypothesis function in
