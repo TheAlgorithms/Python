@@ -7,12 +7,10 @@ Author: D4rkia
 
 from typing import List, Tuple
 import random
-import concurrent.futures
 
 N_POPULATION = 200
 N_SELECTED = 50
 MUTATION_PROBABILITY = 0.1
-NUM_WORKERS = 3
 random.seed(random.randint(0, 1000))
 
 
@@ -42,11 +40,11 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
         # Random population created now it's time to evaluate
         def evaluate(item: str, main_sentence: str = sentence) -> Tuple[str, float]:
             """
-            Evaluate how similar the item is with the sentence by just
-            counting each char in the right position
+                Evaluate how similar the item is with the sentence by just
+                counting each char in the right position
 
-            >>> evaluate("Helxo Worlx", Hello World)
-            ["Helxo Worlx", 9]
+                >>> evaluate("Helxo Worlx", Hello World)
+                ["Helxo Worlx", 9]
             """
             score = 0
             for position, g in enumerate(item):
@@ -54,16 +52,21 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
                     score += 1
             return (item, float(score))
 
-        # Adding a bit of concurrency to make everything faster,
-        # it could run without this;
+        # Adding a bit of concurrency can make everything faster,
+        #
+        # import concurrent.futures
+        # population_score: List[Tuple[str, float]] = []
+        # with concurrent.futures.ThreadPoolExecutor(
+        #                                   max_workers=NUM_WORKERS) as executor:
+        #     futures = {executor.submit(evaluate, item) for item in population}
+        #     concurrent.futures.wait(futures)
+        #     population_score = [item.result() for item in futures]
+        #
+        # but with a simple algorithm like this will probably be slower
         # we just need to call evaluate for every item inside population
-        population_score: List[Tuple[str, float]] = []
-        with concurrent.futures.ThreadPoolExecutor(max_workers=NUM_WORKERS) as executor:
-            futures = {executor.submit(evaluate, item) for item in population}
-            concurrent.futures.wait(futures)
-            population_score = [item.result() for item in futures]
+        population_score = [evaluate(item) for item in population]
 
-        # Check if there is a right evolution
+        # Check if there is a matching evolution
         population_score = sorted(population_score, key=lambda x: x[1], reverse=True)
         if population_score[0][0] == sentence:
             return (generation, total_population, population_score[0][0])
@@ -85,8 +88,22 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
             (item, score / len(sentence)) for item, score in population_score
         ]
 
-        # Select, Evolve and Mutate a new population
-        def evolve(parent_1: str, parent_2: str) -> Tuple[str, str]:
+        # Select, Crossover and Mutate a new population
+        def select(parent_1: Tuple[str, float]) -> List[str]:
+            """Select the second parent and generate new population"""
+            pop = []
+            # Generate more child proportionally to the fitness score
+            child_n = int(parent_1[1] * 100) + 1
+            child_n = 10 if child_n >= 10 else child_n
+            for _ in range(child_n):
+                parent_2 = population_score[random.randint(0, N_SELECTED)][0]
+                child_1, child_2 = crossover(parent_1[0], parent_2)
+                # Append new string to the population list
+                pop.append(mutate(child_1))
+                pop.append(mutate(child_2))
+            return pop
+
+        def crossover(parent_1: str, parent_2: str) -> Tuple[str, str]:
             """Slice and combine two string in a random point"""
             random_slice = random.randint(0, len(parent_1) - 1)
             child_1 = parent_1[:random_slice] + parent_2[random_slice:]
@@ -96,30 +113,30 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
         def mutate(child: str) -> str:
             """Mutate a random gene of a child with another one from the list"""
             child_list = list(child)
-            child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
+            if random.uniform(0, 1) > MUTATION_PROBABILITY:
+                child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
             return "".join(child_list)
 
+        # This is Selection
         for i in range(N_SELECTED):
-            # Generate more child proportionally to the fitness score
-            child_n = int(population_score[i][1] * 100) + 1
-            child_n = 30 if child_n >= 10 else child_n
-            for _ in range(child_n):
-                parent_2 = population_score[random.randint(0, N_SELECTED)][0]
-                child_1, child_2 = evolve(population_score[i][0], parent_2)
-                # Append new string to the population list
-                population.append(mutate(child_1))
-                population.append(mutate(child_2))
+            population.extend(select(population_score[int(i)]))
+            # Check if the population has already reached the maximum value and
+            # break the cycle
+            # if this check is disabled
+            # the algorithm will take forever to compute large strings
+            # but will also calcolate small string in a lot less generations
+            if len(population) > N_POPULATION:
+                break
 
 
 if __name__ == "__main__":
     sentence_str = (
         "This is a genetic algorithm to evaluate, combine, evolve  mutate a string!"
     )
-    genes_str = (
+    genes_list = list(
         " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm"
         "nopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\"
     )
-    genes_list = [char for char in genes_str]
     print(
         "\nGeneration: %s\nTotal Population: %s\nSentence: %s"
         % basic(sentence_str, genes_list)
