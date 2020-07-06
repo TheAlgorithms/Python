@@ -7,8 +7,8 @@ https://en.wikipedia.org/wiki/Genetic_algorithm
 Author: D4rkia
 """
 
-from typing import List, Tuple
 import random
+from typing import List, Tuple
 
 N_POPULATION = 200
 N_SELECTED = 50
