@@ -39,7 +39,7 @@ class DirectedGraph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         ss = s
@@ -114,7 +114,7 @@ class DirectedGraph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         ss = s
@@ -146,7 +146,7 @@ class DirectedGraph:
     def cycle_nodes(self):
         stack = []
         visited = []
-        s = list(self.graph.keys())[0]
+        s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -199,7 +199,7 @@ class DirectedGraph:
     def has_cycle(self):
         stack = []
         visited = []
-        s = list(self.graph.keys())[0]
+        s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -307,7 +307,7 @@ class Graph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         ss = s
@@ -355,7 +355,7 @@ class Graph:
         d = deque()
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         d.append(s)
         visited.append(s)
         while d:
@@ -373,7 +373,7 @@ class Graph:
     def cycle_nodes(self):
         stack = []
         visited = []
-        s = list(self.graph.keys())[0]
+        s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -426,7 +426,7 @@ class Graph:
     def has_cycle(self):
         stack = []
         visited = []
-        s = list(self.graph.keys())[0]
+        s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         parent = -2
