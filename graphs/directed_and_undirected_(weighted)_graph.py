@@ -1,7 +1,7 @@
-import math as math
-import random as rand
-import time
 from collections import deque
+from math import floor
+from random import random
+from time import time
 
 # the default weight is 1 if not assigned but all the implementation is weighted
 
@@ -39,7 +39,7 @@ class DirectedGraph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         ss = s
@@ -48,15 +48,15 @@ class DirectedGraph:
             # check if there is any non isolated nodes
             if len(self.graph[s]) != 0:
                 ss = s
-                for __ in self.graph[s]:
-                    if visited.count(__[1]) < 1:
-                        if __[1] == d:
+                for node in self.graph[s]:
+                    if visited.count(node[1]) < 1:
+                        if node[1] == d:
                             visited.append(d)
                             return visited
                         else:
-                            stack.append(__[1])
-                            visited.append(__[1])
-                            ss = __[1]
+                            stack.append(node[1])
+                            visited.append(node[1])
+                            ss = node[1]
                             break
 
             # check if all the children are visited
@@ -75,37 +75,35 @@ class DirectedGraph:
     # the count will be random from 10 to 10000
     def fill_graph_randomly(self, c=-1):
         if c == -1:
-            c = (math.floor(rand.random() * 10000)) + 10
-        for _ in range(c):
+            c = floor(random() * 10000) + 10
+        for i in range(c):
             # every vertex has max 100 edges
-            e = math.floor(rand.random() * 102) + 1
-            for __ in range(e):
-                n = math.floor(rand.random() * (c)) + 1
-                if n == _:
-                    continue
-                self.add_pair(_, n, 1)
+            for _ in range(floor(random() * 102) + 1):
+                n = floor(random() * c) + 1
+                if n != i:
+                    self.add_pair(i, n, 1)
 
     def bfs(self, s=-2):
         d = deque()
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         d.append(s)
         visited.append(s)
         while d:
             s = d.popleft()
             if len(self.graph[s]) != 0:
-                for __ in self.graph[s]:
-                    if visited.count(__[1]) < 1:
-                        d.append(__[1])
-                        visited.append(__[1])
+                for node in self.graph[s]:
+                    if visited.count(node[1]) < 1:
+                        d.append(node[1])
+                        visited.append(node[1])
         return visited
 
     def in_degree(self, u):
         count = 0
-        for _ in self.graph:
-            for __ in self.graph[_]:
-                if __[1] == u:
+        for x in self.graph:
+            for y in self.graph[x]:
+                if y[1] == u:
                     count += 1
         return count
 
@@ -116,7 +114,7 @@ class DirectedGraph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         ss = s
@@ -126,11 +124,11 @@ class DirectedGraph:
             # check if there is any non isolated nodes
             if len(self.graph[s]) != 0:
                 ss = s
-                for __ in self.graph[s]:
-                    if visited.count(__[1]) < 1:
-                        stack.append(__[1])
-                        visited.append(__[1])
-                        ss = __[1]
+                for node in self.graph[s]:
+                    if visited.count(node[1]) < 1:
+                        stack.append(node[1])
+                        visited.append(node[1])
+                        ss = node[1]
                         break
 
             # check if all the children are visited
@@ -148,7 +146,7 @@ class DirectedGraph:
     def cycle_nodes(self):
         stack = []
         visited = []
-        s = list(self.graph.keys())[0]
+        s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -161,25 +159,25 @@ class DirectedGraph:
             # check if there is any non isolated nodes
             if len(self.graph[s]) != 0:
                 ss = s
-                for __ in self.graph[s]:
+                for node in self.graph[s]:
                     if (
-                        visited.count(__[1]) > 0
-                        and __[1] != parent
-                        and indirect_parents.count(__[1]) > 0
+                        visited.count(node[1]) > 0
+                        and node[1] != parent
+                        and indirect_parents.count(node[1]) > 0
                         and not on_the_way_back
                     ):
                         len_stack = len(stack) - 1
                         while True and len_stack >= 0:
-                            if stack[len_stack] == __[1]:
-                                anticipating_nodes.add(__[1])
+                            if stack[len_stack] == node[1]:
+                                anticipating_nodes.add(node[1])
                                 break
                             else:
                                 anticipating_nodes.add(stack[len_stack])
                                 len_stack -= 1
-                    if visited.count(__[1]) < 1:
-                        stack.append(__[1])
-                        visited.append(__[1])
-                        ss = __[1]
+                    if visited.count(node[1]) < 1:
+                        stack.append(node[1])
+                        visited.append(node[1])
+                        ss = node[1]
                         break
 
             # check if all the children are visited
@@ -201,7 +199,7 @@ class DirectedGraph:
     def has_cycle(self):
         stack = []
         visited = []
-        s = list(self.graph.keys())[0]
+        s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -214,26 +212,26 @@ class DirectedGraph:
             # check if there is any non isolated nodes
             if len(self.graph[s]) != 0:
                 ss = s
-                for __ in self.graph[s]:
+                for node in self.graph[s]:
                     if (
-                        visited.count(__[1]) > 0
-                        and __[1] != parent
-                        and indirect_parents.count(__[1]) > 0
+                        visited.count(node[1]) > 0
+                        and node[1] != parent
+                        and indirect_parents.count(node[1]) > 0
                         and not on_the_way_back
                     ):
                         len_stack_minus_one = len(stack) - 1
                         while True and len_stack_minus_one >= 0:
-                            if stack[len_stack_minus_one] == __[1]:
-                                anticipating_nodes.add(__[1])
+                            if stack[len_stack_minus_one] == node[1]:
+                                anticipating_nodes.add(node[1])
                                 break
                             else:
                                 return True
                                 anticipating_nodes.add(stack[len_stack_minus_one])
                                 len_stack_minus_one -= 1
-                    if visited.count(__[1]) < 1:
-                        stack.append(__[1])
-                        visited.append(__[1])
-                        ss = __[1]
+                    if visited.count(node[1]) < 1:
+                        stack.append(node[1])
+                        visited.append(node[1])
+                        ss = node[1]
                         break
 
             # check if all the children are visited
@@ -253,15 +251,15 @@ class DirectedGraph:
                 return False
 
     def dfs_time(self, s=-2, e=-1):
-        begin = time.time()
+        begin = time()
         self.dfs(s, e)
-        end = time.time()
+        end = time()
         return end - begin
 
     def bfs_time(self, s=-2):
-        begin = time.time()
+        begin = time()
         self.bfs(s)
-        end = time.time()
+        end = time()
         return end - begin
 
 
@@ -309,7 +307,7 @@ class Graph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         ss = s
@@ -318,15 +316,15 @@ class Graph:
             # check if there is any non isolated nodes
             if len(self.graph[s]) != 0:
                 ss = s
-                for __ in self.graph[s]:
-                    if visited.count(__[1]) < 1:
-                        if __[1] == d:
+                for node in self.graph[s]:
+                    if visited.count(node[1]) < 1:
+                        if node[1] == d:
                             visited.append(d)
                             return visited
                         else:
-                            stack.append(__[1])
-                            visited.append(__[1])
-                            ss = __[1]
+                            stack.append(node[1])
+                            visited.append(node[1])
+                            ss = node[1]
                             break
 
             # check if all the children are visited
@@ -345,30 +343,28 @@ class Graph:
     # the count will be random from 10 to 10000
     def fill_graph_randomly(self, c=-1):
         if c == -1:
-            c = (math.floor(rand.random() * 10000)) + 10
-        for _ in range(c):
+            c = floor(random() * 10000) + 10
+        for i in range(c):
             # every vertex has max 100 edges
-            e = math.floor(rand.random() * 102) + 1
-            for __ in range(e):
-                n = math.floor(rand.random() * (c)) + 1
-                if n == _:
-                    continue
-                self.add_pair(_, n, 1)
+            for _ in range(floor(random() * 102) + 1):
+                n = floor(random() * c) + 1
+                if n != i:
+                    self.add_pair(i, n, 1)
 
     def bfs(self, s=-2):
         d = deque()
         visited = []
         if s == -2:
-            s = list(self.graph.keys())[0]
+            s = list(self.graph)[0]
         d.append(s)
         visited.append(s)
         while d:
             s = d.popleft()
             if len(self.graph[s]) != 0:
-                for __ in self.graph[s]:
-                    if visited.count(__[1]) < 1:
-                        d.append(__[1])
-                        visited.append(__[1])
+                for node in self.graph[s]:
+                    if visited.count(node[1]) < 1:
+                        d.append(node[1])
+                        visited.append(node[1])
         return visited
 
     def degree(self, u):
@@ -377,7 +373,7 @@ class Graph:
     def cycle_nodes(self):
         stack = []
         visited = []
-        s = list(self.graph.keys())[0]
+        s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -390,25 +386,25 @@ class Graph:
             # check if there is any non isolated nodes
             if len(self.graph[s]) != 0:
                 ss = s
-                for __ in self.graph[s]:
+                for node in self.graph[s]:
                     if (
-                        visited.count(__[1]) > 0
-                        and __[1] != parent
-                        and indirect_parents.count(__[1]) > 0
+                        visited.count(node[1]) > 0
+                        and node[1] != parent
+                        and indirect_parents.count(node[1]) > 0
                         and not on_the_way_back
                     ):
                         len_stack = len(stack) - 1
                         while True and len_stack >= 0:
-                            if stack[len_stack] == __[1]:
-                                anticipating_nodes.add(__[1])
+                            if stack[len_stack] == node[1]:
+                                anticipating_nodes.add(node[1])
                                 break
                             else:
                                 anticipating_nodes.add(stack[len_stack])
                                 len_stack -= 1
-                    if visited.count(__[1]) < 1:
-                        stack.append(__[1])
-                        visited.append(__[1])
-                        ss = __[1]
+                    if visited.count(node[1]) < 1:
+                        stack.append(node[1])
+                        visited.append(node[1])
+                        ss = node[1]
                         break
 
             # check if all the children are visited
@@ -430,7 +426,7 @@ class Graph:
     def has_cycle(self):
         stack = []
         visited = []
-        s = list(self.graph.keys())[0]
+        s = list(self.graph)[0]
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -443,26 +439,26 @@ class Graph:
             # check if there is any non isolated nodes
             if len(self.graph[s]) != 0:
                 ss = s
-                for __ in self.graph[s]:
+                for node in self.graph[s]:
                     if (
-                        visited.count(__[1]) > 0
-                        and __[1] != parent
-                        and indirect_parents.count(__[1]) > 0
+                        visited.count(node[1]) > 0
+                        and node[1] != parent
+                        and indirect_parents.count(node[1]) > 0
                         and not on_the_way_back
                     ):
                         len_stack_minus_one = len(stack) - 1
                         while True and len_stack_minus_one >= 0:
-                            if stack[len_stack_minus_one] == __[1]:
-                                anticipating_nodes.add(__[1])
+                            if stack[len_stack_minus_one] == node[1]:
+                                anticipating_nodes.add(node[1])
                                 break
                             else:
                                 return True
                                 anticipating_nodes.add(stack[len_stack_minus_one])
                                 len_stack_minus_one -= 1
-                    if visited.count(__[1]) < 1:
-                        stack.append(__[1])
-                        visited.append(__[1])
-                        ss = __[1]
+                    if visited.count(node[1]) < 1:
+                        stack.append(node[1])
+                        visited.append(node[1])
+                        ss = node[1]
                         break
 
             # check if all the children are visited
@@ -485,13 +481,13 @@ class Graph:
         return list(self.graph)
 
     def dfs_time(self, s=-2, e=-1):
-        begin = time.time()
+        begin = time()
         self.dfs(s, e)
-        end = time.time()
+        end = time()
         return end - begin
 
     def bfs_time(self, s=-2):
-        begin = time.time()
+        begin = time()
         self.bfs(s)
-        end = time.time()
+        end = time()
         return end - begin
