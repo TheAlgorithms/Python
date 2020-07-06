@@ -17,12 +17,11 @@ random.seed(random.randint(0, 1000))
 
 
 def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
-    """The actual algorithm"""
-    # Verify that the sentence contains no other genes
-    # that the ones inside genes variable
-    for i in sentence:
-        if i not in genes_list:
-            raise ValueError(f"{i} is not in  genes list, evolution can't converge")
+    """
+    Verify that the sentence contains no genes besides the ones inside genes variable.
+    """
+    if any(c not in genes_list for c in sentence):
+        raise ValueError(f"{c} is not in genes list, evolution can't converge")
 
     # Generate random starting population
     population = []
@@ -42,16 +41,13 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
         # Random population created now it's time to evaluate
         def evaluate(item: str, main_sentence: str = sentence) -> Tuple[str, float]:
             """
-                Evaluate how similar the item is with the sentence by just
-                counting each char in the right position
+            Evaluate how similar the item is with the sentence by just
+            counting each char in the right position
 
-                >>> evaluate("Helxo Worlx", Hello World)
-                ["Helxo Worlx", 9]
+            >>> evaluate("Helxo Worlx", Hello World)
+            ["Helxo Worlx", 9]
             """
-            score = 0
-            for position, g in enumerate(item):
-                if g == main_sentence[position]:
-                    score += 1
+            score = len([g for position, g in enumerate(item) if g == main_sentence[position]])
             return (item, float(score))
 
         # Adding a bit of concurrency can make everything faster,
