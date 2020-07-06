@@ -78,13 +78,14 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
                 f"\nSentence: {population_score[0][0]}"
             )
 
-        # Select, Evolve and Mutate
+        # Flush the old population
         population = []
         # Normalize population score from 0 to 1
         population_score = [
             (item, score / len(sentence)) for item, score in population_score
         ]
 
+        # Select, Evolve and Mutate a new population
         def evolve(parent_1: str, parent_2: str) -> Tuple[str, str]:
             """Slice and combine two string in a random point"""
             random_slice = random.randint(0, len(parent_1) - 1)
@@ -105,6 +106,7 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
             for _ in range(child_n):
                 parent_2 = population_score[random.randint(0, N_SELECTED)][0]
                 child_1, child_2 = evolve(population_score[i][0], parent_2)
+                # Append new string to the population list
                 population.append(mutate(child_1))
                 population.append(mutate(child_2))
 
