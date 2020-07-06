@@ -4,7 +4,6 @@ algorithm works (Evaluation, Selection, Crossover and Mutation)
 
 https://en.wikipedia.org/wiki/Genetic_algorithm
 
-
 Author: D4rkia
 """
 
