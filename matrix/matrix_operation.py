@@ -156,7 +156,7 @@ def _shape(matrix: List[list]) -> list:
 
 
 def _verify_matrix_sizes(
-        matrix_a: List[list], matrix_b: List[list]) -> Tuple[list]:
+    matrix_a: List[list], matrix_b: List[list]) -> Tuple[list]:
     shape = _shape(matrix_a)
     shape += _shape(matrix_b)
     if shape[0] != shape[2] or shape[1] != shape[3]:
