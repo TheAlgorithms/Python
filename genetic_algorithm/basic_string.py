@@ -1,9 +1,7 @@
 """
 Simple multithreaded algorithm to show how the 4 phases of a genetic
 algorithm works (Evaluation, Selection, Crossover and Mutation)
-
 https://en.wikipedia.org/wiki/Genetic_algorithm
-
 Author: D4rkia
 """
 
@@ -25,8 +23,11 @@ def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
     """
     Verify that the target contains no genes besides the ones inside genes variable.
     """
-    if any(c not in genes_list for c in target):
-        raise ValueError(f"{c} is not in genes list, evolution can't converge")
+    not_genes_list = [i not in genes_list for i in target]
+    if any(not_genes_list):
+        raise ValueError(
+            f"{not_genes_list} is not in genes list, evolution can't converge"
+        )
 
     # Generate random starting population
     population = []
@@ -48,7 +49,6 @@ def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
             """
             Evaluate how similar the item is with the target by just
             counting each char in the right position
-
             >>> evaluate("Helxo Worlx", Hello World)
             ["Helxo Worlx", 9]
             """
