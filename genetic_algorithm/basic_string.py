@@ -15,7 +15,7 @@ N_POPULATION = 200
 # The selection takes place from the best to the worst of that generation
 N_SELECTED = 50
 # Probability that an element of a generation can mutate changing one of its genes
-MUTATION_PROBABILITY = 0.1
+MUTATION_PROBABILITY = 0.4
 random.seed(random.randint(0, 1000))
 
 
@@ -86,8 +86,11 @@ def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
                 f"\nBest string: {population_score[0][0]}"
             )
 
-        # Flush the old population
-        population = []
+        # Flush the old population keeping some of the best evolutions
+        # Keeping this avoid regression of evolution
+        population_best = population[: int(N_POPULATION / 3)]
+        population.clear()
+        population.extend(population_best)
         # Normalize population score from 0 to 1
         population_score = [
             (item, score / len(target)) for item, score in population_score
@@ -118,7 +121,7 @@ def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
         def mutate(child: str) -> str:
             """Mutate a random gene of a child with another one from the list"""
             child_list = list(child)
-            if random.uniform(0, 1) > MUTATION_PROBABILITY:
+            if random.uniform(0, 1) < MUTATION_PROBABILITY:
                 child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
             return "".join(child_list)
 
