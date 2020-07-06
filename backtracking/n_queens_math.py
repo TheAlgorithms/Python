@@ -36,7 +36,7 @@ r"""
  know that at least the queens can't attack each other
  in horizontal and vertical.
 
- At this point we have tha halfway completed and we will treat
+ At this point we have that halfway completed and we will treat
  the chessboard as a Cartesian plane.
  Hereinafter we are going to remember basic math,
  so in the school we learned this formula:
