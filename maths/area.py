@@ -2,7 +2,7 @@
 Find the area of various geometric shapes
 """
 import math
-
+from typing import Union
 
 def surface_area_cube(side_length: Union[int, float]) -> float:
     """
