@@ -1,4 +1,4 @@
-# Youtube Explaination: https://www.youtube.com/watch?v=lBRtnuxg-gU
+# Youtube Explanation: https://www.youtube.com/watch?v=lBRtnuxg-gU
 
 from typing import List
 

@@ -12,7 +12,7 @@ test_graph_2 = {0: [1, 2, 3], 1: [0, 3], 2: [0], 3: [0, 1], 4: [], 5: []}
 
 def dfs(graph: dict, vert: int, visited: list) -> list:
     """
-    Use depth first search to find all vertexes
+    Use depth first search to find all vertices
     being in the same component as initial vertex
     >>> dfs(test_graph_1, 0, 5 * [False])
     [0, 1, 3, 2]

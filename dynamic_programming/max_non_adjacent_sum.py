@@ -1,4 +1,4 @@
-# Video Explaination: https://www.youtube.com/watch?v=6w60Zi1NtL8&feature=emb_logo
+# Video Explanation: https://www.youtube.com/watch?v=6w60Zi1NtL8&feature=emb_logo
 
 from typing import List
 
