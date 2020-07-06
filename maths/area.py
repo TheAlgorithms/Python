@@ -88,7 +88,7 @@ def area_circle(radius):
     >> area_circle(20)
     1256.6370614359173
     """
-    return math.pi * radius * radius
+    return pi * radius * radius
 
 
 def main():
@@ -102,6 +102,7 @@ def main():
     print("Surface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20)=}")
     print(f"Sphere: {surface_area_sphere(20)=}")
+
 
 if __name__ == "__main__":
     main()
