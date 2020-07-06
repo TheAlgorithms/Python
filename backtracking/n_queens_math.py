@@ -81,14 +81,10 @@ r"""
  if a queen in some position is being attacked
  for another one or vice versa.
 
-
 """
 
 
 def n_queens_solution(n):
-    """ boards is the variable (array) in where we are
-    gonna store all the boards in where the queens
-    not attack to each other """
     boards = []
 
     """ dfs is the function in where we found all the boards.
@@ -111,6 +107,14 @@ def n_queens_solution(n):
 
 
 def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boards, n):
+    """
+    :type possible_board: list
+    :type diagonal_right_collisions: list
+    :type diagonal_left_collisions: list
+    :type boards: list
+    :type n: int
+    :return: None
+    """
 
     """ Get next row in the current board (possible_board) to
     fill it with a queen """
