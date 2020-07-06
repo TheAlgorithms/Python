@@ -24,9 +24,8 @@ python tabu_search.py -f your_file_name.txt -number_of_iterations_of_tabu_search
     -s size_of_tabu_search
 e.g. python tabu_search.py -f tabudata2.txt -i 4 -s 3
 """
-
-import copy
 import argparse
+import copy
 
 
 def generate_neighbours(path):

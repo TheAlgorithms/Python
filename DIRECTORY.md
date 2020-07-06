@@ -253,6 +253,7 @@
   * [Finding Bridges](https://github.com/TheAlgorithms/Python/blob/master/graphs/finding_bridges.py)
   * [Frequent Pattern Graph Miner](https://github.com/TheAlgorithms/Python/blob/master/graphs/frequent_pattern_graph_miner.py)
   * [G Topological Sort](https://github.com/TheAlgorithms/Python/blob/master/graphs/g_topological_sort.py)
+  * [Gale Shapley Bigraph](https://github.com/TheAlgorithms/Python/blob/master/graphs/gale_shapley_bigraph.py)
   * [Graph List](https://github.com/TheAlgorithms/Python/blob/master/graphs/graph_list.py)
   * [Graph Matrix](https://github.com/TheAlgorithms/Python/blob/master/graphs/graph_matrix.py)
   * [Graphs Floyd Warshall](https://github.com/TheAlgorithms/Python/blob/master/graphs/graphs_floyd_warshall.py)
@@ -596,6 +597,7 @@
 
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)
+  * [Double Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/double_linear_search.py)
   * [Fibonacci Search](https://github.com/TheAlgorithms/Python/blob/master/searches/fibonacci_search.py)
   * [Hill Climbing](https://github.com/TheAlgorithms/Python/blob/master/searches/hill_climbing.py)
   * [Interpolation Search](https://github.com/TheAlgorithms/Python/blob/master/searches/interpolation_search.py)

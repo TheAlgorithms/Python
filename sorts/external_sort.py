@@ -3,8 +3,8 @@
 #
 # Sort large text files in a minimum amount of memory
 #
-import os
 import argparse
+import os
 
 
 class FileSplitter:

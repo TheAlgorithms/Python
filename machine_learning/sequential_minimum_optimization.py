@@ -36,9 +36,9 @@ import os
 import sys
 import urllib.request
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 from sklearn.datasets import make_blobs, make_circles
 from sklearn.preprocessing import StandardScaler
 

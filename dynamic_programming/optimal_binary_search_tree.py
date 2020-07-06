@@ -16,9 +16,7 @@
 # frequencies will be placed near the root of the tree while the nodes
 # with low frequencies will be placed near the leaves of the tree thus
 # reducing search time in the most frequent instances.
-
 import sys
-
 from random import randint
 
 

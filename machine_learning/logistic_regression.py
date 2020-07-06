@@ -14,13 +14,11 @@ Helpful resources:
 Coursera ML course
 https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
 """
-
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
+from sklearn import datasets
 
 # get_ipython().run_line_magic('matplotlib', 'inline')
-
-from sklearn import datasets
 
 
 # In[67]:

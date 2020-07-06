@@ -1,6 +1,7 @@
 import math
-from scipy.integrate import quad
+
 from numpy import inf
+from scipy.integrate import quad
 
 
 def gamma(num: float) -> float:

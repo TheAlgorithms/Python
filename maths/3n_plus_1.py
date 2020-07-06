@@ -1,4 +1,4 @@
-from typing import Tuple, List
+from typing import List, Tuple
 
 
 def n31(a: int) -> Tuple[List[int], int]:

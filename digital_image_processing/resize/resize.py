@@ -1,6 +1,6 @@
 """ Multiple image resizing techniques """
 import numpy as np
-from cv2 import imread, imshow, waitKey, destroyAllWindows
+from cv2 import destroyAllWindows, imread, imshow, waitKey
 
 
 class NearestNeighbour:

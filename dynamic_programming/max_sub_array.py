@@ -73,8 +73,9 @@ if __name__ == "__main__":
     A random simulation of this algorithm.
     """
     import time
-    import matplotlib.pyplot as plt
     from random import randint
+
+    from matplotlib import pyplot as plt
 
     inputs = [10, 100, 1000, 10000, 50000, 100000, 200000, 300000, 400000, 500000]
     tim = []

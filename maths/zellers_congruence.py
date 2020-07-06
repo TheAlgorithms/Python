@@ -1,5 +1,5 @@
-import datetime
 import argparse
+import datetime
 
 
 def zeller(date_input: str) -> str:
