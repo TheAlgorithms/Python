@@ -2,6 +2,9 @@
 Simple multithreaded algorithm to show how the 4 phases of a genetic
 algorithm works (Evaluation, Selection, Crossover and Mutation)
 
+https://en.wikipedia.org/wiki/Genetic_algorithm
+
+
 Author: D4rkia
 """
 
