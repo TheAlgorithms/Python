@@ -5,22 +5,9 @@ Finding strongly connected components in directed graph
 
 """
 
-test_graph_1 = {
-    0: [2, 3],
-    1: [0],
-    2: [1],
-    3: [4],
-    4: [],
-}
+test_graph_1 = {0: [2, 3], 1: [0], 2: [1], 3: [4], 4: []}
 
-test_graph_2 = {
-    0: [1, 2, 3],
-    1: [2],
-    2: [0],
-    3: [4],
-    4: [5],
-    5: [3],
-}
+test_graph_2 = {0: [1, 2, 3], 1: [2], 2: [0], 3: [4], 4: [5], 5: [3]}
 
 
 def topology_sort(graph: dict, vert: int, visited: list) -> list:

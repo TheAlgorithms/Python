@@ -1,9 +1,7 @@
 """
-BFS.
-
+https://en.wikipedia.org/wiki/Breadth-first_search
 pseudo-code:
-
-BFS(graph G, start vertex s):
+breadth_first_search(graph G, start vertex s):
 // all nodes initially unexplored
 mark s as explored
 let Q = queue data structure, initialized with s
@@ -13,8 +11,9 @@ while Q is non-empty:
         if w unexplored:
             mark w as explored
             add w to Q (at the end)
-
 """
+
+from typing import Set, Dict
 
 G = {
     "A": ["B", "C"],
@@ -26,13 +25,13 @@ G = {
 }
 
 
-def bfs(graph, start):
+def breadth_first_search(graph: Dict, start: str) -> Set[str]:
     """
-    >>> ''.join(sorted(bfs(G, 'A')))
+    >>> ''.join(sorted(breadth_first_search(G, 'A')))
     'ABCDEF'
     """
-    explored, queue = set(), [start]  # collections.deque([start])
-    explored.add(start)
+    explored = {start}
+    queue = [start]
     while queue:
         v = queue.pop(0)  # queue.popleft()
         for w in graph[v]:
@@ -43,4 +42,4 @@ def bfs(graph, start):
 
 
 if __name__ == "__main__":
-    print(bfs(G, "A"))
+    print(breadth_first_search(G, "A"))

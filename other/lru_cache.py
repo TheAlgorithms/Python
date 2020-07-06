@@ -2,9 +2,9 @@ from typing import Callable, Optional
 
 
 class DoubleLinkedListNode:
-    '''
+    """
     Double Linked List Node built specifically for LRU Cache
-    '''
+    """
 
     def __init__(self, key: int, val: int):
         self.key = key
@@ -14,9 +14,9 @@ class DoubleLinkedListNode:
 
 
 class DoubleLinkedList:
-    '''
+    """
     Double Linked List built specifically for LRU Cache
-    '''
+    """
 
     def __init__(self):
         self.head = DoubleLinkedListNode(None, None)
@@ -24,18 +24,18 @@ class DoubleLinkedList:
         self.head.next, self.rear.prev = self.rear, self.head
 
     def add(self, node: DoubleLinkedListNode) -> None:
-        '''
+        """
         Adds the given node to the end of the list (before rear)
-        '''
+        """
 
         temp = self.rear.prev
         temp.next, node.prev = node, temp
         self.rear.prev, node.next = node, self.rear
 
     def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode:
-        '''
+        """
         Removes and returns the given node from the list
-        '''
+        """
 
         temp_last, temp_next = node.prev, node.next
         node.prev, node.next = None, None
@@ -45,7 +45,7 @@ class DoubleLinkedList:
 
 
 class LRUCache:
-    '''
+    """
     LRU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.
 
@@ -86,7 +86,7 @@ class LRUCache:
 
     >>> fib.cache_info()
     CacheInfo(hits=194, misses=99, capacity=100, current size=99)
-    '''
+    """
 
     # class variable to map the decorator functions to their respective instance
     decorator_function_to_instance_map = {}
@@ -100,16 +100,18 @@ class LRUCache:
         self.cache = {}
 
     def __repr__(self) -> str:
-        '''
+        """
         Return the details for the cache instance
         [hits, misses, capacity, current_size]
-        '''
+        """
 
-        return (f'CacheInfo(hits={self.hits}, misses={self.miss}, '
-                f'capacity={self.capacity}, current size={self.num_keys})')
+        return (
+            f"CacheInfo(hits={self.hits}, misses={self.miss}, "
+            f"capacity={self.capacity}, current size={self.num_keys})"
+        )
 
     def __contains__(self, key: int) -> bool:
-        '''
+        """
         >>> cache = LRUCache(1)
 
         >>> 1 in cache
@@ -119,15 +121,15 @@ class LRUCache:
 
         >>> 1 in cache
         True
-        '''
+        """
 
         return key in self.cache
 
     def get(self, key: int) -> Optional[int]:
-        '''
+        """
         Returns the value for the input key and updates the Double Linked List. Returns
         None if key is not present in cache
-        '''
+        """
 
         if key in self.cache:
             self.hits += 1
@@ -137,9 +139,9 @@ class LRUCache:
         return None
 
     def set(self, key: int, value: int) -> None:
-        '''
+        """
         Sets the value for the input key and updates the Double Linked List
-        '''
+        """
 
         if key not in self.cache:
             if self.num_keys >= self.capacity:
@@ -158,12 +160,11 @@ class LRUCache:
 
     @staticmethod
     def decorator(size: int = 128):
-        '''
+        """
         Decorator version of LRU Cache
-        '''
+        """
 
         def cache_decorator_inner(func: Callable):
-
             def cache_decorator_wrapper(*args, **kwargs):
                 if func not in LRUCache.decorator_function_to_instance_map:
                     LRUCache.decorator_function_to_instance_map[func] = LRUCache(size)
