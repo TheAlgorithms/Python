@@ -23,9 +23,9 @@ def surface_area_sphere(radius: float) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
     :return 4 * pi * r^2
 
-    >>> vol_sphere(5)
+    >>> surface_area_sphere(5)
     314.1592653589793
-    >>> vol_sphere(1)
+    >>> surface_area_sphere(1)
     12.566370614359172
     """
     return 4 * pi * pow(radius, 2)
