@@ -14,7 +14,7 @@ def add(*matrix_s: List[list]) -> List[list]:
     >>> add([[1, 2], [4, 5]], [[3, 7], [3, 4]], [[3, 5], [5, 7]])
     [[7, 14], [12, 16]]
     """
-    if all(map(_check_not_integer, matrix_s)):
+    if all(_check_not_integer(m) for m in matrix_s):
         a, *b = matrix_s
         for matrix in b:
             _verify_matrix_sizes(a, matrix)
