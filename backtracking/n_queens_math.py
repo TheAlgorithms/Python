@@ -138,14 +138,14 @@ def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boa
         not other same value because if there is it means that there
         are a collision in vertical. Then we apply the two formulas
         we learned before:
-        
+
          45º: y - x = b or 45: row - col = b
          135º: y + x = b or row + col = b.
-         
+
          And we verify if the results of this two formulas not
          exist in their variables respectively.
          (diagonal_right_collisions, diagonal_left_collisions)
-         
+
          If some of this is True we continue to the other value in
          the for loop because it means there are a collision """
         if col in possible_board or row - col in diagonal_right_collisions \
