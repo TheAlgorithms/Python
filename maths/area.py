@@ -10,9 +10,9 @@ def surface_area_cube(side_length: Union[int, float]) -> float:
     Calculate the Surface Area of a Cube.
 
     >>> surface_area_cube(1)
-    6.0
+    6
     >>> surface_area_cube(3)
-    54.0
+    54
     """
     return 6 * pow(side_length, 2)
 
