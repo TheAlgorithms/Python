@@ -10,44 +10,51 @@ Author: D4rkia
 import random
 from typing import List, Tuple
 
+# Maximum size of the population
+# Bigger is more memory expensive
 N_POPULATION = 200
+# Number of elements selected in every generation for evolution
+# The selection takes place from the best to the worst of that generation
 N_SELECTED = 50
+# Probability that an element of a generation can mutate changing one of its genes
 MUTATION_PROBABILITY = 0.1
 random.seed(random.randint(0, 1000))
 
 
-def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
+def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
     """
-    Verify that the sentence contains no genes besides the ones inside genes variable.
+    Verify that the target contains no genes besides the ones inside genes variable.
     """
-    if any(c not in genes_list for c in sentence):
+    if any(c not in genes_list for c in target):
         raise ValueError(f"{c} is not in genes list, evolution can't converge")
 
     # Generate random starting population
     population = []
     for _ in range(N_POPULATION):
         population.append(
-            "".join([random.choice(genes_list) for i in range(len(sentence))])
+            "".join([random.choice(genes_list) for i in range(len(target))])
         )
 
     # Just some logs to know what the algorithms is doing
     generation, total_population = 0, 0
 
-    # This loop will end when we will find a perfect match for our sentence
+    # This loop will end when we will find a perfect match for our target
     while True:
         generation += 1
         total_population += len(population)
 
         # Random population created now it's time to evaluate
-        def evaluate(item: str, main_sentence: str = sentence) -> Tuple[str, float]:
+        def evaluate(item: str, main_target: str = target) -> Tuple[str, float]:
             """
-            Evaluate how similar the item is with the sentence by just
+            Evaluate how similar the item is with the target by just
             counting each char in the right position
 
             >>> evaluate("Helxo Worlx", Hello World)
             ["Helxo Worlx", 9]
             """
-            score = len([g for position, g in enumerate(item) if g == main_sentence[position]])
+            score = len(
+                [g for position, g in enumerate(item) if g == main_target[position]]
+            )
             return (item, float(score))
 
         # Adding a bit of concurrency can make everything faster,
@@ -66,7 +73,7 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
 
         # Check if there is a matching evolution
         population_score = sorted(population_score, key=lambda x: x[1], reverse=True)
-        if population_score[0][0] == sentence:
+        if population_score[0][0] == target:
             return (generation, total_population, population_score[0][0])
 
         # Print the Best result every 10 generation
@@ -76,14 +83,14 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
                 f"\nGeneration: {generation}"
                 f"\nTotal Population:{total_population}"
                 f"\nBest score: {population_score[0][1]}"
-                f"\nSentence: {population_score[0][0]}"
+                f"\nBest string: {population_score[0][0]}"
             )
 
         # Flush the old population
         population = []
         # Normalize population score from 0 to 1
         population_score = [
-            (item, score / len(sentence)) for item, score in population_score
+            (item, score / len(target)) for item, score in population_score
         ]
 
         # Select, Crossover and Mutate a new population
@@ -128,7 +135,7 @@ def basic(sentence: str, genes: List[str]) -> Tuple[int, int, str]:
 
 
 if __name__ == "__main__":
-    sentence_str = (
+    target_str = (
         "This is a genetic algorithm to evaluate, combine, evolve  mutate a string!"
     )
     genes_list = list(
@@ -136,8 +143,6 @@ if __name__ == "__main__":
         "nopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\"
     )
     print(
-        "\nGeneration: %s\nTotal Population: %s\nSentence: %s"
-        % basic(sentence_str, genes_list)
+        "\nGeneration: %s\nTotal Population: %s\nTarget: %s"
+        % basic(target_str, genes_list)
     )
-
-__author__ = "D4rkia.Fudo"
