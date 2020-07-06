@@ -1,5 +1,5 @@
-import matplotlib.pyplot as plt
 import pandas as pd
+from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
 
 # Splitting the dataset into the Training set and Test set

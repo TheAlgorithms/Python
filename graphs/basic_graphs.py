@@ -1,6 +1,5 @@
 from collections import deque
 
-
 if __name__ == "__main__":
     # Accept No. of Nodes and edges
     n, m = map(int, input().split(" "))

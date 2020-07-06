@@ -84,7 +84,7 @@ def simulated_annealing(
             current_state = next_state
 
     if visualization:
-        import matplotlib.pyplot as plt
+        from matplotlib import pyplot as plt
 
         plt.plot(range(iterations), scores)
         plt.xlabel("Iterations")

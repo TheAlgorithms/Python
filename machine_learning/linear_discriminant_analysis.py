@@ -41,11 +41,9 @@
 
     Author: @EverLookNeverSee
 """
-
 from math import log
 from os import name, system
-from random import gauss
-from random import seed
+from random import gauss, seed
 
 
 # Make a training dataset drawn from a gaussian distribution

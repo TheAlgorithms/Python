@@ -5,8 +5,8 @@ By listing the first six prime numbers:
 
 We can see that the 6th prime is 13. What is the Nth prime number?
 """
-import math
 import itertools
+import math
 
 
 def primeCheck(number):

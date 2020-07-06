@@ -6,11 +6,13 @@ the pytest run configuration
 -vv -m mat_ops -p no:cacheprovider
 """
 
+import logging
+
 # standard libraries
 import sys
+
 import numpy as np
 import pytest
-import logging
 
 # Custom/local libraries
 from matrix import matrix_operation as matop

@@ -12,8 +12,7 @@ while Q is non-empty:
             mark w as explored
             add w to Q (at the end)
 """
-
-from typing import Set, Dict
+from typing import Dict, Set
 
 G = {
     "A": ["B", "C"],

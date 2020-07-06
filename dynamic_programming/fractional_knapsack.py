@@ -1,5 +1,5 @@
-from itertools import accumulate
 from bisect import bisect
+from itertools import accumulate
 
 
 def fracKnapsack(vl, wt, W, n):

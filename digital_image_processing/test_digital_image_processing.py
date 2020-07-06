@@ -1,20 +1,20 @@
 """
 PyTest's for Digital Image Processing
 """
-
-import digital_image_processing.edge_detection.canny as canny
-import digital_image_processing.filters.gaussian_filter as gg
-import digital_image_processing.filters.median_filter as med
-import digital_image_processing.filters.sobel_filter as sob
-import digital_image_processing.filters.convolve as conv
-import digital_image_processing.change_contrast as cc
-import digital_image_processing.convert_to_negative as cn
-import digital_image_processing.sepia as sp
-import digital_image_processing.dithering.burkes as bs
-import digital_image_processing.resize.resize as rs
-from cv2 import imread, cvtColor, COLOR_BGR2GRAY
+from cv2 import COLOR_BGR2GRAY, cvtColor, imread
 from numpy import array, uint8
 from PIL import Image
+
+from digital_image_processing import change_contrast as cc
+from digital_image_processing import convert_to_negative as cn
+from digital_image_processing import sepia as sp
+from digital_image_processing.dithering import burkes as bs
+from digital_image_processing.edge_detection import canny as canny
+from digital_image_processing.filters import convolve as conv
+from digital_image_processing.filters import gaussian_filter as gg
+from digital_image_processing.filters import median_filter as med
+from digital_image_processing.filters import sobel_filter as sob
+from digital_image_processing.resize import resize as rs
 
 img = imread(r"digital_image_processing/image_data/lena_small.jpg")
 gray = cvtColor(img, COLOR_BGR2GRAY)

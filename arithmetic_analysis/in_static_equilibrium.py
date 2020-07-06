@@ -6,8 +6,9 @@ flake8 : passed
 mypy : passed
 """
 
-from numpy import array, cos, sin, radians, cross  # type: ignore
 from typing import List
+
+from numpy import array, cos, cross, radians, sin  # type: ignore
 
 
 def polar_force(

@@ -1,10 +1,9 @@
 # Gaussian Naive Bayes Example
-
-from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import plot_confusion_matrix
+from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
+from sklearn.metrics import plot_confusion_matrix
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
+from sklearn.naive_bayes import GaussianNB
 
 
 def main():

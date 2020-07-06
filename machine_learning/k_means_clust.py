@@ -52,11 +52,12 @@ Usage:
 
 
 """
+import warnings
+
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.metrics import pairwise_distances
-import warnings
 
 warnings.filterwarnings("ignore")
 
@@ -193,7 +194,7 @@ def kmeans(
 
 # Mock test below
 if False:  # change to true to run this test case.
-    import sklearn.datasets as ds
+    from sklearn import datasets as ds
 
     dataset = ds.load_iris()
     k = 3
