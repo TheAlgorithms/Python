@@ -93,12 +93,9 @@ def depth_first_search(
         n: int
 ) -> None:
     """
-    >>> depth_first_search(
-    ...     possible_board = [],
-    ...     diagonal_right_collisions = [],
-    ...     diagonal_left_collisions = [],
-    ...     boards= [],
-    ...     n = 4)
+    >>> boards = []
+    >>> depth_first_search([], [], [], boards, 4)
+    >>> boards
     [['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . '], ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']]
     """
 
@@ -166,6 +163,6 @@ def n_queens_solution(n: int) -> None:
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod()
+    doctest.testmod(extraglobs={'boards': []})
     n_queens_solution(4)
 
