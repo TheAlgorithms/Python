@@ -3,27 +3,43 @@ Simple multithreaded algorithm to show how the 4 phases of a genetic
 algorithm works (Evaluation, Selection, Crossover and Mutation)
 https://en.wikipedia.org/wiki/Genetic_algorithm
 Author: D4rkia
+
+>>> basic("doctest", list("abcdefghijklmnopqrstuvwxyz"))[2]
+'doctest'
 """
 
 import random
 from typing import List, Tuple
 
-# Maximum size of the population
-# Bigger is more memory expensive
+# Maximum size of the population;
+# bigger could be faster but is more memory expensive
 N_POPULATION = 200
 # Number of elements selected in every generation for evolution
-# The selection takes place from the best to the worst of that generation
+# the selection takes place from the best to the worst of that generation
+# must be smaller than N_POPULATION
 N_SELECTED = 50
 # Probability that an element of a generation can mutate changing one of its genes
+# this guarantee that all genes will be used during evolution
 MUTATION_PROBABILITY = 0.4
+# just a seed to improve randomness required by the algorithm
 random.seed(random.randint(0, 1000))
 
 
 def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
     """
     Verify that the target contains no genes besides the ones inside genes variable.
+    
+    >>> basic("test", list("abcdfghijklmnopqruvwxyz"))
+    Traceback (most recent call last):
+    ...
+    ValueError: ['t', 'e', 's', 't'] is not in genes list, evolution can't converge
     """
-    not_genes_list = [i not in genes_list for i in target]
+
+    # Verify if N_POPULATION is bigger than N_SELECTED
+    if N_POPULATION < N_SELECTED:
+        raise ValueError(f"{N_POPULATION} must be bigger than {N_SELECTED}")
+    # Verify that the target contains no genes besides the ones inside genes variable.
+    not_genes_list = [c for c in target if c not in genes]
     if any(not_genes_list):
         raise ValueError(
             f"{not_genes_list} is not in genes list, evolution can't converge"
@@ -32,9 +48,7 @@ def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
     # Generate random starting population
     population = []
     for _ in range(N_POPULATION):
-        population.append(
-            "".join([random.choice(genes_list) for i in range(len(target))])
-        )
+        population.append("".join([random.choice(genes) for i in range(len(target))]))
 
     # Just some logs to know what the algorithms is doing
     generation, total_population = 0, 0
