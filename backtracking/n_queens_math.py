@@ -82,37 +82,24 @@ r"""
  for another one or vice versa.
 
 """
+from typing import List
 
 
-def n_queens_solution(n):
-    boards = []
-
-    """ dfs is the function in where we found all the boards.
-    - First paramether: we pass the possible current board
-    to add to our variable boards
-    - Second paramether: Is a variable to store diagonal right
-    collisions for the queens in the First paramether (possible_board).
-    - Third paramether: Same as Second paramether but
-    for diagonal left collisions.
+def depth_first_search(
+        possible_board: List[int],
+        diagonal_right_collisions: List[int],
+        diagonal_left_collisions: List[int],
+        boards: List[List[str]],
+        n: int
+) -> None:
     """
-    dfs([], [], [], boards, n)
-
-    """ Print all the boards """
-    for board in boards:
-        for column in board:
-            print(column)
-        print('')
-
-    print("The total no. of solutions are :", len(boards))
-
-
-def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boards, n):
-    """
-    :type possible_board: list
-    :type diagonal_right_collisions: list
-    :type diagonal_left_collisions: list
-    :type boards: list
-    :type n: int
+    >>> depth_first_search(
+    ...     possible_board = [],
+    ...     diagonal_right_collisions = [],
+    ...     diagonal_left_collisions = [],
+    ...     boards= [],
+    ...     n = 4)
+    [['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . '], ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']]
     """
 
     """ Get next row in the current board (possible_board) to
@@ -127,8 +114,6 @@ def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boa
         looks like this: [1, 3, 0, 2]
         to this: ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . '] """
         possible_board = ['. ' * i + 'Q ' + '. ' * (n - 1 - i) for i in possible_board]
-
-        """ Then we add it to the 'boards' global variable """
         boards.append(possible_board)
         return
 
@@ -151,16 +136,36 @@ def dfs(possible_board, diagonal_right_collisions, diagonal_left_collisions, boa
 
          If some of this is True we continue to the other value in
          the for loop because it means there are a collision """
-        if col in possible_board or row - col in diagonal_right_collisions \
-                or row + col in diagonal_left_collisions:
+        if (col in possible_board
+                or row - col in diagonal_right_collisions
+                or row + col in diagonal_left_collisions):
+
             continue
 
         """ If it is False we call dfs function again and
         we update the inputs """
-        dfs(possible_board + [col],
-            diagonal_right_collisions + [row - col],
-            diagonal_left_collisions + [row + col],
-            boards, n)
+        depth_first_search(possible_board + [col],
+                           diagonal_right_collisions + [row - col],
+                           diagonal_left_collisions + [row + col],
+                           boards, n)
 
 
-n_queens_solution(4)
+def n_queens_solution(n: int) -> None:
+
+    boards = []
+    depth_first_search([], [], [], boards, n)
+
+    """ Print all the boards """
+    for board in boards:
+        for column in board:
+            print(column)
+        print('')
+
+    print("The total no. of solutions are :", len(boards))
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
+    n_queens_solution(4)
+
