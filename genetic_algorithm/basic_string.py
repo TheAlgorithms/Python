@@ -1,47 +1,58 @@
 """
-Simple multithreaded algorithm to show how the 4 phases of a genetic
-algorithm works (Evaluation, Selection, Crossover and Mutation)
+Simple multithreaded algorithm to show how the 4 phases of a genetic algorithm works
+(Evaluation, Selection, Crossover and Mutation)
 https://en.wikipedia.org/wiki/Genetic_algorithm
 Author: D4rkia
-
->>> basic("doctest", list("abcdefghijklmnopqrstuvwxyz"))[2]
-'doctest'
 """
 
 import random
 from typing import List, Tuple
 
-# Maximum size of the population;
-# bigger could be faster but is more memory expensive
+# Maximum size of the population.  bigger could be faster but is more memory expensive
 N_POPULATION = 200
-# Number of elements selected in every generation for evolution
-# the selection takes place from the best to the worst of that generation
-# must be smaller than N_POPULATION
+# Number of elements selected in every generation for evolution the selection takes
+# place from the best to the worst of that generation must be smaller than N_POPULATION
 N_SELECTED = 50
-# Probability that an element of a generation can mutate changing one of its genes
-# this guarantee that all genes will be used during evolution
+# Probability that an element of a generation can mutate changing one of its genes this
+# guarantees that all genes will be used during evolution
 MUTATION_PROBABILITY = 0.4
 # just a seed to improve randomness required by the algorithm
 random.seed(random.randint(0, 1000))
 
 
-def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
+def basic(target: str, genes: List[str], debug: bool = True) -> Tuple[int, int, str]:
     """
     Verify that the target contains no genes besides the ones inside genes variable.
-    >>> basic("test", list("abcdfghijklmnopqruvwxyz"))
+
+    >>> from string import ascii_lowercase
+    >>> basic("doctest", ascii_lowercase, debug=False)[2]
+    'doctest'
+    >>> genes = list(ascii_lowercase)
+    >>> genes.remove("e")
+    >>> basic("test", genes)
     Traceback (most recent call last):
     ...
-    ValueError: ['t', 'e', 's', 't'] is not in genes list, evolution can't converge
+    ValueError: ['e'] is not in genes list, evolution cannot converge
+    >>> genes.remove("s")
+    >>> basic("test", genes)
+    Traceback (most recent call last):
+    ...
+    ValueError: ['e', 's'] is not in genes list, evolution cannot converge
+    >>> genes.remove("t")
+    >>> basic("test", genes)
+    Traceback (most recent call last):
+    ...
+    ValueError: ['e', 's', 't'] is not in genes list, evolution cannot converge
     """
 
     # Verify if N_POPULATION is bigger than N_SELECTED
     if N_POPULATION < N_SELECTED:
         raise ValueError(f"{N_POPULATION} must be bigger than {N_SELECTED}")
     # Verify that the target contains no genes besides the ones inside genes variable.
-    not_genes_list = [c for c in target if c not in genes]
-    if any(not_genes_list):
+    not_in_genes_list = sorted({c for c in target if c not in genes})
+    if not_in_genes_list:
         raise ValueError(
-            f"{not_genes_list} is not in genes list, evolution can't converge"
+            f"{not_in_genes_list} is not in genes list, evolution cannot converge"
         )
 
     # Generate random starting population
@@ -91,7 +102,7 @@ def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
 
         # Print the Best result every 10 generation
         # just to know that the algorithm is working
-        if generation % 10 == 0:
+        if debug and generation % 10 == 0:
             print(
                 f"\nGeneration: {generation}"
                 f"\nTotal Population:{total_population}"
@@ -141,11 +152,10 @@ def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
         # This is Selection
         for i in range(N_SELECTED):
             population.extend(select(population_score[int(i)]))
-            # Check if the population has already reached the maximum value and
-            # break the cycle
-            # if this check is disabled
-            # the algorithm will take forever to compute large strings
-            # but will also calculate small string in a lot fewer generations
+            # Check if the population has already reached the maximum value and if so,
+            # break the cycle.  if this check is disabled the algorithm will take
+            # forever to compute large strings but will also calculate small string in
+            # a lot fewer generations
             if len(population) > N_POPULATION:
                 break
 
