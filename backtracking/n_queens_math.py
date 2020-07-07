@@ -163,5 +163,5 @@ def n_queens_solution(n: int) -> None:
 
 if __name__ == '__main__':
     import doctest
-    doctest.testmod(extraglobs={'boards': []})
+    doctest.testmod()
     n_queens_solution(4)
