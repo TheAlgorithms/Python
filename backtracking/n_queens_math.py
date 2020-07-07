@@ -154,7 +154,6 @@ def n_queens_solution(n: int) -> None:
 
     """ Print all the boards """
     for board in boards:
-        print(board)
         for column in board:
             print(column)
         print('')
@@ -164,6 +163,5 @@ def n_queens_solution(n: int) -> None:
 
 if __name__ == '__main__':
     import doctest
-
     doctest.testmod(extraglobs={'boards': []})
     n_queens_solution(4)
