@@ -95,8 +95,10 @@ def depth_first_search(
     """
     >>> boards = []
     >>> depth_first_search([], [], [], boards, 4)
-    >>> boards
-    [['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . '], ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']]
+    >>> for board in boards:
+    ...     print(board)
+    ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
+    ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']
     """
 
     """ Get next row in the current board (possible_board) to
@@ -136,7 +138,6 @@ def depth_first_search(
         if (col in possible_board
                 or row - col in diagonal_right_collisions
                 or row + col in diagonal_left_collisions):
-
             continue
 
         """ If it is False we call dfs function again and
@@ -148,12 +149,12 @@ def depth_first_search(
 
 
 def n_queens_solution(n: int) -> None:
-
     boards = []
     depth_first_search([], [], [], boards, n)
 
     """ Print all the boards """
     for board in boards:
+        print(board)
         for column in board:
             print(column)
         print('')
@@ -163,6 +164,6 @@ def n_queens_solution(n: int) -> None:
 
 if __name__ == '__main__':
     import doctest
+
     doctest.testmod(extraglobs={'boards': []})
     n_queens_solution(4)
-
