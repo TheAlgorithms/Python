@@ -145,14 +145,14 @@ def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
             # break the cycle
             # if this check is disabled
             # the algorithm will take forever to compute large strings
-            # but will also calcolate small string in a lot less generations
+            # but will also calculate small string in a lot fewer generations
             if len(population) > N_POPULATION:
                 break
 
 
 if __name__ == "__main__":
     target_str = (
-        "This is a genetic algorithm to evaluate, combine, evolve  mutate a string!"
+        "This is a genetic algorithm to evaluate, combine, evolve, and mutate a string!"
     )
     genes_list = list(
         " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm"
