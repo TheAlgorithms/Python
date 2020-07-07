@@ -27,7 +27,8 @@ random.seed(random.randint(0, 1000))
 
 def basic(target: str, genes: List[str]) -> Tuple[int, int, str]:
     """
-    Verify that the target contains no genes besides the ones inside genes variable.    
+    Verify that the target contains no genes besides the ones inside genes variable.
+
     >>> basic("test", list("abcdfghijklmnopqruvwxyz"))
     Traceback (most recent call last):
     ...
