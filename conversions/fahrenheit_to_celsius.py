@@ -29,7 +29,8 @@ def fahrenheit_to_celsius(fahrenheit):
 
 
     celsius = (fahrenheit - 32)*5/9 # value converted from fahrenheit to celsius
-    celsius = round(celsius, 2) # converted (celsius) value is rounded to two decimal places
+    celsius = round(celsius, 2) 
+    # converted (celsius) value is rounded to two decimal places
     print(celsius)
 
 if __name__ == "__main__":
