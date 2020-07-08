@@ -3,7 +3,7 @@
 
 def celsius_to_fahrenheit(celsius):
     """
-    Convert a given value from Celsius to Fahrenheit 
+    Convert a given value from Celsius to Fahrenheit
 
     >>> celsius_to_fahrenheit(-40)
     -40.0

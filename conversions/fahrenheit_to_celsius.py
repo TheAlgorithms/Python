@@ -26,7 +26,7 @@ def fahrenheit_to_celsius(fahrenheit):
         """
         Check whether given value is string and raise Type Error
         """
-        raise TypeError("'str' object cannot be interpreted as integer") 
+        raise TypeError("'str' object cannot be interpreted as integer")
 
     celsius = (fahrenheit - 32) * 5 / 9  # value converted from fahrenheit to celsius
     celsius = round(celsius, 2)
