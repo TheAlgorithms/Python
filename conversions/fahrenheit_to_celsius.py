@@ -1,4 +1,4 @@
-""" Convert temparature from Fahrenheit to Celsius """
+""" Convert temperature from Fahrenheit to Celsius """
 
 def fahrenheit_to_celsius(fahrenheit):
     """
