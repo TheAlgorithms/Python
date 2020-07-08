@@ -1,5 +1,6 @@
 """ Convert temperature from Celsius to Fahrenheit """
 
+
 def celsius_to_fahrenheit(celsius):
     """
     Convert a given value from Celsius to Fahrenheit 
@@ -26,8 +27,9 @@ def celsius_to_fahrenheit(celsius):
         """
         raise TypeError("'str' object cannot be interpreted as integer")
 
-    fahrenheit = (celsius * 9/5) + 32 # value converted from celsius to fahrenheit
+    fahrenheit = (celsius * 9 / 5) + 32  # value converted from celsius to fahrenheit
     print(fahrenheit)
+
 
 if __name__ == "__main__":
     import doctest
