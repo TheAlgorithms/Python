@@ -17,17 +17,12 @@ def fahrenheit_to_celsius(fahrenheit: float) -> float:
     26.67
     >>> print(fahrenheit_to_celsius(100))
     37.78
-    >>> print(fahrenheit_to_celsius("100"))
+    >>> print(fahrenheit_to_celsius("fahrenheit"))
     Traceback (most recent call last):
     ...
-    TypeError: 'str' object cannot be interpreted as integer
+    ValueError: could not convert string to float: 'fahrenheit'
     """
-    if type(fahrenheit) == str:
-        """
-        Check whether given value is string and raise Type Error
-        """
-        raise TypeError("'str' object cannot be interpreted as integer")
-
+    fahrenheit = float(fahrenheit)
     return round((fahrenheit - 32) * 5 / 9, 2)
 
 
