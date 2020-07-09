@@ -1,11 +1,11 @@
 import numpy as np
 
-def rayleigh_quotient(input_matrix: np.array, vector: np.array):
+def rayleigh_quotient(input_matrix: np.array, vector: np.array) -> float:
 
     """
     Rayleigh Quotient.
     Fine the Rayliegh quotient of matrix and vector. Given an eigenvector,
-    the Rayleigh quotient is the corresponding eigenvalue. 
+    the Rayleigh quotient is the corresponding eigenvalue.
 
     Input
     input_matrix: input matrix.
