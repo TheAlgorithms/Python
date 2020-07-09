@@ -2,6 +2,18 @@ import numpy as np
 
 def rayleigh_quotient(input_matrix: np.array, vector: np.array):
 
+    """
+    Rayleigh Quotient.
+    Fine the Rayliegh quotient of matrix and vector. Given an eigenvector,
+    the Rayleigh quotient is the corresponding eigenvalue. 
+
+    Input
+    input_matrix: input matrix.
+    Numpy array. np.shape(input_matrix) == (N,N).
+    vector: input vector.
+    Numpy array. np.shape(vector) == (N,) or (N,1)
+    """
+
     num = np.dot(vector.T, np.dot(input_matrix, vector))
     den = np.dot(vector.T,vector)
 
@@ -11,11 +23,17 @@ def power_iteration(input_matrix: np.array,vector: np.array,
     error_tol = 1e-12, max_iterations=100) -> [float, np.array]:
 
     """
+    Power Iteration.
+    Find the largest eignevalue and corresponding eigenvector
+    of matrix input_matrix given a random vector in the same space.
+    Will work so long as vector has component of largest eigenvector.
+    input_matrix must be symmetric.
+
     Input
     input_matrix: input matrix whose largest eigenvalue we will find.
-    Numpy array. np.shape(matrix) == (N,N).
+    Numpy array. np.shape(input_matrix) == (N,N).
     vector: random initial vector in same space as matrix.
-    Numpy array. np.shape(init_vector) == (N,) or (N,1)
+    Numpy array. np.shape(vector) == (N,) or (N,1)
 
     Output
     largest_eigenvalue: largest eigenvalue of the matrix input_matrix.
