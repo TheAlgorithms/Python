@@ -1,7 +1,7 @@
 """ Convert temperature from Fahrenheit to Celsius """
 
 
-def fahrenheit_to_celsius(fahrenheit):
+def fahrenheit_to_celsius(fahrenheit: float) -> float:
     """
     Convert a given value from Fahrenheit to Celsius and round it to 2 d.p.
 
