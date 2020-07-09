@@ -7,10 +7,10 @@
     reference-->Su, Francis E., et al. "Fibonacci Number Formula." Math Fun Facts.
     <http://www.math.hmc.edu/funfacts>
 """
-import math
 import functools
+import math
 import time
-from decimal import getcontext, Decimal
+from decimal import Decimal, getcontext
 
 getcontext().prec = 100
 

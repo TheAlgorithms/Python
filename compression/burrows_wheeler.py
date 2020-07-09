@@ -10,7 +10,7 @@ without needing to store any additional data except the position of the first
 original character. The BWT is thus a "free" method of improving the efficiency
 of text compression algorithms, costing only some extra computation.
 """
-from typing import List, Dict
+from typing import Dict, List
 
 
 def all_rotations(s: str) -> List[str]:

@@ -1,7 +1,7 @@
 # https://en.wikipedia.org/wiki/B%C3%A9zier_curve
 # https://www.tutorialspoint.com/computer_graphics/computer_graphics_curves.htm
-
 from typing import List, Tuple
+
 from scipy.special import comb
 
 
@@ -78,7 +78,7 @@ class BezierCurve:
             step_size: defines the step(s) at which to evaluate the Bezier curve.
             The smaller the step size, the finer the curve produced.
         """
-        import matplotlib.pyplot as plt
+        from matplotlib import pyplot as plt
 
         to_plot_x: List[float] = []  # x coordinates of points to plot
         to_plot_y: List[float] = []  # y coordinates of points to plot

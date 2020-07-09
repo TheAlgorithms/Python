@@ -150,7 +150,7 @@ def hill_climbing(
             solution_found = True
 
     if visualization:
-        import matplotlib.pyplot as plt
+        from matplotlib import pyplot as plt
 
         plt.plot(range(iterations), scores)
         plt.xlabel("Iterations")

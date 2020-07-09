@@ -16,7 +16,7 @@ graph = {
 
 class Graph:
     def __init__(self, graph: Dict[str, str], source_vertex: str) -> None:
-        """Graph is implemented as dictionary of adjancency lists. Also,
+        """Graph is implemented as dictionary of adjacency lists. Also,
         Source vertex have to be defined upon initialization.
         """
         self.graph = graph
@@ -37,11 +37,11 @@ class Graph:
 
         while queue:
             vertex = queue.pop(0)
-            for adjancent_vertex in self.graph[vertex]:
-                if adjancent_vertex not in visited:
-                    visited.add(adjancent_vertex)
-                    self.parent[adjancent_vertex] = vertex
-                    queue.append(adjancent_vertex)
+            for adjacent_vertex in self.graph[vertex]:
+                if adjacent_vertex not in visited:
+                    visited.add(adjacent_vertex)
+                    self.parent[adjacent_vertex] = vertex
+                    queue.append(adjacent_vertex)
 
     def shortest_path(self, target_vertex: str) -> str:
         """This shortest path function returns a string, describing the result:

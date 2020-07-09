@@ -11,8 +11,7 @@ Pseudocode:
         if v unexplored:
             DFS(G, v)
 """
-
-from typing import Set, Dict
+from typing import Dict, Set
 
 
 def depth_first_search(graph: Dict, start: str) -> Set[int]:

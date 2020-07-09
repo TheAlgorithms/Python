@@ -4,13 +4,11 @@
     * http://colah.github.io/posts/2015-08-Understanding-LSTMs
     * https://en.wikipedia.org/wiki/Long_short-term_memory
 """
-
-from keras.layers import Dense, LSTM
-from keras.models import Sequential
 import numpy as np
 import pandas as pd
+from keras.layers import LSTM, Dense
+from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
-
 
 if __name__ == "__main__":
     """

@@ -52,11 +52,12 @@ Usage:
 
 
 """
+import warnings
+
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.metrics import pairwise_distances
-import warnings
 
 warnings.filterwarnings("ignore")
 
@@ -193,7 +194,7 @@ def kmeans(
 
 # Mock test below
 if False:  # change to true to run this test case.
-    import sklearn.datasets as ds
+    from sklearn import datasets as ds
 
     dataset = ds.load_iris()
     k = 3
@@ -250,7 +251,7 @@ def ReportGenerator(
     df["dummy"] = 1
     numeric_cols = df.select_dtypes(np.number).columns
     report = (
-        df.groupby(["Cluster"])[  # constract report dataframe
+        df.groupby(["Cluster"])[  # construct report dataframe
             numeric_cols
         ]  # group by cluster number
         .agg(
@@ -289,14 +290,14 @@ def ReportGenerator(
 
     clustersize = report[
         (report["Features"] == "dummy") & (report["Type"] == "count")
-    ]  # caclulating size of cluster(count of clientID's)
+    ]  # calculate the size of cluster(count of clientID's)
     clustersize.Type = (
         "ClusterSize"  # rename created cluster df to match report column names
     )
     clustersize.Features = "# of Customers"
     clusterproportion = pd.DataFrame(
         clustersize.iloc[:, 2:].values
-        / clustersize.iloc[:, 2:].values.sum()  # caclulating proportion of cluster
+        / clustersize.iloc[:, 2:].values.sum()  # calculating the proportion of cluster
     )
     clusterproportion[
         "Type"

@@ -5,7 +5,7 @@ python/black : True
 python : 3.7.3
 
 """
-from numpy import pi, sqrt, exp
+from numpy import exp, pi, sqrt
 
 
 def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:

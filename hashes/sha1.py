@@ -23,10 +23,9 @@ state. After the last block is processed the current hash state is returned as
 the final hash.
 Reference: https://deadhacker.com/2006/02/21/sha-1-illustrated/
 """
-
 import argparse
-import struct
 import hashlib  # hashlib is only used inside the Test class
+import struct
 import unittest
 
 

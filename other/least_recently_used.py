@@ -1,5 +1,5 @@
-from abc import abstractmethod
 import sys
+from abc import abstractmethod
 from collections import deque
 
 

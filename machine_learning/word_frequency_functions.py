@@ -40,7 +40,7 @@ from math import log10
 """
 
 
-def term_frequency(term : str, document : str) -> int:
+def term_frequency(term: str, document: str) -> int:
     """
     Return the number of times a term occurs within
     a given document.
@@ -87,7 +87,7 @@ the third document in the corpus.")
     ), len(documents)
 
 
-def inverse_document_frequency(df : int, N: int) -> float:
+def inverse_document_frequency(df: int, N: int) -> float:
     """
     Return an integer denoting the importance
     of a word. This measure of importance is
@@ -116,7 +116,7 @@ def inverse_document_frequency(df : int, N: int) -> float:
     return round(log10(N / df), 3)
 
 
-def tf_idf(tf : int, idf: int) -> float:
+def tf_idf(tf: int, idf: int) -> float:
     """
     Combine the term frequency
     and inverse document frequency functions to

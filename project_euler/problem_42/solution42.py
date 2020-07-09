@@ -15,7 +15,6 @@ words?
 """
 import os
 
-
 # Precomputes a list of the 100 first triangular numbers
 TRIANGULAR_NUMBERS = [int(0.5 * n * (n + 1)) for n in range(1, 101)]
 

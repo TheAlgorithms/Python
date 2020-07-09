@@ -17,9 +17,8 @@ Github : https://github.com/RiptideBo
 Date: 2017.11.23
 
 """
-
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
 
 def sigmoid(x):

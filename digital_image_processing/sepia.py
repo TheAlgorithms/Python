@@ -1,8 +1,7 @@
 """
     Implemented an algorithm using opencv to tone an image with sepia technique
 """
-
-from cv2 import imread, imshow, waitKey, destroyAllWindows
+from cv2 import destroyAllWindows, imread, imshow, waitKey
 
 
 def make_sepia(img, factor: int):

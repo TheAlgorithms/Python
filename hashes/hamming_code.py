@@ -131,10 +131,7 @@ def emitterConverter(sizePar, data):
                     if x == "1":
                         contBO += 1
             contLoop += 1
-        if contBO % 2 == 0:
-            parity.append(0)
-        else:
-            parity.append(1)
+        parity.append(contBO % 2)
 
         qtdBP += 1
 
@@ -168,12 +165,9 @@ def receptorConverter(sizePar, data):
     for x in range(1, len(data) + 1):
         # Performs a template of bit positions - who should be given,
         #  and who should be parity
-        if qtdBP < sizePar:
-            if (np.log(x) / np.log(2)).is_integer():
-                dataOutGab.append("P")
-                qtdBP = qtdBP + 1
-            else:
-                dataOutGab.append("D")
+        if qtdBP < sizePar and (np.log(x) / np.log(2)).is_integer():
+            dataOutGab.append("P")
+            qtdBP = qtdBP + 1
         else:
             dataOutGab.append("D")
 
@@ -201,12 +195,9 @@ def receptorConverter(sizePar, data):
     for x in range(1, sizePar + len(dataOutput) + 1):
         # Performs a template position of bits - who should be given,
         # and who should be parity
-        if qtdBP < sizePar:
-            if (np.log(x) / np.log(2)).is_integer():
-                dataOutGab.append("P")
-                qtdBP = qtdBP + 1
-            else:
-                dataOutGab.append("D")
+        if qtdBP < sizePar and (np.log(x) / np.log(2)).is_integer():
+            dataOutGab.append("P")
+            qtdBP = qtdBP + 1
         else:
             dataOutGab.append("D")
 
@@ -230,14 +221,10 @@ def receptorConverter(sizePar, data):
                     aux = (binPos[contLoop])[-1 * (bp)]
                 except IndexError:
                     aux = "0"
-                if aux == "1":
-                    if x == "1":
-                        contBO += 1
+                if aux == "1" and x == "1":
+                    contBO += 1
             contLoop += 1
-        if contBO % 2 == 0:
-            parity.append("0")
-        else:
-            parity.append("1")
+        parity.append(str(contBO % 2))
 
         qtdBP += 1
 
@@ -250,11 +237,7 @@ def receptorConverter(sizePar, data):
         else:
             dataOut.append(dataOrd[x])
 
-    if parityReceived == parity:
-        ack = True
-    else:
-        ack = False
-
+    ack = parityReceived == parity
     return dataOutput, ack
 
 

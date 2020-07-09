@@ -1,5 +1,5 @@
-from typing import Callable, Union
 import math as m
+from typing import Callable, Union
 
 
 def line_length(
