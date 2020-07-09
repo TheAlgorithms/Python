@@ -28,10 +28,7 @@ def fahrenheit_to_celsius(fahrenheit):
         """
         raise TypeError("'str' object cannot be interpreted as integer")
 
-    celsius = (fahrenheit - 32) * 5 / 9  # value converted from fahrenheit to celsius
-    celsius = round(celsius, 2)
-    # converted (celsius) value is rounded to two decimal places
-    print(celsius)
+    return round((fahrenheit - 32) * 5 / 9, 2)
 
 
 if __name__ == "__main__":
