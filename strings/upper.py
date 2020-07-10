@@ -19,7 +19,7 @@ def upper(word: str) -> str:
     return "".join(
         chr(ord(char) - 32) if 97 <= ord(char) <= 122 else char for char in word
     )
-
+    return word.lower()
 
 if __name__ == "__main__":
     from doctest import testmod
