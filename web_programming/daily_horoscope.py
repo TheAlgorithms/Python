@@ -28,7 +28,7 @@ if __name__ == "__main__":
         "11. Aquarius\n",
         "12. Pisces\n",
     )
-    zodiac_sign = input("number> ")
+    zodiac_sign = int(input("number> ").strip())
     print("choose some day:\n", "yesterday\n", "today\n", "tomorrow\n")
     day = input("enter the day> ")
     horoscope_text = horoscope(zodiac_sign, day)
