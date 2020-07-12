@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def rayleigh_quotient(input_matrix: np.array, vector: np.array) -> float:
 
     """
@@ -15,12 +16,14 @@ def rayleigh_quotient(input_matrix: np.array, vector: np.array) -> float:
     """
 
     num = np.dot(vector.T, np.dot(input_matrix, vector))
-    den = np.dot(vector.T,vector)
+    den = np.dot(vector.T, vector)
 
-    return num/den
+    return num / den
 
-def power_iteration(input_matrix: np.array,vector: np.array,
-    error_tol = 1e-12, max_iterations=100) -> [float, np.array]:
+
+def power_iteration(
+    input_matrix: np.array, vector: np.array, error_tol=1e-12, max_iterations=100
+) -> [float, np.array]:
 
     """
     Power Iteration.
@@ -42,12 +45,12 @@ def power_iteration(input_matrix: np.array,vector: np.array,
     Numpy array. np.shape(largest_eigenvector) == (N,) or (N,1).
     """
 
-    #Ensure matrix is square.
-    assert(np.shape(input_matrix)[0] == np.shape(input_matrix)[1])
-    #Ensure proper dimensionality.
-    assert(np.shape(input_matrix)[0] == np.shape(vector)[0])
+    # Ensure matrix is square.
+    assert np.shape(input_matrix)[0] == np.shape(input_matrix)[1]
+    # Ensure proper dimensionality.
+    assert np.shape(input_matrix)[0] == np.shape(vector)[0]
 
-    #Set convergence to False. Will define convergence when we exceed max_iterations
+    # Set convergence to False. Will define convergence when we exceed max_iterations
     # or when we have small changes from one iteration to next.
 
     convergence = False
@@ -55,20 +58,19 @@ def power_iteration(input_matrix: np.array,vector: np.array,
     iterations = 0
     error = 1e12
 
-    while (convergence == False):
-        w = np.dot(input_matrix,vector)
+    while convergence is False:
+        w = np.dot(input_matrix, vector)
         vector = w / np.linalg.norm(w)
         lamda = np.dot(vector.T, np.dot(input_matrix, vector))
 
-        #Check convergence.
-        error = np.abs(lamda - lamda_previous)/lamda
+        # Check convergence.
+        error = np.abs(lamda - lamda_previous) / lamda
         iterations += 1
 
-        if (error <= error_tol or iterations >= max_iterations):
+        if error <= error_tol or iterations >= max_iterations:
             convergence = True
 
         lamda_previous = lamda
-
 
     return lamda, vector
 
@@ -78,45 +80,46 @@ if __name__ == "__main__":
 
     # Example
     np.random.seed(100)
-    #Set dimension of space
+    # Set dimension of space
     n = 10
 
-    #Create random matrix in space R^{nxn}
-    A = np.random.rand(n,n)
-    #Ensure matrix A is Symmetric
-    A = np.dot(A.T,A)
-    #Create random vector in space R^n
+    # Create random matrix in space R^{nxn}
+    A = np.random.rand(n, n)
+    # Ensure matrix A is Symmetric
+    A = np.dot(A.T, A)
+    # Create random vector in space R^n
     v = np.random.rand(n)
 
     # Find eigenvalues using python built in library.
     # https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html
-    # The function will return eignevalues in ascending order and eigenvectors correspondingly.
+    # The function will return eignevalues in ascending order and eigenvectors
+    # correspondingly.
     # The last element is the largest eigenvalue and eigenvector index.
-    eigenvalues, eigenvectors =  np.linalg.eigh(A)
+    eigenvalues, eigenvectors = np.linalg.eigh(A)
     largest_eigenvalue = eigenvalues[-1]
-    largest_eigenvector = eigenvectors[:,-1]
+    largest_eigenvector = eigenvectors[:, -1]
 
-    print('#########################################################')
-    print('From Numpy built in library.')
-    print(f'Largest Eigenvalue: {largest_eigenvalue}')
-    print(f'Largest Eigenvector: {largest_eigenvector}')
+    print("#########################################################")
+    print("From Numpy built in library.")
+    print(f"Largest Eigenvalue: {largest_eigenvalue}")
+    print(f"Largest Eigenvector: {largest_eigenvector}")
     # Now try our own code
-    largest_eigenvalue_power, largest_eigenvector_power = power_iteration(A,v)
-    print('#########################################################')
-    print('From Power Iteration we wrote.')
-    print(f'Largest Eigenvalue: {largest_eigenvalue_power}')
-    print(f'Largest Eigenvector: {largest_eigenvector_power}')
+    largest_eigenvalue_power, largest_eigenvector_power = power_iteration(A, v)
+    print("#########################################################")
+    print("From Power Iteration we wrote.")
+    print(f"Largest Eigenvalue: {largest_eigenvalue_power}")
+    print(f"Largest Eigenvector: {largest_eigenvector_power}")
 
     abs_error = np.abs(largest_eigenvalue - largest_eigenvalue_power)
-    rel_error = abs_error/largest_eigenvalue
-    print('#########################################################')
-    print('Eigenvalue Error Between Numpy and our implementation.')
-    print(f'Absolute Error: {abs_error}')
-    print(f'Relative Error: {rel_error}')
+    rel_error = abs_error / largest_eigenvalue
+    print("#########################################################")
+    print("Eigenvalue Error Between Numpy and our implementation.")
+    print(f"Absolute Error: {abs_error}")
+    print(f"Relative Error: {rel_error}")
 
-    abs_error = np.linalg.norm(largest_eigenvector-largest_eigenvector_power)
-    cos_error = np.arccos(np.dot(largest_eigenvector,largest_eigenvector_power))
-    print('#########################################################')
-    print('Eigenvector Error Between Numpy and our implementation.')
-    print(f'Absolute norm difference: {abs_error}')
-    print(f'Cosign error between eigenvectors: {cos_error}')
+    abs_error = np.linalg.norm(largest_eigenvector - largest_eigenvector_power)
+    cos_error = np.arccos(np.dot(largest_eigenvector, largest_eigenvector_power))
+    print("#########################################################")
+    print("Eigenvector Error Between Numpy and our implementation.")
+    print(f"Absolute norm difference: {abs_error}")
+    print(f"Cosign error between eigenvectors: {cos_error}")
