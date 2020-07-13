@@ -2,10 +2,10 @@ import re
 import glob
 import os
 from gensim.models import word2vec  # word2vec algorithm
-from nltk.tokenize import word_tokenize # document tokenization
-from nltk.corpus import stopwords # list of words that we exclude from the corpus
-from sklearn.manifold import TSNE # for visualizing high-dimensional data
-import matplotlib.pyplot as plt # for plotting
+from nltk.tokenize import word_tokenize  # document tokenization
+from nltk.corpus import stopwords  # list of words that we exclude from the corpus
+from sklearn.manifold import TSNE  # for visualizing high-dimensional data
+import matplotlib.pyplot as plt  # for plotting
 import pandas as pd
 stop_words = set(stopwords.words('english'))
 
@@ -24,18 +24,17 @@ class WordVectors(object):
         self._wv = model.wv
         self._vocab = model.wv.vocab
 
-    
+
     def analogy(self, x1, x2, y1):
         """
             Tries to find a word which has a similar relation to y1, as x2 has to x1
         """
         x1, x2, y1 = x1.lower(), x2.lower(), y1.lower()
-        assert self.is_in_vocab(x1) and self.is_in_vocab(x2) and self.is_in_vocab(y1), \
-                                        'every word must be in the vocabulary'
+        assert self.is_in_vocab(x1) and self.is_in_vocab(x2) and self.is_in_vocab(y1), 'every word must be in the vocabulary'
         result = self._wv.most_similar(positive=[y1, x2], negative=[x1])[0][0]
         return result
 
-    
+
     def n_similarity(self, list1, list2):
         """
             Returns similarity score between two lists of words
@@ -46,7 +45,7 @@ class WordVectors(object):
         score = self._wv.n_similarity(list1, list2)
         return score
 
-    
+
     def similarity(self, w1, w2):
         """
             Returns similarity score between two words
@@ -55,7 +54,7 @@ class WordVectors(object):
         assert self.is_in_vocab(w1) and self.is_in_vocab(w2), 'both words must be in the vocabulary'
         score = self._wv.similarity(w1, w2)
         return score
-    
+
 
     def closest_words(self, word):
         """
@@ -65,7 +64,7 @@ class WordVectors(object):
         assert self.is_in_vocab(word), 'the word must be in the vocabulary'
         close_words = self._wv.similar_by_word(word)
         return close_words
-    
+
 
     def plot_closest_words(self, word, plot=True):
         """
@@ -88,14 +87,14 @@ class WordVectors(object):
         else:
             fig.savefig('figure.png')
 
-    
+
     def is_in_vocab(self, word):
         """
             Checks if model's vocabulary contains the word
         """
         return word.lower() in self._vocab
 
-        
+
     def save(self, filename='word2vec'):
         """
             Saves trained model
@@ -120,7 +119,8 @@ class WordVectors(object):
     @classmethod
     def train(cls, file_dir, size=100, window=5, min_count=5, iterations=5):
         """
-            Takes a path of directory which contains text documents and trains word2vec model on the data.
+            Takes a path of directory which contains text documents 
+            and trains word2vec model on the data.
             Args:
                 file_dir - path of the directory
                 size - dimension of word embeddings
@@ -141,8 +141,7 @@ class WordVectors(object):
                 continue
         print('training started')
         if documents:
-            model = word2vec.Word2Vec(documents, size=size, window=window, min_count=min_count, sg=1, 
-                                  iter=iterations)
+            model = word2vec.Word2Vec(documents, size=size, window=window, min_count=min_count, sg=1, iter=iterations)
             print('training finished')
             return cls(model)
         else:
@@ -157,4 +156,3 @@ class WordVectors(object):
         """
         model = word2vec.Word2Vec.load(model_path)
         return cls(model)
-    
