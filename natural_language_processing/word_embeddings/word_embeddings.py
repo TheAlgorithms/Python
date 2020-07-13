@@ -14,6 +14,10 @@ stop_words = set(stopwords.words('english'))
 """
 This is the class of Word Embeddings.
 Model is trained with word2vec algorithm (https://youtu.be/c3yRH0XZN2g)
+!!! about doctests !!!
+Gensim's word2vec algorithm uses randomness and
+even if we train several models on the same corpus,
+we might get slightly different responses against the same queries.
 """
 
 
@@ -33,8 +37,7 @@ class WordVectors(object):
         x1, x2, y1 = x1.lower(), x2.lower(), y1.lower()
         error_msg = 'every word must be in the vocabulary'
         assert all(self.is_in_vocab(x) for x in (x1, x2, y1)), error_msg
-        result = self._wv.most_similar(positive=[y1, x2], negative=[x1])[0][0]
-        return result
+        return self._wv.most_similar(positive=[y1, x2], negative=[x1])[0][0]
 
     def n_similarity(self, list1: list, list2: list) -> float:
         """
@@ -44,8 +47,7 @@ class WordVectors(object):
         list2 = [word.lower() for word in list2 if self.is_in_vocab(word)]
         error_msg = 'at least one word from each list must be in the vocabulary'
         assert list1 and list2, error_msg
-        score = self._wv.n_similarity(list1, list2)
-        return score
+        return self._wv.n_similarity(list1, list2)
 
     def similarity(self, w1: str, w2: str) -> float:
         """
@@ -54,8 +56,7 @@ class WordVectors(object):
         w1, w2 = w1.lower(), w2.lower()
         error_msg = 'both words must be in the vocabulary'
         assert self.is_in_vocab(w1) and self.is_in_vocab(w2), error_msg
-        score = self._wv.similarity(w1, w2)
-        return score
+        return self._wv.similarity(w1, w2)
 
     def closest_words(self, word: str) -> list:
         """
@@ -64,8 +65,7 @@ class WordVectors(object):
         word = word.lower()
         error_msg = 'the word must be in the vocabulary'
         assert self.is_in_vocab(word), error_msg
-        close_words = self._wv.similar_by_word(word)
-        return close_words
+        return self._wv.similar_by_word(word)
 
     def plot_closest_words(self, word: str, plot=True):
         """
