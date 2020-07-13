@@ -22,7 +22,7 @@ def binomial_distribution(successes: int, trials: int, prob: float) -> float:
         raise ValueError("""successes must be lower or equal to trials""")
     if trials < 0 or successes < 0:
         raise ValueError("the function is defined for non-negative integers")
-    if type(successes) != int or type(trials) != int:
+    if not isinstance(successes, int) or not isinstance(trials, int):
         raise ValueError("the function is defined for non-negative integers")
     if prob > 1 or prob < 0:
         raise ValueError("prob has to be in range of 1 - 0")
