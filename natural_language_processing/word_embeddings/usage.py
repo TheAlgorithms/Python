@@ -17,20 +17,16 @@ else:
 word1 = 'merge'
 word2 = 'unify'
 score = model.similarity(word1, word2)
-print('similarity between {} and {} is {}'.format(word1, word2, score))
+print(f'similarity between {word1} and {word2} is {score}')
 
 # word analogies
 x1 = 'boy'
 x2 = 'prince'
 y1 = 'girl'
 y2 = model.analogy(x1, x2, y1)
-print('{} <--> {}  |  {} <--> {}'.format(x1, x2, y1, y2))
+print(f'{x1} <--> {x2}  |  {y1} <--> {y2}')
 
-# closest words
-word = 'request'
-close_words = model.closest_words(word)
-print(close_words)
+print(model.closest_words(word='request'))
 
 # plot closest words
-word = 'request'
-model.plot_closest_words(word, plot=False) # download the plot
+model.plot_closest_words(word='request', plot=False)  # download the plot
