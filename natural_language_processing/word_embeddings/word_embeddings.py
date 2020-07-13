@@ -1,13 +1,12 @@
 import re
 import glob
-import os 
+import os
 from gensim.models import word2vec  # word2vec algorithm
 from nltk.tokenize import word_tokenize # document tokenization
 from nltk.corpus import stopwords # list of words that we exclude from the corpus
 from sklearn.manifold import TSNE # for visualizing high-dimensional data
 import matplotlib.pyplot as plt # for plotting
 import pandas as pd
-
 stop_words = set(stopwords.words('english'))
 
 """
@@ -19,7 +18,7 @@ Model is trained with word2vec algorithm (https://youtu.be/c3yRH0XZN2g)
 class WordVectors(object):
     def __init__(self, model):
         """
-        Init function which takes in a trained model
+            Init function which takes in a trained model
         """
         self._model = model
         self._wv = model.wv
@@ -28,7 +27,7 @@ class WordVectors(object):
     
     def analogy(self, x1, x2, y1):
         """
-        Tries to find a word which has a similar relation to y1, as x2 has to x1
+            Tries to find a word which has a similar relation to y1, as x2 has to x1
         """
         x1, x2, y1 = x1.lower(), x2.lower(), y1.lower()
         assert self.is_in_vocab(x1) and self.is_in_vocab(x2) and self.is_in_vocab(y1), \
@@ -39,7 +38,7 @@ class WordVectors(object):
     
     def n_similarity(self, list1, list2):
         """
-        Returns similarity score between two lists of words
+            Returns similarity score between two lists of words
         """
         list1 = [word.lower() for word in list1 if self.is_in_vocab(word)]
         list2 = [word.lower() for word in list2 if self.is_in_vocab(word)]
@@ -50,7 +49,7 @@ class WordVectors(object):
     
     def similarity(self, w1, w2):
         """
-        Returns similarity score between two words
+            Returns similarity score between two words
         """
         w1, w2 = w1.lower(), w2.lower()
         assert self.is_in_vocab(w1) and self.is_in_vocab(w2), 'both words must be in the vocabulary'
@@ -60,7 +59,7 @@ class WordVectors(object):
 
     def closest_words(self, word):
         """
-        Returns similar words for a given word
+            Returns similar words for a given word
         """
         word = word.lower()
         assert self.is_in_vocab(word), 'the word must be in the vocabulary'
@@ -70,7 +69,7 @@ class WordVectors(object):
 
     def plot_closest_words(self, word, plot=True):
         """
-        plots similar words for a given word on a 2d space
+            plots similar words for a given word on a 2d space
         """
         close_words = self.closest_words(word)
         words = [word for word, score in close_words]
@@ -92,23 +91,23 @@ class WordVectors(object):
     
     def is_in_vocab(self, word):
         """
-        Checks if model's vocabulary contains the word
+            Checks if model's vocabulary contains the word
         """
         return word.lower() in self._vocab
 
         
     def save(self, filename='word2vec'):
         """
-        Saves trained model
+            Saves trained model
         """
         full_name = filename + '.model'
         self._model.save(full_name)
-                
+
 
     @staticmethod
     def _parse_document(text):
         """
-        Parses give text document and returns list of tokens
+            Parses give text document and returns list of tokens
         """
         tokens = word_tokenize(text)
         splitted_tokens = []
@@ -116,18 +115,18 @@ class WordVectors(object):
             splitted_tokens.extend(re.split('[^0-9a-zA-Z+.#]+', token))
         parsed = [word.lower() for word in splitted_tokens if word and word not in stop_words]
         return parsed
-        
-        
+
+
     @classmethod
     def train(cls, file_dir, size=100, window=5, min_count=5, iterations=5):
         """
-        Takes a path of directory which contains text documents and trains word2vec model on the data.
-        Args:
-            file_dir - path of the directory
-            size - dimension of word embeddings
-            window - window size for word2vec algorithm
-            min_count - minimum number of occurrences for a word to be considered
-            iterations - number of iterations on a whole corpus
+            Takes a path of directory which contains text documents and trains word2vec model on the data.
+            Args:
+                file_dir - path of the directory
+                size - dimension of word embeddings
+                window - window size for word2vec algorithm
+                min_count - minimum number of occurrences for a word to be considered
+                iterations - number of iterations on a whole corpus
         """
         documents = []
         full_path = os.path.join(file_dir, '*')
@@ -138,7 +137,7 @@ class WordVectors(object):
                     text = f.read()
                 parsed = WordVectors._parse_document(text)
                 documents.append(parsed)
-            except:
+            except IOError:
                 continue
         print('training started')
         if documents:
@@ -149,14 +148,13 @@ class WordVectors(object):
         else:
             print('There is no data for training')
             return None
-    
-    
+
+
     @classmethod
     def load(cls, model_path):
         """
-        Loads existing model
+            Loads existing model
         """
         model = word2vec.Word2Vec.load(model_path)
         return cls(model)
     
-        
