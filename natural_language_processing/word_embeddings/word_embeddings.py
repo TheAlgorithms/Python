@@ -29,8 +29,6 @@ class WordVectors(object):
     def analogy(self, x1: str, x2: str, y1: str) -> str:
         """
         Tries to find a word which has a similar relation to y1, as x2 has to x1
-        >>> self.analogy("boy", "girl", "prince")
-        "princess" (this is just a guess, model may return somemthing else)
         """
         x1, x2, y1 = x1.lower(), x2.lower(), y1.lower()
         error_msg = 'every word must be in the vocabulary'
@@ -41,8 +39,6 @@ class WordVectors(object):
     def n_similarity(self, list1: list, list2: list) -> float:
         """
         Returns similarity score between two lists of words
-        >>> self.n_similarity(["boy", "prince"], ["girl", "princess"])
-        0.9 (this is just a guess, model may return somemthing else)
         """
         list1 = [word.lower() for word in list1 if self.is_in_vocab(word)]
         list2 = [word.lower() for word in list2 if self.is_in_vocab(word)]
@@ -54,8 +50,6 @@ class WordVectors(object):
     def similarity(self, w1: str, w2: str) -> float:
         """
         Returns similarity score between two words
-        >>> self.similarity("boy", "girl")
-        0.75 (this is just a guess, model may return somemthing else)
         """
         w1, w2 = w1.lower(), w2.lower()
         error_msg = 'both words must be in the vocabulary'
@@ -66,8 +60,6 @@ class WordVectors(object):
     def closest_words(self, word: str) -> list:
         """
         Returns similar words for a given word
-        >>> self.closest_words("girl")
-        list of (word, score) pairs
         """
         word = word.lower()
         error_msg = 'the word must be in the vocabulary'
@@ -99,8 +91,6 @@ class WordVectors(object):
     def is_in_vocab(self, word: str) -> bool:
         """
         Checks if model's vocabulary contains the word
-        >>> self.is_in_vocab("boy")
-        True
         """
         return word.lower() in self._vocab
 
