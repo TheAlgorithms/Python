@@ -2,11 +2,13 @@ import re
 import glob
 import os
 from gensim.models import word2vec  # word2vec algorithm
-from nltk.tokenize import word_tokenize  # document tokenization
+import nltk
 from nltk.corpus import stopwords  # list of words that we exclude from the corpus
+from nltk.tokenize import word_tokenize  # document tokenization
 from sklearn.manifold import TSNE  # for visualizing high-dimensional data
 import matplotlib.pyplot as plt  # for plotting
 import pandas as pd
+nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
 """
