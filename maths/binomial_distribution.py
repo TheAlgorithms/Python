@@ -22,15 +22,15 @@ def binomial_distribution(successes: int, trials: int, prob: float) -> float:
         raise ValueError("""successes must be lower or equal to trials""")
     if trials < 0 or successes < 0:
         raise ValueError("the function is defined for non-negative integers")
-    if not isinstance(successes, int) or not isinstance(trials, int):
+    if type(successes) != int or type(trials) != int:
         raise ValueError("the function is defined for non-negative integers")
     if prob > 1 or prob < 0:
         raise ValueError("prob has to be in range of 1 - 0")
-    probability = (prob**successes)*(1-prob)**(trials-successes)
+    probability = (prob ** successes) * ((1 - prob) ** (trials - successes))
     # Calculate the binomial coefficient:
     # Calculate n! / k!(n-k)!
     coefficient = factorial(trials)
-    coefficient /= (factorial(successes)*factorial(trials-successes))
+    coefficient /= (factorial(successes) * factorial(trials - successes))
 
     return probability * coefficient
 
@@ -49,9 +49,10 @@ def factorial(n) -> int:
     if n == 0:
         return 1
     result = 1
-    for i in range(1, n+1):
+    for i in range(1, n + 1):
         result *= i
     return result
+
 
 if __name__ == "__main__":
     from doctest import testmod
