@@ -36,8 +36,6 @@ def binomial_distribution(successes: int, trials: int, prob: float) -> float:
     return probability * coefficient
 
 
-
-
 if __name__ == "__main__":
     from doctest import testmod
     testmod()
