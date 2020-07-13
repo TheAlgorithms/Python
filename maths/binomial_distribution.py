@@ -1,3 +1,4 @@
+from math import factorial
 """For more information about the Binomial Distribution -
     https://en.wikipedia.org/wiki/Binomial_distribution"""
 
@@ -35,23 +36,6 @@ def binomial_distribution(successes: int, trials: int, prob: float) -> float:
     return probability * coefficient
 
 
-# Implementation of the factorial function,
-# used to calculate the binomial coefficient:
-def factorial(n) -> int:
-    """
-    Factorial - The product of all positive integers less than or equal to n
-    """
-
-    if not isinstance(n, int):
-        raise ValueError("factorial(n) accepts only integer values")
-    if n < 0:
-        raise ValueError("factorial(n) works only for non-negative numbers")
-    if n == 0:
-        return 1
-    result = 1
-    for i in range(1, n + 1):
-        result *= i
-    return result
 
 
 if __name__ == "__main__":
