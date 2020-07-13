@@ -1,4 +1,6 @@
-import json, re, glob, os 
+import re
+import glob
+import os 
 from gensim.models import word2vec  # word2vec algorithm
 from nltk.tokenize import word_tokenize # document tokenization
 from nltk.corpus import stopwords # list of words that we exclude from the corpus
@@ -12,6 +14,8 @@ stop_words = set(stopwords.words('english'))
 This is the class of Word Embeddings.
 Model is trained with word2vec algorithm (https://youtu.be/c3yRH0XZN2g)
 """
+
+
 class WordVectors(object):
     def __init__(self, model):
         """
@@ -20,6 +24,7 @@ class WordVectors(object):
         self._model = model
         self._wv = model.wv
         self._vocab = model.wv.vocab
+
     
     def analogy(self, x1, x2, y1):
         """
@@ -30,6 +35,7 @@ class WordVectors(object):
                                         'every word must be in the vocabulary'
         result = self._wv.most_similar(positive=[y1, x2], negative=[x1])[0][0]
         return result
+
     
     def n_similarity(self, list1, list2):
         """
@@ -37,10 +43,10 @@ class WordVectors(object):
         """
         list1 = [word.lower() for word in list1 if self.is_in_vocab(word)]
         list2 = [word.lower() for word in list2 if self.is_in_vocab(word)]
-        
         assert list1 and list2, 'at least one word from each list must be in the vocabulary'
         score = self._wv.n_similarity(list1, list2)
         return score
+
     
     def similarity(self, w1, w2):
         """
@@ -51,6 +57,7 @@ class WordVectors(object):
         score = self._wv.similarity(w1, w2)
         return score
     
+
     def closest_words(self, word):
         """
         Returns similar words for a given word
@@ -60,6 +67,7 @@ class WordVectors(object):
         close_words = self._wv.similar_by_word(word)
         return close_words
     
+
     def plot_closest_words(self, word, plot=True):
         """
         plots similar words for a given word on a 2d space
@@ -80,6 +88,7 @@ class WordVectors(object):
             plt.show()
         else:
             fig.savefig('figure.png')
+
     
     def is_in_vocab(self, word):
         """
@@ -95,6 +104,7 @@ class WordVectors(object):
         full_name = filename + '.model'
         self._model.save(full_name)
                 
+
     @staticmethod
     def _parse_document(text):
         """
