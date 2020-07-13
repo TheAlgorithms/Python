@@ -116,7 +116,7 @@ class WordVectors(object):
             file_dir - path of the directory
             size - dimension of word embeddings
             window - window size for word2vec algorithm
-            min_count - minimum number of occurences for a word to be considered
+            min_count - minimum number of occurrences for a word to be considered
             iterations - number of iterations on a whole corpus
         """
         documents = []

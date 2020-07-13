@@ -14,8 +14,8 @@ else:
 
 
 # similarity between two words
-word1 = 'prism'
-word2 = 'icommune'
+word1 = 'merge'
+word2 = 'unify'
 score = model.similarity(word1, word2)
 print('similarity between {} and {} is {}'.format(word1, word2, score))
 
