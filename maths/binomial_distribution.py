@@ -2,16 +2,11 @@
     https://en.wikipedia.org/wiki/Binomial_distribution"""
 
 
-def binomial_distribution(k, n, p) -> float:
+def binomial_distribution(successes: int, trials: int, prob: float) -> float:
     """
 
     Returns probability of k successes out of n tries,
     with p probability for one success
-
-    use: binomial_distribution(k, n, p):
-    k - successes
-    n - independent Bernoulli trials
-    p - probability for one succes
 
     The function uses the factorial function
     in order to calculate the binomial coefficient
@@ -22,22 +17,20 @@ def binomial_distribution(k, n, p) -> float:
     >>> binomial_distribution (2, 4, 0.5)
     0.375
 
-    >>> binomial_distribution (2, 4, -0.5)
-    Traceback (most recent call last):
-    ...
-    raise ValueError("p - Probability has to be in range of 1 - 0")
-    ValueError: p - Probability has to be in range of 1 - 0
     """
-    if k > n:
-        raise ValueError("""k must be lower or equal to n""")
-    if n < 0 or k < 0 or type(k) != int or type(n) != int:
-        raise ValueError("the function is defined for non-negative integers k and n")
-    if p > 1 or p < 0:
-        raise ValueError("p - Probability has to be in range of 1 - 0")
-    probability = (p**k)*(1-p)**(n-k)
+    if successes > trials:
+        raise ValueError("""successes must be lower or equal to trials""")
+    if trials < 0 or successes < 0:
+        raise ValueError("the function is defined for non-negative integers")
+    if type(successes) != int or type(trials) != int:
+        raise ValueError("the function is defined for non-negative integers")
+    if prob > 1 or prob < 0:
+        raise ValueError("prob has to be in range of 1 - 0")
+    probability = (prob**successes)*(1-prob)**(trials-successes)
     # Calculate the binomial coefficient:
     # Calculate n! / k!(n-k)!
-    coefficient = factorial(n)/(factorial(k)*factorial(n-k))
+    coefficient = factorial(trials)
+    coefficient /= (factorial(successes)*factorial(trials-successes))
 
     return probability * coefficient
 
@@ -61,6 +54,5 @@ def factorial(n) -> int:
     return result
 
 if __name__ == "__main__":
-    print ("Probability of 2 successes out of 4 trails")
-    print ("with probability of 0.75 is : ")
-    print (str(binomial_distribution(2, 4, 0.75)))
+    from doctest import testmod
+    testmod()
