@@ -30,7 +30,7 @@ def binomial_distribution(successes: int, trials: int, prob: float) -> float:
     probability = (prob ** successes) * ((1 - prob) ** (trials - successes))
     # Calculate the binomial coefficient:
     # Calculate n! / k!(n-k)!
-    coefficient = factorial(trials)
+    coefficient = float(factorial(trials))
     coefficient /= (factorial(successes) * factorial(trials - successes))
 
     return probability * coefficient
