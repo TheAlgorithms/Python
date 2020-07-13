@@ -42,7 +42,7 @@ def factorial(n) -> int:
     Factorial - The product of all positive integers less than or equal to n
     """
 
-    if type(n) != int:
+    if not isinstance(n, int):
         raise ValueError("factorial(n) accepts only integer values")
     if n < 0:
         raise ValueError("factorial(n) works only for non-negative numbers")
