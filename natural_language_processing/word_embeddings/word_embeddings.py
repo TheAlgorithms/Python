@@ -33,8 +33,8 @@ class WordVectors(object):
         "princess" (this is just a guess, model may return somemthing else)
         """
         x1, x2, y1 = x1.lower(), x2.lower(), y1.lower()
-        assert all(self.is_in_vocab(x) for x in (x1, x2, y1)),\
-            'every word must be in the vocabulary'
+        error_msg = 'every word must be in the vocabulary'
+        assert all(self.is_in_vocab(x) for x in (x1, x2, y1)), error_msg
         result = self._wv.most_similar(positive=[y1, x2], negative=[x1])[0][0]
         return result
 
@@ -46,8 +46,8 @@ class WordVectors(object):
         """
         list1 = [word.lower() for word in list1 if self.is_in_vocab(word)]
         list2 = [word.lower() for word in list2 if self.is_in_vocab(word)]
-        assert list1 and list2,\
-            'at least one word from each list must be in the vocabulary'
+        error_msg = 'at least one word from each list must be in the vocabulary'
+        assert list1 and list2, error_msg
         score = self._wv.n_similarity(list1, list2)
         return score
 
@@ -58,8 +58,8 @@ class WordVectors(object):
         0.75 (this is just a guess, model may return somemthing else)
         """
         w1, w2 = w1.lower(), w2.lower()
-        assert self.is_in_vocab(w1) and self.is_in_vocab(w2),\
-            'both words must be in the vocabulary'
+        error_msg = 'both words must be in the vocabulary'
+        assert self.is_in_vocab(w1) and self.is_in_vocab(w2), error_msg
         score = self._wv.similarity(w1, w2)
         return score
 
@@ -70,8 +70,8 @@ class WordVectors(object):
         list of (word, score) pairs
         """
         word = word.lower()
-        assert self.is_in_vocab(word),\
-            'the word must be in the vocabulary'
+        error_msg = 'the word must be in the vocabulary'
+        assert self.is_in_vocab(word), error_msg
         close_words = self._wv.similar_by_word(word)
         return close_words
 
