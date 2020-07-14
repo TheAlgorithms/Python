@@ -19,6 +19,7 @@
   * [Knight Tour](https://github.com/TheAlgorithms/Python/blob/master/backtracking/knight_tour.py)
   * [Minimax](https://github.com/TheAlgorithms/Python/blob/master/backtracking/minimax.py)
   * [N Queens](https://github.com/TheAlgorithms/Python/blob/master/backtracking/n_queens.py)
+  * [N Queens Math](https://github.com/TheAlgorithms/Python/blob/master/backtracking/n_queens_math.py)
   * [Rat In Maze](https://github.com/TheAlgorithms/Python/blob/master/backtracking/rat_in_maze.py)
   * [Sudoku](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sudoku.py)
   * [Sum Of Subsets](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sum_of_subsets.py)
@@ -219,6 +220,9 @@
 ## Fuzzy Logic
   * [Fuzzy Operations](https://github.com/TheAlgorithms/Python/blob/master/fuzzy_logic/fuzzy_operations.py)
 
+## Genetic Algorithm
+  * [Basic String](https://github.com/TheAlgorithms/Python/blob/master/genetic_algorithm/basic_string.py)
+
 ## Geodesy
   * [Haversine Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/haversine_distance.py)
   * [Lamberts Ellipsoidal Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/lamberts_ellipsoidal_distance.py)
@@ -293,6 +297,7 @@
 
 ## Machine Learning
   * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
+  * [Data Transformations](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/data_transformations.py)
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
   * [Gaussian Naive Bayes](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gaussian_naive_bayes.py)
   * [Gradient Descent](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gradient_descent.py)
@@ -402,6 +407,7 @@
   * [Square Root](https://github.com/TheAlgorithms/Python/blob/master/maths/square_root.py)
   * [Sum Of Arithmetic Series](https://github.com/TheAlgorithms/Python/blob/master/maths/sum_of_arithmetic_series.py)
   * [Sum Of Digits](https://github.com/TheAlgorithms/Python/blob/master/maths/sum_of_digits.py)
+  * [Sum Of Geometric Progression](https://github.com/TheAlgorithms/Python/blob/master/maths/sum_of_geometric_progression.py)
   * [Test Prime Check](https://github.com/TheAlgorithms/Python/blob/master/maths/test_prime_check.py)
   * [Trapezoidal Rule](https://github.com/TheAlgorithms/Python/blob/master/maths/trapezoidal_rule.py)
   * [Volume](https://github.com/TheAlgorithms/Python/blob/master/maths/volume.py)
@@ -680,6 +686,7 @@
   * [Crawl Google Results](https://github.com/TheAlgorithms/Python/blob/master/web_programming/crawl_google_results.py)
   * [Current Stock Price](https://github.com/TheAlgorithms/Python/blob/master/web_programming/current_stock_price.py)
   * [Current Weather](https://github.com/TheAlgorithms/Python/blob/master/web_programming/current_weather.py)
+  * [Daily Horoscope](https://github.com/TheAlgorithms/Python/blob/master/web_programming/daily_horoscope.py)
   * [Emails From Url](https://github.com/TheAlgorithms/Python/blob/master/web_programming/emails_from_url.py)
   * [Fetch Bbc News](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_github_info.py)
