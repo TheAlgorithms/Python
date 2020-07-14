@@ -45,7 +45,7 @@ def fahrenheit_to_celsius(fahrenheit: float) -> float:
     ...
     ValueError: could not convert string to float: 'fahrenheit'
     """
-    
+
     return round((float(fahrenheit) - 32) * 5 / 9, 2)
 
 
