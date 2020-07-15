@@ -2,7 +2,7 @@
 package maths.py reimplements some trigonometric algorithms from math.py
 """
 
-Pi = 3.14159265358979323846
+from math import isclose, pi
 
 
 def _abs(value):
@@ -50,7 +50,7 @@ def _sqrt(value):
     >>> _sqrt(25)
     5.0
     >>> from math import sqrt
-    >>> all(_sqrt(i) == sqrt(i) for i in range(100))
+    >>> all(isclose(_sqrt(i), sqrt(i)) for i in range(100))
     True
     """
     if value < 0:
@@ -122,14 +122,14 @@ def _sin(value):
     >>> all(_sin(i) == sin(i) for i in range(-720, 720))
     True
     """
-    value = value * Pi / 180
+    value *= pi / 180
     t = 1
     x = 0
     n = 1
 
     while _power(value, n) / _factor(n) > 1e-15:
         x += t * _power(value, n) / _factor(n)
-        t = -1 * t
+        t *= -1
         n = n + 2
 
     return x
@@ -145,7 +145,7 @@ def _cos(value):
     >>> all(_cos(i) == cos(i) for i in range(-720, 720))
     True
     """
-    value = value * Pi / 180
+    value = value * pi / 180
     n = 0
     t = 1
     x = 0
