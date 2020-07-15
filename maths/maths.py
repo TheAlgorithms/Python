@@ -45,12 +45,11 @@ def _sqrt(value):
     newton iteration method:
     X(k+1) = 1/2 * (X(k) + vale/X(k))
 
-    >>> from math import isclose
     >>> _sqrt(9)
     3.0
     >>> _sqrt(25)
     5.0
-    >>> from math import sqrt
+    >>> from math import isclose, sqrt
     >>> all(isclose(_sqrt(i), sqrt(i)) for i in range(100))
     True
     """
@@ -94,7 +93,7 @@ def __sin(value):
     >>> __sin(0)
     0
     >>> from math import isclose, sin
-    >>> all(isclose(__sin(i), sin(i)) for i in range(-720, 720))
+    >>> all(isclose(__sin(i), sin(i), rel_tol=1e-07) for i in range(-720, 720))
     True
     """
     value *= pi / 180
@@ -120,7 +119,7 @@ def _sin(value):
     >>> _sin(0)
     0
     >>> from math import isclose, sin
-    >>> all(isclose(_sin(i), sin(i)) for i in range(-720, 720))
+    >>> all(isclose(_sin(i), sin(i), rel_tol=1e-07) for i in range(-720, 720))
     True
     """
     value *= pi / 180
@@ -142,8 +141,8 @@ def _cos(value):
     6.428707379885143e-17
     >>> _cos(0)
     1.0
-    >>> from math import cos
-    >>> all(_cos(i) == cos(i) for i in range(-720, 720))
+    >>> from math import isclose, cos
+    >>> all(isclose(_cos(i), cos(i), rel_tol=1e-07) for i in range(-720, 720))
     True
     """
     value *= pi / 180
@@ -165,8 +164,8 @@ def _tan(value):
     0.0
     >>> _tan(45)
     1.0
-    >>> from math import tan
-    >>> all(_tan(i) == tan(i) for i in range(-720, 720))
+    >>> from math import isclose, tan
+    >>> all(isclose(_tan(i), tan(i), rel_tol=1e-07) for i in range(-720, 720))
     True
     """
     return _sin(value) / _cos(value)
