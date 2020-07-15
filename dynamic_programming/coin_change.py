@@ -23,7 +23,7 @@ def dp_count(S, n):
     0
     """
     
-    if(n<1):
+    if(n < 1):
         return(0)
 
     # table[i] represents the number of ways to get to amount i
