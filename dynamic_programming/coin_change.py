@@ -7,7 +7,7 @@ https://www.hackerrank.com/challenges/coin-change/problem
 """
 
 
-def dp_count(S, m, n):
+def dp_count(S, n):
     """
     >>> dp_count([1, 2, 3], 3, 4)
     4
