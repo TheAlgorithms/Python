@@ -2,7 +2,7 @@
 package maths.py reimplements some trigonometric algorithms from math.py
 """
 
-from math import isclose, pi
+from math import pi
 
 
 def _abs(value):
@@ -45,6 +45,7 @@ def _sqrt(value):
     newton iteration method:
     X(k+1) = 1/2 * (X(k) + vale/X(k))
 
+    >>> from math import isclose
     >>> _sqrt(9)
     3.0
     >>> _sqrt(25)
@@ -92,11 +93,11 @@ def __sin(value):
     1.0
     >>> __sin(0)
     0
-    >>> from math import sin
-    >>> all(__sin(i) == sin(i) for i in range(-720, 720))
+    >>> from math import isclose, sin
+    >>> all(isclose(__sin(i), sin(i)) for i in range(-720, 720))
     True
     """
-    value = value * Pi / 180
+    value *= pi / 180
     t = value
     x = 0
     n = 1
@@ -118,8 +119,8 @@ def _sin(value):
     1.0
     >>> _sin(0)
     0
-    >>> from math import sin
-    >>> all(_sin(i) == sin(i) for i in range(-720, 720))
+    >>> from math import isclose, sin
+    >>> all(isclose(_sin(i), sin(i)) for i in range(-720, 720))
     True
     """
     value *= pi / 180
@@ -145,7 +146,7 @@ def _cos(value):
     >>> all(_cos(i) == cos(i) for i in range(-720, 720))
     True
     """
-    value = value * pi / 180
+    value *= pi / 180
     n = 0
     t = 1
     x = 0
