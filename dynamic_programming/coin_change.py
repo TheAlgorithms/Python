@@ -19,7 +19,12 @@ def dp_count(S, n):
     0
     >>> dp_count([4, 5, 6], 0)
     1
+    >>> dp_count([1, 2, 3], -5)
+    0
     """
+    
+    if(n<1):
+        return(0)
 
     # table[i] represents the number of ways to get to amount i
     table = [0] * (n + 1)
