@@ -20,7 +20,6 @@ def celsius_to_fahrenheit(celsius: float) -> float:
     ...
     ValueError: could not convert string to float: 'celsius'
     """
-
     return round((float(celsius) * 9 / 5) + 32, 2)
 
 
@@ -45,7 +44,6 @@ def fahrenheit_to_celsius(fahrenheit: float) -> float:
     ...
     ValueError: could not convert string to float: 'fahrenheit'
     """
-
     return round((float(fahrenheit) - 32) * 5 / 9, 2)
 
 
@@ -64,7 +62,6 @@ def celsius_to_kelvin(celsius: float) -> float:
     ...
     ValueError: could not convert string to float: 'celsius'
     """
-
     return round(float(celsius) + 273.15, 2)
 
 
@@ -83,7 +80,6 @@ def kelvin_to_celsius(kelvin: float) -> float:
     ...
     ValueError: could not convert string to float: 'kelvin'
     """
-
     return round(float(kelvin) - 273.15, 2)
 
 
