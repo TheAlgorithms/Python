@@ -8,16 +8,13 @@ from nltk.tokenize import word_tokenize  # document tokenization
 from sklearn.manifold import TSNE  # for visualizing high-dimensional data
 import matplotlib.pyplot as plt  # for plotting
 import pandas as pd
+from typing import List, Tuple
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
 """
 This is the class of Word Embeddings.
 Model is trained with word2vec algorithm (https://youtu.be/c3yRH0XZN2g)
-!!! about doctests !!!
-Gensim's word2vec algorithm uses randomness and
-even if we train several models on the same corpus,
-we might get slightly different responses against the same queries.
 """
 
 
@@ -33,15 +30,29 @@ class WordVectors(object):
     def analogy(self, x1: str, x2: str, y1: str) -> str:
         """
         Tries to find a word which has a similar relation to y1, as x2 has to x1
+        >>> w2v = WordVectors.load("word2vec.model")
+        >>> w2v.analogy("code", "programmer", "design")
+        'designer'
+        >>> w2v.analogy("code", "notaword", "design")
+        Traceback (most recent call last):
+        ...
+        AssertionError: every word must be in the vocabulary
         """
         x1, x2, y1 = x1.lower(), x2.lower(), y1.lower()
         error_msg = 'every word must be in the vocabulary'
         assert all(self.is_in_vocab(x) for x in (x1, x2, y1)), error_msg
         return self._wv.most_similar(positive=[y1, x2], negative=[x1])[0][0]
 
-    def n_similarity(self, list1: list, list2: list) -> float:
+    def n_similarity(self, list1: List[str], list2: List[str]) -> float:
         """
         Returns similarity score between two lists of words
+        >>> w2v = WordVectors.load("word2vec.model")
+        >>> w2v.n_similarity(["java", "programmer"], ["sketch", "designer"])
+        0.47560233
+        >>> w2v.n_similarity(["notaword", "java"], ["alsonotaword"])
+        Traceback (most recent call last):
+        ...
+        AssertionError: at least one word from each list must be in the vocabulary
         """
         list1 = [word.lower() for word in list1 if self.is_in_vocab(word)]
         list2 = [word.lower() for word in list2 if self.is_in_vocab(word)]
@@ -52,20 +63,34 @@ class WordVectors(object):
     def similarity(self, w1: str, w2: str) -> float:
         """
         Returns similarity score between two words
+        >>> w2v = WordVectors.load("word2vec.model")
+        >>> w2v.similarity("python", "java")
+        0.67473835
+        >>> w2v.similarity("notaword", "java")
+        Traceback (most recent call last):
+        ...
+        AssertionError: both words must be in the vocabulary
         """
         w1, w2 = w1.lower(), w2.lower()
         error_msg = 'both words must be in the vocabulary'
         assert self.is_in_vocab(w1) and self.is_in_vocab(w2), error_msg
         return self._wv.similarity(w1, w2)
 
-    def closest_words(self, word: str) -> list:
+    def closest_words(self, word: str, n=5) -> List[Tuple[str, float]]:
         """
         Returns similar words for a given word
+        >>> w2v = WordVectors.load("word2vec.model")
+        >>> w2v.closest_words("c++", n=2)
+        [('vc++', 0.778069257736206), ('python', 0.7595743536949158)]
+        >>> w2v.closest_words("notaword")
+        Traceback (most recent call last):
+        ...
+        AssertionError: the word must be in the vocabulary
         """
         word = word.lower()
         error_msg = 'the word must be in the vocabulary'
         assert self.is_in_vocab(word), error_msg
-        return self._wv.similar_by_word(word)
+        return self._wv.similar_by_word(word)[:n]
 
     def plot_closest_words(self, word: str, plot=True):
         """
@@ -91,6 +116,11 @@ class WordVectors(object):
     def is_in_vocab(self, word: str) -> bool:
         """
         Checks if model's vocabulary contains the word
+        >>> w2v = WordVectors.load("word2vec.model")
+        >>> w2v.is_in_vocab("c++")
+        True
+        >>> w2v.is_in_vocab("notaword")
+        False
         """
         return word.lower() in self._vocab
 
@@ -102,9 +132,11 @@ class WordVectors(object):
         self._model.save(full_name)
 
     @staticmethod
-    def _parse_document(text: str) -> list:
+    def _parse_document(text: str) -> List[str]:
         """
         Parses give text document and returns list of tokens
+        >>> WordVectors._parse_document("word embeddings are the best")
+        ['word', 'embeddings', 'best']
         """
         tokens = word_tokenize(text)
         splitted_tokens = []
@@ -156,3 +188,8 @@ class WordVectors(object):
         """
         model = word2vec.Word2Vec.load(model_path)
         return cls(model)
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
