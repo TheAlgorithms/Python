@@ -1,44 +1,29 @@
-string = input("Enter string to be encrypted:")
-print("Enter key for encryption (works best for small key values) : ", end = "")
+input_string = input()
 key = int(input())
 
-while key >= len(string):
-	print("Please enter a smaller value: ", end = "")
-	key = int(input())
-	
-def rail_fence_encrypt(string, key):
-	a = [[None for i in range(len(string))] for j in range(key)]
+string_list = [["" for _ in range(len(input_string))]for _ in range(key)]
 
-	curr = 0
-	findex = 0
-	sindex = 0
+def rail_fence_encryption(string, key):
+    r, c = 0, 0 
+    val = 0
+    for i in range(len(input_string)):
+        if r == key-1:
+            val = 0
+        elif r == 0:
+            val = 1
+        string_list[r][c] = input_string[i]
+        c += 1
 
-	while curr < len(string):
-		if findex < key:
-			while findex < key and curr < len(string):
-				a[findex][sindex] = string[curr]
-				curr += 1
-				findex += 1
-				sindex += 1
+        if val == 1:
+            r += 1
+        else:
+            r -= 1
+    encrypted_string = ""
+    for item in string_list:
+        string = ''.join(item)
+        encrypted_string += string
+    return encrypted_string
 
-		if findex == key:
-			findex -= 1
-			while findex > 0 and curr < len(string):
-				findex -= 1
-				a[findex][sindex] = string[curr]
-				curr += 1
-				sindex += 1
-			findex += 1
-	return a
+encrypt_string = rail_fence_encryption(input_string, key)
+print(encrypt_string)
 
-encrypt_string = rail_fence_encrypt(string, key)
-
-print("Rail fence matrix created: ")
-
-encrypted_string = ""
-
-for i in encrypt_string:
-	l = [x for x in i if x is not None]
-	encrypted_string += "".join(l)
-
-print("Encrypted string:",encrypted_string)
