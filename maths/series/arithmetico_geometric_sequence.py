@@ -16,13 +16,14 @@ class AGS:
         self.b = b
         self.r = r
         self.n = n
-    """Pure Python implementation of Arithmetico–Geometric Sequence algorithm
+    """Pure Python implementation of 
+    Arithmetico–Geometric Sequence algorithm
     :params a: Initial Value For Arithmetic Progression
-            d: Difference For Arithmetic Progression
-            b: Initial Value For Geometric Progression
-            r: Common Ratio For Geometric Progression
-            n: Number Of Terms
-            k: Value Of K In K-th Term
+    d: Difference For Arithmetic Progression
+    b: Initial Value For Geometric Progression
+    r: Common Ratio For Geometric Progression
+    n: Number Of Terms
+    k: Value Of K In K-th Term
     Examples:
     Enter Initial Value For A.P. : 2
     Enter Difference For A.P. : 3
@@ -30,15 +31,16 @@ class AGS:
     Enter Common Ratio For G.P. : 0.5
     Enter Number Of Terms : 5
     Full Series : 
-    ['2.0 x 4.0', '(2.0 + 3.0) x 4.0x0.5^1', 
-    '(2.0 + 6.0) x 4.0x0.5^2', '(2.0 + 9.0) x 4.0x0.5^3', 
-    '(2.0 + 12.0) x 4.0x0.5^4']
+    ['2.0 x 4.0', '(2.0 + 3.0) x 4.0 x 0.5^1', 
+    '(2.0 + 6.0) x 4.0 x 0.5^2', '(2.0 + 9.0) x 4.0 x 0.5^3', 
+    '(2.0 + 12.0) x 4.0 x 0.5^4']
     Value Of Last Term : 3.50
     Sum Of Your A.G.S. : 35.00
     Infinite Series Sum : 40.00
     Value Of Which Term You Want : 2
     Value Of 2-th Term : 10.00
     """
+    
     def full_series(self):
         series = []
         for i in range(n):
@@ -49,14 +51,22 @@ class AGS:
                 gp_part = str(b) + "x" + str(r) + "^" + str(i)
                 series.append("(" + ap_part + ")" + " x " + gp_part)
         return series
+    
     def last_term_value(self):
         return (a + (n - 1) * d) * (b * pow(r, n-1))
+    
     def sum(self):
-        return ((a * b)-((a + (n * d)) * (b * pow(r, n)))) / (1-r) + (d * b * r * (1 - pow(r, n)))/pow((1 - r), 2)
+        nu = ((a * b)-((a + (n * d)) * (b * pow(r, n))))
+        deno = (1-r) + (d * b * r * (1 - pow(r, n)))/pow((1 - r), 2)
+        return (nu / deno)
+    
     def inf_sum(self):
         return (a * b) / (1 - r) + (d * b * r) / pow((1 - r), 2)
+    
     def nth_term_value(self, k):
         return (a + (k - 1) * d) * (b * pow(r, k - 1))
+
+
 if __name__=="__main__":
     run = True
     while run:
@@ -116,4 +126,4 @@ if __name__=="__main__":
                 print("Please Give An Integer For Corresponding Input!")
         except ValueError:
             print("Please Give An Integer For Corresponding Input!")
-    print("Value Of {}-th Term : {:.2f}".format(k, ags.nth_term_value(k)))
+    print("Value Of {}th Term : {:.2f}".format(k, ags.nth_term_value(k)))
