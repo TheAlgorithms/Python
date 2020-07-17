@@ -11,7 +11,7 @@ python merge_insertion_sort.py
 """
 
 
-def mergeInsertionSort(collection):
+def merge_insertion_sort(collection):
     """Pure implementation of merge-insertion sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -19,13 +19,13 @@ def mergeInsertionSort(collection):
     :return: the same collection ordered by ascending
 
     Examples:
-    >>> mergeInsertionSort([0, 5, 3, 2, 2])
+    >>> merge_insertion_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
 
-    >>> mergeInsertionSort([])
+    >>> merge_insertion_sort([])
     []
 
-    >>> mergeInsertionSort([-2, -5, -45])
+    >>> merge_insertion_sort([-2, -5, -45])
     [-45, -5, -2]
     """
 
@@ -100,4 +100,4 @@ def mergeInsertionSort(collection):
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(mergeInsertionSort(unsorted))
+    print(merge_insertion_sort(unsorted))
