@@ -32,8 +32,9 @@ class AGS:
     Enter Initial Value For G.P. : 4
     Enter Common Ratio For G.P. : 0.5
     Enter Number Of Terms : 5
-    Full Series : 
-    ['2.0 x 4.0', '(2.0 + 3.0) x 4.0x0.5^1', '(2.0 + 6.0) x 4.0x0.5^2', '(2.0 + 9.0) x 4.0x0.5^3', '(2.0 + 12.0) x 4.0x0.5^4']
+    Full Series :
+    ['2.0 x 4.0', '(2.0 + 3.0) x 4.0x0.5^1', '(2.0 + 6.0) x 4.0x0.5^2',
+    '(2.0 + 9.0) x 4.0x0.5^3', '(2.0 + 12.0) x 4.0x0.5^4']
     Value Of Last Term : 3.50
     Sum Of Your A.G.S. : 35.00
     Infinite Series Sum : 40.00
@@ -126,11 +127,11 @@ if __name__ == "__main__":
                     not_get_k = False
                 else:
                     print(
-                        "Please Give An Integer Less Than Or Equal To The Numbet Of Terms!"
+                        "Please Give Integer Less Than Or Equal To The Numbet Of Terms"
                     )
             else:
-                print("Please Give An Integer For Corresponding Input!")
+                print("Please Give Integer For Corresponding Input!")
         except ValueError:
-            print("Please Give An Integer For Corresponding Input!")
+            print("Please Give Integer For Corresponding Input!")
 
     print("Value Of {}-th Term : {:.2f}".format(k, ags.nth_term_value(k)))
