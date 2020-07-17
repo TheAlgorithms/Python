@@ -68,7 +68,7 @@ class AGS:
         return (a + (k - 1) * d) * (b * pow(r, k - 1))
 
 
-if __name__ == "__main__":
+def main():
     run = True
     while run:
         try:
@@ -135,3 +135,9 @@ if __name__ == "__main__":
             print("Please Give Integer For Corresponding Input!")
 
     print("Value Of {}-th Term : {:.2f}".format(k, ags.nth_term_value(k)))
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    main()
