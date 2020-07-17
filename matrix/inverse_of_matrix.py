@@ -51,4 +51,4 @@ def inverse_of_matrix(matrix):
                     row2[index] = 0.0
         return inverse
     else:
-        return "Does not exist"
+        return 'Does not exist'
