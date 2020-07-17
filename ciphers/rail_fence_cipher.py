@@ -1,5 +1,4 @@
-print("Enter string to be encrypted: ", end = "")
-string = input()
+string = input(Enter string to be encrypted:)
 print("Enter key for encryption (works best for small key values) : ", end = "")
 key = int(input())
 
