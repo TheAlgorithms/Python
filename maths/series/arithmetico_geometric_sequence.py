@@ -44,28 +44,33 @@ class AGS:
 
     def full_series(self):
         series = []
-        for i in range(n):
+        for i in range(self.n):
             if i == 0:
-                series.append(str(a) + " x " + str(b))
+                series.append(str(self.a) + " x " + str(self.b))
             else:
-                ap_part = str(a) + " + " + str(i * d)
-                gp_part = str(b) + "x" + str(r) + "^" + str(i)
+                ap_part = str(self.a) + " + " + str(i * self.d)
+                gp_part = str(self.b) + "x" + str(self.r) + "^" + str(i)
                 series.append("(" + ap_part + ")" + " x " + gp_part)
         return series
 
     def last_term_value(self):
-        return (a + (n - 1) * d) * (b * pow(r, n - 1))
+        return (self.a + (self.n - 1) * self.d) * (self.b * pow(self.r, self.n - 1))
 
     def sum(self):
-        return ((a * b) - ((a + (n * d)) * (b * pow(r, n)))) / (1 - r) + (
-            d * b * r * (1 - pow(r, n))
-        ) / pow((1 - r), 2)
+        return (
+            (self.a * self.b)
+            - ((self.a + (self.n * self.d)) * (self.b * pow(self.r, self.n)))
+        ) / (1 - self.r) + (self.d * self.b * self.r * (1 - pow(self.r, self.n))) / pow(
+            (1 - self.r), 2
+        )
 
     def inf_sum(self):
-        return (a * b) / (1 - r) + (d * b * r) / pow((1 - r), 2)
+        return (self.a * self.b) / (1 - self.r) + (self.d * self.b * self.r) / pow(
+            (1 - self.r), 2
+        )
 
     def nth_term_value(self, k):
-        return (a + (k - 1) * d) * (b * pow(r, k - 1))
+        return (self.a + (k - 1) * self.d) * (self.b * pow(self.r, k - 1))
 
 
 def main():
@@ -139,5 +144,6 @@ def main():
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
