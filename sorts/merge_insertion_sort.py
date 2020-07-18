@@ -68,10 +68,10 @@ def merge_insertion_sort(collection: List[int]) -> List[int]:
         return collection
 
     two_paired_list = []
-    is_surplus = False
+    has_last_odd_item = False
     for i in range(0, len(collection), 2):
         if i == len(collection) - 1:
-            is_surplus = True
+            has_last_odd_item = True
         else:
             if collection[i] < collection[i + 1]:
                 two_paired_list.append([collection[i], collection[i + 1]])
@@ -81,16 +81,16 @@ def merge_insertion_sort(collection: List[int]) -> List[int]:
     result = [i[0] for i in sorted_list_2d]
     result.append(sorted_list_2d[-1][1])
 
-    if is_surplus:
+    if has_last_odd_item:
         pivot = collection[-1]
         result = binary_search_insertion(result, pivot)
 
-    is_surplus_inserted_before_this_index = False
+    is_last_odd_item_inserted_before_this_index = False
     for i in range(len(sorted_list_2d) - 1):
         if result[i] == collection[-i]:
-            is_surplus_inserted_before_this_index = True
+            is_last_odd_item_inserted_before_this_index = True
         pivot = sorted_list_2d[i][1]
-        if is_surplus_inserted_before_this_index:
+        if is_last_odd_item_inserted_before_this_index:
             result = result[: i + 2] + binary_search_insertion(result[i + 2 :], pivot)
         else:
             result = result[: i + 1] + binary_search_insertion(result[i + 1 :], pivot)
