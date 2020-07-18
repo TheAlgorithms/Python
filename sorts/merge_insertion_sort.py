@@ -3,9 +3,9 @@ This is a pure Python implementation of the merge-insertion sort algorithm
 Source: https://en.wikipedia.org/wiki/Merge-insertion_sort
 
 For doctests run following command:
-python -m doctest -v merge_insertion_sort.py
-or
 python3 -m doctest -v merge_insertion_sort.py
+or
+python -m doctest -v merge_insertion_sort.py
 
 For manual testing run:
 python3 merge_insertion_sort.py
