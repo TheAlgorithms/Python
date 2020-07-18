@@ -12,134 +12,198 @@ python3 arithmetic_geometric_sequence.py
 
 
 class AGS:
-    def __init__(self, a, d, b, r, n):
-        self.a = a
-        self.d = d
-        self.b = b
-        self.r = r
-        self.n = n
+    def __init__(
+        self,
+        arithmetic_value: float,
+        arithmetic_difference: float,
+        geometric_value: float,
+        common_ratio: float,
+        term_count: int,
+    ) -> None:
+        self.arithmetic_value = arithmetic_value
+        self.arithmetic_difference = arithmetic_difference
+        self.geometric_value = geometric_value
+        self.common_ratio = common_ratio
+        self.term_count = term_count
 
-    """Pure Python implementation of Arithmetic–Geometric Sequence algorithm
-    :params a: Initial Value For Arithmetic Progression
-            d: Difference For Arithmetic Progression
-            b: Initial Value For Geometric Progression
-            r: Common Ratio For Geometric Progression
-            n: Number Of Terms
-            k: Value Of K In K-th Term
-    Examples:
-    Enter Initial Value For A.P. : 2
-    Enter Difference For A.P. : 3
-    Enter Initial Value For G.P. : 4
-    Enter Common Ratio For G.P. : 0.5
-    Enter Number Of Terms : 5
-    Full Series :
-    ['2.0 x 4.0', '(2.0 + 3.0) x 4.0x0.5^1', '(2.0 + 6.0) x 4.0x0.5^2',
-    '(2.0 + 9.0) x 4.0x0.5^3', '(2.0 + 12.0) x 4.0x0.5^4']
-    Value Of Last Term : 3.50
-    Sum Of Your A.G.S. : 35.00
-    Infinite Series Sum : 40.00
-    Value Of Which Term You Want : 2
-    Value Of 2-th Term : 10.00
+    """:params arithmetic_value: Initial Value For Arithmetic Progression
+        arithmetic_difference: Difference For Arithmetic Progression
+        geometric_value: Initial Value For Geometric Progression
+        common_ratio: Common Ratio For Geometric Progression
+        term_count: Number Of Terms
+        k_in_kth_term: Value Of K In K-th Term
     """
 
-    def full_series(self):
+    def full_series(self) -> list:
+        """
+        >>> AGS(2, 3, 5, 6, 3).full_series()
+        ['2 x 5', '(2 + 3) x 5x6^1', '(2 + 6) x 5x6^2']
+        >>> AGS(3, 2.1, 1.3, 0.4, 3).full_series()
+        ['3 x 1.3', '(3 + 2.1) x 1.3x0.4^1', '(3 + 4.2) x 1.3x0.4^2']
+        >>> AGS(9, 3, 2, -0.5, 0).full_series()
+        []
+        """
         series = []
-        for i in range(self.n):
+        for i in range(self.term_count):
             if i == 0:
-                series.append(str(self.a) + " x " + str(self.b))
+                series.append(
+                    str(self.arithmetic_value) + " x " + str(self.geometric_value)
+                )
             else:
-                ap_part = str(self.a) + " + " + str(i * self.d)
-                gp_part = str(self.b) + "x" + str(self.r) + "^" + str(i)
-                series.append("(" + ap_part + ")" + " x " + gp_part)
+                ap_part = (
+                    str(self.arithmetic_value)
+                    + " + "
+                    + str(i * self.arithmetic_difference)
+                )
+                gp_part = (
+                    str(self.geometric_value)
+                    + "x"
+                    + str(self.common_ratio)
+                    + "^"
+                    + str(i)
+                )
+                series.append(f"({ap_part}) x {gp_part}")
         return series
 
-    def last_term_value(self):
-        return (self.a + (self.n - 1) * self.d) * (self.b * pow(self.r, self.n - 1))
-
-    def sum(self):
+    def last_term_value(self) -> float:
+        """
+        >>> AGS(2, 3, 5, 6, 3).last_term_value()
+        1440
+        >>> AGS(3, 2.1, 1.3, 0.4, 3).last_term_value()
+        1.4976000000000003
+        >>> AGS(9, 3, 2, -0.5, 0).last_term_value()
+        'None'
+        """
+        if self.term_count == 0:
+            return "None"
         return (
-            (self.a * self.b)
-            - ((self.a + (self.n * self.d)) * (self.b * pow(self.r, self.n)))
-        ) / (1 - self.r) + (self.d * self.b * self.r * (1 - pow(self.r, self.n))) / pow(
-            (1 - self.r), 2
+            self.arithmetic_value + (self.term_count - 1) * self.arithmetic_difference
+        ) * (self.geometric_value * pow(self.common_ratio, self.term_count - 1))
+
+    def sum(self) -> float:
+        """
+        >>> AGS(2, 3, 5, 6, 3).sum()
+        1600.0
+        >>> AGS(3, 2.1, 1.3, 0.4, 3).sum()
+        8.049600000000002
+        >>> AGS(9, 3, 2, -0.5, 0).sum()
+        'None'
+        """
+        if self.term_count == 0:
+            return "None"
+        return (
+            (self.arithmetic_value * self.geometric_value)
+            - (
+                (self.arithmetic_value + (self.term_count * self.arithmetic_difference))
+                * (self.geometric_value * pow(self.common_ratio, self.term_count))
+            )
+        ) / (1 - self.common_ratio) + (
+            self.arithmetic_difference
+            * self.geometric_value
+            * self.common_ratio
+            * (1 - pow(self.common_ratio, self.term_count))
+        ) / pow(
+            (1 - self.common_ratio), 2
         )
 
-    def inf_sum(self):
-        return (self.a * self.b) / (1 - self.r) + (self.d * self.b * self.r) / pow(
-            (1 - self.r), 2
+    def inf_sum(self) -> float:
+        """
+        >>> AGS(2, 3, 5, 6, 3).inf_sum()
+        1.6
+        >>> AGS(3, 2.1, 1.3, 0.4, 3).inf_sum()
+        9.533333333333335
+        >>> AGS(9, 3, 2, -0.5, 0).inf_sum()
+        10.666666666666666
+        """
+        return (self.arithmetic_value * self.geometric_value) / (
+            1 - self.common_ratio
+        ) + (
+            self.arithmetic_difference * self.geometric_value * self.common_ratio
+        ) / pow(
+            (1 - self.common_ratio), 2
         )
 
-    def nth_term_value(self, k):
-        return (self.a + (k - 1) * self.d) * (self.b * pow(self.r, k - 1))
+    def kth_term_value(self, k_in_kth_term: int) -> float:
+        """
+        >>> AGS(2, 3, 5, 6, 3).kth_term_value(2)
+        150
+        >>> AGS(3, 2.1, 1.3, 0.4, 3).kth_term_value(1)
+        3.9000000000000004
+        >>> AGS(9, 3, 2, -0.5, 0).kth_term_value(0)
+        'None'
+        """
+        if k_in_kth_term == 0:
+            return "None"
+        return (
+            self.arithmetic_value + (k_in_kth_term - 1) * self.arithmetic_difference
+        ) * (self.geometric_value * pow(self.common_ratio, k_in_kth_term - 1))
 
 
 def main():
     run = True
     while run:
         try:
-            a = float(input("\nEnter Initial Value For A.P. : "))
+            arithmetic_value = float(input("\nEnter Initial Value For A.P. : ").strip())
             run = False
         except ValueError:
             print("Please Give A Number For Corresponding Input!")
     run = True
     while run:
         try:
-            d = float(input("Enter Difference For A.P. : "))
+            arithmetic_difference = float(input("Enter Difference For A.P. : ").strip())
             run = False
         except ValueError:
             print("Please Give A Number For Corresponding Input!")
     run = True
     while run:
         try:
-            b = float(input("Enter Initial Value For G.P. : "))
+            geometric_value = float(input("Enter Initial Value For G.P. : ").strip())
             run = False
         except ValueError:
             print("Please Give A Number For Corresponding Input!")
-
     run = True
     while run:
         try:
-            r = float(input("Enter Common Ratio For G.P. : "))
+            common_ratio = float(input("Enter Common Ratio For G.P. : ").strip())
             run = False
         except ValueError:
             print("Please Give A Number For Corresponding Input!")
-    not_get_n = True
-    while not_get_n:
+    not_get_number_of_term = True
+    while not_get_number_of_term:
         try:
-            n = float(input("Enter Number Of Terms : "))
-            if n == int(n):
-                n = int(n)
-                not_get_n = False
+            term_count = int(input("Enter Number Of Terms : ").strip())
+            if term_count < 0:
+                print("Give A Positive Integer Including Zero.")
             else:
-                print("Please Give An Integer For Corresponding Input!")
+                not_get_number_of_term = False
         except ValueError:
             print("Please Give An Integer As The Number Of Terms!")
 
-    ags = AGS(a, d, b, r, n)
+    ags = AGS(
+        arithmetic_value,
+        arithmetic_difference,
+        geometric_value,
+        common_ratio,
+        term_count,
+    )
 
-    print("\nFull Series : \n{}".format(ags.full_series()))
-    print("\nValue Of Last Term : {:.2f}".format(ags.last_term_value()))
-    print("Sum Of Your A.G.S. : {:.2f}".format(ags.sum()))
-    print("Infinite Series Sum : {:.2f}".format(ags.inf_sum()))
+    print(f"\nFull Series : \n{ags.full_series()}")
+    print(f"\nValue Of Last Term : {ags.last_term_value()}")
+    print(f"Sum Of Your A.G.S. : {ags.sum()}")
+    print(f"Infinite Series Sum : {ags.inf_sum()}")
 
-    not_get_k = True
-    while not_get_k:
+    not_get_k_in_kth_term = True
+    while not_get_k_in_kth_term:
         try:
-            k = float(input("\nValue Of Which Term You Want : "))
-            if k == int(k):
-                if k <= n:
-                    k = int(k)
-                    not_get_k = False
-                else:
-                    print(
-                        "Please Give Integer Less Than Or Equal To The Numbet Of Terms"
-                    )
+            k_in_kth_term = int(input("\nValue Of Which Term You Want : ").strip())
+            if (k_in_kth_term <= term_count) and (k_in_kth_term >= 0):
+                not_get_k_in_kth_term = False
             else:
-                print("Please Give Integer For Corresponding Input!")
+                print(f"Give an Integer belongs to [0, {term_count}]")
         except ValueError:
             print("Please Give Integer For Corresponding Input!")
 
-    print("Value Of {}-th Term : {:.2f}".format(k, ags.nth_term_value(k)))
+    print(f"Value Of {k_in_kth_term}th Term : {ags.kth_term_value(k_in_kth_term)}")
 
 
 if __name__ == "__main__":
