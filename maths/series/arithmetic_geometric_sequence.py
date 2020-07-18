@@ -3,15 +3,15 @@
 This is a pure Python implementation of the Arithmetic–Geometric Sequence algorithm
 https://en.wikipedia.org/wiki/Arithmetico%E2%80%93geometric_sequence
 For doctests run following command:
-python -m doctest -v arithmetico_geometric_sequence.py
+python -m doctest -v arithmetic_geometric_sequence.py
 or
-python3 -m doctest -v arithmetico_geometric_sequence.py
+python3 -m doctest -v arithmetic_geometric_sequence.py
 For manual testing run:
-python3 arithmetico_geometric_sequence.py
+python3 arithmetic_geometric_sequence.py
 """
 
 
-class AGS:
+class ArithmeticGeometricSequence:
     def __init__(
         self,
         arithmetic_value: float,
@@ -36,61 +36,45 @@ class AGS:
 
     def full_series(self) -> list:
         """
-        >>> AGS(2, 3, 5, 6, 3).full_series()
+        >>> ArithmeticGeometricSequence(2, 3, 5, 6, 3).full_series()
         ['2 x 5', '(2 + 3) x 5x6^1', '(2 + 6) x 5x6^2']
-        >>> AGS(3, 2.1, 1.3, 0.4, 3).full_series()
+        >>> ArithmeticGeometricSequence(3, 2.1, 1.3, 0.4, 3).full_series()
         ['3 x 1.3', '(3 + 2.1) x 1.3x0.4^1', '(3 + 4.2) x 1.3x0.4^2']
-        >>> AGS(9, 3, 2, -0.5, 0).full_series()
-        []
+        >>> ArithmeticGeometricSequence(9, 3, 2, -0.5, 1).full_series()
+        ['9 x 2']
         """
         series = []
         for i in range(self.term_count):
             if i == 0:
-                series.append(
-                    str(self.arithmetic_value) + " x " + str(self.geometric_value)
-                )
+                series.append(f"{self.arithmetic_value} x {self.geometric_value}")
             else:
-                ap_part = (
-                    str(self.arithmetic_value)
-                    + " + "
-                    + str(i * self.arithmetic_difference)
-                )
-                gp_part = (
-                    str(self.geometric_value)
-                    + "x"
-                    + str(self.common_ratio)
-                    + "^"
-                    + str(i)
-                )
+                ap_part = f"{self.arithmetic_value} + {i * self.arithmetic_difference}"
+                gp_part = f"{self.geometric_value}x{self.common_ratio}^{i}"
                 series.append(f"({ap_part}) x {gp_part}")
         return series
 
     def last_term_value(self) -> float:
         """
-        >>> AGS(2, 3, 5, 6, 3).last_term_value()
+        >>> ArithmeticGeometricSequence(2, 3, 5, 6, 3).last_term_value()
         1440
-        >>> AGS(3, 2.1, 1.3, 0.4, 3).last_term_value()
+        >>> ArithmeticGeometricSequence(3, 2.1, 1.3, 0.4, 3).last_term_value()
         1.4976000000000003
-        >>> AGS(9, 3, 2, -0.5, 0).last_term_value()
-        'None'
+        >>> ArithmeticGeometricSequence(9, 3, 2, -0.5, 1).last_term_value()
+        18.0
         """
-        if self.term_count == 0:
-            return "None"
         return (
             self.arithmetic_value + (self.term_count - 1) * self.arithmetic_difference
         ) * (self.geometric_value * pow(self.common_ratio, self.term_count - 1))
 
     def sum(self) -> float:
         """
-        >>> AGS(2, 3, 5, 6, 3).sum()
+        >>> ArithmeticGeometricSequence(2, 3, 5, 6, 3).sum()
         1600.0
-        >>> AGS(3, 2.1, 1.3, 0.4, 3).sum()
+        >>> ArithmeticGeometricSequence(3, 2.1, 1.3, 0.4, 3).sum()
         8.049600000000002
-        >>> AGS(9, 3, 2, -0.5, 0).sum()
-        'None'
+        >>> ArithmeticGeometricSequence(9, 3, 2, -0.5, 1).sum()
+        18.0
         """
-        if self.term_count == 0:
-            return "None"
         return (
             (self.arithmetic_value * self.geometric_value)
             - (
@@ -108,11 +92,11 @@ class AGS:
 
     def inf_sum(self) -> float:
         """
-        >>> AGS(2, 3, 5, 6, 3).inf_sum()
+        >>> ArithmeticGeometricSequence(2, 3, 5, 6, 3).inf_sum()
         1.6
-        >>> AGS(3, 2.1, 1.3, 0.4, 3).inf_sum()
+        >>> ArithmeticGeometricSequence(3, 2.1, 1.3, 0.4, 3).inf_sum()
         9.533333333333335
-        >>> AGS(9, 3, 2, -0.5, 0).inf_sum()
+        >>> ArithmeticGeometricSequence(9, 3, 2, -0.5, 1).inf_sum()
         10.666666666666666
         """
         return (self.arithmetic_value * self.geometric_value) / (
@@ -125,15 +109,13 @@ class AGS:
 
     def kth_term_value(self, k_in_kth_term: int) -> float:
         """
-        >>> AGS(2, 3, 5, 6, 3).kth_term_value(2)
+        >>> ArithmeticGeometricSequence(2, 3, 5, 6, 3).kth_term_value(2)
         150
-        >>> AGS(3, 2.1, 1.3, 0.4, 3).kth_term_value(1)
+        >>> ArithmeticGeometricSequence(3, 2.1, 1.3, 0.4, 3).kth_term_value(1)
         3.9000000000000004
-        >>> AGS(9, 3, 2, -0.5, 0).kth_term_value(0)
-        'None'
+        >>> ArithmeticGeometricSequence(9, 3, 2, -0.5, 1).kth_term_value(1)
+        18.0
         """
-        if k_in_kth_term == 0:
-            return "None"
         return (
             self.arithmetic_value + (k_in_kth_term - 1) * self.arithmetic_difference
         ) * (self.geometric_value * pow(self.common_ratio, k_in_kth_term - 1))
@@ -165,21 +147,24 @@ def main():
     while run:
         try:
             common_ratio = float(input("Enter Common Ratio For G.P. : ").strip())
-            run = False
+            if common_ratio == 1:
+                print("Common Ratio Must Not Be 1")
+            else:
+                run = False
         except ValueError:
             print("Please Give A Number For Corresponding Input!")
     not_get_number_of_term = True
     while not_get_number_of_term:
         try:
             term_count = int(input("Enter Number Of Terms : ").strip())
-            if term_count < 0:
-                print("Give A Positive Integer Including Zero.")
+            if term_count <= 0:
+                print("Give A Positive Integer.")
             else:
                 not_get_number_of_term = False
         except ValueError:
             print("Please Give An Integer As The Number Of Terms!")
 
-    ags = AGS(
+    arithmetic_geometric_sequence_object = ArithmeticGeometricSequence(
         arithmetic_value,
         arithmetic_difference,
         geometric_value,
@@ -187,23 +172,27 @@ def main():
         term_count,
     )
 
-    print(f"\nFull Series : \n{ags.full_series()}")
-    print(f"\nValue Of Last Term : {ags.last_term_value()}")
-    print(f"Sum Of Your A.G.S. : {ags.sum()}")
-    print(f"Infinite Series Sum : {ags.inf_sum()}")
+    print(f"\nFull Series : \n{arithmetic_geometric_sequence_object.full_series()}")
+    print(
+        f"\nValue Of Last Term : {arithmetic_geometric_sequence_object.last_term_value()}"
+    )
+    print(f"Sum Of Your A.G.S. : {arithmetic_geometric_sequence_object.sum()}")
+    print(f"Infinite Series Sum : {arithmetic_geometric_sequence_object.inf_sum()}")
 
     not_get_k_in_kth_term = True
     while not_get_k_in_kth_term:
         try:
             k_in_kth_term = int(input("\nValue Of Which Term You Want : ").strip())
-            if term_count >= k_in_kth_term >= 0:
+            if term_count >= k_in_kth_term >= 1:
                 not_get_k_in_kth_term = False
             else:
-                print(f"Give an Integer belongs to [0, {term_count}]")
+                print(f"Give an Integer belongs to [1, {term_count}]")
         except ValueError:
             print("Please Give Integer For Corresponding Input!")
 
-    print(f"Value Of {k_in_kth_term}th Term : {ags.kth_term_value(k_in_kth_term)}")
+    print(
+        f"Value Of {k_in_kth_term}th Term : {arithmetic_geometric_sequence_object.kth_term_value(k_in_kth_term)}"
+    )
 
 
 if __name__ == "__main__":
