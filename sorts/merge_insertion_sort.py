@@ -11,8 +11,10 @@ For manual testing run:
 python merge_insertion_sort.py
 """
 
+from typing import List
 
-def merge_insertion_sort(collection):
+
+def merge_insertion_sort(collection: List[int]) -> List[int]:
     """Pure implementation of merge-insertion sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -23,8 +25,8 @@ def merge_insertion_sort(collection):
     >>> merge_insertion_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
 
-    >>> merge_insertion_sort([])
-    []
+    >>> merge_insertion_sort([99])
+    [99]
 
     >>> merge_insertion_sort([-2, -5, -45])
     [-45, -5, -2]
