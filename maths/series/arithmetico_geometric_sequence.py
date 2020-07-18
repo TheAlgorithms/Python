@@ -3,11 +3,11 @@
 This is a pure Python implementation of the Arithmetic–Geometric Sequence algorithm
 https://en.wikipedia.org/wiki/Arithmetico%E2%80%93geometric_sequence
 For doctests run following command:
-python -m doctest -v arithmetic_geometric_sequence.py
+python -m doctest -v arithmetico_geometric_sequence.py
 or
-python3 -m doctest -v arithmetic_geometric_sequence.py
+python3 -m doctest -v arithmetico_geometric_sequence.py
 For manual testing run:
-python3 arithmetic_geometric_sequence.py
+python3 arithmetico_geometric_sequence.py
 """
 
 
