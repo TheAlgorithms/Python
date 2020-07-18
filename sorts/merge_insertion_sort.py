@@ -8,7 +8,7 @@ or
 python3 -m doctest -v merge_insertion_sort.py
 
 For manual testing run:
-python merge_insertion_sort.py
+python3 merge_insertion_sort.py
 """
 
 from typing import List
