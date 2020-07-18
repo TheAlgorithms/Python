@@ -67,29 +67,102 @@ def merge_insertion_sort(collection: List[int]) -> List[int]:
     if len(collection) <= 1:
         return collection
 
+    """
+    Group the items into two pairs, and leave one element if there is a last odd item.
+
+    Example: [999, 100, 75, 40, 10000]
+                -> [999, 100], [75, 40]. Leave 10000.
+    """
     two_paired_list = []
     has_last_odd_item = False
     for i in range(0, len(collection), 2):
         if i == len(collection) - 1:
             has_last_odd_item = True
         else:
+            """
+            Sort two-pairs in each groups.
+
+            Example: [999, 100], [75, 40]
+                        -> [100, 999], [40, 75]
+            """
             if collection[i] < collection[i + 1]:
                 two_paired_list.append([collection[i], collection[i + 1]])
             else:
                 two_paired_list.append([collection[i + 1], collection[i]])
+
+    """
+    Sort two_paired_list.
+
+    Example: [100, 999], [40, 75]
+                -> [40, 75], [100, 999]
+    """
     sorted_list_2d = sortlist_2d(two_paired_list)
+
+    """
+    40 < 100 is sure because it has already been sorted.
+    Generate the sorted_list of them so that you can avoid unnecessary comparison.
+
+    Example:
+           group0 group1
+           40     100
+           75     999
+        ->
+           group0 group1
+           [40,   100]
+           75     999
+    """
     result = [i[0] for i in sorted_list_2d]
+
+    """
+    100 < 999 is sure because it has already been sorted.
+    Put 999 in last of the sorted_list so that you can avoid unnecessary comparison.
+
+    Example:
+           group0 group1
+           [40,   100]
+           75     999
+        ->
+           group0 group1
+           [40,   100,   999]
+           75
+    """
     result.append(sorted_list_2d[-1][1])
 
+    """
+    Insert the last odd item left if there is.
+
+    Example:
+           group0 group1
+           [40,   100,   999]
+           75
+        ->
+           group0 group1
+           [40,   100,   999,   10000]
+           75
+    """
     if has_last_odd_item:
         pivot = collection[-1]
         result = binary_search_insertion(result, pivot)
 
+    """
+    Insert the remaining items.
+    In this case, 40 < 75 is sure because it has already been sorted.
+    Therefore, you only need to insert 75 into [100, 999, 10000] so that you can avoid unnecessary comparison.
+
+    Example:
+           group0 group1
+           [40,   100,   999,   10000]
+            ^ You don't need to compare with this as 40 < 75 is already sure.
+           75
+        ->
+           [40,   75,    100,   999,   10000]
+    """
     is_last_odd_item_inserted_before_this_index = False
     for i in range(len(sorted_list_2d) - 1):
         if result[i] == collection[-i]:
             is_last_odd_item_inserted_before_this_index = True
         pivot = sorted_list_2d[i][1]
+        # If last_odd_item is inserted before the item's index, you should forward index one more.
         if is_last_odd_item_inserted_before_this_index:
             result = result[: i + 2] + binary_search_insertion(result[i + 2 :], pivot)
         else:
