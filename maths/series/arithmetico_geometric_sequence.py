@@ -196,7 +196,7 @@ def main():
     while not_get_k_in_kth_term:
         try:
             k_in_kth_term = int(input("\nValue Of Which Term You Want : ").strip())
-            if (k_in_kth_term <= term_count) and (k_in_kth_term >= 0):
+            if term_count >= k_in_kth_term >= 0:
                 not_get_k_in_kth_term = False
             else:
                 print(f"Give an Integer belongs to [0, {term_count}]")
