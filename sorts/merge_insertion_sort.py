@@ -40,9 +40,7 @@ def merge_insertion_sort(collection: List[int]) -> List[int]:
             if left == right:
                 if sorted_list[middle] < item:
                     left = middle + 1
-                    break
-                else:
-                    break
+                break
             elif sorted_list[middle] < item:
                 left = middle + 1
             else:
