@@ -164,7 +164,7 @@ def main():
         except ValueError:
             print("Please Give An Integer As The Number Of Terms!")
 
-    arithmetic_geometric_sequence_object = ArithmeticGeometricSequence(
+    ags_object = ArithmeticGeometricSequence(
         arithmetic_value,
         arithmetic_difference,
         geometric_value,
@@ -172,12 +172,12 @@ def main():
         term_count,
     )
 
-    print(f"\nFull Series : \n{arithmetic_geometric_sequence_object.full_series()}")
+    print(f"\nFull Series : \n{ags_object.full_series()}")
     print(
-        f"\nValue Of Last Term : {arithmetic_geometric_sequence_object.last_term_value()}"
+        f"\nValue Of Last Term : {ags_object.last_term_value()}"
     )
-    print(f"Sum Of Your A.G.S. : {arithmetic_geometric_sequence_object.sum()}")
-    print(f"Infinite Series Sum : {arithmetic_geometric_sequence_object.inf_sum()}")
+    print(f"Sum Of Your A.G.S. : {ags_object.sum()}")
+    print(f"Infinite Series Sum : {ags_object.inf_sum()}")
 
     not_get_k_in_kth_term = True
     while not_get_k_in_kth_term:
@@ -191,7 +191,7 @@ def main():
             print("Please Give Integer For Corresponding Input!")
 
     print(
-        f"Value Of {k_in_kth_term}th Term : {arithmetic_geometric_sequence_object.kth_term_value(k_in_kth_term)}"
+        f"Value Of {k_in_kth_term}th Term : {ags_object.kth_term_value(k_in_kth_term)}"
     )
 
 
