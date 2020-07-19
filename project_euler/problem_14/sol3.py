@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from typings import Tuple
 
 """
 Collatz conjecture: start with any positive integer n. Next term obtained from
@@ -20,7 +21,7 @@ Which starting number, under one million, produces the longest chain?
 """
 
 
-def solution(m):
+def solution(m: int) -> Tuple(int, int):
     """ Returns the number under n that generates the longest Collatz sequence.
 
     >>> solution(1000000)
@@ -46,26 +47,26 @@ def solution(m):
 
     # calculates a collatz chain of a certain number this calculation is halted
     # whenever we find a key with a know collatz chain in our knowledge base
-    def calculateChain(n):
+    def calculate_chain(n):
         entries = []
         while n not in knowledge:
             entries.append(n)
             n = collatz(n)
-        chainSize = knowledge[n]
+        chain_size = knowledge[n]
         for i in entries[::-1]:
-            chainSize += 1
-            knowledge[i] = chainSize
+            chain_size += 1
+            knowledge[i] = chain_size
 
-    maxChain = (1, 1)
+    max_chain = (1, 1)
     for i in range(1, m + 1):
-        calculateChain(i)
-        # we can use knowledge[i] because calculateChain
+        calculate_chain(i)
+        # we can use knowledge[i] because calculate_chain
         # by definition already adds the key we specified to the
         # knowledge base
-        if maxChain[1] < knowledge[i]:
-            maxChain = (i, knowledge[i])
+        if max_chain[1] < knowledge[i]:
+            max_chain = (i, knowledge[i])
 
-    return maxChain
+    return max_chain
 
 
 if __name__ == "__main__":
@@ -73,9 +74,9 @@ if __name__ == "__main__":
     calculate the number with the longest collatz chain
     in the range between 1 and the following number:
           """)
-    inputNumber = int(input().strip())
-    number, chainLength = solution(inputNumber)
+    input_number = int(input().strip())
+    number, chain_length = solution(input_number)
     print(f"""
-    the maximum collatz chain of all numbers between 1 and {inputNumber} is
-    {chainLength}, starting with the number {number}
+    the maximum collatz chain of all numbers between 1 and {input_number} is
+    {chain_length}, starting with the number {number}
           """)
