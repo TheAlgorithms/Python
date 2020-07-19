@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from typings import Tuple
+from typing import Tuple
 
 """
 Collatz conjecture: start with any positive integer n. Next term obtained from
@@ -21,7 +21,7 @@ Which starting number, under one million, produces the longest chain?
 """
 
 
-def solution(m: int) -> Tuple(int, int):
+def solution(m: int) -> Tuple[int, int]:
     """ Returns the number under n that generates the longest Collatz sequence.
 
     >>> solution(1000000)
