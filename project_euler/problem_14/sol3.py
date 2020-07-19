@@ -24,13 +24,13 @@ def solution(m):
     """ Returns the number under n that generates the longest Collatz sequence.
 
     >>> solution(1000000)
-    {'counter': 525, 'largest_number': 837799}
+    (837799, 525)
     >>> solution(200)
-    {'counter': 125, 'largest_number': 171}
+    (171, 125)
     >>> solution(5000)
-    {'counter': 238, 'largest_number': 3711}
+    (3711, 238)
     >>> solution(15000)
-    {'counter': 276, 'largest_number': 13255}
+    (13255, 276)
     """
     # we are going to avoid repeat computations by creating a knowledge base
     # where we store the length of all collatz chains we calculated so far
@@ -56,17 +56,14 @@ def solution(m):
             chainSize += 1
             knowledge[i] = chainSize
 
-    maxChain = {
-        "counter": 1,
-        "largest_number": 1
-    }
+    maxChain = (1, 1)
     for i in range(1, m + 1):
         calculateChain(i)
-        if maxChain["counter"] < knowledge[i]:
-            maxChain = {
-                "counter": knowledge[i],
-                "largest_number": i
-            }
+        # we can use knowledge[i] because calculateChain
+        # by definition already adds the key we specified to the
+        # knowledge base
+        if maxChain[1] < knowledge[i]:
+            maxChain = (i, knowledge[i])
 
     return maxChain
 
