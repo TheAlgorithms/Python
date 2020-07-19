@@ -72,8 +72,13 @@ def solution(m):
 
 
 if __name__ == "__main__":
-    print("calculate the number with the longest collatz chain in the range between 1 and the following number:")
+    print("""
+    calculate the number with the longest collatz chain
+    in the range between 1 and the following number:
+          """)
     inputNumber = int(input().strip())
     number, chainLength = solution(inputNumber)
-    print(f"the maximum collatz chain of all numbers between 1 and {inputNumber} is {chainLength}, starting with the number {number}")
-
+    print(f"""
+    the maximum collatz chain of all numbers between 1 and {inputNumber} is
+    {chainLength}, starting with the number {number}
+          """)
