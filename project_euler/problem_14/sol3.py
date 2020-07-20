@@ -19,6 +19,32 @@ that all starting numbers finish at 1.
 Which starting number, under one million, produces the longest chain?
 """
 
+# we are going to avoid repeat computations by creating a knowledge base
+# where we store the length of all collatz chains we calculated so far
+
+knowledge = {1: 1}
+
+
+# a single step in a collatz chain
+def collatz(n):
+    if n % 2 == 0:
+        return n // 2
+    else:
+        return 3 * n + 1
+
+
+# calculates a collatz chain of a certain number this calculation is halted
+# whenever we find a key with a know collatz chain in our knowledge base
+def calculate_chain(n):
+    entries = []
+    while n not in knowledge:
+        entries.append(n)
+        n = collatz(n)
+    chain_size = knowledge[n]
+    for i in entries[::-1]:
+        chain_size += 1
+        knowledge[i] = chain_size
+
 
 def solution(m: int) -> Tuple[int, int]:
     """ Returns the number under n that generates the longest Collatz sequence.
@@ -32,30 +58,6 @@ def solution(m: int) -> Tuple[int, int]:
     >>> solution(15000)
     (13255, 276)
     """
-    # we are going to avoid repeat computations by creating a knowledge base
-    # where we store the length of all collatz chains we calculated so far
-
-    knowledge = {1: 1}
-
-    # a single step in a collatz chain
-    def collatz(n):
-        if n % 2 == 0:
-            return n // 2
-        else:
-            return 3 * n + 1
-
-    # calculates a collatz chain of a certain number this calculation is halted
-    # whenever we find a key with a know collatz chain in our knowledge base
-    def calculate_chain(n):
-        entries = []
-        while n not in knowledge:
-            entries.append(n)
-            n = collatz(n)
-        chain_size = knowledge[n]
-        for i in entries[::-1]:
-            chain_size += 1
-            knowledge[i] = chain_size
-
     max_chain = (1, 1)
     for i in range(1, m + 1):
         calculate_chain(i)
