@@ -1,7 +1,7 @@
-from decimal import *
+from decimal import Decimal
 
 
-def inverse_of_matrix(matrix):
+def inverse_of_matrix(matrix: list):
     """
     A matrix multiplied with its inverse gives the identity matrix.
     This function finds the inverse of a 2x2 matrix.
@@ -9,7 +9,7 @@ def inverse_of_matrix(matrix):
 
     Sources for fixing inaccurate float arithmetic:
     https://stackoverflow.com/questions/6563058/how-do-i-use-accurate-float-arithmetic-in-python
-    https://docs.python.org/release/2.7/library/decimal.html#module-decimal
+    https://docs.python.org/3/library/decimal.html
 
     >>> inverse_of_matrix([[2, 5], [2, 0]])
     [[0.0, 0.5], [0.2, -0.2]]
