@@ -28,7 +28,7 @@ knowledge = {1: 1}
 
 # a single step in a collatz chain
 def collatz(n: int) -> int:
-    """ calculates a single step in a collatz chain
+    """ Calculates a single step in a collatz chain.
 
     >>> collatz(13)
     40
@@ -45,20 +45,10 @@ def collatz(n: int) -> int:
 
 def calculate_chain(n: int) -> None:
     """
-    calculates a collatz chain of a certain number this calculation is halted
-    whenever we find a key with a know collatz chain in our knowledge base
-
-    >>> knowledge = {1: 1}
-    >>> calculate_chain(13)
-    >>> knowledge
-    {1: 1, 2: 2, 4: 3, 8: 4, 16: 5, 5: 6, 10: 7, 20: 8, 40: 9, 13: 10}
-    >>> calculate_chain(8)
-    >>> knowledge
-    {1: 1, 2: 2, 4: 3, 8: 4, 16: 5, 5: 6, 10: 7, 20: 8, 40: 9, 13: 10}
-    >>> knowledge = {1: 1}
-    >>> calculate_chain(12)
-    >>> knowledge
-    {1: 1, 2: 2, 4: 3, 8: 4, 16: 5, 5: 6, 10: 7, 3: 8, 6: 9, 12: 10}
+    Calculates a collatz chain of a certain number. This calculation is halted
+    whenever we find a key with a known collatz chain in our knowledge base.
+    This function has no return value and doctests can't measure side effects,
+    so we can't do doctests on this function.
     """
     entries = []
     while n not in knowledge:
