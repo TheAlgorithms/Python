@@ -26,7 +26,7 @@ knowledge = {1: 1}
 
 
 # a single step in a collatz chain
-def collatz(n):
+def collatz(n: int) -> int:
     if n % 2 == 0:
         return n // 2
     else:
@@ -35,7 +35,7 @@ def collatz(n):
 
 # calculates a collatz chain of a certain number this calculation is halted
 # whenever we find a key with a know collatz chain in our knowledge base
-def calculate_chain(n):
+def calculate_chain(n: int) -> None:
     entries = []
     while n not in knowledge:
         entries.append(n)
