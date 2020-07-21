@@ -1,6 +1,9 @@
+from __future__ import annotations
+
+
 class Disjoint_Set_Tree_Node:
     # Disjoint Set Node to store the parent and rank
-    def __init__(self, key):
+    def __init__(self, key: int) -> None:
         self.key = key
         self.parent = self
         self.rank = 0
@@ -12,17 +15,17 @@ class Disjoint_Set_Tree:
         # map from node name to the node object
         self.map = {}
 
-    def make_set(self, x):
+    def make_set(self, x) -> None:
         # create a new set with x as its member
         self.map[x] = Disjoint_Set_Tree_Node(x)
 
-    def find_set(self, x):
+    def find_set(self, x: int) -> Disjoint_Set_Tree_Node:
         # find the set x belongs to (with path-compression)
         if self.map[x] != self.map[x].parent:
             self.map[x].parent = self.find_set(self.map[x].parent.key)
         return self.map[x].parent
 
-    def link(self, x, y):
+    def link(self, x, y) -> None:
         # helper function for union operation
         if x.rank > y.rank:
             y.parent = x
@@ -31,7 +34,7 @@ class Disjoint_Set_Tree:
             if x.rank == y.rank:
                 y.rank += 1
 
-    def union(self, x, y):
+    def union(self, x, y) -> None:
         # merge 2 disjoint sets
         self.link(self.find_set(x), self.find_set(y))
 
@@ -43,20 +46,20 @@ class GraphUndirectedWeighted:
         self.connections = {}
         self.nodes = 0
 
-    def add_node(self, node):
+    def add_node(self, node: int) -> None:
         # add a node ONLY if its not present in the graph
         if node not in self.connections:
             self.connections[node] = {}
             self.nodes += 1
 
-    def add_edge(self, node1, node2, weight):
+    def add_edge(self, node1: int, node2: int, weight: int) -> None:
         # add an edge with the given weight
         self.add_node(node1)
         self.add_node(node2)
         self.connections[node1][node2] = weight
         self.connections[node2][node1] = weight
 
-    def kruskal(self):
+    def kruskal(self) -> GraphUndirectedWeighted:
         # Kruskal's Algorithm to generate a Minimum Spanning Tree (MST) of a graph
         """
         Details: https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
