@@ -15,7 +15,7 @@ class Disjoint_Set_Tree:
         # map from node name to the node object
         self.map = {}
 
-    def make_set(self, x) -> None:
+    def make_set(self, x: int) -> None:
         # create a new set with x as its member
         self.map[x] = Disjoint_Set_Tree_Node(x)
 
@@ -25,7 +25,7 @@ class Disjoint_Set_Tree:
             self.map[x].parent = self.find_set(self.map[x].parent.key)
         return self.map[x].parent
 
-    def link(self, x, y) -> None:
+    def link(self, x: int, y: int) -> None:
         # helper function for union operation
         if x.rank > y.rank:
             y.parent = x
@@ -34,7 +34,7 @@ class Disjoint_Set_Tree:
             if x.rank == y.rank:
                 y.rank += 1
 
-    def union(self, x, y) -> None:
+    def union(self, x: int, y: int) -> None:
         # merge 2 disjoint sets
         self.link(self.find_set(x), self.find_set(y))
 
