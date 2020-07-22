@@ -5,7 +5,8 @@ from operator import add, sub, mul
 operators={"+": add, "-": sub, "*": mul}
 
 
-def calculate(first_operand, second_operand, operator) -> int:
+def calculate(first_operand: int, second_operand: int, operator: str) -> int:
+
     """
     Return the value after evaluating the expression
     """
