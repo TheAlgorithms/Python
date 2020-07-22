@@ -47,7 +47,7 @@ def parentheses(operand, operator) -> int:
     return M[0][n - 1]
 
 
-expression = input()
+expression = input().strip()
 operator, operand = [], []
 for i in expression:
     if i in ("+", "-", "*"):
