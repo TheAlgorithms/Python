@@ -1,5 +1,6 @@
 import math
 
+
 def num_digits(n: int) -> int:
     """
     Find the number of digits in a number.
