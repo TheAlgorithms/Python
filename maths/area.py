@@ -5,7 +5,7 @@ from math import pi
 from typing import Union
 
 
-def surface_area_cube(side: Union[int, float]) -> float:
+def surface_area_cube(side_length: Union[int, float]) -> float:
     """
     Calculate the Surface Area of a Cube.
 
@@ -14,7 +14,7 @@ def surface_area_cube(side: Union[int, float]) -> float:
     >>> surface_area_cube(3)
     54
     """
-    return 6 * pow(side, 2)
+    return 6 * pow(side_length, 2)
 
 
 def surface_area_sphere(radius: float) -> float:
@@ -41,14 +41,14 @@ def area_rectangle(length, width):
     return length * width
 
 
-def area_square(side):
+def area_square(side_length):
     """
     Calculate the area of a square
 
     >>> area_square(10)
     100
     """
-    return pow(side, 2)
+    return pow(side_length, 2)
 
 
 def area_triangle(base, height):
