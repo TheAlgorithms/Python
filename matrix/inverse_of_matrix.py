@@ -1,7 +1,8 @@
 from decimal import Decimal
+from typing import List
 
 
-def inverse_of_matrix(matrix: list):
+def inverse_of_matrix(matrix: List[List[float]]) -> List[List[float]]:
     """
     A matrix multiplied with its inverse gives the identity matrix.
     This function finds the inverse of a 2x2 matrix.
@@ -25,31 +26,14 @@ def inverse_of_matrix(matrix: list):
     [[0.25, -0.5], [-0.3, 1.0]]
     """
 
-    determinant = Decimal(matrix[0][0]) * Decimal(matrix[1][1]) - Decimal(
-        matrix[1][0]
-    ) * Decimal(
-        matrix[0][1]
-    )  # Finds the determinant of the matrix
+    D = Decimal  # An abbreviation to be conciseness
+    # Calculate the determinant of the matrix
+    determinant = D(matrix[0][0]) * D(matrix[1][1]) - D(matrix[1][0]) * D(matrix[0][1])
     if determinant == 0:
         raise ValueError("This matrix has no inverse.")
-    inverse = []
-    matrix_with_swapped_pos = (
-        [] + matrix
-    )  # Creates a copy of the matrix and swaps the positions of the elements
-    matrix_with_swapped_pos[0][0], matrix_with_swapped_pos[1][1] = (
-        matrix[1][1],
-        matrix[0][0],
-    )
-    matrix_with_swapped_pos[1][0], matrix_with_swapped_pos[0][1] = (
-        0 - matrix[1][0],
-        0 - matrix[0][1],
-    )
-    for row1 in matrix_with_swapped_pos:
-        inverse.append(
-            [float(Decimal(num) / determinant) for num in row1]
-        )  # Finds the inverse of the matrix
-    for row2 in inverse:
-        for index in range(len(row2)):  # Replaces the -0.0's with 0.0's
-            if row2[index] == -0.0:
-                row2[index] = 0.0
-    return inverse
+    # Creates a copy of the matrix with swaped positions of the elements
+    swapped_matrix = [[0.0, 0.0], [0.0, 0.0]]
+    swapped_matrix[0][0], swapped_matrix[1][1] = matrix[1][1], matrix[0][0]
+    swapped_matrix[1][0], swapped_matrix[0][1] = -matrix[1][0], -matrix[0][1]
+    # Calculate the inverse of the matrix
+    return [[float(D(n) / determinant) or 0.0 for n in row] for row in swapped_matrix]
