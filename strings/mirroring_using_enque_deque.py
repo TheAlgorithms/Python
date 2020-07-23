@@ -11,7 +11,7 @@ def deQueue(lst: list):
 
 def mirror(qString: str):
     '''
-    Returns a mirrored form of the string using enque and deque methods
+    Returns a mirrored form of the string using enqueue and dequeue methods
     >>> mirror("python")
     'pythonnohtyp'
     >>> mirror("github")
