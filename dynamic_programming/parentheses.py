@@ -48,12 +48,12 @@ def parentheses(operand, operator) -> int:
     return maximum_numbers[0][number_of_operands - 1]
 
 
-expression = input().strip()
-operator, operand = [], []
-for i in expression:
-    if i in operators.keys():
-        operator.append(i)
-    else:
-        operand.append(int(i))
-answer = parentheses(operand, operator)
-f"{answer}"
+if __name__ == "__main__":
+    expression = input("Please provide a mathimatical expression... ").strip()
+    operator, operand = [], []
+    for c in expression:
+        if c in operator:
+            operator.append(c)
+        else:
+            operand.append(int(c))
+    print(f"The result is {parentheses(operand, operator)}")
