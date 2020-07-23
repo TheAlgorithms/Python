@@ -23,6 +23,42 @@ def celsius_to_fahrenheit(celsius: float) -> float:
     return round((float(celsius) * 9 / 5) + 32, 2)
 
 
+def celsius_to_kelvin(celsius: float) -> float:
+    """
+    Convert a given value from Celsius to Kelvin and round it to 2 decimal places.
+
+    >>> celsius_to_kelvin(0)
+    273.15
+    >>> celsius_to_kelvin(20.0)
+    293.15
+    >>> celsius_to_kelvin("40")
+    313.15
+    >>> celsius_to_kelvin("celsius")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'celsius'
+    """
+    return round(float(celsius) + 273.15, 2)
+
+
+def celsius_to_rankine(celsius: float) -> float:
+    """
+    Convert a given value from Celsius to Rankine and round it to 2 decimal places.
+
+    >>> celsius_to_rankine(0)
+    491.67
+    >>> celsius_to_rankine(20.0)
+    527.67
+    >>> celsius_to_rankine("40")
+    563.67
+    >>> celsius_to_rankine("celsius")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'celsius'
+    """
+    return round((float(celsius) * 9 / 5) + 491.67, 2)
+
+
 def fahrenheit_to_celsius(fahrenheit: float) -> float:
     """
     Convert a given value from Fahrenheit to Celsius and round it to 2 decimal places.
@@ -47,22 +83,52 @@ def fahrenheit_to_celsius(fahrenheit: float) -> float:
     return round((float(fahrenheit) - 32) * 5 / 9, 2)
 
 
-def celsius_to_kelvin(celsius: float) -> float:
+def fahrenheit_to_kelvin(fahrenheit: float) -> float:
     """
-    Convert a given value from Celsius to Kelvin and round it to 2 decimal places.
+    Convert a given value from Fahrenheit to Kelvin and round it to 2 decimal places.
 
-    >>> celsius_to_kelvin(0)
-    273.15
-    >>> celsius_to_kelvin(20.0)
-    293.15
-    >>> celsius_to_kelvin("40")
-    313.15
-    >>> celsius_to_kelvin("celsius")
+    >>> fahrenheit_to_kelvin(0)
+    255.37
+    >>> fahrenheit_to_kelvin(20.0)
+    266.48
+    >>> fahrenheit_to_kelvin(40.0)
+    277.59
+    >>> fahrenheit_to_kelvin(60)
+    288.71
+    >>> fahrenheit_to_kelvin(80)
+    299.82
+    >>> fahrenheit_to_kelvin("100")
+    310.93
+    >>> fahrenheit_to_kelvin("fahrenheit")
     Traceback (most recent call last):
     ...
-    ValueError: could not convert string to float: 'celsius'
+    ValueError: could not convert string to float: 'fahrenheit'
     """
-    return round(float(celsius) + 273.15, 2)
+    return round(((float(fahrenheit) - 32) * 5 / 9) + 273.15, 2)
+
+
+def fahrenheit_to_rankine(fahrenheit: float) -> float:
+    """
+    Convert a given value from Fahrenheit to Rankine and round it to 2 decimal places.
+
+    >>> fahrenheit_to_rankine(0)
+    459.67
+    >>> fahrenheit_to_rankine(20.0)
+    479.67
+    >>> fahrenheit_to_rankine(40.0)
+    499.67
+    >>> fahrenheit_to_rankine(60)
+    519.67
+    >>> fahrenheit_to_rankine(80)
+    539.67
+    >>> fahrenheit_to_rankine("100")
+    559.67
+    >>> fahrenheit_to_rankine("fahrenheit")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'fahrenheit'
+    """
+    return round(float(fahrenheit) + 459.67, 2)
 
 
 def kelvin_to_celsius(kelvin: float) -> float:
@@ -83,6 +149,98 @@ def kelvin_to_celsius(kelvin: float) -> float:
     return round(float(kelvin) - 273.15, 2)
 
 
+def kelvin_to_fahrenheit(kelvin: float) -> float:
+    """
+    Convert a given value from Kelvin to Fahrenheit and round it to 2 decimal places.
+
+    >>> kelvin_to_fahrenheit(273.15)
+    32.0
+    >>> kelvin_to_fahrenheit(300)
+    80.33
+    >>> kelvin_to_fahrenheit("315.5")
+    108.23
+    >>> kelvin_to_fahrenheit("kelvin")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'kelvin'
+    """
+    return round(((float(kelvin) - 273.15) * 9 / 5) + 32, 2)
+
+
+def kelvin_to_rankine(kelvin: float) -> float:
+    """
+    Convert a given value from Kelvin to Rankine and round it to 2 decimal places.
+
+    >>> kelvin_to_rankine(0)
+    0.0
+    >>> kelvin_to_rankine(20.0)
+    36.0
+    >>> kelvin_to_rankine("40")
+    72.0
+    >>> kelvin_to_rankine("kelvin")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'kelvin'
+    """
+    return round((float(kelvin) * 9 / 5), 2)
+
+
+def rankine_to_celsius(rankine: float) -> float:
+    """
+    Convert a given value from Rankine to Celsius and round it to 2 decimal places.
+
+    >>> rankine_to_celsius(273.15)
+    -121.4
+    >>> rankine_to_celsius(300)
+    -106.48
+    >>> rankine_to_celsius("315.5")
+    -97.87
+    >>> rankine_to_celsius("rankine")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'rankine'
+    """
+    return round((float(rankine) - 491.67) * 5 / 9, 2)
+
+
+def rankine_to_fahrenheit(rankine: float) -> float:
+    """
+    Convert a given value from Rankine to Fahrenheit and round it to 2 decimal places.
+
+    >>> rankine_to_fahrenheit(273.15)
+    -186.52
+    >>> rankine_to_fahrenheit(300)
+    -159.67
+    >>> rankine_to_fahrenheit("315.5")
+    -144.17
+    >>> rankine_to_fahrenheit("rankine")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'rankine'
+    """
+    return round(float(rankine) - 459.67, 2)
+
+
+def rankine_to_kelvin(rankine: float) -> float:
+    """
+    Convert a given value from Rankine to Kelvin and round it to 2 decimal places.
+
+    >>> rankine_to_kelvin(0)
+    0.0
+    >>> rankine_to_kelvin(20.0)
+    11.11
+    >>> rankine_to_kelvin("40")
+    22.22
+    >>> rankine_to_kelvin("rankine")
+    Traceback (most recent call last):
+    ...
+    ValueError: could not convert string to float: 'rankine'
+    """
+    return round((float(rankine) * 5 / 9), 2)
+
+
 if __name__ == "__main__":
+
     import doctest
+
     doctest.testmod()
