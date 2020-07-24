@@ -143,7 +143,7 @@ def fahrenheit_to_rankine(fahrenheit: float, ndigits: int = 2) -> float:
     return round(float(fahrenheit) + 459.67, ndigits)
 
 
-def kelvin_to_celsius(kelvin: float, digits: int = 2) -> float:
+def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Kelvin to Celsius and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
