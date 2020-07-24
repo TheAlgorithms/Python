@@ -7,6 +7,10 @@ def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
 
+    >>> celsius_to_fahrenheit(273.354, 3)
+    524.037
+    >>> celsius_to_fahrenheit(273.354, 0)
+    524.0
     >>> celsius_to_fahrenheit(-40.0)
     -40.0
     >>> celsius_to_fahrenheit(-20.0)
@@ -31,6 +35,10 @@ def celsius_to_kelvin(celsius: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
 
+    >>> celsius_to_kelvin(273.354, 3)
+    546.504
+    >>> celsius_to_kelvin(273.354, 0)
+    547.0
     >>> celsius_to_kelvin(0)
     273.15
     >>> celsius_to_kelvin(20.0)
@@ -51,6 +59,10 @@ def celsius_to_rankine(celsius: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
     Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
 
+    >>> celsius_to_rankine(273.354, 3)
+    983.707
+    >>> celsius_to_rankine(273.354, 0)
+    984.0
     >>> celsius_to_rankine(0)
     491.67
     >>> celsius_to_rankine(20.0)
@@ -71,6 +83,10 @@ def fahrenheit_to_celsius(fahrenheit: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
 
+    >>> fahrenheit_to_celsius(273.354, 3)
+    134.086
+    >>> fahrenheit_to_celsius(273.354, 0)
+    134.0
     >>> fahrenheit_to_celsius(0)
     -17.78
     >>> fahrenheit_to_celsius(20.0)
@@ -97,6 +113,10 @@ def fahrenheit_to_kelvin(fahrenheit: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
 
+    >>> fahrenheit_to_kelvin(273.354, 3)
+    407.236
+    >>> fahrenheit_to_kelvin(273.354, 0)
+    407.0
     >>> fahrenheit_to_kelvin(0)
     255.37
     >>> fahrenheit_to_kelvin(20.0)
@@ -123,6 +143,10 @@ def fahrenheit_to_rankine(fahrenheit: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
     Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
 
+    >>> fahrenheit_to_rankine(273.354, 3)
+    733.024
+    >>> fahrenheit_to_rankine(273.354, 0)
+    733.0
     >>> fahrenheit_to_rankine(0)
     459.67
     >>> fahrenheit_to_rankine(20.0)
@@ -149,6 +173,10 @@ def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
 
+    >>> kelvin_to_celsius(273.354, 3)
+    0.204
+    >>> kelvin_to_celsius(273.354, 0)
+    0.0
     >>> kelvin_to_celsius(273.15)
     0.0
     >>> kelvin_to_celsius(300)
@@ -169,6 +197,10 @@ def kelvin_to_fahrenheit(kelvin: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
 
+    >>> kelvin_to_fahrenheit(273.354, 3)
+    32.367
+    >>> kelvin_to_fahrenheit(273.354, 0)
+    32.0
     >>> kelvin_to_fahrenheit(273.15)
     32.0
     >>> kelvin_to_fahrenheit(300)
@@ -189,6 +221,10 @@ def kelvin_to_rankine(kelvin: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
     Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
 
+    >>> kelvin_to_rankine(273.354, 3)
+    492.037
+    >>> kelvin_to_rankine(273.354, 0)
+    492.0
     >>> kelvin_to_rankine(0)
     0.0
     >>> kelvin_to_rankine(20.0)
@@ -209,6 +245,10 @@ def rankine_to_celsius(rankine: float, ndigits: int = 2) -> float:
     Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
 
+    >>> rankine_to_celsius(273.354, 3)
+    -121.287
+    >>> rankine_to_celsius(273.354, 0)
+    -121.0
     >>> rankine_to_celsius(273.15)
     -121.4
     >>> rankine_to_celsius(300)
