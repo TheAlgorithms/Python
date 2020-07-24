@@ -4,6 +4,8 @@
 def celsius_to_fahrenheit(celsius: float) -> float:
     """
     Convert a given value from Celsius to Fahrenheit and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
+    Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
 
     >>> celsius_to_fahrenheit(-40.0)
     -40.0
@@ -26,6 +28,8 @@ def celsius_to_fahrenheit(celsius: float) -> float:
 def celsius_to_kelvin(celsius: float) -> float:
     """
     Convert a given value from Celsius to Kelvin and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
+    Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
 
     >>> celsius_to_kelvin(0)
     273.15
@@ -44,6 +48,8 @@ def celsius_to_kelvin(celsius: float) -> float:
 def celsius_to_rankine(celsius: float) -> float:
     """
     Convert a given value from Celsius to Rankine and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
+    Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
 
     >>> celsius_to_rankine(0)
     491.67
@@ -62,6 +68,8 @@ def celsius_to_rankine(celsius: float) -> float:
 def fahrenheit_to_celsius(fahrenheit: float) -> float:
     """
     Convert a given value from Fahrenheit to Celsius and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
+    Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
 
     >>> fahrenheit_to_celsius(0)
     -17.78
@@ -86,6 +94,8 @@ def fahrenheit_to_celsius(fahrenheit: float) -> float:
 def fahrenheit_to_kelvin(fahrenheit: float) -> float:
     """
     Convert a given value from Fahrenheit to Kelvin and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
+    Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
 
     >>> fahrenheit_to_kelvin(0)
     255.37
@@ -110,6 +120,8 @@ def fahrenheit_to_kelvin(fahrenheit: float) -> float:
 def fahrenheit_to_rankine(fahrenheit: float) -> float:
     """
     Convert a given value from Fahrenheit to Rankine and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
+    Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
 
     >>> fahrenheit_to_rankine(0)
     459.67
@@ -134,6 +146,8 @@ def fahrenheit_to_rankine(fahrenheit: float) -> float:
 def kelvin_to_celsius(kelvin: float) -> float:
     """
     Convert a given value from Kelvin to Celsius and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
+    Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
 
     >>> kelvin_to_celsius(273.15)
     0.0
@@ -152,6 +166,8 @@ def kelvin_to_celsius(kelvin: float) -> float:
 def kelvin_to_fahrenheit(kelvin: float) -> float:
     """
     Convert a given value from Kelvin to Fahrenheit and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
+    Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
 
     >>> kelvin_to_fahrenheit(273.15)
     32.0
@@ -170,6 +186,8 @@ def kelvin_to_fahrenheit(kelvin: float) -> float:
 def kelvin_to_rankine(kelvin: float) -> float:
     """
     Convert a given value from Kelvin to Rankine and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
+    Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
 
     >>> kelvin_to_rankine(0)
     0.0
@@ -188,6 +206,8 @@ def kelvin_to_rankine(kelvin: float) -> float:
 def rankine_to_celsius(rankine: float) -> float:
     """
     Convert a given value from Rankine to Celsius and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
+    Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
 
     >>> rankine_to_celsius(273.15)
     -121.4
@@ -206,6 +226,8 @@ def rankine_to_celsius(rankine: float) -> float:
 def rankine_to_fahrenheit(rankine: float) -> float:
     """
     Convert a given value from Rankine to Fahrenheit and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
+    Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
 
     >>> rankine_to_fahrenheit(273.15)
     -186.52
@@ -224,6 +246,8 @@ def rankine_to_fahrenheit(rankine: float) -> float:
 def rankine_to_kelvin(rankine: float) -> float:
     """
     Convert a given value from Rankine to Kelvin and round it to 2 decimal places.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
+    Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
 
     >>> rankine_to_kelvin(0)
     0.0
