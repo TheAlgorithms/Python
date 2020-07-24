@@ -1,7 +1,7 @@
 """ Convert between different units of temperature """
 
 
-def celsius_to_fahrenheit(celsius: float, digits: int = 2) -> float:
+def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Celsius to Fahrenheit and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
@@ -22,10 +22,10 @@ def celsius_to_fahrenheit(celsius: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'celsius'
     """
-    return round((float(celsius) * 9 / 5) + 32, digits)
+    return round((float(celsius) * 9 / 5) + 32, ndigits)
 
 
-def celsius_to_kelvin(celsius: float, digits: int = 2) -> float:
+def celsius_to_kelvin(celsius: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Celsius to Kelvin and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
@@ -42,10 +42,10 @@ def celsius_to_kelvin(celsius: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'celsius'
     """
-    return round(float(celsius) + 273.15, digits)
+    return round(float(celsius) + 273.15, ndigits)
 
 
-def celsius_to_rankine(celsius: float, digits: int = 2) -> float:
+def celsius_to_rankine(celsius: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Celsius to Rankine and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
@@ -62,10 +62,10 @@ def celsius_to_rankine(celsius: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'celsius'
     """
-    return round((float(celsius) * 9 / 5) + 491.67, digits)
+    return round((float(celsius) * 9 / 5) + 491.67, ndigits)
 
 
-def fahrenheit_to_celsius(fahrenheit: float, digits: int = 2) -> float:
+def fahrenheit_to_celsius(fahrenheit: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Fahrenheit to Celsius and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
@@ -88,10 +88,10 @@ def fahrenheit_to_celsius(fahrenheit: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'fahrenheit'
     """
-    return round((float(fahrenheit) - 32) * 5 / 9, digits)
+    return round((float(fahrenheit) - 32) * 5 / 9, ndigits)
 
 
-def fahrenheit_to_kelvin(fahrenheit: float, digits: int = 2) -> float:
+def fahrenheit_to_kelvin(fahrenheit: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Fahrenheit to Kelvin and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
@@ -114,10 +114,10 @@ def fahrenheit_to_kelvin(fahrenheit: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'fahrenheit'
     """
-    return round(((float(fahrenheit) - 32) * 5 / 9) + 273.15, digits)
+    return round(((float(fahrenheit) - 32) * 5 / 9) + 273.15, ndigits)
 
 
-def fahrenheit_to_rankine(fahrenheit: float, digits: int = 2) -> float:
+def fahrenheit_to_rankine(fahrenheit: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Fahrenheit to Rankine and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
@@ -140,7 +140,7 @@ def fahrenheit_to_rankine(fahrenheit: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'fahrenheit'
     """
-    return round(float(fahrenheit) + 459.67, digits)
+    return round(float(fahrenheit) + 459.67, ndigits)
 
 
 def kelvin_to_celsius(kelvin: float, digits: int = 2) -> float:
@@ -160,10 +160,10 @@ def kelvin_to_celsius(kelvin: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'kelvin'
     """
-    return round(float(kelvin) - 273.15, digits)
+    return round(float(kelvin) - 273.15, ndigits)
 
 
-def kelvin_to_fahrenheit(kelvin: float, digits: int = 2) -> float:
+def kelvin_to_fahrenheit(kelvin: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Kelvin to Fahrenheit and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
@@ -180,10 +180,10 @@ def kelvin_to_fahrenheit(kelvin: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'kelvin'
     """
-    return round(((float(kelvin) - 273.15) * 9 / 5) + 32, digits)
+    return round(((float(kelvin) - 273.15) * 9 / 5) + 32, ndigits)
 
 
-def kelvin_to_rankine(kelvin: float, digits: int = 2) -> float:
+def kelvin_to_rankine(kelvin: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Kelvin to Rankine and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
@@ -200,10 +200,10 @@ def kelvin_to_rankine(kelvin: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'kelvin'
     """
-    return round((float(kelvin) * 9 / 5), digits)
+    return round((float(kelvin) * 9 / 5), ndigits)
 
 
-def rankine_to_celsius(rankine: float, digits: int = 2) -> float:
+def rankine_to_celsius(rankine: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Rankine to Celsius and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
@@ -220,10 +220,10 @@ def rankine_to_celsius(rankine: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'rankine'
     """
-    return round((float(rankine) - 491.67) * 5 / 9, digits)
+    return round((float(rankine) - 491.67) * 5 / 9, ndigits)
 
 
-def rankine_to_fahrenheit(rankine: float, digits: int = 2) -> float:
+def rankine_to_fahrenheit(rankine: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Rankine to Fahrenheit and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
@@ -240,10 +240,10 @@ def rankine_to_fahrenheit(rankine: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'rankine'
     """
-    return round(float(rankine) - 459.67, digits)
+    return round(float(rankine) - 459.67, ndigits)
 
 
-def rankine_to_kelvin(rankine: float, digits: int = 2) -> float:
+def rankine_to_kelvin(rankine: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Rankine to Kelvin and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Rankine_scale
@@ -260,7 +260,7 @@ def rankine_to_kelvin(rankine: float, digits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'rankine'
     """
-    return round((float(rankine) * 5 / 9), digits)
+    return round((float(rankine) * 5 / 9), ndigits)
 
 
 if __name__ == "__main__":
