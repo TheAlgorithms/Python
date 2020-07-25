@@ -48,7 +48,7 @@ def power_iteration(
     iterations = 0
     error = 1e12
 
-    while convergence is False:
+    while not convergence:
 
         # Multiple matrix by the vector.
         w = np.dot(input_matrix, vector)
