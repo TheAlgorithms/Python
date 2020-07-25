@@ -76,7 +76,6 @@ def partition_graph(graph: Dict[ str, List[str] ]) -> Set[ Tuple[str, str] ]:
     # Find cutset.
     cutset = set()
     groups = [contracted_nodes[node] for node in graph_copy]
-    print(groups)
     for node in groups[0]:
         for neighbor in graph[node]:
             if neighbor in groups[1]:
