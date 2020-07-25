@@ -1,5 +1,5 @@
 """
-An implementation of Karger's Algorithm for partitioning a graph with a certain probability of finding the minimum edge cut.
+An implementation of Karger's Algorithm for partitioning a graph.
 """
 
 import random
@@ -22,15 +22,18 @@ TEST_GRAPH = {
 }
 
 
-def partition_graph(graph: Dict[ str, List[str] ]) -> Set[ Tuple[str, str] ]:
+def partition_graph(graph: Dict[str, List[str]]) -> Set[Tuple[str, str]]:
     """
-    Partitions a graph using Karger's Algorithm. Implemented from pseudocode found here:
+    Partitions a graph using Karger's Algorithm. Implemented from
+    pseudocode found here:
     https://en.wikipedia.org/wiki/Karger%27s_algorithm.
-    NOTE: This function involves random choices, meaning it will not give consistent outputs.
-    
+    This function involves random choices, meaning it will not give
+    consistent outputs.
+
     Args:
-        graph: A dictionary containing adacency lists for the graph. Nodes must be strings.
-    
+        graph: A dictionary containing adacency lists for the graph.
+            Nodes must be strings.
+
     Returns:
         The cutset of the cut found by Karger's Algorithm.
 
@@ -81,6 +84,7 @@ def partition_graph(graph: Dict[ str, List[str] ]) -> Set[ Tuple[str, str] ]:
             if neighbor in groups[1]:
                 cutset.add((node, neighbor))
     return cutset
+
 
 if __name__ == "__main__":
     print(partition_graph(TEST_GRAPH))
