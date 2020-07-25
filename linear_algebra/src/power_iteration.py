@@ -1,26 +1,6 @@
 import numpy as np
 
 
-def rayleigh_quotient(input_matrix: np.array, vector: np.array) -> float:
-
-    """
-    Rayleigh Quotient.
-    Fine the Rayliegh quotient of matrix and vector. Given an eigenvector,
-    the Rayleigh quotient is the corresponding eigenvalue.
-
-    Input
-    input_matrix: input matrix.
-    Numpy array. np.shape(input_matrix) == (N,N).
-    vector: input vector.
-    Numpy array. np.shape(vector) == (N,) or (N,1)
-    """
-
-    num = np.dot(vector.T, np.dot(input_matrix, vector))
-    den = np.dot(vector.T, vector)
-
-    return num / den
-
-
 def power_iteration(
     input_matrix: np.array, vector: np.array, error_tol=1e-12, max_iterations=100
 ) -> [float, np.array]:
@@ -43,6 +23,16 @@ def power_iteration(
     Float. Scalar.
     largest_eigenvector: eigenvector corresponding to largest_eigenvalue.
     Numpy array. np.shape(largest_eigenvector) == (N,) or (N,1).
+
+    >>> import numpy as np
+    >>> A = np.array([
+    ... [41,  4, 20],
+    ... [ 4, 26, 30],
+    ... [20, 30, 50]
+    ... ])
+    >>> v = np.array([41,4,20])
+    >>> power_iteration(A,v)
+    (79.66086378788381, array([0.44472726, 0.46209842, 0.76725662]))
     """
 
     # Ensure matrix is square.
@@ -59,8 +49,13 @@ def power_iteration(
     error = 1e12
 
     while convergence is False:
+
+        # Multiple matrix by the vector.
         w = np.dot(input_matrix, vector)
+        # Normalize the resulting output vector.
         vector = w / np.linalg.norm(w)
+        # Find rayleigh quotient
+        # (faster than usual b/c we know vector is normalized already)
         lamda = np.dot(vector.T, np.dot(input_matrix, vector))
 
         # Check convergence.
@@ -75,51 +70,27 @@ def power_iteration(
     return lamda, vector
 
 
+def tests() -> None:
+
+    # Our implementation.
+    A = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
+    v = np.array([41, 4, 20])
+    eigen_value, eigen_vector = power_iteration(A, v)
+
+    # Numpy implementation.
+    eigs, eigvs = np.linalg.eigh(A)
+    eig_max = eigs[-1]
+    eigv_max = eigvs[:, -1]
+
+    # Check our implementation and numpy gives close answers.
+    assert np.abs(eigen_value - eig_max) <= 1e-6
+    # Take absolute values element wise of each eigenvector
+    # as they are only unique to a minus sign.
+    assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigv_max)) <= 1e-6
+
+
 if __name__ == "__main__":
-    # Perform a test of power iteration by comparing to built in numpy.linalg.eigh
+    import doctest
 
-    # Example
-    np.random.seed(100)
-    # Set dimension of space
-    n = 10
-
-    # Create random matrix in space R^{nxn}
-    A = np.random.rand(n, n)
-    # Ensure matrix A is Symmetric
-    A = np.dot(A.T, A)
-    # Create random vector in space R^n
-    v = np.random.rand(n)
-
-    # Find eigenvalues using python built in library.
-    # https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigh.html
-    # The function will return eignevalues in ascending order and eigenvectors
-    # correspondingly.
-    # The last element is the largest eigenvalue and eigenvector index.
-    eigenvalues, eigenvectors = np.linalg.eigh(A)
-    largest_eigenvalue = eigenvalues[-1]
-    largest_eigenvector = eigenvectors[:, -1]
-
-    print("#########################################################")
-    print("From Numpy built in library.")
-    print(f"Largest Eigenvalue: {largest_eigenvalue}")
-    print(f"Largest Eigenvector: {largest_eigenvector}")
-    # Now try our own code
-    largest_eigenvalue_power, largest_eigenvector_power = power_iteration(A, v)
-    print("#########################################################")
-    print("From Power Iteration we wrote.")
-    print(f"Largest Eigenvalue: {largest_eigenvalue_power}")
-    print(f"Largest Eigenvector: {largest_eigenvector_power}")
-
-    abs_error = np.abs(largest_eigenvalue - largest_eigenvalue_power)
-    rel_error = abs_error / largest_eigenvalue
-    print("#########################################################")
-    print("Eigenvalue Error Between Numpy and our implementation.")
-    print(f"Absolute Error: {abs_error}")
-    print(f"Relative Error: {rel_error}")
-
-    abs_error = np.linalg.norm(largest_eigenvector - largest_eigenvector_power)
-    cos_error = np.arccos(np.dot(largest_eigenvector, largest_eigenvector_power))
-    print("#########################################################")
-    print("Eigenvector Error Between Numpy and our implementation.")
-    print(f"Absolute norm difference: {abs_error}")
-    print(f"Cosign error between eigenvectors: {cos_error}")
+    doctest.testmod()
+    tests()
