@@ -47,45 +47,45 @@ def num_digits_faster(n: int) -> int:
 def benchmark():
     print('\nFor small_num = ', small_num, ':')
     print("> num_digits()", '\t\tans =',
-        num_digits(small_num), '\ttime =',
-        timeit("z.num_digits(z.small_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits(small_num), '\ttime =',
+          timeit("z.num_digits(z.small_num)",
+                 setup="import __main__ as z"), "seconds")
     print("> num_digits_fast()", '\tans =',
-        num_digits_fast(small_num), '\ttime =',
-        timeit("z.num_digits_fast(z.small_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits_fast(small_num), '\ttime =',
+          timeit("z.num_digits_fast(z.small_num)",
+                 setup="import __main__ as z"), "seconds")
     print("> num_digits_faster()", '\tans =',
-        num_digits_faster(small_num), '\ttime =',
-        timeit("z.num_digits_faster(z.small_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits_faster(small_num), '\ttime =',
+          timeit("z.num_digits_faster(z.small_num)",
+                 setup="import __main__ as z"), "seconds")
 
     print('\nFor medium_num = ', medium_num, ':')
     print("> num_digits()", '\t\tans =',
-        num_digits(medium_num), '\ttime =',
-        timeit("z.num_digits(z.medium_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits(medium_num), '\ttime =',
+          timeit("z.num_digits(z.medium_num)",
+                 setup="import __main__ as z"), "seconds")
     print("> num_digits_fast()", '\tans =',
-        num_digits_fast(medium_num), '\ttime =',
-        timeit("z.num_digits_fast(z.medium_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits_fast(medium_num), '\ttime =',
+          timeit("z.num_digits_fast(z.medium_num)",
+                 setup="import __main__ as z"), "seconds")
     print("> num_digits_faster()", '\tans =',
-        num_digits_faster(medium_num), '\ttime =',
-        timeit("z.num_digits_faster(z.medium_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits_faster(medium_num), '\ttime =',
+          timeit("z.num_digits_faster(z.medium_num)",
+                 setup="import __main__ as z"), "seconds")
 
     print('\nFor large_num = ', large_num, ':')
     print("> num_digits()", '\t\tans =',
-        num_digits(large_num), '\ttime =',
-        timeit("z.num_digits(z.large_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits(large_num), '\ttime =',
+          timeit("z.num_digits(z.large_num)",
+                 setup="import __main__ as z"), "seconds")
     print("> num_digits_fast()", '\tans =',
-        num_digits_fast(large_num), '\ttime =',
-        timeit("z.num_digits_fast(z.large_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits_fast(large_num), '\ttime =',
+          timeit("z.num_digits_fast(z.large_num)",
+                 setup="import __main__ as z"), "seconds")
     print("> num_digits_faster()", '\tans =',
-        num_digits_faster(large_num), '\ttime =',
-        timeit("z.num_digits_faster(z.large_num)",
-        setup="import __main__ as z"), "seconds")
+          num_digits_faster(large_num), '\ttime =',
+          timeit("z.num_digits_faster(z.large_num)",
+                 setup="import __main__ as z"), "seconds")
 
 
 if __name__ == "__main__":
