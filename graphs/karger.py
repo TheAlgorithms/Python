@@ -61,11 +61,8 @@ def partition_graph(graph: Dict[str, List[str]]) -> Set[Tuple[str, str]]:
         for neighbor in uv_neighbors:
             graph_copy[neighbor].append(uv)
 
-        contracted_nodes[uv] = set()
-        for contracted_node in contracted_nodes[u]:
-            contracted_nodes[uv].add(contracted_node)
-        for contracted_node in contracted_nodes[v]:
-            contracted_nodes[uv].add(contracted_node)
+        contracted_nodes[uv] = {contracted_node for contracted_node in
+                                contracted_nodes[u].union(contracted_nodes[v])}
 
         # Remove nodes u and v.
         del graph_copy[u]
@@ -77,13 +74,9 @@ def partition_graph(graph: Dict[str, List[str]]) -> Set[Tuple[str, str]]:
                 graph_copy[neighbor].remove(v)
 
     # Find cutset.
-    cutset = set()
     groups = [contracted_nodes[node] for node in graph_copy]
-    for node in groups[0]:
-        for neighbor in graph[node]:
-            if neighbor in groups[1]:
-                cutset.add((node, neighbor))
-    return cutset
+    return {(node, neighbor) for node in groups[0]
+            for neighbor in graph[node] if neighbor in groups[1]}
 
 
 if __name__ == "__main__":
