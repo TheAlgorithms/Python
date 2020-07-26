@@ -46,7 +46,7 @@ def num_digits_faster(n: int) -> int:
 
 def benchmark() -> None:
     """
-    Benchmark code for comapring 3 functions,
+    Benchmark code for comparing 3 functions,
     with 3 different length int values.
     """
     print('\nFor small_num = ', small_num, ':')
