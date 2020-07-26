@@ -93,9 +93,9 @@ def benchmark() -> None:
 
 
 if __name__ == "__main__":
-    small_num = 262144                          # 2**18
-    medium_num = 1125899906842624               # 2**50
-    large_num = 1267650600228229401496703205376 # 2**100
+    small_num = 262144                           # 2**18
+    medium_num = 1125899906842624                # 2**50
+    large_num = 1267650600228229401496703205376  # 2**100
 
     # Benchmarks
     benchmark()
