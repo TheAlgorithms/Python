@@ -25,13 +25,13 @@ def power_iteration(
     Numpy array. np.shape(largest_eigenvector) == (N,) or (N,1).
 
     >>> import numpy as np
-    >>> A = np.array([
+    >>> input_matrix = np.array([
     ... [41,  4, 20],
     ... [ 4, 26, 30],
     ... [20, 30, 50]
     ... ])
-    >>> v = np.array([41,4,20])
-    >>> power_iteration(A,v)
+    >>> vector = np.array([41,4,20])
+    >>> power_iteration(input_matrix,vector)
     (79.66086378788381, array([0.44472726, 0.46209842, 0.76725662]))
     """
 
@@ -48,7 +48,7 @@ def power_iteration(
     iterations = 0
     error = 1e12
 
-    while convergence is False:
+    while not convergence:
 
         # Multiple matrix by the vector.
         w = np.dot(input_matrix, vector)
@@ -70,27 +70,32 @@ def power_iteration(
     return lamda, vector
 
 
-def tests() -> None:
+def test_power_iteration() -> None:
 
     # Our implementation.
-    A = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
-    v = np.array([41, 4, 20])
-    eigen_value, eigen_vector = power_iteration(A, v)
+    input_matrix = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
+    vector = np.array([41, 4, 20])
+    eigen_value, eigen_vector = power_iteration(input_matrix, vector)
 
     # Numpy implementation.
-    eigs, eigvs = np.linalg.eigh(A)
-    eig_max = eigs[-1]
-    eigv_max = eigvs[:, -1]
+
+    # Get eigen values and eigen vectors using built in numpy
+    # eigh (eigh used for symmetric or hermetian matrices).
+    eigen_values, eigen_vectors = np.linalg.eigh(input_matrix)
+    # Last eigen value is the maximum one.
+    eigen_value_max = eigen_values[-1]
+    # Last column in this matrix is eigen vector corresponding to largest eigen value.
+    eigen_vector_max = eigen_vectors[:, -1]
 
     # Check our implementation and numpy gives close answers.
-    assert np.abs(eigen_value - eig_max) <= 1e-6
-    # Take absolute values element wise of each eigenvector
+    assert np.abs(eigen_value - eigen_value_max) <= 1e-6
+    # Take absolute values element wise of each eigenvector.
     # as they are only unique to a minus sign.
-    assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigv_max)) <= 1e-6
+    assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_max)) <= 1e-6
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    tests()
+    test_power_iteration()
