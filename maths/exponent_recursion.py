@@ -1,17 +1,13 @@
 """
-        =============================== Finding Exponent using Recursion =======================
-
+        == Finding Exponent using Recursion ==
         i/p -->
         Enter the base: 3
         Enter the exponent: 4
-
         o/p -->
         3 to the power of 4: 81
-
         i/p -->
         Enter the base: 2
         Enter the exponent: 0
-
         o/p -->
         2 to the power of 0: 1
 """
