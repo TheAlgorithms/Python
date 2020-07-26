@@ -4,7 +4,6 @@ import numpy as np
 def power_iteration(
     input_matrix: np.array, vector: np.array, error_tol=1e-12, max_iterations=100
 ) -> [float, np.array]:
-
     """
     Power Iteration.
     Find the largest eignevalue and corresponding eigenvector
@@ -49,7 +48,6 @@ def power_iteration(
     error = 1e12
 
     while not convergence:
-
         # Multiple matrix by the vector.
         w = np.dot(input_matrix, vector)
         # Normalize the resulting output vector.
@@ -71,7 +69,9 @@ def power_iteration(
 
 
 def test_power_iteration() -> None:
-
+    """
+    >>> test_power_iteration()  # self running tests
+    """
     # Our implementation.
     input_matrix = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
     vector = np.array([41, 4, 20])
