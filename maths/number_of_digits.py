@@ -36,9 +36,9 @@ def num_digits_faster(n: int) -> int:
     Find the number of digits in a number.
     abs() is used for negative numbers
 
-    >>> num_digits2(12345)
+    >>> num_digits_faster(12345)
     5
-    >>> num_digits2(123)
+    >>> num_digits_faster(123)
     3
     """
     return (len(str(abs(n))))
