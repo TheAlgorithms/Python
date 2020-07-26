@@ -17,18 +17,18 @@
 """
 
 
-def powerCalculation(n: int, p: int) -> int:
+def power(n: int, p: int) -> int:
     if p == 0:
         return 1
     else:
-        return n * powerCalculation(n, (p - 1))
+        return n * power(n, (p - 1))
 
 
 if __name__ == "__main__":
     n = int(input("Enter the base: "))
     p = int(input("Enter the exponent: "))
 
-    result = powerCalculation(n, abs(p))
+    result = power(n, abs(p))
     if p < 0:
         result = 1 / result
         print("{} to the power of {}: {}".format(n, p, result))
