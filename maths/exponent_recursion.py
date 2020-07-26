@@ -14,7 +14,13 @@
         o/p -->
         2 to the power of 0: 1
 '''
-def powerCalculation(n: int, p: int)->int:
+def power(base: int, exponent: int)->int:
+    """
+    >>> all(power(base, exponent) == pow(base, exponent)
+    ...     for base in range(-10, 10) for exponent in range(10))
+    True
+    """
+    return base * power(base, exponent - 1) if exponent > 0 else 1
     if(p == 0):
         return 1
     else:
