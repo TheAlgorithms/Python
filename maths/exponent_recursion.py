@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     result = power(n, abs(p))
     if p < 0:
-        result = 1 / result
-        print("{} to the power of {}: {}".format(n, p, result))
+        newResult = 1 / result
+        print("{} to the power of {}: {}".format(n, p, newResult))
     else:
         print("{} to the power of {}: {}".format(n, p, result))
