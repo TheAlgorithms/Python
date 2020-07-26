@@ -70,7 +70,7 @@ def power_iteration(
     return lamda, vector
 
 
-def tests() -> None:
+def test_power_iteration() -> None:
 
     # Our implementation.
     A = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
