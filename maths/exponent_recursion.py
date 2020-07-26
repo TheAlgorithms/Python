@@ -13,20 +13,20 @@
 """
 
 
-def power(n: int, p: int) -> int:
-    if p == 0:
+def power(base: int, exponent: int) -> int:
+    if exponent == 0:
         return 1
     else:
-        return n * power(n, (p - 1))
+        return base * power(base, (exponent - 1))
 
 
 if __name__ == "__main__":
-    n = int(input("Enter the base: "))
-    p = int(input("Enter the exponent: "))
+    base = int(input("Enter the base: "))
+    exponent = int(input("Enter the exponent: "))
 
-    result = power(n, abs(p))
-    if p < 0:
+    result = power(base, abs(exponent))
+    if exponent < 0:
         newResult = 1 / result
-        print("{} to the power of {}: {}".format(n, p, newResult))
+        print("{} to the power of {}: {}".format(base, exponent, newResult))
     else:
-        print("{} to the power of {}: {}".format(n, p, result))
+        print("{} to the power of {}: {}".format(base, exponent, result))
