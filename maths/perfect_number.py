@@ -16,7 +16,7 @@ def perfect(number: int) -> bool:
     divisors = []
     for i in range(1, ((number // 2) + 1)):
         """
-                starting from 1 as divion by 0
+                starting from 1 as division by 0
                 will raise error.
                 A number at most can be divisible
                 by the half of the number except
