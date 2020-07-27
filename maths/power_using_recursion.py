@@ -5,7 +5,7 @@
         Enter the exponent: 4
     Output  -->
         3 to the power of 4: 81
-    Inout -->
+    Input -->
         Enter the base: 2
         Enter the exponent: 0
     Output -->
@@ -33,4 +33,4 @@ if __name__ == "__main__":
     result = power(base, abs(exponent))
     if exponent < 0:  # power() does not properly deal w/ negative exponents
         result = 1 / result
-    print(f"{base} to the power of {exponent} is {result}"
+    print(f"{base} to the power of {exponent} is {result}")
