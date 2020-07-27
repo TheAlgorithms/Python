@@ -2,10 +2,9 @@
 Find the area of various geometric shapes
 """
 from math import pi
-from typing import Union
 
 
-def surface_area_cube(side_length: Union[int, float]) -> float:
+def surface_area_cube(side_length: float) -> float:
     """
     Calculate the Surface Area of a Cube.
 
@@ -14,7 +13,7 @@ def surface_area_cube(side_length: Union[int, float]) -> float:
     >>> surface_area_cube(3)
     54
     """
-    return 6 * pow(side_length, 2)
+    return 6 * side_length ** 2
 
 
 def surface_area_sphere(radius: float) -> float:
@@ -28,10 +27,10 @@ def surface_area_sphere(radius: float) -> float:
     >>> surface_area_sphere(1)
     12.566370614359172
     """
-    return 4 * pi * pow(radius, 2)
+    return 4 * pi * radius ** 2
 
 
-def area_rectangle(length, width):
+def area_rectangle(length: float, width: float) -> float:
     """
     Calculate the area of a rectangle
 
@@ -41,17 +40,17 @@ def area_rectangle(length, width):
     return length * width
 
 
-def area_square(side_length):
+def area_square(side_length: float) -> float:
     """
     Calculate the area of a square
 
     >>> area_square(10)
     100
     """
-    return pow(side_length, 2)
+    return side_length ** 2
 
 
-def area_triangle(base, height):
+def area_triangle(base: float, height: float) -> float:
     """
     Calculate the area of a triangle
 
@@ -61,7 +60,7 @@ def area_triangle(base, height):
     return (base * height) / 2
 
 
-def area_parallelogram(base, height):
+def area_parallelogram(base: float, height: float) -> float:
     """
     Calculate the area of a parallelogram
 
@@ -71,7 +70,7 @@ def area_parallelogram(base, height):
     return base * height
 
 
-def area_trapezium(base1, base2, height):
+def area_trapezium(base1: float, base2: float, height: float) -> float:
     """
     Calculate the area of a trapezium
 
@@ -81,14 +80,14 @@ def area_trapezium(base1, base2, height):
     return 1 / 2 * (base1 + base2) * height
 
 
-def area_circle(radius):
+def area_circle(radius: float) -> float:
     """
     Calculate the area of a circle
 
     >>> area_circle(20)
     1256.6370614359173
     """
-    return pi * pow(radius, 2)
+    return pi * radius ** 2
 
 
 def main():
