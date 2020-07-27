@@ -1,21 +1,23 @@
 from typing import Callable, Optional
 
 
-def bisection(
-    function: Callable[[float], float], a: float, b: float
-) -> Optional[float]:
+def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     """
     finds where function becomes 0 in [a,b] using bolzano
     >>> bisection(lambda x: x ** 3 - 1, -5, 5)
     1.0000000149011612
     >>> bisection(lambda x: x ** 3 - 1, 2, 1000)
-    couldn't find root in [ 2 , 1000 ]
+    Traceback (most recent call last):
+    ...
+    Exception: could not find root in given interval.
     >>> bisection(lambda x: x ** 2 - 4 * x + 3, 0, 2)
     1.0
     >>> bisection(lambda x: x ** 2 - 4 * x + 3, 2, 4)
     3.0
     >>> bisection(lambda x: x ** 2 - 4 * x + 3, 4, 1000)
-    couldn't find root in [ 4 , 1000 ]
+    Traceback (most recent call last):
+    ...
+    Exception: could not find root in given interval.
     """
     start: float = a
     end: float = b
@@ -27,8 +29,7 @@ def bisection(
         function(a) * function(b) > 0
     ):  # if none of these are root and they are both positive or negative,
         # then this algorithm can't find the root
-        print("couldn't find root in [", a, ",", b, "]")
-        return None
+        raise Exception("could not find root in given interval.")
     else:
         mid: float = start + (end - start) / 2.0
         while abs(start - mid) > 10 ** -7:  # until precisely equals to 10^-7
@@ -42,6 +43,13 @@ def bisection(
         return mid
 
 
+def f(x: float) -> float:
+    return x ** 3 - 2 * x - 5
+
+
 if __name__ == "__main__":
+    print(bisection(f, 1, 1000))
+
     import doctest
+
     doctest.testmod()
