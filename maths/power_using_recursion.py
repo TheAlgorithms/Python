@@ -4,12 +4,12 @@
         Enter the base: 3
         Enter the exponent: 4
     Output  -->
-        3 to the power of 4: 81
+        3 to the power of 4 is 81
     Input -->
         Enter the base: 2
         Enter the exponent: 0
     Output -->
-        2 to the power of 0: 1
+        2 to the power of 0 is 1
 """
 
 
