@@ -1,5 +1,5 @@
 """
-Convert SI and Binary prefixes
+Convert International System of Units (SI) and Binary prefixes
 """
 
 from enum import Enum
@@ -49,6 +49,7 @@ def convert_si_prefix(
 ) -> float:
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Binary_prefix
+    Wikipedia reference: https://en.wikipedia.org/wiki/International_System_of_Units
     >>> convert_si_prefix(1, SI_Unit.giga, SI_Unit.mega)
     1000
     >>> convert_si_prefix(1, SI_Unit.mega, SI_Unit.giga)
@@ -57,15 +58,14 @@ def convert_si_prefix(
     1
     >>> convert_si_prefix(1, 'giga', 'mega')
     1000
+    >>> convert_si_prefix(1, 'gIGa', 'mEGa')
+    1000
     """
+    if isinstance(known_prefix, str):
+        known_prefix: SI_Unit = SI_Unit[known_prefix.lower()]
 
-    if type(known_prefix) is str:
-
-        known_prefix: SI_Unit = SI_Unit[known_prefix]
-
-    if type(unknown_prefix) is str:
-
-        unknown_prefix: SI_Unit = SI_Unit[unknown_prefix]
+    if isinstance(unknown_prefix, str):
+        unknown_prefix: SI_Unit = SI_Unit[unknown_prefix.lower()]
 
     unknown_amount = known_amount * (10 ** (known_prefix.value - unknown_prefix.value))
 
@@ -87,15 +87,14 @@ def convert_binary_prefix(
     1
     >>> convert_binary_prefix(1, 'giga', 'mega')
     1024
+    >>> convert_binary_prefix(1, 'gIGa', 'mEGa')
+    1024
     """
+    if isinstance(known_prefix, str):
+        known_prefix: Binary_Unit = Binary_Unit[known_prefix.lower()]
 
-    if type(known_prefix) is str:
-
-        known_prefix: Binary_Unit = Binary_Unit[known_prefix]
-
-    if type(unknown_prefix) is str:
-
-        unknown_prefix: Binary_Unit = Binary_Unit[unknown_prefix]
+    if isinstance(unknown_prefix, str):
+        unknown_prefix: Binary_Unit = Binary_Unit[unknown_prefix.lower()]
 
     unknown_amount = known_amount * (
         2 ** ((known_prefix.value - unknown_prefix.value) * 10)
