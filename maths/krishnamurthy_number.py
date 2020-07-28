@@ -30,7 +30,6 @@ def krishnamurthy(number: int) -> bool:
     True
     """
 
-
     factSum = 0
     duplicate = number
     while duplicate > 0:
