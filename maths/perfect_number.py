@@ -17,6 +17,15 @@ def perfect(number: int) -> bool:
     divisors = []
     for i in range(1, ((number // 2) + 1)):
         """
+                >>> perfect(27)
+                False
+                >>> perfect(28)
+                True
+                >>> perfect(29)
+                False
+        """
+
+        """
                 starting from 1 as division by 0
                 will raise error.
                 A number at most can be divisible
@@ -24,15 +33,6 @@ def perfect(number: int) -> bool:
                 the number itself
                 6 at most can be divisible by 3
                 except 6 itself
-        """
-
-        """
-                >>> perfect(27)
-                False
-                >>> perfect(28)
-                True
-                >>> perfect(29)
-                False
         """
 
         if (number % i) == 0:
@@ -47,4 +47,4 @@ def perfect(number: int) -> bool:
 if __name__ == "__main__":
     print("Program to check whether a number is a Perfect number or not.......")
     number = int(input("Enter number: "))
-    print(f"{number} is {'' if perfect(number) else 'not'} a Perfect Number.")
+    print(f"{number} is {'' if perfect(number) else 'not '} a Perfect Number.")
