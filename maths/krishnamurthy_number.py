@@ -20,7 +20,6 @@ def factorial(digit: int) -> int:
 
 def krishnamurthy(number: int) -> bool:
     """
-
     >>> krishnamurthy(145)
     True
 
@@ -29,8 +28,8 @@ def krishnamurthy(number: int) -> bool:
 
     >>> krishnamurthy(1)
     True
-    
     """
+
 
     factSum = 0
     duplicate = number
