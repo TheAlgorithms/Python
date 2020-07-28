@@ -15,6 +15,9 @@ def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
 
     >>> gaussian(24)
     3.342714441794458e-126
+    
+    >>>gaussian(1,4,2)
+    0.06475879783294587
 
     Supports NumPy Arrays
     Use numpy.meshgrid with this to generate gaussian blur on images.
