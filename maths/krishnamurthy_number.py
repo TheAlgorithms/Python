@@ -41,4 +41,6 @@ def krishnamurthy(number: int) -> bool:
 if __name__ == "__main__":
     print("Program to check whether a number is a Krisnamurthy Number or not")
     number = int(input("Enter number: ").strip())
-    print(f"{number} is {'' if krishnamurthy(number) else 'not '} a Krishnamurthy Number.")
+    print(
+        f"{number} is {'' if krishnamurthy(number) else 'not '} a Krishnamurthy Number."
+    )
