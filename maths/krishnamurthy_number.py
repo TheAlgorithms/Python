@@ -1,5 +1,5 @@
 """
-=== Krishnamurthy Number ===
+ == Krishnamurthy Number ==
 It is also known as Peterson Number
 A Krishnamurthy Number is a number whose sum of the
 factorial of the digits equals to the original
@@ -11,11 +11,16 @@ For example: 145 = 1! + 4! + 5!
 
 
 def factorial(digit: int) -> int:
+    """
+    function to calculate factorial of each digit
+    """
+
     return 1 if (digit == 0 or digit == 1) else (digit * factorial(digit - 1))
 
 
 def krishnamurthy(number: int) -> bool:
     """
+
     >>> krishnamurthy(145)
     True
 
@@ -23,6 +28,8 @@ def krishnamurthy(number: int) -> bool:
     False
 
     >>> krishnamurthy(1)
+    True
+    
     """
 
     factSum = 0
