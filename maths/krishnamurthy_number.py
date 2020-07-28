@@ -11,7 +11,7 @@ For example: 145 = 1! + 4! + 5!
 
 
 def factorial(digit: int) -> int:
-    return 1 if(digit == 0 or digit == 1) else (digit * factorial(digit - 1))
+    return 1 if (digit == 0 or digit == 1) else (digit * factorial(digit - 1))
 
 
 def krishnamurthy(number: int) -> bool:
@@ -25,10 +25,9 @@ def krishnamurthy(number: int) -> bool:
     >>> krishnamurthy(1)
     """
 
-    
     factSum = 0
     duplicate = number
-    while(duplicate > 0):
+    while duplicate > 0:
         factSum += factorial(duplicate % 10)
         duplicate //= 10
     return factSum == number
@@ -37,4 +36,6 @@ def krishnamurthy(number: int) -> bool:
 if __name__ == "__main__":
     print("Program to check whether a number is a Krisnamurthy Number or not")
     number = int(input("Enter number: ").strip())
-    print(f"{number} is {'' if krishnamurthy(number) else 'not '} a Krishnamurthy Number.")
+    print(
+        f"{number} is {'' if krishnamurthy(number) else 'not '} a Krishnamurthy Number."
+    )
