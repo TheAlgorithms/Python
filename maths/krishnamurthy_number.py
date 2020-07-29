@@ -19,7 +19,7 @@ def factorial(digit: int) -> int:
     1
 
     >>> factorial(5)
-    120    
+    120
     function to calculate factorial of each digit
     """
 
