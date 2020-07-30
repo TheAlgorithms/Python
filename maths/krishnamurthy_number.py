@@ -14,13 +14,10 @@ def factorial(digit: int) -> int:
     """
     >>> factorial(3)
     6
-
     >>> factorial(0)
     1
-
     >>> factorial(5)
     120
-    function to calculate factorial of each digit
     """
 
     return 1 if digit in (0, 1) else (digit * factorial(digit - 1))
@@ -30,10 +27,8 @@ def krishnamurthy(number: int) -> bool:
     """
     >>> krishnamurthy(145)
     True
-
     >>> krishnamurthy(240)
     False
-
     >>> krishnamurthy(1)
     True
     """
