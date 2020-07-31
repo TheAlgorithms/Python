@@ -11,11 +11,11 @@ https://en.wikipedia.org/wiki/Anagram
 
 def anagram(firstWord: str, secondWord: str) -> bool:
     """
-    >>> anagram(listen, silent)
+    >>> anagram("listen", "silent")
     True
-    >>> anagram(rat, bat)
+    >>> anagram("rat", "bat")
     False
-    >>> anagram(tool, loot)
+    >>> anagram("tool", "loot")
     True
     """
 
