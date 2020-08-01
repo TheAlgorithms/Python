@@ -33,11 +33,12 @@ def newton(function: RealFunc, derivative: RealFunc, starting_int: int,) -> floa
             next_guess: float = prev_guess - function(prev_guess) / derivative(
                 prev_guess
             )
-            if abs(prev_guess - next_guess) < 10 ** -5:
-                return next_guess
-            prev_guess = next_guess
         except ZeroDivisionError:
             raise ZeroDivisionError("Could not find root")
+
+        if abs(prev_guess - next_guess) < 10 ** -5:
+            return next_guess
+        prev_guess = next_guess
 
 
 def f(x: float) -> float:
