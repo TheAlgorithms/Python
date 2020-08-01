@@ -5,7 +5,7 @@
 - Each link references the next link and the previous one.
 - A Doubly Linked List (DLL) contains an extra pointer, typically called previous
     pointer, together with next pointer and data which are there in singly linked list.
- - Advantages over SLL - IT can be traversed in both forward and backward direction.,
+ - Advantages over SLL - It can be traversed in both forward and backward direction.
      Delete operation is more efficient"""
 
 
