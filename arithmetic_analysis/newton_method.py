@@ -3,13 +3,11 @@
 # Newton's Method - https://en.wikipedia.org/wiki/Newton%27s_method
 from typing import Callable
 
+RealFunc = Callable[[float], float]  # type alias for a real -> real function
+
 
 # function is the f(x) and derivative is the f'(x)
-def newton(
-    function: Callable[[float], float],
-    derivative: Callable[[float], float],
-    starting_int: int,
-) -> float:
+def newton(function: RealFunc, derivative: RealFunc, starting_int: int,) -> float:
     """
     >>> newton(lambda x: x ** 3 - 2 * x - 5, lambda x: 3 * x ** 2 - 2, 3)
     2.0945514815423474
@@ -27,17 +25,19 @@ def newton(
     >>> newton(math.cos, lambda x: -math.sin(x), 0)
     Traceback (most recent call last):
     ...
-    ZeroDivisionError: float division by zero, could not find root
+    ZeroDivisionError: Could not find root
     """
     prev_guess: float = starting_int
     while True:
-        if derivative(prev_guess) == 0:
-            raise ZeroDivisionError("float division by zero, could not find root")
-
-        next_guess: float = prev_guess - function(prev_guess) / derivative(prev_guess)
-        if abs(prev_guess - next_guess) < 10 ** -5:
-            return next_guess
-        prev_guess = next_guess
+        try:
+            next_guess: float = prev_guess - function(prev_guess) / derivative(
+                prev_guess
+            )
+            if abs(prev_guess - next_guess) < 10 ** -5:
+                return next_guess
+            prev_guess = next_guess
+        except ZeroDivisionError:
+            raise ZeroDivisionError("Could not find root")
 
 
 def f(x: float) -> float:
