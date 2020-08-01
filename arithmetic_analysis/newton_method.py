@@ -27,7 +27,7 @@ def newton(function: RealFunc, derivative: RealFunc, starting_int: int,) -> floa
     ...
     ZeroDivisionError: Could not find root
     """
-    prev_guess float(starting_int)
+    prev_guess = float(starting_int)
     while True:
         try:
             next_guess = prev_guess - function(prev_guess) / derivative(prev_guess)
