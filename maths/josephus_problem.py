@@ -1,3 +1,9 @@
+'''
+For more information about this prtoblem-
+https://en.wikipedia.org/wiki/Josephus_problem#:~:text=In%20computer%20science%20and%20mathematics,a%20certain%20counting%2Dout%20game
+https://www.geogebra.org/m/ExvvrBbR
+'''
+
 class Node:
     def __init__(self, value):
         self.value = value
