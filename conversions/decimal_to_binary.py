@@ -1,5 +1,6 @@
 """Convert a Decimal Number to a Binary Number."""
 
+from collections import deque
 
 def decimal_to_binary(num: int) -> str:
 
@@ -42,9 +43,9 @@ def decimal_to_binary(num: int) -> str:
         negative = True
         num = -num
 
-    binary = []
+    binary = deque()
     while num > 0:
-        binary.insert(0, num % 2)
+        binary.appendleft(num % 2)
         num >>= 1
 
     if negative:
