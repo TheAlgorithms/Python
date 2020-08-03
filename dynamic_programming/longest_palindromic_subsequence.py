@@ -1,6 +1,8 @@
 """
 Longest Palindromic Subsequence Problem:
-Find the longest sequence of characters from a given input string that is the same backwards and forwards
+Find the longest sequence of characters from a given input string that
+is the same backwards and forwards
+https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
 """
 
 
