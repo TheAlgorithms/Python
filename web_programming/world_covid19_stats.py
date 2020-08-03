@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 
 '''
-This programs gives the latest statistics related to the situaion of Covid 19 all around the world.
-The data is being scrapped from 'https://www.worldometers.info/coronavirus/'.
+Provide the current worldwide COVID-19 statistics.
+This data is being scrapped from 'https://www.worldometers.info/coronavirus/'.
 '''
 
 import requests
 from bs4 import BeautifulSoup
 
 
-def world_covid19_stats(url: str="https://www.worldometers.info/coronavirus/") -> dict:
+def world_covid19_stats(url: str= "https://www.worldometers.info/coronavirus/") -> dict:
     """
-    Return a dict of world covid19 stats
+    Return a dict of current worldwide COVID-19 statistics
     """
     soup = BeautifulSoup(requests.get(url).text, 'html.parser')
     keys = soup.findAll('h1')
