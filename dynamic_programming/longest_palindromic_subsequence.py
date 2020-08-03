@@ -43,7 +43,7 @@ def longest_palindromic_subsequence(s: str, n: int) -> str:
 
 
 if __name__ == "__main__":
-    testCase = "ABAC"
+    test_case = "ABAC"
 
     n = len(testCase)
     print(
