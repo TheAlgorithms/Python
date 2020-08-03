@@ -6,49 +6,49 @@ https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
 """
 
 
-def longest_palindromic_subsequence(s: str, n: int) -> str:
+def longest_palindromic_subsequence(s: str, length: int) -> int:
 
     """
     Computes the longest Palindromic sequence of a string
 
-    :param string: str, the string we provide
-    :param n: int, the length of the string
+    :param s: str, the string we provide
+    :param length: int, the length of the string
     :return L[0][n - 1]: int, the length of the longest Palindromic subsequence
 
 
 
-    >>> LongestPalindromicSubsequence("ABBCDABBC",9)
+    >>> longest_palindromic_subsequence("ABBCDABBC",9)
     5
-    >>> LongestPalindromicSubsequence("ABACCG",6)
+    >>> longest_palindromic_subsequence("ABACCG",6)
     3
-    >>> LongestPalindromicSubsequence("55055901565109",14)
+    >>> longest_palindromic_subsequence("55055901565109",14)
     9
     """
 
     # creating an array to store the values generated
-    L = [[1 for i in range(n)] for i in range(n)]
+    dp_table = [[1 for i in range(length)] for i in range(length)]
 
     # Filling in the array created
-    for x in range(2, n + 1):
-        for y in range(n + 1 - x):
+    for x in range(2, length + 1):
+        for y in range(length + 1 - x):
             z = y + x - 1
-            if string[y] == string[z] and x == 2:
-                L[y][z] = 2
-            elif string[y] == string[z]:
-                L[y][z] = L[y + 1][z - 1] + 2
+            if s[y] == s[z] and x == 2:
+                dp_table[y][z] = 2
+            elif s[y] == s[z]:
+                dp_table[y][z] = dp_table[y + 1][z - 1] + 2
             else:
-                L[y][z] = max(L[y][z - 1], L[y + 1][z])
+                dp_table[y][z] = max(dp_table[y][z - 1], dp_table[y + 1][z])
 
-    return L[0][n - 1]
+    return dp_table[0][length - 1]
 
 
 if __name__ == "__main__":
     test_case = "ABAC"
 
-    n = len(testCase)
+    len_of_test_case = len(test_case)
     print(
         "The longest palindromic subsequence is: "
-        + str(LongestPalindromicSubsequence(testCase, n))
+        + str(longest_palindromic_subsequence(test_case, len_of_test_case))
     )
 
     import doctest
