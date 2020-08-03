@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def world_covid19_stats(url: str= "https://www.worldometers.info/coronavirus/") -> dict:
+def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") -> dict:
     """
     Return a dict of current worldwide COVID-19 statistics
     """
