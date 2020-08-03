@@ -6,7 +6,7 @@ https://en.wikipedia.org/wiki/Longest_common_subsequence_problem
 """
 
 
-def LongestPalindromicSubsequence(string, n):
+def longest_palindromic_subsequence(s: str, n: int) -> str:
 
     """
     Computes the longest Palindromic sequence of a string
