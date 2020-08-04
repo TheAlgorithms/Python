@@ -24,7 +24,7 @@ class process:
         self.turn_around_time = None
 
 
-n = int(input("Enter number of processes: "))
+n = int(input("Enter number of processes: ").strip())
 processes = []
 
 
