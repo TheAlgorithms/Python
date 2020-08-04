@@ -25,7 +25,7 @@ class process:
 
 
 if __name__ == "__main__":
-    
+
     n = int(input("Enter number of processes: ").strip())
     processes = []
 
