@@ -23,11 +23,11 @@ class process:
         self.waiting_time = None
         self.turn_around_time = None
 
+
 if __name__ == "__main__":
-        
+    
     n = int(input("Enter number of processes: ").strip())
     processes = []
-
 
     for i in range(n):
         process_name = input("Enter process name: ").strip()
@@ -42,7 +42,6 @@ if __name__ == "__main__":
     and will be appended to the array below
     """
     executed_processes = []
-
 
     """
     Linear Runtime of the Scheduling
@@ -108,9 +107,9 @@ if __name__ == "__main__":
         current_time += processes[k].burst_time
         del processes[k]
 
-
     """
-    Printing Process names in executed order, along with waiting time and turn around time
+    Printing Process names in executed order, along with waiting time
+    and turn around time
     """
     print("Process Name\tWaiting Time\t Turn Around Time")
     for process in executed_processes:
