@@ -2,6 +2,7 @@
 
 from collections import deque
 
+
 def decimal_to_binary(num: int) -> str:
 
     """
