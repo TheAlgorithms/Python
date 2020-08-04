@@ -21,12 +21,12 @@ lowest mileage but newest registration year.
 Thus the weights for each column are as follows:
 [0, 0, 1]
 
->>> scalg([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1])
+>>> procentual_proximity([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1])
 [[20, 60, 2012, 2.0], [23, 90, 2015, 1.0], [22, 50, 2011, 1.3333333333333335]]
 '''
 
 
-def scalg(source_data : list, weights : list) -> list:
+def procentual_proximity(source_data : list, weights : list) -> list:
 
     '''
     weights - int list
