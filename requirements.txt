@@ -5,8 +5,8 @@ flake8
 keras
 matplotlib
 mypy
-numpy>=1.17.4
-opencv-python
+numpy
+opencv-python; python_version <= '3.8'
 pandas
 pillow
 pytest
@@ -15,5 +15,5 @@ requests
 scikit-fuzzy
 sklearn
 sympy
-tensorflow
+tensorflow; python_version <= '3.8'
 xgboost
