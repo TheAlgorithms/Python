@@ -26,7 +26,7 @@ Thus the weights for each column are as follows:
 '''
 
 
-def scalg(source_data : list, weights : list):
+def scalg(source_data : list, weights : list) -> list:
 
     '''
     weights - int list
@@ -70,7 +70,7 @@ def scalg(source_data : list, weights : list):
 
         # weight not 0 or 1
         else:
-            raise Exception("Invalid weight of %f provided" % (weight))
+            raise ValueError("Invalid weight of %f provided" % (weight))
 
         score_lists.append(score)
 
