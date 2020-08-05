@@ -1,7 +1,7 @@
 # Factorial of a number using memoization
 
 
-def factorial(num):
+def factorial(num: int) -> int:
     """
     >>> factorial(7)
     5040
