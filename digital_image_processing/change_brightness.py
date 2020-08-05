@@ -6,12 +6,12 @@ def change_brightness(img: Image, level: float) -> Image:
     Change the brightness of a PIL Image to a given level.
     """
 
-    def brightness(c: int) -> int:
+    def brightness(c: int) -> float:
         """
         Fundamental Transformation/Operation that'll be performed on
         every bit.
         """
-        return int(128 + level + (c - 128))
+        return 128 + level + (c - 128)
 
     if not -255.0 <= level <= 255.0:
         raise ValueError("level must be between -255.0 (black) and 255.0 (white)")
