@@ -8,9 +8,9 @@ def least_common_multiple_slow(first_num: int, second_num: int) -> int:
 
     Learn more: https://en.wikipedia.org/wiki/Least_common_multiple
 
-    >>> least_common_multiple_slow(5,2)
+    >>> least_common_multiple_slow(5, 2)
     10
-    >>> least_common_multiple_slow(12,76)
+    >>> least_common_multiple_slow(12, 76)
     228
     """
     max_num = first_num if first_num >= second_num else second_num
