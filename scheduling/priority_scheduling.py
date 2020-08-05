@@ -76,7 +76,7 @@ def priority_schedule(processes: List[Process]) -> List[Process]:
     current_time = 0
 
     """
-    As long as there exists atleast one element in the original array,
+    As long as there exists at least one element in the original array,
     Priority Scheduling will keep running in loop
     """
     while len(processes) > 0:
