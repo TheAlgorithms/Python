@@ -142,4 +142,4 @@ if __name__ == "__main__":
 
     print("\nPriority schedule:")
     print("Process Name\tWaiting Time\t Turn Around Time")
-    print("\n".join(str(process) for process in processes))
+    print("\n".join(str(process) for process in priority_schedule(processes)))
