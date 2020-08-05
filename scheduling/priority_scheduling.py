@@ -57,11 +57,13 @@ def create_processes(number_of_processes: int = 0) -> List[Process]:
 def priority_schedule(processes: List[Process]) -> List[Process]:
     """
     >>> [process.name for process in priority_schedule([
-    ...     Process("a", 1, 2, 3),
-    ...     Process("b", 3, 2, 1),
-    ...     Process("c", 2, 2, 2),
+    ...     Process("P1", 0, 11, 3),
+    ...     Process("P2", 5, 28, 1),
+    ...     Process("P3", 12, 2, 4),
+    ...     Process("P4", 2, 10, 2),
+    ...     Process("P5", 9, 16, 4),
     ... ])]
-    [a, b, c]
+    ['P1', 'P2`, 'P4', 'P3', 'P5']
 
     Executed processes from the original array will be deleted
     and will be appended to the array below
