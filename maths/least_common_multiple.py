@@ -2,15 +2,15 @@ import unittest
 from timeit import timeit
 
 
-def lowest_common_multiple_slow(first_num: int, second_num: int) -> int:
+def least_common_multiple_slow(first_num: int, second_num: int) -> int:
     """
     Find the least common multiple of two numbers.
 
     Learn more: https://en.wikipedia.org/wiki/Least_common_multiple
 
-    >>> lowest_common_multiple_slow(5,2)
+    >>> least_common_multiple_slow(5,2)
     10
-    >>> lowest_common_multiple_slow(12,76)
+    >>> least_common_multiple_slow(12,76)
     228
     """
     max_num = first_num if first_num >= second_num else second_num
@@ -40,13 +40,13 @@ def greatest_common_divisor(a: int, b: int) -> int:
     return b if a == 0 else greatest_common_divisor(b % a, a)
 
 
-def lowest_common_multiple_fast(first_num: int, second_num: int) -> int:
+def least_common_multiple_fast(first_num: int, second_num: int) -> int:
     """
     Find the least common multiple of two numbers.
     https://en.wikipedia.org/wiki/Least_common_multiple#Using_the_greatest_common_divisor
-    >>> lowest_common_multiple_fast(5,2)
+    >>> least_common_multiple_fast(5,2)
     10
-    >>> lowest_common_multiple_fast(12,76)
+    >>> least_common_multiple_fast(12,76)
     228
     """
     return first_num / greatest_common_divisor(first_num, second_num) * second_num
@@ -54,15 +54,15 @@ def lowest_common_multiple_fast(first_num: int, second_num: int) -> int:
 
 def benchmark():
     setup = (
-        "from __main__ import lowest_common_multiple_slow, lowest_common_multiple_fast"
+        "from __main__ import least_common_multiple_slow, least_common_multiple_fast"
     )
     print(
-        "lowest_common_multiple_slow():",
-        timeit("lowest_common_multiple_slow(1000, 999)", setup=setup),
+        "least_common_multiple_slow():",
+        timeit("least_common_multiple_slow(1000, 999)", setup=setup),
     )
     print(
-        "lowest_common_multiple_fast():",
-        timeit("lowest_common_multiple_fast(1000, 999)", setup=setup),
+        "least_common_multiple_fast():",
+        timeit("least_common_multiple_fast(1000, 999)", setup=setup),
     )
 
 
@@ -83,8 +83,8 @@ class TestLeastCommonMultiple(unittest.TestCase):
 
     def test_lcm_function(self):
         for i, (first_num, second_num) in enumerate(self.test_inputs):
-            slow_result = lowest_common_multiple_slow(first_num, second_num)
-            fast_result = lowest_common_multiple_fast(first_num, second_num)
+            slow_result = least_common_multiple_slow(first_num, second_num)
+            fast_result = least_common_multiple_fast(first_num, second_num)
             with self.subTest(i=i):
                 self.assertEqual(slow_result, self.expected_results[i])
                 self.assertEqual(fast_result, self.expected_results[i])
