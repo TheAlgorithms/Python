@@ -164,6 +164,4 @@ We want your work to be readable by others; therefore, we encourage you to note 
   - **Join** [Gitter](https://gitter.im/TheAlgorithms) **now!**
   - Happy coding!
 
-Sahaj Adlakha
-
 Writer [@poyea](https://github.com/poyea), Jun 2019.
