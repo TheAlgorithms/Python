@@ -61,7 +61,7 @@ def priority_schedule(processes: List[Process]) -> List[Process]:
     ...     Process("P2", 5, 28, 1),
     ...     Process("P3", 12, 2, 4),
     ...     Process("P4", 2, 10, 2),
-    ...     Process("P5", 9, 16, 4),
+    ...     Process("P5", 9, 16, 5),
     ... ])]
     ['P1', 'P2`, 'P4', 'P3', 'P5']
 
