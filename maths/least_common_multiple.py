@@ -49,7 +49,7 @@ def least_common_multiple_fast(first_num: int, second_num: int) -> int:
     >>> least_common_multiple_fast(12,76)
     228
     """
-    return first_num / greatest_common_divisor(first_num, second_num) * second_num
+    return first_num // greatest_common_divisor(first_num, second_num) * second_num
 
 
 def benchmark():
