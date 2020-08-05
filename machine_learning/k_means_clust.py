@@ -60,6 +60,7 @@ from matplotlib import pyplot as plt
 from sklearn.metrics import pairwise_distances
 
 warnings.filterwarnings("ignore")
+pd.options.mode.chained_assignment = None
 
 TAG = "K-MEANS-CLUST/ "
 
