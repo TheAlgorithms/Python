@@ -1,35 +1,24 @@
 # Factorial of a number using memoization
 
+from functools import lru_cache
 
+
+@lru_cache
 def factorial(num: int) -> int:
     """
     >>> factorial(7)
     5040
-    
     >>> factorial(-1)
-    'Number should not be negative.'
-    
-    >>> [factorial(i) for i in range(5)]
-    [1, 1, 2, 6, 24]
+    Traceback (most recent call last):
+      ...
+    ValueError: Number should not be negative.
+    >>> [factorial(i) for i in range(10)]
+    [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880]
     """
-    result = [-1] * (num + 1)
-
     if num < 0:
-        return "Number should not be negative."
+        raise ValueError("Number should not be negative.")
 
-    return factorial_aux(num, result)
-
-
-def factorial_aux(num, result):
-
-    if num == 0 or num == 1:
-        return 1
-
-    if result[num] != -1:
-        return result[num]
-    else:
-        result[num] = num * factorial_aux(num - 1, result)
-        return result[num]
+    return 1 if num in (0, 1) else num * factorial(num - 1)
 
 
 if __name__ == "__main__":
