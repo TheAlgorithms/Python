@@ -1,43 +1,68 @@
 """
-Implementation of Priority Scheduling
+A Priority Scheduling algorithm
 
 https://en.wikipedia.org/wiki/Scheduling_(computing)#Priority_scheduling
 """
 
 from operator import attrgetter
-
-"""
-
-Creating a class process which will have
-all required attributes
-
-"""
+from typing import List
 
 
-class process:
-    def __init__(self, process_name, arrival_time, burst_time, priority):
-        self.process_name = process_name
+class Process:
+    def __init__(self, name: str, arrival_time: int, burst_time: int, priority: int):
+        self.name = name
         self.arrival_time = arrival_time
         self.burst_time = burst_time
         self.priority = priority
-        self.waiting_time = None
-        self.turn_around_time = None
+        self.waiting_time: int = 0
+        self.turn_around_time: int = 0
+
+    def __repr__(self):
+        """
+        >>> Process("Name", 1, 2, 3)
+        Process(name='Name', arrival_time=1, burst_time=2, priority=3)
+        """
+        return (
+            f"{self.__class__.__qualname__}(name='{self.name}', "
+            f"arrival_time={self.arrival_time}, burst_time={self.burst_time}, "
+            f"priority={self.priority})"
+        )
+
+    def __str__(self):
+        r"""
+        >>> str(Process("Name", 1, 2, 3))
+        'Name\t\t0\t\t0'
+        """
+        return f"{self.name}\t\t{self.waiting_time}\t\t{self.turn_around_time}"
 
 
-if __name__ == "__main__":
+def create_processes(number_of_processes: int = 0) -> List[Process]:
+    def get_data_for_process(process_number: int) -> Process:
+        return Process(
+            name=str(
+                input(f"Enter Name of process {process_number}: ").strip()
+                or process_number
+            ),
+            arrival_time=int(input("Enter Arrival time: ").strip() or process_number),
+            burst_time=int(input("Enter Burst time: ").strip() or process_number),
+            priority=int(input("Enter Priority: ").strip() or process_number),
+        )
 
-    n = int(input("Enter number of processes: ").strip())
-    processes = []
+    number_of_processes = number_of_processes or int(
+        input("Enter number of processes: ").strip() or 3
+    )
+    return [get_data_for_process(i) for i in range(number_of_processes)]
 
-    for i in range(n):
-        process_name = input("Enter process name: ").strip()
-        arrival_time = int(input("Enter arrival time: ").strip())
-        burst_time = int(input("Enter burst time: ").strip())
-        priority = int(input("Enter Priority: ").strip())
 
-        processes.append(process(process_name, arrival_time, burst_time, priority))
-
+def priority_schedule(processes: List[Process]) -> List[Process]:
     """
+    >>> [process.name for process in priority_schedule([
+    ...     Process("a", 1, 2, 3),
+    ...     Process("b", 3, 2, 1),
+    ...     Process("c", 2, 2, 2),
+    ... ])]
+    [a, b, c]
+
     Executed processes from the original array will be deleted
     and will be appended to the array below
     """
@@ -49,7 +74,7 @@ if __name__ == "__main__":
     current_time = 0
 
     """
-    As long as there exists at least one element in the original array,
+    As long as there exists atleast one element in the original array,
     Priority Scheduling will keep running in loop
     """
     while len(processes) > 0:
@@ -58,7 +83,7 @@ if __name__ == "__main__":
         To deal with more than one process with same priority level,
         the following array is created
         """
-        processes_with_highest_priority = []
+        processes_with_highest_priority: List[Process] = []
 
         """
         Retrieves current highest priority in the original array
@@ -107,16 +132,14 @@ if __name__ == "__main__":
         current_time += processes[k].burst_time
         del processes[k]
 
-    """
-    Printing Process names in executed order, along with waiting time
-    and turn around time
-    """
+    return executed_processes
+
+
+if __name__ == "__main__":
+    print("Priority schedule for processes:")
+    processes = create_processes()
+    print("\n".join(repr(process) for process in processes))
+
+    print("\nPriority schedule:")
     print("Process Name\tWaiting Time\t Turn Around Time")
-    for process in executed_processes:
-        print(
-            process.process_name
-            + "\t\t"
-            + str(process.waiting_time)
-            + "\t\t"
-            + str(process.turn_around_time)
-        )
+    print("\n".join(str(process) for process in processes))
