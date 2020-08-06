@@ -1,4 +1,4 @@
-'''
+"""
 developed by: markmelnic
 original repo: https://github.com/markmelnic/Scoring-Algorithm
 
@@ -23,17 +23,17 @@ Thus the weights for each column are as follows:
 
 >>> procentual_proximity([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1])
 [[20, 60, 2012, 2.0], [23, 90, 2015, 1.0], [22, 50, 2011, 1.3333333333333335]]
-'''
+"""
 
 
-def procentual_proximity(source_data : list, weights : list) -> list:
+def procentual_proximity(source_data: list, weights: list) -> list:
 
-    '''
+    """
     weights - int list
     possible values - 0 / 1
     0 if lower values have higher weight in the data set
     1 if higher values have higher weight in the data set
-    '''
+    """
 
     # getting data
     data_lists = []

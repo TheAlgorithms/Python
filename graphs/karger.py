@@ -5,20 +5,19 @@ An implementation of Karger's Algorithm for partitioning a graph.
 import random
 from typing import Dict, List, Set, Tuple
 
-
 # Adjacency list representation of this graph:
 # https://en.wikipedia.org/wiki/File:Single_run_of_Karger%E2%80%99s_Mincut_algorithm.svg
 TEST_GRAPH = {
-    '1': ['2', '3', '4', '5'],
-    '2': ['1', '3', '4', '5'],
-    '3': ['1', '2', '4', '5', '10'],
-    '4': ['1', '2', '3', '5', '6'],
-    '5': ['1', '2', '3', '4', '7'],
-    '6': ['7', '8', '9', '10', '4'],
-    '7': ['6', '8', '9', '10', '5'],
-    '8': ['6', '7', '9', '10'],
-    '9': ['6', '7', '8', '10'],
-    '10': ['6', '7', '8', '9', '3']
+    "1": ["2", "3", "4", "5"],
+    "2": ["1", "3", "4", "5"],
+    "3": ["1", "2", "4", "5", "10"],
+    "4": ["1", "2", "3", "5", "6"],
+    "5": ["1", "2", "3", "4", "7"],
+    "6": ["7", "8", "9", "10", "4"],
+    "7": ["6", "8", "9", "10", "5"],
+    "8": ["6", "7", "9", "10"],
+    "9": ["6", "7", "8", "10"],
+    "10": ["6", "7", "8", "9", "3"],
 }
 
 
@@ -61,8 +60,9 @@ def partition_graph(graph: Dict[str, List[str]]) -> Set[Tuple[str, str]]:
         for neighbor in uv_neighbors:
             graph_copy[neighbor].append(uv)
 
-        contracted_nodes[uv] = {contracted_node for contracted_node in
-                                contracted_nodes[u].union(contracted_nodes[v])}
+        contracted_nodes[uv] = {
+            node for node in contracted_nodes[u].union(contracted_nodes[v])
+        }
 
         # Remove nodes u and v.
         del graph_copy[u]
@@ -75,8 +75,12 @@ def partition_graph(graph: Dict[str, List[str]]) -> Set[Tuple[str, str]]:
 
     # Find cutset.
     groups = [contracted_nodes[node] for node in graph_copy]
-    return {(node, neighbor) for node in groups[0]
-            for neighbor in graph[node] if neighbor in groups[1]}
+    return {
+        (node, neighbor)
+        for node in groups[0]
+        for neighbor in graph[node]
+        if neighbor in groups[1]
+    }
 
 
 if __name__ == "__main__":
