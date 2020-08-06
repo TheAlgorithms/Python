@@ -61,8 +61,7 @@ def partition_graph(graph: Dict[str, List[str]]) -> Set[Tuple[str, str]]:
             graph_copy[neighbor].append(uv)
 
         contracted_nodes[uv] = {
-            contracted_node
-            for contracted_node in contracted_nodes[u].union(contracted_nodes[v])
+            node for node in contracted_nodes[u].union(contracted_nodes[v])
         }
 
         # Remove nodes u and v.
