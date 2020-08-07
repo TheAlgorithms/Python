@@ -37,11 +37,17 @@ class Process:
 
 
 def create_processes(number_of_processes: int = 0) -> List[Process]:
+    """
+    If a number of processes is not entered, default to 3
+    """
     def get_data_for_process(process_number: int) -> Process:
+        """
+        If a name is not entered, default to P1, P2, P3...
+        """
         return Process(
             name=str(
                 input(f"Enter Name of process {process_number}: ").strip()
-                or process_number
+                or f"P{process_number + 1}"
             ),
             arrival_time=int(input("Enter Arrival time: ").strip() or process_number),
             burst_time=int(input("Enter Burst time: ").strip() or process_number),
