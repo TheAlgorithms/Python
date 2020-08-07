@@ -63,7 +63,7 @@ def priority_schedule(processes: List[Process]) -> List[Process]:
     ...     Process("P4", 2, 10, 2),
     ...     Process("P5", 9, 16, 5),
     ... ])]
-    ['P1', 'P2`, 'P4', 'P3', 'P5']
+    ['P1', 'P5', 'P3', 'P4', 'P2']
 
     Executed processes from the original array will be deleted
     and will be appended to the array below
