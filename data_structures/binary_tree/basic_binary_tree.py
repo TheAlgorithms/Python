@@ -4,13 +4,13 @@ class Node:
     and left, right pointers.
     """
 
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
+    def __init__(self, data: int):
+        self.data: int = data
+        self.left: Node = None
+        self.right: Node = None
 
 
-def display(tree):  # In Order traversal of the tree
+def display(tree: Node):  # In Order traversal of the tree
 
     if tree is None:
         return
@@ -27,13 +27,13 @@ def display(tree):  # In Order traversal of the tree
 
 
 def depth_of_tree(
-    tree,
-):  # This is the recursive function to find the depth of binary tree.
+    tree: Node,
+) -> int:  # This is the recursive function to find the depth of binary tree.
     if tree is None:
         return 0
     else:
-        depth_l_tree = depth_of_tree(tree.left)
-        depth_r_tree = depth_of_tree(tree.right)
+        depth_l_tree: int = depth_of_tree(tree.left)
+        depth_r_tree: int = depth_of_tree(tree.right)
         if depth_l_tree > depth_r_tree:
             return 1 + depth_l_tree
         else:
@@ -41,8 +41,8 @@ def depth_of_tree(
 
 
 def is_full_binary_tree(
-    tree,
-):  # This function returns that is it full binary tree or not?
+    tree: Node,
+) -> bool:  # This function returns that is it full binary tree or not?
     if tree is None:
         return True
     if (tree.left is None) and (tree.right is None):
@@ -54,7 +54,7 @@ def is_full_binary_tree(
 
 
 def main():  # Main function for testing.
-    tree = Node(1)
+    tree: Node = Node(1)
     tree.left = Node(2)
     tree.right = Node(3)
     tree.left.left = Node(4)
