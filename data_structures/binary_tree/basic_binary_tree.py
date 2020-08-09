@@ -4,13 +4,13 @@ class Node:
     and left, right pointers.
     """
 
-    def __init__(self, data: int):
+    def __init__(self, data: int) -> None:
         self.data: int = data
         self.left: Node = None
         self.right: Node = None
 
 
-def display(tree: Node):  # In Order traversal of the tree
+def display(tree: Node) -> None:  # In Order traversal of the tree
 
     if tree is None:
         return
@@ -53,7 +53,7 @@ def is_full_binary_tree(
         return False
 
 
-def main():  # Main function for testing.
+def main() -> None:  # Main function for testing.
     tree: Node = Node(1)
     tree.left = Node(2)
     tree.right = Node(3)
