@@ -11,15 +11,15 @@ import random
 
 
 class my_queue:
-    def __init__(self):
-        self.data = []
+    def __init__(self) -> None:
+        self.data: list[str,int,float] = []
         self.head = 0
         self.tail = 0
 
     def is_empty(self):
         return self.head == self.tail
 
-    def push(self, data):
+    def push(self, data: int) -> None:
         self.data.append(data)
         self.tail = self.tail + 1
 
@@ -31,18 +31,22 @@ class my_queue:
     def count(self):
         return self.tail - self.head
 
-    def print(self):
+    def print(self) -> None:
         print(self.data)
         print("**************")
         print(self.data[self.head : self.tail])
 
 
 class my_node:
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
-        self.height = 1
+    """
+    This is the Class Node with a constructor that contains data variable to type data
+    height type in and left, right pointers.
+    """    
+    def __init__(self, data: int) -> None:
+        self.data: int = data
+        self.left: my_node = None
+        self.right: my_node = None
+        self.height: int = 1
 
     def get_data(self):
         return self.data
@@ -56,24 +60,24 @@ class my_node:
     def get_height(self):
         return self.height
 
-    def set_data(self, data):
-        self.data = data
+    def set_data(self, data: int) -> None:
+        self.data: int = data
         return
 
-    def set_left(self, node):
-        self.left = node
+    def set_left(self, node) -> None:
+        self.left: my_node = node
         return
 
-    def set_right(self, node):
+    def set_right(self, node) -> None:
         self.right = node
         return
 
-    def set_height(self, height):
-        self.height = height
+    def set_height(self, height: int) -> None:
+        self.height: int = height
         return
 
 
-def get_height(node):
+def get_height(node: my_node):
     if node is None:
         return 0
     return node.get_height()
@@ -85,7 +89,7 @@ def my_max(a, b):
     return b
 
 
-def right_rotation(node):
+def right_rotation(node: my_node):
     r"""
             A                      B
            / \                    / \
@@ -107,7 +111,7 @@ def right_rotation(node):
     return ret
 
 
-def left_rotation(node):
+def left_rotation(node: my_node):
     """
         a mirror symmetry rotation of the left_rotation
     """
@@ -122,7 +126,7 @@ def left_rotation(node):
     return ret
 
 
-def lr_rotation(node):
+def lr_rotation(node: my_node):
     r"""
             A              A                    Br
            / \            / \                  /  \
@@ -137,12 +141,12 @@ def lr_rotation(node):
     return right_rotation(node)
 
 
-def rl_rotation(node):
+def rl_rotation(node: my_node):
     node.set_right(right_rotation(node.get_right()))
     return left_rotation(node)
 
 
-def insert_node(node, data):
+def insert_node(node: my_node, data: int):
     if node is None:
         return my_node(data)
     if data < node.get_data():
@@ -168,19 +172,19 @@ def insert_node(node, data):
     return node
 
 
-def get_rightMost(root):
+def get_rightMost(root: my_node):
     while root.get_right() is not None:
         root = root.get_right()
     return root.get_data()
 
 
-def get_leftMost(root):
+def get_leftMost(root: my_node):
     while root.get_left() is not None:
         root = root.get_left()
     return root.get_data()
 
 
-def del_node(root, data):
+def del_node(root: my_node, data: int):
     if root.get_data() == data:
         if root.get_left() is not None and root.get_right() is not None:
             temp_data = get_leftMost(root.get_right())
@@ -256,18 +260,18 @@ class AVLtree:
     *************************************
     """
 
-    def __init__(self):
-        self.root = None
+    def __init__(self) -> None:
+        self.root: my_node = None
 
     def get_height(self):
         #        print("yyy")
         return get_height(self.root)
 
-    def insert(self, data):
+    def insert(self, data: int) -> None:
         print("insert:" + str(data))
         self.root = insert_node(self.root, data)
 
-    def del_node(self, data):
+    def del_node(self, data: int) -> None:
         print("delete:" + str(data))
         if self.root is None:
             print("Tree is empty!")
