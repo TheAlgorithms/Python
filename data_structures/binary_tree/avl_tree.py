@@ -12,7 +12,7 @@ import random
 
 class my_queue:
     def __init__(self) -> None:
-        self.data: list[str,int,float] = []
+        self.data: list[str, int, float] = []
         self.head = 0
         self.tail = 0
 
@@ -41,7 +41,7 @@ class my_node:
     """
     This is the Class Node with a constructor that contains data variable to type data
     height type in and left, right pointers.
-    """    
+    """
     def __init__(self, data: int) -> None:
         self.data: int = data
         self.left: my_node = None
