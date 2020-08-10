@@ -10,7 +10,7 @@ import math
 import random
 
 
-class my_queue:
+class MyQueue:
     def __init__(self) -> None:
         self.data: list[str, int, float] = []
         self.head = 0
@@ -31,21 +31,20 @@ class my_queue:
     def count(self):
         return self.tail - self.head
 
-    def print(self) -> None:
-        print(self.data)
-        print("**************")
-        print(self.data[self.head : self.tail])
+    def __str__(self) :
+        return str(self.data)
 
 
-class my_node:
+
+class Node:
     """
     This is the Class Node with a constructor that contains data variable to type data
     height type in and left, right pointers.
     """
     def __init__(self, data: int) -> None:
         self.data: int = data
-        self.left: my_node = None
-        self.right: my_node = None
+        self.left: Node = None
+        self.right: Node = None
         self.height: int = 1
 
     def get_data(self):
@@ -61,11 +60,11 @@ class my_node:
         return self.height
 
     def set_data(self, data: int) -> None:
-        self.data: int = data
+        self.data = data
         return
 
     def set_left(self, node) -> None:
-        self.left: my_node = node
+        self.left: Node = node
         return
 
     def set_right(self, node) -> None:
@@ -77,7 +76,7 @@ class my_node:
         return
 
 
-def get_height(node: my_node):
+def get_height(node: Node):
     if node is None:
         return 0
     return node.get_height()
@@ -89,7 +88,7 @@ def my_max(a, b):
     return b
 
 
-def right_rotation(node: my_node):
+def right_rotation(node: Node):
     r"""
             A                      B
            / \                    / \
@@ -111,7 +110,7 @@ def right_rotation(node: my_node):
     return ret
 
 
-def left_rotation(node: my_node):
+def left_rotation(node: Node):
     """
         a mirror symmetry rotation of the left_rotation
     """
@@ -126,7 +125,7 @@ def left_rotation(node: my_node):
     return ret
 
 
-def lr_rotation(node: my_node):
+def lr_rotation(node: Node):
     r"""
             A              A                    Br
            / \            / \                  /  \
@@ -141,14 +140,14 @@ def lr_rotation(node: my_node):
     return right_rotation(node)
 
 
-def rl_rotation(node: my_node):
+def rl_rotation(node: Node):
     node.set_right(right_rotation(node.get_right()))
     return left_rotation(node)
 
 
-def insert_node(node: my_node, data: int):
+def insert_node(node: Node, data: int):
     if node is None:
-        return my_node(data)
+        return Node(data)
     if data < node.get_data():
         node.set_left(insert_node(node.get_left(), data))
         if (
@@ -172,19 +171,19 @@ def insert_node(node: my_node, data: int):
     return node
 
 
-def get_rightMost(root: my_node):
+def get_rightMost(root: Node):
     while root.get_right() is not None:
         root = root.get_right()
     return root.get_data()
 
 
-def get_leftMost(root: my_node):
+def get_leftMost(root: Node):
     while root.get_left() is not None:
         root = root.get_left()
     return root.get_data()
 
 
-def del_node(root: my_node, data: int):
+def del_node(root: Node, data: int):
     if root.get_data() == data:
         if root.get_left() is not None and root.get_right() is not None:
             temp_data = get_leftMost(root.get_right())
@@ -261,7 +260,7 @@ class AVLtree:
     """
 
     def __init__(self) -> None:
-        self.root: my_node = None
+        self.root: Node = None
 
     def get_height(self):
         #        print("yyy")
@@ -280,7 +279,7 @@ class AVLtree:
 
     def __str__(self):  # a level traversale, gives a more intuitive look on the tree
         output = ""
-        q = my_queue()
+        q = MyQueue()
         q.push(self.root)
         layer = self.get_height()
         if layer == 0:
