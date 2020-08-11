@@ -29,17 +29,10 @@ def main():
     y = df_boston.iloc[:, -1]  # target variable
     # we are going to split the data with 75% train and 25% test sets.
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, random_state=0, test_size=0.25
-    )
-    # model parameter
-    params = {
-        "n_estimators": 500,
-        "max_depth": 5,
-        "min_samples_split": 4,
-        "learning_rate": 0.01,
-        "loss": "ls",
-    }
-    model = GradientBoostingRegressor(**params)
+            X, y, random_state=0, test_size=0.25)
+
+    model = GradientBoostingRegressor(n_estimators = 500,
+            max_depth =5,min_samples_split=4,learning_rate=0.01 )
     # training the model
     model.fit(X_train, y_train)
     """let have a look on the train and test score to see how good the model fit the data"""
