@@ -9,7 +9,7 @@ class Stack():
 # this function pop will take out the top element from the stack 
     def pop(self):
         return self.items.pop()
-# to check if the stack if empy without this we can't reverse the given string.
+# to check if the stack if empty without this we can't reverse the given string.
     def is_empty(self):
         return self.items == []
 # this function is optional it will just return to top of the stack when called
@@ -19,7 +19,7 @@ class Stack():
 
 def _reverse_(Stack, input_str_):
     # loop through the string then push it into the stack then
-    # pop the item fro tne stack append to an empty string variable
+    # pop the item from the stack append to an empty string variable
 
     for i in range(len(input_str_)):
 
