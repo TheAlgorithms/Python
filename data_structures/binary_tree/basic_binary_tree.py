@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 class Node:
     """
     This is the Class Node with a constructor that contains data variable to type data
