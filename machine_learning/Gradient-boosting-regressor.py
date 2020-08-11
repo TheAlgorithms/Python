@@ -13,29 +13,33 @@ from sklearn.model_selection import train_test_split
 
 def main():
 
-    # loading the dataset from the sklearn package
+    # loading the dataset from the sklearn
     df = load_boston()
     print(df.keys())
-    # now let construct a data frame with data and target variables
+    # now let construct a data frame
     df_boston = pd.DataFrame(df.data, columns=df.feature_names)
     # let add the target to the dataframe
     df_boston["Price"] = df.target
-    # let us print the first five rows using the head function
+    # print the first five rows using the head function
     print(df_boston.head())
-    print(df_boston.describe().T)  # to see summary statistics of the dataset
-    # Feature selection means for independent and dependent variables
+    # Summary statistics
+    print(df_boston.describe().T)
+    # Feature selection
 
     X = df_boston.iloc[:, :-1]
     y = df_boston.iloc[:, -1]  # target variable
-    # we are going to split the data with 75% train and 25% test sets.
+    # split the data with 75% train and 25% test sets.
     X_train, X_test, y_train, y_test = train_test_split(
-            X, y, random_state=0, test_size=0.25)
+        X, y, random_state=0, test_size=0.25
+    )
 
-    model = GradientBoostingRegressor(n_estimators = 500,
-            max_depth =5,min_samples_split=4,learning_rate=0.01 )
+    model = GradientBoostingRegressor(
+        n_estimators=500, max_depth=5, min_samples_split=4, learning_rate=0.01
+    )
     # training the model
     model.fit(X_train, y_train)
-    """let have a look on the train and test score to see how good the model fit the data"""
+    """let have a look on the train and test score 
+    to see how good the model fit the data"""
     score = model.score(X_train, y_train).round(3)
     print("Training score of GradientBoosting is :", score)
     print(
