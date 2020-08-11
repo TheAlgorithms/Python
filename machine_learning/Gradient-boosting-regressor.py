@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[17]:
-
-
 """Implementation of GradientBoostingRegressor in sklearn using the 
    boston dataset which is very popular for regression problem to 
    predict house price.
@@ -19,19 +13,19 @@ def main():
     # loading the dataset from the sklearn package
     df = load_boston()
     print(df.keys())
-    # now let constract a data frame with data and target variables
+    # now let construct a data frame with data and target variables
     df_boston = pd.DataFrame(df.data,columns =df.feature_names)
     # let add the target to the dataframe
     df_boston['Price']= df.target
     # let us print the first five rows using the head function
     print(df_boston.head())
     print(df_boston.describe().T) # to see summary statistics of the dataset
-    # Feature selection means for independant and dependent variables
+    # Feature selection means for independent and dependent variables
     X = df_boston.iloc[:,:-1]
     y = df_boston.iloc[:,-1] # target variable
     # we are going to split the data with 75% train and 25% test sets.
     X_train,X_test,y_train,y_test = train_test_split(X,y,random_state = 0, test_size = .25)
-    # now let set the parametes of our model
+    # now let set the parameters of the model
     params = {'n_estimators': 500, 'max_depth': 5, 'min_samples_split': 4,
           'learning_rate': 0.01, 'loss': 'ls'}
     model = GradientBoostingRegressor(**params)
@@ -56,7 +50,7 @@ def main():
     ax.set_xlabel('Actual')
     ax.set_ylabel('Predicted')
     ax.set_title("Truth vs Predicted")
-    # this show function will display the ploting 
+    # this show function will display the plotting 
     plt.show()
     
 
