@@ -1,76 +1,41 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# <h1> Problem Statement: Stock Market Analysis and Prediction
-# 
-# Explanation: Our aim is to create software that analyses previous stock data of certain companies,
-# with help of certain parameters that affect stock value. We are going to implement these values in data mining algorithms.
-# This will also help us to determine the values that particular stock will have in near future.
-# We will determine the Month’s High and Low with help of data mining algorithms.
-# In this project we are going to take a five years of stock data for our analysis and prediction
-
-
+""" We are going to predict the adj close price of microsoft stock price."""
 #Install the dependencies pip install quandl 
 import quandl
 import numpy as np 
-#plotly.offline.init_notebook_mode(connected=True)
-import plotly.offline as py
 from sklearn.model_selection import train_test_split
-from plotly.offline import iplot, init_notebook_mode
-init_notebook_mode()
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import r2_score, mean_squared_error
 import matplotlib.pyplot as plt
-
-
 # Get the stock data
 df = quandl.get("WIKI/MSFT")
 # Take a look at the data
 print(df.head())
-
-
 import plotly.express as px 
 fig = px.scatter(df, x="High", y="Low")
 fig.show()
-
-
 # Get the Adjusted Close Price 
 df = df[['Adj. Close']] 
 # Take a look at the new data 
 print(df.head())
-
-
-
 # A variable for predicting 'n' days out into the future
 forecast_out = 30 #'n=30' days
 #Create another column (the target ) shifted 'n' units up
 df['Prediction'] = df[['Adj. Close']].shift(-forecast_out)
 #print the new data set
 print(df.tail())
-
-
 # Convert the dataframe to a numpy array
 X = np.array(df.drop(['Prediction'],1))
-
 #Remove the last '30' rows
 X = X[:-forecast_out]
 print(X)
-
-
-
 ### Create the dependent data set (y)  #####
 # Convert the dataframe to a numpy array 
 y = np.array(df['Prediction'])
 # Get all of the y values except the last '30' rows
 y = y[:-forecast_out]
 print(y)
-
-
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-
-
-
-
+#these are the parametes that we are given to the gradient boosting regressor
 params = { 
     'loss':'ls',
     'learning_rate':0.1,
@@ -98,7 +63,8 @@ ax.set_xlabel('Actual')
 ax.set_ylabel('Predicted')
 ax.set_title("Ground Truth vs Predicted")
 plt.show()
-# deviance is a goodness-of-fit statistic for a statistical model; it is often used for statistical hypothesis testing. It is a generalization of the idea of using the sum of squares 
+# deviance is a goodness-of-fit statistic for a statistical model; it is often used for statistical hypothesis testing.
+#It is a generalization of the idea of using the sum of squares 
 #of residuals in ordinary least squares to cases where model-fitting is achieved by maximum likelihood. 
 test_score = np.zeros((params['n_estimators'],), dtype=np.float64)
 for i, y_pred in enumerate(model.staged_predict(x_test)):
