@@ -34,15 +34,7 @@ def depth_of_tree(tree: Node,) -> int:
     Recursive function that finds the depth of a binary tree.
     """
 
-    if tree is None:
-        return 0
-    else:
-        depth_l_tree = depth_of_tree(tree.left)
-        depth_r_tree = depth_of_tree(tree.right)
-        if depth_l_tree > depth_r_tree:
-            return 1 + depth_l_tree
-        else:
-            return 1 + depth_r_tree
+    return 1 + max(depth_of_tree(tree.left), depth_of_tree(tree.right)) if tree else 0
 
 
 def is_full_binary_tree(tree: Node,) -> bool:
