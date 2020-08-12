@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-class Disjoint_Set_Tree_Node:
+class DisjointSetTreeNode:
     # Disjoint Set Node to store the parent and rank
     def __init__(self, key: int) -> None:
         self.key = key
@@ -9,7 +9,7 @@ class Disjoint_Set_Tree_Node:
         self.rank = 0
 
 
-class Disjoint_Set_Tree:
+class DisjointSetTree:
     # Disjoint Set DataStructure
     def __init__(self):
         # map from node name to the node object
@@ -17,13 +17,14 @@ class Disjoint_Set_Tree:
 
     def make_set(self, x: int) -> None:
         # create a new set with x as its member
-        self.map[x] = Disjoint_Set_Tree_Node(x)
+        self.map[x] = DisjointSetTreeNode(x)
 
-    def find_set(self, x: int) -> Disjoint_Set_Tree_Node:
+    def find_set(self, x: int) -> DisjointSetTreeNode:
         # find the set x belongs to (with path-compression)
-        if self.map[x] != self.map[x].parent:
-            self.map[x].parent = self.find_set(self.map[x].parent.key)
-        return self.map[x].parent
+        elem_ref = self.map[x]
+        if elem_ref != elem_ref.parent:
+            elem_ref.parent = self.find_set(elem_ref.parent.key)
+        return elem_ref.parent
 
     def link(self, x: int, y: int) -> None:
         # helper function for union operation
@@ -87,7 +88,7 @@ class GraphUndirectedWeighted:
                     edges.append((start, end, self.connections[start][end]))
         edges.sort(key=lambda x: x[2])
         # creating the disjoint set
-        disjoint_set = Disjoint_Set_Tree()
+        disjoint_set = DisjointSetTree()
         [disjoint_set.make_set(node) for node in self.connections]
         # MST generation
         num_edges = 0
