@@ -43,15 +43,12 @@ class DisjointSetTree:
 class GraphUndirectedWeighted:
     def __init__(self):
         # connections: map from the node to the neighbouring nodes (with weights)
-        # nodes: counting the number of nodes in the graph
         self.connections = {}
-        self.nodes = 0
 
     def add_node(self, node: int) -> None:
         # add a node ONLY if its not present in the graph
         if node not in self.connections:
             self.connections[node] = {}
-            self.nodes += 1
 
     def add_edge(self, node1: int, node2: int, weight: int) -> None:
         # add an edge with the given weight
@@ -94,7 +91,7 @@ class GraphUndirectedWeighted:
         num_edges = 0
         index = 0
         graph = GraphUndirectedWeighted()
-        while num_edges < self.nodes - 1:
+        while num_edges < len(self.connections) - 1:
             u, v, w = edges[index]
             index += 1
             parentu = disjoint_set.find_set(u)
