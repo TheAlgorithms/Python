@@ -14,6 +14,8 @@ def num_digits(n: int) -> int:
     1
     >>> num_digits(-1)
     1
+    >>> num_digits(-123456)
+    6
     """
     digits = 0
     n = abs(n)
@@ -38,6 +40,8 @@ def num_digits_fast(n: int) -> int:
     1
     >>> num_digits_fast(-1)
     1
+    >>> num_digits_fast(-123456)
+    6
     """
     return 1 if n == 0 else math.floor(math.log(abs(n), 10) + 1)
 
@@ -55,6 +59,8 @@ def num_digits_faster(n: int) -> int:
     1
     >>> num_digits_faster(-1)
     1
+    >>> num_digits_faster(-123456)
+    6
     """
     return len(str(abs(n)))
 
