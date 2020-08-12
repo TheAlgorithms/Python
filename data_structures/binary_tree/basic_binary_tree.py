@@ -5,6 +5,7 @@ class Node:
     """
     A Node has data variable and pointers to Nodes to its left and right.
     """
+
     def __init__(self, data: int) -> None:
         self.data = data
         self.left: Optional[Node] = None
