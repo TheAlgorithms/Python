@@ -10,11 +10,20 @@ def num_digits(n: int) -> int:
     5
     >>> num_digits(123)
     3
+    >>> num_digits(0)
+    1
+    >>> num_digits(-1)
+    1
+    >>> num_digits(-123456)
+    6
     """
     digits = 0
-    while n > 0:
+    n = abs(n)
+    while True:
         n = n // 10
         digits += 1
+        if n == 0:
+            break
     return digits
 
 
@@ -27,8 +36,14 @@ def num_digits_fast(n: int) -> int:
     5
     >>> num_digits_fast(123)
     3
+    >>> num_digits_fast(0)
+    1
+    >>> num_digits_fast(-1)
+    1
+    >>> num_digits_fast(-123456)
+    6
     """
-    return math.floor(math.log(abs(n), 10) + 1)
+    return 1 if n == 0 else math.floor(math.log(abs(n), 10) + 1)
 
 
 def num_digits_faster(n: int) -> int:
@@ -40,6 +55,12 @@ def num_digits_faster(n: int) -> int:
     5
     >>> num_digits_faster(123)
     3
+    >>> num_digits_faster(0)
+    1
+    >>> num_digits_faster(-1)
+    1
+    >>> num_digits_faster(-123456)
+    6
     """
     return len(str(abs(n)))
 
@@ -133,3 +154,6 @@ if __name__ == "__main__":
     medium_num = 1125899906842624
     large_num = 1267650600228229401496703205376
     benchmark()
+    import doctest
+
+    doctest.testmod()
