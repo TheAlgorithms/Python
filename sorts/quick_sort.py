@@ -11,8 +11,9 @@ python quick_sort.py
 """
 
 
-def quick_sort(collection):
-    """Pure implementation of quick sort algorithm in Python
+def quick_sort(collection: list) -> list:
+    """
+    Pure implementation of quick sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -28,21 +29,20 @@ def quick_sort(collection):
     >>> quick_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    length = len(collection)
-    if length <= 1:
+    if len(collection) <= 1:
         return collection
-    else:
-        # Use the last element as the first pivot
-        pivot = collection.pop()
-        # Put elements greater than pivot in greater list
-        # Put elements lesser than pivot in lesser list
-        greater, lesser = [], []
-        for element in collection:
-            if element > pivot:
-                greater.append(element)
-            else:
-                lesser.append(element)
-        return quick_sort(lesser) + [pivot] + quick_sort(greater)
+    # Use the last element as the first pivot
+    pivot: int = collection.pop()
+    # Put elements greater than pivot in greater list
+    # Put elements lesser than pivot in lesser list
+    greater: list = []
+    lesser: list = []
+    for element in collection:
+        if element > pivot:
+            greater.append(element)
+        else:
+            lesser.append(element)
+    return quick_sort(lesser) + [pivot] + quick_sort(greater)
 
 
 if __name__ == "__main__":
