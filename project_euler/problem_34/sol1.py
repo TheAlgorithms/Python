@@ -70,7 +70,6 @@ def compute() -> int:
         for num in range(3, 7 * factorial(9) + 1)
         if sum_of_digit_factorial(num) == num
     )
-    return sum(the_list)
 
 
 if __name__ == "__main__":
