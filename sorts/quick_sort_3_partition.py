@@ -1,7 +1,7 @@
 """
 This is a pure Python implementation of the three partition quick sort algorithm
 
-This algortihm splits at each iteration a mutable ordered collection in 3 parts
+This algorithm splits at each iteration a mutable ordered collection in 3 parts
 1 : elements smaller than the pivot
 2 : elements equal to the pivot (not happening in 'simple' quick sort)
 3 : elements greater than the pivot
