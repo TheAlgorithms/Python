@@ -12,7 +12,7 @@ def factorial(n: int) -> int:
     >>> factorial(1)
     1
     >>> factorial(0)
-    0
+    1
     >>> factorial(-1)
     Traceback (most recent call last):
         ...
