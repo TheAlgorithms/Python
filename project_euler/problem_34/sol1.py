@@ -65,10 +65,11 @@ def compute() -> int:
     >>> compute()
     40730
     """
-    the_list = []
-    for num in range(3, 7 * factorial(9) + 1):
-        if sum_of_digit_factorial(num) == num:
-            the_list.append(num)
+    the_list = [
+        num
+        for num in range(3, 7 * factorial(9) + 1)
+        if sum_of_digit_factorial(num) == num
+    ]
     return sum(the_list)
 
 
