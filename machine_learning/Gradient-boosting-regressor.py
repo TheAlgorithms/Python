@@ -1,5 +1,5 @@
-"""Implementation of GradientBoostingRegressor in sklearn using the 
-   boston dataset which is very popular for regression problem to 
+"""Implementation of GradientBoostingRegressor in sklearn using the
+   boston dataset which is very popular for regression problem to
    predict house price.
 """
 
@@ -38,12 +38,13 @@ def main():
     )
     # training the model
     model.fit(X_train, y_train)
-    """let have a look on the train and test score 
+    """let have a look on the train and test score
     to see how good the model fit the data"""
     score = model.score(X_train, y_train).round(3)
     print("Training score of GradientBoosting is :", score)
     print(
-        "the test score of GradienBoosting is :", model.score(X_test, y_test).round(3)
+        "the test score of GradienBoosting is :",
+        model.score(X_test, y_test).round(3)
     )
     # Let us evaluation the model by finding the errors
     y_pred = model.predict(X_test)
@@ -56,7 +57,8 @@ def main():
     # So let's run the model against the test data
     fig, ax = plt.subplots()
     ax.scatter(y_test, y_pred, edgecolors=(0, 0, 0))
-    ax.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], "k--", lw=4)
+    ax.plot([y_test.min(), y_test.max()],
+            [y_test.min(), y_test.max()], "k--", lw=4)
     ax.set_xlabel("Actual")
     ax.set_ylabel("Predicted")
     ax.set_title("Truth vs Predicted")
