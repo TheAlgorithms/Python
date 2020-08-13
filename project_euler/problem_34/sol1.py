@@ -52,8 +52,6 @@ def sum_of_digit_factorial(n: int) -> int:
     >>> sum_of_digit_factorial(0)
     1
     """
-    digits = list(map(int, str(n)))
-    summ = sum(factorial(digit) for digit in digits)
     return sum(factorial(int(digit)) for digit in str(n))
 
 
