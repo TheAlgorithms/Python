@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug 13 15:50:44 2020
-
-@author: DeLL
-"""
 
 '''
 145 is a curious number, as 1! + 4! + 5! = 1 + 24 + 120 = 145.
