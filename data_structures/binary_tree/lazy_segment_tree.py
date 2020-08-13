@@ -2,21 +2,23 @@ import math
 
 
 class SegmentTree:
-    def __init__(self, N):
+    def __init__(self, N: int) -> None:
         self.N = N
-        self.st = [
+        self.st: List[int] = [
             0 for i in range(0, 4 * N)
         ]  # approximate the overall size of segment tree with array N
-        self.lazy = [0 for i in range(0, 4 * N)]  # create array to store lazy update
-        self.flag = [0 for i in range(0, 4 * N)]  # flag for lazy update
+        self.lazy: List[int] = [
+            0 for i in range(0, 4 * N)
+        ]  # create array to store lazy update
+        self.flag: List[int] = [0 for i in range(0, 4 * N)]  # flag for lazy update
 
-    def left(self, idx):
+    def left(self, idx: int) -> int:
         return idx * 2
 
-    def right(self, idx):
+    def right(self, idx: int) -> int:
         return idx * 2 + 1
 
-    def build(self, idx, l, r, A):  # noqa: E741
+    def build(self, idx: int, l: int, r: int, A: List[int]) -> None:  # noqa: E741
         if l == r:  # noqa: E741
             self.st[idx] = A[l - 1]
         else:
@@ -27,7 +29,9 @@ class SegmentTree:
 
     # update with O(lg N) (Normal segment tree without lazy update will take O(Nlg N)
     # for each update)
-    def update(self, idx, l, r, a, b, val):  # noqa: E741
+    def update(
+        self, idx: int, l: int, r: int, a: int, b: int, val: int
+    ) -> bool:  # noqa: E741
         """
         update(1, 1, N, a, b, v) for update val v to [a,b]
         """
@@ -57,7 +61,7 @@ class SegmentTree:
         return True
 
     # query with O(lg N)
-    def query(self, idx, l, r, a, b):  # noqa: E741
+    def query(self, idx: int, l: int, r: int, a: int, b: int) -> int:  # noqa: E741
         """
         query(1, 1, N, a, b) for query max of [a,b]
         """
@@ -78,7 +82,7 @@ class SegmentTree:
         q2 = self.query(self.right(idx), mid + 1, r, a, b)
         return max(q1, q2)
 
-    def showData(self):
+    def showData(self) -> None:
         showList = []
         for i in range(1, N + 1):
             showList += [self.query(1, 1, self.N, i, i)]
