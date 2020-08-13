@@ -21,7 +21,7 @@ def factorial(n: int) -> int:
     Traceback (most recent call last):
         ...
     ValueError: n must be >= 0
-    
+
     >>> factorial(1.1)
     Traceback (most recent call last):
         ...
@@ -45,7 +45,7 @@ def factorial(n: int) -> int:
 
 
 def sum_of_digit_factorial(n: int) -> int:
-    """ 
+    """
     Returns the sum of the digits in n
     >>> sum_of_digit_factorial(15)
     121
@@ -59,7 +59,7 @@ def sum_of_digit_factorial(n: int) -> int:
 
 def compute() -> int:
     """
-    Returns the sum of all numbers whose 
+    Returns the sum of all numbers whose
     sum of the factorials of all digits
     add up to the number itself.
     >>> compute()
