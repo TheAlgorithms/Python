@@ -4,20 +4,32 @@ with added heuristics for efficiency
 Union by Rank Heuristic and Path Compression
 """
 class DisjointSet:
-    def __init__(self, set_count):
+    def __init__(self, set_counts: list) -> None:
         """
-        Initialize with the number of items in each set
+        Initialize with a list of the number of items in each set
         and with rank = 1 for each set
         """
-        self.set_count = set_count
-        self.max_set = max(set_count)
-        num_sets = len(set_count)
+        self.set_counts = set_counts
+        self.max_set = max(set_counts)
+        num_sets = len(set_counts)
         self.ranks = [1] * num_sets
         self.parents = list(range(num_sets))
 
-    def merge(self, src, dst):
+    def merge(self, src: int, dst: int) -> bool:
         """
-        union by rank
+        Merge two sets together using Union by rank heuristic
+        Return True if successful
+        
+        Merge two disjoint sets 
+        >>> A = DisjointSet([1, 1, 1])
+        >>> A.merge(1, 2)
+        True
+        >>> A.merge(0, 2)
+        True
+        
+        merge already joined sets
+        >>> A.merge(0, 1)
+        False
         """
         src_parent = self.get_parent(src)
         dst_parent = self.get_parent(dst)
@@ -41,11 +53,17 @@ class DisjointSet:
         self.max_set = max(self.max_set, joined_set_size)
         return True
 
-    def get_parent(self, set):
+    def get_parent(self, disj_set: int) -> int:
         """
-        Find Parent and Compress Path
+        Find the Parent of a given set
+        >>> A.get_parent(0)
+        1
+        
+        >>> A.get_parent(2)
+        ...
+        IndexError: list index out of range 
         """
-        if self.parents[set] == set:
-            return set
-        self.parents[set] = self.get_parent(self.parents[set])
-        return self.parents[set]
+        if self.parents[disj_set] == disj_set:
+            return disj_set
+        self.parents[disj_set] = self.get_parent(self.parents[disj_set])
+        return self.parents[disj_set]
