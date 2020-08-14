@@ -10,7 +10,8 @@ from typing import List
 """
 
 
-def minimax(depth: int, node_index: int, is_max: bool, scores: List[int], height: float) -> int:
+def minimax(depth: int, node_index: int, is_max: bool,
+            scores: List[int], height: float) -> int:
     if depth == height:
         return scores[node_index]
 
