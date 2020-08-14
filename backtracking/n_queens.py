@@ -7,10 +7,12 @@
  diagonal lines.
 
 """
+from typing import List
+
 solution = []
 
 
-def isSafe(board, row, column):
+def is_safe(board: List[List[int]], row: int, column: int) -> bool:
     """
     This function returns a boolean value True if it is safe to place a queen there
     considering the current state of the board.
@@ -24,21 +26,21 @@ def isSafe(board, row, column):
 
     """
     for i in range(len(board)):
-        if board[row][i] == 1:
+        if board[row][i] == 1 or board[i][column] == 1:
             return False
-    for i in range(len(board)):
-        if board[i][column] == 1:
-            return False
+
     for i, j in zip(range(row, -1, -1), range(column, -1, -1)):
         if board[i][j] == 1:
             return False
+
     for i, j in zip(range(row, -1, -1), range(column, len(board))):
         if board[i][j] == 1:
             return False
+
     return True
 
 
-def solve(board, row):
+def solve(board: List[List[int]], row: int):
     """
     It creates a state space tree and calls the safe function until it receives a
     False Boolean and terminates that branch and backtracks to the next
@@ -51,7 +53,7 @@ def solve(board, row):
 
         """
         solution.append(board)
-        printboard(board)
+        print_board(board)
         print()
         return
     for i in range(len(board)):
@@ -61,14 +63,13 @@ def solve(board, row):
         If all the combinations for that particular branch are successful the board is
         reinitialized for the next possible combination.
         """
-        if isSafe(board, row, i):
+        if is_safe(board, row, i):
             board[row][i] = 1
             solve(board, row + 1)
             board[row][i] = 0
-    return False
 
 
-def printboard(board):
+def print_board(board: List[List[int]]):
     """
     Prints the boards that have a successful combination.
     """
