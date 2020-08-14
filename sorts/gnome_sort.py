@@ -2,9 +2,8 @@
 Gnome Sort Algorithm (A.K.A. Stupid Sort)
 
 This algorithm iterates over a list comparing an element with the previous one.
-If order is not respected, it swaps element backward until
-order is respected with previous element.
-It resumes the initial iteration from element new position.
+If order is not respected, it swaps element backward until order is respected with
+previous element.  It resumes the initial iteration from element new position.
 
 For doctests run following command:
 python3 -m doctest -v gnome_sort.py
@@ -18,9 +17,8 @@ def gnome_sort(lst: list) -> list:
     """
     Pure implementation of the gnome sort algorithm in Python
 
-    Take some mutable ordered collection with heterogeneous
-    comparable items inside as argument,
-    return the same collection ordered by ascending.
+    Take some mutable ordered collection with heterogeneous comparable items inside as
+    arguments, return the same collection ordered by ascending.
 
     Examples:
     >>> gnome_sort([0, 5, 3, 2, 2])
@@ -31,6 +29,9 @@ def gnome_sort(lst: list) -> list:
 
     >>> gnome_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    >>> "".join(gnome_sort(list(set("Gnomes are stupid!"))))
+    ' !Gadeimnoprstu'
     """
     if len(lst) <= 1:
         return lst
