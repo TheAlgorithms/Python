@@ -53,18 +53,14 @@ def even_digit(n: int) -> bool:
     >>> even_digit(-245679)
     True
     """
-    digits = "02468"
-    for i in digits:
-        if i in str(n):
-            return True
-    return False
+    return any([True for i in "02468" if i in str(n)])
 
 
-def find_circular_primes(limit: int=1000000) -> int:
+def find_circular_primes(limit: int = 1000000) -> int:
     """
     Returns the total count of all numbers
     below 1 million, which are circular primes
-    >>> compute()
+    >>> find_circular_primes(1000000)
     55
     """
     count = 1  # count already includes the number 2.
@@ -72,10 +68,10 @@ def find_circular_primes(limit: int=1000000) -> int:
         if is_prime(num) and not even_digit(num):
             str_num = str(num)
             list_nums = [int(str_num[j:] + str_num[:j]) for j in range(len(str_num))]
-            if all(list(map(is_prime, list_nums))):
+            if all([is_prime(i) for i in list_nums]):
                 count += 1
     return count
 
 
 if __name__ == "__main__":
-    print(f"len(find_circular_primes()) = }")
+    print(f"len(find_circular_primes()) = {find_circular_primes(1000000)}")
