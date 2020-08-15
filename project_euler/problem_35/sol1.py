@@ -22,7 +22,7 @@ if all are prime.
 seive = [True] * 1000001
 i = 2
 while i * i <= 1000000:
-    if seive[i] == True:
+    if seive[i]:
         for j in range(i * i, 1000001, i):
             seive[j] = False
     i += 1
