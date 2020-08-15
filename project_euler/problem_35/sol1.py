@@ -60,7 +60,7 @@ def even_digit(n: int) -> bool:
     return False
 
 
-def compute() -> int:
+def find_circular_primes(limit: int=1000000) -> int:
     """
     Returns the total count of all numbers
     below 1 million, which are circular primes
