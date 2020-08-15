@@ -67,7 +67,6 @@ def find_circular_primes(limit: int=1000000) -> int:
     >>> compute()
     55
     """
-    limit = 1000000
     count = 1  # count already includes the number 2.
     for num in range(3, limit + 1, 2):
         if is_prime(num) and not even_digit(num):
