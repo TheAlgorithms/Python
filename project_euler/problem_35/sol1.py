@@ -1,23 +1,16 @@
 """
 The number 197 is called a circular prime because all rotations of the digits:
 197, 971, and 719, are themselves prime.
-
 There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73,
 79, and 97.
-
 How many circular primes are there below one million?
-"""
 
-"""
 To solve this problem in an efficient manner, we will first mark all the primes
-below 1 million using the Seive of Eratosthenes.
-
-Then, out of all the primes, we will rule out the numbers which contain an even
-digit.
-
-After this we will generate each circular combination of the number and check
-if all are prime.
+below 1 million using the Seive of Eratosthenes.  Then, out of all these primes,
+we will rule out the numbers which contain an even digit.  After this we will
+generate each circular combination of the number and check if all are prime.
 """
+from typing import List
 
 seive = [True] * 1000001
 i = 2
@@ -30,8 +23,7 @@ while i * i <= 1000000:
 
 def is_prime(n: int) -> bool:
     """
-    Returns True if n is prime,
-    False otherwise, for 2<=n<=1000000
+    For 2 <= n <= 1000000, return True if n is prime.
     >>> is_prime(87)
     False
     >>> is_prime(23)
@@ -42,35 +34,35 @@ def is_prime(n: int) -> bool:
     return seive[n]
 
 
-def even_digit(n: int) -> bool:
+def contains_an_even_digit(n: int) -> bool:
     """
-    Returns True if n contains an even digit
-    otherwise False
-    >>> even_digit(0)
+    Return True if n contains an even digit.
+    >>> contains_an_even_digit(0)
     True
-    >>> even_digit(975317933)
+    >>> contains_an_even_digit(975317933)
     False
-    >>> even_digit(-245679)
+    >>> contains_an_even_digit(-245679)
     True
     """
-    return any([True for i in "02468" if i in str(n)])
+    return any(digit in "02468" for digit in str(n))
 
 
-def find_circular_primes(limit: int = 1000000) -> int:
+def find_circular_primes(limit: int = 1000000) -> List[int]:
     """
-    Returns the total count of all numbers
-    below 1 million, which are circular primes
-    >>> find_circular_primes(1000000)
+    Return circular primes below limit.
+    >>> len(find_circular_primes(100))
+    13
+    >>> len(find_circular_primes(1000000))
     55
     """
-    count = 1  # count already includes the number 2.
+    result = [2]  # result already includes the number 2.
     for num in range(3, limit + 1, 2):
-        if is_prime(num) and not even_digit(num):
+        if is_prime(num) and not contains_an_even_digit(num):
             str_num = str(num)
             list_nums = [int(str_num[j:] + str_num[:j]) for j in range(len(str_num))]
-            if all([is_prime(i) for i in list_nums]):
-                count += 1
-    return count
+            if all(is_prime(i) for i in list_nums):
+                result.append(num)
+    return result
 
 
 if __name__ == "__main__":
