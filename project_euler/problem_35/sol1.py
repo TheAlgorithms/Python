@@ -28,7 +28,7 @@ while i * i <= 1000000:
     i += 1
 
 
-def is_prime(n):
+def is_prime(n: int) -> bool:
     """
     Returns True if n is prime,
     False otherwise, for 2<=n<=1000000
@@ -42,7 +42,7 @@ def is_prime(n):
     return seive[n]
 
 
-def even_digit(n):
+def even_digit(n: int) -> bool:
     """
     Returns True if n contains an even digit
     otherwise False
@@ -60,7 +60,7 @@ def even_digit(n):
     return False
 
 
-def compute():
+def compute() -> int:
     """
     Returns the total count of all numbers
     below 1 million, which are circular primes
