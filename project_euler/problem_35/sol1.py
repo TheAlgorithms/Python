@@ -78,4 +78,4 @@ def find_circular_primes(limit: int=1000000) -> int:
 
 
 if __name__ == "__main__":
-    print(compute())
+    print(f"len(find_circular_primes()) = }")
