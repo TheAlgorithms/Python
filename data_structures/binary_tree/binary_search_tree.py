@@ -141,6 +141,17 @@ class BinarySearchTree:
         else:
             return traversal_function(self.root)
 
+    def inorder(self,arr,Node):
+        if Node:
+            self.inorder(arr,Node.left)
+            arr.append(Node.value)
+            self.inorder(arr,Node.right)
+
+    def find_Kth_Smallest(self,k,Node):
+        arr=[]
+        self.inorder(arr,Node)
+        arr.sort()
+        return arr[k-1]
 
 def postorder(curr_node):
     """
