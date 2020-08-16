@@ -52,7 +52,7 @@ def sum_of_digits_compact(n: int) -> int:
     >>> sum_of_digits_compact(0)
     0
     """
-    return sum(int(c) for c in str(n).lstrip("-"))
+    return sum(int(c) for c in str(abs(n)))
 
 
 def benchmark() -> None:
