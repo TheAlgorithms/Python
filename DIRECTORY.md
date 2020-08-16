@@ -297,6 +297,7 @@
     * [Power Iteration](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/power_iteration.py)
     * [Rayleigh Quotient](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/rayleigh_quotient.py)
     * [Test Linear Algebra](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/test_linear_algebra.py)
+    * [Transformations 2D](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/transformations_2d.py)
 
 ## Machine Learning
   * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
@@ -580,6 +581,10 @@
     * [Sol32](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_32/sol32.py)
   * Problem 33
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_33/sol1.py)
+  * Problem 34
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_34/sol1.py)
+  * Problem 35
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_35/sol1.py)
   * Problem 36
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_36/sol1.py)
   * Problem 40
