@@ -139,7 +139,7 @@ def benchmark() -> None:
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     small_num = 262144
     medium_num = 1125899906842624
     large_num = 1267650600228229401496703205376
