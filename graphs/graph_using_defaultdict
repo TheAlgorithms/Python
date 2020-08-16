@@ -1,0 +1,43 @@
+from collections import defaultdict
+ class Graph:
+  def __init__(self):
+    self.graph=defaultdict(list)
+  def add_edge(self,u,v):
+    self.graph[u].append(v)
+    self.graph[v].append(u)
+  def print(self):
+    print(self.graph)
+
+  def BFS(self,s):
+    visited=[False]*len(self.graph)
+    queue=[]
+    queue.append(s)
+    visited[s]=True
+    while queue:
+      x=queue.pop(0)
+      print(x)
+      for i in self.graph[x]:
+        if visited[i]!=True:
+          queue.append(i)
+          visited[i]=True
+        
+  def _DFS(self,visited,v):
+    visited[v]=True
+    print(v)
+    for i in self.graph[v]:
+      if visited[i]!=True:
+        self._DFS(visited,i)
+  def DFS(self,v):
+    visited=[False]*len(self.graph)
+    self._DFS(visited,v)
+
+a=Graph()
+a.add_edge(0,3)
+a.add_edge(0,1)
+a.add_edge(3,1)
+a.add_edge(2,1)
+a.add_edge(6,1)
+a.add_edge(3,2)
+a.add_edge(2,4)
+a.add_edge(1,5)
+a.add_edge(2,5)
