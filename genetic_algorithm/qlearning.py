@@ -5,16 +5,11 @@ Author: AryanRaj315
 """
 
 import numpy as np
-import pickle
+
 
 GAMMA = 0.9
 LEARNING_RATE = 0.7
-
-with open("Qtable.txt", "rb") as f:
-    """
-    This function is responsible for loading Qtable.txt if already present
-    """
-    Q_table = pickle.load(f)
+Q_table = np.ones((11, 4))
 
 
 def next_best_action(state: int, Q_table: np.ndarray) -> int:
@@ -244,5 +239,3 @@ def learn(state, action, reward, next_state, next_action, i, trialNumber, epsilo
     if trialNumber % 100 == 0:
         print("Printing Q_table: ")
         print(Q_table)
-        with open("Qtable.txt", "wb") as f:
-            pickle.dump(Q_table, f)
