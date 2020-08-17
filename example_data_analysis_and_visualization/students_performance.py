@@ -6,6 +6,7 @@ import numpy as np
 #pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 
+#remember to place csv file in local disk c
 filepath = 'c://StudentsPerformance.csv'
 df = pd.read_csv(filepath)
 
