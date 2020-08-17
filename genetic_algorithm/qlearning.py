@@ -7,6 +7,9 @@ Author: AryanRaj315
 import numpy as np
 import pickle
 
+GAMMA = 0.9
+LEARNING_RATE = 0.7
+
 with open("Qtable.txt", "rb") as f:
     """
     This function is responsible for loading Qtable.txt if already present
@@ -14,33 +17,26 @@ with open("Qtable.txt", "rb") as f:
     Q_table = pickle.load(f)
 
 
-def Action(state, Q_table):
+def next_best_action(state: int, Q_table: np.ndarray) -> int:
     """
-    This function returns the most suitable action value from the qtable.
+    Return the most suitable action value from Q_table or a random action
+    if there is no np.argmax(Q_table[state]).
+    >>> next_best_action(1, []) in [0, 1, 2, 3]
+    True
     """
     action = np.argmax(Q_table[state])
-    if action is None:
-        action = randomAction()
-    return action
+    return action if action is not None else np.random.choice([0, 1, 2, 3])
 
 
-def randomAction():
-    """
-    This function returns random action just in case the Qtable values return None.
-    """
-    action = np.random.choice([0, 1, 2, 3])
-    return action
-
-
-def StateActionReward(player, x_food, y_food):
+def state_action_reward(player, x_food, y_food):
     """
     This function returns state, action and reward to update the Qtable.
     """
     x_agent, y_agent = player.body[0].pos
-    state = State(player, x_food, y_food)
-    action = Action(state, Q_table)
-    reward = Reward(player, x_food, y_food)
-    return state, action, reward
+    current_state = state(player, x_food, y_food)
+    current_action = next_best_action(state, Q_table)
+    current_reward = reward(player, x_food, y_food)
+    return current_state, current_action, current_reward
 
 
 # States to consider:
@@ -52,7 +48,7 @@ def StateActionReward(player, x_food, y_food):
 #   * obstruction Ahead, Right, Left
 
 
-def State(player, x_food, y_food):
+def state(player, x_food, y_food):
     """
     This function Checks for the food in nine directions and returns state.
     """
@@ -188,7 +184,7 @@ def dist(x1, y1, x2, y2):
 #   * -7 for going away from the fruit
 
 
-def Reward(player, x_food, y_food):
+def reward(player, x_food, y_food):
     """
     This function assigns the reward to the agent according to the action taken
     """
@@ -233,16 +229,14 @@ def Reward(player, x_food, y_food):
         return -7
 
 
-def Learn(state, action, reward, next_state, next_action, i, trialNumber, epsilon):
+def learn(state, action, reward, next_state, next_action, i, trialNumber, epsilon):
     """
     This function is for iteratively updating the Qtable.
     """
-    gamma = 0.9
-    learning_rate = 0.7
     currentQ = Q_table[state][action]
     nextQ = Q_table[next_state][next_action]
-    newQ = (1 - learning_rate) * currentQ + learning_rate * (
-        reward + gamma * nextQ
+    newQ = (1 - LEARNING_RATE) * currentQ + LEARNING_RATE * (
+        reward + GAMMA * nextQ
     )  # Qlearning Algorithm to get new q value for the q table.
     Q_table[state][action] = newQ
     state = next_state
