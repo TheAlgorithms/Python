@@ -75,7 +75,7 @@ def compute_truncated_primes(count: int = 11) -> List[int]:
     """
     Returns the list of truncated primes
     >>> compute_truncated_primes(11)
-    748317
+    [23, 37, 53, 73, 313, 317, 373, 797, 3137, 3797, 739397]
     """
     list_truncated_primes = []
     num = 13
