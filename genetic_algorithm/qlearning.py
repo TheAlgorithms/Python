@@ -140,11 +140,7 @@ def state(player, x_food, y_food):
         or (player.dirny == -1 and y_agent == y_food and x_food > x_agent)
     )
     # Adding to states list while priortizing danger over eating food
-    states = [
-        1 if DangerAhead is True else 0,
-        1 if DangerLeft is True else 0,
-        1 if DangerRight is True else 0,
-    ]
+    states = [int(x) for x in (DangerAhead, DangerLeft, DangerRight)]
     if (DangerAhead == 0) and (DangerRight == 0) and (DangerLeft == 0):
         states += [int(x) for x in (
             FoodStraightAhead, FoodAheadRight, FoodAheadLeft, FoodBehindRight,
