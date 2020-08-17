@@ -10,7 +10,6 @@ import pickle
 
 GAMMA = 0.9
 LEARNING_RATE = 0.7
-Q_table = np.ones((11, 4))
 
 
 def next_best_action(state: int, Q_table: np.ndarray) -> int:
