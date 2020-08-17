@@ -12,6 +12,14 @@ GAMMA = 0.9
 LEARNING_RATE = 0.7
 
 
+if __name__ == "__main__":
+    with open("Qtable.txt", "rb") as f:
+        """
+        This code is responsible for loading Qtable.txt if already present
+        """
+        Q_table = pickle.load(f)
+
+
 def next_best_action(state: int, Q_table: np.ndarray) -> int:
     """
     Return the most suitable action value from Q_table or a random action
@@ -229,12 +237,5 @@ def learn(
     state = next_state
     currentQ = nextQ
     if trialNumber % 100 == 0:
-        print(f"{Q_table = }")
-
-
-if __name__ == "__main__":
-    with open("Qtable.txt", "rb") as f:
-        """
-        This code is responsible for loading Qtable.txt if already present
-        """
-        Q_table = pickle.load(f)
+        print("Printing Q_table: ")
+        print(Q_table)
