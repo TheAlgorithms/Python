@@ -232,5 +232,4 @@ def learn(state, action, reward, next_state, next_action, i, trialNumber, epsilo
     state = next_state
     currentQ = nextQ
     if trialNumber % 100 == 0:
-        print("Printing Q_table: ")
-        print(Q_table)
+        print(f"{Q_table = }")
