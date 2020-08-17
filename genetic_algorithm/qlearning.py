@@ -202,14 +202,14 @@ def reward(player, x_food, y_food):
     ):
         return -12
     elif (
-        dist(x_agent + player.delx, y_agent + player.dely, x_food, y_food)
-        - dist(x_agent, y_agent, x_food, y_food)
+        euler_dist(x_agent + player.delx, y_agent + player.dely, x_food, y_food)
+        - euler_dist(x_agent, y_agent, x_food, y_food)
         > 0
     ):
         return -2
     elif (
-        dist(x_agent + player.delx, y_agent + player.dely, x_food, y_food)
-        - dist(x_agent, y_agent, x_food, y_food)
+        euler_dist(x_agent + player.delx, y_agent + player.dely, x_food, y_food)
+        - euler_dist(x_agent, y_agent, x_food, y_food)
         < 0
     ):
         return -7
