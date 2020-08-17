@@ -151,8 +151,7 @@ def state(player, x_food, y_food):
             FoodBehindLeft, FoodBehind, FoodLeft, FoodRight
         )]
     else:
-        for i in range(8):
-            states.append(0)
+        states += [0] * 8
     state = 0
     for i in range(11):
         if states[i] == 1:
