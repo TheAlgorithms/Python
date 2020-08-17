@@ -54,7 +54,7 @@ def list_truncated_nums(n: int) -> List[int]:
     return list_nums
 
 
-def validate(n):
+def validate(n: int) -> bool:
     """
     To optimize the approach, we will rule out the numbers above 1000,
     whose last or first digit is even, or
