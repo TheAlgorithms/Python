@@ -1,9 +1,12 @@
 """
 This is a pure Python implementation of the insertion sort algorithm
 
+This algorithm sorts a collection by comparing adjacent elements.
+When it finds that order is not respected, it moves the element compared
+backward until order is right.
+It then goes back directly to element initial position resuming forward comparison.
+
 For doctests run following command:
-python -m doctest -v insertion_sort.py
-or
 python3 -m doctest -v insertion_sort.py
 
 For manual testing run:
@@ -11,7 +14,7 @@ python insertion_sort.py
 """
 
 
-def insertion_sort(collection):
+def insertion_sort(collection: list) -> list:
     """Pure implementation of the insertion sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
