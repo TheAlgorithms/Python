@@ -26,7 +26,7 @@ RULE 5: When the entire infix expression has been scanned, the value left on
 
 NOTE:   It only works with positive numbers.
 """
-__author__ = "Omkar Pathak"
+__author__ = "Alexander Joslin"
 
 
 class Stack:
