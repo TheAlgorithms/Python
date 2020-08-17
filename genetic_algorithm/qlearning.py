@@ -140,23 +140,14 @@ def state(player, x_food, y_food):
         or (player.dirny == -1 and y_agent == y_food and x_food > x_agent)
     )
     # Adding to states list while priortizing danger over eating food
-    states = [
-        1 if DangerAhead is True else 0,
-        1 if DangerLeft is True else 0,
-        1 if DangerRight is True else 0,
-    ]
-    if (DangerAhead == 0) and (DangerRight == 0) and (DangerLeft == 0):
-        states.append(1 if FoodStraightAhead is True else 0)
-        states.append(1 if FoodAheadRight is True else 0)
-        states.append(1 if FoodAheadLeft is True else 0)
-        states.append(1 if FoodBehindRight is True else 0)
-        states.append(1 if FoodBehindLeft is True else 0)
-        states.append(1 if FoodBehind is True else 0)
-        states.append(1 if FoodLeft is True else 0)
-        states.append(1 if FoodRight is True else 0)
+    states = [int(x) for x in (DangerAhead, DangerLeft, DangerRight)]
+    if sum(states) == 0:
+        states += [int(x) for x in (
+            FoodStraightAhead, FoodAheadRight, FoodAheadLeft, FoodBehindRight,
+            FoodBehindLeft, FoodBehind, FoodLeft, FoodRight
+        )]
     else:
-        for i in range(8):
-            states.append(0)
+        states += [0] * 8
     state = 0
     for i in range(11):
         if states[i] == 1:
@@ -164,7 +155,7 @@ def state(player, x_food, y_food):
     return state
 
 
-def dist(x1, y1, x2, y2):
+def euler_distance(x1, y1, x2, y2):
     """
     For calculation of Euler Distance.
     """
@@ -211,14 +202,14 @@ def reward(player, x_food, y_food):
     ):
         return -12
     elif (
-        dist(x_agent + player.delx, y_agent + player.dely, x_food, y_food)
-        - dist(x_agent, y_agent, x_food, y_food)
+        euler_dist(x_agent + player.delx, y_agent + player.dely, x_food, y_food)
+        - euler_dist(x_agent, y_agent, x_food, y_food)
         > 0
     ):
         return -2
     elif (
-        dist(x_agent + player.delx, y_agent + player.dely, x_food, y_food)
-        - dist(x_agent, y_agent, x_food, y_food)
+        euler_dist(x_agent + player.delx, y_agent + player.dely, x_food, y_food)
+        - euler_dist(x_agent, y_agent, x_food, y_food)
         < 0
     ):
         return -7
@@ -230,12 +221,10 @@ def learn(state, action, reward, next_state, next_action, i, trialNumber, epsilo
     """
     currentQ = Q_table[state][action]
     nextQ = Q_table[next_state][next_action]
-    newQ = (1 - LEARNING_RATE) * currentQ + LEARNING_RATE * (
-        reward + GAMMA * nextQ
-    )  # Qlearning Algorithm to get new q value for the q table.
+    # Qlearning Algorithm to get new q value for the q table.
+    newQ = (1 - LEARNING_RATE) * currentQ + LEARNING_RATE * (reward + GAMMA * nextQ)
     Q_table[state][action] = newQ
     state = next_state
     currentQ = nextQ
     if trialNumber % 100 == 0:
-        print("Printing Q_table: ")
-        print(Q_table)
+        print(f"{Q_table = }")
