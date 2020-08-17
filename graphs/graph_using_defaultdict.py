@@ -8,7 +8,7 @@ from collections import defaultdict
   def print(self):
     print(self.graph)
 
-  def BFS(self,starting_node):
+  def breadth_first_search(self,starting_node):
     visited=[False]*len(self.graph)
     queue=[]
     queue.append(starting_node)
@@ -21,15 +21,15 @@ from collections import defaultdict
           queue.append(i)
           visited[i]=True
         
-  def _DFS(self,visited,node):
+  def _depth_fitst_search(self,visited,node):
     visited[node]=True
     print(node)
     for i in self.graph[node]:
       if visited[i]!=True:
-        self._DFS(visited,i)
-  def DFS(self,node):
+        self._depth_first_search(visited,i)
+  def depth_first_search(self,node):
     visited=[False]*len(self.graph)
-    self._DFS(visited,node)
+    self._depth_first_search(visited,node)
 
 graph=Graph()
 grap.add_edge(0,3)
