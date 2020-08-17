@@ -146,14 +146,10 @@ def state(player, x_food, y_food):
         1 if DangerRight is True else 0,
     ]
     if (DangerAhead == 0) and (DangerRight == 0) and (DangerLeft == 0):
-        states.append(1 if FoodStraightAhead is True else 0)
-        states.append(1 if FoodAheadRight is True else 0)
-        states.append(1 if FoodAheadLeft is True else 0)
-        states.append(1 if FoodBehindRight is True else 0)
-        states.append(1 if FoodBehindLeft is True else 0)
-        states.append(1 if FoodBehind is True else 0)
-        states.append(1 if FoodLeft is True else 0)
-        states.append(1 if FoodRight is True else 0)
+        states += [int(x) for x in (
+            FoodStraightAhead, FoodAheadRight, FoodAheadLeft, FoodBehindRight,
+            FoodBehindLeft, FoodBehind, FoodLeft, FoodRight
+        )]
     else:
         for i in range(8):
             states.append(0)
