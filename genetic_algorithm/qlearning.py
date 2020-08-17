@@ -171,7 +171,7 @@ def euler_dist(x1: int, y1: int, x2: int, y2: int) -> int:
 #   * -7 for going away from the fruit
 
 
-def reward(player: object, x_food: int, y_food: int):
+def reward(player: object, x_food: int, y_food: int) -> int:
     """
     This function assigns the reward to the agent according to the action taken
     """
