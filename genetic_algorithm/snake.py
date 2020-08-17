@@ -26,14 +26,20 @@ class Cube(object):
         i = self.pos[0]
         j = self.pos[1]
 
-        pygame.draw.rect(surface, self.color, (i * dis + 1, j * dis + 1,
-                                dis - 2, dis - 2))
+        pygame.draw.rect(
+            surface,
+            self.color,
+            (i * dis + 1, j * dis + 1, dis - 2, dis - 2))
         if not headS:
-            pygame.draw.rect(surface, self.color, (i * dis + 1, j * dis + 1,
-                                    dis, dis))
+            pygame.draw.rect(
+                surface,
+                self.color,
+                (i * dis + 1, j * dis + 1, dis, dis))
         else:
-            pygame.draw.rect(surface, (255, 100, 10), (i * dis + 1, j * dis + 1,
-                                    dis, dis))
+            pygame.draw.rect(
+                surface,
+                (255, 100, 10),
+                (i * dis + 1, j * dis + 1, dis, dis))
 
 
 class Snake(object):
@@ -218,7 +224,8 @@ def run():
             player.resetDone = False
             next_state = state(player, x_food, y_food)
             next_action = next_best_action(next_state, Q_table)
-            learn(current_state, current_action, current_reward,
+            learn(
+                current_state, current_action, current_reward,
                 next_state, next_action, i, trial, epsilon)
             trial += 1
             if trial % 1000 == 0:
@@ -227,7 +234,7 @@ def run():
             epsilon -= decay * epsilon
 
             for x in range(len(player.body)):
-                if player.body[x].pos in list(map(lambda z: z.pos, player.body[x + 1:])):
+                if player.body[x].pos in map(lambda z: z.pos, player.body[x + 1:]):
                     player.reset((5, 5))
                     break
             if len(player.body) > maxScore:
