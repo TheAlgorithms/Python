@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 
 D = {'A':20, 'B': 15, 'C':30}
 
+#use .keys() and .values() to get the keys and values of D
 plt.bar(range(len(D)), list(D.values()))
 plt.xticks(range(len(D)), list(D.keys()))
 
