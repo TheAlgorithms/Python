@@ -2,13 +2,13 @@ from collections import defaultdict
  class Graph:
   def __init__(self):
     self.graph=defaultdict(list)
-  def add_edge(self,node1,node2):  # undirected graph
+  def add_edge(self,node1 : int,node2 : int):  # undirected graph
     self.graph[node1].append(node2)
     self.graph[node2].append(node1)
   def print(self):
     print(self.graph)
 
-  def breadth_first_search(self,starting_node):
+  def breadth_first_search(self,starting_node : int):
     visited=[False]*len(self.graph)
     queue=[]
     queue.append(starting_node)
@@ -21,13 +21,13 @@ from collections import defaultdict
           queue.append(i)
           visited[i]=True
         
-  def _depth_fitst_search(self,visited,node):
+  def _depth_fitst_search(self,visited : list,node : int):
     visited[node]=True
     print(node)
     for i in self.graph[node]:
       if visited[i]!=True:
         self._depth_first_search(visited,i)
-  def depth_first_search(self,node):
+  def depth_first_search(self,node : int):
     visited=[False]*len(self.graph)
     self._depth_first_search(visited,node)
 
