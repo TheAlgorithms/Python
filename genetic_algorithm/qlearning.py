@@ -5,6 +5,7 @@ Author: AryanRaj315
 """
 
 import numpy as np
+import pickle
 
 
 GAMMA = 0.9
@@ -23,7 +24,7 @@ def next_best_action(state: int, Q_table: np.ndarray) -> int:
     return action if action is not None else np.random.choice([0, 1, 2, 3])
 
 
-def state_action_reward(player, x_food, y_food):
+def state_action_reward(player: object, x_food: int, y_food: int) -> tuple:
     """
     This function returns state, action and reward to update the Qtable.
     """
@@ -31,7 +32,7 @@ def state_action_reward(player, x_food, y_food):
     current_state = state(player, x_food, y_food)
     current_action = next_best_action(state, Q_table)
     current_reward = reward(player, x_food, y_food)
-    return current_state, current_action, current_reward
+    return (current_state, current_action, current_reward)
 
 
 # States to consider:
@@ -43,7 +44,7 @@ def state_action_reward(player, x_food, y_food):
 #   * obstruction Ahead, Right, Left
 
 
-def state(player, x_food, y_food):
+def state(player: object, x_food: int, y_food: int) -> int:
     """
     This function Checks for the food in nine directions and returns state.
     """
@@ -155,7 +156,7 @@ def state(player, x_food, y_food):
     return state
 
 
-def euler_distance(x1, y1, x2, y2):
+def euler_dist(x1: int, y1: int, x2: int, y2: int) -> int:
     """
     For calculation of Euler Distance.
     """
@@ -170,7 +171,7 @@ def euler_distance(x1, y1, x2, y2):
 #   * -7 for going away from the fruit
 
 
-def reward(player, x_food, y_food):
+def reward(player: object, x_food: int, y_food: int):
     """
     This function assigns the reward to the agent according to the action taken
     """
@@ -215,20 +216,26 @@ def reward(player, x_food, y_food):
         return -7
 
 
-def learn(state, action, reward, next_state, next_action, i, trialNumber, epsilon):
+def learn(
+        state: int, action: int, reward: int, next_state: int,
+        next_action: int, i: int, trialNumber: int, epsilon: float) -> type(None):
     """
     This function is for iteratively updating the Qtable.
     """
     currentQ = Q_table[state][action]
     nextQ = Q_table[next_state][next_action]
     # Qlearning Algorithm to get new q value for the q table.
-<<<<<<< HEAD
     newQ = (1 - LEARNING_RATE) * currentQ + LEARNING_RATE * (reward + GAMMA * nextQ)
-=======
-    newQ = (1 - LEARNING_RATE) * currentQ + LEARNING_RATE * (reward + GAMMA * nextQ)  
->>>>>>> 11caf1fd0b1643ffb5d12f4f23c064c46fa3f836
     Q_table[state][action] = newQ
     state = next_state
     currentQ = nextQ
     if trialNumber % 100 == 0:
         print(f"{Q_table = }")
+
+
+if __name__ == "__main__":
+    with open("Qtable.txt", "rb") as f:
+        """
+        This code is responsible for loading Qtable.txt if already present
+        """
+        Q_table = pickle.load(f)
