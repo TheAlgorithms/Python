@@ -12,7 +12,7 @@ RULE 1: Scan the expression from left to right. When an operand is encountered,
 RULE 2: When an operator is encountered in the expression,
         push it onto the operator stack.
 
-RULE 3: When a left parenthesis is encountered in teh expression, ignore it.
+RULE 3: When a left parenthesis is encountered in the expression, ignore it.
 
 RULE 4: When a right parenthesis is encountered in the expression,
         pop an operator off the operator stack.  The two operands it must
