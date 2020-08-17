@@ -160,7 +160,7 @@ def state(player, x_food, y_food):
     return state
 
 
-def dist(x1, y1, x2, y2):
+def euler_distance(x1, y1, x2, y2):
     """
     For calculation of Euler Distance.
     """
