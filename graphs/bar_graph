@@ -1,0 +1,8 @@
+import matplotlib.pyplot as plt
+
+D = {'A':20, 'B': 15, 'C':30}
+
+plt.bar(range(len(D)), list(D.values()))
+plt.xticks(range(len(D)), list(D.keys()))
+
+plt.show()
