@@ -1,6 +1,5 @@
 """
-This code implements a disjoint set using Lists 
-with added heuristics for efficiency
+Implements a disjoint set using Lists and some added heuristics for efficiency
 Union by Rank Heuristic and Path Compression
 """
 class DisjointSet:
