@@ -141,7 +141,7 @@ def state(player, x_food, y_food):
     )
     # Adding to states list while priortizing danger over eating food
     states = [int(x) for x in (DangerAhead, DangerLeft, DangerRight)]
-    if (DangerAhead == 0) and (DangerRight == 0) and (DangerLeft == 0):
+    if sum(states) == 0:
         states += [int(x) for x in (
             FoodStraightAhead, FoodAheadRight, FoodAheadLeft, FoodBehindRight,
             FoodBehindLeft, FoodBehind, FoodLeft, FoodRight
