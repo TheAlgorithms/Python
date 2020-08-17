@@ -72,9 +72,9 @@ def validate(n: int) -> bool:
     return True
 
 
-def compute_truncated_primes(count: int = 11) -> int:
+def compute_truncated_primes(count: int = 11) -> List[int]:
     """
-    Returns the sum of truncated primes
+    Returns the list of truncated primes
     >>> compute_truncated_primes(11)
     748317
     """
@@ -86,4 +86,8 @@ def compute_truncated_primes(count: int = 11) -> int:
             if all(is_prime(i) for i in list_nums):
                 list_truncated_primes.append(num)
         num += 2
-    return sum(list_truncated_primes)
+    return list_truncated_primes
+
+
+if __name__ == "__main__":
+    print(f"{sum(compute_truncated_primes(11))}")
