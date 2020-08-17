@@ -57,8 +57,7 @@ def list_truncated_nums(n: int) -> List[int]:
 def validate(n: int) -> bool:
     """
     To optimize the approach, we will rule out the numbers above 1000,
-    whose last or first digit is even, or
-    the last or first two digits are not prime
+    whose first or last two digits are not prime
     >>> validate(74679)
     False
     >>> validate(235693)
