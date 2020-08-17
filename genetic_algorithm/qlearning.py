@@ -222,7 +222,11 @@ def learn(state, action, reward, next_state, next_action, i, trialNumber, epsilo
     currentQ = Q_table[state][action]
     nextQ = Q_table[next_state][next_action]
     # Qlearning Algorithm to get new q value for the q table.
+<<<<<<< HEAD
     newQ = (1 - LEARNING_RATE) * currentQ + LEARNING_RATE * (reward + GAMMA * nextQ)
+=======
+    newQ = (1 - LEARNING_RATE) * currentQ + LEARNING_RATE * (reward + GAMMA * nextQ)  
+>>>>>>> 11caf1fd0b1643ffb5d12f4f23c064c46fa3f836
     Q_table[state][action] = newQ
     state = next_state
     currentQ = nextQ
