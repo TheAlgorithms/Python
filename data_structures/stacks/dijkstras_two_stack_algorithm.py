@@ -27,47 +27,14 @@ RULE 4: When a right parenthesis is encountered in the expression,
 RULE 5: When the entire infix expression has been scanned, the value left on
         the operand stack represents the value of the expression.
 
-NOTE:   It only works with positive numbers.
+NOTE:   It only works with whole numbers .
 """
 __author__ = "Alexander Joslin"
 
-
-class Stack:
-    """ Stack Data Structure Used for the Algorithm"""
-    def __init__(self):
-        self.__array = []
-        self.__len = 0
-        self.underflow_error = False
-
-    def is_empty(self):
-        if self.__len == 0:
-            return True
-        else:
-            return False
-
-    def push(self, x):
-        self.__array.append(x)
-        self.__len += 1
-
-    def pop(self):
-        if not self.is_empty():
-            self.__array.pop()
-            self.__len -= 1
-            self.underflow_error = False
-        else:
-            self.underflow_error = True
-
-    def peek(self):
-        return self.__array[-1] if not self.is_empty() else None
-
-    def length(self):
-        return self.__len
-
-    def print_stack(self):
-        print(self.__array)
+from data_structures.stacks.stack import Stack
 
 
-def dijkstras_two_stack_algorithm(equation):
+def dijkstras_two_stack_algorithm(equation: str) -> int:
     """
     DocTests
     >>> dijkstras_two_stack_algorithm("(5 + 3)")
@@ -117,15 +84,13 @@ def dijkstras_two_stack_algorithm(equation):
             pass
 
     # RULE 5
-    result = operand_stack.peek()
-    return result
+    return operand_stack.peek()
 
 
 def main():
     equation = "(5 + ((4 * 2) * (2 + 3)))"
     # answer = 45
-    answer = dijkstras_two_stack_algorithm(equation)
-    print(answer)
+    print(f'{equation} = {dijkstras_two_stack_algorithm(equation)}')
 
 
 if __name__ == "__main__":
