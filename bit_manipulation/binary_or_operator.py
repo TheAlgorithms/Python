@@ -22,17 +22,17 @@ Returns a binary resulted from 2 integer input in str format
 
 def Binary_OR_Operator (a : int, b : int):
     
-    if type(a) == float or type(b) == float:
+    if isinstance(a, float) or isinstance(b, float):
         raise TypeError("'Float' object cannot be implemented as an integer")
-    if type(a) == str or type(b) == str:
+    if isinstance(a, str) or isinstance(b,str):
         raise TypeError("'str' object cannot be implemented as an integer")
-    if a <0 or b < 0:
+    if a < 0 or b < 0:
         raise ValueError("the value of both input must be positive")
     """
     a_binary and b_binary are the binary of a and b in str format
     """
-    a_binary = convert_to_binary(a)
-    b_binary = convert_to_binary(b)
+    a_binary = str(bin(a))[2:]
+    b_binary = str(bin(b))[2:]
     binary = []
     if len(a_binary) > len(b_binary):
         greater = len(a_binary)
@@ -50,21 +50,6 @@ def Binary_OR_Operator (a : int, b : int):
     return "0b" + "".join(binary)
     
 
-"""
-The function below converts the integer input from decimal to binary and 
-returns the binary in str format
-"""
-def convert_to_binary(num: int)-> str:
-
-    first = True
-    while num > 0:
-        if first:
-            binarynumber = str(num%2)
-            first = False
-        else:
-            binarynumber = str(num%2) + binarynumber
-        num = int(num / 2)
-    return binarynumber
 
 if __name__ == "__main__":
     import doctest
