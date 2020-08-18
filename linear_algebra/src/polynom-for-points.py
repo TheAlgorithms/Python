@@ -1,4 +1,6 @@
-def points_to_polynomial(coordinates):
+from typing import List, Union
+
+def points_to_polynomial(coordinates: List[List[int]]) -> str:
     """
     coordinates is a two dimensional matrix: [[x, y], [x, y], ...]
     number of points you want to use
@@ -25,15 +27,15 @@ def points_to_polynomial(coordinates):
     f(x)=x^2*5.0+x^1*-18.0+x^0*18.0
     """
     try:
-        check = 1
-        more_check = 0
-        d = coordinates[0][0]
+        check: int = 1
+        more_check: int = 0
+        d: int = coordinates[0][0]
         for j in range(len(coordinates)):
             if j == 0:
                 continue
             if d == coordinates[j][0]:
                 more_check += 1
-                solved = "x=" + str(coordinates[j][0])
+                solved: str = "x=" + str(coordinates[j][0])
                 if more_check == len(coordinates) - 1:
                     check = 2
                     break
@@ -48,16 +50,16 @@ def points_to_polynomial(coordinates):
     except Exception:
         check = 3
 
-    x = len(coordinates)
+    x: int = len(coordinates)
 
     if check == 1:
-        count_of_line = 0
-        matrix = []
+        count_of_line: int = 0
+        matrix: List[List]= []
         # put the x and x to the power values in a matrix
         while count_of_line < x:
-            count_in_line = 0
-            a = coordinates[count_of_line][0]
-            count_line = []
+            count_in_line: int = 0
+            a: int = coordinates[count_of_line][0]
+            count_line: List[int] = []
             while count_in_line < x:
                 count_line.append(a ** (x - (count_in_line + 1)))
                 count_in_line += 1
@@ -66,21 +68,21 @@ def points_to_polynomial(coordinates):
 
         count_of_line = 0
         # put the y values into a vector
-        vector = []
+        vector: List[int] = []
         while count_of_line < x:
             vector.append(coordinates[count_of_line][1])
             count_of_line += 1
 
-        count = 0
+        count: int = 0
 
         while count < x:
-            zahlen = 0
+            zahlen: int = 0
             while zahlen < x:
                 if count == zahlen:
                     zahlen += 1
                 if zahlen == x:
                     break
-                bruch = (matrix[zahlen][count]) / (matrix[count][count])
+                bruch: int = (matrix[zahlen][count]) / (matrix[count][count])
                 for counting_columns, item in enumerate(matrix[count]):
                     # manipulating all the values in the matrix
                     matrix[zahlen][counting_columns] -= item * bruch
@@ -91,7 +93,7 @@ def points_to_polynomial(coordinates):
 
         count = 0
         # make solutions
-        solution = []
+        solution: List[str] = []
         while count < x:
             solution.append(vector[count] / matrix[count][count])
             count += 1
@@ -100,7 +102,7 @@ def points_to_polynomial(coordinates):
         solved = "f(x)="
 
         while count < x:
-            remove_e = str(solution[count]).split("E")
+            remove_e: List[str] = str(solution[count]).split("E")
             if len(remove_e) > 1:
                 solution[count] = remove_e[0] + "*10^" + remove_e[1]
             solved += "x^" + str(x - (count + 1)) + "*" + str(solution[count])
