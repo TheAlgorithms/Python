@@ -39,4 +39,4 @@ def pythagorean_triple(max_perimeter: int) -> Dict:
 
 if __name__ == "__main__":
     triplets = pythagorean_triple(1000)
-    print(max(triplets, key=lambda key: triplets[key]))
+    print(f"{triplets.most_common()[0][0] = }")
