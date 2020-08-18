@@ -1,24 +1,18 @@
 import sys
 import webbrowser
 
-import requests
-from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
+from googlesearch import search
+from time import gmtime, strftime
 
 if __name__ == "__main__":
-    print("Googling.....")
-    url = "https://www.google.com/search?q=" + " ".join(sys.argv[1:])
-    res = requests.get(url, headers={"UserAgent": UserAgent().random})
-    # res.raise_for_status()
-    with open("project1a.html", "wb") as out_file:  # only for knowing the class
-        for data in res.iter_content(10000):
-            out_file.write(data)
-    soup = BeautifulSoup(res.text, "html.parser")
-    links = list(soup.select(".eZt8xd"))[:5]
+    print("Googling .... \n\n")
+    file_name = 'result-'+strftime("%Y-%m-%d_%H-%M-%S", gmtime())+'.html'
 
-    print(len(links))
-    for link in links:
-        if link.text == "Maps":
-            webbrowser.open(link.get("href"))
-        else:
-            webbrowser.open(f"http://google.com{link.get('href')}")
+    with open(file_name, 'a+') as file:
+        file.write("<ul>\n")
+        for result_url in search(query=sys.argv[1], stop=int(sys.argv[2])):
+            print("[*][*] => {0}".format(result_url))
+            file.write("<li><a href={0}>{0}</a></li>\n".format(result_url))
+        file.write("</ul>")
+
+    webbrowser.open(file_name)
