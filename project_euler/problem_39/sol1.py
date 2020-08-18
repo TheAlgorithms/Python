@@ -7,6 +7,7 @@ For which value of p ≤ 1000, is the number of solutions maximised?
 """
 
 from typing import Dict
+from collections import Counter
 
 
 def pythagorean_triple(max_perimeter: int) -> Dict:
@@ -14,13 +15,13 @@ def pythagorean_triple(max_perimeter: int) -> Dict:
     Returns a dictionary with keys as the perimeter of a right angled triangle
     and value as the number of corresponding triplets.
     >>> pythagorean_triple(15)
-    {12: 1}
+    Counter({12: 1})
     >>> pythagorean_triple(40)
-    {12: 1, 30: 1, 24: 1, 40: 1, 36: 1}
+    Counter({12: 1, 30: 1, 24: 1, 40: 1, 36: 1})
     >>> pythagorean_triple(50)
-    {12: 1, 30: 1, 24: 1, 40: 1, 36: 1, 48: 1}
+    Counter({12: 1, 30: 1, 24: 1, 40: 1, 36: 1, 48: 1})
     """
-    triplets = {}
+    triplets = Counter()
     for base in range(1, max_perimeter + 1):
         for perpendicular in range(base, max_perimeter + 1):
             hypotenuse = (base * base + perpendicular * perpendicular) ** 0.5
