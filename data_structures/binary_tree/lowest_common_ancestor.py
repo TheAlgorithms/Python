@@ -2,9 +2,9 @@
 # https://en.wikipedia.org/wiki/Breadth-first_search
 
 import queue
+from typing import Tuple, List, Dict
 
-
-def swap(a, b):
+def swap(a: int, b: int) -> Tuple[int, int]:
     a ^= b
     b ^= a
     a ^= b
@@ -12,7 +12,7 @@ def swap(a, b):
 
 
 # creating sparse table which saves each nodes 2^i-th parent
-def creatSparse(max_node, parent):
+def creatSparse(max_node: int, parent: List[List[int]]) -> List[List[int]]:
     j = 1
     while (1 << j) < max_node:
         for i in range(1, max_node + 1):
@@ -22,7 +22,7 @@ def creatSparse(max_node, parent):
 
 
 # returns lca of node u,v
-def LCA(u, v, level, parent):
+def LCA(u: int, v: int, level: List[int], parent: List[List[int]]) -> List[List[int]]:
     # u must be deeper in the tree than v
     if level[u] < level[v]:
         u, v = swap(u, v)
@@ -45,7 +45,7 @@ def LCA(u, v, level, parent):
 # sets every nodes direct parent
 # parent of root node is set to 0
 # calculates depth of each node from root node
-def bfs(level, parent, max_node, graph, root=1):
+def bfs(level: List[int], parent: List[List[int]], max_node: int, graph: Dict[int, int], root=1) -> Tuple[List[int], List[List[int]]]:
     level[root] = 0
     q = queue.Queue(maxsize=max_node)
     q.put(root)
@@ -59,7 +59,7 @@ def bfs(level, parent, max_node, graph, root=1):
     return level, parent
 
 
-def main():
+def main() -> None:
     max_node = 13
     # initializing with 0
     parent = [[0 for _ in range(max_node + 10)] for _ in range(20)]
