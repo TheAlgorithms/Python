@@ -1,3 +1,7 @@
+from math import sqrt
+from typing import List
+from itertools import permutations
+
 """
 We shall say that an n-digit number is pandigital if it makes use of all the digits
 1 to n exactly once. For example, 2143 is a 4-digit pandigital and is also prime.
@@ -9,10 +13,6 @@ All pandigital numbers except for 1, 4 ,7 pandigital numbers are divisible by 3.
 So we will check only 7 digit panddigital numbers to obtain the largest possible
 pandigital prime.
 """
-
-from math import sqrt
-from typing import List
-from itertools import permutations
 
 
 def is_prime(n: int) -> bool:
