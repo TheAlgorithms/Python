@@ -95,7 +95,7 @@ def test_power_iteration() -> None:
     assert np.abs(eigen_value - eigen_value_max) <= 1e-6
     # Take absolute values element wise of each eigenvector.
     # as they are only unique to a minus sign.
-    assert np.linalg.norm(np.abs(eigen_vector) -  np.abs(eigen_vector_max)) <= 1e-6
+    assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_max)) <= 1e-6
 
 
 if __name__ == "__main__":
