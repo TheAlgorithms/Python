@@ -1,4 +1,5 @@
-from typing import List, Union
+from typing import List
+
 
 def points_to_polynomial(coordinates: List[List[int]]) -> str:
     """
@@ -54,7 +55,7 @@ def points_to_polynomial(coordinates: List[List[int]]) -> str:
 
     if check == 1:
         count_of_line: int = 0
-        matrix: List[List]= []
+        matrix: List[List] = []
         # put the x and x to the power values in a matrix
         while count_of_line < x:
             count_in_line: int = 0
