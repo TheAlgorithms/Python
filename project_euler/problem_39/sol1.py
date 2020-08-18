@@ -29,9 +29,9 @@ def pythagorean_triple(max_perimeter: int) -> Dict:
                 if perimeter > max_perimeter:
                     continue
                 else:
-                    try:
+                    if perimeter in triplets:
                         triplets[perimeter] += 1
-                    except:
+                    else:
                         triplets[perimeter] = 1
     return triplets
 
