@@ -36,10 +36,7 @@ def binary_or(a : int, b : int):
     a_binary = a_binary.zfill(max_len)
     b_binary = b_binary.zfill(max_len)
     for char_a, char_b in zip(a_binary, b_binary):
-        if char_a == "1" or char_b == "1":
-            binary.append("1")
-        else:
-            binary.append("0")
+        binary.append(str(int(char_a == "1" or char_b == "1")))
     return "0b" + "".join(binary)
 
 
