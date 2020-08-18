@@ -4,6 +4,7 @@
 import queue
 from typing import Tuple, List, Dict
 
+
 def swap(a: int, b: int) -> Tuple[int, int]:
     a ^= b
     b ^= a
@@ -45,7 +46,13 @@ def LCA(u: int, v: int, level: List[int], parent: List[List[int]]) -> List[List[
 # sets every nodes direct parent
 # parent of root node is set to 0
 # calculates depth of each node from root node
-def bfs(level: List[int], parent: List[List[int]], max_node: int, graph: Dict[int, int], root=1) -> Tuple[List[int], List[List[int]]]:
+def bfs(
+    level: List[int],
+    parent: List[List[int]],
+    max_node: int,
+    graph: Dict[int, int],
+    root=1,
+) -> Tuple[List[int], List[List[int]]]:
     level[root] = 0
     q = queue.Queue(maxsize=max_node)
     q.put(root)
