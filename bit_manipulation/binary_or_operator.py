@@ -32,12 +32,9 @@ def binary_or(a : int, b : int):
     a_binary = str(bin(a))[2:]
     b_binary = str(bin(b))[2:]
     binary = []
-    if len(a_binary) > len(b_binary):
-        greater = len(a_binary)
-        b_binary = b_binary.zfill(greater)
-    else:
-        greater = len(b_binary)
-        a_binary = a_binary.zfill(greater)
+    max_len = max(len(a_binary), len(b_binary))
+    a_binary = a_binary.zfill(max_len)
+    b_binary = b_binary.zfill(max_len)
     for i in range(greater):
         if a_binary[i] == "1" or b_binary[i] == "1":
             binary.append("1")
