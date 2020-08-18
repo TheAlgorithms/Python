@@ -1,3 +1,5 @@
+from typing import List, Tuple
+
 """
 Algorithm for calculating the most cost-efficient sequence for converting one string
 into another.
@@ -9,7 +11,9 @@ The only allowed operations are
 """
 
 
-def compute_transform_tables(X, Y, cC, cR, cD, cI):
+def compute_transform_tables(
+    X: str, Y: str, cC: int, cR: int, cD: int, cI: int
+) -> Tuple[List[int], List[str]]:
     X = list(X)
     Y = list(Y)
     m = len(X)
@@ -46,7 +50,7 @@ def compute_transform_tables(X, Y, cC, cR, cD, cI):
     return costs, ops
 
 
-def assemble_transformation(ops, i, j):
+def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
     if i == 0 and j == 0:
         seq = []
         return seq
