@@ -1,11 +1,11 @@
-from typing import Tuple, List, Union
+from typing import Tuple
 
 import numpy as np  # type: ignore
 
 
 def power_iteration(
-    input_matrix: np.array, vector: np.array, error_tol: float = 1e-12, max_iterations: int = 100
-) -> Tuple[float, np.array]:
+        input_matrix: np.array, vector: np.array, error_tol: float = 1e-12,
+        max_iterations: int = 100) -> Tuple[float, np.array]:
     """
     Power Iteration.
     Find the largest eignevalue and corresponding eigenvector
@@ -95,8 +95,7 @@ def test_power_iteration() -> None:
     assert np.abs(eigen_value - eigen_value_max) <= 1e-6
     # Take absolute values element wise of each eigenvector.
     # as they are only unique to a minus sign.
-    assert np.linalg.norm(np.abs(eigen_vector) -
-                          np.abs(eigen_vector_max)) <= 1e-6
+    assert np.linalg.norm(np.abs(eigen_vector) -  np.abs(eigen_vector_max)) <= 1e-6
 
 
 if __name__ == "__main__":
