@@ -19,4 +19,6 @@ if __name__ == "__main__":
     input_B = input("Enter the second string ").strip()
 
     status = check_anagrams(input_A, input_B)
-    print(f"{input_A} and {input_B} are {'anagrams.' if status else 'not anagrams.' }")
+    print(
+        f"{input_A} and {input_B} are {'anagrams.' if status else 'not anagrams.' = }"
+    )
