@@ -31,7 +31,7 @@ NOTE:   It only works with whole numbers.
 """
 __author__ = "Alexander Joslin"
 
-from stack import Stack
+from .stack import Stack
 
 import operator as op
 
