@@ -27,11 +27,13 @@ RULE 4: When a right parenthesis is encountered in the expression,
 RULE 5: When the entire infix expression has been scanned, the value left on
         the operand stack represents the value of the expression.
 
-NOTE:   It only works with whole numbers .
+NOTE:   It only works with whole numbers.
 """
 __author__ = "Alexander Joslin"
 
-from data_structures.stacks.stack import Stack
+from stack import Stack
+
+import operator as op
 
 
 def dijkstras_two_stack_algorithm(equation: str) -> int:
@@ -47,6 +49,8 @@ def dijkstras_two_stack_algorithm(equation: str) -> int:
     :param equation: a string
     :return: result: an integer
     """
+    operators = {"*": op.mul, "/": op.truediv, "+": op.add, "-": op.sub}
+
     operand_stack = Stack()
     operator_stack = Stack()
 
@@ -54,30 +58,19 @@ def dijkstras_two_stack_algorithm(equation: str) -> int:
         if i.isdigit():
             # RULE 1
             operand_stack.push(int(i))
-        elif i in ["+", "*", "-", "/", "%"]:
+        elif i in operators:
             # RULE 2
             operator_stack.push(i)
         elif i == ")":
             # RULE 4
-            opr1 = operator_stack.peek()
+            opr = operator_stack.peek()
             operator_stack.pop()
             num1 = operand_stack.peek()
             operand_stack.pop()
             num2 = operand_stack.peek()
             operand_stack.pop()
 
-            total = 0
-            if opr1 == "+":
-                total = num2 + num1
-            elif opr1 == "-":
-                total = num2 - num1
-            elif opr1 == "*":
-                total = num2 * num1
-            elif opr1 == "/":
-                total = num2 / num1
-            elif opr1 == "%":
-                total = num2 % num1
-
+            total = operators[opr](num2, num1)
             operand_stack.push(total)
         else:
             # RULE 3
@@ -90,7 +83,7 @@ def dijkstras_two_stack_algorithm(equation: str) -> int:
 def main():
     equation = "(5 + ((4 * 2) * (2 + 3)))"
     # answer = 45
-    print(f'{equation} = {dijkstras_two_stack_algorithm(equation)}')
+    print(f"{equation} = {dijkstras_two_stack_algorithm(equation)}")
 
 
 if __name__ == "__main__":
