@@ -1,4 +1,4 @@
-def check_anagrams(string_A: str, string_B: str) -> bool:
+def check_anagrams(a: str, b: str) -> bool:
     """
     Two strings are anagrams if they are made of the same letters
     arranged differently (ignoring the case).
@@ -9,9 +9,9 @@ def check_anagrams(string_A: str, string_B: str) -> bool:
     >>> check_anagrams('There','Their')
     False
     """
-    sorted_list_A = sorted(string_A.lower())
-    sorted_list_B = sorted(string_B.lower())
-    return sorted_list_A == sorted_list_B
+    sorted_a = sorted(a.lower())
+    sorted_b = sorted(b.lower())
+    return sorted_a == sorted_b
 
 
 if __name__ == "__main__":
