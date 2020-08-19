@@ -50,4 +50,4 @@ def compute_pandigital_primes(n: int) -> List[int]:
 
 
 if __name__ == "__main__":
-    print(f"{max(compute_pandigital_prime(7)) = }")
+    print(f"{max(compute_pandigital_primes(7)) = }")
