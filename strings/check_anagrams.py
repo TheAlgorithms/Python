@@ -9,9 +9,7 @@ def check_anagrams(a: str, b: str) -> bool:
     >>> check_anagrams('There','Their')
     False
     """
-    sorted_a = sorted(a.lower())
-    sorted_b = sorted(b.lower())
-    return sorted_a == sorted_b
+    return sorted(a.lower()) == sorted(b.lower())
 
 
 if __name__ == "__main__":
