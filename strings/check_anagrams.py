@@ -2,11 +2,11 @@ def check_anagrams(string_A: str, string_B: str) -> bool:
     """
     Two strings are anagrams if they are made of the same letters
     arranged differently (ignoring the case).
-    >>> check_anagram('Silent','Listen')
+    >>> check_anagrams('Silent','Listen')
     True
-    >>> check_anagram('This is a string','Is this a string')
+    >>> check_anagrams('This is a string','Is this a string')
     True
-    >>> check_anagram('There','Their')
+    >>> check_anagrams('There','Their')
     False
     """
     sorted_list_A = sorted(string_A.lower())
