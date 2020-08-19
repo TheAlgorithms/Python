@@ -9,7 +9,7 @@ import pickle
 
 
 GAMMA = 0.9
-LEARNING_RATE = 0.7
+LEARNING_RATE = 0.6
 
 
 if __name__ == "__main__":
