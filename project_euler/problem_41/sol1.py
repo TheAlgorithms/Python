@@ -34,21 +34,20 @@ def is_prime(n: int) -> bool:
     return True
 
 
-def compute_pandigital_prime(n: int) -> List[int]:
+def compute_pandigital_primes(n: int) -> List[int]:
     """
     Returns a list of all n-digit pandigital primes.
-    >>> compute_pandigital_prime(2)
+    >>> compute_pandigital_primes(2)
     []
-    >>> max(compute_pandigital_prime(4))
+    >>> max(compute_pandigital_primes(4))
     4231
-    >>> max(compute_pandigital_prime(7))
+    >>> max(compute_pandigital_primes(7))
     7652413
     """
     pandigital_str = "".join(str(i) for i in range(1, n + 1))
     perm_list = [int("".join(i)) for i in permutations(pandigital_str, n)]
-    primes = [num for num in perm_list if is_prime(num)]
-    return primes
+    return [num for num in perm_list if is_prime(num)]
 
 
 if __name__ == "__main__":
-    print(max(compute_pandigital_prime(7)))
+    print(f"{max(compute_pandigital_prime(7)) = }")
