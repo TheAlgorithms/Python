@@ -149,7 +149,7 @@ class BinarySearchTree:
         """
         if Node:
             self.inorder(arr, Node.left)
-            arr.append(Node.value)  # appends values of nodes to list arr
+            arr.append(Node.value)
             self.inorder(arr, Node.right)
 
     def find_Kth_Smallest(self, k, Node) -> int:
