@@ -5,18 +5,32 @@ from typing import List
 class SegmentTree:
     def __init__(self, N: int) -> None:
         self.N = N
-        self.st: List[int] = [
-            0 for i in range(0, 4 * N)
-        ]  # approximate the overall size of segment tree with array N
-        self.lazy: List[int] = [
-            0 for i in range(0, 4 * N)
-        ]  # create array to store lazy update
+        # approximate the overall size of segment tree with array N
+        self.st: List[int] = [0 for i in range(0, 4 * N)]
+        # create array to store lazy update
+        self.lazy: List[int] = [0 for i in range(0, 4 * N)]
         self.flag: List[int] = [0 for i in range(0, 4 * N)]  # flag for lazy update
 
     def left(self, idx: int) -> int:
+        """
+        >>> left(1)
+        2
+        >>> left(2)
+        4
+        >>> left(12)
+        24
+        """
         return idx * 2
 
     def right(self, idx: int) -> int:
+        """
+        >>> left(1)
+        3
+        >>> left(2)
+        5
+        >>> left(12)
+        25
+        """
         return idx * 2 + 1
 
     def build(
@@ -30,12 +44,13 @@ class SegmentTree:
             self.build(self.right(idx), mid + 1, right_element, A)
             self.st[idx] = max(self.st[self.left(idx)], self.st[self.right(idx)])
 
-    # update with O(lg N) (Normal segment tree without lazy update will take O(Nlg N)
-    # for each update)
     def update(
         self, idx: int, left_element: int, right_element: int, a: int, b: int, val: int
     ) -> bool:
         """
+        update with O(lg N) (Normal segment tree without lazy update will take O(Nlg N)
+        for each update)
+
         update(1, 1, N, a, b, v) for update val v to [a,b]
         """
         if self.flag[idx] is True:
@@ -87,7 +102,7 @@ class SegmentTree:
         q2 = self.query(self.right(idx), mid + 1, right_element, a, b)
         return max(q1, q2)
 
-    def showData(self) -> None:
+    def show_data(self) -> None:
         showList = []
         for i in range(1, N + 1):
             showList += [self.query(1, 1, self.N, i, i)]
@@ -105,4 +120,4 @@ if __name__ == "__main__":
     segt.update(1, 1, N, 1, 3, 111)
     print(segt.query(1, 1, N, 1, 15))
     segt.update(1, 1, N, 7, 8, 235)
-    segt.showData()
+    segt.show_data()
