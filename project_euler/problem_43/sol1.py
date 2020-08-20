@@ -55,4 +55,4 @@ def compute_sum(n: int = 10) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{compute_sum(10)}")
+    print(f"{compute_sum(10) = }")
