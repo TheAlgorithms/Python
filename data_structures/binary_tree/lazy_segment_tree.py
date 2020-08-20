@@ -13,22 +13,24 @@ class SegmentTree:
 
     def left(self, idx: int) -> int:
         """
-        >>> left(1)
+        >>> segment_tree = SegmentTree(15)
+        >>> segment_tree.left(1)
         2
-        >>> left(2)
+        >>> segment_tree.left(2)
         4
-        >>> left(12)
+        >>> segment_tree.left(12)
         24
         """
         return idx * 2
 
     def right(self, idx: int) -> int:
         """
-        >>> left(1)
+        >>> segment_tree = SegmentTree(15)
+        >>> segment_tree.right(1)
         3
-        >>> left(2)
+        >>> segment_tree.right(2)
         5
-        >>> left(12)
+        >>> segment_tree.right(12)
         25
         """
         return idx * 2 + 1
@@ -84,6 +86,15 @@ class SegmentTree:
     ) -> int:
         """
         query(1, 1, N, a, b) for query max of [a,b]
+        >>> A = [1, 2, -4, 7, 3, -5, 6, 11, -20, 9, 14, 15, 5, 2, -8]
+        >>> segment_tree = SegmentTree(15)
+        >>> segment_tree.build(1, 1, 15, A)
+        >>> segment_tree.query(1, 1, 15, 4, 6)
+        7
+        >>> segment_tree.query(1, 1, 15, 7, 11)
+        14
+        >>> segment_tree.query(1, 1, 15, 7, 12))
+        15
         """
         if self.flag[idx] is True:
             self.st[idx] = self.lazy[idx]
