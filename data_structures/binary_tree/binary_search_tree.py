@@ -152,7 +152,7 @@ class BinarySearchTree:
             arr.append(Node.value)  # appends values of nodes to list arr
             self.inorder(arr, Node.right)
 
-    def find_Kth_Smallest(self, k, Node):
+    def find_Kth_Smallest(self, k, Node) -> int:
         """ Function return kth smallest element in BST
         Args:-
         k -> int
