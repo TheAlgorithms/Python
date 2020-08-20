@@ -1,6 +1,6 @@
+from itertools import permutations
 from math import sqrt
 from typing import List
-from itertools import permutations
 
 """
 We shall say that an n-digit number is pandigital if it makes use of all the digits
