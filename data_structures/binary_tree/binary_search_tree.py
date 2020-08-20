@@ -142,16 +142,26 @@ class BinarySearchTree:
             return traversal_function(self.root)
 
     def inorder(self, arr, Node):
+        """This function performs inorder traversal and append values of nodes to list named arr
+        Args:-
+        arr -> list
+        Node -> object of class Node
+        """
         if Node:
             self.inorder(arr, Node.left)
-            arr.append(Node.value)
+            arr.append(Node.value) # appends values of nodes to list arr
             self.inorder(arr, Node.right)
 
     def find_Kth_Smallest(self, k, Node):
+        """ Function return kth smallest element in BST
+        Args:-
+        k -> int
+        Node -> object of class Node
+        Returns:- int
+        """
         arr = []
-        self.inorder(arr, Node)
-        arr.sort()
-        return arr[k - 1]
+        self.inorder(arr, Node) # append all values to list using inorder traversal
+        return arr[k - 1] # returns the kth smallest element in BST
 
 
 def postorder(curr_node):
