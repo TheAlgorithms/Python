@@ -72,19 +72,12 @@ def dijkstras_two_stack_algorithm(equation: str) -> int:
 
             total = operators[opr](num2, num1)
             operand_stack.push(total)
-        else:
-            # RULE 3
-            pass
 
     # RULE 5
     return operand_stack.peek()
 
 
-def main():
+if __name__ == "__main__":
     equation = "(5 + ((4 * 2) * (2 + 3)))"
     # answer = 45
     print(f"{equation} = {dijkstras_two_stack_algorithm(equation)}")
-
-
-if __name__ == "__main__":
-    main()
