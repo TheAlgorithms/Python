@@ -24,8 +24,12 @@ def compute_transform_tables(
     len_source_seq = len(source_seq)
     len_destination_seq = len(destination_seq)
 
-    costs = [[0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)]
-    ops = [[0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)]
+    costs = [
+        [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
+    ]
+    ops = [
+        [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
+    ]
 
     for i in range(1, len_source_seq + 1):
         costs[i][0] = i * delete_cost
