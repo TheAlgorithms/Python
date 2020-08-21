@@ -14,13 +14,13 @@ The only allowed operations are
 def compute_transform_tables(
     X: str, Y: str, cC: int, cR: int, cD: int, cI: int
 ) -> Tuple[List[int], List[str]]:
-    X: List[str] = list(X)
-    Y: List[str] = list(Y)
-    m: int = len(X)
-    n: int = len(Y)
+    X = list(X)
+    Y = list(Y)
+    m = len(X)
+    n = len(Y)
 
-    costs: List[List[int]] = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
-    ops: List[List[int]] = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+    costs = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+    ops = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
 
     for i in range(1, m + 1):
         costs[i][0] = i * cD
@@ -52,19 +52,19 @@ def compute_transform_tables(
 
 def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
     if i == 0 and j == 0:
-        seq: List = []
+        seq = []
         return seq
     else:
         if ops[i][j][0] == "C" or ops[i][j][0] == "R":
-            seq: List = assemble_transformation(ops, i - 1, j - 1)
+            seq = assemble_transformation(ops, i - 1, j - 1)
             seq.append(ops[i][j])
             return seq
         elif ops[i][j][0] == "D":
-            seq: List = assemble_transformation(ops, i - 1, j)
+            seq = assemble_transformation(ops, i - 1, j)
             seq.append(ops[i][j])
             return seq
         else:
-            seq: List = assemble_transformation(ops, i, j - 1)
+            seq = assemble_transformation(ops, i, j - 1)
             seq.append(ops[i][j])
             return seq
 
@@ -72,13 +72,13 @@ def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
 if __name__ == "__main__":
     _, operations = compute_transform_tables("Python", "Algorithms", -1, 1, 2, 2)
 
-    m: int = len(operations)
-    n: int = len(operations[0])
-    sequence: List = assemble_transformation(operations, m - 1, n - 1)
+    m = len(operations)
+    n = len(operations[0])
+    sequence = assemble_transformation(operations, m - 1, n - 1)
 
-    string: List[str] = list("Python")
-    i: int = 0
-    cost: int = 0
+    string = list("Python")
+    i = 0
+    cost = 0
 
     with open("min_cost.txt", "w") as file:
         for op in sequence:
