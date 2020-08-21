@@ -4,10 +4,10 @@ from typing import List, Tuple
 Algorithm for calculating the most cost-efficient sequence for converting one string
 into another.
 The only allowed operations are
----Copy character with copy_cost
----Replace character with replace_cost
----Delete character with delete_cost
----Insert character with insert_cost
+--- Cost to copy a character is copy_cost
+--- Cost to replace a character is replace_cost
+--- Cost to delete a character is delete_cost
+--- Cost to insert a character is insert_cost
 """
 
 
