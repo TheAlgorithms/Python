@@ -25,7 +25,7 @@ class DisjointSet:
         >>> A.merge(1, 2)
         True
         >>> A.merge(0, 2)
-        True        
+        True
         merge already joined sets
         >>> A.merge(0, 1)
         False
