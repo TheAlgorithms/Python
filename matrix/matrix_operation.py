@@ -55,13 +55,13 @@ def multiply(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
         rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
 
-        if cols[0] != rows[1]:
-            raise ValueError(
-                f"Cannot multiply matrix of dimensions ({rows[0]},{cols[0]}) "
-                f"and ({rows[1]},{cols[1]})"
-            )
-        return [[sum(matrix_a[i][k] * matrix_b[k][j] for k in range(cols[0]))
-                 for j in range(cols[1])] for i in range(rows[0])]
+    if cols[0] != rows[1]:
+        raise ValueError(
+            f"Cannot multiply matrix of dimensions ({rows[0]},{cols[0]}) "
+            f"and ({rows[1]},{cols[1]})"
+        )
+    matrix_b = tuple(zip(*matrix_b))
+    return [[sum(m*n for m, n in zip(i, j)) for j in matrix_b] for i in matrix_a]
 
 
 def identity(n: int) -> List[list]:
@@ -162,6 +162,7 @@ def main():
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24],
                 [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
+    multiply([[1, 2, 3]], [[2], [3], [4]])
     print(
         f"Add Operation, {matrix_a} + {matrix_b} =" f"{add(matrix_a, matrix_b)} \n")
     print(
