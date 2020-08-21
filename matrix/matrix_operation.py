@@ -60,8 +60,7 @@ def multiply(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
             f"Cannot multiply matrix of dimensions ({rows[0]},{cols[0]}) "
             f"and ({rows[1]},{cols[1]})"
         )
-    matrix_b = tuple(zip(*matrix_b))
-    return [[sum(m * n for m, n in zip(i, j)) for j in matrix_b] for i in matrix_a]
+    return [[sum(m * n for m, n in zip(i, j)) for j in zip(*matrix_b)] for i in matrix_a]
 
 
 def identity(n: int) -> List[list]:
