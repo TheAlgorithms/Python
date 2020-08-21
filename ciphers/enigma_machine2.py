@@ -42,9 +42,9 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     Checks if the values can be used for the 'enigma' function
 
     >>> _validator((1,1,1), (rotor1, rotor2, rotor3), 'POLAND')
-    ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW',
-        'ZJXESIUQLHAVRMDOYGTNFWPBKC'),
-        {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
+    ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW', \
+'ZJXESIUQLHAVRMDOYGTNFWPBKC'),\ 
+{'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
 
     :param rotpos: rotor_positon
     :param rotsel: rotor_selection
