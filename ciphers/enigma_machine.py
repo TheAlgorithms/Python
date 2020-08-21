@@ -42,7 +42,8 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     Checks if the values can be used for the 'enigma' function
 
     >>> _validator((1,1,1), (rotor1, rotor2, rotor3), 'POLAND')
-((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW', 'ZJXESIUQLHAVRMDOYGTNFWPBKC'), {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
+    ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW', 'ZJXESIUQLHAVRMDOYGTNFWPBKC'),
+{'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
 
     :param rotpos: rotor_positon
     :param rotsel: rotor_selection
@@ -111,7 +112,8 @@ def _plugboard(pbl: str) -> dict:
     return pb
 
 
-def enigma(text: str, rotor_position: tuple, rotor_selection: tuple = (rotor1, rotor2, rotor3), plugb: str = '') -> str:
+def enigma(text: str, rotor_position: tuple,
+           rotor_selection: tuple = (rotor1, rotor2, rotor3), plugb: str = '') -> str:
     """
     The only difference with real-world enigma is that I allowed string input.
     All characters are converted to uppercase. (non-letter symbol are ignored)
