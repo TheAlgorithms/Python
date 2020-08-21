@@ -67,4 +67,4 @@ def compute_nums(n: int) -> List[int]:
 
 
 if __name__ == "__main__":
-    print(compute_nums(2))
+    print(f"{compute_nums(2) = }")
