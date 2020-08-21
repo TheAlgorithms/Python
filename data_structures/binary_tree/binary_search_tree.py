@@ -142,7 +142,8 @@ class BinarySearchTree:
             return traversal_function(self.root)
 
     def inorder(self, arr: list, node: Node):
-        """Perform an inorder traversal and append values of the nodes to a list named arr"""
+        """Perform an inorder traversal and append values of the nodes to
+        a list named arr"""
         if node:
             self.inorder(arr, node.left)
             arr.append(node.value)
