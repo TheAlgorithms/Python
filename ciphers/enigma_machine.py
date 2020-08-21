@@ -127,19 +127,24 @@ def enigma(text: str, rotor_position: tuple,
     How it works:
     (for every letter in the message)
 
-    - Input letter goes into the plugboard. If it is connected to another one, change it.
+    - Input letter goes into the plugboard.
+    If it is connected to another one, switch it.
 
     - Letter goes through 3 rotors.
     Each rotor can be represented as 2 sets of symbol, where one is shuffled.
-    Each symbol from the first set has corresponding symbol in the second set and vice versa.
+    Each symbol from the first set has corresponding symbol in
+    the second set and vice versa.
+
     example:
     | ABCDEFGHIJKLMNOPQRSTUVWXYZ | e.g. F=D and D=F
     | VKLEPDBGRNWTFCJOHQAMUZYIXS |
 
     - Symbol then goes through reflector (static rotor).
     There it is switched with paired symbol
-    The reflector can be represented as2 sets, each with half of the alphanet. (example below)
+    The reflector can be represented as2 sets, each with half of the alphanet.
     There are usually 10 pairs of letters.
+
+    Example:
     | ABCDEFGHIJKLM | e.g. E is paired to X
     | ZYXWVUTSRQPON | so when E goes in X goes out and vice versa
 
@@ -237,7 +242,7 @@ def enigma(text: str, rotor_position: tuple,
 
 
 if __name__ == '__main__':
-    message = 'This is my Python script that emulates the famous Enigma machine from WWII.'
+    message = 'This is my Python script that emulates the Enigma machine from WWII.'
     rotor_pos = (1, 1, 1)
     pb = 'pictures'
     rotor_sel = (rotor2, rotor4, rotor8)
