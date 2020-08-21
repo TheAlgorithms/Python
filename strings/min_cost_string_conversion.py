@@ -4,48 +4,53 @@ from typing import List, Tuple
 Algorithm for calculating the most cost-efficient sequence for converting one string
 into another.
 The only allowed operations are
----Copy character with cost cC
----Replace character with cost cR
----Delete character with cost cD
----Insert character with cost cI
+---Copy character with copy_cost
+---Replace character with replace_cost
+---Delete character with delete_cost
+---Insert character with insert_cost
 """
 
 
 def compute_transform_tables(
-    X: str, Y: str, cC: int, cR: int, cD: int, cI: int
+    first_string: str,
+    second_string: str,
+    copy_cost: int,
+    replace_cost: int,
+    delete_cost: int,
+    insert_cost: int,
 ) -> Tuple[List[int], List[str]]:
-    X = list(X)
-    Y = list(Y)
-    m = len(X)
-    n = len(Y)
+    first_seq = list(first_string)
+    second_seq = list(second_string)
+    len_first_seq = len(first_seq)
+    len_second_seq = len(second_seq)
 
-    costs = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
-    ops = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
+    costs = [[0 for _ in range(len_second_seq + 1)] for _ in range(len_first_seq + 1)]
+    ops = [[0 for _ in range(len_second_seq + 1)] for _ in range(len_first_seq + 1)]
 
-    for i in range(1, m + 1):
-        costs[i][0] = i * cD
-        ops[i][0] = "D%c" % X[i - 1]
+    for i in range(1, len_first_seq + 1):
+        costs[i][0] = i * delete_cost
+        ops[i][0] = "D%c" % first_seq[i - 1]
 
-    for i in range(1, n + 1):
-        costs[0][i] = i * cI
-        ops[0][i] = "I%c" % Y[i - 1]
+    for i in range(1, len_second_seq + 1):
+        costs[0][i] = i * insert_cost
+        ops[0][i] = "I%c" % second_seq[i - 1]
 
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            if X[i - 1] == Y[j - 1]:
-                costs[i][j] = costs[i - 1][j - 1] + cC
-                ops[i][j] = "C%c" % X[i - 1]
+    for i in range(1, len_first_seq + 1):
+        for j in range(1, len_second_seq + 1):
+            if first_seq[i - 1] == second_seq[j - 1]:
+                costs[i][j] = costs[i - 1][j - 1] + copy_cost
+                ops[i][j] = "C%c" % first_seq[i - 1]
             else:
-                costs[i][j] = costs[i - 1][j - 1] + cR
-                ops[i][j] = "R%c" % X[i - 1] + str(Y[j - 1])
+                costs[i][j] = costs[i - 1][j - 1] + replace_cost
+                ops[i][j] = "R%c" % first_seq[i - 1] + str(second_seq[j - 1])
 
-            if costs[i - 1][j] + cD < costs[i][j]:
-                costs[i][j] = costs[i - 1][j] + cD
-                ops[i][j] = "D%c" % X[i - 1]
+            if costs[i - 1][j] + delete_cost < costs[i][j]:
+                costs[i][j] = costs[i - 1][j] + delete_cost
+                ops[i][j] = "D%c" % first_seq[i - 1]
 
-            if costs[i][j - 1] + cI < costs[i][j]:
-                costs[i][j] = costs[i][j - 1] + cI
-                ops[i][j] = "I%c" % Y[j - 1]
+            if costs[i][j - 1] + insert_cost < costs[i][j]:
+                costs[i][j] = costs[i][j - 1] + insert_cost
+                ops[i][j] = "I%c" % second_seq[j - 1]
 
     return costs, ops
 
