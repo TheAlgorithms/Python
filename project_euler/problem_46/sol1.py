@@ -51,7 +51,23 @@ def compute_nums(n: int) -> List[int]:
     [5777]
     >>> compute_nums(2)
     [5777, 5993]
+    >>> compute_nums(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: n must be => 0
+    >>> compute_nums("a")
+    Traceback (most recent call last):
+        ...
+    ValueError: n must be an exact integer
+    >>> compute_nums(1.1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n must be an exact integer
     """
+    if not isinstance(n, int):
+        raise ValueError("n must be an exact integer")
+    if n <= 0:
+        raise ValueError("n must be => 0")
     list_nums = []
     for num in range(len(odd_composites)):
         i = 0
@@ -67,4 +83,4 @@ def compute_nums(n: int) -> List[int]:
 
 
 if __name__ == "__main__":
-    print(f"{compute_nums(2) = }")
+    print(f"{compute_nums(1) = }")
