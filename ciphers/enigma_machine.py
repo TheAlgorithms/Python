@@ -3,7 +3,7 @@ Wikipedia: https://en.wikipedia.org/wiki/Enigma_machine
 Video explanation: https://youtu.be/QwQVMqfoB2E
 Also check out Numberphile's and Computerphile's videos on this topic
 
-This module contains function enigma(text, rotor_position, rotor_selection, plugb) which emulates
+This module contains function 'enigma' which emulates
 the famous Enigma machine from WWII.
 Module includes:
 - enigma function
@@ -79,7 +79,7 @@ def _plugboard(pbl: str) -> dict:
     https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 
     >>> _plugboard('PICTURES')
-    {'P': 'I', 'I': 'P', 'C': 'T', 'T': 'C', 'U': 'R', 'R': 'U', 'E': 'S', 'S': 'E'}
+{'P': 'I', 'I': 'P', 'C': 'T', 'T': 'C', 'U': 'R', 'R': 'U', 'E': 'S', 'S': 'E'}
     >>> _plugboard('POLAND')
     {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'}
 
@@ -226,7 +226,7 @@ def enigma(text: str, rotor_position: tuple,
             if rotorpos3 >= len(abc):
                 rotorpos3 = 0
 
-        #else:
+        # else:
         #    pass
         #    Error could be also raised
         #    raise ValueError(
@@ -237,7 +237,7 @@ def enigma(text: str, rotor_position: tuple,
 
 
 if __name__ == '__main__':
-    message = 'Hello, this is my Python script that emulates the famous Enigma machine from WWII.'
+    message = 'This is my Python script that emulates the famous Enigma machine from WWII.'
     rotor_pos = (1, 1, 1)
     pb = 'pictures'
     rotor_sel = (rotor2, rotor4, rotor8)
