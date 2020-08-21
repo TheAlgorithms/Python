@@ -1,0 +1,231 @@
+"""
+Wikipedia: https://en.wikipedia.org/wiki/Enigma_machine
+Video explanation: https://youtu.be/QwQVMqfoB2E
+Also check out Numberphile's and Computerphile's videos on this topic
+
+This module contains function enigma(text, rotor_position, rotor_selection, plugb) which emulates
+the famous Enigma machine from WWII.
+Module includes:
+- enigma function
+- showcase of function usage
+- 9 randnomly generated rotors
+- reflector (aka static rotor)
+- original alphabet
+"""
+
+# used alphabet --------------------------
+# from string.ascii_uppercase
+abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+# -------------------------- default selection --------------------------
+# rotors --------------------------
+rotor1 = 'EGZWVONAHDCLFQMSIPJBYUKXTR'
+rotor2 = 'FOBHMDKEXQNRAULPGSJVTYICZW'
+rotor3 = 'ZJXESIUQLHAVRMDOYGTNFWPBKC'
+# reflector --------------------------
+reflector = {'A': 'N', 'N': 'A', 'B': 'O', 'O': 'B', 'C': 'P', 'P': 'C', 'D': 'Q', 'Q': 'D',
+             'E': 'R', 'R': 'E', 'F': 'S', 'S': 'F', 'G': 'T', 'T': 'G', 'H': 'U', 'U': 'H',
+             'I': 'V', 'V': 'I', 'J': 'W', 'W': 'J', 'K': 'X', 'X': 'K', 'L': 'Y', 'Y': 'L',
+             'M': 'Z', 'Z': 'M'}
+
+# -------------------------- extra rotors --------------------------
+rotor4 = 'RMDJXFUWGISLHVTCQNKYPBEZOA'
+rotor5 = 'SGLCPQWZHKXAREONTFBVIYJUDM'
+rotor6 = 'HVSICLTYKQUBXDWAJZOMFGPREN'
+rotor7 = 'RZWQHFMVDBKICJLNTUXAGYPSOE'
+rotor8 = 'LFKIJODBEGAMQPXVUHYSTCZRWN'
+rotor9 = 'KOAEGVDHXPQZMLFTYWJNBRCIUS'
+
+
+def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
+    """
+    Checks if the values can be used for the 'enigma' function
+
+    :param rotpos: rotor_positon
+    :param rotsel: rotor_selection
+    :param pb: plugb -> validated and transformed
+    :return: (rotpos, rotsel, pb)
+    """
+    # Checks if there are 3 unique rotors
+    if len(set(rotsel)) < 3:
+        raise Exception('Please use 3 unique rotors (not ' + str(len(set(rotsel))) + ')')
+
+    # Checks if rotor positions are valid
+    rotorpos1, rotorpos2, rotorpos3 = rotpos
+    if rotorpos1 < 1 or rotorpos1 > len(abc):
+        raise ValueError('First rotor position is not withing range of 1..74 (' + str(rotorpos1) + ')')
+    if rotorpos2 < 1 or rotorpos2 > len(abc):
+        raise ValueError('Second rotor position is not withing range of 1..74 (' + str(rotorpos2) + ')')
+    if rotorpos3 < 1 or rotorpos3 > len(abc):
+        raise ValueError('Third rotor position is not withing range of 1..74 (' + str(rotorpos3) + ')')
+
+    # Validates string and returns dict
+    pb = _plugboard(pb)
+
+    return rotpos, rotsel, pb
+
+
+def _plugboard(pbl: str) -> dict:
+    """
+    https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
+
+    >>> _plugboard('PICTURES')
+    {'P': 'I', 'I': 'P', 'C': 'T', 'T': 'C', 'U': 'R', 'R': 'U', 'E': 'S', 'S': 'E'}
+    >>> _plugboard('POLAND')
+    {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'}
+
+    :param pbl: string containing plugboard setting for the Enigma machine
+    :return: dictionary of
+    """
+
+    # tests the input string if it
+    # a) is type string
+    # b) has even length (so pairs can be made)
+    if type(pbl) is not str:
+        raise TypeError('PLugboard setting isn\'t type string ('+str(type(pbl))+')')
+    elif len(pbl) % 2 != 0:
+        raise Exception('Odd number of symbols (' + str(len(pbl)) + ')')
+    elif pbl == '':
+        return {}
+
+    # Checks if all characters are unique
+    tmppbl = set()
+    for i in pbl:
+        if i not in abc:
+            raise Exception('Not in list of symbols')
+        elif i in tmppbl:
+            raise Exception('Duplicate symbol (' + i + ')')
+        else:
+            tmppbl.add(i)
+    del tmppbl
+
+    # Created the dictionary
+    pb = {}
+    for i in range(0, len(pbl) - 1, 2):
+        pb[pbl[i]] = pbl[i + 1]
+        pb[pbl[i + 1]] = pbl[i]
+
+    return pb
+
+
+def enigma(text: str, rotor_position: tuple, rotor_selection: tuple = (rotor1, rotor2, rotor3), plugb: str = '') -> str:
+    """
+    The only difference with real-world enigma is that I allowed string input.
+    All characters are converted to uppercase. (non-letter symbol are ignored)
+    How it works:
+    (for every letter in the message)
+
+    - Input letter goes into the plugboard. If it is connected to another one, change it.
+
+    - Letter goes through 3 rotors. Each rotor can be represented as 2 sets of symbol, where one is shuffled.
+    Each symbol from the first set has corresponding symbol in the second set and vice versa. (example below)
+    | ABCDEFGHIJKLMNOPQRSTUVWXYZ | e.g. F=D and D=F
+    | VKLEPDBGRNWTFCJOHQAMUZYIXS |
+
+    - Symbol then goes through reflector (static rotor).
+    There it is switched with paired symbol
+    The reflector can be represented as2 sets, each with half of the alphanet. (example below)
+    There are usually 10 pairs of letters.
+    | ABCDEFGHIJKLM | e.g. E is paired to X
+    | ZYXWVUTSRQPON | so when E goes in X goes out and vice versa
+
+    - Letter then goes through the rotors again
+
+    - If the letter is connected to plugboard, it is switched.
+
+    - Return the letter
+
+    >>> enigma('Hello World!', (1, 2, 1), plugb='pictures')
+    'KORYH JUHHI!'
+    >>> enigma('KORYH, juhhi!', (1, 2, 1), plugb='pictures')
+    'HELLO, WORLD!'
+    >>> enigma('hello world!', (1, 1, 1), plugb='pictures')
+    'FPNCZ QWOBU!'
+    >>> enigma('FPNCZ QWOBU', (1, 1, 1), plugb='pictures')
+    'HELLO WORLD'
+
+
+
+
+    :param text: input message
+    :param rotor_position: tuple with 3 values in range 1..74
+    :param rotor_selection: tuple with 3 rotors ()
+    :param plugb: string containing plugboard configuration (default '')
+    :return: en/decrypted string
+    """
+
+    text = text.upper()
+    rotor_position, rotor_selection, pb = _validator(rotor_position, rotor_selection, plugb.upper())
+
+    rotorpos1, rotorpos2, rotorpos3 = rotor_position
+    rotor1, rotor2, rotor3 = rotor_selection
+    rotorpos1 -= 1
+    rotorpos2 -= 1
+    rotorpos3 -= 1
+    pb = pb
+
+    result = []
+
+    # encryption/decryption process --------------------------
+    for symbol in text:
+        if symbol in abc:
+
+            # 1st plugboard --------------------------
+            if symbol in pb:
+                symbol = pb[symbol]
+
+            # rotor ra --------------------------
+            index = abc.index(symbol) + rotorpos1
+            symbol = rotor1[index % len(abc)]
+
+            # rotor rb --------------------------
+            index = abc.index(symbol) + rotorpos2
+            symbol = rotor2[index % len(abc)]
+
+            # rotor rc --------------------------
+            index = abc.index(symbol) + rotorpos3
+            symbol = rotor3[index % len(abc)]
+
+            # reflector --------------------------
+            # this is the reason you don't need another machine to decipher
+
+            symbol = reflector[symbol]
+
+            # 2nd rotors
+            symbol = abc[rotor3.index(symbol) - rotorpos3]
+            symbol = abc[rotor2.index(symbol) - rotorpos2]
+            symbol = abc[rotor1.index(symbol) - rotorpos1]
+
+            # 2nd plugboard
+            if symbol in pb:
+                symbol = pb[symbol]
+
+            # moves/resets rotor positions
+            rotorpos1 += 1
+            if rotorpos1 >= len(abc):
+                rotorpos1 = 0
+                rotorpos2 += 1
+            if rotorpos2 >= len(abc):
+                rotorpos2 = 0
+                rotorpos3 += 1
+            if rotorpos3 >= len(abc):
+                rotorpos3 = 0
+
+        #else:
+        #    pass
+        #    Error could be also raised
+        #    raise ValueError('Invalid symbol('+repr(symbol)+')')
+        result.append(symbol)
+
+    return "".join(result)
+
+
+if __name__ == '__main__':
+    message = 'Hello, this is my Python script that emulates the famous Enigma machine from WWII.'
+    rotor_pos = (1, 1, 1)
+    pb = 'pictures'
+    rotor_sel = (rotor2, rotor4, rotor8)
+    en = enigma(message, rotor_pos, rotor_sel, pb)
+
+    print('Encrypted message:', en)
+    print('Decrypted message:', enigma(en, rotor_pos, rotor_sel, pb))
