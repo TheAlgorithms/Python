@@ -79,7 +79,7 @@ def _plugboard(pbl: str) -> dict:
     https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 
     >>> _plugboard('PICTURES')
-{'P': 'I', 'I': 'P', 'C': 'T', 'T': 'C', 'U': 'R', 'R': 'U', 'E': 'S', 'S': 'E'}
+    {'P': 'I', 'I': 'P', 'C': 'T', 'T': 'C', 'U': 'R', 'R': 'U', 'E': 'S', 'S': 'E'}
     >>> _plugboard('POLAND')
     {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'}
 
