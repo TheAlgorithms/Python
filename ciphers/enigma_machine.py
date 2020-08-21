@@ -44,7 +44,7 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     >>> _validator((1,1,1), (rotor1, rotor2, rotor3), 'POLAND')
     ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW',
         'ZJXESIUQLHAVRMDOYGTNFWPBKC'),
-{'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
+        {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
 
     :param rotpos: rotor_positon
     :param rotsel: rotor_selection
