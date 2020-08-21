@@ -87,7 +87,7 @@ def transpose(matrix: List[list], return_map: bool = True) -> List[list]:
         if return_map:
             return map(list, zip(*matrix))
         else:
-            return [[row[i] for row in matrix] for i in range(len(matrix[0]))]
+            return list(map(list, zip(*matrix)))
 
 
 def minor(matrix: List[list], row: int, column: int) -> List[list]:
@@ -109,8 +109,8 @@ def determinant(matrix: List[list]) -> int:
     if len(matrix) == 1:
         return matrix[0][0]
 
-    return sum(matrix[0][x] * determinant(minor(matrix, 0, x)) * (-1) ** x
-               for x in range(len(matrix)))
+    return sum(x * determinant(minor(matrix, 0, i)) * (-1) ** i
+               for i, x in enumerate(matrix[0]))
 
 
 def inverse(matrix: List[list]) -> List[list]:
@@ -162,7 +162,6 @@ def main():
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24],
                 [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
-    multiply([[1, 2, 3]], [[2], [3], [4]])
     print(
         f"Add Operation, {matrix_a} + {matrix_b} =" f"{add(matrix_a, matrix_b)} \n")
     print(
