@@ -93,7 +93,7 @@ class SegmentTree:
         7
         >>> segment_tree.query(1, 1, 15, 7, 11)
         14
-        >>> segment_tree.query(1, 1, 15, 7, 12))
+        >>> segment_tree.query(1, 1, 15, 7, 12)
         15
         """
         if self.flag[idx] is True:
