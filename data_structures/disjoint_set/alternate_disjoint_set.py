@@ -2,6 +2,8 @@
 Implements a disjoint set using Lists and some added heuristics for efficiency
 Union by Rank Heuristic and Path Compression
 """
+
+
 class DisjointSet:
     def __init__(self, set_counts: list) -> None:
         """
