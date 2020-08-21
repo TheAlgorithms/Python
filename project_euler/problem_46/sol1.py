@@ -54,7 +54,7 @@ def compute_nums(n: int) -> List[int]:
     >>> compute_nums(0)
     Traceback (most recent call last):
         ...
-    ValueError: n must be => 0
+    ValueError: n must be >= 0
     >>> compute_nums("a")
     Traceback (most recent call last):
         ...
