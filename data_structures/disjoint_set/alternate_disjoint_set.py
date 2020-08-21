@@ -37,17 +37,17 @@ class DisjointSet:
             return False
 
         if self.ranks[dst_parent] >= self.ranks[src_parent]:
-            self.set_count[dst_parent] += self.set_count[src_parent]
-            self.set_count[src_parent] = 0
+            self.set_counts[dst_parent] += self.set_counts[src_parent]
+            self.set_counts[src_parent] = 0
             self.parents[src_parent] = dst_parent
             if self.ranks[dst_parent] == self.ranks[src_parent]:
                 self.ranks[dst_parent] += 1
-            joined_set_size = self.set_count[dst_parent]
+            joined_set_size = self.set_counts[dst_parent]
         else:
-            self.set_count[src_parent] += self.set_count[dst_parent]
-            self.set_count[dst_parent] = 0
+            self.set_counts[src_parent] += self.set_counts[dst_parent]
+            self.set_counts[dst_parent] = 0
             self.parents[dst_parent] = src_parent
-            joined_set_size = self.set_count[src_parent]
+            joined_set_size = self.set_counts[src_parent]
 
         self.max_set = max(self.max_set, joined_set_size)
         return True
@@ -56,12 +56,11 @@ class DisjointSet:
         """
         Find the Parent of a given set
         >>> A = DisjointSet([1, 1, 1])
+        >>> A.merge(1, 2)
         >>> A.get_parent(0)
-        1
+        0
         >>> A.get_parent(2)
-        ...
-        IndexError: list index out of range
-        """
+        1
         if self.parents[disj_set] == disj_set:
             return disj_set
         self.parents[disj_set] = self.get_parent(self.parents[disj_set])
