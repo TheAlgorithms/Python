@@ -58,7 +58,7 @@ def compute_nums(n: int) -> List[int]:
     >>> compute_nums("a")
     Traceback (most recent call last):
         ...
-    ValueError: n must be an exact integer
+    ValueError: n must be an integer
     >>> compute_nums(1.1)
     Traceback (most recent call last):
         ...
@@ -66,7 +66,7 @@ def compute_nums(n: int) -> List[int]:
 
     """
     if not isinstance(n, int):
-        raise ValueError("n must be an exact integer")
+        raise ValueError("n must be an integer")
     if n <= 0:
         raise ValueError("n must be >= 0")
 
