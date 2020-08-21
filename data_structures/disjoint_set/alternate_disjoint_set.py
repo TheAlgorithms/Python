@@ -55,6 +55,7 @@ class DisjointSet:
     def get_parent(self, disj_set: int) -> int:
         """
         Find the Parent of a given set
+        >>> A = DisjointSet([1, 1, 1])
         >>> A.get_parent(0)
         1
         >>> A.get_parent(2)
