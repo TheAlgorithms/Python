@@ -23,10 +23,10 @@ rotor1 = 'EGZWVONAHDCLFQMSIPJBYUKXTR'
 rotor2 = 'FOBHMDKEXQNRAULPGSJVTYICZW'
 rotor3 = 'ZJXESIUQLHAVRMDOYGTNFWPBKC'
 # reflector --------------------------
-reflector = {'A': 'N', 'N': 'A', 'B': 'O', 'O': 'B', 'C': 'P', 'P': 'C', 'D': 'Q', 'Q': 'D',
-             'E': 'R', 'R': 'E', 'F': 'S', 'S': 'F', 'G': 'T', 'T': 'G', 'H': 'U', 'U': 'H',
-             'I': 'V', 'V': 'I', 'J': 'W', 'W': 'J', 'K': 'X', 'X': 'K', 'L': 'Y', 'Y': 'L',
-             'M': 'Z', 'Z': 'M'}
+reflector = {'A': 'N', 'N': 'A', 'B': 'O', 'O': 'B', 'C': 'P', 'P': 'C', 'D': 'Q',
+             'Q': 'D', 'E': 'R', 'R': 'E', 'F': 'S', 'S': 'F', 'G': 'T', 'T': 'G',
+             'H': 'U', 'U': 'H', 'I': 'V', 'V': 'I', 'J': 'W', 'W': 'J', 'K': 'X',
+             'X': 'K', 'L': 'Y', 'Y': 'L', 'M': 'Z', 'Z': 'M'}
 
 # -------------------------- extra rotors --------------------------
 rotor4 = 'RMDJXFUWGISLHVTCQNKYPBEZOA'
@@ -42,7 +42,8 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     Checks if the values can be used for the 'enigma' function
 
     >>> _validator((1,1,1), (rotor1, rotor2, rotor3), 'POLAND')
-    ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW', 'ZJXESIUQLHAVRMDOYGTNFWPBKC'),
+    ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW',
+        'ZJXESIUQLHAVRMDOYGTNFWPBKC'),
 {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
 
     :param rotpos: rotor_positon
@@ -52,16 +53,20 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     """
     # Checks if there are 3 unique rotors
     if len(set(rotsel)) < 3:
-        raise Exception('Please use 3 unique rotors (not ' + str(len(set(rotsel))) + ')')
+        raise Exception('Please use 3 unique rotors (not '
+                        + str(len(set(rotsel))) + ')')
 
     # Checks if rotor positions are valid
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if rotorpos1 < 1 or rotorpos1 > len(abc):
-        raise ValueError('First rotor position is not within range of 1..74 (' + str(rotorpos1) + ')')
+        raise ValueError('First rotor position is not within range of 1..74 ('
+                         + str(rotorpos1) + ')')
     if rotorpos2 < 1 or rotorpos2 > len(abc):
-        raise ValueError('Second rotor position is not within range of 1..74 (' + str(rotorpos2) + ')')
+        raise ValueError('Second rotor position is not within range of 1..74 ('
+                         + str(rotorpos2) + ')')
     if rotorpos3 < 1 or rotorpos3 > len(abc):
-        raise ValueError('Third rotor position is not within range of 1..74 (' + str(rotorpos3) + ')')
+        raise ValueError('Third rotor position is not within range of 1..74 ('
+                         + str(rotorpos3) + ')')
 
     # Validates string and returns dict
     pb = _plugboard(pb)
@@ -86,9 +91,11 @@ def _plugboard(pbl: str) -> dict:
     # a) is type string
     # b) has even length (so pairs can be made)
     if type(pbl) is not str:
-        raise TypeError('PLugboard setting isn\'t type string ('+str(type(pbl))+')')
+        raise TypeError('PLugboard setting isn\'t type string ('
+                        + str(type(pbl)) + ')')
     elif len(pbl) % 2 != 0:
-        raise Exception('Odd number of symbols (' + str(len(pbl)) + ')')
+        raise Exception('Odd number of symbols ('
+                        + str(len(pbl)) + ')')
     elif pbl == '':
         return {}
 
@@ -122,8 +129,10 @@ def enigma(text: str, rotor_position: tuple,
 
     - Input letter goes into the plugboard. If it is connected to another one, change it.
 
-    - Letter goes through 3 rotors. Each rotor can be represented as 2 sets of symbol, where one is shuffled.
-    Each symbol from the first set has corresponding symbol in the second set and vice versa. (example below)
+    - Letter goes through 3 rotors.
+    Each rotor can be represented as 2 sets of symbol, where one is shuffled.
+    Each symbol from the first set has corresponding symbol in the second set and vice versa.
+    example:
     | ABCDEFGHIJKLMNOPQRSTUVWXYZ | e.g. F=D and D=F
     | VKLEPDBGRNWTFCJOHQAMUZYIXS |
 
@@ -160,7 +169,8 @@ def enigma(text: str, rotor_position: tuple,
     """
 
     text = text.upper()
-    rotor_position, rotor_selection, pb = _validator(rotor_position, rotor_selection, plugb.upper())
+    rotor_position, rotor_selection, pb = _validator(
+        rotor_position, rotor_selection, plugb.upper())
 
     rotorpos1, rotorpos2, rotorpos3 = rotor_position
     rotor1, rotor2, rotor3 = rotor_selection
@@ -219,7 +229,8 @@ def enigma(text: str, rotor_position: tuple,
         #else:
         #    pass
         #    Error could be also raised
-        #    raise ValueError('Invalid symbol('+repr(symbol)+')')
+        #    raise ValueError(
+        #       'Invalid symbol('+repr(symbol)+')')
         result.append(symbol)
 
     return "".join(result)
