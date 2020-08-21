@@ -20,14 +20,12 @@ class DisjointSet:
         """
         Merge two sets together using Union by rank heuristic
         Return True if successful
-        
-        Merge two disjoint sets 
+        Merge two disjoint sets
         >>> A = DisjointSet([1, 1, 1])
         >>> A.merge(1, 2)
         True
         >>> A.merge(0, 2)
-        True
-        
+        True        
         merge already joined sets
         >>> A.merge(0, 1)
         False
@@ -59,10 +57,9 @@ class DisjointSet:
         Find the Parent of a given set
         >>> A.get_parent(0)
         1
-        
         >>> A.get_parent(2)
         ...
-        IndexError: list index out of range 
+        IndexError: list index out of range
         """
         if self.parents[disj_set] == disj_set:
             return disj_set
