@@ -60,7 +60,8 @@ def multiply(matrix_a: List[list], matrix_b: List[list]) -> List[list]:
             f"Cannot multiply matrix of dimensions ({rows[0]},{cols[0]}) "
             f"and ({rows[1]},{cols[1]})"
         )
-    return [[sum(m * n for m, n in zip(i, j)) for j in zip(*matrix_b)] for i in matrix_a]
+    return [[sum(m * n for m, n in zip(i, j)) for j in zip(*matrix_b)]
+            for i in matrix_a]
 
 
 def identity(n: int) -> List[list]:
@@ -162,10 +163,9 @@ def main():
                 [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
     print(
-        f"Add Operation, {matrix_a} + {matrix_b} =" f"{add(matrix_a, matrix_b)} \n")
+        f"Add Operation, {add(matrix_a, matrix_b) = } \n")
     print(
-        f"Multiply Operation, {matrix_a} * {matrix_b}",
-        f"= {multiply(matrix_a, matrix_b)} \n",
+        f"Multiply Operation, {multiply(matrix_a, matrix_b) = } \n",
     )
     print(f"Identity: {identity(5)}\n")
     print(f"Minor of {matrix_c} = {minor(matrix_c, 1, 2)} \n")
