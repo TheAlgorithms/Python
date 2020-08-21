@@ -56,11 +56,11 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     # Checks if rotor positions are valid
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if rotorpos1 < 1 or rotorpos1 > len(abc):
-        raise ValueError('First rotor position is not withing range of 1..74 (' + str(rotorpos1) + ')')
+        raise ValueError('First rotor position is not within range of 1..74 (' + str(rotorpos1) + ')')
     if rotorpos2 < 1 or rotorpos2 > len(abc):
-        raise ValueError('Second rotor position is not withing range of 1..74 (' + str(rotorpos2) + ')')
+        raise ValueError('Second rotor position is not within range of 1..74 (' + str(rotorpos2) + ')')
     if rotorpos3 < 1 or rotorpos3 > len(abc):
-        raise ValueError('Third rotor position is not withing range of 1..74 (' + str(rotorpos3) + ')')
+        raise ValueError('Third rotor position is not within range of 1..74 (' + str(rotorpos3) + ')')
 
     # Validates string and returns dict
     pb = _plugboard(pb)
