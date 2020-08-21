@@ -67,7 +67,8 @@ def compute_nums(n: int) -> List[int]:
     if not isinstance(n, int):
         raise ValueError("n must be an exact integer")
     if n <= 0:
-        raise ValueError("n must be => 0")
+        raise ValueError("n must be >= 0")
+
     list_nums = []
     for num in range(len(odd_composites)):
         i = 0
