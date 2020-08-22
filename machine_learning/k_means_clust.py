@@ -313,8 +313,8 @@ def ReportGenerator(
             - clustersize.iloc[:, 2:].values
         )
     )  # generating df with count of nan values
-    a["Features"] = 0
-    a["Type"] = "# of nan"
+    a.loc[:, "Features"] = 0
+    a.loc[:, "Type"] = "# of nan"
     a.Features = report[
         report["Type"] == "count"
     ].Features.tolist()  # filling values in order to match report
@@ -328,7 +328,7 @@ def ReportGenerator(
     report = pd.concat(
         [report, a, clustersize, clusterproportion], axis=0
     )  # concat report with clustert size and nan values
-    report["Mark"] = report["Features"].isin(ClusteringVariables)
+    report.loc[:, "Mark"] = report["Features"].isin(ClusteringVariables)
     cols = report.columns.tolist()
     cols = cols[0:2] + cols[-1:] + cols[2:-1]
     report = report[cols]
