@@ -86,6 +86,7 @@ def _plugboard(pbl: str) -> dict:
     >>> _plugboard('POLAND')
     {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'}
 
+    Pairs can be separated by spaces
     :param pbl: string containing plugboard setting for the Enigma machine
     :return: dictionary of
     """
@@ -93,12 +94,14 @@ def _plugboard(pbl: str) -> dict:
     # tests the input string if it
     # a) is type string
     # b) has even length (so pairs can be made)
-    if type(pbl) is not str:
+    if not isinstance(pbl, str):
         raise TypeError(f'Plugboard setting isn\'t type string ({type(pbl)})')
     elif len(pbl) % 2 != 0:
         raise Exception(f'Odd number of symbols ({len(pbl)})')
     elif pbl == '':
         return {}
+
+    pbl.replace(' ', '')
 
     # Checks if all characters are unique
     tmppbl = set()
