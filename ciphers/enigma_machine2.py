@@ -107,7 +107,7 @@ def _plugboard(pbstring: str) -> dict:
     tmppbl = set()
     for i in pbstring:
         if i not in abc:
-            raise Exception(f' \'{i}\'not in list of symbols')
+            raise Exception(f'\'{i}\' not in list of symbols')
         elif i in tmppbl:
             raise Exception(f'Duplicate symbol ({i})')
         else:
