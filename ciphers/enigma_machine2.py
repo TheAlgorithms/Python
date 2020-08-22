@@ -43,7 +43,7 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
 
     >>> _validator((1,1,1), (rotor1, rotor2, rotor3), 'POLAND')
     ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW', \
-'ZJXESIUQLHAVRMDOYGTNFWPBKC'),\ 
+'ZJXESIUQLHAVRMDOYGTNFWPBKC'), \
 {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
 
     :param rotpos: rotor_positon
@@ -60,11 +60,14 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     # Checks if rotor positions are valid
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if not 0 < rotorpos1 <= len(abc):
-        raise ValueError(f'First rotor position is not within range of 1..74 ({rotorpos1})')
+        raise ValueError(
+            f'First rotor position is not within range of 1..74 ({rotorpos1})')
     if not 0 < rotorpos2 <= len(abc):
-        raise ValueError(f'Second rotor position is not within range of 1..74 ({rotorpos2})')
+        raise ValueError(f'Second rotor position is not within range of 1..74 ('
+                         f'{rotorpos2})')
     if not 0 < rotorpos3 <= len(abc):
-        raise ValueError(f'Third rotor position is not within range of 1..74 ({rotorpos3})')
+        raise ValueError(f'Third rotor position is not within range of 1..74 ('
+                         f'{rotorpos3})')
 
     # Validates string and returns dict
     pb = _plugboard(pb)
@@ -158,8 +161,6 @@ def enigma(text: str, rotor_position: tuple,
     'FPNCZ QWOBU!'
     >>> enigma('FPNCZ QWOBU', (1, 1, 1), plugb='pictures')
     'HELLO WORLD'
-
-
 
 
     :param text: input message
