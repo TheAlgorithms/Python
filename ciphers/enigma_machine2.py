@@ -11,6 +11,8 @@ Module includes:
 - 9 randnomly generated rotors
 - reflector (aka static rotor)
 - original alphabet
+
+Created by TrapinchO
 """
 
 # used alphabet --------------------------
