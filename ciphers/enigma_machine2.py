@@ -77,7 +77,7 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     return rotpos, rotsel, pb
 
 
-def _plugboard(pbl: str) -> dict:
+def _plugboard(pbstring: str) -> dict:
     """
     https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 
@@ -87,25 +87,25 @@ def _plugboard(pbl: str) -> dict:
     {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'}
 
     Pairs can be separated by spaces
-    :param pbl: string containing plugboard setting for the Enigma machine
-    :return: dictionary of
+    :param pbstring: string containing plugboard setting for the Enigma machine
+    :return: dictionary containing converted pairs
     """
 
     # tests the input string if it
     # a) is type string
     # b) has even length (so pairs can be made)
-    if not isinstance(pbl, str):
-        raise TypeError(f'Plugboard setting isn\'t type string ({type(pbl)})')
-    elif len(pbl) % 2 != 0:
-        raise Exception(f'Odd number of symbols ({len(pbl)})')
-    elif pbl == '':
+    if not isinstance(pbstring, str):
+        raise TypeError(f'Plugboard setting isn\'t type string ({type(pbstring)})')
+    elif len(pbstring) % 2 != 0:
+        raise Exception(f'Odd number of symbols ({len(pbstring)})')
+    elif pbstring == '':
         return {}
 
-    pbl.replace(' ', '')
+    pbstring.replace(' ', '')
 
     # Checks if all characters are unique
     tmppbl = set()
-    for i in pbl:
+    for i in pbstring:
         if i not in abc:
             raise Exception('Not in list of symbols')
         elif i in tmppbl:
@@ -115,12 +115,12 @@ def _plugboard(pbl: str) -> dict:
     del tmppbl
 
     # Created the dictionary
-    pb = {}
-    for i in range(0, len(pbl) - 1, 2):
-        pb[pbl[i]] = pbl[i + 1]
-        pb[pbl[i + 1]] = pbl[i]
+    plugb = {}
+    for i in range(0, len(pbstring) - 1, 2):
+        plugb[pbstring[i]] = pbstring[i + 1]
+        plugb[pbstring[i + 1]] = pbstring[i]
 
-    return pb
+    return plugb
 
 
 def enigma(text: str, rotor_position: tuple,
@@ -176,7 +176,7 @@ def enigma(text: str, rotor_position: tuple,
     """
 
     text = text.upper()
-    rotor_position, rotor_selection, pb = _validator(
+    rotor_position, rotor_selection, plugboard = _validator(
         rotor_position, rotor_selection, plugb.upper())
 
     rotorpos1, rotorpos2, rotorpos3 = rotor_position
@@ -184,7 +184,7 @@ def enigma(text: str, rotor_position: tuple,
     rotorpos1 -= 1
     rotorpos2 -= 1
     rotorpos3 -= 1
-    pb = pb
+    plugboard = plugboard
 
     result = []
 
@@ -193,8 +193,8 @@ def enigma(text: str, rotor_position: tuple,
         if symbol in abc:
 
             # 1st plugboard --------------------------
-            if symbol in pb:
-                symbol = pb[symbol]
+            if symbol in plugboard:
+                symbol = plugboard[symbol]
 
             # rotor ra --------------------------
             index = abc.index(symbol) + rotorpos1
@@ -219,8 +219,8 @@ def enigma(text: str, rotor_position: tuple,
             symbol = abc[rotor1.index(symbol) - rotorpos1]
 
             # 2nd plugboard
-            if symbol in pb:
-                symbol = pb[symbol]
+            if symbol in plugboard:
+                symbol = plugboard[symbol]
 
             # moves/resets rotor positions
             rotorpos1 += 1
