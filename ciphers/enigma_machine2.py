@@ -52,21 +52,19 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     :return: (rotpos, rotsel, pb)
     """
     # Checks if there are 3 unique rotors
-    if len(set(rotsel)) < 3:
-        raise Exception('Please use 3 unique rotors (not '
-                        + str(len(set(rotsel))) + ')')
+
+    unrotsel = len(set(rotsel))
+    if unrotsel < 3:
+        raise Exception(f'Please use 3 unique rotors (not {unrotsel})')
 
     # Checks if rotor positions are valid
     rotorpos1, rotorpos2, rotorpos3 = rotpos
-    if rotorpos1 < 1 or rotorpos1 > len(abc):
-        raise ValueError('First rotor position is not within range of 1..74 ('
-                         + str(rotorpos1) + ')')
-    if rotorpos2 < 1 or rotorpos2 > len(abc):
-        raise ValueError('Second rotor position is not within range of 1..74 ('
-                         + str(rotorpos2) + ')')
-    if rotorpos3 < 1 or rotorpos3 > len(abc):
-        raise ValueError('Third rotor position is not within range of 1..74 ('
-                         + str(rotorpos3) + ')')
+    if not 0 < rotorpos1 <= len(abc):
+        raise ValueError(f'First rotor position is not within range of 1..74 ({rotorpos1})')
+    if not 0 < rotorpos2 <= len(abc):
+        raise ValueError(f'Second rotor position is not within range of 1..74 ({rotorpos2})')
+    if not 0 < rotorpos3 <= len(abc):
+        raise ValueError(f'Third rotor position is not within range of 1..74 ({rotorpos3})')
 
     # Validates string and returns dict
     pb = _plugboard(pb)
@@ -91,11 +89,9 @@ def _plugboard(pbl: str) -> dict:
     # a) is type string
     # b) has even length (so pairs can be made)
     if type(pbl) is not str:
-        raise TypeError('PLugboard setting isn\'t type string ('
-                        + str(type(pbl)) + ')')
+        raise TypeError(f'Plugboard setting isn\'t type string ({type(pbl)})')
     elif len(pbl) % 2 != 0:
-        raise Exception('Odd number of symbols ('
-                        + str(len(pbl)) + ')')
+        raise Exception(f'Odd number of symbols ({len(pbl)})')
     elif pbl == '':
         return {}
 
@@ -105,7 +101,7 @@ def _plugboard(pbl: str) -> dict:
         if i not in abc:
             raise Exception('Not in list of symbols')
         elif i in tmppbl:
-            raise Exception('Duplicate symbol (' + i + ')')
+            raise Exception(f'Duplicate symbol ({i})')
         else:
             tmppbl.add(i)
     del tmppbl
