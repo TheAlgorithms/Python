@@ -86,6 +86,8 @@ def _plugboard(pbstring: str) -> dict:
     >>> _plugboard('POLAND')
     {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'}
 
+    In the code, 'pb' stands for 'plugboard'
+
     Pairs can be separated by spaces
     :param pbstring: string containing plugboard setting for the Enigma machine
     :return: dictionary containing converted pairs
@@ -115,12 +117,12 @@ def _plugboard(pbstring: str) -> dict:
     del tmppbl
 
     # Created the dictionary
-    plugb = {}
+    pb = {}
     for i in range(0, len(pbstring) - 1, 2):
-        plugb[pbstring[i]] = pbstring[i + 1]
-        plugb[pbstring[i + 1]] = pbstring[i]
+        pb[pbstring[i]] = pbstring[i + 1]
+        pb[pbstring[i + 1]] = pbstring[i]
 
-    return plugb
+    return pb
 
 
 def enigma(text: str, rotor_position: tuple,
