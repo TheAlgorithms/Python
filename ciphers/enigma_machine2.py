@@ -55,9 +55,9 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     """
     # Checks if there are 3 unique rotors
 
-    unrotsel = len(set(rotsel))
-    if unrotsel < 3:
-        raise Exception(f'Please use 3 unique rotors (not {unrotsel})')
+    unique_rotsel = len(set(rotsel))
+    if unique_rotsel < 3:
+        raise Exception(f'Please use 3 unique rotors (not {unique_rotsel})')
 
     # Checks if rotor positions are valid
     rotorpos1, rotorpos2, rotorpos3 = rotpos
