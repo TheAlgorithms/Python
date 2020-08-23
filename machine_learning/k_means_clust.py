@@ -224,11 +224,11 @@ def ReportGenerator(
         import numpy as np
 
     >>> data = pd.DataFrame()
-    >>> data.loc[:, 'numbers'] = [1, 2, 3]
-    >>> data.loc[:, 'col1'] = [0.5, 2.5, 4.5]
-    >>> data.loc[:, 'col2'] = [100, 200, 300]
-    >>> data.loc[:, 'col3'] = [10, 20, 30]
-    >>> data.loc[:, 'Cluster'] = [1, 1, 2]
+    >>> data['numbers'] = [1, 2, 3]
+    >>> data['col1'] = [0.5, 2.5, 4.5]
+    >>> data['col2'] = [100, 200, 300]
+    >>> data['col3'] = [10, 20, 30]
+    >>> data['Cluster'] = [1, 1, 2]
     >>> ReportGenerator(data, ['col1', 'col2'], 0)
                Features               Type   Mark           1           2
     0    # of Customers        ClusterSize  False    2.000000    1.000000
@@ -287,10 +287,10 @@ def ReportGenerator(
         .T.reset_index()
         .rename(index=str, columns={"level_0": "Features", "level_1": "Type"})
     )  # rename columns
-
+    # calculate the size of cluster(count of clientID's)
     clustersize = report[
         (report["Features"] == "dummy") & (report["Type"] == "count")
-    ]  # calculate the size of cluster(count of clientID's)
+    ].copy() # avoid SettingWithCopyWarning
     clustersize.Type = (
         "ClusterSize"  # rename created cluster df to match report column names
     )
@@ -313,8 +313,8 @@ def ReportGenerator(
             - clustersize.iloc[:, 2:].values
         )
     )  # generating df with count of nan values
-    a.loc[:, "Features"] = 0
-    a.loc[:, "Type"] = "# of nan"
+    a["Features"] = 0
+    a["Type"] = "# of nan"
     a.Features = report[
         report["Type"] == "count"
     ].Features.tolist()  # filling values in order to match report
@@ -328,7 +328,7 @@ def ReportGenerator(
     report = pd.concat(
         [report, a, clustersize, clusterproportion], axis=0
     )  # concat report with clustert size and nan values
-    report.loc[:, "Mark"] = report["Features"].isin(ClusteringVariables)
+    report[ "Mark"] = report["Features"].isin(ClusteringVariables)
     cols = report.columns.tolist()
     cols = cols[0:2] + cols[-1:] + cols[2:-1]
     report = report[cols]
