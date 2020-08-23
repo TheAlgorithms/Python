@@ -1,21 +1,21 @@
 """
-This is a pure Python implementation of the insertion sort algorithm
+A pure Python implementation of the insertion sort algorithm
 
 This algorithm sorts a collection by comparing adjacent elements.
 When it finds that order is not respected, it moves the element compared
-backward until order is right.
-It then goes back directly to element initial position resuming forward comparison.
+backward until the order is correct.  It then goes back directly to the
+element's initial position resuming forward comparison.
 
 For doctests run following command:
 python3 -m doctest -v insertion_sort.py
 
 For manual testing run:
-python insertion_sort.py
+python3 insertion_sort.py
 """
 
 
 def insertion_sort(collection: list) -> list:
-    """Pure implementation of the insertion sort algorithm in Python
+    """A pure Python implementation of the insertion sort algorithm
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -50,4 +50,4 @@ def insertion_sort(collection: list) -> list:
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(insertion_sort(unsorted))
+    print(f"{insertion_sort(unsorted) = }")
