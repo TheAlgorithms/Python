@@ -328,7 +328,7 @@ def ReportGenerator(
     report = pd.concat(
         [report, a, clustersize, clusterproportion], axis=0
     )  # concat report with clustert size and nan values
-    report[ "Mark"] = report["Features"].isin(ClusteringVariables)
+    report["Mark"] = report["Features"].isin(ClusteringVariables)
     cols = report.columns.tolist()
     cols = cols[0:2] + cols[-1:] + cols[2:-1]
     report = report[cols]
