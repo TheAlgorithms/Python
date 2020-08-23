@@ -211,11 +211,11 @@ def ReportGenerator(
         import pandas as pd
         import numpy as np
     >>> data = pd.DataFrame()
-    >>> data.loc[:, 'numbers'] = [1, 2, 3]
-    >>> data.loc[:, 'col1'] = [0.5, 2.5, 4.5]
-    >>> data.loc[:, 'col2'] = [100, 200, 300]
-    >>> data.loc[:, 'col3'] = [10, 20, 30]
-    >>> data.loc[:, 'Cluster'] = [1, 1, 2]
+    >>> data['numbers'] = [1, 2, 3]
+    >>> data['col1'] = [0.5, 2.5, 4.5]
+    >>> data['col2'] = [100, 200, 300]
+    >>> data['col3'] = [10, 20, 30]
+    >>> data['Cluster'] = [1, 1, 2]
     >>> ReportGenerator(data, ['col1', 'col2'], 0)
                Features               Type   Mark           1           2
     0    # of Customers        ClusterSize  False    2.000000    1.000000
