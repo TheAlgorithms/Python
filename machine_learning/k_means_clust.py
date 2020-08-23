@@ -277,7 +277,7 @@ def ReportGenerator(
     # calculate the size of cluster(count of clientID's)
     clustersize = report[
         (report["Features"] == "dummy") & (report["Type"] == "count")
-    ].copy() # avoid SettingWithCopyWarning
+    ].copy()  # avoid SettingWithCopyWarning
     clustersize.Type = (
         "ClusterSize"  # rename created cluster df to match report column names
     )
