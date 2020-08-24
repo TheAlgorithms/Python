@@ -43,4 +43,4 @@ def compute_num(limit: int = 5000) -> int:
 
 
 if __name__ == "__main__":
-    print(compute_num())
+    print(f"{compute_num() = }")
