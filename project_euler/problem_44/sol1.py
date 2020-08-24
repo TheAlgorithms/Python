@@ -21,7 +21,7 @@ def is_pentagonal(n: int) -> bool:
     True
     """
     root = (1 + 24 * n) ** 0.5
-    return True if ((1 + root) / 6) % 1 == 0 else False
+    return ((1 + root) / 6) % 1 == 0
 
 
 def compute_num(limit: int = 5000) -> int:
