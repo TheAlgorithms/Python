@@ -117,11 +117,8 @@ class SegmentTree:
         q2 = self.query(self.right(idx), mid + 1, right_element, a, b)
         return max(q1, q2)
 
-    def show_data(self) -> None:
-        showList = []
-        for i in range(1, self.size + 1):
-            showList += [self.query(1, 1, self.size, i, i)]
-        print(showList)
+    def __str__(self) -> None:
+        return [self.query(1, 1, self.size, i, i) for i in range(1, self.size + 1)]
 
 
 if __name__ == "__main__":
@@ -135,4 +132,4 @@ if __name__ == "__main__":
     segt.update(1, 1, size, 1, 3, 111)
     print(segt.query(1, 1, size, 1, 15))
     segt.update(1, 1, size, 7, 8, 235)
-    segt.show_data()
+    print(segt)
