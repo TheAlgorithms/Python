@@ -16,7 +16,6 @@ def sum_of_digit_factorial(n: int) -> int:
     1
     """
     return sum(factorial(int(char)) for char in str(n))
-    return sum(factorial(digit) for digit in digits)
 
 
 def compute() -> int:
