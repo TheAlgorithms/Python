@@ -27,15 +27,15 @@ def perfect_square_binary_search(n: int) -> bool:
     Time complexity : O(Log(n))
     Space complexity: O(1)
 
-    >>> perfect_square(9)
+    >>> perfect_square_binary_search(9)
     True
-    >>> perfect_square(16)
+    >>> perfect_square_binary_search(16)
     True
-    >>> perfect_square(1)
+    >>> perfect_square_binary_search(1)
     True
-    >>> perfect_square(0)
+    >>> perfect_square_binary_search(0)
     True
-    >>> perfect_square(10)
+    >>> perfect_square_binary_search(10)
     False
     """
     left = 0
