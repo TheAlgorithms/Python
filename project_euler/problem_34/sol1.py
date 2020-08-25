@@ -17,7 +17,6 @@ def sum_of_digit_factorial(n: int) -> int:
     """
     digits = list(map(int, str(n)))
     return sum(factorial(digit) for digit in digits)
-    return summ
 
 
 def compute() -> int:
@@ -30,7 +29,6 @@ def compute() -> int:
     """
     limit = 7 * factorial(9)
     return sum(i for i in range(3, limit) if sum_of_digit_factorial(i) == i)
-    return sum(nums)
 
 
 if __name__ == "__main__":
