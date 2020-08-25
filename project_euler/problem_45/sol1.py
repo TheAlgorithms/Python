@@ -57,4 +57,4 @@ def compute_num(start: int = 144) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{compute_num(144)}  ")
+    print(f"{compute_num(144)} = ")
