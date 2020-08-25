@@ -29,7 +29,7 @@ def compute() -> int:
     40730
     """
     limit = 7 * factorial(9)
-    nums = [num for num in range(3, limit) if sum_of_digit_factorial(num) == num]
+    return sum(i for i in range(3, limit) if sum_of_digit_factorial(i) == i)
     return sum(nums)
 
 
