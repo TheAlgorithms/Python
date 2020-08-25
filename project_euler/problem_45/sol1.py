@@ -9,9 +9,9 @@ Find the next triangle number that is also pentagonal and hexagonal.
 """
 
 """
-All trinagle numers are hexagonal numbers.
+All trinagle numbers are hexagonal numbers.
 T(2n-1) = n * (2 * n - 1) = H(n)
-So we shall check ony for hexagonal numbers which are also pentagonal.
+So we shall check only for hexagonal numbers which are also pentagonal.
 """
 
 
