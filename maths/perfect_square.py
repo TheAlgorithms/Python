@@ -37,6 +37,22 @@ def perfect_square_binary_search(n: int) -> bool:
     True
     >>> perfect_square_binary_search(10)
     False
+    >>> perfect_square_binary_search(-1)
+    False
+    >>> perfect_square_binary_search(1.1)
+    False
+    >>> perfect_square_binary_search("a")
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'int' and 'str'
+    >>> perfect_square_binary_search(None)
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'int' and 'NoneType'
+    >>> perfect_square_binary_search([])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'int' and 'list'
     """
     left = 0
     right = n
