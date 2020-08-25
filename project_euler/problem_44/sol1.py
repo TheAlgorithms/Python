@@ -27,7 +27,7 @@ def is_pentagonal(n: int) -> bool:
 def compute_num(limit: int = 5000) -> int:
     """
     Returns the minimum difference of two pentagonal numbers P1 and P2 such that
-    P1 + P2 is pentagonal and P1-P2 is pentagonal.
+    P1 + P2 is pentagonal and P2 - P1 is pentagonal.
     >>> compute_num(5000)
     5482660
     """
