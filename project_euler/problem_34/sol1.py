@@ -26,7 +26,7 @@ def compute() -> int:
     >>> compute()
     40730
     """
-    limit = 7 * factorial(9)
+    limit = 7 * factorial(9) + 1
     return sum(i for i in range(3, limit) if sum_of_digit_factorial(i) == i)
 
 
