@@ -32,14 +32,13 @@ def compute_num(limit: int = 5000) -> int:
     5482660
     """
     pentagonal_nums = [(i * (3 * i - 1)) // 2 for i in range(1, limit)]
-    for i in range(len(pentagonal_nums)):
+    for i, pentagonal_i in enumerate(pentagonal_nums):
         for j in range(i, len(pentagonal_nums)):
-            a, b = (
-                (pentagonal_nums[i] + pentagonal_nums[j]),
-                (pentagonal_nums[j] - pentagonal_nums[i]),
-            )
+            pentagonal_j = pentagonal_nums[j]
+            a = pentagonal_i + pentagonal_j
+            b = pentagonal_j - pentagonal_i
             if is_pentagonal(a) and is_pentagonal(b):
-                return pentagonal_nums[j] - pentagonal_nums[i]
+                return b
 
 
 if __name__ == "__main__":
