@@ -1,4 +1,3 @@
-import math
 from typing import List
 
 """ Minimax helps to achieve maximum score in a game by checking all possible moves
