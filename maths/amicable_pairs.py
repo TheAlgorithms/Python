@@ -69,4 +69,4 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    print(f"{find_pairs([220, 284, 1184, 1210, 2, 5, 6368, 6232])}")
+    print(f"{find_pairs([220, 284, 1184, 1210, 2, 5, 6368, 6232]) = }")
