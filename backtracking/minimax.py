@@ -12,6 +12,35 @@ from typing import List
 
 def minimax(depth: int, node_index: int, is_max: bool,
             scores: List[int], height: float) -> int:
+    """
+    >>> scores = [90, 23, 6, 33, 21, 65, 123, 34423]
+    >>> height = math.log(len(scores), 2)
+    >>> minimax(0, 0, True, scores, height)
+    65
+    >>> minimax(-1, 0, True, scores, height)
+    Traceback (most recent call last):
+        ...
+    ValueError: Depth cannot be less than 0
+    >>> minimax(0, 0, True, [], 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: Scores cannot be empty
+    >>> scores = [3, 5, 2, 9, 12, 5, 23, 23]
+    >>> height = math.log(len(scores), 2)
+    >>> minimax(0, 0, True, scores, height)
+    12
+    >>> minimax('1', 2, True, [], 2 )
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
+    """
+
+    if depth < 0:
+        raise ValueError("Depth cannot be less than 0")
+
+    if len(scores) == 0:
+        raise ValueError("Scores cannot be empty")
+
     if depth == height:
         return scores[node_index]
 
@@ -28,8 +57,6 @@ def minimax(depth: int, node_index: int, is_max: bool,
 
 
 if __name__ == "__main__":
-    scores = [90, 23, 6, 33, 21, 65, 123, 34423]
-    height = math.log(len(scores), 2)
+    import doctest
 
-    print("Optimal value : ", end="")
-    print(minimax(0, 0, True, scores, height))
+    doctest.testmod()
