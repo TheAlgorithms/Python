@@ -13,7 +13,7 @@ is Lychrel until proven otherwise. In addition you are given that for every numb
 below ten-thousand, it will either (i) become a palindrome in less than fifty
 iterations, or, (ii) no one, with all the computing power that exists, has managed
 so far to map it to a palindrome. In fact, 10677 is the first number to be shown
-to require over fifty iterations before producing a palindrome: 
+to require over fifty iterations before producing a palindrome:
 4668731596684224866951378664 (53 iterations, 28-digits).
 
 Surprisingly, there are palindromic numbers that are themselves Lychrel numbers;
