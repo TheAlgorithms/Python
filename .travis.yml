@@ -15,6 +15,6 @@ before_script:
   - pip install -r requirements.txt  # fast fail on black, flake8, validate_filenames
 script:
   - mypy --ignore-missing-imports .
-  - pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=. .
+  - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=. .
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
