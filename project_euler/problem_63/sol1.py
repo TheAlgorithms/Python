@@ -15,17 +15,13 @@ def compute_nums(max_base: int = 10, max_power: int = 22) -> int:
     """
     Returns the count of all n-digit numbers which are nth power
     >>> compute_nums(10, 22)
-
     49
     """
     bases = list(range(1, max_base))
     powers = list(range(1, max_power))
-    count = 0
-    for base in bases:
-        for power in powers:
-            if len(str((base ** power))) == power:
-                count += 1
-    return count
+    return sum(
+        1 for power in powers for base in bases if len(str((base ** power))) == power
+    )
 
 
 if __name__ == "__main__":
