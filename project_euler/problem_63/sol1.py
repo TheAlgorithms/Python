@@ -17,8 +17,8 @@ def compute_nums(max_base: int = 10, max_power: int = 22) -> int:
     >>> compute_nums(10, 22)
     49
     """
-    bases = list(range(1, max_base))
-    powers = list(range(1, max_power))
+    bases = range(1, max_base)
+    powers = range(1, max_power)
     return sum(
         1 for power in powers for base in bases if len(str((base ** power))) == power
     )
