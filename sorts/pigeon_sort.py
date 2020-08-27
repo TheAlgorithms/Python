@@ -31,7 +31,7 @@ def pigeon_sort(array):
 
     # Compute the variables
     holes_range = _max - _min + 1
-    holes, holes_repeat = [0]*holes_range, [0]*holes_range
+    holes, holes_repeat = [0] * holes_range, [0] * holes_range
 
     # Make the sorting.
     for i in array:
