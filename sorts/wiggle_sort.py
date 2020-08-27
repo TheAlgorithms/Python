@@ -25,7 +25,7 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
     print("Enter the array elements:\n")
-    array = list(map(int, input().split()))
+    array = [int(x) for x in input().split()]
     print("The unsorted array is:\n")
     print(array)
     wiggle_sort(array)
