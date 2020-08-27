@@ -23,7 +23,7 @@ def merge_sort(collection: list) -> list:
     [-45, -5, -2]
     """
 
-    def merge(left: int, right: int) -> list:
+    def merge(left: list, right: list) -> list:
         """merge left and right
         :param left: left collection
         :param right: right collection
