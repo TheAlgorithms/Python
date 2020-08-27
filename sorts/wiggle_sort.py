@@ -9,14 +9,21 @@ one possible Wiggle Sorted answer is [3, 5, 1, 6, 2, 4].
 """
 
 
-def wiggle_sort(nums):
-    """Perform Wiggle Sort."""
-    for i in range(len(nums)):
-        if (i % 2 == 1) == (nums[i - 1] > nums[i]):
-            nums[i - 1], nums[i] = nums[i], nums[i - 1]
+def wiggle_sort(nums: list) -> list:
+    """Perform Wiggle Sort.
+    >>> arr = [3, 5, 2, 1, 6, 4]
+    >>> wiggle_sort(arr)
+    >>> arr
+    [3, 5, 1, 6, 2, 4]
+    """
+    for i, j in enumerate(nums):
+        if (i % 2 == 1) == (nums[i - 1] > j):
+            nums[i - 1], nums[i] = j, nums[i - 1]
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     print("Enter the array elements:\n")
     array = list(map(int, input().split()))
     print("The unsorted array is:\n")
