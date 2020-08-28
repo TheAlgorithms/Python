@@ -7,7 +7,7 @@ from itertools import permutations
 from timeit import repeat
 
 
-def triplet_sum1(arr: List[int], X: int) -> tuple:
+def triplet_sum1(arr: List[int], target: int) -> Tuple[int, int, int]:
     """
     Returns a triplet in in array with sum equal to X,
     else (0, 0, 0).
