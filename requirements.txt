@@ -5,7 +5,7 @@ flake8
 keras
 matplotlib
 mypy
-numpy>=1.17.4
+numpy
 opencv-python
 pandas
 pillow
