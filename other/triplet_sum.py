@@ -24,8 +24,8 @@ def triplet_sum1(arr: List[int], target: int) -> Tuple[int, int, int]:
     >>> triplet_sum1([37, 9, 19, 50, 44], 65)
     (9, 19, 37)
     >>> arr = [6, 47, 27, 1, 15]
-    >>> summ = 11
-    >>> triplet_sum1(arr,summ)
+    >>> target = 11
+    >>> triplet_sum1(arr, target)
     (0, 0, 0)
     """
     for triplet in permutations(arr, 3):
