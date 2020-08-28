@@ -2,7 +2,7 @@
 Given an array of integers and another integer X,
 we are required to find a triplet from the array such that it's sum is equal to X
 """
-from typing import List
+from typing import List, Tuple
 from itertools import permutations
 from timeit import repeat
 
