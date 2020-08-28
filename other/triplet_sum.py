@@ -20,8 +20,7 @@ def triplet_sum1(arr: List[int], X: int) -> tuple:
     >>> triplet_sum1(arr,summ)
     (0, 0, 0)
     """
-    triplets = list(permutations(arr, 3))
-    for triplet in triplets:
+    for triplet in permutations(arr, 3):
         if sum(triplet) == X:
             return tuple(sorted(triplet))
     return (0, 0, 0)
