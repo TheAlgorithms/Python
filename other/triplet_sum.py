@@ -15,6 +15,9 @@ def make_dataset() -> Tuple[List[int], int]:
     return (arr, r)
 
 
+dataset = make_dataset()
+
+
 def triplet_sum1(arr: List[int], target: int) -> Tuple[int, int, int]:
     """
     Returns a triplet in in array with sum equal to target,
