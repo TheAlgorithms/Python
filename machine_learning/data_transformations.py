@@ -5,7 +5,7 @@ This range is typically between [0, 1] or [-1, 1]. The equation for normalizatio
 x_norm = (x - x_min)/(x_max - x_min) where x_norm is the normalized value, x is the
 value, x_min is the minimum value within the column or list of data, and x_max is the
 maximum value within the column or list of data. Normalization is used to speed up the
-training of data and put all of the data on a similar scale. This is useful because
+training of data and put all of the data on a similar scale. This is useful because the
 variance in the range of values of a dataset can heavily impact optimization
 (particularly Gradient Descent).
 
