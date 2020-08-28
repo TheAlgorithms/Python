@@ -43,8 +43,8 @@ def triplet_sum2(arr: List[int], target: int) -> Tuple[int, int, int]:
     >>> triplet_sum2([37, 9, 19, 50, 44], 65)
     (9, 19, 37)
     >>> arr = [6, 47, 27, 1, 15]
-    >>> summ = 11
-    >>> triplet_sum2(arr,summ)
+    >>> target = 11
+    >>> triplet_sum2(arr, target)
     (0, 0, 0)
     """
     arr.sort()
