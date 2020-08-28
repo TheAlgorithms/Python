@@ -26,7 +26,6 @@ class DisjointSet:
         True
         >>> A.merge(0, 2)
         True
-        merge already joined sets
         >>> A.merge(0, 1)
         False
         """
@@ -57,10 +56,11 @@ class DisjointSet:
         Find the Parent of a given set
         >>> A = DisjointSet([1, 1, 1])
         >>> A.merge(1, 2)
+        True
         >>> A.get_parent(0)
         0
-        >>> A.get_parent(2)
-        1
+        >>> A.get_parent(1)
+        2
         """
         if self.parents[disj_set] == disj_set:
             return disj_set
