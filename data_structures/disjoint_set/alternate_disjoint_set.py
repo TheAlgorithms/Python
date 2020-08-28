@@ -61,6 +61,7 @@ class DisjointSet:
         0
         >>> A.get_parent(2)
         1
+        """
         if self.parents[disj_set] == disj_set:
             return disj_set
         self.parents[disj_set] = self.get_parent(self.parents[disj_set])
