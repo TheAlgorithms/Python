@@ -64,8 +64,7 @@ def triplet_sum2(arr: List[int], target: int) -> Tuple[int, int, int]:
 
 def solution_times() -> Tuple[float, float]:
     setup_code = """
-from __main__ import make_dataset, triplet_sum1, triplet_sum2
-dataset = make_dataset()
+from __main__ import dataset, triplet_sum1, triplet_sum2
 """
     test_code1 = """
 triplet_sum1(*dataset)
