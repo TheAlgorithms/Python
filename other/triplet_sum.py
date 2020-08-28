@@ -21,14 +21,14 @@ def triplet_sum(arr: List[int], X: int) -> tuple:
     arr.sort()
     n = len(arr)
     for i in range(n - 1):
-        l, r = i + 1, n - 1
-        while l < r:
-            if arr[i] + arr[l] + arr[r] == X:
-                return (arr[i], arr[l], arr[r])
-            elif arr[i] + arr[l] + arr[r] < X:
-                l += 1
-            elif arr[i] + arr[l] + arr[r] > X:
-                r -= 1
+        left, right = i + 1, n - 1
+        while left < right:
+            if arr[i] + arr[left] + arr[right] == X:
+                return (arr[i], arr[left], arr[right])
+            elif arr[i] + arr[left] + arr[right] < X:
+                left += 1
+            elif arr[i] + arr[left] + arr[right] > X:
+                right -= 1
     else:
         return (0, 0, 0)
 
@@ -41,4 +41,4 @@ if __name__ == "__main__":
 
     arr = [randint(-1000, 1000) for i in range(100)]
     r = randint(-5000, 5000)
-    print(f"{triplet_sum(arr,r)}")
+    print(f"{triplet_sum(arr,r) = }")
