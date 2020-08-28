@@ -3,10 +3,10 @@ Given an array of integers and another integer target,
 we are required to find a triplet from the array such that it's sum is equal to
 the target.
 """
-from typing import List, Tuple
 from itertools import permutations
-from timeit import repeat
 from random import randint
+from timeit import repeat
+from typing import List, Tuple
 
 
 def make_dataset() -> Tuple[List[int], int]:
