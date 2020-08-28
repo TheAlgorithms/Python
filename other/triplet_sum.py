@@ -21,7 +21,7 @@ def triplet_sum1(arr: List[int], target: int) -> Tuple[int, int, int]:
     (0, 0, 0)
     """
     for triplet in permutations(arr, 3):
-        if sum(triplet) == X:
+        if sum(triplet) == target:
             return tuple(sorted(triplet))
     return (0, 0, 0)
 
