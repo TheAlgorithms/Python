@@ -19,8 +19,7 @@ def ugly_numbers(n: int) -> int:
     >>> ugly_numbers(20)
     36
     """
-    ugly_nums = [0] * (n)
-    ugly_nums[0] = 1
+    ugly_nums = [1]
 
     i2, i3, i5 = 0, 0, 0
     next_2 = ugly_nums[i2] * 2
@@ -29,7 +28,7 @@ def ugly_numbers(n: int) -> int:
 
     for i in range(1, n):
         next_num = min(next_2, next_3, next_5)
-        ugly_nums[i] = next_num
+        ugly_nums.append(next_num)
         if next_num == next_2:
             i2 += 1
             next_2 = ugly_nums[i2] * 2
