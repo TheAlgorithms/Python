@@ -14,10 +14,16 @@ def ugly_numbers(n: int) -> int:
     Returns the nth ugly number.
     >>> ugly_numbers(100)
     1536
-    >>> ugly_numbers(1)
+    >>> ugly_numbers(0)
     1
     >>> ugly_numbers(20)
     36
+    >>> ugly_numbers(-5)
+    1
+    >>> ugly_numbers(-5.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: 'float' object cannot be interpreted as an integer
     """
     ugly_nums = [1]
 
