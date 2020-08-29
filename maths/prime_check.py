@@ -9,12 +9,6 @@ def prime_check(number: int) -> bool:
     Check to See if a Number is Prime.
 
     A number is prime if it has exactly two dividers: 1 and itself.
-    >>> prime_check(3)
-    True
-    >>> prime_check(-1)
-    False
-    >>> prime_check(2*21)
-    False
     """
     if number < 2:
         # Negatives, 0 and 1 are not primes
@@ -62,6 +56,3 @@ class Test(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
-    import doctest
-    doctest.testmod()
