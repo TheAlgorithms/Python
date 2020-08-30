@@ -1,13 +1,10 @@
 """README, Author - Anurag Kumar(mailto:anuragkumarak95@gmail.com)
-
 Requirements:
   - sklearn
   - numpy
   - matplotlib
-
 Python:
   - 3.5
-
 Inputs:
   - X , a 2D numpy array of features.
   - k , number of clusters to create.
@@ -16,10 +13,8 @@ Inputs:
   - maxiter , maximum number of iterations to process.
   - heterogeneity , empty list that will be filled with hetrogeneity values if passed
     to kmeans func.
-
 Usage:
   1. define 'k' value, 'X' features array and 'hetrogeneity' empty list
-
   2. create initial_centroids,
         initial_centroids = get_initial_centroids(
             X,
@@ -27,9 +22,7 @@ Usage:
             seed=0 # seed value for initial centroid generation,
                    # None for randomness(default=None)
             )
-
   3. find centroids and clusters using kmeans function.
-
         centroids, cluster_assignment = kmeans(
             X,
             k,
@@ -38,19 +31,14 @@ Usage:
             record_heterogeneity=heterogeneity,
             verbose=True # whether to print logs in console or not.(default=False)
             )
-
-
   4. Plot the loss function, hetrogeneity values for every iteration saved in
      hetrogeneity list.
         plot_heterogeneity(
             heterogeneity,
             k
         )
-
   5. Transfers Dataframe into excel format it must have feature called
       'Clust' with k means clustering numbers in it.
-
-
 """
 import warnings
 
@@ -222,7 +210,6 @@ def ReportGenerator(
     in order to run the function following libraries must be imported:
         import pandas as pd
         import numpy as np
-
     >>> data = pd.DataFrame()
     >>> data['numbers'] = [1, 2, 3]
     >>> data['col1'] = [0.5, 2.5, 4.5]
@@ -287,10 +274,10 @@ def ReportGenerator(
         .T.reset_index()
         .rename(index=str, columns={"level_0": "Features", "level_1": "Type"})
     )  # rename columns
-
+    # calculate the size of cluster(count of clientID's)
     clustersize = report[
         (report["Features"] == "dummy") & (report["Type"] == "count")
-    ]  # calculate the size of cluster(count of clientID's)
+    ].copy()  # avoid SettingWithCopyWarning
     clustersize.Type = (
         "ClusterSize"  # rename created cluster df to match report column names
     )

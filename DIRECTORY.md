@@ -138,6 +138,7 @@
     * [Queue On Pseudo Stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/queue_on_pseudo_stack.py)
   * Stacks
     * [Balanced Parentheses](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/balanced_parentheses.py)
+    * [Dijkstras Two Stack Algorithm](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/dijkstras_two_stack_algorithm.py)
     * [Infix To Postfix Conversion](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/infix_to_postfix_conversion.py)
     * [Infix To Prefix Conversion](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/infix_to_prefix_conversion.py)
     * [Linked Stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/linked_stack.py)
@@ -297,6 +298,7 @@
     * [Power Iteration](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/power_iteration.py)
     * [Rayleigh Quotient](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/rayleigh_quotient.py)
     * [Test Linear Algebra](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/test_linear_algebra.py)
+    * [Transformations 2D](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/transformations_2d.py)
 
 ## Machine Learning
   * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
@@ -580,12 +582,24 @@
     * [Sol32](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_32/sol32.py)
   * Problem 33
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_33/sol1.py)
+  * Problem 34
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_34/sol1.py)
+  * Problem 35
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_35/sol1.py)
   * Problem 36
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_36/sol1.py)
+  * Problem 37
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_37/sol1.py)
+  * Problem 39
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_39/sol1.py)
   * Problem 40
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_40/sol1.py)
+  * Problem 41
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_41/sol1.py)
   * Problem 42
     * [Solution42](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_42/solution42.py)
+  * Problem 43
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_43/sol1.py)
   * Problem 47
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_47/sol1.py)
   * Problem 48
@@ -671,6 +685,7 @@
 ## Strings
   * [Aho-Corasick](https://github.com/TheAlgorithms/Python/blob/master/strings/aho-corasick.py)
   * [Boyer Moore Search](https://github.com/TheAlgorithms/Python/blob/master/strings/boyer_moore_search.py)
+  * [Check Anagrams](https://github.com/TheAlgorithms/Python/blob/master/strings/check_anagrams.py)
   * [Check Pangram](https://github.com/TheAlgorithms/Python/blob/master/strings/check_pangram.py)
   * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/strings/is_palindrome.py)
   * [Jaro Winkler](https://github.com/TheAlgorithms/Python/blob/master/strings/jaro_winkler.py)
