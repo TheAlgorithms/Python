@@ -1,16 +1,11 @@
 beautifulsoup4
-black
 fake_useragent
-flake8
 keras
 matplotlib
-mypy
 numpy
 opencv-python
 pandas
 pillow
-pytest
-pytest-cov
 requests
 scikit-fuzzy
 sklearn
