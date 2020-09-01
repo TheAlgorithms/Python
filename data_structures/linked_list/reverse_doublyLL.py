@@ -9,58 +9,76 @@
      Delete operation is more efficient"""
 
 
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-        self.prev = None
-
-
-class DoublyLinkedList:
+class LinkedList:
+  
     def __init__(self):
-        self.head = None
+        self.head = None  # First node in list
+        self.tail = None  # Last node in list
 
-    def append(self, data):
-        if self.head is None:
-            new_node = Node(data)
-            new_node.prev = None
+    def __str__(self):
+        current = self.head
+        nodes = []
+        while current is not None:
+            nodes.append(current)
+            current = current.next
+        return " ".join(str(node) for node in nodes)
+
+    def insert_at_head(self, data):
+        new_node = Node(data)
+        if self.is_empty:
+            self.tail = new_node
             self.head = new_node
         else:
-            new_node = Node(data)
-            cur = self.head
-            while cur.next:
-                cur = cur.next
-            cur.next = new_node
-            new_node.prev = cur
-            new_node.next = None
-
-    def prepend(self, data):
-        if self.head is None:
-            new_node = Node(data)
-            new_node.prev = None 
-            self.head = new_node
-        else:
-            new_node = Node(data)
-            self.head.prev = new_node
+            self.head.previous = new_node
             new_node.next = self.head
             self.head = new_node
-            new_node.prev = None
 
+  
+
+    def insert_at_tail(self, data):
+        new_node = Node(data)
+        if self.is_empty:
+            self.tail = new_node
+            self.head = new_node
+        else:
+            self.tail.next = new_node
+            new_node.previous = self.tail
+            self.tail = new_node
+
+    
+    """Prints the elements of the given Linked List in reverse order"""
+
+    def reverse(self):
+        temp_node = None
+        cur_node = self.head
+        while cur_node:
+            temp_node = cur_node.prev
+            cur_node.prev = cur_node.next
+            cur_node.next = temp_node
+            cur_node = cur_node.prev
+        if temp_node:
+            self.head = temp_node.prev   ## after this  we call print_list to print the reversed list
+        
     def print_list(self):
         cur = self.head
         while cur:
             print(cur.data)
             cur = cur.next
 
-## HERE WE REVERSE THE DOUBLY LINKED LIST..!!
-    def reverse(self):
-            tmp = None
-            cur = self.head
-            while cur:
-                tmp = cur.prev
-                cur.prev = cur.next
-                cur.next = tmp
-                cur = cur.prev
-            if tmp:
-                self.head = tmp.prev
+
+    @property
+    def is_empty(self):  # return True if the list is empty
+        return self.head is None
+
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.previous = None
+        self.next = None
+
+    def __str__(self):
+        return f"{self.data}"
+
+
