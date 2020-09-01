@@ -28,11 +28,8 @@ def bubble_sort(collection):
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]  # swap current and next
     return collection
 
-
-
 if __name__ == "__main__":
     import time
-
     user_input = input("Enter numbers separated by a comma:").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     start = time.process_time()
