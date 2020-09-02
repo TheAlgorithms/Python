@@ -13,7 +13,6 @@ class Node:
         # self.head=None
 
 
-# linkedlist definition
 class LL:
     def __init__(self):
         self.head = None
