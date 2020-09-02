@@ -12,7 +12,7 @@ We are very happy that you consider implementing algorithms and data structure f
 
 - You did your work - no plagiarism allowed
   - Any plagiarized work will not be merged.
-- Your work will be distributed under [MIT License](License) once your pull request is merged
+- Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
 - You submitted work fulfils or mostly fulfils our styles and standards
 
 **New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity.
