@@ -4,10 +4,11 @@ Example add 321 + 248 = 569
 
 (1)->(2)->(3) + (8)->(4)->(2) = (5)->(6)->(9) """
 
+from doctest import testmod
 
 # node definition
 class Node:
-    def __init__(self, data):
+    def __init__(self, data: int) -> None:
         self.data = data
         self.next = None
         # self.head=None
@@ -19,20 +20,40 @@ class LL:
         self.head = None
 
     # method to print the linked list
-    def printLL(self):
+    def printLL(self) -> None:
         temp = self.head
         while temp:
             print(temp.data, end=" ")
             temp = temp.next
 
     # method to push a new node onto the linked list
-    def push(self, newdata):
+    def push(self, newdata: int) -> None:
         newnode = Node(newdata)
         newnode.next = self.head
         self.head = newnode
+        """
+            >>> llist.push(3)
+            >>> llist.push(2)
+            >>> llist.push(1)
+            >>> ll2.push(2)
+            >>> ll2.push(4)
+            >>> ll2.push(8)
+        """
 
     # method to add the nodes
-    def add(self):
+    def add(self) -> None:
+
+        # Test case for carry generation handling
+        """
+        >>> llist.push(9)
+        >>> llist.push(9)
+        >>> llist.push(9)
+        >>> ll2.push(0)
+        >>> ll2.push(0)
+        >>> ll2.push(1)
+        >>> llist.add()
+        """
+
         carry = []  # to store carry generated if any
         carry.append(0)
         temp1 = llist.head
@@ -55,27 +76,23 @@ class LL:
             res.push(carry[-1])  # add it to the res list
 
 
-llist = LL()  # linkedlist 1
-ll2 = LL()  # linkedlist 2
-res = LL()  # linkedlist representing addition of the nodes taken as an integer
+if __name__ == "__main__":
 
+    llist = LL()  # linkedlist 1
+    ll2 = LL()  # linkedlist 2
+    res = LL()  # linkedlist representing addition of the nodes taken as an integer
 
-# adding 321 and 248
-llist.push(3)
-llist.push(2)
-llist.push(1)
+    # adding 321 and 248
+    llist.push(3)
+    llist.push(2)
+    llist.push(1)
 
-ll2.push(2)
-ll2.push(4)
-ll2.push(8)
+    ll2.push(2)
+    ll2.push(4)
+    ll2.push(8)
 
-# Test case for carry generation handling
-# llist.push(9)
-# llist.push(9)
-# llist.push(9)
-# ll2.push(0)
-# ll2.push(0)
-# ll2.push(1)
+    llist.add()
+    res.printLL()
+    print()
 
-llist.add()
-res.printLL()
+    testmod(name="LL", verbose=True)
