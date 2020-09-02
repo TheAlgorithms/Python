@@ -5,6 +5,8 @@ def compare_string(string1, string2):
 
     >>> compare_string('0110','1101')
     -1
+
+    Hello world
     """
     l1 = list(string1)
     l2 = list(string2)
