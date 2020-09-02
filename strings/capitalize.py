@@ -1,20 +1,18 @@
-def capitalize(sentence) -> str:
+def capitalize(str: sentence) -> str:
     """
-    This function will capitalize the first character of a sentence
-
-    >>> capitalize("hello world") 
-        "Hello world"
+    This function will capitalize the first word of a sentence
+    >>> capitalize("hello world")
+        Hello world
     >>> capitalize("123 hello world)
-        "123 hello world" 
-    >>> capitalize(" hello world") 
-        " hello world" 
+        123 hello world
     """
-    
-    first_char = sentence[0]
-    new_sentence = str.upper(first_char) + sentence[1:]
 
-if __name__ == "__main__":
-  from doctest import testmod
-  
-  testmode()
-    
+    sentence = sentence.lsplit()
+    firstChar = sentence[0]
+    if isalpha(firstChar):
+        upperCaseChar = str.upper(firstChar)
+        sentence[0] = str.upper(firstChar)
+    print(sentence)
+
+
+capitalize("hello world")
