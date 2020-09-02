@@ -6,6 +6,7 @@ Example add 321 + 248 = 569
 
 from doctest import testmod
 
+
 class Node:
     def __init__(self, data: int) -> None:
         self.data = data
