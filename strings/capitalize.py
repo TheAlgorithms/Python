@@ -13,7 +13,7 @@ def capitalize(sentence) -> str:
     first_char = sentence[0]
     new_sentence = str.upper(first_char) + sentence[1:]
 
-if "__name__" == __main__:
+if __name__ == "__main__":
   from doctest import testmod
   
   testmode()
