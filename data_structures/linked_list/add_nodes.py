@@ -32,7 +32,7 @@ class LL:
         newnode.next = self.head
         self.head = newnode
         """
-            >>> llist.push(3)
+            >>> llist = LL(3)
             >>> llist.push(2)
             >>> llist.push(1)
             >>> ll2.push(2)
