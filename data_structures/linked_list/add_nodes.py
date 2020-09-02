@@ -45,7 +45,7 @@ class LL:
 
         # Test case for carry generation handling
         """
-        >>> llist.push(9)
+        >>> llist = LL(9)
         >>> llist.push(9)
         >>> llist.push(9)
         >>> ll2.push(0)
