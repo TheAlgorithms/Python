@@ -20,7 +20,7 @@ class LL:
         self.head = None
 
     # method to print the linked list
-    def printLL(self) -> None:
+    def __str__(self) -> str:
         temp = self.head
         while temp:
             print(temp.data, end=" ")
