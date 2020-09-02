@@ -65,7 +65,7 @@ def encrypt(message):
         else:
             cipher += "/ "
 
-    # Remove trailing space added on line 65
+    # Remove trailing space added on line 64
     return cipher[:-1]
 
 
