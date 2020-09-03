@@ -12,7 +12,6 @@ def capitalize(sentence: str) -> str:
     ' hello world'
     """
     first_letter = sentence[0]
-    lower_upper_dict = dict()
     lower_upper_dict = {
         lower: upper for lower, upper in zip(ascii_lowercase, ascii_uppercase)
     }
