@@ -1,4 +1,4 @@
-def capitalize(sentence:str) -> str: 
+def capitalize(sentence: str) -> str:
     """
     This function will capitalize the first letter of a sentence or a word
     >>> capitalize("hello world")
