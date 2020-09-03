@@ -1,4 +1,4 @@
-import string
+from string import ascii_lowercase, ascii_uppercase
 
 
 def capitalize(sentence: str) -> str:
