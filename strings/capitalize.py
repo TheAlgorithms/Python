@@ -16,15 +16,13 @@ def capitalize(sentence: str) -> str:
     ''
     """
     if not sentence:
-        return ""
+        return ''
     lower_upper_dict = {
         lower: upper for lower, upper in zip(ascii_lowercase, ascii_uppercase)
     }
     return (
         lower_upper_dict.get(sentence[0], sentence[0])
         + (sentence[1:] if (len(sentence) >= 1) else '')
-        if (len(sentence) != 0)
-        else ''
     )
 
 
