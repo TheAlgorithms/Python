@@ -11,15 +11,10 @@ def capitalize(sentence: str) -> str:
     >>> capitalize(" hello world")
     ' hello world'
     """
-    first_letter = sentence[0]
     lower_upper_dict = {
         lower: upper for lower, upper in zip(ascii_lowercase, ascii_uppercase)
     }
-    if first_letter in lower_upper_dict:
-        new_sentence = lower_upper_dict[first_letter] + sentence[1:]
-    else:
-        new_sentence = sentence
-    return new_sentence
+    return lower_upper_dict.get(sentence[0], sentence[0]) + sentence[1:]
 
 
 if __name__ == "__main__":
