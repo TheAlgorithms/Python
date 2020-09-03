@@ -13,10 +13,9 @@ def capitalize(sentence: str) -> str:
     """
     first_letter = sentence[0]
     lower_upper_dict = dict()
-    for lower, upper in zip(string.ascii_lowercase, string.ascii_uppercase):
-        lower_upper_dict[
-            lower
-        ] = upper  # dict keys are lower case letters and their value are corresponding uppercase letter
+    lower_upper_dict = {
+        lower: upper for lower, upper in zip(ascii_lowercase, ascii_uppercase)
+    }
     if first_letter in lower_upper_dict:
         new_sentence = lower_upper_dict[first_letter] + sentence[1:]
     else:
