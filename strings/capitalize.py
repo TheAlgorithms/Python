@@ -17,13 +17,8 @@ def capitalize(sentence: str) -> str:
     """
     if not sentence:
         return ''
-    lower_upper_dict = {
-        lower: upper for lower, upper in zip(ascii_lowercase, ascii_uppercase)
-    }
-    return (
-        lower_upper_dict.get(sentence[0], sentence[0])
-        + (sentence[1:] if (len(sentence) >= 1) else '')
-    )
+    lower_to_upper = {lc: uc for lc, uc in zip(ascii_lowercase, ascii_uppercase)}
+    return lower_to_upper.get(sentence[0], sentence[0]) + sentence[1:]
 
 
 if __name__ == "__main__":
