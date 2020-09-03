@@ -1,0 +1,48 @@
+def hexToDecimal(hex_string: str) -> int:
+    """
+    converts a given hexadecimal value to its decimal value
+    >>> hexToDecimal("a")
+    10
+    >>> hexToDecimal("")
+    ValueError: Empty string value was passed to the function
+    >>> hexToDecimal("-12m")
+    ValueError: None hexadecimal value was passed to the function
+    >>> hexToDecimal("12f")
+    303
+    >>> hexToDecimal("   12f   ")
+    303
+    """
+    decimal_number = 0
+    hex_table = {
+        "1": 1,
+        "2": 2,
+        "3": 3,
+        "4": 4,
+        "5": 5,
+        "6": 6,
+        "7": 7,
+        "8": 8,
+        "9": 9,
+        "A": 10,
+        "B": 11,
+        "C": 12,
+        "D": 13,
+        "E": 14,
+        "F": 15,
+    }
+    hex_string = hex_string.strip()
+    if not hex_string: 
+        raise ValueError("Empty string value was passed to the function")
+    for i in range(len(hex_string)):
+        if str.upper(hex_string[i]) not in hex_table:
+            raise ValueError("None hexadecimal value was passed to the function")
+        decimal_number += (16 ** (len(hex_string) - i - 1)) * int(
+            hex_table.get(str.upper(hex_string[i]))
+        )
+    return decimal_number
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
