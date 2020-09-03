@@ -7,6 +7,9 @@ The only allowed operations are
 ---Delete character with cost cD
 ---Insert character with cost cI
 """
+import sys
+
+from tempfile import TemporaryFile
 
 
 def compute_transform_tables(X, Y, cC, cR, cD, cI):
@@ -65,18 +68,19 @@ def assemble_transformation(ops, i, j):
             return seq
 
 
-if __name__ == "__main__":
-    _, operations = compute_transform_tables("Python", "Algorithms", -1, 1, 2, 2)
+def run_algorithm(str1, str2, copy, replace, delete, insert):
+    _, operations = compute_transform_tables(
+        str1, str2, copy, replace, delete, insert)
 
     m = len(operations)
     n = len(operations[0])
     sequence = assemble_transformation(operations, m - 1, n - 1)
 
-    string = list("Python")
+    string = list(str1)
     i = 0
     cost = 0
 
-    with open("min_cost.txt", "w") as file:
+    with TemporaryFile("w") as file:
         for op in sequence:
             print("".join(string))
 
@@ -85,23 +89,24 @@ if __name__ == "__main__":
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 
-                cost -= 1
+                cost += copy
             elif op[0] == "R":
                 string[i] = op[2]
 
-                file.write("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))
+                file.write("%-16s" % ("Replace %c" %
+                                      op[1] + " with " + str(op[2])))
                 file.write("\t\t" + "".join(string))
                 file.write("\r\n")
 
-                cost += 1
+                cost += replace
             elif op[0] == "D":
-                string.pop(i)
+                string.pop()  # putting `i` would raise out of range
 
                 file.write("%-16s" % "Delete %c" % op[1])
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 
-                cost += 2
+                cost += delete
             else:
                 string.insert(i, op[1])
 
@@ -109,7 +114,7 @@ if __name__ == "__main__":
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 
-                cost += 2
+                cost += insert
 
             i += 1
 
@@ -117,3 +122,20 @@ if __name__ == "__main__":
         print("Cost: ", cost)
 
         file.write("\r\nMinimum cost: " + str(cost))
+
+    return cost
+
+
+if __name__ == "__main__":  # pragma: no cover
+    args_length = len(sys.argv)
+
+    str1 = sys.argv[1] if args_length >= 2 else "Python"
+    str2 = sys.argv[2] if args_length >= 3 else "Algorithms"
+
+    default_costs = [-1, 1, 2, 2]
+    user_costs = list(map(int, *sys.argv[3:])) if args_length >= 7 else []
+
+    create, replace, delete, insert = user_costs[:4] or default_costs
+
+    min_cost = run_algorithm(str1, str2, create, replace, delete, insert)
+    print(f"Min Cost: {min_cost}")
