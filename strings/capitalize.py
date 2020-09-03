@@ -20,9 +20,9 @@ def capitalize(sentence: str) -> str:
     }
     return (
         lower_upper_dict.get(sentence[0], sentence[0])
-        + (sentence[1:] if (len(sentence) >= 1) else "")
+        + (sentence[1:] if (len(sentence) >= 1) else '')
         if (len(sentence) != 0)
-        else ""
+        else ''
     )
 
 
