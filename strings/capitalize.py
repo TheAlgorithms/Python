@@ -17,8 +17,6 @@ def capitalize(sentence: str) -> str:
     """
     if not sentence:
         return ''
-    if not sentence:
-        return ""
     lower_upper_dict = {
         lower: upper for lower, upper in zip(ascii_lowercase, ascii_uppercase)
     }
