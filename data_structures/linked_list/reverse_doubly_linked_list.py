@@ -23,8 +23,6 @@ class LinkedList:
     >>> linked_list.insert_at_head("a")
     >>> linked_list.insert_at_tail("b")
     >>> linked_list.insert_at_tail("d")
-    >>> print_list()
-    d b a 
     """
   
     def __init__(self):
@@ -75,6 +73,10 @@ class LinkedList:
     #after this  we call print_list to print the reversed list
         
     def print_list(self):
+        """
+        >>> print_list()
+        d b a
+        """
         print(self)
 
     @property
