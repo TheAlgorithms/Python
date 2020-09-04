@@ -13,12 +13,14 @@ def hex_to_decimal(hex_string: str) -> int:
     303
     """
     decimal_number = 0
-    hex_table = {hex(i)[2:].upper(): i for i in range(16)} 
+    #https://www.programiz.com/python-programming/methods/built-in/hex
+    #Hex numbers start with 0x. We use [2:] to get the hex number after 0x
+    hex_table = {hex(i)[2:]: i for i in range(16)} 
     hex_string = hex_string.strip()
     if not hex_string: 
         raise ValueError("Invalid Hexadecimal Input")
     for char in hex_string:
-        if char.upper() not in hex_table:
+        if char.lower() not in hex_table:
             raise ValueError("Invalid Hexadecimal Input")
         decimal_number = 16 * decimal_number + hex_table[char.upper()]
     return decimal_number
