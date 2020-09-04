@@ -18,6 +18,14 @@ class Node:
         return f"{self.data}"
     
 class LinkedList:
+    """
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert_at_head("a")
+    >>> linked_list.insert_at_tail("b")
+    >>> linked_list.insert_at_tail("d")
+    >>> print_list()
+    d b a 
+    """
   
     def __init__(self):
         self.head = None  # First node in list
