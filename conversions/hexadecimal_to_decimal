@@ -18,10 +18,10 @@ def hex_to_decimal(hex_string: str) -> int:
     hex_table = {hex(i)[2:]: i for i in range(16)} 
     hex_string = hex_string.strip().lower()
     if not hex_string: 
-        raise ValueError("Invalid Hexadecimal Input")
+        raise ValueError("Empty string value was passed to the function")
     for char in hex_string:
         if char not in hex_table:
-            raise ValueError("Invalid Hexadecimal Input")
+            raise ValueError("Non-hexadecimal value was passed to the function")
         decimal_number = 16 * decimal_number + hex_table[char.upper()]
     return decimal_number
 
