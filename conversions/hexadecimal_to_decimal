@@ -22,7 +22,7 @@ def hex_to_decimal(hex_string: str) -> int:
     #https://www.programiz.com/python-programming/methods/built-in/hex
     #Hex numbers start with 0x. We use [2:] to get the hex number after 0x
     hex_string = hex_string.strip().lower()
-    isNegative = False
+    is_negative = False
     if not hex_string: 
         raise ValueError("Empty string value was passed to the function")
     if hex_string[0] == "-":
