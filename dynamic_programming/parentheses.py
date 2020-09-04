@@ -15,7 +15,6 @@ def calculate(first_operand, second_operand, operator) -> int:
     0
     >>> calculate(2,2,"*")  # mul()
     4
-    
     """
     return operators[operator](first_operand, second_operand)
 
