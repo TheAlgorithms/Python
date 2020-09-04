@@ -6,7 +6,7 @@ def hex_to_decimal(hex_string: str) -> int:
     >>> hexToDecimal("")
     ValueError: Empty string value was passed to the function
     >>> hexToDecimal("-12m")
-    ValueError: None hexadecimal value was passed to the function
+    ValueError: Non-hexadecimal value was passed to the function
     >>> hexToDecimal("12f")
     303
     >>> hexToDecimal("   12f   ")
