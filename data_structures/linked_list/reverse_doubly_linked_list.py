@@ -67,10 +67,7 @@ class LinkedList:
     #after this  we call print_list to print the reversed list
         
     def print_list(self):
-        cur_node = self.head
-        while cur_node:
-            print(cur_node.data)
-            cur_node = cur_node.next
+        print(self)
 
     @property
     def is_empty(self):  # return True if the list is empty
