@@ -34,7 +34,7 @@ def sqrt_with_accuracy(num: int, accuracy: int) -> str:
 def solution():
     """Returns the total of the digital sum of the first one hundred
     decimal digits for all the irrational square roots of all the first
-    one hundrer numbers.
+    one hundred numbers.
 
     >>> solution()
     40886
