@@ -11,6 +11,8 @@ def hex_to_decimal(hex_string: str) -> int:
     303
     >>> hex_to_decimal("   12f   ")
     303
+    >>> hex_to_decimal("FfFf")
+    65535
     """
     decimal_number = 0
     #https://www.programiz.com/python-programming/methods/built-in/hex
