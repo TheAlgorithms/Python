@@ -25,7 +25,7 @@ def hex_to_decimal(hex_string: str) -> int:
     isNegative = False
     if not hex_string: 
         raise ValueError("Empty string value was passed to the function")
-    if(hex_string[0] == "-"):
+    if hex_string[0] == "-":
       isNegative = True
       hex_string = hex_string[1:]
     for char in hex_string:
