@@ -8,8 +8,7 @@ without any repeating pattern at all.
 The square root of two is 1.41421356237309504880...,
 and the digital sum of the first one hundred decimal digits is 475.
 
-For the first one hundred natural numbers, find the total of the digitalcls
-
+For the first one hundred natural numbers, find the total of the digital
 sums of the first one hundred decimal digits for all the irrational square roots.
 """
 
