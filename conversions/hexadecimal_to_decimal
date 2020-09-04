@@ -1,15 +1,15 @@
 def hex_to_decimal(hex_string: str) -> int:
     """
     converts a given hexadecimal value to its decimal value
-    >>> hexToDecimal("a")
+    >>> hex_to_decimal("a")
     10
-    >>> hexToDecimal("")
+    >>> hex_to_decimal("")
     ValueError: Empty string value was passed to the function
-    >>> hexToDecimal("-12m")
+    >>> hex_to_decimal("-12m")
     ValueError: Non-hexadecimal value was passed to the function
-    >>> hexToDecimal("12f")
+    >>> hex_to_decimal("12f")
     303
-    >>> hexToDecimal("   12f   ")
+    >>> hex_to_decimal("   12f   ")
     303
     """
     decimal_number = 0
