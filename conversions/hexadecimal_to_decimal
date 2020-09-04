@@ -5,7 +5,7 @@ def hex_to_decimal(hex_string: str) -> int:
     10
     >>> hex_to_decimal("")
     ValueError: Empty string value was passed to the function
-    >>> hex_to_decimal("-12m")
+    >>> hex_to_decimal("12m")
     ValueError: Non-hexadecimal value was passed to the function
     >>> hex_to_decimal("12f")
     303
@@ -13,22 +13,31 @@ def hex_to_decimal(hex_string: str) -> int:
     303
     >>> hex_to_decimal("FfFf")
     65535
+    >>> hex_to_decimal("-Ff")
+    -255
+    >>> hex_to_decimal("F-f")
+    ValueError: Non-hexadecimal value was passed to the function
     """
     decimal_number = 0
     #https://www.programiz.com/python-programming/methods/built-in/hex
     #Hex numbers start with 0x. We use [2:] to get the hex number after 0x
     hex_table = {hex(i)[2:]: i for i in range(16)} 
     hex_string = hex_string.strip().lower()
+    isNegative = False
     if not hex_string: 
         raise ValueError("Empty string value was passed to the function")
+    if(hex_string[0] == "-"):
+      isNegative = True
+      hex_string = hex_string[1:]
     for char in hex_string:
         if char not in hex_table:
             raise ValueError("Non-hexadecimal value was passed to the function")
-        decimal_number = 16 * decimal_number + hex_table[char.upper()]
+        decimal_number = 16 * decimal_number + hex_table[char]
+    if isNegative:
+      decimal_number *= -1
     return decimal_number
 
 
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
