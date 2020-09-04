@@ -26,13 +26,13 @@ def hex_to_decimal(hex_string: str) -> int:
     if not hex_string: 
         raise ValueError("Empty string value was passed to the function")
     if hex_string[0] == "-":
-      isNegative = True
+      is_negative = True
       hex_string = hex_string[1:]
     for char in hex_string:
         if char not in hex_table:
             raise ValueError("Non-hexadecimal value was passed to the function")
         decimal_number = 16 * decimal_number + hex_table[char]
-    if isNegative:
+    if is_negative:
       decimal_number *= -1
     return decimal_number
 
