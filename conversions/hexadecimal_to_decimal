@@ -1,12 +1,13 @@
+hex_table = {hex(i)[2:]: i for i in range(16)}  # Use [:2] to strip off the leading '0x'
+
+
 def hex_to_decimal(hex_string: str) -> int:
     """
-    converts a given hexadecimal value to its decimal value
+    Convert a hexadecimal value to its decimal equivalent
+    #https://www.programiz.com/python-programming/methods/built-in/hex
+
     >>> hex_to_decimal("a")
     10
-    >>> hex_to_decimal("")
-    ValueError: Empty string value was passed to the function
-    >>> hex_to_decimal("12m")
-    ValueError: Non-hexadecimal value was passed to the function
     >>> hex_to_decimal("12f")
     303
     >>> hex_to_decimal("   12f   ")
@@ -17,27 +18,28 @@ def hex_to_decimal(hex_string: str) -> int:
     -255
     >>> hex_to_decimal("F-f")
     ValueError: Non-hexadecimal value was passed to the function
+    >>> hex_to_decimal("")
+    ValueError: Empty string value was passed to the function
+    >>> hex_to_decimal("12m")
+    ValueError: Non-hexadecimal value was passed to the function
     """
-    decimal_number = 0
-    #https://www.programiz.com/python-programming/methods/built-in/hex
-    #Hex numbers start with 0x. We use [2:] to get the hex number after 0x
     hex_string = hex_string.strip().lower()
-    is_negative = False
     if not hex_string: 
-        raise ValueError("Empty string value was passed to the function")
-    if hex_string[0] == "-":
-      is_negative = True
-      hex_string = hex_string[1:]
+        raise ValueError("Empty string was passed to the function")
+    is_negative = hex_string[0] == "-"
+    if is_negative:
+        hex_string = hex_string[1:]
+    if not all(char in hex_table for char in hex_string):
+        raise ValueError("Non-hexadecimal value was passed to the function")
+    decimal_number = 0
     for char in hex_string:
-        if char not in hex_table:
-            raise ValueError("Non-hexadecimal value was passed to the function")
         decimal_number = 16 * decimal_number + hex_table[char]
     if is_negative:
-      decimal_number *= -1
+        decimal_number = -decimal_number
     return decimal_number
 
 
 if __name__ == "__main__":
     from doctest import testmod
-    hex_table = {hex(i)[2:]: i for i in range(16)} 
+
     testmod()
