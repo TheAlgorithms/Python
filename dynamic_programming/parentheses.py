@@ -7,7 +7,15 @@ operators = {"+": add, "-": sub, "*": mul}
 
 def calculate(first_operand, second_operand, operator) -> int:
     """
-    Return the value after evaluating the expression
+    Evaluate the expression and return the result.
+
+    >>> calculate(2,2,"+")  # add()
+    4
+    >>> calculate(2,2,"-")  # sub()
+    0
+    >>> calculate(2,2,"*")  # mul()
+    4
+    
     """
     return operators[operator](first_operand, second_operand)
 
