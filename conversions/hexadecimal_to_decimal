@@ -21,7 +21,6 @@ def hex_to_decimal(hex_string: str) -> int:
     decimal_number = 0
     #https://www.programiz.com/python-programming/methods/built-in/hex
     #Hex numbers start with 0x. We use [2:] to get the hex number after 0x
-    hex_table = {hex(i)[2:]: i for i in range(16)} 
     hex_string = hex_string.strip().lower()
     isNegative = False
     if not hex_string: 
@@ -40,4 +39,5 @@ def hex_to_decimal(hex_string: str) -> int:
 
 if __name__ == "__main__":
     from doctest import testmod
+    hex_table = {hex(i)[2:]: i for i in range(16)} 
     testmod()
