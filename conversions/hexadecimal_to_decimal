@@ -1,4 +1,4 @@
-def hexToDecimal(hex_string: str) -> int:
+def hex_to_decimal(hex_string: str) -> int:
     """
     converts a given hexadecimal value to its decimal value
     >>> hexToDecimal("a")
