@@ -24,17 +24,15 @@ def secant_method(
     ...
     ZeroDivisionError: Could not find root
     """
-    lower: float = lower_bound
-    upper: float = upper_bound
     for _ in range(repeats):
-        value: float = func(upper)
-        numerator: float = value * (upper - lower)
-        denominator: float = value - func(lower)
-        try:
-            lower, upper = upper, upper - numerator / denominator
-        except ZeroDivisionError:
+        value = func(upper_bound)
+        numerator = value * (upper_bound - lower_bound)
+        denominator = value - func(lower_bound)
+        if denominator == 0.0:
             raise ZeroDivisionError("Could not find root")
-    return upper
+        lower_bound, upper_bound = upper_bound, upper_bound - numerator / denominator
+
+    return upper_bound
 
 
 def f(x: float) -> float:
