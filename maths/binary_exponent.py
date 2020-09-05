@@ -24,9 +24,10 @@ def bin_exp(num: int, expo: int) -> int:
             expo -= 1
         else:
             num *= num
-            expo = div 
-    return result  
-    
+            expo = div
+    return result
+
+
 # call the testmod function
 if __name__ == "__main__":
     from doctest import testmod
