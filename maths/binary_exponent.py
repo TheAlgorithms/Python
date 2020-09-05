@@ -9,12 +9,13 @@ def bin_exp(num, expo) -> int:
     """
     result = 1
     while expo:
-        if expo % 2:
+        div, mod = divmod(expo, 2)
+        if mod:
             result *= num
-            expo = expo - 1
+            expo -= 1
         else:
             num *= num
-            expo /= 2
+            expo = div
     return result
 
 
