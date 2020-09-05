@@ -6,7 +6,7 @@ def bin_exp(num: int, expo: int) -> int:
     So, It is faster than normal exponential function for huge numbers.
     >>> bin_exp(2, 5)
     32
-    >>> bin_exp(1,0)
+    >>> bin_exp(1, 0)
     1
     >>> bin_exp(-2, 0)
     1
