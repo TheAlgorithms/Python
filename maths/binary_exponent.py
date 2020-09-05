@@ -4,8 +4,8 @@ def bin_exp(num, expo) -> int:
     returns a positive number.
     This function does binary exponential hence O(log N) time complexity.
     So, It is faster than normal exponential function for huge numbers.
-    >>> bin_exp(2,5)==32
-    True
+    >>> bin_exp(2, 5)
+    32
     """
     result = 1
     while expo:
