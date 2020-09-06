@@ -7,16 +7,14 @@ def bin_exp(num: int, expo: int) -> int:
     32
     >>> bin_exp(1, 0)
     1
-    >>> bin_exp(-2, 0)
-    1
+    >>> bin_exp(0, -2)
+    'expo must not be negative'
     >>> bin_exp(-2, -2)
-    0
-    >>> bin_exp(1.5, 2.5)
-    2
-    >>> bin_exp(5, None)
-    1
+    'expo must not be negative'
     """
     result = 1
+    if expo < 0:
+        return 'expo must not be negative'
     while expo:
         div, mod = divmod(expo, 2)
         if mod:
@@ -26,8 +24,6 @@ def bin_exp(num: int, expo: int) -> int:
             num *= num
             expo = div
     return result
-
-
 # call the testmod function
 if __name__ == "__main__":
     from doctest import testmod
