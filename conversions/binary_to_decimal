@@ -8,6 +8,8 @@ def bin_to_decimal(bin_string: str) -> int:
     10
     >>> bin_to_decimal("-11101")
     -29
+    >>> bin_to_decimal("0")
+    0
     >>> bin_to_decimal("a")
     ValueError: Non-binary value was passed to the function
     >>> bin_to_decimal("")
