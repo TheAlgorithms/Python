@@ -1,7 +1,7 @@
 def count_chars(text: str) -> int:
     """
     This function iterates over characters of a string and keeps a counter called result
-    to count the number of total charecters within a string
+    to count the number of total characters within a string
     >>> count_chars('pythonpy')
     8
     >>> count_chars('name')
