@@ -20,7 +20,7 @@ dataset = make_dataset()
 
 def triplet_sum1(arr: List[int], target: int) -> Tuple[int, int, int]:
     """
-    Returns a triplet in in array with sum equal to target,
+    Returns a triplet in the array with sum equal to target,
     else (0, 0, 0).
     >>> triplet_sum1([13, 29, 7, 23, 5], 35)
     (5, 7, 23)
@@ -39,7 +39,7 @@ def triplet_sum1(arr: List[int], target: int) -> Tuple[int, int, int]:
 
 def triplet_sum2(arr: List[int], target: int) -> Tuple[int, int, int]:
     """
-    Returns a triplet in in array with sum equal to target,
+    Returns a triplet in the array with sum equal to target,
     else (0, 0, 0).
     >>> triplet_sum2([13, 29, 7, 23, 5], 35)
     (5, 7, 23)
