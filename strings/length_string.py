@@ -8,6 +8,8 @@ def count_chars(text: str) -> int:
     4
     >>> count_chars('gitHub')
     6
+    >>> count_chars('')
+    0
     """
     result = 0
     for char in text:
