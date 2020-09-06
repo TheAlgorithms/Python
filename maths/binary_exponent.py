@@ -24,7 +24,8 @@ def bin_exp(num: int, expo: int) -> int:
             num *= num
             expo = div
     return result
-# call the testmod function
+
+
 if __name__ == "__main__":
     from doctest import testmod
 
