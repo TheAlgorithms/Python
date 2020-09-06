@@ -17,9 +17,9 @@ from decimal import Decimal, getcontext
 
 
 def digital_sum(num: int, accuracy: int) -> int:
-    """
-    Function to take the square root of a number with given accuracy.
-    Returns string of answer without a dot.
+    """Function to calculate the digital sum of the square root
+    of a number with given accuracy. Returns the digial sum as int.
+    
     >>> digital_sum(2, 100)
     475
     >>> digital_sum(80, 100)
@@ -41,7 +41,7 @@ def digital_sum(num: int, accuracy: int) -> int:
 def solution():
     """Returns the total of the digital sum of the first one hundred
     decimal digits for all the irrational square roots of all the first
-    one hundrer numbers.
+    one hundred numbers.
 
     >>> solution()
     40886
