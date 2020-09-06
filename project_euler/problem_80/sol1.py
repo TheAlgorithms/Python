@@ -16,23 +16,32 @@ sums of the first one hundred decimal digits for all the irrational square roots
 from decimal import Decimal, getcontext
 
 
-def digital_sum(num: int, accuracy: int) -> int:
-    """Function to calculate the digital sum of the square root
-    of a number with given accuracy. Returns the digial sum as int.
-    
-    >>> digital_sum(2, 100)
-    475
-    >>> digital_sum(80, 100)
-    500
+def sqrt_with_accuracy(num: int, accuracy: int) -> str:
+    """Function to take the square root of a number with given accuracy.
+    Returns the result as a string.
+
+    >>> sqrt_with_accuracy(2, 100)
+    '1.414213562373095048801688724209698078569671875376948073176679737990732478462107038850387534327641572'
     """
     getcontext().prec = accuracy + 5
     ans = str(Decimal(num).sqrt())
-    ans = ans.replace(".", "")
-    ans = ans[:accuracy]
+    return ans[: accuracy + 1]
+
+
+def digital_sum(num: str) -> int:
+    """Function to calculate the digital sum of a number.
+    The digital sum is the sum of the digits of the representation of a number
+    Returns the digital sum as an int.
+
+    >>> digital_sum("1.414213562373095048801688724209698078569" \
+    "671875376948073176679737990732478462107038850387534327641572")
+    475
+    """
+    num = num.replace(".", "")
 
     total_sum = 0
 
-    for digit in ans:
+    for digit in num:
         total_sum += int(digit)
 
     return total_sum
@@ -54,7 +63,8 @@ def solution():
     accuracy = 100
 
     for num in numbers:
-        total_sum += digital_sum(num, accuracy)
+        sqrt_num = sqrt_with_accuracy(num, accuracy)
+        total_sum += digital_sum(sqrt_num)
 
     return total_sum
 
