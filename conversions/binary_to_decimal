@@ -28,7 +28,6 @@ def bin_to_decimal(bin_string: str) -> int:
     decimal_number = 0
     for char in bin_string:
         decimal_number = 2 * decimal_number + int(char)
-        print(decimal_number, char)
     if is_negative:
         decimal_number = -decimal_number
     return decimal_number
