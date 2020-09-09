@@ -26,8 +26,9 @@ def bubble_sort(list_data: list, length: int = 0) -> list:
     >>> bubble_sort([1.1, 3.3, 5.5, 7.7, 2.2, 4.4, 6.6])
     [1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7]
     """
+    length = length or len(list_data)
     swapped = False
-    for i in range(len(list_data) - 1):
+    for i in range(length - 1):
         if list_data[i] > list_data[i + 1]:
             list_data[i], list_data[i + 1] = list_data[i + 1], list_data[i]
             swapped = True
