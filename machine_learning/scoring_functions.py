@@ -140,7 +140,5 @@ def mbd(predict, actual):
 def manual_accuracy(predict, actual):
     predict = np.array(predict)
     actual = np.array(actual)
-    
     score = np.mean(actual == predict)
-    
     return score
