@@ -16,7 +16,7 @@ def capitalize(sentence: str) -> str:
     ''
     """
     if not sentence:
-        return ''
+        return ""
     lower_to_upper = {lc: uc for lc, uc in zip(ascii_lowercase, ascii_uppercase)}
     return lower_to_upper.get(sentence[0], sentence[0]) + sentence[1:]
 

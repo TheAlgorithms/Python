@@ -11,7 +11,7 @@ Ref : INTRODUCTION TO ALGORITHMS THIRD EDITION
 
 
 def max_sum_from_start(array):
-    """ This function finds the maximum contiguous sum of array from 0 index
+    """This function finds the maximum contiguous sum of array from 0 index
 
     Parameters :
     array (list[int]) : given array
@@ -30,7 +30,7 @@ def max_sum_from_start(array):
 
 
 def max_cross_array_sum(array, left, mid, right):
-    """ This function finds the maximum contiguous sum of left and right arrays
+    """This function finds the maximum contiguous sum of left and right arrays
 
     Parameters :
     array, left, mid, right (list[int], int, int, int)
@@ -46,7 +46,7 @@ def max_cross_array_sum(array, left, mid, right):
 
 
 def max_subarray_sum(array, left, right):
-    """ Maximum contiguous sub-array sum, using divide and conquer method
+    """Maximum contiguous sub-array sum, using divide and conquer method
 
     Parameters :
     array, left, right (list[int], int, int) :
