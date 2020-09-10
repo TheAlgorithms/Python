@@ -6,8 +6,8 @@
 
 def check_prime(number):
     """
-            it's not the best solution
-        """
+    it's not the best solution
+    """
     special_non_primes = [0, 1, 2]
     if number in special_non_primes[:2]:
         return 2

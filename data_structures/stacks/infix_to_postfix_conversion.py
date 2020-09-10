@@ -10,7 +10,7 @@ def is_operand(char):
 
 
 def precedence(char):
-    """ Return integer value representing an operator's precedence, or
+    """Return integer value representing an operator's precedence, or
     order of operation.
 
     https://en.wikipedia.org/wiki/Order_of_operations
@@ -20,7 +20,7 @@ def precedence(char):
 
 
 def infix_to_postfix(expression):
-    """ Convert infix notation to postfix notation using the Shunting-yard
+    """Convert infix notation to postfix notation using the Shunting-yard
     algorithm.
 
     https://en.wikipedia.org/wiki/Shunting-yard_algorithm

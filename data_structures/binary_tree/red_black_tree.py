@@ -28,11 +28,11 @@ class RedBlackTree:
         right: Optional["RedBlackTree"] = None,
     ) -> None:
         """Initialize a new Red-Black Tree node with the given values:
-            label: The value associated with this node
-            color: 0 if black, 1 if red
-            parent: The parent to this node
-            left: This node's left child
-            right: This node's right child
+        label: The value associated with this node
+        color: 0 if black, 1 if red
+        parent: The parent to this node
+        left: This node's left child
+        right: This node's right child
         """
         self.label = label
         self.parent = parent

@@ -19,9 +19,9 @@ def prime_sieve_eratosthenes(num):
     print the prime numbers up to n
 
     >>> prime_sieve_eratosthenes(10)
-    2 3 5 7 
+    2,3,5,7,
     >>> prime_sieve_eratosthenes(20)
-    2 3 5 7 11 13 17 19 
+    2,3,5,7,11,13,17,19,
     """
 
     primes = [True for i in range(num + 1)]
@@ -35,10 +35,13 @@ def prime_sieve_eratosthenes(num):
 
     for prime in range(2, num + 1):
         if primes[prime]:
-            print(prime, end=" ")
+            print(prime, end=",")
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     num = int(input())
 
     prime_sieve_eratosthenes(num)

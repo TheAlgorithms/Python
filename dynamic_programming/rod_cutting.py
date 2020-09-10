@@ -13,30 +13,30 @@ pieces separately or not cutting it at all if the price of it is the maximum obt
 
 def naive_cut_rod_recursive(n: int, prices: list):
     """
-        Solves the rod-cutting problem via naively without using the benefit of dynamic
-        programming. The results is the same sub-problems are solved several times
-        leading to an exponential runtime
+    Solves the rod-cutting problem via naively without using the benefit of dynamic
+    programming. The results is the same sub-problems are solved several times
+    leading to an exponential runtime
 
-        Runtime: O(2^n)
+    Runtime: O(2^n)
 
-        Arguments
-        -------
-        n: int, the length of the rod
-        prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-        price for a rod of length ``i``
+    Arguments
+    -------
+    n: int, the length of the rod
+    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
+    price for a rod of length ``i``
 
-        Returns
-        -------
-        The maximum revenue obtainable for a rod of length n given the list of prices
-        for each piece.
+    Returns
+    -------
+    The maximum revenue obtainable for a rod of length n given the list of prices
+    for each piece.
 
-        Examples
-        --------
-        >>> naive_cut_rod_recursive(4, [1, 5, 8, 9])
-        10
-        >>> naive_cut_rod_recursive(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
-        30
-        """
+    Examples
+    --------
+    >>> naive_cut_rod_recursive(4, [1, 5, 8, 9])
+    10
+    >>> naive_cut_rod_recursive(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
+    30
+    """
 
     _enforce_args(n, prices)
     if n == 0:
@@ -52,35 +52,35 @@ def naive_cut_rod_recursive(n: int, prices: list):
 
 def top_down_cut_rod(n: int, prices: list):
     """
-        Constructs a top-down dynamic programming solution for the rod-cutting
-        problem via memoization. This function serves as a wrapper for
-        _top_down_cut_rod_recursive
+    Constructs a top-down dynamic programming solution for the rod-cutting
+    problem via memoization. This function serves as a wrapper for
+    _top_down_cut_rod_recursive
 
-        Runtime: O(n^2)
+    Runtime: O(n^2)
 
-        Arguments
-        --------
-        n: int, the length of the rod
-        prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-        price for a rod of length ``i``
+    Arguments
+    --------
+    n: int, the length of the rod
+    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
+    price for a rod of length ``i``
 
-        Note
-        ----
-        For convenience and because Python's lists using 0-indexing, length(max_rev) =
-        n + 1, to accommodate for the revenue obtainable from a rod of length 0.
+    Note
+    ----
+    For convenience and because Python's lists using 0-indexing, length(max_rev) =
+    n + 1, to accommodate for the revenue obtainable from a rod of length 0.
 
-        Returns
-        -------
-        The maximum revenue obtainable for a rod of length n given the list of prices
-        for each piece.
+    Returns
+    -------
+    The maximum revenue obtainable for a rod of length n given the list of prices
+    for each piece.
 
-        Examples
-        -------
-        >>> top_down_cut_rod(4, [1, 5, 8, 9])
-        10
-        >>> top_down_cut_rod(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
-        30
-        """
+    Examples
+    -------
+    >>> top_down_cut_rod(4, [1, 5, 8, 9])
+    10
+    >>> top_down_cut_rod(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
+    30
+    """
     _enforce_args(n, prices)
     max_rev = [float("-inf") for _ in range(n + 1)]
     return _top_down_cut_rod_recursive(n, prices, max_rev)
@@ -88,24 +88,24 @@ def top_down_cut_rod(n: int, prices: list):
 
 def _top_down_cut_rod_recursive(n: int, prices: list, max_rev: list):
     """
-        Constructs a top-down dynamic programming solution for the rod-cutting problem
-        via memoization.
+    Constructs a top-down dynamic programming solution for the rod-cutting problem
+    via memoization.
 
-        Runtime: O(n^2)
+    Runtime: O(n^2)
 
-        Arguments
-        --------
-        n: int, the length of the rod
-        prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-        price for a rod of length ``i``
-        max_rev: list, the computed maximum revenue for a piece of rod.
-        ``max_rev[i]`` is the maximum revenue obtainable for a rod of length ``i``
+    Arguments
+    --------
+    n: int, the length of the rod
+    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
+    price for a rod of length ``i``
+    max_rev: list, the computed maximum revenue for a piece of rod.
+    ``max_rev[i]`` is the maximum revenue obtainable for a rod of length ``i``
 
-        Returns
-        -------
-        The maximum revenue obtainable for a rod of length n given the list of prices
-        for each piece.
-        """
+    Returns
+    -------
+    The maximum revenue obtainable for a rod of length n given the list of prices
+    for each piece.
+    """
     if max_rev[n] >= 0:
         return max_rev[n]
     elif n == 0:
@@ -125,28 +125,28 @@ def _top_down_cut_rod_recursive(n: int, prices: list, max_rev: list):
 
 def bottom_up_cut_rod(n: int, prices: list):
     """
-        Constructs a bottom-up dynamic programming solution for the rod-cutting problem
+    Constructs a bottom-up dynamic programming solution for the rod-cutting problem
 
-        Runtime: O(n^2)
+    Runtime: O(n^2)
 
-        Arguments
-        ----------
-        n: int, the maximum length of the rod.
-        prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-        price for a rod of length ``i``
+    Arguments
+    ----------
+    n: int, the maximum length of the rod.
+    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
+    price for a rod of length ``i``
 
-        Returns
-        -------
-        The maximum revenue obtainable from cutting a rod of length n given
-        the prices for each piece of rod p.
+    Returns
+    -------
+    The maximum revenue obtainable from cutting a rod of length n given
+    the prices for each piece of rod p.
 
-        Examples
-        -------
-        >>> bottom_up_cut_rod(4, [1, 5, 8, 9])
-        10
-        >>> bottom_up_cut_rod(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
-        30
-        """
+    Examples
+    -------
+    >>> bottom_up_cut_rod(4, [1, 5, 8, 9])
+    10
+    >>> bottom_up_cut_rod(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
+    30
+    """
     _enforce_args(n, prices)
 
     # length(max_rev) = n + 1, to accommodate for the revenue obtainable from a rod of
@@ -166,16 +166,16 @@ def bottom_up_cut_rod(n: int, prices: list):
 
 def _enforce_args(n: int, prices: list):
     """
-        Basic checks on the arguments to the rod-cutting algorithms
+    Basic checks on the arguments to the rod-cutting algorithms
 
-        n: int, the length of the rod
-        prices: list, the price list for each piece of rod.
+    n: int, the length of the rod
+    prices: list, the price list for each piece of rod.
 
-        Throws ValueError:
+    Throws ValueError:
 
-        if n is negative or there are fewer items in the price list than the length of
-        the rod
-        """
+    if n is negative or there are fewer items in the price list than the length of
+    the rod
+    """
     if n < 0:
         raise ValueError(f"n must be greater than or equal to 0. Got n = {n}")
 

@@ -118,7 +118,7 @@ def inorder(root: Node):
         return
     else:
         inorder(root.left)
-        print(root.value, end=" ")
+        print(root.value, end=",")
         inorder(root.right)
 
 
@@ -130,19 +130,19 @@ def interactTreap(root, args):
 
         >>> root = interactTreap(None, "+1")
         >>> inorder(root)
-        1 
+        1,
         >>> root = interactTreap(root, "+3 +5 +17 +19 +2 +16 +4 +0")
         >>> inorder(root)
-        0 1 2 3 4 5 16 17 19 
+        0,1,2,3,4,5,16,17,19,
         >>> root = interactTreap(root, "+4 +4 +4")
         >>> inorder(root)
-        0 1 2 3 4 4 4 4 5 16 17 19 
+        0,1,2,3,4,4,4,4,5,16,17,19,
         >>> root = interactTreap(root, "-0")
         >>> inorder(root)
-        1 2 3 4 4 4 4 5 16 17 19 
+        1,2,3,4,4,4,4,5,16,17,19,
         >>> root = interactTreap(root, "-4")
         >>> inorder(root)
-        1 2 3 5 16 17 19 
+        1,2,3,5,16,17,19,
         >>> root = interactTreap(root, "=0")
         Unknown command
     """
