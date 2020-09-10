@@ -1,4 +1,4 @@
-if __name__ == "__main__":
+def run_script():
     import socket  # Import socket module
 
     ONE_CONNECTION_ONLY = (
@@ -36,3 +36,7 @@ if __name__ == "__main__":
 
     sock.shutdown(1)
     sock.close()
+
+
+if __name__ == "__main__":  # pragma: no cover
+    run_script()
