@@ -132,10 +132,10 @@ if __name__ == "__main__":  # pragma: no cover
     str1 = sys.argv[1] if args_length >= 2 else "Python"
     str2 = sys.argv[2] if args_length >= 3 else "Algorithms"
 
-    default_costs = [-1, 1, 2, 2]
-    user_costs = list(map(int, *sys.argv[3:])) if args_length >= 7 else []
+    default_costs = [0, 1, 2, 3]
+    user_costs = list(map(int, sys.argv[3:])) if args_length >= 7 else []
 
-    create, replace, delete, insert = user_costs[:4] or default_costs
+    copy, replace, delete, insert = user_costs[:4] or default_costs
 
-    min_cost = run_algorithm(str1, str2, create, replace, delete, insert)
+    min_cost = run_algorithm(str1, str2, copy, replace, delete, insert)
     print(f"Min Cost: {min_cost}")
