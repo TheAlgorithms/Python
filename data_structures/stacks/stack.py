@@ -1,6 +1,3 @@
-__author__ = "Omkar Pathak"
-
-
 class Stack:
     """A stack is an abstract data type that serves as a collection of
     elements with two principal operations: push() and pop(). push() adds an
@@ -11,14 +8,14 @@ class Stack:
     https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
     """
 
-    def __init__(self, limit=10):
+    def __init__(self, limit: int = 10):
         self.stack = []
         self.limit = limit
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         return bool(self.stack)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.stack)
 
     def push(self, data):
@@ -29,21 +26,24 @@ class Stack:
 
     def pop(self):
         """ Pop an element off of the top of the stack."""
-        if self.stack:
-            return self.stack.pop()
-        else:
+        if self.is_empty():
             raise IndexError("pop from an empty stack")
+        return self.stack.pop()
 
     def peek(self):
         """ Peek at the top-most element of the stack."""
-        if self.stack:
-            return self.stack[-1]
+        if self.is_empty():
+            raise IndexError("peek from an empty stack")
+        return self.stack[-1]
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """ Check if a stack is empty."""
         return not bool(self.stack)
 
-    def size(self):
+    def is_full(self) -> bool:
+        return self.size() == self.limit
+
+    def size(self) -> int:
         """ Return the size of the stack."""
         return len(self.stack)
 
@@ -57,19 +57,22 @@ class StackOverflowError(BaseException):
 
 
 if __name__ == "__main__":
-    stack = Stack()
+    stack = Stack(10)
     for i in range(10):
         stack.push(i)
 
-    print("Stack demonstration:\n")
-    print("Initial stack: " + str(stack))
-    print("pop(): " + str(stack.pop()))
-    print("After pop(), the stack is now: " + str(stack))
-    print("peek(): " + str(stack.peek()))
+    assert stack.is_full()
+    assert str(stack) == str([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    assert stack.pop() == 9
+    assert stack.peek() == 8
+
     stack.push(100)
-    print("After push(100), the stack is now: " + str(stack))
-    print("is_empty(): " + str(stack.is_empty()))
-    print("size(): " + str(stack.size()))
+    assert str(stack) == str([0, 1, 2, 3, 4, 5, 6, 7, 8, 100])
+
+    assert not stack.is_empty()
+    assert stack.size() == 10
+
     num = 5
-    if num in stack:
-        print(f"{num} is in stack")
+    assert num in stack
+    num = 55
+    assert num not in stack
