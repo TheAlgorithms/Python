@@ -29,11 +29,13 @@ def merge_sort(collection: list) -> list:
         :param right: right collection
         :return: merge result
         """
+
         def _merge():
             while left and right:
                 yield (left if left[0] <= right[0] else right).pop(0)
             yield from left
             yield from right
+
         return list(_merge())
 
     if len(collection) <= 1:
@@ -44,6 +46,7 @@ def merge_sort(collection: list) -> list:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]

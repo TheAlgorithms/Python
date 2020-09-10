@@ -102,7 +102,7 @@ class CircularLinkedList:
 
     def prepend(self, data: Any) -> None:
         """
-        Adds a ndoe with given data to the front of the CircularLinkedList
+        Adds a node with given data to the front of the CircularLinkedList
         >>> cll = CircularLinkedList()
         >>> cll.prepend(1)
         >>> cll.prepend(2)

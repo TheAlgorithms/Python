@@ -53,11 +53,11 @@ def pre_order(node: TreeNode) -> None:
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> pre_order(root)
-    1 2 4 5 3 6 7 
+    1,2,4,5,3,6,7,
     """
     if not isinstance(node, TreeNode) or not node:
         return
-    print(node.data, end=" ")
+    print(node.data, end=",")
     pre_order(node.left)
     pre_order(node.right)
 
@@ -75,12 +75,12 @@ def in_order(node: TreeNode) -> None:
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> in_order(root)
-    4 2 5 1 6 3 7 
+    4,2,5,1,6,3,7,
     """
     if not isinstance(node, TreeNode) or not node:
         return
     in_order(node.left)
-    print(node.data, end=" ")
+    print(node.data, end=",")
     in_order(node.right)
 
 
@@ -97,13 +97,13 @@ def post_order(node: TreeNode) -> None:
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> post_order(root)
-    4 5 2 6 7 3 1 
+    4,5,2,6,7,3,1,
     """
     if not isinstance(node, TreeNode) or not node:
         return
     post_order(node.left)
     post_order(node.right)
-    print(node.data, end=" ")
+    print(node.data, end=",")
 
 
 def level_order(node: TreeNode) -> None:
@@ -119,7 +119,7 @@ def level_order(node: TreeNode) -> None:
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> level_order(root)
-    1 2 3 4 5 6 7 
+    1,2,3,4,5,6,7,
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -127,7 +127,7 @@ def level_order(node: TreeNode) -> None:
     q.put(node)
     while not q.empty():
         node_dequeued = q.get()
-        print(node_dequeued.data, end=" ")
+        print(node_dequeued.data, end=",")
         if node_dequeued.left:
             q.put(node_dequeued.left)
         if node_dequeued.right:
@@ -146,10 +146,10 @@ def level_order_actual(node: TreeNode) -> None:
     >>> root.left, root.right = tree_node2, tree_node3
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> level_order_actual(root) 
-    1 
-    2 3 
-    4 5 6 7 
+    >>> level_order_actual(root)
+    1,
+    2,3,
+    4,5,6,7,
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -159,7 +159,7 @@ def level_order_actual(node: TreeNode) -> None:
         list = []
         while not q.empty():
             node_dequeued = q.get()
-            print(node_dequeued.data, end=" ")
+            print(node_dequeued.data, end=",")
             if node_dequeued.left:
                 list.append(node_dequeued.left)
             if node_dequeued.right:
@@ -183,7 +183,7 @@ def pre_order_iter(node: TreeNode) -> None:
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> pre_order_iter(root)
-    1 2 4 5 3 6 7 
+    1,2,4,5,3,6,7,
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -191,7 +191,7 @@ def pre_order_iter(node: TreeNode) -> None:
     n = node
     while n or stack:
         while n:  # start from root node, find its left child
-            print(n.data, end=" ")
+            print(n.data, end=",")
             stack.append(n)
             n = n.left
         # end of while means current node doesn't have left child
@@ -213,7 +213,7 @@ def in_order_iter(node: TreeNode) -> None:
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> in_order_iter(root)
-    4 2 5 1 6 3 7 
+    4,2,5,1,6,3,7,
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -224,7 +224,7 @@ def in_order_iter(node: TreeNode) -> None:
             stack.append(n)
             n = n.left
         n = stack.pop()
-        print(n.data, end=" ")
+        print(n.data, end=",")
         n = n.right
 
 
@@ -241,7 +241,7 @@ def post_order_iter(node: TreeNode) -> None:
     >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> post_order_iter(root)
-    4 5 2 6 7 3 1 
+    4,5,2,6,7,3,1,
     """
     if not isinstance(node, TreeNode) or not node:
         return
@@ -256,7 +256,7 @@ def post_order_iter(node: TreeNode) -> None:
             stack1.append(n.right)
         stack2.append(n)
     while stack2:  # pop up from stack2 will be the post order
-        print(stack2.pop().data, end=" ")
+        print(stack2.pop().data, end=",")
 
 
 def prompt(s: str = "", width=50, char="*") -> str:
