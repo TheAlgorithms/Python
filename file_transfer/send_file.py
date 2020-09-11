@@ -24,7 +24,7 @@ def send_file(filename: str = "mytext.txt", testing: bool = False) -> None:
 
         print("Done sending")
         conn.close()
-        if testing:  # Allow the test to complete
+        if testing:  # Allow the test to complete
             break
 
     sock.shutdown(1)
@@ -32,4 +32,4 @@ def send_file(filename: str = "mytext.txt", testing: bool = False) -> None:
 
 
 if __name__ == "__main__":
-    run_script()
+    send_file()
