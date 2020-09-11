@@ -45,4 +45,8 @@ if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     arr = [int(item) for item in user_input.split(",")]
     x = int(input("Enter the number to be searched:\n"))
-    print(f"Number {x} is at index {jump_search(arr, x)}")
+    res = jump_search(arr, x)
+    if res == -1: 
+        print("Number not found!")
+    else:
+        print(f"Number {x} is at index {res}")
