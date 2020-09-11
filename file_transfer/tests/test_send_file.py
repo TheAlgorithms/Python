@@ -1,7 +1,7 @@
 from unittest.mock import patch, Mock
 
 
-from file_transfer.send_file import run_script as send_file
+from file_transfer.send_file import send_file
 
 
 @patch("socket.socket")
@@ -14,7 +14,7 @@ def test_send_file_running_as_expected(file, sock):
     file.return_value.__enter__.return_value.read.side_effect = lambda _: next(f)
 
     # ===== invoke =====
-    send_file()
+    send_file(filename="mytext.txt", testing=True)
 
     # ===== ensurance =====
     sock.assert_called_once()
