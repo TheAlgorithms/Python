@@ -1,11 +1,6 @@
-if __name__ == "__main__":
-    import socket  # Import socket module
+def send_file(filename: str = "mytext.txt", testing: bool = False) -> None:
+    import socket
 
-    ONE_CONNECTION_ONLY = (
-        True  # Set this to False if you wish to continuously accept connections
-    )
-
-    filename = "mytext.txt"
     port = 12312  # Reserve a port for your service.
     sock = socket.socket()  # Create a socket object
     host = socket.gethostname()  # Get local machine name
@@ -29,10 +24,12 @@ if __name__ == "__main__":
 
         print("Done sending")
         conn.close()
-        if (
-            ONE_CONNECTION_ONLY
-        ):  # This is to make sure that the program doesn't hang while testing
+        if testing:  # Allow the test to complete
             break
 
     sock.shutdown(1)
     sock.close()
+
+
+if __name__ == "__main__":
+    send_file()
