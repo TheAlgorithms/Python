@@ -46,7 +46,7 @@ if __name__ == "__main__":
     arr = [int(item) for item in user_input.split(",")]
     x = int(input("Enter the number to be searched:\n"))
     res = jump_search(arr, x)
-    if res == -1: 
+    if res == -1:
         print("Number not found!")
     else:
         print(f"Number {x} is at index {res}")
