@@ -3,6 +3,7 @@ black
 fake_useragent
 flake8
 keras
+lxml
 matplotlib
 mypy
 numpy

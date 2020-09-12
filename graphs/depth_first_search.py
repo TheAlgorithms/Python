@@ -1,24 +1,12 @@
-"""The DFS function simply calls itself recursively for every unvisited child of
-its argument. We can emulate that behaviour precisely using a stack of iterators.
-Instead of recursively calling with a node, we'll push an iterator to the node's
-children onto the iterator stack. When the iterator at the top of the stack
-terminates, we'll pop it off the stack.
+"""Non recursive implementation of a DFS algorithm."""
 
-Pseudocode:
-    all nodes initially unexplored
-    mark s as explored
-    for every edge (s, v):
-        if v unexplored:
-            DFS(G, v)
-"""
-from typing import Dict, Set
+from typing import Set, Dict
 
 
 def depth_first_search(graph: Dict, start: str) -> Set[int]:
     """Depth First Search on Graph
-
     :param graph: directed graph in dictionary format
-    :param vertex: starting vectex as a string
+    :param vertex: starting vertex as a string
     :returns: the trace of the search
     >>> G = { "A": ["B", "C", "D"], "B": ["A", "D", "E"],
     ... "C": ["A", "F"], "D": ["B", "D"], "E": ["B", "F"],
@@ -31,13 +19,16 @@ def depth_first_search(graph: Dict, start: str) -> Set[int]:
     True
     """
     explored, stack = set(start), [start]
+
     while stack:
         v = stack.pop()
-        # one difference from BFS is to pop last element here instead of first one
-        for w in graph[v]:
-            if w not in explored:
-                explored.add(w)
-                stack.append(w)
+        explored.add(v)
+        # Differences from BFS:
+        # 1) pop last element instead of first one
+        # 2) add adjacent elements to stack without exploring them
+        for adj in reversed(graph[v]):
+            if adj not in explored:
+                stack.append(adj)
     return explored
 
 
