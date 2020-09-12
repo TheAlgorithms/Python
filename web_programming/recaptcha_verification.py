@@ -84,3 +84,6 @@ def loginUsingRecaptcha(request):
         else:
             # if verify is not true, send user back to login page
             return render(request, "login.html")
+
+    # return the login page when loading or when submit is not pressed direct user to login page
+    return render(request, "login.html")
