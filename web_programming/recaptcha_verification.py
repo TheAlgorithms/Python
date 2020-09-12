@@ -48,41 +48,39 @@ def login_using_recaptcha(request):
     if request.method != "POST":
         return render(request, "login.html")
 
-    # When Submit button is clicked
-    if request.method == "POST":
-        # get username, password & client_key from frontend
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        client_key = request.POST.get("g-recaptcha-response")
+    # get username, password & client_key from frontend
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    client_key = request.POST.get("g-recaptcha-response")
 
-        # Keep your recaptcha secret key here
-        secret_key = "secretKey"
+    # Keep your recaptcha secret key here
+    secret_key = "secretKey"
 
-        # make json of your captcha data
-        captcha_data = {"secret": secret_key, "response": client_key}
+    # make json of your captcha data
+    captcha_data = {"secret": secret_key, "response": client_key}
 
-        # post recaptcha response to Google recaptcha api
-        post = requests.post(
-            "https://www.google.com/recaptcha/api/siteverify", data=captchaData
+    # post recaptcha response to Google recaptcha api
+    post = requests.post(
+        "https://www.google.com/recaptcha/api/siteverify", data=captchaData
         )
 
-        # read the json response from recaptcha api
-        response = json.loads(post.text)
-        verify = response["success"]
+    # read the json response from recaptcha api
+    response = json.loads(post.text)
+    verify = response["success"]
 
-        # if verify is true
-        if verify:
-            # authenticate user
-            user = authenticate(request, username=username, password=password)
+    # if verify is true
+    if verify:
+        # authenticate user
+        user = authenticate(request, username=username, password=password)
 
-            # if user is in database
-            if user:
-                # login user
-                login(request, user)
-                return redirect("/your-webpage")
-            else:
-                # else send user back to the login page again
-                return render(request, "login.html")
+        # if user is in database
+        if user:
+            # login user
+            login(request, user)
+            return redirect("/your-webpage")
         else:
-            # if verify is not true, send user back to login page
+            # else send user back to the login page again
             return render(request, "login.html")
+    else:
+        # if verify is not true, send user back to login page
+        return render(request, "login.html")
