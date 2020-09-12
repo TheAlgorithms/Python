@@ -9,11 +9,11 @@ you'll get two keys: ClientKey & SecretKey.
 ClientKey is to be kept in the front end
 SecretKey is to be kept at backend
 """
-
-from django.shortcuts import render, redirect
+# from django.contrib.auth import authenticate, login
+# from django.shortcuts import render, redirect
 import json
 import requests
-from django.contrib.auth import authenticate, login
+
 
 """
 
@@ -45,7 +45,8 @@ has been shown with recaptcha verification
 def login_using_recaptcha(request):
     # when method is not POST, direct user to login page
     if request.method != "POST":
-        return render(request, "login.html")
+        print('Welcome to LoginPage')
+        # return render(request, "login.html")
 
     # get username, password & client_key from frontend
     username = request.POST.get("username")
@@ -67,17 +68,21 @@ def login_using_recaptcha(request):
     verify = response['success']
     # if verify is true
     if verify:
-        # authenticate user
-        user = authenticate(request, username=username, password=password)
+        # authenticate user with following code
+        # user = authenticate(request, username=username, password=password)
+        user = True
 
         # if user is in database
         if user:
+            print('Login success')
             # login user
-            login(request, user)
-            return redirect("/your-webpage")
+            # login(request, user)
+            # return redirect("/your-webpage")
         else:
-            # else send user back to the login page again
-            return render(request, "login.html")
+            print('invalid crednetial')
+            # send user back to the login page again
+            # return render(request, "login.html")
     else:
+        print('Captcha verification failed')
         # if verify is not true, send user back to login page
-        return render(request, "login.html")
+        # return render(request, "login.html")
