@@ -7,7 +7,6 @@ ClientKey is to be kept in the front end
 SecretKey is to be kept at backend
 """
 
-import json
 import requests
 
 """
@@ -65,8 +64,7 @@ def login_using_recaptcha(request):
         )
 
     # read the json response from recaptcha api
-    response = json.loads(post.text)
-    verify = response["success"]
+    verify = response.json().get("success", False)
 
     # if verify is true
     if verify:
