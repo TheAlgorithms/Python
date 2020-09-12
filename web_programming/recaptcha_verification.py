@@ -8,6 +8,7 @@ SecretKey is to be kept at backend
 """
 
 import requests
+from django.contrib.auth import authenticate, login
 
 """
 
