@@ -61,7 +61,7 @@ def login_using_recaptcha(request):
 
     # post recaptcha response to Google recaptcha api
     post = requests.post(
-        "https://www.google.com/recaptcha/api/siteverify", data=captchaData
+        "https://www.google.com/recaptcha/api/siteverify", data=captcha_data
         )
 
     # read the json response from recaptcha api
