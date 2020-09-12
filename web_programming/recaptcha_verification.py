@@ -1,8 +1,11 @@
 """
-Recaptcha is a free captcha service offered by Google in order to secure websites / forms
-https://www.google.com/recaptcha/admin/create (This is the site where you can get your recaptcha keys created)
+Recaptcha is a free captcha service offered by Google
+in order to secure websites / forms
+https://www.google.com/recaptcha/admin/create (This is the site where 
+you can get your recaptcha keys created)
 * Keep in mind that recaptcha doesn't work with localhost 
-When you register recaptcha for your site, you'll get two keys: ClientKey & SecretKey. 
+When you register recaptcha for your site, 
+you'll get two keys: ClientKey & SecretKey. 
 ClientKey is to be kept in the front end
 SecretKey is to be kept at backend
 """
@@ -18,14 +21,14 @@ from django.contrib.auth import authenticate, login
         <h2 class="text-center">Log in</h2> 
         {% csrf_token %}      
         <div class="form-group">
-            <input type="text" name="username" class="form-control" placeholder="Username" required="required">
+            <input type="text" name="username" required="required">
         </div>
         <div class="form-group">
-            <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+            <input type="password" name="password" required="required">
         </div>
         
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit">Log in</button>
         </div>
         
         <!-- Below is the recaptcha tag of html -->
@@ -38,7 +41,8 @@ from django.contrib.auth import authenticate, login
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
-Below one Django function based code for views.py file for a login form has been shown with recaptcha verification
+Below one Django function based code for views.py file for a login form 
+has been shown with recaptcha verification
 """
 
 
@@ -83,3 +87,4 @@ def login_using_recaptcha(request):
     else:
         # if verify is not true, send user back to login page
         return render(request, "login.html")
+
