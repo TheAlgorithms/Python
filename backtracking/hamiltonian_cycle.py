@@ -51,7 +51,7 @@ def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr_ind: int) 
     """
     Pseudo-Code
     Base Case:
-    1. Chceck if we visited all of vertices
+    1. Check if we visited all of vertices
         1.1 If last visited vertex has path to starting vertex return True either
             return False
     Recursive Step:
@@ -59,8 +59,8 @@ def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr_ind: int) 
         Check if next vertex is valid for transiting from current vertex
             2.1 Remember next vertex as next transition
             2.2 Do recursive call and check if going to this vertex solves problem
-            2.3 if next vertex leads to solution return True
-            2.4 else backtrack, delete remembered vertex
+            2.3 If next vertex leads to solution return True
+            2.4 Else backtrack, delete remembered vertex
 
     Case 1: Use exact graph as in main function, with initialized values
     >>> graph = [[0, 1, 0, 1, 0],
