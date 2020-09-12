@@ -49,8 +49,8 @@ def login_using_recaptcha(request):
         # return render(request, "login.html")
 
     # get username, password & client_key from frontend
-    username = request.POST.get("username")
-    password = request.POST.get("password")
+    # username = request.POST.get("username")
+    # password = request.POST.get("password")
     client_key = request.POST.get("g-recaptcha-response")
 
     # Keep your recaptcha secret key here
