@@ -7,6 +7,9 @@ ClientKey is to be kept in the front end
 SecretKey is to be kept at backend
 """
 
+import json
+import requests
+
 """
 
 # An example HTML login form with recaptcha tag is shown below
@@ -39,9 +42,6 @@ SecretKey is to be kept at backend
 """
 Below one Django function based code for views.py file for a login form has been shown with recaptcha verification
 """
-
-import json
-import requests
 
 def loginUsingRecaptcha(request):
 
