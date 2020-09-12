@@ -37,14 +37,16 @@ import requests
     <!-- Below is the recaptcha script to be kept inside html tag -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-"""
 
-"""
 Below one Django function based code for views.py file for a login form has been shown with recaptcha verification
 """
 
 
 def login_using_recaptcha(request):
+
+    # when method is not POST, direct user to login page
+    if request.method != "POST":
+        return render(request, "login.html")
 
     # When Submit button is clicked
     if request.method == "POST":
@@ -57,7 +59,7 @@ def login_using_recaptcha(request):
         secret_key = "secretKey"
 
         # make json of your captcha data
-        captchaData = {"secret": secret_key, "response": client_key}
+        captcha_data = {"secret": secret_key, "response": client_key}
 
         # post recaptcha response to Google recaptcha api
         post = requests.post(
@@ -69,12 +71,12 @@ def login_using_recaptcha(request):
         verify = response["success"]
 
         # if verify is true
-        if verify == True:
+        if verify:
             # authenticate user
             user = authenticate(request, username=username, password=password)
 
             # if user is in database
-            if user is not None:
+            if user:
                 # login user
                 login(request, user)
                 return redirect("/your-webpage")
@@ -84,6 +86,3 @@ def login_using_recaptcha(request):
         else:
             # if verify is not true, send user back to login page
             return render(request, "login.html")
-
-    # return the login page when loading or when submit is not pressed direct user to login page
-    return render(request, "login.html")
