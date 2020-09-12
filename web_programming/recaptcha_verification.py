@@ -10,6 +10,8 @@ ClientKey is to be kept in the front end
 SecretKey is to be kept at backend
 """
 
+from django.shortcuts import render, redirect
+import json
 import requests
 from django.contrib.auth import authenticate, login
 
@@ -60,9 +62,11 @@ def login_using_recaptcha(request):
     post = requests.post(
         "https://www.google.com/recaptcha/api/siteverify", data=captcha_data
         )
+    
 
     # read the json response from recaptcha api
-    verify = response.json().get("success", False)
+    response = json.loads(post.text)
+    verify = response['success']
 
     # if verify is true
     if verify:
