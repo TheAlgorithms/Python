@@ -63,7 +63,7 @@ def solve_maze(maze: list) -> bool:
     if solved:
         print("\n".join(str(row) for row in solutions))
     else:
-        print("Solution does not exists!")
+        print("Solution does not exist!")
     return solved
 
 
