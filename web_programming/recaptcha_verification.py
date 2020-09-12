@@ -61,13 +61,10 @@ def login_using_recaptcha(request):
     # post recaptcha response to Google recaptcha api
     post = requests.post(
         "https://www.google.com/recaptcha/api/siteverify", data=captcha_data
-        )
-    
-
+    )
     # read the json response from recaptcha api
     response = json.loads(post.text)
     verify = response['success']
-
     # if verify is true
     if verify:
         # authenticate user
