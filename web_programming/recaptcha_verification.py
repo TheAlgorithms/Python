@@ -43,44 +43,44 @@ import requests
 Below one Django function based code for views.py file for a login form has been shown with recaptcha verification
 """
 
+
 def loginUsingRecaptcha(request):
 
-  # When Submit button is clicked
-  if request.method == 'POST':
-    # get username, password & clientKey from frontend
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    clientKey = request.POST.get('g-recaptcha-response')
+    # When Submit button is clicked
+    if request.method == "POST":
+        # get username, password & clientKey from frontend
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        clientKey = request.POST.get("g-recaptcha-response")
 
-    # Keep your recaptcha secret key here
-    secretKey = 'secretKey'
+        # Keep your recaptcha secret key here
+        secretKey = "secretKey"
 
-    # make json of your captcha data
-    captchaData = {
-      'secret': secretKey,
-      'response': clientKey
-      }
-    
-    # post recaptcha response to Google recaptcha api
-    post = requests.post('https://www.google.com/recaptcha/api/siteverify', data=captchaData)
+        # make json of your captcha data
+        captchaData = {"secret": secretKey, "response": clientKey}
 
-    # read the json response from recaptcha api
-    response = json.loads(post.text)
-    verify = response['success']
+        # post recaptcha response to Google recaptcha api
+        post = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify", data=captchaData
+        )
 
-    # if verify is true
-    if verify == True:
-     #authenticate user
-      user = authenticate(request, username = username, password=password)
+        # read the json response from recaptcha api
+        response = json.loads(post.text)
+        verify = response["success"]
 
-     # if user is in database
-      if user is not None:
-        #login user
-        login(request, user)
-        return redirect('/your-webpage')
-      else:
-        # else send user back to the login page again
-        return render(request, 'login.html')
-    else:
-      # if verify is not true, send user back to login page
-      return render(request, 'login.html')
+        # if verify is true
+        if verify == True:
+            # authenticate user
+            user = authenticate(request, username=username, password=password)
+
+            # if user is in database
+            if user is not None:
+                # login user
+                login(request, user)
+                return redirect("/your-webpage")
+            else:
+                # else send user back to the login page again
+                return render(request, "login.html")
+        else:
+            # if verify is not true, send user back to login page
+            return render(request, "login.html")
