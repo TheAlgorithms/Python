@@ -44,20 +44,20 @@ Below one Django function based code for views.py file for a login form has been
 """
 
 
-def loginUsingRecaptcha(request):
+def login_using_recaptcha(request):
 
     # When Submit button is clicked
     if request.method == "POST":
-        # get username, password & clientKey from frontend
+        # get username, password & client_key from frontend
         username = request.POST.get("username")
         password = request.POST.get("password")
-        clientKey = request.POST.get("g-recaptcha-response")
+        client_key = request.POST.get("g-recaptcha-response")
 
         # Keep your recaptcha secret key here
-        secretKey = "secretKey"
+        secret_key = "secretKey"
 
         # make json of your captcha data
-        captchaData = {"secret": secretKey, "response": clientKey}
+        captchaData = {"secret": secret_key, "response": client_key}
 
         # post recaptcha response to Google recaptcha api
         post = requests.post(
