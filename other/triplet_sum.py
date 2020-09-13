@@ -61,8 +61,7 @@ def triplet_sum2(arr: List[int], target: int) -> Tuple[int, int, int]:
                 left += 1
             elif arr[i] + arr[left] + arr[right] > target:
                 right -= 1
-    else:
-        return (0, 0, 0)
+    return (0, 0, 0)
 
 
 def solution_times() -> Tuple[float, float]:
