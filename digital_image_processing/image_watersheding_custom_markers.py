@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 from matplotlib import cm
 
-# loading the image
-img = cv2.imread("scenery.jpg")
+# loading the image (kept in the same directory)
+img = cv2.imread("fileName of the Image")
 img_copy = img.copy()
 
 # defining marker image & segmented image
@@ -41,20 +41,20 @@ def mouse_callback(event, x, y, flags, params):
         # write on the marker image
         cv2.circle(marker_image, (x, y), 10, (current_marker), -1)
 
-        # user sees on the road image
+        # user sees on the image
         cv2.circle(img_copy, (x, y), 10, colors[current_marker], -1)
 
         marks_updated = True
 
 
-cv2.namedWindow("Road_Image")
+cv2.namedWindow("Image")
 
-cv2.setMouseCallback("Road_Image", mouse_callback)
+cv2.setMouseCallback("Image", mouse_callback)
 
 
 while True:
     cv2.imshow("Watershed_Segments", segments)
-    cv2.imshow("Road_Image", img_copy)
+    cv2.imshow("Image", img_copy)
 
     k = cv2.waitKey(1)
 
@@ -65,7 +65,7 @@ while True:
     # reset if 'c' is pressed
 
     elif k == ord("c"):
-        road_copy = road.copy()
+        img_copy = img.copy()
         marker_image = np.zeros(img.shape[0:2], dtype=np.int32)
         segments = np.zeros(img.shape, dtype=np.uint8)
 
