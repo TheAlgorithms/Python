@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import cm
 
 # loading the image (kept in the same directory)
-img = cv2.imread("fileName of the Image")
+img = cv2.imread(r"digital_image_processing/image_data/lena_small.jpg"))
 img_copy = img.copy()
 
 # defining marker image & segmented image
