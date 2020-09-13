@@ -11,7 +11,6 @@ import pandas as pd
 def calculate_waitingtime(
     arrival_time: List[int], burst_time: List[int], no_of_processes: int
 ) -> List[int]:
-
     """
     Calculate the waiting time of each processes
     Return: list of waiting times.
@@ -112,7 +111,8 @@ def calculate_average_times(
     for i in range(no_of_processes):
         total_waiting_time = total_waiting_time + waiting_time[i]
         total_turn_around_time = total_turn_around_time + turn_around_time[i]
-    print("Average waiting time = %.5f" % (total_waiting_time / no_of_processes))
+    print("Average waiting time = %.5f" %
+          (total_waiting_time / no_of_processes))
     print("Average turn around time =", total_turn_around_time / no_of_processes)
 
 
@@ -126,15 +126,20 @@ if __name__ == "__main__":
     for i in range(no_of_processes):
         print("Enter the arrival time and brust time for process:--" + str(i + 1))
         arrival_time[i], burst_time[i] = map(int, input().split())
-    waiting_time = calculate_waitingtime(arrival_time, burst_time, no_of_processes)
+
+    waiting_time = calculate_waitingtime(
+        arrival_time, burst_time, no_of_processes)
+
     bt = burst_time
     n = no_of_processes
     wt = waiting_time
     turn_around_time = calculate_turnaroundtime(bt, n, wt)
+
     calculate_average_times(waiting_time, turn_around_time, no_of_processes)
-    processes = list(range(1, no_of_processes + 1))
+
     fcfs = pd.DataFrame(
-        list(zip(processes, burst_time, arrival_time, waiting_time, turn_around_time)),
+        list(zip(processes, burst_time, arrival_time,
+                 waiting_time, turn_around_time)),
         columns=[
             "Process",
             "BurstTime",
