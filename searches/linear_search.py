@@ -38,6 +38,39 @@ def linear_search(sequence, target):
     return None
 
 
+def rec_linear_search(sequence, low, high, target) -> int:
+    '''
+    Pure implementation of recursive linear search algorithm in Python
+
+    :param sequence: a collection with comparable items (as sorted items not required
+        in Linear Search)
+    :param low: Lower bound of the sequence
+    :param high: Higher bound of the sequence
+    :param target: The element to be found
+    :return: Index of the target or None if target not found
+
+    Examples:
+    >>> linear_search([0, 5, 7, 10, 15], 0)
+    0
+
+    >>> linear_search([0, 5, 7, 10, 15], 15)
+    4
+
+    >>> linear_search([0, 5, 7, 10, 15], 5)
+    1
+
+    >>> linear_search([0, 5, 7, 10, 15], 6)
+
+    '''
+    if high < low:
+        return None
+    if sequence[low] == target:
+        return low
+    if sequence[high] == target:
+        return high
+    return rec_linear_search(sequence, low + 1, high - 1, target)
+
+
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by comma:\n").strip()
     sequence = [int(item) for item in user_input.split(",")]
