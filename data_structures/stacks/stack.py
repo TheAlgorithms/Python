@@ -1,3 +1,7 @@
+class StackOverflowError(BaseException):
+    pass
+
+
 class Stack:
     """A stack is an abstract data type that serves as a collection of
     elements with two principal operations: push() and pop(). push() adds an
@@ -52,27 +56,28 @@ class Stack:
         return item in self.stack
 
 
-class StackOverflowError(BaseException):
-    pass
-
-
 if __name__ == "__main__":
     stack = Stack(10)
+    assert bool(stack) is False
+    assert stack.is_empty() is True
+    assert stack.is_full() is False
+    assert str(stack) == "[]"
     for i in range(10):
+        assert stack.size() == i
         stack.push(i)
 
-    assert stack.is_full()
-    assert str(stack) == str([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    assert bool(stack) is True
+    assert stack.is_empty() is False
+    assert stack.is_full() is True
+    assert str(stack) == str(list(range(10)))
     assert stack.pop() == 9
     assert stack.peek() == 8
 
     stack.push(100)
     assert str(stack) == str([0, 1, 2, 3, 4, 5, 6, 7, 8, 100])
 
-    assert not stack.is_empty()
+    assert stack.is_empty() is False
     assert stack.size() == 10
 
-    num = 5
-    assert num in stack
-    num = 55
-    assert num not in stack
+    assert 5 in stack
+    assert 55 not in stack
