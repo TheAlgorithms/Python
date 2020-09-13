@@ -146,6 +146,7 @@ class Graph:
                 self.parent[root2] = root1
                 return root1
 
+    @staticmethod
     def boruvka_mst(graph):
         """
         Implementation of Boruvka's algorithm
