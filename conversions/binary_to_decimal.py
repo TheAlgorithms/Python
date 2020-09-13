@@ -11,10 +11,16 @@ def bin_to_decimal(bin_string: str) -> int:
     >>> bin_to_decimal("0")
     0
     >>> bin_to_decimal("a")
+    Traceback (most recent call last):
+    ...
     ValueError: Non-binary value was passed to the function
     >>> bin_to_decimal("")
-    ValueError: Empty string value was passed to the function
+    Traceback (most recent call last):
+    ...
+    ValueError: Empty string was passed to the function
     >>> bin_to_decimal("39")
+    Traceback (most recent call last):
+    ...
     ValueError: Non-binary value was passed to the function
     """
     bin_string = str(bin_string).strip()
@@ -28,9 +34,7 @@ def bin_to_decimal(bin_string: str) -> int:
     decimal_number = 0
     for char in bin_string:
         decimal_number = 2 * decimal_number + int(char)
-    if is_negative:
-        decimal_number = -decimal_number
-    return decimal_number
+    return -decimal_number if is_negative else decimal_number
 
 
 if __name__ == "__main__":
