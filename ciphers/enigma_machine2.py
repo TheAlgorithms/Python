@@ -124,9 +124,7 @@ def _plugboard(pbstring: str) -> dict:
     # a) is type string
     # b) has even length (so pairs can be made)
     if not isinstance(pbstring, str):
-        raise TypeError(
-            f"Plugboard setting isn't type string ({type(pbstring)})"
-        )
+        raise TypeError(f"Plugboard setting isn't type string ({type(pbstring)})")
     elif len(pbstring) % 2 != 0:
         raise Exception(f"Odd number of symbols ({len(pbstring)})")
     elif pbstring == "":
