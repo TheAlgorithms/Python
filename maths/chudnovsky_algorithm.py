@@ -52,8 +52,7 @@ def pi(precision: int) -> str:
             6 * k) // (factorial(3 * k) * factorial(k) ** 3)
         linear_term += 545140134
         exponential_term *= -262537412640768000
-        partial_sum += Decimal(multinomial_term *
-                               linear_term) / exponential_term
+        partial_sum += Decimal(multinomial_term * linear_term) / exponential_term
     return str(constant_term / partial_sum)[:-1]
 
 
