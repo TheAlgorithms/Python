@@ -131,8 +131,7 @@ def prime_implicant_chart(prime_implicants, binary):
     >>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
     [[1]]
     """
-    chart = [[0 for x in range(len(binary))]
-             for x in range(len(prime_implicants))]
+    chart = [[0 for x in range(len(binary))] for x in range(len(prime_implicants))]
     for i in range(len(prime_implicants)):
         count = prime_implicants[i].count("_")
         for j in range(len(binary)):

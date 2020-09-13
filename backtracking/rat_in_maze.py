@@ -47,13 +47,13 @@ def solve_maze(maze: list) -> bool:
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze)
-    Solution does not exist!
+    No solution exists!
     False
 
     >>> maze = [[0, 1],
     ...         [1, 0]]
     >>> solve_maze(maze)
-    Solution does not exist!
+    No solution exists!
     False
     """
     size = len(maze)
@@ -63,7 +63,7 @@ def solve_maze(maze: list) -> bool:
     if solved:
         print("\n".join(str(row) for row in solutions))
     else:
-        print("Solution does not exist!")
+        print("No solution exists!")
     return solved
 
 
