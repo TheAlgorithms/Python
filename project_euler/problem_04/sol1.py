@@ -21,7 +21,7 @@ def solution(n):
     >>> solution(10000)
     Traceback (most recent call last):
     ...
-    ValueError: It is larger number than our acceptable range.
+    ValueError: That number is larger than our acceptable range.
     """
     # fetches the next number
     for number in range(n - 1, 9999, -1):
@@ -37,10 +37,10 @@ def solution(n):
             # if 'number' is a product of two 3-digit numbers
             # then number is the answer otherwise fetch next number.
             while divisor != 99:
-                if (number % divisor == 0) and (len(str(number // divisor)) == 3):
+                if (number % divisor == 0) and (len(str(number // divisor)) == 3.0):
                     return number
                 divisor -= 1
-    raise ValueError("It is larger number than our acceptable range.")
+    raise ValueError("That number is larger than our acceptable range.")
 
 
 if __name__ == "__main__":
