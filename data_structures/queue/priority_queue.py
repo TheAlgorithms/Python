@@ -6,7 +6,7 @@ Pure Python implementation of Priority Queue using lists
 class FixedPriorityQueue:
 	"""
 	In a Priority Queue the elements are entred as an when the come
-	But while removing or deleting an element the highest priority element is deleted in FIFO fasion
+	But while removing or deleting an element the highest priority element is deleted in FIFO fashion
 	Here the lowest integer has the highest priority. 
 	Example:
 	priority(0) > priority(5)
@@ -83,7 +83,7 @@ class FixedPriorityQueue:
 
 	def dequeue(self) -> int:
 		"""
-		This function returns the highest priority element from the FixedPriorityQueue in FIFO fasion
+		This function returns the highest priority element from the FixedPriorityQueue in FIFO fashion
 		If the FixedPriorityQueue is empty and this function is called then an exception is raised saying Under Flow!
 		"""
 		if (
