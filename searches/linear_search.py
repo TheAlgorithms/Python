@@ -11,7 +11,7 @@ python linear_search.py
 """
 
 
-def linear_search(sequence, target):
+def linear_search(sequence: list, target: int) -> int:
     """Pure implementation of linear search algorithm in Python
 
     :param sequence: a collection with comparable items (as sorted items not required
