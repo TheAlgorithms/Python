@@ -176,7 +176,7 @@ class ElementPriorityQueue:
 
 	def dequeue(self) -> int:
 		'''
-		This function returns the highest priority element from the ElementPriorityQueue in FIFO fasion.
+		This function returns the highest priority element from the ElementPriorityQueue in FIFO fashion.
 		If the ElementPriorityQueue is empty and this function is called then an exception is raised saying Under Flow!
 		'''
 		if len(self.queue) == 0:
