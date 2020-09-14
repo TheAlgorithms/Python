@@ -1,5 +1,4 @@
-from unittest.mock import patch, Mock
-
+from unittest.mock import Mock, patch
 
 from file_transfer.send_file import send_file
 

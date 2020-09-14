@@ -218,7 +218,6 @@ def enigma(
     rotorpos1 -= 1
     rotorpos2 -= 1
     rotorpos3 -= 1
-    plugboard = plugboard
 
     result = []
 

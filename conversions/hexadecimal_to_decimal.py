@@ -17,14 +17,20 @@ def hex_to_decimal(hex_string: str) -> int:
     >>> hex_to_decimal("-Ff")
     -255
     >>> hex_to_decimal("F-f")
+    Traceback (most recent call last):
+    ...
     ValueError: Non-hexadecimal value was passed to the function
     >>> hex_to_decimal("")
-    ValueError: Empty string value was passed to the function
+    Traceback (most recent call last):
+    ...
+    ValueError: Empty string was passed to the function
     >>> hex_to_decimal("12m")
+    Traceback (most recent call last):
+    ...
     ValueError: Non-hexadecimal value was passed to the function
     """
     hex_string = hex_string.strip().lower()
-    if not hex_string: 
+    if not hex_string:
         raise ValueError("Empty string was passed to the function")
     is_negative = hex_string[0] == "-"
     if is_negative:
@@ -34,9 +40,7 @@ def hex_to_decimal(hex_string: str) -> int:
     decimal_number = 0
     for char in hex_string:
         decimal_number = 16 * decimal_number + hex_table[char]
-    if is_negative:
-        decimal_number = -decimal_number
-    return decimal_number
+    return -decimal_number if is_negative else decimal_number
 
 
 if __name__ == "__main__":
