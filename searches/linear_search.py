@@ -38,37 +38,39 @@ def linear_search(sequence, target):
     return None
 
 
-def rec_linear_search(sequence, low, high, target) -> int:
+def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
     '''
     Pure implementation of recursive linear search algorithm in Python
 
-    :param sequence: a collection with comparable items (as sorted items not required
-        in Linear Search)
-    :param low: Lower bound of the sequence
-    :param high: Higher bound of the sequence
+    :param sequence: An array of items
+    :param low: Lower bound of the array
+    :param high: Higher bound of the array
     :param target: The element to be found
-    :return: Index of the target or None if target not found
+    :return: Index of the key or -1 if key not found or None in case of an exception
 
     Examples:
-    >>> linear_search([0, 5, 7, 10, 15], 0)
-    0
-
-    >>> linear_search([0, 5, 7, 10, 15], 15)
-    4
-
-    >>> linear_search([0, 5, 7, 10, 15], 5)
-    1
-
-    >>> linear_search([0, 5, 7, 10, 15], 6)
-
+    >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 0)
+    The element 0 is present at index 0
+    
+    >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 700)
+    The element 700 is present at index 4
+    
+    >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 30)
+    The element 5 is present at index 1
+    
+    >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, -6)
+    The element -6 is not present in the array
     '''
     if high < low:
-        return None
-    if sequence[low] == target:
-        return low
-    if sequence[high] == target:
-        return high
-    return rec_linear_search(sequence, low + 1, high - 1, target)
+        return -1
+    try:
+        if sequence[low] == target:
+            return low
+        if sequence[high] == target:
+            return high
+        return rec_linear_search(sequence, low + 1, high - 1, target)
+    except IndexError:
+        print('Invalid upper or lower bound!')
 
 
 if __name__ == "__main__":
