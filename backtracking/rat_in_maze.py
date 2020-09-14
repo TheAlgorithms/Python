@@ -69,10 +69,9 @@ def solve_maze(maze: list) -> bool:
 
 def run_maze(maze, i, j, solutions):
     """
-    This method is recursive : it starts from (i, j)
-    and goes in one of these four directions: up, down, left, right
-    if a path is found to destination it breaks and returns True
-    otherwise it returns False
+    This method is recursive starting from (i, j) and going in one of four directions:
+    up, down, left, right.
+    If a path is found to destination it returns True otherwise it returns False.
     Parameters:
         maze(2D matrix) : maze
         i, j : coordinates of matrix
