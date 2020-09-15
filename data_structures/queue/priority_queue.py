@@ -110,6 +110,11 @@ class FixedPriorityQueue:
         else:
             return self.queue[2].pop(0)
 
+    def print_queue(self):
+        print("Priority 0:", self.queue[0])
+        print("Priority 1:", self.queue[1])
+        print("Priority 2:", self.queue[2])
+
     def __str__(self):
         """
         Prints each priority queue within the FixedPriorityQueue
@@ -197,6 +202,9 @@ class ElementPriorityQueue:
             data = min(self.queue)
             self.queue.remove(data)
             return data
+
+    def print_queue(self):
+        print(self.queue)
 
     def __str__(self):
         """
