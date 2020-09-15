@@ -1,0 +1,43 @@
+"""
+The function below will convert any binary string to the octal equivalent.
+
+>>> binToOctal("1111")
+'17'
+
+>>> binToOctal("101010101010011")
+'52523'
+
+>>> binToOctal("")
+ValueError("Empty string was passed to the function")
+
+>>> binToOctal("a-1")
+ValueError("Non-binary value was passed to the function")
+
+"""
+
+
+def binToOctal(binString: str) -> str:
+    if not all("0" <= char <= "1" for char in binString):
+        raise ValueError("Non-binary value was passed to the function")
+    if not binString:
+        raise ValueError("Empty string was passed to the function")
+    octString = ""
+    while len(binString) % 3 != 0:
+        binString = "0" + binString
+    binStringIn3List = [
+        binString[index : index + 3]
+        for index, value in enumerate(binString)
+        if index % 3 == 0
+    ]
+    for binGroup in binStringIn3List:
+        octVal = 0
+        for index, val in enumerate(binGroup):
+            octVal += int(2 ** (2 - index) * int(val))
+        octString += str(octVal)
+    return octString
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
