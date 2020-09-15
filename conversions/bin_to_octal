@@ -1,40 +1,40 @@
 """
 The function below will convert any binary string to the octal equivalent.
 
->>> binToOctal("1111")
+>>> bin_to_octal("1111")
 '17'
 
->>> binToOctal("101010101010011")
+>>> bin_to_octal("101010101010011")
 '52523'
 
->>> binToOctal("")
+>>> bin_to_octal("")
 ValueError("Empty string was passed to the function")
 
->>> binToOctal("a-1")
+>>> bin_to_octal("a-1")
 ValueError("Non-binary value was passed to the function")
 
 """
 
 
-def binToOctal(binString: str) -> str:
-    if not all("0" <= char <= "1" for char in binString):
+def bin_to_octal(bin_string: str) -> str:
+    if not all("0" <= char <= "1" for char in bin_string):
         raise ValueError("Non-binary value was passed to the function")
-    if not binString:
+    if not bin_string:
         raise ValueError("Empty string was passed to the function")
-    octString = ""
-    while len(binString) % 3 != 0:
-        binString = "0" + binString
-    binStringIn3List = [
-        binString[index : index + 3]
-        for index, value in enumerate(binString)
+    oct_string = ""
+    while len(bin_string) % 3 != 0:
+        bin_string = "0" + bin_string
+    bin_string_in_3_list = [
+        bin_string[index : index + 3]
+        for index, value in enumerate(bin_string)
         if index % 3 == 0
     ]
-    for binGroup in binStringIn3List:
-        octVal = 0
-        for index, val in enumerate(binGroup):
-            octVal += int(2 ** (2 - index) * int(val))
-        octString += str(octVal)
-    return octString
+    for bin_group in bin_string_in_3_list:
+        oct_val = 0
+        for index, val in enumerate(bin_group):
+            oct_val += int(2 ** (2 - index) * int(val))
+        oct_string += str(oct_val)
+    return oct_string
 
 
 if __name__ == "__main__":
