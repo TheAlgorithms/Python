@@ -16,15 +16,13 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 We're on [Gitter](https://gitter.im/TheAlgorithms)! Please join us.
 
-<<<<<<< HEAD
 my
 
 第二次
-=======
+
 
 
 
 
 
 第三次
->>>>>>> d3d58f849d3a2600be308318f57c1284c76e0ab2
