@@ -30,6 +30,7 @@ Thus the weights for each column are as follows:
 [[20, 2012, 1.25], [23, 2015, 1.0], [22, 2011, 0.33333333333333337]]
 """
 
+
 def score(source_data: list, weights: list, *args) -> list:
     """Analyse and score a dataset using a range based percentualF proximity
     algorithm and calculate the linear maximum likelihood estimation.
