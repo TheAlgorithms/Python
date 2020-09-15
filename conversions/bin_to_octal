@@ -17,7 +17,7 @@ ValueError("Non-binary value was passed to the function")
 
 
 def bin_to_octal(bin_string: str) -> str:
-    if not all("0" <= char <= "1" for char in bin_string):
+    if not all(char in "01" for char in bin_string):
         raise ValueError("Non-binary value was passed to the function")
     if not bin_string:
         raise ValueError("Empty string was passed to the function")
