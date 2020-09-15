@@ -6,7 +6,8 @@ Pure Python implementation of Priority Queue using lists
 class FixedPriorityQueue:
     """
     In a Priority Queue the elements are entred as an when the come
-    But while removing or deleting an element the highest priority element is deleted in FIFO fashion
+    But while removing or deleting an element the highest priority element is deleted
+    in FIFO fashion.
     Here the lowest integer has the highest priority.
     Example:
     priority(0) > priority(5)
@@ -16,49 +17,45 @@ class FixedPriorityQueue:
     You can change the priorities as per your need
 
     Examples
-    >>>FPQ = FixedPriorityQueue()
-    >>>FPQ.enqueue(0, 10)
-    >>>FPQ.enqueue(1, 70)
-    >>>FPQ.enqueue(0, 100)
-    >>>FPQ.enqueue(2, 1)
-    >>>FPQ.enqueue(2, 5)
-    >>>FPQ.enqueue(1, 7)
-    >>>FPQ.enqueue(2, 4)
-    >>>FPQ.enqueue(1, 64)
-    >>>FPQ.enqueue(0, 128)
-    >>>FPQ.print_queue()
+    >>> FPQ = FixedPriorityQueue()
+    >>> FPQ.enqueue(0, 10)
+    >>> FPQ.enqueue(1, 70)
+    >>> FPQ.enqueue(0, 100)
+    >>> FPQ.enqueue(2, 1)
+    >>> FPQ.enqueue(2, 5)
+    >>> FPQ.enqueue(1, 7)
+    >>> FPQ.enqueue(2, 4)
+    >>> FPQ.enqueue(1, 64)
+    >>> FPQ.enqueue(0, 128)
+    >>> FPQ.print_queue()
     Priority 0: [10, 100, 128]
-            Priority 1: [70, 7, 64]
-            Priority 2: [1, 5, 4]
-    >>>print(FPQ.dequeue())
+    Priority 1: [70, 7, 64]
+    Priority 2: [1, 5, 4]
+    >>> FPQ.dequeue()
     10
-    >>>print(FPQ.dequeue())
-            100
-    >>>print(FPQ.dequeue())
+    >>> FPQ.dequeue()
+    100
+    >>> FPQ.dequeue()
     128
-    >>>print(FPQ.dequeue())
+    >>> FPQ.dequeue()
     70
-    >>>print(FPQ.dequeue())
+    >>> FPQ.dequeue()
     7
-    >>>FPQ.print_queue()
+    >>> FPQ.print_queue()
     Priority 0: []
     Priority 1: [64]
     Priority 2: [1, 5, 4]
-    >>>print(FPQ.dequeue())
+    >>> FPQ.dequeue()
     64
-    >>>print(FPQ.dequeue())
+    >>> FPQ.dequeue()
     1
-    >>>print(FPQ.dequeue())
+    >>> FPQ.dequeue()
     5
-    >>>print(FPQ.dequeue())
+    >>> FPQ.dequeue()
     4
-    >>>print(FPQ.dequeue())
+    >>> print(FPQ.dequeue())
     Traceback (most recent call last):
-      File "Sample.py", line 117, in <module>
-            print(FPQ.dequeue())
-      File "Sample.py", line 58, in dequeue
-            raise Exception("Under Flow!")
-    Exception: Under Flow!
+        ...
     """
 
     def __init__(self):
@@ -83,14 +80,12 @@ class FixedPriorityQueue:
 
     def dequeue(self):
         """
-        This function returns the highest priority element from the FixedPriorityQueue in FIFO fashion
-        If the FixedPriorityQueue is empty and this function is called then an exception is raised saying Under Flow!
+        This function returns the highest priority element from the FixedPriorityQueue
+        in FIFO fashion
+        If the FixedPriorityQueue is empty and this function is called then an 
+        exception is raised saying Under Flow!
         """
-        if (
-            len(self.queue[0]) == 0
-            and len(self.queue[1]) == 0
-            and len(self.queue[2]) == 0
-        ):
+        if not self.queue[0] and not self.queue[1] and not self.queue[2]:
             raise Exception("Under Flow!")
 
         if len(self.queue[0]) != 0:
@@ -120,45 +115,41 @@ class ElementPriorityQueue:
     priority(16) > priority(32)
     You can change the priorities as per your need
 
-    >>>EPQ = ElementPriorityQueue()
-    >>>EPQ.enqueue(10)
-    >>>EPQ.enqueue(70)
-    >>>EPQ.enqueue(100)
-    >>>EPQ.enqueue(1)
-    >>>EPQ.enqueue(5)
-    >>>EPQ.enqueue(7)
-    >>>EPQ.enqueue(4)
-    >>>EPQ.enqueue(64)
-    >>>EPQ.enqueue(128)
-    >>>EPQ.print_queue()
+    >>> EPQ = ElementPriorityQueue()
+    >>> EPQ.enqueue(10)
+    >>> EPQ.enqueue(70)
+    >>> EPQ.enqueue(100)
+    >>> EPQ.enqueue(1)
+    >>> EPQ.enqueue(5)
+    >>> EPQ.enqueue(7)
+    >>> EPQ.enqueue(4)
+    >>> EPQ.enqueue(64)
+    >>> EPQ.enqueue(128)
+    >>> EPQ.print_queue()
     [10, 70, 100, 1, 5, 7, 4, 64, 128]
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     1
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     4
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     5
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     7
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     10
-    >>>EPQ.print_queue()
+    >>> EPQ.print_queue()
     [70, 100, 64, 128]
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     64
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     70
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     100
-    >>>print(EPQ.dequeue())
+    >>> EPQ.dequeue()
     128
     >>>print(EPQ.dequeue())
     Traceback (most recent call last):
-              File "Sample.py", line 132, in <module>
-                    print(EPQ.dequeue())
-              File "Sample.py", line 100, in dequeue
-                    raise Exception("Under Flow!")
-            Exception: Under Flow!
+        ...
     """
 
     def __init__(self):
@@ -176,8 +167,10 @@ class ElementPriorityQueue:
 
     def dequeue(self):
         """
-        This function returns the highest priority element from the ElementPriorityQueue in FIFO fashion.
-        If the ElementPriorityQueue is empty and this function is called then an exception is raised saying Under Flow!
+        This function returns the highest priority element from the ElementPriorityQueue
+        in FIFO fashion.
+        If the ElementPriorityQueue is empty and this function is called then an
+        exception is raised saying Under Flow!
         """
         if len(self.queue) == 0:
             raise Exception("Under Flow!")
