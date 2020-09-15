@@ -71,7 +71,7 @@ class FixedPriorityQueue:
     4
     >>> FPQ.dequeue()
     Traceback (most recent call last):
-                    ...
+        ...
     priority_queue.UnderFlow: Under Flow!
     """
 
@@ -174,7 +174,7 @@ class ElementPriorityQueue:
     128
     >>> EPQ.dequeue()
     Traceback (most recent call last):
-                    ...
+        ...
     priority_queue.UnderFlow: Under Flow!
     """
 
