@@ -25,7 +25,7 @@ class BoyerMooreSearch:
         self.textLen, self.patLen = len(text), len(pattern)
 
     def match_in_pattern(self, char):
-        """ finds the index of char in pattern in reverse order
+        """finds the index of char in pattern in reverse order
 
         Parameters :
             char (chr): character to be searched

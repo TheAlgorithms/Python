@@ -29,7 +29,9 @@ def matrix_subtraction(matrix_a: List, matrix_b: List):
     ]
 
 
-def split_matrix(a: List,) -> Tuple[List, List, List, List]:
+def split_matrix(
+    a: List,
+) -> Tuple[List, List, List, List]:
     """
     Given an even length matrix, returns the top_left, top_right, bot_left, bot_right
     quadrant.

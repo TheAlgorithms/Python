@@ -16,7 +16,7 @@ def printMaxActivities(start, finish):
     >>> finish = [2, 4, 6, 7, 9, 9]
     >>> printMaxActivities(start, finish)
     The following activities are selected:
-    0 1 3 4 
+    0 1 3 4
     """
     n = len(finish)
     print("The following activities are selected:")
