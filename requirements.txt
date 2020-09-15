@@ -6,7 +6,7 @@ keras
 matplotlib
 mypy
 numpy
-opencv-python  # ; python_version <= '3.8'
+opencv-python  # ; python_version <= '3.8' 
 pandas
 pillow
 pytest
