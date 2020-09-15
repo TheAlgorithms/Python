@@ -1,3 +1,4 @@
+# https://www.tutorialspoint.com/python3/bitwise_operators_example.htm
 
 def binary_xor(a: int, b: int):
     """
