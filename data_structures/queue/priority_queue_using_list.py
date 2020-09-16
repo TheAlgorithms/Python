@@ -22,8 +22,8 @@ class UnderFlow(Error):
 class FixedPriorityQueue:
     """
     In a Priority Queue the elements are entred as an when the come
-    But while removing or deleting an element the highest priority element is deleted
-    in FIFO fashion.
+    But while removing or deleting an element the highest priority element
+    is deleted in FIFO fashion.
     Here the lowest integer has the highest priority.
     Example:
     priority(0) > priority(5)
@@ -82,7 +82,7 @@ class FixedPriorityQueue:
             [],
         ]
 
-    def enqueue(self, priority, data):
+    def enqueue(self, priority: int, data: int) -> None:
         """
         This function enters the element into the queue based on its priority
         If the priority is invalid an Exception is raised saying Invalid Priority!
@@ -95,7 +95,7 @@ class FixedPriorityQueue:
         else:
             self.queue[priority].append(data)
 
-    def dequeue(self):
+    def dequeue(self) -> int:
         """
         Return the highest priority element in FIFO order.
         If the queue is empty then an under flow exception is raised.
@@ -110,23 +110,10 @@ class FixedPriorityQueue:
         else:
             return self.queue[2].pop(0)
 
-    def print_queue(self):
+    def print_queue(self) -> None:
         print("Priority 0:", self.queue[0])
         print("Priority 1:", self.queue[1])
         print("Priority 2:", self.queue[2])
-
-    def __str__(self):
-        """
-        Prints each priority queue within the FixedPriorityQueue
-        """
-        s = ""
-        for i in range(len(self.queue)):
-            for j in self.queue[i]:
-                s += "Priority " + str(i) + ": "
-                s += str(i) + " "
-            s += "\n"
-        print(s)
-        return s
 
 
 class ElementPriorityQueue:
@@ -181,7 +168,7 @@ class ElementPriorityQueue:
     def __init__(self):
         self.queue = []
 
-    def enqueue(self, data):
+    def enqueue(self, data: int) -> None:
         """
         This function enters the element into the queue
         If the queue is full an Exception is raised saying Over Flow!
@@ -191,7 +178,7 @@ class ElementPriorityQueue:
         else:
             self.queue.append(data)
 
-    def dequeue(self):
+    def dequeue(self) -> int:
         """
         Return the highest priority element in FIFO order.
         If the queue is empty then an under flow exception is raised.
@@ -203,10 +190,10 @@ class ElementPriorityQueue:
             self.queue.remove(data)
             return data
 
-    def print_queue(self):
+    def print_queue(self) -> None:
         print(self.queue)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Prints all the elements within the Element Priority Queue
         """
@@ -227,13 +214,13 @@ def fixed_priority_queue():
     FPQ.enqueue(2, 4)
     FPQ.enqueue(1, 64)
     FPQ.enqueue(0, 128)
-    EPQ.print_queue()
+    str(FPQ)
     print(FPQ.dequeue())
     print(FPQ.dequeue())
     print(FPQ.dequeue())
     print(FPQ.dequeue())
     print(FPQ.dequeue())
-    EPQ.print_queue()
+    str(FPQ)
     print(FPQ.dequeue())
     print(FPQ.dequeue())
     print(FPQ.dequeue())
@@ -252,13 +239,15 @@ def element_priority_queue():
     EPQ.enqueue(4)
     EPQ.enqueue(64)
     EPQ.enqueue(128)
-    EPQ.print_queue()
+    str(EPQ)
+    print(EPQ)
     print(EPQ.dequeue())
     print(EPQ.dequeue())
     print(EPQ.dequeue())
     print(EPQ.dequeue())
     print(EPQ.dequeue())
-    EPQ.print_queue()
+    str(EPQ)
+    print(EPQ)
     print(EPQ.dequeue())
     print(EPQ.dequeue())
     print(EPQ.dequeue())
