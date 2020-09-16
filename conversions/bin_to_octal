@@ -8,8 +8,9 @@ The function below will convert any binary string to the octal equivalent.
 '52523'
 
 >>> bin_to_octal("")
-ValueError("Empty string was passed to the function")
-
+Traceback (most recent call last):
+...
+ValueError: Empty string was passed to the function
 >>> bin_to_octal("a-1")
 Traceback (most recent call last):
 ...
