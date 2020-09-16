@@ -1,14 +1,23 @@
 #!python3
 """
 The problem is to find a given string has unique characters.
+>>> isUniqueSet("Brick")
+True
+>>> isUniqueHash("Brick")
+True
 
 """
-def isUniqueSet(s):
+
+
+def isUniqueSet(s: str) -> str:
     """
-    This function uses set
+    This function uses a set to determine the string contains unique characters
     s -> string
     return type -> bool
- 
+    >>> isUniqueSet("train")
+    True
+    >>> isUniqueSet("test")
+    False
     """
 
     hashSet = set()
@@ -18,17 +27,22 @@ def isUniqueSet(s):
         hashSet.add(i)
     return True
 
-def isUniqueHash(s):
+
+def isUniqueHash(s: str) -> str:
     """
-    This uses Hashes
+    This function uses ascii values as index to determine
+    the string contains unique characters
     s -> string
     return type -> bool
- 
+    >>> isUniqueHash("train")
+    True
+    >>> isUniqueHash("test")
+    False
     """
 
-    if len(s)>256:
+    if len(s) > 256:
         return False
-    hash = [False]*256
+    hash = [False] * 256
     for i in s:
         index = ord(i)
         if hash[index]:
@@ -36,5 +50,8 @@ def isUniqueHash(s):
         hash[index] = True
     return True
 
+
 if __name__ == "__main__":
-    print(isUniqueHash("nish"))
+    import doctest
+
+    doctest.testmod()
