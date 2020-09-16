@@ -17,7 +17,7 @@ class FixedPriorityQueue:
     Tasks can be added to a Priority Queue at any time and in any order but when Tasks
     are removed then the Task with the highest priority is removed in FIFO order.  In
     code we will use three levels of priority with priority zero Tasks being the most
-    urgent (high priority) and priority 2 tasks being the least urgent. 
+    urgent (high priority) and priority 2 tasks being the least urgent.
 
     Examples
     >>> fpq = FixedPriorityQueue()
@@ -155,7 +155,7 @@ class ElementPriorityQueue:
         If the queue is full an Exception is raised saying Over Flow!
         """
         if len(self.queue) == 100:
-            raise OverFlow("Over Flow!")
+            raise OverFlowError("Maximum queue size is 100")
         self.queue.append(data)
 
     def dequeue(self) -> int:
