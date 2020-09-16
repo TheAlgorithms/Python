@@ -19,10 +19,10 @@ delta = ([-1, 0], [0, -1], [1, 0], [0, 1])  # up, left, down, right
 
 class Node:
     """
-    >>> k = Node(0, 0, 4, 5, 0, None)
+    >>> k = Node(0, 0, 4, 5, None)
     >>> k.calculate_heuristic()
     9
-    >>> n = Node(1, 4, 3, 4, 2, None)
+    >>> n = Node(1, 4, 3, 4, None)
     >>> n.calculate_heuristic()
     2
     >>> l = [k, n]
@@ -33,13 +33,12 @@ class Node:
     True
     """
 
-    def __init__(self, pos_x, pos_y, goal_x, goal_y, g_cost, parent):
+    def __init__(self, pos_x, pos_y, goal_x, goal_y, parent):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.pos = (pos_y, pos_x)
         self.goal_x = goal_x
         self.goal_y = goal_y
-        self.g_cost = g_cost
         self.parent = parent
         self.f_cost = self.calculate_heuristic()
 
@@ -73,8 +72,8 @@ class GreedyBestFirst:
     """
 
     def __init__(self, start, goal):
-        self.start = Node(start[1], start[0], goal[1], goal[0], 0, None)
-        self.target = Node(goal[1], goal[0], goal[1], goal[0], 99999, None)
+        self.start = Node(start[1], start[0], goal[1], goal[0], None)
+        self.target = Node(goal[1], goal[0], goal[1], goal[0], None)
 
         self.open_nodes = [self.start]
         self.closed_nodes = []
@@ -102,16 +101,7 @@ class GreedyBestFirst:
                 if child_node in self.closed_nodes:
                     continue
 
-                if child_node not in self.open_nodes:
-                    self.open_nodes.append(child_node)
-                else:
-                    # retrieve the best current path
-                    better_node = self.open_nodes.pop(self.open_nodes.index(child_node))
-
-                    if child_node.g_cost < better_node.g_cost:
-                        self.open_nodes.append(child_node)
-                    else:
-                        self.open_nodes.append(better_node)
+                self.open_nodes.append(child_node)
 
         if not (self.reached):
             return [self.start.pos]
@@ -137,7 +127,6 @@ class GreedyBestFirst:
                     pos_y,
                     self.target.pos_y,
                     self.target.pos_x,
-                    parent.g_cost + 1,
                     parent,
                 )
             )
