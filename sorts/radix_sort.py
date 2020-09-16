@@ -7,11 +7,13 @@ def radix_sort(list_of_ints: List[int]) -> List[int]:
     True
     radix_sort(reversed(range(15))) == sorted(range(15))
     True
+    radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
+    True
     """
     RADIX = 10
     placement = 1
     max_digit = max(list_of_ints)
-    while placement < max_digit:
+    while placement <= max_digit:
         # declare and initialize empty buckets
         buckets = [list() for _ in range(RADIX)]
         # split list_of_ints between the buckets

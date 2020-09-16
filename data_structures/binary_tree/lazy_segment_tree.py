@@ -3,13 +3,13 @@ from typing import List
 
 
 class SegmentTree:
-    def __init__(self, N: int) -> None:
-        self.N = N
-        # approximate the overall size of segment tree with array N
-        self.st: List[int] = [0 for i in range(0, 4 * N)]
+    def __init__(self, size: int) -> None:
+        self.size = size
+        # approximate the overall size of segment tree with given value
+        self.segment_tree = [0 for i in range(0, 4 * size)]
         # create array to store lazy update
-        self.lazy: List[int] = [0 for i in range(0, 4 * N)]
-        self.flag: List[int] = [0 for i in range(0, 4 * N)]  # flag for lazy update
+        self.lazy = [0 for i in range(0, 4 * size)]
+        self.flag = [0 for i in range(0, 4 * size)]  # flag for lazy update
 
     def left(self, idx: int) -> int:
         """
@@ -39,24 +39,26 @@ class SegmentTree:
         self, idx: int, left_element: int, right_element: int, A: List[int]
     ) -> None:
         if left_element == right_element:
-            self.st[idx] = A[left_element - 1]
+            self.segment_tree[idx] = A[left_element - 1]
         else:
             mid = (left_element + right_element) // 2
             self.build(self.left(idx), left_element, mid, A)
             self.build(self.right(idx), mid + 1, right_element, A)
-            self.st[idx] = max(self.st[self.left(idx)], self.st[self.right(idx)])
+            self.segment_tree[idx] = max(
+                self.segment_tree[self.left(idx)], self.segment_tree[self.right(idx)]
+            )
 
     def update(
         self, idx: int, left_element: int, right_element: int, a: int, b: int, val: int
     ) -> bool:
         """
-        update with O(lg N) (Normal segment tree without lazy update will take O(Nlg N)
+        update with O(lg n) (Normal segment tree without lazy update will take O(nlg n)
         for each update)
 
-        update(1, 1, N, a, b, v) for update val v to [a,b]
+        update(1, 1, size, a, b, v) for update val v to [a,b]
         """
         if self.flag[idx] is True:
-            self.st[idx] = self.lazy[idx]
+            self.segment_tree[idx] = self.lazy[idx]
             self.flag[idx] = False
             if left_element != right_element:
                 self.lazy[self.left(idx)] = self.lazy[idx]
@@ -67,7 +69,7 @@ class SegmentTree:
         if right_element < a or left_element > b:
             return True
         if left_element >= a and right_element <= b:
-            self.st[idx] = val
+            self.segment_tree[idx] = val
             if left_element != right_element:
                 self.lazy[self.left(idx)] = val
                 self.lazy[self.right(idx)] = val
@@ -77,15 +79,17 @@ class SegmentTree:
         mid = (left_element + right_element) // 2
         self.update(self.left(idx), left_element, mid, a, b, val)
         self.update(self.right(idx), mid + 1, right_element, a, b, val)
-        self.st[idx] = max(self.st[self.left(idx)], self.st[self.right(idx)])
+        self.segment_tree[idx] = max(
+            self.segment_tree[self.left(idx)], self.segment_tree[self.right(idx)]
+        )
         return True
 
-    # query with O(lg N)
+    # query with O(lg n)
     def query(
         self, idx: int, left_element: int, right_element: int, a: int, b: int
     ) -> int:
         """
-        query(1, 1, N, a, b) for query max of [a,b]
+        query(1, 1, size, a, b) for query max of [a,b]
         >>> A = [1, 2, -4, 7, 3, -5, 6, 11, -20, 9, 14, 15, 5, 2, -8]
         >>> segment_tree = SegmentTree(15)
         >>> segment_tree.build(1, 1, 15, A)
@@ -97,7 +101,7 @@ class SegmentTree:
         15
         """
         if self.flag[idx] is True:
-            self.st[idx] = self.lazy[idx]
+            self.segment_tree[idx] = self.lazy[idx]
             self.flag[idx] = False
             if left_element != right_element:
                 self.lazy[self.left(idx)] = self.lazy[idx]
@@ -107,28 +111,25 @@ class SegmentTree:
         if right_element < a or left_element > b:
             return -math.inf
         if left_element >= a and right_element <= b:
-            return self.st[idx]
+            return self.segment_tree[idx]
         mid = (left_element + right_element) // 2
         q1 = self.query(self.left(idx), left_element, mid, a, b)
         q2 = self.query(self.right(idx), mid + 1, right_element, a, b)
         return max(q1, q2)
 
-    def show_data(self) -> None:
-        showList = []
-        for i in range(1, N + 1):
-            showList += [self.query(1, 1, self.N, i, i)]
-        print(showList)
+    def __str__(self) -> None:
+        return [self.query(1, 1, self.size, i, i) for i in range(1, self.size + 1)]
 
 
 if __name__ == "__main__":
     A = [1, 2, -4, 7, 3, -5, 6, 11, -20, 9, 14, 15, 5, 2, -8]
-    N = 15
-    segt = SegmentTree(N)
-    segt.build(1, 1, N, A)
-    print(segt.query(1, 1, N, 4, 6))
-    print(segt.query(1, 1, N, 7, 11))
-    print(segt.query(1, 1, N, 7, 12))
-    segt.update(1, 1, N, 1, 3, 111)
-    print(segt.query(1, 1, N, 1, 15))
-    segt.update(1, 1, N, 7, 8, 235)
-    segt.show_data()
+    size = 15
+    segt = SegmentTree(size)
+    segt.build(1, 1, size, A)
+    print(segt.query(1, 1, size, 4, 6))
+    print(segt.query(1, 1, size, 7, 11))
+    print(segt.query(1, 1, size, 7, 12))
+    segt.update(1, 1, size, 1, 3, 111)
+    print(segt.query(1, 1, size, 1, 15))
+    segt.update(1, 1, size, 7, 8, 235)
+    print(segt)

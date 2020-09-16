@@ -4,37 +4,7 @@ Find the sum of all numbers which are equal to the sum of the factorial of their
 Note: As 1! = 1 and 2! = 2 are not sums they are not included.
 """
 
-
-def factorial(n: int) -> int:
-    """Return the factorial of n.
-    >>> factorial(5)
-    120
-    >>> factorial(1)
-    1
-    >>> factorial(0)
-    1
-    >>> factorial(-1)
-    Traceback (most recent call last):
-        ...
-    ValueError: n must be >= 0
-    >>> factorial(1.1)
-    Traceback (most recent call last):
-        ...
-    ValueError: n must be exact integer
-    """
-
-    if not n >= 0:
-        raise ValueError("n must be >= 0")
-    if int(n) != n:
-        raise ValueError("n must be exact integer")
-    if n + 1 == n:  # catch a value like 1e300
-        raise OverflowError("n too large")
-    result = 1
-    factor = 2
-    while factor <= n:
-        result *= factor
-        factor += 1
-    return result
+from math import factorial
 
 
 def sum_of_digit_factorial(n: int) -> int:
@@ -45,7 +15,7 @@ def sum_of_digit_factorial(n: int) -> int:
     >>> sum_of_digit_factorial(0)
     1
     """
-    return sum(factorial(int(digit)) for digit in str(n))
+    return sum(factorial(int(char)) for char in str(n))
 
 
 def compute() -> int:
@@ -56,12 +26,9 @@ def compute() -> int:
     >>> compute()
     40730
     """
-    return sum(
-        num
-        for num in range(3, 7 * factorial(9) + 1)
-        if sum_of_digit_factorial(num) == num
-    )
+    limit = 7 * factorial(9) + 1
+    return sum(i for i in range(3, limit) if sum_of_digit_factorial(i) == i)
 
 
 if __name__ == "__main__":
-    print(compute())
+    print(f"{compute()} = ")
