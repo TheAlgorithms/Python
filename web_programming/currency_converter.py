@@ -186,11 +186,11 @@ def convert_currency(
 
 
 if __name__ == "__main__":
-    baseCurrency = input("Enter base currency: ").strip()
-    targetCurrency = input("Enter target currency: ").strip()
+    base_currency = input("Enter base currency: ").strip()
+    target_currency = input("Enter target currency: ").strip()
     amount = input("Enter the amount: ").strip()
     print(
         convert_currency(
-            baseCurrency=baseCurrency, targetCurrency=targetCurrency, amount=amount
+            baseCurrency=base_currency, targetCurrency=target_currency, amount=amount
         )
     )
