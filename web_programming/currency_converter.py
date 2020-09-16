@@ -1,14 +1,14 @@
 """
-This is used to convert the currency from one currency to another using the Amdoren Currency API
+This is used to convert the currency using the Amdoren Currency API
 """
 
 import requests
 
-# API_KEY = ""  # <-- Put your API Key here
-API_KEY = "frSPXKMN93QNsmyQSjTcA4E26z6ryP"
+API_KEY = ""  # <-- Put your API Key here
 URL_BASE = "https://www.amdoren.com/api/currency.php"
 
-# If you are using it on a website and free api key please add the below line in your website
+# If you are using it on a website and free api key please add the below
+# line in your website
 # Powered by <a href="https://www.amdoren.com">Amdoren</a>
 
 
@@ -178,7 +178,8 @@ def convert_currency(
 ) -> str:
     """https://www.amdoren.com/currency-api/"""
     res = requests.get(
-        f"{URL_BASE}?api_key={API_KEY}&from={baseCurrency}&to={targetCurrency}&amount={amount}"
+        f"{URL_BASE}?api_key={API_KEY}&from={baseCurrency}&to={targetCurrency}&\
+            amount={amount}"
     ).json()
     if res["error"] == 0:
         return str(res["amount"])
