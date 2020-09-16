@@ -173,22 +173,22 @@ ZMW	Zambian Kwacha
 def convert_currency(
     baseCurrency: str = "USD",
     targetCurrency: str = "INR",
-    amount: str = "25",
+    amount: float = 1.0,
     apiKey: str = API_KEY,
-):
+) -> str:
     """https://www.amdoren.com/currency-api/"""
     res = requests.get(
         f"{URL_BASE}?api_key={API_KEY}&from={baseCurrency}&to={targetCurrency}&amount={amount}"
     ).json()
     if res["error"] == 0:
-        return res["amount"]
+        return str(res["amount"])
     return res["error_message"]
 
 
 if __name__ == "__main__":
     base_currency = input("Enter base currency: ").strip()
     target_currency = input("Enter target currency: ").strip()
-    amount = input("Enter the amount: ").strip()
+    amount = float(input("Enter the amount: ").strip())
     print(
         convert_currency(
             baseCurrency=base_currency, targetCurrency=target_currency, amount=amount
