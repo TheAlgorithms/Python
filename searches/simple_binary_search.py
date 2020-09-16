@@ -18,6 +18,22 @@ def binary_search(a_list: List[int], item: int) -> bool:
     False
     >>> print(binary_search(test_list, 13))
     True
+    >>> print(binary_search([4, 4, 5, 6, 7], 4))
+    True
+    >>> print(binary_search([4, 4, 5, 6, 7], -10))
+    False
+    >>> print(binary_search([-18, 2], -18))
+    True
+    >>> print(binary_search([5], 5))
+    True
+    >>> print(binary_search(['a', 'c', 'd'], 'c'))
+    True
+    >>> print(binary_search(['a', 'c', 'd'], 'f'))
+    False
+    >>> print(binary_search([], 1))
+    False
+    >>> print(binary_search([.1, .4 , -.1], .1))
+    True
     """
     if len(a_list) == 0:
         return False
