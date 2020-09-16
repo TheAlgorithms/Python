@@ -1,82 +1,73 @@
 """
-Pure Python implementation of Priority Queue using lists
+Pure Python implementations of a Fixed Priority Queue and an Element Priority Queue
+using Python lists.
 """
 
 
-class Error(Exception):
-    """Base class for exceptions in this module."""
-
+class OverFlowError(Exception):
     pass
 
 
-class OverFlow(Error):
-    def __init__(self, msg):
-        self.msg = msg
-
-
-class UnderFlow(Error):
-    def __init__(self, msg):
-        self.msg = msg
+class UnderFlowError(Exception):
+    pass
 
 
 class FixedPriorityQueue:
     """
-    In a Priority Queue the elements are entred as an when the come
-    But while removing or deleting an element the highest priority element
-    is deleted in FIFO fashion.
-    Here the lowest integer has the highest priority.
-    Example:
-    priority(0) > priority(5)
-    priority(16) > priority(32)
-    Here as an example I have taken only 3 priorities viz. 0, 1, 2
-    0 Being the highest priority and 2 being the lowest
-    You can change the priorities as per your need
+    Tasks can be added to a Priority Queue at any time and in any order but when Tasks
+    are removed then the Task with the highest priority is removed in FIFO order.  In
+    code we will use three levels of priority with priority zero Tasks being the most
+    urgent (high priority) and priority 2 tasks being the least urgent. 
 
     Examples
-    >>> FPQ = FixedPriorityQueue()
-    >>> FPQ.enqueue(0, 10)
-    >>> FPQ.enqueue(1, 70)
-    >>> FPQ.enqueue(0, 100)
-    >>> FPQ.enqueue(2, 1)
-    >>> FPQ.enqueue(2, 5)
-    >>> FPQ.enqueue(1, 7)
-    >>> FPQ.enqueue(2, 4)
-    >>> FPQ.enqueue(1, 64)
-    >>> FPQ.enqueue(0, 128)
-    >>> FPQ.print_queue()
+    >>> fpq = FixedPriorityQueue()
+    >>> fpq.enqueue(0, 10)
+    >>> fpq.enqueue(1, 70)
+    >>> fpq.enqueue(0, 100)
+    >>> fpq.enqueue(2, 1)
+    >>> fpq.enqueue(2, 5)
+    >>> fpq.enqueue(1, 7)
+    >>> fpq.enqueue(2, 4)
+    >>> fpq.enqueue(1, 64)
+    >>> fpq.enqueue(0, 128)
+    >>> print(fpq)
     Priority 0: [10, 100, 128]
     Priority 1: [70, 7, 64]
     Priority 2: [1, 5, 4]
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     10
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     100
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     128
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     70
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     7
-    >>> FPQ.print_queue()
+    >>> print(fpq)
     Priority 0: []
     Priority 1: [64]
     Priority 2: [1, 5, 4]
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     64
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     1
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     5
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     4
-    >>> FPQ.dequeue()
+    >>> fpq.dequeue()
     Traceback (most recent call last):
-                    ...
-    priority_queue_using_list.UnderFlow: Under Flow!
+    ...
+    priority_queue_using_list.UnderFlowError: All queues are empty
+    >>> print(fpq)
+    Priority 0: []
+    Priority 1: []
+    Priority 2: []
     """
 
     def __init__(self):
-        self.queue = [
+        self.queues = [
             [],
             [],
             [],
@@ -84,85 +75,75 @@ class FixedPriorityQueue:
 
     def enqueue(self, priority: int, data: int) -> None:
         """
-        This function enters the element into the queue based on its priority
-        If the priority is invalid an Exception is raised saying Invalid Priority!
-        If the queue is full an Exception is raised saying Over Flow!
+        Add an element to a queue based on its priority.
+        If the priority is invalid ValueError is raised.
+        If the queue is full an OverFlowError is raised.
         """
-        if priority > 2:
-            raise Exception("Invalid Priority!")
-        elif len(self.queue[priority]) == 100:
-            raise OverFlow("Over Flow!")
-        else:
-            self.queue[priority].append(data)
+        try:
+            if len(self.queues[priority]) >= 100:
+                raise OverflowError("Maximum queue size is 100")
+            self.queues[priority].append(data)
+        except IndexError:
+            raise ValueError("Valid priorities are 0, 1, and 2")
 
     def dequeue(self) -> int:
         """
         Return the highest priority element in FIFO order.
         If the queue is empty then an under flow exception is raised.
         """
-        if not self.queue[0] and not self.queue[1] and not self.queue[2]:
-            raise UnderFlow("Under Flow!")
+        for queue in self.queues:
+            if queue:
+                return queue.pop(0)
+        raise UnderFlowError("All queues are empty")
 
-        if len(self.queue[0]) != 0:
-            return self.queue[0].pop(0)
-        elif len(self.queue[1]) != 0:
-            return self.queue[1].pop(0)
-        else:
-            return self.queue[2].pop(0)
-
-    def print_queue(self) -> None:
-        print("Priority 0:", self.queue[0])
-        print("Priority 1:", self.queue[1])
-        print("Priority 2:", self.queue[2])
+    def __str__(self) -> str:
+        return "\n".join(f"Priority {i}: {q}" for i, q in enumerate(self.queues))
 
 
 class ElementPriorityQueue:
     """
-    Element Priority Queue is the same as Fixed Priority Queue
-    The only difference being the value of the element itself is the priority
-    The rule for priorities are the same
-    The lowest integer has the highest priority.
-    Example:
-    priority(0) > priority(5)
-    priority(16) > priority(32)
-    You can change the priorities as per your need
+    Element Priority Queue is the same as Fixed Priority Queue except that the value of
+    the element itself is the priority. The rules for priorities are the same the as
+    Fixed Priority Queue.
 
-    >>> EPQ = ElementPriorityQueue()
-    >>> EPQ.enqueue(10)
-    >>> EPQ.enqueue(70)
-    >>> EPQ.enqueue(100)
-    >>> EPQ.enqueue(1)
-    >>> EPQ.enqueue(5)
-    >>> EPQ.enqueue(7)
-    >>> EPQ.enqueue(4)
-    >>> EPQ.enqueue(64)
-    >>> EPQ.enqueue(128)
-    >>> EPQ.print_queue()
-    [10, 70, 100, 1, 5, 7, 4, 64, 128]
-    >>> EPQ.dequeue()
+    >>> epq = ElementPriorityQueue()
+    >>> epq.enqueue(10)
+    >>> epq.enqueue(70)
+    >>> epq.enqueue(4)
+    >>> epq.enqueue(1)
+    >>> epq.enqueue(5)
+    >>> epq.enqueue(7)
+    >>> epq.enqueue(4)
+    >>> epq.enqueue(64)
+    >>> epq.enqueue(128)
+    >>> print(epq)
+    [10, 70, 4, 1, 5, 7, 4, 64, 128]
+    >>> epq.dequeue()
     1
-    >>> EPQ.dequeue()
+    >>> epq.dequeue()
     4
-    >>> EPQ.dequeue()
+    >>> epq.dequeue()
+    4
+    >>> epq.dequeue()
     5
-    >>> EPQ.dequeue()
+    >>> epq.dequeue()
     7
-    >>> EPQ.dequeue()
+    >>> epq.dequeue()
     10
-    >>> EPQ.print_queue()
-    [70, 100, 64, 128]
-    >>> EPQ.dequeue()
+    >>> print(epq)
+    [70, 64, 128]
+    >>> epq.dequeue()
     64
-    >>> EPQ.dequeue()
+    >>> epq.dequeue()
     70
-    >>> EPQ.dequeue()
-    100
-    >>> EPQ.dequeue()
+    >>> epq.dequeue()
     128
-    >>> EPQ.dequeue()
+    >>> epq.dequeue()
     Traceback (most recent call last):
-                    ...
-    priority_queue_using_list.UnderFlow: Under Flow!
+        ...
+    priority_queue_using_list.UnderFlowError: The queue is empty
+    >>> print(epq)
+    []
     """
 
     def __init__(self):
@@ -175,84 +156,75 @@ class ElementPriorityQueue:
         """
         if len(self.queue) == 100:
             raise OverFlow("Over Flow!")
-        else:
-            self.queue.append(data)
+        self.queue.append(data)
 
     def dequeue(self) -> int:
         """
         Return the highest priority element in FIFO order.
         If the queue is empty then an under flow exception is raised.
         """
-        if len(self.queue) == 0:
-            raise UnderFlow("Under Flow!")
+        if not self.queue:
+            raise UnderFlowError("The queue is empty")
         else:
             data = min(self.queue)
             self.queue.remove(data)
             return data
 
-    def print_queue(self) -> None:
-        print(self.queue)
-
     def __str__(self) -> str:
         """
         Prints all the elements within the Element Priority Queue
         """
-        s = ""
-        for i in self.queue:
-            s += str(i) + " "
-        return s
+        return str(self.queue)
 
 
 def fixed_priority_queue():
-    FPQ = FixedPriorityQueue()
-    FPQ.enqueue(0, 10)
-    FPQ.enqueue(1, 70)
-    FPQ.enqueue(0, 100)
-    FPQ.enqueue(2, 1)
-    FPQ.enqueue(2, 5)
-    FPQ.enqueue(1, 7)
-    FPQ.enqueue(2, 4)
-    FPQ.enqueue(1, 64)
-    FPQ.enqueue(0, 128)
-    str(FPQ)
-    print(FPQ.dequeue())
-    print(FPQ.dequeue())
-    print(FPQ.dequeue())
-    print(FPQ.dequeue())
-    print(FPQ.dequeue())
-    str(FPQ)
-    print(FPQ.dequeue())
-    print(FPQ.dequeue())
-    print(FPQ.dequeue())
-    print(FPQ.dequeue())
-    print(FPQ.dequeue())
+    fpq = FixedPriorityQueue()
+    fpq.enqueue(0, 10)
+    fpq.enqueue(1, 70)
+    fpq.enqueue(0, 100)
+    fpq.enqueue(2, 1)
+    fpq.enqueue(2, 5)
+    fpq.enqueue(1, 7)
+    fpq.enqueue(2, 4)
+    fpq.enqueue(1, 64)
+    fpq.enqueue(0, 128)
+    print(fpq)
+    print(fpq.dequeue())
+    print(fpq.dequeue())
+    print(fpq.dequeue())
+    print(fpq.dequeue())
+    print(fpq.dequeue())
+    print(fpq)
+    print(fpq.dequeue())
+    print(fpq.dequeue())
+    print(fpq.dequeue())
+    print(fpq.dequeue())
+    print(fpq.dequeue())
 
 
 def element_priority_queue():
-    EPQ = ElementPriorityQueue()
-    EPQ.enqueue(10)
-    EPQ.enqueue(70)
-    EPQ.enqueue(100)
-    EPQ.enqueue(1)
-    EPQ.enqueue(5)
-    EPQ.enqueue(7)
-    EPQ.enqueue(4)
-    EPQ.enqueue(64)
-    EPQ.enqueue(128)
-    str(EPQ)
-    print(EPQ)
-    print(EPQ.dequeue())
-    print(EPQ.dequeue())
-    print(EPQ.dequeue())
-    print(EPQ.dequeue())
-    print(EPQ.dequeue())
-    str(EPQ)
-    print(EPQ)
-    print(EPQ.dequeue())
-    print(EPQ.dequeue())
-    print(EPQ.dequeue())
-    print(EPQ.dequeue())
-    print(EPQ.dequeue())
+    epq = ElementPriorityQueue()
+    epq.enqueue(10)
+    epq.enqueue(70)
+    epq.enqueue(100)
+    epq.enqueue(1)
+    epq.enqueue(5)
+    epq.enqueue(7)
+    epq.enqueue(4)
+    epq.enqueue(64)
+    epq.enqueue(128)
+    print(epq)
+    print(epq.dequeue())
+    print(epq.dequeue())
+    print(epq.dequeue())
+    print(epq.dequeue())
+    print(epq.dequeue())
+    print(epq)
+    print(epq.dequeue())
+    print(epq.dequeue())
+    print(epq.dequeue())
+    print(epq.dequeue())
+    print(epq.dequeue())
 
 
 if __name__ == "__main__":
