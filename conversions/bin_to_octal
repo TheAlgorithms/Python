@@ -11,8 +11,9 @@ The function below will convert any binary string to the octal equivalent.
 ValueError("Empty string was passed to the function")
 
 >>> bin_to_octal("a-1")
-ValueError("Non-binary value was passed to the function")
-
+Traceback (most recent call last):
+...
+ValueError: Non-binary value was passed to the function
 """
 
 
