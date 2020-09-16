@@ -72,7 +72,7 @@ class FixedPriorityQueue:
     >>> FPQ.dequeue()
     Traceback (most recent call last):
                     ...
-    Exception: Under Flow!
+    priority_queue_using_list.UnderFlow: Under Flow!
     """
 
     def __init__(self):
@@ -162,7 +162,7 @@ class ElementPriorityQueue:
     >>> EPQ.dequeue()
     Traceback (most recent call last):
                     ...
-    Exception: Under Flow!
+    priority_queue_using_list.UnderFlow: Under Flow!
     """
 
     def __init__(self):
