@@ -9,11 +9,9 @@ True
 """
 
 
-def isUniqueSet(s: str) -> str:
+def isUniqueSet(string: str) -> bool:
     """
     This function uses a set to determine the string contains unique characters
-    s -> string
-    return type -> bool
     >>> isUniqueSet("train")
     True
     >>> isUniqueSet("test")
@@ -21,29 +19,27 @@ def isUniqueSet(s: str) -> str:
     """
 
     hashSet = set()
-    for i in s:
+    for i in string:
         if i in hashSet:
             return False
         hashSet.add(i)
     return True
 
 
-def isUniqueHash(s: str) -> str:
+def isUniqueHash(string: str) -> bool:
     """
     This function uses ascii values as index to determine
     the string contains unique characters
-    s -> string
-    return type -> bool
     >>> isUniqueHash("train")
     True
     >>> isUniqueHash("test")
     False
     """
 
-    if len(s) > 256:
+    if len(string) > 256:
         return False
     hash = [False] * 256
-    for i in s:
+    for i in string:
         index = ord(i)
         if hash[index]:
             return False
