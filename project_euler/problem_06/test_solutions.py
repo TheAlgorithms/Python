@@ -1,7 +1,7 @@
-from sol1 import solution as sol1
-from sol2 import solution as sol2
-from sol3 import solution as sol3
-from sol4 import solution as sol4
+from . sol1 import solution as sol1
+from . sol2 import solution as sol2
+from . sol3 import solution as sol3
+from . sol4 import solution as sol4
 
 
 def test_solutions() -> None:
