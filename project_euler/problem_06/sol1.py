@@ -15,7 +15,7 @@ numbers and the square of the sum.
 """
 
 
-def solution(n):
+def solution(n: int) -> int:
     """Returns the difference between the sum of the squares of the first n
     natural numbers and the square of the sum.
 
@@ -28,14 +28,16 @@ def solution(n):
     >>> solution(50)
     1582700
     """
-    suma = 0
-    sumb = 0
+    sum_of_squares = 0
+    sum_of_ints = 0
     for i in range(1, n + 1):
-        suma += i ** 2
-        sumb += i
-    sum = sumb ** 2 - suma
-    return sum
+        sum_of_squares += i ** 2
+        sum_of_ints += i
+    return sum_of_ints ** 2 - sum_of_squares
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     print(solution(int(input().strip())))
