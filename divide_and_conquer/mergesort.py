@@ -33,9 +33,14 @@ def mergesort(arr, left=None, right=None):
     [1, 2, 3]
     >>> mergesort([3, 2, 1, 0, 1, 2, 3, 5, 4])
     [0, 1, 1, 2, 2, 3, 3, 4, 5]
+    >>> mergesort([3, 2, 1], -1, -3.1)
+    [1, 2, 3]
+    >>> mergesort([3, 2, 1], None, False)
+    [1, 2, 3]
     """
-    left = left or 0
-    if right is None:
+    if left is None or left is False or left < 0:
+        left = 0
+    if right is None or right is False or right < 0:
         right = len(arr) - 1
     if left < right:
         mid = (left + right) // 2
