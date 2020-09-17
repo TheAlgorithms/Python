@@ -1,5 +1,5 @@
 """
-Pure Python implementation of the binary search algorithm.
+Pure Python implementation of a binary search algorithm.
 
 For doctests run following command:
 python3 -m doctest -v simple_binary_search.py
@@ -12,7 +12,6 @@ from typing import List
 
 def binary_search(a_list: List[int], item: int) -> bool:
     """
-
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
     >>> print(binary_search(test_list, 3))
     False
@@ -49,10 +48,6 @@ def binary_search(a_list: List[int], item: int) -> bool:
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by comma:\n").strip()
     sequence = [int(item.strip()) for item in user_input.split(",")]
-    target_str = input("Enter the number to be found in the list:\n").strip()
-    target = int(target_str)
-    result = binary_search(sequence, target)
-    if result:
-        print(f"{target} was found in {sequence}")
-    else:
-        print(f"{target} was not found in {sequence}")
+    target = int(input("Enter the number to be found in the list:\n").strip())
+    not_str = "" if binary_search(sequence, target) else "not "
+    print(f"{target} was {not_str}found in {sequence}")
