@@ -1,7 +1,7 @@
-from . sol1 import solution as sol1
-from . sol2 import solution as sol2
-from . sol3 import solution as sol3
-from . sol4 import solution as sol4
+from .sol1 import solution as sol1
+from .sol2 import solution as sol2
+from .sol3 import solution as sol3
+from .sol4 import solution as sol4
 
 
 def test_solutions() -> None:
@@ -14,5 +14,5 @@ def test_solutions() -> None:
     assert sol1(50) == sol2(50) == sol3(50) == sol4(50) == 1582700
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test_solutions()
