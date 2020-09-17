@@ -27,13 +27,16 @@ def merge(arr, left, mid, right):
     return arr
 
 
-def mergesort(arr, left, right):
+def mergesort(arr, left=None, right=None):
     """
-    >>> mergesort([3, 2, 1], 0, 2)
+    >>> mergesort([3, 2, 1])
     [1, 2, 3]
-    >>> mergesort([3, 2, 1, 0, 1, 2, 3, 5, 4], 0, 8)
+    >>> mergesort([3, 2, 1, 0, 1, 2, 3, 5, 4])
     [0, 1, 1, 2, 2, 3, 3, 4, 5]
     """
+    left = left or 0
+    if right is None:
+        right = len(arr) - 1
     if left < right:
         mid = (left + right) // 2
         # print("ms1",a,b,m)
