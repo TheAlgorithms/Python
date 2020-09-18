@@ -14,6 +14,7 @@ class Node:
 
     @property
     def has_duplicate_data(self) -> bool:
+        """
         >>> node1 = Node(1)
         >>> node1.next_node = Node(2)
         >>> node1.next_node.next_node = Node(3)
