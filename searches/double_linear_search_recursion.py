@@ -29,7 +29,7 @@ def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
         return search(list_data, key, left + 1, right - 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
