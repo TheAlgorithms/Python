@@ -1,5 +1,6 @@
 from typing import Any
 
+
 class ContainsLoopError(Exception):
     pass
 
