@@ -13,8 +13,25 @@ class Node:
 
 def contains_loop(root: Node) -> bool:
     """
-    given a node, returns true if linked list contains a loop
+    A linked list contains a loop when traversing through a loop, no null is reached.
+
+    Given a node, returns true if linked list contains a loop
     returns false otherwise
+
+    >>> node1 = Node(1)
+    >>> node1.next_node = Node(2)
+    >>> node1.next_node.next_node = Node(3)
+    >>> node1.next_node.next_node.next_node = Node(4)
+    >>> node1.next_node.next_node.next_node = node1.next_node
+    >>> contains_loop(node1)
+    True
+
+    >>> node2 = Node(1)
+    >>> node2.next_node = Node(2)
+    >>> node2.next_node.next_node = Node(1)
+    >>> node2.next_node.next_node.next_node = Node(2)
+    >>> contains_loop(node2)
+    False
     """
 
     counter1 = root
@@ -40,8 +57,8 @@ if __name__ == "__main__":
 
     node2 = Node(5)
     node2.next_node = Node(6)
-    node2.next_node.next_node = Node(7)
-    node2.next_node.next_node.next_node = Node(8)
+    node2.next_node.next_node = Node(5)
+    node2.next_node.next_node.next_node = Node(6)
     print(contains_loop(node2))
 
     node3 = Node(1)
