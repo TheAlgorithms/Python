@@ -1,5 +1,8 @@
 from typing import Any
 
+class ContainsLoopError(Exception):
+    pass
+
 
 class Node:
     def __init__(self, data: Any) -> None:
@@ -8,24 +11,33 @@ class Node:
 
     def __iter__(self):
         node = self
+        visited = []
         while node:
+            if node in visited:
+                raise ContainsLoopError
+            visited.append(node)
             yield node.data
             node = node.next_node
 
     @property
-    def has_duplicate_data(self) -> bool:
+    def has_loop(self) -> bool:
         """
+        A loop is when the exact same Node appears more than once in a linked list.
         >>> root_node = Node(1)
         >>> root_node.next_node = Node(2)
         >>> root_node.next_node.next_node = Node(3)
         >>> root_node.next_node.next_node.next_node = Node(4)
-        >>> root_node.has_duplicate_data
+        >>> root_node.has_loop
         False
         >>> root_node.next_node.next_node.next_node = root_node.next_node
-        >>> root_node.has_duplicate_data
+        >>> root_node.has_loop
         True
         """
-        return len(list(self)) != len(set(self))
+        try:
+            list(self)
+            return False
+        except ContainsLoopError:
+            return True
 
 
 if __name__ == "__main__":
@@ -33,15 +45,15 @@ if __name__ == "__main__":
     root_node.next_node = Node(2)
     root_node.next_node.next_node = Node(3)
     root_node.next_node.next_node.next_node = Node(4)
-    print(root_node.has_duplicate_data)  # False
+    print(root_node.has_loop)  # False
     root_node.next_node.next_node.next_node = root_node.next_node
-    print(root_node.has_duplicate_data)  # True
+    print(root_node.has_loop)  # True
 
     root_node = Node(5)
     root_node.next_node = Node(6)
     root_node.next_node.next_node = Node(5)
     root_node.next_node.next_node.next_node = Node(6)
-    print(root_node.has_duplicate_data)  # True
+    print(root_node.has_loop)  # False
 
     root_node = Node(1)
-    print(root_node.has_duplicate_data)  # False
+    print(root_node.has_loop)  # False
