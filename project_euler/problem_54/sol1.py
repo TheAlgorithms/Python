@@ -50,7 +50,7 @@ class PokerHand(object):
     and board cards.
 
     Attributes: (read-only)
-        hand: string representating the hand consisting of five cards
+        hand: string representing the hand consisting of five cards
 
     Methods:
         compare_with(opponent): takes in player's hand (self) and
@@ -222,7 +222,7 @@ class PokerHand(object):
 
     def _compare_cards(self, other: "PokerHand") -> str:
         # Comparing in reverse order as the list is sorted
-        # 'i' starts at 4 and decreases by 1 upto 0
+        # 'i' starts at 4 and decreases by 1 up to 0
         # Remember, end value is not included in the range function
         for i in range(4, -1, -1):
             if self._cards[i][0] != other._cards[i][0]:
