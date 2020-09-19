@@ -5,7 +5,7 @@ from timeit import timeit
 
 # Problem Description:
 # Check if characters of the given string can be rearranged to form a palindrome.
-# Counter is faster for long strings and non-Counter is faster for shorter strings.
+# Counter is faster for long strings and non-Counter is faster for short strings.
 
 
 def can_string_be_rearranged_as_palindrome_counter(input_str: str = "",) -> bool:
