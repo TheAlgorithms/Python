@@ -5,38 +5,41 @@ from timeit import timeit
 
 # Problem Description:
 # Check if characters of the given string can be rearranged to form a palindrome.
+# Counter is faster for long strings and non-Counter is faster for shorter strings.
 
 
-def check_if_string_can_be_rearranged_as_palindrome_counter(
-    input_str: str = "",
-) -> bool:
+def can_string_be_rearranged_as_palindrome_counter(input_str: str = "",) -> bool:
     """
     A Palindrome is a String that reads the same forward as it does backwards.
     Examples of Palindromes mom, dad, malayalam
-    >>> check_if_string_can_be_rearranged_as_palindrome("Momo")
+    >>> can_string_be_rearranged_as_palindrome_counter("Momo")
     True
-    >>> check_if_string_can_be_rearranged_as_palindrome("Mother")
+    >>> can_string_be_rearranged_as_palindrome_counter("Mother")
     False
-    >>> check_if_string_can_be_rearranged_as_palindrome("Father")
+    >>> can_string_be_rearranged_as_palindrome_counter("Father")
     False
+    >>> can_string_be_rearranged_as_palindrome_counter("A man a plan a canal Panama")
+    True
     """
-    return sum(c % 2 for c in Counter(input_str.lower()).values()) < 2
+    return sum(c % 2 for c in Counter(input_str.replace(" ", "").lower()).values()) < 2
 
 
-def check_if_string_can_be_rearranged_as_palindrome(input_str: str = "") -> bool:
+def can_string_be_rearranged_as_palindrome(input_str: str = "") -> bool:
     """
     A Palindrome is a String that reads the same forward as it does backwards.
     Examples of Palindromes mom, dad, malayalam
-    >>> check_if_string_can_be_rearranged_as_palindrome("Momo")
+    >>> can_string_be_rearranged_as_palindrome("Momo")
     True
-    >>> check_if_string_can_be_rearranged_as_palindrome("Mother")
+    >>> can_string_be_rearranged_as_palindrome("Mother")
     False
-    >>> check_if_string_can_be_rearranged_as_palindrome("Father")
+    >>> can_string_be_rearranged_as_palindrome("Father")
     False
+    >>> can_string_be_rearranged_as_palindrome_counter("A man a plan a canal Panama")
+    True
     """
     if len(input_str) == 0:
         return True
-    lower_case_input_str = input_str.lower()
+    lower_case_input_str = input_str.replace(" ", "").lower()
     # character_freq_dict: Stores the frequency of every character in the input string
     character_freq_dict = {}
 
@@ -65,8 +68,8 @@ def check_if_string_can_be_rearranged_as_palindrome(input_str: str = "") -> bool
     oddChar = 0
 
     for character_count in character_freq_dict.values():
-        if character_count % 2 == 1:
-            oddChar = oddChar + 1
+        if character_count % 2:
+            oddChar += 1
     if oddChar > 1:
         return False
     return True
@@ -78,23 +81,23 @@ def benchmark(input_str: str = "") -> None:
     """
     print("\nFor string = ", input_str, ":")
     print(
-        "> check_if_string_can_be_rearranged_as_palindrome()",
+        "> can_string_be_rearranged_as_palindrome_counter()",
         "\tans =",
-        check_if_string_can_be_rearranged_as_palindrome(input_str),
+        can_string_be_rearranged_as_palindrome_counter(input_str),
         "\ttime =",
         timeit(
-            "z.check_if_string_can_be_rearranged_as_palindrome(z.check_str)",
+            "z.can_string_be_rearranged_as_palindrome_counter(z.check_str)",
             setup="import __main__ as z",
         ),
         "seconds",
     )
     print(
-        "> check_if_string_can_be_rearranged_as_palindrome_counter()",
+        "> can_string_be_rearranged_as_palindrome()",
         "\tans =",
-        check_if_string_can_be_rearranged_as_palindrome_counter(input_str),
+        can_string_be_rearranged_as_palindrome(input_str),
         "\ttime =",
         timeit(
-            "z.check_if_string_can_be_rearranged_as_palindrome_counter(z.check_str)",
+            "z.can_string_be_rearranged_as_palindrome(z.check_str)",
             setup="import __main__ as z",
         ),
         "seconds",
@@ -106,5 +109,5 @@ if __name__ == "__main__":
         "Enter string to determine if it can be rearranged as a palindrome or not: "
     ).strip()
     benchmark(check_str)
-    status = check_if_string_can_be_rearranged_as_palindrome_counter(check_str)
+    status = can_string_be_rearranged_as_palindrome_counter(check_str)
     print(f"{check_str} can {'' if status else 'not '}be rearranged as a palindrome")
