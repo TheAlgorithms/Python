@@ -3,6 +3,12 @@ dist: focal
 language: python
 python: 3.9-dev
 cache: pip
+addons:
+  apt:
+    update: true
+    packages:
+      - libblas-dev
+      - liblapack-dev
 before_install: pip install --upgrade pip setuptools six
 install: pip install black flake8
 notifications:
