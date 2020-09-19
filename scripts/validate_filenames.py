@@ -19,7 +19,7 @@ if space_files:
 
 hyphen_files = [file for file in filepaths if "-" in file]
 if hyphen_files:
-    print(f"{len(hyphen_files)} files contain space characters:")
+    print(f"{len(hyphen_files)} files contain hyphen characters:")
     print("\n".join(hyphen_files) + "\n")
 
 nodir_files = [file for file in filepaths if os.sep not in file]
