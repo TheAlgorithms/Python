@@ -27,7 +27,7 @@ def bin_to_octal(bin_string: str) -> str:
     while len(bin_string) % 3 != 0:
         bin_string = "0" + bin_string
     bin_string_in_3_list = [
-        bin_string[index: index + 3]
+        bin_string[index : index + 3]
         for index, value in enumerate(bin_string)
         if index % 3 == 0
     ]
