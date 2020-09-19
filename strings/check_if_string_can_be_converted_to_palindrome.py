@@ -6,7 +6,10 @@ from timeit import timeit
 # Problem Description:
 # Check if characters of the given string can be rearranged to form a palindrome.
 
-def check_if_string_can_be_rearranged_as_palindrome_counter(input_str: str = "",) -> bool:
+
+def check_if_string_can_be_rearranged_as_palindrome_counter(
+    input_str: str = "",
+) -> bool:
     """
     A Palindrome is a String that reads the same forward as it does backwards.
     Examples of Palindromes mom, dad, malayalam
@@ -18,6 +21,7 @@ def check_if_string_can_be_rearranged_as_palindrome_counter(input_str: str = "",
     False
     """
     return sum(c % 2 for c in Counter(input_str.lower()).values()) < 2
+
 
 def check_if_string_can_be_rearranged_as_palindrome(input_str: str = "") -> bool:
     """
@@ -67,6 +71,7 @@ def check_if_string_can_be_rearranged_as_palindrome(input_str: str = "") -> bool
         return False
     return True
 
+
 def benchmark(input_str: str = "") -> None:
     """
     Benchmark code for comparing above 2 functions
@@ -77,7 +82,10 @@ def benchmark(input_str: str = "") -> None:
         "\tans =",
         check_if_string_can_be_rearranged_as_palindrome(input_str),
         "\ttime =",
-        timeit("z.check_if_string_can_be_rearranged_as_palindrome(z.check_str)", setup="import __main__ as z"),
+        timeit(
+            "z.check_if_string_can_be_rearranged_as_palindrome(z.check_str)",
+            setup="import __main__ as z",
+        ),
         "seconds",
     )
     print(
@@ -85,7 +93,10 @@ def benchmark(input_str: str = "") -> None:
         "\tans =",
         check_if_string_can_be_rearranged_as_palindrome_counter(input_str),
         "\ttime =",
-        timeit("z.check_if_string_can_be_rearranged_as_palindrome_counter(z.check_str)", setup="import __main__ as z"),
+        timeit(
+            "z.check_if_string_can_be_rearranged_as_palindrome_counter(z.check_str)",
+            setup="import __main__ as z",
+        ),
         "seconds",
     )
 
