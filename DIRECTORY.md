@@ -131,6 +131,7 @@
     * [Deque Doubly](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/deque_doubly.py)
     * [Doubly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/doubly_linked_list.py)
     * [From Sequence](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/from_sequence.py)
+    * [Has Loop](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/has_loop.py)
     * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/is_palindrome.py)
     * [Middle Element Of Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/middle_element_of_linked_list.py)
     * [Print Reverse](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/print_reverse.py)
@@ -141,6 +142,7 @@
     * [Circular Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/circular_queue.py)
     * [Double Ended Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/double_ended_queue.py)
     * [Linked Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/linked_queue.py)
+    * [Priority Queue Using List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/priority_queue_using_list.py)
     * [Queue On List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/queue_on_list.py)
     * [Queue On Pseudo Stack](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/queue_on_pseudo_stack.py)
   * Stacks
@@ -518,6 +520,7 @@
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol2.py)
     * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol3.py)
     * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol4.py)
+    * [Test Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/test_solutions.py)
   * Problem 07
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol2.py)
@@ -648,6 +651,7 @@
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)
   * [Double Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/double_linear_search.py)
+  * [Double Linear Search Recursion](https://github.com/TheAlgorithms/Python/blob/master/searches/double_linear_search_recursion.py)
   * [Fibonacci Search](https://github.com/TheAlgorithms/Python/blob/master/searches/fibonacci_search.py)
   * [Hill Climbing](https://github.com/TheAlgorithms/Python/blob/master/searches/hill_climbing.py)
   * [Interpolation Search](https://github.com/TheAlgorithms/Python/blob/master/searches/interpolation_search.py)
@@ -655,7 +659,7 @@
   * [Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/linear_search.py)
   * [Quick Select](https://github.com/TheAlgorithms/Python/blob/master/searches/quick_select.py)
   * [Sentinel Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/sentinel_linear_search.py)
-  * [Simple-Binary-Search](https://github.com/TheAlgorithms/Python/blob/master/searches/simple-binary-search.py)
+  * [Simple Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/simple_binary_search.py)
   * [Simulated Annealing](https://github.com/TheAlgorithms/Python/blob/master/searches/simulated_annealing.py)
   * [Tabu Search](https://github.com/TheAlgorithms/Python/blob/master/searches/tabu_search.py)
   * [Ternary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/ternary_search.py)
