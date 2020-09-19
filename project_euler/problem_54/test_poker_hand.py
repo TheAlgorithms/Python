@@ -1,3 +1,4 @@
+import os
 import pytest
 from .sol1 import PokerHand
 from random import randrange, shuffle
@@ -207,7 +208,9 @@ def test_euler_project():
     """Problem number 54 from Project Euler
     Testing from poker_hands.txt file."""
     ans = 0
-    with open("poker_hands.txt") as file_hand:
+    script_dir = os.path.abspath(os.path.dirname(__file__))
+    poker_hands = os.path.join(script_dir, "poker_hands.txt")
+    with open(poker_hands, "r") as file_hand:
         for line in file_hand:
             player_hand = line[:14].strip()
             opponent_hand = line[15:].strip()
