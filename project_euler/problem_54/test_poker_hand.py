@@ -6,7 +6,7 @@ import pytest
 
 from .sol1 import PokerHand
 
-SORTED_HANDS = [
+SORTED_HANDS = (
     "4S 3H 2C 7S 5H",
     "9D 8H 2C 6S 7H",
     "2D 6D 9D TH 7D",
@@ -47,9 +47,9 @@ SORTED_HANDS = [
     "5C 6C 3C 7C 4C",  # straight flush
     "JH 9H TH KH QH",  # straight flush
     "JH AH TH KH QH",  # royal flush (high ace straight flush)
-]
+)
 
-TEST_COMPARE = [
+TEST_COMPARE = (
     ("2H 3H 4H 5H 6H", "KS AS TS QS JS", "Loss"),
     ("2H 3H 4H 5H 6H", "AS AD AC AH JD", "Win"),
     ("AS AH 2H AD AC", "JS JD JC JH 3D", "Win"),
@@ -83,33 +83,33 @@ TEST_COMPARE = [
     ("9D 9H JH TC QH", "3C 2S JS 5C 7H", "Win"),
     ("2H TC 8S AD 9S", "4H TS 7H 2C 5C", "Win"),
     ("9D 3S 2C 7S 7C", "JC TD 3C TC 9H", "Loss"),
-]
+)
 
-TEST_FLUSH = [
+TEST_FLUSH = (
     ("2H 3H 4H 5H 6H", True),
     ("AS AH 2H AD AC", False),
     ("2H 3H 5H 6H 7H", True),
     ("KS AS TS QS JS", True),
     ("8H 9H QS JS TH", False),
     ("AS 3S 4S 8S 2S", True),
-]
+)
 
-TEST_STRAIGHT = [
+TEST_STRAIGHT = (
     ("2H 3H 4H 5H 6H", True),
     ("AS AH 2H AD AC", False),
     ("2H 3H 5H 6H 7H", False),
     ("KS AS TS QS JS", True),
     ("8H 9H QS JS TH", True),
-]
+)
 
-TEST_FIVE_HIGH_STRAIGHT = [
+TEST_FIVE_HIGH_STRAIGHT = (
     ("2H 4D 3C AS 5S", True, [5, 4, 3, 2, 14]),
     ("2H 5D 3C AS 5S", False, [14, 5, 5, 3, 2]),
     ("JH QD KC AS TS", False, [14, 13, 12, 11, 10]),
     ("9D 3S 2C 7S 7C", False, [9, 7, 7, 3, 2]),
-]
+)
 
-TEST_KIND = [
+TEST_KIND = (
     ("JH AH TH KH QH", 0),
     ("JH 9H TH KH QH", 0),
     ("JC KH JS JD JH", 7),
@@ -120,9 +120,9 @@ TEST_KIND = [
     ("3C KH 5D 5S KH", 2),
     ("QH 8H KD JH 8S", 1),
     ("2D 6D 9D TH 7D", 0),
-]
+)
 
-TEST_TYPES = [
+TEST_TYPES = (
     ("JH AH TH KH QH", 23),
     ("JH 9H TH KH QH", 22),
     ("JC KH JS JD JH", 21),
@@ -133,30 +133,28 @@ TEST_TYPES = [
     ("3C KH 5D 5S KH", 16),
     ("QH 8H KD JH 8S", 15),
     ("2D 6D 9D TH 7D", 14),
-]
+)
 
 
-def generate_random_hands():
-    N_RANDOM_TESTS = 100
-    RANDOM_TESTS = []
-    for _ in range(N_RANDOM_TESTS):
-        play, oppo = randrange(len(SORTED_HANDS)), randrange(len(SORTED_HANDS))
-        expected = ["Loss", "Tie", "Win"][(play >= oppo) + (play > oppo)]
-        hand, other = SORTED_HANDS[play], SORTED_HANDS[oppo]
-        RANDOM_TESTS.append((hand, other, expected))
-    return RANDOM_TESTS
+def generate_random_hand():
+    play, oppo = randrange(len(SORTED_HANDS)), randrange(len(SORTED_HANDS))
+    expected = ["Loss", "Tie", "Win"][(play >= oppo) + (play > oppo)]
+    hand, other = SORTED_HANDS[play], SORTED_HANDS[oppo]
+    return hand, other, expected
+
+
+def generate_random_hands(number_of_hands: int = 100):
+    return (generate_random_hand() for _ in range(number_of_hands))
 
 
 @pytest.mark.parametrize("hand, expected", TEST_FLUSH)
 def test_hand_is_flush(hand, expected):
-    player = PokerHand(hand)
-    assert player._is_flush() == expected
+    assert PokerHand(hand)._is_flush() == expected
 
 
 @pytest.mark.parametrize("hand, expected", TEST_STRAIGHT)
 def test_hand_is_straight(hand, expected):
-    player = PokerHand(hand)
-    assert player._is_straight() == expected
+    assert PokerHand(hand)._is_straight() == expected
 
 
 @pytest.mark.parametrize("hand, expected, card_values", TEST_FIVE_HIGH_STRAIGHT)
@@ -168,47 +166,43 @@ def test_hand_is_five_high_straight(hand, expected, card_values):
 
 @pytest.mark.parametrize("hand, expected", TEST_KIND)
 def test_hand_is_same_kind(hand, expected):
-    player = PokerHand(hand)
-    assert player._is_same_kind() == expected
+    assert PokerHand(hand)._is_same_kind() == expected
 
 
 @pytest.mark.parametrize("hand, expected", TEST_TYPES)
 def test_hand_values(hand, expected):
-    player = PokerHand(hand)
-    assert player._hand_type == expected
+    assert PokerHand(hand)._hand_type == expected
 
 
 @pytest.mark.parametrize("hand, other, expected", TEST_COMPARE)
 def test_compare_simple(hand, other, expected):
-    player, opponent = PokerHand(hand), PokerHand(other)
-    assert player.compare_with(opponent) == expected
+    assert PokerHand(hand).compare_with(PokerHand(other)) == expected
 
 
 @pytest.mark.parametrize("hand, other, expected", generate_random_hands())
 def test_compare_random(hand, other, expected):
-    player, opponent = PokerHand(hand), PokerHand(other)
-    assert player.compare_with(opponent) == expected
+    assert PokerHand(hand).compare_with(PokerHand(other)) == expected
 
 
 def test_hand_sorted():
-    POKER_HANDS = list(map(PokerHand, SORTED_HANDS))
+    POKER_HANDS = [PokerHand(hand) for hand in SORTED_HANDS]
     list_copy = POKER_HANDS.copy()
     shuffle(list_copy)
     user_sorted = chain(sorted(list_copy))
-    for i, h in enumerate(user_sorted):
-        assert h == POKER_HANDS[i]
+    for index, hand in enumerate(user_sorted):
+        assert hand == POKER_HANDS[index]
 
 
 def test_custom_sort_five_high_straight():
-    """Test that five high straights are compared correctly."""
+    # Test that five high straights are compared correctly.
     pokerhands = [PokerHand("2D AC 3H 4H 5S"), PokerHand("2S 3H 4H 5S 6C")]
     pokerhands.sort(reverse=True)
     assert pokerhands[0].__str__() == "2S 3H 4H 5S 6C"
 
 
 def test_multiple_calls_five_high_straight():
-    """Multiple calls to five_high_straight function should still return True
-    and shouldn't mutate the list in every call other than the first."""
+    # Multiple calls to five_high_straight function should still return True
+    # and shouldn't mutate the list in every call other than the first.
     pokerhand = PokerHand("2C 4S AS 3D 5C")
     expected = True
     expected_card_values = [5, 4, 3, 2, 14]
@@ -218,8 +212,8 @@ def test_multiple_calls_five_high_straight():
 
 
 def test_euler_project():
-    """Problem number 54 from Project Euler
-    Testing from poker_hands.txt file."""
+    # Problem number 54 from Project Euler
+    # Testing from poker_hands.txt file
     answer = 0
     script_dir = os.path.abspath(os.path.dirname(__file__))
     poker_hands = os.path.join(script_dir, "poker_hands.txt")

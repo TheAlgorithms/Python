@@ -239,10 +239,7 @@ class PokerHand(object):
         # 14: High card
         if self._is_flush():
             if self._is_five_high_straight() or self._is_straight():
-                if sum(self._card_values) == 60:
-                    return 23
-                else:
-                    return 22
+                return 23 if sum(self._card_values) == 60 else 22
             return 19
         elif self._is_five_high_straight() or self._is_straight():
             return 18
@@ -314,8 +311,8 @@ class PokerHand(object):
         return kind
 
     def _internal_state(self) -> Tuple[List[int], Set[str]]:
-        # Internal representation of hand as a two tuple consisting of
-        # the value and suit of the card.
+        # Internal representation of hand as a list of card values and
+        # a set of card suit
         trans: dict = {"T": "10", "J": "11", "Q": "12", "K": "13", "A": "14"}
         new_hand = self._hand.translate(str.maketrans(trans)).split()
         card_values = [int(card[:-1]) for card in new_hand]
