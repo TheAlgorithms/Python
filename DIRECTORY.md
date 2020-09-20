@@ -86,6 +86,7 @@
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
+  * [Binary To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_octal.py)
   * [Decimal To Any](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_any.py)
   * [Decimal To Binary](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary.py)
   * [Decimal To Hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_hexadecimal.py)
@@ -628,6 +629,9 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_52/sol1.py)
   * Problem 53
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_53/sol1.py)
+  * Problem 54
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_54/sol1.py)
+    * [Test Poker Hand](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_54/test_poker_hand.py)
   * Problem 55
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_55/sol1.py)
   * Problem 551
