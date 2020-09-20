@@ -103,10 +103,10 @@ TEST_STRAIGHT = [
 ]
 
 TEST_FIVE_HIGH_STRAIGHT = [
-    ("2H 4D 3C AS 5S", True, [(14, "S"), (2, "H"), (3, "C"), (4, "D"), (5, "S")]),
-    ("2H 5D 3C AS 5S", False, [(2, "H"), (3, "C"), (5, "D"), (5, "S"), (14, "S")]),
-    ("JH QD KC AS TS", False, [(10, "S"), (11, "H"), (12, "D"), (13, "C"), (14, "S")]),
-    ("9D 3S 2C 7S 7C", False, [(2, "C"), (3, "S"), (7, "C"), (7, "S"), (9, "D")]),
+    ("2H 4D 3C AS 5S", True, [5, 4, 3, 2, 14]),
+    ("2H 5D 3C AS 5S", False, [14, 5, 5, 3, 2]),
+    ("JH QD KC AS TS", False, [14, 13, 12, 11, 10]),
+    ("9D 3S 2C 7S 7C", False, [9, 7, 7, 3, 2]),
 ]
 
 TEST_KIND = [
@@ -159,11 +159,11 @@ def test_hand_is_straight(hand, expected):
     assert player._is_straight() == expected
 
 
-@pytest.mark.parametrize("hand, expected, cards", TEST_FIVE_HIGH_STRAIGHT)
-def test_hand_is_five_high_straight(hand, expected, cards):
+@pytest.mark.parametrize("hand, expected, card_values", TEST_FIVE_HIGH_STRAIGHT)
+def test_hand_is_five_high_straight(hand, expected, card_values):
     player = PokerHand(hand)
     assert player._is_five_high_straight() == expected
-    assert player._cards == cards
+    assert player._card_values == card_values
 
 
 @pytest.mark.parametrize("hand, expected", TEST_KIND)
@@ -206,10 +206,21 @@ def test_custom_sort_five_high_straight():
     assert pokerhands[0].__str__() == "2S 3H 4H 5S 6C"
 
 
+def test_multiple_calls_five_high_straight():
+    """Multiple calls to five_high_straight function should still return True
+    and shouldn't mutate the list in every call other than the first."""
+    pokerhand = PokerHand("2C 4S AS 3D 5C")
+    expected = True
+    expected_card_values = [5, 4, 3, 2, 14]
+    for _ in range(10):
+        assert pokerhand._is_five_high_straight() == expected
+        assert pokerhand._card_values == expected_card_values
+
+
 def test_euler_project():
     """Problem number 54 from Project Euler
     Testing from poker_hands.txt file."""
-    ans = 0
+    answer = 0
     script_dir = os.path.abspath(os.path.dirname(__file__))
     poker_hands = os.path.join(script_dir, "poker_hands.txt")
     with open(poker_hands, "r") as file_hand:
@@ -219,5 +230,5 @@ def test_euler_project():
             player, opponent = PokerHand(player_hand), PokerHand(opponent_hand)
             output = player.compare_with(opponent)
             if output == "Win":
-                ans += 1
-    assert ans == 376
+                answer += 1
+    assert answer == 376

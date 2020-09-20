@@ -40,8 +40,7 @@ Similar problem on codewars:
 https://www.codewars.com/kata/ranking-poker-hands
 https://www.codewars.com/kata/sortable-poker-hands
 """
-from operator import itemgetter
-from typing import List, Tuple
+from typing import List, Set, Tuple
 
 
 class PokerHand(object):
@@ -125,10 +124,9 @@ class PokerHand(object):
         self._hand = hand
         self._first_pair = 0
         self._second_pair = 0
-        self._cards = self._internal_state()
-        self._card_values = self._card_value_list()
+        self._card_values, self._card_suit = self._internal_state()
         self._hand_type = self._get_hand_type()
-        self._high_card = self._get_high_card()
+        self._high_card = self._card_values[0]
 
     @property
     def hand(self):
@@ -221,12 +219,10 @@ class PokerHand(object):
             return name + f", {high}"
 
     def _compare_cards(self, other: "PokerHand") -> str:
-        # Comparing in reverse order as the list is sorted
-        # 'i' starts at 4 and decreases by 1 up to 0
-        # Remember, end value is not included in the range function
-        for i in range(4, -1, -1):
-            if self._cards[i][0] != other._cards[i][0]:
-                return "Win" if self._cards[i][0] > other._cards[i][0] else "Loss"
+        # Enumerate gives us the index as well as the element of a list
+        for index, card_value in enumerate(self._card_values):
+            if card_value != other._card_values[index]:
+                return "Win" if card_value > other._card_values[index] else "Loss"
         return "Tie"
 
     def _get_hand_type(self) -> int:
@@ -252,31 +248,29 @@ class PokerHand(object):
             return 18
         return 14 + self._is_same_kind()
 
-    def _get_high_card(self) -> int:
-        return self._cards[-1][0]
-
-    def _card_value_list(self) -> list:
-        return list(map(itemgetter(0), self._cards))
-
     def _is_flush(self) -> bool:
-        suit = self._cards[0][-1]
-        return all(suit in card for card in self._cards)
+        return len(self._card_suit) == 1
 
     def _is_five_high_straight(self) -> bool:
         # If a card is a five high straight (low ace) change the location of
-        # ace from the end of the list to the start. Check whether the last
+        # ace from the start of the list to the end. Check whether the first
         # element is ace or not. (Don't want to change again)
         # Five high straight (low ace): AH 2H 3S 4C 5D
-        if self._card_values == [2, 3, 4, 5, 14]:
-            if self._cards[-1][0] == 14:
-                ace_card = self._cards.pop()
-                self._cards.insert(0, ace_card)
+        # Why use sorted here? One call to this function will mutate the list to
+        # [5, 4, 3, 2, 14] and so for subsequent calls (which will be rare) we
+        # need to compare the sorted version.
+        # Refer test_multiple_calls_five_high_straight in test_poker_hand.py
+        if sorted(self._card_values) == [2, 3, 4, 5, 14]:
+            if self._card_values[0] == 14:
+                # Remember, our list is sorted in reverse order
+                ace_card = self._card_values.pop(0)
+                self._card_values.append(ace_card)
             return True
         return False
 
     def _is_straight(self) -> bool:
         for i in range(4):
-            if self._cards[i + 1][0] - self._cards[i][0] != 1:
+            if self._card_values[i] - self._card_values[i + 1] != 1:
                 return False
         return True
 
@@ -295,16 +289,16 @@ class PokerHand(object):
             # will add 2 to 'kind' as there are now 3 cards with same value.
             # If we get card of different value than val1, we will do the same
             # thing with val2
-            if self._cards[i][0] == self._cards[i + 1][0]:
+            if self._card_values[i] == self._card_values[i + 1]:
                 if not val1:
-                    val1 = self._cards[i][0]
+                    val1 = self._card_values[i]
                     kind += 1
-                elif val1 == self._cards[i][0]:
+                elif val1 == self._card_values[i]:
                     kind += 2
                 elif not val2:
-                    val2 = self._cards[i][0]
+                    val2 = self._card_values[i]
                     kind += 1
-                elif val2 == self._cards[i][0]:
+                elif val2 == self._card_values[i]:
                     kind += 2
         # For consistency in hand type (look at note in _get_hand_type function)
         kind = kind + 2 if kind in [4, 5] else kind
@@ -319,13 +313,14 @@ class PokerHand(object):
         self._second_pair = second
         return kind
 
-    def _internal_state(self) -> List[Tuple[int, str]]:
+    def _internal_state(self) -> Tuple[List[int], Set[str]]:
         # Internal representation of hand as a two tuple consisting of
         # the value and suit of the card.
         trans: dict = {"T": "10", "J": "11", "Q": "12", "K": "13", "A": "14"}
         new_hand = self._hand.translate(str.maketrans(trans)).split()
-        final_hand = [(int(card[:-1]), card[-1]) for card in new_hand]
-        return sorted(final_hand)
+        card_values = [int(card[:-1]) for card in new_hand]
+        card_suit = {card[-1] for card in new_hand}
+        return sorted(card_values, reverse=True), card_suit
 
     def __repr__(self):
         return f'{self.__class__}("{self._hand}")'
