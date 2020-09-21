@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-''' 
-Author : Mohit Kumar 
+'''
+Author : Mohit Kumar
 Job Sequencing Problem implemented in python
 '''
 
@@ -66,8 +66,8 @@ def main():
         3,
         4,
         5,
-        6,
-           ]
+        6
+        ]
     deadline = [  # deadline to job[i]
         0,
         2,
@@ -75,8 +75,8 @@ def main():
         3,
         3,
         2,
-        1,
-               ]
+        1
+        ]
     profit = [  # profit associated wrt job[i]
         0,
         46,
@@ -84,8 +84,8 @@ def main():
         30,
         36,
         56,
-        40,
-             ]
+        40
+        ]
 
     midresult = [list(x) for x in zip(deadline, profit, jobs)]
     midresult.sort(key=lambda k: (k[0], -k[1]))
