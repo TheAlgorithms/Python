@@ -67,7 +67,7 @@ def main():
         4,
         5,
         6
-        ]
+    ]
     deadline = [  # deadline to job[i]
         0,
         2,
@@ -76,7 +76,7 @@ def main():
         3,
         2,
         1
-        ]
+    ]
     profit = [  # profit associated wrt job[i]
         0,
         46,
@@ -85,7 +85,7 @@ def main():
         36,
         56,
         40
-        ]
+    ]
 
     midresult = [list(x) for x in zip(deadline, profit, jobs)]
     midresult.sort(key=lambda k: (k[0], -k[1]))
