@@ -1,4 +1,7 @@
-def points_to_polynomial(coordinates):
+from typing import List
+
+
+def points_to_polynomial(coordinates: List[List[int]]) -> str:
     """
     coordinates is a two dimensional matrix: [[x, y], [x, y], ...]
     number of points you want to use
@@ -57,7 +60,7 @@ def points_to_polynomial(coordinates):
         while count_of_line < x:
             count_in_line = 0
             a = coordinates[count_of_line][0]
-            count_line = []
+            count_line: List[int] = []
             while count_in_line < x:
                 count_line.append(a ** (x - (count_in_line + 1)))
                 count_in_line += 1
@@ -66,7 +69,7 @@ def points_to_polynomial(coordinates):
 
         count_of_line = 0
         # put the y values into a vector
-        vector = []
+        vector: List[int] = []
         while count_of_line < x:
             vector.append(coordinates[count_of_line][1])
             count_of_line += 1
@@ -80,7 +83,7 @@ def points_to_polynomial(coordinates):
                     zahlen += 1
                 if zahlen == x:
                     break
-                bruch = (matrix[zahlen][count]) / (matrix[count][count])
+                bruch = matrix[zahlen][count] / matrix[count][count]
                 for counting_columns, item in enumerate(matrix[count]):
                     # manipulating all the values in the matrix
                     matrix[zahlen][counting_columns] -= item * bruch
@@ -91,7 +94,7 @@ def points_to_polynomial(coordinates):
 
         count = 0
         # make solutions
-        solution = []
+        solution: List[str] = []
         while count < x:
             solution.append(vector[count] / matrix[count][count])
             count += 1
@@ -100,7 +103,7 @@ def points_to_polynomial(coordinates):
         solved = "f(x)="
 
         while count < x:
-            remove_e = str(solution[count]).split("E")
+            remove_e: List[str] = str(solution[count]).split("E")
             if len(remove_e) > 1:
                 solution[count] = remove_e[0] + "*10^" + remove_e[1]
             solved += "x^" + str(x - (count + 1)) + "*" + str(solution[count])
