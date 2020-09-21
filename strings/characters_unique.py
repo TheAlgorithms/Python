@@ -21,7 +21,7 @@ def is_unique_set(string: str) -> bool:
     hash_set = set()
     for i in string:
         hash_set.add(i)
-    return len(string)==len(hash_set)
+    return len(string) == len(hash_set)
 
 
 def is_unique_hash(string: str) -> bool:
