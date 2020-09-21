@@ -1,38 +1,36 @@
 #!python3
 """
 The problem is to find a given string has unique characters.
->>> isUniqueSet("Brick")
+>>> is_unique_set("Brick")
 True
->>> isUniqueHash("Brick")
+>>> is_unique_hash("Brick")
 True
 
 """
 
 
-def isUniqueSet(string: str) -> bool:
+def is_unique_set(string: str) -> bool:
     """
     This function uses a set to determine the string contains unique characters
-    >>> isUniqueSet("train")
+    >>> is_unique_set("train")
     True
-    >>> isUniqueSet("test")
+    >>> is_unique_set("test")
     False
     """
 
-    hashSet = set()
+    hash_set = set()
     for i in string:
-        if i in hashSet:
-            return False
-        hashSet.add(i)
-    return True
+        hash_set.add(i)
+    return len(string)==len(hash_set)
 
 
-def isUniqueHash(string: str) -> bool:
+def is_unique_hash(string: str) -> bool:
     """
     This function uses ascii values as index to determine
     the string contains unique characters
-    >>> isUniqueHash("train")
+    >>> is_unique_hash("train")
     True
-    >>> isUniqueHash("test")
+    >>> is_unique_hash("test")
     False
     """
 
