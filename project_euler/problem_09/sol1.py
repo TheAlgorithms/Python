@@ -54,7 +54,7 @@ def benchmark() -> None:
     """
     import timeit
 
-    print(timeit.timeit("solution()", setup="from __main__ import solution", number=1))
+    print(timeit.timeit("solution()", setup="from __main__ import solution", number=1000))
     print(
         timeit.timeit(
             "solution_fast()", setup="from __main__ import solution_fast", number=1000
