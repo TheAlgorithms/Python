@@ -163,7 +163,7 @@ def __assert_sorted(collection):
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by comma:\n").strip()
-    collection = [int(item.strip()) for item in user_input.split(",")]
+    collection = sorted(int(item.strip()) for item in user_input.split(","))
     __assert_sorted(collection)
     target = int(input("Enter the number to be found in the list:\n").strip())
     result1 = ite_ternary_search(collection, target)
