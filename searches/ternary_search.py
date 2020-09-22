@@ -154,17 +154,9 @@ def rec_ternary_search(left: int, right: int, A: List[int], target: int) -> int:
         return -1
 
 
-# This function is to check if the array is sorted.
-def __assert_sorted(collection):
-    if collection != sorted(collection):
-        raise ValueError("Collection is not sorted.")
-    return True
-
-
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by comma:\n").strip()
     collection = sorted(int(item.strip()) for item in user_input.split(","))
-    __assert_sorted(collection)
     target = int(input("Enter the number to be found in the list:\n").strip())
     result1 = ite_ternary_search(collection, target)
     result2 = rec_ternary_search(0, len(collection) - 1, collection, target)
