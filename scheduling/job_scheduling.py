@@ -55,6 +55,7 @@ class Scheduling:
 
         return self.is_feasible
 
+    
 def main():
     n = 7  # Number of jobs
     jobs = [0, 1, 2, 3, 4, 5, 6]  # jobs id
