@@ -713,6 +713,7 @@
 ## Strings
   * [Aho Corasick](https://github.com/TheAlgorithms/Python/blob/master/strings/aho_corasick.py)
   * [Boyer Moore Search](https://github.com/TheAlgorithms/Python/blob/master/strings/boyer_moore_search.py)
+  * [Can String Be Rearranged As Palindrome](https://github.com/TheAlgorithms/Python/blob/master/strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](https://github.com/TheAlgorithms/Python/blob/master/strings/capitalize.py)
   * [Check Anagrams](https://github.com/TheAlgorithms/Python/blob/master/strings/check_anagrams.py)
   * [Check Pangram](https://github.com/TheAlgorithms/Python/blob/master/strings/check_pangram.py)
