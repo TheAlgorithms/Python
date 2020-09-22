@@ -4,6 +4,7 @@
 Author : Mohit Kumar
 Job Sequencing Problem implemented in python
 """
+from collections import namedtuple
 
 
 class Scheduling:
@@ -55,14 +56,25 @@ class Scheduling:
 
         return self.is_feasible
 
-    
+
 def main():
     n = 7  # Number of jobs
-    jobs = [0, 1, 2, 3, 4, 5, 6]  # jobs id
-    deadline = [0, 2, 4, 3, 3, 2, 1]  # deadline to job[i]
-    profit = [0, 46, 52, 30, 36, 56, 40]  # profit associated wrt job[i]
+    job = namedtuple("job", "jobs deadline profit")
+    jobs = [
+        job(0, 0, 0),
+        job(1, 2, 46),
+        job(2, 4, 52),
+        job(3, 3, 30),
+        job(4, 3, 36),
+        job(5, 2, 56),
+        job(6, 1, 40),
+    ]
 
-    midresult = [list(x) for x in zip(deadline, profit, jobs)]
+    midresult = []
+    for i in range(n):
+        cur_job = []
+        cur_job.extend((jobs[i].deadline, jobs[i].profit, jobs[i].jobs))
+        midresult.append(cur_job)
     midresult.sort(key=lambda k: (k[0], -k[1]))
     (deadline, profit, jobs) = map(list, zip(*midresult))
 
@@ -78,8 +90,8 @@ def main():
         finalprofit.append(profit[jobsindex])
         finaldl.append(deadline[jobsindex])
 
-    print(f'\n Profit {finalprofit}')
-    print(f'\n Deadline {finaldl}')
+    print(f"\n Profit {finalprofit}")
+    print(f"\n Deadline {finaldl}")
 
 
 if __name__ == "__main__":
