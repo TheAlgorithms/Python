@@ -156,11 +156,11 @@ def rec_ternary_search(left: int, right: int, A: List[int], target: int) -> int:
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by comma:\n").strip()
-    collection = sorted(int(item.strip()) for item in user_input.split(","))
+    collection = [int(item.strip()) for item in user_input.split(",")]
+    assert collection == sorted(collection), f"List must be ordered.\n{collection}."
     target = int(input("Enter the number to be found in the list:\n").strip())
     result1 = ite_ternary_search(collection, target)
     result2 = rec_ternary_search(0, len(collection) - 1, collection, target)
-
     if result2 != -1:
         print(f"Iterative search: {target} found at positions: {result1}")
         print(f"Recursive search: {target} found at positions: {result2}")
