@@ -53,8 +53,13 @@ def benchmark() -> None:
     Benchmark code comparing two different version function.
     """
     import timeit
+
     print(timeit.timeit("solution()", setup="from __main__ import solution", number=1))
-    print(timeit.timeit("solution_fast()", setup="from __main__ import solution_fast", number=1))
+    print(
+        timeit.timeit(
+            "solution_fast()", setup="from __main__ import solution_fast", number=1
+        )
+    )
 
 
 if __name__ == "__main__":
