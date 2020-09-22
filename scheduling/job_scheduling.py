@@ -9,7 +9,7 @@ from typing import List
 
 
 class Scheduling:
-    def __init__(self, jobs: int) -> None:
+    def __init__(self, jobs: List[int]) -> None:
         """
         Assign jobs as instance of class Scheduling
         """
@@ -22,11 +22,13 @@ class Scheduling:
         Returns : List of jobs_id which are profitable  and can be done before
                   deadline
 
-        Scheduling(3).schedule(3, [3, 4, 5])
-        >>> [1, 2]
+        >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
+        >>> a.schedule( 3, [3, 4, 5])
+        [(1, 2, 20), (2, 33, 30)]
 
-        Scheduling(4).schedule(4, [13, 2 33, 16])
-        >>> [0, 3, 2]
+        >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
+        >>> a.schedule( 4, [13, 2, 33, 16])
+        [(1, 2, 20), (2, 33, 30), (3, 16, 40)]
 
         """
         self.j = [self.jobs[1]]
@@ -47,13 +49,17 @@ class Scheduling:
 
         Returns : true if k[-1] job is profitable to us else false
 
-        Scheduling(7).feasible( [6, 5], [0, 1, 2, 2, 3, 3, 4] )
-        >>> True
+        >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
+        >>> a.feasible( [0], [2, 13, 16, 33] )
+        True
 
-        Scheduling(7).feasible( [6, 5, 1],  [0, 1, 2, 2, 3, 3, 4] )
-        >>> False
+
+        >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
+        >>> a.feasible([0], [2, 13, 16, 33] )
+        True
 
         """
+
         self.tmp = profit_jobs
         self.is_feasible = True
 
@@ -75,7 +81,10 @@ class Scheduling:
 
         while k < len(self.tmp):
             self.job = self.tmp[k]
-            self.jobindex = self.jobs.index(self.job)
+            if self.job in self.jobs:
+                self.jobindex = self.jobs.index(self.job)
+            else:
+                self.jobindex = 0
             self.dlineval = deadline[self.jobindex]
             self.ftest = k + 1
             k += 1
