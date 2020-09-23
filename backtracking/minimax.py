@@ -1,4 +1,5 @@
 from typing import List
+import math
 
 """ Minimax helps to achieve maximum score in a game by checking all possible moves
     depth is current depth in game tree.
@@ -56,7 +57,15 @@ def minimax(depth: int, node_index: int, is_max: bool,
     )
 
 
+def main():
+    scores = [90, 23, 6, 33, 21, 65, 123, 34423]
+    height = math.log(len(scores), 2)
+    print("Optimal value : ", end="")
+    print(minimax(0, 0, True, scores, height))
+
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    main()
