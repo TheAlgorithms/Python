@@ -4,7 +4,7 @@ language: python
 python: 3.8
 cache: pip
 before_install: pip install --upgrade pip setuptools six
-install: pip install black flake8 mypy pytest-cov
+install: pip install black flake8
 notifications:
     webhooks: https://www.travisbuddy.com/
     on_success: never
