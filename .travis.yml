@@ -2,9 +2,6 @@ os: linux
 dist: focal
 language: python
 python: 3.8
-branches: # This section will be removed in the last commit
-  only:
-    - config-travis
 cache: pip
 before_install: pip install --upgrade pip setuptools six
 install: pip install black flake8 mypy pytest-cov
