@@ -6,11 +6,12 @@ If p is the perimeter of a right angle triangle with integral length sides,
 For which value of p ≤ 1000, is the number of solutions maximised?
 """
 
+from __future__ import annotations
+
 from collections import Counter
-from typing import Dict
 
 
-def pythagorean_triple(max_perimeter: int) -> Dict:
+def pythagorean_triple(max_perimeter: int) -> dict:
     """
     Returns a dictionary with keys as the perimeter of a right angled triangle
     and value as the number of corresponding triplets.

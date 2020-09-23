@@ -9,8 +9,7 @@ and right to left.
 NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 """
 
-
-from typing import List
+from __future__ import annotations
 
 seive = [True] * 1000001
 seive[1] = False
@@ -36,7 +35,7 @@ def is_prime(n: int) -> bool:
     return seive[n]
 
 
-def list_truncated_nums(n: int) -> List[int]:
+def list_truncated_nums(n: int) -> list[int]:
     """
     Returns a list of all left and right truncated numbers of n
     >>> list_truncated_nums(927628)
@@ -71,7 +70,7 @@ def validate(n: int) -> bool:
     return True
 
 
-def compute_truncated_primes(count: int = 11) -> List[int]:
+def compute_truncated_primes(count: int = 11) -> list[int]:
     """
     Returns the list of truncated primes
     >>> compute_truncated_primes(11)

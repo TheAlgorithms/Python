@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 from itertools import permutations
 from math import sqrt
-from typing import List
 
 """
 We shall say that an n-digit number is pandigital if it makes use of all the digits
@@ -34,7 +35,7 @@ def is_prime(n: int) -> bool:
     return True
 
 
-def compute_pandigital_primes(n: int) -> List[int]:
+def compute_pandigital_primes(n: int) -> list[int]:
     """
     Returns a list of all n-digit pandigital primes.
     >>> compute_pandigital_primes(2)

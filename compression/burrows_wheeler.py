@@ -10,10 +10,10 @@ without needing to store any additional data except the position of the first
 original character. The BWT is thus a "free" method of improving the efficiency
 of text compression algorithms, costing only some extra computation.
 """
-from typing import Dict, List
+from __future__ import annotations
 
 
-def all_rotations(s: str) -> List[str]:
+def all_rotations(s: str) -> list[str]:
     """
     :param s: The string that will be rotated len(s) times.
     :return: A list with the rotations.
@@ -43,7 +43,7 @@ def all_rotations(s: str) -> List[str]:
     return [s[i:] + s[:i] for i in range(len(s))]
 
 
-def bwt_transform(s: str) -> Dict:
+def bwt_transform(s: str) -> dict:
     """
     :param s: The string that will be used at bwt algorithm
     :return: the string composed of the last char of each row of the ordered

@@ -40,7 +40,7 @@ Similar problem on codewars:
 https://www.codewars.com/kata/ranking-poker-hands
 https://www.codewars.com/kata/sortable-poker-hands
 """
-from typing import List, Set, Tuple
+from __future__ import annotations
 
 
 class PokerHand(object):
@@ -310,7 +310,7 @@ class PokerHand(object):
         self._second_pair = second
         return kind
 
-    def _internal_state(self) -> Tuple[List[int], Set[str]]:
+    def _internal_state(self) -> tuple[list[int], set[str]]:
         # Internal representation of hand as a list of card values and
         # a set of card suit
         trans: dict = {"T": "10", "J": "11", "Q": "12", "K": "13", "A": "14"}

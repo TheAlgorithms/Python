@@ -12,7 +12,7 @@ while Q is non-empty:
             mark w as explored
             add w to Q (at the end)
 """
-from typing import Dict, Set
+from __future__ import annotations
 
 G = {
     "A": ["B", "C"],
@@ -24,7 +24,7 @@ G = {
 }
 
 
-def breadth_first_search(graph: Dict, start: str) -> Set[str]:
+def breadth_first_search(graph: dict, start: str) -> set[str]:
     """
     >>> ''.join(sorted(breadth_first_search(G, 'A')))
     'ABCDEF'
