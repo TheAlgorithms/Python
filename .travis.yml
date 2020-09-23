@@ -2,19 +2,35 @@ os: linux
 dist: focal
 language: python
 python: 3.8
+branches:
+  only:
+    - config-travis
 cache: pip
 before_install: pip install --upgrade pip setuptools six
 install: pip install black flake8
 notifications:
     webhooks: https://www.travisbuddy.com/
     on_success: never
-before_script:
-  - black --check . || true
-  - flake8 --ignore=E203,W503 --max-complexity=25 --max-line-length=88 --statistics --count .
-  - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
-  - pip install -r requirements.txt  # fast fail on black, flake8, validate_filenames
-script:
-  - mypy --ignore-missing-imports .
-  - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=. .
+
+jobs:
+  include:
+    - name: build
+      before_script:
+        - black --check . || true 
+        - flake8 --ignore=E203,W503 --max-complexity=25 --max-line-length=88 --statistics --count .
+        - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
+        - pip install -r requirements.txt  # fast fail on black, flake8, validate_filenames
+      script:
+        - mypy --ignore-missing-imports .
+        - pytest --doctest-modules --ignore=project_euler/ --durations=10 --cov-report=term-missing:skip-covered --cov=. .
+    - name: project-euler
+      before_script:
+        - black --check project_euler/ || true
+        - flake8 --ignore=E203,W503 --max-complexity=25 --max-line-length=88 --statistics --count project_euler/
+        - scripts/validate_filenames.py
+      script:
+        - mypy --ignore-missing-imports project_euler/
+        - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
+
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
