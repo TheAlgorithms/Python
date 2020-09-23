@@ -7,7 +7,7 @@ branches:
     - config-travis
 cache: pip
 before_install: pip install --upgrade pip setuptools six
-install: pip install black flake8
+install: pip install black flake8 mypy pytest-cov
 notifications:
     webhooks: https://www.travisbuddy.com/
     on_success: never
