@@ -20,7 +20,8 @@ jobs:
       script:
         - mypy --ignore-missing-imports .
         - pytest --doctest-modules --ignore=project_euler/ --durations=10 --cov-report=term-missing:skip-covered --cov=. .
-    - name: project-euler
+    - name: Project Euler
+      before_script: pip install pytest-cov
       script:
         - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
 
