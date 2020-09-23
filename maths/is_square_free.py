@@ -3,10 +3,10 @@ References: wikipedia:square free number
 python/black : True
 flake8 : True
 """
-from typing import List
+from __future__ import annotations
 
 
-def is_square_free(factors: List[int]) -> bool:
+def is_square_free(factors: list[int]) -> bool:
     """
     # doctest: +NORMALIZE_WHITESPACE
     This functions takes a list of prime factors as input.

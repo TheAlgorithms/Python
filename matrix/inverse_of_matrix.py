@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 from decimal import Decimal
-from typing import List
 
 
-def inverse_of_matrix(matrix: List[List[float]]) -> List[List[float]]:
+def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     """
     A matrix multiplied with its inverse gives the identity matrix.
     This function finds the inverse of a 2x2 matrix.

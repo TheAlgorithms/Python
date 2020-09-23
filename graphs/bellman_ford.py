@@ -1,4 +1,4 @@
-from typing import Dict, List
+from __future__ import annotations
 
 
 def printDist(dist, V):
@@ -7,7 +7,7 @@ def printDist(dist, V):
     print("\t".join(f"{i}\t{d}" for i, d in enumerate(distances)))
 
 
-def BellmanFord(graph: List[Dict[str, int]], V: int, E: int, src: int) -> int:
+def BellmanFord(graph: list[dict[str, int]], V: int, E: int, src: int) -> int:
     """
     Returns shortest paths from a vertex src to all
     other vertices.

@@ -15,8 +15,9 @@ before deciding whether allocation should be allowed to continue.
  (https://rosettacode.org/wiki/Banker%27s_algorithm)
 """
 
+from __future__ import annotations
+
 import time
-from typing import Dict, List
 
 import numpy as np
 
@@ -40,9 +41,9 @@ test_maximum_claim_table = [
 class BankersAlgorithm:
     def __init__(
         self,
-        claim_vector: List[int],
-        allocated_resources_table: List[List[int]],
-        maximum_claim_table: List[List[int]],
+        claim_vector: list[int],
+        allocated_resources_table: list[list[int]],
+        maximum_claim_table: list[list[int]],
     ) -> None:
         """
         :param claim_vector: A nxn/nxm list depicting the amount of each resources
@@ -56,7 +57,7 @@ class BankersAlgorithm:
         self.__allocated_resources_table = allocated_resources_table
         self.__maximum_claim_table = maximum_claim_table
 
-    def __processes_resource_summation(self) -> List[int]:
+    def __processes_resource_summation(self) -> list[int]:
         """
         Check for allocated resources in line with each resource in the claim vector
         """
@@ -65,7 +66,7 @@ class BankersAlgorithm:
             for i in range(len(self.__allocated_resources_table[0]))
         ]
 
-    def __available_resources(self) -> List[int]:
+    def __available_resources(self) -> list[int]:
         """
         Check for available resources in line with each resource in the claim vector
         """
@@ -73,7 +74,7 @@ class BankersAlgorithm:
             self.__processes_resource_summation()
         )
 
-    def __need(self) -> List[List[int]]:
+    def __need(self) -> list[list[int]]:
         """
         Implement safety checker that calculates the needs by ensuring that
         max_claim[i][j] - alloc_table[i][j] <= avail[j]
@@ -83,7 +84,7 @@ class BankersAlgorithm:
             for i, allocated_resource in enumerate(self.__allocated_resources_table)
         ]
 
-    def __need_index_manager(self) -> Dict[int, List[int]]:
+    def __need_index_manager(self) -> dict[int, list[int]]:
         """
         This function builds an index control dictionary to track original ids/indices
         of processes when altered during execution of method "main"

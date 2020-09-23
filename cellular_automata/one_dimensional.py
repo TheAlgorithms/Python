@@ -4,7 +4,7 @@ ruleset number
 https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
 """
 
-from typing import List
+from __future__ import annotations
 
 from PIL import Image
 
@@ -15,7 +15,7 @@ CELLS = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 # fmt: on
 
 
-def format_ruleset(ruleset: int) -> List[int]:
+def format_ruleset(ruleset: int) -> list[int]:
     """
     >>> format_ruleset(11100)
     [0, 0, 0, 1, 1, 1, 0, 0]
@@ -27,7 +27,7 @@ def format_ruleset(ruleset: int) -> List[int]:
     return [int(c) for c in f"{ruleset:08}"[:8]]
 
 
-def new_generation(cells: List[List[int]], rule: List[int], time: int) -> List[int]:
+def new_generation(cells: list[list[int]], rule: list[int], time: int) -> list[int]:
     population = len(cells[0])  # 31
     next_generation = []
     for i in range(population):
@@ -41,7 +41,7 @@ def new_generation(cells: List[List[int]], rule: List[int], time: int) -> List[i
     return next_generation
 
 
-def generate_image(cells: List[List[int]]) -> Image.Image:
+def generate_image(cells: list[list[int]]) -> Image.Image:
     """
     Convert the cells into a greyscale PIL.Image.Image and return it to the caller.
     >>> from random import random
