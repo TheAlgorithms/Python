@@ -5,10 +5,6 @@ python: 3.8
 cache: pip
 before_install: pip install --upgrade pip setuptools six
 install: pip install black flake8
-notifications:
-    webhooks: https://www.travisbuddy.com/
-    on_success: never
-
 jobs:
   include:
     - name: Build
@@ -24,6 +20,8 @@ jobs:
       before_script: pip install pytest-cov
       script:
         - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
-
+notifications:
+    webhooks: https://www.travisbuddy.com/
+    on_success: never
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
