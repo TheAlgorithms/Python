@@ -42,6 +42,8 @@ https://www.codewars.com/kata/sortable-poker-hands
 """
 from __future__ import annotations
 
+import os
+
 
 class PokerHand(object):
     """Create an object representing a Poker Hand based on an input of a
@@ -356,3 +358,24 @@ class PokerHand(object):
 
     def __hash__(self):
         return object.__hash__(self)
+
+
+def solution() -> int:
+    # Solution for problem number 54 from Project Euler
+    # Input from poker_hands.txt file
+    answer = 0
+    script_dir = os.path.abspath(os.path.dirname(__file__))
+    poker_hands = os.path.join(script_dir, "poker_hands.txt")
+    with open(poker_hands, "r") as file_hand:
+        for line in file_hand:
+            player_hand = line[:14].strip()
+            opponent_hand = line[15:].strip()
+            player, opponent = PokerHand(player_hand), PokerHand(opponent_hand)
+            output = player.compare_with(opponent)
+            if output == "Win":
+                answer += 1
+    return answer
+
+
+if __name__ == "__main__":
+    solution()
