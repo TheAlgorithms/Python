@@ -58,7 +58,7 @@ def benchmark() -> None:
     """
     Benchmark code comparing different version.
     """
-    import timeit
+    from timeit import timeit
 
     setup = "from __main__ import check_pangram, check_pangram_faster"
     print(timeit("check_pangram()", setup=setup))
