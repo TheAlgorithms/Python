@@ -1,5 +1,7 @@
 from __future__ import annotations
 import math
+from typing import List
+
 
 """ Minimax helps to achieve maximum score in a game by checking all possible moves
     depth is current depth in game tree.
