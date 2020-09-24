@@ -54,20 +54,14 @@ logging.basicConfig(
 def generate_solution_modules(dir_path: pathlib.Path):
     # Iterating over every file or directory
     for file_path in dir_path.iterdir():
-        if (
-            file_path.suffix != ".py"
-            or file_path.name.startswith(("_", "test"))
-        ):
+        if file_path.suffix != ".py" or file_path.name.startswith(("_", "test")):
             continue
-        else:
-            # Importing the source file through the given path
-            # https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
-            spec = importlib.util.spec_from_file_location(
-                file_path.name, str(file_path)
-            )
-            module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(module)
-            yield module
+        # Importing the source file through the given path
+        # https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
+        spec = importlib.util.spec_from_file_location(file_path.name, str(file_path))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        yield module
 
 
 def test_project_euler():
@@ -84,7 +78,7 @@ def test_project_euler():
                 # TypeError: If solution() requires arguments
                 # AssertionError: If answer is incorrect
                 # AttributeError: If the module has no attribute called 'solution'
-                except (TypeError, AssertionError, AttributeError) as err:
+                except (AssertionError, AttributeError, TypeError) as err:
                     logging.error(
                         f"{err} \nSource: Problem {problem_number}: "
                         f"{solution_module.__name__}\n"
