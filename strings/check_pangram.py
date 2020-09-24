@@ -60,18 +60,9 @@ def benchmark() -> None:
     """
     import timeit
 
-    print(
-        timeit.timeit(
-            "check_pangram()", setup="from __main__ import check_pangram", number=1000
-        )
-    )
-    print(
-        timeit.timeit(
-            "check_pangram_faster()",
-            setup="from __main__ import check_pangram_faster",
-            number=1000,
-        )
-    )
+    setup = "from __main__ import check_pangram, check_pangram_faster"
+    print(timeit("check_pangram()", setup=setup))
+    print(timeit("check_pangram_faster()", setup=setup))
 
 
 if __name__ == "__main__":
