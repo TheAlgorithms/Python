@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 import math
 
 """ Minimax helps to achieve maximum score in a game by checking all possible moves
