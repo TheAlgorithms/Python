@@ -3,7 +3,9 @@ wiki: https://en.wikipedia.org/wiki/Pangram
 """
 
 
-def check_pangram(input_str: str = "The quick brown fox jumps over the lazy dog") -> bool:
+def check_pangram(
+    input_str: str = "The quick brown fox jumps over the lazy dog",
+) -> bool:
     """
     A Pangram String contains all the alphabets at least once.
     >>> check_pangram("The quick brown fox jumps over the lazy dog")
@@ -30,7 +32,9 @@ def check_pangram(input_str: str = "The quick brown fox jumps over the lazy dog"
     return True if len(frequency) == 26 else False
 
 
-def check_pangram_faster(input_str: str = "The quick brown fox jumps over the lazy dog") -> bool:
+def check_pangram_faster(
+    input_str: str = "The quick brown fox jumps over the lazy dog",
+) -> bool:
     """
     >>> check_pangram_faster("The quick brown fox jumps over the lazy dog")
     True
@@ -46,7 +50,7 @@ def check_pangram_faster(input_str: str = "The quick brown fox jumps over the la
     flag = [False] * 26
     for char in input_str:
         if char.islower():
-            flag[ord(char) - ord('a')] = True
+            flag[ord(char) - ord("a")] = True
     return all(flag)
 
 
@@ -55,11 +59,18 @@ def benchmark() -> None:
     Benchmark code comparing different version.
     """
     import timeit
+
     print(
-        timeit.timeit("check_pangram()", setup="from __main__ import check_pangram", number=1000)
+        timeit.timeit(
+            "check_pangram()", setup="from __main__ import check_pangram", number=1000
+        )
     )
     print(
-        timeit.timeit("check_pangram_faster()", setup="from __main__ import check_pangram_faster", number=1000)
+        timeit.timeit(
+            "check_pangram_faster()",
+            setup="from __main__ import check_pangram_faster",
+            number=1000,
+        )
     )
 
 
