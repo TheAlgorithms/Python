@@ -56,8 +56,7 @@ def generate_solution_modules(dir_path: pathlib.Path):
     for file_path in dir_path.iterdir():
         if (
             file_path.suffix != ".py"
-            or file_path.name.startswith("_")
-            or file_path.name.startswith("test")
+            or file_path.name.startswith(("_", "test"))
         ):
             continue
         else:
