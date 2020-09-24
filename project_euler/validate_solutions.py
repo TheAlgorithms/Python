@@ -64,7 +64,8 @@ def generate_solution_modules(dir_path: pathlib.Path):
         yield module
 
 
-def test_project_euler():
+def test_project_euler() -> int:
+    wrong_answer, no_solution, solution_args = [[] for _ in range(3)]
     for problem_number, expected in ANSWERS.items():
         problem_dir = PROJECT_EULER_PATH.joinpath(f"problem_{problem_number:02}")
         # By checking if it's a directory we can write all the problem number and
@@ -78,12 +79,40 @@ def test_project_euler():
                 # TypeError: If solution() requires arguments
                 # AssertionError: If answer is incorrect
                 # AttributeError: If the module has no attribute called 'solution'
-                except (AssertionError, AttributeError, TypeError) as err:
-                    logging.error(
-                        f"{err} \nSource: Problem {problem_number}: "
-                        f"{solution_module.__name__}\n"
+                # except (AssertionError, AttributeError, TypeError) as err:
+                #     logging.error(
+                #         f"{err} \nSource: Problem {problem_number}: "
+                #         f"{solution_module.__name__}\n"
+                #     )
+                except AssertionError as err:
+                    wrong_answer.append(
+                        f"problem_{problem_number}/{solution_module.__name__}: {err}"
                     )
+                except AttributeError as err:
+                    no_solution.append(
+                        f"problem_{problem_number}/{solution_module.__name__}: {err}"
+                    )
+                except TypeError as err:
+                    solution_args.append(
+                        f"problem_{problem_number}/{solution_module.__name__}: {err}"
+                    )
+    if wrong_answer:
+        print(f"{len(wrong_answer)} files contain wrong answers:\n")
+        print("\n".join(wrong_answer) + "\n")
+    if solution_args:
+        print(
+            f"{len(solution_args)} files require positional arguments for solution() function:\n"
+        )
+        print("\n".join(solution_args) + "\n")
+    if no_solution:
+        print(f"{len(no_solution)} files have no solution() function:\n")
+        print("\n".join(no_solution) + "\n")
+    return len(wrong_answer + solution_args + no_solution)
 
 
 if __name__ == "__main__":
-    test_project_euler()
+    exit_code = test_project_euler()
+    if exit_code:
+        import sys
+
+        sys.exit(exit_code)
