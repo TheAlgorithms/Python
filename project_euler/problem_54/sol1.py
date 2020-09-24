@@ -360,7 +360,7 @@ class PokerHand(object):
         return object.__hash__(self)
 
 
-def solution():
+def solution() -> int:
     # Solution for problem number 54 from Project Euler
     # Input from poker_hands.txt file
     answer = 0
