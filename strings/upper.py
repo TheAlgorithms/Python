@@ -8,7 +8,6 @@ def upper(word: str) -> str:
     'HELLO'
     >>> upper("WHAT")
     'WHAT'
-
     >>> upper("wh[]32")
     'WH[]32'
     """
@@ -17,7 +16,7 @@ def upper(word: str) -> str:
     # if it is a capital letter it is getting shift by 32 which makes it a capital case
     # letter
     return "".join(
-        chr(ord(char) - 32) if 97 <= ord(char) <= 122 else char for char in word
+        chr(ord(char) - 32) if 'a' <= char <= 'z' else char for char in word
     )
 
 
