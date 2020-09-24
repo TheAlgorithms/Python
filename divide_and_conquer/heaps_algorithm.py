@@ -12,23 +12,26 @@ def heaps(arr: list) -> list:
     Pure python implementation of the Heap's algorithm,
     returning all permutations of a list.
     >>> heaps([])
-    [[]]
+    [()]
     >>> heaps([0])
-    [[0]]
+    [(0,)]
     >>> heaps([-1, 1])
-    [[-1, 1], [1, -1]]
+    [(-1, 1), (1, -1)]
     >>> heaps([1, 2, 3])
-    [[1, 2, 3], [2, 1, 3], [3, 1, 2], [1, 3, 2], [2, 3, 1], [3, 2, 1]]
+    [(1, 2, 3), (2, 1, 3), (3, 1, 2), (1, 3, 2), (2, 3, 1), (3, 2, 1)]
+    >>> import itertools
+    >>> set(heaps([1,2,3])) == set(itertools.permutations([1,2,3]))
+    True
     """
 
     if len(arr) <= 1:
-        return [arr]
+        return [tuple(arr)]
 
     res = []
 
     def generate(k: int, arr: list):
         if k == 1:
-            res.append(arr[:])
+            res.append(tuple(arr[:]))
             return
 
         generate(k - 1, arr)
