@@ -1,7 +1,8 @@
 # flake8: noqa
 
+from __future__ import annotations
+
 from random import random
-from typing import Tuple
 
 
 class Node:
@@ -33,7 +34,7 @@ class Node:
         return value + left + right
 
 
-def split(root: Node, value: int) -> Tuple[Node, Node]:
+def split(root: Node, value: int) -> tuple[Node, Node]:
     """
     We split current tree into 2 trees with value:
 

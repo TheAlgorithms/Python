@@ -1,7 +1,7 @@
-from typing import List, Tuple
+from __future__ import annotations
 
 
-def n31(a: int) -> Tuple[List[int], int]:
+def n31(a: int) -> tuple[list[int], int]:
     """
     Returns the Collatz sequence and its length of any positive integer.
     >>> n31(4)

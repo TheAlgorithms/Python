@@ -4,11 +4,11 @@
 Implementation of entropy of information
 https://en.wikipedia.org/wiki/Entropy_(information_theory)
 """
+from __future__ import annotations
 
 import math
 from collections import Counter
 from string import ascii_lowercase
-from typing import Tuple
 
 
 def calculate_prob(text: str) -> None:
@@ -89,7 +89,7 @@ def calculate_prob(text: str) -> None:
     print("{0:.1f}".format(round(((-1 * my_sec_sum) - (-1 * my_fir_sum)))))
 
 
-def analyze_text(text: str) -> Tuple[dict, dict]:
+def analyze_text(text: str) -> tuple[dict, dict]:
     """
     Convert text input into two dicts of counts.
     The first dictionary stores the frequency of single character strings.

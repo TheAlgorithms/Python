@@ -1,21 +1,23 @@
-from typing import List, Union
+from __future__ import annotations
+
+from typing import Union
 
 
 def search_in_a_sorted_matrix(
-    mat: List[list], m: int, n: int, key: Union[int, float]
+    mat: list[list], m: int, n: int, key: Union[int, float]
 ) -> None:
     """
-    >>> search_in_a_sorted_matrix(\
-        [[2, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 5)
+    >>> search_in_a_sorted_matrix(
+    ...     [[2, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 5)
     Key 5 found at row- 1 column- 2
-    >>> search_in_a_sorted_matrix(\
-        [[2, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 21)
+    >>> search_in_a_sorted_matrix(
+    ...     [[2, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 21)
     Key 21 not found
-    >>> search_in_a_sorted_matrix(\
-        [[2.1, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 2.1)
+    >>> search_in_a_sorted_matrix(
+    ...     [[2.1, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 2.1)
     Key 2.1 found at row- 1 column- 1
-    >>> search_in_a_sorted_matrix(\
-        [[2.1, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 2.2)
+    >>> search_in_a_sorted_matrix(
+    ...     [[2.1, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]], 3, 3, 2.2)
     Key 2.2 not found
     """
     i, j = m - 1, 0

@@ -3,13 +3,14 @@ Given an array of integers and another integer target,
 we are required to find a triplet from the array such that it's sum is equal to
 the target.
 """
+from __future__ import annotations
+
 from itertools import permutations
 from random import randint
 from timeit import repeat
-from typing import List, Tuple
 
 
-def make_dataset() -> Tuple[List[int], int]:
+def make_dataset() -> tuple[list[int], int]:
     arr = [randint(-1000, 1000) for i in range(10)]
     r = randint(-5000, 5000)
     return (arr, r)
@@ -18,7 +19,7 @@ def make_dataset() -> Tuple[List[int], int]:
 dataset = make_dataset()
 
 
-def triplet_sum1(arr: List[int], target: int) -> Tuple[int, int, int]:
+def triplet_sum1(arr: list[int], target: int) -> tuple[int, int, int]:
     """
     Returns a triplet in the array with sum equal to target,
     else (0, 0, 0).
@@ -37,7 +38,7 @@ def triplet_sum1(arr: List[int], target: int) -> Tuple[int, int, int]:
     return (0, 0, 0)
 
 
-def triplet_sum2(arr: List[int], target: int) -> Tuple[int, int, int]:
+def triplet_sum2(arr: list[int], target: int) -> tuple[int, int, int]:
     """
     Returns a triplet in the array with sum equal to target,
     else (0, 0, 0).
@@ -64,7 +65,7 @@ def triplet_sum2(arr: List[int], target: int) -> Tuple[int, int, int]:
     return (0, 0, 0)
 
 
-def solution_times() -> Tuple[float, float]:
+def solution_times() -> tuple[float, float]:
     setup_code = """
 from __main__ import dataset, triplet_sum1, triplet_sum2
 """

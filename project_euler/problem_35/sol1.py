@@ -10,7 +10,7 @@ below 1 million using the Seive of Eratosthenes.  Then, out of all these primes,
 we will rule out the numbers which contain an even digit.  After this we will
 generate each circular combination of the number and check if all are prime.
 """
-from typing import List
+from __future__ import annotations
 
 seive = [True] * 1000001
 i = 2
@@ -47,7 +47,7 @@ def contains_an_even_digit(n: int) -> bool:
     return any(digit in "02468" for digit in str(n))
 
 
-def find_circular_primes(limit: int = 1000000) -> List[int]:
+def find_circular_primes(limit: int = 1000000) -> list[int]:
     """
     Return circular primes below limit.
     >>> len(find_circular_primes(100))

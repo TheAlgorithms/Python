@@ -1,7 +1,7 @@
 """
 author : Mayank Kumar Jha (mk9440)
 """
-from typing import List
+from __future__ import annotations
 
 
 def find_max_sub_array(A, low, high):
@@ -38,7 +38,7 @@ def find_max_cross_sum(A, low, mid, high):
     return max_left, max_right, (left_sum + right_sum)
 
 
-def max_sub_array(nums: List[int]) -> int:
+def max_sub_array(nums: list[int]) -> int:
     """
     Finds the contiguous subarray which has the largest sum and return its sum.
 

@@ -16,7 +16,7 @@ numbers and the square of the sum.
 import math
 
 
-def solution(n):
+def solution(n: int) -> int:
     """Returns the difference between the sum of the squares of the first n
     natural numbers and the square of the sum.
 
@@ -35,4 +35,7 @@ def solution(n):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     print(solution(int(input().strip())))

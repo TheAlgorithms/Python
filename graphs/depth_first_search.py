@@ -1,9 +1,9 @@
 """Non recursive implementation of a DFS algorithm."""
 
-from typing import Dict, Set
+from __future__ import annotations
 
 
-def depth_first_search(graph: Dict, start: str) -> Set[int]:
+def depth_first_search(graph: dict, start: str) -> set[int]:
     """Depth First Search on Graph
     :param graph: directed graph in dictionary format
     :param vertex: starting vertex as a string
