@@ -16,7 +16,10 @@ def check_anagrams(first_str: str, second_str: str) -> bool:
     >>> check_anagrams('There', 'Their')
     False
     """
-    return "".join(sorted(first_str.lower())).strip() == "".join(sorted(second_str.lower())).strip()
+    return (
+        "".join(sorted(first_str.lower())).strip()
+        == "".join(sorted(second_str.lower())).strip()
+    )
 
 
 if __name__ == "__main__":
