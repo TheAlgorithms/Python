@@ -9,7 +9,7 @@ one possible Wiggle Sorted answer is [3, 5, 1, 6, 2, 4].
 """
 
 
-def wiggle_sort(nums: list):
+def wiggle_sort(nums: list) -> list:
     """
     Python implementation of wiggle.
     Example:
@@ -19,6 +19,8 @@ def wiggle_sort(nums: list):
     []
     >>> wiggle_sort([-2, -5, -45])
     [-45, -2, -5]
+    >>> wiggle_sort([-2.1, -5.68, -45.11])
+    [-45.11, -2.1, -5.68]
     """
     for i, _ in enumerate(nums):
         if (i % 2 == 1) == (nums[i - 1] > nums[i]):
