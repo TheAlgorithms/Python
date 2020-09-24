@@ -101,7 +101,8 @@ def test_project_euler() -> int:
         print("\n".join(wrong_answer) + "\n")
     if solution_args:
         print(
-            f"{len(solution_args)} files require positional arguments for solution() function:\n"
+            f"{len(solution_args)} "
+            f"files require positional arguments for solution() function:\n"
         )
         print("\n".join(solution_args) + "\n")
     if no_solution:
