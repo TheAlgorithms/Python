@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 import math
 
 """ Minimax helps to achieve maximum score in a game by checking all possible moves
@@ -10,8 +11,9 @@ import math
 """
 
 
-def minimax(depth: int, node_index: int, is_max: bool,
-            scores: list[int], height: float) -> int:
+def minimax(
+    depth: int, node_index: int, is_max: bool, scores: list[int], height: float
+) -> int:
     """
     >>> import math
     >>> scores = [90, 23, 6, 33, 21, 65, 123, 34423]
