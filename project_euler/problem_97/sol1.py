@@ -10,24 +10,24 @@ Find the last ten digits of this prime number.
 """
 
 
-def compute_digits(n: int) -> str:
+def solution(n: int = 10) -> str:
     """
     Returns the last n digits of NUMBER.
-    >>> compute_digits(10)
-    '8740021009'
-    >>> compute_digits(8)
-    '40021009'
-    >>> compute_digits(1)
-    '9'
-    >>> compute_digits(-1)
+    >>> solution()
+    '8739992577'
+    >>> solution(8)
+    '39992577'
+    >>> solution(1)
+    '7'
+    >>> solution(-1)
     ''
-    >>> compute_digits(8.3)
+    >>> solution(8.3)
     ''
     """
     if n < 0 or not isinstance(n, int):
         return ""
     MODULUS = 10 ** n
-    NUMBER = 28433 * (pow(2, 7830457, MODULUS) + 1)
+    NUMBER = 28433 * (pow(2, 7830457, MODULUS)) + 1
     return str(NUMBER % MODULUS)
 
 
@@ -35,4 +35,4 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    print(f"{compute_digits(10)}")
+    print(f"{solution(10)}")
