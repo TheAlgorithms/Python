@@ -163,7 +163,7 @@ def test_singly_linked_list() -> None:
         assert len(linked_list) == i
         linked_list.insert_nth(i, i + 1)
     assert str(linked_list) == "->".join(str(i) for i in range(1, 11))
-    
+
     linked_list.insert_head(0)
     linked_list.insert_tail(11)
     assert str(linked_list) == "->".join(str(i) for i in range(0, 12))
@@ -176,6 +176,7 @@ def test_singly_linked_list() -> None:
 
 def main():
     from doctest import testmod
+
     testmod()
     test_singly_linked_list()
 
