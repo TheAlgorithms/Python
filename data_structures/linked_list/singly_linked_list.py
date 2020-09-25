@@ -44,9 +44,6 @@ class LinkedList:
         """
         return "->".join([str(item) for item in self])
 
-    def __str__(self) -> str:
-        return repr(self)
-
     def __getitem__(self, index):
         """
         Indexing Support. Used to get a node at particular position
