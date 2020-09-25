@@ -43,4 +43,4 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    print(f"{solution(10)}")
+    print(f"{solution(10) = }")
