@@ -6,7 +6,7 @@ from collections import namedtuple
 # CamelCase as this returns a class object
 QuesAndAns = namedtuple("QuesAndAns", "question answer")
 
-ques_08 = (
+QUES_08 = (
     "73167176531330624919225119674426574742355349194934"
     "96983520312774506326239578318016984801869478851843"
     "85861560789112949495459501737958331952853208805511"
@@ -29,7 +29,7 @@ ques_08 = (
     "71636269561882670428252483600823257530420752963450"
 )
 
-ques_13 = [
+QUES_13 = (
     37107287533902102798797998220837590246510135740250,
     46376937677490009712648124896970078050417018260538,
     74324986199524741059474233309513058123726617309629,
@@ -130,7 +130,7 @@ ques_13 = [
     72107838435069186155435662884062257473692284509516,
     20849603980134001723930671666823555245252804609722,
     53503534226472524250874054075591789781264330331690,
-]
+)
 
 # Keep the answer part in str for consistency as some problems could output in str
 # Problem 329: 199740353/29386561536000 (Format for this answer is a/b)
@@ -143,12 +143,12 @@ ANSWERS = {
     5: QuesAndAns(20, "232792560"),
     6: QuesAndAns(100, "25164150"),
     7: QuesAndAns(10001, "104743"),
-    8: QuesAndAns(ques_08, "23514624000"),
+    8: QuesAndAns(QUES_08, "23514624000"),
     9: QuesAndAns(1000, "31875000"),
     10: QuesAndAns(2_000_000, "142913828922"),
     11: QuesAndAns(None, "70600674"),
     12: QuesAndAns(None, "76576500"),
-    13: QuesAndAns(ques_13, "5537376230"),
+    13: QuesAndAns(QUES_13, "5537376230"),
     14: QuesAndAns(1_000_000, "837799"),
     15: QuesAndAns(None, "137846528820"),
     16: QuesAndAns(1000, "1366"),
@@ -176,7 +176,7 @@ def generate_solution_modules(dir_path: pathlib.Path):
 def test_project_euler() -> int:
     wrong_answer, no_solution, solution_args = [[] for _ in range(3)]
     for problem_number, ques_ans in ANSWERS.items():
-        parameter, expected = ques_ans.question, ques_ans.answer
+        parameter, expected = ques_ans
         problem_dir = PROJECT_EULER_PATH.joinpath(f"problem_{problem_number:02}")
         # By checking if it's a directory we can write all the problem number and
         # answer pair in ANSWERS variable and not worry whether it is actually
