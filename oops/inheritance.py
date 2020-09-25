@@ -18,11 +18,11 @@ class Fish:
     def swimBackwards(self):
         print("Fish can swim backwards")
 
-#Child class or SubClass..>>Classes that make use of all variables and all methods of parent class
+#Children class or SubClass..>>Classes that make use of all variables and all methods of parent class
 
 
 class trout(Fish):
-    #if we dont want to define any other methods for child class just pass it
+    #if we dont want to define any other methods for children class just pass it
     def __init__(self, water="freshWater"):
         self.water = water
         super().__init__(self)
@@ -68,7 +68,7 @@ class multiinheritance(Coral, Anemoe):
 
 if __name__ == "__main__":
     multi = multiinheritance()
-    parent = Fish("Whats")
+    parent = Fish("What is")
     terry = trout()
     cl = clownfish("Cfish")
     ex = example("exfish")
@@ -85,5 +85,5 @@ if __name__ == "__main__":
     multi.community()
     multi.anfunc()
 
-    #cannot access childs methods using parents object
+    #cannot access children methods using parents object
     #parent.trFun() ...>>Error
