@@ -97,7 +97,7 @@ class LinkedList:
     def delete_tail(self):  # delete from tail
         return self.delete_nth(len(self) - 1)
 
-    def delete_nth(self, index: int):
+    def delete_nth(self, index: int = 0):
         if not 0 <= index <= len(self) - 1:  # test if index is valid
             raise IndexError("list index out of range")
         delete_node = self.head  # default first node
