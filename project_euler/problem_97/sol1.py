@@ -27,7 +27,7 @@ def solution(n: int = 10) -> str:
     if n < 0 or not isinstance(n, int):
         return ""
     MODULUS = 10 ** n
-    NUMBER = 28433 * (pow(2, 7830457, MODULUS)) + 1
+    NUMBER = 28433 * pow(2, 7830457, MODULUS) + 1
     return str(NUMBER % MODULUS)
 
 
