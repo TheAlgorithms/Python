@@ -1,5 +1,5 @@
 #Errors can also occur at runtime and these are called exceptions
-#Code enters the else block only if the try block doesnt raises an exception
+#Code enters the else block only if the try block does not raises an exception
 #LEARN how to raise USER DEFINED EXCEPTIONS.
 #They occur, for example, when a file we try to open does not exist(FileNotFoundError),
 # dividing a number by zero(ZeroDivisionError), module we try to import is not found(ImportError)
@@ -20,7 +20,7 @@ try:
         b = a/(a-3)
     print("value of b is {}".format(b))
 except(NameError, ZeroDivisionError):
-    print("Exception Occured and Handled")
+    print("Exception Occurred and Handled")
 
 
 def abfun(a, b):
@@ -46,7 +46,7 @@ for entry in randomList:
         r = 1/int(entry)
         break
     except:
-        print("Oops!", sys.exc_info()[1], "occured.")
+        print("Oops!", sys.exc_info()[1], "occurred.")
         print("Next entry.")
         print()
 print("The reciprocal of", entry, "is", r)
