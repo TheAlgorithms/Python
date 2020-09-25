@@ -20,14 +20,22 @@ def solution(n: int = 10) -> str:
     >>> solution(1)
     '7'
     >>> solution(-1)
-    ''
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid input
     >>> solution(8.3)
-    ''
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid input
+    >>> solution("a")
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid input
     """
-    if n < 0 or not isinstance(n, int):
-        return ""
+    if not isinstance(n, int) or n < 0:
+        raise ValueError("Invalid input")
     MODULUS = 10 ** n
-    NUMBER = 28433 * pow(2, 7830457, MODULUS) + 1
+    NUMBER = 28433 * (pow(2, 7830457, MODULUS)) + 1
     return str(NUMBER % MODULUS)
 
 
