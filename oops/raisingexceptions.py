@@ -3,7 +3,7 @@ def example():
     try:
         pNumber = int(input("enter positive number : "))
         if(pNumber < 0):
-            raise ValueError("Thats not a positive number!")
+            raise ValueError("That is  not a positive number!")
     except ValueError as me:
         print(me)
     else:
@@ -36,4 +36,4 @@ while(True):
         print("value is too small..try one more time")
     except valuetoolargeError:
         print("value too large..have a try again")
-print("Congrats bud!U nailed it")
+print("Congrats buddy!you nailed it")
