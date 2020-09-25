@@ -19,8 +19,8 @@ def heaps(arr: list) -> list:
     [(-1, 1), (1, -1)]
     >>> heaps([1, 2, 3])
     [(1, 2, 3), (2, 1, 3), (3, 1, 2), (1, 3, 2), (2, 3, 1), (3, 2, 1)]
-    >>> import itertools
-    >>> set(heaps([1,2,3])) == set(itertools.permutations([1,2,3]))
+    >>> from itertools import permutations
+    >>> sorted(heaps([1,2,3])) == sorted(permutations([1,2,3]))
     True
     """
 
