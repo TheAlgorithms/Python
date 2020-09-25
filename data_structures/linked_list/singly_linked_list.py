@@ -52,9 +52,17 @@ class LinkedList:
         ...     linked_list.insert_nth(i, i)
         >>> all(str(linked_list[i]) == str(i) for i in range(0, 10))
         True
+        >>> linked_list[-10]
+        Traceback (most recent call last):
+        ...
+        ValueError: list index out of range.
+        >>> linked_list[len(linked_list)]
+        Traceback (most recent call last):
+        ...
+        ValueError: list index out of range.
         """
-        if index < 0:
-            raise ValueError("Negative indexes are not yet supported")
+        if not 0 <= index < len(self):
+            raise ValueError("list index out of range.")
         for i, node in enumerate(self):
             if i == index:
                 return node
@@ -71,14 +79,19 @@ class LinkedList:
         >>> linked_list[5] = -666
         >>> linked_list[5]
         -666
+        >>> linked_list[-10] = 666
+        Traceback (most recent call last):
+        ...
+        ValueError: list index out of range.
+        >>> linked_list[len(linked_list)] = 666
+        Traceback (most recent call last):
+        ...
+        ValueError: list index out of range.
         """
+        if not 0 <= index < len(self):
+            raise ValueError("list index out of range.")
         current = self.head
-        # If list is empty
-        if current is None:
-            raise IndexError("The Linked List is empty")
         for i in range(index):
-            if current.next is None:
-                raise IndexError("list index out of range")
             current = current.next
         current.data = data
 
