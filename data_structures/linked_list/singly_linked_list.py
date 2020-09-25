@@ -10,7 +10,64 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None  # initialize head to None
-        self.size = 0  # length of linked list
+
+    def __iter__(self):
+        node = self.head
+        while node:
+            yield node.data
+            node = node.next
+
+    def __len__(self) -> int:
+        """
+        Return length of linked list i.e. number of nodes
+        >>> linked_list = LinkedList()
+        >>> len(linked_list)
+        0
+        >>> linked_list.insert_tail("head")
+        >>> len(linked_list)
+        1
+        >>> linked_list.insert_head("head")
+        >>> len(linked_list)
+        2
+        >>> _ = linked_list.delete_tail()
+        >>> len(linked_list)
+        1
+        >>> _ = linked_list.delete_head()
+        >>> len(linked_list)
+        0
+        """
+        return len(tuple(self))
+
+    def __repr__(self):
+        """
+        String representation/visualization of a Linked Lists
+        """
+        return str(tuple(self))
+
+    def __str__(self) -> str:
+        return repr(self)
+    
+    def __getitem__(self, index):
+        """
+        Indexing Support. Used to get a node at particular position
+        """
+        if index < 0:
+            raise ValueError("Negative indexes are not yet supported")
+        for i, node in enumerate(self):
+            if i == index:
+                return node.data
+
+    # Used to change the data of a particular node
+    def __setitem__(self, index, data):
+        current = self.head
+        # If list is empty
+        if current is None:
+            raise IndexError("The Linked List is empty")
+        for i in range(index):
+            if current.next is None:
+                raise IndexError("list index out of range")
+            current = current.next
+        current.data = data
 
     def insert_tail(self, data) -> None:
         self.insert_nth(self.size, data)
@@ -19,8 +76,8 @@ class LinkedList:
         self.insert_nth(0, data)
 
     def insert_nth(self, index: int, data) -> None:
-        if index < 0 or index > self.size:  # test if index is valid.
-            raise IndexError("list index out of range.")
+        if not 0 <= index < len(self):
+            raise IndexError("list index out of range")
         new_node = Node(data)  # create a new node
         if self.head is None:
             self.head = new_node
@@ -46,7 +103,7 @@ class LinkedList:
 
     def delete_nth(self, index: int):
         if index < 0 or index > self.size - 1:  # test if index is valid
-            raise IndexError("list index out of range.")
+            raise IndexError("list index out of range")
         delete_node = self.head  # default first node
         if index == 0:
             self.head = self.head.next
@@ -77,66 +134,6 @@ class LinkedList:
             current = next_node
         # Return prev in order to put the head at the end
         self.head = prev
-
-    def __repr__(self):  # String representation/visualization of a Linked Lists
-        current = self.head
-        string_repr = []
-        while current:
-            string_repr.append(f"{current.data}")
-            current = current.next
-        return "->".join(string_repr)
-
-    def __str__(self) -> str:
-        return repr(self)
-
-    # Indexing Support. Used to get a node at particular position
-    def __getitem__(self, index):
-        current = self.head
-
-        # If LinkedList is empty
-        if current is None:
-            raise IndexError("The Linked List is empty")
-
-        # Move Forward 'index' times
-        for _ in range(index):
-            # If the LinkedList ends before reaching specified node
-            if current.next is None:
-                raise IndexError("Index out of range.")
-            current = current.next
-        return current.data
-
-    # Used to change the data of a particular node
-    def __setitem__(self, index, data):
-        current = self.head
-        # If list is empty
-        if current is None:
-            raise IndexError("The Linked List is empty.")
-        for i in range(index):
-            if current.next is None:
-                raise IndexError("Index out of range.")
-            current = current.next
-        current.data = data
-
-    def __len__(self) -> int:
-        """
-        Return length of linked list i.e. number of nodes
-        >>> linked_list = LinkedList()
-        >>> len(linked_list)
-        0
-        >>> linked_list.insert_tail("head")
-        >>> len(linked_list)
-        1
-        >>> linked_list.insert_head("head")
-        >>> len(linked_list)
-        2
-        >>> _ = linked_list.delete_tail()
-        >>> len(linked_list)
-        1
-        >>> _ = linked_list.delete_head()
-        >>> len(linked_list)
-        0
-        """
-        return self.size
 
 
 def test_singly_linked_list() -> None:
