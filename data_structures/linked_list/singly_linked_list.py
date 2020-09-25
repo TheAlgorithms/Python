@@ -112,7 +112,7 @@ class LinkedList:
         return delete_node.data
 
     def is_empty(self) -> bool:
-        return self.head is None  # return True if head is none
+        return self.head is None
 
     def reverse(self):
         prev = None
