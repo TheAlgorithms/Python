@@ -47,15 +47,31 @@ class LinkedList:
     def __getitem__(self, index):
         """
         Indexing Support. Used to get a node at particular position
+        >>> linked_list = LinkedList()
+        >>> for i in range(0, 10):
+        ...     linked_list.insert_nth(i, i)
+        >>> all(str(linked_list[i]) == str(i) for i in range(0, 10))
+        True
         """
         if index < 0:
             raise ValueError("Negative indexes are not yet supported")
         for i, node in enumerate(self):
             if i == index:
-                return node.data
+                return node
 
     # Used to change the data of a particular node
     def __setitem__(self, index, data):
+        """
+        >>> linked_list = LinkedList()
+        >>> for i in range(0, 10):
+        ...     linked_list.insert_nth(i, i)
+        >>> linked_list[0] = 666
+        >>> linked_list[0]
+        666
+        >>> linked_list[5] = -666
+        >>> linked_list[5]
+        -666
+        """
         current = self.head
         # If list is empty
         if current is None:
@@ -163,7 +179,14 @@ def test_singly_linked_list() -> None:
     assert linked_list.delete_head() == 0
     assert linked_list.delete_nth(9) == 10
     assert linked_list.delete_tail() == 11
+    assert len(linked_list) == 9
     assert str(linked_list) == "->".join(str(i) for i in range(1, 10))
+
+    assert all(linked_list[i] == i + 1 for i in range(0, 9)) is True
+
+    for i in range(0, 9):
+        linked_list[i] = -i
+    assert all(linked_list[i] == -i for i in range(0, 9)) is True
 
 
 def main():
