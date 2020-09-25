@@ -15,17 +15,24 @@ def compute_digits(n: int) -> str:
     Returns the last n digits of NUMBER.
     >>> compute_digits(10)
     '8740021009'
+    >>> compute_digits(8)
+    '40021009'
+    >>> compute_digits(1)
+    '9'
     >>> compute_digits(-1)
-    -1
+    ''
     >>> compute_digits(8.3)
-    -1
+    ''
     """
     if n < 0 or not isinstance(n, int):
-        return -1
+        return ''
     MODULUS = 10 ** n
     NUMBER = 28433 * (pow(2, 7830457, MODULUS) + 1)
     return str(NUMBER % MODULUS)
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+    
+    testmod()
     print(f"{compute_digits(10)}")
