@@ -80,7 +80,7 @@ class LinkedList:
             self.head = new_node
         elif index == 0:
             new_node.next = self.head  # link new_node to head
-            self.head = new_node  # make NewNode as head
+            self.head = new_node
         else:
             temp = self.head
             for _ in range(index - 1):
