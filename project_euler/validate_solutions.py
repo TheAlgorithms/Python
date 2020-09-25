@@ -201,12 +201,14 @@ def test_project_euler() -> int:
                         answer = str(solution_module.solution(parameter))
                         if answer != expected:
                             wrong_answer.append(
-                                f"problem_{problem_number:02}/{solution_module.__name__}: "
+                                f"problem_{problem_number:02}/"
+                                f"{solution_module.__name__}: "
                                 f"Expected {expected} but got {answer}"
                             )
                     else:
                         solution_args.append(
-                            f"problem_{problem_number:02}/{solution_module.__name__}: {err}"
+                            f"problem_{problem_number:02}/"
+                            f"{solution_module.__name__}: {err}"
                         )
     if wrong_answer:
         print(f"{len(wrong_answer)} files contain wrong answers:\n")
