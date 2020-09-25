@@ -25,7 +25,7 @@ def compute_digits(n: int) -> str:
     ''
     """
     if n < 0 or not isinstance(n, int):
-        return ''
+        return ""
     MODULUS = 10 ** n
     NUMBER = 28433 * (pow(2, 7830457, MODULUS) + 1)
     return str(NUMBER % MODULUS)
@@ -33,6 +33,6 @@ def compute_digits(n: int) -> str:
 
 if __name__ == "__main__":
     from doctest import testmod
-    
+
     testmod()
     print(f"{compute_digits(10)}")
