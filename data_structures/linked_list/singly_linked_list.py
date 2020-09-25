@@ -42,7 +42,7 @@ class LinkedList:
         """
         String representation/visualization of a Linked Lists
         """
-        return str(tuple(self))
+        return "->".join([str(item) for item in self])
 
     def __str__(self) -> str:
         return repr(self)
@@ -70,13 +70,13 @@ class LinkedList:
         current.data = data
 
     def insert_tail(self, data) -> None:
-        self.insert_nth(self.size, data)
+        self.insert_nth(len(self), data)
 
     def insert_head(self, data) -> None:
         self.insert_nth(0, data)
 
     def insert_nth(self, index: int, data) -> None:
-        if not 0 <= index < len(self):
+        if not 0 <= index <= len(self):
             raise IndexError("list index out of range")
         new_node = Node(data)  # create a new node
         if self.head is None:
@@ -90,7 +90,6 @@ class LinkedList:
                 temp = temp.next
             new_node.next = temp.next
             temp.next = new_node
-        self.size += 1
 
     def print_list(self) -> None:  # print every node data
         print(self)
@@ -99,10 +98,10 @@ class LinkedList:
         return self.delete_nth(0)
 
     def delete_tail(self):  # delete from tail
-        return self.delete_nth(self.size - 1)
+        return self.delete_nth(len(self) - 1)
 
     def delete_nth(self, index: int):
-        if index < 0 or index > self.size - 1:  # test if index is valid
+        if not 0 <= index <= len(self) - 1:  # test if index is valid
             raise IndexError("list index out of range")
         delete_node = self.head  # default first node
         if index == 0:
@@ -113,7 +112,6 @@ class LinkedList:
                 temp = temp.next
             delete_node = temp.next
             temp.next = temp.next.next
-        self.size -= 1
         return delete_node.data
 
     def is_empty(self) -> bool:
@@ -175,7 +173,6 @@ def main():
     from doctest import testmod
 
     testmod()
-    test_singly_linked_list()
 
     linked_list = LinkedList()
     linked_list.insert_head(input("Inserting 1st at head ").strip())
