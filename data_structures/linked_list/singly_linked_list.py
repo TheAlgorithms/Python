@@ -91,7 +91,7 @@ class LinkedList:
     def print_list(self) -> None:  # print every node data
         print(self)
 
-    def delete_head(self):  # delete from head
+    def delete_head(self):
         return self.delete_nth(0)
 
     def delete_tail(self):  # delete from tail
