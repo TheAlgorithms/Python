@@ -36,7 +36,7 @@ class LinkedList:
         >>> len(linked_list)
         0
         """
-        return len(tuple(self))
+        return len(tuple(iter(self)))
 
     def __repr__(self):
         """
