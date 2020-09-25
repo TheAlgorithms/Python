@@ -75,7 +75,7 @@ class LinkedList:
     def insert_nth(self, index: int, data) -> None:
         if not 0 <= index <= len(self):
             raise IndexError("list index out of range")
-        new_node = Node(data)  # create a new node
+        new_node = Node(data)
         if self.head is None:
             self.head = new_node
         elif index == 0:
