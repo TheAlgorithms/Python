@@ -1,4 +1,6 @@
-# Created by sarathkaul on 12/11/19
+"""
+wiki: https://en.wikipedia.org/wiki/Pangram
+"""
 
 
 def check_pangram(
@@ -8,10 +10,16 @@ def check_pangram(
     A Pangram String contains all the alphabets at least once.
     >>> check_pangram("The quick brown fox jumps over the lazy dog")
     True
+    >>> check_pangram("Waltz, bad nymph, for quick jigs vex.")
+    True
+    >>> check_pangram("Jived fox nymph grabs quick waltz.")
+    True
     >>> check_pangram("My name is Unknown")
     False
     >>> check_pangram("The quick brown fox jumps over the la_y dog")
     False
+    >>> check_pangram()
+    True
     """
     frequency = set()
     input_str = input_str.replace(
@@ -24,7 +32,41 @@ def check_pangram(
     return True if len(frequency) == 26 else False
 
 
-if __name__ == "main":
-    check_str = "INPUT STRING"
-    status = check_pangram(check_str)
-    print(f"{check_str} is {'not ' if status else ''}a pangram string")
+def check_pangram_faster(
+    input_str: str = "The quick brown fox jumps over the lazy dog",
+) -> bool:
+    """
+    >>> check_pangram_faster("The quick brown fox jumps over the lazy dog")
+    True
+    >>> check_pangram("Waltz, bad nymph, for quick jigs vex.")
+    True
+    >>> check_pangram("Jived fox nymph grabs quick waltz.")
+    True
+    >>> check_pangram_faster("The quick brown fox jumps over the la_y dog")
+    False
+    >>> check_pangram_faster()
+    True
+    """
+    flag = [False] * 26
+    for char in input_str:
+        if char.islower():
+            flag[ord(char) - ord("a")] = True
+    return all(flag)
+
+
+def benchmark() -> None:
+    """
+    Benchmark code comparing different version.
+    """
+    from timeit import timeit
+
+    setup = "from __main__ import check_pangram, check_pangram_faster"
+    print(timeit("check_pangram()", setup=setup))
+    print(timeit("check_pangram_faster()", setup=setup))
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    benchmark()
