@@ -8,7 +8,7 @@ matplotlib
 mypy
 numpy
 opencv-python
-pandas
+pandas; python_version <= '3.8'
 pillow
 pytest
 pytest-cov
