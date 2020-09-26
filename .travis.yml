@@ -1,11 +1,11 @@
 os: linux
 dist: focal
-addons:
+addons:  # TEMPORARY: Just for Python 3.9-rc2
   apt:
     update: true
     packages:
-      - python3-numpy  # TEMPORARY: Just for Python 3.9-rc2
-
+      - python3-numpy
+      - python3-scipy
 language: python
 python: 3.9-dev
 cache: pip
