@@ -43,7 +43,7 @@ def main():
     score = model.score(X_train, y_train).round(3)
     print("Training score of GradientBoosting is :", score)
     print(
-        "the test score of GradienBoosting is :",
+        "the test score of GradientBoosting is :",
         model.score(X_test, y_test).round(3)
     )
     # Let us evaluation the model by finding the errors
