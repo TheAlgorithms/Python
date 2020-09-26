@@ -5,6 +5,8 @@ addons:  # TEMPORARY: Just for Python 3.9-rc2
     update: true
     packages:
       - python3-keras
+      - python3-pandas
+      - python3-sklearn
 language: python
 python: 3.9-dev
 cache: pip
