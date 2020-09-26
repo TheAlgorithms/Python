@@ -2,109 +2,111 @@
 
 """
 Author : Mohit Kumar
-Job Sequencing Problem implemented in python
+Job Sequencing Problem implemented in Python
 """
-from collections import namedtuple
-from typing import List
+from __future__ import annotations
 
 
-class Scheduling:
-    def __init__(self, jobs: List[int]) -> None:
+class Job:
+    def __init__(self, deadline: int, profit: int) -> None:
+        self.deadline = deadline
+        self.profit = profit
+
+    def __repr__(self) -> str:
         """
-        Assign jobs as instance of class Scheduling
+        >>> repr(Job(1, 2))
+        'Job(1, 2)
         """
-        self.jobs = jobs
+        return f"{self.__class__.__name__}({self.deadline}, {self.profit})"
 
-    def schedule(self, total_jobs: int, deadline: List[int]) -> List[int]:
-        """
-        Parameteres  : total_jobs  and list of deadline of jobs
-
-        Returns : List of jobs_id which are profitable  and can be done before
-                  deadline
-
-        >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
-        >>> a.schedule( 3, [3, 4, 5])
-        [(1, 2, 20), (2, 33, 30)]
-
-        >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
-        >>> a.schedule( 4, [13, 2, 33, 16])
-        [(1, 2, 20), (2, 33, 30), (3, 16, 40)]
-
-        """
-        self.j = [self.jobs[1]]
-        self.x = 2
-        while self.x < total_jobs:
-            self.k = self.j.copy()
-            self.k.append(self.jobs[self.x])
-            self.x += 1
-            if self.feasible(self.k, deadline):
-                self.j = self.k.copy()
-
-        return self.j
-
-    def feasible(self, profit_jobs: List[int], deadline: List[int]) -> bool:
-        """
-        Parameters : list of current profitable jobs within deadline
-                     list of deadline of jobs
-
-        Returns : true if k[-1] job is profitable to us else false
-
-        >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
-        >>> a.feasible( [0], [2, 13, 16, 33] )
-        True
+test_jobs: list[Job] = [
+    Job(0, 0),
+    Job(2, 46),
+    Job(4, 52),
+    Job(3, 30),
+    Job(3, 36),
+    Job(2, 56),
+    Job(1, 40),
+]
 
 
-        >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
-        >>> a.feasible([0], [2, 13, 16, 33] )
-        True
+def schedule(jobs: list[Job] = test_jobs) -> list[Job]:
+    """
+    Parameteres: jobs is a list of jobs to be scheduled
 
-        """
+    Returns : List of jobs which are profitable and can be done before
+                their deadline
 
-        self.tmp = profit_jobs
-        self.is_feasible = True
+    >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
+    >>> a.schedule( 3, [3, 4, 5])
+    [(1, 2, 20), (2, 33, 30)]
 
-        i = 0
-        j = 1
-        k = 0
+    >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
+    >>> a.schedule( 4, [13, 2, 33, 16])
+    [(1, 2, 20), (2, 33, 30), (3, 16, 40)]
 
-        while i < len(self.tmp):
-            while j < len(self.tmp):
-                self.index1 = self.jobs.index(self.tmp[i])
-                self.index2 = self.jobs.index(self.tmp[j])
-                j += 1
-                if deadline[self.index1] > deadline[self.index2]:
-                    (self.tmp[i], self.tmp[j]) = (
-                        self.tmp[j],
-                        self.tmp[i],
-                    )
-            i += 1
+    """
+    self.j = [self.jobs[1]]
+    self.x = 2
+    while self.x < total_jobs:
+        self.k = self.j.copy()
+        self.k.append(self.jobs[self.x])
+        self.x += 1
+        if self.feasible(self.k, deadline):
+            self.j = self.k.copy()
 
-        while k < len(self.tmp):
-            self.job = self.tmp[k]
-            if self.job in self.jobs:
-                self.jobindex = self.jobs.index(self.job)
-            else:
-                self.jobindex = 0
-            self.dlineval = deadline[self.jobindex]
-            self.ftest = k + 1
-            k += 1
-            if self.dlineval < self.ftest:
-                self.is_feasible = False
-                break
-        return self.is_feasible
+    return self.j
+
+def is_feasible(jobs: list[Job] = test_jobs) -> bool:
+    """
+    Parameters : list of current profitable jobs within deadline
+                    list of deadline of jobs
+
+    Returns : true if k[-1] job is profitable to us else false
+
+    >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
+    >>> a.feasible( [0], [2, 13, 16, 33] )
+    True
+    >>> a = Scheduling([(0, 13, 10),(1, 2, 20),(2, 33, 30),(3, 16, 40)])
+    >>> a.feasible([0], [2, 13, 16, 33] )
+    True
+    """
+
+    self.tmp = profit_jobs
+    self.is_feasible = True
+
+    i = 0
+    j = 1
+    k = 0
+
+    while i < len(self.tmp):
+        while j < len(self.tmp):
+            self.index1 = self.jobs.index(self.tmp[i])
+            self.index2 = self.jobs.index(self.tmp[j])
+            j += 1
+            if deadline[self.index1] > deadline[self.index2]:
+                (self.tmp[i], self.tmp[j]) = (
+                    self.tmp[j],
+                    self.tmp[i],
+                )
+        i += 1
+
+    while k < len(self.tmp):
+        self.job = self.tmp[k]
+        if self.job in self.jobs:
+            self.jobindex = self.jobs.index(self.job)
+        else:
+            self.jobindex = 0
+        self.dlineval = deadline[self.jobindex]
+        self.ftest = k + 1
+        k += 1
+        if self.dlineval < self.ftest:
+            self.is_feasible = False
+            break
+    return self.is_feasible
 
 
-def main():
-    job = namedtuple("job", "job_id deadline profit")
-    jobs = [
-        job(0, 0, 0),
-        job(1, 2, 46),
-        job(2, 4, 52),
-        job(3, 3, 30),
-        job(4, 3, 36),
-        job(5, 2, 56),
-        job(6, 1, 40),
-    ]
+def main(jobs: list[Job] = test_jobs):
     # midresult stores jobs in sorting order of deadline
     midresult = []
     for i in range(len(jobs)):
@@ -131,4 +133,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
+    main(jobs=test_jobs)
