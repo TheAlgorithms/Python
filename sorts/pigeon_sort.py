@@ -26,7 +26,6 @@ def pigeon_sort(array):
     if len(array) == 0:
         return array
 
-    # Finds the minimum and maximum of the array.
     _min, _max = min(array), max(array)
 
     # Compute the variables
