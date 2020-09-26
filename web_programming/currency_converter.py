@@ -172,10 +172,7 @@ ZMW	Zambian Kwacha
 
 
 def convert_currency(
-    from_: str = "USD", 
-    to: str = "INR", 
-    amount: float = 1.0, 
-    api_key: str = API_KEY
+    from_: str = "USD", to: str = "INR", amount: float = 1.0, api_key: str = API_KEY
 ) -> str:
     """https://www.amdoren.com/currency-api/"""
     params = locals()
