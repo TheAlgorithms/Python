@@ -76,9 +76,6 @@ class CircularLinkedList:
                 self.tail = temp
         return delete_node.data
 
-    def print_list(self) -> None:
-        print(self)
-
     def is_empty(self):
         return len(self) == 0
 
