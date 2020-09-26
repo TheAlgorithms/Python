@@ -1,15 +1,16 @@
 """
 This is used to convert the currency using the Amdoren Currency API
+https://www.amdoren.com
 """
 
+import os
 import requests
 
-API_KEY = ""  # <-- Put your API Key here
-URL_BASE = "https://www.amdoren.com/api/currency.php"
 
-# If you are using it on a website and free api key please add the below
-# line in your website
-# Powered by <a href="https://www.amdoren.com">Amdoren</a>
+URL_BASE = "https://www.amdoren.com/api/currency.php"
+if "AMDOREN_API_KEY" not in os.environ:
+    raise KeyError("Please put your API key in an environment variable.")
+API_KEY = os.environ["AMDOREN_API_KEY"]
 
 
 # Currency and their description
@@ -171,27 +172,23 @@ ZMW	Zambian Kwacha
 
 
 def convert_currency(
-    baseCurrency: str = "USD",
-    targetCurrency: str = "INR",
-    amount: float = 1.0,
-    apiKey: str = API_KEY,
+    from_: str = "USD", 
+    to: str = "INR", 
+    amount: float = 1.0, 
+    api_key: str = API_KEY
 ) -> str:
     """https://www.amdoren.com/currency-api/"""
-    res = requests.get(
-        f"{URL_BASE}?api_key={API_KEY}&from={baseCurrency}&to={targetCurrency}&\
-            amount={amount}"
-    ).json()
-    if res["error"] == 0:
-        return str(res["amount"])
-    return res["error_message"]
+    params = locals()
+    params["from"] = params.pop("from_")
+    res = requests.get(URL_BASE, params=params).json()
+    return str(res["amount"]) if res["error"] == 0 else res["error_message"]
 
 
 if __name__ == "__main__":
-    base_currency = input("Enter base currency: ").strip()
-    target_currency = input("Enter target currency: ").strip()
-    amount = float(input("Enter the amount: ").strip())
     print(
         convert_currency(
-            baseCurrency=base_currency, targetCurrency=target_currency, amount=amount
+            input("Enter from currency: ").strip(),
+            input("Enter to currency: ").strip(),
+            float(input("Enter the amount: ").strip()),
         )
     )
