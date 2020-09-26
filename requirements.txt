@@ -2,7 +2,7 @@ beautifulsoup4
 black
 fake_useragent
 flake8
-keras
+keras; python_version <= '3.8'
 lxml
 matplotlib
 mypy
@@ -13,8 +13,8 @@ pillow
 pytest
 pytest-cov
 requests
-scikit-fuzzy
+scikit-fuzzy; python_version <= '3.8'
 sklearn
 sympy
 tensorflow; python_version <= '3.8'
-xgboost
+xgboost; python_version <= '3.8'
