@@ -15,7 +15,7 @@ class Job:
     def __repr__(self) -> str:
         """
         >>> repr(Job(1, 2))
-        'Job(1, 2)
+        'Job(1, 2)'
         """
         return f"{self.__class__.__name__}({self.deadline}, {self.profit})"
 
