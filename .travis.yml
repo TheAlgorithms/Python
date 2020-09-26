@@ -12,7 +12,7 @@ jobs:
         - black --check . || true 
         - flake8 --ignore=E203,W503 --max-complexity=25 --max-line-length=88 --statistics --count .
         - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
-        - atp-get install python3-numpy  # TEMPORARY: Just for Python 3.9-rc2
+        - apt-get install python3-numpy  # TEMPORARY: Just for Python 3.9-rc2
         - pip install -r requirements.txt  # fast fail on black, flake8, validate_filenames
       script:
         - mypy --ignore-missing-imports . || true  # https://github.com/python/mypy/issues/7907
