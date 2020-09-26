@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def allocation_num(number_of_bytes: int, partitions: int) -> List[str]:
+def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
     """
     Divide a number of bytes into x partitions.
 

@@ -5,10 +5,10 @@ You are given a bitmask m and you want to efficiently iterate through all of
 its submasks. The mask s is submask of m if only bits that were included in
 bitmask are set
 """
-from typing import List
+from __future__ import annotations
 
 
-def list_of_submasks(mask: int) -> List[int]:
+def list_of_submasks(mask: int) -> list[int]:
 
     """
     Args:

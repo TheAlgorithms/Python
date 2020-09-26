@@ -100,7 +100,7 @@ def prim_heap(graph: list, root: Vertex) -> Iterator[tuple]:
         u.pi = None
     root.key = 0
 
-    h = [v for v in graph]
+    h = list(graph)
     hq.heapify(h)
 
     while h:

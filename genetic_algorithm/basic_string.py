@@ -5,8 +5,9 @@ https://en.wikipedia.org/wiki/Genetic_algorithm
 Author: D4rkia
 """
 
+from __future__ import annotations
+
 import random
-from typing import List, Tuple
 
 # Maximum size of the population.  bigger could be faster but is more memory expensive
 N_POPULATION = 200
@@ -20,7 +21,7 @@ MUTATION_PROBABILITY = 0.4
 random.seed(random.randint(0, 1000))
 
 
-def basic(target: str, genes: List[str], debug: bool = True) -> Tuple[int, int, str]:
+def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, str]:
     """
     Verify that the target contains no genes besides the ones inside genes variable.
 
@@ -69,7 +70,7 @@ def basic(target: str, genes: List[str], debug: bool = True) -> Tuple[int, int, 
         total_population += len(population)
 
         # Random population created now it's time to evaluate
-        def evaluate(item: str, main_target: str = target) -> Tuple[str, float]:
+        def evaluate(item: str, main_target: str = target) -> tuple[str, float]:
             """
             Evaluate how similar the item is with the target by just
             counting each char in the right position
@@ -84,7 +85,7 @@ def basic(target: str, genes: List[str], debug: bool = True) -> Tuple[int, int, 
         # Adding a bit of concurrency can make everything faster,
         #
         # import concurrent.futures
-        # population_score: List[Tuple[str, float]] = []
+        # population_score: list[tuple[str, float]] = []
         # with concurrent.futures.ThreadPoolExecutor(
         #                                   max_workers=NUM_WORKERS) as executor:
         #     futures = {executor.submit(evaluate, item) for item in population}
@@ -121,7 +122,7 @@ def basic(target: str, genes: List[str], debug: bool = True) -> Tuple[int, int, 
         ]
 
         # Select, Crossover and Mutate a new population
-        def select(parent_1: Tuple[str, float]) -> List[str]:
+        def select(parent_1: tuple[str, float]) -> list[str]:
             """Select the second parent and generate new population"""
             pop = []
             # Generate more child proportionally to the fitness score
@@ -135,7 +136,7 @@ def basic(target: str, genes: List[str], debug: bool = True) -> Tuple[int, int, 
                 pop.append(mutate(child_2))
             return pop
 
-        def crossover(parent_1: str, parent_2: str) -> Tuple[str, str]:
+        def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
             """Slice and combine two string in a random point"""
             random_slice = random.randint(0, len(parent_1) - 1)
             child_1 = parent_1[:random_slice] + parent_2[random_slice:]

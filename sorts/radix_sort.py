@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def radix_sort(list_of_ints: List[int]) -> List[int]:
+def radix_sort(list_of_ints: list[int]) -> list[int]:
     """
     radix_sort(range(15)) == sorted(range(15))
     True

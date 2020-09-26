@@ -35,13 +35,15 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 >>> st.query(0, 2)
 [1, 2, 3]
 """
-from typing import Callable, List, TypeVar
+from __future__ import annotations
+
+from typing import Callable, TypeVar
 
 T = TypeVar("T")
 
 
 class SegmentTree:
-    def __init__(self, arr: List[T], fnc: Callable[[T, T], T]) -> None:
+    def __init__(self, arr: list[T], fnc: Callable[[T, T], T]) -> None:
         """
         Segment Tree constructor, it works just with commutative combiner.
         :param arr: list of elements for the segment tree

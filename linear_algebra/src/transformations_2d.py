@@ -11,11 +11,12 @@ projection(45) = [[0.27596319193541496, 0.446998331800279],
 reflection(45) = [[0.05064397763545947, 0.893996663600558],
                   [0.893996663600558, 0.7018070490682369]]
 """
+from __future__ import annotations
+
 from math import cos, sin
-from typing import List
 
 
-def scaling(scaling_factor: float) -> List[List[float]]:
+def scaling(scaling_factor: float) -> list[list[float]]:
     """
     >>> scaling(5)
     [[5.0, 0.0], [0.0, 5.0]]
@@ -24,7 +25,7 @@ def scaling(scaling_factor: float) -> List[List[float]]:
     return [[scaling_factor * int(x == y) for x in range(2)] for y in range(2)]
 
 
-def rotation(angle: float) -> List[List[float]]:
+def rotation(angle: float) -> list[list[float]]:
     """
     >>> rotation(45)  # doctest: +NORMALIZE_WHITESPACE
     [[0.5253219888177297, -0.8509035245341184],
@@ -34,7 +35,7 @@ def rotation(angle: float) -> List[List[float]]:
     return [[c, -s], [s, c]]
 
 
-def projection(angle: float) -> List[List[float]]:
+def projection(angle: float) -> list[list[float]]:
     """
     >>> projection(45)  # doctest: +NORMALIZE_WHITESPACE
     [[0.27596319193541496, 0.446998331800279],
@@ -45,7 +46,7 @@ def projection(angle: float) -> List[List[float]]:
     return [[c * c, cs], [cs, s * s]]
 
 
-def reflection(angle: float) -> List[List[float]]:
+def reflection(angle: float) -> list[list[float]]:
     """
     >>> reflection(45)  # doctest: +NORMALIZE_WHITESPACE
     [[0.05064397763545947, 0.893996663600558],
