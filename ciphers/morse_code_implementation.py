@@ -1,6 +1,5 @@
 # Python program to implement Morse Code Translator
 
-
 # Dictionary representing the morse code chart
 MORSE_CODE_DICT = {
     "A": ".-",
@@ -39,13 +38,22 @@ MORSE_CODE_DICT = {
     "8": "---..",
     "9": "----.",
     "0": "-----",
-    ", ": "--..--",
+    "&": ".-...",
+    "@": ".--.-.",
+    ":": "---...",
+    ",": "--..--",
     ".": ".-.-.-",
+    "'": ".----.",
+    '"': ".-..-.",
     "?": "..--..",
     "/": "-..-.",
+    "=": "-...-",
+    "+": ".-.-.",
     "-": "-....-",
     "(": "-.--.",
     ")": "-.--.-",
+    # Exclamation mark is not in ITU-R recommendation
+    "!": "-.-.--",
 }
 
 
@@ -53,42 +61,24 @@ def encrypt(message):
     cipher = ""
     for letter in message:
         if letter != " ":
-
             cipher += MORSE_CODE_DICT[letter] + " "
         else:
+            cipher += "/ "
 
-            cipher += " "
-
-    return cipher
+    # Remove trailing space added on line 64
+    return cipher[:-1]
 
 
 def decrypt(message):
-
-    message += " "
-
     decipher = ""
-    citext = ""
-    for letter in message:
-
-        if letter != " ":
-
-            i = 0
-
-            citext += letter
-
+    letters = message.split(" ")
+    for letter in letters:
+        if letter != "/":
+            decipher += list(MORSE_CODE_DICT.keys())[
+                list(MORSE_CODE_DICT.values()).index(letter)
+            ]
         else:
-
-            i += 1
-
-            if i == 2:
-
-                decipher += " "
-            else:
-
-                decipher += list(MORSE_CODE_DICT.keys())[
-                    list(MORSE_CODE_DICT.values()).index(citext)
-                ]
-                citext = ""
+            decipher += " "
 
     return decipher
 
