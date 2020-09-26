@@ -132,7 +132,6 @@ def test_circular_linked_list() -> None:
     circular_linked_list.insert_nth(2, 3)
     assert str(circular_linked_list) == "->".join(str(i) for i in range(1, 6))
 
-
     assert circular_linked_list.is_empty() is False
 
 
