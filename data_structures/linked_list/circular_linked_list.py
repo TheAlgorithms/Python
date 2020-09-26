@@ -113,6 +113,7 @@ def test_circular_linked_list() -> None:
     except IndexError:
         assert True
 
+    assert circular_linked_list.is_empty() is True
     for i in range(5):
         assert len(circular_linked_list) == i
         circular_linked_list.insert_nth(i, i + 1)
