@@ -14,7 +14,7 @@ pytest
 pytest-cov
 requests
 scikit-fuzzy; python_version <= '3.8'
-sklearn
+sklearn; python_version <= '3.8'
 sympy
 tensorflow; python_version <= '3.8'
 xgboost; python_version <= '3.8'
