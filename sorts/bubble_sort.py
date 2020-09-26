@@ -8,17 +8,23 @@ def bubble_sort(collection):
     Examples:
     >>> bubble_sort([0, 5, 2, 3, 2])
     [0, 2, 2, 3, 5]
-
-    >>> bubble_sort([])
-    []
-
-    >>> bubble_sort([-2, -45, -5])
-    [-45, -5, -2]
-
-    >>> bubble_sort([-23, 0, 6, -4, 34])
-    [-23, -4, 0, 6, 34]
-
+    >>> bubble_sort([0, 5, 2, 3, 2]) == sorted([0, 5, 2, 3, 2])
+    True
+    >>> bubble_sort([]) == sorted([])
+    True
+    >>> bubble_sort([-2, -45, -5]) == sorted([-2, -45, -5])
+    True
     >>> bubble_sort([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
+    True
+    >>> bubble_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
+    True
+    >>> import random
+    >>> collection = random.sample(range(-50, 50), 100)
+    >>> bubble_sort(collection) == sorted(collection)
+    True
+    >>> import string
+    >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
+    >>> bubble_sort(collection) == sorted(collection)
     True
     """
     length = len(collection)
@@ -34,7 +40,10 @@ def bubble_sort(collection):
 
 
 if __name__ == "__main__":
+    import doctest
     import time
+
+    doctest.testmod()
 
     user_input = input("Enter numbers separated by a comma:").strip()
     unsorted = [int(item) for item in user_input.split(",")]
