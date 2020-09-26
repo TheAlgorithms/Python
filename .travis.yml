@@ -4,8 +4,7 @@ addons:  # TEMPORARY: Just for Python 3.9-rc2
   apt:
     update: true
     packages:
-      - python3-numpy
-      - python3-scipy
+      - python3-keras
 language: python
 python: 3.9-dev
 cache: pip
