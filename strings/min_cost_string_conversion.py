@@ -61,8 +61,7 @@ def compute_transform_tables(
 
 def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
     if i == 0 and j == 0:
-        seq = []
-        return seq
+        return []
     else:
         if ops[i][j][0] == "C" or ops[i][j][0] == "R":
             seq = assemble_transformation(ops, i - 1, j - 1)
