@@ -8,9 +8,10 @@ import requests
 
 
 URL_BASE = "https://www.amdoren.com/api/currency.php"
-if "AMDOREN_API_KEY" not in os.environ:
+TESTING = os.getenv("CONTINUOUS_INTEGRATION", False)
+API_KEY = os.getenv("AMDOREN_API_KEY")
+if not API_KEY and not TESTING:
     raise KeyError("Please put your API key in an environment variable.")
-API_KEY = os.environ["AMDOREN_API_KEY"]
 
 
 # Currency and their description
