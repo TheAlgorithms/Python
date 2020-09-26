@@ -14,7 +14,7 @@ class CircularLinkedList:
 
     def __iter__(self):
         node = self.head
-        while self.head is not None:
+        while self.head:
             yield node.data
             node = node.next
             if node == self.head:
