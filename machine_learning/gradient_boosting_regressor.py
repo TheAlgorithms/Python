@@ -38,13 +38,13 @@ def main():
     )
     # training the model
     model.fit(X_train, y_train)
-    """let have a look on the train and test score
-    to see how good the model fit the data"""
-    score = model.score(X_train, y_train).round(3)
-    print("Training score of GradientBoosting is :", score)
+    # to see how good the model fit the data
+    training_score = model.score(X_train, y_train).round(3)
+    test_score = model.score(X_test, y_test).round(3)
+    print("Training score of GradientBoosting is :", training_score)
     print(
-        "the test score of GradientBoosting is :",
-        model.score(X_test, y_test).round(3)
+        "The test score of GradientBoosting is :",
+        test_score
     )
     # Let us evaluation the model by finding the errors
     y_pred = model.predict(X_test)
