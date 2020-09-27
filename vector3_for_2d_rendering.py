@@ -7,10 +7,6 @@ import math, copy
 __version__ = "2020.9.26"
 __author__ = "xcodz-dot"
 
-AXIS_X = "x"
-AXIS_Y = "y"
-AXIS_Z = "z"
-
 
 def convert_to_2d(x: int, y: int, z: int, scale: int, distance: int) -> tuple:
     """
