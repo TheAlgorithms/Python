@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import importlib.util
 import pathlib
-from typing import Generator, Tuple
 from types import ModuleType
+from typing import Generator, Tuple
 
 import pytest
 
@@ -737,6 +737,8 @@ ANSWERS: Tuple[Tuple[int, str], ...] = (
     (725, "4598797036650685"),
 )
 
+error_msgs = []
+
 
 def generate_solution_modules(
     dir_path: pathlib.Path,
@@ -764,7 +766,18 @@ def test_project_euler(subtests, problem_number: int, expected: str):
             with subtests.test(
                 msg=f"Problem {problem_number} tests", solution_module=solution_module
             ):
-                answer = str(solution_module.solution())
-                assert answer == expected, f"Expected {expected} but got {answer}"
+                try:
+                    answer = str(solution_module.solution())
+                    assert answer == expected, f"Expected {expected} but got {answer}"
+                except (AssertionError, AttributeError, TypeError) as err:
+                    error_msgs.append(
+                        f"problem_{problem_number}/{solution_module.__name__}: {err}"
+                    )
+                    raise
     else:
         pytest.skip("Solution doesn't exists yet.")
+
+
+def test_print_error_msgs():
+    if error_msgs:
+        print("\n" + "\n".join(error_msgs) + "\n")
