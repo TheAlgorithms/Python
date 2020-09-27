@@ -1,5 +1,5 @@
 """
-renders 3d point for 2d surfaces
+Render 3d points on 2d surfaces.
 """
 
 import math, copy
