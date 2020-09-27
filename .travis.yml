@@ -12,14 +12,14 @@ jobs:
         - black --check . || true 
         - flake8 --ignore=E203,W503 --max-complexity=25 --max-line-length=88 --statistics --count .
         - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
-        - project_euler/validate_solutions.py  # test project Euler solutions
         - pip install -r requirements.txt  # fast fail on black, flake8, validate_filenames
       script:
         - mypy --ignore-missing-imports . || true  # https://github.com/python/mypy/issues/7907
         - pytest --doctest-modules --ignore=project_euler/ --durations=10 --cov-report=term-missing:skip-covered --cov=. .
     - name: Project Euler
-      before_script: pip install pytest-cov
+      before_script: pip install pytest-cov pytest-subtests
       script:
+        - pytest project_euler/validate_solutions.py  # fail fast on wrong solution
         - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
