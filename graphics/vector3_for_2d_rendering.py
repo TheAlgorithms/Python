@@ -34,7 +34,7 @@ def rotate(x: float, y: float, z: float, axis: str,
     >>> rotate(1.0, 2.0, 3.0, 'y', 90.0)
     (3.130524675073759, 2.0, 0.4470070007889556)
     """
-    if angle > 360 or angle < 0:
+    if not 0 <= angle <= 360:
         raise ValueError("Angle is supposed to be in between 0, 360")
     input_variables = dict(locals())
     del input_variables["axis"]
