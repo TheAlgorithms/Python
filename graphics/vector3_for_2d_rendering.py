@@ -10,7 +10,7 @@ __author__ = "xcodz-dot"
 
 
 def convert_to_2d(x: float, y: float, z: float, scale: float,
-                  distance: float) -> (float, float):
+                  distance: float) -> tuple[float, float]:
     """
     Converts 3d point to a 2d drawable point
 
