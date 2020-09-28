@@ -16,16 +16,8 @@ def convert_to_2d(x: float, y: float, z: float, scale: float,
     >>> convert_to_2d(1.0, 2.0, 3.0, 10.0, 10.0)
     (7.6923076923076925, 15.384615384615385)
     """
-    if not isinstance(x, (float, int)):
-        raise ValueError("x must be float or int")
-    if not isinstance(y, (float, int)):
-        raise ValueError("y must be float or int")
-    if not isinstance(z, (float, int)):
-        raise ValueError("z must be float or int")
-    if not isinstance(scale, (float, int)):
-        raise ValueError("scale must be float or int")
-    if not isinstance(distance, (float, int)):
-        raise ValueError("distance must be float")
+    if not all(isinstance(val, (float, int)) for val in locals().values()):
+        raise ValueError(f"Input values must either be float or int: {list(locals().values())}")
     projected_x = ((x * distance) / (z + distance)) * scale
     projected_y = ((y * distance) / (z + distance)) * scale
     return projected_x, projected_y
