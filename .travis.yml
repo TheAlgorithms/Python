@@ -17,7 +17,9 @@ jobs:
         - mypy --ignore-missing-imports . || true  # https://github.com/python/mypy/issues/7907
         - pytest --doctest-modules --ignore=project_euler/ --durations=10 --cov-report=term-missing:skip-covered --cov=. .
     - name: Project Euler
-      before_script: pip install pytest-cov
+      before_script:
+        - pip install pytest-cov pytest-subtests
+        - pytest --tb=no --no-summary --capture=no project_euler/validate_solutions.py || true  # fail fast on wrong solution
       script:
         - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
 after_success:
