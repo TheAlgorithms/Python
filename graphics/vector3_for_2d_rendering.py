@@ -8,9 +8,11 @@ import math
 __version__ = "2020.9.26"
 __author__ = "xcodz-dot, cclaus, dhruvmanila"
 
+from typing import Tuple
+
 
 def convert_to_2d(x: float, y: float, z: float, scale: float,
-                  distance: float) -> tuple[float, float]:
+                  distance: float) -> Tuple[float, float]:
     """
     Converts 3d point to a 2d drawable point
 
@@ -26,7 +28,7 @@ def convert_to_2d(x: float, y: float, z: float, scale: float,
 
 
 def rotate(x: float, y: float, z: float, axis: str,
-           angle: float) -> tuple[float, float, float]:
+           angle: float) -> Tuple[float, float, float]:
     """
     rotate a point around a certain axis with a certain angle
     angle can be any integer between 1, 360 and axis can be any one of
@@ -63,9 +65,10 @@ def rotate(x: float, y: float, z: float, axis: str,
 
     return new_x, new_y, new_z
 
+
 if __name__ == "__main__":
     import doctest
 
-    doctest.modtest()
+    doctest.testmod()
     print(f"{convert_to_2d(1.0, 2.0, 3.0, 10.0, 10.0) = }")
     print(f"{rotate(1.0, 2.0, 3.0, 'y', 90.0) = }")
