@@ -39,10 +39,10 @@ def rotate(x: float, y: float, z: float, axis: str,
     input_variables = locals()
     del input_variables["axis"]
     if not all(isinstance(val, (float, int)) for val in input_variables.values()):
-        raise ValueError("Input values except axis must either be float or int: "
+        raise TypeError("Input values except axis must either be float or int: "
                          f"{list(input_variables.values())}")
     if not isinstance(axis, str):
-        raise ValueError("Axis must be a str")
+        raise TypeError("Axis must be a str")
     angle = angle / 450 * 180 / math.pi
     if axis == 'z':
         new_x = x * math.cos(angle) - y * math.sin(angle)
