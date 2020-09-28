@@ -35,15 +35,16 @@ def rotate(x: float, y: float, z: float, axis: str,
     >>> rotate(1.0, 2.0, 3.0, 'y', 90.0)
     (3.130524675073759, 2.0, 0.4470070007889556)
     """
-    if not 0 <= angle <= 360:
-        raise ValueError("Angle is supposed to be in between 0, 360")
+    if not isinstance(axis, str):
+        raise TypeError("Axis must be a str")
     input_variables = locals()
     del input_variables["axis"]
     if not all(isinstance(val, (float, int)) for val in input_variables.values()):
         raise TypeError("Input values except axis must either be float or int: "
                         f"{list(input_variables.values())}")
-    if not isinstance(axis, str):
-        raise TypeError("Axis must be a str")
+    angle %= 360  # wrap around if angle >= 360
+    if not 0 <= angle < 360:
+        raise ValueError("Angle is supposed to be in between 0, 360")
     angle = angle / 450 * 180 / math.pi
     if axis == 'z':
         new_x = x * math.cos(angle) - y * math.sin(angle)
@@ -61,3 +62,10 @@ def rotate(x: float, y: float, z: float, axis: str,
         raise ValueError("not a valid axis, choose one of 'x', 'y', 'z'")
 
     return new_x, new_y, new_z
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.modtest()
+    print(f"{convert_to_2d(1.0, 2.0, 3.0, 10.0, 10.0) = }")
+    print(f"{rotate(1.0, 2.0, 3.0, 'y', 90.0) = }")
