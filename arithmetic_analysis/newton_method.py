@@ -36,7 +36,7 @@ def newton(
         try:
             next_guess = prev_guess - function(prev_guess) / derivative(prev_guess)
         except ZeroDivisionError:
-            raise ZeroDivisionError("Could not find root")
+            raise ZeroDivisionError("Could not find root") from None
         if abs(prev_guess - next_guess) < 10 ** -5:
             return next_guess
         prev_guess = next_guess
