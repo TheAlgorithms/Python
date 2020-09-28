@@ -1,7 +1,7 @@
 import os
 import sys
 
-import rsa_key_generator as rkg
+from . import rsa_key_generator as rkg
 
 DEFAULT_BLOCK_SIZE = 128
 BYTE_SIZE = 256

@@ -2,7 +2,7 @@
 import math
 import random
 
-from hill_climbing import SearchProblem
+from .hill_climbing import SearchProblem
 
 
 def simulated_annealing(
