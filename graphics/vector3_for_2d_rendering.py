@@ -6,7 +6,7 @@ from __future__ import annotations
 import math
 
 __version__ = "2020.9.26"
-__author__ = "xcodz-dot"
+__author__ = "xcodz-dot, cclaus, dhruvmanila"
 
 
 def convert_to_2d(x: float, y: float, z: float, scale: float,
