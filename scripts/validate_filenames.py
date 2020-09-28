@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 import os
 
-from build_directory_md import good_file_paths
+try:
+    from .build_directory_md import good_file_paths
+except ImportError:
+    from build_directory_md import good_file_paths
 
 filepaths = list(good_file_paths())
 assert filepaths, "good_file_paths() failed!"
