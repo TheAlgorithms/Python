@@ -2,6 +2,7 @@
 render 3d points for 2d surfaces.
 """
 
+from __future__ import annotations
 import math
 
 __version__ = "2020.9.26"
