@@ -22,7 +22,8 @@ def heaps(arr: list) -> list:
     >>> from itertools import permutations
     >>> sorted(heaps([1,2,3])) == sorted(permutations([1,2,3]))
     True
-    >>> all(sorted(heaps(x)) == sorted(permutations(x)) for x in ([], [0], [-1, 1], [1, 2, 3]))
+    >>> all(sorted(heaps(x)) == sorted(permutations(x))
+    ...     for x in ([], [0], [-1, 1], [1, 2, 3]))
     True
     """
 
