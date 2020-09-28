@@ -36,7 +36,7 @@ def rotate(x: float, y: float, z: float, axis: str,
     """
     if not 0 <= angle <= 360:
         raise ValueError("Angle is supposed to be in between 0, 360")
-    input_variables = dict(locals())
+    input_variables = locals()
     del input_variables["axis"]
     if not all(isinstance(val, (float, int)) for val in input_variables.values()):
         raise ValueError("Input values except axis must either be float or int: "
