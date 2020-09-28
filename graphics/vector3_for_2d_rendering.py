@@ -90,6 +90,13 @@ def rotate(x: float, y: float, z: float, axis: str,
 
     return new_x, new_y, new_z
 
+if __name__ == "__main__":
+    import doctest
+
+    doctest.modtest()
+    print(f"{convert_to_2d(1.0, 2.0, 3.0, 10.0, 10.0) = }")
+    print(f"{rotate(1.0, 2.0, 3.0, 'y', 90.0) = }")
+
 
 if __name__ == "__main__":
     import doctest
