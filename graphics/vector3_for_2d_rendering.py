@@ -26,7 +26,7 @@ def convert_to_2d(x: float, y: float, z: float, scale: float,
 
 
 def rotate(x: float, y: float, z: float, axis: str,
-           angle: float) -> (float, float, float):
+           angle: float) -> tuple[float, float, float]:
     """
     rotate a point around a certain axis with a certain angle
     angle can be any integer between 1, 360 and axis can be any one of
