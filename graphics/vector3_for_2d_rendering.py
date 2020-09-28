@@ -18,7 +18,7 @@ def convert_to_2d(x: float, y: float, z: float, scale: float,
     """
     if not all(isinstance(val, (float, int)) for val in locals().values()):
         raise TypeError("Input values must either be float or int: "
-                         f"{list(locals().values())}")
+                        f"{list(locals().values())}")
     projected_x = ((x * distance) / (z + distance)) * scale
     projected_y = ((y * distance) / (z + distance)) * scale
     return projected_x, projected_y
@@ -40,7 +40,7 @@ def rotate(x: float, y: float, z: float, axis: str,
     del input_variables["axis"]
     if not all(isinstance(val, (float, int)) for val in input_variables.values()):
         raise TypeError("Input values except axis must either be float or int: "
-                         f"{list(input_variables.values())}")
+                        f"{list(input_variables.values())}")
     if not isinstance(axis, str):
         raise TypeError("Axis must be a str")
     angle = angle / 450 * 180 / math.pi
