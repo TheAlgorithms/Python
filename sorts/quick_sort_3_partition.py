@@ -1,4 +1,4 @@
-def quick_sort_3partition(sorting: list, left: int, right: int):
+def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
     if right <= left:
         return
     a = i = left
