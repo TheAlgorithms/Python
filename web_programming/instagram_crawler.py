@@ -28,7 +28,7 @@ class InstagramUser:
         self.username = username
         self.url = f"https://www.instagram.com/{username}/"
 
-    def get_json(self):
+    def get_json(self) -> dict:
         """
         return json of user information
         """
