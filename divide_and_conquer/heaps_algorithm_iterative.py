@@ -1,5 +1,5 @@
 """
-Heap's algorithm (iterative) returns the list of all permutations possible from a list.
+Heap's (iterative) algorithm returns the list of all permutations possible from a list.
 It minimizes movement by generating each permutation from the previous one
 by swapping only two elements.
 More information:
