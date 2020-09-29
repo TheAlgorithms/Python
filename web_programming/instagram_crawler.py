@@ -4,9 +4,9 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-headers = \
-    {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'}
+headers = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+}
 
 # Usage
 """
@@ -26,7 +26,7 @@ class Instagram(object):
 
     def __init__(self, username):
         self.username = username
-        self.url = 'https://www.instagram.com/{}/'.format(username)
+        self.url = "https://www.instagram.com/{}/".format(username)
 
     def get_json(self):
         """
@@ -34,7 +34,7 @@ class Instagram(object):
         """
 
         html = requests.get(self.url, headers=headers)
-        soup = BeautifulSoup(html.text, 'html.parser')
+        soup = BeautifulSoup(html.text, "html.parser")
         try:
             info = html_1(soup)
             return info
@@ -48,7 +48,7 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        followers = info['edge_followed_by']['count']
+        followers = info["edge_followed_by"]["count"]
         return followers
 
     def get_followings(self):
@@ -57,7 +57,7 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        following = info['edge_follow']['count']
+        following = info["edge_follow"]["count"]
         return following
 
     def get_posts(self):
@@ -66,7 +66,7 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        posts = info['edge_owner_to_timeline_media']['count']
+        posts = info["edge_owner_to_timeline_media"]["count"]
         return posts
 
     def get_biography(self):
@@ -75,7 +75,7 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        bio = info['biography']
+        bio = info["biography"]
         return bio
 
     def get_fullname(self):
@@ -84,7 +84,7 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        fullname = info['full_name']
+        fullname = info["full_name"]
         return fullname
 
     def get_username(self):
@@ -93,7 +93,7 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        username = info['username']
+        username = info["username"]
         return username
 
     def get_profile_pic(self):
@@ -102,7 +102,7 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        pic = info['profile_pic_url_hd']
+        pic = info["profile_pic_url_hd"]
         return pic
 
     def get_website(self):
@@ -111,17 +111,17 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        external_url = info['external_url']
+        external_url = info["external_url"]
         return external_url
 
     def get_email(self):
         """
-        return the email id of user if 
+        return the email id of user if
         available
         """
 
         info = self.get_json()
-        return info['business_email']
+        return info["business_email"]
 
     def is_verified(self):
         """
@@ -129,7 +129,7 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        return info['is_verified']
+        return info["is_verified"]
 
     def is_private(self):
         """
@@ -137,40 +137,30 @@ class Instagram(object):
         """
 
         info = self.get_json()
-        return info['is_private']
+        return info["is_private"]
 
 
 def html_1(soup):
-    """
-    parse the html type-1 of instagram
-    page
-    """
-    
-    scripts = soup.find_all('script')
+    scripts = soup.find_all("script")
     main_scripts = scripts[4]
     data = main_scripts.contents[0]
-    info_object = data[data.find('{"config"'):-1]
+    info_object = data[data.find('{"config"') : -1]
     info = json.loads(info_object)
-    info = info['entry_data']['ProfilePage'][0]['graphql']['user']
+    info = info["entry_data"]["ProfilePage"][0]["graphql"]["user"]
     return info
 
 
 def html_2(soup):
-    """
-    if html_1 fails, html_2 in action
-    parse the html type-2 of instagram
-    page
-    """
-    scripts = soup.find_all('script')
+    scripts = soup.find_all("script")
     main_scripts = scripts[3]
     data = main_scripts.contents[0]
-    info_object = data[data.find('{"config"'):-1]
+    info_object = data[data.find('{"config"') : -1]
     info = json.loads(info_object)
-    info = info['entry_data']['ProfilePage'][0]['graphql']['user']
+    info = info["entry_data"]["ProfilePage"][0]["graphql"]["user"]
     return info
 
 
-user = Instagram('github')
+user = Instagram("github")
 print(user.is_verified())
 print(user.get_biography())
 
