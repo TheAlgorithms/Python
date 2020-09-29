@@ -78,7 +78,7 @@ class InstagramUser:
         return info["biography"]
 
     @property
-    def get_fullname(self) -> str:
+    def fullname(self) -> str:
         """
         return fullname of the user
         """
