@@ -53,7 +53,7 @@ def _create_spd_matrix(N: np.int64) -> np.array:
     A = np.random.randn(N, N)
     A = np.dot(A, A.T)
 
-    assert _is_matrix_spd(A) is True
+    assert _is_matrix_spd(A)
 
     return A
 
