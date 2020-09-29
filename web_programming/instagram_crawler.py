@@ -68,7 +68,7 @@ class InstagramUser:
         return info["edge_owner_to_timeline_media"]["count"]
 
     @property
-    def get_biography(self) -> str:
+    def biography(self) -> str:
         """
         return biography of user
         """
