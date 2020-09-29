@@ -19,7 +19,7 @@ Built for developers.
 """
 
 
-class Instagram(object):
+class InstagramUser:
     """
     Class Instagram crawl instagram user information
     """
@@ -163,4 +163,3 @@ def html_2(soup):
 user = Instagram("github")
 print(user.is_verified())
 print(user.get_biography())
-
