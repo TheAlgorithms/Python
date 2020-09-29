@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 import json
 
 headers = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
 }
 
 # Usage
@@ -165,4 +166,3 @@ if __name__ == "__main__":
     user = InstagramUser("github")
     print(f"{user.is_verified = }")
     print(f"{user.get_biography = }")
-
