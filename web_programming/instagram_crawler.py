@@ -7,14 +7,15 @@ import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
-headers={"UserAgent": UserAgent().random}
+headers = {"UserAgent": UserAgent().random}
+
 
 def extract_user_profile(script) -> dict:
     """
     May raise json.decoder.JSONDecodeError
     """
     data = script.contents[0]
-    info = json.loads(data[data.find('{"config"') : -1])
+    info = json.loads(data[data.find('{"config"'): -1])
     return info["entry_data"]["ProfilePage"][0]["graphql"]["user"]
 
 
@@ -49,7 +50,7 @@ class InstagramUser:
         return f"{self.__class__.__name__}('{self.username}')"
 
     def __str__(self) -> str:
-        return f"Instagram user {self.fullname} ({self.username}) is {self.biography}"
+        return f"{self.fullname} ({self.username}) is {self.biography}"
 
     @property
     def username(self) -> str:
