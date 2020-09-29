@@ -11,9 +11,9 @@ headers = {
 # Usage
 """
 >>> user = Instagram("github")
->>> user.is_verified()
+>>> user.is_verified
 True
->>> user.get_biography()
+>>> user.get_biography
 Built for developers.
 
 """
@@ -26,7 +26,7 @@ class InstagramUser:
 
     def __init__(self, username):
         self.username = username
-        self.url = "https://www.instagram.com/{}/".format(username)
+        self.url = f"https://www.instagram.com/{username}/"
 
     def get_json(self):
         """
@@ -36,85 +36,84 @@ class InstagramUser:
         html = requests.get(self.url, headers=headers)
         soup = BeautifulSoup(html.text, "html.parser")
         try:
-            info = html_1(soup)
-            return info
-        except:
-            info = html_2(soup)
-            return info
+            return html_1(soup)
+        except json.decoder.JSONDecodeError:
+            return html_2(soup)
 
-    def get_followers(self):
+    @property
+    def no_of_followers(self) -> int:
         """
         return number of followers
         """
 
         info = self.get_json()
-        followers = info["edge_followed_by"]["count"]
-        return followers
+        return info["edge_followed_by"]["count"]
 
-    def get_followings(self):
+    @property
+    def no_of_followings(self) -> int:
         """
         return number of followings
         """
 
         info = self.get_json()
-        following = info["edge_follow"]["count"]
-        return following
+        return info["edge_follow"]["count"]
 
-    def get_posts(self):
+    @property
+    def no_of_posts(self) -> int:
         """
         return number of posts
         """
 
         info = self.get_json()
-        posts = info["edge_owner_to_timeline_media"]["count"]
-        return posts
+        return info["edge_owner_to_timeline_media"]["count"]
 
-    def get_biography(self):
+    @property
+    def get_biography(self) -> str:
         """
         return biography of user
         """
 
         info = self.get_json()
-        bio = info["biography"]
-        return bio
+        return info["biography"]
 
-    def get_fullname(self):
+    @property
+    def get_fullname(self) -> str:
         """
         return fullname of the user
         """
 
         info = self.get_json()
-        fullname = info["full_name"]
-        return fullname
+        return info["full_name"]
 
-    def get_username(self):
+    @property
+    def get_username(self) -> str:
         """
         return the username of the user
         """
 
         info = self.get_json()
-        username = info["username"]
-        return username
+        return info["username"]
 
-    def get_profile_pic(self):
+    @property
+    def get_profile_pic(self) -> str:
         """
         return the link of profile picture
         """
 
         info = self.get_json()
-        pic = info["profile_pic_url_hd"]
-        return pic
+        return info["profile_pic_url_hd"]
 
-    def get_website(self):
+    @property
+    def get_website(self) -> str:
         """
         return the users's website link
         """
 
         info = self.get_json()
-        external_url = info["external_url"]
-        return external_url
+        return info["external_url"]
 
-    def get_email(self):
+    @property
+    def get_email(self) -> str:
         """
         return the email id of user if
         available
@@ -123,7 +122,8 @@ class InstagramUser:
         info = self.get_json()
         return info["business_email"]
 
-    def is_verified(self):
+    @property
+    def is_verified(self) -> bool:
         """
         check the user is verified
         """
@@ -131,7 +131,8 @@ class InstagramUser:
         info = self.get_json()
         return info["is_verified"]
 
-    def is_private(self):
+    @property
+    def is_private(self) -> bool:
         """
         check user is private
         """
@@ -160,6 +161,9 @@ def html_2(soup):
     return info
 
 
-user = Instagram("github")
-print(user.is_verified())
-print(user.get_biography())
+if __name__ == "__main__":
+    user = InstagramUser("github")
+    print(f"{user.is_verified = }")
+    print(f"{user.get_biography = }")
+
+    
