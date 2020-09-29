@@ -1,4 +1,4 @@
-def quick_sort_3partition(sorting: list, left: int, right: int) -> list:
+def quick_sort_3partition(sorting: list, left: int, right: int):
     if right <= left:
         return
     a = i = left
@@ -18,25 +18,28 @@ def quick_sort_3partition(sorting: list, left: int, right: int) -> list:
     quick_sort_3partition(sorting, b + 1, right)
 
 
-def quick_sort_3part(sorting: list) -> list:
+def three_way_radix_quicksort(sorting: list) -> list:
     """
-    Another quick sort algorithm, returns a new sorted list
+    Three-way radix quicksort:
+    https://en.wikipedia.org/wiki/Quicksort#Three-way_radix_quicksort
+    First divide the list into three parts.
+    Then recursively sort the "less than" and "greater than" partitions.
 
-    >>> quick_sort_3part([])
+    >>> three_way_radix_quicksort([])
     []
-    >>> quick_sort_3part([1])
+    >>> three_way_radix_quicksort([1])
     [1]
-    >>> quick_sort_3part([-5, -2, 1, -2, 0, 1])
+    >>> three_way_radix_quicksort([-5, -2, 1, -2, 0, 1])
     [-5, -2, -2, 0, 1, 1]
-    >>> quick_sort_3part([1, 2, 5, 1, 2, 0, 0, 5, 2, -1])
+    >>> three_way_radix_quicksort([1, 2, 5, 1, 2, 0, 0, 5, 2, -1])
     [-1, 0, 0, 1, 1, 2, 2, 2, 5, 5]
     """
     if len(sorting) <= 1:
         return sorting
     return (
-        quick_sort_3part([i for i in sorting if i < sorting[0]])
+        three_way_radix_quicksort([i for i in sorting if i < sorting[0]])
         + [i for i in sorting if i == sorting[0]]
-        + quick_sort_3part([i for i in sorting if i > sorting[0]])
+        + three_way_radix_quicksort([i for i in sorting if i > sorting[0]])
     )
 
 
