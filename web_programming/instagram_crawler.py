@@ -14,7 +14,7 @@ headers = {
 
 def extract_user_profile(script) -> dict:
     """
-    May raise json.decoder.JSONDecodeError
+    May raise json.decoder.JSONDecodeError or KeyError
     """
     data = script.contents[0]
     info = json.loads(data[data.find('{"config"') : -1])
@@ -45,7 +45,7 @@ class InstagramUser:
         scripts = BeautifulSoup(html, "html.parser").find_all("script")
         try:
             return extract_user_profile(scripts[4])
-        except json.decoder.JSONDecodeError:
+        except (json.decoder.JSONDecodeError, KeyError):
             return extract_user_profile(scripts[3])
 
     def __repr__(self) -> str:
