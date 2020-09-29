@@ -5,12 +5,9 @@ import json
 
 import requests
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 
-headers = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
-}
-
+headers={"UserAgent": UserAgent().random}
 
 def extract_user_profile(script) -> dict:
     """
