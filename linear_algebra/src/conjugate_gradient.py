@@ -30,10 +30,7 @@ def _is_matrix_spd(A: np.array) -> bool:
     eigen_values, _ = np.linalg.eigh(A)
 
     # Check sign of all eigenvalues.
-    if np.all(eigen_values > 0):
-        return True
-    else:
-        return False
+    return np.all(eigen_values > 0)
 
 
 def _create_spd_matrix(N: np.int64) -> np.array:
