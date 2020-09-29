@@ -105,7 +105,7 @@ def test_instagram_user(username: str = "github") -> None:
     >>> test_instagram_user()
     """
     from os import getenv
-    
+
     if getenv("CONTINUOUS_INTEGRATION"):
         return  # test failing on Travis CI
     instagram_user = InstagramUser(username)
