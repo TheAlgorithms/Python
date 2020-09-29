@@ -42,7 +42,7 @@ class InstagramUser:
             return html_2(soup)
 
     @property
-    def no_of_followers(self) -> int:
+    def number_of_followers(self) -> int:
         """
         return number of followers
         """
