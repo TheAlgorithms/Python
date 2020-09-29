@@ -95,7 +95,7 @@ class InstagramUser:
         return info["username"]
 
     @property
-    def get_profile_pic(self) -> str:
+    def profile_picture_url(self) -> str:
         """
         return the link of profile picture
         """
