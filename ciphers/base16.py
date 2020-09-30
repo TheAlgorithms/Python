@@ -1,5 +1,6 @@
 import base64
-
+""" Here basically the encoding converts the characters into the special numbers by which the cpu refers them
+this type of encoding can only be understood by the cpu"""
 
 def main():
     inp = input("->")
