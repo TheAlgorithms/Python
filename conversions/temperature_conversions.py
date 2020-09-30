@@ -28,7 +28,8 @@ def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:
     """
     if type(celsius)!=float:
         raise ValueError ("You have entered a string.Enter the value of celsisus to be converted in numbers only.")  #exception handling
-    
+    #reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
     return round((float(celsius) * 9 / 5) + 32, ndigits)
 
 
@@ -57,6 +58,8 @@ def celsius_to_kelvin(celsius: float, ndigits: int = 2) -> float:
     if type(celsius)!=float:
         raise ValueError ("You have entered a string.Enter the value of celsisus to be converted in numbers only.")  #exception handling
     return round(float(celsius) + 273.15, ndigits)
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 
 def celsius_to_rankine(celsius: float, ndigits: int = 2) -> float:
@@ -83,7 +86,8 @@ def celsius_to_rankine(celsius: float, ndigits: int = 2) -> float:
     if type(celsius)!=float:
         raise ValueError ("You have entered a string.Enter the value of celsisus to be converted in numbers only.")  #exception handling
     return round((float(celsius) * 9 / 5) + 491.67, ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def fahrenheit_to_celsius(fahrenheit: float, ndigits: int = 2) -> float:
     """
@@ -115,7 +119,8 @@ def fahrenheit_to_celsius(fahrenheit: float, ndigits: int = 2) -> float:
     if type(fahrenheit)!=float:
         raise ValueError ("You have entered a string.Enter the value of farenheit to be converted in numbers only.")  #exception handling
     return round((float(fahrenheit) - 32) * 5 / 9, ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def fahrenheit_to_kelvin(fahrenheit: float, ndigits: int = 2) -> float:
     """
@@ -148,7 +153,8 @@ def fahrenheit_to_kelvin(fahrenheit: float, ndigits: int = 2) -> float:
         raise ValueError ("You have entered a string.Enter the value of farenheit to be converted in numbers only.")  #exception handling
     
     return round(((float(fahrenheit) - 32) * 5 / 9) + 273.15, ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def fahrenheit_to_rankine(fahrenheit: float, ndigits: int = 2) -> float:
     """
@@ -181,7 +187,8 @@ def fahrenheit_to_rankine(fahrenheit: float, ndigits: int = 2) -> float:
         raise ValueError ("You have entered a string.Enter the value of farenheit to be converted in numbers only.")  #exception handling
     
     return round(float(fahrenheit) + 459.67, ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
     """
@@ -207,7 +214,8 @@ def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
     if type(kelvin)!=float:
         raise ValueError ("You have entered a string.Enter the value of kelvin to be converted in numbers only.")  #exception handling
     return round(float(kelvin) - 273.15, ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def kelvin_to_fahrenheit(kelvin: float, ndigits: int = 2) -> float:
     """
@@ -233,7 +241,8 @@ def kelvin_to_fahrenheit(kelvin: float, ndigits: int = 2) -> float:
     if type(kelvin)!=float:
         raise ValueError ("You have entered a string.Enter the value of kelvin to be converted in numbers only.")  #exception handling
     return round(((float(kelvin) - 273.15) * 9 / 5) + 32, ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def kelvin_to_rankine(kelvin: float, ndigits: int = 2) -> float:
     """
@@ -259,7 +268,8 @@ def kelvin_to_rankine(kelvin: float, ndigits: int = 2) -> float:
     if type(kelvin)!=float:
         raise ValueError ("You have entered a string.Enter the value of kelvin to be converted in numbers only.")  #exception handling
     return round((float(kelvin) * 9 / 5), ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def rankine_to_celsius(rankine: float, ndigits: int = 2) -> float:
     """
@@ -285,7 +295,8 @@ def rankine_to_celsius(rankine: float, ndigits: int = 2) -> float:
     if type(rankine)!=float:
         raise ValueError ("You have entered a string.Enter the value of rankine to be converted in numbers only.")  #exception handling
     return round((float(rankine) - 491.67) * 5 / 9, ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def rankine_to_fahrenheit(rankine: float, ndigits: int = 2) -> float:
     """
@@ -307,7 +318,8 @@ def rankine_to_fahrenheit(rankine: float, ndigits: int = 2) -> float:
     if type(rankine)!=float:
         raise ValueError ("You have entered a string.Enter the value of rankine to be converted in numbers only.")  #exception handling
     return round(float(rankine) - 459.67, ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 def rankine_to_kelvin(rankine: float, ndigits: int = 2) -> float:
     """
@@ -329,7 +341,8 @@ def rankine_to_kelvin(rankine: float, ndigits: int = 2) -> float:
     if type(rankine)!=float:
         raise ValueError ("You have entered a string.Enter the value of rankine to be converted in numbers only.")  #exception handling
     return round((float(rankine) * 5 / 9), ndigits)
-
+#reference for the algorithm above:-journal dev  link:-
+    # https://www.journaldev.com/33500/python-valueerror-exception-handling-examples#:~:text=Python%20ValueError%20is%20raised%20when,precise%20exception%20such%20as%20IndexError.
 
 if __name__ == "__main__":
 
