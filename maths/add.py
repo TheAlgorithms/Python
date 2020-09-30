@@ -14,6 +14,7 @@ def add(a, b):
 
 
 if __name__ == "__main__":
+    # this is done to prevent the content under this main to be used by other python files using import
     a = 5
     b = 6
     print(f"The sum of {a} + {b} is {add(a, b)}")
