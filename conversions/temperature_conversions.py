@@ -302,10 +302,12 @@ def rankine_to_kelvin(rankine: float, ndigits: int = 2) -> float:
     """
     return round((float(rankine) * 5 / 9), ndigits)
 
+
 def reaumur_to_kelvin(reaumur: float, ndigits: int = 2) -> float:
     """
     Convert a given value from reaumur to Kelvin and round it to 2 decimal places.
     Reference:- http://www.csgnetwork.com/temp2conv.html
+    
     >>> reaumur_to_kelvin(0)
     273.15
     >>> reaumur_to_kelvin(20.0)
@@ -319,10 +321,12 @@ def reaumur_to_kelvin(reaumur: float, ndigits: int = 2) -> float:
     """
     return round((float(reaumur) *1.25 + 273.15), ndigits)
 
+
 def reaumur_to_fahrenheit(reaumur: float, ndigits: int = 2) -> float:
     """
     Convert a given value from reaumur to fahrenheit and round it to 2 decimal places.
     Reference:- http://www.csgnetwork.com/temp2conv.html
+    
     >>> reaumur_to_fahrenheit(0)
     32.0
     >>> reaumur_to_fahrenheit(20.0)
@@ -336,10 +340,12 @@ def reaumur_to_fahrenheit(reaumur: float, ndigits: int = 2) -> float:
     """
     return round((float(reaumur) *2.25 + 32), ndigits)
 
+
 def reaumur_to_celsius(reaumur: float, ndigits: int = 2) -> float:
     """
     Convert a given value from reaumur to celsius and round it to 2 decimal places.
     Reference:- http://www.csgnetwork.com/temp2conv.html
+    
     >>> reaumur_to_celsius(0)
     0.0
     >>> reaumur_to_celsius(20.0)
@@ -353,10 +359,12 @@ def reaumur_to_celsius(reaumur: float, ndigits: int = 2) -> float:
     """
     return round((float(reaumur) *1.25), ndigits)
 
+
 def reaumur_to_rankine(reaumur: float, ndigits: int = 2) -> float:
     """
     Convert a given value from reaumur to rankine and round it to 2 decimal places.
     Reference:- http://www.csgnetwork.com/temp2conv.html
+    
     >>> reaumur_to_rankine(0)
     491.67
     >>> reaumur_to_rankine(20.0)
@@ -369,6 +377,7 @@ def reaumur_to_rankine(reaumur: float, ndigits: int = 2) -> float:
     ValueError: could not convert string to float: 'reaumur'
     """
     return round((float(reaumur) *2.25+32+459.67), ndigits)
+
 
 if __name__ == "__main__":
 
