@@ -8,7 +8,7 @@ repos:
       - id: trailing-whitespace
       - id: requirements-txt-fixer
   - repo: https://github.com/psf/black
-    rev: 20.8b1
+    rev: stable
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
@@ -42,8 +42,8 @@ repos:
           - --quiet-level=2
         exclude: |
           (?x)^(
-              other/dictionary.txt|
-              other/words|
+              other/dictionary.txt |
+              other/words |
               project_euler/problem_22/p022_names.txt
           )$
   - repo: local
