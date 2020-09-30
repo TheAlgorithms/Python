@@ -34,15 +34,15 @@ def check_bouncy(n: int) -> bool:
     return "".join(sorted(str(n))) != str(n) and "".join(sorted(str(n)))[::-1] != str(n)
 
 
-def compute_num(percent: int) -> int:
+def solution(percent: int = 99) -> int:
     """
     Returns the least number for which the proportion of bouncy numbers is
     exactly 'percent'
-    >>> compute_num(50)
+    >>> solution(50)
     538
-    >>> compute_num(90)
+    >>> solution(90)
     21780
-    >>> compute_num(80)
+    >>> solution(80)
     4770
     """
     bouncy_num = 0
@@ -59,4 +59,4 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    print(f"{compute_num(99)}")
+    print(f"{solution(99)}")
