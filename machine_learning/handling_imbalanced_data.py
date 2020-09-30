@@ -10,11 +10,8 @@ Two main ways of handling imbalanced datasets :
    observations.
 """
 
-import pandas as pd
-import numpy as np
 from sklearn.datasets import make_classification
 from collections import Counter
-
 
 # Creating the dataset
 X, y = make_classification(n_classes=2, class_sep=2, weights=[0.1, 0.9], n_informative=3, n_redundant=1, flip_y=0, n_features=20, n_clusters_per_class=1, n_samples=1000, random_state=10)
@@ -24,7 +21,6 @@ print('Original dataset shape %s' % Counter(y))
 It is clear from the data that it contains more datapoints class 1 
 as compared to class 0
 """
-
 
 """
 Perform Undersampling and oversampling on the data
@@ -39,7 +35,6 @@ X_res,y_res=nm.fit_sample(X,y)
 
 print(f"Original data shape : {Counter(y)}")
 print(f"Resampled data shape : {Counter(y_res)} ")
-
 
 # Oversampling
 from imblearn.combine import SMOTETomek
