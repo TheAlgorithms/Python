@@ -1,14 +1,4 @@
-"""
-This will show how to handle imbalanced dataset.
-Imbalanced datasets are those which contain more no. of records for one class 
-as compared to other class (say 80-20)
-
-Two main ways of handling imbalanced datasets :
-1. Undersampling which consists in down-sizing the majority class by removing 
-   observations until the dataset is balanced.
-2. Oversampling which consists in over-sizing the minority class by adding 
-   observations.
-"""
+# This will show how to handle imbalanced dataset.
 
 from sklearn.datasets import make_classification
 from collections import Counter
