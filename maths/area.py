@@ -207,7 +207,7 @@ def area_rhombhus(base: float, height: float) -> float:
     """
     if base < 0 or height < 0:
         raise ValueError("area_rhombhus() only accepts non-negative values")
-    return 1/2 * base * height
+    return 1 / 2 * base * height
 
 
 def main():
