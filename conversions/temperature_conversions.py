@@ -26,6 +26,9 @@ def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'celsius'
     """
+    if type(celsius)!=float:
+        raise ValueError ("You have entered a string.Enter the value of celsisus to be converted in numbers only.")  #exception handling
+    
     return round((float(celsius) * 9 / 5) + 32, ndigits)
 
 
@@ -49,7 +52,10 @@ def celsius_to_kelvin(celsius: float, ndigits: int = 2) -> float:
     Traceback (most recent call last):
     ...
     ValueError: could not convert string to float: 'celsius'
+    
     """
+    if type(celsius)!=float:
+        raise ValueError ("You have entered a string.Enter the value of celsisus to be converted in numbers only.")  #exception handling
     return round(float(celsius) + 273.15, ndigits)
 
 
@@ -74,6 +80,8 @@ def celsius_to_rankine(celsius: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'celsius'
     """
+    if type(celsius)!=float:
+        raise ValueError ("You have entered a string.Enter the value of celsisus to be converted in numbers only.")  #exception handling
     return round((float(celsius) * 9 / 5) + 491.67, ndigits)
 
 
@@ -104,6 +112,8 @@ def fahrenheit_to_celsius(fahrenheit: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'fahrenheit'
     """
+    if type(fahrenheit)!=float:
+        raise ValueError ("You have entered a string.Enter the value of farenheit to be converted in numbers only.")  #exception handling
     return round((float(fahrenheit) - 32) * 5 / 9, ndigits)
 
 
@@ -134,6 +144,9 @@ def fahrenheit_to_kelvin(fahrenheit: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'fahrenheit'
     """
+    if type(fahrenheit)!=float:
+        raise ValueError ("You have entered a string.Enter the value of farenheit to be converted in numbers only.")  #exception handling
+    
     return round(((float(fahrenheit) - 32) * 5 / 9) + 273.15, ndigits)
 
 
@@ -164,6 +177,9 @@ def fahrenheit_to_rankine(fahrenheit: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'fahrenheit'
     """
+    if type(fahrenheit)!=float:
+        raise ValueError ("You have entered a string.Enter the value of farenheit to be converted in numbers only.")  #exception handling
+    
     return round(float(fahrenheit) + 459.67, ndigits)
 
 
@@ -188,6 +204,8 @@ def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'kelvin'
     """
+    if type(kelvin)!=float:
+        raise ValueError ("You have entered a string.Enter the value of kelvin to be converted in numbers only.")  #exception handling
     return round(float(kelvin) - 273.15, ndigits)
 
 
@@ -212,6 +230,8 @@ def kelvin_to_fahrenheit(kelvin: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'kelvin'
     """
+    if type(kelvin)!=float:
+        raise ValueError ("You have entered a string.Enter the value of kelvin to be converted in numbers only.")  #exception handling
     return round(((float(kelvin) - 273.15) * 9 / 5) + 32, ndigits)
 
 
@@ -236,6 +256,8 @@ def kelvin_to_rankine(kelvin: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'kelvin'
     """
+    if type(kelvin)!=float:
+        raise ValueError ("You have entered a string.Enter the value of kelvin to be converted in numbers only.")  #exception handling
     return round((float(kelvin) * 9 / 5), ndigits)
 
 
@@ -260,6 +282,8 @@ def rankine_to_celsius(rankine: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'rankine'
     """
+    if type(rankine)!=float:
+        raise ValueError ("You have entered a string.Enter the value of rankine to be converted in numbers only.")  #exception handling
     return round((float(rankine) - 491.67) * 5 / 9, ndigits)
 
 
@@ -280,6 +304,8 @@ def rankine_to_fahrenheit(rankine: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'rankine'
     """
+    if type(rankine)!=float:
+        raise ValueError ("You have entered a string.Enter the value of rankine to be converted in numbers only.")  #exception handling
     return round(float(rankine) - 459.67, ndigits)
 
 
@@ -300,6 +326,8 @@ def rankine_to_kelvin(rankine: float, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to float: 'rankine'
     """
+    if type(rankine)!=float:
+        raise ValueError ("You have entered a string.Enter the value of rankine to be converted in numbers only.")  #exception handling
     return round((float(rankine) * 5 / 9), ndigits)
 
 
