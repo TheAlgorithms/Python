@@ -4,6 +4,8 @@ Given weights and values of n items, put these items in a knapsack of
 
 Note that only the integer weights 0-1 knapsack problem is solvable
  using dynamic programming.
+ Here the meaning of 0 1 knapsack is that we cant divide to item. Either the item is considered(1) or not considered(0).
+ So we cant divide the weight of item to get the value from the divided weight.
 """
 
 
