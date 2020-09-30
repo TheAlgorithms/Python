@@ -1,9 +1,8 @@
 """
 A binary search Tree
 """
+
 from math import factorial
-
-
 class Node:
     def __init__(self, value, parent):
         self.value = value
@@ -153,16 +152,16 @@ class BinarySearchTree:
     def find_kth_smallest(self, k: int, node: Node) -> int:
         """Return the kth smallest element in a binary search tree """
         arr = []
-        # append all values to list using inorder traversal
-        self.inorder(arr, node)
+        self.inorder(arr, node)  # append all values to list using inorder traversal
         return arr[k - 1]
 
-    def number_of_possible_binary_search_trees(self, node: Node) -> int:
+    def number_of_possible_binary_search_trees(self, node:Node) -> int:
         arr = []
         self.inorder(arr, node)
         n = len(arr)
         # Catalan number Cn = (2n)! / ((n + 1)! * n!)
         return factorial(2 * n) // factorial(n + 1) // factorial(n)
+
 
 
 def postorder(curr_node):
@@ -171,8 +170,7 @@ def postorder(curr_node):
     """
     node_list = list()
     if curr_node is not None:
-        node_list = postorder(curr_node.left) + \
-            postorder(curr_node.right) + [curr_node]
+        node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
     return node_list
 
 
