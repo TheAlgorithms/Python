@@ -15,7 +15,7 @@ def extract_user_profile(script) -> dict:
     May raise json.decoder.JSONDecodeError
     """
     data = script.contents[0]
-    info = json.loads(data[data.find('{"config"'): -1])
+    info = json.loads(data[data.find('{"config"') : -1])
     return info["entry_data"]["ProfilePage"][0]["graphql"]["user"]
 
 

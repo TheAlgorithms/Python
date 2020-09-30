@@ -1,0 +1,15 @@
+name: pre-commit
+
+on: [push, pull_request]
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Install pre-commit
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade pre-commit
+      - run: pre-commit run --verbose --all-files --show-diff-on-failure
