@@ -1,7 +1,6 @@
 """
 A binary search Tree
 """
-
 from math import factorial
 
 
