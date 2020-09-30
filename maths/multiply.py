@@ -1,10 +1,8 @@
-"""
-Just to check
-"""
 
 
 def multiply(a, b):
     """
+    Return the multiplication of two integers a and b
     >>> multiply(6, 4)
     24
     >>> multiply(2, -5)
