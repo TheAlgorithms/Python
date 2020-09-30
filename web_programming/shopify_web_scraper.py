@@ -145,7 +145,7 @@ def extract_products_collection(url, col):
         products = get_page(url, page, col)
 
 
-def ptd(i):
+def table_item(i):
     return f"<td> <pre> {i} </pre> </td>"
 
 
@@ -189,10 +189,10 @@ Name </th> <th> Variant Name </th>\
                 seen_variants.add(variant_id)
                 print("Writing product:", product['title'])
                 if mkhtml:
-                    htmlf.write(f"<tr> {ptd(product['sku'])} \
-{ptd(str(title))} {ptd(product['product_type'])}\
-{ptd(product['title'])} {ptd(product['option_value'])}\
-{ptd(product['price'])} {ptd(product['stock'])}\
+                    htmlf.write(f"<tr> {table_item(product['sku'])} \
+{table_item(str(title))} {table_item(product['product_type'])}\
+{table_item(product['title'])} {table_item(product['option_value'])}\
+{table_item(product['price'])} {table_item(product['stock'])}\
 <td> <a href = \"{product['product_url']}\" > \
 {product['product_url']}</a> </td> <td>" + ' '.join(
                         [img(x) for x in product["image_src"]]) + "</td> </tr>")
