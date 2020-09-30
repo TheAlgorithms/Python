@@ -4,16 +4,11 @@ In this traversal, links are created as successors and nodes are printed using t
 Finally, the changes are reverted back to restore the original tree.
 
 """
-
-
-
 class Node:
     def __init__(self,data):
         self.data = data
         self.left = None
         self.right = None
-
-
 
 def Morris_traversal(root):
     """
@@ -24,7 +19,6 @@ def Morris_traversal(root):
     InorderTraversal = []
     # set current to root of binary tree
     curr = root
-
     while(curr is not None):
         if(curr.left is None):
             InorderTraversal.append(curr.data)
@@ -45,11 +39,8 @@ def Morris_traversal(root):
                 prev.right = None 
                 InorderTraversal.append(curr.data)
                 curr = curr.right
-    
-
+  
     return InorderTraversal
-
-
 
 root = Node(4)
 temp = root
@@ -58,5 +49,4 @@ temp.right = Node(8)
 temp = temp.left
 temp.left = Node(1)
 temp.right = Node(5) 
-
 print(Morris_traversal(root))
