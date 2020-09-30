@@ -155,6 +155,15 @@ class BinarySearchTree:
         self.inorder(arr, node)  # append all values to list using inorder traversal
         return arr[k - 1]
 
+    def total_possible_BST(self, node:Node) -> int:
+        from math import factorial
+        arr = []
+        self.inorder(arr, node)
+        n = len(arr)
+        # Catalan number Cn = (2n)! / ((n + 1)! * n!)
+        return factorial(2 * n) // factorial(n + 1) // factorial(n)
+
+
 
 def postorder(curr_node):
     """
