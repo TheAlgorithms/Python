@@ -54,5 +54,3 @@ X_res,y_res=smk.fit_sample(X,y)
 
 print(f"Original data shape : {Counter(y)}")
 print(f"Resampled data shape : {Counter(y_res)} ")
-
-
