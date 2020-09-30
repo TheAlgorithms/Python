@@ -4,26 +4,21 @@ language: python
 python: 3.8
 cache: pip
 before_install: pip install --upgrade pip setuptools six
-install: pip install black flake8
 jobs:
   include:
     - name: Build
-      before_script:
-        - black --check . || true
-        - flake8 --ignore=E203,W503 --max-complexity=25 --max-line-length=88 --statistics --count .
-        - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
-        - pip install -r requirements.txt  # fast fail on black, flake8, validate_filenames
+      install: pip install pytest-cov -r requirements.txt
       script:
-        - mypy --ignore-missing-imports . || true  # https://github.com/python/mypy/issues/7907
         - pytest --doctest-modules --ignore=project_euler/ --durations=10 --cov-report=term-missing:skip-covered --cov=. .
     - name: Project Euler
-      before_script:
+      install:
         - pip install pytest-cov pytest-subtests
+      before_script:
         - pytest --tb=no --no-summary --capture=no project_euler/validate_solutions.py || true  # fail fast on wrong solution
       script:
         - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
 notifications:
-    webhooks: https://www.travisbuddy.com/
-    on_success: never
+  webhooks: https://www.travisbuddy.com/
+  on_success: never

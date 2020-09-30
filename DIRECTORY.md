@@ -190,6 +190,8 @@
 ## Divide And Conquer
   * [Closest Pair Of Points](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/closest_pair_of_points.py)
   * [Convex Hull](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/convex_hull.py)
+  * [Heaps Algorithm](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/heaps_algorithm.py)
+  * [Heaps Algorithm Iterative](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/heaps_algorithm_iterative.py)
   * [Inversions](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/inversions.py)
   * [Max Subarray Sum](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/max_subarray_sum.py)
   * [Mergesort](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/mergesort.py)
@@ -244,6 +246,7 @@
 
 ## Graphics
   * [Bezier Curve](https://github.com/TheAlgorithms/Python/blob/master/graphics/bezier_curve.py)
+  * [Vector3 For 2D Rendering](https://github.com/TheAlgorithms/Python/blob/master/graphics/vector3_for_2d_rendering.py)
 
 ## Graphs
   * [A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/a_star.py)
@@ -319,6 +322,7 @@
   * [Data Transformations](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/data_transformations.py)
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
   * [Gaussian Naive Bayes](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gaussian_naive_bayes.py)
+  * [Gradient Boosting Regressor](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gradient_boosting_regressor.py)
   * [Gradient Descent](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gradient_descent.py)
   * [K Means Clust](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/k_nearest_neighbours.py)
@@ -650,6 +654,7 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_97/sol1.py)
   * Problem 99
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_99/sol1.py)
+  * [Validate Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py)
 
 ## Scheduling
   * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
@@ -753,6 +758,7 @@
   * [Fetch Jobs](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_jobs.py)
   * [Get Imdb Top 250 Movies Csv](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdbtop.py)
+  * [Instagram Crawler](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_crawler.py)
   * [Recaptcha Verification](https://github.com/TheAlgorithms/Python/blob/master/web_programming/recaptcha_verification.py)
   * [Slack Message](https://github.com/TheAlgorithms/Python/blob/master/web_programming/slack_message.py)
   * [World Covid19 Stats](https://github.com/TheAlgorithms/Python/blob/master/web_programming/world_covid19_stats.py)
