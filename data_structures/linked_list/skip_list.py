@@ -4,14 +4,14 @@ https://epaperpress.com/sortsearch/download/skiplist.pdf
 """
 
 from __future__ import annotations
-
+#including std library available
 from random import random
 from typing import Generic, Optional, TypeVar
 
 KT = TypeVar("KT")
 VT = TypeVar("VT")
 
-
+#defining class (refer OOPs concept of python)
 class Node(Generic[KT, VT]):
     def __init__(self, key: KT, value: VT):
         self.key = key
