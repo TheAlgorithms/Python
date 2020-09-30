@@ -3,11 +3,11 @@
    predict house price.
 """
 
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 from sklearn.datasets import load_boston
-from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 
 
@@ -42,10 +42,7 @@ def main():
     training_score = model.score(X_train, y_train).round(3)
     test_score = model.score(X_test, y_test).round(3)
     print("Training score of GradientBoosting is :", training_score)
-    print(
-        "The test score of GradientBoosting is :",
-        test_score
-    )
+    print("The test score of GradientBoosting is :", test_score)
     # Let us evaluation the model by finding the errors
     y_pred = model.predict(X_test)
 
@@ -57,8 +54,7 @@ def main():
     # So let's run the model against the test data
     fig, ax = plt.subplots()
     ax.scatter(y_test, y_pred, edgecolors=(0, 0, 0))
-    ax.plot([y_test.min(), y_test.max()],
-            [y_test.min(), y_test.max()], "k--", lw=4)
+    ax.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], "k--", lw=4)
     ax.set_xlabel("Actual")
     ax.set_ylabel("Predicted")
     ax.set_title("Truth vs Predicted")
