@@ -1,11 +1,12 @@
 import math
+from typing import List
 from operator import add, sub, mul
 
 
 operators = {"+": add, "-": sub, "*": mul}
 
 
-def calculate(first_operand, second_operand, operator) -> int:
+def calculate(first_operand: int, second_operand: int, operator: str) -> int:
     """
     Evaluate the expression and return the result.
 
@@ -19,7 +20,17 @@ def calculate(first_operand, second_operand, operator) -> int:
     return operators[operator](first_operand, second_operand)
 
 
-def MinandMax(maximum_numbers, minimum_numbers, i, j, operator) -> int:
+def MinandMax(minimum_numbers: List[List[int]], maximum_numbers: List[List[int]],
+              i: int, j: int, operator: List[str]) -> int:
+    """
+    Return the minimum and maximum value obtained.
+
+    >>> MinandMax([[1, None], [None, 5]], [[1, None], [None, 5]], 0, 1, ['+'])
+    6 6
+    >>> MinandMax([[2, 5, None], [None, 3, -3], [None, None, 6]],
+    [[2, 5, None], [None, 3, -3], [None, None, 6]],0, 2, ['+', '-'])
+    -1 -1
+    """
     min_value = math.inf
     max_value = -math.inf
     for k in range(i, j):
@@ -32,9 +43,16 @@ def MinandMax(maximum_numbers, minimum_numbers, i, j, operator) -> int:
     return min_value, max_value
 
 
-def parentheses(operands, operator) -> int:
+def parentheses(operands: List[int], operator: List[str]) -> int:
     """
-    Return the maximum value of the expression
+    Return the maximum value of the expression.
+
+    >>> parentheses([1, 5], ['+'])
+    6
+    >>> parentheses([2, 3, 6], ['+', '-'])
+    -1
+    >>> parentheses([5, 8, 7, 4, 8, 9], ['-', '+', '*', '-', '+'])
+    200
     """
     number_of_operands = len(operands)
     minimum_numbers = [
@@ -50,7 +68,7 @@ def parentheses(operands, operator) -> int:
         for i in range(0, number_of_operands - s):
             j = i + s
             minimum_numbers[i][j], maximum_numbers[i][j] = MinandMax(
-                maximum_numbers, minimum_numbers, i, j, operator
+                minimum_numbers, maximum_numbers, i, j, operator
             )
     return maximum_numbers[0][number_of_operands - 1]
 
@@ -58,9 +76,14 @@ def parentheses(operands, operator) -> int:
 if __name__ == "__main__":
     expression = input("Please provide a mathematical expression... ").strip()
     operator, operands = [], []
+    expression = expression.replace(" ", "")
+    digits = ""
     for c in expression:
-        if c in operator:
+        if c in operators:
+            operands.append(int(digits))
+            digits = ""
             operator.append(c)
         else:
-            operands.append(int(c))
+            digits += c
+    operands.append(int(digits))
     print(f"The result is {parentheses(operands, operator)}")
