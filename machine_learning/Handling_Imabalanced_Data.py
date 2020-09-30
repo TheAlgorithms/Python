@@ -29,10 +29,6 @@ It is clear from the data that it contains more datapoints class 1
 as compared to class 0
 """
 
-# Creating Dependent and Independent features
-X = data.iloc[:,:2]
-y = data.iloc[:,-1]
-
 """
 Perform Undersampling and oversampling on the data
 """
