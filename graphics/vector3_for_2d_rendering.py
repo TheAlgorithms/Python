@@ -3,14 +3,16 @@ render 3d points for 2d surfaces.
 """
 
 from __future__ import annotations
+
 import math
 
 __version__ = "2020.9.26"
 __author__ = "xcodz-dot, cclaus, dhruvmanila"
 
 
-def convert_to_2d(x: float, y: float, z: float, scale: float,
-                  distance: float) -> tuple[float, float]:
+def convert_to_2d(
+    x: float, y: float, z: float, scale: float, distance: float
+) -> tuple[float, float]:
     """
     Converts 3d point to a 2d drawable point
 
@@ -26,15 +28,17 @@ def convert_to_2d(x: float, y: float, z: float, scale: float,
     TypeError: Input values must either be float or int: ['1', 2, 3, 10, 10]
     """
     if not all(isinstance(val, (float, int)) for val in locals().values()):
-        raise TypeError("Input values must either be float or int: "
-                        f"{list(locals().values())}")
+        raise TypeError(
+            "Input values must either be float or int: " f"{list(locals().values())}"
+        )
     projected_x = ((x * distance) / (z + distance)) * scale
     projected_y = ((y * distance) / (z + distance)) * scale
     return projected_x, projected_y
 
 
-def rotate(x: float, y: float, z: float, axis: str,
-           angle: float) -> tuple[float, float, float]:
+def rotate(
+    x: float, y: float, z: float, axis: str, angle: float
+) -> tuple[float, float, float]:
     """
     rotate a point around a certain axis with a certain angle
     angle can be any integer between 1, 360 and axis can be any one of
@@ -67,18 +71,20 @@ def rotate(x: float, y: float, z: float, axis: str,
     input_variables = locals()
     del input_variables["axis"]
     if not all(isinstance(val, (float, int)) for val in input_variables.values()):
-        raise TypeError("Input values except axis must either be float or int: "
-                        f"{list(input_variables.values())}")
+        raise TypeError(
+            "Input values except axis must either be float or int: "
+            f"{list(input_variables.values())}"
+        )
     angle = (angle % 360) / 450 * 180 / math.pi
-    if axis == 'z':
+    if axis == "z":
         new_x = x * math.cos(angle) - y * math.sin(angle)
         new_y = y * math.cos(angle) + x * math.sin(angle)
         new_z = z
-    elif axis == 'x':
+    elif axis == "x":
         new_y = y * math.cos(angle) - z * math.sin(angle)
         new_z = z * math.cos(angle) + y * math.sin(angle)
         new_x = x
-    elif axis == 'y':
+    elif axis == "y":
         new_x = x * math.cos(angle) - z * math.sin(angle)
         new_z = z * math.cos(angle) + x * math.sin(angle)
         new_y = y
