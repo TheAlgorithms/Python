@@ -9,7 +9,6 @@ return 0 if input array is empty
 """
 from typing import List
 
-
 def fibonacci_search(arr: List[int], val: int) -> int: 
 
     """
