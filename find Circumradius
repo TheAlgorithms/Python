@@ -1,0 +1,32 @@
+# Program to find Circumradius of 
+# a cyclic quadrilateral using sides 
+  
+import math   
+    
+# Function to return the Circumradius 
+# of  a cyclic quadrilateral using sides 
+def Circumradius(a, b, c, d): 
+      
+# Find semiperimeter 
+    s = (a + b + c + d) / 2
+  
+    # Calculate the radius 
+    radius = (1 / 4)*math.sqrt(((a * b)+(c * d))*
+        ((a * c)+(b * d))*((a * d)+(b * c)) 
+        /((s-a)*(s-b)*(s-c)*(s-d))) 
+      
+    return radius   
+    
+# Driver Code 
+  
+# Given sides 
+A = 3
+B = 4
+C = 5
+D = 6
+    
+# Function Call   
+ans = Circumradius(A, B, C, D)   
+    
+# Print the radius 
+print(round(ans, 2)) 
