@@ -26,8 +26,8 @@ After that, bruteforce all passed candidates sequences using
 3 nested loops since we know the answer will be 12 digits.
 """
 
-from math import sqrt, floor
 from itertools import permutations
+from math import floor, sqrt
 
 
 def is_prime(number: int) -> bool:
@@ -107,10 +107,14 @@ def solution():
         for i in range(length):
             for j in range(i + 1, length):
                 for k in range(j + 1, length):
-                    if abs(candidate[i] - candidate[j]) == abs(candidate[j] - candidate[k]) \
-                            and len(set([candidate[i], candidate[j], candidate[k]])) == 3:
+                    if (
+                        abs(candidate[i] - candidate[j])
+                        == abs(candidate[j] - candidate[k])
+                        and len(set([candidate[i], candidate[j], candidate[k]])) == 3
+                    ):
                         passed.append(
-                            sorted([candidate[i], candidate[j], candidate[k]]))
+                            sorted([candidate[i], candidate[j], candidate[k]])
+                        )
                         found = True
 
                     if found:

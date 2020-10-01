@@ -25,7 +25,7 @@ from 2 to the closest prime number with 1000000.
 Then, use sliding window to get the answer.
 """
 
-from math import sqrt, floor
+from math import floor, sqrt
 
 
 def is_prime(number: int) -> bool:
@@ -56,20 +56,20 @@ def solution():
     997651
     """
 
-    prime_list = [2] + [x for x in range(3, 10**6, 2) if is_prime(x)]
+    prime_list = [2] + [x for x in range(3, 10 ** 6, 2) if is_prime(x)]
 
     cumulative_sum = []
     tmp = 0
     for x in prime_list:
         tmp += x
-        if tmp < 10**6:
+        if tmp < 10 ** 6:
             cumulative_sum.append(tmp)
         else:
             break
 
     upper_limit_idx = 0
     for i in range(len(prime_list)):
-        if prime_list[i] < 10**6:
+        if prime_list[i] < 10 ** 6:
             upper_limit_idx = i
         else:
             break
@@ -96,5 +96,5 @@ def solution():
     return answer
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(solution())
