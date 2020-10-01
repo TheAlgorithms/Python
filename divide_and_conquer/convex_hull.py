@@ -16,7 +16,7 @@ which have not been implemented here, yet.
 
 class Point:
     """
-    Defines a 2-d point for use by all convex-hull algorithms.
+    Defines a 2-d point for use by all convex-hull algorthms.
 
     Parameters
     ----------
