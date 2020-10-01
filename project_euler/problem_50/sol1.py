@@ -1,3 +1,5 @@
+from math import floor, sqrt
+
 """
 Consecutive prime sum
 
@@ -24,8 +26,6 @@ First of all, we need to generate all prime numbers
 from 2 to the closest prime number with 1000000.
 Then, use sliding window to get the answer.
 """
-
-from math import floor, sqrt
 
 
 def is_prime(number: int) -> bool:

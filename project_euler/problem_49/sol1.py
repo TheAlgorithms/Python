@@ -1,3 +1,6 @@
+from itertools import permutations
+from math import floor, sqrt
+
 """
 Prime permutations
 
@@ -25,9 +28,6 @@ them in a candidate list.
 After that, bruteforce all passed candidates sequences using
 3 nested loops since we know the answer will be 12 digits.
 """
-
-from itertools import permutations
-from math import floor, sqrt
 
 
 def is_prime(number: int) -> bool:
@@ -60,15 +60,15 @@ def search(target: int, prime_list: list) -> bool:
     False
     """
 
-    l, r = 0, len(prime_list) - 1
-    while l <= r:
-        m = (l + r) // 2
+    left, right = 0, len(prime_list) - 1
+    while left <= right:
+        m = (left + right) // 2
         if prime_list[m] == target:
             return True
         elif prime_list[m] < target:
-            l = m + 1
+            left = m + 1
         else:
-            r = m - 1
+            right = m - 1
 
     return False
 
