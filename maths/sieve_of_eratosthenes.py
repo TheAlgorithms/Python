@@ -15,6 +15,7 @@ Also thanks Dmitry (https://github.com/LizardWizzard) for finding the problem
 import math
 from typing import List
 
+
 def sieve(n: int) -> List[int]:
     """
     Returns a list with all prime numbers up to n.
@@ -58,4 +59,7 @@ def sieve(n: int) -> List[int]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     print(sieve(int(input("Enter n: ").strip())))
