@@ -1,6 +1,9 @@
 # Fibonacci Sequence Using Recursion and Memoization
 
-cache = dict() #Creates a dictionary that will store the results of the numbers already calculated to improve performance.
+# Memoization Concept: https://en.wikipedia.org/wiki/Memoization
+# Fibonacci Concept : https://pt.wikipedia.org/wiki/Sequ%C3%AAncia_de_Fibonacci
+
+cache = dict() 
 def fibonacci(n):
     """
     >>> [fibonacci(i) for i in range(12)]
@@ -8,17 +11,16 @@ def fibonacci(n):
     """
     aux = n
 
-    if aux in cache: #Checks if this number has already been calculated before, to assess whether it is necessary to calculate its fibonacci value again.
-        return cache[aux] #Existindo, o seu valor fibonacci é retornado
-
-    if (n == 0) or (n == 1): #If it belongs to a base case, it stores the "n" in an auxiliary variable.("Ans -> Answer")
-        ans = n
+    if aux in cache: 
+        return cache[aux] 
+    
+    if (n == 0) or (n == 1): 
+       ans = n
     else:
-        ans = fibonacci(n-1) + fibonacci(n-2) #If it does not belong to a base case, he makes a recursive call, keeping his return in the variable "Ans"
-    cache[aux] = ans #The answer is saved in the dictionary.
+        ans = fibonacci(n-1) + fibonacci(n-2) 
+    cache[aux] = ans 
 
-    return ans    #And finally, and returned to the user.
-
+    return ans 
 
 def main() -> None:
     lenght = int(input("Enter an integer greater than or equal to 0: "))
