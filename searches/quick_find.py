@@ -23,43 +23,43 @@ class QuickUnion:
                     "argument n should not be passed if connections are used"
                 )
 
-            self.id = [x for x in range(0, len(connections))]
+            self.sequence = [x for x in range(0, len(connections))]
             self.connections = connections
         else:
-            self.id = [x for x in range(0, n)]
+            self.sequence = [x for x in range(0, n)]
             self.connections = self.create_sample_connections()
 
     def __str__(self):
-        return str(self.id)
+        return str(self.sequence)
 
     def create_sample_connections(self):
         """Generates a sample 2D list based on the n value passed to the instance."""
         connections = []
-        data_set = self.id
+        data_set = self.sequence
         for _ in data_set:
             connections.append((random.choice(data_set), random.choice(data_set)))
         return connections
 
     def root(self, i):
         """Reduce i to a common connection."""
-        while i != self.id[i]:
-            self.id[i] = self.id[self.id[i]]  # one-pass path compression improvement
-            i = self.id[i]
+        while i != self.sequence[i]:
+            self.sequence[i] = self.sequence[self.sequence[i]]  # one-pass path compression improvement
+            i = self.sequence[i]
         return i
 
-    def is_connected(self, p, q):
+    def is_connected(self, first, second):
         """Checks if two values are connected."""
-        return self.root(p) == self.root(q)
+        return self.root(first) == self.root(second)
 
-    def union(self, p, q):
+    def union(self, first, second):
         """Form/find the union between two values."""
-        i = self.root(p)
-        j = self.root(q)
+        first_int = self.root(first)
+        sec_int = self.root(second)
 
-        if i == j:  # weighted to join smaller trees to larger
+        if first_int == sec_int:  # weighted to join smaller trees to larger
             return
         else:
-            self.id[i] = j
+            self.sequence[first_int] = sec_int
 
 
 if __name__ == "__main__":
