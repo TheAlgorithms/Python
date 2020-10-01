@@ -43,7 +43,7 @@ class QuickUnion:
     def root(self, i: int) -> int:
         """Reduce i to a common connection."""
         while i != self.sequence[i]:
-            self.sequence[i] = self.sequence[self.sequence[i]]  # one-pass path compression improvement
+            self.sequence[i] = self.sequence[self.sequence[i]]
             i = self.sequence[i]
         return i
 
@@ -62,9 +62,19 @@ class QuickUnion:
             self.sequence[first_int] = sec_int
 
 
-if __name__ == "__main__":
-    """Example of how this algorithm can be used."""
-    test = QuickUnion(connections=[(1, 1), (3, 4), (0, 1), (4, 2), (4, 3)])
+def run_test(n=None, connections=None):
+    """
+    >>> run_test(connections=[(1, 1), (3, 4), (0, 1), (4, 2), (4, 3)])
+    [1, 1, 2, 2, 2]
+    """
+    test = QuickUnion(n=n, connections=connections)
     for connection in test.connections:
         test.union(connection[0], connection[1])
-    print(test)
+    return test
+
+
+if __name__ == "__main__":
+    """
+    Example of how this algorithm can be used.
+    """
+    print(run_test(connections=[(1, 1), (3, 4), (0, 1), (4, 2), (4, 3)]))
