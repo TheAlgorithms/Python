@@ -1,4 +1,3 @@
-
 def binary_count_setbits(a: int) -> int:
     """
     Take in 1 integer, return a number that is
