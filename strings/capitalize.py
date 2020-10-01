@@ -4,12 +4,12 @@ from string import ascii_lowercase, ascii_uppercase
 def capitalize(sentence: str) -> str:
     """
     This function will capitalize the first letter of a sentence or a word
-    >>> capitalize("hello world")
-    'Hello world'
-    >>> capitalize("123 hello world")
-    '123 hello world'
-    >>> capitalize(" hello world")
-    ' hello world'
+    >>> capitalize("hello World")
+    'Hello World'
+    >>> capitalize(" 890 Hello world ")
+    ' 123 Hello world '
+    >>> capitalize(" hello world ")
+    ' Hello world '
     >>> capitalize("a")
     'A'
     >>> capitalize("")
