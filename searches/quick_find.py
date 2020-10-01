@@ -5,7 +5,7 @@ import random
 class QuickUnion:
     """Class with methods to perform a quick union on a 2D list. Uses N array access."""
 
-    def __init__(self, *, n: int = 0, connections: list = None):
+    def __init__(self, *, n: int = 0, connections: list = None) -> None:
         """
         Accepts either a 2D list of connections or an int n.
 
@@ -32,7 +32,7 @@ class QuickUnion:
     def __str__(self):
         return str(self.sequence)
 
-    def create_sample_connections(self):
+    def create_sample_connections(self) -> list:
         """Generates a sample 2D list based on the n value passed to the instance."""
         connections = []
         data_set = self.sequence
@@ -40,18 +40,18 @@ class QuickUnion:
             connections.append((random.choice(data_set), random.choice(data_set)))
         return connections
 
-    def root(self, i):
+    def root(self, i: int) -> int:
         """Reduce i to a common connection."""
         while i != self.sequence[i]:
             self.sequence[i] = self.sequence[self.sequence[i]]  # one-pass path compression improvement
             i = self.sequence[i]
         return i
 
-    def is_connected(self, first, second):
+    def is_connected(self, first: int, second: int) -> bool:
         """Checks if two values are connected."""
         return self.root(first) == self.root(second)
 
-    def union(self, first, second):
+    def union(self, first: int, second: int) -> None:
         """Form/find the union between two values."""
         first_int = self.root(first)
         sec_int = self.root(second)
