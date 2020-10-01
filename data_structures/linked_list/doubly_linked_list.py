@@ -6,21 +6,30 @@
 - A Doubly Linked List (DLL) contains an extra pointer, typically called previous
     pointer, together with next pointer and data which are there in singly linked list.
  - Advantages over SLL - It can be traversed in both forward and backward direction.
-     Delete operation is more efficient"""
+     Delete operation is more efficient
+"""
+
+
+class Node:
+    def __init__(self, data, previous=None, next=None):
+        self.data = data
+        self.previous = previous
+        self.next = next
+
+    def __str__(self):
+        return f"{self.data}"
 
 
 class LinkedList:
     """
     >>> linked_list = LinkedList()
-    >>> linked_list.insert_at_head("a")
-    >>> linked_list.insert_at_tail("b")
-    >>> linked_list.delete_tail()
-    'b'
-    >>> linked_list.is_empty
-    False
-    >>> linked_list.delete_head()
-    'a'
-    >>> linked_list.is_empty
+    >>> linked_list.is_empty == True
+    True
+    >>> linked_list.insert(0)
+    >>> linked_list.is_empty == False
+    True
+    >>> linked_list.delete_value(0)
+    >>> linked_list.is_empty == True
     True
     """
 
@@ -32,89 +41,100 @@ class LinkedList:
         current = self.head
         nodes = []
         while current is not None:
-            nodes.append(current)
+            nodes.append(current.data)
             current = current.next
-        return " ".join(str(node) for node in nodes)
+        return "<-->".join(str(node) for node in nodes)
 
-    def insert_at_head(self, data):
-        new_node = Node(data)
-        if self.is_empty:
-            self.tail = new_node
-            self.head = new_node
+    def set_head(self, node: Node) -> None:
+
+        if self.head is None:
+            self.head = node
+            self.tail = node
         else:
-            self.head.previous = new_node
-            new_node.next = self.head
-            self.head = new_node
+            self.insert_before_node(self.head, node)
 
-    def delete_head(self) -> str:
-        if self.is_empty:
-            return "List is empty"
-
-        head_data = self.head.data
-        if self.head.next:
-            self.head = self.head.next
-            self.head.previous = None
-
-        else:  # If there is no next previous node
-            self.head = None
-            self.tail = None
-
-        return head_data
-
-    def insert_at_tail(self, data):
-        new_node = Node(data)
-        if self.is_empty:
-            self.tail = new_node
-            self.head = new_node
+    def set_tail(self, node: Node) -> None:
+        if self.head is None:
+            self.set_head(node)
         else:
-            self.tail.next = new_node
-            new_node.previous = self.tail
-            self.tail = new_node
+            self.insert_after_node(self.tail, node)
 
-    def delete_tail(self) -> str:
-        if self.is_empty:
-            return "List is empty"
+    def insert(self, value):
+        node = Node(value)
+        if self.head is None:
+            self.set_head(node)
+        else:
+            self.set_tail(node)
 
-        tail_data = self.tail.data
-        if self.tail.previous:
-            self.tail = self.tail.previous
-            self.tail.next = None
-        else:  # if there is no previous node
-            self.head = None
-            self.tail = None
+    def insert_before_node(self, node: Node, node_to_insert: Node) -> None:
+        node_to_insert.next = node
+        node_to_insert.previous = node.previous
 
-        return tail_data
+        if node.previous is None:
+            self.head = node_to_insert
+        else:
+            node.previous.next = node_to_insert
 
-    def delete(self, data) -> str:
-        current = self.head
+        node.previous = node_to_insert
 
-        while current.data != data:  # Find the position to delete
-            if current.next:
-                current = current.next
-            else:  # We have reached the end an no value matches
-                return "No data matching given value"
+    def insert_after_node(self, node: Node, node_to_insert: Node) -> None:
+        node_to_insert.previous = node
+        node_to_insert.next = node.next
 
-        if current == self.head:
-            self.delete_head()
+        if node.next is None:
+            self.tail = node_to_insert
+        else:
+            node.next.previous = node_to_insert
 
-        elif current == self.tail:
-            self.delete_tail()
+        node.next = node_to_insert
 
-        else:  # Before: 1 <--> 2(current) <--> 3
-            current.previous.next = current.next  # 1 --> 3
-            current.next.previous = current.previous  # 1 <--> 3
-        return data
+    def insert_at_position(self, position: int, value: int) -> None:
+        if position == 1:
+            self.insert(value)
+        current_position = 1
+        new_node = Node(value)
+        node = self.head
+        while node:
+            if current_position == position:
+                self.insert_before_node(node, new_node)
+                return None
+            current_position += 1
+            node = node.next
+        self.insert_after_node(self.tail, new_node)
+
+    def get_node(self, item):
+        node = self.head
+        while node:
+            if node.data == item:
+                return node
+            node = node.next
+        return None
+
+    def delete_value(self, value):
+        node = self.get_node(value)
+
+        if node is not None:
+            if node == self.head:
+                self.head = self.head.next
+
+            if node == self.tail:
+                self.tail = self.tail.previous
+
+            self.remove_node_pointers(node)
+
+    @staticmethod
+    def remove_node_pointers(node: Node) -> None:
+        if node.next:
+            node.next.previous = node.previous
+
+        if node.previous:
+            node.previous.next = node.next
+
+        node.next = None
+        node.previous = None
+
 
     @property
-    def is_empty(self):  # return True if the list is empty
+    def is_empty(self):
+        # return True if the list is empty
         return self.head is None
-
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.previous = None
-        self.next = None
-
-    def __str__(self):
-        return f"{self.data}"
