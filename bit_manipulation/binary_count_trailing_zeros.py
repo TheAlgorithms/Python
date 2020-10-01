@@ -1,7 +1,7 @@
 from math import log2
 
 
-def binary_count_trailing_zeros(a: int):
+def binary_count_trailing_zeros(a: int) -> int:
     """
     Take in 1 integer, return a number that is
     the number of trailing zeros in binary representation of that number.
@@ -21,19 +21,20 @@ def binary_count_trailing_zeros(a: int):
     >>> binary_count_trailing_zeros(-10)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must be positive
+    ValueError: Input value must be a positive integer
     >>> binary_count_trailing_zeros(0.8)
     Traceback (most recent call last):
         ...
-    TypeError: unsupported operand type(s) for &: 'float' and 'float'
+    TypeError: Input value must be a 'int' type
     >>> binary_count_trailing_zeros("0")
     Traceback (most recent call last):
         ...
     TypeError: '<' not supported between instances of 'str' and 'int'
     """
     if a < 0:
-        raise ValueError("the value of input must be positive")
-
+        raise ValueError("Input value must be a positive integer")
+    elif isinstance(a, float):
+        raise TypeError("Input value must be a \'int\' type")
     return 0 if (a == 0) else int(log2(a & -a))
 
 
