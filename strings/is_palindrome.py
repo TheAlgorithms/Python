@@ -23,6 +23,6 @@ def is_palindrome(s: str) -> bool:
 if __name__ == "__main__":
     s = input("Enter string to determine whether its palindrome or not: ").strip()
     if is_palindrome(s):
-        print("Given string is palindrome")
+        print("Given string is a palindrome")
     else:
-        print("Given string is not palindrome")
+        print("Given string is not a palindrome")
