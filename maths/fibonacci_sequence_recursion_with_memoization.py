@@ -29,7 +29,7 @@ def fibonacci(n):
 
 
 def main() -> None:
-    number = 12
+    number = int(input("Enter an integer greater than or equal to 0: "))
     print(f"The first {number} Fibbonaci sequence terms are:")
     print([fibonacci(n) for n in range(number)])
 
