@@ -21,18 +21,6 @@ class Node:
 
 
 class LinkedList:
-    """
-    >>> linked_list = LinkedList()
-    >>> linked_list.is_empty() == True
-    True
-    >>> linked_list.insert(0)
-    >>> linked_list.is_empty() == False
-    True
-    >>> linked_list.delete_value(0)
-    >>> linked_list.is_empty() == True
-    True
-    """
-
     def __init__(self):
         self.head = None  # First node in list
         self.tail = None  # Last node in list
@@ -89,8 +77,6 @@ class LinkedList:
         node.next = node_to_insert
 
     def insert_at_position(self, position: int, value: int) -> None:
-        if position == 1:
-            self.insert(value)
         current_position = 1
         new_node = Node(value)
         node = self.head
@@ -133,8 +119,39 @@ class LinkedList:
         node.next = None
         node.previous = None
 
-
     def is_empty(self):
         return self.head is None
-    
-    
+
+
+linked_list = LinkedList()
+for i in range(10):
+    linked_list.insert(i)
+
+print(linked_list)
+# 0<-->1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
+print(linked_list.head)
+# 0
+linked_list.delete_value(0)
+print(linked_list.head)
+# 1
+print(linked_list)
+# 1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
+linked_list.insert_at_position(1, 100)
+# 100<-->1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
+print(linked_list)
+linked_list.delete_value(5)
+print(linked_list)
+# 100<-->1<-->2<-->3<-->4<-->6<-->7<-->8<-->9
+print(linked_list.is_empty())
+# False
+linked_list.insert_at_position(12, 200)
+
+for i in range(5):
+    print(linked_list)
+    linked_list.delete_value(linked_list.tail.data)
+    # for each iterations
+    # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8 < -->9 < -->200
+    # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8 < -->9
+    # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8
+    # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7
+    # 100 < -->1 < -->2 < -->3 < -->4 < -->6
