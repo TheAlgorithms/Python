@@ -5,7 +5,7 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
     """
     encrypt
     =======
-    Encodes a given string with the caesar cipher and returns the encoded
+    Encode a given string with the caesar cipher and returns the encoded
     message
 
     Parameters:
@@ -59,7 +59,7 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
     >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
     'f qtbjwhfxj fqumfgjy'
     """
-    # Set default alphabet to lower and upper case english chars
+    # Set default alphabet to lower and upper case english characters
     alpha = alphabet or ascii_letters
 
     # The final result string
@@ -168,7 +168,7 @@ def brute_force(input_string: str, alphabet=None) -> dict:
     complex the cipher, the larger amount of time it will take to do brute force
 
     Ex:
-    Say we have a 5 letter alphabet (abcde), for simplicity and we intercepted the
+    Say we have a 5 letter word (abcde), for simplicity and we intercepted the
     following message:
 
     "dbc"
