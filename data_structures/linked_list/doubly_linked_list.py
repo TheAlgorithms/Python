@@ -135,6 +135,5 @@ class LinkedList:
 
 
     @property
-    def is_empty(self):
-        # return True if the list is empty
+    def is_empty(self):  
         return self.head is None
