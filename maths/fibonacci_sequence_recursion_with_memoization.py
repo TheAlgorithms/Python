@@ -29,9 +29,9 @@ def fibonacci(n):
 
 
 def main() -> None:
-    lenght = 12
-    print(f"The first {lenght} Fibbonaci sequence terms are:")
-    print([fibonacci(n) for n in range(lenght)])
+    number = 12
+    print(f"The first {number} Fibbonaci sequence terms are:")
+    print([fibonacci(n) for n in range(number)])
 
 
 if __name__ == "__main__":
