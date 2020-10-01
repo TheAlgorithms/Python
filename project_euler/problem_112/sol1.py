@@ -69,7 +69,7 @@ def solution(percent: float = 99) -> int:
         ...
     ValueError: solution() only accepts values from 0 to 100
     """
-    if percent >= 100:
+    if not 0 < percent < 100:
         raise ValueError("solution() only accepts values from 0 to 100")
     bouncy_num = 0
     num = 1
