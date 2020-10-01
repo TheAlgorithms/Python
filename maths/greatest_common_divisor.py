@@ -5,7 +5,7 @@ Wikipedia reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 """
 
 
-def greatest_common_divisor(a, b):
+def greatest_common_divisor(a: int, b: int) -> int:
     """
     Calculate Greatest Common Divisor (GCD).
     >>> greatest_common_divisor(24, 40)
@@ -31,7 +31,7 @@ recursive calls required to calculate the greatest common divisor.
 """
 
 
-def gcd_by_iterative(x, y):
+def gcd_by_iterative(x: int, y: int) -> int:
     """
     >>> gcd_by_iterative(24, 40)
     8
