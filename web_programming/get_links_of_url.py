@@ -1,8 +1,8 @@
 import re
-
-from bs4 import BeautifulSoup
 import urllib.request
 import urllib.parse
+
+from bs4 import BeautifulSoup
 
 
 def is_valid_url(url):
