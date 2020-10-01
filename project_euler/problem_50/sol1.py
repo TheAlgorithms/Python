@@ -30,7 +30,7 @@ from math import sqrt, floor
 
 def is_prime(number: int) -> bool:
     """
-    function to check wether a number is a prime or not.
+    function to check whether a number is a prime or not.
     >>> is_prime(2)
     True
     >>> is_prime(6)
