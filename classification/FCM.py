@@ -51,7 +51,7 @@ class FuzzyCMeans:
         x = datetime.datetime.now() - begin_time
         return self.centers, self.U, x
 
-# that's how you run it, data being your data, and the other parameters being the basic FCM parameters
+# that's how you run it, data being your data, and the other parameters being the basic FCM parameters such as numbe rof cluseters, degree of fuzziness and so on
 # f = FuzzyCMeans(n_clusters=C, initial_centers=Initial_centers,
 #                 data=data m=2, max_iter=1000, error=1e-5)
 # centers, U, time = f.compute()
