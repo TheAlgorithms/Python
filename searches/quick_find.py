@@ -73,7 +73,7 @@ def run_test(n=None, connections=None):
     test = QuickUnion(n=n, connections=connections)
     for connection in test.connections:
         test.union(connection[0], connection[1])
-    return test
+    return str(test)
 
 
 if __name__ == "__main__":
