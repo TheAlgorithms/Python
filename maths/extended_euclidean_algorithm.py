@@ -14,7 +14,7 @@ the equation am + bn = gcd(m, n) (a.k.a Bezout's Identity)
 import sys
 
 
-def extended_euclidean_algorithm(m, n):
+def extended_euclidean_algorithm(m: int, n: int) -> int:
     """
     Extended Euclidean Algorithm.
 
