@@ -7,9 +7,10 @@ val: the value to be searched
 output: the index of element in the array or -1 if not found
 return 0 if input array is empty
 """
+from typing import List
 
 
-def fibonacci_search(arr, val):
+def fibonacci_search(arr: List[int], val: int) -> int: 
 
     """
     >>> fibonacci_search([1,6,7,0,0,0], 6)
