@@ -1,6 +1,6 @@
-"""pseudo-code"""
-
 """
+pseudo-code
+
 DIJKSTRA(graph G, start vertex s, destination vertex d):
 
 //all nodes initially unexplored
@@ -30,7 +30,6 @@ only the distance between previous vertex and current vertex but the entire
 distance between each vertex that makes up the path from start vertex to target
 vertex.
 """
-
 import heapq
 
 

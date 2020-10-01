@@ -8,7 +8,7 @@ We can see that the 6th prime is 13. What is the Nth prime number?
 from math import sqrt
 
 
-def isprime(n):
+def is_prime(n):
     if n == 2:
         return True
     elif n % 2 == 0:
@@ -41,11 +41,11 @@ def solution(n):
     j = 1
     while i != n and j < 3:
         j += 1
-        if isprime(j):
+        if is_prime(j):
             i += 1
     while i != n:
         j += 2
-        if isprime(j):
+        if is_prime(j):
             i += 1
     return j
 

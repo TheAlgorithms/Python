@@ -1,6 +1,7 @@
 """
-LCS Problem Statement: Given two sequences, find the length of longest subsequence present in both of them.
-A subsequence is a sequence that appears in the same relative order, but not necessarily continuous.
+LCS Problem Statement: Given two sequences, find the length of longest subsequence
+present in both of them.  A subsequence is a sequence that appears in the same relative
+order, but not necessarily continuous.
 Example:"abc", "abg" are subsequences of "abcdefgh".
 """
 
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     expected_subseq = "GTAB"
 
     ln, subseq = longest_common_subsequence(a, b)
-    ##    print("len =", ln, ", sub-sequence =", subseq)
+    print("len =", ln, ", sub-sequence =", subseq)
     import doctest
 
     doctest.testmod()

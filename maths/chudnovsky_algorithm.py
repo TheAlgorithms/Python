@@ -44,7 +44,6 @@ def pi(precision: int) -> str:
     getcontext().prec = precision
     num_iterations = ceil(precision / 14)
     constant_term = 426880 * Decimal(10005).sqrt()
-    multinomial_term = 1
     exponential_term = 1
     linear_term = 13591409
     partial_sum = Decimal(linear_term)

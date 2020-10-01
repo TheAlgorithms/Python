@@ -1,5 +1,10 @@
 """
-This is a pure python implementation of the bogosort algorithm
+This is a pure Python implementation of the bogosort algorithm,
+also known as permutation sort, stupid sort, slowsort, shotgun sort, or monkey sort.
+Bogosort generates random permutations until it guesses the correct one.
+
+More info on: https://en.wikipedia.org/wiki/Bogosort
+
 For doctests run following command:
 python -m doctest -v bogo_sort.py
 or
@@ -25,7 +30,7 @@ def bogo_sort(collection):
     [-45, -5, -2]
     """
 
-    def isSorted(collection):
+    def is_sorted(collection):
         if len(collection) < 2:
             return True
         for i in range(len(collection) - 1):
@@ -33,7 +38,7 @@ def bogo_sort(collection):
                 return False
         return True
 
-    while not isSorted(collection):
+    while not is_sorted(collection):
         random.shuffle(collection)
     return collection
 

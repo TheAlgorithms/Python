@@ -1,5 +1,5 @@
 """
-Implementing Deque using DoublyLinkedList ... 
+Implementing Deque using DoublyLinkedList ...
 Operations:
     1. insertion in the front -> O(1)
     2. insertion in the end -> O(1)
@@ -21,7 +21,7 @@ class _DoublyLinkedBase:
 
         def has_next_and_prev(self):
             return " Prev -> {0}, Next -> {1}".format(
-                self._prev != None, self._next != None
+                self._prev is not None, self._next is not None
             )
 
     def __init__(self):
@@ -61,7 +61,7 @@ class _DoublyLinkedBase:
 
 class LinkedDeque(_DoublyLinkedBase):
     def first(self):
-        """ return first element 
+        """return first element
         >>> d = LinkedDeque()
         >>> d.add_first('A').first()
         'A'
@@ -73,7 +73,7 @@ class LinkedDeque(_DoublyLinkedBase):
         return self._header._next._data
 
     def last(self):
-        """ return last element
+        """return last element
         >>> d = LinkedDeque()
         >>> d.add_last('A').last()
         'A'
@@ -84,26 +84,26 @@ class LinkedDeque(_DoublyLinkedBase):
             raise Exception("List is empty")
         return self._trailer._prev._data
 
-    ### DEque Insert Operations (At the front, At the end) ###
+    # DEque Insert Operations (At the front, At the end)
 
     def add_first(self, element):
-        """ insertion in the front
+        """insertion in the front
         >>> LinkedDeque().add_first('AV').first()
         'AV'
         """
         return self._insert(self._header, element, self._header._next)
 
     def add_last(self, element):
-        """ insertion in the end
+        """insertion in the end
         >>> LinkedDeque().add_last('B').last()
         'B'
         """
         return self._insert(self._trailer._prev, element, self._trailer)
 
-    ### DEqueu Remove Operations (At the front, At the end) ###
+    # DEqueu Remove Operations (At the front, At the end)
 
     def remove_first(self):
-        """ removal from the front
+        """removal from the front
         >>> d = LinkedDeque()
         >>> d.is_empty()
         True
@@ -112,7 +112,7 @@ class LinkedDeque(_DoublyLinkedBase):
            ...
         IndexError: remove_first from empty list
         >>> d.add_first('A') # doctest: +ELLIPSIS
-        <linked_list.deque_doubly.LinkedDeque object at ...
+        <data_structures.linked_list.deque_doubly.LinkedDeque object at ...
         >>> d.remove_first()
         'A'
         >>> d.is_empty()
@@ -123,7 +123,7 @@ class LinkedDeque(_DoublyLinkedBase):
         return self._delete(self._header._next)
 
     def remove_last(self):
-        """ removal in the end
+        """removal in the end
         >>> d = LinkedDeque()
         >>> d.is_empty()
         True
@@ -132,7 +132,7 @@ class LinkedDeque(_DoublyLinkedBase):
            ...
         IndexError: remove_first from empty list
         >>> d.add_first('A') # doctest: +ELLIPSIS
-        <linked_list.deque_doubly.LinkedDeque object at ...
+        <data_structures.linked_list.deque_doubly.LinkedDeque object at ...
         >>> d.remove_last()
         'A'
         >>> d.is_empty()

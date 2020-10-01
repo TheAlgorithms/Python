@@ -42,12 +42,24 @@ def armstrong_number(n: int) -> bool:
     return n == sum
 
 
+def narcissistic_number(n: int) -> bool:
+    """Return True if n is a narcissistic number or False if it is not"""
+
+    expo = len(str(n))  # power, all number will be raised to
+    # each digit will be multiplied expo times
+    temp = [(int(i) ** expo) for i in str(n)]
+
+    # check if sum of cube of each digit is equal to number
+    return n == sum(temp)
+
+
 def main():
     """
     Request that user input an integer and tell them if it is Armstrong number.
     """
     num = int(input("Enter an integer to see if it is an Armstrong number: ").strip())
     print(f"{num} is {'' if armstrong_number(num) else 'not '}an Armstrong number.")
+    print(f"{num} is {'' if narcissistic_number(num) else 'not '}an Armstrong number.")
 
 
 if __name__ == "__main__":

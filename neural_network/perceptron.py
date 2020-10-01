@@ -19,17 +19,28 @@ class Perceptron:
         :param learning_rate: learning rate used in optimizing.
         :param epoch_number: number of epochs to train network on.
         :param bias: bias value for the network.
+
+        >>> p = Perceptron([], (0, 1, 2))
+        Traceback (most recent call last):
+        ...
+        ValueError: Sample data can not be empty
+        >>> p = Perceptron(([0], 1, 2), [])
+        Traceback (most recent call last):
+        ...
+        ValueError: Target data can not be empty
+        >>> p = Perceptron(([0], 1, 2), (0, 1))
+        Traceback (most recent call last):
+        ...
+        ValueError: Sample data and Target data do not have matching lengths
         """
         self.sample = sample
         if len(self.sample) == 0:
-            raise AttributeError("Sample data can not be empty")
+            raise ValueError("Sample data can not be empty")
         self.target = target
         if len(self.target) == 0:
-            raise AttributeError("Target data can not be empty")
+            raise ValueError("Target data can not be empty")
         if len(self.sample) != len(self.target):
-            raise AttributeError(
-                "Sample data and Target data do not have matching lengths"
-            )
+            raise ValueError("Sample data and Target data do not have matching lengths")
         self.learning_rate = learning_rate
         self.epoch_number = epoch_number
         self.bias = bias
@@ -98,7 +109,7 @@ class Perceptron:
         classification: P...
         """
         if len(self.sample) == 0:
-            raise AttributeError("Sample data can not be empty")
+            raise ValueError("Sample data can not be empty")
         sample.insert(0, self.bias)
         u = 0
         for i in range(self.col_sample + 1):

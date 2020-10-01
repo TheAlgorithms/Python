@@ -1,5 +1,5 @@
-import datetime
 import argparse
+import datetime
 
 
 def zeller(date_input: str) -> str:
@@ -63,8 +63,7 @@ def zeller(date_input: str) -> str:
     >>> zeller('01-31-19082939')
     Traceback (most recent call last):
         ...
-    ValueError: Must be 10 characters long
-"""
+    ValueError: Must be 10 characters long"""
 
     # Days of the week for response
     days = {
@@ -147,7 +146,10 @@ if __name__ == "__main__":
 
     doctest.testmod()
     parser = argparse.ArgumentParser(
-        description="Find out what day of the week nearly any date is or was. Enter date as a string in the mm-dd-yyyy or mm/dd/yyyy format"
+        description=(
+            "Find out what day of the week nearly any date is or was. Enter "
+            "date as a string in the mm-dd-yyyy or mm/dd/yyyy format"
+        )
     )
     parser.add_argument(
         "date_input", type=str, help="Date as a string (mm-dd-yyyy or mm/dd/yyyy)"

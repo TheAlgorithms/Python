@@ -1,23 +1,24 @@
-import matplotlib.pyplot as plt
 import pandas as pd
+from matplotlib import pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Splitting the dataset into the Training set and Test set
+from sklearn.model_selection import train_test_split
+
+# Fitting Polynomial Regression to the dataset
+from sklearn.preprocessing import PolynomialFeatures
 
 # Importing the dataset
 dataset = pd.read_csv(
-    "https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/position_salaries.csv"
+    "https://s3.us-west-2.amazonaws.com/public.gamelab.fun/dataset/"
+    "position_salaries.csv"
 )
 X = dataset.iloc[:, 1:2].values
 y = dataset.iloc[:, 2].values
 
 
-# Splitting the dataset into the Training set and Test set
-from sklearn.model_selection import train_test_split
-
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-
-# Fitting Polynomial Regression to the dataset
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
 
 poly_reg = PolynomialFeatures(degree=4)
 X_poly = poly_reg.fit_transform(X)

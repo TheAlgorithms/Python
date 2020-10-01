@@ -1,9 +1,8 @@
 """
 Implementation of median filter algorithm
 """
-
-from cv2 import imread, cvtColor, COLOR_BGR2GRAY, imshow, waitKey
-from numpy import zeros_like, ravel, sort, multiply, divide, int8
+from cv2 import COLOR_BGR2GRAY, cvtColor, imread, imshow, waitKey
+from numpy import divide, int8, multiply, ravel, sort, zeros_like
 
 
 def median_filter(gray_img, mask=3):

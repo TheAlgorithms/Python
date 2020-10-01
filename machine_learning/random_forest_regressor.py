@@ -1,17 +1,15 @@
 # Random Forest Regressor Example
-
 from sklearn.datasets import load_boston
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.model_selection import train_test_split
 
 
 def main():
 
     """
-    Random Tree Regressor Example using sklearn function.
-    Boston house price dataset is used to demonstrate algorithm.
+    Random Forest Regressor Example using sklearn function.
+    Boston house price dataset is used to demonstrate the algorithm.
     """
 
     # Load Boston house price dataset

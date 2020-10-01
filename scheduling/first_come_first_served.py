@@ -2,10 +2,10 @@
 # In this Algorithm we just care about the order that the processes arrived
 # without carring about their duration time
 # https://en.wikipedia.org/wiki/Scheduling_(computing)#First_come,_first_served
-from typing import List
+from __future__ import annotations
 
 
-def calculate_waiting_times(duration_times: List[int]) -> List[int]:
+def calculate_waiting_times(duration_times: list[int]) -> list[int]:
     """
     This function calculates the waiting time of some processes that have a
     specified duration time.
@@ -24,11 +24,11 @@ def calculate_waiting_times(duration_times: List[int]) -> List[int]:
 
 
 def calculate_turnaround_times(
-    duration_times: List[int], waiting_times: List[int]
-) -> List[int]:
+    duration_times: list[int], waiting_times: list[int]
+) -> list[int]:
     """
     This function calculates the turnaround time of some processes.
-        Return: The time difference between the completion time and the 
+        Return: The time difference between the completion time and the
                 arrival time.
                 Practically waiting_time + duration_time
     >>> calculate_turnaround_times([5, 10, 15], [0, 5, 15])
@@ -44,7 +44,7 @@ def calculate_turnaround_times(
     ]
 
 
-def calculate_average_turnaround_time(turnaround_times: List[int]) -> float:
+def calculate_average_turnaround_time(turnaround_times: list[int]) -> float:
     """
     This function calculates the average of the turnaround times
         Return: The average of the turnaround times.
@@ -58,7 +58,7 @@ def calculate_average_turnaround_time(turnaround_times: List[int]) -> float:
     return sum(turnaround_times) / len(turnaround_times)
 
 
-def calculate_average_waiting_time(waiting_times: List[int]) -> float:
+def calculate_average_waiting_time(waiting_times: list[int]) -> float:
     """
     This function calculates the average of the waiting times
         Return: The average of the waiting times.
@@ -101,7 +101,8 @@ if __name__ == "__main__":
     print("Process ID\tDuration Time\tWaiting Time\tTurnaround Time")
     for i, process in enumerate(processes):
         print(
-            f"{process}\t\t{duration_times[i]}\t\t{waiting_times[i]}\t\t{turnaround_times[i]}"
+            f"{process}\t\t{duration_times[i]}\t\t{waiting_times[i]}\t\t"
+            f"{turnaround_times[i]}"
         )
     print(f"Average waiting time = {average_waiting_time}")
     print(f"Average turn around time = {average_turnaround_time}")

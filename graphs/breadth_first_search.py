@@ -5,42 +5,40 @@
 
 class Graph:
     def __init__(self):
-        self.vertex = {}
+        self.vertices = {}
 
-    # for printing the Graph vertices
     def printGraph(self):
-        for i in self.vertex.keys():
-            print(i, " -> ", " -> ".join([str(j) for j in self.vertex[i]]))
+        """prints adjacency list representation of graaph"""
+        for i in self.vertices.keys():
+            print(i, " : ", " -> ".join([str(j) for j in self.vertices[i]]))
 
-    # for adding the edge between two vertices
     def addEdge(self, fromVertex, toVertex):
-        # check if vertex is already present,
-        if fromVertex in self.vertex.keys():
-            self.vertex[fromVertex].append(toVertex)
+        """adding the edge between two vertices"""
+        if fromVertex in self.vertices.keys():
+            self.vertices[fromVertex].append(toVertex)
         else:
-            # else make a new vertex
-            self.vertex[fromVertex] = [toVertex]
+            self.vertices[fromVertex] = [toVertex]
 
     def BFS(self, startVertex):
-        # Take a list for stoting already visited vertices
-        visited = [False] * len(self.vertex)
+        # initialize set for storing already visited vertices
+        visited = set()
 
-        # create a list to store all the vertices for BFS
+        # create a first in first out queue to store all the vertices for BFS
         queue = []
 
         # mark the source node as visited and enqueue it
-        visited[startVertex] = True
+        visited.add(startVertex)
         queue.append(startVertex)
 
         while queue:
-            startVertex = queue.pop(0)
-            print(startVertex, end=" ")
+            vertex = queue.pop(0)
 
-            # mark all adjacent nodes as visited and print them
-            for i in self.vertex[startVertex]:
-                if visited[i] == False:
-                    queue.append(i)
-                    visited[i] = True
+            # loop through all adjacent vertex and enqueue it if not yet visited
+            for adjacent_vertex in self.vertices[vertex]:
+                if adjacent_vertex not in visited:
+                    queue.append(adjacent_vertex)
+                    visited.add(adjacent_vertex)
+        return visited
 
 
 if __name__ == "__main__":
@@ -53,13 +51,9 @@ if __name__ == "__main__":
     g.addEdge(3, 3)
 
     g.printGraph()
-    print("BFS:")
-    g.BFS(2)
+    # 0  :  1 -> 2
+    # 1  :  2
+    # 2  :  0 -> 3
+    # 3  :  3
 
-    # OUTPUT:
-    # 0  ->  1 -> 2
-    # 1  ->  2
-    # 2  ->  0 -> 3
-    # 3  ->  3
-    # BFS:
-    # 2 0 3 1
+    assert sorted(g.BFS(2)) == [0, 1, 2, 3]

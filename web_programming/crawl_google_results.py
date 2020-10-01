@@ -1,10 +1,9 @@
 import sys
 import webbrowser
 
+import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-import requests
-
 
 if __name__ == "__main__":
     print("Googling.....")
@@ -19,4 +18,7 @@ if __name__ == "__main__":
 
     print(len(links))
     for link in links:
-        webbrowser.open(f"http://google.com{link.get('href')}")
+        if link.text == "Maps":
+            webbrowser.open(link.get("href"))
+        else:
+            webbrowser.open(f"http://google.com{link.get('href')}")

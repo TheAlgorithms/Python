@@ -1,5 +1,5 @@
 """
-This is pure python implementation of interpolation search algorithm
+This is pure Python implementation of interpolation search algorithm
 """
 
 

@@ -1,4 +1,7 @@
-import collections, pprint, time, os
+import collections
+import os
+import pprint
+import time
 
 start_time = time.time()
 print("creating word list...")
@@ -16,8 +19,8 @@ for word in word_list:
     word_bysig[signature(word)].append(word)
 
 
-def anagram(myword):
-    return word_bysig[signature(myword)]
+def anagram(my_word):
+    return word_bysig[signature(my_word)]
 
 
 print("finding anagrams...")

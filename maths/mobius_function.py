@@ -5,8 +5,8 @@ python/black : True
 flake8 : True
 """
 
-from maths.prime_factors import prime_factors
 from maths.is_square_free import is_square_free
+from maths.prime_factors import prime_factors
 
 
 def mobius(n: int) -> int:

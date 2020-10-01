@@ -16,7 +16,6 @@ def solution():
      1. a < b < c
      2. a**2 + b**2 = c**2
      3. a + b + c = 1000
-
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution()
     # 31875000
@@ -30,6 +29,40 @@ def solution():
                             return a * b * c
 
 
+def solution_fast():
+    """
+     Returns the product of a,b,c which are Pythagorean Triplet that satisfies
+     the following:
+     1. a < b < c
+     2. a**2 + b**2 = c**2
+     3. a + b + c = 1000
+
+    # The code below has been commented due to slow execution affecting Travis.
+    # >>> solution_fast()
+    # 31875000
+    """
+    for a in range(300):
+        for b in range(400):
+            c = 1000 - a - b
+            if a < b < c and (a ** 2) + (b ** 2) == (c ** 2):
+                return a * b * c
+
+
+def benchmark() -> None:
+    """
+    Benchmark code comparing two different version function.
+    """
+    import timeit
+
+    print(
+        timeit.timeit("solution()", setup="from __main__ import solution", number=1000)
+    )
+    print(
+        timeit.timeit(
+            "solution_fast()", setup="from __main__ import solution_fast", number=1000
+        )
+    )
+
+
 if __name__ == "__main__":
-    print("Please Wait...")
-    print(solution())
+    benchmark()

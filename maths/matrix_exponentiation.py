@@ -4,7 +4,7 @@ import timeit
 
 """
 Matrix Exponentiation is a technique to solve linear recurrences in logarithmic time.
-You read more about it here: 
+You read more about it here:
 http://zobayer.blogspot.com/2010/11/matrix-exponentiation.html
 https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 """
@@ -15,7 +15,7 @@ class Matrix:
         if isinstance(arg, list):  # Initializes a matrix identical to the one provided.
             self.t = arg
             self.n = len(arg)
-        else:  # Initializes a square matrix of the given size and set the values to zero.
+        else:  # Initializes a square matrix of the given size and set values to zero.
             self.n = arg
             self.t = [[0 for _ in range(self.n)] for _ in range(self.n)]
 

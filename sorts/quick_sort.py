@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the quick sort algorithm
+This is a pure Python implementation of the quick sort algorithm
 
 For doctests run following command:
 python -m doctest -v quick_sort.py

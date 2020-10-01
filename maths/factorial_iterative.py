@@ -26,5 +26,5 @@ def factorial(n: int) -> int:
 
 
 if __name__ == "__main__":
-    n = int(input("Enter a positivve integer: ").strip() or 0)
+    n = int(input("Enter a positive integer: ").strip() or 0)
     print(f"factorial{n} is {factorial(n)}")

@@ -28,7 +28,7 @@ def next_term(a_i, k, i, n):
     is cached to greatly speed up the computation.
 
     Arguments:
-    a_i -- array of digits starting from the one's place that represent 
+    a_i -- array of digits starting from the one's place that represent
            the i-th term in the sequence
     k --  k when terms are written in the from a(i) = b*10^k + c.
           Term are calulcated until c > 10^k or the n-th term is reached.
@@ -40,22 +40,18 @@ def next_term(a_i, k, i, n):
     ending term is a_10=62, then (61, 9) is returned.
     """
     # ds_b - digitsum(b)
-    ds_b = 0
-    for j in range(k, len(a_i)):
-        ds_b += a_i[j]
-    c = 0
-    for j in range(min(len(a_i), k)):
-        c += a_i[j] * base[j]
+    ds_b = sum(a_i[j] for j in range(k, len(a_i)))
+    c = sum(a_i[j] * base[j] for j in range(min(len(a_i), k)))
 
     diff, dn = 0, 0
     max_dn = n - i
 
     sub_memo = memo.get(ds_b)
 
-    if sub_memo != None:
+    if sub_memo is not None:
         jumps = sub_memo.get(c)
 
-        if jumps != None and len(jumps) > 0:
+        if jumps is not None and len(jumps) > 0:
             # find and make the largest jump without going over
             max_jump = -1
             for _k in range(len(jumps) - 1, -1, -1):

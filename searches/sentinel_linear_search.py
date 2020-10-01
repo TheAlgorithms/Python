@@ -1,5 +1,5 @@
 """
-This is pure python implementation of sentinel linear search algorithm
+This is pure Python implementation of sentinel linear search algorithm
 
 For doctests run following command:
 python -m doctest -v sentinel_linear_search.py

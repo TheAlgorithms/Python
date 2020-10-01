@@ -1,3 +1,5 @@
+from collections import deque
+
 if __name__ == "__main__":
     # Accept No. of Nodes and edges
     n, m = map(int, input().split(" "))
@@ -72,7 +74,6 @@ def dfs(G, s):
                 Q - Traversal Stack
 --------------------------------------------------------------------------------
 """
-from collections import deque
 
 
 def bfs(G, s):
@@ -125,7 +126,6 @@ def dijk(G, s):
     Topological Sort
 --------------------------------------------------------------------------------
 """
-from collections import deque
 
 
 def topo(G, ind=None, Q=None):
@@ -220,6 +220,7 @@ def prim(G, s):
                 if v[1] < dist.get(v[0], 100000):
                     dist[v[0]] = v[1]
                     path[v[0]] = u
+    return dist
 
 
 """
@@ -235,10 +236,10 @@ def prim(G, s):
 
 def edglist():
     n, m = map(int, input().split(" "))
-    l = []
+    edges = []
     for i in range(m):
-        l.append(map(int, input().split(" ")))
-    return l, n
+        edges.append(map(int, input().split(" ")))
+    return edges, n
 
 
 """

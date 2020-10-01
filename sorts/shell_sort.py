@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the shell sort algorithm
+This is a pure Python implementation of the shell sort algorithm
 
 For doctests run following command:
 python -m doctest -v shell_sort.py
@@ -30,16 +30,11 @@ def shell_sort(collection):
     gaps = [701, 301, 132, 57, 23, 10, 4, 1]
 
     for gap in gaps:
-        i = gap
-        while i < len(collection):
-            temp = collection[i]
+        for i in range(gap, len(collection)):
             j = i
-            while j >= gap and collection[j - gap] > temp:
-                collection[j] = collection[j - gap]
+            while j >= gap and collection[j] < collection[j - gap]:
+                collection[j], collection[j - gap] = collection[j - gap], collection[j]
                 j -= gap
-            collection[j] = temp
-            i += 1
-
     return collection
 
 

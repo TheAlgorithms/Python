@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import math
-from typing import List, Tuple
 
 
-def default_matrix_multiplication(a: List, b: List) -> List:
+def default_matrix_multiplication(a: list, b: list) -> list:
     """
     Multiplication only for 2x2 matrices
     """
@@ -15,28 +16,35 @@ def default_matrix_multiplication(a: List, b: List) -> List:
     return new_matrix
 
 
-def matrix_addition(matrix_a: List, matrix_b: List):
+def matrix_addition(matrix_a: list, matrix_b: list):
     return [
         [matrix_a[row][col] + matrix_b[row][col] for col in range(len(matrix_a[row]))]
         for row in range(len(matrix_a))
     ]
 
 
-def matrix_subtraction(matrix_a: List, matrix_b: List):
+def matrix_subtraction(matrix_a: list, matrix_b: list):
     return [
         [matrix_a[row][col] - matrix_b[row][col] for col in range(len(matrix_a[row]))]
         for row in range(len(matrix_a))
     ]
 
 
-def split_matrix(a: List,) -> Tuple[List, List, List, List]:
+def split_matrix(a: list) -> tuple[list, list, list, list]:
     """
-    Given an even length matrix, returns the top_left, top_right, bot_left, bot_right quadrant.
+    Given an even length matrix, returns the top_left, top_right, bot_left, bot_right
+    quadrant.
 
     >>> split_matrix([[4,3,2,4],[2,3,1,1],[6,5,4,3],[8,4,1,6]])
     ([[4, 3], [2, 3]], [[2, 4], [1, 1]], [[6, 5], [8, 4]], [[4, 3], [1, 6]])
-    >>> split_matrix([[4,3,2,4,4,3,2,4],[2,3,1,1,2,3,1,1],[6,5,4,3,6,5,4,3],[8,4,1,6,8,4,1,6],[4,3,2,4,4,3,2,4],[2,3,1,1,2,3,1,1],[6,5,4,3,6,5,4,3],[8,4,1,6,8,4,1,6]])
-    ([[4, 3, 2, 4], [2, 3, 1, 1], [6, 5, 4, 3], [8, 4, 1, 6]], [[4, 3, 2, 4], [2, 3, 1, 1], [6, 5, 4, 3], [8, 4, 1, 6]], [[4, 3, 2, 4], [2, 3, 1, 1], [6, 5, 4, 3], [8, 4, 1, 6]], [[4, 3, 2, 4], [2, 3, 1, 1], [6, 5, 4, 3], [8, 4, 1, 6]])
+    >>> split_matrix([
+    ...     [4,3,2,4,4,3,2,4],[2,3,1,1,2,3,1,1],[6,5,4,3,6,5,4,3],[8,4,1,6,8,4,1,6],
+    ...     [4,3,2,4,4,3,2,4],[2,3,1,1,2,3,1,1],[6,5,4,3,6,5,4,3],[8,4,1,6,8,4,1,6]
+    ... ])  # doctest: +NORMALIZE_WHITESPACE
+    ([[4, 3, 2, 4], [2, 3, 1, 1], [6, 5, 4, 3], [8, 4, 1, 6]], [[4, 3, 2, 4],
+      [2, 3, 1, 1], [6, 5, 4, 3], [8, 4, 1, 6]], [[4, 3, 2, 4], [2, 3, 1, 1],
+      [6, 5, 4, 3], [8, 4, 1, 6]], [[4, 3, 2, 4], [2, 3, 1, 1], [6, 5, 4, 3],
+      [8, 4, 1, 6]])
     """
     if len(a) % 2 != 0 or len(a[0]) % 2 != 0:
         raise Exception("Odd matrices are not supported!")
@@ -55,19 +63,19 @@ def split_matrix(a: List,) -> Tuple[List, List, List, List]:
     return top_left, top_right, bot_left, bot_right
 
 
-def matrix_dimensions(matrix: List) -> Tuple[int, int]:
+def matrix_dimensions(matrix: list) -> tuple[int, int]:
     return len(matrix), len(matrix[0])
 
 
-def print_matrix(matrix: List) -> None:
+def print_matrix(matrix: list) -> None:
     for i in range(len(matrix)):
         print(matrix[i])
 
 
-def actual_strassen(matrix_a: List, matrix_b: List) -> List:
+def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     """
-    Recursive function to calculate the product of two matrices, using the Strassen Algorithm.
-    It only supports even length matrices.
+    Recursive function to calculate the product of two matrices, using the Strassen
+    Algorithm.  It only supports even length matrices.
     """
     if matrix_dimensions(matrix_a) == (2, 2):
         return default_matrix_multiplication(matrix_a, matrix_b)
@@ -97,7 +105,7 @@ def actual_strassen(matrix_a: List, matrix_b: List) -> List:
     return new_matrix
 
 
-def strassen(matrix1: List, matrix2: List) -> List:
+def strassen(matrix1: list, matrix2: list) -> list:
     """
     >>> strassen([[2,1,3],[3,4,6],[1,4,2],[7,6,7]], [[4,2,3,4],[2,1,1,1],[8,6,4,2]])
     [[34, 23, 19, 15], [68, 46, 37, 28], [28, 18, 15, 12], [96, 62, 55, 48]]
@@ -106,7 +114,8 @@ def strassen(matrix1: List, matrix2: List) -> List:
     """
     if matrix_dimensions(matrix1)[1] != matrix_dimensions(matrix2)[0]:
         raise Exception(
-            f"Unable to multiply these matrices, please check the dimensions. \nMatrix A:{matrix1} \nMatrix B:{matrix2}"
+            f"Unable to multiply these matrices, please check the dimensions. \n"
+            f"Matrix A:{matrix1} \nMatrix B:{matrix2}"
         )
     dimension1 = matrix_dimensions(matrix1)
     dimension2 = matrix_dimensions(matrix2)
@@ -119,7 +128,8 @@ def strassen(matrix1: List, matrix2: List) -> List:
     new_matrix1 = matrix1
     new_matrix2 = matrix2
 
-    # Adding zeros to the matrices so that the arrays dimensions are the same and also power of 2
+    # Adding zeros to the matrices so that the arrays dimensions are the same and also
+    # power of 2
     for i in range(0, maxim):
         if i < dimension1[0]:
             for j in range(dimension1[1], maxim):

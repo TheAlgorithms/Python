@@ -55,6 +55,7 @@ def isEnglish(message, wordPercentage=20, letterPercentage=85):
     return wordsMatch and lettersMatch
 
 
-import doctest
+if __name__ == "__main__":
+    import doctest
 
-doctest.testmod()
+    doctest.testmod()

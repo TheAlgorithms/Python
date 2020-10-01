@@ -20,7 +20,7 @@ def solution(n):
     39893
     """
     answer = 0
-    for i in range(999, 99, -1):  # 3 digit nimbers range from 999 down to 100
+    for i in range(999, 99, -1):  # 3 digit numbers range from 999 down to 100
         for j in range(999, 99, -1):
             t = str(i * j)
             if t == t[::-1] and i * j < n:
