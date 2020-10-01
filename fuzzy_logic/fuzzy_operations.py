@@ -5,8 +5,9 @@ Requirements:
   - matplotlib
 Python:
   - 3.5
+  - 3.8
 """
-import numpy as np
+import numpy as np # This will import np module from numpy module
 import skfuzzy as fuzz
 
 if __name__ == "__main__":
