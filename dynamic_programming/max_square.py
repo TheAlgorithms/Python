@@ -9,7 +9,7 @@ from __future__ import annotations
 
 def max_square(matrix: list[list[int]]) -> int:
     """
-    Return the aera of the largest square within matrix.
+    Return the area of the largest square within matrix.
     matrix is a 2d array with either 0 or 1.
     >>> max_square([[1, 0], [0, 1]])
     1
