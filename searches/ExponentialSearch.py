@@ -3,8 +3,14 @@ Exponential search is another search algorithm that can be implemented quite sim
 
 Exponential search depends on binary search to perform the final comparison of values. The algorithm works by:
 '''
-list1=list(map(int, input().split(" ")))
-val=int(input())
+
+#test input list
+list1=[1,2,3,4,5,6,7,7,8,9]
+
+#test input value
+val=6
+
+
 if list1[0] == val:
     print("0")
 i = 1
@@ -25,7 +31,7 @@ def binarySearch(data_list,low,high,value):
         else:
             return binarySearch(data_list,mid + 1,high,value)
     
-	if(high<low):
+    if(high<low):
         return -1
     # Applying binary search for specified range
 index=binarySearch(list1,i/2,min(i,len(list1)),val)
