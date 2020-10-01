@@ -4,7 +4,7 @@ https://en.wikipedia.org/wiki/Reverse_Polish_notation
 Classic examples of simple stack implementations
 Valid operators are +, -, *, /. Each operand may be an integer or another expression.
 '''
-def evaluate_postfix_notation(postfix_notation):
+def evaluate_postfix(postfix_notation):
     operations = {'+', '-', '*', '/'}
     stack = []
 
@@ -24,15 +24,9 @@ def evaluate_postfix_notation(postfix_notation):
                     stack.append(a // b)
         else:
             stack.append(int(token))
-            
     return stack.pop()
 
 
-assert evaluate_postfix_notation(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]) == 22
-# (10 * (6 / ((9 + 3) * -11))) + 17) + 5
-
-assert evaluate_postfix_notation(["2", "1", "+", "3", "*"]) == 9
-# ((2 + 1) * 3) = 9
-
-assert evaluate_postfix_notation(["4", "13", "5", "/", "+"]) == 6
-# (4 + (13 / 5)) = 6
+assert evaluate_postfix(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]) == 22
+assert evaluate_postfix(["2", "1", "+", "3", "*"]) == 9
+assert evaluate_postfix(["4", "13", "5", "/", "+"]) == 6
