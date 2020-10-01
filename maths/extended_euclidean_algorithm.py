@@ -20,6 +20,12 @@ def extended_euclidean_algorithm(m: int, n: int) -> (int, int):
 
     Finds 2 numbers a and b such that it satisfies
     the equation am + bn = gcd(m, n) (a.k.a Bezout's Identity)
+
+    >>> extended_euclidean_algorithm(1, 24)
+    (1, 0)
+
+    >>> extended_euclidean_algorithm(8, 14)
+    (2, -1)
     """
     a = 0
     a_prime = 1
@@ -69,4 +75,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
