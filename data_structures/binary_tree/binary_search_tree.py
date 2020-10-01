@@ -155,7 +155,8 @@ class BinarySearchTree:
         self.inorder(arr, node)  # append all values to list using inorder traversal
         return arr[k - 1]
 
-    def number_of_possible_binary_search_trees(self, node:Node) -> int:
+    def number_of_possible_binary_search_trees(self, node: Node) -> int:
+        """Returns the total possible number of binary search trees"""
         arr = []
         self.inorder(arr, node)
         n = len(arr)
@@ -164,14 +165,14 @@ class BinarySearchTree:
 
 
 
-def postorder(curr_node):
-    """
-    postOrder (left, right, self)
-    """
-    node_list = list()
-    if curr_node is not None:
-        node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
-    return node_list
+    def postorder(self, curr_node: Node):
+        """
+        postOrder (left, right, self)
+        """
+        node_list = list()
+        if curr_node is not None:
+            node_list = self.postorder(curr_node.left) + self.postorder(curr_node.right) + [curr_node.value]
+        return node_list
 
 
 def binary_search_tree():
