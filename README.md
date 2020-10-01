@@ -25,4 +25,6 @@ We're on [Gitter](https://gitter.im/TheAlgorithms)!  Please join us.
 ## List of Algorithms
 
 See our [directory](DIRECTORY.md).
+
+
 thanks! for visiting us.
