@@ -19,7 +19,7 @@ def fibonacci(n):
     if (n == 0) or (n == 1):
         ans = n
     else:
-        ans = fibonacci(n-1) + fibonacci(n-2)
+        ans = fibonacci(n - 1) + fibonacci(n - 2)
     cache[aux] = ans
 
     return ans
