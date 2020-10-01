@@ -1,3 +1,4 @@
+#Greedy algo is very important must lear this
 class things:
     def __init__(self, name, value, weight):
         self.name = name
