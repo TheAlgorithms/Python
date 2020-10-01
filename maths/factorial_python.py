@@ -1,5 +1,6 @@
-def factorial(input_number: int) -> int:
-    """
+ """
+    Concept of Factorial:
+    
     Calculate the factorial of specified number
 
     >>> factorial(1)
@@ -18,6 +19,7 @@ def factorial(input_number: int) -> int:
     ValueError: factorial() only accepts integral values
     """
 
+def factorial(input_number: int) -> int:
     if input_number < 0:
         raise ValueError("factorial() not defined for negative values")
     if not isinstance(input_number, int):
