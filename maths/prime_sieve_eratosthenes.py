@@ -14,28 +14,23 @@ https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 """
 
 
-def prime_sieve_eratosthenes(num):
-    """
-    print the prime numbers up to n
-
-    >>> prime_sieve_eratosthenes(10)
-    2,3,5,7,
-    >>> prime_sieve_eratosthenes(20)
-    2,3,5,7,11,13,17,19,
-    """
-
-    primes = [True for i in range(num + 1)]
-    p = 2
-
-    while p * p <= num:
-        if primes[p]:
-            for i in range(p * p, num + 1, p):
-                primes[i] = False
-        p += 1
-
-    for prime in range(2, num + 1):
-        if primes[prime]:
-            print(prime, end=",")
+def sieve(n):
+    m=(n-1)//2
+    b=[True]*m
+    i,p,ps = 0,3,[2]
+    while p*p < n:
+        if b[i]:
+            ps.append(p)
+            j = 2*i*i + 6*i + 3
+            while j < m:
+                b[j] = False
+                j = j + 2*i + 3
+        i+=1; p+=2
+    while i < m:
+        if b[i]:
+            ps.append(p)
+        i+=1; p+=2
+    print(*ps)
 
 
 if __name__ == "__main__":
@@ -44,4 +39,4 @@ if __name__ == "__main__":
     doctest.testmod()
     num = int(input())
 
-    prime_sieve_eratosthenes(num)
+    seive(num)
