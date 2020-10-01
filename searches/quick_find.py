@@ -1,4 +1,7 @@
-"""Algorithm to find and output linked joints."""
+"""
+Algorithm to find and output linked joints.
+Explanation found here https://ducmanhphan.github.io/2019-03-20-Quick-Union/
+"""
 import random
 
 
