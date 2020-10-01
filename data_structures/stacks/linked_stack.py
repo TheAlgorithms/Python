@@ -1,4 +1,4 @@
-""" A Stack using a Linked List like structure """
+""" A Stack implementation using a Linked List  """
 from typing import Any, Optional
 
 
@@ -18,7 +18,7 @@ class LinkedStack:
     True
     >>> stack.push(5)
     >>> stack.push(9)
-    >>> stack.push('python')
+    >>> stack.push('Python')
     >>> stack.is_empty();
     False
     >>> stack.pop()
