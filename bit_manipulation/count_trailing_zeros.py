@@ -24,7 +24,7 @@ def binary_count_trailing_zeros(a: int):
     >>> binary_count_trailing_zeros(0.8)
     Traceback (most recent call last):
         ...
-    TypeError: 'float' object cannot be interpreted as an integer
+    TypeError: unsupported operand type(s) for &: 'float' and 'float'
     >>> binary_count_trailing_zeros("0")
     Traceback (most recent call last):
         ...
