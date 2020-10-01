@@ -1,48 +1,53 @@
-def merge(arr, left, mid, right):
-    # overall array will divided into 2 array
-    # left_arr contains the left portion of array from left to mid
-    # right_arr contains the right portion of array from mid + 1 to right
-    left_arr = arr[left : mid + 1]
-    right_arr = arr[mid + 1 : right + 1]
-    k = left
-    i = 0
-    j = 0
-    while i < len(left_arr) and j < len(right_arr):
-        # change sign for Descending order
-        if left_arr[i] < right_arr[j]:
-            arr[k] = left_arr[i]
-            i += 1
-        else:
-            arr[k] = right_arr[j]
-            j += 1
-        k += 1
-    while i < len(left_arr):
-        arr[k] = left_arr[i]
-        i += 1
-        k += 1
-    while j < len(right_arr):
-        arr[k] = right_arr[j]
-        j += 1
-        k += 1
-    return arr
-
-
-def mergesort(arr, left, right):
+def mergeSort(array):
     """
-    >>> mergesort([3, 2, 1], 0, 2)
+    >>> mergeSort([3, 2, 1])
     [1, 2, 3]
-    >>> mergesort([3, 2, 1, 0, 1, 2, 3, 5, 4], 0, 8)
+    >>> mergeSort([3, 2, 1, 0, 1, 2, 3, 5, 4])
     [0, 1, 1, 2, 2, 3, 3, 4, 5]
+    >>> mergeSort([10])
+    [10]
     """
-    if left < right:
-        mid = (left + right) // 2
-        # print("ms1",a,b,m)
-        mergesort(arr, left, mid)
-        # print("ms2",a,m+1,e)
-        mergesort(arr, mid + 1, right)
-        # print("m",a,b,m,e)
-        merge(arr, left, mid, right)
-        return arr
+    if len(array) == 1:
+        return array
+
+    middle = len(array) // 2
+
+    # Split the array into halves till the array length becomes equal to One
+    # merge the arrays of single length returned by mergeSort function and
+    # pass them into the merge arrays function which merges the array
+    leftHalf = array[:middle]
+    rightHalf = array[middle:]
+
+    return mergeArrays(mergeSort(leftHalf), mergeSort(rightHalf))
+
+
+def mergeArrays(leftHalf, rightHalf):
+    sortedArray = [None] * (len(rightHalf) + len(leftHalf))
+
+    pointer1 = 0  # pointer to current index for left Half
+    pointer2 = 0  # pointer to current index for the right Half
+    index = 0  # pointer to current index for the sorted array Half
+
+    while pointer1 < len(leftHalf) and pointer2 < len(rightHalf):
+        if leftHalf[pointer1] < rightHalf[pointer2]:
+            sortedArray[index] = leftHalf[pointer1]
+            pointer1 += 1
+            index += 1
+        else:
+            sortedArray[index] = rightHalf[pointer2]
+            pointer2 += 1
+            index += 1
+    while pointer1 < len(leftHalf):
+        sortedArray[index] = leftHalf[pointer1]
+        pointer1 += 1
+        index += 1
+
+    while pointer2 < len(rightHalf):
+        sortedArray[index] = rightHalf[pointer2]
+        pointer2 += 1
+        index += 1
+
+    return sortedArray
 
 
 if __name__ == "__main__":
