@@ -1,13 +1,13 @@
 import re
 
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
 import urllib.request
+import urllib.parse
 
 
 def is_valid_url(url):
     """
-    Funtion Vaild the url
+    Function Valid the url
     """
 
     regex = re.compile(
@@ -25,7 +25,7 @@ def is_valid_url(url):
 
 def get_links(url):
     """
-    Funtion get all links in website
+    Function get all links in website
     """
 
     soup = BeautifulSoup(urllib.request.urlopen(url).read(), "html.parser")
@@ -33,7 +33,7 @@ def get_links(url):
     links = []
     for link in data:
         if not is_valid_url(link):
-            links.append(urljoin(url, link))
+            links.append(urllib.parse.urljoin(url, link))
         else:
             links.append(link)
     return links
