@@ -5,4 +5,4 @@ Hashing
 Heap
 Linked List
 Stack
-Tree
+Trie
