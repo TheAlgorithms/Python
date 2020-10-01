@@ -5,80 +5,116 @@
 - Each link references the next link and the previous one.
 - A Doubly Linked List (DLL) contains an extra pointer, typically called previous
     pointer, together with next pointer and data which are there in singly linked list.
- - Advantages over SLL - IT can be traversed in both forward and backward direction.,
+ - Advantages over SLL - It can be traversed in both forward and backward direction.
      Delete operation is more efficient"""
 
 
-class LinkedList:  # making main class named linked list
+class LinkedList:
+    """
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert_at_head("a")
+    >>> linked_list.insert_at_tail("b")
+    >>> linked_list.delete_tail()
+    'b'
+    >>> linked_list.is_empty
+    False
+    >>> linked_list.delete_head()
+    'a'
+    >>> linked_list.is_empty
+    True
+    """
+
     def __init__(self):
-        self.head = None
-        self.tail = None
+        self.head = None  # First node in list
+        self.tail = None  # Last node in list
 
-    def insertHead(self, x):
-        newLink = Link(x)  # Create a new link with a value attached to it
-        if self.isEmpty():  # Set the first element added to be the tail
-            self.tail = newLink
+    def __str__(self):
+        current = self.head
+        nodes = []
+        while current is not None:
+            nodes.append(current)
+            current = current.next
+        return " ".join(str(node) for node in nodes)
+
+    def insert_at_head(self, data):
+        new_node = Node(data)
+        if self.is_empty:
+            self.tail = new_node
+            self.head = new_node
         else:
-            self.head.previous = newLink  # newLink <-- currenthead(head)
-        newLink.next = self.head  # newLink <--> currenthead(head)
-        self.head = newLink  # newLink(head) <--> oldhead
+            self.head.previous = new_node
+            new_node.next = self.head
+            self.head = new_node
 
-    def deleteHead(self):
-        temp = self.head
-        self.head = self.head.next  # oldHead <--> 2ndElement(head)
-        # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be
-        # removed
-        self.head.previous = None
-        if self.head is None:
-            self.tail = None  # if empty linked list
-        return temp
+    def delete_head(self) -> str:
+        if self.is_empty:
+            return "List is empty"
 
-    def insertTail(self, x):
-        newLink = Link(x)
-        newLink.next = None  # currentTail(tail)    newLink -->
-        self.tail.next = newLink  # currentTail(tail) --> newLink -->
-        newLink.previous = self.tail  # currentTail(tail) <--> newLink -->
-        self.tail = newLink  # oldTail <--> newLink(tail) -->
+        head_data = self.head.data
+        if self.head.next:
+            self.head = self.head.next
+            self.head.previous = None
 
-    def deleteTail(self):
-        temp = self.tail
-        self.tail = self.tail.previous  # 2ndLast(tail) <--> oldTail --> None
-        self.tail.next = None  # 2ndlast(tail) --> None
-        return temp
+        else:  # If there is no next previous node
+            self.head = None
+            self.tail = None
 
-    def delete(self, x):
+        return head_data
+
+    def insert_at_tail(self, data):
+        new_node = Node(data)
+        if self.is_empty:
+            self.tail = new_node
+            self.head = new_node
+        else:
+            self.tail.next = new_node
+            new_node.previous = self.tail
+            self.tail = new_node
+
+    def delete_tail(self) -> str:
+        if self.is_empty:
+            return "List is empty"
+
+        tail_data = self.tail.data
+        if self.tail.previous:
+            self.tail = self.tail.previous
+            self.tail.next = None
+        else:  # if there is no previous node
+            self.head = None
+            self.tail = None
+
+        return tail_data
+
+    def delete(self, data) -> str:
         current = self.head
 
-        while current.value != x:  # Find the position to delete
-            current = current.next
+        while current.data != data:  # Find the position to delete
+            if current.next:
+                current = current.next
+            else:  # We have reached the end an no value matches
+                return "No data matching given value"
 
         if current == self.head:
-            self.deleteHead()
+            self.delete_head()
 
         elif current == self.tail:
-            self.deleteTail()
+            self.delete_tail()
 
         else:  # Before: 1 <--> 2(current) <--> 3
             current.previous.next = current.next  # 1 --> 3
             current.next.previous = current.previous  # 1 <--> 3
+        return data
 
-    def isEmpty(self):  # Will return True if the list is empty
+    @property
+    def is_empty(self):  # return True if the list is empty
         return self.head is None
 
-    def display(self):  # Prints contents of the list
-        current = self.head
-        while current is not None:
-            current.displayLink()
-            current = current.next
-        print()
 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.previous = None
+        self.next = None
 
-class Link:
-    next = None  # This points to the link in front of the new link
-    previous = None  # This points to the link behind the new link
-
-    def __init__(self, x):
-        self.value = x
-
-    def displayLink(self):
-        print(f"{self.value}", end=" ")
+    def __str__(self):
+        return f"{self.data}"

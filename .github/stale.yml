@@ -16,5 +16,5 @@ markComment: >
   for your contributions.
 # Comment to post when closing a stale issue. Set to `false` to disable
 closeComment: >
-  Please reopen this issue once you commit the changes requested or 
+  Please reopen this issue once you commit the changes requested or
   make improvements on the code. Thank you for your contributions.

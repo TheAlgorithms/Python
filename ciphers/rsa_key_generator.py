@@ -2,8 +2,8 @@ import os
 import random
 import sys
 
-import cryptomath_module as cryptoMath
-import rabin_miller as rabinMiller
+from . import cryptomath_module as cryptoMath
+from . import rabin_miller as rabinMiller
 
 
 def main():

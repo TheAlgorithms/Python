@@ -2,12 +2,12 @@
 # https://www.guru99.com/fractional-knapsack-problem-greedy.html
 # https://medium.com/walkinthecode/greedy-algorithm-fractional-knapsack-problem-9aba1daecc93
 
-from typing import List, Tuple
+from __future__ import annotations
 
 
 def fractional_knapsack(
-    value: List[int], weight: List[int], capacity: int
-) -> Tuple[int, List[int]]:
+    value: list[int], weight: list[int], capacity: int
+) -> tuple[int, list[int]]:
     """
     >>> value = [1, 3, 5, 7, 9]
     >>> weight = [0.9, 0.7, 0.5, 0.3, 0.1]

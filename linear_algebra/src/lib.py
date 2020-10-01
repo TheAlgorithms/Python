@@ -26,29 +26,29 @@ import random
 
 class Vector:
     """
-        This class represents a vector of arbitrary size.
-        You need to give the vector components.
+    This class represents a vector of arbitrary size.
+    You need to give the vector components.
 
-        Overview about the methods:
+    Overview about the methods:
 
-        constructor(components : list) : init the vector
-        set(components : list) : changes the vector components.
-        __str__() : toString method
-        component(i : int): gets the i-th component (start by 0)
-        __len__() : gets the size of the vector (number of components)
-        euclidLength() : returns the euclidean length of the vector.
-        operator + : vector addition
-        operator - : vector subtraction
-        operator * : scalar multiplication and dot product
-        copy() : copies this vector and returns it.
-        changeComponent(pos,value) : changes the specified component.
-        TODO: compare-operator
+    constructor(components : list) : init the vector
+    set(components : list) : changes the vector components.
+    __str__() : toString method
+    component(i : int): gets the i-th component (start by 0)
+    __len__() : gets the size of the vector (number of components)
+    euclidLength() : returns the euclidean length of the vector.
+    operator + : vector addition
+    operator - : vector subtraction
+    operator * : scalar multiplication and dot product
+    copy() : copies this vector and returns it.
+    changeComponent(pos,value) : changes the specified component.
+    TODO: compare-operator
     """
 
     def __init__(self, components=None):
         """
-            input: components or nothing
-            simple constructor for init the vector
+        input: components or nothing
+        simple constructor for init the vector
         """
         if components is None:
             components = []
@@ -56,9 +56,9 @@ class Vector:
 
     def set(self, components):
         """
-            input: new components
-            changes the components of the vector.
-            replace the components with newer one.
+        input: new components
+        changes the components of the vector.
+        replace the components with newer one.
         """
         if len(components) > 0:
             self.__components = list(components)
@@ -67,14 +67,14 @@ class Vector:
 
     def __str__(self):
         """
-            returns a string representation of the vector
+        returns a string representation of the vector
         """
         return "(" + ",".join(map(str, self.__components)) + ")"
 
     def component(self, i):
         """
-            input: index (start at 0)
-            output: the i-th component of the vector.
+        input: index (start at 0)
+        output: the i-th component of the vector.
         """
         if type(i) is int and -len(self.__components) <= i < len(self.__components):
             return self.__components[i]
@@ -83,13 +83,13 @@ class Vector:
 
     def __len__(self):
         """
-            returns the size of the vector
+        returns the size of the vector
         """
         return len(self.__components)
 
     def euclidLength(self):
         """
-            returns the euclidean length of the vector
+        returns the euclidean length of the vector
         """
         summe = 0
         for c in self.__components:
@@ -98,9 +98,9 @@ class Vector:
 
     def __add__(self, other):
         """
-            input: other vector
-            assumes: other vector has the same size
-            returns a new vector that represents the sum.
+        input: other vector
+        assumes: other vector has the same size
+        returns a new vector that represents the sum.
         """
         size = len(self)
         if size == len(other):
@@ -111,9 +111,9 @@ class Vector:
 
     def __sub__(self, other):
         """
-            input: other vector
-            assumes: other vector has the same size
-            returns a new vector that represents the difference.
+        input: other vector
+        assumes: other vector has the same size
+        returns a new vector that represents the difference.
         """
         size = len(self)
         if size == len(other):
@@ -124,8 +124,8 @@ class Vector:
 
     def __mul__(self, other):
         """
-            mul implements the scalar multiplication
-            and the dot-product
+        mul implements the scalar multiplication
+        and the dot-product
         """
         if isinstance(other, float) or isinstance(other, int):
             ans = [c * other for c in self.__components]
@@ -141,15 +141,15 @@ class Vector:
 
     def copy(self):
         """
-            copies this vector and returns it.
+        copies this vector and returns it.
         """
         return Vector(self.__components)
 
     def changeComponent(self, pos, value):
         """
-            input: an index (pos) and a value
-            changes the specified component (pos) with the
-            'value'
+        input: an index (pos) and a value
+        changes the specified component (pos) with the
+        'value'
         """
         # precondition
         assert -len(self.__components) <= pos < len(self.__components)
@@ -158,7 +158,7 @@ class Vector:
 
 def zeroVector(dimension):
     """
-        returns a zero-vector of size 'dimension'
+    returns a zero-vector of size 'dimension'
     """
     # precondition
     assert isinstance(dimension, int)
@@ -167,8 +167,8 @@ def zeroVector(dimension):
 
 def unitBasisVector(dimension, pos):
     """
-        returns a unit basis vector with a One
-        at index 'pos' (indexing at 0)
+    returns a unit basis vector with a One
+    at index 'pos' (indexing at 0)
     """
     # precondition
     assert isinstance(dimension, int) and (isinstance(pos, int))
@@ -179,9 +179,9 @@ def unitBasisVector(dimension, pos):
 
 def axpy(scalar, x, y):
     """
-        input: a 'scalar' and two vectors 'x' and 'y'
-        output: a vector
-        computes the axpy operation
+    input: a 'scalar' and two vectors 'x' and 'y'
+    output: a vector
+    computes the axpy operation
     """
     # precondition
     assert (
@@ -194,10 +194,10 @@ def axpy(scalar, x, y):
 
 def randomVector(N, a, b):
     """
-        input: size (N) of the vector.
-               random range (a,b)
-        output: returns a random vector of size N, with
-                random integer components between 'a' and 'b'.
+    input: size (N) of the vector.
+           random range (a,b)
+    output: returns a random vector of size N, with
+            random integer components between 'a' and 'b'.
     """
     random.seed(None)
     ans = [random.randint(a, b) for i in range(N)]
@@ -224,8 +224,8 @@ class Matrix:
 
     def __init__(self, matrix, w, h):
         """
-            simple constructor for initializing
-            the matrix with components.
+        simple constructor for initializing
+        the matrix with components.
         """
         self.__matrix = matrix
         self.__width = w
@@ -233,8 +233,8 @@ class Matrix:
 
     def __str__(self):
         """
-            returns a string representation of this
-            matrix.
+        returns a string representation of this
+        matrix.
         """
         ans = ""
         for i in range(self.__height):
@@ -248,7 +248,7 @@ class Matrix:
 
     def changeComponent(self, x, y, value):
         """
-            changes the x-y component of this matrix
+        changes the x-y component of this matrix
         """
         if 0 <= x < self.__height and 0 <= y < self.__width:
             self.__matrix[x][y] = value
@@ -257,7 +257,7 @@ class Matrix:
 
     def component(self, x, y):
         """
-            returns the specified (x,y) component
+        returns the specified (x,y) component
         """
         if 0 <= x < self.__height and 0 <= y < self.__width:
             return self.__matrix[x][y]
@@ -266,19 +266,19 @@ class Matrix:
 
     def width(self):
         """
-            getter for the width
+        getter for the width
         """
         return self.__width
 
     def height(self):
         """
-            getter for the height
+        getter for the height
         """
         return self.__height
 
     def determinate(self) -> float:
         """
-            returns the determinate of an nxn matrix using Laplace expansion
+        returns the determinate of an nxn matrix using Laplace expansion
         """
         if self.__height == self.__width and self.__width >= 2:
             total = 0
@@ -305,8 +305,8 @@ class Matrix:
 
     def __mul__(self, other):
         """
-            implements the matrix-vector multiplication.
-            implements the matrix-scalar multiplication
+        implements the matrix-vector multiplication.
+        implements the matrix-scalar multiplication
         """
         if isinstance(other, Vector):  # vector-matrix
             if len(other) == self.__width:
@@ -332,7 +332,7 @@ class Matrix:
 
     def __add__(self, other):
         """
-            implements the matrix-addition.
+        implements the matrix-addition.
         """
         if self.__width == other.width() and self.__height == other.height():
             matrix = []
@@ -347,7 +347,7 @@ class Matrix:
 
     def __sub__(self, other):
         """
-            implements the matrix-subtraction.
+        implements the matrix-subtraction.
         """
         if self.__width == other.width() and self.__height == other.height():
             matrix = []
@@ -363,7 +363,7 @@ class Matrix:
 
 def squareZeroMatrix(N):
     """
-        returns a square zero-matrix of dimension NxN
+    returns a square zero-matrix of dimension NxN
     """
     ans = [[0] * N for i in range(N)]
     return Matrix(ans, N, N)
@@ -371,8 +371,8 @@ def squareZeroMatrix(N):
 
 def randomMatrix(W, H, a, b):
     """
-        returns a random matrix WxH with integer components
-        between 'a' and 'b'
+    returns a random matrix WxH with integer components
+    between 'a' and 'b'
     """
     random.seed(None)
     matrix = [[random.randint(a, b) for j in range(W)] for i in range(H)]

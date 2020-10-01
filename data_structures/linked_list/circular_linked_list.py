@@ -2,201 +2,137 @@ from typing import Any
 
 
 class Node:
-    """
-    Class to represent a single node.
-
-    Each node has following attributes
-    * data
-    * next_ptr
-    """
-
     def __init__(self, data: Any):
         self.data = data
-        self.next_ptr = None
+        self.next = None
 
 
 class CircularLinkedList:
-    """
-    Class to represent the CircularLinkedList.
-
-    CircularLinkedList has following attributes.
-    * head
-    * length
-    """
-
     def __init__(self):
         self.head = None
-        self.length = 0
+        self.tail = None
+
+    def __iter__(self):
+        node = self.head
+        while self.head:
+            yield node.data
+            node = node.next
+            if node == self.head:
+                break
 
     def __len__(self) -> int:
-        """
-        Dunder method to return length of the CircularLinkedList
-        >>> cll = CircularLinkedList()
-        >>> len(cll)
-        0
-        >>> cll.append(1)
-        >>> len(cll)
-        1
-        >>> cll.prepend(0)
-        >>> len(cll)
-        2
-        >>> cll.delete_front()
-        >>> len(cll)
-        1
-        >>> cll.delete_rear()
-        >>> len(cll)
-        0
-        """
-        return self.length
+        return len(tuple(iter(self)))
 
-    def __str__(self) -> str:
-        """
-        Dunder method to represent the string representation of the CircularLinkedList
-        >>> cll = CircularLinkedList()
-        >>> print(cll)
-        Empty linked list
-        >>> cll.append(1)
-        >>> cll.append(2)
-        >>> print(cll)
-        <Node data=1> => <Node data=2>
-        """
-        current_node = self.head
-        if not current_node:
-            return "Empty linked list"
+    def __repr__(self):
+        return "->".join(str(item) for item in iter(self))
 
-        results = [current_node.data]
-        current_node = current_node.next_ptr
+    def insert_tail(self, data: Any) -> None:
+        self.insert_nth(len(self), data)
 
-        while current_node != self.head:
-            results.append(current_node.data)
-            current_node = current_node.next_ptr
+    def insert_head(self, data: Any) -> None:
+        self.insert_nth(0, data)
 
-        return " => ".join(f"<Node data={result}>" for result in results)
-
-    def append(self, data: Any) -> None:
-        """
-        Adds a node with given data to the end of the CircularLinkedList
-        >>> cll = CircularLinkedList()
-        >>> cll.append(1)
-        >>> print(f"{len(cll)}: {cll}")
-        1: <Node data=1>
-        >>> cll.append(2)
-        >>> print(f"{len(cll)}: {cll}")
-        2: <Node data=1> => <Node data=2>
-        """
-        current_node = self.head
-
+    def insert_nth(self, index: int, data: Any) -> None:
+        if index < 0 or index > len(self):
+            raise IndexError("list index out of range.")
         new_node = Node(data)
-        new_node.next_ptr = new_node
-
-        if current_node:
-            while current_node.next_ptr != self.head:
-                current_node = current_node.next_ptr
-
-            current_node.next_ptr = new_node
-            new_node.next_ptr = self.head
+        if self.head is None:
+            new_node.next = new_node  # first node points itself
+            self.tail = self.head = new_node
+        elif index == 0:  # insert at head
+            new_node.next = self.head
+            self.head = self.tail.next = new_node
         else:
-            self.head = new_node
+            temp = self.head
+            for _ in range(index - 1):
+                temp = temp.next
+            new_node.next = temp.next
+            temp.next = new_node
+            if index == len(self) - 1:  # insert at tail
+                self.tail = new_node
 
-        self.length += 1
+    def delete_front(self):
+        return self.delete_nth(0)
 
-    def prepend(self, data: Any) -> None:
-        """
-        Adds a ndoe with given data to the front of the CircularLinkedList
-        >>> cll = CircularLinkedList()
-        >>> cll.prepend(1)
-        >>> cll.prepend(2)
-        >>> print(f"{len(cll)}: {cll}")
-        2: <Node data=2> => <Node data=1>
-        """
-        current_node = self.head
+    def delete_tail(self) -> None:
+        return self.delete_nth(len(self) - 1)
 
-        new_node = Node(data)
-        new_node.next_ptr = new_node
-
-        if current_node:
-            while current_node.next_ptr != self.head:
-                current_node = current_node.next_ptr
-
-            current_node.next_ptr = new_node
-            new_node.next_ptr = self.head
-
-        self.head = new_node
-        self.length += 1
-
-    def delete_front(self) -> None:
-        """
-        Removes the 1st node from the CircularLinkedList
-        >>> cll = CircularLinkedList()
-        >>> cll.delete_front()
-        Traceback (most recent call last):
-        ...
-        IndexError: Deleting from an empty list
-        >>> cll.append(1)
-        >>> cll.append(2)
-        >>> print(f"{len(cll)}: {cll}")
-        2: <Node data=1> => <Node data=2>
-        >>> cll.delete_front()
-        >>> print(f"{len(cll)}: {cll}")
-        1: <Node data=2>
-        >>> cll.delete_front()
-        >>> print(f"{len(cll)}: {cll}")
-        0: Empty linked list
-        """
-        if not self.head:
-            raise IndexError("Deleting from an empty list")
-
-        current_node = self.head
-
-        if current_node.next_ptr == current_node:
-            self.head = None
+    def delete_nth(self, index: int = 0):
+        if not 0 <= index < len(self):
+            raise IndexError("list index out of range.")
+        delete_node = self.head
+        if self.head == self.tail:  # just one node
+            self.head = self.tail = None
+        elif index == 0:  # delete head node
+            self.tail.next = self.tail.next.next
+            self.head = self.head.next
         else:
-            while current_node.next_ptr != self.head:
-                current_node = current_node.next_ptr
+            temp = self.head
+            for _ in range(index - 1):
+                temp = temp.next
+            delete_node = temp.next
+            temp.next = temp.next.next
+            if index == len(self) - 1:  # delete at tail
+                self.tail = temp
+        return delete_node.data
 
-            current_node.next_ptr = self.head.next_ptr
-            self.head = self.head.next_ptr
+    def is_empty(self):
+        return len(self) == 0
 
-        self.length -= 1
-        if not self.head:
-            assert self.length == 0
 
-    def delete_rear(self) -> None:
-        """
-        Removes the last node from the CircularLinkedList
-        >>> cll = CircularLinkedList()
-        >>> cll.delete_rear()
-        Traceback (most recent call last):
-        ...
-        IndexError: Deleting from an empty list
-        >>> cll.append(1)
-        >>> cll.append(2)
-        >>> print(f"{len(cll)}: {cll}")
-        2: <Node data=1> => <Node data=2>
-        >>> cll.delete_rear()
-        >>> print(f"{len(cll)}: {cll}")
-        1: <Node data=1>
-        >>> cll.delete_rear()
-        >>> print(f"{len(cll)}: {cll}")
-        0: Empty linked list
-        """
-        if not self.head:
-            raise IndexError("Deleting from an empty list")
+def test_circular_linked_list() -> None:
+    """
+    >>> test_circular_linked_list()
+    """
+    circular_linked_list = CircularLinkedList()
+    assert len(circular_linked_list) == 0
+    assert circular_linked_list.is_empty() is True
+    assert str(circular_linked_list) == ""
 
-        temp_node, current_node = self.head, self.head
+    try:
+        circular_linked_list.delete_front()
+        assert False  # This should not happen
+    except IndexError:
+        assert True  # This should happen
 
-        if current_node.next_ptr == current_node:
-            self.head = None
-        else:
-            while current_node.next_ptr != self.head:
-                temp_node = current_node
-                current_node = current_node.next_ptr
+    try:
+        circular_linked_list.delete_tail()
+        assert False  # This should not happen
+    except IndexError:
+        assert True  # This should happen
 
-            temp_node.next_ptr = current_node.next_ptr
+    try:
+        circular_linked_list.delete_nth(-1)
+        assert False
+    except IndexError:
+        assert True
 
-        self.length -= 1
-        if not self.head:
-            assert self.length == 0
+    try:
+        circular_linked_list.delete_nth(0)
+        assert False
+    except IndexError:
+        assert True
+
+    assert circular_linked_list.is_empty() is True
+    for i in range(5):
+        assert len(circular_linked_list) == i
+        circular_linked_list.insert_nth(i, i + 1)
+    assert str(circular_linked_list) == "->".join(str(i) for i in range(1, 6))
+
+    circular_linked_list.insert_tail(6)
+    assert str(circular_linked_list) == "->".join(str(i) for i in range(1, 7))
+    circular_linked_list.insert_head(0)
+    assert str(circular_linked_list) == "->".join(str(i) for i in range(0, 7))
+
+    assert circular_linked_list.delete_front() == 0
+    assert circular_linked_list.delete_tail() == 6
+    assert str(circular_linked_list) == "->".join(str(i) for i in range(1, 6))
+    assert circular_linked_list.delete_nth(2) == 3
+
+    circular_linked_list.insert_nth(2, 3)
+    assert str(circular_linked_list) == "->".join(str(i) for i in range(1, 6))
+
+    assert circular_linked_list.is_empty() is False
 
 
 if __name__ == "__main__":

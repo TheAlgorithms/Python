@@ -39,17 +39,17 @@ def is_prime(k: int) -> bool:
 
 def solution(a_limit: int, b_limit: int) -> int:
     """
-        >>> solution(1000, 1000)
-        -59231
-        >>> solution(200, 1000)
-        -59231
-        >>> solution(200, 200)
-        -4925
-        >>> solution(-1000, 1000)
-        0
-        >>> solution(-1000, -1000)
-        0
-        """
+    >>> solution(1000, 1000)
+    -59231
+    >>> solution(200, 1000)
+    -59231
+    >>> solution(200, 200)
+    -4925
+    >>> solution(-1000, 1000)
+    0
+    >>> solution(-1000, -1000)
+    0
+    """
     longest = [0, 0, 0]  # length, a, b
     for a in range((a_limit * -1) + 1, a_limit):
         for b in range(2, b_limit):

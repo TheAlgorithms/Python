@@ -146,7 +146,7 @@ def main():
     minterms = [
         int(x)
         for x in input(
-            "Enter the decimal representation of Minterms 'Spaces Seprated'\n"
+            "Enter the decimal representation of Minterms 'Spaces Separated'\n"
         ).split()
     ]
     binary = decimal_to_binary(no_of_variable, minterms)

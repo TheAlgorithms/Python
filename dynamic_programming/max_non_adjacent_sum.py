@@ -1,9 +1,9 @@
 # Video Explanation: https://www.youtube.com/watch?v=6w60Zi1NtL8&feature=emb_logo
 
-from typing import List
+from __future__ import annotations
 
 
-def maximum_non_adjacent_sum(nums: List[int]) -> int:
+def maximum_non_adjacent_sum(nums: list[int]) -> int:
     """
     Find the maximum non-adjacent sum of the integers in the nums input list
 
