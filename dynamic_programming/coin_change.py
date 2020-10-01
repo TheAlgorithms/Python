@@ -38,6 +38,9 @@ def dp_count(S, m, n):
 
 
 if __name__ == "__main__":
-    import doctest
 
-    doctest.testmod()
+    coins = [1, 2, 3, 4, 9]
+    m = len(coins)
+    sum = 15
+
+    print(f"\n Total ways are {dp_count(coins, m, sum)} ")
