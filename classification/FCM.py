@@ -1,5 +1,7 @@
 from tools import *
 
+# https://en.wikipedia.org/wiki/Fuzzy_clustering
+
 
 class FuzzyCMeans:
     def __init__(self, n_clusters, initial_centers, data, max_iter=250, m=2, error=1e-5):
