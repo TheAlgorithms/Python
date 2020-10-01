@@ -1,0 +1,14 @@
+def draw_bar(t, height):
+    """ Get turtle t to draw one bar, of height. """
+    t.left(90)
+    t.forward(height)     # Draw up the left side
+    t.right(90)
+    t.forward(40)         # Width of bar, along the top
+    t.right(90)
+    t.forward(height)     # And down again!
+    t.left(90)            # Put the turtle facing the way we found it.
+    t.forward(10)         # Leave small gap after each bar
+
+...
+for v in xs:              # Assume xs and tess are ready
+    draw_bar(tess, v)
