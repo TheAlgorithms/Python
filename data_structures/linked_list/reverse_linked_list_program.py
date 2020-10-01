@@ -1,4 +1,3 @@
-# Python program to reverse a linked list 
 # Time Complexity : O(n) 
 # Space Complexity : O(1) 
 
@@ -37,7 +36,7 @@ class LinkedList:
 	def printList(self): 
 		temp = self.head 
 		while(temp): 
-			print temp.data, 
+			print(temp.data) 
 			temp = temp.next
 
 
@@ -48,9 +47,9 @@ llist.push(4)
 llist.push(15) 
 llist.push(85) 
 
-print "Given Linked List"
+print("Given Linked List")
 llist.printList() 
 llist.reverse() 
-print "\nReversed Linked List"
+print("\nReversed Linked List")
 llist.printList() 
 
