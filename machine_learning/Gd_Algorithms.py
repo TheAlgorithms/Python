@@ -10,84 +10,37 @@ import seaborn as sns
 import imageio
 import time
 from IPython.display import HTML
-
-
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.datasets import make_blobs
 
-
-
-
-
 my_cmap = matplotlib.colors.LinearSegmentedColormap.from_list("", ["red","yellow","green"])
-
-
-
-
 np.random.seed(0)
-
-
-
-
-
-
 
 data, labels = make_blobs(n_samples=1000, centers=4, n_features=2, random_state=0)
 print(data.shape, labels.shape)
-
-
-
-
-
 plt.scatter(data[:,0], data[:,1], c=labels, cmap=my_cmap)
 plt.show()
-
-
-
-
 
 labels_orig = labels
 labels = np.mod(labels_orig, 2)
 
-
-
-
-
 plt.scatter(data[:,0], data[:,1], c=labels, cmap=my_cmap)
 plt.show()
-
-
-
-
-
-
 
 X_train, X_val, Y_train, Y_val = train_test_split(data, labels_orig, stratify=labels_orig, random_state=0)
 print(X_train.shape, X_val.shape, labels_orig.shape)
 
-
-
-
-
 enc = OneHotEncoder()
-# 0 -> (1, 0, 0, 0), 1 -> (0, 1, 0, 0), 2 -> (0, 0, 1, 0), 3 -> (0, 0, 0, 1)
+
 y_OH_train = enc.fit_transform(np.expand_dims(Y_train,1)).toarray()
 y_OH_val = enc.fit_transform(np.expand_dims(Y_val,1)).toarray()
 print(y_OH_train.shape, y_OH_val.shape)
-
-
-
 
 
 W1 = np.random.randn(2,2)
 W2 = np.random.randn(2,4)
 print(W1)
 print(W2)
-
-
-
-
-
 
 
 class FFNetwork:
@@ -238,8 +191,6 @@ class FFNetwork:
 
 
 
-
-
 def print_accuracy():    
     Y_pred_train = model.predict(X_train)
     Y_pred_train = np.argmax(Y_pred_train,1)
@@ -253,134 +204,110 @@ def print_accuracy():
     if False:
       plt.scatter(X_train[:,0], X_train[:,1], c=Y_pred_train, cmap=my_cmap, s=15*(np.abs(np.sign(Y_pred_train-Y_train))+.1))
       plt.show()
+      
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="GD", display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="MiniBatch", mini_batch_size=128, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="MiniBatch", mini_batch_size=8, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="Momentum", gamma=0.5, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="Momentum", gamma=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="Momentum", gamma=0.99, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="NAG", gamma=0.99, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="NAG", gamma=0.5, display_loss=True)
+print_accuracy()
+
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="NAG", gamma=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=1, algo="AdaGrad", display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=.1, algo="AdaGrad", display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=.1, algo="RMSProp", beta=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=.9, algo="RMSProp", beta=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=.9, algo="Adam", beta=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=100, eta=.1, algo="Adam", beta=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=10000, eta=0.5, algo="GD", display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=1000, eta=0.5, algo="Momentum", gamma=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=1000, eta=0.5, algo="NAG", gamma=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=500, eta=1, algo="AdaGrad", display_loss=True)
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=2000, eta=.01, algo="RMSProp", beta=0.9, display_loss=True)
+print_accuracy()
+
+%%time
+model = FFNetwork(W1, W2)
+model.fit(X_train, y_OH_train, epochs=200, eta=.1, algo="Adam", beta=0.9, display_loss=True)
+print_accuracy()
 
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="GD", display_loss=True)\nprint_accuracy()')
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="MiniBatch", mini_batch_size=128, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="MiniBatch", mini_batch_size=8, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="Momentum", gamma=0.5, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="Momentum", gamma=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="Momentum", gamma=0.99, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="NAG", gamma=0.99, display_loss=True)\nprint_accuracy()')
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="NAG", gamma=0.5, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="NAG", gamma=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=1, algo="AdaGrad", display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=.1, algo="AdaGrad", display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=.1, algo="RMSProp", beta=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=.9, algo="RMSProp", beta=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=.9, algo="Adam", beta=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=100, eta=.1, algo="Adam", beta=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=10000, eta=0.5, algo="GD", display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=1000, eta=0.5, algo="Momentum", gamma=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=1000, eta=0.5, algo="NAG", gamma=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=500, eta=1, algo="AdaGrad", display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=2000, eta=.01, algo="RMSProp", beta=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-get_ipython().run_cell_magic('time', '', 'model = FFNetwork(W1, W2)\nmodel.fit(X_train, y_OH_train, epochs=200, eta=.1, algo="Adam", beta=0.9, display_loss=True)\nprint_accuracy()')
-
-
-
-
-
-
-
+print_accuracy()
