@@ -39,8 +39,10 @@ def dp_count(S, m, n):
 
 if __name__ == "__main__":
 
-    coins = [1, 2, 3, 4, 9]
-    m = len(coins)
-    sum = 15
+    m = int(input(f"\n Enter Total number of coins\n"))
+    print(f"\n Enter value of each coin in space separated way\n")
+
+    coins = list(map(int, input().split()))
+    sum = int(input(f"\n Enter required sum\n"))
 
     print(f"\n Total ways are {dp_count(coins, m, sum)} ")
