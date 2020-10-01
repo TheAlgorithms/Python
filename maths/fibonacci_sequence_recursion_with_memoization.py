@@ -8,6 +8,9 @@ cache = dict()
 
 def fibonacci(n):
     """
+    Return number of index n in sequence fibonacci
+    >>> fibonacci(12)
+    89
     >>> [fibonacci(i) for i in range(12)]
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
     """
@@ -26,7 +29,7 @@ def fibonacci(n):
 
 
 def main() -> None:
-    lenght = int(input("Enter an integer greater than or equal to 0: "))
+    lenght = 12
     print(f"The first {lenght} Fibbonaci sequence terms are:")
     print([fibonacci(n) for n in range(lenght)])
 
