@@ -1,4 +1,7 @@
-def merge(left_half, right_half):
+from typing import List
+
+
+def merge(left_half: List, right_half: List) -> List:
     sorted_array = [None] * (len(right_half) + len(left_half))
 
     pointer1 = 0  # pointer to current index for left Half
@@ -27,7 +30,7 @@ def merge(left_half, right_half):
     return sorted_array
 
 
-def merge_sort(array):
+def merge_sort(array: List) -> List:
     """
     >>> from random import shuffle
     >>> array = [-2, 3, -10, 11, 99, 100000, 100, -200]
@@ -40,8 +43,15 @@ def merge_sort(array):
     >>> shuffle(array)
     >>> merge_sort(array)
     [-200, -10, -2, 3, 11, 99, 100, 100000]
+    >>> array = [-200]
+    >>> merge_sort(array)
+    [-200]
+    >>> array = [-2, 3, -10, 11, 99, 100000, 100, -200]
+    >>> shuffle(array)
+    >>> sorted(array) == merge_sort(array)
+    True
     """
-    if len(array) == 1:
+    if len(array) <= 1:
         return array
 
     middle = len(array) // 2
