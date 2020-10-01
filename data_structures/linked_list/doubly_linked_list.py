@@ -23,13 +23,13 @@ class Node:
 class LinkedList:
     """
     >>> linked_list = LinkedList()
-    >>> linked_list.is_empty == True
+    >>> linked_list.is_empty() == True
     True
     >>> linked_list.insert(0)
-    >>> linked_list.is_empty == False
+    >>> linked_list.is_empty() == False
     True
     >>> linked_list.delete_value(0)
-    >>> linked_list.is_empty == True
+    >>> linked_list.is_empty() == True
     True
     """
 
@@ -134,8 +134,7 @@ class LinkedList:
         node.previous = None
 
 
-    @property
-    def is_empty(self):  
+    def is_empty(self):
         return self.head is None
     
     
