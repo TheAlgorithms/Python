@@ -1,5 +1,3 @@
-from math import log2
-
 
 def count_setbits(a: int) -> int:
     """
