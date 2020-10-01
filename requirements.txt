@@ -1,13 +1,13 @@
-beautifulsoup4
+beautifulsoup4 : Web scrapping
 fake_useragent
 keras
-lxml
-matplotlib
-numpy
+lxml           : Excel           
+matplotlib     : Graphs, plots
+numpy          : maths 
 opencv-python
-pandas
+pandas         : dataframes
 pillow
-requests
+requests 
 scikit-fuzzy
 sklearn
 sympy
