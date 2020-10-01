@@ -35,16 +35,16 @@ def make_linked_list(elements_list):
     return head
 
 
-def print_reverse(head_node):
+def print_reverse(header_node):
     """Prints the elements of the given Linked List in reverse order"""
 
     # If reached end of the List
-    if head_node is None:
+    if header_node is None:
         return None
     else:
         # Recurse
-        print_reverse(head_node.next)
-        print(head_node.data)
+        print_reverse(header_node.next)
+        print(header_node.data)
 
 
 list_data = [14, 52, 14, 12, 43]
