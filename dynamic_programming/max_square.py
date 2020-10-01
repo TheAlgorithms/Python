@@ -46,6 +46,10 @@ def max_square(matrix: list[list[int]]) -> int:
 
 
 def test_max_square(matrix: list[list[int]], expected: int):
+    """
+    Print the result of max_square on matrix,
+    if the result is not expected, print the expected result.
+    """
     result = max_square(matrix)
     suffix = "" if result == expected else f" != {expected}"
     print(f'> max_square({matrix}) -> {result}{suffix}"')
