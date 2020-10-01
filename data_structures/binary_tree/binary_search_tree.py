@@ -155,6 +155,13 @@ class BinarySearchTree:
         self.inorder(arr, node)  # append all values to list using inorder traversal
         return arr[k - 1]
 
+    def number_of_possible_binary_search_trees(self, node: Node) -> int:
+        """Returns the total possible number of binary search trees"""
+        arr = []
+        self.inorder(arr, node)
+        n = len(arr)
+        # Catalan number Cn = (2n)! / ((n + 1)! * n!)
+        return factorial(2 * n) // factorial(n + 1) // factorial(n)
 
 def postorder(curr_node):
     """
