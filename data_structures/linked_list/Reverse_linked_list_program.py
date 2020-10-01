@@ -54,4 +54,3 @@ llist.reverse()
 print "\nReversed Linked List"
 llist.printList() 
 
-# This code is contributed by Nikhil Kumar Singh(nickzuck_007) 
