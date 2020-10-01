@@ -21,6 +21,12 @@ def dp_count(S, n):
     1
     >>> dp_count([1, 2, 3], -5)
     0
+    >>> dp_count([4, 5, 6], -4)
+    0
+    >>> dp_count([2, 5, 3, 6], -10)
+    0
+    >>> dp_count([4], -4)
+    0
     """
     if n < 0:
         return 0
