@@ -24,19 +24,33 @@ def check_bouncy(n: int) -> bool:
     False
     >>> check_bouncy(-12345)
     False
-    >>> check_bouncy(6.74)
+    >>> check_bouncy(0)
     False
+    >>> check_bouncy(6.74)
+    Traceback (most recent call last):
+        ...
+    ValueError: check_bouncy() accepts only integer arguments
     >>> check_bouncy(132475)
     True
+    >>> check_bouncy(34)
+    False
+    >>> check_bouncy(341)
+    True
+    >>> check_bouncy(47)
+    False
+    >>> check_bouncy(-12.54)
+    Traceback (most recent call last):
+        ...
+    ValueError: check_bouncy() accepts only integer arguments
     >>> check_bouncy(-6548)
     True
     """
     if not isinstance(n, int):
-        return False
+        raise ValueError("check_bouncy() accepts only integer arguments")
     return "".join(sorted(str(n))) != str(n) and "".join(sorted(str(n)))[::-1] != str(n)
 
 
-def solution(percent: int = 99) -> int:
+def solution(percent: float = 99) -> int:
     """
     Returns the least number for which the proportion of bouncy numbers is
     exactly 'percent'
@@ -46,9 +60,20 @@ def solution(percent: int = 99) -> int:
     21780
     >>> solution(80)
     4770
+    >>> solution(105)
+    Traceback (most recent call last):
+        ...
+    ValueError: solution() only accepts values from 0 to 100
+    >>> solution(100.011)
+    Traceback (most recent call last):
+        ...
+    ValueError: solution() only accepts values from 0 to 100
     """
+    if percent >= 100:
+        raise ValueError("solution() only accepts values from 0 to 100")
     bouncy_num = 0
     num = 1
+
     while True:
         if check_bouncy(num):
             bouncy_num += 1
