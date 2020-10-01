@@ -128,7 +128,7 @@ def solution():
     for seq in passed:
         answer.add("".join(list(map(str, seq))))
 
-    return [x for x in answer][1]
+    return max(map(int, [x for x in answer]))
 
 
 if __name__ == "__main__":
