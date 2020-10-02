@@ -12,7 +12,7 @@
 
 ### All algorithms implemented in Python (for education)
 
-These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
+These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.Algorithm is a step-by-step procedure, which defines a set of instructions to be executed in a certain order to get the desired output. Algorithms are generally created independent of underlying languages, i.e. an algorithm can be implemented in more than one programming language.
 
 ## Contribution Guidelines
 
