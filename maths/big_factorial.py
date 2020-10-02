@@ -7,7 +7,7 @@ calculating the factorial
 """
 
 import math
-import doctset
+import doctest
 
 def factorial(n):
     '''
