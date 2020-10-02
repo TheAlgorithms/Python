@@ -1,3 +1,7 @@
+"""
+Finds paths in the following example map to illustrate Iterative Deepening Search:
+http://www.cse.unsw.edu.au/~cs3411/16s1/tut/wk03romania.gif
+"""
 def ids(graph, start, goal):
 	#dfs helper function to perform depth limited dfs			
 	def dfs(graph, start, goal, depth, path):
@@ -46,7 +50,7 @@ if __name__ == "__main__":
         'Iasi':[(92, 'Vaslui'), (87, 'Neamt')],
         'Neamt':[(87, 'Iasi')],
     }
-    #finding the path between Arad and Bucharest
+    #finding the path between Arad and Bucharest, replace cities to find other paths
     idspath = ids(graph, 'Arad', 'Bucharest')
     print("\nPath Using Iterative Deepening Search : ")
     print(" -> ".join(idspath))
