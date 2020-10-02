@@ -22,3 +22,18 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
+    
+''' 
+alternate way of converting all letters to upper in a string 
+using str.upper() builtin method of python
+upper() takes in no parameters. 
+The general syntax is : string.upper()
+
+stringToConvert = 'king'
+then, stringToConvert.upper() >>> 'KING'
+
+strinToConvert = 'KiNg'
+then, stringToConvert.upper() >>> 'KING'
+'''
+stringToConvert=input()
+print(stringToConvert.upper())
