@@ -115,6 +115,19 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
     return pi * pow(radius, 2) * height
 
 
+def vol_trapezoid_prism(shortLength: float, longLength: float, width: float, height: float) -> float:
+    """Calculate the Volume of a Trapezoidal Prism.
+    reference: https://www.tes.com/teaching-resource/-formula-sheet-cool-shapes-volume-and-surface-area-of-3d-shapes-11262513
+    :return 1/2 * (shortLength + longLength) * height * width
+
+    >>> vol_trapezoid_prism(1, 1, 1, 1)
+    1.0
+    >>> vol_trapezoid_prism(4, 3, 2, 1)
+    7.0
+    """
+    return 1/2 * (shortLength + longLength) * height * width
+
+
 def main():
     """Print the Results of Various Volume Calculations."""
     print("Volumes:")
@@ -126,6 +139,7 @@ def main():
     print("Pyramid: " + str(vol_pyramid(2, 2)))  # ~= 1.33
     print("Sphere: " + str(vol_sphere(2)))  # ~= 33.5
     print("Circular Cylinder: " + str(vol_circular_cylinder(2, 2)))  # ~= 25.1
+    print("Trapezoidal Prism: " + str(vol_trapezoid_prism(2, 2, 2, 2))) # = 8
 
 
 if __name__ == "__main__":
