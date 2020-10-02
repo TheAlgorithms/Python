@@ -78,3 +78,15 @@ class MyCircularDeque:
     def __connect(self, node: __Node, following: __Node) -> None:
         node.next = following
         following.previous = node
+
+
+circularDeque = MyCircularDeque(3)   # set the size to be 3
+print(circularDeque.insertLast(1))	 # return true
+print(circularDeque.insertLast(2))	 # return true
+print(circularDeque.insertFront(3))	 # return true
+print(circularDeque.insertFront(4))	 # return false, the queue is full
+print(circularDeque.getRear()) 		 # return 2
+print(circularDeque.isFull())		 # return true
+print(circularDeque.deleteLast())  	 # return true
+print(circularDeque.insertFront(4))  # return true
+print(circularDeque.getFront()) 	 # return 4
