@@ -7,6 +7,7 @@ calculating the factorial
 """
 
 import math
+import doctset
 
 def factorial(n):
     '''
@@ -24,5 +25,7 @@ def factorial(n):
 def main():
     print(factorial(100))
     
-if __name__=="main":
-    main()
+if __name__ == "__main__":
+    doctest.testmod()
+    num = int(input())
+    print(factorial(num))
