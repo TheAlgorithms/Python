@@ -9,6 +9,10 @@ calculating the factorial
 import math
 
 def factorial(n):
+    '''
+    >>> factorial(100)
+    93326215443952857717462820493036720314424690376083725780520166061682670356028136433431415091838194069066425184582337225354616774448888718221849880879196798976
+    '''
     sum = 0
     if n == 0:
         return '1'
@@ -17,5 +21,8 @@ def factorial(n):
     ans = str(round(mathe.exp(sum)))
     return ans
     
-n=int(input("Enter a Number: "))
-print(factorial(n))
+def main():
+    print(factorial(100))
+    
+if __name__=="main":
+    main()
