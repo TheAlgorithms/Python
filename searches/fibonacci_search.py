@@ -1,51 +1,101 @@
-# run using python fibonacci_search.py -v
-
 """
-@params
-arr: input array
-val: the value to be searched
-output: the index of element in the array or -1 if not found
-return 0 if input array is empty
+This is pure Python implementation of fibonacci search.
+
+Resources used:
+https://en.wikipedia.org/wiki/Fibonacci_search_technique
+
+For doctests run following command:
+python3 -m doctest -v fibonacci_search.py
+
+For manual testing run:
+python3 fibonacci_search.py
 """
+from __future__ import annotations
+from functools import lru_cache
+import sys
 
 
-def fibonacci_search(arr, val):
+@lru_cache()
+def fibonacci(k: int) -> int:
+    """Finds fibonacci number in index k.
 
-    """
-    >>> fibonacci_search([1,6,7,0,0,0], 6)
-    1
-    >>> fibonacci_search([1,-1, 5, 2, 9], 10)
-    -1
-    >>> fibonacci_search([], 9)
+    Parameters
+    ----------
+    k : int
+        Index of fibonacci.
+
+    Returns
+    -------
+    int
+        Fibonacci number in position k.
+
+    >>> print(fibonacci(0))
     0
+    >>> print(fibonacci(2))
+    1
+    >>> print(fibonacci(5))
+    5
+    >>> print(fibonacci(15))
+    610
     """
-    fib_N_2 = 0
-    fib_N_1 = 1
-    fibNext = fib_N_1 + fib_N_2
-    length = len(arr)
-    if length == 0:
+    if k == 0:
         return 0
-    while fibNext < len(arr):
-        fib_N_2 = fib_N_1
-        fib_N_1 = fibNext
-        fibNext = fib_N_1 + fib_N_2
-    index = -1
-    while fibNext > 1:
-        i = min(index + fib_N_2, (length - 1))
-        if arr[i] < val:
-            fibNext = fib_N_1
-            fib_N_1 = fib_N_2
-            fib_N_2 = fibNext - fib_N_1
-            index = i
-        elif arr[i] > val:
-            fibNext = fib_N_2
-            fib_N_1 = fib_N_1 - fib_N_2
-            fib_N_2 = fibNext - fib_N_1
-        else:
-            return i
-    if (fib_N_1 and index < length - 1) and (arr[index + 1] == val):
-        return index + 1
-    return -1
+    elif k == 1:
+        return 1
+    else:
+        return fibonacci(k - 1) + fibonacci(k - 2)
+
+
+def fibonacci_search(arr: List[int], val: int) -> int:
+    """A pure Python implementation of a fibonacci search algorithm.
+
+    Parameters
+    ----------
+    arr : List[int]
+        List of sorted elements.
+    val : int
+        Element to search in list.
+
+    Returns
+    -------
+    int
+        The index of the element in the array.
+        -1 if the element is not found.
+
+    >>> print(fibonacci_search([4, 5, 6, 7], 4))
+    0
+    >>> print(fibonacci_search([4, 5, 6, 7], -10))
+    -1
+    >>> print(fibonacci_search([-18, 2], -18))
+    0
+    >>> print(fibonacci_search([5], 5))
+    0
+    >>> print(fibonacci_search(['a', 'c', 'd'], 'c'))
+    1
+    >>> print(fibonacci_search(['a', 'c', 'd'], 'f'))
+    -1
+    >>> print(fibonacci_search([], 1))
+    -1
+    >>> print(fibonacci_search([.1, .4 , 7], .4))
+    1
+    >>> fibonacci_search([], 9)
+    -1
+    """
+    n = len(arr)
+    # Find m such that F_m >= n where F_i is the i_th fibonacci number.
+    m = next(x for x in range(sys.maxsize ** 10) if fibonacci(x) >= n)
+    k = m
+    offset = 0
+    while k != 0:
+        if arr[offset + fibonacci(k - 1)] == val:
+            return fibonacci(k - 1)
+        elif val < arr[offset + fibonacci(k - 1)]:
+            k = k - 1
+        elif val > arr[offset + fibonacci(k - 1)]:
+            offset += fibonacci(k - 2)
+            k = k - 2
+    else:
+        return -1
 
 
 if __name__ == "__main__":
