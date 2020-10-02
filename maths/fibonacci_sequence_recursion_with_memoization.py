@@ -33,13 +33,13 @@ def fibonacci(n: int) -> int:
         print("Error: The value must be greater than or equal to zero")
 
 
-
 def main() -> None:
     try:
         number = int(input("Enter an integer greater than or equal to 0: "))
         print(f"The first {number} Fibonacci sequence terms are:")
         print([fibonacci(n) for n in range(number)])
-        print(f"The {number} index of the fibonacci sequence corresponds to {fibonacci(number)}")
+        print(f"The {number} index of the fibonacci \
+        sequence corresponds to {fibonacci(number)}")
     except ValueError:
         print("Error: Input value should be an integer greater than or equal to 0")
 
