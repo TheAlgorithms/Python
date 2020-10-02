@@ -4,7 +4,6 @@ import urllib.parse
 import requests
 from bs4 import BeautifulSoup
 
-
 """
 Source of regex of URL
 https://github.com/django/django/blob/stable/1.3.x/django/core/validators.py#L45
