@@ -1,14 +1,14 @@
 import random
 
-from .binary_exp_mod import bin_exp_mod
+from binary_exp_mod import bin_exp_mod
 
 
 # This is a probabilistic check to test primality, useful for big numbers!
 # if it's a prime, it will return true
 # if it's not a prime, the chance of it returning true is at most 1/4**prec
-def is_prime(n, prec=1000):
+def is_prime(n: int, prec=1000) -> bool:
     """
-    >>> from .prime_check import prime_check
+    >>> from prime_check import prime_check
     >>> all(is_prime(i) == prime_check(i) for i in range(1000))
     True
     """
