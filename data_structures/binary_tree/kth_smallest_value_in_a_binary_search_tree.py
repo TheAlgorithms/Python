@@ -29,9 +29,9 @@ def kthSmallest(root: Node, k: int) -> int:
             root = stack.pop()
             temp.append(root.data)
             root = root.right
-    return temp[k-1]
+    return temp[k - 1]
 
-def main() -> None: 
+if __name__ == "__main__":
     tree = Node(5)
     tree.left = Node(3)
     tree.right = Node(6)
@@ -40,6 +40,3 @@ def main() -> None:
     tree.left.left.left = Node(1)
     k = 2  
     print(f"The {k}th Smallest Value in the BST is:", kthSmallest(tree, k))
-
-if __name__ == "__main__":
-    main()
