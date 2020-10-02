@@ -117,7 +117,6 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
 
 def vol_trapezoid_prism(shortLength: float, longLength: float, width: float, height: float) -> float:
     """Calculate the Volume of a Trapezoidal Prism.
-    reference: https://www.tes.com/teaching-resource/-formula-sheet-cool-shapes-volume-and-surface-area-of-3d-shapes-11262513
     :return 1/2 * (shortLength + longLength) * height * width
 
     >>> vol_trapezoid_prism(1, 1, 1, 1)
