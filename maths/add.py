@@ -6,14 +6,23 @@ if __name__ == "__main__":
     i = 0
     
     while i < N:
-    
+           
         number = input("Enter your number:")
+        """
+        >> number = "5"
+           result += 5
+        """     
+        
+        """
+        >> number = "s"
+           print the exception
+        """
         try:
-            number = int(number)
-        except:
-            print("Enter only numbers")   
+            number = int(number)  # check input can be converted into number
+        except Exception as e:
+            print(e)   
         else:
-            result += number
+            result += number      # add number in result and add 1 to i
             i += 1    
             
 
