@@ -6,7 +6,7 @@
 cache = dict()
 
 
-def fibonacci(n):
+def fibonacci(n: int) -> int:
     """
     Return number of index n in sequence fibonacci
     >>> [fibonacci(i) for i in range(12)]
