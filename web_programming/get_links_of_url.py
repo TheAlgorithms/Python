@@ -5,9 +5,49 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def is_valid_url(url):
+"""
+Source of regex of URL
+https://github.com/django/django/blob/stable/1.3.x/django/core/validators.py#L45
+
+"""
+
+
+def is_valid_url(url: str) -> bool:
     """
-    Function Valid the url
+    >>> is_valid_url("https://example.com/account.htm?birth=blow")
+    True
+    >>> is_valid_url("ftp://example.com/file.png")
+    True
+    >>> is_valid_url("https://www.google.com")
+    True
+    >>> is_valid_url("https://httpbin.org/ip")
+    True
+    >>> is_valid_url("https://localhost")
+    True
+    >>> is_valid_url("ftp://joebozobl123internet.address.edu")
+    True
+    >>> is_valid_url("https://github.com")
+    True
+    >>> is_valid_url("http://example.org")
+    True
+    >>> is_valid_url("www.google.com")
+    False
+    >>> is_valid_url("https://www.google")
+    True
+    >>> is_valid_url("google.com")
+    False
+    >>> is_valid_url("/images/index.png")
+    False
+    >>> is_valid_url("../bin/files.zip")
+    False
+    >>> is_valid_url("/#")
+    False
+    >>> is_valid_url("https://123.com")
+    True
+    >>> is_valid_url("https://bit.ly/3kYK3rQ")
+    True
+    >>> is_valid_url("https://bitly.is/34fp0KV")
+    True
     """
 
     regex = re.compile(
@@ -23,9 +63,11 @@ def is_valid_url(url):
     return re.match(regex, url) is not None
 
 
-def get_links(url):
+def get_links(url: str) -> list:
     """
     Function get all links in website
+    >>> len(get_links("https://www.github.com"))
+    144
     """
 
     soup = BeautifulSoup(requests.get(url).text, "html.parser")
@@ -37,17 +79,6 @@ def get_links(url):
         else:
             links.append(link)
     return links
-
-
-def test_get_links(url: str = "https://www.github.com") -> None:
-    """
-    A doctest for get_links function
-    >>> test_get_links()
-    """
-
-    assert len(get_links(url)) == 144
-    for url in get_links(url):
-        assert is_valid_url(url) is True
 
 
 if __name__ == "__main__":
