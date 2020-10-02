@@ -24,18 +24,22 @@ def prime_sieve_eratosthenes(num):
     2,3,5,7,11,13,17,19,
     """
 
-    primes = [True for i in range(num + 1)]
-    p = 2
-
-    while p * p <= num:
-        if primes[p]:
-            for i in range(p * p, num + 1, p):
-                primes[i] = False
-        p += 1
-
-    for prime in range(2, num + 1):
-        if primes[prime]:
-            print(prime, end=",")
+    m=(n-1)//2
+    b=[True]*m
+    i,p,primess = 0,3,[2]
+    while p*p < n:
+        if b[i]:
+            primes.append(p)
+            j = 2*i*i + 6*i + 3
+            while j < m:
+                b[j] = False
+                j = j + 2*i + 3
+        i+=1; p+=2
+    while i < m:
+        if b[i]:
+            primes.append(p)
+        i+=1; p+=2
+    print(*primes)
 
 
 if __name__ == "__main__":
