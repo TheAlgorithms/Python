@@ -10,12 +10,11 @@ python3 -m doctest -v fibonacci_search.py
 For manual testing run:
 python3 fibonacci_search.py
 """
-from __future__ import annotations
-from functools import lru_cache
 import sys
+from functools import lru_cache
 
 
-@lru_cache()
+@lru_cache
 def fibonacci(k: int) -> int:
     """Finds fibonacci number in index k.
 
@@ -46,12 +45,12 @@ def fibonacci(k: int) -> int:
         return fibonacci(k - 1) + fibonacci(k - 2)
 
 
-def fibonacci_search(arr: List[int], val: int) -> int:
+def fibonacci_search(arr: list, val: int) -> int:
     """A pure Python implementation of a fibonacci search algorithm.
 
     Parameters
     ----------
-    arr : List[int]
+    arr : list
         List of sorted elements.
     val : int
         Element to search in list.
