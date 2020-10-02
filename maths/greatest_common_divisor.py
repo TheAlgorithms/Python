@@ -46,6 +46,10 @@ def gcd_by_iterative(x: int, y: int) -> int:
     3
     >>> gcd_by_iterative(3, -9)
     3
+    >>> gcd_by_iterative(1, -800)
+    1
+    >>> gcd_by_iterative(11, 37)
+    1
     """
     while y:  # --> when y=0 then loop will terminate and return x as final GCD.
         x, y = y, x % y
