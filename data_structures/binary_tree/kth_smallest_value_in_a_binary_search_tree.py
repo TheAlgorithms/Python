@@ -1,7 +1,6 @@
-
 from typing import Optional
 
-        
+    
 class Node:
     """
     A Node has data variable and pointers to Nodes to its left and right.
@@ -11,6 +10,7 @@ class Node:
         self.data = data
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
+
 
 def kthSmallest(root: Node, k: int) -> int: 
     """
@@ -30,6 +30,7 @@ def kthSmallest(root: Node, k: int) -> int:
             temp.append(root.data)
             root = root.right
     return temp[k - 1]
+
 
 if __name__ == "__main__":
     tree = Node(5)
