@@ -16,7 +16,7 @@ class QuickUnion:
 
         connections: optional argument to be used instead of n.
         It should be a 2d list that represents the relationships of joints
-        where nested vaules should represent two connected values.
+        where nested values should represent two connected values.
         example: [(1, 2), (2, 3)] indicates 1 is connected to 2 and 2 is connected to 3.
         """
         if connections:
