@@ -14,20 +14,20 @@ What is the largest 1 to 9 pandigital 9-digit number that can be formed as the c
 '''
 def is_pandigital():
 	'''
-  The function finds the largest pandigital number by looping from 1 to 1000, and concatinating the multiples untill a 9 digit number is achieved. It then using an if condition to check if the length of num1 is 9 without repititive digits and without the occurence of 0 in it.
+  	The function finds the largest pandigital number by looping from 1 to 1000, and concatinating the multiples until a 9 digit number is achieved. It then using an if condition to check if the length of num1 is 9 without repititive digits and without the occurrence of 0 in it.
   
-  If these conditions hold true, it assigns num1 to the largest variable.
+  	If these conditions hold true, it assigns num1 to the largest variable.
 
-  This largest variable is the answer of problem 38.
+  	This largest variable is the answer of problem 38.
   
-  >>>is_pandigital()
-  932718654
-  '''
+  	>>>is_pandigital()
+  	932718654
+ 	'''
 	largest = 0 #this variable will be the largest 1 to 9 pandigital number
 
 	for i in range(1,10000):
 	  
-	  num1 = '' #a string is used and not int as we'll later be concatinating it to generate a 9 digital number.
+	  num1 = '' #str type is used and not int as we'll later be concatinating it to generate a 9 digital number.
     
 	  num2 = 1
 	  
