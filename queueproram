@@ -1,0 +1,16 @@
+import collections
+q = collections.deque()
+q.append('subhasish')
+q.append('shabana')
+q.append('shakira')
+q.append('sameera')
+print(q)
+#lets delete some elements
+print(q.popleft())
+print(q.popleft())
+print(q.popleft())
+print(q)
+
+
+
+
