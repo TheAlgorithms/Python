@@ -40,4 +40,4 @@ if __name__ == "__main__":
     tree.left.right = Node(4)
     tree.left.left.left = Node(1)
     k = 2  
-    print(f"The {k}th Smallest Value in the BST is:", kthSmallest(tree, k))
+    print("The " + str(k) + "-th Smallest Value in the BST is: " + str(kthSmallest(tree, k)))
