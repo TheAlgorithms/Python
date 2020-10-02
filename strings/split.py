@@ -1,4 +1,4 @@
-def split(string: str, separator: str = " ") -> list:
+def split(string, separator):
     """
     Will split the string up into all the values separated by the separator
     (defaults to spaces)
@@ -17,18 +17,11 @@ def split(string: str, separator: str = " ") -> list:
     """
 
     split_words = []
-
-    last_index = 0
-    for index, char in enumerate(string):
-        if char == separator:
-            split_words.append(string[last_index:index])
-            last_index = index + 1
-        elif index + 1 == len(string):
-            split_words.append(string[last_index : index + 1])
+    split_words = string.split(separator)
     return split_words
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
-    testmod()
+    print(split("12:13:63",":"))
