@@ -1,3 +1,4 @@
+"""
 from typing import Optional
 
     
@@ -41,3 +42,4 @@ if __name__ == "__main__":
     tree.left.left.left = Node(1)
     k = 2  
     print("The " + str(k) + "-th Smallest Value in the BST is: " + str(kthSmallest(tree, k)))
+"""
