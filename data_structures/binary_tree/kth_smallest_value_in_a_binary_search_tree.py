@@ -11,12 +11,6 @@ class Node:
         self.data = data
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
-        
-def display(tree: Optional[Node]) -> None: 
-    if tree:
-        display(tree.left)
-        print(tree.data)
-        display(tree.right)
 
 def kthSmallest(root: Node, k: int) -> int: 
     """
@@ -46,9 +40,6 @@ def main() -> None:
     tree.left.left.left = Node(1)
     k = 2  
     print(f"The {k}th Smallest Value in the BST is:", kthSmallest(tree, k))
-    print("Tree is: ")
-    display(tree)
-
 
 if __name__ == "__main__":
     main()
