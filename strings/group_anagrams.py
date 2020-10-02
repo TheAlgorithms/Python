@@ -7,18 +7,19 @@ from collections import defaultdict
 
 
 def modify_word_and_get_offset(word: str, alphabet: int) -> tuple:
-    """ If alphabet is 26 meaning case sensitive feature is off, the string is converted to lowercase and
-        the offset is set to 0
+    """ If alphabet is 26 meaning case sensitive feature is off, the string is 
+        converted to lowercase and the offset is set to 0
     """
     return (word.lower(), 0) if alphabet == 26 else (word, 25)
 
 
 def get_key(word: str, alphabet: int) -> tuple:
     """ If case sensitive feature is on, then the alphabet size is 52 : A-Z, a-z (26+26=52).
-        For case sensitive feature, first 26 positions are for uppercase characters and next 26 positions are 
-        for lowercase characters. So `offset` denotes that if case sensitive feaure is on, then the lower case
-        characters will be shifted 26 positions from the starting of the `alphabet_list`. If you are wondering 
-        why is that, it's because `ord('A')-ord('A') and ord('a') - ord('a')` gives the same value.
+        For case sensitive feature, first 26 positions are for uppercase characters and next 
+        26 positions are for lowercase characters. So `offset` denotes that if case sensitive 
+        feaure is on, then the lower case characters will be shifted 26 positions from the 
+        starting of the `alphabet_list`. If you are wondering why is that, it's because 
+        `ord('A')-ord('A') and ord('a') - ord('a')` gives the same value.
     """
     alphabet_lists = [0 for i in range(alphabet)]
     word, offset = modify_word_and_get_offset(word, alphabet)
@@ -42,9 +43,9 @@ def group_anagrams(words: str, case_sensitive=False) -> list:
     >>> group_anagrams([''], False)
     [['']]
 
-    By default all the strings will be in lower case. If you want uppercase sensitive feature, pass an optional 
-    parameter `case_sensitive` with the value `True`. Default value of `case_sensitive` is False. So `cat` and
-    `cAt` will be treated as the same strings.
+    By default all the strings will be in lower case. If you want uppercase sensitive feature, 
+    pass an optional parameter `case_sensitive` with the value `True`. Default value of `case_sensitive` 
+    is False. So `cat` and `cAt` will be treated as the same strings.
 
     >>> group_anagrams(['cat', 'cAt', 'nat', 'Nat', 'tac'], True)
     [['cat', 'tac'], ['cAt'], ['nat'], ['Nat']]
