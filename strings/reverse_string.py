@@ -17,7 +17,7 @@ def reverse(word: str) -> str:
     # creating a string slice that starts at the end of the string, and moves backwards.
     # the slice statement [::-1] means start at the end of the string and end at position 0,
     # move with the step negative one, which means one step backwards.
-    return word[::-1]
+    return "".join(word[::-1])
 
 
 if __name__ == "__main__":
