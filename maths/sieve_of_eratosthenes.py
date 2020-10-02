@@ -59,7 +59,4 @@ def sieve(n: int) -> List[int]:
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
     print(sieve(int(input("Enter n: ").strip())))
