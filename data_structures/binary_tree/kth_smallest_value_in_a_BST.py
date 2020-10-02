@@ -1,16 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Oct  2 13:25:19 2020
-
-@author: Soham Shah
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Oct  2 12:34:54 2020
-
-@author: Soham Shah
-"""
 
 from typing import Optional
 
