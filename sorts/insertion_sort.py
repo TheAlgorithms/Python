@@ -41,13 +41,13 @@ def insertion_sort(collection: list) -> list:
     """
 
     for i in range(1, len(collection)):
-        j = i - 1
-        key = collection[i]
-        while j >= 0 and key < collection[j]:
-            collection[j + 1] = collection[j]
-            j -= 1
-        if j != i - 1:
-            collection[j + 1] = key
+        insert_index = i - 1
+        insert_value = collection[i]
+        while insert_index >= 0 and insert_value < collection[insert_index]:
+            collection[insert_index + 1] = collection[insert_index]
+            insert_index -= 1
+        if insert_index != i - 1:
+            collection[insert_index + 1] = insert_value
     return collection
 
 
