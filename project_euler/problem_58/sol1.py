@@ -44,6 +44,7 @@ if __name__ == "__main__":
     from doctest import testmod
     testmod()
     print(solution())
+    print()
 
 
 
