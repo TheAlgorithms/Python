@@ -45,8 +45,8 @@ def binary_xor(a: int, b: int):
         append(str(int((a % 2) != (b % 2))))
         a //= 2
         b //= 2
-    append('0b')
-    return ''.join(reversed(result))
+    append("0b")
+    return "".join(reversed(result))
 
 
 if __name__ == "__main__":
