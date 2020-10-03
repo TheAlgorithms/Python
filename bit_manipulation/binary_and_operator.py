@@ -34,16 +34,17 @@ def binary_and(a: int, b: int):
     """
     if a < 0 or b < 0:
         raise ValueError("the value of both input must be positive")
+    if isinstance(a, float) or isinstance(b, float):
+        raise TypeError("'float' object cannot be interpreted as an integer")
 
-    a_binary = str(bin(a))[2:]  # remove the leading "0b"
-    b_binary = str(bin(b))[2:]  # remove the leading "0b"
-
-    max_len = max(len(a_binary), len(b_binary))
-
-    return "0b" + "".join(
-        str(int(char_a == "1" and char_b == "1"))
-        for char_a, char_b in zip(a_binary.zfill(max_len), b_binary.zfill(max_len))
-    )
+    And = []
+    append = And.append
+    while a or b:
+        append(str(int((a % 2) and (b % 2))))
+        a //= 2
+        b //= 2
+    append('0b')
+    return ''.join(reversed(And))
 
 
 if __name__ == "__main__":
