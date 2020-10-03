@@ -1,4 +1,4 @@
-from send_file.py import send_file
+from send_file import send_file
 from receive_file import receive
 def main():
 
