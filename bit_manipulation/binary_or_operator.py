@@ -36,14 +36,14 @@ def binary_or(a: int, b: int):
     if isinstance(a, float) or isinstance(b, float):
         raise TypeError("'float' object cannot be interpreted as an integer")
 
-    And = []
-    append = And.append
+    result = []
+    append = result.append
     while a or b:
         append(str(int((a % 2) or (b % 2))))
         a //= 2
         b //= 2
     append('0b')
-    return ''.join(reversed(And))
+    return ''.join(reversed(result))
 
 
 if __name__ == "__main__":
