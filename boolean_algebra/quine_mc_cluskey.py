@@ -162,7 +162,7 @@ def main():
 
 
 if __name__ == "__main__":
-    import doctest
+    import doctest # This statement imports doctest
 
     doctest.testmod()
-    main()
+    main() 
