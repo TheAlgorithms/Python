@@ -1,6 +1,7 @@
 """ Coordinate conversion """
 
-from math import sin, cos, atan
+from math import atan, cos, sin
+
 
 def polar_to_cartesian(radius: float, angle: float) -> (float, float):
     """
@@ -19,7 +20,8 @@ def polar_to_cartesian(radius: float, angle: float) -> (float, float):
     y_coordinate = radius * sin(angle)
     return (x_coordinate, y_coordinate)
 
-def cartesian_to_polar(x_coordinate: float, y_coordinate : float) -> (float, float):
+
+def cartesian_to_polar(x_coordinate: float, y_coordinate: float) -> (float, float):
     """
     This function returns (r, theta) i.e. cartesian co ordinates
     given polar coordinates (x, y)
@@ -33,13 +35,18 @@ def cartesian_to_polar(x_coordinate: float, y_coordinate : float) -> (float, flo
     (1.0, 0.7853981633974483)
 
     """
-    radius = ((x_coordinate ** 2) + (y_coordinate ** 2)) ** 0.5  # root of x squared and y squared
-    theta  = atan( y_coordinate / x_coordinate ) if (x_coordinate != 0) else float("inf")
+    radius = (
+        (x_coordinate ** 2) + (y_coordinate ** 2)
+    ) ** 0.5  # root of x squared and y squared
+    theta = atan(y_coordinate / x_coordinate) if (x_coordinate != 0) else float("inf")
     return (radius, theta)
+
 
 def main():
     import doctest
+
     doctest.testmod()
+
 
 if __name__ == "__main__":
     main()
