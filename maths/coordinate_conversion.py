@@ -1,4 +1,4 @@
-""" Co-ordinate conversion """
+""" Coordinate conversion """
 
 from math import sin, cos, atan
 
