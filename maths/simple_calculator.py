@@ -27,4 +27,3 @@ elif(n==4):
 	print"\n Quotient=",div(a,b)
 else:
 	print"Invalid Entry!"
-
