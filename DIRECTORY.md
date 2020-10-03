@@ -208,7 +208,6 @@
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/knapsack.py)
   * [Longest Common Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_common_subsequence.py)
   * [Longest Increasing Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_increasing_subsequence.py)
-  * [Longest Increasing Subsequence O(Nlogn)](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
   * [Longest Sub Array](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_sub_array.py)
   * [Matrix Chain Order](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/matrix_chain_order.py)
   * [Max Non Adjacent Sum](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_non_adjacent_sum.py)
@@ -290,6 +289,7 @@
 
 ## Greedy Method
   * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/greedy_knapsack.py)
+  * [Longest Increasing Subsequence O(Nlogn)](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
   * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/test_knapsack.py)
 
 ## Hashes
