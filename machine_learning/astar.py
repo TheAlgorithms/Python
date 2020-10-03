@@ -77,9 +77,9 @@ class Gridworld(object):
         current_x = cell.position[0]
         current_y = cell.position[1]
         neighbours = []
-        for n in neughbour_cord:
-            x = current_x + n[0]
-            y = current_y + n[1]
+        for g in neughbour_cord:
+            x = current_x + g[0]
+            y = current_y + g[1]
             if 0 <= x < self.world_x_limit and 0 <= y < self.world_y_limit:
                 c = Cell()
                 c.position = (x, y)
