@@ -41,5 +41,5 @@ def main():
     import doctest
     doctest.testmod()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
