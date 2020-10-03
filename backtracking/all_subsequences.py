@@ -7,11 +7,13 @@
 """
 
 
-def generate_all_subsequences(sequence):
+def generate_all_subsequences(sequence: [int]) -> None:
     create_state_space_tree(sequence, [], 0)
 
 
-def create_state_space_tree(sequence, current_subsequence, index):
+def create_state_space_tree(
+    sequence: [int], current_subsequence: [int], index: int
+) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
     We know that each state has exactly two children.

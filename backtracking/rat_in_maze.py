@@ -1,4 +1,4 @@
-def solve_maze(maze: list) -> bool:
+def solve_maze(maze: [[int]]) -> bool:
     """
     This method solves the "rat in maze" problem.
     In this problem we have some n by n matrix, a start point and an end point.
@@ -67,7 +67,7 @@ def solve_maze(maze: list) -> bool:
     return solved
 
 
-def run_maze(maze, i, j, solutions):
+def run_maze(maze: [[int]], i: int, j: int, solutions: [[int]]) -> bool:
     """
     This method is recursive starting from (i, j) and going in one of four directions:
     up, down, left, right.

@@ -7,11 +7,13 @@
 """
 
 
-def generate_all_permutations(sequence):
+def generate_all_permutations(sequence: [int]) -> None:
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
 
-def create_state_space_tree(sequence, current_sequence, index, index_used):
+def create_state_space_tree(
+    sequence: [int], current_sequence: [int], index: int, index_used: int
+) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
     We know that each state has exactly len(sequence) - index children.
