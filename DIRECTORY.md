@@ -611,6 +611,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_36/sol1.py)
   * Problem 37
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_37/sol1.py)
+  * Problem 38
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_38/sol1.py)
   * Problem 39
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_39/sol1.py)
   * Problem 40
