@@ -10,8 +10,10 @@
 import math as m
 from typing import Callable, List, Tuple
 
+RealFunc = Callable[[float], float]  # type alias for a real -> real function
 
-def calc_derivative(f: Callable[[float], float], a: float, h: float = 0.001) -> float:
+
+def calc_derivative(f: RealFunc, a: float, h: float = 0.001) -> float:
     """
     Calculates derivative at point a for function f using finite difference
     method
@@ -31,9 +33,7 @@ def newton_raphson(
     a = x0  # set the initial guess
     steps = [a]
     error = abs(f(a))
-    f1: Callable[[float], float] = lambda x: calc_derivative(
-        f, x, h=step
-    )  # noqa: E731  Derivative of f(x)
+    f1 = lambda x: calc_derivative(f, x, h=step)  # noqa: E731  Derivative of f(x)
     for _ in range(maxiter):
         if f1(a) == 0:
             raise ValueError("No converging solution found")
@@ -53,7 +53,7 @@ def newton_raphson(
 if __name__ == "__main__":
     from matplotlib import pyplot as plt
 
-    f: Callable[[float], float] = lambda x: m.tanh(x) ** 2 - m.exp(3 * x)  # noqa: E731
+    f = lambda x: m.tanh(x) ** 2 - m.exp(3 * x)  # noqa: E731
     solution, error, steps = newton_raphson(
         f, x0=10, maxiter=1000, step=1e-6, logsteps=True
     )
