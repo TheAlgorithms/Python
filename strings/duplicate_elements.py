@@ -2,7 +2,7 @@
 #This python program finds the duplicate elements in any string
 
 
-string=input("Enter a string:")
+string=input("Enter a string:").strip())
 set_dupli=set({})
 for i in string:
     count=0
