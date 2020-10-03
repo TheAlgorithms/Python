@@ -1,20 +1,22 @@
-def add(a,b):
+def add(a,b): #Addition +
 	return(a+b)
 
-def sub(a,b):
+def sub(a,b): #Subtraction -
 	return(a-b)
 
-def prd(a,b):
+def prd(a,b): #Multiplication ×
 	return(a*b)
 
-def div(a,b):
+def div(a,b): #Division ÷
 	return(a/b)
 
-n=int(raw_input("\n 1. Addition\n 2. Subtraction\n 3. Multiplication\n 4. Division\n 0. Exit\n\n Enter your Choice!\n"))
+n=int(raw_input("\n 1. Addition\n 2. Subtraction\n 3. Multiplication\n 4. Division\n 0. Exit\n\n Enter your Choice!\n")) #MENU
 if(n==0):
 	exit()
-a=int(raw_input("\n\n First Number : "))
-b=int(raw_input("\n\n Second Number : "))
+a=int(raw_input("\n\n First Number : ")) #First Input
+b=int(raw_input("\n\n Second Number : ")) #Second Input
+
+ #Output
 if(n==1):
 	print"\n Sum=",add(a,b)
 elif(n==2):
@@ -26,4 +28,3 @@ elif(n==4):
 else:
 	print"Invalid Entry!"
 
-raw_input() #Used while using python in windows to avoid sudden exit of program.
