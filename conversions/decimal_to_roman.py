@@ -1,11 +1,16 @@
+"""Convert decimal numeral into roman numeral."""
+
+
 def decimal_to_roman(num: int) -> str:
     """
     Given a decimal numeral, convert it to roman numeral.
     https://en.wikipedia.org/wiki/Roman_numerals
-    >>> tests = {1: "I", 5: "V", 15: "XV", 29: "XXIX", 113: "CXIII", 470: "CDLXX", 867: "DCCCLXVII", 3511: "MMMDXI", 4000: "NONE"}
+    >>> tests = {1: "I", 5: "V", 15: "XV", 29: "XXIX", 113: "CXIII",
+                470: "CDLXX", 867: "DCCCLXVII", 3511: "MMMDXI", 4000: "NONE"}
     >>> all(decimal_to_roman(key) == value for key, value in tests.items())
     True
     """
+
     Roman_numerals = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"}
 
     # validating input
