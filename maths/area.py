@@ -193,7 +193,7 @@ def area_ellipse(radius1: float, radius2: float) -> float:
 
     >>> area_ellipse(20, 10)
     628.3185307179587
-    >>> area_ellipse(-1)
+    >>> area_ellipse(-1, 20)
     Traceback (most recent call last):
         ...
     ValueError: area_ellipse() only accepts non-negative values
