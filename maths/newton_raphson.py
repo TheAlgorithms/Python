@@ -8,9 +8,10 @@
     is raised. If iteration limit is reached, try increasing maxiter.
     """
 import math as m
+from typing import Callable, List, Tuple
 
 
-def calc_derivative(f, a, h=0.001):
+def calc_derivative(f: Callable[[float], float], a: float, h: float = 0.001) -> float:
     """
     Calculates derivative at point a for function f using finite difference
     method
@@ -18,12 +19,21 @@ def calc_derivative(f, a, h=0.001):
     return (f(a + h) - f(a - h)) / (2 * h)
 
 
-def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=False):
+def newton_raphson(
+    f: Callable[[float], float],
+    x0: float = 0,
+    maxiter: int = 100,
+    step: float = 0.0001,
+    maxerror: float = 1e-6,
+    logsteps: bool = False,
+) -> Tuple[float, float, List[float]]:
 
     a = x0  # set the initial guess
     steps = [a]
     error = abs(f(a))
-    f1 = lambda x: calc_derivative(f, x, h=step)  # noqa: E731  Derivative of f(x)
+    f1: Callable[[float], float] = lambda x: calc_derivative(
+        f, x, h=step
+    )  # noqa: E731  Derivative of f(x)
     for _ in range(maxiter):
         if f1(a) == 0:
             raise ValueError("No converging solution found")
@@ -37,13 +47,13 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
     if logsteps:
         # If logstep is true, then log intermediate steps
         return a, error, steps
-    return a, error
+    return a, error, []
 
 
 if __name__ == "__main__":
     from matplotlib import pyplot as plt
 
-    f = lambda x: m.tanh(x) ** 2 - m.exp(3 * x)  # noqa: E731
+    f: Callable[[float], float] = lambda x: m.tanh(x) ** 2 - m.exp(3 * x)  # noqa: E731
     solution, error, steps = newton_raphson(
         f, x0=10, maxiter=1000, step=1e-6, logsteps=True
     )
