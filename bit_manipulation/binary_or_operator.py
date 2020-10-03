@@ -39,6 +39,8 @@ def binary_or(a: int, b: int):
     result = []
     append = result.append
     while a or b:
+        # comparing every bit of a and b, finding bits through division method.
+        # https://en.wikipedia.org/wiki/Binary_number#Conversion_to_and_from_other_numeral_systems
         append(str(int((a % 2) or (b % 2))))
         a //= 2
         b //= 2
