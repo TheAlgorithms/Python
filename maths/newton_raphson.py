@@ -6,7 +6,7 @@
     If no solution exists, then either the solution will not be found when iteration
     limit is reached or the gradient f'(x[n]) approaches zero. In both cases, exception
     is raised. If iteration limit is reached, try increasing maxiter.
-    """
+"""
 import math as m
 from typing import Callable, List, Tuple
 
