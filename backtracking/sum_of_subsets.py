@@ -18,7 +18,12 @@ def generate_sum_of_subsets_soln(nums: [int], max_sum: [int]) -> [int]:
 
 
 def create_state_space_tree(
-    nums: [int], max_sum: int, num_index: int, path: [int], result: [int], remaining_nums_sum: int
+    nums: [int],
+    max_sum: int,
+    num_index: int,
+    path: [int],
+    result: [int],
+    remaining_nums_sum: int,
 ) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
