@@ -547,6 +547,8 @@
   * Problem 11
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_11/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_11/sol2.py)
+  * Problem 112
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_112/sol1.py)
   * Problem 12
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_12/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_12/sol2.py)
