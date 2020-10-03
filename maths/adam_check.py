@@ -8,6 +8,11 @@ def prime_adam_check(number: int) -> bool:
     A number is Adam if the square of the number and square
     of the reverse of the number are reverse of each other.
     Example : 11 (11^2 and 11^2 are reverse of each other).
+
+    >>> prime_adam_check(14)
+    False
+    >>> prime_adam_check(13)
+    True
     """
 
     # Get the square of the number.

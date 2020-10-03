@@ -6,6 +6,11 @@ def prime_check(number: int) -> bool:
     """
     A number is prime if it has exactly two dividers: 1 and itself.
     Example : 2, 3, 5, 7
+
+    >>> prime_check(3)
+    True
+    >>> prime_check(40)
+    False
     """
     if number < 2:
         # Numbers less than 2 are not prime.
@@ -27,6 +32,11 @@ def prime_adam_check(number: int) -> bool:
     A number is Adam if the square of the number and
     square of the reverse of the number are reverseof each other.
     Example : 13 (13^2 and 31^2 are reverse of each other).
+
+    >>> prime_adam_check(14)
+    False
+    >>> prime_adam_check(13)
+    True
     """
 
     # Check if the number is Prime.
