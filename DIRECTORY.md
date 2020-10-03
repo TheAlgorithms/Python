@@ -115,8 +115,6 @@
     * [Double Hash](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/double_hash.py)
     * [Hash Table](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/hash_table.py)
     * [Hash Table With Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/hash_table_with_linked_list.py)
-    * Number Theory
-      * [Prime Numbers](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/number_theory/prime_numbers.py)
     * [Quadratic Probing](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/quadratic_probing.py)
   * Heap
     * [Binomial Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/binomial_heap.py)
@@ -462,6 +460,7 @@
   * [Chinese Remainder Theorem](https://github.com/TheAlgorithms/Python/blob/master/blockchain/chinese_remainder_theorem.py)
   * [Diophantine Equation](https://github.com/TheAlgorithms/Python/blob/master/blockchain/diophantine_equation.py)
   * [Modular Division](https://github.com/TheAlgorithms/Python/blob/master/blockchain/modular_division.py)
+  * [Prime Numbers](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/number_theory/prime_numbers.py)
 
 ## Other
   * [Activity Selection](https://github.com/TheAlgorithms/Python/blob/master/other/activity_selection.py)
