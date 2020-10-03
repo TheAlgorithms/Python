@@ -17,13 +17,16 @@ class my_queue:
         self.tail = 0
 
     def is_empty(self):
+        """Checks if tree is empty."""
         return self.head == self.tail
 
     def push(self, data):
+        """Insert data in the tree."""
         self.data.append(data)
         self.tail = self.tail + 1
 
     def pop(self):
+        """Delete data from the tree."""
         ret = self.data[self.head]
         self.head = self.head + 1
         return ret
@@ -48,9 +51,11 @@ class my_node:
         return self.data
 
     def get_left(self):
+        """Returns left node."""
         return self.left
 
     def get_right(self):
+        """Returns right node."""
         return self.right
 
     def get_height(self):
