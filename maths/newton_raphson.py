@@ -8,7 +8,7 @@
     is raised. If iteration limit is reached, try increasing maxiter.
     """
 import math as m
-from typing import Callable, Tuple, List
+from typing import Callable, List, Tuple
 
 
 def calc_derivative(f: Callable[[float], float], a: float, h: float = 0.001) -> float:
