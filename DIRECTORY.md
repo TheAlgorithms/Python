@@ -245,6 +245,7 @@
 
 ## Graphs
   * [A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/a_star.py)
+  * [A Star 2](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
   * [Articulation Points](https://github.com/TheAlgorithms/Python/blob/master/graphs/articulation_points.py)
   * [Basic Graphs](https://github.com/TheAlgorithms/Python/blob/master/graphs/basic_graphs.py)
   * [Bellman Ford](https://github.com/TheAlgorithms/Python/blob/master/graphs/bellman_ford.py)
@@ -313,7 +314,6 @@
     * [Transformations 2D](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/transformations_2d.py)
 
 ## Machine Learning
-  * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
   * [Data Transformations](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/data_transformations.py)
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
   * [Gaussian Naive Bayes](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/gaussian_naive_bayes.py)
