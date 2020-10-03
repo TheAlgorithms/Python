@@ -1,0 +1,92 @@
+
+
+a=10
+b=40
+c=30
+
+if(a<b) & (b>c):
+    print ("b is greatest")
+elif(a>b) & (b<c):
+    print ("a is greatest")
+else:
+    print ("c is greatest")
+
+
+
+#if with tuple
+
+tup1=("a","b","c")
+
+if "z" in tup1:
+    print("z is present in tup1")
+else:
+    print("z is not present in tup1")
+
+#if with dictionary
+d1={'k1':20,'k2':30, 'k3':40}
+
+
+
+d1
+
+if d1["k3"]==40:
+    d1["k3"]=d1["k2"]+100   
+
+d1
+
+i=1
+while i<=10:
+    print(i)
+    i=i+1
+
+i=2
+while i<=20:
+    print(i)
+    i=i+2
+
+i=30
+while i<=300:
+    print(i)
+    i=i+30
+
+
+
+i
+
+i=2
+n=2
+while i<=20:
+    print(n ," * ",i," = ",n*i)
+
+
+i=1
+n=2
+while i=20:
+    print(n ," * ",i," = ",n*i)
+    i=i+1
+
+
+
+
+
+
+
+
+
+i=5
+n=1
+while i=50:
+    print(n," * "i," = ",n*i)
+    n=n+1
+
+
+
+#while with list
+l1={1,2,3,4,5}
+
+l1
+
+
+
+
+
