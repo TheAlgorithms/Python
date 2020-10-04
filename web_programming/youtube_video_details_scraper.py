@@ -10,7 +10,7 @@ def youtube_scraper():
 
     """
     Returns a pandas dataframe consisting of links, views, likes, dislikes and
-    thier date of upload of the first 500 vidoes appearing in the user's feed
+    their date of upload of the first 500 vidoes appearing in the user's feed
     """
 
     browser = webdriver.Chrome(
