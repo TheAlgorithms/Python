@@ -4,7 +4,7 @@ from collections import deque
 
 """
 Problem Description:
-Given a binary tree, print it's left view from left to right.
+Given a binary tree, print it's left view from top to bottom.
 
 Solution Logic:
 Imagine binary tree as y axis from left view and root node is at index 0.
