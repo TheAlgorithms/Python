@@ -25,4 +25,4 @@ def test_abs_val():
 
 
 if __name__ == "__main__":
-    print(abs_val(-34))  # --> 34
+    prints(abs_val(-34))  # --> 34
