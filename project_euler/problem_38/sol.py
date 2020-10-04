@@ -4,6 +4,9 @@ def solution():
 		for a in range(1, 10**(9 // n)):
 			s = "".join(str(a * j) for j in range(1, n + 1))
 			randomv = "".join(sorted(s))
-            if randomv == "123456789":
+			if randomv == "123456789":
 				answer = max(s, answer)
-	return answer
+	print (answer)
+
+if __name__ == "__main__":
+	print(solution())
