@@ -42,11 +42,7 @@ def dump_json_to_file(data, file_name):
 def load_json_from_file(file_name):
     touch_file(file_name)
     with open(file_name) as readfile:
-        content = readfile.read()
-    if content == "":
-        content = str(dict())
-    content = json.loads(content)
-    return content
+        return readfile.read() or str({})
 
 
 def read_lines_strip_return(file_name, split=None, index=None):
