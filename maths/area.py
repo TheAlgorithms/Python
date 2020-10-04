@@ -186,28 +186,28 @@ def area_circle(radius: float) -> float:
     return pi * radius ** 2
 
 
-def area_rhombhus(base: float, height: float) -> float:
+def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     """
-    Calculate the area of a rhombhus
+    Calculate the area of a rhombus
 
-    >>> area_rhombhus(10, 20)
+    >>> area_rhombus(10, 20)
     100.0
-    >>> area_rhombhus(-1, -2)
+    >>> area_rhombus(-1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: area_rhombhus() only accepts non-negative values
-    >>> area_rhombhus(1, -2)
+    ValueError: area_rhombus() only accepts non-negative values
+    >>> area_rhombus(1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: area_rhombhus() only accepts non-negative values
-    >>> area_rhombhus(-1, 2)
+    ValueError: area_rhombus() only accepts non-negative values
+    >>> area_rhombus(-1, 2)
     Traceback (most recent call last):
         ...
-    ValueError: area_rhombhus() only accepts non-negative values
+    ValueError: area_rhombus() only accepts non-negative values
     """
-    if base < 0 or height < 0:
-        raise ValueError("area_rhombhus() only accepts non-negative values")
-    return 1 / 2 * base * height
+    if diagonal_1 < 0 or diagonal_2 < 0:
+        raise ValueError("area_rhombus() only accepts non-negative values")
+    return 1 / 2 * diagonal_1 * diagonal_2
 
 
 def main():
@@ -221,7 +221,7 @@ def main():
     print("\nSurface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20)}")
     print(f"Sphere: {surface_area_sphere(20)}")
-    print(f"Rhombhus: {area_rhombhus(10, 20)}")
+    print(f"Rhombus: {area_rhombus(10, 20)}")
 
 
 if __name__ == "__main__":
