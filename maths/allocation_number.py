@@ -17,8 +17,8 @@ def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
 
     >>> allocation_num(16647, 4)
     ['1-4161', '4162-8322', '8323-12483', '12484-16647']
-    >>> allocation_num(100000, 6)
-    ['1-16666', '16667-33332', '33333-49998', '49999-66664', '66665-83330', '83331-100000']
+    >>> allocation_num(50000, 5)
+    ['1-10000', '10001-20000', '20001-30000', '30001-40000', '40001-50000']
     >>> allocation_num(888, 888)
     Traceback (most recent call last):
         ...
