@@ -4,6 +4,7 @@ from typing import List
 # A naive recursive implementation of 0-1 Knapsack Problem
 # https://en.wikipedia.org/wiki/Knapsack_problem
 
+
 def knapsack(capacity: int, weights: List[int], values: List[int], counter: int) -> int:
     """
     Returns the maximum value that can be put in a knapsack of a capacity cap,
@@ -33,8 +34,9 @@ def knapsack(capacity: int, weights: List[int], values: List[int], counter: int)
         return knapsack(capacity, weights, values, counter - 1)
     else:
         left_capacity = capacity - weights[counter - 1]
-        new_value_included = values[counter - 1] + \
-                             knapsack(left_capacity, weights, values, counter - 1)
+        new_value_included = values[counter - 1] + knapsack(
+            left_capacity, weights, values, counter - 1
+        )
         without_new_value = knapsack(capacity, weights, values, counter - 1)
         return max(new_value_included, without_new_value)
 
