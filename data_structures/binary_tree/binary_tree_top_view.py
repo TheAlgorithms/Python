@@ -21,7 +21,9 @@ To consider the node at the lowest depth, BFS is used.
 
 
 def topViewDict(
-    root: int, binary_tree: dict = {}, x_axis_dict: dict = {},
+    root: int,
+    binary_tree: dict = {},
+    x_axis_dict: dict = {},
 ):
     queue = deque()
     # x axis index of root is 0
