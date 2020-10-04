@@ -60,6 +60,7 @@ def generate_prime():
             i += 1
             prime_array.append(p)
 
+
 def solution():  # function without any parameters
 
     # ... calculations ...
@@ -107,6 +108,7 @@ def solution():  # function without any parameters
                                         answer = min(answer, sum(current_list))
 
     return answer
+
 
 # Tests
 
