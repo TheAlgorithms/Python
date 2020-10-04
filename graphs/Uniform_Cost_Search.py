@@ -31,12 +31,12 @@ class PriorityQueue(object):
             return
 
 
-def node_cost(cost, fro, to):
+def node_cost(cost, from_node, to_node):
     k = 0
     costval = 0
     for i in cost:
         for j in range(len(i)):
-            if fro == k and to == j:
+            if from_node == k and to_node == j:
                 costval = i[j]
                 return costval
             else:
