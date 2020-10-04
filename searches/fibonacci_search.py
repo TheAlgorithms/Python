@@ -20,8 +20,7 @@ def fibonacci(k: int) -> int:
 
     Parameters
     ----------
-    k : int
-        Index of fibonacci.
+    k : Index of fibonacci.
 
     Returns
     -------
@@ -89,10 +88,10 @@ def fibonacci_search(arr: list, val: int) -> int:
         if arr[offset + fibonacci(k - 1)] == val:
             return fibonacci(k - 1)
         elif val < arr[offset + fibonacci(k - 1)]:
-            k = k - 1
+            k -= 1
         elif val > arr[offset + fibonacci(k - 1)]:
             offset += fibonacci(k - 2)
-            k = k - 2
+            k -= 2
     else:
         return -1
 
