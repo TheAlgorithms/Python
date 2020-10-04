@@ -20,7 +20,8 @@ def fibonacci(k: int) -> int:
 
     Parameters
     ----------
-    k : Index of fibonacci.
+    k :
+        Index of fibonacci.
 
     Returns
     -------
@@ -59,9 +60,9 @@ def fibonacci_search(arr: list, val: int) -> int:
 
     Parameters
     ----------
-    arr : list
+    arr
         List of sorted elements.
-    val : int
+    val
         Element to search in list.
 
     Returns
