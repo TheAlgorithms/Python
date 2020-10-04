@@ -2,7 +2,7 @@
 # @Author: prateek
 # @Date:   2020-10-04 15:54:06
 # @Last Modified by:   prateek
-# @Last Modified time: 2020-10-04 16:18:22
+# @Last Modified time: 2020-10-04 23:52:12
 
 
 # Server file
@@ -74,4 +74,5 @@ def main():
 	bind_socket()
 	accept_conn()
 
-main()
+if __name__ == "__main__":
+	main()
