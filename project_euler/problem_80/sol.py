@@ -1,6 +1,7 @@
 import decimal
 from math import floor
 
+
 def solution() -> int:
     n = 100
     p = 100
@@ -17,10 +18,11 @@ def solution() -> int:
             fv = fv[0:p]
             fv = int(fv)
             while fv != 0:
-                sm = sm + (fv%10)
+                sm = sm + (fv % 10)
                 fv = fv // 10
             tot += sm
     return tot
+
 
 res = solution()
 print(res)
