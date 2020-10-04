@@ -14,7 +14,7 @@ import sys
 from functools import lru_cache
 
 
-@lru_cache
+@lru_cache()
 def fibonacci(k: int) -> int:
     """Finds fibonacci number in index k.
 
