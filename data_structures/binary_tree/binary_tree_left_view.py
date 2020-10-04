@@ -20,7 +20,9 @@ To consider the left most node at every level, BFS is used.
 
 
 def leftViewDict(
-    root: int, binary_tree: dict = {}, y_axis_dict: dict = {},
+    root: int,
+    binary_tree: dict = {},
+    y_axis_dict: dict = {},
 ):
     queue = deque()
     # y axis index of root is 0
