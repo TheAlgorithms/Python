@@ -104,10 +104,7 @@ cost = [
 ]
 
 
-try:
-    if UCS_Traversal(cost, 1, [6, 7, 10]) == [1, 5, 4, 7]:
+if UCS_Traversal(cost, 1, [6, 7, 10]) == [1, 5, 4, 7]:
         print("SAMPLE TEST CASE  FOR  UCS_TRAVERSAL PASSED")
-    else:
+else:
         print("SAMPLE TEST CASE  FOR UCS_TRAVERSAL FAILED")
-except:
-    print("SAMPLE TEST CASE 2 FOR UCS_TRAVERSAL FAILED")
