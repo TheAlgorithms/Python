@@ -61,7 +61,7 @@ def generate_prime():
             prime_array.append(p)
 
 
-def solution():  # function without any parameters
+def solution() -> int:  # function without any parameters
 
     # ... calculations ...
 
