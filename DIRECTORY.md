@@ -319,7 +319,8 @@
 
 ## Machine Learning
   * Sequence Models For Literature
-    * [Seq Models For Literature](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/Sequence%20Models%20for%20Literature/Seq%20Models%20for%20Literature.ipynb)
+    * Sequence
+      * [Sequence Model](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/Sequence%20Models%20for%20Literature/sequence/sequence_model.ipynb)
   * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
   * [Data Transformations](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/data_transformations.py)
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
