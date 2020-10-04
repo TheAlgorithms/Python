@@ -3,8 +3,10 @@ Based on "Skip Lists: A Probabilistic Alternative to Balanced Trees" by William 
 https://epaperpress.com/sortsearch/download/skiplist.pdf
 """
 
+from __future__ import annotations
+
 from random import random
-from typing import Generic, List, Optional, Tuple, TypeVar
+from typing import Generic, Optional, TypeVar
 
 KT = TypeVar("KT")
 VT = TypeVar("VT")
@@ -14,7 +16,7 @@ class Node(Generic[KT, VT]):
     def __init__(self, key: KT, value: VT):
         self.key = key
         self.value = value
-        self.forward: List[Node[KT, VT]] = []
+        self.forward: list[Node[KT, VT]] = []
 
     def __repr__(self) -> str:
         """
@@ -122,11 +124,12 @@ class SkipList(Generic[KT, VT]):
 
         return level
 
-    def _locate_node(self, key) -> Tuple[Optional[Node[KT, VT]], List[Node[KT, VT]]]:
+    def _locate_node(self, key) -> tuple[Optional[Node[KT, VT]], list[Node[KT, VT]]]:
         """
         :param key: Searched key,
         :return: Tuple with searched node (or None if given key is not present)
-                 and list of nodes that refer (if key is present) of should refer to given node.
+                 and list of nodes that refer (if key is present) of should refer to
+                 given node.
         """
 
         # Nodes with refer or should refer to output node
@@ -141,7 +144,8 @@ class SkipList(Generic[KT, VT]):
             #                             in skipping searched key.
             while i < node.level and node.forward[i].key < key:
                 node = node.forward[i]
-            # Each leftmost node (relative to searched node) will potentially have to be updated.
+            # Each leftmost node (relative to searched node) will potentially have to
+            # be updated.
             update_vector.append(node)
 
         update_vector.reverse()  # Note that we were inserting values in reverse order.

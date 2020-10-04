@@ -1,7 +1,7 @@
 import random
 import sys
 
-import cryptomath_module as cryptomath
+from . import cryptomath_module as cryptomath
 
 SYMBOLS = (
     r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
@@ -55,7 +55,8 @@ def check_keys(keyA, keyB, mode):
 
 def encrypt_message(key: int, message: str) -> str:
     """
-    >>> encrypt_message(4545, 'The affine cipher is a type of monoalphabetic substitution cipher.')
+    >>> encrypt_message(4545, 'The affine cipher is a type of monoalphabetic '
+    ...                       'substitution cipher.')
     'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF{xIp~{HL}Gi'
     """
     keyA, keyB = divmod(key, len(SYMBOLS))
@@ -72,7 +73,8 @@ def encrypt_message(key: int, message: str) -> str:
 
 def decrypt_message(key: int, message: str) -> str:
     """
-    >>> decrypt_message(4545, 'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF{xIp~{HL}Gi')
+    >>> decrypt_message(4545, 'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF'
+    ...                       '{xIp~{HL}Gi')
     'The affine cipher is a type of monoalphabetic substitution cipher.'
     """
     keyA, keyB = divmod(key, len(SYMBOLS))
@@ -100,4 +102,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
+    # main()

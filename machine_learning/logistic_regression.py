@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-## Logistic Regression from scratch
+# Logistic Regression from scratch
 
 # In[62]:
 
@@ -8,20 +8,23 @@
 
 # importing all the required libraries
 
-""" Implementing logistic regression for classification problem
-     Helpful resources : 1.Coursera ML course    2.https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac"""
-
+"""
+Implementing logistic regression for classification problem
+Helpful resources:
+Coursera ML course
+https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
+"""
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
+from sklearn import datasets
 
 # get_ipython().run_line_magic('matplotlib', 'inline')
-
-from sklearn import datasets
 
 
 # In[67]:
 
-# sigmoid function or logistic function is used as a hypothesis function in classification problems
+# sigmoid function or logistic function is used as a hypothesis function in
+# classification problems
 
 
 def sigmoid_function(z):

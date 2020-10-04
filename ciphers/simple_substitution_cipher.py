@@ -1,4 +1,5 @@
-import sys, random
+import random
+import sys
 
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 

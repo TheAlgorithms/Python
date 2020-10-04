@@ -15,28 +15,28 @@ import numpy as np
 
 def softmax(vector):
     """
-        Implements the softmax function
+    Implements the softmax function
 
-        Parameters:
-            vector (np.array,list,tuple): A  numpy array of shape (1,n)
-            consisting of real values or a similar list,tuple
+    Parameters:
+        vector (np.array,list,tuple): A  numpy array of shape (1,n)
+        consisting of real values or a similar list,tuple
 
 
-        Returns:
-            softmax_vec (np.array): The input numpy array  after applying
-            softmax.
+    Returns:
+        softmax_vec (np.array): The input numpy array  after applying
+        softmax.
 
-        The softmax vector adds up to one. We need to ceil to mitigate for
-        precision
-        >>> np.ceil(np.sum(softmax([1,2,3,4])))
-        1.0
+    The softmax vector adds up to one. We need to ceil to mitigate for
+    precision
+    >>> np.ceil(np.sum(softmax([1,2,3,4])))
+    1.0
 
-        >>> vec = np.array([5,5])
-        >>> softmax(vec)
-        array([0.5, 0.5])
+    >>> vec = np.array([5,5])
+    >>> softmax(vec)
+    array([0.5, 0.5])
 
-        >>> softmax([0])
-        array([1.])
+    >>> softmax([0])
+    array([1.])
     """
 
     # Calculate e^x for each x in your vector where e is Euler's

@@ -1,4 +1,7 @@
-import collections, pprint, time, os
+import collections
+import os
+import pprint
+import time
 
 start_time = time.time()
 print("creating word list...")

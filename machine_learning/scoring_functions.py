@@ -14,6 +14,7 @@ import numpy as np
     and types of data
 """
 
+
 # Mean Absolute Error
 def mae(predict, actual):
     """
@@ -134,3 +135,7 @@ def mbd(predict, actual):
     score = float(numerator) / denumerator * 100
 
     return score
+
+
+def manual_accuracy(predict, actual):
+    return np.mean(np.array(actual) == np.array(predict))

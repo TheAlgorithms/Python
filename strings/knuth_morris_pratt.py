@@ -5,11 +5,11 @@ def kmp(pattern, text):
 
     1) Preprocess pattern to identify any suffixes that are identical to prefixes
 
-        This tells us where to continue from if we get a mismatch between a character in our pattern
-        and the text.
+        This tells us where to continue from if we get a mismatch between a character
+        in our pattern and the text.
 
-    2) Step through the text one character at a time and compare it to a character in the pattern
-        updating our location within the pattern if necessary
+    2) Step through the text one character at a time and compare it to a character in
+        the pattern updating our location within the pattern if necessary
 
     """
 

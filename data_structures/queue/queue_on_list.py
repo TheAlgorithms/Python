@@ -43,7 +43,7 @@ class Queue:
     """Enqueues {@code item}
     @return item at front of self.entries"""
 
-    def front(self):
+    def get_front(self):
         return self.entries[0]
 
     """Returns the length of this.entries"""

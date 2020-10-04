@@ -1,5 +1,8 @@
-import time, os, sys
-import transposition_cipher as transCipher
+import os
+import sys
+import time
+
+from . import transposition_cipher as transCipher
 
 
 def main():

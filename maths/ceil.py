@@ -6,7 +6,8 @@ def ceil(x) -> int:
     :return: the smallest integer >= x.
 
     >>> import math
-    >>> all(ceil(n) == math.ceil(n) for n in (1, -1, 0, -0, 1.1, -1.1, 1.0, -1.0, 1_000_000_000))
+    >>> all(ceil(n) == math.ceil(n) for n
+    ...     in (1, -1, 0, -0, 1.1, -1.1, 1.0, -1.0, 1_000_000_000))
     True
     """
     return (

@@ -12,7 +12,7 @@ We are very happy that you consider implementing algorithms and data structure f
 
 - You did your work - no plagiarism allowed
   - Any plagiarized work will not be merged.
-- Your work will be distributed under [MIT License](License) once your pull request is merged
+- Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
 - You submitted work fulfils or mostly fulfils our styles and standards
 
 **New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity.
@@ -59,7 +59,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   - Expand acronyms because __gcd()__ is hard to understand but __greatest_common_divisor()__ is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
-- We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where the make the code easier to read.
+- We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where they make the code easier to read.
 
 - Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf) but the __black__ formatter is now hosted by the Python Software Foundation. To use it,
 
@@ -68,11 +68,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
   black .
   ```
 
-- All submissions will need to pass the test __flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test __flake8 . --ignore=E203,W503 --max-line-length=88__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
   pip3 install flake8  # only required the first time
-  flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+  flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
   ```
 
 - Original code submission require docstrings or comments to describe your work.
@@ -138,7 +138,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](http://mypy-lang.org) so run that locally before making your submission.
 
   ```python
-  def sum_ab(a: int, b: int) --> int:
+  def sum_ab(a: int, b: int) -> int:
       return a + b
   ```
 

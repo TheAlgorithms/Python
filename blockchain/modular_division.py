@@ -3,8 +3,8 @@
 
 # GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
 
-# Given three integers a, b, and n, such that gcd(a,n)=1 and n>1, the algorithm should return an integer x such that
-#        0≤x≤n−1, and  b/a=x(modn) (that is, b=ax(modn)).
+# Given three integers a, b, and n, such that gcd(a,n)=1 and n>1, the algorithm should
+# return an integer x such that 0≤x≤n−1, and  b/a=x(modn) (that is, b=ax(modn)).
 
 # Theorem:
 # a has a multiplicative inverse modulo n iff gcd(a,n) = 1
@@ -68,18 +68,19 @@ def modular_division2(a, b, n):
     return x
 
 
-# Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers x and y, then d = gcd(a,b)
+# Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers x
+# and y, then d = gcd(a,b)
 
 
 def extended_gcd(a, b):
     """
-    >>> extended_gcd(10, 6)
-    (2, -1, 2)
+     >>> extended_gcd(10, 6)
+     (2, -1, 2)
 
-    >>> extended_gcd(7, 5)
-    (1, -2, 3)
+     >>> extended_gcd(7, 5)
+     (1, -2, 3)
 
-   ** extended_gcd function is used when d = gcd(a,b) is required in output
+    ** extended_gcd function is used when d = gcd(a,b) is required in output
 
     """
     assert a >= 0 and b >= 0
@@ -123,8 +124,9 @@ def greatest_common_divisor(a, b):
     >>> greatest_common_divisor(7,5)
     1
 
-    Note : In number theory, two integers a and b are said to be relatively prime, mutually prime, or co-prime
-           if the only positive integer (factor) that divides both of them is 1  i.e., gcd(a,b) = 1.
+    Note : In number theory, two integers a and b are said to be relatively prime,
+        mutually prime, or co-prime if the only positive integer (factor) that divides
+        both of them is 1  i.e., gcd(a,b) = 1.
 
     >>> greatest_common_divisor(121, 11)
     11
@@ -139,10 +141,9 @@ def greatest_common_divisor(a, b):
     return b
 
 
-# Import testmod for testing our function
-from doctest import testmod
-
 if __name__ == "__main__":
+    from doctest import testmod
+
     testmod(name="modular_division", verbose=True)
     testmod(name="modular_division2", verbose=True)
     testmod(name="invert_modulo", verbose=True)

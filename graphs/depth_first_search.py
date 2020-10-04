@@ -1,65 +1,49 @@
-#!/usr/bin/python
+"""Non recursive implementation of a DFS algorithm."""
 
-""" Author: OMKAR PATHAK """
+from __future__ import annotations
 
 
-class Graph:
-    def __init__(self):
-        self.vertex = {}
+def depth_first_search(graph: dict, start: str) -> set[int]:
+    """Depth First Search on Graph
+    :param graph: directed graph in dictionary format
+    :param vertex: starting vertex as a string
+    :returns: the trace of the search
+    >>> G = { "A": ["B", "C", "D"], "B": ["A", "D", "E"],
+    ... "C": ["A", "F"], "D": ["B", "D"], "E": ["B", "F"],
+    ... "F": ["C", "E", "G"], "G": ["F"] }
+    >>> start = "A"
+    >>> output_G = list({'A', 'B', 'C', 'D', 'E', 'F', 'G'})
+    >>> all(x in output_G for x in list(depth_first_search(G, "A")))
+    True
+    >>> all(x in output_G for x in list(depth_first_search(G, "G")))
+    True
+    """
+    explored, stack = set(start), [start]
 
-    # for printing the Graph vertices
-    def printGraph(self):
-        print(self.vertex)
-        for i in self.vertex.keys():
-            print(i, " -> ", " -> ".join([str(j) for j in self.vertex[i]]))
+    while stack:
+        v = stack.pop()
+        explored.add(v)
+        # Differences from BFS:
+        # 1) pop last element instead of first one
+        # 2) add adjacent elements to stack without exploring them
+        for adj in reversed(graph[v]):
+            if adj not in explored:
+                stack.append(adj)
+    return explored
 
-    # for adding the edge between two vertices
-    def addEdge(self, fromVertex, toVertex):
-        # check if vertex is already present,
-        if fromVertex in self.vertex.keys():
-            self.vertex[fromVertex].append(toVertex)
-        else:
-            # else make a new vertex
-            self.vertex[fromVertex] = [toVertex]
 
-    def DFS(self):
-        # visited array for storing already visited nodes
-        visited = [False] * len(self.vertex)
-
-        # call the recursive helper function
-        for i in range(len(self.vertex)):
-            if visited[i] == False:
-                self.DFSRec(i, visited)
-
-    def DFSRec(self, startVertex, visited):
-        # mark start vertex as visited
-        visited[startVertex] = True
-
-        print(startVertex, end=" ")
-
-        # Recur for all the vertices that are adjacent to this node
-        for i in self.vertex.keys():
-            if visited[i] == False:
-                self.DFSRec(i, visited)
-
+G = {
+    "A": ["B", "C", "D"],
+    "B": ["A", "D", "E"],
+    "C": ["A", "F"],
+    "D": ["B", "D"],
+    "E": ["B", "F"],
+    "F": ["C", "E", "G"],
+    "G": ["F"],
+}
 
 if __name__ == "__main__":
-    g = Graph()
-    g.addEdge(0, 1)
-    g.addEdge(0, 2)
-    g.addEdge(1, 2)
-    g.addEdge(2, 0)
-    g.addEdge(2, 3)
-    g.addEdge(3, 3)
+    import doctest
 
-    g.printGraph()
-    print("DFS:")
-    g.DFS()
-
-    # OUTPUT:
-    # 0  ->  1 -> 2
-    # 1  ->  2
-    # 2  ->  0 -> 3
-    # 3  ->  3
-    # DFS:
-    #  0 1 2 3
+    doctest.testmod()
+    print(depth_first_search(G, "A"))

@@ -12,7 +12,7 @@ daBcd -> capitalize a and c(dABCd) -> remove d (ABC)
 """
 
 
-def abbr(a, b):
+def abbr(a: str, b: str) -> bool:
     """
     >>> abbr("daBcd", "ABC")
     True
@@ -34,7 +34,6 @@ def abbr(a, b):
 
 
 if __name__ == "__main__":
-    # print(abbr("daBcd", "ABC"))  # expect True
     import doctest
 
     doctest.testmod()
