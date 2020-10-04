@@ -1,3 +1,5 @@
+import unittest
+
 CAPITALS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def lower_char(capital: str) -> str:
@@ -15,8 +17,6 @@ def lower(string: str) -> str:
     return "".join(lower_char(char) if char in CAPITALS else char for char in string)
 
 
-import unittest
-
 class TestLower(unittest.TestCase):
 
     def test_lower(self):
@@ -24,8 +24,7 @@ class TestLower(unittest.TestCase):
         self.assertEqual(lower("HellZo"), "hellzo")
         self.assertEqual(lower("WHAT"), "what")
         self.assertEqual(lower("wh[]32"), "wh[]32")
-        self.assertEqual(lower("whAT"), "what")       
+        self.assertEqual(lower("whAT"), "what")    
 
 if __name__ == '__main__':
     unittest.main()
-    
