@@ -40,7 +40,9 @@ def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
     allocation_list = []
     for i in range(partitions):
         start_bytes = i * bytes_per_partition + 1
-        end_bytes = number_of_bytes if i == partitions - 1 else (i + 1) * bytes_per_partition
+        end_bytes = (
+            number_of_bytes if i == partitions - 1 else (i + 1) * bytes_per_partition
+        )
         allocation_list.append(f"{start_bytes}-{end_bytes}")
     return allocation_list
 
