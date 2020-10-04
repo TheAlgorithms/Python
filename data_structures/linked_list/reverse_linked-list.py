@@ -39,26 +39,26 @@ def reverse_list(head_node):
     """Prints the elements of the given Linked List in reverse order"""
     # use 3 variable prev, next,head_node
     # If reached end of the List
-    prev= None
-    next_node= None
+    prev = None
+    next_node = None
     if head_node is None:
         print("List Is Empty!!!")
         return None
     while head_node is not None:
-        next_node= head_node.next
-        head_node.next= prev
-        prev= head_node
-        head_node= next_node
-    
+        next_node = head_node.next
+        head_node.next = prev
+        prev = head_node
+        head_node = next_node
+
     cur_node = prev
     print("Printing the reversed list ::")
     while cur_node is not None:
         print(cur_node.data)
-        cur_node= cur_node.next
-    
+        cur_node = cur_node.next
+
     # This prev is head of new reversed Linked list
     return prev
-    # reverse them 
+    # reverse them
 
 
 list_data = [14, 52, 14, 12, 43]
