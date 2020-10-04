@@ -1,10 +1,10 @@
 # GitHub Action that uses close-issue auto-close empty issues after they are opened.
-# If the issue body text is empty the Action auto-closes it and sends a notification. 
+# If the issue body text is empty the Action auto-closes it and sends a notification.
 # Otherwise if the issue body is not empty, it does nothing and the issue remains open.
 # https://github.com/marketplace/actions/close-issue
 
 name: auto_close_empty_issues
-on: 
+on:
   issues:
     types: [opened]
 jobs:
