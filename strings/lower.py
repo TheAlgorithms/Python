@@ -1,6 +1,7 @@
 import unittest
 
-CAPITALS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+CAPITALS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 
 def lower_char(capital: str) -> str:
     """
@@ -18,13 +19,13 @@ def lower(string: str) -> str:
 
 
 class TestLower(unittest.TestCase):
-
     def test_lower(self):
         self.assertEqual(lower("wow"), "wow")
         self.assertEqual(lower("HellZo"), "hellzo")
         self.assertEqual(lower("WHAT"), "what")
         self.assertEqual(lower("wh[]32"), "wh[]32")
-        self.assertEqual(lower("whAT"), "what")    
+        self.assertEqual(lower("whAT"), "what")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
