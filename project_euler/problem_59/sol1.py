@@ -1,7 +1,4 @@
 from itertools import permutations
-import enchant
-
-words_checker = enchant.Dict("en_US")
 
 
 def check_english(ascii1, ascii2):
