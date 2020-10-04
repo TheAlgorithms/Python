@@ -1,5 +1,8 @@
 # Fibonacci Sequence Using Recursion
 
+from functools import lru_cache
+
+@lru_cache(maxsize=1000)
 
 def recur_fibo(n: int) -> int:
     """
