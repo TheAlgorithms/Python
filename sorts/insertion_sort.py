@@ -57,4 +57,4 @@ if __name__ == "__main__":
 
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(f"{insertion_sort(unsorted) = }")
+    print(f"{insertion_sort(unsorted)}")
