@@ -1,26 +1,30 @@
-def lower(word: str) -> str:
+CAPITALS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+def lower_char(capital: str) -> str:
     """
-    Will convert the entire string to lowecase letters
-
-    >>> lower("wow")
-    'wow'
-    >>> lower("HellZo")
-    'hellzo'
-    >>> lower("WHAT")
-    'what'
-    >>> lower("wh[]32")
-    'wh[]32'
-    >>> lower("whAT")
-    'what'
+    Convert a capital to a lowercase letter
     """
-
-    # converting to ascii value int value and checking to see if char is a capital
-    # letter if it is a capital letter it is getting shift by 32 which makes it a lower
-    # case letter
-    return "".join(chr(ord(char) + 32) if "A" <= char <= "Z" else char for char in word)
+    # int value of lowercase char = int value of uppercase char + 32
+    return chr(ord(capital) + 32)
 
 
-if __name__ == "__main__":
-    from doctest import testmod
+def lower(string: str) -> str:
+    """
+    Convert string to lowercase
+    """
+    return "".join(lower_char(char) if char in CAPITALS else char for char in string)
 
-    testmod()
+
+import unittest
+
+class TestLower(unittest.TestCase):
+
+    def test_lower(self):
+        self.assertEqual(lower("wow"), "wow")
+        self.assertEqual(lower("HellZo"), "hellzo")
+        self.assertEqual(lower("WHAT"), "what")
+        self.assertEqual(lower("wh[]32"), "wh[]32")
+        self.assertEqual(lower("whAT"), "what")       
+
+if __name__ == '__main__':
+    unittest.main()
