@@ -94,7 +94,6 @@ no_solution = [
 
 
 if __name__ == "__main__":
-
     for grid in (initial_grid, no_solution):
         start_time = time.time()
         
@@ -107,4 +106,3 @@ if __name__ == "__main__":
             [print(*x) for x in grid]
         else:
             print("Cannot find a solution.")
-
