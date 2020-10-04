@@ -28,8 +28,10 @@ def make_linked_list(elements_list):
     # Set first element as Head
     head = Node(elements_list[0])
     current = head
-    # Loop through elements from position 1
-    for data in elements_list[1:]:
+    list_length = len(elements_list)
+
+    # Iterate over values from generator expression starting from position 1
+    for data in (elements_list[i] for i in range(1, list_length)):
         current.next = Node(data)
         current = current.next
     return head
