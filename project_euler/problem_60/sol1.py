@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 '''
     Euler Problem : 60
     @author : sandeep gupta
@@ -78,31 +81,29 @@ def solution():  # function without any parameters
                             prime_array[i]) \
                         and is_compound_prime(prime_array[k],
                             prime_array[j]):
-                        for l in range(k + 1, max_limit):
-                            if is_compound_prime(prime_array[l],
+                        for x in range(k + 1, max_limit):
+                            if is_compound_prime(prime_array[x],
                                     prime_array[i]) \
-                                and is_compound_prime(prime_array[l],
+                                and is_compound_prime(prime_array[x],
                                     prime_array[j]) \
-                                and is_compound_prime(prime_array[l],
+                                and is_compound_prime(prime_array[x],
                                     prime_array[k]):
-                                for m in range(l + 1, max_limit):
+                                for m in range(x + 1, max_limit):
                                     if is_compound_prime(prime_array[m],
         prime_array[i]) and is_compound_prime(prime_array[m],
         prime_array[j]) and is_compound_prime(prime_array[m],
         prime_array[k]) and is_compound_prime(prime_array[m],
-        prime_array[l]):
-
-                                        # print (prime_array[i],prime_array[j],prime_array[k],prime_array[l],prime_array[m])
+        prime_array[x]):
 
                                         current_list = [prime_array[i],
-        prime_array[j], prime_array[k], prime_array[l], prime_array[m]]
+        prime_array[j], prime_array[k], prime_array[x], prime_array[m]]
                                         answer = min(answer,
         sum(current_list))
 
     return answer
 
 
-print solution()
+print (solution())
 
 # Tests
 
