@@ -35,7 +35,17 @@ def fibonacci(k: int) -> int:
     5
     >>> print(fibonacci(15))
     610
+    >>> print(fibonacci('a'))
+    Traceback (most recent call last):
+    ValueError: k must be an integer.
+    >>> print(fibonacci(-5))
+    Traceback (most recent call last):
+    ValueError: k integer must be greater or equal to zero.
     """
+    if not isinstance(k, int):
+        raise ValueError("k must be an integer.")
+    if k < 0:
+        raise ValueError("k integer must be greater or equal to zero.")
     if k == 0:
         return 0
     elif k == 1:
