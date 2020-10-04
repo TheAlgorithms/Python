@@ -63,7 +63,7 @@ def solution() -> int:
                                     answer += ord(word)
                                 return answer
     except BaseException:
-        print("An exception occured while reading file")
+        print("An exception occurred while reading file")
     return answer
 
 
