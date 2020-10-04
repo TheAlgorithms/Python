@@ -15,9 +15,7 @@ There are no arithmetic sequences made up of three 1-, 2-, or 3-digit primes,
 exhibiting this property, but there is one other 4-digit increasing sequence.
 
 What 12-digit number do you form by concatenating the three terms in this sequence?
-"""
 
-"""
 Solution:
 
 First, we need to generate all 4 digits prime numbers. Then greedy
@@ -27,6 +25,7 @@ them in a candidate list.
 
 After that, bruteforce all passed candidates sequences using
 3 nested loops since we know the answer will be 12 digits.
+The bruteforce of this solution will be about 1 sec.
 """
 
 
@@ -39,6 +38,10 @@ def is_prime(number: int) -> bool:
     False
     >>> is_prime(1)
     False
+    >>> is_prime(-800)
+    False
+    >>> is_prime(104729)
+    True
     """
 
     if number < 2:
@@ -58,17 +61,19 @@ def search(target: int, prime_list: list) -> bool:
     True
     >>> search(4, [1, 2, 3])
     False
+    >>> search(101, list(range(-100, 100)))
+    False
     """
 
     left, right = 0, len(prime_list) - 1
     while left <= right:
-        m = (left + right) // 2
-        if prime_list[m] == target:
+        middle = (left + right) // 2
+        if prime_list[middle] == target:
             return True
-        elif prime_list[m] < target:
-            left = m + 1
+        elif prime_list[middle] < target:
+            left = middle + 1
         else:
-            right = m - 1
+            right = middle - 1
 
     return False
 
@@ -82,18 +87,18 @@ def solution():
     prime_list = [n for n in range(1001, 10000, 2) if is_prime(n)]
     candidates = []
 
-    for x in prime_list:
-        perm = list(permutations(list(str(x))))
+    for number in prime_list:
+        perm = list(permutations(list(str(number))))
         tmp_numbers = []
 
-        for i in range(len(perm)):
-            p = int("".join(list(perm[i])))
+        for prime_member in perm:
+            prime = int("".join(list(prime_member)))
 
-            if p % 2 == 0:
+            if prime % 2 == 0:
                 continue
 
-            if search(p, prime_list):
-                tmp_numbers.append(p)
+            if search(prime, prime_list):
+                tmp_numbers.append(prime)
 
         tmp_numbers.sort()
         if len(tmp_numbers) >= 3:
@@ -126,9 +131,9 @@ def solution():
 
     answer = set()
     for seq in passed:
-        answer.add("".join(list(map(str, seq))))
+        answer.add("".join([str(i) for i in seq]))
 
-    return max(map(int, [x for x in answer]))
+    return max([int(x) for x in answer])
 
 
 if __name__ == "__main__":
