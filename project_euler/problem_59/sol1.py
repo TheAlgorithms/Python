@@ -37,12 +37,12 @@ def isAcceptable(myChar):
 
 
 def solution() -> int:
+    answer = 0
     try:
         with open("cipher.txt", "r") as file:
             data = file.read().replace("\n", "")
             data = data.split(",")
             data = [int(x) for x in data]
-            answer = 0
             for i in range(97, 123):
                 for j in range(97, 123):
                     for k in range(97, 123):
