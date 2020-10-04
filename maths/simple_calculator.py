@@ -10,11 +10,11 @@ def prd(a,b): #Multiplication ×
 def div(a,b): #Division ÷
 	return(a/b)
 
-n=int(raw_input("\n 1. Addition\n 2. Subtraction\n 3. Multiplication\n 4. Division\n 0. Exit\n\n Enter your Choice!\n")) #MENU
+n=int(input("\n 1. Addition\n 2. Subtraction\n 3. Multiplication\n 4. Division\n 0. Exit\n\n Enter your Choice!\n")) #MENU
 if(n == 0):
 	exit()
-a=int(raw_input("\n\n First Number : ")) #First Input
-b=int(raw_input("\n\n Second Number : ")) #Second Input
+a=int(input("\n\n First Number : ")) #First Input
+b=int(input("\n\n Second Number : ")) #Second Input
 
  #Output
 if(n == 1):
