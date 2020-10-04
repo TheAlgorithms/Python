@@ -50,7 +50,7 @@ def generate_prime():
             i+=1
             prime_arr.append(p)
 
-def solution():                               # function without any parameters
+def solution() -> int:                               # function without any parameters
     # ... calculations ...
     answer = 1000000000000000
     max_limit = 1100
@@ -74,3 +74,9 @@ def solution():                               # function without any parameters
     return answer
 
 print (solution())
+
+# Tests
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
