@@ -1,7 +1,7 @@
 """Find mean of a list of numbers."""
 
 
-def average(nums):
+def average(nums): # This satatement makes a function named "average" with nums in parameters
     """Find mean of a list of numbers."""
     return sum(nums) / len(nums)
 
