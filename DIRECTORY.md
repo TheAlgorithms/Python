@@ -318,6 +318,8 @@
     * [Transformations 2D](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/transformations_2d.py)
 
 ## Machine Learning
+  * Sequence Models For Literature
+    * [Seq Models For Literature](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/Sequence%20Models%20for%20Literature/Seq%20Models%20for%20Literature.ipynb)
   * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
   * [Data Transformations](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/data_transformations.py)
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
