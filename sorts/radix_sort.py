@@ -1,8 +1,21 @@
 from __future__ import annotations
-
+  
+"""
+This is a pure Python implementation of the quick sort algorithm
+For doctests run following command:
+python -m doctest -v radix_sort.py
+or
+python3 -m doctest -v radix_sort.py
+For manual testing run:
+python radix_sort.py
+"""
 
 def radix_sort(list_of_ints: list[int]) -> list[int]:
     """
+    Examples:
+    >>> radix_sort([0, 5, 3, 2, 2])
+    [0, 2, 2, 3, 5]
+    
     radix_sort(range(15)) == sorted(range(15))
     True
     radix_sort(reversed(range(15))) == sorted(range(15))
