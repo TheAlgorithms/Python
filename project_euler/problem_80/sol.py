@@ -1,4 +1,3 @@
-import math
 import decimal
 from math import floor
 
@@ -17,12 +16,11 @@ def solution() -> int:
             fv=str(fv).replace('.','')
             fv=fv[0:p]
             fv=int(fv)
-            j=0
             while(fv!=0):
                 sm=sm+(fv%10)
                 fv=fv//10
             tot+=sm
     return tot
 
-import doctest
-doctest.testmod()
+res=solution()
+print(res)
