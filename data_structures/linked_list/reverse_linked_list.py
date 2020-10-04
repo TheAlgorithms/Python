@@ -46,6 +46,7 @@ def reverse_list(head_node):
         return None
     while head_node is not None:
         next_node = head_node.next
+        #print(head_node.data)
         head_node.next = prev
         prev = head_node
         head_node = next_node
@@ -57,7 +58,7 @@ def reverse_list(head_node):
         cur_node = cur_node.next
 
         # This prev is head of new reversed Linked list
-        return prev
+    return prev
     # reverse them
 
 
