@@ -1,4 +1,3 @@
-
 def is_prime(n):
     """function to find if the given
     number is prime"""
