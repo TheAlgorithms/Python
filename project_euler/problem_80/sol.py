@@ -2,7 +2,7 @@ import math
 import decimal
 from math import floor
 
-def solution():
+def solution() -> int:
     n=100
     p=100
     tot=0
@@ -24,5 +24,5 @@ def solution():
             tot+=sm
     return tot
 
-res=solution()
-print(res)
+import doctest
+doctest.testmod()
