@@ -1,6 +1,8 @@
 # Given a 2D matrix(binary maze) and a source and destination cell 
 # we will find length of the shorted path if it exists
 
+# This can be solved using Breath-first search
+# https://en.wikipedia.org/wiki/Breadth-first_search
 
 '''
 INPUT
