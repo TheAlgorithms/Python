@@ -20,7 +20,9 @@ To consider the right most node at every level, BFS is used.
 
 
 def rightViewDict(
-    root: int, binary_tree: dict = {}, y_axis_dict: dict = {},
+    root: int,
+    binary_tree: dict = {},
+    y_axis_dict: dict = {},
 ):
     queue = deque()
     # y axis index of root is 0
@@ -65,7 +67,7 @@ def rightView(root: int, binary_tree: dict = {}) -> list:
 
 
 if __name__ == "__main__":
-    binary_tree = { 1: [2,3], 2: [4,5], 3: [6,7], 4: [10,11], 5: [12,13],7: [8,9]}
+    binary_tree = {1: [2, 3], 2: [4, 5], 3: [6, 7], 4: [10, 11], 5: [12, 13], 7: [8, 9]}
     root = 1
     y_axis_list = rightView(root, binary_tree)
     print("Binary tree:", sep=" ")
