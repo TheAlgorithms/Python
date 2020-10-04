@@ -7,7 +7,7 @@ Problem Description:
 Given a binary tree, print it's right view from top to bottom.
 
 Solution Logic:
-Imagine binary tree as y axis from left view and root node is at index 0.
+Imagine binary tree as y axis from right view and root node is at index 0.
 
 If parent node is at y-axis index idx, then
 -> Child (both left & right)is at y-axis index idx-1
@@ -50,11 +50,11 @@ def getRightViewListFromDict(y_axis_dict: dict = {}) -> list:
 
 def rightView(root: int, binary_tree: dict = {}) -> list:
     """
-    >>> leftView(1, { 1: [2,3], 2: [4,5], 3: [6,7], 7: [8,9]})
+    >>> rightView(1, { 1: [2,3], 2: [4,5], 3: [6,7], 7: [8,9]})
     [1, 3, 7, 9]
-    >>> leftView(5, { 1: [2,3], 2: [4,5], 3: [6,7], 7: [8,9]})
+    >>> rightView(5, { 1: [2,3], 2: [4,5], 3: [6,7], 7: [8,9]})
     []
-    >>> leftView(1, { 1: [2,3], 2: [4,5], 3: [6,7], 4: [10,11], 5: [12,13],7: [8,9]})
+    >>> rightView(1, { 1: [2,3], 2: [4,5], 3: [6,7], 4: [10,11], 5: [12,13],7: [8,9]})
     [1, 3, 7, 9]
     """
     if root not in binary_tree.keys() or len(binary_tree) == 0:
