@@ -318,9 +318,6 @@
     * [Transformations 2D](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/transformations_2d.py)
 
 ## Machine Learning
-  * Sequence Models For Literature
-    * Sequence
-      * [Sequence Model](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/Sequence%20Models%20for%20Literature/sequence/sequence_model.ipynb)
   * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
   * [Data Transformations](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/data_transformations.py)
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
@@ -340,6 +337,8 @@
   * [Random Forest Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classifier.py)
   * [Random Forest Regressor](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_regressor.py)
   * [Scoring Functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/scoring_functions.py)
+  * Sequence Model
+    * [Sequence Model](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/sequence_model/sequence_model.ipynb)
   * [Sequential Minimum Optimization](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/sequential_minimum_optimization.py)
   * [Support Vector Machines](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/word_frequency_functions.py)
