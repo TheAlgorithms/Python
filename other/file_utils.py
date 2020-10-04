@@ -36,8 +36,7 @@ def clear_file(file_name):
 def dump_json_to_file(data, file_name):
     touch_file(file_name)
     with open(file_name, "w") as write_file:
-        write_file.write(json.dumps(data, indent=4))
-        write_file.write("\n")
+        write_file.write(json.dumps(data, indent=4) + "\n")
 
 
 def load_json_from_file(file_name):
