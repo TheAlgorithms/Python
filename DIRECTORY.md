@@ -447,6 +447,7 @@
   * [Matrix Class](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_class.py)
   * [Matrix Operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_operation.py)
   * [Nth Fibonacci Using Matrix Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/matrix/nth_fibonacci_using_matrix_exponentiation.py)
+  * [Nth Tribonacci Using Matrix Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/matrix/nth_tribonacci_using_matrix_exponentiation.py)
   * [Rotate Matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/rotate_matrix.py)
   * [Searching In Sorted Matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/searching_in_sorted_matrix.py)
   * [Sherman Morrison](https://github.com/TheAlgorithms/Python/blob/master/matrix/sherman_morrison.py)
