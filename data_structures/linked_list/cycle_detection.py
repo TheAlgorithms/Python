@@ -48,9 +48,8 @@ def has_cycle(head):
             return True
     return False
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
+##  inputs
     tests = int(input())
 
     for tests_itr in range(tests):
@@ -77,7 +76,6 @@ if __name__ == '__main__':
         temp.next = extra
 
         result = has_cycle(llist.head)
+        print(result)
 
-        fptr.write(str(int(result)) + '\n')
 
-    fptr.close()
