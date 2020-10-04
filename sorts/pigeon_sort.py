@@ -11,7 +11,7 @@
 """
 
 
-def pigeon_sort(array):
+def pigeon_sort(array: list) ->  list:
     """
     Implementation of pigeon hole sort algorithm
     :param array: Collection of comparable items
