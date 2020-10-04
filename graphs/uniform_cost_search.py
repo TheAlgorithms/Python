@@ -30,7 +30,6 @@ class PriorityQueue(object):
         except IndexError:
             return
 
-
 def node_cost(cost, from_node, to_node):
     k = 0
     costval = 0
@@ -68,10 +67,8 @@ def UCS_Traversal(graph, start, goal):
         current_node = path_till_now[-1]
 
         visited.add(current_node)
-
         if current_node in goal:
             return path_till_now
-
         children_of_current = graph[current_node]
         frontier.delete_data(current_node)
 
@@ -80,14 +77,10 @@ def UCS_Traversal(graph, start, goal):
                 if children_of_current[child_node] > 0:
                     path_to_child = path_till_now.copy()
                     path_to_child.append(child_node)
-                    cost_of_child = (
-                        node_cost(graph, current_node, child_node) + path_cost_till_now
-                    )
+                    cost_of_child = (node_cost(graph, current_node, child_node) + path_cost_till_now)
                     new_element = [cost_of_child, path_to_child]
                     frontier.insert(new_element)
-
     return path_till_now
-
 
 cost = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -103,8 +96,9 @@ cost = [
     [0, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0],
 ]
 
-
+'''
 if UCS_Traversal(cost, 1, [6, 7, 10]) == [1, 5, 4, 7]:
         print("SAMPLE TEST CASE  FOR  UCS_TRAVERSAL PASSED")
 else:
         print("SAMPLE TEST CASE  FOR UCS_TRAVERSAL FAILED")
+'''
