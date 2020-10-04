@@ -17,9 +17,7 @@ contains 21 terms, and is equal to 953.
 
 Which prime, below one-million, can be written as the sum of
 the most consecutive primes?
-"""
 
-"""
 Solution:
 
 First of all, we need to generate all prime numbers
@@ -37,6 +35,10 @@ def is_prime(number: int) -> bool:
     False
     >>> is_prime(1)
     False
+    >>> is_prime(-7000)
+    False
+    >>> is_prime(104729)
+    True
     """
 
     if number < 2:
@@ -60,8 +62,8 @@ def solution():
 
     cumulative_sum = []
     tmp = 0
-    for x in prime_list:
-        tmp += x
+    for prime in prime_list:
+        tmp += prime
         if tmp < 10 ** 6:
             cumulative_sum.append(tmp)
         else:
