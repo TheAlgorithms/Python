@@ -36,7 +36,7 @@ def isAcceptable(myChar):
     )
 
 
-def solution()->int:
+def solution() -> int:
     with open("cipher.txt", "r") as file:
         data = file.read().replace("\n", "")
         data = data.split(",")
