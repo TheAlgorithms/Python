@@ -44,7 +44,7 @@ def generate_prime():
 
         # If prime[p] is not changed, then it is a prime
 
-        if prime[p] == True:
+        if prime[p]:
 
             # Update all multiples of p
 
@@ -96,9 +96,6 @@ def solution():  # function without any parameters
 
                                         current_list = [prime_array[i],
         prime_array[j], prime_array[k], prime_array[l], prime_array[m]]
-
-                                        # print (current_list)
-
                                         answer = min(answer,
         sum(current_list))
 
