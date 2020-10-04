@@ -11,11 +11,11 @@ def knapsack(capacity: int, weights: List[int], values: List[int], counter) -> i
     >>> cap = 50
     >>> val = [60, 100, 120]
     >>> w = [10, 20, 30]
-    >>> c = len(values)
-    >>> print(knapsack(cap, w, val, c))
-    50
+    >>> c = len(val)
+    >>> knapsack(cap, w, val, c)
+    220
 
-    The result is 50 cause the values of 100 and 120 got the weight of 50
+    The result is 220 cause the values of 100 and 120 got the weight of 50
     which is the limit of the capacity.
     """
 
