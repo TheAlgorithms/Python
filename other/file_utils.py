@@ -61,7 +61,7 @@ def load_json_from_file(file_name: str) -> str:
 
 
 def read_lines_strip_return(
-        file_name: str, split: str = None, index: int = None
+    file_name: str, split: str = None, index: int = None
 ) -> list:
     """
     Read Lines from file:
