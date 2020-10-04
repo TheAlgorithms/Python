@@ -18,7 +18,6 @@
                in global to avoid any re-calculation after that in each iteration tried
                to optimize at each step to avoid re-dundant work.
     @answer     : sum(13, 5197, 5701, 6733, 8389) = 26033
-
 """
 
 max_number = 100000000
@@ -98,7 +97,6 @@ def solution():  # function without any parameters
                                             prime_array[m], prime_array[x]
                                         )
                                     ):
-
                                         current_list = [
                                             prime_array[i],
                                             prime_array[j],
@@ -109,9 +107,6 @@ def solution():  # function without any parameters
                                         answer = min(answer, sum(current_list))
 
     return answer
-
-
-print(solution())
 
 # Tests
 
