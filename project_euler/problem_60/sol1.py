@@ -30,8 +30,7 @@ def is_compound_prime(a, b):
     global prime
     prefix = int(str(a) + str(b))
     suffix = int(str(b) + str(a))
-    if prefix < max_number and suffix < max_number and prime[prefix] \
-        and prime[suffix]:
+    if prefix < max_number and suffix < max_number and prime[prefix] and prime[suffix]:
         return True
     return False
 
@@ -75,35 +74,46 @@ def solution() -> int:  # function without any parameters
         for j in range(i + 1, max_limit):
             if is_compound_prime(prime_array[i], prime_array[j]):
                 for k in range(j + 1, max_limit):
-                    if is_compound_prime(prime_array[k],
-                            prime_array[i]) \
-                        and is_compound_prime(prime_array[k],
-                            prime_array[j]):
+                    if is_compound_prime(
+                        prime_array[k], prime_array[i]
+                    ) and is_compound_prime(prime_array[k], prime_array[j]):
                         for x in range(k + 1, max_limit):
-                            if is_compound_prime(prime_array[x],
-                                    prime_array[i]) \
-                                and is_compound_prime(prime_array[x],
-                                    prime_array[j]) \
-                                and is_compound_prime(prime_array[x],
-                                    prime_array[k]):
+                            if (
+                                is_compound_prime(prime_array[x], prime_array[i])
+                                and is_compound_prime(prime_array[x], prime_array[j])
+                                and is_compound_prime(prime_array[x], prime_array[k])
+                            ):
                                 for m in range(x + 1, max_limit):
-                                    if is_compound_prime(prime_array[m],
-        prime_array[i]) and is_compound_prime(prime_array[m],
-        prime_array[j]) and is_compound_prime(prime_array[m],
-        prime_array[k]) and is_compound_prime(prime_array[m],
-        prime_array[x]):
+                                    if (
+                                        is_compound_prime(
+                                            prime_array[m], prime_array[i]
+                                        )
+                                        and is_compound_prime(
+                                            prime_array[m], prime_array[j]
+                                        )
+                                        and is_compound_prime(
+                                            prime_array[m], prime_array[k]
+                                        )
+                                        and is_compound_prime(
+                                            prime_array[m], prime_array[x]
+                                        )
+                                    ):
 
-                                        current_list = [prime_array[i],
-        prime_array[j], prime_array[k], prime_array[x], prime_array[m]]
-                                        answer = min(answer,
-        sum(current_list))
+                                        current_list = [
+                                            prime_array[i],
+                                            prime_array[j],
+                                            prime_array[k],
+                                            prime_array[x],
+                                            prime_array[m],
+                                        ]
+                                        answer = min(answer, sum(current_list))
 
     return answer
 
 
 # Tests
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
