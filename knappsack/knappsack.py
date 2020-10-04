@@ -3,7 +3,7 @@ from typing import List
 
 # A naive recursive implementation of 0-1 Knapsack Problem
 
-def knapsack(capacity: int, weights: List[int], values: List[int], counter) -> int:
+def knapsack(capacity: int, weights: List[int], values: List[int], counter: int) -> int:
     """
     Returns the maximum value that can be put in a knapsack of a capacity cap,
     whereby each weight w has a specific value val.
