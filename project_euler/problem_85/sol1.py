@@ -11,7 +11,7 @@ exactly two million rectangles, find the area of the grid with the nearest solut
 Approach:
 
 =======
-Approch:
+Approach:
 >>>>>>> c4ecb74d98da02522cf42cc01e88301a58c61edb
 Counting the number of rectangles for an x by y grid is given by the formula:
 
