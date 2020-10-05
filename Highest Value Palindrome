@@ -1,0 +1,25 @@
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the highestValuePalindrome function below.
+def highestValuePalindrome(s, n, k):
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    nk = input().split()
+
+    n = int(nk[0])
+
+    k = int(nk[1])
+
+    s = input()
+
+    result = highestValuePalindrome(s, n, k)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
