@@ -7,8 +7,12 @@ grid measuring 3 by 2 contains eighteen rectangles:
 Although there exists no rectangular grid that contains 
 exactly two million rectangles, find the area of the grid with the nearest solution.
 
+<<<<<<< HEAD
 Approach:
 
+=======
+Approch:
+>>>>>>> c4ecb74d98da02522cf42cc01e88301a58c61edb
 Counting the number of rectangles for an x by y grid is given by the formula:
 
 {(x^2 + x) * (y^2 + y)}/{4}
@@ -28,4 +32,8 @@ for x in range(2,101):
             area  = x * y 
             min_diff = diff
 
+<<<<<<< HEAD
 print("\nArea: ",area)
+=======
+print("\nArea: $",area)
+>>>>>>> c4ecb74d98da02522cf42cc01e88301a58c61edb
