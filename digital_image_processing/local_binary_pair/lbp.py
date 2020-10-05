@@ -1,15 +1,18 @@
-from cv2 import cv2
 import numpy as np
+from cv2 import cv2
 from skimage.feature import local_binary_pattern as lbp
+
 
 def resize(frame):
     img = cv2.resize(frame, (800, 800))
     return img
 
+
 def normalize(arr):
     range_ = arr.max() - arr.min()
     arr = arr / range_
     return arr
+
 
 def pattern(img, radius=3, points=8):
     # Params
@@ -21,6 +24,7 @@ def pattern(img, radius=3, points=8):
     lbp_image = resize(img1)
     stack = np.hstack([original_image, lbp_image])
     return stack
+
 
 if __name__ == "__main__":
     # read original image in gray mode
