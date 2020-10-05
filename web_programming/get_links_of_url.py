@@ -69,7 +69,7 @@ def get_links(url: str) -> list:
     """
 
     html = requests.get(url).text
-    soup = BeautifulSoup(html, "html.parser")
+    soup = BeautifulSoup(requests.get(url).text, "html.parser")
     data = [link.get("href") for link in soup.find_all("a")]
     links = []
     for link in data:
