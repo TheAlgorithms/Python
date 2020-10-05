@@ -1,0 +1,32 @@
+from collections import Counter
+
+s=input()
+d=Counter(s)
+s1=set(d.values())
+s1=list(s1)
+l=list(d.values())
+
+try:
+    one=l.count(s1[0])
+    two=l.count(s1[1])
+    if len(s1)>=3:
+        print('NO')
+    elif (one==1 and two>1) or (one>1 and two==1):
+        if one<two:
+            min=s1[0]
+            max=s1[1]
+        else:
+            min=s1[1]
+            max=s1[0]
+        if abs(min-max)==1 or abs(min-max)==(max-1):
+            print('YES')
+        else:
+            print('NO')
+    else:
+        print('NO')
+
+except :
+    if len(s1)==1:
+        print('YES')
+    else:
+        print('NO')
