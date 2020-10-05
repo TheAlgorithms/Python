@@ -1,7 +1,10 @@
 """
-It is possible to show that the square root of two can be expressed as an infinite continued fraction.
-The eighth expansion is the first example where the number of digits in the numerator exceeds the number of digits in the denominator.
-In the first one-thousand expansions, how many fractions contain a numerator with more digits than the denominator?
+It is possible to show that the square root of two can be expressed
+as an infinite continued fraction.
+The eighth expansion is the first example where the number of digits
+in the numerator exceeds the number of digits in the denominator.
+In the first one-thousand expansions, how many fractions contain a
+numerator with more digits than the denominator?
 Link - https://projecteuler.net/problem=57
 """
 
@@ -28,7 +31,6 @@ def solution(number = 2 : int, height= 1000 : int):
 
     return len(lst)
 
-if __name__ == "__main__": 
-    number = int(input("please enter the number in series: ").strip())
-    height = int(input("please enter the height: ").strip())
-    print(solution(number, height))
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
