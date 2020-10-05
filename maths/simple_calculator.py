@@ -23,13 +23,13 @@ n=0
 
  #Output
 try:
-	if((n == 1) || (n == 0)):
+	if((n == 1) or (n == 0)):
 		print("\n Sum=",add(a,b))
-	if((n == 2) || (n == 0)):
+	if((n == 2) or (n == 0)):
 		print("\n Difference=",sub(a,b))
-	if((n == 3) || (n == 0)):
+	if((n == 3) or (n == 0)):
 		print("\n Product=",prd(a,b))
-	if((n == 4) || (n == 0)):
+	if((n == 4) or (n == 0)):
 		print("\n Quotient=",div(a,b))
 catch:
 	print("Invalid Entry!")
