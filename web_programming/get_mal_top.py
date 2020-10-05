@@ -1,6 +1,5 @@
-from typing import Union
-
 import csv
+from typing import Union
 
 import requests
 from bs4 import BeautifulSoup
