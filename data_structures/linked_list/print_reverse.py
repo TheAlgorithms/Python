@@ -1,4 +1,4 @@
-# Program to print the elements of a linked list in reverse
+from typing import List
 
 
 class Node:
@@ -8,48 +8,63 @@ class Node:
 
     def __repr__(self):
         """Returns a visual representation of the node and all its following nodes."""
-        string_rep = ""
+        string_rep = []
         temp = self
         while temp:
-            string_rep += f"<{temp.data}> ---> "
+            string_rep.append(f"{temp.data}")
             temp = temp.next
-        string_rep += "<END>"
-        return string_rep
+        return "->".join(string_rep)
 
 
-def make_linked_list(elements_list):
+def make_linked_list(elements_list: List):
     """Creates a Linked List from the elements of the given sequence
-    (list/tuple) and returns the head of the Linked List."""
-
-    # if elements_list is empty
+    (list/tuple) and returns the head of the Linked List.
+    >>> make_linked_list([])
+    Traceback (most recent call last):
+        ...
+    Exception: The Elements List is empty
+    >>> make_linked_list([7])
+    7
+    >>> make_linked_list(['abc'])
+    abc
+    >>> make_linked_list([7, 25])
+    7->25
+    """
     if not elements_list:
         raise Exception("The Elements List is empty")
 
-    # Set first element as Head
-    head = Node(elements_list[0])
-    current = head
-    # Loop through elements from position 1
-    for data in elements_list[1:]:
-        current.next = Node(data)
+    current = head = Node(elements_list[0])
+    for i in range(1, len(elements_list)):
+        current.next = Node(elements_list[i])
         current = current.next
     return head
 
 
-def print_reverse(head_node):
-    """Prints the elements of the given Linked List in reverse order"""
-
-    # If reached end of the List
-    if head_node is None:
-        return None
-    else:
-        # Recurse
+def print_reverse(head_node: Node) -> None:
+    """Prints the elements of the given Linked List in reverse order
+    >>> print_reverse([])
+    >>> linked_list = make_linked_list([69, 88, 73])
+    >>> print_reverse(linked_list)
+    73
+    88
+    69
+    """
+    if head_node is not None and isinstance(head_node, Node):
         print_reverse(head_node.next)
         print(head_node.data)
 
 
-list_data = [14, 52, 14, 12, 43]
-linked_list = make_linked_list(list_data)
-print("Linked List:")
-print(linked_list)
-print("Elements in Reverse:")
-print_reverse(linked_list)
+def main():
+    from doctest import testmod
+
+    testmod()
+
+    linked_list = make_linked_list([14, 52, 14, 12, 43])
+    print("Linked List:")
+    print(linked_list)
+    print("Elements in Reverse:")
+    print_reverse(linked_list)
+
+
+if __name__ == "__main__":
+    main()
