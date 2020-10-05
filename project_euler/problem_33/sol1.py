@@ -23,17 +23,17 @@ def isDigitCancelling(num, den):
                 return True
 
 
-def solve(digit_len: int) -> str:
+def solution(digit_len: int) -> str:
     """
-    >>> solve(2)
+    >>> solution(2)
     '16/64 , 19/95 , 26/65 , 49/98'
-    >>> solve(3)
+    >>> solution(3)
     '16/64 , 19/95 , 26/65 , 49/98'
-    >>> solve(4)
+    >>> solution(4)
     '16/64 , 19/95 , 26/65 , 49/98'
-    >>> solve(0)
+    >>> solution(0)
     ''
-    >>> solve(5)
+    >>> solution(5)
     '16/64 , 19/95 , 26/65 , 49/98'
     """
     solutions = []
@@ -52,4 +52,4 @@ def solve(digit_len: int) -> str:
 
 
 if __name__ == "__main__":
-    print(solve(2))
+    print(solution(2))
