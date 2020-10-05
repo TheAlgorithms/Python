@@ -13,8 +13,8 @@ try:
 	n=int(input("\n 1. Addition\n 2. Subtraction\n 3. Multiplication\n 4. Division\n 0. Exit\n\n Enter your Choice!\n")) #MENU
 	if(n == 0):
 		exit()
-	#a=int(input("\n\n First Number : ")) #First Input
-	#b=int(input("\n\n Second Number : ")) #Second Input
+	a=int(input("\n\n First Number : ")) #First Input
+	b=int(input("\n\n Second Number : ")) #Second Input
 
 	 #Output
 	if(n == 1):
