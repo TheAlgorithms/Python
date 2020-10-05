@@ -88,11 +88,10 @@ def solution():
     candidates = []
 
     for number in prime_list:
-        perm = list(permutations(list(str(number))))
         tmp_numbers = []
 
-        for prime_member in perm:
-            prime = int("".join(list(prime_member)))
+        for prime_member in permutations(list(str(number))):
+            prime = int("".join(prime_member))
 
             if prime % 2 == 0:
                 continue
