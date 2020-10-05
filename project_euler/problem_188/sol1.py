@@ -3,7 +3,7 @@ The hyperexponentiation of a number
 Problem 188
 
 The hyperexponentiation or tetration of a number a by a positive integer b,
-denoted by a↑↑b or ba, is recursively defined by:
+denoted by a↑↑b or b^a, is recursively defined by:
 
 a↑↑1 = a,
 a↑↑(k+1) = a(a↑↑k).
