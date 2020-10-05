@@ -8,6 +8,8 @@
     @answer     : 8581146
 
 """
+
+
 def solution() -> int:
     square_hash = {}
     answer = 0
@@ -43,6 +45,7 @@ def solution() -> int:
                 number += square[int(j)]
             square_hash[int(string_number)] = number
     return answer
+
 
 print(solution())
 
