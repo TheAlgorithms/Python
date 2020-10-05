@@ -1,0 +1,16 @@
+class Rectangle():
+    '''
+    To find Area of Rectangle.
+    '''
+    
+    def __init__(self,length,width):
+        self.length = length
+        self.width = width
+        
+    def area(self):
+        return (self.length*self.width)
+    
+l = float(input('Enter the length of rectangle:'))
+w = float(input('Enter the width of rectangle:'))
+new_rect = Rectangle(l,w)
+print(new_rect.area())
