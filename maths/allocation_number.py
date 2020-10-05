@@ -19,14 +19,10 @@ def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
     ['1-4161', '4162-8322', '8323-12483', '12484-16647']
     >>> allocation_num(50000, 5)
     ['1-10000', '10001-20000', '20001-30000', '30001-40000', '40001-50000']
-    >>> allocation_num(888, 888)
-    Traceback (most recent call last):
-        ...
-    ValueError: partitions can not >= number_of_bytes!
     >>> allocation_num(888, 999)
     Traceback (most recent call last):
         ...
-    ValueError: partitions can not >= number_of_bytes!
+    ValueError: partitions can not > number_of_bytes!
     >>> allocation_num(888, -4)
     Traceback (most recent call last):
         ...
@@ -34,8 +30,8 @@ def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
     """
     if partitions <= 0:
         raise ValueError("partitions must be a positive number!")
-    if partitions >= number_of_bytes:
-        raise ValueError("partitions can not >= number_of_bytes!")
+    if partitions > number_of_bytes:
+        raise ValueError("partitions can not > number_of_bytes!")
     bytes_per_partition = number_of_bytes // partitions
     allocation_list = []
     for i in range(partitions):
