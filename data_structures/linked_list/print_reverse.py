@@ -1,6 +1,6 @@
 # Program to print the elements of a linked list in reverse
-
 from typing import List
+
 
 class Node:
     def __init__(self, data=None):
@@ -20,22 +20,18 @@ class Node:
 
 def make_linked_list(elements_list: List):
     """Creates a Linked List from the elements of the given sequence
-    (list/tuple) and returns the head of the Linked List."""
-    """
-    >>> make_linked_list()
-    Traceback (most recent call last):
-        ...
-    Exception: The Elements List is empty
+    (list/tuple) and returns the head of the Linked List.
+
     >>> make_linked_list([])
     Traceback (most recent call last):
         ...
     Exception: The Elements List is empty
     >>> make_linked_list([7])
-    '<7> ---> <END>'
+    <7> ---> <END>
     >>> make_linked_list(['abc'])
-    '<abc> ---> <END>'
+    <abc> ---> <END>
     >>> make_linked_list([7, 25])
-    '<7> ---> <25> ---> <END>'
+    <7> ---> <25> ---> <END>
     """
 
     # if elements_list is empty
@@ -55,12 +51,8 @@ def make_linked_list(elements_list: List):
 
 
 def print_reverse(head_node: Node):
-    """Prints the elements of the given Linked List in reverse order"""
-    """
-    >>> print_reverse()
-    None
+    """Prints the elements of the given Linked List in reverse order
     >>> print_reverse([])
-    None
     """
 
     # If reached end of the List
@@ -72,9 +64,27 @@ def print_reverse(head_node: Node):
         print(head_node.data)
 
 
-list_data = [14, 52, 14, 12, 43]
-linked_list = make_linked_list(list_data)
-print("Linked List:")
-print(linked_list)
-print("Elements in Reverse:")
-print_reverse(linked_list)
+def test_print_reverse_output():
+    test_list_data = [69, 88, 73]
+    linked_list = make_linked_list(test_list_data)
+
+    print_reverse(linked_list)
+
+
+def main():
+    """
+    >>> test_print_reverse_output()
+    73
+    88
+    69
+    """
+    list_data = [14, 52, 14, 12, 43]
+    linked_list = make_linked_list(list_data)
+    print("Linked List:")
+    print(linked_list)
+    print("Elements in Reverse:")
+    print_reverse(linked_list)
+
+
+if __name__ == "__main__":
+    main()
