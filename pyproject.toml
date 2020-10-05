@@ -1,0 +1,2 @@
+[tool.isort]
+profile = 'black'
