@@ -10,20 +10,26 @@ def prd(a,b): #Multiplication ×
 def div(a,b): #Division ÷
 	return(a/b)
 
-n=int(input("\n 1. Addition\n 2. Subtraction\n 3. Multiplication\n 4. Division\n 0. Exit\n\n Enter your Choice!\n")) #MENU
-if(n == 0):
+n=int(input("\n 1. Addition\n 2. Subtraction\n 3. Multiplication\n 4. Division\n 5. Exit\n\n Enter your Choice!\n")) #MENU
+if(n == 5):
 	exit()
-a=int(input("\n\n First Number : ")) #First Input
-b=int(input("\n\n Second Number : ")) #Second Input
+#a=int(input("\n\n First Number : ")) #First Input
+#b=int(input("\n\n Second Number : ")) #Second Input
+
+#Driver
+a=50
+b=5
+n=0
 
  #Output
-if(n == 1):
-	print("\n Sum=",add(a,b))
-elif(n == 2):
-	print("\n Difference=",sub(a,b))
-elif(n == 3):
-	print("\n Product=",prd(a,b))
-elif(n == 4):
-	print("\n Quotient=",div(a,b))
-else:
+try:
+	if((n == 1) || (n == 0)):
+		print("\n Sum=",add(a,b))
+	if((n == 2) || (n == 0)):
+		print("\n Difference=",sub(a,b))
+	if((n == 3) || (n == 0)):
+		print("\n Product=",prd(a,b))
+	if((n == 4) || (n == 0)):
+		print("\n Quotient=",div(a,b))
+catch:
 	print("Invalid Entry!")
