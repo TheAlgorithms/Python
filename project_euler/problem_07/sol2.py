@@ -59,9 +59,7 @@ def solution(n):
     while len(primes) < n:
         if isprime(num):
             primes.append(num)
-            num += 1
-        else:
-            num += 1
+        num += 1
     return primes[len(primes) - 1]
 
 
