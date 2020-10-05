@@ -9,8 +9,9 @@ pandas
 pillow
 requests
 scikit-fuzzy
+scikit-image
 sklearn
 sympy
 tensorflow
 xgboost
-scikit-image
+
