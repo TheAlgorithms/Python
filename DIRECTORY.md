@@ -633,6 +633,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_47/sol1.py)
   * Problem 48
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_48/sol1.py)
+  * Problem 49
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_49/sol1.py)
   * Problem 50
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_50/sol1.py)
   * Problem 52
@@ -695,7 +697,6 @@
   * [External Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/external_sort.py)
   * [Gnome Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/gnome_sort.py)
   * [Heap Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/heap_sort.py)
-  * [I Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/i_sort.py)
   * [Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/insertion_sort.py)
   * [Iterative Merge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/iterative_merge_sort.py)
   * [Merge Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_insertion_sort.py)
