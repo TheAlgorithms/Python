@@ -35,7 +35,7 @@ def pattern(img,radius =3, points =8):
 
 if __name__ == "__main__":
     # read original image in gray mode
-    lena = cv2.imread("./lena.jpg")
+    lena = cv2.imread("../image_data/lena.jpg")
     #color BGR --> Gray
     gray = cv2.cvtColor(lena, cv2.COLOR_BGR2GRAY)
     stack = pattern(gray)
