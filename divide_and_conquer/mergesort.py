@@ -5,8 +5,11 @@ def merge(arr, left, mid, right):
     left_arr = arr[left : mid + 1]
     right_arr = arr[mid + 1 : right + 1]
     k = left
+    #left means portion of array from left right is modified originally.
     i = 0
+    #for temporary storage we initialised it with 0.
     j = 0
+    #for temporary storage we initialised it with 0.
     while i < len(left_arr) and j < len(right_arr):
         # change sign for Descending order
         if left_arr[i] < right_arr[j]:
