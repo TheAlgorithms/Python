@@ -32,9 +32,8 @@ def solution() -> int:
 
     # To avoid redundant exponentiation
     million = 10 ** 6
-    # Sieve of primes initalising all numbers less than million as prime
-    sieve = [True] * million
 
+    sieve = [True] * million
     primes = []
     # Creation of Sieve
     for number in range(2, million):
@@ -43,10 +42,12 @@ def solution() -> int:
             for multiple in range(number * number, million, number):
                 sieve[multiple] = False
 
+    # Cumulative sum of primes for increased efficiency when calculating sum over window
     cumulative_sum = [2]
     for i in range(1, len(primes)):
         cumulative_sum.append(cumulative_sum[i - 1] + primes[i])
 
+    # Find size of largest window with smallest primes adding to more than million
     largest_size = 0
     while cumulative_sum[largest_size] < million:
         largest_size += 1
