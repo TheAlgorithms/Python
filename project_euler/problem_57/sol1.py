@@ -5,14 +5,14 @@ In the first one-thousand expansions, how many fractions contain a numerator wit
 Link - https://projecteuler.net/problem=57
 """
 
-def solution(number = 2, height= 1000):
+def solution(number = 2 : int, height= 1000 : int):
     """Returns the number of fractions in the first height number of expansions that contains a numerator with more digits than the denominator?
     >>> solution(3,100)
     16
     >>> solution(4)
     149
     >>> solution(2,400)
-    83700
+    61
     """
     lst = []
     #num for numerator and den for denominator
@@ -28,7 +28,7 @@ def solution(number = 2, height= 1000):
 
     return len(lst)
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     number = int(input("please enter the number in series: ").strip())
     height = int(input("please enter the height: ").strip())
     print(solution(number, height))
