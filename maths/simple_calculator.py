@@ -31,5 +31,5 @@ try:
 		print("\n Product=",prd(a,b))
 	if((n == 4) or (n == 0)):
 		print("\n Quotient=",div(a,b))
-catch:
+except:
 	print("Invalid Entry!")
