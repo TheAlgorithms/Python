@@ -8,8 +8,9 @@ Find the sum of all the multiples of 3 or 5 below N.
 """A straightforward pythonic solution using list comprehension"""
 
 
-def solution(n):
-    """Returns the sum of all the multiples of 3 or 5 below n.
+def solution(n: int = 10) -> int:
+    """
+    Returns the sum of all the multiples of 3 or 5 below n.
 
     >>> solution(3)
     0
@@ -25,4 +26,4 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(solution(10))
