@@ -12,15 +12,15 @@
 
 ### All algorithms implemented in Python (for education)
 
-These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
+These implementations are for learning purposes. The implementations may be less efficient than the implementations in the Python standard library.
 
 ## Contribution Guidelines
 
-Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+Read our [Contribution Guidelines](CONTRIBUTING.md) before you start to contribute.
 
 ## Community Channel
 
-We're on [Gitter](https://gitter.im/TheAlgorithms)!  Please join us.
+We're on [Gitter](https://gitter.im/TheAlgorithms)!  Do join us.
 
 ## List of Algorithms
 
