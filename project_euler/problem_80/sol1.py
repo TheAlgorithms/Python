@@ -3,7 +3,7 @@
     @author : Sandeep Gupta
     @time   : 5 October 2020, 18:30
     @Solution: Used decimal python module to calculate the decimal
-    places upto 100, the most important thing would be take calculate
+    places up to 100, the most important thing would be take calculate
     a few extra places for decimal otherwise there will be rounding
     error.
     @answer     : 40886
