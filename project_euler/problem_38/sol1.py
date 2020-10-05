@@ -22,7 +22,7 @@ def is_pandigital():
 
     This largest variable is the answer of problem 38.
 
-    >>>is_pandigital()
+    >>> is_pandigital()
     932718654
     """
     largest = 0  # this variable will be the largest 1 to 9 pandigital number
