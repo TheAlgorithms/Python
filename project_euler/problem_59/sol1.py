@@ -1,3 +1,12 @@
+"""
+    Euler Problem : 59
+    @author : sandeep gupta
+    @time   : 4 October 2020, 18:30
+    @Solution: I would say this is slightly tricky question to solve
+    getting a sense of common english word is something like in the
+    isAcceptable function, otherthan that iterated over all the possible
+    passwords key and later checking with the is a commonly used function.
+"""
 from itertools import permutations
 
 
