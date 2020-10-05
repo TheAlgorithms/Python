@@ -1,5 +1,6 @@
 # Program to print the elements of a linked list in reverse
 
+from typing import List
 
 class Node:
     def __init__(self, data=None):
@@ -17,9 +18,25 @@ class Node:
         return string_rep
 
 
-def make_linked_list(elements_list):
+def make_linked_list(elements_list: List):
     """Creates a Linked List from the elements of the given sequence
     (list/tuple) and returns the head of the Linked List."""
+    """
+    >>> make_linked_list()
+    Traceback (most recent call last):
+        ...
+    Exception: The Elements List is empty
+    >>> make_linked_list([])
+    Traceback (most recent call last):
+        ...
+    Exception: The Elements List is empty
+    >>> make_linked_list([7])
+    '<7> ---> <END>'
+    >>> make_linked_list(['abc'])
+    '<abc> ---> <END>'
+    >>> make_linked_list([7, 25])
+    '<7> ---> <25> ---> <END>'
+    """
 
     # if elements_list is empty
     if not elements_list:
@@ -37,11 +54,17 @@ def make_linked_list(elements_list):
     return head
 
 
-def print_reverse(head_node):
+def print_reverse(head_node: Node):
     """Prints the elements of the given Linked List in reverse order"""
+    """
+    >>> print_reverse()
+    None
+    >>> print_reverse([])
+    None
+    """
 
     # If reached end of the List
-    if head_node is None:
+    if head_node is None or not isinstance(head_node, Node):
         return None
     else:
         # Recurse
