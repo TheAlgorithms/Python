@@ -1,9 +1,21 @@
+from typing import Union
+
 import csv
 
 import requests
 from bs4 import BeautifulSoup
 
-def mal_top(top_n, airing=False, csv_file=False):
+
+def mal_top(top_n: int, airing: bool = False, csv_file: Union[str, bool] = False):
+    """to list or write top 'n' animes from myanimelist.net
+
+    Args:
+        top_n (int): number of animes to list.
+        airing (bool, optional): flag to list airing animes. Defaults to False.
+        csv_file (Union[str, bool], optional):
+            file name for csv file. If given False, instead it prints on stdout.
+            Defaults to False.
+    """
 
     base_url = "https://myanimelist.net/topanime.php?"
     if airing:
@@ -16,7 +28,7 @@ def mal_top(top_n, airing=False, csv_file=False):
 
     url = base_url
     rank = 1
-    while (rank < top_n):
+    while rank < top_n:
         source = BeautifulSoup(requests.get(url).content, "html.parser")
         for anime in source.findAll("tr", class_="ranking-list"):
             info = anime.findAll("td")
@@ -34,8 +46,8 @@ def mal_top(top_n, airing=False, csv_file=False):
             else:
                 print()
                 print(rank, title, score)
-                print('\t', eps)
-                print('\t', aired)
+                print("\t", eps)
+                print("\t", aired)
 
             if rank == top_n:
                 break
@@ -46,7 +58,8 @@ def mal_top(top_n, airing=False, csv_file=False):
     if csv_file:
         csv_file_.close()
 
-YES = ['y', 'yes']
+
+YES = ["y", "yes"]
 
 if __name__ == "__main__":
     top_n = int(input("How many animes would you like to list? "))
