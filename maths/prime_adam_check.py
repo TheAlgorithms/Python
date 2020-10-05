@@ -19,7 +19,7 @@ def prime_check(number: int) -> bool:
         # If the number has more than 2 dividers, it is not a prime numbe.
         if number % i == 0:
             return False
-    # If the number doesnot have more than 2 dividers it is a prime number.
+    # If the number does not have more than 2 dividers it is a prime number.
     return True
 
 
