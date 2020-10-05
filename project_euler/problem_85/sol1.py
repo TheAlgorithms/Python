@@ -31,9 +31,4 @@ for x in range(2,101):
         if diff  < min_diff:
             area  = x * y 
             min_diff = diff
-
-<<<<<<< HEAD
-print("\nArea: ",area)
-=======
-print("\nArea: $",area)
->>>>>>> c4ecb74d98da02522cf42cc01e88301a58c61edb
+print(area)
