@@ -27,4 +27,4 @@ for x in range(2,101):
             area  = x * y 
             min_diff = diff
 
-print("\nArea: $",area)
+print("\nArea: ",area)
