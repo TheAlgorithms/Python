@@ -8,15 +8,16 @@ numerator with more digits than the denominator?
 Link - https://projecteuler.net/problem=57
 """
 
-def solution(number = 2 : int, height= 1000 : int):
+def solution(height : int = 1000) -> int:
     """Returns the number of fractions in the first height number of expansions that contains a numerator with more digits than the denominator?
-    >>> solution(3,100)
-    16
+    >>> solution(100)
+    15
     >>> solution(4)
-    149
-    >>> solution(2,400)
+    0
+    >>> solution(400)
     61
     """
+    number = 2
     lst = []
     #num for numerator and den for denominator
     num = number + 1
@@ -32,5 +33,4 @@ def solution(number = 2 : int, height= 1000 : int):
     return len(lst)
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    print(solution(1000))
