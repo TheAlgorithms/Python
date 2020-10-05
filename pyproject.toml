@@ -1,5 +1,9 @@
 [tool.isort]
 profile = 'black'
 
+[tool.coverage.report]
+sort = 'Cover'
+omit = ['.env/*']
+
 [tool.pytest.ini_options]
 markers = ['mat_ops: mark a test as utilizing matrix operations.']
