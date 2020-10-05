@@ -16,3 +16,4 @@ sklearn
 sympy
 tensorflow; python_version < '3.8'
 xgboost
+scikit-image
