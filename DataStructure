@@ -1,0 +1,19 @@
+l = list(map(int,input().split()))
+print('Original list:',l)
+
+length = len(l)
+chunksize = int(length/3)
+
+start = 0
+end = chunksize
+
+for i in range(1,4):
+    indexes = slice(start,end)
+    lst = l[indexes]
+    print('Chunk',i,'is',lst)
+    print('After reversing:',list(reversed(lst)))
+    start = end
+    if (i != 2):
+        end += chunksize
+    else:
+        end += length - chunksize         
