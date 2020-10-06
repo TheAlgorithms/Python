@@ -11,7 +11,7 @@ n, find the sum of the even-valued terms. e.g. for n=10, we have {2,8}, sum is
 """
 
 
-def solution(n):
+def solution(n: int = 4000000) -> int:
     """Returns the sum of all fibonacci sequence even elements that are lower
     or equals to n.
 
