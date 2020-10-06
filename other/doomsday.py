@@ -37,12 +37,12 @@ def get_week_day(year: int, month: int, day: int) -> str:
         (centurian // 12) + centurian_m + (centurian_m // 4) + century_anchor
     ) % 7
     day_anchor = (
-        _doomsday_not_leap[month - 1]
+        DOOMSDAY_NOT_LEAP[month - 1]
         if (year % 4 != 0) or (centurian == 0 and (year % 400) == 0)
-        else _doomsday_leap[month - 1]
+        else DOOMSDAY_LEAP[month - 1]
     )
     week_day = (dooms_day + day - day_anchor) % 7
-    return _week_day_names[week_day]
+    return WEEK_DAY_NAMES[week_day]
 
 
 if __name__ == "__main__":
