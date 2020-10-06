@@ -411,6 +411,72 @@ def _construct_hull(points, left, right, convex_set):
             _construct_hull(candidate_points, extreme_point, right, convex_set)
 
 
+def convex_hull_melkman(points):
+    """
+    Constructs the convex hull of a set of 2D points using the melkman algorithm.
+    The algorithm works by iteratively inserting points of a simple polygonal chain
+    (meaning that no line segments between two consecutive points cross each other).
+    Sorting the points yields such a polygonal chain.
+
+    Runtime: O(n log n) - O(n) if points are already sorted in the input
+
+    Parameters
+    ---------
+    points: array-like of object of Points, lists or tuples.
+    The set of 2d points for which the convex-hull is needed
+
+    Returns
+    ------
+    convex_set: list, the convex-hull of points sorted in non-decreasing order.
+
+    See Also
+    --------
+
+    Examples
+    ---------
+    >>> convex_hull_melkman([[0, 0], [1, 0], [10, 1]])
+    [(0.0, 0.0), (1.0, 0.0), (10.0, 1.0)]
+    >>> convex_hull_melkman([[0, 0], [1, 0], [10, 0]])
+    [(0.0, 0.0), (10.0, 0.0)]
+    >>> convex_hull_melkman([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1],
+    ...                 [-0.75, 1]])
+    [(-1.0, -1.0), (-1.0, 1.0), (1.0, -1.0), (1.0, 1.0)]
+    >>> convex_hull_melkman([(0, 3), (2, 2), (1, 1), (2, 1), (3, 0), (0, 0), (3, 3),
+    ...                 (2, -1), (2, -4), (1, -3)])
+    [(0.0, 0.0), (0.0, 3.0), (1.0, -3.0), (2.0, -4.0), (3.0, 0.0), (3.0, 3.0)]
+    """
+    points = sorted(_validate_input(points))
+    n = len(points)
+
+    convex_hull = points[:2]
+    for i in range(2, n):
+        det = _det(convex_hull[1], convex_hull[0], points[i])
+        if det > 0:
+            convex_hull.insert(0, points[i])
+            break
+        elif det < 0:
+            convex_hull.append(points[i])
+            break
+        else:
+            convex_hull[1] = points[i]
+    i += 1
+
+    for i in range(i, n):
+        if (_det(convex_hull[0], convex_hull[-1], points[i]) > 0
+            and _det(convex_hull[-1], convex_hull[0], points[1]) < 0):
+            # The point lies within the convex hull
+            continue
+
+        convex_hull.insert(0, points[i])
+        convex_hull.append(points[i])
+        while _det(convex_hull[0], convex_hull[1], convex_hull[2]) >= 0:
+            del convex_hull[1]
+        while _det(convex_hull[-1], convex_hull[-2], convex_hull[-3]) <= 0:
+            del convex_hull[-2]
+
+    # `convex_hull` is contains the convex hull in circular order
+    return sorted(convex_hull[1:] if len(convex_hull) > 3 else convex_hull)
+
 def main():
     points = [
         (0, 3),
@@ -426,9 +492,13 @@ def main():
     ]
     # the convex set of points is
     # [(0, 0), (0, 3), (1, -3), (2, -4), (3, 0), (3, 3)]
-    results_recursive = convex_hull_recursive(points)
     results_bf = convex_hull_bf(points)
+
+    results_recursive = convex_hull_recursive(points)
     assert results_bf == results_recursive
+
+    results_melkman = convex_hull_melkman(points)
+    assert results_bf == results_melkman
 
     print(results_bf)
 
