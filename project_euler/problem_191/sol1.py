@@ -19,10 +19,14 @@ AALO AALA ALOO ALOA ALAO ALAA LOOO LOOA LOAO LOAA
 LAOO LAOA LAAO
 
 How many "prize" strings exist over a 30-day period?
+
+References:
+    - The original Project Euler project page:
+      https://projecteuler.net/problem=191
 """
 
 
-def solution(days=30):
+def solution(days: int = 30) -> int:
     """Returns the number of possible prize strings for a particular number
     of days, using a simple recursive function with caching to speed it up.
 
@@ -36,7 +40,7 @@ def solution(days=30):
     cache = {}
 
     # we will be using a simple recursive function
-    def calculate(days, absent, late):
+    def calculate(days: int, absent: int, late: int) -> int:
         # if we are absent twice, or late 3 consecutive days,
         # no further prize strings are possible
         if late == 3 or absent == 2:
