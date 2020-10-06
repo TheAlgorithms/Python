@@ -12,7 +12,7 @@ def molarity_to_normality(nfactor: int, moles: float, volume: float) -> float:
     8.0
 
   """
-  return (float(moles/volume) * nfactor)
+  return round((float(moles/volume) * nfactor))
 
 def moles_to_pressure(volume: float, moles: float, temperature: float) -> float:
   """
@@ -30,7 +30,7 @@ def moles_to_pressure(volume: float, moles: float, temperature: float) -> float:
     10
 
   """
-  return float((moles * 0.0821 * temperature)/(volume))
+  return round(float((moles * 0.0821 * temperature)/(volume)))
 
 def moles_to_volume(pressure: float, moles: float, temperature: float) -> float:
   """
@@ -48,7 +48,7 @@ def moles_to_volume(pressure: float, moles: float, temperature: float) -> float:
     10
 
   """
-  return float((moles * 0.0821 * temperature)/(pressure))
+  return round(float((moles * 0.0821 * temperature)/(pressure)))
 
 def pressure_and_volume_to_temperature(pressure: float, moles: float, volume: float) -> float:
   """
@@ -66,7 +66,7 @@ def pressure_and_volume_to_temperature(pressure: float, moles: float, volume: fl
     60
 
   """
-  return float((pressure * volume)/(0.0821 * moles))
+  return round(float((pressure * volume)/(0.0821 * moles)))
 
 
 if __name__ == "__main__":
