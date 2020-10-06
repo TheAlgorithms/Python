@@ -1,4 +1,7 @@
-def kmp(pattern, text):
+from typing import List
+
+
+def kmp(pattern: str, text: str) -> bool:
     """
     The Knuth-Morris-Pratt Algorithm for finding a pattern within a piece of text
     with complexity O(n + m)
@@ -33,7 +36,7 @@ def kmp(pattern, text):
     return False
 
 
-def get_failure_array(pattern):
+def get_failure_array(pattern: str) -> List[int]:
     """
     Calculates the new index we should go to if we fail a comparison
     :param pattern:
