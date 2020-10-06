@@ -43,4 +43,4 @@ def solution(N: int = 1_000_000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(100))
+    print(solution())
