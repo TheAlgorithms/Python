@@ -40,22 +40,16 @@ def solution(n: int = 600851475143) -> int:
         raise TypeError("Parameter n must be int or passive of cast to int.")
     if n <= 0:
         raise ValueError("Parameter n must be greater or equal to one.")
-
     i = 2
     ans = 0
-
     if n == 2:
         return 2
-
     while n > 2:
         while n % i != 0:
             i += 1
-
         ans = i
-
         while n % i == 0:
             n = n / i
-
         i += 1
     return int(ans)
 

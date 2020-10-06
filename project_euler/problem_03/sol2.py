@@ -40,21 +40,18 @@ def solution(n: int = 600851475143) -> int:
         raise TypeError("Parameter n must be int or passive of cast to int.")
     if n <= 0:
         raise ValueError("Parameter n must be greater or equal to one.")
-
     prime = 1
     i = 2
-
     while i * i <= n:
         while n % i == 0:
             prime = i
             n //= i
         i += 1
-
     if n > 1:
         prime = n
-
     return int(prime)
 
 
 if __name__ == "__main__":
     print(solution(int(input().strip())))
+
