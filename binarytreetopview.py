@@ -1,5 +1,4 @@
 from collections import deque
-
 """
 Problem Description:
 Given a binary tree, print it's top view from left to right.
@@ -15,7 +14,7 @@ To consider the node at the lowest depth, BFS is used.
 """
 
 
-def topVDict(
+def topViewDict(
     root: int, binary_tree: dict = {}, x_axis_dict: dict = {},
     root: int,
     binary_tree: dict = {},
@@ -37,8 +36,6 @@ def topVDict(
             if binary_tree[parent][1] is not None:
                 queue.append((binary_tree[parent][1], x_axis_idx + 1))
     return
-
-
 def getTopViewListFromDict(x_axis_dict: dict = {}) -> list:
     if len(x_axis_dict) == 0:
         return []
@@ -46,24 +43,20 @@ def getTopViewListFromDict(x_axis_dict: dict = {}) -> list:
     for idx in sorted(x_axis_dict.keys()):
         x_axis_list.append(x_axis_dict[idx])
     return x_axis_list
-
-
 def topV(root: int, binary_tree: dict = {}) -> list:
     """
-    >>> topV(1, { 1: [2,3], 2: [4,5], 3: [6,7], 7: [8,9]})
+    >>> topView(1, { 1: [2,3], 2: [4,5], 3: [6,7], 7: [8,9]})
     [4, 2, 1, 3, 7, 9]
-    >>> topV(5, { 1: [2,3], 2: [4,5], 3: [6,7], 7: [8,9]})
+    >>> topView(5, { 1: [2,3], 2: [4,5], 3: [6,7], 7: [8,9]})
     []
-    >>> topV(1, { 1: [2,3], 2: [4,5], 3: [6,7], 4: [10,11], 5: [12,13],7: [8,9]})
+    >>> topView(1, { 1: [2,3], 2: [4,5], 3: [6,7], 4: [10,11], 5: [12,13],7: [8,9]})
     [10, 4, 2, 1, 3, 7, 9]
     """
     if root not in binary_tree.keys() or len(binary_tree) == 0:
         return []
     x_axis_dict = {}
-    topVDict(root, binary_tree, x_axis_dict=x_axis_dict)
+    topViewDict(root, binary_tree, x_axis_dict=x_axis_dict)
     return getTopViewListFromDict(x_axis_dict)
-
-
 if __name__ == "__main__":
     binary_tree = {1: [2, 3], 2: [4, 5], 3: [6, 7], 4: [10, 11], 5: [12, 13], 7: [8, 9]}
     root = 1
