@@ -31,7 +31,7 @@ def fibonacci(n: int) -> int:
     and creating an array of ints using the Fibonacci formula.
     Returns the nth element of the array.
     """
-    if n == 1:
+    if n == 1 or type(n) is not int:
         return 0
     elif n == 2:
         return 1
