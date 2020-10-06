@@ -418,6 +418,8 @@ def convex_hull_melkman(points):
     (meaning that no line segments between two consecutive points cross each other).
     Sorting the points yields such a polygonal chain.
 
+    For a detailed description, see http://cgm.cs.mcgill.ca/~athens/cs601/Melkman.html
+
     Runtime: O(n log n) - O(n) if points are already sorted in the input
 
     Parameters
