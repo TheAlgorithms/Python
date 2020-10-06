@@ -5,7 +5,7 @@ we get 3,5,6 and 9. The sum of these multiples is 23.
 Find the sum of all the multiples of 3 or 5 below N.
 """
 
-"""A straightforward pythonic solution using list comprehension"""
+"""A straightforward pythonic solution using comprehension"""
 
 
 def solution(n: int) -> int:
@@ -21,7 +21,7 @@ def solution(n: int) -> int:
     83700
     """
 
-    return sum([i for i in range(n) if i % 3 == 0 or i % 5 == 0])
+    return sum(i for i in range(n) if i % 3 == 0 or i % 5 == 0)
 
 
 if __name__ == "__main__":
