@@ -54,4 +54,3 @@ def solution(n: int = 600851475143) -> int:
 
 if __name__ == "__main__":
     print(solution(int(input().strip())))
-
