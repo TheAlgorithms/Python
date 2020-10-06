@@ -9,7 +9,6 @@ e.g. for 10, largest prime factor = 5. For 17, largest prime factor = 17.
 
 def solution(n: int = 600851475143) -> int:
     """Returns the largest prime factor of a given number n.
-
     >>> solution(13195)
     29
     >>> solution(10)
@@ -58,7 +57,6 @@ def solution(n: int = 600851475143) -> int:
             n = n / i
 
         i += 1
-
     return int(ans)
 
 
