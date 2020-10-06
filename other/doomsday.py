@@ -21,6 +21,14 @@ def get_week_day(year: int, month: int, day: int) -> str:
     'Saturday'
     >>> get_week_day(2017, 10, 24)
     'Tuesday'
+    >>> get_week_day(2019, 5, 3)
+    'Friday'
+    >>> get_week_day(1970, 9, 16)
+    'Wednesday'
+    >>> get_week_day(1870, 8, 13)
+    'Saturday'
+    >>> get_week_day(2040, 3, 14)
+    'Wednesday'
 
     """
     # minimal input check:
