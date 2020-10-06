@@ -1,13 +1,5 @@
 #!/bin/python3
-
-"""
-The doomsday algorithm was invented by John Conway and returns 
-the week-day (e.g. Sunday/Monday/Tuesday/etc) given 
-a date (e.g. 24/10/1819). 
-
-For more info:
-  https://en.wikipedia.org/wiki/Doomsday_rule
-"""
+# For more information on the doomsday algorithm please see:  https://en.wikipedia.org/wiki/Doomsday_rule
 
 _doomsday_leap = [4, 1, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
 _doomsday_not_leap = [3, 7, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
@@ -26,9 +18,9 @@ def get_week_day(year: int, month: int, day: int) -> str:
     """Returns the week-day name out of a given date.
 
     >>> get_week_day(2020, 10, 24)
-    Saturday
+    'Saturday'
     >>> get_week_day(2017, 10, 24)
-    Tuesday
+    'Tuesday'
 
     """
     # minimal input check:
@@ -54,5 +46,6 @@ def get_week_day(year: int, month: int, day: int) -> str:
 
 
 if __name__ == "__main__":
-    # unit-test:
-    assert get_week_day(2020, 10, 24) == "Saturday"
+    import doctest
+
+    doctest.testmod()
