@@ -1,5 +1,6 @@
 #!/bin/python3
-# For more information on the doomsday algorithm please see:  https://en.wikipedia.org/wiki/Doomsday_rule
+# For more information on the doomsday algorithm 
+# please see:  https://en.wikipedia.org/wiki/Doomsday_rule
 
 _doomsday_leap = [4, 1, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
 _doomsday_not_leap = [3, 7, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
@@ -24,9 +25,9 @@ def get_week_day(year: int, month: int, day: int) -> str:
 
     """
     # minimal input check:
-    assert len(str(year)) > 2, "Please supply year in YYYY format"
-    assert 1 <= month <= 12, "Invalid month value, please give a number between 1 to 12"
-    assert 1 <= day <= 31, "Invalid day value, please give a number between 1 to 31"
+    assert len(str(year)) > 2, "year should be in YYYY format"
+    assert 1 <= month <= 12, "month should be between 1 to 12"
+    assert 1 <= day <= 31, "day should be between 1 to 31"
 
     # Doomsday algorithm:
     century = year // 100
