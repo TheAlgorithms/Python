@@ -29,7 +29,7 @@ def fibonacci_generator() -> int:
     """
     A generator that produces numbers in the Fibonacci sequence
 
-    >>> generator = fibonacci_generator() 
+    >>> generator = fibonacci_generator()
     >>> next(generator)
     1
     >>> next(generator)
