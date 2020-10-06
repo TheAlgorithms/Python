@@ -6,7 +6,7 @@ https://en.wikipedia.org/wiki/Thresholding_(image_processing)
 """
 
 
-def mean_threshold(image):
+def mean_threshold(image: Image) -> Image:
     """
     image: is a grayscale PIL image object
     """
