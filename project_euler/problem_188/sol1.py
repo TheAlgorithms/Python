@@ -16,10 +16,16 @@ Find the last 8 digits of 1777↑↑1855.
 
 
 # small helper function for modular exponentiation
-def modexpt(base, exponent, modulo_value):
+def modexpt(base: int, exponent: int, modulo_value: int) -> int:
     """Returns the modular exponentiation, that is the value
     of `base ** exponent % modulo_value`, without calculating
-    the actual number
+    the actual number.
+    >>> modexpt(2, 4, 10)
+    6
+    >>> modexpt(2, 1024, 100)
+    16
+    >>> modexpt(13, 65535, 7)
+    6
     """
 
     if exponent == 1:
@@ -30,7 +36,8 @@ def modexpt(base, exponent, modulo_value):
     else:
         return (base * modexpt(base, exponent - 1, modulo_value)) % modulo_value
 
-def solution(base=1777, height=1855, digits=8):
+
+def solution(base: int = 1777, height: int = 1855, digits: int = 8) -> int:
     """Returns the last 8 digits of the hyperexponentiation of base by
     height, i.e. the number base↑↑height:
 
