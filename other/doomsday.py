@@ -1,9 +1,9 @@
 #!/bin/python3
 # Doomsday algorithm info: https://en.wikipedia.org/wiki/Doomsday_rule
 
-_doomsday_leap = [4, 1, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
-_doomsday_not_leap = [3, 7, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
-_week_day_names = {
+DOOMSDAY_LEAP = [4, 1, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
+DOOMSDAY_NOT_LEAP = [3, 7, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
+WEEK_DAY_NAMES = {
     0: "Sunday",
     1: "Monday",
     2: "Tuesday",
