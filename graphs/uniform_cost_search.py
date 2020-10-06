@@ -2,8 +2,8 @@
 # Priyanka Gupta
 
 
-from sys import maxsize
 import heapq as hq
+from sys import maxsize
 
 queue = list()
 empty = list()
