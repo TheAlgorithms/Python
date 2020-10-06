@@ -1,4 +1,5 @@
 """
+Problem Statement:
 It is possible to show that the square root of two can be expressed
 as an infinite continued fraction.
 The eighth expansion is the first example where the number of digits
@@ -8,8 +9,13 @@ numerator with more digits than the denominator?
 Link - https://projecteuler.net/problem=57
 """
 
+
 def solution(height : int = 1000) -> int:
-    """Returns the number of fractions in the first height number of expansions that contains a numerator with more digits than the denominator?
+    """Returns the number of fractions in the first height
+    number of expansions that contains a numerator with more
+    digits than the denominator?
+
+
     >>> solution(100)
     15
     >>> solution(4)
@@ -17,6 +23,7 @@ def solution(height : int = 1000) -> int:
     >>> solution(400)
     61
     """
+
     number = 2
     lst = []
     #num for numerator and den for denominator
@@ -29,8 +36,8 @@ def solution(height : int = 1000) -> int:
         new_den = den + num
         num = new_num
         den = new_den
-
     return len(lst)
 
+
 if __name__ == "__main__":
-    print(solution(1000))
+    print(solution(int(input().strip())))
