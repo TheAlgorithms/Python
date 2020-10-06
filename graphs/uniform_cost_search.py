@@ -35,8 +35,8 @@ def printsol(sol, parent):
 v = 5
 dist = [maxsize] * v
 parents = [-1] * v
-start = int(input("Enter start "))
-final = int(input("Enter final "))
+start = 0
+final = 4
 queue.append((0, start))
 hq.heapify(queue)
 graph = [
