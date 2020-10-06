@@ -14,6 +14,9 @@ class Node:
 
 def display(tree: Optional[Node]) -> None:  # In Order traversal of the tree
     """
+    Display a tree via an in-order traversal.
+    https://en.wikipedia.org/wiki/Tree_traversal#In-order_(LNR)
+
     >>> root = Node(1)
     >>> root.left = Node(0)
     >>> root.right = Node(2)
@@ -28,6 +31,48 @@ def display(tree: Optional[Node]) -> None:  # In Order traversal of the tree
         display(tree.left)
         print(tree.data)
         display(tree.right)
+
+
+def display_preorder(tree: Optional[Node]) -> None:  # In Order traversal of the tree
+    """
+    Display a tree via an pre-order traversal.
+    https://en.wikipedia.org/wiki/Tree_traversal#Pre-order_(NLR)
+
+    >>> root = Node(1)
+    >>> root.left = Node(0)
+    >>> root.right = Node(2)
+    >>> display_preorder(root)
+    1
+    0
+    2
+    >>> display(root.right)
+    2
+    """
+    if tree:
+        print(tree.data)
+        display_preorder(tree.left)
+        display_preorder(tree.right)
+
+
+def display_postorder(tree: Optional[Node]) -> None:  # In Order traversal of the tree
+    """
+    Display a tree via an post-order traversal.
+    https://en.wikipedia.org/wiki/Tree_traversal#Post-order_(LRN)
+
+    >>> root = Node(1)
+    >>> root.left = Node(0)
+    >>> root.right = Node(2)
+    >>> display_postorder(root)
+    0
+    2
+    1
+    >>> display(root.right)
+    2
+    """
+    if tree:
+        display_postorder(tree.left)
+        display_postorder(tree.right)
+        print(tree.data)
 
 
 def depth_of_tree(tree: Optional[Node]) -> int:
@@ -95,6 +140,10 @@ def main() -> None:  # Main function for testing.
     print(depth_of_tree(tree))
     print("Tree is: ")
     display(tree)
+    print("Pre Order Traversal: ")
+    display_preorder(tree)
+    print("Post Order Traversal")
+    display_postorder(tree)
 
 
 if __name__ == "__main__":
