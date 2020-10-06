@@ -22,38 +22,38 @@ def solution(n: int) -> int:
     83700
     """
 
-    sum = 0
+    total = 0
     num = 0
     while 1:
         num += 3
         if num >= n:
             break
-        sum += num
+        total += num
         num += 2
         if num >= n:
             break
-        sum += num
+        total += num
         num += 1
         if num >= n:
             break
-        sum += num
+        total += num
         num += 3
         if num >= n:
             break
-        sum += num
+        total += num
         num += 1
         if num >= n:
             break
-        sum += num
+        total += num
         num += 2
         if num >= n:
             break
-        sum += num
+        total += num
         num += 3
         if num >= n:
             break
-        sum += num
-    return sum
+        total += num
+    return total
 
 
 if __name__ == "__main__":
