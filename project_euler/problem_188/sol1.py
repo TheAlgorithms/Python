@@ -12,6 +12,12 @@ Thus we have e.g. 3↑↑2 = 3^3 = 27, hence 3↑↑3 = 3^27 = 7625597484987 and
 3↑↑4 is roughly 103.6383346400240996*10^12.
 
 Find the last 8 digits of 1777↑↑1855.
+
+References:
+    - The original Project Euler project page:
+      https://projecteuler.net/problem=188
+    - Wikipedia article about Hyperexponentiation, aka. Tetration
+      https://en.wikipedia.org/wiki/Tetration
 """
 
 
