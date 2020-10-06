@@ -13,3 +13,5 @@ sklearn
 sympy
 tensorflow
 xgboost
+qiskit
+projectq
