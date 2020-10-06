@@ -9,7 +9,6 @@ e.g. for 10, largest prime factor = 5. For 17, largest prime factor = 17.
 
 def solution(n: int = 600851475143) -> int:
     """Returns the largest prime factor of a given number n.
-
     >>> solution(13195)
     29
     >>> solution(10)
@@ -41,19 +40,15 @@ def solution(n: int = 600851475143) -> int:
         raise TypeError("Parameter n must be int or passive of cast to int.")
     if n <= 0:
         raise ValueError("Parameter n must be greater or equal to one.")
-
     prime = 1
     i = 2
-
     while i * i <= n:
         while n % i == 0:
             prime = i
             n //= i
         i += 1
-
     if n > 1:
         prime = n
-
     return int(prime)
 
 

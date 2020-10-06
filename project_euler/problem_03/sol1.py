@@ -5,7 +5,6 @@ of a given number N?
 
 e.g. for 10, largest prime factor = 5. For 17, largest prime factor = 17.
 """
-
 import math
 
 
@@ -30,22 +29,18 @@ def isprime(num: int) -> bool:
     """
     if num <= 1:
         raise ValueError("Parameter num must be greater or equal to two.")
-
     if num == 2:
         return True
     elif num % 2 == 0:
         return False
-
     for i in range(3, int(math.sqrt(num)) + 1, 2):
         if num % i == 0:
             return False
-
     return True
 
 
 def solution(n: int = 600851475143) -> int:
     """Returns the largest prime factor of a given number n.
-
     >>> solution(13195)
     29
     >>> solution(10)
@@ -77,18 +72,13 @@ def solution(n: int = 600851475143) -> int:
         raise TypeError("Parameter n must be int or passive of cast to int.")
     if n <= 0:
         raise ValueError("Parameter n must be greater or equal to one.")
-
     max_number = 0
-
     if isprime(n):
         return n
-
     while n % 2 == 0:
         n //= 2
-
     if isprime(n):
         return n
-
     for i in range(3, int(math.sqrt(n)) + 1, 2):
         if n % i == 0:
             if isprime(n / i):
@@ -96,7 +86,6 @@ def solution(n: int = 600851475143) -> int:
                 break
             elif isprime(i):
                 max_number = i
-
     return max_number
 
 
