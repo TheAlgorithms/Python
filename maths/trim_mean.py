@@ -30,7 +30,7 @@ marks = [
     78,
     65,
     52,
-    ]
+]
 print(len(marks))
 m = stats.trim_mean(marks, 0.02)
 print(m)
