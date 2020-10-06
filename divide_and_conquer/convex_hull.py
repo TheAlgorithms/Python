@@ -464,8 +464,10 @@ def convex_hull_melkman(points):
     i += 1
 
     for i in range(i, n):
-        if (_det(convex_hull[0], convex_hull[-1], points[i]) > 0
-            and _det(convex_hull[-1], convex_hull[0], points[1]) < 0):
+        if (
+            _det(convex_hull[0], convex_hull[-1], points[i]) > 0
+            and _det(convex_hull[-1], convex_hull[0], points[1]) < 0
+        ):
             # The point lies within the convex hull
             continue
 
@@ -478,6 +480,7 @@ def convex_hull_melkman(points):
 
     # `convex_hull` is contains the convex hull in circular order
     return sorted(convex_hull[1:] if len(convex_hull) > 3 else convex_hull)
+
 
 def main():
     points = [
