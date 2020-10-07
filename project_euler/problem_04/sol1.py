@@ -10,7 +10,7 @@ is less than N.
 
 def solution(n: int = 998001) -> int:
     """Returns the largest palindrome made from the product of two 3-digit
-    numbers which is less than n or -1 if no such product exists.
+    numbers which is less than n.
 
     >>> solution(20000)
     19591
@@ -19,7 +19,9 @@ def solution(n: int = 998001) -> int:
     >>> solution(40000)
     39893
     >>> solution(10000)
-    -1
+    Traceback (most recent call last):
+    ...
+    ValueError: That number is larger than our acceptable range.
     """
     # fetches the next number
     for number in range(n - 1, 9999, -1):
@@ -38,8 +40,12 @@ def solution(n: int = 998001) -> int:
                 if (number % divisor == 0) and (len(str(number // divisor)) == 3.0):
                     return number
                 divisor -= 1
-    return -1
+    raise ValueError("That number is larger than our acceptable range.")
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     print(solution(int(input().strip())))
