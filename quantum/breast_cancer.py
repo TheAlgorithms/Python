@@ -6,10 +6,10 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 
 def breast_cancer(training_size, test_size, n, plot_data=False):
-    """ returns breast cancer dataset 
-    
+    """returns breast cancer dataset
+
     Wikipedia reference: https://en.m.wikipedia.org/wiki/Breast_cancer
-    
+
     >>> breast_cancer(10, 0.3, 7)
     24.9
     """
