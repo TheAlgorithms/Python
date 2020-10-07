@@ -64,4 +64,4 @@ def solution(n: int = 7) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input("Enter a number: ").strip())))
+    print(f"{solution() = }")
