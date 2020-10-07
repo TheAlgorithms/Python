@@ -21,7 +21,7 @@ def solution(n):
     0
     """
 
-    return sum([e for e in range(3, n) if e % 3 == 0 or e % 5 == 0])
+    return sum(e for e in range(3, n) if e % 3 == 0 or e % 5 == 0)
 
 
 if __name__ == "__main__":
