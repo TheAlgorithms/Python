@@ -90,19 +90,21 @@ def fibonacci_search(arr: list, val: int) -> int:
     >>> fibonacci_search([], 9)
     -1
     """
-    n = len(arr)
+    len_list = len(arr)
     # Find m such that F_m >= n where F_i is the i_th fibonacci number.
-    m = next(x for x in range(sys.maxsize ** 10) if fibonacci(x) >= n)
-    k = m
+    greater_fibb_index = next(
+        x for x in range(sys.maxsize ** 10) if fibonacci(x) >= len_list
+    )
+    fibb_k = greater_fibb_index
     offset = 0
-    while k != 0:
-        if arr[offset + fibonacci(k - 1)] == val:
-            return fibonacci(k - 1)
-        elif val < arr[offset + fibonacci(k - 1)]:
-            k -= 1
-        elif val > arr[offset + fibonacci(k - 1)]:
-            offset += fibonacci(k - 2)
-            k -= 2
+    while fibb_k != 0:
+        if arr[offset + fibonacci(fibb_k - 1)] == val:
+            return fibonacci(fibb_k - 1)
+        elif val < arr[offset + fibonacci(fibb_k - 1)]:
+            fibb_k -= 1
+        elif val > arr[offset + fibonacci(fibb_k - 1)]:
+            offset += fibonacci(fibb_k - 2)
+            fibb_k -= 2
     else:
         return -1
 
