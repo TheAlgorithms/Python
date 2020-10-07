@@ -30,7 +30,7 @@ def longest_palindromic_substring(string: str) -> str:
 
         length[i] = 2 * k - 1
 
-        # update the right and left index if string ends after the previously right      
+        # update the right and left index if string ends after the previously right
         if i + k - 1 > right:
             left = i - k + 1  # noqa: E741
             right = i + k - 1
