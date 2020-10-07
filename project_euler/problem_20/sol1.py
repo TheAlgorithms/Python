@@ -1,4 +1,6 @@
 """
+Problem 20: https://projecteuler.net/problem=20
+
 n! means n × (n − 1) × ... × 3 × 2 × 1
 
 For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
@@ -8,14 +10,15 @@ Find the sum of the digits in the number 100!
 """
 
 
-def factorial(n):
+def factorial(num: int) -> int:
+    """Find the factorial of a given number n"""
     fact = 1
-    for i in range(1, n + 1):
+    for i in range(1, num + 1):
         fact *= i
     return fact
 
 
-def split_and_add(number):
+def split_and_add(number: int) -> int:
     """Split number digits and add them."""
     sum_of_digits = 0
     while number > 0:
@@ -25,8 +28,8 @@ def split_and_add(number):
     return sum_of_digits
 
 
-def solution(n):
-    """Returns the sum of the digits in the number 100!
+def solution(num: int = 100) -> int:
+    """Returns the sum of the digits in the factorial of num
     >>> solution(100)
     648
     >>> solution(50)
@@ -42,8 +45,8 @@ def solution(n):
     >>> solution(1)
     1
     """
-    f = factorial(n)
-    result = split_and_add(f)
+    nfact = factorial(num)
+    result = split_and_add(nfact)
     return result
 
 
