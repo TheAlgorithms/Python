@@ -35,4 +35,4 @@ def solution() -> int:
     return result
 
 if __name__ == "__main__":
-    solution()
+    print(solution())
