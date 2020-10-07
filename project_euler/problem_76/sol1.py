@@ -52,4 +52,4 @@ def solution(m: int = 100) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(solution(int(input("Enter a number: ").strip())))
