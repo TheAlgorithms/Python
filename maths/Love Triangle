@@ -1,0 +1,11 @@
+from sys import stdin,stdout
+ 
+def fun(i):
+    if(i<9):
+        return i;
+    else:
+        return i%9+10*fun(i//9)
+    
+for data in stdin:
+    data = int(data.rstrip('\n'))
+    print(fun(data))
