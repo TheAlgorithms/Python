@@ -7,11 +7,11 @@ list.
 More info: www.geeksforgeeks.org/sleep-sort-king-laziness-sorting-sleeping
 
 For doctests run following command:
-python -m doctest -v bogo_sort.py
+python -m doctest -v sleep_sort.py
 or
-python3 -m doctest -v bogo_sort.py
+python3 -m doctest -v sleep_sort.py
 For manual testing run:
-python bogo_sort.py
+python sleep_sort.py
 """
 
 import threading
