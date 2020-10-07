@@ -183,7 +183,7 @@ class XORCipher:
 # crypt = XORCipher()
 # key = 67
 
-# # test enrcypt
+# # test encrypt
 # print(crypt.encrypt("hallo welt",key))
 # # test decrypt
 # print(crypt.decrypt(crypt.encrypt("hallo welt",key), key))
