@@ -11,11 +11,6 @@ def fact(n):
 def nPr(n, r):
     return (fact(n) / fact(n - r))
 
-#Asking for n & r value
-n = int(input("n = "))
-r = int(input("r = "))
-print(int(nPr(n, r)))
-
 if __name__ == "__main__":
     from doctest import testmod
 
