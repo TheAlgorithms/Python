@@ -17,7 +17,7 @@ Which starting number, under one million, produces the longest chain?
 """
 
 
-def solution(n):
+def solution(n=1000000):
     """
     Returns the number under n that generates the longest sequence using the
     formula:

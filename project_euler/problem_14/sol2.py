@@ -39,7 +39,7 @@ def collatz_sequence(n):
     return sequence
 
 
-def solution(n):
+def solution(n=1000000):
     """
     Returns the number under n that generates the longest Collatz sequence.
 
