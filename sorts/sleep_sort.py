@@ -4,6 +4,8 @@ Sleepsort launches a new thread for each element, which sleeps for
 as many seconds as the number, and then appends that number to a common
 list.
 
+More info: www.geeksforgeeks.org/sleep-sort-king-laziness-sorting-sleeping
+
 For doctests run following command:
 python -m doctest -v bogo_sort.py
 or
