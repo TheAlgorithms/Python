@@ -53,7 +53,7 @@ N = (
 )
 
 
-def solution(n):
+def solution(n=str(N)):
     """Find the thirteen adjacent digits in the 1000-digit number n that have
     the greatest product and returns it.
 
@@ -69,4 +69,4 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    print(solution(str(N)))
+    print(solution())

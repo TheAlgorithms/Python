@@ -57,7 +57,7 @@ def streval(s: str) -> int:
     return ret
 
 
-def solution(n: str) -> int:
+def solution(n: str = N) -> int:
     """Find the thirteen adjacent digits in the 1000-digit number n that have
     the greatest product and returns it.
 
@@ -79,4 +79,4 @@ def solution(n: str) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(N))
+    print(solution())
