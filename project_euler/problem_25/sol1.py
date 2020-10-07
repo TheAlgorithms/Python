@@ -25,7 +25,24 @@ digits?
 """
 
 
-def fibonacci(n):
+def fibonacci(n: int) -> int:
+    """
+    Computes the Fibonacci number for input n by iterating through n numbers
+    and creating an array of ints using the Fibonacci formula.
+    Returns the nth element of the array.
+
+    >>> fibonacci(2)
+    1
+    >>> fibonacci(3)
+    2
+    >>> fibonacci(5)
+    5
+    >>> fibonacci(10)
+    55
+    >>> fibonacci(12)
+    144
+
+    """
     if n == 1 or type(n) is not int:
         return 0
     elif n == 2:
@@ -38,7 +55,21 @@ def fibonacci(n):
         return sequence[n]
 
 
-def fibonacci_digits_index(n):
+def fibonacci_digits_index(n: int) -> int:
+    """
+    Computes incrementing Fibonacci numbers starting from 3 until the length
+    of the resulting Fibonacci result is the input value n. Returns the term
+    of the Fibonacci sequence where this occurs.
+
+    >>> fibonacci_digits_index(1000)
+    4782
+    >>> fibonacci_digits_index(100)
+    476
+    >>> fibonacci_digits_index(50)
+    237
+    >>> fibonacci_digits_index(3)
+    12
+    """
     digits = 0
     index = 2
 
@@ -49,8 +80,9 @@ def fibonacci_digits_index(n):
     return index
 
 
-def solution(n):
-    """Returns the index of the first term in the Fibonacci sequence to contain
+def solution(n: int = 1000) -> int:
+    """
+    Returns the index of the first term in the Fibonacci sequence to contain
     n digits.
 
     >>> solution(1000)
