@@ -663,7 +663,7 @@
   * [Validate Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py)
 
 ## Quantum
-  * [Breast-Cancer](https://github.com/TheAlgorithms/Python/blob/master/quantum/breast-cancer.py)
+  * [Breast Cancer](https://github.com/TheAlgorithms/Python/blob/master/quantum/breast_cancer.py)
 
 ## Scheduling
   * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
