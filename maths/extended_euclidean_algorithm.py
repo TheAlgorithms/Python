@@ -16,28 +16,6 @@ https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
 import sys
 
 
-def sign(n: int) -> int:
-    """
-    Returns sign of number for correction of negative numbers in algorithm
-
-    >>> sign(4)
-    1
-
-    >>> sign(0)
-    0
-
-    >>> sign(-8)
-    -1
-
-    """
-    if n > 0:
-        return 1
-    elif n < 0:
-        return -1
-    else:
-        return 0
-
-
 def extended_euclidean_algorithm(a: int, b: int) -> (int, int):
     """
     Extended Euclidean Algorithm.
@@ -67,23 +45,29 @@ def extended_euclidean_algorithm(a: int, b: int) -> (int, int):
     (1, 0)
 
     """
-    old_r, r = a, b
-    old_s, s = 1, 0
-    old_t, t = 0, 1
+    # base cases
+    if abs(a) == 1:
+        return a, 0
+    elif abs(b) == 1:
+        return 0, b
 
-    while r != 0:
-        quotient = old_r // r
-        old_r, r = r, old_r - quotient * r
-        old_s, s = s, old_s - quotient * s
-        old_t, t = t, old_t - quotient * t
+    old_remainder, remainder = a, b
+    old_coeff_a, coeff_a = 1, 0
+    old_coeff_b, coeff_b = 0, 1
+
+    while remainder != 0:
+        quotient = old_remainder // remainder
+        old_remainder, remainder = remainder, old_remainder - quotient * remainder
+        old_coeff_a, coeff_a = coeff_a, old_coeff_a - quotient * coeff_a
+        old_coeff_b, coeff_b = coeff_b, old_coeff_b - quotient * coeff_b
 
     # sign correction for negative numbers
-    if abs(a) == 1:
-        return sign(a), 0
-    elif abs(b) == 1:
-        return 0, sign(b)
-    else:
-        return (sign(a) * old_s, sign(b) * old_t)
+    if a < 0:
+        old_coeff_a = -old_coeff_a
+    if b < 0:
+        old_coeff_b = -old_coeff_b
+
+    return old_coeff_a, old_coeff_b
 
 
 def main():
