@@ -28,18 +28,18 @@ def fibonacci(k: int) -> int:
     int
         Fibonacci number in position k.
 
-    >>> print(fibonacci(0))
+    >>> fibonacci(0)
     0
-    >>> print(fibonacci(2))
+    >>> fibonacci(2)
     1
-    >>> print(fibonacci(5))
+    >>> fibonacci(5)
     5
-    >>> print(fibonacci(15))
+    >>> fibonacci(15)
     610
-    >>> print(fibonacci('a'))
+    >>> fibonacci('a')
     Traceback (most recent call last):
     TypeError: k must be an integer.
-    >>> print(fibonacci(-5))
+    >>> fibonacci(-5)
     Traceback (most recent call last):
     ValueError: k integer must be greater or equal to zero.
     """
@@ -71,21 +71,21 @@ def fibonacci_search(arr: list, val: int) -> int:
         The index of the element in the array.
         -1 if the element is not found.
 
-    >>> print(fibonacci_search([4, 5, 6, 7], 4))
+    >>> fibonacci_search([4, 5, 6, 7], 4)
     0
-    >>> print(fibonacci_search([4, 5, 6, 7], -10))
+    >>> fibonacci_search([4, 5, 6, 7], -10)
     -1
-    >>> print(fibonacci_search([-18, 2], -18))
+    >>> fibonacci_search([-18, 2], -18)
     0
-    >>> print(fibonacci_search([5], 5))
+    >>> fibonacci_search([5], 5)
     0
-    >>> print(fibonacci_search(['a', 'c', 'd'], 'c'))
+    >>> fibonacci_search(['a', 'c', 'd'], 'c')
     1
-    >>> print(fibonacci_search(['a', 'c', 'd'], 'f'))
+    >>> fibonacci_search(['a', 'c', 'd'], 'f')
     -1
-    >>> print(fibonacci_search([], 1))
+    >>> fibonacci_search([], 1)
     -1
-    >>> print(fibonacci_search([.1, .4 , 7], .4))
+    >>> fibonacci_search([.1, .4 , 7], .4)
     1
     >>> fibonacci_search([], 9)
     -1
