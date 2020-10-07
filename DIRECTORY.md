@@ -70,6 +70,7 @@
   * [Shuffled Shift Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/shuffled_shift_cipher.py)
   * [Simple Keyword Cypher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/simple_keyword_cypher.py)
   * [Simple Substitution Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/simple_substitution_cipher.py)
+  * [Tapcode Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/tapcode_cipher.py)
   * [Trafid Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/trafid_cipher.py)
   * [Transposition Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/transposition_cipher.py)
   * [Transposition Cipher Encrypt Decrypt File](https://github.com/TheAlgorithms/Python/blob/master/ciphers/transposition_cipher_encrypt_decrypt_file.py)
@@ -527,7 +528,6 @@
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol2.py)
     * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol3.py)
     * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol4.py)
-    * [Test Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/test_solutions.py)
   * Problem 07
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol2.py)
@@ -597,7 +597,7 @@
   * Problem 28
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_28/sol1.py)
   * Problem 29
-    * [Solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/solution.py)
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/sol1.py)
   * Problem 30
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_30/sol1.py)
   * Problem 31
