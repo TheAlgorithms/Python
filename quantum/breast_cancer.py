@@ -6,7 +6,13 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 
 def breast_cancer(training_size, test_size, n, plot_data=False):
-    """ returns breast cancer dataset """
+    """ returns breast cancer dataset 
+    
+    Wikipedia reference: https://en.m.wikipedia.org/wiki/Breast_cancer
+    
+    >>> breast_cancer(10, 0.3, 7)
+    24.9
+    """
     class_labels = [r"A", r"B"]
     data, target = datasets.load_breast_cancer(return_X_y=True)
     sample_train, sample_test, label_train, label_test = train_test_split(
