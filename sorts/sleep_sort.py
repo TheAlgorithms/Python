@@ -31,6 +31,9 @@ def sleep_sort(collection):
     [-5, -2, -1]
     """
 
+    if len(collection) == 0:
+        return collection
+
     displacement_coefficient = min(collection) if (min(collection) < 0) else 0
     # modification to deal with negative values 
     # by increasing every value by the smallest value
