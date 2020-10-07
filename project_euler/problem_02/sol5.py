@@ -11,7 +11,7 @@ n, find the sum of the even-valued terms. e.g. for n=10, we have {2,8}, sum is
 """
 
 
-def solution(n):
+def solution(n: int = 4000000) -> int:
     """Returns the sum of all fibonacci sequence even elements that are lower
     or equals to n.
 
@@ -27,19 +27,19 @@ def solution(n):
     44
     """
 
-    a = [0, 1]
+    fib = [0, 1]
     i = 0
-    while a[i] <= n:
-        a.append(a[i] + a[i + 1])
-        if a[i + 2] > n:
+    while fib[i] <= n:
+        fib.append(fib[i] + fib[i + 1])
+        if fib[i + 2] > n:
             break
         i += 1
-    sum = 0
-    for j in range(len(a) - 1):
-        if a[j] % 2 == 0:
-            sum += a[j]
+    total = 0
+    for j in range(len(fib) - 1):
+        if fib[j] % 2 == 0:
+            total += fib[j]
 
-    return sum
+    return total
 
 
 if __name__ == "__main__":
