@@ -57,4 +57,4 @@ def sleep_sort(collection):
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(heap_sort(unsorted))
+    print(sleep_sort(unsorted))
