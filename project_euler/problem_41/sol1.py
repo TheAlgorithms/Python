@@ -1,15 +1,15 @@
 from __future__ import annotations
-
 from itertools import permutations
 from math import sqrt
 
 """
+Pandigital prime
+Problem 41: https://projecteuler.net/problem=41
+
 We shall say that an n-digit number is pandigital if it makes use of all the digits
 1 to n exactly once. For example, 2143 is a 4-digit pandigital and is also prime.
 What is the largest n-digit pandigital prime that exists?
-"""
 
-"""
 All pandigital numbers except for 1, 4 ,7 pandigital numbers are divisible by 3.
 So we will check only 7 digit panddigital numbers to obtain the largest possible
 pandigital prime.
@@ -51,4 +51,4 @@ def compute_pandigital_primes(n: int) -> list[int]:
 
 
 if __name__ == "__main__":
-    print(f"{max(compute_pandigital_primes(7)) = }")
+    print(f"{max(compute_pandigital_primes(7))}")
