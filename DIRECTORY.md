@@ -392,6 +392,7 @@
   * [Karatsuba](https://github.com/TheAlgorithms/Python/blob/master/maths/karatsuba.py)
   * [Krishnamurthy Number](https://github.com/TheAlgorithms/Python/blob/master/maths/krishnamurthy_number.py)
   * [Kth Lexicographic Permutation](https://github.com/TheAlgorithms/Python/blob/master/maths/kth_lexicographic_permutation.py)
+  * [Large Powers](https://github.com/TheAlgorithms/Python/blob/master/maths/large_powers.py)
   * [Largest Of Very Large Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/largest_of_very_large_numbers.py)
   * [Least Common Multiple](https://github.com/TheAlgorithms/Python/blob/master/maths/least_common_multiple.py)
   * [Line Length](https://github.com/TheAlgorithms/Python/blob/master/maths/line_length.py)
@@ -527,7 +528,6 @@
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol2.py)
     * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol3.py)
     * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol4.py)
-    * [Test Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/test_solutions.py)
   * Problem 07
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol2.py)
@@ -597,7 +597,7 @@
   * Problem 28
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_28/sol1.py)
   * Problem 29
-    * [Solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/solution.py)
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/sol1.py)
   * Problem 30
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_30/sol1.py)
   * Problem 31
