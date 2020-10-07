@@ -18,7 +18,7 @@ positive integers?
 
 def solution(m: int = 100) -> int:
     """
-    Returns the number of different ways the number m can be written as a 
+    Returns the number of different ways the number m can be written as a
     sum of at least two positive integers.
 
     >>> solution(100)
