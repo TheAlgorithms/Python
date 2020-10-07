@@ -113,7 +113,7 @@ def breast_cancer(training_size, test_size, n, plot_data):
     return sample_train, training_input, test_input, class_labels
 
     # plot_data can be set to true to plot graph of array output
-    
+
     if plot_data:
         try:
             import matplotlib.pyplot as plt
