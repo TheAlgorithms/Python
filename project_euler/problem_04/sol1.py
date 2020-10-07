@@ -10,7 +10,7 @@ is less than N.
 
 def solution(n: int = 998001) -> int:
     """Returns the largest palindrome made from the product of two 3-digit
-    numbers which is less than n or -1 if no such product exists
+    numbers which is less than n or -1 if no such product exists.
 
     >>> solution(20000)
     19591
