@@ -1,8 +1,9 @@
 from collections import deque
+from typing import Dict, List, Union
 
 
 class Automaton:
-    def __init__(self, keywords):
+    def __init__(self, keywords: List[str]):
         self.adlist = list()
         self.adlist.append(
             {"value": "", "next_states": [], "fail_state": 0, "output": []}
@@ -12,13 +13,13 @@ class Automaton:
             self.add_keyword(keyword)
         self.set_fail_transitions()
 
-    def find_next_state(self, current_state, char):
+    def find_next_state(self, current_state: int, char: str) -> Union[int, None]:
         for state in self.adlist[current_state]["next_states"]:
             if char == self.adlist[state]["value"]:
                 return state
         return None
 
-    def add_keyword(self, keyword):
+    def add_keyword(self, keyword: str) -> None:
         current_state = 0
         for character in keyword:
             if self.find_next_state(current_state, character):
@@ -36,7 +37,7 @@ class Automaton:
                 current_state = len(self.adlist) - 1
         self.adlist[current_state]["output"].append(keyword)
 
-    def set_fail_transitions(self):
+    def set_fail_transitions(self) -> None:
         q = deque()
         for node in self.adlist[0]["next_states"]:
             q.append(node)
@@ -61,7 +62,7 @@ class Automaton:
                     + self.adlist[self.adlist[child]["fail_state"]]["output"]
                 )
 
-    def search_in(self, string):
+    def search_in(self, string: str) -> Dict[str, List[int]]:
         """
         >>> A = Automaton(["what", "hat", "ver", "er"])
         >>> A.search_in("whatever, err ... , wherever")
