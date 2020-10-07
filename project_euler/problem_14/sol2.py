@@ -26,7 +26,9 @@ Which starting number, under one million, produces the longest chain?
 
 
 def collatz_sequence(n):
-    """Returns the Collatz sequence for n."""
+    """
+    Returns the Collatz sequence for n.
+    """
     sequence = [n]
     while n != 1:
         if n % 2 == 0:
@@ -38,7 +40,8 @@ def collatz_sequence(n):
 
 
 def solution(n):
-    """Returns the number under n that generates the longest Collatz sequence.
+    """
+    Returns the number under n that generates the longest Collatz sequence.
 
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution(1000000)
