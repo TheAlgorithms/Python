@@ -31,8 +31,14 @@ def binary_search(a_list: list[int], item: int) -> bool:
     False
     >>> print(binary_search([], 1))
     False
-    >>> print(binary_search([.1, .4 , -.1], .1))
+    >>> print(binary_search([-.1, .1 , .8], .1))
     True
+    >>> binary_search(range(-5000, 5000, 10), 80)
+    True
+    >>> binary_search(range(-5000, 5000, 10), 1255)
+    False
+    >>> binary_search(range(0, 10000, 5), 2)
+    False
     """
     if len(a_list) == 0:
         return False
