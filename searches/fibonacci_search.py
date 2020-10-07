@@ -10,7 +10,6 @@ python3 -m doctest -v fibonacci_search.py
 For manual testing run:
 python3 fibonacci_search.py
 """
-import sys
 from functools import lru_cache
 
 
@@ -104,9 +103,12 @@ def fibonacci_search(arr: list, val: int) -> int:
     """
     len_list = len(arr)
     # Find m such that F_m >= n where F_i is the i_th fibonacci number.
-    greater_fibb_index = next(
-        x for x in range(sys.maxsize ** 10) if fibonacci(x) >= len_list
-    )
+    i = 0
+    while True:
+        if fibonacci(i) >= len_list:
+            greater_fibb_index = i
+            break
+        i += 1
     fibb_k = greater_fibb_index
     offset = 0
     while fibb_k > 0:
