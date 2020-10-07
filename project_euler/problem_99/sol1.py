@@ -17,9 +17,9 @@ import os
 from math import log10
 
 
-def find_largest(data_file: str = "base_exp.txt") -> int:
+def solution(data_file: str = "base_exp.txt") -> int:
     """
-    >>> find_largest()
+    >>> solution()
     709
     """
     largest = [0, 0]
@@ -31,4 +31,4 @@ def find_largest(data_file: str = "base_exp.txt") -> int:
 
 
 if __name__ == "__main__":
-    print(find_largest())
+    print(solution())
