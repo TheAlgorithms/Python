@@ -1,7 +1,16 @@
-def topologicalSort(graph):
+def topologicalSort(graph: dict) -> None:
     """
     Kahn's Algorithm is used to find Topological ordering of Directed Acyclic Graph
     using BFS
+    >>> G1 = {0: [1, 2], 1: [3], 2: [3], 3: [4, 5], 4: [], 5: []}
+    >>> topologicalSort(G1)
+    [0, 1, 2, 3, 4, 5]
+    >>> G2 = {0: [1, 2, 3], 1: [2, 3], 2: [4, 5], 3: [2, 4], 4: [5], 5: []}
+    >>> topologicalSort(G2)
+    [0, 1, 3, 2, 4, 5]
+    >>> G3 = {0: [1, 2, 3], 1: [2, 3], 2: [1], 3: [2, 4], 4: [5], 5: []}
+    >>> topologicalSort(G3)
+    Cycle exists
     """
     indegree = [0] * len(graph)
     queue = []
@@ -31,6 +40,11 @@ def topologicalSort(graph):
         print(topo)
 
 
-# Adjacency List of Graph
-graph = {0: [1, 2], 1: [3], 2: [3], 3: [4, 5], 4: [], 5: []}
-topologicalSort(graph)
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    # Adjacency List of Graph
+    graph = {0: [1, 2], 1: [3], 2: [3], 3: [4, 5], 4: [], 5: []}
+    topologicalSort(graph)
