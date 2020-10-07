@@ -1,4 +1,5 @@
 class Node:
+    
     def __init__(self, data):
         self.data = data
         self.next = None
@@ -12,6 +13,7 @@ class LinkedList:
         self.head = None
 
     def __iter__(self):
+        
         node = self.head
         while node:
             yield node.data
