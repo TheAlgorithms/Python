@@ -1,13 +1,19 @@
-# This is a sigmoid function
-# x i function sigmoid is function variable
-# a is the gain
-#https://en.wikipedia.org/wiki/Sigmoid_function
+"""
+This is a sigmoid function
+x i function sigmoid is function variable
+a is the gain
+https://en.wikipedia.org/wiki/Sigmoid_function
+
+"""
+
 import math
 
 
 def sigmoid(x, a):
 
     """
+    Returns value corresponding to sigmoid function.
+    
     >>> sigmoid(0.5, 1)
     0.6224593312018546
     >>> add(2, 0.5)
@@ -17,12 +23,7 @@ def sigmoid(x, a):
     return 1 / (1 + p)
 
 
-def main():
-    # enter values of gain and x
-    x = 2
-    gain = 0.5
-    print(sigmoid(x, gain))
-
-
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
