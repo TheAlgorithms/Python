@@ -89,6 +89,18 @@ def fibonacci_search(arr: list, val: int) -> int:
     1
     >>> fibonacci_search([], 9)
     -1
+    >>> fibonacci_search(list(range(100)), 63)
+    63
+    >>> fibonacci_search(list(range(100)), 99)
+    99
+    >>> fibonacci_search(list(range(-100, 100, 3)), -97)
+    1
+    >>> fibonacci_search(list(range(-100, 100, 3)), 0)
+    -1
+    >>> fibonacci_search(list(range(-100, 100, 5)), 0)
+    20
+    >>> fibonacci_search(list(range(-100, 100, 5)), 95)
+    39
     """
     len_list = len(arr)
     # Find m such that F_m >= n where F_i is the i_th fibonacci number.
@@ -97,13 +109,17 @@ def fibonacci_search(arr: list, val: int) -> int:
     )
     fibb_k = greater_fibb_index
     offset = 0
-    while fibb_k != 0:
-        if arr[offset + fibonacci(fibb_k - 1)] == val:
-            return fibonacci(fibb_k - 1)
-        elif val < arr[offset + fibonacci(fibb_k - 1)]:
+    while fibb_k > 0:
+        index_k = min(
+            offset + fibonacci(fibb_k - 1), len_list - 1
+        )  # Prevent out of range
+        item_k_1 = arr[index_k]
+        if item_k_1 == val:
+            return index_k
+        elif val < item_k_1:
             fibb_k -= 1
-        elif val > arr[offset + fibonacci(fibb_k - 1)]:
-            offset += fibonacci(fibb_k - 2)
+        elif val > item_k_1:
+            offset += fibonacci(fibb_k - 1)
             fibb_k -= 2
     else:
         return -1
