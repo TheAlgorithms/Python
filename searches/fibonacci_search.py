@@ -44,7 +44,7 @@ def fibonacci(k: int) -> int:
     ValueError: k integer must be greater or equal to zero.
     """
     if not isinstance(k, int):
-        raise ValueError("k must be an integer.")
+        raise TypeError("k must be an integer.")
     if k < 0:
         raise ValueError("k integer must be greater or equal to zero.")
     if k == 0:
