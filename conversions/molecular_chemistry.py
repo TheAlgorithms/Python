@@ -23,6 +23,8 @@ def moles_to_pressure(volume: float, moles: float, temperature: float) -> float:
     Pressure has atm as SI unit.
 
     Wikipedia reference: https://en.wikipedia.org/wiki/Gas_laws
+    Wikipedia reference: https://en.wikipedia.org/wiki/Pressure
+    Wikipedia reference: https://en.wikipedia.org/wiki/Temperature
 
     >>> moles_to_pressure(0.82, 3, 300)
     90
@@ -41,6 +43,8 @@ def moles_to_volume(pressure: float, moles: float, temperature: float) -> float:
     Pressure has atm as SI unit.
 
     Wikipedia reference: https://en.wikipedia.org/wiki/Gas_laws
+    Wikipedia reference: https://en.wikipedia.org/wiki/Pressure
+    Wikipedia reference: https://en.wikipedia.org/wiki/Temperature
 
     >>> moles_to_volume(0.82, 3, 300)
     90
@@ -59,6 +63,8 @@ def pressure_and_volume_to_temperature(pressure: float, moles: float, volume: fl
     Pressure has atm as SI unit.
 
     Wikipedia reference: https://en.wikipedia.org/wiki/Gas_laws
+    Wikipedia reference: https://en.wikipedia.org/wiki/Pressure
+    Wikipedia reference: https://en.wikipedia.org/wiki/Temperature
 
     >>> pressure_and_volume_to_temperature(0.82, 1, 2)
     20
