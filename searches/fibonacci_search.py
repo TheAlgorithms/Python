@@ -38,7 +38,7 @@ def fibonacci(k: int) -> int:
     610
     >>> print(fibonacci('a'))
     Traceback (most recent call last):
-    ValueError: k must be an integer.
+    TypeError: k must be an integer.
     >>> print(fibonacci(-5))
     Traceback (most recent call last):
     ValueError: k integer must be greater or equal to zero.
