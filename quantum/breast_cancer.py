@@ -42,6 +42,8 @@ def breast_cancer(training_size, test_size, n, plot_data=False):
     if plot_data:
         try:
             import matplotlib.pyplot as plt
+        except ImportError as e:
+            print(e)
         for k in range(0, 2):
             plt.scatter(
                 sample_train[label_train == k, 0][:training_size],
