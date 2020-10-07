@@ -662,6 +662,9 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_99/sol1.py)
   * [Validate Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py)
 
+## Quantum
+  * [Breast-Cancer](https://github.com/TheAlgorithms/Python/blob/master/quantum/breast-cancer.py)
+
 ## Scheduling
   * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
   * [Round Robin](https://github.com/TheAlgorithms/Python/blob/master/scheduling/round_robin.py)
