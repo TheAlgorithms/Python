@@ -1,15 +1,17 @@
 #nCr = n! / (n - r)! https://en.wikipedia.org/wiki/Permutation
+from math import factorial
 
-#Calculate factorial (!)
-def fact(n):
-    count = 1
-    for i in range (2, n+1):
-        count *= i
-    return count
-
-#Calculate nPr (Permutations)
-def nPr(n, r):
-    return (fact(n) / fact(n - r))
+#Calculate nPr (permutations)
+def permutations(n, r):
+     """
+    >>> permutations(15,2)
+    210
+    >>> permutations(5,3)
+    60
+    >>> permutations(25,8)
+    43609104000
+    """
+    return int(factorial(n) / (factorial(n - k)))
 
 if __name__ == "__main__":
     from doctest import testmod
