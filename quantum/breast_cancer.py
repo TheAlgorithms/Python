@@ -10,7 +10,7 @@ def breast_cancer(training_size, test_size, n, plot_data=False):
 
     Wikipedia reference: https://en.m.wikipedia.org/wiki/Breast_cancer
 
-    >>> breast_cancer(10, 0.3, 7)
+    >>> breast_cancer(10, 4, 7)
     24.9
     """
     class_labels = [r"A", r"B"]
