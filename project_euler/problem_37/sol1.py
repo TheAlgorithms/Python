@@ -89,10 +89,8 @@ def compute_truncated_primes(count: int = 11) -> list[int]:
 def solution() -> int:
     """
     Returns the sum of truncated primes
-    >>> solution()
-    748317
     """
     return sum(compute_truncated_primes(11))
 
 if __name__ == "__main__":
-    print(f"{sum(compute_truncated_primes(11)) = }")
+     print(f"{sum(compute_truncated_primes(11)) = }")
