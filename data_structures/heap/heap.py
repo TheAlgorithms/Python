@@ -1,4 +1,4 @@
-from typing import List, Iterable, Union
+from typing import Iterable, List, Union
 
 
 class Heap(object):
