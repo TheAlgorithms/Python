@@ -16,7 +16,7 @@ import threading
 from time import sleep
 
 def sleep_sort(collection):
-	"""Pure implementation of the sleepsort algorithm in Python
+    """Pure implementation of the sleepsort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
@@ -29,28 +29,28 @@ def sleep_sort(collection):
     [-5, -2, -1]
     """
 
-	displacement_coefficient = min(collection) if (min(collection) < 0) else 0
+    displacement_coefficient = min(collection) if (min(collection) < 0) else 0
     # modification to deal with negative values 
     # by increasing every value by the smallest value
     # if negative values exist
 
-	sorted_collection = []
-	threads = []
+    sorted_collection = []
+    threads = []
 
-	def sleep_sort_helper(i):
-	    sleep(i - displacement_coefficient)
-	    sorted_collection.append(i)
+    def sleep_sort_helper(i):
+        sleep(i - displacement_coefficient)
+        sorted_collection.append(i)
 
-	for i in collection:
-	    args = (i,)
-	    thread = threading.Thread(target=sleep_sort_helper, args=args)
-	    thread.start()
-	    threads.append(thread)
+    for i in collection:
+        args = (i,)
+        thread = threading.Thread(target=sleep_sort_helper, args=args)
+        thread.start()
+        threads.append(thread)
 
-	for thread in threads:
-		thread.join()
+    for thread in threads:
+        thread.join()
 
-	return sorted_collection
+    return sorted_collection
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
