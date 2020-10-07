@@ -2,18 +2,18 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you **read the whole guidelines**. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you **read the whole guidelines**. If you have any doubts about the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
 
 ## Contributing
 
 ### Contributor
 
-We are very happy that you consider implementing algorithms and data structure for others! This repository is referenced and used by learners from all over the globe. Being one of our contributors, you agree and confirm that:
+We are very happy that you consider implementing algorithms and data structures for others! This repository is referenced and used by learners from all over the globe. Being one of our contributors, you agree and confirm that:
 
 - You did your work - no plagiarism allowed
   - Any plagiarized work will not be merged.
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
-- You submitted work fulfils or mostly fulfils our styles and standards
+- You submitted work fullfils or mostly fullfils our styles and standards
 
 **New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity.
 
