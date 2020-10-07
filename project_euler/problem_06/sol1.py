@@ -1,5 +1,5 @@
 """
-Problem:
+Problem 6: https://projecteuler.net/problem=6
 
 The sum of the squares of the first ten natural numbers is,
             1^2 + 2^2 + ... + 10^2 = 385
@@ -15,7 +15,7 @@ numbers and the square of the sum.
 """
 
 
-def solution(n: int) -> int:
+def solution(n: int = 100) -> int:
     """Returns the difference between the sum of the squares of the first n
     natural numbers and the square of the sum.
 
@@ -27,6 +27,8 @@ def solution(n: int) -> int:
     41230
     >>> solution(50)
     1582700
+    >>> solution()
+    25164150
     """
     sum_of_squares = 0
     sum_of_ints = 0

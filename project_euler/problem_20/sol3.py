@@ -1,4 +1,6 @@
 """
+Problem 20: https://projecteuler.net/problem=20
+
 n! means n × (n − 1) × ... × 3 × 2 × 1
 
 For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
@@ -9,8 +11,8 @@ Find the sum of the digits in the number 100!
 from math import factorial
 
 
-def solution(n):
-    """Returns the sum of the digits in the number 100!
+def solution(num: int = 100) -> int:
+    """Returns the sum of the digits in the factorial of num
     >>> solution(1000)
     10539
     >>> solution(200)
@@ -32,7 +34,7 @@ def solution(n):
     >>> solution(0)
     1
     """
-    return sum(map(int, str(factorial(n))))
+    return sum(map(int, str(factorial(num))))
 
 
 if __name__ == "__main__":

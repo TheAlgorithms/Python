@@ -8,7 +8,7 @@ is less than N.
 """
 
 
-def solution(n):
+def solution(n: int = 998001) -> int:
     """Returns the largest palindrome made from the product of two 3-digit
     numbers which is less than n.
 
