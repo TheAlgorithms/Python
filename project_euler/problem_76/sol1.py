@@ -1,6 +1,6 @@
 """
 Counting Summations
-Problem 76
+Problem 76: https://projecteuler.net/problem=76
 
 It is possible to write five as a sum in exactly six different ways:
 
@@ -16,10 +16,10 @@ positive integers?
 """
 
 
-def solution(m=100) -> int:
+def solution(m: int = 100) -> int:
     """
-    Returns the number of different ways one hundred can be written as a sum
-    of at least two positive integers.
+    Returns the number of different ways the number m can be written as a 
+    sum of at least two positive integers.
 
     >>> solution(100)
     190569291
