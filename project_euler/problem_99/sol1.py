@@ -19,7 +19,7 @@ from math import log10
 
 def solution(data_file: str = "base_exp.txt") -> int:
     """
-    >>> find_largest()
+    >>> solution()
     709
     """
     largest = [0, 0]
