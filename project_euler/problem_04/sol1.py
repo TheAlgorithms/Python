@@ -11,6 +11,7 @@ is less than N.
 def solution(n: int = 998001) -> int:
     """Returns the largest palindrome made from the product of two 3-digit
     numbers which is less than n or -1 if no such product exists
+
     >>> solution(20000)
     19591
     >>> solution(30000)
@@ -22,11 +23,15 @@ def solution(n: int = 998001) -> int:
     """
     # fetches the next number
     for number in range(n - 1, 9999, -1):
+
         # converts number into string.
         str_number = str(number)
+
         # checks whether 'str_number' is a palindrome.
         if str_number == str_number[::-1]:
+
             divisor = 999
+
             # if 'number' is a product of two 3-digit numbers
             # then number is the answer otherwise fetch next number.
             while divisor != 99:
