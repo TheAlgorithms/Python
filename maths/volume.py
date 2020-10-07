@@ -138,7 +138,7 @@ def main():
     print("Pyramid: " + str(vol_pyramid(2, 2)))  # ~= 1.33
     print("Sphere: " + str(vol_sphere(2)))  # ~= 33.5
     print("Circular Cylinder: " + str(vol_circular_cylinder(2, 2)))  # ~= 25.1
-    print("Trapezoidal Prism: " + str(vol_trapezoid_prism(2, 2, 2, 2))) # = 8
+    print("Trapezoidal Prism: " + str(vol_trapezoid_prism(2, 2, 2, 2)))  # = 8
 
 
 if __name__ == "__main__":
