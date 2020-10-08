@@ -15,36 +15,17 @@ box_size = n = 2        box_size = n = 3
                         +----------+----------+----------+
                         | 08 09 01 | 03 04 06 | 07 05 02 |
                         | 06 03 02 | 07 08 05 | 04 09 01 |
-sudoku 16*16            | 07 04 05 | 02 09 01 | 06 03 08 |
-box_size = n = 4        +----------+----------+----------+
-+-------------+-------------+-------------+-------------+
-| 01 02 03 04 | 05 06 07 08 | 09 10 11 12 | 16 13 14 15 |
-| 05 06 07 08 | 01 02 03 04 | 16 13 14 15 | 09 10 11 12 |
-| 09 10 11 12 | 16 13 14 15 | 01 02 03 04 | 08 05 06 07 |
-| 16 13 14 15 | 09 10 11 12 | 08 05 06 07 | 01 02 03 04 |
-+-------------+-------------+-------------+-------------+
-| 02 01 04 03 | 06 05 08 07 | 10 09 16 11 | 12 14 15 13 |
-| 06 05 08 07 | 02 01 04 03 | 12 14 15 13 | 10 16 09 11 |
-| 10 09 16 11 | 12 14 15 13 | 02 01 08 03 | 04 06 07 05 |
-| 12 14 15 13 | 10 16 09 11 | 04 06 07 05 | 02 08 01 03 |
-+-------------+-------------+-------------+-------------+
-| 03 04 01 02 | 07 08 05 06 | 11 16 09 10 | 13 15 12 14 |
-| 07 08 05 06 | 03 04 01 02 | 13 15 12 14 | 11 09 16 10 |
-| 11 16 09 10 | 13 15 12 14 | 03 08 01 02 | 05 07 04 06 |
-| 13 15 12 14 | 11 09 16 10 | 05 07 04 06 | 03 01 08 02 |
-+-------------+-------------+-------------+-------------+
-| 08 11 02 16 | 04 07 06 05 | 14 03 10 01 | 15 12 13 09 |
-| 04 07 10 01 | 14 11 02 16 | 15 12 13 09 | 06 03 05 08 |
-| 14 03 13 09 | 15 12 10 01 | 06 11 05 08 | 07 04 02 16 |
-| 15 12 06 05 | 08 03 13 09 | 07 04 02 16 | 14 11 10 01 |
-+-------------+-------------+-------------+-------------+
+                        | 07 04 05 | 02 09 01 | 06 03 08 |
+                        +----------+----------+----------+
 """
+
 
 class Sudoku:
     """
     Class object for sudoku
     element 0 represents an empty element
     """
+
     def __init__(self, box_size: int):
         """
         initialize grid and box
@@ -69,7 +50,7 @@ class Sudoku:
             raise ValueError("Input grid size do not match")
 
         for r in range(self.grid_size):
-            if len(arr[r])!=self.grid_size:
+            if len(arr[r]) != self.grid_size:
                 raise ValueError("Input grid size do not match")
 
             for c in range(self.grid_size):
@@ -105,7 +86,7 @@ class Sudoku:
         (r, c) = (row, column)
         while r < self.grid_size:
             while c < self.grid_size:
-                if self.grid[r][c]==0:
+                if self.grid[r][c] == 0:
                     return (True, r, c)
                 c += 1
             c = 0
@@ -158,22 +139,25 @@ class Sudoku:
         return self.solver(0, 0)
 
     def __str__(self):
-        string = ''
-        row_completer = ('+-' + '---' * self.box_size) * self.box_size + '+'
-        box_edge = [x for x in range(self.grid_size) if x % self.box_size == self.box_size - 1]
+        string = ""
+        row_completer = ("+-" + "---" * self.box_size) * self.box_size + "+"
+        box_edge = [
+            x for x in range(self.grid_size) if x % self.box_size == self.box_size - 1
+        ]
 
-        string += row_completer +'\n'
+        string += row_completer + "\n"
         for r in range(self.grid_size):
-            string += '| '
+            string += "| "
             for c in range(self.grid_size):
                 string += "%02d " % (self.grid[r][c])
                 if c in box_edge:
                     string += "| "
-            string += '\n'
+            string += "\n"
             if r in box_edge:
-                string += row_completer + '\n'
+                string += row_completer + "\n"
 
         return string
+
 
 if __name__ == "__main__":
 
@@ -183,7 +167,7 @@ if __name__ == "__main__":
         question_grid = []
         i = 1
         print("Use zero to represent empty value")
-        while(i <= box_size ** 2):
+        while i <= box_size ** 2:
             row_values = list(map(int, input(f"Enter the row {i} : ")))
             if len(row_values) != box_size ** 2:
                 print(f"Row length should be {box_size ** 2}")
@@ -192,7 +176,7 @@ if __name__ == "__main__":
             i += 1
     else:
         box_size = 3
-        #a sample question grid
+        # a sample question grid
         question_grid = [
             [1, 0, 0, 0, 0, 7, 0, 9, 0],
             [0, 3, 0, 0, 2, 0, 0, 0, 8],
@@ -202,16 +186,16 @@ if __name__ == "__main__":
             [6, 0, 0, 0, 0, 4, 0, 0, 0],
             [3, 0, 0, 0, 0, 0, 0, 1, 0],
             [0, 4, 0, 0, 0, 0, 0, 0, 7],
-            [0, 0, 7, 0, 0, 0, 3, 0, 0]
+            [0, 0, 7, 0, 0, 0, 3, 0, 0],
         ]
         question = Sudoku(box_size)
         question.load_grid(question_grid)
 
     print("The initial question is ", question)
-    print("\nSolving...", end='')
+    print("\nSolving...", end = "")
 
     result = question.solve()
-    if result is True :
+    if result is True:
         print("Success. The answer is: ", question)
     else:
         print("Failed. Could not find a possible solution")
