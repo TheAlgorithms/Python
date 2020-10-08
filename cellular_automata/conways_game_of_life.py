@@ -72,7 +72,7 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
 
 def generate_images(cells: list[list[int]], frames) -> list[Image.Image]:
 	"""
-	Generates a list of images
+	Generates a list of images of subsequent Game of Life states.
 	"""
 	images = []
 	for _ in range(frames):
