@@ -1,4 +1,4 @@
-def decimal_to_quartenary(num):
+def decimal_to_quartenary(num: int) -> str:
     '''
     Convert a decimal number to it's quartenary equivalent (without any external libraries).
 
