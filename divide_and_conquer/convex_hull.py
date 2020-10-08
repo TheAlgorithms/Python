@@ -13,6 +13,7 @@ which have not been implemented here, yet.
 
 """
 
+from typing import Iterable, List, Set, Union
 
 class Point:
     """
@@ -81,7 +82,7 @@ class Point:
         return hash(self.x)
 
 
-def _construct_points(list_of_tuples):
+def _construct_points(list_of_tuples: Union[List[Point], List[List[float]], Iterable[List[float]]]) -> List[Point]:
     """
     constructs a list of points from an array-like object of numbers
 
@@ -113,17 +114,20 @@ def _construct_points(list_of_tuples):
     points = []
     if list_of_tuples:
         for p in list_of_tuples:
-            try:
-                points.append(Point(p[0], p[1]))
-            except (IndexError, TypeError):
-                print(
-                    f"Ignoring deformed point {p}. All points"
-                    " must have at least 2 coordinates."
-                )
+            if isinstance(p, Point):
+                points.append(p)
+            else:
+                try:
+                    points.append(Point(p[0], p[1]))
+                except (IndexError, TypeError):
+                    print(
+                        f"Ignoring deformed point {p}. All points"
+                        " must have at least 2 coordinates."
+                    )
     return points
 
 
-def _validate_input(points):
+def _validate_input(points: Union[List[Point], List[List[float]]]) -> List[Point]:
     """
     validates an input instance before a convex-hull algorithms uses it
 
@@ -168,30 +172,10 @@ def _validate_input(points):
     if not points:
         raise ValueError(f"Expecting a list of points but got {points}")
 
-    if isinstance(points, set):
-        points = list(points)
-
-    try:
-        if hasattr(points, "__iter__") and not isinstance(points[0], Point):
-            if isinstance(points[0], (list, tuple)):
-                points = _construct_points(points)
-            else:
-                raise ValueError(
-                    "Expecting an iterable of type Point, list or tuple. "
-                    f"Found objects of type {type(points[0])} instead"
-                )
-        elif not hasattr(points, "__iter__"):
-            raise ValueError(
-                f"Expecting an iterable object but got an non-iterable type {points}"
-            )
-    except TypeError:
-        print("Expecting an iterable of type Point, list or tuple.")
-        raise
-
-    return points
+    return  _construct_points(points)
 
 
-def _det(a, b, c):
+def _det(a: Point, b: Point, c: Point) -> float:
     """
     Computes the sign perpendicular distance of a 2d point c from a line segment
     ab. The sign indicates the direction of c relative to ab.
@@ -226,7 +210,7 @@ def _det(a, b, c):
     return det
 
 
-def convex_hull_bf(points):
+def convex_hull_bf(points: List[Point]) -> List[Point]:
     """
     Constructs the convex hull of a set of 2D points using a brute force algorithm.
     The algorithm basically considers all combinations of points (i, j) and uses the
@@ -299,7 +283,7 @@ def convex_hull_bf(points):
     return sorted(convex_set)
 
 
-def convex_hull_recursive(points):
+def convex_hull_recursive(points: List[Point]) -> List[Point]:
     """
     Constructs the convex hull of a set of 2D points using a divide-and-conquer strategy
     The algorithm exploits the geometric properties of the problem by repeatedly
@@ -369,7 +353,7 @@ def convex_hull_recursive(points):
     return sorted(convex_set)
 
 
-def _construct_hull(points, left, right, convex_set):
+def _construct_hull(points: List[Point], left: Point, right: Point, convex_set: Set[Point]) -> None:
     """
 
     Parameters
@@ -411,7 +395,7 @@ def _construct_hull(points, left, right, convex_set):
             _construct_hull(candidate_points, extreme_point, right, convex_set)
 
 
-def convex_hull_melkman(points):
+def convex_hull_melkman(points: List[Point]) -> List[Point]:
     """
     Constructs the convex hull of a set of 2D points using the melkman algorithm.
     The algorithm works by iteratively inserting points of a simple polygonal chain
