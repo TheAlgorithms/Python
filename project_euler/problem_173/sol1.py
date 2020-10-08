@@ -15,7 +15,8 @@ from math import ceil, sqrt
 
 def solution():
     """
-
+    Return the number of different square laminae that can be formed using up to
+    one million tiles.
     """
     LIMIT = 10 ** 6
     answer = 0
