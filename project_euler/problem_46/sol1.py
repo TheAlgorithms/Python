@@ -43,23 +43,23 @@ def is_prime(n: int) -> bool:
 odd_composites = [num for num in range(3, len(seive), 2) if not is_prime(num)]
 
 
-def compute_nums(n: int) -> list[int]:
+def solution(n: int = 1) -> list[int]:
     """
     Returns a list of first n odd composite numbers which do
     not follow the conjecture.
-    >>> compute_nums(1)
+    >>> solution(1)
     [5777]
-    >>> compute_nums(2)
+    >>> solution(2)
     [5777, 5993]
-    >>> compute_nums(0)
+    >>> solution(0)
     Traceback (most recent call last):
         ...
     ValueError: n must be >= 0
-    >>> compute_nums("a")
+    >>> solution("a")
     Traceback (most recent call last):
         ...
     ValueError: n must be an integer
-    >>> compute_nums(1.1)
+    >>> solution(1.1)
     Traceback (most recent call last):
         ...
     ValueError: n must be an integer
@@ -68,7 +68,7 @@ def compute_nums(n: int) -> list[int]:
     if not isinstance(n, int):
         raise ValueError("n must be an integer")
     if n <= 0:
-        raise ValueError("n must be >= 0")
+        raise ValueError("n must be > 0")
 
     list_nums = []
     for num in range(len(odd_composites)):
@@ -85,4 +85,4 @@ def compute_nums(n: int) -> list[int]:
 
 
 if __name__ == "__main__":
-    print(f"{compute_nums(1) = }")
+    print(f"{solution(1) = }")
