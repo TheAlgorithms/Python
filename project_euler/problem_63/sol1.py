@@ -1,6 +1,8 @@
 """
-The 5-digit number, 16807=75, is also a fifth power. Similarly, the 9-digit number,
-134217728=89, is a ninth power.
+https://projecteuler.net/problem=63
+
+The 5-digit number, 16807=7**5, is also a fifth power. Similarly, the 9-digit number,
+134217728=8**9, is a ninth power.
 How many n-digit positive integers exist which are also an nth power?
 """
 
@@ -11,7 +13,7 @@ Using these conclusions, we will calculate the result.
 """
 
 
-def compute_nums(max_base: int = 10, max_power: int = 22) -> int:
+def compute_nums(max_base: int, max_power: int) -> int:
     """
     Returns the count of all n-digit numbers which are nth power
     >>> compute_nums(10, 22)
@@ -30,5 +32,10 @@ def compute_nums(max_base: int = 10, max_power: int = 22) -> int:
     )
 
 
+def solution(max_base: int = 10, max_power: int = 22) -> int:
+    """Returns the count of all n-digit numbers which are nth power."""
+    return compute_nums(max_base, max_power)
+
+
 if __name__ == "__main__":
-    print(f"{compute_nums(10, 22) = }")
+    print(f"{solution(10, 22) = }")
