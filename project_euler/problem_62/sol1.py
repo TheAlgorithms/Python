@@ -12,6 +12,7 @@ cube.
 
 from collections import defaultdict
 
+
 def solution():
 
     """
@@ -54,7 +55,7 @@ def get_digits(num: int) -> str:
     digits = [str(x) for x in str(cube)]
     digits.sort()
     return "".join(digits)
-    
+
 
 if __name__ == "__main__":
     print(solution())
