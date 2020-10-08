@@ -10,13 +10,13 @@
 [![code style: black](https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square)](https://github.com/psf/black)
 <!--[![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg?logo=python&style=flat-square)]( https://www.python.org/downloads) &nbsp;-->
 
-### All algorithms implemented in Python (for education)
+### All algorithms  are implemented in Python (for education)
 
-These implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
+This implementations are for learning purposes. They may be less efficient than the implementations in the Python standard library.
 
 ## Contribution Guidelines
 
-Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute any thhing.
 
 ## Community Channel
 
