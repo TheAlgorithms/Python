@@ -1,0 +1,15 @@
+
+dict={ 1:'January',2:'February',3:'March',4:'April',5:'May'}
+a=dict.keys()
+b=dict.values()
+d=dict.copy()
+
+print(a)    #print all keys of dictionary
+print(b)    #print all values of dictionary 
+
+dict.pop(2)  #pop the value present at key no. 2.
+print('After pop operation:',dict) 
+print('Copy of dictionary',d)
+
+dict[3]='month is march'    #we can change the values because dictionary are mutable.
+print('Dictionary with updated value',dict)
