@@ -69,16 +69,19 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
 		next_generation.append(next_generation_row)
 	return next_generation
 
-if __name__ == "__main__":
-	cells = GLIDER
+def generate_images(cells: list[list[int]], frames) -> list[Image.Image]:
 	images = []
-	for i in range(16):
-		img = Image.new("RGB", (len(cells), len(cells[0])))
+	for i in range(frames):
+		img = Image.new("RGB", (len(cells[0]), len(cells)))
 		pixels = img.load()
 		for x in range(len(cells)):
 			for y in range(len(cells[0])):
-				colour = 255 - cells[x][y] * 255
+				colour = 255 - cells[y][x] * 255
 				pixels[x, y] = (colour, colour, colour)
 		images.append(img)
 		cells = new_generation(cells)
+	return images
+
+if __name__ == "__main__":
+	images = generate_images(GLIDER, 16)
 	images[0].save("out.gif", save_all=True, append_images=images[1:])
