@@ -1,3 +1,4 @@
+from typing import List, Dict
 """
 Collatz conjecture: start with any positive integer n. Next term obtained from
 the previous term as follows:
@@ -25,10 +26,8 @@ Which starting number, under one million, produces the longest chain?
 """
 
 
-def collatz_sequence(n):
-    """
-    Returns the Collatz sequence for n.
-    """
+def collatz_sequence(n) -> List[int]:
+    """Returns the Collatz sequence for n."""
     sequence = [n]
     while n != 1:
         if n % 2 == 0:
@@ -39,7 +38,7 @@ def collatz_sequence(n):
     return sequence
 
 
-def solution(n=1000000):
+def solution(n=1000000) -> Dict[str, int]:
     """
     Returns the number under n that generates the longest Collatz sequence.
 

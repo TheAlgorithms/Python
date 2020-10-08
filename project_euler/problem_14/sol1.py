@@ -1,3 +1,4 @@
+from typing import Dict
 """
 Problem Statement:
 The following iterative sequence is defined for the set of positive integers:
@@ -17,7 +18,7 @@ Which starting number, under one million, produces the longest chain?
 """
 
 
-def solution(n=1000000):
+def solution(n : int = 1000000) -> Dict[str, int]:
     """
     Returns the number under n that generates the longest sequence using the
     formula:
@@ -39,7 +40,7 @@ def solution(n=1000000):
 
     for input1 in range(n):
         counter = 1
-        number = input1
+        number : float = input1
 
         while number > 1:
             if number % 2 == 0:
