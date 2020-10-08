@@ -18,12 +18,12 @@ def sum_of_digit_factorial(n: int) -> int:
     return sum(factorial(int(char)) for char in str(n))
 
 
-def compute() -> int:
+def solution() -> int:
     """
     Returns the sum of all numbers whose
     sum of the factorials of all digits
     add up to the number itself.
-    >>> compute()
+    >>> solution()
     40730
     """
     limit = 7 * factorial(9) + 1
@@ -31,4 +31,4 @@ def compute() -> int:
 
 
 if __name__ == "__main__":
-    print(f"{compute()} = ")
+    print(f"{solution()} = ")
