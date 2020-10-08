@@ -1,4 +1,4 @@
-def main(fractions_number: int = 1000) -> int:
+def solution(fractions_number: int = 1000) -> int:
     """
     A function that solve project Euler problen 57.
     It calculate-
@@ -17,9 +17,9 @@ def main(fractions_number: int = 1000) -> int:
     while count < fractions_number:
         # the next two line are the algorithm itself
         # finding the next fraction by calculating-
-        # numerator equals 2 times the last numerator+ one time the one before
+        # numerator equals 2 times the last numerator+ 1 time the one before
         numerators.append(2 * numerators[count] + numerators[count - 1])
-        # numerator equals 2 times the last numerator+ one time the one before
+        # denominator equals 2 times the last denominator+ 1 time the one before
         denominators.append(2 * denominators[count] + denominators[count - 1])
         # compare the length of the two by turningthem to strings
         if len(str(numerators[-1])) > len(str(denominators[-1])):
@@ -29,4 +29,4 @@ def main(fractions_number: int = 1000) -> int:
 
 
 if __name__ == "__main__":
-    main()
+    solution()
