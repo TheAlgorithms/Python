@@ -16,6 +16,7 @@ we will rule out the numbers which contain an even digit.  After this we will
 generate each circular combination of the number and check if all are prime.
 """
 from __future__ import annotations
+
 from typing import List
 
 seive = [True] * 1000001
