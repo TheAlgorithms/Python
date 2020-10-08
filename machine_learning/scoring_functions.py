@@ -139,3 +139,62 @@ def mbd(predict, actual):
 
 def manual_accuracy(predict, actual):
     return np.mean(np.array(actual) == np.array(predict))
+
+
+def binary_precision(predict, actual):
+    """
+    an important metric for binary classification problems
+    See https://en.wikipedia.org/wiki/Precision_and_recall#Definition_(classification_context)
+
+    Examples(rounded for precision):
+    >>> predicted = [1, 1, 0, 0, 1]; true = [1, 0, 0, 1, 1]
+    >>> np.around(binary_precision(predicted, true), decimals = 2)
+    0.67
+
+    >>> predicted = [1, 1, 0]; true = [1, 1, 1]
+    >>> binary_precision(predicted, true)
+    1.0
+    """
+    pred, true = np.array(predict), np.array(actual)
+    true_positives = np.sum(np.logical_and(pred == 1, true == 1))
+    false_positives = np.sum(np.logical_and(pred == 1, true == 0))
+    return true_positives / (true_positives + false_positives)
+
+
+def binary_recall(predict, actual):
+    """
+    an important metric for binary classification problems
+    See https://en.wikipedia.org/wiki/Precision_and_recall#Definition_(classification_context)
+
+    Examples(rounded for precision):
+    >>> predicted = [1, 1, 0, 0, 1]; true = [1, 0, 0, 1, 1]
+    >>> np.around(binary_recall(predicted, true), decimals = 2)
+    0.67
+
+    >>> predicted = [1, 1, 0]; true = [1, 1, 1]
+    >>> np.around(binary_recall(predicted, true), decimals = 2)
+    0.67
+    """
+    pred, true = np.array(predict), np.array(actual)
+    true_positives = np.sum(np.logical_and(pred == 1, true == 1))
+    false_negatives = np.sum(np.logical_and(pred == 0, true == 1))
+    return true_positives / (true_positives + false_negatives)
+
+
+def binary_f1(predict, actual):
+    """
+    an important metric for binary classification problems combining precision and recall
+    See https://en.wikipedia.org/wiki/F1_score
+
+    Examples(rounded for precision):
+    >>> predicted = [1, 1, 0, 0, 1]; true = [1, 0, 0, 1, 1]
+    >>> np.around(binary_f1(predicted, true), decimals = 2)
+    0.67
+
+    >>> predicted = [1, 1, 0]; true = [1, 1, 1]
+    >>> np.around(binary_f1(predicted, true), decimals = 2)
+    0.8
+    """
+    precision = binary_precision(predict, actual)
+    recall = binary_recall(predict, actual)
+    return 2 * precision * recall / (precision + recall)
