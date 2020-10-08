@@ -24,15 +24,15 @@ in its decimal fraction part.
 """
 
 
-def find_digit(numerator: int, digit: int) -> int:
+def solution(numerator: int = 1, digit: int = 1000) -> int:
     """
     Considering any range can be provided,
     because as per the problem, the digit d < 1000
-    >>> find_digit(1, 10)
+    >>> solution(1, 10)
     7
-    >>> find_digit(10, 100)
+    >>> solution(10, 100)
     97
-    >>> find_digit(10, 1000)
+    >>> solution(10, 1000)
     983
     """
     the_digit = 1
@@ -53,22 +53,8 @@ def find_digit(numerator: int, digit: int) -> int:
     return the_digit
 
 
-def solution(n: int = 1000) -> int:
-    """
-    Find the value of n < 1000 for which 1/n contains the longest recurring cycle
-    in its decimal fraction part.
-
-    >>> solution(10)
-    7
-    >>> solution(100)
-    97
-    >>> solution(1000)
-    983
-
-    """
-
-    return find_digit(1, n)
-
-
 if __name__ == "__main__":
-    print(solution(int(str(input()).strip())))
+    import doctest
+
+    doctest.testmod()
+    print(solution(digit=int(str(input()).strip())))
