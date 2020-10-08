@@ -33,7 +33,7 @@ def solution() -> int:
         digits = get_digits(num)
         freqs[digits].append(num)
 
-        if (len(freqs[digits]) == 5):
+        if len(freqs[digits]) == 5:
             base = freqs[digits][0] ** 3
             return base
 
