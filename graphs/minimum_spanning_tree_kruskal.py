@@ -1,4 +1,4 @@
-def run_algorithm(num_nodes, num_edges, edges):
+def kruskal(num_nodes, num_edges, edges):
     edges = sorted(edges, key=lambda edge: edge[2])
 
     parent = list(range(num_nodes))
@@ -30,4 +30,4 @@ if __name__ == "__main__":  # pragma: no cover
         node1, node2, cost = [int(x) for x in input().strip().split()]
         edges.append((node1, node2, cost))
 
-    run_algorithm(num_nodes, num_edges, edges)
+    kruskal(num_nodes, num_edges, edges)
