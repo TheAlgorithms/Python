@@ -106,10 +106,9 @@ def fibonacci_search(arr: list, val: int) -> int:
     i = 0
     while True:
         if fibonacci(i) >= len_list:
-            greater_fibb_index = i
+            fibb_k = i
             break
         i += 1
-    fibb_k = greater_fibb_index
     offset = 0
     while fibb_k > 0:
         index_k = min(
