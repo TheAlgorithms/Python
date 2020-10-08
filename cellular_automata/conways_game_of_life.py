@@ -17,11 +17,19 @@ GLIDER = [
 	[0, 0, 0, 0, 0, 0, 0, 0]
 ]
 
+# Define blinker example
+BLINKER = [
+	[0, 1, 0],
+	[0, 1, 0],
+	[0, 1, 0]
+]
 
 def new_generation(cells: list[list[int]]) -> list[list[int]]:
 	"""
 	>>> new_generation(GLIDER)
 	[[0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 1, 0, 0, 0, 0, 0], [0, 1, 1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
+	>>> new_generation(BLINKER)
+	[[0, 0, 0], [1, 1, 1], [0, 0, 0]]
 	"""
 	next_generation = []
 	for i in range(len(cells)):
