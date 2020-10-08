@@ -19,6 +19,10 @@ GLIDER = [
 
 
 def new_generation(cells: list[list[int]]) -> list[list[int]]:
+	"""
+	>>> new_generation(GLIDER)
+	[[0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 1, 0, 0, 0, 0, 0], [0, 1, 1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
+	"""
 	next_generation = []
 	for i in range(len(cells)):
 		next_generation_row = []
@@ -47,6 +51,8 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
 			# 2. Any dead cell with three live neighbours becomes a live cell.
 			# 3. All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 			alive = cells[i][j] == 1
+			if neighbour_count:
+				print("%i, %i has %i neighbours" % (i, j, neighbour_count))
 			if (alive and 2 <= neighbour_count <= 3) or not alive and neighbour_count == 3:
 				next_generation_row.append(1)
 			else:
