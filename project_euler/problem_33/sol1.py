@@ -23,7 +23,7 @@ def isDigitCancelling(num, den):
                 return True
 
 
-def solution(digit_len: int) -> str:
+def solution(digit_len: int = 2) -> str:
     """
     >>> solution(2)
     '16/64 , 19/95 , 26/65 , 49/98'
