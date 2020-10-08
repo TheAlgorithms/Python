@@ -22,7 +22,7 @@ def solution() -> int:
     numbers that are the base of the cube.
 
     Once you find 5 numbers that produce the same sequence of digits, return
-    the smallest one, which is at index 0 since we insert each base in
+    the smallest one, which is at index 0 since we insert each base number in
     ascending order.
     """
     freqs = defaultdict(list)
