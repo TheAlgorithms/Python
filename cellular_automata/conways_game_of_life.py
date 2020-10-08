@@ -57,7 +57,8 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
             # Rules of the game of life (excerpt from Wikipedia):
             # 1. Any live cell with two or three live neighbours survives.
             # 2. Any dead cell with three live neighbours becomes a live cell.
-            # 3. All other live cells die in the next generation. Similarly, all other dead cells stay dead.
+            # 3. All other live cells die in the next generation.
+            #    Similarly, all other dead cells stay dead.
             alive = cells[i][j] == 1
             if (
                 (alive and 2 <= neighbour_count <= 3)
