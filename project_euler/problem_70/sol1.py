@@ -18,7 +18,7 @@ the ratio n/φ(n) produces a minimum.
 """
 
 
-def solution(max: int) -> int:
+def solution() -> int:
     """
     This is essentially brute force. Calculate all totients up to 10^7 and
     find the minimum ratio of n/φ(n) that way. To minimize the ratio, we want
@@ -30,6 +30,7 @@ def solution(max: int) -> int:
 
     min_num = 1  # i
     min_den = 0  # φ(i)
+    max = 10000000
     totients = get_totients(max + 1)
 
     for i in range(2, max + 1):
@@ -88,4 +89,4 @@ def has_same_digits(num1: int, num2: int) -> bool:
 
 
 if __name__ == "__main__":
-    print(solution(10000000))
+    print(solution())
