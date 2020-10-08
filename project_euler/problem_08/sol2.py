@@ -1,4 +1,6 @@
 """
+Problem 8: https://projecteuler.net/problem=8
+
 The four adjacent digits in the 1000-digit number that have the greatest
 product are 9 × 9 × 8 × 9 = 5832.
 
@@ -53,7 +55,7 @@ N = (
 )
 
 
-def solution(n):
+def solution(n: str = N) -> int:
     """Find the thirteen adjacent digits in the 1000-digit number n that have
     the greatest product and returns it.
 
