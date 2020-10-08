@@ -1,5 +1,6 @@
 """
-Attempts to solve (n^2)*(n^2) sudoku, where n is the box size
+Given a partially or empty grid, attempts to solve (n^2)*(n^2) sudoku,
+where n is the box size
 Eg:
 sudoku 4*4              sudoku 9*9
 box_size = n = 2        box_size = n = 3
@@ -14,10 +15,8 @@ box_size = n = 2        box_size = n = 3
                         +----------+----------+----------+
                         | 08 09 01 | 03 04 06 | 07 05 02 |
                         | 06 03 02 | 07 08 05 | 04 09 01 |
-                        | 07 04 05 | 02 09 01 | 06 03 08 |
-                        +----------+----------+----------+
- sudoku 16*16
- box_size = n = 4
+sudoku 16*16            | 07 04 05 | 02 09 01 | 06 03 08 |
+box_size = n = 4        +----------+----------+----------+
 +-------------+-------------+-------------+-------------+
 | 01 02 03 04 | 05 06 07 08 | 09 10 11 12 | 16 13 14 15 |
 | 05 06 07 08 | 01 02 03 04 | 16 13 14 15 | 09 10 11 12 |
@@ -177,45 +176,41 @@ class Sudoku:
         return string
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
-    """
-    Uncomment to accept value from user
-
-    box_size = int(input("Enter the box size: "))
-    question_grid = []
-    i=1
-    print("Use zero to represent empty value")
-    while(i<=box_size**2):
-       row_values = list(map(int,input(f"Enter the row {i} : ")))
-       if len(row_values)!=box_size**2:
-           print(f"Row lenght should be {box_size**2}")
-           continue
-       quesiton_grid.append(row_values)
-       i+=1
-    """
-
-    #sample input
-    box_size = 3
-    question_grid = [
-        [ 1, 0, 0, 0, 0, 7, 0, 9, 0 ],
-        [ 0, 3, 0, 0, 2, 0, 0, 0, 8 ],
-        [ 0, 0, 9, 6, 0, 0, 5, 0, 0 ],
-        [ 0, 0, 5, 3, 0, 0, 9, 0, 0 ],
-        [ 0, 1, 0, 0, 8, 0, 0, 0, 2 ],
-        [ 6, 0, 0, 0, 0, 4, 0, 0, 0 ],
-        [ 3, 0, 0, 0, 0, 0, 0, 1, 0 ],
-        [ 0, 4, 0, 0, 0, 0, 0, 0, 7 ],
-        [ 0, 0, 7, 0, 0, 0, 3, 0, 0 ]
-    ]
-
-    question = Sudoku(box_size)
-    question.load_grid(question_grid)
+    accept_from_user = False
+    if accept_from_user:
+        box_size = int(input("Enter the box size: "))
+        question_grid = []
+        i=1
+        print("Use zero to represent empty value")
+        while(i<=box_size**2):
+            row_values = list(map(int,input(f"Enter the row {i} : ")))
+            if len(row_values)!=box_size**2:
+                print(f"Row lenght should be {box_size**2}")
+                continue
+            quesiton_grid.append(row_values)
+            i+=1
+    else:
+        box_size = 3
+        question_grid = [
+            [ 1, 0, 0, 0, 0, 7, 0, 9, 0 ],
+            [ 0, 3, 0, 0, 2, 0, 0, 0, 8 ],
+            [ 0, 0, 9, 6, 0, 0, 5, 0, 0 ],
+            [ 0, 0, 5, 3, 0, 0, 9, 0, 0 ],
+            [ 0, 1, 0, 0, 8, 0, 0, 0, 2 ],
+            [ 6, 0, 0, 0, 0, 4, 0, 0, 0 ],
+            [ 3, 0, 0, 0, 0, 0, 0, 1, 0 ],
+            [ 0, 4, 0, 0, 0, 0, 0, 0, 7 ],
+            [ 0, 0, 7, 0, 0, 0, 3, 0, 0 ]
+        ]
+        question = Sudoku(box_size)
+        question.load_grid(question_grid)
 
     print("The initial question is ")
     print(question)
-
     print("\nSolving...",end='')
+
     result = question.solve()
     if result:
         print("Success. The answer is:")
