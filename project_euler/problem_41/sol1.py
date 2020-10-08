@@ -1,8 +1,3 @@
-from __future__ import annotations
-
-from itertools import permutations
-from math import sqrt
-
 """
 Pandigital prime
 Problem 41: https://projecteuler.net/problem=41
@@ -15,6 +10,10 @@ All pandigital numbers except for 1, 4 ,7 pandigital numbers are divisible by 3.
 So we will check only 7 digit pandigital numbers to obtain the largest possible
 pandigital prime.
 """
+from __future__ import annotations
+
+from itertools import permutations
+from math import sqrt
 
 
 def is_prime(n: int) -> bool:
@@ -38,7 +37,8 @@ def is_prime(n: int) -> bool:
 
 def solution(n: int = 7) -> int:
     """
-    Returns a list of all pandigital prime numbers of length n.
+    Returns the maximum pandigital prime number of length n.
+    If there are none, then it will return 0.
     >>> solution(2)
     0
     >>> solution(4)
