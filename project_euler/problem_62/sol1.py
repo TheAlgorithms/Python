@@ -14,7 +14,6 @@ from collections import defaultdict
 
 
 def solution() -> int:
-
     """
     Iterate through every possible cube and sort the cube's digits in
     ascending order. Sorting maintains an ordering of the digits that allows
@@ -29,7 +28,7 @@ def solution() -> int:
     freqs = defaultdict(list)
     num = 0
 
-    while (True):
+    while True:
         digits = get_digits(num)
         freqs[digits].append(num)
 
