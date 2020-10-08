@@ -23,7 +23,7 @@ that all starting numbers finish at 1.
 
 Which starting number, under one million, produces the longest chain?
 """
-from typing import Dict, List
+from typing import List
 
 
 def collatz_sequence(n: int) -> List[int]:
@@ -38,7 +38,7 @@ def collatz_sequence(n: int) -> List[int]:
     return sequence
 
 
-def solution(n: int = 1000000) -> Dict[int, str]:
+def solution(n: int = 1000000) -> int:
     """Returns the number under n that generates the longest Collatz sequence.
 
     # The code below has been commented due to slow execution affecting Travis.
@@ -53,14 +53,8 @@ def solution(n: int = 1000000) -> Dict[int, str]:
     """
 
     result = max([(len(collatz_sequence(i)), i) for i in range(1, n)])
-    return {"counter": result[0], "largest_number": result[1]}
+    return result[1]
 
 
 if __name__ == "__main__":
-    n = int(input().strip())
-    result = solution(n)
-    print(
-        f"Longest Collatz sequence under {n}",
-        f"is produced by {result['largest_number']}",
-        f"with length {result['counter']}",
-    )
+    print(solution(int(input().strip())))
