@@ -29,12 +29,12 @@ FIRST_DEN = 2
 
 
 def solution() -> int:
-    """ Return the number of numerators
-        with more digits than denominators
-        in the expansion of sqrt(2)
+    """Return the number of numerators
+    with more digits than denominators
+    in the expansion of sqrt(2)
 
-        >>> solution()
-        153
+    >>> solution()
+    153
     """
 
     # Initialize the iteration counter
@@ -60,7 +60,7 @@ def solution() -> int:
         numerator += denominator
 
         # if the new numerator is longer then the denominator and update the counter
-        longer_numerators_counter += (len(str(numerator)) > len(str(denominator)))
+        longer_numerators_counter += len(str(numerator)) > len(str(denominator))
 
         # Add one to compute the updated numerator of the fractional part
         numerator += denominator
