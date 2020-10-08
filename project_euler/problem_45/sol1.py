@@ -54,4 +54,4 @@ def solution(start: int = 144) -> int:
 
 
 if __name__ == "__main__":
-    print(f"H(144) = {solution()}")
+    print(f"{solution(144) = }")
