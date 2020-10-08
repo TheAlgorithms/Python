@@ -13,9 +13,9 @@ def retroactive_resolution(coefficients: np.matrix, vector: np.array) -> np.arra
         for triangular matrix
 
     Examples:
-        2x1 + 2x2 - 1x3 = 5         2x1 + 2x2 = -1
-        0x1 - 2x2 - 1x3 = -7        0x1 - 2x2 = -1
-        0x1 + 0x2 + 5x3 = 15
+        2x2. + 2x2. - 1x3. = 5         2x-1. + 2x0.5 = -1
+        0x2. - 2x2. - 1x3. = -7        0x-1. - 2x0.5 = -1
+        0x2. + 0x2. + 5x3. = 15
     >>> gaussian_elimination([[2, 2, -1], [0, -2, -1], [0, 0, 5]], [[5], [-7], [15]])
     array([[2.],
            [2.],
@@ -43,9 +43,9 @@ def gaussian_elimination(coefficients: np.matrix, vector: np.array) -> np.array:
     This function performs Gaussian elimination method
 
     Examples:
-        1x1 - 4x2 - 2x3 = -2        1x1 + 2x2 = 5
-        5x1 + 2x2 - 2x3 = -3        5x1 + 2x2 = 5
-        1x1 - 1x2 + 0x3 = 4
+        1x2.3 - 4x-1.7 - 2x5.55 = -2        1x0. + 2x2.5 = 5
+        5x2.3 + 2x-1.7 - 2x5.55 = -3        5x0. + 2x2.5 = 5
+        1x2.3 - 1x-1.7 + 0x5.55 = 4
     >>> gaussian_elimination([[1, -4, -2], [5, 2, -2], [1, -1, 0]], [[-2], [-3], [4]])
     array([[ 2.3 ],
            [-1.7 ],
