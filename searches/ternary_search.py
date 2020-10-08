@@ -31,8 +31,8 @@ def ite_ternary_search(A: List[int], target: int):
             if right - left < precision:
                 return lin_search(left, right, A, target)
 
-            oneThird = (left + right) / 3 + 1
-            twoThird = 2 * (left + right) / 3 + 1
+            oneThird = (left + right) / 2 - 1
+            twoThird =  (left + right) / 2 + 1
 
             if A[oneThird] == target:
                 return oneThird
@@ -58,8 +58,8 @@ def rec_ternary_search(left: int, right: int, A: List[int], target: int):
         if right - left < precision:
             return lin_search(left, right, A, target)
 
-        oneThird = (left + right) / 3 + 1
-        twoThird = 2 * (left + right) / 3 + 1
+        oneThird = (left + right) / 2 - 1
+        twoThird = (left + right) / 2 + 1
 
         if A[oneThird] == target:
             return oneThird
