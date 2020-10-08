@@ -44,9 +44,9 @@ def text_to_bits(text, encoding='utf-8', errors='surrogatepass'):
     Thanks jfs - convert-binary-to-ascii-and-vice-versa
 
     >>> text_to_bits('Jive Turkey')
-    0100101001101001011101100110010100100000010101000111010101110010011010110110010101111001
+    '0100101001101001011101100110010100100000010101000111010101110010011010110110010101111001'
     >>> text_to_bits('j1>3_t|_|rK3Y')
-    01101010001100010011111000110011010111110111010001111100010111110111110001110010010010110011001101011001
+    '01101010001100010011111000110011010111110111010001111100010111110111110001110010010010110011001101011001'
     '''
     bits = bin(int.from_bytes(text.encode(encoding, errors), 'big'))[2:]
     return bits.zfill(8 * ((len(bits) + 7) // 8))
@@ -57,9 +57,9 @@ def text_from_bits(bits, encoding='utf-8', errors='ignore'):
     Thanks jfs - convert-binary-to-ascii-and-vice-versa
 
     >>> text_from_bits('0100101001101001011101100110010100100000010101000111010101110010011010110110010101111001')
-    Jive Turkey
+    'Jive Turkey'
     >>> text_from_bits('01101010001100010011111000110011010111110111010001111100010111110111110001110010010010110011001101011001')
-    j1>3_t|_|rK3Y
+    'j1>3_t|_|rK3Y'
     '''
     n = int(bits, 2)
     return n.to_bytes(
@@ -74,10 +74,6 @@ def check_keyword(keyword):
 
     >>> check_keyword('shane')
     >>> check_keyword('$hAn3 cAT name amber|')
-    >>> check_keyword('123')
-    'Please use a keyword greater than 5 characters'
-    >>> check_keyword('')
-    'Please use a keyword greater than 5 characters'
     '''
 
     # The keyword must be at least 5 characters
@@ -94,9 +90,9 @@ def split_keyword_to_bits(keyword):
     17 and 25 respectively.
 
     >>> split_keyword_to_bits('sassy')
-    [1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1], [1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1]
+    ([1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1], [1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1])
     >>> split_keyword_to_bits('#1 caN wr1t3 really long key')
-    [1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1], [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1]
+    ([1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1], [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1])
     '''
     keyword_bin = text_to_bits(keyword)
     key_16 = list(map(int, '1' + keyword_bin[:16]))
@@ -165,7 +161,7 @@ def init_keys_lfsr(plaintext_bin, key_16, key_24):
     but the size of the binary plaintext.
 
     >>> init_keys_lfsr([0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1], [1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0], [1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1])
-    [1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0], [1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1]
+    ([1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0], [1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1])
     '''
     poly_17 = (16, 2)
     poly_25 = (24, 7, 5, 1)
@@ -178,8 +174,8 @@ def run_css(plaintext, keyword):
     '''
     Perform the whole CSS process, see the comments below.
 
-    >>> run_css('shane', 'The average person swallows 8 spiders in his or her lifetime.')
-    'c`DK"bK0iMod~:4@!1p*-;[;C/Ԣ ؁B', 'The average person swallows 8 spiders in his or her lifetime.'
+    >>> run_css('The average person swallows 8 spiders in his or her lifetime.', 'shane')
+    '\x0b\r\r&', 'The average person swallows 8 spiders in his or her lifetime.'
     '''
     # Binarize plaintext
     plaintext_bin = list(map(int, text_to_bits(plaintext)))
@@ -197,7 +193,6 @@ def run_css(plaintext, keyword):
     # Decryption: Full Adder Ciphertext to Obtain Decrypted Ciphertext
     dectext_bin = run_full_adder(ciphertext_bin, lfsr_16, lfsr_24)
     dectext = text_from_bits(''.join(map(str, dectext_bin)))
-
     return ciphertext, dectext
 
 
