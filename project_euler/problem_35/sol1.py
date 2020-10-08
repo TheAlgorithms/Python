@@ -1,4 +1,9 @@
 """
+Project Euler Problem 35
+https://projecteuler.net/problem=35
+
+Problem Statement:
+
 The number 197 is called a circular prime because all rotations of the digits:
 197, 971, and 719, are themselves prime.
 There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73,
@@ -11,6 +16,7 @@ we will rule out the numbers which contain an even digit.  After this we will
 generate each circular combination of the number and check if all are prime.
 """
 from __future__ import annotations
+from typing import List
 
 seive = [True] * 1000001
 i = 2
@@ -47,7 +53,7 @@ def contains_an_even_digit(n: int) -> bool:
     return any(digit in "02468" for digit in str(n))
 
 
-def find_circular_primes(limit: int = 1000000) -> list[int]:
+def find_circular_primes(limit: int = 1000000) -> List[int]:
     """
     Return circular primes below limit.
     >>> len(find_circular_primes(100))
@@ -63,6 +69,14 @@ def find_circular_primes(limit: int = 1000000) -> list[int]:
             if all(is_prime(i) for i in list_nums):
                 result.append(num)
     return result
+
+
+def solution() -> int:
+    """
+    >>> solution()
+    55
+    """
+    return len(find_circular_primes())
 
 
 if __name__ == "__main__":
