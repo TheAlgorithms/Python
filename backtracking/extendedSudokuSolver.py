@@ -139,13 +139,13 @@ class Sudoku:
             return false
         '''
         (status,new_row,new_column) = self.next_empty(row,column)
-        if status==False:
+        if status is False:
             return True
 
         for element in self.possible_values(new_row,new_column):
             self.add_element(element,new_row,new_column)
             status = self.solver(new_row,new_column)
-            if status == True:
+            if status is True:
                 return True
             self.remove_element(new_row,new_column)
         return False
@@ -193,6 +193,7 @@ if __name__ == "__main__":
             i+=1
     else:
         box_size = 3
+        #a sample question grid
         question_grid = [
             [ 1, 0, 0, 0, 0, 7, 0, 9, 0 ],
             [ 0, 3, 0, 0, 2, 0, 0, 0, 8 ],
@@ -211,7 +212,7 @@ if __name__ == "__main__":
     print(question)
     print("\nSolving...",end='')
 
-    if (question.solve()== True):
+    if question.solve() is True:
         print("Success. The answer is:")
         print(question)
     else:
