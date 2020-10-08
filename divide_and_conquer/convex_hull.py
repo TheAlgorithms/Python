@@ -15,6 +15,7 @@ which have not been implemented here, yet.
 
 from typing import Iterable, List, Set, Union
 
+
 class Point:
     """
     Defines a 2-d point for use by all convex-hull algorithms.
@@ -82,7 +83,9 @@ class Point:
         return hash(self.x)
 
 
-def _construct_points(list_of_tuples: Union[List[Point], List[List[float]], Iterable[List[float]]]) -> List[Point]:
+def _construct_points(
+    list_of_tuples: Union[List[Point], List[List[float]], Iterable[List[float]]]
+) -> List[Point]:
     """
     constructs a list of points from an array-like object of numbers
 
@@ -111,7 +114,7 @@ def _construct_points(list_of_tuples: Union[List[Point], List[List[float]], Iter
     []
     """
 
-    points = []
+    points: List[Point] = []
     if list_of_tuples:
         for p in list_of_tuples:
             if isinstance(p, Point):
@@ -169,10 +172,15 @@ def _validate_input(points: Union[List[Point], List[List[float]]]) -> List[Point
     ValueError: Expecting an iterable object but got an non-iterable type 1
     """
 
+    if not hasattr(points, "__iter__"):
+        raise ValueError(
+            f"Expecting an iterable object but got an non-iterable type {points}"
+        )
+
     if not points:
         raise ValueError(f"Expecting a list of points but got {points}")
 
-    return  _construct_points(points)
+    return _construct_points(points)
 
 
 def _det(a: Point, b: Point, c: Point) -> float:
@@ -353,7 +361,9 @@ def convex_hull_recursive(points: List[Point]) -> List[Point]:
     return sorted(convex_set)
 
 
-def _construct_hull(points: List[Point], left: Point, right: Point, convex_set: Set[Point]) -> None:
+def _construct_hull(
+    points: List[Point], left: Point, right: Point, convex_set: Set[Point]
+) -> None:
     """
 
     Parameters
