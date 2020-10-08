@@ -1,4 +1,9 @@
 """
+Project Euler Problem 27
+https://projecteuler.net/problem=27
+
+Problem Statement:
+
 Euler discovered the remarkable quadratic formula:
 n2 + n + 41
 It turns out that the formula will produce 40 primes for the consecutive values
@@ -37,7 +42,7 @@ def is_prime(k: int) -> bool:
     return True
 
 
-def solution(a_limit: int, b_limit: int) -> int:
+def solution(a_limit: int = 1000, b_limit: int = 1000) -> int:
     """
     >>> solution(1000, 1000)
     -59231

@@ -1,5 +1,6 @@
 """
-Problem Statement:
+Problem 9: https://projecteuler.net/problem=9
+
 A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
     a^2 + b^2 = c^2
 For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
@@ -9,7 +10,7 @@ Find the product abc.
 """
 
 
-def solution():
+def solution() -> int:
     """
      Returns the product of a,b,c which are Pythagorean Triplet that satisfies
      the following:
@@ -29,7 +30,7 @@ def solution():
                             return a * b * c
 
 
-def solution_fast():
+def solution_fast() -> int:
     """
      Returns the product of a,b,c which are Pythagorean Triplet that satisfies
      the following:
