@@ -1,8 +1,7 @@
-import pytest
-
-from typing import Any
 from dataclasses import dataclass
+from typing import Any
 
+import pytest
 
 from data_structures.linked_list.is_palindrome import (
     is_palindrome,
@@ -44,6 +43,7 @@ def racecar() -> Node:
     r = Node("r", a)
     return r
 
+
 @pytest.fixture
 def stats() -> Node:
     s = Node("s")
@@ -76,7 +76,9 @@ def test_is_palindrome_correct_result(racecar, stats, computer, kayake, single_c
     assert not is_palindrome(computer)
 
 
-def test_is_palindrome_dict_correct_result(racecar, stats, computer, kayake, single_char):
+def test_is_palindrome_dict_correct_result(
+    racecar, stats, computer, kayake, single_char
+):
     assert is_palindrome_dict(None)
     assert is_palindrome_dict(single_char)
     assert is_palindrome_dict(racecar)
@@ -85,7 +87,9 @@ def test_is_palindrome_dict_correct_result(racecar, stats, computer, kayake, sin
     assert not is_palindrome_dict(computer)
 
 
-def test_is_palindrome_stack_correct_result(racecar, stats, computer, kayake, single_char):
+def test_is_palindrome_stack_correct_result(
+    racecar, stats, computer, kayake, single_char
+):
     assert is_palindrome_stack(None)
     assert is_palindrome_stack(single_char)
     assert is_palindrome_stack(racecar)
