@@ -189,7 +189,7 @@ if __name__ == "__main__":
             if len(row_values)!=box_size**2:
                 print(f"Row length should be {box_size**2}")
                 continue
-            quesiton_grid.append(row_values)
+            question_grid.append(row_values)
             i+=1
     else:
         box_size = 3
