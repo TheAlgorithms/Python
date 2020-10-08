@@ -1,13 +1,5 @@
-if __name__ == "__main__":
-    num_nodes, num_edges = list(map(int, input().strip().split()))
-
-    edges = []
-
-    for i in range(num_edges):
-        node1, node2, cost = list(map(int, input().strip().split()))
-        edges.append((i, node1, node2, cost))
-
-    edges = sorted(edges, key=lambda edge: edge[3])
+def kruskal(num_nodes, num_edges, edges):
+    edges = sorted(edges, key=lambda edge: edge[2])
 
     parent = list(range(num_nodes))
 
@@ -20,13 +12,22 @@ if __name__ == "__main__":
     minimum_spanning_tree = []
 
     for edge in edges:
-        parent_a = find_parent(edge[1])
-        parent_b = find_parent(edge[2])
+        parent_a = find_parent(edge[0])
+        parent_b = find_parent(edge[1])
         if parent_a != parent_b:
-            minimum_spanning_tree_cost += edge[3]
+            minimum_spanning_tree_cost += edge[2]
             minimum_spanning_tree.append(edge)
             parent[parent_a] = parent_b
 
-    print(minimum_spanning_tree_cost)
-    for edge in minimum_spanning_tree:
-        print(edge)
+    return minimum_spanning_tree
+
+
+if __name__ == "__main__":  # pragma: no cover
+    num_nodes, num_edges = list(map(int, input().strip().split()))
+    edges = []
+
+    for _ in range(num_edges):
+        node1, node2, cost = [int(x) for x in input().strip().split()]
+        edges.append((node1, node2, cost))
+
+    kruskal(num_nodes, num_edges, edges)
