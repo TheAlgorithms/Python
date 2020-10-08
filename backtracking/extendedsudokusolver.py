@@ -192,7 +192,7 @@ if __name__ == "__main__":
         question.load_grid(question_grid)
 
     print("The initial question is ", question)
-    print("\nSolving...", end = "")
+    print("\nSolving...", end="")
 
     result = question.solve()
     if result is True:
