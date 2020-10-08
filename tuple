@@ -1,0 +1,11 @@
+a=(1,2,3,4,5)
+print('Individual elements of Tuple are')
+for i in a:
+    print(i,end='  ')                             #end='' function is use to print next element on same line.
+print()
+print('Value at index number 3 is:',a[3])         #gives the value present at index 3.
+print('Values from index no 2 are',a[2:])         #gives the values from index no. 2 to end.
+print('Length of tuple is',len(a))                #gives the total no. of elements in tuple.
+print('Maximum value from tuple is ',max(a))      #gives the maximum value from tuple.
+print('Minimum value from tuple is ',min(a))      #gives the minimum value from tuple.
+del a                                             #delete the whole tuple    
