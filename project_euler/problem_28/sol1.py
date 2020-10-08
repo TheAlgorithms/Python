@@ -1,4 +1,7 @@
 """
+Problem 28
+Url: https://projecteuler.net/problem=28
+Statement:
 Starting with the number 1 and moving to the right in a clockwise direction a 5
 by 5 spiral is formed as follows:
 
@@ -17,19 +20,19 @@ in the same way?
 from math import ceil
 
 
-def diagonal_sum(n):
+def solution(n: int = 1001) -> int:
     """Returns the sum of the numbers on the diagonals in a n by n spiral
     formed in the same way.
 
-    >>> diagonal_sum(1001)
+    >>> solution(1001)
     669171001
-    >>> diagonal_sum(500)
+    >>> solution(500)
     82959497
-    >>> diagonal_sum(100)
+    >>> solution(100)
     651897
-    >>> diagonal_sum(50)
+    >>> solution(50)
     79697
-    >>> diagonal_sum(10)
+    >>> solution(10)
     537
     """
     total = 1
@@ -46,10 +49,10 @@ if __name__ == "__main__":
     import sys
 
     if len(sys.argv) == 1:
-        print(diagonal_sum(1001))
+        print(solution())
     else:
         try:
             n = int(sys.argv[1])
-            print(diagonal_sum(n))
+            print(solution(n))
         except ValueError:
             print("Invalid entry - please enter a number")

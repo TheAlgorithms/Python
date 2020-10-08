@@ -1,4 +1,6 @@
 """
+Problem 8: https://projecteuler.net/problem=8
+
 The four adjacent digits in the 1000-digit number that have the greatest
 product are 9 × 9 × 8 × 9 = 5832.
 
@@ -50,21 +52,21 @@ N = """73167176531330624919225119674426574742355349194934\
 71636269561882670428252483600823257530420752963450"""
 
 
-def solution(n):
+def solution(n: str = N) -> int:
     """Find the thirteen adjacent digits in the 1000-digit number n that have
     the greatest product and returns it.
 
     >>> solution(N)
     23514624000
     """
-    LargestProduct = -sys.maxsize - 1
+    largest_product = -sys.maxsize - 1
     for i in range(len(n) - 12):
         product = 1
         for j in range(13):
             product *= int(n[i + j])
-        if product > LargestProduct:
-            LargestProduct = product
-    return LargestProduct
+        if product > largest_product:
+            largest_product = product
+    return largest_product
 
 
 if __name__ == "__main__":

@@ -1,4 +1,6 @@
 """
+Problem 8: https://projecteuler.net/problem=8
+
 The four adjacent digits in the 1000-digit number that have the greatest
 product are 9 × 9 × 8 × 9 = 5832.
 
@@ -50,21 +52,28 @@ N = """73167176531330624919225119674426574742355349194934\
 71636269561882670428252483600823257530420752963450"""
 
 
-def streval(s: str) -> int:
-    ret = 1
-    for it in s:
-        ret *= int(it)
-    return ret
+def str_eval(s: str) -> int:
+    """Returns product of digits in given string n
+
+    >>> str_eval("987654321")
+    362880
+    >>> str_eval("22222222")
+    256
+    """
+    product = 1
+    for digit in s:
+        product *= int(digit)
+    return product
 
 
-def solution(n: str) -> int:
+def solution(n: str = N) -> int:
     """Find the thirteen adjacent digits in the 1000-digit number n that have
     the greatest product and returns it.
 
     >>> solution(N)
     23514624000
     """
-    LargestProduct = -sys.maxsize - 1
+    largest_product = -sys.maxsize - 1
     substr = n[:13]
     cur_index = 13
     while cur_index < len(n) - 13:
@@ -72,10 +81,10 @@ def solution(n: str) -> int:
             substr = substr[1:] + n[cur_index]
             cur_index += 1
         else:
-            LargestProduct = max(LargestProduct, streval(substr))
+            largest_product = max(largest_product, str_eval(substr))
             substr = n[cur_index : cur_index + 13]
             cur_index += 13
-    return LargestProduct
+    return largest_product
 
 
 if __name__ == "__main__":
