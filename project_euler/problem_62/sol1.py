@@ -13,6 +13,7 @@ cube.
 from collections import defaultdict
 
 def solution():
+
     """
     Iterate through every possible cube and sort the cube's digits in
     ascending order. Sorting maintains an ordering of the digits that allows
@@ -37,6 +38,7 @@ def solution():
 
         num += 1
 
+
 def get_digits(num: int) -> str:
     """
     Computes the sorted sequence of digits of the cube of num.
@@ -52,6 +54,7 @@ def get_digits(num: int) -> str:
     digits = [str(x) for x in str(cube)]
     digits.sort()
     return "".join(digits)
+    
 
 if __name__ == "__main__":
     print(solution())
