@@ -187,7 +187,7 @@ if __name__ == "__main__":
         while(i<=box_size**2):
             row_values = list(map(int,input(f"Enter the row {i} : ")))
             if len(row_values)!=box_size**2:
-                print(f"Row lenght should be {box_size**2}")
+                print(f"Row length should be {box_size**2}")
                 continue
             quesiton_grid.append(row_values)
             i+=1
@@ -211,8 +211,7 @@ if __name__ == "__main__":
     print(question)
     print("\nSolving...",end='')
 
-    result = question.solve()
-    if result:
+    if (question.solve()== True):
         print("Success. The answer is:")
         print(question)
     else:
