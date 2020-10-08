@@ -79,7 +79,7 @@ def check_keyword(keyword):
     # The keyword must be at least 5 characters
     if len(keyword) < 5:
         print('Please use a keyword greater than 5 characters')
-        exit(1)
+        exit()
 
 
 def split_keyword_to_bits(keyword):
