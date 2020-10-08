@@ -175,7 +175,7 @@ def run_css(plaintext, keyword):
     Perform the whole CSS process, see the comments below.
 
     >>> run_css('The average person swallows 8 spiders in his or her lifetime.', 'shane')
-    '\x0b\r\r&', 'The average person swallows 8 spiders in his or her lifetime.'
+    ('c\x1f`\x16DK"bK0iMod~:\x7f4@!1p\x0c*-;\x0f[;C/Ԣ \u0601B', 'The average person swallows 8 spiders in his or her lifetime.')
     '''
     # Binarize plaintext
     plaintext_bin = list(map(int, text_to_bits(plaintext)))
