@@ -25,13 +25,13 @@ def solution(n: int = 1000000) -> int:
 
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution(1000000)
-    # {'counter': 525, 'largest_number': 837799}
+    # 837799
     >>> solution(200)
-    {'counter': 125, 'largest_number': 171}
+    171
     >>> solution(5000)
-    {'counter': 238, 'largest_number': 3711}
+    3711
     >>> solution(15000)
-    {'counter': 276, 'largest_number': 13255}
+    13255
     """
     largest_number = 0
     pre_counter = 0
