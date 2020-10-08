@@ -1,4 +1,4 @@
-""" projectEuler problem 57: Square root convergents
+""" projectEuler problem 57
     The square root of two can be expressed as an infinite continued fraction.
 
     In the first one-thousand expansions,
@@ -46,7 +46,7 @@ def solution() -> int:
     numerator = 1
     denominator = FIRST_DEN
 
-    # This variable will be used temporarely to switch numerators and denominators
+    # This variable will be used temporarily to switch numerators and denominators
     temp_switcher = 0
 
     """ A variable to count the instances of fractions
