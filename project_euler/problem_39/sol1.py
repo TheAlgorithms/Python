@@ -55,4 +55,4 @@ def solution(n: int = 1000) -> int:
 
 if __name__ == "__main__":
     result = solution(1000)
-    print(f"Perimiter {result} has maximum solutions")
+    print(f"Perimeter {result} has maximum solutions")
