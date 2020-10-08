@@ -16,8 +16,8 @@ What is ∑ N(n) for 1 ≤ n ≤ 10?
 """
 
 
-from math import ceil, sqrt
 from collections import defaultdict
+from math import ceil, sqrt
 
 
 def solution():
