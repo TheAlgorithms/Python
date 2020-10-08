@@ -20,7 +20,7 @@ def lcm(x: int, y: int) -> int:
     return (x * y) // gcd(x, y)
 
 
-def solution(n: int = 10) -> int:
+def solution(n: int = 20) -> int:
     """Returns the smallest positive number that is evenly divisible(divisible
     with no remainder) by all of the numbers from 1 to n.
 
