@@ -144,7 +144,7 @@ def manual_accuracy(predict, actual):
 def binary_precision(predict, actual):
     """
     an important metric for binary classification problems
-    See https://en.wikipedia.org/wiki/Precision_and_recall#Definition_(classification_context)
+    See https://en.wikipedia.org/wiki/Precision_and_recall
 
     Examples(rounded for precision):
     >>> predicted = [1, 1, 0, 0, 1]; true = [1, 0, 0, 1, 1]
@@ -164,7 +164,7 @@ def binary_precision(predict, actual):
 def binary_recall(predict, actual):
     """
     an important metric for binary classification problems
-    See https://en.wikipedia.org/wiki/Precision_and_recall#Definition_(classification_context)
+    See https://en.wikipedia.org/wiki/Precision_and_recall
 
     Examples(rounded for precision):
     >>> predicted = [1, 1, 0, 0, 1]; true = [1, 0, 0, 1, 1]
@@ -183,7 +183,8 @@ def binary_recall(predict, actual):
 
 def binary_f1(predict, actual):
     """
-    an important metric for binary classification problems combining precision and recall
+    an important metric for binary classification problems
+    combining precision and recall
     See https://en.wikipedia.org/wiki/F1_score
 
     Examples(rounded for precision):
