@@ -1,17 +1,17 @@
-def maximum_digital_sum(a: int, b: int) -> int:
+def solution(a: int, b: int) -> int:
     """
     Considering natural numbers of the form, a**b, where a, b < 100,
     what is the maximum digital sum?
     :param a:
     :param b:
     :return:
-    >>> maximum_digital_sum(10,10)
+    >>> solution(10,10)
     45
 
-    >>> maximum_digital_sum(100,100)
+    >>> solution(100,100)
     972
 
-    >>> maximum_digital_sum(100,200)
+    >>> solution(100,200)
     1872
     """
 
