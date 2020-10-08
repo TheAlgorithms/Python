@@ -6,22 +6,22 @@ How many such routes are there through a 20×20 grid?
 from math import factorial
 
 
-def solution(n:int = 20) -> int:
+def solution(n: int = 20) -> int:
     """
-        Returns the number of paths possible in a n x n grid starting at top left
-        corner going to bottom right corner and being able to move right and down
-        only.
-
-        >>> solution(25)
-        126410606437752
-        >>> solution(23)
-        8233430727600
-        >>> solution(20)
-        137846528820
-        >>> solution(15)
-        155117520
-        >>> solution(1)
-        2
+    Returns the number of paths possible in a n x n grid starting at top left
+    corner going to bottom right corner and being able to move right and down
+    only.
+    
+    >>> solution(25)
+    126410606437752
+    >>> solution(23)
+    8233430727600
+    >>> solution(20)
+    137846528820
+    >>> solution(15)
+    155117520
+    >>> solution(1)
+    2
 
     """
     n = 2 * n  # middle entry of odd rows starting at row 3 is the solution for n = 1,
