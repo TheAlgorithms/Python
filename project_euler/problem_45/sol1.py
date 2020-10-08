@@ -39,10 +39,10 @@ def is_pentagonal(n: int) -> bool:
     return ((1 + root) / 6) % 1 == 0
 
 
-def compute_num(start: int = 144) -> int:
+def solution(start: int = 144) -> int:
     """
     Returns the next number which is traingular, pentagonal and hexagonal.
-    >>> compute_num(144)
+    >>> solution(144)
     1533776805
     """
     n = start
@@ -54,4 +54,4 @@ def compute_num(start: int = 144) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{compute_num(144)} = ")
+    print(f"H(144) = {solution()}")
