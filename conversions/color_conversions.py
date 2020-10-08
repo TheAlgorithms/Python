@@ -47,11 +47,14 @@ def hex_to_rgb(hex_color: str) -> tuple:
         raise ValueError("The hex value is invalid (not a valid color)")
 
     try:
-        rgb_values = [int(hex_color[i:i+2], 16) for i in (0, 2, 4)]
-    except ValueError: raise ValueError("The hex value is invalid (not a valid color)")
+        rgb_values = [int(hex_color[i : i + 2], 16) for i in (0, 2, 4)]
+    except ValueError:
+        raise ValueError("The hex value is invalid (not a valid color)")
 
     return tuple(rgb_values)
 
+
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
