@@ -4,6 +4,21 @@
     In the first one-thousand expansions,
     how many fractions contain a numerator with more digits than the denominator?
     Reference page: https://projecteuler.net/problem=57
+
+    Working principle:
+    The first expansion is (1 + 1/2)
+    The successive is 1 + 1/(2 + 1/2)
+
+    Expansion 1 has numerator = 1, denominator = 2
+    1 + numerator/denominator = (numerator + denominator)/(denominator)
+    Once the new numerator and denominator are computed,
+    a counter is increased if the numerator has more digits than the denominator
+
+    Note that the denominator of the fractional part
+    can be attained as the previous expansion + 1
+    => 1/(last_expansion + 1)
+    The numerator and denominator of the fractional part of the expansion are computed
+    and the process is repeated up to the 1000-th expansion
 """
 
 # The maximum number of expansions to check
