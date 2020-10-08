@@ -561,6 +561,8 @@
   * Problem 14
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_14/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_14/sol2.py)
+  * Problem 145
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_145/sol1.py)
   * Problem 15
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_15/sol1.py)
   * Problem 16
