@@ -15,9 +15,10 @@ that all starting numbers finish at 1.
 
 Which starting number, under one million, produces the longest chain?
 """
+from typing import Dict
 
 
-def solution(n: int = 1000000) -> dict:
+def solution(n: int = 1000000) -> Dict[int, str]:
     """Returns the number under n that generates the longest sequence using the
     formula:
     n → n/2 (n is even)
@@ -58,7 +59,7 @@ if __name__ == "__main__":
     n = int(input().strip())
     result = solution(n)
     print(
-        "Longest Collatz sequence under {} is produced by {} with length {}".format(
-            n, result["largest_number"], result["counter"]
-        )
+        f"Longest Collatz sequence under {n}",
+        f"is produced by {result['largest_number']}",
+        f"with length {result['counter']}",
     )
