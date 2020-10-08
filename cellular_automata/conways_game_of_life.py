@@ -28,6 +28,7 @@ BLINKER = [
 
 def new_generation(cells: list[list[int]]) -> list[list[int]]:
 	"""
+	Generates the next generation for a given state of Conway's Game of Life.
 	>>> new_generation(GLIDER)
 	[[0, 0, 0, 0, 0, 0, 0, 0], [1, 0, 1, 0, 0, 0, 0, 0], [0, 1, 1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
 	>>> new_generation(BLINKER)
@@ -70,14 +71,22 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
 	return next_generation
 
 def generate_images(cells: list[list[int]], frames) -> list[Image.Image]:
+	"""
+	Generates a list of images
+	"""
 	images = []
-	for i in range(frames):
+	for _ in range(frames):
+		# Create output image
 		img = Image.new("RGB", (len(cells[0]), len(cells)))
 		pixels = img.load()
+
+		# Save cells to image
 		for x in range(len(cells)):
 			for y in range(len(cells[0])):
 				colour = 255 - cells[y][x] * 255
 				pixels[x, y] = (colour, colour, colour)
+
+		# Save image
 		images.append(img)
 		cells = new_generation(cells)
 	return images
