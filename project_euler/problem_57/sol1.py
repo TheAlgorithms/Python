@@ -5,9 +5,9 @@ def solution(fractions_number: int = 1000) -> int:
     how many fractions has a numerator with more digits than the denominator,
     In the first 1000 fractions that their sum is equal to the square of 2.
     You can change the number 1000 by changing the fractions_number variable.
-    >>> main()
+    >>> solution()
     153
-    >>> main(2000)
+    >>> solution(2000)
     306
     """
     answer = 0
