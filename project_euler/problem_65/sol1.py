@@ -1,4 +1,7 @@
 """
+Project Euler 65
+https://projecteuler.net/problem=65
+
 The square root of 2 can be written as an infinite continued fraction.
 
 sqrt(2) = 1 + 1 / (2 + 1 / (2 + 1 / (2 + 1 / (2 + ...))))
@@ -33,7 +36,7 @@ of the continued fraction for e.
 """
 
 
-def solution(max: int) -> int:
+def solution() -> int:
     """
     The solution mostly comes down to finding an equation that will generate
     the numerator of the continued fraction. For the i-th numerator, the
@@ -58,6 +61,7 @@ def solution(max: int) -> int:
     """
     n0 = 1
     n1 = 2
+    max = 100
 
     for i in range(2, max + 1):
         temp = n0
@@ -87,4 +91,4 @@ def sum_digits(num: int) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(100))
+    print(solution())
