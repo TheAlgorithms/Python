@@ -58,7 +58,7 @@ if __name__ == "__main__":
     n = int(input().strip())
     result = solution(n)
     print(
-        "Longest Collatz sequence under {} is {} with length {}".format(
+        "Longest Collatz sequence under {} is produced by {} with length {}".format(
             n, result["largest_number"], result["counter"]
         )
     )
