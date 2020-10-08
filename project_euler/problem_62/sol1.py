@@ -37,9 +37,16 @@ def solution():
 
         num += 1
 
-def get_digits(num):
+def get_digits(num: int) -> str:
     """
     Computes the sorted sequence of digits of the cube of num.
+
+    >>> get_digits(3)
+    '27'
+    >>> get_digits(99)
+    '027999'
+    >>> get_digits(123)
+    '0166788'
     """
     cube = num ** 3
     digits = [str(x) for x in str(cube)]
