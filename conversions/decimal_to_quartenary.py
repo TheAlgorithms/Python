@@ -22,3 +22,4 @@ def decimal_to_quartenary(num: int) -> str:
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+    
