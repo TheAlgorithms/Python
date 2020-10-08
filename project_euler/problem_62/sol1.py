@@ -13,7 +13,7 @@ cube.
 from collections import defaultdict
 
 
-def solution():
+def solution() -> int:
 
     """
     Iterate through every possible cube and sort the cube's digits in
