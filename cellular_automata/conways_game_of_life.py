@@ -5,6 +5,8 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 from __future__ import annotations
 
+from PIL import Image
+
 # Define glider example
 GLIDER = [
 	[0, 1, 0, 0, 0, 0, 0, 0],
@@ -59,8 +61,6 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
 			# 2. Any dead cell with three live neighbours becomes a live cell.
 			# 3. All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 			alive = cells[i][j] == 1
-			if neighbour_count:
-				print("%i, %i has %i neighbours" % (i, j, neighbour_count))
 			if (alive and 2 <= neighbour_count <= 3) or not alive and neighbour_count == 3:
 				next_generation_row.append(1)
 			else:
@@ -68,3 +68,17 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
 
 		next_generation.append(next_generation_row)
 	return next_generation
+
+if __name__ == "__main__":
+	cells = GLIDER
+	images = []
+	for i in range(16):
+		img = Image.new("RGB", (len(cells), len(cells[0])))
+		pixels = img.load()
+		for x in range(len(cells)):
+			for y in range(len(cells[0])):
+				colour = 255 - cells[x][y] * 255
+				pixels[x, y] = (colour, colour, colour)
+		images.append(img)
+		cells = new_generation(cells)
+	images[0].save("out.gif", save_all=True, append_images=images[1:])
