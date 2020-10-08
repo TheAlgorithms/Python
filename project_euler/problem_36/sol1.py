@@ -23,13 +23,13 @@ def is_palindrome(n: Union[int, str]) -> bool:
     Return true if the input n is a palindrome.
     Otherwise return false. n can be an integer or a string.
 
-    >>> is_palindrome(909)         
+    >>> is_palindrome(909)
     True
-    >>> is_palindrome(908) 
+    >>> is_palindrome(908)
     False
-    >>> is_palindrome('10101')              
+    >>> is_palindrome('10101')
     True
-    >>> is_palindrome('10111') 
+    >>> is_palindrome('10111')
     False
     """
     n = str(n)
