@@ -34,8 +34,8 @@ def max_sum(array: List[int], k: int) -> int:
 
 
 if __name__ == "__main__":
-    from random import randint
     from doctest import testmod
+    from random import randint
 
     testmod()
     array = [randint(-1000, 1000) for i in range(100)]
