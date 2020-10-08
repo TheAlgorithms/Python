@@ -39,9 +39,17 @@ def pythagorean_triple(max_perimeter: int) -> typing.Counter[int]:
 
 
 def solution(n: int = 1000) -> int:
-    """Returns perimeter with maximum solutions."""
+    """
+    Returns perimeter with maximum solutions.
+    >>> solution(100)
+    90
+    >>> solution(200)
+    180
+    >>> solution(1000)
+    840
+    """
     triplets = pythagorean_triple(n)
-    perimeter, _ = triplets.most_common()[0]
+    perimeter, _ = triplets.most_common(1)[0]
     return perimeter
 
 
