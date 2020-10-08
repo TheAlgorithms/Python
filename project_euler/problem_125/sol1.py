@@ -9,7 +9,7 @@ consecutive square sums, and the sum of these palindromes is 4164. Note that
 1 = 0^2 + 1^2 has not been included as this problem is concerned with the
 squares of positive integers.
 
-Find the sum of all the numbers less than 108 that are both palindromic and can
+Find the sum of all the numbers less than 10^8 that are both palindromic and can
 be written as the sum of consecutive squares.
 """
 
@@ -32,7 +32,7 @@ def is_palindrome(n: int) -> bool:
 
 def solution() -> int:
     """
-    Retuens the sum of all numbers less than 1e8 that are both palindromic and
+    Returns the sum of all numbers less than 1e8 that are both palindromic and
     can be written as the sum of consecutive squares.
     """
     LIMIT = 10 ** 8
