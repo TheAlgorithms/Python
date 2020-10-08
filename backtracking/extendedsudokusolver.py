@@ -41,14 +41,14 @@ box_size = n = 4        +----------+----------+----------+
 """
 
 class Sudoku:
-    '''
+    """
     Class object for sudoku
     element 0 represents an empty element
-    '''
+    """
     def __init__(self,box_size:int):
-        '''
+        """
         initialize grid and box
-        '''
+        """
         self.box_size = box_size
         self.grid_size = box_size**2
         self.grid = []
@@ -62,9 +62,9 @@ class Sudoku:
                     self.box[box_number]={0}
 
     def load_grid(self,arr:list) -> None:
-        '''
+        """
         Load the values from arr into the grid
-        '''
+        """
         if len(arr)!=self.grid_size:
             raise ValueError("Input grid size do not match")
 
@@ -76,15 +76,15 @@ class Sudoku:
                 self.add_element(arr[r][c],r,c)
 
     def box_mapper(self,row:int, column:int) -> int:
-        '''
+        """
         Maps row,column into their respective boxes
-        '''
+        """
         return (row//self.box_size)*10 + (column//self.box_size)
 
     def possible_values(self,row:int,column:int) -> set:
-        '''
+        """
         Gets the possible values at row,column
-        '''
+        """
         box_number = self.box_mapper(row,column)
 
         possible_elements = set(range(1,(self.grid_size)+1))
@@ -95,13 +95,13 @@ class Sudoku:
         return possible_elements - box_elements.union(row_elements,column_elements)
 
     def next_empty(self, row:int, column:int) -> tuple:
-        '''
+        """
         Returns the position of next empty element 0
         if there exist a empty element
             returns (True,row,column)
         else
             returns (False,-1,-1)
-        '''
+        """
         (r,c) = (row, column)
         while r<self.grid_size:
             while c<self.grid_size:
@@ -113,17 +113,17 @@ class Sudoku:
         return (False,-1,-1)
 
     def add_element(self,element:int,row:int,column:int) -> None:
-        '''
+        """
         Adds element to grid[row][column]
-        '''
+        """
         self.grid[row][column]=element
         box_number = self.box_mapper(row,column)
         self.box[box_number].add(element)
 
     def remove_element(self,row:int,column:int) -> None:
-        '''
+        """
         Removes element at grid[row][column]
-        '''
+        """
         box_number = self.box_mapper(row,column)
         element = self.grid[row][column]
         self.box[box_number].remove(element)
@@ -131,13 +131,13 @@ class Sudoku:
         self.box[box_number].add(0)
 
     def solver(self,row:int,column:int) -> bool:
-        '''
+        """
         solve the next empty element from row,column
         if the grid is complete
             return true
         else
             return false
-        '''
+        """
         (status,new_row,new_column) = self.next_empty(row,column)
         if status is False:
             return True
@@ -151,10 +151,10 @@ class Sudoku:
         return False
 
     def solve(self) -> bool:
-        '''
+        """
         Invoke solver and return true if the grid is solved
         else return False
-        '''
+        """
         return self.solver(0,0)
 
     def __str__(self):
