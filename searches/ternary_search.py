@@ -3,7 +3,7 @@ This is a type of divide and conquer algorithm which divides the search space in
 3 parts and finds the target value based on the property of the array or list
 (usually monotonic property).
 
-Time Complexity  : O(log3 N)
+Time Complexity  : O(log2 N)
 Space Complexity : O(1)
 """
 import sys
@@ -31,8 +31,8 @@ def ite_ternary_search(A: List[int], target: int):
             if right - left < precision:
                 return lin_search(left, right, A, target)
 
-            oneThird = (left + right) / 2 - 1
-            twoThird =  (left + right) / 2 + 1
+            oneThird = (left + right) // 2
+            twoThird =  (left + right) // 2 + 1
 
             if A[oneThird] == target:
                 return oneThird
@@ -58,8 +58,8 @@ def rec_ternary_search(left: int, right: int, A: List[int], target: int):
         if right - left < precision:
             return lin_search(left, right, A, target)
 
-        oneThird = (left + right) / 2 - 1
-        twoThird = (left + right) / 2 + 1
+        oneThird = (left + right) // 2
+        twoThird = (left + right) // 2 + 1
 
         if A[oneThird] == target:
             return oneThird
