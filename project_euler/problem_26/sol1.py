@@ -53,8 +53,8 @@ def solution(numerator: int = 1, digit: int = 1000) -> int:
     return the_digit
 
 
+# Tests
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    print(solution(digit=int(str(input()).strip())))
