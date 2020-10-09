@@ -22,6 +22,10 @@ def max_sum(array: List[int], k: int) -> int:
     Traceback (most recent call last):
         ...
     ValueError: Invalid Input
+    >>> arr = [1, 4, 2, 10, 2, 13, 1, 0, 2]
+    >>> k = 4
+    >>> max_sum(arr, k)
+    27
     """
     if len(array) < k or k < 0:
         raise ValueError("Invalid Input")
