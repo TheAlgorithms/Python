@@ -27,4 +27,4 @@ def solution(power: int = 1000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"Sum of the digits is {solution(1000)}")
+    print(solution(int(str(input()).strip())))
