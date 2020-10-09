@@ -50,10 +50,7 @@ def text_to_bits(text: str, encoding="utf-8", errors="surrogatepass") -> str:
     '011010100011000100111110001100110101111101110100011111000101\
 11110111110001110010010010110011001101011001'
     """
-    bits = bin(int.from_bytes(text.encode(
-        encoding,
-        errors,
-    ), "big"))[2:]
+    bits = bin(int.from_bytes(text.encode(encoding, errors,), "big"))[2:]
     return bits.zfill(8 * ((len(bits) + 7) // 8))
 
 
@@ -69,10 +66,9 @@ def text_from_bits(bits: str, encoding="utf-8", errors="ignore") -> str:
     'j1>3_t|_|rK3Y'
     """
     n = int(bits, 2)
-    return n.to_bytes((n.bit_length() + 7) // 8, "big").decode(
-        encoding,
-        errors,
-    ) or "\0"
+    return (
+        n.to_bytes((n.bit_length() + 7) // 8, "big").decode(encoding, errors,) or "\0"
+    )
 
 
 def check_keyword(keyword: str):
