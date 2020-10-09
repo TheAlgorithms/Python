@@ -33,11 +33,7 @@ def is_palindrome(n: Union[int, str]) -> bool:
     False
     """
     n = str(n)
-
-    if n == n[::-1]:
-        return True
-    else:
-        return False
+    return True if n == n[::-1] else False
 
 
 def solution(n: int = 1000000):
