@@ -36,8 +36,6 @@ def factorial(a: int) -> int:
     1
     """
 
-    # doctest.testmod()
-
     # The factorial function is not defined for negative numbers
     if a < 0:
         raise ValueError("Invalid negative input!", a)
