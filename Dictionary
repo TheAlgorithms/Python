@@ -1,0 +1,46 @@
+import webbrowser
+from googlesearch import search
+# d1 = {}
+# print(type(d1))
+print("Welcome , this is a English to Hindi dictionary")
+dic = {
+    'apple': 'seb',
+    'banana': 'kela',
+    'dates': 'khajoor'
+}
+# print(dic['apple'])
+
+
+def search():
+    qletter = input(' What do you want to search for ? ').lower()
+
+    print(f"{qletter} Let's search for it .")
+    if (dic.get(qletter)):
+        print("Object_Found")
+        print("Here is your answer : ", end=" ")
+        print(dic.get(qletter))
+    else:
+        print("Finding_Object_Online")
+        webbrowser.open(f"https://en.wikipedia.org/wiki/{qletter}")
+
+    # dic.update("","")
+    # dic.items()
+    # dic.keys()
+    # d3 = d2.copy()
+
+    def value():
+        value = input("Do you want to find something else ? \t y/n").lower()
+
+        if(value == 'y'):
+            search()
+        elif(value == 'n'):
+            print("Thanks for using Dictionary .")
+        else:
+            print("Value entered is not correct . Please enter a correct value")
+
+    value()
+
+
+search()
+
+input()
