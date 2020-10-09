@@ -20,11 +20,11 @@ def solution(power: int) -> int:
     26
     """
 
-    if (not isinstance(power, int)):
-        raise TypeError('The parameter `power` should be of type int.')
+    if not isinstance(power, int):
+        raise TypeError("The parameter `power` should be of type int.")
 
     if power < 0:
-        raise ValueError('The value of `power` should be greater than or equal to 0.')
+        raise ValueError("The value of `power` should be greater than or equal to 0.")
 
     n = 2 ** power
     digits = [int(digit) for digit in str(n)]
