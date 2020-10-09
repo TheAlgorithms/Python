@@ -1,5 +1,5 @@
 """
-
+Doing this for T Shirt
  The nqueens problem is of placing N queens on a N * N
  chess board such that no queen can attack any other queens placed
  on that chess board.
@@ -9,7 +9,7 @@
 """
 solution = []
 
-
+##Defining Function
 def isSafe(board, row, column):
     """
     This function returns a boolean value True if it is safe to place a queen there
