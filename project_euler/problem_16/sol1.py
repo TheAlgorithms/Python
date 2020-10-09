@@ -30,4 +30,7 @@ def solution(power: int = 1000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"Sum of the digits is {solution(1000)}")
+    power = int(input("Enter the power of 2: ").strip())
+    print("2 ^ ", power, " = ", 2 ** power)		
+    result = solution(power)		
+    print("Sum of the digits is: ", result)
