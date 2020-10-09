@@ -6,7 +6,6 @@ Instead of using a nested for loop, in a Brute force approach we will use a tech
 called 'Window sliding technique' where the nested loops can be converted to a single
 loop to reduce time complexity.
 """
-import sys
 from typing import List
 
 
@@ -29,8 +28,7 @@ def max_sum_in_array(array: List[int], k: int) -> int:
     """
     if len(array) < k or k < 0:
         raise ValueError("Invalid Input")
-    max_sum = -sys.maxsize
-    current_sum = sum(array[:k])
+    max_sum = current_sum = sum(array[:k])
     for i in range(len(array) - k):
         current_sum = current_sum - array[i] + array[i + k]
         max_sum = max(max_sum, current_sum)
