@@ -20,7 +20,7 @@
 # The desired number of items to check for in the non repeating chains
 EXACT_CHAIN_LENGTH = 60
 
-# The maximum number to check in te solution
+# The maximum number to check in the solution
 MAX_NUMBER = 1000000
 
 
