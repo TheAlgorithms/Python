@@ -54,7 +54,7 @@ def gaussian_elimination(coefficients: np.matrix, vector: np.array) -> np.array:
     array([[0. ],
            [2.5]])
     """
-    # coefficients must to be a square matrix so we need to check first
+    # coefficients must be a square matrix, so we need to check first
     rows, columns = np.shape(coefficients)
     if rows != columns:
         return []
