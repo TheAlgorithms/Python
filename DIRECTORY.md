@@ -473,6 +473,7 @@
   * [Binary Exponentiation 2](https://github.com/TheAlgorithms/Python/blob/master/other/binary_exponentiation_2.py)
   * [Detecting English Programmatically](https://github.com/TheAlgorithms/Python/blob/master/other/detecting_english_programmatically.py)
   * [Dijkstra Bankers Algorithm](https://github.com/TheAlgorithms/Python/blob/master/other/dijkstra_bankers_algorithm.py)
+  * [Doomsday](https://github.com/TheAlgorithms/Python/blob/master/other/doomsday.py)
   * [Euclidean Gcd](https://github.com/TheAlgorithms/Python/blob/master/other/euclidean_gcd.py)
   * [Fischer Yates Shuffle](https://github.com/TheAlgorithms/Python/blob/master/other/fischer_yates_shuffle.py)
   * [Frequency Finder](https://github.com/TheAlgorithms/Python/blob/master/other/frequency_finder.py)
@@ -487,6 +488,7 @@
   * [Lru Cache](https://github.com/TheAlgorithms/Python/blob/master/other/lru_cache.py)
   * [Magicdiamondpattern](https://github.com/TheAlgorithms/Python/blob/master/other/magicdiamondpattern.py)
   * [Markov Chain](https://github.com/TheAlgorithms/Python/blob/master/other/markov_chain.py)
+  * [Max Sum Sliding Window](https://github.com/TheAlgorithms/Python/blob/master/other/max_sum_sliding_window.py)
   * [Nested Brackets](https://github.com/TheAlgorithms/Python/blob/master/other/nested_brackets.py)
   * [Palindrome](https://github.com/TheAlgorithms/Python/blob/master/other/palindrome.py)
   * [Password Generator](https://github.com/TheAlgorithms/Python/blob/master/other/password_generator.py)
@@ -529,7 +531,6 @@
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol2.py)
     * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol3.py)
     * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol4.py)
-    * [Test Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/test_solutions.py)
   * Problem 07
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol2.py)
@@ -595,11 +596,11 @@
   * Problem 26
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_26/sol1.py)
   * Problem 27
-    * [Problem 27 Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_27/problem_27_sol1.py)
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_27/sol1.py)
   * Problem 28
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_28/sol1.py)
   * Problem 29
-    * [Solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/solution.py)
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/sol1.py)
   * Problem 30
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_30/sol1.py)
   * Problem 31
@@ -656,6 +657,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_63/sol1.py)
   * Problem 67
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_67/sol1.py)
+  * Problem 71
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_71/sol1.py)
   * Problem 76
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_76/sol1.py)
   * Problem 97
