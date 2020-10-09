@@ -1,3 +1,5 @@
+from typing import List, Tuple, Union
+
 """
     Given a partially filled 9×9 2D array, the objective is to fill a 9×9
     square grid with digits numbered 1 to 9, so that every row, column, and
@@ -36,7 +38,7 @@ no_solution = [
 ]
 
 
-def is_safe(grid, row, column, n):
+def is_safe(grid: List[List[int]], row: int, column: int, n: int) -> bool:
     """
     This function checks the grid to see if each row,
     column, and the 3x3 subgrids contain the digit 'n'.
@@ -55,7 +57,7 @@ def is_safe(grid, row, column, n):
     return True
 
 
-def is_completed(grid):
+def is_completed(grid: List[List[int]]) -> bool:
     """
     This function checks if the puzzle is completed or not.
     it is completed when all the cells are assigned with a non-zero number.
@@ -76,7 +78,7 @@ def is_completed(grid):
     return all(all(cell != 0 for cell in row) for row in grid)
 
 
-def find_empty_location(grid):
+def find_empty_location(grid: List[List[int]]) -> Tuple[int, int]:
     """
     This function finds an empty location so that we can assign a number
     for that particular row and column.
@@ -87,7 +89,7 @@ def find_empty_location(grid):
                 return i, j
 
 
-def sudoku(grid):
+def sudoku(grid: List[List[int]]) -> Union[List[List[int]], bool]:
     """
     Takes a partially filled-in grid and attempts to assign values to
     all unassigned locations in such a way to meet the requirements
@@ -124,7 +126,7 @@ def sudoku(grid):
     return False
 
 
-def print_solution(grid):
+def print_solution(grid: List[List[int]]) -> None:
     """
     A function to print the solution in the form
     of a 9x9 grid
