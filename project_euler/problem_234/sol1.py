@@ -1,3 +1,4 @@
+from typing import List
 """
 https://projecteuler.net/problem=234
 
@@ -36,7 +37,7 @@ def fib(a, b, n):
     return c
 
 
-def solution(n):
+def solution(n:int=999966663333) -> List[str]:
     """Returns the sum of all semidivisible numbers not exceeding n."""
     semidivisible = []
     for x in range(n):
