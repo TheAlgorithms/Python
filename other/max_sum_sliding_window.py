@@ -19,12 +19,12 @@ def max_sum(array: List[int], k: int) -> int:
     24
     >>> k = 10
     >>> max_sum(arr,k)
-    Invalid input
-    -1
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid Input
     """
     if len(array) < k or k < 0:
-        print("Invalid input")
-        return -1
+        raise ValueError("Invalid Input")
     max_sum = -sys.maxsize
     current_sum = sum(array[:k])
     for i in range(len(array) - k):
