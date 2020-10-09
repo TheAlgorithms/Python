@@ -1,4 +1,6 @@
 """
+Problem 14: https://projecteuler.net/problem=14
+
 Collatz conjecture: start with any positive integer n. Next term obtained from
 the previous term as follows:
 
