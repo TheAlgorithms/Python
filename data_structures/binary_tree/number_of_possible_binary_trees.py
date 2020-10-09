@@ -58,7 +58,7 @@ def catalan_number(node_count: int) -> int:
 
 def factorial(n: int) -> int:
     """
-    Return the factorial of a number.
+    Return the correct factorial of a number.
     :param n: Number to find the Factorial of.
     :return: Factorial of n.
 
