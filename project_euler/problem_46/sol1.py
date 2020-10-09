@@ -1,4 +1,6 @@
 """
+Problem 46: https://projecteuler.net/problem=46
+
 It was proposed by Christian Goldbach that every odd composite number can be
 written as the sum of a prime and twice a square.
 
@@ -84,5 +86,10 @@ def compute_nums(n: int) -> list[int]:
                 return list_nums
 
 
+def solution() -> int:
+    """Return the solution to the problem"""
+    return compute_nums(1)[0]
+
+
 if __name__ == "__main__":
-    print(f"{compute_nums(1) = }")
+    print(f"{solution() = }")

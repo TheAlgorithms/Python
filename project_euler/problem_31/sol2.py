@@ -1,4 +1,7 @@
-"""Coin sums
+"""
+Problem 31: https://projecteuler.net/problem=31
+
+Coin sums
 
 In England the currency is made up of pound, £, and pence, p, and there are
 eight coins in general circulation:
@@ -29,7 +32,7 @@ Example:
 """
 
 
-def solution(pence: int) -> int:
+def solution(pence: int = 200) -> int:
     """Returns the number of different ways to make X pence using any number of coins.
     The solution is based on dynamic programming paradigm in a bottom-up fashion.
 
