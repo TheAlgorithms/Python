@@ -1,5 +1,5 @@
 """
-https://projecteuler.net/problem=39
+Problem 39: https://projecteuler.net/problem=39
 
 If p is the perimeter of a right angle triangle with integral length sides,
 {a,b,c}, there are exactly three solutions for p = 120.
@@ -29,12 +29,11 @@ def pythagorean_triple(max_perimeter: int) -> typing.Counter[int]:
     for base in range(1, max_perimeter + 1):
         for perpendicular in range(base, max_perimeter + 1):
             hypotenuse = (base * base + perpendicular * perpendicular) ** 0.5
-            if hypotenuse == int((hypotenuse)):
+            if hypotenuse == int(hypotenuse):
                 perimeter = int(base + perpendicular + hypotenuse)
                 if perimeter > max_perimeter:
                     continue
-                else:
-                    triplets[perimeter] += 1
+                triplets[perimeter] += 1
     return triplets
 
 
@@ -49,10 +48,8 @@ def solution(n: int = 1000) -> int:
     840
     """
     triplets = pythagorean_triple(n)
-    perimeter, _ = triplets.most_common(1)[0]
-    return perimeter
+    return triplets.most_common(1)[0][0]
 
 
 if __name__ == "__main__":
-    result = solution(1000)
-    print(f"Perimeter {result} has maximum solutions")
+    print(f"Perimeter {solution()} has maximum solutions")
