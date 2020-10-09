@@ -10,21 +10,21 @@ import sys
 from typing import List
 
 
-def max_sum(array: List[int], k: int) -> int:
+def max_sum_in_array(array: List[int], k: int) -> int:
     """
     Returns the maximum sum of k consecutive elements
     >>> arr = [1, 4, 2, 10, 2, 3, 1, 0, 20]
     >>> k = 4
-    >>> max_sum(arr, k)
+    >>> max_sum_in_array(arr, k)
     24
     >>> k = 10
-    >>> max_sum(arr,k)
+    >>> max_sum_in_array(arr,k)
     Traceback (most recent call last):
         ...
     ValueError: Invalid Input
     >>> arr = [1, 4, 2, 10, 2, 13, 1, 0, 2]
     >>> k = 4
-    >>> max_sum(arr, k)
+    >>> max_sum_in_array(arr, k)
     27
     """
     if len(array) < k or k < 0:
@@ -44,4 +44,4 @@ if __name__ == "__main__":
     testmod()
     array = [randint(-1000, 1000) for i in range(100)]
     k = randint(0, 110)
-    print(f"The maximum sum of {k} consecutive elements is {max_sum(array,k)}")
+    print(f"The maximum sum of {k} consecutive elements is {max_sum_in_array(array,k)}")
