@@ -1,4 +1,25 @@
-def is_palindrome(head):
+from typing import Any
+
+
+class Node:
+    def __init__(self, val: Any):
+        self.val = val
+        self.next = None
+
+
+def is_palindrome(head: Node) -> bool:
+    """
+    >>> head = Node(1)
+    >>> is_palindrome(head)
+    True
+    >>> head.next = Node(2)
+    >>> is_palindrome(head)
+    False
+    >>> head.next = Node(2)
+    >>> head.next.next = Node(1)
+    >>> is_palindrome(head)
+    True
+    """
     if not head:
         return True
     # split the list to two parts
@@ -25,7 +46,18 @@ def is_palindrome(head):
     return True
 
 
-def is_palindrome_stack(head):
+def is_palindrome_stack(head: Node) -> bool:
+    """
+    >>> head = Node(1)
+    >>> is_palindrome_stack(head)
+    True
+    >>> head.next = Node(2)
+    >>> is_palindrome_stack(head)
+    False
+    >>> head.next.next = Node(1)
+    >>> is_palindrome_stack(head)
+    True
+    """
     if not head or not head.next:
         return True
 
@@ -49,7 +81,18 @@ def is_palindrome_stack(head):
     return True
 
 
-def is_palindrome_dict(head):
+def is_palindrome_dict(head: Node) -> bool:
+    """
+    >>> head = Node(1)
+    >>> is_palindrome_dict(head)
+    True
+    >>> head.next = Node(2)
+    >>> is_palindrome_dict(head)
+    False
+    >>> head.next.next = Node(1)
+    >>> is_palindrome_dict(head)
+    True
+    """
     if not head or not head.next:
         return True
     d = {}
@@ -75,3 +118,9 @@ def is_palindrome_dict(head):
         if middle > 1:
             return False
     return True
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod(verbose=True)
