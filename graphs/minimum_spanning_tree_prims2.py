@@ -3,17 +3,34 @@ from typing import Dict, Optional, Tuple, Union
 
 
 def get_parent_position(position: int) -> int:
-    # helper function get the position of the parent of the current node
+    """
+    heap helper function get the position of the parent of the current node
+
+    >>> get_parent_position(1)
+    0
+    >>> get_parent_position(2)
+    0
+    """
     return (position - 1) // 2
 
 
 def get_child_left_position(position: int) -> int:
-    # helper function get the position of the left child of the current node
+    """
+    heap helper function get the position of the left child of the current node
+    
+    >>> get_child_left_position(0)
+    1
+    """
     return (2 * position) + 1
 
 
 def get_child_right_position(position: int) -> int:
-    # helper function get the position of the right child of the current node
+    """
+    heap helper function get the position of the right child of the current node
+    
+    >>> get_child_right_position(0)
+    2
+    """
     return (2 * position) + 2
 
 
@@ -22,7 +39,7 @@ class MinPriorityQueue:
     Minimum Priority Queue Class
 
     Functions:
-    isEmpty: function to check if the priority queue is empty
+    is_empty: function to check if the priority queue is empty
     push: function to add an element with given priority to the queue
     extract_min: function to remove and return the element with lowest weight (highest
                  priority)
@@ -64,7 +81,7 @@ class MinPriorityQueue:
     def __repr__(self) -> str:
         return str(self.heap)
 
-    def isEmpty(self) -> bool:
+    def is_empty(self) -> bool:
         # Check if the priority queue is empty
         return self.elements == 0
 
@@ -200,6 +217,7 @@ def prims_algo(
     >>> graph.add_edge("a", "b", 3)
     >>> graph.add_edge("b", "c", 10)
     >>> graph.add_edge("c", "d", 5)
+    >>> graph.add_edge("a", "c", 15)
     >>> graph.add_edge("b", "d", 100)
 
     >>> dist, parent = prims_algo(graph)
@@ -211,15 +229,15 @@ def prims_algo(
     >>> abs(dist["a"] - dist["c"])
     13
     """
-    # prim's algorithm for single source shortest path
+    # prim's algorithm for minimum spanning tree
     dist = {node: maxsize for node in graph.connections}
     parent = {node: None for node in graph.connections}
     priority_queue = MinPriorityQueue()
     [priority_queue.push(node, weight) for node, weight in dist.items()]
-    if priority_queue.isEmpty():
+    if priority_queue.is_empty():
         return dist, parent
 
-    # start initialization
+    # initialization
     node = priority_queue.extract_min()
     dist[node] = 0
     for neighbour in graph.connections[node]:
@@ -228,7 +246,7 @@ def prims_algo(
             priority_queue.update_key(neighbour, dist[neighbour])
             parent[neighbour] = node
     # running prim's algorithm
-    while not priority_queue.isEmpty():
+    while not priority_queue.is_empty():
         node = priority_queue.extract_min()
         for neighbour in graph.connections[node]:
             if dist[neighbour] > dist[node] + graph.connections[node][neighbour]:
