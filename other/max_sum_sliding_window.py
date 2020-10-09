@@ -29,8 +29,8 @@ def max_sum(array: List[int], k: int) -> int:
     current_sum = sum(array[:k])
     for i in range(len(array) - k):
         current_sum = current_sum - array[i] + array[i + k]
-        current_sum = max(max_sum, current_sum)
-    return current_sum
+        max_sum = max(max_sum, current_sum)
+    return max_sum
 
 
 if __name__ == "__main__":
