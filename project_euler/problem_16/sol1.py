@@ -5,8 +5,10 @@ What is the sum of the digits of the number 2^1000?
 """
 
 
-def solution(power):
-    """Returns the sum of the digits of the number 2^power.
+def solution(power: int) -> int:
+    """
+    Returns the sum of the digits of the number 2^power.
+
     >>> solution(1000)
     1366
     >>> solution(50)
