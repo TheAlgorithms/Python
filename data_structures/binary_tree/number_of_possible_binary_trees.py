@@ -1,8 +1,8 @@
 """
-Hey, we are going to find an exciting number called Catalan number which is use to find
+Hey! We are going to find an exciting number called Catalan number which is use to find
 the number of possible binary search trees from tree of a given number of nodes.
 
-We will use the formula: t(n) = SUMMATION(i = 1 to n)t(i-1)t(n-i)
+We will use the formula: t(n) = SUMMATION[(i = 1 to n) * t * (i-1)t(n-i)] 
 
 Further details at Wikipedia: https://en.wikipedia.org/wiki/Catalan_number
 """
@@ -42,7 +42,7 @@ def binomial_coefficient(n: int, k: int) -> int:
 def catalan_number(node_count: int) -> int:
     """
     We can find Catalan number many ways but here we use Binomial Coefficient because it
-    does the job in O(n)
+    does the job in O(n) runtime
 
     return the Catalan number of n using 2nCn/(n+1).
     :param n: number of nodes

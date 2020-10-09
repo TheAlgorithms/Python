@@ -32,7 +32,7 @@ def display(tree: Optional[Node]) -> None:  # In Order traversal of the tree
 
 def depth_of_tree(tree: Optional[Node]) -> int:
     """
-    Recursive function that returns the depth of a binary tree.
+    A recursive function that returns the depth of a binary tree.
 
     >>> root = Node(0)
     >>> depth_of_tree(root)
@@ -54,7 +54,7 @@ def depth_of_tree(tree: Optional[Node]) -> int:
 
 def is_full_binary_tree(tree: Node) -> bool:
     """
-    Returns True if this is a full binary tree
+    Will Return True if this is a full binary tree
 
     >>> root = Node(0)
     >>> is_full_binary_tree(root)
