@@ -205,4 +205,4 @@ def print_accuracy():
       plt.scatter(X_train[:,0], X_train[:,1], c=Y_pred_train, cmap=my_cmap, s=15*(np.abs(np.sign(Y_pred_train-Y_train))+.1))
       plt.show()
       
-print_accuracy()
+
