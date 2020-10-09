@@ -1,11 +1,13 @@
 """
+Problem 16: https://projecteuler.net/problem=16
+
 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
 
 What is the sum of the digits of the number 2^1000?
 """
 
 
-def solution(power):
+def solution(power: int = 1000) -> int:
     """Returns the sum of the digits of the number 2^power.
 
     >>> solution(1000)
@@ -25,4 +27,4 @@ def solution(power):
 
 
 if __name__ == "__main__":
-    print(solution(int(str(input()).strip())))
+    print(f"Sum of the digits is {solution(1000)}")
