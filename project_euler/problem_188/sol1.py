@@ -22,29 +22,31 @@ References:
 
 
 # small helper function for modular exponentiation
-def modexpt(base: int, exponent: int, modulo_value: int) -> int:
-    """Returns the modular exponentiation, that is the value
+def _modexpt(base: int, exponent: int, modulo_value: int) -> int:
+    """
+    Returns the modular exponentiation, that is the value
     of `base ** exponent % modulo_value`, without calculating
     the actual number.
-    >>> modexpt(2, 4, 10)
+    >>> _modexpt(2, 4, 10)
     6
-    >>> modexpt(2, 1024, 100)
+    >>> _modexpt(2, 1024, 100)
     16
-    >>> modexpt(13, 65535, 7)
+    >>> _modexpt(13, 65535, 7)
     6
     """
 
     if exponent == 1:
         return base
     if exponent % 2 == 0:
-        x = modexpt(base, exponent / 2, modulo_value) % modulo_value
+        x = _modexpt(base, exponent / 2, modulo_value) % modulo_value
         return (x * x) % modulo_value
     else:
-        return (base * modexpt(base, exponent - 1, modulo_value)) % modulo_value
+        return (base * _modexpt(base, exponent - 1, modulo_value)) % modulo_value
 
 
 def solution(base: int = 1777, height: int = 1855, digits: int = 8) -> int:
-    """Returns the last 8 digits of the hyperexponentiation of base by
+    """
+    Returns the last 8 digits of the hyperexponentiation of base by
     height, i.e. the number base↑↑height:
 
     >>> solution()
@@ -59,10 +61,11 @@ def solution(base: int = 1777, height: int = 1855, digits: int = 8) -> int:
     # last 8 digits
     modulo_value = 10 ** digits
 
-    # calculate base↑↑height (mod modulo_value)
+    # calculate base↑↑height (mod modulo_value) by repeated modular
+    # exponentiation 'height' times
     result = base
     for i in range(1, height):
-        result = modexpt(base, result, modulo_value)
+        result = _modexpt(base, result, modulo_value)
 
     return result
 
