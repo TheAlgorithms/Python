@@ -3,13 +3,13 @@
 '''
 from collections import defaultdict
 
-class treeNode:
+class treeNode:                                         #Create Tree Node
     def __init__(self,val):
         self.data = val
         self.left = None
         self.right = None
 
-def insert(root,val):
+def insert(root,val):                                   # Insert Node value
     while root is not None:
         if root.data < val:
             if not root.right:
@@ -24,19 +24,19 @@ def insert(root,val):
             else:
                 root = root.left
 
-def verticalView(root,idx,h):
+def verticalView(root,idx,h):                           # Updates variable h(dictionary)
     if root:
         h[idx].append(root.data)
         verticalView(root.left,idx-1,h)
         verticalView(root.right,idx+1,h)
         
-def horizontalView(root,idx,h):
+def horizontalView(root,idx,h):                         #Updates variable h(dictionary)
     if root:
         h[idx].append(root.data)
         horizontalView(root.left,idx+1,h)
         horizontalView(root.right,idx+1,h)
 
-def sideView(root,rightSide=False):
+def sideView(root,rightSide=False):                     # Returns list containing sideview having elements from 0 to n level of tree
     h = defaultdict(list)
     horizontalView(root,0,h)
     side = []
@@ -45,7 +45,7 @@ def sideView(root,rightSide=False):
         side.append(data[idx])
     return side
 
-def upDownView(root,bottom=False):
+def upDownView(root,bottom=False):                      # Returns list from left to right elements of a tree either from above or bottom
     h = defaultdict(list)
     verticalView(root,0,h)
     res = []
@@ -54,13 +54,15 @@ def upDownView(root,bottom=False):
         res.append(h[i][idx])
     return res
 
-def printData(ans):
+def printData(ans):                                     # Utility Function to print values for a given view
+    print("\n\n************** Result ***************")
     if type(ans) is list:
         for i in ans:
             print(i)
     else:
         for i in sorted(ans):
             print(ans[i])
+    print("*************************************\n\n")
 if __name__ == '__main__':
     
     root = treeNode(input('Enter root value\t\t\t'))
@@ -71,23 +73,26 @@ if __name__ == '__main__':
         insert(root,n)
 
     print()
-    option = input('Enter:- \n\ttop\n\tbottom\n\thorizontal\n\tleft\n\tright\n\tvertical\n\nto see the particular view of your tree\t')
-
-    if option=='vertical':
-        h = defaultdict(list)
-        verticalView(root,0,h)
-        printData(h)
-    elif option=='horizontal':
-        h = defaultdict(list)
-        horizontalView(root,0,h)
-        printData(h)
-    elif option=='left':
-        printData(sideView(root))
-    elif option=='right':
-        printData(sideView(root,True))
-    elif option=='top':
-        printData(upDownView(root))
-    elif option=='bottom':
-        printData(upDownView(root,True))
-    else:
-        print('Invalid Choice')
+    while True:
+        option = input('Enter:- \n\ttop\n\tbottom\n\thorizontal\n\tleft\n\tright\n\tvertical\n\nto see the particular view of your tree / Enter q to exit\t')
+        
+        if option=='vertical':
+            h = defaultdict(list)
+            verticalView(root,0,h)
+            printData(h)
+        elif option=='horizontal':
+            h = defaultdict(list)
+            horizontalView(root,0,h)
+            printData(h)
+        elif option=='left':
+            printData(sideView(root))
+        elif option=='right':
+            printData(sideView(root,True))
+        elif option=='top':
+            printData(upDownView(root))
+        elif option=='bottom':
+            printData(upDownView(root,True))
+        elif option=='q':
+            break
+        else:
+            print('Invalid Choice')
