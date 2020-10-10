@@ -1,16 +1,20 @@
 """
-    Euler Problem : 92
-    @author : sandeep gupta
-    @time   : 5 October 2020, 18:30
-    @Solution: Tried doing a top bottom memoziation, to calculate the squares
-    at each step and run through 10 million numbers to calculate the numbers
-    ending at 89, returning the answer at the end.
-    @answer     : 8581146
+Euler Problem : 92
+author : sandeep gupta
+time   : 5 October 2020, 18:30
+answer     : 8581146
 
 """
 
 
 def solution() -> int:
+    """
+    Solution: Tried doing a top bottom memoziation, to calculate the squares
+    at each step and run through 10 million numbers to calculate the numbers
+    ending at 89, returning the answer at the end.
+    >>> solution()
+    8581146
+    """
     square_hash = {}
     answer = 0
     square_hash[89] = 89
@@ -45,9 +49,6 @@ def solution() -> int:
                 number += square[int(j)]
             square_hash[int(string_number)] = number
     return answer
-
-
-print(solution())
 
 
 # Tests
