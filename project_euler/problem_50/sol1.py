@@ -17,6 +17,8 @@ def solution(limit: int = 1000000) -> int:
     """
     Return the prime below 10^6 that can be written as the sum of the most
     consecutive primes.
+    >>> solution(1000)
+    953
     """
     prime_set = set(range(3, limit, 2))
     prime_set.add(2)
