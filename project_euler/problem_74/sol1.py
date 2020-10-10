@@ -95,12 +95,14 @@ def chain_length(n: int, previous: set = None) -> int:
         return ret
 
 
-def solution(n: int = 60) -> int:
+def solution(num_terms: int = 60, max_start: int = 1000000) -> int:
     """
     Return the number of chains with a starting number below one million which
     contain exactly n non-repeating terms.
+    >>> solution(10,1000)
+    28
     """
-    return sum(1 for i in range(1, 1000000) if chain_length(i) == n)
+    return sum(1 for i in range(1, max_start) if chain_length(i) == num_terms)
 
 
 if __name__ == "__main__":
