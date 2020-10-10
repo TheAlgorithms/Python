@@ -1,4 +1,6 @@
 """
+Problem 43: https://projecteuler.net/problem=43
+
 The number, 1406357289, is a 0 to 9 pandigital number because it is made up of
 each of the digits 0 to 9 in some order, but it also has a rather interesting
 sub-string divisibility property.
@@ -38,11 +40,11 @@ def is_substring_divisible(num: tuple) -> bool:
     return True
 
 
-def compute_sum(n: int = 10) -> int:
+def solution(n: int = 10) -> int:
     """
     Returns the sum of all pandigital numbers which pass the
     divisiility tests.
-    >>> compute_sum(10)
+    >>> solution(10)
     16695334890
     """
     list_nums = [
@@ -55,4 +57,4 @@ def compute_sum(n: int = 10) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{compute_sum(10) = }")
+    print(f"{solution() = }")

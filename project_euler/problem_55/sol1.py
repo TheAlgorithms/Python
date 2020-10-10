@@ -1,10 +1,15 @@
 """
+Lychrel numbers
+Problem 55: https://projecteuler.net/problem=55
+
 If we take 47, reverse and add, 47 + 74 = 121, which is palindromic.
+
 Not all numbers produce palindromes so quickly. For example,
 349 + 943 = 1292,
 1292 + 2921 = 4213
 4213 + 3124 = 7337
 That is, 349 took three iterations to arrive at a palindrome.
+
 Although no one has proved it yet, it is thought that some numbers, like 196,
 never produce a palindrome. A number that never forms a palindrome through the
 reverse and add process is called a Lychrel number. Due to the theoretical nature
@@ -48,14 +53,14 @@ def sum_reverse(n: int) -> int:
     return int(n) + int(str(n)[::-1])
 
 
-def compute_lychrel_nums(limit: int) -> int:
+def solution(limit: int = 10000) -> int:
     """
     Returns the count of all lychrel numbers below limit.
-    >>> compute_lychrel_nums(10000)
+    >>> solution(10000)
     249
-    >>> compute_lychrel_nums(5000)
+    >>> solution(5000)
     76
-    >>> compute_lychrel_nums(1000)
+    >>> solution(1000)
     13
     """
     lychrel_nums = []
@@ -73,4 +78,4 @@ def compute_lychrel_nums(limit: int) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{compute_lychrel_nums(10000) = }")
+    print(f"{solution() = }")

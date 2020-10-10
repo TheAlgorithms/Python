@@ -1,5 +1,3 @@
-from math import sqrt
-
 """
 Amicable Numbers
 Problem 21
@@ -15,9 +13,10 @@ and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and
 
 Evaluate the sum of all the amicable numbers under 10000.
 """
+from math import sqrt
 
 
-def sum_of_divisors(n):
+def sum_of_divisors(n: int) -> int:
     total = 0
     for i in range(1, int(sqrt(n) + 1)):
         if n % i == 0 and i != sqrt(n):
@@ -27,7 +26,7 @@ def sum_of_divisors(n):
     return total - n
 
 
-def solution(n):
+def solution(n: int = 10000) -> int:
     """Returns the sum of all the amicable numbers under n.
 
     >>> solution(10000)

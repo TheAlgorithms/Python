@@ -31,6 +31,9 @@ def digitsum(s: str) -> int:
     return i if i == int(s) else 0
 
 
+def solution() -> int:
+    return sum(digitsum(str(i)) for i in range(1000, 1000000))
+
+
 if __name__ == "__main__":
-    count = sum(digitsum(str(i)) for i in range(1000, 1000000))
-    print(count)  # --> 443839
+    print(solution())
