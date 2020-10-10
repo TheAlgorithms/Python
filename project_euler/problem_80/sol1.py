@@ -1,10 +1,10 @@
 """
-Euler Problem : 80
-author : Sandeep Gupta
-problem : For the first one hundred natural numbers, find the total of
+Project Euler Problem 80: https://projecteuler.net/problem=80
+Author: Sandeep Gupta
+Problem statement: For the first one hundred natural numbers, find the total of
 the digital sums of the first one hundred decimal digits for all the irrational
 square roots.
-time   : 5 October 2020, 18:30
+Time: 5 October 2020, 18:30
 """
 import decimal
 
