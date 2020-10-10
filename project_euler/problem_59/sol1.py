@@ -1,14 +1,10 @@
 """
-    Euler Problem : 59
-    @author : sandeep gupta
-    @time   : 4 October 2020, 18:30
-    @Solution: I would say this is slightly tricky question to solve
-    getting a sense of common english word is something like in the
-    isAcceptable function, otherthan that iterated over all the possible
-    passwords key and later checking with the is a commonly used function.
+Euler Problem : 59
+author : sandeep gupta
+time   : 4 October 2020, 18:30
 """
 from itertools import permutations
-
+import os
 
 def check_english(ascii1, ascii2):
     """
@@ -46,9 +42,22 @@ def isAcceptable(myChar):
 
 
 def solution() -> int:
+    """
+    I would say this is slightly tricky question to solve
+    getting a sense of common english word is something like in the
+    isAcceptable function, otherthan that iterated over all the possible
+    passwords key and later checking with the is a commonly used function.
+
+    Input to the solution is from cipher file.
+    >>> solution()
+    129448
+
+    """
+    script_dir = os.path.abspath(os.path.dirname(__file__))
+    cipher = os.path.join(script_dir, "cipher.txt")
     answer = 0
     try:
-        with open("cipher.txt", "r") as file:
+        with open(cipher, "r") as file:
             data = file.read().replace("\n", "")
             data = data.split(",")
             data = [int(x) for x in data]
