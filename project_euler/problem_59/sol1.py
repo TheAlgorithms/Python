@@ -3,8 +3,9 @@ Euler Problem : 59
 author : sandeep gupta
 time   : 4 October 2020, 18:30
 """
-from itertools import permutations
 import os
+from itertools import permutations
+
 
 def check_english(ascii1, ascii2):
     """
