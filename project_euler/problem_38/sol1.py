@@ -14,7 +14,7 @@ What is the largest 1 to 9 pandigital 9-digit number that can be formed as the c
 
 
 def is_pandigital(num):
-    """ 
+    """
     Checks whether num is 1-9 pandigital
     >>> is_pandigital(123456789)
     True
@@ -33,7 +33,7 @@ def is_pandigital(num):
     for digit in range(1, 10):
         digit = str(digit)
         if digit in num:
-            num = num.replace(digit, '', 1)
+            num = num.replace(digit, "", 1)
         else:
             return False
     return True if len(num) == 0 else False
@@ -41,10 +41,10 @@ def is_pandigital(num):
 
 def solution():
     for num in range(9487, 9233, -1):
-        num_to_check = int(str(num*1)+str(num*2))
+        num_to_check = int(str(num * 1)+str(num * 2))
         if is_pandigital(num_to_check):
             return num_to_check
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(solution())
