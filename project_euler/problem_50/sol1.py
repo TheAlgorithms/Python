@@ -1,10 +1,9 @@
 
 
 
-"""fills the primes dict with prime numbers <=u \n
-        primes: Global Dictionary To fill     \n
-        l: (optional) Starting value    \n
-"""
+#fills the primes dict with prime numbers <=u 
+#        primes: Global Dictionary To fill     
+#       l: (optional) Starting value    
 def prma(u:int,primes:dict, l:int=2)->None:
     """
     >>> primes = {}
@@ -37,10 +36,12 @@ def prma(u:int,primes:dict, l:int=2)->None:
 
 
 
-def solution(MX = 1000000)->int:
+def solution(MX:int = 1000000)->int:
     """
     >>> solution()
     997651
+    >>> solution(1000)  #lessthan 1000
+    953
     """
     primes= {}      # using a dict To maintain order and o(1) searching..
     prma(MX,primes)    #fill dict with primes < MX
