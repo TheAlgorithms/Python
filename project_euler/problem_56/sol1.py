@@ -36,6 +36,4 @@ def solution(a: int = 100, b: int = 100) -> int:
 
 # Tests
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    print(compute())
