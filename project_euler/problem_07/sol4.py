@@ -31,7 +31,7 @@ def solution(n) -> int:
     primes = [2]
     while True:
         if is_prime(current_number, primes):
-            primes.append(x)
+            primes.append(current_number)
         if len(primes) >= n:
             return primes[n - 1]
         current_number += 2
