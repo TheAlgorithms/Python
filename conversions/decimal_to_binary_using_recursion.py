@@ -48,7 +48,6 @@ def main(number) -> str:
 
 
 if __name__ == "__main__":
-    # main(input(": "))
     import doctest
-
     doctest.testmod()
+    main(input(": ").strip())
