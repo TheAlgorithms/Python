@@ -29,13 +29,9 @@ def solution(a: int = 100, b: int = 100) -> int:
 
     # RETURN the MAXIMUM from the list of SUMs of the list of INT converted from STR of
     # BASE raised to the POWER
-    return max(
-        [
-            sum([int(x) for x in str(base ** power)])
-            for base in range(a)
-            for power in range(b)
-        ]
-    )
+    ans = max(sum(int(c) for c in str(a**b))
+		for a in range(100) for b in range(100))
+	return str(ans)
 
 
 # Tests
