@@ -14,6 +14,8 @@ def solution(target: int = 2000000) -> int:
     """
     Find the area of the grid which contains as close to two million rectangles
     as possible.
+    >>> solution(2000)
+    72
     """
     triangle_numbers = [0]
     for i in range(1, ceil(sqrt(target * 2) * 1.1)):
