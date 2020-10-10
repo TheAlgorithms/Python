@@ -558,6 +558,8 @@
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_12/sol2.py)
   * Problem 120
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_120/sol1.py)
+  * Problem 125
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_125/sol1.py)
   * Problem 13
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_13/sol1.py)
   * Problem 14
