@@ -16,14 +16,9 @@ def solution():
     >>> solution()
     '5537376230'
     """
-    array = []
-
     file_path = os.path.join(os.path.dirname(__file__), "num.txt")
     with open(file_path, "r") as file_hand:
-        for line in file_hand:
-            array.append(int(line))
-
-    return str(sum(array))[:10]
+        return str(sum([int(line) for line in file_hand]))[:10]
 
 
 if __name__ == "__main__":
