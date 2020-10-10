@@ -25,7 +25,7 @@ digits?
 """
 
 
-def solution(n):
+def solution(n: int = 1000) -> int:
     """Returns the index of the first term in the Fibonacci sequence to contain
     n digits.
 

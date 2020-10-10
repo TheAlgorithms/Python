@@ -1,4 +1,4 @@
-def palindromic_string(input_string):
+def palindromic_string(input_string: str) -> str:
     """
     >>> palindromic_string('abbbaba')
     'abbba'
