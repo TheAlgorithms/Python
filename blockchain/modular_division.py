@@ -14,7 +14,7 @@
 # Uses ExtendedEuclid to find the inverse of a
 
 
-def modular_division(a, b, n):
+def modular_division(a: int, b: int, n: int) -> int:
     """
     >>> modular_division(4,8,5)
     2
@@ -33,7 +33,7 @@ def modular_division(a, b, n):
 
 
 # This function find the inverses of a i.e., a^(-1)
-def invert_modulo(a, n):
+def invert_modulo(a: int, n: int) -> int:
     """
     >>> invert_modulo(2, 5)
     3
@@ -51,7 +51,7 @@ def invert_modulo(a, n):
 # ------------------ Finding Modular division using invert_modulo -------------------
 
 # This function used the above inversion of a to find x = (b*a^(-1))mod n
-def modular_division2(a, b, n):
+def modular_division2(a: int, b: int, n: int) -> int:
     """
     >>> modular_division2(4,8,5)
     2
@@ -72,7 +72,7 @@ def modular_division2(a, b, n):
 # and y, then d = gcd(a,b)
 
 
-def extended_gcd(a, b):
+def extended_gcd(a: int, b: int) -> (int, int, int):
     """
      >>> extended_gcd(10, 6)
      (2, -1, 2)
@@ -99,7 +99,7 @@ def extended_gcd(a, b):
 
 
 # Extended Euclid
-def extended_euclid(a, b):
+def extended_euclid(a: int, b: int) -> (int, int):
     """
     >>> extended_euclid(10, 6)
     (-1, 2)
@@ -119,7 +119,7 @@ def extended_euclid(a, b):
 # Euclid's Algorithm
 
 
-def greatest_common_divisor(a, b):
+def greatest_common_divisor(a: int, b: int) -> int:
     """
     >>> greatest_common_divisor(7,5)
     1
