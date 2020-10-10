@@ -29,6 +29,10 @@ def solution(limit: int = 1500000) -> int:
     """
     Return the number of values of L <= limit such that a wire of length L can be
     formmed into an integer sided right angle triangle in exactly one way.
+    >>> solution(50)
+    6
+    >>> solution(1000)
+    112
     """
     freqs: DefaultDict = defaultdict(int)
     m = 2
