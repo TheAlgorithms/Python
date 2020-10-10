@@ -5,14 +5,14 @@ We can see that the 6th prime is 13. What is the Nth prime number?
 """
 
 
-def is_prime(num, arr):
+def is_prime(num: int, arr: []) -> bool:
     for i in arr:
         if num % i == 0:
             return False
     return True
 
 
-def solution(n):
+def solution(n) -> int:
     """Returns the n-th prime number.
     >>> solution(6)
     13
@@ -27,14 +27,14 @@ def solution(n):
     >>> solution(100)
     541
     """
-    x = 3
+    current_number = 3
     primes = [2]
     while True:
-        if is_prime(x, primes):
+        if is_prime(current_number, primes):
             primes.append(x)
         if len(primes) >= n:
             return primes[n - 1]
-        x += 2
+        current_number += 2
 
 
 if __name__ == "__main__":
