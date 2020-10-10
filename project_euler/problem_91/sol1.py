@@ -39,6 +39,8 @@ def solution(limit: int = 50) -> int:
     """
     Return the number of right triangles OPQ that can be formed by two points P, Q
     which have both x- and y- coordinates between 0 and limit inclusive.
+    >>> solution(2)
+    14
     """
     return sum(
         1
