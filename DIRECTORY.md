@@ -558,6 +558,8 @@
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_12/sol2.py)
   * Problem 120
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_120/sol1.py)
+  * Problem 125
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_125/sol1.py)
   * Problem 13
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_13/sol1.py)
   * Problem 14
@@ -662,10 +664,10 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_71/sol1.py)
   * Problem 76
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_76/sol1.py)
-  * Problem 92
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_92/sol1.py)
   * Problem 80
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_80/sol1.py)
+  * Problem 92
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_92/sol1.py)
   * Problem 97
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_97/sol1.py)
   * Problem 99
