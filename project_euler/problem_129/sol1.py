@@ -35,6 +35,8 @@ def A(n: int) -> int:
 def solution(limit: int = 1000000) -> int:
     """
     Return the least value of n for which A(n) first exceeds limit.
+    >>> solution(10)
+    17
     """
     n = limit - 1
     while A(n) <= limit:
