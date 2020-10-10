@@ -8,7 +8,7 @@ remainder) by all of the numbers from 1 to N?
 """
 
 
-def solution(n):
+def solution(n: int = 20) -> int:
     """Returns the smallest positive number that is evenly divisible(divisible
     with no remainder) by all of the numbers from 1 to n.
 

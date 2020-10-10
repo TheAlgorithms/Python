@@ -1,6 +1,6 @@
 """
 Counting Summations
-Problem 76
+Problem 76: https://projecteuler.net/problem=76
 
 It is possible to write five as a sum in exactly six different ways:
 
@@ -16,25 +16,26 @@ positive integers?
 """
 
 
-def partition(m):
-    """Returns the number of different ways one hundred can be written as a sum
-    of at least two positive integers.
+def solution(m: int = 100) -> int:
+    """
+    Returns the number of different ways the number m can be written as a
+    sum of at least two positive integers.
 
-    >>> partition(100)
+    >>> solution(100)
     190569291
-    >>> partition(50)
+    >>> solution(50)
     204225
-    >>> partition(30)
+    >>> solution(30)
     5603
-    >>> partition(10)
+    >>> solution(10)
     41
-    >>> partition(5)
+    >>> solution(5)
     6
-    >>> partition(3)
+    >>> solution(3)
     2
-    >>> partition(2)
+    >>> solution(2)
     1
-    >>> partition(1)
+    >>> solution(1)
     0
     """
     memo = [[0 for _ in range(m)] for _ in range(m + 1)]
@@ -51,4 +52,4 @@ def partition(m):
 
 
 if __name__ == "__main__":
-    print(partition(int(str(input()).strip())))
+    print(solution(int(input("Enter a number: ").strip())))

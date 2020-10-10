@@ -11,16 +11,16 @@ Using these conclusions, we will calculate the result.
 """
 
 
-def compute_nums(max_base: int = 10, max_power: int = 22) -> int:
+def solution(max_base: int = 10, max_power: int = 22) -> int:
     """
     Returns the count of all n-digit numbers which are nth power
-    >>> compute_nums(10, 22)
+    >>> solution(10, 22)
     49
-    >>> compute_nums(0, 0)
+    >>> solution(0, 0)
     0
-    >>> compute_nums(1, 1)
+    >>> solution(1, 1)
     0
-    >>> compute_nums(-1, -1)
+    >>> solution(-1, -1)
     0
     """
     bases = range(1, max_base)
@@ -31,4 +31,4 @@ def compute_nums(max_base: int = 10, max_power: int = 22) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{compute_nums(10, 22) = }")
+    print(f"{solution(10, 22) = }")

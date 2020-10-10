@@ -1,5 +1,5 @@
 """
-Problem:
+Problem 33: https://projecteuler.net/problem=33
 
 The fraction 49/98 is a curious fraction, as an inexperienced
 mathematician in attempting to simplify it may incorrectly believe
@@ -14,27 +14,30 @@ and denominator.
 If the product of these four fractions is given in its lowest common
 terms, find the value of the denominator.
 """
+from fractions import Fraction
+from typing import List
 
 
-def isDigitCancelling(num, den):
+def is_digit_cancelling(num: int, den: int) -> bool:
     if num != den:
         if num % 10 == den // 10:
             if (num // 10) / (den % 10) == num / den:
                 return True
+    return False
 
 
-def solve(digit_len: int) -> str:
+def fraction_list(digit_len: int) -> List[str]:
     """
-    >>> solve(2)
-    '16/64 , 19/95 , 26/65 , 49/98'
-    >>> solve(3)
-    '16/64 , 19/95 , 26/65 , 49/98'
-    >>> solve(4)
-    '16/64 , 19/95 , 26/65 , 49/98'
-    >>> solve(0)
-    ''
-    >>> solve(5)
-    '16/64 , 19/95 , 26/65 , 49/98'
+    >>> fraction_list(2)
+    ['16/64', '19/95', '26/65', '49/98']
+    >>> fraction_list(3)
+    ['16/64', '19/95', '26/65', '49/98']
+    >>> fraction_list(4)
+    ['16/64', '19/95', '26/65', '49/98']
+    >>> fraction_list(0)
+    []
+    >>> fraction_list(5)
+    ['16/64', '19/95', '26/65', '49/98']
     """
     solutions = []
     den = 11
@@ -42,14 +45,24 @@ def solve(digit_len: int) -> str:
     for num in range(den, last_digit):
         while den <= 99:
             if (num != den) and (num % 10 == den // 10) and (den % 10 != 0):
-                if isDigitCancelling(num, den):
+                if is_digit_cancelling(num, den):
                     solutions.append(f"{num}/{den}")
             den += 1
         num += 1
         den = 10
-    solutions = " , ".join(solutions)
     return solutions
 
 
+def solution(n: int = 2) -> int:
+    """
+    Return the solution to the problem
+    """
+    result = 1.0
+    for fraction in fraction_list(n):
+        frac = Fraction(fraction)
+        result *= frac.denominator / frac.numerator
+    return int(result)
+
+
 if __name__ == "__main__":
-    print(solve(2))
+    print(solution())

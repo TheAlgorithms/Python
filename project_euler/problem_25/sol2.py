@@ -25,14 +25,29 @@ digits?
 """
 
 
-def fibonacci_generator():
+def fibonacci_generator() -> int:
+    """
+    A generator that produces numbers in the Fibonacci sequence
+
+    >>> generator = fibonacci_generator()
+    >>> next(generator)
+    1
+    >>> next(generator)
+    2
+    >>> next(generator)
+    3
+    >>> next(generator)
+    5
+    >>> next(generator)
+    8
+    """
     a, b = 0, 1
     while True:
         a, b = b, a + b
         yield b
 
 
-def solution(n):
+def solution(n: int = 1000) -> int:
     """Returns the index of the first term in the Fibonacci sequence to contain
     n digits.
 
