@@ -1,0 +1,24 @@
+def SieveOfEratosthenes(num): 
+    prime = [True for i in range(num+1)] 
+    p = 2
+    while (p * p <= num): 
+          
+       
+        if (prime[p] is True): 
+              
+            # Update all multiples of p 
+            for i in range(p * p, num+1, p): 
+                prime[i] = False
+        p += 1
+      
+    # Print all prime numbers 
+    for p in range(2, num+1): 
+        if prime[p]: 
+           print (p)
+  
+# driver program 
+if __name__=='__main__': 
+    num =int(input())
+    print ("Following are the prime numbers smaller than or equal to" ,num)
+    
+    SieveOfEratosthenes(num)
