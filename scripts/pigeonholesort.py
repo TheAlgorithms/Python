@@ -1,7 +1,3 @@
-# Python program to implement Pigeonhole Sort */ 
-  
-# source code : "https://en.wikibooks.org/wiki/ 
-#   Algorithm_Implementation/Sorting/Pigeonhole_sort" 
 def pigeonhole_sort(a): 
     # size of range of values in the list  
     # (ie, number of pigeonholes we need) 
