@@ -22,6 +22,9 @@ NOTE: The first two examples in the file represent
 """
 
 
+import os
+
+
 # Class representing a 2D point with x and y coordinates
 class Point:
     def __init__(self, x, y):
@@ -156,7 +159,15 @@ def count_triangles(triangles):
     return len([True for i in triangles if triangle_contains_origin(i)])
 
 
+def solution():
+    script_dir = os.path.abspath(os.path.dirname(__file__))
+    file_name_without_extension = os.path.join(script_dir, "triangles_euler102")
+    with open(file_name_without_extension, "r") as file_hand:
+        loaded = file_hand.read()
+
+        triangles = triangles_from_str(loaded)
+        return count_triangles(triangles)
+
+
 if __name__ == "__main__":
-    loaded = open("./triangles_euler102.txt", "r").read()
-    triangles = triangles_from_str(loaded)
-    print(f"Triangles containing the origin: {count_triangles(triangles)}")
+    print(f"Triangles containing the origin: {solution()}")
