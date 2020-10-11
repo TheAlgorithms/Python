@@ -3,14 +3,22 @@ def bin_recursive(decimal: int) -> str:
     """
     The funtion takes in an integer number via the parameter "decimal"
     and returns a string.
+    >>> bin_recursive(1000)
+    '1111101000'
+    >>> bin_recursive("72")
+    Traceback (most recent call last):
+    ...
+    TypeError: unsupported operand type(s) for //: 'str' and 'int'
+    >>> bin_recursive("number")
+    Traceback (most recent call last):
+    ...
+    TypeError: unsupported operand type(s) for //: 'str' and 'int'
     """
     # Initialize exit base of the recursion function
     if decimal == 1 or decimal == 0:
         return str(decimal)
-    #
-    half = decimal // 2
-    remainder = decimal % 2
-    return bin_recursive(half) + str(remainder)
+    # Start recursion and return output
+    return str(bin_recursive(decimal // 2)) + str(decimal % 2)
 
 
 # This funtion handles wrong inputs, calls the funtion above
@@ -49,5 +57,6 @@ def main(number) -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main(input(": ").strip())
