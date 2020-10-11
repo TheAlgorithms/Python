@@ -34,7 +34,7 @@ def solution(n: int = 10 ** 6) -> int:
     """
 
     if n < 1:
-        raise ValueError("Please enter a natural number")
+        raise ValueError("Please enter an integer greater than 0")
 
     sieve = [True] * n
     primes = []
