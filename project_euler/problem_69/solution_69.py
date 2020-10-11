@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
-
 """
 Totient maximum
-Problem 69
+Problem 69: https://projecteuler.net/problem=69
 
 Euler's Totient function, φ(n) [sometimes called the phi function],
 is used to determine the number of numbers less than n which are relatively prime to n.
@@ -26,16 +24,12 @@ Find the value of n ≤ 1,000,000 for which n/φ(n) is a maximum.
 """
 
 
-def solution() -> int:
+def solution(n: int = 10 ** 6) -> int:
     """
     Returns solution to problem.
     Algorithm:
     Find n/φ(n)for all n ≤ 1,000,000 and return the n that attains maximum
-
-    >>> solution()
-    999983
     """
-    n = 10 ** 6
 
     # Precompute phi using product formula (wikilink below)
     # https://en.wikipedia.org/wiki/Euler%27s_totient_function#Euler's_product_formula
