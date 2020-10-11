@@ -51,27 +51,27 @@ def is_prime(number: int) -> bool:
     return True
 
 
-def solution():
+def solution(constraint=10 ** 6):
     """
     Return the problem solution.
-    >>> solution()
-    997651
+    >>> solution(1000)
+    953
     """
 
-    prime_list = [2] + [x for x in range(3, 10 ** 6, 2) if is_prime(x)]
+    prime_list = [2] + [x for x in range(3, constraint, 2) if is_prime(x)]
 
     cumulative_sum = []
     tmp = 0
     for prime in prime_list:
         tmp += prime
-        if tmp < 10 ** 6:
+        if tmp < constraint:
             cumulative_sum.append(tmp)
         else:
             break
 
     upper_limit_idx = 0
     for i in range(len(prime_list)):
-        if prime_list[i] < 10 ** 6:
+        if prime_list[i] < constraint:
             upper_limit_idx = i
         else:
             break
