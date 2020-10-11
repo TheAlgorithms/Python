@@ -45,13 +45,14 @@ def solution(n: int = 10 ** 6) -> int:
     """
 
     if n <= 0:
-        raise ValueError("Please enter a natural number")
+        raise ValueError("Please enter an integer greater than 0")
 
     phi = list(range(n + 1))
     for number in range(2, n + 1):
-        phi[number] -= 1
-        for multiple in range(number * 2, n + 1, number):
-            phi[multiple] = (phi[multiple] // number) * (number - 1)
+        if phi[number] == number:
+            phi[number] -= 1
+            for multiple in range(number * 2, n + 1, number):
+                phi[multiple] = (phi[multiple] // number) * (number - 1)
 
     answer = 1
     for number in range(1, n + 1):
