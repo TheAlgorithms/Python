@@ -26,7 +26,6 @@ References:
 """
 
 
-# a cache to speed up calculation
 cache = {}
 
 
@@ -84,9 +83,6 @@ def _calculate(days: int, absent: int, late: int) -> int:
 
     prizestrings = state_late + state_absent + state_ontime
 
-    # keep the value we calculated in the cache, so that later we do not
-    # need to recurse again. This is the main improvement which brings
-    # runtime down from seconds/minutes to usually below 1 second.
     cache[key] = prizestrings
     return prizestrings
 
@@ -102,8 +98,6 @@ def solution(days: int = 30) -> int:
     43
     """
 
-    # we call the calculate function above, with initially
-    # no absent days and no late days.
     return _calculate(days, absent=0, late=0)
 
 
