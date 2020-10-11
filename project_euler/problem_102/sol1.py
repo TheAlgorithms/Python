@@ -22,22 +22,25 @@ class Point:
         self.x = float(x)
         self.y = float(y)
 
-    # Calculates the difference between two points   
+    # Calculates the difference between two points
     def minus(self, p):
         return Point(p.x - self.x, p.y - self.y)
 
     def __str__(self):
         return f"( {self.x}, {self.y})"
 
+
 # Calculates the distance between p1 and p2, or one side of a triangle
 def side(p1, p2):
     return (abs(p2.x - p1.x) ** 2.0 + abs(p2.y - p1.y) ** 2.0) ** 0.5
+
 
 # Calculates the cross product between two points
 def cross_product(p1, p2):
     return p1.x * p2.y - p1.y * p2.x
 
-# Calculates the area of an triangle with vertices on points p1, p2, p3 
+
+# Calculates the area of an triangle with vertices on points p1, p2, p3
 def area(p1, p2, p3):
     a = side(p1, p2)
     b = side(p2, p3)
@@ -50,6 +53,7 @@ def area(p1, p2, p3):
 
     s = (a + b + c) / 2.0
     return (s * (s - a) * (s - b) * (s - c)) ** 0.5
+
 
 # Returns wheter a triangle contains (0, 0) or not
 def triangle_contains_origin(triangle):
@@ -65,6 +69,7 @@ def triangle_contains_origin(triangle):
     ]
 
     return round(bigArea, 5) == round(sum(smallerAreas), 5)
+
 
 # Loads the triangles from the file provided by Project Euler
 def triangles_from_file(fileName):
@@ -89,7 +94,6 @@ def count_triangles():
     triangles = triangles_from_file("triangles_euler102.txt")
 
     return len([True for i in triangles if triangle_contains_origin(i)])
-
 
 
 if __name__ == "__main__":
