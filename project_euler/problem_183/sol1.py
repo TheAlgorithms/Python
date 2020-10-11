@@ -19,6 +19,12 @@ Limit = 10000
 
 
 def solution(n):
+    """
+    Returns a fixed number.
+    
+    >>> solution()
+    48861552
+    """
     rounded_int = round(n / 2.718281828)
     while rounded_int % 2 == 0:
         rounded_int //= 2
