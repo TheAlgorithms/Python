@@ -1,9 +1,10 @@
-''' https://en.wikipedia.org/wiki/Rail_fence_cipher '''
+""" https://en.wikipedia.org/wiki/Rail_fence_cipher """
+
 
 def encrypt(input_string: str, key: int) -> str:
     """
     Shuffles the character of a string by placing each of them
-    in a grid (the height is dependant on the key) in a zigzag
+    in a grid (the height is dependent on the key) in a zigzag
     formation and reading it left to right.
 
     >>> encrypt("Hello World", 4)
@@ -26,7 +27,7 @@ def encrypt(input_string: str, key: int) -> str:
         raise ValueError("Height of grid can't be 0 or negative")
     if key == 1 or len(input_string) <= key:
         return input_string
-    
+
     for position, character in enumerate(input_string):
         num = position % (lowest * 2)  # puts it in bounds
         num = min(num, lowest * 2 - num)  # creates zigzag pattern
@@ -61,19 +62,19 @@ def decrypt(input_string: str, key: int) -> str:
         raise ValueError("Height of grid can't be 0 or negative")
     if key == 1:
         return input_string
-    
+
     temp_grid = [[] for _ in range(key)]  # generates template
     for position in range(len(input_string)):
         num = position % (lowest * 2)  # puts it in bounds
         num = min(num, lowest * 2 - num)  # creates zigzag pattern
         temp_grid[num].append("*")
-    
+
     counter = 0
     for row in temp_grid:  # fills in the characters
         splice = input_string[counter : counter + len(row)]
         grid.append([character for character in splice])
         counter += len(row)
-    
+
     output_string = ""  # reads as zigzag
     for position in range(len(input_string)):
         num = position % (lowest * 2)  # puts it in bounds
@@ -84,11 +85,11 @@ def decrypt(input_string: str, key: int) -> str:
 
 
 def bruteforce(input_string: str) -> dict:
-    '''Uses decrypt function by guessing every key
+    """Uses decrypt function by guessing every key
 
     >>> bruteforce("HWe olordll")[4]
     'Hello World'
-    '''
+    """
     results = {}
     for key_guess in range(1, len(input_string)):  # tries every key
         results[key_guess] = decrypt(input_string, key_guess)
