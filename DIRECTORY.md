@@ -568,6 +568,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_17/sol1.py)
   * Problem 18
     * [Solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_18/solution.py)
+  * Problem 183
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_183/sol1.py)
   * Problem 19
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_19/sol1.py)
   * Problem 20
