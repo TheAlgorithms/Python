@@ -44,7 +44,8 @@ def solution(n: int = 10 ** 6) -> int:
 
     """
 
-    assert n > 0, "Enter a natural number"
+    if n <= 0:
+        raise ValueError("Please enter a natural number")
 
     phi = list(range(0, n + 1))
     for number in range(2, n + 1):
