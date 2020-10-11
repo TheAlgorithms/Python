@@ -28,11 +28,23 @@ def solution(n: int = 10 ** 6) -> int:
     """
     Returns solution to problem.
     Algorithm:
-    Find n/φ(n)for all n ≤ 1,000,000 and return the n that attains maximum
+    1. Precompute φ(k) for all natural k, k <= n using product formula (wikilink below)
+    https://en.wikipedia.org/wiki/Euler%27s_totient_function#Euler's_product_formula
+
+    2. Find k/φ(k) for all k ≤ n and return the k that attains maximum
+
+    >>> solution(10)
+    6
+
+    >>> solution(100)
+    30
+
+    >>> solution(9973)
+    2310
+
     """
 
-    # Precompute phi using product formula (wikilink below)
-    # https://en.wikipedia.org/wiki/Euler%27s_totient_function#Euler's_product_formula
+    assert n > 0, "Enter a natural number"
 
     phi = list(range(0, n + 1))
     for number in range(2, n + 1):
@@ -41,9 +53,9 @@ def solution(n: int = 10 ** 6) -> int:
             for multiple in range(number * 2, n + 1, number):
                 phi[multiple] = (phi[multiple] // number) * (number - 1)
 
-    answer = 6
-    for number in range(10, n + 1):
-        if phi[answer] / answer < phi[number] / number:
+    answer = 1
+    for number in range(1, n + 1):
+        if (answer / phi[answer]) < (number / phi[number]):
             answer = number
 
     return answer
