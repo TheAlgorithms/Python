@@ -18,27 +18,27 @@ def bin_recursive(decimal: int) -> str:
     if decimal == 1 or decimal == 0:
         return str(decimal)
     # Start recursion and return output
-    binary_result = str(bin_recursive(decimal // 2)) + str(decimal % 2)
-    return binary_result
+    binary = bin_recursive(decimal // 2) + str(decimal % 2)
+    return binary
 
 
 # This funtion handles wrong inputs, calls the funtion above
 # and then prints out the output with prefix "0b" and "-0b".
-def main(number) -> str:
+def main(number: int) -> str:
     """
     This function takes a parameter "number",
-    tries converting tp an integer and handles wrong inputs,
-    passes the converted input to the functions above and
+    tries converting it to an integer and handles wrong inputs,
+    passes the converted input to the function above and
     prints the output with prefix "0b" & "-0b" for positive
     and negative integers respectively.
     >>> main(0)
-    '0b0'
+    0b0
     >>> main(40)
-    '0b101000'
+    0b101000
     >>> main(-40)
-    '-0b101000'
+    -0b101000
     >>> main(40.8)
-    '0b101000'
+    0b101000
     >>> main("forty")
     'Input value is not an integer'
     """
@@ -51,10 +51,9 @@ def main(number) -> str:
 
     if number < 0:
         number = -number
-        final_result = "-0b" + str((bin_recursive(number)))
+        print(f"-0b{bin_recursive(number)}")
     else:
-        final_result = "0b" + str((bin_recursive(number)))
-    return final_result
+        print(f"0b{bin_recursive(number)}")
 
 
 if __name__ == "__main__":
