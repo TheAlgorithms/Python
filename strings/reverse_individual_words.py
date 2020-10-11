@@ -10,8 +10,8 @@ def reverse_individual_words(input_str: str) -> str:
     """
     individual_reverse_string = []
     for word in input_str.split(" "):
-        if word[-1] in ['.', '!', '?']:
-            individual_reverse_string.append(word[-2::-1]+word[-1])
+        if word[-1] in [".", "!", "?"]:
+            individual_reverse_string.append(word[-2::-1] + word[-1])
         else:
             individual_reverse_string.append(word[::-1])
 
