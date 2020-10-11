@@ -35,4 +35,4 @@ def solution(n):
     return -n
 
 
-print("Sum of D(N):", sum(solution(n) for n in xrange(5, Limit + 1)))
+print("Sum of D(N):", sum(solution(n) for n in range(5, Limit + 1)))
