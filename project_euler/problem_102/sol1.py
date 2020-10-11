@@ -124,30 +124,45 @@ def build_triangle(fromStr):
     return triangle
 
 
-def triangles_from_file(fileName):
+def triangles_from_str(string):
     """Returns an array of triangles from the file provided by Project Euler
-
-    >>> len(triangles_from_file('triangles_euler102.txt'))
-    1000
+    >>>
+    >>> triangles_from_str('''
+    ... -340,495,-153,-910,835,-947
+    ... -175,41,-421,-714,574,-645
+    ... -547,712,-352,579,951,-786
+    ... 419,-864,-83,650,-399,171
+    ... -429,-89,-357,-930,296,-29
+    ... -734,-702,823,-745,-684,-62
+    ... -971,762,925,-776,-663,-157''')
+    [[(-340.0, 495.0), (-153.0, -910.0), (835.0, -947.0)], [(-175.0, 41.0), (-421.0, -714.0), (574.0, -645.0)], [(-547.0, 712.0), (-352.0, 579.0), (951.0, -786.0)], [(419.0, -864.0), (-83.0, 650.0), (-399.0, 171.0)], [(-429.0, -89.0), (-357.0, -930.0), (296.0, -29.0)], [(-734.0, -702.0), (823.0, -745.0), (-684.0, -62.0)], [(-971.0, 762.0), (925.0, -776.0), (-663.0, -157.0)]]
     """
 
-    data = open(fileName, "r").read()
-    tests = data.split("\n")
+    tests = string.split("\n")
     triangles = [build_triangle(i) for i in tests if not i == ""]
 
     return triangles
 
 
-def count_triangles():
+def count_triangles(triangles):
     """Returns the count of triangles that contains the origin
 
-    >>> count_triangles()
-    228
+    >>> count_triangles([
+    ... [Point(-340.0, 495.0), Point(-153.0, -910.0), Point(835.0, -947.0)],
+    ... [Point(-175.0, 41.0), Point(-421.0, -714.0), Point(574.0, -645.0)],
+    ... [Point(-547.0, 712.0), Point(-352.0, 579.0), Point(951.0, -786.0)],
+    ... [Point(419.0, -864.0), Point(-83.0, 650.0), Point(-399.0, 171.0)],
+    ... [Point(-429.0, -89.0), Point(-357.0, -930.0), Point(296.0, -29.0)],
+    ... [Point(-734.0, -702.0), Point(823.0, -745.0), Point(-684.0, -62.0)],
+    ... [Point(-971.0, 762.0), Point(925.0, -776.0), Point(-663.0, -157.0)]
+    ... ])
+    2
     """
-    triangles = triangles_from_file("./triangles_euler102.txt")
 
     return len([True for i in triangles if triangle_contains_origin(i)])
 
 
 if __name__ == "__main__":
-    print(f"Triangles containing the origin: {count_triangles()}")
+    loaded = open("./triangles_euler102.txt", "r").read()
+    triangles = triangles_from_str(loaded)
+    print(f"Triangles containing the origin: {count_triangles(triangles)}")
