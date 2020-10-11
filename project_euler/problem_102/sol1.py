@@ -144,7 +144,7 @@ def count_triangles():
     >>> count_triangles()
     228
     """
-    triangles = triangles_from_file("triangles_euler102.txt")
+    triangles = triangles_from_file("./triangles_euler102.txt")
 
     return len([True for i in triangles if triangle_contains_origin(i)])
 
