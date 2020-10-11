@@ -11,6 +11,7 @@ True
 False
 """
 
+
 def amicable_numbers(first_number, second_number) -> bool:
     if first_number <= 1 or second_number <= 1:
         return False
