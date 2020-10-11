@@ -69,8 +69,8 @@ def cross_product(p1, p2):
 def area(p1, p2, p3):
     """Returns the area of an triangle of vertices on points p1, p2, p3
 
-    >>> area(Point(1, 2), Point(-2, 3), Point(3, 4))
-    4.000000000000002
+    >>> round(area(Point(1, 2), Point(-2, 3), Point(3, 4)), 5)
+    4.0
     """
 
     a = side(p1, p2)
