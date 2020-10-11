@@ -22,7 +22,7 @@ def solution(n):
     """
     Returns a fixed number.
 
-    >>> print(sum(solution(n) for n in range(5, Limit + 1)))
+    >>> print(sum(solution(n) for n in range(5, 10000 + 1)))
     48861552
     """
     rounded_int = round(n / 2.718281828)
