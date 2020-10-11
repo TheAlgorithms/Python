@@ -1,22 +1,17 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 """
-    Euler Problem : 60
-    @author : sandeep gupta
-    @time   : 4 October 2020, 18:30
+Euler Problem : 60
+author : sandeep gupta
+time   : 4 October 2020, 18:30
 
-    @Problem: The primes 3, 7, 109, and 673, are quite remarkable. By taking
-              any two primes and concatenating them in any order the result
-              will always be prime. For example, taking 7 and 109, both 7109
-              and 1097 are prime. The sum of these four primes, 792, represents
-              the lowest sum for a set of four primes with this property.
-              Find the lowest sum for a set of five primes for which any two primes
-              concatenate to produce another prime.
+Problem: The primes 3, 7, 109, and 673, are quite remarkable. By taking
+         any two primes and concatenating them in any order the result
+         will always be prime. For example, taking 7 and 109, both 7109
+         and 1097 are prime. The sum of these four primes, 792, represents
+         the lowest sum for a set of four primes with this property.
+         Find the lowest sum for a set of five primes for which any two primes
+         concatenate to produce another prime.
 
-    @Solution: BRUTE - calculated all the prime numbers using seive and stored them
-               in global to avoid any re-calculation after that in each iteration tried
-               to optimize at each step to avoid re-dundant work.
+    
     @answer     : sum(13, 5197, 5701, 6733, 8389) = 26033
 """
 
@@ -63,7 +58,15 @@ def generate_prime():
 
 def solution() -> int:  # function without any parameters
 
-    # ... calculations ...
+    """
+    Solution: BRUTE - calculated all the prime numbers using seive and stored them
+              in global to avoid any re-calculation after that in each iteration tried
+              to optimize at each step to avoid re-dundant work.
+
+    >>> solution()
+    26033
+    
+    """
 
     answer = 1000000000000000
     max_limit = 1100
