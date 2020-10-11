@@ -1,4 +1,6 @@
 """
+Problem 14: https://projecteuler.net/problem=14
+
 Collatz conjecture: start with any positive integer n. Next term obtained from
 the previous term as follows:
 
@@ -23,9 +25,10 @@ that all starting numbers finish at 1.
 
 Which starting number, under one million, produces the longest chain?
 """
+from typing import List
 
 
-def collatz_sequence(n):
+def collatz_sequence(n: int) -> List[int]:
     """Returns the Collatz sequence for n."""
     sequence = [n]
     while n != 1:
@@ -37,27 +40,23 @@ def collatz_sequence(n):
     return sequence
 
 
-def solution(n):
+def solution(n: int = 1000000) -> int:
     """Returns the number under n that generates the longest Collatz sequence.
 
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution(1000000)
-    # {'counter': 525, 'largest_number': 837799}
+    # 837799
     >>> solution(200)
-    {'counter': 125, 'largest_number': 171}
+    171
     >>> solution(5000)
-    {'counter': 238, 'largest_number': 3711}
+    3711
     >>> solution(15000)
-    {'counter': 276, 'largest_number': 13255}
+    13255
     """
 
     result = max([(len(collatz_sequence(i)), i) for i in range(1, n)])
-    return {"counter": result[0], "largest_number": result[1]}
+    return result[1]
 
 
 if __name__ == "__main__":
-    result = solution(int(input().strip()))
-    print(
-        "Longest Collatz sequence under one million is %d with length %d"
-        % (result["largest_number"], result["counter"])
-    )
+    print(solution(int(input().strip())))

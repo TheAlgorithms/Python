@@ -5,24 +5,43 @@ of a given number N?
 
 e.g. for 10, largest prime factor = 5. For 17, largest prime factor = 17.
 """
+
 import math
 
 
-def isprime(no):
-    if no == 2:
+def isprime(num: int) -> bool:
+    """Returns boolean representing primality of given number num.
+    >>> isprime(2)
+    True
+    >>> isprime(3)
+    True
+    >>> isprime(27)
+    False
+    >>> isprime(2999)
+    True
+    >>> isprime(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Parameter num must be greater or equal to two.
+    >>> isprime(1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Parameter num must be greater or equal to two.
+    """
+    if num <= 1:
+        raise ValueError("Parameter num must be greater or equal to two.")
+    if num == 2:
         return True
-    elif no % 2 == 0:
+    elif num % 2 == 0:
         return False
-    sq = int(math.sqrt(no)) + 1
-    for i in range(3, sq, 2):
-        if no % i == 0:
+    for i in range(3, int(math.sqrt(num)) + 1, 2):
+        if num % i == 0:
             return False
     return True
 
 
-def solution(n):
+def solution(n: int = 600851475143) -> int:
     """Returns the largest prime factor of a given number n.
-
     >>> solution(13195)
     29
     >>> solution(10)
@@ -54,24 +73,21 @@ def solution(n):
         raise TypeError("Parameter n must be int or passive of cast to int.")
     if n <= 0:
         raise ValueError("Parameter n must be greater or equal to one.")
-    maxNumber = 0
+    max_number = 0
     if isprime(n):
         return n
-    else:
-        while n % 2 == 0:
-            n = n / 2
-        if isprime(n):
-            return int(n)
-        else:
-            n1 = int(math.sqrt(n)) + 1
-            for i in range(3, n1, 2):
-                if n % i == 0:
-                    if isprime(n / i):
-                        maxNumber = n / i
-                        break
-                    elif isprime(i):
-                        maxNumber = i
-            return maxNumber
+    while n % 2 == 0:
+        n //= 2
+    if isprime(n):
+        return n
+    for i in range(3, int(math.sqrt(n)) + 1, 2):
+        if n % i == 0:
+            if isprime(n / i):
+                max_number = n / i
+                break
+            elif isprime(i):
+                max_number = i
+    return max_number
 
 
 if __name__ == "__main__":
