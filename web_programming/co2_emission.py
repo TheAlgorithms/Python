@@ -1,4 +1,3 @@
-
 """
 Get CO2 emission data from the UK CarbonIntensity API
 """
