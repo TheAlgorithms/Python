@@ -1,6 +1,7 @@
 """
 From: https://en.wikipedia.org/wiki/Amicable_numbers
-Amicable numbers are two different numbers related in such a way that the sum of the proper divisors of each is equal to the other number.
+Amicable numbers are two different numbers related in such a way that 
+the sum of the proper divisors of each is equal to the other number.
 
 >>> amicable_numbers(60,84)
 False
