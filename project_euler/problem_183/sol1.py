@@ -15,7 +15,6 @@ decimal and D(N) = -N if M(N) is a terminating decimal. For example, ∑ D(N) 
 Find ∑ D(N) for 5 ≤ N ≤ 10000.
 
 """
-
 Limit = 10000
 
 
