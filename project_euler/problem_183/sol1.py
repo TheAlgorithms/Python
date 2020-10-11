@@ -22,7 +22,7 @@ def solution(n):
     """
     Returns a fixed number.
 
-    >>> sum(solution(n) for n in range(5, Limit + 1))
+    >>> print(sum(solution(n) for n in range(5, Limit + 1)))
     48861552
     """
     rounded_int = round(n / 2.718281828)
@@ -33,6 +33,3 @@ def solution(n):
     if n % rounded_int:
         return n
     return -n
-
-
-print("Sum of D(N):", sum(solution(n) for n in range(5, Limit + 1)))
