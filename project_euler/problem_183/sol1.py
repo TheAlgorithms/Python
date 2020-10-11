@@ -18,11 +18,16 @@ Find ∑ D(N) for 5 ≤ N ≤ 10000.
 
 Limit = 10000
 
-def solution(n):
-  rounded_int = round(n/2.718281828)
-  while rounded_int % 2 == 0: rounded_int //= 2
-  while rounded_int % 5 == 0: rounded_int //= 5
-  if n % rounded_int: return n
-  return -n
 
-print "Sum of D(N):", sum(solution(n) for n in xrange(5, Limit+1))
+def solution(n):
+    rounded_int = round(n / 2.718281828)
+    while rounded_int % 2 == 0:
+        rounded_int //= 2
+    while rounded_int % 5 == 0:
+        rounded_int //= 5
+    if n % rounded_int:
+        return n
+    return -n
+
+
+print "Sum of D(N):", sum(solution(n) for n in xrange(5, Limit + 1))
