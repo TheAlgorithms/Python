@@ -29,7 +29,7 @@ class Point:
         self.y = float(y)
 
     def minus(self, p):
-        """ Returns the difference between self and another 2D point
+        """Returns the difference between self and another 2D point
 
         >>> p = Point(2, 3)
         >>> p.minus( Point(4, 5))
@@ -40,14 +40,16 @@ class Point:
 
     def __str__(self):
         return f"( {self.x}, {self.y})"
+
     def __unicode__(self):
         return f"( {self.x}, {self.y})"
+
     def __repr__(self):
         return f"( {self.x}, {self.y})"
 
 
 def side(p1, p2):
-    """ Returns the distance between p1 and p2
+    """Returns the distance between p1 and p2
 
     >>> cross_product(Point(0, 3), Point(4, 0))
     5.0
@@ -56,15 +58,16 @@ def side(p1, p2):
 
 
 def cross_product(p1, p2):
-    """ Returns the cross product between two 2D points
+    """Returns the cross product between two 2D points
 
     >>> cross_product(Point(1, 2), Point(3, 4))
     -2.0
     """
     return p1.x * p2.y - p1.y * p2.x
 
+
 def area(p1, p2, p3):
-    """ Returns the area of an triangle of vertices on points p1, p2, p3
+    """Returns the area of an triangle of vertices on points p1, p2, p3
 
     >>> area(Point(1, 2), Point(-2, 3), Point(3, 4))
     4.000000000000002
@@ -82,8 +85,9 @@ def area(p1, p2, p3):
     s = (a + b + c) / 2.0
     return (s * (s - a) * (s - b) * (s - c)) ** 0.5
 
+
 def triangle_contains_origin(triangle):
-    """ Returns wheter a triangle contains (0, 0) or not
+    """Returns wheter a triangle contains (0, 0) or not
 
     >>> triangle_contains_origin([Point(-175,41), Point(-421,-714), Point(574,-645)])
     False
@@ -106,7 +110,7 @@ def triangle_contains_origin(triangle):
 
 
 def build_triangle(fromStr):
-    """ Returns an array of 2D Points composing a triangle from a comma separated string
+    """Returns an array of 2D Points composing a triangle from a comma separated string
 
     >>> len(build_triangle('-340,495,-153,-910,835,-947'))
     3
@@ -119,8 +123,9 @@ def build_triangle(fromStr):
         triangle.append(new_point)
     return triangle
 
+
 def triangles_from_file(fileName):
-    """ Returns an array of triangles from the file provided by Project Euler
+    """Returns an array of triangles from the file provided by Project Euler
 
     >>> len(triangles_from_file('triangles_euler102.txt'))
     1000
@@ -134,8 +139,8 @@ def triangles_from_file(fileName):
 
 
 def count_triangles():
-    """ Returns the count of triangles that contains the origin
-    
+    """Returns the count of triangles that contains the origin
+
     >>> count_triangles()
     228
     """
