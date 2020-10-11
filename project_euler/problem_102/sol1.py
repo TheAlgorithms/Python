@@ -13,7 +13,7 @@ X(-175,41), Y(-421,-714), Z(574,-645)
 It can be verified that triangle ABC contains the origin, whereas triangle XYZ does not.
 
 Using triangles.txt (right click and 'Save Link/Target As...'),
- a 27K text file containing the co-ordinates of one thousand "random"
+ a 27K text file containing the coordinates of one thousand "random"
  triangles, find the number of triangles for which the
  interior contains the origin.
 
@@ -87,7 +87,7 @@ def area(p1, p2, p3):
 
 
 def triangle_contains_origin(triangle):
-    """Returns wheter a triangle contains (0, 0) or not
+    """Returns whether a triangle contains (0, 0) or not
 
     >>> triangle_contains_origin([Point(-175,41), Point(-421,-714), Point(574,-645)])
     False
@@ -115,8 +115,8 @@ def build_triangle(fromStr):
     >>> len(build_triangle('-340,495,-153,-910,835,-947'))
     3
     """
-    splitted = fromStr.split(",")
-    asInt = [float(i) for i in splitted]
+    split = fromStr.split(",")
+    asInt = [float(i) for i in split]
     triangle = []
     for i in range(0, 6, 2):
         new_point = Point(asInt[i], asInt[i + 1])
