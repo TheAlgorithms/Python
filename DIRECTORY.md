@@ -352,6 +352,7 @@
   * [Add](https://github.com/TheAlgorithms/Python/blob/master/maths/add.py)
   * [Aliquot Sum](https://github.com/TheAlgorithms/Python/blob/master/maths/aliquot_sum.py)
   * [Allocation Number](https://github.com/TheAlgorithms/Python/blob/master/maths/allocation_number.py)
+  * [Amicable Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/amicable_numbers.py)
   * [Area](https://github.com/TheAlgorithms/Python/blob/master/maths/area.py)
   * [Area Under Curve](https://github.com/TheAlgorithms/Python/blob/master/maths/area_under_curve.py)
   * [Armstrong Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/armstrong_numbers.py)
