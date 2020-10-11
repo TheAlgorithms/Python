@@ -15,8 +15,6 @@ PROJECT_EULER_ANSWERS_PATH = PROJECT_EULER_DIR_PATH.joinpath(
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
     PROBLEM_ANSWERS = json.load(file_handle)
 
-error_msgs = []
-
 
 def generate_solution_modules(
     dir_path: pathlib.Path,
@@ -48,20 +46,9 @@ def test_project_euler(subtests, problem_number: int, expected: str):
                     answer = str(solution_module.solution())
                     assert answer == expected, f"Expected {expected} but got {answer}"
                 except (AssertionError, AttributeError, TypeError) as err:
-                    error_msgs.append(
-                        f"problem_{problem_number}/{solution_module.__name__}: {err}"
+                    print(
+                        f"problem_{problem_number:02}/{solution_module.__name__}: {err}"
                     )
-                    raise  # We still want pytest to know that this test failed
+                    raise
     else:
         pytest.skip(f"Solution {problem_number} does not exist yet.")
-
-
-# Run this function at the end of all the tests
-# https://stackoverflow.com/a/52873379
-@pytest.fixture(scope="session", autouse=True)
-def custom_print_message(request):
-    def print_error_messages():
-        if error_msgs:
-            print("\n" + "\n".join(error_msgs))
-
-    request.addfinalizer(print_error_messages)
