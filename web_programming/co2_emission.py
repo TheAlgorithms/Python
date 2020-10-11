@@ -22,6 +22,7 @@ def fetch_from_to(start, end):
   for entry in data['data']:
     print('from ' + entry['from'] + ' to ' + entry['to'] + ': ' + str(entry['intensity']['actual']) + '\n')
 
+
 if __name__ == '__main__':
   start = datetime.date(2020, 10, 1)
   end = datetime.date(2020, 10, 3)
