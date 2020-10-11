@@ -2,6 +2,9 @@
 
 https://projecteuler.net/problem=116
 
+one can look for explanation at 
+https://www.geeksforgeeks.org/project-euler/
+
 name :Red, green or blue tiles
 
 Since, we need to count total ways for 50 units of black 
@@ -42,5 +45,4 @@ if __name__ == "__main__":
     fifty units in length be replaced if colours cannot be mixed 
     and at least one coloured tile must be used?"""
     k = 50
-    print(solution(
-        2, k) + solution(3, k) + solution(4, k))
+    print(solution(2, k) + solution(3, k) + solution(4, k))
