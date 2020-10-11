@@ -1,8 +1,6 @@
-#!/usr/bin/env python3
-
 """
 Consecutive prime sum
-Problem 50
+Problem 50: https://projecteuler.net/problem=50
 
 The prime 41, can be written as the sum of six consecutive primes:
 
@@ -16,40 +14,45 @@ Which prime, below 1 million, can be written as the sum of the most consecutive 
 """
 
 
-def solution() -> int:
+def solution(n: int = 10 ** 6) -> int:
     """
     Returns solution to problem.
 
     Algorithm:
-    > Construct a "Sieve of Eratosthenes" to get all primes till million
+    1. Construct a "Sieve of Eratosthenes" to get all primes till n
     (This will also serve as O(1) primality check later)
-    > Now make the largest size window and slide over primes,
+    https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Pseudocode
+
+    2. Now make the largest size window and slide over primes,
     until we encounter the sum of slide being a prime.
 
-    >>> solution()
-    997651
+    >>> solution(100)
+    41
+
+    >>> solution(1000)
+    953
     """
 
-    # To avoid redundant exponentiation
-    million = 10 ** 6
+    if n < 1:
+        raise ValueError("Please enter a natural number")
 
-    sieve = [True] * million
+    sieve = [True] * n
     primes = []
     # Creation of Sieve
-    for number in range(2, million):
+    for number in range(2, n):
         if sieve[number]:
             primes.append(number)
-            for multiple in range(number * number, million, number):
+            for multiple in range(number * number, n, number):
                 sieve[multiple] = False
 
-    # Cumulative sum of primes for increased efficiency when calculating sum over window
+    # Cumulative sum of primes for efficiency when calculating sum over window
     cumulative_sum = [2]
     for i in range(1, len(primes)):
         cumulative_sum.append(cumulative_sum[i - 1] + primes[i])
 
     # Find size of largest window with smallest primes adding to more than million
     largest_size = 0
-    while cumulative_sum[largest_size] < million:
+    while cumulative_sum[largest_size] < n:
         largest_size += 1
 
     for size in range(largest_size, 1, -1):
@@ -59,7 +62,7 @@ def solution() -> int:
                 cumulative_sum[start + size - 1] - cumulative_sum[start] + primes[start]
             )
 
-            if prime_sum < million and sieve[prime_sum]:
+            if prime_sum < n and sieve[prime_sum]:
                 return prime_sum
 
 
