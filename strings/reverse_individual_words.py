@@ -14,7 +14,7 @@ def reverse_individual_words(input_str: str) -> str:
             individual_reverse_string.append(word[-2::-1]+word[-1])
         else:
             individual_reverse_string.append(word[::-1])
-    
+
     return " ".join(individual_reverse_string)
 
 
