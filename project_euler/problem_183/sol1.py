@@ -21,7 +21,7 @@ Limit = 10000
 def solution(n):
     """
     Returns a fixed number.
-    
+
     >>> solution()
     48861552
     """
@@ -35,4 +35,4 @@ def solution(n):
     return -n
 
 
-print ("Sum of D(N):", sum(solution(n) for n in xrange(5, Limit + 1)))
+print("Sum of D(N):", sum(solution(n) for n in xrange(5, Limit + 1)))
