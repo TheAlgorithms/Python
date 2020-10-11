@@ -20,14 +20,14 @@ What is the sum of all semidivisible numbers not exceeding 999966663333 ?
 import math
 
 
-def sieve(n: int) -> list:
+def prime_sieve(n: int) -> list:
     """
     Sieve of Erotosthenes
     Function to return all the prime numbers up to a certain number
     https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-    >>> sieve(3)
+    >>> prime_sieve(3)
     [2]
-    >>> sieve(50)
+    >>> prime_sieve(50)
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
     """
     is_prime = [True] * n
@@ -50,29 +50,34 @@ def sieve(n: int) -> list:
     return primes
 
 
-def solution() -> int:
+def solution(limit: int = 999_966_663_333) -> int:
     """
-    Computes the solution to the problem
-    >>> solution()
-    1259187438574927161
+    Computes the solution to the problem up to the specified limit
+    >>> solution(1000)
+    34825
+
+    >>> solution(10_000)
+    1134942
+
+    >>> solution(100_000)
+    36393008
     """
-    limit = 999966663333
     primes_upper_bound = math.floor(math.sqrt(limit)) + 100
-    primes = sieve(primes_upper_bound)
+    primes = prime_sieve(primes_upper_bound)
 
     matches_sum = 0
     prime_index = 0
     last_prime = primes[prime_index]
 
-    while (last_prime * last_prime) <= limit:
+    while (last_prime ** 2) <= limit:
         next_prime = primes[prime_index + 1]
 
-        lower_bound = last_prime * last_prime
-        upper_bound = next_prime * next_prime
+        lower_bound = last_prime ** 2
+        upper_bound = next_prime ** 2
 
         # Get numbers divisible by lps(current)
         current = lower_bound + last_prime
-        while current < upper_bound and current <= limit:
+        while upper_bound > current <= limit:
             matches_sum += current
             current += last_prime
 
@@ -87,8 +92,8 @@ def solution() -> int:
             current -= next_prime
 
         # Remove the numbers divisible by both ups and lps
-        current = lower_bound - lower_bound % (last_prime * next_prime)
-        while current < upper_bound and current <= limit:
+        current = 0
+        while upper_bound > current <= limit:
             if current <= lower_bound:
                 # Increment the current number
                 current += last_prime * next_prime
