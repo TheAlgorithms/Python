@@ -18,7 +18,8 @@ def bin_recursive(decimal: int) -> str:
     if decimal == 1 or decimal == 0:
         return str(decimal)
     # Start recursion and return output
-    return str(bin_recursive(decimal // 2)) + str(decimal % 2)
+    binary_result = str(bin_recursive(decimal // 2)) + str(decimal % 2)
+    return binary_result
 
 
 # This funtion handles wrong inputs, calls the funtion above
@@ -50,9 +51,10 @@ def main(number) -> str:
 
     if number < 0:
         number = -number
-        return "-0b" + str((bin_recursive(number)))
+        final_result = "-0b" + str((bin_recursive(number)))
     else:
-        return "0b" + str((bin_recursive(number)))
+        final_result = "0b" + str((bin_recursive(number)))
+    return final_result
 
 
 if __name__ == "__main__":
