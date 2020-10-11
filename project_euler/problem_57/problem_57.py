@@ -8,6 +8,8 @@ def solution():
     >>> solution()
     153
     """
+    import sys
+    sys.setrecursionlimit(1001)
     def f(n): # Recursive helper function.
         if n==0: return (3,2) # End state for recursion.
         if n ==3: return (41,29) # Keeps recursion level<997.
