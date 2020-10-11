@@ -67,14 +67,14 @@ def triangle_contains_origin(triangle):
     p1, p2, p3 = triangle
     p0 = Point(0.0, 0.0)
 
-    bigArea = area(p1, p2, p3)
-    smallerAreas = [
+    big_area = area(p1, p2, p3)
+    smaller_areas = [
         area(p1, p2, p0),
         area(p2, p3, p0),
         area(p3, p1, p0),
     ]
 
-    return round(bigArea, 5) == round(sum(smallerAreas), 5)
+    return round(big_area, 5) == round(sum(smaller_areas), 5)
 
 
 # Loads the triangles from the file provided by Project Euler
@@ -85,8 +85,8 @@ def triangles_from_file(fileName):
         asInt = [float(i) for i in splitted]
         triangle = []
         for i in range(0, 6, 2):
-            newPoint = Point(asInt[i], asInt[i + 1])
-            triangle.append(newPoint)
+            new_point = Point(asInt[i], asInt[i + 1])
+            triangle.append(new_point)
         return triangle
 
     data = open(fileName, "r").read()
