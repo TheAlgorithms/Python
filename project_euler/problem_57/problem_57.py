@@ -8,16 +8,16 @@ def solution():
     >>> solution()
     153
     """
-    import sys
-    sys.setrecursionlimit(1001)
-    def f(n): # Recursive helper function.
-        if n==0: return (3,2) # End state for recursion.
-        if n ==3: return (41,29) # Keeps recursion level<997.
+    previous_solutions = {}
+    previous_solutions[0] = (3,2)
+    def f(n: int) -> (int,int): # Recursive helper function.
+        if n in previous_solutions: return previous_solutions[n]
         prev_nom, prev_denom = f(n-1)
-        
         new_denom = prev_nom + prev_denom 
         new_nom = new_denom + prev_denom
-        return (new_nom, new_denom)
+        result = (new_nom, new_denom)
+        previous_solutions[n] = result
+        return result
 
     c = 0
     for i in range(998): # 1K iterations and calculate frequency.
