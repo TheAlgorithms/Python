@@ -33,25 +33,25 @@ class Point:
 
         >>> p = Point(2, 3)
         >>> p.minus( Point(4, 5))
-        p.x == 2 and p.y == 2
+        (2.0, 2.0)
         """
 
         return Point(p.x - self.x, p.y - self.y)
 
     def __str__(self):
-        return f"( {self.x}, {self.y})"
+        return f"({self.x}, {self.y})"
 
     def __unicode__(self):
-        return f"( {self.x}, {self.y})"
+        return f"({self.x}, {self.y})"
 
     def __repr__(self):
-        return f"( {self.x}, {self.y})"
+        return f"({self.x}, {self.y})"
 
 
 def side(p1, p2):
     """Returns the distance between p1 and p2
 
-    >>> cross_product(Point(0, 3), Point(4, 0))
+    >>> side(Point(0.0, 3.0), Point(4.0, 0.0))
     5.0
     """
     return (abs(p2.x - p1.x) ** 2.0 + abs(p2.y - p1.y) ** 2.0) ** 0.5
