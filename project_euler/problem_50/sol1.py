@@ -2,6 +2,7 @@
 Consecutive prime sum
 
 Problem 50
+https://projecteuler.net/problem=50
 
 The prime 41, can be written as the sum of six consecutive primes:
 
@@ -51,11 +52,15 @@ def is_prime(number: int) -> bool:
     return True
 
 
-def solution(constraint=10 ** 6):
+def solution(constraint: int = 10 ** 6):
     """
     Return the problem solution.
+    >>> solution(10000)
+    9521
     >>> solution(1000)
     953
+    >>> solution(50)
+    58
     """
 
     prime_list = [2] + [x for x in range(3, constraint, 2) if is_prime(x)]
@@ -99,4 +104,4 @@ def solution(constraint=10 ** 6):
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(solution(50))
