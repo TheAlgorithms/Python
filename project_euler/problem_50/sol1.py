@@ -104,4 +104,4 @@ def solution(constraint: int = 10 ** 6):
 
 
 if __name__ == "__main__":
-    print(solution(50))
+    print(solution())
