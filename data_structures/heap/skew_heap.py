@@ -45,7 +45,7 @@ class SkewNode(Generic[T]):
 
 class SkewHeap(Generic[T]):
     """
-    Data structure that allows to insert a new value and to pop the smallest
+    A data structure that allows inserting a new value and to pop the smallest
     values. Both operations take O(logN) time where N is the size of the structure.
     - Wiki: https://en.wikipedia.org/wiki/Skew_heap
     - Visualisation: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
