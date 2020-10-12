@@ -15,7 +15,6 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVR
-from statsmodels.tools.sm_exceptions import ConvergenceWarning
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
@@ -81,7 +80,7 @@ def data_safety_checker(list_vote, actual_result):
 
 # data_input_df = pd.read_csv("ex_data.csv", header=None)
 list_data = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
-data_input_df = pd.DataFrame(list_data, columns=['total_user', 'total_even', 'days'])
+data_input_df = pd.DataFrame(list_data, columns=["total_user", "total_even", "days"])
 
 """
 data column = total user in a day, how much online event held in one day,
