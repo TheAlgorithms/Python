@@ -11,20 +11,18 @@ missing (the amount of data that u expected are not supposed to be)
          u can just adjust it for ur own purpose
 """
 
-import warnings
-
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVR
-
 from statsmodels.tools.sm_exceptions import ConvergenceWarning
 from statsmodels.tsa.statespace.sarimax import SARIMAX
+import warnings
 
-warnings.simplefilter("ignore", ConvergenceWarning)
+warnings.simplefilter('ignore', ConvergenceWarning)
 warnings.simplefilter("ignore", UserWarning)
 warnings.simplefilter("ignore", RuntimeWarning)
-np.seterr(divide="ignore", invalid="ignore")
+np.seterr(divide='ignore', invalid='ignore')
 
 
 def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
@@ -89,7 +87,7 @@ def data_safety_checker(list_vote, actual_result):
 
 # data_input_df = pd.read_csv("ex_data.csv", header=None)
 list_data = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
-data_input_df = pd.DataFrame(list_data, columns=["total_user", "total_even", "days"])
+data_input_df = pd.DataFrame(list_data, columns=['total_user', 'total_even', 'days'])
 
 """
 data column = total user in a day, how much online event held in one day,
