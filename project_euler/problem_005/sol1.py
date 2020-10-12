@@ -1,23 +1,30 @@
 """
-Problem:
-2520 is the smallest number that can be divided by each of the numbers from 1
-to 10 without any remainder.
+Smallest multiple
+Problem 5
 
-What is the smallest positive number that is evenly divisible(divisible with no
-remainder) by all of the numbers from 1 to N?
+2520 is the smallest number that can be divided by each of the numbers
+from 1 to 10 without any remainder.
+
+What is the smallest positive number that is _evenly divisible_ by all
+of the numbers from 1 to 20?
+
+References:
+    - The Project Euler problem page:
+    https://projecteuler.net/problem=5
+    - Definition of 'evenly divisible':
+    https://en.wiktionary.org/wiki/evenly_divisible
 """
 
 
 def solution(n: int = 20) -> int:
-    """Returns the smallest positive number that is evenly divisible(divisible
+    """
+    Returns the smallest positive number that is evenly divisible (divisible
     with no remainder) by all of the numbers from 1 to n.
 
     >>> solution(10)
     2520
     >>> solution(15)
     360360
-    >>> solution(20)
-    232792560
     >>> solution(22)
     232792560
     >>> solution(3.4)
@@ -25,26 +32,27 @@ def solution(n: int = 20) -> int:
     >>> solution(0)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter n must be greater or equal to one.
+    ValueError: Parameter n must be greater than or equal to one.
     >>> solution(-17)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter n must be greater or equal to one.
+    ValueError: Parameter n must be greater than or equal to one.
     >>> solution([])
     Traceback (most recent call last):
         ...
-    TypeError: Parameter n must be int or passive of cast to int.
+    TypeError: Parameter n must be int or castable to int.
     >>> solution("asd")
     Traceback (most recent call last):
         ...
-    TypeError: Parameter n must be int or passive of cast to int.
+    TypeError: Parameter n must be int or castable to int.
     """
+
     try:
         n = int(n)
     except (TypeError, ValueError):
-        raise TypeError("Parameter n must be int or passive of cast to int.")
+        raise TypeError("Parameter n must be int or castable to int.")
     if n <= 0:
-        raise ValueError("Parameter n must be greater or equal to one.")
+        raise ValueError("Parameter n must be greater than or equal to one.")
     i = 0
     while 1:
         i += n * (n - 1)

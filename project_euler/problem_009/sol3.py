@@ -1,5 +1,6 @@
 """
-Problem 9: https://projecteuler.net/problem=9
+Special Pythagorean triplet
+Problem 9
 
 A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 
@@ -8,22 +9,28 @@ A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 For example, 3^2 + 4^2 = 9 + 16 = 25 = 5^2.
 
 There exists exactly one Pythagorean triplet for which a + b + c = 1000.
-Find the product abc.
+Find the product a*b*c.
+
+References:
+    - The Project Euler problem page:
+    https://projecteuler.net/problem=9
+    - Wikipedia page for Pythagorean triples:
+    https://en.wikipedia.org/wiki/Pythagorean_triple
 """
 
 
 def solution() -> int:
     """
-     Returns the product of a,b,c which are Pythagorean Triplet that satisfies
-     the following:
-
-     1. a**2 + b**2 = c**2
-     2. a + b + c = 1000
+    Returns the product of a,b,c which are Pythagorean Triplet that satisfies
+    the following:
+      1. a**2 + b**2 = c**2
+      2. a + b + c = 1000
 
     # The code below has been commented due to slow execution affecting Travis.
     # >>> solution()
     # 31875000
     """
+
     return [
         a * b * (1000 - a - b)
         for a in range(1, 999)

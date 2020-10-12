@@ -1,43 +1,50 @@
 """
-https://projecteuler.net/problem=10
+Summation of primes
+Problem 10
 
-Problem Statement:
 The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
 Find the sum of all the primes below two million.
+
+References:
+    - The Project Euler problem page:
+    https://projecteuler.net/problem=10
+    - Wikipedia page for prime numbers:
+    https://en.wikipedia.org/wiki/Prime_number
+    - Wikipedia page for Sieve of Erathostenes
+    https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 """
 
 
 def solution(n: int = 2000000) -> int:
-    """Returns the sum of all the primes below n using Sieve of Eratosthenes:
+    """
+    Returns the sum of all the primes below n using Sieve of Eratosthenes:
 
-    https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
     The sieve of Eratosthenes is one of the most efficient ways to find all primes
     smaller than n when n is smaller than 10 million.  Only for positive numbers.
 
-    >>> solution(2_000_000)
-    142913828922
-    >>> solution(1_000)
+    >>> solution(1000)
     76127
-    >>> solution(5_000)
+    >>> solution(5000)
     1548136
-    >>> solution(10_000)
+    >>> solution(10000)
     5736396
     >>> solution(7)
     10
-    >>> solution(7.1)  # doctest: +ELLIPSIS
+    >>> solution(7.1)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
     TypeError: 'float' object cannot be interpreted as an integer
-    >>> solution(-7)  # doctest: +ELLIPSIS
+    >>> solution(-7)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
     IndexError: list assignment index out of range
-    >>> solution("seven")  # doctest: +ELLIPSIS
+    >>> solution("seven")  # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
     TypeError: can only concatenate str (not "int") to str
     """
+
     primality_list = [0 for i in range(n + 1)]
     primality_list[0] = 1
     primality_list[1] = 1

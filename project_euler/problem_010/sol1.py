@@ -1,16 +1,25 @@
 """
-https://projecteuler.net/problem=10
+Summation of primes
+Problem 10
 
-Problem Statement:
 The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
 Find the sum of all the primes below two million.
+
+References:
+    - The Project Euler problem page:
+    https://projecteuler.net/problem=10
+    - Wikipedia page for prime numbers:
+    https://en.wikipedia.org/wiki/Prime_number
 """
+
 from math import sqrt
 
 
 def is_prime(n: int) -> bool:
-    """Returns boolean representing primality of given number num.
+    """
+    Returns boolean representing primality of given number num.
+
     >>> is_prime(2)
     True
     >>> is_prime(3)
@@ -20,6 +29,7 @@ def is_prime(n: int) -> bool:
     >>> is_prime(2999)
     True
     """
+
     for i in range(2, int(sqrt(n)) + 1):
         if n % i == 0:
             return False
@@ -28,11 +38,9 @@ def is_prime(n: int) -> bool:
 
 
 def solution(n: int = 2000000) -> int:
-    """Returns the sum of all the primes below n.
+    """
+    Returns the sum of all the primes below n.
 
-    # The code below has been commented due to slow execution affecting Travis.
-    # >>> solution(2000000)
-    # 142913828922
     >>> solution(1000)
     76127
     >>> solution(5000)
@@ -42,6 +50,7 @@ def solution(n: int = 2000000) -> int:
     >>> solution(7)
     10
     """
+
     if n > 2:
         sum_of_primes = 2
     else:
