@@ -675,7 +675,7 @@
   * [Validate Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py)
 
 ## Quantum
-  * [Q1](https://github.com/TheAlgorithms/Python/blob/master/quantum/q1.py)
+  * [Single Qubit Measure](https://github.com/TheAlgorithms/Python/blob/master/quantum/single_qubit_measure.py)
 
 ## Scheduling
   * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
