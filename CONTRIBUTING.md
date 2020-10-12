@@ -53,7 +53,7 @@ Algorithms in this repo should not be how-to examples for existing Python packag
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in Python 3.7+.  __print()__ is a function in Python 3 so __print "Hello"__ will _not_ work but __print("Hello")__ will.
+- Please write in Python 3.7+. For instance:  __print()__ is a function in Python 3 so __print "Hello"__ will _not_ work but __print("Hello")__ will.
 - Please focus hard on naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
   - Single letter variable names are _old school_ so please avoid them unless their life only spans a few lines.
   - Expand acronyms because __gcd()__ is hard to understand but __greatest_common_divisor()__ is not.
