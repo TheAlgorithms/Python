@@ -22,7 +22,7 @@ NOTE: The first two examples in the file represent
 """
 
 
-import os
+from urllib.request import urlopen
 
 
 # Class representing a 2D point with x and y coordinates
@@ -160,11 +160,9 @@ def count_triangles(triangles: [[Point]]) -> int:
 
 
 def solution() -> int:
-    script_dir = os.path.abspath(os.path.dirname(__file__))
-    file_name_without_extension = os.path.join(script_dir, "triangles_euler102")
-    with open(file_name_without_extension, "r") as file_hand:
-        loaded = file_hand.read()
-
+    url = "https://projecteuler.net/project/resources/p102_triangles.txt"
+    with urlopen(url) as f:
+        loaded = f.read().decode("utf-8")
         triangles = triangles_from_str(loaded)
         return count_triangles(triangles)
 
