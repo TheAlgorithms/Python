@@ -4,13 +4,14 @@ from __future__ import annotations
 
 from typing import Generic, Iterable, List, Optional, TypeVar
 
-__all__ = ["SkewHeap"]
-
 T = TypeVar("T")
 
 
 class SkewNode(Generic[T]):
-    """One node of the skew heap. Contains the value and references to two children."""
+    """
+    One node of the skew heap. Contains the value and references to
+    two children.
+    """
 
     def __init__(self, value: T) -> None:
         self._value: T = value
@@ -47,62 +48,117 @@ class SkewNode(Generic[T]):
 class SkewHeap(Generic[T]):
     """
     A data structure that allows inserting a new value and to pop the smallest
-    values. Both operations take O(logN) time where N is the size of the structure.
-    - Wiki: https://en.wikipedia.org/wiki/Skew_heap
-    - Visualisation: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
+    values. Both operations take O(logN) time where N is the size of the
+    structure.
+    Wiki: https://en.wikipedia.org/wiki/Skew_heap
+    Visualisation: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
 
-    >>> SkewHeap.from_list([2, 3, 1, 5, 1, 7]).to_sorted_list()
+    >>> SkewHeap([2, 3, 1, 5, 1, 7]).to_sorted_list()
     [1, 1, 2, 3, 5, 7]
 
     >>> sh = SkewHeap()
-    >>> sh.insert(1)
-    >>> sh.top()
-    1
-    >>> sh.insert(0)
     >>> sh.pop()
-    0
-    >>> sh.pop()
-    1
-    >>> sh.top()
     Traceback (most recent call last):
         ...
-    AttributeError: Can't get top element for the empty heap.
+    IndexError: Can't get top element for the empty heap.
+
+    >>> sh.insert(1)
+    >>> sh.insert(-1)
+    >>> sh.insert(0)
+    >>> sh.to_sorted_list()
+    [-1, 0, 1]
     """
 
-    def __init__(self) -> None:
+    def __init__(self, data: Optional[Iterable[T]] = ()) -> None:
+        """
+        >>> sh = SkewHeap([3, 1, 3, 7])
+        >>> sh.to_sorted_list()
+        [1, 3, 3, 7]
+        """
         self._root: Optional[SkewNode[T]] = None
+        for item in data:
+            self.insert(item)
 
     def insert(self, value: T) -> None:
-        """Insert the value into the heap."""
+        """
+        Insert the value into the heap.
+
+        >>> sh = SkewHeap()
+        >>> sh.insert(3)
+        >>> sh.insert(1)
+        >>> sh.insert(3)
+        >>> sh.insert(7)
+        >>> sh.to_sorted_list()
+        [1, 3, 3, 7]
+        """
         self._root = SkewNode.merge(self._root, SkewNode(value))
 
     def pop(self) -> T:
-        """Pop the smallest value from the heap and return it."""
+        """
+        Pop the smallest value from the heap and return it.
+
+        >>> sh = SkewHeap([3, 1, 3, 7])
+        >>> sh.pop()
+        1
+        >>> sh.pop()
+        3
+        >>> sh.pop()
+        3
+        >>> sh.pop()
+        7
+        >>> sh.pop()
+        Traceback (most recent call last):
+            ...
+        IndexError: Can't get top element for the empty heap.
+        """
         result = self.top()
         self._root = SkewNode.merge(self._root.left, self._root.right)
 
         return result
 
     def top(self) -> T:
-        """Return the smallest value from the heap."""
+        """
+        Return the smallest value from the heap.
+
+        >>> sh = SkewHeap()
+        >>> sh.insert(3)
+        >>> sh.top()
+        3
+        >>> sh.insert(1)
+        >>> sh.top()
+        1
+        >>> sh.insert(3)
+        >>> sh.top()
+        1
+        >>> sh.insert(7)
+        >>> sh.top()
+        1
+        """
         if not self._root:
-            raise AttributeError("Can't get top element for the empty heap.")
+            raise IndexError("Can't get top element for the empty heap.")
         return self._root.value
 
     def clear(self):
+        """
+        Clear the heap.
+
+        >>> sh = SkewHeap([3, 1, 3, 7])
+        >>> sh.clear()
+        >>> sh.pop()
+        Traceback (most recent call last):
+            ...
+        IndexError: Can't get top element for the empty heap.
+        """
         self._root = None
 
-    @staticmethod
-    def from_list(data: Iterable[T]) -> SkewHeap[T]:
-        """Get the sorted list from the heap. Heap will be cleared afterwards."""
-        result = SkewHeap()
-        for item in data:
-            result.insert(item)
-
-        return result
-
     def to_sorted_list(self) -> List[T]:
-        """Returns sorted list containing all the values in the heap."""
+        """
+        Returns sorted list containing all the values in the heap.
+
+        >>> sh = SkewHeap([3, 1, 3, 7])
+        >>> sh.to_sorted_list()
+        [1, 3, 3, 7]
+        """
         result = []
         while self:
             result.append(self.pop())
@@ -110,7 +166,19 @@ class SkewHeap(Generic[T]):
         return result
 
     def __bool__(self) -> bool:
-        """Check if the heap is not empty."""
+        """
+        Check if the heap is not empty.
+
+        >>> sh = SkewHeap()
+        >>> bool(sh)
+        False
+        >>> sh.insert(1)
+        >>> bool(sh)
+        True
+        >>> sh.clear()
+        >>> bool(sh)
+        False
+        """
         return self._root is not None
 
 
