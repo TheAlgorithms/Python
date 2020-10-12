@@ -12,10 +12,12 @@ missing (the amount of data that u expected are not supposed to be)
 """
 
 import warnings
+
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVR
+
 from statsmodels.tools.sm_exceptions import ConvergenceWarning
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
