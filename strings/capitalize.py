@@ -6,6 +6,8 @@ def capitalize(sentence: str) -> str:
     This function will capitalize the first letter of a sentence or a word
     >>> capitalize("hello world")
     'Hello world'
+    >>> capitalize("@")
+    '@'
     >>> capitalize("123 hello world")
     '123 hello world'
     >>> capitalize(" hello world")
