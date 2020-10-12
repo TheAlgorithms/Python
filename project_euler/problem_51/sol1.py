@@ -1,5 +1,3 @@
-from collections import Counter
-
 """
 https://projecteuler.net/problem=51
 Prime digit replacements
@@ -18,17 +16,20 @@ Find the smallest prime which, by replacing part of the number (not necessarily
 adjacent digits) with the same digit, is part of an eight prime value family.
 """
 
+from collections import Counter
+from typing import List
 
-def sieve(n: int) -> list:
+
+def prime_sieve(n: int) -> List[int]:
     """
     Sieve of Erotosthenes
     Function to return all the prime numbers up to a certain number
     https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
-    >>> sieve(3)
+    >>> prime_sieve(3)
     [2]
 
-    >>> sieve(50)
+    >>> prime_sieve(50)
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
     """
     is_prime = [True] * n
@@ -51,7 +52,7 @@ def sieve(n: int) -> list:
     return primes
 
 
-def digit_replacements(number: int) -> list:
+def digit_replacements(number: int) -> List[List[int]]:
     """
     Returns all the possible families of digit replacements in a number which
     contains at least one repeating digit
@@ -73,18 +74,22 @@ def digit_replacements(number: int) -> list:
     return replacements
 
 
-def solution() -> int:
+def solution(family_length: int = 8) -> int:
     """
     Returns the solution of the problem
 
-    >>> solution()
-    121313
+    >>> solution(2)
+    229399
+
+    >>> solution(3)
+    221311
     """
     numbers_checked = set()
-    primes = set(sieve(1_000_000))
 
     # Filter primes with less than 3 replaceable digits
-    primes = {x for x in primes if len(str(x)) - len(set(str(x))) >= 3}
+    primes = {
+        x for x in set(prime_sieve(1_000_000)) if len(str(x)) - len(set(str(x))) >= 3
+    }
 
     for prime in primes:
         if prime in numbers_checked:
@@ -96,7 +101,7 @@ def solution() -> int:
             numbers_checked.update(family)
             primes_in_family = primes.intersection(family)
 
-            if len(primes_in_family) != 8:
+            if len(primes_in_family) != family_length:
                 continue
 
             return min(primes_in_family)
