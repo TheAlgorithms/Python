@@ -10,7 +10,7 @@ pillow
 requests
 scikit-fuzzy
 sklearn
+statsmodels
 sympy
 tensorflow
 xgboost
-statsmodels
