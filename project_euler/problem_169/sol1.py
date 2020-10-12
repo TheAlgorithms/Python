@@ -32,3 +32,4 @@ def solution(n = 10**25):
 	return solve(n + 1)
 if __name__ == "__main__":
     print(solution())
+
