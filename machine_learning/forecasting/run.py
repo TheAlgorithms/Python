@@ -16,7 +16,6 @@ import pandas as pd
 from sklearn.preprocessing import Normalizer
 from sklearn.svm import SVR
 from statsmodels.tsa.statespace.sarimax import SARIMAX
-import warnings
 
 
 def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
