@@ -5,9 +5,11 @@ def get_palindrome(s: str) -> str:
     """
     Generates a palindrome by forming a mirror image of the string passed.
 
-    - If the string contains spaces, All spaces will be removed to form the palindrome.
+    - If the string contains spaces, All spaces will be removed to form the
+    palindrome.
     - All letters will be converted to lower case.
-    - All digits and special symbols will also be considered in the palindrome generation.
+    - All digits and special symbols will also be considered in the palindrome
+    generation.
 
     >>> get_palindrome('Github')
     'githubuhtig'
