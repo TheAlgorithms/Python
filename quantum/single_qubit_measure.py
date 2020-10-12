@@ -6,7 +6,6 @@ finally prints the total count of the states finally observed.
 Qiskit Docs: https://qiskit.org/documentation/getting_started.html
 """
 
-
 import qiskit as q
 
 
