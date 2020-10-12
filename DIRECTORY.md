@@ -63,6 +63,7 @@
   * [Playfair Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/playfair_cipher.py)
   * [Porta Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/porta_cipher.py)
   * [Rabin Miller](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rabin_miller.py)
+  * [Rail Fence Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rail_fence_cipher.py)
   * [Rot13](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rot13.py)
   * [Rsa Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rsa_cipher.py)
   * [Rsa Factorization](https://github.com/TheAlgorithms/Python/blob/master/ciphers/rsa_factorization.py)
@@ -668,6 +669,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_69/sol1.py)
   * Problem 71
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_71/sol1.py)
+  * Problem 72
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_72/sol1.py)
   * Problem 76
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_76/sol1.py)
   * Problem 80
@@ -768,6 +771,7 @@
   * [Binary Tree Traversals](https://github.com/TheAlgorithms/Python/blob/master/traversals/binary_tree_traversals.py)
 
 ## Web Programming
+  * [Co2 Emission](https://github.com/TheAlgorithms/Python/blob/master/web_programming/co2_emission.py)
   * [Covid Stats Via Xpath](https://github.com/TheAlgorithms/Python/blob/master/web_programming/covid_stats_via_xpath.py)
   * [Crawl Google Results](https://github.com/TheAlgorithms/Python/blob/master/web_programming/crawl_google_results.py)
   * [Current Stock Price](https://github.com/TheAlgorithms/Python/blob/master/web_programming/current_stock_price.py)
