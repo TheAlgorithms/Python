@@ -13,14 +13,18 @@ import os
 
 
 
-def solution():
-    script_dir=os.path.abspath(os.path.dirname(__file__))
-    p081_matrix=os.path.join(script_dir,"p081_matrix.txt")
-    matrix=[]
-    with open("p081_matrix.txt","r") as file_hand:
-        for line in file_hand:
-            vector=list(map(int,line.split(',')))
-            matrix.append(vector)
+def solution() -> int :
+    matrix=[]	
+
+    # following line of codes are used to input data from a txt file
+    #script_dir=os.path.abspath(os.path.dirname(__file__))
+    #p081_matrix=os.path.join(script_dir,"p081_matrix.txt")
+    #with open("p081_matrix.txt","r") as file_hand:
+        #for line in file_hand:
+            #vector=list(map(int,line.split(',')))
+            #matrix.append(vector)
+	
+	
     row=len(matrix)
     col=len(matrix[0])
 
