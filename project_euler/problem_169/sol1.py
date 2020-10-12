@@ -25,9 +25,10 @@ def solve(n):
 	dp[n] = out
 	return out
 def solution(n = 10**25):
-	"""Finds the answer for a given n
-    >>> solution()
-    178653872807
-    """
+	"""
+	Finds the answer for a given n
+	>>> solution()
+	178653872807
+	"""
 	return solve(n + 1)
 
