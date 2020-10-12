@@ -25,8 +25,8 @@ def solution(fractions_number: int = 1000) -> int:
         if len(str(numerators[-1])) > len(str(denominators[-1])):
             answer += 1
         count += 1
-    print(answer)
+    return answer
 
 
 if __name__ == "__main__":
-    solution()
+    print(solution())
