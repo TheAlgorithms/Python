@@ -1,15 +1,11 @@
-```
-question link - https://projecteuler.net/problem=81
-
-Find the minimal path sum from the top left to the bottom right by
-only moving right and down in matrix.txt 
-
-
-
-
-
-
-```
+#
+#      question link - https://projecteuler.net/problem=81
+#
+#    Find the minimal path sum from the top left to the bottom right by
+#    only moving right and down in matrix.txt 
+#
+#
+#
 
 
 
