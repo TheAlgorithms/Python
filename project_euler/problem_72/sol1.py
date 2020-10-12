@@ -22,24 +22,24 @@ Time: 3.5 sec
 """
 
 
-def solution(N: int = 1_000_000) -> int:
+def solution(limit: int = 1_000_000) -> int:
     """
     Returns an integer, the solution to the problem
     >>> solution(10)
     31
     >>> solution(100)
     3043
-    >>> solution(1_000_000)
-    303963552391
+    >>> solution(1_000)
+    304191
     """
 
-    phi = [i - 1 for i in range(N + 1)]
+    phi = [i - 1 for i in range(limit + 1)]
 
-    for i in range(2, N + 1):
-        for j in range(2 * i, N + 1, i):
+    for i in range(2, limit + 1):
+        for j in range(2 * i, limit + 1, i):
             phi[j] -= phi[i]
 
-    return sum(phi[2 : N + 1])
+    return sum(phi[2 : limit + 1])
 
 
 if __name__ == "__main__":
