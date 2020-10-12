@@ -21,14 +21,14 @@ def sarimax_predictor(train_user, train_match, test_match):
     order = (1, 2, 1)
     s_order = (1, 1, 0, 7)
     model = SARIMAX(train_user, exog=train_match, order=order, seasonal_order=s_order)
-    model_fit = model.fit(disp=False, maxiter=600, method='nm')
+    model_fit = model.fit(disp=False, maxiter=600, method="nm")
     result = model_fit.predict(1, len(test_match), exog=[test_match])
     return result[0]
 
 
 def support_machine_regressor(x_train, x_test, train_user):
     # svr, return list of float
-    regressor = SVR(kernel='rbf', C=1, gamma=0.1, epsilon=.1)
+    regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
     regressor.fit(x_train, train_user)
     y_pred = regressor.predict(x_test)
 
