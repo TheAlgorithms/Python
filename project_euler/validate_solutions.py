@@ -2,10 +2,13 @@
 import importlib.util
 import json
 import pathlib
+from timeit import default_timer as timer
 from types import ModuleType
 from typing import Generator
 
 import pytest
+
+DURATIONS = 20
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
 PROJECT_EULER_ANSWERS_PATH = PROJECT_EULER_DIR_PATH.joinpath(
@@ -14,6 +17,8 @@ PROJECT_EULER_ANSWERS_PATH = PROJECT_EULER_DIR_PATH.joinpath(
 
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
     PROBLEM_ANSWERS = json.load(file_handle)
+
+solution_time = []
 
 
 def generate_solution_modules(
@@ -43,7 +48,15 @@ def test_project_euler(subtests, problem_number: int, expected: str):
                 msg=f"Problem {problem_number} tests", solution_module=solution_module
             ):
                 try:
+                    start_time = timer()
                     answer = str(solution_module.solution())
+                    end_time = timer()
+                    solution_time.append(
+                        [
+                            round(end_time - start_time, 5),
+                            f"problem_{problem_number:02}/{solution_module.__name__}",
+                        ]
+                    )
                     assert answer == expected, f"Expected {expected} but got {answer}"
                 except (AssertionError, AttributeError, TypeError) as err:
                     print(
@@ -52,3 +65,16 @@ def test_project_euler(subtests, problem_number: int, expected: str):
                     raise
     else:
         pytest.skip(f"Solution {problem_number} does not exist yet.")
+
+
+@pytest.fixture(scope="session", autouse=True)
+def custom_messages(request):
+    def print_durations():
+        from operator import itemgetter
+
+        solution_time.sort(key=itemgetter(0), reverse=True)
+        print("\n")
+        for sol_time, sol_file in solution_time[:DURATIONS]:
+            print(f"{sol_time:>10} sec: {sol_file}")
+
+    request.addfinalizer(print_durations)
