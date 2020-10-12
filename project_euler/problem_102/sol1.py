@@ -27,7 +27,7 @@ import os
 
 # Class representing a 2D point with x and y coordinates
 class Point:
-    def __init__(self, x, y):
+    def __init__(self, x: float, y: float):
         self.x = float(x)
         self.y = float(y)
 
@@ -51,7 +51,7 @@ class Point:
         return f"({self.x}, {self.y})"
 
 
-def side(p1, p2):
+def side(p1: Point, p2: Point) -> float:
     """Returns the distance between p1 and p2
 
     >>> side(Point(0.0, 3.0), Point(4.0, 0.0))
@@ -60,7 +60,7 @@ def side(p1, p2):
     return (abs(p2.x - p1.x) ** 2.0 + abs(p2.y - p1.y) ** 2.0) ** 0.5
 
 
-def cross_product(p1, p2):
+def cross_product(p1: Point, p2: Point) -> float:
     """Returns the cross product between two 2D points
 
     >>> cross_product(Point(1, 2), Point(3, 4))
@@ -69,7 +69,7 @@ def cross_product(p1, p2):
     return p1.x * p2.y - p1.y * p2.x
 
 
-def area(p1, p2, p3):
+def area(p1: Point, p2: Point, p3: Point) -> float:
     """Returns the area of an triangle of vertices on points p1, p2, p3
 
     >>> round(area(Point(1, 2), Point(-2, 3), Point(3, 4)), 5)
@@ -89,7 +89,7 @@ def area(p1, p2, p3):
     return (s * (s - a) * (s - b) * (s - c)) ** 0.5
 
 
-def triangle_contains_origin(triangle):
+def triangle_contains_origin(triangle: [Point]) -> bool:
     """Returns whether a triangle contains (0, 0) or not
 
     >>> triangle_contains_origin([Point(-175,41), Point(-421,-714), Point(574,-645)])
@@ -112,7 +112,7 @@ def triangle_contains_origin(triangle):
     return round(big_area, 5) == round(sum(smaller_areas), 5)
 
 
-def build_triangle(fromStr):
+def build_triangle(fromStr: str) -> [Point, Point, Point]:
     """Returns an array of 2D Points composing a triangle from a comma separated string
 
     >>> len(build_triangle('-340,495,-153,-910,835,-947'))
@@ -127,7 +127,7 @@ def build_triangle(fromStr):
     return triangle
 
 
-def triangles_from_str(string):
+def triangles_from_str(string: str) -> [[Point]]:
     """Returns an array of triangles from the file provided by Project Euler
     >>>
     >>> triangles_from_str('''
@@ -141,7 +141,7 @@ def triangles_from_str(string):
     return triangles
 
 
-def count_triangles(triangles):
+def count_triangles(triangles: [[Point]]) -> int:
     """Returns the count of triangles that contains the origin
 
     >>> count_triangles([
@@ -159,7 +159,7 @@ def count_triangles(triangles):
     return len([True for i in triangles if triangle_contains_origin(i)])
 
 
-def solution():
+def solution() -> int:
     script_dir = os.path.abspath(os.path.dirname(__file__))
     file_name_without_extension = os.path.join(script_dir, "triangles_euler102")
     with open(file_name_without_extension, "r") as file_hand:
