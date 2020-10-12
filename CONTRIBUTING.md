@@ -147,9 +147,9 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
 - If you need a third party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
 
-#### Other Standard While Submitting Your Work
+#### Other Requirements for Submissions
 
-- File extension for code should be `.py`. Jupyter notebook files are acceptable in machine learning algorithms.
+- The file extension for code files should be `.py`. Jupyter Notebooks should be submitted to [TheAlgorithms/Jupyter](https://github.com/TheAlgorithms/Jupyter).
 - Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
 - If possible, follow the standard *within* the folder you are submitting to.
