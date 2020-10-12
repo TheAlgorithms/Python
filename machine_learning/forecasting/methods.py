@@ -1,6 +1,6 @@
 import numpy as np
-from statsmodels.tsa.statespace.sarimax import SARIMAX
 from sklearn.svm import SVR
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
 def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):

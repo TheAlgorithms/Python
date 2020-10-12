@@ -11,9 +11,9 @@ missing (the amount of data that u expected are not supposed to be)
          u can just adjust it for ur own purpose
 '''
 
-from sklearn.preprocessing import Normalizer
-import pandas as pd
 from methods import lin_reg_pred, sarimax_predictor, support_machine_regressor
+import pandas as pd
+from sklearn.preprocessing import Normalizer
 
 
 def data_safety_checker(list_vote, actual_result):
