@@ -15,7 +15,7 @@ def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Co
     {'11': 1000}
     """
     # Use Aer's qasm_simulator
-    simulator = q.Aer.get_backend('qasm_simulator')
+    simulator = q.Aer.get_backend("qasm_simulator")
 
     # Create a Quantum Circuit acting on the q register
     circuit = q.QuantumCircuit(qubits, classical_bits)
@@ -34,6 +34,6 @@ def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Co
     return job.result().get_counts(circuit)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     counts = single_qubit_measure(2, 2)
-    print(f'Total count for various states are: {counts}')
+    print(f"Total count for various states are: {counts}")
