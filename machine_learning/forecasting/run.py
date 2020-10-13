@@ -42,7 +42,7 @@ def sarimax_predictor(train_user, train_match, test_match):
     input : training data (total_user, with exog data = total_event) in list of float
     output : list of total user prediction in float
     >>> sarimax_predictor([4,2,6,8], [3,1,2,4], [2])
-    3.0000424034255513
+    6.6666671111109626
     """
     order = (1, 2, 1)
     seasonal_order = (1, 1, 0, 7)
@@ -91,6 +91,14 @@ def interquartile_range_checker(train_user):
 
 
 def data_safety_checker(list_vote, actual_result):
+    """
+    Used to review all the votes (list result prediction)
+    and compare it to the actual result.
+    input : list of predictions
+    output : print whether it's safe or not
+    >>> data_safety_checker([2,3,4],5)
+    today's data is safe
+    """
     safe = 0
     not_safe = 0
     for i in list_vote:
@@ -108,8 +116,8 @@ def data_safety_checker(list_vote, actual_result):
 
 
 # data_input_df = pd.read_csv("ex_data.csv", header=None)
-list_data = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
-data_input_df = pd.DataFrame(list_data, columns=["total_user", "total_even", "days"])
+data_input = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
+data_input_df = pd.DataFrame(data_input, columns=["total_user", "total_even", "days"])
 
 """
 data column = total user in a day, how much online event held in one day,
