@@ -45,7 +45,6 @@ def support_machine_regressor(x_train, x_test, train_user):
     regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
     regressor.fit(x_train, train_user)
     y_pred = regressor.predict(x_test)
-
     return y_pred[0]
 
 
@@ -57,7 +56,6 @@ def interquartile_range_checker(train_user):
     q3 = np.percentile(train_user, 75)
     iqr = q3 - q1
     low_lim = q1 - (iqr * 0.1)
-
     return low_lim
 
 
