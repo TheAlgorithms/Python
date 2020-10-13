@@ -1,7 +1,7 @@
 def is_prime(n):
     """function to find if the given
     number is prime"""
-    for i in range(3, int(n ** 0.5) + 1, 2):
+    for i in range(3, int(n**0.5) + 1, 2):
         if n % i == 0:
             return False
     return True
@@ -35,6 +35,7 @@ def solution():
         # increasing the gap after every 4 numbers
         gap += 1
 
+    
     return int((2 * i + 1) ** 0.5)
 
 
@@ -43,3 +44,4 @@ if __name__ == "__main__":
 
     testmod()
     print(solution())
+    
