@@ -3,7 +3,7 @@ import importlib.util
 import json
 import pathlib
 from types import ModuleType
-from typing import Generator
+from typing import Dict, List
 
 import pytest
 
@@ -13,42 +13,44 @@ PROJECT_EULER_ANSWERS_PATH = PROJECT_EULER_DIR_PATH.joinpath(
 )
 
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
-    PROBLEM_ANSWERS = json.load(file_handle)
+    PROBLEM_ANSWERS: Dict[str, str] = json.load(file_handle)
 
 
-def generate_solution_modules(
-    dir_path: pathlib.Path,
-) -> Generator[ModuleType, None, None]:
-    # Iterating over every file or directory
-    for file_path in dir_path.iterdir():
-        if file_path.suffix != ".py" or file_path.name.startswith(("_", "test")):
+def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
+    """Converts a file path to a Python module"""
+    spec = importlib.util.spec_from_file_location(file_path.name, str(file_path))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def collect_solution_file_paths() -> List[pathlib.Path]:
+    """Collects all the solution file path in the Project Euler directory"""
+    solution_file_paths = []
+    for problem_dir_path in PROJECT_EULER_DIR_PATH.iterdir():
+        if problem_dir_path.is_file() or problem_dir_path.name.startswith("_"):
             continue
-        # Importing the source file through the given path
-        # https://docs.python.org/3/library/importlib.html#importing-a-source-file-directly
-        spec = importlib.util.spec_from_file_location(file_path.name, str(file_path))
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        yield module
+        for file_path in problem_dir_path.iterdir():
+            if file_path.suffix != ".py" or file_path.name.startswith(("_", "test")):
+                continue
+            solution_file_paths.append(file_path)
+    return solution_file_paths
 
 
-@pytest.mark.parametrize("problem_number, expected", PROBLEM_ANSWERS)
-def test_project_euler(subtests, problem_number: int, expected: str):
-    problem_dir = PROJECT_EULER_DIR_PATH.joinpath(f"problem_{problem_number:02}")
-    # Check if the problem directory exist. If not, then skip.
-    if problem_dir.is_dir():
-        for solution_module in generate_solution_modules(problem_dir):
-            # All the tests in a loop is considered as one test by pytest so, use
-            # subtests to make sure all the subtests are considered as different.
-            with subtests.test(
-                msg=f"Problem {problem_number} tests", solution_module=solution_module
-            ):
-                try:
-                    answer = str(solution_module.solution())
-                    assert answer == expected, f"Expected {expected} but got {answer}"
-                except (AssertionError, AttributeError, TypeError) as err:
-                    print(
-                        f"problem_{problem_number:02}/{solution_module.__name__}: {err}"
-                    )
-                    raise
-    else:
-        pytest.skip(f"Solution {problem_number} does not exist yet.")
+def expand_parameters(param: pathlib.Path) -> str:
+    """Expand parameters in pytest parametrize"""
+    project_dirname = param.parent.name
+    solution_filename = param.name
+    return f"{project_dirname}/{solution_filename}"
+
+
+@pytest.mark.parametrize(
+    "solution_path", collect_solution_file_paths(), ids=expand_parameters
+)
+def test_project_euler(solution_path: pathlib.Path):
+    """Testing for all Project Euler solutions"""
+    problem_number: str = solution_path.parent.name[8:]  # problem_[extract his part]
+    expected: str = PROBLEM_ANSWERS[problem_number]
+    solution_module = convert_path_to_module(solution_path)
+    answer = str(solution_module.solution())
+    assert answer == expected, f"Expected {expected} but got {answer}"
