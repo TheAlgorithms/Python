@@ -50,11 +50,21 @@ def merge_sort(array: List) -> List:
     >>> shuffle(array)
     >>> sorted(array) == merge_sort(array)
     True
+    >>> array = [-2]
+    >>> merge_sort(array)
+    [-2]
+    >>> array = []
+    >>> merge_sort(array)
+    []
+    >>> array = [10000000, 1, -1111111111, 101111111112, 9000002]
+    >>> sorted(array) == merge_sort(array)
+    True
     """
     if len(array) <= 1:
         return array
-
-    middle = len(array) // 2
+    # the actual formula to calculate the middle element = left + (right - left) // 2
+    # this avoids integer overflow in case of large N
+    middle = 0 + (len(array) - 0) // 2
 
     # Split the array into halves till the array length becomes equal to One
     # merge the arrays of single length returned by mergeSort function and
