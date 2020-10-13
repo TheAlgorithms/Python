@@ -19,7 +19,7 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
 def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
-    # linear regression, return floatss
+    # linear regression, return floats
     x = []
     for i in range(len(train_dt)):
         x.append([1, train_dt[i], train_mtch[i]])
