@@ -107,17 +107,15 @@ def score(source_data: list, weights: list, *args) -> list:
     return source_data
 
 
-def score_columns(source_data: list, columns: list, weights: list, *args) -> list:
-    """Analyse specific columns of the source_data dataset.
+def score_columns(source_data: list, columns: list, weights: list) -> list:
+    """Analyse data file using a range based procentual proximity
+    algorithm and calculate the linear maximum likelihood estimation.
     Args:
         source_data (list): Data set to process.
         columns (list): Indexes of the source_data columns to be scored.
         weights (list): Weights corresponding to each column from the data set.
             0 if lower values have higher weight in the data set,
             1 if higher values have higher weight in the data set
-    Optional args:
-        "score_lists" (str): Returns a list with lists of each column scores.
-        "scores" (str): Returns only the final scores.
     Raises:
         ValueError: Weights can only be either 0 or 1 (int)
     Returns:
@@ -131,9 +129,7 @@ def score_columns(source_data: list, columns: list, weights: list, *args) -> lis
     if len(weights) > len(columns):
         weights = [weights[item] for item in columns]
 
-    if "scores" in args:
-        return score(temp_data, weights, "scores")
-    elif "score_lists" in args:
-        return score(temp_data, weights, "score_lists")
-    else:
-        return score(temp_data, weights)
+    for i, sc in enumerate(score(temp_data, weights, "scores")):
+        source_data[i].append(sc)
+
+    return source_data
