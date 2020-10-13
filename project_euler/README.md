@@ -13,7 +13,7 @@ For description of the problem statements, kindly visit https://projecteuler.net
 
 ## Solution Guidelines
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before reading the solution guidelines, make sure you read the whole [contributing guidelines](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md) as it won't be repeated in here. If you have any doubt on the guidelines, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before reading the solution guidelines, make sure you read the whole [contributing guidelines](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md) as it won't be repeated in here. If you have any doubt on the guidelines, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms). You can use the [template](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#solution-template) we have provided below as your starting point but be sure to read the [coding style](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#coding-style) part first.
 
 ### Coding Style
 
@@ -44,7 +44,7 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
       """
     ```
 
-#### Project Euler Solution Template
+### Solution Template
 
 You can use the below template as your starting point but please read the [coding style](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#coding-style) first to understand how the template works.
 
