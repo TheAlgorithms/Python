@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Build a simple bare-minimum quantum circuit that starts with a single 
-qubit (by default, in state 0), runs the experiment 1000 times, and 
+Build a simple bare-minimum quantum circuit that starts with a single
+qubit (by default, in state 0), runs the experiment 1000 times, and
 finally prints the total count of the states finally observed.
 Qiskit Docs: https://qiskit.org/documentation/getting_started.html
 """
