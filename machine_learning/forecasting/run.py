@@ -97,7 +97,7 @@ def data_safety_checker(list_vote, actual_result):
     input : list of predictions
     output : print whether it's safe or not
     >>> data_safety_checker([2,3,4],5)
-    today's data is safe
+    today's data is not safe
     """
     safe = 0
     not_safe = 0
