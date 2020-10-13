@@ -19,13 +19,6 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
 def lin_reg_pred(train_dt, train_usr, train_evnt, test_dt, test_evnt):
-    """
-    First method: linear regression
-    input : training data (date, total_user, total_event) in list of float
-    output : list of total user prediction in float
-    >>> lin_reg_red([2,3,4,5], [5,3,4,6], [3,1,2,4] [2,1], [2,2])
-    [3.95, 4.25]
-    """
     x = []
     for i in range(len(train_dt)):
         x.append([1, train_dt[i], train_evnt[i]])
@@ -37,6 +30,14 @@ def lin_reg_pred(train_dt, train_usr, train_evnt, test_dt, test_evnt):
 
 
 def sarimax_predictor(train_user, train_evnt, test_evnt):
+    """
+    second method: sarimax
+    input : training data (total_user,
+            with exog data = total_event) in list of float
+    output : list of total user prediction in float
+    >>> sarimax_predictor([4,2,6,8], [3,1,2,4], [2])
+    6.6666671111109626
+    """
     order = (1, 2, 1)
     s_order = (1, 1, 0, 7)
     model = SARIMAX(train_user, exog=train_evnt, order=order, seasonal_order=s_order)
@@ -51,13 +52,12 @@ def support_machine_regressor(x_train, x_test, train_user):
     input : training data (date, total_user, total_event) in list of float
             where x = list of set (date and total event)
     output : list of total user prediction in float
-    >>> support_machine_regressor([5,7,8,9], [3,1,2,4], [2,1])
-    [11.23, 12.23]
+    >>> support_machine_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
+    1.634932078116079
     """
     regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
     regressor.fit(x_train, train_user)
     y_pred = regressor.predict(x_test)
-
     return y_pred[0]
 
 
@@ -68,7 +68,7 @@ def interquartile_range_checker(train_user):
     output : low limit of input in float
     this method can be used to check whether some data is outlier or not
     >>> interquartile_range_checker([1,2,3,4,5,6,7,8,9,10])
-    2.20
+    2.8
     """
     train_user.sort()
     q1 = np.percentile(train_user, 25)
