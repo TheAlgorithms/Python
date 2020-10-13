@@ -1,65 +1,75 @@
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+class cipher:
+    LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    def encryptMessage(self, key, message):
+        """
+        encryptMessage('HDarji', 'This is Harshil Darji from Dharmaj.')
+        'Akij ra Odrjqqs Gaisq muod Mphumrs.'
+        """
+        return ob.translateMessage(key, message, "encrypt")
+
+    def decryptMessage(self, key, message):
+        """
+        decryptMessage('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
+        'This is Harshil Darji from Dharmaj.'
+        """
+        return ob.translateMessage(key, message, "decrypt")
+
+    def translateMessage(self, key, message, mode):
+        global translated
+        translated=[]
+        keyIndex = 0
+        key = key.upper()
+
+        for symbol in message:
+            num = self.LETTERS.find(symbol.upper())
+            if num != -1:
+                if mode == "encrypt":
+                    num += self.LETTERS.find(key[keyIndex])
+                elif mode == "decrypt":
+                    num -= self.LETTERS.find(key[keyIndex])
+
+                num %= 26
+
+                if symbol.isupper():
+                    translated.append(self.LETTERS[num])
+                elif symbol.islower():
+                    translated.append(self.LETTERS[num].lower())
+
+                keyIndex += 1
+                if keyIndex == len(key):
+                    keyIndex = 0
+            else:
+                translated.append(symbol)
+        return "".join(translated)
 
 
-def main():
-    message = input("Enter message: ")
-    key = input("Enter key [alphanumeric]: ")
-    mode = input("Encrypt/Decrypt [e/d]: ")
-
-    if mode.lower().startswith("e"):
-        mode = "encrypt"
-        translated = encryptMessage(key, message)
-    elif mode.lower().startswith("d"):
-        mode = "decrypt"
-        translated = decryptMessage(key, message)
-
-    print("\n%sed message:" % mode.title())
-    print(translated)
-
-
-def encryptMessage(key, message):
-    """
-    >>> encryptMessage('HDarji', 'This is Harshil Darji from Dharmaj.')
-    'Akij ra Odrjqqs Gaisq muod Mphumrs.'
-    """
-    return translateMessage(key, message, "encrypt")
-
-
-def decryptMessage(key, message):
-    """
-    >>> decryptMessage('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
-    'This is Harshil Darji from Dharmaj.'
-    """
-    return translateMessage(key, message, "decrypt")
-
-
-def translateMessage(key, message, mode):
-    translated = []
-    keyIndex = 0
-    key = key.upper()
-
-    for symbol in message:
-        num = LETTERS.find(symbol.upper())
-        if num != -1:
-            if mode == "encrypt":
-                num += LETTERS.find(key[keyIndex])
-            elif mode == "decrypt":
-                num -= LETTERS.find(key[keyIndex])
-
-            num %= len(LETTERS)
-
-            if symbol.isupper():
-                translated.append(LETTERS[num])
-            elif symbol.islower():
-                translated.append(LETTERS[num].lower())
-
-            keyIndex += 1
-            if keyIndex == len(key):
-                keyIndex = 0
-        else:
-            translated.append(symbol)
-    return "".join(translated)
-
+ob = cipher()
 
 if __name__ == "__main__":
-    main()
+    while (1):
+        mode = input("Encrypt/Decrypt/quit: ")
+
+        if mode.lower()=="encrypt":
+            mode = "encrypt"
+            message = input("Enter message: ")
+            key = input("Enter key : ")
+
+            translated = ob.encryptMessage(key, message)
+            print("{}ed message: ".format(mode.title()), translated)
+
+        elif mode.lower()=="decrypt":
+            mode = "decrypt"
+            message = input("Enter message: ")
+            key = input("Enter key [alphanumeric]: ")
+
+            translated = ob.decryptMessage(key, message)
+            print("{}ed message: ".format(mode.title()), translated)
+
+        elif mode.lower().startswith("q"):
+            break
+            
+        else:
+            print("Please enter a proper option")
+
+
