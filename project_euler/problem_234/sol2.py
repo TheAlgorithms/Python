@@ -84,7 +84,7 @@ def sum_mults_in_range(start: int, end: int, prime: int) -> int:
     return arithmetic_sum(start, end, prime)
 
 
-def solution(limit: int = 999966663333):
+def solution(limit: int = 999966663333) -> int:
     """
     Return the sum of all semidivisible numbers not exceeding limit.
     >>> solution(1000)
