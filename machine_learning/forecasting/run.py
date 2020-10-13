@@ -23,12 +23,11 @@ def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
     First method: linear regression
     input : training data (date, total_user, total_event) in list of float
     output : list of total user prediction in float
-    >>> lin_reg_red([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
+    >>> lin_reg_pred([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
     3.0000424034255513
     """
     x = []
-    for i in range(len(train_dt)):
-        x.append([1, train_dt[i], train_mtch[i]])
+    x = [[1, item, train_mtch[i]] for i, item in enumerate(train_dt)]
     x = np.array(x)
     y = np.array(train_usr)
     beta = np.dot(np.dot(np.linalg.inv(np.dot(x.transpose(), x)), x.transpose()), y)
@@ -39,15 +38,18 @@ def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
 def sarimax_predictor(train_user, train_match, test_match):
     """
     second method: sarimax
-    input : training data (total_user,
-            with exog data = total_event) in list of float
+    sarimax is a statistic method which using previous input
+    and learn its pattern to predict future data
+    input : training data (total_user, with exog data = total_event) in list of float
     output : list of total user prediction in float
     >>> sarimax_predictor([4,2,6,8], [3,1,2,4], [2])
     6.6666671111109626
     """
     order = (1, 2, 1)
-    s_order = (1, 1, 0, 7)
-    model = SARIMAX(train_user, exog=train_match, order=order, seasonal_order=s_order)
+    seasonal_order = (1, 1, 0, 7)
+    model = SARIMAX(
+        train_user, exog=train_match, order=order, seasonal_order=seasonal_order
+    )
     model_fit = model.fit(disp=False, maxiter=600, method="nm")
     result = model_fit.predict(1, len(test_match), exog=[test_match])
     return result[0]
@@ -55,7 +57,11 @@ def sarimax_predictor(train_user, train_match, test_match):
 
 def support_machine_regressor(x_train, x_test, train_user):
     """
-    Third method: SVR
+    Third method: Support vector regressor
+    svr is quite the same with svm(support vector machine)
+    it uses the same principles as the SVM for classification,
+    with only a few minor differences and the only different is that
+    it suits better for regression purpose
     input : training data (date, total_user, total_event) in list of float
             where x = list of set (date and total event)
     output : list of total user prediction in float
