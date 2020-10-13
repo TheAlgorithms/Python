@@ -30,14 +30,6 @@ def lin_reg_pred(train_dt, train_usr, train_evnt, test_dt, test_evnt):
 
 
 def sarimax_predictor(train_user, train_evnt, test_evnt):
-    """
-    second method: sarimax
-    input : training data (total_user,
-            with exog data = total_event) in list of float
-    output : list of total user prediction in float
-    >>> sarimax_predictor([4,2,6,8], [3,1,2,4], [2])
-    6.6666671111109626
-    """
     order = (1, 2, 1)
     s_order = (1, 1, 0, 7)
     model = SARIMAX(train_user, exog=train_evnt, order=order, seasonal_order=s_order)
@@ -47,14 +39,6 @@ def sarimax_predictor(train_user, train_evnt, test_evnt):
 
 
 def support_machine_regressor(x_train, x_test, train_user):
-    """
-    Third method: SVR
-    input : training data (date, total_user, total_event) in list of float
-            where x = list of set (date and total event)
-    output : list of total user prediction in float
-    >>> support_machine_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
-    1.634932078116079
-    """
     regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
     regressor.fit(x_train, train_user)
     y_pred = regressor.predict(x_test)
