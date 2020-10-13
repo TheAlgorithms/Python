@@ -1,17 +1,14 @@
-""" Convert decimal values to binary using recursion method """
-
-
-def bin_recursive(decimal: int) -> str:
+def binary_recursive(decimal: int) -> str:
     """
-    The funtion takes in a positive integer value
+    This takes in a positive integer value
     and returns its binary equivalent.
-    >>> bin_recursive(1000)
+    >>> binary_recursive(1000)
     '1111101000'
-    >>> bin_recursive("72")
+    >>> binary_recursive("72")
     Traceback (most recent call last):
     ...
     TypeError: unsupported operand type(s) for //: 'str' and 'int'
-    >>> bin_recursive("number")
+    >>> binary_recursive("number")
     Traceback (most recent call last):
     ...
     TypeError: unsupported operand type(s) for //: 'str' and 'int'
@@ -19,7 +16,8 @@ def bin_recursive(decimal: int) -> str:
     # Initialize exit base of the recursion function
     if decimal == 1 or decimal == 0:
         return str(decimal)
-    return bin_recursive(decimal // 2) + str(decimal % 2)
+    result = binary_recursive(decimal // 2) + str(decimal % 2)
+    return str(result)
 
 
 def main(number: str) -> str:
@@ -53,9 +51,9 @@ def main(number: str) -> str:
 
     if number.isnumeric():
         if negative:
-            binary = "-0b" + bin_recursive(int(number))
+            binary = "-0b" + binary_recursive(int(number))
         else:
-            binary = "0b" + bin_recursive(int(number))
+            binary = "0b" + binary_recursive(int(number))
         return binary
     else:
         raise ValueError("Input value is not an integer")
