@@ -1,6 +1,7 @@
 """
 Problem 57: Square root convergents
-It is possible to show that the square root of two can be expressed as an infinite continued fraction.
+It is possible to show that the square root of two can be expressed as an infinite
+continued fraction.
 
 sqrt(2) = 1 + 1 / (2 + 1 / (2 + 1 / (2 + ...)))
 
@@ -14,13 +15,15 @@ The next three expansions are 99/70, 239/169, and 577/408, but the eighth expans
 1393/985, is the first example where the number of digits in the numerator exceeds
 the number of digits in the denominator.
 
-In the first one-thousand expansions, how many fractions contain a numerator with more digits than the denominator?
+In the first one-thousand expansions, how many fractions contain a numerator with
+more digits than the denominator?
 """
 
 
 def solution(n: int = 1000) -> int:
     """
-    returns number of fractions containing a numerator with more digits than the denominator in the first n expansions
+    returns number of fractions containing a numerator with more digits than
+    the denominator in the first n expansions.
     >>> solution(14)
     2
     >>> solution(100)
