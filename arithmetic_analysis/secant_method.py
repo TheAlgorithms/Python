@@ -13,7 +13,7 @@ def f(x):
     return 8 * x - 2 * exp(-x)
 
 
-def SecantMethod(lower_bound, upper_bound, repeats):
+def secant_method(lower_bound, upper_bound, repeats):
     """
     >>> SecantMethod(1, 3, 2)
     0.2139409276214589
@@ -25,4 +25,4 @@ def SecantMethod(lower_bound, upper_bound, repeats):
     return x1
 
 
-print(f"The solution is: {SecantMethod(1, 3, 2)}")
+print(f"The solution is: {secant_method(1, 3, 2)}")

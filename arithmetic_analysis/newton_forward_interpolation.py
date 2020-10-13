@@ -20,7 +20,7 @@ def ucal(u, p):
 
 
 def main():
-    n = int(input("enter the numbers of values: "))
+    n = int(input("enter the numbers of values: ").strip())
     y = []
     for i in range(n):
         y.append([])
@@ -30,13 +30,13 @@ def main():
             y[i][j] = 0
 
     print("enter the values of parameters in a list: ")
-    x = list(map(int, input().split()))
+    x = list(map(int, input().strip().split()))
 
     print("enter the values of corresponding parameters: ")
     for i in range(n):
-        y[i][0] = float(input())
+        y[i][0] = float(input().strip())
 
-    value = int(input("enter the value to interpolate: "))
+    value = int(input("enter the value to interpolate: ").strip())
     u = (value - x[0]) / (x[1] - x[0])
 
     # for calculating forward difference table

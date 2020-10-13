@@ -10,7 +10,7 @@ import numpy as np
 def retroactive_resolution(coefficients: np.matrix, vector: np.array) -> np.array:
     """
     This function performs a retroactive linear system resolution
-        for triangular matrix
+    for triangular matrix
 
     Examples:
         2x1 + 2x2 - 1x3 = 5         2x1 + 2x2 = -1
