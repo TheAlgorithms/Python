@@ -22,11 +22,11 @@ def binary_tree_mirror(binary_tree: dict, root: int = 1) -> dict:
     >>> binary_tree_mirror({ 1: [2,3], 2: [4,5], 3: [6,7], 4: [10,11]}, 5)
     Traceback (most recent call last):
     ...
-    ValueError: binary tree cannot be empty
+    ValueError: root 5 is not present in the binary_tree
     >>> binary_tree_mirror({}, 5)
     Traceback (most recent call last):
     ...
-    ValueError: root 5 is not present in the binary_tree
+    ValueError: binary tree cannot be empty
     """
     if not binary_tree:
         raise ValueError("binary tree cannot be empty")
