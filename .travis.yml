@@ -16,10 +16,8 @@ jobs:
       script:
         - pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
     - name: Project Euler Solution
-      install:
-        - pip install pytest-subtests
       script:
-        - pytest --tb=short project_euler/validate_solutions.py
+        - pytest --tb=short --durations=10 project_euler/validate_solutions.py
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
 notifications:
