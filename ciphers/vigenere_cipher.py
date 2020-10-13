@@ -17,7 +17,7 @@ def main():
     print(translated)
 
 
-def encryptMessage(key, message):
+def encryptMessage(key: str, message: str) -> str:
     """
     >>> encryptMessage('HDarji', 'This is Harshil Darji from Dharmaj.')
     'Akij ra Odrjqqs Gaisq muod Mphumrs.'
@@ -25,7 +25,7 @@ def encryptMessage(key, message):
     return translateMessage(key, message, "encrypt")
 
 
-def decryptMessage(key, message):
+def decryptMessage(key: str, message: str) -> str:
     """
     >>> decryptMessage('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
     'This is Harshil Darji from Dharmaj.'
@@ -33,7 +33,7 @@ def decryptMessage(key, message):
     return translateMessage(key, message, "decrypt")
 
 
-def translateMessage(key, message, mode):
+def translateMessage(key: str, message: str, mode: str) -> str:
     translated = []
     keyIndex = 0
     key = key.upper()

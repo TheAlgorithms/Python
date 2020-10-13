@@ -40,7 +40,7 @@ def main():
         print(decryptedText)
 
 
-def getBlocksFromText(message, blockSize=DEFAULT_BLOCK_SIZE):
+def getBlocksFromText(message: int, blockSize: int = DEFAULT_BLOCK_SIZE) -> [int]:
     messageBytes = message.encode("ascii")
 
     blockInts = []
@@ -52,7 +52,9 @@ def getBlocksFromText(message, blockSize=DEFAULT_BLOCK_SIZE):
     return blockInts
 
 
-def getTextFromBlocks(blockInts, messageLength, blockSize=DEFAULT_BLOCK_SIZE):
+def getTextFromBlocks(
+    blockInts: [int], messageLength: int, blockSize: int = DEFAULT_BLOCK_SIZE
+) -> str:
     message = []
     for blockInt in blockInts:
         blockMessage = []
@@ -65,7 +67,9 @@ def getTextFromBlocks(blockInts, messageLength, blockSize=DEFAULT_BLOCK_SIZE):
     return "".join(message)
 
 
-def encryptMessage(message, key, blockSize=DEFAULT_BLOCK_SIZE):
+def encryptMessage(
+    message: str, key: (int, int), blockSize: int = DEFAULT_BLOCK_SIZE
+) -> [int]:
     encryptedBlocks = []
     n, e = key
 
@@ -74,7 +78,12 @@ def encryptMessage(message, key, blockSize=DEFAULT_BLOCK_SIZE):
     return encryptedBlocks
 
 
-def decryptMessage(encryptedBlocks, messageLength, key, blockSize=DEFAULT_BLOCK_SIZE):
+def decryptMessage(
+    encryptedBlocks: [int],
+    messageLength: int,
+    key: (int, int),
+    blockSize: int = DEFAULT_BLOCK_SIZE,
+) -> str:
     decryptedBlocks = []
     n, d = key
     for block in encryptedBlocks:
@@ -82,7 +91,7 @@ def decryptMessage(encryptedBlocks, messageLength, key, blockSize=DEFAULT_BLOCK_
     return getTextFromBlocks(decryptedBlocks, messageLength, blockSize)
 
 
-def readKeyFile(keyFilename):
+def readKeyFile(keyFilename: str) -> (int, int, int):
     with open(keyFilename) as fo:
         content = fo.read()
     keySize, n, EorD = content.split(",")
@@ -90,8 +99,11 @@ def readKeyFile(keyFilename):
 
 
 def encryptAndWriteToFile(
-    messageFilename, keyFilename, message, blockSize=DEFAULT_BLOCK_SIZE
-):
+    messageFilename: str,
+    keyFilename: str,
+    message: str,
+    blockSize: int = DEFAULT_BLOCK_SIZE,
+) -> str:
     keySize, n, e = readKeyFile(keyFilename)
     if keySize < blockSize * 8:
         sys.exit(
@@ -112,7 +124,7 @@ def encryptAndWriteToFile(
     return encryptedContent
 
 
-def readFromFileAndDecrypt(messageFilename, keyFilename):
+def readFromFileAndDecrypt(messageFilename: str, keyFilename: str) -> str:
     keySize, n, d = readKeyFile(keyFilename)
     with open(messageFilename) as fo:
         content = fo.read()
