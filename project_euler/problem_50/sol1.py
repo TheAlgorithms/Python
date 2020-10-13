@@ -45,7 +45,7 @@ def sieve(n: int) -> list:
     return primes
 
 
-def solution(n: int = 1000) -> int:
+def solution(n: int = 1000000) -> int:
     """Returns the longgest sum of consecutive primes below n.
     >>> solution(1000)
     961
