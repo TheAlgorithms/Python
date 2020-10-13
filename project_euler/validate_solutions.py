@@ -3,7 +3,7 @@ import importlib.util
 import json
 import pathlib
 from types import ModuleType
-from typing import List
+from typing import Dict, List
 
 import pytest
 
@@ -13,7 +13,7 @@ PROJECT_EULER_ANSWERS_PATH = PROJECT_EULER_DIR_PATH.joinpath(
 )
 
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
-    PROBLEM_ANSWERS = json.load(file_handle)
+    PROBLEM_ANSWERS: Dict[str, str] = json.load(file_handle)
 
 
 def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
@@ -49,8 +49,8 @@ def expand_parameters(param: pathlib.Path) -> str:
 )
 def test_project_euler(solution_path: pathlib.Path):
     """Testing for all Project Euler solutions"""
-    problem_number: str = solution_path.parent.name[8:]
-    expected = PROBLEM_ANSWERS[problem_number]
+    problem_number: str = solution_path.parent.name[8:]  # problem_[extract his part]
+    expected: str = PROBLEM_ANSWERS[problem_number]
     solution_module = convert_path_to_module(solution_path)
     answer = str(solution_module.solution())
     assert answer == expected, f"Expected {expected} but got {answer}"
