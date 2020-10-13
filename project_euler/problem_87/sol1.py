@@ -50,7 +50,7 @@ def calculate_powers(nums: List[int], power: int) -> List[int]:
     return results
 
 
-def solution() -> int:
+def solution(max_number: int = 50_000_000) -> int:
     """
     Calculates and returns the answer to project euler problem 87.
 
@@ -59,12 +59,11 @@ def solution() -> int:
          - Squareroot of 50M rounded down is 7071
 
     Answer:
-    >>> solution()
-    1097343
+    >>> solution(50)
+    4
     """
 
     prime_power_triples = set()
-    max_number = 50000000
     max_prime = 7071
 
     primes = calculate_primes(max_prime)
