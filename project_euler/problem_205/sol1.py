@@ -21,6 +21,9 @@ def probability_of_sums(
     """
     Returns the list of possible sums and their probabilities of dice_number dices with
     numbers from dice_min to dice_max
+
+    >>>probability_of_sums(dice_min=1, dice_max=2, dice_number=2)
+    ([2, 3, 4, 5, 6, 7, 8, 9, 10], [0.04, 0.08, 0.12, 0.16, 0.2, 0.16, 0.12, 0.08, 0.04])
     """
     sums = []
     counter = []
