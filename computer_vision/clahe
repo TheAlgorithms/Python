@@ -1,0 +1,19 @@
+def clahe(im):
+  clahe = cv2.createCLAHE(clipLimit=2.0,tileGridSize=(7,7))       	
+  im = clahe.apply(im)
+  return im
+  
+def load_images(folder):
+    images = []
+    for filename in os.listdir(folder):
+        img = cv2.imread(os.path.join(folder,filename))
+        img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        if img is not None:
+            images.append(img)
+    return images
+if __name__ == "__main__":
+  path = ""
+  images = load_images(path)
+  images_processed = []
+  for im in images:
+    iamges_processed.append(clahe(im))
