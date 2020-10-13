@@ -68,7 +68,8 @@ def largest_product(grid):
 
 
 def solution():
-    """Returns the sum of all the multiples of 3 or 5 below n.
+    """Returns the greatest product of four adjacent numbers (horizontally,
+    vertically, or diagonally).
 
     >>> solution()
     70600674

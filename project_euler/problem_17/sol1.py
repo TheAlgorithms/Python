@@ -1,6 +1,6 @@
 """
 Number letter counts
-Problem 17
+Problem 17: https://projecteuler.net/problem=17
 
 If the numbers 1 to 5 are written out in words: one, two, three, four, five,
 then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
@@ -16,7 +16,7 @@ usage.
 """
 
 
-def solution(n):
+def solution(n: int = 1000) -> int:
     """Returns the number of letters used to write all numbers from 1 to n.
     where n is lower or equals to 1000.
     >>> solution(1000)
