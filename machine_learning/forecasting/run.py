@@ -105,7 +105,7 @@ def data_safety_checker(list_vote, actual_result):
         if i > actual_result:
             safe = not_safe + 1
         else:
-            if abs(abs(i) - abs(actual_result[0])) <= 0.1:
+            if abs(abs(i) - abs(actual_result)) <= 0.1:
                 safe = safe + 1
             else:
                 not_safe = not_safe + 1
