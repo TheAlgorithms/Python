@@ -1,5 +1,7 @@
 """
-Problem Statement:
+Problem 50
+Url:https://projecteuler.net/problem=50
+Statement:
 The prime 41, can be written as the sum of six consecutive primes:
 41 = 2 + 3 + 5 + 7 + 11 + 13
 This is the longest sum of consecutive primes that adds to a prime below one-hundred.
@@ -45,8 +47,6 @@ def sieve(n: int) -> list:
 
 def solution(n: int = 1000) -> int:
     """Returns the longgest sum of consecutive primes below n.
-    >>> solution(100)
-    41
     >>> solution(1000)
     961
     >>> solution(1000000)
