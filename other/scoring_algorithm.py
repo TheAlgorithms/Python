@@ -22,16 +22,16 @@ lowest mileage but newest registration year.
 Thus the weights for each column are as follows:
 [0, 0, 1]
 
->>> score([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1])
+>>> percentual_proximity([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1])
 [[20, 60, 2012, 2.0], [23, 90, 2015, 1.0], [22, 50, 2011, 1.3333333333333335]]
->>> score([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1], 'scores')
+>>> percentual_proximity([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1], 'scores')
 [2.0, 1.0, 1.3333333333333335]
->>> score_columns([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 2], [0, 0, 1])
+>>> percentual_proximity_columns([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 2], [0, 0, 1])
 [[20, 2012, 1.25], [23, 2015, 1.0], [22, 2011, 0.33333333333333337]]
 """
 
 
-def score(source_data: list, weights: list, *args) -> list:
+def percentual_proximity(source_data: list, weights: list, *args) -> list:
     """Analyse and score a dataset using a range based percentual proximity
     algorithm and calculate the linear maximum likelihood estimation.
     Args:
@@ -107,7 +107,7 @@ def score(source_data: list, weights: list, *args) -> list:
     return source_data
 
 
-def score_columns(source_data: list, columns: list, weights: list) -> list:
+def percentual_proximity_columns(source_data: list, columns: list, weights: list) -> list:
     """Analyse data file using a range based percentual proximity
     algorithm and calculate the linear maximum likelihood estimation.
     Args:
@@ -122,14 +122,12 @@ def score_columns(source_data: list, columns: list, weights: list) -> list:
         list: Source data with the score of the set appended at as the last element.
     """
 
-    temp_data = []
-    for item in source_data:
-        temp_data.append([item[c] for c in columns])
+    temp_data = [[item[c] for c in columns] for item in source_data]
 
     if len(weights) > len(columns):
         weights = [weights[item] for item in columns]
 
-    for i, sc in enumerate(score(temp_data, weights, "scores")):
+    for i, sc in enumerate(percentual_proximity(temp_data, weights, "scores")):
         source_data[i].append(sc)
 
-    return source_data
+    return []
