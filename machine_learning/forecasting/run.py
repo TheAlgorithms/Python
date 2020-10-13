@@ -43,7 +43,7 @@ def sarimax_predictor(train_user, train_match, test_match):
     input : training data (total_user, with exog data = total_event) in list of float
     output : list of total user prediction in float
     >>> sarimax_predictor([4,2,6,8], [3,1,2,4], [2])
-    6.6666671111109626
+    3.0000424034255513
     """
     order = (1, 2, 1)
     seasonal_order = (1, 1, 0, 7)
@@ -63,7 +63,7 @@ def support_machine_regressor(x_train, x_test, train_user):
     with only a few minor differences and the only different is that
     it suits better for regression purpose
     input : training data (date, total_user, total_event) in list of float
-            where x = list of set (date and total event)
+    where x = list of set (date and total event)
     output : list of total user prediction in float
     >>> support_machine_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
     1.634932078116079
