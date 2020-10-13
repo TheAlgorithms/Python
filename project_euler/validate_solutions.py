@@ -47,28 +47,22 @@ def test_project_euler(subtests, problem_number: int, expected: str):
             with subtests.test(
                 msg=f"Problem {problem_number} tests", solution_module=solution_module
             ):
-                try:
-                    start_time = timer()
-                    answer = str(solution_module.solution())
-                    end_time = timer()
-                    solution_time.append(
-                        [
-                            round(end_time - start_time, 5),
-                            f"problem_{problem_number:02}/{solution_module.__name__}",
-                        ]
-                    )
-                    assert answer == expected, f"Expected {expected} but got {answer}"
-                except (AssertionError, AttributeError, TypeError) as err:
-                    print(
-                        f"problem_{problem_number:02}/{solution_module.__name__}: {err}"
-                    )
-                    raise
+                start_time = timer()
+                answer = str(solution_module.solution())
+                end_time = timer()
+                solution_time.append(
+                    [
+                        round(end_time - start_time, 5),
+                        f"problem_{problem_number:02}/{solution_module.__name__}",
+                    ]
+                )
+                assert answer == expected, f"Expected {expected} but got {answer}"
     else:
         pytest.skip(f"Solution {problem_number} does not exist yet.")
 
 
 @pytest.fixture(scope="session", autouse=True)
-def custom_messages(request):
+def custom_message(request):
     def print_durations():
         from operator import itemgetter
 
