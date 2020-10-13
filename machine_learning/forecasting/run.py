@@ -37,14 +37,6 @@ def lin_reg_pred(train_dt, train_usr, train_evnt, test_dt, test_evnt):
 
 
 def sarimax_predictor(train_user, train_evnt, test_evnt):
-    """
-    second method: sarimax
-    input : training data (total_user,
-            with exog data = total_event) in list of float
-    output : list of total user prediction in float
-    >>> sarimax_predictor([5,7,8,9], [3,1,2,4], [2,1])
-    [10.67, 13.15]
-    """
     order = (1, 2, 1)
     s_order = (1, 1, 0, 7)
     model = SARIMAX(train_user, exog=train_evnt, order=order, seasonal_order=s_order)
