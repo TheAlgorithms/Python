@@ -32,7 +32,7 @@ Thus the weights for each column are as follows:
 
 
 def score(source_data: list, weights: list, *args) -> list:
-    """Analyse and score a dataset using a range based percentualF proximity
+    """Analyse and score a dataset using a range based percentual proximity
     algorithm and calculate the linear maximum likelihood estimation.
     Args:
         source_data (list): Data set to process.
@@ -108,7 +108,7 @@ def score(source_data: list, weights: list, *args) -> list:
 
 
 def score_columns(source_data: list, columns: list, weights: list) -> list:
-    """Analyse data file using a range based procentual proximity
+    """Analyse data file using a range based percentual proximity
     algorithm and calculate the linear maximum likelihood estimation.
     Args:
         source_data (list): Data set to process.
