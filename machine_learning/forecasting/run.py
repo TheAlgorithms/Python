@@ -24,7 +24,7 @@ def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
     input : training data (date, total_user, total_event) in list of float
     output : list of total user prediction in float
     >>> lin_reg_pred([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
-    3.0000424034255513
+    5.000000000000003
     """
     x = []
     x = [[1, item, train_mtch[i]] for i, item in enumerate(train_dt)]
