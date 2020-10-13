@@ -7,11 +7,7 @@ RealFunc = Callable[[float], float]  # type alias for a real -> real function
 
 
 # function is the f(x) and derivative is the f'(x)
-def newton(
-    function: RealFunc,
-    derivative: RealFunc,
-    starting_int: int,
-) -> float:
+def newton(function: RealFunc, derivative: RealFunc, starting_int: int) -> float:
     """
     >>> newton(lambda x: x ** 3 - 2 * x - 5, lambda x: 3 * x ** 2 - 2, 3)
     2.0945514815423474

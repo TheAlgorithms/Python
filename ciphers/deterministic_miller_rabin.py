@@ -42,7 +42,7 @@ def miller_rabin(n, allow_probable=False):
         )
     # array bounds provided by analysis
     bounds = [
-        2_047,
+        2047,
         1_373_653,
         25_326_001,
         3_215_031_751,

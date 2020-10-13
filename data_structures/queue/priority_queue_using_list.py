@@ -67,11 +67,7 @@ class FixedPriorityQueue:
     """
 
     def __init__(self):
-        self.queues = [
-            [],
-            [],
-            [],
-        ]
+        self.queues = [[], [], []]
 
     def enqueue(self, priority: int, data: int) -> None:
         """

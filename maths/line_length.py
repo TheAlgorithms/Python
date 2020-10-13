@@ -60,6 +60,6 @@ if __name__ == "__main__":
     print("f(x) = sin(10 * x)")
     print("The length of the curve from x = -10 to x = 10 is:")
     i = 10
-    while i <= 100000:
+    while i <= 100_000:
         print(f"With {i} steps: {line_length(f, -10, 10, i)}")
         i *= 10

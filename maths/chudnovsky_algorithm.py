@@ -43,14 +43,14 @@ def pi(precision: int) -> str:
 
     getcontext().prec = precision
     num_iterations = ceil(precision / 14)
-    constant_term = 426880 * Decimal(10005).sqrt()
+    constant_term = 426_880 * Decimal(10005).sqrt()
     exponential_term = 1
-    linear_term = 13591409
+    linear_term = 13_591_409
     partial_sum = Decimal(linear_term)
     for k in range(1, num_iterations):
         multinomial_term = factorial(6 * k) // (factorial(3 * k) * factorial(k) ** 3)
-        linear_term += 545140134
-        exponential_term *= -262537412640768000
+        linear_term += 545_140_134
+        exponential_term *= -262_537_412_640_768_000
         partial_sum += Decimal(multinomial_term * linear_term) / exponential_term
     return str(constant_term / partial_sum)[:-1]
 

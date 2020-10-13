@@ -109,7 +109,7 @@ def fib_formula(n):
     """
     seq_out = [0, 1]
     n = int(n)
-    if _check_number_input(n, 2, 1000000):
+    if _check_number_input(n, 2, 1_000_000):
         sqrt = Decimal(math.sqrt(5))
         phi_1 = Decimal(1 + sqrt) / Decimal(2)
         phi_2 = Decimal(1 - sqrt) / Decimal(2)
