@@ -19,6 +19,7 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
 def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
+    # linear regression, return float
     x = []
     for i in range(len(train_dt)):
         x.append([1, train_dt[i], train_mtch[i]])
@@ -30,6 +31,7 @@ def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
 
 
 def sarimax_predictor(train_user, train_match, test_match):
+    # sarimax, return list of float
     order = (1, 2, 1)
     s_order = (1, 1, 0, 7)
     model = SARIMAX(train_user, exog=train_match, order=order, seasonal_order=s_order)
@@ -39,6 +41,7 @@ def sarimax_predictor(train_user, train_match, test_match):
 
 
 def support_machine_regressor(x_train, x_test, train_user):
+    # svr, return list of float
     regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
     regressor.fit(x_train, train_user)
     y_pred = regressor.predict(x_test)
@@ -47,6 +50,8 @@ def support_machine_regressor(x_train, x_test, train_user):
 
 
 def interquartile_range_checker(train_user):
+    # optional
+    # return low limit and upper limit for outlier
     train_user.sort()
     q1 = np.percentile(train_user, 25)
     q3 = np.percentile(train_user, 75)
