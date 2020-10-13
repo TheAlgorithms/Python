@@ -39,4 +39,5 @@ def solution():
                 return pand_creator         #This will be the largest pandigital since we started from the largest possible pandigital creator
 
 if __name__ == "__main__":
-    print(f"The largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1,2, ... , n) where n > 1 is: ", solution())       #Gives 932718654
+    print("The largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1,2, ... , n) where n > 1 is: ", solution())       #Gives 932718654
+	
