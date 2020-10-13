@@ -26,7 +26,6 @@ def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
     >>> lin_reg_pred([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
     5.000000000000003
     """
-    x = []
     x = [[1, item, train_mtch[i]] for i, item in enumerate(train_dt)]
     x = np.array(x)
     y = np.array(train_usr)
