@@ -18,23 +18,23 @@ from sklearn.svm import SVR
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
-def lin_reg_pred(train_dt, train_usr, train_evnt, test_dt, test_evnt):
+def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
     x = []
     for i in range(len(train_dt)):
-        x.append([1, train_dt[i], train_evnt[i]])
+        x.append([1, train_dt[i], train_mtch[i]])
     x = np.array(x)
     y = np.array(train_usr)
     beta = np.dot(np.dot(np.linalg.inv(np.dot(x.transpose(), x)), x.transpose()), y)
-    prediction = abs(beta[0] + test_dt[0] * beta[1] + test_evnt[0] + beta[2])
+    prediction = abs(beta[0] + test_dt[0] * beta[1] + test_mtch[0] + beta[2])
     return prediction
 
 
-def sarimax_predictor(train_user, train_evnt, test_evnt):
+def sarimax_predictor(train_user, train_match, test_match):
     order = (1, 2, 1)
     s_order = (1, 1, 0, 7)
-    model = SARIMAX(train_user, exog=train_evnt, order=order, seasonal_order=s_order)
+    model = SARIMAX(train_user, exog=train_match, order=order, seasonal_order=s_order)
     model_fit = model.fit(disp=False, maxiter=600, method="nm")
-    result = model_fit.predict(1, len(test_evnt), exog=[test_evnt])
+    result = model_fit.predict(1, len(test_match), exog=[test_match])
     return result[0]
 
 
@@ -42,18 +42,11 @@ def support_machine_regressor(x_train, x_test, train_user):
     regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
     regressor.fit(x_train, train_user)
     y_pred = regressor.predict(x_test)
+
     return y_pred[0]
 
 
 def interquartile_range_checker(train_user):
-    """
-    Optional method: interquatile range
-    input : list of total user in float
-    output : low limit of input in float
-    this method can be used to check whether some data is outlier or not
-    >>> interquartile_range_checker([1,2,3,4,5,6,7,8,9,10])
-    2.8
-    """
     train_user.sort()
     q1 = np.percentile(train_user, 25)
     q3 = np.percentile(train_user, 75)
@@ -83,6 +76,7 @@ def data_safety_checker(list_vote, actual_result):
 # data_input_df = pd.read_csv("ex_data.csv", header=None)
 list_data = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
 data_input_df = pd.DataFrame(list_data, columns=["total_user", "total_even", "days"])
+
 """
 data column = total user in a day, how much online event held in one day,
 what day is that(sunday-saturday)
@@ -93,7 +87,7 @@ normalize_df = Normalizer().fit_transform(data_input_df.values)
 # split data
 total_date = normalize_df[:, 2].tolist()
 total_user = normalize_df[:, 0].tolist()
-total_event = normalize_df[:, 1].tolist()
+total_match = normalize_df[:, 1].tolist()
 
 # for svr (input variable = total date and total match)
 x = normalize_df[:, [1, 2]].tolist()
@@ -103,17 +97,17 @@ x_test = x[len(x) - 1 :]
 # for linear reression & sarimax
 trn_date = total_date[: len(total_date) - 1]
 trn_user = total_user[: len(total_user) - 1]
-trn_event = total_event[: len(total_event) - 1]
+trn_match = total_match[: len(total_match) - 1]
 
 tst_date = total_date[len(total_date) - 1 :]
 tst_user = total_user[len(total_user) - 1 :]
-tst_event = total_event[len(total_event) - 1 :]
+tst_match = total_match[len(total_match) - 1 :]
 
 
 # voting system with forecasting
 res_vote = []
-res_vote.append(lin_reg_pred(trn_date, trn_user, trn_event, tst_date, tst_event))
-res_vote.append(sarimax_predictor(trn_user, trn_event, tst_event))
+res_vote.append(lin_reg_pred(trn_date, trn_user, trn_match, tst_date, tst_match))
+res_vote.append(sarimax_predictor(trn_user, trn_match, tst_match))
 res_vote.append(support_machine_regressor(x_train, x_test, trn_user))
 
 # check the safety of todays'data^^
