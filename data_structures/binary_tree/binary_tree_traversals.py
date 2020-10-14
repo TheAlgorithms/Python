@@ -69,7 +69,7 @@ def levelorder2(root,level):
     Level-wise traversal:
     Print all nodes present at the given level of the binary tree.
     """
-    if root==None:
+    if not root:
         return root
     if level==1:
         print(root.data,end=" ")
