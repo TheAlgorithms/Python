@@ -7,47 +7,47 @@ class Node:
         self.right=None
         self.data=data
 
-def preOrder(root):
+def preorder(root):
     """
     PreOrder traversal: visit root node then its left subtree followed by right subtree.
     """
     if(root!=None):
         print(root.data,end=" ")
-        preOrder(root.left)
-        preOrder(root.right)
+        preorder(root.left)
+        preorder(root.right)
         
-def postOrder(root):
+def postorder(root):
     """
     PostOrder traversal: visit left subtree followed by right subtree and then root node.
     """
     if(root!=None):
-        postOrder(root.left)
-        postOrder(root.right)
+        postorder(root.left)
+        postorder(root.right)
         print(root.data,end=" ")
         
-def inOrder(root):
+def inorder(root):
     """
     InOrder traversal: visit its left subtree followed by root node and then right subtree.
     """
     if(root!=None):
-        inOrder(root.left)
+        inorder(root.left)
         print(root.data,end=" ") 
-        inOrder(root.right)
+        inorder(root.right)
 
-def Height(root):
+def height(root):
     """
     Recursive function for calculating height of the binary tree.
     """
     if(root==None):
         return 0
-    leftHeight=Height(root.left)
-    rightHeight=Height(root.right)
+    leftHeight=height(root.left)
+    rightHeight=height(root.right)
     if leftHeight>rightHeight:
         return leftHeight+1
     else:
         return rightHeight+1
     
-def levelOrder1(root):
+def levelorder1(root):
     """
     Print whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
@@ -64,7 +64,7 @@ def levelOrder1(root):
         if temp.right!=None:
             que.append(temp.right)
 
-def levelOrder2(root,level):
+def levelorder2(root,level):
     """
     Level-wise traversal:
     Print all nodes present at the given level of the binary tree.
@@ -74,10 +74,10 @@ def levelOrder2(root,level):
     if level==1:
         print(root.data,end=" ")
     elif level>1:
-        levelOrder2(root.left,level-1)
-        levelOrder2(root.right,level-1)  
+        levelorder2(root.left,level-1)
+        levelorder2(root.right,level-1)  
 
-def printLeftToRight(root,level):
+def printlefttoright(root,level):
     """
     Print elements on particular level from left to right direction of the binary tree.
     """
@@ -86,10 +86,10 @@ def printLeftToRight(root,level):
     if level==1:
         print(root.data,end=" ")
     elif level>1:
-        printLeftToRight(root.left,level-1)
-        printLeftToRight(root.right,level-1)
+        printlefttoright(root.left,level-1)
+        printlefttoright(root.right,level-1)
 
-def printRightToLeft(root,level):
+def printrighttoleft(root,level):
     """
     Print elements on particular level from right to left direction of the binary tree.
     """
@@ -98,21 +98,21 @@ def printRightToLeft(root,level):
     if level==1:
         print(root.data,end=" ")
     elif level>1:
-        printRightToLeft(root.right,level-1)
-        printRightToLeft(root.left,level-1)
+        printrighttoleft(root.right,level-1)
+        printrighttoleft(root.left,level-1)
     
-def ZigZag(root):
+def zigzag(root):
     """
     ZigZag traverse: Print node left to right and right to left, alternatively.
     """
     flag=0
-    height=Height(root)
-    for h in range(1,height+1):
+    height_tree=height(root)
+    for h in range(1,height_tree+1):
         if flag==0:
-            printLeftToRight(root,h)
+            printlefttoright(root,h)
             flag=1
         else:
-            printRightToLeft(root,h)
+            printrighttoleft(root,h)
             flag=0
 
 def main(): # Main function for testing.
@@ -129,21 +129,21 @@ def main(): # Main function for testing.
     All Traversals of the binary are as follows:
     """
     print("In order Traversal is : ")
-    inOrder(root)
+    inorder(root)
     print("\nPre order Traversal is : ")
-    preOrder(root)
+    preorder(root)
     print("\nPost order Traversal is : ")
-    postOrder(root)
+    postorder(root)
     print("\nHeight of Tree is : ")
-    height=Height(root)
-    print(height)
+    height_tree=height(root)
+    print(height_tree)
     print("\nComplete Level Order Traversal is : ")
-    levelOrder1(root)
+    levelorder1(root)
     print("\nLevel-wise order Traversal is : ")
-    for h in range(1,height+1):
-        levelOrder2(root,h)
+    for h in range(1,height_tree+1):
+        levelorder2(root,h)
     print("\nZigZag order Traversal is : ")
-    ZigZag(root)
+    zigzag(root)
 
 if __name__ == "__main__":
     main()
