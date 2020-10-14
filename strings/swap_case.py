@@ -5,9 +5,9 @@ User will give input and then program will perform swap cases.
 
 In other words, convert all lowercase letters to uppercase letters and vice versa.
 For example:
-1)>>>Please input sentence: Algorithm.Python@89
+1)>>> Please input sentence: Algorithm.Python@89
   aLGORITHM.pYTHON@89
-2)>>>Please input sentence: github.com/mayur200
+2)>>> Please input sentence: github.com/mayur200
   GITHUB.COM/MAYUR200
 
 Constraints: Length of string should between 1 and 1000
@@ -24,7 +24,7 @@ regexp = re.compile('[^a-zA-Z]+')
 def swap_case(sentence):
     """
     This function will convert all lowercase letters to uppercase letters and vice versa.
-    >>>swap_case('Algorithm.Python@89')
+    >>> swap_case('Algorithm.Python@89')
     aLGORITHM.pYTHON@89
     """
     newstring = ''
