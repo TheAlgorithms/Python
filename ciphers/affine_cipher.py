@@ -94,7 +94,7 @@ def get_random_key():
     while True:
         keyA = random.randint(2, len(SYMBOLS))
         keyB = random.randint(2, len(SYMBOLS))
-        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1:
+        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1 and keyB % len(SYMBOLS) != 0:
             return keyA * len(SYMBOLS) + keyB
 
 
