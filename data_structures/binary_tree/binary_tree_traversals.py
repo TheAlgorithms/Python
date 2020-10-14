@@ -20,8 +20,8 @@ def make_tree() -> Node:
 
 def preorder(root):
     """
-    PreOrder traversal: visit root node then its left subtree followed by right subtree.
-
+    PreOrder traversal:visit root then its 
+    leftsubtree followed by right subtree.
     >>> preorder(make_tree())
     4 2 5 1 3
     """
@@ -33,7 +33,9 @@ def preorder(root):
 
 def postorder(root):
     """
-    PostOrder traversal: visit left subtree followed by right subtree and then root node.
+    PostOrder traversal:visit leftsubtree 
+    followed by right subtree and 
+    then root node.
     """
     if root:
         postorder(root.left)
@@ -43,7 +45,9 @@ def postorder(root):
 
 def inorder(root):
     """
-    InOrder traversal: visit its left subtree followed by root node and then right subtree.
+    InOrder traversal: visit leftsubtree 
+    followed by root node and 
+    then right subtree.
     """
     if root:
         inorder(root.left)
@@ -53,7 +57,8 @@ def inorder(root):
 
 def height(root):
     """
-    Recursive function for calculating height of the binary tree.
+    Recursive function for calculating 
+    height of the binary tree.
     """
     if not root:
         return 0
@@ -68,7 +73,8 @@ def height(root):
 def levelorder1(root):
     """
     Print whole binary tree in Level Order Traverse.
-    Level Order traverse: Visit nodes of the tree level-by-level.
+    Level Order traverse: Visit nodes of 
+    the tree level-by-level.
     """
     if not root:
         return
@@ -86,7 +92,8 @@ def levelorder1(root):
 def levelorder2(root, level):
     """
     Level-wise traversal:
-    Print all nodes present at the given level of the binary tree.
+    Print all nodes present at the 
+    given level of the binary tree.
     """
     if not root:
         return root
@@ -99,7 +106,8 @@ def levelorder2(root, level):
 
 def print_left_to_right(root, level):
     """
-    Print elements on particular level from left to right direction of the binary tree.
+    Print elements on particular level from 
+    left to right direction of the binary tree.
     """
     if not root:
         return
@@ -112,7 +120,8 @@ def print_left_to_right(root, level):
 
 def print_right_to_left(root, level):
     """
-    Print elements on particular level from right to left direction of the binary tree.
+    Print elements on particular level from 
+    right to left direction of the binary tree.
     """
     if not root:
         return
@@ -125,7 +134,8 @@ def print_right_to_left(root, level):
 
 def zigzag(root):
     """
-    ZigZag traverse: Print node left to right and right to left, alternatively.
+    ZigZag traverse: Print node left to right
+    and right to left, alternatively.
     """
     flag = 0
     height_tree = height(root)
