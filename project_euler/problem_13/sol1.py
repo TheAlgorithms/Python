@@ -1,30 +1,25 @@
 """
+Problem 13: https://projecteuler.net/problem=13
+
 Problem Statement:
 Work out the first ten digits of the sum of the following one-hundred 50-digit
 numbers.
 """
+import os
 
 
-def solution(array):
-    """Returns the first ten digits of the sum of the array elements.
+def solution():
+    """
+    Returns the first ten digits of the sum of the array elements
+    from the file num.txt
 
-    >>> import os
-    >>> sum = 0
-    >>> array = []
-    >>> with open(os.path.dirname(__file__) + "/num.txt","r") as f:
-    ...     for line in f:
-    ...         array.append(int(line))
-    ...
-    >>> solution(array)
+    >>> solution()
     '5537376230'
     """
-    return str(sum(array))[:10]
+    file_path = os.path.join(os.path.dirname(__file__), "num.txt")
+    with open(file_path, "r") as file_hand:
+        return str(sum([int(line) for line in file_hand]))[:10]
 
 
 if __name__ == "__main__":
-    n = int(input().strip())
-
-    array = []
-    for i in range(n):
-        array.append(int(input().strip()))
-    print(solution(array))
+    print(solution())
