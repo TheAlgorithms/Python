@@ -1,4 +1,4 @@
-'''
+"""
 This algorithm helps you to swap cases.
 
 User will give input and then program will perform swap cases.
@@ -10,12 +10,11 @@ For example:
 2)>>> Please input sentence: github.com/mayur200
   GITHUB.COM/MAYUR200
 
-'''
+"""
 import re
-'''
-This re.compile() function saves the pattern from 'a' to 'z' and 'A' to 'Z' into 'regexp' variable
-'''
-regexp = re.compile('[^a-zA-Z]+')
+
+# This re.compile() function saves the pattern from 'a' to 'z' and 'A' to 'Z' into 'regexp' variable
+regexp = re.compile("[^a-zA-Z]+")
 
 
 def swap_case(sentence):
@@ -24,21 +23,20 @@ def swap_case(sentence):
     >>> swap_case('Algorithm.Python@89')
     aLGORITHM.pYTHON@89
     """
-    newstring = ''
+    new_string = ""
     for char in sentence:
         if char.isupper() == True:
-            newstring += char.lower()
+            new_string += char.lower()
         if char.islower() == True:
-            newstring += char.upper()
+            new_string += char.upper()
         if regexp.search(char):
-            newstring += char
+            new_string += char
 
-    return newstring
+    return new_string
 
 
 if __name__ == '__main__':
     s = input("Please input sentence:")
     result = swap_case(s)
     print(result)
-
 
