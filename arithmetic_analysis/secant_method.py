@@ -15,7 +15,7 @@ def f(x):
 
 def secant_method(lower_bound, upper_bound, repeats):
     """
-    >>> SecantMethod(1, 3, 2)
+    >>> secant_method(1, 3, 2)
     0.2139409276214589
     """
     x0 = lower_bound
