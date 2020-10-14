@@ -92,6 +92,7 @@
   * [Binary To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_octal.py)
   * [Decimal To Any](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_any.py)
   * [Decimal To Binary](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary.py)
+  * [Decimal To Binary Recursion](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary_recursion.py)
   * [Decimal To Hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
   * [Hexadecimal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/hexadecimal_to_decimal.py)
@@ -131,6 +132,7 @@
     * [Heap Generic](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/heap_generic.py)
     * [Max Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/max_heap.py)
     * [Min Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/min_heap.py)
+    * [Randomized Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/randomized_heap.py)
   * Linked List
     * [Circular Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/circular_linked_list.py)
     * [Deque Doubly](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/deque_doubly.py)
@@ -686,6 +688,7 @@
 
 ## Quantum
   * [Not Gate](https://github.com/TheAlgorithms/Python/blob/master/quantum/not_gate.py)
+  * [Quantum Entanglement](https://github.com/TheAlgorithms/Python/blob/master/quantum/quantum_entanglement.py)
   * [Single Qubit Measure](https://github.com/TheAlgorithms/Python/blob/master/quantum/single_qubit_measure.py)
 
 ## Scheduling
