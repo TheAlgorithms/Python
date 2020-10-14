@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import doctest
-
 """Provide the functionality to manipulate a single bit."""
 
 
@@ -82,4 +80,6 @@ def is_bit_set(number: int, position: int) -> bool:
 
 
 if __name__ == "__main__":
+    import doctest
+
     doctest.testmod()
