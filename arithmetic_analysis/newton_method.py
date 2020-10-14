@@ -41,8 +41,8 @@ def newton(
             raise ZeroDivisionError("Could not find root") from None
 
         if abs(prev_guess - next_guess) < 10 ** -5:
-            # The algorithm stops when the difference between the last 2 guesses are less
-            # than the fixed presition of 10 ** -5
+            # The algorithm stops when the difference between the last 2 guesses are
+            # less than the fixed presition of 10 ** -5
             return next_guess
         prev_guess = next_guess
 
