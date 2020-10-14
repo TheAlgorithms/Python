@@ -40,12 +40,12 @@ def height(root):
     """
     if not root:
         return 0
-    leftHeight=height(root.left)
-    rightHeight=height(root.right)
-    if leftHeight>rightHeight:
-        return leftHeight+1
+    left_Height=height(root.left)
+    right_Height=height(root.right)
+    if left_Height>right_Height:
+        return left_Height+1
     else:
-        return rightHeight+1
+        return right_Height+1
     
 def levelorder1(root):
     """
@@ -77,7 +77,7 @@ def levelorder2(root,level):
         levelorder2(root.left,level-1)
         levelorder2(root.right,level-1)  
 
-def printlefttoright(root,level):
+def print_left_to_right(root,level):
     """
     Print elements on particular level from left to right direction of the binary tree.
     """
@@ -86,10 +86,10 @@ def printlefttoright(root,level):
     if level==1:
         print(root.data,end=" ")
     elif level>1:
-        printlefttoright(root.left,level-1)
-        printlefttoright(root.right,level-1)
+        print_left_to_right(root.left,level-1)
+        print_left_to_right(root.right,level-1)
 
-def printrighttoleft(root,level):
+def print_right_to_left(root,level):
     """
     Print elements on particular level from right to left direction of the binary tree.
     """
@@ -98,8 +98,8 @@ def printrighttoleft(root,level):
     if level==1:
         print(root.data,end=" ")
     elif level>1:
-        printrighttoleft(root.right,level-1)
-        printrighttoleft(root.left,level-1)
+        print_right_to_left(root.right,level-1)
+        print_right_to_left(root.left,level-1)
     
 def zigzag(root):
     """
@@ -109,10 +109,10 @@ def zigzag(root):
     height_tree=height(root)
     for h in range(1,height_tree+1):
         if flag==0:
-            printlefttoright(root,h)
+            print_left_to_right(root,h)
             flag=1
         else:
-            printrighttoleft(root,h)
+            print_right_to_left(root,h)
             flag=0
 
 def main(): # Main function for testing.
