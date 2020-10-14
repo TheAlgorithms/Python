@@ -11,8 +11,10 @@ import qiskit as q
 
 def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Counts:
     """
-    >>> single_qubit_measure(1, 1)
+    >>> single_qubit_measure(2, 2)
     {'11': 1000}
+    >>> single_qubut_measure(4, 4)
+    {'0011': 1000}
     """
     # Use Aer's qasm_simulator
     simulator = q.Aer.get_backend("qasm_simulator")
