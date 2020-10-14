@@ -1,0 +1,315 @@
+import random
+import time
+import psutil
+import os
+import csv
+
+
+#calculation of fitness function
+def fitness(a): 
+ 
+ global nq
+ 
+ maxFitness = (nq*(nq-1))/2  
+ 
+ fit=maxFitness
+ 
+ m=1
+ for i in range(0,len(a)-1):
+   for m in range (1,len(a)):
+    if((i+m)==(len(a))):
+     break
+    if(a[i]==a[i+m]):
+     fit-=1
+    if(a[i]-m==a[i+m]):
+     fit-=1
+    if(a[i]+m==a[i+m]):
+     fit-=1
+ 
+ return(int(fit))
+
+
+
+########################################################################################
+
+
+def teacher_phase(no):  
+ 
+
+ 
+ #fitness list
+ global fit_list
+ 
+ #chromosome list
+ global chromo_list
+ 
+ # max fitness to calculate teacher
+ teacher_f=max(fit_list) 
+ 
+ for i in range(0,len(fit_list)):
+  if(teacher_f==fit_list[i]):
+   #best fitness chromosome that is teacher
+   teacher=chromo_list[i] 
+
+ #mean of class
+ mean=[]
+
+ for i in range(0,len(teacher)):
+  ad=0
+
+  for j in range(0,len(fit_list)):
+   ad=ad+int(chromo_list[j][i])/nq
+
+  ad=format(ad,'.2f') 
+  mean.append(ad)
+
+
+
+ #random no between 0 and 1
+ r=[random.uniform(0,1) for _ in range(0,len(teacher))]
+
+
+
+ #teaching factor
+ tf=random.randint(1,2) 
+
+
+ current_sol=chromo_list[no]              
+
+ #new solution finding
+ new_sol=[]  
+
+
+ for i in range(0,len(teacher)):
+  new=0
+  new=float(current_sol[i])+((float(r[i]))*(float(teacher[i])-(2*float(mean[i]))))
+  new_sol.append(new)
+
+ #print(new_sol)
+ 
+ #bounding of solution according to -ve or +ve
+ for i in range(0,len(new_sol)): 
+  if((new_sol[i])<0):
+   new_sol[i]=0
+  if(new_sol[i]>nq-1):
+   new_sol[i]=nq-1
+
+ #rounding of values
+ for i in range(0,len(new_sol)):
+  new_sol[i]=round(new_sol[i])
+ #print("new solution",new_sol)
+  
+ 
+ #fitness of new solution
+ fit_of_new_sol=fitness(new_sol)  
+
+
+
+ #fitness of current solution
+ fit_current=fitness(current_sol) 
+
+
+ if(fit_of_new_sol>fit_current):
+  chromo_list[no]=new_sol
+  fit_list[no]=fit_of_new_sol  
+
+#############################################################################################
+
+
+
+def RandomlyArrange(a):
+    global answer
+    for g in range(0,10):
+     global nq
+     sol=[]
+     hit=(nq*(nq-1)/2)-fitness(a)
+ 
+     for m in range(0,nq):
+        y=m
+        
+        for u in range(0,nq):
+             sol.append(u)
+
+
+        cuts=0
+ 
+        for u in range(0,nq):##here
+              if((y!=u)and(a[y]==a[u]or(a[y]-a[u])*(a[y]-a[u])==(y-u)*(y-u))):
+                    cuts+=1
+ 
+        while((len(sol)!=0) and cuts!=0):
+               j=random.randint(0,len(sol)-1)
+ 
+ 
+               temp=sol[j]
+ 
+               del sol[j]
+ 
+               tempY=a[y]
+               a[y]=temp
+               tempHit=(nq*(nq-1)/2)-fitness(a)
+               if(hit>=tempHit):
+                     hit=tempHit
+                     cuts=0
+                     for u in range(0,nq-1):
+                          if((y!=u)and(a[y]==a[u]or(a[y]-a[u])*(a[y]-a[u])==(y-u)*(y-u))):
+                                 cuts+=1
+                  
+               else:
+                     a[y]=tempY
+ 
+    
+     if(fitness(a)==(nq*(nq-1)/2)):
+         answer.append(a)
+ 
+########################################################################################################
+
+
+def learner_phase(no):
+ global fit_list
+
+
+ partner_sol_no=random.randint(0,len(chromo_list)-1)
+
+ while(partner_sol_no==no):
+  partner_sol_no=random.randint(0,len(chromo_list)-1) 
+ 
+ current_sol=chromo_list[no]
+ partner_sol=chromo_list[partner_sol_no]
+ 
+ #random no between 0 and 1
+ r=[random.uniform(0,1) for _ in range(0,len(partner_sol))] 
+
+
+
+ #fitness of current solution
+ f_current=fitness(current_sol)  
+
+ #fitness of partner solution
+ f_partner=fitness(partner_sol)  
+  
+
+
+ new_sol=[]
+
+ for i in range(0,len(current_sol)):
+  new=current_sol[i]-partner_sol[i]
+  new=new*r[i]
+
+  if(f_partner>f_current):
+   new=current_sol[i]+new
+  else:
+   new=current_sol[i]-new
+  new_sol.append(new)
+  
+
+
+ for i in range(0,len(new_sol)):
+  #bounding according to +ve or -ve
+  if(new_sol[i]<0): 
+   new_sol[i]=0
+  if(new_sol[i]>nq-1):
+   new_sol[i]=nq-1
+
+
+ for i in range(0,len(new_sol)):
+  new_sol[i]=round(new_sol[i])
+
+
+ fit_new_sol=0
+ fit_new_sol=fitness(new_sol)
+
+
+
+ if((fit_new_sol)>(f_current)):
+  #print("fitness of new solution is greater so it is choosen")
+  chromo_list[no]=new_sol
+  fit_list[no]=fit_new_sol
+
+#############################################################################################
+
+if __name__ == "__main__":
+    nq = int(input("Enter Number of Queens: ")) #say N = 8
+
+    population=int(input("enter number of population: "))
+
+    starting_time=time.time()
+    pid=os.getpid()
+    ps=psutil.Process(pid)
+    memoryuse=ps.memory_info()
+
+
+
+
+    chromo_list=[]
+    answer=[]
+
+    fit_list=[]
+
+    for i in range(0,population):
+     #generation of random chromosome
+     chro = [random.randint(0,nq-1) for _ in range(0,nq)]
+
+     #list of chromosome chromo_list
+     chromo_list.append(chro)
+
+     #calculation of fitness here fit_cal 
+     fit_cal=fitness(chro) 
+
+     #list of all fitness value fit_list
+     fit_list.append(fit_cal)   
+
+
+
+    flag="NO"
+
+    for iteration in range(0,5):
+
+
+     for i in range(0,population):
+     
+      teacher_phase(i)
+
+      learner_phase(i)
+
+      
+      
+       
+       
+       
+    for w in range(0,len(chromo_list)):  
+      RandomlyArrange(chromo_list[w])
+       
+     
+    distinct_solution=[]
+
+    for x in answer:
+      if(x in distinct_solution):
+        continue
+      else:
+        distinct_solution.append(x)
+
+    print("total solution find=",len(distinct_solution))
+    print("dictint solutions are",distinct_solution)
+     
+      
+       
+ 
+    
+    count_time=time.time()-starting_time
+    count_time=format(count_time,'.2f')
+    print("total time ==",count_time)
+    memoryuse=ps.memory_info()
+    memoryuse=(memoryuse.rss)/1024
+    print(memoryuse)
+    
+    
+    
+    with open('dataset_tlbo.csv','a') as f:
+     w=csv.writer(f)
+     w.writerow(["TLBO",nq,population,len(distinct_solution),memoryuse,count_time])
+    
+
+
+
+           
