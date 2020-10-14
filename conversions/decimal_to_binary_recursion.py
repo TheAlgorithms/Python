@@ -6,13 +6,14 @@ def binary_recursive(decimal: int) -> str:
     >>> binary_recursive("72")
     Traceback (most recent call last):
     ...
-    TypeError: unsupported operand type(s) for //: 'str' and 'int'
+    TypeError: unsupported operand type(s) for divmod(): 'str' and 'int'
     >>> binary_recursive("number")
     Traceback (most recent call last):
     ...
-    TypeError: unsupported operand type(s) for //: 'str' and 'int'
+    TypeError: unsupported operand type(s) for divmod(): 'str' and 'int'
     """
     # Set the exit cases for the recursion
+    decimal = int(decimal)
     if decimal in (0, 1):
         return str(decimal)
     div, mod = divmod(decimal, 2)
