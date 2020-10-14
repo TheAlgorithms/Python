@@ -1,7 +1,6 @@
 def binary_recursive(decimal: int) -> str:
     """
-    This takes in a positive integer value
-    and returns its binary equivalent.
+    Take a positive integer value and return its binary equivalent.
     >>> binary_recursive(1000)
     '1111101000'
     >>> binary_recursive("72")
@@ -16,17 +15,14 @@ def binary_recursive(decimal: int) -> str:
     # Initialize exit base of the recursion function
     if decimal == 1 or decimal == 0:
         return str(decimal)
-    result = binary_recursive(decimal // 2) + str(decimal % 2)
-    return str(result)
+    return binary_recursive(decimal // 2) + str(decimal % 2)
 
 
 def main(number: str) -> str:
     """
-    This function takes a parameter "number",
-    raises a ValueError for wrong inputs,
-    calls the function above and returns the output
-    with prefix "0b" & "-0b" for positive
-    and negative integers respectively.
+    Take an integer value and raise ValueError for wrong inputs,
+    call the function above and return the output with prefix "0b" & "-0b"
+    for positive and negative integers respectively.
     >>> main(0)
     '0b0'
     >>> main(40)
