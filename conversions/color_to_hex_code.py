@@ -4,6 +4,8 @@
     CMYK -> cyan 0-100, magenta 0-100, yellow 0-100, black 0-100
     HSL  -> hue 0-359, saturation 0-100, lightness 0-100
     HSV  -> hue 0-359, saturation 0-100, value 0-100
+
+    Conversion translated from https://www.rapidtables.com/convert/color/
 """
 
 dec_hex_dict = {
