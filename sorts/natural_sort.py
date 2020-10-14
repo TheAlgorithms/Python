@@ -16,7 +16,7 @@ def natural_sort(input_list: list[str]) -> list[str]:
     >>> sorted(example2)
     ['Elm11', 'Elm12', 'Elm2', 'elm0', 'elm1', 'elm10', 'elm13', 'elm9']
 
-    The natural sort algorith sort based on meaning and not computer code point.
+    The natural sort algorithm sort based on meaning and not computer code point.
     >>> natural_sort(example1)
     ['1 ft 5 in', '2 ft 7 in', '2 ft 11 in', '7 ft 6 in', '10 ft 2 in']
 
