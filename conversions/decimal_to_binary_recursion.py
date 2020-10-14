@@ -16,7 +16,7 @@ def binary_recursive(decimal: int) -> str:
     if decimal in (0, 1):
         return str(decimal)
     div, mod = divmod(decimal, 2)
-    return binary_recursive(div) + mod
+    return binary_recursive(div) + str(mod)
 
 
 def main(number: str) -> str:
