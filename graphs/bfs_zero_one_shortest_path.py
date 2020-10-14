@@ -4,7 +4,7 @@ from typing import Iterator, List
 
 
 """
-Finding the shortest path in 0-1-graph in O(E + V) which is faster then dijkstra.
+Finding the shortest path in 0-1-graph in O(E + V) which is faster than dijkstra.
 0-1-graph is the weighted graph with the weights equal to 0 or 1.
 Link: https://codeforces.com/blog/entry/22276
 """
