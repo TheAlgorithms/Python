@@ -10,9 +10,6 @@ For example:
 2)>>> Please input sentence: github.com/mayur200
   GITHUB.COM/MAYUR200
 
-Constraints: Length of string should between 1 and 1000
-
-
 '''
 import re
 '''
