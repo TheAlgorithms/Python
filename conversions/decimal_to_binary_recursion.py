@@ -12,10 +12,11 @@ def binary_recursive(decimal: int) -> str:
     ...
     TypeError: unsupported operand type(s) for //: 'str' and 'int'
     """
-    # Initialize exit base of the recursion function
-    if decimal == 1 or decimal == 0:
+    # Set the exit cases for the recursion
+    if decimal in (0, 1):
         return str(decimal)
-    return binary_recursive(decimal // 2) + str(decimal % 2)
+    div, mod = divmod(decimal, 2)
+    return binary_recursive(div) + mod
 
 
 def main(number: str) -> str:
@@ -39,20 +40,13 @@ def main(number: str) -> str:
     ValueError: Input value is not an integer
     """
     number = str(number).strip()
-    negative = False
-
-    if number.startswith("-"):
-        negative = True
-        number = number[1:]
-
-    if number.isnumeric():
-        if negative:
-            binary = "-0b" + binary_recursive(int(number))
-        else:
-            binary = "0b" + binary_recursive(int(number))
-        return binary
-    else:
+    if not number:
+        raise ValueError("No input value was provided")
+    negative = "-" if number.startswith("-") else ""
+    number = number.lstrip("-")
+    if not number.isnumeric():
         raise ValueError("Input value is not an integer")
+    return f"{negative}0b{binary_recursive(int(number))}"
 
 
 if __name__ == "__main__":
