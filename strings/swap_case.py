@@ -40,3 +40,5 @@ if __name__ == '__main__':
     s = input("Please input sentence:")
     result = swap_case(s)
     print(result)
+
+
