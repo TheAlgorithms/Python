@@ -3,7 +3,8 @@ This algorithm helps you to swap cases.
 
 User will give input and then program will perform swap cases.
 
-In other words, convert all lowercase letters to uppercase letters and vice versa.
+In other words, convert all lowercase letters to uppercase letters
+and vice versa.
 For example:
 1. Please input sentence: Algorithm.Python@89
   aLGORITHM.pYTHON@89
