@@ -133,6 +133,7 @@
     * [Max Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/max_heap.py)
     * [Min Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/min_heap.py)
     * [Randomized Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/randomized_heap.py)
+    * [Skew Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/skew_heap.py)
   * Linked List
     * [Circular Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/circular_linked_list.py)
     * [Deque Doubly](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/deque_doubly.py)
