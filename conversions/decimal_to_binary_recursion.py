@@ -8,7 +8,7 @@ def binary_recursive(decimal: int) -> str:
     >>> binary_recursive("number")
     Traceback (most recent call last):
     ...
-    TypeError: unsupported operand type(s) for divmod(): 'str' and 'int'
+    ValueError: invalid literal for int() with base 10: 'number'
     """
     decimal = int(decimal)
     if decimal in (0, 1):  # Exit cases for the recursion
