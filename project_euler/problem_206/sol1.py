@@ -5,7 +5,7 @@ Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
 where each “_” is a single digit.
 
 Solution: Finding a square number can found by adding consecutive odd numbers 
-starting from 1. The minimum number posible for perfect square is 1020304050607080900
+starting from 1. The minimum number possible for perfect square is 1020304050607080900
 in this situation, so started checking digits are in correct places after 
 total is above it. 
 
