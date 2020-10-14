@@ -9,9 +9,21 @@ class Node:
         self.data = data
 
 
+def make_tree() -> Node:
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.left = Node(4)
+    root.left.right = Node(5)
+    return root
+
+
 def preorder(root):
     """
     PreOrder traversal: visit root node then its left subtree followed by right subtree.
+
+    >>> preorder(make_tree())
+    4 2 5 1 3
     """
     if root:
         print(root.data, end=" ")
