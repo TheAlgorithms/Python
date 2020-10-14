@@ -13,21 +13,24 @@ For example:
 """
 import re
 
-# This re.compile() function saves the pattern from 'a' to 'z' and 'A' to 'Z' into 'regexp' variable
+# This re.compile() function saves the pattern from 'a' to 'z' and 'A' to 'Z'
+# into 'regexp' variable
 regexp = re.compile("[^a-zA-Z]+")
 
 
 def swap_case(sentence):
     """
-    This function will convert all lowercase letters to uppercase letters and vice versa.
+    This function will convert all lowercase letters to uppercase letters and
+    vice versa.
+
     >>> swap_case('Algorithm.Python@89')
     aLGORITHM.pYTHON@89
     """
     new_string = ""
     for char in sentence:
-        if char.isupper() == True:
+        if char.isupper():
             new_string += char.lower()
-        if char.islower() == True:
+        if char.islower():
             new_string += char.upper()
         if regexp.search(char):
             new_string += char
