@@ -51,12 +51,7 @@ def quantum_entanglement(qubits: int = 2) -> qiskit.result.counts.Counts:
     # Executing the circuit on the qasm simulator
     job = qiskit.execute(circuit, simulator, shots=1000)
 
-    # Grabbing results from the job
-    result = job.result()
-
-    # Returns counts
-    counts = result.get_counts(circuit)
-    return counts
+    return job.result().get_counts(circuit)
 
 
 if __name__ == "__main__":
