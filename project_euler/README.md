@@ -88,8 +88,10 @@ def helper1(arg1: [type hint], arg2: [type hint], ...) -> [Return type hint]:
 
     return
 
+
 # You can have multiple helper functions but the solution function should be
 # after all the helper functions ...
+
 
 def solution(arg1: [type hint], arg2: [type hint], ...) -> [Return type hint]:
     """
@@ -108,4 +110,8 @@ def solution(arg1: [type hint], arg2: [type hint], ...) -> [Return type hint]:
     ...
 
     return answer
+
+
+if __name__ == "__main__":
+    print(f"{solution() = }")
 ```
