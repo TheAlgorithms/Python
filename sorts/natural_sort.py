@@ -25,10 +25,16 @@ def natural_sort(input_list: list[str]) -> list[str]:
 
     """
 
-    def alphanum_key(key: str) -> list:
+    def alphanum_key(key):
         return [
             int(text) if text.isdigit() else text.lower()
             for text in re.split("([0-9]+)", key)
         ]
 
     return sorted(input_list, key=alphanum_key)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
