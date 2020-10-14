@@ -24,7 +24,7 @@ def swap_case(sentence):
     and vice versa.
 
     >>> swap_case('Algorithm.Python@89')
-    'aLGORITHMpYTHON```
+    'aLGORITHM.pYTHON@89'
     """
     new_string = ""
     for char in sentence:
