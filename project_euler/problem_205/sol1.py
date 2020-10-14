@@ -23,7 +23,8 @@ def probability_of_sums(
     numbers from dice_min to dice_max
 
     >>> probability_of_sums(dice_min=1, dice_max=5, dice_number=2)
-    ([2, 3, 4, 5, 6, 7, 8, 9, 10], [0.04, 0.08, 0.12, 0.16, 0.2, 0.16, 0.12, 0.08, 0.04])
+    ([2, 3, 4, 5, 6, 7, 8, 9, 10], 
+     [0.04, 0.08, 0.12, 0.16, 0.2, 0.16, 0.12, 0.08, 0.04])
     """
     sums = []
     counter = []
