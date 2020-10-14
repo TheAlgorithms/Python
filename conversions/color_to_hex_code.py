@@ -1,9 +1,6 @@
 """
     Convert color to HEX code
-    RGB  -> red 0-255, green 0-255, blue 0-255
-    CMYK -> cyan 0-100, magenta 0-100, yellow 0-100, black 0-100
-    HSL  -> hue 0-359, saturation 0-100, lightness 0-100
-    HSV  -> hue 0-359, saturation 0-100, value 0-100
+    Support: RGB, CMYK, HSL, HSV
 
     Conversion translated from https://www.rapidtables.com/convert/color/
 """
@@ -29,14 +26,14 @@ dec_hex_dict = {
 
 
 
-def dec_to_hex_color(val):
+def dec_to_hex_color(val: int) -> str:
     hex = dec_hex_dict[int(val / 16)] + dec_hex_dict[val % 16]
     return hex
 
 
 
 
-def rgb_acc_from_hue(hue, C, X):
+def rgb_acc_from_hue(hue: int, C: float, X: float) -> [float, float, float]:
     red_acc, green_acc, blue_acc = 0, 0, 0
     hue_state = int(hue / 60)
 
@@ -58,14 +55,14 @@ def rgb_acc_from_hue(hue, C, X):
 
 
 
-def cmyk_to_rgb(cyan, magenta, yellow, black):
+def cmyk_to_rgb(cyan: float, magenta: float, yellow: float, black: float) -> [int, int, int]:
     black_percent = black / 100
     red   = round(255 * (1 - (cyan / 100)) * (1 - black_percent))
     green = round(255 * (1 - (magenta / 100)) * (1 - black_percent))
     blue  = round(255 * (1 - (yellow / 100)) * (1 - black_percent))
     return red, green, blue
 
-def hsl_to_rgb(hue, saturation, lightness):
+def hsl_to_rgb(hue: int, saturation: float, lightness: float) -> [int, int, int]:
     hue = hue if hue < 360 else 0
     saturation_percent = saturation / 100
     lightness_percent = lightness / 100
@@ -81,7 +78,7 @@ def hsl_to_rgb(hue, saturation, lightness):
     blue  = round((blue_acc + m) * 255)
     return red, green, blue
 
-def hsv_to_rgb(hue, saturation, value):
+def hsv_to_rgb(hue: int, saturation: float, value: float) -> [int, int, int]:
     hue = hue if hue < 360 else 0
     saturation_percent = saturation / 100
     value_percent = value / 100
@@ -100,19 +97,47 @@ def hsv_to_rgb(hue, saturation, value):
 
 
 
-def rgb_to_hex_color_code(red, green, blue, with_hash=True):
+def rgb_to_hex_color_code(red: int, green: int, blue: int, with_hash: bool = True) -> str:
     hex_color_code = dec_to_hex_color(red) + dec_to_hex_color(green) + dec_to_hex_color(blue)
     prefix = '#' if with_hash else ''
     return prefix + hex_color_code
 
-def cmyk_to_hex_color_code(cyan, magenta, yellow, black, with_hash=True):
+def cmyk_to_hex_color_code(cyan: float, magenta: float, yellow: float, black: float, with_hash: bool = True) -> str:
     red, green, blue = cmyk_to_rgb(cyan, magenta, yellow, black)
     return rgb_to_hex_color_code(red, green, blue, with_hash)
 
-def hsl_to_hex_color_code(hue, saturation, lightness, with_hash=True):
+def hsl_to_hex_color_code(hue: int, saturation: float, lightness: float, with_hash: bool = True) -> str:
     red, green, blue = hsl_to_rgb(hue, saturation, lightness)
     return rgb_to_hex_color_code(red, green, blue, with_hash)
 
-def hsv_to_hex_color_code(hue, saturation, value, with_hash=True):
+def hsv_to_hex_color_code(hue: int, saturation: float, value: float, with_hash: bool = True) -> str:
     red, green, blue = hsv_to_rgb(hue, saturation, value)
     return rgb_to_hex_color_code(red, green, blue, with_hash)
+
+
+"""
+    Constraints:
+    RGB  -> red 0-255, green 0-255, blue 0-255
+    CMYK -> cyan 0-100%, magenta 0-100%, yellow 0-100%, black 0-100%
+    HSL  -> hue 0-359°, saturation 0-100%, lightness 0-100%
+    HSV  -> hue 0-359°, saturation 0-100%, value 0-100%
+
+    Notes:
+    Any values that using percentage (%) is decimal sensitive (e.g. cyan, magenta, yellow, black, 
+    saturation, lightness, and value).
+"""
+
+# Examples below prints: #EFDCDC
+
+print(rgb_to_hex_color_code(239, 220, 220))
+print(cmyk_to_hex_color_code(0.2, 8.2, 8.2, 6))
+print(hsl_to_hex_color_code(0, 37, 90))
+print(hsv_to_hex_color_code(0, 7.9, 93.7))
+
+
+# Examples below prints: EFDCDC
+
+print(rgb_to_hex_color_code(239, 220, 220, with_hash=False))
+print(cmyk_to_hex_color_code(0.2, 8.2, 8.2, 6, with_hash=False))
+print(hsl_to_hex_color_code(0, 37, 90, with_hash=False))
+print(hsv_to_hex_color_code(0, 7.9, 93.7, with_hash=False))
