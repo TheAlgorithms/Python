@@ -27,18 +27,15 @@ def swap_case(sentence):
     >>>swap_case('Algorithm.Python@89')
     aLGORITHM.pYTHON@89
     """
-    if len(sentence) < 1001:
-        newstring = ''
-        for word in sentence:
-            if word.isupper() == True:
-                newstring += word.lower()
-            if word.islower() == True:
-                newstring += word.upper()
-            if regexp.search(word):
-                newstring += word
+    newstring = ''
+    for char in sentence:
+        if char.isupper() == True:
+            newstring += char.lower()
+        if char.islower() == True:
+            newstring += char.upper()
+        if regexp.search(char):
+            newstring += char
 
-    else:
-        raise Exception("Charater length should be between 1 and 1000")
     return newstring
 
 
