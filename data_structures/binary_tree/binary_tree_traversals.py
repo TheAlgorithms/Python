@@ -11,7 +11,7 @@ def preorder(root):
     """
     PreOrder traversal: visit root node then its left subtree followed by right subtree.
     """
-    if(root!=None):
+    if root:
         print(root.data,end=" ")
         preorder(root.left)
         preorder(root.right)
@@ -20,7 +20,7 @@ def postorder(root):
     """
     PostOrder traversal: visit left subtree followed by right subtree and then root node.
     """
-    if(root!=None):
+    if root:
         postorder(root.left)
         postorder(root.right)
         print(root.data,end=" ")
@@ -29,7 +29,7 @@ def inorder(root):
     """
     InOrder traversal: visit its left subtree followed by root node and then right subtree.
     """
-    if(root!=None):
+    if root:
         inorder(root.left)
         print(root.data,end=" ") 
         inorder(root.right)
@@ -38,7 +38,7 @@ def height(root):
     """
     Recursive function for calculating height of the binary tree.
     """
-    if(root==None):
+    if not root:
         return 0
     leftHeight=height(root.left)
     rightHeight=height(root.right)
@@ -52,16 +52,16 @@ def levelorder1(root):
     Print whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
     """
-    if root==None:
+    if not root:
         return
     temp=root
     que=[temp]
-    while(len(que)>0):
+    while len(que)>0:
         print(que[0].data,end=" ")
         temp=que.pop(0)
-        if temp.left!=None:
+        if temp.left:
             que.append(temp.left)
-        if temp.right!=None:
+        if temp.right:
             que.append(temp.right)
 
 def levelorder2(root,level):
@@ -81,7 +81,7 @@ def printlefttoright(root,level):
     """
     Print elements on particular level from left to right direction of the binary tree.
     """
-    if root==None:
+    if not root:
         return
     if level==1:
         print(root.data,end=" ")
@@ -93,7 +93,7 @@ def printrighttoleft(root,level):
     """
     Print elements on particular level from right to left direction of the binary tree.
     """
-    if root==None:
+    if not root:
         return
     if level==1:
         print(root.data,end=" ")
