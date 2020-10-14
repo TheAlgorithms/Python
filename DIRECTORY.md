@@ -92,6 +92,7 @@
   * [Binary To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_octal.py)
   * [Decimal To Any](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_any.py)
   * [Decimal To Binary](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary.py)
+  * [Decimal To Binary Recursion](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary_recursion.py)
   * [Decimal To Hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
   * [Hexadecimal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/hexadecimal_to_decimal.py)
@@ -105,6 +106,7 @@
     * [Basic Binary Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/basic_binary_tree.py)
     * [Binary Search Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_search_tree.py)
     * [Binary Search Tree Recursive](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_search_tree_recursive.py)
+    * [Binary Tree Mirror](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_tree_mirror.py)
     * [Fenwick Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/fenwick_tree.py)
     * [Lazy Segment Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lazy_segment_tree.py)
     * [Lowest Common Ancestor](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lowest_common_ancestor.py)
@@ -130,6 +132,7 @@
     * [Heap Generic](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/heap_generic.py)
     * [Max Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/max_heap.py)
     * [Min Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/min_heap.py)
+    * [Randomized Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/randomized_heap.py)
   * Linked List
     * [Circular Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/circular_linked_list.py)
     * [Deque Doubly](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/deque_doubly.py)
@@ -648,6 +651,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_48/sol1.py)
   * Problem 49
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_49/sol1.py)
+  * Problem 51
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_51/sol1.py)
   * Problem 52
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_52/sol1.py)
   * Problem 53
@@ -682,6 +687,8 @@
   * [Validate Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py)
 
 ## Quantum
+  * [Not Gate](https://github.com/TheAlgorithms/Python/blob/master/quantum/not_gate.py)
+  * [Quantum Entanglement](https://github.com/TheAlgorithms/Python/blob/master/quantum/quantum_entanglement.py)
   * [Single Qubit Measure](https://github.com/TheAlgorithms/Python/blob/master/quantum/single_qubit_measure.py)
 
 ## Scheduling
