@@ -13,7 +13,7 @@ def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Co
     """
     >>> single_qubit_measure(2, 2)
     {'11': 1000}
-    >>> single_qubut_measure(4, 4)
+    >>> single_qubit_measure(4, 4)
     {'0011': 1000}
     """
     # Use Aer's qasm_simulator
