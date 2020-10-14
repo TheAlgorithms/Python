@@ -52,4 +52,3 @@ if __name__ == "__main__":
     doctest.testmod()
 
     print(bisection(f, 1, 1000))
-    
