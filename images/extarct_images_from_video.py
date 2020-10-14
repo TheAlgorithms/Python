@@ -38,7 +38,7 @@ while(True):
         # increasing counter so that it will 
         # show how many frames are created 
         currentframe += 1
-    if !ret: 
+    if not ret: 
         break
   
 # Release all space and windows once done 
