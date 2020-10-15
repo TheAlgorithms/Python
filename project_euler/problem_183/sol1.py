@@ -16,21 +16,27 @@ a non-terminating decimal and D(N) = -N if M(N) is a terminating decimal. For ex
 ∑ D(N) for 5 ≤ N ≤ 100 is 2438. Find ∑ D(N) for 5 ≤ N ≤ 10000.
 
 """
-Limit = 10000
 
 
-def solution(n):
+def solution():
     """
     Returns a fixed number.
 
-    >>> print(sum(solution(n) for n in range(5, 10000 + 1)))
+    >>> solution()
     48861552
     """
-    rounded_int = round(n / 2.718281828)
-    while rounded_int % 2 == 0:
-        rounded_int //= 2
-    while rounded_int % 5 == 0:
-        rounded_int //= 5
-    if n % rounded_int:
-        return n
-    return -n
+
+    sums = 0
+    for n in range(5, 10001):
+
+        rounded_int = round(n / 2.718281828)
+        while rounded_int % 2 == 0:
+            rounded_int //= 2
+        while rounded_int % 5 == 0:
+            rounded_int //= 5
+        if n % rounded_int:
+            sums += n
+        else:
+            sums += -n
+
+    return sums
