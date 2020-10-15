@@ -1,12 +1,11 @@
 #include <stdio.h>
 
 int numSetBits(unsigned int A) {
-    int count=0;
-    while(A!=0)
-    {
-        if(A&1)
-        count++;
-        A=(A>>1);
+    unsigned int count = 0;
+    while(A != 0){
+        if(A % 10 == 1)
+            count++;
+        A /= 10;
     }
     return count;
 }
