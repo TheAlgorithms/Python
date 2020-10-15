@@ -55,7 +55,7 @@ def x(n: int, n2: int, n3: int) -> int:
     return n ^ n2 ^ n3
 
 
-def solution(n: int = 2 ** 10) -> int:
+def solution(n: int = 2 ** 30) -> int:
     """
     For a given integer n <= 2^30, returns how many Nim games are lost.
     >>> solution(2)
