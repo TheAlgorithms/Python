@@ -19,14 +19,14 @@ concatenated product of an integer with (1,2, ... , n) where n > 1?
 """
 
 
-def is_9_palindromic(n: int) -> bool:
+def is_9_pandigital(n: int) -> bool:
     """
     Checks whether n is a 9-digit 1 to 9 pandigital number.
-    >>> is_9_palindromic(12345)
+    >>> is_9_pandigital(12345)
     False
-    >>> is_9_palindromic(156284973)
+    >>> is_9_pandigital(156284973)
     True
-    >>> is_9_palindromic(1562849733)
+    >>> is_9_pandigital(1562849733)
     False
     """
     s = str(n)
@@ -61,12 +61,12 @@ def solution() -> int:
     """
     for base_num in range(9999, 4999, -1):
         candidate = 100002 * base_num
-        if is_9_palindromic(candidate):
+        if is_9_pandigital(candidate):
             return candidate
 
     for base_num in range(333, 99, -1):
         candidate = 1002003 * base_num
-        if is_9_palindromic(candidate):
+        if is_9_pandigital(candidate):
             return candidate
 
     # just in case
