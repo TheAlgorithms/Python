@@ -13,7 +13,7 @@ cube.
 from collections import defaultdict
 
 
-def solution() -> int:
+def solution(max_base: int = 5) -> int:
     """
     Iterate through every possible cube and sort the cube's digits in
     ascending order. Sorting maintains an ordering of the digits that allows
@@ -24,6 +24,13 @@ def solution() -> int:
     Once you find 5 numbers that produce the same sequence of digits, return
     the smallest one, which is at index 0 since we insert each base number in
     ascending order.
+
+    >>> solution(2)
+    125
+    >>> solution(3)
+    41063625
+    >>> solution(5)
+    127035954683
     """
     freqs = defaultdict(list)
     num = 0
@@ -32,7 +39,7 @@ def solution() -> int:
         digits = get_digits(num)
         freqs[digits].append(num)
 
-        if len(freqs[digits]) == 5:
+        if len(freqs[digits]) == max_base:
             base = freqs[digits][0] ** 3
             return base
 
@@ -50,11 +57,8 @@ def get_digits(num: int) -> str:
     >>> get_digits(123)
     '0166788'
     """
-    cube = num ** 3
-    digits = [str(x) for x in str(cube)]
-    digits.sort()
-    return "".join(digits)
+    return "".join(sorted(list(str(num ** 3))))
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution(5) = }")
