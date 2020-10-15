@@ -1,4 +1,6 @@
 """
+Project Euler Problem 74: https://projecteuler.net/problem=74
+
 The number 145 is well known for the property that the sum of the factorial of its
 digits is equal to 145:
 
@@ -106,4 +108,4 @@ def solution(num_terms: int = 60, max_start: int = 1000000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
