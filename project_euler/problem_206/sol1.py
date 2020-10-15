@@ -58,4 +58,4 @@ def is_square_form(num: int) -> bool:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
