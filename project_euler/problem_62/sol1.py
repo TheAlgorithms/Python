@@ -29,8 +29,6 @@ def solution(max_base: int = 5) -> int:
     125
     >>> solution(3)
     41063625
-    >>> solution(5)
-    127035954683
     """
     freqs = defaultdict(list)
     num = 0
