@@ -61,4 +61,4 @@ def get_digits(num: int) -> str:
 
 
 if __name__ == "__main__":
-    print(f"{solution(5) = }")
+    print(f"{solution() = }")
