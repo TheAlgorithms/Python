@@ -13,6 +13,7 @@ powers of the number 4 (For example: 1, 4, 16, 64, etc).
 
 # Function to generate nth term of Moser-de Bruijn Sequence
 
+
 def gen(n):
     S = [0, 1]
     for i in range(2, n + 1):
