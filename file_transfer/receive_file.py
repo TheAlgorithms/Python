@@ -8,7 +8,7 @@ if __name__ == "__main__":
     sock.connect((host, port))
     sock.send(b"Hello server!")
 
-    with open("Received_file", "wb") as out_file:
+    with open("Received_file", "wb") as out_file: # Class for receiving.
         print("File opened")
         print("Receiving data...")
         while True:
