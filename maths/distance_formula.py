@@ -8,7 +8,7 @@ def distance_formula(x1, y1, x2, y2):
     >>> distance_formula(0, 0, 5, 0)
     5.0
     """
-    return ((y2 - y1) ** 2  + (x2 - x1) ** 2) ** (1 / 2)
+    return ((y2 - y1) ** 2 + (x2 - x1) ** 2) ** (1 / 2)
 
 
 if __name__ == "__main__":
