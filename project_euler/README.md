@@ -5,10 +5,7 @@ Problems are taken from https://projecteuler.net/.
 Project Euler is a series of challenging mathematical/computer programming problems that will require more than just mathematical
 insights to solve. Project Euler is ideal for mathematicians who are learning to code.
 
-Here the efficiency of your code is also checked.
-I've tried to provide all the best possible solutions.
-
-For description of the problem statements, kindly visit https://projecteuler.net/show=all
+The solutions will be checked by our [automated testing on Travis CI](https://travis-ci.com/github/TheAlgorithms/Python/pull_requests) with the help of [this script](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py). The efficiency of your code is also checked. You can view the top 10 slowest solutions on Travis CI logs and open a pull request to improve those solutions.
 
 
 ## Solution Guidelines
@@ -37,6 +34,7 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
   def solution(limit: int = 1000):
       """
       A brief statement mentioning what the function is about.
+
       You can have a detailed explanation about the solution method in the
       module-level docstring.
 
@@ -77,6 +75,8 @@ def helper1(arg1: [type hint], arg2: [type hint], ...) -> [Return type hint]:
     """
     A brief statement explaining what the function is about.
 
+    ... A more elaborate description ... [Optional]
+
     ...
     [Doctest]
     ...
@@ -96,6 +96,7 @@ def helper1(arg1: [type hint], arg2: [type hint], ...) -> [Return type hint]:
 def solution(arg1: [type hint], arg2: [type hint], ...) -> [Return type hint]:
     """
     A brief statement mentioning what the function is about.
+
     You can have a detailed explanation about the solution in the
     module-level docstring.
 
