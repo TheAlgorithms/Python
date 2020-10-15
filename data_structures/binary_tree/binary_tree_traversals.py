@@ -26,7 +26,7 @@ def preorder(root: Node):
     2. left subtree
     3. right subtree.
     >>> preorder(make_tree())
-    1 2 4 5 3
+    1 2 4 5 3 
     """
     if root:
         print(root.data, end=" ")
@@ -41,7 +41,7 @@ def postorder(root: Node):
     2. right subtree
     3. root node
     >>> postorder(make_tree())
-    4 5 2 3 1
+    4 5 2 3 1 
     """
     if root:
         postorder(root.left)
@@ -56,7 +56,7 @@ def inorder(root: Node):
     2. root node
     3. right subtree
     >>> inorder(make_tree())
-    4 2 5 1 3
+    4 2 5 1 3 
     """
     if root:
         inorder(root.left)
@@ -82,7 +82,7 @@ def level_order_1(root: Node):
     Print whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
     >>> level_order_1(make_tree())
-    1 2 3 4 5
+    1 2 3 4 5 
     """
     if not root:
         return
@@ -102,9 +102,9 @@ def level_order_2(root: Node, level: int):
     Level-wise traversal: Print all nodes present at the given level of the binary tree
     >>> tree = make_tree()
     >>> level_order_2(tree, 2)
-    2 3
+    2 3 
     >>> level_order_2(tree, 3)
-    4 5
+    4 5 
     """
     if not root:
         return root
@@ -119,7 +119,7 @@ def print_left_to_right(root: Node, level: int):
     """
     Print elements on particular level from left to right direction of the binary tree.
     >>> print_left_to_right(make_tree(), 2)
-    2 3
+    2 3 
     """
     if not root:
         return
@@ -134,7 +134,7 @@ def print_right_to_left(root: Node, level: int):
     """
     Print elements on particular level from right to left direction of the binary tree.
     >>> print_right_to_left(make_tree(), 2)
-    3 2
+    3 2 
     """
     if not root:
         return
@@ -149,7 +149,7 @@ def zigzag(root: Node):
     """
     ZigZag traverse: Print node left to right and right to left, alternatively.
     >>> zigzag(make_tree())
-    1 3 2 4 5
+    1 3 2 4 5 
     """
     flag = 0
     height_tree = height(root)
