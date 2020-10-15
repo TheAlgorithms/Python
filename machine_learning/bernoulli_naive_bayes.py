@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 
 
-class naive_bayes:
+class NaiveBayes:
     def __init__(self, X, y):
         """
         This method initializes all the required data fields of the NaiveBayes class
