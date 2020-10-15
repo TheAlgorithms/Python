@@ -1,0 +1,248 @@
+from tkinter import *
+import backend
+
+global selected_row
+def get_selected_row(event):
+    index = list.curselection()[0]
+    selected_row = list.get(index)
+    el.delete(0,END)
+    el.insert(END,selected_row[1])
+    e2.delete(0,END)
+    e2.insert(END,selected_row[2])
+    e3.delete(0,END)
+    e3.insert(END,selected_row[3])
+    e4.delete(0,END)
+    e4.insert(END,selected_row[4])
+    e5.delete(0,END)
+    e5.insert(END,selected_row[5])
+    e6.delete(0,END)
+    e6.insert(END,selected_row[6])
+    
+ 
+def delete_command():
+    index = list.curselection()[0]
+    selected_row = list.get(index)
+    backend.delete(selected_row[0])
+      
+    
+def view_command():
+    list.delete(0,END)
+    for row in backend.view():
+        list.insert(END,row)
+        
+def search_command():
+    list.delete(0,END)
+    for row in backend.search(date_text.get(),earning_text.get(),exercise_text.get(),study_text.get(),watchingvideo_text.get(),python_text.get):
+        list.insert(END,row)
+    
+    
+def add_command():
+    backend.insert(date_text.get(),earning_text.get(),exercise_text.get(),study_text.get(),watchingvideo_text.get(),python_text.get())
+    
+    list.delete(0,END)
+    list.insert(END,(date_text.get(),earning_text.get(),exercise_text.get(),study_text.get(),watchingvideo_text.get(),python_text.get()))
+
+
+
+win = Tk()
+
+win.wm_title("MY ROUTINE DATABASE By DeePaK")
+win.configure(bg='#6666FF')
+
+
+l1 = Label(win, text='DATE')
+l1.grid(row=0,column=0)
+l1.configure(bg='#6666FF')
+l2 = Label(win, text='EARNING')
+l2.grid(row=0,column=2)
+l2.configure(bg='#6666FF')
+l3 = Label(win, text='EXERCISE')
+l3.grid(row=1,column=0)
+l3.configure(bg='#6666FF')
+l4 = Label(win, text='STUDY')
+l4.grid(row=1,column=2)
+l4.configure(bg='#6666FF')
+l5 = Label(win, text='WATCHING VIDEO')
+l5.grid(row=2,column=0)
+l5.configure(bg='#6666FF')
+l6 = Label(win, text='PYTHON')
+l6.grid(row=2,column=2)
+l6.configure(bg='#6666FF')
+
+date_text=StringVar()
+e1=Entry(win,textvariable=date_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=0,column=1)
+
+earning_text=StringVar()
+e1=Entry(win,textvariable=earning_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=0,column=3)
+
+exercise_text=StringVar()
+e1=Entry(win,textvariable=exercise_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=1,column=1)
+
+study_text=StringVar()
+e1=Entry(win,textvariable=study_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=1,column=3)
+
+watchingvideo_text=StringVar()
+e1=Entry(win,textvariable=watchingvideo_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=2,column=1)
+
+python_text=StringVar()
+e1=Entry(win,textvariable=python_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=2,column=3)
+
+
+
+list = Listbox(win,height=10,width=40)
+list.grid(row=3,column=0,rowspan=9,columnspan=2)
+
+sb = Scrollbar(win)
+sb.grid(row=3,column=2,rowspan=9)
+
+
+list.bind('<<ListboxSelection>>',get_selected_row)
+
+b1 = Button(win,text="ADD",font=("Arial",9,"bold"),bg="#0875B7",fg="white",width=12,pady=5,command=add_command)
+b1.grid(row=3,column=3)
+
+b2 = Button(win,text="SEARCH",font=("Arial",9,"bold"),bg="TURQUOISE",fg="white",width=12,pady=5,command=search_command)
+b2.grid(row=4,column=3)
+
+b3 = Button(win,text="DELETE DATE",font=("Arial",9,"bold"),bg="ORANGE",fg="white",width=12,pady=5,command=delete_command)
+b3.grid(row=5,column=3)
+
+b4 = Button(win,text="VIEW ALL",font=("Arial",9,"bold"),bg="MIDNIGHT BLUE",fg="white",width=12,pady=5,command=view_command)
+b4.grid(row=6,column=3)
+
+b5 = Button(win,text="CLOSE",font=("Arial",9,"bold"),bg="BLACK",fg="white",width=12,pady=5,command=win.destroy)
+b5.grid(row=7,column=3)
+
+
+
+win.mainloop()
+from tkinter import *
+import backend
+
+global selected_row
+def get_selected_row(event):
+    index = list.curselection()[0]
+    selected_row = list.get(index)
+    el.delete(0,END)
+    el.insert(END,selected_row[1])
+    e2.delete(0,END)
+    e2.insert(END,selected_row[2])
+    e3.delete(0,END)
+    e3.insert(END,selected_row[3])
+    e4.delete(0,END)
+    e4.insert(END,selected_row[4])
+    e5.delete(0,END)
+    e5.insert(END,selected_row[5])
+    e6.delete(0,END)
+    e6.insert(END,selected_row[6])
+    
+ 
+def delete_command():
+    index = list.curselection()[0]
+    selected_row = list.get(index)
+    backend.delete(selected_row[0])
+      
+    
+def view_command():
+    list.delete(0,END)
+    for row in backend.view():
+        list.insert(END,row)
+        
+def search_command():
+    list.delete(0,END)
+    for row in backend.search(date_text.get(),earning_text.get(),exercise_text.get(),study_text.get(),watchingvideo_text.get(),python_text.get):
+        list.insert(END,row)
+    
+    
+def add_command():
+    backend.insert(date_text.get(),earning_text.get(),exercise_text.get(),study_text.get(),watchingvideo_text.get(),python_text.get())
+    
+    list.delete(0,END)
+    list.insert(END,(date_text.get(),earning_text.get(),exercise_text.get(),study_text.get(),watchingvideo_text.get(),python_text.get()))
+
+
+
+win = Tk()
+
+win.wm_title("MY ROUTINE DATABASE By DeePaK")
+win.configure(bg='#6666FF')
+
+
+l1 = Label(win, text='DATE')
+l1.grid(row=0,column=0)
+l1.configure(bg='#6666FF')
+l2 = Label(win, text='EARNING')
+l2.grid(row=0,column=2)
+l2.configure(bg='#6666FF')
+l3 = Label(win, text='EXERCISE')
+l3.grid(row=1,column=0)
+l3.configure(bg='#6666FF')
+l4 = Label(win, text='STUDY')
+l4.grid(row=1,column=2)
+l4.configure(bg='#6666FF')
+l5 = Label(win, text='WATCHING VIDEO')
+l5.grid(row=2,column=0)
+l5.configure(bg='#6666FF')
+l6 = Label(win, text='PYTHON')
+l6.grid(row=2,column=2)
+l6.configure(bg='#6666FF')
+
+date_text=StringVar()
+e1=Entry(win,textvariable=date_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=0,column=1)
+
+earning_text=StringVar()
+e1=Entry(win,textvariable=earning_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=0,column=3)
+
+exercise_text=StringVar()
+e1=Entry(win,textvariable=exercise_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=1,column=1)
+
+study_text=StringVar()
+e1=Entry(win,textvariable=study_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=1,column=3)
+
+watchingvideo_text=StringVar()
+e1=Entry(win,textvariable=watchingvideo_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=2,column=1)
+
+python_text=StringVar()
+e1=Entry(win,textvariable=python_text,font=("Arial",8,"bold"),bg="black",fg="aqua")
+e1.grid(row=2,column=3)
+
+
+
+list = Listbox(win,height=10,width=40)
+list.grid(row=3,column=0,rowspan=9,columnspan=2)
+
+sb = Scrollbar(win)
+sb.grid(row=3,column=2,rowspan=9)
+
+
+list.bind('<<ListboxSelection>>',get_selected_row)
+
+b1 = Button(win,text="ADD",font=("Arial",9,"bold"),bg="#0875B7",fg="white",width=12,pady=5,command=add_command)
+b1.grid(row=3,column=3)
+
+b2 = Button(win,text="SEARCH",font=("Arial",9,"bold"),bg="TURQUOISE",fg="white",width=12,pady=5,command=search_command)
+b2.grid(row=4,column=3)
+
+b3 = Button(win,text="DELETE DATE",font=("Arial",9,"bold"),bg="ORANGE",fg="white",width=12,pady=5,command=delete_command)
+b3.grid(row=5,column=3)
+
+b4 = Button(win,text="VIEW ALL",font=("Arial",9,"bold"),bg="MIDNIGHT BLUE",fg="white",width=12,pady=5,command=view_command)
+b4.grid(row=6,column=3)
+
+b5 = Button(win,text="CLOSE",font=("Arial",9,"bold"),bg="BLACK",fg="white",width=12,pady=5,command=win.destroy)
+b5.grid(row=7,column=3)
+
+
+
+win.mainloop()
