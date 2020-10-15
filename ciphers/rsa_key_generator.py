@@ -2,6 +2,7 @@ import os
 import random
 import sys
 
+from typing import Tuple
 from . import cryptomath_module as cryptoMath
 from . import rabin_miller as rabinMiller
 
@@ -12,7 +13,7 @@ def main():
     print("Key files generation successful.")
 
 
-def generateKey(keySize: int) -> (tuple, tuple):
+def generateKey(keySize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     print("Generating prime p...")
     p = rabinMiller.generateLargePrime(keySize)
     print("Generating prime q...")

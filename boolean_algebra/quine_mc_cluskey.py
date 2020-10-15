@@ -43,7 +43,7 @@ def check(binary: [str]) -> [str]:
         binary = list(set(temp))
 
 
-def decimal_to_binary(no_of_variable: int, minterms: [int]) -> [str]:
+def decimal_to_binary(no_of_variable: int, minterms: [float]) -> [str]:
     """
     >>> decimal_to_binary(3,[1.5])
     ['0.00.01.5']
