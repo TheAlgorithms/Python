@@ -1,5 +1,8 @@
 os: linux
 dist: focal
+group: edge
+arch: arm64-graviton2
+virt: lxd
 language: python
 python: 3.8
 cache: pip
