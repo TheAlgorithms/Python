@@ -33,6 +33,7 @@ Find the Matrix Sum of:
 """
 from functools import cmp_to_key
 
+
 def solve(
     matrix, enhanced_matrix=None, i=0, has_booked=None, value=0, max_value=float("-inf")
 ):
