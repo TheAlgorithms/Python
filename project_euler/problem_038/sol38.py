@@ -26,7 +26,8 @@ def pandigital_check(number: str = '123456789'):
 
 def solution():
     """
-        We will run the pandigital_check starting from 10000 (Since 5 digit numbers if multiplied and concatenated will make a 10 digit number atleast but we want a 9 digit one)
+        We will run the pandigital_check starting from 10000 (Since 5 digit numbers if multiplied and concatenated will 
+        make a 10 digit number at least but we want a 9 digit one)
 
         >>> solution()
         932718654
