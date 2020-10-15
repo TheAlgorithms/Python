@@ -2,6 +2,28 @@ from typing import List
 
 
 def merge(left_half: List, right_half: List) -> List:
+    '''
+    >>> left_half = [-2]
+    >>> right_half = [-1]
+    >>> merge(left_half, right_half)
+    [-2, -1]
+    >>> left_half = [1,2,3]
+    >>> right_half = [4,5,6]
+    >>> merge(left_half, right_half)
+    [1, 2, 3, 4, 5, 6]
+    >>> left_half = [-2]
+    >>> right_half = [-1]
+    >>> merge(left_half, right_half)
+    [-2, -1]
+    >>> left_half = [12, 15]
+    >>> right_half = [13, 14]
+    >>> merge(left_half, right_half)
+    [12, 13, 14, 15]
+    >>> left_half = []
+    >>> right_half = []
+    >>> merge(left_half, right_half)
+    []
+    '''
     sorted_array = [None] * (len(right_half) + len(left_half))
 
     pointer1 = 0  # pointer to current index for left Half
