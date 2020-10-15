@@ -133,6 +133,7 @@
     * [Max Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/max_heap.py)
     * [Min Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/min_heap.py)
     * [Randomized Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/randomized_heap.py)
+    * [Skew Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/skew_heap.py)
   * Linked List
     * [Circular Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/circular_linked_list.py)
     * [Deque Doubly](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/deque_doubly.py)
@@ -507,185 +508,185 @@
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/other/word_patterns.py)
 
 ## Project Euler
-  * Problem 01
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol3.py)
-    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol4.py)
-    * [Sol5](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol5.py)
-    * [Sol6](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol6.py)
-    * [Sol7](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_01/sol7.py)
-  * Problem 02
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol3.py)
-    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol4.py)
-    * [Sol5](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_02/sol5.py)
-  * Problem 03
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_03/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_03/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_03/sol3.py)
-  * Problem 04
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_04/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_04/sol2.py)
-  * Problem 05
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_05/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_05/sol2.py)
-  * Problem 06
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol3.py)
-    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_06/sol4.py)
-  * Problem 07
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_07/sol3.py)
-  * Problem 08
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_08/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_08/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_08/sol3.py)
-  * Problem 09
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_09/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_09/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_09/sol3.py)
-  * Problem 10
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_10/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_10/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_10/sol3.py)
-  * Problem 11
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_11/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_11/sol2.py)
+  * Problem 001
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol3.py)
+    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol4.py)
+    * [Sol5](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol5.py)
+    * [Sol6](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol6.py)
+    * [Sol7](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol7.py)
+  * Problem 002
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_002/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_002/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_002/sol3.py)
+    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_002/sol4.py)
+    * [Sol5](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_002/sol5.py)
+  * Problem 003
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_003/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_003/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_003/sol3.py)
+  * Problem 004
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_004/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_004/sol2.py)
+  * Problem 005
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_005/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_005/sol2.py)
+  * Problem 006
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_006/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_006/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_006/sol3.py)
+    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_006/sol4.py)
+  * Problem 007
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_007/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_007/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_007/sol3.py)
+  * Problem 008
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_008/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_008/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_008/sol3.py)
+  * Problem 009
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_009/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_009/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_009/sol3.py)
+  * Problem 010
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_010/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_010/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_010/sol3.py)
+  * Problem 011
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_011/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_011/sol2.py)
+  * Problem 012
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_012/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_012/sol2.py)
+  * Problem 013
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_013/sol1.py)
+  * Problem 014
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_014/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_014/sol2.py)
+  * Problem 015
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_015/sol1.py)
+  * Problem 016
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_016/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_016/sol2.py)
+  * Problem 017
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_017/sol1.py)
+  * Problem 018
+    * [Solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_018/solution.py)
+  * Problem 019
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_019/sol1.py)
+  * Problem 020
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_020/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_020/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_020/sol3.py)
+    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_020/sol4.py)
+  * Problem 021
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_021/sol1.py)
+  * Problem 022
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_022/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_022/sol2.py)
+  * Problem 023
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_023/sol1.py)
+  * Problem 024
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_024/sol1.py)
+  * Problem 025
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_025/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_025/sol2.py)
+    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_025/sol3.py)
+  * Problem 026
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_026/sol1.py)
+  * Problem 027
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_027/sol1.py)
+  * Problem 028
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_028/sol1.py)
+  * Problem 029
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_029/sol1.py)
+  * Problem 030
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_030/sol1.py)
+  * Problem 031
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_031/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_031/sol2.py)
+  * Problem 032
+    * [Sol32](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_032/sol32.py)
+  * Problem 033
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_033/sol1.py)
+  * Problem 034
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_034/sol1.py)
+  * Problem 035
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_035/sol1.py)
+  * Problem 036
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_036/sol1.py)
+  * Problem 037
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_037/sol1.py)
+  * Problem 039
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_039/sol1.py)
+  * Problem 040
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_040/sol1.py)
+  * Problem 041
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_041/sol1.py)
+  * Problem 042
+    * [Solution42](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_042/solution42.py)
+  * Problem 043
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_043/sol1.py)
+  * Problem 044
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_044/sol1.py)
+  * Problem 045
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_045/sol1.py)
+  * Problem 046
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_046/sol1.py)
+  * Problem 047
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_047/sol1.py)
+  * Problem 048
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_048/sol1.py)
+  * Problem 049
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_049/sol1.py)
+  * Problem 051
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_051/sol1.py)
+  * Problem 052
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_052/sol1.py)
+  * Problem 053
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_053/sol1.py)
+  * Problem 054
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_054/sol1.py)
+    * [Test Poker Hand](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_054/test_poker_hand.py)
+  * Problem 055
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_055/sol1.py)
+  * Problem 056
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_056/sol1.py)
+  * Problem 062
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_062/sol1.py)
+  * Problem 063
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_063/sol1.py)
+  * Problem 067
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_067/sol1.py)
+  * Problem 069
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_069/sol1.py)
+  * Problem 071
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_071/sol1.py)
+  * Problem 072
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_072/sol1.py)
+  * Problem 076
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_076/sol1.py)
+  * Problem 080
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_080/sol1.py)
+  * Problem 097
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_097/sol1.py)
+  * Problem 099
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_099/sol1.py)
   * Problem 112
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_112/sol1.py)
   * Problem 119
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_119/sol1.py)
-  * Problem 12
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_12/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_12/sol2.py)
   * Problem 120
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_120/sol1.py)
   * Problem 125
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_125/sol1.py)
-  * Problem 13
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_13/sol1.py)
-  * Problem 14
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_14/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_14/sol2.py)
-  * Problem 15
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_15/sol1.py)
-  * Problem 16
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_16/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_16/sol2.py)
-  * Problem 17
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_17/sol1.py)
-  * Problem 18
-    * [Solution](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_18/solution.py)
-  * Problem 19
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_19/sol1.py)
   * Problem 191
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
-  * Problem 20
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol3.py)
-    * [Sol4](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_20/sol4.py)
-  * Problem 21
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_21/sol1.py)
-  * Problem 22
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_22/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_22/sol2.py)
-  * Problem 23
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_23/sol1.py)
   * Problem 234
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_234/sol1.py)
-  * Problem 24
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_24/sol1.py)
-  * Problem 25
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_25/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_25/sol2.py)
-    * [Sol3](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_25/sol3.py)
-  * Problem 26
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_26/sol1.py)
-  * Problem 27
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_27/sol1.py)
-  * Problem 28
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_28/sol1.py)
-  * Problem 29
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_29/sol1.py)
-  * Problem 30
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_30/sol1.py)
-  * Problem 31
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_31/sol1.py)
-    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_31/sol2.py)
-  * Problem 32
-    * [Sol32](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_32/sol32.py)
-  * Problem 33
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_33/sol1.py)
-  * Problem 34
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_34/sol1.py)
-  * Problem 35
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_35/sol1.py)
-  * Problem 36
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_36/sol1.py)
-  * Problem 37
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_37/sol1.py)
-  * Problem 39
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_39/sol1.py)
-  * Problem 40
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_40/sol1.py)
-  * Problem 41
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_41/sol1.py)
-  * Problem 42
-    * [Solution42](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_42/solution42.py)
-  * Problem 43
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_43/sol1.py)
-  * Problem 44
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_44/sol1.py)
-  * Problem 45
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_45/sol1.py)
-  * Problem 46
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_46/sol1.py)
-  * Problem 47
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_47/sol1.py)
-  * Problem 48
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_48/sol1.py)
-  * Problem 49
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_49/sol1.py)
-  * Problem 51
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_51/sol1.py)
-  * Problem 52
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_52/sol1.py)
-  * Problem 53
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_53/sol1.py)
-  * Problem 54
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_54/sol1.py)
-    * [Test Poker Hand](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_54/test_poker_hand.py)
-  * Problem 55
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_55/sol1.py)
   * Problem 551
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_551/sol1.py)
-  * Problem 56
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_56/sol1.py)
-  * Problem 62
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_62/sol1.py)
-  * Problem 63
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_63/sol1.py)
-  * Problem 67
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_67/sol1.py)
-  * Problem 69
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_69/sol1.py)
-  * Problem 71
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_71/sol1.py)
-  * Problem 72
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_72/sol1.py)
-  * Problem 76
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_76/sol1.py)
-  * Problem 80
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_80/sol1.py)
-  * Problem 97
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_97/sol1.py)
-  * Problem 99
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_99/sol1.py)
   * [Validate Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py)
 
 ## Quantum
@@ -775,6 +776,7 @@
   * [Remove Duplicate](https://github.com/TheAlgorithms/Python/blob/master/strings/remove_duplicate.py)
   * [Reverse Words](https://github.com/TheAlgorithms/Python/blob/master/strings/reverse_words.py)
   * [Split](https://github.com/TheAlgorithms/Python/blob/master/strings/split.py)
+  * [Swap Case](https://github.com/TheAlgorithms/Python/blob/master/strings/swap_case.py)
   * [Upper](https://github.com/TheAlgorithms/Python/blob/master/strings/upper.py)
   * [Word Occurrence](https://github.com/TheAlgorithms/Python/blob/master/strings/word_occurrence.py)
   * [Z Function](https://github.com/TheAlgorithms/Python/blob/master/strings/z_function.py)
