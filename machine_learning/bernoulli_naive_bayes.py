@@ -272,7 +272,7 @@ def main():
     X = df.iloc[:, :-1]
     y = df.iloc[:, -1:]
 
-    model = naive_bayes(X, y)
+    model = NaiveBayes(X, y)
 
     print(model.predict(X))
 
