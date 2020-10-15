@@ -12,7 +12,7 @@ python3 quick_sort.py
 def quick_sort(collection: list) -> list:
     """A pure Python implementation of quick sort algorithm
 
-    :param collection: a collection of comparable items
+    :param collection: a mutable collection of comparable items
     :return: the same collection ordered by ascending
 
     Examples:
@@ -22,8 +22,6 @@ def quick_sort(collection: list) -> list:
     []
     >>> quick_sort([-2, 5, 0, -45])
     [-45, -2, 0, 5]
-    >>> quick_sort("Python")
-    ['P', 'h', 'n', 'o', 't', 'y']
     """
     if len(collection) < 2:
         return collection
@@ -31,10 +29,7 @@ def quick_sort(collection: list) -> list:
     greater = []  # All elements greater than pivot
     lesser = []  # All elements less than or equal to pivot
     for element in collection:
-        if element > pivot:
-            greater.append(element)
-        else:
-            lesser.append(element)
+        (greater if element > pivot else lesser).append(element)
     return quick_sort(lesser) + [pivot] + quick_sort(greater)
 
 
