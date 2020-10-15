@@ -1,4 +1,6 @@
 """
+Project Euler Problem 77: https://projecteuler.net/problem=77
+
 It is possible to write ten as the sum of primes in exactly five different ways:
 
 7 + 3
@@ -47,16 +49,18 @@ def partition(n: int) -> set:
     return ret
 
 
-def solution() -> int:
+def solution(m: int = 5000) -> int:
     """
     Return the smallest integer that can be written as the sum of primes in over
-    5000 unique ways.
+    m unique ways.
+    >>> solution(500)
+    45
     """
     for n in range(1, 100):
-        if len(partition(n)) > 5000:
+        if len(partition(n)) > m:
             return n
     return 0
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
