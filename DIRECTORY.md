@@ -302,6 +302,7 @@
   * [Tarjans Scc](https://github.com/TheAlgorithms/Python/blob/master/graphs/tarjans_scc.py)
   * Tests
     * [Test Min Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_kruskal.py)
+    * [Test Min Spanning Tree Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_prim.py)
 
 ## Greedy Method
   * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/greedy_knapsack.py)
@@ -666,6 +667,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_071/sol1.py)
   * Problem 072
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_072/sol1.py)
+  * Problem 074
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_074/sol1.py)
   * Problem 076
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_076/sol1.py)
   * Problem 080
