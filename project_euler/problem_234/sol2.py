@@ -1,4 +1,6 @@
 """
+Project Euler Problem 234: https://projecteuler.net/problem=234
+
 For an integer n ≥ 4, we define the lower prime square root of n, denoted by lps(n), as
 the largest prime ≤ √n and the upper prime square root of n, ups(n), as the smallest
 prime ≥ √n.
@@ -119,4 +121,4 @@ def solution(limit: int = 999966663333) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
