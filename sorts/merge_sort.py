@@ -42,7 +42,7 @@ def merge_sort(collection: list) -> list:
         return collection
     mid = len(collection) // 2
     if (collection[mid-1]<=collection[mid]):
-        return 
+        return 1 
     return merge(merge_sort(collection[:mid]), merge_sort(collection[mid:]))
 
 
