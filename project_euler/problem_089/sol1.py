@@ -1,4 +1,6 @@
 """
+Project Euler Problem 89: https://projecteuler.net/problem=89
+
 For a number written in Roman numerals to be considered valid there are basic rules
 which must be followed. Even though the rules allow some numbers to be expressed in
 more than one way there is always a "best" way of writing a particular number.
@@ -112,7 +114,11 @@ def gains(word: str) -> int:
 
 
 def solution() -> int:
-    #    with open("_p089_roman.txt", "r") as f:
+    """
+    Find the number of characters saved by writing each roman numeral in minimal form.
+    """
+
+    #    with open("p089_roman.txt", "r") as f:
     #        words = f.read().split("\n")
 
     from .data import WORDS
@@ -121,4 +127,4 @@ def solution() -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
