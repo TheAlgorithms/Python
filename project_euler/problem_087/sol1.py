@@ -1,4 +1,6 @@
 """
+Project Euler Problem 87: https://projecteuler.net/problem=87
+
 The smallest number expressible as the sum of a prime square, prime cube, and prime
 fourth power is 28. In fact, there are exactly four numbers below fifty that can be
 expressed in such a way:
@@ -47,4 +49,4 @@ def solution(limit: int = 50000000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
