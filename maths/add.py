@@ -3,7 +3,7 @@ Just to check
 """
 
 
-def add(a, b):
+def add(a, b): # Function for adding two numbers.
     """
     >>> add(2, 2)
     4
