@@ -1,5 +1,3 @@
-from functools import cmp_to_key
-
 """
 Problem 345: https://projecteuler.net/problem=345
 
@@ -33,7 +31,7 @@ Find the Matrix Sum of:
 815 559 813 459 522 788 168 586 966 232 308 833 251 631 107
 813 883 451 509 615  77 281 613 459 205 380 274 302  35 805
 """
-
+from functools import cmp_to_key
 
 def solve(
     matrix, enhanced_matrix=None, i=0, has_booked=None, value=0, max_value=float("-inf")
@@ -95,7 +93,7 @@ def solve(
                 return max(max_value, value + enhanced_matrix[i][j][0])
 
     # Start from this line,
-    # it will run rest line codes when current computation not in the leaves
+    # it will run rest line codes when current computation not in the leaf
     for j in range(n):
         # Ensure current node don't shares same column as current selected nodes/values
         if not has_booked[enhanced_matrix[i][j][1]]:
@@ -164,6 +162,8 @@ matrix2 = [
 def solution(matrix: list = matrix2) -> int:
     """
     Returns the maximum possible sum of matrix values
+    with no value share a same row or column.
+
     >>> solution(matrix1)
     3315
     >>> solution(matrix2)
