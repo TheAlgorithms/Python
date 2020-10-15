@@ -1,24 +1,26 @@
-# The Reverse Polish Nation also known as Polish postfix notation or simply postfix notation
-# https://en.wikipedia.org/wiki/Reverse_Polish_notation
-# Classic examples of simple stack implementations
-# Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+"""
+The Reverse Polish Nation also known as Polish postfix notation or simply postfix notation
+https://en.wikipedia.org/wiki/Reverse_Polish_notation
+Classic examples of simple stack implementations
+Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+"""
 
 
 def evaluate_postfix(postfix_notation):
     """
-    >>> array = ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
-    >>> evaluate_postfix(array)
+    >>> evaluate_postfix(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
     22
-    >>> array = ["2", "1", "+", "3", "*"]
-    >>> evaluate_postfix(array)
+    >>> evaluate_postfix(["2", "1", "+", "3", "*"])
     9
-    >>> array = ["4", "13", "5", "/", "+"]
-    >>> evaluate_postfix(array)
+    >>> evaluate_postfix(["4", "13", "5", "/", "+"])
     6
     >>> array = []
     >>> evaluate_postfix(array)
     0
     """
+    if not postfix_notation:
+        return 0
+
     operations = {'+', '-', '*', '/'}
     stack = []
 
@@ -39,7 +41,7 @@ def evaluate_postfix(postfix_notation):
         else:
             stack.append(int(token))
 
-    return stack.pop() if len(stack) != 0 else 0
+    return stack.pop()
 
 
 if __name__ == "__main__":
