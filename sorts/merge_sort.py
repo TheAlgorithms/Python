@@ -41,6 +41,8 @@ def merge_sort(collection: list) -> list:
     if len(collection) <= 1:
         return collection
     mid = len(collection) // 2
+    if (collection[mid-1]<=collection[mid]):
+        return
     return merge(merge_sort(collection[:mid]), merge_sort(collection[mid:]))
 
 
