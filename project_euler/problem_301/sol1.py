@@ -32,7 +32,7 @@ opponent until no stones remain; so the current player loses. To illustrate:
 For how many positive integers n <= 2^30 does X(n,2n,3n) = 0?
 """
 
-def X(n: int, n2: int, n3: int) -> int:
+def x(n: int, n2: int, n3: int) -> int:
     """
     Returns:
     - zero if, with perfect strategy, the player about to
@@ -40,15 +40,15 @@ def X(n: int, n2: int, n3: int) -> int:
     - non-zero if, with perfect strategy, the player about
       to move will eventually win.
 
-    >>> X(1)
+    >>> x(1)
     0
-    >>> X(3)
+    >>> x(3)
     12
-    >>> X(8)
+    >>> x(8)
     0
-    >>> X(11)
+    >>> x(11)
     60
-    >>> X(1000)
+    >>> x(1000)
     3968
     """
     return n ^ n2 ^ n3
@@ -65,7 +65,7 @@ def solution(n: int = 2**30) -> int:
     """
     lossCount = 0
     for i in range(1,n+1):
-        if X(i,2*i,3*i) == 0:
+        if x(i,2*i,3*i) == 0:
             lossCount += 1
 
     return lossCount
