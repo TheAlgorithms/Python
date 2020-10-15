@@ -2,7 +2,7 @@ from typing import List
 
 
 def merge(left_half: List, right_half: List) -> List:
-    '''
+    """
     >>> left_half = [-2]
     >>> right_half = [-1]
     >>> merge(left_half, right_half)
@@ -23,7 +23,7 @@ def merge(left_half: List, right_half: List) -> List:
     >>> right_half = []
     >>> merge(left_half, right_half)
     []
-    '''
+    """
     sorted_array = [None] * (len(right_half) + len(left_half))
 
     pointer1 = 0  # pointer to current index for left Half
