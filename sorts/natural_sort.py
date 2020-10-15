@@ -7,7 +7,7 @@ def natural_sort(input_list: list[str]) -> list[str]:
     """
     Sort the given list of strings in the way that humans expect.
 
-    The normal python sort algorithm sorts lexicographically,
+    The normal Python sort algorithm sorts lexicographically,
     so you might not get the results that you expect
     >>> example1 = ['2 ft 7 in', '1 ft 5 in', '10 ft 2 in', '2 ft 11 in', '7 ft 6 in']
     >>> example2 = ['Elm11', 'Elm12', 'Elm2', 'elm0', 'elm1', 'elm10', 'elm13', 'elm9']
