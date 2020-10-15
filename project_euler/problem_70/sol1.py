@@ -18,7 +18,7 @@ the ratio n/φ(n) produces a minimum.
 """
 
 
-def solution() -> int:
+def solution(max: int = 10000000) -> int:
     """
     This is essentially brute force. Calculate all totients up to 10^7 and
     find the minimum ratio of n/φ(n) that way. To minimize the ratio, we want
@@ -26,11 +26,16 @@ def solution() -> int:
     minimum fraction's numerator and denominator and calculate new fractions
     with each totient to compare against. To avoid dividing by zero, I opt to
     use cross multiplication.
+
+    >>> solution(100)
+    21
+
+    >>> solution(10000)
+    4435
     """
 
     min_num = 1  # i
     min_den = 0  # φ(i)
-    max = 10000000
     totients = get_totients(max + 1)
 
     for i in range(2, max + 1):
@@ -48,6 +53,12 @@ def get_totients(max_one: int) -> list:
     Calculates a list of totients from 0 to max_one exclusive, using the
     definition of Euler's product formula:
     https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
+
+    >>> get_totients(5)
+    [0, 1, 1, 2, 2]
+
+    >>> get_totients(10)
+    [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
     """
     totients = [0] * max_one
 
@@ -72,6 +83,15 @@ def has_same_digits(num1: int, num2: int) -> bool:
     respective index every time you see the digit in num1, and decrement if in
     num2. At the end, if the numbers have the same digits, every index must
     contain 0.
+
+    >>> has_same_digits(123456789, 987654321)
+    True
+
+    >>> has_same_digits(123, 12)
+    False
+
+    >>> has_same_digits(1234566, 123456)
+    False
     """
     digits = [0] * 10
 
@@ -89,4 +109,4 @@ def has_same_digits(num1: int, num2: int) -> bool:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
