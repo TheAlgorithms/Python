@@ -25,7 +25,7 @@ def preorder(root):
     then its left subtree followed
     by right subtree.
     preorder(make_tree())
-    1 2 4 5 3 
+    1 2 4 5 3
     """
     if root:
         print(root.data, end=" ")
