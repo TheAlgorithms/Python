@@ -133,8 +133,8 @@ def hsv_to_hex_color_code(
     HSV  -> hue 0-359°, saturation 0-100%, value 0-100%
 
     Notes:
-    Any values that using percentage (%) is decimal sensitive (e.g. cyan, magenta, yellow, black, 
-    saturation, lightness, and value).
+    Any values that using percentage (%) is decimal sensitive (e.g. cyan, 
+    magenta, yellow, black, saturation, lightness, and value).
 """
 
 # Examples below prints: #EFDCDC
