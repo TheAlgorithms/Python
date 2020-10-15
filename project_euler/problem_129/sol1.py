@@ -14,36 +14,43 @@ Find the least value of n for which A(n) first exceeds one-million.
 """
 
 
-def A(n: int) -> int:
+def least_divisible_repunit(divisor: int) -> int:
     """
-    Return the least value k such that the Repunit of length k is divisible by n.
-    >>> A(7)
+    Return the least value k such that the Repunit of length k is divisible by divisor.
+    >>> least_divisible_repunit(7)
     6
-    >>> A(41)
+    >>> least_divisible_repunit(41)
     5
-    >>> A(1234567)
+    >>> least_divisible_repunit(1234567)
     34020
     """
-    if n % 5 == 0 or n % 2 == 0:
+    if divisor % 5 == 0 or divisor % 2 == 0:
         return 0
-    R = 1
-    k = 1
-    while R:
-        R = (10 * R + 1) % n
-        k += 1
-    return k
+    repunit = 1
+    repunit_index = 1
+    while repunit:
+        repunit = (10 * repunit + 1) % divisor
+        repunit_index += 1
+    return repunit_index
 
 
 def solution(limit: int = 1000000) -> int:
     """
-    Return the least value of n for which A(n) first exceeds limit.
+    Return the least value of n for which least_divisible_repunit(n)
+    first exceeds limit.
     >>> solution(10)
     17
+    >>> solution(100)
+    109
+    >>> solution(1000)
+    1017
     """
-    n = limit - 1
-    while A(n) <= limit:
-        n += 2
-    return n
+    divisor = limit - 1
+    if divisor % 2 == 0:
+        divisor += 1
+    while least_divisible_repunit(divisor) <= limit:
+        divisor += 2
+    return divisor
 
 
 if __name__ == "__main__":
