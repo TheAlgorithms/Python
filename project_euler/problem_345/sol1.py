@@ -114,7 +114,7 @@ def solve(
                             sub_max_value = matrix[c][k]
                     possible_max_value += sub_max_value
 
-            # Stop evalute next sub-tree
+            # Stop evaluate next sub-tree
             #   if there is no way to overcome current max value
             if possible_max_value > max_value:
                 max_value = solve(
