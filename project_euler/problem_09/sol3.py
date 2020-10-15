@@ -1,5 +1,5 @@
 """
-Problem Statement:
+Problem 9: https://projecteuler.net/problem=9
 
 A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 
@@ -12,7 +12,7 @@ Find the product abc.
 """
 
 
-def solution():
+def solution() -> int:
     """
      Returns the product of a,b,c which are Pythagorean Triplet that satisfies
      the following:
