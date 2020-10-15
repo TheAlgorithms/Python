@@ -1,4 +1,6 @@
 """
+Project Euler Problem 38: https://projecteuler.net/problem=38
+
 Take the number 192 and multiply it by each of 1, 2, and 3:
 
 192 × 1 = 192
@@ -67,8 +69,9 @@ def solution() -> int:
         if is_9_palindromic(candidate):
             return candidate
 
+    # just in case
     return 192384576
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
