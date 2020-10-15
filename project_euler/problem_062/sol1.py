@@ -16,8 +16,12 @@ from math import ceil, floor
 def solution(num_perms: int = 5) -> int:
     """
     Return the smallest cube for which exactly five permutations of its digits are cube.
+    >>> solution(2)
+    125
     >>> solution(3)
     41063625
+    >>> solution(4)
+    1006012008
     """
     cube_len = 1
     while True:
