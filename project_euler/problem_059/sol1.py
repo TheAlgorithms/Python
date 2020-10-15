@@ -101,3 +101,6 @@ def solution():
             index += 1
         # Return the total value
         return totalValue
+
+if __name__ == "__main__":
+    print(f"{solution() = }")
