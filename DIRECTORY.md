@@ -738,6 +738,7 @@
   * [Iterative Merge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/iterative_merge_sort.py)
   * [Merge Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_insertion_sort.py)
   * [Merge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_sort.py)
+  * [Natural Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/natural_sort.py)
   * [Odd Even Transposition Parallel](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_parallel.py)
   * [Odd Even Transposition Single Threaded](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_single_threaded.py)
   * [Pancake Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pancake_sort.py)
