@@ -45,58 +45,96 @@ Find the value of D ≤ 1000 in minimal solutions of x for which the largest val
 
 from math import sqrt
 
+
 def continued_fraction(n):
-    
+
     """
     function to find continued fraction
-    
+
+    >>>continued_fraction(2)
+    [1,2]
+
+    >>>continued_fraction(3)
+    [1,1,2]
+
+    >>>continue_fraction(5)
+    [2,4]
     """
     mn = 0.0
     dn = 1.0
     a0 = int(sqrt(n))
     an = int(sqrt(n))
     convergents = [a0]
-    #period = 0
+    # period = 0
     if a0 != sqrt(n):
-        while an != 2*a0:
-            mn = dn*an - mn
-            dn = (n - mn**2)/dn
-            an = int((a0 + mn)/dn)
+        while an != 2 * a0:
+            mn = dn * an - mn
+            dn = (n - mn ** 2) / dn
+            an = int((a0 + mn) / dn)
             convergents.append(an)
     return convergents[:-1]
+
 
 def simple_frac(cf):
     """
     function to calculate the
     simple fraction from the continued
     fraction.
+
+    >>>simple_frac([1,2])
+    1 1
+    >>>simple_frac([1,1,2])
+    2 2
+    >>>simple_frac([2,4])
+    2 1
+    >>>simple_frac([2,2,4])
+    5 5
+
     """
     numerator = 1
     denominator = cf.pop()
     while cf:
-        denominator = denominator*cf.pop() + numerator
+        denominator = denominator * cf.pop() + numerator
         numerator = denominator
     return denominator, numerator
 
-def solution(limit : int=1001) -> int:
+
+def solution(limit: int = 1001) -> int:
+
+    """
+    function to find value of D in minimal solutions of x
+    for which x is largest.
+
+    >>>solution(7)
+    5
+
+    >>>solution(100)
+    61
+
+    >>>solution(1000)
+    661
+
+    """
 
     largest = 0, 0
-    
+
     # for loop less than 1000
     for i in range(1, limit):
-        if i%sqrt(i) != 0:
+        if i % sqrt(i) != 0:
             continued_frac = continued_fraction(i)
             if len(continued_frac) % 2 != 0:
                 u, v = simple_frac(continued_frac)
-                u = 2*u**2+1
-                v = 2*u*v
+                u = 2 * u ** 2 + 1
+                v = 2 * u * v
             else:
                 u, v = simple_frac(continued_frac)
             if u > largest[1]:
                 largest = i, u
 
     # print the largest value
+    print(largest[0])
     return largest[0]
 
+
 if __name__ == "__main__":
-    print(f"{solution() = }")
+    print(solution())
