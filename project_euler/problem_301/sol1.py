@@ -63,12 +63,12 @@ def solution(n: int = 2 ** 10) -> int:
     >>> solution(2 ** 10)
     144
     """
-    lossCount = 0
+    loss_count = 0
     for i in range(1, n + 1):
         if x(i, 2 * i, 3 * i) == 0:
-            lossCount += 1
+            loss_count += 1
 
-    return lossCount
+    return loss_count
 
 
 if __name__ == "__main__":
