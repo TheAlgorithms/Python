@@ -1,4 +1,6 @@
 """
+Project Euler Problem 72: https://projecteuler.net/problem=72
+
 Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1,
 it is called a reduced proper fraction.
 
@@ -15,7 +17,7 @@ for d ≤ 1,000,000?
 """
 
 
-def solution(limit: int = 1000000):
+def solution(limit: int = 1000000) -> int:
     """
     Return the number of reduced proper fractions with denominator less than limit.
     >>> solution(8)
@@ -40,4 +42,4 @@ def solution(limit: int = 1000000):
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
