@@ -1,6 +1,6 @@
 class Node:
     """
-    A Node has data variable and pointers 
+    A Node has data variable and pointers
     to its left and right nodes.
     """
 
@@ -21,8 +21,8 @@ def make_tree() -> Node:
 
 def preorder(root):
     """
-    PreOrder traversal: visit root node 
-    then its left subtree followed 
+    PreOrder traversal: visit root node
+    then its left subtree followed
     by right subtree.
     """
     if root:
@@ -73,7 +73,7 @@ def height(root):
 def levelorder1(root):
     """
     Print whole binary tree in Level Order Traverse.
-    Level Order traverse: Visit nodes 
+    Level Order traverse: Visit nodes
     of the tree level-by-level.
     """
     if not root:
@@ -92,7 +92,7 @@ def levelorder1(root):
 def levelorder2(root, level):
     """
     Level-wise traversal:
-    Print all nodes present at the 
+    Print all nodes present at the
     given level of the binary tree.
     """
     if not root:
@@ -106,8 +106,8 @@ def levelorder2(root, level):
 
 def print_left_to_right(root, level):
     """
-    Print elements on particular level 
-    from left to right direction of 
+    Print elements on particular level
+    from left to right direction of
     the binary tree.
     """
     if not root:
@@ -121,8 +121,8 @@ def print_left_to_right(root, level):
 
 def print_right_to_left(root, level):
     """
-    Print elements on particular level 
-    from right to left direction of 
+    Print elements on particular level
+    from right to left direction of
     the binary tree.
     """
     if not root:
@@ -183,5 +183,7 @@ def main():  # Main function for testing.
 
 
 if __name__ == "__main__":
+    # main()
     import doctest
+
     doctest.testmod()
