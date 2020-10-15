@@ -22,6 +22,7 @@ def merge(left_list, right_list, aux_array):
         j += 1
         k += 1
 
+
 def merge_sort(array, aux_array=[]):
     if len(array) > 1:
 
@@ -33,6 +34,7 @@ def merge_sort(array, aux_array=[]):
         merge_sort(left_list, array)
         merge_sort(right_list, array)
         merge(left_list, right_list, array)
+
 
 numbers = [100, 55, 80, 20, 15, 98, 76, 500, 480]
 
