@@ -1,5 +1,6 @@
 """
 Problem 183: https://projecteuler.net/problem=183
+Wikipedia Reference: https://en.wikipedia.org/wiki/Project_Euler
 
 Name: Maximum product of parts
 
