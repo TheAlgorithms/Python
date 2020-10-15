@@ -26,7 +26,6 @@ def power(base: int, exponent: int) -> int:
     result = d * d
     if exponent % 2 != 0:
         result *= base
-        
     return result
 
 
@@ -47,7 +46,6 @@ def solution(exponent: int = 1000) -> int:
     while result > 0:
         answer += result % 10
         result //= 10
-        
     return answer
 
 
