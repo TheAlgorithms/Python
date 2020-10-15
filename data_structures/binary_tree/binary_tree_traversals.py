@@ -24,7 +24,8 @@ def preorder(root):
     PreOrder traversal: visit root node
     then its left subtree followed
     by right subtree.
-    preorder(make_tree())
+
+    >>> preorder(make_tree())
     1 2 4 5 3
     """
     if root:
