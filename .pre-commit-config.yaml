@@ -18,6 +18,10 @@ repos:
     rev: stable
     hooks:
       - id: black
+    exclude: |
+      (?x)^(
+        data_structures/binary_tree/binary_tree_traversals.py
+      )$
   - repo: https://github.com/PyCQA/isort
     rev: 5.5.3
     hooks:
