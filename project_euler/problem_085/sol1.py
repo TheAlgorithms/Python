@@ -1,4 +1,6 @@
 """
+Project Euler Problem 85: https://projecteuler.net/problem=85
+
 By counting carefully it can be seen that a rectangular grid measuring 3 by 2
 contains eighteen rectangles.
 ￼
@@ -41,4 +43,4 @@ def solution(target: int = 2000000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
