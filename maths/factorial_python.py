@@ -1,4 +1,4 @@
-def factorial(input_number: int) -> int:
+def factorial(input_number: int) -> int:# Function to factorial.
     """
     Calculate the factorial of specified number
 
