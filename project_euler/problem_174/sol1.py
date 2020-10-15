@@ -23,7 +23,7 @@ from math import ceil, sqrt
 
 def solution(t_limit: int = 1000000, n_limit: int = 10) -> int:
     """
-    Return the sum of N(n) for 1 <= n <= 10.
+    Return the sum of N(n) for 1 <= n <= n_limit.
     >>> solution(1000,5)
     249
     >>> solution(10000,10)
