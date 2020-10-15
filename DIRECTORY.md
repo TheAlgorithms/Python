@@ -107,6 +107,7 @@
     * [Binary Search Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_search_tree.py)
     * [Binary Search Tree Recursive](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_search_tree_recursive.py)
     * [Binary Tree Mirror](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_tree_mirror.py)
+    * [Binary Tree Traversals](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/binary_tree_traversals.py)
     * [Fenwick Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/fenwick_tree.py)
     * [Lazy Segment Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lazy_segment_tree.py)
     * [Lowest Common Ancestor](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/lowest_common_ancestor.py)
