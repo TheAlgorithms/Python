@@ -6,22 +6,16 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
         types: [python]
-      # Some doctests use print(x, sep=" ") and black will not fix inside triple quotes
-      # It is too confusing for new contributors to understand this and how to fix
-      #- id: trailing-whitespace
-      #  exclude: |
-      #    (?x)^(
-      #      data_structures/heap/binomial_heap.py
-      #    )$
+      - id: trailing-whitespace
+        exclude: |
+          (?x)^(
+            data_structures/heap/binomial_heap.py
+          )$
       - id: requirements-txt-fixer
   - repo: https://github.com/psf/black
     rev: stable
     hooks:
       - id: black
-    exclude: |
-      (?x)^(
-        data_structures/binary_tree/binary_tree_traversals.py
-      )$
   - repo: https://github.com/PyCQA/isort
     rev: 5.5.3
     hooks:
