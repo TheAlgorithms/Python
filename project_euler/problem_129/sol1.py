@@ -1,4 +1,6 @@
 """
+Project Euler Problem 129: https://projecteuler.net/problem=129
+
 A number consisting entirely of ones is called a repunit. We shall define R(k) to be
 a repunit of length k; for example, R(6) = 111111.
 
@@ -45,4 +47,4 @@ def solution(limit: int = 1000000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
