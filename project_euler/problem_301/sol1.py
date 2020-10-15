@@ -32,6 +32,7 @@ opponent until no stones remain; so the current player loses. To illustrate:
 For how many positive integers n <= 2^30 does X(n,2n,3n) = 0?
 """
 
+
 def x(n: int, n2: int, n3: int) -> int:
     """
     Returns:
@@ -40,35 +41,35 @@ def x(n: int, n2: int, n3: int) -> int:
     - non-zero if, with perfect strategy, the player about
       to move will eventually win.
 
-    >>> x(1)
+    >>> x(1, 2, 3)
     0
-    >>> x(3)
+    >>> x(3, 6, 9)
     12
-    >>> x(8)
+    >>> x(8, 16, 24)
     0
-    >>> x(11)
+    >>> x(11, 22, 33)
     60
-    >>> x(1000)
+    >>> x(1000, 2000, 3000)
     3968
     """
     return n ^ n2 ^ n3
 
-def solution(n: int = 2**30) -> int:
+
+def solution(n: int = 2 ** 10) -> int:
     """
     For a given integer n <= 2^30, returns how many Nim games are lost.
     >>> solution(2)
     2
-    >>> solution(10)
+    >>> solution(2 ** 10)
     144
-    >>> solution(30)
-    2178309
     """
     lossCount = 0
-    for i in range(1,n+1):
-        if x(i,2*i,3*i) == 0:
+    for i in range(1, n + 1):
+        if x(i, 2 * i, 3 * i) == 0:
             lossCount += 1
 
     return lossCount
+
 
 if __name__ == "__main__":
     print(solution())
