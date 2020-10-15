@@ -104,7 +104,7 @@ def PrimsAlgorithm(l):  # noqa: E741
     return TreeEdges
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     # < --------- Prims Algorithm --------- >
     n = int(input("Enter number of vertices: ").strip())
     e = int(input("Enter number of edges: ").strip())
