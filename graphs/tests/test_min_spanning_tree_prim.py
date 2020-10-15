@@ -1,6 +1,5 @@
 from collections import defaultdict
 
-
 from graphs.minimum_spanning_tree_prims import PrimsAlgorithm as mst
 
 
