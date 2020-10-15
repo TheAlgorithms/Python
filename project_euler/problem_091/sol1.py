@@ -1,4 +1,6 @@
 """
+Project Euler Problem 91: https://projecteuler.net/problem=91
+
 The points P (x1, y1) and Q (x2, y2) are plotted at integer coordinates and
 are joined to the origin, O(0,0), to form ΔOPQ.
 ￼
@@ -50,4 +52,4 @@ def solution(limit: int = 50) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
