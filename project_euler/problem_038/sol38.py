@@ -46,8 +46,10 @@ def solution():
         for j in range(2, 10):
             concat_sum += str(i * j)
             if pandigital_check(concat_sum):
-                return concat_sum
+                return int(concat_sum)
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     print(solution())
