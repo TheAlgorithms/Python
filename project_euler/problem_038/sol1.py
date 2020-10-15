@@ -18,6 +18,10 @@ What is the largest 1 to 9 pandigital 9-digit number that can be formed as the
 concatenated product of an integer with (1,2, ... , n) where n > 1?
 """
 
+from __future__ import annotations
+
+from typing import Union
+
 
 def is_9_pandigital(n: int) -> bool:
     """
@@ -33,7 +37,7 @@ def is_9_pandigital(n: int) -> bool:
     return len(s) == 9 and set(s) == set("123456789")
 
 
-def solution() -> int:
+def solution() -> Union[int, None]:
     """
     Return the largest 1 to 9 pandigital 9-digital number that can be formed as the
     concatenated product of an integer with (1,2,...,n) where n > 1.
@@ -69,8 +73,7 @@ def solution() -> int:
         if is_9_pandigital(candidate):
             return candidate
 
-    # just in case
-    return 192384576
+    return None
 
 
 if __name__ == "__main__":
