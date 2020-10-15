@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-python@v2
       - run: pip install codespell
       - run: |
-          SKIP="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_22/p022_names.txt"
+          SKIP="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_022/p022_names.txt"
           codespell --ignore-words-list=ans,fo,followings,hist,iff,secant,som,tim --skip=$SKIP --quiet-level=2
       - name: Codespell comment
         if: ${{ failure() }}
