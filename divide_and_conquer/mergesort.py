@@ -2,23 +2,28 @@ from typing import List
 
 
 def merge(left_half: List, right_half: List) -> List:
-    """
+    """Helper function for mergesort.
+
     >>> left_half = [-2]
     >>> right_half = [-1]
     >>> merge(left_half, right_half)
     [-2, -1]
+
     >>> left_half = [1,2,3]
     >>> right_half = [4,5,6]
     >>> merge(left_half, right_half)
     [1, 2, 3, 4, 5, 6]
+
     >>> left_half = [-2]
     >>> right_half = [-1]
     >>> merge(left_half, right_half)
     [-2, -1]
+
     >>> left_half = [12, 15]
     >>> right_half = [13, 14]
     >>> merge(left_half, right_half)
     [12, 13, 14, 15]
+
     >>> left_half = []
     >>> right_half = []
     >>> merge(left_half, right_half)
@@ -53,31 +58,35 @@ def merge(left_half: List, right_half: List) -> List:
 
 
 def merge_sort(array: List) -> List:
-    """
+    """Returns a list of sorted array elements using merge sort.
+
     >>> from random import shuffle
     >>> array = [-2, 3, -10, 11, 99, 100000, 100, -200]
     >>> shuffle(array)
     >>> merge_sort(array)
     [-200, -10, -2, 3, 11, 99, 100, 100000]
+
     >>> shuffle(array)
     >>> merge_sort(array)
     [-200, -10, -2, 3, 11, 99, 100, 100000]
-    >>> shuffle(array)
-    >>> merge_sort(array)
-    [-200, -10, -2, 3, 11, 99, 100, 100000]
+
     >>> array = [-200]
     >>> merge_sort(array)
     [-200]
+
     >>> array = [-2, 3, -10, 11, 99, 100000, 100, -200]
     >>> shuffle(array)
     >>> sorted(array) == merge_sort(array)
     True
+
     >>> array = [-2]
     >>> merge_sort(array)
     [-2]
+
     >>> array = []
     >>> merge_sort(array)
     []
+
     >>> array = [10000000, 1, -1111111111, 101111111112, 9000002]
     >>> sorted(array) == merge_sort(array)
     True
