@@ -1,3 +1,6 @@
+# Author : Prateek Agrawal
+# Github : github.com/prateekagrawaliiit
+
 # Given a list Y containing 1s and 0s indicating the target values and a list P containing the probability whether the target is 1 or not.
 # We can find the cross entropy using the formula.
 
@@ -11,5 +14,5 @@ Y = [1,1,0,0]
 P = [0.8,0.6,0.3,0.1]
 
 
-
-print(cross_entropy(Y,P))
+if __name__ == "__main__":
+    print(cross_entropy(Y,P))
