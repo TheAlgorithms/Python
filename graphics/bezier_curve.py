@@ -102,6 +102,8 @@ class BezierCurve:
         plt.scatter(x, y, color="red", label="Control Points")
         plt.legend()
         plt.show()
+        
+#this is my change
 
 
 if __name__ == "__main__":
