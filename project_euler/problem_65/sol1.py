@@ -36,7 +36,7 @@ of the continued fraction for e.
 """
 
 
-def solution() -> int:
+def solution(max: int = 100) -> int:
     """
     The solution mostly comes down to finding an equation that will generate
     the numerator of the continued fraction. For the i-th numerator, the
@@ -45,7 +45,7 @@ def solution() -> int:
     n_i = m_i * n_(i-1) + n_(i-2)
 
     for m_i = the i-th index of the continued fraction representation of e,
-    n_0 = 1, and n_1 = 2.
+    n_0 = 1, and n_1 = 2 as the first 2 numbers of the representation.
 
     For example:
     n_9 = 6 * 193 + 106 = 1264
@@ -53,10 +53,16 @@ def solution() -> int:
 
     n_10 = 1 * 193 + 1264 = 1457
     1 + 4 + 5 + 7 = 17
+
+    >>> solution(9)
+    13
+    >>> solution(10)
+    17
+    >>> solution(50)
+    91
     """
     n0 = 1
     n1 = 2
-    max = 100
 
     for i in range(2, max + 1):
         temp = n0
@@ -86,4 +92,4 @@ def sum_digits(num: int) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
