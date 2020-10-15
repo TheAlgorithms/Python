@@ -1,4 +1,6 @@
 """
+Project Euler Problem 174: https://projecteuler.net/problem=174
+
 We shall define a square lamina to be a square outline with a square "hole" so that
 the shape possesses vertical and horizontal symmetry.
 
@@ -15,22 +17,24 @@ N(15) = 832.
 What is ∑ N(n) for 1 ≤ n ≤ 10?
 """
 
-
 from collections import defaultdict
 from math import ceil, sqrt
 
 
-def solution():
+def solution(t_limit: int = 1000000, n_limit: int = 10) -> int:
     """
     Return the sum of N(n) for 1 <= n <= 10.
+    >>> solution(1000,5)
+    249
+    >>> solution(10000,10)
+    2383
     """
-    LIMIT = 10 ** 6
-    count = defaultdict(int)
+    count: defaultdict = defaultdict(int)
 
-    for outer_width in range(3, (LIMIT // 4) + 2):
-        if outer_width * outer_width > LIMIT:
+    for outer_width in range(3, (t_limit // 4) + 2):
+        if outer_width * outer_width > t_limit:
             hole_width_lower_bound = max(
-                ceil(sqrt(outer_width * outer_width - LIMIT)), 1
+                ceil(sqrt(outer_width * outer_width - t_limit)), 1
             )
         else:
             hole_width_lower_bound = 1
@@ -44,4 +48,4 @@ def solution():
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
