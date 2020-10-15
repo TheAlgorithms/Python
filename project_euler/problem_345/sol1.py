@@ -108,9 +108,9 @@ def solve(
             for k in range(len(has_booked)):
                 if not has_booked[k]:
                     sub_max_value = float("-inf")
-                    for l in range(i + 1, m):
-                        if sub_max_value < matrix[l][k]:
-                            sub_max_value = matrix[l][k]
+                    for c in range(i + 1, m):
+                        if sub_max_value < matrix[c][k]:
+                            sub_max_value = matrix[c][k]
                     possible_max_value += sub_max_value
 
             # Stop evalute next sub-tree
