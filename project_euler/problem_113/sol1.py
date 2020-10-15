@@ -1,4 +1,6 @@
 """
+Project Euler Problem 113: https://projecteuler.net/problem=113
+
 Working from left-to-right if no digit is exceeded by the digit to its left it is
 called an increasing number; for example, 134468.
 
@@ -58,12 +60,16 @@ def non_bouncy_upto(n: int) -> int:
     return sum(non_bouncy_exact(i) for i in range(1, n + 1))
 
 
-def solution() -> int:
+def solution(num_digits: int = 100) -> int:
     """
     Caclulate the number of non-bouncy numbers less than a googol.
+    >>> solution(6)
+    12951
+    >>> solution(10)
+    277032
     """
-    return non_bouncy_upto(100)
+    return non_bouncy_upto(num_digits)
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
