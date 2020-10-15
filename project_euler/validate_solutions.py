@@ -37,19 +37,15 @@ def collect_solution_file_paths() -> List[pathlib.Path]:
     return solution_file_paths
 
 
-def expand_parameters(param: pathlib.Path) -> str:
-    """Expand parameters in pytest parametrize"""
-    project_dirname = param.parent.name
-    solution_filename = param.name
-    return f"{project_dirname}/{solution_filename}"
-
-
 @pytest.mark.parametrize(
-    "solution_path", collect_solution_file_paths(), ids=expand_parameters
+    "solution_path",
+    collect_solution_file_paths(),
+    ids=lambda path: f"{path.parent.name}/{path.name}",
 )
 def test_project_euler(solution_path: pathlib.Path):
     """Testing for all Project Euler solutions"""
-    problem_number: str = solution_path.parent.name[8:]  # problem_[extract his part]
+    # problem_[extract this part] and pad it with zeroes for width 3
+    problem_number: str = solution_path.parent.name[8:].zfill(3)
     expected: str = PROBLEM_ANSWERS[problem_number]
     solution_module = convert_path_to_module(solution_path)
     answer = str(solution_module.solution())
