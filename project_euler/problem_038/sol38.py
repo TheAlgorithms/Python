@@ -40,4 +40,4 @@ def solution():
                 return concat_sum
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
