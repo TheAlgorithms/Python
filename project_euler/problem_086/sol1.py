@@ -1,4 +1,6 @@
 """
+Project Euler Problem 86: https://projecteuler.net/problem=86
+
 A spider, S, sits in one corner of a cuboid room, measuring 6 by 5 by 3, and a fly, F,
 sits in the opposite corner. By travelling on the surfaces of the room the shortest
 "straight line" distance from S to F is 10 and the path is shown on the diagram.
@@ -49,4 +51,4 @@ def solution(limit: int = 1000000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
