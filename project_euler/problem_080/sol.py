@@ -67,5 +67,7 @@ def solution() ->int:
         num +=1
     return sos     
 if __name__ == "__main__":
+    from doctest import testmod
+    testmod()
     print("{}".format(solution()))
         
