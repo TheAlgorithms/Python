@@ -6,7 +6,7 @@ https://en.wikipedia.org/wiki/Run-length_encoding
 
 def run_length_encoding(data:str or tuple)->tuple or str:
     """
-    >>> runlengthencoding('taaaaaaaaaaanaayyyyy')
+    >>> run_length_encoding('taaaaaaaaaaanaayyyyy')
     ('tanay', [1, 11, 1, 2, 5])
     """
     if isinstance(data, str):
