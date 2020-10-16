@@ -43,7 +43,7 @@ def solution(n: int = 2 ** 30) -> int:
     """
     loss_count = 0
     for i in range(1, n + 1):
-        if (i^(2*i)^(3*i)) == 0:
+        if (i ^ (2 * i) ^ (3 * i)) == 0:
             loss_count += 1
 
     return loss_count
