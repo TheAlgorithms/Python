@@ -1,5 +1,5 @@
 """
-Problem 57: Square root convergents
+Project Euler Problem 57: https://projecteuler.net/problem=57
 It is possible to show that the square root of two can be expressed as an infinite
 continued fraction.
 
@@ -45,4 +45,4 @@ def solution(n: int = 1000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution(10000) = }")
+    print(f"{solution() = }")
