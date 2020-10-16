@@ -2,7 +2,7 @@ import numpy as np
 
 def euclidean_distance(v1, v2) -> int:
     """
-    Calculate the distance between the two the endpoints of two vectors, v1 and v2.
+    Calculate the distance between the two = endpoints of two vectors, v1 and v2.
     >>> euclidean_distance(np.array([0, 0]), np.array([2, 2]))
     2.8284271247461903
     >>> euclidean_distance(np.array([0, 0, 0]), np.array([2, 2, 2]))
@@ -13,7 +13,6 @@ def euclidean_distance(v1, v2) -> int:
     sumSquared = 0 
     for i in range(len(v1)):
         sumSquared += (v1[i] - v2[i]) ** 2
-
     return sumSquared ** (1 / 2)
 
 if __name__ == "__main__":
