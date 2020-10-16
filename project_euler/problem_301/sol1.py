@@ -33,20 +33,28 @@ For how many positive integers n <= 2^30 does X(n,2n,3n) = 0?
 """
 
 
-def solution(n: int = 2 ** 30) -> int:
+def solution(exponent: int = 30) -> int:
     """
-    For a given integer n <= 2^30, returns how many Nim games are lost.
+    For any given exponent x >= 0, 1 <= n <= 2^x.
+    This function returns how many Nim games are lost given that
+    each Nim game has three heaps of the form (n, 2*n, 3*n).
+    >>> solution(0)
+    1
     >>> solution(2)
-    2
-    >>> solution(2 ** 10)
+    3
+    >>> solution(10)
     144
+    >>> solution(30)
+    2178309
     """
-    loss_count = 0
-    for i in range(1, n + 1):
-        if (i ^ (2 * i) ^ (3 * i)) == 0:
-            loss_count += 1
+    # To find how many total games were lost for a given exponent x,
+    # we need to find the Fibonacci number F(x+2).
+    fib_ind = exponent + 2
+    phi = (1 + 5 ** 0.5) / 2
+    fib = (phi ** fib_ind - (phi - 1) ** fib_ind) / 5 ** 0.5
+    nim_loss_count = int(fib)
 
-    return loss_count
+    return nim_loss_count
 
 
 if __name__ == "__main__":
