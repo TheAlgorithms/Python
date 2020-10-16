@@ -33,26 +33,31 @@ The sum of digits in the numerator of the 10th convergent is
 
 Find the sum of the digits in the numerator of the 100th convergent
 of the continued fraction for e.
+
+-----
+
+The solution mostly comes down to finding an equation that will generate
+the numerator of the continued fraction. For the i-th numerator, the
+pattern is:
+
+n_i = m_i * n_(i-1) + n_(i-2)
+
+for m_i = the i-th index of the continued fraction representation of e,
+n_0 = 1, and n_1 = 2 as the first 2 numbers of the representation.
+
+For example:
+n_9 = 6 * 193 + 106 = 1264
+1 + 2 + 6 + 4 = 13
+
+n_10 = 1 * 193 + 1264 = 1457
+1 + 4 + 5 + 7 = 17
 """
 
 
 def solution(max: int = 100) -> int:
     """
-    The solution mostly comes down to finding an equation that will generate
-    the numerator of the continued fraction. For the i-th numerator, the
-    pattern is:
-
-    n_i = m_i * n_(i-1) + n_(i-2)
-
-    for m_i = the i-th index of the continued fraction representation of e,
-    n_0 = 1, and n_1 = 2 as the first 2 numbers of the representation.
-
-    For example:
-    n_9 = 6 * 193 + 106 = 1264
-    1 + 2 + 6 + 4 = 13
-
-    n_10 = 1 * 193 + 1264 = 1457
-    1 + 4 + 5 + 7 = 17
+    Returns the sum of the digits in the numerator of the max-th convergent of
+    the continued fraction for e.
 
     >>> solution(9)
     13
@@ -75,7 +80,7 @@ def solution(max: int = 100) -> int:
 
 def sum_digits(num: int) -> int:
     """
-    Adds all the single digits of an int together.
+    Returns the sum of every digit in num.
 
     >>> sum_digits(1)
     1
