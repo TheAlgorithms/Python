@@ -4,25 +4,29 @@ https://projecteuler.net/problem=206
 
 Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
 where each “_” is a single digit.
+
+-----
+
+Instead of computing every single permutation of that number and going
+through a 10^9 search space, we can narrow it down considerably.
+
+If the square ends in a 0, then the square root must also end in a 0. Thus,
+the last missing digit must be 0 and the square root is a multiple of 10.
+We can narrow the search space down to the first 8 digits and multiply the
+result of that by 10 at the end.
+
+Now the last digit is a 9, which can only happen if the square root ends
+in a 3 or 7. We can either start checking for the square root from
+101010103, which is the closest square root of 10203040506070809 that ends
+in 3 or 7, or 138902663, the closest square root of 1929394959697989. The
+problem says there's only 1 answer, so starting at either point is fine,
+but the result happens to be much closer to the latter.
 """
 
 
 def solution() -> int:
     """
-    Instead of computing every single permutation of that number and going
-    through a 10^9 search space, we can narrow it down considerably.
-
-    If the square ends in a 0, then the square root must also end in a 0. Thus,
-    the last missing digit must be 0 and the square root is a multiple of 10.
-    We can narrow the search space down to the first 8 digits and multiply the
-    result of that by 10 at the end.
-
-    Now the last digit is a 9, which can only happen if the square root ends
-    in a 3 or 7. We can either start checking for the square root from
-    101010103, which is the closest square root of 10203040506070809 that ends
-    in 3 or 7, or 138902663, the closest square root of 1929394959697989. The
-    problem says there's only 1 answer, so starting at either point is fine,
-    but the result happens to be much closer to the latter.
+    Returns the first integer whose square is of the form 1_2_3_4_5_6_7_8_9_0.
     """
     num = 138902663
 
