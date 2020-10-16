@@ -29,7 +29,7 @@ def main():
     print(f"\n{mode.title()}ed text: \n{translated}")
 
 
-def check_keys(keyA, keyB, mode):
+def check_keys(keyA: int, keyB: int, mode: str) -> None:
     if mode == "encrypt":
         if keyA == 1:
             sys.exit(
@@ -90,11 +90,11 @@ def decrypt_message(key: int, message: str) -> str:
     return plainText
 
 
-def get_random_key():
+def get_random_key() -> int:
     while True:
         keyA = random.randint(2, len(SYMBOLS))
         keyB = random.randint(2, len(SYMBOLS))
-        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1:
+        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1 and keyB % len(SYMBOLS) != 0:
             return keyA * len(SYMBOLS) + keyB
 
 

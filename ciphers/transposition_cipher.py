@@ -22,7 +22,7 @@ def main():
     print("Output:\n%s" % (text + "|"))
 
 
-def encryptMessage(key, message):
+def encryptMessage(key: int, message: str) -> str:
     """
     >>> encryptMessage(6, 'Harshil Darji')
     'Hlia rDsahrij'
@@ -36,7 +36,7 @@ def encryptMessage(key, message):
     return "".join(cipherText)
 
 
-def decryptMessage(key, message):
+def decryptMessage(key: int, message: str) -> str:
     """
     >>> decryptMessage(6, 'Hlia rDsahrij')
     'Harshil Darji'

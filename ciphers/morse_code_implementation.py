@@ -57,7 +57,7 @@ MORSE_CODE_DICT = {
 }
 
 
-def encrypt(message):
+def encrypt(message: str) -> str:
     cipher = ""
     for letter in message:
         if letter != " ":
@@ -69,7 +69,7 @@ def encrypt(message):
     return cipher[:-1]
 
 
-def decrypt(message):
+def decrypt(message: str) -> str:
     decipher = ""
     letters = message.split(" ")
     for letter in letters:

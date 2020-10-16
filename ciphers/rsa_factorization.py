@@ -13,7 +13,7 @@ import math
 import random
 
 
-def rsafactor(d: int, e: int, N: int) -> list[int]:
+def rsafactor(d: int, e: int, N: int) -> [int]:
     """
     This function returns the factors of N, where p*q=N
       Return: [p, q]
