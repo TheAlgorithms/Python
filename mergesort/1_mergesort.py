@@ -51,12 +51,14 @@ def merge_sort(array, aux_array=[]) -> list:
 
         return array
 
+
 def main():
     """Print the Results of MergeSort."""
     print("MergeSort")
     numbers = [100, 55, 80, 20, 15, 98, 76, 500, 480]
     print(numbers)
     print(merge_sort(numbers))
+
 
 if __name__ == "__main__":
     main()
