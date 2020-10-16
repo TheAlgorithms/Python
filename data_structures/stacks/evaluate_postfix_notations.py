@@ -8,7 +8,7 @@ Each operand may be an integer or another expression.
 """
 
 
-def evaluate_postfix(postfix_notation):
+def evaluate_postfix(postfix_notation: list) -> int:
     """
     >>> evaluate_postfix(["2", "1", "+", "3", "*"])
     9
