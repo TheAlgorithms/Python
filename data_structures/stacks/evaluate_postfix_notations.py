@@ -21,7 +21,7 @@ def evaluate_postfix(postfix_notation):
     if not postfix_notation:
         return 0
 
-    operations = {'+', '-', '*', '/'}
+    operations = {"+", "-", "*", "/"}
     stack = []
 
     for token in postfix_notation:
