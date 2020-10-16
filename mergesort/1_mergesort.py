@@ -50,3 +50,4 @@ def merge_sort(array, aux_array=[]) -> list:
         merge(left_list, right_list, array)
 
         return array
+        
