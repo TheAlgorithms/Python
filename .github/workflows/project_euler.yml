@@ -3,7 +3,7 @@ on:
     # only check if a file is changed within the project_euler directory
     paths:
       - 'project_euler/**'
-      - '.github/workflows/validate_solutions.yml'
+      - '.github/workflows/project_euler.yml'
 
 name: 'Project Euler'
 
