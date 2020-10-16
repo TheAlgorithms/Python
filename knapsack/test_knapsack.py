@@ -8,7 +8,7 @@ This file contains the test-suite for the knapsack problem.
 """
 import unittest
 
-from knapsack import knapsack
+from knapsack import knapsack as k
 
 
 class Test(unittest.TestCase):
@@ -20,12 +20,12 @@ class Test(unittest.TestCase):
         val = [0]
         w = [0]
         c = len(val)
-        self.assertEqual(knapsack(cap, w, val, c), 0)
+        self.assertEqual(k.knapsack(cap, w, val, c), 0)
 
         val = [60]
         w = [10]
         c = len(val)
-        self.assertEqual(knapsack(cap, w, val, c), 0)
+        self.assertEqual(k.knapsack(cap, w, val, c), 0)
 
     def test_easy_case(self):
         """
@@ -35,7 +35,7 @@ class Test(unittest.TestCase):
         val = [1, 2, 3]
         w = [3, 2, 1]
         c = len(val)
-        self.assertEqual(knapsack(cap, w, val, c), 5)
+        self.assertEqual(k.knapsack(cap, w, val, c), 5)
 
     def test_knapsack(self):
         """
@@ -45,4 +45,8 @@ class Test(unittest.TestCase):
         val = [60, 100, 120]
         w = [10, 20, 30]
         c = len(val)
-        self.assertEqual(knapsack(cap, w, val, c), 220)
+        self.assertEqual(k.knapsack(cap, w, val, c), 220)
+
+
+if __name__ == "__main__":
+    unittest.main()
