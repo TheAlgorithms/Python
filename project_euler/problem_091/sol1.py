@@ -20,9 +20,10 @@ def is_right(x1: int, y1: int, x2: int, y2: int) -> bool:
     Check if the triangle described by P(x1,y1), Q(x2,y2) and O(0,0) is right-angled.
     Note: this doesn't check if P and Q are equal, but that's handled by the use of
     itertools.combinations in the solution function.
-    >>> is_right(0,1,2,0)
+
+    >>> is_right(0, 1, 2, 0)
     True
-    >>> is_right(1,0,2,2)
+    >>> is_right(1, 0, 2, 2)
     False
     """
     if x1 == y1 == 0 or x2 == y2 == 0:
@@ -41,8 +42,11 @@ def solution(limit: int = 50) -> int:
     """
     Return the number of right triangles OPQ that can be formed by two points P, Q
     which have both x- and y- coordinates between 0 and limit inclusive.
+
     >>> solution(2)
     14
+    >>> solution(10)
+    448
     """
     return sum(
         1
