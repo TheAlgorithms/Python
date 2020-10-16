@@ -9,6 +9,8 @@ def dda(first_point: Point2D, second_point: Point2D) -> list:
     It is used for rasterization of lines, and interpolates variables over an
     interval between two different points.
 
+    https://en.wikipedia.org/wiki/Digital_differential_analyzer_(graphics_algorithm)
+
     Examples:
     >>> dda((2, 1), (5, 1))
     [(2, 1), (3, 1), (4, 1), (5, 1)]
