@@ -14,8 +14,7 @@ def evaluate_postfix(postfix_notation: list) -> int:
     9
     >>> evaluate_postfix(["4", "13", "5", "/", "+"])
     6
-    >>> array = []
-    >>> evaluate_postfix(array)
+    >>> evaluate_postfix([])
     0
     """
     if not postfix_notation:
