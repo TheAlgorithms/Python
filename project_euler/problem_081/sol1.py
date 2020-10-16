@@ -61,5 +61,5 @@ def solution() -> int:
     # Return the value in the bottom right cell
     return min_path[80][80]
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     print(f"{solution() = }")
