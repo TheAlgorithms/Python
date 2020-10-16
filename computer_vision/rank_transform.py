@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # Rank transform: http://www.cs.cornell.edu/~rdz/Papers/ZW-ECCV94.pdf
 
 import numpy as np
