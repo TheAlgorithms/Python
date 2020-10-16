@@ -48,5 +48,15 @@ def merge_sort(array, aux_array=[]) -> list:
         merge_sort(right_list, array)
         # merge the two lists when you get to the base case
         merge(left_list, right_list, array)
+
         return array
-        
+
+def main():
+    """Print the Results of MergeSort."""
+    print("MergeSort")
+    numbers = [100, 55, 80, 20, 15, 98, 76, 500, 480]
+    print(numbers)
+    print(merge_sort(numbers))
+
+if __name__ == "__main__":
+    main()
