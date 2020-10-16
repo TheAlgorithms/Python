@@ -35,18 +35,24 @@ def solution(limit: int = 1500000) -> int:
     6
     >>> solution(1000)
     112
+    >>> solution(50000)
+    5502
+
+    Solution: we generate all pythagorean triples using Euclid's formula and
+    keep track of the frequencies of the perimeters.
+    Reference: https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple
     """
-    freqs: DefaultDict = defaultdict(int)
-    m = 2
-    while 2 * m * (m + 1) <= limit:
-        for n in range((m % 2) + 1, m, 2):
-            if gcd(m, n) > 1:
+    frequencies: DefaultDict = defaultdict(int)
+    euclid_m = 2
+    while 2 * euclid_m * (euclid_m + 1) <= limit:
+        for euclid_n in range((euclid_m % 2) + 1, euclid_m, 2):
+            if gcd(euclid_m, euclid_n) > 1:
                 continue
-            perim = 2 * m * (m + n)
-            for p in range(perim, limit + 1, perim):
-                freqs[p] += 1
-        m += 1
-    return sum(1 for v in freqs.values() if v == 1)
+            primitive_perimeter = 2 * euclid_m * (euclid_m + euclid_n)
+            for perimeter in range(primitive_perimeter, limit + 1, primitive_perimeter):
+                frequencies[perimeter] += 1
+        euclid_m += 1
+    return sum(1 for frequency in frequencies.values() if frequency == 1)
 
 
 if __name__ == "__main__":
