@@ -15,17 +15,25 @@ of 79180.
 
 Find the value of n, 1 < n < 10^7, for which φ(n) is a permutation of n and
 the ratio n/φ(n) produces a minimum.
+
+-----
+
+This is essentially brute force. Calculate all totients up to 10^7 and
+find the minimum ratio of n/φ(n) that way. To minimize the ratio, we want
+to minimize n and maximize φ(n) as much as possible, so we can store the
+minimum fraction's numerator and denominator and calculate new fractions
+with each totient to compare against. To avoid dividing by zero, I opt to
+use cross multiplication.
+
+References:
+Finding totients
+https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
 """
 
 
 def solution(max: int = 10000000) -> int:
     """
-    This is essentially brute force. Calculate all totients up to 10^7 and
-    find the minimum ratio of n/φ(n) that way. To minimize the ratio, we want
-    to minimize n and maximize φ(n) as much as possible, so we can store the
-    minimum fraction's numerator and denominator and calculate new fractions
-    with each totient to compare against. To avoid dividing by zero, I opt to
-    use cross multiplication.
+    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
 
     >>> solution(100)
     21
@@ -51,8 +59,7 @@ def solution(max: int = 10000000) -> int:
 def get_totients(max_one: int) -> list:
     """
     Calculates a list of totients from 0 to max_one exclusive, using the
-    definition of Euler's product formula:
-    https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
+    definition of Euler's product formula.
 
     >>> get_totients(5)
     [0, 1, 1, 2, 2]
