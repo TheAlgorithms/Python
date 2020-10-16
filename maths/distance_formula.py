@@ -1,15 +1,22 @@
-def distance_formula(x1, y1, x2, y2):
+import numpy as np
+
+def euclidean_distance(v1, v2) -> int:
     """
-    Calculate the distance between the two coordinates (x1,y1) and (x2,y2).
-    >>> distance_formula(0, 0, 2, 2)
+    Calculate the distance between the two the endpoints of two vectors, v1 and v2.
+    >>> euclidean_distance(np.array([0, 0]), np.array([2, 2]))
     2.8284271247461903
-    >>> distance_formula(1, 0, 5, 2)
-    4.47213595499958
-    >>> distance_formula(0, 0, 5, 0)
+    >>> euclidean_distance(np.array([0, 0, 0]), np.array([2, 2, 2]))
+    3.4641016151377544
+    >>> euclidean_distance(np.array([1, 2, 3, 4]), np.array([5, 6, 7, 8]))
     5.0
     """
-    return ((y2 - y1) ** 2 + (x2 - x1) ** 2) ** (1 / 2)
+    sumSquared = 0 
+    for i in range(len(v1)):
+        sumSquared += (v1[i] - v2[i]) ** 2
 
+    return sumSquared ** (1 / 2)
 
 if __name__ == "__main__":
-    print(distance_formula(0, 0, 2, 2))
+    point = np.array([1, 2, 3, 4])
+    point2 = np.array([5, 6, 7, 8])
+    print(euclidean_distance(point, point2))   
