@@ -64,7 +64,7 @@ class HillCipher:
 
     to_int = numpy.vectorize(lambda x: round(x))
 
-    def __init__(self, encrypt_key):
+    def __init__(self, encrypt_key: int):
         """
         encrypt_key is an NxN numpy array
         """

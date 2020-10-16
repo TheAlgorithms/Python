@@ -1,3 +1,5 @@
+from typing import Any, List
+
 """
         In this problem, we want to determine all possible subsequences
         of the given sequence. We use backtracking to solve this problem.
@@ -7,12 +9,12 @@
 """
 
 
-def generate_all_subsequences(sequence: [int]) -> None:
+def generate_all_subsequences(sequence: List[Any]) -> None:
     create_state_space_tree(sequence, [], 0)
 
 
 def create_state_space_tree(
-    sequence: [int], current_subsequence: [int], index: int
+    sequence: List[Any], current_subsequence: List[Any], index: int
 ) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.

@@ -19,7 +19,7 @@
 
 
 class XORCipher:
-    def __init__(self, key=0):
+    def __init__(self, key: int = 0):
         """
         simple constructor that receives a key or uses
         default key = 0
@@ -28,7 +28,7 @@ class XORCipher:
         # private field
         self.__key = key
 
-    def encrypt(self, content, key):
+    def encrypt(self, content: str, key: int) -> [str]:
         """
         input: 'content' of type string and 'key' of type int
         output: encrypted string 'content' as a list of chars
@@ -53,7 +53,7 @@ class XORCipher:
 
         return ans
 
-    def decrypt(self, content, key):
+    def decrypt(self, content: str, key: int) -> [str]:
         """
         input: 'content' of type list and 'key' of type int
         output: decrypted string 'content' as a list of chars
@@ -78,7 +78,7 @@ class XORCipher:
 
         return ans
 
-    def encrypt_string(self, content, key=0):
+    def encrypt_string(self, content: str, key: int = 0) -> str:
         """
         input: 'content' of type string and 'key' of type int
         output: encrypted string 'content'
@@ -103,7 +103,7 @@ class XORCipher:
 
         return ans
 
-    def decrypt_string(self, content, key=0):
+    def decrypt_string(self, content: str, key: int = 0) -> str:
         """
         input: 'content' of type string and 'key' of type int
         output: decrypted string 'content'
@@ -128,7 +128,7 @@ class XORCipher:
 
         return ans
 
-    def encrypt_file(self, file, key=0):
+    def encrypt_file(self, file: str, key: int = 0) -> bool:
         """
         input: filename (str) and a key (int)
         output: returns true if encrypt process was
@@ -153,7 +153,7 @@ class XORCipher:
 
         return True
 
-    def decrypt_file(self, file, key):
+    def decrypt_file(self, file: str, key: int) -> bool:
         """
         input: filename (str) and a key (int)
         output: returns true if decrypt process was

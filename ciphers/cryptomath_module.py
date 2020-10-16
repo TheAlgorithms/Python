@@ -1,10 +1,10 @@
-def gcd(a, b):
+def gcd(a: int, b: int) -> int:
     while a != 0:
         a, b = b % a, a
     return b
 
 
-def findModInverse(a, m):
+def findModInverse(a: int, m: int) -> int:
     if gcd(a, m) != 1:
         return None
     u1, u2, u3 = 1, 0, a

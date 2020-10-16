@@ -1,4 +1,4 @@
-def mixed_keyword(key="college", pt="UNIVERSITY"):
+def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
     """
 
     For key:hello

@@ -1,4 +1,4 @@
-def find_primitive(n):
+def find_primitive(n: int) -> int:
     for r in range(1, n):
         li = []
         for x in range(n - 1):
