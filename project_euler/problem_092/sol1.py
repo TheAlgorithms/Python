@@ -1,5 +1,5 @@
 """
-Problem: https://projecteuler.net/problem=92
+Project Euler Problem 92: https://projecteuler.net/problem=92
 
 Name: Square digit chains
 
@@ -66,4 +66,4 @@ def solution(limit: int = 10000000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
