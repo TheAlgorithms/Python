@@ -1,6 +1,6 @@
 import numpy as np
 
-def euclidean_distance(v1, v2) -> int:
+def euclidean_distance(v1, v2) -> double:
     """
     Calculate the distance between the two = endpoints of two vectors, v1 and v2.
     >>> euclidean_distance(np.array([0, 0]), np.array([2, 2]))
