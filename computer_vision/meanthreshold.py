@@ -21,10 +21,7 @@ def mean_threshold(image: Image) -> Image:
 
     for j in range(width):
         for i in range(height):
-            if pixels[i, j] > mean:
-                pixels[i, j] = 255
-            else:
-                pixels[i, j] = 0
+            pixels[i, j] = 255 if pixels[i, j] > mean else 0
     return image
 
 
