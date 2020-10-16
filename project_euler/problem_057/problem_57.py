@@ -5,7 +5,7 @@ in which the nominator has more digits than the denominator.
 """
 
 
-def solution():
+def solution(n_iter: int = 1000):
     """
     Return the number of iterations in which the
     nominator has more digits than the denominator.
@@ -15,7 +15,19 @@ def solution():
     previous_solutions = {}
     previous_solutions[0] = (3, 2)
 
-    def f(n: int) -> (int, int):  # Recursive helper function.
+    def f(n: int) -> (int, int):
+        """
+        Simple recursive function the calculates the
+        nominator and denominator of the fraction
+        based on the values of f(n-1)
+
+        >>> f(0)
+        (3, 2)
+        
+        >>> f(1)
+        (7, 5)
+        """
+        
         if n in previous_solutions:
             return previous_solutions[n]
         prev_nom, prev_denom = f(n - 1)
@@ -26,7 +38,7 @@ def solution():
         return result
 
     c = 0
-    for i in range(998):  # 1K iterations and calculate frequency.
+    for i in range(n_iter):  # 1K iterations and calculate frequency.
         nom, denom = f(i)
         if len(str(nom)) > len(str(denom)):
             c += 1  # Check number of digits by converting to str.
