@@ -1,7 +1,6 @@
 import os
 import random
 import sys
-
 from typing import Tuple
 
 from . import cryptomath_module as cryptoMath
