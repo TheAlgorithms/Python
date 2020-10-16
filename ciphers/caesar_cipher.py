@@ -5,7 +5,7 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
     """
     encrypt
     =======
-    Encodes a given string with the caesar cipher and returns the encoded
+    Encodes a given string with the Caesar cipher and returns the encoded
     message
 
     Parameters:
@@ -21,9 +21,9 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
     Returns:
     *   A string containing the encoded cipher-text
 
-    More on the caesar cipher
+    More on the Caesar cipher
     =========================
-    The caesar cipher is named after Julius Caesar who used it when sending
+    The Caesar cipher is named after Julius Caesar who used it when sending
     secret military messages to his troops. This is a simple substitution cipher
     where very character in the plain-text is shifted by a certain number known
     as the "key" or "shift".
@@ -98,9 +98,9 @@ def decrypt(input_string: str, key: int, alphabet=None) -> str:
     Returns:
     *   A string containing the decoded plain-text
 
-    More on the caesar cipher
+    More on the Caesar cipher
     =========================
-    The caesar cipher is named after Julius Caesar who used it when sending
+    The Caesar cipher is named after Julius Caesar who used it when sending
     secret military messages to his troops. This is a simple substitution cipher
     where very character in the plain-text is shifted by a certain number known
     as the "key" or "shift". Please keep in mind, here we will be focused on
@@ -163,7 +163,7 @@ def brute_force(input_string: str, alphabet=None) -> dict:
     More about brute force
     ======================
     Brute force is when a person intercepts a message or password, not knowing
-    the key and tries every single combination. This is easy with the caesar
+    the key and tries every single combination. This is easy with the Caesar
     cipher since there are only all the letters in the alphabet. The more
     complex the cipher, the larger amount of time it will take to do brute force
 
