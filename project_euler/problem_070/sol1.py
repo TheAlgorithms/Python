@@ -1,6 +1,5 @@
 """
-Project Euler 70
-https://projecteuler.net/problem=70
+Project Euler Problem 70: https://projecteuler.net/problem=70
 
 Euler's Totient function, φ(n) [sometimes called the phi function], is used to
 determine the number of positive numbers less than or equal to n which are
@@ -29,31 +28,6 @@ References:
 Finding totients
 https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
 """
-
-
-def solution(max: int = 10000000) -> int:
-    """
-    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
-
-    >>> solution(100)
-    21
-
-    >>> solution(10000)
-    4435
-    """
-
-    min_num = 1  # i
-    min_den = 0  # φ(i)
-    totients = get_totients(max + 1)
-
-    for i in range(2, max + 1):
-        t = totients[i]
-
-        if i * min_den < min_num * t and has_same_digits(i, t):
-            min_num = i
-            min_den = t
-
-    return min_num
 
 
 def get_totients(max_one: int) -> list:
@@ -113,6 +87,31 @@ def has_same_digits(num1: int, num2: int) -> bool:
             return False
 
     return True
+
+
+def solution(max: int = 10000000) -> int:
+    """
+    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
+
+    >>> solution(100)
+    21
+
+    >>> solution(10000)
+    4435
+    """
+
+    min_numerator = 1    # i
+    min_denominator = 0  # φ(i)
+    totients = get_totients(max + 1)
+
+    for i in range(2, max + 1):
+        t = totients[i]
+
+        if i * min_denominator < min_numerator * t and has_same_digits(i, t):
+            min_numerator = i
+            min_denominator = t
+
+    return min_numerator
 
 
 if __name__ == "__main__":
