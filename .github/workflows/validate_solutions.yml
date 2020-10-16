@@ -1,0 +1,19 @@
+on:
+  pull_request:
+    paths:
+      - 'project_euler/**'
+      - '.github/workflows/validate_solutions.yml'
+
+name: 'Validate Project Euler solutions'
+
+jobs:
+  validate-solution:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@2
+      - name: Install pytest
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade pytest
+      - run: pytest --durations=10 project_euler/validate_solutions.py
