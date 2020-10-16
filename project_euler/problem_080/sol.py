@@ -12,12 +12,9 @@ def sqrtn(a, d):
        div = d*20 +x
        if div*x <= a <(div+1)*(x+1):
            return (x, a - div*x)
-       
-   return (0, a)
-           
+   return (0, a)  
 
-# a =int(input())   
-def solution():  
+def solution() ->int:  
     """ 
     used simple trick of calculating square root by hand on notebooks.
     
@@ -40,7 +37,6 @@ def solution():
             s = 1
         
         ans =[] 
-        
         k=0
         last = 0
         rem = 0
@@ -54,8 +50,7 @@ def solution():
             for i in ans:
                 last +=str(i)
             last =int(last)
-            k=j
-                
+            k=j       
         while len(ans)< 100:
             i = int(str(rem)+"00")
             # print("i: ",i,end=" ")
@@ -70,8 +65,7 @@ def solution():
     
         sos += sum(ans)
         num +=1
-    return sos
-        
+    return sos     
 if __name__ == "__main__":
-    print(solution())
+    print("{}".format(solution()))
         
