@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
+from typing import Tuple
+
 
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
-    cipher_alphabet=None,
-    frequencies_dict=None,
+    cipher_alphabet: str = None,
+    frequencies_dict: str = None,
     case_sensetive: bool = False,
-) -> tuple:
+) -> Tuple[int, float, str]:
     """
     Basic Usage
     ===========
