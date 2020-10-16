@@ -1,6 +1,7 @@
 """
+Project Euler Problem 9: https://projecteuler.net/problem=9
+
 Special Pythagorean triplet
-Problem 9
 
 A Pythagorean triplet is a set of three natural numbers, a < b < c, for which,
 
@@ -12,10 +13,7 @@ There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 Find the product a*b*c.
 
 References:
-    - The Project Euler problem page:
-    https://projecteuler.net/problem=9
-    - Wikipedia page for Pythagorean triples:
-    https://en.wikipedia.org/wiki/Pythagorean_triple
+    - https://en.wikipedia.org/wiki/Pythagorean_triple
 """
 
 
@@ -78,4 +76,4 @@ def benchmark() -> None:
 
 
 if __name__ == "__main__":
-    benchmark()
+    print(f"{solution() = }")

@@ -1,6 +1,7 @@
 """
+Project Euler Problem 8: https://projecteuler.net/problem=8
+
 Largest product in a series
-Problem 8
 
 The four adjacent digits in the 1000-digit number that have the greatest
 product are 9 × 9 × 8 × 9 = 5832.
@@ -28,12 +29,7 @@ product are 9 × 9 × 8 × 9 = 5832.
 
 Find the thirteen adjacent digits in the 1000-digit number that have the
 greatest product. What is the value of this product?
-
-References:
-    - The Project Euler problem page:
-    https://projecteuler.net/problem=8
 """
-
 from functools import reduce
 
 N = (
@@ -82,4 +78,4 @@ def solution(n: str = N) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(str(N)))
+    print(f"{solution() = }")

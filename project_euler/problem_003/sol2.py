@@ -1,16 +1,14 @@
 """
+Project Euler Problem 3: https://projecteuler.net/problem=3
+
 Largest prime factor
-Problem 3
 
 The prime factors of 13195 are 5, 7, 13 and 29.
 
 What is the largest prime factor of the number 600851475143?
 
 References:
-    - The Project Euler problem page:
-    https://projecteuler.net/problem=3
-    - Wikipedia page for Prime factors
-    https://en.wikipedia.org/wiki/Prime_number#Unique_factorization
+    - https://en.wikipedia.org/wiki/Prime_number#Unique_factorization
 """
 
 
@@ -63,4 +61,4 @@ def solution(n: int = 600851475143) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")

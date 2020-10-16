@@ -1,6 +1,7 @@
 """
+Project Euler Problem 7: https://projecteuler.net/problem=7
+
 10001st prime
-Problem 7
 
 By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we
 can see that the 6th prime is 13.
@@ -8,10 +9,7 @@ can see that the 6th prime is 13.
 What is the 10001st prime number?
 
 References:
-    - The Project Euler problem page:
-    https://projecteuler.net/problem=7
-    - Wikipedia page for prime numbers:
-    https://en.wikipedia.org/wiki/Prime_number
+    - https://en.wikipedia.org/wiki/Prime_number
 """
 
 
@@ -87,4 +85,4 @@ def solution(nth: int = 10001) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")

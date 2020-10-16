@@ -1,18 +1,15 @@
 """
+Project Euler Problem 10: https://projecteuler.net/problem=10
+
 Summation of primes
-Problem 10
 
 The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 
 Find the sum of all the primes below two million.
 
 References:
-    - The Project Euler problem page:
-    https://projecteuler.net/problem=10
-    - Wikipedia page for prime numbers:
-    https://en.wikipedia.org/wiki/Prime_number
-    - Wikipedia page for Sieve of Erathostenes
-    https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+    - https://en.wikipedia.org/wiki/Prime_number
+    - https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 """
 
 
@@ -61,4 +58,4 @@ def solution(n: int = 2000000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")

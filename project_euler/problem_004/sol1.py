@@ -1,6 +1,7 @@
 """
+Project Euler Problem 4: https://projecteuler.net/problem=4
+
 Largest palindrome product
-Problem 4
 
 A palindromic number reads the same both ways. The largest palindrome made
 from the product of two 2-digit numbers is 9009 = 91 × 99.
@@ -8,10 +9,7 @@ from the product of two 2-digit numbers is 9009 = 91 × 99.
 Find the largest palindrome made from the product of two 3-digit numbers.
 
 References:
-    - The Project Euler problem page:
-    https://projecteuler.net/problem=4
-    - Wikipedia page for palindromic numbers:
-    https://en.wikipedia.org/wiki/Palindromic_number
+    - https://en.wikipedia.org/wiki/Palindromic_number
 """
 
 
@@ -52,8 +50,4 @@ def solution(n: int = 998001) -> int:
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")
