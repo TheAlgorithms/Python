@@ -14,7 +14,7 @@ def sqrtn(a, d):
            return (x, a - div*x)
    return (0, a)  
 
-def solution() ->int:  
+def solution(n: int = 100) ->int:  
     """ 
     used simple trick of calculating square root by hand on notebooks.
     
@@ -23,7 +23,7 @@ def solution() ->int:
     sos =0   
     num =1
     
-    while num<=100:
+    while num<=n:
         
         if m.sqrt(num)% m.floor(m.sqrt(num)) == 0:
             num +=1
@@ -69,5 +69,4 @@ def solution() ->int:
 if __name__ == "__main__":
     from doctest import testmod
     testmod()
-    print("{}".format(solution()))
-        
+    print(solution(int(input().strip())))
