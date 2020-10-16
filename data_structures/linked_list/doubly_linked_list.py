@@ -11,13 +11,38 @@
 
 
 class Node:
-    def __init__(self, data, previous=None, next_node=None):
+    def __init__(self, data: int, previous=None, next_node=None):
         self.data = data
         self.previous = previous
         self.next = next_node
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.data}"
+
+    def get_data(self) -> int:
+        return self.data
+
+    def get_next(self):
+        return self.next
+
+    def get_previous(self):
+        return self.previous
+
+
+class LinkedListIterator:
+    def __init__(self, head):
+        self.current = head
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if not self.current:
+            raise StopIteration
+        else:
+            value = self.current.get_data()
+            self.current = self.current.get_next()
+            return value
 
 
 class LinkedList:
@@ -29,26 +54,29 @@ class LinkedList:
         current = self.head
         nodes = []
         while current is not None:
-            nodes.append(current.data)
-            current = current.next
-        return "<-->".join(str(node) for node in nodes)
+            nodes.append(current.get_data())
+            current = current.get_next()
+        return " ".join(str(node) for node in nodes)
 
-    def __contains__(self, value):
+    def __contains__(self, value: int):
         current = self.head
         while current:
-            if current.data == value:
+            if current.get_data() == value:
                 return True
-            current = current.next
+            current = current.get_next()
         return False
+
+    def __iter__(self):
+        return LinkedListIterator(self.head)
 
     def get_head_data(self):
         if self.head:
-            return self.head.data
+            return self.head.get_data()
         return None
 
     def get_tail_data(self):
         if self.tail:
-            return self.tail.data
+            return self.tail.get_data()
         return None
 
     def set_head(self, node: Node) -> None:
@@ -65,7 +93,7 @@ class LinkedList:
         else:
             self.insert_after_node(self.tail, node)
 
-    def insert(self, value):
+    def insert(self, value: int) -> None:
         node = Node(value)
         if self.head is None:
             self.set_head(node)
@@ -76,7 +104,7 @@ class LinkedList:
         node_to_insert.next = node
         node_to_insert.previous = node.previous
 
-        if node.previous is None:
+        if node.get_previous() is None:
             self.head = node_to_insert
         else:
             node.previous.next = node_to_insert
@@ -87,7 +115,7 @@ class LinkedList:
         node_to_insert.previous = node
         node_to_insert.next = node.next
 
-        if node.next is None:
+        if node.get_next() is None:
             self.tail = node_to_insert
         else:
             node.next.previous = node_to_insert
@@ -106,34 +134,32 @@ class LinkedList:
             node = node.next
         self.insert_after_node(self.tail, new_node)
 
-    def get_node(self, item):
+    def get_node(self, item: int) -> Node:
         node = self.head
         while node:
-            if node.data == item:
+            if node.get_data() == item:
                 return node
-            node = node.next
-        return None
+            node = node.get_next()
+        raise Exception("Node not found")
 
     def delete_value(self, value):
         node = self.get_node(value)
 
         if node is not None:
             if node == self.head:
-                self.head = self.head.next
+                self.head = self.head.get_next()
 
             if node == self.tail:
-                self.tail = self.tail.previous
+                self.tail = self.tail.get_previous()
 
             self.remove_node_pointers(node)
-        else:
-            return "Node not found"
 
     @staticmethod
     def remove_node_pointers(node: Node) -> None:
-        if node.next:
+        if node.get_next():
             node.next.previous = node.previous
 
-        if node.previous:
+        if node.get_previous():
             node.previous.next = node.next
 
         node.next = None
@@ -143,7 +169,7 @@ class LinkedList:
         return self.head is None
 
 
-def create_linked_list():
+def create_linked_list() -> None:
     """
     >>> new_linked_list = LinkedList()
     >>> new_linked_list.get_head_data() is None
@@ -182,8 +208,21 @@ def create_linked_list():
     >>> new_linked_list.get_tail_data()
     2000
 
+    >>> for value in new_linked_list:
+    ...    print(value)
+    1000
+    10
+    20
+    2000
     >>> new_linked_list.is_empty()
     False
+
+    >>> for value in new_linked_list:
+    ...    print(value)
+    1000
+    10
+    20
+    2000
 
     >>> 10 in new_linked_list
     True
@@ -191,9 +230,6 @@ def create_linked_list():
     >>> new_linked_list.delete_value(value=10)
     >>> 10 in new_linked_list
     False
-
-    >>> new_linked_list.delete_value(value=5000)
-    'Node not found'
 
     >>> new_linked_list.delete_value(value=2000)
     >>> new_linked_list.get_tail_data()
@@ -205,23 +241,12 @@ def create_linked_list():
     >>> new_linked_list.get_head_data()
     20
 
-    >>> new_linked_list_2 = LinkedList()
-    >>> for value in range(1,10):
-    ...    new_linked_list_2.insert(value=value)
-    >>> print(new_linked_list_2)
-    1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
-    >>> print(new_linked_list_2.get_head_data())
-    1
-    >>> new_linked_list_2.delete_value(value=0)
-    'Node not found'
-    >>> print(new_linked_list_2)
-    1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
-    >>> new_linked_list_2.insert_at_position(position=1, value=100)
-    >>> print(new_linked_list_2)
-    100<-->1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
-    >>> new_linked_list_2.delete_value(value=5)
-    >>> print(new_linked_list_2)
-    100<-->1<-->2<-->3<-->4<-->6<-->7<-->8<-->9
+    >>> for value in new_linked_list:
+    ...    print(value)
+    20
+    >>> new_linked_list.delete_value(value=20)
+    >>> for value in new_linked_list:
+    ...    print(value)
     """
 
 
