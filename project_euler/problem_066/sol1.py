@@ -128,4 +128,4 @@ def solution(limit: int = 1001) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution()}")
