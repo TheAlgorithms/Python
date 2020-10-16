@@ -3,7 +3,7 @@
 # Memoization Concept: https://en.wikipedia.org/wiki/Memoization
 # Fibonacci Concept : https://pt.wikipedia.org/wiki/Sequ%C3%AAncia_de_Fibonacci
 
-cache = dict()
+cache: dict = dict()
 
 
 def fibonacci(n: int) -> int:
