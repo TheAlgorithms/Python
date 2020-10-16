@@ -7,10 +7,6 @@ measuring 3 by 2 contains eighteen rectangles
 Although there exists no rectangular grid that contains 
 exactly two million rectangles,
 find the area of the grid with the nearest solution.
-
-
-
-
 """
 
 def solution():
@@ -39,12 +35,6 @@ def solution():
                 min_diff=diff_rec
                 area=x*y
     return area
-
-
-
-
-
-
 
 
 
