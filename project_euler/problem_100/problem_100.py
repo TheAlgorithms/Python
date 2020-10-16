@@ -3,12 +3,16 @@ Project Euler Problem 100: https://projecteuler.net/problem=100
 
 Arranged probability
 Problem 100
-If a box contains twenty-one coloured discs, composed of fifteen blue discs and six red discs,
-and two discs were taken at random, it can be seen that the probability of taking two blue discs,
+If a box contains twenty-one coloured discs,
+composed of fifteen blue discs and six red discs,
+and two discs were taken at random, it can be seen that
+the probability of taking two blue discs,
 P(BB) = (15/21)×(14/20) = 1/2.
-The next such arrangement, for which there is exactly 50% chance of taking two blue discs at random,
+The next such arrangement, for which there is exactly 50% chance of taking
+two blue discs at random,
 is a box containing eighty-five blue discs and thirty-five red discs.
-By finding the first arrangement to contain over 10 ^ 12= 1,000,000,000,000 discs in total,
+By finding the first arrangement to contain over
+10 ^ 12= 1,000,000,000,000 discs in total,
 determine the number of blue discs that the box would contain.
 """
 
@@ -26,7 +30,8 @@ def solution() -> int:
 
      Thats a quadratic diophantine equation
 
-     we can use this site to generate a recursive solution for our equation https://www.alpertron.com.ar/QUAD.HTM
+     we can use this site to generate a recursive solution for our equation
+     https://www.alpertron.com.ar/QUAD.HTM
      the input should be
       2
       0
@@ -41,11 +46,17 @@ def solution() -> int:
     >>> solution()
     756872327473
     """
-    # the number of the first arrange of blue disks that taken 2 in a row return 50% of prob to happen
+    """
+    the number of the first arrange of blue disks that taken 2 in a row return 50%
+    of prob to happen
+    """
     blue_disks = 85
     # the number of the first total disks to this probability happen
     total_disks = 120
-    # the maximum lenght of total_disks to find the blue and Total that has 0.5 probability to be picked in a row
+    """
+    the maximum length of total_disks to find the blue and Total
+    that has 0.5 probability to be picked in a row
+    """
     total_length = 1 * (10 ** 12)
 
     while total_disks <= total_length:
@@ -57,8 +68,9 @@ def solution() -> int:
         apply this functions to get the correct values
         """
         """
-        We have to set this variables separated by commas so in total_disks attribution the value in blue_disks
-        will be the value setted before the current while iteration
+        We have to set this variables separated by commas so in total_disks attribution
+        the value in blue_disks
+        will be the value that was set before the current while iteration
         """
         blue_disks, total_disks = (3 * blue_disks) + (2 * total_disks) - 2, (
             4 * blue_disks
