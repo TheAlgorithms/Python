@@ -3,6 +3,7 @@ import random
 import sys
 
 from typing import Tuple
+
 from . import cryptomath_module as cryptoMath
 from . import rabin_miller as rabinMiller
 
