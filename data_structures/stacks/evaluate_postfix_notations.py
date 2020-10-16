@@ -1,9 +1,9 @@
 """
 The Reverse Polish Nation also known as Polish postfix notation
-or simply postfix notation. 
+or simply postfix notation.
 https://en.wikipedia.org/wiki/Reverse_Polish_notation
 Classic examples of simple stack implementations
-Valid operators are +, -, *, /. 
+Valid operators are +, -, *, /.
 Each operand may be an integer or another expression.
 """
 
