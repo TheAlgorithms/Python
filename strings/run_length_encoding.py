@@ -4,7 +4,7 @@ https://en.wikipedia.org/wiki/Run-length_encoding
 """
 
 
-def run_length_encoding(data):
+def run_length_encoding(data:str or tuple)->tuple or str:
     """
     >>> runlengthencoding('taaaaaaaaaaanaayyyyy')
     ('tanay', [1, 11, 1, 2, 5])
