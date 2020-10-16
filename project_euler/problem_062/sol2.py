@@ -25,7 +25,7 @@ def solution(k: int = 5, upperbound: int = 10 ** 4) -> int:
     cube_root = 1
     while cube_root < upperbound:
         cube = pow(cube_root, 3)
-        key = ''.join(sorted([c for c in str(cube)]))
+        key = "".join(sorted([c for c in str(cube)]))
         candidate_dict[key].append(cube)
         cube_root += 1
 
