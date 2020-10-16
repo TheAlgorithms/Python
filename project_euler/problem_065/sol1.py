@@ -1,6 +1,5 @@
 """
-Project Euler 65
-https://projecteuler.net/problem=65
+Project Euler Problem 65: https://projecteuler.net/problem=65
 
 The square root of 2 can be written as an infinite continued fraction.
 
@@ -54,30 +53,6 @@ n_10 = 1 * 193 + 1264 = 1457
 """
 
 
-def solution(max: int = 100) -> int:
-    """
-    Returns the sum of the digits in the numerator of the max-th convergent of
-    the continued fraction for e.
-
-    >>> solution(9)
-    13
-    >>> solution(10)
-    17
-    >>> solution(50)
-    91
-    """
-    n0 = 1
-    n1 = 2
-
-    for i in range(2, max + 1):
-        temp = n0
-        m = 2 * i // 3 if i % 3 == 0 else 1
-        n0 = n1
-        n1 = m * n0 + temp
-
-    return sum_digits(n1)
-
-
 def sum_digits(num: int) -> int:
     """
     Returns the sum of every digit in num.
@@ -94,6 +69,30 @@ def sum_digits(num: int) -> int:
         digit_sum += num % 10
         num //= 10
     return digit_sum
+
+
+def solution(max: int = 100) -> int:
+    """
+    Returns the sum of the digits in the numerator of the max-th convergent of
+    the continued fraction for e.
+
+    >>> solution(9)
+    13
+    >>> solution(10)
+    17
+    >>> solution(50)
+    91
+    """
+    pre_numerator = 1
+    cur_numerator = 2
+
+    for i in range(2, max + 1):
+        temp = pre_numerator
+        e_cont = 2 * i // 3 if i % 3 == 0 else 1
+        pre_numerator = cur_numerator
+        cur_numerator = e_cont * pre_numerator + temp
+
+    return sum_digits(cur_numerator)
 
 
 if __name__ == "__main__":
