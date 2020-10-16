@@ -1,0 +1,97 @@
+#ordered linkedlists
+#creates and maintains nodes in ascending order in linked lists
+class node:
+    def __init__(self,item):
+        self.info = item
+        self.link = None
+class LinkedList:
+    def __init__(self):
+        self.head=None
+
+    def insertSorted(self,item):
+        new_node=node(item)
+        
+        if self.head is not None:
+            if item<=self.head.info:
+                new_node.link=self.head
+                self.head=new_node
+            else:                      #if item is greater than first node
+                cur=self.head
+                while (cur.link is not None and cur.link.info<new_node.info):
+                    cur=cur.link
+                new_node.link=cur.link
+                cur.link=new_node
+                
+        else:                    #when self.head is None then assign it to new_node
+            self.head=new_node
+            
+            
+    def Delete(self,item):
+        if self.head is not None:
+            if self.head.info != item:
+                cur=self.head
+                prev=None
+                while(cur is not None and cur.info != item):
+                    prev=cur
+                    cur=cur.link
+                if cur==None:
+                    print("element not found")
+                else:    
+                    prev.link=cur.link
+                    cur=None
+            else:
+                cur=self.head
+                self.head=self.head.link
+                cur=None
+                
+        else:
+            print("LinkedList is empty")
+            
+                
+        
+    
+    
+    def display(self):
+        cur=self.head
+        if self.head is not None:
+            while(cur!=None):
+                print(cur.info,end="  ")
+                cur=cur.link
+            print("\n")
+        else:
+            print("Linked list is empty")
+            
+#driver code
+if __name__ == "__main__":
+    ll=LinkedList()
+    ll.display()
+    
+    ll.insertSorted(2)
+    ll.insertSorted(9)
+    ll.insertSorted(7)
+    ll.insertSorted(0)
+    ll.insertSorted(15)
+    
+    ll.display()
+    
+    ll.Delete(7)
+    ll.display()
+    
+    ll.Delete(0)
+    ll.display()
+    
+    ll.Delete(19)
+    
+    ll.Delete(2)
+    ll.Delete(9)
+    ll.Delete(15)
+    
+    ll.display()
+    
+    
+    
+    
+                
+            
+            
+            
