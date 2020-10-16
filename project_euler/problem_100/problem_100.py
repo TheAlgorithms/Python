@@ -28,7 +28,7 @@ def solution() -> int:
 
      2x^2 - 2x - N^2 + N = 0
 
-     Thats a quadratic diophantine equation
+     That's a quadratic diophantine equation
 
      we can use this site to generate a recursive solution for our equation
      https://www.alpertron.com.ar/QUAD.HTM
@@ -39,7 +39,7 @@ def solution() -> int:
      -2
       1
       0
-      it return the functions to retreive X and N
+      it return the functions to retrieve X and N
       Xn+1 = 3 X + 2 N - 2
       Nn+1 = 4 X + 3 N - 3
       so lets code that.
