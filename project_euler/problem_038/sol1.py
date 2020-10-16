@@ -1,4 +1,7 @@
-"""Take the number 192 and multiply it by each of 1, 2, and 3:
+"""
+Project Euler Problem 38: https://projecteuler.net/problem=38
+
+Take the number 192 and multiply it by each of 1, 2, and 3:
 
 192 × 1 = 192
 192 × 2 = 384
@@ -89,10 +92,20 @@ def test_permutations(digits: list, print_factors: bool = False) -> int:
     return int(pan)
 
 
-def solution() -> int:
-    """Returns the sum of truncated primes"""
-    return test_permutations(range(9, 0, -1))
+def solution(digit_range: list = list(range(1, 10))) -> int:
+    """Returns the Euler 38 solution
+
+    Finds the largest pandigital from the provided list of ints where the
+    solution is also the concatenated products of of counting numbers in seq
+
+    >>> solution()
+    932718654
+    >>> solution([1, 2, 3, 4])
+    1234
+    """
+    digit_range = sorted(digit_range, reverse=True)
+    return test_permutations(digit_range)
 
 
 if __name__ == "__main__":
-    print(test_permutations(range(9, 0, -1)))
+    print(f"{solution() = }")
