@@ -11,10 +11,10 @@
 
 
 class Node:
-    def __init__(self, data, previous=None, next=None):
+    def __init__(self, data, previous=None, next_node=None):
         self.data = data
         self.previous = previous
-        self.next = next
+        self.next = next_node
 
     def __str__(self):
         return f"{self.data}"
@@ -32,6 +32,24 @@ class LinkedList:
             nodes.append(current.data)
             current = current.next
         return "<-->".join(str(node) for node in nodes)
+
+    def __contains__(self, value):
+        current = self.head
+        while current:
+            if current.data == value:
+                return True
+            current = current.next
+        return False
+
+    def get_head_data(self):
+        if self.head:
+            return self.head.data
+        return None
+
+    def get_tail_data(self):
+        if self.tail:
+            return self.tail.data
+        return None
 
     def set_head(self, node: Node) -> None:
 
@@ -107,6 +125,8 @@ class LinkedList:
                 self.tail = self.tail.previous
 
             self.remove_node_pointers(node)
+        else:
+            return 'Node not found'
 
     @staticmethod
     def remove_node_pointers(node: Node) -> None:
@@ -123,35 +143,103 @@ class LinkedList:
         return self.head is None
 
 
-linked_list = LinkedList()
-for i in range(10):
-    linked_list.insert(i)
+def create_linked_list():
+    """
+    >>> new_linked_list = LinkedList()
+    >>> new_linked_list.get_head_data() is None
+    True
 
-print(linked_list)
-# 0<-->1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
-print(linked_list.head)
-# 0
-linked_list.delete_value(0)
-print(linked_list.head)
-# 1
-print(linked_list)
-# 1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
-linked_list.insert_at_position(1, 100)
-# 100<-->1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
-print(linked_list)
-linked_list.delete_value(5)
-print(linked_list)
-# 100<-->1<-->2<-->3<-->4<-->6<-->7<-->8<-->9
-print(linked_list.is_empty())
-# False
-linked_list.insert_at_position(12, 200)
+    >>> new_linked_list.get_tail_data() is None
+    True
 
-for i in range(5):
+    >>> new_linked_list.is_empty()
+    True
+
+    >>> new_linked_list.insert(10)
+    >>> new_linked_list.get_head_data()
+    10
+
+    >>> new_linked_list.get_tail_data()
+    10
+
+    >>> new_linked_list.insert_at_position(position=3, value=20)
+    >>> new_linked_list.get_head_data()
+    10
+
+    >>> new_linked_list.get_tail_data()
+    20
+
+    >>> new_linked_list.set_head(Node(1000))
+    >>> new_linked_list.get_head_data()
+    1000
+
+    >>> new_linked_list.get_tail_data()
+    20
+
+    >>> new_linked_list.set_tail(Node(2000))
+    >>> new_linked_list.get_head_data()
+    1000
+    >>> new_linked_list.get_tail_data()
+    2000
+
+    >>> new_linked_list.is_empty()
+    False
+
+    >>> 10 in new_linked_list
+    True
+
+    >>> new_linked_list.delete_value(value=10)
+    >>> 10 in new_linked_list
+    False
+
+    >>> new_linked_list.delete_value(value=5000)
+    'Node not found'
+
+    >>> new_linked_list.delete_value(value=2000)
+    >>> new_linked_list.get_tail_data()
+    20
+
+    >>> new_linked_list.delete_value(value=1000)
+    >>> new_linked_list.get_tail_data()
+    20
+    >>> new_linked_list.get_head_data()
+    20
+    """
+    linked_list = LinkedList()
+    for i in range(10):
+        linked_list.insert(value=i)
+
     print(linked_list)
-    linked_list.delete_value(linked_list.tail.data)
-    # for each iterations
-    # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8 < -->9 < -->200
-    # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8 < -->9
-    # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8
-    # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7
-    # 100 < -->1 < -->2 < -->3 < -->4 < -->6
+    # 0<-->1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
+    print(linked_list.head)
+    # 0
+    linked_list.delete_value(value=0)
+    print(linked_list.head)
+    # 1
+    print(linked_list)
+    # 1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
+    linked_list.insert_at_position(position=1, value=100)
+    # 100<-->1<-->2<-->3<-->4<-->5<-->6<-->7<-->8<-->9
+    print(linked_list)
+    linked_list.delete_value(value=5)
+    print(linked_list)
+    # 100<-->1<-->2<-->3<-->4<-->6<-->7<-->8<-->9
+    print(linked_list.is_empty())
+    # False
+    linked_list.insert_at_position(position=12, value=200)
+
+    for i in range(5):
+        print(linked_list)
+        linked_list.delete_value(linked_list.tail.data)
+        # for each iterations
+        # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8 < -->9 < -->200
+        # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8 < -->9
+        # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7 < -->8
+        # 100 < -->1 < -->2 < -->3 < -->4 < -->6 < -->7
+        # 100 < -->1 < -->2 < -->3 < -->4 < -->6
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
