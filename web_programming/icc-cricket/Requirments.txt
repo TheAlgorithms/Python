@@ -1,0 +1,7 @@
+>> python3
+
+>> Pandas
+
+>> Selenium
+
+>> webdriver (geckodriver.exe for mozilla firefox)
