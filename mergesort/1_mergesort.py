@@ -23,7 +23,7 @@ def merge(left_list, right_list, aux_array):
         k += 1
 
 
-def merge_sort(array, aux_array=[]):
+def merge_sort(array, aux_array=[]) -> list:
     if len(array) > 1:
 
         half = int(len(array) / 2)
@@ -35,8 +35,10 @@ def merge_sort(array, aux_array=[]):
         merge_sort(right_list, array)
         merge(left_list, right_list, array)
 
+        return array
 
 numbers = [100, 55, 80, 20, 15, 98, 76, 500, 480]
+test_numbers = merge_sort(numbers)
 
-merge_sort(numbers)
-print(numbers)
+assert test_numbers == [15, 20, 55, 76, 80, 98, 100, 480, 500]
+
