@@ -1,5 +1,4 @@
 """
-<<<<<<< HEAD
 Project Euler Problem 62: https://projecteuler.net/problem=62
 The cube, 41063625 (345^3), can be permuted to produce two other cubes:
 56623104 (384^3) and 66430125 (405^3).
@@ -39,4 +38,4 @@ def solution(k: int = 5, upperbound: int = 10 ** 4) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")
