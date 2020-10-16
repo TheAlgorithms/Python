@@ -26,6 +26,5 @@ def mean_threshold(image: Image) -> Image:
 
 
 if __name__ == "__main__":
-    image = Image.open("path_to_image").convert("L")
-    image = mean_threshold(image)
+    image = mean_threshold(Image.open("path_to_image").convert("L"))
     image.save("output_image_path")
