@@ -22,12 +22,13 @@ from __future__ import annotations
 
 import itertools
 from math import ceil
-from typing import Iterator
+from typing import Iterable, Iterator, Tuple
 
 
 def sieve(limit: int) -> Iterator[int]:
     """
     Return an iterable of all the primes less than or equal to limit in ascending order.
+
     >>> list(sieve(5))
     [2, 3, 5]
     >>> list(sieve(50))
@@ -47,11 +48,12 @@ def sieve(limit: int) -> Iterator[int]:
     return itertools.compress(itertools.count(), primes)
 
 
-def pairwise(iterable: Iterator[int]) -> Iterator[tuple]:
+def pairwise(iterable: Iterable[int]) -> Iterator[Tuple[int, int]]:
     """
     Returns an iterator of paired items, overlapping, from the original.
     Taken from the list of itertools recipes at
     https://more-itertools.readthedocs.io/en/stable/api.html#more_itertools.pairwise
+
     >>> list(pairwise([1,2,3,4]))
     [(1, 2), (2, 3), (3, 4)]
     >>> list(pairwise([2,3,5,7,11]))
@@ -65,6 +67,7 @@ def pairwise(iterable: Iterator[int]) -> Iterator[tuple]:
 def arithmetic_sum(start: int, end: int, step: int) -> int:
     """
     Equivalent to sum(range(start, end, step)).
+
     >>> arithmetic_sum(5,55,6)
     261
     >>> arithmetic_sum(1,10,1)
@@ -77,6 +80,7 @@ def arithmetic_sum(start: int, end: int, step: int) -> int:
 def sum_mults_in_range(start: int, end: int, prime: int) -> int:
     """
     Equivalent to sum(num for num in range(start, end, prime) if num % prime == 0)
+
     >>> sum_mults_in_range(170,289,13)
     2106
     >>> sum_mults_in_range(170,289,14)
@@ -89,6 +93,7 @@ def sum_mults_in_range(start: int, end: int, prime: int) -> int:
 def solution(limit: int = 999966663333) -> int:
     """
     Return the sum of all semidivisible numbers not exceeding limit.
+
     >>> solution(1000)
     34825
     >>> solution(10000)
