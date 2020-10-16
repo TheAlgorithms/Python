@@ -32,7 +32,8 @@ def rayleigh_quotient_iteration(
 
     error = error_tol + 1
     prev_eigenvalue = value
-    while error > error_tol:
+    iterations = 0
+    while error > error_tol and iterations < max_iterations:
         # Construct the iterating matrix
         A = np.linalg.inv(input_matrix - np.eye(N) * value)
         # Construct new eigenvector
@@ -46,5 +47,7 @@ def rayleigh_quotient_iteration(
 
         error = abs(value - prev_eigenvalue)
         prev_eigenvalue = value
+
+        iterations += 1
 
     return value, vector
