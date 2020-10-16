@@ -247,6 +247,19 @@ def create_linked_list() -> None:
     >>> new_linked_list.delete_value(value=20)
     >>> for value in new_linked_list:
     ...    print(value)
+    >>> for value in range(1,10):
+    ...    new_linked_list.insert(value=value)
+    >>> for value in new_linked_list:
+    ...    print(value)
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
     """
 
 
