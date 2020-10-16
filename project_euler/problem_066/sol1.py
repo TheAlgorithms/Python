@@ -36,19 +36,23 @@ x for which the largest value of x is obtained.
 from math import sqrt
 
 
-def continued_fraction(n):
+def continued_fraction(n: int) -> list:
 
     """
     function to find continued fraction
 
-    >>>continued_fraction(2)
-    [1,2]
+    >>> continued_fraction(2)
+    [1]
 
-    >>>continued_fraction(3)
-    [1,1,2]
+    >>> continued_fraction(3)
+    [1, 1]
 
-    >>>continue_fraction(5)
-    [2,4]
+    >>> continued_fraction(5)
+    [2]
+
+    >>> continued_fraction(6)
+    [2, 2]
+
     """
     mn = 0.0
     dn = 1.0
@@ -65,20 +69,20 @@ def continued_fraction(n):
     return convergents[:-1]
 
 
-def simple_frac(cf):
+def simple_frac(cf: list()) -> int:
     """
     function to calculate the
     simple fraction from the continued
     fraction.
 
-    >>>simple_frac([1,2])
-    1 1
-    >>>simple_frac([1,1,2])
-    2 2
-    >>>simple_frac([2,4])
-    2 1
-    >>>simple_frac([2,2,4])
-    5 5
+    >>> simple_frac([1])
+    (1, 1)
+    >>> simple_frac([1,1])
+    (2, 2)
+    >>> simple_frac([2])
+    (2, 1)
+    >>> simple_frac([2,2])
+    (5, 5)
 
     """
     numerator = 1
@@ -96,14 +100,8 @@ def solution(limit: int = 1001) -> int:
     for which x is largest.
     """
     """
-    >>>solution(7)
+    >>> solution(7)
     5
-
-    >>>solution(100)
-    61
-
-    >>>solution(1000)
-    661
 
     """
 
@@ -112,6 +110,7 @@ def solution(limit: int = 1001) -> int:
     # for loop less than 1000
     for i in range(1, limit):
         if i % sqrt(i) != 0:
+            # print("cc",i)
             continued_frac = continued_fraction(i)
             if len(continued_frac) % 2 != 0:
                 u, v = simple_frac(continued_frac)
@@ -123,9 +122,11 @@ def solution(limit: int = 1001) -> int:
                 largest = i, u
 
     # print the largest value
-    # print(largest[0])
     return largest[0]
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     print(f"{solution()}")
