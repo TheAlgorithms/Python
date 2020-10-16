@@ -8,17 +8,17 @@ Solution: This is the standard Dynamic Programming problem
 of finding minimal cost path in a 2D matrix
 Time: 17 October 2020, 00:34
 """
-
+import os
 
 
 def solution() -> int:
     """
-        Return the minimum path sum from the top left to the bottom right corner
+    Return the minimum path sum from the top left to the bottom right corner
 
-        >>> solution()
-        '427337'
+    >>> solution()
+    '427337'
     """
-    
+
     # We read the input file
     file_path = os.path.join(os.path.dirname(__file__), "p081_matrix.txt")
     matrix_file = open(file_path, "r")
@@ -60,6 +60,7 @@ def solution() -> int:
 
     # Return the value in the bottom right cell
     return min_path[80][80]
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
