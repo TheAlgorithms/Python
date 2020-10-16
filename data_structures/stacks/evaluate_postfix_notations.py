@@ -1,15 +1,15 @@
 """
-The Reverse Polish Nation also known as Polish postfix notation or simply postfix notation
+The Reverse Polish Nation also known as Polish postfix notation
+or simply postfix notation. 
 https://en.wikipedia.org/wiki/Reverse_Polish_notation
 Classic examples of simple stack implementations
-Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+Valid operators are +, -, *, /. 
+Each operand may be an integer or another expression.
 """
 
 
 def evaluate_postfix(postfix_notation):
     """
-    >>> evaluate_postfix(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"])
-    22
     >>> evaluate_postfix(["2", "1", "+", "3", "*"])
     9
     >>> evaluate_postfix(["4", "13", "5", "/", "+"])
