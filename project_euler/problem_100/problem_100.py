@@ -12,6 +12,7 @@ By finding the first arrangement to contain over 10 ^ 12= 1,000,000,000,000 disc
 determine the number of blue discs that the box would contain.
 """
 
+
 def solution() -> int:
     """
     For this solution we have the generalized equation
@@ -41,26 +42,30 @@ def solution() -> int:
     756872327473
     """
     # the number of the first arrange of blue disks that taken 2 in a row return 50% of prob to happen
-    blueDisks = 85
+    blue_disks = 85
     # the number of the first total disks to this probability happen
-    totalDisks = 120
-    # the maximum lenght of totalDisks to find the blue and Total that has 0.5 probability to be picked in a row
-    total_lenght = 1 * (10 ** 12)
+    total_disks = 120
+    # the maximum lenght of total_disks to find the blue and Total that has 0.5 probability to be picked in a row
+    total_length = 1 * (10 ** 12)
 
-    while totalDisks <= total_lenght:
-        """ 
-        x = blueDisks
-        n = totalDisks
+    while total_disks <= total_length:
+        """
+        x = blue_disks
+        n = total_disks
         Xn+1 = 3 X + 2 N - 2
         Nn+1 =  4 X + 3 N - 3
         apply this functions to get the correct values
         """
         """
-        We have to set this variables separated by commas so in totalDisks attribution the value in blueDisks
+        We have to set this variables separated by commas so in total_disks attribution the value in blue_disks
         will be the value setted before the current while iteration
         """
-        blueDisks, totalDisks = (3 * blueDisks) + (2 * totalDisks) - 2, (4 * blueDisks) + (3 * totalDisks) - 3
+        blue_disks, total_disks = (3 * blue_disks) + (2 * total_disks) - 2, (
+            4 * blue_disks
+        ) + (3 * total_disks) - 3
 
-    return blueDisks
+    return blue_disks
+
+
 if __name__ == "__main__":
-    print(f'blueDiskQuantity: {solution()}')
+    print(f"blueDiskQuantity: {solution()}")
