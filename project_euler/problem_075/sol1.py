@@ -20,6 +20,11 @@ right angle triangles.
 
 Given that L is the length of the wire, for how many values of L ≤ 1,500,000 can
 exactly one integer sided right angle triangle be formed?
+
+Solution: we generate all pythagorean triples using Euclid's formula and
+keep track of the frequencies of the perimeters.
+
+Reference: https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple
 """
 
 from collections import defaultdict
@@ -37,10 +42,6 @@ def solution(limit: int = 1500000) -> int:
     112
     >>> solution(50000)
     5502
-
-    Solution: we generate all pythagorean triples using Euclid's formula and
-    keep track of the frequencies of the perimeters.
-    Reference: https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple
     """
     frequencies: DefaultDict = defaultdict(int)
     euclid_m = 2
