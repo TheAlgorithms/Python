@@ -1,6 +1,7 @@
 """
+Project Euler Problem 188: https://projecteuler.net/problem=188
+
 The hyperexponentiation of a number
-Problem 188
 
 The hyperexponentiation or tetration of a number a by a positive integer b,
 denoted by a↑↑b or b^a, is recursively defined by:
@@ -14,10 +15,7 @@ Thus we have e.g. 3↑↑2 = 3^3 = 27, hence 3↑↑3 = 3^27 = 7625597484987 and
 Find the last 8 digits of 1777↑↑1855.
 
 References:
-    - The original Project Euler project page:
-      https://projecteuler.net/problem=188
-    - Wikipedia article about Hyperexponentiation, aka. Tetration
-      https://en.wikipedia.org/wiki/Tetration
+    - https://en.wikipedia.org/wiki/Tetration
 """
 
 
@@ -67,4 +65,4 @@ def solution(base: int = 1777, height: int = 1855, digits: int = 8) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
