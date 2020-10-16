@@ -31,17 +31,17 @@ def solution(n: int = 1000) -> int:
     >>> solution(10000)
     1508
     """
-    a, b = 1, 1
-    res = []
+    prev_numerator, prev_denominator = 1, 1
+    result = []
     for i in range(1, n + 1):
-        numerator = a + 2 * b
-        denominator = a + b
+        numerator = prev_numerator + 2 * prev_denominator
+        denominator = prev_numerator + prev_denominator
         if len(str(numerator)) > len(str(denominator)):
-            res.append(i)
-        a = numerator
-        b = denominator
+            result.append(i)
+        prev_numerator = numerator
+        prev_denominator = denominator
 
-    return len(res)
+    return len(result)
 
 
 if __name__ == "__main__":
