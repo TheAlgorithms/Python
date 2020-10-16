@@ -4,9 +4,9 @@ def binomialCoeff(n, k):
     """
     Since C(n, k) = C(n, n-k)
 
-    >>>binomialCoeff(4,2)
+    >>> binomialCoeff(4,2)
     2
-     >>>binomialCoeff(8,4)
+    >>> binomialCoeff(8,4)
     6
     """
     if k > n - k:
@@ -33,9 +33,9 @@ def catalan(n):
 
     """Calculate value of 2nCn """
     """
-    >>>catalan(1)
+    >>> catalan(1)
     1
-    >>>catalan(2)
+    >>> catalan(2)
     2
     """
     c = binomialCoeff(2 * n, n)
@@ -69,6 +69,8 @@ def number_validparanthesis(n):
 
 
 if __name__ == "__main__":
+    import doctest
 
+    doctest.testmod()
     n = int(input("Enter number = "))
     print(f"number of valid expression is {number_validparanthesis(n)}")
