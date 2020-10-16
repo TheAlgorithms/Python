@@ -100,7 +100,7 @@ def solution(max: int = 10000000) -> int:
     4435
     """
 
-    min_numerator = 1    # i
+    min_numerator = 1 # i
     min_denominator = 0  # φ(i)
     totients = get_totients(max + 1)
 
