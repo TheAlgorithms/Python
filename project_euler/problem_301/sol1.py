@@ -33,28 +33,6 @@ For how many positive integers n <= 2^30 does X(n,2n,3n) = 0?
 """
 
 
-def x(n: int, n2: int, n3: int) -> int:
-    """
-    Returns:
-    - zero if, with perfect strategy, the player about to
-      move will eventually lose; or
-    - non-zero if, with perfect strategy, the player about
-      to move will eventually win.
-
-    >>> x(1, 2, 3)
-    0
-    >>> x(3, 6, 9)
-    12
-    >>> x(8, 16, 24)
-    0
-    >>> x(11, 22, 33)
-    60
-    >>> x(1000, 2000, 3000)
-    3968
-    """
-    return n ^ n2 ^ n3
-
-
 def solution(n: int = 2 ** 30) -> int:
     """
     For a given integer n <= 2^30, returns how many Nim games are lost.
@@ -65,11 +43,11 @@ def solution(n: int = 2 ** 30) -> int:
     """
     loss_count = 0
     for i in range(1, n + 1):
-        if x(i, 2 * i, 3 * i) == 0:
+        if (i^(2*i)^(3*i)) == 0:
             loss_count += 1
 
     return loss_count
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
