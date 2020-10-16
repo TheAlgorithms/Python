@@ -48,6 +48,5 @@ def merge_sort(array, aux_array=[]) -> list:
         merge_sort(right_list, array)
         # merge the two lists when you get to the base case
         merge(left_list, right_list, array)
-
         return array
         
