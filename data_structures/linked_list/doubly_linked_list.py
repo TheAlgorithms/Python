@@ -126,7 +126,7 @@ class LinkedList:
 
             self.remove_node_pointers(node)
         else:
-            return 'Node not found'
+            return "Node not found"
 
     @staticmethod
     def remove_node_pointers(node: Node) -> None:
