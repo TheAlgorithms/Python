@@ -103,9 +103,9 @@ class Stack(object):
 
 def split(str):
     '''
-    -Initialze a stack.
-    -Ittereate through the sring alphabet by alphabet.
-    -When you see a Vowel push a None refrence in the data.
+    -Initialise a stack.
+    -Iterate through the string alphabet by alphabet.
+    -When you see a Vowel push a None reference in the data.
     -You have the string splitted in the stack.
     -Push the stack in another stack to reverse the string.
     -Now you have the string the right way.
@@ -147,7 +147,7 @@ While(stack != None):
 ...
 
 but it does not seem to be working if anyone can solve it they can make it faster
-as we are calculatig the length of the string again and again.
+as we are calculating the length of the string again and again.
 
 '''
 
