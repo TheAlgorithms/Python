@@ -9,10 +9,16 @@ def oct_to_decimal(oct_string: str) -> int:
     >>> oct_to_decimal("-45")
     -37
     >>> oct_to_decimal("2-0Fm")
+    Traceback (most recent call last):
+    ...
     ValueError: Non-octal value was passed to the function
     >>> oct_to_decimal("")
-    ValueError: Empty string value was passed to the function
+    Traceback (most recent call last):
+    ...
+    ValueError: Empty string was passed to the function
     >>> oct_to_decimal("19")
+    Traceback (most recent call last):
+    ...
     ValueError: Non-octal value was passed to the function
     """
     oct_string = str(oct_string).strip()
