@@ -21,7 +21,9 @@ def oct_to_decimal(oct_string: str) -> int:
     is_negative = oct_string[0] == "-"
     if is_negative:
         oct_string = oct_string[1:]
-    if not all(0 <= int(char) <= 7 for char in oct_string):
+    if not oct_string.isdecimal() or not all(
+        0 <= int(char) <= 7 for char in oct_string
+    ):
         raise ValueError("Non-octal value was passed to the function")
     decimal_number = 0
     for char in oct_string:
