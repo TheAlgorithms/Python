@@ -17,7 +17,6 @@ def main():
     # largest pandigital number
     largest = 0 
     # for loop to loop till 4 digits
-<<<<<<< HEAD
     for i in range(1,10000):   	
     	# value for concatenated string
     	multiplication = '' 	
@@ -35,7 +34,6 @@ def main():
     		# check if multiplication is greater than largest
     		if int(multiplication) > largest:
     			largest = int(multiplication) 
-=======
     for i in range(1,10000):	
     	# value for concatenated string
     	multiplication = ''   	
@@ -52,7 +50,6 @@ def main():
     		# check if multiplication is greater than largest
     		if int(multiplication) > largest:
     			largest = int(multiplication)    
->>>>>>> 3437c604cc683dfef1b2dea3d1a2edb9f87f3f4f
     # return the largest
     return(largest)
 if __name__=="__main__":
