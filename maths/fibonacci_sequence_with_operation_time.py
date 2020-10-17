@@ -86,7 +86,6 @@ print(
 
 
 def fibonnacci_other_operations() -> int:
-
     request = input("\nPlease enter your response:").strip()
     if request == "no":
         print("\nAlright, have a lovely day!")
@@ -117,7 +116,7 @@ def fibonnacci_other_operations() -> int:
         """
         Returns the immediate lower value to the one specified
         """
-        prior_value = int(input("Enter your the aftermath value:"))
+        prior_value = int(input("Enter your the aftermath value:").strip())
         checker = 0
         for value in range(len(fib)):
             if fib[value] >= prior_value:
