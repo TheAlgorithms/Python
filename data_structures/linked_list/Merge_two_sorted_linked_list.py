@@ -50,8 +50,8 @@ if __name__ == '__main__':
     a = LinkedList() 
     b = LinkedList()
         
-    nodes_a = [2 , 3 , 5 , 10]
-    nodes_b = [1, 5, 8]
+    nodes_a = list(map(int,input().split()))
+    nodes_b = list(map(int,input().split()))
         
     for x in nodes_a:
         a.append(x)
