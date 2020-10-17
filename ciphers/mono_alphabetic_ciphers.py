@@ -49,8 +49,8 @@ def main():
         translated = encrypt_message(myKey, myMessage)
     elif myMode == "decrypt":
         translated = decrypt_message(myKey, myMessage)
-    print("Using key %s" % (myKey))
-    print("The %sed message is:" % (myMode))
+    print(f"Using key %s {myKey}")
+    print(f"The %sed message is {myMode}")
     print(translated)
 
 
