@@ -1,3 +1,9 @@
+"""
+Run Length Encoding
+https://en.wikipedia.org/wiki/Run-length_encoding
+"""
+
+
 def run_length_encoding(data: str or tuple) -> tuple or str:
     """
     >>> run_length_encoding('taaaaaaaaaaanaayyyyy')
