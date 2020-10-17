@@ -16,13 +16,13 @@ import doctest
 
 def is_vowel(char: str) -> bool:
     """
-        returns True if the character is vowel else False
-        >>> is_vowel('A')
-        True
-        >>> is_vowel('e')
-        True
-        >>> is_vowel('f')
-        False
+    returns True if the character is vowel else False
+    >>> is_vowel('A')
+    True
+    >>> is_vowel('e')
+    True
+    >>> is_vowel('f')
+    False
     """
     vowels = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"]
     # Check for empty string
@@ -33,14 +33,14 @@ def is_vowel(char: str) -> bool:
 
 def get_vowels(string: str) -> list:
     """
-        Given a string returns vowels from it
+    Given a string returns vowels from it
 
-        >>> get_vowels('abcde')
-        ['a', 'e']
-        >>> get_vowels('AEIou')
-        ['A', 'E', 'I', 'o', 'u']
-        >>> get_vowels('bCFM')
-        []
+    >>> get_vowels('abcde')
+    ['a', 'e']
+    >>> get_vowels('AEIou')
+    ['A', 'E', 'I', 'o', 'u']
+    >>> get_vowels('bCFM')
+    []
     """
     vowels = list()
 
@@ -57,14 +57,14 @@ def get_vowels(string: str) -> list:
 
 def reverse_vowels(string: str) -> str:
     """
-        Reverses the order of vowels in the given string
+    Reverses the order of vowels in the given string
 
-        >>> reverse_vowels('Hello World')
-        'Hollo Werld'
-        >>> reverse_vowels('Algo & DS')
-        'olgA & DS'
-        >>> reverse_vowels('why')
-        'why'
+    >>> reverse_vowels('Hello World')
+    'Hollo Werld'
+    >>> reverse_vowels('Algo & DS')
+    'olgA & DS'
+    >>> reverse_vowels('why')
+    'why'
     """
     vowels = get_vowels(string)
     answer = ""
