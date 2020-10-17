@@ -48,6 +48,7 @@
   * [Base32](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base32.py)
   * [Base64 Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base64_cipher.py)
   * [Base85](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base85.py)
+  * [Beaufort Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/beaufort_cipher.py)
   * [Brute Force Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/brute_force_caesar_cipher.py)
   * [Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/caesar_cipher.py)
   * [Cryptomath Module](https://github.com/TheAlgorithms/Python/blob/master/ciphers/cryptomath_module.py)
