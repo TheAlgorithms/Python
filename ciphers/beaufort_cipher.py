@@ -66,7 +66,7 @@ dict2 = {
 # equal to the length of original text
 def generate_key(message: str, key: str) -> str:
     """
-    >>> generate_key("THE GERMAN ATTACK","SECRET")
+    >>> generate_key('THE GERMAN ATTACK','SECRET')
     SECRETSECRETSECRE
     """
     x = len(message)
@@ -85,7 +85,7 @@ def generate_key(message: str, key: str) -> str:
 # generated with the help of the key
 def cipherText(message: str, key_new: str) -> str:
     """
-    >>> cipherText("THE GERMAN ATTACK","SECRETSECRETSECRE")
+    >>> cipherText('THE GERMAN ATTACK','SECRETSECRETSECRE')
     BDC PAYUWL JPAIYI
     """
     cipher_text = ""
@@ -104,7 +104,7 @@ def cipherText(message: str, key_new: str) -> str:
 # and returns the original text
 def originalText(cipher_text: str, key_new: str) -> str:
     """
-    >>> originalText("BDC PAYUWL JPAIYI","SECRETSECRETSECRE")
+    >>> originalText('BDC PAYUWL JPAIYI','SECRETSECRETSECRE')
     THE GERMAN ATTACK
     """
     or_txt = ""
