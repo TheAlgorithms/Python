@@ -5,6 +5,7 @@ of constants are static and vowels got reversed.
 You may assume that each input would have exactly one solution, if there are no vowels return the input.
 
 Example:
+
 >>> S = 'hello programming'
 >>> reverse_vowels(S)
 'hilla progrommeng'
