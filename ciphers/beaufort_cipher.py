@@ -66,7 +66,4 @@ def main():
     print("Encrypted Text =", cipher_text)
     print("Original Text =", original_text)
 
-
-# Executes the main function
-if __name__ == '__main__':
-    main()
+main()
