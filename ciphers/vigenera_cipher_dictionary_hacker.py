@@ -12,10 +12,9 @@ def main():
         print('Failed to hack encryption.')
 
 
-def hackVigenere(ciphertext):
-    fo = open('dictionary.txt')
-    words = fo.readlines()
-    fo.close()
+def hackVigenere(ciphertext: str) -> str:
+    with open('dictionary.txt') as in_file:
+        words = in_file.readlines()
 
     for word in words:
         word = word.strip()
