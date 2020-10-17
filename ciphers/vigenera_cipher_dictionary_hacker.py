@@ -2,7 +2,7 @@ import detectEnglish, vigenereCipher, pyperclip
 
 
 def main():
-    ciphertext = """Tzx isnz eccjxkg nfq lol mys bbqq I lxcz."""
+    ciphertext = "Tzx isnz eccjxkg nfq lol mys bbqq I lxcz"
     hackedMessage = hackVigenere(ciphertext)
 
     if hackedMessage != None:
@@ -15,6 +15,10 @@ def main():
 
 def hackVigenere(ciphertext: str) -> str:
     """
+    >>> hackVigenere("Tzx isnz eccjxkg nfq lol mys bbqq I lxcz")
+    'Hjsg sfaty shsj hjasg vzfwt jnal'
+    
+    
     Return the decrypted text
     """
     with open("dictionary.txt") as in_file:
