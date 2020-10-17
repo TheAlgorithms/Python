@@ -18,7 +18,8 @@ def isReversible(num):
             return False
     return True
 
-def solution(count):
+def solution():
+    count = 0
     for i in range(10**9):
         if isReversible(i):
             count += 1
@@ -26,4 +27,4 @@ def solution(count):
     return count
 
 if __name__ == "__main__":
-    print(solution(0))
+    print(solution())
