@@ -35,7 +35,7 @@ def cm_to_m(centimeters):
 
 
 def default():
-    return "unvalid option"
+    return "Invalid option"
 
 
 def menu():
