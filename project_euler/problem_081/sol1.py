@@ -16,19 +16,18 @@ a 31K text file containing an 80 by 80 matrix.
 import os
 
 
-def solution(filename: str = "matrix.txt", n: int = 80) -> int:
+def solution(filename: str = "matrix.txt") -> int:
     """
     Returns the minimal path sum from the top left to the bottom right of the matrix.
     >>> solution()
     427337
     """
-    with open(os.path.join(os.path.dirname(__file__), filename), "r") as file:
-        data = file.read().strip().split("\n")
+    with open(os.path.join(os.path.dirname(__file__), filename), "r") as in_file:
+        data = in_file.read()
 
-    grid = []
-    for line in data:
-        row = line.split(",")
-        grid.append(list(map(int, row)))
+    grid = [[int(cell) for cell in row.split(",")] for row in data.strip().splitlines()]
+    dp = [[0 for cell in row] for row in grid]
+    n = len(grid[0])
 
     dp = [[0 for i in range(n)] for j in range(n)]
     dp[0][0] = grid[0][0]
