@@ -4,10 +4,10 @@ LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def translate_message(key, message, mode):
     """
     >>> translate_message(
-            "QWERTYUIOPASDFGHJKLZXCVBNM", 
-            "When you do the common things in life in an uncommon way, "
-            "you will command the attention of the world", "encrypt")
-    'Vitf ngx rg zit egddgf zioful of soyt of qf xfegddgf vqn, ngx voss egddqfr zit qzztfzogf gy zit vgksr'
+            "QWERTYUIOPASDFGHJKLZXCVBNM",
+            "Hello World!",
+            "encrypt")
+    'Pcssi Bidsm'
     """
     charsA = LETTERS if mode == "decrypt" else key
     charsB = key if mode == "decrypt" else LETTERS
@@ -29,25 +29,22 @@ def translate_message(key, message, mode):
 
 def encrypt_message(key: str, message: str) -> str:
     """
-    >>> encrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "When you do the common things in life in an uncommon way, you will command the attention of the world")
-    'Vitf ngx rg zit egddgf zioful of soyt of qf xfegddgf vqn, ngx voss egddqfr zit qzztfzogf gy zit vgksr'
+    >>> encrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "Hello World!")
+    'Pcssi Bidsm'
     """
     return translate_message(key, message, "encrypt")
 
 
-def decrypt_message(key, message):
+def decrypt_message(key: str, message: str) -> str:
     """
-    >>> decrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "When you do the common things in life in an uncommon way, you will command the attention of the world")
-    'Bpcy fig mi epc vizziy ephyol hy shnc hy ky gyvizziy bkf, fig bhss vizzkym epc keecyehiy in epc bidsm'
+    >>> decrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "Hello World!")
+    'Itssg Vgksr'
     """
     return translate_message(key, message, "decrypt")
 
 
 def main():
-    myMessage = (
-        "When you do the common things in life in an uncommon way, "
-        "you will command the attention of the world"
-    )
+    myMessage = "Hello World!"
     myKey = "QWERTYUIOPASDFGHJKLZXCVBNM"
     myMode = "decrypt"  # set to 'encrypt' or 'decrypt'
 
