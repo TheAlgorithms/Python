@@ -16,7 +16,7 @@ def solution() -> int:
     Return the minimum path sum from the top left to the bottom right corner
 
     >>> solution()
-    '427337'
+    427337
     """
 
     # We read the input file
