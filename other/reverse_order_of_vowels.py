@@ -1,11 +1,12 @@
 """
-Given a string 'S' reverse the vowels order in that string. return the modified string where the position
+Given a string 'S' reverse the vowels order in that string.
+return the modified string where the position
 of constants are static and vowels got reversed.
 
-You may assume that each input would have exactly one solution, if there are no vowels return the input.
+You may assume that each input would have exactly one solution, 
+if there are no vowels return the input.
 
 Example:
-
 >>> S = 'hello programming'
 >>> reverse_vowels(S)
 'hilla progrommeng'
@@ -81,4 +82,5 @@ def reverse_vowels(string: str) -> str:
 if __name__ == "__main__":
     doctest.testmod()
 
-    print(f"{ reverse_vowels('hello programming') }")
+    inputString = input().strip()
+    print(f"{ reverse_vowels(inputString) }")
