@@ -3,16 +3,15 @@ LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def translate_message(key, message, mode):
     """
-    >>> translate_message("QWERTYUIOPASDFGHJKLZXCVBNM", "When you do the common things in life in an uncommon way, you will command the attention of the world", "encrypt")
+    >>> translate_message(
+            "QWERTYUIOPASDFGHJKLZXCVBNM", 
+            "When you do the common things in life in an uncommon way, "
+            "you will command the attention of the world", "encrypt")
     'Vitf ngx rg zit egddgf zioful of soyt of qf xfegddgf vqn, ngx voss egddqfr zit qzztfzogf gy zit vgksr'
     """
+    charsA = LETTERS if mode == "decrypt" else key
+    charsB = key if mode == "decrypt" else LETTERS
     translated = ""
-    charsA = LETTERS
-    charsB = key
-    if mode == "decrypt":
-        # For decrypting, we can use the same code as encrypting. We
-        # just need to swap where the key and LETTERS strings are used.
-        charsA, charsB = charsB, charsA
     # loop through each symbol in the message
     for symbol in message:
         if symbol.upper() in charsA:
@@ -45,7 +44,10 @@ def decrypt_message(key, message):
 
 
 def main():
-    myMessage = "When you do the common things in life in an uncommon way, you will command the attention of the world"
+    myMessage = (
+        "When you do the common things in life in an uncommon way, "
+        "you will command the attention of the world"
+    )
     myKey = "QWERTYUIOPASDFGHJKLZXCVBNM"
     myMode = "decrypt"  # set to 'encrypt' or 'decrypt'
 
