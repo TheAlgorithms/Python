@@ -44,8 +44,8 @@ def half_adder(bit0: int, bit1: int) -> q.result.counts.Counts:
     qc_ha.barrier()
 
     # extract outputs
-    qc_ha.measure(2, 0) # extract XOR value
-    qc_ha.measure(3, 1) # extract AND value
+    qc_ha.measure(2, 0)  # extract XOR value
+    qc_ha.measure(3, 1)  # extract AND value
 
     # Execute the circuit on the qasm simulator
     job = q.execute(qc_ha, simulator, shots=1000)
