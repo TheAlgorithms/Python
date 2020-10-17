@@ -1,4 +1,4 @@
-LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def main():
@@ -12,8 +12,8 @@ def main():
         translated = encryptMessage(myKey, myMessage)
     elif myMode == "decrypt":
         translated = decryptMessage(myKey, myMessage)
-    print('Using key %s' % (myKey))
-    print('The %sed message is:' % (myMode))
+    print("Using key %s" % (myKey))
+    print("The %sed message is:" % (myMode))
     print(translated)
 
 
@@ -23,7 +23,7 @@ def checkValidKey(key: str):
     keyList.sort()
     lettersList.sort()
     if keyList != lettersList:
-        sys.exit('There is an error in the key or symbol set.')
+        sys.exit("There is an error in the key or symbol set.")
 
 
 def encryptMessage(key: str, message: str) -> str:
@@ -47,10 +47,10 @@ def translateMessage(key, message, mode):
     >>> translateMessage("QWERTYUIOPASDFGHJKLZXCVBNM", "When you do the common things in life in an uncommon way, you will command the attention of the world", "encrypt")
     'Vitf ngx rg zit egddgf zioful of soyt of qf xfegddgf vqn, ngx voss egddqfr zit qzztfzogf gy zit vgksr'
     """
-    translated = ''
+    translated = ""
     charsA = LETTERS
     charsB = key
-    if mode == 'decrypt':
+    if mode == "decrypt":
         # For decrypting, we can use the same code as encrypting. We
         # just need to swap where the key and LETTERS strings are used.
         charsA, charsB = charsB, charsA
@@ -68,7 +68,8 @@ def translateMessage(key, message, mode):
             translated += symbol
     return translated
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
