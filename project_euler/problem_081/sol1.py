@@ -40,7 +40,7 @@ def solution(filename: str = "matrix.txt") -> int:
         for j in range(1, n):
             dp[i][j] = grid[i][j] + min(dp[i - 1][j], dp[i][j - 1])
 
-    return dp[n - 1][n - 1]
+    return dp[-1][-1]
 
 
 if __name__ == "__main__":
