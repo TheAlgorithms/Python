@@ -5,6 +5,8 @@ def reverse_letters(input_str: str) -> str:
     'ehT tac ni eht tah'
     >>> reverse_letters('The quick brown fox jumped over the lazy dog.')
     'ehT kciuq nworb xof depmuj revo eht yzal .god'
+    >>> reverse_letters('Is this true?')
+    'sI siht ?eurt'
     '''
     arr = []  # create an empty list
     for i in input_str.split(' '):  # Runs a for loop in a list of the string separated by space
