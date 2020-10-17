@@ -1,5 +1,5 @@
 """
-Conversion from te Internation Metric System
+Conversion from te International Metric System
 """
 import sys
 
