@@ -51,7 +51,7 @@ def cipher_text(message: str, key_new: str) -> str:
 # and returns the original text
 def original_text(cipher_text: str, key_new: str) -> str:
     """
-    >>> originalText("BDC PAYUWL JPAIYI","SECRETSECRETSECRE")
+    >>> original_text("BDC PAYUWL JPAIYI","SECRETSECRETSECRE")
     'THE GERMAN ATTACK'
     """
     or_txt = ""
