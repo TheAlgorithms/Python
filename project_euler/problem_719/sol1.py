@@ -16,8 +16,13 @@ You are given $T(10^4) = 41333$.
 Find $T(10^{12})$
 """
 import math
-from tqdm import tqdm
 import random
+has_tqdm = True
+try:
+    from tqdm import tqdm
+except ImportError:
+    has_tqdm = False
+
 
 def digit_sum(n: int) -> int:
     """
@@ -28,7 +33,7 @@ def digit_sum(n: int) -> int:
         return n
     return digit_sum(sum(num2digits(n)))
 
-def get_all_subset(iset: str, imax):
+def get_all_subset(iset: str, imax: int):
     """
     Get all digit splittings of n that, such that any part
     of the split does not exceed imax digits.
@@ -85,8 +90,12 @@ def all_perfect_squares(n: int):
     """
     tmp = list(range(1, math.floor(math.sqrt(n)+1)))
     random.shuffle(tmp)
-    for i in tqdm(tmp):
-        yield i, (i ** 2) 
+    if has_tqdm:
+        for i in tqdm(tmp):
+            yield i, (i ** 2)
+    else:
+        for i in tmp:
+            yield i, (i ** 2)
 
 
 def solution(N: int = 10**12) -> int:
