@@ -14,3 +14,4 @@ sklearn
 sympy
 tensorflow
 xgboost
+tqdm
