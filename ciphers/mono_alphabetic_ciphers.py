@@ -68,13 +68,6 @@ def translateMessage(key, message, mode):
             translated += symbol
     return translated
 
-
-def getRandomKey():
-    key = list(LETTERS)
-    random.shuffle(key)
-    return ''.join(key)
-
-
 if __name__ == '__main__':
     import doctest
 
