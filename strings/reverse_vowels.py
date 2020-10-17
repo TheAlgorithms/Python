@@ -18,7 +18,7 @@ def is_vowel(letter: str) -> bool:
 
 
 def swap_letters(idx1: int, idx2: int, word_list: list):
-    """ "
+    """
     Swaps the letters at index idx1 and idx2 in word_list
     """
     word_list[idx1], word_list[idx2] = word_list[idx2], word_list[idx1]
@@ -28,8 +28,8 @@ def reverse_vowels(word: str) -> str:
     """
     >>> reverse_vowels('beautiful')
     'buiutafel'
-    >>> reverse_vowels('hello programming')
-    'hilla progrommeng'
+    >>> reverse_vowels('banana')
+    'banana'
 
     Reverses the vowels in an English word and returns it (O(n)).
 
