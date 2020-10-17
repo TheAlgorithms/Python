@@ -41,7 +41,7 @@ def is_pandigital(num):
 def solution():
     for num in range(9487, 9233, -1):
         """
-        The range is exactly 9234 to 9487. Firts digit has to be nine
+        The range is exactly 9234 to 9487. First digit has to be nine
         to accomplish nine at the beginning of the num_to_check.
         The number has to have four digits to accomplish nine digit result.
         We can't use digit '1' as it would mean two '1's in our result,
