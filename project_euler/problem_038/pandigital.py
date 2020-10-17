@@ -20,16 +20,14 @@ def solution():
     for i in range(1,10000):
     	
     	# value for concatenated string
-    	multiplication = ''
-    	
+    	multiplication = ''   	
     	integer = 1
     	
     	# if the multiplication < 9 digits
     	while len(multiplication) < 9:
     		
     		# concatenating the product at each stage
-    		multiplication += str(i*integer)
-            
+    		multiplication += str(i*integer)       
     		integer += 1
     		
     	# check for digits less than 9
