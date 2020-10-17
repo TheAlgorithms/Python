@@ -1,5 +1,4 @@
-"""
-problem 85 -  https://projecteuler.net/problem=85
+"""   problem 85 -  https://projecteuler.net/problem=85
 
 By counting carefully it can be seen that a rectangular grid
 measuring 3 by 2 contains eighteen rectangles
@@ -9,22 +8,16 @@ exactly two million rectangles,
 find the area of the grid with the nearest solution.
 
 for 3 by 2 rectangle
-there can be 18 rectangles
-
-"""
+there can be 18 rectangles        """
 
 def solution():
 
-    """
-
-    i want to take the error in finding a rectangle
+    """    i want to take the error in finding a rectangle
     with 2Million possible rectangle as minimum
     as possible so i have took min_diff 9000
 
     no of possible rectangle is n(n+1)/2 in each side
-    so total possible triangle is n1(n1+1) * n2(n2+1) /4
-
-    """
+    so total possible triangle is n1(n1+1) * n2(n2+1) /4            """
 
     min_diff=9000
 
