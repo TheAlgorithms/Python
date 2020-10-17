@@ -1,12 +1,12 @@
 """
-Conversion from te International Metric System
+Conversions from the International Metric System
 """
 import sys
 
 
 def m_to_cm(meters):
     """
-    Print de conversion from meters to centimeters
+    Print the conversion from meters to centimeters
     >>> m_to_cm(5)
     23.0 m = 2300.0 cm
     >>> m_to_cm(12)
@@ -21,7 +21,7 @@ def m_to_cm(meters):
 
 def cm_to_m(centimeters):
     """
-    Print de conversion from centimeters to meters
+    Print the conversion from centimeters to meters
     >>> cm_to_m(5)
     5.0 cm = 0.05 m
     >>> cm_to_m(135) 
@@ -35,7 +35,7 @@ def cm_to_m(centimeters):
 
 
 def default():
-    return "Opcion Invalida"
+    return "unvalid option"
 
 
 def menu():
@@ -69,3 +69,4 @@ if __name__ == "__main__":
         menu()
         case = int(input().strip())
         print(switch(case))
+
