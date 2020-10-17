@@ -83,4 +83,4 @@ if __name__ == "__main__":
     doctest.testmod()
 
     inputString = input().strip()
-    print(f"{ reverse_vowels(inputString) }")
+    print(f"{reverse_vowels(inputString)}")
