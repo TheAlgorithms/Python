@@ -1,5 +1,5 @@
 """
-Project Euler Problem 206: https://projecteuler.net/problem=206
+Project Euler Problem 205: https://projecteuler.net/problem=205
 
 Peter has nine four-sided (pyramidal) dice, each with faces numbered 1, 2, 3, 4.
 Colin has six six-sided (cubic) dice, each with faces numbered 1, 2, 3, 4, 5, 6.
