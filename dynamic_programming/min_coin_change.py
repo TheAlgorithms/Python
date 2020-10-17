@@ -1,6 +1,7 @@
 """
 You are given coins of different denominations and a total amount of money amount.
-Write a function to compute the fewest number of coins that you need to make up that amount.
+Write a function to compute the fewest number of coins that you need to make up
+that amount.
 https://leetcode.com/problems/coin-change/
 """
 
@@ -21,7 +22,8 @@ def min_coins(coins: Iterable[int], total_amount: int) -> int:
     -1
     """
 
-    # dp[i] represents the minimum number of coins necessary to give total_amount to amount i
+    # dp[i] represents the minimum number of coins necessary to give
+    # total_amount of change using coins
     dp = [float("inf")] * (total_amount + 1)
     dp[0] = 0
 
