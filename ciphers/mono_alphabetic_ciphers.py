@@ -3,10 +3,7 @@ LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def translate_message(key, message, mode):
     """
-    >>> translate_message(
-            "QWERTYUIOPASDFGHJKLZXCVBNM",
-            "Hello World!",
-            "encrypt")
+    >>> translate_message("QWERTYUIOPASDFGHJKLZXCVBNM","Hello World","encrypt")
     'Pcssi Bidsm'
     """
     charsA = LETTERS if mode == "decrypt" else key
@@ -29,7 +26,7 @@ def translate_message(key, message, mode):
 
 def encrypt_message(key: str, message: str) -> str:
     """
-    >>> encrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "Hello World!")
+    >>> encrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "Hello World")
     'Pcssi Bidsm'
     """
     return translate_message(key, message, "encrypt")
@@ -37,14 +34,14 @@ def encrypt_message(key: str, message: str) -> str:
 
 def decrypt_message(key: str, message: str) -> str:
     """
-    >>> decrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "Hello World!")
+    >>> decrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "Hello World")
     'Itssg Vgksr'
     """
     return translate_message(key, message, "decrypt")
 
 
 def main():
-    myMessage = "Hello World!"
+    myMessage = "Hello World"
     myKey = "QWERTYUIOPASDFGHJKLZXCVBNM"
     myMode = "decrypt"  # set to 'encrypt' or 'decrypt'
 
