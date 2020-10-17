@@ -1,4 +1,4 @@
-def compare_string(string1, string2):
+def compare_string(string1: str, string2: str) -> str:
     """
     >>> compare_string('0010','0110')
     '0_10'
@@ -19,7 +19,7 @@ def compare_string(string1, string2):
         return "".join(l1)
 
 
-def check(binary):
+def check(binary: [str]) -> [str]:
     """
     >>> check(['0.00.01.5'])
     ['0.00.01.5']
@@ -43,7 +43,7 @@ def check(binary):
         binary = list(set(temp))
 
 
-def decimal_to_binary(no_of_variable, minterms):
+def decimal_to_binary(no_of_variable: int, minterms: [float]) -> [str]:
     """
     >>> decimal_to_binary(3,[1.5])
     ['0.00.01.5']
@@ -59,7 +59,7 @@ def decimal_to_binary(no_of_variable, minterms):
     return temp
 
 
-def is_for_table(string1, string2, count):
+def is_for_table(string1: str, string2: str, count: int) -> bool:
     """
     >>> is_for_table('__1','011',2)
     True
@@ -79,7 +79,7 @@ def is_for_table(string1, string2, count):
         return False
 
 
-def selection(chart, prime_implicants):
+def selection(chart: [[int]], prime_implicants: [str]) -> [str]:
     """
     >>> selection([[1]],['0.00.01.5'])
     ['0.00.01.5']
@@ -126,7 +126,7 @@ def selection(chart, prime_implicants):
                     chart[j][i] = 0
 
 
-def prime_implicant_chart(prime_implicants, binary):
+def prime_implicant_chart(prime_implicants: [str], binary: [str]) -> [[int]]:
     """
     >>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
     [[1]]

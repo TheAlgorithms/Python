@@ -1,7 +1,7 @@
 # https://en.wikipedia.org/wiki/Trifid_cipher
 
 
-def __encryptPart(messagePart, character2Number):
+def __encryptPart(messagePart: str, character2Number: dict) -> str:
     one, two, three = "", "", ""
     tmp = []
 
@@ -16,7 +16,7 @@ def __encryptPart(messagePart, character2Number):
     return one + two + three
 
 
-def __decryptPart(messagePart, character2Number):
+def __decryptPart(messagePart: str, character2Number: dict) -> (str, str, str):
     tmp, thisPart = "", ""
     result = []
 
@@ -32,7 +32,7 @@ def __decryptPart(messagePart, character2Number):
     return result[0], result[1], result[2]
 
 
-def __prepare(message, alphabet):
+def __prepare(message: str, alphabet: str) -> (str, str, dict, dict):
     # Validate message and alphabet, set to upper and remove spaces
     alphabet = alphabet.replace(" ", "").upper()
     message = message.replace(" ", "").upper()
@@ -83,7 +83,9 @@ def __prepare(message, alphabet):
     return message, alphabet, character2Number, number2Character
 
 
-def encryptMessage(message, alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period=5):
+def encryptMessage(
+    message: str, alphabet: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period: int = 5
+) -> str:
     message, alphabet, character2Number, number2Character = __prepare(message, alphabet)
     encrypted, encrypted_numeric = "", ""
 
@@ -96,7 +98,9 @@ def encryptMessage(message, alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period=5):
     return encrypted
 
 
-def decryptMessage(message, alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period=5):
+def decryptMessage(
+    message: str, alphabet: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period: int = 5
+) -> str:
     message, alphabet, character2Number, number2Character = __prepare(message, alphabet)
     decrypted_numeric = []
     decrypted = ""
