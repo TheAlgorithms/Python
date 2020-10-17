@@ -21,7 +21,6 @@ def reverseVowels(s: str) -> str:
             j -= 1
     return "".join(a)
 if __name__ == "__main__":
-    while True:
-        st=input("Enter the string: ")
-        print(reverseVowels(st))
-        testmod()
+    st=input("Enter the string: ")
+    print(reverseVowels(st))
+    testmod()
