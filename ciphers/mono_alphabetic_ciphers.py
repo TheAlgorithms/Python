@@ -49,7 +49,7 @@ def main():
         translated = encrypt_message(myKey, myMessage)
     elif myMode == "decrypt":
         translated = decrypt_message(myKey, myMessage)
-    print(f"Using key %s {myKey}")
+    print(f"Using key is {myKey}")
     print(f"The {myMode}ed message is: {translated}")
 
 
