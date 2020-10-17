@@ -77,7 +77,7 @@ class DenseLayer:
             return self.output
 
     def back_propagation(self, gradient):
-        gradient_activation = self.cal_gradient()  # i * i 维
+        gradient_activation = self.cal_gradient()  # i * i 维(dimension)
         gradient = np.asmatrix(np.dot(gradient.T, gradient_activation))
 
         self._gradient_weight = np.asmatrix(self.xdata)
@@ -151,7 +151,7 @@ class BPNN:
             self.plot_loss()
 
             if mse < self.accuracy:
-                print("----达到精度----")
+                print("----Reach Accuracy----") #达到精度
                 return mse
 
     def cal_loss(self, ydata, ydata_):
