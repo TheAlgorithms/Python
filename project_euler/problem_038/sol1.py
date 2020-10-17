@@ -35,7 +35,7 @@ def is_pandigital(num):
     >>> is_pandigital(2143887565879)
     False
     """
-    return ''.join(sorted(str(num))) == '123456789'
+    return "".join(sorted(str(num))) == "123456789"
 
 
 def solution():
