@@ -50,8 +50,7 @@ def main():
     elif myMode == "decrypt":
         translated = decrypt_message(myKey, myMessage)
     print(f"Using key %s {myKey}")
-    print(f"The %sed message is {myMode}")
-    print(translated)
+    print(f"The {myMode}ed message is: {translated}")
 
 
 if __name__ == "__main__":
