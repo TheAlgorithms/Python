@@ -9,7 +9,7 @@ def main():
         print(f"Copying hacked message to clipboard: {hackedMessage}")
         pyperclip.copy(hackedMessage)
     else:
-        print(f"Failed to hack encryption")
+        print("Failed to hack encryption")
 
 
 def hackVigenere(ciphertext: str) -> str:
@@ -28,9 +28,9 @@ def hackVigenere(ciphertext: str) -> str:
             # Check with user to see if the decrypted key has been found.
             print()
             print(f"Possible encryption break:")
-            print(f"Key {str(word)} : {decryptedText[:100]}")
+            print(f"Key {word} : {decryptedText[:100]}")
             print()
-            print(f"Enter D for done, or just press Enter to continue breaking:")
+            print("Enter D for done, or just press Enter to continue breaking:")
             response = input("> ")
 
             if response.upper().startswith("D"):
