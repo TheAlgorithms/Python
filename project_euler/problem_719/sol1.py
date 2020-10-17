@@ -1,19 +1,19 @@
 """
 Project Euler Problem 719: https://projecteuler.net/problem=719
 
-We define an $S$-number to be a natural number, $n$, that is a perfect square and its
-square root can be obtained by splitting the decimal representation of $n$ into 2 or 
+We define an S-number to be a natural number, n, that is a perfect square and its
+square root can be obtained by splitting the decimal representation of n into 2 or 
 more numbers then adding the numbers.
 
-For example, 81 is an $S$-number because $\sqrt{81} = 8+1$.<br />
-6724 is an $S$-number: $\sqrt{6724} = 6+72+4$. <br />
-8281 is an $S$-number: $\sqrt{8281} = 8+2+81 = 82+8+1$.<br />
-9801 is an $S$-number: $\sqrt{9801}=98+0+1$.
+For example, 81 is an S-number because sqrt{81} = 8+1.<br />
+6724 is an S-number: sqrt{6724} = 6+72+4. <br />
+8281 is an S-number: sqrt{8281} = 8+2+81 = 82+8+1.<br />
+9801 is an S-number: sqrt{9801}=98+0+1.
 
-Further we define $T(N)$ to be the sum of all $S$ numbers $n\le N$.
-You are given $T(10^4) = 41333$.
+Further we define T(N) to be the sum of all S numbers n < N.
+You are given T(10^4) = 41333.
 
-Find $T(10^{12})$
+Find T(10^{12})
 """
 import math
 import random
@@ -28,7 +28,9 @@ def digit_sum(n: int) -> int:
     """
     Calculates sum of digits.
     """
-    num2digits = lambda n: [int(c) for c in str(n)]
+    def num2digits(n: int) -> int:
+        return [int(c) for c in str(n)]
+
     if n < 10:
         return n
     return digit_sum(sum(num2digits(n)))
@@ -49,26 +51,26 @@ def get_all_subset(iset: str, imax: int):
         else:
             for i in range(1, min(len(cur_set)-depth+1, imax+1)):
                 for s in helper(cur_set[i:], depth-1):
-                    if s != None:
+                    if s is not None:
                         yield (cur_set[:i], *s)
 
     for j in range(1, len(iset)):
         for subsets in helper(iset, j):
-            if subsets != None:            
+            if subsets is not None:            
                 yield subsets
         
 
 def is_S(r: int, n: int) -> bool:
     """
-    Test whether a given n is a $S$-number.
+    Test whether a given n is a S-number.
     n - perfect square input.
     r - square root of n.
 
     There are two main optimizations:
-    (1) Note that $digit_sum(a+b) = digit_sum(digit_sum(a)+digit_sum(b))$,
-        therefore, n is an $S$-number only if digit_sum(r) equals digit_sum(n).
-        This simple test already disqualifies approximately $90\%$ of possible pairs.
-    (2) Note that for n to be $S$-number, every part of the $n$ splitting must
+    (1) Note that digit_sum(a+b) = digit_sum(digit_sum(a)+digit_sum(b)),
+        therefore, n is an S-number only if digit_sum(r) equals digit_sum(n).
+        This simple test already disqualifies approximately 90% of possible pairs.
+    (2) Note that for n to be S-number, every part of the n splitting must
         not exceed r, and thus must not exceed the length of r in digits.
         This further decrease the number of n splitting we have to consider.
     """
