@@ -1,10 +1,15 @@
-import numpy as np
 from typing import Tuple
+
+import numpy as np
 
 
 def rayleigh_quotient_iteration(
-        input_matrix: np.array, vector: np.array, value: float,
-        error_tol=1e-12, max_iterations=100) -> Tuple[float, np.array]:
+    input_matrix: np.array,
+    vector: np.array,
+    value: float,
+    error_tol=1e-12,
+    max_iterations=100,
+) -> Tuple[float, np.array]:
     """
     https://en.wikipedia.org/wiki/Rayleigh_quotient_iteration
 
@@ -42,8 +47,7 @@ def rayleigh_quotient_iteration(
         vector = vector / np.linalg.norm(vector)
 
         # Construct better approximation for eigenvalue
-        value = np.dot(np.conj(vector).T,
-                       np.dot(input_matrix, vector))
+        value = np.dot(np.conj(vector).T, np.dot(input_matrix, vector))
 
         error = abs(value - prev_eigenvalue)
         prev_eigenvalue = value
