@@ -1,15 +1,20 @@
 """
-Project Euler problem 205:
-
+Project Euler Problem 206: https://projecteuler.net/problem=206
 
 Peter has nine four-sided (pyramidal) dice, each with faces numbered 1, 2, 3, 4.
 Colin has six six-sided (cubic) dice, each with faces numbered 1, 2, 3, 4, 5, 6.
-
 Peter and Colin roll their dice and compare totals: the highest total wins. The result
 is a draw if the totals are equal.
-
 What is the probability that Pyramidal Pete beats Cubic Colin? Give your answer rounded
 to seven decimal places in the form 0.abcdefg
+
+In the solution for all possible permutations of each player's dice points the sum of
+points and number of occurrences are calculated. The number of occurrences are divided
+by number of dice draws to get their probability.
+Then for each permutation of the possible dice sum per draw between the two players the
+ probabilities each time where Peter wins are added up to calculate the solution.
+To generate the permutations 'itertools.product' is used.
+
 """
 
 from itertools import product
@@ -25,19 +30,22 @@ def probability_of_sums(
     >>> probability_of_sums(dice_min=1, dice_max=5, dice_number=2)
     ([2, 3, 4, 5, 6, 7, 8, 9, 10], \
 [0.04, 0.08, 0.12, 0.16, 0.2, 0.16, 0.12, 0.08, 0.04])
+
     """
+
     sums = []
     counter = []
     for dices in product(range(dice_min, dice_max + 1), repeat=dice_number):
         s = sum(dices)
-        if s not in sums:
+        if s not in sums:  # sum has not occurred, set count to 1
             sums.append(s)
             counter.append(1)
-        else:
+        else:  # sum has occurred, increment sum by 1
             idx = sums.index(s)
             counter[idx] += 1
     total = sum(counter)
     probability = [_t / total for _t in counter]
+
     return sums, probability
 
 
@@ -52,7 +60,9 @@ def solution():
 
     >>> solution()
     0.5731441
+
     """
+
     peter_wins = 0
     colin_wins = 0
     draw = 0
@@ -74,4 +84,4 @@ def solution():
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
