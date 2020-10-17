@@ -65,7 +65,7 @@ def solution() -> int:  # function without any parameters
 
     >>> solution()
     26033
-    
+
     """
 
     answer = 1000000000000000
