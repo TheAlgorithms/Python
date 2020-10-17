@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self, data: int) -> int:
         self.data = data
         self.next = None
 
@@ -10,7 +10,7 @@ class LinkedList:
         self.tail = None
     
     # creates a new node with given value and appends it at the end of the linked list
-    def append(self, new_value):
+    def append(self, new_value: int) -> int:
         new_node = Node(new_value)
         if self.head is None:
             self.head = new_node
@@ -20,7 +20,7 @@ class LinkedList:
         self.tail = new_node
 
 # it merges two sorted linked list
-def sortedMerge(head_A, head_B):
+def sortedMerge(head_A: LinkedList, head_B: LinkedList) -> LinkedList:
     temp = Node(1)
     pointer = temp
     while head_A !=None and head_B !=None:
@@ -39,7 +39,7 @@ def sortedMerge(head_A, head_B):
     return temp.next
               
 # prints the elements of linked list
-def printList(n):
+def printList(n: LinkedList) ->LinkedList:
     while n is not None:
         print(n.data, end=' ')
         n = n.next
@@ -50,8 +50,8 @@ if __name__ == '__main__':
     a = LinkedList() 
     b = LinkedList()
         
-    nodes_a = list(map(int,input().split()))
-    nodes_b = list(map(int,input().split()))
+    nodes_a = list(map(int,input().split())) #Input Should be in ascending order
+    nodes_b = list(map(int,input().split())) #Input Should be in ascending order
         
     for x in nodes_a:
         a.append(x)
@@ -60,4 +60,3 @@ if __name__ == '__main__':
         b.append(x)
         
     printList(sortedMerge(a.head,b.head))
-    
