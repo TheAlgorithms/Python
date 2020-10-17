@@ -12,7 +12,8 @@
 
 ### All algorithms implemented in Python (for education)
 
-These implementations are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
+This implementation are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
+Various changes can be performed to change the functionality of this code.
 
 ## Contribution Guidelines
 
