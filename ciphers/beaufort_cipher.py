@@ -1,3 +1,7 @@
+"""
+Author: Mohit Radadiya
+"""
+
 dict1 = {
     "A": 0,
     "B": 1,
@@ -62,7 +66,8 @@ dict2 = {
 # equal to the length of original text
 def generate_key(message: str, key: str) -> str:
     """
-    Return the generated key
+    >>> generate_key("THE GERMAN ATTACK","SECRET")
+    SECRETSECRETSECRE
     """
     x = len(message)
     i = 0
@@ -80,7 +85,8 @@ def generate_key(message: str, key: str) -> str:
 # generated with the help of the key
 def cipherText(message: str, key_new: str) -> str:
     """
-    Return the CipherText
+    >>> cipherText("THE GERMAN ATTACK","SECRETSECRETSECRE")
+    BDC PAYUWL JPAIYI
     """
     cipher_text = ""
     i = 0
@@ -98,7 +104,8 @@ def cipherText(message: str, key_new: str) -> str:
 # and returns the original text
 def originalText(cipher_text: str, key_new: str) -> str:
     """
-    Return the original text
+    >>> originalText("BDC PAYUWL JPAIYI","SECRETSECRETSECRE")
+    THE GERMAN ATTACK
     """
     or_txt = ""
     i = 0
@@ -123,4 +130,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
