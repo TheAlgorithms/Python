@@ -6,18 +6,18 @@ def translate_message(key, message, mode):
     >>> translate_message("QWERTYUIOPASDFGHJKLZXCVBNM","Hello World","encrypt")
     'Pcssi Bidsm'
     """
-    charsA = LETTERS if mode == "decrypt" else key
-    charsB = key if mode == "decrypt" else LETTERS
+    chars_a = LETTERS if mode == "decrypt" else key
+    chars_b = key if mode == "decrypt" else LETTERS
     translated = ""
     # loop through each symbol in the message
     for symbol in message:
-        if symbol.upper() in charsA:
+        if symbol.upper() in chars_a:
             # encrypt/decrypt the symbol
-            symIndex = charsA.find(symbol.upper())
+            sym_index = chars_a.find(symbol.upper())
             if symbol.isupper():
-                translated += charsB[symIndex].upper()
+                translated += chars_b[sym_index].upper()
             else:
-                translated += charsB[symIndex].lower()
+                translated += chars_b[sym_index].lower()
         else:
             # symbol is not in LETTERS, just add it
             translated += symbol
@@ -41,15 +41,15 @@ def decrypt_message(key: str, message: str) -> str:
 
 
 def main():
-    myMessage = "Hello World"
-    myKey = "QWERTYUIOPASDFGHJKLZXCVBNM"
-    myMode = "decrypt"  # set to 'encrypt' or 'decrypt'
+    message = "Hello World"
+    key = "QWERTYUIOPASDFGHJKLZXCVBNM"
+    mode = "decrypt"  # set to 'encrypt' or 'decrypt'
 
-    if myMode == "encrypt":
-        translated = encrypt_message(myKey, myMessage)
-    elif myMode == "decrypt":
-        translated = decrypt_message(myKey, myMessage)
-    print(f"Using the key {myKey}, the {myMode}ed message is: {translated}")
+    if mode == "encrypt":
+        translated = encrypt_message(key, message)
+    elif mode == "decrypt":
+        translated = decrypt_message(key, message)
+    print(f"Using the key {key}, the {mode}ed message is: {translated}")
 
 
 if __name__ == "__main__":
