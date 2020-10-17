@@ -1,6 +1,7 @@
 ''' 
 Problem statement:
-The goal of this program is to return Pascal's triangle up to number 29. Pascal's triangle is the sum of the two upper corners.
+The goal of this program is to return Pascal's triangle up to number 29.
+Pascal's triangle is the sum of the two upper corners.
 
 
 
@@ -10,7 +11,9 @@ The goal of this program is to return Pascal's triangle up to number 29. Pascal'
 
  1 3 3 1
 
-Create a function that returns a row from Pascal's triangle. To find the row and column you can use n!/(k!*(n-k)!) where n is the row down and k is the column
+Create a function that returns a row from Pascal's triangle.
+To find the row and column you can use n!/(k!*(n-k)!),
+where n is the row down and k is the column
 
 Input: Integer
 
