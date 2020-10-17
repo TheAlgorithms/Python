@@ -14,7 +14,7 @@ dict2 = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E',
 # This function generates the key in
 # a cyclic manner until it's length isn't
 # equal to the length of original text
-def generate_key(message, key):
+def generate_key(message: str, key: str) -> str:
     x = len(message)
     i = 0
     while True:
@@ -29,7 +29,7 @@ def generate_key(message, key):
 
 # This function returns the encrypted text
 # generated with the help of the key
-def cipherText(message, key_new):
+def cipherText(message: str, key_new: str) -> str:
     cipher_text = ''
     i = 0
     for letter in message:
@@ -44,7 +44,7 @@ def cipherText(message, key_new):
 
 # This function decrypts the encrypted text
 # and returns the original text
-def originalText(cipher_text, key_new):
+def originalText(cipher_text: str, key_new: str) -> str:
     or_txt = ''
     i = 0
     for letter in cipher_text:
