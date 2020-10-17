@@ -21,7 +21,7 @@ def main():
     print("\n{}ion: \n{}".format(mode.title(), translated))
 
 
-def checkValidKey(key):
+def checkValidKey(key: str) -> None:
     keyList = list(key)
     lettersList = list(LETTERS)
     keyList.sort()
@@ -31,7 +31,7 @@ def checkValidKey(key):
         sys.exit("Error in the key or symbol set.")
 
 
-def encryptMessage(key, message):
+def encryptMessage(key: str, message: str) -> str:
     """
     >>> encryptMessage('LFWOAYUISVKMNXPBDCRJTQEGHZ', 'Harshil Darji')
     'Ilcrism Olcvs'
@@ -39,7 +39,7 @@ def encryptMessage(key, message):
     return translateMessage(key, message, "encrypt")
 
 
-def decryptMessage(key, message):
+def decryptMessage(key: str, message: str) -> str:
     """
     >>> decryptMessage('LFWOAYUISVKMNXPBDCRJTQEGHZ', 'Ilcrism Olcvs')
     'Harshil Darji'
@@ -47,7 +47,7 @@ def decryptMessage(key, message):
     return translateMessage(key, message, "decrypt")
 
 
-def translateMessage(key, message, mode):
+def translateMessage(key: str, message: str, mode: str) -> str:
     translated = ""
     charsA = LETTERS
     charsB = key
