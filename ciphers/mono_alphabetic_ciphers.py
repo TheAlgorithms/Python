@@ -44,21 +44,10 @@ def decrypt_message(key, message):
     return translate_message(key, message, "decrypt")
 
 
-def check_validKey(key: str):
-    keyList = list(key)
-    lettersList = list(LETTERS)
-    keyList.sort()
-    lettersList.sort()
-    if keyList != lettersList:
-        sys.exit("There is an error in the key or symbol set.")
-
-
 def main():
     myMessage = "When you do the common things in life in an uncommon way, you will command the attention of the world"
     myKey = "QWERTYUIOPASDFGHJKLZXCVBNM"
     myMode = "decrypt"  # set to 'encrypt' or 'decrypt'
-
-    check_validKey(myKey)
 
     if myMode == "encrypt":
         translated = encrypt_message(myKey, myMessage)
