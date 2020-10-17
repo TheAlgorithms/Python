@@ -6,8 +6,8 @@ the sum and carry qubits, observed over 1000 runs of the experiment
 .
 
 References:
-- https://en.wikipedia.org/wiki/Adder_(electronics)
-- https://qiskit.org/textbook/ch-states/atoms-computation.html#4.2-Remembering-how-to-add-
+https://en.wikipedia.org/wiki/Adder_(electronics)
+https://qiskit.org/textbook/ch-states/atoms-computation.html#4.2-Remembering-how-to-add-
 """
 
 import qiskit as q
