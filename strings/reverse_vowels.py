@@ -9,7 +9,7 @@ def is_vowel(letter: str) -> bool:
     """
     >>> is_vowel('a')
     True
-    >>> is_vowel('hello b')
+    >>> is_vowel('b')
     False
 
     Return true if letter is a vowel, otherwise false
