@@ -118,4 +118,5 @@ def fibonnacci_other_operations() -> int:
         return return_request3
 
 response = fibonnacci_other_operations()
+
 print(message, response)
