@@ -1,5 +1,6 @@
 """
-Problem 38
+Project Euler Problem 38: https://projecteuler.net/problem=38
+
 Take the number 192 and multiply it by each of 1, 2, and 3:
 
 192 × 1 = 192
@@ -34,18 +35,20 @@ def is_pandigital(num):
     >>> is_pandigital(2143887565879)
     False
     """
-    num = str(num)
-    for digit in range(1, 10):
-        digit = str(digit)
-        if digit in num:
-            num = num.replace(digit, "", 1)
-        else:
-            return False
-    return True if len(num) == 0 else False
+    return ''.join(sorted(str(num))) == '123456789'
 
 
 def solution():
     for num in range(9487, 9233, -1):
+        """
+        The range is exactly 9234 to 9487. Firts digit has to be nine
+        to accomplish nine at the beginning of the num_to_check.
+        The number has to have four digits to accomplish nine digit result.
+        We can't use digit '1' as it would mean two '1's in our result,
+        hence 9234. We also can't use anything greater than '4' as second digit,
+        as that would mean two 9's in possible solution ('19' in the beginning
+        of second product instead of '18').
+        """
         num_to_check = int(str(num * 1) + str(num * 2))
         if is_pandigital(num_to_check):
             return num_to_check
