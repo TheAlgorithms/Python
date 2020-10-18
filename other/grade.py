@@ -11,8 +11,7 @@ while True:
         print('your grad is C')
     elif grade >= 70:
         print('your grad is D')
-    else:
-        print('your grad is E')
+ 
 
 
 
