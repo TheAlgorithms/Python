@@ -4,7 +4,18 @@ __author__ = "Omkar Pathak"
 
 
 def balanced_parentheses(parentheses):
-    """ Use a stack to check if a string of parentheses is balanced."""
+    """ 
+    Use a stack to check if a string of parentheses is balanced.
+    For example :
+    >>>balanced_parentheses("((()))")
+        returns 1
+    >>>balanced_parentheses("(((()()(()))))")
+        returns 1
+    >>>balanced_parentheses("((())")
+        returns 0
+    
+    
+    """
     stack = Stack(len(parentheses))
     for parenthesis in parentheses:
         if parenthesis == "(":
