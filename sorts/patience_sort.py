@@ -14,10 +14,12 @@ For manual testing run:
 python3 patience_sort.py
 """
  
+
 @total_ordering
 class Stack(list):
-  def __lt__(self, other): return self[-1] < other[-1]
-  def __eq__(self, other): return self[-1] == other[-1]
+    def __lt__(self, other): return self[-1] < other[-1]
+    def __eq__(self, other): return self[-1] == other[-1]
+
  
 def patience_sort(collection list) -> list:
     """A pure implementation of quick sort algorithm in Python
@@ -48,7 +50,6 @@ def patience_sort(collection list) -> list:
  
     # use a heap-based merge to merge stack efficiently
     collection[:] = merge(*[reversed(stack) for stack in stacks])
-
     return collection
  
  
