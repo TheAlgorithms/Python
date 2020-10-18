@@ -6,7 +6,7 @@ Find the sum of all the multiples of 3 or 5 below N.
 """
 
 
-def solution(n: int = 1000) -> int:
+def solution(N: int = 1000) -> int:
     """Returns the sum of all the multiples of 3 or 5 below n.
 
     >>> solution(3)
@@ -19,13 +19,20 @@ def solution(n: int = 1000) -> int:
     83700
     """
 
-    result = 0
-    for i in range(n):
-        if i % 3 == 0:
-            result += i
-        elif i % 5 == 0:
-            result += i
-    return result
+    total = 0
+    N=N-1
+    r=[3,5,15]
+    total=0
+    for x in r:
+        t=(N//x)+1
+        if x==15:
+            x=-x
+        if t%2!=0:
+            total=total+(x*(t*(t//2)))
+        else:
+            total=total+(x*((t*(t/2-1)+t/2)))
+    return int(total)
+        
 
 
 if __name__ == "__main__":
