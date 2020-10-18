@@ -1,4 +1,5 @@
 # The Algorithms - Python
+
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)
 [![Gitter chat](https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square)](https://gitter.im/TheAlgorithms)&nbsp;
 [![Build Status](https://img.shields.io/travis/TheAlgorithms/Python.svg?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.com/TheAlgorithms/Python)&nbsp;
@@ -12,7 +13,7 @@
 
 ### All algorithms implemented in Python (for education)
 
-This implementation are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
+This implementation are for learning purpose only. Therefore they may be less efficient then the implementation in the Python standard library.
 
 ## Contribution Guidelines
 
