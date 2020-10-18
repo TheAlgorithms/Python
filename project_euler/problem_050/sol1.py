@@ -51,7 +51,7 @@ def generate_prime_numbers(n: int):
             prime_numbers.append(number)
 
 
-def solution(n: int) -> int:
+def solution(n: int = 1000000) -> int:
     """
     Returns the longest sum of consecutives primes below n
     >>> solution(100)
@@ -59,6 +59,8 @@ def solution(n: int) -> int:
     >>> solution(1000)
     953
     >>> solution(1000000)
+    997651
+    >>> solution()
     997651
     """
     if n <= 2:
