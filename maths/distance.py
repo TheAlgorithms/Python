@@ -18,4 +18,4 @@ if __name__ == "__main__":
     y1 = 4
     x2 = 7
     y2 = 16
-    print(f"The distance between ({x1}, {y1}) and ({x2}, {y2}) is {getDistance(x1, y1, x2, y2)} units")
+    print(f"The distance between the points is {getDistance(x1, y1, x2, y2)} units")
