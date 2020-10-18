@@ -8,11 +8,11 @@ def balanced_parentheses(parentheses):
     Use a stack to check if a string of parentheses is balanced.
     For example :
     >>>balanced_parentheses("((()))")
-        returns 1
+        returns True
     >>>balanced_parentheses("(((()()(()))))")
-        returns 1
+        returns True
     >>>balanced_parentheses("((())")
-        returns 0
+        returns False
     
     
     """
