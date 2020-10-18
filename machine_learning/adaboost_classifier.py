@@ -115,7 +115,7 @@ class Adaboost():
         return y_pred
 
 #Instantiate class & train
-clf = myAdaBoost()
+clf = Adaboost()
 clf.fit(X_train, y_train)
 
 # predict classes
