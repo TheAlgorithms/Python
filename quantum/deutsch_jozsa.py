@@ -9,7 +9,7 @@ We are given a hidden Boolean function f,
 which takes as input a string of bits, and returns either 0 or 1:
 
 f({x0,x1,x2,...}) -> 0 or 1, where xn is 0 or 1
- 
+
 The property of the given Boolean function is that it is guaranteed to
 either be balanced or constant. A constant function returns all 0's
 or all 1's for any input, while a balanced function returns  0's for
