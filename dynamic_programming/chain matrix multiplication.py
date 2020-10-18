@@ -1,8 +1,20 @@
-# This program returns the minimum number of multiplications needed to multiply the chain. Matrices A, B, C, D can be multiplied in the ways such as (ABC)D, (AB)(CD), A(BC)D, etc. So, for finding the method with minimum number of multiplications, this functions proves to be useful.
+from doctest import testmod
 
 T = dict()
 
 def matrix_mult(m, i, j):
+    ''' 
+    This program returns the minimum number of multiplications
+    needed to multiply the chain. Matrices A, B, C, D can be
+    multiplied in the ways such as (ABC)D, (AB)(CD), A(BC)D, etc.
+    So, for finding the method with minimum number of
+    multiplications, this functions proves to be useful. 
+    Define input and expected output: 
+    >>> matrix_mult([50, 20, 1, 10, 100], 0, 4)
+    7000
+    >>> matrix_mult([50, 20, 1, 10, 100, 20], 0, 5)
+    5000
+    '''
     if (i, j) not in T:
         if j == i + 1:
             T[i, j] = 0
@@ -13,4 +25,6 @@ def matrix_mult(m, i, j):
 
     return T[i, j]
 
-print(matrix_mult(m=[50, 20, 1, 10, 100], i=0, j=4))
+# call the testmod function 
+if __name__ == '__main__': 
+    testmod(name ='matrix_mult', verbose = True)
