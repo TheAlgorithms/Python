@@ -13,6 +13,21 @@ prime_numbers = [2, 3]
 
 
 def is_prime(number: int) -> bool:
+    """
+    Checks whether the number is a prime or not
+    >>> is_prime(0)
+    False
+    >>> is_prime(2)
+    True
+    >>> is_prime(3)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(15)
+    False
+    >>> is_prime(997651)
+    True
+    """
     if number < 2 or number % 2 == 0:
         return False
 
@@ -24,6 +39,7 @@ def is_prime(number: int) -> bool:
 
 
 def generate_prime_numbers(n: int):
+    """Generates prime numbers needed for the solution"""
     start = prime_numbers[-1] + 2
     # 2 * n ** 0.56 is a random approximation I made
     # to compute the minimal amount of prime numbers
@@ -33,6 +49,15 @@ def generate_prime_numbers(n: int):
 
 
 def solution(n: int) -> int:
+    """
+    Returns the longest sum of consecutives primes below n
+    >>> solution(100)
+    41
+    >>> solution(1000)
+    953
+    >>> solution(1000000)
+    997651
+    """
     if n <= 2:
         raise ValueError("n is too small, there isn't any prime number in that range")
     elif n <= 5:
@@ -63,4 +88,8 @@ def solution(n: int) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(
+        solution(
+            int(input("Find the longest sum of consecutives primes below: ").strip())
+        )
+    )
