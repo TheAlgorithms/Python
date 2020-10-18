@@ -13,13 +13,13 @@ python3 -m doctest -v patience_sort.py
 For manual testing run:
 python3 patience_sort.py
 """
- 
+
 
 @total_ordering
 class Stack(list):
-    def __lt__(self, other): 
+    def __lt__(self, other):
         return self[-1] < other[-1]
-    def __eq__(self, other): 
+    def __eq__(self, other):
         return self[-1] == other[-1]
 
 
@@ -49,12 +49,12 @@ def patience_sort(collection: list) -> list:
             stacks[i].append(element)
         else:
             stacks.append(new_stacks)
- 
+
     # use a heap-based merge to merge stack efficiently
     collection[:] = merge(*[reversed(stack) for stack in stacks])
     return collection
- 
- 
+
+
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
