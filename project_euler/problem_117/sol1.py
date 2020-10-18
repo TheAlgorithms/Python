@@ -9,7 +9,7 @@ How many ways can a row n units long be filled with
 """
 
 
-def solution(length: int) -> str:
+def solution(length: int = 50) -> str:
     """
     >>> solution(50)
     '100808458960497'
