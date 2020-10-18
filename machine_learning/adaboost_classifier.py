@@ -21,11 +21,13 @@ data = datasets.load_breast_cancer()
 X = data.data
 y = data.target
 y[y == 0] = -1
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=1234
+)
 
 
 # Decision stump used as weak classifier
-class DecisionStump():
+class DecisionStump:
     def __init__(self):
         self.polarity = 1
         self.feature_idx = None
@@ -45,8 +47,7 @@ class DecisionStump():
 
 
 # Adaboost classifier
-class Adaboost():
-
+class Adaboost:
     def __init__(self, n_clf=5):
         self.n_clf = n_clf
 
@@ -61,7 +62,7 @@ class Adaboost():
         for _ in range(self.n_clf):
             clf = DecisionStump()
 
-            min_error = float('inf')
+            min_error = float("inf")
             # greedy search to find best threshold and feature
             for feature_i in range(n_features):
                 X_column = X[:, feature_i]
