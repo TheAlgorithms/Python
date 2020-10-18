@@ -1,0 +1,25 @@
+from texts import text_counter, text training
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+my_string = str(input("enter the string:"))
+
+
+intercepted_text  = my_string
+text_counts = textcounter.transform([intercepted_text])
+textclassifier = MultinomialNB()
+
+text_labels= [0] * 1000 + [1] * 1000
+text_classifier.fit(text_training , text_labels)
+
+final_pos = text-classifier.pridect_proba
+(text_counts)[0][1]
+
+final_neg = text_classifier.pridect_proba
+(text_counts)[0][0]
+if final_pos > final_neg:
+      print("The text is positive.")
+else:
+      print("The text is negative.")
+      
+
