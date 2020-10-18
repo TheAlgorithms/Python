@@ -3,7 +3,9 @@ import secrets as sc
 import typing as tp
 
 
-def encryption(original_data: str, byteorder: str = "big", token: str = None):
+def encryption(
+    original_data: str, byteorder: str = "big", token: str = None
+) -> Tuple[int, int]:
     """
     2Key-Encrypting of a string based on XOR algorithm.
 
@@ -14,9 +16,10 @@ def encryption(original_data: str, byteorder: str = "big", token: str = None):
     byteorder : str, optional
         Can be "little" or "big", by default "big"
     token : str, optional
-        Token-pattern as second key-element for the encryption, by default None. If none, a random 
-        token will be generated based on the length of the original data. If not none, the token 
-        should have the same length as the original_data at least.
+        Token-pattern as second key-element for the encryption, by default None.
+        If none, a random token will be generated based on the length of the original
+        data. If not none, the token should have the same length as the original_data
+        at least.
 
     Returns
     -------
@@ -39,7 +42,7 @@ def encryption(original_data: str, byteorder: str = "big", token: str = None):
     return encrypted_data, encrypted_token
 
 
-def decryption(reference_key: int, token_key: int, byteorder: str = "big"):
+def decryption(reference_key: int, token_key: int, byteorder: str = "big") -> str:
     """
     2Key-Decrypting of a string based on XOR algorithm.
 
@@ -56,7 +59,7 @@ def decryption(reference_key: int, token_key: int, byteorder: str = "big"):
     -------
     str
         Return the decrypted data as a string
-        
+
     Examples
     --------
     >>> key_1, key_2 = encryption("test_key")
