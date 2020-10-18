@@ -9,12 +9,11 @@ Que. How many ways can a row n units long be filled with
 """
 
 
-def solution() -> str:
+def solution(length: int) -> str:
     """
-    >>> solution()
-    100808458960497
+    >>> solution(50)
+    '100808458960497'
     """
-    length = 50
     ways = [1] + [0] * length
     for n in range(1, len(ways)):
         ways[n] += sum(ways[max(n - 4, 0):n])
@@ -22,4 +21,7 @@ def solution() -> str:
 
 
 if __name__ == "__main__":
-    print(f"{solution()}")
+    from doctest import testmod
+
+    testmod()
+    print(f"{solution(50)}")
