@@ -4,6 +4,8 @@ Exponential search involves two steps:
 
 1. Find range where element is present
 2. Perform Binary Search in above found range.
+
+You can read more about it here - https://en.wikipedia.org/wiki/Exponential_search
 """
 
 
@@ -22,7 +24,7 @@ def BinarySearch(lys, val):
                 first = mid +1
     return index
 
-def ExponentialSearch(lst, val):
+def exponentialSearch(lst, val):
     if lst[0] == val:
         return 0
     index = 1
@@ -36,7 +38,7 @@ if __name__ == "__main__":
     arr = [int(item) for item in user_input.split(",")]
     print(arr)
     x = int(input("Enter the number to be searched:\n"))
-    res = ExponentialSearch(arr, x)
+    res = exponentialSearch(arr, x)
     if res == -1:
         print("Number not found!")
     else:
