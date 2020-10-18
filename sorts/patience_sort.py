@@ -19,7 +19,7 @@ python3 patience_sort.py
 class Stack(list):
     def __lt__(self, other):
         return self[-1] < other[-1]
-        
+
     def __eq__(self, other):
         return self[-1] == other[-1]
 
