@@ -25,6 +25,14 @@ def BinarySearch(lys, val):
     return index
 
 def exponentialSearch(lst, val):
+	"""
+    Pure Python implementation of the exponential search algorithm.
+    Examples:
+    >>> exponentialSearch([0, 1, 2, 3, 4, 5], 3)
+    3
+    >>> exponentialSearch([0, 5, 10, 20], 16)
+    -1
+    """
     if lst[0] == val:
         return 0
     index = 1
