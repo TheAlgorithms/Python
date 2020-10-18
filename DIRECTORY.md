@@ -59,6 +59,7 @@
   * [Enigma Machine2](https://github.com/TheAlgorithms/Python/blob/master/ciphers/enigma_machine2.py)
   * [Hill Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/hill_cipher.py)
   * [Mixed Keyword Cypher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/mixed_keyword_cypher.py)
+  * [Mono Alphabetic Ciphers](https://github.com/TheAlgorithms/Python/blob/master/ciphers/mono_alphabetic_ciphers.py)
   * [Morse Code Implementation](https://github.com/TheAlgorithms/Python/blob/master/ciphers/morse_code_implementation.py)
   * [Onepad Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/onepad_cipher.py)
   * [Playfair Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/playfair_cipher.py)
@@ -715,6 +716,7 @@
   * [Validate Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py)
 
 ## Quantum
+  * [Deutsch Jozsa](https://github.com/TheAlgorithms/Python/blob/master/quantum/deutsch_jozsa.py)
   * [Half Adder](https://github.com/TheAlgorithms/Python/blob/master/quantum/half_adder.py)
   * [Not Gate](https://github.com/TheAlgorithms/Python/blob/master/quantum/not_gate.py)
   * [Quantum Entanglement](https://github.com/TheAlgorithms/Python/blob/master/quantum/quantum_entanglement.py)
