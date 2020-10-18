@@ -16,7 +16,7 @@ def solution(length: int = 50) -> str:
     """
     ways = [1] + [0] * length
     for n in range(1, len(ways)):
-        ways[n] += sum(ways[max(n-4, 0):n])
+        ways[n] += sum(ways[max(n - 4, 0) : n])
     return str(ways[-1])
 
 
