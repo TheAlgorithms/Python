@@ -20,9 +20,9 @@ BUT with different arguments in those methods."""
 class Compute:
 
     def area(self, x = None, y = None): #Creating a method named area
-        if x != None and y != None:
+        if x is not None and y is not None:
             return x * y
-        elif x != None:
+        elif x is not None:
             return x * x
         else:
             return 0
