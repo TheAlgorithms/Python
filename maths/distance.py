@@ -13,8 +13,4 @@ def getDistance(x1, y1, x2, y2):
 
 
 if __name__ == "__main__":
-    x1 = 2
-    y1 = 4
-    x2 = 7
-    y2 = 16
-    print(f"The distance between the points is {getDistance(x1, y1, x2, y2)} units")
+    print(f"The distance between the points is {getDistance(2,4,7,16)} units")
