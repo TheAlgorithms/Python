@@ -41,7 +41,7 @@ proportion perfect partitions / total partitions drops under the given value.
 import math
 
 
-def check_partition_perfect(k):
+def check_partition_perfect(k) -> bool:
     """
 
     Check if t = f(k) = log2(sqrt(4*k+1)/2 + 1/2) is a real number.
