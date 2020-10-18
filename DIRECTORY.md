@@ -761,6 +761,7 @@
   * [Odd Even Transposition Parallel](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_parallel.py)
   * [Odd Even Transposition Single Threaded](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_single_threaded.py)
   * [Pancake Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pancake_sort.py)
+  * [Patience Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/patience_sort.py)
   * [Pigeon Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pigeon_sort.py)
   * [Pigeonhole Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pigeonhole_sort.py)
   * [Quick Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/quick_sort.py)
