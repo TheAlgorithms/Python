@@ -17,11 +17,13 @@ python3 patience_sort.py
 
 @total_ordering
 class Stack(list):
-    def __lt__(self, other): return self[-1] < other[-1]
-    def __eq__(self, other): return self[-1] == other[-1]
+    def __lt__(self, other): 
+        return self[-1] < other[-1]
+    def __eq__(self, other): 
+        return self[-1] == other[-1]
 
- 
-def patience_sort(collection list) -> list:
+
+def patience_sort(collection: list) -> list:
     """A pure implementation of quick sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -57,4 +59,3 @@ if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(patience_sort(unsorted))
- 
