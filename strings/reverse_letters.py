@@ -1,5 +1,5 @@
 def reverse_letters(input_str: str) -> str:
-    '''
+    """
     Reverses letters in a given string without adjusting the position of the words
     >>> reverse_letters('The cat in the hat')
     'ehT tac ni eht tah'
@@ -7,14 +7,14 @@ def reverse_letters(input_str: str) -> str:
     'ehT kciuq nworb xof depmuj revo eht yzal .god'
     >>> reverse_letters('Is this true?')
     'sI siht ?eurt'
-    '''
+    """
     reversed_letters_list = []
-    for i in input_str.split(' '):
+    for i in input_str.split(" "):
         reversed_letters_list.append(i[::-1])
-    return ' '.join(reverse_letters)
+    return " ".join(reverse_letters)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
