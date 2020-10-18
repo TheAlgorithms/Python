@@ -32,6 +32,8 @@ def pascals_triangle(row):
     return new_string.rstrip()
 
     
+   
+   
 def bin_coeff(row,col):
     result = 1
     if col > (row-col):
