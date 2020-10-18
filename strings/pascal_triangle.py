@@ -2,27 +2,16 @@
 Problem statement:
 The goal of this program is to return Pascal's triangle up to number 29.
 Pascal's triangle is the sum of the two upper corners.
-
-
-
-   1 1
-
-  1 2 1
-
- 1 3 3 1
-
+--1 1--
+-1 2 1--(- are used to visualise the triangles)
+1 3 3 1
 Create a function that returns a row from Pascal's triangle.
 To find the row and column you can use n!/(k!*(n-k)!),
 where n is the row down and k is the column
-
 Input: Integer
-
 Output: String
-
 Sample Input: 4 
-
 Sample Output: "1 4 6 4 1"
-
 '''
 #my newbie solution:
 def pascals_triangle(row):
