@@ -1,5 +1,6 @@
 """
 Finding distance between a pair of coordinates (x1, y1) and (x2, y2)
+https://www.khanacademy.org/math/geometry/hs-geo-analytic-geometry/hs-geo-distance-and-midpoints/v/distance-formula
 """
 
 
