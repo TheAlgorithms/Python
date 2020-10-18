@@ -9,7 +9,7 @@ def getDistance(x1, y1, x2, y2):
     **2 is to perform square operation
     **5 is to perform square root operation
     """
-    return ((x2 - x1)**2 + (y2 - y1)**2) **0.5
+    return ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
 
 
 if __name__ == "__main__":
