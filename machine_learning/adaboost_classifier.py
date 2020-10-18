@@ -1,34 +1,28 @@
-# This Python 3 environment comes with many helpful analytics libraries installed
-# It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
+# This Python 3 environment comes with
+# many helpful analytics libraries installed
+# It is defined by the kaggle/python Docker
+# image: https://github.com/kaggle/docker-python
 # For example, here's several helpful packages to load
 
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-
-# Input data files are available in the read-only "../input/" directory
-# For example, running this (by clicking run or pressing Shift+Enter) will list all files under the input directory
-
-import os
-for dirname, _, filenames in os.walk('/kaggle/input'):
-    for filename in filenames:
-        print(os.path.join(dirname, filename))
-
-#import libraries
+# import libraries
 import numpy as np
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 
-#acc metric
+
+# acc metric
 def accuracy(y_true, y_pred):
     accuracy = np.sum(y_true == y_pred) / len(y_true)
     return accuracy
 
-#dataset load
+
+# dataset load
 data = datasets.load_breast_cancer()
 X = data.data
 y = data.target
-y[y==0]=-1
+y[y == 0] = -1
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+
 
 # Decision stump used as weak classifier
 class DecisionStump():
@@ -49,7 +43,8 @@ class DecisionStump():
 
         return predictions
 
-#Adaboost classifier
+
+# Adaboost classifier
 class Adaboost():
 
     def __init__(self, n_clf=5):
@@ -114,7 +109,8 @@ class Adaboost():
 
         return y_pred
 
-#Instantiate class & train
+
+# Instantiate class & train
 clf = Adaboost()
 clf.fit(X_train, y_train)
 
@@ -122,4 +118,3 @@ clf.fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 acc = accuracy(y_test, y_pred)
 print(acc)
-
