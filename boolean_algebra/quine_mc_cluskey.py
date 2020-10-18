@@ -8,15 +8,14 @@ def compare_string(string1: str, string2: str) -> str:
     """
     l1 = list(string1)
     l2 = list(string2)
-    count = 0
-    for i in range(len(l1)):
-        if l1[i] != l2[i]:
-            count += 1
-            l1[i] = "_"
-    if count > 1:
+    l1 = [l1[x] if l1[x] == l2[x] else '_' for x in range(len(l1))] #used list comprehension instead of a for loop
+    if l1.count('_')>1:
         return -1
     else:
         return "".join(l1)
+        
+    
+
 
 
 def check(binary: [str]) -> [str]:
