@@ -18,27 +18,6 @@ How many starting numbers below ten million will arrive at 89?
 """
 
 
-def add_square_digits(number: int) -> int:
-    """
-    Returns the sum of the squared digits of a given number, and recursively adds the
-    squares until the new number reaches 89 or 1.
-
-    >>> add_square_digits(3)
-    89
-    >>> add_square_digits(44)
-    1
-    >>> add_square_digits(145)
-    89
-    >>> add_square_digits(23839)
-    1
-    """
-    squares = [int(d) ** 2 for d in str(number)]
-    sum_squares = sum(squares)
-    if sum_squares != 89 and sum_squares != 1:
-        sum_squares = add_square_digits(sum_squares)
-    return sum_squares
-
-
 def solution(limit: int = 10000000) -> int:
     """
     Returns the number of starting numbers, up to a given limit, whose number chain
@@ -56,11 +35,24 @@ def solution(limit: int = 10000000) -> int:
     >>> solution(10000000)
     8581146
     """
+
+    squared = {1: 1, 89: 89}
     eighty_nine_count = 0
     for i in range(1, limit):
-        squared = add_square_digits(i)
-        if squared == 89:
-            eighty_nine_count += 1
+        chain = [i]
+        while True:
+            if i in squared:
+                if squared[i] == 89:
+                    squared.update(dict.fromkeys(chain, 89))
+                    eighty_nine_count += 1
+                    break
+                else:
+                    squared.update(dict.fromkeys(chain, 1))
+                    break
+            else:
+                sum_squares = sum([int(d) ** 2 for d in str(i)])
+                chain.append(sum_squares)
+                i = sum_squares
 
     return eighty_nine_count
 
