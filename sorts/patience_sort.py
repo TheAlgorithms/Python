@@ -5,6 +5,8 @@ from heapq import merge
 """
 A pure Python implementation of the patience sort algorithm
 
+For more information: https://en.wikipedia.org/wiki/Patience_sorting
+
 This algorithm is based on the card game patience
 
 For doctests run following command:
