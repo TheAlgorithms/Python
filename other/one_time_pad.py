@@ -1,6 +1,6 @@
 """https://en.wikipedia.org/wiki/One-time_pad"""
 import secrets as sc
-import typing as tp
+from typing import Tuple
 
 
 def encryption(
