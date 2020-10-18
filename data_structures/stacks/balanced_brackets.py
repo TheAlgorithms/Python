@@ -24,6 +24,12 @@ def balanced_brackets(brackets):
       bracket_stack.pop()
   return bracket_stack.is_empty()
 
+if __name__ == "__main__":
+    test_cases = ["[{[]}()<()>]", "[{}<(>]", "[[[{}]<>]()]"]
+    print("Balanced brackets demonstration:\n")
+    for test_case in test_cases:
+        print(test_case + ": " + str(balanced_brackets(test_case)))
+
 
 
   
