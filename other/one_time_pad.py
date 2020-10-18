@@ -1,3 +1,4 @@
+"""https://en.wikipedia.org/wiki/One-time_pad"""
 import secrets as sc
 import typing as tp
 
@@ -14,7 +15,8 @@ def encryption(original_data: str, byteorder: str = "big", token: str = None):
         Can be "little" or "big", by default "big"
     token : str, optional
         Token-pattern as second key-element for the encryption, by default None. If none, a random 
-        token will be generated based on the length of the original data.
+        token will be generated based on the length of the original data. If not none, the token 
+        should have the same length as the original_data at least.
 
     Returns
     -------
@@ -72,5 +74,5 @@ if __name__ == "__main__":
     key_1, key_2 = encryption("test_key")
     print(decryption(key_1, key_2))
     # With given token
-    key_1, key_2 = encryption("test_key", token="2342")
+    key_1, key_2 = encryption("test_key", token="2342323")
     print(decryption(key_1, key_2))
