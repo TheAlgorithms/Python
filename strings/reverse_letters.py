@@ -11,7 +11,7 @@ def reverse_letters(input_str: str) -> str:
     reversed_letters_list = []
     for i in input_str.split(" "):
         reversed_letters_list.append(i[::-1])
-    return " ".join(reverse_letters)
+    return " ".join(reversed_letters_list)
 
 
 if __name__ == "__main__":
