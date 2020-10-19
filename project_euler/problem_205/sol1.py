@@ -49,7 +49,7 @@ def probability_of_sums(
     return sums, probability
 
 
-def solution():
+def solution() -> float:
     """
     Returns the probability of Peter winning in dice game with nine four-sided
     dice (1, 2, 3, 4 points) against Colin who has six six-sided dice (1, 2, 3, 4, 5,
