@@ -1,8 +1,8 @@
-from typing import List, Tuple, Union
+from typing import Iterable, Union
 
 import numpy as np
 
-Vector = Union[List[float], List[int], Tuple[float], Tuple[int], np.ndarray]
+Vector = Union[Iterable[float], Iterable[int], np.ndarray]
 VectorOut = Union[np.float64, int, float]
 
 
