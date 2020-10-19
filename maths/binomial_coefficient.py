@@ -19,19 +19,19 @@ def binomial_coefficient(n, r):
 print(binomial_coefficient(n=10, r=5))
 
   
-    def binomial_coefficient_faster(n, r):
+def binomial_coefficient_faster(n, r):
     """
     A faster way to calculate binomial coefficients 
 
     >>> binomian_coeffieient_faster(10,5)
     252
     """
-    if 0 <= k <= r:
+    if 0 <= r <= n:
         #initializing two variables as 1
         ntok = 1
         rtok = 1
         #we use the formula nCr = n!/(n-r)!r!
-        for t in xrange(1, min(k, n - r) + 1):
+        for t in range(1, min(r, n - r) + 1):
             ntok *= n
             rtok *= t
             n -= 1
