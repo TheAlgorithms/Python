@@ -1,6 +1,4 @@
 from typing import Callable
-
-
 def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     """
     finds where function becomes 0 in [a,b] using bolzano
@@ -42,14 +40,11 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
             mid = start + (end - start) / 2.0
         return mid
 
-
 def f(x: float) -> float:
     return x ** 3 - 2 * x - 5
-
 
 if __name__ == "__main__":
     print(bisection(f, 1, 1000))
 
     import doctest
-
     doctest.testmod()
