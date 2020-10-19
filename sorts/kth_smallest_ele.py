@@ -1,4 +1,4 @@
-# //using pivot element and partition
+# //using pivot element and partition and merge sort basically
 import random
 
 def swap(A, i, j):
