@@ -1,3 +1,5 @@
+import doctest
+
 # Fibonacci Sequence Using Recursion and Memoization
 
 # Memoization Concept: https://en.wikipedia.org/wiki/Memoization
@@ -43,7 +45,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    import doctest
-    
     doctest.testmod()
     main()
