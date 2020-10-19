@@ -16,6 +16,7 @@ Which prime, below one-million, can be written as the sum of the most consecutiv
 primes?
 """
 
+
 def binary_search(arr, left, right, element):
     if right >= left:
         mid = left + (right - left) // 2
