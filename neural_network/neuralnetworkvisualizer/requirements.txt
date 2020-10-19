@@ -1,0 +1,8 @@
+required modules  for neural network analyzer:
+tensorflow 2.x version-(keras is used)
+matplot lib(for graph plot)
+numpy
+streamlit(for web app)
+json
+
+some knowledge of above modules , machine learning and neural networks in required for this project
