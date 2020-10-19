@@ -21,7 +21,7 @@ def longestPalindrome(X, i, j):
     return max(longestPalindrome(X, i, j - 1), longestPalindrome(X, i + 1, j))
 
 
- if __name__ == "__main__":
+  if __name__ == "__main__":
 
     X = "ABBDCACB"
     n = len(X)
