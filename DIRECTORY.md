@@ -323,6 +323,10 @@
   * [Sdbm](https://github.com/TheAlgorithms/Python/blob/master/hashes/sdbm.py)
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 
+## Knapsack
+  * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/knapsack.py)
+  * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/test_knapsack.py)
+
 ## Linear Algebra
   * Src
     * [Lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/lib.py)
