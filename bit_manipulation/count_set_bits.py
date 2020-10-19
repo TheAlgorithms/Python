@@ -1,6 +1,6 @@
 import math
 
-def count_set_bits(n):
+def count_set_bits(n: int) -> int:
 
     """
     The function accepts a whole number stored in the variable n
@@ -17,18 +17,13 @@ def count_set_bits(n):
 
 
     """
-
-
-    if (n<0 or n!=math.floor(n)):
-        my_error = ValueError("The input should neither be a negative nor a fractional number")
-        raise my_error
     count = 0
     while (n!=0):
         n = n&(n-1)
         count = count + 1
     return (count)
 
-count_set_bits(8)
+
 
 if __name__ == "__main__" :
     import doctest
