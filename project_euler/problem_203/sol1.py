@@ -49,19 +49,15 @@ def get_pascal_triangle_unique_coefficients(depth: int) -> Set[int]:
     >>> get_pascal_triangle_unique_coefficients(8)
     {1, 2, 3, 4, 5, 6, 7, 35, 10, 15, 20, 21}
     """
-    coefficients = set()
-    previous_coefficients = []
-    for step in range(1, depth + 1):
-        if step == 1:
-            coefficients.add(1)
-            previous_coefficients = [1]
-        else:
-            coefficients_begins_one = previous_coefficients + [0]
-            coefficients_ends_one = [0] + previous_coefficients
-            previous_coefficients = []
-            for x, y in zip(coefficients_begins_one, coefficients_ends_one):
-                coefficients.add(x + y)
-                previous_coefficients.append(x + y)
+    coefficients = {1}
+    previous_coefficients = [1]
+    for step in range(2, depth + 1):
+        coefficients_begins_one = previous_coefficients + [0]
+        coefficients_ends_one = [0] + previous_coefficients
+        previous_coefficients = []
+        for x, y in zip(coefficients_begins_one, coefficients_ends_one):
+            coefficients.add(x + y)
+            previous_coefficients.append(x + y)
     return coefficients
 
 
