@@ -23,7 +23,7 @@ def binomial_coefficient_faster(n, r):
     """
     A faster way to calculate binomial coefficients 
 
-    >>> binomian_coeffieient_faster(10,5)
+    >>> binomial_coefficient_faster(10,5)
     252
     """
     if 0 <= r <= n:
