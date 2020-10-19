@@ -28,7 +28,7 @@ def count_set_bits(n):
         count = count + 1
     return (count)
 
-
+count_set_bits(8)
 
 if __name__ == "__main__" :
     import doctest
