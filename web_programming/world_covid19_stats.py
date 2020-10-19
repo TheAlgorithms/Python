@@ -5,10 +5,12 @@ Provide the current worldwide COVID-19 statistics.
 This data is being scrapped from 'https://www.worldometers.info/coronavirus/'.
 """
 
+import colorama
 import requests
 from bs4 import BeautifulSoup
-import colorama
+
 colorama.init()
+
 
 def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") -> dict:
     """
