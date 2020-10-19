@@ -15,12 +15,19 @@ def mutate_string(string, position, character):
 
 if __name__ == "__main__":
     s = input()
-    #input string
-    
+    """
+    >>> string = "abracadabra
+    >>> l = list(string)
+    """
+
     i, c = input().split()
-    #input position and character
-    
-    #call a function
+    """
+    >>> l[5] = 'k'
+    >>> string = ''.join(l)
+    """
+
     s_new = mutate_string(s, int(i), c)
-    
+    """
+    >>> print string
+    """
     print(s_new)
