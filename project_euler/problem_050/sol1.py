@@ -18,32 +18,32 @@ primes?
 import time
 
 
-def binary_search(arr, left, right, x):
+def binary_search(arr, left, right, element):
     if right >= left:
         mid = left + (right - left) // 2
-        if arr[mid] == x:
+        if arr[mid] == element:
             return mid
-        elif arr[mid] > x:
-            return binary_search(arr, left, mid - 1, x)
+        elif arr[mid] > element:
+            return binary_search(arr, left, mid - 1, element)
         else:
-            return binary_search(arr, mid + 1, right, x)
+            return binary_search(arr, mid + 1, right, element)
     else:
         return -1
 
 
 # prime numbers upto 1 million
-def sieve(n):
-    is_prime = [True] * n
+def sieve(limit):
+    is_prime = [True] * limit
     is_prime[0] = False
     is_prime[1] = False
     is_prime[2] = True
-    for i in range(3, int(n ** 0.5 + 1), 2):
+    for i in range(3, int(limit ** 0.5 + 1), 2):
         index = i * 2
-        while index < n:
+        while index < limit:
             is_prime[index] = False
             index = index + i
     prime = [2]
-    for i in range(3, n, 2):
+    for i in range(3, limit, 2):
         if is_prime[i]:
             prime.append(i)
     return prime
