@@ -12,11 +12,11 @@
 
 ### All algorithms implemented in Python (for education)
 
-These implementations are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
+There are some implementations which are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
 
 ## Contribution Guidelines
 
-Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+ Please read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## Community Channel
 
