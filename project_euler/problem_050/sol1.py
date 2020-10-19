@@ -31,7 +31,6 @@ def binary_search(arr, left, right, element):
         return -1
 
 
-# prime numbers upto 1 million
 def sieve(limit):
     is_prime = [True] * limit
     is_prime[0] = False
@@ -58,10 +57,8 @@ def solution(limit: int = 1000000) -> int:
 
     largest = 0
 
-    # max value of the j variable(second for loop)
     lastj = primes_size = len(primes)
 
-    # two for loops using binSearch to optimize
     for i in range(lastj):
         for j in range(i + length, lastj):
             sol = sum(primes[i:j])
@@ -78,4 +75,4 @@ def solution(limit: int = 1000000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution() = }")
+    print(f"{solution()}")
