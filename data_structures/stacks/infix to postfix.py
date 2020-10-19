@@ -92,4 +92,3 @@ exp = "a+b*(c^d-e)^(f+g*h)-i"
 obj = Conversion(len(exp)) 
 obj.infixToPostfix(exp) 
 
-# This code is contributed by Ankit Tiwari

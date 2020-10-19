@@ -39,5 +39,3 @@ if __name__ == '__main__':
 	root.right.left.right.left = newNode(9) 
 	findFullNode(root) 
 
-# This code is contributed by 
-#Ankit Tiwari
