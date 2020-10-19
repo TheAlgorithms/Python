@@ -7,8 +7,6 @@ def longestPalindrome(X, i, j):
     # if X has only one character, it is palindrome
     if i == j:
         return 1
-    
-       
     # if last character of the string is same as the first character
     if X[i] == X[j]:
         # include first and last characters in palindrome
