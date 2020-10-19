@@ -1,5 +1,5 @@
 # Python code to demonstrate working of
-# extend(), extendleft(), rotate(), reverse()
+# extend(), extendleft(), rotate(), reverse(), clear()
 
 # importing "collections" for deque operations
 import collections
@@ -54,4 +54,10 @@ print(de)
 de.remove(5)
 
 print("The deque after eliminating element searched by value : ")
+print(de)
+
+# clear all elements in deque
+de.clear()
+
+print("The deque after removing all elements in the deque: ")
 print(de)
