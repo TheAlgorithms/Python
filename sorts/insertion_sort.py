@@ -24,30 +24,37 @@ def insertion_sort(collection: list) -> list:
     Examples:
     >>> insertion_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
-
-    >>> insertion_sort([])
-    []
-
-    >>> insertion_sort([-2, -5, -45])
-    [-45, -5, -2]
+    >>> insertion_sort([]) == sorted([])
+    True
+    >>> insertion_sort([-2, -5, -45]) == sorted([-2, -5, -45])
+    True
+    >>> insertion_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
+    True
+    >>> import random
+    >>> collection = random.sample(range(-50, 50), 100)
+    >>> insertion_sort(collection) == sorted(collection)
+    True
+    >>> import string
+    >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
+    >>> insertion_sort(collection) == sorted(collection)
+    True
     """
 
-    for loop_index in range(1, len(collection)):
-        insertion_index = loop_index
-        while (
-            insertion_index > 0
-            and collection[insertion_index - 1] > collection[insertion_index]
-        ):
-            collection[insertion_index], collection[insertion_index - 1] = (
-                collection[insertion_index - 1],
-                collection[insertion_index],
-            )
-            insertion_index -= 1
-
+    for insert_index, insert_value in enumerate(collection[1:]):
+        temp_index = insert_index
+        while insert_index >= 0 and insert_value < collection[insert_index]:
+            collection[insert_index + 1] = collection[insert_index]
+            insert_index -= 1
+        if insert_index != temp_index:
+            collection[insert_index + 1] = insert_value
     return collection
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
+
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(f"{insertion_sort(unsorted) = }")
