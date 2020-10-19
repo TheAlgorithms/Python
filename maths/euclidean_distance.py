@@ -15,9 +15,9 @@ def euclidean_distance(vector_1: Vector, vector_2: Vector) -> VectorOut:
     >>> euclidean_distance([1, 2, 3, 4], [5, 6, 7, 8])
     8.0
     """
-    return np.sqrt(np.sum((np.asarray(vector_1) - np.asarray(vector_2))**2))
+    return np.sqrt(np.sum((np.asarray(vector_1) - np.asarray(vector_2)) ** 2))
 
 if __name__ == "__main__":
     point = np.array([2, 2])
-    point2 = np.array([0, 0])
-    print(euclidean_distance(point, point2))
+    point_2 = np.array([0, 0])
+    print(euclidean_distance(point, point_2))
