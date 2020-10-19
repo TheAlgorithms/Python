@@ -26,9 +26,9 @@ def bin_to_decimal(bin_string: str) -> int:
     bin_string = str(bin_string).strip()
     if not bin_string:
         raise ValueError("Empty string was passed to the function")
-    is_negative = bin_string[0] == "-"
-    if is_negative:
-        bin_string = bin_string[1:]
+   
+    bin_string = bin_string[1:] if bin_string[0] == "-" else bin_string[0:]
+
     if not all(char in "01" for char in bin_string):
         raise ValueError("Non-binary value was passed to the function")
     decimal_number = 0
