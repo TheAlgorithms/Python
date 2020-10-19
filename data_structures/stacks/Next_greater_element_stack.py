@@ -1,19 +1,29 @@
 
-# Function to print element and NGE pair for all elements of list 
-def printNGE(arr): 
+# Function for implementation of NGE 
+def NGE(arr): 
 
-	for i in range(0, len(arr), 1): 
+	# Iterate through array to check for greatest element 
+	for i in range(0, len(arr)): 
 
-		next = -1
-		for j in range(i+1, len(arr), 1): 
-			if arr[i] < arr[j]: 
-				next = arr[j] 
-				break
-			
-		print(str(arr[i]) + " -- " + str(next)) 
+		# Find the maximum from i to end 
+		lead = max(arr[i:]) 
 
-# Driver program to test above function 
-arr = [11,13,21,3] 
-printNGE(arr) 
+		# If max is same as the i'th number then 
+		# print -1 else print the maximum 
+		if (arr[i] == lead): 
+			print("% d --> % d" % (arr[i], -1)) 
+		else: 
+			print("% d --> % d" % (arr[i], lead)) 
+
+
+# Driver program 
+def main(): 
+	arr = [11, 13, 21, 3, 9, 12] 
+	NGE(arr) 
+	arr = [10, 9, 8, 7, 6, 5, 4, 3, 2] 
+	NGE(arr) 
+
+if __name__ == '__main__': 
+	main() 
 
 
