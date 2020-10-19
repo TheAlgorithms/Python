@@ -88,7 +88,8 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ```
   The following thing is best when you use this type and save your time and your learn new thing
   '''python 
-  x+=2;
+  x+=2
+  '''
 
   This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on or below a line of code, as long as you are consistent within the same piece of code.
 
