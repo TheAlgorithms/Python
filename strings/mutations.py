@@ -14,6 +14,8 @@ def mutate_string(string, position, character):
     return string
 
 if __name__ == "__main__":
+    import doctest
+
     s = input()
     """
     >>> string = "abracadabra
@@ -31,3 +33,5 @@ if __name__ == "__main__":
     >>> print string
     """
     print(s_new)
+
+    doctest.testmod()
