@@ -21,7 +21,7 @@ def count_set_bits(n: int) -> int:
     while (n!=0):
         n = n&(n-1)
         count = count + 1
-    return (count)
+    return count
 
 
 
