@@ -1,0 +1,88 @@
+# This is a comment.
+# Each line is a file pattern followed by one or more owners.
+
+# More details are here: https://help.github.com/articles/about-codeowners/
+
+# The '*' pattern is global owners.
+
+# Order is important. The last matching pattern has the most precedence.
+
+/.*  @cclauss @dhruvmanila
+
+# /arithmetic_analysis/
+
+# /backtracking/
+
+# /bit_manipulation/
+
+# /blockchain/
+
+# /boolean_algebra/
+
+# /cellular_automata/
+
+# /ciphers/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+
+# /compression/
+
+# /computer_vision/
+
+# /conversions/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+
+# /data_structures/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+
+/digital_image_processing/ @mateuszz0000
+
+# /divide_and_conquer/
+
+/dynamic_programming/ @Kush1101
+
+# /file_transfer/
+
+# /fuzzy_logic/
+
+# /genetic_algorithm/
+
+# /geodesy/
+
+# /graphics/
+
+# /graphs/
+
+# /greedy_method/
+
+# /hashes/
+
+# /images/
+
+# /linear_algebra/
+
+# /machine_learning/
+
+/maths/ @Kush1101
+
+# /matrix/
+
+# /networking_flow/
+
+# /neural_network/
+
+# /other/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+
+/project_euler/  @dhruvmanila @Kush1101
+
+# /quantum/
+
+# /scheduling/
+
+# /scripts/
+
+# /searches/
+
+/sorts/ @mateuszz0000
+
+# /strings/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+
+# /traversals/
+
+/web_programming/  @cclauss

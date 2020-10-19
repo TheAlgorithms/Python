@@ -1,4 +1,4 @@
-def dencrypt(s: str, n: int = 13):
+def dencrypt(s: str, n: int = 13) -> str:
     """
     https://en.wikipedia.org/wiki/ROT13
 

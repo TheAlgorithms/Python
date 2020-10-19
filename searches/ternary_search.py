@@ -7,6 +7,7 @@ Time Complexity  : O(log3 N)
 Space Complexity : O(1)
 """
 import sys
+from typing import List
 
 # This is the precision for this function which can be altered.
 # It is recommended for users to keep this number greater than or equal to 10.
@@ -14,14 +15,14 @@ precision = 10
 
 
 # This is the linear search that will occur after the search space has become smaller.
-def lin_search(left, right, A, target):
+def lin_search(left: int, right: int, A: List[int], target: int):
     for i in range(left, right + 1):
         if A[i] == target:
             return i
 
 
 # This is the iterative method of the ternary search algorithm.
-def ite_ternary_search(A, target):
+def ite_ternary_search(A: List[int], target: int):
     left = 0
     right = len(A) - 1
     while True:
@@ -51,7 +52,7 @@ def ite_ternary_search(A, target):
 
 
 # This is the recursive method of the ternary search algorithm.
-def rec_ternary_search(left, right, A, target):
+def rec_ternary_search(left: int, right: int, A: List[int], target: int):
     if left < right:
 
         if right - left < precision:
@@ -77,7 +78,7 @@ def rec_ternary_search(left, right, A, target):
 
 
 # This function is to check if the array is sorted.
-def __assert_sorted(collection):
+def __assert_sorted(collection: List[int]) -> bool:
     if collection != sorted(collection):
         raise ValueError("Collection must be sorted")
     return True
