@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Union, List, Tuple
 
+
 Vector = Union[List[float], List[int], Tuple[float], Tuple[int], np.ndarray]
 VectorOut = Union[np.float64, int, float]
 
