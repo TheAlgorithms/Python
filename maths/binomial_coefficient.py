@@ -16,6 +16,8 @@ def binomial_coefficient(n, r):
             j -= 1
     return C[r]
 
+print(binomial_coefficient(n=10, r=5))
+
   
     def binomial_coefficient_faster(n, r):
     """
@@ -24,7 +26,6 @@ def binomial_coefficient(n, r):
     >>> binomian_coeffieient_faster(10,5)
     252
     """
-    
     if 0 <= k <= r:
         #initializing two variables as 1
         ntok = 1
@@ -37,3 +38,5 @@ def binomial_coefficient(n, r):
         return ntok // rtok
     else:
         return 0
+
+print(binomial_coefficient_faster(n=10, r=5))
