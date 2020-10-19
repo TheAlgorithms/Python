@@ -48,6 +48,7 @@
   * [Base32](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base32.py)
   * [Base64 Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base64_cipher.py)
   * [Base85](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base85.py)
+  * [Beaufort Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/beaufort_cipher.py)
   * [Brute Force Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/brute_force_caesar_cipher.py)
   * [Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/caesar_cipher.py)
   * [Cryptomath Module](https://github.com/TheAlgorithms/Python/blob/master/ciphers/cryptomath_module.py)
@@ -58,6 +59,7 @@
   * [Enigma Machine2](https://github.com/TheAlgorithms/Python/blob/master/ciphers/enigma_machine2.py)
   * [Hill Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/hill_cipher.py)
   * [Mixed Keyword Cypher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/mixed_keyword_cypher.py)
+  * [Mono Alphabetic Ciphers](https://github.com/TheAlgorithms/Python/blob/master/ciphers/mono_alphabetic_ciphers.py)
   * [Morse Code Implementation](https://github.com/TheAlgorithms/Python/blob/master/ciphers/morse_code_implementation.py)
   * [Onepad Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/onepad_cipher.py)
   * [Playfair Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/playfair_cipher.py)
@@ -711,6 +713,7 @@
   * [Validate Solutions](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py)
 
 ## Quantum
+  * [Deutsch Jozsa](https://github.com/TheAlgorithms/Python/blob/master/quantum/deutsch_jozsa.py)
   * [Half Adder](https://github.com/TheAlgorithms/Python/blob/master/quantum/half_adder.py)
   * [Not Gate](https://github.com/TheAlgorithms/Python/blob/master/quantum/not_gate.py)
   * [Quantum Entanglement](https://github.com/TheAlgorithms/Python/blob/master/quantum/quantum_entanglement.py)
@@ -759,6 +762,7 @@
   * [Odd Even Transposition Parallel](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_parallel.py)
   * [Odd Even Transposition Single Threaded](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_single_threaded.py)
   * [Pancake Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pancake_sort.py)
+  * [Patience Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/patience_sort.py)
   * [Pigeon Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pigeon_sort.py)
   * [Pigeonhole Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/pigeonhole_sort.py)
   * [Quick Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/quick_sort.py)
