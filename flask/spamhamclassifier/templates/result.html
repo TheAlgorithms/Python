@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div id="name">ML App</div>
+    <h2>Spam Detector for YouTube Comments</h2>
+    </div>
+</header>
+<p style="color:#353342; font-size:20; text-align:center;"><b>Results for Comment</b></p>
+<div class="results">
+    {% if prediction==1 %}
+    <h2 style="color:red;">Spam</h2>
+    {% elif prediction==0 %}
+    <h2 style="color:#abbfaa;">Not Spam</h2>
+    {% endif %}
+</div>
+</body>
+</html>

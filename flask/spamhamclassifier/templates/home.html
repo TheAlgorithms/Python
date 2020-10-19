@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div id="name">ML App</div>
+    <h2>Spam Detector for YouTube Comments</h2>
+    </div>
+</header>
+<div class="ml-container">
+    <form action="{{ url_for('predict')}}" method="POST">
+        <p>Enter Comments Here</p>
+        <textarea name="comment" rows="4" cols="50"></textarea>
+        <br/>
+
+        <input type="submit" class="btn-info" value="predict">
+    </form>
+</div>
+</body>
+</html>
