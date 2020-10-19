@@ -15,8 +15,6 @@ contains 21 terms, and is equal to 953.
 Which prime, below one-million, can be written as the sum of the most consecutive
 primes?
 """
-import time
-
 
 def binary_search(arr, left, right, element):
     if right >= left:
@@ -49,8 +47,6 @@ def sieve(limit):
 
 
 def solution(limit: int = 1000000) -> int:
-    start = time.time()
-
     primes = sieve(limit)
 
     length = 0
@@ -69,8 +65,6 @@ def solution(limit: int = 1000000) -> int:
             else:
                 lastj = j + 1
                 break
-    end = time.time()
-
     return largest
 
 
