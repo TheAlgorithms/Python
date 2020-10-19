@@ -8,7 +8,6 @@ def findMedianArrays(nums1, nums2):
     else:
         a = int(len(list3)/2)
         return  (list3[a] + list3[a - 1])/2
-    
 if __name__ == "__main__":
     n1 = list(map(int, input('Enter elements of an array: ').split()))
     n2 = list(map(int, input('Enter elements of another array: ').split()))
