@@ -1,7 +1,22 @@
-# This code finds the median of two arrays, even if they are not sorted initially
-def find_median_arrays(nums1, nums2):
-    all_numbers = nums1 + nums2
-    all_numbers.sort()
+from typing import List
+
+
+def median_of_two_arrays(nums1: List[float], nums2: List[float]) -> float:
+    """
+    >>> median_of_two_arrays([1, 2], [3])
+    2
+    >>> median_of_two_arrays([0, -1.1], [2.5, 1])
+    0.5
+    >>> median_of_two_arrays([], [2.5, 1])
+    1.75
+    >>> median_of_two_arrays([], [0])
+    0
+    >>> median_of_two_arrays([], [])
+    Traceback (most recent call last):
+      ...
+    IndexError: list index out of range
+    """
+    all_numbers = sorted(nums1 + nums2)
     div, mod = divmod(len(all_numbers), 2)
     if mod == 1:
         a = int(len(all_numbers) / 2)
@@ -12,6 +27,9 @@ def find_median_arrays(nums1, nums2):
 
 
 if __name__ == "__main__":
-    array_1 = [int(x) for x in input("Enter the elements of first array: ").split()]
-    array_2 = [int(x) for x in input("Enter the elements of second array: ").split()]
-    print(f"The median of two arrays is: {find_median_arrays(array_1, array_2)}")
+    import doctest
+
+    doctest.testmod()
+    array_1: List[float] = [float(x) for x in input("Enter the elements of first array: ").split()]
+    array_2: List[float] = [float(x) for x in input("Enter the elements of second array: ").split()]
+    print(f"The median of two arrays is: {median_of_two_arrays(array_1, array_2)}")
