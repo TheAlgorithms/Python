@@ -19,6 +19,8 @@ def longestPalindrome(X, i, j):
     # 2. Remove first character & recur for the remaining substring X[i+1, j]
     # return maximum of the two values
     return max(longestPalindrome(X, i, j - 1), longestPalindrome(X, i + 1, j))
+
+
 if __name__ == "__main__":
     X = "ABBDCACB"
     n = len(X)
