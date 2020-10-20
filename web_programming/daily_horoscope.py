@@ -29,17 +29,18 @@ if __name__ == "__main__":
         "12. Pisces\n",
     )
     zodiac_sign = int(input("Select a sign [1-12] > ").strip())
-    if zodiac_sign not in range(0, 13):
+    
+    if zodiac_sign not in range(1, 13):
         print("Invalid choice of Zodian sign!")
     else:
         days_list = {"1": "Yesterday", "2": "Today", "3": "Tomorrow"}
         print("\nDays available:")
+    
         for day in days_list.items():
-            print("{}. {}".format(day[0], day[1]))
+            print("{}. {}".format(*day))
         inp_day = input("Choose a day [1-3] > ")
-        if inp_day not in days_list:
-            print("Invalid choice of day!")
-        else:
-            day = days_list[inp_day].lower()
+        
+        day = days_list[inp_day].lower() if inp_day in days_list else print("Invalid choice of day!")
+        if day:
             horoscope_text = horoscope(zodiac_sign, day)
-            print(horoscope_text)
+            print("\nYour horoscope:\n{}".format(horoscope_text))
