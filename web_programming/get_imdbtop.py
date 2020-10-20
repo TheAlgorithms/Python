@@ -9,7 +9,7 @@ def imdb_top(imdb_top_n):
     )
     source = BeautifulSoup(requests.get(base_url).content, "html.parser")
     for i, m in enumerate(source.findAll("div", class_="lister-item mode-advanced")):
-        print("\n" + str(i+1) + ". " + m.h3.a.text)  # serial no and movie's name
+        print("\n" + str(i + 1) + ". " + m.h3.a.text)  # serial no and movie's name
         print(m.find("span", attrs={"class": "genre"}).text)  # genre
         print(m.strong.text)  # movie's rating
         print(f"https://www.imdb.com{m.a.get('href')}")  # movie's page link
