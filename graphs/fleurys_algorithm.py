@@ -6,7 +6,7 @@ class Graph:
     def __init__(self, vertices):
         self.V = vertices
         self.graph = defaultdict(list)
-        self.Time = 0
+        self.time = 0
 
     def addEdge(self, u, v):
         """
