@@ -30,6 +30,10 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    array_1: List[float] = [float(x) for x in input("Enter the elements of first array: ").split()]
-    array_2: List[float] = [float(x) for x in input("Enter the elements of second array: ").split()]
+    array_1: List[float] = [
+        float(x) for x in input("Enter the elements of first array: ").split()
+    ]
+    array_2: List[float] = [
+        float(x) for x in input("Enter the elements of second array: ").split()
+    ]
     print(f"The median of two arrays is: {median_of_two_arrays(array_1, array_2)}")
