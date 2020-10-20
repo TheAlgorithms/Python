@@ -25,7 +25,7 @@ class Graph:
             if key == u:
                 self.graph[v].pop(index)
 
-    def DFSCount(self, v, visited):
+    def dfsCount(self, v, visited):
         """
         A DFS based function to count reachable vertices from v
         """
