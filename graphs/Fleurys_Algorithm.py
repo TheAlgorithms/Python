@@ -5,13 +5,7 @@ class Graph:
 
     def __init__(self, vertices):
         self.V = vertices
-        """
-        Initiating number of vertices
-        """
         self.graph = defaultdict(list)
-        """
-        Default dictionary for graph
-        """
         self.Time = 0
 
     def addEdge(self, u, v):
