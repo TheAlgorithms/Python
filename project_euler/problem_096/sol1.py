@@ -102,7 +102,7 @@ def isValid(board: list, row: int, col: int, val: int) -> bool:
         row -> integer referring the row of the value to be verified in the matrix;
         col -> integer referring the column of the value to be verified in the matrix;
         val -> integer referring the value to be verified
-    Returns True if no doble of the value was found and False otherwise
+    Returns True if no double of the value was found and False otherwise
 
     >>> isValid([[0, 0, 3, 0, 2, 0, 6, 0, 0], [9, 0, 0, 3, 0, 5, 0, 0, 1], [0, 0, 1, 8, 0, 6, 4, 0, 0], [0, 0, 8, 1, 0, 2, 9, 0, 0], [7, 0, 0, 0, 0, 0, 0, 0, 8], [0, 0, 6, 7, 0, 8, 2, 0, 0], [0, 0, 2, 6, 0, 9, 5, 0, 0], [8, 0, 0, 2, 0, 3, 0, 0, 9], [0, 0, 5, 0, 1, 0, 3, 0, 0]], 0, 0, 4)
     True
