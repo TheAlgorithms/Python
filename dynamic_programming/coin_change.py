@@ -9,6 +9,8 @@ https://www.hackerrank.com/challenges/coin-change/problem
 
 def dp_count(S, n):
     """
+    >>> dp_count([0], 0)
+    1
     >>> dp_count([1, 2, 3], 4)
     4
     >>> dp_count([1, 2, 3], 7)
@@ -34,6 +36,8 @@ def dp_count(S, n):
     # after the index greater than or equal to the value of the
     # picked coin
     for coin_val in S:
+        if coin_val == 0:
+            continue
         for j in range(coin_val, n + 1):
             table[j] += table[j - coin_val]
 
