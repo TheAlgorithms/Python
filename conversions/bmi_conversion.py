@@ -12,24 +12,26 @@ def metric_units_bmi(kg: int, cm: int) -> int:
     metre_square = (cm / 100) ** 2
     return round(kg / metre_square, 2)
 
-    if __name__ == "__main__":
-        import doctest
 
-        doctest.testmod()
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
 
 
 def us_units_bmi(pounds: int, inches: int) -> int:
     """
     Convert mass in pounds and height in inches to Body Mass Index
     >>> us_units_bmi(200, 75)
-    24.99
+    25.0
     >>> us_units_bmi(130, 65)
     21.63
     """
     inches_square = inches ** 2
     return round(703 * (pounds / inches_square), 2)
 
-    if __name__ == "__main__":
-        import doctest
 
-        doctest.testmod()
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
