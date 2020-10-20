@@ -73,7 +73,7 @@ class Graph:
         to print the path
         """
         u = 0
-        for i in range(self.V):
+        for i in range(self.v):
             if len(self.graph[i]) % 2 != 0:
                 u = i
                 break
