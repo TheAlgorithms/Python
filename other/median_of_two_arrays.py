@@ -15,18 +15,8 @@ def findMedianArrays(nums1, nums2):
         return (list3[a] + list3[a - 1]) / 2
 
 
-def main():
-    from doctest import testmod
-
-    testmod()
+if __name__ == "__main__":
     n1 = list(map(int, input('Enter elements of an array: ').split()))
     n2 = list(map(int, input('Enter elements of another array: ').split()))
-    print('The median of two arrays is: ', findMedianArrays(n1, n2))
-    n1 = list(map(int, input("Enter elements of an array: ").split()))
-    n2 = list(map(int, input("Enter elements of another array: ").split()))
-    print("The median of two arrays is: ", findMedianArrays(n1, n2))
-
-
-if __name__ == "__main__":
-    main()
-    
+    m = findMedianArrays(n1, n2)
+    print(f'The median of two arrays is: {m}')    
