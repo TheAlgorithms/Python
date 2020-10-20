@@ -1,6 +1,7 @@
+import helper
 import requests
 from bs4 import BeautifulSoup
-import helper
+
 
 def validate_input(movie_count):
     try:
@@ -8,17 +9,18 @@ def validate_input(movie_count):
             raise UnboundLocalError("Count must not be empty")
         int_count = int(movie_count)
         return int_count
-    except (UnboundLocalError,ValueError,TypeError) as e:
+    except (UnboundLocalError, ValueError, TypeError) as e:
         with helper.disable_exception_traceback():
-            raise(e)
-            
+            raise (e)
+
+
 def imdb_top(imdb_top_n):
-    '''
+    """
     Args:
         imdb_top_n: Movie count provided by user. Integer value.
     Returns:
         None
-    '''
+    """
     base_url = (
         f"https://www.imdb.com/search/title?title_type="
         f"feature&sort=num_votes,desc&count={imdb_top_n}"
