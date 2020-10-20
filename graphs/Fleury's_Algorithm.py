@@ -89,10 +89,11 @@ class Graph:
         print("\n")
         self.printEulerUtil(u)
 
-'''
-Driver code
-'''
+
 if __name__ == "__main__":
+    '''
+    Driver code
+    '''
     g1 = Graph(4)
     g1.addEdge(0, 1)
     g1.addEdge(0, 2)
