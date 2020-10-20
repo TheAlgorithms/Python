@@ -16,10 +16,10 @@ def findMedianArrays(nums1, nums2):
 
 
 def main():
-     from doctest import testmod
+    from doctest import testmod
 
-     testmod()
-   n1 = list(map(int, input('Enter elements of an array: ').split()))
+    testmod()
+    n1 = list(map(int, input('Enter elements of an array: ').split()))
     n2 = list(map(int, input('Enter elements of another array: ').split()))
     print('The median of two arrays is: ',findMedianArrays(n1,n2))
     n1 = list(map(int, input("Enter elements of an array: ").split()))
