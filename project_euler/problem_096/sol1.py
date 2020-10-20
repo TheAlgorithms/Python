@@ -2,11 +2,11 @@
 Project Euler Problem 096 : https://projecteuler.net/problem=96
 
 Su Doku (Japanese meaning number place) is the name given to a popular puzzle concept. 
-Its origin is unclear, but credit must be attributed to Leonhard Euler who invented a similar,
-and much more difficult, puzzle idea called Latin Squares. The objective of Su Doku puzzles,
-however, is to replace the blanks (or zeros) in a 9 by 9 grid in such that each row, column,
-and 3 by 3 box contains each of the digits 1 to 9. Below is an example of a typical starting
-puzzle grid and its solution grid.
+Its origin is unclear, but credit must be attributed to Leonhard Euler who invented 
+a similar, and much more difficult, puzzle idea called Latin Squares. The objective of
+Su Doku puzzles, however, is to replace the blanks (or zeros) in a 9 by 9 grid in such
+that each row, column, and 3 by 3 box contains each of the digits 1 to 9. Below is an
+example of a typical starting puzzle grid and its solution grid.
 
 A well constructed Su Doku puzzle has a unique solution and can be solved by logic, 
 although it may be necessary to employ "guess and test" methods in order to eliminate 
@@ -32,8 +32,8 @@ def nextUnsolvedBoard(file_lines_array: list, last_grid: int = 0) -> tuple:
     Parameters:
         file_lines_array -> string list containing the input file lines;
         last_grid -> integer for the last solved board, default 0
-    Returns tuple with, a 9x9 integer matrix containing the next unsolved board in the array and
-        the number of the new board as labeled by the list
+    Returns tuple with, a 9x9 integer matrix containing the next unsolved board in the 
+        array and the number of the new board as labeled by the list
 
     >>> nextUnsolvedBoard(['Grid 01\n', '003020600\n', '900305001\n', '001806400\n', '008102900\n', '700000008\n', '006708200\n', '002609500\n', '800203009\n', '005010300\n'])
     ([[0, 0, 3, 0, 2, 0, 6, 0, 0], [9, 0, 0, 3, 0, 5, 0, 0, 1], [0, 0, 1, 8, 0, 6, 4, 0, 0], [0, 0, 8, 1, 0, 2, 9, 0, 0], [7, 0, 0, 0, 0, 0, 0, 0, 8], [0, 0, 6, 7, 0, 8, 2, 0, 0], [0, 0, 2, 6, 0, 9, 5, 0, 0], [8, 0, 0, 2, 0, 3, 0, 0, 9], [0, 0, 5, 0, 1, 0, 3, 0, 0]], 1)
@@ -54,8 +54,9 @@ def nextUnsolvedBoard(file_lines_array: list, last_grid: int = 0) -> tuple:
                     [int(file_lines_array[line + j][i]) for i in range(0, 9)]
                     for j in range(1, 10)
                 ]
-                # Cast the last two digits of the sudoku's head line,
-                # aka the sudoku's board number, as integer(the last character is '\n', so we desconsider)
+                # Cast the last two digits of the sudoku's head line, aka the sudoku's
+                # board number, as integer(the last character is \n, so we
+                # desconsider it)
                 ,
                 int(file_lines_array[line][-3] + file_lines_array[line][-2]),
             )
@@ -94,7 +95,8 @@ def nextUnsolvedCell(board: list, row: int, col: int) -> tuple:
 def isValid(board: list, row: int, col: int, val: int) -> bool:
 
     """
-    Verify if val parameter is repeated either in the row, column or 3x3 section of the sudoku matrix
+    Verify if val parameter is repeated either in the row, column or 3x3 section 
+        of the sudoku matrix
     Parameters:
         board -> 9x9 integer matrix;
         row -> integer refering the row of the value to be verified in the matrix;
@@ -133,9 +135,10 @@ def solveBoard(board: list, row: int = 0, col: int = 0) -> list:
     Recursively solve a sudoku given in a 9x9 integer matrix format
     Parameters:
         board -> 9x9 integer matrix,
-        row -> integer refering the row of the last modified value in the matrix, default 0
-        col -> integer refering the column of the last modified value in the matrix, default 0
-    Returns a solved 9x9 integer sudoku matrix or a empty list in case it couldn't be solved
+        row: integer ->  the row of the last modified value in the matrix, default 0
+        col: integer ->  the column of the last modified value in the matrix, default 0
+    Returns a 9x9 integer solved sudoku matrix or 
+        a empty list in case it couldn't be solved
 
     >>> solveBoard([[0, 0, 3, 0, 2, 0, 6, 0, 0], [9, 0, 0, 3, 0, 5, 0, 0, 1], [0, 0, 1, 8, 0, 6, 4, 0, 0], [0, 0, 8, 1, 0, 2, 9, 0, 0], [7, 0, 0, 0, 0, 0, 0, 0, 8], [0, 0, 6, 7, 0, 8, 2, 0, 0], [0, 0, 2, 6, 0, 9, 5, 0, 0], [8, 0, 0, 2, 0, 3, 0, 0, 9], [0, 0, 5, 0, 1, 0, 3, 0, 0]])
     [[4, 8, 3, 9, 2, 1, 6, 5, 7], [9, 6, 7, 3, 4, 5, 8, 2, 1], [2, 5, 1, 8, 7, 6, 4, 9, 3], [5, 4, 8, 1, 3, 2, 9, 7, 6], [7, 2, 9, 5, 6, 4, 1, 3, 8], [1, 3, 6, 7, 9, 8, 2, 4, 5], [3, 7, 2, 6, 8, 9, 5, 1, 4], [8, 1, 4, 2, 5, 3, 7, 6, 9], [6, 9, 5, 4, 1, 7, 3, 8, 2]]
@@ -169,7 +172,8 @@ def solution(path: str = "p096_sudoku.txt") -> list:
     provided by the official website
     Parameters:
         path:string -> the path for the .txt file containing the
-    Returns list containing the concatenated three first values of each solved sudoku matrix
+    Returns list containing the concatenated three first values of
+        each solved sudoku matrix
 
     >>> solution()
     [483, 245, 462, 137, 523, 176, 143, 487, 814, 761, 976, 962, 397, 639, 697, 361, 359, 786, 743, 782, 428, 425, 348, 124, 361, 581, 387, 345, 235, 298, 761, 132, 698, 852, 453, 516, 945, 365, 134, 193, 814, 384, 469, 316, 586, 954, 159, 861, 294, 351]
@@ -188,11 +192,12 @@ def solution(path: str = "p096_sudoku.txt") -> list:
                 board, grid_n = nextUnsolvedBoard(lines, grid_n)
                 if board:
                     solution = solveBoard(board)
-                # If solution was found, append the first 3 digits of the solution to the sums array
+                # If solution was found, append the first 3 digits of the solution 
+                # to the sums array
                 if solution:
                     sums.append(int("".join([str(i) for i in solution[0][:3]])))
-    except:
-        print("Input file not found or couldn't be opened")
+    except FileNotFoundError:
+        return("Input file not found or couldn't be opened")
 
     return sums
 
