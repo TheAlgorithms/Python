@@ -2,18 +2,18 @@ from collections import defaultdict
 
 
 class Graph:
-    def __init__(self, vertices):
+    def __init__(self, vertices) -> None:
         self.v = vertices
         self.graph = defaultdict(list)
 
-    def addEdge(self, u, v):
+    def add_edge(self, u, v) -> None:
         """
         Function to add edges to the graph
         """
         self.graph[u].append(v)
         self.graph[v].append(u)
 
-    def rmvEdge(self, u, v):
+    def rmv_edge(self, u, v) -> None:
         """
         Remove u-v edge from the graph
         """
@@ -24,7 +24,7 @@ class Graph:
             if key == u:
                 self.graph[v].pop(index)
 
-    def dfsCount(self, v, visited):
+    def dfs_count(self, v, visited) -> int:
         """
         A DFS based function to count reachable vertices from v
         """
@@ -32,10 +32,10 @@ class Graph:
         visited[v] = True
         for i in self.graph[v]:
             if not visited[i]:
-                count = count + self.dfsCount(i, visited)
+                count = count + self.dfs_count(i, visited)
         return count
 
-    def isValidNextEdge(self, u, v):
+    def is_valid_next_edge(self, u, v) -> bool:
         """
         The function to check if edge u-v can be considered as next edge in
          Euler Tour
@@ -45,27 +45,27 @@ class Graph:
             return True
         else:
             visited = [False] * self.v
-            count1 = self.dfsCount(u, visited)
+            count1 = self.dfs_count(u, visited)
 
-            self.rmvEdge(u, v)
+            self.rmv_edge(u, v)
             visited = [False] * self.v
-            count2 = self.dfsCount(u, visited)
+            count2 = self.dfs_count(u, visited)
 
-            self.addEdge(u, v)
+            self.add_edge(u, v)
 
-            return False if count1 > count2 else True
+            return count1 <= count2
 
-    def printEulerUtil(self, u):
+    def print_euler_util(self, u) -> None:
         """
         To print the elular tour
         """
         for v in self.graph[u]:
-            if self.isValidNextEdge(u, v):
+            if self.is_valid_next_edge(u, v):
                 print("%d-%d " % (u, v)),
-                self.rmvEdge(u, v)
-                self.printEulerUtil(v)
+                self.rmv_edge(u, v)
+                self.print_euler_util(v)
 
-    def printEulerTour(self):
+    def print_euler_tour(self) -> None:
         """
         The main function that print Eulerian Trail. It first finds an odd
         degree vertex (if there is any) and then calls printEulerUtil()
@@ -77,33 +77,33 @@ class Graph:
                 u = i
                 break
         print("\n")
-        self.printEulerUtil(u)
+        self.print_euler_util(u)
 
 
 if __name__ == "__main__":
     """
     Driver code
     """
-    g1 = Graph(4)
-    g1.addEdge(0, 1)
-    g1.addEdge(0, 2)
-    g1.addEdge(1, 2)
-    g1.addEdge(2, 3)
-    g1.printEulerTour()
+    graph = Graph(4)
+    graph.add_edge(0, 1)
+    graph.add_edge(0, 2)
+    graph.add_edge(1, 2)
+    graph.add_edge(2, 3)
+    graph.print_euler_tour()
 
-    g2 = Graph(3)
-    g2.addEdge(0, 1)
-    g2.addEdge(1, 2)
-    g2.addEdge(2, 0)
-    g2.printEulerTour()
+    graph = Graph(3)
+    graph.add_edge(0, 1)
+    graph.add_edge(1, 2)
+    graph.add_edge(2, 0)
+    graph.print_euler_tour()
 
-    g3 = Graph(5)
-    g3.addEdge(1, 0)
-    g3.addEdge(0, 2)
-    g3.addEdge(2, 1)
-    g3.addEdge(0, 3)
-    g3.addEdge(3, 4)
-    g3.addEdge(3, 2)
-    g3.addEdge(3, 1)
-    g3.addEdge(2, 4)
-    g3.printEulerTour()
+    graph = Graph(5)
+    graph.add_edge(1, 0)
+    graph.add_edge(0, 2)
+    graph.add_edge(2, 1)
+    graph.add_edge(0, 3)
+    graph.add_edge(3, 4)
+    graph.add_edge(3, 2)
+    graph.add_edge(3, 1)
+    graph.add_edge(2, 4)
+    graph.print_euler_tour()
