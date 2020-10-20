@@ -8,7 +8,7 @@ def find_median_arrays(nums1, nums2):
         return all_numbers[a]
     else:
         a = int(div)
-    return  (all_numbers[a] + all_numbers[a - 1]) / 2
+    return (all_numbers[a] + all_numbers[a - 1]) / 2
 
 
 if __name__ == "__main__":
