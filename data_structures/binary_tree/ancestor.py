@@ -36,5 +36,5 @@ root.right.left = TreeNode(6)
 root.right.right = TreeNode(7)
 
 key = int(input("Enter any node value to get ancestors: "))
-print("The ancestors of the key ",key," are: " )
+print("The ancestors of the key ", key, " are: " )
 print("\nAncestors exist: ", ancestor(root, key))
