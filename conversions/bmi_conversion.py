@@ -1,5 +1,6 @@
 """Converts height and mass to Body Mass Index"""
 
+
 def metric_units_bmi(kg: int, cm: int) -> int:
     """
     Convert mass in kilograms and height in centimetres to Body Mass Index
