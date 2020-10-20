@@ -1,0 +1,13 @@
+# Python substring Example
+ 
+string = 'Tutorial Gateway'
+ 
+print(string[:]) # returns complete string
+ 
+print(string[: 5]) # substring From 0 to 5
+ 
+print(string[1 : 10])
+ 
+print(string[2 : 13])
+ 
+print(string[5 : 15]) #
