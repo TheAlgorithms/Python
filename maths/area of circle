@@ -1,0 +1,11 @@
+import math
+
+diameter = float(input(' Please Enter the Diameter of a circle: '))
+area1 = (math.pi/4) * (diameter * diameter)
+# diameter = 2 * radius
+# radius = diameter/2
+radius = diameter / 2
+area2 = math.pi * radius * radius
+
+print(" Area of Circle using direct formula = %.2f" %area1);
+print(" Area of Circle Using Method 2 = %.2f" %area2)
