@@ -4,27 +4,27 @@ from collections import defaultdict
 class Graph:
 
     def __init__(self, vertices):
-        self.V = vertices 
+        self.V = vertices
         '''
         Initiating number of vertices
         '''
-        self.graph = defaultdict(list)  
+        self.graph = defaultdict(list)
         '''
         Default dictionary for graph
         '''
         self.Time = 0
 
     def addEdge(self, u, v):
-        '''
+        """
         Function to add edges to the graph
-        '''
+        """
         self.graph[u].append(v)
         self.graph[v].append(u)
 
     def rmvEdge(self, u, v):
-        '''
-        Remove u-v edge from the graph 
-        '''
+        """
+        Remove u-v edge from the graph
+        """
         for index, key in enumerate(self.graph[u]):
             if key == v:
                 self.graph[u].pop(index)
@@ -32,11 +32,10 @@ class Graph:
             if key == u:
                 self.graph[v].pop(index)
 
-
     def DFSCount(self, v, visited):
-        '''
+        """
         A DFS based function to count reachable vertices from v
-        '''
+        """
         count = 1
         visited[v] = True
         for i in self.graph[v]:
@@ -44,12 +43,11 @@ class Graph:
                 count = count + self.DFSCount(i, visited)
         return count
 
-     
     def isValidNextEdge(self, u, v):
-        '''
+        """
         The function to check if edge u-v can be considered as next edge in
          Euler Tour
-        '''
+        """
 
         if len(self.graph[u]) == 1:
             return True
@@ -58,7 +56,7 @@ class Graph:
             count1 = self.DFSCount(u, visited)
 
             self.rmvEdge(u, v)
-            visited = [False] * (self.V)
+            visited = [False] * self.V
             count2 = self.DFSCount(u, visited)
 
             self.addEdge(u, v)
@@ -66,9 +64,9 @@ class Graph:
             return False if count1 > count2 else True
 
     def printEulerUtil(self, u):
-        '''
-        To print the elular tour 
-        '''
+        """
+        To print the elular tour
+        """
         for v in self.graph[u]:
             if self.isValidNextEdge(u, v):
                 print("%d-%d " % (u, v)),
@@ -76,11 +74,11 @@ class Graph:
                 self.printEulerUtil(v)
 
     def printEulerTour(self):
-        '''
-        The main function that print Eulerian Trail. It first finds an odd 
-        degree vertex (if there is any) and then calls printEulerUtil() 
-        to print the path 
-        '''
+        """
+        The main function that print Eulerian Trail. It first finds an odd
+        degree vertex (if there is any) and then calls printEulerUtil()
+        to print the path
+        """
         u = 0
         for i in range(self.V):
             if len(self.graph[i]) % 2 != 0:
