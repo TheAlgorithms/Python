@@ -1,6 +1,8 @@
+import doctest
+
 import requests
 from bs4 import BeautifulSoup
-import doctest
+
 
 def imdb_top(imdb_top_n: int) -> None:
     r"""
@@ -39,7 +41,9 @@ def imdb_top(imdb_top_n: int) -> None:
             raise UnboundLocalError()
         imdb_top_n = int(imdb_top_n)
     except (ValueError, UnboundLocalError):
-        print("\nSorry! couldn't understand your choice. Let's show you the highest rated movie details.\n")
+        print(
+            "\nSorry! couldn't understand your choice. Let's show you the highest rated movie details.\n"
+        )
         imdb_top_n = 1
 
     base_url = (
@@ -54,7 +58,10 @@ def imdb_top(imdb_top_n: int) -> None:
         print(f"https://www.imdb.com{m.a.get('href')}")  # movie's page link
         print("-" * 40)
 
+
 if __name__ == "__main__":
     doctest.testmod()
-    movie_count = input("How many movies would you like to see [default set to 1]? ").strip()
+    movie_count = input(
+        "How many movies would you like to see [default set to 1]? "
+    ).strip()
     imdb_top(movie_count)
