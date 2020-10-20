@@ -87,14 +87,17 @@ def solution() -> int:
             coords = line.strip().split(",")
             triangle_vectors = []
             for coord_id in range(3):
-                triangle_vectors.append(Vector(float(coords[coord_id * 2]), \
-                                               float(coords[coord_id * 2 + 1])))
+                triangle_vectors.append(
+                    Vector(float(coords[coord_id * 2]), float(coords[coord_id * 2 + 1]))
+                )
             angle_sum = 0.0
             for vertex_id in range(len(triangle_vectors)):
                 angle_start = triangle_vectors[vertex_id]
                 angle_end = triangle_vectors[(vertex_id + 1) % len(triangle_vectors)]
-                angle = math.acos(angle_start.dot_product(angle_end) / \
-                                  (angle_start.length() * angle_end.length()))
+                angle = math.acos(
+                    angle_start.dot_product(angle_end)
+                    / (angle_start.length() * angle_end.length())
+                )
                 angle_sum += angle
             if math.isclose(angle_sum, 2 * math.pi):
                 ninside += 1
