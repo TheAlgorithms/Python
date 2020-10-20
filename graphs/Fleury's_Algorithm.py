@@ -66,26 +66,32 @@ class Graph:
             return False if count1 > count2 else True
 
     def printEulerUtil(self, u):
-        
+        '''
+        To print the elular tour 
+        '''
         for v in self.graph[u]:
-            
             if self.isValidNextEdge(u, v):
                 print("%d-%d " % (u, v)),
                 self.rmvEdge(u, v)
                 self.printEulerUtil(v)
 
     def printEulerTour(self):
-        
+        '''
+        The main function that print Eulerian Trail. It first finds an odd 
+        degree vertex (if there is any) and then calls printEulerUtil() 
+        to print the path 
+        '''
         u = 0
         for i in range(self.V):
             if len(self.graph[i]) % 2 != 0:
                 u = i
                 break
-        
         print("\n")
         self.printEulerUtil(u)
 
-
+'''
+Driver code
+'''
 if __name__ == "__main__":
     g1 = Graph(4)
     g1.addEdge(0, 1)
