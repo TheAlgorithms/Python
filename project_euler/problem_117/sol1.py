@@ -15,19 +15,34 @@ Compute n = 0 manually as a base case.
 """
 
 
-def solution(length: int = 50) -> str:
+def _calculate(length: int) -> str:
     """
-    This function is used for finding how many units long be filled with
+    A small helper function for the recursion, mainly to have
+    a clean interface for the solution() function below.
 
-    >>> solution(50)
-    '100808458960497'
-    >>> solution(25)
-    '7555935'
+    >>> _calculate(12)
+    '1490'
+    >>> _calculate(15)
+    '10671'
+    >>> _calculate(41)
+    '274423830033'
     """
     ways = [1] + [0] * length
     for n in range(1, len(ways)):
         ways[n] += sum(ways[max(n - 4, 0) : n])
     return str(ways[-1])
+
+
+def solution(length: int = 50) -> str:
+    """
+    This function is used for finding how many units long be filled with
+
+    >>> solution()
+    '100808458960497'
+    >>> solution(25)
+    '7555935'
+    """
+    return _calculate(length)
 
 
 if __name__ == "__main__":
