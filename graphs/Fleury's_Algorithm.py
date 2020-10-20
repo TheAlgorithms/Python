@@ -5,13 +5,13 @@ class Graph:
 
     def __init__(self, vertices):
         self.V = vertices
-        '''
+        """
         Initiating number of vertices
-        '''
+        """
         self.graph = defaultdict(list)
-        '''
+        """
         Default dictionary for graph
-        '''
+        """
         self.Time = 0
 
     def addEdge(self, u, v):
@@ -89,9 +89,9 @@ class Graph:
 
 
 if __name__ == "__main__":
-    '''
+    """
     Driver code
-    '''
+    """
     g1 = Graph(4)
     g1.addEdge(0, 1)
     g1.addEdge(0, 2)
