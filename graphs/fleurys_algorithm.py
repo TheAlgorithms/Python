@@ -45,11 +45,11 @@ class Graph:
         if len(self.graph[u]) == 1:
             return True
         else:
-            visited = [False] * self.V
+            visited = [False] * self.v
             count1 = self.dfsCount(u, visited)
 
             self.rmvEdge(u, v)
-            visited = [False] * self.V
+            visited = [False] * self.v
             count2 = self.dfsCount(u, visited)
 
             self.addEdge(u, v)
