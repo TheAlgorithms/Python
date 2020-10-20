@@ -46,14 +46,20 @@ def square_root_iterative(
 
     if a < 0:
         raise ValueError("math domain error")
+    #to check if 'a' is a positive integer
 
     value = get_initial_point(a)
 
+    # To count the number of iterations  
+    count = 0 
+
     for i in range(max_iter):
+        count += 1 
         prev_value = value
         value = value - fx(value, a) / fx_derivative(value)
         if abs(prev_value - value) < tolerance:
             return value
+        #checks for closeness
 
     return value
 
