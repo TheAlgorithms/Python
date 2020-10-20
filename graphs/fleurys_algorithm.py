@@ -33,7 +33,7 @@ class Graph:
         visited[v] = True
         for i in self.graph[v]:
             if not visited[i]:
-                count = count + self.DFSCount(i, visited)
+                count = count + self.dfsCount(i, visited)
         return count
 
     def isValidNextEdge(self, u, v):
@@ -46,11 +46,11 @@ class Graph:
             return True
         else:
             visited = [False] * self.V
-            count1 = self.DFSCount(u, visited)
+            count1 = self.dfsCount(u, visited)
 
             self.rmvEdge(u, v)
             visited = [False] * self.V
-            count2 = self.DFSCount(u, visited)
+            count2 = self.dfsCount(u, visited)
 
             self.addEdge(u, v)
 
