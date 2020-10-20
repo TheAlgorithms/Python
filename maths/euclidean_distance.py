@@ -10,6 +10,7 @@ def euclidean_distance(vector_1: Vector, vector_2: Vector) -> VectorOut:
     """
     Calculate the distance between the two endpoints of two vectors.
     A vector is defined as a list, tuple, or numpy 1D array.
+    >>> euclidean_distance(np.array([0, 0), np.array([2, 2]))
     2.8284271247461903
     >>> euclidean_distance(np.array([0, 0, 0]), np.array([2, 2, 2]))
     3.4641016151377544
