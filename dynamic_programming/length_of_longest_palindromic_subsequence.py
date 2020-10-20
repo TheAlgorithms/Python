@@ -27,5 +27,5 @@ if __name__ == "__main__":
 
     print(
         "The length of Longest Palindromic Subsequence is",
-        longestPalindrome(X, 0, n - 1)
+        longestPalindrome(X, 0, n - 1),
     )
