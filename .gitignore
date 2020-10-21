@@ -103,6 +103,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# System/IDE
 .DS_Store
 .idea
 .try
