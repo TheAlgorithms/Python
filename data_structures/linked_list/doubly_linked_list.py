@@ -3,6 +3,16 @@ https://en.wikipedia.org/wiki/Doubly_linked_list
 """
 
 
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.previous = None
+        self.next = None
+
+    def __str__(self):
+        return f"{self.data}"
+
+
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
@@ -15,9 +25,24 @@ class DoublyLinkedList:
             node = node.next
 
     def __str__(self):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.insert_at_tail('a')
+        >>> linked_list.insert_at_tail('b')
+        >>> linked_list.insert_at_tail('c')
+        >>> str(linked_list)
+        'a->b->c'
+        """
         return "->".join([str(item) for item in self])
 
     def __len__(self):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> for i in range(0, 5):
+        ...     linked_list.insert_at_nth(i, i + 1)
+        >>> len(linked_list) == 5
+        True
+        """
         return len(tuple(iter(self)))
 
     def insert_at_head(self, data):
@@ -27,6 +52,27 @@ class DoublyLinkedList:
         self.insert_at_nth(len(self), data)
 
     def insert_at_nth(self, index: int, data):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.insert_at_nth(-1, 666)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        >>> linked_list.insert_at_nth(1, 666)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        >>> linked_list.insert_at_nth(0, 2)
+        >>> linked_list.insert_at_nth(0, 1)
+        >>> linked_list.insert_at_nth(2, 4)
+        >>> linked_list.insert_at_nth(2, 3)
+        >>> str(linked_list)
+        '1->2->3->4'
+        >>> linked_list.insert_at_nth(5, 5)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        """
         if not 0 <= index <= len(self):
             raise IndexError("list index out of range")
         new_node = Node(data)
@@ -56,6 +102,27 @@ class DoublyLinkedList:
         return self.delete_at_nth(len(self) - 1)
 
     def delete_at_nth(self, index: int):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.delete_at_nth(0)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        >>> for i in range(0, 5):
+        ...     linked_list.insert_at_nth(i, i + 1)
+        >>> linked_list.delete_at_nth(0) == 1
+        True
+        >>> linked_list.delete_at_nth(3) == 5
+        True
+        >>> linked_list.delete_at_nth(1) == 3
+        True
+        >>> str(linked_list)
+        '2->4'
+        >>> linked_list.delete_at_nth(2)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        """
         if not 0 <= index <= len(self) - 1:
             raise IndexError("list index out of range")
         delete_node = self.head  # default first node
@@ -98,17 +165,15 @@ class DoublyLinkedList:
         return data
 
     def is_empty(self):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.is_empty()
+        True
+        >>> linked_list.insert_at_tail(1)
+        >>> linked_list.is_empty()
+        False
+        """
         return len(self) == 0
-
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.previous = None
-        self.next = None
-
-    def __str__(self):
-        return f"{self.data}"
 
 
 def test_doubly_linked_list() -> None:
