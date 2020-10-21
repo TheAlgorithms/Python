@@ -6,11 +6,7 @@ Dense Optical Flow using Lucas Kanade Method
 https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method
 """
 
-cap = cv2.VideoCapture(0)
-frameWidth = 3072
-frameHeight = 1928
-cap.set(3, frameWidth)
-cap.set(4, frameHeight)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 # Lucas Kanade Parameters
 lk_params = dict(
