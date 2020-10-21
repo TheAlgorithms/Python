@@ -60,7 +60,7 @@ def check_partition_perfect(positive_integer: int) -> bool:
     return exponent == int(exponent)
 
 
-def solution(max_proportion: float = 1 / 12456) -> int:
+def solution(max_proportion: float = 1 / 12345) -> int:
     """
     Find m for which the proportion of perfect partitions to total partitions is lower
     than max_proportion
