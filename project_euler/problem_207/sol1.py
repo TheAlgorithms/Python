@@ -41,10 +41,11 @@ proportion perfect partitions / total partitions drops under the given value.
 import math
 
 
-def check_partition_perfect(k) -> bool:
+def check_partition_perfect(positive_integer: int) -> bool:
     """
 
-    Check if t = f(k) = log2(sqrt(4*k+1)/2 + 1/2) is a real number.
+    Check if t = f(positive_integer) = log2(sqrt(4*positive_integer+1)/2 + 1/2) is a
+    real number.
 
     >>> check_partition_perfect(2)
     True
@@ -54,9 +55,9 @@ def check_partition_perfect(k) -> bool:
 
     """
 
-    t = math.log2(math.sqrt(4 * k + 1) / 2 + 1 / 2)
+    exponent = math.log2(math.sqrt(4 * positive_integer + 1) / 2 + 1 / 2)
 
-    return t == int(t)
+    return exponent == int(exponent)
 
 
 def solution(max_proportion: float = 1 / 12456) -> int:
@@ -67,29 +68,30 @@ def solution(max_proportion: float = 1 / 12456) -> int:
     >>> solution(1) > 5
     True
 
+    >>> solution(1/2) > 10
+    True
+
     >>> solution(3 / 13) > 185
     True
 
-    >>> solution(1 / 12345)
-    44043947822
-
     """
 
-    total = 0
-    perfect = 0
+    total_partitions = 0
+    perfect_partitions = 0
 
-    i = 3
+    integer = 3
     while True:
-        k = (i ** 2 - 1) / 4
-        if k == int(k):  # if k = f(i) is an integer, then there is a partition for k
-            k = int(k)
-            total += 1
-            if check_partition_perfect(k):
-                perfect += 1
-        if perfect > 0:
-            if perfect / total < max_proportion:
-                return k
-        i += 1
+        partition_candidate = (integer ** 2 - 1) / 4
+        # if candidate is an integer, then there is a partition for k
+        if partition_candidate == int(partition_candidate):
+            partition_candidate = int(partition_candidate)
+            total_partitions += 1
+            if check_partition_perfect(partition_candidate):
+                perfect_partitions += 1
+        if perfect_partitions > 0:
+            if perfect_partitions / total_partitions < max_proportion:
+                return partition_candidate
+        integer += 1
 
 
 if __name__ == "__main__":
