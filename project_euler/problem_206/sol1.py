@@ -21,16 +21,13 @@ def solution() -> int:
     itertool product to generate all possible digit combinations 0...9 for the nine "_"
     to fill.
 
-    >>> solution()
-    1389019170
-
     """
 
     # iterate through all permutations
     # (starting from 9*"9" to speed up finding solution)
-    for p in product("0123456789"[::-1], repeat=9):
+    for permutation in product("0123456789"[::-1], repeat=9):
         # form string and convert to int
-        squared = int("1{}2{}3{}4{}5{}6{}7{}8{}9{}0".format(*p))
+        squared = int("1{}2{}3{}4{}5{}6{}7{}8{}9{}0".format(*permutation))
 
         # integer of square root
         root_integer = int(squared ** 0.5)
