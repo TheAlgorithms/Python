@@ -2,57 +2,65 @@ import cv2
 import numpy as np
 
 cap = cv2.VideoCapture(0)
-
-# Old Frames
-_, frame = cap.read()
-old_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+frameWidth = 3072
+frameHeight = 1928
+cap.set(3, frameWidth)
+cap.set(4, frameHeight)
 
 # Lucas Kanade Parameters
-lk_params = dict(winSize=(15, 15),
+lk_params = dict(winSize=(30, 30),
                  maxLevel=4,
                  criteria=(cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
 
 
-# Mouse Function
-def select_point(event, x, y, flags, params):
-    global point, point_selected, old_points
-    if event == cv2.EVENT_LBUTTONDOWN:
-        point = (x, y)
-        point_selected = True
-        old_points = np.array([[x, y]], dtype=np.float32)
+class LucasKanade:
+
+    @staticmethod
+    def execute():
+        # get first frame of video
+        _, frame1 = cap.read()
+
+        # convert frame to grayscale
+        frame1_gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
+        x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 7)
+
+        lin = np.zeros_like(frame1)
+        i = 0
+        while True:
+            i = i + 1
+            _, frame2 = cap.read()
+            frame2 = cv2.medianBlur(frame2, 5)
+            frame2_gray = cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY)
+            y, st, error = cv2.calcOpticalFlowPyrLK(frame1_gray, frame2_gray, x
+                                                    , None, **lk_params)
+
+            for j, (new, old) in enumerate(zip(y, x)):
+                a, b = new.ravel()
+                c, d = old.ravel()
+                frame2 = cv2.circle(frame2, (a, b), 5, (0, 0, 255), -1)
+                frame2 = cv2.circle(frame2, (c, d), 5, (255, 0, 0), -1)
+                lin = cv2.line(lin, (a, b), (c, d), (0, 255, 0), 2)
+
+            if i == 2:
+                # Draw line for every 2 frames
+                lin = np.zeros_like(frame1)
+                i = 0
+            img = cv2.add(frame2, lin)
+            img = cv2.flip(img, 1)
+
+            if img is not None:
+                cv2.imshow("Video", img)
+                key = cv2.waitKey(1)
+                if key & 0xff == ord('q'):
+                    break
+
+            # update the new values
+            frame1_gray = np.copy(frame2_gray)
+            x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 10)
 
 
-cv2.namedWindow("Frame")
-cv2.setMouseCallback("Frame", select_point)
-
-point_selected = False
-point = ()
-old_points = np.array([[]])
-
-while True:
-    _, frame = cap.read()
-    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    if point_selected is True:
-        # cv2.circle(frame, point, 5, (0, 0, 255), 2)
-        new_points, status, error = cv2.calcOpticalFlowPyrLK(old_gray, gray_frame, old_points, None, **lk_params)
-        old_gray = gray_frame.copy()
-        old_points = new_points
-
-        x, y = new_points.ravel()
-        cv2.circle(frame, (x, y), 10, (0, 255, 0), -1)
-
-    '''first_level = cv2.pyrDown(frame)
-    second_level = cv2.pyrDown(first_level)'''
-
-    cv2.imshow("Frame", frame)
-
-    '''cv2.imshow("First Level", first_level)
-    cv2.imshow("Second Level", second_level)'''
-
-    key = cv2.waitKey(1)
-    if key & 0xff == ord('q'):
-        break
+run = LucasKanade()
+run.execute()
 
 cap.release()
 cv2.destroyAllWindows()
