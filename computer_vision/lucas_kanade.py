@@ -20,8 +20,8 @@ class LucasKanade:
     @staticmethod
     def execute():
         # get first frame of video
-        _, frame1 = cap.read()      
-        if _:
+        ret, frame1 = cap.read()      
+        if ret:
             # convert frame to grayscale
             frame1_gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
             x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 7)
@@ -29,8 +29,8 @@ class LucasKanade:
             i = 0
             while True:
                 i = i + 1
-                _, frame2 = cap.read()
-                if not _:
+                val, frame2 = cap.read()
+                if not val:
                     break
                 frame2 = cv2.medianBlur(frame2, 5)
                 frame2_gray = cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY)
