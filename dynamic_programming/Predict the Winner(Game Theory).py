@@ -79,7 +79,7 @@ dp = [[0] * len(nums) for _ in range(len(nums))]
 # If there is only 1 value in the array then 1st player takes it has arr[0] and 2nd player has 0
 #so we store (arr[i],0)->(first_player_score,second_player_score)
 for q in range(len(nums)):
-    store[q][q] = (nums[q], 0)
+    dp[q][q] = (nums[q], 0)
 
 # To fill the dp from 0th row and 1st column
 for i in range(1, len(nums)):
