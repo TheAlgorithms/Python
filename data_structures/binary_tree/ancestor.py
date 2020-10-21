@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # https://www.geeksforgeeks.org/print-ancestors-of-a-given-node-in-binary-tree/
-
+import sys
 class TreeNode():  
     def __init__(self, val):
         self.val = val
@@ -31,3 +31,4 @@ root.right.right = TreeNode(7)
 key = 7
 print("The ancestors of the key ", key, " are: ")
 print("\nAncestors exist: ", ancestor(root, key))
+sys.exit(0)
