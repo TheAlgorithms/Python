@@ -20,14 +20,12 @@ To generate the permutations 'itertools.product' is used.
 from itertools import product
 
 
-def probability_of_sums(
-    dice_min: int = 1, dice_max: int = 6, dice_number: int = 6
-) -> (list, list):
+def probability_of_sums(dice_max_points: int = 6, dice_number: int = 6) -> (list, list):
     """
     Returns the list of possible sums and their probabilities of dice_number dices with
     numbers from dice_min to dice_max
 
-    >>> probability_of_sums(dice_min=1, dice_max=5, dice_number=2)
+    >>> probability_of_sums(dice_max_points=5, dice_number=2)
     ([2, 3, 4, 5, 6, 7, 8, 9, 10], \
 [0.04, 0.08, 0.12, 0.16, 0.2, 0.16, 0.12, 0.08, 0.04])
 
@@ -35,7 +33,7 @@ def probability_of_sums(
 
     sums = []
     counter = []
-    for dices in product(range(dice_min, dice_max + 1), repeat=dice_number):
+    for dices in product(range(1, dice_max_points + 1), repeat=dice_number):
         s = sum(dices)
         if s not in sums:  # sum has not occurred, set count to 1
             sums.append(s)
@@ -49,7 +47,12 @@ def probability_of_sums(
     return sums, probability
 
 
-def solution() -> float:
+def solution(
+    peter_dice_points: int = 4,
+    peter_dice_number: int = 9,
+    colin_dice_points: int = 6,
+    colin_dice_number: int = 6,
+) -> float:
     """
     Returns the probability of Peter winning in dice game with nine four-sided
     dice (1, 2, 3, 4 points) against Colin who has six six-sided dice (1, 2, 3, 4, 5,
@@ -58,24 +61,25 @@ def solution() -> float:
     probabilities. Peter's probability to win is summed up from all the permutations
     where he has more points than Colin.
 
-    >>> solution()
-    0.5731441
+    >>> solution(peter_dice_points=6, peter_dice_number=5,
+    ...          colin_dice_points=5, colin_dice_number=6)
+    0.4241348
 
     """
 
     peter_wins = 0
     colin_wins = 0
     draw = 0
-    for s_peter, p_peter in zip(
-        *probability_of_sums(dice_min=1, dice_max=4, dice_number=9)
+    for sums_peter, probabilities_peter in zip(
+        *probability_of_sums(peter_dice_points, peter_dice_number)
     ):
-        for s_colin, p_colin in zip(
-            *probability_of_sums(dice_min=1, dice_max=6, dice_number=6)
+        for sums_colin, probabilities_colin in zip(
+            *probability_of_sums(colin_dice_points, colin_dice_number)
         ):
-            p_branch = p_peter * p_colin
-            if s_peter > s_colin:
+            p_branch = probabilities_peter * probabilities_colin
+            if sums_peter > sums_colin:
                 peter_wins += p_branch
-            elif s_colin > s_peter:
+            elif sums_colin > sums_peter:
                 colin_wins += p_branch
             else:
                 draw += p_branch
