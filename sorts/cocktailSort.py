@@ -1,26 +1,31 @@
-def cocktailSort(a):
-   n = len(a)
-   flag = True
+def pureCocktailSort(a):
+   
+   length = len(a)
+   semaphore = True
+   
    start = 0
-   end = n-1
-   while (flag==True):
-      flag = False
+   end = length-1
+   
+   while (semaphore == True):
+      
+      semaphore = False
       
       for i in range (start, end):
          if (a[i] > a[i+1]) :
             a[i], a[i+1]= a[i+1], a[i]
-            flag=True
+            semaphore=True
             
-      if (flag==False):
+      if (semaphore == False):
          break
          
-      flag = False
+      semaphore = False
       
       end = end-1
       
       for i in range(end-1, start-1,-1):
+      
          if (a[i] > a[i+1]):
             a[i], a[i+1] = a[i+1], a[i]
-            flag = True
+            semaphore = True
       
       start = start+1
