@@ -71,30 +71,30 @@ Lets say we have arr of  -> [1,5,2]
         Here Player 1 loss no matter what possible combination he takes.
 '''
 
+if __name__ == "__main__":
+    nums = [1, 5, 233, 7]
+    # 2-D array to store
+    dp = [[0] * len(nums) for _ in range(len(nums))]
 
-nums = [1, 5, 233, 7]
-# 2-D array to store
-dp = [[0] * len(nums) for _ in range(len(nums))]
+    # If there is only 1 value in the array then 1st player takes it has arr[0] and 2nd player has 0
+    #so we store (arr[i],0)->(first_player_score,second_player_score)
+    for q in range(len(nums)):
+        dp[q][q] = (nums[q], 0)
 
-# If there is only 1 value in the array then 1st player takes it has arr[0] and 2nd player has 0
-#so we store (arr[i],0)->(first_player_score,second_player_score)
-for q in range(len(nums)):
-    dp[q][q] = (nums[q], 0)
+    # To fill the dp from 0th row and 1st column
+    for i in range(1, len(nums)):
+        # As we need to move to column+1 and row+1 we use k for rows so we incerment k+=1
+        k = 0
+        for j in range(i, len(nums)):
+            # we check if 1st possible(taking starting element in the array) way gives us higher value if yes we take it
+            if nums[k] + dp[k + 1][j][1] >= nums[j] + dp[k][j - 1][1]:
+                dp[k][j] = (nums[k] + dp[k + 1][j][1], dp[k + 1][j][0])
+            else:
+                dp[k][j] = (nums[j] + dp[k][j - 1][1], dp[k][j - 1][0])
+            k+=1
 
-# To fill the dp from 0th row and 1st column
-for i in range(1, len(nums)):
-    # As we need to move to column+1 and row+1 we use k for rows so we incerment k+=1
-    k = 0
-    for j in range(i, len(nums)):
-        # we check if 1st possible(taking starting element in the array) way gives us higher value if yes we take it
-        if nums[k] + dp[k + 1][j][1] >= nums[j] + dp[k][j - 1][1]:
-            dp[k][j] = (nums[k] + dp[k + 1][j][1], dp[k + 1][j][0])
-        else:
-            dp[k][j] = (nums[j] + dp[k][j - 1][1], dp[k][j - 1][0])
-        k+=1
-
-# we compare scores in the final end if 1st player has >= score of 2nd player we return True else False
-if dp[0][len(nums)-1][0]>=dp[0][len(nums)-1][1]:
-    print(True)
-else:
-    print(False)
+    # we compare scores in the final end if 1st player has >= score of 2nd player we return True else False
+    if dp[0][len(nums)-1][0]>=dp[0][len(nums)-1][1]:
+        print(True)
+    else:
+        print(False)
