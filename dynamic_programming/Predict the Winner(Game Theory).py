@@ -95,6 +95,6 @@ class Solution:
                 k+=1
 
         # we compare scores in the final end if 1st player has >= score of 2nd player we return True else False
-        if store[0][len(nums)-1][0]>=store[0][len(nums)-1][1]:
+        if dp[0][len(nums)-1][0]>=dp[0][len(nums)-1][1]:
             return True
         return False
