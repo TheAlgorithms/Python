@@ -72,7 +72,7 @@ Lets say we have arr of  -> [1,5,2]
 '''
 
 
-nums = list(map(int,input().split()))
+nums = [1, 5, 233, 7]
 # 2-D array to store
 dp = [[0] * len(nums) for _ in range(len(nums))]
 
