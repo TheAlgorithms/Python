@@ -21,46 +21,48 @@ class LucasKanade:
     def execute():
         # get first frame of video
         _, frame1 = cap.read()
-        # convert frame to grayscale
-        frame1_gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
-        x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 7)
-
-        lin = np.zeros_like(frame1)
-        i = 0
-        while True:
-            i = i + 1
-            _, frame2 = cap.read()
-            if not _:
-                break
-            frame2 = cv2.medianBlur(frame2, 5)
-            frame2_gray = cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY)
-            y, st, error = cv2.calcOpticalFlowPyrLK(
-                frame1_gray, frame2_gray, x, None, **lk_params
-            )
-
-            for j, (new, old) in enumerate(zip(y, x)):
-                a, b = new.ravel()
-                c, d = old.ravel()
-                frame2 = cv2.circle(frame2, (a, b), 5, (0, 0, 255), -1)
-                frame2 = cv2.circle(frame2, (c, d), 5, (255, 0, 0), -1)
-                lin = cv2.line(lin, (a, b), (c, d), (0, 255, 0), 2)
-
-            if i == 2:
-                # Draw line for every 2 frames
-                lin = np.zeros_like(frame1)
-                i = 0
-            img = cv2.add(frame2, lin)
-            img = cv2.flip(img, 1)
-
-            if img is not None:
-                cv2.imshow("Video", img)
-                key = cv2.waitKey(1)
-                if key & 0xFF == ord("q"):
+        
+        if _:
+            # convert frame to grayscale
+            frame1_gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
+            x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 7)
+    
+            lin = np.zeros_like(frame1)
+            i = 0
+            while True:
+                i = i + 1
+                _, frame2 = cap.read()
+                if not _:
                     break
-
-            # update the new values
-            frame1_gray = np.copy(frame2_gray)
-            x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 10)
+                frame2 = cv2.medianBlur(frame2, 5)
+                frame2_gray = cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY)
+                y, st, error = cv2.calcOpticalFlowPyrLK(
+                    frame1_gray, frame2_gray, x, None, **lk_params
+                )
+    
+                for j, (new, old) in enumerate(zip(y, x)):
+                    a, b = new.ravel()
+                    c, d = old.ravel()
+                    frame2 = cv2.circle(frame2, (a, b), 5, (0, 0, 255), -1)
+                    frame2 = cv2.circle(frame2, (c, d), 5, (255, 0, 0), -1)
+                    lin = cv2.line(lin, (a, b), (c, d), (0, 255, 0), 2)
+    
+                if i == 2:
+                    # Draw line for every 2 frames
+                    lin = np.zeros_like(frame1)
+                    i = 0
+                img = cv2.add(frame2, lin)
+                img = cv2.flip(img, 1)
+    
+                if img is not None:
+                    cv2.imshow("Video", img)
+                    key = cv2.waitKey(1)
+                    if key & 0xFF == ord("q"):
+                        break
+    
+                # update the new values
+                frame1_gray = np.copy(frame2_gray)
+                x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 10)
 
 
 run = LucasKanade()
