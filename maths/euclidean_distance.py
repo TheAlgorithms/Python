@@ -21,6 +21,7 @@ def euclidean_distance(vector_1: Vector, vector_2: Vector) -> VectorOut:
     """
     return np.sqrt(np.sum((np.asarray(vector_1) - np.asarray(vector_2)) ** 2))
 
+
 def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
     """
     Calculate the distance between the two endpoints of two vectors without numpy.
