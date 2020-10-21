@@ -17,7 +17,7 @@ def recursive_lucas_number(n):
         return n
     if n == 0:
         return 2
-    if isinstance(n, int) == False:
+    if not isinstance(n, int):
         raise TypeError("recursive_lucas_number accepts only integer arguments.")
 
     return recursive_lucas_number(n - 1) + recursive_lucas_number(n - 2)
@@ -39,7 +39,7 @@ def dynamic_lucas_number(n: int) -> int:
         ...
     TypeError: dynamic_lucas_number accepts only integer arguments.
     """
-    if isinstance(n, int) == False:
+    if not isinstance(n, int):
         raise TypeError("dynamic_lucas_number accepts only integer arguments.")
     if n == 0:
         return 2
