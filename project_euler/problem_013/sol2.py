@@ -123,7 +123,10 @@ def solution():
     total = sum(numbers)
     target_digits = 10
     n_digits = num_digits(total)
-    truncate_digits = n_digits - target_digits
+    rem_digits = n_digits - target_digits
 
-    answer = total // (10 ** truncate_digits)
+    answer = total // (10 ** rem_digits)
     return answer
+
+if __name__ == "__main__":
+    print(solution())
