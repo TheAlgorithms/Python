@@ -41,7 +41,7 @@ def solution():
     script_dir = os.path.dirname(os.path.realpath(__file__))
     triangle = os.path.join(script_dir, "triangle.txt")
 
-    with open(triangle, "r") as f:
+    with open(triangle) as f:
         triangle = f.readlines()
 
     a = [[int(y) for y in x.rstrip("\r\n").split(" ")] for x in triangle]

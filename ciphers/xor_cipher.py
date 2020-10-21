@@ -141,14 +141,14 @@ class XORCipher:
         assert isinstance(file, str) and isinstance(key, int)
 
         try:
-            with open(file, "r") as fin:
+            with open(file) as fin:
                 with open("encrypt.out", "w+") as fout:
 
                     # actual encrypt-process
                     for line in fin:
                         fout.write(self.encrypt_string(line, key))
 
-        except IOError:
+        except OSError:
             return False
 
         return True
@@ -166,14 +166,14 @@ class XORCipher:
         assert isinstance(file, str) and isinstance(key, int)
 
         try:
-            with open(file, "r") as fin:
+            with open(file) as fin:
                 with open("decrypt.out", "w+") as fout:
 
                     # actual encrypt-process
                     for line in fin:
                         fout.write(self.decrypt_string(line, key))
 
-        except IOError:
+        except OSError:
             return False
 
         return True
