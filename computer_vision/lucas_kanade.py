@@ -1,6 +1,11 @@
 import cv2
 import numpy as np
 
+'''
+Dense Optical Flow using Lucas Kanade Method
+https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method
+'''
+
 cap = cv2.VideoCapture(0)
 frameWidth = 3072
 frameHeight = 1928
