@@ -34,8 +34,8 @@ def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
     for i in range(len(vector_1)):
             the_sum += (vector_2[i] - vector_1[i]) ** 2
         return sumSquared ** (1 / 2)
-    
-    
+
+
 if __name__ == "__main__":
     point = np.array([2, 2])
     point_2 = np.array([0, 0])
