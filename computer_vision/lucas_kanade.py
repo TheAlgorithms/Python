@@ -22,9 +22,6 @@ class LucasKanade:
         # get first frame of video
         _, frame1 = cap.read()
         
-        if _ == False
-            break
-        
         # convert frame to grayscale
         frame1_gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
         x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 7)
@@ -34,6 +31,9 @@ class LucasKanade:
         while True:
             i = i + 1
             _, frame2 = cap.read()
+            if not _:
+                break
+            
             frame2 = cv2.medianBlur(frame2, 5)
             frame2_gray = cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY)
             y, st, error = cv2.calcOpticalFlowPyrLK(
