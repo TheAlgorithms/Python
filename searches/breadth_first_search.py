@@ -1,6 +1,9 @@
 """
 Python implementation of the breadth-first search algorithm for pathfinding.
 
+Find an explanation of this algorithm here: 
+https://en.wikipedia.org/wiki/Breadth-first_search
+
 Also included is a simple node class, maze generation and maze visualisation
 to show the results of the algorithm.
 
