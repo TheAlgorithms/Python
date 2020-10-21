@@ -27,10 +27,6 @@ def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
     A vector is defined as a list, tuple, or numpy 1D array.
     >>> euclidean_distance((0, 0), (2, 2))
     2.8284271247461903
-    >>> euclidean_distance(np.array([0, 0, 0]), np.array([2, 2, 2]))
-    3.4641016151377544
-    >>> euclidean_distance(np.array([1, 2, 3, 4]), np.array([5, 6, 7, 8]))
-    8.0
     >>> euclidean_distance([1, 2, 3, 4], [5, 6, 7, 8])
     8.0
     """
