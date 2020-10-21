@@ -6,7 +6,7 @@ Dense Optical Flow using Lucas Kanade Method
 https://en.wikipedia.org/wiki/Lucas%E2%80%93Kanade_method
 """
 
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(0)
 
 # Lucas Kanade Parameters
 lk_params = dict(
@@ -21,7 +21,10 @@ class LucasKanade:
     def execute():
         # get first frame of video
         _, frame1 = cap.read()
-
+        
+        if _ == False
+            break
+        
         # convert frame to grayscale
         frame1_gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
         x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 7)
