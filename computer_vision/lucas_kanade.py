@@ -21,7 +21,6 @@ class LucasKanade:
     def execute():
         # get first frame of video
         ret, frame1 = cap.read()
-        
         if ret:
             # convert frame to grayscale
             frame1_gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
