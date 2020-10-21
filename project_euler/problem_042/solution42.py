@@ -30,7 +30,7 @@ def solution():
     wordsFilePath = os.path.join(script_dir, "words.txt")
 
     words = ""
-    with open(wordsFilePath, "r") as f:
+    with open(wordsFilePath) as f:
         words = f.readline()
 
     words = list(map(lambda word: word.strip('"'), words.strip("\r\n").split(",")))

@@ -114,7 +114,7 @@ def solution():
                     if (
                         abs(candidate[i] - candidate[j])
                         == abs(candidate[j] - candidate[k])
-                        and len(set([candidate[i], candidate[j], candidate[k]])) == 3
+                        and len({candidate[i], candidate[j], candidate[k]}) == 3
                     ):
                         passed.append(
                             sorted([candidate[i], candidate[j], candidate[k]])

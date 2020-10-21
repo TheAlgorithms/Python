@@ -251,7 +251,7 @@ def ReportGenerator(
                     lambda x: np.mean(
                         np.nan_to_num(
                             sorted(x)[
-                                round((len(x) * 25 / 100)) : round(len(x) * 75 / 100)
+                                round(len(x) * 25 / 100) : round(len(x) * 75 / 100)
                             ]
                         )
                     ),

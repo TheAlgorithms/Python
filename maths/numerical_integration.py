@@ -62,5 +62,5 @@ if __name__ == "__main__":
     i = 10
     while i <= 100000:
         area = trapezoidal_area(f, -5, 5, i)
-        print("with {} steps: {}".format(i, area))
+        print(f"with {i} steps: {area}")
         i *= 10
