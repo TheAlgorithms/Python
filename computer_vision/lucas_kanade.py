@@ -37,7 +37,9 @@ class LucasKanade:
             _, frame2 = cap.read()
             frame2 = cv2.medianBlur(frame2, 5)
             frame2_gray = cv2.cvtColor(frame2, cv2.COLOR_BGR2GRAY)
-            y, st, error = cv2.calcOpticalFlowPyrLK(frame1_gray, frame2_gray, x, None, **lk_params)
+            y, st, error = cv2.calcOpticalFlowPyrLK(
+                frame1_gray, frame2_gray, x, None, **lk_params
+            )
 
             for j, (new, old) in enumerate(zip(y, x)):
                 a, b = new.ravel()
@@ -56,7 +58,7 @@ class LucasKanade:
             if img is not None:
                 cv2.imshow("Video", img)
                 key = cv2.waitKey(1)
-                if key & 0xff == ord("q"):
+                if key & 0xFF == ord("q"):
                     break
 
             # update the new values
