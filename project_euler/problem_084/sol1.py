@@ -78,9 +78,7 @@ def solution(number_of_turns: int = 10 ** 6, number_of_dice_faces: int = 4):
     doubles_counter = 0
     for turn in range(number_of_turns):
         # print(turn)
-        dices = [
-            randrange(1, number_of_dice_faces + 1) for _ in range(number_of_dices)
-        ]
+        dices = [randrange(1, number_of_dice_faces + 1) for _ in range(number_of_dices)]
 
         if dices[0] == dices[1]:
             doubles_counter += 1
@@ -151,4 +149,3 @@ if __name__ == "__main__":
     # for _ in range(10):
     #     print(f"{solution(10 ** 6, 4) = }")
     print(f"{solution() = }")
-    
