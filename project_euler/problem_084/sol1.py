@@ -51,7 +51,7 @@ def solution(number_of_turns: int = 10 ** 6, number_of_dice_faces: int = 4):
     Returns:
         (str): The concatenation of the 3 most popular squares. For a game with a
         6-sided dice it'd be '102400'. Jail (10), E3 (24) and Go (00).
-    
+
     >>> solution(5 * 10 ** 7, 6)
     '102400'
     >>> solution(10 ** 6, 4)
