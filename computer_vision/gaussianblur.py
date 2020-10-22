@@ -4,14 +4,14 @@ More information on:
 https://en.wikipedia.org/wiki/Gaussian_blur
 """
 
-import numpy as np
 import cv2
+import numpy as np
 
 
 def gaussian_blur(size, img, sigma=1):
 
     size = int(size) // 2
-    x1, y1 = np.mgrid[-size: size + 1, -size: size + 1]
+    x1, y1 = np.mgrid[-size : size + 1, -size : size + 1]
     constant = 1 / (2.0 * np.pi * sigma ** 2)
     gaussian = np.exp(-((x1 ** 2 + y1 ** 2) / (2.0 * sigma ** 2))) * constant
     blurred = cv2.filter2D(img, -1, gaussian)
