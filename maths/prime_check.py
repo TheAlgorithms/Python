@@ -4,7 +4,7 @@ import math
 import unittest
 
 
-def prime_check(number):
+def prime_check(number: int) -> bool:
     """Checks to see if a number is a prime.
 
     A number is prime if it has exactly two factors: 1 and itself.
@@ -36,14 +36,16 @@ class Test(unittest.TestCase):
 
     def test_not_primes(self):
         self.assertFalse(
-            prime_check(-19), "Negative numbers are excluded by definition of prime numbers.")
-        self.assertFalse(
-            prime_check(
-                0), "Zero doesn't have any positive factors, primes must have exactly two."
+            prime_check(-19),
+            "Negative numbers are excluded by definition of prime numbers.",
         )
         self.assertFalse(
-            prime_check(
-                1), "One only has 1 positive factor, primes must have exactly two."
+            prime_check(0),
+            "Zero doesn't have any positive factors, primes must have exactly two.",
+        )
+        self.assertFalse(
+            prime_check(1),
+            "One only has 1 positive factor, primes must have exactly two.",
         )
         self.assertFalse(prime_check(2 * 2))
         self.assertFalse(prime_check(2 * 3))
