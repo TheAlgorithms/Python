@@ -13,12 +13,6 @@ def metric_units_bmi(kg: int, cm: int) -> int:
     return round(kg / metre_square, 2)
 
 
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-
 def us_units_bmi(pounds: int, inches: int) -> int:
     """
     Convert mass in pounds and height in inches to Body Mass Index
