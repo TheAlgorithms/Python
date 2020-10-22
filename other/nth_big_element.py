@@ -7,8 +7,8 @@ def find_nth_largest(nums: list, k: int) -> int:
     17
     """
     nums = list(dict.fromkeys(nums))
-    nums.sort(reverse = True)
-    return nums[k-1]
+    nums.sort(reverse=True)
+    return nums[k - 1]
 
 
 if __name__ == "__main__":
