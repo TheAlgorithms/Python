@@ -1,7 +1,7 @@
 """
 Python implementation of the breadth-first search algorithm for pathfinding.
 
-Find an explanation of this algorithm here: 
+Find an explanation of this algorithm here:
 https://en.wikipedia.org/wiki/Breadth-first_search
 
 Also included is a simple node class, maze generation and maze visualisation
@@ -11,8 +11,8 @@ For doctest testing run: python3 -m doctest -v breadth_first_search.py
 
 For manual testing and visualisation run: python3 breadth_first_search.py
 """
-import random
 import queue
+import random
 
 
 class Node:
