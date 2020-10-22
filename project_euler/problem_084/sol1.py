@@ -22,8 +22,8 @@ perform it's action, and enqueue it again on the queue.
 When ending the turn count the ending position in the squares array
 (squares[current_position] += 1).
 """
-from random import randrange, shuffle
 from collections import deque
+from random import randrange, shuffle
 
 
 class CardsDeck:
@@ -53,9 +53,9 @@ def solution(number_of_turns: int = 10 ** 6, number_of_dice_faces: int = 4):
         6-sided dice it'd be '102400'. Jail (10), E3 (24) and Go (00).
     
     >>> solution(5 * 10 ** 7, 6)
-    102400
+    '102400'
     >>> solution(10 ** 6, 4)
-    101524
+    '101524'
     """
     # Game constants
     cc = [0, 10] + [""] * 14
@@ -78,10 +78,8 @@ def solution(number_of_turns: int = 10 ** 6, number_of_dice_faces: int = 4):
     doubles_counter = 0
     for turn in range(number_of_turns):
         # print(turn)
-        # dices = [randrange(1, number_of_dice_faces + 1) for _ in range(number_of_dices)]
         dices = [
-            randrange(1, number_of_dice_faces + 1),
-            randrange(1, number_of_dice_faces + 1),
+            randrange(1, number_of_dice_faces + 1) for _ in range(number_of_dices)
         ]
 
         if dices[0] == dices[1]:
@@ -119,8 +117,8 @@ def solution(number_of_turns: int = 10 ** 6, number_of_dice_faces: int = 4):
                         elif position == 36:  # Third CH
                             position = 5
                     elif ch_card == "Next U":
-                        # The only of getting in the 28rh utility is by getting the change
-                        # card from the 22th position
+                        # The only of getting in the 28rh utility is by getting the
+                        # change card from the 22th position
                         if position == 22:
                             position = 28
                         else:
@@ -153,3 +151,4 @@ if __name__ == "__main__":
     # for _ in range(10):
     #     print(f"{solution(10 ** 6, 4) = }")
     print(f"{solution() = }")
+    
