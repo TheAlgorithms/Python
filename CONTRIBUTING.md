@@ -35,7 +35,7 @@ An Algorithm is one or more functions (or classes) that:
 * return one or more outputs,
 * have minimal side effects (Ex. print(), plot(), read(), write()).
 
-Algorithms should be packaged in a way that would make it easy for readers to put them into larger programs.
+Algorithms should be packaged in a way that would make it easy for readers to put them into larger programs.An algorithm is a step by step procedure to solve logical and mathematical problems
 
 Algorithms should:
 * have intuitive class and function names that make their purpose clear to readers
