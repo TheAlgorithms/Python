@@ -1,10 +1,9 @@
 from typing import Iterable, List, Union
 
 
-
 class Heap:
     """A Max Heap Implementation
-    
+
     >>> unsorted = [103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5]
     >>> h = Heap()
     >>> h.build_max_heap(unsorted)
