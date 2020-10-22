@@ -19,6 +19,17 @@ lk_params = dict(
 class LucasKanade:
     @staticmethod
     def execute():
+
+        """
+        Detects motion in between frames of a video and draws a line between the two
+        coordinate points of different frames.
+
+        frame1 and frame2 are the two images taken at time i=1 and i=2 respectively.
+        x and y are the point coordinates of the two frames. It tracks the features
+        of the first frame(x) and the second frame(y) and draws a line between them
+        for every two consecutive frames.
+        """
+
         # get first frame of video
         ret, frame1 = cap.read()
         if ret:
@@ -27,6 +38,7 @@ class LucasKanade:
             x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 7)
             lin = np.zeros_like(frame1)
             i = 0
+
             while True:
                 i = i + 1
                 val, frame2 = cap.read()
@@ -37,12 +49,14 @@ class LucasKanade:
                 y, st, error = cv2.calcOpticalFlowPyrLK(
                     frame1_gray, frame2_gray, x, None, **lk_params
                 )
+
                 for j, (new, old) in enumerate(zip(y, x)):
                     a, b = new.ravel()
                     c, d = old.ravel()
                     frame2 = cv2.circle(frame2, (a, b), 5, (0, 0, 255), -1)
                     frame2 = cv2.circle(frame2, (c, d), 5, (255, 0, 0), -1)
                     lin = cv2.line(lin, (a, b), (c, d), (0, 255, 0), 2)
+
                 if i == 2:
                     # Draw line for every 2 frames
                     lin = np.zeros_like(frame1)
@@ -54,6 +68,7 @@ class LucasKanade:
                     key = cv2.waitKey(1)
                     if key & 0xFF == ord("q"):
                         break
+
                 # update the new values
                 frame1_gray = np.copy(frame2_gray)
                 x = cv2.goodFeaturesToTrack(frame1_gray, 200, 0.01, 10, None, None, 10)
