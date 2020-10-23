@@ -50,7 +50,7 @@ def solution(limit: int = 1_000_000):
 
     >>> solution(100)
     41
-    >> solution(1000)
+    >>> solution(1000)
     953
     """
     prime_number = 0 #result
