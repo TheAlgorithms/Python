@@ -7,7 +7,7 @@ from itertools import permutations
 
 
 def solution():
-    """ 
+    """
     >>> solution()
     '2783915460'
     """
