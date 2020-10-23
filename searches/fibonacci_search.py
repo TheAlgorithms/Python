@@ -1,51 +1,129 @@
-# run using python fibonacci_search.py -v
-
 """
-@params
-arr: input array
-val: the value to be searched
-output: the index of element in the array or -1 if not found
-return 0 if input array is empty
+This is pure Python implementation of fibonacci search.
+
+Resources used:
+https://en.wikipedia.org/wiki/Fibonacci_search_technique
+
+For doctests run following command:
+python3 -m doctest -v fibonacci_search.py
+
+For manual testing run:
+python3 fibonacci_search.py
 """
+from functools import lru_cache
 
 
-def fibonacci_search(arr, val):
+@lru_cache()
+def fibonacci(k: int) -> int:
+    """Finds fibonacci number in index k.
 
-    """
-    >>> fibonacci_search([1,6,7,0,0,0], 6)
-    1
-    >>> fibonacci_search([1,-1, 5, 2, 9], 10)
-    -1
-    >>> fibonacci_search([], 9)
+    Parameters
+    ----------
+    k :
+        Index of fibonacci.
+
+    Returns
+    -------
+    int
+        Fibonacci number in position k.
+
+    >>> fibonacci(0)
     0
+    >>> fibonacci(2)
+    1
+    >>> fibonacci(5)
+    5
+    >>> fibonacci(15)
+    610
+    >>> fibonacci('a')
+    Traceback (most recent call last):
+    TypeError: k must be an integer.
+    >>> fibonacci(-5)
+    Traceback (most recent call last):
+    ValueError: k integer must be greater or equal to zero.
     """
-    fib_N_2 = 0
-    fib_N_1 = 1
-    fibNext = fib_N_1 + fib_N_2
-    length = len(arr)
-    if length == 0:
+    if not isinstance(k, int):
+        raise TypeError("k must be an integer.")
+    if k < 0:
+        raise ValueError("k integer must be greater or equal to zero.")
+    if k == 0:
         return 0
-    while fibNext < len(arr):
-        fib_N_2 = fib_N_1
-        fib_N_1 = fibNext
-        fibNext = fib_N_1 + fib_N_2
-    index = -1
-    while fibNext > 1:
-        i = min(index + fib_N_2, (length - 1))
-        if arr[i] < val:
-            fibNext = fib_N_1
-            fib_N_1 = fib_N_2
-            fib_N_2 = fibNext - fib_N_1
-            index = i
-        elif arr[i] > val:
-            fibNext = fib_N_2
-            fib_N_1 = fib_N_1 - fib_N_2
-            fib_N_2 = fibNext - fib_N_1
-        else:
-            return i
-    if (fib_N_1 and index < length - 1) and (arr[index + 1] == val):
-        return index + 1
-    return -1
+    elif k == 1:
+        return 1
+    else:
+        return fibonacci(k - 1) + fibonacci(k - 2)
+
+
+def fibonacci_search(arr: list, val: int) -> int:
+    """A pure Python implementation of a fibonacci search algorithm.
+
+    Parameters
+    ----------
+    arr
+        List of sorted elements.
+    val
+        Element to search in list.
+
+    Returns
+    -------
+    int
+        The index of the element in the array.
+        -1 if the element is not found.
+
+    >>> fibonacci_search([4, 5, 6, 7], 4)
+    0
+    >>> fibonacci_search([4, 5, 6, 7], -10)
+    -1
+    >>> fibonacci_search([-18, 2], -18)
+    0
+    >>> fibonacci_search([5], 5)
+    0
+    >>> fibonacci_search(['a', 'c', 'd'], 'c')
+    1
+    >>> fibonacci_search(['a', 'c', 'd'], 'f')
+    -1
+    >>> fibonacci_search([], 1)
+    -1
+    >>> fibonacci_search([.1, .4 , 7], .4)
+    1
+    >>> fibonacci_search([], 9)
+    -1
+    >>> fibonacci_search(list(range(100)), 63)
+    63
+    >>> fibonacci_search(list(range(100)), 99)
+    99
+    >>> fibonacci_search(list(range(-100, 100, 3)), -97)
+    1
+    >>> fibonacci_search(list(range(-100, 100, 3)), 0)
+    -1
+    >>> fibonacci_search(list(range(-100, 100, 5)), 0)
+    20
+    >>> fibonacci_search(list(range(-100, 100, 5)), 95)
+    39
+    """
+    len_list = len(arr)
+    # Find m such that F_m >= n where F_i is the i_th fibonacci number.
+    i = 0
+    while True:
+        if fibonacci(i) >= len_list:
+            fibb_k = i
+            break
+        i += 1
+    offset = 0
+    while fibb_k > 0:
+        index_k = min(
+            offset + fibonacci(fibb_k - 1), len_list - 1
+        )  # Prevent out of range
+        item_k_1 = arr[index_k]
+        if item_k_1 == val:
+            return index_k
+        elif val < item_k_1:
+            fibb_k -= 1
+        elif val > item_k_1:
+            offset += fibonacci(fibb_k - 1)
+            fibb_k -= 2
+    else:
+        return -1
 
 
 if __name__ == "__main__":
