@@ -1,11 +1,11 @@
 """
 __author__ = "Utkarsh Singh"
-"""
-"""
+
 This is a Python program to reverse a stack using recursion.
 Problem Description
 The program creates a stack and allows the user to perform push and pop operations on it.
 """
+
 """
 Create a class Stack with instance variable items initialized to an empty list.
 """
