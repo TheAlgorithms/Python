@@ -7,7 +7,7 @@ What is the minimum candies you must give?
 Input Format:
     A list of Numbers representing children ratings.
 Output Format:
-    Minium number of candies to be given.
+    Minimum number of candies to be given.
 """
 
 
