@@ -18,7 +18,7 @@ possibilities great than given roll. Divide that by all possible rolls.
 
 from itertools import product
 
-def solution():
+def solution() -> float:
     """
     >>> solution()
     0.5731441
@@ -50,7 +50,7 @@ def solution():
                 count += (len(sums_four_sided) - num)
                 break
 
-    return format(count/(len(sums_six_sided)*len(sums_four_sided)), '.7')
+    return float(format(count/(len(sums_six_sided)*len(sums_four_sided)), '.7'))
 
 
 if __name__ == "__main__":
