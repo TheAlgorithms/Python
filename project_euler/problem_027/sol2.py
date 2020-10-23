@@ -37,6 +37,13 @@ from typing import Set
 
 
 def sieve(limit: int) -> Set[int]:
+    """
+    Return a set containing all the primes less than limit.
+    >>> sieve(10)
+    {2, 3, 5, 7}
+    >>> sieve(50)
+    {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47}
+    """
     primes = set(range(3, limit, 2))
     primes.add(2)
     p = 3
@@ -80,4 +87,4 @@ def solution(a_limit: int = 1000, b_limit: int = 1000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"solution() = {solution()}")
+    print(f"{solution() = }")
