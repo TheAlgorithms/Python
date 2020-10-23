@@ -15,27 +15,27 @@
 
 '''
 def find_minimum_change(V):
-  #store the value of v as an integer so that it can be used for comparision
+  #store value of v as an integer so that it can be used for comparision
     total_value =  int(V) 
    
     # All denominations of Indian Currency 
     denominations = [1, 2, 5, 10, 20, 50, 100, 500, 2000] 
-    #find the total length of the array so as to transverse the array in the following code
+    #find the total length of the array,to transverse the array 
     length = len(denominations)       
     # Initialize Result 
     answer = [] 
   
     # Traverse through all denominations
-    i = length - 1 # as the array values range from 0 to n-1 we initialize the value of i to n-1
-    while(i >= 0): #repeat until i is does not reach zero so as to lead to our answer
+    i = length - 1 # beacause array values range from 0 to n-1
+    while(i >= 0): #repeat until i does not reach 0 so as to lead to our answer
           
-        # Find denominations that will finally lead the "total_value" to zero giving us the set of values 
+        # Find denominations that will lead the "total_value" to zero giving us the set of values 
         while (int(total_value) >= int(denominations[i])):
-          #subtract the current denomination value from total_value if the denomination > current total_value
+          #if denomination > current total_value then (total_values - denominations[i])
             total_value -= int(denominations[i]) 
             answer.append(denominations[i])   #append the answer in the "answers" array
   
-        i -= 1 #decrement the i value so as to move to the lower denomination
+        i -= 1 #decrement i value to move to the lower denomination
   
     # Print result 
     for i in range(len(answer)): 
@@ -43,7 +43,8 @@ def find_minimum_change(V):
   
 # Driver Code 
 if __name__ == '__main__': 
-    n = input("Enter the change you want to make in Indian Currency: ") #get input from user to make the change they want
+   #get input from user to make the change they want
+    n = input("Enter the change you want to make in Indian Currency: ")
     if int(n) == 0 or int(n) < 0:  #it cannot be 0 or negetive
       print("The total value cannot be zero or negetive.")
     else:
