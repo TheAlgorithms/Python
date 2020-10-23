@@ -15,7 +15,8 @@
 
 '''
 def find_minimum_change(V):
-  #store value of v as an integer so that it can be used for comparision
+  #store value of v as an integer 
+  #so that it can be used for comparision
     total_value =  int(V) 
    
     # All denominations of Indian Currency 
@@ -27,9 +28,10 @@ def find_minimum_change(V):
   
     # Traverse through all denominations
     i = length - 1 # beacause array values range from 0 to n-1
-    while(i >= 0): #repeat until i does not reach 0 so as to lead to our answer
-          
-        # Find denominations that will lead the "total_value" to zero giving us the set of values 
+    
+    #repeat until i does not reach 0 so as to lead to our answer
+    while(i >= 0):           
+        # Find denominations that will lead the "total_value" to zero
         while (int(total_value) >= int(denominations[i])):
           #if denomination > current total_value then (total_values - denominations[i])
             total_value -= int(denominations[i]) 
