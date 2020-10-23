@@ -110,19 +110,20 @@ class BinarySearchTree:
     def get_height(self, node):
         r"""
         Param: node
-        -------- 
+        --------
         Returns: height
         --------
-        Height of a binary search tree is the number of nodes present in the longest path 
+        Height of a binary search tree is the number of nodes present in the longest path
         from the root node down to the farthest leaf node.
         --------
         Example
+
                   9
                  / \
                 3   10
                / \    \
               2   6    14
-                 / \   
+                 / \
                 4   7
 
         >>> bst = BinarySearchTree().insert(9, 3, 6, 2, 10, 14, 4, 7)
@@ -131,7 +132,7 @@ class BinarySearchTree:
         """
         if node is None:
             return 0
-        
+
         else:
 
             # get depth of each subtree, recursive apporach
