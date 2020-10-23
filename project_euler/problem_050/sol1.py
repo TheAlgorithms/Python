@@ -7,9 +7,11 @@ The prime 41, can be written as the sum of six consecutive primes:
 41 = 2 + 3 + 5 + 7 + 11 + 13
 This is the longest sum of consecutive primes that adds to a prime below one-hundred.
 
-The longest sum of consecutive primes below one-thousand that adds to a prime, contains 21 terms, and is equal to 953.
+The longest sum of consecutive primes below one-thousand that adds to a prime,
+contains 21 terms, and is equal to 953.
 
-Which prime, below one-million, can be written as the sum of the most consecutive primes?
+Which prime, below one-million, can be written as the sum of the most
+consecutive primes?
 """
 
 from typing import List
@@ -58,8 +60,8 @@ def solution(limit: int = 1_000_000) -> int:
 
     # Filter primes less than limit
     primes = prime_sieve(limit)
-    
-    # initalize is_prime
+
+    # initialize is_prime
     is_prime = {}
     for i in range(limit):
         is_prime[i] = False
@@ -68,7 +70,6 @@ def solution(limit: int = 1_000_000) -> int:
     for index, prime in enumerate(primes[1:]):
         partial_sum.append(partial_sum[index] + prime)
         is_prime[prime] = True
-
 
     best_answer_consecutive_primes_size = -1
     best_answer = -1
@@ -90,7 +91,6 @@ def solution(limit: int = 1_000_000) -> int:
                     best_answer = sum_of_consecutive_prime
 
     return best_answer
-
 
 
 if __name__ == "__main__":
