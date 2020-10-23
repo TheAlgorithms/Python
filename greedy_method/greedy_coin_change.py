@@ -37,7 +37,7 @@ def find_minimum_change(V):
 
 # Driver Code 
 if __name__ == '__main__': 
-    n = input("Enter the change you want to make in Indian Currency: ")
+    n = input("Enter the change you want to make in Indian Currency: ").strip()
     if int(n) == 0 or int(n) < 0:
       print("The total value cannot be zero or negetive.")
     else:
