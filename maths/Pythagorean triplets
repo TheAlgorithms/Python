@@ -1,0 +1,29 @@
+#Calculates the pythogorean triplets
+'''
+Every whole number can be represented in the form
+(x^2-1)^2 + (2x)^2 =  (x^2+1)^2
+Here each one of it is a pythagorean triplet
+
+Example
+Enter the number =5
+The pythogorean triplets are-3-4-5
+'''
+
+import math
+
+def py_triplets(a):
+    i = 2
+    while i<= math.ceil(a/2):
+        x = 2*i
+        y = i**2-1
+        z = i**2+1
+        if x==a or y==a or z==a:
+            l = [x,y,z]
+            l.sort()
+            print("The pythogorean triplets are",l[0],l[1],l[2],sep="-")
+            break
+        i+=1
+
+if __name__ == "__main__":
+    x = int(input("Enter the number ="))
+    py_triplets(x)
