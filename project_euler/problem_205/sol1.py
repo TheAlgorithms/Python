@@ -19,6 +19,11 @@ possibilities great than given roll. Divide that by all possible rolls.
 from itertools import product
 
 def solution():
+    """
+    >>> solution()
+    0.5731441
+    """
+
     #makes dice possibilities
     four_sided = list(product(range(1,5), repeat=9))
     six_sided = list(product(range(1,7), repeat=6))
