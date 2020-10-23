@@ -1,0 +1,27 @@
+from twitterscraper import query_tweets
+
+
+# All tweets matching either Trump or Clinton will be returned. You will get at
+# least 10 results within the minimal possible time/number of requests
+for tweet in query_tweets("Trump OR Clinton", 10)[:10]:
+    print(tweet.user.encode('utf-8'))
+
+
+    Tweet(user='@WiseFreeman', id='797020313569689601', timestamp='02:17 - 11. Oct. 2020', fullname='Solomon Freeman', text="Chinese Internet Companies Are In Danger After Trump's Victory http://fb.me/5NfxcdTn9\xa0")
+Tweet(user='@TheRoseBushes', id='797020313099927552', timestamp='02:17 - 11. Oct. 2020', fullname='The Rose Bushes', text='Democrats Wonder If Bernie Sanders Could Have Beaten Trump http://ift.tt/2fHyWDL\xa0')
+Tweet(user='@TvPrefeito', id='797020312869240833', timestamp='02:17 - 11. Oct. 2020', fullname='TvPrefeito', text='Na Casa Branca, Trump diz que vai pedir conselhos a Obama http://tinyurl.com/z97ll3c\xa0pic.twitter.com/aJeAjrldnM')
+Tweet(user='@portlandor_agen', id='797020312655241217', timestamp='02:17 - 11. Oct. 2020', fullname='Portland Agent', text='Portland Police Say Anti-Trump Protest Is &#039;Riot&#039; #donald https://dragplus.com/post/id/38524480\xa0…')
+Tweet(user='@rpsmybb', id='797020312084905984', timestamp='02:17 - 11. Oct. 2020', fullname='Павел Афонин', text='Electoral College Electors: Electoral College Make Hillary Clinton President on December 19 - Подпишите петицию! http://fb.me/Rlv2qfWH\xa0')
+Tweet(user='@Shane_Conneely', id='797020312038703104', timestamp='02:17 - 11. Oct. 2020', fullname='Shane Conneely', text="#Trump's public works scheme has odd historical symmetries, ironically tea-party fear of big gov spending may be the only restraint on him")
+Tweet(user='@LavakyMohammed', id='797020311220785152', timestamp='02:17 - 11. Oct. 2020', fullname='Lavaky Mohammed', text='Usa-Un extrémiste Sioniste , milicien de Soros et anti Trump ! pic.twitter.com/PTDag2eQbO')
+Tweet(user='@Isethoriginal', id='797020310641983489', timestamp='02:17 - 11. Oct. 2020', fullname='Iseth Goldstein', text='Just curious: If SJW are convinced Trump is a dictator, will they still be eager to repeal the 2nd amendment? Or will they buy mass ammo?')
+Tweet(user='@italianfood_age', id='797020310134525952', timestamp='02:17 - 11. Oct. 2020', fullname='Italian Food agent', text='Portland Police Say Anti-Trump Protest Is &#039;Riot&#039; #donald https://dragplus.com/post/id/38524480\xa0…')
+Tweet(user='@laurac2605', id='797020310113570817', timestamp='02:17 - 11. Oct. 2020', fullname='Laura Ceccato', 
+text='Why Clinton’s identity politics backfired http://www.spiked-online.com/newsite/article/why-clintons-identity-politics-backfired-trump-election/18960#.WCWah68m09A.twitter\xa0…  very interesting article')
+
+
+
+		
+		
+		
+		
