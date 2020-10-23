@@ -13,7 +13,7 @@ total is above it.
 
 import math  
 
-def solution():
+def solution() -> int:
     """
     >>> solution()
     1389019170
