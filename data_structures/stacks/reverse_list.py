@@ -37,7 +37,8 @@ class Stack:
         for data in reversed(self.items):
             print(data)
     """
-    Define function insert_at_bottom which takes a stack and a data item as arguments. The function insert_at_bottom adds the data item to the bottom of the stack using recursion.
+    Define function insert_at_bottom which takes a stack and a data item as arguments.
+    The function insert_at_bottom adds the data item to the bottom of the stack using recursion.
     """
 def insert_at_bottom(s, data):
     if s.is_empty():
@@ -48,7 +49,8 @@ def insert_at_bottom(s, data):
         s.push(popped)
  
     """
-    Define function reverse_stack which takes a stack as argument. The function reverse_stack reverses the stack using recursion.
+    Define function reverse_stack which takes a stack as argument.
+    The function reverse_stack reverses the stack using recursion.
     """
 def reverse_stack(s):
     if not s.is_empty():
