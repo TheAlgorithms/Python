@@ -39,6 +39,7 @@ def check_zeros(degree_sequence):
 def havel_hakimi(degree_sequence):
     '''
     The Havel-Hakimi algorithm determines if a graph exists given a degree sequence
+    https://en.wikipedia.org/wiki/Havel%E2%80%93Hakimi_algorithm
 
     Args:
         degree_sequence (list of ints): sequence of the number of edges each vertex has
