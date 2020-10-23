@@ -25,19 +25,20 @@ def solution():
     while True:
         add += 2
         total += add
-        if total > 1020304050607080900 and \
-            int(str(total)[-1]) == 0 and \
-            int(str(total)[-3]) == 9 and \
-            int(str(total)[-5]) == 8 and \
-            int(str(total)[-7]) == 7 and \
-            int(str(total)[-9]) == 6 and \
-            int(str(total)[-11]) == 5 and \
-            int(str(total)[-13]) == 4 and \
-            int(str(total)[-15]) == 3 and \
-            int(str(total)[-17]) == 2 and \
-            int(str(total)[-19]) == 1:
+        if total > 1020304050607080900:
+            num = str(total)
+            if int(num[-1]) == 0:
+                if int(num[-3]) == 9:
+                    if int(num[-5]) == 8:
+                        if int(num[-7]) == 7:
+                            if int(num[-9]) == 6:
+                                if int(num[-11]) == 5:
+                                    if int(num[-13]) == 4:
+                                        if int(num[-15]) == 3:
+                                            if int(num[-17]) == 2:
+                                                if int(num[-19]) == 1:
+                                                    break
 
-            break
     return int(math.sqrt(total))
     
 if __name__ == "__main__":
