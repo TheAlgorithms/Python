@@ -1,18 +1,15 @@
-"""
-There are N children standing in a line. Each child is assigned a rating value.
-You are giving candies to these children subjected to the following requirements:
-    1. Each child must have at least one candy.
-    2. Children with a higher rating get more candies than their neighbors.
-What is the minimum candies you must give?
-Input Format:
-    A list of Numbers representing children ratings.
-Output Format:
-    Minimum number of candies to be given.
-"""
-
-
 def distribute_candy(children_ratings: list) -> int:
     """
+    There are N children standing in a line. Each child is assigned a rating value.
+    You are giving candies to these children subjected to the following requirements:
+        1. Each child must have at least one candy.
+        2. Children with a higher rating get more candies than their neighbors.
+    What is the minimum candies you must give?
+    Input Format:
+        A list of Numbers representing children ratings.
+    Output Format:
+        Minimum number of candies to be given.
+
     children_ratings = [1, 2]
     >>> 3
     children_ratings = [1, 5, 2, 1]
