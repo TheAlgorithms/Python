@@ -107,7 +107,7 @@ class BinarySearchTree:
                 node = node.left
         return node
 
-    def get_height(self, node):
+    def get_height(self, node) -> int:
         r"""
         Param: node
         --------
