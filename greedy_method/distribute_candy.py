@@ -9,7 +9,6 @@ def distribute_candy(children_ratings: list) -> int:
         A list of Numbers representing children ratings.
     Output Format:
         Minimum number of candies to be given.
-        
     children_ratings = [1, 2]
     >>> 3
     children_ratings = [1, 5, 2, 1]
