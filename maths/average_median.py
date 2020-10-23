@@ -6,6 +6,8 @@ def median(nums):
     0
     >>> median([4,1,3,2])
     2.5
+    >>> median([2, 70, 6, 50, 20, 8, 4])
+    8
 
     Args:
         nums: List of nums
@@ -14,22 +16,19 @@ def median(nums):
         Median.
     """
     sorted_list = sorted(nums)
-    med = None
-    if len(sorted_list) % 2 == 0:
-        mid_index_1 = len(sorted_list) // 2
-        mid_index_2 = (len(sorted_list) // 2) - 1
-        med = (sorted_list[mid_index_1] + sorted_list[mid_index_2]) / float(2)
-    else:
-        mid_index = (len(sorted_list) - 1) // 2
-        med = sorted_list[mid_index]
-    return med
+    length = len(sorted_list)
+    mid_index = length >> 1
+    return (
+        (sorted_list[mid_index] + sorted_list[mid_index - 1]) / 2
+        if length % 2 == 0
+        else sorted_list[mid_index]
+    )
 
 
 def main():
-    print("Odd number of numbers:")
-    print(median([2, 4, 6, 8, 20, 50, 70]))
-    print("Even number of numbers:")
-    print(median([2, 4, 6, 8, 20, 50]))
+    import doctest
+
+    doctest.testmod()
 
 
 if __name__ == "__main__":

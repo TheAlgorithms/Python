@@ -1,5 +1,10 @@
-import random, sys, os
-import rabin_miller as rabinMiller, cryptomath_module as cryptoMath
+import os
+import random
+import sys
+from typing import Tuple
+
+from . import cryptomath_module as cryptoMath
+from . import rabin_miller as rabinMiller
 
 
 def main():
@@ -8,7 +13,7 @@ def main():
     print("Key files generation successful.")
 
 
-def generateKey(keySize):
+def generateKey(keySize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     print("Generating prime p...")
     p = rabinMiller.generateLargePrime(keySize)
     print("Generating prime q...")
@@ -29,25 +34,26 @@ def generateKey(keySize):
     return (publicKey, privateKey)
 
 
-def makeKeyFiles(name, keySize):
+def makeKeyFiles(name: int, keySize: int) -> None:
     if os.path.exists("%s_pubkey.txt" % (name)) or os.path.exists(
         "%s_privkey.txt" % (name)
     ):
         print("\nWARNING:")
         print(
-            '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \nUse a different name or delete these files and re-run this program.'
+            '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \n'
+            "Use a different name or delete these files and re-run this program."
             % (name, name)
         )
         sys.exit()
 
     publicKey, privateKey = generateKey(keySize)
     print("\nWriting public key to file %s_pubkey.txt..." % name)
-    with open("%s_pubkey.txt" % name, "w") as fo:
-        fo.write("%s,%s,%s" % (keySize, publicKey[0], publicKey[1]))
+    with open("%s_pubkey.txt" % name, "w") as out_file:
+        out_file.write("{},{},{}".format(keySize, publicKey[0], publicKey[1]))
 
     print("Writing private key to file %s_privkey.txt..." % name)
-    with open("%s_privkey.txt" % name, "w") as fo:
-        fo.write("%s,%s,%s" % (keySize, privateKey[0], privateKey[1]))
+    with open("%s_privkey.txt" % name, "w") as out_file:
+        out_file.write("{},{},{}".format(keySize, privateKey[0], privateKey[1]))
 
 
 if __name__ == "__main__":

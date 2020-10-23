@@ -1,7 +1,7 @@
 # Finding Bridges in Undirected Graph
-def computeBridges(l):
+def computeBridges(graph):
     id = 0
-    n = len(l)  # No of vertices in graph
+    n = len(graph)  # No of vertices in graph
     low = [0] * n
     visited = [False] * n
 
@@ -9,7 +9,7 @@ def computeBridges(l):
         visited[at] = True
         low[at] = id
         id += 1
-        for to in l[at]:
+        for to in graph[at]:
             if to == parent:
                 pass
             elif not visited[to]:
@@ -28,7 +28,7 @@ def computeBridges(l):
     print(bridges)
 
 
-l = {
+graph = {
     0: [1, 2],
     1: [0, 2],
     2: [0, 1, 3, 5],
@@ -39,4 +39,4 @@ l = {
     7: [6, 8],
     8: [5, 7],
 }
-computeBridges(l)
+computeBridges(graph)

@@ -10,10 +10,10 @@ without needing to store any additional data except the position of the first
 original character. The BWT is thus a "free" method of improving the efficiency
 of text compression algorithms, costing only some extra computation.
 """
-from typing import List, Dict
+from __future__ import annotations
 
 
-def all_rotations(s: str) -> List[str]:
+def all_rotations(s: str) -> list[str]:
     """
     :param s: The string that will be rotated len(s) times.
     :return: A list with the rotations.
@@ -43,7 +43,7 @@ def all_rotations(s: str) -> List[str]:
     return [s[i:] + s[:i] for i in range(len(s))]
 
 
-def bwt_transform(s: str) -> Dict:
+def bwt_transform(s: str) -> dict:
     """
     :param s: The string that will be used at bwt algorithm
     :return: the string composed of the last char of each row of the ordered
@@ -135,16 +135,14 @@ def reverse_bwt(bwt_string: str, idx_original_string: int) -> str:
         idx_original_string = int(idx_original_string)
     except ValueError:
         raise TypeError(
-            (
-                "The parameter idx_original_string type must be int or passive"
-                " of cast to int."
-            )
+            "The parameter idx_original_string type must be int or passive"
+            " of cast to int."
         )
     if idx_original_string < 0:
         raise ValueError("The parameter idx_original_string must not be lower than 0.")
     if idx_original_string >= len(bwt_string):
         raise ValueError(
-            ("The parameter idx_original_string must be lower than" " len(bwt_string).")
+            "The parameter idx_original_string must be lower than" " len(bwt_string)."
         )
 
     ordered_rotations = [""] * len(bwt_string)
@@ -159,11 +157,11 @@ if __name__ == "__main__":
     entry_msg = "Provide a string that I will generate its BWT transform: "
     s = input(entry_msg).strip()
     result = bwt_transform(s)
-    bwt_output_msg = "Burrows Wheeler tranform for string '{}' results in '{}'"
+    bwt_output_msg = "Burrows Wheeler transform for string '{}' results in '{}'"
     print(bwt_output_msg.format(s, result["bwt_string"]))
     original_string = reverse_bwt(result["bwt_string"], result["idx_original_string"])
     fmt = (
-        "Reversing Burrows Wheeler tranform for entry '{}' we get original"
+        "Reversing Burrows Wheeler transform for entry '{}' we get original"
         " string '{}'"
     )
     print(fmt.format(result["bwt_string"], original_string))

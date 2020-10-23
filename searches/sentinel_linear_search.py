@@ -1,5 +1,5 @@
 """
-This is pure python implementation of sentinel linear search algorithm
+This is pure Python implementation of sentinel linear search algorithm
 
 For doctests run following command:
 python -m doctest -v sentinel_linear_search.py
@@ -53,6 +53,6 @@ if __name__ == "__main__":
     target = int(target_input)
     result = sentinel_linear_search(sequence, target)
     if result is not None:
-        print("{} found at positions: {}".format(target, result))
+        print(f"{target} found at positions: {result}")
     else:
         print("Not found")

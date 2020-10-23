@@ -23,7 +23,7 @@ def findMin(arr):
                 dp[i][j] = dp[i][j] or dp[i - 1][j - arr[i - 1]]
 
     for j in range(int(s / 2), -1, -1):
-        if dp[n][j] == True:
+        if dp[n][j] is True:
             diff = s - 2 * j
             break
 

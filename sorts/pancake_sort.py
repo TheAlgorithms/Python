@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the pancake sort algorithm
+This is a pure Python implementation of the pancake sort algorithm
 For doctests run following command:
 python3 -m doctest -v pancake_sort.py
 or

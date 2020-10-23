@@ -1,5 +1,5 @@
 """
-This is pure python implementation of counting sort algorithm
+This is pure Python implementation of counting sort algorithm
 For doctests run following command:
 python -m doctest -v counting_sort.py
 or

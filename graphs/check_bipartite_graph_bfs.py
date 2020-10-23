@@ -1,21 +1,22 @@
 # Check whether Graph is Bipartite or Not using BFS
 
+
 # A Bipartite Graph is a graph whose vertices can be divided into two independent sets,
 # U and V such that every edge (u, v) either connects a vertex from U to V or a vertex
 # from V to U. In other words, for every edge (u, v), either u belongs to U and v to V,
 # or u belongs to V and v to U. We can also say that there is no edge that connects
 # vertices of same set.
-def checkBipartite(l):
+def checkBipartite(graph):
     queue = []
-    visited = [False] * len(l)
-    color = [-1] * len(l)
+    visited = [False] * len(graph)
+    color = [-1] * len(graph)
 
     def bfs():
         while queue:
             u = queue.pop(0)
             visited[u] = True
 
-            for neighbour in l[u]:
+            for neighbour in graph[u]:
 
                 if neighbour == u:
                     return False
@@ -29,16 +30,16 @@ def checkBipartite(l):
 
         return True
 
-    for i in range(len(l)):
+    for i in range(len(graph)):
         if not visited[i]:
             queue.append(i)
             color[i] = 0
-            if bfs() == False:
+            if bfs() is False:
                 return False
 
     return True
 
 
-# Adjacency List of graph
-l = {0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}
-print(checkBipartite(l))
+if __name__ == "__main__":
+    # Adjacency List of graph
+    print(checkBipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))

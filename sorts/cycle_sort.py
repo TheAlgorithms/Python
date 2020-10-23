@@ -1,52 +1,53 @@
-# Code contributed by Honey Sharma
-def cycle_sort(array):
-    ans = 0
+"""
+Code contributed by Honey Sharma
+Source: https://en.wikipedia.org/wiki/Cycle_sort
+"""
 
-    # Pass through the array to find cycles to rotate.
-    for cycleStart in range(0, len(array) - 1):
-        item = array[cycleStart]
 
-        # finding the position for putting the item.
-        pos = cycleStart
-        for i in range(cycleStart + 1, len(array)):
+def cycle_sort(array: list) -> list:
+    """
+    >>> cycle_sort([4, 3, 2, 1])
+    [1, 2, 3, 4]
+
+    >>> cycle_sort([-4, 20, 0, -50, 100, -1])
+    [-50, -4, -1, 0, 20, 100]
+
+    >>> cycle_sort([-.1, -.2, 1.3, -.8])
+    [-0.8, -0.2, -0.1, 1.3]
+
+    >>> cycle_sort([])
+    []
+    """
+    array_len = len(array)
+    for cycle_start in range(0, array_len - 1):
+        item = array[cycle_start]
+
+        pos = cycle_start
+        for i in range(cycle_start + 1, array_len):
             if array[i] < item:
                 pos += 1
 
-        # If the item is already present-not a cycle.
-        if pos == cycleStart:
+        if pos == cycle_start:
             continue
 
-        # Otherwise, put the item there or right after any duplicates.
         while item == array[pos]:
             pos += 1
+
         array[pos], item = item, array[pos]
-        ans += 1
-
-        # Rotate the rest of the cycle.
-        while pos != cycleStart:
-
-            # Find where to put the item.
-            pos = cycleStart
-            for i in range(cycleStart + 1, len(array)):
+        while pos != cycle_start:
+            pos = cycle_start
+            for i in range(cycle_start + 1, array_len):
                 if array[i] < item:
                     pos += 1
 
-            # Put the item there or right after any duplicates.
             while item == array[pos]:
                 pos += 1
+
             array[pos], item = item, array[pos]
-            ans += 1
 
-    return ans
+    return array
 
 
-#  Main Code starts here
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n")
-    unsorted = [int(item) for item in user_input.split(",")]
-    n = len(unsorted)
-    cycle_sort(unsorted)
-
-    print("After sort : ")
-    for i in range(0, n):
-        print(unsorted[i], end=" ")
+    assert cycle_sort([4, 5, 3, 2, 1]) == [1, 2, 3, 4, 5]
+    assert cycle_sort([0, 1, -10, 15, 2, -2]) == [-10, -2, 0, 1, 2, 15]

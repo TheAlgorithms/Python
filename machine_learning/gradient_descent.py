@@ -1,5 +1,6 @@
 """
-Implementation of gradient descent algorithm for minimizing cost of a linear hypothesis function.
+Implementation of gradient descent algorithm for minimizing cost of a linear hypothesis
+function.
 """
 import numpy
 
@@ -75,7 +76,8 @@ def summation_of_cost_derivative(index, end=m):
     :param index: index wrt derivative is being calculated
     :param end: value where summation ends, default is m, number of examples
     :return: Returns the summation of cost derivative
-    Note: If index is -1, this means we are calculating summation wrt to biased parameter.
+    Note: If index is -1, this means we are calculating summation wrt to biased
+        parameter.
     """
     summation_value = 0
     for i in range(end):
@@ -90,7 +92,8 @@ def get_cost_derivative(index):
     """
     :param index: index of the parameter vector wrt to derivative is to be calculated
     :return: derivative wrt to that index
-    Note: If index is -1, this means we are calculating summation wrt to biased parameter.
+    Note: If index is -1, this means we are calculating summation wrt to biased
+        parameter.
     """
     cost_derivative_value = summation_of_cost_derivative(index, m) / m
     return cost_derivative_value

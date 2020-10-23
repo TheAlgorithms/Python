@@ -15,8 +15,8 @@ class SegmentTree:
     def right(self, idx):
         return idx * 2 + 1
 
-    def build(self, idx, l, r):
-        if l == r:
+    def build(self, idx, l, r):  # noqa: E741
+        if l == r:  # noqa: E741
             self.st[idx] = A[l]
         else:
             mid = (l + r) // 2
@@ -27,12 +27,13 @@ class SegmentTree:
     def update(self, a, b, val):
         return self.update_recursive(1, 0, self.N - 1, a - 1, b - 1, val)
 
-    def update_recursive(
-        self, idx, l, r, a, b, val
-    ):  # update(1, 1, N, a, b, v) for update val v to [a,b]
+    def update_recursive(self, idx, l, r, a, b, val):  # noqa: E741
+        """
+        update(1, 1, N, a, b, v) for update val v to [a,b]
+        """
         if r < a or l > b:
             return True
-        if l == r:
+        if l == r:  # noqa: E741
             self.st[idx] = val
             return True
         mid = (l + r) // 2
@@ -44,12 +45,13 @@ class SegmentTree:
     def query(self, a, b):
         return self.query_recursive(1, 0, self.N - 1, a - 1, b - 1)
 
-    def query_recursive(
-        self, idx, l, r, a, b
-    ):  # query(1, 1, N, a, b) for query max of [a,b]
+    def query_recursive(self, idx, l, r, a, b):  # noqa: E741
+        """
+        query(1, 1, N, a, b) for query max of [a,b]
+        """
         if r < a or l > b:
             return -math.inf
-        if l >= a and r <= b:
+        if l >= a and r <= b:  # noqa: E741
             return self.st[idx]
         mid = (l + r) // 2
         q1 = self.query_recursive(self.left(idx), l, mid, a, b)

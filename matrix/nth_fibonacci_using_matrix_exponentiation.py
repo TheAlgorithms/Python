@@ -1,6 +1,7 @@
 """
 Implementation of finding nth fibonacci number using matrix exponentiation.
-Time Complexity is about O(log(n)*8), where 8 is the complexity of matrix multiplication of size 2 by 2.
+Time Complexity is about O(log(n)*8), where 8 is the complexity of matrix
+multiplication of size 2 by 2.
 And on the other hand complexity of bruteforce solution is O(n).
 As we know
     f[n] = f[n-1] + f[n-1]
@@ -70,7 +71,10 @@ def nth_fibonacci_bruteforce(n):
 
 
 def main():
-    fmt = "{} fibonacci number using matrix exponentiation is {} and using bruteforce is {}\n"
+    fmt = (
+        "{} fibonacci number using matrix exponentiation is {} and using bruteforce "
+        "is {}\n"
+    )
     for ordinal in "0th 1st 2nd 3rd 10th 100th 1000th".split():
         n = int("".join(c for c in ordinal if c in "0123456789"))  # 1000th --> 1000
         print(fmt.format(ordinal, nth_fibonacci_matrix(n), nth_fibonacci_bruteforce(n)))

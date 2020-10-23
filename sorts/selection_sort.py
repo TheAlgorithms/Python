@@ -1,5 +1,5 @@
 """
-This is a pure python implementation of the selection sort algorithm
+This is a pure Python implementation of the selection sort algorithm
 
 For doctests run following command:
 python -m doctest -v selection_sort.py
@@ -35,7 +35,8 @@ def selection_sort(collection):
         for k in range(i + 1, length):
             if collection[k] < collection[least]:
                 least = k
-        collection[least], collection[i] = (collection[i], collection[least])
+        if least != i:
+            collection[least], collection[i] = (collection[i], collection[least])
     return collection
 
 

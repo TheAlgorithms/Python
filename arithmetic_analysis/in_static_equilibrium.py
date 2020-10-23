@@ -6,13 +6,14 @@ flake8 : passed
 mypy : passed
 """
 
-from numpy import array, cos, sin, radians, cross  # type: ignore
-from typing import List
+from __future__ import annotations
+
+from numpy import array, cos, cross, radians, sin  # type: ignore
 
 
 def polar_force(
     magnitude: float, angle: float, radian_mode: bool = False
-) -> List[float]:
+) -> list[float]:
     """
     Resolves force along rectangular components.
     (force, angle) => (force_x, force_y)

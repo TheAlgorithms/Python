@@ -1,7 +1,7 @@
 """
 Numerical integration or quadrature for a smooth function f with known values at x_i
 
-This method is the classical approch of suming 'Equally Spaced Abscissas'
+This method is the classical approach of suming 'Equally Spaced Abscissas'
 
 method 1:
 "extended trapezoidal rule"
@@ -43,7 +43,7 @@ def main():
     steps = 10.0  # define number of steps or resolution
     boundary = [a, b]  # define boundary of integration
     y = method_1(boundary, steps)
-    print("y = {0}".format(y))
+    print(f"y = {y}")
 
 
 if __name__ == "__main__":

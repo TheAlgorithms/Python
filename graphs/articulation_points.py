@@ -1,5 +1,5 @@
 # Finding Articulation Points in Undirected Graph
-def computeAP(l):
+def computeAP(l):  # noqa: E741
     n = len(l)
     outEdgeCount = 0
     low = [0] * n
@@ -36,12 +36,12 @@ def computeAP(l):
             isArt[i] = outEdgeCount > 1
 
     for x in range(len(isArt)):
-        if isArt[x] == True:
+        if isArt[x] is True:
             print(x)
 
 
 # Adjacency list of graph
-l = {
+data = {
     0: [1, 2],
     1: [0, 2],
     2: [0, 1, 3, 5],
@@ -52,4 +52,4 @@ l = {
     7: [6, 8],
     8: [5, 7],
 }
-computeAP(l)
+computeAP(data)

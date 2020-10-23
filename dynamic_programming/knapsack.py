@@ -9,8 +9,8 @@ Note that only the integer weights 0-1 knapsack problem is solvable
 
 def MF_knapsack(i, wt, val, j):
     """
-    This code involves the concept of memory functions. Here we solve the subproblems which are needed
-    unlike the below example
+    This code involves the concept of memory functions. Here we solve the subproblems
+    which are needed unlike the below example
     F is a 2D array with -1s filled up
     """
     global F  # a global dp table for knapsack
@@ -49,9 +49,9 @@ def knapsack_with_example_solution(W: int, wt: list, val: list):
 
     W: int, the total maximum weight for the given knapsack problem.
     wt: list, the vector of weights for all items where wt[i] is the weight
-    of the ith item.
+    of the i-th item.
     val: list, the vector of values for all items where val[i] is the value
-    of te ith item
+    of the i-th item
 
     Returns
     -------
@@ -81,13 +81,13 @@ def knapsack_with_example_solution(W: int, wt: list, val: list):
         raise ValueError(
             "The number of weights must be the "
             "same as the number of values.\nBut "
-            "got {} weights and {} values".format(num_items, len(val))
+            f"got {num_items} weights and {len(val)} values"
         )
     for i in range(num_items):
         if not isinstance(wt[i], int):
             raise TypeError(
                 "All weights must be integers but "
-                "got weight of type {} at index {}".format(type(wt[i]), i)
+                f"got weight of type {type(wt[i])} at index {i}"
             )
 
     optimal_val, dp_table = knapsack(W, wt, val, num_items)

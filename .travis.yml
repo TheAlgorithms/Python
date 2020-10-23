@@ -1,16 +1,17 @@
+os: linux
+dist: focal
 language: python
-dist: xenial  # required for Python >= 3.7
-python: 3.7
+python: 3.8
 cache: pip
-before_install: pip install --upgrade pip setuptools
-install: pip install -r requirements.txt
-before_script:
-  - black --check . || true
-  - flake8 . --count --select=E9,F4,F63,F7,F82 --show-source --statistics
-script:
-  - scripts/validate_filenames.py  # no uppercase, no spaces, in a directory
-  - mypy --ignore-missing-imports .
-  - pytest . --doctest-modules
+before_install: pip install --upgrade pip setuptools six
+jobs:
+  include:
+    - name: Build
+      install: pip install pytest-cov -r requirements.txt
+      script:
+        - pytest --doctest-modules --ignore=project_euler/ --durations=10 --cov-report=term-missing:skip-covered --cov=. .
 after_success:
-  - scripts/build_directory_md.py > DIRECTORY.md
-  - cat DIRECTORY.md
+  - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
+notifications:
+  webhooks: https://www.travisbuddy.com/
+  on_success: never

@@ -10,7 +10,7 @@ comparisons.
 They are synchronized with locks and message passing but other forms of
 synchronization could be used.
 """
-from multiprocessing import Process, Pipe, Lock
+from multiprocessing import Lock, Pipe, Process
 
 # lock used to ensure that two processes do not access a pipe at the same time
 processLock = Lock()
@@ -18,7 +18,7 @@ processLock = Lock()
 """
 The function run by the processes that sorts the list
 
-position = the position in the list the prcoess represents, used to know which
+position = the position in the list the process represents, used to know which
             neighbor we pass our value to
 value = the initial value at list[position]
 LSend, RSend = the pipes we use to send to our left and right neighbors
@@ -35,7 +35,7 @@ def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
     # find out we are sorted as it does to sort the list with this algorithm
     for i in range(0, 10):
 
-        if (i + position) % 2 == 0 and RSend != None:
+        if (i + position) % 2 == 0 and RSend is not None:
             # send your value to your right neighbor
             processLock.acquire()
             RSend[1].send(value)
@@ -48,7 +48,7 @@ def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
 
             # take the lower value since you are on the left
             value = min(value, temp)
-        elif (i + position) % 2 != 0 and LSend != None:
+        elif (i + position) % 2 != 0 and LSend is not None:
             # send your value to your left neighbor
             processLock.acquire()
             LSend[1].send(value)
@@ -73,15 +73,11 @@ arr = the list to be sorted
 
 
 def OddEvenTransposition(arr):
-
     processArray = []
-
     resultPipe = []
-
     # initialize the list of pipes where the values will be retrieved
     for _ in arr:
         resultPipe.append(Pipe())
-
     # creates the processes
     # the first and last process only have one neighbor so they are made outside
     # of the loop
@@ -131,21 +127,15 @@ def OddEvenTransposition(arr):
     for p in range(0, len(resultPipe)):
         arr[p] = resultPipe[p][0].recv()
         processArray[p].join()
-
     return arr
 
 
 # creates a reverse sorted list and sorts it
 def main():
-    arr = []
-
-    for i in range(10, 0, -1):
-        arr.append(i)
+    arr = list(range(10, 0, -1))
     print("Initial List")
     print(*arr)
-
-    list = OddEvenTransposition(arr)
-
+    arr = OddEvenTransposition(arr)
     print("Sorted List\n")
     print(*arr)
 

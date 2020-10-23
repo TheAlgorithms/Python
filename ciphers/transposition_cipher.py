@@ -1,5 +1,12 @@
 import math
 
+"""
+In cryptography, the TRANSPOSITION cipher is a method of encryption where the
+positions of plaintext are shifted a certain number(determined by the key) that
+follows a regular system that results in the permuted text, known as the encrypted
+text. The type of transposition cipher demonstrated under is the ROUTE cipher.
+"""
+
 
 def main():
     message = input("Enter message: ")
@@ -15,7 +22,7 @@ def main():
     print("Output:\n%s" % (text + "|"))
 
 
-def encryptMessage(key, message):
+def encryptMessage(key: int, message: str) -> str:
     """
     >>> encryptMessage(6, 'Harshil Darji')
     'Hlia rDsahrij'
@@ -29,7 +36,7 @@ def encryptMessage(key, message):
     return "".join(cipherText)
 
 
-def decryptMessage(key, message):
+def decryptMessage(key: int, message: str) -> str:
     """
     >>> decryptMessage(6, 'Hlia rDsahrij')
     'Harshil Darji'

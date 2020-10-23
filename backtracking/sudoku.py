@@ -1,5 +1,8 @@
-"""
+from typing import List, Tuple, Union
 
+Matrix = List[List[int]]
+
+"""
     Given a partially filled 9×9 2D array, the objective is to fill a 9×9
     square grid with digits numbered 1 to 9, so that every row, column, and
     and each of the nine 3×3 sub-grids contains all of the digits.
@@ -9,9 +12,7 @@
     function on the next column to see if it returns True. if yes, we
     have solved the puzzle. else, we backtrack and place another number
     in that cell and repeat this process.
-
 """
-
 # assigning initial values to the grid
 initial_grid = [
     [3, 0, 6, 5, 0, 8, 4, 0, 0],
@@ -24,6 +25,7 @@ initial_grid = [
     [0, 0, 0, 0, 0, 0, 0, 7, 4],
     [0, 0, 5, 2, 0, 6, 3, 0, 0],
 ]
+
 # a grid with no solution
 no_solution = [
     [5, 0, 6, 5, 0, 8, 4, 0, 3],
@@ -38,15 +40,13 @@ no_solution = [
 ]
 
 
-def is_safe(grid, row, column, n):
+def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
     """
     This function checks the grid to see if each row,
     column, and the 3x3 subgrids contain the digit 'n'.
     It returns False if it is not 'safe' (a duplicate digit
     is found) else returns True if it is 'safe'
-
     """
-
     for i in range(9):
         if grid[row][i] == n or grid[i][column] == n:
             return False
@@ -59,36 +59,39 @@ def is_safe(grid, row, column, n):
     return True
 
 
-def is_completed(grid):
+def is_completed(grid: Matrix) -> bool:
     """
     This function checks if the puzzle is completed or not.
-    it is completed when all the cells are assigned with a number(not zero)
-    and There is no repeating number in any column, row or 3x3 subgrid.
+    it is completed when all the cells are assigned with a non-zero number.
 
+    >>> is_completed([[0]])
+    False
+    >>> is_completed([[1]])
+    True
+    >>> is_completed([[1, 2], [0, 4]])
+    False
+    >>> is_completed([[1, 2], [3, 4]])
+    True
+    >>> is_completed(initial_grid)
+    False
+    >>> is_completed(no_solution)
+    False
     """
-
-    for row in grid:
-        for cell in row:
-            if cell == 0:
-                return False
-
-    return True
+    return all(all(cell != 0 for cell in row) for row in grid)
 
 
-def find_empty_location(grid):
+def find_empty_location(grid: Matrix) -> Tuple[int, int]:
     """
     This function finds an empty location so that we can assign a number
     for that particular row and column.
-
     """
-
     for i in range(9):
         for j in range(9):
             if grid[i][j] == 0:
                 return i, j
 
 
-def sudoku(grid):
+def sudoku(grid: Matrix) -> Union[Matrix, bool]:
     """
     Takes a partially filled-in grid and attempts to assign values to
     all unassigned locations in such a way to meet the requirements
@@ -106,7 +109,7 @@ def sudoku(grid):
      [7, 4, 5, 2, 8, 6, 3, 1, 9]]
      >>> sudoku(no_solution)
      False
-     """
+    """
 
     if is_completed(grid):
         return grid
@@ -125,13 +128,11 @@ def sudoku(grid):
     return False
 
 
-def print_solution(grid):
+def print_solution(grid: Matrix) -> None:
     """
     A function to print the solution in the form
     of a 9x9 grid
-
     """
-
     for row in grid:
         for cell in row:
             print(cell, end=" ")
@@ -139,7 +140,6 @@ def print_solution(grid):
 
 
 if __name__ == "__main__":
-
     # make a copy of grid so that you can compare with the unmodified grid
     for grid in (initial_grid, no_solution):
         grid = list(map(list, grid))

@@ -1,5 +1,5 @@
-import datetime
 import argparse
+import datetime
 
 
 def zeller(date_input: str) -> str:
@@ -31,17 +31,17 @@ def zeller(date_input: str) -> str:
         ...
     ValueError: invalid literal for int() with base 10: '.4'
 
-    Validate second seperator:
+    Validate second separator:
     >>> zeller('01-31*2010')
     Traceback (most recent call last):
         ...
-    ValueError: Date seperator must be '-' or '/'
+    ValueError: Date separator must be '-' or '/'
 
-    Validate first seperator:
+    Validate first separator:
     >>> zeller('01^31-2010')
     Traceback (most recent call last):
         ...
-    ValueError: Date seperator must be '-' or '/'
+    ValueError: Date separator must be '-' or '/'
 
     Validate out of range year:
     >>> zeller('01-31-8999')
@@ -55,7 +55,7 @@ def zeller(date_input: str) -> str:
         ...
     TypeError: zeller() missing 1 required positional argument: 'date_input'
 
-    Test length fo date_input:
+    Test length of date_input:
     >>> zeller('')
     Traceback (most recent call last):
         ...
@@ -63,8 +63,7 @@ def zeller(date_input: str) -> str:
     >>> zeller('01-31-19082939')
     Traceback (most recent call last):
         ...
-    ValueError: Must be 10 characters long
-"""
+    ValueError: Must be 10 characters long"""
 
     # Days of the week for response
     days = {
@@ -92,7 +91,7 @@ def zeller(date_input: str) -> str:
     sep_1: str = date_input[2]
     # Validate
     if sep_1 not in ["-", "/"]:
-        raise ValueError("Date seperator must be '-' or '/'")
+        raise ValueError("Date separator must be '-' or '/'")
 
     # Get day
     d: int = int(date_input[3] + date_input[4])
@@ -100,11 +99,11 @@ def zeller(date_input: str) -> str:
     if not 0 < d < 32:
         raise ValueError("Date must be between 1 - 31")
 
-    # Get second seperator
+    # Get second separator
     sep_2: str = date_input[5]
     # Validate
     if sep_2 not in ["-", "/"]:
-        raise ValueError("Date seperator must be '-' or '/'")
+        raise ValueError("Date separator must be '-' or '/'")
 
     # Get year
     y: int = int(date_input[6] + date_input[7] + date_input[8] + date_input[9])
@@ -147,7 +146,10 @@ if __name__ == "__main__":
 
     doctest.testmod()
     parser = argparse.ArgumentParser(
-        description="Find out what day of the week nearly any date is or was. Enter date as a string in the mm-dd-yyyy or mm/dd/yyyy format"
+        description=(
+            "Find out what day of the week nearly any date is or was. Enter "
+            "date as a string in the mm-dd-yyyy or mm/dd/yyyy format"
+        )
     )
     parser.add_argument(
         "date_input", type=str, help="Date as a string (mm-dd-yyyy or mm/dd/yyyy)"

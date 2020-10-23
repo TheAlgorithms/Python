@@ -1,5 +1,5 @@
 """
-This program print the matix in spiral form.
+This program print the matrix in spiral form.
 This problem has been solved through recursive way.
 
       Matrix must satisfy below conditions

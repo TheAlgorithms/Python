@@ -11,7 +11,7 @@ class Matrix:
 
         Example:
         >>> a = Matrix(2, 3, 1)
-        >>> a 
+        >>> a
         Matrix consist of 2 rows and 3 columns
         [1, 1, 1]
         [1, 1, 1]
@@ -176,7 +176,7 @@ class Matrix:
             return result
         else:
             raise TypeError(
-                "Unsupported type given for another (%s)" % (type(another),)
+                "Unsupported type given for another ({})".format(type(another))
             )
 
     def transpose(self):
@@ -186,10 +186,10 @@ class Matrix:
 
         Example:
         >>> a = Matrix(2, 3)
-        >>> for r in range(2):       
+        >>> for r in range(2):
         ...     for c in range(3):
         ...             a[r,c] = r*c
-        ... 
+        ...
         >>> a.transpose()
         Matrix consist of 3 rows and 2 columns
         [0, 0]
@@ -207,16 +207,18 @@ class Matrix:
         """
         <method Matrix.ShermanMorrison>
         Apply Sherman-Morrison formula in O(n^2).
-        To learn this formula, please look this: https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula
-        This method returns (A + uv^T)^(-1) where A^(-1) is self. Returns None if it's impossible to calculate.
-        Warning: This method doesn't check if self is invertible. 
+        To learn this formula, please look this:
+        https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula
+        This method returns (A + uv^T)^(-1) where A^(-1) is self. Returns None if it's
+        impossible to calculate.
+        Warning: This method doesn't check if self is invertible.
             Make sure self is invertible before execute this method.
 
         Example:
         >>> ainv = Matrix(3, 3, 0)
         >>> for i in range(3): ainv[i,i] = 1
-        ... 
-        >>> u = Matrix(3, 1, 0) 
+        ...
+        >>> u = Matrix(3, 1, 0)
         >>> u[0,0], u[1,0], u[2,0] = 1, 2, -3
         >>> v = Matrix(3, 1, 0)
         >>> v[0,0], v[1,0], v[2,0] = 4, -2, 5
@@ -248,17 +250,17 @@ if __name__ == "__main__":
         ainv = Matrix(3, 3, 0)
         for i in range(3):
             ainv[i, i] = 1
-        print("a^(-1) is %s" % (ainv,))
+        print(f"a^(-1) is {ainv}")
         # u, v
         u = Matrix(3, 1, 0)
         u[0, 0], u[1, 0], u[2, 0] = 1, 2, -3
         v = Matrix(3, 1, 0)
         v[0, 0], v[1, 0], v[2, 0] = 4, -2, 5
-        print("u is %s" % (u,))
-        print("v is %s" % (v,))
+        print(f"u is {u}")
+        print(f"v is {v}")
         print("uv^T is %s" % (u * v.transpose()))
         # Sherman Morrison
-        print("(a + uv^T)^(-1) is %s" % (ainv.ShermanMorrison(u, v),))
+        print("(a + uv^T)^(-1) is {}".format(ainv.ShermanMorrison(u, v)))
 
     def test2():
         import doctest

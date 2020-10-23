@@ -9,7 +9,7 @@
 def dfs(u, graph, visited_edge, path=[]):
     path = path + [u]
     for v in graph[u]:
-        if visited_edge[u][v] == False:
+        if visited_edge[u][v] is False:
             visited_edge[u][v], visited_edge[v][u] = True, True
             path = dfs(v, graph, visited_edge, path)
     return path

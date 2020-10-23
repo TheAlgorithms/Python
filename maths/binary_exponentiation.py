@@ -25,4 +25,4 @@ if __name__ == "__main__":
         print("Invalid literal for integer")
 
     RESULT = binary_exponentiation(BASE, POWER)
-    print("{}^({}) : {}".format(BASE, POWER, RESULT))
+    print(f"{BASE}^({POWER}) : {RESULT}")
