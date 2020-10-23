@@ -23,7 +23,7 @@ GLIDER = [
 BLINKER = [[0, 1, 0], [0, 1, 0], [0, 1, 0]]
 
 
-def new_generation(cells: list[list[int]]) -> list[list[int]]:
+def new_generation(cells: List[List[int]]) -> List[List[int]]:
     """
     Generates the next generation for a given state of Conway's Game of Life.
     >>> new_generation(BLINKER)
