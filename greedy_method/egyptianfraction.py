@@ -45,6 +45,6 @@ def egyptianFraction(nr, dr):
 
 # calling the function 
 print("enter value of x and y as x/y:")
-x=int(input())
-y=int(input())
-egyptianFraction(x,y) 
+a=int(input())
+b=int(input())
+egyptianFraction(a,b) 
