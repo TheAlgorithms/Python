@@ -21,8 +21,5 @@ def solution():
     lexi_perm = "".join(list(permutations("0123456789"))[999999])
     return lexi_perm
 
-
 if __name__ == "__main__":
     print(solution())
-
-
