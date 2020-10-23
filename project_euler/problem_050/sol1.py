@@ -49,9 +49,9 @@ def solution(limit: int = 1_000_000):
     longest sum of consecutive primes.
 
     >>> solution(100)
-        41
+    41
     >> solution(1000)
-        953
+    953
     """
     prime_number = 0 #result
     max_length = 0 #length 
