@@ -113,8 +113,8 @@ class BinarySearchTree:
         --------
         Returns: height
         --------
-        Height of a binary search tree is the number of nodes present in the longest path
-        from the root node down to the farthest leaf node.
+        Height of a binary search tree is the number of nodes present in
+        the longest path from the root node down to the farthest leaf node.
         --------
         Example
 
