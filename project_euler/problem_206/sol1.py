@@ -14,6 +14,11 @@ total is above it.
 import math  
 
 def solution():
+    """
+    >>> solution()
+    1389019170
+    """
+
 
     total = 1
     add = 1
@@ -36,4 +41,4 @@ def solution():
     return int(math.sqrt(total))
     
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
