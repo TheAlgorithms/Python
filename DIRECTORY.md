@@ -514,6 +514,7 @@
   * [Scoring Algorithm](https://github.com/TheAlgorithms/Python/blob/master/other/scoring_algorithm.py)
   * [Sdes](https://github.com/TheAlgorithms/Python/blob/master/other/sdes.py)
   * [Sierpinski Triangle](https://github.com/TheAlgorithms/Python/blob/master/other/sierpinski_triangle.py)
+  * [Text to Speech](https://github.com/TheAlgorithms/Python/blob/master/other/text_to_speech.py)
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
   * [Triplet Sum](https://github.com/TheAlgorithms/Python/blob/master/other/triplet_sum.py)
   * [Two Sum](https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py)
