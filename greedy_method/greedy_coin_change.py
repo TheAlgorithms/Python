@@ -14,13 +14,14 @@
   50 5 1 
 
 '''
-def find_minimum_change(V): 
-    total_value =  int(V) #store the value of v as an integer so that it can be used for comparision
+def find_minimum_change(V):
+  #store the value of v as an integer so that it can be used for comparision
+    total_value =  int(V) 
    
     # All denominations of Indian Currency 
     denominations = [1, 2, 5, 10, 20, 50, 100, 500, 2000] 
-    length = len(denominations) #find the total length of the array so as to transverse the array in the following code
-      
+    #find the total length of the array so as to transverse the array in the following code
+    length = len(denominations)       
     # Initialize Result 
     answer = [] 
   
@@ -28,9 +29,10 @@ def find_minimum_change(V):
     i = length - 1 # as the array values range from 0 to n-1 we initialize the value of i to n-1
     while(i >= 0): #repeat until i is does not reach zero so as to lead to our answer
           
-        # Find denominations that will finally lead the "total_value" to zero giving us the set of values or number of nodes we need
-        while (int(total_value) >= int(denominations[i])): 
-            total_value -= int(denominations[i]) #subtract the current denomination value from total_value if the denomination is greater than the current total_value
+        # Find denominations that will finally lead the "total_value" to zero giving us the set of values 
+        while (int(total_value) >= int(denominations[i])):
+          #subtract the current denomination value from total_value if the denomination > current total_value
+            total_value -= int(denominations[i]) 
             answer.append(denominations[i])   #append the answer in the "answers" array
   
         i -= 1 #decrement the i value so as to move to the lower denomination
