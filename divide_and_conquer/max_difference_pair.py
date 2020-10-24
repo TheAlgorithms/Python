@@ -18,8 +18,8 @@ def max_difference(a: List[int]) -> (int, int):
         return a[0], a[0]
     else:
         # split A into half.
-        first = a[: len(a)//2]
-        second = a[len(a)//2 :]
+        first = a[: len(a) // 2]
+        second = a[len(a) // 2 :]
 
         # 2 sub problems, 1/2 of original size.
         small1, big1 = max_difference(first)
