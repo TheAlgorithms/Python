@@ -91,13 +91,13 @@ def interquartile_range_checker(train_user: list) -> float:
     return low_lim
 
 
-def data_safety_checker(list_vote, actual_result):
+def data_safety_checker(list_vote: list, actual_result: float):
     """
     Used to review all the votes (list result prediction)
     and compare it to the actual result.
     input : list of predictions
     output : print whether it's safe or not
-    >>> data_safety_checker([2,3,4],5)
+    >>> data_safety_checker([2,3,4],5.0)
     today's data = not safe
     """
     safe = 0
