@@ -12,26 +12,27 @@ total is above it.
 
 import math
 
+
 def solution() -> int:
     """
     >>> solution()
     1389019170
     """
 
-    #adding odds
+    # adding odds
     total = 1
     add = 1
 
     while True:
 
-        #adding odds
+        # adding odds
         add += 2
         total += add
 
-        #starts count here since the bottom limit
+        # starts count here since the bottom limit
         if total > 1020304050607080900:
 
-            #nested if statements to check digits
+            # nested if statements to check digits
             num = str(total)
             if int(num[-1]) == 0:
                 if int(num[-3]) == 9:
@@ -46,6 +47,7 @@ def solution() -> int:
                                                     break
 
     return int(math.sqrt(total))
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
