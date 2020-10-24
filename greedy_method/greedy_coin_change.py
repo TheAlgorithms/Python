@@ -9,7 +9,8 @@ The total value cannot be zero or negetive
 find_minimum_change(-96)
 The total value cannot be zero or negetive
 find_minimum_change(56)
-50 5 1'''
+50 5 1
+'''
 
 
 def find_minimum_change(V):
@@ -45,4 +46,3 @@ if __name__ == '__main__':
     else:
         print("Following is minimal number", "of change for", n, ": ", end="")
         find_minimum_change(n)
-
