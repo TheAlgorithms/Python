@@ -58,16 +58,17 @@ class TernarySearchTree(object):
             return getter
 
 
-tst = TernarySearchTree()
-tst.put('apple', 1)
-tst.put('admin', 2)
-tst.put('cute', 3)
+if __name__ == "__main__":
+    tst = TernarySearchTree()
+    tst.put('apple', 1)
+    tst.put('admin', 2)
+    tst.put('cute', 3)
 
-tst.get('cute')
+    tst.get('cute')
 
-def fib(n):
-    a,b=0,1
-    for _ in range(n):
-        a,b=b,a+b
-    return a
-print(fib(10))
+    def fib(n):
+        a, b = 0, 1
+        for _ in range(n):
+            a, b = b, a+b
+        return a
+    print(fib(10))
