@@ -28,7 +28,7 @@ def peak(lst: List[int]) -> int:
     m = len(lst) // 2
 
     # choose the middle 3 elements
-    three = lst[m - 1: m + 2]
+    three = lst[m - 1 : m + 2]
 
     # if middle element is peak
     if three[1] > three[0] and three[1] > three[2]:
