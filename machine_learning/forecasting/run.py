@@ -18,22 +18,21 @@ from sklearn.svm import SVR
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
-def lin_reg_pred(
+def linear_regression_prediction(
     train_dt: list, train_usr: list, train_mtch: list, test_dt: list, test_mtch: list
 ) -> float:
     """
     First method: linear regression
     input : training data (date, total_user, total_event) in list of float
     output : list of total user prediction in float
-    >>> lin_reg_pred([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
+    >>> linear_regression_prediction([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
     5.000000000000003
     """
     x = [[1, item, train_mtch[i]] for i, item in enumerate(train_dt)]
     x = np.array(x)
     y = np.array(train_usr)
     beta = np.dot(np.dot(np.linalg.inv(np.dot(x.transpose(), x)), x.transpose()), y)
-    prediction = abs(beta[0] + test_dt[0] * beta[1] + test_mtch[0] + beta[2])
-    return prediction
+    return abs(beta[0] + test_dt[0] * beta[1] + test_mtch[0] + beta[2])
 
 
 def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> float:
@@ -56,7 +55,7 @@ def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> 
     return result[0]
 
 
-def support_machine_regressor(x_train: list, x_test: list, train_user: list) -> float:
+def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> float:
     """
     Third method: Support vector regressor
     svr is quite the same with svm(support vector machine)
@@ -66,7 +65,7 @@ def support_machine_regressor(x_train: list, x_test: list, train_user: list) -> 
     input : training data (date, total_user, total_event) in list of float
     where x = list of set (date and total event)
     output : list of total user prediction in float
-    >>> support_machine_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
+    >>> support_vector_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
     1.634932078116079
     """
     regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
@@ -99,7 +98,7 @@ def data_safety_checker(list_vote, actual_result):
     input : list of predictions
     output : print whether it's safe or not
     >>> data_safety_checker([2,3,4],5)
-    today's data is not safe
+    today's data = not safe
     """
     safe = 0
     not_safe = 0
@@ -111,10 +110,7 @@ def data_safety_checker(list_vote, actual_result):
                 safe = safe + 1
             else:
                 not_safe = not_safe + 1
-    if safe > not_safe:
-        print("today's data is safe")
-    else:
-        print("today's data is not safe")
+    print("today's data =", "not" if safe <= not_safe else "", "safe")
 
 
 # data_input_df = pd.read_csv("ex_data.csv", header=None)
@@ -150,9 +146,11 @@ tst_match = total_match[len(total_match) - 1 :]
 
 # voting system with forecasting
 res_vote = []
-res_vote.append(lin_reg_pred(trn_date, trn_user, trn_match, tst_date, tst_match))
+res_vote.append(
+    linear_regression_prediction(trn_date, trn_user, trn_match, tst_date, tst_match)
+)
 res_vote.append(sarimax_predictor(trn_user, trn_match, tst_match))
-res_vote.append(support_machine_regressor(x_train, x_test, trn_user))
+res_vote.append(support_vector_regressor(x_train, x_test, trn_user))
 
 # check the safety of todays'data^^
 data_safety_checker(res_vote, tst_user)
