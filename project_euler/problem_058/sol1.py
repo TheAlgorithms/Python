@@ -15,14 +15,19 @@
 
     problem link: https://projecteuler.net/problem=58
 """
+
+
 def isPrime(n) -> bool:
-    if n==2 or n==3: return True
-    if n%2==0 or n<2: return False
-    for i in range(3, int(n**0.5)+1, 2):
-        if n%i==0:
-            return False    
+    if n == 2 or n == 3:
+        return True
+    if n % 2 == 0 or n < 2:
+        return False
+    for i in range(3, int(n ** 0.5) + 1, 2):
+        if n % i == 0:
+            return False
 
     return True
+
 
 """
     Instead of calculation all numbers we are only calculating the sides of the square. We
@@ -35,16 +40,19 @@ def isPrime(n) -> bool:
     So the digits on the diagonal axis are (13,17,21,25)
     and we check those to see if they are prime numbers
 """
+
+
 def calculateNextPrimes(lastDigit, sideLength) -> int:
-	step = sideLength - 1
-	currentDigit = lastDigit
-	primes = 0
-	for i in range(4):
-		currentDigit = currentDigit + step
-		if isPrime(currentDigit):
-			primes+=1
-			
-	return primes
+    step = sideLength - 1
+    currentDigit = lastDigit
+    primes = 0
+    for i in range(4):
+        currentDigit = currentDigit + step
+        if isPrime(currentDigit):
+            primes += 1
+
+    return primes
+
 
 def solution() -> int:
     primes = 3
@@ -52,17 +60,16 @@ def solution() -> int:
     currentDigit = 9
     side = 5
 
-    while ((primes/(primes+nonprimes))*100 > 10):
+    while (primes / (primes + nonprimes)) * 100 > 10:
         currentPrimes = calculateNextPrimes(currentDigit, side)
         primes += currentPrimes
         nonprimes += 4 - currentPrimes
-        currentDigit = currentDigit + 4*(side-1)
+        currentDigit = currentDigit + 4 * (side - 1)
 
-        side+=2
+        side += 2
 
     return side - 2
 
+
 if __name__ == "__main__":
     print(f"{solution() = }")
-
-		
