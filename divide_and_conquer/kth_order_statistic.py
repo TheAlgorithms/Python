@@ -1,6 +1,7 @@
 """
 Find the kth smallest element in linear time using divide and conquer.
-Recall we can do this trivially in O(nlogn) time. Sort the list and access kth element in constant time.
+Recall we can do this trivially in O(nlogn) time. Sort the list and
+access kth element in constant time.
 
 This is a divide and conquer algorithm that can find a solution in O(n) time.
 
@@ -14,7 +15,8 @@ from random import choice
 def random_pivot(lst):
     """
     Choose a random pivot for the list.
-    We can use a more sophisticated algorithm here, such as the median-of-medians algorithm.
+    We can use a more sophisticated algorithm here, such as the median-of-medians
+    algorithm.
     """
     return choice(lst)
 
@@ -43,7 +45,9 @@ def kth_number(lst: List[int], k: int) -> int:
 
     # if we get lucky, pivot might be the element we want.
     # we can easily see this:
-    # small (elements smaller than k) + pivot (kth element) + big (elements larger than k)
+    # small (elements smaller than k)
+    # + pivot (kth element)
+    # + big (elements larger than k)
     if len(small) == k - 1:
         return pivot
     # pivot is in elements bigger than k
