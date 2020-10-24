@@ -4,14 +4,14 @@ Problem 206 : https://projecteuler.net/problem=206
 Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
 where each “_” is a single digit.
 
-Solution: Finding a square number can found by adding consecutive odd numbers 
+Solution: Finding a square number can found by adding consecutive odd numbers
 starting from 1. The minimum number possible for perfect square is 1020304050607080900
-in this situation, so started checking digits are in correct places after 
-total is above it. 
+in this situation, so started checking digits are in correct places after
+total is above it.
 
 """
 
-import math  
+import math
 
 def solution() -> int:
     """
@@ -32,7 +32,7 @@ def solution() -> int:
         #starts count here since the bottom limit
         if total > 1020304050607080900:
 
-            #nested if statements to check digits 
+            #nested if statements to check digits
             num = str(total)
             if int(num[-1]) == 0:
                 if int(num[-3]) == 9:
@@ -47,6 +47,6 @@ def solution() -> int:
                                                     break
 
     return int(math.sqrt(total))
-    
+
 if __name__ == "__main__":
     print(f"{solution() = }")
