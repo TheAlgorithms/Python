@@ -62,5 +62,7 @@ def min_jump_to_reach_end(arr: list) -> int:
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     arr = [1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]
     print(min_jump_to_reach_end(arr))
