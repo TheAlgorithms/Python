@@ -65,7 +65,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    arr = [1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]
-    print(min_jump_to_reach_end(arr))
-    print(min_jump_to_reach_end([]))
-    print(min_jump_to_reach_end([0, 1, 10, 15, 2, 2]))
+    assert min_jump_to_reach_end([1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9]) == 3
+    assert min_jump_to_reach_end([0, 1, 10, 15, 2, 2]) == -1
+    assert min_jump_to_reach_end([]) == 0
