@@ -82,7 +82,8 @@ def is_prime(n) -> bool:
 
 def get_divisors(n) -> bool:
     """
-    Modified from: https://www.geeksforgeeks.org/find-all-divisors-of-a-natural-number-set-2/
+    Modified from:
+    https://www.geeksforgeeks.org/find-all-divisors-of-a-natural-number-set-2/
     Gets and checks if divisors are prime generating
 
     >>> get_divisors(6)
