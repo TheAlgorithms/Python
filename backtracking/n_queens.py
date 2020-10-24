@@ -38,7 +38,7 @@ def isSafe(board, row, column):
     return True
 
 
-def solve(board, row):
+def solver(board, row):
     """
     It creates a state space tree and calls the safe function until it receives a
     False Boolean and terminates that branch and backtracks to the next
@@ -63,7 +63,7 @@ def solve(board, row):
         """
         if isSafe(board, row, i):
             board[row][i] = 1
-            solve(board, row + 1)
+            solver(board, row + 1)
             board[row][i] = 0
     return False
 
@@ -81,8 +81,7 @@ def printboard(board):
         print()
 
 
-# n=int(input("The no. of queens"))
 n = 8
 board = [[0 for i in range(n)] for j in range(n)]
-solve(board, 0)
+solver(board, 0)
 print("The total no. of solutions are :", len(solution))
