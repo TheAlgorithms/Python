@@ -1,18 +1,9 @@
 def diff(b: list, d: list) -> list:
     """
     Sorting 2 list numbers without same numbers
-    >>> diff(6,6)
-    Enter 1st list numbers: 1 2 3 6 4 7
-    Enter 2nd list numbers: 1 2 36 96 78 99
-    Sorted list:
-    3
-    4
-    6
-    7
-    36
-    78
-    96
-    99
+    
+    >>> diff([1, 2, 3, 6, 4, 7], [1, 2, 36, 96, 78, 99])
+    [3, 4, 6, 7, 36, 78, 96, 99]
     """
     # Making set of list
     x = set(b)
