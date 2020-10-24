@@ -1,6 +1,9 @@
 ###### Driver program to test the queue ###
 from listQueueModule import listQueue
+
 que = listQueue()
+
+
 def menu():
     print()
     print("1. Add an item to queue")
@@ -10,6 +13,8 @@ def menu():
     print("5. Exit from program")
     choice = int(input("Enter your choice(1-5) :"))
     return choice
+
+
 while True:
     c = menu()
     if c == 1:
@@ -29,5 +34,3 @@ while True:
         print("Length of queue is ", que.length())
     else:
         break
-
-    
