@@ -14,7 +14,7 @@
 
 These implementations are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
 
-## Contribution Guidelines
+## Contribution Guideline
 
 Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
