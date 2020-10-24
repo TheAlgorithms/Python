@@ -8,9 +8,9 @@ def decimal_isolate(number, digitAmount):
   If digitAmount > 0 round to that decimal place, else print the entire decimal.
   >>> decimal_isolate(35.345, 1)
   0.3
-  >>> decimal_isolate(89.345, 2)
+  >>> decimal_isolate(35.345, 2)
   0.34
-  >>> decimal_isolate(89.345, 3)
+  >>> decimal_isolate(35.345, 3)
   0.345
   """
   if (digitAmount > 0):
