@@ -18,4 +18,7 @@ def diff(b: List[int], d: List[int]) -> List[int]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     diff(5, 5)
