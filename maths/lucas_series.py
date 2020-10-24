@@ -56,9 +56,8 @@ if __name__ == "__main__":
 
     testmod()
     n = int(input("Enter the number of terms in lucas series:\n").strip())
+    n = int(input("Enter the number of terms in lucas series:\n").strip())
     print("Using recursive function to calculate lucas series:")
-    for i in range(n):
-        print(recursive_lucas_number(i), end=" ")
+    print(" ".join(str(recursive_lucas_number(i)) for i in range(n)))
     print("\nUsing dynamic function to calculate lucas series:")
-    for i in range(n):
-        print(dynamic_lucas_number(i), end=" ")
+    print(" ".join(str(dynamic_lucas_number(i)) for i in range(n)))
