@@ -31,7 +31,7 @@ def is_prime(number: int) -> bool:
         i += 1
     return True
 
-def sieve_of_eratosthenes(limit: int) -> [list]:
+def sieve_of_eratosthenes(limit: int) -> list:
     """
     Returns a list of boolean values that indicate
     whether number at a given index is prime
