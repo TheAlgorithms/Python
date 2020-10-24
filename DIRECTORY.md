@@ -272,6 +272,7 @@
   * [Breadth First Search Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search_shortest_path.py)
   * [Check Bipartite Graph Bfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/check_bipartite_graph_bfs.py)
   * [Check Bipartite Graph Dfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/check_bipartite_graph_dfs.py)
+  * [Closeness Centrality](https://github.com/TheAlgorithms/Python/blob/master/graphs/closeness_centrality.py)
   * [Connected Components](https://github.com/TheAlgorithms/Python/blob/master/graphs/connected_components.py)
   * [Depth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/depth_first_search.py)
   * [Depth First Search 2](https://github.com/TheAlgorithms/Python/blob/master/graphs/depth_first_search_2.py)
@@ -630,6 +631,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_036/sol1.py)
   * Problem 037
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_037/sol1.py)
+  * Problem 038
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_038/sol1.py)
   * Problem 039
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_039/sol1.py)
   * Problem 040
