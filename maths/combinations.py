@@ -1,13 +1,5 @@
 """
-This function will return the total number of different combinations of
-k length which can be made from n values.
-
-Wikipedia page here: https://en.wikipedia.org/wiki/Combination
-
-For doctests, run: `python3 -m doctest -v combinations.py`
-
-Run `python3 combinations.py` for print statements which demonstrate use
-cases for this function.
+https://en.wikipedia.org/wiki/Combination
 """
 from math import factorial
 
