@@ -45,9 +45,16 @@ class AdjacencyList:
         Traceback (most recent call last):
             ...
         ValueError: Edge weight must be either 0 or 1.
+        >>> g.add_edge(0, 2, 1)
+        Traceback (most recent call last):
+            ...
+        ValueError: Vertex indexes must be in [0; size).
         """
         if weight not in (0, 1):
-            raise ValueError('Edge weight must be either 0 or 1.')
+            raise ValueError("Edge weight must be either 0 or 1.")
+
+        if to_vertex < 0 or to_vertex >= self.size:
+            raise ValueError("Vertex indexes must be in [0; size).")
 
         self._graph[from_vertex].append(Edge(to_vertex, weight))
 
