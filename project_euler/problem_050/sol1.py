@@ -45,7 +45,7 @@ def sieve_of_eratosthenes(limit: int) -> [list]:
         i += 1
     return is_prime_number
 
-def solution(limit: int = 1_000_000):
+def solution(limit: int = 1_000_000) -> int:
     """
     Get the prime number less than limit which is
     longest sum of consecutive primes.
