@@ -18,7 +18,9 @@ from sklearn.svm import SVR
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
-def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
+def lin_reg_pred(
+    train_dt: list, train_usr: list, train_mtch: list, test_dt: list, test_mtch: list
+) -> float:
     """
     First method: linear regression
     input : training data (date, total_user, total_event) in list of float
@@ -34,7 +36,7 @@ def lin_reg_pred(train_dt, train_usr, train_mtch, test_dt, test_mtch):
     return prediction
 
 
-def sarimax_predictor(train_user, train_match, test_match):
+def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> float:
     """
     second method: sarimax
     sarimax is a statistic method which using previous input
@@ -54,7 +56,7 @@ def sarimax_predictor(train_user, train_match, test_match):
     return result[0]
 
 
-def support_machine_regressor(x_train, x_test, train_user):
+def support_machine_regressor(x_train: list, x_test: list, train_user: list) -> float:
     """
     Third method: Support vector regressor
     svr is quite the same with svm(support vector machine)
@@ -73,7 +75,7 @@ def support_machine_regressor(x_train, x_test, train_user):
     return y_pred[0]
 
 
-def interquartile_range_checker(train_user):
+def interquartile_range_checker(train_user: list) -> float:
     """
     Optional method: interquatile range
     input : list of total user in float
