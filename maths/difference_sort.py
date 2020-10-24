@@ -1,4 +1,4 @@
-def diff(b: List[int], d: List[int]) -> List[int]:
+def diff(b: list, d: list) -> list:
     """
     Sorting 2 list numbers without same numbers
     >>> diff([1, 2, 3, 6, 4, 7], [1, 2, 36, 96, 78, 99])
