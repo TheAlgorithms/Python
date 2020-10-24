@@ -21,3 +21,4 @@ def decimal_isolate(number, digitAmount):
     print(decimal_isolate(35.345, 1))
     print(decimal_isolate(35.345, 2))
     print(decimal_isolate(35.345, 3))
+    
