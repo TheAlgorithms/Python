@@ -13,9 +13,7 @@ def diff(b: list, d: list) -> list:
     q = x.difference(y)
     # Make union of 2 lists numbers
     r = p.union(q)
-    print("Sorted list: ")
-    # Printing numbers in sorted manner
-    print("\n".join(sorted(r, key=int)))
+    return list(r)
 
 
 if __name__ == "__main__":
