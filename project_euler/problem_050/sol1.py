@@ -15,7 +15,7 @@ most consecutive primes?
 """
 
 
-def is_prime(number: int) -> [bool]:
+def is_prime(number: int) -> bool:
     """
     Test to see if the number is prime
     """
