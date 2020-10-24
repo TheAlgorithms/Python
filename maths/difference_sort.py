@@ -12,7 +12,9 @@ def diff(b: list, d: list) -> list:
     q = x.difference(y)
     # Make union of 2 lists numbers
     r = p.union(q)
-    return list(r)
+    r = list(r)
+    r.sort()
+    return r
 
 
 if __name__ == "__main__":
