@@ -13,7 +13,7 @@
 
     If one complete new layer is wrapped around the spiral above, a square spiral with side length 9 will be formed. If this process is continued, what is the side length of the square spiral for which the ratio of primes along both diagonals first falls below 10%?
 """
-def isPrime(n):
+def isPrime(n) -> bool:
     if n==2 or n==3: return True
     if n%2==0 or n<2: return False
     for i in range(3, int(n**0.5)+1, 2):
@@ -33,7 +33,7 @@ def isPrime(n):
     So the digits on the diagonal axis are (13,17,21,25)
     and we check those to see if they are prime numbers
 """
-def calculateNextPrimes(lastDigit, sideLength):
+def calculateNextPrimes(lastDigit, sideLength) -> int:
 	step = sideLength - 1
 	currentDigit = lastDigit
 	primes = 0
@@ -44,7 +44,7 @@ def calculateNextPrimes(lastDigit, sideLength):
 			
 	return primes
 
-def solution():
+def solution() -> int:
     primes = 3
     nonprimes = 1
     currentDigit = 9
