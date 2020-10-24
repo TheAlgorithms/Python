@@ -39,7 +39,7 @@ def sieve_of_eratosthenes(n) -> [int]:
     while p * p <= n:
         # If prime[p] is not changed, then it is
         # a prime
-        if prime[p] == True:
+        if prime[p]:
             # Update all multiples of p
             for i in range(p * p, n + 1, p):
                 prime[i] = False
