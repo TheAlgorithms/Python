@@ -1,8 +1,7 @@
 """
-https://projecteuler.net/problem=50
-Consecutive prime sum
+Project Euler Problem 50: https://projecteuler.net/problem=50
 
-Problem 50
+Consecutive prime sum
 
 The prime 41, can be written as the sum of six consecutive primes:
 41 = 2 + 3 + 5 + 7 + 11 + 13
@@ -49,20 +48,28 @@ def sieve(n: int) -> list:
     return primes
 
 
-def solution() -> int:
+def solution(ceiling: int = 1_000_000) -> int:
     """
-    Returns the solution of the problem
-    >>> solution()
-    997651
+    Returns the biggest prime, below the celing, that can be written as the sum
+    of consecutive the most consecutive primes.
+
+    >>> solution(500)
+    499
+
+    >>> solution(1_000)
+    953
+
+    >>> solution(10_000)
+    9521
     """
-    primes = sieve(1_000_000)
+    primes = sieve(ceiling)
     length = 0
     largest = 0
 
     for i in range(len(primes)):
         for j in range(i + length, len(primes)):
             sol = sum(primes[i:j])
-            if sol >= 1_000_000:
+            if sol >= ceiling:
                 break
 
             if sol in primes:
@@ -73,4 +80,4 @@ def solution() -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
