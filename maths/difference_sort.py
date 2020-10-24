@@ -1,4 +1,4 @@
-def diff(a=int, c=int) -> int:
+def diff(b: list, d: list) -> list:
     """
     Sorting 2 list numbers without same numbers
     >>> diff(6,6)
