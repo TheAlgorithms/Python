@@ -22,10 +22,17 @@ def solution() -> int:
 
     total = 1
     add = 1
+
     while True:
+
+        #adding odds
         add += 2
         total += add
+
+        #starts count here since the bottom limit
         if total > 1020304050607080900:
+
+            #nested if statements to check digits 
             num = str(total)
             if int(num[-1]) == 0:
                 if int(num[-3]) == 9:
