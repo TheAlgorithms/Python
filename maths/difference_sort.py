@@ -14,9 +14,6 @@ def diff(b: list, d: list) -> list:
     96
     99
     """
-    # Taking input lists
-    b = input("Enter 1st list numbers: ").split()
-    d = input("Enter 2nd list numbers: ").split()
     # Making set of list
     x = set(b)
     y = set(d)
