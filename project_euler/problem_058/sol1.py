@@ -51,6 +51,7 @@ TIME 10.5s
 
 """
 
+
 def is_prime(number: int) -> bool:
     """
     Check if the number argument is prime or not
@@ -92,9 +93,9 @@ def solution() -> int:
     26241
     """
 
-    target_ratio = 0.1 # we want to go under 10%
+    target_ratio = 0.1  # we want to go under 10%
 
-    current_corner_number = 1 # the centre point can be considered a corner
+    current_corner_number = 1  # the centre point can be considered a corner
     previous_side_length = 1
     how_many_primes_on_diagonals = 0
     how_many_numbers_on_diagonals = 1
@@ -108,7 +109,7 @@ def solution() -> int:
             if is_prime(current_corner_number):
                 how_many_primes_on_diagonals += 1
 
-        how_many_numbers_on_diagonals += 4 # 4 new corners
+        how_many_numbers_on_diagonals += 4  # 4 new corners
 
         new_ratio = how_many_primes_on_diagonals / how_many_numbers_on_diagonals
 
