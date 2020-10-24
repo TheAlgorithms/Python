@@ -21,4 +21,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    diff(5, 5)
