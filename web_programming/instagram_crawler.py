@@ -120,8 +120,8 @@ def test_instagram_user(username: str = "github") -> None:
     assert instagram_user.email == "support@github.com"
     assert instagram_user.website == "https://github.com/readme"
     assert instagram_user.profile_picture_url.startswith("https://instagram.")
-    assert instagram_user.is_verified is True
-    assert instagram_user.is_private is False
+    assert instagram_user.is_verified is False
+    assert instagram_user.is_private is True
 
 
 if __name__ == "__main__":
