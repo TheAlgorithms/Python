@@ -9,7 +9,6 @@ except ImportError:
 filepaths = list(good_file_paths())
 assert filepaths, "good_file_paths() failed!"
 
-
 upper_files = [file for file in filepaths if file != file.lower()]
 if upper_files:
     print(f"{len(upper_files)} files contain uppercase characters:")
