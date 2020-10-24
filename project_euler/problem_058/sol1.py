@@ -41,7 +41,7 @@ Let l(n) = the nth layer's side length
     * insert next l(n-1) numbers
     * insert second corner
     * insert next l(n-1) numbers
-    * insert thrd corner
+    * insert third corner
     * insert next l(n-1) numbers
     * insert last corner
 5. For each layer we can recalculate the ratio and find the answer.
@@ -68,19 +68,19 @@ def is_prime(number: int) -> bool:
     """
 
     if number < 2:
-        # any number smalled than 2 is not prime
+        # any number smaller than 2 is not prime
         return False
 
     for divizor in range(2, number + 1):
         if divizor * divizor > number:
-            # if we didn't find a divizor until the square root, the number is prime
+            # if we didn't find a divisor until the square root, the number is prime
             break
 
         if number % divizor == 0:
-            # we found a divizor, the number is not prime
+            # we found a divisor, the number is not prime
             return False
 
-    # no divizor found, the number is prime
+    # no divisor found, the number is prime
     return True
 
 
@@ -94,7 +94,7 @@ def solution() -> int:
 
     target_ratio = 0.1 # we want to go under 10%
 
-    current_corner_number = 1 # the center point can be considered a corner
+    current_corner_number = 1 # the centre point can be considered a corner
     previous_side_length = 1
     how_many_primes_on_diagonals = 0
     how_many_numbers_on_diagonals = 1
