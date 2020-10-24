@@ -33,6 +33,22 @@ class AdjacencyList:
         return self._size
 
     def add_edge(self, from_vertex: int, to_vertex: int, weight: int):
+        """
+        >>> g = AdjacencyList(2)
+        >>> g.add_edge(0, 1, 0)
+        >>> g.add_edge(1, 0, 1)
+        >>> list(g[0])
+        [Edge(destination_vertex=1, weight=0)]
+        >>> list(g[1])
+        [Edge(destination_vertex=0, weight=1)]
+        >>> g.add_edge(0, 1, 2)
+        Traceback (most recent call last):
+            ...
+        ValueError: Edge weight must be either 0 or 1.
+        """
+        if weight not in (0, 1):
+            raise ValueError('Edge weight must be either 0 or 1.')
+
         self._graph[from_vertex].append(Edge(to_vertex, weight))
 
     def get_shortest_path(self, start_vertex: int, finish_vertex: int) -> int:
@@ -61,6 +77,10 @@ class AdjacencyList:
         >>> g.add_edge(8, 10, 1)
         >>> g.add_edge(9, 7, 0)
         >>> g.add_edge(9, 10, 1)
+        >>> g.add_edge(1, 2, 2)
+        Traceback (most recent call last):
+            ...
+        ValueError: Edge weight must be either 0 or 1.
         >>> g.get_shortest_path(0, 3)
         0
         >>> g.get_shortest_path(0, 4)
