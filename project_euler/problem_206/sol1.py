@@ -1,6 +1,5 @@
 """
-Project Euler 206
-https://projecteuler.net/problem=206
+Project Euler Problem 206: https://projecteuler.net/problem=206
 
 Find the unique positive integer whose square has the form 1_2_3_4_5_6_7_8_9_0,
 where each “_” is a single digit.
@@ -16,27 +15,22 @@ We can narrow the search space down to the first 8 digits and multiply the
 result of that by 10 at the end.
 
 Now the last digit is a 9, which can only happen if the square root ends
-in a 3 or 7. We can either start checking for the square root from
-101010103, which is the closest square root of 10203040506070809 that ends
-in 3 or 7, or 138902663, the closest square root of 1929394959697989. The
-problem says there's only 1 answer, so starting at either point is fine,
-but the result happens to be much closer to the latter.
+in a 3 or 7. From this point, we can try one of two different methods to find
+the answer:
+
+1. Start at the lowest possible base number whose square would be in the
+format, and count up. The base we would start at is 101010103, whose square is
+the closest number to 10203040506070809. Alternate counting up by 4 and 6 so
+the last digit of the base is always a 3 or 7.
+
+2. Start at the highest possible base number whose square would be in the
+format, and count down. That base would be 138902663, whose square is the
+closest number to 1929394959697989. Alternate counting down by 6 and 4 so the
+last digit of the base is always a 3 or 7.
+
+The solution does option 2 because the answer happens to be much closer to the
+starting point.
 """
-
-
-def solution() -> int:
-    """
-    Returns the first integer whose square is of the form 1_2_3_4_5_6_7_8_9_0.
-    """
-    num = 138902663
-
-    while not is_square_form(num * num):
-        if num % 10 == 3:
-            num -= 6  # (3 - 6) % 10 = 7
-        else:
-            num -= 4  # (7 - 4) % 10 = 3
-
-    return num * 10
 
 
 def is_square_form(num: int) -> bool:
@@ -59,6 +53,21 @@ def is_square_form(num: int) -> bool:
         digit -= 1
 
     return True
+
+
+def solution() -> int:
+    """
+    Returns the first integer whose square is of the form 1_2_3_4_5_6_7_8_9_0
+    """
+    num = 138902663
+
+    while not is_square_form(num * num):
+        if num % 10 == 3:
+            num -= 6  # (3 - 6) % 10 = 7
+        else:
+            num -= 4  # (7 - 4) % 10 = 3
+
+    return num * 10
 
 
 if __name__ == "__main__":
