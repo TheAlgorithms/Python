@@ -127,8 +127,8 @@ def find_optimal_binary_search_tree(nodes):
                     root[i][j] = r
 
     print("Binary search tree nodes:")
-    for node in nodes:
-        print(node)
+    for noder in nodes:
+        print(noder)
 
     print(f"\nThe cost of optimal BST for given tree nodes is {dp[0][n - 1]}.")
     print_binary_search_tree(root, keys, 0, n - 1, -1, False)
