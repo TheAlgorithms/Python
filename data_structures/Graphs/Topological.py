@@ -4,6 +4,8 @@ from collections import defaultdict
 
 # This class represents a directed graph using
 # adjacency list representation
+
+
 class Graph:
 
     # Constructor
@@ -71,19 +73,21 @@ class Graph:
         if len(topological_ordering) == len(self.digraph):
             return topological_ordering  # got them all
         else:
-            raise Exception("Graph has a cycle! No topological ordering exists.")
+            raise Exception(
+                "Graph has a cycle! No topological ordering exists.")
 
     # Time Complexity: O(V+E).
     # Auxiliary space: O(V).
 
 
 # Driver code
-g = Graph(6)
-g.addEdge(5, 2)
-g.addEdge(5, 0)
-g.addEdge(4, 0)
-g.addEdge(4, 1)
-g.addEdge(2, 3)
-g.addEdge(3, 1)
-print("Following is a Topological Sort of the given graph")
-print("ORDER", g.topological_sort())
+if __name__ == '__main__':
+    g = Graph(6)
+    g.addEdge(5, 2)
+    g.addEdge(5, 0)
+    g.addEdge(4, 0)
+    g.addEdge(4, 1)
+    g.addEdge(2, 3)
+    g.addEdge(3, 1)
+    print("Following is a Topological Sort of the given graph")
+    print("ORDER", g.topological_sort())

@@ -39,11 +39,12 @@ class Graph:
         self.print_solution(dist)
 
 
-g = Graph(5)
-g.add_edge(0, 1, 5)
-g.add_edge(0, 2, 4)
-g.add_edge(1, 3, 3)
-g.add_edge(2, 1, 6)
-g.add_edge(3, 2, 2)
+if __name__ == '__main__':
+    g = Graph(5)
+    g.add_edge(0, 1, 5)
+    g.add_edge(0, 2, 4)
+    g.add_edge(1, 3, 3)
+    g.add_edge(2, 1, 6)
+    g.add_edge(3, 2, 2)
 
-g.bellman_ford(0)
+    g.bellman_ford(0)
