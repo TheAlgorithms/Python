@@ -10,12 +10,12 @@ Example, given str1 = "foam" and str2 = "programming"
 
 LCS(str1, str2) = L = "oam"  => length(L) = 3
 Thus,
-deletions = len(str1) - len(L), 
+deletions = len(str1) - len(L),
 insertions = len(str2) - len(L)
 """
 
 
-def longest_common_subsequence(str1: str, str2: str):
+def longest_common_subsequence(str1: str, str2: str) -> int:
     """
     Finds the length of longest common subsequence between two strings.
 
@@ -31,7 +31,6 @@ def longest_common_subsequence(str1: str, str2: str):
     1
     >>> longest_common_subsequence("applaud", "app")
     3
-
     """
 
     # length of the strings
@@ -57,7 +56,7 @@ def longest_common_subsequence(str1: str, str2: str):
     return dp[m][n]
 
 
-def min_insertions_deletions(str1: str, str2: str):
+def min_insertions_deletions(str1: str, str2: str) -> (int, int):
     """
     Calculates the minimum numbers of insertions and deletions required
     to transform str1 to str2
@@ -77,10 +76,7 @@ def min_insertions_deletions(str1: str, str2: str):
     (0, 4)
     >>> min_insertions_deletions(32, "app")
     Traceback (most recent call last):
-      File "min_insertions_deletions.py", line 96, in <module>
-        insertions, deletions = min_insertions_deletions(str1, str2)
-      File "min_insertions_deletions.py", line 78, in min_insertions_deletions
-        assert type(str1) is str, "str1 should be a string, not {}".format(type(str1))
+        ...
     AssertionError: str1 should be a string, not <class 'int'>
 
     """
