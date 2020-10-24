@@ -38,7 +38,7 @@ def lin_reg_pred(
 
 def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> float:
     """
-    second method: sarimax
+    second method: Sarimax
     sarimax is a statistic method which using previous input
     and learn its pattern to predict future data
     input : training data (total_user, with exog data = total_event) in list of float
