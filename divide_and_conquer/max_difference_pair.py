@@ -39,3 +39,9 @@ def max_difference(a: List[int]) -> (int, int):
             return small1, big1
         else:
             return min_first, max_second
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
