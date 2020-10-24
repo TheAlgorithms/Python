@@ -77,5 +77,3 @@ def solution(limit: int = 1_000_000):
 
 if __name__ == "__main__":
     print(f"{solution() = }")
-
-    
