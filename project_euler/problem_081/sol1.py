@@ -85,16 +85,26 @@ def solution() -> int:
     solve the problem by applying the above algorithm
     and return the answer
 
-    # >>> solution()
-    # 427337
+    >>> solution()
+    2427
     """
 
-    matrix = []
-    with open("./p081_matrix.txt", "r") as file:
-        matrix = file.readlines()
-        for i, line in enumerate(matrix):
-            line[i].strip("\n")
-            matrix[i] = [int(x) for x in line.split(",")]
+    matrix = [
+        [131, 673, 234, 103, 18],
+        [201, 96, 342, 965, 150],
+        [630, 803, 746, 422, 111],
+        [537, 699, 497, 121, 956],
+        [805, 732, 524, 37, 331],
+    ]
+
+    # the code below solves the upstream problem but I cannot use it
+    # since an additional file is needed to read from
+
+    # with open("./p081_matrix.txt", "r") as file:
+    #     matrix = file.readlines()
+    #     for i, line in enumerate(matrix):
+    #         line[i].strip("\n")
+    #         matrix[i] = [int(x) for x in line.split(",")]
 
     return solve_matrix(len(matrix), len(matrix[-1]), matrix)
 
