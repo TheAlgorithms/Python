@@ -167,7 +167,7 @@ def add(digits, k, addend):
         digits.append(digit)
 
 
-def solution(n):
+def solution(n: int = 10 ** 15) -> int:
     """
     returns n-th term of sequence
 
@@ -197,4 +197,4 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    print(solution(10 ** 15))
+    print(f"{solution() = }")

@@ -7,9 +7,11 @@ numpy
 opencv-python
 pandas
 pillow
+qiskit
 requests
 scikit-fuzzy
 sklearn
+statsmodels
 sympy
 tensorflow
 xgboost

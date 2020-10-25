@@ -53,7 +53,7 @@ Algorithms in this repo should not be how-to examples for existing Python packag
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in Python 3.7+.  __print()__ is a function in Python 3 so __print "Hello"__ will _not_ work but __print("Hello")__ will.
+- Please write in Python 3.7+. For instance:  __print()__ is a function in Python 3 so __print "Hello"__ will _not_ work but __print("Hello")__ will.
 - Please focus hard on naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
   - Single letter variable names are _old school_ so please avoid them unless their life only spans a few lines.
   - Expand acronyms because __gcd()__ is hard to understand but __greatest_common_divisor()__ is not.
@@ -147,9 +147,9 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
 - If you need a third party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
 
-#### Other Standard While Submitting Your Work
+#### Other Requirements for Submissions
 
-- File extension for code should be `.py`. Jupyter notebook files are acceptable in machine learning algorithms.
+- The file extension for code files should be `.py`. Jupyter Notebooks should be submitted to [TheAlgorithms/Jupyter](https://github.com/TheAlgorithms/Jupyter).
 - Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
 - If possible, follow the standard *within* the folder you are submitting to.
