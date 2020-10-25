@@ -37,3 +37,40 @@ def is_prime(val: int) -> bool:
             if val % i == 0:
                 return False
         return True
+
+def find_max_prime(prime_numbers: list, result: int) -> int:
+    """
+    Find the maximum sum of consecutive primes and returns a prime.
+
+    >>> find_max_prime([2, 3, 5, 7, 11, 13, 17, 19] 58)
+    53
+    """
+    for i in prime_numbers:
+        result -= i
+        if is_prime(result):
+            return result
+
+def solution(n = 1000000):
+    """
+    Return solution of the problem where n is one-million.
+
+    >>> solution()
+    997651
+    """
+    prime_numbers = list()
+    result = 0
+    sieve = [True] * (n+1)
+    for val in range(2, n+1):
+        if (sieve[val]):
+            prime_numbers.append(val)
+            if result+val >= n:
+                if not is_prime(result):
+                    result = find_max_prime(prime_numbers, result)
+                return result
+            result += val
+            for i in range(val, n+1, val):
+                sieve[i] = False
+
+
+if __name__ == "__main__":
+    solution()
