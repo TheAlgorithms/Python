@@ -12,3 +12,25 @@ The longest sum of consecutive primes below one-thousand that adds to a prime, c
 
 Which prime, below one-million, can be written as the sum of the most consecutive primes?
 """
+
+def is_prime(val: int) -> bool:
+    """
+    Determines whether value is a prime or not.
+
+    >>> is_prime(2)
+    True
+    >>> is_prime(3)
+    True
+    >>> is_prime(15)
+    False
+    """
+
+    if val == 2:
+        return True
+    elif val % 2 == 0:
+        return False
+    else:
+        for i in range(3, val // 2, 2):
+            if val % i == 0:
+                return False
+        return True
