@@ -19,7 +19,7 @@ def main():
 # so I used 4.80 Algorithm in
 # Handbook of Applied Cryptography(CRC Press, ISBN : 0-8493-8523-7, October 1996)
 # and it seems to run nicely!
-def primitiveRoot(p_val):
+def primitiveRoot(p_val: int) -> int:
     print("Generating primitive root of p")
     while True:
         g = random.randrange(3, p_val)
@@ -30,7 +30,7 @@ def primitiveRoot(p_val):
         return g
 
 
-def generateKey(keySize):
+def generateKey(keySize: int) -> ((int, int, int, int), (int, int)):
     print("Generating prime p...")
     p = rabinMiller.generateLargePrime(keySize)  # select large prime number.
     e_1 = primitiveRoot(p)  # one primitive root on modulo p.
@@ -43,7 +43,7 @@ def generateKey(keySize):
     return publicKey, privateKey
 
 
-def makeKeyFiles(name, keySize):
+def makeKeyFiles(name: str, keySize: int):
     if os.path.exists("%s_pubkey.txt" % name) or os.path.exists(
         "%s_privkey.txt" % name
     ):
