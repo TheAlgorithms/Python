@@ -81,7 +81,7 @@ def solve_matrix(lines: int, columns: int, matrix: list) -> int:
 
 def solution() -> int:
     """
-    open the input file, read and parse the matrix data,
+    populate the matrix with the needed data
     solve the problem by applying the above algorithm
     and return the answer
 
