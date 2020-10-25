@@ -32,56 +32,106 @@ be displayed?
 """
 
 
-from itertools import combinations
+from itertools import combinations, combinations_with_replacement, permutations
+from math import ceil
+from typing import List, Set
 
 
-def test_arrangement(die1: set, die2: set) -> bool:
+def split_digits(number: int, num_digits: int) -> List[int]:
     """
-    Check if an arrangement of two dice can represent all 1- and 2- digit squares.
-    >>> test_arrangement({0, 5, 6, 7, 8, 9},{1, 2, 3, 4, 6, 7})
+    Return a list of length num_digits containing the digits of a number.
+    If num_digits is longer than the length of number, the list is filled
+    with zero-padding to the left.
+    >>> split_digits(100,3)
+    [1, 0, 0]
+    >>> split_digits(169,3)
+    [1, 6, 9]
+    >>> split_digits(169,4)
+    [0, 1, 6, 9]
+    >>> split_digits(169,2)
+    Traceback (most recent call last):
+    ValueError: num_digits must be no smaller than the length of number
+    """
+
+    if 10 ** num_digits <= number:
+        raise ValueError("num_digits must be no smaller than the length of number")
+
+    digits: List[int] = [0] * num_digits
+    for index in range(num_digits):
+        digits[num_digits - 1 - index] = number % 10
+        number //= 10
+
+    return digits
+
+
+def test_arrangement(dice: List[set], max_digits: int) -> bool:
+    """
+    Check if an arrangement of two dice can represent all squares numbers
+    with at most max_digits digts. Obviously, the number of dice must be at least
+    as large as max_digits.
+    >>> test_arrangement([{0, 5, 6, 7, 8, 9},{1, 2, 3, 4, 6, 7}], 2)
     True
-    >>> test_arrangement({0, 5, 6, 7, 8, 9},{1, 2, 3, 4, 5, 7})
+    >>> test_arrangement([{0, 5, 6, 7, 8, 9},{1, 2, 3, 4, 5, 7}], 2)
+    False
+    >>> test_arrangement([{1,3,4,5,7,9}], 1)
+    True
+    >>> test_arrangement([{0, 5, 6, 7, 8, 9},{1, 2, 3, 4, 6, 7},{0,1,2,3,4,5}], 2)
+    True
+    >>> test_arrangement([{0, 5, 6, 7, 8, 9},{1, 2, 3, 4, 6, 7},{6,1,2,3,4,5}], 3)
+    False
+    >>> test_arrangement([{1,3,4,5,7,9}], 2)
     False
     """
-    if 6 in die1:
-        die1.add(9)
-    elif 9 in die1:
-        die1.add(6)
 
-    if 6 in die2:
-        die2.add(9)
-    elif 9 in die2:
-        die2.add(6)
+    if len(dice) < max_digits:
+        return False
 
-    for i in range(1, 10):
-        square = i * i
-        a, b = square // 10, square % 10
-        if not ((a in die1 and b in die2) or (b in die1 and a in die2)):
+    for die in dice:
+        if 6 in die:
+            die.add(9)
+        elif 9 in die:
+            die.add(6)
+
+    for i in range(1, ceil(10 ** (max_digits / 2))):
+        square: int = i * i
+        digits: List[int] = split_digits(square, max_digits)
+        for dice_order in permutations(dice, max_digits):
+            if all(digits[i] in dice_order[i] for i in range(max_digits)):
+                break
+        else:
             return False
 
     return True
 
 
-def solution() -> int:
+def solution(num_dice: int = 2, max_digits: int = 2) -> int:
     """
-    Return the number of distinct arrangement of two dice which allow for all 1-
-    and 2- digit square numbers to be displayed.
+    Return the number of distinct arrangement of num_dice dice which allow for all
+    square numbers with at most max_digits digits to be displayed. Obviously, num_dice
+    must be >= max_digits.
+    >>> solution(1, 1)
+    55
+    >>> solution(2, 1)
+    15070
+    >>> solution(1, 2)
+    0
     """
-    s = set()
+    if num_dice < max_digits:
+        return 0
 
-    for die1 in combinations(range(10), 6):
-        die1_set = set(die1)
-        for die2 in combinations(range(10), 6):
-            if die2 < die1:
-                continue
-            die2_set = set(die2)
-            if test_arrangement(die1_set, die2_set):
-                die1 = tuple(sorted(die1))
-                die2 = tuple(sorted(die2))
-                tmp = tuple(sorted([die1, die2]))
-                s.add(tmp)
+    good_arrangements: set = set()
+    dice: tuple
+    dice_sets: List[Set[int]]
+    sorted_dice_tuples: List[tuple]
+    die_options: List[tuple] = list(combinations(range(10), 6))
 
-    return len(s)
+    for dice in combinations_with_replacement(die_options, num_dice):
+        dice_sets = list(map(set, dice))
+        if test_arrangement(dice_sets, max_digits):
+            sorted_dice_tuples = [tuple(sorted(die)) for die in dice]
+            good_arrangements.add(tuple(sorted(sorted_dice_tuples)))
+
+    return len(good_arrangements)
 
 
 if __name__ == "__main__":
