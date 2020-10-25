@@ -26,15 +26,14 @@ def combinations(n: int, k: int) -> int:
     1
 
     >>> combinations(-4, -5)
-    Invalid value for n and/or k given.
-    -1
+    Traceback (most recent call last):
+    ValueError: Please enter positive integers for n and k where n >= k
     """
 
     # If either of the conditions are true, the function is being asked
     # to calculate a factorial of a negative number, which is not possible
     if n < k or k < 0:
-        print("Invalid value for n and/or k given.")
-        return -1
+        raise ValueError("Please enter positive integers for n and k where n >= k")
     return int(factorial(n) / ((factorial(k)) * (factorial(n - k))))
 
 
