@@ -1,4 +1,4 @@
-'''
+"""
 A message containing letters from A-Z is being encoded to numbers using the
 following mapping:
 'A' -> 1
@@ -7,7 +7,7 @@ following mapping:
 'Z' -> 26
 Given a non-empty string containing only digits,
 determine the total number of ways to decode it.
-'''
+"""
 
 def num_decodings(s: str):
     """
@@ -38,7 +38,6 @@ def num_decodings(s: str):
             curr = last
         
         last, second_last = curr, last
-
     return last
 
 
