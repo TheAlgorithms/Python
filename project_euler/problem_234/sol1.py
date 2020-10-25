@@ -17,40 +17,103 @@ up to 1000 is 34825.
 What is the sum of all semidivisible numbers not exceeding 999966663333 ?
 """
 
-
-def fib(a, b, n):
-
-    if n == 1:
-        return a
-    elif n == 2:
-        return b
-    elif n == 3:
-        return str(a) + str(b)
-
-    temp = 0
-    for x in range(2, n):
-        c = str(a) + str(b)
-        temp = b
-        b = c
-        a = temp
-    return c
+import math
 
 
-def solution(n):
-    """Returns the sum of all semidivisible numbers not exceeding n."""
-    semidivisible = []
-    for x in range(n):
-        l = [i for i in input().split()]  # noqa: E741
-        c2 = 1
-        while 1:
-            if len(fib(l[0], l[1], c2)) < int(l[2]):
-                c2 += 1
-            else:
+def prime_sieve(n: int) -> list:
+    """
+    Sieve of Erotosthenes
+    Function to return all the prime numbers up to a certain number
+    https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+    >>> prime_sieve(3)
+    [2]
+    >>> prime_sieve(50)
+    [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+    """
+    is_prime = [True] * n
+    is_prime[0] = False
+    is_prime[1] = False
+    is_prime[2] = True
+
+    for i in range(3, int(n ** 0.5 + 1), 2):
+        index = i * 2
+        while index < n:
+            is_prime[index] = False
+            index = index + i
+
+    primes = [2]
+
+    for i in range(3, n, 2):
+        if is_prime[i]:
+            primes.append(i)
+
+    return primes
+
+
+def solution(limit: int = 999_966_663_333) -> int:
+    """
+    Computes the solution to the problem up to the specified limit
+    >>> solution(1000)
+    34825
+
+    >>> solution(10_000)
+    1134942
+
+    >>> solution(100_000)
+    36393008
+    """
+    primes_upper_bound = math.floor(math.sqrt(limit)) + 100
+    primes = prime_sieve(primes_upper_bound)
+
+    matches_sum = 0
+    prime_index = 0
+    last_prime = primes[prime_index]
+
+    while (last_prime ** 2) <= limit:
+        next_prime = primes[prime_index + 1]
+
+        lower_bound = last_prime ** 2
+        upper_bound = next_prime ** 2
+
+        # Get numbers divisible by lps(current)
+        current = lower_bound + last_prime
+        while upper_bound > current <= limit:
+            matches_sum += current
+            current += last_prime
+
+        # Reset the upper_bound
+        while (upper_bound - next_prime) > limit:
+            upper_bound -= next_prime
+
+        # Add the numbers divisible by ups(current)
+        current = upper_bound - next_prime
+        while current > lower_bound:
+            matches_sum += current
+            current -= next_prime
+
+        # Remove the numbers divisible by both ups and lps
+        current = 0
+        while upper_bound > current <= limit:
+            if current <= lower_bound:
+                # Increment the current number
+                current += last_prime * next_prime
+                continue
+
+            if current > limit:
                 break
-        semidivisible.append(fib(l[0], l[1], c2 + 1)[int(l[2]) - 1])
-    return semidivisible
+
+            # Remove twice since it was added by both ups and lps
+            matches_sum -= current * 2
+
+            # Increment the current number
+            current += last_prime * next_prime
+
+        # Setup for next pair
+        last_prime = next_prime
+        prime_index += 1
+
+    return matches_sum
 
 
 if __name__ == "__main__":
-    for i in solution(int(str(input()).strip())):
-        print(i)
+    print(solution())

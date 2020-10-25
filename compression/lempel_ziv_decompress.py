@@ -16,10 +16,10 @@ def read_file_binary(file_path: str) -> str:
         with open(file_path, "rb") as binary_file:
             data = binary_file.read()
         for dat in data:
-            curr_byte = "{0:08b}".format(dat)
+            curr_byte = f"{dat:08b}"
             result += curr_byte
         return result
-    except IOError:
+    except OSError:
         print("File not accessible")
         sys.exit()
 
@@ -76,7 +76,7 @@ def write_file_binary(file_path: str, to_write: str) -> None:
 
             for elem in result_byte_array[:-1]:
                 opened_file.write(int(elem, 2).to_bytes(1, byteorder="big"))
-    except IOError:
+    except OSError:
         print("File not accessible")
         sys.exit()
 
