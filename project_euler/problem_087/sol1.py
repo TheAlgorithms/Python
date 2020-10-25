@@ -1,6 +1,5 @@
 """
-Project Euler Problem 87
-https://projecteuler.net/problem=87
+Project Euler Problem 87: https://projecteuler.net/problem=87
 
 The smallest number expressible as the sum of a prime square, prime cube, and prime
 fourth power is 28. In fact, there are exactly four numbers below fifty that can be
@@ -44,10 +43,7 @@ def calculate_powers(nums: List[int], power: int) -> List[int]:
     [1, 8, 27]
     """
 
-    results = []
-    for n in nums:
-        results.append(n ** power)
-    return results
+    return [n ** power for n in nums]
 
 
 def solution(max_number: int = 50_000_000) -> int:
@@ -58,9 +54,12 @@ def solution(max_number: int = 50_000_000) -> int:
     1. Since we're limited to 50,000,000, we can determine ceilings for the primes:
          - Squareroot of 50M rounded down is 7071
 
-    Answer:
+    >>> solution(25)
+    0
     >>> solution(50)
     4
+    >>> solution(10000)
+    683
     """
 
     prime_power_triples = set()
@@ -87,4 +86,4 @@ def solution(max_number: int = 50_000_000) -> int:
 
 if __name__ == "__main__":
 
-    print(solution())
+    print(f"{solution() = }")
