@@ -40,7 +40,8 @@ def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
 def benchmark() -> None:
     """
     Benchmark
-    The numpy takes longer than the non numpy for smaller vectors, but as the dimension increases, the numpy is much faster
+    The numpy takes longer than the non numpy for smaller vectors, but as
+    the dimension increases, the numpy is much faster
     """
     from timeit import timeit
 
