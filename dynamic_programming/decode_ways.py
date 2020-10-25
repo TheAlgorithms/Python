@@ -10,24 +10,23 @@ determine the total number of ways to decode it.
 '''
 
 def num_decodings(s: str):
-    '''
+    """
     >> num_decodings("12")
     2
     >> num_decodings("226")
     3
-    '''
+    """
     if not s or int(s[0]) == 0:
         return 0
     
     last = 1
     second_last = 1
-    
+
     for i in range(1, len(s)):
-        
         # 0 is a special digit since it does not
         # correspond to any alphabet but can be
         # meaningful if preceeded by 1 or 2
-        
+
         if s[i] == "0":
             if s[i-1] in {"1", "2"}:
                 curr = second_last
