@@ -44,7 +44,7 @@ def find_max_prime(prime_numbers: list, result: int) -> int:
     """
     Find the maximum sum of consecutive primes and returns a prime.
 
-    >>> find_max_prime([2, 3, 5, 7, 11, 13, 17, 19] 58)
+    >>> find_max_prime([2, 3, 5, 7, 11, 13, 17, 19], 58)
     53
     """
     for i in prime_numbers:
