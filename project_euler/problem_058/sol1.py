@@ -46,9 +46,6 @@ Let l(n) = the nth layer's side length
     * insert last corner
 5. For each layer we can recalculate the ratio and find the answer.
 
-
-TIME 10.5s
-
 """
 
 
