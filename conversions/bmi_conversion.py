@@ -8,9 +8,11 @@ def metric_units_bmi(kg: int, cm: int) -> int:
     19.53
     >>> metric_units_bmi(80, 175)
     26.12
+    >>> metric_units_bmi(20, 0)
+    "Cm couldn't be 0"
     """
     if cm == 0:
-        raise ValueError("Cm couldn't be 0")
+        return "Height couldn't be 0"
 
     metre_square = (cm / 100) ** 2
     return round(kg / metre_square, 2)
@@ -23,9 +25,11 @@ def us_units_bmi(pounds: int, inches: int) -> int:
     25.0
     >>> us_units_bmi(130, 65)
     21.63
+    >>> us_units_bmi(40, 0)
+    "Inches couldn't be 0"
     """
     if inches == 0:
-        raise ValueError("Inches couldn't be 0")
+        return "Height couldn't be 0"
 
     inches_square = inches ** 2
     return round(703 * (pounds / inches_square), 2)
