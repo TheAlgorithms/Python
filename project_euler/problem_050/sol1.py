@@ -16,6 +16,7 @@ Which prime, below one-million, can be written as the sum of the most
 consecutive primes?
 """
 
+
 def is_prime(val: int) -> bool:
     """
     Determines whether value is a prime or not.
@@ -38,6 +39,7 @@ def is_prime(val: int) -> bool:
                 return False
         return True
 
+
 def find_max_prime(prime_numbers: list, result: int) -> int:
     """
     Find the maximum sum of consecutive primes and returns a prime.
@@ -50,7 +52,8 @@ def find_max_prime(prime_numbers: list, result: int) -> int:
         if is_prime(result):
             return result
 
-def solution(n = 1000000):
+
+def solution(n=1000000):
     """
     Return solution of the problem where n is one-million.
 
@@ -59,16 +62,16 @@ def solution(n = 1000000):
     """
     prime_numbers = list()
     result = 0
-    sieve = [True] * (n+1)
-    for val in range(2, n+1):
-        if (sieve[val]):
+    sieve = [True] * (n + 1)
+    for val in range(2, n + 1):
+        if sieve[val]:
             prime_numbers.append(val)
-            if result+val >= n:
+            if result + val >= n:
                 if not is_prime(result):
                     result = find_max_prime(prime_numbers, result)
                 return result
             result += val
-            for i in range(val, n+1, val):
+            for i in range(val, n + 1, val):
                 sieve[i] = False
 
 
