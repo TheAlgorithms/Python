@@ -1,6 +1,11 @@
-""" add two matrices that are the same size"""
+""" 
+add two matrices that are the same size
+Reference: https://en.wikipedia.org/wiki/Matrix_addition
+"""
 
-def add(matrix_a, matrix_b):
+Matrix = list[list[int]]
+
+def add(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
     >>> add([[0, 1], [0, 0]], [[0, 1], [0, 0]])
     [[0, 2], [0, 0]]
