@@ -31,8 +31,6 @@ The solution is based on the Bellman-Ford Algorithm
 
 Reference: https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
 
-TIME 0.22s
-
 """
 
 import os
