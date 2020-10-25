@@ -32,9 +32,6 @@ the partial sum surpasses the given threshold. We can do that
 because the sieve algorithm returns the prime numbers in
 ascending order
 
-
-TIME 0.7s
-
 """
 
 import math
