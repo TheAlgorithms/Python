@@ -1,3 +1,4 @@
+import sys
 try:
     import cv2
 
@@ -26,21 +27,22 @@ try:
     contours, hierarchy = cv2.findContours(dilation, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
     # Creating a copy of image
-    im2 = img.copy()
+    if img:
+        im2 = img.copy()
 
-    # Looping through the identified contours
-    i=0
-    for cnt in contours:
-        x, y, w, h = cv2.boundingRect(cnt)
-        if h<30 or w<30:
-            continue
-        print(x,y,w,h)
-        # Drawing a rectangle on copied image
-        rect = cv2.rectangle(im2, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        crops = im2[y:y+h, x:x+w]
-        name = "res_"+str(i)+".jpeg"
-        cv2.imwrite(name, crops)
-        i+=1
-    cv2.imwrite('final.jpg', im2)
+        # Looping through the identified contours
+        i=0
+        for cnt in contours:
+            x, y, w, h = cv2.boundingRect(cnt)
+            if h<30 or w<30:
+                continue
+            print(x,y,w,h)
+            # Drawing a rectangle on copied image
+            rect = cv2.rectangle(im2, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            crops = im2[y:y+h, x:x+w]
+            name = "res_"+str(i)+".jpeg"
+            cv2.imwrite(name, crops)
+            i+=1
+        cv2.imwrite('final.jpg', im2)
 except:
-    exit()
+    sys.exit()
