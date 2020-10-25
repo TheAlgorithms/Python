@@ -41,9 +41,6 @@ In my implementation I took a 'forward' approach and calculated
 future states of the DP using the current state, instead of using
 a 'backwards' approach by calculating the current state from past states.
 
-
-TIME 0.22s
-
 """
 
 import os
