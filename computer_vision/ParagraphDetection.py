@@ -1,3 +1,6 @@
+import cv2
+import numpy as np
+
 # Read image from which paragraphs needs to be extracted
 im = cv2.imread("img_name.jpg")
 img = im.copy() 
