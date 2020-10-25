@@ -3,9 +3,7 @@ add two matrices that are the same size
 Reference: https://en.wikipedia.org/wiki/Matrix_addition
 """
 
-Matrix = list[list[int]]
-
-def add(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def add(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     """
     >>> add([[0, 1], [0, 0]], [[0, 1], [0, 0]])
     [[0, 2], [0, 0]]
