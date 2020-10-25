@@ -1,14 +1,21 @@
 """
-Problem:
-The prime factors of 13195 are 5,7,13 and 29. What is the largest prime factor
-of a given number N?
+Project Euler Problem 3: https://projecteuler.net/problem=3
 
-e.g. for 10, largest prime factor = 5. For 17, largest prime factor = 17.
+Largest prime factor
+
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143?
+
+References:
+    - https://en.wikipedia.org/wiki/Prime_number#Unique_factorization
 """
 
 
 def solution(n: int = 600851475143) -> int:
-    """Returns the largest prime factor of a given number n.
+    """
+    Returns the largest prime factor of a given number n.
+
     >>> solution(13195)
     29
     >>> solution(10)
@@ -20,26 +27,27 @@ def solution(n: int = 600851475143) -> int:
     >>> solution(0)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter n must be greater or equal to one.
+    ValueError: Parameter n must be greater than or equal to one.
     >>> solution(-17)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter n must be greater or equal to one.
+    ValueError: Parameter n must be greater than or equal to one.
     >>> solution([])
     Traceback (most recent call last):
         ...
-    TypeError: Parameter n must be int or passive of cast to int.
+    TypeError: Parameter n must be int or castable to int.
     >>> solution("asd")
     Traceback (most recent call last):
         ...
-    TypeError: Parameter n must be int or passive of cast to int.
+    TypeError: Parameter n must be int or castable to int.
     """
+
     try:
         n = int(n)
     except (TypeError, ValueError):
-        raise TypeError("Parameter n must be int or passive of cast to int.")
+        raise TypeError("Parameter n must be int or castable to int.")
     if n <= 0:
-        raise ValueError("Parameter n must be greater or equal to one.")
+        raise ValueError("Parameter n must be greater than or equal to one.")
     i = 2
     ans = 0
     if n == 2:
@@ -55,4 +63,4 @@ def solution(n: int = 600851475143) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")
