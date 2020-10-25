@@ -1,15 +1,21 @@
 """
-Problem:
-A palindromic number reads the same both ways. The largest palindrome made from
-the product of two 2-digit numbers is 9009 = 91 x 99.
+Project Euler Problem 4: https://projecteuler.net/problem=4
 
-Find the largest palindrome made from the product of two 3-digit numbers which
-is less than N.
+Largest palindrome product
+
+A palindromic number reads the same both ways. The largest palindrome made
+from the product of two 2-digit numbers is 9009 = 91 × 99.
+
+Find the largest palindrome made from the product of two 3-digit numbers.
+
+References:
+    - https://en.wikipedia.org/wiki/Palindromic_number
 """
 
 
 def solution(n: int = 998001) -> int:
-    """Returns the largest palindrome made from the product of two 3-digit
+    """
+    Returns the largest palindrome made from the product of two 3-digit
     numbers which is less than n.
 
     >>> solution(20000)
@@ -23,10 +29,10 @@ def solution(n: int = 998001) -> int:
     ...
     ValueError: That number is larger than our acceptable range.
     """
+
     # fetches the next number
     for number in range(n - 1, 9999, -1):
 
-        # converts number into string.
         str_number = str(number)
 
         # checks whether 'str_number' is a palindrome.
@@ -44,8 +50,4 @@ def solution(n: int = 998001) -> int:
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")
