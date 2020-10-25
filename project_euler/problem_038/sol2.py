@@ -27,15 +27,19 @@ def solution() -> int:
     932718654
     """
     max_value = 0
-    for i in range(1, 987654321//2+1):
-        number_string = ''
+    for i in range(1, 987654321 // 2 + 1):
+        number_string = ""
         for j in range(1, 10):
             number_string += str(i * j)
             number_set = set(number_string)
-            if j == 1 and number_string[0] != '9':
+            if j == 1 and number_string[0] != "9":
                 # we already know 9 x [1, 2, 3, 4, 5] => 918273645
                 break
-            elif len(number_set) != len(number_string) or len(number_string) > 9 or '0' in number_string:
+            elif (
+                len(number_set) != len(number_string)
+                or len(number_string) > 9
+                or "0" in number_string
+            ):
                 break
             elif len(number_string) < 9:
                 continue
