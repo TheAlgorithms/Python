@@ -46,9 +46,6 @@ TIME 0.22s
 
 """
 
-import os
-import requests
-
 
 def solve_matrix(lines: int, columns: int, matrix: list) -> int:
     """
@@ -88,16 +85,9 @@ def solution() -> int:
     solve the problem by applying the above algorithm
     and return the answer
 
-    >>> solution()
-    427337
+    # >>> solution()
+    # 427337
     """
-
-    input_url = "https://projecteuler.net/project/resources/p081_matrix.txt"
-    response = requests.get(input_url)
-
-    # download and write input file
-    with open("./p081_matrix.txt", "wb") as file:
-        file.write(response.content)
 
     matrix = []
     with open("./p081_matrix.txt", "r") as file:
@@ -105,9 +95,6 @@ def solution() -> int:
         for i, line in enumerate(matrix):
             line[i].strip("\n")
             matrix[i] = [int(x) for x in line.split(",")]
-
-    # remove file as it's no longer needed
-    os.remove("./p081_matrix.txt")
 
     return solve_matrix(len(matrix), len(matrix[-1]), matrix)
 
