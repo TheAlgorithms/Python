@@ -32,7 +32,6 @@ def num_decodings(s: str):
                 curr = second_last
             else:
                 return 0
-            
         elif 11 <= int(s[i-1:i+1]) <= 26:
             curr = second_last + last
         else:
