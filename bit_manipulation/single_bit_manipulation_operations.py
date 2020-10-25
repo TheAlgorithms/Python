@@ -5,7 +5,7 @@
 
 def set_bit(number: int, position: int):
     """
-    Set the bit on position to 1.
+    Set the bit at position to 1.
 
     Details: perform bitwise or for given number and X.
     Where X is a number with all the bits – zeroes and bit on given
@@ -18,13 +18,12 @@ def set_bit(number: int, position: int):
     >>> set_bit(0b1111, 1) # 0b1111
     15
     """
-
     return number | (1 << position)
 
 
 def clear_bit(number: int, position: int):
     """
-    Set the bit on position to 0.
+    Set the bit at position to 0.
 
     Details: perform bitwise and for given number and X.
     Where X is a number with all the bits – ones and bit on given
@@ -35,13 +34,12 @@ def clear_bit(number: int, position: int):
     >>> clear_bit(0b0, 5) # 0b0
     0
     """
-
     return number & ~(1 << position)
 
 
 def flip_bit(number: int, position: int):
     """
-    Flip the bit on position.
+    Flip the bit at position.
 
     Details: perform bitwise xor for given number and X.
     Where X is a number with all the bits – zeroes and bit on given
@@ -52,17 +50,15 @@ def flip_bit(number: int, position: int):
     >>> flip_bit(0b101, 0) # 0b100
     4
     """
-
     return number ^ (1 << position)
 
 
 def is_bit_set(number: int, position: int) -> bool:
     """
-    Flip the bit on position.
+    Is the bit at position set?
 
-    Details: perform bitwise xor for given number and X.
-    Where X is a number with all the bits – zeroes and bit on given
-    position – one.
+    Details: Shift the bit at position to be the first (smallest) bit.
+    Then check if the first bit is set by anding the shifted number with 1.
 
     >>> is_bit_set(0b1010, 0)
     False
@@ -75,7 +71,6 @@ def is_bit_set(number: int, position: int) -> bool:
     >>> is_bit_set(0b0, 17)
     False
     """
-
     return ((number >> position) & 1) == 1
 
 
