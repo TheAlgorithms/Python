@@ -22,9 +22,9 @@ def totient(n: int) -> list:
 
 def test_totient() -> None:
     """
-    >>> n = 10
+    >>> num = 10
     >>> totient_calculation = totient(n)
-    >>> for i in range(1, n):
+    >>> for i in range(1, num):
     ...     print(f"{i} has {totient_calculation[i]} relative primes.")
     1 has 0 relative primes.
     2 has 1 relative primes.

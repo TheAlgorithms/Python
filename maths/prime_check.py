@@ -4,21 +4,21 @@ import math
 import unittest
 
 
-def prime_check(number: int) -> bool:
+def prime_check(num: int) -> bool:
     """Checks to see if a number is a prime.
 
     A number is prime if it has exactly two factors: 1 and itself.
     """
 
-    if 1 < number < 4:
+    if 1 < num < 4:
         # 2 and 3 are primes
         return True
-    elif number < 2 or not number % 2:
+    elif num < 2 or not num % 2:
         # Negatives, 0, 1 and all even numbers are not primes
         return False
 
-    odd_numbers = range(3, int(math.sqrt(number) + 1), 2)
-    return not any(not number % i for i in odd_numbers)
+    odd_numbers = range(3, int(math.sqrt(num) + 1), 2)
+    return not any(not num % i for i in odd_numbers)
 
 
 class Test(unittest.TestCase):
