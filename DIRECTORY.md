@@ -267,6 +267,7 @@
   * [Bfs Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs_shortest_path.py)
   * [Bidirectional A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/bidirectional_a_star.py)
   * [Bidirectional Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/bidirectional_breadth_first_search.py)
+  * [Brandes Algo Betweenness Centrality](https://github.com/TheAlgorithms/Python/blob/master/graphs/brandes_algo_betweenness_centrality.py)
   * [Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search.py)
   * [Breadth First Search 2](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search_2.py)
   * [Breadth First Search Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search_shortest_path.py)
@@ -630,6 +631,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_036/sol1.py)
   * Problem 037
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_037/sol1.py)
+  * Problem 038
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_038/sol1.py)
   * Problem 039
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_039/sol1.py)
   * Problem 040
