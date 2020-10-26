@@ -1,0 +1,247 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import pandas as pd
+
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+from datetime import datetime
+
+from matplotlib.pylab import rcParams
+rcParams['figure.figsize']=20,10
+
+from sklearn.preprocessing import MinMaxScaler
+
+
+# In[2]:
+
+
+data = pd.read_csv("NSE-Tata-Global-Beverages-Limited.csv")
+
+
+# In[3]:
+
+
+data["Date"]=pd.to_datetime(data.Date,format="%Y-%m-%d")
+data.index=data['Date']
+
+
+# In[4]:
+
+
+data
+
+
+# In[5]:
+
+
+plt.figure(figsize = (17,8))
+plt.plot(data.Close)
+plt.xlabel("date")
+plt.ylabel("closing price")
+plt.title("CLosing price of TATA Global Beverages")
+plt.show()
+
+
+# In[6]:
+
+
+data1=data.sort_index(ascending=True,axis=0)
+new_dataset=pd.DataFrame(index=range(0,len(data)),columns=['Date','Close'])
+for i in range(0,len(data)):
+    new_dataset["Date"][i]=data1['Date'][i]
+    new_dataset["Close"][i]=data1["Close"][i]
+
+
+# In[7]:
+
+
+new_dataset
+
+
+# In[8]:
+
+
+scaler=MinMaxScaler(feature_range=(0,1))
+final_dataset=new_dataset.values
+train_data=final_dataset[0:987,:]
+valid_data=final_dataset[987:,:]
+new_dataset.index=new_dataset.Date
+new_dataset.drop("Date",axis=1,inplace=True)
+scaler=MinMaxScaler(feature_range=(0,1))
+
+
+# In[9]:
+
+
+train_data
+
+
+# In[10]:
+
+
+train_data.shape
+
+
+# In[ ]:
+
+
+
+
+
+# In[11]:
+
+
+data_ma = data.rolling(window=10).mean()
+
+
+# In[12]:
+
+
+data_ma.plot()
+
+
+# In[13]:
+
+
+d = data.Close.rolling(window=20).mean()
+d.plot()
+
+
+# In[14]:
+
+
+d1 = data.Close.rolling(window=10).mean()
+d1.plot()
+
+
+# In[15]:
+
+
+d2 = data.Close.rolling(window=30).mean()
+d2.plot()
+
+
+# In[16]:
+
+
+d_shift = pd.concat([data.Close, data.Close.shift(1)], axis = 1)
+
+
+# In[17]:
+
+
+d_shift
+
+
+# In[18]:
+
+
+d_shift.dropna(inplace=True)
+
+
+# In[19]:
+
+
+d_shift.columns = ['actual','forecast']
+
+
+# In[20]:
+
+
+d_shift.head()
+
+
+# In[21]:
+
+
+from sklearn.metrics import mean_squared_error
+import numpy as np
+
+
+# In[22]:
+
+
+er = np.sqrt(mean_squared_error(d_shift.actual, d_shift.forecast))
+
+
+# In[23]:
+
+
+# In[24]:
+
+
+d_shift.plot()
+
+
+# In[25]:
+
+
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+
+
+# In[26]:
+
+
+plot_acf(data.Close)
+
+
+# In[27]:
+
+
+plot_pacf(data.Close)
+
+
+# In[28]:
+
+
+from statsmodels.tsa.arima_model import ARIMA
+
+
+# In[61]:
+
+
+m = ARIMA(data1.Close, order = (3,1,2))
+
+
+# In[62]:
+
+
+train = data1[:987]
+test = data1[987:]
+m_fit = m.fit()
+y_pred = test.copy()
+
+
+# In[63]:
+
+
+y_pred['ARIMA'] = m_fit.forecast(steps = len(test))[0]
+
+
+# In[64]:
+
+
+y_pred['ARIMA']
+
+
+# In[65]:
+
+
+plt.plot(train['Close'], label = 'train')
+plt.plot(test['Close'], label='test')
+plt.plot(y_pred['ARIMA'], label='predict')
+plt.legend(loc='best')
+plt.show()
+
+
+# In[34]:
+
+
+rms = np.sqrt(mean_squared_error(test.Close, y_pred.ARIMA)) 
+print(rms)
+
