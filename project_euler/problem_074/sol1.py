@@ -1,4 +1,6 @@
-""" projectEuler problem 74
+"""
+    Project Euler Problem 074: https://projecteuler.net/problem=74
+
     Starting from any positive integer number
     it is possible to attain another one summing the factorial of its digits.
 
@@ -9,19 +11,13 @@
     The request is to find how many numbers less than one million
     produce a chain with exactly 60 non repeating items.
 
-    Approach:
+    Solution approach:
     This solution simply consists in a loop that generates
     the chains of non repeating items.
     The generation of the chain stops before a repeating item
     or if the size of the chain is greater then the desired one.
     After generating each chain, the length is checked and the counter increases.
 """
-
-# The desired number of items to check for in the non repeating chains
-EXACT_CHAIN_LENGTH = 60
-
-# The maximum number to check in the solution
-MAX_NUMBER = 1000000
 
 
 def factorial(a: int) -> int:
@@ -75,17 +71,17 @@ def factorial_sum(a: int) -> int:
     return fact_sum
 
 
-def solution() -> int:
+def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
     """Returns the number of numbers that produce
         chains with exactly 60 non repeating elements.
     >>> solution()
-    402
+    ...
     """
 
     # the counter for the chains with the exact desired length
     chain_counter = 0
 
-    for i in range(1, MAX_NUMBER + 1):
+    for i in range(1, number_limit + 1):
 
         # The temporary list will contain the elements of the chain
         chain_list = [i]
@@ -97,7 +93,7 @@ def solution() -> int:
             or the length it greater then the desired one.
         """
         while not (new_chain_element in chain_list) and (
-            len(chain_list) <= EXACT_CHAIN_LENGTH
+            len(chain_list) <= chain_length
         ):
             chain_list += [new_chain_element]
 
@@ -106,9 +102,13 @@ def solution() -> int:
         """ If the while exited because the chain list contains the exact amount of elements
             increase the counter
         """
-        chain_counter += len(chain_list) == EXACT_CHAIN_LENGTH
+        chain_counter += len(chain_list) == chain_length
 
     return chain_counter
 
 
-print(solution())
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print(f"{solution()}")
