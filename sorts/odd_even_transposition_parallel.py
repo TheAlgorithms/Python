@@ -79,7 +79,7 @@ def OddEvenTransposition(arr):
     True
     >>> OddEvenTransposition([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
     True
-    >>> OddEvenTransposition(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
+    >>> OddEvenTransposition(['d','a','b','e','c']) == sorted(['d','a','b','e','c'])
     True
     """
     processArray = []
@@ -142,6 +142,7 @@ def OddEvenTransposition(arr):
 # creates a reverse sorted list and sorts it
 def main():
     from doctest import testmod
+
     testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
