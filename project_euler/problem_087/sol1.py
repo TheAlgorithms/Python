@@ -70,13 +70,13 @@ def solution(max_number: int = 50_000_000) -> int:
     cubes = calculate_powers(primes, 3)
     quads = calculate_powers(primes, 4)
 
-    doubles = set()
-    for q in quads:
-        for c in cubes:
-            doubles.add(q + c)
-    for d in doubles:
-        for s in squares:
-            sum = d + s
+    quad_cube_sums = set()
+    for quad in quads:
+        for cube in cubes:
+            quad_cube_sums.add(quad + cube)
+    for quad_cube_sum in quad_cube_sums:
+        for square in squares:
+            sum = quad_cube_sum + square
             if sum >= max_number:
                 break
             prime_power_triples.add(sum)
