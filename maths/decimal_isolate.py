@@ -1,5 +1,6 @@
 """
 Isolate the Decimal part of a Number
+https://stackoverflow.com/questions/3886402/how-to-get-numbers-after-decimal-point
 """
 
 
