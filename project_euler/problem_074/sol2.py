@@ -74,8 +74,10 @@ def factorial_sum(a: int) -> int:
 def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
     """Returns the number of numbers that produce
         chains with exactly 60 non repeating elements.
-    >>> solution()
-    ...
+    >>> solution(60,1000000)
+    402
+    >>> solution(15,1000000)
+    17800
     """
 
     # the counter for the chains with the exact desired length
