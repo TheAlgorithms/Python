@@ -13,11 +13,11 @@ def sort_processes_by_priority(
     for other functions in a single list.
         Return: The process id and duration time for each process sorted by priority.
     >>> sort_processes_by_priority([11, 12, 13], [3, 8, 5], [2, 1, 3])
-    [(12, 11, 13), (8, 3, 5)]
+    ([12, 11, 13], [8, 3, 5])
     >>> sort_processes_by_priority([11, 12, 13, 14], [13, 2, 1, 10], [3, 2, 1, 4])
-    [(13, 12, 11, 14), (1, 2, 13, 10)]
+    ([13, 12, 11, 14], [1, 2, 13, 10])
     >>> sort_processes_by_priority([101, 110], [10, 5], [4, 5])
-    [(101, 110), (10, 5)]
+    ([101, 110], [10, 5])
     """
     prioritized_queue = []
     sorted_processes, sorted_duration_times = [], []
