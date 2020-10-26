@@ -2,6 +2,7 @@
 https://en.wikipedia.org/wiki/Lucas_number
 """
 
+
 def recursive_lucas_number(n):
     """
     Returns the nth lucas number
