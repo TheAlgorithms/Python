@@ -1,6 +1,6 @@
 # Implementation of Priority Queue scheduling algorithm (without preemption)
-# In this Algorithm we just care about the order that the processes arrived
-# without carring about their duration time
+# In this Algorithm we only care about the order that the processes arrived
+# without caring about their duration time
 # https://en.wikipedia.org/wiki/Scheduling_(computing)#Priority_scheduling
 from __future__ import annotations
 
