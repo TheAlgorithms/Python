@@ -39,3 +39,8 @@ def angle_between_hands(hour: int, minutes: int) -> int:
     # Getting the minimum of the two explementary angles
     angle = min(angle_difference, 360 - angle_difference)
     return angle
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
