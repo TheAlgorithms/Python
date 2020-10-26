@@ -1,9 +1,9 @@
-""" projectEuler problem 57
+"""
+    Project Euler Problem 57: https://projecteuler.net/problem=57
     The square root of two can be expressed as an infinite continued fraction.
 
     In the first one-thousand expansions,
     how many fractions contain a numerator with more digits than the denominator?
-    Reference page: https://projecteuler.net/problem=57
 
     Working principle:
     The first expansion is (1 + 1/2)
@@ -21,14 +21,8 @@
     and the process is repeated up to the 1000-th expansion
 """
 
-# The maximum number of expansions to check
-MAX_EXPANSIONS = 1000
 
-# The denominator of the fraction at the first iteration
-FIRST_DEN = 2
-
-
-def solution() -> int:
+def solution(max_expansions: int = 1000, first_den: int = 2) -> int:
     """Return the number of numerators
     with more digits than denominators
     in the expansion of sqrt(2)
@@ -44,7 +38,7 @@ def solution() -> int:
         the numerator and denominator at every step
     """
     numerator = 1
-    denominator = FIRST_DEN
+    denominator = first_den
 
     # This variable will be used temporarily to switch numerators and denominators
     temp_switcher = 0
@@ -54,7 +48,7 @@ def solution() -> int:
     """
     longer_numerators_counter = 0
 
-    while iteration < MAX_EXPANSIONS:
+    while iteration < max_expansions:
 
         # compute the new numerator for the i-th expansion
         numerator += denominator
@@ -73,3 +67,10 @@ def solution() -> int:
         # the numerator and denominator are updated for the next expansion:
         iteration += 1
     return longer_numerators_counter
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print(f"{solution()}")
