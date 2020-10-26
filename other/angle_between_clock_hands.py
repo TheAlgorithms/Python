@@ -25,7 +25,7 @@ def angle_between_hands(hour: int, minutes: int) -> int:
     if not 0 <= minutes < 60:
         raise ValueError("Minutes value out of bounds (0-59)")
 
-    # Angle of hour hand is calculated by multiplying 30 (360 degress/12 hours)
+    # Angle of hour hand is calculated by multiplying 30 (360 degrees/12 hours)
     # by completed hours (hour + fraction of current hour completed)
     angle_hour_hand = (hour + minutes / 60) * 30
 
