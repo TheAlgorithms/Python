@@ -13,7 +13,8 @@ def decimal_isolate(number, digitAmount):
     >>> decimal_isolate(35.345, 2)
     0.34
     >>> decimal_isolate(35.345, 3)
-    0.345"""
+    0.345
+    """
     if digitAmount > 0:
         return round(number - int(number), digitAmount)
     return number - int(number)
