@@ -26,6 +26,7 @@ def combinations(n: int, k: int) -> int:
     1
 
     >>> combinations(-4, -5)
+    ...
     Traceback (most recent call last):
     ValueError: Please enter positive integers for n and k where n >= k
     """
