@@ -1,6 +1,5 @@
 """
-Project Euler Problem 89
-https://projecteuler.net/problem=89
+Project Euler Problem 89: https://projecteuler.net/problem=89
 
 For a number written in Roman numerals to be considered valid there are basic rules
 which must be followed. Even though the rules allow some numbers to be expressed in
@@ -120,7 +119,6 @@ def solution(roman_numerals_filename: str = "/p089_roman.txt") -> int:
     """
     Calculates and returns the answer to project euler problem 89.
 
-    Answer:
     >>> solution("/numeralcleanup_test.txt")
     16
     """
@@ -140,4 +138,4 @@ def solution(roman_numerals_filename: str = "/p089_roman.txt") -> int:
 
 if __name__ == "__main__":
 
-    print(solution())
+    print(f"{solution() = }")
