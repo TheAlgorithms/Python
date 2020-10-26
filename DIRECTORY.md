@@ -28,6 +28,7 @@
   * [Binary And Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_and_operator.py)
   * [Binary Or Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_or_operator.py)
   * [Binary Xor Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_xor_operator.py)
+  * [Single Bit Manipulation Operations](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/single_bit_manipulation_operations.py)
 
 ## Blockchain
   * [Chinese Remainder Theorem](https://github.com/TheAlgorithms/Python/blob/master/blockchain/chinese_remainder_theorem.py)
@@ -265,6 +266,7 @@
   * [Basic Graphs](https://github.com/TheAlgorithms/Python/blob/master/graphs/basic_graphs.py)
   * [Bellman Ford](https://github.com/TheAlgorithms/Python/blob/master/graphs/bellman_ford.py)
   * [Bfs Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs_shortest_path.py)
+  * [Bfs Zero One Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs_zero_one_shortest_path.py)
   * [Bidirectional A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/bidirectional_a_star.py)
   * [Bidirectional Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/bidirectional_breadth_first_search.py)
   * [Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search.py)
@@ -694,6 +696,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_076/sol1.py)
   * Problem 080
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_080/sol1.py)
+  * Problem 081
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_081/sol1.py)
   * Problem 091
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_091/sol1.py)
   * Problem 097
