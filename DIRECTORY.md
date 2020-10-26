@@ -28,6 +28,7 @@
   * [Binary And Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_and_operator.py)
   * [Binary Or Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_or_operator.py)
   * [Binary Xor Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_xor_operator.py)
+  * [Single Bit Manipulation Operations](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/single_bit_manipulation_operations.py)
 
 ## Blockchain
   * [Chinese Remainder Theorem](https://github.com/TheAlgorithms/Python/blob/master/blockchain/chinese_remainder_theorem.py)
@@ -265,6 +266,7 @@
   * [Basic Graphs](https://github.com/TheAlgorithms/Python/blob/master/graphs/basic_graphs.py)
   * [Bellman Ford](https://github.com/TheAlgorithms/Python/blob/master/graphs/bellman_ford.py)
   * [Bfs Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs_shortest_path.py)
+  * [Bfs Zero One Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/bfs_zero_one_shortest_path.py)
   * [Bidirectional A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/bidirectional_a_star.py)
   * [Bidirectional Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/bidirectional_breadth_first_search.py)
   * [Breadth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search.py)
@@ -518,6 +520,7 @@
   * [Sierpinski Triangle](https://github.com/TheAlgorithms/Python/blob/master/other/sierpinski_triangle.py)
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
   * [Triplet Sum](https://github.com/TheAlgorithms/Python/blob/master/other/triplet_sum.py)
+  * [Two Pointer](https://github.com/TheAlgorithms/Python/blob/master/other/two_pointer.py)
   * [Two Sum](https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py)
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/other/word_patterns.py)
 
@@ -694,6 +697,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_076/sol1.py)
   * Problem 080
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_080/sol1.py)
+  * Problem 081
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_081/sol1.py)
   * Problem 091
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_091/sol1.py)
   * Problem 097
@@ -712,10 +717,10 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_125/sol1.py)
   * Problem 173
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_173/sol1.py)
-  * Problem 183
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_183/sol1.py)
   * Problem 174
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_174/sol1.py)
+  * Problem 183
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_183/sol1.py)
   * Problem 191
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
   * Problem 234
