@@ -7,20 +7,23 @@ https://www.hackerrank.com/challenges/coin-change/problem
 """
 
 
-def dp_count(S, m, n):
+def dp_count(S, n):
     """
-    >>> dp_count([1, 2, 3], 3, 4)
+    >>> dp_count([1, 2, 3], 4)
     4
-    >>> dp_count([1, 2, 3], 3, 7)
+    >>> dp_count([1, 2, 3], 7)
     8
-    >>> dp_count([2, 5, 3, 6], 4, 10)
+    >>> dp_count([2, 5, 3, 6], 10)
     5
-    >>> dp_count([10], 1, 99)
+    >>> dp_count([10], 99)
     0
-    >>> dp_count([4, 5, 6], 3, 0)
+    >>> dp_count([4, 5, 6], 0)
     1
+    >>> dp_count([1, 2, 3], -5)
+    0
     """
-
+    if n < 0:
+        return 0
     # table[i] represents the number of ways to get to amount i
     table = [0] * (n + 1)
 
