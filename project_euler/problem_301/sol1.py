@@ -44,17 +44,14 @@ def solution(exponent: int = 30) -> int:
     3
     >>> solution(10)
     144
-    >>> solution(30)
-    2178309
     """
     # To find how many total games were lost for a given exponent x,
     # we need to find the Fibonacci number F(x+2).
-    fib_ind = exponent + 2
+    fibonacci_index = exponent + 2
     phi = (1 + 5 ** 0.5) / 2
-    fib = (phi ** fib_ind - (phi - 1) ** fib_ind) / 5 ** 0.5
-    nim_loss_count = int(fib)
+    fibonacci = (phi ** fibonacci_index - (phi - 1) ** fibonacci_index) / 5 ** 0.5
 
-    return nim_loss_count
+    return int(fibonacci)
 
 
 if __name__ == "__main__":
