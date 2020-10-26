@@ -1,0 +1,6 @@
+#This program generates the QR code for the given image
+#"data.jpg" is a image which gives QR code for the image
+import qrcode
+
+im = qrcode.make("daba.jpg")
+im.save("qr3.png", "PNG")
