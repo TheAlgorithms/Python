@@ -21,6 +21,10 @@ def calculate_primes(end: int) -> List[int]:
     """
     Generates a list of all prime numbers up to a given number.
     e.g.
+    >>> calculate_primes(1)
+    []
+    >>> calculate_primes(2)
+    [2]
     >>> calculate_primes(30)
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
     """
@@ -41,6 +45,10 @@ def calculate_powers(nums: List[int], power: int) -> List[int]:
     e.g.
     >>> calculate_powers([1, 2, 3], 3)
     [1, 8, 27]
+    >>> calculate_powers([3, 3, 3], 2)
+    [9, 9, 9]
+    >>> calculate_powers([1, 2, 3], 0)
+    [1, 1, 1]
     """
 
     return [n ** power for n in nums]
