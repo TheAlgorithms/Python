@@ -1,6 +1,5 @@
 """
-Project Euler Problem 38
-https://projecteuler.net/problem=38
+Project Euler Problem 38: https://projecteuler.net/problem=38
 
 Take the number 192 and multiply it by each of 1, 2, and 3:
 
@@ -25,7 +24,6 @@ def solution() -> int:
     Calculates and returns the largest 1-9 pandigital 9-digit number as product of
     integer set n>1.
 
-    Answer:
     >>> solution()
     932718654
 
@@ -78,4 +76,4 @@ def is_pandigital(num: int) -> bool:
 
 if __name__ == "__main__":
 
-    print(solution())
+    print(f"{solution() = }")
