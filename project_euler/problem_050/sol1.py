@@ -15,9 +15,9 @@ from typing import List, Set
 
 
 def get_primes(limit: int) -> (Set[int], List[int]):
-    """ 
+    """
     Returns the set & list(ordered) of primes up to the below limit
-    using Sieve of Eratosthenes 
+    using Sieve of Eratosthenes
 
     >> get_primes(10)
     ({2, 3, 5, 7}, [2, 3, 5, 7])
@@ -29,21 +29,21 @@ def get_primes(limit: int) -> (Set[int], List[int]):
     # 1 is not prime
     sieve[0] = False
 
-    for i in range(2, limit+1):
+    for i in range(2, limit + 1):
         # if current number is prime
-        if sieve[i-1]:
+        if sieve[i - 1]:
             primes.append(i)
             prime_set.add(i)
-            for j in range(2*i, limit+1, i):
-                sieve[j-1] = False
+            for j in range(2 * i, limit + 1, i):
+                sieve[j - 1] = False
     return prime_set, primes
 
 
-def solution(limit: int =1000) -> int:
+def solution(limit: int = 1000) -> int:
     """
     First, generate a list of all primes upto limit
-    Then, try all sets of consecutive primes to see if they add up to 
-    some other prime, successively trying smaller size sets if bigger 
+    Then, try all sets of consecutive primes to see if they add up to
+    some other prime, successively trying smaller size sets if bigger
     ones don't have any valid consecutive primes
 
     >>> solution(1000)
@@ -63,19 +63,19 @@ def solution(limit: int =1000) -> int:
 
     max_prime, max_len = -1, -1
 
-    for i in range(len_prefix-1):
+    for i in range(len_prefix - 1):
         # check if we can generate a solution with i terms
         # decrease i successively if we don't find a solution
-        for j in range(i+1, len_prefix):
+        for j in range(i + 1, len_prefix):
             # iterate over each sequence of i primes starting at
             # jth index
             p = prefix[j]
             if i >= 1:
-                p -= prefix[i-1]
+                p -= prefix[i - 1]
             if p >= limit:
                 break
             if p in prime_set:
-                curr_l = j-i+1
+                curr_l = j - i + 1
                 if curr_l > max_len:
                     max_prime = p
                     max_len = curr_l
