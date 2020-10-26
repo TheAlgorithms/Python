@@ -1,6 +1,6 @@
 # Project Euler
 
-Problems are taken from https://projecteuler.net/, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright). 
+Problems are taken from https://projecteuler.net/, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright).
 
 Project Euler is a series of challenging mathematical/computer programming problems that require more than just mathematical
 insights to solve. Project Euler is ideal for mathematicians who are learning to code.
