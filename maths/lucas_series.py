@@ -1,6 +1,9 @@
+"""
+https://en.wikipedia.org/wiki/Lucas_number
+"""
+
 def recursive_lucas_number(n):
     """
-    https://en.wikipedia.org/wiki/Lucas_number
     Returns the nth lucas number
     >>> recursive_lucas_number(1)
     1
@@ -27,7 +30,6 @@ def recursive_lucas_number(n):
 
 def dynamic_lucas_number(n: int) -> int:
     """
-    https://en.wikipedia.org/wiki/Lucas_number
     Returns the nth lucas number
     >>> dynamic_lucas_number(1)
     1
