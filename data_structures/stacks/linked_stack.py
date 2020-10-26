@@ -1,11 +1,14 @@
-""" A Stack using a Linked List like structure """
-from typing import Any, Optional
+""" A Stack using a linked list like structure """
+from typing import Any
 
 
 class Node:
-    def __init__(self, data: Any, next: Optional["Node"] = None):
-        self.data: Any = data
-        self.next: Optional["Node"] = next
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+    def __str__(self):
+        return f"{self.data}"
 
 
 class LinkedStack:
@@ -19,7 +22,7 @@ class LinkedStack:
     >>> stack.push(5)
     >>> stack.push(9)
     >>> stack.push('python')
-    >>> stack.is_empty();
+    >>> stack.is_empty()
     False
     >>> stack.pop()
     'python'
@@ -39,29 +42,116 @@ class LinkedStack:
     """
 
     def __init__(self) -> None:
-        self.top: Optional[Node] = None
+        self.top = None
+
+    def __iter__(self):
+        node = self.top
+        while node:
+            yield node.data
+            node = node.next
+
+    def __str__(self):
+        """
+        >>> stack = LinkedStack()
+        >>> stack.push("c")
+        >>> stack.push("b")
+        >>> stack.push("a")
+        >>> str(stack)
+        'a->b->c'
+        """
+        return "->".join([str(item) for item in self])
+
+    def __len__(self):
+        """
+        >>> stack = LinkedStack()
+        >>> len(stack) == 0
+        True
+        >>> stack.push("c")
+        >>> stack.push("b")
+        >>> stack.push("a")
+        >>> len(stack) == 3
+        True
+        """
+        return len(tuple(iter(self)))
 
     def is_empty(self) -> bool:
-        """ returns boolean describing if stack is empty """
+        """
+        >>> stack = LinkedStack()
+        >>> stack.is_empty()
+        True
+        >>> stack.push(1)
+        >>> stack.is_empty()
+        False
+        """
         return self.top is None
 
     def push(self, item: Any) -> None:
-        """ append item to top of stack """
-        node: Node = Node(item)
-        if self.is_empty():
-            self.top = node
-        else:
-            # each node points to the item "lower" in the stack
+        """
+        >>> stack = LinkedStack()
+        >>> stack.push("Python")
+        >>> stack.push("Java")
+        >>> stack.push("C")
+        >>> str(stack)
+        'C->Java->Python'
+        """
+        node = Node(item)
+        if not self.is_empty():
             node.next = self.top
-            self.top = node
+        self.top = node
 
     def pop(self) -> Any:
-        """ returns and removes item at top of stack """
+        """
+        >>> stack = LinkedStack()
+        >>> stack.pop()
+        Traceback (most recent call last):
+        ...
+        IndexError: pop from empty stack
+        >>> stack.push("c")
+        >>> stack.push("b")
+        >>> stack.push("a")
+        >>> stack.pop() == 'a'
+        True
+        >>> stack.pop() == 'b'
+        True
+        >>> stack.pop() == 'c'
+        True
+        """
         if self.is_empty():
             raise IndexError("pop from empty stack")
-        else:
-            # "remove" element by having top point to the next one
-            assert isinstance(self.top, Node)
-            node: Node = self.top
-            self.top = node.next
-            return node.data
+        assert isinstance(self.top, Node)
+        pop_node = self.top
+        self.top = self.top.next
+        return pop_node.data
+
+    def peek(self) -> Any:
+        """
+        >>> stack = LinkedStack()
+        >>> stack.push("Java")
+        >>> stack.push("C")
+        >>> stack.push("Python")
+        >>> stack.peek()
+        'Python'
+        """
+        if self.is_empty():
+            raise IndexError("peek from empty stack")
+        return self.top.data
+
+    def clear(self) -> None:
+        """
+        >>> stack = LinkedStack()
+        >>> stack.push("Java")
+        >>> stack.push("C")
+        >>> stack.push("Python")
+        >>> str(stack)
+        'Python->C->Java'
+        >>> stack.clear()
+        >>> len(stack) == 0
+        True
+        """
+        self.top = None
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()

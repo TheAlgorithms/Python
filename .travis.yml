@@ -9,7 +9,7 @@ jobs:
     - name: Build
       install: pip install pytest-cov -r requirements.txt
       script:
-        - pytest --doctest-modules --ignore=project_euler/ --durations=10 --cov-report=term-missing:skip-covered --cov=. .
+        - pytest --doctest-modules --ignore=project_euler/ --cov-report=term-missing:skip-covered --cov=. .
 after_success:
   - scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
 notifications:
