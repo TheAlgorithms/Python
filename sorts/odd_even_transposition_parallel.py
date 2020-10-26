@@ -1,9 +1,7 @@
 """
 This is an implementation of odd-even transposition sort.
-
 It works by performing a series of parallel swaps between odd and even pairs of
 variables in the list.
-
 This implementation represents each variable in the list with a process and
 each process communicates with its neighboring processes in the list to perform
 comparisons.
@@ -17,7 +15,6 @@ processLock = Lock()
 
 """
 The function run by the processes that sorts the list
-
 position = the position in the list the process represents, used to know which
             neighbor we pass our value to
 value = the initial value at list[position]
@@ -67,12 +64,24 @@ def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
 
 """
 the function which creates the processes that perform the parallel swaps
-
 arr = the list to be sorted
 """
 
 
 def OddEvenTransposition(arr):
+
+    """
+    >>> OddEvenTransposition([0, 5, 2, 3, 2])
+    [0, 2, 2, 3, 5]
+    >>> OddEvenTransposition([0, 5, 2, 3, 2]) == sorted([0, 5, 2, 3, 2])
+    True
+    >>> OddEvenTransposition([-2, -45, -5]) == sorted([-2, -45, -5])
+    True
+    >>> OddEvenTransposition([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
+    True
+    >>> OddEvenTransposition(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
+    True
+    """
     processArray = []
     resultPipe = []
     # initialize the list of pipes where the values will be retrieved
@@ -132,12 +141,15 @@ def OddEvenTransposition(arr):
 
 # creates a reverse sorted list and sorts it
 def main():
-    arr = list(range(10, 0, -1))
-    print("Initial List")
-    print(*arr)
-    arr = OddEvenTransposition(arr)
-    print("Sorted List\n")
-    print(*arr)
+    from doctest import testmod
+    testmod()
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print("\nInitial List")
+    print(*unsorted)
+    sorted = OddEvenTransposition(unsorted)
+    print("\nSorted List")
+    print(*sorted)
 
 
 if __name__ == "__main__":
