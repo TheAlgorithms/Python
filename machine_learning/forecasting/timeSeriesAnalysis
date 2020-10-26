@@ -1,0 +1,607 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import pandas as pd
+
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+from datetime import datetime
+
+from matplotlib.pylab import rcParams
+rcParams['figure.figsize']=20,10
+
+from sklearn.preprocessing import MinMaxScaler
+
+
+# In[2]:
+
+
+data = pd.read_csv("NSE-Tata-Global-Beverages-Limited.csv")
+
+
+# In[3]:
+
+
+data["Date"]=pd.to_datetime(data.Date,format="%Y-%m-%d")
+data.index=data['Date']
+
+
+# In[4]:
+
+
+data
+
+
+# In[5]:
+
+
+plt.figure(figsize = (17,8))
+plt.plot(data.Close)
+plt.xlabel("date")
+plt.ylabel("closing price")
+plt.title("CLosing price of TATA Global Beverages")
+plt.show()
+
+
+# In[6]:
+
+
+data1=data.sort_index(ascending=True,axis=0)
+new_dataset=pd.DataFrame(index=range(0,len(data)),columns=['Date','Close'])
+for i in range(0,len(data)):
+    new_dataset["Date"][i]=data1['Date'][i]
+    new_dataset["Close"][i]=data1["Close"][i]
+
+
+# In[7]:
+
+
+new_dataset
+
+
+# In[8]:
+
+
+scaler=MinMaxScaler(feature_range=(0,1))
+final_dataset=new_dataset.values
+train_data=final_dataset[0:987,:]
+valid_data=final_dataset[987:,:]
+new_dataset.index=new_dataset.Date
+new_dataset.drop("Date",axis=1,inplace=True)
+scaler=MinMaxScaler(feature_range=(0,1))
+
+
+# In[9]:
+
+
+train_data
+
+
+# In[10]:
+
+
+train_data.shape
+
+
+# In[ ]:
+
+
+
+
+
+# In[11]:
+
+
+data_ma = data.rolling(window=10).mean()
+
+
+# In[12]:
+
+
+data_ma.plot()
+
+
+# In[13]:
+
+
+d = data.Close.rolling(window=20).mean()
+d.plot()
+
+
+# In[14]:
+
+
+d1 = data.Close.rolling(window=10).mean()
+d1.plot()
+
+
+# In[15]:
+
+
+d2 = data.Close.rolling(window=30).mean()
+d2.plot()
+
+
+# In[16]:
+
+
+d_shift = pd.concat([data.Close, data.Close.shift(1)], axis = 1)
+
+
+# In[17]:
+
+
+d_shift
+
+
+# In[18]:
+
+
+d_shift.dropna(inplace=True)
+
+
+# In[19]:
+
+
+d_shift.columns = ['actual','forecast']
+
+
+# In[20]:
+
+
+d_shift.head()
+
+
+# In[21]:
+
+
+from sklearn.metrics import mean_squared_error
+import numpy as np
+
+
+# In[22]:
+
+
+er = np.sqrt(mean_squared_error(d_shift.actual, d_shift.forecast))
+
+
+# In[23]:
+
+
+er
+
+
+# In[24]:
+
+
+d_shift.plot()
+
+
+# In[25]:
+
+
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+
+
+# In[26]:
+
+
+plot_acf(data.Close)
+
+
+# In[27]:
+
+
+plot_pacf(data.Close)
+
+
+# In[28]:
+
+
+from statsmodels.tsa.arima_model import ARIMA
+
+
+# In[61]:
+
+
+m = ARIMA(data1.Close, order = (3,1,2))
+
+
+# In[62]:
+
+
+train = data1[:987]
+test = data1[987:]
+m_fit = m.fit()
+y_pred = test.copy()
+
+
+# In[63]:
+
+
+y_pred['ARIMA'] = m_fit.forecast(steps = len(test))[0]
+
+
+# In[64]:
+
+
+y_pred['ARIMA']
+
+
+# In[65]:
+
+
+plt.plot(train['Close'], label = 'train')
+plt.plot(test['Close'], label='test')
+plt.plot(y_pred['ARIMA'], label='predict')
+plt.legend(loc='best')
+plt.show()
+
+
+# In[34]:
+
+
+rms = np.sqrt(mean_squared_error(test.Close, y_pred.ARIMA)) 
+print(rms)
+
+
+# In[35]:
+
+
+from statsmodels.tsa.api import ExponentialSmoothing, SimpleExpSmoothing, Holt  
+fit2 = SimpleExpSmoothing(np.asarray(train['Close'])).fit(smoothing_level=0.35,optimized=False) 
+y_pred['SES'] = fit2.forecast(len(test)) 
+plt.figure(figsize=(16,8)) 
+plt.plot(train['Close'], label='Train') 
+plt.plot(test['Close'], label='Valid') 
+plt.plot(y_pred['SES'], label='SES') 
+plt.legend(loc='best') 
+plt.show()
+
+
+# In[36]:
+
+
+rms = np.sqrt(mean_squared_error(test['Close'], y_pred.SES)) 
+print(rms)
+
+
+# In[45]:
+
+
+fit1 = Holt(np.asarray(train['Close'])).fit(smoothing_level = 0.3,smoothing_slope = 0.13) 
+y_pred['Holt_linear'] = fit1.forecast(len(test)) 
+plt.figure(figsize=(16,8)) 
+plt.plot(train['Close'], label='Train') 
+plt.plot(test['Close'], label='Test') 
+plt.plot(y_pred['Holt_linear'], label='Holt_linear') 
+plt.legend(loc='best') 
+plt.show()
+
+
+# In[46]:
+
+
+rms = np.sqrt(mean_squared_error(test.Close, y_pred.Holt_linear)) 
+print(rms)
+
+
+# In[1]:
+
+
+#SARIMAX
+#import statsmodels.api as sm
+#y_hat_avg = test.copy() 
+#fit1 = sm.tsa.statespace.SARIMAX(train.Close, order=(2, 1, 2),seasonal_order=(1,1,1,4)).fit() 
+#y_hat_avg['SARIMA'] = fit1.predict(start='2013-10-08',end='2018-10-08', dynamic=True) 
+#plt.figure(figsize=(16,8)) 
+#plt.plot(train['Close'], label='Train') 
+#plt.plot(test['Close'], label='Valid') 
+#plt.plot(y_hat_avg['SARIMA'], label='SARIMA') 
+#plt.legend(loc='best') 
+#plt.show()
+
+
+# ## neural networks
+
+# In[1]:
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic('matplotlib', 'inline')
+from matplotlib.pylab import rcParams
+rcParams['figure.figsize']=20,10
+from keras.models import Sequential
+from keras.layers import LSTM,Dropout,Dense
+from sklearn.preprocessing import MinMaxScaler
+
+
+# In[2]:
+
+
+df=pd.read_csv("NSE-Tata-Global-Beverages-Limited.csv")
+df.head()
+
+
+# In[3]:
+
+
+df["Date"]=pd.to_datetime(df.Date,format="%Y-%m-%d")
+df.index=df['Date']
+plt.figure(figsize=(16,8))
+plt.plot(df["Close"],label='Close Price history')
+
+
+# In[4]:
+
+
+data=df.sort_index(ascending=True,axis=0)
+new_dataset=pd.DataFrame(index=range(0,len(df)),columns=['Date','Close'])
+for i in range(0,len(data)):
+    new_dataset["Date"][i]=data['Date'][i]
+    new_dataset["Close"][i]=data["Close"][i]
+
+
+# In[5]:
+
+
+data.Close.plot()
+
+
+# In[51]:
+
+
+#Normalise the data
+scaler=MinMaxScaler(feature_range=(0,1))
+final_dataset=new_dataset.values
+
+train_data=final_dataset[0:987,:]
+valid_data=final_dataset[987:,:]
+#print(new_dataset.head())
+#new_dataset.index=new_dataset.Date
+#new_dataset.drop("Date",axis=1,inplace=True)
+
+scaler=MinMaxScaler(feature_range=(0,1))
+scaled_data=scaler.fit_transform(final_dataset)
+
+x_train_data,y_train_data=[],[]
+
+for i in range(60,len(train_data)):
+    x_train_data.append(scaled_data[i-60:i,0])
+    y_train_data.append(scaled_data[i,0])
+    
+x_train_data,y_train_data=np.array(x_train_data),np.array(y_train_data)
+x_train_data=np.reshape(x_train_data,(x_train_data.shape[0],x_train_data.shape[1],1))
+
+
+# In[50]:
+
+
+x_train_data.shape
+
+
+# In[9]:
+
+
+#building the model
+lstm = Sequential()
+lstm.add(LSTM(units = 60, input_shape = (x_train_data.shape[1], 1), return_sequences = True))
+lstm.add(LSTM(units = 50))
+lstm.add(Dense(1))
+
+
+# In[10]:
+
+
+input_data = new_dataset[len(new_dataset) - len(valid_data)-60: ].values
+
+
+# In[11]:
+
+
+input_data.shape
+
+
+# In[12]:
+
+
+input_data = input_data.reshape((-1,1))
+
+
+# In[13]:
+
+
+input_data
+
+
+# In[14]:
+
+
+input_data = scaler.transform(input_data)
+
+
+# In[15]:
+
+
+input_data
+
+
+# In[16]:
+
+
+lstm.compile(loss = 'mean_squared_error', optimizer = 'adam') # training the model
+
+
+# In[17]:
+
+
+lstm.fit(x_train_data, y_train_data, epochs = 2, batch_size = 1, verbose = 2)
+
+
+# In[18]:
+
+
+X_test=[]
+for i in range(60,input_data.shape[0]):
+    X_test.append(input_data[i-60:i,0])
+X_test=np.array(X_test)
+X_test=np.reshape(X_test,(X_test.shape[0],X_test.shape[1],1))
+predicted_closing_price=lstm.predict(X_test)
+predicted_closing_price=scaler.inverse_transform(predicted_closing_price)
+
+
+# In[19]:
+
+
+#lstm.save("lstm_model.h5")
+
+
+# In[20]:
+
+
+predicted_closing_price
+
+
+# In[21]:
+
+
+train_data=new_dataset[:987]
+valid_data=new_dataset[987:]
+valid_data['Predictions']=predicted_closing_price
+plt.plot(train_data["Close"], label = 'train')
+plt.plot(valid_data[['Close',"Predictions"]], label='predictions')
+
+
+# ## CNN
+
+# In[22]:
+
+
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten, AveragePooling1D, MaxPooling1D
+from keras.layers import Conv1D
+from keras.callbacks import EarlyStopping
+from keras.optimizers import Adam, SGD
+from keras.layers.normalization import BatchNormalization
+from keras.regularizers import l1, l2, l1_l2
+import numpy as np
+import random as rd
+import tensorflow as tf
+
+
+# In[37]:
+
+
+np.random.seed(42)
+#everytime we run the code we get different values in some cases even we don't 
+#change the code to avoid that we use following
+session_conf = tf.compat.v1.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
+
+sess = tf.compat.v1.Session(graph = tf.compat.v1.get_default_graph(), config = session_conf)
+tf.compat.v1.keras.backend.set_session(sess)
+#to stop the epochs whenever val loss is less
+
+
+# In[24]:
+
+
+earlyStop = EarlyStopping(monitor = 'val_loss', patience = 10, verbose = 0, mode = 'auto', restore_best_weights = True)
+
+
+# In[35]:
+
+
+epochs = 7
+
+batch_size = 1
+learning_rate = 0
+
+sgd = SGD(lr=learning_rate)
+
+model = Sequential()
+model.add(Conv1D(filters = 5, kernel_size = 2, strides = 2,
+                activation = 'linear', input_shape=(x_train_data.shape[1], 1)))
+model.add(MaxPooling1D(pool_size = 1))
+
+model.add(Dropout(0.1))
+
+model.add(Flatten())
+model.add(Dense(1, activation='tanh', kernel_regularizer = l2(0.01)))
+
+model.compile(loss='mean_squared_error', optimizer = 'sgd')
+
+history = model.fit(x_train_data,y_train_data, batch_size = 1, epochs = epochs, verbose = 2, 
+         callbacks = [earlyStop], shuffle = False)
+
+model.summary()
+
+
+# In[36]:
+
+
+cnn_predicted_price = model.predict(X_test)
+
+
+# In[37]:
+
+
+cnn_predicted_price
+
+
+# In[38]:
+
+
+cnn_predicted_price=scaler.inverse_transform(cnn_predicted_price)
+
+
+# In[39]:
+
+
+cnn_predicted_price
+
+
+# In[40]:
+
+
+train_data=new_dataset[:987]
+valid_data=new_dataset[987:]
+valid_data['Predictions']=cnn_predicted_price
+plt.plot(train_data["Close"], label = 'train')
+plt.plot(valid_data[['Close',"Predictions"]], label='predictions')
+
+
+# In[41]:
+
+
+model.evaluate(x_train_data, y_train_data, verbose = 0)
+
+
+# In[45]:
+
+
+history
+
+
+# In[47]:
+
+
+history.history['loss']
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
