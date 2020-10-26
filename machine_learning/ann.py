@@ -9,6 +9,8 @@ Input example:
 Output example:
 1
 Our model will predict the class, as its seen on the input and output example.
+Another example is in https://machinelearningmastery.com/multi-class-classification-tutorial-keras-deep-learning-library/
+Which uses an example with multi-class-classification.
 '''
 
 
