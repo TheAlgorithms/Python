@@ -3,7 +3,7 @@ dist: focal
 language: python
 python: 3.9
 cache: pip
-before_install: pip install --upgrade pip setuptools six
+before_install: pip install --upgrade pip setuptools six wheel --only-binary=numpy
 jobs:
   include:
     - name: Build
