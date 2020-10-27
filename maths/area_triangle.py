@@ -7,4 +7,4 @@ def treug(a,b,c):
 	p=(a+b+c)/2
 	S=(p*(p-a)*(p-b)*(p-c))**(1/2)
 	return(S)
-treug(5,5,5)
+print(treug(5,5,5))
