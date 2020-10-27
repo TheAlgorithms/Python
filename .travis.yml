@@ -3,7 +3,7 @@ dist: focal
 language: python
 python: 3.9
 cache: pip
-before_install: pip install --upgrade pip setuptools six wheel --only-binary=numpy
+before_install: pip install --upgrade pip setuptools six wheel --only-binary=numpy --only-binary=scipy
 jobs:
   include:
     - script: pip install scipy
