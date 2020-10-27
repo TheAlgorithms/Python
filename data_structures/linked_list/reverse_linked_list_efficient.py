@@ -2,7 +2,6 @@ class Node:
     def __init__(self, data=0):
         self.data = data
         self.next = None
-
     
     def __repr__(self):
         # Returns a visual representation of the node and all its following nodes.
@@ -29,17 +28,16 @@ def make_linked_list(elements_list):
         current = current.next
     return head
 
-
 def reverse_linked_list_efficient(head):
     """Prints the elements of the given Linked List in reverse order
     >>> linked_list = make_linked_list([69, 88, 73])
     >>> reverse_linked_list_efficient(linked_list)
     73->88->69
     """
-    if head==None:
+    if head is None:
         return None
     temp1, temp2 = None, head
-    while temp2!=None:
+    while temp2 is not None:
         temp3 = temp2.next
         temp2.next = temp1
         temp1 = temp2
@@ -50,10 +48,10 @@ def reverse_linked_list_efficient(head):
 def main():
     from doctest import testmod
     testmod()
-    linked_list = make_linked_list([1,2,3,4,5])
-    print('Linked List:', linked_list)
+    linked_list = make_linked_list([1, 2, 3, 4, 5])
+    print("Linked List:", linked_list)
     linked_list = reverse_linked_list_efficient(linked_list)
-    print('Reversed Linked List:', linked_list)
+    print("Reversed Linked List:", linked_list)
 
 if __name__ == "__main__":
     main()
