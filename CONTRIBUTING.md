@@ -15,7 +15,7 @@ We are very happy that you consider implementing algorithms and data structure f
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
 - You submitted work fulfils or mostly fulfils our styles and standards
 
-**New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity.
+**New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but **identical implementation** of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
 **Improving comments** and **writing proper tests** are also highly welcome.
 
@@ -148,7 +148,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - If you need a third party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
 
 #### Other Requirements for Submissions
-
+- If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
 - The file extension for code files should be `.py`. Jupyter Notebooks should be submitted to [TheAlgorithms/Jupyter](https://github.com/TheAlgorithms/Jupyter).
 - Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
