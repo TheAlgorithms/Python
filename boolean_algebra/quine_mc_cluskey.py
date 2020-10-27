@@ -9,14 +9,17 @@ def compare_string(string1: str, string2: str) -> str:
     l1 = list(string1)
     l2 = list(string2)
     count = 0
-    for i in range(len(l1)):
-        if l1[i] != l2[i]:
-            count += 1
-            l1[i] = "_"
-    if count > 1:
-        return -1
+    """ By this condition we will first clarify that len of these strings are equal so that we will proceed further
+    """
+    if( len(l1) == len (l2):
+       for i in range(len(l1)):      
+           if l1[i] != l2[i]:
+               count += 1
+               l1[i] = "_"
     else:
-        return "".join(l1)
+       print("Length is not equal")
+    # Just return all string because by seeing the string where is differences here then the user can normally see.
+    return " ".join(l1)
 
 
 def check(binary: [str]) -> [str]:
