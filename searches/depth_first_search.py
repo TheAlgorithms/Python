@@ -26,17 +26,8 @@ def dfs(visited: list, graph: dict, start: str) -> list:
             dfs(visited, graph, neighbour)
     
     return visited
-
-# Scripting
     
-lst1 = []
-lst2 = []
-
-graph1 = {'A' : ['B'], 'B' : ['A', 'D'], 'C' : ['D', 'E'], 'D' : ['B', 'C', 'E'], 'E' : ['C', 'D']}
-graph2 = {'0' : ['1'], '1' : ['0', '3'], '2' : ['3', '4'], '3' : ['1', '2', '4'], '4' : ['2', '3']}
-
-print(dfs(lst1, graph1, 'E'))
-print(dfs(lst2, graph2, '2'))
+lst = []
 
 if __name__ == "__main__":
     import doctest
