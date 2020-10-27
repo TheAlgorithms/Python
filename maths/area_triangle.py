@@ -9,4 +9,4 @@ def treug(a,b,c):
 	return(S)
 	
 
-print(treug(5,5,5))
+treug(5,5,5)
