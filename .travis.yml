@@ -3,17 +3,17 @@ dist: focal
 language: python
 python: 3.9
 cache: pip
-before_install: pip install --upgrade pip setuptools six wheel --only-binary=numpy --only-binary=scipy
+before_install: pip install --upgrade pip setuptools six wheel
 jobs:
   include:
     - install: true
-      script: pip install scipy
+      script: pip install --only-binary=scipy scipy
     - install: true
-      script: pip install statsmodels
+      script: pip install --only-binary=scipy statsmodels
     - install: true
-      script: pip install tensorflow
+      script: pip install --only-binary=scipy tensorflow
     - name: Build
-      install: pip install pytest-cov -r requirements.txt
+      install: pip install --only-binary=numpy --only-binary=scipy pytest-cov -r requirements.txt
       script:
         - pytest --doctest-modules --ignore=project_euler/ --cov-report=term-missing:skip-covered --cov=. .
   allow_failures:
