@@ -17,6 +17,6 @@ def depth_first_search(visited: list, graph: dict, start: str) -> list:
     
 lst = []
 
-graph = {'A' : ['B'], 'B' : ['A', 'D'], 'C' : ['D', 'E'], 'D' : ['B', 'C', 'E'], 'E' : ['C', 'D']}
+graph = {'A': ['B'], 'B': ['A', 'D'], 'C': ['D', 'E'], 'D': ['B', 'C', 'E'], 'E': ['C', 'D']}
 
 print(depth_first_search(lst, graph, 'D'))
