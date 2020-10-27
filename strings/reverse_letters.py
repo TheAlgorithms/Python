@@ -7,11 +7,10 @@ def reverse_letters(input_str: str) -> str:
     'ehT kciuq nworb xof depmuj revo eht yzal .god'
     >>> reverse_letters('Is this true?')
     'sI siht ?eurt'
+    >>> reverse_letters("I   love       Python")
+    'I evol nohtyP'
     """
-    reversed_letters_list = []
-    for i in input_str.split(" "):
-        reversed_letters_list.append(i[::-1])
-    return " ".join(reversed_letters_list)
+    return " ".join([word[::-1] for word in input_str.split()])
 
 
 if __name__ == "__main__":
