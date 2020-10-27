@@ -2,7 +2,7 @@ from .stack import Stack
 
 
 def balanced_parentheses(parentheses: str) -> bool:
-    """ Use a stack to check if a string of parentheses is balanced.
+    """Use a stack to check if a string of parentheses is balanced.
     >>> balanced_parentheses("([]{})")
     True
     >>> balanced_parentheses("[()]{}{[()()]()}")
@@ -32,9 +32,9 @@ def is_paired(left_bracket: str, right_bracket: str) -> bool:
     False
     """
     return (
-            left_bracket == "(" and right_bracket == ")" or
-            left_bracket == "[" and right_bracket == "]" or
-            left_bracket == "{" and right_bracket == "}"
+        left_bracket == "(" and right_bracket == ")" or
+        left_bracket == "[" and right_bracket == "]" or
+        left_bracket == "{" and right_bracket == "}"
     )
 
 
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     print("Balanced parentheses demonstration:\n")
     for example in examples:
         print(
-            example, "is",
-            "balanced" if balanced_parentheses(example)
-            else "not balanced"
+            example,
+            "is",
+            "balanced" if balanced_parentheses(example) else "not balanced",
         )
