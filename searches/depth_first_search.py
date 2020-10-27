@@ -32,5 +32,3 @@ lst = []
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
-# Can be used with any type of graph, but it must be a string set!!
