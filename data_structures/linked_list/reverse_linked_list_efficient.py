@@ -3,7 +3,6 @@ class Node:
         self.data = data
         self.next = None
 
-
     def __repr__(self):
         # Returns a visual representation of the node and all its following nodes.
         string_rep = []
