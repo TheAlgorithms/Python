@@ -11,7 +11,7 @@ qiskit
 requests
 scikit-fuzzy
 sklearn
-statsmodels
+statsmodels; python_version < '3.9'
 sympy
 tensorflow
 xgboost
