@@ -2,7 +2,8 @@ class Node:
     def __init__(self, data=0):
         self.data = data
         self.next = None
-    
+
+
     def __repr__(self):
         # Returns a visual representation of the node and all its following nodes.
         string_rep = []
@@ -11,6 +12,7 @@ class Node:
             string_rep.append(f"{temp.data}")
             temp = temp.next
         return "->".join(string_rep)
+
 
 def make_linked_list(elements_list):
     """Creates a Linked List from the elements of the given sequence
@@ -27,6 +29,7 @@ def make_linked_list(elements_list):
         current.next = Node(elements_list[i])
         current = current.next
     return head
+
 
 def reverse_linked_list_efficient(head):
     """Prints the elements of the given Linked List in reverse order
@@ -45,13 +48,16 @@ def reverse_linked_list_efficient(head):
     head = temp1
     return head
 
+
 def main():
     from doctest import testmod
+
     testmod()
     linked_list = make_linked_list([1, 2, 3, 4, 5])
     print("Linked List:", linked_list)
     linked_list = reverse_linked_list_efficient(linked_list)
     print("Reversed Linked List:", linked_list)
+
 
 if __name__ == "__main__":
     main()
