@@ -28,7 +28,3 @@ def dfs(visited: list, graph: dict, start: str) -> list:
     return visited
     
 lst = []
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
