@@ -14,8 +14,8 @@ def depth_first_search(visited: list, graph: dict, start: str) -> list:
         for neighbour in graph[start]:
             depth_first_search(
                 visited, graph, neighbour
-            )  # Uses recursion to check the if statement again. 
-               # If the if statement is not met, it returns the existing list.
+            )  # Uses recursion to check the if statement again.
+            # If the if statement is not met, it returns the existing list.
 
     return visited
 
