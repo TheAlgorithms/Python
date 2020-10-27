@@ -1,7 +1,7 @@
 os: linux
 dist: focal
 language: python
-python: 3.8
+python: 3.9
 cache: pip
 before_install: pip install --upgrade pip setuptools six
 jobs:
