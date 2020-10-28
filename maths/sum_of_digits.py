@@ -21,6 +21,21 @@ def sum_of_digits(n: int) -> int:
         n = n // 10
     return res
 
+def reverse_the digits(n: int) -> int:
+    """
+    Reverser the digits of the given number
+
+    >>> reverse_the_digits(12345)
+    54321
+    """
+    
+    n = -n if n < 0 else n
+    while(Number > 0):    
+        Reminder = n %10    
+        Reverse = (Reverse *10) + Reminder    
+        Number = n //10
+    return reverse
+
 
 def sum_of_digits_recursion(n: int) -> int:
     """
@@ -117,6 +132,7 @@ def benchmark() -> None:
         "> sum_of_digits()",
         "\t\tans =",
         sum_of_digits(large_num),
+        reverse_the_digits(large_num),
         "\ttime =",
         timeit("z.sum_of_digits(z.large_num)", setup="import __main__ as z"),
         "seconds",
