@@ -14,13 +14,13 @@ addons:
       - libsuitesparse-dev
       - ccache
       - libmpc-dev
-before_install: pip install --upgrade pip setuptools six wheel
+before_install: pip install --upgrade --only-binary=numpy numpy pip setuptools six wheel
 jobs:
   include:
     - install: true
       script: pip install tensorflow
     - name: Build
-      install: pip install --only-binary=numpy pytest-cov -r requirements.txt
+      install: pip install pytest-cov -r requirements.txt
       script:
         - pytest --doctest-modules --ignore=project_euler/ --cov-report=term-missing:skip-covered --cov=. .
   allow_failures:
