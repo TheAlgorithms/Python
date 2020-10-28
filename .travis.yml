@@ -18,11 +18,11 @@ before_install: pip install --upgrade pip setuptools six wheel
 jobs:
   include:
     - install: true
-      script: pip install --only-binary=scipy scipy
+      script: pip install scipy
     - install: true
-      script: pip install --only-binary=scipy statsmodels
+      script: pip install statsmodels
     - install: true
-      script: pip install --only-binary=scipy tensorflow
+      script: pip install tensorflow
     - name: Build
       install: pip install --only-binary=numpy --only-binary=scipy pytest-cov -r requirements.txt
       script:
