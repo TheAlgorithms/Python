@@ -8,6 +8,7 @@ def word_count(txt):
     x = txt.split()
     return len(x)
 
+
 def char_count(txt):
     """
     >>> char_count("Hello")
@@ -22,6 +23,7 @@ txt = input("Input your text to count all word\n>>> ")
 
 print(word_count(txt), "word(s) ", char_count(txt), "character(s)")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
