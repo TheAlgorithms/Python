@@ -10,7 +10,7 @@ addons:
       - liblapack-dev
       - gfortran
       - libgmp-dev 
-      - ibmpfr-dev
+      - libmpfr-dev
       - libsuitesparse-dev
       - ccache
       - libmpc-dev
