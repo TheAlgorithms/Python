@@ -17,8 +17,3 @@ def char_count(txt):
     12
     """
     return len(txt)
-
-
-print("Input your text to count all word\n>>>", end=" ")
-txt = input().strip()
-print(word_count(txt), "word(s) ", char_count(txt), "character(s)")
