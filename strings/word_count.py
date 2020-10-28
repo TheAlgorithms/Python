@@ -1,6 +1,3 @@
-import ipdb
-ipdb.set_trace()
-
 def word_count(txt):
     """
     >>> word_count("Hello")
