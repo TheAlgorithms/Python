@@ -1,3 +1,6 @@
+import ipdb
+ipdb.set_trace()
+
 def word_count(txt):
     """
     >>> word_count("Hello")
@@ -21,8 +24,3 @@ def char_count(txt):
 
 txt = input("Input your text to count all word\n>>> ")
 print(word_count(txt), "word(s) ", char_count(txt), "character(s)")
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
