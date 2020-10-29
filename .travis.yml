@@ -14,6 +14,8 @@ addons:
       - libsuitesparse-dev
       - ccache
       - libmpc-dev
+env:
+  - PATH=$PATH:$HOME/.cargo/bin
 before_install: 
   - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   - pip install --upgrade numpy pip setuptools six wheel
