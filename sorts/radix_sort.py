@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 """
 This is a pure Python implementation of the quick sort algorithm
 For doctests run following command:
@@ -9,6 +7,7 @@ python3 -m doctest -v radix_sort.py
 For manual testing run:
 python radix_sort.py
 """
+from __future__ import annotations
 
 
 def radix_sort(list_of_ints: list[int]) -> list[int]:
