@@ -56,3 +56,8 @@ def kth_number(lst: List[int], k: int) -> int:
     # pivot is in elements smaller than k
     else:
         return kth_number(small, k)
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
