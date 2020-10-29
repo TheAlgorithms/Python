@@ -520,6 +520,7 @@
   * [Sierpinski Triangle](https://github.com/TheAlgorithms/Python/blob/master/other/sierpinski_triangle.py)
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
   * [Triplet Sum](https://github.com/TheAlgorithms/Python/blob/master/other/triplet_sum.py)
+  * [Two Pointer](https://github.com/TheAlgorithms/Python/blob/master/other/two_pointer.py)
   * [Two Sum](https://github.com/TheAlgorithms/Python/blob/master/other/two_sum.py)
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/other/word_patterns.py)
 
@@ -722,6 +723,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_174/sol1.py)
   * Problem 191
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
+  * Problem 207
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_207/sol1.py)
   * Problem 234
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_234/sol1.py)
   * Problem 551
