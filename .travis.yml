@@ -14,7 +14,9 @@ addons:
       - libsuitesparse-dev
       - ccache
       - libmpc-dev
-before_install: pip install --upgrade numpy pip setuptools six wheel
+before_install: 
+  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  - pip install --upgrade numpy pip setuptools six wheel
 jobs:
   include:
     - install: true
