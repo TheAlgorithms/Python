@@ -18,9 +18,12 @@ To generate the permutations 'itertools.product' is used.
 """
 
 from itertools import product
+from typing import List
 
 
-def probability_of_sums(dice_max_points: int = 6, dice_number: int = 6) -> (list, list):
+def probability_of_sums(
+    dice_max_points: int = 6, dice_number: int = 6
+) -> (List[int], List[float]):
     """
     Returns the list of possible sums and their probabilities of dice_number dices with
     numbers from dice_min to dice_max
