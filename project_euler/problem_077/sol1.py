@@ -13,17 +13,24 @@ What is the first value which can be written as the sum of primes in over
 five thousand different ways?
 """
 
-primes = set(range(3, 100, 2))
+from functools import lru_cache
+from math import ceil
+from typing import Optional, Set
+
+NUM_PRIMES = 100
+
+primes = set(range(3, NUM_PRIMES, 2))
 primes.add(2)
-for i in range(3, 100, 2):
-    if i not in primes:
+prime: int
+
+for prime in range(3, ceil(NUM_PRIMES ** 0.5), 2):
+    if prime not in primes:
         continue
-    primes.difference_update(set(range(i * i, 100, i)))
-
-CACHE_PARTITION = {0: {1}}
+    primes.difference_update(set(range(prime * prime, NUM_PRIMES, prime)))
 
 
-def partition(n: int) -> set:
+@lru_cache(maxsize=100)
+def partition(n: int) -> Set[int]:
     """
     Return a set of integers corresponding to unique prime partitions of n.
     The unique prime partitions can be represented as unique prime decompositions,
@@ -32,34 +39,42 @@ def partition(n: int) -> set:
     {32, 36, 21, 25, 30}
     >>> partition(15)
     {192, 160, 105, 44, 112, 243, 180, 150, 216, 26, 125, 126}
+    >>> len(partition(20))
+    26
     """
     if n < 0:
         return set()
-    if n in CACHE_PARTITION:
-        return CACHE_PARTITION[n]
+    elif n == 0:
+        return {1}
 
-    ret = set()
+    ret: Set[int] = set()
+    prime: int
+    sub: int
+
     for prime in primes:
         if prime > n:
             continue
         for sub in partition(n - prime):
             ret.add(sub * prime)
 
-    CACHE_PARTITION[n] = ret
     return ret
 
 
-def solution(m: int = 5000) -> int:
+def solution(m: int = 5000) -> Optional[int]:
     """
     Return the smallest integer that can be written as the sum of primes in over
     m unique ways.
+    >>> solution(4)
+    10
     >>> solution(500)
     45
+    >>> solution(1000)
+    53
     """
-    for n in range(1, 100):
+    for n in range(1, NUM_PRIMES):
         if len(partition(n)) > m:
             return n
-    return 0
+    return None
 
 
 if __name__ == "__main__":
