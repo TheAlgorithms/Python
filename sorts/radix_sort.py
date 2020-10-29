@@ -18,9 +18,9 @@ def radix_sort(list_of_ints: List[int]) -> List[int]:
     >>> radix_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
 
-    >>> radix_sort(list(range(15))) == sorted(list(range(15)))
+    >>> radix_sort(list(range(15))) == sorted(range(15))
     True
-    >>> radix_sort(reversed(list(range(15)))) == sorted(list(range(15)))
+    >>> radix_sort(list(range(14,-1,-1))) == sorted(range(15))
     True
     >>> radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
     True
