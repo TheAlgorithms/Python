@@ -421,6 +421,7 @@
   * [Lucas Lehmer Primality Test](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_lehmer_primality_test.py)
   * [Lucas Series](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_series.py)
   * [Matrix Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/maths/matrix_exponentiation.py)
+  * [Maximum Combination](https://github.com/TheAlgorithms/Python/blob/master/maths/maximum_combination.py)
   * [Miller Rabin](https://github.com/TheAlgorithms/Python/blob/master/maths/miller_rabin.py)
   * [Mobius Function](https://github.com/TheAlgorithms/Python/blob/master/maths/mobius_function.py)
   * [Modular Exponential](https://github.com/TheAlgorithms/Python/blob/master/maths/modular_exponential.py)
@@ -674,6 +675,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_056/sol1.py)
   * Problem 057
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_057/sol1.py)
+  * Problem 058
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_058/sol1.py)
   * Problem 062
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_062/sol1.py)
   * Problem 063
@@ -699,6 +702,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_080/sol1.py)
   * Problem 081
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_081/sol1.py)
+  * Problem 087
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_087/sol1.py)
   * Problem 091
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_091/sol1.py)
   * Problem 097
@@ -817,6 +822,7 @@
   * [Prefix Function](https://github.com/TheAlgorithms/Python/blob/master/strings/prefix_function.py)
   * [Rabin Karp](https://github.com/TheAlgorithms/Python/blob/master/strings/rabin_karp.py)
   * [Remove Duplicate](https://github.com/TheAlgorithms/Python/blob/master/strings/remove_duplicate.py)
+  * [Reverse Letters](https://github.com/TheAlgorithms/Python/blob/master/strings/reverse_letters.py)
   * [Reverse Words](https://github.com/TheAlgorithms/Python/blob/master/strings/reverse_words.py)
   * [Split](https://github.com/TheAlgorithms/Python/blob/master/strings/split.py)
   * [Swap Case](https://github.com/TheAlgorithms/Python/blob/master/strings/swap_case.py)
