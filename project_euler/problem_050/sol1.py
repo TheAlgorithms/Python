@@ -14,7 +14,7 @@ Which prime, below one-million, can be written as the sum of the most consecutiv
 from typing import List, Set
 
 
-def get_primes(limit: int) -> (Set[int], List[int]):
+def get_primes(limit: int) -> Tuple[Set[int], List[int]]:
     """
     Returns the set & list(ordered) of primes up to the below limit
     using Sieve of Eratosthenes
