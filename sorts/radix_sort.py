@@ -43,6 +43,7 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
         placement *= RADIX
     return list_of_ints
 
+
 if __name__ == "__main__":
     import doctest
 
