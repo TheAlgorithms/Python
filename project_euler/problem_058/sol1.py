@@ -78,3 +78,9 @@ def solution(ratio: float = 0.1) -> int:
 
         j = j + 2
     return j
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
