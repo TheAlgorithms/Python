@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from hash_table import HashTable
-from number_theory.prime_numbers import check_prime, next_prime
+from .hash_table import HashTable
+from .number_theory.prime_numbers import check_prime, next_prime
 
 
 class DoubleHash(HashTable):

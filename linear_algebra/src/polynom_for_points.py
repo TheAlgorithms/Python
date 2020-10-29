@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def points_to_polynomial(coordinates: List[List[int]]) -> str:
+def points_to_polynomial(coordinates: list[list[int]]) -> str:
     """
     coordinates is a two dimensional matrix: [[x, y], [x, y], ...]
     number of points you want to use
@@ -60,7 +60,7 @@ def points_to_polynomial(coordinates: List[List[int]]) -> str:
         while count_of_line < x:
             count_in_line = 0
             a = coordinates[count_of_line][0]
-            count_line: List[int] = []
+            count_line: list[int] = []
             while count_in_line < x:
                 count_line.append(a ** (x - (count_in_line + 1)))
                 count_in_line += 1
@@ -69,7 +69,7 @@ def points_to_polynomial(coordinates: List[List[int]]) -> str:
 
         count_of_line = 0
         # put the y values into a vector
-        vector: List[int] = []
+        vector: list[int] = []
         while count_of_line < x:
             vector.append(coordinates[count_of_line][1])
             count_of_line += 1
@@ -94,7 +94,7 @@ def points_to_polynomial(coordinates: List[List[int]]) -> str:
 
         count = 0
         # make solutions
-        solution: List[str] = []
+        solution: list[str] = []
         while count < x:
             solution.append(vector[count] / matrix[count][count])
             count += 1
@@ -103,7 +103,7 @@ def points_to_polynomial(coordinates: List[List[int]]) -> str:
         solved = "f(x)="
 
         while count < x:
-            remove_e: List[str] = str(solution[count]).split("E")
+            remove_e: list[str] = str(solution[count]).split("E")
             if len(remove_e) > 1:
                 solution[count] = remove_e[0] + "*10^" + remove_e[1]
             solved += "x^" + str(x - (count + 1)) + "*" + str(solution[count])

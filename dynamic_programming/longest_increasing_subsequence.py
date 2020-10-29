@@ -10,10 +10,10 @@ return it.
 Example: [10, 22, 9, 33, 21, 50, 41, 60, 80] as input will return
          [10, 22, 33, 41, 60, 80] as output
 """
-from typing import List
+from __future__ import annotations
 
 
-def longest_subsequence(array: List[int]) -> List[int]:  # This function is recursive
+def longest_subsequence(array: list[int]) -> list[int]:  # This function is recursive
     """
     Some examples
     >>> longest_subsequence([10, 22, 9, 33, 21, 50, 41, 60, 80])

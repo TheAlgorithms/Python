@@ -1,9 +1,9 @@
 # Youtube Explanation: https://www.youtube.com/watch?v=lBRtnuxg-gU
 
-from typing import List
+from __future__ import annotations
 
 
-def minimum_cost_path(matrix: List[List[int]]) -> int:
+def minimum_cost_path(matrix: list[list[int]]) -> int:
     """
     Find the minimum cost traced by all possible paths from top left to bottom right in
     a given matrix

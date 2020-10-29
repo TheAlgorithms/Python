@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 import math
-from typing import List
 
 
 class SegmentTree:
@@ -36,7 +37,7 @@ class SegmentTree:
         return idx * 2 + 1
 
     def build(
-        self, idx: int, left_element: int, right_element: int, A: List[int]
+        self, idx: int, left_element: int, right_element: int, A: list[int]
     ) -> None:
         if left_element == right_element:
             self.segment_tree[idx] = A[left_element - 1]

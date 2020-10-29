@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from number_theory.prime_numbers import next_prime
+from .number_theory.prime_numbers import next_prime
 
 
 class HashTable:

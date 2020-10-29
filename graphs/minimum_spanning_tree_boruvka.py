@@ -99,7 +99,7 @@ class Graph:
             g.add_edge(*edge)
         return g
 
-    class UnionFind(object):
+    class UnionFind:
         """
         Disjoint set Union and Find for Boruvka's algorithm
         """

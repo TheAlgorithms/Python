@@ -8,7 +8,9 @@ from timeit import timeit
 # Counter is faster for long strings and non-Counter is faster for short strings.
 
 
-def can_string_be_rearranged_as_palindrome_counter(input_str: str = "",) -> bool:
+def can_string_be_rearranged_as_palindrome_counter(
+    input_str: str = "",
+) -> bool:
     """
     A Palindrome is a String that reads the same forward as it does backwards.
     Examples of Palindromes mom, dad, malayalam

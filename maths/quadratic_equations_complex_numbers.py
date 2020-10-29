@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 from cmath import sqrt
-from typing import Tuple
 
 
-def quadratic_roots(a: int, b: int, c: int) -> Tuple[complex, complex]:
+def quadratic_roots(a: int, b: int, c: int) -> tuple[complex, complex]:
     """
     Given the numerical coefficients a, b and c,
     calculates the roots for any quadratic equation of the form ax^2 + bx + c

@@ -2,8 +2,9 @@
 An implementation of Karger's Algorithm for partitioning a graph.
 """
 
+from __future__ import annotations
+
 import random
-from typing import Dict, List, Set, Tuple
 
 # Adjacency list representation of this graph:
 # https://en.wikipedia.org/wiki/File:Single_run_of_Karger%E2%80%99s_Mincut_algorithm.svg
@@ -21,7 +22,7 @@ TEST_GRAPH = {
 }
 
 
-def partition_graph(graph: Dict[str, List[str]]) -> Set[Tuple[str, str]]:
+def partition_graph(graph: dict[str, list[str]]) -> set[tuple[str, str]]:
     """
     Partitions a graph using Karger's Algorithm. Implemented from
     pseudocode found here:
@@ -60,9 +61,7 @@ def partition_graph(graph: Dict[str, List[str]]) -> Set[Tuple[str, str]]:
         for neighbor in uv_neighbors:
             graph_copy[neighbor].append(uv)
 
-        contracted_nodes[uv] = {
-            node for node in contracted_nodes[u].union(contracted_nodes[v])
-        }
+        contracted_nodes[uv] = set(contracted_nodes[u].union(contracted_nodes[v]))
 
         # Remove nodes u and v.
         del graph_copy[u]

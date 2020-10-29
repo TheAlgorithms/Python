@@ -11,10 +11,10 @@ For manual testing run:
 python3 merge_insertion_sort.py
 """
 
-from typing import List
+from __future__ import annotations
 
 
-def merge_insertion_sort(collection: List[int]) -> List[int]:
+def merge_insertion_sort(collection: list[int]) -> list[int]:
     """Pure implementation of merge-insertion sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous

@@ -2,8 +2,9 @@
 https://en.wikipedia.org/wiki/Bidirectional_search
 """
 
+from __future__ import annotations
+
 import time
-from typing import List, Tuple
 
 grid = [
     [0, 0, 0, 0, 0, 0, 0],
@@ -51,7 +52,7 @@ class BreadthFirstSearch:
         self.node_queue = [self.start]
         self.reached = False
 
-    def search(self) -> List[Tuple[int]]:
+    def search(self) -> list[tuple[int]]:
         while self.node_queue:
             current_node = self.node_queue.pop(0)
 
@@ -67,7 +68,7 @@ class BreadthFirstSearch:
         if not (self.reached):
             return [(self.start.pos)]
 
-    def get_successors(self, parent: Node) -> List[Node]:
+    def get_successors(self, parent: Node) -> list[Node]:
         """
         Returns a list of successors (both in the grid and free spaces)
         """
@@ -86,7 +87,7 @@ class BreadthFirstSearch:
             )
         return successors
 
-    def retrace_path(self, node: Node) -> List[Tuple[int]]:
+    def retrace_path(self, node: Node) -> list[tuple[int]]:
         """
         Retrace the path from parents to parents until start node
         """
@@ -118,7 +119,7 @@ class BidirectionalBreadthFirstSearch:
         self.bwd_bfs = BreadthFirstSearch(goal, start)
         self.reached = False
 
-    def search(self) -> List[Tuple[int]]:
+    def search(self) -> list[tuple[int]]:
         while self.fwd_bfs.node_queue or self.bwd_bfs.node_queue:
             current_fwd_node = self.fwd_bfs.node_queue.pop(0)
             current_bwd_node = self.bwd_bfs.node_queue.pop(0)
@@ -146,7 +147,7 @@ class BidirectionalBreadthFirstSearch:
 
     def retrace_bidirectional_path(
         self, fwd_node: Node, bwd_node: Node
-    ) -> List[Tuple[int]]:
+    ) -> list[tuple[int]]:
         fwd_path = self.fwd_bfs.retrace_path(fwd_node)
         bwd_path = self.bwd_bfs.retrace_path(bwd_node)
         bwd_path.pop()

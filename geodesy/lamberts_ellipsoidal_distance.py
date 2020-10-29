@@ -1,6 +1,6 @@
 from math import atan, cos, radians, sin, tan
 
-from haversine_distance import haversine_distance
+from .haversine_distance import haversine_distance
 
 
 def lamberts_ellipsoidal_distance(

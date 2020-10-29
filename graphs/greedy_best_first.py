@@ -2,7 +2,7 @@
 https://en.wikipedia.org/wiki/Best-first_search#Greedy_BFS
 """
 
-from typing import List, Tuple
+from __future__ import annotations
 
 grid = [
     [0, 0, 0, 0, 0, 0, 0],
@@ -81,7 +81,7 @@ class GreedyBestFirst:
 
         self.reached = False
 
-    def search(self) -> List[Tuple[int]]:
+    def search(self) -> list[tuple[int]]:
         """
         Search for the path,
         if a path is not found, only the starting position is returned
@@ -116,7 +116,7 @@ class GreedyBestFirst:
         if not (self.reached):
             return [self.start.pos]
 
-    def get_successors(self, parent: Node) -> List[Node]:
+    def get_successors(self, parent: Node) -> list[Node]:
         """
         Returns a list of successors (both in the grid and free spaces)
         """
@@ -143,7 +143,7 @@ class GreedyBestFirst:
             )
         return successors
 
-    def retrace_path(self, node: Node) -> List[Tuple[int]]:
+    def retrace_path(self, node: Node) -> list[tuple[int]]:
         """
         Retrace the path from parents to parents until start node
         """

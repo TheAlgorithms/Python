@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 
-class Heap(object):
+class Heap:
     """
     >>> unsorted = [103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5]
     >>> h = Heap()

@@ -2,9 +2,10 @@
 https://en.wikipedia.org/wiki/Bidirectional_search
 """
 
+from __future__ import annotations
+
 import time
 from math import sqrt
-from typing import List, Tuple
 
 # 1 for manhattan, 0 for euclidean
 HEURISTIC = 0
@@ -89,7 +90,7 @@ class AStar:
 
         self.reached = False
 
-    def search(self) -> List[Tuple[int]]:
+    def search(self) -> list[tuple[int]]:
         while self.open_nodes:
             # Open Nodes are sorted using __lt__
             self.open_nodes.sort()
@@ -120,7 +121,7 @@ class AStar:
         if not (self.reached):
             return [(self.start.pos)]
 
-    def get_successors(self, parent: Node) -> List[Node]:
+    def get_successors(self, parent: Node) -> list[Node]:
         """
         Returns a list of successors (both in the grid and free spaces)
         """
@@ -146,7 +147,7 @@ class AStar:
             )
         return successors
 
-    def retrace_path(self, node: Node) -> List[Tuple[int]]:
+    def retrace_path(self, node: Node) -> list[tuple[int]]:
         """
         Retrace the path from parents to parents until start node
         """
@@ -177,7 +178,7 @@ class BidirectionalAStar:
         self.bwd_astar = AStar(goal, start)
         self.reached = False
 
-    def search(self) -> List[Tuple[int]]:
+    def search(self) -> list[tuple[int]]:
         while self.fwd_astar.open_nodes or self.bwd_astar.open_nodes:
             self.fwd_astar.open_nodes.sort()
             self.bwd_astar.open_nodes.sort()
@@ -224,7 +225,7 @@ class BidirectionalAStar:
 
     def retrace_bidirectional_path(
         self, fwd_node: Node, bwd_node: Node
-    ) -> List[Tuple[int]]:
+    ) -> list[tuple[int]]:
         fwd_path = self.fwd_astar.retrace_path(fwd_node)
         bwd_path = self.bwd_astar.retrace_path(bwd_node)
         bwd_path.pop()
