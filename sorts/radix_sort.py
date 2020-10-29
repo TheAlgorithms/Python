@@ -16,11 +16,11 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
     >>> radix_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
 
-    radix_sort(range(15)) == sorted(range(15))
+    >>> radix_sort(range(15)) == sorted(range(15))
     True
-    radix_sort(reversed(range(15))) == sorted(range(15))
+    >>> radix_sort(reversed(range(15))) == sorted(range(15))
     True
-    radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
+    >>> radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
     True
     """
     RADIX = 10
@@ -42,3 +42,8 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
         # move to next
         placement *= RADIX
     return list_of_ints
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
