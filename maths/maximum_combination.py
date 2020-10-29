@@ -1,18 +1,18 @@
 """
-Source: https://www.instagram.com/p/CG7kv65A6s1/?utm_source=ig_web_copy_link
-The following function accepts 2 positive integers 
-and makes the first number as large as possible 
-by swapping out its digits for digits in second number
->>> maximum_combination(9132,5564)
-9655
->>> maximum_combination(523,76)
-763
->>> maximum_combination(8732, 91255)
-9755
->>> maximum_combination(6472,0)
-6472
->>> maximum_combination(-12,10)
-0
+    Source: https://www.instagram.com/p/CG7kv65A6s1/?utm_source=ig_web_copy_link
+    The following function accepts 2 positive integers 
+    and makes the first number as large as possible 
+    by swapping out its digits for digits in second number
+    >>> maximum_combination(9132,5564)
+    9655
+    >>> maximum_combination(523,76)
+    763
+    >>> maximum_combination(8732, 91255)
+    9755
+    >>> maximum_combination(6472,0)
+    6472
+    >>> maximum_combination(-12,10)
+    0
 """
 
 
