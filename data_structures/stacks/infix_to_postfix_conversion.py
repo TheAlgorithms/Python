@@ -67,4 +67,3 @@ if __name__ == "__main__":
     print("Infix to Postfix Notation demonstration:\n")
     print("Infix notation: " + expression)
     print("Postfix notation: " + infix_to_postfix(expression))
-    
