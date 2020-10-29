@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 """
 Source: https://www.instagram.com/p/CG7kv65A6s1/?utm_source=ig_web_copy_link
 The following function accepts 2 positive integers 
@@ -19,7 +16,7 @@ by swapping out its digits for digits in second number
 """
 
 
-def maximum_combination(first_num, second_num):
+def maximum_combination(first_num, second_num) -> int:
     if first_num <= 0:
         return 0
     if second_num <= 0:
@@ -27,17 +24,17 @@ def maximum_combination(first_num, second_num):
     second_num = [int(x) for x in str(second_num)]
     first_num = [int(x) for x in str(first_num)]
     second_num.sort(reverse=True)
-    for (index, val) in enumerate(first_num):
+    for index, val in enumerate(first_num):
         if len(second_num) > 0:
             if second_num[0] > val:
                 first_num[index] = second_num[0]
                 second_num.pop(0)
         else:
             break
-    return int(''.join(map(str, first_num)))
+    return int("".join(map(str, first_num)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
