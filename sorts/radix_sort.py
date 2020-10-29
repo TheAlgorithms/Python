@@ -8,17 +8,18 @@ For manual testing run:
 python radix_sort.py
 """
 from __future__ import annotations
+from typing import List
 
 
-def radix_sort(list_of_ints: list[int]) -> list[int]:
+def radix_sort(list_of_ints: List[int]) -> List[int]:
     """
     Examples:
     >>> radix_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
 
-    >>> radix_sort(range(15)) == sorted(range(15))
+    >>> radix_sort(list(range(15))) == sorted(list(range(15)))
     True
-    >>> radix_sort(reversed(range(15))) == sorted(range(15))
+    >>> radix_sort(reversed(list(range(15)))) == sorted(list(range(15)))
     True
     >>> radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
     True
