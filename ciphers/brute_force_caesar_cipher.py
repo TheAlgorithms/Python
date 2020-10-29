@@ -1,4 +1,4 @@
-def decrypt(message):
+def decrypt(message: str) -> None:
     """
     >>> decrypt('TMDETUX PMDVU')
     Decryption using Key #0: TMDETUX PMDVU
