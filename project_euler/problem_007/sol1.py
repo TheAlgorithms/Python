@@ -1,17 +1,34 @@
 """
-Problem 7: https://projecteuler.net/problem=7
+Project Euler Problem 7: https://projecteuler.net/problem=7
 
-By listing the first six prime numbers:
+10001st prime
 
-    2, 3, 5, 7, 11, and 13
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we
+can see that the 6th prime is 13.
 
-We can see that the 6th prime is 13. What is the Nth prime number?
+What is the 10001st prime number?
+
+References:
+    - https://en.wikipedia.org/wiki/Prime_number
 """
+
 from math import sqrt
 
 
 def is_prime(num: int) -> bool:
-    """Determines whether the given number is prime or not"""
+    """
+    Determines whether the given number is prime or not
+
+    >>> is_prime(2)
+    True
+    >>> is_prime(15)
+    False
+    >>> is_prime(29)
+    True
+    >>> is_prime(0)
+    False
+    """
+
     if num == 2:
         return True
     elif num % 2 == 0:
@@ -25,7 +42,8 @@ def is_prime(num: int) -> bool:
 
 
 def solution(nth: int = 10001) -> int:
-    """Returns the n-th prime number.
+    """
+    Returns the n-th prime number.
 
     >>> solution(6)
     13
@@ -39,9 +57,8 @@ def solution(nth: int = 10001) -> int:
     229
     >>> solution(100)
     541
-    >>> solution()
-    104743
     """
+
     count = 0
     number = 1
     while count != nth and number < 3:
@@ -56,4 +73,4 @@ def solution(nth: int = 10001) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")

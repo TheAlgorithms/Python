@@ -8,8 +8,8 @@ from typing import Dict, List
 import pytest
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
-PROJECT_EULER_ANSWERS_PATH = PROJECT_EULER_DIR_PATH.joinpath(
-    "project_euler_answers.json"
+PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
+    "scripts", "project_euler_answers.json"
 )
 
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
