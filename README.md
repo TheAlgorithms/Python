@@ -10,9 +10,9 @@
 [![code style: black](https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square)](https://github.com/psf/black)
 <!--[![Tested on Python 3.7](https://img.shields.io/badge/Tested%20-Python%203.7-blue.svg?logo=python&style=flat-square)]( https://www.python.org/downloads) &nbsp;-->
 
-### All algorithms implemented in Python (for education)
+### All these algorithms implemented in Python (for education)
 
-These implementations are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
+Akk These implementations are for educational purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
 
 ## Contribution Guidelines
 
