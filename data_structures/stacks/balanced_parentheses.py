@@ -33,7 +33,5 @@ if __name__ == "__main__":
     examples = ["((()))", "((())", "(()))"]
     print("Balanced parentheses demonstration:\n")
     for example in examples:
-        print(
-            f"{example} is",
-            "balanced" if balanced_parentheses(example) else "not balanced",
-        )
+        not_str = "" if balanced_parentheses(example) else "not "
+        print(f"{example} is {not_str}balanced")
