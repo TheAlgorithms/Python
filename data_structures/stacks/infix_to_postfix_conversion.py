@@ -4,8 +4,8 @@ https://en.wikipedia.org/wiki/Reverse_Polish_notation
 https://en.wikipedia.org/wiki/Shunting-yard_algorithm
 """
 
-from stacks.balanced_parentheses import balanced_parentheses
-from stacks.stack import Stack
+from .balanced_parentheses import balanced_parentheses
+from .stack import Stack
 
 
 def precedence(char: str) -> int:
