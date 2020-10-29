@@ -14,7 +14,7 @@ addons:
       - libsuitesparse-dev
       - ccache
       - libmpc-dev
-before_install: pip install --upgrade --only-binary=numpy numpy pip setuptools six wheel
+before_install: pip install --upgrade numpy pip setuptools six wheel
 jobs:
   include:
     - install: true
