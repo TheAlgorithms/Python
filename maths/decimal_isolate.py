@@ -21,6 +21,12 @@ def decimal_isolate(number, digitAmount):
     -0.789
     >>> decimal_isolate(0, 2)
     0
+    >>> decimal_isolate(-14.123, 1)
+    -0.1
+    >>> decimal_isolate(-14.123, 2)
+    -0.12
+    >>> decimal_isolate(-14.123, 3)
+    -0.123
     """
     if digitAmount > 0:
         return round(number - int(number), digitAmount)
@@ -34,3 +40,6 @@ if __name__ == "__main__":
     print(decimal_isolate(35.345, 3))
     print(decimal_isolate(-14.789, 3))
     print(decimal_isolate(0, 2))
+    print(decimal_isolate(-14.123, 1))
+    print(decimal_isolate(-14.123, 2))
+    print(decimal_isolate(-14.123, 3))
