@@ -45,3 +45,8 @@ def peak(lst: List[int]) -> int:
         if len(lst[:m]) == 2:
             m += 1
         return peak(lst[:m])
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
