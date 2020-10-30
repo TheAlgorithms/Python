@@ -11,6 +11,12 @@ def reverse_letters(input_str: str) -> str:
     'I evol nohtyP'
     """
     return " ".join([word[::-1] for word in input_str.split()])
+#reverse string without using[::-1] & reverse function
+def reverse_str_letter(input_str: str) -> str:
+    rev=""
+    for i in input_str:
+        rev=rev+i
+    return rev
 
 
 if __name__ == "__main__":
