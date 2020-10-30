@@ -5,25 +5,20 @@ import unittest
 
 
 def prime_check(number: int) -> bool:
-    """
-    Check to See if a Number is Prime.
+    """Checks to see if a number is a prime.
 
-    A number is prime if it has exactly two dividers: 1 and itself.
+    A number is prime if it has exactly two factors: 1 and itself.
     """
-    if number < 2:
-        # Negatives, 0 and 1 are not primes
-        return False
-    if number < 4:
+
+    if 1 < number < 4:
         # 2 and 3 are primes
         return True
-    if number % 2 == 0:
-        # Even values are not primes
+    elif number < 2 or not number % 2:
+        # Negatives, 0, 1 and all even numbers are not primes
         return False
 
-    # Except 2, all primes are odd. If any odd value divide
-    # the number, then that number is not prime.
-    odd_numbers = range(3, int(math.sqrt(number)) + 1, 2)
-    return not any(number % i == 0 for i in odd_numbers)
+    odd_numbers = range(3, int(math.sqrt(number) + 1), 2)
+    return not any(not number % i for i in odd_numbers)
 
 
 class Test(unittest.TestCase):
@@ -40,12 +35,17 @@ class Test(unittest.TestCase):
         self.assertTrue(prime_check(29))
 
     def test_not_primes(self):
-        self.assertFalse(prime_check(-19), "Negative numbers are not prime.")
         self.assertFalse(
-            prime_check(0), "Zero doesn't have any divider, primes must have two."
+            prime_check(-19),
+            "Negative numbers are excluded by definition of prime numbers.",
         )
         self.assertFalse(
-            prime_check(1), "One just have 1 divider, primes must have two."
+            prime_check(0),
+            "Zero doesn't have any positive factors, primes must have exactly two.",
+        )
+        self.assertFalse(
+            prime_check(1),
+            "One only has 1 positive factor, primes must have exactly two.",
         )
         self.assertFalse(prime_check(2 * 2))
         self.assertFalse(prime_check(2 * 3))

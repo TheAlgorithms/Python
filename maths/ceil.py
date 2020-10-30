@@ -1,3 +1,8 @@
+"""
+https://en.wikipedia.org/wiki/Floor_and_ceiling_functions
+"""
+
+
 def ceil(x) -> int:
     """
     Return the ceiling of x as an Integral.
@@ -10,9 +15,7 @@ def ceil(x) -> int:
     ...     in (1, -1, 0, -0, 1.1, -1.1, 1.0, -1.0, 1_000_000_000))
     True
     """
-    return (
-        x if isinstance(x, int) or x - int(x) == 0 else int(x + 1) if x > 0 else int(x)
-    )
+    return int(x) if x - int(x) <= 0 else int(x) + 1
 
 
 if __name__ == "__main__":

@@ -7,11 +7,7 @@
 
 # Order is important. The last matching pattern has the most precedence.
 
-/.travis.yml  @cclauss @dhruvmanila
-
-/.pre-commit-config.yaml  @cclauss @dhruvmanila
-
-/.github/  @cclauss
+/.*  @cclauss @dhruvmanila
 
 # /arithmetic_analysis/
 
@@ -25,21 +21,21 @@
 
 # /cellular_automata/
 
-/ciphers/  @cclauss
+# /ciphers/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
 
 # /compression/
 
 # /computer_vision/
 
-/conversions/  @cclauss
+# /conversions/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
 
-/data_structures/  @cclauss
+# /data_structures/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
 
-# /digital_image_processing/
+/digital_image_processing/ @mateuszz0000
 
 # /divide_and_conquer/
 
-# /dynamic_programming/
+/dynamic_programming/ @Kush1101
 
 # /file_transfer/
 
@@ -63,7 +59,7 @@
 
 # /machine_learning/
 
-# /maths/
+/maths/ @Kush1101
 
 # /matrix/
 
@@ -71,9 +67,9 @@
 
 # /neural_network/
 
-/other/  @cclauss
+# /other/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
 
-/project_euler/  @dhruvmanila
+/project_euler/  @dhruvmanila @Kush1101
 
 # /quantum/
 
@@ -83,10 +79,10 @@
 
 # /searches/
 
-# /sorts/
+/sorts/ @mateuszz0000
 
-/strings/  @cclauss
+# /strings/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
 
 # /traversals/
 
-/web_programming/  @cclass
+/web_programming/  @cclauss

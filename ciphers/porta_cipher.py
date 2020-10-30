@@ -28,7 +28,7 @@ alphabet = {
 }
 
 
-def generate_table(key):
+def generate_table(key: str) -> [(str, str)]:
     """
     >>> generate_table('marvin')  # doctest: +NORMALIZE_WHITESPACE
     [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
@@ -38,7 +38,7 @@ def generate_table(key):
     return [alphabet[char] for char in key.upper()]
 
 
-def encrypt(key, words):
+def encrypt(key: str, words: str) -> str:
     """
     >>> encrypt('marvin', 'jessica')
     'QRACRWU'
@@ -52,7 +52,7 @@ def encrypt(key, words):
     return cipher
 
 
-def decrypt(key, words):
+def decrypt(key: str, words: str) -> str:
     """
     >>> decrypt('marvin', 'QRACRWU')
     'JESSICA'
@@ -60,7 +60,7 @@ def decrypt(key, words):
     return encrypt(key, words)
 
 
-def get_position(table, char):
+def get_position(table: [(str, str)], char: str) -> (int, int) or (None, None):
     """
     >>> table = [
     ...     ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
@@ -76,7 +76,7 @@ def get_position(table, char):
     return (None, None) if row == -1 else (row, table[row].index(char))
 
 
-def get_opponent(table, char):
+def get_opponent(table: [(str, str)], char: str) -> str:
     """
     >>> table = [
     ...     ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
