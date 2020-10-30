@@ -15,9 +15,11 @@ def change_multiple(change_to,multiple,vector):
 
  *One exemple for test*
 '''
-vector = [4,5,6,7,9,10]
-multiple = 2
-change_to = 999
-print(vector) # >> [4,5,6,7,9,10]
-change_multiple(change_to,multiple,vector)
-print(vector) # >> [999,5,999,7,9,999]
+
+if __name__ == "__main__":
+    vector = [4,5,6,7,9,10]
+    multiple = 2
+    change_to = 999
+    print(vector) # >> [4,5,6,7,9,10]
+    change_multiple(change_to,multiple,vector)
+    print(vector) # >> [999,5,999,7,9,999]
