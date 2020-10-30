@@ -1,0 +1,23 @@
+from sklearn import datasets
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+df=load_iris()
+x,y=df.data[:,[2,3]],df.target[:]
+xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=0.30,random_state=0)
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+
+clf1= LogisticRegression()#penalty='l2',C=0.001,random_state=1)
+clf2= DecisionTreeClassifier()#max_depth=1,criterion='entropy',random_state=0)
+clf3= KNeighborsClassifier()#n_neighbors=1,p=2,metric='minkowski')
+
+#Majority Voting Classifier
+from sklearn.ensemble import VotingClassifier
+mv_clf=VotingClassifier(estimators=[('lr',clf1),('dt',clf2),('knn',clf3)],
+                                    voting='hard',weights=[1,1,4])
+mv_clf=mv_clf.fit(xtrain,ytrain)
+pred=mv_clf.predict(xtest)
+from sklearn.metrics import accuracy_score
+print(accuracy_score(pred,ytest))
