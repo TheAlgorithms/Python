@@ -1,3 +1,6 @@
+"""
+Generates an image with the Mandelbrot Set
+"""
 from PIL import Image, ImageDraw
 
 # Define constants
