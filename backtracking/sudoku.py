@@ -26,6 +26,18 @@ initial_grid = [
     [0, 0, 5, 2, 0, 6, 3, 0, 0],
 ]
 
+initial_not_solvable_grid = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [3, 0, 0, 0, 0, 0, 0, 0, 0],
+    [3, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+]
+
 # a grid with no solution
 no_solution = [
     [5, 0, 6, 5, 0, 8, 4, 0, 3],
@@ -47,13 +59,21 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
     It returns False if it is not 'safe' (a duplicate digit
     is found) else returns True if it is 'safe'
     """
+    if n == 0:
+        return True
+
+    elif n < 0 or n > 9 or (not isinstance(n, int)):
+        return False
+
     for i in range(9):
-        if grid[row][i] == n or grid[i][column] == n:
+        if (grid[row][i] == n and i != column) or (grid[i][column] == n and i != row):
             return False
 
     for i in range(3):
         for j in range(3):
-            if grid[(row - row % 3) + i][(column - column % 3) + j] == n:
+            new_row = (row - row % 3) + i
+            new_column = (column - column % 3) + j
+            if new_row != row and new_column != column and grid[new_row][new_column] == n:
                 return False
 
     return True
@@ -91,7 +111,17 @@ def find_empty_location(grid: Matrix) -> Tuple[int, int]:
                 return i, j
 
 
-def sudoku(grid: Matrix) -> Union[Matrix, bool]:
+def check_original_solvable() -> bool:
+    for original_row in range(9):
+        for origin_col in range(9):
+            origin_digit = grid[original_row][origin_col]
+            if origin_digit:
+                if not is_safe(grid, original_row, origin_col, origin_digit):
+                    return False
+    return True
+
+
+def sudoku_solve(grid: Matrix) -> Union[Matrix, bool]:
     """
     Takes a partially filled-in grid and attempts to assign values to
     all unassigned locations in such a way to meet the requirements
@@ -120,7 +150,7 @@ def sudoku(grid: Matrix) -> Union[Matrix, bool]:
         if is_safe(grid, row, column, digit):
             grid[row][column] = digit
 
-            if sudoku(grid):
+            if sudoku_solve(grid):
                 return grid
 
             grid[row][column] = 0
@@ -139,9 +169,15 @@ def print_solution(grid: Matrix) -> None:
         print()
 
 
+def sudoku(grid: Matrix) -> Union[Matrix, bool]:
+    if not check_original_solvable():
+        return False
+    return sudoku_solve(grid)
+
+
 if __name__ == "__main__":
     # make a copy of grid so that you can compare with the unmodified grid
-    for grid in (initial_grid, no_solution):
+    for grid in (initial_grid, no_solution, initial_not_solvable_grid,):
         grid = list(map(list, grid))
         solution = sudoku(grid)
         if solution:
