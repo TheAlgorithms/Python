@@ -9,12 +9,16 @@ def decimal_isolate(number, digitAmount):
     """
     Isolates the decimal part of a number.
     If digitAmount > 0 round to that decimal place, else print the entire decimal.
+    >>> decimal_isolate(1.53, 0)
+    0.53
     >>> decimal_isolate(35.345, 1)
     0.3
     >>> decimal_isolate(35.345, 2)
     0.34
     >>> decimal_isolate(35.345, 3)
     0.345
+    >>> decimal_isolate(-14.789, 3)
+    -0.789
     """
     if digitAmount > 0:
         return round(number - int(number), digitAmount)
@@ -22,6 +26,8 @@ def decimal_isolate(number, digitAmount):
 
 
 if __name__ == "__main__":
+    print(decimal_isolate(1.53, 0))
     print(decimal_isolate(35.345, 1))
     print(decimal_isolate(35.345, 2))
     print(decimal_isolate(35.345, 3))
+    print(decimal_isolate(-14.789, 3))
