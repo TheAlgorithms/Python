@@ -12,7 +12,7 @@
 
 ### All algorithms implemented in Python (for education)
 
-These implementations are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
+This implementation is for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
 
 ## Contribution Guidelines
 
@@ -24,4 +24,4 @@ We're on [Gitter](https://gitter.im/TheAlgorithms)!  Please join us.
 
 ## List of Algorithms
 
-See our [directory](DIRECTORY.md).
+See my [directory](DIRECTORY.md).
