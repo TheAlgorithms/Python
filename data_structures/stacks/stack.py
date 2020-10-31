@@ -18,8 +18,21 @@ class Stack:
     def __bool__(self) -> bool:
         return bool(self.stack)
 
-    def __str__(self) -> str:
-        return str(self.stack)
+    def __str__(self):
+        stack = self.items
+        l = len(stack) - 1
+        items = ""
+        for item in range(l, -1, -1):
+            items += stack[item]
+            items += "\n"
+
+        string = f"""
+TOP
+
+{items}
+BOTTOM
+"""
+        return string
 
     def push(self, data):
         """ Push an element to the top of the stack."""
