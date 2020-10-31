@@ -61,10 +61,8 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
     It returns False if it is not 'safe' (a duplicate digit
     is found) else returns True if it is 'safe'
     """
-    if n == 0:
-        return True
 
-    elif n < 0 or n > 9 or (not isinstance(n, int)):
+    if n < 0 or n > 9 or (not isinstance(n, int)):
         return False
 
     for i in range(9):
