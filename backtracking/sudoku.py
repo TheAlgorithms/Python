@@ -40,7 +40,6 @@ initial_not_solvable_grid = [
 ]
 
 
-
 # a grid with no solution
 no_solution = [
     [5, 0, 6, 5, 0, 8, 4, 0, 3],
@@ -53,6 +52,7 @@ no_solution = [
     [0, 0, 0, 0, 0, 0, 0, 7, 4],
     [0, 0, 5, 2, 0, 6, 3, 0, 0],
 ]
+
 
 def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
     """
@@ -68,16 +68,19 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
         return False
 
     for i in range(9):
-        if (grid[row][i] == n and i !=column) or (grid[i][column] == n and i !=row) :
+        if (grid[row][i] == n and i != column) or (grid[i][column] == n and i != row):
             return False
-        
 
     for i in range(3):
-        for j in range(3):             
+        for j in range(3):
             new_row = (row - row % 3) + i
             new_column = (column - column % 3) + j
-            if new_row != row and new_column != column and grid[new_row][new_column] == n:
-                return False             
+            if (
+                new_row != row
+                and new_column != column
+                and grid[new_row][new_column] == n
+            ):
+                return False
 
     return True
 
@@ -113,14 +116,15 @@ def find_empty_location(grid: Matrix) -> Tuple[int, int]:
             if grid[i][j] == 0:
                 return i, j
 
-def check_original_solvable() -> bool:
+
+def check_original_solvable(grid) -> bool:
     for original_row in range(9):
         for origin_col in range(9):
             origin_digit = grid[original_row][origin_col]
             if origin_digit:
                 if not is_safe(grid, original_row, origin_col, origin_digit):
-                    return False 
-    return True 
+                    return False
+    return True
 
 
 def sudoku_solve(grid: Matrix) -> Union[Matrix, bool]:
@@ -141,11 +145,12 @@ def sudoku_solve(grid: Matrix) -> Union[Matrix, bool]:
      [7, 4, 5, 2, 8, 6, 3, 1, 9]]
      >>> sudoku(no_solution)
      False
-    """   
-    
-    if is_completed(grid):
-        return grid   
+     >>> sudoku(initial_not_solvable_grid)
+     False
+    """
 
+    if is_completed(grid):
+        return grid
 
     row, column = find_empty_location(grid)
 
@@ -172,16 +177,19 @@ def print_solution(grid: Matrix) -> None:
         print()
 
 
-
-def sudoku(grid:Matrix) -> Union[Matrix, bool]:
-    if not check_original_solvable():
+def sudoku(grid: Matrix) -> Union[Matrix, bool]:
+    if not check_original_solvable(grid):
         return False
     return sudoku_solve(grid)
 
 
 if __name__ == "__main__":
     # make a copy of grid so that you can compare with the unmodified grid
-    for grid in (initial_grid, no_solution, initial_not_solvable_grid, ):
+    for grid in (
+        initial_grid,
+        no_solution,
+        initial_not_solvable_grid,
+    ):
         grid = list(map(list, grid))
         solution = sudoku(grid)
         if solution:
