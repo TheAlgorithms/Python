@@ -13,7 +13,7 @@ Easy to expand:
     * more optimization method
 
 Author: Stephen Lee
-Github : https://github.com/RiptideBo
+GitHub : https://github.com/RiptideBo
 Date: 2017.11.23
 
 """

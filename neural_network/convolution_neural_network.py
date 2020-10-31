@@ -9,7 +9,7 @@
             * Hidden layer of BP
             * Output layer of BP
     Author: Stephen Lee
-    Github: 245885195@qq.com
+    GitHub: 245885195@qq.com
     Date: 2017.9.20
     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 """

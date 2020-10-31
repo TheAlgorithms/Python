@@ -1,4 +1,4 @@
-# Youtube Explanation: https://www.youtube.com/watch?v=lBRtnuxg-gU
+# YouTube Explanation: https://www.youtube.com/watch?v=lBRtnuxg-gU
 
 from __future__ import annotations
 

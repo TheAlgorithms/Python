@@ -1,6 +1,6 @@
 """
 Author : Syed Faizan ( 3rd Year IIIT Pune )
-Github : faizan2700
+GitHub : faizan2700
 
 Purpose : You have one function f(x) which takes float integer and returns
 float you have to integrate the function in limits a to b.
