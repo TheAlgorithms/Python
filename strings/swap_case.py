@@ -11,12 +11,6 @@ For example:
   GITHUB.COM/MAYUR200
 
 """
-import re
-
-# This re.compile() function saves the pattern from 'a' to 'z' and 'A' to 'Z'
-# into 'regexp' variable
-regexp = re.compile("[^a-zA-Z]+")
-
 
 def swap_case(sentence):
     """
