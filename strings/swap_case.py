@@ -30,9 +30,9 @@ def swap_case(sentence):
     for char in sentence:
         if char.isupper():
             new_string += char.lower()
-        if char.islower():
+        elif char.islower():
             new_string += char.upper()
-        if regexp.search(char):
+        else:
             new_string += char
 
     return new_string
