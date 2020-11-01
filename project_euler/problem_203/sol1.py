@@ -91,6 +91,42 @@ def get_primes_squared(max_number: int) -> List[int]:
     return primes
 
 
+def get_squared_primes_to_use(
+    num_to_look: int, squared_primes: List[int], previous_index: int
+) -> int:
+    """
+    Returns an int indicating the last index on which squares of primes
+    in primes are lower than num_to_look.
+
+    This method supposes that squared_primes is sorted in ascending order and that
+    each num_to_look is provided in ascending order as well. Under these
+    assumptions, it needs a previous_index parameter that tells what was
+    the index returned by the method for the previous num_to_look.
+
+    If all the elements in squared_primes are greater than num_to_look, then the
+    method returns -1.
+
+    >>> get_squared_primes_to_use(1, [4, 9, 16, 25], 0)
+    -1
+    >>> get_squared_primes_to_use(4, [4, 9, 16, 25], 0)
+    1
+    >>> get_squared_primes_to_use(16, [4, 9, 16, 25], 1)
+    3
+    """
+    idx = max(previous_index, 0)
+
+    while idx < len(squared_primes) and squared_primes[idx] <= num_to_look:
+        idx += 1
+
+    if idx == 0 and squared_primes[idx] > num_to_look:
+        return -1
+
+    if idx == len(squared_primes) and squared_primes[-1] > num_to_look:
+        return -1
+
+    return idx
+
+
 def get_squarefree(
     unique_coefficients: Set[int], squared_primes: List[int]
 ) -> Set[int]:
@@ -113,35 +149,6 @@ def get_squarefree(
     >>> get_squarefree({1, 2, 3, 4, 5, 6, 7, 35, 10, 15, 20, 21}, [4, 9, 25])
     {1, 2, 3, 5, 6, 7, 35, 10, 15, 21}
     """
-
-    def get_squared_primes_to_use(
-        num_to_look: int, squared_primes: List[int], previous_index: int
-    ) -> int:
-        """
-        Returns an int indicating the last index on which squares of primes
-        in primes are lower than num_to_look.
-
-        This method supposes that squared_primes is sorted in ascending order and that
-        each num_to_look is provided in ascending order as well. Under these
-        assumptions, it needs a previous_index parameter that tells what was
-        the index returned by the method for the previous num_to_look.
-
-        If all the elements in squared_primes are greater than num_to_look, then the
-        method returns -1.
-
-        >>> get_squared_primes_to_use(1, [4, 9, 16, 25], 0)
-        -1
-        >>> get_squared_primes_to_use(4, [4, 9, 16, 25], 0)
-        1
-        >>> get_squared_primes_to_use(16, [4, 9, 16, 25], 1)
-        3
-        """
-        idx = previous_index
-        while idx < len(squared_primes) and squared_primes[idx] <= num_to_look:
-            idx += 1
-        if idx == len(squared_primes) and squared_primes[-1] > num_to_look:
-            return -1
-        return idx
 
     if len(squared_primes) == 0:
         return set()
