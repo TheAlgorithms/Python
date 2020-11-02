@@ -19,8 +19,15 @@ env:
 before_install: 
   - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   - pip install --upgrade pip setuptools six wheel
+  - pip install scipy
 jobs:
   include:
+    - install: true
+      script: pip install keras
+    - install: true
+      script: pip install qiskit
+    - install: true
+      script: pip install statsmodels
     - install: true
       script: pip install tensorflow
     - name: Build
