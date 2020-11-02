@@ -16,9 +16,9 @@ def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
     :return: list of bytes to be assigned to each worker thread
 
     >>> allocation_num(16647, 4)
-    ['1-4161', '4162-8322', '8323-12483', '12484-16647']
+    ['0-4161', '4162-8322', '8323-12483', '12484-16647']
     >>> allocation_num(50000, 5)
-    ['1-10000', '10001-20000', '20001-30000', '30001-40000', '40001-50000']
+    ['0-10000', '10001-20000', '20001-30000', '30001-40000', '40001-50000']
     >>> allocation_num(888, 999)
     Traceback (most recent call last):
         ...
@@ -35,7 +35,9 @@ def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
     bytes_per_partition = number_of_bytes // partitions
     allocation_list = []
     for i in range(partitions):
-        start_bytes = i * bytes_per_partition + 1
+        start_bytes = (
+            0 if i * bytes_per_partition == 0 else i * bytes_per_partition + 1
+        )
         end_bytes = (
             number_of_bytes if i == partitions - 1 else (i + 1) * bytes_per_partition
         )
