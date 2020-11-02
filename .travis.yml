@@ -3,17 +3,17 @@ dist: focal
 language: python
 python: 3.9
 cache: pip
-#addons:
-#  apt:
-#    packages:
-#      - libatlas-base-dev
-#      - liblapack-dev
-#      - gfortran
-#      - libgmp-dev 
-#      - libmpfr-dev
-#      - libsuitesparse-dev
-#      - ccache
-#      - libmpc-dev
+addons:
+  apt:
+    packages:
+      - libatlas-base-dev
+      - liblapack-dev
+      - gfortran
+      - libgmp-dev 
+      - libmpfr-dev
+      - libsuitesparse-dev
+      - ccache
+      - libmpc-dev
 env:
   - PATH=$PATH:$HOME/.cargo/bin
 before_install: 
