@@ -12,6 +12,7 @@ For example:
 
 """
 
+
 def swap_case(sentence):
     """
     This function will convert all lowercase letters to uppercase letters
