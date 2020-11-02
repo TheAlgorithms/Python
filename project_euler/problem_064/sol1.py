@@ -34,12 +34,12 @@ def continuous_fraction_period(n: int) -> int:
     numerator = 0.0
     denominator = 1.0
     ROOT = int(sqrt(n))
-    an = ROOT
+    integer_part = ROOT
     period = 0
-    while an != 2 * ROOT:
-        numerator = denominator * an - numerator
+    while integer_part != 2 * ROOT:
+        numerator = denominator * integer_part - numerator
         denominator = (n - numerator ** 2) / denominator
-        an = int((ROOT + numerator) / denominator)
+        integer_part = int((ROOT + numerator) / denominator)
         period += 1
     return period
 
@@ -74,4 +74,4 @@ def solution(n: int = 10000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution(int(input().split()))}")
+    print(f"{solution()=}")
