@@ -74,4 +74,4 @@ def solution(n: int = 10000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution()=}")
+    print(f"{solution(int(input().strip()))}")
