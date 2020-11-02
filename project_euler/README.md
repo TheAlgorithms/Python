@@ -114,5 +114,5 @@ def solution(arg1: [type hint], arg2: [type hint], ...) -> [Return type hint]:
 
 
 if __name__ == "__main__":
-    print(f"{solution() = }")
+    print(f"solution() = {solution()}")
 ```
