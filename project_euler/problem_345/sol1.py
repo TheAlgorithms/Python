@@ -51,7 +51,8 @@ and so on.
 Cutting condition is when a value (current node) share a same column
 or row as others or there is no way to overcome maximum value.
 """
-from functools import cmp_to_key
+import numpy as np
+from typing import List
 
 # Problem inputs
 MATRIX_1: list = [
@@ -82,10 +83,10 @@ MATRIX_2: list = [
 
 
 def solution(
-    matrix: list = MATRIX_2,
-    enhanced_matrix: list = None,
-    i: int = 0,
-    booked_list: list = None,
+    matrix: List[List[int]] = MATRIX_2,
+    enhanced_matrix: List[List[tuple]] = None,
+    row_index: int = 0,
+    booked_list: List[bool] = None,
     value: int = 0,
     max_value: float = float("-inf"),
 ):
@@ -101,55 +102,61 @@ def solution(
     enhanced_matrix     --  Original matrix but each row is sorted and each cell
                             in tuple form and each value is paired
                             with its column index
-    i                   --  i-th row
-    booked_list         --  List of j's flag
+    row_index           --  Index of row
+    booked_list         --  List of column's flag
     value               --  Accumulative value from parent to current node
     max_value           --  Maximum value is stored right now by the tree
     """
 
-    # Get length of a row and length of a column, respectively denoted by m and n
-    m, n = len(matrix), len(matrix[0])
+    # Get length of a row and length of a column,
+    #   respectively denoted by row_length and column_length
+    row_length, column_length = len(matrix), len(matrix[0])
 
-    # Create list of j's flag at the first time
+    # Create list of column_index's flag at the first time
     if booked_list is None:
-        booked_list = [False for _ in range(m)]
+        booked_list = [False] * row_length
 
     # Create enhanced matrix at the first time
     if enhanced_matrix is None:
         # Pair value with its column index
-        enhanced_matrix = [[(row[j], j) for j in range(len(row))] for row in matrix]
+        # Each row will be in numpy form to make it easier to sort
+        enhanced_matrix = [
+            np.array([
+                (row[column_index], column_index)
+                for column_index in range(len(row))
+            ]) for row in matrix
+        ]
 
-        # Sort each row by considering the value as comparison
-        for k in range(len(enhanced_matrix)):
-            enhanced_matrix[k] = sorted(
-                enhanced_matrix[k],
-                key=cmp_to_key(lambda a, b: 1 if a[0] < b[0] else -1),
-            )
+        # Sort each row by considering a first element of tuple as comparison
+        enhanced_matrix = [row[row[:, 0].argsort()] for row in enhanced_matrix]
 
-    # Base case of recursive, will happening when it reaches the leaves or last row
-    if n - 1 == i:
-        for j in range(n):
+    # Base case of recursive, will be executed when it reaches the leaves or last row
+    if column_length - 1 == row_index:
+        for column_index in range(column_length):
             # Return last value
-            if not booked_list[enhanced_matrix[i][j][1]]:
-                return max(max_value, value + enhanced_matrix[i][j][0])
+            if not booked_list[enhanced_matrix[row_index][column_index][1]]:
+                return max(
+                    max_value,
+                    value + enhanced_matrix[row_index][column_index][0],
+                )
 
     # Start from this line,
     # it will run rest line codes when current computation not in the leaf
-    for j in range(n):
+    for column_index in range(column_length):
         # Ensure current node don't shares same column as current selected nodes/values
-        if not booked_list[enhanced_matrix[i][j][1]]:
-            booked_list[enhanced_matrix[i][j][1]] = True
+        if not booked_list[enhanced_matrix[row_index][column_index][1]]:
+            booked_list[enhanced_matrix[row_index][column_index][1]] = True
 
             # Try to see the maximum value could be reached from current node.
-            # Take not booked columns, starts from (i+1)-th row
+            # Take not booked columns, starts from (row_index+1)-th row
             #   and each of them find the largest one and accumulate them.
             # In the end of loop, combine current value with the accumulative value
             #   and become upper bound.
-            possible_max_value = value + enhanced_matrix[i][j][0]
+            possible_max_value = value + enhanced_matrix[row_index][column_index][0]
             for k in range(len(booked_list)):
                 if not booked_list[k]:
                     sub_max_value = float("-inf")
-                    for c in range(i + 1, m):
+                    for c in range(row_index + 1, row_length):
                         if sub_max_value < matrix[c][k]:
                             sub_max_value = matrix[c][k]
                     possible_max_value += sub_max_value
@@ -160,14 +167,14 @@ def solution(
                 max_value = solution(
                     matrix,
                     enhanced_matrix,
-                    i + 1,
+                    row_index + 1,
                     booked_list,
-                    value + enhanced_matrix[i][j][0],
+                    value + enhanced_matrix[row_index][column_index][0],
                     max_value,
                 )
 
             # Ensure current node is not booked anymore and others can use it
-            booked_list[enhanced_matrix[i][j][1]] = False
+            booked_list[enhanced_matrix[row_index][column_index][1]] = False
 
     return max_value
 
