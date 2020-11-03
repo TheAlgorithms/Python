@@ -725,8 +725,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_174/sol1.py)
   * Problem 191
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
-  * Problem 205
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_205/sol1.py)
+  * Problem 206
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_206/sol1.py)
   * Problem 207
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_207/sol1.py)
   * Problem 234
