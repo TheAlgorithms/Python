@@ -3,9 +3,12 @@ dist: focal
 language: python
 python: 3.9
 cache: pip
+env:
+  - PATH=$PATH:$HOME/.cargo/bin
 before_install: 
+  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   - pip install --upgrade pip setuptools six wheel
-  # - pip install scipy
+  - pip install statsmodels
 jobs:
   include:
     - install: true
