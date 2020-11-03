@@ -121,10 +121,10 @@ def solution(
         # Pair value with its column index
         # Each row will be in numpy form to make it easier to sort
         enhanced_matrix = [
-            np.array([
-                (row[column_index], column_index)
-                for column_index in range(len(row))
-            ]) for row in matrix
+            np.array(
+                [(row[column_index], column_index) for column_index in range(len(row))]
+            )
+            for row in matrix
         ]
 
         # Sort each row by considering a first element of tuple as comparison
