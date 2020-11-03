@@ -15,6 +15,7 @@ precision = 10
 
 # This is the linear search that will occur after the search space has become smaller.
 
+
 def lin_search(left: int, right: int, A: List[int], target: int) -> int:
     """Perform linear search in list. Returns -1 if element is not found.
 
@@ -153,7 +154,6 @@ def rec_ternary_search(left: int, right: int, A: List[int], target: int) -> int:
             return rec_ternary_search(oneThird + 1, twoThird - 1, A, target)
     else:
         return -1
-
 
 
 if __name__ == "__main__":
