@@ -25,6 +25,8 @@ jobs:
     - install: true
       script: pip install keras
     - install: true
+      script: pip install opencv-python
+    - install: true
       script: pip install qiskit
     - install: true
       script: pip install statsmodels
