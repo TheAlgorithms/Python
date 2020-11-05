@@ -26,7 +26,7 @@ def linear_regression_prediction(
     input : training data (date, total_user, total_event) in list of float
     output : list of total user prediction in float
     >>> linear_regression_prediction([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
-    5.000000000000003
+    4.9999999999999964
     """
     x = [[1, item, train_mtch[i]] for i, item in enumerate(train_dt)]
     x = np.array(x)
