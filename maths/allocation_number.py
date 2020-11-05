@@ -15,9 +15,9 @@ def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
     :param partitions: the number of partition need to be allocated.
     :return: list of bytes to be assigned to each worker thread
     >>> allocation_num(16647, 4)
-    ['0-4161', '4162-8322', '8323-12483', '12484-16647']
+    ['0-4161', '4162-8323', '8324-12485', '12486-16647']
     >>> allocation_num(50000, 5)
-    ['0-10000', '10001-20000', '20001-30000', '30001-40000', '40001-50000']
+    ['0-9999', '10000-19999', '20000-29999', '30000-39999', '40000-50000']
     >>> allocation_num(888, 999)
     Traceback (most recent call last):
         ...
@@ -31,12 +31,15 @@ def allocation_num(number_of_bytes: int, partitions: int) -> list[str]:
         raise ValueError("partitions must be a positive number!")
     if partitions > number_of_bytes:
         raise ValueError("partitions can not > number_of_bytes!")
+    number_of_bytes += 1
     bytes_per_partition = number_of_bytes // partitions
     allocation_list = []
     for i in range(partitions):
-        start_bytes = 0 if i * bytes_per_partition == 0 else i * bytes_per_partition + 1
+        start_bytes = i * bytes_per_partition
         end_bytes = (
-            number_of_bytes if i == partitions - 1 else (i + 1) * bytes_per_partition
+            number_of_bytes - 1
+            if i == partitions - 1
+            else (i + 1) * bytes_per_partition - 1
         )
         allocation_list.append(f"{start_bytes}-{end_bytes}")
     return allocation_list
