@@ -11,7 +11,10 @@ What is most amazing is that EVERY starting number will eventually arrive at 1 o
 How many starting numbers below ten million will arrive at 89?
 """
 
+from functools import lru_cache
 
+
+@lru_cache()
 def solution(limit: int = 10000000) -> int:
     """
     Returns the number of starting numbers, up to a given limit, whose number chain
@@ -24,8 +27,6 @@ def solution(limit: int = 10000000) -> int:
     295
     >>> solution(22222)
     18803
-    >>> solution(10000000)
-    8581146
     """
 
     squared = {1: 1, 89: 89}
@@ -37,10 +38,9 @@ def solution(limit: int = 10000000) -> int:
                 if squared[i] == 89:
                     squared.update(dict.fromkeys(chain, 89))
                     eighty_nine_count += 1
-                    break
                 else:
                     squared.update(dict.fromkeys(chain, 1))
-                    break
+                break
             else:
                 sum_squares = sum([int(d) ** 2 for d in str(i)])
                 chain.append(sum_squares)
