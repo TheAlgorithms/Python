@@ -9,50 +9,51 @@ in their paper Pessimal Algorithms and Simplexity Analysis
 Source: https://en.wikipedia.org/wiki/Slowsort
 """
 
+from typing import Optional
 from math import floor
 
 
-def slowsort(A: list, i: int = None, j: int = None) -> None:
+def slowsort(sequence: list, i: Optional[int] = None, j: Optional[int] = None) -> None:
     """
-    Sorts A[i..j] (both inclusive) in-place.
+    Sorts sequence[i..j] (both inclusive) in-place.
     i defaults to 0 if not given.
-    j defaults to len(A) - 1 if not given.
+    j defaults to len(sequence) - 1 if not given.
     It returns None.
-    >>> a = [1, 6, 2, 5, 3, 4, 4, 5]; slowsort(a); a
+    >>> sequence = [1, 6, 2, 5, 3, 4, 4, 5]; slowsort(sequence); sequence
     [1, 2, 3, 4, 4, 5, 5, 6]
-    >>> a = []; slowsort(a); a
+    >>> sequence = []; slowsort(sequence); sequence
     []
-    >>> a = [2]; slowsort(a); a
+    >>> sequence = [2]; slowsort(sequence); sequence
     [2]
-    >>> a = [1, 2, 3, 4]; slowsort(a); a
+    >>> sequence = [1, 2, 3, 4]; slowsort(sequence); sequence
     [1, 2, 3, 4]
-    >>> a = [4, 3, 2, 1]; slowsort(a); a
+    >>> sequence = [4, 3, 2, 1]; slowsort(sequence); sequence
     [1, 2, 3, 4]
-    >>> a = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(a, 2, 7); a
+    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, 2, 7); sequence
     [9, 8, 2, 3, 4, 5, 6, 7, 1, 0]
-    >>> a = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(a, j = 4); a
+    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, j = 4); sequence
     [5, 6, 7, 8, 9, 4, 3, 2, 1, 0]
-    >>> a = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(a, i = 5); a
+    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, i = 5); sequence
     [9, 8, 7, 6, 5, 0, 1, 2, 3, 4]
     """
     if i is None:
         i = 0
 
     if j is None:
-        j = len(A) - 1
+        j = len(sequence) - 1
 
     if i >= j:
         return
 
     m = floor((i + j) / 2)
 
-    slowsort(A, i, m)
-    slowsort(A, m + 1, j)
+    slowsort(sequence, i, m)
+    slowsort(sequence, m + 1, j)
 
-    if A[j] < A[m]:
-        A[j], A[m] = A[m], A[j]
+    if sequence[j] < sequence[m]:
+        sequence[j], sequence[m] = sequence[m], sequence[j]
 
-    slowsort(A, i, j - 1)
+    slowsort(sequence, i, j - 1)
 
 
 if __name__ == "__main__":
