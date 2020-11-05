@@ -11,7 +11,8 @@ Source: https://en.wikipedia.org/wiki/Slowsort
 
 from math import floor
 
-def slowsort(A : list, i : int = None, j : int = None) -> None:
+
+def slowsort(A: list, i: int = None, j: int = None) -> None:
     """
     Sorts A[i..j] (both inclusive) in-place.
     i defaults to 0 if not given.
@@ -36,23 +37,25 @@ def slowsort(A : list, i : int = None, j : int = None) -> None:
     """
     if i is None:
         i = 0
-    
+
     if j is None:
         j = len(A) - 1
-    
+
     if i >= j:
         return
-    
+
     m = floor((i + j) / 2)
-    
+
     slowsort(A, i, m)
     slowsort(A, m + 1, j)
-    
+
     if A[j] < A[m]:
         A[j], A[m] = A[m], A[j]
-    
+
     slowsort(A, i, j - 1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
