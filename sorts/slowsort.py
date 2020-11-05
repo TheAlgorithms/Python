@@ -52,3 +52,7 @@ def slowsort(A : list, i : int = None, j : int = None) -> None:
         A[j], A[m] = A[m], A[j]
     
     slowsort(A, i, j - 1)
+
+if __name__ == '__main__':
+    from doctest import testmod
+    testmod()
