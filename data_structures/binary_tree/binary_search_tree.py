@@ -107,7 +107,7 @@ class BinarySearchTree:
                 node = node.left
         return node
 
-    def get_height(self, node) -> int:
+    def get_height(self, node: Node) -> int:
         r"""
         Param: node
         --------
@@ -129,6 +129,12 @@ class BinarySearchTree:
         >>> bst = BinarySearchTree().insert(9, 3, 6, 2, 10, 14, 4, 7)
         >>> bst.get_height(bst.root)
         4
+        >>> bst = BinarySearchTree()
+        >>> bst.get_height(bst.root)
+        0
+        >>> bst = BinarySearchTree().insert(7.3, 5.5, 9.2, 13.7, 15.0, 14.7)
+        >>> bst.get_height(bst.root)
+        5
         """
         if node is None:
             return 0
