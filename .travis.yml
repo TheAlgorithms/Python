@@ -19,7 +19,6 @@ env:
 before_install:
   - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   - pip install --upgrade pip setuptools six wheel
-  - pip install statsmodels
 jobs:
   include:
     - install: true
