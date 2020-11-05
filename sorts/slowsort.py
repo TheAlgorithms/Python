@@ -1,6 +1,7 @@
 """
 Slowsort is a sorting algorithm. It is of humorous nature and not useful.
-It's based on the principle of multiply and surrender, a tongue-in-cheek joke of divide and conquer.
+It's based on the principle of multiply and surrender,
+a tongue-in-cheek joke of divide and conquer.
 It was published in 1986 by Andrei Broder and Jorge Stolfi
 in their paper Pessimal Algorithms and Simplexity Analysis
 (a parody of optimal algorithms and complexity analysis).
