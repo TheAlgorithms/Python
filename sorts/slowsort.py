@@ -9,8 +9,8 @@ in their paper Pessimal Algorithms and Simplexity Analysis
 Source: https://en.wikipedia.org/wiki/Slowsort
 """
 
-from typing import Optional
 from math import floor
+from typing import Optional
 
 
 def slowsort(sequence: list, i: Optional[int] = None, j: Optional[int] = None) -> None:
