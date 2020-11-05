@@ -9,7 +9,7 @@ addons:
       - libatlas-base-dev
       - liblapack-dev
       - gfortran
-      - libgmp-dev 
+      - libgmp-dev
       - libmpfr-dev
       - libsuitesparse-dev
       - ccache
