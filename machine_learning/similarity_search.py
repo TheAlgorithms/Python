@@ -6,8 +6,9 @@ returns a list containing two data for each vector:
     1. the nearest vector
     2. distance between the vector and the nearest vector
 """
-import numpy as np
 import math
+
+import numpy as np
 
 
 def euclidean(input_a, input_b):
@@ -15,7 +16,7 @@ def euclidean(input_a, input_b):
     Calculates euclidean distance between two data. The result should be float.
     >>> euclidean(0, 1)
     1.0
-    >>> euclidean(np.array([0, 1]),np.array([1, 1]))
+    >>> euclidean(np.array([0, 1]), np.array([1, 1]))
     1.0
     >>> euclidean(np.array([0, 0, 0]), np.array([0, 0, 1]))
     1.0
@@ -32,7 +33,7 @@ def euclidean(input_a, input_b):
     return None
 
 
-def similarity_search(dataset: np, value: np) -> list:
+def similarity_search(dataset: np.ndarray, value: np.ndarray) -> list:
     """
     :param dataset: Set containing the vectors.
     :param value: vector/vectors we want to know the nearest vector from dataset.
@@ -79,7 +80,7 @@ def similarity_search(dataset: np, value: np) -> list:
 
     if dataset.dtype != value.dtype:
         raise TypeError(
-            "Input datas have different datatype... dataset : ",
+            "Input data have different datatype... dataset : ",
             dataset.dtype,
             ", value : ",
             value.dtype,
