@@ -7,11 +7,14 @@ returns a list containing two data for each vector:
     2. distance between the vector and the nearest vector
 """
 import math
+from typing import Union
 
 import numpy as np
 
+InputVal = Union[int, float, np.ndarray]
 
-def euclidean(input_a, input_b):
+
+def euclidean(input_a: InputVal, input_b: InputVal):
     """
     Calculates euclidean distance between two data. The result should be float.
     >>> euclidean(0, 1)
