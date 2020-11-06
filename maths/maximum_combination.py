@@ -16,7 +16,7 @@
 """
 
 
-def maximum_combination(first_num, second_num) -> int:
+def maximum_combination(first_num: int, second_num: int) -> int:
     if first_num <= 0:
         return 0
     if second_num <= 0:
