@@ -13,7 +13,7 @@ For example:
 """
 
 
-def swap_case(sentence):
+def swap_case(sentence: str) -> str:
     """
     This function will convert all lowercase letters to uppercase letters
     and vice versa.
@@ -34,4 +34,4 @@ def swap_case(sentence):
 
 
 if __name__ == "__main__":
-    print(swap_case(input("Please input sentence:")))
+    print(swap_case(input("Please input sentence: ")))
