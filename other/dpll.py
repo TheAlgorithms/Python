@@ -14,18 +14,26 @@ class Clause():
     A clause is a set of literals, either complemented or otherwise.
     For example:
         {A1, A2, A3'} is the clause (A1 v A2 v A3')
-        {A5', A2', A1} is the clause (A5' v A2' v A1) 
+        {A5', A2', A1} is the clause (A5' v A2' v A1)
+
+    Create a set of literals and a clause with them
+    >>> literals = ["A1", "A2'", "A3"] 
+    >>> clause = Clause(literals)
+    >>> print(clause)
+    { A1 , A2' , A3 }
+
+    Create model
+    >>> model = {"A1": True}
+    >>> clause.evaluate(model)
+    True
     """
 
-    def __init__(self, no_of_literals, literals):
+    def __init__(self, literals):
         """
-        Represent the number of literals, the literals themselves, and an assignment in a clause."
+        Represent the literals and an assignment in a clause."
         """
-        self.no_of_literals = no_of_literals
-        self.literals = [l for l in literals]
-        self.literal_values = dict()
-        for l in self.literals:
-            self.literal_values[l] = None    # Assign all literals to None initially
+        self.literals = {literal : None for literal in literals} # Assign all literals to None initially
+        self.no_of_literals = len(self.literals)
     
     def __str__(self):
         """
@@ -34,7 +42,7 @@ class Clause():
         """
         clause = "{ "
         for i in range(0, self.no_of_literals):
-            clause += (self.literals[i] + " ")
+            clause += str(list(self.literals.keys())[i]) + " "
             if i != self.no_of_literals - 1:
                 clause += ", "
         clause += "}"
@@ -47,16 +55,16 @@ class Clause():
         """
         i = 0
         while i < self.no_of_literals:
-            symbol = self.literals[i][:2]
+            symbol = list(self.literals.keys())[i][:2]
             if symbol in model.keys():
                 val = model[symbol]
             else:
                  i += 1
                  continue
             if val != None:
-                if self.literals[i][-1] == "'":
+                if list(self.literals.keys())[i][-1] == "'":
                     val = not val                  #Complement assignment if literal is in complemented form
-            self.literal_values[self.literals[i]] = val
+            self.literals[list(self.literals.keys())[i]] = val
             i += 1
     
     def evaluate(self, model):
@@ -68,24 +76,24 @@ class Clause():
         3. Return None(unable to complete evaluation) if a literal has no assignment.
         4. Compute disjunction of all values assigned in clause.
         """
-        for l in self.literals:
+        for l in list(self.literals.keys()):
             if len(l) == 2:
                 symbol = l + "'"
-                if symbol in self.literals:
+                if symbol in list(self.literals.keys()):
                     return True
             else:
                 symbol = l[:2]
-                if symbol in self.literals:
+                if symbol in list(self.literals.keys()):
                     return True 
 
         self.assign(model)
         result = False
-        for j in self.literal_values.values():
+        for j in self.literals.values():
             if j == True:
                 return True
             elif j == None:
                 return None
-        for j in self.literal_values.values():
+        for j in self.literals.values():
             result = result or j
         return result
 
@@ -95,13 +103,21 @@ class Formula():
     A formula is a set of clauses.
     For example,
         {{A1, A2, A3'}, {A5', A2', A1}} is the formula ((A1 v A2 v A3') and (A5' v A2' v A1))
+    
+    Create two clauses and a formula with them
+    >>> c1 = Clause(["A1", "A2'", "A3"])
+    >>> c2 = Clause(["A5'", "A2'", "A1"])
+
+    >>> f = Formula([c1, c2])
+    >>> print(f)
+    { { A1 , A2' , A3 } , { A5' , A2' , A1 } }
     """
-    def __init__(self, no_of_clauses, clauses):
+    def __init__(self, clauses):
         """
         Represent the number of clauses and the clauses themselves.
         """
-        self.no_of_clauses = no_of_clauses
         self.clauses = [c for c in clauses]
+        self.no_of_clauses = len(self.clauses)
     
     def __str__(self):
         """
@@ -137,7 +153,7 @@ def generate_clause():
         else:
             literals.append(var_name)
         i+=1
-    clause = Clause(no_of_literals, literals)
+    clause = Clause(literals)
     return clause
 
 def generate_formula():
@@ -154,7 +170,7 @@ def generate_formula():
         else:
             clauses.append(clause)
         i += 1
-    formula = Formula(no_of_clauses, clauses)
+    formula = Formula(set(clauses))
     return formula
 
 def generate_parameters(formula):
@@ -165,11 +181,21 @@ def generate_parameters(formula):
         Symbol of A3 is A3.
         Symbol of A5' is A5.
 
+    >>> c1 = Clause(["A1", "A2'", "A3"])
+    >>> c2 = Clause(["A5'", "A2'", "A1"])
+
+    >>> f = Formula([c1, c2])
+    >>> c, s = generate_parameters(f)
+    >>> l = [str(i) for i in c]
+    >>> print(l)
+    ["{ A1 , A2' , A3 }", "{ A5' , A2' , A1 }"]
+    >>> print(s)
+    ['A1', 'A2', 'A3', 'A5']
     """
     clauses = formula.clauses
     symbols_set = []
     for clause in formula.clauses:
-        for literal in clause.literals:
+        for literal in clause.literals.keys():
             symbol = literal[:2]
             if symbol not in symbols_set:
              symbols_set.append(symbol)
@@ -185,6 +211,17 @@ def find_pure_symbols(clauses, symbols, model):
     1. Ignore clauses that have already evaluated to be True. 
     2. Find symbols that occur only in one form in the rest of the clauses.
     3. Assign value True or False depending on whether the symbols occurs in normal or complemented form respectively.
+    
+    >>> c1 = Clause(["A1", "A2'", "A3"])
+    >>> c2 = Clause(["A5'", "A2'", "A1"])
+
+    >>> f = Formula([c1, c2])
+    >>> c, s = generate_parameters(f)
+    
+    >>> model = {}
+    >>> p, v = find_pure_symbols(c, s, model)
+    >>> print(p, v)
+    ['A1', 'A2', 'A3', 'A5'] {'A1': True, 'A2': False, 'A3': True, 'A5': False}
     """
     pure_symbols = []
     assignment = dict()
@@ -193,7 +230,7 @@ def find_pure_symbols(clauses, symbols, model):
     for clause in clauses:
         if clause.evaluate(model) == True:
             continue
-        for l in clause.literals:
+        for l in clause.literals.keys():
             literals.append(l)
 
     for s in symbols:
@@ -220,21 +257,34 @@ def find_unit_clauses(clauses, model):
     1. Find symbols that are the only occurences in a clause.
     2. Find symbols in a clause where all other literals are assigned to be False.
     3. Assign True or False depending on whether the symbols occurs in normal or complemented form respectively.
+    
+    >>> c1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
+    >>> c2 = Clause(["A4"])
+    >>> c3 = Clause(["A3"])
+
+    >>> f = Formula([c1, c2, c3])
+    >>> c, s = generate_parameters(f)
+
+    >>> model = {}
+    >>> u, v = find_unit_clauses(c, model)
+
+    >>> print(u, v)
+    ['A4', 'A3'] {'A4': True, 'A3': True}
     """
     unit_symbols = []
     for clause in clauses:
         if clause.no_of_literals == 1:
-            unit_symbols.append(clause.literals[0])
+            unit_symbols.append(list(clause.literals.keys())[0])
         else:
             Fcount, Ncount = 0, 0
-            for l,v in clause.literal_values.items():
+            for l,v in clause.literals.items():
                 if v == False:
                     Fcount += 1
                 elif v == None:
                     sym = l
                     Ncount += 1
             if Fcount == clause.no_of_literals - 1 and Ncount == 1:
-                unit.append(sym)
+                unit_symbols.append(sym)
     assignment = dict()
     for i in unit_symbols:
         symbol = i[:2]
@@ -246,7 +296,7 @@ def find_unit_clauses(clauses, model):
 
     return unit_symbols, assignment
 
-def DPLL(clauses, symbols, model):
+def dpll_algorithm(clauses, symbols, model):
     """
     Returns the model if the formula is satisfiable, else None
     This has the following steps:
@@ -254,6 +304,19 @@ def DPLL(clauses, symbols, model):
     2. If some clause in clauses is False, return False.
     3. Find pure symbols.
     4. Find unit symbols.
+
+    >>> c1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
+    >>> c2 = Clause(["A4"])
+    >>> c3 = Clause(["A3"])
+
+    >>> f = Formula([c1, c2, c3])
+    >>> c, s = generate_parameters(f)
+
+    >>> model = {}
+    >>> soln, model = dpll_algorithm(c, s, model)
+
+    >>> print(soln, model)
+    True {'A4': True, 'A3': True}
     """
     check_clause_all_true = True
     for clause in clauses:
@@ -278,7 +341,7 @@ def DPLL(clauses, symbols, model):
         tmp_symbols = [i for i in symbols]
         if P in tmp_symbols:
             tmp_symbols.remove(P)
-        return DPLL(clauses, tmp_symbols, tmp_model)
+        return dpll_algorithm(clauses, tmp_symbols, tmp_model)
     
     unit_symbols, assignment =  find_unit_clauses(clauses, model)
     P = None
@@ -290,25 +353,27 @@ def DPLL(clauses, symbols, model):
         tmp_symbols = [i for i in symbols]
         if P in tmp_symbols:
             tmp_symbols.remove(P)
-        return DPLL(clauses, tmp_symbols, tmp_model)
+        return dpll_algorithm(clauses, tmp_symbols, tmp_model)
     P = symbols[0]
     rest = symbols[1:]
     tmp1, tmp2 = model, model
     tmp1[P], tmp2[P] = True, False
 
-    return DPLL(clauses, rest, tmp1) or DPLL(clauses, rest, tmp2)
+    return dpll_algorithm(clauses, rest, tmp1) or dpll_algorithm(clauses, rest, tmp2)
 
 if __name__ == "__main__":
-    #import doctest
-    #doctest.testmod()
+    import doctest
+    doctest.testmod()
+
     formula = generate_formula()
-    print(formula)
+    print(f'The formula {formula} is', end = " ")
 
     clauses, symbols = generate_parameters(formula)
 
-    solution, model = DPLL(clauses, symbols, {})
+    solution, model = dpll_algorithm(clauses, symbols, {})
 
     if solution:
+        print(" satisfiable with the assignment: ")
         print(model)
     else:
-        print("Not satisfiable")
+        print(" not satisfiable")
