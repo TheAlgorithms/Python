@@ -1,14 +1,17 @@
 """
-Davis–Putnam–Logemann–Loveland (DPLL) algorithm is a complete, backtracking-based search algorithm 
-for deciding the satisfiability of propositional logic formulae in conjunctive normal form, i.e. for solving the CNF-SAT problem.
+Davis–Putnam–Logemann–Loveland (DPLL) algorithm is a complete,
+backtracking-based search algorithm for deciding the satisfiability of
+propositional logic formulae in conjunctive normal form,
+i.e, for solving the CNF-SAT problem.
 
-For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_algorithm
+For more information about the algorithm:
+https://en.wikipedia.org/wiki/DPLL_algorithm
 """
 
 import random
 
 
-class Clause():
+class Clause:
     """
     A clause represented in CNF.
     A clause is a set of literals, either complemented or otherwise.
@@ -17,7 +20,7 @@ class Clause():
         {A5', A2', A1} is the clause (A5' v A2' v A1)
 
     Create a set of literals and a clause with them
-    >>> literals = ["A1", "A2'", "A3"] 
+    >>> literals = ["A1", "A2'", "A3"]
     >>> clause = Clause(literals)
     >>> print(clause)
     { A1 , A2' , A3 }
@@ -32,13 +35,14 @@ class Clause():
         """
         Represent the literals and an assignment in a clause."
         """
-        self.literals = {literal : None for literal in literals} # Assign all literals to None initially
+        # Assign all literals to None initially
+        self.literals = {literal: None for literal in literals}
         self.no_of_literals = len(self.literals)
-    
+
     def __str__(self):
         """
-        To print a clause as in CNF. 
-        Variable clause holds the string representation. 
+        To print a clause as in CNF.
+        Variable clause holds the string representation.
         """
         clause = "{ "
         for i in range(0, self.no_of_literals):
@@ -46,9 +50,9 @@ class Clause():
             if i != self.no_of_literals - 1:
                 clause += ", "
         clause += "}"
-        
+
         return clause
-    
+
     def assign(self, model):
         """
         Assign values to literals of the clause as given by model.
@@ -59,51 +63,53 @@ class Clause():
             if symbol in model.keys():
                 val = model[symbol]
             else:
-                 i += 1
-                 continue
-            if val != None:
+                i += 1
+                continue
+            if val is not None:
+                # Complement assignment if literal is in complemented form
                 if list(self.literals.keys())[i][-1] == "'":
-                    val = not val                  #Complement assignment if literal is in complemented form
+                    val = not val
             self.literals[list(self.literals.keys())[i]] = val
             i += 1
-    
+
     def evaluate(self, model):
         """
-        Evaluates the clause till the extent possible with the current assignments in model.
+        Evaluates the clause with the assignments in model.
         This has the following steps:
         1. Return True if both a literal and its complement exist in the clause.
         2. Return True if a single literal has the assignment True.
         3. Return None(unable to complete evaluation) if a literal has no assignment.
         4. Compute disjunction of all values assigned in clause.
         """
-        for l in list(self.literals.keys()):
-            if len(l) == 2:
-                symbol = l + "'"
+        for literal in list(self.literals.keys()):
+            if len(literal) == 2:
+                symbol = literal + "'"
                 if symbol in list(self.literals.keys()):
                     return True
             else:
-                symbol = l[:2]
+                symbol = literal[:2]
                 if symbol in list(self.literals.keys()):
-                    return True 
+                    return True
 
         self.assign(model)
         result = False
         for j in self.literals.values():
-            if j == True:
+            if j is True:
                 return True
-            elif j == None:
+            elif j is None:
                 return None
         for j in self.literals.values():
             result = result or j
         return result
 
-class Formula():
+
+class Formula:
     """
     A formula represented in CNF.
     A formula is a set of clauses.
     For example,
-        {{A1, A2, A3'}, {A5', A2', A1}} is the formula ((A1 v A2 v A3') and (A5' v A2' v A1))
-    
+        {{A1, A2, A3'}, {A5', A2', A1}} is ((A1 v A2 v A3') and (A5' v A2' v A1))
+
     Create two clauses and a formula with them
     >>> c1 = Clause(["A1", "A2'", "A3"])
     >>> c2 = Clause(["A5'", "A2'", "A1"])
@@ -112,26 +118,28 @@ class Formula():
     >>> print(f)
     { { A1 , A2' , A3 } , { A5' , A2' , A1 } }
     """
+
     def __init__(self, clauses):
         """
         Represent the number of clauses and the clauses themselves.
         """
         self.clauses = [c for c in clauses]
         self.no_of_clauses = len(self.clauses)
-    
+
     def __str__(self):
         """
-        To print a formula as in CNF. 
-        Variable formula holds the string representation. 
+        To print a formula as in CNF.
+        Variable formula holds the string representation.
         """
         formula = "{ "
         for i in range(0, self.no_of_clauses):
-            formula += (str(self.clauses[i]) + " ")
+            formula += str(self.clauses[i]) + " "
             if i != self.no_of_clauses - 1:
                 formula += ", "
         formula += "}"
-        
+
         return formula
+
 
 def generate_clause():
     """
@@ -144,7 +152,7 @@ def generate_clause():
     i = 0
     while i < no_of_literals:
         var_no = random.randint(1, 5)
-        var_name = base_var+str(var_no)
+        var_name = base_var + str(var_no)
         var_complement = random.randint(0, 1)
         if var_complement == 1:
             var_name += "'"
@@ -152,9 +160,10 @@ def generate_clause():
             i -= 1
         else:
             literals.append(var_name)
-        i+=1
+        i += 1
     clause = Clause(literals)
     return clause
+
 
 def generate_formula():
     """
@@ -172,6 +181,7 @@ def generate_formula():
         i += 1
     formula = Formula(set(clauses))
     return formula
+
 
 def generate_parameters(formula):
     """
@@ -198,26 +208,30 @@ def generate_parameters(formula):
         for literal in clause.literals.keys():
             symbol = literal[:2]
             if symbol not in symbols_set:
-             symbols_set.append(symbol)
+                symbols_set.append(symbol)
     return clauses, symbols_set
+
 
 def find_pure_symbols(clauses, symbols, model):
     """
-    Return pure symbols and their assignments to satisfy the clause, if figurable.
-    Pure symbols are symbols in a formula that exist only in one form, either complemented or otherwise.
+    Return pure symbols and their values to satisfy clause.
+    Pure symbols are symbols in a formula that exist only
+    in one form, either complemented or otherwise.
     For example,
-        { { A4 , A3 , A5' , A1 , A3' } , { A4 } , { A3 } } has the pure symbols A4, A5' and A1.
+        { { A4 , A3 , A5' , A1 , A3' } , { A4 } , { A3 } } has
+        pure symbols A4, A5' and A1.
     This has the following steps:
-    1. Ignore clauses that have already evaluated to be True. 
+    1. Ignore clauses that have already evaluated to be True.
     2. Find symbols that occur only in one form in the rest of the clauses.
-    3. Assign value True or False depending on whether the symbols occurs in normal or complemented form respectively.
-    
+    3. Assign value True or False depending on whether the symbols occurs
+    in normal or complemented form respectively.
+
     >>> c1 = Clause(["A1", "A2'", "A3"])
     >>> c2 = Clause(["A5'", "A2'", "A1"])
 
     >>> f = Formula([c1, c2])
     >>> c, s = generate_parameters(f)
-    
+
     >>> model = {}
     >>> p, v = find_pure_symbols(c, s, model)
     >>> print(p, v)
@@ -226,38 +240,42 @@ def find_pure_symbols(clauses, symbols, model):
     pure_symbols = []
     assignment = dict()
     literals = []
-    
+
     for clause in clauses:
-        if clause.evaluate(model) == True:
+        if clause.evaluate(model) is True:
             continue
-        for l in clause.literals.keys():
-            literals.append(l)
+        for literal in clause.literals.keys():
+            literals.append(literal)
 
     for s in symbols:
-        sym = (s + "'")
-        if (s in literals and sym not in literals) or (s not in literals and sym in literals):
+        sym = s + "'"
+        if (s in literals and sym not in literals) or (
+            s not in literals and sym in literals
+        ):
             pure_symbols.append(s)
     for p in pure_symbols:
         assignment[p] = None
     for s in pure_symbols:
-        sym = (s + "'")
+        sym = s + "'"
         if s in literals:
             assignment[s] = True
         elif sym in literals:
             assignment[s] = False
     return pure_symbols, assignment
 
+
 def find_unit_clauses(clauses, model):
     """
-    Returns the unit symbols and their assignments to satisfy the clause, if figurable.
+    Returns the unit symbols and their values to satisfy clause.
     Unit symbols are symbols in a formula that are:
-        - Either the only symbol in a clause
-        - Or all other literals in that clause have been assigned False
+    - Either the only symbol in a clause
+    - Or all other literals in that clause have been assigned False
     This has the following steps:
     1. Find symbols that are the only occurences in a clause.
-    2. Find symbols in a clause where all other literals are assigned to be False.
-    3. Assign True or False depending on whether the symbols occurs in normal or complemented form respectively.
-    
+    2. Find symbols in a clause where all other literals are assigned False.
+    3. Assign True or False depending on whether the symbols occurs in
+    normal or complemented form respectively.
+
     >>> c1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
     >>> c2 = Clause(["A4"])
     >>> c3 = Clause(["A3"])
@@ -277,11 +295,11 @@ def find_unit_clauses(clauses, model):
             unit_symbols.append(list(clause.literals.keys())[0])
         else:
             Fcount, Ncount = 0, 0
-            for l,v in clause.literals.items():
-                if v == False:
+            for literal, value in clause.literals.items():
+                if value is False:
                     Fcount += 1
-                elif v == None:
-                    sym = l
+                elif value is None:
+                    sym = literal
                     Ncount += 1
             if Fcount == clause.no_of_literals - 1 and Ncount == 1:
                 unit_symbols.append(sym)
@@ -295,6 +313,7 @@ def find_unit_clauses(clauses, model):
     unit_symbols = [i[:2] for i in unit_symbols]
 
     return unit_symbols, assignment
+
 
 def dpll_algorithm(clauses, symbols, model):
     """
@@ -321,20 +340,20 @@ def dpll_algorithm(clauses, symbols, model):
     check_clause_all_true = True
     for clause in clauses:
         clause_check = clause.evaluate(model)
-        if clause_check == False:
+        if clause_check is False:
             return False, None
-        elif clause_check == None:
+        elif clause_check is None:
             check_clause_all_true = False
             continue
 
     if check_clause_all_true:
         return True, model
-    
+
     pure_symbols, assignment = find_pure_symbols(clauses, symbols, model)
     P = None
     if len(pure_symbols) > 0:
         P, value = pure_symbols[0], assignment[pure_symbols[0]]
-    
+
     if P:
         tmp_model = model
         tmp_model[P] = value
@@ -342,14 +361,14 @@ def dpll_algorithm(clauses, symbols, model):
         if P in tmp_symbols:
             tmp_symbols.remove(P)
         return dpll_algorithm(clauses, tmp_symbols, tmp_model)
-    
-    unit_symbols, assignment =  find_unit_clauses(clauses, model)
+
+    unit_symbols, assignment = find_unit_clauses(clauses, model)
     P = None
     if len(unit_symbols) > 0:
         P, value = unit_symbols[0], assignment[unit_symbols[0]]
     if P:
         tmp_model = model
-        tmp_model[P]=value
+        tmp_model[P] = value
         tmp_symbols = [i for i in symbols]
         if P in tmp_symbols:
             tmp_symbols.remove(P)
@@ -361,12 +380,14 @@ def dpll_algorithm(clauses, symbols, model):
 
     return dpll_algorithm(clauses, rest, tmp1) or dpll_algorithm(clauses, rest, tmp2)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     formula = generate_formula()
-    print(f'The formula {formula} is', end = " ")
+    print(f"The formula {formula} is", end=" ")
 
     clauses, symbols = generate_parameters(formula)
 
