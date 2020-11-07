@@ -30,7 +30,7 @@ for prime in range(3, ceil(NUM_PRIMES ** 0.5), 2):
 
 
 @lru_cache(maxsize=100)
-def partition(n: int) -> Set[int]:
+def partition(number_to_partition: int) -> Set[int]:
     """
     Return a set of integers corresponding to unique prime partitions of n.
     The unique prime partitions can be represented as unique prime decompositions,
@@ -42,9 +42,9 @@ def partition(n: int) -> Set[int]:
     >>> len(partition(20))
     26
     """
-    if n < 0:
+    if number_to_partition < 0:
         return set()
-    elif n == 0:
+    elif number_to_partition == 0:
         return {1}
 
     ret: Set[int] = set()
@@ -52,15 +52,15 @@ def partition(n: int) -> Set[int]:
     sub: int
 
     for prime in primes:
-        if prime > n:
+        if prime > number_to_partition:
             continue
-        for sub in partition(n - prime):
+        for sub in partition(number_to_partition - prime):
             ret.add(sub * prime)
 
     return ret
 
 
-def solution(m: int = 5000) -> Optional[int]:
+def solution(number_unique_partitions: int = 5000) -> Optional[int]:
     """
     Return the smallest integer that can be written as the sum of primes in over
     m unique ways.
@@ -71,9 +71,9 @@ def solution(m: int = 5000) -> Optional[int]:
     >>> solution(1000)
     53
     """
-    for n in range(1, NUM_PRIMES):
-        if len(partition(n)) > m:
-            return n
+    for number_to_partition in range(1, NUM_PRIMES):
+        if len(partition(number_to_partition)) > number_unique_partitions:
+            return number_to_partition
     return None
 
 
