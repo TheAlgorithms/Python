@@ -271,7 +271,7 @@ def find_unit_clauses(clauses, model):
     - Either the only symbol in a clause
     - Or all other literals in that clause have been assigned False
     This has the following steps:
-    1. Find symbols that are the only occurences in a clause.
+    1. Find symbols that are the only occurrences in a clause.
     2. Find symbols in a clause where all other literals are assigned False.
     3. Assign True or False depending on whether the symbols occurs in
     normal or complemented form respectively.
