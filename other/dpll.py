@@ -9,7 +9,7 @@ https://en.wikipedia.org/wiki/DPLL_algorithm
 """
 
 import random
-from typing import List, Dict
+from typing import Dict, List
 
 
 class Clause:
@@ -54,7 +54,7 @@ class Clause:
 
         return clause
 
-    def assign(self, model: Dict[str, bool])  -> None:
+    def assign(self, model: Dict[str, bool]) -> None:
         """
         Assign values to literals of the clause as given by model.
         """
