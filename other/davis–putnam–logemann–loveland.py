@@ -1,11 +1,12 @@
-"""
-Davis–Putnam–Logemann–Loveland (DPLL) algorithm is a complete,
-backtracking-based search algorithm for deciding the satisfiability of
-propositional logic formulae in conjunctive normal form,
-i.e, for solving the Conjunctive Normal Form SATisfiability(CNF-SAT) problem.
+#!/usr/bin/env python3
 
-For more information about the algorithm:
-https://en.wikipedia.org/wiki/DPLL_algorithm
+"""
+Davis–Putnam–Logemann–Loveland (DPLL) algorithm is a complete, backtracking-based
+search algorithm for deciding the satisfiability of propositional logic formulae in
+conjunctive normal form, i.e, for solving the Conjunctive Normal Form SATisfiability
+(CNF-SAT) problem.
+
+For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_algorithm
 """
 
 import random
@@ -14,15 +15,11 @@ from typing import Dict, List
 
 class Clause:
     """
-    A clause represented in CNF.
+    A clause represented in Conjunctive Normal Form.
     A clause is a set of literals, either complemented or otherwise.
     For example:
         {A1, A2, A3'} is the clause (A1 v A2 v A3')
         {A5', A2', A1} is the clause (A5' v A2' v A1)
-
-    Create a set of literals and a clause with them
-    >>> str(Clause(["A1", "A2'", "A3"]))
-    "{A1 , A2' , A3}"
 
     Create model
     >>> clause = Clause(["A1", "A2'", "A3"])
@@ -36,32 +33,40 @@ class Clause:
         """
         # Assign all literals to None initially
         self.literals = {literal: None for literal in literals}
-        self.no_of_literals = len(self.literals)
 
     def __str__(self) -> str:
         """
-        To print a clause as in CNF.
+        To print a clause as in Conjunctive Normal Form.
+        >>> str(Clause(["A1", "A2'", "A3"]))
+        "{A1 , A2' , A3}"
         """
         return "{" + " , ".join(self.literals) + "}"
+
+    def __len__(self) -> int:
+        """
+        To print a clause as in Conjunctive Normal Form.
+        >>> len(Clause([]))
+        0
+        >>> len(Clause(["A1", "A2'", "A3"]))
+        3
+        """
+        return len(self.literals)
 
     def assign(self, model: Dict[str, bool]) -> None:
         """
         Assign values to literals of the clause as given by model.
         """
-        i = 0
-        while i < self.no_of_literals:
-            symbol = list(self.literals.keys())[i][:2]
-            if symbol in model.keys():
-                val = model[symbol]
+        for literal in self.literals:
+            symbol = literal[:2]
+            if symbol in model:
+                value = model[symbol]
             else:
-                i += 1
                 continue
-            if val is not None:
+            if value is not None:
                 # Complement assignment if literal is in complemented form
-                if list(self.literals.keys())[i][-1] == "'":
-                    val = not val
-            self.literals[list(self.literals.keys())[i]] = val
-            i += 1
+                if literal.endswith("'"):
+                    value = not value
+            self.literals[literal] = value
 
     def evaluate(self, model: Dict[str, bool]) -> bool:
         """
@@ -73,48 +78,36 @@ class Clause:
         4. Compute disjunction of all values assigned in clause.
         """
         for literal in self.literals:
-            if len(literal) == 2:
-                symbol = literal + "'"
-                if symbol in self.literals:
-                    return True
-            else:
-                symbol = literal[:2]
-                if symbol in self.literals:
-                    return True
+            symbol = literal.rstrip("'") if literal.endswith("'") else literal + "'"
+            if symbol in self.literals:
+                return True
 
         self.assign(model)
-        result = False
-        for j in self.literals.values():
-            if j in (True, None):
-                return j
-        for j in self.literals.values():
-            result = result or j
-        return result
+        for value in self.literals.values():
+            if value in (True, None):
+                return value
+        return any(self.literals.values())
 
 
 class Formula:
     """
-    A formula represented in CNF.
+    A formula represented in Conjunctive Normal Form.
     A formula is a set of clauses.
     For example,
         {{A1, A2, A3'}, {A5', A2', A1}} is ((A1 v A2 v A3') and (A5' v A2' v A1))
-
-    Create two clauses and a formula with them
-    >>> formula = Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])])
-    >>> str(formula)
-    "{{A1 , A2' , A3} , {A5' , A2' , A1}}"
     """
 
     def __init__(self, clauses: List[Clause]) -> None:
         """
         Represent the number of clauses and the clauses themselves.
         """
-        self.clauses = [c for c in clauses]
-        self.no_of_clauses = len(self.clauses)
+        self.clauses = list(clauses)
 
     def __str__(self) -> str:
         """
-        To print a formula as in CNF.
+        To print a formula as in Conjunctive Normal Form.
+        str(Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])]))
+        "{{A1 , A2' , A3} , {A5' , A2' , A1}}"
         """
         return "{" + " , ".join(str(clause) for clause in self.clauses) + "}"
 
@@ -146,16 +139,10 @@ def generate_formula() -> Formula:
     """
     Randomly generate a formula.
     """
-    clauses = []
+    clauses = set()
     no_of_clauses = random.randint(1, 10)
-    i = 0
-    while i < no_of_clauses:
-        clause = generate_clause()
-        if clause in clauses:
-            i -= 1
-        else:
-            clauses.append(clause)
-        i += 1
+    while len(clauses) < no_of_clauses:
+        clauses.add(generate_clause())
     return Formula(set(clauses))
 
 
@@ -264,7 +251,7 @@ def find_unit_clauses(
     """
     unit_symbols = []
     for clause in clauses:
-        if clause.no_of_literals == 1:
+        if len(clause) == 1:
             unit_symbols.append(list(clause.literals.keys())[0])
         else:
             Fcount, Ncount = 0, 0
@@ -274,7 +261,7 @@ def find_unit_clauses(
                 elif value is None:
                     sym = literal
                     Ncount += 1
-            if Fcount == clause.no_of_literals - 1 and Ncount == 1:
+            if Fcount == len(clause) - 1 and Ncount == 1:
                 unit_symbols.append(sym)
     assignment = dict()
     for i in unit_symbols:
@@ -317,7 +304,11 @@ def dpll_algorithm(
     if check_clause_all_true:
         return True, model
 
-    pure_symbols, assignment = find_pure_symbols(clauses, symbols, model)
+    try:
+        pure_symbols, assignment = find_pure_symbols(clauses, symbols, model)
+    except RecursionError:
+        print("raises a RecursionError and is")
+        return None, {}
     P = None
     if len(pure_symbols) > 0:
         P, value = pure_symbols[0], assignment[pure_symbols[0]]
@@ -355,14 +346,12 @@ if __name__ == "__main__":
     doctest.testmod()
 
     formula = generate_formula()
-    print(f"The formula \n{formula}\n is", end=" ")
+    print(f"The formula {formula} is", end=" ")
 
     clauses, symbols = generate_parameters(formula)
-
     solution, model = dpll_algorithm(clauses, symbols, {})
 
     if solution:
-        print(" satisfiable with the assignment: ")
-        print(model)
+        print(f"satisfiable with the assignment {model}.")
     else:
-        print(" not satisfiable")
+        print("not satisfiable.")
