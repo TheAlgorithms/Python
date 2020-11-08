@@ -2,7 +2,7 @@
 Davis–Putnam–Logemann–Loveland (DPLL) algorithm is a complete,
 backtracking-based search algorithm for deciding the satisfiability of
 propositional logic formulae in conjunctive normal form,
-i.e, for solving the CNF-SAT problem.
+i.e, for solving the Conjunctive Normal Form SATisfiability(CNF-SAT) problem.
 
 For more information about the algorithm:
 https://en.wikipedia.org/wiki/DPLL_algorithm
@@ -21,14 +21,12 @@ class Clause:
         {A5', A2', A1} is the clause (A5' v A2' v A1)
 
     Create a set of literals and a clause with them
-    >>> literals = ["A1", "A2'", "A3"]
-    >>> clause = Clause(literals)
-    >>> print(clause)
-    { A1 , A2' , A3 }
+    >>> str(Clause(["A1", "A2'", "A3"]))
+    "{A1 , A2' , A3}"
 
     Create model
-    >>> model = {"A1": True}
-    >>> clause.evaluate(model)
+    >>> clause = Clause(["A1", "A2'", "A3"])
+    >>> clause.evaluate({"A1": True})
     True
     """
 
@@ -43,16 +41,8 @@ class Clause:
     def __str__(self) -> str:
         """
         To print a clause as in CNF.
-        Variable clause holds the string representation.
         """
-        clause = "{ "
-        for i in range(0, self.no_of_literals):
-            clause += str(list(self.literals.keys())[i]) + " "
-            if i != self.no_of_literals - 1:
-                clause += ", "
-        clause += "}"
-
-        return clause
+        return "{" + " , ".join(self.literals) + "}"
 
     def assign(self, model: Dict[str, bool]) -> None:
         """
@@ -110,12 +100,9 @@ class Formula:
         {{A1, A2, A3'}, {A5', A2', A1}} is ((A1 v A2 v A3') and (A5' v A2' v A1))
 
     Create two clauses and a formula with them
-    >>> clause1 = Clause(["A1", "A2'", "A3"])
-    >>> clause2 = Clause(["A5'", "A2'", "A1"])
-
-    >>> formula = Formula([clause1, clause2])
-    >>> print(formula)
-    {{ A1 , A2' , A3 } , { A5' , A2' , A1 }}
+    >>> formula = Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])])
+    >>> str(formula)
+    "{{A1 , A2' , A3} , {A5' , A2' , A1}}"
     """
 
     def __init__(self, clauses: List[Clause]) -> None:
@@ -128,18 +115,8 @@ class Formula:
     def __str__(self) -> str:
         """
         To print a formula as in CNF.
-        Variable formula holds the string representation.
         """
-        formula = "{"
-        clause_repr = " , "
-        clauses_as_strings = [str(clause) for clause in self.clauses]
-
-        clause_repr = clause_repr.join(clauses_as_strings)
-
-        formula += clause_repr
-        formula += "}"
-
-        return formula
+        return "{" + " , ".join(str(clause) for clause in self.clauses) + "}"
 
 
 def generate_clause() -> Clause:
@@ -190,15 +167,12 @@ def generate_parameters(formula: Formula) -> (List[Clause], List[str]):
         Symbol of A3 is A3.
         Symbol of A5' is A5.
 
-    >>> clause1 = Clause(["A1", "A2'", "A3"])
-    >>> clause2 = Clause(["A5'", "A2'", "A1"])
-
-    >>> formula = Formula([clause1, clause2])
+    >>> formula = Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])])
     >>> clauses, symbols = generate_parameters(formula)
     >>> clauses_list = [str(i) for i in clauses]
-    >>> print(clauses_list)
-    ["{ A1 , A2' , A3 }", "{ A5' , A2' , A1 }"]
-    >>> print(symbols)
+    >>> clauses_list
+    ["{A1 , A2' , A3}", "{A5' , A2' , A1}"]
+    >>> symbols
     ['A1', 'A2', 'A3', 'A5']
     """
     clauses = formula.clauses
@@ -227,16 +201,14 @@ def find_pure_symbols(
     3. Assign value True or False depending on whether the symbols occurs
     in normal or complemented form respectively.
 
-    >>> clause1 = Clause(["A1", "A2'", "A3"])
-    >>> clause2 = Clause(["A5'", "A2'", "A1"])
-
-    >>> formula = Formula([clause1, clause2])
+    >>> formula = Formula([Clause(["A1", "A2'", "A3"]), Clause(["A5'", "A2'", "A1"])])
     >>> clauses, symbols = generate_parameters(formula)
 
-    >>> model = {}
-    >>> pure_symbols, values = find_pure_symbols(clauses, symbols, model)
-    >>> print(pure_symbols, values)
-    ['A1', 'A2', 'A3', 'A5'] {'A1': True, 'A2': False, 'A3': True, 'A5': False}
+    >>> pure_symbols, values = find_pure_symbols(clauses, symbols, {})
+    >>> pure_symbols
+    ['A1', 'A2', 'A3', 'A5']
+    >>> values
+    {'A1': True, 'A2': False, 'A3': True, 'A5': False}
     """
     pure_symbols = []
     assignment = dict()
@@ -282,15 +254,13 @@ def find_unit_clauses(
     >>> clause1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
     >>> clause2 = Clause(["A4"])
     >>> clause3 = Clause(["A3"])
+    >>> clauses, symbols = generate_parameters(Formula([clause1, clause2, clause3]))
 
-    >>> formula = Formula([clause1, clause2, clause3])
-    >>> clauses, symbols = generate_parameters(formula)
-
-    >>> model = {}
-    >>> unit_clauses, values = find_unit_clauses(clauses, model)
-
-    >>> print(unit_clauses, values)
-    ['A4', 'A3'] {'A4': True, 'A3': True}
+    >>> unit_clauses, values = find_unit_clauses(clauses, {})
+    >>> unit_clauses
+    ['A4', 'A3']
+    >>> values
+    {'A4': True, 'A3': True}
     """
     unit_symbols = []
     for clause in clauses:
@@ -326,18 +296,14 @@ def dpll_algorithm(
     3. Find pure symbols.
     4. Find unit symbols.
 
-    >>> c1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
-    >>> c2 = Clause(["A4"])
-    >>> c3 = Clause(["A3"])
+    >>> formula = Formula([Clause(["A4", "A3", "A5'", "A1", "A3'"]), Clause(["A4"])])
+    >>> clauses, symbols = generate_parameters(formula)
 
-    >>> f = Formula([c1, c2, c3])
-    >>> c, s = generate_parameters(f)
-
-    >>> model = {}
-    >>> soln, model = dpll_algorithm(c, s, model)
-
-    >>> print(soln, model)
-    True {'A4': True, 'A3': True}
+    >>> soln, model = dpll_algorithm(clauses, symbols, {})
+    >>> soln
+    True
+    >>> model
+    {'A4': True}
     """
     check_clause_all_true = True
     for clause in clauses:
@@ -389,7 +355,7 @@ if __name__ == "__main__":
     doctest.testmod()
 
     formula = generate_formula()
-    print(f"The formula {formula} is", end=" ")
+    print(f"The formula \n{formula}\n is", end=" ")
 
     clauses, symbols = generate_parameters(formula)
 
