@@ -15,33 +15,35 @@ contains 21 terms, and is equal to 953.
 Which prime, below one-million, can be written as the sum of the most
 consecutive primes?
 """
+from typing import List
 
 
-def sieve(n: int) -> list:
+def prime_sieve(limit: int) -> List[int]:
     """
     Sieve of Erotosthenes
-    Function to return all the prime numbers up to a certain number
+    Function to return all the prime numbers up to a number 'limit'
     https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-    >>> sieve(3)
+
+    >>> prime_sieve(3)
     [2]
 
-    >>> sieve(50)
+    >>> prime_sieve(50)
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
     """
-    is_prime = [True] * n
+    is_prime = [True] * limit
     is_prime[0] = False
     is_prime[1] = False
     is_prime[2] = True
 
-    for i in range(3, int(n ** 0.5 + 1), 2):
+    for i in range(3, int(limit ** 0.5 + 1), 2):
         index = i * 2
-        while index < n:
+        while index < limit:
             is_prime[index] = False
             index = index + i
 
     primes = [2]
 
-    for i in range(3, n, 2):
+    for i in range(3, limit, 2):
         if is_prime[i]:
             primes.append(i)
 
@@ -62,7 +64,7 @@ def solution(ceiling: int = 1_000_000) -> int:
     >>> solution(10_000)
     9521
     """
-    primes = sieve(ceiling)
+    primes = prime_sieve(ceiling)
     length = 0
     largest = 0
 
