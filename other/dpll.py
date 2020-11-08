@@ -9,6 +9,7 @@ https://en.wikipedia.org/wiki/DPLL_algorithm
 """
 
 import random
+from typing import List, Dict
 
 
 class Clause:
@@ -31,7 +32,7 @@ class Clause:
     True
     """
 
-    def __init__(self, literals):
+    def __init__(self, literals: List[int]) -> None:
         """
         Represent the literals and an assignment in a clause."
         """
@@ -39,7 +40,7 @@ class Clause:
         self.literals = {literal: None for literal in literals}
         self.no_of_literals = len(self.literals)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         To print a clause as in CNF.
         Variable clause holds the string representation.
@@ -53,7 +54,7 @@ class Clause:
 
         return clause
 
-    def assign(self, model):
+    def assign(self, model: Dict[str, bool])  -> None:
         """
         Assign values to literals of the clause as given by model.
         """
@@ -72,7 +73,7 @@ class Clause:
             self.literals[list(self.literals.keys())[i]] = val
             i += 1
 
-    def evaluate(self, model):
+    def evaluate(self, model: Dict[str, bool]) -> bool:
         """
         Evaluates the clause with the assignments in model.
         This has the following steps:
@@ -81,23 +82,21 @@ class Clause:
         3. Return None(unable to complete evaluation) if a literal has no assignment.
         4. Compute disjunction of all values assigned in clause.
         """
-        for literal in list(self.literals.keys()):
+        for literal in self.literals:
             if len(literal) == 2:
                 symbol = literal + "'"
-                if symbol in list(self.literals.keys()):
+                if symbol in self.literals:
                     return True
             else:
                 symbol = literal[:2]
-                if symbol in list(self.literals.keys()):
+                if symbol in self.literals:
                     return True
 
         self.assign(model)
         result = False
         for j in self.literals.values():
-            if j is True:
-                return True
-            elif j is None:
-                return None
+            if j in (True, None):
+                return j
         for j in self.literals.values():
             result = result or j
         return result
@@ -111,37 +110,39 @@ class Formula:
         {{A1, A2, A3'}, {A5', A2', A1}} is ((A1 v A2 v A3') and (A5' v A2' v A1))
 
     Create two clauses and a formula with them
-    >>> c1 = Clause(["A1", "A2'", "A3"])
-    >>> c2 = Clause(["A5'", "A2'", "A1"])
+    >>> clause1 = Clause(["A1", "A2'", "A3"])
+    >>> clause2 = Clause(["A5'", "A2'", "A1"])
 
-    >>> f = Formula([c1, c2])
-    >>> print(f)
-    { { A1 , A2' , A3 } , { A5' , A2' , A1 } }
+    >>> formula = Formula([clause1, clause2])
+    >>> print(formula)
+    {{ A1 , A2' , A3 } , { A5' , A2' , A1 }}
     """
 
-    def __init__(self, clauses):
+    def __init__(self, clauses: List[Clause]) -> None:
         """
         Represent the number of clauses and the clauses themselves.
         """
         self.clauses = [c for c in clauses]
         self.no_of_clauses = len(self.clauses)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         To print a formula as in CNF.
         Variable formula holds the string representation.
         """
-        formula = "{ "
-        for i in range(0, self.no_of_clauses):
-            formula += str(self.clauses[i]) + " "
-            if i != self.no_of_clauses - 1:
-                formula += ", "
+        formula = "{"
+        clause_repr = " , "
+        clauses_as_strings = [str(clause) for clause in self.clauses]
+
+        clause_repr = clause_repr.join(clauses_as_strings)
+
+        formula += clause_repr
         formula += "}"
 
         return formula
 
 
-def generate_clause():
+def generate_clause() -> Clause:
     """
     Randomly generate a clause.
     All literals have the name Ax, where x is an integer from 1 to 5.
@@ -161,11 +162,10 @@ def generate_clause():
         else:
             literals.append(var_name)
         i += 1
-    clause = Clause(literals)
-    return clause
+    return Clause(literals)
 
 
-def generate_formula():
+def generate_formula() -> Formula:
     """
     Randomly generate a formula.
     """
@@ -179,11 +179,10 @@ def generate_formula():
         else:
             clauses.append(clause)
         i += 1
-    formula = Formula(set(clauses))
-    return formula
+    return Formula(set(clauses))
 
 
-def generate_parameters(formula):
+def generate_parameters(formula: Formula) -> (List[Clause], List[str]):
     """
     Return the clauses and symbols from a formula.
     A symbol is the uncomplemented form of a literal.
@@ -191,28 +190,30 @@ def generate_parameters(formula):
         Symbol of A3 is A3.
         Symbol of A5' is A5.
 
-    >>> c1 = Clause(["A1", "A2'", "A3"])
-    >>> c2 = Clause(["A5'", "A2'", "A1"])
+    >>> clause1 = Clause(["A1", "A2'", "A3"])
+    >>> clause2 = Clause(["A5'", "A2'", "A1"])
 
-    >>> f = Formula([c1, c2])
-    >>> c, s = generate_parameters(f)
-    >>> l = [str(i) for i in c]
-    >>> print(l)
+    >>> formula = Formula([clause1, clause2])
+    >>> clauses, symbols = generate_parameters(formula)
+    >>> clauses_list = [str(i) for i in clauses]
+    >>> print(clauses_list)
     ["{ A1 , A2' , A3 }", "{ A5' , A2' , A1 }"]
-    >>> print(s)
+    >>> print(symbols)
     ['A1', 'A2', 'A3', 'A5']
     """
     clauses = formula.clauses
     symbols_set = []
     for clause in formula.clauses:
-        for literal in clause.literals.keys():
+        for literal in clause.literals:
             symbol = literal[:2]
             if symbol not in symbols_set:
                 symbols_set.append(symbol)
     return clauses, symbols_set
 
 
-def find_pure_symbols(clauses, symbols, model):
+def find_pure_symbols(
+    clauses: List[Clause], symbols: List[str], model: Dict[str, bool]
+) -> (List[str], Dict[str, bool]):
     """
     Return pure symbols and their values to satisfy clause.
     Pure symbols are symbols in a formula that exist only
@@ -226,15 +227,15 @@ def find_pure_symbols(clauses, symbols, model):
     3. Assign value True or False depending on whether the symbols occurs
     in normal or complemented form respectively.
 
-    >>> c1 = Clause(["A1", "A2'", "A3"])
-    >>> c2 = Clause(["A5'", "A2'", "A1"])
+    >>> clause1 = Clause(["A1", "A2'", "A3"])
+    >>> clause2 = Clause(["A5'", "A2'", "A1"])
 
-    >>> f = Formula([c1, c2])
-    >>> c, s = generate_parameters(f)
+    >>> formula = Formula([clause1, clause2])
+    >>> clauses, symbols = generate_parameters(formula)
 
     >>> model = {}
-    >>> p, v = find_pure_symbols(c, s, model)
-    >>> print(p, v)
+    >>> pure_symbols, values = find_pure_symbols(clauses, symbols, model)
+    >>> print(pure_symbols, values)
     ['A1', 'A2', 'A3', 'A5'] {'A1': True, 'A2': False, 'A3': True, 'A5': False}
     """
     pure_symbols = []
@@ -244,7 +245,7 @@ def find_pure_symbols(clauses, symbols, model):
     for clause in clauses:
         if clause.evaluate(model) is True:
             continue
-        for literal in clause.literals.keys():
+        for literal in clause.literals:
             literals.append(literal)
 
     for s in symbols:
@@ -264,7 +265,9 @@ def find_pure_symbols(clauses, symbols, model):
     return pure_symbols, assignment
 
 
-def find_unit_clauses(clauses, model):
+def find_unit_clauses(
+    clauses: List[Clause], model: Dict[str, bool]
+) -> (List[str], Dict[str, bool]):
     """
     Returns the unit symbols and their values to satisfy clause.
     Unit symbols are symbols in a formula that are:
@@ -276,17 +279,17 @@ def find_unit_clauses(clauses, model):
     3. Assign True or False depending on whether the symbols occurs in
     normal or complemented form respectively.
 
-    >>> c1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
-    >>> c2 = Clause(["A4"])
-    >>> c3 = Clause(["A3"])
+    >>> clause1 = Clause(["A4", "A3", "A5'", "A1", "A3'"])
+    >>> clause2 = Clause(["A4"])
+    >>> clause3 = Clause(["A3"])
 
-    >>> f = Formula([c1, c2, c3])
-    >>> c, s = generate_parameters(f)
+    >>> formula = Formula([clause1, clause2, clause3])
+    >>> clauses, symbols = generate_parameters(formula)
 
     >>> model = {}
-    >>> u, v = find_unit_clauses(c, model)
+    >>> unit_clauses, values = find_unit_clauses(clauses, model)
 
-    >>> print(u, v)
+    >>> print(unit_clauses, values)
     ['A4', 'A3'] {'A4': True, 'A3': True}
     """
     unit_symbols = []
@@ -306,16 +309,15 @@ def find_unit_clauses(clauses, model):
     assignment = dict()
     for i in unit_symbols:
         symbol = i[:2]
-        if len(i) == 2:
-            assignment[symbol] = True
-        else:
-            assignment[symbol] = False
+        assignment[symbol] = len(i) == 2
     unit_symbols = [i[:2] for i in unit_symbols]
 
     return unit_symbols, assignment
 
 
-def dpll_algorithm(clauses, symbols, model):
+def dpll_algorithm(
+    clauses: List[Clause], symbols: List[str], model: Dict[str, bool]
+) -> (bool, Dict[str, bool]):
     """
     Returns the model if the formula is satisfiable, else None
     This has the following steps:
