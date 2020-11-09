@@ -20,34 +20,42 @@
 """
 
 
-def factorial(a: int) -> int:
-    """Returns the factorial of the input a
-    >>> factorial(5)
-    120
+def factorial(a: int, factorial_cache: dict = {}) -> int:
+    """Returns the factorial of the input a and a cache of factorials
+    of single digits (optionals)
+    >>> factorial(5, {})
+    (120, {5: 120})
 
-    >>> factorial(6)
-    720
+    >>> factorial(6, {5: 120})
+    (720, {5: 120, 6: 720})
 
-    >>> factorial(0)
-    1
+    >>> factorial(0, {0: 1})
+    (1, {0: 1})
     """
-
     # The factorial function is not defined for negative numbers
     if a < 0:
         raise ValueError("Invalid negative input!", a)
 
     # The case of 0! is handled separately
     if a == 0:
-        return 1
-    else:
-        # use a temporary support variable to store the computation
         temporary_computation = 1
+    else:
+        # check if this number already exists in factorial_cache
+        temporary_computation = factorial_cache.get(a)
+        if not temporary_computation:
+            # use a temporary support variable to store the computation
+            temporary_computation = 1
+            temporary_number = a
+            while temporary_number > 0:
+                temporary_computation *= temporary_number
+                temporary_number -= 1
 
-        while a > 0:
-            temporary_computation *= a
-            a -= 1
+            # save the factorial value, for future reference for the same number
+            # in factorial_sum, e.g., 6666
+            if a < 10:
+                factorial_cache[a] = temporary_computation
 
-        return temporary_computation
+    return temporary_computation, factorial_cache
 
 
 def factorial_sum(a: int) -> int:
@@ -65,8 +73,10 @@ def factorial_sum(a: int) -> int:
         convert the digit back into an int
         and add its factorial to fact_sum.
     """
+    factorial_cache = {}
     for i in str(a):
-        fact_sum += factorial(int(i))
+        factorial_value, factorial_cache = factorial(int(i), factorial_cache)
+        fact_sum += factorial_value
 
     return fact_sum
 
