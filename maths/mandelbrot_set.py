@@ -3,41 +3,38 @@ Generates an image with the Mandelbrot Set
 """
 from PIL import Image, ImageDraw
 
-# Define constants
-WIDTH = 400
-HEIGHT = 300
-ITER = 80
-RE_RANGE = (-2, 1)
-IM_RANGE = (-1, 1)
 
-# Create new image
-im = Image.new('RGB', (WIDTH, HEIGHT), (0, 0, 0))
-draw = ImageDraw.Draw(im)
-
-
-def calc_mandelbrot(z):
+def calc_mandelbrot(c, num_iter=80):
   # Check if it converges
   z = 0
   n = 0
 
-  while abs(z) <= 2 and n < ITER:
+  while abs(z) <= 2 and n < num_iter:
     z = z*z + c
     n += 1
   return n
 
 
-# Paint each pixel
-for x in range(WIDTH):
-  for y in range(HEIGHT):
-    real = RE_RANGE[0] + (x/WIDTH) * (RE_RANGE[1] - RE_RANGE[0])
-    imag = IM_RANGE[0] + (y/HEIGHT)*(IM_RANGE[1]-IM_RANGE[0])
-    c = complex(real, imag)
+def generate_mandelbrot_set(width, height, im_path='./', num_iter=80):
+  # Generates an image with given dimensions
+  RE_RANGE = (-2, 1)
+  IM_RANGE = (-1, 1)
 
-    mandelbrot = calc_mandelbrot(c)
-    color = 255 - int(mandelbrot*255/ITER)
+  im = Image.new('RGB', (width, height), (0, 0, 0))
+  draw = ImageDraw.Draw(im)
 
-    draw.point((x, y), (color, color, color))
+  for x in range(width):
+    for y in range(height):
+      real = RE_RANGE[0] + (x/width) * (RE_RANGE[1] - RE_RANGE[0])
+      imag = IM_RANGE[0] + (y/height)*(IM_RANGE[1]-IM_RANGE[0])
+      c = complex(real, imag)
 
+      mandelbrot = calc_mandelbrot(c, num_iter)
+      color = 255 - int(mandelbrot*255/num_iter)
 
-# Save image
-im.save('images/mandelbrot.png')
+      draw.point((x, y), (color, color, color))
+
+  im.save(im_path)
+
+if __name__ == '__main__':
+  generate_mandelbrot_set(400, 300, 'images/mandelbrot.png')
