@@ -117,6 +117,7 @@ def find_empty_location(grid: Matrix) -> Tuple[int, int]:
             if grid[i][j] == 0:
                 return i, j
 
+
 def check_original_solvable(grid: Matrix) -> bool:
     """
     This function checks whether the original grid provided is solvable.
