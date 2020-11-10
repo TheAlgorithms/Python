@@ -14,6 +14,9 @@ Matrix = List[List[int]]
     in that cell and repeat this process.
 """
 # assigning initial values to the grid
+small_grid = [[0, 1], [1, 0]]
+
+
 initial_grid = [
     [3, 0, 6, 5, 0, 8, 4, 0, 0],
     [5, 2, 0, 0, 0, 0, 0, 0, 0],
@@ -57,7 +60,7 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
     This function checks the grid to see if each row,
     column, and the 3x3 subgrids contain the digit 'n'.
     It returns False if it is not 'safe' (a duplicate digit
-    is found) else returns True if it is 'safe'
+    is found) else returns True if it is 'safe' or 0.
     """
     if n == 0:
         return True
@@ -73,7 +76,11 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
         for j in range(3):
             new_row = (row - row % 3) + i
             new_column = (column - column % 3) + j
-            if new_row != row and new_column != column and grid[new_row][new_column] == n:
+            if (
+                new_row != row
+                and new_column != column
+                and grid[new_row][new_column] == n
+            ):
                 return False
 
     return True
@@ -110,8 +117,15 @@ def find_empty_location(grid: Matrix) -> Tuple[int, int]:
             if grid[i][j] == 0:
                 return i, j
 
+def check_original_solvable(grid: Matrix) -> bool:
+    """
+    This function checks whether the original grid provided is solvable.
 
-def check_original_solvable() -> bool:
+    >>> check_original_solvable(initial_not_solvable_grid)
+    False
+    >>> check_original_solvable(no_solution)
+    False
+    """
     for original_row in range(9):
         for origin_col in range(9):
             origin_digit = grid[original_row][origin_col]
@@ -126,19 +140,6 @@ def sudoku_solve(grid: Matrix) -> Union[Matrix, bool]:
     Takes a partially filled-in grid and attempts to assign values to
     all unassigned locations in such a way to meet the requirements
     for Sudoku solution (non-duplication across rows, columns, and boxes)
-
-    >>> sudoku(initial_grid)  # doctest: +NORMALIZE_WHITESPACE
-    [[3, 1, 6, 5, 7, 8, 4, 9, 2],
-     [5, 2, 9, 1, 3, 4, 7, 6, 8],
-     [4, 8, 7, 6, 2, 9, 5, 3, 1],
-     [2, 6, 3, 4, 1, 5, 9, 8, 7],
-     [9, 7, 4, 8, 6, 3, 1, 2, 5],
-     [8, 5, 1, 7, 9, 2, 6, 4, 3],
-     [1, 3, 8, 9, 4, 7, 2, 5, 6],
-     [6, 9, 2, 3, 5, 1, 8, 7, 4],
-     [7, 4, 5, 2, 8, 6, 3, 1, 9]]
-     >>> sudoku(no_solution)
-     False
     """
 
     if is_completed(grid):
@@ -158,27 +159,36 @@ def sudoku_solve(grid: Matrix) -> Union[Matrix, bool]:
     return False
 
 
-def print_solution(grid: Matrix) -> None:
+def print_solution(grid: Union[Matrix, bool]) -> None:
     """
     A function to print the solution in the form
     of a 9x9 grid
     """
-    for row in grid:
-        for cell in row:
-            print(cell, end=" ")
-        print()
+    if grid:
+        for row in grid:
+            for cell in row:
+                print(cell, end=" ")
+            print()
 
 
 def sudoku(grid: Matrix) -> Union[Matrix, bool]:
-    if not check_original_solvable():
+    """
+    Find the solution of a sudoku.
+    """
+
+    if not check_original_solvable(grid):
         return False
     return sudoku_solve(grid)
 
 
 if __name__ == "__main__":
     # make a copy of grid so that you can compare with the unmodified grid
-    for grid in (initial_grid, no_solution, initial_not_solvable_grid,):
-        grid = list(map(list, grid))
+    for grid in (
+        initial_grid,
+        no_solution,
+        initial_not_solvable_grid,
+    ):
+        grid = [list(col) for col in grid]
         solution = sudoku(grid)
         if solution:
             print("grid after solving:")
