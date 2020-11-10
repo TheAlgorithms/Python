@@ -272,7 +272,7 @@ def valid_input(
             if condition(user_input):
                 return user_input
             else:
-                print(f"Your entered value is {user_input}. {err_msg}")
+                print(f"{user_input}: {err_msg}")
                 continue
         except ValueError:
             print("Your entered value is not numerical!")
