@@ -100,6 +100,7 @@
   * [Decimal To Hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
   * [Hexadecimal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/hexadecimal_to_decimal.py)
+  * [Molecular Chemistry](https://github.com/TheAlgorithms/Python/blob/master/conversions/molecular_chemistry.py)
   * [Prefix Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/prefix_conversions.py)
   * [Roman To Integer](https://github.com/TheAlgorithms/Python/blob/master/conversions/roman_to_integer.py)
   * [Temperature Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/temperature_conversions.py)
