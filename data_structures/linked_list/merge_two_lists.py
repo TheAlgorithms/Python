@@ -46,7 +46,7 @@ def str_linked_list(head: Node) -> str:
     while current is not None:
         int_list.append(f"{current.data}")
         current = current.next
-    return '->'.join(int_list)
+    return "->".join(int_list)
 
 
 def merge_lists(list_one: list, list_two: list) -> Node:
@@ -99,4 +99,5 @@ def main() -> None:
 if __name__ == "__main__":
     main()
     import doctest
+    
     doctest.testmod()
