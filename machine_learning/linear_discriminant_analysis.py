@@ -44,7 +44,7 @@
 from math import log
 from os import name, system
 from random import gauss, seed
-from typing import TypeVar, Callable
+from typing import Callable, TypeVar
 
 
 # Make a training dataset drawn from a gaussian distribution
