@@ -276,7 +276,9 @@ def valid_input(
                 print(f"{user_input}: {err_msg}")
                 continue
         except ValueError:
-            print(f"{user_input}: Incorrect input type, expected {input_type.__name__!r}")
+            print(
+                f"{user_input}: Incorrect input type, expected {input_type.__name__!r}"
+            )
 
 
 # Main Function
