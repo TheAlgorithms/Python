@@ -2,6 +2,7 @@
     Linear Discriminant Analysis
 
 
+
     Assumptions About Data :
         1. The input variables has a gaussian distribution.
         2. The variance calculated for each input variables by class grouping is the
