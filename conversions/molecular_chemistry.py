@@ -1,3 +1,12 @@
+"""
+Functions useful for doing molecular chemistry:
+* molarity_to_normality
+* moles_to_pressure
+* moles_to_volume
+* pressure_and_volume_to_temperature
+"""
+
+
 def molarity_to_normality(nfactor: int, moles: float, volume: float) -> float:
     """
     Convert molarity to normality.
@@ -10,7 +19,6 @@ def molarity_to_normality(nfactor: int, moles: float, volume: float) -> float:
       20
       >>> molarity_to_normality(4, 11.4, 5.7)
       8
-
     """
     return round((float(moles / volume) * nfactor))
 
@@ -31,7 +39,6 @@ def moles_to_pressure(volume: float, moles: float, temperature: float) -> float:
       90
       >>> moles_to_pressure(8.2, 5, 200)
       10
-
     """
     return round(float((moles * 0.0821 * temperature) / (volume)))
 
@@ -52,7 +59,6 @@ def moles_to_volume(pressure: float, moles: float, temperature: float) -> float:
       90
       >>> moles_to_volume(8.2, 5, 200)
       10
-
     """
     return round(float((moles * 0.0821 * temperature) / (pressure)))
 
@@ -75,7 +81,6 @@ def pressure_and_volume_to_temperature(
       20
       >>> pressure_and_volume_to_temperature(8.2, 5, 3)
       60
-
     """
     return round(float((pressure * volume) / (0.0821 * moles)))
 
