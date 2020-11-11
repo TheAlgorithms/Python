@@ -366,7 +366,6 @@ class Matrix:
             if other.order == first.order == (2, 1):
                 first.add_row([0], 3)
                 other.add_row([0], 3)
-                return cls.cross_product(first, other)
             elif other.order != (3, 1) or first.order != (3, 1):
                 raise ValueError("Dimension error. Cross product requires two matrices of order (2,1) or (3,1).")
             return cls([
