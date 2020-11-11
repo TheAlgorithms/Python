@@ -13,13 +13,19 @@ def create_url(title: str, journal: str, volume: str, page: str, year: str) -> s
     """
     Return the url.
     """
-    url = f"http://scholar.google.com/scholar_lookup?hl=en&title={title}&journal={journal}&volume={volume}&pages={page}&publication_year={year}"
+    url = f"http://scholar.google.com/scholar_lookup?hl=en&" \
+          f"title={title}" \
+          f"&journal={journal}" \
+          f"&volume={volume}" \
+          f"&pages={page}" \
+          f"&publication_year={year}"
     url = remove_tag(url)
     return url.replace(" ", "%")
 
 
 def remove_tag(url: str) -> str:
     """
+    Remove the html tags in 'url'.
     Return the url removed the html tags.
     """
     tag = re.compile('<.*?>')
@@ -44,14 +50,13 @@ def get_citation(url: str) -> str:
 
 if __name__ == '__main__':
     """
-    You have to fill following values: title, journal_name, volume, page, year. 
-    
+    You have to fill following values: title, journal_name, volume, page, year.
     For example,
-    title = "Precisely geometry controlled microsupercapacitors for ultrahigh areal capacitance, volumetric capacitance, and energy density"
-    journal_name = "Chem. Mater"
+    title = "abcde"
+    journal_name = "fgh"
     volume = "30"
     page = "3979-3990"
-    year = "2018"
+    year = "2020"
     """
     title = ""
     journal_name = ""
@@ -61,4 +66,3 @@ if __name__ == '__main__':
 
     citation = get_citation(create_url(title, journal_name, volume, page, year))
     print(citation)
-
