@@ -167,7 +167,7 @@ class Matrix:
             return self.rows[0][0]
         if self.order == (2, 2):
             return (self.rows[0][0] * self.rows[1][1]) - (
-                    self.rows[0][1] * self.rows[1][0]
+                self.rows[0][1] * self.rows[1][0]
             )
         else:
             return sum(
@@ -237,14 +237,14 @@ class Matrix:
             print(self.rows[0])
             return "[[" + ". ".join(str(i) for i in self.rows[0]) + ".]]"
         return (
-                "["
-                + "\n ".join(
-            [
-                "[" + ". ".join([str(value) for value in row]) + ".]"
-                for row in self.rows
-            ]
-        )
-                + "]"
+            "["
+            + "\n ".join(
+                [
+                    "[" + ". ".join([str(value) for value in row]) + ".]"
+                    for row in self.rows
+                ]
+            )
+            + "]"
         )
 
     # MATRIX MANIPULATION
@@ -367,12 +367,25 @@ class Matrix:
                 first.add_row([0], 3)
                 other.add_row([0], 3)
             elif other.order != (3, 1) or first.order != (3, 1):
-                raise ValueError("Dimension error. Cross product requires two matrices of order (2,1) or (3,1).")
-            return cls([
-                [(first.rows[1][0] * other.rows[2][0]) - (first.rows[2][0] * other.rows[1][0])],
-                [(first.rows[2][0] * other.rows[0][0]) - (first.rows[0][0] * other.rows[2][0])],
-                [(first.rows[0][0] * other.rows[1][0]) - (first.rows[1][0] * other.rows[0][0])]
-            ])
+                raise ValueError(
+                    "Dimension error. Cross product requires two matrices of order (2,1) or (3,1)."
+                )
+            return cls(
+                [
+                    [
+                        (first.rows[1][0] * other.rows[2][0])
+                        - (first.rows[2][0] * other.rows[1][0])
+                    ],
+                    [
+                        (first.rows[2][0] * other.rows[0][0])
+                        - (first.rows[0][0] * other.rows[2][0])
+                    ],
+                    [
+                        (first.rows[0][0] * other.rows[1][0])
+                        - (first.rows[1][0] * other.rows[0][0])
+                    ],
+                ]
+            )
         else:
             raise TypeError("Parameters given are not Matrix instances.")
 
