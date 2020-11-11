@@ -361,6 +361,7 @@ class Matrix:
 
     @classmethod
     def cross_product(cls, first: "Matrix", other: "Matrix") -> "Matrix":
+        # https://en.wikipedia.org/wiki/Cross_product
         if isinstance(first, Matrix) and isinstance(other, Matrix):
             if other.order == first.order == (2, 1):
                 first.add_row([0], 3)
