@@ -31,7 +31,7 @@ class Matrix:
     Squareness and invertability are represented as bool
     >>> matrix.is_square
     True
-    >>> matrix.is_invertable()
+    >>> matrix.is_invertible()
     False
 
     Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
@@ -102,9 +102,17 @@ class Matrix:
      [306. 378. 450. 472.]
      [414. 513. 612. 640.]]
 
+    >>> rows1 = [[1], [2], [3]]
+    >>> rows2 = [[3], [2], [1]]
+    >>> vector1 = Matrix(rows1)
+    >>> vector2 = Matrix(rows2)
+    >>> print(Matrix.cross_product(vector1, vector2))
+    [[-4.]
+     [8.]
+     [-4.]]
     """
 
-    def __init__(self, rows):
+    def __init__(self, rows: list):
         error = TypeError(
             "Matrices must be formed from a list of zero or more lists containing at "
             "least one and the same number of values, each of which must be of type "
@@ -160,7 +168,7 @@ class Matrix:
             return self.rows[0][0]
         if self.order == (2, 2):
             return (self.rows[0][0] * self.rows[1][1]) - (
-                self.rows[0][1] * self.rows[1][0]
+                    self.rows[0][1] * self.rows[1][0]
             )
         else:
             return sum(
@@ -168,7 +176,7 @@ class Matrix:
                 for column in range(self.num_columns)
             )
 
-    def is_invertable(self):
+    def is_invertible(self):
         return bool(self.determinant())
 
     def get_minor(self, row, column):
@@ -227,16 +235,17 @@ class Matrix:
         if self.num_rows == 0:
             return "[]"
         if self.num_rows == 1:
-            return "[[" + ". ".join(self.rows[0]) + "]]"
+            print(self.rows[0])
+            return "[[" + ". ".join(str(i) for i in self.rows[0]) + ".]]"
         return (
-            "["
-            + "\n ".join(
-                [
-                    "[" + ". ".join([str(value) for value in row]) + ".]"
-                    for row in self.rows
-                ]
-            )
-            + "]"
+                "["
+                + "\n ".join(
+            [
+                "[" + ". ".join([str(value) for value in row]) + ".]"
+                for row in self.rows
+            ]
+        )
+                + "]"
         )
 
     # MATRIX MANIPULATION
@@ -337,10 +346,10 @@ class Matrix:
         if other == 0:
             return self.identity()
         if other < 0:
-            if self.is_invertable:
+            if self.is_invertible:
                 return self.inverse() ** (-other)
             raise ValueError(
-                "Only invertable matrices can be raised to a negative power"
+                "Only invertible matrices can be raised to a negative power"
             )
         result = self
         for i in range(other - 1):
@@ -350,6 +359,23 @@ class Matrix:
     @classmethod
     def dot_product(cls, row, column):
         return sum(row[i] * column[i] for i in range(len(row)))
+
+    @classmethod
+    def cross_product(cls, first, other):
+        if isinstance(first, Matrix) and isinstance(other, Matrix):
+            if other.order == first.order == (2, 1):
+                first.add_row([0], 3)
+                other.add_row([0], 3)
+                return cls.cross_product(first, other)
+            elif other.order != (3, 1) or first.order != (3, 1):
+                raise ValueError("Dimension error. Cross product requires two matrices of order (2,1) or (3,1).")
+            return cls([
+                [(first.rows[1][0] * other.rows[2][0]) - (first.rows[2][0] * other.rows[1][0])],
+                [(first.rows[2][0] * other.rows[0][0]) - (first.rows[0][0] * other.rows[2][0])],
+                [(first.rows[0][0] * other.rows[1][0]) - (first.rows[1][0] * other.rows[0][0])]
+            ])
+        else:
+            raise TypeError("Parameters given are not Matrix instances.")
 
 
 if __name__ == "__main__":
