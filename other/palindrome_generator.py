@@ -29,7 +29,7 @@ def get_palindrome(s: str) -> str:
     :param s: The string to generate the palindrome from
     :return: A mirror image palindrome of the string s
     """
-    s = s.lower().replace(' ', '')
+    s = s.replace(" ", "").lower()
     for i, letter in enumerate(s):
         if s[i:][::-1] == s[i:]:
             return s + s[:i][::-1]
