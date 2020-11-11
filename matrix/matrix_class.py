@@ -368,7 +368,8 @@ class Matrix:
                 other.add_row([0], 3)
             elif other.order != (3, 1) or first.order != (3, 1):
                 raise ValueError(
-                    "Dimension error. Cross product requires two matrices of order (2,1) or (3,1)."
+                    "Dimension error. Cross product requires two matrices of order "
+                    "(2,1) or (3,1)."
                 )
             return cls(
                 [
