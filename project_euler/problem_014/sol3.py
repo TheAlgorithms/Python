@@ -60,7 +60,7 @@ def calculate_chain(n: int) -> None:
         knowledge[i] = chain_size
 
 
-def solution(m: int) -> Tuple[int, int]:
+def solution(m: int = 1000000) -> Tuple[int, int]:
     """ Returns the number under n that generates the longest Collatz sequence.
 
     >>> solution(1000000)
