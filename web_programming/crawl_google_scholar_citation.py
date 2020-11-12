@@ -53,12 +53,6 @@ def get_citation(url: str) -> str:
 if __name__ == "__main__":
     """
     You have to fill following values: title, journal_name, volume, page, year.
-    For example,
-    title = "abc de"
-    journal_name = "fgh"
-    volume = "30"
-    page = "3979-3990"
-    year = "2020"
     """
     title = ""
     journal_name = ""
