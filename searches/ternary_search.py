@@ -16,7 +16,7 @@ precision = 10
 # This is the linear search that will occur after the search space has become smaller.
 
 
-def lin_search(left: int, right: int, A: List[int], target: int) -> int:
+def lin_search(left: int, right: int, array: List[int], target: int) -> int:
     """Perform linear search in list. Returns -1 if element is not found.
 
     Parameters
@@ -25,7 +25,7 @@ def lin_search(left: int, right: int, A: List[int], target: int) -> int:
         left index bound.
     right : int
         right index bound.
-    A : List[int]
+    array : List[int]
         List of elements to be searched on
     target : int
         Element that is searched
@@ -53,12 +53,12 @@ def lin_search(left: int, right: int, A: List[int], target: int) -> int:
     2
     """
     for i in range(left, right):
-        if A[i] == target:
+        if array[i] == target:
             return i
     return -1
 
 
-def ite_ternary_search(A: List[int], target: int) -> int:
+def ite_ternary_search(array: List[int], target: int) -> int:
     """Iterative method of the ternary search algorithm.
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
     >>> print(ite_ternary_search(test_list, 3))
@@ -84,22 +84,22 @@ def ite_ternary_search(A: List[int], target: int) -> int:
     """
 
     left = 0
-    right = len(A)
+    right = len(array)
     while left <= right:
         if right - left < precision:
-            return lin_search(left, right, A, target)
+            return lin_search(left, right, array, target)
 
         oneThird = (left + right) / 3 + 1
         twoThird = 2 * (left + right) / 3 + 1
 
-        if A[oneThird] == target:
+        if array[oneThird] == target:
             return oneThird
-        elif A[twoThird] == target:
+        elif array[twoThird] == target:
             return twoThird
 
-        elif target < A[oneThird]:
+        elif target < array[oneThird]:
             right = oneThird - 1
-        elif A[twoThird] < target:
+        elif array[twoThird] < target:
             left = twoThird + 1
 
         else:
@@ -110,7 +110,7 @@ def ite_ternary_search(A: List[int], target: int) -> int:
         return -1
 
 
-def rec_ternary_search(left: int, right: int, A: List[int], target: int) -> int:
+def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> int:
     """Recursive method of the ternary search algorithm.
 
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
@@ -137,21 +137,21 @@ def rec_ternary_search(left: int, right: int, A: List[int], target: int) -> int:
     """
     if left < right:
         if right - left < precision:
-            return lin_search(left, right, A, target)
+            return lin_search(left, right, array, target)
         oneThird = (left + right) / 3 + 1
         twoThird = 2 * (left + right) / 3 + 1
 
-        if A[oneThird] == target:
+        if array[oneThird] == target:
             return oneThird
-        elif A[twoThird] == target:
+        elif array[twoThird] == target:
             return twoThird
 
-        elif target < A[oneThird]:
-            return rec_ternary_search(left, oneThird - 1, A, target)
-        elif A[twoThird] < target:
-            return rec_ternary_search(twoThird + 1, right, A, target)
+        elif target < array[oneThird]:
+            return rec_ternary_search(left, oneThird - 1, array, target)
+        elif array[twoThird] < target:
+            return rec_ternary_search(twoThird + 1, right, array, target)
         else:
-            return rec_ternary_search(oneThird + 1, twoThird - 1, A, target)
+            return rec_ternary_search(oneThird + 1, twoThird - 1, array, target)
     else:
         return -1
 
