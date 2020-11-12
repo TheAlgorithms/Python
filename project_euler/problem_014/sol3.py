@@ -60,7 +60,7 @@ def calculate_chain(n: int) -> None:
         knowledge[i] = chain_size
 
 
-def solution(m: int = 1000000) -> Tuple[int, int]:
+def solution(m: int = 1000000, extra_info: bool = False) -> Tuple[int, int]:
     """ Returns the number under n that generates the longest Collatz sequence.
 
     >>> solution(1000000)
@@ -81,7 +81,10 @@ def solution(m: int = 1000000) -> Tuple[int, int]:
         if max_chain[1] < knowledge[i]:
             max_chain = (i, knowledge[i])
 
-    return max_chain
+    if extra_info:
+        return max_chain
+    else:
+        return max_chain[0]
 
 
 if __name__ == "__main__":
@@ -90,7 +93,7 @@ if __name__ == "__main__":
     in the range between 1 and the following number:
           """)
     input_number = int(input().strip())
-    number, chain_length = solution(input_number)
+    number, chain_length = solution(input_number, True)
     print(f"""
     the maximum collatz chain of all numbers between 1 and {input_number} is
     {chain_length}, starting with the number {number}
