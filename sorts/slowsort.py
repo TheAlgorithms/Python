@@ -9,7 +9,6 @@ in their paper Pessimal Algorithms and Simplexity Analysis
 Source: https://en.wikipedia.org/wiki/Slowsort
 """
 
-from math import floor
 from typing import Optional
 
 
@@ -45,7 +44,7 @@ def slowsort(sequence: list, i: Optional[int] = None, j: Optional[int] = None) -
     if i >= j:
         return
 
-    m = floor((i + j) / 2)
+    m = (i + j) // 2
 
     slowsort(sequence, i, m)
     slowsort(sequence, m + 1, j)
