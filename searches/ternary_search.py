@@ -89,23 +89,23 @@ def ite_ternary_search(array: List[int], target: int) -> int:
         if right - left < precision:
             return lin_search(left, right, array, target)
 
-        oneThird = (left + right) / 3 + 1
-        twoThird = 2 * (left + right) / 3 + 1
+        one_third = (left + right) / 3 + 1
+        two_third = 2 * (left + right) / 3 + 1
 
-        if array[oneThird] == target:
-            return oneThird
-        elif array[twoThird] == target:
-            return twoThird
+        if array[one_third] == target:
+            return one_third
+        elif array[two_third] == target:
+            return two_third
 
-        elif target < array[oneThird]:
-            right = oneThird - 1
-        elif array[twoThird] < target:
-            left = twoThird + 1
+        elif target < array[one_third]:
+            right = one_third - 1
+        elif array[two_third] < target:
+            left = two_third + 1
 
         else:
 
-            left = oneThird + 1
-            right = twoThird - 1
+            left = one_third + 1
+            right = two_third - 1
     else:
         return -1
 
@@ -138,20 +138,20 @@ def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> 
     if left < right:
         if right - left < precision:
             return lin_search(left, right, array, target)
-        oneThird = (left + right) / 3 + 1
-        twoThird = 2 * (left + right) / 3 + 1
+        one_third = (left + right) / 3 + 1
+        two_third = 2 * (left + right) / 3 + 1
 
-        if array[oneThird] == target:
-            return oneThird
-        elif array[twoThird] == target:
-            return twoThird
+        if array[one_third] == target:
+            return one_third
+        elif array[two_third] == target:
+            return two_third
 
-        elif target < array[oneThird]:
-            return rec_ternary_search(left, oneThird - 1, array, target)
-        elif array[twoThird] < target:
-            return rec_ternary_search(twoThird + 1, right, array, target)
+        elif target < array[one_third]:
+            return rec_ternary_search(left, one_third - 1, array, target)
+        elif array[two_third] < target:
+            return rec_ternary_search(two_third + 1, right, array, target)
         else:
-            return rec_ternary_search(oneThird + 1, twoThird - 1, array, target)
+            return rec_ternary_search(one_third + 1, two_third - 1, array, target)
     else:
         return -1
 
