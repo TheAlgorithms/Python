@@ -12,7 +12,7 @@ class LRUCache:
 
     @abstractmethod
     def __init__(self, n: int):
-        """ Creates an empty store and map for the keys.
+        """Creates an empty store and map for the keys.
         The LRUCache is set the size n.
         """
         self.dq_store = deque()
@@ -26,9 +26,9 @@ class LRUCache:
 
     def refer(self, x):
         """
-            Looks for a page in the cache store and adds reference to the set.
-            Remove the least recently used key if the store is full.
-            Update store to reflect recent access.
+        Looks for a page in the cache store and adds reference to the set.
+        Remove the least recently used key if the store is full.
+        Update store to reflect recent access.
         """
         if x not in self.key_reference_map:
             if len(self.dq_store) == LRUCache._MAX_CAPACITY:
@@ -47,7 +47,7 @@ class LRUCache:
 
     def display(self):
         """
-            Prints all the elements in the store.
+        Prints all the elements in the store.
         """
         for k in self.dq_store:
             print(k)

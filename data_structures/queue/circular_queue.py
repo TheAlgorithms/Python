@@ -17,7 +17,7 @@ class CircularQueue:
         >>> len(cq)
         0
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <circular_queue.CircularQueue object at ...
+        <data_structures.queue.circular_queue.CircularQueue object at ...
         >>> len(cq)
         1
         """
@@ -48,11 +48,11 @@ class CircularQueue:
         This function insert an element in the queue using self.rear value as an index
         >>> cq = CircularQueue(5)
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
-        <circular_queue.CircularQueue object at ...
+        <data_structures.queue.circular_queue.CircularQueue object at ...
         >>> (cq.size, cq.first())
         (1, 'A')
         >>> cq.enqueue("B")  # doctest: +ELLIPSIS
-        <circular_queue.CircularQueue object at ...
+        <data_structures.queue.circular_queue.CircularQueue object at ...
         >>> (cq.size, cq.first())
         (2, 'A')
         """

@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def collatz_sequence(n: int) -> List[int]:
+def collatz_sequence(n: int) -> list[int]:
     """
     Collatz conjecture: start with any positive integer n. The next term is
     obtained as follows:

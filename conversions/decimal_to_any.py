@@ -3,55 +3,55 @@
 
 def decimal_to_any(num: int, base: int) -> str:
     """
-        Convert a positive integer to another base as str.
-        >>> decimal_to_any(0, 2)
-        '0'
-        >>> decimal_to_any(5, 4)
-        '11'
-        >>> decimal_to_any(20, 3)
-        '202'
-        >>> decimal_to_any(58, 16)
-        '3A'
-        >>> decimal_to_any(243, 17)
-        'E5'
-        >>> decimal_to_any(34923, 36)
-        'QY3'
-        >>> decimal_to_any(10, 11)
-        'A'
-        >>> decimal_to_any(16, 16)
-        '10'
-        >>> decimal_to_any(36, 36)
-        '10'
-        >>> # negatives will error
-        >>> decimal_to_any(-45, 8)  # doctest: +ELLIPSIS
-        Traceback (most recent call last):
-        ...
-        ValueError: parameter must be positive int
-        >>> # floats will error
-        >>> decimal_to_any(34.4, 6) # doctest: +ELLIPSIS
-        Traceback (most recent call last):
-        ...
-        TypeError: int() can't convert non-string with explicit base
-        >>> # a float base will error
-        >>> decimal_to_any(5, 2.5) # doctest: +ELLIPSIS
-        Traceback (most recent call last):
-        ...
-        TypeError: 'float' object cannot be interpreted as an integer
-        >>> # a str base will error
-        >>> decimal_to_any(10, '16') # doctest: +ELLIPSIS
-        Traceback (most recent call last):
-        ...
-        TypeError: 'str' object cannot be interpreted as an integer
-        >>> # a base less than 2 will error
-        >>> decimal_to_any(7, 0) # doctest: +ELLIPSIS
-        Traceback (most recent call last):
-        ...
-        ValueError: base must be >= 2
-        >>> # a base greater than 36 will error
-        >>> decimal_to_any(34, 37) # doctest: +ELLIPSIS
-        Traceback (most recent call last):
-        ...
-        ValueError: base must be <= 36
+    Convert a positive integer to another base as str.
+    >>> decimal_to_any(0, 2)
+    '0'
+    >>> decimal_to_any(5, 4)
+    '11'
+    >>> decimal_to_any(20, 3)
+    '202'
+    >>> decimal_to_any(58, 16)
+    '3A'
+    >>> decimal_to_any(243, 17)
+    'E5'
+    >>> decimal_to_any(34923, 36)
+    'QY3'
+    >>> decimal_to_any(10, 11)
+    'A'
+    >>> decimal_to_any(16, 16)
+    '10'
+    >>> decimal_to_any(36, 36)
+    '10'
+    >>> # negatives will error
+    >>> decimal_to_any(-45, 8)  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    ValueError: parameter must be positive int
+    >>> # floats will error
+    >>> decimal_to_any(34.4, 6) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: int() can't convert non-string with explicit base
+    >>> # a float base will error
+    >>> decimal_to_any(5, 2.5) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: 'float' object cannot be interpreted as an integer
+    >>> # a str base will error
+    >>> decimal_to_any(10, '16') # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    TypeError: 'str' object cannot be interpreted as an integer
+    >>> # a base less than 2 will error
+    >>> decimal_to_any(7, 0) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    ValueError: base must be >= 2
+    >>> # a base greater than 36 will error
+    >>> decimal_to_any(34, 37) # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ...
+    ValueError: base must be <= 36
     """
     if isinstance(num, float):
         raise TypeError("int() can't convert non-string with explicit base")

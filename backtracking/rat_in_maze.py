@@ -1,13 +1,13 @@
 def solve_maze(maze: list) -> bool:
     """
-    This method solves rat in maze algorithm.
-    In this problem we have n by n matrix and we have start point and end point
-    we want to go from source to distination. In this matrix 0 are block paths
-    1 are open paths we can use.
+    This method solves the "rat in maze" problem.
+    In this problem we have some n by n matrix, a start point and an end point.
+    We want to go from the start to the end. In this matrix zeroes represent walls
+    and ones paths we can use.
     Parameters :
         maze(2D matrix) : maze
     Returns:
-        Return: True is maze has a solution or False if it does not.
+        Return: True if the maze has a solution or False if it does not.
     >>> maze = [[0, 1, 0, 1, 1],
     ...         [0, 0, 0, 0, 0],
     ...         [1, 0, 1, 0, 1],
@@ -47,13 +47,13 @@ def solve_maze(maze: list) -> bool:
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze)
-    Solution does not exists!
+    No solution exists!
     False
 
     >>> maze = [[0, 1],
     ...         [1, 0]]
     >>> solve_maze(maze)
-    Solution does not exists!
+    No solution exists!
     False
     """
     size = len(maze)
@@ -63,16 +63,15 @@ def solve_maze(maze: list) -> bool:
     if solved:
         print("\n".join(str(row) for row in solutions))
     else:
-        print("Solution does not exists!")
+        print("No solution exists!")
     return solved
 
 
 def run_maze(maze, i, j, solutions):
     """
-    This method is recursive method which starts from i and j
-    and goes with 4 direction option up, down, left, right
-    if path found to destination it breaks and return True
-    otherwise False
+    This method is recursive starting from (i, j) and going in one of four directions:
+    up, down, left, right.
+    If a path is found to destination it returns True otherwise it returns False.
     Parameters:
         maze(2D matrix) : maze
         i, j : coordinates of matrix

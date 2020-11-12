@@ -261,16 +261,16 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
     :return: index of found item or None if item is not found
 
     Examples:
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 0)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 0, 0, 4)
     0
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 15)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 15, 0, 4)
     4
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 5)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 5, 0, 4)
     1
 
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
+    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
 
     """
     if right < left:

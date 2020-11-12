@@ -9,10 +9,10 @@ For manual testing run:
 python3 iterative_merge_sort.py
 """
 
-from typing import List
+from __future__ import annotations
 
 
-def merge(input_list: List, low: int, mid: int, high: int) -> List:
+def merge(input_list: list, low: int, mid: int, high: int) -> list:
     """
     sorting left-half and right-half individually
     then merging them into result
@@ -26,7 +26,7 @@ def merge(input_list: List, low: int, mid: int, high: int) -> List:
 
 
 # iteration over the unsorted list
-def iter_merge_sort(input_list: List) -> List:
+def iter_merge_sort(input_list: list) -> list:
     """
     Return a sorted copy of the input list
 

@@ -4,7 +4,7 @@ ruleset number
 https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
 """
 
-from typing import List
+from __future__ import annotations
 
 from PIL import Image
 
@@ -15,7 +15,7 @@ CELLS = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 # fmt: on
 
 
-def format_ruleset(ruleset: int) -> List[int]:
+def format_ruleset(ruleset: int) -> list[int]:
     """
     >>> format_ruleset(11100)
     [0, 0, 0, 1, 1, 1, 0, 0]
@@ -27,20 +27,21 @@ def format_ruleset(ruleset: int) -> List[int]:
     return [int(c) for c in f"{ruleset:08}"[:8]]
 
 
-def new_generation(cells: List[List[int]], rule: List[int], time: int) -> List[int]:
+def new_generation(cells: list[list[int]], rule: list[int], time: int) -> list[int]:
     population = len(cells[0])  # 31
     next_generation = []
     for i in range(population):
         # Get the neighbors of each cell
-        left_neighbor = 0 if i == 0 else cells[time][i - 1]  # special: leftmost cell
-        right_neighbor = 0 if i == population - 1 else cells[time][i + 1]  # rightmost
+        # Handle neighbours outside bounds by using 0 as their value
+        left_neighbor = 0 if i == 0 else cells[time][i - 1]
+        right_neighbor = 0 if i == population - 1 else cells[time][i + 1]
         # Define a new cell and add it to the new generation
         situation = 7 - int(f"{left_neighbor}{cells[time][i]}{right_neighbor}", 2)
         next_generation.append(rule[situation])
     return next_generation
 
 
-def generate_image(cells: List[List[int]]) -> Image.Image:
+def generate_image(cells: list[list[int]]) -> Image.Image:
     """
     Convert the cells into a greyscale PIL.Image.Image and return it to the caller.
     >>> from random import random
