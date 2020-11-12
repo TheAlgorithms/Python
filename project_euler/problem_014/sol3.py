@@ -63,13 +63,13 @@ def calculate_chain(n: int) -> None:
 def solution(m: int = 1000000, extra_info: bool = False) -> Tuple[int, int]:
     """ Returns the number under n that generates the longest Collatz sequence.
 
-    >>> solution(1000000)
+    >>> solution(1000000, True)
     (837799, 525)
-    >>> solution(200)
+    >>> solution(200, True)
     (171, 125)
-    >>> solution(5000)
+    >>> solution(5000, True)
     (3711, 238)
-    >>> solution(15000)
+    >>> solution(15000, True)
     (13255, 276)
     """
     max_chain = (1, 1)
