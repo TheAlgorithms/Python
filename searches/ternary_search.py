@@ -37,19 +37,19 @@ def lin_search(left: int, right: int, array: List[int], target: int) -> int:
 
     Examples
     --------
-    >>> print(lin_search(0, 4, [4, 5, 6, 7], 7))
+    >>> lin_search(0, 4, [4, 5, 6, 7], 7)
     3
-    >>> print(lin_search(0, 3, [4, 5, 6, 7], 7))
+    >>> lin_search(0, 3, [4, 5, 6, 7], 7)
     -1
-    >>> print(lin_search(0, 2, [-18, 2], -18))
+    >>> lin_search(0, 2, [-18, 2], -18)
     0
-    >>> print(lin_search(0, 1, [5], 5))
+    >>> lin_search(0, 1, [5], 5)
     0
-    >>> print(lin_search(0, 3, ['a', 'c', 'd'], 'c'))
+    >>> lin_search(0, 3, ['a', 'c', 'd'], 'c')
     1
-    >>> print(lin_search(0, 3, [.1, .4 , -.1], .1))
+    >>> lin_search(0, 3, [.1, .4 , -.1], .1)
     0
-    >>> print(lin_search(0, 3, [.1, .4 , -.1], -.1))
+    >>> lin_search(0, 3, [.1, .4 , -.1], -.1)
     2
     """
     for i in range(left, right):
@@ -61,25 +61,25 @@ def lin_search(left: int, right: int, array: List[int], target: int) -> int:
 def ite_ternary_search(array: List[int], target: int) -> int:
     """Iterative method of the ternary search algorithm.
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
-    >>> print(ite_ternary_search(test_list, 3))
+    >>> ite_ternary_search(test_list, 3)
     -1
-    >>> print(ite_ternary_search(test_list, 13))
+    >>> ite_ternary_search(test_list, 13)
     4
-    >>> print(ite_ternary_search([4, 5, 6, 7], 4))
+    >>> ite_ternary_search([4, 5, 6, 7], 4)
     0
-    >>> print(ite_ternary_search([4, 5, 6, 7], -10))
+    >>> ite_ternary_search([4, 5, 6, 7], -10)
     -1
-    >>> print(ite_ternary_search([-18, 2], -18))
+    >>> ite_ternary_search([-18, 2], -18)
     0
-    >>> print(ite_ternary_search([5], 5))
+    >>> ite_ternary_search([5], 5)
     0
-    >>> print(ite_ternary_search(['a', 'c', 'd'], 'c'))
+    >>> ite_ternary_search(['a', 'c', 'd'], 'c')
     1
-    >>> print(ite_ternary_search(['a', 'c', 'd'], 'f'))
+    >>> ite_ternary_search(['a', 'c', 'd'], 'f')
     -1
-    >>> print(ite_ternary_search([], 1))
+    >>> ite_ternary_search([], 1)
     -1
-    >>> print(ite_ternary_search([.1, .4 , -.1], .1))
+    >>> ite_ternary_search([.1, .4 , -.1], .1)
     0
     """
 
@@ -114,25 +114,25 @@ def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> 
     """Recursive method of the ternary search algorithm.
 
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
-    >>> print(rec_ternary_search(0, len(test_list), test_list, 3))
+    >>> rec_ternary_search(0, len(test_list), test_list, 3)
     -1
-    >>> print(rec_ternary_search(4, len(test_list), test_list, 42))
+    >>> rec_ternary_search(4, len(test_list), test_list, 42)
     8
-    >>> print(rec_ternary_search(0, 2, [4, 5, 6, 7], 4))
+    >>> rec_ternary_search(0, 2, [4, 5, 6, 7], 4)
     0
-    >>> print(rec_ternary_search(0, 3, [4, 5, 6, 7], -10))
+    >>> rec_ternary_search(0, 3, [4, 5, 6, 7], -10)
     -1
-    >>> print(rec_ternary_search(0, 1, [-18, 2], -18))
+    >>> rec_ternary_search(0, 1, [-18, 2], -18)
     0
-    >>> print(rec_ternary_search(0, 1, [5], 5))
+    >>> rec_ternary_search(0, 1, [5], 5)
     0
-    >>> print(rec_ternary_search(0, 2, ['a', 'c', 'd'], 'c'))
+    >>> rec_ternary_search(0, 2, ['a', 'c', 'd'], 'c')
     1
-    >>> print(rec_ternary_search(0, 2, ['a', 'c', 'd'], 'f'))
+    >>> rec_ternary_search(0, 2, ['a', 'c', 'd'], 'f')
     -1
-    >>> print(rec_ternary_search(0, 0, [], 1))
+    >>> rec_ternary_search(0, 0, [], 1)
     -1
-    >>> print(rec_ternary_search(0, 3, [.1, .4 , -.1], .1))
+    >>> rec_ternary_search(0, 3, [.1, .4 , -.1], .1)
     0
     """
     if left < right:
