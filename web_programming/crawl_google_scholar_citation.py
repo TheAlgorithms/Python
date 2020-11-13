@@ -12,26 +12,21 @@ def get_citation(base_url: str, params: dict) -> str:
     Return the citation number.
     """
     soup = BeautifulSoup(requests.get(base_url, params=params).content, "html.parser")
-    get_div = soup.find("div", attrs={"class": "gs_ri"})
-    get_a_tag = get_div.find("div", attrs={"class": "gs_fl"}).findAll("a")
-    citation = get_a_tag[2].get_text()
-
-    return citation
+    div = soup.find("div", attrs={"class": "gs_ri"})
+    anchors = div.find("div", attrs={"class": "gs_fl"}).find_all("a")
+    return anchors[2].get_text()
 
 
 if __name__ == "__main__":
     params = {
         "title": (
-            "Precisely geometry controlled microsupercapacitors"
-            " for ultrahigh areal capacitance,"
-            " volumetric capacitance, and energy density"
+            "Precisely geometry controlled microsupercapacitors for ultrahigh areal "
+            "capacitance, volumetric capacitance, and energy density"
         ),
         "journal": "Chem. Mater.",
-        "volume": "30",
+        "volume": 30,
         "pages": "3979-3990",
-        "year": "2018",
-        "hl": "en"
-        ,
+        "year": 2018,
+        "hl": "en",
     }
-
     print(get_citation("http://scholar.google.com/scholar_lookup", params=params))
