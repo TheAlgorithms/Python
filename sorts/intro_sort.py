@@ -46,7 +46,9 @@ def heap_sort(array: list) -> list:
     return array
 
 
-def median_of_3(array: list, first_index: int, middle_index: int, last_index: int) -> int:
+def median_of_3(
+    array: list, first_index: int, middle_index: int, last_index: int
+) -> int:
     if (array[first_index] > array[middle_index]) != (
         array[first_index] > array[last_index]
     ):
