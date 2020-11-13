@@ -28,7 +28,8 @@ knowledge = {1: 1}
 
 # a single step in a collatz chain
 def collatz(n: int) -> int:
-    """ Calculates a single step in a collatz chain.
+    """
+    Calculates a single step in a collatz chain.
 
     >>> collatz(13)
     40
@@ -61,7 +62,8 @@ def calculate_chain(n: int) -> None:
 
 
 def solution(m: int = 1000000, extra_info: bool = False) -> Tuple[int, int]:
-    """ Returns the number under n that generates the longest Collatz sequence.
+    """
+    Returns the number under n that generates the longest Collatz sequence.
 
     >>> solution(1000000, True)
     (837799, 525)
@@ -88,13 +90,17 @@ def solution(m: int = 1000000, extra_info: bool = False) -> Tuple[int, int]:
 
 
 if __name__ == "__main__":
-    print("""
+    print(
+        """
     calculate the number with the longest collatz chain
     in the range between 1 and the following number:
-          """)
+          """
+    )
     input_number = int(input().strip())
     number, chain_length = solution(input_number, True)
-    print(f"""
+    print(
+        f"""
     the maximum collatz chain of all numbers between 1 and {input_number} is
     {chain_length}, starting with the number {number}
-          """)
+          """
+    )
