@@ -89,10 +89,11 @@ def similarity_search(dataset: np.ndarray, value_array: np.ndarray) -> list:
     If not, it'll come up with errors.
     >>> dataset = np.array([[0, 0], [1, 1], [2, 2]], dtype=np.float32)
     >>> value_array = np.array([[0, 0], [0, 1]], dtype=np.int32)
-    >>> similarity_search(dataset, value_array)
+    >>> similarity_search(dataset, value_array)  # doctest: +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
     ...
-    TypeError: Input data have different datatype... dataset : float32, value_array : int32
+    TypeError: Input data have different datatype...
+    dataset : float32, value_array : int32
     """
 
     if dataset.ndim != value_array.ndim:
