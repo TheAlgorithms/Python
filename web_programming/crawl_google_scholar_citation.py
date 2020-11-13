@@ -15,10 +15,8 @@ def get_citation(base_url: str, params: dict) -> str:
     get_div = soup.find("div", attrs={"class": "gs_ri"})
     get_a_tag = get_div.find("div", attrs={"class": "gs_fl"}).findAll("a")
     citation = get_a_tag[2].get_text()
-    if "Cited" not in citation:
-        citation = "Cited by 0"
 
-    return citation.replace("Cited by ", "")
+    return citation
 
 
 if __name__ == "__main__":
@@ -28,10 +26,12 @@ if __name__ == "__main__":
             " for ultrahigh areal capacitance,"
             " volumetric capacitance, and energy density"
         ),
-        "journal_name": "Chem. Mater.",
+        "journal": "Chem. Mater.",
         "volume": "30",
-        "page": "3979-3990",
+        "pages": "3979-3990",
         "year": "2018",
+        "hl": "en"
+        ,
     }
 
-    print(get_citation("http://scholar.google.com/scholar_lookup?hl=en&", params=params))
+    print(get_citation("http://scholar.google.com/scholar_lookup", params=params))
