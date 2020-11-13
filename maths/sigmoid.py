@@ -19,11 +19,9 @@ def sigmoid(vector: np.array) -> np.array:
         vector (np.array): A  numpy array of shape (1,n)
         consisting of real values
 
-
     Returns:
         sigmoid_vec (np.array): The input numpy array, after applying
         sigmoid.
-
 
     Examples:
     >>> sigmoid(np.array([-1.0, 1.0, 2.0]))
