@@ -45,8 +45,7 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    user_input = input("Enter numbers separated by a comma:").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
+    unsorted = list(map(int,input("Enter numbers separated by Space : ").split()))
     start = time.process_time()
-    print(*bubble_sort(unsorted), sep=",")
+    print(*bubble_sort(unsorted), sep=" ")
     print(f"Processing time: {time.process_time() - start}")
