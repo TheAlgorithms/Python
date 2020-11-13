@@ -54,11 +54,15 @@ if __name__ == "__main__":
     """
     You have to fill following values: title, journal_name, volume, page, year.
     """
-    title = ""
-    journal_name = ""
-    volume = ""
-    page = ""
-    year = ""
+    title = (
+        "Precisely geometry controlled microsupercapacitors"
+        " for ultrahigh areal capacitance,"
+        " volumetric capacitance, and energy density"
+    )
+    journal_name = "Chem. Mater."
+    volume = "30"
+    page = "3979-3990"
+    year = "2018"
 
     citation = get_citation(create_url(title, journal_name, volume, page, year))
     print(citation)
