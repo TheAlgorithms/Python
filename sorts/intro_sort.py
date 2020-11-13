@@ -1,9 +1,9 @@
 """
 Introspective Sort is hybrid sort (Quick Sort + Heap Sort + Insertion Sort)
 if the size of the list is under 16, use insertion sort
+https://en.wikipedia.org/wiki/Introsort
 """
 import math
-import random
 
 
 def insertion_sort(array: list, start: int, end: int) -> list:
@@ -17,7 +17,7 @@ def insertion_sort(array: list, start: int, end: int) -> list:
     return array
 
 
-def heapify(array: list, index: int, heap_size: int):  # Max Heap
+def heapify(array: list, index: int, heap_size: int) -> None:  # Max Heap
     largest = index
     left_index = 2 * index + 1  # Left Node
     right_index = 2 * index + 2  # Right Node
@@ -46,9 +46,7 @@ def heap_sort(array: list) -> list:
     return array
 
 
-def median_of_3(
-    array: list, first_index: int, middle_index: int, last_index: int
-) -> int:
+def median_of_3(array: list, first_index: int, middle_index: int, last_index: int) -> int:
     if (array[first_index] > array[middle_index]) != (
         array[first_index] > array[last_index]
     ):
@@ -83,7 +81,18 @@ def sort(array: list):
 
 
 def intro_sort(array: list, start: int, end: int, size_threshold: int, max_depth: int):
-    # if size > 16: heap sort or quick sort
+    """
+    :param collection: some mutable ordered collection with heterogeneous
+    comparable items inside
+    :return: the same collection ordered by ascending
+
+    Examples:
+    >>> sort([4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12])
+    [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
+
+    >>> sort([-1, -5, -3, -13, -44])
+    [-44, -13, -5, -3, -1]
+    """
     while end - start > size_threshold:
         if max_depth == 0:
             return heap_sort(array)
@@ -92,12 +101,14 @@ def intro_sort(array: list, start: int, end: int, size_threshold: int, max_depth
         p = partition(array, start, end, pivot)
         intro_sort(array, p, end, size_threshold, max_depth)
         end = p
-    return insertion_sort(array)
+    return insertion_sort(array, start, end)
 
 
 if __name__ == "__main__":
-    array = []
-    for i in range(30):
-        array.append(random.randrange(100))
+    import doctest
 
-    assert sort(array) == sorted(array)
+    doctest.testmod()
+
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(sort(unsorted))
