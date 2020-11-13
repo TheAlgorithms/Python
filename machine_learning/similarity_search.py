@@ -27,10 +27,7 @@ def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
     >>> euclidean(np.array([0, 0, 0]), np.array([0, 0, 1]))
     1.0
     """
-
-    dist = 0
-
-    return math.sqrt(sum(pow(a - b, 2)  for a, b in zip(input_a, input_b)))
+    return math.sqrt(sum(pow(a - b, 2) for a, b in zip(input_a, input_b)))
 
 
 def similarity_search(dataset: np.ndarray, value_array: np.ndarray) -> list:
