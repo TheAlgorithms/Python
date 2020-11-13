@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Sigmoid_function
 import numpy as np
 
 
-def sigmoid(vector: np.array):
+def sigmoid(vector: np.array) -> np.array:
     """
     Implements the sigmoid function
 
@@ -24,15 +24,19 @@ def sigmoid(vector: np.array):
         sigmoid_vec (np.array): The input numpy array, after applying
         sigmoid.
 
-    >>> vec = np.array([-1.0, 1.0, 2.0])
-    >>> sigmoid(vec)
+
+    Examples:
+    >>> sigmoid(np.array([-1.0, 1.0, 2.0]))
     array([0.26894142, 0.73105858, 0.88079708])
+
+    >>> sigmoid(np.array([0.0]))
+    array([0.5])
     """
 
     return 1 / (1 + np.exp(-vector))
 
 
 if __name__ == "__main__":
-    print(
-        sigmoid(np.array([-1.0, 1.0, 2.0]))
-    )  # --> [0.26894142, 0.73105858, 0.88079708]
+    import doctest
+    
+    doctest.testmod()
