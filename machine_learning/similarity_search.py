@@ -12,7 +12,7 @@ import math
 import numpy as np
 
 
-def euclidean(input_a: np.ndarray, input_b: np.ndarray):
+def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
     """
     Calculates euclidean distance between two data.
     :param input_a: ndarray of first vector.
@@ -30,77 +30,105 @@ def euclidean(input_a: np.ndarray, input_b: np.ndarray):
 
     dist = 0
 
-    try:
-        for index, v in enumerate(input_a):
-            dist += pow(input_a[index] - input_b[index], 2)
-        return math.sqrt(dist)
-    except TypeError:
-        raise TypeError("Euclidean's input types are not right ...")
+    for a, b in zip(input_a, input_b):
+        dist += pow(a - b, 2)
+    return math.sqrt(dist)
 
 
-def similarity_search(dataset: np.ndarray, value: np.ndarray) -> list:
+def similarity_search(dataset: np.ndarray, value_array: np.ndarray) -> list:
     """
     :param dataset: Set containing the vectors. Should be ndarray.
-    :param value: vector/vectors we want to know the nearest vector from dataset.
+    :param value_array: vector/vectors we want to know the nearest vector from dataset.
     :return: Result will be a list containing
             1. the nearest vector
             2. distance from the vector
 
-    >>> a = np.array([[0], [1], [2]])
-    >>> b = np.array([[0]])
-    >>> similarity_search(a, b)
+    >>> dataset = np.array([[0], [1], [2]])
+    >>> value_array = np.array([[0]])
+    >>> similarity_search(dataset, value_array)
     [[[0], 0.0]]
 
-    >>> a = np.array([[0, 0], [1, 1], [2, 2]])
-    >>> b = np.array([[0, 1]])
-    >>> similarity_search(a, b)
+    >>> dataset = np.array([[0, 0], [1, 1], [2, 2]])
+    >>> value_array = np.array([[0, 1]])
+    >>> similarity_search(dataset, value_array)
     [[[0, 0], 1.0]]
 
-    >>> a = np.array([[0, 0, 0], [1, 1, 1], [2, 2, 2]])
-    >>> b = np.array([[0, 0, 1]])
-    >>> similarity_search(a, b)
+    >>> dataset = np.array([[0, 0, 0], [1, 1, 1], [2, 2, 2]])
+    >>> value_array = np.array([[0, 0, 1]])
+    >>> similarity_search(dataset, value_array)
     [[[0, 0, 0], 1.0]]
 
-    >>> a = np.array([[0, 0, 0], [1, 1, 1], [2, 2, 2]])
-    >>> b = np.array([[0, 0, 0], [0, 0, 1]])
-    >>> similarity_search(a, b)
+    >>> dataset = np.array([[0, 0, 0], [1, 1, 1], [2, 2, 2]])
+    >>> value_array = np.array([[0, 0, 0], [0, 0, 1]])
+    >>> similarity_search(dataset, value_array)
     [[[0, 0, 0], 0.0], [[0, 0, 0], 1.0]]
+
+    These are the errors that might occur:
+
+    1. If dimensions are different.
+    For example, dataset has 2d array and value_array has 1d array:
+    >>> dataset = np.array([[1]])
+    >>> value_array = np.array([1])
+    >>> similarity_search(dataset, value_array)
+    Traceback (most recent call last):
+    ...
+    ValueError: Wrong input data's dimensions... dataset : 2, value_array : 1
+
+    2. If data's shapes are different.
+    For example, dataset has shape of (3, 2) and value_array has (2, 3).
+    We are expecting same shapes of two arrays, so it is wrong.
+    >>> dataset = np.array([[0, 0], [1, 1], [2, 2]])
+    >>> value_array = np.array([[0, 0, 0], [0, 0, 1]])
+    >>> similarity_search(dataset, value_array)
+    Traceback (most recent call last):
+    ...
+    ValueError: Wrong input data's shape... dataset : 2, value_array : 3
+
+    3. If data types are different.
+    When trying to compare, we are expecting same types so they should be same.
+    If not, it'll come up with errors.
+    >>> dataset = np.array([[0, 0], [1, 1], [2, 2]], dtype=np.float32)
+    >>> value_array = np.array([[0, 0], [0, 1]], dtype=np.int32)
+    >>> similarity_search(dataset, value_array)
+    Traceback (most recent call last):
+    ...
+    TypeError: Input data have different datatype... dataset : float32, value_array : int32
     """
 
-    if dataset.ndim != value.ndim:
+    if dataset.ndim != value_array.ndim:
         raise ValueError(
             f"Wrong input data's dimensions... dataset : {dataset.ndim}, "
-            f"value: {value.ndim}"
+            f"value_array : {value_array.ndim}"
         )
 
     try:
-        if dataset.shape[1] != value.shape[1]:
+        if dataset.shape[1] != value_array.shape[1]:
             raise ValueError(
                 f"Wrong input data's shape... dataset : {dataset.shape[1]}, "
-                f"value : {value.shape[1]}"
+                f"value_array : {value_array.shape[1]}"
             )
     except IndexError:
-        if dataset.ndim != value.ndim:
-            raise TypeError("Wrong type")
+        if dataset.ndim != value_array.ndim:
+            raise TypeError("Wrong shape")
 
-    if dataset.dtype != value.dtype:
+    if dataset.dtype != value_array.dtype:
         raise TypeError(
             f"Input data have different datatype... dataset : {dataset.dtype}, "
-            f"value : {value.dtype}"
+            f"value_array : {value_array.dtype}"
         )
 
     answer = []
 
-    for index, v in enumerate(value):
-        dist = euclidean(value[index], dataset[0])
+    for value in value_array:
+        dist = euclidean(value, dataset[0])
         vector = dataset[0].tolist()
 
-        for index2 in range(1, len(dataset)):
-            temp_dist = euclidean(value[index], dataset[index2])
+        for dataset_value in dataset[1:]:
+            temp_dist = euclidean(value, dataset_value)
 
             if dist > temp_dist:
                 dist = temp_dist
-                vector = dataset[index2].tolist()
+                vector = dataset_value.tolist()
 
         answer.append([vector, dist])
 
