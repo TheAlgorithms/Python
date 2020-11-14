@@ -30,7 +30,6 @@ def sigmoid(vector: np.array) -> np.array:
     >>> sigmoid(np.array([0.0]))
     array([0.5])
     """
-
     return 1 / (1 + np.exp(-vector))
 
 
