@@ -1,0 +1,6 @@
+def sum_digits(n):
+  if n<10:
+    return n
+  last_digit = n%10
+  sum = last_digit + sum_digits(n//10)
+  return sum
