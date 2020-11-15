@@ -77,6 +77,8 @@ def partition(array: list, low: int, high: int, pivot: int) -> int:
 
 
 def sort(array: list):
+    if len(array) == 0:
+        return array
     max_depth = 2 * math.ceil(math.log2(len(array)))
     size_threshold = 16
     return intro_sort(array, 0, len(array), size_threshold, max_depth)
@@ -94,6 +96,21 @@ def intro_sort(array: list, start: int, end: int, size_threshold: int, max_depth
 
     >>> sort([-1, -5, -3, -13, -44])
     [-44, -13, -5, -3, -1]
+
+    >>> sort([])
+    []
+
+    >>> sort([5])
+    [5]
+
+    >>> sort([-3, 0, -7, 6, 23, -34])
+    [-34, -7, -3, 0, 6, 23]
+
+    >>> sort([1.7, 1.0, 3.3, 2.1, 0.3 ])
+    [0.3, 1.0, 1.7, 2.1, 3.3]
+
+    >>> sort(['d', 'a', 'b', 'e', 'c'])
+    ['a', 'b', 'c', 'd', 'e']
     """
     while end - start > size_threshold:
         if max_depth == 0:
@@ -111,6 +128,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    user_input = input("Enter numbers separated by a comma:\n").strip()
+    user_input = input("Enter numbers separated by a comma : ").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(sort(unsorted))
