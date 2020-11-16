@@ -42,7 +42,7 @@ repos:
     hooks:
       - id: codespell
         args:
-          - --ignore-words-list=ans,fo,followings,hist,iff,secant,som,tim
+          - --ignore-words-list=ans,fo,followings,hist,iff,mater,secant,som,tim
           - --skip="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_022/p022_names.txt"
           - --quiet-level=2
         exclude: |
