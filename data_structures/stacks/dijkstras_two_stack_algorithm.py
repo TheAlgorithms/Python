@@ -31,9 +31,9 @@ NOTE:   It only works with whole numbers.
 """
 __author__ = "Alexander Joslin"
 
-from .stack import Stack
-
 import operator as op
+
+from .stack import Stack
 
 
 def dijkstras_two_stack_algorithm(equation: str) -> int:
