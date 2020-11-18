@@ -22,4 +22,4 @@ def fetch_from_to(start, end) -> list:
 if __name__ == "__main__":
     for entry in fetch_from_to(start=date(2020, 10, 1), end=date(2020, 10, 3)):
         print("from {from} to {to}: {intensity[actual]}".format(**entry))
-    print(f"{fetch_last_half_hour() = }")
+    print(f"last half hour:{fetch_last_half_hour()}")
