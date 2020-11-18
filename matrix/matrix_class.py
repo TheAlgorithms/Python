@@ -195,7 +195,7 @@ class Matrix:
             return self.get_minor(row, column)
         return -1 * self.get_minor(row, column)
 
-    def minors(self) -> Matrix:
+    def minors(self) -> "Matrix":
         return Matrix(
             [
                 [self.get_minor(row, column) for column in range(self.num_columns)]
@@ -203,7 +203,7 @@ class Matrix:
             ]
         )
 
-    def cofactors(self) -> Matrix:
+    def cofactors(self) -> "Matrix":
 
         return Matrix(
             [
@@ -217,7 +217,7 @@ class Matrix:
             ]
         )
 
-    def adjugate(self) -> Matrix:
+    def adjugate(self) -> "Matrix":
 
         values = [
             [self.cofactors().rows[column][row] for column in range(self.num_columns)]
@@ -236,7 +236,6 @@ class Matrix:
         if self.num_rows == 0:
             return "[]"
         if self.num_rows == 1:
-            print(self.rows[0])
             return "[[" + ". ".join(str(i) for i in self.rows[0]) + ".]]"
         return (
             "["
@@ -288,7 +287,7 @@ class Matrix:
             ]
 
     # MATRIX OPERATIONS
-    def __eq__(self, other: Matrix) -> bool:
+    def __eq__(self, other: "Matrix") -> bool:
 
         if not isinstance(other, Matrix):
             raise TypeError("A Matrix can only be compared with another Matrix")
@@ -297,11 +296,11 @@ class Matrix:
     def __ne__(self, other) -> bool:
         return not self == other
 
-    def __neg__(self) -> Matrix:
+    def __neg__(self) -> "Matrix":
 
         return self * -1
 
-    def __add__(self, other) -> Matrix:
+    def __add__(self, other) -> "Matrix":
 
         if self.order != other.order:
             raise ValueError("Addition requires matrices of the same order")
@@ -312,7 +311,7 @@ class Matrix:
             ]
         )
 
-    def __sub__(self, other) -> Matrix:
+    def __sub__(self, other) -> "Matrix":
 
         if self.order != other.order:
             raise ValueError("Subtraction requires matrices of the same order")
@@ -323,7 +322,7 @@ class Matrix:
             ]
         )
 
-    def __mul__(self, other) -> Matrix:
+    def __mul__(self, other) -> "Matrix":
 
         if isinstance(other, (int, float)):
             return Matrix([[element * other for element in row] for row in self.rows])
@@ -367,7 +366,7 @@ class Matrix:
         return sum(row[i] * column[i] for i in range(len(row)))
 
     @classmethod
-    def cross_product(cls, first: Matrix, other: Matrix) -> Matrix:
+    def cross_product(cls, first: "Matrix", other: "Matrix") -> "Matrix":
 
         # https://en.wikipedia.org/wiki/Cross_product
         if isinstance(first, Matrix) and isinstance(other, Matrix):
