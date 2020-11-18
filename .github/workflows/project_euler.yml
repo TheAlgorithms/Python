@@ -1,9 +1,10 @@
 on:
   pull_request:
-    # only check if a file is changed within the project_euler directory
+    # only check if a file is changed within the project_euler directory and related files
     paths:
       - 'project_euler/**'
       - '.github/workflows/project_euler.yml'
+      - 'scripts/validate_solutions.py'
 
 name: 'Project Euler'
 
@@ -17,7 +18,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install --upgrade pytest pytest-cov
-      - run: pytest --doctest-modules --durations=10 --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
+      - run: pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
@@ -27,4 +28,4 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install --upgrade pytest
-      - run: pytest --durations=10 project_euler/validate_solutions.py
+      - run: pytest scripts/validate_solutions.py

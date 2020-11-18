@@ -17,7 +17,7 @@ def solution():
     '5537376230'
     """
     file_path = os.path.join(os.path.dirname(__file__), "num.txt")
-    with open(file_path, "r") as file_hand:
+    with open(file_path) as file_hand:
         return str(sum([int(line) for line in file_hand]))[:10]
 
 
