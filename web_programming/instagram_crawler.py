@@ -23,7 +23,7 @@ class InstagramUser:
     """
     Class Instagram crawl instagram user information
 
-    Usage: (doctest failing on GitHub actions)
+    Usage: (doctest failing on GitHub Actions)
     # >>> instagram_user = InstagramUser("github")
     # >>> instagram_user.is_verified
     True
@@ -105,7 +105,7 @@ def test_instagram_user(username: str = "github") -> None:
     import os
 
     if os.environ.get("GITHUB_ACTIONS"):
-        return None  # test failing on GitHub actions
+        return None  # test failing on GitHub Actions
     instagram_user = InstagramUser(username)
     assert instagram_user.user_data
     assert isinstance(instagram_user.user_data, dict)
