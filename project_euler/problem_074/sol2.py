@@ -16,8 +16,12 @@
     the chains of non repeating items.
     The generation of the chain stops before a repeating item
     or if the size of the chain is greater then the desired one.
-    After generating each chain, the length is checked and the counter increases.
+    After generating each chain, the length is checked and the
+    counter increases.
 """
+
+factorial_cache = {}
+factorial_sum_cache = {}
 
 
 def factorial(a: int) -> int:
@@ -36,18 +40,23 @@ def factorial(a: int) -> int:
     if a < 0:
         raise ValueError("Invalid negative input!", a)
 
+    if a in factorial_cache:
+        return factorial_cache[a]
+
     # The case of 0! is handled separately
     if a == 0:
-        return 1
+        factorial_cache[a] = 1
     else:
         # use a temporary support variable to store the computation
+        temporary_number = a
         temporary_computation = 1
 
-        while a > 0:
-            temporary_computation *= a
-            a -= 1
+        while temporary_number > 0:
+            temporary_computation *= temporary_number
+            temporary_number -= 1
 
-        return temporary_computation
+        factorial_cache[a] = temporary_computation
+    return factorial_cache[a]
 
 
 def factorial_sum(a: int) -> int:
@@ -57,7 +66,8 @@ def factorial_sum(a: int) -> int:
     >>> factorial_sum(69)
     363600
     """
-
+    if a in factorial_sum_cache:
+        return factorial_sum_cache[a]
     # Prepare a variable to hold the computation
     fact_sum = 0
 
@@ -67,17 +77,15 @@ def factorial_sum(a: int) -> int:
     """
     for i in str(a):
         fact_sum += factorial(int(i))
-
+    factorial_sum_cache[a] = fact_sum
     return fact_sum
 
 
 def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
     """Returns the number of numbers that produce
         chains with exactly 60 non repeating elements.
-    >>> solution(60,1000000)
-    402
-    >>> solution(15,1000000)
-    17800
+    >>> solution(10, 1000)
+    26
     """
 
     # the counter for the chains with the exact desired length
@@ -86,25 +94,27 @@ def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
     for i in range(1, number_limit + 1):
 
         # The temporary list will contain the elements of the chain
-        chain_list = [i]
+        chain_set = {i}
+        len_chain_set = 1
+        last_chain_element = i
 
         # The new element of the chain
-        new_chain_element = factorial_sum(chain_list[-1])
+        new_chain_element = factorial_sum(last_chain_element)
 
-        """ Stop computing the chain when you find a repeating item
-            or the length it greater then the desired one.
-        """
-        while not (new_chain_element in chain_list) and (
-            len(chain_list) <= chain_length
-        ):
-            chain_list += [new_chain_element]
+        # Stop computing the chain when you find a repeating item
+        # or the length it greater then the desired one.
 
-            new_chain_element = factorial_sum(chain_list[-1])
+        while new_chain_element not in chain_set and len_chain_set <= chain_length:
+            chain_set.add(new_chain_element)
 
-        """ If the while exited because the chain list contains the exact amount of elements
-            increase the counter
-        """
-        chain_counter += len(chain_list) == chain_length
+            len_chain_set += 1
+            last_chain_element = new_chain_element
+            new_chain_element = factorial_sum(last_chain_element)
+
+        # If the while exited because the chain list contains the exact amount
+        # of elements increase the counter
+        if len_chain_set == chain_length:
+            chain_counter += 1
 
     return chain_counter
 
