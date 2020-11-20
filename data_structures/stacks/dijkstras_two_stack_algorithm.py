@@ -1,7 +1,4 @@
 """
-Author: Alexander Joslin
-GitHub: github.com/echoaj
-
 Explanation:  https://medium.com/@haleesammar/implemented-in-js-dijkstras-2-stack-
               algorithm-for-evaluating-mathematical-expressions-fc0837dae1ea
 
