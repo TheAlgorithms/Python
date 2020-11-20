@@ -1,11 +1,24 @@
 import random
 import math
+from typing import MutableSet
 
 
 def is_prime(num: int) -> bool:
     """
     Checks if number is prime, for simplicity uses "bruteforce"
     Check other algorithms for example Miller-Rabin for better performance
+
+    >>> is_prime(1)
+    False
+
+    >>> is_prime(13)
+    True
+
+    >>> is_prime(-1)
+    False
+
+    >>> is_prime(59)
+    True
     """
     if num < 2:
         return False
@@ -58,7 +71,7 @@ def get_random_non_quadratic_residue(p: int) -> int:
             return candidate
 
 
-def tonelli_shanks_algorithm(n: int, p: int) -> set[int]:
+def tonelli_shanks_algorithm(n: int, p: int) -> MutableSet[int]:
     """
     Main function for Tonelli-Shanks algorithm.
 
