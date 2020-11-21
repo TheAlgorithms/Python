@@ -4,8 +4,8 @@ https://www.amdoren.com
 """
 
 import os
-import requests
 
+import requests
 
 URL_BASE = "https://www.amdoren.com/api/currency.php"
 TESTING = os.getenv("CI", False)
