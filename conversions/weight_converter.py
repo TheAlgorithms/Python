@@ -2,9 +2,12 @@ weight = int(input("enter your weight:"))
 lb_or_kg = input("lb or kg:")
 converted_weight = ""
 if lb_or_kg =="lb":
-    converted_weight = weight / 2.205 + "kgs"
+    converted_weight = weight / 2.205
+    print(f"{converted_weight}kgs")
 else:
-    converted_weight = weight * 2.205 + "lbs"
+    converted_weight = weight * 2.205
+    print(f"{converted_weight} lbs")
+
 
 
 
