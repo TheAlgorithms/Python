@@ -737,10 +737,14 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_123/sol1.py)
   * Problem 125
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_125/sol1.py)
+  * Problem 129
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_129/sol1.py)
   * Problem 173
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_173/sol1.py)
   * Problem 174
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_174/sol1.py)
+  * Problem 188
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_188/sol1.py)
   * Problem 191
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
   * Problem 203
