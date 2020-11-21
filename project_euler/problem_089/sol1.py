@@ -30,7 +30,7 @@ consecutive identical units.
 
 import os
 
-symbols = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+SYMBOLS = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 
 
 def parse_roman_numerals(numerals: str) -> int:
@@ -43,20 +43,20 @@ def parse_roman_numerals(numerals: str) -> int:
     4
     """
 
-    num = 0
+    total_value = 0
 
-    i = 0
-    while i < len(numerals) - 1:
-        value = symbols[numerals[i]]
-        next_value = symbols[numerals[i + 1]]
-        if value < next_value:
-            num -= value
+    index = 0
+    while index < len(numerals) - 1:
+        current_value = SYMBOLS[numerals[index]]
+        next_value = SYMBOLS[numerals[index + 1]]
+        if current_value < next_value:
+            total_value -= current_value
         else:
-            num += value
-        i += 1
-    num += symbols[numerals[i]]
+            total_value += current_value
+        index += 1
+    total_value += SYMBOLS[numerals[index]]
 
-    return num
+    return total_value
 
 
 def generate_roman_numerals(num: int) -> str:
@@ -71,34 +71,34 @@ def generate_roman_numerals(num: int) -> str:
 
     numerals = ""
 
-    m = num // 1000
-    numerals += m * "M"
+    m_count = num // 1000
+    numerals += m_count * "M"
     num %= 1000
 
-    c = num // 100
-    if c == 9:
+    c_count = num // 100
+    if c_count == 9:
         numerals += "CM"
-        c -= 9
-    elif c == 4:
+        c_count -= 9
+    elif c_count == 4:
         numerals += "CD"
-        c -= 4
-    if c >= 5:
+        c_count -= 4
+    if c_count >= 5:
         numerals += "D"
-        c -= 5
-    numerals += c * "C"
+        c_count -= 5
+    numerals += c_count * "C"
     num %= 100
 
-    x = num // 10
-    if x == 9:
+    x_count = num // 10
+    if x_count == 9:
         numerals += "XC"
-        x -= 9
-    elif x == 4:
+        x_count -= 9
+    elif x_count == 4:
         numerals += "XL"
-        x -= 4
-    if x >= 5:
+        x_count -= 4
+    if x_count >= 5:
         numerals += "L"
-        x -= 5
-    numerals += x * "X"
+        x_count -= 5
+    numerals += x_count * "X"
     num %= 10
 
     if num == 9:
