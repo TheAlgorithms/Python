@@ -21,9 +21,9 @@ def solution(length: int = 50) -> str:
     This function is used for finding how many units long be filled with
 
     >>> solution()
-    '100808458960497'
+    100808458960497
     >>> solution(25)
-    '7555935'
+    7555935
     """
     ways = [1] + [0] * length
     for n in range(1, len(ways)):
