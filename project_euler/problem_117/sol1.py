@@ -1,5 +1,5 @@
 """
-Project Euler Problem 104: https://projecteuler.net/problem=117
+Project Euler Problem 117: https://projecteuler.net/problem=117
 Using a combination of grey square tiles and oblong tiles chosen from:
 red tiles (measuring two units), green tiles (measuring three units),
 and blue tiles (measuring four units), it is possible to tile a row
@@ -13,24 +13,7 @@ Compute n = 0 manually as a base case.
  - Green tile   (n>=3): Rest of the row can be anything of length n-3. Add ways[n-3].
  - Blue tile    (n>=4): Rest of the row can be anything of length n-4. Add ways[n-4].
 """
-
-
-def _calculate(length: int) -> str:
-    """
-    A small helper function for the recursion, mainly to have
-    a clean interface for the solution() function below.
-
-    >>> _calculate(12)
-    '1490'
-    >>> _calculate(15)
-    '10671'
-    >>> _calculate(41)
-    '274423830033'
-    """
-    ways = [1] + [0] * length
-    for n in range(1, len(ways)):
-        ways[n] += sum(ways[max(n - 4, 0) : n])
-    return str(ways[-1])
+    
 
 
 def solution(length: int = 50) -> str:
@@ -42,11 +25,11 @@ def solution(length: int = 50) -> str:
     >>> solution(25)
     '7555935'
     """
-    return _calculate(length)
+    ways = [1] + [0] * length
+    for n in range(1, len(ways)):
+        ways[n] += sum(ways[max(n - 4, 0) : n])
+    return ways[-1]
 
 
 if __name__ == "__main__":
-    from doctest import testmod
-
-    testmod()
-    print(f"{solution()}")
+    print(f"{solution() = }")
