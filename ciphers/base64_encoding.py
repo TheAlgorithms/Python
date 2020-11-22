@@ -1,89 +1,114 @@
-def encode_base64(text: str) -> str:
-    r"""
-    >>> encode_base64('WELCOME to base64 encoding 😁')
-    'V0VMQ09NRSB0byBiYXNlNjQgZW5jb2Rpbmcg8J+YgQ=='
-    >>> encode_base64('AÅᐃ𐀏🤓')
-    'QcOF4ZCD8JCAj/CfpJM='
-    >>> encode_base64('A'*60)
-    'QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB\r\nQUFB'
+# Import the official implementation to check if ours is correct
+from base64 import b64encode, b64decode
+
+B64_CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+
+def base64_encode(data: bytes) -> bytes:
+    """Encodes data according to RFC4648.
+
+    The data is first transformed to binary and appended with binary digits so that its
+    length becomes a multiple of 6, then each 6 binary digits will match a character in
+    the B64_CHARSET string. The number of appended binary digits would later determine
+    how many "=" sign should be added, the padding.
+    For every 2 binary digits added, a "=" sign is added in the output.
+    We can add any binary digits to make it a multiple of 6, for instance, consider the
+    following example:
+    "AA" -> 0010100100101001 -> 001010 010010 1001
+    As can be seen above, 2 more binary digits should be added, so there's 4
+    possibilities here: 00, 01, 10 or 11.
+    That being said, Base64 encoding can be used in Steganography to hide data in these
+    appended digits.
+
+    >>> a = b"This pull request is part of Hacktoberfest20!"
+    >>> b = b"https://tools.ietf.org/html/rfc4648"
+    >>> c = b"A"
+    >>> base64_encode(a) == b64encode(a)
+    True
+    >>> base64_encode(b) == b64encode(b)
+    True
+    >>> base64_encode(c) == b64encode(c)
+    True
     """
-    base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    binary_stream = "".join(bin(char)[2:].zfill(8) for char in data)
 
-    byte_text = bytes(text, "utf-8")  # put text in bytes for unicode support
-    r = ""  # the result
-    c = -len(byte_text) % 3  # the length of padding
-    p = "=" * c  # the padding
-    s = byte_text + b"\x00" * c  # the text to encode
+    padding_needed = len(binary_stream) % 6 != 0
 
-    i = 0
-    while i < len(s):
-        if i > 0 and ((i / 3 * 4) % 76) == 0:
-            r = r + "\r\n"  # for unix newline, put "\n"
+    if padding_needed:
+        # The padding that will be added later
+        padding = b"=" * ((6 - len(binary_stream) % 6) // 2)
 
-        n = (s[i] << 16) + (s[i + 1] << 8) + s[i + 2]
-
-        n1 = (n >> 18) & 63
-        n2 = (n >> 12) & 63
-        n3 = (n >> 6) & 63
-        n4 = n & 63
-
-        r += base64_chars[n1] + base64_chars[n2] + base64_chars[n3] + base64_chars[n4]
-        i += 3
-
-    return r[0 : len(r) - len(p)] + p
-
-
-def decode_base64(text: str) -> str:
-    r"""
-    >>> decode_base64('V0VMQ09NRSB0byBiYXNlNjQgZW5jb2Rpbmcg8J+YgQ==')
-    'WELCOME to base64 encoding 😁'
-    >>> decode_base64('QcOF4ZCD8JCAj/CfpJM=')
-    'AÅᐃ𐀏🤓'
-    >>> decode_base64("QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUF"
-    ...               "BQUFBQUFBQUFB\r\nQUFB")
-    'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-    """
-    base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-    s = ""
-
-    for i in text:
-        if i in base64_chars:
-            s += i
-            c = ""
-        else:
-            if i == "=":
-                c += "="
-
-    p = ""
-    if c == "=":
-        p = "A"
+        # Append binary_stream with arbitrary binary digits (0's by default) to make its
+        # length a multiple of 6.
+        binary_stream += "0" * (6 - len(binary_stream) % 6)
     else:
-        if c == "==":
-            p = "AA"
+        padding = b""
 
-    r = b""
-    s = s + p
+    # Encode every 6 binary digits to their corresponding Base64 character
+    return (
+        "".join(
+            B64_CHARSET[int(binary_stream[index : index + 6], 2)]
+            for index in range(0, len(binary_stream), 6)
+        ).encode()
+        + padding
+    )
 
-    i = 0
-    while i < len(s):
-        n = (
-            (base64_chars.index(s[i]) << 18)
-            + (base64_chars.index(s[i + 1]) << 12)
-            + (base64_chars.index(s[i + 2]) << 6)
-            + base64_chars.index(s[i + 3])
+
+def base64_decode(encoded_data: str) -> bytes:
+    """Decodes data according to RFC4648.
+
+    This does the reverse operation of base64_encode.
+    We first transform the encoded data back to a binary stream, take off the
+    previously appended binary digits according to the padding, at this point we
+    would have a binary stream whose length is multiple of 8, the last step is
+    to convert every 8 bits to a byte.
+
+    >>> a = "VGhpcyBwdWxsIHJlcXVlc3QgaXMgcGFydCBvZiBIYWNrdG9iZXJmZXN0MjAh"
+    >>> b = "aHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzQ2NDg="
+    >>> c = "QQ=="
+    >>> base64_decode(a) == b64decode(a)
+    True
+    >>> base64_decode(b) == b64decode(b)
+    True
+    >>> base64_decode(c) == b64decode(c)
+    True
+    """
+    padding = encoded_data.count("=")
+
+    # Check if the encoded string contains non base64 characters
+    if padding:
+        assert all(
+            char in B64_CHARSET for char in encoded_data[:-padding]
+        ), "Invalid base64 character(s) found."
+    else:
+        assert all(
+            char in B64_CHARSET for char in encoded_data
+        ), "Invalid base64 character(s) found."
+
+    # Check the padding
+    assert len(encoded_data) % 4 == 0 and padding < 3, "Incorrect padding."
+
+    if padding:
+        # Remove padding if there is one
+        encoded_data = encoded_data[:-padding]
+
+        binary_stream = "".join(
+            bin(B64_CHARSET.index(char))[2:].zfill(6) for char in encoded_data
+        )[: -padding * 2]
+    else:
+        binary_stream = "".join(
+            bin(B64_CHARSET.index(char))[2:].zfill(6) for char in encoded_data
         )
 
-        r += bytes([(n >> 16) & 255]) + bytes([(n >> 8) & 255]) + bytes([n & 255])
+    data = [
+        int(binary_stream[index : index + 8], 2)
+        for index in range(0, len(binary_stream), 8)
+    ]
 
-        i += 4
-
-    return str(r[0 : len(r) - len(p)], "utf-8")
-
-
-def main():
-    print(encode_base64("WELCOME to base64 encoding 😁"))
-    print(decode_base64(encode_base64("WELCOME to base64 encoding 😁")))
+    return bytes(data)
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
