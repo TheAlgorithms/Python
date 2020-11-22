@@ -4,25 +4,25 @@ from doctest import testmod
 # Defining function
 
 
-def ohms_law(v: float = 0, i: float = 0, r: float = 0) -> float:
+def ohms_law(voltage: float, current: float, resistance: float) -> float:
 
     """
     This function calculates the any one
-    of the three fundemental values (v, i, r), of
-    electronics.
-    >>> ohms_law(v=10, r=5)
+    of the three fundemental values voltage,
+    current, resistance, of electronics.
+    >>> ohms_law(voltage=10, resistance=5,current=0 )
     2.0
-    >>> ohms_law(i=1, r=10)
+    >>> ohms_law(current=1, resistance=10, voltage=0)
     10.0
     """
-    if v == 0:
-        result = float(i * r)
+    if voltage == 0:
+        result = float(current * resistance)
         return result
-    elif i == 0:
-        result = v / r
+    elif current == 0:
+        result = voltage / resistance
         return result
-    elif r == 0:
-        result = v / i
+    elif resistance == 0:
+        result = voltage / current
         return result
     else:
         return 0
