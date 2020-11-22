@@ -1,7 +1,10 @@
+# Import the official implementation to check if ours is correct
+from base64 import b64encode, b64decode
+
 B64_CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 
-def base64_encode(data: bytes) -> str:
+def base64_encode(data: bytes) -> bytes:
     """Encodes data according to RFC4648.
 
     The data is first transformed to binary and appended with binary digits so that its
@@ -17,12 +20,15 @@ def base64_encode(data: bytes) -> str:
     That being said, Base64 encoding can be used in Steganography to hide data in these
     appended digits.
 
-    >>> base64_encode(b"This pull request is part of Hacktoberfest20!")
-    'VGhpcyBwdWxsIHJlcXVlc3QgaXMgcGFydCBvZiBIYWNrdG9iZXJmZXN0MjAh'
-    >>> base64_encode(b"https://tools.ietf.org/html/rfc4648")
-    'aHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzQ2NDg='
-    >>> base64_encode(b"A")
-    'QQ=='
+    >>> a = b"This pull request is part of Hacktoberfest20!"
+    >>> b = b"https://tools.ietf.org/html/rfc4648"
+    >>> c = b"A"
+    >>> base64_encode(a) == b64encode(a)
+    True
+    >>> base64_encode(b) == b64encode(b)
+    True
+    >>> base64_encode(c) == b64encode(c)
+    True
     """
     binary_stream = "".join(bin(char)[2:].zfill(8) for char in data)
 
@@ -30,7 +36,7 @@ def base64_encode(data: bytes) -> str:
 
     if padding_needed:
         # The padding that will be added later
-        padding = "=" * ((6 - len(binary_stream) % 6) // 2)
+        padding = b"=" * ((6 - len(binary_stream) % 6) // 2)
 
         # Append binary_stream with arbitrary binary digits (0's by default) to make its
         # length a multiple of 6.
@@ -40,7 +46,7 @@ def base64_encode(data: bytes) -> str:
     encoded_data = "".join(
         B64_CHARSET[int(binary_stream[index : index + 6], 2)]
         for index in range(0, len(binary_stream), 6)
-    )
+    ).encode()
 
     if padding_needed:
         return encoded_data + padding
@@ -57,12 +63,15 @@ def base64_decode(encoded_data: str) -> bytes:
     would have a binary stream whose length is multiple of 8, the last step is
     to convert every 8 bits to a byte.
 
-    >>> base64_decode("VGhpcyBwdWxsIHJlcXVlc3QgaXMgcGFydCBvZiBIYWNrdG9iZXJmZXN0MjAh")
-    b'This pull request is part of Hacktoberfest20!'
-    >>> base64_decode("aHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzQ2NDg=")
-    b'https://tools.ietf.org/html/rfc4648'
-    >>> base64_decode("QQ==")
-    b'A'
+    >>> a = "VGhpcyBwdWxsIHJlcXVlc3QgaXMgcGFydCBvZiBIYWNrdG9iZXJmZXN0MjAh"
+    >>> b = "aHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzQ2NDg="
+    >>> c = "QQ=="
+    >>> base64_decode(a) == b64decode(a)
+    True
+    >>> base64_decode(b) == b64decode(b)
+    True
+    >>> base64_decode(c) == b64decode(c)
+    True
     """
     padding = encoded_data.count("=")
 
