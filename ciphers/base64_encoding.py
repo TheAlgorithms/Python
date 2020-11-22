@@ -1,6 +1,3 @@
-# Import the official implementation to check if ours is correct
-from base64 import b64encode, b64decode
-
 B64_CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 
@@ -20,6 +17,7 @@ def base64_encode(data: bytes) -> bytes:
     That being said, Base64 encoding can be used in Steganography to hide data in these
     appended digits.
 
+    >>> from base64 import b64encode
     >>> a = b"This pull request is part of Hacktoberfest20!"
     >>> b = b"https://tools.ietf.org/html/rfc4648"
     >>> c = b"A"
@@ -63,6 +61,7 @@ def base64_decode(encoded_data: str) -> bytes:
     would have a binary stream whose length is multiple of 8, the last step is
     to convert every 8 bits to a byte.
 
+    >>> from base64 import b64decode
     >>> a = "VGhpcyBwdWxsIHJlcXVlc3QgaXMgcGFydCBvZiBIYWNrdG9iZXJmZXN0MjAh"
     >>> b = "aHR0cHM6Ly90b29scy5pZXRmLm9yZy9odG1sL3JmYzQ2NDg="
     >>> c = "QQ=="
