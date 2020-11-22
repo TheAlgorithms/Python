@@ -8,7 +8,7 @@ def ohms_law(voltage: float, current: float, resistance: float) -> float:
 
     """
     This function calculates the any one
-    of the three fundemental values voltage,
+    of the three fundemental ohms_law values voltage,
     current, resistance, of electronics.
     >>> ohms_law(voltage=10, resistance=5,current=0 )
     2.0
