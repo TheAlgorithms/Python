@@ -41,17 +41,17 @@ def base64_encode(data: bytes) -> bytes:
         # Append binary_stream with arbitrary binary digits (0's by default) to make its
         # length a multiple of 6.
         binary_stream += "0" * (6 - len(binary_stream) % 6)
+    else:
+        padding = b""
 
     # Encode every 6 binary digits to their corresponding Base64 character
-    encoded_data = "".join(
-        B64_CHARSET[int(binary_stream[index : index + 6], 2)]
-        for index in range(0, len(binary_stream), 6)
-    ).encode()
-
-    if padding_needed:
-        return encoded_data + padding
-    else:
-        return encoded_data
+    return (
+        "".join(
+            B64_CHARSET[int(binary_stream[index : index + 6], 2)]
+            for index in range(0, len(binary_stream), 6)
+        ).encode()
+        + padding
+    )
 
 
 def base64_decode(encoded_data: str) -> bytes:
