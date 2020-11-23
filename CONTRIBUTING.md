@@ -75,6 +75,13 @@ We want your work to be readable by others; therefore, we encourage you to note 
   flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
   ```
 
+- Pre-commit plugin
+
+  If you forget about coding style and let pre-commit fix your flake8/isort/black issue.
+
+  * Install pre-commit: $ python -m pip install pre-commit
+  * And then: $ pre-commit install #  to install git hooks in your .git/ directory 
+
 - Original code submission require docstrings or comments to describe your work.
 
 - More on docstrings and comments:
