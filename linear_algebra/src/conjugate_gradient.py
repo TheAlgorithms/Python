@@ -97,10 +97,8 @@ def conjugate_gradient(
     assert np.shape(b)[0] == np.shape(spd_matrix)[0]
     assert _is_matrix_spd(spd_matrix)
 
-    N = np.shape(b)[0]
-
     # Initialize solution guess, residual, search direction.
-    x0 = np.zeros((N, 1))
+    x0 = np.zeros((np.shape(b)[0], 1))
     r0 = np.copy(b)
     p0 = np.copy(r0)
 
