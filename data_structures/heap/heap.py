@@ -35,6 +35,8 @@ class Heap:
         """ return the parent index of given child """
         if child_idx > 0:
             return (child_idx - 1) // 2
+        else:
+            raise Exception("Index out of range")
 
     def left_child_idx(self, parent_idx: int) -> int:
         """
@@ -44,6 +46,8 @@ class Heap:
         left_child_index = 2 * parent_idx + 1
         if left_child_index < self.heap_size:
             return left_child_index
+        else:
+            raise Exception("No left child")
 
     def right_child_idx(self, parent_idx: int) -> int:
         """
@@ -53,6 +57,8 @@ class Heap:
         right_child_index = 2 * parent_idx + 2
         if right_child_index < self.heap_size:
             return right_child_index
+        else:
+            raise Exception("No right child")
 
     def max_heapify(self, index: int):
         """
@@ -76,8 +82,8 @@ class Heap:
 
     def build_max_heap(self, collection: Iterable[Union[int, float]]):
         """ build max heap from an unsorted array"""
-        self.heap_size = len(collection)
         self.h = list(collection)
+        self.heap_size = len(self.h)
         if self.heap_size > 1:
             # max_heapify from right to left but exclude leaves (last level)
             for i in range(self.heap_size // 2 - 1, -1, -1):
@@ -87,6 +93,8 @@ class Heap:
         """ return the max in the heap """
         if self.heap_size >= 1:
             return self.h[0]
+        else:
+            raise Exception("Empty heap")
 
     def extract_max(self) -> Union[int, float]:
         """ get and remove max from heap """
@@ -99,6 +107,8 @@ class Heap:
         elif self.heap_size == 1:
             self.heap_size -= 1
             return self.h.pop(-1)
+        else:
+            raise Exception("Empty heap")
 
     def insert(self, value: Union[int, float]):
         """ insert a new value into the max heap """
