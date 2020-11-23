@@ -7,6 +7,12 @@ import math
 
 
 def insertion_sort(array: list, start: int, end: int) -> list:
+    """
+    >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
+
+    >>> insertion_sort(array, 0, len(array))
+    [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
+    """
     for i in range(start, end):
         temp_index = i
         temp_index_value = array[i]
@@ -18,6 +24,11 @@ def insertion_sort(array: list, start: int, end: int) -> list:
 
 
 def heapify(array: list, index: int, heap_size: int) -> None:  # Max Heap
+    """
+    >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
+
+    >>> heapify(array, len(array) // 2 ,len(array))
+    """
     largest = index
     left_index = 2 * index + 1  # Left Node
     right_index = 2 * index + 2  # Right Node
@@ -34,10 +45,16 @@ def heapify(array: list, index: int, heap_size: int) -> None:  # Max Heap
 
 
 def heap_sort(array: list) -> list:
+    """
+    >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
+
+    >>> heap_sort(array)
+    [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
+    """
     n = len(array)
 
     for i in range(n // 2, -1, -1):
-        heapify(array, n, i)
+        heapify(array, i, n)
 
     for i in range(n - 1, 0, -1):
         array[i], array[0] = array[0], array[i]
@@ -49,6 +66,12 @@ def heap_sort(array: list) -> list:
 def median_of_3(
     array: list, first_index: int, middle_index: int, last_index: int
 ) -> int:
+    """
+    >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
+
+    >>> median_of_3(array, 0, 0 + ((len(array) - 0) // 2) + 1, len(array) - 1)
+    12
+    """
     if (array[first_index] > array[middle_index]) != (
         array[first_index] > array[last_index]
     ):
@@ -62,6 +85,12 @@ def median_of_3(
 
 
 def partition(array: list, low: int, high: int, pivot: int) -> int:
+    """
+    >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
+
+    >>> partition(array, 0, len(array), 12)
+    8
+    """
     i = low
     j = high
     while True:
@@ -77,6 +106,33 @@ def partition(array: list, low: int, high: int, pivot: int) -> int:
 
 
 def sort(array: list):
+    """
+        :param collection: some mutable ordered collection with heterogeneous
+        comparable items inside
+        :return: the same collection ordered by ascending
+
+        Examples:
+        >>> sort([4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12])
+        [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
+
+        >>> sort([-1, -5, -3, -13, -44])
+        [-44, -13, -5, -3, -1]
+
+        >>> sort([])
+        []
+
+        >>> sort([5])
+        [5]
+
+        >>> sort([-3, 0, -7, 6, 23, -34])
+        [-34, -7, -3, 0, 6, 23]
+
+        >>> sort([1.7, 1.0, 3.3, 2.1, 0.3 ])
+        [0.3, 1.0, 1.7, 2.1, 3.3]
+
+        >>> sort(['d', 'a', 'b', 'e', 'c'])
+        ['a', 'b', 'c', 'd', 'e']
+        """
     if len(array) == 0:
         return array
     max_depth = 2 * math.ceil(math.log2(len(array)))
@@ -86,37 +142,18 @@ def sort(array: list):
 
 def intro_sort(array: list, start: int, end: int, size_threshold: int, max_depth: int):
     """
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
+    >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
 
-    Examples:
-    >>> sort([4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12])
+    >>> max_depth = 2 * math.ceil(math.log2(len(array)))
+
+    >>> intro_sort(array, 0, len(array), 16, max_depth)
     [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
-
-    >>> sort([-1, -5, -3, -13, -44])
-    [-44, -13, -5, -3, -1]
-
-    >>> sort([])
-    []
-
-    >>> sort([5])
-    [5]
-
-    >>> sort([-3, 0, -7, 6, 23, -34])
-    [-34, -7, -3, 0, 6, 23]
-
-    >>> sort([1.7, 1.0, 3.3, 2.1, 0.3 ])
-    [0.3, 1.0, 1.7, 2.1, 3.3]
-
-    >>> sort(['d', 'a', 'b', 'e', 'c'])
-    ['a', 'b', 'c', 'd', 'e']
     """
     while end - start > size_threshold:
         if max_depth == 0:
             return heap_sort(array)
         max_depth -= 1
-        pivot = median_of_3(array, start, start + ((end - start) // 2) + 1, end)
+        pivot = median_of_3(array, start, start + ((end - start) // 2) + 1, end - 1)
         p = partition(array, start, end, pivot)
         intro_sort(array, p, end, size_threshold, max_depth)
         end = p
@@ -129,5 +166,5 @@ if __name__ == "__main__":
     doctest.testmod()
 
     user_input = input("Enter numbers separated by a comma : ").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
+    unsorted = [float(item) for item in user_input.split(",")]
     print(sort(unsorted))
