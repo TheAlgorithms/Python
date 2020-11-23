@@ -4,7 +4,7 @@ from doctest import testmod
 # Defining function
 
 
-def ohms_law(voltage: float, current: float, resistance: float) -> float:
+def ohms_law(voltage: float = 0, current: float = 0, resistance: float = 0) -> float:
 
     """
     This function calculates the any one
