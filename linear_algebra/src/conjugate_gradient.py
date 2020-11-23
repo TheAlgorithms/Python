@@ -40,24 +40,24 @@ def _is_matrix_spd(matrix: np.array) -> bool:
     return np.all(eigen_values > 0)
 
 
-def _create_spd_matrix(N: np.int64) -> np.array:
+def _create_spd_matrix(dimension: np.int64) -> np.array:
     """
     Returns a symmetric positive definite matrix given a dimension.
 
     Input:
-    N gives the square matrix dimension.
+    dimension gives the square matrix dimension.
 
     Output:
-    spd_matrix is an NxN symmetric positive definite (SPD) matrix.
+    spd_matrix is an diminesion x dimensions symmetric positive definite (SPD) matrix.
 
     >>> import numpy as np
-    >>> N = 3
-    >>> spd_matrix = _create_spd_matrix(N)
+    >>> dimension = 3
+    >>> spd_matrix = _create_spd_matrix(dimension)
     >>> _is_matrix_spd(spd_matrix)
     True
     """
 
-    random_matrix = np.random.randn(N, N)
+    random_matrix = np.random.randn(dimension, dimension)
     spd_matrix = np.dot(random_matrix, random_matrix.T)
 
     assert _is_matrix_spd(spd_matrix)
@@ -151,9 +151,9 @@ def test_conjugate_gradient() -> None:
     """
 
     # Create linear system with SPD matrix and known solution x_true.
-    N = 3
-    spd_matrix = _create_spd_matrix(N)
-    x_true = np.random.randn(N, 1)
+    dimension = 3
+    spd_matrix = _create_spd_matrix(dimension)
+    x_true = np.random.randn(dimension, 1)
     b = np.dot(spd_matrix, x_true)
 
     # Numpy solution.
