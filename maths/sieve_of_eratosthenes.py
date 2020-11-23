@@ -35,7 +35,8 @@ def sieve(n: int) -> List[int]:
     """
 
     if n <= 0:
-        raise ValueError("Please enter positive integers.")
+        raise ValueError(f"{n}: Invalid input, please enter a positive integer.")
+
 
     l = [True] * (n + 1)  # noqa: E741
     prime = []
