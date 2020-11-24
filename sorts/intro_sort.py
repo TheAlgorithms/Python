@@ -105,7 +105,7 @@ def partition(array: list, low: int, high: int, pivot: int) -> int:
         i += 1
 
 
-def sort(array: list):
+def sort(array: list) -> list:
     """
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -140,7 +140,9 @@ def sort(array: list):
     return intro_sort(array, 0, len(array), size_threshold, max_depth)
 
 
-def intro_sort(array: list, start: int, end: int, size_threshold: int, max_depth: int):
+def intro_sort(
+    array: list, start: int, end: int, size_threshold: int, max_depth: int
+) -> list:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
 
