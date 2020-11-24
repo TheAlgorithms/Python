@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
 """
-Created by sarathkaul on 14/11/19
-
-Basic authentication using an API password is deprecated and will soon no longer work.
-Visit https://developer.github.com/changes/2020-02-14-deprecating-password-auth
-for more information around suggested workarounds and removal dates.
-
-
 Updated by lawric1 on 24/11/20
 
 Authentication will be made via access token.
@@ -16,7 +9,7 @@ To generate your personal access token visit https://github.com/settings/tokens.
 import requests
 
 _GITHUB_API = "https://api.github.com/user"
-
+USER_TOKEN = "" # provide your access token
 
 def fetch_github_info(auth_token: str) -> dict:
     """
@@ -27,5 +20,8 @@ def fetch_github_info(auth_token: str) -> dict:
 
 
 if __name__ == "__main__":
-    for key, value in fetch_github_info("<TOKEN>").items():
-        print(f"{key}: {value}")
+    if USER_TOKEN:
+        for key, value in fetch_github_info(USER_TOKEN).items():
+            print(f"{key}: {value}")
+    else:
+        print("token should not be empty")
