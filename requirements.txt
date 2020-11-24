@@ -7,7 +7,7 @@ numpy
 opencv-python
 pandas
 pillow
-qiskit
+qiskit; python_version < '3.9'
 requests
 scikit-fuzzy
 sklearn
