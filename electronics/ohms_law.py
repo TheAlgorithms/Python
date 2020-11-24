@@ -10,17 +10,32 @@ def ohms_law(voltage: float = 0, current: float = 0, resistance: float = 0) -> f
     This function calculates the any one
     of the three ohms_law values voltage,
     current, resistance, of electronics.
-    >>> ohms_law(voltage=10, resistance=5,current=0 )
+    Note: "resistance cannot be negative"
+    >>> ohms_law(voltage=10, resistance=5)
     2.0
-    >>> ohms_law(current=1, resistance=10, voltage=0)
+    >>> ohms_law(current=1, resistance=10)
     10.0
+    >>> ohms_law(voltage=1.5, resistance=10)
+    0.15
+    >>> ohms_law(voltage=-15, resistance=10)
+    -1.5
+    >>> ohms_law(current=-1, resistance=2)
+    -2.0
+    >>> ohms_law(voltage=-15, resistance=-10)
+    0
     """
     if voltage == 0:
-        result = float(current * resistance)
-        return result
+        if resistance > 0:
+            result = float(current * resistance)
+            return result
+        else:
+            return 0 
     elif current == 0:
-        result = voltage / resistance
-        return result
+        if resistance > 0:
+            result = voltage / resistance
+            return result
+        else:
+            return 0
     elif resistance == 0:
         result = voltage / current
         return result
