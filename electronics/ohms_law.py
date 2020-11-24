@@ -4,24 +4,24 @@ from doctest import testmod
 # Defining function
 
 
-def ohms_law(voltage: float = 0, current: float = 0, resistance: float = 0) -> float:
+def ohms_law(voltage: float, current: float, resistance: float) -> float:
 
     """
     This function calculates the any one
     of the three ohms_law values voltage,
     current, resistance, of electronics.
     Note: "resistance cannot be negative"
-    >>> ohms_law(voltage=10, resistance=5)
+    >>> ohms_law(voltage=10, resistance=5, current=0)
     2.0
-    >>> ohms_law(current=1, resistance=10)
+    >>> ohms_law(current=1, resistance=10, voltage=0)
     10.0
-    >>> ohms_law(voltage=1.5, resistance=10)
+    >>> ohms_law(voltage=1.5, resistance=10, current=0)
     0.15
-    >>> ohms_law(voltage=-15, resistance=10)
+    >>> ohms_law(voltage=-15, resistance=10, current=0)
     -1.5
-    >>> ohms_law(current=-1, resistance=2)
+    >>> ohms_law(current=-1, resistance=2, voltage=0)
     -2.0
-    >>> ohms_law(voltage=-15, resistance=-10)
+    >>> ohms_law(voltage=-15, resistance=-10, current=0)
     0
     """
     if voltage == 0:
@@ -29,7 +29,7 @@ def ohms_law(voltage: float = 0, current: float = 0, resistance: float = 0) -> f
             result = float(current * resistance)
             return result
         else:
-            return 0 
+            return 0
     elif current == 0:
         if resistance > 0:
             result = voltage / resistance
