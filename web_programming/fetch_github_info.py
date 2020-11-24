@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import requests
 
 """
 Created by sarathkaul on 14/11/19
@@ -14,7 +15,6 @@ Created by lawric1 on 24/11/20
 To generate your personal access token visit https://github.com/settings/tokens
 """
 
-import requests
 
 _GITHUB_API = "https://api.github.com/user"
 
