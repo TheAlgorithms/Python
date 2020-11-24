@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import datetime
 
 
-def DownloadSingleFile(URL):
+def DownloadSingleFile(URL) -> None:
     print("Downloading image...")
     req = requests.get(URL)
     soup = BeautifulSoup(req.content, "html.parser")
