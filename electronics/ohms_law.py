@@ -39,5 +39,6 @@ def ohms_law(voltage: float, current: float, resistance: float) -> float:
 if __name__ == "__main__":
     # Importing doctest to test our function
     from doctest import testmod
+
     # Tesmod function is called to run test
     testmod(name="ohms_law", verbose=True)
