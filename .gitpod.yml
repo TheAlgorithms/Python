@@ -1,0 +1,4 @@
+image: gitpod/workspace-full-vnc
+
+tasks:
+  - init: pip install -r ./requirements.txt
