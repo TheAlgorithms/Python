@@ -6,19 +6,21 @@ Authentication will be made via access token.
 To generate your personal access token visit https://github.com/settings/tokens.
 """
 
-
-import requests
 from typing import Dict
+import requests
 
 _GITHUB_API = "https://api.github.com/user"
-USER_TOKEN = "" # provide your access token
+USER_TOKEN = ""  # provide your access token
+
 
 def fetch_github_info(auth_token: str) -> Dict[any, any]:
     """
     Fetch GitHub info of a user using the requests module
     """
-    headers = {"Authorization": f"token {auth_token}",
-            "Accept": "application/vnd.github.v3+json"}
+    headers = {
+        "Authorization": f"token {auth_token}",
+        "Accept": "application/vnd.github.v3+json",
+    }
     return requests.get(_GITHUB_API, headers=headers).json()
 
 
