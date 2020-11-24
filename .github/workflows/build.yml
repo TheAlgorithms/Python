@@ -12,14 +12,14 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
+          python-version: "3.9"
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip setuptools six
+          python -m pip install --upgrade pip setuptools six wheel
           python -m pip install pytest-cov -r requirements.txt
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --cov-report=term-missing:skip-covered --cov=. .
