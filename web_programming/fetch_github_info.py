@@ -7,6 +7,7 @@ To generate your personal access token visit https://github.com/settings/tokens.
 """
 
 from typing import Dict
+
 import requests
 
 _GITHUB_API = "https://api.github.com/user"
