@@ -17,8 +17,9 @@ def fetch_github_info(auth_token: str) -> Dict[any, any]:
     """
     Fetch GitHub info of a user using the requests module
     """
-    token = {"Authorization": f"token {auth_token}"}
-    return requests.get(_GITHUB_API, headers=token).json()
+    headers = {"Authorization": f"token {auth_token}",
+            "Accept": "application/vnd.github.v3+json"}
+    return requests.get(_GITHUB_API, headers=headers).json()
 
 
 if __name__ == "__main__":
