@@ -22,7 +22,7 @@ def fetch_github_info(auth_token: str) -> dict:
     """
     Fetch GitHub info of a user using the requests module
     """
-    token = {'Authorization': 'token {}'.format(auth_token)}
+    token = {"Authorization": "token {}".format(auth_token)}
     return requests.get(_GITHUB_API, headers=token).json()
 
 
