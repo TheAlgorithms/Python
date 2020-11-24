@@ -11,6 +11,8 @@ def ohms_law(voltage: float, current: float, resistance: float) -> float:
     ValueError: Only one argument can be 0 at the time
     >>> ohms_law(resistance=0, voltage=-10, current=1)
     {'resistance': -10.0}
+    >>> ohms_law(voltage=0, current=-1.5, resistance=2)
+    {'voltage': -3.0}
     """
     if voltage == 0:
         if current == 0 or resistance == 0:
