@@ -1,16 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
-import datetime
+from datetime import datetime
+
 
 if __name__ == "__main__":
-    url = input("Enter image url: ")
-    print("Downloading image...")
-    req = requests.get(url)
-    soup = BeautifulSoup(req.content, "html.parser")
-    metaTag = soup.find_all("meta", {"property": "og:image"}) #get all meta tags
-    imgURL = metaTag[0]["content"]
-    r = requests.get(imgURL)
-    fileName = datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S") + ".jpg"
-    with open(fileName, "wb") as fp:
-        fp.write(r.content)
-    print("Done. Image saved to disk as " + fileName)
+    url = input("Enter image url: ").strip()
+    print(f"Downloading image from {url} ...")
+    soup = BeautifulSoup(requests.get(url).content, "html.parser")
+    # The image URL is in the content field of the first meta tag with the property og:image
+    image_url = soup.find("meta", {"property": "og:image"})["content"]
+    image_data = requests.get(image_url).content
+    file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.jpg"
+    with open(file_name, "wb") as fp:
+        fp.write(image_data)
+    print(f"Done. Image saved to disk as {file_name}.")
