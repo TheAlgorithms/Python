@@ -6,13 +6,14 @@ https://en.wikipedia.org/wiki/Introsort
 import math
 
 
-def insertion_sort(array: list, start: int, end: int) -> list:
+def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
 
     >>> insertion_sort(array, 0, len(array))
     [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
     """
+    end = end or len(array)
     for i in range(start, end):
         temp_index = i
         temp_index_value = array[i]
