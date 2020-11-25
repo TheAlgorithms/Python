@@ -1,46 +1,39 @@
+# https://en.wikipedia.org/wiki/Ohm%27s_law
+
+
 def ohms_law(voltage: float, current: float, resistance: float) -> float:
     """
-    This function apply ohm's law, on any two given electrical values,
-    which can be voltage current resistance,
-    and then return name and value pair in the form of dictionary
+    Apply Ohm's Law, on any two given electrical values, which can be voltage, current,
+    and resistance, and then in a Python dict return name/value pair of the zero value.
+
     >>> ohms_law(voltage=10, resistance=5, current=0)
     {'current': 2.0}
     >>> ohms_law(voltage=0, current=0, resistance=10)
     Traceback (most recent call last):
-      File "<stdin>", line 14, in <module>
-    ValueError: Only one argument can be 0 at the time
+      ...
+    ValueError: One and only one argument must be 0
+    >>> ohms_law(voltage=0, current=1, resistance=-2)
+    Traceback (most recent call last):
+      ...
+    ValueError: Resistance cannot be negative
     >>> ohms_law(resistance=0, voltage=-10, current=1)
     {'resistance': -10.0}
     >>> ohms_law(voltage=0, current=-1.5, resistance=2)
     {'voltage': -3.0}
     """
+    if (voltage, current, resistance).count(0) != 1:
+        raise ValueError("One and only one argument must be 0")
+    if resistance < 0:
+        raise ValueError("Resistance cannot be negative")
     if voltage == 0:
-        if current == 0 or resistance == 0:
-            raise ValueError("Only one argument can be 0 at the time")
-        elif resistance <= 0:
-            raise ValueError("Resistance can't be 0 or in negative")
-        else:
-            result = {"voltage": float(current * resistance)}
-            return result
+        return {"voltage": float(current * resistance)}
     elif current == 0:
-        if voltage == 0 or resistance == 0:
-            raise ValueError("Only one argument can be 0 at the time")
-        elif resistance <= 0:
-            raise ValueError("Resistance can't be 0 or in negative")
-        else:
-            result = {"current": voltage / resistance}
-            return result
+        return {"current": voltage / resistance}
     elif resistance == 0:
-        if voltage == 0 or current == 0:
-            raise ValueError("Only one argument can be 0 at the time")
-        else:
-            result = {"resistance": voltage / current}
-            return result
+        return {"resistance": voltage / current}
 
 
 if __name__ == "__main__":
-    # Importing doctest to test our function
-    from doctest import testmod
+    import doctest
 
-    # Tesmod function is called to run test
-    testmod(name="ohms_law", verbose=True)
+    doctest.testmod()
