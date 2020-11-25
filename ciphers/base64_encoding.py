@@ -27,8 +27,18 @@ def base64_encode(data: bytes) -> bytes:
     True
     >>> base64_encode(c) == b64encode(c)
     True
+    >>> base64_encode("abc")
+    Traceback (most recent call last):
+      ...
+    TypeError: a bytes-like object is required, not 'str'
     """
-    binary_stream = "".join(bin(char)[2:].zfill(8) for char in data)
+    # Make sure the supplied data is a bytes-like object
+    if not isinstance(data, bytes):
+        raise TypeError(
+            "a bytes-like object is required, not '{}'".format(data.__class__.__name__)
+        )
+
+    binary_stream = "".join(bin(byte)[2:].zfill(8) for byte in data)
 
     padding_needed = len(binary_stream) % 6 != 0
 
@@ -71,7 +81,27 @@ def base64_decode(encoded_data: str) -> bytes:
     True
     >>> base64_decode(c) == b64decode(c)
     True
+    >>> base64_decode("abc")
+    Traceback (most recent call last):
+      ...
+    AssertionError: Incorrect padding
     """
+    # Make sure encoded_data is either a string or a bytes-like object
+    if not isinstance(encoded_data, bytes) and not isinstance(encoded_data, str):
+        raise TypeError(
+            "argument should be a bytes-like object or ASCII string, not '{}'".format(
+                encoded_data.__class__.__name__
+            )
+        )
+
+    # In case encoded_data is a bytes-like object, make sure it contains only
+    # ASCII characters so we convert it to a string object
+    if isinstance(encoded_data, bytes):
+        try:
+            encoded_data = encoded_data.decode("utf-8")
+        except UnicodeDecodeError:
+            raise ValueError("base64 encoded data should only contain ASCII characters")
+
     padding = encoded_data.count("=")
 
     # Check if the encoded string contains non base64 characters
@@ -85,7 +115,7 @@ def base64_decode(encoded_data: str) -> bytes:
         ), "Invalid base64 character(s) found."
 
     # Check the padding
-    assert len(encoded_data) % 4 == 0 and padding < 3, "Incorrect padding."
+    assert len(encoded_data) % 4 == 0 and padding < 3, "Incorrect padding"
 
     if padding:
         # Remove padding if there is one
