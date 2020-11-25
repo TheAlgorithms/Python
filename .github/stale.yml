@@ -27,7 +27,7 @@ exemptAssignees: false
 staleLabel: stale
 
 # Limit the number of actions per hour, from 1-30. Default is 30
-limitPerRun: 30
+limitPerRun: 5
 
 # Comment to post when removing the stale label.
 # unmarkComment: >
