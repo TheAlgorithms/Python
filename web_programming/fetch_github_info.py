@@ -42,7 +42,7 @@ def fetch_github_info(auth_token: str) -> Dict[Any, Any]:
     return requests.get(AUTHENTICATED_USER_ENDPOINT, headers=headers).json()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     if USER_TOKEN:
         for key, value in fetch_github_info(USER_TOKEN).items():
             print(f"{key}: {value}")
