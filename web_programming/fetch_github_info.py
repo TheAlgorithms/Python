@@ -1,20 +1,37 @@
 #!/usr/bin/env python3
 """
+Created by sarathkaul on 14/11/19
 Updated by lawric1 on 24/11/20
 
 Authentication will be made via access token.
 To generate your personal access token visit https://github.com/settings/tokens.
-"""
 
-from typing import Dict
+NOTE:
+Never hardcode any credential information in the code. Always use an environment
+file to store the private information and use the `os` module to get the information
+during runtime.
+
+Create a ".env" file in the root directory and write these two lines in that file
+with your token::
+
+#!/usr/bin/env bash
+export USER_TOKEN=""
+"""
+import os
+from typing import Any, Dict
 
 import requests
 
-_GITHUB_API = "https://api.github.com/user"
-USER_TOKEN = ""  # provide your access token
+BASE_URL = "https://api.github.com"
+
+# https://docs.github.com/en/free-pro-team@latest/rest/reference/users#get-the-authenticated-user
+AUTHENTICATED_USER_ENDPOINT = BASE_URL + "/user"
+
+# https://github.com/settings/tokens
+USER_TOKEN = os.environ.get("USER_TOKEN", "")
 
 
-def fetch_github_info(auth_token: str) -> Dict[any, any]:
+def fetch_github_info(auth_token: str) -> Dict[Any, Any]:
     """
     Fetch GitHub info of a user using the requests module
     """
@@ -22,7 +39,31 @@ def fetch_github_info(auth_token: str) -> Dict[any, any]:
         "Authorization": f"token {auth_token}",
         "Accept": "application/vnd.github.v3+json",
     }
-    return requests.get(_GITHUB_API, headers=headers).json()
+    return requests.get(AUTHENTICATED_USER_ENDPOINT, headers=headers).json()
+
+
+def test_fetch_github_info(monkeypatch):
+    class FakeResponse:
+        def __init__(self, content) -> None:
+            assert isinstance(content, (bytes, str))
+            self.content = content
+        
+        def json(self):
+            import json
+
+            return json.loads(self.content)
+    
+    def mock_response(*args, **kwargs):
+        assert args[0] == AUTHENTICATED_USER_ENDPOINT
+        assert "Authorization" in kwargs["headers"]
+        assert kwargs["headers"]["Authorization"].startswith("token ")
+        assert "Accept" in kwargs["headers"]
+        return FakeResponse(b'{"login":"test","id":1}')
+
+    monkeypatch.setattr(requests, "get", mock_response)
+    result = fetch_github_info("token")
+    assert result["login"] == "test"
+    assert result["id"] == 1
 
 
 if __name__ == "__main__":
@@ -30,4 +71,4 @@ if __name__ == "__main__":
         for key, value in fetch_github_info(USER_TOKEN).items():
             print(f"{key}: {value}")
     else:
-        print("token should not be empty.")
+        raise ValueError("'USER_TOKEN' field cannot be empty.")
