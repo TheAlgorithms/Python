@@ -2,7 +2,7 @@ import json
 
 import requests
 
-from .fetch_github_info import fetch_github_info
+from .fetch_github_info import AUTHENTICATED_USER_ENDPOINT, fetch_github_info
 
 
 def test_fetch_github_info(monkeypatch):
