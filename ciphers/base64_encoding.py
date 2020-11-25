@@ -89,8 +89,8 @@ def base64_decode(encoded_data: str) -> bytes:
     # Make sure encoded_data is either a string or a bytes-like object
     if not isinstance(encoded_data, bytes) and not isinstance(encoded_data, str):
         raise TypeError(
-            "argument should be a bytes-like object or ASCII string, not '{}'".format(
-                encoded_data.__class__.__name__
+            "argument should be a bytes-like object or ASCII string, not "
+            f"'{encoded_data.__class__.__name__}'"
             )
         )
 
