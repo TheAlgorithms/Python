@@ -91,7 +91,7 @@ def base64_decode(encoded_data: str) -> bytes:
         raise TypeError(
             "argument should be a bytes-like object or ASCII string, not "
             f"'{encoded_data.__class__.__name__}'"
-            )
+        )
 
     # In case encoded_data is a bytes-like object, make sure it contains only
     # ASCII characters so we convert it to a string object
