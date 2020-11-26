@@ -1,7 +1,8 @@
 """
 Linked Lists consists of Nodes.
 Nodes contain data and also may link to other nodes:
-    - Head Node: First node, the address of the head node gives us access of the complete list
+    - Head Node: First node, the address of the
+                 head node gives us access of the complete list
     - Last node: points to null
 """
 
