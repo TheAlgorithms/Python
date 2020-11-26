@@ -20,18 +20,18 @@ graph = {
 def bfs_shortest_path(graph: dict, start, goal) -> str:
     """Find shortest path between `start` and `goal` nodes.
 
-        Args:
-            graph (dict): node/list of neighboring nodes key/value pairs.
-            start: start node.
-            goal: target node.
+    Args:
+        graph (dict): node/list of neighboring nodes key/value pairs.
+        start: start node.
+        goal: target node.
 
-        Returns:
-            Shortest path between `start` and `goal` nodes as a string of nodes.
-            'Not found' string if no path found.
+    Returns:
+        Shortest path between `start` and `goal` nodes as a string of nodes.
+        'Not found' string if no path found.
 
-        Example:
-            >>> bfs_shortest_path(graph, "G", "D")
-            ['G', 'C', 'A', 'B', 'D']
+    Example:
+        >>> bfs_shortest_path(graph, "G", "D")
+        ['G', 'C', 'A', 'B', 'D']
     """
     # keep track of explored nodes
     explored = []
@@ -70,22 +70,22 @@ def bfs_shortest_path(graph: dict, start, goal) -> str:
 def bfs_shortest_path_distance(graph: dict, start, target) -> int:
     """Find shortest path distance between `start` and `target` nodes.
 
-        Args:
-            graph: node/list of neighboring nodes key/value pairs.
-            start: node to start search from.
-            target: node to search for.
+    Args:
+        graph: node/list of neighboring nodes key/value pairs.
+        start: node to start search from.
+        target: node to search for.
 
-        Returns:
-            Number of edges in shortest path between `start` and `target` nodes.
-            -1 if no path exists.
+    Returns:
+        Number of edges in shortest path between `start` and `target` nodes.
+        -1 if no path exists.
 
-        Example:
-            >>> bfs_shortest_path_distance(graph, "G", "D")
-            4
-            >>> bfs_shortest_path_distance(graph, "A", "A")
-            0
-            >>> bfs_shortest_path_distance(graph, "A", "H")
-            -1
+    Example:
+        >>> bfs_shortest_path_distance(graph, "G", "D")
+        4
+        >>> bfs_shortest_path_distance(graph, "A", "A")
+        0
+        >>> bfs_shortest_path_distance(graph, "A", "H")
+        -1
     """
     if not graph or start not in graph or target not in graph:
         return -1

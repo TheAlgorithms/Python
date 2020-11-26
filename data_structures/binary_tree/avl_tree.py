@@ -109,7 +109,7 @@ def right_rotation(node):
 
 def left_rotation(node):
     """
-        a mirror symmetry rotation of the left_rotation
+    a mirror symmetry rotation of the left_rotation
     """
     print("right rotation node:", node.get_data())
     ret = node.get_right()

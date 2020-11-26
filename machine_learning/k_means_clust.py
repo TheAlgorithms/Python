@@ -132,12 +132,12 @@ def kmeans(
     data, k, initial_centroids, maxiter=500, record_heterogeneity=None, verbose=False
 ):
     """This function runs k-means on given data and initial set of centroids.
-       maxiter: maximum number of iterations to run.(default=500)
-       record_heterogeneity: (optional) a list, to store the history of heterogeneity
-                             as function of iterations
-                             if None, do not store the history.
-       verbose: if True, print how many data points changed their cluster labels in
-                             each iteration"""
+    maxiter: maximum number of iterations to run.(default=500)
+    record_heterogeneity: (optional) a list, to store the history of heterogeneity
+                          as function of iterations
+                          if None, do not store the history.
+    verbose: if True, print how many data points changed their cluster labels in
+                          each iteration"""
     centroids = initial_centroids[:]
     prev_cluster_assignment = None
 

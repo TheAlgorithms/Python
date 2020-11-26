@@ -14,7 +14,7 @@ from lib import Matrix, Vector, axpy, squareZeroMatrix, unitBasisVector, zeroVec
 class Test(unittest.TestCase):
     def test_component(self):
         """
-            test for method component
+        test for method component
         """
         x = Vector([1, 2, 3])
         self.assertEqual(x.component(0), 1)
@@ -23,28 +23,28 @@ class Test(unittest.TestCase):
 
     def test_str(self):
         """
-            test for toString() method
+        test for toString() method
         """
         x = Vector([0, 0, 0, 0, 0, 1])
         self.assertEqual(str(x), "(0,0,0,0,0,1)")
 
     def test_size(self):
         """
-            test for size()-method
+        test for size()-method
         """
         x = Vector([1, 2, 3, 4])
         self.assertEqual(len(x), 4)
 
     def test_euclidLength(self):
         """
-            test for the eulidean length
+        test for the eulidean length
         """
         x = Vector([1, 2])
         self.assertAlmostEqual(x.euclidLength(), 2.236, 3)
 
     def test_add(self):
         """
-            test for + operator
+        test for + operator
         """
         x = Vector([1, 2, 3])
         y = Vector([1, 1, 1])
@@ -54,7 +54,7 @@ class Test(unittest.TestCase):
 
     def test_sub(self):
         """
-            test for - operator
+        test for - operator
         """
         x = Vector([1, 2, 3])
         y = Vector([1, 1, 1])
@@ -64,7 +64,7 @@ class Test(unittest.TestCase):
 
     def test_mul(self):
         """
-            test for * operator
+        test for * operator
         """
         x = Vector([1, 2, 3])
         a = Vector([2, -1, 4])  # for test of dot-product
@@ -74,19 +74,19 @@ class Test(unittest.TestCase):
 
     def test_zeroVector(self):
         """
-            test for the global function zeroVector(...)
+        test for the global function zeroVector(...)
         """
         self.assertTrue(str(zeroVector(10)).count("0") == 10)
 
     def test_unitBasisVector(self):
         """
-            test for the global function unitBasisVector(...)
+        test for the global function unitBasisVector(...)
         """
         self.assertEqual(str(unitBasisVector(3, 1)), "(0,1,0)")
 
     def test_axpy(self):
         """
-            test for the global function axpy(...) (operation)
+        test for the global function axpy(...) (operation)
         """
         x = Vector([1, 2, 3])
         y = Vector([1, 0, 1])
@@ -94,7 +94,7 @@ class Test(unittest.TestCase):
 
     def test_copy(self):
         """
-            test for the copy()-method
+        test for the copy()-method
         """
         x = Vector([1, 0, 0, 0, 0, 0])
         y = x.copy()
@@ -102,7 +102,7 @@ class Test(unittest.TestCase):
 
     def test_changeComponent(self):
         """
-            test for the changeComponent(...)-method
+        test for the changeComponent(...)-method
         """
         x = Vector([1, 0, 0])
         x.changeComponent(0, 0)
@@ -115,7 +115,7 @@ class Test(unittest.TestCase):
 
     def test_determinate(self):
         """
-            test for determinate()
+        test for determinate()
         """
         A = Matrix([[1, 1, 4, 5], [3, 3, 3, 2], [5, 1, 9, 0], [9, 7, 7, 9]], 4, 4)
         self.assertEqual(-376, A.determinate())

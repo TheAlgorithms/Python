@@ -12,8 +12,8 @@ import math as m
 
 def calc_derivative(f, a, h=0.001):
     """
-     Calculates derivative at point a for function f using finite difference
-     method
+    Calculates derivative at point a for function f using finite difference
+    method
     """
     return (f(a + h) - f(a - h)) / (2 * h)
 

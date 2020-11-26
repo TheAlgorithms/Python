@@ -105,7 +105,7 @@ def sudoku(grid):
      [7, 4, 5, 2, 8, 6, 3, 1, 9]]
      >>> sudoku(no_solution)
      False
-     """
+    """
 
     if is_completed(grid):
         return grid

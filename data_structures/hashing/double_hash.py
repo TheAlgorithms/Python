@@ -5,7 +5,7 @@ from number_theory.prime_numbers import check_prime, next_prime
 
 class DoubleHash(HashTable):
     """
-        Hash Table example with open addressing and Double Hash
+    Hash Table example with open addressing and Double Hash
     """
 
     def __init__(self, *args, **kwargs):

@@ -23,8 +23,7 @@ def solution(n):
     product = -1
     d = 0
     for a in range(1, n // 3):
-        """Solving the two equations a**2+b**2=c**2 and a+b+c=N eliminating c
-        """
+        """Solving the two equations a**2+b**2=c**2 and a+b+c=N eliminating c"""
         b = (n * n - 2 * a * n) // (2 * n - 2 * a)
         c = n - a - b
         if c * c == (a * a + b * b):

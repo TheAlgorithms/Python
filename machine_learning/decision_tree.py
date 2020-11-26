@@ -135,8 +135,7 @@ class Decision_Tree:
 
 
 class Test_Decision_Tree:
-    """Decision Tres test class
-    """
+    """Decision Tres test class"""
 
     @staticmethod
     def helper_mean_squared_error_test(labels, prediction):
