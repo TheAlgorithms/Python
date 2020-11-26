@@ -10,7 +10,7 @@ https://www.techiedelight.com/longest-palindromic-subsequence-using-dynamic-prog
 """
 
 
-def longest_palindromic_subsequence(sequence: str, i: int, j: int) -> int:
+def longest_palindromic_subsequence(sequence: str, begin_substring: int, end_substring: int) -> int:
     """Find the longest palindromic subsequence in a given string
 
     :param sequence: The sequence to search in
@@ -31,24 +31,24 @@ def longest_palindromic_subsequence(sequence: str, i: int, j: int) -> int:
     """
     # If the sequence only has one character, it is a palindrome
     # This prevents a one-letter palindrome from being counted as 2
-    if i == j:
+    if begin_substring == end_substring:
         return 1
 
     # Base case: If i is greater than j you have gone too far
-    if i > j:
+    if begin_substring > end_substring:
         return 0
 
     # If the first character of the current string equals the last
-    if sequence[i] == sequence[j]:
+    if sequence[begin_substring] == sequence[end_substring]:
         # Recur with the remaining substring
-        return longest_palindromic_subsequence(sequence, i + 1, j - 1) + 2
+        return longest_palindromic_subsequence(sequence, begin_substring + 1, end_substring - 1) + 2
 
     # If the first and last characters are NOT equal, then find the larger LPS between:
     #   a.) the substring formed by removing the first character
     #   b.) the substring formed by removing the last character
     return max(
-        longest_palindromic_subsequence(sequence, i + 1, j),
-        longest_palindromic_subsequence(sequence, i, j - 1),
+        longest_palindromic_subsequence(sequence, begin_substring + 1, end_substring),
+        longest_palindromic_subsequence(sequence, begin_substring, end_substring - 1),
     )
 
 
