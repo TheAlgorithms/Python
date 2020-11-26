@@ -1,3 +1,4 @@
+from tempfile import TemporaryFile
 from typing import List, Tuple
 
 """
@@ -77,18 +78,32 @@ def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
             return seq
 
 
-if __name__ == "__main__":
-    _, operations = compute_transform_tables("Python", "Algorithms", -1, 1, 2, 2)
+def min_cost_string_conversion(
+    str1: str,
+    str2: str,
+    copy_cost: int,
+    replace_cost: int,
+    delete_cost: int,
+    insert_cost: int,
+):
+    _, operations = compute_transform_tables(
+        str1,
+        str2,
+        copy_cost,
+        replace_cost,
+        delete_cost,
+        insert_cost,
+    )
 
     m = len(operations)
     n = len(operations[0])
     sequence = assemble_transformation(operations, m - 1, n - 1)
 
-    string = list("Python")
+    string = list(str1)
     i = 0
     cost = 0
 
-    with open("min_cost.txt", "w") as file:
+    with TemporaryFile("w") as file:
         for op in sequence:
             print("".join(string))
 
@@ -97,7 +112,7 @@ if __name__ == "__main__":
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 
-                cost -= 1
+                cost += copy_cost
             elif op[0] == "R":
                 string[i] = op[2]
 
@@ -105,15 +120,15 @@ if __name__ == "__main__":
                 file.write("\t\t" + "".join(string))
                 file.write("\r\n")
 
-                cost += 1
+                cost += replace_cost
             elif op[0] == "D":
-                string.pop(i)
+                string.insert(i, "")
 
                 file.write("%-16s" % "Delete %c" % op[1])
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 
-                cost += 2
+                cost += delete_cost
             else:
                 string.insert(i, op[1])
 
@@ -121,7 +136,7 @@ if __name__ == "__main__":
                 file.write("\t\t\t" + "".join(string))
                 file.write("\r\n")
 
-                cost += 2
+                cost += insert_cost
 
             i += 1
 
@@ -129,3 +144,9 @@ if __name__ == "__main__":
         print("Cost: ", cost)
 
         file.write("\r\nMinimum cost: " + str(cost))
+
+    return cost
+
+
+if __name__ == "__main__":
+    min_cost_string_conversion("Python", "Algorithms", -1, 1, 2, 2)
