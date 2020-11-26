@@ -39,7 +39,6 @@ class LinkedList:
         else:
             iterate = self.head
             iteam_str = ""
-            
             while iterate:
                 iteam_str += f"{iterate.item} --> "
                 iterate = iterate.next
