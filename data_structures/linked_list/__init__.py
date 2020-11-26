@@ -25,6 +25,27 @@ class LinkedList:
     def is_empty(self):
         return self.head is None
 
+    def __str__(self):
+        """
+        >>> linked_list = LinkedList()
+        >>> linked_list.add(23)
+        >>> linked_list.add(14)
+        >>> linked_list.add(9)
+        >>> print(linked_list)
+        9 --> 14 --> 23 -->
+        """
+        if not self.is_empty:
+            return "Linked List is empty."
+        else:
+            iterate = self.head
+            iteam_str = ""
+            
+            while iterate:
+                iteam_str += f"{iterate.item} --> "
+                iterate = iterate.next
+
+            return iteam_str
+
     def __len__(self):
         """
         >>> linked_list = LinkedList()
