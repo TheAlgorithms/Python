@@ -1,0 +1,60 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: check-executables-have-shebangs
+      - id: check-yaml
+      - id: end-of-file-fixer
+        types: [python]
+      - id: trailing-whitespace
+        exclude: |
+          (?x)^(
+            data_structures/heap/binomial_heap.py
+          )$
+      - id: requirements-txt-fixer
+  - repo: https://github.com/psf/black
+    rev: stable
+    hooks:
+      - id: black
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.5.3
+    hooks:
+      - id: isort
+        args:
+          - --profile=black
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.3
+    hooks:
+      - id: flake8
+        args:
+          - --ignore=E203,W503
+          - --max-complexity=25
+          - --max-line-length=88
+#     FIXME: fix mypy errors and then uncomment this
+#    - repo: https://github.com/pre-commit/mirrors-mypy
+#      rev: v0.782
+#      hooks:
+#        - id: mypy
+#          args:
+#            - --ignore-missing-imports
+  - repo: https://github.com/codespell-project/codespell
+    rev: v1.17.1
+    hooks:
+      - id: codespell
+        args:
+          - --ignore-words-list=ans,fo,followings,hist,iff,mater,secant,som,tim
+          - --skip="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_022/p022_names.txt"
+          - --quiet-level=2
+        exclude: |
+          (?x)^(
+              other/dictionary.txt |
+              other/words |
+              project_euler/problem_022/p022_names.txt
+          )$
+  - repo: local
+    hooks:
+      - id: validate-filenames
+        name: Validate filenames
+        entry: ./scripts/validate_filenames.py
+        language: script
+        pass_filenames: false
