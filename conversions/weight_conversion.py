@@ -1,18 +1,13 @@
 """
 Conversion of weight units.
 
-USAGE :
+USAGE :-
 -> Import this file into their respective project.
 -> Use the function weight_conversion() for conversion of weight units.
 -> Parameters :
     -> from_type : From which type you want to convert
     -> to_type : To which type you want to convert
     -> value : the value which you want to convert
-
-REFERENCES :
-
--> Wikipedia reference: https://en.wikipedia.org/wiki/Conversion_of_units
-
 """
 
 KILOGRAM_CHART = {
@@ -57,7 +52,16 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     "carrat" : 5000,
     "atomic-mass-unit" : 6.022136652E+26
 
-    Wikipedia reference: https://en.wikipedia.org/wiki/Conversion_of_units
+    Wikipedia reference: https://en.wikipedia.org/wiki/Kilogram
+    Wikipedia reference: https://en.wikipedia.org/wiki/Gram
+    Wikipedia reference: https://en.wikipedia.org/wiki/Millimetre
+    Wikipedia reference: https://en.wikipedia.org/wiki/Tonne
+    Wikipedia reference: https://en.wikipedia.org/wiki/Long_ton
+    Wikipedia reference: https://en.wikipedia.org/wiki/Short_ton
+    Wikipedia reference: https://en.wikipedia.org/wiki/Pound
+    Wikipedia reference: https://en.wikipedia.org/wiki/Ounce
+    Wikipedia reference: https://en.wikipedia.org/wiki/Fineness#Karat
+    Wikipedia reference: https://en.wikipedia.org/wiki/Dalton_(unit)
 
 
     >>> weight_conversion("kilogram","kilogram",4)
