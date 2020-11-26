@@ -8,11 +8,12 @@ The only allowed operations are
 ---Insert character with cost cI
 """
 import sys
-
 from tempfile import TemporaryFile
 
 
-def compute_transform_tables(X, Y, cC, cR, cD, cI):
+def compute_transform_tables(
+    X: list[str], Y: list[str], cC: int, cR: int, cD: int, cI: int
+):
     X = list(X)
     Y = list(Y)
     m = len(X)
@@ -49,7 +50,7 @@ def compute_transform_tables(X, Y, cC, cR, cD, cI):
     return costs, ops
 
 
-def assemble_transformation(ops, i, j):
+def assemble_transformation(ops: list[list[str]], i: int, j: int):
     if i == 0 and j == 0:
         seq = []
         return seq
@@ -68,9 +69,10 @@ def assemble_transformation(ops, i, j):
             return seq
 
 
-def run_algorithm(str1, str2, copy, replace, delete, insert):
-    _, operations = compute_transform_tables(
-        str1, str2, copy, replace, delete, insert)
+def run_algorithm(
+    str1: str, str2: str, copy: int, replace: int, delete: int, insert: int
+):
+    _, operations = compute_transform_tables(str1, str2, copy, replace, delete, insert)
 
     m = len(operations)
     n = len(operations[0])
@@ -93,8 +95,7 @@ def run_algorithm(str1, str2, copy, replace, delete, insert):
             elif op[0] == "R":
                 string[i] = op[2]
 
-                file.write("%-16s" % ("Replace %c" %
-                                      op[1] + " with " + str(op[2])))
+                file.write("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))
                 file.write("\t\t" + "".join(string))
                 file.write("\r\n")
 
