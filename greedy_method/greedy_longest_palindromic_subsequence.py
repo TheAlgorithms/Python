@@ -10,7 +10,9 @@ https://www.techiedelight.com/longest-palindromic-subsequence-using-dynamic-prog
 """
 
 
-def longest_palindromic_subsequence(sequence: str, begin_substring: int, end_substring: int) -> int:
+def longest_palindromic_subsequence(
+    sequence: str, begin_substring: int, end_substring: int
+) -> int:
     """Find the longest palindromic subsequence in a given string
 
     :param sequence: The sequence to search in
@@ -41,7 +43,12 @@ def longest_palindromic_subsequence(sequence: str, begin_substring: int, end_sub
     # If the first character of the current string equals the last
     if sequence[begin_substring] == sequence[end_substring]:
         # Recur with the remaining substring
-        return longest_palindromic_subsequence(sequence, begin_substring + 1, end_substring - 1) + 2
+        return (
+            longest_palindromic_subsequence(
+                sequence, begin_substring + 1, end_substring - 1
+            )
+            + 2
+        )
 
     # If the first and last characters are NOT equal, then find the larger LPS between:
     #   a.) the substring formed by removing the first character
