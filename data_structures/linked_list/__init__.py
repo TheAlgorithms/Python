@@ -5,6 +5,7 @@ Nodes contain data and also may link to other nodes:
     - Last node: points to null
 """
 
+
 class Node:
     def __init__(self, item: any, next):
         self.item = item
@@ -16,7 +17,7 @@ class LinkedList:
         self.head = None
         self.size = 0
 
-    def add(self, item:any ) -> None:
+    def add(self, item: any) -> None:
         self.head = Node(item, self.head)
         self.size += 1
 
