@@ -1,6 +1,6 @@
 import unittest
 
-from text_to_speech import get_mp3_filename, request_fromtexttospeech
+from other.text_to_speech import get_mp3_filename, request_fromtexttospeech
 
 
 class TestTextToSpeech(unittest.TestCase):
@@ -10,12 +10,14 @@ class TestTextToSpeech(unittest.TestCase):
 
     def test_get_mp3_file_valid_html(self):
         html = "<p>Listen to the MP3 file  :<BR></p> <!> \
-                <object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' width='470' height='24' id='single1' name='single1'> \
+                <object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' \
+                        width='470' height='24' id='single1' name='single1'> \
                 <param name='movie' value='player.swf'> \
                 <param name='allowfullscreen' value='true'> \
                 <param name='allowscriptaccess' value='always'> \
                 <param name='wmode' value='transparent'> \
-                <param name='flashvars' value='file=/output/0360061001606401513/59405670.mp3'> \
+                <param name = 'flashvars' \
+                       value='file=/output/0360061001606401513/59405670.mp3'> \
                 <embed \
                     id='single2' \
                     name='single2' \
@@ -33,7 +35,8 @@ class TestTextToSpeech(unittest.TestCase):
 
     def test_get_mp3_file_invalid_html(self):
         html = "<p>Listen to the MP3 file  :<BR></p> <!> \
-                <object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' width='470' height='24' id='single1' name='single1'> \
+                <object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' \
+                        width='470' height='24' id='single1' name='single1'> \
                 <param name='movie' value='player.swf'> \
                 <param name='allowfullscreen' value='true'> \
                 <param name='allowscriptaccess' value='always'> \

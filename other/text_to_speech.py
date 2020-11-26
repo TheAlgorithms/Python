@@ -9,9 +9,6 @@ Example:
 """
 
 import re
-import subprocess
-import urllib.parse
-
 import requests
 
 LANGUAGES_VOICES = {
@@ -50,7 +47,7 @@ def get_mp3_filename(html: str) -> str:
     """Returns the  mp3 file name of an HTML response from fromtexttospeech.com"""
     try:
         filename = re.search(r"(\/output\/\d+\/\d+\.mp3)", html).group(0)
-    except:
+    except AttributeError:
         filename = None
     return filename
 
@@ -73,7 +70,8 @@ def request_fromtexttospeech(
     headers = {
         "Accept-Language": "en-US,en;q=0.5",
         "Upgrade-Insecure-Requests": "1",
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 " +
+                      "Firefox/66.0",
         "Content-Type": "application/x-www-form-urlencoded",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Referer": "http://www.fromtexttospeech.com/",
