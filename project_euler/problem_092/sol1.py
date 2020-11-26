@@ -11,10 +11,7 @@ What is most amazing is that EVERY starting number will eventually arrive at 1 o
 How many starting numbers below ten million will arrive at 89?
 """
 
-from functools import lru_cache
 
-
-@lru_cache()
 def solution(limit: int = 10000000) -> int:
     """
     Returns the number of starting numbers, up to a given limit, whose number chain
