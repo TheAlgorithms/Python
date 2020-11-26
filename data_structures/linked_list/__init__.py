@@ -32,18 +32,22 @@ class LinkedList:
         >>> linked_list.add(14)
         >>> linked_list.add(9)
         >>> print(linked_list)
-        9 --> 14 --> 23 -->
+        9 --> 14 --> 23
         """
         if not self.is_empty:
             return "Linked List is empty."
         else:
             iterate = self.head
-            iteam_str = ""
+            item_str = ""
+            item_list = []
             while iterate:
-                iteam_str += f"{iterate.item} --> "
+                item_list.append(iterate.item)
                 iterate = iterate.next
 
-            return iteam_str
+            item_list = [str(item) for item in item_list]
+            item_str = " --> ".join(item_list)
+
+            return item_str
 
     def __len__(self):
         """
