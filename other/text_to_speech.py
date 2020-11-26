@@ -46,6 +46,44 @@ VOICES = {
 }
 
 
+def get_mp3_filename(html: str) -> str:
+    """Returns the  mp3 file name of an HTML response from fromtexttospeech.com"""
+    try:
+        filename = re.search(r"(\/output\/\d+\/\d+\.mp3)", html).group(0)
+    except:
+        filename = None
+    return filename
+
+
+def request_fromtexttospeech(
+    text: str = "Hello world",
+    language: str = "British",
+    voice: str = "Emma",
+) -> requests.Response:
+    """Makes POST request to fromtexttospeech and returns a requests.Response."""
+    # prepare data
+    data = {
+        "input_text": text,
+        "language": language,
+        "voice": VOICES[voice],
+        "speed": 0,
+        "action": "process_text",
+    }
+
+    headers = {
+        "Accept-Language": "en-US,en;q=0.5",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Referer": "http://www.fromtexttospeech.com/",
+        "Connection": "keep-alive",
+    }
+    # make request to www.fromtexttospeech.com
+    # it gives an html with the mp3's url
+    return requests.post("http://www.fromtexttospeech.com/", headers=headers, data=data)
+
+
 def text_to_speech(
     text: str = "Hello world",
     language: str = "British",
@@ -59,49 +97,9 @@ def text_to_speech(
     if voice not in LANGUAGES_VOICES[language]:
         raise ValueError(f"Voice '{voice}' not available")
 
-    # prepare data
-    text_encoded = urllib.parse.quote(text.encode("utf8"))
-    data = f"input_text={text_encoded}&language={language}\
-            &voice={VOICES[voice]}&speed=0&action=process_text"
-
-    # make request to www.fromtexttospeech.com
-    # it gives an html with the mp3's url
-    args = [
-        "curl",
-        "http://www.fromtexttospeech.com/",
-        "-H",
-        "Accept-Language: en-US,en;q=0.5",
-        "-H",
-        "Upgrade-Insecure-Requests: 1",
-        "-H",
-        "User-Agent:  \
-            Mozilla/5.0 (X11; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0",
-        "-H",
-        "Content-Type: application/x-www-form-urlencoded",
-        "-H",
-        "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "-H",
-        "Referer: http://www.fromtexttospeech.com/",
-        "-H",
-        "Connection: keep-alive",
-        "--data",
-        data,
-        "--compressed",
-        "--connect-timeout",
-        "30",
-        "--retry",
-        "300",
-        "--retry-delay",
-        "5",
-        "--max-time",
-        "120",
-    ]
-    process = subprocess.Popen(args, stdout=subprocess.PIPE)
-
-    output = process.communicate()[0]
-
+    r = request_fromtexttospeech(text, language, voice)
     # extract the mp3's url
-    mp3_file = re.search(r"(\/output\/\d+\/\d+\.mp3)", output.decode("utf-8")).group(0)
+    mp3_file = get_mp3_filename(r.text)
     audio_url = f"http://www.fromtexttospeech.com{mp3_file}"
 
     mp3data = requests.get(audio_url)
