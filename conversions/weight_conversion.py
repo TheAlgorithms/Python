@@ -3,7 +3,7 @@ Functions useful for conversion fo weight units
 """
 
 
-def weightConversion(from_type: str, to_type: str, value: float) -> any:
+def weight_conversion(from_type: str, to_type: str, value: float) -> any:
     """
     Conversion of weight unit with the help of kilogram_chart
 
@@ -21,11 +21,11 @@ def weightConversion(from_type: str, to_type: str, value: float) -> any:
     Wikipedia reference: https://en.wikipedia.org/wiki/Conversion_of_units
 
 
-    >>> weightConversion("kilogram","kilogram",5)
+    >>> weight_conversion("kilogram","kilogram",5)
     5
-    >>> weightConversion("kilogram","carrat",5)
+    >>> weight_conversion("kilogram","carrat",5)
     25000
-    >>> weightConversion("ounce","short-ton",3)
+    >>> weight_conversion("ounce","short-ton",3)
     9.37499991417e-05
     """
     kilogram_chart = {
