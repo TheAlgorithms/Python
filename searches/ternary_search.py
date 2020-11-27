@@ -6,7 +6,6 @@ This is a type of divide and conquer algorithm which divides the search space in
 Time Complexity  : O(log3 N)
 Space Complexity : O(1)
 """
-import sys
 from typing import List
 
 # This is the precision for this function which can be altered.
@@ -15,90 +14,156 @@ precision = 10
 
 
 # This is the linear search that will occur after the search space has become smaller.
-def lin_search(left: int, right: int, A: List[int], target: int):
-    for i in range(left, right + 1):
-        if A[i] == target:
+
+
+def lin_search(left: int, right: int, array: List[int], target: int) -> int:
+    """Perform linear search in list. Returns -1 if element is not found.
+
+    Parameters
+    ----------
+    left : int
+        left index bound.
+    right : int
+        right index bound.
+    array : List[int]
+        List of elements to be searched on
+    target : int
+        Element that is searched
+
+    Returns
+    -------
+    int
+        index of element that is looked for.
+
+    Examples
+    --------
+    >>> lin_search(0, 4, [4, 5, 6, 7], 7)
+    3
+    >>> lin_search(0, 3, [4, 5, 6, 7], 7)
+    -1
+    >>> lin_search(0, 2, [-18, 2], -18)
+    0
+    >>> lin_search(0, 1, [5], 5)
+    0
+    >>> lin_search(0, 3, ['a', 'c', 'd'], 'c')
+    1
+    >>> lin_search(0, 3, [.1, .4 , -.1], .1)
+    0
+    >>> lin_search(0, 3, [.1, .4 , -.1], -.1)
+    2
+    """
+    for i in range(left, right):
+        if array[i] == target:
             return i
+    return -1
 
 
-# This is the iterative method of the ternary search algorithm.
-def ite_ternary_search(A: List[int], target: int):
+def ite_ternary_search(array: List[int], target: int) -> int:
+    """Iterative method of the ternary search algorithm.
+    >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
+    >>> ite_ternary_search(test_list, 3)
+    -1
+    >>> ite_ternary_search(test_list, 13)
+    4
+    >>> ite_ternary_search([4, 5, 6, 7], 4)
+    0
+    >>> ite_ternary_search([4, 5, 6, 7], -10)
+    -1
+    >>> ite_ternary_search([-18, 2], -18)
+    0
+    >>> ite_ternary_search([5], 5)
+    0
+    >>> ite_ternary_search(['a', 'c', 'd'], 'c')
+    1
+    >>> ite_ternary_search(['a', 'c', 'd'], 'f')
+    -1
+    >>> ite_ternary_search([], 1)
+    -1
+    >>> ite_ternary_search([.1, .4 , -.1], .1)
+    0
+    """
+
     left = 0
-    right = len(A) - 1
-    while True:
-        if left < right:
-
-            if right - left < precision:
-                return lin_search(left, right, A, target)
-
-            oneThird = (left + right) / 3 + 1
-            twoThird = 2 * (left + right) / 3 + 1
-
-            if A[oneThird] == target:
-                return oneThird
-            elif A[twoThird] == target:
-                return twoThird
-
-            elif target < A[oneThird]:
-                right = oneThird - 1
-            elif A[twoThird] < target:
-                left = twoThird + 1
-
-            else:
-                left = oneThird + 1
-                right = twoThird - 1
-        else:
-            return None
-
-
-# This is the recursive method of the ternary search algorithm.
-def rec_ternary_search(left: int, right: int, A: List[int], target: int):
-    if left < right:
-
+    right = len(array)
+    while left <= right:
         if right - left < precision:
-            return lin_search(left, right, A, target)
+            return lin_search(left, right, array, target)
 
-        oneThird = (left + right) / 3 + 1
-        twoThird = 2 * (left + right) / 3 + 1
+        one_third = (left + right) / 3 + 1
+        two_third = 2 * (left + right) / 3 + 1
 
-        if A[oneThird] == target:
-            return oneThird
-        elif A[twoThird] == target:
-            return twoThird
+        if array[one_third] == target:
+            return one_third
+        elif array[two_third] == target:
+            return two_third
 
-        elif target < A[oneThird]:
-            return rec_ternary_search(left, oneThird - 1, A, target)
-        elif A[twoThird] < target:
-            return rec_ternary_search(twoThird + 1, right, A, target)
+        elif target < array[one_third]:
+            right = one_third - 1
+        elif array[two_third] < target:
+            left = two_third + 1
 
         else:
-            return rec_ternary_search(oneThird + 1, twoThird - 1, A, target)
+
+            left = one_third + 1
+            right = two_third - 1
     else:
-        return None
+        return -1
 
 
-# This function is to check if the array is sorted.
-def __assert_sorted(collection: List[int]) -> bool:
-    if collection != sorted(collection):
-        raise ValueError("Collection must be sorted")
-    return True
+def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> int:
+    """Recursive method of the ternary search algorithm.
+
+    >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
+    >>> rec_ternary_search(0, len(test_list), test_list, 3)
+    -1
+    >>> rec_ternary_search(4, len(test_list), test_list, 42)
+    8
+    >>> rec_ternary_search(0, 2, [4, 5, 6, 7], 4)
+    0
+    >>> rec_ternary_search(0, 3, [4, 5, 6, 7], -10)
+    -1
+    >>> rec_ternary_search(0, 1, [-18, 2], -18)
+    0
+    >>> rec_ternary_search(0, 1, [5], 5)
+    0
+    >>> rec_ternary_search(0, 2, ['a', 'c', 'd'], 'c')
+    1
+    >>> rec_ternary_search(0, 2, ['a', 'c', 'd'], 'f')
+    -1
+    >>> rec_ternary_search(0, 0, [], 1)
+    -1
+    >>> rec_ternary_search(0, 3, [.1, .4 , -.1], .1)
+    0
+    """
+    if left < right:
+        if right - left < precision:
+            return lin_search(left, right, array, target)
+        one_third = (left + right) / 3 + 1
+        two_third = 2 * (left + right) / 3 + 1
+
+        if array[one_third] == target:
+            return one_third
+        elif array[two_third] == target:
+            return two_third
+
+        elif target < array[one_third]:
+            return rec_ternary_search(left, one_third - 1, array, target)
+        elif array[two_third] < target:
+            return rec_ternary_search(two_third + 1, right, array, target)
+        else:
+            return rec_ternary_search(one_third + 1, two_third - 1, array, target)
+    else:
+        return -1
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by coma:\n").strip()
-    collection = [int(item) for item in user_input.split(",")]
-
-    try:
-        __assert_sorted(collection)
-    except ValueError:
-        sys.exit("Sequence must be sorted to apply the ternary search")
-
-    target_input = input("Enter a single number to be found in the list:\n")
-    target = int(target_input)
+    user_input = input("Enter numbers separated by comma:\n").strip()
+    collection = [int(item.strip()) for item in user_input.split(",")]
+    assert collection == sorted(collection), f"List must be ordered.\n{collection}."
+    target = int(input("Enter the number to be found in the list:\n").strip())
     result1 = ite_ternary_search(collection, target)
     result2 = rec_ternary_search(0, len(collection) - 1, collection, target)
-
-    if result2 is not None:
+    if result2 != -1:
         print(f"Iterative search: {target} found at positions: {result1}")
         print(f"Recursive search: {target} found at positions: {result2}")
     else:
