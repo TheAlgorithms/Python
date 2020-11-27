@@ -26,22 +26,17 @@ def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
     """
     Calculate the distance between the two endpoints of two vectors without numpy.
     A vector is defined as a list, tuple, or numpy 1D array.
-    >>> euclidean_distance((0, 0), (2, 2))
+    >>> euclidean_distance_no_np((0, 0), (2, 2))
     2.8284271247461903
-    >>> euclidean_distance([1, 2, 3, 4], [5, 6, 7, 8])
+    >>> euclidean_distance_no_np([1, 2, 3, 4], [5, 6, 7, 8])
     8.0
     """
-    the_sum = 0
-    for i in range(len(vector_1)):
-        the_sum += (vector_2[i] - vector_1[i]) ** 2
-    return the_sum ** (1 / 2)
+    return sum([(y - x) ** 2 for (y, x) in list(zip(vector_1, vector_2))]) 
 
 
 def benchmark() -> None:
     """
-    Benchmark
-    The numpy takes longer than the non numpy for smaller vectors, but as
-    the dimension increases, the numpy is much faster
+    Benchmarks
     """
     from timeit import timeit
 
