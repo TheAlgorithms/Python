@@ -1,48 +1,87 @@
 """
 Test cases:
-find_minimum_change(987)
-500 100 100 100 100 50 20 10 50 2
-find_minimum_change(500)
+Do you want to enter your denominations ? (Y/N) :N
+Enter the change you want to make in Indian Currency: 987
+Following is minimal  change for 987 :
+500 100 100 100 100 50 20 10 5 2
+
+Do you want to enter your denominations ? (Y/N) :Y
+Enter number of denomination:10
+1
+5
+10
+20
+50
+100
+200
 500
-find_minimum_change(0)
-The total value cannot be zero or negetive
-find_minimum_change(-96)
-The total value cannot be zero or negetive
-find_minimum_change(56)
-50 5 1
+1000
+2000
+Enter the change you want to make: 18745
+Following is minimal  change for 18745 :
+2000 2000 2000 2000 2000 2000 2000 2000 2000 500 200 20 20 5
+
+Do you want to enter your denominations ? (Y/N) :N
+Enter the change you want to make: 0
+The total value cannot be zero or negative.
+Do you want to enter your denominations ? (Y/N) :N
+Enter the change you want to make: -98
+The total value cannot be zero or negative.
+
+Do you want to enter your denominations ? (Y/N) :Y
+Enter number of denomination:5
+1
+5
+100
+500
+1000
+Enter the change you want to make in Indian Currency: 456
+Following is minimal   change for 456 :
+100 100 100 100 5 5 5 5 5 5 5 5 5 5 5 1
 """
 
 
-def find_minimum_change(V):
-    total_value = int(V)
-    # All denominations of Indian Currency
-    denominations = [1, 2, 5, 10, 20, 50, 100, 500, 2000]
-    length = len(denominations)
+def find_minimum_change(denominations: list, value: int) -> list:
+
+    total_value = int(value)
 
     # Initialize Result
     answer = []
 
     # Traverse through all denomination
-    i = length - 1
-    while i >= 0:
+    for denomination in reversed(denominations):
 
         # Find denominations
-        while int(total_value) >= int(denominations[i]):
-            total_value -= int(denominations[i])
-            answer.append(denominations[i])  # Append the "answers" array
+        while int(total_value) >= int(denomination):
+            total_value -= int(denomination)
+            answer.append(denomination)  # Append the "answers" array
 
-        i -= 1
-
-    # Print result
-    for i in range(len(answer)):
-        print(answer[i], end=" ")
+    return answer
 
 
 # Driver Code
 if __name__ == "__main__":
-    n = input("Enter the change you want to make in Indian Currency: ").strip()
-    if int(n) == 0 or int(n) < 0:
-        print("The total value cannot be zero or negetive.")
+
+    denominations = list()
+    value = 0
+
+    if input("Do you want to enter your denominations ? (Y/N) :") == "Y":
+        n = int(input("Enter number of denomination:"))
+
+        for i in range(0, n):
+            denominations.append(int(input().strip()))
+        value = input("Enter the change you want to make in Indian Currency: ").strip()
     else:
-        print("Following is minimal number", "of change for", n, ": ", end="")
-        find_minimum_change(n)
+        # All denominations of Indian Currency if user does not enter
+        denominations = [1, 2, 5, 10, 20, 50, 100, 500, 2000]
+        value = input("Enter the change you want to make: ").strip()
+
+    if int(value) == 0 or int(value) < 0:
+        print("The total value cannot be zero or negative.")
+
+    else:
+        print("Following is minimal ", "change for", value, ": ")
+        answer = find_minimum_change(denominations, value)
+        # Print result
+        for i in range(len(answer)):
+            print(answer[i], end=" ")
