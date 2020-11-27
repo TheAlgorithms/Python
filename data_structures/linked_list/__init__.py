@@ -76,3 +76,4 @@ class LinkedList:
         0
         """
         return self.size
+        
