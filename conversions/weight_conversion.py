@@ -275,7 +275,7 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     try:
         return value * KILOGRAM_CHART[to_type] * WEIGHT_TYPE_CHART[from_type]
     except TypeError:
-        return "Value Type is not Float"
+        return "Value type is not float"
     except Exception as e:
         return str(e) + " is not known weight unit"
 
