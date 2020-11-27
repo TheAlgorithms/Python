@@ -26,6 +26,8 @@
 
 ## Bit Manipulation
   * [Binary And Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_and_operator.py)
+  * [Binary Count Setbits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_count_setbits.py)
+  * [Binary Count Trailing Zeros](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_count_trailing_zeros.py)
   * [Binary Or Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_or_operator.py)
   * [Binary Xor Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_xor_operator.py)
   * [Single Bit Manipulation Operations](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/single_bit_manipulation_operations.py)
@@ -47,7 +49,7 @@
   * [Atbash](https://github.com/TheAlgorithms/Python/blob/master/ciphers/atbash.py)
   * [Base16](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base16.py)
   * [Base32](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base32.py)
-  * [Base64 Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base64_cipher.py)
+  * [Base64 Encoding](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base64_encoding.py)
   * [Base85](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base85.py)
   * [Beaufort Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/beaufort_cipher.py)
   * [Brute Force Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/brute_force_caesar_cipher.py)
@@ -101,9 +103,11 @@
   * [Decimal To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
   * [Hexadecimal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/hexadecimal_to_decimal.py)
   * [Molecular Chemistry](https://github.com/TheAlgorithms/Python/blob/master/conversions/molecular_chemistry.py)
+  * [Octal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/octal_to_decimal.py)
   * [Prefix Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/prefix_conversions.py)
   * [Roman To Integer](https://github.com/TheAlgorithms/Python/blob/master/conversions/roman_to_integer.py)
   * [Temperature Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/temperature_conversions.py)
+  * [Weight Conversion](https://github.com/TheAlgorithms/Python/blob/master/conversions/weight_conversion.py)
 
 ## Data Structures
   * Binary Tree
@@ -207,6 +211,7 @@
   * [Heaps Algorithm Iterative](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/heaps_algorithm_iterative.py)
   * [Inversions](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/inversions.py)
   * [Kth Order Statistic](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/kth_order_statistic.py)
+  * [Max Difference Pair](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/max_difference_pair.py)
   * [Max Subarray Sum](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/max_subarray_sum.py)
   * [Mergesort](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/mergesort.py)
   * [Peak](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/peak.py)
@@ -242,6 +247,9 @@
   * [Rod Cutting](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/rod_cutting.py)
   * [Subset Generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
+
+## Electronics
+  * [Ohms Law](https://github.com/TheAlgorithms/Python/blob/master/electronics/ohms_law.py)
 
 ## File Transfer
   * [Receive File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/receive_file.py)
@@ -314,10 +322,6 @@
     * [Test Min Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_prim.py)
 
-## Greedy Method
-  * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/greedy_knapsack.py)
-  * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/test_knapsack.py)
-
 ## Hashes
   * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
@@ -329,8 +333,11 @@
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 
 ## Knapsack
+  * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/greedy_knapsack.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/knapsack.py)
-  * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/test_knapsack.py)
+  * Tests
+    * [Test Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/tests/test_greedy_knapsack.py)
+    * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/tests/test_knapsack.py)
 
 ## Linear Algebra
   * Src
@@ -393,6 +400,7 @@
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
   * [Decimal Isolate](https://github.com/TheAlgorithms/Python/blob/master/maths/decimal_isolate.py)
   * [Entropy](https://github.com/TheAlgorithms/Python/blob/master/maths/entropy.py)
+  * [Euclidean Distance](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_distance.py)
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Explicit Euler](https://github.com/TheAlgorithms/Python/blob/master/maths/explicit_euler.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
@@ -715,6 +723,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_080/sol1.py)
   * Problem 081
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_081/sol1.py)
+  * Problem 086
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_086/sol1.py)
   * Problem 087
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_087/sol1.py)
   * Problem 089
@@ -804,6 +814,7 @@
   * [Gnome Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/gnome_sort.py)
   * [Heap Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/heap_sort.py)
   * [Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/insertion_sort.py)
+  * [Intro Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/intro_sort.py)
   * [Iterative Merge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/iterative_merge_sort.py)
   * [Merge Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_insertion_sort.py)
   * [Merge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_sort.py)
@@ -877,6 +888,8 @@
   * [Get Imdb Top 250 Movies Csv](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdbtop.py)
   * [Instagram Crawler](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_crawler.py)
+  * [Instagram Pic](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_pic.py)
   * [Recaptcha Verification](https://github.com/TheAlgorithms/Python/blob/master/web_programming/recaptcha_verification.py)
   * [Slack Message](https://github.com/TheAlgorithms/Python/blob/master/web_programming/slack_message.py)
+  * [Test Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/test_fetch_github_info.py)
   * [World Covid19 Stats](https://github.com/TheAlgorithms/Python/blob/master/web_programming/world_covid19_stats.py)
