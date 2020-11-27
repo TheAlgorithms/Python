@@ -35,14 +35,26 @@ Enter number of denomination:5
 100
 500
 1000
-Enter the change you want to make in Indian Currency: 456
+Enter the change you want to make: 456
 Following is minimal   change for 456 :
 100 100 100 100 5 5 5 5 5 5 5 5 5 5 5 1
 """
 
 
 def find_minimum_change(denominations: list, value: int) -> list:
-
+    """
+    Find the minimum change from the given denominations and value
+    >>> find_minimum_change([1, 5, 10, 20, 50, 100, 200, 500, 1000,2000], 18745)
+    [2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 500, 200, 20, 20, 5]
+    >>> find_minimum_change([1, 2, 5, 10, 20, 50, 100, 500, 2000], 987)
+    [500, 100, 100, 100, 100, 50, 20, 10, 5, 2]
+    >>> find_minimum_change([1, 2, 5, 10, 20, 50, 100, 500, 2000], 0)
+    []
+    >>> find_minimum_change([1, 2, 5, 10, 20, 50, 100, 500, 2000], -98)
+    []
+    >>> find_minimum_change([1, 5, 100, 500, 1000], 456)
+    [100, 100, 100, 100, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1]
+    """
     total_value = int(value)
 
     # Initialize Result
