@@ -266,9 +266,25 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     >>> weight_conversion("atomic-mass-unit","atomic-mass-unit",2)
     1.999999998903455
     """
+    try:
+        return value * KILOGRAM_CHART[to_type] * WEIGHT_TYPE_CHART[from_type]
+    except:
+        return('''
+        Error : Unknown weight unit or Value type is not float
 
-    return value * KILOGRAM_CHART.get(to_type) * WEIGHT_TYPE_CHART.get(from_type)
+        Currently known units are: 
 
+        -> "kilogram",
+        -> "gram",
+        -> "milligram",
+        -> "metric-ton",
+        -> "long-ton",
+        -> "short-ton",
+        -> "pound",
+        -> "ounce",
+        -> "carrat",
+        -> "atomic-mass-unit",
+        ''')
 
 if __name__ == "__main__":
 
