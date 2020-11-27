@@ -6,9 +6,10 @@ Nodes contain data and also may link to other nodes:
     - Last node: points to null
 """
 
+from typing import Any
 
 class Node:
-    def __init__(self, item: any, next):
+    def __init__(self, item: Any, next: Any) -> None:
         self.item = item
         self.next = next
 
@@ -18,11 +19,11 @@ class LinkedList:
         self.head = None
         self.size = 0
 
-    def add(self, item: any) -> None:
+    def add(self, item: Any) -> None:
         self.head = Node(item, self.head)
         self.size += 1
 
-    def remove(self) -> any:
+    def remove(self) -> Any:
         if self.is_empty():
             return None
         else:
@@ -44,7 +45,7 @@ class LinkedList:
         9 --> 14 --> 23
         """
         if not self.is_empty:
-            return "Linked List is empty."
+            return ""
         else:
             iterate = self.head
             item_str = ""
