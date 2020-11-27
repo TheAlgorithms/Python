@@ -2,9 +2,6 @@
 
 import math
 
-N = int(input("Enter n: "))
-
-
 def sieve(n):
     """Sieve of Eratosthones."""
     l = [True] * (n + 1)
@@ -26,4 +23,5 @@ def sieve(n):
     return prime
 
 
-print(sieve(N))
+if __name__ == "__main__":
+    print(sieve(int(input("Enter n: ").strip())))

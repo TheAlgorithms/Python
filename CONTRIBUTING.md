@@ -69,7 +69,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
       """
   	This function sums two integers a and b
   	Return: a + b
-  	"""
+      """
       return a + b
   ```
 
