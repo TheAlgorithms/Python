@@ -11,14 +11,9 @@ For example:
   GITHUB.COM/MAYUR200
 
 """
-import re
-
-# This re.compile() function saves the pattern from 'a' to 'z' and 'A' to 'Z'
-# into 'regexp' variable
-regexp = re.compile("[^a-zA-Z]+")
 
 
-def swap_case(sentence):
+def swap_case(sentence: str) -> str:
     """
     This function will convert all lowercase letters to uppercase letters
     and vice versa.
@@ -30,13 +25,13 @@ def swap_case(sentence):
     for char in sentence:
         if char.isupper():
             new_string += char.lower()
-        if char.islower():
+        elif char.islower():
             new_string += char.upper()
-        if regexp.search(char):
+        else:
             new_string += char
 
     return new_string
 
 
 if __name__ == "__main__":
-    print(swap_case(input("Please input sentence:")))
+    print(swap_case(input("Please input sentence: ")))
