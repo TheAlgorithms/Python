@@ -31,7 +31,7 @@ def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
     >>> euclidean_distance_no_np([1, 2, 3, 4], [5, 6, 7, 8])
     8.0
     """
-    return sum([(y - x) ** 2 for (y, x) in list(zip(vector_1, vector_2))])
+    return sum([(y - x) ** 2 for (y, x) in list(zip(vector_1, vector_2))]) ** (1 / 2)
 
 
 def benchmark() -> None:
