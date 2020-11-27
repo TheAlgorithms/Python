@@ -35,27 +35,28 @@ def euclidean_distance_no_np(vector_1: Vector, vector_2: Vector) -> VectorOut:
 
 
 if __name__ == "__main__":
-  def benchmark() -> None:
-    """
-    Benchmarks
-    """
-    from timeit import timeit
-    print("Without Numpy")
-    print(
-        timeit(
-            "euclidean_distance_no_np([1, 2, 3], [4, 5, 6])",
-            number=10000,
-            globals=globals()
-        )
-    )
-    print("With Numpy")
-    print(
-        timeit(
-            "euclidean_distance([1, 2, 3], [4, 5, 6])",
-            number=10000,
-            globals=globals()
-        )
-    )
 
+    def benchmark() -> None:
+        """
+        Benchmarks
+        """
+        from timeit import timeit
 
-  benchmark()
+        print("Without Numpy")
+        print(
+            timeit(
+                "euclidean_distance_no_np([1, 2, 3], [4, 5, 6])",
+                number=10000,
+                globals=globals(),
+            )
+        )
+        print("With Numpy")
+        print(
+            timeit(
+                "euclidean_distance([1, 2, 3], [4, 5, 6])",
+                number=10000,
+                globals=globals(),
+            )
+        )
+
+    benchmark()
