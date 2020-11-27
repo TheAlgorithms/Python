@@ -272,12 +272,12 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     >>> weight_conversion("atomic-mass-unit","atomic-mass-unit",2)
     1.999999998903455
     """
-    try:
-        return value * KILOGRAM_CHART[to_type] * WEIGHT_TYPE_CHART[from_type]
-    except TypeError:
-        return "Value type is not float"
-    except Exception as e:
-        return str(e) + " is not known weight unit"
+    if to_type not in KILOGRAM_CHART or from_type not in WEIGHT_TYPE_CHART:
+        raise ValueError(
+            f"Invalid 'from_type' or 'to_type' value: {from_type!r}, {to_type!r}\n"
+            f"Supported values are: {', '.join(WEIGHT_TYPE_CHART)}"
+        )
+    return value * KILOGRAM_CHART[to_type] * WEIGHT_TYPE_CHART[from_type]
 
 
 if __name__ == "__main__":
