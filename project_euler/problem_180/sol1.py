@@ -50,9 +50,9 @@ from fractions import Fraction
 from math import gcd, sqrt
 
 
-def is_sq(n: int) -> bool:
+def is_sq(number: int) -> bool:
     """
-    Check if n is a perfect square.
+    Check if number is a perfect square.
 
     >>> is_sq(1)
     True
@@ -61,8 +61,8 @@ def is_sq(n: int) -> bool:
     >>> is_sq(1000000)
     True
     """
-    sq: int = int(n ** 0.5)
-    return n == sq * sq
+    sq: int = int(number ** 0.5)
+    return number == sq * sq
 
 
 def solution(order: int = 35) -> int:
