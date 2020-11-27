@@ -1,6 +1,12 @@
 """
 Conversion of weight units.
 
+__author__ = "Anubhav Solanki"
+__license__ = "MIT"
+__version__ = "1.0.0"
+__maintainer__ = "Anubhav Solanki"
+__email__ = "anubhavsolanki0@gmail.com"
+
 USAGE :
 -> Import this file into their respective project.
 -> Use the function weight_conversion() for conversion of weight units.
@@ -268,23 +274,12 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     """
     try:
         return value * KILOGRAM_CHART[to_type] * WEIGHT_TYPE_CHART[from_type]
-    except:
-        return('''
-        Error : Unknown weight unit or Value type is not float
+    except TypeError:
+        return("Value Type is not Float")
+    except Exception as e:
+        return(str(e) + " is not known weight unit")
+        
 
-        Currently known units are: 
-
-        -> "kilogram",
-        -> "gram",
-        -> "milligram",
-        -> "metric-ton",
-        -> "long-ton",
-        -> "short-ton",
-        -> "pound",
-        -> "ounce",
-        -> "carrat",
-        -> "atomic-mass-unit",
-        ''')
 
 if __name__ == "__main__":
 
