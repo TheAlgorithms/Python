@@ -1,6 +1,6 @@
 import unittest
 
-from . import greedy_knapsack as kp
+from knapsack import greedy_knapsack as kp
 
 
 class TestClass(unittest.TestCase):
