@@ -24,7 +24,7 @@ def electric_power(voltage: float, current: float, power: float) -> float:
     elif current == 0:
         return {"current": power / voltage}
     elif power == 0:
-        return {"power": abs(float(voltage * current))}
+        return {"power": float(abs(voltage * current))}
 
 
 if __name__ == "__main__":
