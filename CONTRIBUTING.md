@@ -49,6 +49,19 @@ Algorithms should:
 
 Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
 
+#### Pre-commit plugin
+Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
+
+```bash
+python3 -m pip install pre-commit  # required only once
+pre-commit install
+```
+That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
+
+```bash
+pre-commit run --all-files --show-diff-on-failure
+```
+
 #### Coding Style
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
@@ -64,14 +77,14 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf) but the __black__ formatter is now hosted by the Python Software Foundation. To use it,
 
   ```bash
-  pip3 install black  # only required the first time
+  python3 -m pip install black  # only required the first time
   black .
   ```
 
 - All submissions will need to pass the test __flake8 . --ignore=E203,W503 --max-line-length=88__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
-  pip3 install flake8  # only required the first time
+  python3 -m pip install flake8  # only required the first time
   flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
   ```
 
