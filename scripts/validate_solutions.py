@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import importlib.util
 import json
+import os
 import pathlib
 from types import ModuleType
 from typing import Dict, List
 
+import github
 import pytest
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
@@ -24,7 +26,7 @@ def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
     return module
 
 
-def collect_solution_file_paths() -> List[pathlib.Path]:
+def all_solution_file_paths() -> List[pathlib.Path]:
     """Collects all the solution file path in the Project Euler directory"""
     solution_file_paths = []
     for problem_dir_path in PROJECT_EULER_DIR_PATH.iterdir():
@@ -35,6 +37,40 @@ def collect_solution_file_paths() -> List[pathlib.Path]:
                 continue
             solution_file_paths.append(file_path)
     return solution_file_paths
+
+
+def get_pull_number() -> int:
+    """Return the pull request number which triggered this action."""
+    GITHUB_REF = os.environ["GITHUB_REF"]
+    return int(GITHUB_REF.split("/")[2])
+
+
+def added_solution_file_path() -> List[pathlib.Path]:
+    """Collects only the solution file path which got added in the current
+    pull request.
+
+    This will only be triggered if the script is ran from GitHub Actions.
+    """
+    solution_file_paths = []
+    # Direct fetching so that the error propagates, if any.
+    login = github.Github(os.environ["GITHUB_TOKEN"])
+    repo = login.get_repo(os.environ["GITHUB_REPOSITORY"])
+    if pull_number := get_pull_number():
+        pull = repo.get_pull(pull_number)
+        for file in pull.get_files():
+            file_path = pathlib.Path.cwd().joinpath(file.filename)
+            if file_path.suffix != ".py" or file_path.name.startswith(("_", "test")):
+                continue
+            solution_file_paths.append(file_path)
+    return solution_file_paths
+
+
+def collect_solution_file_paths() -> List[pathlib.Path]:
+    if os.environ.get("CI") and os.environ.get("GITHUB_EVENT_NAME") == "pull_request":
+        # Return only if there are any, otherwise default to all solutions
+        if filepaths := added_solution_file_path():
+            return filepaths
+    return all_solution_file_paths()
 
 
 @pytest.mark.parametrize(
