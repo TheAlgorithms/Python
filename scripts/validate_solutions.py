@@ -6,8 +6,12 @@ import pathlib
 from types import ModuleType
 from typing import Dict, List
 
-import github
 import pytest
+
+try:
+    import github
+except ImportError:
+    pass
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
 PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
@@ -82,7 +86,7 @@ def collect_solution_file_paths() -> List[pathlib.Path]:
     collect_solution_file_paths(),
     ids=lambda path: f"{path.parent.name}/{path.name}",
 )
-def test_project_euler(solution_path: pathlib.Path):
+def test_project_euler(solution_path: pathlib.Path) -> None:
     """Testing for all Project Euler solutions"""
     # problem_[extract this part] and pad it with zeroes for width 3
     problem_number: str = solution_path.parent.name[8:].zfill(3)
