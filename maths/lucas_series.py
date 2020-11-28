@@ -26,7 +26,9 @@ def recursive_lucas_number(n_th_number: int) -> int:
     if n_th_number == 1:
         return 1
 
-    return recursive_lucas_number(n_th_number - 1) + recursive_lucas_number(n_th_number - 2)
+    return recursive_lucas_number(n_th_number - 1) + recursive_lucas_number(
+        n_th_number - 2
+    )
 
 
 def dynamic_lucas_number(n_th_number: int) -> int:
