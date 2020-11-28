@@ -8,10 +8,12 @@ Nodes contain data and also may link to other nodes:
 
 from typing import Any
 
+
 class Node:
     def __init__(self, item: Any, next: Any) -> None:
         self.item = item
         self.next = next
+
 
 class LinkedList:
     def __init__(self) -> None:
@@ -76,4 +78,3 @@ class LinkedList:
         0
         """
         return self.size
-        
