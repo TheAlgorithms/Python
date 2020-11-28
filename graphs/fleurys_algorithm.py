@@ -13,7 +13,7 @@ class Graph:
         self.graph[u].append(v)
         self.graph[v].append(u)
 
-    def rmv_edge(self, u, v) -> None:
+    def remove_edge(self, u, v) -> None:
         """
         Remove u-v edge from the graph
         """
@@ -24,7 +24,7 @@ class Graph:
             if key == u:
                 self.graph[v].pop(index)
 
-    def dfs_count(self, v, visited) -> int:
+    def depth_first_search_count(self, v, visited) -> int:
         """
         A DFS based function to count reachable vertices from v
         """
@@ -43,7 +43,6 @@ class Graph:
 
         if len(self.graph[u]) == 1:
             return True
-        else:
             visited = [False] * self.v
             count1 = self.dfs_count(u, visited)
 
@@ -61,7 +60,7 @@ class Graph:
         """
         for v in self.graph[u]:
             if self.is_valid_next_edge(u, v):
-                print("%d-%d " % (u, v)),
+                print(f"{u}-{v}"),
                 self.rmv_edge(u, v)
                 self.print_euler_util(v)
 
@@ -70,6 +69,16 @@ class Graph:
         The main function that print Eulerian Trail. It first finds an odd
         degree vertex (if there is any) and then calls printEulerUtil()
         to print the path
+
+        >>> graph = Graph(1)
+        >>> graph.print_euler_tour()
+        
+        >>> graph.add_edge(0, 1)
+        >>> graph.print_euler_tour()
+        0-1
+        >>> graph.add_edge(0, 1)
+        >>> graph.print_euler_tour()
+        
         """
         u = 0
         for i in range(self.v):
