@@ -50,7 +50,7 @@ Algorithms should:
 Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
 
 #### Pre-commit plugin
-To forget about coding style, let [pre-commit](https://pre-commit.com/#installation) fix your formatting issues.
+Use [pre-commit](https://pre-commit.com/#installation) to automatically format you code to match our coding style, 
 
 ```bash
 python3 -m pip install pre-commit  # required only once
