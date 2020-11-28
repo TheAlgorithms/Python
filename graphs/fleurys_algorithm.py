@@ -72,13 +72,13 @@ class Graph:
 
         >>> graph = Graph(1)
         >>> graph.print_euler_tour()
-        
+
         >>> graph.add_edge(0, 1)
         >>> graph.print_euler_tour()
         0-1
         >>> graph.add_edge(0, 1)
         >>> graph.print_euler_tour()
-        
+
         """
         u = 0
         for i in range(self.v):
