@@ -3,8 +3,8 @@ from datetime import datetime
 
 import requests
 
-
-def get_video(link) -> None:
+if __name__ == "__main__":
+    link = input("Enter Video/IGTV url: ").strip()
     url = f"https://downloadgram.net/wp-json/wppress/video-downloader/video?url={link}"
     req = requests.get(url)
     res = req.content
@@ -31,8 +31,3 @@ def get_video(link) -> None:
     with open(file_name, "wb") as fp:
         fp.write(video_data)
     print(f"Done. Video saved to disk as {file_name}.")
-
-
-if __name__ == "__main__":
-    url = input("Enter Video/IGTV url: ").strip()
-    get_video(link=url)
