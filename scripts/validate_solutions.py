@@ -59,7 +59,11 @@ def added_solution_file_path() -> List[pathlib.Path]:
         pull = repo.get_pull(pull_number)
         for file in pull.get_files():
             file_path = pathlib.Path.cwd().joinpath(file.filename)
-            if file_path.suffix != ".py" or file_path.name.startswith(("_", "test")):
+            if (
+                file_path.suffix != ".py"
+                or file_path.name.startswith(("_", "test"))
+                or not file_path.name.startswith("sol")
+            ):
                 continue
             solution_file_paths.append(file_path)
     return solution_file_paths
