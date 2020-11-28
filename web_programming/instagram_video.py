@@ -9,24 +9,8 @@ if __name__ == "__main__":
     req = requests.get(url)
     res = req.content
     json_data = json.loads(res)
-    information = [
-        json_data[0]["urls"][0]["quality"],
-        json_data[0]["urls"][0]["ext"],
-        json_data[0]["urls"][0]["size"],
-        json_data[0]["urls"][0]["src"],
-    ]
-    print(
-        f"""
-                This Is Information About Video
-        
-        Quality : {information[0]}
-        Format  : {information[1]}
-        Size    : {information[2]} 
-        SRC     : {information[3]}
-    """
-    )
     print(f"Downloading video from {link} ...")
-    video_data = requests.get(information[3]).content
+    video_data = requests.get(json_data[0]["urls"][0]["src"]).content
     file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.mp4"
     with open(file_name, "wb") as fp:
         fp.write(video_data)
