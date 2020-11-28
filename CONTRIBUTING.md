@@ -48,6 +48,14 @@ Algorithms should:
 * return all calculation results instead of printing or plotting them
 
 Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+#### Pre-commit plugin
+To forget about coding style, let [pre-commit](https://pre-commit.com/#installation) fix your `flake8`/`black`/`isort` issue.
+
+```bash
+pip3 install pre-commit # required only once
+pre-commit install
+pre-commit run -a # this might show you that it failed but actually it didn't
+```
 
 #### Coding Style
 
@@ -73,13 +81,6 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ```bash
   pip3 install flake8  # only required the first time
   flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
-  ```
-- All submissions will also have to pass **pre-commit**, this ensures that your code is perfectly formatted and does not have any trailing whitespaces, has empty line at the file ending. You can try this anytime between the pull request or before the pull request locally (This fixes most of the automated tests).
-
-  ```bash
-  pip3 install pre-commit # only required the first time
-  pre-commit install
-  pre-commit run -a # This might show you that it failed but actually it didn't
   ```
 
 - Original code submission require docstrings or comments to describe your work.
