@@ -48,13 +48,18 @@ Algorithms should:
 * return all calculation results instead of printing or plotting them
 
 Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+
 #### Pre-commit plugin
-To forget about coding style, let [pre-commit](https://pre-commit.com/#installation) fix your `flake8`/`black`/`isort` issue.
+To forget about coding style, let [pre-commit](https://pre-commit.com/#installation) fix your formatting issues.
 
 ```bash
-pip3 install pre-commit # required only once
+pip3 install pre-commit  # required only once
 pre-commit install
-pre-commit run -a # this might show you that it failed but actually it didn't
+```
+That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
+
+```bash
+pre-commit run --all-files --show-diff-on-failure
 ```
 
 #### Coding Style
