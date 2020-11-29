@@ -40,7 +40,7 @@ def electric_power(voltage: float, current: float, power: float) -> float:
     elif current == 0:
         return result("current", power / voltage)
     elif power == 0:
-        return result("power", float(abs(voltage * current)))
+        return result("power", float(round(abs(voltage * current), 2)))
 
 
 if __name__ == "__main__":
