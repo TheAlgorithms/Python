@@ -13,7 +13,10 @@ def generate_all_permutations(sequence: List[Union[int, str]]) -> None:
 
 
 def create_state_space_tree(
-    sequence: List[Union[int, str]], current_sequence: List[Union[int, str]], index: int, index_used: List[int]
+    sequence: List[Union[int, str]],
+    current_sequence: List[Union[int, str]],
+    index: int,
+    index_used: List[int],
 ) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
