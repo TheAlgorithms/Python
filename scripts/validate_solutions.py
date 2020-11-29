@@ -7,11 +7,7 @@ from types import ModuleType
 from typing import Dict, List
 
 import pytest
-
-try:
-    import github
-except ImportError:
-    pass
+import requests
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
 PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
@@ -43,10 +39,11 @@ def all_solution_file_paths() -> List[pathlib.Path]:
     return solution_file_paths
 
 
-def get_pull_number() -> int:
+def get_files_url() -> str:
     """Return the pull request number which triggered this action."""
-    GITHUB_REF = os.environ["GITHUB_REF"]
-    return int(GITHUB_REF.split("/")[2])
+    with open(os.environ["GITHUB_EVENT_PATH"]) as file:
+        event = json.load(file)
+    return event["pull_request"]["url"] + "/files"
 
 
 def added_solution_file_path() -> List[pathlib.Path]:
@@ -56,20 +53,20 @@ def added_solution_file_path() -> List[pathlib.Path]:
     This will only be triggered if the script is ran from GitHub Actions.
     """
     solution_file_paths = []
-    # Direct fetching so that the error propagates, if any.
-    login = github.Github(os.environ["GITHUB_TOKEN"])
-    repo = login.get_repo(os.environ["GITHUB_REPOSITORY"])
-    if pull_number := get_pull_number():
-        pull = repo.get_pull(pull_number)
-        for file in pull.get_files():
-            file_path = pathlib.Path.cwd().joinpath(file.filename)
-            if (
-                file_path.suffix != ".py"
-                or file_path.name.startswith(("_", "test"))
-                or not file_path.name.startswith("sol")
-            ):
-                continue
-            solution_file_paths.append(file_path)
+    headers = {
+        "Accept": "application/vnd.github.v3+json",
+        "Authorization": "token " + os.environ["GITHUB_TOKEN"],
+    }
+    files = requests.get(get_files_url(), headers=headers).json()
+    for file in files:
+        filepath = pathlib.Path.cwd().joinpath(file["filename"])
+        if (
+            filepath.suffix != ".py"
+            or filepath.name.startswith(("_", "test"))
+            or not filepath.name.startswith("sol")
+        ):
+            continue
+        solution_file_paths.append(filepath)
     return solution_file_paths
 
 
