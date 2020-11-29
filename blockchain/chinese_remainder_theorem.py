@@ -12,7 +12,7 @@
 
 
 # Extended Euclid
-def extended_euclid(a, b):
+def extended_euclid(a: int, b: int) -> (int, int):
     """
     >>> extended_euclid(10, 6)
     (-1, 2)
@@ -29,7 +29,7 @@ def extended_euclid(a, b):
 
 
 # Uses ExtendedEuclid to find inverses
-def chinese_remainder_theorem(n1, r1, n2, r2):
+def chinese_remainder_theorem(n1: int, r1: int, n2: int, r2: int) -> int:
     """
     >>> chinese_remainder_theorem(5,1,7,3)
     31
@@ -51,7 +51,7 @@ def chinese_remainder_theorem(n1, r1, n2, r2):
 # ----------SAME SOLUTION USING InvertModulo instead ExtendedEuclid----------------
 
 # This function find the inverses of a i.e., a^(-1)
-def invert_modulo(a, n):
+def invert_modulo(a: int, n: int) -> int:
     """
     >>> invert_modulo(2, 5)
     3
@@ -67,7 +67,7 @@ def invert_modulo(a, n):
 
 
 # Same a above using InvertingModulo
-def chinese_remainder_theorem2(n1, r1, n2, r2):
+def chinese_remainder_theorem2(n1: int, r1: int, n2: int, r2: int) -> int:
     """
     >>> chinese_remainder_theorem2(5,1,7,3)
     31

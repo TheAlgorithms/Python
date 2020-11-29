@@ -5,7 +5,7 @@
 # GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
 
 
-def diophantine(a, b, c):
+def diophantine(a: int, b: int, c: int) -> (int, int):
     """
     >>> diophantine(10,6,14)
     (-7.0, 14.0)
@@ -37,7 +37,7 @@ def diophantine(a, b, c):
 # n is the number of solution you want, n = 2 by default
 
 
-def diophantine_all_soln(a, b, c, n=2):
+def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
     """
     >>> diophantine_all_soln(10, 6, 14)
     -7.0 14.0
@@ -72,7 +72,7 @@ def diophantine_all_soln(a, b, c, n=2):
 # Euclid's Algorithm
 
 
-def greatest_common_divisor(a, b):
+def greatest_common_divisor(a: int, b: int) -> int:
     """
     >>> greatest_common_divisor(7,5)
     1
@@ -98,7 +98,7 @@ def greatest_common_divisor(a, b):
 # x and y, then d = gcd(a,b)
 
 
-def extended_gcd(a, b):
+def extended_gcd(a: int, b: int) -> (int, int, int):
     """
     >>> extended_gcd(10, 6)
     (2, -1, 2)
