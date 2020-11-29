@@ -14,4 +14,4 @@ if __name__ == "__main__":
     file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.mp4"
     with open(file_name, "wb") as fp:
         fp.write(download_video(url))
-    print(f"Done. Video saved to disk as {file_name}.")
+    print("Done. Video saved to disk as {file_name}.")
