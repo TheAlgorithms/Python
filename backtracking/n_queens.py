@@ -10,7 +10,7 @@
 solution = []
 
 
-def isSafe(board, row, column):
+def isSafe(board: [[int]], row: int, column: int) -> bool:
     """
     This function returns a boolean value True if it is safe to place a queen there
     considering the current state of the board.
@@ -38,7 +38,7 @@ def isSafe(board, row, column):
     return True
 
 
-def solve(board, row):
+def solve(board: [[int]], row: int) -> bool:
     """
     It creates a state space tree and calls the safe function until it receives a
     False Boolean and terminates that branch and backtracks to the next
@@ -68,7 +68,7 @@ def solve(board, row):
     return False
 
 
-def printboard(board):
+def printboard(board: [[int]]) -> None:
     """
     Prints the boards that have a successful combination.
     """

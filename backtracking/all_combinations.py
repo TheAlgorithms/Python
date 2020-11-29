@@ -16,7 +16,13 @@ def generate_all_combinations(n: int, k: int) -> [[int]]:
     return result
 
 
-def create_all_state(increment, total_number, level, current_list, total_list):
+def create_all_state(
+    increment: int,
+    total_number: int,
+    level: int,
+    current_list: [int],
+    total_list: [int],
+) -> None:
     if level == 0:
         total_list.append(current_list[:])
         return
@@ -27,7 +33,7 @@ def create_all_state(increment, total_number, level, current_list, total_list):
         current_list.pop()
 
 
-def print_all_state(total_list):
+def print_all_state(total_list: [int]) -> None:
     for i in total_list:
         print(*i)
 

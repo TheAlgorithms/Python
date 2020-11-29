@@ -41,6 +41,7 @@
   * [Quine Mc Cluskey](https://github.com/TheAlgorithms/Python/blob/master/boolean_algebra/quine_mc_cluskey.py)
 
 ## Cellular Automata
+  * [Conways Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/conways_game_of_life.py)
   * [One Dimensional](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/one_dimensional.py)
 
 ## Ciphers
@@ -107,6 +108,7 @@
   * [Prefix Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/prefix_conversions.py)
   * [Roman To Integer](https://github.com/TheAlgorithms/Python/blob/master/conversions/roman_to_integer.py)
   * [Temperature Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/temperature_conversions.py)
+  * [Weight Conversion](https://github.com/TheAlgorithms/Python/blob/master/conversions/weight_conversion.py)
 
 ## Data Structures
   * Binary Tree
@@ -321,10 +323,6 @@
     * [Test Min Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_prim.py)
 
-## Greedy Method
-  * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/greedy_knapsack.py)
-  * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/test_knapsack.py)
-
 ## Hashes
   * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
@@ -336,8 +334,11 @@
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 
 ## Knapsack
+  * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/greedy_knapsack.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/knapsack.py)
-  * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/test_knapsack.py)
+  * Tests
+    * [Test Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/tests/test_greedy_knapsack.py)
+    * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/tests/test_knapsack.py)
 
 ## Linear Algebra
   * Src
@@ -400,6 +401,7 @@
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
   * [Decimal Isolate](https://github.com/TheAlgorithms/Python/blob/master/maths/decimal_isolate.py)
   * [Entropy](https://github.com/TheAlgorithms/Python/blob/master/maths/entropy.py)
+  * [Euclidean Distance](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_distance.py)
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Explicit Euler](https://github.com/TheAlgorithms/Python/blob/master/maths/explicit_euler.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
@@ -886,6 +888,7 @@
   * [Get Imdbtop](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdbtop.py)
   * [Instagram Crawler](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_crawler.py)
   * [Instagram Pic](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_pic.py)
+  * [Instagram Video](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_video.py)
   * [Recaptcha Verification](https://github.com/TheAlgorithms/Python/blob/master/web_programming/recaptcha_verification.py)
   * [Slack Message](https://github.com/TheAlgorithms/Python/blob/master/web_programming/slack_message.py)
   * [Test Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/test_fetch_github_info.py)
