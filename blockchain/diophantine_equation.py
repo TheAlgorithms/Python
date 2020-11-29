@@ -1,12 +1,14 @@
-# Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the
-# diophantine equation a*x + b*y = c has a solution (where x and y are integers)
-# iff gcd(a,b) divides c.
-
-# GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
+from typing import Tuple
 
 
-def diophantine(a: int, b: int, c: int) -> (int, int):
+def diophantine(a: int, b: int, c: int) -> Tuple[float, float]:
     """
+    Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the
+    diophantine equation a*x + b*y = c has a solution (where x and y are integers)
+    iff gcd(a,b) divides c.
+
+    GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
+
     >>> diophantine(10,6,14)
     (-7.0, 14.0)
 
@@ -26,19 +28,19 @@ def diophantine(a: int, b: int, c: int) -> (int, int):
     return (r * x, r * y)
 
 
-# Lemma : if n|ab and gcd(a,n) = 1, then n|b.
-
-# Finding All solutions of Diophantine Equations:
-
-# Theorem : Let gcd(a,b) = d, a = d*p, b = d*q. If (x0,y0) is a solution of Diophantine
-# Equation a*x + b*y = c.  a*x0 + b*y0 = c, then all the solutions have the form
-# a(x0 + t*q) + b(y0 - t*p) = c, where t is an arbitrary integer.
-
-# n is the number of solution you want, n = 2 by default
-
-
 def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
     """
+    Lemma : if n|ab and gcd(a,n) = 1, then n|b.
+
+    Finding All solutions of Diophantine Equations:
+
+    Theorem : Let gcd(a,b) = d, a = d*p, b = d*q. If (x0,y0) is a solution of
+    Diophantine Equation a*x + b*y = c.  a*x0 + b*y0 = c, then all the
+    solutions have the form a(x0 + t*q) + b(y0 - t*p) = c,
+    where t is an arbitrary integer.
+
+    n is the number of solution you want, n = 2 by default
+
     >>> diophantine_all_soln(10, 6, 14)
     -7.0 14.0
     -4.0 9.0
@@ -67,13 +69,12 @@ def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
         print(x, y)
 
 
-# Euclid's Lemma :  d divides a and b, if and only if d divides a-b and b
-
-# Euclid's Algorithm
-
-
 def greatest_common_divisor(a: int, b: int) -> int:
     """
+    Euclid's Lemma :  d divides a and b, if and only if d divides a-b and b
+
+    Euclid's Algorithm
+
     >>> greatest_common_divisor(7,5)
     1
 
@@ -94,12 +95,11 @@ def greatest_common_divisor(a: int, b: int) -> int:
     return b
 
 
-# Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers
-# x and y, then d = gcd(a,b)
-
-
-def extended_gcd(a: int, b: int) -> (int, int, int):
+def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
     """
+    Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers
+    x and y, then d = gcd(a,b)
+
     >>> extended_gcd(10, 6)
     (2, -1, 2)
 
