@@ -1,4 +1,7 @@
-def solve_maze(maze: [[int]]) -> bool:
+from typing import List
+
+
+def solve_maze(maze: List[List[int]]) -> bool:
     """
     This method solves the "rat in maze" problem.
     In this problem we have some n by n matrix, a start point and an end point.
@@ -67,7 +70,7 @@ def solve_maze(maze: [[int]]) -> bool:
     return solved
 
 
-def run_maze(maze: [[int]], i: int, j: int, solutions: [[int]]) -> bool:
+def run_maze(maze: List[List[int]], i: int, j: int, solutions: List[List[int]]) -> bool:
     """
     This method is recursive starting from (i, j) and going in one of four directions:
     up, down, left, right.
@@ -106,6 +109,7 @@ def run_maze(maze: [[int]], i: int, j: int, solutions: [[int]]) -> bool:
 
             solutions[i][j] = 0
             return False
+    return False
 
 
 if __name__ == "__main__":
