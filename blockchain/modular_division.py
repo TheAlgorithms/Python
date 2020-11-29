@@ -101,7 +101,6 @@ def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
     return (d, x, y)
 
 
-
 def extended_euclid(a: int, b: int) -> Tuple[int, int]:
     """
     Extended Euclid

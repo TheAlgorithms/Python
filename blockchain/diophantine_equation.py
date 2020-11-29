@@ -28,7 +28,6 @@ def diophantine(a: int, b: int, c: int) -> Tuple[float, float]:
     return (r * x, r * y)
 
 
-
 def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
     """
     Lemma : if n|ab and gcd(a,n) = 1, then n|b.
@@ -93,7 +92,6 @@ def greatest_common_divisor(a: int, b: int) -> int:
         a, b = b, a % b
 
     return b
-
 
 
 def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
