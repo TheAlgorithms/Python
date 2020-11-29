@@ -8,7 +8,7 @@
 """
 
 
-def generate_sum_of_subsets_soln(nums, max_sum):
+def generate_sum_of_subsets_soln(nums: [int], max_sum: [int]) -> [int]:
     result = []
     path = []
     num_index = 0
@@ -17,7 +17,14 @@ def generate_sum_of_subsets_soln(nums, max_sum):
     return result
 
 
-def create_state_space_tree(nums, max_sum, num_index, path, result, remaining_nums_sum):
+def create_state_space_tree(
+    nums: [int],
+    max_sum: int,
+    num_index: int,
+    path: [int],
+    result: [int],
+    remaining_nums_sum: int,
+) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
     It terminates the branching of a node when any of the two conditions
