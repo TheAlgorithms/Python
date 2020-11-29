@@ -4,7 +4,7 @@ import requests
 
 
 def download_video(url: str) -> bytes:
-    base_url = f"https://downloadgram.net/wp-json/wppress/video-downloader/video?url="
+    base_url = "https://downloadgram.net/wp-json/wppress/video-downloader/video?url="
     video_url = requests.get(base_url + url).json()[0]["urls"][0]["src"]
     return requests.get(video_url).content
 
@@ -14,4 +14,4 @@ if __name__ == "__main__":
     file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.mp4"
     with open(file_name, "wb") as fp:
         fp.write(download_video(url))
-    print("Done. Video saved to disk as {file_name}.")
+    print(f"Done. Video saved to disk as {file_name}.")
