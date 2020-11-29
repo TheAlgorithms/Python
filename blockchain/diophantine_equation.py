@@ -35,8 +35,8 @@ def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
     Finding All solutions of Diophantine Equations:
 
     Theorem : Let gcd(a,b) = d, a = d*p, b = d*q. If (x0,y0) is a solution of
-    Diophantine Equation a*x + b*y = c.  a*x0 + b*y0 = c, then all the 
-    solutions have the form a(x0 + t*q) + b(y0 - t*p) = c, 
+    Diophantine Equation a*x + b*y = c.  a*x0 + b*y0 = c, then all the
+    solutions have the form a(x0 + t*q) + b(y0 - t*p) = c,
     where t is an arbitrary integer.
 
     n is the number of solution you want, n = 2 by default
