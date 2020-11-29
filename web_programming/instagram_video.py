@@ -8,6 +8,7 @@ def download_video(url: str) -> bytes:
     video_url = requests.get(base_url + url).json()[0]["urls"][0]["src"]
     return requests.get(video_url).content
 
+
 if __name__ == "__main__":
     url = input("Enter Video/IGTV url: ").strip()
     file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.mp4"
