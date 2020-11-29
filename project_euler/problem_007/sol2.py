@@ -1,16 +1,30 @@
 """
-Problem 7: https://projecteuler.net/problem=7
+Project Euler Problem 7: https://projecteuler.net/problem=7
 
-By listing the first six prime numbers:
+10001st prime
 
-    2, 3, 5, 7, 11, and 13
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we
+can see that the 6th prime is 13.
 
-We can see that the 6th prime is 13. What is the Nth prime number?
+What is the 10001st prime number?
+
+References:
+    - https://en.wikipedia.org/wiki/Prime_number
 """
 
 
 def isprime(number: int) -> bool:
-    """Determines whether the given number is prime or not"""
+    """
+    Determines whether the given number is prime or not
+
+    >>> isprime(2)
+    True
+    >>> isprime(15)
+    False
+    >>> isprime(29)
+    True
+    """
+
     for i in range(2, int(number ** 0.5) + 1):
         if number % i == 0:
             return False
@@ -18,7 +32,8 @@ def isprime(number: int) -> bool:
 
 
 def solution(nth: int = 10001) -> int:
-    """Returns the n-th prime number.
+    """
+    Returns the n-th prime number.
 
     >>> solution(6)
     13
@@ -32,35 +47,32 @@ def solution(nth: int = 10001) -> int:
     229
     >>> solution(100)
     541
-    >>> solution()
-    104743
     >>> solution(3.4)
     5
     >>> solution(0)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter nth must be greater or equal to one.
+    ValueError: Parameter nth must be greater than or equal to one.
     >>> solution(-17)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter nth must be greater or equal to one.
+    ValueError: Parameter nth must be greater than or equal to one.
     >>> solution([])
     Traceback (most recent call last):
         ...
-    TypeError: Parameter nth must be int or passive of cast to int.
+    TypeError: Parameter nth must be int or castable to int.
     >>> solution("asd")
     Traceback (most recent call last):
         ...
-    TypeError: Parameter nth must be int or passive of cast to int.
+    TypeError: Parameter nth must be int or castable to int.
     """
+
     try:
         nth = int(nth)
     except (TypeError, ValueError):
-        raise TypeError(
-            "Parameter nth must be int or passive of cast to int."
-        ) from None
+        raise TypeError("Parameter nth must be int or castable to int.") from None
     if nth <= 0:
-        raise ValueError("Parameter nth must be greater or equal to one.")
+        raise ValueError("Parameter nth must be greater than or equal to one.")
     primes = []
     num = 2
     while len(primes) < nth:
@@ -73,4 +85,4 @@ def solution(nth: int = 10001) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")

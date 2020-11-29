@@ -220,7 +220,7 @@ def brute_force(input_string: str, alphabet=None) -> dict:
 def main():
     while True:
         print(f'\n{"-" * 10}\n Menu\n{"-" * 10}')
-        print(*["1.Encrpyt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
+        print(*["1.Encrypt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
 
         # get user input
         choice = input("\nWhat would you like to do?: ").strip() or "4"

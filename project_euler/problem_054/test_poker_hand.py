@@ -217,7 +217,7 @@ def test_euler_project():
     answer = 0
     script_dir = os.path.abspath(os.path.dirname(__file__))
     poker_hands = os.path.join(script_dir, "poker_hands.txt")
-    with open(poker_hands, "r") as file_hand:
+    with open(poker_hands) as file_hand:
         for line in file_hand:
             player_hand = line[:14].strip()
             opponent_hand = line[15:].strip()

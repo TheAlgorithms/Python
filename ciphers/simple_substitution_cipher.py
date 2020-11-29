@@ -18,7 +18,7 @@ def main():
         mode = "decrypt"
         translated = decryptMessage(key, message)
 
-    print("\n{}ion: \n{}".format(mode.title(), translated))
+    print(f"\n{mode.title()}ion: \n{translated}")
 
 
 def checkValidKey(key: str) -> None:

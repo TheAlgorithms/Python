@@ -1,16 +1,22 @@
 """
-Problem:
-The prime factors of 13195 are 5,7,13 and 29. What is the largest prime factor
-of a given number N?
+Project Euler Problem 3: https://projecteuler.net/problem=3
 
-e.g. for 10, largest prime factor = 5. For 17, largest prime factor = 17.
+Largest prime factor
+
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143?
+
+References:
+    - https://en.wikipedia.org/wiki/Prime_number#Unique_factorization
 """
-
 import math
 
 
 def isprime(num: int) -> bool:
-    """Returns boolean representing primality of given number num.
+    """
+    Returns boolean representing primality of given number num.
+
     >>> isprime(2)
     True
     >>> isprime(3)
@@ -22,14 +28,15 @@ def isprime(num: int) -> bool:
     >>> isprime(0)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter num must be greater or equal to two.
+    ValueError: Parameter num must be greater than or equal to two.
     >>> isprime(1)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter num must be greater or equal to two.
+    ValueError: Parameter num must be greater than or equal to two.
     """
+
     if num <= 1:
-        raise ValueError("Parameter num must be greater or equal to two.")
+        raise ValueError("Parameter num must be greater than or equal to two.")
     if num == 2:
         return True
     elif num % 2 == 0:
@@ -41,7 +48,9 @@ def isprime(num: int) -> bool:
 
 
 def solution(n: int = 600851475143) -> int:
-    """Returns the largest prime factor of a given number n.
+    """
+    Returns the largest prime factor of a given number n.
+
     >>> solution(13195)
     29
     >>> solution(10)
@@ -53,26 +62,27 @@ def solution(n: int = 600851475143) -> int:
     >>> solution(0)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter n must be greater or equal to one.
+    ValueError: Parameter n must be greater than or equal to one.
     >>> solution(-17)
     Traceback (most recent call last):
         ...
-    ValueError: Parameter n must be greater or equal to one.
+    ValueError: Parameter n must be greater than or equal to one.
     >>> solution([])
     Traceback (most recent call last):
         ...
-    TypeError: Parameter n must be int or passive of cast to int.
+    TypeError: Parameter n must be int or castable to int.
     >>> solution("asd")
     Traceback (most recent call last):
         ...
-    TypeError: Parameter n must be int or passive of cast to int.
+    TypeError: Parameter n must be int or castable to int.
     """
+
     try:
         n = int(n)
     except (TypeError, ValueError):
-        raise TypeError("Parameter n must be int or passive of cast to int.")
+        raise TypeError("Parameter n must be int or castable to int.")
     if n <= 0:
-        raise ValueError("Parameter n must be greater or equal to one.")
+        raise ValueError("Parameter n must be greater than or equal to one.")
     max_number = 0
     if isprime(n):
         return n
@@ -91,4 +101,4 @@ def solution(n: int = 600851475143) -> int:
 
 
 if __name__ == "__main__":
-    print(solution(int(input().strip())))
+    print(f"{solution() = }")

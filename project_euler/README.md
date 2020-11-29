@@ -1,11 +1,11 @@
 # Project Euler
 
-Problems are taken from https://projecteuler.net/.
+Problems are taken from https://projecteuler.net/, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright).
 
-Project Euler is a series of challenging mathematical/computer programming problems that will require more than just mathematical
+Project Euler is a series of challenging mathematical/computer programming problems that require more than just mathematical
 insights to solve. Project Euler is ideal for mathematicians who are learning to code.
 
-The solutions will be checked by our [automated testing on Travis CI](https://travis-ci.com/github/TheAlgorithms/Python/pull_requests) with the help of [this script](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py). The efficiency of your code is also checked. You can view the top 10 slowest solutions on Travis CI logs and open a pull request to improve those solutions.
+The solutions will be checked by our [automated testing on Travis CI](https://travis-ci.com/github/TheAlgorithms/Python/pull_requests) with the help of [this script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). The efficiency of your code is also checked. You can view the top 10 slowest solutions on Travis CI logs (under `slowest 10 durations`) and open a pull request to improve those solutions.
 
 
 ## Solution Guidelines
@@ -17,18 +17,18 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
 * Please maintain consistency in project directory and solution file names. Keep the following points in mind:
   * Create a new directory only for the problems which do not exist yet.
   * If you create a new directory, please create an empty `__init__.py` file inside it as well.
-  * Please name the project directory as `problem_<problem_number>` where `problem_number` should be filled with 0s so as to occupy 3 digits. Example: `problem_001`, `problem_002`, `problem_067`, `problem_145`, and so on.
+  * Please name the project **directory** as `problem_<problem_number>` where `problem_number` should be filled with 0s so as to occupy 3 digits. Example: `problem_001`, `problem_002`, `problem_067`, `problem_145`, and so on.
 
-* Please provide a link to the problem and other references, if used, in the module-level docstring.
+* Please provide a link to the problem and other references, if used, in the **module-level docstring**.
 
 * All imports should come ***after*** the module-level docstring.
 
 * You can have as many helper functions as you want but there should be one main function called `solution` which should satisfy the conditions as stated below:
-  * It should contain positional argument(s) whose default value is the question input. Example: Please take a look at [problem 1](https://projecteuler.net/problem=1) where the question is to *Find the sum of all the multiples of 3 or 5 below 1000.* In this case the main solution function will be `solution(limit: int = 1000)`.
+  * It should contain positional argument(s) whose default value is the question input. Example: Please take a look at [Problem 1](https://projecteuler.net/problem=1) where the question is to *Find the sum of all the multiples of 3 or 5 below 1000.* In this case the main solution function will be `solution(limit: int = 1000)`.
   * When the `solution` function is called without any arguments like so: `solution()`, it should return the answer to the problem.
 
 * Every function, which includes all the helper functions, if any, and the main solution function, should have `doctest` in the function docstring along with a brief statement mentioning what the function is about.
-  * There should not be a `doctest` for testing the answer as that is done by our Travis CI build using this [script](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py). Keeping in mind the above example of [problem 1](https://projecteuler.net/problem=1):
+  * There should not be a `doctest` for testing the answer as that is done by our Travis CI build using this [script](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py). Keeping in mind the above example of [Problem 1](https://projecteuler.net/problem=1):
 
   ```python
   def solution(limit: int = 1000):
