@@ -4,7 +4,7 @@ https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 """
 
 from __future__ import annotations
-
+from typing import List
 from PIL import Image
 
 # Define glider example
