@@ -52,6 +52,7 @@ def pigeon_sort(array):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     user_input = input("Enter numbers separated by comma:\n")
     unsorted = [int(x) for x in user_input.split(",")]
