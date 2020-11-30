@@ -250,6 +250,7 @@
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
 
 ## Electronics
+  * [Electric Power](https://github.com/TheAlgorithms/Python/blob/master/electronics/electric_power.py)
   * [Ohms Law](https://github.com/TheAlgorithms/Python/blob/master/electronics/ohms_law.py)
 
 ## File Transfer
