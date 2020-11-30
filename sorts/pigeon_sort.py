@@ -9,9 +9,10 @@
     For manual testing run:
     python pigeon_sort.py
 """
+from typing import List
 
 
-def pigeon_sort(array):
+def pigeon_sort(array: List[int]) -> List[int]:
     """
     Implementation of pigeon hole sort algorithm
     :param array: Collection of comparable items
@@ -52,6 +53,7 @@ def pigeon_sort(array):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     user_input = input("Enter numbers separated by comma:\n")
     unsorted = [int(x) for x in user_input.split(",")]
