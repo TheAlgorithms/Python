@@ -9,9 +9,10 @@
     For manual testing run:
     python pigeon_sort.py
 """
+from typing import List
 
 
-def pigeon_sort(array):
+def pigeon_sort(array: List[int]) -> List[int]:
     """
     Implementation of pigeon hole sort algorithm
     :param array: Collection of comparable items
