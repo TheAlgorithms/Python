@@ -26,29 +26,17 @@ def pigeon_sort(array):
     if len(array) == 0:
         return array
 
-    # Manually finds the minimum and maximum of the array.
-    min = array[0]
-    max = array[0]
-
-    for i in range(len(array)):
-        if array[i] < min:
-            min = array[i]
-        elif array[i] > max:
-            max = array[i]
+    _min, _max = min(array), max(array)
 
     # Compute the variables
-    holes_range = max - min + 1
-    holes = [0 for _ in range(holes_range)]
-    holes_repeat = [0 for _ in range(holes_range)]
+    holes_range = _max - _min + 1
+    holes, holes_repeat = [0] * holes_range, [0] * holes_range
 
     # Make the sorting.
-    for i in range(len(array)):
-        index = array[i] - min
-        if holes[index] != array[i]:
-            holes[index] = array[i]
-            holes_repeat[index] += 1
-        else:
-            holes_repeat[index] += 1
+    for i in array:
+        index = i - _min
+        holes[index] = i
+        holes_repeat[index] += 1
 
     # Makes the array back by replacing the numbers.
     index = 0
@@ -63,6 +51,8 @@ def pigeon_sort(array):
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     user_input = input("Enter numbers separated by comma:\n")
     unsorted = [int(x) for x in user_input.split(",")]
     print(pigeon_sort(unsorted))
