@@ -148,6 +148,7 @@
     * [From Sequence](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/from_sequence.py)
     * [Has Loop](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/has_loop.py)
     * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/is_palindrome.py)
+    * [Merge Two Lists](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/merge_two_lists.py)
     * [Middle Element Of Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/middle_element_of_linked_list.py)
     * [Print Reverse](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/print_reverse.py)
     * [Singly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py)
@@ -206,6 +207,7 @@
   * [Heaps Algorithm](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/heaps_algorithm.py)
   * [Heaps Algorithm Iterative](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/heaps_algorithm_iterative.py)
   * [Inversions](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/inversions.py)
+  * [Kth Order Statistic](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/kth_order_statistic.py)
   * [Max Subarray Sum](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/max_subarray_sum.py)
   * [Mergesort](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/mergesort.py)
   * [Power](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/power.py)
@@ -390,6 +392,7 @@
   * [Chudnovsky Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
+  * [Decimal Isolate](https://github.com/TheAlgorithms/Python/blob/master/maths/decimal_isolate.py)
   * [Entropy](https://github.com/TheAlgorithms/Python/blob/master/maths/entropy.py)
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Explicit Euler](https://github.com/TheAlgorithms/Python/blob/master/maths/explicit_euler.py)
@@ -493,6 +496,7 @@
   * [Autocomplete Using Trie](https://github.com/TheAlgorithms/Python/blob/master/other/autocomplete_using_trie.py)
   * [Binary Exponentiation](https://github.com/TheAlgorithms/Python/blob/master/other/binary_exponentiation.py)
   * [Binary Exponentiation 2](https://github.com/TheAlgorithms/Python/blob/master/other/binary_exponentiation_2.py)
+  * [Davis–Putnam–Logemann–Loveland](https://github.com/TheAlgorithms/Python/blob/master/other/davis–putnam–logemann–loveland.py)
   * [Detecting English Programmatically](https://github.com/TheAlgorithms/Python/blob/master/other/detecting_english_programmatically.py)
   * [Dijkstra Bankers Algorithm](https://github.com/TheAlgorithms/Python/blob/master/other/dijkstra_bankers_algorithm.py)
   * [Doomsday](https://github.com/TheAlgorithms/Python/blob/master/other/doomsday.py)
@@ -660,6 +664,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_048/sol1.py)
   * Problem 049
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_049/sol1.py)
+  * Problem 050
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_050/sol1.py)
   * Problem 051
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_051/sol1.py)
   * Problem 052
@@ -681,6 +687,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_062/sol1.py)
   * Problem 063
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_063/sol1.py)
+  * Problem 064
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_064/sol1.py)
   * Problem 065
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_065/sol1.py)
   * Problem 067
@@ -694,6 +702,7 @@
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_072/sol2.py)
   * Problem 074
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_074/sol1.py)
+    * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_074/sol2.py)
   * Problem 075
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_075/sol1.py)
   * Problem 076
@@ -718,6 +727,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_119/sol1.py)
   * Problem 120
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_120/sol1.py)
+  * Problem 123
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_123/sol1.py)
   * Problem 125
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_125/sol1.py)
   * Problem 173
@@ -726,12 +737,16 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_174/sol1.py)
   * Problem 191
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
+  * Problem 203
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_203/sol1.py)
   * Problem 206
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_206/sol1.py)
   * Problem 207
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_207/sol1.py)
   * Problem 234
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_234/sol1.py)
+  * Problem 301
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_301/sol1.py)
   * Problem 551
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_551/sol1.py)
 
