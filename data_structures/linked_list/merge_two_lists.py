@@ -31,7 +31,7 @@ def create_linked_list(num_list: list) -> Node:
     return head
 
 
-def str_linked_list(head: Node) -> str:
+def __str__(head: Node) -> str:
     """
     >>> n1 = Node(1)
     >>> n2 = Node(2)
@@ -93,7 +93,7 @@ def main() -> None:
     ll1 = create_linked_list(list1)
     ll2 = create_linked_list(list2)
     ll3 = merge_lists(ll1, ll2)
-    print(str_linked_list(ll3))
+    print(__str__(ll3))
 
 
 if __name__ == "__main__":
