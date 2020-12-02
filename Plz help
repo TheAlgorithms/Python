@@ -1,0 +1,19 @@
+print("enter an integer each followed by enter; or ^D or ^Z to finish")
+
+total = 0
+count = 0
+
+while True:
+    try:
+        line = input("Type an integer: ")
+        if line:
+            total += number
+            count += 1
+    except ValueError as err:
+        print(err)
+        continue
+    except EOFError:
+        break
+
+        if count:
+            print("count =", count,"total =", total,"mean =", total / mean)
