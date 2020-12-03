@@ -153,6 +153,7 @@
     * [From Sequence](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/from_sequence.py)
     * [Has Loop](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/has_loop.py)
     * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/is_palindrome.py)
+    * [Merge Two Lists](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/merge_two_lists.py)
     * [Middle Element Of Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/middle_element_of_linked_list.py)
     * [Print Reverse](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/print_reverse.py)
     * [Singly Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py)
