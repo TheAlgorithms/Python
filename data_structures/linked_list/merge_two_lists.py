@@ -1,12 +1,10 @@
 """
 Algorithm that merges two sorted linked lists into one sorted linked list.
+Class implementations imported from:
+https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py
 """
 
-
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+from data_structures.linked_list.singly_linked_list import Node, LinkedList
 
 
 def create_linked_list(num_list: list) -> Node:
@@ -31,24 +29,6 @@ def create_linked_list(num_list: list) -> Node:
     return head
 
 
-def __str__(head: Node) -> str:
-    """
-    >>> n1 = Node(1)
-    >>> n2 = Node(2)
-    >>> n3 = Node(3)
-    >>> n1.next = n2
-    >>> n2.next = n3
-    >>> str_linked_list(n1)
-    '1->2->3'
-    """
-    int_list = []
-    current = head
-    while current is not None:
-        int_list.append(f"{current.data}")
-        current = current.next
-    return "->".join(int_list)
-
-
 def merge_lists(list_one: list, list_two: list) -> Node:
     """
     >>> n1 = Node(1)
@@ -61,8 +41,10 @@ def merge_lists(list_one: list, list_two: list) -> Node:
     >>> n2.next = n4
     >>> n4.next = n5
     >>> n5.next = n6
-    >>> ll = merge_lists(n1, n2)
-    >>> str_linked_list(ll)
+    >>> head = merge_lists(n1, n2)
+    >>> ll = LinkedList()
+    >>> ll.head = head
+    >>> repr(ll)
     '1->2->3->4->5->6'
     """
     node_one = list_one
@@ -92,8 +74,10 @@ def main() -> None:
     list2 = [4, 6, 5, 2, 8, 7, 10, 3, 0]
     ll1 = create_linked_list(list1)
     ll2 = create_linked_list(list2)
-    ll3 = merge_lists(ll1, ll2)
-    print(__str__(ll3))
+    new_head = merge_lists(ll1, ll2)
+    ll3 = LinkedList()
+    ll3.head = new_head
+    print(repr(ll3))
 
 
 if __name__ == "__main__":
