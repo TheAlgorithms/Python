@@ -1,87 +1,90 @@
 """
 Algorithm that merges two sorted linked lists into one sorted linked list.
-Class implementations imported from:
-https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/singly_linked_list.py
+
+https://en.wikipedia.org/wiki/Linked_list
 """
+from __future__ import annotations
 
-from data_structures.linked_list.singly_linked_list import Node, LinkedList
+from dataclasses import dataclass
+from typing import List, Optional
+
+test_data_odd = (3, 9, -11, 0, 7, 5, 1, -1)
+test_data_even = (4, 6, 2, 0, 8, 10, 3, -2)
 
 
-def create_linked_list(num_list: list) -> Node:
+@dataclass
+class Node:
+    data: int
+    next: Optional[Node]
+
+
+class SortedLinkedList:
+    def __init__(self, ints: List[int]) -> None:
+        self.head: Optional[Node] = None
+        for i in reversed(sorted(ints)):
+            self.head = Node(i, self.head)
+
+    def __iter__(self):
+        """
+        >>> tuple(SortedLinkedList(test_data_odd)) == tuple(sorted(test_data_odd))
+        True
+        >>> tuple(SortedLinkedList(test_data_even)) == tuple(sorted(test_data_even))
+        True
+        """
+        node = self.head
+        while node:
+            yield node.data
+            node = node.next
+
+    def __len__(self):
+        """
+        >>> for i in range(3):
+        ...     len(SortedLinkedList(range(i))) == i
+        True
+        True
+        True
+        >>> len(SortedLinkedList(test_data_odd))
+        8
+        """
+        return len(tuple(iter(self)))
+
+    def __str__(self):
+        """
+        >>> str(SortedLinkedList([]))
+        ''
+        >>> str(SortedLinkedList(test_data_odd))
+        '-11 -> -1 -> 0 -> 1 -> 3 -> 5 -> 7 -> 9'
+        >>> str(SortedLinkedList(test_data_even))
+        '-2 -> 0 -> 2 -> 3 -> 4 -> 6 -> 8 -> 10'
+        """
+        return " -> ".join([str(node) for node in self])
+
+
+def merge_lists(
+    sll_one: SortedLinkedList, sll_two: SortedLinkedList
+) -> SortedLinkedList:
     """
-    >>> node = create_linked_list([3,2,1])
-    >>> node.data
-    1
-    >>> node = create_linked_list([9,6,-3,5,8])
-    >>> node.data
-    -3
-    >>> create_linked_list([])
-
+    >>> odd = SortedLinkedList(test_data_odd)
+    >>> even = SortedLinkedList(test_data_even)
+    >>> merged = merge_lists(odd, even)
+    >>> len(merged)
+    16
+    >>> str(merged)
+    '-11 -> -2 -> -1 -> 0 -> 0 -> 1 -> 2 -> 3 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10'
+    >>> list(merged) == list(sorted(test_data_odd + test_data_even))
+    True
     """
-    if not num_list:
-        return None
-
-    num_list.sort()
-    current = head = Node(num_list[0])
-    for i in range(1, len(num_list)):
-        current.next = Node(num_list[i])
-        current = current.next
-    return head
-
-
-def merge_lists(list_one: list, list_two: list) -> Node:
-    """
-    >>> n1 = Node(1)
-    >>> n2 = Node(2)
-    >>> n3 = Node(3)
-    >>> n4 = Node(4)
-    >>> n5 = Node(5)
-    >>> n6 = Node(6)
-    >>> n1.next = n3
-    >>> n2.next = n4
-    >>> n4.next = n5
-    >>> n5.next = n6
-    >>> head = merge_lists(n1, n2)
-    >>> ll = LinkedList()
-    >>> ll.head = head
-    >>> repr(ll)
-    '1->2->3->4->5->6'
-    """
-    node_one = list_one
-    node_two = list_two
-    merged_list = current_node = Node(0)
-
-    while node_one is not None and node_two is not None:
-        if node_one.data <= node_two.data:
-            current_node.next = node_one
-            node_one = node_one.next
-        else:
-            current_node.next = node_two
-            node_two = node_two.next
-        current_node = current_node.next
-
-    if node_one is not None:
-        current_node.next = node_one
-
-    if node_two is not None:
-        current_node.next = node_two
-
-    return merged_list.next
+    return SortedLinkedList(list(sll_one) + list(sll_two))
 
 
 def main() -> None:
-    list1 = [3, 9, 7, 5, 1]
-    list2 = [4, 6, 5, 2, 8, 7, 10, 3, 0]
-    ll1 = create_linked_list(list1)
-    ll2 = create_linked_list(list2)
-    new_head = merge_lists(ll1, ll2)
-    ll3 = LinkedList()
-    ll3.head = new_head
-    print(repr(ll3))
+    sll_one = SortedLinkedList(list(test_data_odd))
+    sll_two = SortedLinkedList(list(test_data_even))
+    print(merge_lists(sll_one, sll_two))
 
 
 if __name__ == "__main__":
-    main()
     import doctest
 
     doctest.testmod()
+    main()
