@@ -204,14 +204,14 @@ def del_node(root, data):
     if root is None:
         return root
     if get_height(root.get_right()) - get_height(root.get_left()) == 2:
-        if get_height(root.get_right().get_right()) > get_height(
+        if get_height(root.get_right().get_right()) >= get_height(
             root.get_right().get_left()
         ):
             root = left_rotation(root)
         else:
             root = rl_rotation(root)
     elif get_height(root.get_right()) - get_height(root.get_left()) == -2:
-        if get_height(root.get_left().get_left()) > get_height(
+        if get_height(root.get_left().get_left()) >= get_height(
             root.get_left().get_right()
         ):
             root = right_rotation(root)
