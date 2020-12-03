@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Lucas_number
 """
 
 
-def recursive_lucas_number(n):
+def recursive_lucas_number(n_th_number: int) -> int:
     """
     Returns the nth lucas number
     >>> recursive_lucas_number(1)
@@ -19,17 +19,19 @@ def recursive_lucas_number(n):
         ...
     TypeError: recursive_lucas_number accepts only integer arguments.
     """
-    if n == 1:
-        return n
-    if n == 0:
-        return 2
-    if not isinstance(n, int):
+    if not isinstance(n_th_number, int):
         raise TypeError("recursive_lucas_number accepts only integer arguments.")
+    if n_th_number == 0:
+        return 2
+    if n_th_number == 1:
+        return 1
 
-    return recursive_lucas_number(n - 1) + recursive_lucas_number(n - 2)
+    return recursive_lucas_number(n_th_number - 1) + recursive_lucas_number(
+        n_th_number - 2
+    )
 
 
-def dynamic_lucas_number(n: int) -> int:
+def dynamic_lucas_number(n_th_number: int) -> int:
     """
     Returns the nth lucas number
     >>> dynamic_lucas_number(1)
@@ -45,14 +47,10 @@ def dynamic_lucas_number(n: int) -> int:
         ...
     TypeError: dynamic_lucas_number accepts only integer arguments.
     """
-    if not isinstance(n, int):
+    if not isinstance(n_th_number, int):
         raise TypeError("dynamic_lucas_number accepts only integer arguments.")
-    if n == 0:
-        return 2
-    if n == 1:
-        return 1
     a, b = 2, 1
-    for i in range(n):
+    for i in range(n_th_number):
         a, b = b, a + b
     return a
 
@@ -61,7 +59,6 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    n = int(input("Enter the number of terms in lucas series:\n").strip())
     n = int(input("Enter the number of terms in lucas series:\n").strip())
     print("Using recursive function to calculate lucas series:")
     print(" ".join(str(recursive_lucas_number(i)) for i in range(n)))
