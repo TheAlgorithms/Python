@@ -9,17 +9,28 @@ time in hours and minutes
 >>> angle_between_hands(13,59)
 Traceback (most recent call last):
 ...
-ValueError: Hour value out of bounds (0-12)
+ValueError: Hour value out of bounds [0-12])
 
 Problem description: https://en.wikipedia.org/wiki/Clock_angle_problem
 """
 
 
 def angle_between_hands(hour: int, minutes: int) -> int:
+    
+    """
+    >>> angle_between_hands(12,30)
+    165.0
+    >>> angle_between_hands(4,45)
+    127.5
+    >>> angle_between_hands(13,59)
+    Traceback (most recent call last):
+    ...
+    ValueError: Hour value out of bounds [0-12])
+    """
 
     # Raises error if hour value is not in the correct range
     if not 0 <= hour <= 12:
-        raise ValueError("Hour value out of bounds (0-12)")
+        raise ValueError("Hour value out of bounds [0-12]")
 
     # Raises error if minutes value is not in the correct range
     if not 0 <= minutes < 60:
