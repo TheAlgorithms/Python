@@ -245,6 +245,7 @@
   * [Max Sum Contiguous Subsequence](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/max_sum_contiguous_subsequence.py)
   * [Minimum Cost Path](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/minimum_cost_path.py)
   * [Minimum Partition](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/minimum_partition.py)
+  * [Minimum Steps To One](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/minimum_steps_to_one.py)
   * [Optimal Binary Search Tree](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/optimal_binary_search_tree.py)
   * [Rod Cutting](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/rod_cutting.py)
   * [Subset Generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
@@ -754,6 +755,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_173/sol1.py)
   * Problem 174
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_174/sol1.py)
+  * Problem 180
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_180/sol1.py)
   * Problem 188
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_188/sol1.py)
   * Problem 191
