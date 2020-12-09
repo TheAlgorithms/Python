@@ -228,7 +228,7 @@ def binary_search(sorted_collection: List[int], item: int) -> Optional[int]:
     return None
 
 
-def binary_search_std_lib(sorted_collection, item) -> Optional[int]:
+def binary_search_std_lib(sorted_collection: List[int], item: int) -> Optional[int]:
     """Pure implementation of binary search algorithm in Python using stdlib
 
     Be careful collection must be ascending sorted, otherwise result will be
