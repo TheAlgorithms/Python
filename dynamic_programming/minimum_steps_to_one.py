@@ -29,19 +29,15 @@ __author__ = "Alexander Joslin"
 
 def min_steps_to_one(number: int) -> int:
     """
-    Implemented using tabulation.
-
-    DocTests
+    Minimum steps to 1 implemented using tabulation.
     >>> min_steps_to_one(10)
     3
-
     >>> min_steps_to_one(15)
     4
-
     >>> min_steps_to_one(6)
     2
 
-    :param n:
+    :param number:
     :return int:
     """
 
