@@ -16,7 +16,7 @@ def compAndSwap(a, i, j, dire):
 # The sequence to be sorted starts at index position low,
 # the parameter cnt is the number of elements to be sorted.
 def bitonic_merge(a, low, cnt, dire):
-    if cnt > 1: 
+    if cnt > 1:
         k = int(cnt / 2)
         for i in range(low, low + k):
             compAndSwap(a, i, i + k, dire)
@@ -44,13 +44,11 @@ def sort(a, N, up):
 
 
 if __name__ == "__main__":
-
-
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
 
     up = 1
 
-    sort(unsorted,len(unsorted), up)
+    sort(unsorted, len(unsorted), up)
     print("\nSorted array is")
     print(*unsorted, sep=",")
