@@ -297,37 +297,12 @@ def binary_search_by_recursion(
         return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
 
 
-def __assert_sorted(collection: List[int]) -> bool:
-    """Check if collection is ascending sorted, if not - raises :py:class:`ValueError`
-
-    :param collection: collection
-    :return: True if collection is ascending sorted
-    :raise: :py:class:`ValueError` if collection is not ascending sorted
-
-    Examples:
-    >>> __assert_sorted([0, 1, 2, 4])
-    True
-
-    >>> __assert_sorted([10, -1, 5])
-    Traceback (most recent call last):
-    ...
-    ValueError: Collection must be sorted in ascending order
-    """
-    if collection != sorted(collection):
-        raise ValueError("Collection must be sorted in ascending order")
-    return True
-
-
 if __name__ == "__main__":
-    import sys
-
     user_input = input("Enter numbers separated by comma:\n").strip()
-    collection = [int(item) for item in user_input.split(",")]
-    __assert_sorted(collection)
-    target_input = input("Enter a single number to be found in the list:\n")
-    target = int(target_input)
+    collection = sorted(int(item) for item in user_input.split(","))
+    target = int(input("Enter a single number to be found in the list:\n"))
     result = binary_search(collection, target)
-    if result is not None:
-        print(f"{target} was found at position: {result}")
+    if result is None:
+        print(f"{target} was not found in {collection}.")
     else:
-        print("Not found")
+        print(f"{target} was found at position {result} in {collection}.")
