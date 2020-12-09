@@ -48,6 +48,7 @@ https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem
 
 from fractions import Fraction
 from math import gcd, sqrt
+from typing import Tuple
 
 
 def is_sq(number: int) -> bool:
@@ -65,6 +66,25 @@ def is_sq(number: int) -> bool:
     return number == sq * sq
 
 
+def add_three(
+    x_num: int, x_den: int, y_num: int, y_den: int, z_num: int, z_den: int
+) -> Tuple[int, int]:
+    """
+    Given the numerators and denominators of three fractions, return the
+    numerator and denominator of their sum in lowest form.
+    >>> add_three(1, 3, 1, 3, 1, 3)
+    (1, 1)
+    >>> add_three(2, 5, 4, 11, 12, 3)
+    (262, 55)
+    """
+    top: int = x_num * y_den * z_den + y_num * x_den * z_den + z_num * x_den * y_den
+    bottom: int = x_den * y_den * z_den
+    hcf: int = gcd(top, bottom)
+    top //= hcf
+    bottom //= hcf
+    return top, bottom
+
+
 def solution(order: int = 35) -> int:
     """
     Find the sum of the numerator and denominator of the sum of all s(x,y,z) for
@@ -78,22 +98,9 @@ def solution(order: int = 35) -> int:
     19408891927
     """
     unique_s: set = set()
-
-    def add(x_num: int, x_den: int, y_num: int, y_den: int, z_num: int, z_den: int):
-        top: int = x_num * y_den * z_den + y_num * x_den * z_den + z_num * x_den * y_den
-        bottom: int = x_den * y_den * z_den
-        _gcd: int = gcd(top, bottom)
-        top //= _gcd
-        bottom //= _gcd
-        unique_s.add((top, bottom))
-
-    x_num: int
-    x_den: int
-    y_num: int
-    y_den: int
-    z_num: int
-    z_den: int
-    lcm: int
+    hcf: int
+    total: Fraction = Fraction(0)
+    fraction_sum: Tuple[int, int]
 
     for x_num in range(1, order + 1):
         for x_den in range(x_num + 1, order + 1):
@@ -102,11 +109,14 @@ def solution(order: int = 35) -> int:
                     # n=1
                     z_num = x_num * y_den + x_den * y_num
                     z_den = x_den * y_den
-                    lcm = gcd(z_num, z_den)
-                    z_num //= lcm
-                    z_den //= lcm
+                    hcf = gcd(z_num, z_den)
+                    z_num //= hcf
+                    z_den //= hcf
                     if 0 < z_num < z_den <= order:
-                        add(x_num, x_den, y_num, y_den, z_num, z_den)
+                        fraction_sum = add_three(
+                            x_num, x_den, y_num, y_den, z_num, z_den
+                        )
+                        unique_s.add(fraction_sum)
 
                     # n=2
                     z_num = (
@@ -116,20 +126,26 @@ def solution(order: int = 35) -> int:
                     if is_sq(z_num) and is_sq(z_den):
                         z_num = int(sqrt(z_num))
                         z_den = int(sqrt(z_den))
-                        lcm = gcd(z_num, z_den)
-                        z_num //= lcm
-                        z_den //= lcm
+                        hcf = gcd(z_num, z_den)
+                        z_num //= hcf
+                        z_den //= hcf
                         if 0 < z_num < z_den <= order:
-                            add(x_num, x_den, y_num, y_den, z_num, z_den)
+                            fraction_sum = add_three(
+                                x_num, x_den, y_num, y_den, z_num, z_den
+                            )
+                            unique_s.add(fraction_sum)
 
                     # n=-1
                     z_num = x_num * y_num
                     z_den = x_den * y_num + x_num * y_den
-                    lcm = gcd(z_num, z_den)
-                    z_num //= lcm
-                    z_den //= lcm
+                    hcf = gcd(z_num, z_den)
+                    z_num //= hcf
+                    z_den //= hcf
                     if 0 < z_num < z_den <= order:
-                        add(x_num, x_den, y_num, y_den, z_num, z_den)
+                        fraction_sum = add_three(
+                            x_num, x_den, y_num, y_den, z_num, z_den
+                        )
+                        unique_s.add(fraction_sum)
 
                     # n=2
                     z_num = x_num * x_num * y_num * y_num
@@ -139,15 +155,20 @@ def solution(order: int = 35) -> int:
                     if is_sq(z_num) and is_sq(z_den):
                         z_num = int(sqrt(z_num))
                         z_den = int(sqrt(z_den))
-                        lcm = gcd(z_num, z_den)
-                        z_num //= lcm
-                        z_den //= lcm
+                        hcf = gcd(z_num, z_den)
+                        z_num //= hcf
+                        z_den //= hcf
                         if 0 < z_num < z_den <= order:
-                            add(x_num, x_den, y_num, y_den, z_num, z_den)
+                            fraction_sum = add_three(
+                                x_num, x_den, y_num, y_den, z_num, z_den
+                            )
+                            unique_s.add(fraction_sum)
 
-    total: Fraction = sum(map(lambda tup: Fraction(*tup), unique_s), Fraction())
+    for num, den in unique_s:
+        total += Fraction(num, den)
+
     return total.denominator + total.numerator
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
