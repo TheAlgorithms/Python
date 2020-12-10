@@ -1,7 +1,8 @@
 from string import ascii_letters
+from typing import Dict, Optional
 
 
-def encrypt(input_string: str, key: int, alphabet=None) -> str:
+def encrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     """
     encrypt
     =======
@@ -79,7 +80,7 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
     return result
 
 
-def decrypt(input_string: str, key: int, alphabet=None) -> str:
+def decrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     """
     decrypt
     =======
@@ -144,7 +145,7 @@ def decrypt(input_string: str, key: int, alphabet=None) -> str:
     return encrypt(input_string, key, alphabet)
 
 
-def brute_force(input_string: str, alphabet=None) -> dict:
+def brute_force(input_string: str, alphabet: Optional[str] = None) -> Dict[int, str]:
     """
     brute_force
     ===========
@@ -204,7 +205,7 @@ def brute_force(input_string: str, alphabet=None) -> dict:
     return brute_force_data
 
 
-def main():
+if __name__ == "__main__":
     while True:
         print(f'\n{"-" * 10}\n Menu\n{"-" * 10}')
         print(*["1.Encrypt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
@@ -235,7 +236,3 @@ def main():
         elif choice == "4":
             print("Goodbye.")
             break
-
-
-if __name__ == "__main__":
-    main()
