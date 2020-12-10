@@ -1,11 +1,12 @@
+"""
+Resources:
+- https://en.wikipedia.org/wiki/Conjugate_gradient_method
+- https://en.wikipedia.org/wiki/Definite_symmetric_matrix
+"""
 import numpy as np
-
-# https://en.wikipedia.org/wiki/Conjugate_gradient_method
-# https://en.wikipedia.org/wiki/Definite_symmetric_matrix
 
 
 def _is_matrix_spd(matrix: np.array) -> bool:
-
     """
     Returns True if input matrix is symmetric positive definite.
     Returns False otherwise.
@@ -56,24 +57,24 @@ def _create_spd_matrix(dimension: np.int64) -> np.array:
     >>> _is_matrix_spd(spd_matrix)
     True
     """
-
     random_matrix = np.random.randn(dimension, dimension)
     spd_matrix = np.dot(random_matrix, random_matrix.T)
-
     assert _is_matrix_spd(spd_matrix)
-
     return spd_matrix
 
 
 def conjugate_gradient(
-    spd_matrix: np.array, b: np.array, max_iterations=1000, tol=1e-8
+    spd_matrix: np.array,
+    load_vector: np.array,
+    max_iterations: int = 1000,
+    tol: float = 1e-8,
 ) -> np.array:
     """
     Returns solution to the linear system np.dot(spd_matrix, x) = b.
 
     Input:
     spd_matrix is an NxN Symmetric Positive Definite (SPD) matrix.
-    b is an Nx1 vector that is the load vector.
+    load_vector is an Nx1 vector.
 
     Output:
     x is an Nx1 vector that is the solution vector.
@@ -87,19 +88,19 @@ def conjugate_gradient(
     ... [-5.80872761],
     ... [ 3.23807431],
     ... [ 1.95381422]])
-    >>> conjugate_gradient(spd_matrix,b)
+    >>> conjugate_gradient(spd_matrix, b)
     array([[-0.63114139],
            [-0.01561498],
            [ 0.13979294]])
     """
     # Ensure proper dimensionality.
     assert np.shape(spd_matrix)[0] == np.shape(spd_matrix)[1]
-    assert np.shape(b)[0] == np.shape(spd_matrix)[0]
+    assert np.shape(load_vector)[0] == np.shape(spd_matrix)[0]
     assert _is_matrix_spd(spd_matrix)
 
     # Initialize solution guess, residual, search direction.
-    x0 = np.zeros((np.shape(b)[0], 1))
-    r0 = np.copy(b)
+    x0 = np.zeros((np.shape(load_vector)[0], 1))
+    r0 = np.copy(load_vector)
     p0 = np.copy(r0)
 
     # Set initial errors in solution guess and residual.
@@ -145,11 +146,9 @@ def conjugate_gradient(
 
 
 def test_conjugate_gradient() -> None:
-
     """
     >>> test_conjugate_gradient()  # self running tests
     """
-
     # Create linear system with SPD matrix and known solution x_true.
     dimension = 3
     spd_matrix = _create_spd_matrix(dimension)
