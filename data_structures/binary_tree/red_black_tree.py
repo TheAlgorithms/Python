@@ -591,6 +591,28 @@ def test_insert_and_search() -> bool:
     return True
 
 
+def test_insert_and_search_bug() -> bool:
+    """A test case for debug."""
+    tree = RedBlackTree(10)
+    tree.insert(20)
+    tree.insert(5)
+    tree.insert(2)
+    tree.insert(3)
+    tree.insert(30)
+    tree.insert(35)
+    tree.insert(21)
+    if len(tree) != 8:
+        return False
+    tree.remove(3)
+    tree.remove(2)
+    tree.remove(5)
+    if len(tree) != 5:
+        # please check the output of:
+        # print(list(tree.inorder_traverse()))
+        return False
+    return True
+
+
 def test_insert_delete() -> bool:
     """Test the insert() and delete() method of the tree, verifying the
     insertion and removal of elements, and the balancing of the tree.
@@ -688,6 +710,7 @@ def pytests() -> None:
     assert test_floor_ceil()
     assert test_tree_traversal()
     assert test_tree_chaining()
+    assert test_insert_and_search_bug()
 
 
 def main() -> None:
