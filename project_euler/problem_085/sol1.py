@@ -54,6 +54,14 @@ def solution(target: int = 2000000) -> int:
     """
     Find the area of the grid which contains as close to two million rectangles
     as possible.
+    Explanation of variables:
+    best_product: we want this to be as close as possible to target
+    area: the area corresponding to the grid that gives the product closest to target
+    b_estimate: an estimate of b, using the quadratic formula
+    b_floor: the largest integer less than b_estimate
+    b_ceil: the largest integer less than b_estimate
+    triangle_b_first_guess: the triangle number corresponding to b_floor
+    triangle_b_second_guess: the triangle number corresponding to b_ceil
     >>> solution(20)
     6
     >>> solution(2000)
@@ -67,14 +75,13 @@ def solution(target: int = 2000000) -> int:
     for idx in range(1, ceil(sqrt(target * 2) * 1.1)):
         triangle_numbers.append(triangle_numbers[-1] + idx)
 
-    best_product: int = 0  # we want this to be as close as possible to target
-    area: int = 0  # the area a*b corresponding to the grid that gives
-    # the product closest to target
-    b_estimate: float  # an estimate of b, using the quadratic formula
-    b_floor: int  # the largest integer less than b_estimate
-    b_ceil: int  # the largest integer less than b_estimate
-    triangle_b_first_guess: int  # the triangle number corresponding to b_floor
-    triangle_b_second_guess: int  # the triangle number corresponding to b_ceil
+    best_product: int = 0
+    area: int = 0
+    b_estimate: float
+    b_floor: int
+    b_ceil: int
+    triangle_b_first_guess: int
+    triangle_b_second_guess: int
 
     for idx_a, triangle_a in enumerate(triangle_numbers[1:], 1):
         b_estimate = (-1 + sqrt(1 + 8 * target / triangle_a)) / 2
