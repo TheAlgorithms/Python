@@ -12,6 +12,8 @@ import re
 
 import requests
 
+from typing import Optional
+
 LANGUAGES_VOICES = {
     "US English": ["Alice", "Daisy", "George", "Jenna", "John"],
     "British": ["Emma", "Harry"],
@@ -44,12 +46,13 @@ VOICES = {
 }
 
 
-def get_mp3_filename(html: str) -> str:
+def get_mp3_filename(html: str) -> Optional[str]:
     """Returns the  mp3 file name of an HTML response from fromtexttospeech.com"""
-    try:
-        filename = re.search(r"(\/output\/\d+\/\d+\.mp3)", html).group(0)
-    except AttributeError:
+    if match := re.search(r"\/output\/\d+\/\d+\.mp3", html):
+        filename = match.group()
+    else:
         filename = None
+
     return filename
 
 
@@ -89,16 +92,35 @@ def text_to_speech(
     voice: str = "Emma",
     audio_path: str = "output.mp3",
 ) -> bool:
+    """Given a text it converts into an  MP3 audio file, and saves it in `audio_path`.
+
+    Args:
+        text (str): The text to convert
+        language (str): The voice language.
+        voice (str): The voice to use.
+        audio_path (str): Path(with file name) where to save the file.
+
+    Returns:
+        bool: True for success, False otherwise
+
+    Raises:
+        ValueError: If `language` or `voice` is not valid value.
+
+    Example:
+        text_to_speech(text="¡Hola Mundo!", language="Spanish", voice="Mateo")
+    """
 
     if language not in LANGUAGES_VOICES:
-        raise ValueError(f"Language '{language}' not available")
+        raise ValueError(f"Language {language!r} not available")
 
     if voice not in LANGUAGES_VOICES[language]:
-        raise ValueError(f"Voice '{voice}' not available")
+        raise ValueError(f"Voice {voice!r} not available")
 
     r = request_fromtexttospeech(text, language, voice)
     # extract the mp3's url
-    mp3_file = get_mp3_filename(r.text)
+    if (mp3_file := get_mp3_filename(r.text)) is None:
+        return False
+
     audio_url = f"http://www.fromtexttospeech.com{mp3_file}"
 
     mp3data = requests.get(audio_url)
