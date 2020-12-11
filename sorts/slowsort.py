@@ -12,7 +12,9 @@ Source: https://en.wikipedia.org/wiki/Slowsort
 from typing import Optional
 
 
-def slowsort(sequence: list, start: Optional[int] = None, end: Optional[int] = None) -> None:
+def slowsort(
+    sequence: list, start: Optional[int] = None, end: Optional[int] = None
+) -> None:
     """
     Sorts sequence[start..end] (both inclusive) in-place.
     start defaults to 0 if not given.
