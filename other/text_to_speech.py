@@ -9,10 +9,9 @@ Example:
 """
 
 import re
+from typing import Optional
 
 import requests
-
-from typing import Optional
 
 LANGUAGES_VOICES = {
     "US English": ["Alice", "Daisy", "George", "Jenna", "John"],
