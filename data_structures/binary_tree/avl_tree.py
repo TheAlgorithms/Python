@@ -8,11 +8,12 @@ python avl_tree.py
 
 import math
 import random
+import unittest
 from typing import Any
 
 
 class my_queue:
-    def __init__(self):
+    def __init__(self) -> None:
         self.data = []
         self.head = 0
         self.tail = 0
@@ -39,7 +40,7 @@ class my_queue:
 
 
 class my_node:
-    def __init__(self, data: Any):
+    def __init__(self, data: Any) -> None:
         self.data = data
         self.left = None
         self.right = None
@@ -69,7 +70,7 @@ class my_node:
         self.right = node
         return
 
-    def set_height(self, height) -> None:
+    def set_height(self, height: int) -> None:
         self.height = height
         return
 
@@ -257,7 +258,7 @@ class AVLtree:
     *************************************
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.root = None
 
     def get_height(self) -> int:
@@ -274,7 +275,7 @@ class AVLtree:
             return
         self.root = del_node(self.root, data)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         A level traversale, gives a more intuitive look on the tree
         """
@@ -311,21 +312,51 @@ class AVLtree:
         return output
 
 
-def _test():
-    import doctest
+class Test(unittest.TestCase):
+    def _is_balance(self, avl: AVLtree):
+        if avl.root is None:
+            return True
+        dfs = [avl.root]
+        while dfs:
+            now = dfs.pop()
+            if now.left:
+                left_height = now.left.height
+                dfs.append(now.left)
+            else:
+                left_height = 0
+            if now.right:
+                right_height = now.right.height
+                dfs.append(now.right)
+            else:
+                right_height = 0
+            if abs(left_height - right_height) > 1:
+                return False
+        return True
 
-    doctest.testmod()
+    def test_delete(self):
+        avl = AVLtree()
+        for i in [8, 7, 4, 3, 9, 10, 11, 13, 6, 0, 2, 12, 1, 14, 5]:
+            avl.insert(i)
+            self.assertTrue(self._is_balance(avl))
+
+        for v in [8, 7, 4, 3, 9, 10, 11, 13, 6, 0, 2, 12, 1, 14, 5]:
+            avl.del_node(v)
+            print(avl)
+            self.assertTrue(self._is_balance(avl))
+
+    def test_delete_random(self):
+        avl = AVLtree()
+        random.seed(0)
+        values = list(range(1000))
+        random.shuffle(values)
+        for i in values:
+            avl.insert(i)
+            self.assertTrue(self._is_balance(avl))
+        random.shuffle(values)
+        for i in values:
+            avl.del_node(i)
+            self.assertTrue(self._is_balance(avl))
 
 
 if __name__ == "__main__":
-    _test()
-    t = AVLtree()
-    lst = list(range(10))
-    random.shuffle(lst)
-    for i in lst:
-        t.insert(i)
-        print(str(t))
-    random.shuffle(lst)
-    for i in lst:
-        t.del_node(i)
-        print(str(t))
+    unittest.main()
