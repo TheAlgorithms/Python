@@ -32,9 +32,9 @@ def slowsort(
     [1, 2, 3, 4]
     >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, 2, 7); sequence
     [9, 8, 2, 3, 4, 5, 6, 7, 1, 0]
-    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, j = 4); sequence
+    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, end = 4); sequence
     [5, 6, 7, 8, 9, 4, 3, 2, 1, 0]
-    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, i = 5); sequence
+    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, start = 5); sequence
     [9, 8, 7, 6, 5, 0, 1, 2, 3, 4]
     """
     if start is None:
