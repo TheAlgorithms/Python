@@ -12,11 +12,11 @@ Source: https://en.wikipedia.org/wiki/Slowsort
 from typing import Optional
 
 
-def slowsort(sequence: list, i: Optional[int] = None, j: Optional[int] = None) -> None:
+def slowsort(sequence: list, start: Optional[int] = None, end: Optional[int] = None) -> None:
     """
-    Sorts sequence[i..j] (both inclusive) in-place.
-    i defaults to 0 if not given.
-    j defaults to len(sequence) - 1 if not given.
+    Sorts sequence[start..end] (both inclusive) in-place.
+    start defaults to 0 if not given.
+    end defaults to len(sequence) - 1 if not given.
     It returns None.
     >>> sequence = [1, 6, 2, 5, 3, 4, 4, 5]; slowsort(sequence); sequence
     [1, 2, 3, 4, 4, 5, 5, 6]
@@ -35,24 +35,24 @@ def slowsort(sequence: list, i: Optional[int] = None, j: Optional[int] = None) -
     >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, i = 5); sequence
     [9, 8, 7, 6, 5, 0, 1, 2, 3, 4]
     """
-    if i is None:
-        i = 0
+    if start is None:
+        start = 0
 
-    if j is None:
-        j = len(sequence) - 1
+    if end is None:
+        end = len(sequence) - 1
 
-    if i >= j:
+    if start >= end:
         return
 
-    m = (i + j) // 2
+    mid = (start + end) // 2
 
-    slowsort(sequence, i, m)
-    slowsort(sequence, m + 1, j)
+    slowsort(sequence, start, mid)
+    slowsort(sequence, mid + 1, end)
 
-    if sequence[j] < sequence[m]:
-        sequence[j], sequence[m] = sequence[m], sequence[j]
+    if sequence[end] < sequence[mid]:
+        sequence[end], sequence[mid] = sequence[mid], sequence[end]
 
-    slowsort(sequence, i, j - 1)
+    slowsort(sequence, start, end - 1)
 
 
 if __name__ == "__main__":
