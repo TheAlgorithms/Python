@@ -20,21 +20,21 @@ def slowsort(
     start defaults to 0 if not given.
     end defaults to len(sequence) - 1 if not given.
     It returns None.
-    >>> sequence = [1, 6, 2, 5, 3, 4, 4, 5]; slowsort(sequence); sequence
+    >>> seq = [1, 6, 2, 5, 3, 4, 4, 5]; slowsort(seq); seq
     [1, 2, 3, 4, 4, 5, 5, 6]
-    >>> sequence = []; slowsort(sequence); sequence
+    >>> seq = []; slowsort(seq); seq
     []
-    >>> sequence = [2]; slowsort(sequence); sequence
+    >>> seq = [2]; slowsort(seq); seq
     [2]
-    >>> sequence = [1, 2, 3, 4]; slowsort(sequence); sequence
+    >>> seq = [1, 2, 3, 4]; slowsort(seq); seq
     [1, 2, 3, 4]
-    >>> sequence = [4, 3, 2, 1]; slowsort(sequence); sequence
+    >>> seq = [4, 3, 2, 1]; slowsort(seq); seq
     [1, 2, 3, 4]
-    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, 2, 7); sequence
+    >>> seq = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(seq, 2, 7); seq
     [9, 8, 2, 3, 4, 5, 6, 7, 1, 0]
-    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, end = 4); sequence
+    >>> seq = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(seq, end = 4); seq
     [5, 6, 7, 8, 9, 4, 3, 2, 1, 0]
-    >>> sequence = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(sequence, start = 5); sequence
+    >>> seq = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]; slowsort(seq, start = 5); seq
     [9, 8, 7, 6, 5, 0, 1, 2, 3, 4]
     """
     if start is None:
