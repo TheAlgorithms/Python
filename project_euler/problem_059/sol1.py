@@ -27,29 +27,29 @@ values in the original text.
 """
 
 
-import os.path
 import string
 from itertools import cycle, product
+from pathlib import Path
 from typing import List, Optional, Set, Tuple
 
 VALID_CHARS: str = (
     string.ascii_letters + string.digits + string.punctuation + string.whitespace
 )
-LOWERCASE_INTS: List[int] = list(map(ord, string.ascii_lowercase))
-VALID_INTS: Set[int] = set(map(ord, VALID_CHARS))
+LOWERCASE_INTS: List[int] = [ord(letter) for letter in string.ascii_lowercase]
+VALID_INTS: Set[int] = {ord(char) for char in VALID_CHARS}
 
-COMMON_WORDS = ["the", "be", "to", "of", "and", "in", "that", "have"]
+COMMON_WORDS: List[str] = ["the", "be", "to", "of", "and", "in", "that", "have"]
 
 
-def test_three_characters(ciphertext: List[int], key: Tuple[int, ...]) -> Optional[str]:
+def try_key(ciphertext: List[int], key: Tuple[int, ...]) -> Optional[str]:
     """
     Given an encrypted message and a possible 3-character key, decrypt the message.
     If the decrypted message contains a invalid character, i.e. not an ASCII letter,
     a digit, punctuation or whitespace, then we know the key is incorrect, so return
     None.
-    >>> test_three_characters([0, 17, 20, 4, 27], [104, 116, 120])
+    >>> try_key([0, 17, 20, 4, 27], (104, 116, 120))
     'hello'
-    >>> test_three_characters([68, 10, 300, 4, 27], [104, 116, 120]) is None
+    >>> try_key([68, 10, 300, 4, 27], (104, 116, 120)) is None
     True
     """
     decoded: str = ""
@@ -73,7 +73,7 @@ def filter_valid_chars(ciphertext: List[int]) -> List[str]:
     """
     possibles: List[str] = []
     for key in product(LOWERCASE_INTS, repeat=3):
-        encoded = test_three_characters(ciphertext, key)
+        encoded = try_key(ciphertext, key)
         if encoded is not None:
             possibles.append(encoded)
     return possibles
@@ -94,18 +94,15 @@ def solution() -> int:
     possibilities by filtering using common words until there's only one possible
     decoded message.
     """
-    data: str
-    script_dir: str = os.path.abspath(os.path.dirname(__file__))
-    cipher_file: str = os.path.join(script_dir, "p059_cipher.txt")
     ciphertext: List[int]
     possibles: List[str]
     common_word: str
     decoded_text: str
+    data: str = (
+        Path(__file__).parent.joinpath("p059_cipher.txt").read_text(encoding="utf-8")
+    )
 
-    with open(cipher_file, "r") as file:
-        data = file.read()
-
-    ciphertext = list(map(int, data.strip().split(",")))
+    ciphertext = [int(number) for number in data.strip().split(",")]
 
     possibles = filter_valid_chars(ciphertext)
     for common_word in COMMON_WORDS:
@@ -114,7 +111,7 @@ def solution() -> int:
             break
 
     decoded_text = possibles[0]
-    return sum(map(ord, decoded_text))
+    return sum([ord(char) for char in decoded_text])
 
 
 if __name__ == "__main__":
