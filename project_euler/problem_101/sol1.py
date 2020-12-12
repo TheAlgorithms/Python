@@ -174,7 +174,7 @@ def solution(func: Callable[[int], int] = u, order: int = 10) -> int:
     >>> solution(lambda n: n ** 3, 3)
     74
     """
-    data_points: List[int] = list(map(func, range(1, order + 1)))
+    data_points: List[int] = [func(x) for x in range(1, order + 1)]
 
     polynomials: List[Callable[[int], int]] = [
         interpolate(data_points[:i]) for i in range(1, order + 1)
