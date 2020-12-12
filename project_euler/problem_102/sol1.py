@@ -19,7 +19,7 @@ NOTE: The first two examples in the file represent the triangles in the
 example given above.
 """
 
-import os
+from pathlib import Path
 from typing import List, Tuple
 
 Vector = Tuple[int, int]
@@ -58,19 +58,18 @@ def contains_origin(x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> boo
     return a > 0 and b > 0 and a + b < 1
 
 
-def solution() -> int:
+def solution(filename: str = "p102_triangles.txt") -> int:
     """
     Find the number of triangles whose interior contains the origin.
+    >>> solution("test_triangles.txt")
+    1
     """
-    script_dir: str = os.path.abspath(os.path.dirname(__file__))
-    triangle_file: str = os.path.join(script_dir, "p102_triangles.txt")
+    data: str = Path(__file__).parent.joinpath(filename).read_text(encoding="utf-8")
 
-    with open(triangle_file, "r") as f:
-        data = f.read()
+    triangles: List[List[int]] = []
+    for line in data.strip().split("\n"):
+        triangles.append([int(number) for number in line.split(",")])
 
-    triangles: List[List[int]] = [
-        list(map(int, line.split(","))) for line in data.strip().split("\n")
-    ]
     ret: int = 0
     triangle: List[int]
 
