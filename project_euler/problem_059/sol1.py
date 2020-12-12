@@ -70,6 +70,12 @@ def filter_valid_chars(ciphertext: List[int]) -> List[str]:
     """
     Given an encrypted message, test all 3-character strings to try and find the
     key. Return a list of the possible decrypted messages.
+    >>> from itertools import cycle
+    >>> text = "The enemy's gate is down"
+    >>> key = "end"
+    >>> encoded = [ord(k) ^ ord(c) for k,c in zip(cycle(key), text)]
+    >>> text in filter_valid_chars(encoded)
+    True
     """
     possibles: List[str] = []
     for key in product(LOWERCASE_INTS, repeat=3):
@@ -84,8 +90,12 @@ def filter_common_word(possibles: List[str], common_word: str) -> List[str]:
     Given a list of possible decoded messages, narrow down the possibilities
     for checking for the presence of a specified common word. Only decoded messages
     containing common_word will be returned.
+    >>> filter_common_word(['asfla adf', 'I am here', '   !?! #a'], 'am')
+    ['I am here']
+    >>> filter_common_word(['athla amf', 'I am here', '   !?! #a'], 'am')
+    ['athla amf', 'I am here']
     """
-    return [possible for possible in possibles if common_word in possible]
+    return [possible for possible in possibles if common_word in possible.lower()]
 
 
 def solution() -> int:
