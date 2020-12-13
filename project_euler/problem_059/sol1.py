@@ -98,19 +98,19 @@ def filter_common_word(possibles: List[str], common_word: str) -> List[str]:
     return [possible for possible in possibles if common_word in possible.lower()]
 
 
-def solution() -> int:
+def solution(filename: str = "p059_cipher.txt") -> int:
     """
     Test the ciphertext against all possible 3-character keys, then narrow down the
     possibilities by filtering using common words until there's only one possible
     decoded message.
+    >>> solution("test_cipher.txt")
+    3000
     """
     ciphertext: List[int]
     possibles: List[str]
     common_word: str
     decoded_text: str
-    data: str = (
-        Path(__file__).parent.joinpath("p059_cipher.txt").read_text(encoding="utf-8")
-    )
+    data: str = Path(__file__).parent.joinpath(filename).read_text(encoding="utf-8")
 
     ciphertext = [int(number) for number in data.strip().split(",")]
 
