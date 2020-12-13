@@ -48,17 +48,18 @@ from typing import Callable, List, Union
 Matrix = List[List[Union[float, int]]]
 
 
-def solve(A: Matrix, b: Matrix) -> Matrix:
+def solve(matrix: Matrix, vector: Matrix) -> Matrix:
     """
-    Solve the linear system of equations Ax = b for x using Gaussian elimination
-    and back substitution. We assume that A is an invertible square matrix and
-    that b is a column vector of the same height.
+    Solve the linear system of equations Ax = b (A = "matrix", b = "vector")
+    for x using Gaussian elimination and back substitution. We assume that A
+    is an invertible square matrix and that b is a column vector of the
+    same height.
     >>> solve([[1, 0], [0, 1]], [[1],[2]])
     [[1.0], [2.0]]
     >>> solve([[2, 1, -1],[-3, -1, 2],[-2, 1, 2]],[[8], [-11],[-3]])
     [[2.0], [3.0], [-1.0]]
     """
-    size: int = len(A)
+    size: int = len(matrix)
     augmented: Matrix = [[0 for _ in range(size + 1)] for _ in range(size)]
     row: int
     col: int
@@ -68,9 +69,9 @@ def solve(A: Matrix, b: Matrix) -> Matrix:
 
     for row in range(size):
         for col in range(size):
-            augmented[row][col] = A[row][col]
+            augmented[row][col] = matrix[row][col]
 
-        augmented[row][size] = b[row][0]
+        augmented[row][size] = vector[row][0]
 
     row = 0
     col = 0
@@ -123,50 +124,50 @@ def interpolate(y_list: List[int]) -> Callable[[int], int]:
     """
 
     size: int = len(y_list)
-    A: Matrix = [[0 for _ in range(size)] for _ in range(size)]
-    b: Matrix = [[0] for _ in range(size)]
+    matrix: Matrix = [[0 for _ in range(size)] for _ in range(size)]
+    vector: Matrix = [[0] for _ in range(size)]
     a: Matrix
     i: int
     y: int
 
     for i, y in enumerate(y_list):
         for j in range(size):
-            A[i][j] = (i + 1) ** (size - j - 1)
-        b[i][0] = y
+            matrix[i][j] = (i + 1) ** (size - j - 1)
+        vector[i][0] = y
 
-    a = solve(A, b)
+    a = solve(matrix, vector)
 
     return lambda x: sum(round(a[i][0]) * (x ** (size - i - 1)) for i in range(size))
 
 
-def u(n: int) -> int:
+def question_function(variable: int) -> int:
     """
     The generating function u as specified in the question.
-    >>> u(0)
+    >>> question_function(0)
     1
-    >>> u(1)
+    >>> question_function(1)
     1
-    >>> u(5)
+    >>> question_function(5)
     8138021
-    >>> u(10)
+    >>> question_function(10)
     9090909091
     """
     return (
         1
-        - n
-        + n ** 2
-        - n ** 3
-        + n ** 4
-        - n ** 5
-        + n ** 6
-        - n ** 7
-        + n ** 8
-        - n ** 9
-        + n ** 10
+        - variable
+        + variable ** 2
+        - variable ** 3
+        + variable ** 4
+        - variable ** 5
+        + variable ** 6
+        - variable ** 7
+        + variable ** 8
+        - variable ** 9
+        + variable ** 10
     )
 
 
-def solution(func: Callable[[int], int] = u, order: int = 10) -> int:
+def solution(func: Callable[[int], int] = question_function, order: int = 10) -> int:
     """
     Find the sum of the FITs of the BOPS. For each interpolating polynomial of order
     1, 2, ... , 10, find the first x such that the value of the polynomial at x does
