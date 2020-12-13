@@ -22,7 +22,7 @@ def sum_square_digits(number: int) -> int:
     We then use floor division to obtain 123 from 1234:
     1234 // 10 = 123
 
-    We continue to do this until we have calulated the sum of squares for each digit.
+    We continue to do this until we have calculated the sum of squares for each digit.
 
     This function is more performant than sum(int(d)**2 for d in str(i)) because we
     avoid having to convert an integer to a string, and then back to an integer again.
@@ -78,7 +78,7 @@ def solution(limit: int = 10000000) -> int:
     A number chain is created by continuously adding the square of the digits in a
     number to form a new number until it has been seen before.
 
-    This solution calulates the largest possible sum of squares and stores every number
+    This solution calculates the largest possible sum of squares and stores every number
     in that range in a dictionary. The key is the number in the range, and the value is
     either 89 or 1 depending on which number the chain arrives at.
 
