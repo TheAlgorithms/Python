@@ -345,6 +345,7 @@
 
 ## Linear Algebra
   * Src
+    * [Conjugate Gradient](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/conjugate_gradient.py)
     * [Lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/lib.py)
     * [Polynom For Points](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/polynom_for_points.py)
     * [Power Iteration](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/power_iteration.py)
@@ -695,6 +696,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_057/sol1.py)
   * Problem 058
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_058/sol1.py)
+  * Problem 059
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_059/sol1.py)
   * Problem 062
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_062/sol1.py)
   * Problem 063
