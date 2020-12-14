@@ -2,7 +2,7 @@ import numpy
 
 
 class NeuralNetwork:
-    def __init__(self, input_array: numpy.array, output_array: numpy.array):
+    def __init__(self, input_array: numpy.array, output_array: numpy.array) -> None:
         """
         input_array : input values for training the neural network.
         output_array : expected output values of the given inputs.
@@ -30,7 +30,7 @@ class NeuralNetwork:
         self.y = output_array
         self.output = numpy.zeros(output_array.shape)
 
-    def feedforward(self):
+    def feedforward(self) -> None:
         """
         feedforward propagation using sigmoid activation function between layers
         return the last layer of the neural network
@@ -48,7 +48,7 @@ class NeuralNetwork:
 
         return self.layer3
 
-    def back_propagation(self):
+    def back_propagation(self) -> None:
         """
         backpropagating between the layers using sigmoid derivative and
         loss between layers
@@ -83,7 +83,7 @@ class NeuralNetwork:
         self.weights2 += updated_weights2
         self.weights3 += updated_weights3
 
-    def train(self, output: numpy.array, iterations: int):
+    def train(self, output: numpy.array, iterations: int) -> None:
         """
         output : required for calculating loss
         performs the feeding and back propagation process for the
