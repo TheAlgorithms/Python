@@ -2,7 +2,7 @@ import numpy
 
 
 class NeuralNetwork:
-    def __init__(self, input_array, output_array):
+    def __init__(self, input_array: numpy.array, output_array: numpy.array):
         """
         input_array : input values for training the neural network.
         output_array : expected output values of the given inputs.
@@ -83,7 +83,7 @@ class NeuralNetwork:
         self.weights2 += updated_weights2
         self.weights3 += updated_weights3
 
-    def train(self, output, iterations):
+    def train(self, output: numpy.array, iterations: int):
         """
         output : required for calculating loss
         performs the feeding and back propagation process for the
@@ -98,7 +98,7 @@ class NeuralNetwork:
                 "Loss: " + str(numpy.mean(numpy.square(output - self.feedforward()))),
             )
 
-    def predict(self, input):
+    def predict(self, input: numpy.array) -> int:
         """
         predict output for the given input values
         """
@@ -112,7 +112,7 @@ class NeuralNetwork:
             return 0
 
 
-def sigmoid(value):
+def sigmoid(value: float) -> float:
     """
     applies sigmoid activation function
     return normalized values
@@ -120,7 +120,7 @@ def sigmoid(value):
     return 1 / (1 + numpy.exp(-value))
 
 
-def sigmoid_derivative(value):
+def sigmoid_derivative(value: float) -> float:
     """
     returns derivative of the sigmoid value
     """
