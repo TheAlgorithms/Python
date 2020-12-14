@@ -136,7 +136,13 @@ def sigmoid_derivative(value: float) -> float:
     return sigmoid(value) * (1 - sigmoid(value))
 
 
-def example():
+def example() -> int:
+    """
+    used for example
+
+    >>> example()
+    0
+    """
     # input values
     input = numpy.array(
         (
@@ -160,7 +166,7 @@ def example():
 
     # calling training function
     Neural_Network.train(output=output, iterations=1000)
-    print(Neural_Network.predict([0, 1, 1]))
+    return Neural_Network.predict([0, 1, 1])
 
 
 if __name__ == "__main__":
