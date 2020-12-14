@@ -34,6 +34,15 @@ class NeuralNetwork:
         """
         feedforward propagation using sigmoid activation function between layers
         return the last layer of the neural network
+
+        >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
+        >>> output_val=numpy.array(([0],[0],[0]),dtype=float)
+        >>> nn = NeuralNetwork(input_val,output_val)
+        >>> res = nn.feedforward()
+        >>> array_sum = numpy.sum(res)
+        >>> array_has_nan = numpy.isnan(array_sum)
+        >>> print(array_has_nan)
+        False
         """
         # layer1 is the layer connecting the input nodes with
         # the first hidden layer nodes
@@ -53,6 +62,12 @@ class NeuralNetwork:
         backpropagating between the layers using sigmoid derivative and
         loss between layers
         updates the weights between the layers
+
+        >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
+        >>> output_val = numpy.array(([0],[0],[0]),dtype=float)
+        >>> nn = NeuralNetwork(input_val,output_val)
+        >>> res = nn.feedforward()
+        >>> weights = nn.back_propagation()
         """
 
         updated_weights3 = numpy.dot(
@@ -83,30 +98,44 @@ class NeuralNetwork:
         self.weights2 += updated_weights2
         self.weights3 += updated_weights3
 
-    def train(self, output: numpy.array, iterations: int) -> None:
+    def train(self, output: numpy.array, iterations: int, give_loss: bool) -> None:
         """
         output : required for calculating loss
         performs the feeding and back propagation process for the
         given number of iterations
         every iteration will update the weights of neural network
+
+        >>> input_val = numpy.array(([0,0,0],[0,1,0],[0,0,1]),dtype=float)
+        >>> output_val = numpy.array(([0],[1],[1]),dtype=float)
+        >>> nn = NeuralNetwork(input_val,output_val)
+        >>> nn.train(output_val,10,False)
         """
         for iteration in range(1, iterations + 1):
             self.output = self.feedforward()
             self.back_propagation()
-            print(
-                "Iteration %s " % iteration,
-                "Loss: " + str(numpy.mean(numpy.square(output - self.feedforward()))),
-            )
+            if give_loss:
+                print(
+                    "Iteration %s " % iteration,
+                    "Loss: "
+                    + str(numpy.mean(numpy.square(output - self.feedforward()))),
+                )
 
     def predict(self, input: list) -> int:
         """
         predict's output for the given input values
+
+        >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
+        >>> output_val =numpy.array(([0],[0],[0]),dtype=float)
+        >>> nn = NeuralNetwork(input_val,output_val)
+        >>> nn.train(output_val,100,False)
+        >>> nn.predict([0,0,0])
+        0
         """
-        self.array = numpy.array((input), dtype=float)
+        self.array = input
         self.layer1 = sigmoid(numpy.dot(self.array, self.weights1))
         self.layer2 = sigmoid(numpy.dot(self.layer1, self.weights2))
         self.layer3 = sigmoid(numpy.dot(self.layer2, self.weights3))
-        if self.layer3 >= 0.5:
+        if self.layer3 > 0.45:
             return 1
         else:
             return 0
@@ -139,6 +168,9 @@ def sigmoid_derivative(value: float) -> float:
 def example() -> int:
     """
     used for example
+
+    >>> example()
+    1
     """
     # input values
     input = numpy.array(
@@ -162,7 +194,8 @@ def example() -> int:
     Neural_Network = NeuralNetwork(input_array=input, output_array=output)
 
     # calling training function
-    Neural_Network.train(output=output, iterations=1500)
+    # set give_loss to True if you want to see loss in every iteration
+    Neural_Network.train(output=output, iterations=5000, give_loss=False)
     return Neural_Network.predict([1, 1, 1])
 
 
