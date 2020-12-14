@@ -98,11 +98,11 @@ class NeuralNetwork:
                 "Loss: " + str(numpy.mean(numpy.square(output - self.feedforward()))),
             )
 
-    def predict(self, input: numpy.array) -> int:
+    def predict(self, input: list) -> int:
         """
-        predict output for the given input values
+        predict's output for the given input values
         """
-        self.array = input
+        self.array = numpy.array((input), dtype=float)
         self.layer1 = sigmoid(numpy.dot(self.array, self.weights1))
         self.layer2 = sigmoid(numpy.dot(self.layer1, self.weights2))
         self.layer3 = sigmoid(numpy.dot(self.layer2, self.weights3))
@@ -116,6 +116,12 @@ def sigmoid(value: float) -> float:
     """
     applies sigmoid activation function
     return normalized values
+
+    >>> sigmoid(2)
+    0.8807970779778823
+
+    >>> sigmoid(0)
+    0.5
     """
     return 1 / (1 + numpy.exp(-value))
 
@@ -123,6 +129,9 @@ def sigmoid(value: float) -> float:
 def sigmoid_derivative(value: float) -> float:
     """
     returns derivative of the sigmoid value
+
+    >>> sigmoid_derivative(0.7)
+    0.22171287329310904
     """
     return sigmoid(value) * (1 - sigmoid(value))
 
@@ -150,8 +159,8 @@ def example():
     Neural_Network = NeuralNetwork(input_array=input, output_array=output)
 
     # calling training function
-    Neural_Network.train(output=output, iterations=250)
-    print(Neural_Network.predict([0, 1, 0]))
+    Neural_Network.train(output=output, iterations=1000)
+    print(Neural_Network.predict([0, 1, 1]))
 
 
 if __name__ == "__main__":
