@@ -105,10 +105,18 @@ class Matrix:
     >>> rows2 = [[3], [2], [1]]
     >>> vector1 = Matrix(rows1)
     >>> vector2 = Matrix(rows2)
-    >>> print(Matrix.cross_product(vector1, vector2))
+    >>> print(vector1.cross_product(vector2))
     [[-4.]
      [8.]
      [-4.]]
+    >>> rows1 = [[2], [1]]
+    >>> rows2 = [[5], [4]]
+    >>> vector1 = Matrix(rows1)
+    >>> vector2 = Matrix(rows2)
+    >>> print(vector1.cross_product(vector2))
+    [[0.]
+     [0.]
+     [3.]]
     """
 
     def __init__(self, rows: list):
@@ -365,35 +373,43 @@ class Matrix:
     def dot_product(cls, row, column):
         return sum(row[i] * column[i] for i in range(len(row)))
 
-    @classmethod
-    def cross_product(cls, first: "Matrix", other: "Matrix") -> "Matrix":
+    def cross_product(self, other: "Matrix") -> "Matrix":
 
         # https://en.wikipedia.org/wiki/Cross_product
-        if isinstance(first, Matrix) and isinstance(other, Matrix):
-            if other.order == first.order == (2, 1):
-                first.add_row([0], 3)
-                other.add_row([0], 3)
-            elif other.order != (3, 1) or first.order != (3, 1):
+        if isinstance(other, Matrix):
+            if other.order == self.order == (2, 1):
+                return Matrix(
+                    [
+                        [0],
+                        [0],
+                        [
+                            (self.rows[0][0] * other.rows[1][0])
+                            - (self.rows[1][0] * other.rows[0][0])
+                        ],
+                    ]
+                )
+            elif other.order != (3, 1) or self.order != (3, 1):
                 raise ValueError(
                     "Dimension error. Cross product requires two matrices of order "
                     "(2,1) or (3,1)."
                 )
-            return cls(
-                [
+            else:
+                return Matrix(
                     [
-                        (first.rows[1][0] * other.rows[2][0])
-                        - (first.rows[2][0] * other.rows[1][0])
-                    ],
-                    [
-                        (first.rows[2][0] * other.rows[0][0])
-                        - (first.rows[0][0] * other.rows[2][0])
-                    ],
-                    [
-                        (first.rows[0][0] * other.rows[1][0])
-                        - (first.rows[1][0] * other.rows[0][0])
-                    ],
-                ]
-            )
+                        [
+                            (self.rows[1][0] * other.rows[2][0])
+                            - (self.rows[2][0] * other.rows[1][0])
+                        ],
+                        [
+                            (self.rows[2][0] * other.rows[0][0])
+                            - (self.rows[0][0] * other.rows[2][0])
+                        ],
+                        [
+                            (self.rows[0][0] * other.rows[1][0])
+                            - (self.rows[1][0] * other.rows[0][0])
+                        ],
+                    ]
+                )
         else:
             raise TypeError("Parameters given are not Matrix instances.")
 
