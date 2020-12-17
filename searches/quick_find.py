@@ -4,11 +4,13 @@ Explanation found here https://ducmanhphan.github.io/2019-03-20-Quick-Union/
 """
 import random
 
+from typing import List, Tuple
+
 
 class QuickUnion:
     """Class with methods to perform a quick union on a 2D list. Uses N array access."""
 
-    def __init__(self, *, n: int = 0, connections: list = None) -> None:
+    def __init__(self, *, n: int = 0, connections: List[Tuple[int, int]] = None) -> None:
         """
         Accepts either a 2D list of connections or an int n.
 
