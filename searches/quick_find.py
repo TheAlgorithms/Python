@@ -10,35 +10,44 @@ from typing import List, Tuple
 class QuickUnion:
     """Class with methods to perform a quick union on a 2D list. Uses N array access."""
 
-    def __init__(self, *, n: int = 0, connections: List[Tuple[int, int]] = None) -> None:
+    def __init__(self, *, connections_len: int = 0, connections: List[Tuple[int, int]] = None) -> None:
         """
-        Accepts either a 2D list of connections or an int n.
+        Accepts either a 2D list of connections or an int connections_len.
 
-        n: optional argument for generating an example list
+        connections_len: optional argument for generating an example list
 
-        connections: optional argument to be used instead of n.
+        connections: optional argument to be used instead of connections_len.
         It should be a 2d list that represents the relationships of joints
         where nested values should represent two connected values.
         example: [(1, 2), (2, 3)] indicates 1 is connected to 2 and 2 is connected to 3.
         """
         if connections:
-            # if n was passed with connections
-            if n:
+            # if connections_len was passed with connections
+            if connections_len:
                 raise ValueError(
-                    "argument n should not be passed if connections are used"
+                    "argument connections_len should not be passed if connections are used"
                 )
 
             self.sequence = [x for x in range(0, len(connections))]
             self.connections = connections
         else:
-            self.sequence = [x for x in range(0, n)]
+            self.sequence = [x for x in range(0, connections_len)]
             self.connections = self.create_sample_connections()
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """
+        >>> print(str(QuickUnion(connections_len=3)))
+        '[0, 1, 2]'
+        """
         return str(self.sequence)
 
     def create_sample_connections(self) -> list:
-        """Generates a sample 2D list based on the n value passed to the instance."""
+        """
+        Generates a sample 2D list based on the connections_len value passed to the instance.
+        >>> print(type(QuickUnion(connections_len=2).connections) == list
+        >>> and len(QuickUnion(connections_len=2).connections) == 2)
+        True
+        """
         connections = []
         data_set = self.sequence
         for _ in data_set:
@@ -67,12 +76,12 @@ class QuickUnion:
             self.sequence[first_int] = sec_int
 
 
-def run_test(n=None, connections=None):
+def run_test(connection_len: int = None, connections: List[Tuple[int, int]] = None):
     """
     >>> run_test(connections=[(1, 1), (3, 4), (0, 1), (4, 2), (4, 3)])
     '[1, 1, 2, 2, 2]'
     """
-    test = QuickUnion(n=n, connections=connections)
+    test = QuickUnion(connections_len=connection_len, connections=connections)
     for connection in test.connections:
         test.union(connection[0], connection[1])
     return str(test)
