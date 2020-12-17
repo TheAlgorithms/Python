@@ -1,13 +1,5 @@
 """
-This is a pure Python implementation of the shell sort algorithm
-
-For doctests run following command:
-python -m doctest -v shell_sort.py
-or
-python3 -m doctest -v shell_sort.py
-
-For manual testing run:
-python shell_sort.py
+https://en.wikipedia.org/wiki/Shellsort#Pseudocode
 """
 
 
@@ -25,15 +17,16 @@ def shell_sort(collection):
     [-45, -5, -2]
     """
     # Marcin Ciura's gap sequence
+
     gaps = [701, 301, 132, 57, 23, 10, 4, 1]
     for gap in gaps:
         for i in range(gap, len(collection)):
             insert_value = collection[i]
-            j = i - gap
-            while j >= 0 and insert_value < collection[j]:
-                collection[j + gap] = collection[j]
+            j = i
+            while j >= gap and insert_value < collection[j - gap]:
+                collection[j] = collection[j - gap]
                 j -= gap
-            collection[j + gap] = insert_value
+            collection[j] = insert_value
     return collection
 
 
