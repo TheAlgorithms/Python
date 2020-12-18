@@ -141,9 +141,11 @@ def interpolate(y_list: List[int]) -> Callable[[int], int]:
 
     coeffs = solve(matrix, vector)
 
-    return lambda var: sum(
-        round(coeffs[x_val][0]) * (var ** (size - x_val - 1)) for x_val in range(size)
-    )
+    def interpolated_func(var: int) -> int:
+        return sum(
+            round(coeffs[x_val][0]) * (var ** (size - x_val - 1))
+            for x_val in range(size)
+        )
 
 
 def question_function(variable: int) -> int:
