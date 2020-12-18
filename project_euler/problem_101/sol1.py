@@ -62,10 +62,11 @@ def solve(matrix: Matrix, vector: Matrix) -> Matrix:
     size: int = len(matrix)
     augmented: Matrix = [[0 for _ in range(size + 1)] for _ in range(size)]
     row: int
+    row2: int
     col: int
-    i_max: int
-    f: float
-    j: int
+    col2: int
+    pivot_row: int
+    ratio: float
 
     for row in range(size):
         for col in range(size):
@@ -77,18 +78,20 @@ def solve(matrix: Matrix, vector: Matrix) -> Matrix:
     col = 0
     while row < size and col < size:
         # pivoting
-        i_max = max([(abs(augmented[i][col]), i) for i in range(col, size)])[1]
-        if augmented[i_max][col] == 0:
+        pivot_row = max(
+            [(abs(augmented[row2][col]), row2) for row2 in range(col, size)]
+        )[1]
+        if augmented[pivot_row][col] == 0:
             col += 1
             continue
         else:
-            augmented[row], augmented[i_max] = augmented[i_max], augmented[row]
+            augmented[row], augmented[pivot_row] = augmented[pivot_row], augmented[row]
 
-        for i in range(row + 1, size):
-            f = augmented[i][col] / augmented[row][col]
-            augmented[i][col] = 0
-            for j in range(col + 1, size + 1):
-                augmented[i][j] -= augmented[row][j] * f
+        for row2 in range(row + 1, size):
+            ratio = augmented[row2][col] / augmented[row][col]
+            augmented[row2][col] = 0
+            for col2 in range(col + 1, size + 1):
+                augmented[row2][col2] -= augmented[row][col2] * ratio
 
         row += 1
         col += 1
@@ -96,9 +99,9 @@ def solve(matrix: Matrix, vector: Matrix) -> Matrix:
     # back substitution
     for col in range(1, size):
         for row in range(col):
-            f = augmented[row][col] / augmented[col][col]
-            for j in range(col, size + 1):
-                augmented[row][j] -= augmented[col][j] * f
+            ratio = augmented[row][col] / augmented[col][col]
+            for col2 in range(col, size + 1):
+                augmented[row][col2] -= augmented[col][col2] * ratio
 
     # round to get rid of numbers like 2.000000000000004
     return [
@@ -126,18 +129,21 @@ def interpolate(y_list: List[int]) -> Callable[[int], int]:
     size: int = len(y_list)
     matrix: Matrix = [[0 for _ in range(size)] for _ in range(size)]
     vector: Matrix = [[0] for _ in range(size)]
-    a: Matrix
-    i: int
-    y: int
+    coeffs: Matrix
+    x_val: int
+    y_val: int
+    col: int
 
-    for i, y in enumerate(y_list):
-        for j in range(size):
-            matrix[i][j] = (i + 1) ** (size - j - 1)
-        vector[i][0] = y
+    for x_val, y_val in enumerate(y_list):
+        for col in range(size):
+            matrix[x_val][col] = (x_val + 1) ** (size - col - 1)
+        vector[x_val][0] = y_val
 
-    a = solve(matrix, vector)
+    coeffs = solve(matrix, vector)
 
-    return lambda x: sum(round(a[i][0]) * (x ** (size - i - 1)) for i in range(size))
+    return lambda var: sum(
+        round(coeffs[x_val][0]) * (var ** (size - x_val - 1)) for x_val in range(size)
+    )
 
 
 def question_function(variable: int) -> int:
@@ -175,22 +181,22 @@ def solution(func: Callable[[int], int] = question_function, order: int = 10) ->
     >>> solution(lambda n: n ** 3, 3)
     74
     """
-    data_points: List[int] = [func(x) for x in range(1, order + 1)]
+    data_points: List[int] = [func(x_val) for x_val in range(1, order + 1)]
 
     polynomials: List[Callable[[int], int]] = [
-        interpolate(data_points[:i]) for i in range(1, order + 1)
+        interpolate(data_points[:max_coeff]) for max_coeff in range(1, order + 1)
     ]
 
     ret: int = 0
-    i: int
-    x: int
+    poly: int
+    x_val: int
 
-    for i in range(order):
-        x = 1
-        while func(x) == polynomials[i](x):
-            x += 1
+    for poly in polynomials:
+        x_val = 1
+        while func(x_val) == poly(x_val):
+            x_val += 1
 
-        ret += polynomials[i](x)
+        ret += poly(x_val)
 
     return ret
 
