@@ -142,10 +142,22 @@ def interpolate(y_list: List[int]) -> Callable[[int], int]:
     coeffs = solve(matrix, vector)
 
     def interpolated_func(var: int) -> int:
+        """
+        >>> interpolate([1])(3)
+        1
+        >>> interpolate([1, 8])(3)
+        15
+        >>> interpolate([1, 8, 27])(4)
+        58
+        >>> interpolate([1, 8, 27, 64])(6)
+        216
+        """
         return sum(
             round(coeffs[x_val][0]) * (var ** (size - x_val - 1))
             for x_val in range(size)
         )
+
+    return interpolated_func
 
 
 def question_function(variable: int) -> int:
