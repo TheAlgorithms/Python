@@ -23,7 +23,7 @@ def shell_sort(collection):
         for i in range(gap, len(collection)):
             insert_value = collection[i]
             j = i
-            while j >= gap and insert_value < collection[j - gap]:
+            while j >= gap and collection[j - gap] > insert_value:
                 collection[j] = collection[j - gap]
                 j -= gap
             collection[j] = insert_value
