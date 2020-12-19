@@ -28,9 +28,9 @@ def decimal_to_binary(num: int) -> str:
     TypeError: 'str' object cannot be interpreted as an integer
     """
 
-    if type(num) == float:
+    if type(num) is float:
         raise TypeError("'float' object cannot be interpreted as an integer")
-    if type(num) == str:
+    if type(num) is str:
         raise TypeError("'str' object cannot be interpreted as an integer")
 
     if num == 0:

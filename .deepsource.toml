@@ -1,0 +1,13 @@
+version = 1
+
+[[analyzers]]
+name = "python"
+enabled = true
+
+  [analyzers.meta]
+  runtime_version = "3.x.x"
+  max_line_length = 88
+
+[[transformers]]
+name = "black"
+enabled = true

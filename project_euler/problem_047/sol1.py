@@ -105,7 +105,7 @@ def solution(n: int = 4) -> int:
     134043
     """
     results = run(n)
-    return results[0] if len(results) else None
+    return results[0] if results else None
 
 
 if __name__ == "__main__":
