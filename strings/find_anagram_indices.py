@@ -1,10 +1,13 @@
 from collections import Counter, defaultdict
 
+
 def find_anagram_indices(word: str, letters: str) -> list:
     """
     Given a word `word`, and a string `letters`,
-    find all indices in `letters` which are the starting locations of anagrams of `word`.
-    For example, given `word` is `te` and `letters` is `textet`, return `[0, 3, 4, 5]`.
+    find all indices in `letters` which are the starting
+    locations of anagrams of `word`.
+    For example, given `word` is `the` and
+    `letters` is `tehxetheht`, return `[0, 4, 5, 7]`.
 
     1. Brute force solution
 
@@ -16,21 +19,24 @@ def find_anagram_indices(word: str, letters: str) -> list:
     :param letters: complete word to be scanned
     :return: Array
 
-    >>> find_anagram_indices("te", "texetet")
-    [0, 3, 4, 5]
+    >>> find_anagram_indices("the", "tehxetheht")
+    [0, 4, 5, 7]
     """
     output = []
     for i in range(len(letters) - len(word) + 1):
-        window = letters[i:i + len(word)]
+        window = letters[i : i + len(word)]
         if Counter(window) == Counter(word):
             output.append(i)
     return output
 
+
 def find_anagram_indices_2(word: str, letters: str) -> list:
     """
     Given a word `word`, and a string `letters`,
-    find all indices in `letters` which are the starting locations of anagrams of `word`.
-    For example, given `word` is `te` and `letters` is `textet`, return `[0, 3, 4, 5]`.
+    find all indices in `letters` which are the starting
+    locations of anagrams of `word`.
+    For example, given `word` is `the` and
+    `letters` is `tehxetheht`, return `[0, 4, 5, 7]`.
 
     2. Better scenario
 
@@ -40,8 +46,8 @@ def find_anagram_indices_2(word: str, letters: str) -> list:
     :param letters: complete word to be scanned
     :return: Array
 
-    >>> print(find_anagram_indices_2("te", "texetet"))
-    [0, 3, 4, 5]
+    >>> find_anagram_indices_2("the", "tehxetheht")
+    [0, 4, 5, 7]
     """
 
     output = []
@@ -50,7 +56,7 @@ def find_anagram_indices_2(word: str, letters: str) -> list:
     for char in word:
         freq[char] += 1
 
-    for char in letters[:len(word)]:
+    for char in letters[: len(word)]:
         freq[char] -= 1
         if freq[char] == 0:
             del freq[char]
