@@ -1,6 +1,6 @@
-from collections import Counter
+from collections import Counter, defaultdict
 
-def find_anagram_indices(word, string):
+def find_anagram_indices(word, string) -> Array:
     """
     Given a word `x`, and a string `y`, find all indices in `y` which are the starting locations of anagrams of `x`.
     For example, given `x` is `te` and `y` is `textet`, return `[0, 3, 4, 5]`.
@@ -13,16 +13,14 @@ def find_anagram_indices(word, string):
     >>> find_anagram_indices("te", "texetet")
     [0, 3, 4, 5]
     """
-    result = []
+    output = []
     for i in range(len(string) - len(word) + 1):
         window = string[i:i + len(word)]
         if Counter(window) == Counter(word):
-            result.append(i)
-    return result
+            output.append(i)
+    return output
 
-from collections import defaultdict
-
-def find_anagram_indices_2(word, s):
+def find_anagram_indices_2(word, string) -> Array:
     """
     Given a word `x`, and a string `y`, find all indices in `y` which are the starting locations of anagrams of `x`.
     For example, given `x` is `te` and `y` is `textet`, return `[0, 3, 4, 5]`.
@@ -35,22 +33,22 @@ def find_anagram_indices_2(word, s):
     [0, 3, 4, 5]
     """
 
-    result = []
+    output = []
     freq = defaultdict(int)
 
     for char in word:
         freq[char] += 1
 
-    for char in s[:len(word)]:
+    for char in string[:len(word)]:
         freq[char] -= 1
         if freq[char] == 0:
             del freq[char]
 
     if not freq:
-        result.append(0)
+        output.append(0)
 
-    for i in range(len(word), len(s)):
-        start_char, end_char = s[i - len(word)], s[i]
+    for i in range(len(word), len(string)):
+        start_char, end_char = string[i - len(word)], string[i]
         freq[start_char] += 1
         if freq[start_char] == 0:
             del freq[start_char]
@@ -61,6 +59,6 @@ def find_anagram_indices_2(word, s):
 
         if not freq:
             beginning_index = i - len(word) + 1
-            result.append(beginning_index)
+            output.append(beginning_index)
 
-    return result
+    return output
