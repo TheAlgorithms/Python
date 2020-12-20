@@ -862,6 +862,7 @@
   * [Check Anagrams](https://github.com/TheAlgorithms/Python/blob/master/strings/check_anagrams.py)
   * [Check Pangram](https://github.com/TheAlgorithms/Python/blob/master/strings/check_pangram.py)
   * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/strings/is_palindrome.py)
+  * [Find anagram indices](https://github.com/TheAlgorithms/Python/blob/master/strings/find_anagram_indices.py)
   * [Jaro Winkler](https://github.com/TheAlgorithms/Python/blob/master/strings/jaro_winkler.py)
   * [Knuth Morris Pratt](https://github.com/TheAlgorithms/Python/blob/master/strings/knuth_morris_pratt.py)
   * [Levenshtein Distance](https://github.com/TheAlgorithms/Python/blob/master/strings/levenshtein_distance.py)
