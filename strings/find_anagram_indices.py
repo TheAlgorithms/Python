@@ -1,6 +1,6 @@
 from collections import Counter, defaultdict
 
-def find_anagram_indices(word, string) -> Array:
+def find_anagram_indices(word: string, string: string) -> Array:
     """
     Given a word `x`, and a string `y`, find all indices in `y` which are the starting locations of anagrams of `x`.
     For example, given `x` is `te` and `y` is `textet`, return `[0, 3, 4, 5]`.
@@ -9,6 +9,10 @@ def find_anagram_indices(word, string) -> Array:
     This algorithm would take O(w x s) time
     - x is the length of the word
     - y is the length of the input string
+
+    :param word: word to be analyzed
+    :param string: complete word to be scanned
+    :return: Array
 
     >>> find_anagram_indices("te", "texetet")
     [0, 3, 4, 5]
@@ -20,7 +24,7 @@ def find_anagram_indices(word, string) -> Array:
             output.append(i)
     return output
 
-def find_anagram_indices_2(word, string) -> Array:
+def find_anagram_indices_2(word: string, string: string) -> Array:
     """
     Given a word `x`, and a string `y`, find all indices in `y` which are the starting locations of anagrams of `x`.
     For example, given `x` is `te` and `y` is `textet`, return `[0, 3, 4, 5]`.
@@ -28,6 +32,10 @@ def find_anagram_indices_2(word, string) -> Array:
     2. Better scenario
 
     This algorithm would run in O(s) time and space.
+
+    :param word: word to be analyzed
+    :param string: complete word to be scanned
+    :return: Array
 
     >>> print(find_anagram_indices_2("te", "texetet"))
     [0, 3, 4, 5]
