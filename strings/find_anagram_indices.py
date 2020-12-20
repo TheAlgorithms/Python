@@ -1,14 +1,15 @@
 """
-Given a word `w`, and a string `s`, find all indices in `s` which are the starting locations of anagrams of `w`.
+Given a word `x`, and a string `y`, find all indices in `y` which are the starting locations of anagrams of `x`.
 
-For example, given `w` is `ab` and `s` is `abxaba`, return `[0, 3, 4]`.
+For example, given `x` is `te` and `y` is `textet`, return `[0, 3, 4, 5]`.
 """
 
 """
 1. Brute force solution
 
-This would take O(w x s) time, where w is the length of the word
-and s is the length of the input string.
+This algorithm would take O(w x s) time
+- w is the length of the word
+- s is the length of the input string
 """
 
 from collections import Counter
@@ -16,7 +17,7 @@ from collections import Counter
 def is_anagram(s1, s2):
     return Counter(s1) == Counter(s2)
 
-def anagram_indices(word, s):
+def find_anagram_indices(word, s):
     result = []
     for i in range(len(s) - len(word) + 1):
         window = s[i:i + len(word)]
@@ -24,20 +25,21 @@ def anagram_indices(word, s):
             result.append(i)
     return result
 
-print(anagram_indices("ab", "abxaba"))
+print(find_anagram_indices("te", "texetet"))
 
 """
 2. Better scenario
-This second algorithm runs in O(s) time and space.
+
+This algorithm would run in O(s) time and space.
 """
 
 from collections import defaultdict
 
-def del_if_zero(dict, char):
+def delete_if_zero(dict, char):
     if dict[char] == 0:
         del dict[char]
 
-def anagram_indices(word, s):
+def find_anagram_indices(word, s):
     result = []
     freq = defaultdict(int)
 
@@ -46,7 +48,7 @@ def anagram_indices(word, s):
 
     for char in s[:len(word)]:
         freq[char] -= 1
-        del_if_zero(freq, char)
+        delete_if_zero(freq, char)
 
     if not freq:
         result.append(0)
@@ -54,10 +56,10 @@ def anagram_indices(word, s):
     for i in range(len(word), len(s)):
         start_char, end_char = s[i - len(word)], s[i]
         freq[start_char] += 1
-        del_if_zero(freq, start_char)
+        delete_if_zero(freq, start_char)
 
         freq[end_char] -= 1
-        del_if_zero(freq, end_char)
+        delete_if_zero(freq, end_char)
 
         if not freq:
             beginning_index = i - len(word) + 1
@@ -65,4 +67,4 @@ def anagram_indices(word, s):
 
     return result
 
-print(anagram_indices("ab", "abxaba"))
+print(find_anagram_indices("te", "texetet"))
