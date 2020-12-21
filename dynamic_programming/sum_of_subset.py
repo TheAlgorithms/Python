@@ -1,10 +1,12 @@
-def isSumSubset(arr, arrLen, requiredSum):
+def isSumSubset(arr, requiredSum):
     """
-    >>> isSumSubset([2, 4, 6, 8], 4, 5)
+    >>> isSumSubset([2, 4, 6, 8], 5)
     False
-    >>> isSumSubset([2, 4, 6, 8], 4, 14)
+    >>> isSumSubset([2, 4, 6, 8], 14)
     True
     """
+    # get array length 
+    arrLen = len(arr)
     # a subset value says 1 if that subset sum can be formed else 0
     # initially no subsets can be formed hence False/0
     subset = [[False for i in range(requiredSum + 1)] for i in range(arrLen + 1)]
