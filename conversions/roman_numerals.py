@@ -26,7 +26,7 @@ def int_to_roman(number: int) -> str:
     Given a integer, convert it to an roman numeral.
     https://en.wikipedia.org/wiki/Roman_numerals
     >>> tests = {"III": 3, "CLIV": 154, "MIX": 1009, "MMD": 2500, "MMMCMXCIX": 3999}
-    >>> all(roman_to_int(value) == key for key, value in tests.items())
+    >>> all(int_to_roman(value) == key for key, value in tests.items())
     True
     """
     ROMAN = [
