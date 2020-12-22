@@ -168,23 +168,24 @@ class TwoHiddenLayerNeuralNetwork:
             self.output = self.feedforward()
             self.back_propagation()
             if give_loss:
-                print(
-                    "Iteration %s " % iteration,
-                    "Loss: "
-                    + str(numpy.mean(numpy.square(output - self.feedforward()))),
-                )
+                loss = numpy.mean(numpy.square(output - self.feedforward()))
+                print(f"Iteration {iteration} Loss: {loss}")
 
     def predict(self, input: List[int]) -> int:
         """
         Predict's the output for the given input values using
         the trained neural network.
 
-        >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
-        >>> output_val =numpy.array(([0],[0],[0]),dtype=float)
+        The output value given by the model ranges in-between 0 and 1.
+        The predict function returns 1 if the model value is greater
+        than 0.45 else return 0, as the real output values are in binary.
+
+        >>> input_val =numpy.array(([0,0,0],[0,1,0],[0,0,1]),dtype=float)
+        >>> output_val =numpy.array(([0],[1],[1]),dtype=float)
         >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
-        >>> nn.train(output_val,100,False)
-        >>> nn.predict([0,0,0])
-        0
+        >>> nn.train(output_val,1000,False)
+        >>> nn.predict([0,1,0])
+        1
         """
 
         # Input values for which the predictions are to be made.
