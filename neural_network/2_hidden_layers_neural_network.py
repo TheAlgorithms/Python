@@ -1,113 +1,167 @@
+from typing import List
+
 import numpy
 
 
-class NeuralNetwork:
+class TwoHiddenLayerNeuralNetwork:
     def __init__(self, input_array: numpy.array, output_array: numpy.array) -> None:
         """
-        input_array : input values for training the neural network.
+        This function initializes the TwoHiddenLayerNeuralNetwork class with random
+        weights for every layer and initializes predicted output with zeroes.
+
+        input_array : input values for training the neural network (i.e training data) .
         output_array : expected output values of the given inputs.
         """
-        self.input = input_array
+
+        # Input values provided for training the model.
+        self.input_array = input_array
+
         # Initial weights are assigned randomly where first argument is the number
         # of nodes in previous layer and second argument is the
         # number of nodes in the next layer.
 
-        # random initial weights for the input layer
-        # self.input.shape[1] is used to represent number of nodes in input layer
-        # first hidden layer consists of 4 nodes
-        self.weights1 = numpy.random.rand(self.input.shape[1], 4)
+        # Random initial weights for the input layer.
+        # self.input_array.shape[1] is used to represent number of nodes in input layer.
+        # First hidden layer consists of 4 nodes.
+        self.input_layer_and_first_hidden_layer_weights = numpy.random.rand(
+            self.input_array.shape[1], 4
+        )
 
-        # random initial weights for the first hidden layer
-        # first hidden layer has 4 nodes
-        # second hidden layer has 3 nodes
-        self.weights2 = numpy.random.rand(4, 3)
+        # Random initial weights for the first hidden layer.
+        # First hidden layer has 4 nodes.
+        # Second hidden layer has 3 nodes.
+        self.first_hidden_layer_and_second_hidden_layer_weights = numpy.random.rand(
+            4, 3
+        )
 
-        # random initial weights for the second hidden layer
-        # second hidden layer has 3 nodes
-        # output layer has 1 node
-        self.weights3 = numpy.random.rand(3, 1)
+        # Random initial weights for the second hidden layer.
+        # Second hidden layer has 3 nodes.
+        # Output layer has 1 node.
+        self.second_hidden_layer_and_output_layer_weights = numpy.random.rand(3, 1)
 
-        self.y = output_array
-        self.output = numpy.zeros(output_array.shape)
+        # Real output values provided.
+        self.output_array = output_array
+
+        # Predicted output values by the neural network.
+        # Predicted_output array initially consists of zeroes.
+        self.predicted_output = numpy.zeros(output_array.shape)
 
     def feedforward(self) -> None:
         """
-        feedforward propagation using sigmoid activation function between layers
-        return the last layer of the neural network
+        The information moves in only one direction i.e. forward from the input nodes,
+        through the two hidden nodes and to the output nodes.
+        There are no cycles or loops in the network.
+
+        Return layer_between_second_hidden_layer_and_output
+            (i.e the last layer of the neural network).
 
         >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
         >>> output_val=numpy.array(([0],[0],[0]),dtype=float)
-        >>> nn = NeuralNetwork(input_val,output_val)
+        >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
         >>> res = nn.feedforward()
         >>> array_sum = numpy.sum(res)
         >>> array_has_nan = numpy.isnan(array_sum)
         >>> print(array_has_nan)
         False
         """
-        # layer1 is the layer connecting the input nodes with
-        # the first hidden layer nodes
-        self.layer1 = sigmoid(numpy.dot(self.input, self.weights1))
+        # Layer_between_input_and_first_hidden_layer is the layer connecting the
+        # input nodes with the first hidden layer nodes.
+        self.layer_between_input_and_first_hidden_layer = sigmoid(
+            numpy.dot(self.input_array, self.input_layer_and_first_hidden_layer_weights)
+        )
 
-        # layer2 is the layer connecting the first hidden set of nodes
-        # with the second hidden set of nodes
-        self.layer2 = sigmoid(numpy.dot(self.layer1, self.weights2))
+        # layer_between_first_hidden_layer_and_second_hidden_layer is the layer
+        # connecting the first hidden set of nodes with the second hidden set of nodes.
+        self.layer_between_first_hidden_layer_and_second_hidden_layer = sigmoid(
+            numpy.dot(
+                self.layer_between_input_and_first_hidden_layer,
+                self.first_hidden_layer_and_second_hidden_layer_weights,
+            )
+        )
 
-        # layer3 is the layer connecting second hidden layer with the output node
-        self.layer3 = sigmoid(numpy.dot(self.layer2, self.weights3))
+        # layer_between_second_hidden_layer_and_output is the layer connecting
+        # second hidden layer with the output node.
+        self.layer_between_second_hidden_layer_and_output = sigmoid(
+            numpy.dot(
+                self.layer_between_first_hidden_layer_and_second_hidden_layer,
+                self.second_hidden_layer_and_output_layer_weights,
+            )
+        )
 
-        return self.layer3
+        return self.layer_between_second_hidden_layer_and_output
 
     def back_propagation(self) -> None:
         """
-        backpropagating between the layers using sigmoid derivative and
-        loss between layers
-        updates the weights between the layers
+        Function for fine-tuning the weights of the neural net based on the
+        error rate obtained in the previous epoch (i.e., iteration).
+        Updation is done using derivative of sogmoid activation function.
 
         >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
         >>> output_val = numpy.array(([0],[0],[0]),dtype=float)
-        >>> nn = NeuralNetwork(input_val,output_val)
+        >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
         >>> res = nn.feedforward()
         >>> weights = nn.back_propagation()
         """
 
-        updated_weights3 = numpy.dot(
-            self.layer2.T, 2 * (self.y - self.output) * sigmoid_derivative(self.output)
+        updated_second_hidden_layer_and_output_layer_weights = numpy.dot(
+            self.layer_between_first_hidden_layer_and_second_hidden_layer.T,
+            2
+            * (self.output_array - self.predicted_output)
+            * sigmoid_derivative(self.predicted_output),
         )
-        updated_weights2 = numpy.dot(
-            self.layer1.T,
+        updated_first_hidden_layer_and_second_hidden_layer_weights = numpy.dot(
+            self.layer_between_input_and_first_hidden_layer.T,
             numpy.dot(
-                2 * (self.y - self.output) * sigmoid_derivative(self.output),
-                self.weights3.T,
+                2
+                * (self.output_array - self.predicted_output)
+                * sigmoid_derivative(self.predicted_output),
+                self.second_hidden_layer_and_output_layer_weights.T,
             )
-            * sigmoid_derivative(self.layer2),
+            * sigmoid_derivative(
+                self.layer_between_first_hidden_layer_and_second_hidden_layer
+            ),
         )
-        updated_weights1 = numpy.dot(
-            self.input.T,
+        updated_input_layer_and_first_hidden_layer_weights = numpy.dot(
+            self.input_array.T,
             numpy.dot(
                 numpy.dot(
-                    2 * (self.y - self.output) * sigmoid_derivative(self.output),
-                    self.weights3.T,
+                    2
+                    * (self.output_array - self.predicted_output)
+                    * sigmoid_derivative(self.predicted_output),
+                    self.second_hidden_layer_and_output_layer_weights.T,
                 )
-                * sigmoid_derivative(self.layer2),
-                self.weights2.T,
+                * sigmoid_derivative(
+                    self.layer_between_first_hidden_layer_and_second_hidden_layer
+                ),
+                self.first_hidden_layer_and_second_hidden_layer_weights.T,
             )
-            * sigmoid_derivative(self.layer1),
+            * sigmoid_derivative(self.layer_between_input_and_first_hidden_layer),
         )
 
-        self.weights1 += updated_weights1
-        self.weights2 += updated_weights2
-        self.weights3 += updated_weights3
+        self.input_layer_and_first_hidden_layer_weights += (
+            updated_input_layer_and_first_hidden_layer_weights
+        )
+        self.first_hidden_layer_and_second_hidden_layer_weights += (
+            updated_first_hidden_layer_and_second_hidden_layer_weights
+        )
+        self.second_hidden_layer_and_output_layer_weights += (
+            updated_second_hidden_layer_and_output_layer_weights
+        )
 
     def train(self, output: numpy.array, iterations: int, give_loss: bool) -> None:
         """
-        output : required for calculating loss
-        performs the feeding and back propagation process for the
-        given number of iterations
-        every iteration will update the weights of neural network
+        Performs the feedforwarding and back propagation process for the
+        given number of iterations.
+        Every iteration will update the weights of neural network.
+
+        output : real output values,required for calculating loss.
+        iterations : number of times the weights are to be updated.
+        give_loss : boolean value, If True then prints loss for each iteration,
+                    If False then nothing is printed
 
         >>> input_val = numpy.array(([0,0,0],[0,1,0],[0,0,1]),dtype=float)
         >>> output_val = numpy.array(([0],[1],[1]),dtype=float)
-        >>> nn = NeuralNetwork(input_val,output_val)
+        >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
         >>> nn.train(output_val,10,False)
         """
         for iteration in range(1, iterations + 1):
@@ -120,22 +174,38 @@ class NeuralNetwork:
                     + str(numpy.mean(numpy.square(output - self.feedforward()))),
                 )
 
-    def predict(self, input: list) -> int:
+    def predict(self, input: List[int]) -> int:
         """
-        predict's output for the given input values
+        Predict's the output for the given input values using
+        the trained neural network.
 
         >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
         >>> output_val =numpy.array(([0],[0],[0]),dtype=float)
-        >>> nn = NeuralNetwork(input_val,output_val)
+        >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
         >>> nn.train(output_val,100,False)
         >>> nn.predict([0,0,0])
         0
         """
+
+        # Input values for which the predictions are to be made.
         self.array = input
-        self.layer1 = sigmoid(numpy.dot(self.array, self.weights1))
-        self.layer2 = sigmoid(numpy.dot(self.layer1, self.weights2))
-        self.layer3 = sigmoid(numpy.dot(self.layer2, self.weights3))
-        if self.layer3 > 0.45:
+
+        self.layer_between_input_and_first_hidden_layer = sigmoid(
+            numpy.dot(self.array, self.input_layer_and_first_hidden_layer_weights)
+        )
+        self.layer_between_first_hidden_layer_and_second_hidden_layer = sigmoid(
+            numpy.dot(
+                self.layer_between_input_and_first_hidden_layer,
+                self.first_hidden_layer_and_second_hidden_layer_weights,
+            )
+        )
+        self.layer_between_second_hidden_layer_and_output = sigmoid(
+            numpy.dot(
+                self.layer_between_first_hidden_layer_and_second_hidden_layer,
+                self.second_hidden_layer_and_output_layer_weights,
+            )
+        )
+        if self.layer_between_second_hidden_layer_and_output > 0.45:
             return 1
         else:
             return 0
@@ -143,7 +213,8 @@ class NeuralNetwork:
 
 def sigmoid(value: float) -> float:
     """
-    applies sigmoid activation function
+    Applies sigmoid activation function.
+
     return normalized values
 
     >>> sigmoid(2)
@@ -157,6 +228,8 @@ def sigmoid(value: float) -> float:
 
 def sigmoid_derivative(value: float) -> float:
     """
+    Provides the derivative value of the sigmoid function.
+
     returns derivative of the sigmoid value
 
     >>> sigmoid_derivative(0.7)
@@ -167,12 +240,16 @@ def sigmoid_derivative(value: float) -> float:
 
 def example() -> int:
     """
-    used for example
+    Example for "how to use the neural network class and use the
+    respected methods for the desired output".
+    Calls the TwoHiddenLayerNeuralNetwork class and
+    provides the fixed input output values to the model.
+    Model is trained for a fixed amount of iterations then the predict method is called.
 
     >>> example()
     1
     """
-    # input values
+    # Input values.
     input = numpy.array(
         (
             [0, 0, 0],
@@ -187,16 +264,16 @@ def example() -> int:
         dtype=float,
     )
 
-    # true output for the given input values
+    # True output values for the given input values.
     output = numpy.array(([0], [1], [1], [0], [1], [0], [0], [1]), dtype=float)
 
-    # calling neural network class
-    Neural_Network = NeuralNetwork(input_array=input, output_array=output)
+    # Calling neural network class.
+    neural_network = TwoHiddenLayerNeuralNetwork(input_array=input, output_array=output)
 
-    # calling training function
-    # set give_loss to True if you want to see loss in every iteration
-    Neural_Network.train(output=output, iterations=5000, give_loss=False)
-    return Neural_Network.predict([1, 1, 1])
+    # Calling training function.
+    # Set give_loss to True if you want to see loss in every iteration.
+    neural_network.train(output=output, iterations=5000, give_loss=False)
+    return neural_network.predict([1, 1, 1])
 
 
 if __name__ == "__main__":
