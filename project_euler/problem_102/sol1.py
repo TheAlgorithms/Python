@@ -22,10 +22,10 @@ example given above.
 from pathlib import Path
 from typing import List, Tuple
 
-Vector = Tuple[int, int]
+vector = Tuple[int, int]
 
 
-def vector_product(point1: Vector, point2: Vector) -> int:
+def vector_product(point1: vector, point2: vector) -> int:
     """
     Return the 2-d vector product of two vectors.
     >>> vector_product((1, 2), (-5, 0))
@@ -45,14 +45,14 @@ def contains_origin(x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> boo
     >>> contains_origin(-175, 41, -421, -714, 574, -645)
     False
     """
-    vector_A: Vector = (x1, y1)
-    vector_A_to_B: Vector = (x2 - x1, y2 - y1)
-    vector_A_to_C: Vector = (x3 - x1, y3 - y1)
-    a: float = -vector_product(vector_A, vector_A_to_B) / vector_product(
-        vector_A_to_C, vector_A_to_B
+    vector_a: vector = (x1, y1)
+    vector_a_to_b: vector = (x2 - x1, y2 - y1)
+    vector_a_to_c: vector = (x3 - x1, y3 - y1)
+    a: float = -vector_product(vector_a, vector_a_to_b) / vector_product(
+        vector_a_to_c, vector_a_to_b
     )
-    b: float = +vector_product(vector_A, vector_A_to_C) / vector_product(
-        vector_A_to_C, vector_A_to_B
+    b: float = +vector_product(vector_a, vector_a_to_c) / vector_product(
+        vector_a_to_c, vector_a_to_b
     )
 
     return a > 0 and b > 0 and a + b < 1
