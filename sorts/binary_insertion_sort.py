@@ -12,12 +12,11 @@ def binary_insertion_sort(collection: list) -> list:
     [-45, -2, 0, 5, 12, 85]
     """
 
-    """
-    The binary search algorithm is responsible for search the correct
-    position for insertion
-    """
-
     def binary_search(arr: list, val: int, start: int, end: int) -> int:
+        """
+        The binary search algorithm is responsible for search the correct
+        position for insertion
+        """
         while start < end:
             mid = start + int((end - start) / 2)
             if arr[mid] > val:
