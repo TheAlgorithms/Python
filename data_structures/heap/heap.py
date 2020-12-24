@@ -31,14 +31,13 @@ class Heap:
     def __repr__(self) -> str:
         return str(self.h)
 
-    def parent_index(self, child_idx: int) -> int:
+    def parent_index(self, child_idx: int) -> Union[int, None]:
         """ return the parent index of given child """
         if child_idx > 0:
             return (child_idx - 1) // 2
-        else:
-            raise Exception("Index out of range")
+        return None
 
-    def left_child_idx(self, parent_idx: int) -> int:
+    def left_child_idx(self, parent_idx: int) -> Union[int, None]:
         """
         return the left child index if the left child exists.
         if not, return None.
@@ -46,10 +45,9 @@ class Heap:
         left_child_index = 2 * parent_idx + 1
         if left_child_index < self.heap_size:
             return left_child_index
-        else:
-            raise Exception("No left child")
+        return None
 
-    def right_child_idx(self, parent_idx: int) -> int:
+    def right_child_idx(self, parent_idx: int) -> Union[int, None]:
         """
         return the right child index if the right child exists.
         if not, return None.
@@ -57,8 +55,7 @@ class Heap:
         right_child_index = 2 * parent_idx + 2
         if right_child_index < self.heap_size:
             return right_child_index
-        else:
-            raise Exception("No right child")
+        return None
 
     def max_heapify(self, index: int):
         """
