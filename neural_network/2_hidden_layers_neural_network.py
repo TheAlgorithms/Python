@@ -1,4 +1,9 @@
-from typing import List
+"""
+References:
+    - http://neuralnetworksanddeeplearning.com/chap2.html (Backpropagation)
+    - https://en.wikipedia.org/wiki/Sigmoid_function (Sigmoid activation function)
+    - https://en.wikipedia.org/wiki/Feedforward_neural_network (Feedforward)
+"""
 
 import numpy
 
@@ -16,25 +21,25 @@ class TwoHiddenLayerNeuralNetwork:
         # Input values provided for training the model.
         self.input_array = input_array
 
-        # Initial weights are assigned randomly where first argument is the number
-        # of nodes in previous layer and second argument is the
+        # Random initial weights are assigned where first argument is the
+        # number of nodes in previous layer and second argument is the
         # number of nodes in the next layer.
 
-        # Random initial weights for the input layer.
+        # Random initial weights are assigned.
         # self.input_array.shape[1] is used to represent number of nodes in input layer.
         # First hidden layer consists of 4 nodes.
         self.input_layer_and_first_hidden_layer_weights = numpy.random.rand(
             self.input_array.shape[1], 4
         )
 
-        # Random initial weights for the first hidden layer.
+        # Random initial values for the first hidden layer.
         # First hidden layer has 4 nodes.
         # Second hidden layer has 3 nodes.
         self.first_hidden_layer_and_second_hidden_layer_weights = numpy.random.rand(
             4, 3
         )
 
-        # Random initial weights for the second hidden layer.
+        # Random initial values for the second hidden layer.
         # Second hidden layer has 3 nodes.
         # Output layer has 1 node.
         self.second_hidden_layer_and_output_layer_weights = numpy.random.rand(3, 1)
@@ -55,13 +60,12 @@ class TwoHiddenLayerNeuralNetwork:
         Return layer_between_second_hidden_layer_and_output
             (i.e the last layer of the neural network).
 
-        >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
-        >>> output_val=numpy.array(([0],[0],[0]),dtype=float)
+        >>> input_val = numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
+        >>> output_val = numpy.array(([0],[0],[0]),dtype=float)
         >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
         >>> res = nn.feedforward()
         >>> array_sum = numpy.sum(res)
-        >>> array_has_nan = numpy.isnan(array_sum)
-        >>> print(array_has_nan)
+        >>> numpy.isnan(array_sum)
         False
         """
         # Layer_between_input_and_first_hidden_layer is the layer connecting the
@@ -96,11 +100,14 @@ class TwoHiddenLayerNeuralNetwork:
         error rate obtained in the previous epoch (i.e., iteration).
         Updation is done using derivative of sogmoid activation function.
 
-        >>> input_val =numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
+        >>> input_val = numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
         >>> output_val = numpy.array(([0],[0],[0]),dtype=float)
         >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
         >>> res = nn.feedforward()
-        >>> weights = nn.back_propagation()
+        >>> nn.back_propagation()
+        >>> updated_weights = nn.second_hidden_layer_and_output_layer_weights
+        >>> (res == updated_weights).all()
+        False
         """
 
         updated_second_hidden_layer_and_output_layer_weights = numpy.dot(
@@ -162,7 +169,11 @@ class TwoHiddenLayerNeuralNetwork:
         >>> input_val = numpy.array(([0,0,0],[0,1,0],[0,0,1]),dtype=float)
         >>> output_val = numpy.array(([0],[1],[1]),dtype=float)
         >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
-        >>> nn.train(output_val,10,False)
+        >>> first_iteration_weights = nn.feedforward()
+        >>> nn.back_propagation()
+        >>> updated_weights = nn.second_hidden_layer_and_output_layer_weights
+        >>> (first_iteration_weights == updated_weights).all()
+        False
         """
         for iteration in range(1, iterations + 1):
             self.output = self.feedforward()
@@ -171,17 +182,18 @@ class TwoHiddenLayerNeuralNetwork:
                 loss = numpy.mean(numpy.square(output - self.feedforward()))
                 print(f"Iteration {iteration} Loss: {loss}")
 
-    def predict(self, input: List[int]) -> int:
+    def predict(self, input: numpy.array) -> int:
         """
         Predict's the output for the given input values using
         the trained neural network.
 
         The output value given by the model ranges in-between 0 and 1.
         The predict function returns 1 if the model value is greater
-        than 0.45 else return 0, as the real output values are in binary.
+        than the threshold value else returns 0,
+        as the real output values are in binary.
 
-        >>> input_val =numpy.array(([0,0,0],[0,1,0],[0,0,1]),dtype=float)
-        >>> output_val =numpy.array(([0],[1],[1]),dtype=float)
+        >>> input_val = numpy.array(([0,0,0],[0,1,0],[0,0,1]),dtype=float)
+        >>> output_val = numpy.array(([0],[1],[1]),dtype=float)
         >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
         >>> nn.train(output_val,1000,False)
         >>> nn.predict([0,1,0])
@@ -194,19 +206,22 @@ class TwoHiddenLayerNeuralNetwork:
         self.layer_between_input_and_first_hidden_layer = sigmoid(
             numpy.dot(self.array, self.input_layer_and_first_hidden_layer_weights)
         )
+
         self.layer_between_first_hidden_layer_and_second_hidden_layer = sigmoid(
             numpy.dot(
                 self.layer_between_input_and_first_hidden_layer,
                 self.first_hidden_layer_and_second_hidden_layer_weights,
             )
         )
+
         self.layer_between_second_hidden_layer_and_output = sigmoid(
             numpy.dot(
                 self.layer_between_first_hidden_layer_and_second_hidden_layer,
                 self.second_hidden_layer_and_output_layer_weights,
             )
         )
-        if self.layer_between_second_hidden_layer_and_output > 0.45:
+
+        if self.layer_between_second_hidden_layer_and_output > 0.6:
             return 1
         else:
             return 0
@@ -234,9 +249,9 @@ def sigmoid_derivative(value: float) -> float:
     returns derivative of the sigmoid value
 
     >>> sigmoid_derivative(0.7)
-    0.22171287329310904
+    0.21000000000000002
     """
-    return sigmoid(value) * (1 - sigmoid(value))
+    return (value) * (1 - (value))
 
 
 def example() -> int:
@@ -246,6 +261,8 @@ def example() -> int:
     Calls the TwoHiddenLayerNeuralNetwork class and
     provides the fixed input output values to the model.
     Model is trained for a fixed amount of iterations then the predict method is called.
+    In this example the output is divided into 2 classes i.e. binary classification,
+    the two classes are represented by '0' and '1'.
 
     >>> example()
     1
@@ -273,8 +290,9 @@ def example() -> int:
 
     # Calling training function.
     # Set give_loss to True if you want to see loss in every iteration.
-    neural_network.train(output=output, iterations=5000, give_loss=False)
-    return neural_network.predict([1, 1, 1])
+    neural_network.train(output=output, iterations=10, give_loss=False)
+
+    return neural_network.predict(numpy.array(([1, 1, 1]), dtype=float))
 
 
 if __name__ == "__main__":
