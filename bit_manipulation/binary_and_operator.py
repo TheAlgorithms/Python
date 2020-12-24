@@ -1,7 +1,7 @@
 # https://www.tutorialspoint.com/python3/bitwise_operators_example.htm
 
 
-def binary_and(a: int, b: int):
+def binary_and(a: int, b: int) -> str:
     """
     Take in 2 integers, convert them to binary,
     return a binary number that is the
