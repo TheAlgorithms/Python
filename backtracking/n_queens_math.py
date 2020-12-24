@@ -75,14 +75,14 @@ Applying this two formulas we can check if a queen in some position is being att
 for another one or vice versa.
 
 """
-from __future__ import annotations
+from typing import List
 
 
 def depth_first_search(
-    possible_board: list[int],
-    diagonal_right_collisions: list[int],
-    diagonal_left_collisions: list[int],
-    boards: list[list[str]],
+    possible_board: List[int],
+    diagonal_right_collisions: List[int],
+    diagonal_left_collisions: List[int],
+    boards: List[List[str]],
     n: int,
 ) -> None:
     """
@@ -94,40 +94,33 @@ def depth_first_search(
     ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']
     """
 
-    """ Get next row in the current board (possible_board) to fill it with a queen """
+    # Get next row in the current board (possible_board) to fill it with a queen
     row = len(possible_board)
 
-    """
-    If row is equal to the size of the board it means there are a queen in each row in
-    the current board (possible_board)
-    """
+    # If row is equal to the size of the board it means there are a queen in each row in
+    # the current board (possible_board)
     if row == n:
-        """
-        We convert the variable possible_board that looks like this: [1, 3, 0, 2] to
-        this: ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
-        """
-        possible_board = [". " * i + "Q " + ". " * (n - 1 - i) for i in possible_board]
-        boards.append(possible_board)
+        # We convert the variable possible_board that looks like this: [1, 3, 0, 2] to
+        # this: ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
+        boards.append([". " * i + "Q " + ". " * (n - 1 - i) for i in possible_board])
         return
 
-    """ We iterate each column in the row to find all possible results in each row """
+    # We iterate each column in the row to find all possible results in each row
     for col in range(n):
 
-        """
-        We apply that we learned previously. First we check that in the current board
-        (possible_board) there are not other same value because if there is it means
-        that there are a collision in vertical. Then we apply the two formulas we
-        learned before:
-
-        45º: y - x = b or 45: row - col = b
-        135º: y + x = b or row + col = b.
-
-        And we verify if the results of this two formulas not exist in their variables
-        respectively.  (diagonal_right_collisions, diagonal_left_collisions)
-
-        If any or these are True it means there is a collision so we continue to the
-        next value in the for loop.
-        """
+        # We apply that we learned previously. First we check that in the current board
+        # (possible_board) there are not other same value because if there is it means
+        # that there are a collision in vertical. Then we apply the two formulas we
+        # learned before:
+        #
+        # 45º: y - x = b or 45: row - col = b
+        # 135º: y + x = b or row + col = b.
+        #
+        # And we verify if the results of this two formulas not exist in their variables
+        # respectively.  (diagonal_right_collisions, diagonal_left_collisions)
+        #
+        # If any or these are True it means there is a collision so we continue to the
+        # next value in the for loop.
         if (
             col in possible_board
             or row - col in diagonal_right_collisions
@@ -135,7 +128,7 @@ def depth_first_search(
         ):
             continue
 
-        """ If it is False we call dfs function again and we update the inputs """
+        # If it is False we call dfs function again and we update the inputs
         depth_first_search(
             possible_board + [col],
             diagonal_right_collisions + [row - col],
@@ -146,10 +139,10 @@ def depth_first_search(
 
 
 def n_queens_solution(n: int) -> None:
-    boards = []
+    boards: List[List[str]] = []
     depth_first_search([], [], [], boards, n)
 
-    """ Print all the boards """
+    # Print all the boards
     for board in boards:
         for column in board:
             print(column)
