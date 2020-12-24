@@ -1,4 +1,3 @@
-
 def binary_insertion_sort(collection: list) -> list:
     """A Python implementation of insertion sort based on binary search
     :param collection: a mutable collection of comparable items
@@ -14,11 +13,13 @@ def binary_insertion_sort(collection: list) -> list:
     """
 
     """
-    The binary search algorithm is responsible for search the correct postion for insertion
+    The binary search algorithm is responsible for search the correct
+    position for insertion
     """
+
     def binary_search(arr: list, val: int, start: int, end: int) -> int:
         while start < end:
-            mid = start + int((end-start)/2)
+            mid = start + int((end - start) / 2)
             if arr[mid] > val:
                 end = mid - 1
             elif arr[mid] < val:
@@ -29,24 +30,31 @@ def binary_insertion_sort(collection: list) -> list:
             if arr[start] > val:
                 return start
             else:
-                return start+1
+                return start + 1
         return start
-        
+
     """
-    The insertion sort is responsible for iterating through the list and find correct position 
+    The insertion sort is responsible for iterating through the list and find
+     correct position
     for the item
     """
+
     def insertion_sort(arr) -> list:
-        for i in range(1, len(arr)): 
-            j = binary_search(arr, arr[i] , 0, i-1)
-            arr = arr[:j] + [arr[i]] + arr[j:i] + arr[i+1:]
+        for i in range(1, len(arr)):
+            j = binary_search(arr, arr[i], 0, i - 1)
+            arr = arr[:j] + [arr[i]] + arr[j:i] + arr[i + 1 :]
         return arr
-        
+
     if len(collection) == 0:
         return collection
-    
+
     return insertion_sort(collection)
 
 
-    
+if __name__ == "__main__":
+    import doctest
 
+    doctest.testmod()
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(binary_insertion_sort(unsorted))
