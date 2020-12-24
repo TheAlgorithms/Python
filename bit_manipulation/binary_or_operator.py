@@ -1,7 +1,7 @@
 # https://www.tutorialspoint.com/python3/bitwise_operators_example.htm
 
 
-def binary_or(a: int, b: int):
+def binary_or(a: int, b: int) -> str:
     """
     Take in 2 integers, convert them to binary, and return a binary number that is the
     result of a binary or operation on the integers provided.
