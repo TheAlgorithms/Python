@@ -108,8 +108,8 @@ def sudoku(grid: Matrix) -> Optional[Matrix]:
      [1, 3, 8, 9, 4, 7, 2, 5, 6],
      [6, 9, 2, 3, 5, 1, 8, 7, 4],
      [7, 4, 5, 2, 8, 6, 3, 1, 9]]
-     >>> sudoku(no_solution)
-     None
+     >>> sudoku(no_solution) is None
+     True
     """
 
     if is_completed(grid):
