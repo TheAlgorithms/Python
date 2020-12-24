@@ -4,11 +4,11 @@ def binary_insertion_sort(collection: list) -> list:
     :return: the same collection ordered by ascending
 
     Examples:
-    >>> quick_sort([37, 23, 0, 17, 12, 72, 31, 46, 100, 88, 54])
+    >>> binary_insertion_sort([37, 23, 0, 17, 12, 72, 31, 46, 100, 88, 54])
     [0, 12, 17, 23, 31, 37, 46, 54, 72, 88, 100]
-    >>> quick_sort([])
+    >>> binary_insertion_sort([])
     []
-    >>> quick_sort([-2, 5, 0, -45, 85, 12])
+    >>> binary_insertion_sort([-2, 5, 0, -45, 85, 12])
     [-45, -2, 0, 5, 12, 85]
     """
 
