@@ -81,7 +81,8 @@ def test_stack() -> None:
     assert stack.is_empty() is False
     assert stack.is_full() is True
     assert str(stack) == str(list(range(10)))
-    assert stack.pop() == 9
+    _ = stack.pop()
+    assert  _ == 9
     assert stack.peek() == 8
 
     stack.push(100)
