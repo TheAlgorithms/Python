@@ -221,10 +221,7 @@ class TwoHiddenLayerNeuralNetwork:
             )
         )
 
-        if self.layer_between_second_hidden_layer_and_output > 0.6:
-            return 1
-        else:
-            return 0
+        return int(self.layer_between_second_hidden_layer_and_output > 0.6)
 
 
 def sigmoid(value: float) -> float:
