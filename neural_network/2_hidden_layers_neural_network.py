@@ -60,9 +60,9 @@ class TwoHiddenLayerNeuralNetwork:
         Return layer_between_second_hidden_layer_and_output
             (i.e the last layer of the neural network).
 
-        >>> input_val = numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
-        >>> output_val = numpy.array(([0],[0],[0]),dtype=float)
-        >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
+        >>> input_val = numpy.array(([0, 0, 0], [0, 0, 0], [0, 0, 0]), dtype=float)
+        >>> output_val = numpy.array(([0], [0], [0]), dtype=float)
+        >>> nn = TwoHiddenLayerNeuralNetwork(input_val, output_val)
         >>> res = nn.feedforward()
         >>> array_sum = numpy.sum(res)
         >>> numpy.isnan(array_sum)
@@ -100,9 +100,9 @@ class TwoHiddenLayerNeuralNetwork:
         error rate obtained in the previous epoch (i.e., iteration).
         Updation is done using derivative of sogmoid activation function.
 
-        >>> input_val = numpy.array(([0,0,0],[0,0,0],[0,0,0]),dtype=float)
-        >>> output_val = numpy.array(([0],[0],[0]),dtype=float)
-        >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
+        >>> input_val = numpy.array(([0, 0, 0], [0, 0, 0], [0, 0, 0]), dtype=float)
+        >>> output_val = numpy.array(([0], [0], [0]), dtype=float)
+        >>> nn = TwoHiddenLayerNeuralNetwork(input_val, output_val)
         >>> res = nn.feedforward()
         >>> nn.back_propagation()
         >>> updated_weights = nn.second_hidden_layer_and_output_layer_weights
@@ -166,9 +166,9 @@ class TwoHiddenLayerNeuralNetwork:
         give_loss : boolean value, If True then prints loss for each iteration,
                     If False then nothing is printed
 
-        >>> input_val = numpy.array(([0,0,0],[0,1,0],[0,0,1]),dtype=float)
-        >>> output_val = numpy.array(([0],[1],[1]),dtype=float)
-        >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
+        >>> input_val = numpy.array(([0, 0, 0], [0, 1, 0], [0, 0, 1]), dtype=float)
+        >>> output_val = numpy.array(([0], [1], [1]), dtype=float)
+        >>> nn = TwoHiddenLayerNeuralNetwork(input_val, output_val)
         >>> first_iteration_weights = nn.feedforward()
         >>> nn.back_propagation()
         >>> updated_weights = nn.second_hidden_layer_and_output_layer_weights
@@ -192,10 +192,10 @@ class TwoHiddenLayerNeuralNetwork:
         than the threshold value else returns 0,
         as the real output values are in binary.
 
-        >>> input_val = numpy.array(([0,0,0],[0,1,0],[0,0,1]),dtype=float)
-        >>> output_val = numpy.array(([0],[1],[1]),dtype=float)
-        >>> nn = TwoHiddenLayerNeuralNetwork(input_val,output_val)
-        >>> nn.train(output_val,1000,False)
+        >>> input_val = numpy.array(([0, 0, 0], [0, 1, 0], [0, 0, 1]), dtype=float)
+        >>> output_val = numpy.array(([0], [1], [1]), dtype=float)
+        >>> nn = TwoHiddenLayerNeuralNetwork(input_val, output_val)
+        >>> nn.train(output_val, 1000, False)
         >>> nn.predict([0,1,0])
         1
         """
