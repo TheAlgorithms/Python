@@ -1,4 +1,4 @@
-from typing import Iterable, List, Union
+from typing import Iterable, List, Optional
 
 
 class Heap:
@@ -24,20 +24,20 @@ class Heap:
     [1, 5, 7, 9, 11, 15, 25, 100, 103, 107, 201]
     """
 
-    def __init__(self):
-        self.h: List[Union[int, float]] = []
+    def __init__(self) -> None:
+        self.h: List[float] = []
         self.heap_size: int = 0
 
     def __repr__(self) -> str:
         return str(self.h)
 
-    def parent_index(self, child_idx: int) -> Union[int, None]:
+    def parent_index(self, child_idx: int) -> Optional[int]:
         """ return the parent index of given child """
         if child_idx > 0:
             return (child_idx - 1) // 2
         return None
 
-    def left_child_idx(self, parent_idx: int) -> Union[int, None]:
+    def left_child_idx(self, parent_idx: int) -> Optional[int]:
         """
         return the left child index if the left child exists.
         if not, return None.
@@ -47,7 +47,7 @@ class Heap:
             return left_child_index
         return None
 
-    def right_child_idx(self, parent_idx: int) -> Union[int, None]:
+    def right_child_idx(self, parent_idx: int) -> Optional[int]:
         """
         return the right child index if the right child exists.
         if not, return None.
@@ -57,7 +57,7 @@ class Heap:
             return right_child_index
         return None
 
-    def max_heapify(self, index: int):
+    def max_heapify(self, index: int) -> None:
         """
         correct a single violation of the heap property in a subtree's root.
         """
@@ -77,7 +77,7 @@ class Heap:
                 # fix the subsequent violation recursively if any
                 self.max_heapify(violation)
 
-    def build_max_heap(self, collection: Iterable[Union[int, float]]):
+    def build_max_heap(self, collection: Iterable[float]):
         """ build max heap from an unsorted array"""
         self.h = list(collection)
         self.heap_size = len(self.h)
@@ -86,14 +86,14 @@ class Heap:
             for i in range(self.heap_size // 2 - 1, -1, -1):
                 self.max_heapify(i)
 
-    def max(self) -> Union[int, float]:
+    def max(self) -> float:
         """ return the max in the heap """
         if self.heap_size >= 1:
             return self.h[0]
         else:
             raise Exception("Empty heap")
 
-    def extract_max(self) -> Union[int, float]:
+    def extract_max(self) -> float:
         """ get and remove max from heap """
         if self.heap_size >= 2:
             me = self.h[0]
@@ -107,7 +107,7 @@ class Heap:
         else:
             raise Exception("Empty heap")
 
-    def insert(self, value: Union[int, float]):
+    def insert(self, value: float) -> None:
         """ insert a new value into the max heap """
         self.h.append(value)
         idx = (self.heap_size - 1) // 2
@@ -116,7 +116,7 @@ class Heap:
             self.max_heapify(idx)
             idx = (idx - 1) // 2
 
-    def heap_sort(self):
+    def heap_sort(self) -> None:
         size = self.heap_size
         for j in range(size - 1, 0, -1):
             self.h[0], self.h[j] = self.h[j], self.h[0]
@@ -125,9 +125,14 @@ class Heap:
         self.heap_size = size
 
 
-def demo():
+if __name__ == "__main__":
+    import doctest
+
+    # run doc test
+    doctest.testmod()
+
+    # demo
     for unsorted in [
-        [],
         [0],
         [2],
         [3, 5],
@@ -156,10 +161,3 @@ def demo():
 
         heap.heap_sort()
         print(f"heap-sorted array: {heap}\n")
-
-
-if __name__ == "__main__":
-    # demo()
-    import doctest
-
-    doctest.testmod()
