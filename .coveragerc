@@ -2,3 +2,7 @@
 sort = Cover
 omit =
     .env/*
+[report]
+sort = Cover
+omit =
+    .env/*
