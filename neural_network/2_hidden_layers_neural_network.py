@@ -9,7 +9,7 @@ import numpy
 
 
 class TwoHiddenLayerNeuralNetwork:
-    def __init__(self, input_array: numpy.array, output_array: numpy.array) -> None:
+    def __init__(self, input_array: numpy.ndarray, output_array: numpy.ndarray) -> None:
         """
         This function initializes the TwoHiddenLayerNeuralNetwork class with random
         weights for every layer and initializes predicted output with zeroes.
@@ -51,7 +51,7 @@ class TwoHiddenLayerNeuralNetwork:
         # Predicted_output array initially consists of zeroes.
         self.predicted_output = numpy.zeros(output_array.shape)
 
-    def feedforward(self) -> None:
+    def feedforward(self) -> numpy.ndarray:
         """
         The information moves in only one direction i.e. forward from the input nodes,
         through the two hidden nodes and to the output nodes.
@@ -155,7 +155,7 @@ class TwoHiddenLayerNeuralNetwork:
             updated_second_hidden_layer_and_output_layer_weights
         )
 
-    def train(self, output: numpy.array, iterations: int, give_loss: bool) -> None:
+    def train(self, output: numpy.ndarray, iterations: int, give_loss: bool) -> None:
         """
         Performs the feedforwarding and back propagation process for the
         given number of iterations.
@@ -182,7 +182,7 @@ class TwoHiddenLayerNeuralNetwork:
                 loss = numpy.mean(numpy.square(output - self.feedforward()))
                 print(f"Iteration {iteration} Loss: {loss}")
 
-    def predict(self, input: numpy.array) -> int:
+    def predict(self, input: numpy.ndarray) -> int:
         """
         Predict's the output for the given input values using
         the trained neural network.
