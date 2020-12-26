@@ -224,29 +224,28 @@ class TwoHiddenLayerNeuralNetwork:
         return int(self.layer_between_second_hidden_layer_and_output > 0.6)
 
 
-def sigmoid(value: float) -> float:
+def sigmoid(value: numpy.ndarray) -> numpy.ndarray:
     """
     Applies sigmoid activation function.
 
     return normalized values
 
-    >>> sigmoid(2)
-    0.8807970779778823
-
-    >>> sigmoid(0)
-    0.5
+    >>> sigmoid(numpy.array(([1, 0, 2], [1, 0, 0]), dtype=numpy.float64))
+    array([[0.73105858, 0.5       , 0.88079708],
+           [0.73105858, 0.5       , 0.5       ]])
     """
     return 1 / (1 + numpy.exp(-value))
 
 
-def sigmoid_derivative(value: float) -> float:
+def sigmoid_derivative(value: numpy.ndarray) -> numpy.ndarray:
     """
     Provides the derivative value of the sigmoid function.
 
     returns derivative of the sigmoid value
 
-    >>> sigmoid_derivative(0.7)
-    0.21000000000000002
+    >>> sigmoid_derivative(numpy.array(([1, 0, 2], [1, 0, 0]), dtype=numpy.float64))
+    array([[ 0.,  0., -2.],
+           [ 0.,  0.,  0.]])
     """
     return (value) * (1 - (value))
 
@@ -276,11 +275,11 @@ def example() -> int:
             [1, 1, 0],
             [1, 1, 1],
         ),
-        dtype=float,
+        dtype=numpy.float64,
     )
 
     # True output values for the given input values.
-    output = numpy.array(([0], [1], [1], [0], [1], [0], [0], [1]), dtype=float)
+    output = numpy.array(([0], [1], [1], [0], [1], [0], [0], [1]), dtype=numpy.float64)
 
     # Calling neural network class.
     neural_network = TwoHiddenLayerNeuralNetwork(input_array=input, output_array=output)
@@ -289,7 +288,7 @@ def example() -> int:
     # Set give_loss to True if you want to see loss in every iteration.
     neural_network.train(output=output, iterations=10, give_loss=False)
 
-    return neural_network.predict(numpy.array(([1, 1, 1]), dtype=float))
+    return neural_network.predict(numpy.array(([1, 1, 1]), dtype=numpy.float64))
 
 
 if __name__ == "__main__":
