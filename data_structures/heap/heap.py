@@ -77,7 +77,7 @@ class Heap:
                 # fix the subsequent violation recursively if any
                 self.max_heapify(violation)
 
-    def build_max_heap(self, collection: Iterable[float]):
+    def build_max_heap(self, collection: Iterable[float]) -> None:
         """ build max heap from an unsorted array"""
         self.h = list(collection)
         self.heap_size = len(self.h)
