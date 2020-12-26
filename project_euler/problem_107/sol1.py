@@ -35,7 +35,7 @@ class Graph:
     A class representing an undirected weighted graph.
     """
 
-    def __init__(self, vertices: Set[int], edges: Dict[Edge, int]):
+    def __init__(self, vertices: Set[int], edges: Dict[Edge, int]) -> None:
         """
         >>> graph = Graph({3,4,1,2},{(2,1):5, (1,3):10, (4,1):20, (2,4):30, (4,3):1})
         >>> sorted(graph.vertices)
@@ -48,7 +48,7 @@ class Graph:
             (min(edge), max(edge)): weight for edge, weight in edges.items()
         }
 
-    def add_edge(self, edge: Edge, weight: int):
+    def add_edge(self, edge: Edge, weight: int) -> None:
         """
         >>> graph = Graph({1, 2}, {(2, 1): 4})
         >>> graph.add_edge((3, 1), 5)
