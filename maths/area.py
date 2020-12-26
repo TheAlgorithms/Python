@@ -120,8 +120,13 @@ def area_triangle(side1: float, side2: float, side3: float) -> float:
         raise ValueError("area_triangle() only accepts non-negative values")
     elif side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1:
         raise ValueError("Given three sides do not form a triangle")
-    semi_perimeter = (side1 + side2 + side3) / 2;
-    area = sqrt(semi_perimeter * (semi_perimeter - side1) * (semi_perimeter - side2) * (semi_perimeter - side3))
+    semi_perimeter = (side1 + side2 + side3) / 2
+    area = sqrt(
+        semi_perimeter
+        * (semi_perimeter - side1)
+        * (semi_perimeter - side2)
+        * (semi_perimeter - side3)
+    )
     return area
 
 
