@@ -100,6 +100,7 @@ def area_isosceles_triangle(base: float, height: float) -> float:
         raise ValueError("area_isosceles_triangle() only accepts non-negative values")
     return (base * height) / 2
 
+
 def area_triangle(side1: float, side2: float, side3: float) -> float:
     """
     Calculate area of triangle when 3 sides are known
@@ -122,6 +123,7 @@ def area_triangle(side1: float, side2: float, side3: float) -> float:
     semi_perimeter = (side1 + side2 + side3) / 2;
     area = sqrt(semi_perimeter * (semi_perimeter - side1) * (semi_perimeter - side2) * (semi_perimeter - side3))
     return area
+
 
 def area_parallelogram(base: float, height: float) -> float:
     """
