@@ -1,6 +1,8 @@
 import cv2 as cv
 import numpy as np
 
+"""Median Filter
+"""
 
 class MedianFilter:
     def __init__(self , WindowSize : tuple):
@@ -9,6 +11,7 @@ class MedianFilter:
         """
 
         self.WindowSize = WindowSize
+        self.OrgImg = None
         self.NewImg = None
 
 
@@ -45,16 +48,16 @@ class MedianFilter:
             for col in range(b):
                 new[row][col] = self.GetMedianValue(img,row,col,n)
 
+        self.OrgImg = img
         self.NewImg = new
-        self.ShowUp(img,new)
 
-    def ShowUp(self,ImgOrg,ImgFiltered):
+    def ShowUp(self):
 
         """Showing up both original image and median filtered image
         """
 
-        cv.imshow("Original Image" , ImgOrg)
-        cv.imshow("After Median Filtering" , ImgFiltered)
+        cv.imshow("Original Image" , self.OrgImg)
+        cv.imshow("After Median Filtering" ,self.NewImg)
         cv.waitKey(0)
 
     def SaveImg(self , SavePath):
@@ -66,5 +69,6 @@ class MedianFilter:
     
 if __name__ == "__main__":
     obj = MedianFilter((300,300))
-    obj.DoMedianFiltering("lena.png",3)
+    obj.DoMedianFiltering("path to img",3)
+    ##obj.ShowUp()
     obj.SaveImg("MedianFiltered.png")
