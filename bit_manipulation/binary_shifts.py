@@ -95,7 +95,7 @@ def arithmetic_right_shift(number: int, shift_amount: int) -> str:
     return (
         "0b"
         + binary_number[0] * shift_amount
-        + binary_number[:len(binary_number) - shift_amount]
+        + binary_number[: len(binary_number) - shift_amount]
     )
 
 
