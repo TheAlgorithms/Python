@@ -14,8 +14,7 @@ class Node:
     def __init__(self, value: int = None):
         self.value = value
         self.prior = random()
-        self.left = None
-        self.right = None
+        self.left = self.right = None
 
     def __repr__(self):
         from pprint import pformat

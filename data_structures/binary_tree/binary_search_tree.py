@@ -7,8 +7,7 @@ class Node:
     def __init__(self, value, parent):
         self.value = value
         self.parent = parent  # Added in order to delete a node easier
-        self.left = None
-        self.right = None
+        self.left = self.right = None
 
     def __repr__(self):
         from pprint import pformat

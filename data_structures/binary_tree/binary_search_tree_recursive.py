@@ -14,8 +14,7 @@ class Node:
     def __init__(self, label: int, parent):
         self.label = label
         self.parent = parent
-        self.left = None
-        self.right = None
+        self.left = self.right = None
 
 
 class BinarySearchTree:

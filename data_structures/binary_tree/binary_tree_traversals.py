@@ -7,9 +7,8 @@ class Node:
     """
 
     def __init__(self, data):
-        self.left = None
-        self.right = None
         self.data = data
+        self.left = self.right = None
 
 
 def make_tree() -> Node:

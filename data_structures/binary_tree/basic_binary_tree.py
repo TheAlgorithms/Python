@@ -8,8 +8,7 @@ class Node:
 
     def __init__(self, data: int) -> None:
         self.data = data
-        self.left: Optional[Node] = None
-        self.right: Optional[Node] = None
+        self.left = self.right = None
 
 
 def display(tree: Optional[Node]) -> None:  # In Order traversal of the tree
