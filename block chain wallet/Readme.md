@@ -1,2 +1,5 @@
 To run file
-python -p "port number"
+
+python main.py -p "port number"
+
+by default port - 5000
