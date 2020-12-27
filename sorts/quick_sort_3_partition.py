@@ -56,13 +56,13 @@ def lomuto_partition(sorting: list, left: int, right: int) -> int:
     2
     """
     pivot = sorting[right]
-    storeIndex = left
+    store_index = left
     for i in range(left, right):
         if sorting[i] < pivot:
-            sorting[storeIndex], sorting[i] = sorting[i], sorting[storeIndex]
-            storeIndex += 1
-    sorting[right], sorting[storeIndex] = sorting[storeIndex], sorting[right]
-    return storeIndex
+            sorting[store_index], sorting[i] = sorting[i], sorting[store_index]
+            store_index += 1
+    sorting[right], sorting[store_index] = sorting[store_index], sorting[right]
+    return store_index
 
 
 def three_way_radix_quicksort(sorting: list) -> list:
