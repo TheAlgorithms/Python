@@ -59,35 +59,34 @@ class Graph:
         self.vertices.add(edge[1])
         self.edges[(min(edge), max(edge))] = weight
 
+    def prims_algorithm(self) -> "Graph":
+        """
+        Run Prim's algorithm to find the minimum spanning tree.
+        Reference: https://en.wikipedia.org/wiki/Prim%27s_algorithm
+        >>> graph = Graph({1,2,3,4},{(1,2):5, (1,3):10, (1,4):20, (2,4):30, (3,4):1})
+        >>> mst = graph.prims_algorithm()
+        >>> sorted(mst.vertices)
+        [1, 2, 3, 4]
+        >>> sorted(mst.edges)
+        [(1, 2), (1, 3), (3, 4)]
+        """
+        subgraph: Graph = Graph({min(self.vertices)}, {})
+        min_edge: EdgeT
+        min_weight: int
+        edge: EdgeT
+        weight: int
 
-def prims_algorithm(graph: Graph) -> Graph:
-    """
-    Run Prim's algorithm to find the minimum spanning tree.
-    Reference: https://en.wikipedia.org/wiki/Prim%27s_algorithm
-    >>> graph = Graph({1,2,3,4},{(1,2):5, (1,3):10, (1,4):20, (2,4):30, (3,4):1})
-    >>> mst = graph.prims_algorithm()
-    >>> sorted(mst.vertices)
-    [1, 2, 3, 4]
-    >>> sorted(mst.edges)
-    [(1, 2), (1, 3), (3, 4)]
-    """
-    subgraph: Graph = Graph({min(graph.vertices)}, {})
-    min_edge: EdgeT
-    min_weight: int
-    edge: EdgeT
-    weight: int
+        while len(subgraph.vertices) < len(self.vertices):
+            min_weight = max(self.edges.values()) + 1
+            for edge, weight in self.edges.items():
+                if (edge[0] in subgraph.vertices) ^ (edge[1] in subgraph.vertices):
+                    if weight < min_weight:
+                        min_edge = edge
+                        min_weight = weight
 
-    while len(subgraph.vertices) < len(graph.vertices):
-        min_weight = max(graph.edges.values()) + 1
-        for edge, weight in graph.edges.items():
-            if (edge[0] in subgraph.vertices) ^ (edge[1] in subgraph.vertices):
-                if weight < min_weight:
-                    min_edge = edge
-                    min_weight = weight
+            subgraph.add_edge(min_edge, min_weight)
 
-        subgraph.add_edge(min_edge, min_weight)
-
-    return subgraph
+        return subgraph
 
 
 def solution(filename: str = "p107_network.txt") -> int:
@@ -117,7 +116,7 @@ def solution(filename: str = "p107_network.txt") -> int:
 
     graph: Graph = Graph(set(range(len(adjaceny_matrix))), edges)
 
-    subgraph: Graph = prims_algorithm(graph)
+    subgraph: Graph = graph.prims_algorithm()
 
     initial_total: int = sum(graph.edges.values())
     optimal_total: int = sum(subgraph.edges.values())
