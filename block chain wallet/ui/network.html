@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+          crossorigin="anonymous">
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            position: fixed;
+            width: 100%;
+        }
+
+        #particles-js {
+            height: 100%;
+            background: #6b2138;
+        }
+    </style>
+</head>
+
+<body>
+<div id="particles-js">
+
+    <div id="app">
+
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col" style="color: wheat">
+                    <h1>Manage your Blockchain</h1>
+                </div>
+            </div>
+            <div v-if="error" class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+            <div v-if="success" class="alert alert-success" role="alert">
+                {{ success }}
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" STYLE="color: wheat" href="/">Wallet &amp; Node</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" STYLE="background-color: wheat; color: black; border-color: wheat" href="/network">Network</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <form @submit.prevent="onAddNode">
+                        <div class="form-group">
+                            <label for="node-url" STYLE="color: wheat">Node URL</label>
+                            <input v-model="newNodeUrl" type="text" class="form-control" id="node-url"
+                                   placeholder="localhost:5001">
+                        </div>
+                        <button :disabled="newNodeUrl.trim() === ''" type="submit" STYLE="background-color: wheat; color: black; border-color: wheat" class="btn btn-primary">Add</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row my-3">
+                <div class="col">
+                    <button class="btn btn-primary" STYLE="background-color: wheat; color: black; border-color: wheat" @click="onLoadNodes">Load Peer Nodes</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul class="list-group">
+                        <button v-for="node in nodes" style="cursor: pointer;"
+                                class="list-group-item list-group-item-action" @click="onRemoveNode(node)">
+                            {{ node }} (click to delete)
+                        </button>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/particles.js"></script>
+    <script type="text/javascript" src="/static/app.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                nodes: [],
+                newNodeUrl: '',
+                error: null,
+                success: null
+            },
+            methods: {
+                onAddNode: function () {
+                    // Add node as peer node to local node server
+                    var vm = this;
+                    axios.post('/node', {node: this.newNodeUrl})
+                        .then(function (response) {
+                            vm.success = 'Stored node successfully.';
+                            vm.error = null;
+                            vm.nodes = response.data.all_nodes
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                        });
+                },
+                onLoadNodes: function () {
+                    // Load all peer nodes of the local node server
+                    var vm = this;
+                    axios.get('/nodes')
+                        .then(function (response) {
+                            vm.success = 'Fetched nodes successfully.';
+                            vm.error = null;
+                            vm.nodes = response.data.all_nodes
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                        });
+                },
+                onRemoveNode: function (node_url) {
+                    // Remove node as a peer node
+                    var vm = this;
+                    axios.delete('/node/' + node_url)
+                        .then(function (response) {
+                            vm.success = 'Deleted node successfully.';
+                            vm.error = null;
+                            vm.nodes = response.data.all_nodes
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                        });
+                }
+            }
+        })
+    </script>
+</div>
+</body>
+
+</html>

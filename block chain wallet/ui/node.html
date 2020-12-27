@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+          crossorigin="anonymous">
+    <style>
+        .lds-ring {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+
+        .lds-ring div {
+            box-sizing: border-box;
+            display: block;
+            position: absolute;
+            width: 51px;
+            height: 51px;
+            margin: 6px;
+            border: 6px solid #fa923f;
+            border-radius: 50%;
+            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #fa923f transparent transparent transparent;
+        }
+
+        .lds-ring div:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+
+        .lds-ring div:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+
+        .lds-ring div:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+
+        @keyframes lds-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            width: 100%;
+        }
+
+        .navbar-nav > .active > a {
+            background-color: wheat;
+        }
+
+        #particles-js {
+
+            background: #6b2138;
+        }
+    </style>
+</head>
+
+<body>
+<div id="particles-js">
+
+    <div id="app">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col" style="color: wheat">
+                    <h1>Manage your Blockchain</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                               STYLE="background-color: wheat; color: black; border-color: wheat" href="/">Wallet &amp;
+                                Node</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " STYLE="color: wheat" href="/network">Network</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div v-if="error" class="alert alert-danger" STYLE="background-color: wheat; color: black" role="alert"
+                 style="word-wrap: break-word;">
+                {{ error }}
+            </div>
+            <div v-if="success" class="alert alert-success" role="alert" style="word-wrap: break-word;">
+                {{ success }}
+            </div>
+            <div class="row">
+
+                <div class="col">
+                    <div v-if="!walletLoading">
+                        <button class="btn btn-primary" @click="onCreateWallet"
+                                STYLE="background-color: wheat; color: black; border-color: wheat">
+                            Create new Wallet
+                        </button>
+                        <button class="btn btn-primary" @click="onLoadWallet"
+                                STYLE="background-color: wheat; color: black; border-color: wheat">
+                            Load Wallet
+                        </button>
+                    </div>
+
+                    <div v-if="walletLoading" class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="col text-right" style="color: wheat">
+                    <h2>Funds: {{ funds.toFixed(2) }}</h2>
+                </div>
+            </div>
+            <hr>
+            <div v-if="!wallet" class="row">
+                <div class="col">
+                    <div class="alert alert-warning" style="color:black;">Create a Wallet to start sending coins or to
+                        mine coins!
+                    </div>
+                </div>
+            </div>
+            <div v-if="wallet" class="row">
+                <div class="col">
+                    <form @submit.prevent="onSendTx">
+                        <div class="form-group">
+                            <label for="recipient" style="color:wheat;">Recipient Key</label>
+                            <input v-model="outgoingTx.recipient" type="text" class="form-control" id="recipient"
+                                   placeholder="Enter key">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount" style="color:wheat;">Amount of Coins</label>
+                            <input v-model.number="outgoingTx.amount" type="number" step="0.001" class="form-control"
+                                   id="amount">
+                        </div>
+                        <div v-if="txLoading" class="lds-ring">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <button :disabled="txLoading || outgoingTx.recipient.trim() === '' || outgoingTx.amount <= 0"
+                                type="submit" class="btn btn-primary"
+                                style="border-color: wheat;background-color: wheat; color: black">Send
+                        </button>
+                    </form>
+                    <br> <br>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/330px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Sir_Isaac_Newton_%281643-1727%29.jpg" style="height: 433px;width: 330px;">
+                    <img src="https://t1.gstatic.com/images?q=tbn:ANd9GcS6yrTIuWI8yVYVKF4wCDoCMJVBYsnmqy9r-xURTJofnhLRCKjI5orveJ-6i1F8" style="height: 433px;width: 330px;" >
+                    <p style="word-wrap: break-word;color: wheat">30819f300d06092a864886f70d010101050003818d0030818902818100c746944771fd9d26ffb739c440baf258b55b7325955bbf0dfa06d69d2647f340b230d265b1f87b42a2420d5e246944fb84d83e24ac1237fc42853946527ce53a323e782379d7a889297590ec94cb8e6743653bde034ea9d10c7235f122d5b35742c24f1534b7eb92fe959a4461732177d29c213b28ffa38cbde7e8222c7ab2b90203010001</p>
+                </div>
+            </div>
+            <hr>
+
+            <div class="row">
+                <div class="col">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{active: view === 'chain'}" href="#" @click="view = 'chain'"
+                               style="color: black">Blockchain</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" :class="{active: view === 'tx'}" href="#" @click="view = 'tx'"
+                               style="color: wheat">Open
+                                Transactions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col">
+                    <button class="btn btn-primary" @click="onLoadData"
+                            style="background-color: wheat;color: black; border-color: wheat">
+                        {{ view === 'chain' ? 'Load Blockchain' : 'Load Transactions' }}</button>
+                    <button v-if="view === 'chain' && wallet" class="btn btn-success" @click="onMine">Mine Coins
+                    </button>
+                    <button class="btn btn-warning" @click="onResolve">Resolve Conflicts</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div v-if="dataLoading" class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div v-if="!dataLoading" class="accordion">
+                        <div class="card" v-for="(data, index) in loadedData">
+                            <div v-if="view === 'chain'" class="card-header">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button"
+                                            @click="showElement === index ? showElement = null : showElement = index">
+                                        Block #{{ data.index }}
+                                    </button>
+                                </h5>
+                            </div>
+                            <div v-if="view === 'chain'" class="collapse" :class="{show: showElement === index}">
+                                <div class="card-body">
+                                    <p>Previous Hash: {{ data.previous_hash }}</p>
+                                    <div class="list-group">
+                                        <div v-for="tx in data.transactions"
+                                             class="list-group-item flex-column align-items-start">
+                                            <div>Sender: {{ tx.sender }}</div>
+                                            <div>Recipient: {{ tx.recipient }}</div>
+                                            <div>Amount: {{ tx.amount }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div v-if="view === 'tx'" class="card-header">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" type="button"
+                                            @click="showElement === index ? showElement = null : showElement = index">
+                                        Transaction #{{ index }}
+                                    </button>
+                                </h5>
+                            </div>
+                            <div v-if="view === 'tx'" class="collapse" :class="{show: showElement === index}">
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <div class="list-group-item flex-column align-items-start">
+                                            <div>Sender: {{ data.sender }}</div>
+                                            <div>Recipient: {{ data.recipient }}</div>
+                                            <div>Amount: {{ data.amount }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/particles.js"></script>
+    <script type="text/javascript" src="/static/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                blockchain: [],
+                openTransactions: [],
+                wallet: null,
+                view: 'chain',
+                walletLoading: false,
+                txLoading: false,
+                dataLoading: false,
+                showElement: null,
+                error: null,
+                success: null,
+                funds: 0,
+                outgoingTx: {
+                    recipient: '',
+                    amount: 0
+                }
+            },
+            computed: {
+                loadedData: function () {
+                    if (this.view === 'chain') {
+                        return this.blockchain;
+                    } else {
+                        return this.openTransactions;
+                    }
+                }
+            },
+            methods: {
+                onCreateWallet: function () {
+                    // Send Http request to create a new wallet (and return keys)
+                    var vm = this;
+                    this.walletLoading = true
+                    axios.post('/wallet')
+                        .then(function (response) {
+                            vm.error = null;
+                            vm.success = 'Created Wallet! Public Key: ' + response.data.public_key + "\n" + ', Private Key: ' + response.data.private_key;
+                            vm.wallet = {
+                                public_key: response.data.public_key,
+                                private_key: response.data.private_key
+                            }
+                            vm.funds = response.data.funds;
+                            vm.walletLoading = false
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message
+                            vm.wallet = null
+                            vm.walletLoading = false
+                        });
+                },
+                onLoadWallet: function () {
+                    // Send Http request to load an existing wallet (from a file on the server)
+                    var vm = this;
+                    this.walletLoading = true
+                    axios.get('/wallet')
+                        .then(function (response) {
+                            vm.error = null;
+                            vm.success = 'Created Wallet! Public Key: ' + response.data.public_key + "\n" + ', Private Key: ' + response.data.private_key;
+                            vm.wallet = {
+                                public_key: response.data.public_key,
+                                private_key: response.data.private_key
+                            }
+                            vm.funds = response.data.funds;
+                            vm.walletLoading = false;
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                            vm.wallet = null;
+                            vm.walletLoading = false;
+                        });
+                },
+                onSendTx: function () {
+                    // Send Transaction to backend
+                    this.txLoading = true;
+                    var vm = this;
+                    axios.post('/transaction', {
+                        recipient: this.outgoingTx.recipient,
+                        amount: this.outgoingTx.amount
+                    })
+                        .then(function (response) {
+                            vm.error = null;
+                            vm.success = response.data.message;
+                            console.log(response.data);
+                            vm.funds = response.data.funds;
+                            vm.txLoading = false;
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                            vm.txLoading = false;
+                        });
+                },
+                onMine: function () {
+                    var vm = this
+                    axios.post('/mine')
+                        .then(function (response) {
+                            vm.error = null;
+                            vm.success = response.data.message;
+                            console.log(response.data);
+                            vm.funds = response.data.funds;
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                        });
+                },
+                onResolve: function () {
+                    var vm = this
+                    axios.post('/resolve-conflicts')
+                        .then(function (response) {
+                            vm.error = null;
+                            vm.success = response.data.message;
+                        })
+                        .catch(function (error) {
+                            vm.success = null;
+                            vm.error = error.response.data.message;
+                        });
+                },
+                onLoadData: function () {
+                    if (this.view === 'chain') {
+                        // Load blockchain data
+                        var vm = this
+                        this.dataLoading = true
+                        axios.get('/chain')
+                            .then(function (response) {
+                                vm.blockchain = response.data
+                                vm.dataLoading = false
+                            })
+                            .catch(function (error) {
+                                vm.dataLoading = false
+                                vm.error = 'Something went wrong.'
+                            });
+                    } else {
+                        // Load transaction data
+                        var vm = this
+                        axios.get('/transactions')
+                            .then(function (response) {
+                                vm.openTransactions = response.data
+                                vm.dataLoading = false
+                            })
+                            .catch(function (error) {
+                                vm.dataLoading = false
+                                vm.error = 'Something went wrong.'
+                            });
+                    }
+                }
+            }
+        })
+    </script>
+</div>
+</body>
+
+</html>
