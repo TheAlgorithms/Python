@@ -22,12 +22,16 @@ Using network.txt (right click and 'Save Link/Target As...'), a 6K text file
 containing a network with forty vertices, and given in matrix form, find the maximum
 saving which can be achieved by removing redundant edges whilst ensuring that the
 network remains connected.
+
+Solution:
+    We use Prim's algorithm to find a Minimum Spanning Tree.
+    Reference: https://en.wikipedia.org/wiki/Prim%27s_algorithm
 """
 
 import os
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Mapping, Set, Tuple
 
-Edge = Tuple[int, int]
+EdgeT = Tuple[int, int]
 
 
 class Graph:
@@ -35,21 +39,15 @@ class Graph:
     A class representing an undirected weighted graph.
     """
 
-    def __init__(self, vertices: Set[int], edges: Dict[Edge, int]) -> None:
-        """
-        >>> graph = Graph({3,4,1,2},{(2,1):5, (1,3):10, (4,1):20, (2,4):30, (4,3):1})
-        >>> sorted(graph.vertices)
-        [1, 2, 3, 4]
-        >>> sorted([(v,k) for k,v in graph.edges.items()])
-        [(1, (3, 4)), (5, (1, 2)), (10, (1, 3)), (20, (1, 4)), (30, (2, 4))]
-        """
+    def __init__(self, vertices: Set[int], edges: Mapping[EdgeT, int]) -> None:
         self.vertices: Set[int] = vertices
-        self.edges: Dict[Edge, int] = {
+        self.edges: Dict[EdgeT, int] = {
             (min(edge), max(edge)): weight for edge, weight in edges.items()
         }
 
-    def add_edge(self, edge: Edge, weight: int) -> None:
+    def add_edge(self, edge: EdgeT, weight: int) -> None:
         """
+        Add a new edge to the graph.
         >>> graph = Graph({1, 2}, {(2, 1): 4})
         >>> graph.add_edge((3, 1), 5)
         >>> sorted(graph.vertices)
@@ -64,19 +62,19 @@ class Graph:
 
 def prims_algorithm(graph: Graph) -> Graph:
     """
-    Run Prim's algorithm on a Graph to find the minimum spanning tree.
+    Run Prim's algorithm to find the minimum spanning tree.
     Reference: https://en.wikipedia.org/wiki/Prim%27s_algorithm
     >>> graph = Graph({1,2,3,4},{(1,2):5, (1,3):10, (1,4):20, (2,4):30, (3,4):1})
-    >>> mst = prims_algorithm(graph)
+    >>> mst = graph.prims_algorithm()
     >>> sorted(mst.vertices)
     [1, 2, 3, 4]
     >>> sorted(mst.edges)
     [(1, 2), (1, 3), (3, 4)]
     """
     subgraph: Graph = Graph({min(graph.vertices)}, {})
-    min_edge: Edge
+    min_edge: EdgeT
     min_weight: int
-    edge: Edge
+    edge: EdgeT
     weight: int
 
     while len(subgraph.vertices) < len(graph.vertices):
@@ -102,7 +100,7 @@ def solution(filename: str = "p107_network.txt") -> int:
     script_dir: str = os.path.abspath(os.path.dirname(__file__))
     network_file: str = os.path.join(script_dir, filename)
     adjacency_matrix: List[List[str]]
-    edges: Dict[Edge, int] = dict()
+    edges: Dict[EdgeT, int] = dict()
     data: List[str]
     edge1: int
     edge2: int
