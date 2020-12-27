@@ -1,7 +1,4 @@
-from binary_twos_complement import twos_complement
-
-
-def logical_left_shift(a: int, b: int) -> str:
+def logical_left_shift(number: int, shift_amount: int) -> str:
     """
     Take in 2 positive integers.
     'a' is the integer to be logically left shifted 'b' times.
@@ -23,15 +20,15 @@ def logical_left_shift(a: int, b: int) -> str:
         ...
     ValueError: both inputs must be positive integers
     """
-    if a < 0 or b < 0:
+    if number < 0 or shift_amount < 0:
         raise ValueError("both inputs must be positive integers")
 
-    binary_a = str(bin(a))
-    binary_a += '0' * b
-    return binary_a
+    binary_number = str(bin(number))
+    binary_number += "0" * shift_amount
+    return binary_number
 
 
-def logical_right_shift(a: int, b: int) -> str:
+def logical_right_shift(number: int, shift_amount: int) -> str:
     """
     Take in positive 2 integers.
     'a' is the integer to be logically right shifted 'b' times.
@@ -53,17 +50,17 @@ def logical_right_shift(a: int, b: int) -> str:
         ...
     ValueError: both inputs must be positive integers
     """
-    if a < 0 or b < 0:
+    if number < 0 or shift_amount < 0:
         raise ValueError("both inputs must be positive integers")
 
-    binary_a = str(bin(a))[2:]
-    if b >= len(binary_a):
-        return '0b0'
-    shifted_binary_a = binary_a[:len(binary_a) - b]
-    return '0b' + shifted_binary_a
+    binary_number = str(bin(number))[2:]
+    if shift_amount >= len(binary_number):
+        return "0b0"
+    shifted_binary_number = binary_number[:len(binary_number) - shift_amount]
+    return "0b" + shifted_binary_number
 
 
-def arithmetic_right_shift(a: int, b: int) -> str:
+def arithmetic_right_shift(number: int, shift_amount: int) -> str:
     """
     Take in 2 integers.
     'a' is the integer to be arithmetically right shifted 'b' times.
@@ -82,14 +79,18 @@ def arithmetic_right_shift(a: int, b: int) -> str:
     >>> arithmetic_right_shift(-1983, 4)
     '0b111110000100'
     """
-    if a >= 0:
-        binary_a = '0' + str(bin(a)).strip('-')[2:]
-    else:
-        binary_a = twos_complement(a)[2:]
+    if number >= 0:  # Get binary representation of positive number
+        binary_number = "0" + str(bin(number)).strip("-")[2:]
+    else:  # Get binary (2's complement) representation of negative number
+        binary_number_length = len(bin(number)[3:])  # Find 2's complement of number
+        binary_number = bin(abs(number) - (1 << binary_number_length))[3:]
+        binary_number = ("1" + "0" * (binary_number_length - len(binary_number)) +
+                         binary_number) if number < 0 else "0"
 
-    if b >= len(binary_a):
-        return '0b' + binary_a[0] * len(binary_a)
-    return '0b' + binary_a[0] * b + binary_a[:len(binary_a) - b]
+    if shift_amount >= len(binary_number):
+        return "0b" + binary_number[0] * len(binary_number)
+    return "0b" + binary_number[0] * shift_amount + \
+           binary_number[:len(binary_number) - shift_amount]
 
 
 if __name__ == "__main__":

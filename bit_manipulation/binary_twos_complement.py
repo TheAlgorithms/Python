@@ -1,4 +1,4 @@
-def twos_complement(a: int) -> str:
+def twos_complement(number: int) -> str:
     """
     Take in a negative integer 'a'.
     Return the two's complement representation of 'a'.
@@ -18,13 +18,14 @@ def twos_complement(a: int) -> str:
         ...
     ValueError: input must be a negative integer
     """
-    if a > 0:
+    if number > 0:
         raise ValueError("input must be a negative integer")
-    binary_a_length = len(bin(a)[3:])
-    twos_complement_a = bin(abs(a) - (1 << binary_a_length))[3:]
-    twos_complement_a = ('1' + '0' * (binary_a_length - len(twos_complement_a)) +
-                         twos_complement_a) if a < 0 else '0'
-    return '0b' + twos_complement_a
+    binary_number_length = len(bin(number)[3:])
+    twos_complement_number = bin(abs(number) - (1 << binary_number_length))[3:]
+    twos_complement_number = ("1" + "0" *
+                              (binary_number_length - len(twos_complement_number)) +
+                              twos_complement_number) if number < 0 else "0"
+    return "0b" + twos_complement_number
 
 
 if __name__ == "__main__":
