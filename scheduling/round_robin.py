@@ -3,8 +3,8 @@ Round Robin is a scheduling algorithm.
 In Round Robin each process is assigned a fixed time slot in a cyclic way.
 https://en.wikipedia.org/wiki/Round-robin_scheduling
 """
-from typing import List
 from statistics import mean
+from typing import List
 
 
 def calculate_waiting_times(burst_times: List[int]) -> List[int]:
