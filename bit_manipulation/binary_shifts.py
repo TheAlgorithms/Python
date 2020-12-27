@@ -8,6 +8,8 @@ def logical_left_shift(a: int, b: int) -> str:
     i.e. (a << b)
     Return the shifted binary representation.
 
+    >>> logical_left_shift(0, 1)
+    '0b00'
     >>> logical_left_shift(1, 1)
     '0b10'
     >>> logical_left_shift(1, 5)
@@ -36,6 +38,8 @@ def logical_right_shift(a: int, b: int) -> str:
     i.e. (a >> b)
     Return the shifted binary representation.
 
+    >>> logical_right_shift(0, 1)
+    '0b0'
     >>> logical_right_shift(1, 1)
     '0b0'
     >>> logical_right_shift(1, 5)
