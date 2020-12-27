@@ -499,6 +499,7 @@
   * [Minimum Cut](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/minimum_cut.py)
 
 ## Neural Network
+  * [2 Hidden Layers Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/2_hidden_layers_neural_network.py)
   * [Back Propagation Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/convolution_neural_network.py)
   * [Perceptron](https://github.com/TheAlgorithms/Python/blob/master/neural_network/perceptron.py)
