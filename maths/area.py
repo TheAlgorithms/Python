@@ -109,7 +109,7 @@ def area_triangle(base: float, height: float) -> float:
 def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float:
     """
     Calculate area of triangle when the length of 3 sides are known.
-    
+
     This function uses Heron's formula: https://en.wikipedia.org/wiki/Heron%27s_formula
 
     >>> area_triangle_three_sides(5, 12, 13)
@@ -273,7 +273,7 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod(verbose=True)  # verbose so we can see methods missing tests
-    
+
     print("[DEMO] Areas of various geometric shapes: \n")
     print(f"Rectangle: {area_rectangle(10, 20) = }")
     print(f"Square: {area_square(10) = }")
