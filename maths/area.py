@@ -7,6 +7,7 @@ from math import pi, sqrt
 def surface_area_cube(side_length: float) -> float:
     """
     Calculate the Surface Area of a Cube.
+
     >>> surface_area_cube(1)
     6
     >>> surface_area_cube(3)
@@ -25,7 +26,8 @@ def surface_area_sphere(radius: float) -> float:
     """
     Calculate the Surface Area of a Sphere.
     Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
-    :return 4 * pi * r^2
+    Formula: 4 * pi * r^2
+
     >>> surface_area_sphere(5)
     314.1592653589793
     >>> surface_area_sphere(1)
@@ -42,7 +44,8 @@ def surface_area_sphere(radius: float) -> float:
 
 def area_rectangle(length: float, width: float) -> float:
     """
-    Calculate the area of a rectangle
+    Calculate the area of a rectangle.
+
     >>> area_rectangle(10, 20)
     200
     >>> area_rectangle(-1, -2)
@@ -65,7 +68,8 @@ def area_rectangle(length: float, width: float) -> float:
 
 def area_square(side_length: float) -> float:
     """
-    Calculate the area of a square
+    Calculate the area of a square.
+
     >>> area_square(10)
     100
     >>> area_square(-1)
@@ -80,7 +84,8 @@ def area_square(side_length: float) -> float:
 
 def area_triangle(base: float, height: float) -> float:
     """
-    Calculate the area of an isosceles triangle
+    Calculate the area of a triangle given the base and height.
+
     >>> area_triangle(10, 10)
     50.0
     >>> area_triangle(-1, -2)
@@ -103,7 +108,9 @@ def area_triangle(base: float, height: float) -> float:
 
 def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float:
     """
-    Calculate area of triangle when 3 sides are known
+    Calculate area of triangle when the length of 3 sides are known.
+    
+    This function uses Heron's formula: https://en.wikipedia.org/wiki/Heron%27s_formula
 
     >>> area_triangle_three_sides(5, 12, 13)
     30.0
@@ -134,7 +141,8 @@ def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float
 
 def area_parallelogram(base: float, height: float) -> float:
     """
-    Calculate the area of a parallelogram
+    Calculate the area of a parallelogram.
+
     >>> area_parallelogram(10, 20)
     200
     >>> area_parallelogram(-1, -2)
@@ -157,7 +165,8 @@ def area_parallelogram(base: float, height: float) -> float:
 
 def area_trapezium(base1: float, base2: float, height: float) -> float:
     """
-    Calculate the area of a trapezium
+    Calculate the area of a trapezium.
+
     >>> area_trapezium(10, 20, 30)
     450.0
     >>> area_trapezium(-1, -2, -3)
@@ -196,7 +205,8 @@ def area_trapezium(base1: float, base2: float, height: float) -> float:
 
 def area_circle(radius: float) -> float:
     """
-    Calculate the area of a circle
+    Calculate the area of a circle.
+
     >>> area_circle(20)
     1256.6370614359173
     >>> area_circle(-1)
@@ -211,7 +221,8 @@ def area_circle(radius: float) -> float:
 
 def area_ellipse(radius_x: float, radius_y: float) -> float:
     """
-    Calculate the area of a ellipse
+    Calculate the area of a ellipse.
+
     >>> area_ellipse(10, 10)
     314.1592653589793
     >>> area_ellipse(10, 20)
@@ -236,7 +247,8 @@ def area_ellipse(radius_x: float, radius_y: float) -> float:
 
 def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     """
-    Calculate the area of a rhombus
+    Calculate the area of a rhombus.
+
     >>> area_rhombus(10, 20)
     100.0
     >>> area_rhombus(-1, -2)
@@ -257,25 +269,20 @@ def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     return 1 / 2 * diagonal_1 * diagonal_2
 
 
-def main():
-    print("Areas of various geometric shapes: \n")
-    print(f"Rectangle: {area_rectangle(10, 20)}")
-    print(f"Square: {area_square(10)}")
-    print(f"Triangle: {area_triangle(10, 10)}")
-    print(f"Triangle: {area_triangle_three_sides(5, 12, 13)}")
-    print(f"Parallelogram: {area_parallelogram(10, 20)}")
-    print(f"Trapezium: {area_trapezium(10, 20, 30)}")
-    print(f"Circle: {area_circle(20)}")
-    print("\nSurface Areas of various geometric shapes: \n")
-    print(f"Cube: {surface_area_cube(20)}")
-    print(f"Sphere: {surface_area_sphere(20)}")
-    print(f"Rhombus: {area_rhombus(10, 20)}")
-
-
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod(verbose=True)  # verbose so we can see methods missing tests
-
-    main()
+    
+    print("[DEMO] Areas of various geometric shapes: \n")
+    print(f"Rectangle: {area_rectangle(10, 20) = }")
+    print(f"Square: {area_square(10) = }")
+    print(f"Triangle: {area_triangle(10, 10) = }")
+    print(f"Triangle: {area_triangle_three_sides(5, 12, 13) = }")
+    print(f"Parallelogram: {area_parallelogram(10, 20) = }")
+    print(f"Trapezium: {area_trapezium(10, 20, 30) = }")
+    print(f"Circle: {area_circle(20) = }")
+    print("\nSurface Areas of various geometric shapes: \n")
+    print(f"Cube: {surface_area_cube(20) = }")
+    print(f"Sphere: {surface_area_sphere(20) = }")
+    print(f"Rhombus: {area_rhombus(10, 20) = }")
