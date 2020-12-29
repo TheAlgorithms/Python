@@ -21,17 +21,17 @@ class MedianFilter:
         """
 
         A = [-1,0,1]
-        temp = []
+        bucket = []
         mid = (n**2)//2 
         for r in A:
             for c in A:
                 try:
-                    temp.append(arr[i+r][j+c])
+                    bucket.append(arr[i+r][j+c])
                 except:
                     mid = mid-1
         
-        temp.sort()
-        return temp[mid]
+        bucket.sort()
+        return bucket[mid]
 
     def DoMedianFiltering(self,ImgPath,n):
 
