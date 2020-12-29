@@ -27,7 +27,7 @@ def generateKey(keySize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
             break
 
     print("Calculating d that is mod inverse of e...")
-    d = cryptoMath.findModInverse(e, (p - 1) * (q - 1))
+    d = cryptoMath.find_mod_inverse(e, (p - 1) * (q - 1))
 
     publicKey = (n, e)
     privateKey = (n, d)
