@@ -69,6 +69,6 @@ class MedianFilter:
     
 if __name__ == "__main__":
     obj = MedianFilter((300,300))
-    obj.DoMedianFiltering("path to image",3)
+    obj.DoMedianFiltering("lena.png",3)
     ##obj.ShowUp()
     obj.SaveImg("MedianFiltered.png")
