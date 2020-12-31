@@ -12,13 +12,13 @@ class Node:
     Treap is a binary tree by value and heap by priority
     """
 
-    def __init__(self, value: int = None):
+    def __init__(self, value: Optional[int] = None):
         self.value = value
         self.prior = random()
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         from pprint import pformat
 
         if self.left is None and self.right is None:
@@ -28,7 +28,7 @@ class Node:
                 {f"{self.value}: {self.prior:.5}": (self.left, self.right)}, indent=1
             )
 
-    def __str__(self):
+    def __str__(self) -> str:
         value = str(self.value) + " "
         left = str(self.left or "")
         right = str(self.right or "")
@@ -112,7 +112,7 @@ def erase(root: Optional[Node], value: int) -> Optional[Node]:
     return merge(left, right)
 
 
-def inorder(root: Optional[Node]):
+def inorder(root: Optional[Node]) -> None:
     """
     Just recursive print of a tree
     """
@@ -124,7 +124,7 @@ def inorder(root: Optional[Node]):
         inorder(root.right)
 
 
-def interactTreap(root, args):
+def interactTreap(root: Optional[Node], args: str) -> Optional[Node]:
     """
     Commands:
     + value to add value into treap
@@ -161,7 +161,7 @@ def interactTreap(root, args):
     return root
 
 
-def main():
+def main() -> None:
     """After each command, program prints treap"""
     root = None
     print(
