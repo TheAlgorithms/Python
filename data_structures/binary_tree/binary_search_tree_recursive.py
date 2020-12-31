@@ -8,11 +8,11 @@ To run an example:
 python binary_search_tree_recursive.py
 """
 import unittest
-from typing import Optional, Iterator
+from typing import Iterator, Optional
 
 
 class Node:
-    def __init__(self, label: int, parent: Optional[Node]) -> None:
+    def __init__(self, label: int, parent: Optional["Node"]) -> None:
         self.label = label
         self.parent = parent
         self.left: Optional[Node] = None
@@ -66,7 +66,9 @@ class BinarySearchTree:
         """
         self.root = self._put(self.root, label)
 
-    def _put(self, node: Optional[Node], label: int, parent: Optional[Node] = None) -> Node:
+    def _put(
+        self, node: Optional[Node], label: int, parent: Optional[Node] = None
+    ) -> Node:
         if node is None:
             node = Node(label, parent)
         else:
