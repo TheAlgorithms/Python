@@ -8,14 +8,15 @@ To run an example:
 python binary_search_tree_recursive.py
 """
 import unittest
+from typing import Optional, Iterator
 
 
 class Node:
     def __init__(self, label: int, parent):
         self.label = label
         self.parent = parent
-        self.left = None
-        self.right = None
+        self.left: Optional[Node] = None
+        self.right: Optional[Node] = None
 
 
 class BinarySearchTree:
@@ -65,7 +66,7 @@ class BinarySearchTree:
         """
         self.root = self._put(self.root, label)
 
-    def _put(self, node: Node, label: int, parent: Node = None) -> Node:
+    def _put(self, node: Optional[Node], label: int, parent: Node = None) -> Node:
         if node is None:
             node = Node(label, parent)
         else:
@@ -95,7 +96,7 @@ class BinarySearchTree:
         """
         return self._search(self.root, label)
 
-    def _search(self, node: Node, label: int) -> Node:
+    def _search(self, node: Optional[Node], label: int) -> Node:
         if node is None:
             raise Exception(f"Node with label {label} does not exist")
         else:
@@ -122,13 +123,7 @@ class BinarySearchTree:
         Exception: Node with label 3 does not exist
         """
         node = self.search(label)
-        if not node.right and not node.left:
-            self._reassign_nodes(node, None)
-        elif not node.right and node.left:
-            self._reassign_nodes(node, node.left)
-        elif node.right and not node.left:
-            self._reassign_nodes(node, node.right)
-        else:
+        if node.right and node.left:
             lowest_node = self._get_lowest_node(node.right)
             lowest_node.left = node.left
             lowest_node.right = node.right
@@ -136,8 +131,14 @@ class BinarySearchTree:
             if node.right:
                 node.right.parent = lowest_node
             self._reassign_nodes(node, lowest_node)
+        elif not node.right and node.left:
+            self._reassign_nodes(node, node.left)
+        elif node.right and not node.left:
+            self._reassign_nodes(node, node.right)
+        else:
+            self._reassign_nodes(node, None)
 
-    def _reassign_nodes(self, node: Node, new_children: Node):
+    def _reassign_nodes(self, node: Node, new_children: Optional[Node]):
         if new_children:
             new_children.parent = node.parent
 
@@ -225,7 +226,7 @@ class BinarySearchTree:
 
         return node.label
 
-    def inorder_traversal(self) -> list:
+    def inorder_traversal(self) -> Iterator[Optional[Node]]:
         """
         Return the inorder traversal of the tree
 
@@ -241,13 +242,13 @@ class BinarySearchTree:
         """
         return self._inorder_traversal(self.root)
 
-    def _inorder_traversal(self, node: Node) -> list:
+    def _inorder_traversal(self, node: Optional[Node]) -> Iterator[Optional[Node]]:
         if node is not None:
             yield from self._inorder_traversal(node.left)
             yield node
             yield from self._inorder_traversal(node.right)
 
-    def preorder_traversal(self) -> list:
+    def preorder_traversal(self) -> Iterator[Optional[Node]]:
         """
         Return the preorder traversal of the tree
 
@@ -263,7 +264,7 @@ class BinarySearchTree:
         """
         return self._preorder_traversal(self.root)
 
-    def _preorder_traversal(self, node: Node) -> list:
+    def _preorder_traversal(self, node: Optional[Node]) -> Iterator[Optional[Node]]:
         if node is not None:
             yield node
             yield from self._preorder_traversal(node.left)

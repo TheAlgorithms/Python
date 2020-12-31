@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from random import random
+from typing import Tuple, Optional
 
 
 class Node:
@@ -14,8 +15,8 @@ class Node:
     def __init__(self, value: int = None):
         self.value = value
         self.prior = random()
-        self.left = None
-        self.right = None
+        self.left: Optional[Node] = None
+        self.right: Optional[Node] = None
 
     def __repr__(self):
         from pprint import pformat
@@ -34,7 +35,7 @@ class Node:
         return value + left + right
 
 
-def split(root: Node, value: int) -> tuple[Node, Node]:
+def split(root: Optional[Node], value: int) -> Tuple[Optional[Node], Optional[Node]]:
     """
     We split current tree into 2 trees with value:
 
@@ -42,9 +43,9 @@ def split(root: Node, value: int) -> tuple[Node, Node]:
     Right tree contains all values greater or equal, than split value
     """
     if root is None:  # None tree is split into 2 Nones
-        return (None, None)
+        return None, None
     elif root.value is None:
-        return (None, None)
+        return None, None
     else:
         if value < root.value:
             """
@@ -54,16 +55,16 @@ def split(root: Node, value: int) -> tuple[Node, Node]:
             Right tree's left son: right part of that split
             """
             left, root.left = split(root.left, value)
-            return (left, root)
+            return left, root
         else:
             """
             Just symmetric to previous case
             """
             root.right, right = split(root.right, value)
-            return (root, right)
+            return root, right
 
 
-def merge(left: Node, right: Node) -> Node:
+def merge(left: Optional[Node], right: Optional[Node]) -> Optional[Node]:
     """
     We merge 2 trees into one.
     Note: all left tree's values must be less than all right tree's
@@ -85,7 +86,7 @@ def merge(left: Node, right: Node) -> Node:
         return right
 
 
-def insert(root: Node, value: int) -> Node:
+def insert(root: Optional[Node], value: int) -> Optional[Node]:
     """
     Insert element
 
@@ -98,7 +99,7 @@ def insert(root: Node, value: int) -> Node:
     return merge(merge(left, node), right)
 
 
-def erase(root: Node, value: int) -> Node:
+def erase(root: Optional[Node], value: int) -> Optional[Node]:
     """
     Erase element
 
@@ -111,7 +112,7 @@ def erase(root: Node, value: int) -> Node:
     return merge(left, right)
 
 
-def inorder(root: Node):
+def inorder(root: Optional[Node]):
     """
     Just recursive print of a tree
     """
