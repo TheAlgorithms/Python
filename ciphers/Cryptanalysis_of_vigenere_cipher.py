@@ -3,6 +3,7 @@ Author : Dhruv B Kakadiya
 
 '''
 import numpy as np
+import pandas as pd
 
 # key threshold
 max_key_length = 9
