@@ -1,6 +1,7 @@
 """
 Implementation of stocastic gradient decent algorithm for minimizing cost
 of a Mean Square Error function [MSE]
+For Further Reading see https://en.wikipedia.org/wiki/Stochastic_gradient_descent
 """
 import numpy as np
 
