@@ -67,21 +67,28 @@ def _calc_hypothesis_val(record_no, data_set, param_vec):
     hypothesis_val = np.dot(data_set[record_no, :], param_vec)
     return hypothesis_val
 
-def _calc_gradient(X_index, y_index, param_vec):
-    pass
+def _calc_gradient(x_index, y_index, param_vec):
+    """
+    """
+    x_index_transpose = np.transpose(x_index)
+
+    result = np.dot(x_index_transpose, np.dot(x_index, param_vec) - y_index)
+    return result
 
 def stocastic_gradient_decent(data_set, param_vec, seed):
     """
     """
     np.random.seed(seed)
     np.random.shuffle(data_set)
-    for i in range(m):
+    for _ in range(m):
         random_index = np.random.randint(m)
-        data_point_i = data_set[random_index:random_index + 1]
-        output_val_i = data_set[random_index:random_index + 1]
-        gradient = _calc_gradient(data_point_i, output_val_i, parameter_vector)
+        x_i = data_set[random_index:random_index + 1]
+        y_i= _output_val(random_index, data_set)
+        gradient = _calc_gradient(x_i, y_i, param_vec)
         param_vec -= LEARNING_RATE * gradient
-
+    
+    global parameter_vector
+    parameter_vector = param_vec
 
 
 if __name__ == "__main__":
