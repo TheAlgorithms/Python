@@ -36,10 +36,16 @@ def _output_val(record_no: int, data_set: np.ndarray) -> np.ndarray:
     """
     return data_set[record_no, -1]
 
-def mse_error(record_no, dataset):
+def mse_error(record_no, data_set, param_vec):
     """
+    param record_no: data point no.
+    param dataset: data_set whose data points needs to be taken
+    param_vec: parameter_vector
     """
-    pass
+    error = np.power(_calc_hypothesis_val(record_no, data_set, param_vec) - _output_val(
+        record_no, data_set), 2)
+
+    return error * 0.5 
 
 def _calc_hypothesis_val(record_no, data_set, param_vec):
     """
@@ -52,4 +58,4 @@ def _calc_hypothesis_val(record_no, data_set, param_vec):
 
 if __name__ == "__main__":
     X = train_data_modified[:, :n]
-    print(_calc_hypothesis_val(record_no=1, data_set=X, param_vec=paramater_vector))
+    print(mse_error(1, X, paramater_vector))
