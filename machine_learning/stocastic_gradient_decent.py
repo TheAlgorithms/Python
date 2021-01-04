@@ -1,13 +1,17 @@
 """
-Implementation of stocastic gradient decent algorithm for minimizing cost
+Implementation of stochastic gradient decent algorithm for minimizing cost
 of a Mean Square Error function [MSE]
 For Further Reading see https://en.wikipedia.org/wiki/Stochastic_gradient_descent
 """
-import numpy as np
 from typing import Tuple
+
+import numpy as np
+
 """
 function looks like y = w_0 + w_1 * x [For a single Feature[Column]]
 """
+
+
 def Generate_data(seed: int, takeout=0.7) -> Tuple:
     """
     param seed: to seed to random randn function to get reproducible result
@@ -26,20 +30,22 @@ def Generate_data(seed: int, takeout=0.7) -> Tuple:
     data_modified = np.c_[bias_column, _data]
 
     amount = int(total_no * 0.7)
-    train_data, test_data = data_modified[:amount, :], data_modified[amount: , :]
+    train_data, test_data = data_modified[:amount, :], data_modified[amount:, :]
 
     np.random.shuffle(train_data)
     np.random.shuffle(test_data)
 
     return (train_data, test_data)
 
+
 def _output_val(record_no: int, data_set: np.ndarray) -> np.ndarray:
     """
     param record_no: data point no. in data_set
     param data_set: dataset in which record 's output needed
-    return : output for that specific data point value 
+    return : output for that specific data point value
     """
     return data_set[record_no, -1]
+
 
 def mse_error(record_no: int, data_set: np.ndarray, param_vec: np.ndarray) -> float:
     """
@@ -47,12 +53,18 @@ def mse_error(record_no: int, data_set: np.ndarray, param_vec: np.ndarray) -> fl
     param dataset: data_set whose data points needs to be taken
     param_vec: parameter_vector
     """
-    error = np.power(_calc_hypothesis_val(record_no, data_set, param_vec) - _output_val(
-        record_no, data_set), 2)
+    error = np.power(
+        _calc_hypothesis_val(record_no, data_set, param_vec)
+        - _output_val(record_no, data_set),
+        2,
+    )
 
-    return error * 0.5 
+    return error * 0.5
 
-def _calc_hypothesis_val(record_no: int, data_set: np.ndarray, param_vec: np.ndarray) -> float:
+
+def _calc_hypothesis_val(
+    record_no: int, data_set: np.ndarray, param_vec: np.ndarray
+) -> float:
     """
     param record_no: data point no.
     param dataset: data_set whose data points needs to be taken
@@ -62,7 +74,10 @@ def _calc_hypothesis_val(record_no: int, data_set: np.ndarray, param_vec: np.nda
     hypothesis_val = np.dot(data_set[record_no, :], param_vec)
     return hypothesis_val
 
-def _calc_gradient(data: np.ndarray, output: np.ndarray, param_vec: np.ndarray) -> np.ndarray:
+
+def _calc_gradient(
+    data: np.ndarray, output: np.ndarray, param_vec: np.ndarray
+) -> np.ndarray:
     """
     param data: data points/observations
     param output: output values
@@ -76,31 +91,35 @@ def _calc_gradient(data: np.ndarray, output: np.ndarray, param_vec: np.ndarray) 
     result = np.dot(x_index_transpose, np.dot(data, param_vec) - output)
     return result
 
-def stocastic_gradient_decent(data_set: np.ndarray, param_vec: np.ndarray, seed: int, epochs: int) -> np.ndarray:
+
+def stocastic_gradient_decent(
+    data_set: np.ndarray, param_vec: np.ndarray, seed: int, epochs: int
+) -> np.ndarray:
     """
     param dataset: data_set whose data points needs to be taken
     param_vec: parameter_vectors
     param seed: to seed the random shuffle function to get reproducible results
     param epochs: how many times to loop over the data set
-    return: parameter vector 
+    return: parameter vector
     """
     np.random.seed(seed)
     np.random.shuffle(data_set)
     X = data_set[:, :n]
     y = data_set[:, -1].reshape(-1, 1)
-    
+
     for _ in range(epochs):
         for _ in range(m):
             random_index = np.random.randint(m)
-            x_i = X[random_index: random_index + 1]
-            y_i = y[random_index: random_index + 1]
-            gradient = _calc_gradient(x_i , y_i, param_vec)
+            x_i = X[random_index : random_index + 1]
+            y_i = y[random_index : random_index + 1]
+            gradient = _calc_gradient(x_i, y_i, param_vec)
             param_vec -= LEARNING_RATE * gradient
             break
-    
+
     return param_vec
 
-# Create the train and test data sets 
+
+# Create the train and test data sets
 train_data, test_data = Generate_data(seed=0)
 
 m = train_data.shape[0]
@@ -109,11 +128,13 @@ n = train_data.shape[1] - 1
 parameter_vector = np.random.randn(n, 1)
 LEARNING_RATE = 0.1
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
-    print('Testing Stocastic Gradient Descent...')
-    parameter_vector = stocastic_gradient_decent(train_data, parameter_vector, seed=1907 ,epochs=100)
-    print('Converged.')
-    print('Done..')
+    print("Testing Stochastic Gradient Descent...")
+    parameter_vector = stocastic_gradient_decent(
+        train_data, parameter_vector, seed=1907, epochs=100
+    )
+    print("Converged.")
+    print("Done..")
     error = mse_error(1, test_data, parameter_vector)
     print(error)
