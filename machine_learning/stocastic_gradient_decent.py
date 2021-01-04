@@ -21,10 +21,14 @@ test_data = np.random.randint(0, 10, size=(4, 4))
 m = train_data.shape[0]
 n = test_data.shape[1]
 
-paramater_vector = np.zeros(n)
+bias_column = np.ones(m)
+train_data_modified = np.c_[bias_column, train_data]
+test_data_modified = np.c_[bias_column, train_data]
+
+paramater_vector = np.random.randn(n, 1)
 LEARNING_RATE = 0.001
 
-def output_val(record_no: int, data_set: np.ndarray) -> np.ndarray:
+def _output_val(record_no: int, data_set: np.ndarray) -> np.ndarray:
     """
     param record_no: data point no. in data_set
     param data_set: dataset in which record 's output needed
@@ -32,5 +36,20 @@ def output_val(record_no: int, data_set: np.ndarray) -> np.ndarray:
     """
     return data_set[record_no, -1]
 
-if __name__ == "__main__":
+def mse_error(record_no, dataset):
+    """
+    """
     pass
+
+def _calc_hypothesis_val(record_no, data_set, param_vec):
+    """
+    param record_no: data point no.
+    param dataset: data_set whose data points needs to be taken
+    param_vec: parameter_vector
+    """
+    hypothesis_val = np.dot(data_set[record_no, :], param_vec)
+    return hypothesis_val
+
+if __name__ == "__main__":
+    X = train_data_modified[:, :n]
+    print(_calc_hypothesis_val(record_no=1, data_set=X, param_vec=paramater_vector))
