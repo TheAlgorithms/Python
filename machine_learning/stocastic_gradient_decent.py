@@ -24,27 +24,13 @@ n = test_data.shape[1]
 paramater_vector = np.zeros(n)
 LEARNING_RATE = 0.001
 
-def _MSE_error(record_no, data_set):
+def output_val(record_no: int, data_set: np.ndarray) -> np.ndarray:
     """
-    param record_no: record no in dataset whose error has to be calculated
-    param record_no: dataset in which record value error needs to be calculated
-    return: error in the record
+    param record_no: data point no. in data_set
+    param data_set: dataset in which record 's output needed
+    return : output for that specific data point value 
     """
-    mean_square_error = np.power(
-        calculate_hypothesis_value(record_no, data_set) - data_set[record_no, -1], 2
-    )
-
-def _hypothesis_value(data_set, param_vector):
-    """
-    param data_set: whole dataset of which the hypothesis need to be calcuated
-    return hypothesis_val: hypothesis value of the whole dataset
-    Note:
-    Here dataset's first column will be filled with Ones for the bias term [w_0]
-    as x_0 is One above
-    """
-    data_set_with_bias_column = np.array([np.ones(m, 1), data_set])
-    hypothesis_val = np.dot(data_set_with_bias_column, param_vector)
-    return hypothesis_val
+    return data_set[record_no, -1]
 
 if __name__ == "__main__":
-    print("Hypo_Test")
+    pass
