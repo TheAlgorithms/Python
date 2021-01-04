@@ -19,7 +19,7 @@ def send_file(filename: str = "mytext.txt", testing: bool = False) -> None:
             data = in_file.read(1024)
             while data:
                 conn.send(data)
-                print(f"Sent {data!r}")
+                print(f"Sent {data}")
                 data = in_file.read(1024)
 
         print("Done sending")
