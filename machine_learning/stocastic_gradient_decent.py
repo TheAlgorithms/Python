@@ -4,11 +4,11 @@ of a Mean Square Error function [MSE]
 For Further Reading see https://en.wikipedia.org/wiki/Stochastic_gradient_descent
 """
 import numpy as np
-
+from typing import Tuple
 """
 function looks like y = w_0 + w_1 * x [For a single Feature[Column]]
 """
-def Generate_data(seed, takeout=0.7):
+def Generate_data(seed: int, takeout=0.7) -> Tuple:
     """
     param seed: to seed to random randn function to get reproducible result
     param takeout: to divide the data set into train and test sets
@@ -41,7 +41,7 @@ def _output_val(record_no: int, data_set: np.ndarray) -> np.ndarray:
     """
     return data_set[record_no, -1]
 
-def mse_error(record_no, data_set, param_vec):
+def mse_error(record_no: int, data_set: np.ndarray, param_vec: np.ndarray) -> float:
     """
     param record_no: data point no.
     param dataset: data_set whose data points needs to be taken
@@ -52,7 +52,7 @@ def mse_error(record_no, data_set, param_vec):
 
     return error * 0.5 
 
-def _calc_hypothesis_val(record_no, data_set, param_vec):
+def _calc_hypothesis_val(record_no: int, data_set: np.ndarray, param_vec: np.ndarray) -> float:
     """
     param record_no: data point no.
     param dataset: data_set whose data points needs to be taken
@@ -62,7 +62,7 @@ def _calc_hypothesis_val(record_no, data_set, param_vec):
     hypothesis_val = np.dot(data_set[record_no, :], param_vec)
     return hypothesis_val
 
-def _calc_gradient(data, output, param_vec):
+def _calc_gradient(data: np.ndarray, output: np.ndarray, param_vec: np.ndarray) -> np.ndarray:
     """
     param data: data points/observations
     param output: output values
@@ -76,10 +76,10 @@ def _calc_gradient(data, output, param_vec):
     result = np.dot(x_index_transpose, np.dot(data, param_vec) - output)
     return result
 
-def stocastic_gradient_decent(data_set, param_vec, seed=1907, epochs=50):
+def stocastic_gradient_decent(data_set: np.ndarray, param_vec: np.ndarray, seed: int, epochs: int) -> np.ndarray:
     """
     param dataset: data_set whose data points needs to be taken
-    param_vec: parameter_vector
+    param_vec: parameter_vectors
     param seed: to seed the random shuffle function to get reproducible results
     param epochs: how many times to loop over the data set
     return: parameter vector 
@@ -101,7 +101,7 @@ def stocastic_gradient_decent(data_set, param_vec, seed=1907, epochs=50):
     return param_vec
 
 # Create the train and test data sets 
-train_data, test_data = Generate_data(0)
+train_data, test_data = Generate_data(seed=0)
 
 m = train_data.shape[0]
 n = train_data.shape[1] - 1
@@ -112,9 +112,8 @@ LEARNING_RATE = 0.1
 if __name__ == '__main__':
 
     print('Testing Stocastic Gradient Descent...')
-    parameter_vector = stocastic_gradient_decent(train_data, parameter_vector, epochs=100)
+    parameter_vector = stocastic_gradient_decent(train_data, parameter_vector, seed=1907 ,epochs=100)
     print('Converged.')
     print('Done..')
     error = mse_error(1, test_data, parameter_vector)
     print(error)
-    print(parameter_vector)
