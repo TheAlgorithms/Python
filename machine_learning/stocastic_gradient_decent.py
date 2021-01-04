@@ -12,7 +12,7 @@ function looks like y = w_0 + w_1 * x [For a single Feature[Column]]
 """
 
 
-def Generate_data(seed: int, takeout=0.7) -> Tuple:
+def generate_data(seed: int, takeout: int) -> Tuple:
     """
     param seed: to seed to random randn function to get reproducible result
     param takeout: to divide the data set into train and test sets
@@ -22,9 +22,9 @@ def Generate_data(seed: int, takeout=0.7) -> Tuple:
     """
     total_no = 100
     np.random.seed(seed)
-    X_linear = 2 * np.random.randn(total_no, 1)
-    y_linear = 4 - 10 * X_linear + np.random.randn(total_no, 1)
-    _data = np.c_[X_linear, y_linear]
+    x_linear = 2 * np.random.randn(total_no, 1)
+    y_linear = 4 - 10 * x_linear + np.random.randn(total_no, 1)
+    _data = np.c_[x_linear, y_linear]
 
     bias_column = np.ones(total_no)
     data_modified = np.c_[bias_column, _data]
@@ -113,20 +113,20 @@ def stocastic_gradient_decent(
             x_i = X[random_index : random_index + 1]
             y_i = y[random_index : random_index + 1]
             gradient = _calc_gradient(x_i, y_i, param_vec)
-            param_vec -= LEARNING_RATE * gradient
+            param_vec -= learning_rate * gradient
             break
 
     return param_vec
 
 
 # Create the train and test data sets
-train_data, test_data = Generate_data(seed=0)
+train_data, test_data = generate_data(seed=0, takeout=0.7)
 
 m = train_data.shape[0]
 n = train_data.shape[1] - 1
 
 parameter_vector = np.random.randn(n, 1)
-LEARNING_RATE = 0.1
+learning_rate = 0.1
 
 if __name__ == "__main__":
 
