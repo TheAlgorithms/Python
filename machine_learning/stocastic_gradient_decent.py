@@ -8,7 +8,13 @@ import numpy as np
 function looks like y = w_0 + w_1 * x [For a single Feature[Column]]
 """
 def Generate_data(seed, takeout=0.7):
-
+    """
+    param seed: to seed to random randn function to get reproducible result
+    param takeout: to divide the data set into train and test sets
+    e.g [here its 0.7 to divide the set int o 70% train and 30% test]
+    Note:
+    here bias column is added which is column full of ones
+    """
     total_no = 100
     np.random.seed(seed)
     X_linear = 2 * np.random.randn(total_no, 1)
@@ -57,6 +63,12 @@ def _calc_hypothesis_val(record_no, data_set, param_vec):
 
 def _calc_gradient(data, output, param_vec):
     """
+    param data: data points/observations
+    param output: output values
+    param_vec: parameter vector
+    Note:
+    the expression below is the derivative of the MSE function
+    with respect to all parameters
     """
     x_index_transpose = np.transpose(data)
 
@@ -65,6 +77,11 @@ def _calc_gradient(data, output, param_vec):
 
 def stocastic_gradient_decent(data_set, param_vec, seed=1907, epochs=50):
     """
+    param dataset: data_set whose data points needs to be taken
+    param_vec: parameter_vector
+    param seed: to seed the random shuffle function to get reproducible results
+    param epochs: how many times to loop over the data set
+    return: parameter vector 
     """
     np.random.seed(seed)
     np.random.shuffle(data_set)
@@ -82,7 +99,7 @@ def stocastic_gradient_decent(data_set, param_vec, seed=1907, epochs=50):
     
     return param_vec
 
-
+# Create the train and test data sets 
 train_data, test_data = Generate_data(0)
 
 m = train_data.shape[0]
@@ -92,6 +109,7 @@ parameter_vector = np.random.randn(n, 1)
 LEARNING_RATE = 0.1
 
 if __name__ == '__main__':
+
     print('Testing Stocastic Gradient Descent...')
     parameter_vector = stocastic_gradient_decent(train_data, parameter_vector, epochs=100)
     print('Converged.')
