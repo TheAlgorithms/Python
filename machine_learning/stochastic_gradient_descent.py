@@ -153,8 +153,13 @@ def stochastic_gradient_descent(
     >>> parameter_vector = stochastic_gradient_descent(data, parameter_vector,\
         seed=1907, epochs=100)
     >>> parameter_vector
+<<<<<<< HEAD
     array([[0.6       ],
            [0.79999995]], dtype=float32)
+=======
+    array([[1.],
+           [2.]], dtype=float32)
+>>>>>>> e02ba486625c72ed6b8a705c07e3ebf77bd4b908
 
     """
     global learning_rate
@@ -199,6 +204,3 @@ if __name__ == "__main__":
 
     print(np.sqrt(error) / test_data.shape[0])
     print(parameter_vector)
-    import doctest
-
-    doctest.testmod(name=__name__, verbose=True)
