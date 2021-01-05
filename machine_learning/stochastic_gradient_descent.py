@@ -155,6 +155,7 @@ def stochastic_gradient_descent(
     >>> parameter_vector
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     array([[0.6       ],
            [0.79999995]], dtype=float32)
 =======
@@ -165,6 +166,10 @@ def stochastic_gradient_descent(
     array([[1.],
            [2.]], dtype=float32)
 >>>>>>> e02ba486625c72ed6b8a705c07e3ebf77bd4b908
+=======
+    array([[1.],
+           [2.]], dtype=float32)
+>>>>>>> 5b2a34c859437a4d68c97be8a57e809348b679dd
 
     """
     global learning_rate
