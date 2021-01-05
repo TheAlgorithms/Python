@@ -154,8 +154,13 @@ def stochastic_gradient_descent(
         seed=1907, epochs=100)
     >>> parameter_vector
 <<<<<<< HEAD
+<<<<<<< HEAD
     array([[0.6       ],
            [0.79999995]], dtype=float32)
+=======
+    array([[1.],
+           [2.]], dtype=float32)
+>>>>>>> e02ba486625c72ed6b8a705c07e3ebf77bd4b908
 =======
     array([[1.],
            [2.]], dtype=float32)
