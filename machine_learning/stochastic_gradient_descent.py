@@ -199,6 +199,3 @@ if __name__ == "__main__":
 
     print(np.sqrt(error) / test_data.shape[0])
     print(parameter_vector)
-    import doctest
-
-    doctest.testmod(name="stochastic_gradient_descent", verbose=True)
