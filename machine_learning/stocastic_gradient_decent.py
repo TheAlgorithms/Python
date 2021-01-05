@@ -92,6 +92,16 @@ def _calc_gradient(
     return result
 
 
+def learning_rate_decay(initial_learning_rate: float, epoch_no: int) -> float:
+    """
+    param intial_learning_rate: the learning rate in the previous epoch
+    param epoch_no: current epoch_no
+    """
+    decay_rate = 0.01
+    new_learning_rate = initial_learning_rate * decay_rate ** epoch_no
+    return new_learning_rate
+
+
 def stocastic_gradient_decent(
     data_set: np.ndarray, param_vec: np.ndarray, seed: int, epochs: int
 ) -> np.ndarray:
@@ -102,19 +112,21 @@ def stocastic_gradient_decent(
     param epochs: how many times to loop over the data set
     return: parameter vector
     """
+    global learning_rate
     np.random.seed(seed)
     np.random.shuffle(data_set)
     X = data_set[:, :n]
     y = data_set[:, -1].reshape(-1, 1)
 
-    for _ in range(epochs):
+    for i in range(epochs):
         for _ in range(m):
             random_index = np.random.randint(m)
             x_i = X[random_index : random_index + 1]
             y_i = y[random_index : random_index + 1]
             gradient = _calc_gradient(x_i, y_i, param_vec)
             param_vec -= learning_rate * gradient
-            break
+
+        learning_rate = learning_rate_decay(learning_rate, i)
 
     return param_vec
 
@@ -136,5 +148,9 @@ if __name__ == "__main__":
     )
     print("Converged.")
     print("Done..")
-    error = mse_error(1, test_data, parameter_vector)
-    print(error)
+    error = 0.0
+    for i in range(test_data.shape[0]):
+        error += mse_error(i, test_data, parameter_vector)
+
+    print(np.sqrt(error) / test_data.shape[0])
+    print(parameter_vector)
