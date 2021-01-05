@@ -22,9 +22,9 @@ def generate_data(total_no: int, seed: int, takeout: int) -> Tuple:
 
     >>> train_set, test_set = generate_data(2 , 19, 0.5)
     >>> train_set
-    [[ 1.          0.44200653 -0.9978138 ]]
+    array([[ 1.        ,  0.44200653, -0.9978138 ]])
     >>> test_set
-    [[ 1.         -0.68093002 10.40526862]]
+    array([[ 1.        , -0.68093002, 10.40526862]])
     """
     np.random.seed(seed)
     x_linear = 2 * np.random.randn(total_no, 1)
@@ -112,8 +112,8 @@ def _calc_gradient(
     >>> parameter_vector = np.array([1, 2])
     >>> grad = _calc_gradient(data, output, parameter_vector)
     >>> grad
-    [[ 6]
-    [18]]
+    array([ 6, 18])
+
 
     """
     x_index_transpose = np.transpose(data)
@@ -150,11 +150,11 @@ def stochastic_gradient_descent(
     >>> data = np.array([1, 3], dtype=np.float32).reshape(1, 2)
     >>> output = np.array([1])
     >>> parameter_vector = np.array([[1], [2]], dtype=np.float32)
-    >>> parameter_vector = stochastic_gradient_descent(data, parameter_vector,
+    >>> parameter_vector = stochastic_gradient_descent(data, parameter_vector,\
         seed=1907, epochs=100)
-    >>> paramter_vector
-    [[0.6       ]
-    [0.79999995]]
+    >>> parameter_vector
+    array([[1.],
+           [2.]], dtype=float32)
 
     """
     global learning_rate
