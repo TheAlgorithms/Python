@@ -306,3 +306,5 @@ if __name__ == "__main__":
         print(f"{target} was not found in {collection}.")
     else:
         print(f"{target} was found at position {result} in {collection}.")
+
+print("that's great work dude for realz.")
