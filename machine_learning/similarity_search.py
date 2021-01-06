@@ -9,6 +9,7 @@ returns a list containing two data for each vector:
 """
 import math
 from typing import List, Union
+
 import numpy as np
 
 
