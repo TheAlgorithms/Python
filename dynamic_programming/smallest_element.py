@@ -3,7 +3,6 @@
 # You can combine two elements and the resultant element will be the abs
 # difference of the weight of these two elements.
 
-
 def min_element(arr: int) -> int:
     """Return the minimum element possible, an exact integer >= 0.
 
@@ -20,13 +19,13 @@ def min_element(arr: int) -> int:
     1
     """
 
-    global min, count
+    global minimum_value, count
 
     if len(arr) == 1:
-        return min
+        return minimum_value
 
-    if min == 0:
-        return min
+    if minimum_value == 0:
+        return minimum_value
 
     for i in range(0, len(arr) - 1):
         for j in range(i + 1, len(arr)):
@@ -36,21 +35,23 @@ def min_element(arr: int) -> int:
             temp.pop(i)
             temp.append(abs(arr[i] - arr[j]))
 
-            if min > abs(arr[i] - arr[j]):
-                min = abs(arr[i] - arr[j])
+            if minimum_value > abs(arr[i] - arr[j]):
+                minimum_value = abs(arr[i] - arr[j])
 
-                if min == 0:
-                    return min
+                if minimum_value == 0:
+                    return minimum_value
 
             min_element(temp)
 
-    return min
-
+    return minimum_value
 
 if __name__ == "__main__":
-    min = 0
+    minimum_value = 0
     count = 0
-    elements = [100, 90, 19, 88, 95]
-    min = elements[0] + 1
-    answer = min_element(elements)
+    elements = [11, 1, 20]
+    minimum_value = elements[0]
+    min_element_value = min_element(elements)
+    elements.append(min_element_value)
+
+    answer = min(elements)
     print(answer)
