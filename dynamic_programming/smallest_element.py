@@ -1,7 +1,7 @@
 # You have given some element with its weight in an array, you task is to find the minimum possible weight element and print the weight.
 # You can combine two elements and the resultant element will be the absoulte difference of the weight of these two elements.
 
-def minElement(arr) -> int:
+def min_element(arr) -> int:
   global min, count
 
   if len(arr) == 1:
@@ -31,4 +31,4 @@ if __name__ == "__main__":
     count = 0
     arr = [100, 90, 19, 88, 95]
     min = arr[0] + 1
-    print("Ans -> ", minElement(arr))
+    print("Ans -> ", min_element(arr))
