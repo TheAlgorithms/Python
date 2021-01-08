@@ -25,8 +25,10 @@ def minElement(arr):
 
   return min
 
-count = 0
-arr = [100, 90, 19, 88, 95]
-min = arr[0] + 1
-print("Ans -> ", minElement(arr))
-print("Iteration -> ", count)
+
+if __name__ == "__main__":
+    min = 0
+    count = 0
+    arr = [100, 90, 19, 88, 95]
+    min = arr[0] + 1
+    print("Ans -> ", minElement(arr))
