@@ -6,8 +6,6 @@
 
 def min_element(arr: [int], minimum_value: int, count: int) -> int:
     """
-    Return the minimum element possible, an exact integer >= 0.
-
     >>> min_element([1, 1, 2, 6, 24, 120], 1, 0)
     0
 
