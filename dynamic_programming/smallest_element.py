@@ -5,6 +5,22 @@
 
 
 def min_element(arr) -> int:
+    """Return the minimum element possible, an exact integer >= 0.
+
+    >>> elements = [1, 1, 2, 6, 24, 120]
+    >>> min_element(elements)
+    0
+    
+    >>> elements = [30, 24, 10, 3, 1]
+    >>> min_element(elements)
+    0
+    
+    >>> elements = [11, 1, 20]
+    >>> min_element(elements)
+    1
+    """
+
+
     global min, count
 
     if len(arr) == 1:
@@ -35,7 +51,7 @@ def min_element(arr) -> int:
 if __name__ == "__main__":
     min = 0
     count = 0
-    arr = [100, 90, 19, 88, 95]
-    min = arr[0] + 1
-    answer = min_element(arr)
+    elements = [100, 90, 19, 88, 95]
+    min = elements[0] + 1
+    answer = min_element(elements)
     print(answer)
