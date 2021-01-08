@@ -21,7 +21,7 @@ def min_element(arr) -> int:
         min = abs(arr[i] - arr[j])
         if min == 0:
           return min
-      minElement(temp)
+      min_element(temp)
 
   return min
 
