@@ -5,7 +5,8 @@
 
 
 def min_element(arr: int) -> int:
-    """Return the minimum element possible, an exact integer >= 0.
+    """
+    Return the minimum element possible, an exact integer >= 0.
 
     >>> elements = [1, 1, 2, 6, 24, 120]
     >>> min_element(elements)
@@ -50,7 +51,7 @@ def min_element(arr: int) -> int:
 if __name__ == "__main__":
     minimum_value = 0
     count = 0
-    elements = [11, 1, 20]
+    elements = [1, 1, 2, 6, 24, 120]
     minimum_value = elements[0]
     min_element_value = min_element(elements)
     elements.append(min_element_value)
