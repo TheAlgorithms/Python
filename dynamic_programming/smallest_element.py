@@ -31,4 +31,5 @@ if __name__ == "__main__":
     count = 0
     arr = [100, 90, 19, 88, 95]
     min = arr[0] + 1
-    print("Ans -> ", min_element(arr))
+    ans = min_element(arr)
+    print(ans)
