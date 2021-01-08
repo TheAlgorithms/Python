@@ -89,6 +89,7 @@ class GraphAdjacencyList:
 
 
 if __name__ == "__main__":
+    # directed graph
     al = GraphAdjacencyList()
     al.add_edge(0, 1)
     al.add_edge(1, 3)
@@ -113,3 +114,29 @@ if __name__ == "__main__":
     #  7: [],
     #  8: [],
     #  9: []}
+
+    # Undirected graph
+    al2 = GraphAdjacencyList(False)
+    al2.add_edge(0, 1)
+    al2.add_edge(1, 3)
+    al2.add_edge(1, 4)
+    al2.add_edge(1, 2)
+    al2.add_edge(3, 7)
+    al2.add_edge(3, 9)
+    al2.add_edge(4, 5)
+    al2.add_edge(4, 6)
+    al2.add_edge(2, 8)
+
+    al2.print_list()
+
+    # OUTPUT:
+    # {0: [1],
+    #  1: [0, 3, 4, 2],
+    #  2: [1, 8],
+    #  3: [1, 7, 9],
+    #  4: [1, 5, 6],
+    #  5: [4],
+    #  6: [4],
+    #  7: [3],
+    #  8: [2],
+    #  9: [3]}
