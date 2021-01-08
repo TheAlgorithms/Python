@@ -1,7 +1,7 @@
 # You have given some element with its weight in an array, you task is to find the minimum possible weight element and print the weight.
 # You can combine two elements and the resultant element will be the absoulte difference of the weight of these two elements.
 
-def minElement(arr):
+def minElement(arr) -> int:
   global min, count
 
   if len(arr) == 1:
