@@ -1,6 +1,6 @@
 # You have given some element with its weight in an array, you task is to find the
 # minimum possible weight element and print the weight.
-# You can combine two elements and the resultant element will be the absoulte
+# You can combine two elements and the resultant element will be the abs
 # difference of the weight of these two elements.
 
 
@@ -37,5 +37,5 @@ if __name__ == "__main__":
     count = 0
     arr = [100, 90, 19, 88, 95]
     min = arr[0] + 1
-    ans = min_element(arr)
-    print(ans)
+    answer = min_element(arr)
+    print(answer)
