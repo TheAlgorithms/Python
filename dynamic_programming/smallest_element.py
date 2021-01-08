@@ -4,7 +4,7 @@
 # difference of the weight of these two elements.
 
 
-def min_element(arr: int) -> int:
+def min_element(arr: [int]) -> int:
     """
     Return the minimum element possible, an exact integer >= 0.
 
