@@ -3,6 +3,7 @@
 # You can combine two elements and the resultant element will be the abs
 # difference of the weight of these two elements.
 
+
 def min_element(arr: int) -> int:
     """Return the minimum element possible, an exact integer >= 0.
 
@@ -44,6 +45,7 @@ def min_element(arr: int) -> int:
             min_element(temp)
 
     return minimum_value
+
 
 if __name__ == "__main__":
     minimum_value = 0
