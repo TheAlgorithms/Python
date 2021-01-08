@@ -10,16 +10,15 @@ def min_element(arr: int) -> int:
     >>> elements = [1, 1, 2, 6, 24, 120]
     >>> min_element(elements)
     0
-    
+
     >>> elements = [30, 24, 10, 3, 1]
     >>> min_element(elements)
     0
-    
+
     >>> elements = [11, 1, 20]
     >>> min_element(elements)
     1
     """
-
 
     global min, count
 
