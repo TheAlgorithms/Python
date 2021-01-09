@@ -4,9 +4,11 @@
 # difference of the weight of these two elements.
 
 
-def min_element(arr) -> int:
-
-    global minimum, count
+def min_element(arr: [int], minimum: int, count: int) -> int:
+    """
+    >>> run_min_element([1, 1, 2, 6, 24, 120])
+    0
+    """
 
     if len(arr) == 1:
         return minimum
@@ -28,24 +30,23 @@ def min_element(arr) -> int:
                 if minimum == 0:
                     return minimum
 
-            min_element(temp)
+            min_element(temp, minimum, count)
 
     return minimum
 
 
-def run_min_element(arr: [int]) -> None:
-    min_element_value = min_element(arr)
+def run_min_element(arr: [int]) -> int:
+    min_element_value = min_element(arr, arr[0], 0)
     arr.append(min_element_value)
 
     answer = min(arr)
-    print(answer)
+    return answer
 
 
 if __name__ == "__main__":
-    minimum = 0
-    count = 0
     elements = [1, 1, 2, 6, 24, 120]
-    run_min_element(elements)
+    result = run_min_element(elements)
+    print(result)
 
     import doctest
 
