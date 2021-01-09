@@ -5,10 +5,7 @@
 
 
 def min_element(arr) -> int:
-    """
-    >>> run_min_element([1, 1, 2, 6, 24, 120])
-    0
-    """
+    
 
     global minimum, count
 
