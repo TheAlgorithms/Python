@@ -38,6 +38,7 @@ def min_element(arr: [int], minimum_value: int, count: int) -> int:
 
     return minimum_value
 
+
 def run_min_element(arr: [int]) -> None:
     count = 0
     minimum_value = arr[0]
@@ -46,6 +47,7 @@ def run_min_element(arr: [int]) -> None:
 
     answer = min(elements)
     print(answer)
+
 
 if __name__ == "__main__":
     elements = [1, 10, 2, 6, 24, 120]
