@@ -4,21 +4,21 @@
 # difference of the weight of these two elements.
 
 
-def min_element(arr: [int], minimum_value: int, count: int) -> int:
+def min_element(arr) -> int:
     """
     >>> run_min_element([1, 1, 2, 6, 24, 120])
     0
     >>> run_min_element([30, 24, 10, 3, 1])
     0
-    >>> run_min_element([11, 1, 20])
-    1
     """
 
-    if len(arr) == 1:
-        return minimum_value
+    global minimum, count
 
-    if minimum_value == 0:
-        return minimum_value
+    if len(arr) == 1:
+        return minimum
+
+    if minimum == 0:
+        return minimum
 
     for i in range(0, len(arr) - 1):
         for j in range(i + 1, len(arr)):
@@ -28,27 +28,31 @@ def min_element(arr: [int], minimum_value: int, count: int) -> int:
             temp.pop(i)
             temp.append(abs(arr[i] - arr[j]))
 
-            if minimum_value > abs(arr[i] - arr[j]):
-                minimum_value = abs(arr[i] - arr[j])
+            if minimum > abs(arr[i] - arr[j]):
+                minimum = abs(arr[i] - arr[j])
 
-                if minimum_value == 0:
-                    return minimum_value
+                if minimum == 0:
+                    return minimum
 
-            min_element(temp, minimum_value, count)
+            min_element(temp)
 
-    return minimum_value
+    return minimum
 
 
 def run_min_element(arr: [int]) -> None:
-    count = 0
-    minimum_value = arr[0]
-    min_element_value = min_element(arr, minimum_value, count)
-    elements.append(min_element_value)
+    min_element_value = min_element(arr)
+    arr.append(min_element_value)
 
-    answer = min(elements)
+    answer = min(arr)
     print(answer)
 
 
 if __name__ == "__main__":
-    elements = [1, 10, 2, 6, 24, 120]
+    minimum = 0
+    count = 0
+    elements = [30, 24, 10, 3, 1]
     run_min_element(elements)
+
+    import doctest
+
+    doctest.testmod()
