@@ -8,8 +8,6 @@ def min_element(arr) -> int:
     """
     >>> run_min_element([1, 1, 2, 6, 24, 120])
     0
-    >>> run_min_element([30, 24, 10, 3, 1])
-    0
     """
 
     global minimum, count
