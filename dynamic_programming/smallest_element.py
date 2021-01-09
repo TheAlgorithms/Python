@@ -5,7 +5,6 @@
 
 
 def min_element(arr) -> int:
-    
 
     global minimum, count
 
