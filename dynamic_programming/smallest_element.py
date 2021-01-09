@@ -48,7 +48,7 @@ def run_min_element(arr: [int]) -> None:
 if __name__ == "__main__":
     minimum = 0
     count = 0
-    elements = [30, 24, 10, 3, 1]
+    elements = [1, 1, 2, 6, 24, 120]
     run_min_element(elements)
 
     import doctest
