@@ -5,9 +5,15 @@
 
 
 def min_element(arr: [int], minimum: int, count: int) -> int:
+    """
+    >>> min_element([1, 1, 2, 6, 24, 120], 1, 0)
+    0
+    >>> min_element([10, 1, 20], 10, 0)
+    1
+    """
 
     if len(arr) == 1:
-        return minimum
+        return arr[0]
 
     if minimum == 0:
         return minimum
@@ -28,20 +34,7 @@ def min_element(arr: [int], minimum: int, count: int) -> int:
 
             min_element(temp, minimum, count)
 
-    return minimum
-
-
-def run_min_element(arr: [int]) -> int:
-    """
-    >>> run_min_element([1, 1, 2, 6, 24, 120])
-    0
-    >>> run_min_element([10, 1, 20])
-    1
-    """
-
-    min_element_value = min_element(arr, arr[0], 0)
-    arr.append(min_element_value)
-
+    arr.append(minimum)
     answer = min(arr)
     return answer
 
