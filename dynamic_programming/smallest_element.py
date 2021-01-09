@@ -35,6 +35,8 @@ def run_min_element(arr: [int]) -> int:
     """
     >>> run_min_element([1, 1, 2, 6, 24, 120])
     0
+    >>> run_min_element([10, 1, 20])
+    1
     """
 
     min_element_value = min_element(arr, arr[0], 0)
