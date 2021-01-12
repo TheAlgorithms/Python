@@ -90,11 +90,11 @@ class GraphAdjacencyList:
                 self.adj_list[source_vertex] = [destination_vertex]
                 self.adj_list[destination_vertex] = []
 
-    def print_list(self) -> None:
+    def __str__(self) -> str:
         """
         Displays adjacency list using python's pretty print function
         """
-        pprint(self.adj_list)
+        return pformat(self.adj_list)
 
     def __repr__(self) -> str:
         return pformat(self.adj_list)
@@ -113,7 +113,7 @@ if __name__ == "__main__":
     al.add_edge(4, 6)
     al.add_edge(2, 8)
 
-    al.print_list()
+    print(al)
 
     # OUTPUT:
     # {0: [1],
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     al2.add_edge(4, 6)
     al2.add_edge(2, 8)
 
-    al2.print_list()
+    print(al2)
 
     # OUTPUT:
     # {0: [1],
