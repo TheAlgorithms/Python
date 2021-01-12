@@ -26,7 +26,7 @@ class GraphAdjacencyList:
         self.adj_list = {}  # dictionary of lists
         self.directed = directed
 
-    def add_edge(self, source_vertex: int, destination_vertex: int) -> None:
+    def add_edge(self, source_vertex: int, destination_vertex: int) -> object:
         """
         Connects vertices together. Creates and Edge from source vertex to destination
         vertex.
@@ -89,6 +89,8 @@ class GraphAdjacencyList:
             else:
                 self.adj_list[source_vertex] = [destination_vertex]
                 self.adj_list[destination_vertex] = []
+
+        return self
 
     def __str__(self) -> str:
         """
