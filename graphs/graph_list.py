@@ -66,7 +66,7 @@ class GraphAdjacencyList:
         Parameters:
         directed: (bool) Indicates if graph is directed or undirected. Default is True.
         """
-    
+
         self.adj_list = {}  # dictionary of lists
         self.directed = directed
 
