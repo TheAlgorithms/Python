@@ -11,18 +11,68 @@ class GraphAdjacencyList:
     """
     Adjacency List type Graph Data Structure that accounts for directed and undirected
     Graphs.
+    Initialize graph object indicating whether it's directed or undirected. Default
+    is directed.
+
+    Parameters
+    ----------
+    directed: (bool) Indicates if graph is directed or undirected. Default is
+            directed (True)
+
+    Examples
+    --------
+
+    Directed Graph
+    >>> d_graph = GraphAdjacencyList()
+    >>> d_graph.add_edge(0, 1)
+    {0: [1], 1: []}
+    >>> d_graph.add_edge(1, 2).add_edge(1, 4).add_edge(1, 5)
+    {0: [1], 1: [2, 4, 5], 2: [], 4: [], 5: []}
+    >>> d_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
+    {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
+    >>>
+    >>> print(d_graph)
+    {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
+    >>> print(repr(d_graph))
+    {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
+
+
+    Undirected Graph
+    >>> u_graph = GraphAdjacencyList(directed=False)
+    >>> u_graph.add_edge(0, 1)
+    {0: [1], 1: [0]}
+    >>> u_graph.add_edge(1, 2).add_edge(1, 4).add_edge(1, 5)
+    {0: [1], 1: [0, 2, 4, 5], 2: [1], 4: [1], 5: [1]}
+    >>> u_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
+    {0: [1, 2], 1: [0, 2, 4, 5], 2: [1, 0, 6, 7], 4: [1], 5: [1], 6: [2], 7: [2]}
+    >>> u_graph.add_edge(4, 5)
+    {0: [1, 2],
+     1: [0, 2, 4, 5],
+     2: [1, 0, 6, 7],
+     4: [1, 5],
+     5: [1, 4],
+     6: [2],
+     7: [2]}
+    >>> print(u_graph)
+    {0: [1, 2],
+     1: [0, 2, 4, 5],
+     2: [1, 0, 6, 7],
+     4: [1, 5],
+     5: [1, 4],
+     6: [2],
+     7: [2]}
+    >>> print(repr(u_graph))
+    {0: [1, 2],
+     1: [0, 2, 4, 5],
+     2: [1, 0, 6, 7],
+     4: [1, 5],
+     5: [1, 4],
+     6: [2],
+     7: [2]}
     """
 
     def __init__(self, directed=True):
-        """
-        Initialize graph object indicating whether it's directed or undirected. Default
-        is directed.
 
-        Parameters
-        ----------
-            directed (bool): Indicates if graph is directed or undirected. Default is
-            directed (True)
-        """
         self.adj_list = {}  # dictionary of lists
         self.directed = directed
 
@@ -103,54 +153,5 @@ class GraphAdjacencyList:
 
 
 if __name__ == "__main__":
-    # directed graph
-    al = GraphAdjacencyList()
-    al.add_edge(0, 1)
-    al.add_edge(1, 3)
-    al.add_edge(1, 4)
-    al.add_edge(1, 2)
-    al.add_edge(3, 7)
-    al.add_edge(3, 9)
-    al.add_edge(4, 5)
-    al.add_edge(4, 6)
-    al.add_edge(2, 8)
-
-    print(al)
-
-    # OUTPUT:
-    # {0: [1],
-    #  1: [3, 4, 2],
-    #  2: [8],
-    #  3: [7, 9],
-    #  4: [5, 6],
-    #  5: [],
-    #  6: [],
-    #  7: [],
-    #  8: [],
-    #  9: []}
-
-    # Undirected graph
-    al2 = GraphAdjacencyList(False)
-    al2.add_edge(0, 1)
-    al2.add_edge(1, 3)
-    al2.add_edge(1, 4)
-    al2.add_edge(1, 2)
-    al2.add_edge(3, 7)
-    al2.add_edge(3, 9)
-    al2.add_edge(4, 5)
-    al2.add_edge(4, 6)
-    al2.add_edge(2, 8)
-
-    print(al2)
-
-    # OUTPUT:
-    # {0: [1],
-    #  1: [0, 3, 4, 2],
-    #  2: [1, 8],
-    #  3: [1, 7, 9],
-    #  4: [1, 5, 6],
-    #  5: [4],
-    #  6: [4],
-    #  7: [3],
-    #  8: [2],
-    #  9: [3]}
+    import doctest
+    doctest.testmod()
