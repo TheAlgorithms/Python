@@ -4,7 +4,7 @@
 
 # We can use Python's dictionary for constructing the graph.
 
-from pprint import pformat, pprint
+from pprint import pformat
 
 
 class GraphAdjacencyList:
@@ -154,4 +154,5 @@ class GraphAdjacencyList:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
