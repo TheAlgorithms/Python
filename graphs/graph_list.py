@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # Author: OMKAR PATHAK, Nwachukwu Chidiebere
 
-# We can use Python's dictionary for constructing the graph.
+# Use a Python dictionary to construct the graph.
 
 from pprint import pformat
 
@@ -10,34 +10,24 @@ from pprint import pformat
 class GraphAdjacencyList:
     """
     Adjacency List type Graph Data Structure that accounts for directed and undirected
-    Graphs.
-    Initialize graph object indicating whether it's directed or undirected. Default
-    is directed.
+    Graphs.  Initialize graph object indicating whether it's directed or undirected.
 
-    Parameters
-    ----------
-    directed: (bool) Indicates if graph is directed or undirected. Default is
-            directed (True)
-
-    Examples
-    --------
-
-    Directed Graph
+    Directed graph example:
     >>> d_graph = GraphAdjacencyList()
+    >>> d_graph
+    {}
     >>> d_graph.add_edge(0, 1)
     {0: [1], 1: []}
     >>> d_graph.add_edge(1, 2).add_edge(1, 4).add_edge(1, 5)
     {0: [1], 1: [2, 4, 5], 2: [], 4: [], 5: []}
     >>> d_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
-    >>>
     >>> print(d_graph)
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
     >>> print(repr(d_graph))
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
 
-
-    Undirected Graph
+    Undirected graph example:
     >>> u_graph = GraphAdjacencyList(directed=False)
     >>> u_graph.add_edge(0, 1)
     {0: [1], 1: [0]}
@@ -71,8 +61,12 @@ class GraphAdjacencyList:
      7: [2]}
     """
 
-    def __init__(self, directed=True):
-
+    def __init__(self, directed: bool = True):
+        """
+        Parameters:
+        directed: (bool) Indicates if graph is directed or undirected. Default is True.
+        """
+    
         self.adj_list = {}  # dictionary of lists
         self.directed = directed
 
@@ -83,8 +77,7 @@ class GraphAdjacencyList:
         Vertices will be created if not found in graph
         """
 
-        # For undirected graphs
-        if not self.directed:
+        if not self.directed:  # For undirected graphs
             # if both source vertex and destination vertex are both present in the
             # adjacency list, add destination vertex to source vertex list of adjacent
             # vertices and add source vertex to destination vertex list of adjacent
@@ -114,9 +107,7 @@ class GraphAdjacencyList:
             else:
                 self.adj_list[source_vertex] = [destination_vertex]
                 self.adj_list[destination_vertex] = [source_vertex]
-
-        # For directed Graphs
-        else:
+        else:  # For directed graphs
             # if both source vertex and destination vertex are present in adjacency
             # list, add destination vertex to source vertex list of adjacent vertices.
             if source_vertex in self.adj_list and destination_vertex in self.adj_list:
