@@ -142,12 +142,6 @@ class GraphAdjacencyList:
 
         return self
 
-    def __str__(self) -> str:
-        """
-        Displays adjacency list using python's pretty print function
-        """
-        return pformat(self.adj_list)
-
     def __repr__(self) -> str:
         return pformat(self.adj_list)
 
