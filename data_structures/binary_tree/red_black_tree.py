@@ -475,11 +475,13 @@ class RedBlackTree:
         from pprint import pformat
 
         if self.left is None and self.right is None:
-            return "'{} {}'".format(self.label, (self.color and "red") or "blk")
+            return f"'{self.label} {(self.color and 'red') or 'blk'}'"
         return pformat(
             {
-                "%s %s"
-                % (self.label, (self.color and "red") or "blk"): (self.left, self.right)
+                f"{self.label} {(self.color and 'red') or 'blk'}": (
+                    self.left,
+                    self.right,
+                )
             },
             indent=1,
         )
