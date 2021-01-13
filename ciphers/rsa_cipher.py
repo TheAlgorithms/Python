@@ -118,7 +118,7 @@ def encryptAndWriteToFile(
     for i in range(len(encryptedBlocks)):
         encryptedBlocks[i] = str(encryptedBlocks[i])
     encryptedContent = ",".join(encryptedBlocks)
-    encryptedContent = "{}_{}_{}".format(len(message), blockSize, encryptedContent)
+    encryptedContent = f"{len(message)}_{blockSize}_{encryptedContent}"
     with open(messageFilename, "w") as fo:
         fo.write(encryptedContent)
     return encryptedContent
