@@ -26,5 +26,6 @@ X_new = [[1, 2, 1, 4], [2, 3, 4, 5]]
 prediction = knn.predict(X_new)
 
 print(
-    f"\nNew array: \n {X_new}\n\nTarget Names Prediction: \n {iris['target_names'][prediction]}"
+    f"\nNew array: \n {X_new}\n\nTarget Names Prediction: \n"
+    f" {iris['target_names'][prediction]}"
 )

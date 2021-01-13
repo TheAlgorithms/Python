@@ -74,7 +74,9 @@ def main():
     for ordinal in "0th 1st 2nd 3rd 10th 100th 1000th".split():
         n = int("".join(c for c in ordinal if c in "0123456789"))  # 1000th --> 1000
         print(
-            f"{ordinal} fibonacci number using matrix exponentiation is {nth_fibonacci_matrix(n)} and using bruteforce is {nth_fibonacci_bruteforce(n)}\n"
+            f"{ordinal} fibonacci number using matrix exponentiation is "
+            f"{nth_fibonacci_matrix(n)} and using bruteforce is "
+            f"{nth_fibonacci_bruteforce(n)}\n"
         )
     # from timeit import timeit
     # print(timeit("nth_fibonacci_matrix(1000000)",

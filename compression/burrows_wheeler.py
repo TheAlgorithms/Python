@@ -158,9 +158,11 @@ if __name__ == "__main__":
     s = input(entry_msg).strip()
     result = bwt_transform(s)
     print(
-        f"Burrows Wheeler transform for string '{s}' results in '{result['bwt_string']}'"
+        f"Burrows Wheeler transform for string '{s}' results "
+        f"in '{result['bwt_string']}'"
     )
     original_string = reverse_bwt(result["bwt_string"], result["idx_original_string"])
     print(
-        f"Reversing Burrows Wheeler transform for entry '{result['bwt_string']}' we get original string '{original_string}'"
+        f"Reversing Burrows Wheeler transform for entry '{result['bwt_string']}' "
+        f"we get original string '{original_string}'"
     )
