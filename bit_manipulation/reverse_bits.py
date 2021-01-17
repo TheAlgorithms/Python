@@ -1,14 +1,31 @@
-def get_reverse_bit_string(bn : int) -> str:
-    """    return the bit string of an interger
+def get_reverse_bit_string(number: int) -> str:
     """
+    return the bit string of an integer
+
+    >>> get_reverse_bit_string(9)
+    '10010000000000000000000000000000'
+    >>> get_reverse_bit_string(43)
+    '11010100000000000000000000000000'
+    >>> get_reverse_bit_string(2873)
+    '10011100110100000000000000000000'
+    >>> get_reverse_bit_string("this is not a number")
+    Traceback (most recent call last):
+        ...
+    TypeError: operation can not be conducted on a object of type str
+    """
+    if not isinstance(number, int):
+        raise TypeError(
+            "operation can not be conducted on a object of type "
+            f"{type(number).__name__}"
+        )
     bit_string = ""
-    for trk in range(0, 32):
-        bit_string += str(bn % 2)
-        bn = bn >> 1
+    for _ in range(0, 32):
+        bit_string += str(number % 2)
+        number = number >> 1
     return bit_string
 
 
-def reverse_bit(n: int) -> str:
+def reverse_bit(number: int) -> str:
     """
     Take in an 32 bit integer, reverse its bits,
     return a string of reverse bits
@@ -42,26 +59,27 @@ def reverse_bit(n: int) -> str:
         ...
     TypeError: '<' not supported between instances of 'str' and 'int'
     """
-    if n < 0:
+    if number < 0:
         raise ValueError("the value of input must be positive")
-    elif isinstance(n, float):
+    elif isinstance(number, float):
         raise TypeError("Input value must be a 'int' type")
-    elif isinstance(n, str):
+    elif isinstance(number, str):
         raise TypeError("'<' not supported between instances of 'str' and 'int'")
-    ans = 0
+    result = 0
     # iterator over [1 to 32],since we are dealing with 32 bit integer
-    for i in range(1, 33):
+    for _ in range(1, 33):
         # left shift the bits by unity
-        ans = ans << 1
+        result = result << 1
         # get the end bit
-        k = n % 2
-        # right shif the bits by unity
-        n = n >> 1
+        end_bit = number % 2
+        # right shift the bits by unity
+        number = number >> 1
         # add that bit to our ans
-        ans = ans | k
-    return get_reverse_bit_string(ans)
+        result = result | end_bit
+    return get_reverse_bit_string(result)
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
