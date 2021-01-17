@@ -1,10 +1,9 @@
 from math import sqrt
-
-
+ 
 def sum_of_div(n: int) -> int:
     """
     Returns the sum of all proper divisors of n.
-
+    
     >>> sum_of_div(220)
     284
 
@@ -64,9 +63,8 @@ def amicable(x: int, y: int) -> bool:
         raise TypeError("x and y must be of 'int' type")
 
     return sum_of_div(x) == y and sum_of_div(y) == x
-
-
-def main():
+ 
+def main() -> None:
     x = 220
     y = 284
 
@@ -74,7 +72,6 @@ def main():
         print(f"{x} and {y} are Amicable")
     else:
         print(f"{x} and {y} are not Amicable")
-
-
+ 
 if __name__ == "__main__":
     main()
