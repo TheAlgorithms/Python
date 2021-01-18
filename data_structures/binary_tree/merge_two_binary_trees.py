@@ -4,22 +4,41 @@ The rule for merging is that if two nodes overlap, then put the value sum of
 both nodes to the new value of merged node. Otherwise, the NOT null node
 will be used as the node of new tree.
 """
+from typing import Optional
 
 
 class Node:
     """
     A binary node has value variable and pointers to its left and right node.
     """
-
-    def __init__(self, value=0, left=None, right=None):
+    def __init__(self, value: int=0) -> None:
         self.value = value
-        self.left = left
-        self.right = right
+        self.left: Optional[Node] = None
+        self.right: Optional[Node] = None
 
 
-def merge_two_binary_trees(tree1: Node, tree2: Node) -> Node:
+def merge_two_binary_trees(tree1: Optional[Node], tree2: Optional[Node]) -> Node:
     """
     Returns root node of the merged tree.
+
+    >>> tree1 = Node(5)
+    >>> tree1.left = Node(6)
+    >>> tree1.right = Node(7)
+    >>> tree1.left.left = Node(2)
+    >>> tree2 = Node(4)
+    >>> tree2.left = Node(5)
+    >>> tree2.right = Node(8)
+    >>> tree2.left.right = Node(1)
+    >>> tree2.right.right = Node(4)
+
+    >>> merged_tree = merge_two_binary_trees(tree1, tree2)
+    >>> print_preorder(merged_tree)
+    3
+    6
+    4
+    9
+    9
+    5
     """
     if tree1 is None:
         return tree2
@@ -32,7 +51,7 @@ def merge_two_binary_trees(tree1: Node, tree2: Node) -> Node:
     return tree1
 
 
-def print_preorder(root: Node) -> None:
+def print_preorder(root: Optional[Node]) -> None:
     """
     Print pre-order traversal of the tree.
 
