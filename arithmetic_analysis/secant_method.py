@@ -1,11 +1,11 @@
-# Implementing Secant method in Python
-# Author: dimgrichr
-
-
+"""
+Implementing Secant method in Python
+Author: dimgrichr
+"""
 from math import exp
 
 
-def f(x):
+def f(x: float) -> float:
     """
     >>> f(5)
     39.98652410600183
@@ -13,9 +13,9 @@ def f(x):
     return 8 * x - 2 * exp(-x)
 
 
-def SecantMethod(lower_bound, upper_bound, repeats):
+def secant_method(lower_bound: float, upper_bound: float, repeats: int) -> float:
     """
-    >>> SecantMethod(1, 3, 2)
+    >>> secant_method(1, 3, 2)
     0.2139409276214589
     """
     x0 = lower_bound
@@ -25,4 +25,5 @@ def SecantMethod(lower_bound, upper_bound, repeats):
     return x1
 
 
-print(f"The solution is: {SecantMethod(1, 3, 2)}")
+if __name__ == "__main__":
+    print(f"Example: {secant_method(1, 3, 2) = }")

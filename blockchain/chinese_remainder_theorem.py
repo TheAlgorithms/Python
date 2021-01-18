@@ -1,18 +1,21 @@
-# Chinese Remainder Theorem:
-# GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
+"""
+Chinese Remainder Theorem:
+GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
 
-# If GCD(a,b) = 1, then for any remainder ra modulo a and any remainder rb modulo b
-# there exists integer n, such that n = ra (mod a) and n = ra(mod b).  If n1 and n2 are
-# two such integers, then n1=n2(mod ab)
+If GCD(a,b) = 1, then for any remainder ra modulo a and any remainder rb modulo b
+there exists integer n, such that n = ra (mod a) and n = ra(mod b).  If n1 and n2 are
+two such integers, then n1=n2(mod ab)
 
-# Algorithm :
+Algorithm :
 
-# 1. Use extended euclid algorithm to find x,y such that a*x + b*y = 1
-# 2. Take n = ra*by + rb*ax
+1. Use extended euclid algorithm to find x,y such that a*x + b*y = 1
+2. Take n = ra*by + rb*ax
+"""
+from typing import Tuple
 
 
 # Extended Euclid
-def extended_euclid(a, b):
+def extended_euclid(a: int, b: int) -> Tuple[int, int]:
     """
     >>> extended_euclid(10, 6)
     (-1, 2)
@@ -29,7 +32,7 @@ def extended_euclid(a, b):
 
 
 # Uses ExtendedEuclid to find inverses
-def chinese_remainder_theorem(n1, r1, n2, r2):
+def chinese_remainder_theorem(n1: int, r1: int, n2: int, r2: int) -> int:
     """
     >>> chinese_remainder_theorem(5,1,7,3)
     31
@@ -51,7 +54,7 @@ def chinese_remainder_theorem(n1, r1, n2, r2):
 # ----------SAME SOLUTION USING InvertModulo instead ExtendedEuclid----------------
 
 # This function find the inverses of a i.e., a^(-1)
-def invert_modulo(a, n):
+def invert_modulo(a: int, n: int) -> int:
     """
     >>> invert_modulo(2, 5)
     3
@@ -67,7 +70,7 @@ def invert_modulo(a, n):
 
 
 # Same a above using InvertingModulo
-def chinese_remainder_theorem2(n1, r1, n2, r2):
+def chinese_remainder_theorem2(n1: int, r1: int, n2: int, r2: int) -> int:
     """
     >>> chinese_remainder_theorem2(5,1,7,3)
     31

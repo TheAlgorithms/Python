@@ -5,11 +5,11 @@
 
     Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
 """
-from __future__ import annotations
+from typing import List
 
 
 def valid_coloring(
-    neighbours: list[int], colored_vertices: list[int], color: int
+    neighbours: List[int], colored_vertices: List[int], color: int
 ) -> bool:
     """
     For each neighbour check if coloring constraint is satisfied
@@ -35,7 +35,7 @@ def valid_coloring(
 
 
 def util_color(
-    graph: list[list[int]], max_colors: int, colored_vertices: list[int], index: int
+    graph: List[List[int]], max_colors: int, colored_vertices: List[int], index: int
 ) -> bool:
     """
     Pseudo-Code
@@ -86,7 +86,7 @@ def util_color(
     return False
 
 
-def color(graph: list[list[int]], max_colors: int) -> list[int]:
+def color(graph: List[List[int]], max_colors: int) -> List[int]:
     """
     Wrapper function to call subroutine called util_color
     which will either return True or False.

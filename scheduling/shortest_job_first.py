@@ -3,17 +3,17 @@ Shortest job remaining first
 Please note arrival time and burst
 Please use spaces to separate times entered.
 """
-from __future__ import annotations
+from typing import List
 
 import pandas as pd
 
 
 def calculate_waitingtime(
-    arrival_time: list[int], burst_time: list[int], no_of_processes: int
-) -> list[int]:
+    arrival_time: List[int], burst_time: List[int], no_of_processes: int
+) -> List[int]:
     """
     Calculate the waiting time of each processes
-    Return: list of waiting times.
+    Return: List of waiting times.
     >>> calculate_waitingtime([1,2,3,4],[3,3,5,1],4)
     [0, 3, 5, 0]
     >>> calculate_waitingtime([1,2,3],[2,5,1],3)
@@ -72,8 +72,8 @@ def calculate_waitingtime(
 
 
 def calculate_turnaroundtime(
-    burst_time: list[int], no_of_processes: int, waiting_time: list[int]
-) -> list[int]:
+    burst_time: List[int], no_of_processes: int, waiting_time: List[int]
+) -> List[int]:
     """
     Calculate the turn around time of each Processes
     Return: list of turn around times.
@@ -91,8 +91,8 @@ def calculate_turnaroundtime(
 
 
 def calculate_average_times(
-    waiting_time: list[int], turn_around_time: list[int], no_of_processes: int
-):
+    waiting_time: List[int], turn_around_time: List[int], no_of_processes: int
+) -> None:
     """
     This function calculates the average of the waiting & turnaround times
     Prints: Average Waiting time & Average Turn Around Time
