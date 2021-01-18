@@ -183,7 +183,7 @@ class DiffieHellman:
     """
     Class to represent the Diffie-Hellman key exchange protocol
 
-    
+
     >>> alice = DiffieHellman()
     >>> bob = DiffieHellman()
 
