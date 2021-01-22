@@ -8,6 +8,7 @@ returns a list containing two data for each vector:
     2. distance between the vector and the nearest vector (float)
 """
 import math
+from typing import List, Union
 
 import numpy as np
 
@@ -30,7 +31,9 @@ def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
     return math.sqrt(sum(pow(a - b, 2) for a, b in zip(input_a, input_b)))
 
 
-def similarity_search(dataset: np.ndarray, value_array: np.ndarray) -> list:
+def similarity_search(
+    dataset: np.ndarray, value_array: np.ndarray
+) -> List[List[Union[List[float], float]]]:
     """
     :param dataset: Set containing the vectors. Should be ndarray.
     :param value_array: vector/vectors we want to know the nearest vector from dataset.
