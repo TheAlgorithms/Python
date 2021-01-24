@@ -199,4 +199,3 @@ if __name__ == "__main__":
     plt.pcolormesh(xx, yy, Z, cmap=cmap_light, shading="auto")
 
     plt.scatter(X[:, 0], X[:, 1], c=colored_y)
-
