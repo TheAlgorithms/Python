@@ -114,7 +114,7 @@ class MyElasticLogisticRegression(object):
         array([0, 0])
         >>> clf.predict_proba(X[:2, :])
         array([[9.8...e-01, 1.8...e-02, 1.4...e-08],
-            [9.7...e-01, 2.8...e-02, ...e-08]])
+              [9.7...e-01, 2.8...e-02, 3.01...e-08]])
         """
         n, k = inputs.shape
         inputs_modified = np.concatenate((np.ones((n, 1)), inputs), axis=1)
@@ -140,12 +140,12 @@ class MyElasticLogisticRegression(object):
         >>> X = np.linspace(-5, 5, objects_num)
         >>> y = linear_expression(X) + np.random.randn(objects_num) * 5
         >>> X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.5)
-        >>> regressor = MyElasticLogisticRegression()
+        >>> regressor = MyElasticLogisticRegression(0.5, 0.5)
         >>> regressor.fit(X_train[:, np.newaxis], y_train)
         >>> predictions = regressor.predict(X_test[:, np.newaxis])
         >>> w = regressor.get_weights()
         >>> w
-        array([4.7..., 5.7...])
+        array([ 0.49..., -0.13... ])
         """
         return self.w
 
