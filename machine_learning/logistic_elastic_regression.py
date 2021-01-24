@@ -28,10 +28,18 @@ def generate_batches(inputs: Any, labels: Any, batch_size: int) -> Batch:
 
 
 def logit(inputs: Any, weights: Any) -> Any:
+    """
+    >>> logit(1, 3)
+    3
+    """
     return np.dot(inputs, weights)
 
 
 def sigmoid(outputs: Any) -> Any:
+    """
+    >>> sigmoid(0.2)
+    0.54...
+    """
     return 1.0 / (1 + np.exp(-outputs))
 
 
