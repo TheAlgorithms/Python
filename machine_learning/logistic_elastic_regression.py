@@ -1,29 +1,31 @@
 import numpy as np  # type: ignore
-from sklearn.datasets import make_blobs # type: ignore
-import matplotlib.pyplot as plt # type: ignore
-from matplotlib.colors import ListedColormap # type: ignore
+from sklearn.datasets import make_blobs  # type: ignore
+import matplotlib.pyplot as plt  # type: ignore
+from matplotlib.colors import ListedColormap  # type: ignore
 
 from typing import Any, Tuple, Generator
 
+Batch = Generator[Tuple[Any, Any], None, None]
 
-def generate_batches(X: Any, y: Any, batch_size: int) -> Generator[Tuple[Any, Any], None, None]:
-    assert len(X) == len(y)
+
+def generate_batches(inputs: Any, labels: Any, batch_size: int) -> Batch:
+    assert len(inputs) == len(labels)
     np.random.seed(42)
-    X = np.array(X)
-    y = np.array(y)
-    perm = np.random.permutation(len(X))
-    k = int(len(X) / batch_size)
+    inputs = np.array(inputs)
+    labels = np.array(labels)
+    perm = np.random.permutation(len(inputs))
+    k = int(len(inputs) / batch_size)
     for i in range(k):
         batch_indx = perm[i * batch_size : (i + 1) * batch_size]
-        yield X[batch_indx], y[batch_indx]
+        yield inputs[batch_indx], labels[batch_indx]
 
 
-def logit(x: Any, w: Any):
-    return np.dot(x, w)
+def logit(inputs: Any, weights: Any) -> Any:
+    return np.dot(inputs, weights)
 
 
-def sigmoid(h: Any) -> Any:
-    return 1.0 / (1 + np.exp(-h))
+def sigmoid(outputs: Any) -> Any:
+    return 1.0 / (1 + np.exp(-outputs))
 
 
 class MyElasticLogisticRegression(object):
@@ -39,62 +41,71 @@ class MyElasticLogisticRegression(object):
     https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.124.4696
     """
 
-    def __init__(self, l1_coef, l2_coef):
+    def __init__(self, l1_coef: float, l2_coef: float) -> None:
         self.l1_coef = l1_coef
         self.l2_coef = l2_coef
         self.w = None
 
-    def fit(self, X, y, epochs=10, lr=0.1, batch_size=100):
-        n, k = X.shape
+    def fit(
+        self,
+        inputs: Any,
+        labels: Any,
+        epochs: int = 10,
+        lr: float = 0.1,
+        batch_size: int = 100,
+    ) -> list[float]:
+        n, k = inputs.shape
         if self.w is None:
             np.random.seed(42)
             self.w = np.random.randn(k + 1)
 
-        X_train = np.concatenate((np.ones((n, 1)), X), axis=1)
+        x_train = np.concatenate((np.ones((n, 1)), inputs), axis=1)
 
         losses = []
 
         # Train loop
         for _ in range(epochs):
             gen = generate_batches
-            for X_batch, y_batch in gen(X_train, y, batch_size):
-                y_pred = sigmoid(logit(X_batch, self.w))
+            for x_batch, y_batch in gen(x_train, labels, batch_size):
+                y_pred = sigmoid(logit(x_batch, self.w))
 
-                grad = self.get_grad(X_batch, y_batch, y_pred)
+                grad = self.get_grad(x_batch, y_batch, y_pred)
                 self.w -= grad * lr
 
                 losses.append(self.__loss(y_batch, y_pred))
 
         return losses
 
-    def get_grad(self, X_batch, y_batch, predictions):
+    def get_grad(self, x_batch: Any, y_batch: Any, predictions: Any) -> Any:
         """
-        Accepts X_batch with ones column. 
+        Accepts x_batch with ones column. 
         """
 
-        n, k = X_batch.shape
+        n, k = x_batch.shape
         w0 = self.w.copy()
         w0[0] = 0
-        grad = X_batch.T @ (predictions - y_batch) / n
+        grad = x_batch.T @ (predictions - y_batch) / n
         grad += self.l1_coef * np.sign(w0)
         grad += 2 * self.l2_coef * w0
 
         return grad
 
-    def predict_proba(self, X):
-        n, k = X.shape
-        X_ = np.concatenate((np.ones((n, 1)), X), axis=1)
-        return sigmoid(logit(X_, self.w))
+    def predict_proba(self, inputs: Any) -> Any:
+        n, k = inputs.shape
+        inputs_modified = np.concatenate((np.ones((n, 1)), inputs), axis=1)
+        return sigmoid(logit(inputs_modified, self.w))
 
-    def predict(self, X, threshold=0.5):
-        return self.predict_proba(X) >= threshold
+    def predict(self, inputs: Any, threshold: float = 0.5) -> Any:
+        return self.predict_proba(inputs) >= threshold
 
-    def get_weights(self):
+    def get_weights(self) -> Any:
         return self.w
 
-    def __loss(self, y, p):
-        p = np.clip(p, 1e-10, 1 - 1e-10)
-        return -np.mean(y * np.log(p) + (1 - y) * np.log(1 - p))
+    def __loss(self, labels: Any, predictions: Any) -> float:
+        predictions = np.clip(predictions, 1e-10, 1 - 1e-10)
+        return -np.mean(
+            labels * np.log(predictions) + (1 - labels) * np.log(1 - predictions)
+        )
 
 
 if __name__ == "__main__":
