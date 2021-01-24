@@ -9,6 +9,13 @@ Batch = Generator[Tuple[Any, Any], None, None]
 
 
 def generate_batches(inputs: Any, labels: Any, batch_size: int) -> Batch:
+    """
+    >>> temp = [2, 3]
+    >>> temparr = np.array([1, 2, 3, 4, 5])
+    >>> temparr_out = temparr[temp]
+    >>> temparr_out
+    array([3, 4])
+    """
     assert len(inputs) == len(labels)
     np.random.seed(42)
     inputs = np.array(inputs)
@@ -54,6 +61,14 @@ class MyElasticLogisticRegression(object):
         lr: float = 0.1,
         batch_size: int = 100,
     ) -> list[float]:
+        """
+        >>> from sklearn.datasets import make_blobs
+        >>> X, y = make_blobs(n_samples=10, centers=[[-2,0.5],[3,-0.5]], cluster_std=1, random_state=42)
+        >>> clf = MyElasticLogisticRegression(0.1, 0.1)
+        >>> losses = clf.fit(X, y, epochs=1, batch_size=5)
+        >>> losses
+        [1.48..., 0.96...]
+        """
         n, k = inputs.shape
         if self.w is None:
             np.random.seed(42)
@@ -69,26 +84,17 @@ class MyElasticLogisticRegression(object):
             for x_batch, y_batch in gen(x_train, labels, batch_size):
                 y_pred = sigmoid(logit(x_batch, self.w))
 
-                grad = self.get_grad(x_batch, y_batch, y_pred)
+                n, k = x_batch.shape
+                w0 = self.w.copy()
+                w0[0] = 0
+                grad = x_batch.T @ (y_pred - y_batch) / n
+                grad += self.l1_coef * np.sign(w0)
+                grad += 2 * self.l2_coef * w0
                 self.w -= grad * lr
 
-                losses.append(self.__loss(y_batch, y_pred))
+                losses.append(self.loss(y_batch, y_pred))
 
         return losses
-
-    def get_grad(self, x_batch: Any, y_batch: Any, predictions: Any) -> Any:
-        """
-        Accepts x_batch with ones column. 
-        """
-
-        n, k = x_batch.shape
-        w0 = self.w.copy()
-        w0[0] = 0
-        grad = x_batch.T @ (predictions - y_batch) / n
-        grad += self.l1_coef * np.sign(w0)
-        grad += 2 * self.l2_coef * w0
-
-        return grad
 
     def predict_proba(self, inputs: Any) -> Any:
         """
@@ -118,9 +124,34 @@ class MyElasticLogisticRegression(object):
         return self.predict_proba(inputs) >= threshold
 
     def get_weights(self) -> Any:
+        """
+        >>> from sklearn.model_selection import train_test_split
+        >>> def linear_expression(x):
+        >>>     return 5 * x + 6
+        >>> objects_num = 50
+        >>> X = np.linspace(-5, 5, objects_num)
+        >>> y = linear_expression(X) + np.random.randn(objects_num) * 5
+        >>> X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.5)
+        >>> regressor = MyElasticLogisticRegression()
+        >>> regressor.fit(X_train[:, np.newaxis], y_train)
+        >>> predictions = regressor.predict(X_test[:, np.newaxis])
+        >>> w = regressor.get_weights()
+        >>> w
+        array([4.7..., 5.7...])
+        """
         return self.w
 
-    def __loss(self, labels: Any, predictions: Any) -> float:
+    def loss(self, labels: Any, predictions: Any) -> float:
+        """
+        >>> from sklearn.datasets import make_blobs
+        >>> X, y = make_blobs(n_samples=10, centers=[[-2,0.5],[3,-0.5]], cluster_std=1, random_state=42)
+        >>> clf = MyElasticLogisticRegression(0.1, 0.1)
+        >>> losses = clf.fit(X, y, epochs=1, batch_size=5)
+        >>> y_pred = clf.predict_proba(X)
+        >>> loss = clf.loss(y, y_pred)
+        >>> loss
+        0.87...
+        """
         predictions = np.clip(predictions, 1e-10, 1 - 1e-10)
         return -np.mean(
             labels * np.log(predictions) + (1 - labels) * np.log(1 - predictions)
