@@ -91,6 +91,17 @@ class MyElasticLogisticRegression(object):
         return grad
 
     def predict_proba(self, inputs: Any) -> Any:
+        """
+        >>> from sklearn.datasets import load_iris
+        >>> from sklearn.linear_model import LogisticRegression
+        >>> X, y = load_iris(return_X_y=True)
+        >>> clf = LogisticRegression(random_state=0).fit(X, y)
+        >>> clf.predict(X[:2, :])
+        array([0, 0])
+        >>> clf.predict_proba(X[:2, :])
+        array([[9.8...e-01, 1.8...e-02, 1.4...e-08],
+            [9.7...e-01, 2.8...e-02, ...e-08]])
+        """
         n, k = inputs.shape
         inputs_modified = np.concatenate((np.ones((n, 1)), inputs), axis=1)
         return sigmoid(logit(inputs_modified, self.w))
