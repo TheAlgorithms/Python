@@ -51,7 +51,7 @@ class MyElasticLogisticRegression(object):
 
     More at Wikipedia:
     https://en.wikipedia.org/wiki/Elastic_net_regularization
-    
+
     Original paper:
     https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.124.4696
     """
