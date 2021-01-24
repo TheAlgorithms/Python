@@ -170,10 +170,9 @@ class MyElasticLogisticRegression(object):
 
 
 if __name__ == "__main__":
-    X, y = make_blobs(n_samples=1000,
-                      centers=[[-2, 0.5], [3, -0.5]],
-                      cluster_std=1,
-                      random_state=42)
+    X, y = make_blobs(
+        n_samples=1000, centers=[[-2, 0.5], [3, -0.5]], cluster_std=1, random_state=42
+    )
 
     colors = ("red", "green")
     colored_y = np.zeros(y.size, dtype=str)
