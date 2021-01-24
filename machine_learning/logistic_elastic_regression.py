@@ -106,15 +106,15 @@ class MyElasticLogisticRegression(object):
 
     def predict_proba(self, inputs: Any) -> Any:
         """
-        >>> from sklearn.datasets import load_iris
-        >>> from sklearn.linear_model import LogisticRegression
-        >>> X, y = load_iris(return_X_y=True)
-        >>> clf = LogisticRegression(random_state=0).fit(X, y)
-        >>> clf.predict(X[:2, :])
-        array([0, 0])
-        >>> clf.predict_proba(X[:2, :])
-        array([[9.81814888e-01, 1.81850971e-02, 1.43959138e-08],
-               [9.71755228e-01, 2.82447420e-02, 3.01073014e-08]])
+        >>> from sklearn.datasets import make_blobs
+        >>> X, y = make_blobs(n_samples=2,
+        ...                   centers=[[-2,0.5],[3,-0.5]],
+        ...                   cluster_std=1,
+        ...                   random_state=42)
+        >>> clf = MyElasticLogisticRegression(0.5, 0.5)
+        >>> losses = clf.fit(X, y)
+        >>> clf.predict_proba(X)
+        array([0.65..., 0.71...])
         """
         n, k = inputs.shape
         inputs_modified = np.concatenate((np.ones((n, 1)), inputs), axis=1)
