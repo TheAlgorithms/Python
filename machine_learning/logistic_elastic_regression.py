@@ -69,9 +69,9 @@ class MyElasticLogisticRegression(object):
         """
         >>> from sklearn.datasets import make_blobs
         >>> X, y = make_blobs(n_samples=10,
-        >>>                   centers=[[-2,0.5],[3,-0.5]],
-        >>>                   cluster_std=1,
-        >>>                   random_state=42)
+        ...                   centers=[[-2,0.5],[3,-0.5]],
+        ...                   cluster_std=1,
+        ...                   random_state=42)
         >>> clf = MyElasticLogisticRegression(0.1, 0.1)
         >>> losses = clf.fit(X, y, epochs=1, batch_size=5)
         >>> losses
@@ -135,7 +135,7 @@ class MyElasticLogisticRegression(object):
         """
         >>> from sklearn.model_selection import train_test_split
         >>> def linear_expression(x):
-        >>>     return 5 * x + 6
+        ...     return 5 * x + 6
         >>> objects_num = 50
         >>> X = np.linspace(-5, 5, objects_num)
         >>> y = linear_expression(X) + np.random.randn(objects_num) * 5
@@ -153,9 +153,9 @@ class MyElasticLogisticRegression(object):
         """
         >>> from sklearn.datasets import make_blobs
         >>> X, y = make_blobs(n_samples=10,
-        >>>                   centers=[[-2,0.5],[3,-0.5]],
-        >>>                   cluster_std=1,
-        >>>                   random_state=42)
+        ...                   centers=[[-2,0.5],[3,-0.5]],
+        ...                   cluster_std=1,
+        ...                   random_state=42)
         >>> clf = MyElasticLogisticRegression(0.1, 0.1)
         >>> losses = clf.fit(X, y, epochs=1, batch_size=5)
         >>> y_pred = clf.predict_proba(X)
