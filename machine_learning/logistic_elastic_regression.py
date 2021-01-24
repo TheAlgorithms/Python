@@ -1,9 +1,9 @@
-import numpy as np  # type: ignore
-from sklearn.datasets import make_blobs  # type: ignore
-import matplotlib.pyplot as plt  # type: ignore
-from matplotlib.colors import ListedColormap  # type: ignore
+from typing import Any, Generator, Tuple
 
-from typing import Any, Tuple, Generator
+import matplotlib.pyplot as plt  # type: ignore
+import numpy as np  # type: ignore
+from matplotlib.colors import ListedColormap  # type: ignore
+from sklearn.datasets import make_blobs  # type: ignore
 
 Batch = Generator[Tuple[Any, Any], None, None]
 
@@ -51,9 +51,6 @@ class MyElasticLogisticRegression(object):
 
     More at Wikipedia:
     https://en.wikipedia.org/wiki/Elastic_net_regularization
-
-    Original paper:
-    https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.124.4696
     """
 
     def __init__(self, l1_coef: float, l2_coef: float) -> None:
@@ -71,7 +68,10 @@ class MyElasticLogisticRegression(object):
     ) -> list[float]:
         """
         >>> from sklearn.datasets import make_blobs
-        >>> X, y = make_blobs(n_samples=10, centers=[[-2,0.5],[3,-0.5]], cluster_std=1, random_state=42)
+        >>> X, y = make_blobs(n_samples=10,
+        >>>                   centers=[[-2,0.5],[3,-0.5]],
+        >>>                   cluster_std=1,
+        >>>                   random_state=42)
         >>> clf = MyElasticLogisticRegression(0.1, 0.1)
         >>> losses = clf.fit(X, y, epochs=1, batch_size=5)
         >>> losses
@@ -152,7 +152,10 @@ class MyElasticLogisticRegression(object):
     def loss(self, labels: Any, predictions: Any) -> float:
         """
         >>> from sklearn.datasets import make_blobs
-        >>> X, y = make_blobs(n_samples=10, centers=[[-2,0.5],[3,-0.5]], cluster_std=1, random_state=42)
+        >>> X, y = make_blobs(n_samples=10,
+        >>>                   centers=[[-2,0.5],[3,-0.5]],
+        >>>                   cluster_std=1,
+        >>>                   random_state=42)
         >>> clf = MyElasticLogisticRegression(0.1, 0.1)
         >>> losses = clf.fit(X, y, epochs=1, batch_size=5)
         >>> y_pred = clf.predict_proba(X)
@@ -167,9 +170,10 @@ class MyElasticLogisticRegression(object):
 
 
 if __name__ == "__main__":
-    X, y = make_blobs(
-        n_samples=1000, centers=[[-2, 0.5], [3, -0.5]], cluster_std=1, random_state=42
-    )
+    X, y = make_blobs(n_samples=1000,
+                      centers=[[-2, 0.5], [3, -0.5]],
+                      cluster_std=1,
+                      random_state=42)
 
     colors = ("red", "green")
     colored_y = np.zeros(y.size, dtype=str)
