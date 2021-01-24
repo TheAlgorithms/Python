@@ -6,7 +6,8 @@ t = 3
 m = 5
 
 # Buffer Space (with Parameters Space)
-buffer_space, params_space = [], []
+buffer_space: list[int] = []
+params_space: list[int] = []
 
 # Machine Time
 machine_time = 0
