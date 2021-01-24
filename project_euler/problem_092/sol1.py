@@ -16,7 +16,7 @@ def sum_square_digits(number: int) -> int:
     """
     Returns the sum of squared digits given an integer.
 
-    Base-10 allows us to obtain the last digit in order to calculate its square:
+    Base-10 allows us to obtain the last digit, in order to calculate its square:
     1234 % 10 = 4
 
     We then use floor division to obtain 123 from 1234:
