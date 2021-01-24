@@ -25,7 +25,7 @@ def rearrange(bitString32):
     return newString
 
 
-def reformatHex(i):
+def reformatHex(i: int) -> str:
     """[summary]
     Converts the given integer into 8-digit hex number.
 
@@ -81,7 +81,7 @@ def getBlock(bitString):
         currPos += 512
 
 
-def not32(i):
+def not32(i: int) -> int:
     """
     >>> not32(34)
     4294967261
