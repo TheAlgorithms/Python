@@ -12,7 +12,7 @@ python3 harmonic_series.py
 """
 
 
-def harmonic_series(n_term: str) -> list:
+def harmonic_series(n_term: float) -> list:
     """Pure Python implementation of Harmonic Series algorithm
 
     :param n_term: The last (nth) term of Harmonic Series
@@ -41,6 +41,6 @@ def harmonic_series(n_term: str) -> list:
 
 
 if __name__ == "__main__":
-    nth_term = input("Enter the last number (nth term) of the Harmonic Series")
+    n_term = input("Enter the last number (nth term) of the Harmonic Series")
     print("Formula of Harmonic Series => 1+1/2+1/3 ..... 1/n")
-    print(harmonic_series(nth_term))
+    print(harmonic_series(n_term))

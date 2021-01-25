@@ -11,7 +11,7 @@ python3 geometric_series.py
 """
 
 
-def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> list:
+def geometric_series(nth_term: float, start_term_a: float, common_ratio_r: float) -> str:
     """Pure Python implementation of Geometric Series algorithm
     :param nth_term: The last term (nth term of Geometric Series)
     :param start_term_a : The first term of Geometric Series
