@@ -33,4 +33,4 @@ def test_kruskal_successful_result():
         [3, 4, 9],
     ]
 
-    assert sorted(expected) == sorted(result)
+    assert not sorted(expected) != sorted(result)
