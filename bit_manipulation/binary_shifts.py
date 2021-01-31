@@ -1,8 +1,12 @@
+# Information on binary shifts: https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types
+# https://www.interviewcake.com/concept/java/bit-shift
+
+
 def logical_left_shift(number: int, shift_amount: int) -> str:
     """
     Take in 2 positive integers.
-    'a' is the integer to be logically left shifted 'b' times.
-    i.e. (a << b)
+    'number' is the integer to be logically left shifted 'shift_amount' times.
+    i.e. (number << shift_amount)
     Return the shifted binary representation.
 
     >>> logical_left_shift(0, 1)
@@ -31,8 +35,8 @@ def logical_left_shift(number: int, shift_amount: int) -> str:
 def logical_right_shift(number: int, shift_amount: int) -> str:
     """
     Take in positive 2 integers.
-    'a' is the integer to be logically right shifted 'b' times.
-    i.e. (a >> b)
+    'number' is the integer to be logically right shifted 'shift_amount' times.
+    i.e. (number >>> shift_amount)
     Return the shifted binary representation.
 
     >>> logical_right_shift(0, 1)
@@ -63,7 +67,8 @@ def logical_right_shift(number: int, shift_amount: int) -> str:
 def arithmetic_right_shift(number: int, shift_amount: int) -> str:
     """
     Take in 2 integers.
-    'a' is the integer to be arithmetically right shifted 'b' times.
+    'number' is the integer to be arithmetically right shifted 'shift_amount' times.
+    i.e. (number >> shift_amount)
     Return the shifted binary representation.
 
     >>> arithmetic_right_shift(0, 1)

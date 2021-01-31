@@ -1,7 +1,10 @@
+# Information on 2's complement: https://en.wikipedia.org/wiki/Two%27s_complement
+
+
 def twos_complement(number: int) -> str:
     """
-    Take in a negative integer 'a'.
-    Return the two's complement representation of 'a'.
+    Take in a negative integer 'number'.
+    Return the two's complement representation of 'number'.
 
     >>> twos_complement(0)
     '0b0'
