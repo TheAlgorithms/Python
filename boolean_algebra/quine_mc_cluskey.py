@@ -1,5 +1,6 @@
 from typing import List
 
+
 def compare_string(string1: str, string2: str) -> str:
     """
     >>> compare_string('0010','0110')
@@ -128,7 +129,9 @@ def selection(chart: List[List[int]], prime_implicants: List[str]) -> List[str]:
                     chart[j][i] = 0
 
 
-def prime_implicant_chart(prime_implicants: List[str], binary: List[str]) -> List[List[int]]:
+def prime_implicant_chart(
+    prime_implicants: List[str], binary: List[str]
+) -> List[List[int]]:
     """
     >>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
     [[1]]
