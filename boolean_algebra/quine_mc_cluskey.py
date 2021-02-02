@@ -7,7 +7,7 @@ def compare_string(string1: str, string2: str) -> str:
     '0_10'
 
     >>> compare_string('0110','1101')
-    -1
+    'X'
     """
     l1 = list(string1)
     l2 = list(string2)
