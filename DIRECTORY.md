@@ -329,9 +329,6 @@
     * [Test Min Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_prim.py)
 
-## Greedy Method
-  * [Greedy Coin Change](https://github.com/TheAlgorithms/Python/blob/master/greedy_method/greedy_coin_change.py)
-
 ## Hashes
   * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
