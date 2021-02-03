@@ -1,18 +1,21 @@
+#!/usr/bin/env python3
+
 """
 This is pure Python implementation of binary search algorithms
 
 For doctests run following command:
-python -m doctest -v binary_search.py
-or
 python3 -m doctest -v binary_search.py
 
 For manual testing run:
-python binary_search.py
+python3 binary_search.py
 """
 import bisect
+from typing import List, Optional
 
 
-def bisect_left(sorted_collection, item, lo=0, hi=None):
+def bisect_left(
+    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+) -> int:
     """
     Locates the first element in a sorted array that is larger or equal to a given
     value.
@@ -43,7 +46,7 @@ def bisect_left(sorted_collection, item, lo=0, hi=None):
     >>> bisect_left([0, 5, 7, 10, 15], 6, 2)
     2
     """
-    if hi is None:
+    if hi < 0:
         hi = len(sorted_collection)
 
     while lo < hi:
@@ -56,7 +59,9 @@ def bisect_left(sorted_collection, item, lo=0, hi=None):
     return lo
 
 
-def bisect_right(sorted_collection, item, lo=0, hi=None):
+def bisect_right(
+    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+) -> int:
     """
     Locates the first element in a sorted array that is larger than a given value.
 
@@ -86,7 +91,7 @@ def bisect_right(sorted_collection, item, lo=0, hi=None):
     >>> bisect_right([0, 5, 7, 10, 15], 6, 2)
     2
     """
-    if hi is None:
+    if hi < 0:
         hi = len(sorted_collection)
 
     while lo < hi:
@@ -99,7 +104,9 @@ def bisect_right(sorted_collection, item, lo=0, hi=None):
     return lo
 
 
-def insort_left(sorted_collection, item, lo=0, hi=None):
+def insort_left(
+    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+) -> None:
     """
     Inserts a given value into a sorted array before other values with the same value.
 
@@ -140,7 +147,9 @@ def insort_left(sorted_collection, item, lo=0, hi=None):
     sorted_collection.insert(bisect_left(sorted_collection, item, lo, hi), item)
 
 
-def insort_right(sorted_collection, item, lo=0, hi=None):
+def insort_right(
+    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+) -> None:
     """
     Inserts a given value into a sorted array after other values with the same value.
 
@@ -181,7 +190,7 @@ def insort_right(sorted_collection, item, lo=0, hi=None):
     sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
 
-def binary_search(sorted_collection, item):
+def binary_search(sorted_collection: List[int], item: int) -> Optional[int]:
     """Pure implementation of binary search algorithm in Python
 
     Be careful collection must be ascending sorted, otherwise result will be
@@ -219,7 +228,7 @@ def binary_search(sorted_collection, item):
     return None
 
 
-def binary_search_std_lib(sorted_collection, item):
+def binary_search_std_lib(sorted_collection: List[int], item: int) -> Optional[int]:
     """Pure implementation of binary search algorithm in Python using stdlib
 
     Be careful collection must be ascending sorted, otherwise result will be
@@ -248,7 +257,9 @@ def binary_search_std_lib(sorted_collection, item):
     return None
 
 
-def binary_search_by_recursion(sorted_collection, item, left, right):
+def binary_search_by_recursion(
+    sorted_collection: List[int], item: int, left: int, right: int
+) -> Optional[int]:
 
     """Pure implementation of binary search algorithm in Python by recursion
 
@@ -286,41 +297,12 @@ def binary_search_by_recursion(sorted_collection, item, left, right):
         return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
 
 
-def __assert_sorted(collection):
-    """Check if collection is ascending sorted, if not - raises :py:class:`ValueError`
-
-    :param collection: collection
-    :return: True if collection is ascending sorted
-    :raise: :py:class:`ValueError` if collection is not ascending sorted
-
-    Examples:
-    >>> __assert_sorted([0, 1, 2, 4])
-    True
-
-    >>> __assert_sorted([10, -1, 5])
-    Traceback (most recent call last):
-    ...
-    ValueError: Collection must be ascending sorted
-    """
-    if collection != sorted(collection):
-        raise ValueError("Collection must be ascending sorted")
-    return True
-
-
 if __name__ == "__main__":
-    import sys
-
     user_input = input("Enter numbers separated by comma:\n").strip()
-    collection = [int(item) for item in user_input.split(",")]
-    try:
-        __assert_sorted(collection)
-    except ValueError:
-        sys.exit("Sequence must be ascending sorted to apply binary search")
-
-    target_input = input("Enter a single number to be found in the list:\n")
-    target = int(target_input)
+    collection = sorted(int(item) for item in user_input.split(","))
+    target = int(input("Enter a single number to be found in the list:\n"))
     result = binary_search(collection, target)
-    if result is not None:
-        print(f"{target} found at positions: {result}")
+    if result is None:
+        print(f"{target} was not found in {collection}.")
     else:
-        print("Not found")
+        print(f"{target} was found at position {result} in {collection}.")

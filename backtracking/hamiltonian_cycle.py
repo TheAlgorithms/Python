@@ -6,11 +6,11 @@
 
     Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path
 """
-from __future__ import annotations
+from typing import List
 
 
 def valid_connection(
-    graph: list[list[int]], next_ver: int, curr_ind: int, path: list[int]
+    graph: List[List[int]], next_ver: int, curr_ind: int, path: List[int]
 ) -> bool:
     """
     Checks whether it is possible to add next into path by validating 2 statements
@@ -47,7 +47,7 @@ def valid_connection(
     return not any(vertex == next_ver for vertex in path)
 
 
-def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) -> bool:
+def util_hamilton_cycle(graph: List[List[int]], path: List[int], curr_ind: int) -> bool:
     """
     Pseudo-Code
     Base Case:
@@ -108,7 +108,7 @@ def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) 
     return False
 
 
-def hamilton_cycle(graph: list[list[int]], start_index: int = 0) -> list[int]:
+def hamilton_cycle(graph: List[List[int]], start_index: int = 0) -> List[int]:
     r"""
     Wrapper function to call subroutine called util_hamilton_cycle,
     which will either return array of vertices indicating hamiltonian cycle

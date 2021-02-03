@@ -23,7 +23,7 @@ class InstagramUser:
     """
     Class Instagram crawl instagram user information
 
-    Usage: (doctest failing on Travis CI)
+    Usage: (doctest failing on GitHub Actions)
     # >>> instagram_user = InstagramUser("github")
     # >>> instagram_user.is_verified
     True
@@ -102,10 +102,10 @@ def test_instagram_user(username: str = "github") -> None:
     A self running doctest
     >>> test_instagram_user()
     """
-    from os import getenv
+    import os
 
-    if getenv("CONTINUOUS_INTEGRATION"):
-        return  # test failing on Travis CI
+    if os.environ.get("CI"):
+        return None  # test failing on GitHub Actions
     instagram_user = InstagramUser(username)
     assert instagram_user.user_data
     assert isinstance(instagram_user.user_data, dict)

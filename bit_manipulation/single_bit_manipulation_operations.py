@@ -3,7 +3,7 @@
 """Provide the functionality to manipulate a single bit."""
 
 
-def set_bit(number: int, position: int):
+def set_bit(number: int, position: int) -> int:
     """
     Set the bit at position to 1.
 
@@ -21,7 +21,7 @@ def set_bit(number: int, position: int):
     return number | (1 << position)
 
 
-def clear_bit(number: int, position: int):
+def clear_bit(number: int, position: int) -> int:
     """
     Set the bit at position to 0.
 
@@ -37,7 +37,7 @@ def clear_bit(number: int, position: int):
     return number & ~(1 << position)
 
 
-def flip_bit(number: int, position: int):
+def flip_bit(number: int, position: int) -> int:
     """
     Flip the bit at position.
 
