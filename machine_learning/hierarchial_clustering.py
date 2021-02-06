@@ -1,3 +1,4 @@
+#!/usr/local/bin/python3
 """
 Requirements:
   - sklearn
@@ -12,12 +13,13 @@ in its own cluster, and pairs of clusters are merged as one moves up the hierarc
 """
 
 import warnings
+
 import numpy as np
-from sklearn.metrics import jaccard_score
-from sklearn.metrics.cluster import adjusted_rand_score
-from sklearn.cluster import AgglomerativeClustering
-from sklearn.metrics import homogeneity_score
 from sklearn import datasets as ds
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.metrics import homogeneity_score, jaccard_score
+from sklearn.metrics.cluster import adjusted_rand_score
+
 warnings.filterwarnings("ignore")
 
 
