@@ -14,6 +14,7 @@ import requests.exceptions
 from bs4 import BeautifulSoup
 
 """
+Info -
 Function to get emails from the url,
 It first find the email and links on first page , then go to the
 links find and find some more links
@@ -21,11 +22,13 @@ and emails. This process goes on , depending on the loops
 """
 
 
-def getMails(num: int) -> None:
+def getmails(num: int) -> None:
+    """
+    This functions returns nothing.
+    It just adds the emails to set. Which are later printed.
+    """
     count = 0
-    """
-    Keep a check on range
-    """
+    # Keep a check on range
     try:
         while urls:
             count += 1
@@ -91,7 +94,7 @@ if __name__ == "__main__":
     # Num = How much loops you want )
 
     num = 10
-    getMails(num)
+    getmails(num)
 
     """
     Finally prints the mails
