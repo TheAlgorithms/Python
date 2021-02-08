@@ -1,7 +1,7 @@
 import random
 import sys
 
-from . import cryptomath_module as cryptomath
+import cryptomath_module as cryptomath
 
 SYMBOLS = (
     r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
