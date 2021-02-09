@@ -56,6 +56,7 @@ class Solution:
     """this class for solve abot roman and integer
     >>> from roman_and_integer import Solution
     MMXXI
+    """
     mapping = (
         ("M", 1000),
         ("CM", 900),
