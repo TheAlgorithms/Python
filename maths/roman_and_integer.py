@@ -73,30 +73,30 @@ class Solution:
         ("I", 1)
     )
 
-    def int_to_roman(self, num: int) -> str:
+    def int_to_roman(self, integer_number: int) -> str:
         """ this function for integer to roman
             input:int output:str
             ----------------------------------
             >>> from roman_and_integer import Solution
             >>> s = Solution
-            >>> s.intToRoman(2021)
+            >>> s.int_to_roman(2021)
             MMXXI
         """
 
         result = ""
         for (numeral, number) in self.mapping:
-            while num >= number:
+            while integer_number >= number:
                 result += numeral
                 num -= number
         return result
 
-    def roman_to_int(self, s: str) -> int:
+    def roman_to_int(self, roman_number: str) -> int:
         """ this fucntion for roamn to integer
             input:str output:int
             ----------------------------------
             >>> from roman_and_integer import Solution
             >>> s = Solution()
-            >>> s.romanToInt("MMXXI")
+            >>> s.roman_to_int("MMXXI")
             2021
         """
 
@@ -104,7 +104,7 @@ class Solution:
         reslut = 0
         index = 0
         for (numeral, number) in self.mapping:
-            while s[index:index + len(numeral)] == numeral:
+            while roman_number[index:index + len(numeral)] == numeral:
                 reslut += number
                 index += len(numeral)
         return reslut
