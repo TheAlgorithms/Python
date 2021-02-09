@@ -74,7 +74,8 @@ class Solution:
     )
 
     def int_to_roman(self, integer_number: int) -> str:
-        """ this function for integer to roman
+        """ 
+            this function for integer to roman
             input:int output:str
             ----------------------------------
             >>> from roman_and_integer import Solution
@@ -91,7 +92,8 @@ class Solution:
         return result
 
     def roman_to_int(self, roman_number: str) -> int:
-        """ this fucntion for roamn to integer
+        """ 
+            this fucntion for roamn to integer
             input:str output:int
             ----------------------------------
             >>> from roman_and_integer import Solution
