@@ -9,7 +9,7 @@ from sklearn.metrics import classification_report
 import numpy as np
 
 
-def model():
+def main():
     # loading the dataset from sklearn
     df = load_breast_cancer()
     # selection of X and y for train the model
@@ -17,7 +17,7 @@ def model():
     X, y = df.data, df.target
     print("the number of classes:", np.unique(y))
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=1
+        X, y, test_size=0.2, random_state=0
     )
     classifier = lgb.LGBMClassifier()
     classifier.fit(X_train, y_train)
@@ -30,4 +30,4 @@ def model():
 
 
 if __name__ == "__main__":
-    model()
+    main()
