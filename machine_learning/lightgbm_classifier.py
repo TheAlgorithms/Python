@@ -17,7 +17,7 @@ def main():
     X, y = df.data, df.target
     print("the number of classes:", np.unique(y))
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=0
+        X, y, test_size=0.2, random_state=2
     )
     classifier = lgb.LGBMClassifier()
     classifier.fit(X_train, y_train)
