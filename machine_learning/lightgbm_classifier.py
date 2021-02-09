@@ -15,7 +15,7 @@ def model():
     # selection of X and y for train the model
     print(df.keys())
     X, y = df.data, df.target
-    print("The number of classes:", np.unique(y))
+    print("the number of classes:", np.unique(y))
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=1
     )
@@ -26,7 +26,7 @@ def model():
     print("lightGBM model accuracy socore is:", accuracy)
     # classification report
     clr = classification_report(y_test, y_pred)
-    print("Classification report is:", clr)
+    print("classification report is:", clr)
 
 
 if __name__ == "__main__":
