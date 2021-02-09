@@ -1,5 +1,5 @@
 """Implementation of lightgbm using the breast cancer dataset which is very
-popular for classification problem to predict breast cancer.
+popular dataset for classification problem.
  """
 from sklearn.datasets import load_breast_cancer
 import lightgbm as lgb
