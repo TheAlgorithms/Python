@@ -1,3 +1,6 @@
+"""Implementation of lightgbm using the breast cancer dataset which is very
+popular for classification problem to predict breast cancer.
+ """
 from sklearn.datasets import load_breast_cancer
 import lightgbm as lgb
 from sklearn.metrics import accuracy_score
@@ -5,12 +8,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import numpy as np
 
-"""
-To use lightGBMClassifier to predict the breast cancer dataset
-"""
-
 
 def model():
+    # loading the dataset from sklearn
     df = load_breast_cancer()
     # selection of X and y for train the model
     print(df.keys())
