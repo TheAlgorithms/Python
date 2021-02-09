@@ -87,7 +87,7 @@ class Solution:
         for (numeral, number) in self.mapping:
             while integer_number >= number:
                 result += numeral
-                num -= number
+                integer_number -= number
         return result
 
     def roman_to_int(self, roman_number: str) -> int:
