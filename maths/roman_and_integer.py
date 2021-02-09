@@ -100,7 +100,7 @@ class Solution:
             2021
         """
 
-        s = s.upper()
+        roman_number = roman_number.upper()
         reslut = 0
         index = 0
         for (numeral, number) in self.mapping:
