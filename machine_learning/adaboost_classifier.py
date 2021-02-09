@@ -5,7 +5,7 @@ from sklearn.metrics import plot_confusion_matrix
 from matplotlib import pyplot as plt
 
 
-"""Adaboost classifier example"""
+"""Adaboost classifier example using the breast_cancer dataset from sklearn"""
 
 
 def adaboost():
@@ -18,7 +18,6 @@ def adaboost():
                              n_estimators=300, learning_rate=1, random_state=0)
     abc.fit(X_train, y_train)
     y_pred = abc.predict(X_test)
-    print(y_pred[:20])
     # Display Confusion Matrix of Classifier
     plot_confusion_matrix(
         abc,
