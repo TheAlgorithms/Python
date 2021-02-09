@@ -53,6 +53,9 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4
 
 """
 class Solution:
+    """this class for solve abot roman and integer
+    >>> from roman_and_integer import Solution
+    MMXXI
     mapping = (
         ("M", 1000),
         ("CM", 900),
@@ -69,7 +72,7 @@ class Solution:
         ("I", 1)
     )
 
-    def intToRoman(self, num: int) -> str:
+    def int_to_roman(self, num: int) -> str:
         """ this function for integer to roman
             input:int output:str
             ----------------------------------
@@ -86,7 +89,7 @@ class Solution:
                 num -= number
         return result
 
-    def romanToInt(self, s: str) -> int:
+    def roman_to_int(self, s: str) -> int:
         """ this fucntion for roamn to integer
             input:str output:int
             ----------------------------------
@@ -107,4 +110,4 @@ class Solution:
 
 
 s = Solution()
-print(f"{s.romanToInt('MMXXI')} -> {s.intToRoman(2021)}")
+print(f"{s.roman_to_int('MMXXI')} -> {s.int_to_roman(2021)}")
