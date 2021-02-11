@@ -39,6 +39,7 @@ class Parser(HTMLParser):
 def get_domain_name(url: str) -> str:
     """
     This function get the main domain name
+
     >>> get_domain_name("https://a.b.c.d/e/f?g=h,i=j#k")
     'c.d'
     >>> get_domain_name("Not a URL!")
