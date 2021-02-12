@@ -22,9 +22,9 @@ and emails. This process goes on , depending on the loops
 """
 
 
-def getmails(num: int) -> None:
+def getmails(num: int) -> set:
     """
-    This functions returns nothing.
+    This functions returns set.
     It just adds the emails to set. Which are later printed.
     """
     count = 0
@@ -41,7 +41,6 @@ def getmails(num: int) -> None:
             # Add to the set
 
             parts = urllib.parse.urlsplit(url)
-            print(parts)
             base_url = f"{parts.scheme}://{parts.netloc}"
             # Forms a base url
 
@@ -88,6 +87,8 @@ def getmails(num: int) -> None:
             print(mail)
         sys.exit(1)
 
+    return emails
+
 
 if __name__ == "__main__":
     user_url = "https://google.com"  # Example Url
@@ -103,11 +104,11 @@ if __name__ == "__main__":
     # Num = How much loops you want )
 
     num = 10
-    getmails(num)
+    final_emails = getmails(num)
 
     """
     Finally prints the mails
     You can also return the emails ( optional)
     """
-    for mail in emails:
+    for mail in final_emails:
         print(mail)
