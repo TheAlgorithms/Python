@@ -8,7 +8,7 @@ import urllib.parse
 from collections import deque
 
 import requests
-import requests.exceptions
+from requests.exceptions import ConnectionError, MissingSchema
 
 # Imports the needed modules
 from bs4 import BeautifulSoup
