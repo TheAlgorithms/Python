@@ -8,10 +8,10 @@ import urllib.parse
 from collections import deque
 
 import requests
-from requests.exceptions import ConnectionError, MissingSchema
 
 # Imports the needed modules
 from bs4 import BeautifulSoup
+from requests.exceptions import ConnectionError, MissingSchema
 
 """
 Info -
@@ -22,7 +22,7 @@ and emails. This process goes on , depending on the loops
 """
 
 
-def get_mails(url: str, max_emails: int = 5000) -> list:
+def getmails(num: int) -> None:
     """
     This functions returns nothing.
     It just adds the emails to set. Which are later printed.
@@ -39,7 +39,8 @@ def get_mails(url: str, max_emails: int = 5000) -> list:
             # Add to the set
 
             parts = urllib.parse.urlsplit(url)
-            base_url = "{0.scheme}://{0.netloc}".format(parts)
+            print(parts)
+            base_url = f"{parts.scheme}://{parts.netloc}"
             # Forms a base url
 
             path = url[: url.rfind("/") + 1] if "/" in parts.path else url
@@ -47,14 +48,13 @@ def get_mails(url: str, max_emails: int = 5000) -> list:
             try:
                 response = requests.get(url)
             except (
-                requests.exceptions.MissingSchema,
-                requests.exceptions.ConnectionError,
+                MissingSchema,
+                ConnectionError,
             ):
                 continue
 
             new_emails = set(
-                email_pattern = r"[a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+"
-                new_emails = set(re.findall(email_pattern, response.text, re.I))
+                re.findall(
                     r"[a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+",
                     response.text,
                     re.I,
@@ -77,7 +77,13 @@ def get_mails(url: str, max_emails: int = 5000) -> list:
                     urls.append(link)
 
     except KeyboardInterrupt:
-        print("[-] Processing interrupted.")
+        print("[-] Processing interrupted")
+        """
+        Print the emails which are in the set, in case user wants to
+        stop the script and get partial emails
+        """
+        for mail in emails:
+            print(mail)
         sys.exit(1)
 
 
@@ -101,5 +107,5 @@ if __name__ == "__main__":
     Finally prints the mails
     You can also return the emails ( optional)
     """
-    for email in get_emails():
+    for mail in emails:
         print(mail)
