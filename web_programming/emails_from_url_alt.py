@@ -22,7 +22,7 @@ and emails. This process goes on , depending on the loops
 """
 
 
-def getmails(num: int) -> None:
+def get_mails(url: str, max_emails: int = 5000) -> list:
     """
     This functions returns nothing.
     It just adds the emails to set. Which are later printed.
