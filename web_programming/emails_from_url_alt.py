@@ -53,7 +53,8 @@ def getmails(num: int) -> None:
                 continue
 
             new_emails = set(
-                re.findall(
+                email_pattern = r"[a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+"
+                new_emails = set(re.findall(email_pattern, response.text, re.I))
                     r"[a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+",
                     response.text,
                     re.I,
