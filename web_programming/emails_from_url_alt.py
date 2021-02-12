@@ -67,7 +67,7 @@ def getmails(num: int) -> None:
             # Find links
 
             for anchor in soup.find_all("a"):
-                link = anchor.attrs["href"] if "href" in anchor.attrs else ""
+                link = anchor.attrs.get("href", "")
                 if link.startswith("/"):
                     link = base_url + link
                 elif not link.startswith("http"):
