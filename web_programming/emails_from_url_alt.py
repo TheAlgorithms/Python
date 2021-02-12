@@ -24,8 +24,8 @@ and emails. This process goes on , depending on the loops
 
 def getmails(num: int) -> None:
     """
-    This functions returns nothing.
-    It just adds the emails to set. Which are later printed.
+    >>> get_mails()
+    ''
     """
     count = 0
     # Keep a check on range
@@ -34,6 +34,8 @@ def getmails(num: int) -> None:
             count += 1
             if count == num:
                 break
+
+            # Get new url to scrape and remove the scraped url from urls
             url = urls.popleft()
             scraped_urls.add(url)
             # Add to the set
