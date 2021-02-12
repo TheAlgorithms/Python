@@ -76,7 +76,7 @@ def getmails(num: int) -> None:
                     urls.append(link)
 
     except KeyboardInterrupt:
-        print("[-] Closing")
+        print("[-] Processing interrupted.")
         sys.exit(1)
 
 
