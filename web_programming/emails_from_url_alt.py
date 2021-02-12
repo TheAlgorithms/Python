@@ -101,5 +101,5 @@ if __name__ == "__main__":
     Finally prints the mails
     You can also return the emails ( optional)
     """
-    for mail in emails:
+    for email in get_emails():
         print(mail)
