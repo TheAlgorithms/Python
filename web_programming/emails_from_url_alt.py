@@ -24,8 +24,8 @@ and emails. This process goes on , depending on the loops
 
 def getmails(num: int) -> None:
     """
-    >>> get_mails()
-    ''
+    This functions returns nothing.
+    It just adds the emails to set. Which are later printed.
     """
     count = 0
     # Keep a check on range
