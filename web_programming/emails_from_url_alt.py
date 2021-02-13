@@ -22,9 +22,9 @@ and emails. This process goes on , depending on the loops
 """
 
 
-def getmails(num: int) -> set:
+def getmails(num: int) -> list:
     """
-    This functions returns set.
+    This functions returns list.
     It just adds the emails to set. Which are later printed.
     """
     count = 0
@@ -87,7 +87,7 @@ def getmails(num: int) -> set:
             print(mail)
         sys.exit(1)
 
-    return emails
+    return list(sorted(emails))
 
 
 if __name__ == "__main__":
