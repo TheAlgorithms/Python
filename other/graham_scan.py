@@ -56,14 +56,14 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
     # remove the lowest and the most left point from points for preparing for sort
     points.pop(minidx)
 
-    def angle_comparer(p: list[int, int]) -> float:
+    def angle_comparer(point: list[int, int]) -> float:
         # sort the points accorgind to the angle from the lowest and the most left point
-        x = p[0]
-        y = p[1]
+        x = point[0]
+        y = point[1]
         angle = degrees(atan2(y - miny, x - minx))
         return angle
 
-    sorted_points = sorted(points, key=lambda p: angle_comparer(p))
+    sorted_points = sorted(points, key=lambda point: angle_comparer(point))
     # This insert actually costs complexity,
     # and you should insteadly add (minx, miny) into stack later.
     # I'm using insert just for easy understanding.
