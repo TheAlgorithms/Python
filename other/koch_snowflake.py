@@ -26,13 +26,13 @@ import numpy
 
 
 # initial triangle of Koch snowflake
-VECTOR1 = numpy.array([0, 0])
-VECTOR2 = numpy.array([0.5, 0.8660254])
-VECTOR3 = numpy.array([1, 0])
-INITIAL_VECTORS = [VECTOR1, VECTOR2, VECTOR3, VECTOR1]
+VECTOR_1 = numpy.array([0, 0])
+VECTOR_2 = numpy.array([0.5, 0.8660254])
+VECTOR_3 = numpy.array([1, 0])
+INITIAL_VECTORS = [VECTOR_1, VECTOR_2, VECTOR_3, VECTOR_1]
 
 # uncomment for simple Koch curve instead of Koch snowflake
-# INITIAL_VECTORS = [VECTOR1, VECTOR3]
+# INITIAL_VECTORS = [VECTOR_1, VECTOR_3]
 
 
 def iterate(initial_vectors: list[numpy.ndarray], steps: int) -> list[numpy.ndarray]:
