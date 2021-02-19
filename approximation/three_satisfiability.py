@@ -11,7 +11,7 @@ class Literal:
     Represent a literal in the CNF formula.
     """
 
-    def __init__(self, polarity: bool, name: str):
+    def __init__(self, polarity: bool, name: str) -> None:
         self.polarity = polarity
         self.name = name
 
