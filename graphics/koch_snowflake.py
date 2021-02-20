@@ -15,14 +15,15 @@ Description
     Processing language, see  https://natureofcode.com/book/chapter-8-fractals/
     #84-the-koch-curve-and-the-arraylist-technique )
 
-Requirements(pip)
-    - numpy
+Requirements (pip):
     - matplotlib
+    - numpy
 """
 
 
 from __future__ import annotations
 
+import matplotlib.pyplot as plt  # type: ignore
 import numpy
 
 # initial triangle of Koch snowflake
@@ -94,8 +95,6 @@ def plot(vectors: list[numpy.ndarray]) -> None:
     Utility function to plot the vectors using matplotlib.pyplot
     No doctest was implemented since this function does not have a return value
     """
-    import matplotlib.pyplot as plt  # type: ignore
-
     # avoid stretched display of graph
     axes = plt.gca()
     axes.set_aspect("equal")
