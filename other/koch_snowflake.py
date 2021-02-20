@@ -25,7 +25,6 @@ from __future__ import annotations
 
 import numpy
 
-
 # initial triangle of Koch snowflake
 VECTOR_1 = numpy.array([0, 0])
 VECTOR_2 = numpy.array([0.5, 0.8660254])
@@ -96,8 +95,7 @@ def plot(vectors: list[numpy.ndarray]) -> None:
     Utility function to plot the vectors using matplotlib.pyplot
     No doctest was implemented since this function does not have a return value
     """
-    import matplotlib.pyplot.
-    as plt  # type: ignore
+    import matplotlib.pyplot as plt  # type: ignore
 
     # avoid stretched display of graph
     axes = plt.gca()
