@@ -45,7 +45,9 @@ def _is_three_cnf_formula(cnf_formula: List[List[Literal]]) -> bool:
     return True
 
 
-def _count_clause_satisfiability(three_cnf_formula: List[List[Literal]], solution: Dict[str, bool]) -> int:
+def _count_clause_satisfiability(
+        three_cnf_formula: List[List[Literal]],
+        solution: Dict[str, bool]) -> int:
     """
     This function count how many clauses are satisfies from the given solution.
     :param three_cnf_formula: 3-CNF formula.
@@ -87,7 +89,9 @@ def _count_clause_satisfiability(three_cnf_formula: List[List[Literal]], solutio
     return num_of_satisfy_clauses
 
 
-def three_satisfiability_2_approximation(three_cnf_formula: List[List[Literal]]) -> Dict[str, bool]:
+def three_satisfiability_2_approximation(
+        three_cnf_formula: List[List[Literal]],
+) -> Dict[str, bool]:
     """
     This function receive 3-CNF formula and return a 2-approximation solution:
     Let OPT be the number of satisfies clauses at the optimal solution.
@@ -100,8 +104,8 @@ def three_satisfiability_2_approximation(three_cnf_formula: List[List[Literal]])
 
     Examples:
     1) formula1 = (x1 ∨ x2 ∨ x3) ∧ (x4 ∨ ~x5 ∨ ~x1) ∧ (x1 ∨ ~x2 ∨ ~x5)
-    The optimal solution for this formula is satisfied all (3) clauses, so our solution should
-    satisfied at least 1.5 clauses:
+    The optimal solution for this formula is satisfied all (3) clauses, so our solution
+    should satisfied at least 1.5 clauses:
     >>> x1 = Literal(True, "x1")
     >>> x2 = Literal(True, "x2")
     >>> x3 = Literal(True, "x3")
@@ -129,7 +133,9 @@ def three_satisfiability_2_approximation(three_cnf_formula: List[List[Literal]])
     >>> _count_clause_satisfiability(formula1, sol_formula1) >= 1
     True
     """
-    assert _is_three_cnf_formula(three_cnf_formula), "Each formula must have exactly 3 literals."
+    assert _is_three_cnf_formula(
+        three_cnf_formula
+    ), "Each formula must have exactly 3 literals."
 
     all_literals = []
     for clause in three_cnf_formula:
@@ -139,12 +145,15 @@ def three_satisfiability_2_approximation(three_cnf_formula: List[List[Literal]])
     false_sol = {literal.name: False for literal in all_literals}
 
     num_of_satisfy_true_sol = _count_clause_satisfiability(three_cnf_formula, true_sol)
-    num_of_satisfy_false_sol = _count_clause_satisfiability(three_cnf_formula, false_sol)
+    num_of_satisfy_false_sol = _count_clause_satisfiability(
+        three_cnf_formula, false_sol
+    )
 
-    return true_sol if num_of_satisfy_true_sol >= num_of_satisfy_false_sol else false_sol
+    return true_sol if num_of_satisfy_true_sol >= num_of_satisfy_false_sol else \
+        false_sol
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
