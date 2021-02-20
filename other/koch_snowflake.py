@@ -22,6 +22,7 @@ Requirements(pip)
 
 
 from __future__ import annotations
+
 import numpy
 
 
@@ -91,7 +92,12 @@ def rotate(vector: numpy.ndarray, angle_in_degrees: float) -> numpy.ndarray:
 
 
 def plot(vectors: list[numpy.ndarray]) -> None:
-    import matplotlib.pyplot as plt  # type: ignore
+    """
+    Utility function to plot the vectors using matplotlib.pyplot
+    No doctest was implemented since this function does not have a return value
+    """
+    import matplotlib.pyplot.
+    as plt  # type: ignore
 
     # avoid stretched display of graph
     axes = plt.gca()
