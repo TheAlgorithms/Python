@@ -61,8 +61,7 @@ def iteration_step(vectors: list[numpy.ndarray]) -> list[numpy.ndarray]:
 0.28867513]), array([0.66666667, 0.        ]), array([1, 0])]
     """
     new_vectors = []
-    for i in range(len(vectors) - 1):
-        start_vector = vectors[i]
+    for i, start_vector in enumerate(vectors[:-1]):
         end_vector = vectors[i + 1]
         new_vectors.append(start_vector)
         difference_vector = end_vector - start_vector
@@ -102,14 +101,9 @@ def plot(vectors: list[numpy.ndarray]) -> None:
     axes.set_aspect("equal")
 
     # matplotlib.pyplot.plot takes a list of all x-coordinates and a list of all
-    # y-coordinates as inputs, which need to be constructed from our vector-list
-    x_coordinates = []
-    for vector in vectors:
-        x_coordinates.append(vector[0])
-    y_coordinates = []
-    for vector in vectors:
-        y_coordinates.append(vector[1])
-
+    # y-coordinates as inputs, which are constructed from the vector-list using
+    # zip()
+    x_coordinates, y_coordinates = zip(*vectors)
     plt.plot(x_coordinates, y_coordinates)
     plt.show()
 
