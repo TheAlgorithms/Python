@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from typing import List
 
-from PIL import Image
+from PIL import Image  # type: ignore
 
 # Define glider example
 GLIDER = [
