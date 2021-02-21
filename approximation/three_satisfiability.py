@@ -1,9 +1,9 @@
 """
-Solve the 3-SAT algorithm with 2-approximation solution.
+Solve the 3-SAT problem with 2-approximation solution.
 
 More information: https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
 """
-from typing import List, Dict
+from typing import Dict, List
 
 
 class Literal:
@@ -46,8 +46,8 @@ def _is_three_cnf_formula(cnf_formula: List[List[Literal]]) -> bool:
 
 
 def _count_clause_satisfiability(
-        three_cnf_formula: List[List[Literal]],
-        solution: Dict[str, bool]) -> int:
+    three_cnf_formula: List[List[Literal]], solution: Dict[str, bool]
+) -> int:
     """
     This function count how many clauses are satisfies from the given solution.
     :param three_cnf_formula: 3-CNF formula.
@@ -90,7 +90,7 @@ def _count_clause_satisfiability(
 
 
 def three_satisfiability_2_approximation(
-        three_cnf_formula: List[List[Literal]],
+    three_cnf_formula: List[List[Literal]],
 ) -> Dict[str, bool]:
     """
     This function receive 3-CNF formula and return a 2-approximation solution:
@@ -149,8 +149,9 @@ def three_satisfiability_2_approximation(
         three_cnf_formula, false_sol
     )
 
-    return true_sol if num_of_satisfy_true_sol >= num_of_satisfy_false_sol else \
-        false_sol
+    return (
+        true_sol if num_of_satisfy_true_sol >= num_of_satisfy_false_sol else false_sol
+    )
 
 
 if __name__ == "__main__":
