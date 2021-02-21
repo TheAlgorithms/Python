@@ -6,7 +6,7 @@ https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
 
 from __future__ import annotations
 
-from PIL import Image
+from PIL import Image  # type: ignore
 
 # Define the first generation of cells
 # fmt: off
