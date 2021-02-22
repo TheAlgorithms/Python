@@ -1,3 +1,12 @@
+"""
+Number Guessing algorithm
+
+This algorithm guesses a number between the maximum and minimum parameters by asking yes/no questions in the most efficient way.
+It is a mathematical solution which changes the smallest and largest possible values according to answers until there is only one
+possible value. 
+
+By Viridescence
+"""
 
 # Only works with whole numbers
 
@@ -16,7 +25,7 @@ def guessnumber(maximum,minimum):
            elif userinput == "n":
                 print("Your number is... ",biggestnumber,"!")
                 return biggestnumber
-        #This statement handles narrowing down the selection by constantly calculating the middle
+        #This statement handles narrowing down the selection by constantly calculating the middle of possible answers.
         elif not ((biggestnumber - smallestnumber <= 1 and biggestnumber - smallestnumber > 0) or (smallestnumber - biggestnumber <= 1 and smallestnumber - biggestnumber > 0)):
             print("Is your number larger than or equal to ",(smallestnumber+biggestnumber)/2,"?")
             userinput = input("")
