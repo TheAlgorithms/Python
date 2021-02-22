@@ -27,6 +27,7 @@ If k = O(n), time complexity is O(n)
 
 Source: https://en.wikipedia.org/wiki/Bucket_sort
 """
+from typing import List
 
 
 def bucket_sort(my_list: list) -> list:
@@ -51,7 +52,7 @@ def bucket_sort(my_list: list) -> list:
         return []
     min_value, max_value = min(my_list), max(my_list)
     bucket_count = int(max_value - min_value) + 1
-    buckets = [[] for _ in range(bucket_count)]
+    buckets: List[list] = [[] for _ in range(bucket_count)]
 
     for i in range(len(my_list)):
         buckets[(int(my_list[i] - min_value) // bucket_count)].append(my_list[i])
