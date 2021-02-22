@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-from number_theory.prime_numbers import next_prime
+from .number_theory.prime_numbers import next_prime
 
 
 class HashTable:
     """
-        Basic Hash Table example with open addressing and linear probing
+    Basic Hash Table example with open addressing and linear probing
     """
 
     def __init__(self, size_table, charge_factor=None, lim_charge=None):

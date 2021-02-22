@@ -1,21 +1,23 @@
-# Modular Division :
-# An efficient algorithm for dividing b by a modulo n.
-
-# GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
-
-# Given three integers a, b, and n, such that gcd(a,n)=1 and n>1, the algorithm should
-# return an integer x such that 0≤x≤n−1, and  b/a=x(modn) (that is, b=ax(modn)).
-
-# Theorem:
-# a has a multiplicative inverse modulo n iff gcd(a,n) = 1
+from typing import Tuple
 
 
-# This find x = b*a^(-1) mod n
-# Uses ExtendedEuclid to find the inverse of a
-
-
-def modular_division(a, b, n):
+def modular_division(a: int, b: int, n: int) -> int:
     """
+    Modular Division :
+    An efficient algorithm for dividing b by a modulo n.
+
+    GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
+
+    Given three integers a, b, and n, such that gcd(a,n)=1 and n>1, the algorithm should
+    return an integer x such that 0≤x≤n−1, and  b/a=x(modn) (that is, b=ax(modn)).
+
+    Theorem:
+    a has a multiplicative inverse modulo n iff gcd(a,n) = 1
+
+
+    This find x = b*a^(-1) mod n
+    Uses ExtendedEuclid to find the inverse of a
+
     >>> modular_division(4,8,5)
     2
 
@@ -32,9 +34,10 @@ def modular_division(a, b, n):
     return x
 
 
-# This function find the inverses of a i.e., a^(-1)
-def invert_modulo(a, n):
+def invert_modulo(a: int, n: int) -> int:
     """
+    This function find the inverses of a i.e., a^(-1)
+
     >>> invert_modulo(2, 5)
     3
 
@@ -50,9 +53,11 @@ def invert_modulo(a, n):
 
 # ------------------ Finding Modular division using invert_modulo -------------------
 
-# This function used the above inversion of a to find x = (b*a^(-1))mod n
-def modular_division2(a, b, n):
+
+def modular_division2(a: int, b: int, n: int) -> int:
     """
+    This function used the above inversion of a to find x = (b*a^(-1))mod n
+
     >>> modular_division2(4,8,5)
     2
 
@@ -68,19 +73,17 @@ def modular_division2(a, b, n):
     return x
 
 
-# Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers x
-# and y, then d = gcd(a,b)
-
-
-def extended_gcd(a, b):
+def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
     """
+    Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers x
+    and y, then d = gcd(a,b)
     >>> extended_gcd(10, 6)
     (2, -1, 2)
 
     >>> extended_gcd(7, 5)
     (1, -2, 3)
 
-   ** extended_gcd function is used when d = gcd(a,b) is required in output
+    ** extended_gcd function is used when d = gcd(a,b) is required in output
 
     """
     assert a >= 0 and b >= 0
@@ -98,9 +101,9 @@ def extended_gcd(a, b):
     return (d, x, y)
 
 
-# Extended Euclid
-def extended_euclid(a, b):
+def extended_euclid(a: int, b: int) -> Tuple[int, int]:
     """
+    Extended Euclid
     >>> extended_euclid(10, 6)
     (-1, 2)
 
@@ -115,12 +118,11 @@ def extended_euclid(a, b):
     return (y, x - k * y)
 
 
-# Euclid's Lemma :  d divides a and b, if and only if d divides a-b and b
-# Euclid's Algorithm
-
-
-def greatest_common_divisor(a, b):
+def greatest_common_divisor(a: int, b: int) -> int:
     """
+    Euclid's Lemma :  d divides a and b, if and only if d divides a-b and b
+    Euclid's Algorithm
+
     >>> greatest_common_divisor(7,5)
     1
 

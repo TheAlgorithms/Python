@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 from collections import Counter
 from random import random
-from typing import Dict, List, Tuple
 
 
 class MarkovChainGraphUndirectedUnweighted:
@@ -23,7 +24,7 @@ class MarkovChainGraphUndirectedUnweighted:
             self.add_node(node2)
         self.connections[node1][node2] = probability
 
-    def get_nodes(self) -> List[str]:
+    def get_nodes(self) -> list[str]:
         return list(self.connections)
 
     def transition(self, node: str) -> str:
@@ -37,8 +38,8 @@ class MarkovChainGraphUndirectedUnweighted:
 
 
 def get_transitions(
-    start: str, transitions: List[Tuple[str, str, float]], steps: int
-) -> Dict[str, int]:
+    start: str, transitions: list[tuple[str, str, float]], steps: int
+) -> dict[str, int]:
     """
     Running Markov Chain algorithm and calculating the number of times each node is
     visited

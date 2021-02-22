@@ -1,4 +1,4 @@
-# Min head data structure
+# Min heap data structure
 # with decrease key functionality - in O(log(n)) time
 
 

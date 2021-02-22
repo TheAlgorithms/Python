@@ -1,9 +1,10 @@
 import os
 import random
 import sys
+from typing import Tuple
 
-import cryptomath_module as cryptoMath
-import rabin_miller as rabinMiller
+from . import cryptomath_module as cryptoMath
+from . import rabin_miller as rabinMiller
 
 
 def main():
@@ -12,7 +13,7 @@ def main():
     print("Key files generation successful.")
 
 
-def generateKey(keySize):
+def generateKey(keySize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     print("Generating prime p...")
     p = rabinMiller.generateLargePrime(keySize)
     print("Generating prime q...")
@@ -33,7 +34,7 @@ def generateKey(keySize):
     return (publicKey, privateKey)
 
 
-def makeKeyFiles(name, keySize):
+def makeKeyFiles(name: int, keySize: int) -> None:
     if os.path.exists("%s_pubkey.txt" % (name)) or os.path.exists(
         "%s_privkey.txt" % (name)
     ):

@@ -99,7 +99,7 @@ class Graph:
             g.add_edge(*edge)
         return g
 
-    class UnionFind(object):
+    class UnionFind:
         """
         Disjoint set Union and Find for Boruvka's algorithm
         """
@@ -146,6 +146,7 @@ class Graph:
                 self.parent[root2] = root1
                 return root1
 
+    @staticmethod
     def boruvka_mst(graph):
         """
         Implementation of Boruvka's algorithm

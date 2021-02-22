@@ -9,27 +9,27 @@ After through ReLU, the element of the vector always 0 or real number.
 Script inspired from its corresponding Wikipedia article
 https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 """
-from typing import List
+from __future__ import annotations
 
 import numpy as np
 
 
-def relu(vector: List[float]):
+def relu(vector: list[float]):
     """
-        Implements the relu function
+    Implements the relu function
 
-        Parameters:
-            vector (np.array,list,tuple): A  numpy array of shape (1,n)
-            consisting of real values or a similar list,tuple
+    Parameters:
+        vector (np.array,list,tuple): A  numpy array of shape (1,n)
+        consisting of real values or a similar list,tuple
 
 
-        Returns:
-            relu_vec (np.array): The input numpy array, after applying
-            relu.
+    Returns:
+        relu_vec (np.array): The input numpy array, after applying
+        relu.
 
-        >>> vec = np.array([-1, 0, 5])
-        >>> relu(vec)
-        array([0, 0, 5])
+    >>> vec = np.array([-1, 0, 5])
+    >>> relu(vec)
+    array([0, 0, 5])
     """
 
     # compare two arrays and then return element-wise maxima.

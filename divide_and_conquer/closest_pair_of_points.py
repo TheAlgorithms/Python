@@ -82,7 +82,7 @@ def dis_between_closest_in_strip(points, points_counts, min_dis=float("inf")):
 
 
 def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_counts):
-    """ divide and conquer approach
+    """divide and conquer approach
 
     Parameters :
     points, points_count (list(tuple(int, int)), int)

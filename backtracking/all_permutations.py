@@ -5,18 +5,24 @@
         Time complexity: O(n! * n),
         where n denotes the length of the given sequence.
 """
+from typing import List, Union
 
 
-def generate_all_permutations(sequence):
+def generate_all_permutations(sequence: List[Union[int, str]]) -> None:
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
 
-def create_state_space_tree(sequence, current_sequence, index, index_used):
+def create_state_space_tree(
+    sequence: List[Union[int, str]],
+    current_sequence: List[Union[int, str]],
+    index: int,
+    index_used: List[int],
+) -> None:
     """
-        Creates a state space tree to iterate through each branch using DFS.
-        We know that each state has exactly len(sequence) - index children.
-        It terminates when it reaches the end of the given sequence.
-        """
+    Creates a state space tree to iterate through each branch using DFS.
+    We know that each state has exactly len(sequence) - index children.
+    It terminates when it reaches the end of the given sequence.
+    """
 
     if index == len(sequence):
         print(current_sequence)
@@ -38,8 +44,8 @@ print("Enter the elements")
 sequence = list(map(int, input().split()))
 """
 
-sequence = [3, 1, 2, 4]
+sequence: List[Union[int, str]] = [3, 1, 2, 4]
 generate_all_permutations(sequence)
 
-sequence = ["A", "B", "C"]
-generate_all_permutations(sequence)
+sequence_2: List[Union[int, str]] = ["A", "B", "C"]
+generate_all_permutations(sequence_2)
