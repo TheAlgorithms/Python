@@ -56,14 +56,31 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
     # remove the lowest and the most left point from points for preparing for sort
     points.pop(minidx)
 
-    def angle_comparer(point: list[int, int]) -> float:
+    def angle_comparer(point: list[int, int], minx: int, miny: int) -> float:
+        """Return the angle toward to point from (minx, miny)
+
+        :param point: The target point
+               minx: The starting point's x
+               miny: The starting point's y
+        :return: the angle
+
+        Examples:
+        >>> angle_comparer([1,1], 0, 0)
+        45.0
+
+        >>> angle_comparer([100,1], 10, 10)
+        -5.710593137499642
+
+        >>> angle_comparer([5,5], 2, 3)
+        33.690067525979785
+        """
         # sort the points accorgind to the angle from the lowest and the most left point
         x = point[0]
         y = point[1]
         angle = degrees(atan2(y - miny, x - minx))
         return angle
 
-    sorted_points = sorted(points, key=lambda point: angle_comparer(point))
+    sorted_points = sorted(points, key=lambda point: angle_comparer(point, minx, miny))
     # This insert actually costs complexity,
     # and you should insteadly add (minx, miny) into stack later.
     # I'm using insert just for easy understanding.
@@ -79,6 +96,23 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
     def check_direction(
         starting: list[int, int], via: list[int, int], target: list[int, int]
     ) -> Direction:
+        """Return the direction toward to the line from via to target from starting
+
+        :param starting: The starting point
+               via: The via point
+               target: The target point
+        :return: the Direction
+
+        Examples:
+        >>> check_direction([1,1], [2,2], [3,3])
+        Direction.straight
+
+        >>> check_direction([60,1], [-50,199], [30,2])
+        Direction.left
+
+        >>> check_direction([0,0], [5,5], [10,0])
+        Direction.right
+        """
         x0, y0 = starting
         x1, y1 = via
         x2, y2 = target
