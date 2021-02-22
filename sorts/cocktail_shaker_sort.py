@@ -33,7 +33,8 @@ def cocktail_shaker_sort(unsorted: list) -> list:
                 swapped = True
 
         if not swapped:
-            return unsorted
+            break
+    return unsorted
 
 
 if __name__ == "__main__":
