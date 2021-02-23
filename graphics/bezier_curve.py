@@ -2,7 +2,7 @@
 # https://www.tutorialspoint.com/computer_graphics/computer_graphics_curves.htm
 from __future__ import annotations
 
-from scipy.special import comb
+from scipy.special import comb  # type: ignore
 
 
 class BezierCurve:
@@ -78,7 +78,7 @@ class BezierCurve:
             step_size: defines the step(s) at which to evaluate the Bezier curve.
             The smaller the step size, the finer the curve produced.
         """
-        from matplotlib import pyplot as plt
+        from matplotlib import pyplot as plt  # type: ignore
 
         to_plot_x: list[float] = []  # x coordinates of points to plot
         to_plot_y: list[float] = []  # y coordinates of points to plot
