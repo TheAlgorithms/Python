@@ -20,8 +20,8 @@ class _DoublyLinkedBase:
             self._next = link_n
 
         def has_next_and_prev(self):
-            return " Prev -> {}, Next -> {}".format(
-                self._prev is not None, self._next is not None
+            return (
+                f" Prev -> {self._prev is not None}, Next -> {self._next is not None}"
             )
 
     def __init__(self):
