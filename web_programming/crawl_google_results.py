@@ -2,8 +2,8 @@ import sys
 import webbrowser
 
 import requests
-from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
+from bs4 import BeautifulSoup  # type: ignore
+from fake_useragent import UserAgent  # type: ignore
 
 if __name__ == "__main__":
     print("Googling.....")

@@ -4,7 +4,7 @@ using title and year of publication, and volume and pages of journal.
 """
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup  # type: ignore
 
 
 def get_citation(base_url: str, params: dict) -> str:
