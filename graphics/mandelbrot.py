@@ -21,7 +21,7 @@ import colorsys
 from PIL import Image  # type: ignore
 
 
-def getDistance(x: float, y: float, max_step: int) -> float:
+def get_distance(x: float, y: float, max_step: int) -> float:
     """
     Return the relative distance (= step/max_step) after which the complex number
     constituted by this x-y-pair diverges. Members of the Mandelbrot set do not
