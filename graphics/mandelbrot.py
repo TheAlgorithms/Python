@@ -27,11 +27,11 @@ def get_distance(x: float, y: float, max_step: int) -> float:
     constituted by this x-y-pair diverges. Members of the Mandelbrot set do not
     diverge so their distance is 1.
 
-    >>> getDistance(0, 0, 50)
+    >>> get_distance(0, 0, 50)
     1.0
-    >>> getDistance(0.5, 0.5, 50)
+    >>> get_distance(0.5, 0.5, 50)
     0.061224489795918366
-    >>> getDistance(2, 0, 50)
+    >>> get_distance(2, 0, 50)
     0.0
     """
     a = x
@@ -118,7 +118,7 @@ def get_image(
             figure_x = figure_center_x + (image_x / image_width - 0.5) * figure_width
             figure_y = figure_center_y + (image_y / image_height - 0.5) * figure_height
 
-            distance = getDistance(figure_x, figure_y, max_step)
+            distance = get_distance(figure_x, figure_y, max_step)
 
             # color the corresponding pixel based on the selected coloring-function
             if use_distance_color_coding:
