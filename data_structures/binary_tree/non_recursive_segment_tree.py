@@ -49,7 +49,7 @@ class SegmentTree:
         :param arr: list of elements for the segment tree
         :param fnc: commutative function for combine two elements
 
-        >>> SegmentTree(['a', 'b', 'c'], lambda a, b: '{}{}'.format(a, b)).query(0, 2)
+        >>> SegmentTree(['a', 'b', 'c'], lambda a, b: f'{a}{b}').query(0, 2)
         'abc'
         >>> SegmentTree([(1, 2), (2, 3), (3, 4)],
         ...             lambda a, b: (a[0] + b[0], a[1] + b[1])).query(0, 2)
