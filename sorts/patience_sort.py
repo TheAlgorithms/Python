@@ -1,6 +1,7 @@
 from bisect import bisect_left
 from functools import total_ordering
 from heapq import merge
+from typing import List
 
 """
 A pure Python implementation of the patience sort algorithm
@@ -43,7 +44,7 @@ def patience_sort(collection: list) -> list:
     >>> patience_sort([-3, -17, -48])
     [-48, -17, -3]
     """
-    stacks = []
+    stacks: List[Stack] = []
     # sort into stacks
     for element in collection:
         new_stacks = Stack([element])
