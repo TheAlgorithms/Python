@@ -4,7 +4,7 @@
 # difference of the weight of these two elements.
 
 
-def min_element(arr: [int], minimum: int, count: int) -> int:
+def min_element(arr: list[int], minimum: int, count: int) -> int:
     """
     >>> min_element([1, 1, 2, 6, 24, 120], 1, 0)
     0
