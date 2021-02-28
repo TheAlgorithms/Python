@@ -21,7 +21,7 @@ def is_arithmetic_series(series: list) -> bool:
 
 def arithmetic_mean(series: list) -> float:
     """
-    return the geometric mean of series
+    return the arithmetic mean of series
 
     >>> arithmetic_mean([2, 4, 6])
     4.0
