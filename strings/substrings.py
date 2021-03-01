@@ -1,4 +1,4 @@
-def substrings(string: str) -> list:
+def substrings(string: str) -> list[str]:
     """
     return  all the substrings of string
 
