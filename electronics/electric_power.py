@@ -1,8 +1,9 @@
 # https://en.m.wikipedia.org/wiki/Electric_power
 from collections import namedtuple
+from typing import Tuple
 
 
-def electric_power(voltage: float, current: float, power: float) -> float:
+def electric_power(voltage: float, current: float, power: float) -> Tuple:
     """
     This function can calculate any one of the three (voltage, current, power),
     fundamental value of electrical system.
