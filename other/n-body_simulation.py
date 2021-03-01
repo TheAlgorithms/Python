@@ -27,8 +27,8 @@ class Body:
         position_y: float,
         velocity_x: float,
         velocity_y: float,
-        mass: float = 1,
-        size: float = 1,
+        mass: float = 1.0,
+        size: float = 1.0,
         color: str = "blue",
     ) -> None:
         """
@@ -48,6 +48,11 @@ class Body:
     ) -> None:
         """
         Euler algorithm for velocity
+
+        >>> body = Body(0.,0.,0.,0.)
+        >>> body.update_velocity(1.,0.,1.)
+        >>> body.velocity_x
+        1.0
         """
         self.velocity_x += force_x * delta_time
         self.velocity_y += force_y * delta_time
@@ -55,6 +60,11 @@ class Body:
     def update_position(self: Body, delta_time: float) -> None:
         """
         Euler algorithm for position
+
+        >>> body = Body(0.,0.,1.,0.)
+        >>> body.update_position(1.)
+        >>> body.position_x
+        1.0
         """
         self.position_x += self.velocity_x * delta_time
         self.position_y += self.velocity_y * delta_time
@@ -72,9 +82,9 @@ class BodySystem:
     def __init__(
         self: BodySystem,
         bodies: list[Body],
-        gravitation_constant: float = 1,
-        time_factor: float = 1,
-        softening_factor: float = 0,
+        gravitation_constant: float = 1.0,
+        time_factor: float = 1.0,
+        softening_factor: float = 0.0,
     ) -> None:
         self.bodies = bodies
         self.gravitation_constant = gravitation_constant
@@ -85,6 +95,11 @@ class BodySystem:
         """
         For each body, loop through all other bodies to calculate the total
         force they exert on it. Use that force to update the body's velocity.
+
+        >>> body_system = BodySystem([Body(0,0,0,0), Body(10,0,0,0)])
+        >>> body_system.update_system(1)
+        >>> body_system.bodies[0].position_x
+        0.01
         """
         for body1 in self.bodies:
             force_x = 0.0
@@ -118,13 +133,14 @@ class BodySystem:
 
 def plot(
     title: str,
-    bodySystem: BodySystem,
+    body_system: BodySystem,
     x_start: float = -1,
     x_end: float = 1,
     y_start: float = -1,
     y_end: float = 1,
 ) -> None:
     INTERVAL = 20  # Frame rate of the animation
+    DELTA_TIME = INTERVAL / 1000  # Time between time steps in seconds
 
     fig = plt.figure()
     fig.canvas.set_window_title(title)
@@ -134,7 +150,7 @@ def plot(
 
     # Each body is drawn as a patch by the plt-function
     patches = []
-    for body in bodySystem.bodies:
+    for body in body_system.bodies:
         patches.append(
             plt.Circle((body.position_x, body.position_y), body.size, fc=body.color)
         )
@@ -151,10 +167,10 @@ def plot(
     # Function called at each step of the animation
     def animate(i: int) -> list[patches.Circle]:  # type: ignore
         # Update the positions of the bodies
-        bodySystem.update_system(INTERVAL)
+        body_system.update_system(DELTA_TIME)
 
         # Update the positions of the patches
-        for patch, body in zip(patches, bodySystem.bodies):
+        for patch, body in zip(patches, body_system.bodies):
             patch.center = (body.position_x, body.position_y)
         return patches
 
@@ -177,7 +193,7 @@ if __name__ == "__main__":
         Body(-position_x, -position_y, velocity_x, velocity_y, size=0.2, color="green"),
         Body(0, 0, -2 * velocity_x, -2 * velocity_y, size=0.2, color="blue"),
     ]
-    body_system1 = BodySystem(bodies1, time_factor=0.003)
+    body_system1 = BodySystem(bodies1, time_factor=3)
     plot("Figure-8 solution to the 3-body-problem", body_system1, -2, 2, -2, 2)
 
     # Example 2: Moon's orbit around the earth
@@ -194,7 +210,7 @@ if __name__ == "__main__":
 
     moon = Body(-earth_moon_distance, 0, 0, moon_velocity, moon_mass, 10000000, "grey")
     earth = Body(0, 0, 0, earth_velocity, earth_mass, 50000000, "blue")
-    body_system2 = BodySystem([earth, moon], gravitation_constant, time_factor=1000)
+    body_system2 = BodySystem([earth, moon], gravitation_constant, time_factor=1000000)
     plot(
         "Moon's orbit around the earth",
         body_system2,
@@ -230,5 +246,5 @@ if __name__ == "__main__":
                 size=0.05,
             )
         )
-    body_system3 = BodySystem(bodies, 0.01, 0.01, 0.1)
+    body_system3 = BodySystem(bodies, 0.01, 10, 0.1)
     plot("Random system with many bodies", body_system3, -1.5, 1.5, -1.5, 1.5)
