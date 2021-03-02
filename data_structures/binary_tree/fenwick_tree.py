@@ -77,6 +77,8 @@ class FenwickTree:
         14
         >>> tree.query(0, 4) == tree.query(4)
         True
+        >>> tree.query(2, 4)
+        13
         """
 
         left = left - 1
