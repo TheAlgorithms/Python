@@ -1,5 +1,6 @@
 """
 ARITHMETIC MEAN : https://en.wikipedia.org/wiki/Arithmetic_mean
+
 """
 
 
@@ -13,7 +14,6 @@ def is_arithmetic_series(series: list) -> bool:
     False
     >>> is_arithmetic_series([1, 2, 3])
     True
-
     """
     if len(series) == 1:
         return True
