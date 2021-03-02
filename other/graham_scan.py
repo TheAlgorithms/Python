@@ -7,6 +7,7 @@ python3 -m doctest -v graham_scan.py
 """
 
 from __future__ import annotations
+
 from collections import deque
 from enum import Enum
 from math import atan2, degrees
