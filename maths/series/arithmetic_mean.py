@@ -1,3 +1,8 @@
+"""
+ARITHMETIC MEAN : https://en.wikipedia.org/wiki/Arithmetic_mean
+"""
+
+
 def is_arithmetic_series(series: list) -> bool:
     """
     checking whether the input series is arithmetic series or not
