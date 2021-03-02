@@ -30,9 +30,9 @@ def decimal_to_binary(number: int) -> str:
         flag = 1
     answer = ""
     while number:
-        answer += str(number % 2)
+        answer = str(number % 2) + answer
         number = number >> 1
-    answer = answer[-1::-1]
+    # answer = answer[-1::-1]
     if flag:
         answer = "-" + answer
     return answer
