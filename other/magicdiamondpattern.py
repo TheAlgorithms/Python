@@ -6,7 +6,7 @@ def floyd(n):
     """
         Parameters:
     n : size of pattern
-        """
+    """
     for i in range(0, n):
         for j in range(0, n - i - 1):  # printing spaces
             print(" ", end="")
@@ -20,7 +20,7 @@ def reverse_floyd(n):
     """
         Parameters:
     n : size of pattern
-        """
+    """
     for i in range(n, 0, -1):
         for j in range(i, 0, -1):  # printing stars
             print("* ", end="")
@@ -34,7 +34,7 @@ def pretty_print(n):
     """
         Parameters:
     n : size of pattern
-        """
+    """
     if n <= 0:
         print("       ...       ....        nothing printing :(")
         return

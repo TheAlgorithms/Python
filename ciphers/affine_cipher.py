@@ -1,7 +1,7 @@
 import random
 import sys
 
-import cryptomath_module as cryptomath
+from . import cryptomath_module as cryptomath
 
 SYMBOLS = (
     r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
@@ -29,7 +29,7 @@ def main():
     print(f"\n{mode.title()}ed text: \n{translated}")
 
 
-def check_keys(keyA, keyB, mode):
+def check_keys(keyA: int, keyB: int, mode: str) -> None:
     if mode == "encrypt":
         if keyA == 1:
             sys.exit(
@@ -55,7 +55,8 @@ def check_keys(keyA, keyB, mode):
 
 def encrypt_message(key: int, message: str) -> str:
     """
-    >>> encrypt_message(4545, 'The affine cipher is a type of monoalphabetic substitution cipher.')
+    >>> encrypt_message(4545, 'The affine cipher is a type of monoalphabetic '
+    ...                       'substitution cipher.')
     'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF{xIp~{HL}Gi'
     """
     keyA, keyB = divmod(key, len(SYMBOLS))
@@ -72,7 +73,8 @@ def encrypt_message(key: int, message: str) -> str:
 
 def decrypt_message(key: int, message: str) -> str:
     """
-    >>> decrypt_message(4545, 'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF{xIp~{HL}Gi')
+    >>> decrypt_message(4545, 'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF'
+    ...                       '{xIp~{HL}Gi')
     'The affine cipher is a type of monoalphabetic substitution cipher.'
     """
     keyA, keyB = divmod(key, len(SYMBOLS))
@@ -88,11 +90,11 @@ def decrypt_message(key: int, message: str) -> str:
     return plainText
 
 
-def get_random_key():
+def get_random_key() -> int:
     while True:
         keyA = random.randint(2, len(SYMBOLS))
         keyB = random.randint(2, len(SYMBOLS))
-        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1:
+        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1 and keyB % len(SYMBOLS) != 0:
             return keyA * len(SYMBOLS) + keyB
 
 
@@ -100,4 +102,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
+    # main()

@@ -12,10 +12,10 @@ We are very happy that you consider implementing algorithms and data structure f
 
 - You did your work - no plagiarism allowed
   - Any plagiarized work will not be merged.
-- Your work will be distributed under [MIT License](License) once your pull request is merged
+- Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
 - You submitted work fulfils or mostly fulfils our styles and standards
 
-**New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity.
+**New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but **identical implementation** of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
 **Improving comments** and **writing proper tests** are also highly welcome.
 
@@ -49,30 +49,43 @@ Algorithms should:
 
 Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
 
+#### Pre-commit plugin
+Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
+
+```bash
+python3 -m pip install pre-commit  # required only once
+pre-commit install
+```
+That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
+
+```bash
+pre-commit run --all-files --show-diff-on-failure
+```
+
 #### Coding Style
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in Python 3.7+.  __print()__ is a function in Python 3 so __print "Hello"__ will _not_ work but __print("Hello")__ will.
+- Please write in Python 3.7+. For instance:  __print()__ is a function in Python 3 so __print "Hello"__ will _not_ work but __print("Hello")__ will.
 - Please focus hard on naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
   - Single letter variable names are _old school_ so please avoid them unless their life only spans a few lines.
   - Expand acronyms because __gcd()__ is hard to understand but __greatest_common_divisor()__ is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
-- We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where the make the code easier to read.
+- We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where they make the code easier to read.
 
 - Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf) but the __black__ formatter is now hosted by the Python Software Foundation. To use it,
 
   ```bash
-  pip3 install black  # only required the first time
+  python3 -m pip install black  # only required the first time
   black .
   ```
 
-- All submissions will need to pass the test __flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test __flake8 . --ignore=E203,W503 --max-line-length=88__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
-  pip3 install flake8  # only required the first time
-  flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+  python3 -m pip install flake8  # only required the first time
+  flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
   ```
 
 - Original code submission require docstrings or comments to describe your work.
@@ -147,9 +160,9 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
 - If you need a third party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
 
-#### Other Standard While Submitting Your Work
-
-- File extension for code should be `.py`. Jupyter notebook files are acceptable in machine learning algorithms.
+#### Other Requirements for Submissions
+- If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
+- The file extension for code files should be `.py`. Jupyter Notebooks should be submitted to [TheAlgorithms/Jupyter](https://github.com/TheAlgorithms/Jupyter).
 - Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
 - If possible, follow the standard *within* the folder you are submitting to.

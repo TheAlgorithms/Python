@@ -1,8 +1,8 @@
 # @Author  : lightXu
 # @File    : convolve.py
 # @Time    : 2019/7/8 0008 下午 16:13
-from cv2 import imread, cvtColor, COLOR_BGR2GRAY, imshow, waitKey
-from numpy import array, zeros, ravel, pad, dot, uint8
+from cv2 import COLOR_BGR2GRAY, cvtColor, imread, imshow, waitKey
+from numpy import array, dot, pad, ravel, uint8, zeros
 
 
 def im2col(image, block_size):

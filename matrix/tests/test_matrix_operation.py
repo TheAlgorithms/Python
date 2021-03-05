@@ -1,15 +1,18 @@
 """
 Testing here assumes that numpy and linalg is ALWAYS correct!!!!
 
-If running from PyCharm you can place the following line in "Additional Arguments" for the pytest run configuration
+If running from PyCharm you can place the following line in "Additional Arguments" for
+the pytest run configuration
 -vv -m mat_ops -p no:cacheprovider
 """
 
+import logging
+
 # standard libraries
 import sys
+
 import numpy as np
-import pytest
-import logging
+import pytest  # type: ignore
 
 # Custom/local libraries
 from matrix import matrix_operation as matop

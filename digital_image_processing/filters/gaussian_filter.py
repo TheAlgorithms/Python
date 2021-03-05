@@ -1,9 +1,10 @@
 """
 Implementation of gaussian filter algorithm
 """
-from cv2 import imread, cvtColor, COLOR_BGR2GRAY, imshow, waitKey
-from numpy import pi, mgrid, exp, square, zeros, ravel, dot, uint8
 from itertools import product
+
+from cv2 import COLOR_BGR2GRAY, cvtColor, imread, imshow, waitKey
+from numpy import dot, exp, mgrid, pi, ravel, square, uint8, zeros
 
 
 def gen_gaussian_kernel(k_size, sigma):

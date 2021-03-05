@@ -27,8 +27,8 @@ Credits: This code was written by editing the code from
 http://www.riannetrujillo.com/blog/python-fractal/
 
 """
-import turtle
 import sys
+import turtle
 
 PROGNAME = "Sierpinski Triangle"
 

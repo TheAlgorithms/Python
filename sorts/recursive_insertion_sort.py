@@ -2,10 +2,12 @@
 A recursive implementation of the insertion sort algorithm
 """
 
+from __future__ import annotations
+
 from typing import List
 
 
-def rec_insertion_sort(collection: List, n: int):
+def rec_insertion_sort(collection: list, n: int):
     """
     Given a collection of numbers and its length, sorts the collections
     in ascending order
@@ -36,7 +38,7 @@ def rec_insertion_sort(collection: List, n: int):
     rec_insertion_sort(collection, n - 1)
 
 
-def insert_next(collection: List, index: int):
+def insert_next(collection: list, index: int):
     """
     Inserts the '(index-1)th' element into place
 
@@ -70,6 +72,6 @@ def insert_next(collection: List, index: int):
 
 if __name__ == "__main__":
     numbers = input("Enter integers separated by spaces: ")
-    numbers = [int(num) for num in numbers.split()]
-    rec_insertion_sort(numbers, len(numbers))
-    print(numbers)
+    number_list: List[int] = [int(num) for num in numbers.split()]
+    rec_insertion_sort(number_list, len(number_list))
+    print(number_list)

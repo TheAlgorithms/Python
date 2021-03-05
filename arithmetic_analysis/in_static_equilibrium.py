@@ -1,13 +1,9 @@
 """
 Checks if a system of forces is in static equilibrium.
-
-python/black : true
-flake8 : passed
-mypy : passed
 """
-
-from numpy import array, cos, sin, radians, cross  # type: ignore
 from typing import List
+
+from numpy import array, cos, cross, radians, sin
 
 
 def polar_force(

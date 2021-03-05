@@ -35,8 +35,8 @@ https://www.youtube.com/watch?v=kfmNeskzs2o
 https://www.youtube.com/watch?v=4RhLNDqcjpA
 
 """
-
 import string
+
 import numpy
 
 
@@ -64,7 +64,7 @@ class HillCipher:
 
     to_int = numpy.vectorize(lambda x: round(x))
 
-    def __init__(self, encrypt_key):
+    def __init__(self, encrypt_key: int):
         """
         encrypt_key is an NxN numpy array
         """
@@ -106,7 +106,8 @@ class HillCipher:
         req_l = len(self.key_string)
         if greatest_common_divisor(det, len(self.key_string)) != 1:
             raise ValueError(
-                f"determinant modular {req_l} of encryption key({det}) is not co prime w.r.t {req_l}.\nTry another key."
+                f"determinant modular {req_l} of encryption key({det}) is not co prime "
+                f"w.r.t {req_l}.\nTry another key."
             )
 
     def process_text(self, text: str) -> str:
@@ -154,8 +155,8 @@ class HillCipher:
         """
         >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.make_decrypt_key()
-        array([[ 6., 25.],
-               [ 5., 26.]])
+        array([[ 6, 25],
+               [ 5, 26]])
         """
         det = round(numpy.linalg.det(self.encrypt_key))
 

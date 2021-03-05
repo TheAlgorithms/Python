@@ -1,84 +1,226 @@
 """
-- A linked list is similar to an array, it holds values. However, links in a linked
-    list do not have indexes.
-- This is an example of a double ended, doubly linked list.
-- Each link references the next link and the previous one.
-- A Doubly Linked List (DLL) contains an extra pointer, typically called previous
-    pointer, together with next pointer and data which are there in singly linked list.
- - Advantages over SLL - IT can be traversed in both forward and backward direction.,
-     Delete operation is more efficient"""
+https://en.wikipedia.org/wiki/Doubly_linked_list
+"""
 
 
-class LinkedList:  # making main class named linked list
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.previous = None
+        self.next = None
+
+    def __str__(self):
+        return f"{self.data}"
+
+
+class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
 
-    def insertHead(self, x):
-        newLink = Link(x)  # Create a new link with a value attached to it
-        if self.isEmpty():  # Set the first element added to be the tail
-            self.tail = newLink
-        else:
-            self.head.previous = newLink  # newLink <-- currenthead(head)
-        newLink.next = self.head  # newLink <--> currenthead(head)
-        self.head = newLink  # newLink(head) <--> oldhead
+    def __iter__(self):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.insert_at_head('b')
+        >>> linked_list.insert_at_head('a')
+        >>> linked_list.insert_at_tail('c')
+        >>> tuple(linked_list)
+        ('a', 'b', 'c')
+        """
+        node = self.head
+        while node:
+            yield node.data
+            node = node.next
 
-    def deleteHead(self):
-        temp = self.head
-        self.head = self.head.next  # oldHead <--> 2ndElement(head)
-        # oldHead --> 2ndElement(head) nothing pointing at it so the old head will be
-        # removed
-        self.head.previous = None
+    def __str__(self):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.insert_at_tail('a')
+        >>> linked_list.insert_at_tail('b')
+        >>> linked_list.insert_at_tail('c')
+        >>> str(linked_list)
+        'a->b->c'
+        """
+        return "->".join([str(item) for item in self])
+
+    def __len__(self):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> for i in range(0, 5):
+        ...     linked_list.insert_at_nth(i, i + 1)
+        >>> len(linked_list) == 5
+        True
+        """
+        return len(tuple(iter(self)))
+
+    def insert_at_head(self, data):
+        self.insert_at_nth(0, data)
+
+    def insert_at_tail(self, data):
+        self.insert_at_nth(len(self), data)
+
+    def insert_at_nth(self, index: int, data):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.insert_at_nth(-1, 666)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        >>> linked_list.insert_at_nth(1, 666)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        >>> linked_list.insert_at_nth(0, 2)
+        >>> linked_list.insert_at_nth(0, 1)
+        >>> linked_list.insert_at_nth(2, 4)
+        >>> linked_list.insert_at_nth(2, 3)
+        >>> str(linked_list)
+        '1->2->3->4'
+        >>> linked_list.insert_at_nth(5, 5)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        """
+        if not 0 <= index <= len(self):
+            raise IndexError("list index out of range")
+        new_node = Node(data)
         if self.head is None:
-            self.tail = None  # if empty linked list
-        return temp
+            self.head = self.tail = new_node
+        elif index == 0:
+            self.head.previous = new_node
+            new_node.next = self.head
+            self.head = new_node
+        elif index == len(self):
+            self.tail.next = new_node
+            new_node.previous = self.tail
+            self.tail = new_node
+        else:
+            temp = self.head
+            for i in range(0, index):
+                temp = temp.next
+            temp.previous.next = new_node
+            new_node.previous = temp.previous
+            new_node.next = temp
+            temp.previous = new_node
 
-    def insertTail(self, x):
-        newLink = Link(x)
-        newLink.next = None  # currentTail(tail)    newLink -->
-        self.tail.next = newLink  # currentTail(tail) --> newLink -->
-        newLink.previous = self.tail  # currentTail(tail) <--> newLink -->
-        self.tail = newLink  # oldTail <--> newLink(tail) -->
+    def delete_head(self):
+        return self.delete_at_nth(0)
 
-    def deleteTail(self):
-        temp = self.tail
-        self.tail = self.tail.previous  # 2ndLast(tail) <--> oldTail --> None
-        self.tail.next = None  # 2ndlast(tail) --> None
-        return temp
+    def delete_tail(self):
+        return self.delete_at_nth(len(self) - 1)
 
-    def delete(self, x):
+    def delete_at_nth(self, index: int):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.delete_at_nth(0)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        >>> for i in range(0, 5):
+        ...     linked_list.insert_at_nth(i, i + 1)
+        >>> linked_list.delete_at_nth(0) == 1
+        True
+        >>> linked_list.delete_at_nth(3) == 5
+        True
+        >>> linked_list.delete_at_nth(1) == 3
+        True
+        >>> str(linked_list)
+        '2->4'
+        >>> linked_list.delete_at_nth(2)
+        Traceback (most recent call last):
+        ....
+        IndexError: list index out of range
+        """
+        if not 0 <= index <= len(self) - 1:
+            raise IndexError("list index out of range")
+        delete_node = self.head  # default first node
+        if len(self) == 1:
+            self.head = self.tail = None
+        elif index == 0:
+            self.head = self.head.next
+            self.head.previous = None
+        elif index == len(self) - 1:
+            delete_node = self.tail
+            self.tail = self.tail.previous
+            self.tail.next = None
+        else:
+            temp = self.head
+            for i in range(0, index):
+                temp = temp.next
+            delete_node = temp
+            temp.next.previous = temp.previous
+            temp.previous.next = temp.next
+        return delete_node.data
+
+    def delete(self, data) -> str:
         current = self.head
 
-        while current.value != x:  # Find the position to delete
-            current = current.next
+        while current.data != data:  # Find the position to delete
+            if current.next:
+                current = current.next
+            else:  # We have reached the end an no value matches
+                return "No data matching given value"
 
         if current == self.head:
-            self.deleteHead()
+            self.delete_head()
 
         elif current == self.tail:
-            self.deleteTail()
+            self.delete_tail()
 
         else:  # Before: 1 <--> 2(current) <--> 3
             current.previous.next = current.next  # 1 --> 3
             current.next.previous = current.previous  # 1 <--> 3
+        return data
 
-    def isEmpty(self):  # Will return True if the list is empty
-        return self.head is None
+    def is_empty(self):
+        """
+        >>> linked_list = DoublyLinkedList()
+        >>> linked_list.is_empty()
+        True
+        >>> linked_list.insert_at_tail(1)
+        >>> linked_list.is_empty()
+        False
+        """
+        return len(self) == 0
 
-    def display(self):  # Prints contents of the list
-        current = self.head
-        while current is not None:
-            current.displayLink()
-            current = current.next
-        print()
+
+def test_doubly_linked_list() -> None:
+    """
+    >>> test_doubly_linked_list()
+    """
+    linked_list = DoublyLinkedList()
+    assert linked_list.is_empty() is True
+    assert str(linked_list) == ""
+
+    try:
+        linked_list.delete_head()
+        assert False  # This should not happen.
+    except IndexError:
+        assert True  # This should happen.
+
+    try:
+        linked_list.delete_tail()
+        assert False  # This should not happen.
+    except IndexError:
+        assert True  # This should happen.
+
+    for i in range(10):
+        assert len(linked_list) == i
+        linked_list.insert_at_nth(i, i + 1)
+    assert str(linked_list) == "->".join(str(i) for i in range(1, 11))
+
+    linked_list.insert_at_head(0)
+    linked_list.insert_at_tail(11)
+    assert str(linked_list) == "->".join(str(i) for i in range(0, 12))
+
+    assert linked_list.delete_head() == 0
+    assert linked_list.delete_at_nth(9) == 10
+    assert linked_list.delete_tail() == 11
+    assert len(linked_list) == 9
+    assert str(linked_list) == "->".join(str(i) for i in range(1, 10))
 
 
-class Link:
-    next = None  # This points to the link in front of the new link
-    previous = None  # This points to the link behind the new link
+if __name__ == "__main__":
+    from doctest import testmod
 
-    def __init__(self, x):
-        self.value = x
-
-    def displayLink(self):
-        print(f"{self.value}", end=" ")
+    testmod()

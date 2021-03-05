@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+
 from digital_image_processing.filters.convolve import img_convolve
 from digital_image_processing.filters.sobel_filter import sobel_filter
 
@@ -29,8 +30,9 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
     dst = np.zeros((image_row, image_col))
 
     """
-    Non-maximum suppression. If the edge strength of the current pixel is the largest compared to the other pixels
-    in the mask with the same direction, the value will be preserved. Otherwise, the value will be suppressed.
+    Non-maximum suppression. If the edge strength of the current pixel is the largest
+    compared to the other pixels in the mask with the same direction, the value will be
+    preserved. Otherwise, the value will be suppressed.
     """
     for row in range(1, image_row - 1):
         for col in range(1, image_col - 1):
@@ -71,10 +73,12 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
                     dst[row, col] = sobel_grad[row, col]
 
             """
-            High-Low threshold detection. If an edge pixel’s gradient value is higher than the high threshold
-            value, it is marked as a strong edge pixel. If an edge pixel’s gradient value is smaller than the high
-            threshold value and larger than the low threshold value, it is marked as a weak edge pixel. If an edge
-            pixel's value is smaller than the low threshold value, it will be suppressed.
+            High-Low threshold detection. If an edge pixel’s gradient value is higher
+            than the high threshold value, it is marked as a strong edge pixel. If an
+            edge pixel’s gradient value is smaller than the high threshold value and
+            larger than the low threshold value, it is marked as a weak edge pixel. If
+            an edge pixel's value is smaller than the low threshold value, it will be
+            suppressed.
             """
             if dst[row, col] >= threshold_high:
                 dst[row, col] = strong
@@ -84,9 +88,10 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
                 dst[row, col] = weak
 
     """
-    Edge tracking. Usually a weak edge pixel caused from true edges will be connected to a strong edge pixel while
-    noise responses are unconnected. As long as there is one strong edge pixel that is involved in its 8-connected
-    neighborhood, that weak edge point can be identified as one that should be preserved.
+    Edge tracking. Usually a weak edge pixel caused from true edges will be connected
+    to a strong edge pixel while noise responses are unconnected. As long as there is
+    one strong edge pixel that is involved in its 8-connected neighborhood, that weak
+    edge point can be identified as one that should be preserved.
     """
     for row in range(1, image_row):
         for col in range(1, image_col):

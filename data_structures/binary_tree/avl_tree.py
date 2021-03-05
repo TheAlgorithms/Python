@@ -1,86 +1,92 @@
 """
-An auto-balanced binary tree!
+Implementation of an auto-balanced binary tree!
+For doctests run following command:
+python3 -m doctest -v avl_tree.py
+For testing run:
+python avl_tree.py
 """
+
 import math
 import random
+from typing import Any, List, Optional
 
 
 class my_queue:
-    def __init__(self):
-        self.data = []
-        self.head = 0
-        self.tail = 0
+    def __init__(self) -> None:
+        self.data: List[Any] = []
+        self.head: int = 0
+        self.tail: int = 0
 
-    def isEmpty(self):
+    def is_empty(self) -> bool:
         return self.head == self.tail
 
-    def push(self, data):
+    def push(self, data: Any) -> None:
         self.data.append(data)
         self.tail = self.tail + 1
 
-    def pop(self):
+    def pop(self) -> Any:
         ret = self.data[self.head]
         self.head = self.head + 1
         return ret
 
-    def count(self):
+    def count(self) -> int:
         return self.tail - self.head
 
-    def print(self):
+    def print(self) -> None:
         print(self.data)
         print("**************")
         print(self.data[self.head : self.tail])
 
 
 class my_node:
-    def __init__(self, data):
+    def __init__(self, data: Any) -> None:
         self.data = data
-        self.left = None
-        self.right = None
-        self.height = 1
+        self.left: Optional[my_node] = None
+        self.right: Optional[my_node] = None
+        self.height: int = 1
 
-    def getdata(self):
+    def get_data(self) -> Any:
         return self.data
 
-    def getleft(self):
+    def get_left(self) -> Optional["my_node"]:
         return self.left
 
-    def getright(self):
+    def get_right(self) -> Optional["my_node"]:
         return self.right
 
-    def getheight(self):
+    def get_height(self) -> int:
         return self.height
 
-    def setdata(self, data):
+    def set_data(self, data: Any) -> None:
         self.data = data
         return
 
-    def setleft(self, node):
+    def set_left(self, node: Optional["my_node"]) -> None:
         self.left = node
         return
 
-    def setright(self, node):
+    def set_right(self, node: Optional["my_node"]) -> None:
         self.right = node
         return
 
-    def setheight(self, height):
+    def set_height(self, height: int) -> None:
         self.height = height
         return
 
 
-def getheight(node):
+def get_height(node: Optional["my_node"]) -> int:
     if node is None:
         return 0
-    return node.getheight()
+    return node.get_height()
 
 
-def my_max(a, b):
+def my_max(a: int, b: int) -> int:
     if a > b:
         return a
     return b
 
 
-def leftrotation(node):
+def right_rotation(node: my_node) -> my_node:
     r"""
             A                      B
            / \                    / \
@@ -89,200 +95,253 @@ def leftrotation(node):
         Bl  Br                 UB Br  C
        /
      UB
-
     UB = unbalanced node
     """
-    print("left rotation node:", node.getdata())
-    ret = node.getleft()
-    node.setleft(ret.getright())
-    ret.setright(node)
-    h1 = my_max(getheight(node.getright()), getheight(node.getleft())) + 1
-    node.setheight(h1)
-    h2 = my_max(getheight(ret.getright()), getheight(ret.getleft())) + 1
-    ret.setheight(h2)
+    print("left rotation node:", node.get_data())
+    ret = node.get_left()
+    assert ret is not None
+    node.set_left(ret.get_right())
+    ret.set_right(node)
+    h1 = my_max(get_height(node.get_right()), get_height(node.get_left())) + 1
+    node.set_height(h1)
+    h2 = my_max(get_height(ret.get_right()), get_height(ret.get_left())) + 1
+    ret.set_height(h2)
     return ret
 
 
-def rightrotation(node):
+def left_rotation(node: my_node) -> my_node:
     """
-        a mirror symmetry rotation of the leftrotation
+    a mirror symmetry rotation of the left_rotation
     """
-    print("right rotation node:", node.getdata())
-    ret = node.getright()
-    node.setright(ret.getleft())
-    ret.setleft(node)
-    h1 = my_max(getheight(node.getright()), getheight(node.getleft())) + 1
-    node.setheight(h1)
-    h2 = my_max(getheight(ret.getright()), getheight(ret.getleft())) + 1
-    ret.setheight(h2)
+    print("right rotation node:", node.get_data())
+    ret = node.get_right()
+    assert ret is not None
+    node.set_right(ret.get_left())
+    ret.set_left(node)
+    h1 = my_max(get_height(node.get_right()), get_height(node.get_left())) + 1
+    node.set_height(h1)
+    h2 = my_max(get_height(ret.get_right()), get_height(ret.get_left())) + 1
+    ret.set_height(h2)
     return ret
 
 
-def rlrotation(node):
+def lr_rotation(node: my_node) -> my_node:
     r"""
             A              A                    Br
            / \            / \                  /  \
-          B   C    RR    Br  C       LR       B    A
+          B   C    LR    Br  C       RR       B    A
          / \       -->  /  \         -->    /     / \
         Bl  Br         B   UB              Bl    UB  C
              \        /
              UB     Bl
-    RR = rightrotation   LR = leftrotation
+    RR = right_rotation   LR = left_rotation
     """
-    node.setleft(rightrotation(node.getleft()))
-    return leftrotation(node)
+    left_child = node.get_left()
+    assert left_child is not None
+    node.set_left(left_rotation(left_child))
+    return right_rotation(node)
 
 
-def lrrotation(node):
-    node.setright(leftrotation(node.getright()))
-    return rightrotation(node)
+def rl_rotation(node: my_node) -> my_node:
+    right_child = node.get_right()
+    assert right_child is not None
+    node.set_right(right_rotation(right_child))
+    return left_rotation(node)
 
 
-def insert_node(node, data):
+def insert_node(node: Optional["my_node"], data: Any) -> Optional["my_node"]:
     if node is None:
         return my_node(data)
-    if data < node.getdata():
-        node.setleft(insert_node(node.getleft(), data))
+    if data < node.get_data():
+        node.set_left(insert_node(node.get_left(), data))
         if (
-            getheight(node.getleft()) - getheight(node.getright()) == 2
+            get_height(node.get_left()) - get_height(node.get_right()) == 2
         ):  # an unbalance detected
+            left_child = node.get_left()
+            assert left_child is not None
             if (
-                data < node.getleft().getdata()
+                data < left_child.get_data()
             ):  # new node is the left child of the left child
-                node = leftrotation(node)
+                node = right_rotation(node)
             else:
-                node = rlrotation(node)  # new node is the right child of the left child
+                node = lr_rotation(node)
     else:
-        node.setright(insert_node(node.getright(), data))
-        if getheight(node.getright()) - getheight(node.getleft()) == 2:
-            if data < node.getright().getdata():
-                node = lrrotation(node)
+        node.set_right(insert_node(node.get_right(), data))
+        if get_height(node.get_right()) - get_height(node.get_left()) == 2:
+            right_child = node.get_right()
+            assert right_child is not None
+            if data < right_child.get_data():
+                node = rl_rotation(node)
             else:
-                node = rightrotation(node)
-    h1 = my_max(getheight(node.getright()), getheight(node.getleft())) + 1
-    node.setheight(h1)
+                node = left_rotation(node)
+    h1 = my_max(get_height(node.get_right()), get_height(node.get_left())) + 1
+    node.set_height(h1)
     return node
 
 
-def getRightMost(root):
-    while root.getright() is not None:
-        root = root.getright()
-    return root.getdata()
+def get_rightMost(root: my_node) -> Any:
+    while True:
+        right_child = root.get_right()
+        if right_child is None:
+            break
+        root = right_child
+    return root.get_data()
 
 
-def getLeftMost(root):
-    while root.getleft() is not None:
-        root = root.getleft()
-    return root.getdata()
+def get_leftMost(root: my_node) -> Any:
+    while True:
+        left_child = root.get_left()
+        if left_child is None:
+            break
+        root = left_child
+    return root.get_data()
 
 
-def del_node(root, data):
-    if root.getdata() == data:
-        if root.getleft() is not None and root.getright() is not None:
-            temp_data = getLeftMost(root.getright())
-            root.setdata(temp_data)
-            root.setright(del_node(root.getright(), temp_data))
-        elif root.getleft() is not None:
-            root = root.getleft()
+def del_node(root: my_node, data: Any) -> Optional["my_node"]:
+    left_child = root.get_left()
+    right_child = root.get_right()
+    if root.get_data() == data:
+        if left_child is not None and right_child is not None:
+            temp_data = get_leftMost(right_child)
+            root.set_data(temp_data)
+            root.set_right(del_node(right_child, temp_data))
+        elif left_child is not None:
+            root = left_child
+        elif right_child is not None:
+            root = right_child
         else:
-            root = root.getright()
-    elif root.getdata() > data:
-        if root.getleft() is None:
+            return None
+    elif root.get_data() > data:
+        if left_child is None:
             print("No such data")
             return root
         else:
-            root.setleft(del_node(root.getleft(), data))
-    elif root.getdata() < data:
-        if root.getright() is None:
+            root.set_left(del_node(left_child, data))
+    else:  # root.get_data() < data
+        if right_child is None:
             return root
         else:
-            root.setright(del_node(root.getright(), data))
-    if root is None:
-        return root
-    if getheight(root.getright()) - getheight(root.getleft()) == 2:
-        if getheight(root.getright().getright()) > getheight(root.getright().getleft()):
-            root = rightrotation(root)
+            root.set_right(del_node(right_child, data))
+
+    if get_height(right_child) - get_height(left_child) == 2:
+        assert right_child is not None
+        if get_height(right_child.get_right()) > get_height(right_child.get_left()):
+            root = left_rotation(root)
         else:
-            root = lrrotation(root)
-    elif getheight(root.getright()) - getheight(root.getleft()) == -2:
-        if getheight(root.getleft().getleft()) > getheight(root.getleft().getright()):
-            root = leftrotation(root)
+            root = rl_rotation(root)
+    elif get_height(right_child) - get_height(left_child) == -2:
+        assert left_child is not None
+        if get_height(left_child.get_left()) > get_height(left_child.get_right()):
+            root = right_rotation(root)
         else:
-            root = rlrotation(root)
-    height = my_max(getheight(root.getright()), getheight(root.getleft())) + 1
-    root.setheight(height)
+            root = lr_rotation(root)
+    height = my_max(get_height(root.get_right()), get_height(root.get_left())) + 1
+    root.set_height(height)
     return root
 
 
 class AVLtree:
-    def __init__(self):
-        self.root = None
+    """
+    An AVL tree doctest
+    Examples:
+    >>> t = AVLtree()
+    >>> t.insert(4)
+    insert:4
+    >>> print(str(t).replace(" \\n","\\n"))
+     4
+    *************************************
+    >>> t.insert(2)
+    insert:2
+    >>> print(str(t).replace(" \\n","\\n").replace(" \\n","\\n"))
+      4
+     2  *
+    *************************************
+    >>> t.insert(3)
+    insert:3
+    right rotation node: 2
+    left rotation node: 4
+    >>> print(str(t).replace(" \\n","\\n").replace(" \\n","\\n"))
+      3
+     2  4
+    *************************************
+    >>> t.get_height()
+    2
+    >>> t.del_node(3)
+    delete:3
+    >>> print(str(t).replace(" \\n","\\n").replace(" \\n","\\n"))
+      4
+     2  *
+    *************************************
+    """
 
-    def getheight(self):
-        #        print("yyy")
-        return getheight(self.root)
+    def __init__(self) -> None:
+        self.root: Optional[my_node] = None
 
-    def insert(self, data):
+    def get_height(self) -> int:
+        return get_height(self.root)
+
+    def insert(self, data: Any) -> None:
         print("insert:" + str(data))
         self.root = insert_node(self.root, data)
 
-    def del_node(self, data):
+    def del_node(self, data: Any) -> None:
         print("delete:" + str(data))
         if self.root is None:
             print("Tree is empty!")
             return
         self.root = del_node(self.root, data)
 
-    def traversale(self):  # a level traversale, gives a more intuitive look on the tree
+    def __str__(
+        self,
+    ) -> str:  # a level traversale, gives a more intuitive look on the tree
+        output = ""
         q = my_queue()
         q.push(self.root)
-        layer = self.getheight()
+        layer = self.get_height()
         if layer == 0:
-            return
+            return output
         cnt = 0
-        while not q.isEmpty():
+        while not q.is_empty():
             node = q.pop()
             space = " " * int(math.pow(2, layer - 1))
-            print(space, end="")
+            output += space
             if node is None:
-                print("*", end="")
+                output += "*"
                 q.push(None)
                 q.push(None)
             else:
-                print(node.getdata(), end="")
-                q.push(node.getleft())
-                q.push(node.getright())
-            print(space, end="")
+                output += str(node.get_data())
+                q.push(node.get_left())
+                q.push(node.get_right())
+            output += space
             cnt = cnt + 1
             for i in range(100):
                 if cnt == math.pow(2, i) - 1:
                     layer = layer - 1
                     if layer == 0:
-                        print()
-                        print("*************************************")
-                        return
-                    print()
+                        output += "\n*************************************"
+                        return output
+                    output += "\n"
                     break
-        print()
-        print("*************************************")
-        return
+        output += "\n*************************************"
+        return output
 
-    def test(self):
-        getheight(None)
-        print("****")
-        self.getheight()
+
+def _test() -> None:
+    import doctest
+
+    doctest.testmod()
 
 
 if __name__ == "__main__":
+    _test()
     t = AVLtree()
-    t.traversale()
     lst = list(range(10))
     random.shuffle(lst)
     for i in lst:
         t.insert(i)
-        t.traversale()
-
+        print(str(t))
     random.shuffle(lst)
     for i in lst:
         t.del_node(i)
-        t.traversale()
+        print(str(t))

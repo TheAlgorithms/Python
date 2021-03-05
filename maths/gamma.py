@@ -1,6 +1,7 @@
 import math
-from scipy.integrate import quad
+
 from numpy import inf
+from scipy.integrate import quad
 
 
 def gamma(num: float) -> float:
@@ -8,7 +9,8 @@ def gamma(num: float) -> float:
     https://en.wikipedia.org/wiki/Gamma_function
     In mathematics, the gamma function is one commonly
     used extension of the factorial function to complex numbers.
-    The gamma function is defined for all complex numbers except the non-positive integers
+    The gamma function is defined for all complex numbers except the non-positive
+    integers
 
 
     >>> gamma(-1)
@@ -28,7 +30,8 @@ def gamma(num: float) -> float:
     40320.0
 
     >>> from math import gamma as math_gamma
-    >>> all(gamma(i)/math_gamma(i) <= 1.000000001 and abs(gamma(i)/math_gamma(i)) > .99999999 for i in range(1, 50))
+    >>> all(.99999999 < gamma(i) / math_gamma(i) <= 1.000000001
+    ...     for i in range(1, 50))
     True
 
 

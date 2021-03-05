@@ -7,14 +7,13 @@
     limit is reached or the gradient f'(x[n]) approaches zero. In both cases, exception
     is raised. If iteration limit is reached, try increasing maxiter.
     """
-
 import math as m
 
 
 def calc_derivative(f, a, h=0.001):
     """
-     Calculates derivative at point a for function f using finite difference
-     method
+    Calculates derivative at point a for function f using finite difference
+    method
     """
     return (f(a + h) - f(a - h)) / (2 * h)
 
@@ -42,7 +41,7 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
 
 
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt
+    from matplotlib import pyplot as plt
 
     f = lambda x: m.tanh(x) ** 2 - m.exp(3 * x)  # noqa: E731
     solution, error, steps = newton_raphson(

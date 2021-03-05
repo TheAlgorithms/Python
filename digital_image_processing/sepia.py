@@ -1,12 +1,14 @@
 """
     Implemented an algorithm using opencv to tone an image with sepia technique
 """
-
-from cv2 import imread, imshow, waitKey, destroyAllWindows
+from cv2 import destroyAllWindows, imread, imshow, waitKey
 
 
 def make_sepia(img, factor: int):
-    """ Function create sepia tone. Source: https://en.wikipedia.org/wiki/Sepia_(color) """
+    """
+    Function create sepia tone.
+    Source: https://en.wikipedia.org/wiki/Sepia_(color)
+    """
     pixel_h, pixel_v = img.shape[0], img.shape[1]
 
     def to_grayscale(blue, green, red):

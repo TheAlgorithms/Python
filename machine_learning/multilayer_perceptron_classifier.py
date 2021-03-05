@@ -1,6 +1,5 @@
 from sklearn.neural_network import MLPClassifier
 
-
 X = [[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]]
 y = [0, 1, 0, 0]
 

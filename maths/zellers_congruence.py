@@ -1,5 +1,5 @@
-import datetime
 import argparse
+import datetime
 
 
 def zeller(date_input: str) -> str:
@@ -63,8 +63,7 @@ def zeller(date_input: str) -> str:
     >>> zeller('01-31-19082939')
     Traceback (most recent call last):
         ...
-    ValueError: Must be 10 characters long
-"""
+    ValueError: Must be 10 characters long"""
 
     # Days of the week for response
     days = {

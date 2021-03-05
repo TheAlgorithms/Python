@@ -15,7 +15,7 @@ class Matrix:
         if isinstance(arg, list):  # Initializes a matrix identical to the one provided.
             self.t = arg
             self.n = len(arg)
-        else:  # Initializes a square matrix of the given size and set the values to zero.
+        else:  # Initializes a square matrix of the given size and set values to zero.
             self.n = arg
             self.t = [[0 for _ in range(self.n)] for _ in range(self.n)]
 

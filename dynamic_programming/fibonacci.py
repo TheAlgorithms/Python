@@ -1,5 +1,6 @@
 """
-This is a pure Python implementation of Dynamic Programming solution to the fibonacci sequence problem.
+This is a pure Python implementation of Dynamic Programming solution to the fibonacci
+sequence problem.
 """
 
 

@@ -1,10 +1,9 @@
 # Random Forest Classifier Example
-
+from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import plot_confusion_matrix
-import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
 
 
 def main():

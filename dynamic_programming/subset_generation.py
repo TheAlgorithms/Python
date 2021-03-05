@@ -1,4 +1,4 @@
-# Python program to print all subset combinations of n element in given set of r element.
+# Print all subset combinations of n element in given set of r element.
 
 
 def combination_util(arr, n, r, index, data, i):

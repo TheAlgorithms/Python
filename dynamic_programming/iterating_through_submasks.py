@@ -5,14 +5,15 @@ You are given a bitmask m and you want to efficiently iterate through all of
 its submasks. The mask s is submask of m if only bits that were included in
 bitmask are set
 """
-from typing import List
+from __future__ import annotations
 
 
-def list_of_submasks(mask: int) -> List[int]:
+def list_of_submasks(mask: int) -> list[int]:
 
     """
     Args:
-        mask : number which shows mask ( always integer > 0, zero does not have any submasks )
+        mask : number which shows mask ( always integer > 0, zero does not have any
+            submasks )
 
     Returns:
         all_submasks : the list of submasks of mask (mask s is called submask of mask
@@ -36,8 +37,9 @@ def list_of_submasks(mask: int) -> List[int]:
 
     """
 
-    fmt = "mask needs to be positive integer, your input {}"
-    assert isinstance(mask, int) and mask > 0, fmt.format(mask)
+    assert (
+        isinstance(mask, int) and mask > 0
+    ), f"mask needs to be positive integer, your input {mask}"
 
     """
     first submask iterated will be mask itself then operation will be performed

@@ -1,8 +1,8 @@
 """
 Implementation Burke's algorithm (dithering)
 """
-from cv2 import destroyAllWindows, imread, imshow, waitKey
 import numpy as np
+from cv2 import destroyAllWindows, imread, imshow, waitKey
 
 
 class Burkes:

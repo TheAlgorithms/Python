@@ -1,8 +1,8 @@
 """
 A Trie/Prefix Tree is a kind of search tree used to provide quick lookup
 of words/patterns in a set of words. A basic Trie however has O(n^2) space complexity
-making it impractical in practice. It however provides O(max(search_string, length of longest word))
-lookup time making it an optimal approach when space is not an issue.
+making it impractical in practice. It however provides O(max(search_string, length of
+longest word)) lookup time making it an optimal approach when space is not an issue.
 """
 
 

@@ -1,7 +1,8 @@
 from string import ascii_letters
+from typing import Dict, Optional
 
 
-def encrypt(input_string: str, key: int, alphabet=None) -> str:
+def encrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     """
     encrypt
     =======
@@ -79,7 +80,7 @@ def encrypt(input_string: str, key: int, alphabet=None) -> str:
     return result
 
 
-def decrypt(input_string: str, key: int, alphabet=None) -> str:
+def decrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     """
     decrypt
     =======
@@ -144,7 +145,7 @@ def decrypt(input_string: str, key: int, alphabet=None) -> str:
     return encrypt(input_string, key, alphabet)
 
 
-def brute_force(input_string: str, alphabet=None) -> dict:
+def brute_force(input_string: str, alphabet: Optional[str] = None) -> Dict[int, str]:
     """
     brute_force
     ===========
@@ -193,34 +194,21 @@ def brute_force(input_string: str, alphabet=None) -> dict:
     # Set default alphabet to lower and upper case english chars
     alpha = alphabet or ascii_letters
 
-    # The key during testing (will increase)
-    key = 1
-
-    # The encoded result
-    result = ""
-
     # To store data on all the combinations
     brute_force_data = {}
 
     # Cycle through each combination
-    while key <= len(alpha):
-        # Decrypt the message
-        result = decrypt(input_string, key, alpha)
-
-        # Update the data
-        brute_force_data[key] = result
-
-        # Reset result and increase the key
-        result = ""
-        key += 1
+    for key in range(1, len(alpha) + 1):
+        # Decrypt the message and store the result in the data
+        brute_force_data[key] = decrypt(input_string, key, alpha)
 
     return brute_force_data
 
 
-def main():
+if __name__ == "__main__":
     while True:
         print(f'\n{"-" * 10}\n Menu\n{"-" * 10}')
-        print(*["1.Encrpyt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
+        print(*["1.Encrypt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
 
         # get user input
         choice = input("\nWhat would you like to do?: ").strip() or "4"
@@ -248,7 +236,3 @@ def main():
         elif choice == "4":
             print("Goodbye.")
             break
-
-
-if __name__ == "__main__":
-    main()

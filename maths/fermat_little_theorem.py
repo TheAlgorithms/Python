@@ -1,5 +1,6 @@
 # Python program to show the usage of Fermat's little theorem in a division
-# According to Fermat's little theorem, (a / b) mod p always equals a * (b ^ (p - 2)) mod p
+# According to Fermat's little theorem, (a / b) mod p always equals
+# a * (b ^ (p - 2)) mod p
 # Here we assume that p is a prime number, b divides a, and p doesn't divide b
 # Wikipedia reference: https://en.wikipedia.org/wiki/Fermat%27s_little_theorem
 

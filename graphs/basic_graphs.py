@@ -1,6 +1,5 @@
 from collections import deque
 
-
 if __name__ == "__main__":
     # Accept No. of Nodes and edges
     n, m = map(int, input().split(" "))
@@ -221,6 +220,7 @@ def prim(G, s):
                 if v[1] < dist.get(v[0], 100000):
                     dist[v[0]] = v[1]
                     path[v[0]] = u
+    return dist
 
 
 """

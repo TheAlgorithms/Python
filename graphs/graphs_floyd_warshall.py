@@ -1,7 +1,7 @@
 # floyd_warshall.py
 """
-    The problem is to find the shortest distance between all pairs of vertices in a weighted directed graph that can
-    have negative edge weights.
+    The problem is to find the shortest distance between all pairs of vertices in a
+    weighted directed graph that can have negative edge weights.
 """
 
 
@@ -26,10 +26,11 @@ def floyd_warshall(graph, v):
     distance[u][v] will contain the shortest distance from vertex u to v.
 
     1. For all edges from v to n, distance[i][j] = weight(edge(i, j)).
-    3. The algorithm then performs distance[i][j] = min(distance[i][j], distance[i][k] + distance[k][j]) for each
-    possible pair i, j of vertices.
+    3. The algorithm then performs distance[i][j] = min(distance[i][j], distance[i][k] +
+        distance[k][j]) for each possible pair i, j of vertices.
     4. The above is repeated for each vertex k in the graph.
-    5. Whenever distance[i][j] is given a new minimum value, next vertex[i][j] is updated to the next vertex[i][k].
+    5. Whenever distance[i][j] is given a new minimum value, next vertex[i][j] is
+        updated to the next vertex[i][k].
     """
 
     dist = [[float("inf") for _ in range(v)] for _ in range(v)]

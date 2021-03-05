@@ -43,8 +43,8 @@ from math import sqrt
 
 def isPrime(number):
     """
-        input: positive integer 'number'
-        returns true if 'number' is prime otherwise false.
+    input: positive integer 'number'
+    returns true if 'number' is prime otherwise false.
     """
 
     # precondition
@@ -77,11 +77,11 @@ def isPrime(number):
 
 def sieveEr(N):
     """
-        input: positive integer 'N' > 2
-        returns a list of prime numbers from 2 up to N.
+    input: positive integer 'N' > 2
+    returns a list of prime numbers from 2 up to N.
 
-        This function implements the algorithm called
-        sieve of erathostenes.
+    This function implements the algorithm called
+    sieve of erathostenes.
 
     """
 
@@ -115,9 +115,9 @@ def sieveEr(N):
 
 def getPrimeNumbers(N):
     """
-        input: positive integer 'N' > 2
-        returns a list of prime numbers from 2 up to N (inclusive)
-        This function is more efficient as function 'sieveEr(...)'
+    input: positive integer 'N' > 2
+    returns a list of prime numbers from 2 up to N (inclusive)
+    This function is more efficient as function 'sieveEr(...)'
     """
 
     # precondition
@@ -144,8 +144,8 @@ def getPrimeNumbers(N):
 
 def primeFactorization(number):
     """
-        input: positive integer 'number'
-        returns a list of the prime number factors of 'number'
+    input: positive integer 'number'
+    returns a list of the prime number factors of 'number'
     """
 
     # precondition
@@ -188,8 +188,8 @@ def primeFactorization(number):
 
 def greatestPrimeFactor(number):
     """
-        input: positive integer 'number' >= 0
-        returns the greatest prime number factor of 'number'
+    input: positive integer 'number' >= 0
+    returns the greatest prime number factor of 'number'
     """
 
     # precondition
@@ -215,8 +215,8 @@ def greatestPrimeFactor(number):
 
 def smallestPrimeFactor(number):
     """
-        input: integer 'number' >= 0
-        returns the smallest prime number factor of 'number'
+    input: integer 'number' >= 0
+    returns the smallest prime number factor of 'number'
     """
 
     # precondition
@@ -242,8 +242,8 @@ def smallestPrimeFactor(number):
 
 def isEven(number):
     """
-        input: integer 'number'
-        returns true if 'number' is even, otherwise false.
+    input: integer 'number'
+    returns true if 'number' is even, otherwise false.
     """
 
     # precondition
@@ -258,8 +258,8 @@ def isEven(number):
 
 def isOdd(number):
     """
-        input: integer 'number'
-        returns true if 'number' is odd, otherwise false.
+    input: integer 'number'
+    returns true if 'number' is odd, otherwise false.
     """
 
     # precondition
@@ -274,9 +274,9 @@ def isOdd(number):
 
 def goldbach(number):
     """
-        Goldbach's assumption
-        input: a even positive integer 'number' > 2
-        returns a list of two prime numbers whose sum is equal to 'number'
+    Goldbach's assumption
+    input: a even positive integer 'number' > 2
+    returns a list of two prime numbers whose sum is equal to 'number'
     """
 
     # precondition
@@ -329,9 +329,9 @@ def goldbach(number):
 
 def gcd(number1, number2):
     """
-        Greatest common divisor
-        input: two positive integer 'number1' and 'number2'
-        returns the greatest common divisor of 'number1' and 'number2'
+    Greatest common divisor
+    input: two positive integer 'number1' and 'number2'
+    returns the greatest common divisor of 'number1' and 'number2'
     """
 
     # precondition
@@ -363,9 +363,9 @@ def gcd(number1, number2):
 
 def kgV(number1, number2):
     """
-        Least common multiple
-        input: two positive integer 'number1' and 'number2'
-        returns the least common multiple of 'number1' and 'number2'
+    Least common multiple
+    input: two positive integer 'number1' and 'number2'
+    returns the least common multiple of 'number1' and 'number2'
     """
 
     # precondition
@@ -443,9 +443,9 @@ def kgV(number1, number2):
 
 def getPrime(n):
     """
-        Gets the n-th prime number.
-        input: positive integer 'n' >= 0
-        returns the n-th prime number, beginning at index 0
+    Gets the n-th prime number.
+    input: positive integer 'n' >= 0
+    returns the n-th prime number, beginning at index 0
     """
 
     # precondition
@@ -478,10 +478,10 @@ def getPrime(n):
 
 def getPrimesBetween(pNumber1, pNumber2):
     """
-        input: prime numbers 'pNumber1' and 'pNumber2'
-                pNumber1 < pNumber2
-        returns a list of all prime numbers between 'pNumber1' (exclusive)
-                and 'pNumber2' (exclusive)
+    input: prime numbers 'pNumber1' and 'pNumber2'
+            pNumber1 < pNumber2
+    returns a list of all prime numbers between 'pNumber1' (exclusive)
+            and 'pNumber2' (exclusive)
     """
 
     # precondition
@@ -522,8 +522,8 @@ def getPrimesBetween(pNumber1, pNumber2):
 
 def getDivisors(n):
     """
-        input: positive integer 'n' >= 1
-        returns all divisors of n (inclusive 1 and 'n')
+    input: positive integer 'n' >= 1
+    returns all divisors of n (inclusive 1 and 'n')
     """
 
     # precondition
@@ -547,8 +547,8 @@ def getDivisors(n):
 
 def isPerfectNumber(number):
     """
-        input: positive integer 'number' > 1
-        returns true if 'number' is a perfect number otherwise false.
+    input: positive integer 'number' > 1
+    returns true if 'number' is a perfect number otherwise false.
     """
 
     # precondition
@@ -574,9 +574,9 @@ def isPerfectNumber(number):
 
 def simplifyFraction(numerator, denominator):
     """
-        input: two integer 'numerator' and 'denominator'
-        assumes: 'denominator' != 0
-        returns: a tuple with simplify numerator and denominator.
+    input: two integer 'numerator' and 'denominator'
+    assumes: 'denominator' != 0
+    returns: a tuple with simplify numerator and denominator.
     """
 
     # precondition
@@ -604,8 +604,8 @@ def simplifyFraction(numerator, denominator):
 
 def factorial(n):
     """
-        input: positive integer 'n'
-        returns the factorial of 'n' (n!)
+    input: positive integer 'n'
+    returns the factorial of 'n' (n!)
     """
 
     # precondition
@@ -624,8 +624,8 @@ def factorial(n):
 
 def fib(n):
     """
-        input: positive integer 'n'
-        returns the n-th fibonacci term , indexing by 0
+    input: positive integer 'n'
+    returns the n-th fibonacci term , indexing by 0
     """
 
     # precondition

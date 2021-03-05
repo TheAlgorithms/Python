@@ -1,10 +1,9 @@
 import sys
 import webbrowser
 
+import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-import requests
-
 
 if __name__ == "__main__":
     print("Googling.....")
