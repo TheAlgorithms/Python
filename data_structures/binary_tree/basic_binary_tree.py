@@ -43,9 +43,7 @@ def depth_of_tree(
 def is_full_binary_tree(
     tree,
 ):  # This function returns that is it full binary tree or not?
-    if tree is None:
-        return True
-    if (tree.left is None) and (tree.right is None):
+    if all([not tree, not tree.left , not tree.right]):
         return True
     if (tree.left is not None) and (tree.right is not None):
         return is_full_binary_tree(tree.left) and is_full_binary_tree(tree.right)
