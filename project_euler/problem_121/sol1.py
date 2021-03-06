@@ -24,7 +24,6 @@ Solution:
 """
 
 from itertools import product
-from typing import Tuple
 
 
 def solution(num_turns: int = 15) -> int:
@@ -42,7 +41,7 @@ def solution(num_turns: int = 15) -> int:
     num_red: int
     ind: int
     col: int
-    series: Tuple[int, ...]
+    series: tuple[int, ...]
 
     for series in product(range(2), repeat=num_turns):
         num_blue = series.count(1)
