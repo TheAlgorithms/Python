@@ -29,6 +29,8 @@
   * [Binary Count Setbits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_count_setbits.py)
   * [Binary Count Trailing Zeros](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_count_trailing_zeros.py)
   * [Binary Or Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_or_operator.py)
+  * [Binary Shifts](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_shifts.py)
+  * [Binary Twos Complement](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_twos_complement.py)
   * [Binary Xor Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_xor_operator.py)
   * [Count Number Of One Bits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/count_number_of_one_bits.py)
   * [Reverse Bits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/reverse_bits.py)
@@ -278,6 +280,7 @@
 ## Graphics
   * [Bezier Curve](https://github.com/TheAlgorithms/Python/blob/master/graphics/bezier_curve.py)
   * [Koch Snowflake](https://github.com/TheAlgorithms/Python/blob/master/graphics/koch_snowflake.py)
+  * [Mandelbrot](https://github.com/TheAlgorithms/Python/blob/master/graphics/mandelbrot.py)
   * [Vector3 For 2D Rendering](https://github.com/TheAlgorithms/Python/blob/master/graphics/vector3_for_2d_rendering.py)
 
 ## Graphs
@@ -469,6 +472,7 @@
   * [Runge Kutta](https://github.com/TheAlgorithms/Python/blob/master/maths/runge_kutta.py)
   * [Segmented Sieve](https://github.com/TheAlgorithms/Python/blob/master/maths/segmented_sieve.py)
   * Series
+    * [Geometric Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/series/geometric_mean.py)
     * [Geometric Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/geometric_series.py)
     * [Harmonic Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/harmonic_series.py)
     * [P Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/p_series.py)
@@ -757,6 +761,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_102/sol1.py)
   * Problem 107
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_107/sol1.py)
+  * Problem 109
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_109/sol1.py)
   * Problem 112
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_112/sol1.py)
   * Problem 113
