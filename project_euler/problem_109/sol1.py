@@ -54,7 +54,6 @@ Solution:
 """
 
 from itertools import combinations_with_replacement
-from typing import List
 
 
 def solution(limit: int = 100) -> int:
@@ -66,10 +65,10 @@ def solution(limit: int = 100) -> int:
     >>> solution(50)
     12577
     """
-    singles: List[int] = [x for x in range(1, 21)] + [25]
-    doubles: List[int] = [2 * x for x in range(1, 21)] + [50]
-    triples: List[int] = [3 * x for x in range(1, 21)]
-    all_values: List[int] = singles + doubles + triples + [0]
+    singles: list[int] = [x for x in range(1, 21)] + [25]
+    doubles: list[int] = [2 * x for x in range(1, 21)] + [50]
+    triples: list[int] = [3 * x for x in range(1, 21)]
+    all_values: list[int] = singles + doubles + triples + [0]
 
     num_checkouts: int = 0
     double: int
