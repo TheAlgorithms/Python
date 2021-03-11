@@ -20,10 +20,11 @@ class Node:
     """
     Node of priority queue. Has sum of probabilities of containing elements.
     """
+
     frequency: float
     elements: tuple[Hashable, ...]
 
-    def __add__(self, other: Node):
+    def __add__(self, other: Node) -> Node:
         return Node(self.frequency + other.frequency, self.elements + other.elements)
 
 
@@ -89,7 +90,7 @@ def encode(elements: Iterable[H], coding_table: Mapping[H, Sequence[T]]) -> Iter
     return itertools.chain.from_iterable(coding_table[elem] for elem in elements)
 
 
-def main():
+def main() -> None:
     text = "abcccdefffffaaabcddddcccaaab"
     code_alphabet_size = 10
     frequencies_table = Counter(text)
