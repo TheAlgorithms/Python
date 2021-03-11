@@ -25,6 +25,13 @@ class Node:
     elements: tuple[Hashable, ...]
 
     def __add__(self, other: Node) -> Node:
+        """
+        Add two nodes and returns new one
+
+        Examples:
+        >>> Node(3, (2, 3, 1)) + Node(1, (6, 4))
+        Node(frequency=4, elements=(2, 3, 1, 6, 4))
+        """
         return Node(self.frequency + other.frequency, self.elements + other.elements)
 
 
