@@ -97,14 +97,10 @@ def encode(elements: Iterable[H], coding_table: Mapping[H, Sequence[T]]) -> Iter
     return itertools.chain.from_iterable(coding_table[elem] for elem in elements)
 
 
-def main() -> None:
+if __name__ == "__main__":
     text = "abcccdefffffaaabcddddcccaaab"
     code_alphabet_size = 10
     frequencies_table = Counter(text)
-    coding_table = huffman(frequencies_table, code_alphabet_size)
-    encoded_text = "".join(map(str, encode(text, coding_table)))
+    huffman_coding_table = huffman(frequencies_table, code_alphabet_size)
+    encoded_text = "".join(map(str, encode(text, huffman_coding_table)))
     print(encoded_text)
-
-
-if __name__ == "__main__":
-    main()
