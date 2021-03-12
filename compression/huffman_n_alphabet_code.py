@@ -18,7 +18,7 @@ H = TypeVar("H", bound=Hashable)
 @dataclass(order=True, frozen=True)
 class Node:
     """
-    Node of priority queue. Has sum of probabilities of containing elements.
+    Node of priority queue. Has sum of frequencies of contained elements.
     """
 
     frequency: float
@@ -26,7 +26,7 @@ class Node:
 
     def __add__(self, other: Node) -> Node:
         """
-        Add two nodes and returns new one
+        Adds two nodes and returns a new one
 
         Examples:
         >>> Node(3, (2, 3, 1)) + Node(1, (6, 4))
@@ -40,7 +40,7 @@ def huffman(frequencies: Mapping[H, int], alphabet_size: int = 2) -> dict[H, lis
     N-ary Huffman algorithm that uses priority queue
 
     Encodes each element with prefix code according to frequencies table.
-    Produced codes is lists of integers because it can be easily converted to bits
+    Codes are provided as lists of integers because it can be easily converted to bits
     (if alphabet size == 2), strings of decimals (alphabet_size == 10), hexadecimal
     string (alphabet_size == 16) or anything else on demand.
 
@@ -58,10 +58,10 @@ def huffman(frequencies: Mapping[H, int], alphabet_size: int = 2) -> dict[H, lis
     >>> huffman({"a": 4, "b": 1, "c": 3, "d": 1}, 1)
     Traceback (most recent call last):
     ...
-    ValueError: Alphabet size cannot be less 2
+    ValueError: Alphabet size cannot be less than 2
     """
     if alphabet_size < 2:
-        raise ValueError("Alphabet size cannot be less 2")
+        raise ValueError("Alphabet size cannot be less than 2")
     if len(frequencies) == 1:
         return {next(iter(frequencies)): [0]}
     codes = defaultdict(list)
