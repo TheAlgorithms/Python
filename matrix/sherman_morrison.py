@@ -11,7 +11,7 @@ class Matrix:
 
         Example:
         >>> a = Matrix(2, 3, 1)
-        >>> a 
+        >>> a
         Matrix consist of 2 rows and 3 columns
         [1, 1, 1]
         [1, 1, 1]
@@ -28,7 +28,7 @@ class Matrix:
 
         # Prefix
         s = "Matrix consist of %d rows and %d columns\n" % (self.row, self.column)
-        
+
         # Make string identifier
         max_element_length = 0
         for row_vector in self.array:
@@ -37,16 +37,18 @@ class Matrix:
         string_format_identifier = "%%%ds" % (max_element_length,)
 
         # Make string and return
-        def single_line(row_vector): 
+        def single_line(row_vector):
             nonlocal string_format_identifier
             line = "["
             line += ", ".join(string_format_identifier % (obj,) for obj in row_vector)
             line += "]"
             return line
+
         s += "\n".join(single_line(row_vector) for row_vector in self.array)
         return s
 
-    def __repr__(self): return str(self)
+    def __repr__(self):
+        return str(self)
 
     def validateIndices(self, loc: tuple):
         """
@@ -60,9 +62,12 @@ class Matrix:
         >>> a.validateIndices((0, 0))
         True
         """
-        if not(isinstance(loc, (list, tuple)) and len(loc) == 2): return False
-        elif not(0 <= loc[0] < self.row and 0 <= loc[1] < self.column): return False
-        else: return True
+        if not (isinstance(loc, (list, tuple)) and len(loc) == 2):
+            return False
+        elif not (0 <= loc[0] < self.row and 0 <= loc[1] < self.column):
+            return False
+        else:
+            return True
 
     def __getitem__(self, loc: tuple):
         """
@@ -115,7 +120,7 @@ class Matrix:
         result = Matrix(self.row, self.column)
         for r in range(self.row):
             for c in range(self.column):
-                result[r,c] = self[r,c] + another[r,c]
+                result[r, c] = self[r, c] + another[r, c]
         return result
 
     def __neg__(self):
@@ -135,10 +140,11 @@ class Matrix:
         result = Matrix(self.row, self.column)
         for r in range(self.row):
             for c in range(self.column):
-                result[r,c] = -self[r,c]
+                result[r, c] = -self[r, c]
         return result
 
-    def __sub__(self, another): return self + (-another)
+    def __sub__(self, another):
+        return self + (-another)
 
     def __mul__(self, another):
         """
@@ -154,21 +160,22 @@ class Matrix:
         [-2, -2, -6]
         """
 
-        if isinstance(another, (int, float)): # Scalar multiplication
+        if isinstance(another, (int, float)):  # Scalar multiplication
             result = Matrix(self.row, self.column)
             for r in range(self.row):
                 for c in range(self.column):
-                    result[r,c] = self[r,c] * another
+                    result[r, c] = self[r, c] * another
             return result
-        elif isinstance(another, Matrix): # Matrix multiplication
-            assert(self.column == another.row)
+        elif isinstance(another, Matrix):  # Matrix multiplication
+            assert self.column == another.row
             result = Matrix(self.row, another.column)
             for r in range(self.row):
                 for c in range(another.column):
                     for i in range(self.column):
-                        result[r,c] += self[r,i] * another[i,c]
+                        result[r, c] += self[r, i] * another[i, c]
             return result
-        else: raise TypeError("Unsupported type given for another (%s)" % (type(another),))
+        else:
+            raise TypeError(f"Unsupported type given for another ({type(another)})")
 
     def transpose(self):
         """
@@ -177,10 +184,10 @@ class Matrix:
 
         Example:
         >>> a = Matrix(2, 3)
-        >>> for r in range(2):       
+        >>> for r in range(2):
         ...     for c in range(3):
         ...             a[r,c] = r*c
-        ... 
+        ...
         >>> a.transpose()
         Matrix consist of 3 rows and 2 columns
         [0, 0]
@@ -191,23 +198,25 @@ class Matrix:
         result = Matrix(self.column, self.row)
         for r in range(self.row):
             for c in range(self.column):
-                result[c,r] = self[r,c]
+                result[c, r] = self[r, c]
         return result
 
     def ShermanMorrison(self, u, v):
         """
         <method Matrix.ShermanMorrison>
         Apply Sherman-Morrison formula in O(n^2).
-        To learn this formula, please look this: https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula
-        This method returns (A + uv^T)^(-1) where A^(-1) is self. Returns None if it's impossible to calculate.
-        Warning: This method doesn't check if self is invertible. 
+        To learn this formula, please look this:
+        https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula
+        This method returns (A + uv^T)^(-1) where A^(-1) is self. Returns None if it's
+        impossible to calculate.
+        Warning: This method doesn't check if self is invertible.
             Make sure self is invertible before execute this method.
 
         Example:
         >>> ainv = Matrix(3, 3, 0)
         >>> for i in range(3): ainv[i,i] = 1
-        ... 
-        >>> u = Matrix(3, 1, 0) 
+        ...
+        >>> u = Matrix(3, 1, 0)
         >>> u[0,0], u[1,0], u[2,0] = 1, 2, -3
         >>> v = Matrix(3, 1, 0)
         >>> v[0,0], v[1,0], v[2,0] = 4, -2, 5
@@ -220,14 +229,16 @@ class Matrix:
 
         # Size validation
         assert isinstance(u, Matrix) and isinstance(v, Matrix)
-        assert self.row == self.column == u.row == v.row # u, v should be column vector
-        assert u.column == v.column == 1 # u, v should be column vector
+        assert self.row == self.column == u.row == v.row  # u, v should be column vector
+        assert u.column == v.column == 1  # u, v should be column vector
 
         # Calculate
         vT = v.transpose()
         numerator_factor = (vT * self * u)[0, 0] + 1
-        if numerator_factor == 0: return None # It's not invertable
+        if numerator_factor == 0:
+            return None  # It's not invertable
         return self - ((self * u) * (vT * self) * (1.0 / numerator_factor))
+
 
 # Testing
 if __name__ == "__main__":
@@ -235,21 +246,23 @@ if __name__ == "__main__":
     def test1():
         # a^(-1)
         ainv = Matrix(3, 3, 0)
-        for i in range(3): ainv[i,i] = 1
-        print("a^(-1) is %s" % (ainv,))
+        for i in range(3):
+            ainv[i, i] = 1
+        print(f"a^(-1) is {ainv}")
         # u, v
         u = Matrix(3, 1, 0)
-        u[0,0], u[1,0], u[2,0] = 1, 2, -3
+        u[0, 0], u[1, 0], u[2, 0] = 1, 2, -3
         v = Matrix(3, 1, 0)
-        v[0,0], v[1,0], v[2,0] = 4, -2, 5
-        print("u is %s" % (u,))
-        print("v is %s" % (v,))
+        v[0, 0], v[1, 0], v[2, 0] = 4, -2, 5
+        print(f"u is {u}")
+        print(f"v is {v}")
         print("uv^T is %s" % (u * v.transpose()))
         # Sherman Morrison
-        print("(a + uv^T)^(-1) is %s" % (ainv.ShermanMorrison(u, v),))
+        print(f"(a + uv^T)^(-1) is {ainv.ShermanMorrison(u, v)}")
 
     def test2():
         import doctest
+
         doctest.testmod()
 
     test2()

@@ -2,7 +2,7 @@
 Changing contrast with PIL
 
 This algorithm is used in
-https://noivce.pythonanywhere.com/ python web app.
+https://noivce.pythonanywhere.com/ Python web app.
 
 python/black: True
 flake8 : True
@@ -11,18 +11,18 @@ flake8 : True
 from PIL import Image
 
 
-def change_contrast(img: Image, level: float) -> Image:
+def change_contrast(img: Image, level: int) -> Image:
     """
     Function to change contrast
     """
     factor = (259 * (level + 255)) / (255 * (259 - level))
 
-    def contrast(c: int) -> float:
+    def contrast(c: int) -> int:
         """
         Fundamental Transformation/Operation that'll be performed on
         every bit.
         """
-        return 128 + factor * (c - 128)
+        return int(128 + factor * (c - 128))
 
     return img.point(contrast)
 

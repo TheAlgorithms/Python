@@ -1,9 +1,10 @@
-# An OOP aproach to representing and manipulating matrices
+# An OOP approach to representing and manipulating matrices
 
 
 class Matrix:
     """
-    Matrix object generated from a 2D array where each element is an array representing a row.
+    Matrix object generated from a 2D array where each element is an array representing
+    a row.
     Rows can contain type int or float.
     Common operations and information available.
     >>> rows = [
@@ -16,13 +17,13 @@ class Matrix:
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]]
-    
+
     Matrix rows and columns are available as 2D arrays
     >>> print(matrix.rows)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     >>> print(matrix.columns())
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-    
+
     Order is returned as a tuple
     >>> matrix.order
     (3, 3)
@@ -33,7 +34,8 @@ class Matrix:
     >>> matrix.is_invertable()
     False
 
-    Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be a Matrix or Nonetype
+    Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
+    a Matrix or Nonetype
     >>> print(matrix.identity())
     [[1. 0. 0.]
      [0. 1. 0.]
@@ -46,7 +48,8 @@ class Matrix:
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>> print(matrix.adjugate()) # won't be apparent due to the nature of the cofactor matrix
+    >>>  # won't be apparent due to the nature of the cofactor matrix
+    >>> print(matrix.adjugate())
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
@@ -57,7 +60,8 @@ class Matrix:
     >>> matrix.determinant()
     0
 
-    Negation, scalar multiplication, addition, subtraction, multiplication and exponentiation are available and all return a Matrix
+    Negation, scalar multiplication, addition, subtraction, multiplication and
+    exponentiation are available and all return a Matrix
     >>> print(-matrix)
     [[-1. -2. -3.]
      [-4. -5. -6.]
@@ -102,8 +106,9 @@ class Matrix:
 
     def __init__(self, rows):
         error = TypeError(
-            "Matrices must be formed from a list of zero or more lists containing at least "
-            "one and the same number of values, each of which must be of type int or float."
+            "Matrices must be formed from a list of zero or more lists containing at "
+            "least one and the same number of values, each of which must be of type "
+            "int or float."
         )
         if len(rows) != 0:
             cols = len(rows[0])
@@ -159,10 +164,8 @@ class Matrix:
             )
         else:
             return sum(
-                [
-                    self.rows[0][column] * self.cofactors().rows[0][column]
-                    for column in range(self.num_columns)
-                ]
+                self.rows[0][column] * self.cofactors().rows[0][column]
+                for column in range(self.num_columns)
             )
 
     def is_invertable(self):
@@ -311,8 +314,10 @@ class Matrix:
             return Matrix([[element * other for element in row] for row in self.rows])
         elif isinstance(other, Matrix):
             if self.num_columns != other.num_rows:
-                raise ValueError("The number of columns in the first matrix must "
-                                 "be equal to the number of rows in the second")
+                raise ValueError(
+                    "The number of columns in the first matrix must "
+                    "be equal to the number of rows in the second"
+                )
             return Matrix(
                 [
                     [Matrix.dot_product(row, column) for column in other.columns()]
@@ -320,7 +325,9 @@ class Matrix:
                 ]
             )
         else:
-            raise TypeError("A Matrix can only be multiplied by an int, float, or another matrix")
+            raise TypeError(
+                "A Matrix can only be multiplied by an int, float, or another matrix"
+            )
 
     def __pow__(self, other):
         if not isinstance(other, int):
@@ -342,7 +349,7 @@ class Matrix:
 
     @classmethod
     def dot_product(cls, row, column):
-        return sum([row[i] * column[i] for i in range(len(row))])
+        return sum(row[i] * column[i] for i in range(len(row)))
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-def decrypt(message):
+def decrypt(message: str) -> None:
     """
     >>> decrypt('TMDETUX PMDVU')
     Decryption using Key #0: TMDETUX PMDVU
@@ -40,14 +40,17 @@ def decrypt(message):
                 translated = translated + LETTERS[num]
             else:
                 translated = translated + symbol
-        print("Decryption using Key #%s: %s" % (key, translated))
+        print(f"Decryption using Key #{key}: {translated}")
+
 
 def main():
     message = input("Encrypted message: ")
     message = message.upper()
     decrypt(message)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()

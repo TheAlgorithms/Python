@@ -1,13 +1,17 @@
-black
-flake8
+beautifulsoup4
+fake_useragent
+keras; python_version < '3.9'
+lxml
 matplotlib
-mypy
 numpy
 opencv-python
 pandas
 pillow
-pytest
+qiskit
 requests
+scikit-fuzzy
 sklearn
+statsmodels
 sympy
-tensorflow
+tensorflow; python_version < '3.9'
+xgboost

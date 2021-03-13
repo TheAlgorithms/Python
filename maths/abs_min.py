@@ -16,9 +16,9 @@ def absMin(x):
 
 
 def main():
-    a = [-3,-1,2,-11]
+    a = [-3, -1, 2, -11]
     print(absMin(a))  # = -1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

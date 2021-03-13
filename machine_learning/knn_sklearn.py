@@ -1,28 +1,31 @@
-from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 
-#Load iris file
+# Load iris file
 iris = load_iris()
 iris.keys()
 
 
-print('Target names: \n {} '.format(iris.target_names))
-print('\n Features: \n {}'.format(iris.feature_names))
+print(f"Target names: \n {iris.target_names} ")
+print(f"\n Features: \n {iris.feature_names}")
 
-#Train set e Test set
-X_train, X_test, y_train, y_test = train_test_split(iris['data'],iris['target'], random_state=4)
+# Train set e Test set
+X_train, X_test, y_train, y_test = train_test_split(
+    iris["data"], iris["target"], random_state=4
+)
 
-#KNN
+# KNN
 
-knn = KNeighborsClassifier (n_neighbors = 1)
+knn = KNeighborsClassifier(n_neighbors=1)
 knn.fit(X_train, y_train)
 
-#new array to test
-X_new = [[1,2,1,4],
-		 [2,3,4,5]]	
+# new array to test
+X_new = [[1, 2, 1, 4], [2, 3, 4, 5]]
 
 prediction = knn.predict(X_new)
 
-print('\nNew array: \n {}'
-	  '\n\nTarget Names Prediction: \n {}'.format(X_new, iris['target_names'][prediction]))
+print(
+    f"\nNew array: \n {X_new}\n\nTarget Names Prediction: \n"
+    f" {iris['target_names'][prediction]}"
+)

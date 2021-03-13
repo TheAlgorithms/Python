@@ -1,10 +1,13 @@
-import random
-
 """
-A python implementation of the quick select algorithm, which is efficient for calculating the value that would appear in the index of a list if it would be sorted, even if it is not already sorted
+A Python implementation of the quick select algorithm, which is efficient for
+calculating the value that would appear in the index of a list if it would be
+sorted, even if it is not already sorted
 https://en.wikipedia.org/wiki/Quickselect
 """
-def _partition(data, pivot):
+import random
+
+
+def _partition(data: list, pivot) -> tuple:
     """
     Three way partition the data into smaller, equal and greater lists,
     in relationship to the pivot
@@ -21,29 +24,38 @@ def _partition(data, pivot):
         else:
             equal.append(element)
     return less, equal, greater
-    
-def quickSelect(list, k):
-    #k = len(list) // 2 when trying to find the median (index that value would be when list is sorted)
-    
-    #invalid input
-    if k>=len(list) or k<0:
+
+
+def quick_select(items: list, index: int):
+    """
+    >>> quick_select([2, 4, 5, 7, 899, 54, 32], 5)
+    54
+    >>> quick_select([2, 4, 5, 7, 899, 54, 32], 1)
+    4
+    >>> quick_select([5, 4, 3, 2], 2)
+    4
+    >>> quick_select([3, 5, 7, 10, 2, 12], 3)
+    7
+    """
+    # index = len(items) // 2 when trying to find the median
+    #   (value of index when items is sorted)
+
+    # invalid input
+    if index >= len(items) or index < 0:
         return None
-    
-    smaller = []
-    larger = []
-    pivot = random.randint(0, len(list) - 1)
-    pivot = list[pivot]
+
+    pivot = items[random.randint(0, len(items) - 1)]
     count = 0
-    smaller, equal, larger =_partition(list, pivot)
+    smaller, equal, larger = _partition(items, pivot)
     count = len(equal)
     m = len(smaller)
 
-    #k is the pivot
-    if m <= k < m + count:
+    # index is the pivot
+    if m <= index < m + count:
         return pivot
     # must be in smaller
-    elif m > k:
-        return quickSelect(smaller, k)
-    #must be in larger
+    elif m > index:
+        return quick_select(smaller, index)
+    # must be in larger
     else:
-        return quickSelect(larger, k - (m + count))
+        return quick_select(larger, index - (m + count))

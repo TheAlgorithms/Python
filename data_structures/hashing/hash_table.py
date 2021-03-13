@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-from number_theory.prime_numbers import next_prime
+from .number_theory.prime_numbers import next_prime
 
 
 class HashTable:
     """
-        Basic Hash Table example with open addressing and linear probing
+    Basic Hash Table example with open addressing and linear probing
     """
 
     def __init__(self, size_table, charge_factor=None, lim_charge=None):
@@ -19,15 +19,16 @@ class HashTable:
         return self._keys
 
     def balanced_factor(self):
-        return sum([1 for slot in self.values
-                    if slot is not None]) / (self.size_table * self.charge_factor)
+        return sum([1 for slot in self.values if slot is not None]) / (
+            self.size_table * self.charge_factor
+        )
 
     def hash_function(self, key):
         return key % self.size_table
 
     def _step_by_step(self, step_ord):
 
-        print("step {0}".format(step_ord))
+        print(f"step {step_ord}")
         print([i for i in range(len(self.values))])
         print(self.values)
 
@@ -43,11 +44,10 @@ class HashTable:
         self.values[key] = data
         self._keys[key] = data
 
-    def _colision_resolution(self, key, data=None):
+    def _collision_resolution(self, key, data=None):
         new_key = self.hash_function(key + 1)
 
-        while self.values[new_key] is not None \
-                and self.values[new_key] != key:
+        while self.values[new_key] is not None and self.values[new_key] != key:
 
             if self.values.count(None) > 0:
                 new_key = self.hash_function(new_key + 1)
@@ -61,8 +61,9 @@ class HashTable:
         survivor_values = [value for value in self.values if value is not None]
         self.size_table = next_prime(self.size_table, factor=2)
         self._keys.clear()
-        self.values = [None] * self.size_table #hell's pointers D: don't DRY ;/
-        map(self.insert_data, survivor_values)
+        self.values = [None] * self.size_table  # hell's pointers D: don't DRY ;/
+        for value in survivor_values:
+            self.insert_data(value)
 
     def insert_data(self, data):
         key = self.hash_function(data)
@@ -74,11 +75,9 @@ class HashTable:
             pass
 
         else:
-            colision_resolution = self._colision_resolution(key, data)
-            if colision_resolution is not None:
-                self._set_value(colision_resolution, data)
+            collision_resolution = self._collision_resolution(key, data)
+            if collision_resolution is not None:
+                self._set_value(collision_resolution, data)
             else:
                 self.rehashing()
                 self.insert_data(data)
-
-

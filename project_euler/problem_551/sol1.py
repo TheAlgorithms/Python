@@ -2,7 +2,7 @@
 Sum of digits sequence
 Problem 551
 
-Let a(0), a(1),... be an interger sequence defined by:
+Let a(0), a(1),... be an integer sequence defined by:
      a(0) = 1
      for n >= 1, a(n) is the sum of the digits of all preceding terms
 
@@ -12,7 +12,7 @@ You are given a(10^6) = 31054319.
 Find a(10^15)
 """
 
-ks = [k for k in range(2, 20+1)]
+ks = [k for k in range(2, 20 + 1)]
 base = [10 ** k for k in range(ks[-1] + 1)]
 memo = {}
 
@@ -28,34 +28,30 @@ def next_term(a_i, k, i, n):
     is cached to greatly speed up the computation.
 
     Arguments:
-    a_i -- array of digits starting from the one's place that represent 
+    a_i -- array of digits starting from the one's place that represent
            the i-th term in the sequence
     k --  k when terms are written in the from a(i) = b*10^k + c.
           Term are calulcated until c > 10^k or the n-th term is reached.
     i -- position along the sequence
-    n -- term to caluclate up to if k is large enough
+    n -- term to calculate up to if k is large enough
 
     Return: a tuple of difference between ending term and starting term, and
     the number of terms calculated. ex. if starting term is a_0=1, and
     ending term is a_10=62, then (61, 9) is returned.
     """
     # ds_b - digitsum(b)
-    ds_b = 0
-    for j in range(k, len(a_i)):
-        ds_b += a_i[j]
-    c = 0
-    for j in range(min(len(a_i), k)):
-        c += a_i[j] * base[j]
+    ds_b = sum(a_i[j] for j in range(k, len(a_i)))
+    c = sum(a_i[j] * base[j] for j in range(min(len(a_i), k)))
 
     diff, dn = 0, 0
     max_dn = n - i
 
     sub_memo = memo.get(ds_b)
 
-    if sub_memo != None:
+    if sub_memo is not None:
         jumps = sub_memo.get(c)
 
-        if jumps != None and len(jumps) > 0:
+        if jumps is not None and len(jumps) > 0:
             # find and make the largest jump without going over
             max_jump = -1
             for _k in range(len(jumps) - 1, -1, -1):
@@ -171,7 +167,7 @@ def add(digits, k, addend):
         digits.append(digit)
 
 
-def solution(n):
+def solution(n: int = 10 ** 15) -> int:
     """
     returns n-th term of sequence
 
@@ -201,4 +197,4 @@ def solution(n):
 
 
 if __name__ == "__main__":
-    print(solution(10 ** 15))
+    print(f"{solution() = }")
