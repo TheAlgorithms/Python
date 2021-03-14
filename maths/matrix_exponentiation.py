@@ -51,7 +51,6 @@ def fibonacci_with_matrix_exponentiation(n, f1, f2):
 
 def simple_fibonacci(n, f1, f2):
     # Trivial Cases
-
     if n == 1:
         return f1
     elif n == 2:
@@ -86,11 +85,9 @@ from __main__ import simple_fibonacci
 """
     code = "simple_fibonacci(randint(1,70000), 1, 1)"
     exec_time = timeit.timeit(setup=setup, stmt=code, number=100)
-
     print(
         "Without matrix exponentiation the average execution time is ", exec_time / 100
     )
-
     return exec_time
 
 
