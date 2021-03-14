@@ -12,14 +12,14 @@ such as the with segment trees or fenwick trees. You can read more about them he
 
 
 class Node:
-    def __init__(self, length):
+    def __init__(self, length: int) -> None:
         self.minn: int = -1
         self.maxx: int = -1
         self.map_left: List = [-1] * length
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"min_value: {self.minn}, max_value: {self.maxx}"
 
 
@@ -28,7 +28,6 @@ def build_tree(arr: List[int]) -> Node:
     Builds the tree for arr and returns the root
     of the constructed tree
     """
-
     n = len(arr)
 
     root = Node(n)
@@ -81,9 +80,9 @@ def rank_from_start(node: Node, num: int, index: int) -> int:
 
     if (
         num <= pivot
-    ):  # if num <= pivot, go the left subtree and map index i to the left subtree
+    ):  # if num <= pivot, go the left subtree and map index to the left subtree
         return rank_from_start(node.left, num, node.map_left[index] - 1)
-    else:  # otherwise go to the right subtree and map index i to the right subtree
+    else:  # otherwise go to the right subtree and map index to the right subtree
         return rank_from_start(node.right, num, index - node.map_left[index])
 
 
@@ -102,12 +101,12 @@ def rank(node: Node, num: int, start: int, end: int) -> int:
     return rank_till_end - rank_before_start
 
 
-def quantile(node: Node, k: int, start: int, end: int) -> int:
+def quantile(node: Node, index: int, start: int, end: int) -> int:
     """
-    Returns the kth smallest element in interval [start, end] in the list
-    k is 0-indexed
+    Returns the index'th smallest element in interval [start, end] in the list
+    index is 0-indexed
     """
-    if k > (end - start) or start > end:
+    if index > (end - start) or start > end:
         return -1
 
     # Leaf node case
@@ -119,48 +118,51 @@ def quantile(node: Node, k: int, start: int, end: int) -> int:
         node.map_left[start - 1] if start else 0
     )
 
-    if num_elements_in_left_tree > k:
+    if num_elements_in_left_tree > index:
         return quantile(
             node.left,
-            k,
+            index,
             (node.map_left[start - 1] if start else 0),
             node.map_left[end] - 1,
         )
     else:
         return quantile(
             node.right,
-            k - num_elements_in_left_tree,
+            index - num_elements_in_left_tree,
             start - (node.map_left[start - 1] if start else 0),
             end - node.map_left[end],
         )
 
 
-def range_counting(node: Node, start: int, end: int, x: int, y: int) -> int:
+def range_counting(
+    node: Node, start: int, end: int, start_num: int, end_num: int
+) -> int:
     """
-    Returns the number of elememts in range [x,y] in interval [start, end] in the list
+    Returns the number of elememts in range [start_num, end_num]
+    in interval [start, end] in the list
     """
-    if start > end or x > y:
+    if start > end or start_num > end_num:
         return 0
 
-    if node.minn > y or node.maxx < x:
+    if node.minn > end_num or node.maxx < start_num:
         return 0
 
-    if x <= node.minn and node.maxx <= y:
+    if start_num <= node.minn and node.maxx <= end_num:
         return end - start + 1
 
     left = range_counting(
         node.left,
         (node.map_left[start - 1] if start else 0),
         node.map_left[end] - 1,
-        x,
-        y,
+        start_num,
+        end_num,
     )
     right = range_counting(
         node.right,
         start - (node.map_left[start - 1] if start else 0),
         end - node.map_left[end],
-        x,
-        y,
+        start_num,
+        end_num,
     )
 
     return left + right
