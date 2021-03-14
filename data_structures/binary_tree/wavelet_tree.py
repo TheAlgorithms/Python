@@ -12,10 +12,10 @@ such as the with segment trees or fenwick trees. You can read more about them he
 
 
 class Node:
-    def __init__(self, n):
+    def __init__(self, length):
         self.minn: int = -1
         self.maxx: int = -1
-        self.map_left: List = [-1] * n
+        self.map_left: List = [-1] * length
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
 
@@ -25,8 +25,8 @@ class Node:
 
 def build_tree(arr: List[int]) -> Node:
     """
-    Builds the tree for the provided list arr and returns the root
-    of the constructed tree.
+    Builds the tree for arr and returns the root
+    of the constructed tree
     """
 
     n = len(arr)
@@ -40,7 +40,7 @@ def build_tree(arr: List[int]) -> Node:
         return root
 
     """
-    Take the mean of min and max element as the pivot and
+    Take the mean of min and max element of arr as the pivot and
     partition arr into left_arr and right_arr with all elements <= pivot in the
     left_arr and the rest in right_arr, maintaining the order of the elements,
     then recursively build trees for left_arr and right_arr
@@ -63,17 +63,17 @@ def build_tree(arr: List[int]) -> Node:
     return root
 
 
-def rank_from_start(node: Node, num: int, i: int) -> int:
+def rank_from_start(node: Node, num: int, index: int) -> int:
     """
-    Returns the number of occurances of num in interval [0, i] in the list
+    Returns the number of occurrences of num in interval [0, index] in the list
     """
-    if i < 0:
+    if index < 0:
         return 0
 
     # Leaf node cases
     if node.minn == node.maxx:
         if node.minn == num:
-            return i + 1
+            return index + 1
         else:
             return 0
 
@@ -82,77 +82,91 @@ def rank_from_start(node: Node, num: int, i: int) -> int:
     if (
         num <= pivot
     ):  # if num <= pivot, go the left subtree and map index i to the left subtree
-        return rank_from_start(node.left, num, node.map_left[i] - 1)
+        return rank_from_start(node.left, num, node.map_left[index] - 1)
     else:  # otherwise go to the right subtree and map index i to the right subtree
-        return rank_from_start(node.right, num, i - node.map_left[i])
+        return rank_from_start(node.right, num, index - node.map_left[index])
 
 
-def rank(node: Node, num: int, i: int, j: int) -> int:
+def rank(node: Node, num: int, start: int, end: int) -> int:
     """
-    Returns the number of occurances of num in interval [i, j] in the list
+    Returns the number of occurrences of num in interval [start, end] in the list
     """
-    if i > j:
+    if start > end:
         return 0
 
-    rank_till_j = rank_from_start(node, num, j)  # rank of num in interval [0, j]
-    rank_before_i = rank_from_start(
-        node, num, i - 1
-    )  # rank of num in interval [0, i-1]
+    rank_till_end = rank_from_start(node, num, end)  # rank of num in interval [0, end]
+    rank_before_start = rank_from_start(
+        node, num, start - 1
+    )  # rank of num in interval [0, start-1]
 
-    return rank_till_j - rank_before_i
+    return rank_till_end - rank_before_start
 
 
-def quantile(node: Node, k: int, i: int, j: int) -> int:
+def quantile(node: Node, k: int, start: int, end: int) -> int:
     """
-    Returns the kth smallest element in interval [i, j] in the list, k is 0-indexed
+    Returns the kth smallest element in interval [start, end] in the list
+    k is 0-indexed
     """
-    if k > (j - i) or i > j:
+    if k > (end - start) or start > end:
         return -1
 
     # Leaf node case
     if node.minn == node.maxx:
         return node.minn
 
-    # number of elements in the left subtree in interval [i, j]
-    num_elements_in_left_tree = node.map_left[j] - (node.map_left[i - 1] if i else 0)
+    # Number of elements in the left subtree in interval [start, end]
+    num_elements_in_left_tree = node.map_left[end] - (
+        node.map_left[start - 1] if start else 0
+    )
 
     if num_elements_in_left_tree > k:
         return quantile(
-            node.left, k, (node.map_left[i - 1] if i else 0), node.map_left[j] - 1
+            node.left,
+            k,
+            (node.map_left[start - 1] if start else 0),
+            node.map_left[end] - 1,
         )
     else:
         return quantile(
             node.right,
             k - num_elements_in_left_tree,
-            i - (node.map_left[i - 1] if i else 0),
-            j - node.map_left[j],
+            start - (node.map_left[start - 1] if start else 0),
+            end - node.map_left[end],
         )
 
 
-def range_counting(node: Node, i: int, j: int, x: int, y: int) -> int:
+def range_counting(node: Node, start: int, end: int, x: int, y: int) -> int:
     """
-    Returns the number of elememts in range [x,y] in interval [i, j] in the list
+    Returns the number of elememts in range [x,y] in interval [start, end] in the list
     """
-    if i > j or x > y:
+    if start > end or x > y:
         return 0
 
     if node.minn > y or node.maxx < x:
         return 0
 
     if x <= node.minn and node.maxx <= y:
-        return j - i + 1
+        return end - start + 1
 
     left = range_counting(
-        node.left, (node.map_left[i - 1] if i else 0), node.map_left[j] - 1, x, y
+        node.left,
+        (node.map_left[start - 1] if start else 0),
+        node.map_left[end] - 1,
+        x,
+        y,
     )
     right = range_counting(
-        node.right, i - (node.map_left[i - 1] if i else 0), j - node.map_left[j], x, y
+        node.right,
+        start - (node.map_left[start - 1] if start else 0),
+        end - node.map_left[end],
+        x,
+        y,
     )
 
     return left + right
 
 
-def main():
+def main() -> None:
     """
     >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
     >>> root = build_tree(arr)
