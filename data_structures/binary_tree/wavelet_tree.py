@@ -1,6 +1,5 @@
 from typing import List, Optional
 
-
 """
 Wavelet tree is a data-structure designed to efficiently answer various range queries
 for arrays. Wavelets trees are different from other binary trees in the sense that
