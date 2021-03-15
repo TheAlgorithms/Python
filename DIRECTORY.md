@@ -472,6 +472,7 @@
   * [Runge Kutta](https://github.com/TheAlgorithms/Python/blob/master/maths/runge_kutta.py)
   * [Segmented Sieve](https://github.com/TheAlgorithms/Python/blob/master/maths/segmented_sieve.py)
   * Series
+    * [Arithmetic Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/series/arithmetic_mean.py)
     * [Geometric Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/series/geometric_mean.py)
     * [Geometric Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/geometric_series.py)
     * [Harmonic Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/harmonic_series.py)
