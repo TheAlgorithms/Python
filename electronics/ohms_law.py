@@ -1,7 +1,8 @@
 # https://en.wikipedia.org/wiki/Ohm%27s_law
+from typing import Dict
 
 
-def ohms_law(voltage: float, current: float, resistance: float) -> float:
+def ohms_law(voltage: float, current: float, resistance: float) -> Dict[str, float]:
     """
     Apply Ohm's Law, on any two given electrical values, which can be voltage, current,
     and resistance, and then in a Python dict return name/value pair of the zero value.
