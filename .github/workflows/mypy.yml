@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: python3 -m pip install mypy
-      # FIXME: fix mypy errors in other directories and add them here
+      # FIXME: #4052 fix mypy errors in other directories and add them here
       - run: python3 -m  mypy --ignore-missing-imports
           arithmetic_analysis
           backtracking
