@@ -36,13 +36,14 @@ repos:
     hooks:
       - id: mypy
         args:
-          - --ignore-missing-imports arithmetic_analysis backtracking bit_manipulation blockchain boolean_algebra cellular_automata computer_vision digital_image_processing fuzzy_logic genetic_algorithm geodesy knapsack networking_flow scheduling sorts
+          - --ignore-missing-imports
+          - arithmetic_analysis backtracking bit_manipulation blockchain boolean_algebra cellular_automata computer_vision digital_image_processing fuzzy_logic genetic_algorithm geodesy knapsack networking_flow scheduling sorts
   - repo: https://github.com/codespell-project/codespell
     rev: v2.0.0
     hooks:
       - id: codespell
         args:
-          - --ignore-words-list=ans,fo,followings,hist,iff,mater,secant,som,tim
+          - --ignore-words-list=ans,crate,fo,followings,hist,iff,mater,secant,som,tim
           - --skip="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_022/p022_names.txt"
           - --quiet-level=2
         exclude: |
