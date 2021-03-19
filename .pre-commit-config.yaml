@@ -44,7 +44,6 @@ repos:
           - boolean_algebra
           - cellular_automata
           - computer_vision
-          - digital_image_processing
           - fuzzy_logic
           - genetic_algorithm
           - geodesy
