@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v3.2.0
     hooks:
       - id: check-executables-have-shebangs
       - id: check-yaml
@@ -13,17 +13,17 @@ repos:
           )$
       - id: requirements-txt-fixer
   - repo: https://github.com/psf/black
-    rev: 20.8b1
+    rev: stable
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
-    rev: 5.7.0
+    rev: 5.5.3
     hooks:
       - id: isort
         args:
           - --profile=black
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.0
+    rev: 3.8.3
     hooks:
       - id: flake8
         args:
@@ -39,7 +39,7 @@ repos:
           - --ignore-missing-imports
           - arithmetic_analysis
           - backtracking
-          - bit_manipulation
+          # - bit_manipulation  # missing __init__.py
           - blockchain
           - boolean_algebra
           - cellular_automata
@@ -53,11 +53,11 @@ repos:
           - scheduling
           # - sorts  # missing __init__.py
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.0.0
+    rev: v1.17.1
     hooks:
       - id: codespell
         args:
-          - --ignore-words-list=ans,crate,fo,followings,hist,iff,mater,secant,som,tim
+          - --ignore-words-list=ans,fo,followings,hist,iff,mater,secant,som,tim
           - --skip="./.*,./other/dictionary.txt,./other/words,./project_euler/problem_022/p022_names.txt"
           - --quiet-level=2
         exclude: |
