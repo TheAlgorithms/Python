@@ -13,7 +13,7 @@ repos:
           )$
       - id: requirements-txt-fixer
   - repo: https://github.com/psf/black
-    rev: v20.8b1
+    rev: 20.8b1
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
