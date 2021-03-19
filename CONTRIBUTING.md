@@ -154,7 +154,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   def sum_ab(a: int, b: int) -> int:
       return a + b
   ```
-  
+
   Instructions on how to install mypy can be found [here](https://github.com/python/mypy). Please use the command `mypy . --ignore-missing-imports` to test all files or `mypy path_to_file.py --ignore-missing-imports` to test one specific file.
 
 - [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
