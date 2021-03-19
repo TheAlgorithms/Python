@@ -50,7 +50,8 @@ repos:
           - geodesy
           - knapsack
           - networking_flow
-          - scheduling sorts
+          - scheduling
+          - sorts
   - repo: https://github.com/codespell-project/codespell
     rev: v2.0.0
     hooks:
