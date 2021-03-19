@@ -13,7 +13,7 @@ repos:
           )$
       - id: requirements-txt-fixer
   - repo: https://github.com/psf/black
-    rev: stable
+    rev: v20.8b1
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
@@ -37,7 +37,20 @@ repos:
       - id: mypy
         args:
           - --ignore-missing-imports
-          - arithmetic_analysis backtracking bit_manipulation blockchain boolean_algebra cellular_automata computer_vision digital_image_processing fuzzy_logic genetic_algorithm geodesy knapsack networking_flow scheduling sorts
+          - arithmetic_analysis
+          - backtracking
+          - bit_manipulation
+          - blockchain
+          - boolean_algebra
+          - cellular_automata
+          - computer_vision
+          - digital_image_processing
+          - fuzzy_logic
+          - genetic_algorithm
+          - geodesy
+          - knapsack
+          - networking_flow
+          - scheduling sorts
   - repo: https://github.com/codespell-project/codespell
     rev: v2.0.0
     hooks:
