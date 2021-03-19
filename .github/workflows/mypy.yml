@@ -3,23 +3,23 @@ name: mypy
 on: [push, pull_request]
 
 jobs:
-  pre-commit:
+  mypy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: python3 -m pip install mypy
-      - run: python3 -m  mypy --ignore-missing-imports \
-          arithmetic_analysis \
-          backtracking \
-          bit_manipulation \
-          blockchain \
-          boolean_algebra \
-          cellular_automata \
-          computer_vision \
-          digital_image_processing \
-          fuzzy_logic \
-          genetic_algorithm \
-          geodesy \
-          knapsack \
-          networking_flow \
+      - run: python3 -m  mypy --ignore-missing-imports
+          arithmetic_analysis
+          backtracking
+          bit_manipulation
+          blockchain
+          boolean_algebra
+          cellular_automata
+          computer_vision
+          digital_image_processing
+          fuzzy_logic
+          genetic_algorithm
+          geodesy
+          knapsack
+          networking_flow
           scheduling sorts
