@@ -37,18 +37,19 @@ repos:
       - id: mypy
         args:
           - --ignore-missing-imports
+          - --namespace-packages
           - arithmetic_analysis
           - backtracking
           - bit_manipulation
           - blockchain
           - boolean_algebra
           - cellular_automata
-          # - computer_vision  # missing __init__.py
-          # - digital_image_processing  # missing __init__.py
+          - computer_vision
+          - digital_image_processing
           - fuzzy_logic
           - genetic_algorithm
           - geodesy
-          # - knapsack  # missing __init__.py
+          - knapsack
           - networking_flow
           - scheduling
           - sorts
