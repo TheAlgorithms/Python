@@ -43,7 +43,7 @@ repos:
           - blockchain
           - boolean_algebra
           - cellular_automata
-          - computer_vision
+          # - computer_vision  # missing __init__.py
           # - digital_image_processing  # missing __init__.py
           - fuzzy_logic
           - genetic_algorithm
