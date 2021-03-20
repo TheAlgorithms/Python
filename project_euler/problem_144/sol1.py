@@ -31,12 +31,11 @@ How many times does the beam hit the internal surface of the white cell before e
 
 
 from math import isclose, sqrt
-from typing import Tuple
 
 
 def next_point(
     point_x: float, point_y: float, incoming_gradient: float
-) -> Tuple[float, float, float]:
+) -> tuple[float, float, float]:
     """
     Given that a laser beam hits the interior of the white cell at point
     (point_x, point_y) with gradient incoming_gradient, return a tuple (x,y,m1)
