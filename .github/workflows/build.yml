@@ -21,6 +21,22 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools six wheel
           python -m pip install pytest-cov -r requirements.txt
+      # FIXME: #4052 fix mypy errors in other directories and add them here
+      - run: python3 -m  mypy --ignore-missing-imports
+           arithmetic_analysis
+           backtracking
+           bit_manipulation
+           blockchain
+           boolean_algebra
+           cellular_automata
+           computer_vision
+           digital_image_processing
+           fuzzy_logic
+           genetic_algorithm
+           geodesy
+           knapsack
+           networking_flow
+           scheduling sorts
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
