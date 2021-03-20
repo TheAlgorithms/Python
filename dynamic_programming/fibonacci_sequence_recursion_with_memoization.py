@@ -6,13 +6,10 @@
 
 class Fibonacci():
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.cache: Dict[int, int] = dict()
 
     def __getitem__(self, key: int) -> int:
-        return self.__calculate_fibonacci(key)
-
-    def __calculate_fibonacci(self, n: int) -> int:
         """
         Return number of index n in sequence fibonacci
         >>> fibonacci = Fibonacci()
@@ -21,34 +18,37 @@ class Fibonacci():
         >>> fibonacci[12]
         144
         """
-
-        if type(n) != int:
+        if type(key) != int:
             raise "An integer value is expected"
 
-        elif n < 0:
+        elif key < 0:
             raise "The value must be greater than or equal to zero"
 
-        if n in self.cache:
-            return self.cache[n]
+        if key in self.cache:
+            return self.cache[key]
 
-        if n in {0, 1}:
-            ans = n
+        if key in {0, 1}:
+            ans = key
         else:
-            ans = self.__calculate_fibonacci(n - 1) + self.__calculate_fibonacci(n - 2)
-        self.cache[n] = ans
+            ans = self.__getitem__(key - 1) + self.__getitem__(key - 2)
+        self.cache[key] = ans
         return ans
 
 
-def main() -> None:
+def main(number: int) -> None:
+    """
+    >>> main(3)
+    The first 3 Fibonacci sequence terms are: [0, 1, 1]
+    The 3 index of the fibonacci sequence: 2
+    """
     fibonacci = Fibonacci()
-    number = int(input("Enter an integer greater than or equal to 0: "))
-    print(f"The first {number} Fibonacci sequence terms are:")
+    print(f"The first {number} Fibonacci sequence terms are:", end=" ")
     print([fibonacci[n] for n in range(number)])
-    print(f"The {number} index of the fibonacci sequence: ", end="")
+    print(f"The {number} index of the fibonacci sequence:", end=" ")
     print(fibonacci[number])
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
+    main(int(input("Enter an integer greater than or equal to 0: ")))
