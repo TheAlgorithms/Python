@@ -3,8 +3,7 @@
 # Memoization Concept: https://en.wikipedia.org/wiki/Memoization
 # Fibonacci Concept : https://pt.wikipedia.org/wiki/Sequ%C3%AAncia_de_Fibonacci
 
-
-class Fibonacci():
+class Fibonacci:
 
     def __init__(self) -> None:
         self.cache: Dict[int, int] = dict()
@@ -33,6 +32,7 @@ class Fibonacci():
             ans = self.__getitem__(key - 1) + self.__getitem__(key - 2)
         self.cache[key] = ans
         return ans
+
 
 
 def main(number: int) -> None:
