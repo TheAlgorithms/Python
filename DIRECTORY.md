@@ -772,6 +772,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_119/sol1.py)
   * Problem 120
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_120/sol1.py)
+  * Problem 121
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_121/sol1.py)
   * Problem 123
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_123/sol1.py)
   * Problem 125
