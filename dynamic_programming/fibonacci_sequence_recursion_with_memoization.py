@@ -3,14 +3,15 @@
 # Memoization Concept: https://en.wikipedia.org/wiki/Memoization
 # Fibonacci Concept : https://pt.wikipedia.org/wiki/Sequ%C3%AAncia_de_Fibonacci
 
+
 class Fibonacci():
+
     def __init__(self):
         self.cache: Dict[int, int] = dict()
 
     def __getitem__(self, key: int) -> int:
         return self.__calculate_fibonacci(key)
 
-    
     def __calculate_fibonacci(self, n: int) -> int:
         """
         Return number of index n in sequence fibonacci
@@ -24,7 +25,7 @@ class Fibonacci():
         if type(n) != int:
             raise "An integer value is expected"
 
-        elif(n < 0):
+        elif n < 0:
             raise "The value must be greater than or equal to zero"
 
         if n in self.cache:
@@ -48,5 +49,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
