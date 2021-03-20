@@ -3,8 +3,8 @@
 # Memoization Concept: https://en.wikipedia.org/wiki/Memoization
 # Fibonacci Concept : https://pt.wikipedia.org/wiki/Sequ%C3%AAncia_de_Fibonacci
 
-class Fibonacci:
 
+class Fibonacci:
     def __init__(self) -> None:
         self.cache: Dict[int, int] = dict()
 
@@ -34,7 +34,6 @@ class Fibonacci:
         return ans
 
 
-
 def main(number: int) -> None:
     """
     >>> main(3)
@@ -46,6 +45,7 @@ def main(number: int) -> None:
     print([fibonacci[n] for n in range(number)])
     print(f"The {number} index of the fibonacci sequence:", end=" ")
     print(fibonacci[number])
+
 
 if __name__ == "__main__":
     import doctest
