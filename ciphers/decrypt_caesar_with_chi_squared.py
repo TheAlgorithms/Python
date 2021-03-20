@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
-from typing import Dict, List, Optional, Tuple
+from typing import Optional
 
 
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
-    cipher_alphabet: Optional[List[str]] = None,
-    frequencies_dict: Optional[Dict[str, float]] = None,
+    cipher_alphabet: Optional[list[str]] = None,
+    frequencies_dict: Optional[dict[str, float]] = None,
     case_sensetive: bool = False,
-) -> Tuple[int, float, str]:
+) -> tuple[int, float, str]:
     """
     Basic Usage
     ===========
@@ -163,7 +163,7 @@ def decrypt_caesar_with_chi_squared(
         ciphertext = ciphertext.lower()
 
     # Chi squared statistic values
-    chi_squared_statistic_values: Dict[int, Tuple[float, str]] = {}
+    chi_squared_statistic_values: dict[int, tuple[float, str]] = {}
 
     # cycle through all of the shifts
     for shift in range(len(alphabet_letters)):

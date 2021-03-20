@@ -1,7 +1,6 @@
 import os
 import random
 import sys
-from typing import Tuple
 
 from . import cryptomath_module as cryptomath
 from . import rabin_miller
@@ -25,7 +24,7 @@ def primitive_root(p_val: int) -> int:
         return g
 
 
-def generate_key(key_size: int) -> Tuple[Tuple[int, int, int, int], Tuple[int, int]]:
+def generate_key(key_size: int) -> tuple[tuple[int, int, int, int], tuple[int, int]]:
     print("Generating prime p...")
     p = rabin_miller.generateLargePrime(key_size)  # select large prime number.
     e_1 = primitive_root(p)  # one primitive root on modulo p.
