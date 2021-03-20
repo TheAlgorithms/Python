@@ -60,7 +60,7 @@ class SearchProblem:
 
     def __hash__(self):
         """
-        hash the string represetation of the current search state.
+        hash the string representation of the current search state.
         """
         return hash(str(self))
 
