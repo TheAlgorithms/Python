@@ -12,11 +12,11 @@ class Node:
 
     def __iter__(self):
         node = self
-        visited = []
+        visited = set()
         while node:
-            if node in visited:
+            if node in visited: # set().__contains__ is O(1)
                 raise ContainsLoopError
-            visited.append(node)
+            visited.add(node)
             yield node.data
             node = node.next_node
 
