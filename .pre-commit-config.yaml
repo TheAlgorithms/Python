@@ -43,12 +43,12 @@ repos:
       - id: codespell
         args:
           - --ignore-words-list=ans,crate,fo,followings,hist,iff,mater,secant,som,tim
-          - --skip="./.*,./strings/dictionary.txt,./other/words,./project_euler/problem_022/p022_names.txt"
+          - --skip="./.*,./strings/dictionary.txt,./strings/words.txt,./project_euler/problem_022/p022_names.txt"
           - --quiet-level=2
         exclude: |
           (?x)^(
               strings/dictionary.txt |
-              other/words |
+              strings/words.txt |
               project_euler/problem_022/p022_names.txt
           )$
   - repo: local
