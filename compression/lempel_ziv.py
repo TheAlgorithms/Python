@@ -26,7 +26,7 @@ def read_file_binary(file_path: str) -> str:
 
 
 def add_key_to_lexicon(
-    lexicon: dict, curr_string: str, index: int, last_match_id: int
+    lexicon: dict, curr_string: str, index: int, last_match_id: str
 ) -> None:
     """
     Adds new strings (curr_string + "0",  curr_string + "1") to the lexicon
