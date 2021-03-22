@@ -6,7 +6,7 @@ import time
 start_time = time.time()
 print("creating word list...")
 path = os.path.split(os.path.realpath(__file__))
-with open(path[0] + "/words") as f:
+with open(path[0] + "/words.txt") as f:
     word_list = sorted(list({word.strip().lower() for word in f}))
 
 
