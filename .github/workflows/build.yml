@@ -28,6 +28,7 @@ jobs:
            blockchain
            boolean_algebra
            cellular_automata
+           compression
            computer_vision
            fractals
            fuzzy_logic
