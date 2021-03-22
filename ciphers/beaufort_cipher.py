@@ -66,7 +66,7 @@ def original_text(cipher_text: str, key_new: str) -> str:
     return or_txt
 
 
-def main():
+def main() -> None:
     message = "THE GERMAN ATTACK"
     key = "SECRET"
     key_new = generate_key(message, key)

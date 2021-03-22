@@ -1,7 +1,7 @@
 import base64
 
 
-def main():
+def main() -> None:
     inp = input("->")
     encoded = inp.encode("utf-8")  # encoded the input (we need a bytes like object)
     b32encoded = base64.b32encode(encoded)  # b32encoded the encoded string
