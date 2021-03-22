@@ -196,8 +196,7 @@ class TwoHiddenLayerNeuralNetwork:
         >>> output_val = numpy.array(([0], [1], [1]), dtype=float)
         >>> nn = TwoHiddenLayerNeuralNetwork(input_val, output_val)
         >>> nn.train(output_val, 1000, False)
-        >>> result = nn.predict([0,1,0])
-        >>> result == 0 or result == 1
+        >>> nn.predict([0,1,0]) in (0, 1)
         True
         """
 
@@ -261,8 +260,7 @@ def example() -> int:
     In this example the output is divided into 2 classes i.e. binary classification,
     the two classes are represented by '0' and '1'.
 
-    >>> result = example()
-    >>> result == 0 or result == 1
+    >>> example() in (0, 1)
     True
     """
     # Input values.
