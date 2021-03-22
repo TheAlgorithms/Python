@@ -31,7 +31,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
         # then this algorithm can't find the root
         raise ValueError("could not find root in given interval.")
     else:
-        mid: float = start + (end - start) / 2.0
+        mid: float = (start + end) * 0.5
         while abs(start - mid) > 10 ** -7:  # until precisely equals to 10^-7
             if function(mid) == 0:
                 return mid
@@ -39,7 +39,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
                 end = mid
             else:
                 start = mid
-            mid = start + (end - start) / 2.0
+            mid = (start + end) * 0.5
         return mid
 
 
