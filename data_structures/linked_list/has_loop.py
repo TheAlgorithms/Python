@@ -68,11 +68,9 @@ if __name__ == "__main__":
     root = Node(1)
     print(root.has_loop)  # False
 
-
     # Performance comparison between using a set or a list
     def bench_f() -> bool:
         return root.has_loop
-
 
     for exp in range(1, 4 + 1):
         root = Node(1)
@@ -86,7 +84,7 @@ if __name__ == "__main__":
         SETORLIST = ListWithAdd
         time_list: float = timeit.timeit(bench_f, number=5)
 
-        print(f'{time_set=}, {time_list=}, {time_set<time_list=}')
+        print(f"{time_set=}, {time_list=}, {time_set<time_list=}")
         # time_set = 2.269999999993111e-05, time_list = 3.430000000004263e-05, time_set < time_list = True
         # time_set = 0.00012579999999995373, time_list = 0.0004275000000000251, time_set < time_list = True
         # time_set = 0.0008853999999999251, time_list = 0.033791399999999916, time_set < time_list = True
