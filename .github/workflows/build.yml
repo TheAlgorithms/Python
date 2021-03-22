@@ -23,6 +23,7 @@ jobs:
           python -m pip install mypy pytest-cov -r requirements.txt
       # FIXME: #4052 fix mypy errors in other directories and add them here
       - run: mypy --ignore-missing-imports
+           arithmetic_analysis
            backtracking
            bit_manipulation
            blockchain
