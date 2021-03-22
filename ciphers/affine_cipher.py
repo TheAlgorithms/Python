@@ -3,7 +3,7 @@ import sys
 
 from . import cryptomath_module as cryptomath
 
-SYMBOLS: str = (
+SYMBOLS = (
     r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
     r"""abcdefghijklmnopqrstuvwxyz{|}~"""
 )
