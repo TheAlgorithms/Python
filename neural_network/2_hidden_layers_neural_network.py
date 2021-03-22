@@ -260,8 +260,9 @@ def example() -> int:
     In this example the output is divided into 2 classes i.e. binary classification,
     the two classes are represented by '0' and '1'.
 
-    >>> example()
-    1
+    >>> result = example()
+    >>> result == 0 or result == 1
+    True
     """
     # Input values.
     input = numpy.array(
