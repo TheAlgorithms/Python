@@ -42,6 +42,8 @@ def electric_power(voltage: float, current: float, power: float) -> Tuple:
         return result("current", power / voltage)
     elif power == 0:
         return result("power", float(round(abs(voltage * current), 2)))
+    else:
+        raise ValueError("Exactly one argument must be 0")
 
 
 if __name__ == "__main__":

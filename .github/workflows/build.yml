@@ -30,13 +30,18 @@ jobs:
            cellular_automata
            compression
            computer_vision
+           divide_and_conquer
+           electronics
+           file_transfer
            fractals
            fuzzy_logic
            genetic_algorithm
            geodesy
            knapsack
            networking_flow
-           scheduling sorts
+           quantum
+           scheduling
+           sorts
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
