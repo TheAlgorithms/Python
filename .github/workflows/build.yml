@@ -29,12 +29,16 @@ jobs:
            boolean_algebra
            cellular_automata
            computer_vision
+           divide_and_conquer
+           electronics
+           file_transfer
            fractals
            fuzzy_logic
            genetic_algorithm
            geodesy
            knapsack
            networking_flow
+           quantum
            scheduling sorts
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
