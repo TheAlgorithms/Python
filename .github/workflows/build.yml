@@ -39,7 +39,8 @@ jobs:
            knapsack
            networking_flow
            quantum
-           scheduling sorts
+           scheduling
+           sorts
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
