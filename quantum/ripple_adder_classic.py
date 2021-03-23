@@ -2,13 +2,11 @@
 # https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
 # https://en.wikipedia.org/wiki/Controlled_NOT_gate
 
-from typing import Tuple
-
 from qiskit import Aer, QuantumCircuit, execute
 from qiskit.providers import BaseBackend
 
 
-def store_two_classics(val1: int, val2: int) -> Tuple[QuantumCircuit, str, str]:
+def store_two_classics(val1: int, val2: int) -> tuple[QuantumCircuit, str, str]:
     """
     Generates a Quantum Circuit which stores two classical integers
     Returns the circuit and binary representation of the integers
