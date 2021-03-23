@@ -2,9 +2,10 @@
 # https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
 # https://en.wikipedia.org/wiki/Controlled_NOT_gate
 
+from typing import Tuple
+
 from qiskit import Aer, QuantumCircuit, execute
 from qiskit.providers import BaseBackend
-from typing import Tuple
 
 
 def store_two_classics(val1: int, val2: int) -> Tuple[QuantumCircuit, str, str]:
