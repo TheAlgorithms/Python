@@ -32,6 +32,8 @@ def ohms_law(voltage: float, current: float, resistance: float) -> Dict[str, flo
         return {"current": voltage / resistance}
     elif resistance == 0:
         return {"resistance": voltage / current}
+    else:
+        raise ValueError("Exactly one argument must be 0")
 
 
 if __name__ == "__main__":
