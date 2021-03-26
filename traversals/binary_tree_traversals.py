@@ -188,7 +188,7 @@ def pre_order_iter(node: TreeNode) -> None:
     """
     if not isinstance(node, TreeNode) or not node:
         return
-    stack: List[TreeNode] = []
+    stack: list[TreeNode] = []
     n = node
     while n or stack:
         while n:  # start from root node, find its left child
@@ -218,7 +218,7 @@ def in_order_iter(node: TreeNode) -> None:
     """
     if not isinstance(node, TreeNode) or not node:
         return
-    stack: List[TreeNode] = []
+    stack: list[TreeNode] = []
     n = node
     while n or stack:
         while n:
