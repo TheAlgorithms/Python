@@ -38,10 +38,13 @@ jobs:
            genetic_algorithm
            geodesy
            knapsack
+           machine_learning
            networking_flow
+           neural_network
            quantum
            scheduling
            sorts
+           traversals
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
