@@ -11,7 +11,14 @@ import random
 
 
 class Perceptron:
-    def __init__(self, sample: list[list[float]], target: list[int], learning_rate: float = 0.01, epoch_number: int = 1000, bias: float = -1) -> None:
+    def __init__(
+        self,
+        sample: list[list[float]],
+        target: list[int],
+        learning_rate: float = 0.01,
+        epoch_number: int = 1000,
+        bias: float = -1,
+    ) -> None:
         """
         Initializes a Perceptron network for oil analysis
         :param sample: sample dataset of 3 parameters with shape [30,3]
