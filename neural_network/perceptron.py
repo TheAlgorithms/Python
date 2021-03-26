@@ -11,7 +11,14 @@ import random
 
 
 class Perceptron:
-    def __init__(self, sample, target, learning_rate=0.01, epoch_number=1000, bias=-1):
+    def __init__(
+        self,
+        sample: list[list[float]],
+        target: list[int],
+        learning_rate: float = 0.01,
+        epoch_number: int = 1000,
+        bias: float = -1,
+    ) -> None:
         """
         Initializes a Perceptron network for oil analysis
         :param sample: sample dataset of 3 parameters with shape [30,3]
@@ -46,7 +53,7 @@ class Perceptron:
         self.bias = bias
         self.number_sample = len(sample)
         self.col_sample = len(sample[0])  # number of columns in dataset
-        self.weight = []
+        self.weight: list = []
 
     def training(self) -> None:
         """
@@ -94,7 +101,7 @@ class Perceptron:
                 # if epoch_count > self.epoch_number or not error:
                 break
 
-    def sort(self, sample) -> None:
+    def sort(self, sample: list[float]) -> None:
         """
         :param sample: example row to classify as P1 or P2
         :return: None
@@ -221,11 +228,11 @@ if __name__ == "__main__":
     print("Finished training perceptron")
     print("Enter values to predict or q to exit")
     while True:
-        sample = []
+        sample: list = []
         for i in range(len(samples[0])):
-            observation = input("value: ").strip()
-            if observation == "q":
+            user_input = input("value: ").strip()
+            if user_input == "q":
                 break
-            observation = float(observation)
+            observation = float(user_input)
             sample.insert(i, observation)
         network.sort(sample)

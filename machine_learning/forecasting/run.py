@@ -29,8 +29,7 @@ def linear_regression_prediction(
     >>> abs(n - 5.0) < 1e-6  # Checking precision because of floating point errors
     True
     """
-    x = [[1, item, train_mtch[i]] for i, item in enumerate(train_dt)]
-    x = np.array(x)
+    x = np.array([[1, item, train_mtch[i]] for i, item in enumerate(train_dt)])
     y = np.array(train_usr)
     beta = np.dot(np.dot(np.linalg.inv(np.dot(x.transpose(), x)), x.transpose()), y)
     return abs(beta[0] + test_dt[0] * beta[1] + test_mtch[0] + beta[2])
