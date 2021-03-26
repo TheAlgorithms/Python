@@ -200,7 +200,7 @@ if False:  # change to true to run this test case.
 
 
 def ReportGenerator(
-    df: pd.DataFrame, ClusteringVariables: np.array, FillMissingReport=None
+    df: pd.DataFrame, ClusteringVariables: np.ndarray, FillMissingReport=None
 ) -> pd.DataFrame:
     """
     Function generates easy-erading clustering report. It takes 2 arguments as an input:
