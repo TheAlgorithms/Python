@@ -24,25 +24,25 @@
   * [Sudoku](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sudoku.py)
   * [Sum Of Subsets](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sum_of_subsets.py)
 
-## Bit Manipulation
-  * [Binary And Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_and_operator.py)
-  * [Binary Count Setbits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_count_setbits.py)
-  * [Binary Count Trailing Zeros](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_count_trailing_zeros.py)
-  * [Binary Or Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_or_operator.py)
-  * [Binary Shifts](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_shifts.py)
-  * [Binary Twos Complement](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_twos_complement.py)
-  * [Binary Xor Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_xor_operator.py)
-  * [Count Number Of One Bits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/count_number_of_one_bits.py)
-  * [Reverse Bits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/reverse_bits.py)
-  * [Single Bit Manipulation Operations](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/single_bit_manipulation_operations.py)
+## Binary
+  * [Binary Tree Traversals](https://github.com/TheAlgorithms/Python/blob/master/binary/binary_tree_traversals.py)
+  * Bit Manipulation
+    * [Binary And Operator](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/binary_and_operator.py)
+    * [Binary Count Setbits](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/binary_count_setbits.py)
+    * [Binary Count Trailing Zeros](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/binary_count_trailing_zeros.py)
+    * [Binary Or Operator](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/binary_or_operator.py)
+    * [Binary Shifts](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/binary_shifts.py)
+    * [Binary Twos Complement](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/binary_twos_complement.py)
+    * [Binary Xor Operator](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/binary_xor_operator.py)
+    * [Count Number Of One Bits](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/count_number_of_one_bits.py)
+    * [Reverse Bits](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/reverse_bits.py)
+    * [Single Bit Manipulation Operations](https://github.com/TheAlgorithms/Python/blob/master/binary/bit_manipulation/single_bit_manipulation_operations.py)
+  * [Quine Mc Cluskey](https://github.com/TheAlgorithms/Python/blob/master/binary/quine_mc_cluskey.py)
 
 ## Blockchain
   * [Chinese Remainder Theorem](https://github.com/TheAlgorithms/Python/blob/master/blockchain/chinese_remainder_theorem.py)
   * [Diophantine Equation](https://github.com/TheAlgorithms/Python/blob/master/blockchain/diophantine_equation.py)
   * [Modular Division](https://github.com/TheAlgorithms/Python/blob/master/blockchain/modular_division.py)
-
-## Boolean Algebra
-  * [Quine Mc Cluskey](https://github.com/TheAlgorithms/Python/blob/master/boolean_algebra/quine_mc_cluskey.py)
 
 ## Cellular Automata
   * [Conways Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/conways_game_of_life.py)
@@ -908,9 +908,6 @@
   * [Word Occurrence](https://github.com/TheAlgorithms/Python/blob/master/strings/word_occurrence.py)
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/strings/word_patterns.py)
   * [Z Function](https://github.com/TheAlgorithms/Python/blob/master/strings/z_function.py)
-
-## Traversals
-  * [Binary Tree Traversals](https://github.com/TheAlgorithms/Python/blob/master/traversals/binary_tree_traversals.py)
 
 ## Web Programming
   * [Co2 Emission](https://github.com/TheAlgorithms/Python/blob/master/web_programming/co2_emission.py)
