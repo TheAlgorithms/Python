@@ -24,7 +24,7 @@ jobs:
       # FIXME: #4052 fix mypy errors in other directories and add them here
       - run: mypy --ignore-missing-imports
            backtracking
-           bit_manipulation
+           binary
            blockchain
            boolean_algebra
            cellular_automata
