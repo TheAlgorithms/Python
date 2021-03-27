@@ -34,6 +34,11 @@ def build_tree(arr: List[int]) -> Node:
     """
     Builds the tree for arr and returns the root
     of the constructed tree
+
+    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
+    >>> root = build_tree(arr)
+    >>> root
+    min_value: 1, max_value: 9
     """
     n = len(arr)
 
@@ -69,41 +74,56 @@ def build_tree(arr: List[int]) -> Node:
     return root
 
 
-def rank_from_start(node: Node, num: int, index: int) -> int:
+def rank_till_index(node: Node, num: int, index: int) -> int:
     """
     Returns the number of occurrences of num in interval [0, index] in the list
+
+    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
+    >>> root = build_tree(arr)
+    >>> rank_till_index(root, 6, 6)
+    1
+    >>> rank_till_index(root, 2, 0)
+    1
+    >>> rank_till_index(root, 1, 10)
+    2
+    >>> rank_till_index(root, 17, 7)
+    0
     """
     if index < 0:
         return 0
 
     # Leaf node cases
     if node.minn == node.maxx:
-        if node.minn == num:
-            return index + 1
-        else:
-            return 0
+        return index + 1 if node.minn == num else 0
 
     pivot = (node.minn + node.maxx) // 2
 
-    if (
-        num <= pivot
-    ):  # if num <= pivot, go the left subtree and map index to the left subtree
-        return rank_from_start(node.left, num, node.map_left[index] - 1)
-    else:  # otherwise go to the right subtree and map index to the right subtree
-        return rank_from_start(node.right, num, index - node.map_left[index])
+    if num <= pivot:
+        # go the left subtree and map index to the left subtree
+        return rank_till_index(node.left, num, node.map_left[index] - 1)
+    else:
+        # go to the right subtree and map index to the right subtree
+        return rank_till_index(node.right, num, index - node.map_left[index])
 
 
 def rank(node: Node, num: int, start: int, end: int) -> int:
     """
     Returns the number of occurrences of num in interval [start, end] in the list
+
+    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
+    >>> root = build_tree(arr)
+    >>> rank(root, 6, 3, 13)
+    3
+    >>> rank(root, 2, 0, 17)
+    4
+    >>> rank(root, 9, 2 ,2)
+    0
     """
     if start > end:
         return 0
 
-    rank_till_end = rank_from_start(node, num, end)  # rank of num in interval [0, end]
-    rank_before_start = rank_from_start(
-        node, num, start - 1
-    )  # rank of num in interval [0, start-1]
+    rank_till_end = rank_till_index(node, num, end)
+    rank_before_start = rank_till_index(node, num, start - 1)
 
     return rank_till_end - rank_before_start
 
@@ -112,6 +132,17 @@ def quantile(node: Node, index: int, start: int, end: int) -> int:
     """
     Returns the index'th smallest element in interval [start, end] in the list
     index is 0-indexed
+
+    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
+    >>> root = build_tree(arr)
+    >>> quantile(root, 2, 2, 5)
+    6
+    >>> quantile(root, 4, 2, 13)
+    4
+    >>> quantile(root, 0, 6, 6)
+    9
+    >>> quantile(root, 4, 2, 5)
+    -1
     """
     if index > (end - start) or start > end:
         return -1
@@ -147,6 +178,19 @@ def range_counting(
     """
     Returns the number of elememts in range [start_num, end_num]
     in interval [start, end] in the list
+
+    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
+    >>> root = build_tree(arr)
+    >>> range_counting(root, 1, 10, 3, 7)
+    5
+    >>> range_counting(root, 2, 2, 1, 4)
+    1
+    >>> range_counting(root, 0, 17, 1, 100)
+    18
+    >>> range_counting(root, 1, 0, 1, 100)
+    0
+    >>> range_counting(root, 0, 17, 100, 1)
+    0
     """
     if start > end or start_num > end_num:
         return 0
@@ -173,39 +217,6 @@ def range_counting(
     )
 
     return left + right
-
-
-def main() -> None:
-    """
-    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
-    >>> root = build_tree(arr)
-    >>> root
-    min_value: 1, max_value: 9
-    >>> rank(root, 6, 3, 13)
-    3
-    >>> rank(root, 2, 0, 17)
-    4
-    >>> rank(root, 9, 2 ,2)
-    0
-    >>> quantile(root, 2, 2, 5)
-    6
-    >>> quantile(root, 4, 2, 13)
-    4
-    >>> quantile(root, 0, 6, 6)
-    9
-    >>> quantile(root, 4, 2, 5)
-    -1
-    >>> range_counting(root, 1, 10, 3, 7)
-    5
-    >>> range_counting(root, 2, 2, 1, 4)
-    1
-    >>> range_counting(root, 0, 17, 1, 100)
-    18
-    >>> range_counting(root, 1, 0, 1, 100)
-    0
-    >>> range_counting(root, 0, 17, 100, 1)
-    0
-    """
 
 
 if __name__ == "__main__":
