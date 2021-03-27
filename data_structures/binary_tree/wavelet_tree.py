@@ -20,6 +20,13 @@ class Node:
         self.right: Optional[Node] = None
 
     def __repr__(self) -> str:
+        """
+        >>> node = Node(length=27)
+        >>> repr(node)
+        'min_value: -1, max_value: -1'
+        >>> repr(node) == str(node)
+        True
+        """
         return f"min_value: {self.minn}, max_value: {self.maxx}"
 
 
