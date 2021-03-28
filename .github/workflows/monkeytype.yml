@@ -18,6 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install pyannotate pytest -r requirements.txt
+          python -m pip install mypy pyannotate pytest -r requirements.txt
       - run: python3 web_programming/emails_from_url.py
       - run: cat type_info.json || true
+      - run: mypy web_programming/emails_from_url.py 
