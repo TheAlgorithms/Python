@@ -23,3 +23,5 @@ jobs:
       - run: monkeytype stub arithmetic_analysis.gaussian_elimination
       - run: monkeytype run web_programming/world_covid19_stats.py
       - run: monkeytype stub web_programming.world_covid19_stats
+      - run: monkeytype stub web_programming
+      - run: monkeytype stub || true
