@@ -14,12 +14,12 @@ import requests
 
 
 class Parser(HTMLParser):
-    def __init__(self, domain: str):
+    def __init__(self, domain: str) -> None:
         HTMLParser.__init__(self)
         self.data = []
         self.domain = domain
 
-    def handle_starttag(self, tag: str, attrs: str) -> None:
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str]]) -> None:
         """
         This function parse html to take takes url from tags
         """
@@ -59,7 +59,7 @@ def get_sub_domain_name(url: str) -> str:
     return parse.urlparse(url).netloc
 
 
-def emails_from_url(url: str = "https://github.com") -> list:
+def emails_from_url(url: str = "https://github.com") -> list[str]:
     """
     This function takes url and return all valid urls
     """
