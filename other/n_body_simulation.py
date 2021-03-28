@@ -139,6 +139,11 @@ def plot(
     y_start: float = -1,
     y_end: float = 1,
 ) -> None:
+    """
+    Utility function to plot how the given body-system evolves over time.
+    No doctest provided since this function does not have a return value.
+    """
+
     INTERVAL = 20  # Frame rate of the animation
     DELTA_TIME = INTERVAL / 1000  # Time between time steps in seconds
 
@@ -156,7 +161,7 @@ def plot(
         )
 
     # Function called once at the start of the animation
-    def init() -> list[patches.Circle]:  # type: ignore
+    def init() -> list[patches.Circle]:
         axes = plt.gca()
         axes.set_aspect("equal")
 
@@ -165,7 +170,7 @@ def plot(
         return patches
 
     # Function called at each step of the animation
-    def animate(i: int) -> list[patches.Circle]:  # type: ignore
+    def update(frame: int) -> list[patches.Circle]:
         # Update the positions of the bodies
         body_system.update_system(DELTA_TIME)
 
@@ -175,7 +180,7 @@ def plot(
         return patches
 
     anim = animation.FuncAnimation(  # noqa: F841
-        fig, animate, init_func=init, interval=INTERVAL, blit=True
+        fig, update, init_func=init, interval=INTERVAL, blit=True
     )
 
     plt.show()
@@ -183,6 +188,9 @@ def plot(
 
 if __name__ == "__main__":
     # Example 1: figure-8 solution to the 3-body-problem
+    # This example can be seen as a test of the implementation: given the right
+    # initial conditions, the bodies should move in a figure-8.
+    # (initial conditions taken from http://www.artcompsci.org/vol_1/v1_web/node56.html)
     position_x = 0.9700436
     position_y = -0.24308753
     velocity_x = 0.466203685
@@ -197,6 +205,10 @@ if __name__ == "__main__":
     plot("Figure-8 solution to the 3-body-problem", body_system1, -2, 2, -2, 2)
 
     # Example 2: Moon's orbit around the earth
+    # This example can be seen as a test of the implementation: given the right
+    # initial conditions, the moon should orbit around the earth as it actually does.
+    # (mass, velocity and distance taken from https://en.wikipedia.org/wiki/Earth
+    # and https://en.wikipedia.org/wiki/Moon)
     moon_mass = 7.3476e22
     earth_mass = 5.972e24
     velocity_dif = 1022
