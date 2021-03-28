@@ -521,8 +521,6 @@
   * Tests
     * [Test Matrix Operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/tests/test_matrix_operation.py)
 
-## [Monkeytype Config](https://github.com/TheAlgorithms/Python/blob/master//monkeytype_config.py)
-
 ## Networking Flow
   * [Ford Fulkerson](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/ford_fulkerson.py)
   * [Minimum Cut](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/minimum_cut.py)
