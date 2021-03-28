@@ -1,14 +1,6 @@
 def isGeometricMean(series: list) -> bool:
     """
     checking whether the input series is geometric series or not
-
-    >>> isGeometricMean([2, 4, 8])
-    True
-    >>> isGeometricMean([3, 6, 12, 24])
-    True
-    >>> isGeometricMean([1, 2, 3])
-    False
-
     """
     if len(series) == 1:
         return True
