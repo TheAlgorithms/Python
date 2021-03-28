@@ -8,6 +8,7 @@ __status__ = "Alpha"
 
 import re
 from html.parser import HTMLParser
+from typing import Optional
 from urllib import parse
 
 import requests
@@ -15,11 +16,11 @@ import requests
 
 class Parser(HTMLParser):
     def __init__(self, domain: str) -> None:
-        HTMLParser.__init__(self)
+        super().__init__()
         self.data = []
         self.domain = domain
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str]]) -> None:
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
         """
         This function parse html to take takes url from tags
         """
