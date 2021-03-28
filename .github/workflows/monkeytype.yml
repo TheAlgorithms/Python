@@ -21,7 +21,8 @@ jobs:
           python -m pip install monkeytype pytest -r requirements.txt
       - run: monkeytype run arithmetic_analysis/gaussian_elimination.py web_programming
       - run: monkeytype stub arithmetic_analysis.gaussian_elimination
-      - run: monkeytype run web_programming/*.py
+      - run: monkeytype run web_programming/world_covid19_stats.py
+      - run: monkeytype run web_programmingy
       - run: monkeytype list-modules
       - run: monkeytype stub web_programming.world_covid19_stats
       - run: monkeytype stub web_programming
