@@ -1,18 +1,14 @@
-name: "build"
+name: monkeytype
 
 on:
   pull_request:
-  schedule:
-    - cron: "0 0 * * *" # Run everyday
 
 jobs:
-  build:
+  monkeytype:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-        with:
-          python-version: "3.9"
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pip
@@ -20,5 +16,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install monkeytype -r requirements.txt
+          python -m pip install monkeytype pytest -r requirements.txt
+      - run: pytest --doctest-modules web_programming
       - run: monkeytype stub web_programming
