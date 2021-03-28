@@ -19,6 +19,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install monkeytype pytest -r requirements.txt
-      - run: monkeytype run python3 -m pytest --doctest-modules arithmetic_analysis/gaussian_elimination.py web_programming
+      - run: monkeytype run /opt/hostedtoolcache/Python/3.9.2/x64/bin/python3 -m pytest --doctest-modules arithmetic_analysis/gaussian_elimination.py web_programming
       - run: monkeytype stub arithmetic_analysis.gaussian_elimination
       - run: monkeytype stub web_programming.world_covid19_stats
