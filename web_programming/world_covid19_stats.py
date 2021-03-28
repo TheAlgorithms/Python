@@ -22,10 +22,6 @@ def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") 
 
 
 if __name__ == "__main__":
-    from pyannotate_runtime import collect_types
-    collect_types.init_types_collection()
-    with collect_types.collect():
-        print("\033[1m" + "COVID-19 Status of the World" + "\033[0m\n")
-        for key, value in world_covid19_stats().items():
-            print(f"{key}\n{value}\n")
-    collect_types.dump_stats('type_info.json')
+    print("\033[1m" + "COVID-19 Status of the World" + "\033[0m\n")
+    for key, value in world_covid19_stats().items():
+        print(f"{key}\n{value}\n")
