@@ -44,6 +44,7 @@ jobs:
            quantum
            scheduling
            sorts
+           web_programming
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
