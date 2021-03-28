@@ -19,7 +19,7 @@ available = [] # table of available resources
 # Allocation Param : List of currently allocated resources to the process
 # Need Param : List of how many resources the process totally needs to complete the task
 def set_process(ProcessName, Allocation, Need):
-    Process.append(ProcessName)
+    process.append(ProcessName)
     allocation.append(Allocation)
     maxx.append(Need)
   
