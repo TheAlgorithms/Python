@@ -1,0 +1,77 @@
+#The Banker algorithm, sometimes referred to as the detection algorithm, is a resource allocation and deadlock avoidance 
+#algorithm developed by Edsger Dijkstra that tests for safety by simulating the allocation of predetermined maximum possible 
+#amounts of all resources, and then makes an "s-state" check to test for possible deadlock conditions for all other pending 
+#activities, before deciding whether allocation should be allowed to continue.
+
+#https://en.wikipedia.org/wiki/Banker's_algorithm
+
+
+
+
+Process = []            #Table of process names
+allocation = []         #Table of each process current allocated resources
+Max = []                #Table of each process Max allocations to complete task
+Available = []          #table of available resources
+
+
+#set prcoess function
+#ProcessName Param : String Parameter to define process name (P1 , Process1 ...)
+#Allocation Param : List of currently allocated resources to the process
+#Need Param : List of how many resources the process totally needs to complete the task
+def Set_Process(ProcessName, Allocation, Need):
+    Process.append(ProcessName)
+    allocation.append(Allocation)
+    Max.append(Need)
+  
+#set available resources
+#available Param : List of current available resources that are not used by any process
+def Set_Available_Resources(available):
+    Available.append(available)
+    
+    
+#setting example of process with their currently allocated resources for 3 resources and how much they from these 3 resources to complete the task
+Set_Process("P1", [0,1,0] , [7,5,3])
+Set_Process("P2", [2,0,0] , [3,2,2])
+Set_Process("P3", [3,0,2] , [9,0,2])
+Set_Process("P4", [2,1,1] , [2,2,2])
+Set_Process("P5", [0,0,2] , [4,3,3])
+
+#available resources from 3 instances
+Set_Available_Resources([3,3,2])
+
+
+#Creation of need matrix
+need = [[ 0 for i in range(len(allocation[0]))]for i in range(len(allocation))]
+for counter in range (len(allocation)):
+    for counter1 in range (len(allocation[counter])):
+        need[counter][counter1] = Max[counter][counter1] - allocation[counter][counter1]
+        
+        
+        
+#Here, we compare each process needs to the currently available resources to check if its possible to create a safe
+#sequence for our 5 defined processes (P1..P5).
+i=0
+j=0
+while(i < len(Available[0]) and len(need) > 0):
+    while(Available[0][i] - need[j][i] <  0):
+        if(j > len(need)):
+            print("There is a deadlock in the system")
+        j+= 1
+            
+    i+=1
+    if(i == (len(Available[0]) -1)):
+        print(Process[j], "-->")
+        Process.pop(j)
+        for k in range (len(Available[0])):
+            Available[0][k] += allocation[j][k]
+        allocation.pop(j)
+        need.pop(j)
+        i = 0
+        j =0
+        
+#P2 -->
+#P4 -->
+#P1 -->
+#P3 -->
+#P5 -->
+#this is a safe sequence.
