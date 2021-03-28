@@ -17,7 +17,7 @@ import requests
 class Parser(HTMLParser):
     def __init__(self, domain: str) -> None:
         super().__init__()
-        self.data = []
+        self.data list[str] = []
         self.domain = domain
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
