@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
-          python -m pip install monkeytype pytest -r requirements.txt
+          python -m pip install monkeytype pyannotate pytest -r requirements.txt
       - run: monkeytype run arithmetic_analysis/gaussian_elimination.py web_programming
       - run: monkeytype stub arithmetic_analysis.gaussian_elimination
       - run: monkeytype run web_programming/world_covid19_stats.py
@@ -28,3 +28,4 @@ jobs:
       - run: monkeytype stub web_programming
       - run: monkeytype stub || true
       - run: monkeytype list-modules
+      - run: cat type_info.json || true
