@@ -9,6 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
+      - run: which python3 || true
+      - run: whereis python3 || true
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pip
