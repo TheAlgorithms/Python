@@ -8,36 +8,36 @@
 
 
 
-Process = [] # Table of process names
+process = [] # Table of process names
 allocation = [] # Table of each process current allocated resources
-Max = [] # Table of each process Max allocations to complete task
-Available = [] # table of available resources
+maxx = [] # Table of each process Max allocations to complete task
+available = [] # table of available resources
 
 
 # Set prcoess function
 # ProcessName Param : String Parameter to define process name (P1 , Process1 ...)
 # Allocation Param : List of currently allocated resources to the process
 # Need Param : List of how many resources the process totally needs to complete the task
-def Set_Process(ProcessName, Allocation, Need):
+def set_process(ProcessName, Allocation, Need):
     Process.append(ProcessName)
     allocation.append(Allocation)
-    Max.append(Need)
+    maxx.append(Need)
   
-#set available resources
-#available Param : List of current available resources that are not used by any process
-def Set_Available_Resources(available):
-    Available.append(available)
+# set available resources
+# available Param : List of current available resources that are not used by any process
+def set_available_resources(available):
+    available.append(available)
     
     
 # setting example of process with their currently allocated resources for 3 resources and how much they from these 3 resources to complete the task
-Set_Process("P1", [0, 1, 0] , [7, 5, 3])
-Set_Process("P2", [2, 0, 0] , [3, 2, 2])
-Set_Process("P3", [3, 0, 2] , [9, 0, 2])
-Set_Process("P4", [2, 1, 1] , [2, 2, 2])
-Set_Process("P5", [0, 0, 2] , [4, 3, 3])
+pet_process("P1", [0, 1, 0] , [7, 5, 3])
+set_process("P2", [2, 0, 0] , [3, 2, 2])
+set_process("P3", [3, 0, 2] , [9, 0, 2])
+set_process("P4", [2, 1, 1] , [2, 2, 2])
+set_process("P5", [0, 0, 2] , [4, 3, 3])
 
 # available resources from 3 instances
-Set_Available_Resources([3, 3, 2])
+set_available_resources([3, 3, 2])
 
 
 # Creation of need matrix
@@ -52,18 +52,18 @@ for counter in range (len(allocation)):
 # Sequence for our 5 defined processes (P1..P5).
 i=0
 j=0
-while(i < len(Available[0]) and len(need) > 0):
-    while(Available[0][i] - need[j][i] <  0):
+while(i < len(available[0]) and len(need) > 0):
+    while(available[0][i] - need[j][i] <  0):
         if(j > len(need)):
             print("There is a deadlock in the system")
         j+= 1
             
     i+=1
-    if(i == (len(Available[0]) -1)):
-        print(Process[j], "-->")
-        Process.pop(j)
-        for k in range (len(Available[0])):
-            Available[0][k] += allocation[j][k]
+    if(i == (len(available[0]) -1)):
+        print(process[j], "-->")
+        process.pop(j)
+        for k in range (len(available[0])):
+            available[0][k] += allocation[j][k]
         allocation.pop(j)
         need.pop(j)
         i = 0
