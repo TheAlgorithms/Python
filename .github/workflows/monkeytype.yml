@@ -21,4 +21,4 @@ jobs:
           python -m pip install mypy pyannotate pytest -r requirements.txt
       - run: python3 web_programming/emails_from_url.py
       - run: cat type_info.json || true
-      - run: mypy web_programming/emails_from_url.py 
+      - run: mypy --ignore-missing-imports web_programming/emails_from_url.py
