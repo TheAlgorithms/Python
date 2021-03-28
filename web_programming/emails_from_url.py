@@ -98,6 +98,10 @@ def emails_from_url(url: str = "https://github.com") -> list:
 
 
 if __name__ == "__main__":
-    emails = emails_from_url("https://github.com")
-    print(f"{len(emails)} emails found:")
-    print("\n".join(sorted(emails)))
+    from pyannotate_runtime import collect_types
+    collect_types.init_types_collection()
+    with collect_types.collect():
+        emails = emails_from_url("https://github.com")
+        print(f"{len(emails)} emails found:")
+        print("\n".join(sorted(emails)))
+    collect_types.dump_stats('type_info.json')
