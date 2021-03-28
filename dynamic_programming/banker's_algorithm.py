@@ -1,23 +1,23 @@
-#The Banker algorithm, sometimes referred to as the detection algorithm, is a resource allocation and deadlock avoidance 
-#algorithm developed by Edsger Dijkstra that tests for safety by simulating the allocation of predetermined maximum possible 
-#amounts of all resources, and then makes an "s-state" check to test for possible deadlock conditions for all other pending 
-#activities, before deciding whether allocation should be allowed to continue.
+# The Banker algorithm, sometimes referred to as the detection algorithm, is a resource allocation and deadlock avoidance 
+# algorithm developed by Edsger Dijkstra that tests for safety by simulating the allocation of predetermined maximum possible 
+# amounts of all resources, and then makes an "s-state" check to test for possible deadlock conditions for all other pending 
+# activities, before deciding whether allocation should be allowed to continue.
 
-#https://en.wikipedia.org/wiki/Banker's_algorithm
-
-
+# https://en.wikipedia.org/wiki/Banker's_algorithm
 
 
-Process = []            #Table of process names
-allocation = []         #Table of each process current allocated resources
-Max = []                #Table of each process Max allocations to complete task
-Available = []          #table of available resources
 
 
-#set prcoess function
-#ProcessName Param : String Parameter to define process name (P1 , Process1 ...)
-#Allocation Param : List of currently allocated resources to the process
-#Need Param : List of how many resources the process totally needs to complete the task
+Process = [] # Table of process names
+allocation = [] # Table of each process current allocated resources
+Max = [] # Table of each process Max allocations to complete task
+Available = [] # table of available resources
+
+
+# Set prcoess function
+# ProcessName Param : String Parameter to define process name (P1 , Process1 ...)
+# Allocation Param : List of currently allocated resources to the process
+# Need Param : List of how many resources the process totally needs to complete the task
 def Set_Process(ProcessName, Allocation, Need):
     Process.append(ProcessName)
     allocation.append(Allocation)
@@ -29,18 +29,18 @@ def Set_Available_Resources(available):
     Available.append(available)
     
     
-#setting example of process with their currently allocated resources for 3 resources and how much they from these 3 resources to complete the task
-Set_Process("P1", [0,1,0] , [7,5,3])
-Set_Process("P2", [2,0,0] , [3,2,2])
-Set_Process("P3", [3,0,2] , [9,0,2])
-Set_Process("P4", [2,1,1] , [2,2,2])
-Set_Process("P5", [0,0,2] , [4,3,3])
+# setting example of process with their currently allocated resources for 3 resources and how much they from these 3 resources to complete the task
+Set_Process("P1", [0, 1, 0] , [7, 5, 3])
+Set_Process("P2", [2, 0, 0] , [3, 2, 2])
+Set_Process("P3", [3, 0, 2] , [9, 0, 2])
+Set_Process("P4", [2, 1, 1] , [2, 2, 2])
+Set_Process("P5", [0, 0, 2] , [4, 3, 3])
 
-#available resources from 3 instances
-Set_Available_Resources([3,3,2])
+# available resources from 3 instances
+Set_Available_Resources([3, 3, 2])
 
 
-#Creation of need matrix
+# Creation of need matrix
 need = [[ 0 for i in range(len(allocation[0]))]for i in range(len(allocation))]
 for counter in range (len(allocation)):
     for counter1 in range (len(allocation[counter])):
@@ -48,8 +48,8 @@ for counter in range (len(allocation)):
         
         
         
-#Here, we compare each process needs to the currently available resources to check if its possible to create a safe
-#sequence for our 5 defined processes (P1..P5).
+# Here, we compare each process needs to the currently available resources to check if its possible to create a safe
+# Sequence for our 5 defined processes (P1..P5).
 i=0
 j=0
 while(i < len(Available[0]) and len(need) > 0):
@@ -69,9 +69,9 @@ while(i < len(Available[0]) and len(need) > 0):
         i = 0
         j =0
         
-#P2 -->
-#P4 -->
-#P1 -->
-#P3 -->
-#P5 -->
-#this is a safe sequence.
+# P2 -->
+# P4 -->
+# P1 -->
+# P3 -->
+# P5 -->
+# This is a safe sequence.
