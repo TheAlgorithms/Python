@@ -18,15 +18,15 @@ available = [] # table of available resources
 # ProcessName Param : String Parameter to define process name (P1 , Process1 ...)
 # Allocation Param : List of currently allocated resources to the process
 # Need Param : List of how many resources the process totally needs to complete the task
-def set_process(ProcessName, Allocation, Need):
-    process.append(ProcessName)
-    allocation.append(Allocation)
-    maxx.append(Need)
+def set_process(process_name, allocation, need):
+    process.append(process_name)
+    allocation.append(allocation)
+    maxx.append(need)
   
 # set available resources
 # available Param : List of current available resources that are not used by any process
-def set_available_resources(available):
-    available.append(available)
+def set_available_resources(availablee) : 
+    available.append(availablee)
     
     
 # setting example of process with their currently allocated resources for 3 resources and how much they from these 3 resources to complete the task
