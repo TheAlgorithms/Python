@@ -30,7 +30,7 @@ def set_available_resources(available):
     
     
 # setting example of process with their currently allocated resources for 3 resources and how much they from these 3 resources to complete the task
-pet_process("P1", [0, 1, 0] , [7, 5, 3])
+set_process("P1", [0, 1, 0] , [7, 5, 3])
 set_process("P2", [2, 0, 0] , [3, 2, 2])
 set_process("P3", [3, 0, 2] , [9, 0, 2])
 set_process("P4", [2, 1, 1] , [2, 2, 2])
@@ -44,7 +44,7 @@ set_available_resources([3, 3, 2])
 need = [[ 0 for i in range(len(allocation[0]))]for i in range(len(allocation))]
 for counter in range (len(allocation)):
     for counter1 in range (len(allocation[counter])):
-        need[counter][counter1] = Max[counter][counter1] - allocation[counter][counter1]
+        need[counter][counter1] = maxx[counter][counter1] - allocation[counter][counter1]
         
         
         
