@@ -1,7 +1,7 @@
 import random
 import sys
 
-import cryptomath_module as cryptomath
+from . import cryptomath_module as cryptomath
 
 SYMBOLS = (
     r""" !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`"""
@@ -9,27 +9,7 @@ SYMBOLS = (
 )
 
 
-def main():
-    """
-    >>> key = get_random_key()
-    >>> msg = "This is a test!"
-    >>> decrypt_message(key, encrypt_message(key, msg)) == msg
-    True
-    """
-    message = input("Enter message: ").strip()
-    key = int(input("Enter key [2000 - 9000]: ").strip())
-    mode = input("Encrypt/Decrypt [E/D]: ").strip().lower()
-
-    if mode.startswith("e"):
-        mode = "encrypt"
-        translated = encrypt_message(key, message)
-    elif mode.startswith("d"):
-        mode = "decrypt"
-        translated = decrypt_message(key, message)
-    print(f"\n{mode.title()}ed text: \n{translated}")
-
-
-def check_keys(keyA, keyB, mode):
+def check_keys(keyA: int, keyB: int, mode: str) -> None:
     if mode == "encrypt":
         if keyA == 1:
             sys.exit(
@@ -80,7 +60,7 @@ def decrypt_message(key: int, message: str) -> str:
     keyA, keyB = divmod(key, len(SYMBOLS))
     check_keys(keyA, keyB, "decrypt")
     plainText = ""
-    modInverseOfkeyA = cryptomath.findModInverse(keyA, len(SYMBOLS))
+    modInverseOfkeyA = cryptomath.find_mod_inverse(keyA, len(SYMBOLS))
     for symbol in message:
         if symbol in SYMBOLS:
             symIndex = SYMBOLS.find(symbol)
@@ -90,12 +70,32 @@ def decrypt_message(key: int, message: str) -> str:
     return plainText
 
 
-def get_random_key():
+def get_random_key() -> int:
     while True:
         keyA = random.randint(2, len(SYMBOLS))
         keyB = random.randint(2, len(SYMBOLS))
-        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1:
+        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1 and keyB % len(SYMBOLS) != 0:
             return keyA * len(SYMBOLS) + keyB
+
+
+def main() -> None:
+    """
+    >>> key = get_random_key()
+    >>> msg = "This is a test!"
+    >>> decrypt_message(key, encrypt_message(key, msg)) == msg
+    True
+    """
+    message = input("Enter message: ").strip()
+    key = int(input("Enter key [2000 - 9000]: ").strip())
+    mode = input("Encrypt/Decrypt [E/D]: ").strip().lower()
+
+    if mode.startswith("e"):
+        mode = "encrypt"
+        translated = encrypt_message(key, message)
+    elif mode.startswith("d"):
+        mode = "decrypt"
+        translated = decrypt_message(key, message)
+    print(f"\n{mode.title()}ed text: \n{translated}")
 
 
 if __name__ == "__main__":

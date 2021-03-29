@@ -1,7 +1,9 @@
 # flake8: noqa
 
+from __future__ import annotations
+
 from random import random
-from typing import Tuple
+from typing import Optional, Tuple
 
 
 class Node:
@@ -10,13 +12,13 @@ class Node:
     Treap is a binary tree by value and heap by priority
     """
 
-    def __init__(self, value: int = None):
+    def __init__(self, value: Optional[int] = None):
         self.value = value
         self.prior = random()
-        self.left = None
-        self.right = None
+        self.left: Optional[Node] = None
+        self.right: Optional[Node] = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         from pprint import pformat
 
         if self.left is None and self.right is None:
@@ -26,14 +28,14 @@ class Node:
                 {f"{self.value}: {self.prior:.5}": (self.left, self.right)}, indent=1
             )
 
-    def __str__(self):
+    def __str__(self) -> str:
         value = str(self.value) + " "
         left = str(self.left or "")
         right = str(self.right or "")
         return value + left + right
 
 
-def split(root: Node, value: int) -> Tuple[Node, Node]:
+def split(root: Optional[Node], value: int) -> Tuple[Optional[Node], Optional[Node]]:
     """
     We split current tree into 2 trees with value:
 
@@ -41,9 +43,9 @@ def split(root: Node, value: int) -> Tuple[Node, Node]:
     Right tree contains all values greater or equal, than split value
     """
     if root is None:  # None tree is split into 2 Nones
-        return (None, None)
+        return None, None
     elif root.value is None:
-        return (None, None)
+        return None, None
     else:
         if value < root.value:
             """
@@ -53,16 +55,16 @@ def split(root: Node, value: int) -> Tuple[Node, Node]:
             Right tree's left son: right part of that split
             """
             left, root.left = split(root.left, value)
-            return (left, root)
+            return left, root
         else:
             """
             Just symmetric to previous case
             """
             root.right, right = split(root.right, value)
-            return (root, right)
+            return root, right
 
 
-def merge(left: Node, right: Node) -> Node:
+def merge(left: Optional[Node], right: Optional[Node]) -> Optional[Node]:
     """
     We merge 2 trees into one.
     Note: all left tree's values must be less than all right tree's
@@ -84,7 +86,7 @@ def merge(left: Node, right: Node) -> Node:
         return right
 
 
-def insert(root: Node, value: int) -> Node:
+def insert(root: Optional[Node], value: int) -> Optional[Node]:
     """
     Insert element
 
@@ -97,7 +99,7 @@ def insert(root: Node, value: int) -> Node:
     return merge(merge(left, node), right)
 
 
-def erase(root: Node, value: int) -> Node:
+def erase(root: Optional[Node], value: int) -> Optional[Node]:
     """
     Erase element
 
@@ -110,7 +112,7 @@ def erase(root: Node, value: int) -> Node:
     return merge(left, right)
 
 
-def inorder(root: Node):
+def inorder(root: Optional[Node]) -> None:
     """
     Just recursive print of a tree
     """
@@ -118,11 +120,11 @@ def inorder(root: Node):
         return
     else:
         inorder(root.left)
-        print(root.value, end=" ")
+        print(root.value, end=",")
         inorder(root.right)
 
 
-def interactTreap(root, args):
+def interactTreap(root: Optional[Node], args: str) -> Optional[Node]:
     """
     Commands:
     + value to add value into treap
@@ -130,19 +132,19 @@ def interactTreap(root, args):
 
         >>> root = interactTreap(None, "+1")
         >>> inorder(root)
-        1 
+        1,
         >>> root = interactTreap(root, "+3 +5 +17 +19 +2 +16 +4 +0")
         >>> inorder(root)
-        0 1 2 3 4 5 16 17 19 
+        0,1,2,3,4,5,16,17,19,
         >>> root = interactTreap(root, "+4 +4 +4")
         >>> inorder(root)
-        0 1 2 3 4 4 4 4 5 16 17 19 
+        0,1,2,3,4,4,4,4,5,16,17,19,
         >>> root = interactTreap(root, "-0")
         >>> inorder(root)
-        1 2 3 4 4 4 4 5 16 17 19 
+        1,2,3,4,4,4,4,5,16,17,19,
         >>> root = interactTreap(root, "-4")
         >>> inorder(root)
-        1 2 3 5 16 17 19 
+        1,2,3,5,16,17,19,
         >>> root = interactTreap(root, "=0")
         Unknown command
     """
@@ -159,7 +161,7 @@ def interactTreap(root, args):
     return root
 
 
-def main():
+def main() -> None:
     """After each command, program prints treap"""
     root = None
     print(

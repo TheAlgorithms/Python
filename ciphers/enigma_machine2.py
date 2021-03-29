@@ -15,31 +15,61 @@ Module includes:
 Created by TrapinchO
 """
 
+RotorPositionT = tuple[int, int, int]
+RotorSelectionT = tuple[str, str, str]
+
+
 # used alphabet --------------------------
 # from string.ascii_uppercase
-abc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 # -------------------------- default selection --------------------------
 # rotors --------------------------
-rotor1 = 'EGZWVONAHDCLFQMSIPJBYUKXTR'
-rotor2 = 'FOBHMDKEXQNRAULPGSJVTYICZW'
-rotor3 = 'ZJXESIUQLHAVRMDOYGTNFWPBKC'
+rotor1 = "EGZWVONAHDCLFQMSIPJBYUKXTR"
+rotor2 = "FOBHMDKEXQNRAULPGSJVTYICZW"
+rotor3 = "ZJXESIUQLHAVRMDOYGTNFWPBKC"
 # reflector --------------------------
-reflector = {'A': 'N', 'N': 'A', 'B': 'O', 'O': 'B', 'C': 'P', 'P': 'C', 'D': 'Q',
-             'Q': 'D', 'E': 'R', 'R': 'E', 'F': 'S', 'S': 'F', 'G': 'T', 'T': 'G',
-             'H': 'U', 'U': 'H', 'I': 'V', 'V': 'I', 'J': 'W', 'W': 'J', 'K': 'X',
-             'X': 'K', 'L': 'Y', 'Y': 'L', 'M': 'Z', 'Z': 'M'}
+reflector = {
+    "A": "N",
+    "N": "A",
+    "B": "O",
+    "O": "B",
+    "C": "P",
+    "P": "C",
+    "D": "Q",
+    "Q": "D",
+    "E": "R",
+    "R": "E",
+    "F": "S",
+    "S": "F",
+    "G": "T",
+    "T": "G",
+    "H": "U",
+    "U": "H",
+    "I": "V",
+    "V": "I",
+    "J": "W",
+    "W": "J",
+    "K": "X",
+    "X": "K",
+    "L": "Y",
+    "Y": "L",
+    "M": "Z",
+    "Z": "M",
+}
 
 # -------------------------- extra rotors --------------------------
-rotor4 = 'RMDJXFUWGISLHVTCQNKYPBEZOA'
-rotor5 = 'SGLCPQWZHKXAREONTFBVIYJUDM'
-rotor6 = 'HVSICLTYKQUBXDWAJZOMFGPREN'
-rotor7 = 'RZWQHFMVDBKICJLNTUXAGYPSOE'
-rotor8 = 'LFKIJODBEGAMQPXVUHYSTCZRWN'
-rotor9 = 'KOAEGVDHXPQZMLFTYWJNBRCIUS'
+rotor4 = "RMDJXFUWGISLHVTCQNKYPBEZOA"
+rotor5 = "SGLCPQWZHKXAREONTFBVIYJUDM"
+rotor6 = "HVSICLTYKQUBXDWAJZOMFGPREN"
+rotor7 = "RZWQHFMVDBKICJLNTUXAGYPSOE"
+rotor8 = "LFKIJODBEGAMQPXVUHYSTCZRWN"
+rotor9 = "KOAEGVDHXPQZMLFTYWJNBRCIUS"
 
 
-def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
+def _validator(
+    rotpos: RotorPositionT, rotsel: RotorSelectionT, pb: str
+) -> tuple[RotorPositionT, RotorSelectionT, dict[str, str]]:
     """
     Checks if the values can be used for the 'enigma' function
 
@@ -57,27 +87,30 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
 
     unique_rotsel = len(set(rotsel))
     if unique_rotsel < 3:
-        raise Exception(f'Please use 3 unique rotors (not {unique_rotsel})')
+        raise Exception(f"Please use 3 unique rotors (not {unique_rotsel})")
 
     # Checks if rotor positions are valid
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if not 0 < rotorpos1 <= len(abc):
-        raise ValueError(f'First rotor position is not within range of 1..26 ('
-                         f'{rotorpos1}')
+        raise ValueError(
+            f"First rotor position is not within range of 1..26 (" f"{rotorpos1}"
+        )
     if not 0 < rotorpos2 <= len(abc):
-        raise ValueError(f'Second rotor position is not within range of 1..26 ('
-                         f'{rotorpos2})')
+        raise ValueError(
+            f"Second rotor position is not within range of 1..26 (" f"{rotorpos2})"
+        )
     if not 0 < rotorpos3 <= len(abc):
-        raise ValueError(f'Third rotor position is not within range of 1..26 ('
-                         f'{rotorpos3})')
+        raise ValueError(
+            f"Third rotor position is not within range of 1..26 (" f"{rotorpos3})"
+        )
 
     # Validates string and returns dict
-    pb = _plugboard(pb)
+    pbdict = _plugboard(pb)
 
-    return rotpos, rotsel, pb
+    return rotpos, rotsel, pbdict
 
 
-def _plugboard(pbstring: str) -> dict:
+def _plugboard(pbstring: str) -> dict[str, str]:
     """
     https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 
@@ -97,36 +130,40 @@ def _plugboard(pbstring: str) -> dict:
     # a) is type string
     # b) has even length (so pairs can be made)
     if not isinstance(pbstring, str):
-        raise TypeError(f'Plugboard setting isn\'t type string ({type(pbstring)})')
+        raise TypeError(f"Plugboard setting isn't type string ({type(pbstring)})")
     elif len(pbstring) % 2 != 0:
-        raise Exception(f'Odd number of symbols ({len(pbstring)})')
-    elif pbstring == '':
+        raise Exception(f"Odd number of symbols ({len(pbstring)})")
+    elif pbstring == "":
         return {}
 
-    pbstring.replace(' ', '')
+    pbstring.replace(" ", "")
 
     # Checks if all characters are unique
     tmppbl = set()
     for i in pbstring:
         if i not in abc:
-            raise Exception(f'\'{i}\' not in list of symbols')
+            raise Exception(f"'{i}' not in list of symbols")
         elif i in tmppbl:
-            raise Exception(f'Duplicate symbol ({i})')
+            raise Exception(f"Duplicate symbol ({i})")
         else:
             tmppbl.add(i)
     del tmppbl
 
     # Created the dictionary
     pb = {}
-    for i in range(0, len(pbstring) - 1, 2):
-        pb[pbstring[i]] = pbstring[i + 1]
-        pb[pbstring[i + 1]] = pbstring[i]
+    for j in range(0, len(pbstring) - 1, 2):
+        pb[pbstring[j]] = pbstring[j + 1]
+        pb[pbstring[j + 1]] = pbstring[j]
 
     return pb
 
 
-def enigma(text: str, rotor_position: tuple,
-           rotor_selection: tuple = (rotor1, rotor2, rotor3), plugb: str = '') -> str:
+def enigma(
+    text: str,
+    rotor_position: RotorPositionT,
+    rotor_selection: RotorSelectionT = (rotor1, rotor2, rotor3),
+    plugb: str = "",
+) -> str:
     """
     The only difference with real-world enigma is that I allowed string input.
     All characters are converted to uppercase. (non-letter symbol are ignored)
@@ -179,14 +216,14 @@ def enigma(text: str, rotor_position: tuple,
 
     text = text.upper()
     rotor_position, rotor_selection, plugboard = _validator(
-        rotor_position, rotor_selection, plugb.upper())
+        rotor_position, rotor_selection, plugb.upper()
+    )
 
     rotorpos1, rotorpos2, rotorpos3 = rotor_position
     rotor1, rotor2, rotor3 = rotor_selection
     rotorpos1 -= 1
     rotorpos2 -= 1
     rotorpos3 -= 1
-    plugboard = plugboard
 
     result = []
 
@@ -245,12 +282,12 @@ def enigma(text: str, rotor_position: tuple,
     return "".join(result)
 
 
-if __name__ == '__main__':
-    message = 'This is my Python script that emulates the Enigma machine from WWII.'
+if __name__ == "__main__":
+    message = "This is my Python script that emulates the Enigma machine from WWII."
     rotor_pos = (1, 1, 1)
-    pb = 'pictures'
+    pb = "pictures"
     rotor_sel = (rotor2, rotor4, rotor8)
     en = enigma(message, rotor_pos, rotor_sel, pb)
 
-    print('Encrypted message:', en)
-    print('Decrypted message:', enigma(en, rotor_pos, rotor_sel, pb))
+    print("Encrypted message:", en)
+    print("Decrypted message:", enigma(en, rotor_pos, rotor_sel, pb))

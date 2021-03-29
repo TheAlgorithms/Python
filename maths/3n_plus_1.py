@@ -1,7 +1,7 @@
-from typing import List, Tuple
+from __future__ import annotations
 
 
-def n31(a: int) -> Tuple[List[int], int]:
+def n31(a: int) -> tuple[list[int], int]:
     """
     Returns the Collatz sequence and its length of any positive integer.
     >>> n31(4)
@@ -9,7 +9,7 @@ def n31(a: int) -> Tuple[List[int], int]:
     """
 
     if not isinstance(a, int):
-        raise TypeError("Must be int, not {}".format(type(a).__name__))
+        raise TypeError(f"Must be int, not {type(a).__name__}")
     if a < 1:
         raise ValueError(f"Given integer must be greater than 1, not {a}")
 

@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 from cmath import sqrt
-from typing import Tuple
 
 
-def quadratic_roots(a: int, b: int, c: int) -> Tuple[complex, complex]:
+def quadratic_roots(a: int, b: int, c: int) -> tuple[complex, complex]:
     """
     Given the numerical coefficients a, b and c,
     calculates the roots for any quadratic equation of the form ax^2 + bx + c
@@ -29,8 +30,8 @@ def quadratic_roots(a: int, b: int, c: int) -> Tuple[complex, complex]:
 
 
 def main():
-    solutions = quadratic_roots(a=5, b=6, c=1)
-    print("The solutions are: {} and {}".format(*solutions))
+    solution1, solution2 = quadratic_roots(a=5, b=6, c=1)
+    print(f"The solutions are: {solution1} and {solution2}")
 
 
 if __name__ == "__main__":

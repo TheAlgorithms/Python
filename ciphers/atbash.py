@@ -61,6 +61,6 @@ def benchmark() -> None:
 
 
 if __name__ == "__main__":
-    for sequence in ("ABCDEFGH", "123GGjj", "testStringtest", "with space"):
-        print(f"{sequence} encrypted in atbash: {atbash(sequence)}")
+    for example in ("ABCDEFGH", "123GGjj", "testStringtest", "with space"):
+        print(f"{example} encrypted in atbash: {atbash(example)}")
     benchmark()

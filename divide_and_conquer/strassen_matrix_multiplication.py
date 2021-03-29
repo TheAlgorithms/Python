@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import math
-from typing import List, Tuple
 
 
-def default_matrix_multiplication(a: List, b: List) -> List:
+def default_matrix_multiplication(a: list, b: list) -> list:
     """
     Multiplication only for 2x2 matrices
     """
@@ -15,21 +16,21 @@ def default_matrix_multiplication(a: List, b: List) -> List:
     return new_matrix
 
 
-def matrix_addition(matrix_a: List, matrix_b: List):
+def matrix_addition(matrix_a: list, matrix_b: list):
     return [
         [matrix_a[row][col] + matrix_b[row][col] for col in range(len(matrix_a[row]))]
         for row in range(len(matrix_a))
     ]
 
 
-def matrix_subtraction(matrix_a: List, matrix_b: List):
+def matrix_subtraction(matrix_a: list, matrix_b: list):
     return [
         [matrix_a[row][col] - matrix_b[row][col] for col in range(len(matrix_a[row]))]
         for row in range(len(matrix_a))
     ]
 
 
-def split_matrix(a: List,) -> Tuple[List, List, List, List]:
+def split_matrix(a: list) -> tuple[list, list, list, list]:
     """
     Given an even length matrix, returns the top_left, top_right, bot_left, bot_right
     quadrant.
@@ -62,16 +63,16 @@ def split_matrix(a: List,) -> Tuple[List, List, List, List]:
     return top_left, top_right, bot_left, bot_right
 
 
-def matrix_dimensions(matrix: List) -> Tuple[int, int]:
+def matrix_dimensions(matrix: list) -> tuple[int, int]:
     return len(matrix), len(matrix[0])
 
 
-def print_matrix(matrix: List) -> None:
+def print_matrix(matrix: list) -> None:
     for i in range(len(matrix)):
         print(matrix[i])
 
 
-def actual_strassen(matrix_a: List, matrix_b: List) -> List:
+def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     """
     Recursive function to calculate the product of two matrices, using the Strassen
     Algorithm.  It only supports even length matrices.
@@ -104,7 +105,7 @@ def actual_strassen(matrix_a: List, matrix_b: List) -> List:
     return new_matrix
 
 
-def strassen(matrix1: List, matrix2: List) -> List:
+def strassen(matrix1: list, matrix2: list) -> list:
     """
     >>> strassen([[2,1,3],[3,4,6],[1,4,2],[7,6,7]], [[4,2,3,4],[2,1,1,1],[8,6,4,2]])
     [[34, 23, 19, 15], [68, 46, 37, 28], [28, 18, 15, 12], [96, 62, 55, 48]]
@@ -120,7 +121,7 @@ def strassen(matrix1: List, matrix2: List) -> List:
     dimension2 = matrix_dimensions(matrix2)
 
     if dimension1[0] == dimension1[1] and dimension2[0] == dimension2[1]:
-        return matrix1, matrix2
+        return [matrix1, matrix2]
 
     maximum = max(max(dimension1), max(dimension2))
     maxim = int(math.pow(2, math.ceil(math.log2(maximum))))

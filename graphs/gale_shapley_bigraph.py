@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def stable_matching(donor_pref: List[int], recipient_pref: List[int]) -> List[int]:
+def stable_matching(donor_pref: list[int], recipient_pref: list[int]) -> list[int]:
     """
     Finds the stable match in any bipartite graph, i.e a pairing where no 2 objects
     prefer each other over their partner.  The function accepts the preferences of

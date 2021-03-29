@@ -1,7 +1,7 @@
 def sum_of_geometric_progression(
     first_term: int, common_ratio: int, num_of_terms: int
 ) -> float:
-    """"
+    """ "
     Return the sum of n terms in a geometric progression.
     >>> sum_of_geometric_progression(1, 2, 10)
     1023.0

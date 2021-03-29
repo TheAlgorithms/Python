@@ -1,4 +1,4 @@
-import math as m
+import math
 from typing import Callable, Union
 
 
@@ -29,7 +29,7 @@ def line_length(
     '10.000000'
 
     >>> def f(x):
-    ...    return m.sin(5 * x) + m.cos(10 * x) + x * x/10
+    ...    return math.sin(5 * x) + math.cos(10 * x) + x * x/10
     >>> f"{line_length(f, 0.0, 10.0, 10000):.6f}"
     '69.534930'
     """
@@ -43,7 +43,7 @@ def line_length(
         # Approximates curve as a sequence of linear lines and sums their length
         x2 = (x_end - x_start) / steps + x1
         fx2 = fnc(x2)
-        length += m.hypot(x2 - x1, fx2 - fx1)
+        length += math.hypot(x2 - x1, fx2 - fx1)
 
         # Increment step
         x1 = x2
@@ -55,7 +55,7 @@ def line_length(
 if __name__ == "__main__":
 
     def f(x):
-        return m.sin(10 * x)
+        return math.sin(10 * x)
 
     print("f(x) = sin(10 * x)")
     print("The length of the curve from x = -10 to x = 10 is:")

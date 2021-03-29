@@ -4,12 +4,15 @@
 # quickly find a good approximation for the root of a real-valued function
 from decimal import Decimal
 from math import *  # noqa: F401, F403
+from typing import Union
 
 from sympy import diff
 
 
-def newton_raphson(func: str, a: int, precision: int = 10 ** -10) -> float:
-    """ Finds root from the point 'a' onwards by Newton-Raphson method
+def newton_raphson(
+    func: str, a: Union[float, Decimal], precision: float = 10 ** -10
+) -> float:
+    """Finds root from the point 'a' onwards by Newton-Raphson method
     >>> newton_raphson("sin(x)", 2)
     3.1415926536808043
     >>> newton_raphson("x**2 - 5*x +2", 0.4)

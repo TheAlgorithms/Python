@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from hash_table import HashTable
+from .hash_table import HashTable
 
 
 class QuadraticProbing(HashTable):
     """
-        Basic Hash Table example with open addressing using Quadratic Probing
+    Basic Hash Table example with open addressing using Quadratic Probing
     """
 
     def __init__(self, *args, **kwargs):

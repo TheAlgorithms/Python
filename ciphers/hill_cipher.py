@@ -64,7 +64,7 @@ class HillCipher:
 
     to_int = numpy.vectorize(lambda x: round(x))
 
-    def __init__(self, encrypt_key):
+    def __init__(self, encrypt_key: int):
         """
         encrypt_key is an NxN numpy array
         """
@@ -155,8 +155,8 @@ class HillCipher:
         """
         >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.make_decrypt_key()
-        array([[ 6., 25.],
-               [ 5., 26.]])
+        array([[ 6, 25],
+               [ 5, 26]])
         """
         det = round(numpy.linalg.det(self.encrypt_key))
 

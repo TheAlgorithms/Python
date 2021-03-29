@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
+from typing import Optional
+
 
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
-    cipher_alphabet=None,
-    frequencies_dict=None,
+    cipher_alphabet: Optional[list[str]] = None,
+    frequencies_dict: Optional[dict[str, float]] = None,
     case_sensetive: bool = False,
-) -> tuple:
+) -> tuple[int, float, str]:
     """
     Basic Usage
     ===========
@@ -121,9 +123,9 @@ def decrypt_caesar_with_chi_squared(
     AttributeError: 'int' object has no attribute 'lower'
     """
     alphabet_letters = cipher_alphabet or [chr(i) for i in range(97, 123)]
-    frequencies_dict = frequencies_dict or {}
 
-    if frequencies_dict == {}:
+    # If the argument is None or the user provided an empty dictionary
+    if not frequencies_dict:
         # Frequencies of letters in the english language (how much they show up)
         frequencies = {
             "a": 0.08497,
@@ -161,7 +163,7 @@ def decrypt_caesar_with_chi_squared(
         ciphertext = ciphertext.lower()
 
     # Chi squared statistic values
-    chi_squared_statistic_values = {}
+    chi_squared_statistic_values: dict[int, tuple[float, str]] = {}
 
     # cycle through all of the shifts
     for shift in range(len(alphabet_letters)):
@@ -213,22 +215,22 @@ def decrypt_caesar_with_chi_squared(
                     chi_squared_statistic += chi_letter_value
 
         # Add the data to the chi_squared_statistic_values dictionary
-        chi_squared_statistic_values[shift] = [
+        chi_squared_statistic_values[shift] = (
             chi_squared_statistic,
             decrypted_with_shift,
-        ]
+        )
 
     # Get the most likely cipher by finding the cipher with the smallest chi squared
     # statistic
-    most_likely_cipher = min(
+    most_likely_cipher: int = min(
         chi_squared_statistic_values, key=chi_squared_statistic_values.get
-    )
+    )  # type: ignore # First argument to `min` is not optional
 
     # Get all the data from the most likely cipher (key, decoded message)
-    most_likely_cipher_chi_squared_value = chi_squared_statistic_values[
-        most_likely_cipher
-    ][0]
-    decoded_most_likely_cipher = chi_squared_statistic_values[most_likely_cipher][1]
+    (
+        most_likely_cipher_chi_squared_value,
+        decoded_most_likely_cipher,
+    ) = chi_squared_statistic_values[most_likely_cipher]
 
     # Return the data on the most likely shift
     return (

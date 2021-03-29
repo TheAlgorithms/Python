@@ -3,59 +3,72 @@ Extended Euclidean Algorithm.
 
 Finds 2 numbers a and b such that it satisfies
 the equation am + bn = gcd(m, n) (a.k.a Bezout's Identity)
+
+https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
 """
 
 # @Author: S. Sharma <silentcat>
 # @Date:   2019-02-25T12:08:53-06:00
 # @Email:  silentcat@protonmail.com
-# @Last modified by:   PatOnTheBack
-# @Last modified time: 2019-07-05
+# @Last modified by:   pikulet
+# @Last modified time: 2020-10-02
 
 import sys
+from typing import Tuple
 
 
-def extended_euclidean_algorithm(m, n):
+def extended_euclidean_algorithm(a: int, b: int) -> Tuple[int, int]:
     """
     Extended Euclidean Algorithm.
 
     Finds 2 numbers a and b such that it satisfies
     the equation am + bn = gcd(m, n) (a.k.a Bezout's Identity)
+
+    >>> extended_euclidean_algorithm(1, 24)
+    (1, 0)
+
+    >>> extended_euclidean_algorithm(8, 14)
+    (2, -1)
+
+    >>> extended_euclidean_algorithm(240, 46)
+    (-9, 47)
+
+    >>> extended_euclidean_algorithm(1, -4)
+    (1, 0)
+
+    >>> extended_euclidean_algorithm(-2, -4)
+    (-1, 0)
+
+    >>> extended_euclidean_algorithm(0, -4)
+    (0, -1)
+
+    >>> extended_euclidean_algorithm(2, 0)
+    (1, 0)
+
     """
-    a = 0
-    a_prime = 1
-    b = 1
-    b_prime = 0
-    q = 0
-    r = 0
-    if m > n:
-        c = m
-        d = n
-    else:
-        c = n
-        d = m
+    # base cases
+    if abs(a) == 1:
+        return a, 0
+    elif abs(b) == 1:
+        return 0, b
 
-    while True:
-        q = int(c / d)
-        r = c % d
-        if r == 0:
-            break
-        c = d
-        d = r
+    old_remainder, remainder = a, b
+    old_coeff_a, coeff_a = 1, 0
+    old_coeff_b, coeff_b = 0, 1
 
-        t = a_prime
-        a_prime = a
-        a = t - q * a
+    while remainder != 0:
+        quotient = old_remainder // remainder
+        old_remainder, remainder = remainder, old_remainder - quotient * remainder
+        old_coeff_a, coeff_a = coeff_a, old_coeff_a - quotient * coeff_a
+        old_coeff_b, coeff_b = coeff_b, old_coeff_b - quotient * coeff_b
 
-        t = b_prime
-        b_prime = b
-        b = t - q * b
+    # sign correction for negative numbers
+    if a < 0:
+        old_coeff_a = -old_coeff_a
+    if b < 0:
+        old_coeff_b = -old_coeff_b
 
-    pair = None
-    if m > n:
-        pair = (a, b)
-    else:
-        pair = (b, a)
-    return pair
+    return old_coeff_a, old_coeff_b
 
 
 def main():
@@ -63,9 +76,9 @@ def main():
     if len(sys.argv) < 3:
         print("2 integer arguments required")
         exit(1)
-    m = int(sys.argv[1])
-    n = int(sys.argv[2])
-    print(extended_euclidean_algorithm(m, n))
+    a = int(sys.argv[1])
+    b = int(sys.argv[2])
+    print(extended_euclidean_algorithm(a, b))
 
 
 if __name__ == "__main__":

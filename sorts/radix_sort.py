@@ -1,19 +1,36 @@
+"""
+This is a pure Python implementation of the quick sort algorithm
+For doctests run following command:
+python -m doctest -v radix_sort.py
+or
+python3 -m doctest -v radix_sort.py
+For manual testing run:
+python radix_sort.py
+"""
+from __future__ import annotations
+
 from typing import List
 
 
 def radix_sort(list_of_ints: List[int]) -> List[int]:
     """
-    radix_sort(range(15)) == sorted(range(15))
+    Examples:
+    >>> radix_sort([0, 5, 3, 2, 2])
+    [0, 2, 2, 3, 5]
+
+    >>> radix_sort(list(range(15))) == sorted(range(15))
     True
-    radix_sort(reversed(range(15))) == sorted(range(15))
+    >>> radix_sort(list(range(14,-1,-1))) == sorted(range(15))
+    True
+    >>> radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
     True
     """
     RADIX = 10
     placement = 1
     max_digit = max(list_of_ints)
-    while placement < max_digit:
+    while placement <= max_digit:
         # declare and initialize empty buckets
-        buckets = [list() for _ in range(RADIX)]
+        buckets: List[list] = [list() for _ in range(RADIX)]
         # split list_of_ints between the buckets
         for i in list_of_ints:
             tmp = int((i / placement) % RADIX)
@@ -27,3 +44,9 @@ def radix_sort(list_of_ints: List[int]) -> List[int]:
         # move to next
         placement *= RADIX
     return list_of_ints
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

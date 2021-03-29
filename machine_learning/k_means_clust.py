@@ -132,12 +132,12 @@ def kmeans(
     data, k, initial_centroids, maxiter=500, record_heterogeneity=None, verbose=False
 ):
     """This function runs k-means on given data and initial set of centroids.
-       maxiter: maximum number of iterations to run.(default=500)
-       record_heterogeneity: (optional) a list, to store the history of heterogeneity
-                             as function of iterations
-                             if None, do not store the history.
-       verbose: if True, print how many data points changed their cluster labels in
-                             each iteration"""
+    maxiter: maximum number of iterations to run.(default=500)
+    record_heterogeneity: (optional) a list, to store the history of heterogeneity
+                          as function of iterations
+                          if None, do not store the history.
+    verbose: if True, print how many data points changed their cluster labels in
+                          each iteration"""
     centroids = initial_centroids[:]
     prev_cluster_assignment = None
 
@@ -200,7 +200,7 @@ if False:  # change to true to run this test case.
 
 
 def ReportGenerator(
-    df: pd.DataFrame, ClusteringVariables: np.array, FillMissingReport=None
+    df: pd.DataFrame, ClusteringVariables: np.ndarray, FillMissingReport=None
 ) -> pd.DataFrame:
     """
     Function generates easy-erading clustering report. It takes 2 arguments as an input:
@@ -251,7 +251,7 @@ def ReportGenerator(
                     lambda x: np.mean(
                         np.nan_to_num(
                             sorted(x)[
-                                round((len(x) * 25 / 100)) : round(len(x) * 75 / 100)
+                                round(len(x) * 25 / 100) : round(len(x) * 75 / 100)
                             ]
                         )
                     ),

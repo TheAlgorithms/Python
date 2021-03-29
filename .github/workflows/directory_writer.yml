@@ -8,8 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1  # v1, NOT v2
       - uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
       - name: Write DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md

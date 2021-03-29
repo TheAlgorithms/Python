@@ -56,14 +56,14 @@ def connect(graph, a, b, edge):
 def prim(graph: list, root: Vertex) -> list:
     """Prim's Algorithm.
 
-        Runtime:
-            O(mn) with `m` edges and `n` vertices
+    Runtime:
+        O(mn) with `m` edges and `n` vertices
 
-        Return:
-            List with the edges of a Minimum Spanning Tree
+    Return:
+        List with the edges of a Minimum Spanning Tree
 
-        Usage:
-            prim(graph, graph[0])
+    Usage:
+        prim(graph, graph[0])
     """
     a = []
     for u in graph:
@@ -86,21 +86,21 @@ def prim(graph: list, root: Vertex) -> list:
 def prim_heap(graph: list, root: Vertex) -> Iterator[tuple]:
     """Prim's Algorithm with min heap.
 
-        Runtime:
-            O((m + n)log n) with `m` edges and `n` vertices
+    Runtime:
+        O((m + n)log n) with `m` edges and `n` vertices
 
-        Yield:
-            Edges of a Minimum Spanning Tree
+    Yield:
+        Edges of a Minimum Spanning Tree
 
-        Usage:
-            prim(graph, graph[0])
+    Usage:
+        prim(graph, graph[0])
     """
     for u in graph:
         u.key = math.inf
         u.pi = None
     root.key = 0
 
-    h = [v for v in graph]
+    h = list(graph)
     hq.heapify(h)
 
     while h:

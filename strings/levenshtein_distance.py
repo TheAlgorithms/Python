@@ -13,7 +13,7 @@ python levenshtein-distance.py
 """
 
 
-def levenshtein_distance(first_word, second_word):
+def levenshtein_distance(first_word: str, second_word: str) -> int:
     """Implementation of the levenshtein distance in Python.
     :param first_word: the first word to measure the difference.
     :param second_word: the second word to measure the difference.
@@ -69,8 +69,4 @@ if __name__ == "__main__":
     second_word = input("Enter the second word:\n").strip()
 
     result = levenshtein_distance(first_word, second_word)
-    print(
-        "Levenshtein distance between {} and {} is {}".format(
-            first_word, second_word, result
-        )
-    )
+    print(f"Levenshtein distance between {first_word} and {second_word} is {result}")

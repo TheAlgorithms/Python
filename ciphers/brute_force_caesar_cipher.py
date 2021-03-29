@@ -1,4 +1,4 @@
-def decrypt(message):
+def decrypt(message: str) -> None:
     """
     >>> decrypt('TMDETUX PMDVU')
     Decryption using Key #0: TMDETUX PMDVU
@@ -43,7 +43,7 @@ def decrypt(message):
         print(f"Decryption using Key #{key}: {translated}")
 
 
-def main():
+def main() -> None:
     message = input("Encrypted message: ")
     message = message.upper()
     decrypt(message)

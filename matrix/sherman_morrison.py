@@ -175,9 +175,7 @@ class Matrix:
                         result[r, c] += self[r, i] * another[i, c]
             return result
         else:
-            raise TypeError(
-                "Unsupported type given for another ({})".format(type(another))
-            )
+            raise TypeError(f"Unsupported type given for another ({type(another)})")
 
     def transpose(self):
         """
@@ -260,7 +258,7 @@ if __name__ == "__main__":
         print(f"v is {v}")
         print("uv^T is %s" % (u * v.transpose()))
         # Sherman Morrison
-        print("(a + uv^T)^(-1) is {}".format(ainv.ShermanMorrison(u, v)))
+        print(f"(a + uv^T)^(-1) is {ainv.ShermanMorrison(u, v)}")
 
     def test2():
         import doctest

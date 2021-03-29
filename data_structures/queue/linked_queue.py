@@ -1,18 +1,18 @@
-""" A Queue using a Linked List like structure """
-from typing import Any, Optional
+""" A Queue using a linked list like structure """
+from typing import Any
 
 
 class Node:
-    def __init__(self, data: Any, next: Optional["Node"] = None):
-        self.data: Any = data
-        self.next: Optional["Node"] = next
+    def __init__(self, data: Any) -> None:
+        self.data = data
+        self.next = None
+
+    def __str__(self) -> str:
+        return f"{self.data}"
 
 
 class LinkedQueue:
     """
-    Linked List Queue implementing put (to end of queue),
-    get (from front of queue) and is_empty
-
     >>> queue = LinkedQueue()
     >>> queue.is_empty()
     True
@@ -35,40 +35,117 @@ class LinkedQueue:
     >>> queue.get()
     Traceback (most recent call last):
         ...
-    IndexError: get from empty queue
+    IndexError: dequeue from empty queue
     """
 
     def __init__(self) -> None:
-        self.front: Optional[Node] = None
-        self.rear: Optional[Node] = None
+        self.front = self.rear = None
+
+    def __iter__(self):
+        node = self.front
+        while node:
+            yield node.data
+            node = node.next
+
+    def __len__(self) -> int:
+        """
+        >>> queue = LinkedQueue()
+        >>> for i in range(1, 6):
+        ...     queue.put(i)
+        >>> len(queue)
+        5
+        >>> for i in range(1, 6):
+        ...     assert len(queue) == 6 - i
+        ...     _ = queue.get()
+        >>> len(queue)
+        0
+        """
+        return len(tuple(iter(self)))
+
+    def __str__(self) -> str:
+        """
+        >>> queue = LinkedQueue()
+        >>> for i in range(1, 4):
+        ...     queue.put(i)
+        >>> queue.put("Python")
+        >>> queue.put(3.14)
+        >>> queue.put(True)
+        >>> str(queue)
+        '1 <- 2 <- 3 <- Python <- 3.14 <- True'
+        """
+        return " <- ".join(str(item) for item in self)
 
     def is_empty(self) -> bool:
-        """ returns boolean describing if queue is empty """
-        return self.front is None
+        """
+        >>> queue = LinkedQueue()
+        >>> queue.is_empty()
+        True
+        >>> for i in range(1, 6):
+        ...     queue.put(i)
+        >>> queue.is_empty()
+        False
+        """
+        return len(self) == 0
 
-    def put(self, item: Any) -> None:
-        """ append item to rear of queue """
-        node: Node = Node(item)
+    def put(self, item) -> None:
+        """
+        >>> queue = LinkedQueue()
+        >>> queue.get()
+        Traceback (most recent call last):
+        ...
+        IndexError: dequeue from empty queue
+        >>> for i in range(1, 6):
+        ...     queue.put(i)
+        >>> str(queue)
+        '1 <- 2 <- 3 <- 4 <- 5'
+        """
+        node = Node(item)
         if self.is_empty():
-            # the queue contains just the single element
-            self.front = node
-            self.rear = node
+            self.front = self.rear = node
         else:
-            # not empty, so we add it to the rear of the queue
             assert isinstance(self.rear, Node)
             self.rear.next = node
             self.rear = node
 
     def get(self) -> Any:
-        """ returns and removes item at front of queue """
+        """
+        >>> queue = LinkedQueue()
+        >>> queue.get()
+        Traceback (most recent call last):
+        ...
+        IndexError: dequeue from empty queue
+        >>> queue = LinkedQueue()
+        >>> for i in range(1, 6):
+        ...     queue.put(i)
+        >>> for i in range(1, 6):
+        ...     assert queue.get() == i
+        >>> len(queue)
+        0
+        """
         if self.is_empty():
-            raise IndexError("get from empty queue")
-        else:
-            # "remove" element by having front point to the next one
-            assert isinstance(self.front, Node)
-            node: Node = self.front
-            self.front = node.next
-            if self.front is None:
-                self.rear = None
+            raise IndexError("dequeue from empty queue")
+        assert isinstance(self.front, Node)
+        node = self.front
+        self.front = self.front.next
+        if self.front is None:
+            self.rear = None
+        return node.data
 
-            return node.data
+    def clear(self) -> None:
+        """
+        >>> queue = LinkedQueue()
+        >>> for i in range(1, 6):
+        ...     queue.put(i)
+        >>> queue.clear()
+        >>> len(queue)
+        0
+        >>> str(queue)
+        ''
+        """
+        self.front = self.rear = None
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
