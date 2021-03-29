@@ -41,6 +41,7 @@ jobs:
            machine_learning
            networking_flow
            neural_network
+           physics
            quantum
            scheduling
            sorts
