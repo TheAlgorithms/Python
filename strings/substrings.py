@@ -1,6 +1,6 @@
 def substrings(string: str) -> list[str]:
     """
-    return  all the substrings of string
+    Return a list of substrings of given string
 
     >>> substrings("a")
     ['a']
