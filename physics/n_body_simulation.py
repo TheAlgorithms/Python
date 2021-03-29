@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import random
 
-from matplotlib import animation  # type: ignore
+from matplotlib import animation
 from matplotlib import pyplot as plt
 
 
@@ -49,10 +49,24 @@ class Body:
         """
         Euler algorithm for velocity
 
-        >>> body = Body(0.,0.,0.,0.)
-        >>> body.update_velocity(1.,0.,1.)
-        >>> body.velocity_x
-        1.0
+        >>> body_1 = Body(0.,0.,0.,0.)
+        >>> body_1.update_velocity(1.,0.,1.)
+        >>> (body_1.velocity_x, body_1.velocity_y)
+        (1.0, 0.0)
+
+        >>> body_1.update_velocity(1.,0.,1.)
+        >>> (body_1.velocity_x, body_1.velocity_y)
+        (2.0, 0.0)
+
+        >>> body_2 = Body(0.,0.,5.,0.)
+        >>> body_2.update_velocity(0.,-10.,10.)
+        >>> (body_2.velocity_x, body_2.velocity_y)
+        (5.0, -100.0)
+
+        >>> body_2.update_velocity(0.,-10.,10.)
+        >>> (body_2.velocity_x, body_2.velocity_y)
+        (5.0, -200.0)
+
         """
         self.velocity_x += force_x * delta_time
         self.velocity_y += force_y * delta_time
@@ -61,10 +75,23 @@ class Body:
         """
         Euler algorithm for position
 
-        >>> body = Body(0.,0.,1.,0.)
-        >>> body.update_position(1.)
-        >>> body.position_x
-        1.0
+        >>> body_1 = Body(0.,0.,1.,0.)
+        >>> body_1.update_position(1.)
+        >>> (body_1.position_x, body_1.position_y)
+        (1.0, 0.0)
+
+        >>> body_1.update_position(1.)
+        >>> (body_1.position_x, body_1.position_y)
+        (2.0, 0.0)
+
+        >>> body_2 = Body(10.,10.,0.,-2.)
+        >>> body_2.update_position(1.)
+        >>> (body_2.position_x, body_2.position_y)
+        (10.0, 8.0)
+
+        >>> body_2.update_position(1.)
+        >>> (body_2.position_x, body_2.position_y)
+        (10.0, 6.0)
         """
         self.position_x += self.velocity_x * delta_time
         self.position_y += self.velocity_y * delta_time
@@ -96,10 +123,19 @@ class BodySystem:
         For each body, loop through all other bodies to calculate the total
         force they exert on it. Use that force to update the body's velocity.
 
-        >>> body_system = BodySystem([Body(0,0,0,0), Body(10,0,0,0)])
-        >>> body_system.update_system(1)
-        >>> body_system.bodies[0].position_x
-        0.01
+        >>> body_system_1 = BodySystem([Body(0,0,0,0), Body(10,0,0,0)])
+        >>> body_system_1.update_system(1)
+        >>> (body_system_1.bodies[0].position_x, body_system_1.bodies[0].position_y)
+        (0.01, 0.0)
+        >>> (body_system_1.bodies[0].velocity_x, body_system_1.bodies[0].velocity_y)
+        (0.01, 0.0)
+
+        >>> body_system_2 = BodySystem([Body(-10,0,0,0), Body(10,0,0,0, mass=4)], 1, 10)
+        >>> body_system_2.update_system(1)
+        >>> (body_system_2.bodies[0].position_x, body_system_2.bodies[0].position_y)
+        (-9.0, 0.0)
+        >>> (body_system_2.bodies[0].velocity_x, body_system_2.bodies[0].velocity_y)
+        (0.1, 0.0)
         """
         for body1 in self.bodies:
             force_x = 0.0
@@ -131,6 +167,34 @@ class BodySystem:
             body.update_position(delta_time * self.time_factor)
 
 
+def update_step(
+    body_system: BodySystem, delta_time: float, patches: list[plt.Circle]
+) -> None:
+    """
+    Updates the body-system and applies the change to the patch-list used for plotting
+
+    >>> body_system_1 = BodySystem([Body(0,0,0,0), Body(10,0,0,0)])
+    >>> patches_1 = [plt.Circle((body.position_x, body.position_y), body.size,
+    ... fc=body.color)for body in body_system_1.bodies] #doctest: +ELLIPSIS
+    >>> update_step(body_system_1, 1, patches_1)
+    >>> patches_1[0].center
+    (0.01, 0.0)
+
+    >>> body_system_2 = BodySystem([Body(-10,0,0,0), Body(10,0,0,0, mass=4)], 1, 10)
+    >>> patches_2 = [plt.Circle((body.position_x, body.position_y), body.size,
+    ... fc=body.color)for body in body_system_2.bodies] #doctest: +ELLIPSIS
+    >>> update_step(body_system_2, 1, patches_2)
+    >>> patches_2[0].center
+    (-9.0, 0.0)
+    """
+    # Update the positions of the bodies
+    body_system.update_system(delta_time)
+
+    # Update the positions of the patches
+    for patch, body in zip(patches, body_system.bodies):
+        patch.center = (body.position_x, body.position_y)
+
+
 def plot(
     title: str,
     body_system: BodySystem,
@@ -149,48 +213,41 @@ def plot(
 
     fig = plt.figure()
     fig.canvas.set_window_title(title)
-
-    # Set section to be plotted
-    ax = plt.axes(xlim=(x_start, x_end), ylim=(y_start, y_end))
+    ax = plt.axes(
+        xlim=(x_start, x_end), ylim=(y_start, y_end)
+    )  # Set section to be plotted
+    plt.gca().set_aspect("equal")  # Fix aspect ratio
 
     # Each body is drawn as a patch by the plt-function
-    patches = []
-    for body in body_system.bodies:
-        patches.append(
-            plt.Circle((body.position_x, body.position_y), body.size, fc=body.color)
-        )
+    patches = [
+        plt.Circle((body.position_x, body.position_y), body.size, fc=body.color)
+        for body in body_system.bodies
+    ]
 
-    # Function called once at the start of the animation
-    def init() -> list[patches.Circle]:
-        axes = plt.gca()
-        axes.set_aspect("equal")
-
-        for patch in patches:
-            ax.add_patch(patch)
-        return patches
+    for patch in patches:
+        ax.add_patch(patch)
 
     # Function called at each step of the animation
-    def update(frame: int) -> list[patches.Circle]:
-        # Update the positions of the bodies
-        body_system.update_system(DELTA_TIME)
-
-        # Update the positions of the patches
-        for patch, body in zip(patches, body_system.bodies):
-            patch.center = (body.position_x, body.position_y)
+    def update(frame: int) -> list[plt.Circle]:
+        update_step(body_system, DELTA_TIME, patches)
         return patches
 
     anim = animation.FuncAnimation(  # noqa: F841
-        fig, update, init_func=init, interval=INTERVAL, blit=True
+        fig, update, interval=INTERVAL, blit=True
     )
 
     plt.show()
 
 
-if __name__ == "__main__":
-    # Example 1: figure-8 solution to the 3-body-problem
-    # This example can be seen as a test of the implementation: given the right
-    # initial conditions, the bodies should move in a figure-8.
-    # (initial conditions taken from http://www.artcompsci.org/vol_1/v1_web/node56.html)
+def example_1() -> None:
+    """
+    Example 1: figure-8 solution to the 3-body-problem
+    This example can be seen as a test of the implementation: given the right
+    initial conditions, the bodies should move in a figure-8.
+    (initial conditions taken from http://www.artcompsci.org/vol_1/v1_web/node56.html)
+    No doctest provided since this function does not have a return value.
+    """
+
     position_x = 0.9700436
     position_y = -0.24308753
     velocity_x = 0.466203685
@@ -204,11 +261,17 @@ if __name__ == "__main__":
     body_system1 = BodySystem(bodies1, time_factor=3)
     plot("Figure-8 solution to the 3-body-problem", body_system1, -2, 2, -2, 2)
 
-    # Example 2: Moon's orbit around the earth
-    # This example can be seen as a test of the implementation: given the right
-    # initial conditions, the moon should orbit around the earth as it actually does.
-    # (mass, velocity and distance taken from https://en.wikipedia.org/wiki/Earth
-    # and https://en.wikipedia.org/wiki/Moon)
+
+def example_2() -> None:
+    """
+    Example 2: Moon's orbit around the earth
+    This example can be seen as a test of the implementation: given the right
+    initial conditions, the moon should orbit around the earth as it actually does.
+    (mass, velocity and distance taken from https://en.wikipedia.org/wiki/Earth
+    and https://en.wikipedia.org/wiki/Moon)
+    No doctest provided since this function does not have a return value.
+    """
+
     moon_mass = 7.3476e22
     earth_mass = 5.972e24
     velocity_dif = 1022
@@ -232,7 +295,13 @@ if __name__ == "__main__":
         430000000,
     )
 
-    # Example 3: Random system with many bodies
+
+def example_3() -> None:
+    """
+    Example 3: Random system with many bodies.
+    No doctest provided since this function does not have a return value.
+    """
+
     bodies = []
     for i in range(10):
         velocity_x = random.uniform(-0.5, 0.5)
@@ -260,3 +329,9 @@ if __name__ == "__main__":
         )
     body_system3 = BodySystem(bodies, 0.01, 10, 0.1)
     plot("Random system with many bodies", body_system3, -1.5, 1.5, -1.5, 1.5)
+
+
+if __name__ == "__main__":
+    example_1()
+    example_2()
+    example_3()
