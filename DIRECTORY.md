@@ -545,12 +545,14 @@
   * [Linear Congruential Generator](https://github.com/TheAlgorithms/Python/blob/master/other/linear_congruential_generator.py)
   * [Lru Cache](https://github.com/TheAlgorithms/Python/blob/master/other/lru_cache.py)
   * [Magicdiamondpattern](https://github.com/TheAlgorithms/Python/blob/master/other/magicdiamondpattern.py)
-  * [N Body Simulation](https://github.com/TheAlgorithms/Python/blob/master/other/n_body_simulation.py)
   * [Nested Brackets](https://github.com/TheAlgorithms/Python/blob/master/other/nested_brackets.py)
   * [Password Generator](https://github.com/TheAlgorithms/Python/blob/master/other/password_generator.py)
   * [Scoring Algorithm](https://github.com/TheAlgorithms/Python/blob/master/other/scoring_algorithm.py)
   * [Sdes](https://github.com/TheAlgorithms/Python/blob/master/other/sdes.py)
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
+
+## Physics
+  * [N Body Simulation](https://github.com/TheAlgorithms/Python/blob/master/physics/n_body_simulation.py)
 
 ## Project Euler
   * Problem 001
