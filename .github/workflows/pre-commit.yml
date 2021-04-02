@@ -14,7 +14,7 @@ jobs:
             ~/.cache/pip
           key: ${{ runner.os }}-pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
       - uses: actions/setup-python@v2
-      - uses: psf/black@stable
+      - uses: psf/black@20.8b1
       - name: Install pre-commit
         run: |
           python -m pip install --upgrade pip

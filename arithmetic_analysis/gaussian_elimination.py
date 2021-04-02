@@ -7,7 +7,7 @@ Gaussian elimination - https://en.wikipedia.org/wiki/Gaussian_elimination
 import numpy as np
 
 
-def retroactive_resolution(coefficients: np.matrix, vector: np.array) -> np.array:
+def retroactive_resolution(coefficients: np.matrix, vector: np.ndarray) -> np.ndarray:
     """
     This function performs a retroactive linear system resolution
         for triangular matrix
@@ -38,7 +38,7 @@ def retroactive_resolution(coefficients: np.matrix, vector: np.array) -> np.arra
     return x
 
 
-def gaussian_elimination(coefficients: np.matrix, vector: np.array) -> np.array:
+def gaussian_elimination(coefficients: np.matrix, vector: np.ndarray) -> np.ndarray:
     """
     This function performs Gaussian elimination method
 
@@ -57,7 +57,7 @@ def gaussian_elimination(coefficients: np.matrix, vector: np.array) -> np.array:
     # coefficients must to be a square matrix so we need to check first
     rows, columns = np.shape(coefficients)
     if rows != columns:
-        return []
+        return np.array((), dtype=float)
 
     # augmented matrix
     augmented_mat = np.concatenate((coefficients, vector), axis=1)
