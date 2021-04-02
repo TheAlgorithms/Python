@@ -15,10 +15,10 @@ def adler32(plain_text: str) -> str:
     Itterates and evaluates new value for each character
 
     >>> adler32('Algorithms')
-    363791387
+    '363791387'
 
     >>> adler32('go adler em all')
-    708642122
+    '708642122'
     """
     MOD_ADLER = 65521
     a = 1
