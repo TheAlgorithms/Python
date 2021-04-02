@@ -26,4 +26,4 @@ def adler32(plain_text: str) -> str:
     for plain_chr in plain_text:
         a = (a + ord(plain_chr)) % MOD_ADLER
         b = (b + a) % MOD_ADLER
-    return (b << 16) | a
+    return str((b << 16) | a)
