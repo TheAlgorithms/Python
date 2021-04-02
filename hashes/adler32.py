@@ -9,16 +9,16 @@
 """
 
 
-def adler32(plain_text: str) -> str:
+def adler32(plain_text: str) -> int:
     """
     Function implements adler-32 hash.
-    Itterates and evaluates new value for each character
+    Itterates and evaluates a new value for each character
 
     >>> adler32('Algorithms')
-    '363791387'
+    363791387
 
     >>> adler32('go adler em all')
-    '708642122'
+    708642122
     """
     MOD_ADLER = 65521
     a = 1
@@ -26,4 +26,4 @@ def adler32(plain_text: str) -> str:
     for plain_chr in plain_text:
         a = (a + ord(plain_chr)) % MOD_ADLER
         b = (b + a) % MOD_ADLER
-    return str((b << 16) | a)
+    return (b << 16) | a
