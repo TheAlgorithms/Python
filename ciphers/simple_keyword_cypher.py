@@ -15,7 +15,7 @@ def remove_duplicates(key: str) -> str:
     return key_no_dups
 
 
-def create_cipher_map(key: str) -> dict:
+def create_cipher_map(key: str) -> dict[str, str]:
     """
     Returns a cipher map given a keyword.
     :param key: keyword to use
@@ -40,7 +40,7 @@ def create_cipher_map(key: str) -> dict:
     return cipher_alphabet
 
 
-def encipher(message: str, cipher_map: dict) -> str:
+def encipher(message: str, cipher_map: dict[str, str]) -> str:
     """
     Enciphers a message given a cipher map.
     :param message: Message to encipher
@@ -52,7 +52,7 @@ def encipher(message: str, cipher_map: dict) -> str:
     return "".join(cipher_map.get(ch, ch) for ch in message.upper())
 
 
-def decipher(message: str, cipher_map: dict) -> str:
+def decipher(message: str, cipher_map: dict[str, str]) -> str:
     """
     Deciphers a message given a cipher map
     :param message: Message to decipher
@@ -67,7 +67,7 @@ def decipher(message: str, cipher_map: dict) -> str:
     return "".join(rev_cipher_map.get(ch, ch) for ch in message.upper())
 
 
-def main():
+def main() -> None:
     """
     Handles I/O
     :return: void

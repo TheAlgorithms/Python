@@ -64,13 +64,12 @@ class HillCipher:
 
     to_int = numpy.vectorize(lambda x: round(x))
 
-    def __init__(self, encrypt_key: int):
+    def __init__(self, encrypt_key: numpy.ndarray) -> None:
         """
         encrypt_key is an NxN numpy array
         """
         self.encrypt_key = self.modulus(encrypt_key)  # mod36 calc's on the encrypt key
         self.check_determinant()  # validate the determinant of the encryption key
-        self.decrypt_key = None
         self.break_key = encrypt_key.shape[0]
 
     def replace_letters(self, letter: str) -> int:
@@ -151,7 +150,7 @@ class HillCipher:
 
         return encrypted
 
-    def make_decrypt_key(self):
+    def make_decrypt_key(self) -> numpy.ndarray:
         """
         >>> hill_cipher = HillCipher(numpy.array([[2, 5], [1, 6]]))
         >>> hill_cipher.make_decrypt_key()
@@ -184,7 +183,7 @@ class HillCipher:
         >>> hill_cipher.decrypt('85FF00')
         'HELLOO'
         """
-        self.decrypt_key = self.make_decrypt_key()
+        decrypt_key = self.make_decrypt_key()
         text = self.process_text(text.upper())
         decrypted = ""
 
@@ -192,9 +191,7 @@ class HillCipher:
             batch = text[i : i + self.break_key]
             batch_vec = [self.replace_letters(char) for char in batch]
             batch_vec = numpy.array([batch_vec]).T
-            batch_decrypted = self.modulus(self.decrypt_key.dot(batch_vec)).T.tolist()[
-                0
-            ]
+            batch_decrypted = self.modulus(decrypt_key.dot(batch_vec)).T.tolist()[0]
             decrypted_batch = "".join(
                 self.replace_digits(num) for num in batch_decrypted
             )
@@ -203,7 +200,7 @@ class HillCipher:
         return decrypted
 
 
-def main():
+def main() -> None:
     N = int(input("Enter the order of the encryption key: "))
     hill_matrix = []
 

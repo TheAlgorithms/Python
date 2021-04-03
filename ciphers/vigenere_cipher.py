@@ -1,7 +1,7 @@
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def main():
+def main() -> None:
     message = input("Enter message: ")
     key = input("Enter key [alphanumeric]: ")
     mode = input("Encrypt/Decrypt [e/d]: ")

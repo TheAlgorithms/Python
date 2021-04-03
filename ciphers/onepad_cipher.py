@@ -2,7 +2,8 @@ import random
 
 
 class Onepad:
-    def encrypt(self, text: str) -> ([str], [int]):
+    @staticmethod
+    def encrypt(text: str) -> tuple[list[int], list[int]]:
         """Function to encrypt text using pseudo-random numbers"""
         plain = [ord(i) for i in text]
         key = []
@@ -14,14 +15,14 @@ class Onepad:
             key.append(k)
         return cipher, key
 
-    def decrypt(self, cipher: [str], key: [int]) -> str:
+    @staticmethod
+    def decrypt(cipher: list[int], key: list[int]) -> str:
         """Function to decrypt text using pseudo-random numbers."""
         plain = []
         for i in range(len(key)):
             p = int((cipher[i] - (key[i]) ** 2) / key[i])
             plain.append(chr(p))
-        plain = "".join([i for i in plain])
-        return plain
+        return "".join([i for i in plain])
 
 
 if __name__ == "__main__":
