@@ -6,8 +6,8 @@ t = 3
 m = 5
 
 # Buffer Space (with Parameters Space)
-buffer_space: list = []
-params_space: list = []
+buffer_space: list[float] = []
+params_space: list[float] = []
 
 # Machine Time
 machine_time = 0
