@@ -49,8 +49,7 @@ class Body:
 
     @property
     def velocity(self) -> tuple[float, float]:
-
-        return self.position_x, self.position_y
+        return self.velocity_x, self.velocity_y
 
     def update_velocity(
         self, force_x: float, force_y: float, delta_time: float
@@ -147,7 +146,7 @@ class BodySystem:
         >>> body_system_2.update_system(1)
         >>> body_system_2.bodies[0].position
         (-9.0, 0.0)
-        >>> body_system_2.bodies[0]velocity
+        >>> body_system_2.bodies[0].velocity
         (0.1, 0.0)
         """
         for body1 in self.bodies:
