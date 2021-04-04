@@ -138,7 +138,8 @@ class HillCipher:
 
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             batch = text[i : i + self.break_key]
-            batch_vec = numpy.array([self.replace_letters(char) for char in batch]).T
+            vec = [self.replace_letters(char) for char in batch]
+            batch_vec = numpy.array([vec]).T
             batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[
                 0
             ]
@@ -188,7 +189,8 @@ class HillCipher:
 
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             batch = text[i : i + self.break_key]
-            batch_vec = numpy.array([self.replace_letters(char) for char in batch]).T
+            vec = [self.replace_letters(char) for char in batch]
+            batch_vec = numpy.array([vec]).T
             batch_decrypted = self.modulus(decrypt_key.dot(batch_vec)).T.tolist()[0]
             decrypted_batch = "".join(
                 self.replace_digits(num) for num in batch_decrypted
