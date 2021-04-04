@@ -43,6 +43,14 @@ class Body:
         self.size = size
         self.color = color
 
+    @property
+    def position(self) tuple[float, float]:
+        return self.position_x, self.position_y
+
+    @property
+    def velocity(self) tuple[float, float]:
+        return self.position_x, self.position_y
+
     def update_velocity(
         self, force_x: float, force_y: float, delta_time: float
     ) -> None:
@@ -51,22 +59,22 @@ class Body:
 
         >>> body_1 = Body(0.,0.,0.,0.)
         >>> body_1.update_velocity(1.,0.,1.)
-        >>> (body_1.velocity_x, body_1.velocity_y)
+        >>> body_1.velocity
         (1.0, 0.0)
 
         >>> body_1.update_velocity(1.,0.,1.)
-        >>> (body_1.velocity_x, body_1.velocity_y)
+        >>> body_1.velocity
+
         (2.0, 0.0)
 
         >>> body_2 = Body(0.,0.,5.,0.)
         >>> body_2.update_velocity(0.,-10.,10.)
-        >>> (body_2.velocity_x, body_2.velocity_y)
+        >>> body_2.velocity
         (5.0, -100.0)
 
         >>> body_2.update_velocity(0.,-10.,10.)
-        >>> (body_2.velocity_x, body_2.velocity_y)
+        >>> body_2.velocity
         (5.0, -200.0)
-
         """
         self.velocity_x += force_x * delta_time
         self.velocity_y += force_y * delta_time
@@ -77,20 +85,20 @@ class Body:
 
         >>> body_1 = Body(0.,0.,1.,0.)
         >>> body_1.update_position(1.)
-        >>> (body_1.position_x, body_1.position_y)
+        >>> body_1.position
         (1.0, 0.0)
 
         >>> body_1.update_position(1.)
-        >>> (body_1.position_x, body_1.position_y)
+        >>> body_1.position
         (2.0, 0.0)
 
         >>> body_2 = Body(10.,10.,0.,-2.)
         >>> body_2.update_position(1.)
-        >>> (body_2.position_x, body_2.position_y)
+        >>> body_2.position
         (10.0, 8.0)
 
         >>> body_2.update_position(1.)
-        >>> (body_2.position_x, body_2.position_y)
+        >>> body_2.position
         (10.0, 6.0)
         """
         self.position_x += self.velocity_x * delta_time
@@ -118,23 +126,28 @@ class BodySystem:
         self.time_factor = time_factor
         self.softening_factor = softening_factor
 
+    def __len__() -> int:
+        return len(self.bodies)
+
     def update_system(self, delta_time: float) -> None:
         """
         For each body, loop through all other bodies to calculate the total
         force they exert on it. Use that force to update the body's velocity.
 
         >>> body_system_1 = BodySystem([Body(0,0,0,0), Body(10,0,0,0)])
+        >>> len(body_system_1)
+        2
         >>> body_system_1.update_system(1)
-        >>> (body_system_1.bodies[0].position_x, body_system_1.bodies[0].position_y)
+        >>> body_system_1.bodies[0].position
         (0.01, 0.0)
-        >>> (body_system_1.bodies[0].velocity_x, body_system_1.bodies[0].velocity_y)
+        >>> body_system_1.bodies[0].velocity
         (0.01, 0.0)
 
         >>> body_system_2 = BodySystem([Body(-10,0,0,0), Body(10,0,0,0, mass=4)], 1, 10)
         >>> body_system_2.update_system(1)
-        >>> (body_system_2.bodies[0].position_x, body_system_2.bodies[0].position_y)
+        >>> body_system_2.bodies[0].position
         (-9.0, 0.0)
-        >>> (body_system_2.bodies[0].velocity_x, body_system_2.bodies[0].velocity_y)
+        >>> body_system_2.bodies[0]velocity
         (0.1, 0.0)
         """
         for body1 in self.bodies:
@@ -239,13 +252,15 @@ def plot(
     plt.show()
 
 
-def example_1() -> None:
+def example_1() -> BodySystem:
     """
     Example 1: figure-8 solution to the 3-body-problem
     This example can be seen as a test of the implementation: given the right
     initial conditions, the bodies should move in a figure-8.
     (initial conditions taken from http://www.artcompsci.org/vol_1/v1_web/node56.html)
-    No doctest provided since this function does not have a return value.
+    >>> body_system = example_1()
+    >>> len(body_system)
+    3
     """
 
     position_x = 0.9700436
@@ -258,11 +273,10 @@ def example_1() -> None:
         Body(-position_x, -position_y, velocity_x, velocity_y, size=0.2, color="green"),
         Body(0, 0, -2 * velocity_x, -2 * velocity_y, size=0.2, color="blue"),
     ]
-    body_system1 = BodySystem(bodies1, time_factor=3)
-    plot("Figure-8 solution to the 3-body-problem", body_system1, -2, 2, -2, 2)
+    return BodySystem(bodies1, time_factor=3)
 
 
-def example_2() -> None:
+def example_2() -> BodySystem:
     """
     Example 2: Moon's orbit around the earth
     This example can be seen as a test of the implementation: given the right
@@ -285,18 +299,10 @@ def example_2() -> None:
 
     moon = Body(-earth_moon_distance, 0, 0, moon_velocity, moon_mass, 10000000, "grey")
     earth = Body(0, 0, 0, earth_velocity, earth_mass, 50000000, "blue")
-    body_system2 = BodySystem([earth, moon], gravitation_constant, time_factor=1000000)
-    plot(
-        "Moon's orbit around the earth",
-        body_system2,
-        -430000000,
-        430000000,
-        -430000000,
-        430000000,
-    )
+    return BodySystem([earth, moon], gravitation_constant, time_factor=1000000)
 
 
-def example_3() -> None:
+def example_3() -> BodySystem:
     """
     Example 3: Random system with many bodies.
     No doctest provided since this function does not have a return value.
@@ -327,11 +333,17 @@ def example_3() -> None:
                 size=0.05,
             )
         )
-    body_system3 = BodySystem(bodies, 0.01, 10, 0.1)
-    plot("Random system with many bodies", body_system3, -1.5, 1.5, -1.5, 1.5)
+    return BodySystem(bodies, 0.01, 10, 0.1)
 
 
 if __name__ == "__main__":
-    example_1()
-    example_2()
-    example_3()
+    plot("Figure-8 solution to the 3-body-problem", example_1(), -2, 2, -2, 2)
+    plot(
+        "Moon's orbit around the earth",
+        example_2(),
+        -430000000,
+        430000000,
+        -430000000,
+        430000000,
+    )
+    plot("Random system with many bodies", example_3(), -1.5, 1.5, -1.5, 1.5)
