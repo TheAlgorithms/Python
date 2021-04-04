@@ -22,7 +22,7 @@ from matplotlib import pyplot as plt
 
 class Body:
     def __init__(
-        self: Body,
+        self,
         position_x: float,
         position_y: float,
         velocity_x: float,
@@ -44,7 +44,7 @@ class Body:
         self.color = color
 
     def update_velocity(
-        self: Body, force_x: float, force_y: float, delta_time: float
+        self, force_x: float, force_y: float, delta_time: float
     ) -> None:
         """
         Euler algorithm for velocity
@@ -71,7 +71,7 @@ class Body:
         self.velocity_x += force_x * delta_time
         self.velocity_y += force_y * delta_time
 
-    def update_position(self: Body, delta_time: float) -> None:
+    def update_position(self, delta_time: float) -> None:
         """
         Euler algorithm for position
 
@@ -107,7 +107,7 @@ class BodySystem:
     """
 
     def __init__(
-        self: BodySystem,
+        self,
         bodies: list[Body],
         gravitation_constant: float = 1.0,
         time_factor: float = 1.0,
@@ -118,7 +118,7 @@ class BodySystem:
         self.time_factor = time_factor
         self.softening_factor = softening_factor
 
-    def update_system(self: BodySystem, delta_time: float) -> None:
+    def update_system(self, delta_time: float) -> None:
         """
         For each body, loop through all other bodies to calculate the total
         force they exert on it. Use that force to update the body's velocity.
