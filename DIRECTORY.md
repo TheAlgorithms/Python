@@ -551,6 +551,9 @@
   * [Sdes](https://github.com/TheAlgorithms/Python/blob/master/other/sdes.py)
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
 
+## Physics
+  * [N Body Simulation](https://github.com/TheAlgorithms/Python/blob/master/physics/n_body_simulation.py)
+
 ## Project Euler
   * Problem 001
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol1.py)
