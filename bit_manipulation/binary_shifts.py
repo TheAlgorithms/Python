@@ -91,9 +91,7 @@ def arithmetic_right_shift(number: int, shift_amount: int) -> str:
         binary_number_length = len(bin(number)[3:])  # Find 2's complement of number
         binary_number = bin(abs(number) - (1 << binary_number_length))[3:]
         binary_number = (
-            ("1" + "0" * (binary_number_length - len(binary_number)) + binary_number)
-            if number < 0
-            else "0"
+            "1" + "0" * (binary_number_length - len(binary_number)) + binary_number
         )
 
     if shift_amount >= len(binary_number):
