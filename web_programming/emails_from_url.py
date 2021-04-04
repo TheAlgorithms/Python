@@ -8,18 +8,19 @@ __status__ = "Alpha"
 
 import re
 from html.parser import HTMLParser
+from typing import Optional
 from urllib import parse
 
 import requests
 
 
 class Parser(HTMLParser):
-    def __init__(self, domain: str):
-        HTMLParser.__init__(self)
-        self.data = []
+    def __init__(self, domain: str) -> None:
+        super().__init__()
+        self.urls: list[str] = []
         self.domain = domain
 
-    def handle_starttag(self, tag: str, attrs: str) -> None:
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
         """
         This function parse html to take takes url from tags
         """
@@ -29,10 +30,10 @@ class Parser(HTMLParser):
             for name, value in attrs:
                 # If href is defined, and not empty nor # print it.
                 if name == "href" and value != "#" and value != "":
-                    # If not already in data.
-                    if value not in self.data:
+                    # If not already in urls.
+                    if value not in self.urls:
                         url = parse.urljoin(self.domain, value)
-                        self.data.append(url)
+                        self.urls.append(url)
 
 
 # Get main domain name (example.com)
@@ -59,7 +60,7 @@ def get_sub_domain_name(url: str) -> str:
     return parse.urlparse(url).netloc
 
 
-def emails_from_url(url: str = "https://github.com") -> list:
+def emails_from_url(url: str = "https://github.com") -> list[str]:
     """
     This function takes url and return all valid urls
     """
@@ -78,7 +79,7 @@ def emails_from_url(url: str = "https://github.com") -> list:
 
         # Get links and loop through
         valid_emails = set()
-        for link in parser.data:
+        for link in parser.urls:
             # open URL.
             # read = requests.get(link)
             try:

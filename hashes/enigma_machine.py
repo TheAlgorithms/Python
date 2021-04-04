@@ -41,8 +41,7 @@ def engine(input_character):
 
 
 if __name__ == "__main__":
-    decode = input("Type your message:\n")
-    decode = list(decode)
+    decode = list(input("Type your message:\n"))
     while True:
         try:
             token = int(input("Please set token:(must be only digits)\n"))
@@ -51,8 +50,8 @@ if __name__ == "__main__":
             print(error)
     for i in range(token):
         rotator()
-    for i in decode:
-        engine(i)
+    for j in decode:
+        engine(j)
     print("\n" + "".join(code))
     print(
         f"\nYour Token is {token} please write it down.\nIf you want to decode "

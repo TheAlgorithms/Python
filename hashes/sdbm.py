@@ -19,7 +19,7 @@
 """
 
 
-def sdbm(plain_text: str) -> str:
+def sdbm(plain_text: str) -> int:
     """
     Function implements sdbm hash, easy to use, great for bits scrambling.
     iterates over each character in the given string and applies function to each of

@@ -9,10 +9,10 @@
 """
 
 
-def adler32(plain_text: str) -> str:
+def adler32(plain_text: str) -> int:
     """
     Function implements adler-32 hash.
-    Itterates and evaluates new value for each character
+    Iterates and evaluates a new value for each character
 
     >>> adler32('Algorithms')
     363791387

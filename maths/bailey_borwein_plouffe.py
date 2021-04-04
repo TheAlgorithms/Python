@@ -70,7 +70,6 @@ def _subsum(
     sum = 0.0
     for sum_index in range(digit_pos_to_extract + precision):
         denominator = 8 * sum_index + denominator_addend
-        exponential_term = 0.0
         if sum_index < digit_pos_to_extract:
             # if the exponential term is an integer and we mod it by the denominator
             # before dividing, only the integer part of the sum will change;
