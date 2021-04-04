@@ -126,7 +126,7 @@ class BodySystem:
         self.time_factor = time_factor
         self.softening_factor = softening_factor
 
-    def __len__() -> int:
+    def __len__(self) -> int:
         return len(self.bodies)
 
     def update_system(self, delta_time: float) -> None:
