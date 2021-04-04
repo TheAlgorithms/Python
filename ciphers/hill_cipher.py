@@ -138,8 +138,7 @@ class HillCipher:
 
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             batch = text[i : i + self.break_key]
-            batch_vec = [self.replace_letters(char) for char in batch]
-            batch_vec = numpy.array([batch_vec]).T
+            batch_vec = numpy.array([self.replace_letters(char) for char in batch]).T
             batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[
                 0
             ]
@@ -189,8 +188,7 @@ class HillCipher:
 
         for i in range(0, len(text) - self.break_key + 1, self.break_key):
             batch = text[i : i + self.break_key]
-            batch_vec = [self.replace_letters(char) for char in batch]
-            batch_vec = numpy.array([batch_vec]).T
+            batch_vec = numpy.array([self.replace_letters(char) for char in batch]).T
             batch_decrypted = self.modulus(decrypt_key.dot(batch_vec)).T.tolist()[0]
             decrypted_batch = "".join(
                 self.replace_digits(num) for num in batch_decrypted
@@ -205,7 +203,7 @@ def main() -> None:
     hill_matrix = []
 
     print("Enter each row of the encryption key with space separated integers")
-    for i in range(N):
+    for _ in range(N):
         row = [int(x) for x in input().split()]
         hill_matrix.append(row)
 
