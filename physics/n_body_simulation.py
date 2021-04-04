@@ -65,7 +65,6 @@ class Body:
 
         >>> body_1.update_velocity(1.,0.,1.)
         >>> body_1.velocity
-
         (2.0, 0.0)
 
         >>> body_2 = Body(0.,0.,5.,0.)
