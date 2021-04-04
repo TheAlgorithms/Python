@@ -26,9 +26,7 @@ def solution(filename: str = "matrix.txt") -> int:
         data = in_file.read()
 
     grid = [[int(cell) for cell in row.split(",")] for row in data.strip().splitlines()]
-    dp = [[0 for cell in row] for row in grid]
     n = len(grid[0])
-
     dp = [[0 for i in range(n)] for j in range(n)]
     dp[0][0] = grid[0][0]
     for i in range(1, n):
