@@ -48,7 +48,8 @@ class Body:
         return self.position_x, self.position_y
 
     @property
-    def velocity(self) tuple[float, float]:
+    def velocity(self) -> tuple[float, float]:
+
         return self.position_x, self.position_y
 
     def update_velocity(
