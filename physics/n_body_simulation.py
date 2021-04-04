@@ -44,7 +44,7 @@ class Body:
         self.color = color
 
     @property
-    def position(self) tuple[float, float]:
+    def position(self) -> tuple[float, float]:
         return self.position_x, self.position_y
 
     @property
