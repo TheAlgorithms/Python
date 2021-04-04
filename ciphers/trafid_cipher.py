@@ -1,7 +1,7 @@
 # https://en.wikipedia.org/wiki/Trifid_cipher
 
 
-def __encryptPart(messagePart: str, character2Number: dict) -> str:
+def __encryptPart(messagePart: str, character2Number: dict[str, str]) -> str:
     one, two, three = "", "", ""
     tmp = []
 
@@ -16,7 +16,9 @@ def __encryptPart(messagePart: str, character2Number: dict) -> str:
     return one + two + three
 
 
-def __decryptPart(messagePart: str, character2Number: dict) -> (str, str, str):
+def __decryptPart(
+    messagePart: str, character2Number: dict[str, str]
+) -> tuple[str, str, str]:
     tmp, thisPart = "", ""
     result = []
 
@@ -32,7 +34,9 @@ def __decryptPart(messagePart: str, character2Number: dict) -> (str, str, str):
     return result[0], result[1], result[2]
 
 
-def __prepare(message: str, alphabet: str) -> (str, str, dict, dict):
+def __prepare(
+    message: str, alphabet: str
+) -> tuple[str, str, dict[str, str], dict[str, str]]:
     # Validate message and alphabet, set to upper and remove spaces
     alphabet = alphabet.replace(" ", "").upper()
     message = message.replace(" ", "").upper()

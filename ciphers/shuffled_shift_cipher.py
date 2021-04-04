@@ -1,5 +1,6 @@
 import random
 import string
+from typing import Optional
 
 
 class ShuffledShiftCipher:
@@ -26,7 +27,7 @@ class ShuffledShiftCipher:
     cip2 = ShuffledShiftCipher()
     """
 
-    def __init__(self, passcode: str = None):
+    def __init__(self, passcode: Optional[str] = None) -> None:
         """
         Initializes a cipher object with a passcode as it's entity
         Note: No new passcode is generated if user provides a passcode
@@ -36,13 +37,13 @@ class ShuffledShiftCipher:
         self.__key_list = self.__make_key_list()
         self.__shift_key = self.__make_shift_key()
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         :return: passcode of the cipher object
         """
         return "Passcode is: " + "".join(self.__passcode)
 
-    def __neg_pos(self, iterlist: list) -> list:
+    def __neg_pos(self, iterlist: list[int]) -> list[int]:
         """
         Mutates the list by changing the sign of each alternate element
 
@@ -54,7 +55,7 @@ class ShuffledShiftCipher:
             iterlist[i] *= -1
         return iterlist
 
-    def __passcode_creator(self) -> list:
+    def __passcode_creator(self) -> list[str]:
         """
         Creates a random password from the selection buffer of
         1. uppercase letters of the English alphabet
@@ -65,10 +66,10 @@ class ShuffledShiftCipher:
         :return: a password of a random length between 10 to 20
         """
         choices = string.ascii_letters + string.digits
-        password = [random.choice(choices) for i in range(random.randint(10, 20))]
+        password = [random.choice(choices) for _ in range(random.randint(10, 20))]
         return password
 
-    def __make_key_list(self) -> list:
+    def __make_key_list(self) -> list[str]:
         """
         Shuffles the ordered character choices by pivoting at breakpoints
         Breakpoints are the set of characters in the passcode
@@ -99,7 +100,7 @@ class ShuffledShiftCipher:
         # creates points known as breakpoints to break the key_list_options at those
         # points and pivot each substring
         breakpoints = sorted(set(self.__passcode))
-        temp_list = []
+        temp_list: list[str] = []
 
         # algorithm for creating a new shuffled list, keys_l, out of key_list_options
         for i in key_list_options:
@@ -109,7 +110,7 @@ class ShuffledShiftCipher:
             # keys_l
             if i in breakpoints or i == key_list_options[-1]:
                 keys_l.extend(temp_list[::-1])
-                temp_list = []
+                temp_list.clear()
 
         # returning a shuffled keys_l to prevent brute force guessing of shift key
         return keys_l
@@ -167,7 +168,7 @@ class ShuffledShiftCipher:
         return encoded_message
 
 
-def test_end_to_end(msg: str = "Hello, this is a modified Caesar cipher"):
+def test_end_to_end(msg: str = "Hello, this is a modified Caesar cipher") -> str:
     """
     >>> test_end_to_end()
     'Hello, this is a modified Caesar cipher'
