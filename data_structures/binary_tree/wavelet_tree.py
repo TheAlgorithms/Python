@@ -35,10 +35,9 @@ def build_tree(arr: List[int]) -> Node:
     Builds the tree for arr and returns the root
     of the constructed tree
 
-    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
-    >>> root = build_tree(arr)
+    >>> root = build_tree(test_array)
     >>> root
-    min_value: 1, max_value: 9
+    min_value: 0, max_value: 9
     """
     n = len(arr)
 
@@ -78,8 +77,7 @@ def rank_till_index(node: Node, num: int, index: int) -> int:
     """
     Returns the number of occurrences of num in interval [0, index] in the list
 
-    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
-    >>> root = build_tree(arr)
+    >>> root = build_tree(test_array)
     >>> rank_till_index(root, 6, 6)
     1
     >>> rank_till_index(root, 2, 0)
@@ -88,6 +86,8 @@ def rank_till_index(node: Node, num: int, index: int) -> int:
     2
     >>> rank_till_index(root, 17, 7)
     0
+    >>> rank_till_index(root, 0, 9)
+    1
     """
     if index < 0:
         return 0
@@ -110,14 +110,15 @@ def rank(node: Node, num: int, start: int, end: int) -> int:
     """
     Returns the number of occurrences of num in interval [start, end] in the list
 
-    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
-    >>> root = build_tree(arr)
+    >>> root = build_tree(test_array)
     >>> rank(root, 6, 3, 13)
-    3
-    >>> rank(root, 2, 0, 17)
+    2
+    >>> rank(root, 2, 0, 19)
     4
     >>> rank(root, 9, 2 ,2)
     0
+    >>> rank(root, 0, 5, 10)
+    2
     """
     if start > end:
         return 0
@@ -133,14 +134,13 @@ def quantile(node: Node, index: int, start: int, end: int) -> int:
     Returns the index'th smallest element in interval [start, end] in the list
     index is 0-indexed
 
-    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
-    >>> root = build_tree(arr)
+    >>> root = build_tree(test_array)
     >>> quantile(root, 2, 2, 5)
-    6
-    >>> quantile(root, 4, 2, 13)
+    5
+    >>> quantile(root, 5, 2, 13)
     4
     >>> quantile(root, 0, 6, 6)
-    9
+    8
     >>> quantile(root, 4, 2, 5)
     -1
     """
@@ -179,14 +179,13 @@ def range_counting(
     Returns the number of elememts in range [start_num, end_num]
     in interval [start, end] in the list
 
-    >>> arr = [2,1,4,5,6,8,9,1,2,6,7,4,2,6,5,3,2,7]
-    >>> root = build_tree(arr)
+    >>> root = build_tree(test_array)
     >>> range_counting(root, 1, 10, 3, 7)
-    5
+    3
     >>> range_counting(root, 2, 2, 1, 4)
     1
-    >>> range_counting(root, 0, 17, 1, 100)
-    18
+    >>> range_counting(root, 0, 19, 0, 100)
+    20
     >>> range_counting(root, 1, 0, 1, 100)
     0
     >>> range_counting(root, 0, 17, 100, 1)
@@ -222,4 +221,4 @@ def range_counting(
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(extraglobs={"test_array": [2,1,4,5,6,0,8,9,1,2,0,6,4,2,0,6,5,3,2,7]})
