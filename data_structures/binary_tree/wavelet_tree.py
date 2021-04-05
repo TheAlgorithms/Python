@@ -221,4 +221,8 @@ def range_counting(
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod(extraglobs={"test_array": [2,1,4,5,6,0,8,9,1,2,0,6,4,2,0,6,5,3,2,7]})
+    doctest.testmod(
+        extraglobs={
+            "test_array": [2, 1, 4, 5, 6, 0, 8, 9, 1, 2, 0, 6, 4, 2, 0, 6, 5, 3, 2, 7]
+        }
+    )
