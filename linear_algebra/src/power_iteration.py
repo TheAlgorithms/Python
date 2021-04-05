@@ -2,8 +2,11 @@ import numpy as np
 
 
 def power_iteration(
-    input_matrix: np.array, vector: np.array, error_tol=1e-12, max_iterations=100
-) -> [float, np.array]:
+    input_matrix: np.ndarray,
+    vector: np.ndarray,
+    error_tol: float = 1e-12,
+    max_iterations: int = 100,
+) -> tuple[float, np.ndarray]:
     """
     Power Iteration.
     Find the largest eignevalue and corresponding eigenvector

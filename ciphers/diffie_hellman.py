@@ -241,9 +241,7 @@ class DiffieHellman:
         return sha256(str(shared_key).encode()).hexdigest()
 
     @staticmethod
-    def is_valid_public_key_static(
-        local_private_key_str: str, remote_public_key_str: str, prime: int
-    ) -> bool:
+    def is_valid_public_key_static(remote_public_key_str: int, prime: int) -> bool:
         # check if the other public key is valid based on NIST SP800-56
         if 2 <= remote_public_key_str and remote_public_key_str <= prime - 2:
             if pow(remote_public_key_str, (prime - 1) // 2, prime) == 1:
@@ -257,9 +255,7 @@ class DiffieHellman:
         local_private_key = int(local_private_key_str, base=16)
         remote_public_key = int(remote_public_key_str, base=16)
         prime = primes[group]["prime"]
-        if not DiffieHellman.is_valid_public_key_static(
-            local_private_key, remote_public_key, prime
-        ):
+        if not DiffieHellman.is_valid_public_key_static(remote_public_key, prime):
             raise ValueError("Invalid public key")
         shared_key = pow(remote_public_key, local_private_key, prime)
         return sha256(str(shared_key).encode()).hexdigest()

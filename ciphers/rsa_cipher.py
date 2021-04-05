@@ -7,7 +7,114 @@ DEFAULT_BLOCK_SIZE = 128
 BYTE_SIZE = 256
 
 
-def main():
+def get_blocks_from_text(
+    message: str, block_size: int = DEFAULT_BLOCK_SIZE
+) -> list[int]:
+    message_bytes = message.encode("ascii")
+
+    block_ints = []
+    for block_start in range(0, len(message_bytes), block_size):
+        block_int = 0
+        for i in range(block_start, min(block_start + block_size, len(message_bytes))):
+            block_int += message_bytes[i] * (BYTE_SIZE ** (i % block_size))
+        block_ints.append(block_int)
+    return block_ints
+
+
+def get_text_from_blocks(
+    block_ints: list[int], message_length: int, block_size: int = DEFAULT_BLOCK_SIZE
+) -> str:
+    message: list[str] = []
+    for block_int in block_ints:
+        block_message: list[str] = []
+        for i in range(block_size - 1, -1, -1):
+            if len(message) + i < message_length:
+                ascii_number = block_int // (BYTE_SIZE ** i)
+                block_int = block_int % (BYTE_SIZE ** i)
+                block_message.insert(0, chr(ascii_number))
+        message.extend(block_message)
+    return "".join(message)
+
+
+def encrypt_message(
+    message: str, key: tuple[int, int], blockSize: int = DEFAULT_BLOCK_SIZE
+) -> list[int]:
+    encrypted_blocks = []
+    n, e = key
+
+    for block in get_blocks_from_text(message, blockSize):
+        encrypted_blocks.append(pow(block, e, n))
+    return encrypted_blocks
+
+
+def decrypt_message(
+    encrypted_blocks: list[int],
+    message_length: int,
+    key: tuple[int, int],
+    block_size: int = DEFAULT_BLOCK_SIZE,
+) -> str:
+    decrypted_blocks = []
+    n, d = key
+    for block in encrypted_blocks:
+        decrypted_blocks.append(pow(block, d, n))
+    return get_text_from_blocks(decrypted_blocks, message_length, block_size)
+
+
+def read_key_file(key_filename: str) -> tuple[int, int, int]:
+    with open(key_filename) as fo:
+        content = fo.read()
+    key_size, n, EorD = content.split(",")
+    return (int(key_size), int(n), int(EorD))
+
+
+def encrypt_and_write_to_file(
+    message_filename: str,
+    key_filename: str,
+    message: str,
+    block_size: int = DEFAULT_BLOCK_SIZE,
+) -> str:
+    key_size, n, e = read_key_file(key_filename)
+    if key_size < block_size * 8:
+        sys.exit(
+            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher "
+            "requires the block size to be equal to or greater than the key size. "
+            "Either decrease the block size or use different keys."
+            % (block_size * 8, key_size)
+        )
+
+    encrypted_blocks = [str(i) for i in encrypt_message(message, (n, e), block_size)]
+
+    encrypted_content = ",".join(encrypted_blocks)
+    encrypted_content = f"{len(message)}_{block_size}_{encrypted_content}"
+    with open(message_filename, "w") as fo:
+        fo.write(encrypted_content)
+    return encrypted_content
+
+
+def read_from_file_and_decrypt(message_filename: str, key_filename: str) -> str:
+    key_size, n, d = read_key_file(key_filename)
+    with open(message_filename) as fo:
+        content = fo.read()
+    message_length_str, block_size_str, encrypted_message = content.split("_")
+    message_length = int(message_length_str)
+    block_size = int(block_size_str)
+
+    if key_size < block_size * 8:
+        sys.exit(
+            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher "
+            "requires the block size to be equal to or greater than the key size. "
+            "Did you specify the correct key file and encrypted file?"
+            % (block_size * 8, key_size)
+        )
+
+    encrypted_blocks = []
+    for block in encrypted_message.split(","):
+        encrypted_blocks.append(int(block))
+
+    return decrypt_message(encrypted_blocks, message_length, (n, d), block_size)
+
+
+def main() -> None:
     filename = "encrypted_file.txt"
     response = input(r"Encrypt\Decrypt [e\d]: ")
 
@@ -21,130 +128,23 @@ def main():
             rkg.makeKeyFiles("rsa", 1024)
 
         message = input("\nEnter message: ")
-        pubKeyFilename = "rsa_pubkey.txt"
+        pubkey_filename = "rsa_pubkey.txt"
         print("Encrypting and writing to %s..." % (filename))
-        encryptedText = encryptAndWriteToFile(filename, pubKeyFilename, message)
+        encryptedText = encrypt_and_write_to_file(filename, pubkey_filename, message)
 
         print("\nEncrypted text:")
         print(encryptedText)
 
     elif mode == "decrypt":
-        privKeyFilename = "rsa_privkey.txt"
+        privkey_filename = "rsa_privkey.txt"
         print("Reading from %s and decrypting..." % (filename))
-        decryptedText = readFromFileAndDecrypt(filename, privKeyFilename)
+        decrypted_text = read_from_file_and_decrypt(filename, privkey_filename)
         print("writing decryption to rsa_decryption.txt...")
         with open("rsa_decryption.txt", "w") as dec:
-            dec.write(decryptedText)
+            dec.write(decrypted_text)
 
         print("\nDecryption:")
-        print(decryptedText)
-
-
-def getBlocksFromText(message: int, blockSize: int = DEFAULT_BLOCK_SIZE) -> [int]:
-    messageBytes = message.encode("ascii")
-
-    blockInts = []
-    for blockStart in range(0, len(messageBytes), blockSize):
-        blockInt = 0
-        for i in range(blockStart, min(blockStart + blockSize, len(messageBytes))):
-            blockInt += messageBytes[i] * (BYTE_SIZE ** (i % blockSize))
-        blockInts.append(blockInt)
-    return blockInts
-
-
-def getTextFromBlocks(
-    blockInts: [int], messageLength: int, blockSize: int = DEFAULT_BLOCK_SIZE
-) -> str:
-    message = []
-    for blockInt in blockInts:
-        blockMessage = []
-        for i in range(blockSize - 1, -1, -1):
-            if len(message) + i < messageLength:
-                asciiNumber = blockInt // (BYTE_SIZE ** i)
-                blockInt = blockInt % (BYTE_SIZE ** i)
-                blockMessage.insert(0, chr(asciiNumber))
-        message.extend(blockMessage)
-    return "".join(message)
-
-
-def encryptMessage(
-    message: str, key: (int, int), blockSize: int = DEFAULT_BLOCK_SIZE
-) -> [int]:
-    encryptedBlocks = []
-    n, e = key
-
-    for block in getBlocksFromText(message, blockSize):
-        encryptedBlocks.append(pow(block, e, n))
-    return encryptedBlocks
-
-
-def decryptMessage(
-    encryptedBlocks: [int],
-    messageLength: int,
-    key: (int, int),
-    blockSize: int = DEFAULT_BLOCK_SIZE,
-) -> str:
-    decryptedBlocks = []
-    n, d = key
-    for block in encryptedBlocks:
-        decryptedBlocks.append(pow(block, d, n))
-    return getTextFromBlocks(decryptedBlocks, messageLength, blockSize)
-
-
-def readKeyFile(keyFilename: str) -> (int, int, int):
-    with open(keyFilename) as fo:
-        content = fo.read()
-    keySize, n, EorD = content.split(",")
-    return (int(keySize), int(n), int(EorD))
-
-
-def encryptAndWriteToFile(
-    messageFilename: str,
-    keyFilename: str,
-    message: str,
-    blockSize: int = DEFAULT_BLOCK_SIZE,
-) -> str:
-    keySize, n, e = readKeyFile(keyFilename)
-    if keySize < blockSize * 8:
-        sys.exit(
-            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher "
-            "requires the block size to be equal to or greater than the key size. "
-            "Either decrease the block size or use different keys."
-            % (blockSize * 8, keySize)
-        )
-
-    encryptedBlocks = encryptMessage(message, (n, e), blockSize)
-
-    for i in range(len(encryptedBlocks)):
-        encryptedBlocks[i] = str(encryptedBlocks[i])
-    encryptedContent = ",".join(encryptedBlocks)
-    encryptedContent = f"{len(message)}_{blockSize}_{encryptedContent}"
-    with open(messageFilename, "w") as fo:
-        fo.write(encryptedContent)
-    return encryptedContent
-
-
-def readFromFileAndDecrypt(messageFilename: str, keyFilename: str) -> str:
-    keySize, n, d = readKeyFile(keyFilename)
-    with open(messageFilename) as fo:
-        content = fo.read()
-    messageLength, blockSize, encryptedMessage = content.split("_")
-    messageLength = int(messageLength)
-    blockSize = int(blockSize)
-
-    if keySize < blockSize * 8:
-        sys.exit(
-            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher "
-            "requires the block size to be equal to or greater than the key size. "
-            "Did you specify the correct key file and encrypted file?"
-            % (blockSize * 8, keySize)
-        )
-
-    encryptedBlocks = []
-    for block in encryptedMessage.split(","):
-        encryptedBlocks.append(int(block))
-
-    return decryptMessage(encryptedBlocks, messageLength, (n, d), blockSize)
+        print(decrypted_text)
 
 
 if __name__ == "__main__":

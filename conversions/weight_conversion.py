@@ -29,7 +29,7 @@ REFERENCES :
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Dalton_(unit)
 """
 
-KILOGRAM_CHART = {
+KILOGRAM_CHART: dict[str, float] = {
     "kilogram": 1,
     "gram": pow(10, 3),
     "milligram": pow(10, 6),
@@ -42,7 +42,7 @@ KILOGRAM_CHART = {
     "atomic-mass-unit": 6.022136652e26,
 }
 
-WEIGHT_TYPE_CHART = {
+WEIGHT_TYPE_CHART: dict[str, float] = {
     "kilogram": 1,
     "gram": pow(10, -3),
     "milligram": pow(10, -6),

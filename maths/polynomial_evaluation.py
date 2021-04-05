@@ -5,7 +5,7 @@ def evaluate_poly(poly: Sequence[float], x: float) -> float:
     """Evaluate a polynomial f(x) at specified point x and return the value.
 
     Arguments:
-    poly -- the coeffiecients of a polynomial as an iterable in order of
+    poly -- the coefficients of a polynomial as an iterable in order of
             ascending degree
     x -- the point at which to evaluate the polynomial
 
@@ -26,7 +26,7 @@ def horner(poly: Sequence[float], x: float) -> float:
     https://en.wikipedia.org/wiki/Horner's_method
 
     Arguments:
-    poly -- the coeffiecients of a polynomial as an iterable in order of
+    poly -- the coefficients of a polynomial as an iterable in order of
             ascending degree
     x -- the point at which to evaluate the polynomial
 

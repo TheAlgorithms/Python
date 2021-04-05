@@ -20,7 +20,7 @@ def encrypt(input_string: str, key: int) -> str:
         ...
     TypeError: sequence item 0: expected str instance, int found
     """
-    grid = [[] for _ in range(key)]
+    temp_grid: list[list[str]] = [[] for _ in range(key)]
     lowest = key - 1
 
     if key <= 0:
@@ -31,8 +31,8 @@ def encrypt(input_string: str, key: int) -> str:
     for position, character in enumerate(input_string):
         num = position % (lowest * 2)  # puts it in bounds
         num = min(num, lowest * 2 - num)  # creates zigzag pattern
-        grid[num].append(character)
-    grid = ["".join(row) for row in grid]
+        temp_grid[num].append(character)
+    grid = ["".join(row) for row in temp_grid]
     output_string = "".join(grid)
 
     return output_string
@@ -63,7 +63,7 @@ def decrypt(input_string: str, key: int) -> str:
     if key == 1:
         return input_string
 
-    temp_grid = [[] for _ in range(key)]  # generates template
+    temp_grid: list[list[str]] = [[] for _ in range(key)]  # generates template
     for position in range(len(input_string)):
         num = position % (lowest * 2)  # puts it in bounds
         num = min(num, lowest * 2 - num)  # creates zigzag pattern
@@ -84,7 +84,7 @@ def decrypt(input_string: str, key: int) -> str:
     return output_string
 
 
-def bruteforce(input_string: str) -> dict:
+def bruteforce(input_string: str) -> dict[int, str]:
     """Uses decrypt function by guessing every key
 
     >>> bruteforce("HWe olordll")[4]

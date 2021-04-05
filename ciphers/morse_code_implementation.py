@@ -83,7 +83,7 @@ def decrypt(message: str) -> str:
     return decipher
 
 
-def main():
+def main() -> None:
     message = "Morse code here"
     result = encrypt(message.upper())
     print(result)
