@@ -23,7 +23,7 @@ jobs:
           python -m pip install mypy pytest-cov -r requirements.txt
       # FIXME: #4052 fix mypy errors in the exclude directories and remove them below
       - run: mypy --ignore-missing-imports
-          --exclude '(data_structures|digital_image_processing|dynamic_programming|graphs|linear_algebra|maths|matrix|other|project_euler|scripts|searches|strings*)/$' .
+          --exclude '(data_structures|digital_image_processing|dynamic_programming|graphs|maths|matrix|other|project_euler|scripts|searches|strings*)/$' .
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
