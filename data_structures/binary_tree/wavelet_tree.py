@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional
 
 """
 Wavelet tree is a data-structure designed to efficiently answer various range queries
@@ -17,7 +17,7 @@ class Node:
     def __init__(self, length: int) -> None:
         self.minn: int = -1
         self.maxx: int = -1
-        self.map_left: List = [-1] * length
+        self.map_left: list[int] = [-1] * length
         self.left: Optional[Node] = None
         self.right: Optional[Node] = None
 
@@ -32,13 +32,12 @@ class Node:
         return f"min_value: {self.minn}, max_value: {self.maxx}"
 
 
-def build_tree(arr: List[int]) -> Node:
+def build_tree(arr: list[int]) -> Node:
     """
     Builds the tree for arr and returns the root
     of the constructed tree
 
-    >>> root = build_tree(test_array)
-    >>> root
+    >>> build_tree(test_array)
     min_value: 0, max_value: 9
     """
     n = len(arr)
