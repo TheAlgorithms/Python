@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-import os.path
+from pathlib import Path
 
 
 def get_rotation(
@@ -22,7 +22,7 @@ def get_rotation(
 
 if __name__ == "__main__":
     # read original image
-    image = cv2.imread(os.path.dirname(__file__)  + "/../image_data/lena.jpg")
+    image = cv2.imread(str(Path(__file__).resolve().parent.parent / "image_data" / "lena.jpg"))
     # turn image in gray scale value
     gray_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # get image shape
