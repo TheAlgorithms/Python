@@ -4,8 +4,8 @@ from matplotlib import pyplot as plt
 
 
 def get_rotation(
-    img: np.array, pt1: np.float32, pt2: np.float32, rows: int, cols: int
-) -> np.array:
+    img: np.ndarray, pt1: np.float32, pt2: np.float32, rows: int, cols: int
+) -> np.ndarray:
     """
     Get image rotation
     :param img: np.array
