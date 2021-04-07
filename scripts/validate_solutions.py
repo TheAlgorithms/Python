@@ -22,7 +22,7 @@ def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
     """Converts a file path to a Python module"""
     spec = importlib.util.spec_from_file_location(file_path.name, str(file_path))
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    spec.loader.exec_module(module)  # type: ignore
     return module
 
 
@@ -89,5 +89,5 @@ def test_project_euler(solution_path: pathlib.Path) -> None:
     problem_number: str = solution_path.parent.name[8:].zfill(3)
     expected: str = PROBLEM_ANSWERS[problem_number]
     solution_module = convert_path_to_module(solution_path)
-    answer = str(solution_module.solution())
+    answer = str(solution_module.solution())  # type: ignore
     assert answer == expected, f"Expected {expected} but got {answer}"
