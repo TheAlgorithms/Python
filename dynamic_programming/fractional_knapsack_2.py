@@ -51,7 +51,9 @@ if __name__ == "__main__":
     n = int(input("Enter number of items: "))
     valueStrings = input(f"Enter the values of the {n} item(s) in order: ").split()
     value = [int(v) for v in valueStrings]
-    weightStrings = input(f"Enter the positive weights of the {n} item(s) in order: ").split()
+    weightStrings = input(
+        f"Enter the positive weights of the {n} item(s) in order: "
+    ).split()
     weight = [int(w) for w in weightStrings]
     capacity = int(input("Enter maximum weight: "))
 
