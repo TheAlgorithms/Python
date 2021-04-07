@@ -34,6 +34,8 @@ repos:
     rev: v0.812
     hooks:
       - id: mypy
+        args:
+          - --config-file mypy.ini
   - repo: https://github.com/codespell-project/codespell
     rev: v2.0.0
     hooks:
