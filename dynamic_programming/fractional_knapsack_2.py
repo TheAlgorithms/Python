@@ -49,12 +49,12 @@ def fractional_knapsack(
 
 if __name__ == "__main__":
     n = int(input("Enter number of items: "))
-    valueStrings = input(f"Enter the values of the {n} item(s) in order: ").split()
-    value = [int(v) for v in valueStrings]
-    weightStrings = input(
+    value_strings = input(f"Enter the values of the {n} item(s) in order: ").split()
+    value = [int(v) for v in value_strings]
+    weight_strings = input(
         f"Enter the positive weights of the {n} item(s) in order: "
     ).split()
-    weight = [int(w) for w in weightStrings]
+    weight = [int(w) for w in weight_strings]
     capacity = int(input("Enter maximum weight: "))
 
     max_value, fractions = fractional_knapsack(value, weight, capacity)
