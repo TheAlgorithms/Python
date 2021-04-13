@@ -20,7 +20,7 @@ def fractional_knapsack(
     >>> fractional_knapsack(value, weight, 26)
     (25, [1, 1, 1, 1, 1])
     >>> fractional_knapsack(value, weight, -1)
-    (-90.0, [0, 0, 0, 0, -10.0])
+    (-90, [0.0, 0.0, 0.0, 0.0, -10.0])
     >>> fractional_knapsack([1, 3, 5, 7], weight, 30)
     (16, [1, 1, 1, 1])
     >>> fractional_knapsack(value, [0.9, 0.7, 0.5, 0.3, 0.1], 30)
