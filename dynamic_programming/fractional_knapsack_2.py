@@ -7,7 +7,7 @@ from __future__ import annotations
 
 def fractional_knapsack(
     value: list[int], weight: list[int], capacity: int
-) -> tuple[int, list[int]]:
+) -> tuple[int, list[float]]:
     """
     >>> value = [1, 3, 5, 7, 9]
     >>> weight = [0.9, 0.7, 0.5, 0.3, 0.1]
@@ -33,15 +33,15 @@ def fractional_knapsack(
     index.sort(key=lambda i: ratio[i], reverse=True)
 
     max_value = 0
-    fractions = [0] * len(value)
+    fractions = [0.0] * len(value)
     for i in index:
         if weight[i] <= capacity:
             fractions[i] = 1
             max_value += value[i]
             capacity -= weight[i]
         else:
-            fractions[i] = capacity / weight[i]
-            max_value += value[i] * capacity / weight[i]
+            fractions[i] = round(capacity / weight[i], 2)
+            max_value += round(value[i] * capacity / weight[i])
             break
 
     return max_value, fractions
@@ -49,10 +49,18 @@ def fractional_knapsack(
 
 if __name__ == "__main__":
     n = int(input("Enter number of items: "))
-    value = input(f"Enter the values of the {n} item(s) in order: ").split()
-    value = [int(v) for v in value]
-    weight = input(f"Enter the positive weights of the {n} item(s) in order: ".split())
-    weight = [int(w) for w in weight]
+    value = [
+        int(v)
+        for v in input(f"Enter the values of the {n} item(s) in order: ")
+        .strip()
+        .split()
+    ]
+    weight = [
+        int(w)
+        for w in input(f"Enter the positive weights of the {n} item(s) in order: ")
+        .strip()
+        .split()
+    ]
     capacity = int(input("Enter maximum weight: "))
 
     max_value, fractions = fractional_knapsack(value, weight, capacity)
