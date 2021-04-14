@@ -8,7 +8,6 @@ class Stack:
     element to the top of the stack, and pop() removes an element from the top
     of a stack. The order in which elements come off of a stack are
     Last In, First Out (LIFO).
-    https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
     """
 
     def __init__(self, limit: int = 10):
@@ -26,6 +25,10 @@ class Stack:
         if len(self.stack) >= self.limit:
             raise StackOverflowError
         self.stack.append(data)
+        
+    def is_empty(self) -> bool:
+        """ Check if a stack is empty."""
+        return not bool(self.stack)    
 
     def pop(self):
         """ Pop an element off of the top of the stack."""
@@ -35,15 +38,11 @@ class Stack:
         """ Peek at the top-most element of the stack."""
         return self.stack[-1]
 
-    def is_empty(self) -> bool:
-        """ Check if a stack is empty."""
-        return not bool(self.stack)
-
     def is_full(self) -> bool:
         return self.size() == self.limit
 
     def size(self) -> int:
-        """ Return the size of the stack."""
+        """ Return the size or length of the stack."""
         return len(self.stack)
 
     def __contains__(self, item) -> bool:
@@ -73,16 +72,16 @@ def test_stack() -> None:
     except IndexError:
         assert True  # This should happen
 
-    for i in range(10):
+    for i in range(15):
         assert stack.size() == i
         stack.push(i)
 
     assert bool(stack) is True
     assert stack.is_empty() is False
     assert stack.is_full() is True
-    assert str(stack) == str(list(range(10)))
-    assert stack.pop() == 9
-    assert stack.peek() == 8
+    assert str(stack) == str(list(range(15)))
+    assert stack.pop() == 10
+    assert stack.peek() == 7
 
     stack.push(100)
     assert str(stack) == str([0, 1, 2, 3, 4, 5, 6, 7, 8, 100])
