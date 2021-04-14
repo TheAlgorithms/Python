@@ -1,3 +1,6 @@
+#LInked list program using python to check for a palindrome number
+#An integer is a palindrome when it reads the same backward as forward. For example, 121 is palindrome while 123 is not.
+
 def is_palindrome(head):
     if not head:
         return True
