@@ -4,9 +4,18 @@ Functions for 2D matrix operations
 
 from __future__ import annotations
 
+from collections.abc import Iterable
+from typing import Optional
+
 
 def add(*matrix_s: list[list]) -> list[list]:
     """
+    >>> add([])
+    [[]]
+    >>> add([[]])
+    [[]]
+    >>> add([[1, 2]])
+    [[1, 2]]
     >>> add([[1,2],[3,4]],[[2,3],[4,5]])
     [[3, 5], [7, 9]]
     >>> add([[1.2,2.4],[3,4]],[[2,3],[4,5]])
@@ -14,10 +23,12 @@ def add(*matrix_s: list[list]) -> list[list]:
     >>> add([[1, 2], [4, 5]], [[3, 7], [3, 4]], [[3, 5], [5, 7]])
     [[7, 14], [12, 16]]
     """
-    if all(_check_not_integer(m) for m in matrix_s):
+    if matrix_s and matrix_s[0] and all(_check_not_integer(m) for m in matrix_s):
         for i in matrix_s[1:]:
             _verify_matrix_sizes(matrix_s[0], i)
         return [[sum(t) for t in zip(*m)] for m in zip(*matrix_s)]
+    else:
+        return [[]]
 
 
 def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
@@ -33,9 +44,11 @@ def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
         and _verify_matrix_sizes(matrix_a, matrix_b)
     ):
         return [[i - j for i, j in zip(*m)] for m in zip(matrix_a, matrix_b)]
+    else:
+        return [[]]
 
 
-def scalar_multiply(matrix: list[list], n: int) -> list[list]:
+def scalar_multiply(matrix: Iterable[list], n: float) -> list[list]:
     """
     >>> scalar_multiply([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
@@ -79,7 +92,7 @@ def identity(n: int) -> list[list]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(matrix: list[list], return_map: bool = True) -> list[list]:
+def transpose(matrix: list[list], return_map: bool = True) -> Iterable[list]:
     """
     >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
@@ -91,6 +104,8 @@ def transpose(matrix: list[list], return_map: bool = True) -> list[list]:
             return map(list, zip(*matrix))
         else:
             return list(map(list, zip(*matrix)))
+    else:
+        raise TypeError("_check_not_integer() failed")
 
 
 def minor(matrix: list[list], row: int, column: int) -> list[list]:
@@ -118,7 +133,7 @@ def determinant(matrix: list[list]) -> int:
     )
 
 
-def inverse(matrix: list[list]) -> list[list]:
+def inverse(matrix: list[list]) -> Optional[list[list]]:
     """
     >>> inverse([[1, 2], [3, 4]])
     [[-2.0, 1.0], [1.5, -0.5]]
@@ -148,11 +163,13 @@ def _check_not_integer(matrix: list[list]) -> bool:
     raise TypeError("Expected a matrix, got int/list instead")
 
 
-def _shape(matrix: list[list]) -> list:
+def _shape(matrix: list[list]) -> tuple[int, int]:
     return len(matrix), len(matrix[0])
 
 
-def _verify_matrix_sizes(matrix_a: list[list], matrix_b: list[list]) -> tuple[list]:
+def _verify_matrix_sizes(
+    matrix_a: list[list], matrix_b: list[list]
+) -> tuple[tuple[int, int], tuple[int, int]]:
     shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
         raise ValueError(
