@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Node(object):
+class Node:
     data: int
     left: "Node" = None
     right: "Node" = None
