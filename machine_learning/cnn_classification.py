@@ -1,5 +1,7 @@
 # Convolutional Neural Network
 
+# Resoucres : https://en.wikipedia.org/wiki/Convolutional_neural_network
+
  # Installing Tensorflow
  # pip install tensorflow
 
