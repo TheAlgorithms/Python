@@ -16,7 +16,7 @@ def password_generator(length=8):
     >>> len(password_generator(-1))
     0
     """
-    chars = tuple(ascii_letters) + tuple(digits) + tuple(punctuation)
+    chars = ascii_letters + digits + punctuation
     return "".join(choice(chars) for x in range(length))
 
 
