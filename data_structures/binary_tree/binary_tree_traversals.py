@@ -1,12 +1,13 @@
 # https://en.wikipedia.org/wiki/Tree_traversal
 from dataclasses import dataclass
+from typing import Optional
 
 
 @dataclass
 class Node:
     data: int
-    left: "Node" = None
-    right: "Node" = None
+    left: Optional["Node"] = None
+    right: Optional["Node"] = None
 
 
 def make_tree() -> Node:
