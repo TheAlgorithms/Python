@@ -43,7 +43,8 @@ classifier.add(Dense(units=128, activation="relu"))
 classifier.add(Dense(units=1, activation="sigmoid"))
 
 # Compiling the CNN
-classifier.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
+classifier.compile(optimizer="adam", loss="binary_crossentropy",
+                   metrics=["accuracy"])
 
 # Part 2 - Fitting the CNN to the images
 
@@ -65,11 +66,13 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1.0 / 255)
 
 training_set = train_datagen.flow_from_directory(
-    "dataset/training_set", target_size=(64, 64), batch_size=32, class_mode="binary"
+    "dataset/training_set", target_size=(64, 64), batch_size=32,
+    class_mode="binary"
 )
 
 test_set = test_datagen.flow_from_directory(
-    "dataset/test_set", target_size=(64, 64), batch_size=32, class_mode="binary"
+    "dataset/test_set", target_size=(64, 64), batch_size=32,
+    class_mode="binary"
 )
 
 classifier.fit_generator(
@@ -80,7 +83,8 @@ classifier.fit_generator(
 # Part 3 - Making new predictions
 
 
-test_image = image.load_img("dataset/single_prediction/image.png", target_size=(64, 64))
+test_image = image.load_img("dataset/single_prediction/image.png",
+                            target_size=(64, 64))
 test_image = image.load_img(image, target_size=(64, 64))
 test_image = image.img_to_array(test_image)
 test_image = np.expand_dims(test_image, axis=0)
