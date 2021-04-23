@@ -16,6 +16,11 @@ from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
+from keras.preprocessing import image
+from keras.preprocessing.image import ImageDataGenerator
+
+import numpy as np
+
 
 # Initialising the CNN
 classifier = Sequential()
@@ -49,8 +54,6 @@ classifier.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accur
 # regressor=load_model('cnn.h5')
 
 
-from keras.preprocessing.image import ImageDataGenerator
-
 train_datagen = ImageDataGenerator(
     rescale=1.0 / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True
 )
@@ -76,8 +79,6 @@ classifier.fit_generator(
 
 # Part 3 - Making new predictions
 
-import numpy as np
-from keras.preprocessing import image
 
 test_image = image.load_img("dataset/single_prediction/image.png", target_size=(64, 64))
 test_image = image.load_img(image, target_size=(64, 64))
