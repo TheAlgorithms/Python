@@ -5,9 +5,15 @@ sorted, even if it is not already sorted
 https://en.wikipedia.org/wiki/Quickselect
 """
 import random
+from typing import Optional
+
+from searches.comparable_type import ComparableType
 
 
-def _partition(data: list, pivot) -> tuple:
+def _partition(
+        data: list[ComparableType],
+        pivot: ComparableType
+) -> tuple[list[ComparableType], list[ComparableType], list[ComparableType]]:
     """
     Three way partition the data into smaller, equal and greater lists,
     in relationship to the pivot
@@ -26,7 +32,7 @@ def _partition(data: list, pivot) -> tuple:
     return less, equal, greater
 
 
-def quick_select(items: list, index: int):
+def quick_select(items: list[ComparableType], index: int) -> Optional[ComparableType]:
     """
     >>> quick_select([2, 4, 5, 7, 899, 54, 32], 5)
     54

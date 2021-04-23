@@ -6,16 +6,16 @@ from .hill_climbing import SearchProblem
 
 
 def simulated_annealing(
-    search_prob,
-    find_max: bool = True,
-    max_x: float = math.inf,
-    min_x: float = -math.inf,
-    max_y: float = math.inf,
-    min_y: float = -math.inf,
-    visualization: bool = False,
-    start_temperate: float = 100,
-    rate_of_decrease: float = 0.01,
-    threshold_temp: float = 1,
+        search_prob: SearchProblem,
+        find_max: bool = True,
+        max_x: float = math.inf,
+        min_x: float = -math.inf,
+        max_y: float = math.inf,
+        min_y: float = -math.inf,
+        visualization: bool = False,
+        start_temperate: float = 100,
+        rate_of_decrease: float = 0.01,
+        threshold_temp: float = 1,
 ) -> SearchProblem:
     """
     Implementation of the simulated annealing algorithm. We start with a given state,
@@ -51,17 +51,17 @@ def simulated_annealing(
         next_state = None
         neighbors = current_state.get_neighbors()
         while (
-            next_state is None and neighbors
+                next_state is None and neighbors
         ):  # till we do not find a neighbor that we can move to
             index = random.randint(0, len(neighbors) - 1)  # picking a random neighbor
             picked_neighbor = neighbors.pop(index)
             change = picked_neighbor.score() - current_score
 
             if (
-                picked_neighbor.x > max_x
-                or picked_neighbor.x < min_x
-                or picked_neighbor.y > max_y
-                or picked_neighbor.y < min_y
+                    picked_neighbor.x > max_x
+                    or picked_neighbor.x < min_x
+                    or picked_neighbor.y > max_y
+                    or picked_neighbor.y < min_y
             ):
                 continue  # neighbor outside our bounds
 
@@ -71,7 +71,7 @@ def simulated_annealing(
                 next_state = picked_neighbor
             else:
                 probability = (math.e) ** (
-                    change / current_temp
+                        change / current_temp
                 )  # probability generation function
                 if random.random() < probability:  # random number within probability
                     next_state = picked_neighbor
@@ -90,13 +90,15 @@ def simulated_annealing(
         plt.xlabel("Iterations")
         plt.ylabel("Function values")
         plt.show()
+
+    assert best_state is not None  # This is a mypy issue, it does not recognize the none being set at the start of the loop
     return best_state
 
 
 if __name__ == "__main__":
-
     def test_f1(x, y):
         return (x ** 2) + (y ** 2)
+
 
     # starting the problem with initial coordinates (12, 47)
     prob = SearchProblem(x=12, y=47, step_size=1, function_to_optimize=test_f1)
@@ -118,8 +120,10 @@ if __name__ == "__main__":
         f"and 50 > y > - 5 found via hill climbing: {local_min.score()}"
     )
 
+
     def test_f2(x, y):
         return (3 * x ** 2) - (6 * y)
+
 
     prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
     local_min = simulated_annealing(prob, find_max=False, visualization=True)

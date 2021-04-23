@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from searches.comparable_type import ComparableType
 
-def double_linear_search(array: list[int], search_item: int) -> int:
+
+def double_linear_search(array: list[ComparableType], search_item: ComparableType) -> int:
     """
     Iterate through the array from both sides to find the index of search_item.
 

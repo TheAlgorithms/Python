@@ -9,8 +9,10 @@ python3 simple_binary_search.py
 """
 from __future__ import annotations
 
+from searches.comparable_type import ComparableType
 
-def binary_search(a_list: list[int], item: int) -> bool:
+
+def binary_search(a_list: list[ComparableType], item: ComparableType) -> bool:
     """
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
     >>> print(binary_search(test_list, 3))

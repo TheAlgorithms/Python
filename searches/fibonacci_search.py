@@ -11,6 +11,9 @@ For manual testing run:
 python3 fibonacci_search.py
 """
 from functools import lru_cache
+from typing import TypeVar
+
+from searches.comparable_type import Comparable, ComparableType
 
 
 @lru_cache()
@@ -54,7 +57,7 @@ def fibonacci(k: int) -> int:
         return fibonacci(k - 1) + fibonacci(k - 2)
 
 
-def fibonacci_search(arr: list, val: int) -> int:
+def fibonacci_search(arr: list[ComparableType], val: ComparableType) -> int:
     """A pure Python implementation of a fibonacci search algorithm.
 
     Parameters

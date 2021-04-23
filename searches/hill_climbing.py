@@ -84,7 +84,7 @@ class SearchProblem:
 
 
 def hill_climbing(
-    search_prob,
+    search_prob: SearchProblem,
     find_max: bool = True,
     max_x: float = math.inf,
     min_x: float = -math.inf,

@@ -8,15 +8,18 @@ Space Complexity : O(1)
 """
 from typing import List
 
+from searches.comparable_type import ComparableType
+
 # This is the precision for this function which can be altered.
 # It is recommended for users to keep this number greater than or equal to 10.
+
 precision = 10
 
 
 # This is the linear search that will occur after the search space has become smaller.
 
 
-def lin_search(left: int, right: int, array: List[int], target: int) -> int:
+def lin_search(left: int, right: int, array: List[ComparableType], target: ComparableType) -> int:
     """Perform linear search in list. Returns -1 if element is not found.
 
     Parameters
@@ -58,7 +61,7 @@ def lin_search(left: int, right: int, array: List[int], target: int) -> int:
     return -1
 
 
-def ite_ternary_search(array: List[int], target: int) -> int:
+def ite_ternary_search(array: List[ComparableType], target: ComparableType) -> int:
     """Iterative method of the ternary search algorithm.
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
     >>> ite_ternary_search(test_list, 3)
@@ -89,8 +92,8 @@ def ite_ternary_search(array: List[int], target: int) -> int:
         if right - left < precision:
             return lin_search(left, right, array, target)
 
-        one_third = (left + right) / 3 + 1
-        two_third = 2 * (left + right) / 3 + 1
+        one_third = (left + right) // 3 + 1
+        two_third = 2 * (left + right) // 3 + 1
 
         if array[one_third] == target:
             return one_third
@@ -110,7 +113,7 @@ def ite_ternary_search(array: List[int], target: int) -> int:
         return -1
 
 
-def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> int:
+def rec_ternary_search(left: int, right: int, array: List[ComparableType], target: ComparableType) -> int:
     """Recursive method of the ternary search algorithm.
 
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
@@ -138,8 +141,8 @@ def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> 
     if left < right:
         if right - left < precision:
             return lin_search(left, right, array, target)
-        one_third = (left + right) / 3 + 1
-        two_third = 2 * (left + right) / 3 + 1
+        one_third = (left + right) // 3 + 1
+        two_third = 2 * (left + right) // 3 + 1
 
         if array[one_third] == target:
             return one_third

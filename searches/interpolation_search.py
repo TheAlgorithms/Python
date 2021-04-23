@@ -1,9 +1,12 @@
 """
 This is pure Python implementation of interpolation search algorithm
 """
+from typing import Optional
+
+from searches.comparable_type import ComparableType
 
 
-def interpolation_search(sorted_collection, item):
+def interpolation_search(sorted_collection: list[int], item: int) -> Optional[int]:
     """Pure implementation of interpolation search algorithm in Python
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable
@@ -23,7 +26,7 @@ def interpolation_search(sorted_collection, item):
                 return None
 
         point = left + ((item - sorted_collection[left]) * (right - left)) // (
-            sorted_collection[right] - sorted_collection[left]
+                sorted_collection[right] - sorted_collection[left]
         )
 
         # out of range check
@@ -48,8 +51,10 @@ def interpolation_search(sorted_collection, item):
     return None
 
 
-def interpolation_search_by_recursion(sorted_collection, item, left, right):
-
+def interpolation_search_by_recursion(sorted_collection: list[int],
+                                      item: int,
+                                      left: int,
+                                      right: int) -> Optional[int]:
     """Pure implementation of interpolation search algorithm in Python by recursion
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable
@@ -67,7 +72,7 @@ def interpolation_search_by_recursion(sorted_collection, item, left, right):
             return None
 
     point = left + ((item - sorted_collection[left]) * (right - left)) // (
-        sorted_collection[right] - sorted_collection[left]
+            sorted_collection[right] - sorted_collection[left]
     )
 
     # out of range check
@@ -91,7 +96,7 @@ def interpolation_search_by_recursion(sorted_collection, item, left, right):
             )
 
 
-def __assert_sorted(collection):
+def __assert_sorted(collection: list[ComparableType]):
     """Check if collection is ascending sorted, if not - raises :py:class:`ValueError`
     :param collection: collection
     :return: True if collection is ascending sorted

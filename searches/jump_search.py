@@ -8,8 +8,10 @@ If not found, it returns -1.
 
 import math
 
+from searches.comparable_type import ComparableType
 
-def jump_search(arr: list, x: int) -> int:
+
+def jump_search(arr: list[ComparableType], x: ComparableType) -> int:
     """
     Pure Python implementation of the jump search algorithm.
     Examples:

@@ -9,9 +9,12 @@ python3 -m doctest -v sentinel_linear_search.py
 For manual testing run:
 python sentinel_linear_search.py
 """
+from typing import Optional
+
+from searches.comparable_type import ComparableType
 
 
-def sentinel_linear_search(sequence, target):
+def sentinel_linear_search(sequence: list[ComparableType], target: ComparableType) -> Optional[int]:
     """Pure implementation of sentinel linear search algorithm in Python
 
     :param sequence: some sequence with comparable items
