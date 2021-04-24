@@ -260,7 +260,7 @@ def post_order_iter(node: TreeNode) -> None:
         print(stack2.pop().data, end=",")
 
 
-def prompt(s: str = "", width: int = 50, char="*") -> str:
+def prompt(s: str = "", width: int = 50, char: str = "*") -> str:
     if not s:
         return "\n" + width * char
     left, extra = divmod(width - len(s) - 2, 2)
