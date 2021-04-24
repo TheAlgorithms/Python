@@ -7,10 +7,12 @@ python3 -m doctest -v linear_search.py
 For manual testing run:
 python3 linear_search.py
 """
-from searches.comparable_type import ComparableType
+from typing import TypeVar
+
+T = TypeVar('T')
 
 
-def linear_search(sequence: list[ComparableType], target: ComparableType) -> int:
+def linear_search(sequence: list[T], target: T) -> int:
     """A pure Python implementation of a linear search algorithm
 
     :param sequence: a collection with comparable items (as sorted items not required
@@ -34,7 +36,7 @@ def linear_search(sequence: list[ComparableType], target: ComparableType) -> int
     return -1
 
 
-def rec_linear_search(sequence: list[ComparableType], low: int, high: int, target: ComparableType) -> int:
+def rec_linear_search(sequence: list[T], low: int, high: int, target: T) -> int:
     """
     A pure Python implementation of a recursive linear search algorithm
 
