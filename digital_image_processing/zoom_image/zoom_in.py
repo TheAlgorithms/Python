@@ -18,10 +18,13 @@ print(np_img.shape)
 
 #converting image to gray image
 gray_data = np_img[:,:,0]
-print("Gray image shape: {}".format(gray_data.shape))
+print("Gray image shape: ")
+print(gray_data.shape)
 
 w, h = gray_data.shape
-print('Width : {}\tHeight :{}'.format(w, h))
+print('Width : \tHeight :')
+print(w)
+print(h)
 
 #declaring scaling factor
 scale_x = 2
@@ -37,6 +40,7 @@ for i in range(0, (w*scale_x)):
     for j in range(0, (h*scale_y)):
         gray_new[i, j] = gray_data[int(i/2), int(j/2)]
         
-print("Shape of modified image: {}".format(gray_new.shape))
+print("Shape of modified image: ")
+print(gray_new.shape)
 plt.imshow(gray_new,cmap="gray")
 plt.show()
