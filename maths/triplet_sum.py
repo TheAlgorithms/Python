@@ -5,7 +5,7 @@ the target.
 """
 from __future__ import annotations
 
-from itertools import permutations
+from itertools import combinations
 from random import randint
 from timeit import repeat
 
@@ -32,9 +32,9 @@ def triplet_sum1(arr: list[int], target: int) -> tuple[int, int, int]:
     >>> triplet_sum1(arr, target)
     (0, 0, 0)
     """
-    for triplet in permutations(arr, 3):
+    for triplet in combinations(sorted(arr), 3):
         if sum(triplet) == target:
-            return tuple(sorted(triplet))
+            return triplet
     return (0, 0, 0)
 
 

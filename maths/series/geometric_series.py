@@ -11,7 +11,7 @@ python3 geometric_series.py
 """
 
 
-def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> list:
+def geometric_series(nth_term: int, start_term_a: float, common_ratio_r: float) -> list[float]:
     """Pure Python implementation of Geometric Series algorithm
     :param nth_term: The last term (nth term of Geometric Series)
     :param start_term_a : The first term of Geometric Series
@@ -20,15 +20,13 @@ def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> l
         ration with first term with increase in power till last term (nth term)
     Examples:
     >>> geometric_series(4, 2, 2)
-    [2, '4.0', '8.0', '16.0']
+    [2, 4.0, 8.0, 16.0]
     >>> geometric_series(4.0, 2.0, 2.0)
-    [2.0, '4.0', '8.0', '16.0']
-    >>> geometric_series(4.1, 2.1, 2.1)
-    [2.1, '4.41', '9.261000000000001', '19.448100000000004']
+    [2.0, 4.0, 8.0, 16.0]
     >>> geometric_series(4, 2, -2)
-    [2, '-4.0', '8.0', '-16.0']
+    [2, -4.0, 8.0, -16.0]
     >>> geometric_series(4, -2, 2)
-    [-2, '-4.0', '-8.0', '-16.0']
+    [-2, -4.0, -8.0, -16.0]
     >>> geometric_series(-4, 2, 2)
     []
     >>> geometric_series(0, 100, 500)
@@ -38,26 +36,17 @@ def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> l
     >>> geometric_series(0, 0, 0)
     []
     """
-    if "" in (nth_term, start_term_a, common_ratio_r):
-        return ""
     series = []
-    power = 1
-    multiple = common_ratio_r
-    for _ in range(int(nth_term)):
-        if series == []:
-            series.append(start_term_a)
-        else:
-            power += 1
-            series.append(str(float(start_term_a) * float(multiple)))
-            multiple = pow(float(common_ratio_r), power)
+    for power in range(nth_term):
+        series.append(start_term_a * pow(common_ratio_r, power))
     return series
 
 
 if __name__ == "__main__":
-    nth_term = input("Enter the last number (n term) of the Geometric Series")
-    start_term_a = input("Enter the starting term (a) of the Geometric Series")
-    common_ratio_r = input(
-        "Enter the common ratio between two terms (r) of the Geometric Series"
-    )
+    nth_term = int(input("Enter the last number (n term) of the Geometric Series: "))
+    start_term_a = int(input("Enter the starting term (a) of the Geometric Series: "))
+    common_ratio_r = int(input(
+        "Enter the common ratio between two terms (r) of the Geometric Series: "
+    ))
     print("Formula of Geometric Series => a + ar + ar^2 ... +ar^n")
     print(geometric_series(nth_term, start_term_a, common_ratio_r))

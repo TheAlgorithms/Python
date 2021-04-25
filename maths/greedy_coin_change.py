@@ -74,8 +74,8 @@ def find_minimum_change(denominations: list[int], value: int) -> list[int]:
 # Driver Code
 if __name__ == "__main__":
 
-    denominations = list()
-    value = 0
+    denominations: list[int] = list()
+    value: int = 0
 
     if (
         input("Do you want to enter your denominations ? (yY/n): ").strip().lower()
@@ -85,13 +85,13 @@ if __name__ == "__main__":
 
         for i in range(0, n):
             denominations.append(int(input(f"Denomination {i}: ").strip()))
-        value = input("Enter the change you want to make in Indian Currency: ").strip()
+        value = int(input("Enter the change you want to make in Indian Currency: ").strip())
     else:
         # All denominations of Indian Currency if user does not enter
         denominations = [1, 2, 5, 10, 20, 50, 100, 500, 2000]
-        value = input("Enter the change you want to make: ").strip()
+        value = int(input("Enter the change you want to make: ").strip())
 
-    if int(value) == 0 or int(value) < 0:
+    if value <= 0:
         print("The total value cannot be zero or negative.")
 
     else:
