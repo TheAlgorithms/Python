@@ -9,7 +9,7 @@ Operations:
 
 
 class _DoublyLinkedBase:
-    """ A Private class (to be inherited) """
+    """A Private class (to be inherited)"""
 
     class _Node:
         __slots__ = "_prev", "_data", "_next"

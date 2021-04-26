@@ -88,7 +88,7 @@ def run_linear_regression(data_x, data_y):
 
 
 def main():
-    """ Driver function """
+    """Driver function"""
     data = collect_dataset()
 
     len_data = data.shape[0]
