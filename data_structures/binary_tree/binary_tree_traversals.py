@@ -1,24 +1,17 @@
 # https://en.wikipedia.org/wiki/Tree_traversal
+from dataclasses import dataclass
+from typing import Optional
 
 
+@dataclass
 class Node:
-    """
-    A Node has data variable and pointers to its left and right nodes.
-    """
-
-    def __init__(self, data):
-        self.left = None
-        self.right = None
-        self.data = data
+    data: int
+    left: Optional["Node"] = None
+    right: Optional["Node"] = None
 
 
 def make_tree() -> Node:
-    root = Node(1)
-    root.left = Node(2)
-    root.right = Node(3)
-    root.left.left = Node(4)
-    root.left.right = Node(5)
-    return root
+    return Node(1, Node(2, Node(4), Node(5)), Node(3))
 
 
 def preorder(root: Node):
