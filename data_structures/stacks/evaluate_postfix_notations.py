@@ -7,7 +7,7 @@ Valid operators are +, -, *, /.
 Each operand may be an integer or another expression.
 """
 
-
+from typing import List
 def evaluate_postfix(postfix_notation: list) -> int:
     """
     >>> evaluate_postfix(["2", "1", "+", "3", "*"])
@@ -21,8 +21,9 @@ def evaluate_postfix(postfix_notation: list) -> int:
         return 0
 
     operations = {"+", "-", "*", "/"}
-    stack = []
 
+    stack: List[int]
+    
     for token in postfix_notation:
         if token in operations:
             b, a = stack.pop(), stack.pop()

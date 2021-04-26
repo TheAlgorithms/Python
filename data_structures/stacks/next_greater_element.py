@@ -1,3 +1,4 @@
+from typing import List
 arr = [-10, -5, 0, 5, 5.1, 11, 13, 21, 3, 4, -21, -10, -5, -1, 0]
 expect = [-5, 0, 5, 5.1, 11, 13, 21, -1, 4, -1, -10, -5, -1, 0, -1]
 
@@ -53,7 +54,7 @@ def next_greatest_element(arr: list) -> list:
     >>> next_greatest_element(arr) == expect
     True
     """
-    stack = []
+    stack: List[int]
     result = [-1] * len(arr)
 
     for index in reversed(range(len(arr))):
