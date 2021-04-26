@@ -283,7 +283,7 @@ def valid_input(
 
 # Main Function
 def main():
-    """ This function starts execution phase """
+    """This function starts execution phase"""
     while True:
         print(" Linear Discriminant Analysis ".center(50, "*"))
         print("*" * 50, "\n")
