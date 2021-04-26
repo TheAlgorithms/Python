@@ -13,6 +13,8 @@ return [0, 1].
 """
 from __future__ import annotations
 
+from typing import Dict, List
+
 
 def two_sum(nums: list[int], target: int) -> list[int]:
     """
@@ -31,7 +33,9 @@ def two_sum(nums: list[int], target: int) -> list[int]:
     >>> two_sum([3 * i for i in range(10)], 19)
     []
     """
-    chk_map = {}
+    # chk_map = {}
+    chk_map: Dict[int, int]
+    # chk_map: Dict[ < type > , < type > ] = ...
     for index, val in enumerate(nums):
         compl = target - val
         if compl in chk_map:
