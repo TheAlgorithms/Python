@@ -1,0 +1,3 @@
+keras
+numpy
+tensorflow
