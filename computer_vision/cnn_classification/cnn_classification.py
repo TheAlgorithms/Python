@@ -1,4 +1,3 @@
-
 """
 Convolutional Neural Network
 
@@ -14,8 +13,7 @@ https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataS
 
 # Part 1 - Building the CNN
 
-# Importing the  libraries and packages
-import tensorflow as tf
+# Importing the Keras libraries and packages
 from tensorflow.keras import layers, models
 
 from keras.preprocessing import image
@@ -28,7 +26,8 @@ import numpy as np
 classifier = models.Sequential()
 
 # Step 1 - Convolution
-classifier.add(layers.Conv2D(32, (3, 3), input_shape=(64, 64, 3), activation="relu"))
+classifier.add(layers.Conv2D(32, (3, 3), input_shape=(64, 64, 3),
+                             activation="relu"))
 
 # Step 2 - Pooling
 classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
@@ -45,8 +44,8 @@ classifier.add(layers.Dense(units=128, activation="relu"))
 classifier.add(layers.Dense(units=1, activation="sigmoid"))
 
 # Compiling the CNN
-classifier.compile(optimizer="adam",
-                   loss="binary_crossentropy", metrics=["accuracy"])
+classifier.compile(optimizer="adam", loss="binary_crossentropy",
+                   metrics=["accuracy"])
 
 # Part 2 - Fitting the CNN to the images
 
