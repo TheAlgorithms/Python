@@ -2,6 +2,8 @@
 """
 Convolutional Neural Network
 
+Objective : To train a CNN model detect if TB is present in Lung X-ray or not.
+
 Resources : https://en.wikipedia.org/wiki/Convolutional_neural_network
 
 Download dataset from :
