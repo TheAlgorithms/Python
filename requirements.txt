@@ -13,5 +13,5 @@ scikit-fuzzy
 sklearn
 statsmodels
 sympy
-tensorflow
+tensorflow>=2.5rc2
 xgboost
