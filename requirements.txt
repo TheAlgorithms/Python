@@ -13,5 +13,5 @@ scikit-fuzzy
 sklearn
 statsmodels
 sympy
-tensorflow; python_version < '3.9'
+tensorflow
 xgboost
