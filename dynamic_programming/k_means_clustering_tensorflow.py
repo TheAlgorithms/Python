@@ -1,7 +1,7 @@
 from random import shuffle
 
-from numpy import array
 import tensorflow as tf
+from numpy import array
 
 
 def TFKMeansCluster(vectors, noofclusters):
