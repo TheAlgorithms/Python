@@ -2,6 +2,7 @@ from .stack import Stack
 
 
 def balanced_parentheses(parentheses: str) -> bool:
+    
     """Use a stack to check if a string of parentheses is balanced.
     >>> balanced_parentheses("([]{})")
     True
@@ -14,6 +15,7 @@ def balanced_parentheses(parentheses: str) -> bool:
     >>> balanced_parentheses("")
     True
     """
+    
     stack = Stack()
     bracket_pairs = {"(": ")", "[": "]", "{": "}"}
     for bracket in parentheses:
