@@ -1,8 +1,8 @@
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 import numpy as np
+from neural_network import input_data
 from sklearn.utils import shuffle
-import input_data
 
 random_numer = 42
 
