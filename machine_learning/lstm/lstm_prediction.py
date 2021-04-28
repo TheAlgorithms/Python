@@ -6,6 +6,7 @@
 """
 import numpy as np
 import pandas as pd
+from tensorflow import keras
 from keras.layers import LSTM, Dense
 from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
