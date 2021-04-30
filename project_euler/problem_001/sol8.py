@@ -22,6 +22,7 @@ def calc_arith_sum(A1: int, An: int, d: int) -> int:
     num_elemens = int((An - A1) / d + 1)
     return int(((A1 + An) * num_elemens) / 2)
 
+
 def find_An(n: int, d: int) -> int:
     """
     Returns the max element of an A.P with a common difference of d that ends below n.
@@ -36,6 +37,7 @@ def find_An(n: int, d: int) -> int:
     990
     """
     return int((n - 1) / d) * d
+
 
 def solution(n: int = 1000) -> int:
     """
