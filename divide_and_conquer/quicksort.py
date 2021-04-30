@@ -12,6 +12,11 @@ def partition(array: List, start: int, end: int) -> int:
     elements to the left of pivot < pivot
     and pivot is in the correct position
     and returns index of pivot in sorted array
+
+    >>> array = [4,1,5,6,3,5,2]
+    >>> p = partition(array,0,6)
+    >>> p
+    3
     """
     pivot = array[start]  # pivot element to partition the array around
     i = start + 1  # pointer to keep track of partition elements
