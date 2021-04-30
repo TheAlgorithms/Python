@@ -57,16 +57,17 @@ train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
     rescale=1.0 / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True
 )
 
-test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1.0 / 255)
+test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+    rescale=1.0 / 255)
 
 training_set = train_datagen.flow_from_directory(
-    "dataset/training_set", target_size=(64, 64), batch_size=32,
-    class_mode="binary"
+    "dataset/training_set", target_size=(64, 64),
+    batch_size=32, class_mode="binary"
 )
 
 test_set = test_datagen.flow_from_directory(
-    "dataset/test_set", target_size=(64, 64), batch_size=32,
-    class_mode="binary"
+    "dataset/test_set", target_size=(64, 64),
+    batch_size=32, class_mode="binary"
 )
 
 classifier.fit_generator(
@@ -78,9 +79,8 @@ classifier.save("cnn.h5")
 # Part 3 - Making new predictions
 
 
-test_image = tf.keras.preprocessing.image.load_img("dataset/single_prediction/image.png",
-                            target_size=(64, 64))
-test_image = tf.keras.preprocessing.image.load_img(image, target_size=(64, 64))
+test_image = tf.keras.preprocessing.image.load_img(
+    "dataset/single_prediction/image.png", target_size=(64, 64))
 test_image = tf.keras.preprocessing.image.img_to_array(test_image)
 test_image = np.expand_dims(test_image, axis=0)
 result = classifier.predict(test_image)
