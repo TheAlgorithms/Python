@@ -13,11 +13,14 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 def calc_arith_sum(A1: int, An: int, d: int) -> int:
     """
     Returns the sum of A.P with A1, An and d
+    More info here - https://en.wikipedia.org/wiki/Arithmetic_progression#Sum
 
-    >>> calc_arith_sum(0, 10, 3)
+    >>> calc_arith_sum(0, 9, 3)
     18
-    >>> calc_arith_sum(0, 10, 3)
-    18
+    >>> calc_arith_sum(4, 16, 4)
+    40
+    >>> calc_arith_sum(1, 8, 7)
+    9
     """
     num_elemens = int((An - A1) / d + 1)
     return int(((A1 + An) * num_elemens) / 2)
@@ -66,7 +69,7 @@ def solution(n: int = 1000) -> int:
     >>> solution(600)
     83700
     >>> solution(1000000)
-    2333316668
+    233333166668
     """
     S1 = calc_arith_sum(3, find_An(n, 3), 3)
     S2 = calc_arith_sum(5, find_An(n, 5), 5)
