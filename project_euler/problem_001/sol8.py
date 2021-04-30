@@ -46,14 +46,14 @@ def solution(n: int = 1000) -> int:
     1) S1 = 3 + 6 + 9 + 12 + 15 + ... + 999
     2) S2 = 5 + 10 + 15 + 20 + 25 + ... + 995
     These are Arithmetic progressions with a common difference of 3 and 5 respectively.
-    
+
     We are then need to remove the elements that we've counted twice because they
     appear in both S1 & S2:
     S3 = 15 + 30 + 45 + ...
     This is simply the Arithmetic progression with a common difference 15.
 
     The results will be: S1 + S2 - S3.
-    
+
     Runtime complexity: O(1).
     Memory complexity: O(1).
 
