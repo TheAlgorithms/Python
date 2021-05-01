@@ -2,7 +2,8 @@ B64_CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 
 def base64_encode(data: bytes) -> bytes:
-    """Encodes data according to RFC4648.
+    """
+    Encodes data according to RFC4648.
 
     The data is first transformed to binary and appended with binary digits so that its
     length becomes a multiple of 6, then each 6 binary digits will match a character in
@@ -35,23 +36,22 @@ def base64_encode(data: bytes) -> bytes:
     # Make sure the supplied data is a bytes-like object
     if not isinstance(data, bytes):
         raise TypeError(
-            f"a bytes-like object is required, not '{data.__class__.__name__}'"
+            f"a bytes-like object is required, not '{type(data).__name__}'"
         )
 
     binary_stream = "".join(bin(byte)[2:].zfill(8) for byte in data)
-
-    padding_needed = len(binary_stream) % 6 != 0
-
-    if padding_needed:
+    if len(binary_stream) % 6:
+        # This will execute if the length of the binary
+        # stream is not a multiple of 6 (since len(s) % 6 would
+        # be 0 otherwise, and bool(0) is False)
+        
         # The padding that will be added later
         padding = b"=" * ((6 - len(binary_stream) % 6) // 2)
-
         # Append binary_stream with arbitrary binary digits (0's by default) to make its
         # length a multiple of 6.
         binary_stream += "0" * (6 - len(binary_stream) % 6)
     else:
         padding = b""
-
     # Encode every 6 binary digits to their corresponding Base64 character
     return (
         "".join(
@@ -63,7 +63,8 @@ def base64_encode(data: bytes) -> bytes:
 
 
 def base64_decode(encoded_data: str) -> bytes:
-    """Decodes data according to RFC4648.
+    """
+    Decodes data according to RFC4648.
 
     This does the reverse operation of base64_encode.
     We first transform the encoded data back to a binary stream, take off the
@@ -86,23 +87,25 @@ def base64_decode(encoded_data: str) -> bytes:
       ...
     AssertionError: Incorrect padding
     """
+
     # Make sure encoded_data is either a string or a bytes-like object
-    if not isinstance(encoded_data, bytes) and not isinstance(encoded_data, str):
+    if not isinstance(encoded_data, (bytes, str)):
         raise TypeError(
-            "argument should be a bytes-like object or ASCII string, not "
-            f"'{encoded_data.__class__.__name__}'"
+            "argument should be a bytes-like object or string, not "
+            f"'{type(encoded_data).__name__}'"
         )
 
     # In case encoded_data is a bytes-like object, make sure it contains only
     # ASCII characters so we convert it to a string object
     if isinstance(encoded_data, bytes):
-        try:
-            encoded_data = encoded_data.decode("utf-8")
-        except UnicodeDecodeError:
-            raise ValueError("base64 encoded data should only contain ASCII characters")
-
+        for byte in encoded_data:
+            # Iterating a byte stream converts its elements to integers, so
+            # we can use those to check if the integer each byte represents is
+            # in the ASCII character set range which is [0, 128)
+            if byte not in range(0, 128):
+                raise ValueError("base64 encoded data should only contain ASCII characters")
+        encoded_data = encoded_data.decode("ascii")   # Decode the bytes to a string using the ASCII decoder
     padding = encoded_data.count("=")
-
     # Check if the encoded string contains non base64 characters
     if padding:
         assert all(
@@ -115,11 +118,9 @@ def base64_decode(encoded_data: str) -> bytes:
 
     # Check the padding
     assert len(encoded_data) % 4 == 0 and padding < 3, "Incorrect padding"
-
     if padding:
         # Remove padding if there is one
         encoded_data = encoded_data[:-padding]
-
         binary_stream = "".join(
             bin(B64_CHARSET.index(char))[2:].zfill(6) for char in encoded_data
         )[: -padding * 2]
@@ -132,11 +133,9 @@ def base64_decode(encoded_data: str) -> bytes:
         int(binary_stream[index : index + 8], 2)
         for index in range(0, len(binary_stream), 8)
     ]
-
     return bytes(data)
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
