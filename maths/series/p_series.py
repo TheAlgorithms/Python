@@ -12,7 +12,7 @@ python3 p_series.py
 """
 
 
-def p_series(nth_term: int, power: int) -> list:
+def p_series(nth_term: str, power: str) -> list:
     """Pure Python implementation of P-Series algorithm
 
     :return: The P-Series starting from 1 to last (nth) term
@@ -25,17 +25,15 @@ def p_series(nth_term: int, power: int) -> list:
     >>> p_series(5, -2)
     [1, '1/0.25', '1/0.1111111111111111', '1/0.0625', '1/0.04']
     >>> p_series("", 1000)
-    ''
+    []
     >>> p_series(0, 0)
     []
     >>> p_series(1, 1)
     [1]
     """
     if nth_term == "":
-        return nth_term
-    nth_term = int(nth_term)
-    power = int(power)
-    series = []
+        return list(nth_term)
+    series : list = []
     for temp in range(int(nth_term)):
         series.append(f"1/{pow(temp + 1, int(power))}" if series else 1)
     return series
