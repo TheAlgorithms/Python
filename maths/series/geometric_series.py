@@ -11,7 +11,7 @@ python3 geometric_series.py
 """
 
 
-def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> list:
+def geometric_series(nth_term: str, start_term_a: str, common_ratio_r: str) -> list:
     """Pure Python implementation of Geometric Series algorithm
     :param nth_term: The last term (nth term of Geometric Series)
     :param start_term_a : The first term of Geometric Series
@@ -39,10 +39,10 @@ def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> l
     []
     """
     if "" in (nth_term, start_term_a, common_ratio_r):
-        return ""
-    series = []
+        return []
+    series : list = []
     power = 1
-    multiple = common_ratio_r
+    multiple = float(common_ratio_r)
     for _ in range(int(nth_term)):
         if series == []:
             series.append(start_term_a)
