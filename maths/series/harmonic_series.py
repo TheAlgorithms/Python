@@ -12,7 +12,7 @@ python3 harmonic_series.py
 """
 
 
-def harmonic_series(n_term: str) -> list:
+def harmonic_series(n_term: str) -> list[object]:
     """Pure Python implementation of Harmonic Series algorithm
 
     :param n_term: The last (nth) term of Harmonic Series
@@ -36,7 +36,7 @@ def harmonic_series(n_term: str) -> list:
     """
     if n_term == "":
         return list(n_term)
-    series : list = []
+    series : list[object] = []
     for temp in range(int(n_term)):
         series.append(f"1/{temp + 1}" if series else "1")
     return series

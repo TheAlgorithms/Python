@@ -12,7 +12,7 @@ python3 p_series.py
 """
 
 
-def p_series(nth_term: str, power: str) -> list:
+def p_series(nth_term: str, power: str) -> list[object]:
     """Pure Python implementation of P-Series algorithm
 
     :return: The P-Series starting from 1 to last (nth) term
@@ -33,7 +33,7 @@ def p_series(nth_term: str, power: str) -> list:
     """
     if nth_term == "":
         return list(nth_term)
-    series : list = []
+    series : list[object] = []
     for temp in range(int(nth_term)):
         series.append(f"1/{pow(temp + 1, int(power))}" if series else 1)
     return series
