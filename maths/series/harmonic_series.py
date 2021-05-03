@@ -31,10 +31,12 @@ def harmonic_series(n_term: str) -> list:
     []
     >>> harmonic_series(1)
     ['1']
+    >>> harmonic_series("")
+    []
     """
     if n_term == "":
-        return n_term
-    series = []
+        return list(n_term)
+    series : list = []
     for temp in range(int(n_term)):
         series.append(f"1/{temp + 1}" if series else "1")
     return series
