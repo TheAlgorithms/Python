@@ -96,6 +96,8 @@ def show_results(
     Plots of whether the absolute value of z_final is greater than
     the value of escape_radius. Adds the function_label and function_params to
     the title.
+    
+    >>> show_results('Test', 0, 1, numpy.array([[0,1,0.5],[0.4,2.,1.1],[.2,1.,1.3]]))
     """
 
     abs_z_final = (abs(z_final)).transpose()
