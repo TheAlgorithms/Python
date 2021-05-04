@@ -189,7 +189,8 @@
     * [Stock Span Problem](https://github.com/TheAlgorithms/Python/blob/master/data_structures/stacks/stock_span_problem.py)
   * Trie
     * [Trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
-  * [Vector 2](https://github.com/TheAlgorithms/Python/blob/master/data_structures/vector_2.py)
+  * Vectors
+    * [Vector 2](https://github.com/TheAlgorithms/Python/blob/master/data_structures/vectors/vector_2.py)
 
 ## Digital Image Processing
   * [Change Brightness](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_brightness.py)
