@@ -16,7 +16,7 @@ def quick_multiply(num: int, num2: int) -> int:
   return num*num2
 
 
-def test_quick_multiply()
+def test_quick_multiply():
 """
 >>> test_quick_multiply()
 """
