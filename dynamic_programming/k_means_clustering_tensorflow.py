@@ -1,5 +1,6 @@
-import tensorflow as tf
 from random import shuffle
+
+import tensorflow as tf
 from numpy import array
 
 
