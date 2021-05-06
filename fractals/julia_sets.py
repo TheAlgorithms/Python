@@ -87,7 +87,7 @@ def iterate_function(
     array([  0,   1, 256])
     """
 
-    z_n = z_0
+    z_n = z_0.astype('complex64')
     for i in range(nb_iterations):
         z_n = eval_function(function_params, z_n)
         if infinity is not None:
