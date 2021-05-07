@@ -15,8 +15,13 @@ https://en.wikipedia.org/wiki/File:Julia_z2%2B0,25.png
 http://www.math.univ-toulouse.fr/~cheritat/GalII/galery.html
  and
 https://ddd.uab.cat/pub/pubmat/02141493v43n1/02141493v43n1p27.pdf
+
+Remark: Some overflow runtime warnings are suppressed. This is because of the
+ way the iterateion loop is implemented, using numpy's efficient computations.
+ Overflows and infinites are replaced after each step by a large number.
 """
 
+import warnings
 from typing import Any, Callable
 
 import numpy
@@ -87,7 +92,7 @@ def iterate_function(
     array([  0,   1, 256])
     """
 
-    z_n = z_0.astype('complex64')
+    z_n = z_0.astype("complex64")
     for i in range(nb_iterations):
         z_n = eval_function(function_params, z_n)
         if infinity is not None:
@@ -117,9 +122,29 @@ def show_results(
     pyplot.show()
 
 
+def ignore_overflow_warnings():
+    # Fine grained filtering will make sure that we know what we are doing
+    warnings.filterwarnings(
+        "ignore", category=RuntimeWarning, message="overflow encountered in multiply"
+    )
+    warnings.filterwarnings(
+        "ignore",
+        category=RuntimeWarning,
+        message="invalid value encountered in multiply",
+    )
+    warnings.filterwarnings(
+        "ignore", category=RuntimeWarning, message="overflow encountered in absolute"
+    )
+    warnings.filterwarnings(
+        "ignore", category=RuntimeWarning, message="overflow encountered in exp"
+    )
+
+
 if __name__ == "__main__":
 
     z_0 = prepare_grid(window_size, nb_pixels)
+
+    ignore_overflow_warnings()  # See file header for explanations
 
     nb_iterations = 24
     escape_radius = 2 * abs(c_cauliflower) + 1
