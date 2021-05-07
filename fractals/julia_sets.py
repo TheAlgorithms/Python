@@ -17,7 +17,7 @@ http://www.math.univ-toulouse.fr/~cheritat/GalII/galery.html
 https://ddd.uab.cat/pub/pubmat/02141493v43n1/02141493v43n1p27.pdf
 
 Remark: Some overflow runtime warnings are suppressed. This is because of the
- way the iterateion loop is implemented, using numpy's efficient computations.
+ way the iteration loop is implemented, using numpy's efficient computations.
  Overflows and infinites are replaced after each step by a large number.
 """
 
@@ -122,8 +122,12 @@ def show_results(
     pyplot.show()
 
 
-def ignore_overflow_warnings():
-    # Fine grained filtering will make sure that we know what we are doing
+def ignore_overflow_warnings() -> None:
+    """
+    Ignore some overflow and invalid value warnings.
+
+    >>> ignore_overflow_warnings()
+    """
     warnings.filterwarnings(
         "ignore", category=RuntimeWarning, message="overflow encountered in multiply"
     )
