@@ -30,3 +30,6 @@ def lsearch(array:list, search_element:any)->None:
 l1 = lsearch([1,2,3,4,5,6,7],'tejas')
 l2 = lsearch(['tejas','kunal','vignesh','datta','saif'],5)
 l3 = lsearch(['appale',1,2,3,'mango'],'mango')
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
