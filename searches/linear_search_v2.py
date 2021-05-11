@@ -1,6 +1,4 @@
-#!/bin/python3
 import os 
-import time as t
 os.system("clear")
 def lsearch(array:list, search_element:any)->None:
 	print("\nMethod:linear search")
@@ -11,11 +9,11 @@ def lsearch(array:list, search_element:any)->None:
 	i = 0
 	for i in range(len(array)):
 		if array[i] == search_element:
-			t.sleep(0.1)
+			
 			print("Element is Found at",  i,"th index and",  i+1,  "th position")
-			t.sleep(0.1)
+			
 			print("Completed chacking. ")
-			t.sleep(0.1)
+			
 			print("Searching ended")
 			break
 		else:
