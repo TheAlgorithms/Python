@@ -1,4 +1,11 @@
 def lsearch(array:list, key:any)-> any:
+    """This Function will helps to find the 
+    element using linear search.
+    >>>  lsearch([45,90,1,24],1)
+    2
+    >>> lsearch (['Tejas','linux','python'],'Tejas')
+    0
+    """
     size =len(array)
     found = False
     i= 0
@@ -11,4 +18,6 @@ def lsearch(array:list, key:any)-> any:
         i = i+1        
 if __name__ == "__main__":
     import doctest 
-    assert lsearch([45,90,1,24],1)
+    doctest.testmod(name="lsearch", verbose=True)
+    
+    
