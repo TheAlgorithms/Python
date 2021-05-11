@@ -1,4 +1,5 @@
 from typing import Any, List
+
 """
 The Reverse Polish Nation also known as Polish postfix notation
 or simply postfix notation.

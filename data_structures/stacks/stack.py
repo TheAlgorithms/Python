@@ -1,5 +1,6 @@
 from typing import List
 
+
 class StackOverflowError(BaseException):
     pass
 
