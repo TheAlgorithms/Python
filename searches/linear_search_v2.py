@@ -1,7 +1,6 @@
 """
 Linear search is sequential search algorithm 
 which helps to find the element linearly.
-
 More info:
 https://en.wikipedia.org/wiki/Linear_search
 """
