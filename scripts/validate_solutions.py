@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
+import hashlib
 import importlib.util
 import json
 import os
 import pathlib
-from hashlib import sha256
 from types import ModuleType
 
 import pytest
@@ -89,7 +89,8 @@ def test_project_euler(solution_path: pathlib.Path) -> None:
     problem_number: str = solution_path.parent.name[8:].zfill(3)
     expected: str = PROBLEM_ANSWERS[problem_number]
     solution_module = convert_path_to_module(solution_path)
-    answer = sha256(str(solution_module.solution()).encode()).hexdigest()  # type: ignore
+    answer = str(solution_module.solution())  # type: ignore
+    answer = hashlib.sha256(answer.encode()).hexdigest()
     assert (
         answer == expected
     ), f"Expected solution to {problem_number} to have hash {expected}, got {answer}"
