@@ -1,23 +1,21 @@
-def lsearch(array:list, key:any)-> any:
-    """This Function will helps to find the 
-    element using linear search.
-    >>>  lsearch([45,90,1,24],1)
-    2
-    >>> lsearch (['Tejas','linux','python'],'Tejas')
-    0
+def search(array:list, key:any)-> any:
+    """
+    This is linear search algorithm 
+    >>> search([1,2,45,98,4,56,3,7],7)
+    7
     """
     size =len(array)
     found = False
     i= 0
     for i in range(size):
         if array[i] == key:
-            print("Element found at ",i)
+            print(i)
         else :
             if i == size-1:
-                return f"Not found"
+                print("Not found")
         i = i+1        
 if __name__ == "__main__":
     import doctest 
-    doctest.testmod(name="lsearch", verbose=True)
+    doctest.testmod(name="search", verbose=True)
     
     
