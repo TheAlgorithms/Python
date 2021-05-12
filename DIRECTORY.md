@@ -829,6 +829,7 @@
   * [Interpolation Search](https://github.com/TheAlgorithms/Python/blob/master/searches/interpolation_search.py)
   * [Jump Search](https://github.com/TheAlgorithms/Python/blob/master/searches/jump_search.py)
   * [Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/linear_search.py)
+  * [Linear Search V2](https://github.com/TheAlgorithms/Python/blob/master/searches/linear_search_v2.py)
   * [Quick Select](https://github.com/TheAlgorithms/Python/blob/master/searches/quick_select.py)
   * [Sentinel Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/sentinel_linear_search.py)
   * [Simple Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/simple_binary_search.py)
