@@ -89,7 +89,7 @@ def test_project_euler(solution_path: pathlib.Path) -> None:
     problem_number: str = solution_path.parent.name[8:].zfill(3)
     expected: str = PROBLEM_ANSWERS[problem_number]
     solution_module = convert_path_to_module(solution_path)
-    answer = sha256(solution_module.solution().encode()).hexdigest()  # type: ignore
+    answer = sha256(str(solution_module.solution()).encode()).hexdigest()  # type: ignore
     assert (
         answer == expected
     ), f"Expected solution to {problem_number} to have hash {expected}, got {answer}"
