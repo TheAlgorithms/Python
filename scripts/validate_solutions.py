@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
+import hashlib
 import importlib.util
 import json
 import os
 import pathlib
 from types import ModuleType
-from typing import Dict, List
 
 import pytest
 import requests
@@ -15,7 +15,7 @@ PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
 )
 
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
-    PROBLEM_ANSWERS: Dict[str, str] = json.load(file_handle)
+    PROBLEM_ANSWERS: dict[str, str] = json.load(file_handle)
 
 
 def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
@@ -26,7 +26,7 @@ def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
     return module
 
 
-def all_solution_file_paths() -> List[pathlib.Path]:
+def all_solution_file_paths() -> list[pathlib.Path]:
     """Collects all the solution file path in the Project Euler directory"""
     solution_file_paths = []
     for problem_dir_path in PROJECT_EULER_DIR_PATH.iterdir():
@@ -46,7 +46,7 @@ def get_files_url() -> str:
     return event["pull_request"]["url"] + "/files"
 
 
-def added_solution_file_path() -> List[pathlib.Path]:
+def added_solution_file_path() -> list[pathlib.Path]:
     """Collects only the solution file path which got added in the current
     pull request.
 
@@ -70,7 +70,7 @@ def added_solution_file_path() -> List[pathlib.Path]:
     return solution_file_paths
 
 
-def collect_solution_file_paths() -> List[pathlib.Path]:
+def collect_solution_file_paths() -> list[pathlib.Path]:
     if os.environ.get("CI") and os.environ.get("GITHUB_EVENT_NAME") == "pull_request":
         # Return only if there are any, otherwise default to all solutions
         if filepaths := added_solution_file_path():
@@ -90,4 +90,7 @@ def test_project_euler(solution_path: pathlib.Path) -> None:
     expected: str = PROBLEM_ANSWERS[problem_number]
     solution_module = convert_path_to_module(solution_path)
     answer = str(solution_module.solution())  # type: ignore
-    assert answer == expected, f"Expected {expected} but got {answer}"
+    answer = hashlib.sha256(answer.encode()).hexdigest()
+    assert (
+        answer == expected
+    ), f"Expected solution to {problem_number} to have hash {expected}, got {answer}"
