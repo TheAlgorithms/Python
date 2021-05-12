@@ -1,3 +1,6 @@
+from typing import List
+
+
 class StackOverflowError(BaseException):
     pass
 
@@ -12,7 +15,7 @@ class Stack:
     """
 
     def __init__(self, limit: int = 10):
-        self.stack = []
+        self.stack: List[int] = []
         self.limit = limit
 
     def __bool__(self) -> bool:

@@ -1,3 +1,5 @@
+from typing import Any, List
+
 """
 The Reverse Polish Nation also known as Polish postfix notation
 or simply postfix notation.
@@ -21,7 +23,7 @@ def evaluate_postfix(postfix_notation: list) -> int:
         return 0
 
     operations = {"+", "-", "*", "/"}
-    stack = []
+    stack: List[Any] = []
 
     for token in postfix_notation:
         if token in operations:

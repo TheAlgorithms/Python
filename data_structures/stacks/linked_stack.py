@@ -1,5 +1,5 @@
 """ A Stack using a linked list like structure """
-from typing import Any
+from typing import Any, Optional
 
 
 class Node:
@@ -42,7 +42,7 @@ class LinkedStack:
     """
 
     def __init__(self) -> None:
-        self.top = None
+        self.top: Optional[Node] = None
 
     def __iter__(self):
         node = self.top
@@ -134,6 +134,8 @@ class LinkedStack:
         """
         if self.is_empty():
             raise IndexError("peek from empty stack")
+
+        assert self.top is not None
         return self.top.data
 
     def clear(self) -> None:
