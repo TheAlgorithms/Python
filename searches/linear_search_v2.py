@@ -1,3 +1,10 @@
+"""
+Linear search is sequential search algorithm 
+which helps to find the element linearly.
+
+More info:
+https://en.wikipedia.org/wiki/Linear_search
+"""
 def search(array:list, key:any)-> any:
     """
     This is linear search algorithm 
@@ -5,7 +12,6 @@ def search(array:list, key:any)-> any:
     7
     """
     size =len(array)
-    found = False
     i= 0
     for i in range(size):
         if array[i] == key:
@@ -17,5 +23,3 @@ def search(array:list, key:any)-> any:
 if __name__ == "__main__":
     import doctest 
     doctest.testmod(name="search", verbose=True)
-    
-    
