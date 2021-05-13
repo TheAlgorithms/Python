@@ -1,7 +1,7 @@
 hex_table = {hex(i)[2:]: i for i in range(16)}
 
 
-def hex_to_binary(hex_string: str) -> int:
+def hex_to_binary(hex_string: str) -> str:
     """
     Convert hexadecimal string to binary string
     >>> hex_to_binary("3f")
