@@ -17,17 +17,45 @@ PrimeNode = TypeVar("PrimeNode")
 
 def solution(num_of_primes: int = 5) -> int:
     """
-    Build a dirrected graph from every primes to all the smaller primes
-    such that every neighbor of a prime is creates two primes by concatenating
-    it to the node's value.
+    Build a directed graph from every prime number (P) to all of the smaller
+    prime numbers (Q) that can be concatenated and form the two following prime
+    numbers: PQ and QP.
+    For example, if P = 7 we have 3 potential prime numbers for Q: 2, 3, 5.
+    - 2 is not a valid neighbor since 27 and 72 are not primes.
+    - 3 is a valid neighbor since both 37 and 73 are primes.
+    - 5 is not a valid neighbor since 57 and 75 are not primes.
+    Therefore, the neighbors of the prime 7 consist of only one prime: 3.
 
-    Whenever a node has enough neighbors to solve the problem, check if all
-    the neighbors are valid with each other -
-    1) Iterate on the node's neighbors from the highest primes to the lowest
-    2) Make sure all the lower primes appear in the prime's node as neighbors.
+    Once a node has enough neighbors to solve the problem
+    (it has >= (num_of_primes - 1) neighbors), we need to check whether these
+    neighbors are valid with each other.
+    * Why num_of_prime - 1 neighbors is enough: because we need to add the prime
+      number P itself as part of the group. We get num_of_primes - 1 neighbors + P,
+      which is a group of size num_of_primes.
 
-    Once you find a node that has num_of_primes valid neighbors and they are
-    valid with each other, return the sum of all the relevant primes.
+    - If the neighbors are valid, we found a group of size num_of_primes as required,
+      and its sum is the solution.
+    - If the neighbors are not valid with each other, continue searching with the next
+      prime.
+
+    How do we check if P's neighbors are valid with each other:
+    ==========================================================
+    We'll tackle it recursively (this is a simplified version
+    where the prime P has exactly num_of_primes - 1 neighbors Qs):
+    1) Mark the highest neighbor of P to be the new_p and the rest of its
+       neighbors set as required_neighbors. Note that the size of the set
+       required_neighbors is num_of_primes - 2 (minus the original P and new_p).
+    2) If there is a prime number in required_neighbors that isn't a neighbor of
+       new_p -> this group is not the solution. Return False.
+    3) If all of the prime number in required_neighbors are also neighbors of
+       new_p, we repeat step 1.
+    4) If the length of required_neighbors is 0 -> It means we were not able to
+       negate the group and therefore this is the solution.
+
+    * In case P has more than the exact required size of neighbors (num_of_primes - 1),
+      search all the different groups in its neighbors of size (num_of_primes - 1).
+
+    Once finding a group of valid num_of_primes numbers, return its sum.
 
     >>> solution(3)
     107
@@ -52,25 +80,22 @@ def solution(num_of_primes: int = 5) -> int:
 
 
 class PrimeNode:
-    """A basic structure for a prime number and all of its neighbors.
+    """A basic structure for a prime number node.
 
-    In this problem, neighbors are all the primes that:
-    1) Smaller than the node's prime. And -
+    In this problem, neighbors are all the prime numbers that are:
+    1) Smaller than the node's value. And -
     2) Create a new prime when concatenating with the node's prime in any order.
-
-    Example: if the node's value is 7, its neighbors will be [3]. Because all the primes
-    the are smaller than 7 are: 2, 3, 5. But 3 is the only prime number that can be
-    concatenated to 7 in any order and will create primes: 37 & 73.
+    See further explanation and example in the "solution" function above.
     """
 
     def __init__(self, prime_number: int) -> None:
         """Initialize the node.
 
-        Set the prime number's value to the given prime_number, count its number of
-        digits once and set its neighbors to empty list.
+        Set the node value to the given prime_number, count its number of
+        digits once for future usage and set its neighbors to empty list.
         """
         self.value = prime_number
-        self.num_digits = self._calc_num_digits()
+        self._num_digits = self._calc_num_digits()
         self.neighbors = []
 
     def _calc_num_digits(self) -> int:
@@ -103,13 +128,13 @@ class PrimeNode:
         137
         """
         return int(
-            pow(10, prime_node_2.num_digits) * prime_node_1.value + prime_node_2.value
+            pow(10, prime_node_2._num_digits) * prime_node_1.value + prime_node_2.value
         )
 
     def _is_valid_neighbor(self, other_prime_node: PrimeNode) -> bool:
         """Returns True iff the curr prime node and the other prime node are valid
         neighbors.
-        * See definition of valid neighbors in the class doc.
+        * See definition of valid neighbors in the class doc and solution function.
 
         >>> prime_node_1 = PrimeNode(109)
         >>> prime_node_2 = PrimeNode(7)
@@ -127,9 +152,9 @@ class PrimeNode:
     def populate_neighbors(
         self, all_smaller_primes: List[int], graph: Dict[int, PrimeNode]
     ) -> None:
-        """Search the list of all the primes the are smaller than the node's prime
+        """Search the list of all the primes the are smaller than the node's value
         for valid neighbors.
-        * See definition of valid neighbors in the class doc.
+        * See definition of valid neighbors in the class doc and solution function.
 
         >>> prime_node = PrimeNode(7)
         >>> all_smaller_primes = [3, 5]
@@ -172,18 +197,23 @@ def validate_prime_set(
 
     Since the graph connects primes to their valid neighbors, if all the given neighbors
     are connected, it means we have a solution to the problem.
-    * See definition of valid neighbors in the class doc.
+    * See definition of valid neighbors in the solution function doc.
 
-    Suppose we need to find a set of 2 primes (instead of 5 in the problem). Looking at
-    the prime_node of 7, we already have 1 prime and looking to add another 1:
+    Suppose we need to find a set of 2 primes (instead of 5 in the problem), and
+    we reached to check the prime number 7.
+    Its neighbors are [3], and the graph up until now is:
+    graph = { 3: PrimeNode(3), 5: PrimeNode(5) } (2 is irrevelant for this problem).
+    Also note that we are looking only for one additional prime to get a group of 2
+    primes (the priem number 7 and 1 additional prime number):
     >>> neighbors = [3]
     >>> graph = { 3: PrimeNode(3), 5: PrimeNode(5) }
     >>> required_size = 1
     >>> validate_prime_set(neighbors, graph, required_size)
     True
 
-    Suppose we need to find a set of 3 primes (instead of 5 in the problem). Looking at
-    the prime_node of 7, we already have 1 prime and looking to add another 2:
+    Suppose we need to find a set of 3 primes (instead of 5 in the problem), and
+    we reached to check the prime number 7 as in the previous example.
+    Note: we need to find two additional primes (the prime number 7 and two others).
     >>> neighbors = [3]
     >>> graph = { 3: PrimeNode(3), 5: PrimeNode(5) }
     >>> required_size = 2
@@ -218,8 +248,9 @@ def search_graph_for_result(
     We already know that all of the nodes neighbors are valid comparing to its value,
     we just have to check whether they are valid comparing to each other.
 
-    Suppose we need to find a set of 2 primes (instead of 5 in the problem). Looking at
-    the prime_node of 7, we already have 1 prime and looking to add another 1:
+    Suppose we need to find a set of 3 primes (instead of 5 in the problem), and
+    we reached to check the prime number 7 as in the previous examples.
+    Note: we already have one prime number (7) and looking to add another one:
     >>> graph = { 3: PrimeNode(3), 5: PrimeNode(5) }
     >>> required_number_of_primes = 1
     >>> all_primes = [3, 5]
@@ -228,8 +259,7 @@ def search_graph_for_result(
     >>> search_graph_for_result(graph, required_number_of_primes, curr_prime_node)
     [3, 7]
 
-    Suppose we need to find a set of 3 primes (instead of 5 in the problem). Looking at
-    the prime_node of 7, we already have 1 prime and looking to add another 2:
+    Now we'll run the same example but this time with a required set size of 3.
     >>> graph = { 3: PrimeNode(3), 5: PrimeNode(5) }
     >>> required_number_of_primes = 2
     >>> all_primes = [3, 5]
