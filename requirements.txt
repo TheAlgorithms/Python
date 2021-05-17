@@ -1,6 +1,6 @@
 beautifulsoup4
 fake_useragent
-keras; python_version < '3.9'
+keras
 lxml
 matplotlib
 numpy
@@ -13,5 +13,5 @@ scikit-fuzzy
 sklearn
 statsmodels
 sympy
-tensorflow; python_version < '3.9'
+tensorflow
 xgboost
