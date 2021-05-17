@@ -4,13 +4,14 @@ import math
 
 
 hex_str = input("").strip()
-
-try:
-    num : int = int(hex_str, 16)
-except:
-    print("An exception occured")
+if not hex_str:
+    raise ValueError("Empty string was passed to the function")
+is_negative = hex_str[0] == "-"
+if is_negative:
+    hex_string = hex_str[1:]
     
-bin_str: str = ""
+num: int = int(hex_str, 16)
+bin: str = ""
 
 
 """
@@ -24,20 +25,40 @@ a >> 1 = 5
 
 """
 
-def convert(num: int, bin_str: str) -> str:
+def convert(num, bin_str, is_negative):
     """
-    >>> AC
-    >>> 10101100
+
+    Convert a hexadecimal value to its decimal equivalent
+    #https://stackoverflow.com/questions/1425493/convert-hex-to-binary
+    >>> convert(AC, bin_str)
+    10101100
+    >>> convert(9A4, bin_str)
+    100110100100
+    >>> convert("   12f   ", bin_str)
+    100101111
+    >>> convert(FfFf, bin_str)
+    1111111111111111
+    >>> convert(F-f, bin_str)
+    Traceback (most recent call last):
+    ...
+    ValueError: invalid literal for int() with base 16:
+    >>> convert(,bin_str)
+    Traceback (most recent call last):
+    ...
+    ValueError: Empty string was passed to the function:
     
     """
-    while num > 0:
-        mnum = str(num % 2)
+
+    while num>0:
+        mnum: str = str(n%2)
         bin_str = mnum + bin_str
         num=num>>1
-    
-    return str(bin_str)
-
-print(convert(num, bin_str))
+    mnum = bin_str
+    if is_negative:
+        sign = "-"
+        return sign+bin_str   
+    else:
+        return bin_str
 
 if __name__ == "__main__":
     testmod(name = 'convert', verbose = True)
