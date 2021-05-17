@@ -7,7 +7,7 @@ class Dice:
     NUM_SIDES = 6
 
     def __init__(self):
-        """ Initialize a six sided dice """
+        """Initialize a six sided dice"""
         self.sides = list(range(1, Dice.NUM_SIDES + 1))
 
     def roll(self):
