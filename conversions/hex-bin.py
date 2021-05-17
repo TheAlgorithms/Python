@@ -2,8 +2,8 @@
 import math
 
 hex_str = input("Enter you value: ").strip()
-n = int(hex_str, 16)
-bin_str = ""
+num : int = int(hex_str, 16)
+bin_str: str = ""
 
 
 """
@@ -17,15 +17,18 @@ a >> 1 = 5
 
 """
 
-def convert(n, bin_str):
+def convert(num: int, bin_str: str) -> str:
     while n>0:
         #print(n)
-        m = str(n%2)
-        bin_str = m + bin_str
-        n=n>>1
+        mnum = str(n%2)
+        bin_str = mnum + bin_str
+        num=num>>1
     
     return str(bin_str)
 
-print("Your value in BINARY is " + convert(n, bin_str))
+print("Your value in BINARY is " + convert(num, bin_str))
 
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
 
