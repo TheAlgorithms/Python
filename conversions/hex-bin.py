@@ -6,7 +6,7 @@ import math
 hex_str = input("").strip()
 if not hex_str:
     raise ValueError("Empty string was passed to the function")
-is_negative = hex_str[0] == "-"
+is_negative:bool = hex_str[0] == "-"
 if is_negative:
     hex_string = hex_str[1:]
     
@@ -25,7 +25,7 @@ a >> 1 = 5
 
 """
 
-def convert(num, bin_str, is_negative):
+def convert(num: int, bin_str: str, is_negative: bool) ->str :
     """
 
     Convert a hexadecimal value to its decimal equivalent
