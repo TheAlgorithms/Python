@@ -16,6 +16,7 @@ a = 10
 a >> 1 = 5 
 
 """
+
 def convert(n, bin_str):
     while n>0:
         #print(n)
