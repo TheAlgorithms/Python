@@ -1,10 +1,15 @@
-#code to convert hexadecimal into binary
+#convert hexadecimal into binary
 from doctest import testmod
 import math
 
 
-hex_str = input("Enter your value: ").strip()
-num : int = int(hex_str, 16)
+hex_str = input("").strip()
+
+try:
+    num : int = int(hex_str, 16)
+except:
+    print("An exception occured")
+    
 bin_str: str = ""
 
 
@@ -21,19 +26,18 @@ a >> 1 = 5
 
 def convert(num: int, bin_str: str) -> str:
     """
-    >>> Enter your value: AC
-    >>> Your value in BINARY is 10101100
+    >>> AC
+    >>> 10101100
     
     """
-    while n>0:
-        #print(n)
-        mnum = str(n%2)
+    while num > 0:
+        mnum = str(num % 2)
         bin_str = mnum + bin_str
         num=num>>1
     
     return str(bin_str)
 
-print("Your value in BINARY is " + convert(num, bin_str))
+print(convert(num, bin_str))
 
 if __name__ == "__main__":
     testmod(name = 'convert', verbose = True)
