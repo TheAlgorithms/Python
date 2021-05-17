@@ -10,7 +10,6 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.models import Sequential
 
-
 if __name__ == "__main__":
     """
     First part of building a model is to get the data and prepare
