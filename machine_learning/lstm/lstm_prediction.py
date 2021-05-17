@@ -7,8 +7,8 @@
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from tf.keras.layers import LSTM, Dense
-from tf.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.models import Sequential
 
 
 if __name__ == "__main__":
