@@ -1,5 +1,4 @@
 #  CONVERT HEXADECIMAL TO BINARY
-from doctest import testmod
 import math
 
 def convert(num: str) -> str:
@@ -56,10 +55,11 @@ def convert(num: str) -> str:
         bin_str = num3 + bin_str
         num2 = num2 >> 1
         
-    return "-" + bin_str if flag else bin_str
+    return "-" + "".join(bin_str) if flag else bin_str
     
         
 
 if __name__ == "__main__":
-    testmod(name = 'convert', verbose = True)
+    import doctest
 
+    doctest.testmod()
