@@ -2,8 +2,7 @@
 from doctest import testmod
 import math
 
-def convert(num: str) ->str:
-    
+def convert(num: str) -> str:
     """
     Convert a hexadecimal value to its decimal equivalent
     #https://stackoverflow.com/questions/1425493/convert-hex-to-binary
