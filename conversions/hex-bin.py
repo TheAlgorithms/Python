@@ -2,7 +2,7 @@
 from doctest import testmod
 import math
 
-def convert(num: str) -> str:
+def convert(num: str) ->str:
     
     """
     Convert a hexadecimal value to its decimal equivalent
@@ -56,11 +56,9 @@ def convert(num: str) -> str:
         num3 :str = str(num2 % 2)
         bin_str = num3 + bin_str
         num2 = num2 >> 1
-
-    if flag: 
-        return "-" + bin_str
-    else:
-        return bin_str
+        
+    return "-" + bin_str if flag else bin_str
+    
         
 
 if __name__ == "__main__":
