@@ -3,7 +3,7 @@ import math
 from typing import Union
 
 
-def convert(num: str) ->Union[bool, int]:
+def convert(num: str) -> Union[bool, int]:
     """
     Convert a hexadecimal value to its decimal equivalent
     #https://stackoverflow.com/questions/1425493/convert-hex-to-binary
@@ -29,29 +29,28 @@ def convert(num: str) ->Union[bool, int]:
     False
     """
 
-    bin_str :str = ""
-    hex_str :str = num.strip()
-    
+    bin_str: str = ""
+    hex_str: str = num.strip()
+
     if not hex_str:
         return False
-    
-    is_negative : bool = hex_str[0] == "-"
-     
+
+    is_negative: bool = hex_str[0] == "-"
+
     if is_negative:
-        hex_string = hex_str[1:]
+        hex_str = hex_str[1:]
     try:
-        int_num :int = int(hex_str, 16)
+        int_num: int = int(hex_str, 16)
     except ValueError:
         return False
-    
+
     while int_num > 0:
-        str_num :str = str(int_num % 2)
+        str_num: str = str(int_num % 2)
         bin_str = str_num + bin_str
         int_num = int_num >> 1
-        
+
     return int("-" + "".join(bin_str)) if is_negative else int(bin_str)
-    
-        
+
 
 if __name__ == "__main__":
     import doctest
