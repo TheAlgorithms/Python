@@ -1,7 +1,8 @@
 #  CONVERT HEXADECIMAL TO BINARY
 import math
+from typing import Union
 
-def convert(num: str) -> str:
+def convert(num: str) ->Union[bool, str]:
     """
     Convert a hexadecimal value to its decimal equivalent
     #https://stackoverflow.com/questions/1425493/convert-hex-to-binary
