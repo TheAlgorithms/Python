@@ -31,12 +31,12 @@ def msd_radix_sort(list_of_ints: List[int]) -> List[int]:
 
 def _msd_radix_sort(list_of_ints: List[int], bit_position: int) -> List[int]:
     """
-    Sort the given list based of the bit at bit_position. Numbers with a
+    Sort the given list based on the bit at bit_position. Numbers with a
     0 at that position will be at the start of the list, numbers with a
     1 at the end.
     :param list_of_ints: A list of integers
-    :param bit_position: a bit which gets compared
-    :return: Returns a list of integers
+    :param bit_position: the position of the bit that gets compared
+    :return: Returns a partially sorted list
     """
     if bit_position == 0 or len(list_of_ints) == 1 or len(list_of_ints) == 0:
         return list_of_ints
@@ -46,10 +46,10 @@ def _msd_radix_sort(list_of_ints: List[int], bit_position: int) -> List[int]:
     # Split numbers based on bit at bit_position from the right
     for index, number in enumerate(list_of_ints):
         if (number >> (bit_position - 1)) & 1:
-            # number as a one at bit bit_position
+            # number has a one at bit bit_position
             ones.append(number)
         else:
-            # number as a zero at bit bit_position
+            # number has a zero at bit bit_position
             zeros.append(number)
 
     # recursively split both lists further
