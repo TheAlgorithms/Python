@@ -34,7 +34,6 @@ def convert(num: str) ->Union[bool, str]:
     """
 
     bin_str :str=""
-    flag :bool = 0
     hex_str :str = num.strip()
     
     if not hex_str:
@@ -43,7 +42,6 @@ def convert(num: str) ->Union[bool, str]:
     is_negative : bool= hex_str[0] == "-"
      
     if is_negative:
-        flag = 1
         hex_string = hex_str[1:]
     try:
         num2 :int = int(hex_str, 16)
@@ -55,7 +53,7 @@ def convert(num: str) ->Union[bool, str]:
         bin_str = num3 + bin_str
         num2 = num2 >> 1
         
-    return "-" + "".join(bin_str) if flag else bin_str
+    return "-" + "".join(bin_str) if is_negative else bin_str
     
         
 
