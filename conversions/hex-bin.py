@@ -25,7 +25,7 @@ def convert(num: str) ->Union[bool, int]:
     1111111111111111
     >>> convert("F-f")
     False
-    >>> convert()
+    >>> convert("")
     False
     """
 
