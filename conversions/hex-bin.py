@@ -1,9 +1,4 @@
 #  CONVERT HEXADECIMAL TO BINARY
-python3 -m pip install pre-commit
-pre-commit install
-python3 -m pip install black  # only required the first time
-black .
-
 import math
 from typing import Union
 
