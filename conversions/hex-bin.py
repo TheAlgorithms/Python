@@ -24,14 +24,9 @@ def convert(num: str) ->Union[bool, int]:
     >>> convert("FfFf")
     1111111111111111
     >>> convert("F-f")
-    Traceback (most recent call last):
-    ...
-    ValueError: invalid literal for int() with base 16:
+    False
     >>> convert()
-    Traceback (most recent call last):
-    ...
-    ValueError: Empty string was passed to the function:
-    
+    False
     """
 
     bin_str :str = ""
