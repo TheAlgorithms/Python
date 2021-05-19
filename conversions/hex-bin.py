@@ -1,8 +1,14 @@
 #  CONVERT HEXADECIMAL TO BINARY
+python3 -m pip install pre-commit
+pre-commit install
+python3 -m pip install black  # only required the first time
+black .
+
 import math
 from typing import Union
 
-def convert(num: str) ->Union[bool, str]:
+
+def convert(num: str) ->Union[bool, int]:
     """
     Convert a hexadecimal value to its decimal equivalent
     #https://stackoverflow.com/questions/1425493/convert-hex-to-binary
@@ -33,27 +39,27 @@ def convert(num: str) ->Union[bool, str]:
     
     """
 
-    bin_str :str=""
+    bin_str :str = ""
     hex_str :str = num.strip()
     
     if not hex_str:
         return False
     
-    is_negative : bool= hex_str[0] == "-"
+    is_negative : bool = hex_str[0] == "-"
      
     if is_negative:
         hex_string = hex_str[1:]
     try:
-        num2 :int = int(hex_str, 16)
+        int_num :int = int(hex_str, 16)
     except ValueError:
         return False
     
-    while num2 > 0:
-        num3 :str = str(num2 % 2)
-        bin_str = num3 + bin_str
-        num2 = num2 >> 1
+    while int_num > 0:
+        str_num :str = str(int_num % 2)
+        bin_str = str_num + bin_str
+        int_num = int_num >> 1
         
-    return "-" + "".join(bin_str) if is_negative else bin_str
+    return int("-" + "".join(bin_str)) if is_negative else int(bin_str)
     
         
 
