@@ -44,7 +44,6 @@ def convert(num: str) -> str:
     if is_negative:
         flag = 1
         hex_string = hex_str[1:]
-    
     try:
         num2 :int = int(hex_str, 16)
     except ValueError:
