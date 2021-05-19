@@ -37,6 +37,10 @@ def _msd_radix_sort(list_of_ints: List[int], bit_position: int) -> List[int]:
     :param list_of_ints: A list of integers
     :param bit_position: the position of the bit that gets compared
     :return: Returns a partially sorted list
+    >>> _msd_radix_sort([45, 2, 32], 1)
+    [2, 32, 45]
+    >>> _msd_radix_sort([10, 4, 12], 2)
+    [4, 12, 10]
     """
     if bit_position == 0 or len(list_of_ints) == 1 or len(list_of_ints) == 0:
         return list_of_ints
