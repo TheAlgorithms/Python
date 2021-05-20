@@ -21,6 +21,10 @@ def msd_radix_sort(list_of_ints: List[int]) -> List[int]:
     [80, 123, 123, 345]
     >>> msd_radix_sort([1209, 834598, 1, 540402, 45])
     [1, 45, 1209, 540402, 834598]
+    >>> msd_radix_sort([-1, 34, 45])
+    Traceback (most recent call last):
+    ...
+    ValueError: All numbers must be positive
     """
     if not list_of_ints:
         return []
@@ -45,13 +49,13 @@ def _msd_radix_sort(list_of_ints: List[int], bit_position: int) -> List[int]:
     >>> _msd_radix_sort([10, 4, 12], 2)
     [4, 12, 10]
     """
-    if bit_position == 0 or len(list_of_ints) == 1 or len(list_of_ints) == 0:
+    if bit_position == 0 or len(list_of_ints) in [0, 1]:
         return list_of_ints
 
     zeros = list()
     ones = list()
     # Split numbers based on bit at bit_position from the right
-    for index, number in enumerate(list_of_ints):
+    for number in list_of_ints:
         if (number >> (bit_position - 1)) & 1:
             # number has a one at bit bit_position
             ones.append(number)
