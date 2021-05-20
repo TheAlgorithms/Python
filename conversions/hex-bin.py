@@ -1,9 +1,8 @@
 #  CONVERT HEXADECIMAL TO BINARY
 import math
-from typing import Union
 
 
-def convert(num: str) -> Union[bool, int]:
+def hex_to_bin(hex_num: str) -> int:
     """
     Convert a hexadecimal value to its decimal equivalent
     #https://stackoverflow.com/questions/1425493/convert-hex-to-binary
@@ -15,22 +14,22 @@ def convert(num: str) -> Union[bool, int]:
     a = 10
     a >> 1 = 5 
     
-    >>> convert("AC")
+    >>> hex_to_bin("AC")
     10101100
-    >>> convert("9A4")
+    >>> hex_to_bin("9A4")
     100110100100
-    >>> convert("   12f   ")
+    >>> hex_to_bin("   12f   ")
     100101111
-    >>> convert("FfFf")
+    >>> hex_to_bin("FfFf")
     1111111111111111
-    >>> convert("F-f")
+    >>> hex_to_bin("F-f")
     False
-    >>> convert("")
+    >>> hex_to_bin("")
     False
     """
 
     bin_str: str = ""
-    hex_str: str = num.strip()
+    hex_str: str = hex_num.strip()
 
     if not hex_str:
         return False
