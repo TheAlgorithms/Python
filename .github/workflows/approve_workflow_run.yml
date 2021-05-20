@@ -1,0 +1,21 @@
+# https://docs.github.com/en/rest/reference/actions#approve-a-workflow-run-for-a-fork-pull-request
+
+name: Approve Workflow Run
+
+on:
+  workflow_run:
+  types:
+    - completed
+
+jobs:
+  approve:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == "action_required" }}
+    steps:
+      - name: Automatically approve a workflow run
+        run: |
+          curl \
+          --request POST \
+          --header "Accept: application/vnd.github.v3+json" \
+          --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          --url "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/approve"
