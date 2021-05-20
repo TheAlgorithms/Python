@@ -23,16 +23,20 @@ def hex_to_bin(hex_num: str) -> int:
     >>> hex_to_bin("FfFf")
     1111111111111111
     >>> hex_to_bin("F-f")
-    False
+    Traceback (most recent call last):
+    ...
+    ValueError: Invalid value was passed to the function
     >>> hex_to_bin("")
-    False
+    Traceback (most recent call last):
+    ...
+    ValueError: No value was passed to the function
     """
 
     bin_str: str = ""
     hex_str: str = hex_num.strip()
 
     if not hex_str:
-        return False
+        raise ValueError("No value was passed to the function")
 
     is_negative: bool = hex_str[0] == "-"
 
@@ -41,8 +45,7 @@ def hex_to_bin(hex_num: str) -> int:
     try:
         int_num: int = int(hex_str, 16)
     except ValueError:
-        return False
-
+        raise ValueError("Invalid value was passed to the function")
     while int_num > 0:
         str_num: str = str(int_num % 2)
         bin_str = str_num + bin_str
