@@ -3,6 +3,7 @@
 name: "Approve Workflow Run"
 
 on:
+  pull_request:
   workflow_run:
     workflows: all
     types:
