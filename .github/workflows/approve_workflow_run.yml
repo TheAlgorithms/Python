@@ -12,7 +12,7 @@ on:
 jobs:
   approve:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == "action_required" }}
+    if: ${{ github.event.workflow_run.conclusion == 'action_required' }}
     steps:
       - name: "Automatically approve a workflow run"
         run: |
