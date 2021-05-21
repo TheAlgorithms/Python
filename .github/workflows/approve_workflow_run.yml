@@ -1,18 +1,18 @@
 # https://docs.github.com/en/rest/reference/actions#approve-a-workflow-run-for-a-fork-pull-request
 
-name: Approve Workflow Run
+name: "Approve Workflow Run"
 
 on:
   workflow_run:
-  types:
-    - completed
+    types:
+      - completed
 
 jobs:
   approve:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == "action_required" }}
     steps:
-      - name: Automatically approve a workflow run
+      - name: "Automatically approve a workflow run"
         run: |
           curl \
           --request POST \
