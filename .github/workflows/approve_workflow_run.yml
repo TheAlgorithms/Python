@@ -4,8 +4,6 @@ name: "Approve Workflow Run"
 
 on:
   workflow_run:
-    types:
-      - completed
 
 jobs:
   approve:
