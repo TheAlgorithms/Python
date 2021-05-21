@@ -11,12 +11,16 @@ on:
 jobs:
   approve:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'action_required' }}
     steps:
       - name: "Automatically approve a workflow run"
+        if: ${{ github.event.workflow_run.conclusion == 'action_required' }}
         run: |
+          echo "Approving the workflow id: ${{ github.event.workflow_run.id }}"
           curl \
           --request POST \
           --header "Accept: application/vnd.github.v3+json" \
           --header "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           --url "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}/approve"
+      - if: ${{ github.event.workflow_run.conclusion != 'action_required' }}
+        run: |
+          echo "Skipped the approval step for the workflow id: ${{ github.event.workflow_run.id }}"
