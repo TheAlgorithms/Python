@@ -3,6 +3,7 @@
 name: "Approve Workflow Run"
 
 on:
+  pull_request:
   workflow_run:
     workflows: ['build', 'project_euler', 'pre-commit', 'directory_writer']
     types:
