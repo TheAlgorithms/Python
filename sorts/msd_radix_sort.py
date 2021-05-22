@@ -108,8 +108,9 @@ def msd_radix_sort_inplace(list_of_ints: List[int]):
     _msd_radix_sort_inplace(list_of_ints, most_bits, 0, length)
 
 
-def _msd_radix_sort_inplace(list_of_ints: List[int], bit_position: int,
-                            begin_index: int, end_index: int):
+def _msd_radix_sort_inplace(
+    list_of_ints: List[int], bit_position: int, begin_index: int, end_index: int
+):
     """
     Sort the given list based on the bit at bit_position. Numbers with a
     0 at that position will be at the start of the list, numbers with a
