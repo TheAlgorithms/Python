@@ -3,18 +3,19 @@ Convolutional Neural Network
 
 Objective : To train a CNN model detect if TB is present in Lung X-ray or not.
 
-Resources CNN Theory : https://en.wikipedia.org/wiki/Convolutional_neural_network
+Resources CNN Theory :
+    https://en.wikipedia.org/wiki/Convolutional_neural_network
 Resources Tensorflow : https://www.tensorflow.org/tutorials/images/cnn
 
 Download dataset from :
 https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html
 
-1. Download the dataset folder and create two folder training set and test set in the parent 
-dataste folder
-2. Move 30-40 image from both TB positive and TB Negative folder in the test 
-set folder
-3. The labels of the iamges will be extracted from the folder name the image
-is present in.
+1. Download the dataset folder and create two folder training set and test set
+in the parent dataste folder
+2. Move 30-40 image from both TB positive and TB Negative folder
+in the test set folder
+3. The labels of the iamges will be extracted from the folder name
+the image is present in.
 
 """
 
@@ -63,17 +64,21 @@ if __name__ == "__main__":
     # regressor=load_model('cnn.h5')
 
     train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
-        rescale=1.0 / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True
+        rescale=1.0 / 255, shear_range=0.2, zoom_range=0.2,
+        horizontal_flip=True
     )
 
-    test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1.0 / 255)
+    test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+        rescale=1.0 / 255)
 
     training_set = train_datagen.flow_from_directory(
-        "dataset/training_set", target_size=(64, 64), batch_size=32, class_mode="binary"
+        "dataset/training_set", target_size=(64, 64),
+        batch_size=32, class_mode="binary"
     )
 
     test_set = test_datagen.flow_from_directory(
-        "dataset/test_set", target_size=(64, 64), batch_size=32, class_mode="binary"
+        "dataset/test_set", target_size=(64, 64),
+        batch_size=32, class_mode="binary"
     )
 
     classifier.fit_generator(
