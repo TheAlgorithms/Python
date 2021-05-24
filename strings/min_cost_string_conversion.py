@@ -26,7 +26,7 @@ def compute_transform_tables(
         [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
     ops: list[list[str]] = [
-        ['' for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
+        ["" for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
 
     for i in range(1, len_source_seq + 1):

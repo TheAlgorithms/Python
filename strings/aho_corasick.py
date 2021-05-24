@@ -1,11 +1,13 @@
 from collections import deque
 from typing import Union, TypedDict, Deque
 
+
 class type_of_dict(TypedDict):
     value: str
     next_states: list[int]
     fail_state: int
     output: list[str]
+
 
 class Automaton:
     def __init__(self, keywords: list[str]):
@@ -75,7 +77,9 @@ class Automaton:
         >>> A.search_in("whatever, err ... , wherever")
         {'what': [0], 'hat': [1], 'ver': [5, 25], 'er': [6, 10, 22, 26]}
         """
-        result: dict[str, list[int]] = dict()  # returns a dict with keywords and list of its occurrences
+        result: dict[
+            str, list[int]
+        ] = dict()  # returns a dict with keywords and list of its occurrences
         current_state = 0
         for i in range(len(string)):
             while (
@@ -84,8 +88,11 @@ class Automaton:
             ):
                 current_state = self.adlist[current_state]["fail_state"]
             next_state = self.find_next_state(current_state, string[i])
-            assert next_state is not None
-            current_state = next_state
+            if next_state:
+                assert next_state is not None
+                current_state = next_state
+            else:
+                current_state = 0
             if current_state is None:
                 current_state = 0
             else:
