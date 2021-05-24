@@ -6,9 +6,9 @@
 """
 import numpy as np
 import pandas as pd
-from keras.layers import LSTM, Dense
-from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
+from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.models import Sequential
 
 if __name__ == "__main__":
     """
