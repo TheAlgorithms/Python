@@ -1,3 +1,5 @@
+from typing import Union
+
 def palindromic_string(input_string: str) -> str:
     """
     >>> palindromic_string('abbbaba')
@@ -20,6 +22,8 @@ def palindromic_string(input_string: str) -> str:
     # if input_string is "aba" than new_input_string become "a|b|a"
     new_input_string = ""
     output_string = ""
+
+    i: Union[int, str]
 
     # append each character + "|" in new_string for range(0, length-1)
     for i in input_string[: len(input_string) - 1]:
