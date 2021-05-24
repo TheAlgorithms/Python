@@ -72,13 +72,13 @@ if __name__ == "__main__":
         rescale=1.0 / 255)
 
     training_set = train_datagen.flow_from_directory(
-        "dataset/training_set", target_size=(64, 64),
-        batch_size=32, class_mode="binary"
+        "dataset/training_set", target_size=(64, 64), batch_size=32,
+        class_mode="binary"
     )
 
     test_set = test_datagen.flow_from_directory(
-        "dataset/test_set", target_size=(64, 64),
-        batch_size=32, class_mode="binary"
+        "dataset/test_set", target_size=(64, 64), batch_size=32,
+        class_mode="binary"
     )
 
     classifier.fit_generator(
