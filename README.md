@@ -19,7 +19,7 @@ These implementations are for learning purposes only. Therefore they may be less
 
 Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
-## Community Channel
+## The Community Channel
 
 We're on [Gitter](https://gitter.im/TheAlgorithms)!  Please join us.
 
