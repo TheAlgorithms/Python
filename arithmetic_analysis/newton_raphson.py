@@ -5,7 +5,6 @@
 from decimal import Decimal
 from math import *  # noqa: F401, F403
 from typing import Union
-
 from sympy import diff
 
 
