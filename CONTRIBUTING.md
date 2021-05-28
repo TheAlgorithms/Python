@@ -33,7 +33,7 @@ An Algorithm is one or more functions (or classes) that:
 * take one or more inputs,
 * perform some internal calculations or data manipulations,
 * return one or more outputs,
-* have minimal side effects (Ex. print(), plot(), read(), write()).
+* have minimal side effects (Ex. `print()`, `plot()`, `read()`, `write()`).
 
 Algorithms should be packaged in a way that would make it easy for readers to put them into larger programs.
 
@@ -42,7 +42,7 @@ Algorithms should:
 * use Python naming conventions and intuitive variable names to ease comprehension
 * be flexible to take different input values
 * have Python type hints for their input parameters and return values
-* raise Python exceptions (ValueError, etc.) on erroneous input values
+* raise Python exceptions (`ValueError`, etc.) on erroneous input values
 * have docstrings with clear explanations and/or URLs to source materials
 * contain doctests that test both valid and erroneous input values
 * return all calculation results instead of printing or plotting them
@@ -66,10 +66,10 @@ pre-commit run --all-files --show-diff-on-failure
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in Python 3.7+. For instance:  __print()__ is a function in Python 3 so __print "Hello"__ will _not_ work but __print("Hello")__ will.
-- Please focus hard on naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
-  - Single letter variable names are _old school_ so please avoid them unless their life only spans a few lines.
-  - Expand acronyms because __gcd()__ is hard to understand but __greatest_common_divisor()__ is not.
+- Please write in Python 3.7+. For instance:  `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
+- Please focus hard on naming of functions, classes, and variables.  Help your reader by using **descriptive names** that can help you to remove redundant comments.
+  - Single letter variable names are *old school* so please avoid them unless their life only spans a few lines.
+  - Expand acronyms because `gcd()` is hard to understand but `greatest_common_divisor()` is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
 - We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where they make the code easier to read.
@@ -81,7 +81,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   black .
   ```
 
-- All submissions will need to pass the test __flake8 . --ignore=E203,W503 --max-line-length=88__ before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test `flake8 . --ignore=E203,W503 --max-line-length=88` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
   python3 -m pip install flake8  # only required the first time
@@ -134,7 +134,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   python3 -m doctest -v my_submission.py
   ```
 
-  The use of the Python builtin __input()__ function is **not** encouraged:
+  The use of the Python builtin `input()` function is **not** encouraged:
 
   ```python
   input('Enter your input:')
@@ -142,7 +142,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   input = eval(input("Enter your input: "))
   ```
 
-  However, if your code uses __input()__ then we encourage you to gracefully deal with leading and trailing whitespace in user input by adding __.strip()__ as in:
+  However, if your code uses `input()` then we encourage you to gracefully deal with leading and trailing whitespace in user input by adding `.strip()` as in:
 
   ```python
   starting_value = int(input("Please enter a starting value: ").strip())
@@ -160,7 +160,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
-- If you need a third party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
+- If you need a third party module that is not in the file **requirements.txt**, please add it to that file as part of your submission.
 
 #### Other Requirements for Submissions
 - If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
