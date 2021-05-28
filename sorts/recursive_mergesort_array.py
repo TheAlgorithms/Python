@@ -1,3 +1,4 @@
+## Documentation: https://en.wikipedia.org/wiki/Merge_sort
 def merge(arr):
 	"""Return a sorted array.
 	>>> merge([10,9,8,7,6,5,4,3,2,1])
