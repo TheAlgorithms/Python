@@ -18,7 +18,7 @@ def merge(arr: list[int]) -> list[int]:
 		i = 0
 		j = 0
 		k = 0
-		while(i < left_size and j < right_size):
+		while i < left_size and j < right_size:
 			if left_array[i] < right_array[j]:
 				arr[k] = left_array[i]
 				i = i + 1
