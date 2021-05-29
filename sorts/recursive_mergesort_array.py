@@ -7,7 +7,7 @@ def merge(arr: list[int]) -> list[int]:
 	>>> merge([10,22,1,2,3,9,15,23])
 	[1, 2, 3, 9, 10, 15, 22, 23]
 	"""
-	if(len(arr) > 1):
+	if len(arr) > 1:
 		middle_length = len(arr) // 2
 		left_array = arr[:middle_length]
 		right_array = arr[middle_length:]
