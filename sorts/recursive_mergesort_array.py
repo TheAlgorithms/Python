@@ -13,8 +13,8 @@ def merge(arr: list[int]) -> list[int]:
         right_array = arr[middle_length:]
         left_size = len(left_array)
         right_size = len(right_array)
-        l = merge(left_array)
-        r = merge(right_array)
+        merge(left_array)
+        merge(right_array)
         i = 0
         j = 0
         k = 0
