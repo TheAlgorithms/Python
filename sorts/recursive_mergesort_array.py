@@ -30,7 +30,7 @@ def merge(arr: list[int]) -> list[int]:
 				arr[k] = left_array[i]
 				i = i + 1
 				k = k + 1
-		while(j < right_size):
+		while j < right_size:
 				arr[k] = right_array[j]
 				j = j + 1
 				k = k + 1
