@@ -1,7 +1,7 @@
 import statistics
 
 
-def mode(input_list):  # Defining function "mode."
+def mode(input_list: list) -> int:  # Defining function "mode."
     """This function returns the mode(Mode as in the measures of
     central tendency) of the input data.
 
