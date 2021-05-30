@@ -17,23 +17,23 @@ def merge(arr: list[int]) -> list[int]:
     []
     """
     if len(arr) > 1:
-        middle_length = len(arr) // 2  ##Finds the middle of the array
+        middle_length = len(arr) // 2  # Finds the middle of the array
         left_array = arr[
             :middle_length
-        ]  ##Creates an array of the elements in the first half.
+        ]  # Creates an array of the elements in the first half.
         right_array = arr[
             middle_length:
-        ]  ##Creates an array of the elements in the second half.
+        ]  # Creates an array of the elements in the second half.
         left_size = len(left_array)
         right_size = len(right_array)
-        merge(left_array)  ## Starts sorting the left.
-        merge(right_array)  ##Starts sorting the right
-        left_index = 0  ##Left Counter
-        right_index = 0  ## Right Counter
-        index = 0  ## Position Counter
+        merge(left_array)  # Starts sorting the left.
+        merge(right_array)  # Starts sorting the right
+        left_index = 0  # Left Counter
+        right_index = 0  # Right Counter
+        index = 0  # Position Counter
         while (
             left_index < left_size and right_index < right_size
-        ):  ##Runs until the lowers size of the left and right are sorted.
+        ):  # Runs until the lowers size of the left and right are sorted.
             if left_array[left_index] < right_array[right_index]:
                 arr[index] = left_array[left_index]
                 left_index = left_index + 1
@@ -43,13 +43,13 @@ def merge(arr: list[int]) -> list[int]:
             index = index + 1
         while (
             left_index < left_size
-        ):  ##Adds the left over elements in the left half of the array
+        ):  # Adds the left over elements in the left half of the array
             arr[index] = left_array[left_index]
             left_index = left_index + 1
             index = index + 1
         while (
             right_index < right_size
-        ):  ##Adds the left over elements in the right half of the array
+        ):  # Adds the left over elements in the right half of the array
             arr[index] = right_array[right_index]
             right_index = right_index + 1
             index = index + 1
