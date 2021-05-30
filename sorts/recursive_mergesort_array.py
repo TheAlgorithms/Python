@@ -1,4 +1,6 @@
-"""A merge sort which accepts an array as input and recursively splits an array in half and sorts and combines them. """
+"""A merge sort which accepts an array as input and recursively
+splits an array in half and sorts and combines them.
+"""
 
 """https://en.wikipedia.org/wiki/Merge_sort """
 
