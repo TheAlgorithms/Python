@@ -98,7 +98,7 @@
 
 ## Computer Vision
   * [Harris Corner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harris_corner.py)
-  * [Meanthreshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/meanthreshold.py)
+  * [Mean Threshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mean_threshold.py)
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
