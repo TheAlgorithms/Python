@@ -21,7 +21,7 @@ def mode(input_list: list) -> int:  # Defining function "mode."
         result.append(input_list.count(x))
     y = max(result)  # Gets the maximum value in the result list.
     # Returns the value with the maximum number of repetitions.
-    return check_list[result.index(y)]
+    return input_list[result.index(y)]
 
 
 if __name__ == "__main__":
