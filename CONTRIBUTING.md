@@ -2,7 +2,7 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you **read the whole guidelines**. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
 
 ## Contributing
 
@@ -15,9 +15,9 @@ We are very happy that you consider implementing algorithms and data structure f
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
 - You submitted work fulfils or mostly fulfils our styles and standards
 
-**New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but **identical implementation** of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
+__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
-**Improving comments** and **writing proper tests** are also highly welcome.
+__Improving comments__ and __writing proper tests__ are also highly welcome.
 
 ### Contribution
 
@@ -67,7 +67,7 @@ pre-commit run --all-files --show-diff-on-failure
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
 - Please write in Python 3.7+. For instance:  `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
-- Please focus hard on naming of functions, classes, and variables.  Help your reader by using **descriptive names** that can help you to remove redundant comments.
+- Please focus hard on naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
   - Single letter variable names are *old school* so please avoid them unless their life only spans a few lines.
   - Expand acronyms because `gcd()` is hard to understand but `greatest_common_divisor()` is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
@@ -134,7 +134,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   python3 -m doctest -v my_submission.py
   ```
 
-  The use of the Python builtin `input()` function is **not** encouraged:
+  The use of the Python builtin `input()` function is __not__ encouraged:
 
   ```python
   input('Enter your input:')
@@ -160,7 +160,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
-- If you need a third party module that is not in the file **requirements.txt**, please add it to that file as part of your submission.
+- If you need a third party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
 
 #### Other Requirements for Submissions
 - If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
@@ -175,8 +175,8 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - All submissions will be tested with [__mypy__](http://www.mypy-lang.org) so we encourage to add [__Python type hints__](https://docs.python.org/3/library/typing.html) where it makes sense to do so.
 
 - Most importantly,
-  - **Be consistent in the use of these guidelines when submitting.**
-  - **Join** [Gitter](https://gitter.im/TheAlgorithms) **now!**
+  - __Be consistent in the use of these guidelines when submitting.__
+  - __Join__ [Gitter](https://gitter.im/TheAlgorithms) __now!__
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.
