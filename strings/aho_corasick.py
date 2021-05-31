@@ -1,5 +1,5 @@
 from collections import deque
-from typing import Union, TypedDict, Deque
+from typing import Deque, TypedDict, Union
 
 
 class type_of_dict(TypedDict):
