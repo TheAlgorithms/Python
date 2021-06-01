@@ -1,4 +1,3 @@
-import statistics
 from typing import Any
 
 
@@ -17,6 +16,7 @@ def mode(input_list: list) -> Any:  # Defining function "mode."
     >>> input_list = ["x", "y", "y", "z"]
     >>> mode(input_list)
     'y'
+    >>> import statistics
     >>> input_list = [2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2]
     >>> mode(input_list) == statistics.mode(input_list)
     True
