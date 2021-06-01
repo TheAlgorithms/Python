@@ -232,6 +232,7 @@
 ## Dynamic Programming
   * [Abbreviation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/abbreviation.py)
   * [Bitmask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/bitmask.py)
+  * [Catalan Numbers](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/catalan_numbers.py)
   * [Climbing Stairs](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/climbing_stairs.py)
   * [Edit Distance](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/edit_distance.py)
   * [Factorial](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/factorial.py)
