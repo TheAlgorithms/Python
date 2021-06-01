@@ -15,7 +15,7 @@ def mode(input_list: list) -> Any:  # Defining function "mode."
     >>> mode(input_list)
     2
     >>> input_list = ["x", "y", "y", "z"]
-    >>> mode(input_list) 
+    >>> mode(input_list)
     'y'
     >>> input_list = [2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2]
     >>> mode(input_list) == statistics.mode(input_list)
@@ -35,4 +35,5 @@ def mode(input_list: list) -> Any:  # Defining function "mode."
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
