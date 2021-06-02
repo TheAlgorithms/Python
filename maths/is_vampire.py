@@ -15,20 +15,20 @@ https://en.wikipedia.org/wiki/Vampire_number
 from itertools import permutations
 
 
-def getFangs(num_str: str) -> list:
+def get_fangs(num_str: str) -> list:
     """
     Returns the list of fangs of an Vampire number if found
     else returns empty list
 
-    >>> getFangs('1260')
+    >>> get_fangs('1260')
     ['21', '60']
-    >>> getFangs('1890')
+    >>> get_fangs('1890')
     []
-    >>> getFangs('243770')
+    >>> get_fangs('243770')
     []
-    >>> getFangs('125500')
+    >>> get_fangs('125500')
     ['251', '500']
-    >>> getFangs('13078260')
+    >>> get_fangs('13078260')
     ['1863', '7020']
     """
     num_permutations = permutations(num_str, len(num_str))
@@ -45,39 +45,36 @@ def getFangs(num_str: str) -> list:
     return []
 
 
-def isVampire(num: int) -> bool:
+def is_vampire(num: int) -> bool:
     """
     Return the boolean true/false based on the number is an Vampire
     number or not.
 
-    >>> isVampire(1260)
+    >>> is_vampire(1260)
     True
-    >>> isVampire(-126)
+    >>> is_vampire(-126)
     False
-    >>> isVampire(688)
+    >>> is_vampire(688)
     False
-    >>> isVampire(125500)
+    >>> is_vampire(125500)
     True
-    >>> isVampire(13078260)
+    >>> is_vampire(13078260)
     True
     """
     if num > 0:
         num_str = str(num)
         if len(num_str) % 2 == 0:
-            return False if not getFangs(num_str) else True
+            return False if not get_fangs(num_str) else True
     return False
 
 
-def main():
+if __name__ == "__main__":
     """
-    Takes input from the user and checks if it is an Vampire number or not.
+    Take input from the user and check if it is an Vampire number or not.
     """
     num = int(input("Enter a number to see if it is an Vampire number: ").strip())
-    print(f"{num} is {'' if isVampire(num) else 'not '}an Vampire number.")
+    print(f"{num} is {'' if is_vampire(num) else 'not '}an Vampire number.")
 
-
-if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
