@@ -1,8 +1,12 @@
 """
-An Armstrong number is equal to the sum of its own digits each raised
-to the power of the number of digits.
+An Armstrong number is equal to the sum of its own digits each raised to the
+power of the number of digits.
+
 For example, 370 is an Armstrong number because 3*3*3 + 7*7*7 + 0*0*0 = 370.
-An Armstrong number is often called Narcissistic number.
+
+Armstrong numbers are also called Narcissistic numbers and Pluperfect numbers.
+
+OEIS entry: https://oeis.org/A005188
 """
 
 
@@ -43,6 +47,45 @@ def armstrong_number(n: int) -> bool:
     return n == sum
 
 
+def pluperfect_number(n: int) -> bool:
+    """Return True if n is a pluperfect number or False if it is not
+    >>> pluperfect_number(153)
+    True
+    >>> pluperfect_number(200)
+    False
+    >>> pluperfect_number(1634)
+    True
+    >>> pluperfect_number(0)
+    False
+    >>> pluperfect_number(-1)
+    False
+    >>> pluperfect_number(1.2)
+    False
+    >>> pluperfect_number(24678051)
+    True
+    >>> pluperfect_number(115132219018763992565095597973971522401)
+    True
+    """
+
+    if not isinstance(n, int) or n < 1:
+        return False
+
+    # Init a "histogram" of the digits
+    digit_histogram = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    digit_total = 0
+    sum = 0
+    temp = n
+    while temp > 0:
+        temp, rem = divmod(temp, 10)
+        digit_histogram[rem] += 1
+        digit_total += 1
+
+    for (cnt, i) in zip(digit_histogram, range(len(digit_histogram))):
+        sum += cnt * i ** digit_total
+
+    return n == sum
+
+
 def narcissistic_number(n: int) -> bool:
     """Return True if n is a narcissistic number or False if it is not"""
 
@@ -61,6 +104,7 @@ def main():
     num = int(input("Enter an integer to see if it is an Armstrong number: ").strip())
     print(f"{num} is {'' if armstrong_number(num) else 'not '}an Armstrong number.")
     print(f"{num} is {'' if narcissistic_number(num) else 'not '}an Armstrong number.")
+    print(f"{num} is {'' if pluperfect_number(num) else 'not '}an Armstrong number.")
 
 
 if __name__ == "__main__":
