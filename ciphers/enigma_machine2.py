@@ -15,6 +15,10 @@ Module includes:
 Created by TrapinchO
 """
 
+RotorPositionT = tuple[int, int, int]
+RotorSelectionT = tuple[str, str, str]
+
+
 # used alphabet --------------------------
 # from string.ascii_uppercase
 abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -63,7 +67,9 @@ rotor8 = "LFKIJODBEGAMQPXVUHYSTCZRWN"
 rotor9 = "KOAEGVDHXPQZMLFTYWJNBRCIUS"
 
 
-def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
+def _validator(
+    rotpos: RotorPositionT, rotsel: RotorSelectionT, pb: str
+) -> tuple[RotorPositionT, RotorSelectionT, dict[str, str]]:
     """
     Checks if the values can be used for the 'enigma' function
 
@@ -99,12 +105,12 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
         )
 
     # Validates string and returns dict
-    pb = _plugboard(pb)
+    pbdict = _plugboard(pb)
 
-    return rotpos, rotsel, pb
+    return rotpos, rotsel, pbdict
 
 
-def _plugboard(pbstring: str) -> dict:
+def _plugboard(pbstring: str) -> dict[str, str]:
     """
     https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 
@@ -145,17 +151,17 @@ def _plugboard(pbstring: str) -> dict:
 
     # Created the dictionary
     pb = {}
-    for i in range(0, len(pbstring) - 1, 2):
-        pb[pbstring[i]] = pbstring[i + 1]
-        pb[pbstring[i + 1]] = pbstring[i]
+    for j in range(0, len(pbstring) - 1, 2):
+        pb[pbstring[j]] = pbstring[j + 1]
+        pb[pbstring[j + 1]] = pbstring[j]
 
     return pb
 
 
 def enigma(
     text: str,
-    rotor_position: tuple,
-    rotor_selection: tuple = (rotor1, rotor2, rotor3),
+    rotor_position: RotorPositionT,
+    rotor_selection: RotorSelectionT = (rotor1, rotor2, rotor3),
     plugb: str = "",
 ) -> str:
     """

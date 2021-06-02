@@ -28,7 +28,7 @@ alphabet = {
 }
 
 
-def generate_table(key: str) -> [(str, str)]:
+def generate_table(key: str) -> list[tuple[str, str]]:
     """
     >>> generate_table('marvin')  # doctest: +NORMALIZE_WHITESPACE
     [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
@@ -60,30 +60,21 @@ def decrypt(key: str, words: str) -> str:
     return encrypt(key, words)
 
 
-def get_position(table: [(str, str)], char: str) -> (int, int) or (None, None):
+def get_position(table: tuple[str, str], char: str) -> tuple[int, int]:
     """
-    >>> table = [
-    ...     ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
-    ...     ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'),
-    ...     ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
-    >>> get_position(table, 'A')
-    (None, None)
+    >>> get_position(generate_table('marvin')[0], 'M')
+    (0, 12)
     """
-    if char in table[0]:
-        row = 0
-    else:
-        row = 1 if char in table[1] else -1
-    return (None, None) if row == -1 else (row, table[row].index(char))
+    # `char` is either in the 0th row or the 1st row
+    row = 0 if char in table[0] else 1
+    col = table[row].index(char)
+    return row, col
 
 
-def get_opponent(table: [(str, str)], char: str) -> str:
+def get_opponent(table: tuple[str, str], char: str) -> str:
     """
-    >>> table = [
-    ...     ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
-    ...     ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'),
-    ...     ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
-    >>> get_opponent(table, 'A')
-    'A'
+    >>> get_opponent(generate_table('marvin')[0], 'M')
+    'T'
     """
     row, col = get_position(table, char.upper())
     if row == 1:
@@ -97,14 +88,16 @@ if __name__ == "__main__":
 
     doctest.testmod()  # Fist ensure that all our tests are passing...
     """
-    ENTER KEY: marvin
-    ENTER TEXT TO ENCRYPT: jessica
-    ENCRYPTED: QRACRWU
-    DECRYPTED WITH KEY: JESSICA
+    Demo:
+
+    Enter key: marvin
+    Enter text to encrypt: jessica
+    Encrypted: QRACRWU
+    Decrypted with key: JESSICA
     """
-    key = input("ENTER KEY: ").strip()
-    text = input("ENTER TEXT TO ENCRYPT: ").strip()
+    key = input("Enter key: ").strip()
+    text = input("Enter text to encrypt: ").strip()
     cipher_text = encrypt(key, text)
 
-    print(f"ENCRYPTED: {cipher_text}")
-    print(f"DECRYPTED WITH KEY: {decrypt(key, cipher_text)}")
+    print(f"Encrypted: {cipher_text}")
+    print(f"Decrypted with key: {decrypt(key, cipher_text)}")

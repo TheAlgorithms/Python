@@ -1,7 +1,4 @@
-from typing import List
-
-
-def max_difference(a: List[int]) -> (int, int):
+def max_difference(a: list[int]) -> tuple[int, int]:
     """
     We are given an array A[1..n] of integers, n >= 1. We want to
     find a pair of indices (i, j) such that

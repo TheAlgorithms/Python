@@ -1,8 +1,9 @@
 import itertools
 import string
+from typing import Generator, Iterable
 
 
-def chunker(seq, size):
+def chunker(seq: Iterable[str], size: int) -> Generator[tuple[str, ...], None, None]:
     it = iter(seq)
     while True:
         chunk = tuple(itertools.islice(it, size))
@@ -37,7 +38,7 @@ def prepare_input(dirty: str) -> str:
     return clean
 
 
-def generate_table(key: str) -> [str]:
+def generate_table(key: str) -> list[str]:
 
     # I and J are used interchangeably to allow
     # us to use a 5x5 table (25 letters)

@@ -4,7 +4,7 @@ from collections import deque
 
 
 class LRUCache:
-    """ Page Replacement Algorithm, Least Recently Used (LRU) Caching."""
+    """Page Replacement Algorithm, Least Recently Used (LRU) Caching."""
 
     dq_store = object()  # Cache store of keys
     key_reference_map = object()  # References of the keys in cache

@@ -43,7 +43,7 @@ def decrypt(message: str) -> None:
         print(f"Decryption using Key #{key}: {translated}")
 
 
-def main():
+def main() -> None:
     message = input("Encrypted message: ")
     message = message.upper()
     decrypt(message)

@@ -8,7 +8,7 @@ text. The type of transposition cipher demonstrated under is the ROUTE cipher.
 """
 
 
-def main():
+def main() -> None:
     message = input("Enter message: ")
     key = int(input("Enter key [2-%s]: " % (len(message) - 1)))
     mode = input("Encryption/Decryption [e/d]: ")
