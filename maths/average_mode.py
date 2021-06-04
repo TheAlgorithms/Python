@@ -26,7 +26,7 @@ def mode(input_list: list) -> list:  # Defining function "mode."
     y = max(result)  # Gets the maximum value in the result list.
     # Gets values of modes
     result = [input_list[i] for i, value in enumerate(result) if value == y]
-    result = list(set(result))  # Delete duplicates
+    result = list(set(result))  # Deletes duplicates
     return sorted(result)
 
 
