@@ -23,6 +23,8 @@ def mode(input_list: list) -> list:  # Defining function "mode."
     result = list()  # Empty list to store the counts of elements in input_list
     for x in input_list:
         result.append(input_list.count(x))
+    if not result:
+        return []
     y = max(result)  # Gets the maximum value in the result list.
     # Gets values of modes
     result = [input_list[i] for i, value in enumerate(result) if value == y]
