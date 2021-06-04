@@ -6,25 +6,19 @@ For example, 370 is an Armstrong number because 3*3*3 + 7*7*7 + 0*0*0 = 370.
 
 Armstrong numbers are also called Narcissistic numbers and Pluperfect numbers.
 
-OEIS entry: https://oeis.org/A005188
+On-Line Encyclopedia of Integer Sequences entry: https://oeis.org/A005188
 """
+PASSING = (1, 153, 370, 371, 1634, 24678051, 115132219018763992565095597973971522401)
+FAILING = (-153, -1, 0, 1.2, 200, "A", [], {}, None)
 
 
 def armstrong_number(n: int) -> bool:
     """
     Return True if n is an Armstrong number or False if it is not.
 
-    >>> armstrong_number(153)
+    >>> all(armstrong_number(n) for n in PASSING)
     True
-    >>> armstrong_number(200)
-    False
-    >>> armstrong_number(1634)
-    True
-    >>> armstrong_number(0)
-    False
-    >>> armstrong_number(-1)
-    False
-    >>> armstrong_number(1.2)
+    >>> any(armstrong_number(n) for n in FAILING)
     False
     """
     if not isinstance(n, int) or n < 1:
@@ -49,24 +43,12 @@ def armstrong_number(n: int) -> bool:
 
 def pluperfect_number(n: int) -> bool:
     """Return True if n is a pluperfect number or False if it is not
-    >>> pluperfect_number(153)
-    True
-    >>> pluperfect_number(200)
-    False
-    >>> pluperfect_number(1634)
-    True
-    >>> pluperfect_number(0)
-    False
-    >>> pluperfect_number(-1)
-    False
-    >>> pluperfect_number(1.2)
-    False
-    >>> pluperfect_number(24678051)
-    True
-    >>> pluperfect_number(115132219018763992565095597973971522401)
-    True
-    """
 
+    >>> all(armstrong_number(n) for n in PASSING)
+    True
+    >>> any(armstrong_number(n) for n in FAILING)
+    False
+    """
     if not isinstance(n, int) or n < 1:
         return False
 
@@ -87,14 +69,18 @@ def pluperfect_number(n: int) -> bool:
 
 
 def narcissistic_number(n: int) -> bool:
-    """Return True if n is a narcissistic number or False if it is not"""
+    """Return True if n is a narcissistic number or False if it is not.
 
-    expo = len(str(n))  # power, all number will be raised to
-    # each digit will be multiplied expo times
-    temp = [(int(i) ** expo) for i in str(n)]
-
-    # check if sum of cube of each digit is equal to number
-    return n == sum(temp)
+    >>> all(armstrong_number(n) for n in PASSING)
+    True
+    >>> any(armstrong_number(n) for n in FAILING)
+    False
+    """
+    if not isinstance(n, int) or n < 1:
+        return False
+    expo = len(str(n))  # the power that all digits will be raised to
+    # check if sum of each digit multiplied expo times is equal to number
+    return n == sum(int(i) ** expo for i in str(n))
 
 
 def main():
