@@ -34,7 +34,17 @@ def number_of_divisors(n: int) -> int:
     """Calculate Number of Divisors of an Integer.
     >>> number_of_divisors(100)
     9
+    >>> number_of_divisors(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
+    >>> number_of_divisors(-10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
     """
+    if n <= 0:
+        raise ValueError("Only positive numbers are accepted")
     div = 1
     temp = 1
     while n % 2 == 0:
