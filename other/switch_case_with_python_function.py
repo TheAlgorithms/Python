@@ -3,7 +3,7 @@
 '''
 import sys
 
-def switch_case_mapper(case_key, attr1, attr2) -> int:
+def switch_case_mapper(case_key:str, attr1:int, attr2:int) -> int:
     """
     >>> switch_case_mapper('add',1,2)
     3
