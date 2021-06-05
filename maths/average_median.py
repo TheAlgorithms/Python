@@ -4,6 +4,7 @@ from typing import Union
 def median(nums: Union[int, float]) -> Union[int, float]:
     """
     Find median of a list of numbers.
+    Wiki: https://en.wikipedia.org/wiki/Median
 
     >>> median([0])
     0
