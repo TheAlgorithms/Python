@@ -6,7 +6,17 @@ def prime_factors(n: int) -> list:
     """Find Prime Factors.
     >>> prime_factors(100)
     [2, 2, 5, 5]
+    >>> prime_factors(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive integers have prime factors
+    >>> prime_factors(-10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive integers have prime factors
     """
+    if n <= 0:
+        raise ValueError("Only positive integers have prime factors")
     pf = []
     while n % 2 == 0:
         pf.append(2)
@@ -74,7 +84,6 @@ def euler_phi(n: int) -> int:
 
 
 if __name__ == "__main__":
-    print(prime_factors(100))
-    print(number_of_divisors(100))
-    print(sum_of_divisors(100))
-    print(euler_phi(100))
+    import doctest
+
+    doctest.testmod()
