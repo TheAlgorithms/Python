@@ -149,7 +149,9 @@ def _check_not_integer(matrix: list[list]) -> bool:
 
 
 def _shape(matrix: list[list]) -> list:
-    return len(matrix), len(matrix[0])
+    if len(set([len(row) for row in matrix])) == 1:
+        return len(matrix), len(matrix[0])
+    raise TypeError("Matrix is not rectangular")
 
 
 def _verify_matrix_sizes(matrix_a: list[list], matrix_b: list[list]) -> tuple[list]:
