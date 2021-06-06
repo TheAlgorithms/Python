@@ -4,6 +4,7 @@ from typing import List
 def is_luhn(string: str) -> bool:
     """
     Perform Luhn validation on input string
+    https://en.wikipedia.org/wiki/Luhn_algorithm
     Algorithm:
     * Double every other digit starting from 2nd last digit.
     * Subtract 9 if number is greater than 9.
