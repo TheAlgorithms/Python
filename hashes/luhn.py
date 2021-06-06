@@ -2,7 +2,7 @@
 from typing import List
 
 def is_luhn(string: str) -> bool:
-    '''
+    """
     Perform Luhn validation on input string
     Algorithm:
     * Double every other digit starting from 2nd last digit.
@@ -14,7 +14,7 @@ def is_luhn(string: str) -> bool:
     >>> test_cases = list(map(str, test_cases))
     >>> list(map(is_luhn, test_cases))
     [False, False, False, True, False, False, False, False, False, False]
-    '''
+    """
     check_digit: int
     vector: List[str] = list(string)
     vector, check_digit = vector[:-1], int(vector[-1])
@@ -40,4 +40,4 @@ def is_luhn(string: str) -> bool:
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    assert is_luhn('79927398713')
+    assert is_luhn("79927398713")
