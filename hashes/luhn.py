@@ -1,6 +1,7 @@
 """ Luhn Algorithm """
 from typing import List
 
+
 def is_luhn(string: str) -> bool:
     """
     Perform Luhn validation on input string
@@ -40,5 +41,6 @@ def is_luhn(string: str) -> bool:
 
 if __name__ == "__main__":
     import doctest
+    
     doctest.testmod()
     assert is_luhn("79927398713")
