@@ -222,9 +222,10 @@ def decrypt_caesar_with_chi_squared(
 
     # Get the most likely cipher by finding the cipher with the smallest chi squared
     # statistic
-    most_likely_cipher: int = min(
-        chi_squared_statistic_values, key=chi_squared_statistic_values.get
-    )  # type: ignore # First argument to `min` is not optional
+    most_likely_cipher: int = min(  # type: ignore
+        chi_squared_statistic_values,  # type: ignore
+        key=chi_squared_statistic_values.get,  # type: ignore
+    )  # type: ignore
 
     # Get all the data from the most likely cipher (key, decoded message)
     (
