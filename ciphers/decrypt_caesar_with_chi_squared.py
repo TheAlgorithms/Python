@@ -224,7 +224,7 @@ def decrypt_caesar_with_chi_squared(
     # statistic
     most_likely_cipher: int = min(
         chi_squared_statistic_values,  # type: ignore
-        key=chi_squared_statistic_values.get
+        key=chi_squared_statistic_values.get,
     )
 
     # Get all the data from the most likely cipher (key, decoded message)
