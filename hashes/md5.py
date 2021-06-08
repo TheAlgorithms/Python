@@ -94,7 +94,6 @@ def not32(i):
 
 
 def sum32(a, b):
-    """"""
     return (a + b) % 2 ** 32
 
 

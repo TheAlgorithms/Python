@@ -1,11 +1,13 @@
+from pathlib import Path
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
 
 def get_rotation(
-    img: np.array, pt1: np.float32, pt2: np.float32, rows: int, cols: int
-) -> np.array:
+    img: np.ndarray, pt1: np.ndarray, pt2: np.ndarray, rows: int, cols: int
+) -> np.ndarray:
     """
     Get image rotation
     :param img: np.array
@@ -21,17 +23,19 @@ def get_rotation(
 
 if __name__ == "__main__":
     # read original image
-    image = cv2.imread("lena.jpg")
+    image = cv2.imread(
+        str(Path(__file__).resolve().parent.parent / "image_data" / "lena.jpg")
+    )
     # turn image in gray scale value
     gray_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     # get image shape
     img_rows, img_cols = gray_img.shape
 
     # set different points to rotate image
-    pts1 = np.float32([[50, 50], [200, 50], [50, 200]])
-    pts2 = np.float32([[10, 100], [200, 50], [100, 250]])
-    pts3 = np.float32([[50, 50], [150, 50], [120, 200]])
-    pts4 = np.float32([[10, 100], [80, 50], [180, 250]])
+    pts1 = np.array([[50, 50], [200, 50], [50, 200]], np.float32)
+    pts2 = np.array([[10, 100], [200, 50], [100, 250]], np.float32)
+    pts3 = np.array([[50, 50], [150, 50], [120, 200]], np.float32)
+    pts4 = np.array([[10, 100], [80, 50], [180, 250]], np.float32)
 
     # add all rotated images in a list
     images = [

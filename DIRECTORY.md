@@ -97,8 +97,8 @@
   * [Peak Signal To Noise Ratio](https://github.com/TheAlgorithms/Python/blob/master/compression/peak_signal_to_noise_ratio.py)
 
 ## Computer Vision
-  * [Harriscorner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harriscorner.py)
-  * [Meanthreshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/meanthreshold.py)
+  * [Harris Corner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harris_corner.py)
+  * [Mean Threshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mean_threshold.py)
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
@@ -108,10 +108,12 @@
   * [Decimal To Binary Recursion](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary_recursion.py)
   * [Decimal To Hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
+  * [Hex To Bin](https://github.com/TheAlgorithms/Python/blob/master/conversions/hex_to_bin.py)
   * [Hexadecimal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/hexadecimal_to_decimal.py)
   * [Molecular Chemistry](https://github.com/TheAlgorithms/Python/blob/master/conversions/molecular_chemistry.py)
   * [Octal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/octal_to_decimal.py)
   * [Prefix Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/prefix_conversions.py)
+  * [Rgb Hsv Conversion](https://github.com/TheAlgorithms/Python/blob/master/conversions/rgb_hsv_conversion.py)
   * [Roman Numerals](https://github.com/TheAlgorithms/Python/blob/master/conversions/roman_numerals.py)
   * [Temperature Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/temperature_conversions.py)
   * [Weight Conversion](https://github.com/TheAlgorithms/Python/blob/master/conversions/weight_conversion.py)
@@ -382,6 +384,8 @@
   * [Linear Discriminant Analysis](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_discriminant_analysis.py)
   * [Linear Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/linear_regression.py)
   * [Logistic Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/logistic_regression.py)
+  * Lstm
+    * [Lstm Prediction](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/lstm/lstm_prediction.py)
   * [Multilayer Perceptron Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/multilayer_perceptron_classifier.py)
   * [Polymonial Regression](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/polymonial_regression.py)
   * [Random Forest Classifier](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/random_forest_classifier.py)
@@ -855,6 +859,7 @@
   * [Iterative Merge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/iterative_merge_sort.py)
   * [Merge Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_insertion_sort.py)
   * [Merge Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/merge_sort.py)
+  * [Msd Radix Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/msd_radix_sort.py)
   * [Natural Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/natural_sort.py)
   * [Odd Even Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_sort.py)
   * [Odd Even Transposition Parallel](https://github.com/TheAlgorithms/Python/blob/master/sorts/odd_even_transposition_parallel.py)
@@ -870,6 +875,7 @@
   * [Random Pivot Quick Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/random_pivot_quick_sort.py)
   * [Recursive Bubble Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive_bubble_sort.py)
   * [Recursive Insertion Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive_insertion_sort.py)
+  * [Recursive Mergesort Array](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive_mergesort_array.py)
   * [Recursive Quick Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/recursive_quick_sort.py)
   * [Selection Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/selection_sort.py)
   * [Shell Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/shell_sort.py)
