@@ -174,9 +174,13 @@ def range_counting(
     >>> range_counting(root, 0, 17, 100, 1)
     0
     """
-    if (start > end or start_num > end_num or node.minn > end_num
-        or node.maxx < start_num):
-            return 0
+    if (
+        start > end
+        or start_num > end_num
+        or node.minn > end_num
+        or node.maxx < start_num
+    ):
+        return 0
     if start_num <= node.minn and node.maxx <= end_num:
         return end - start + 1
     left = range_counting(
