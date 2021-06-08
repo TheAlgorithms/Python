@@ -1,5 +1,3 @@
-from typing import Optional
-
 """
 Wavelet tree is a data-structure designed to efficiently answer various range queries
 for arrays. Wavelets trees are different from other binary trees in the sense that
@@ -9,6 +7,8 @@ such as the with segment trees or fenwick trees. You can read more about them he
 2. https://www.youtube.com/watch?v=4aSv9PcecDw&t=811s
 3. https://www.youtube.com/watch?v=CybAgVF-MMc&t=1178s
 """
+
+from typing import Optional
 
 test_array = [2, 1, 4, 5, 6, 0, 8, 9, 1, 2, 0, 6, 4, 2, 0, 6, 5, 3, 2, 7]
 
@@ -40,37 +40,27 @@ def build_tree(arr: list[int]) -> Node:
     >>> build_tree(test_array)
     min_value: 0, max_value: 9
     """
-    n = len(arr)
-
-    root = Node(n)
-
+    root = Node(len(arr))
     root.minn, root.maxx = min(arr), max(arr)
-
     # Leaf node case where the node contains only one unique value
     if root.minn == root.maxx:
         return root
-
     """
     Take the mean of min and max element of arr as the pivot and
     partition arr into left_arr and right_arr with all elements <= pivot in the
     left_arr and the rest in right_arr, maintaining the order of the elements,
     then recursively build trees for left_arr and right_arr
     """
-
     pivot = (root.minn + root.maxx) // 2
     left_arr, right_arr = [], []
-
     for index, num in enumerate(arr):
         if num <= pivot:
             left_arr.append(num)
         else:
             right_arr.append(num)
-
         root.map_left[index] = len(left_arr)
-
     root.left = build_tree(left_arr)
     root.right = build_tree(right_arr)
-
     return root
 
 
@@ -92,13 +82,10 @@ def rank_till_index(node: Node, num: int, index: int) -> int:
     """
     if index < 0:
         return 0
-
     # Leaf node cases
     if node.minn == node.maxx:
         return index + 1 if node.minn == num else 0
-
     pivot = (node.minn + node.maxx) // 2
-
     if num <= pivot:
         # go the left subtree and map index to the left subtree
         return rank_till_index(node.left, num, node.map_left[index] - 1)
@@ -123,10 +110,8 @@ def rank(node: Node, num: int, start: int, end: int) -> int:
     """
     if start > end:
         return 0
-
     rank_till_end = rank_till_index(node, num, end)
     rank_before_start = rank_till_index(node, num, start - 1)
-
     return rank_till_end - rank_before_start
 
 
@@ -147,16 +132,13 @@ def quantile(node: Node, index: int, start: int, end: int) -> int:
     """
     if index > (end - start) or start > end:
         return -1
-
     # Leaf node case
     if node.minn == node.maxx:
         return node.minn
-
     # Number of elements in the left subtree in interval [start, end]
     num_elements_in_left_tree = node.map_left[end] - (
         node.map_left[start - 1] if start else 0
     )
-
     if num_elements_in_left_tree > index:
         return quantile(
             node.left,
@@ -192,15 +174,11 @@ def range_counting(
     >>> range_counting(root, 0, 17, 100, 1)
     0
     """
-    if start > end or start_num > end_num:
-        return 0
-
-    if node.minn > end_num or node.maxx < start_num:
-        return 0
-
+    if (start > end or start_num > end_num or node.minn > end_num
+        or node.maxx < start_num):
+            return 0
     if start_num <= node.minn and node.maxx <= end_num:
         return end - start + 1
-
     left = range_counting(
         node.left,
         (node.map_left[start - 1] if start else 0),
@@ -215,7 +193,6 @@ def range_counting(
         start_num,
         end_num,
     )
-
     return left + right
 
 
