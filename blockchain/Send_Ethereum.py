@@ -13,12 +13,12 @@ Ganache Server :: HTTP://127.0.0.1:7545
 Basically Ganache Server will provide you accounts for practice, learn and implement.
 We first connect with Ganache Server.
 """
-Ganache_url = "GANACHE_SERVER"
+ganache_url = "GANACHE_SERVER"
 
 """
 Here is how we can connect with Server
 """
-web3 = Web3(Web3.HTTPProvider(Ganache_url))
+web3 = Web3(Web3.HTTPProvider(ganache_url))
 
 """
 We have to provide the account details like 
