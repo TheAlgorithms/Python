@@ -9,7 +9,6 @@ https://en.wikipedia.org/wiki/Harris_Corner_Detector
 
 class Harris_Corner:
     def __init__(self, k: float, window_size: int):
-
         """
         k : is an empirically determined constant in [0.04,0.06]
         window_size : neighbourhoods considered
@@ -26,7 +25,6 @@ class Harris_Corner:
         return f"Harris Corner  detection with k : {self.k}"
 
     def detect(self, img_path: str):
-
         """
         Returns the image with corners identified
         img_path  : path of the image
@@ -47,13 +45,13 @@ class Harris_Corner:
         for y in range(offset, h - offset):
             for x in range(offset, w - offset):
                 wxx = ixx[
-                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                    y - offset: y + offset + 1, x - offset: x + offset + 1
                 ].sum()
                 wyy = iyy[
-                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                    y - offset: y + offset + 1, x - offset: x + offset + 1
                 ].sum()
                 wxy = ixy[
-                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                    y - offset: y + offset + 1, x - offset: x + offset + 1
                 ].sum()
 
                 det = (wxx * wyy) - (wxy ** 2)
