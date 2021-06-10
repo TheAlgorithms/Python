@@ -2,12 +2,12 @@
 
 """ Author: OMKAR PATHAK """
 
-from typing import Set
+from typing import Dict, List, Set
 
 
 class Graph:
     def __init__(self) -> None:
-        self.vertices = {}
+        self.vertices: Dict[int, List[int]] = {}
 
     def print_graph(self) -> None:
         """

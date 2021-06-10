@@ -2,20 +2,21 @@
 
 from __future__ import annotations
 
+from typing import Set
 
-def depth_first_search(graph: dict, start: str) -> set[int]:
+
+def depth_first_search(graph: dict, start: str) -> Set[str]:
     """Depth First Search on Graph
     :param graph: directed graph in dictionary format
-    :param vertex: starting vertex as a string
+    :param start: starting vertex as a string
     :returns: the trace of the search
-    >>> G = { "A": ["B", "C", "D"], "B": ["A", "D", "E"],
+    >>> input_G = { "A": ["B", "C", "D"], "B": ["A", "D", "E"],
     ... "C": ["A", "F"], "D": ["B", "D"], "E": ["B", "F"],
     ... "F": ["C", "E", "G"], "G": ["F"] }
-    >>> start = "A"
     >>> output_G = list({'A', 'B', 'C', 'D', 'E', 'F', 'G'})
-    >>> all(x in output_G for x in list(depth_first_search(G, "A")))
+    >>> all(x in output_G for x in list(depth_first_search(input_G, "A")))
     True
-    >>> all(x in output_G for x in list(depth_first_search(G, "G")))
+    >>> all(x in output_G for x in list(depth_first_search(input_G, "G")))
     True
     """
     explored, stack = set(start), [start]
