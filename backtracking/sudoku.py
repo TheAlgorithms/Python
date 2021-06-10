@@ -90,7 +90,6 @@ def sudoku(grid: Matrix) -> Optional[Matrix]:
      >>> sudoku(no_solution) is None
      True
     """
-    
     if location := find_empty_location(grid):
         row, column = location
     else:
