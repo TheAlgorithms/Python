@@ -24,8 +24,6 @@ def palindromic_string(input_string: str) -> str:
     new_input_string = ""
     output_string = ""
 
-    i: Union[int, str]
-
     # append each character + "|" in new_string for range(0, length-1)
     for i in input_string[: len(input_string) - 1]:
         new_input_string += i + "|"
@@ -37,36 +35,36 @@ def palindromic_string(input_string: str) -> str:
     l, r = 0, 0
 
     # length[i] shows the length of palindromic substring with center i
-    length = [1 for i in range(len(new_input_string))]
+    length = [1 for j in range(len(new_input_string))]
 
     # for each character in new_string find corresponding palindromic string
-    for i in range(len(new_input_string)):
-        k = 1 if i > r else min(length[l + r - i] // 2, r - i + 1)
+    for m in range(len(new_input_string)):
+        k = 1 if m > r else min(length[l + r - m] // 2, r - m + 1)
         while (
-            i - k >= 0
-            and i + k < len(new_input_string)
-            and new_input_string[k + i] == new_input_string[i - k]
+            m - k >= 0
+            and m + k < len(new_input_string)
+            and new_input_string[k + m] == new_input_string[m - k]
         ):
             k += 1
 
-        length[i] = 2 * k - 1
+        length[m] = 2 * k - 1
 
         # does this string is ending after the previously explored end (that is r) ?
         # if yes the update the new r to the last index of this
-        if i + k - 1 > r:
-            l = i - k + 1  # noqa: E741
-            r = i + k - 1
+        if m + k - 1 > r:
+            l = m - k + 1  # noqa: E741
+            r = m + k - 1
 
         # update max_length and start position
-        if max_length < length[i]:
-            max_length = length[i]
-            start = i
+        if max_length < length[m]:
+            max_length = length[m]
+            start = m
 
     # create that string
     s = new_input_string[start - max_length // 2 : start + max_length // 2 + 1]
-    for i in s:
-        if i != "|":
-            output_string += i
+    for n in s:
+        if n != "|":
+            output_string += n
 
     return output_string
 
