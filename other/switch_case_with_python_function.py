@@ -19,9 +19,9 @@ def switch_case_mapper(case_key: str, attr1: int, attr2: int) -> int:
     >>> switch_case_mapper('invalid case',1,2)
     'Case Not Found!'
     """
-+   method = getattr(
-+       sys.modules[__name__], case_key, lambda attr1, attr2: "Case Not Found!"
-+   )
+    method = getattr(
+        sys.modules[__name__], case_key, lambda attr1, attr2: "Case Not Found!"
+    )
     return method(attr1, attr2)
 
 
