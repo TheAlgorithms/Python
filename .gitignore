@@ -107,3 +107,5 @@ venv.bak/
 .idea
 .try
 .vscode/
+
+anagrams.txt
