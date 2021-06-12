@@ -1,4 +1,7 @@
-def mean(nums: list) -> float:
+from typing import List
+
+
+def mean(nums: List) -> float:
     """
     Find mean of a list of numbers.
     Wiki: https://en.wikipedia.org/wiki/Mean
@@ -9,7 +12,13 @@ def mean(nums: list) -> float:
     20.0
     >>> mean([1, 2, 3, 4, 5, 6, 7, 8])
     4.5
+    >>> mean([])
+    Traceback (most recent call last):
+        ...
+    ValueError: List is empty
     """
+    if not nums:
+        raise ValueError("List is empty")
     return sum(nums) / len(nums)
 
 
