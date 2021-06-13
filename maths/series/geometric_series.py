@@ -9,9 +9,14 @@ python -m doctest -v geometric_series.py
 For manual testing run:
 python3 geometric_series.py
 """
+from typing import List, Union
 
 
-def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> list:
+def geometric_series(
+    nth_term: Union[str, float, int],
+    start_term_a: Union[str, float, int],
+    common_ratio_r: Union[str, float, int],
+) -> List[Union[str, float, int, None]]:
     """Pure Python implementation of Geometric Series algorithm
     :param nth_term: The last term (nth term of Geometric Series)
     :param start_term_a : The first term of Geometric Series
@@ -38,13 +43,13 @@ def geometric_series(nth_term: int, start_term_a: int, common_ratio_r: int) -> l
     >>> geometric_series(0, 0, 0)
     []
     """
+    series: List[Union[str, float, int, None]] = []
     if "" in (nth_term, start_term_a, common_ratio_r):
-        return ""
-    series = []
+        return series
     power = 1
     multiple = common_ratio_r
     for _ in range(int(nth_term)):
-        if series == []:
+        if not series:
             series.append(start_term_a)
         else:
             power += 1
