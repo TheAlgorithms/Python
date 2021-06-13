@@ -10,9 +10,10 @@ python3 -m doctest -v p_series.py
 For manual testing run:
 python3 p_series.py
 """
+from typing import List, Optional, Union
 
 
-def p_series(nth_term: int, power: int) -> list:
+def p_series(nth_term: int, power: int) -> Union[list, int]:
     """Pure Python implementation of P-Series algorithm
 
     :return: The P-Series starting from 1 to last (nth) term
@@ -33,16 +34,16 @@ def p_series(nth_term: int, power: int) -> list:
     """
     if nth_term == "":
         return nth_term
-    nth_term = int(nth_term)
-    power = int(power)
-    series = []
+    nth_term = nth_term
+    power = power
+    series: List[Optional[Union[str, int]]] = []
     for temp in range(int(nth_term)):
         series.append(f"1/{pow(temp + 1, int(power))}" if series else 1)
     return series
 
 
 if __name__ == "__main__":
-    nth_term = input("Enter the last number (nth term) of the P-Series")
-    power = input("Enter the power for  P-Series")
+    nth_term = int(input("Enter the last number (nth term) of the P-Series"))
+    power = int(input("Enter the power for  P-Series"))
     print("Formula of P-Series => 1+1/2^p+1/3^p ..... 1/n^p")
     print(p_series(nth_term, power))
