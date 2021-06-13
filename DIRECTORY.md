@@ -146,7 +146,6 @@
     * Number Theory
       * [Prime Numbers](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/number_theory/prime_numbers.py)
     * [Quadratic Probing](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/quadratic_probing.py)
-    * [Luhn's Algorithm](https://github.com/TheAlgorithms/Python/blob/master/data_structures/hashing/luhn.py)
   * Heap
     * [Binomial Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/binomial_heap.py)
     * [Heap](https://github.com/TheAlgorithms/Python/blob/master/data_structures/heap/heap.py)
