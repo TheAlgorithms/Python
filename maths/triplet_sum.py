@@ -8,6 +8,7 @@ from __future__ import annotations
 from itertools import permutations
 from random import randint
 from timeit import repeat
+from typing import List, Union
 
 
 def make_dataset() -> tuple[list[int], int]:
@@ -19,7 +20,9 @@ def make_dataset() -> tuple[list[int], int]:
 dataset = make_dataset()
 
 
-def triplet_sum1(arr: list[int], target: int) -> tuple[int, int, int]:
+def triplet_sum1(
+    arr: list[int], target: int
+) -> Union[tuple[int, ...], tuple[int, int, int]]:
     """
     Returns a triplet in the array with sum equal to target,
     else (0, 0, 0).
@@ -34,7 +37,8 @@ def triplet_sum1(arr: list[int], target: int) -> tuple[int, int, int]:
     """
     for triplet in permutations(arr, 3):
         if sum(triplet) == target:
-            return tuple(sorted(triplet))
+            sorted_value: List[int] = sorted(triplet)
+            return tuple(sorted_value)
     return (0, 0, 0)
 
 
