@@ -39,9 +39,10 @@ Enter the change you want to make: 456
 Following is minimal   change for 456 :
 100 100 100 100 5 5 5 5 5 5 5 5 5 5 5 1
 """
+from typing import List, Optional
 
 
-def find_minimum_change(denominations: list[int], value: int) -> list[int]:
+def find_minimum_change(denominations: List[int], value: int) -> List[Optional[int]]:
     """
     Find the minimum change from the given denominations and value
     >>> find_minimum_change([1, 5, 10, 20, 50, 100, 200, 500, 1000,2000], 18745)
@@ -58,7 +59,7 @@ def find_minimum_change(denominations: list[int], value: int) -> list[int]:
     total_value = int(value)
 
     # Initialize Result
-    answer = []
+    answer: List[Optional[int]] = []
 
     # Traverse through all denomination
     for denomination in reversed(denominations):
@@ -85,13 +86,14 @@ if __name__ == "__main__":
 
         for i in range(0, n):
             denominations.append(int(input(f"Denomination {i}: ").strip()))
-        value = input("Enter the change you want to make in Indian Currency: ").strip()
+        value = int(
+            input("Enter the change you want to make in Indian Currency: ").strip()
+        )
     else:
         # All denominations of Indian Currency if user does not enter
         denominations = [1, 2, 5, 10, 20, 50, 100, 500, 2000]
-        value = input("Enter the change you want to make: ").strip()
-
-    if int(value) == 0 or int(value) < 0:
+        value = int(input("Enter the change you want to make: ").strip())
+    if value == 0 or value < 0:
         print("The total value cannot be zero or negative.")
 
     else:
