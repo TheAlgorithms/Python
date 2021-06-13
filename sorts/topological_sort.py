@@ -14,7 +14,7 @@ sort = []
 visited = {}
 
 
-def topological_sort(start, visited, sort):
+def topological_sort(start: str, visited: list, sort: list) -> list:
     """Perform topological sort on a directed acyclic graph."""
     current = start
     # add current to visited
