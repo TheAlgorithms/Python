@@ -72,3 +72,7 @@ if __name__ == "__main__":
     switch_case_mapper("divide", 1, 2)
     switch_case_mapper("modulo", 1, 2)
     switch_case_mapper("invalid case", 1, 2)
+    
+    import doctest
+
+    doctest.testmod()
