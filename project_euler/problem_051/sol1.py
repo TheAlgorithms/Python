@@ -17,12 +17,11 @@ adjacent digits) with the same digit, is part of an eight prime value family.
 """
 
 from collections import Counter
-from typing import List
 
 
-def prime_sieve(n: int) -> List[int]:
+def prime_sieve(n: int) -> list[int]:
     """
-    Sieve of Erotosthenes
+    Sieve of Eratosthenes
     Function to return all the prime numbers up to a certain number
     https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
@@ -52,7 +51,7 @@ def prime_sieve(n: int) -> List[int]:
     return primes
 
 
-def digit_replacements(number: int) -> List[List[int]]:
+def digit_replacements(number: int) -> list[list[int]]:
     """
     Returns all the possible families of digit replacements in a number which
     contains at least one repeating digit
@@ -63,12 +62,12 @@ def digit_replacements(number: int) -> List[List[int]]:
     >>> digit_replacements(3112)
     [[3002, 3112, 3222, 3332, 3442, 3552, 3662, 3772, 3882, 3992]]
     """
-    number = str(number)
+    number_str = str(number)
     replacements = []
     digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
-    for duplicate in Counter(number) - Counter(set(number)):
-        family = [int(number.replace(duplicate, digit)) for digit in digits]
+    for duplicate in Counter(number_str) - Counter(set(number_str)):
+        family = [int(number_str.replace(duplicate, digit)) for digit in digits]
         replacements.append(family)
 
     return replacements
@@ -103,8 +102,9 @@ def solution(family_length: int = 8) -> int:
 
             if len(primes_in_family) != family_length:
                 continue
-
-            return min(primes_in_family)
+        else:
+            break
+    return min(primes_in_family)
 
 
 if __name__ == "__main__":
