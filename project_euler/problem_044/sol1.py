@@ -42,6 +42,10 @@ def solution(limit: int = 5000) -> int:
             if is_pentagonal(a) and is_pentagonal(b):
                 return b
 
+    # Prevent missing return statement error from mypy
+    # Will only be reached if limit argument is lowered
+    return -1
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
