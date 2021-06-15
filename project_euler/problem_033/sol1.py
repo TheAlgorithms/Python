@@ -15,7 +15,6 @@ If the product of these four fractions is given in its lowest common
 terms, find the value of the denominator.
 """
 from fractions import Fraction
-from typing import List
 
 
 def is_digit_cancelling(num: int, den: int) -> bool:
@@ -26,7 +25,7 @@ def is_digit_cancelling(num: int, den: int) -> bool:
     return False
 
 
-def fraction_list(digit_len: int) -> List[str]:
+def fraction_list(digit_len: int) -> list[str]:
     """
     >>> fraction_list(2)
     ['16/64', '19/95', '26/65', '49/98']
