@@ -17,12 +17,11 @@ adjacent digits) with the same digit, is part of an eight prime value family.
 """
 
 from collections import Counter
-from typing import List
 
 
-def prime_sieve(n: int) -> List[int]:
+def prime_sieve(n: int) -> list[int]:
     """
-    Sieve of Erotosthenes
+    Sieve of Eratosthenes
     Function to return all the prime numbers up to a certain number
     https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
