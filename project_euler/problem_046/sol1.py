@@ -72,7 +72,7 @@ def compute_nums(n: int) -> list[int]:
     if n <= 0:
         raise ValueError("n must be >= 0")
 
-    list_nums = []
+    list_nums = [] -> list[int]
     for num in range(len(odd_composites)):
         i = 0
         while 2 * i * i <= odd_composites[num]:
@@ -82,8 +82,9 @@ def compute_nums(n: int) -> list[int]:
             i += 1
         else:
             list_nums.append(odd_composites[num])
-            if len(list_nums) == n:
-                return list_nums
+        if len(list_nums) == n:
+            break
+    return list_nums
 
 
 def solution() -> int:
