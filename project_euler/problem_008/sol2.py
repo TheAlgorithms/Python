@@ -69,10 +69,12 @@ def solution(n: str = N) -> int:
     209018880
     """
 
+    n_arr = [int(elem) for elem in n]
+
     return max(
         [
-            reduce(lambda x, y: int(x) * int(y), n[i : i + 13])
-            for i in range(len(n) - 12)
+            reduce(lambda x, y: int(x) * int(y), n_arr[i : i + 13])
+            for i in range(len(n_arr) - 12)
         ]
     )
 
