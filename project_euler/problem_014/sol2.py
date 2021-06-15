@@ -27,7 +27,6 @@ Which starting number, under one million, produces the longest chain?
 """
 
 
-
 def collatz_sequence(n: int) -> list[int]:
     """Returns the Collatz sequence for n."""
     sequence = [n]

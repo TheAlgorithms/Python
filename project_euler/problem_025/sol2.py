@@ -26,6 +26,7 @@ digits?
 
 from typing import Generator
 
+
 def fibonacci_generator() -> Generator[int, None, None]:
     """
     A generator that produces numbers in the Fibonacci sequence
