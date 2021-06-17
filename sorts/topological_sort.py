@@ -5,6 +5,9 @@
 #   b  c
 #  / \
 # d  e
+
+from typing import List, Dict
+
 edges = {"a": ["c", "b"], "b": ["d", "e"], "c": [], "d": [], "e": []}
 vertices = ["a", "b", "c", "d", "e"]
 
@@ -14,7 +17,7 @@ sort = []
 visited = {}
 
 
-def topological_sort(start: str, visited: list, sort: list) -> list:
+def topological_sort(start: str, visited: Dict[str, int], sort: List[str]) -> List[str]:
     """Perform topological sort on a directed acyclic graph."""
     current = start
     # add current to visited
