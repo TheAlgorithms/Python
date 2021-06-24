@@ -4,7 +4,7 @@
     Manual test:
     python bfs_shortest_path.py
 """
-graph = {
+demo_graph = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],
     "C": ["A", "F", "G"],
@@ -15,7 +15,7 @@ graph = {
 }
 
 
-def bfs_shortest_path(graph: dict, start, goal) -> str:
+def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
     """Find shortest path between `start` and `goal` nodes.
     Args:
         graph (dict): node/list of neighboring nodes key/value pairs.
@@ -25,8 +25,12 @@ def bfs_shortest_path(graph: dict, start, goal) -> str:
         Shortest path between `start` and `goal` nodes as a string of nodes.
         'Not found' string if no path found.
     Example:
-        >>> bfs_shortest_path(graph, "G", "D")
+        >>> bfs_shortest_path(demo_graph, "G", "D")
         ['G', 'C', 'A', 'B', 'D']
+        >>> bfs_shortest_path(demo_graph, "G", "G")
+        ['G']
+        >>> bfs_shortest_path(demo_graph, "G", "Unknown")
+        []
     """
     # keep track of explored nodes
     explored = set()
@@ -35,7 +39,7 @@ def bfs_shortest_path(graph: dict, start, goal) -> str:
 
     # return path if start is goal
     if start == goal:
-        return "That was easy! Start = goal"
+        return [start]
 
     # keeps looping until all possible paths have been checked
     while queue:
@@ -59,7 +63,7 @@ def bfs_shortest_path(graph: dict, start, goal) -> str:
             explored.add(node)
 
     # in case there's no path between the 2 nodes
-    return "So sorry, but a connecting path doesn't exist :("
+    return []
 
 
 def bfs_shortest_path_distance(graph: dict, start, target) -> int:
@@ -72,11 +76,11 @@ def bfs_shortest_path_distance(graph: dict, start, target) -> int:
         Number of edges in shortest path between `start` and `target` nodes.
         -1 if no path exists.
     Example:
-        >>> bfs_shortest_path_distance(graph, "G", "D")
+        >>> bfs_shortest_path_distance(demo_graph, "G", "D")
         4
-        >>> bfs_shortest_path_distance(graph, "A", "A")
+        >>> bfs_shortest_path_distance(demo_graph, "A", "A")
         0
-        >>> bfs_shortest_path_distance(graph, "A", "H")
+        >>> bfs_shortest_path_distance(demo_graph, "A", "Unknown")
         -1
     """
     if not graph or start not in graph or target not in graph:
@@ -102,5 +106,5 @@ def bfs_shortest_path_distance(graph: dict, start, target) -> int:
 
 
 if __name__ == "__main__":
-    print(bfs_shortest_path(graph, "G", "D"))  # returns ['G', 'C', 'A', 'B', 'D']
-    print(bfs_shortest_path_distance(graph, "G", "D"))  # returns 4
+    print(bfs_shortest_path(demo_graph, "G", "D"))  # returns ['G', 'C', 'A', 'B', 'D']
+    print(bfs_shortest_path_distance(demo_graph, "G", "D"))  # returns 4
