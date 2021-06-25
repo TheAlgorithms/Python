@@ -9,6 +9,7 @@ def generate_fibonacci_sphere(n_points: int, radius: float = 1) -> list:
     a sphere. It can be applied to computer graphics (to get the verticies
     of a spherical mesh), or to get approximate solutions to specific cases
     of the Thomson problem.
+    http://blog.marmakoide.org/?p=1
 
     Args:
         n_points: number of points with which to build the lattice
