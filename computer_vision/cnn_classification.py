@@ -17,6 +17,9 @@ in the test set folder
 3. The labels of the iamges will be extracted from the folder name
 the image is present in.
 
+Output: Based Upon the image we have two option for prediction
+        a) Normal when 0
+        b) Abnormality detected when 1
 """
 
 # Part 1 - Building the CNN
@@ -91,8 +94,12 @@ if __name__ == "__main__":
     test_image = tf.keras.preprocessing.image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
-    training_set.class_indices
+    # label_map handles all class indices present in training data
+    label_map = training_set.class_indices
+    label_map = dict((v,k) for k,v in label_map.items())
     if result[0][0] == 0:
         prediction = "Normal"
-    if result[0][0] == 1:
+    elif result[0][0] == 1:
         prediction = "Abnormality detected"
+        
+    print(prediction)
