@@ -1,11 +1,24 @@
 class Node:
-    def __init__(self, data):
+    '''This is Node for the linked list'''
+    def __init__(self, data = None, next_node = None):
         self.data = data
-        self.next = None
+        self.next_node = next_node   # the pointer initially points to nothing
 
     def __repr__(self):
         return f"Node({self.data})"
 
+    def get_data(self):
+        '''Returns Data field of the Node'''
+        return self.data
+    
+    def get_next(self):
+        '''Returns the pointer field of the Node'''
+        return self.next_node
+    
+    def set_next(self, new_node):
+        '''Adding new node'''
+        self.next_node = new_node
+        
 
 class LinkedList:
     def __init__(self):
@@ -158,6 +171,19 @@ class LinkedList:
             current = next_node
         # Return prev in order to put the head at the end
         self.head = prev
+    
+    #Search      
+    def search(self, value):
+        '''Returns the position the value programmer searched. Returns None if the value does't exist.'''
+        PTR = self.head
+        position = None
+        while PTR is not None:
+            if PTR.get_data() == value:
+                position = PTR
+                return position
+            else:
+                PTR = PTR.get_next()
+            position = None
 
 
 def test_singly_linked_list() -> None:
