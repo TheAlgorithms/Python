@@ -6,7 +6,7 @@ Nodes contain data and also may link to other nodes:
     - Last node: points to null
 """
 
-from typing import Any
+from typing import Any, Optional
 
 
 class Node:
@@ -17,7 +17,7 @@ class Node:
 
 class LinkedList:
     def __init__(self) -> None:
-        self.head = None
+        self.head: Optional[Node]
         self.size = 0
 
     def add(self, item: Any) -> None:
@@ -25,7 +25,7 @@ class LinkedList:
         self.size += 1
 
     def remove(self) -> Any:
-        if self.is_empty():
+        if not self.head:
             return None
         else:
             item = self.head.item
