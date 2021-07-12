@@ -1,9 +1,10 @@
 from .stack import Stack
 
-def reverse_file(file):
+def reverse_file(file) -> None:
     ''' Reversing the data stored in a file using stack'''
     S = Stack()
     original = open(file)
+    # Pushing the data to the stack
     for line in file:
         S.push(line.rstrip('\n'))
     original.close()
@@ -14,5 +15,5 @@ def reverse_file(file):
         new.write(S.pop() + '\n')
     new.close()
     
-
-reverse_file(path)
+if __name__ == '__main__':
+    reverse_file(path_to_the_file)
