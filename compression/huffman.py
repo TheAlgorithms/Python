@@ -5,7 +5,7 @@ class Letter:
     def __init__(self, letter, freq):
         self.letter = letter
         self.freq = freq
-        self.bitstring = ""
+        self.bitstring = {}
 
     def __repr__(self):
         return f"{self.letter}:{self.freq}"
@@ -51,10 +51,10 @@ def build_tree(letters):
 def traverse_tree(root, bitstring):
     """
     Recursively traverse the Huffman Tree to set each
-    Letter's bitstring, and return the list of Letters
+    Letter's bitstring dictionary, and return the list of Letters
     """
     if type(root) is Letter:
-        root.bitstring = bitstring
+        root.bitstring[root.letter] = bitstring
         return [root]
     letters = []
     letters += traverse_tree(root.left, bitstring + "0")
@@ -65,20 +65,21 @@ def traverse_tree(root, bitstring):
 def huffman(file_path):
     """
     Parse the file, build the tree, then run through the file
-    again, using the list of Letters to find and print out the
+    again, using the letters dictionary to find and print out the
     bitstring for each letter.
     """
     letters_list = parse_file(file_path)
     root = build_tree(letters_list)
-    letters = traverse_tree(root, "")
-    print(f"Huffman Coding of {file_path}: ")
+    letters = {
+        k: v for letter in traverse_tree(root, "") for k, v in letter.bitstring.items()
+    }
+    print(f"Huffman Coding  of {file_path}: ")
     with open(file_path) as f:
         while True:
             c = f.read(1)
             if not c:
                 break
-            le = list(filter(lambda l: l.letter == c, letters))[0]
-            print(le.bitstring, end=" ")
+            print(letters[c], end=" ")
     print()
 
 
