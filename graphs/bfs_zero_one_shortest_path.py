@@ -1,6 +1,7 @@
 from collections import deque
+from collections.abc import Iterator
 from dataclasses import dataclass
-from typing import Iterator, List
+from typing import Optional, Union
 
 """
 Finding the shortest path in 0-1-graph in O(E + V) which is faster than dijkstra.
@@ -21,7 +22,7 @@ class AdjacencyList:
     """Graph adjacency list."""
 
     def __init__(self, size: int):
-        self._graph: List[List[Edge]] = [[] for _ in range(size)]
+        self._graph: list[list[Edge]] = [[] for _ in range(size)]
         self._size = size
 
     def __getitem__(self, vertex: int) -> Iterator[Edge]:
@@ -58,7 +59,7 @@ class AdjacencyList:
 
         self._graph[from_vertex].append(Edge(to_vertex, weight))
 
-    def get_shortest_path(self, start_vertex: int, finish_vertex: int) -> int:
+    def get_shortest_path(self, start_vertex: int, finish_vertex: int) -> Optional[int]:
         """
         Return the shortest distance from start_vertex to finish_vertex in 0-1-graph.
               1                  1         1
@@ -106,18 +107,21 @@ class AdjacencyList:
         ValueError: No path from start_vertex to finish_vertex.
         """
         queue = deque([start_vertex])
-        distances = [None for i in range(self.size)]
+        distances: list[Union[int, None]] = [None] * self.size
         distances[start_vertex] = 0
 
         while queue:
             current_vertex = queue.popleft()
             current_distance = distances[current_vertex]
+            if current_distance is None:
+                continue
 
             for edge in self[current_vertex]:
                 new_distance = current_distance + edge.weight
+                dest_vertex_distance = distances[edge.destination_vertex]
                 if (
-                    distances[edge.destination_vertex] is not None
-                    and new_distance >= distances[edge.destination_vertex]
+                    isinstance(dest_vertex_distance, int)
+                    and new_distance >= dest_vertex_distance
                 ):
                     continue
                 distances[edge.destination_vertex] = new_distance
