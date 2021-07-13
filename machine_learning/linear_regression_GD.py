@@ -1,15 +1,15 @@
 import numpy as np
 class LinearRegressionGD():
     """Ordinary Least Square linear regression model"""
-    def __init__(self, eta=0.001, n_iter=20):
-        self.eta=eta
-        self.n_iter=n_iter
+    def __init__(self, eta=0.001, n_iter=20) -> None:
+        self.eta: float = eta
+        self.n_iter: int = n_iter
 
     def net_input(self, X):
         return np.dot(X, self.w_[1:]) + self.w_[0]
 
     def fit(self, X, y):
-        self.w_ = np.zeros(1+X.shape[1])
+        self.w_ = np.zeros(1 + X.shape[1])
         self.cost_ = []
         for i in range(self.n_iter):
             output=self.net_input(X)
@@ -23,3 +23,5 @@ class LinearRegressionGD():
     def predict(self, X):
         return self.net_input(X)
     
+if __name__ == '__main__':
+    LR = LinearRegressionGD()
