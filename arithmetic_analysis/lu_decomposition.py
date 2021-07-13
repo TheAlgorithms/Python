@@ -7,8 +7,6 @@ from typing import Tuple
 
 import numpy as np
 
-# from numpy import ndarray
-
 
 def lower_upper_decomposition(table: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
     """Lower-Upper (LU) Decomposition
