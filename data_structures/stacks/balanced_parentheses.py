@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     testmod()
 
-    examples = ["((()))", "((())", "(()))"]
+    examples = ["((()))", "((())", "(()))",'[(5x+1)+{34x+y}]']
     print("Balanced parentheses demonstration:\n")
     for example in examples:
         not_str = "" if balanced_parentheses(example) else "not "
