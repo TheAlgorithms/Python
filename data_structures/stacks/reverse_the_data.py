@@ -1,7 +1,10 @@
 from .stack import Stack
 
 def reverse_text(text: str) -> str:
-    ''' Reversing the data stored in a file using stack'''
+    ''' Reversing the data stored in a file using stack. example
+    >>> print(reverse_text('Hello world'))
+    dlrow olleH
+    '''
     reversed_text: list[str] = []
     S = Stack()
     for char in text:
@@ -13,7 +16,9 @@ def reverse_text(text: str) -> str:
     return ''.join(reversed_text)
     
 if __name__ == '__main__':
-    
+    import doctest
+    doctest.testmod()
+
     examples = ['Hello world', 'TENET', 'Jupyter', 'Python']
     for test in examples:
         print(f'Original:{test} -> Reversed: {reverse_text(test)}')
