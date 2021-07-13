@@ -9,7 +9,8 @@ class LinearRegressionGD():
         '''Given an input n dimenstional array(X), returns weighted sum of inputs with weights (i.e. W.X + b)'''
         return np.dot(X_matrix, self.w_[1:]) + self.w_[0]
 
-    def fit(self, X_matrix, target_y):
+    def fit(self, X_matrix, target_y) -> self:
+        '''Given an input and target variable, this method trains linear regression model using Gradient Descent method'''
         self.w_ = np.zeros(1 + X_matrix.shape[1])
         self.cost_ = []
         for i in range(self.n_iter):
@@ -21,8 +22,8 @@ class LinearRegressionGD():
             self.cost_.append(cost)
         return self
 
-    def predict(self, X):
-        return self.net_input(X)
+    def predict(self, X_matrix):
+        return self.net_input(X_matrix)
     
 if __name__ == '__main__':
     LR = LinearRegressionGD()
