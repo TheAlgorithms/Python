@@ -1,4 +1,5 @@
-# The Algorithms - Python
+![The Algo-logo](img/1.svg)
+### The Algorithms - Python
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/TheAlgorithms/Python)&nbsp;
 [![Discord chat](https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square)](https://discord.gg/c7MnfGFGa6)&nbsp;
 [![Gitter chat](https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square)](https://gitter.im/TheAlgorithms)&nbsp;
@@ -11,9 +12,14 @@
 [![code style: black](https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square)](https://github.com/psf/black)&nbsp;
 <!--[![Tested on Python 3.8](https://img.shields.io/badge/Tested%20-Python%203.8-blue.svg?logo=python&style=flat-square)](https://www.python.org/downloads) &nbsp;-->
 
+Open source resource for learning data structures & algorithms
+
 ### All algorithms implemented in Python (for education)
 
 These implementations are for learning purposes only. Therefore they may be less efficient than the implementations in the Python standard library.
+
+
+![Preview](img/preview.png)
 
 ## Contribution Guidelines
 
