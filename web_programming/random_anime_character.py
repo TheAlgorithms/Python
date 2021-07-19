@@ -19,7 +19,7 @@ def save_image(image_url: str, image_title: str) -> None:
     return None
 
 
-def random_anime_character() -> None:
+def random_anime_character() -> tuple[str, str, str]:
     """
     Returns the Title, Description, and Image Title of a random anime character .
     """
