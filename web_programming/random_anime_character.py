@@ -21,7 +21,7 @@ def save_image(image_url: str, image_title: str) -> None:
 
 def random_anime_character() -> None:
     """
-    Returns the Name and Description of the anime character .
+    Returns the Title, Description, and Image Title of a random anime character .
     """
 
     html = requests.get(URL, headers=headers).text
