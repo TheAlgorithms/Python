@@ -16,27 +16,19 @@ def save_image(image_url: str, image_title: str) -> None:
     with open(image_title, "wb") as file:
         file.write(image.content)
 
-    return None
-
 
 def random_anime_character() -> tuple[str, str, str]:
     """
     Returns the Title, Description, and Image Title of a random anime character .
     """
-
-    html = requests.get(URL, headers=headers).text
-    soup = BeautifulSoup(html, "html.parser")
-
+    soup = BeautifulSoup(requests.get(URL, headers=headers).text, "html.parser")
     title = soup.find("meta", attrs={"property": "og:title"}).attrs["content"]
     image_url = soup.find("meta", attrs={"property": "og:image"}).attrs["content"]
     description = soup.find("p", id="description").get_text()
-
     _, image_extension = os.path.splitext(os.path.basename(image_url))
     image_title = title.strip().replace(" ", "_")
     image_title = f"{image_title}{image_extension}"
-
     save_image(image_url, image_title)
-
     return (title, description, image_title)
 
 
