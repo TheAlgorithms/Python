@@ -15,14 +15,12 @@ def indian_phone_validator(phone: str) -> bool:
     >>> indian_phone_validator("+91-1234567899")
     False
     """
-    # Created a regex pattern to produce a valid phone number
     pat = re.compile(r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")
-    # Find matches
     match = re.search(pat, phone)
-    # if the match is present to check for the phone string is valid or not.
     if match:
         return match.string == phone
     return False
 
+
 if __name__ == "__main__":
-    print(indian_phone_validator('+918827897895'))
+    print(f'{indian_phone_validator("+918827897895")}\n')
