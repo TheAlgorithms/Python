@@ -23,4 +23,4 @@ def indian_phone_validator(phone: str) -> bool:
 
 
 if __name__ == "__main__":
-    print(f'{indian_phone_validator("+918827897895")}\n')
+    print(indian_phone_validator("+918827897895"))
