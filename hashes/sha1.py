@@ -118,13 +118,13 @@ class SHA1Hash:
                     c,
                     d,
                 )
-        self.h = (
-            self.h[0] + a & 0xFFFFFFFF,
-            self.h[1] + b & 0xFFFFFFFF,
-            self.h[2] + c & 0xFFFFFFFF,
-            self.h[3] + d & 0xFFFFFFFF,
-            self.h[4] + e & 0xFFFFFFFF,
-        )
+            self.h = (
+                self.h[0] + a & 0xFFFFFFFF,
+                self.h[1] + b & 0xFFFFFFFF,
+                self.h[2] + c & 0xFFFFFFFF,
+                self.h[3] + d & 0xFFFFFFFF,
+                self.h[4] + e & 0xFFFFFFFF,
+            )
         return "%08x%08x%08x%08x%08x" % tuple(self.h)
 
 
