@@ -1,7 +1,12 @@
-def swap_variables(a: int, b: int) -> list:
-    """swap variables a and b using bit manipulations
-    variables a and b are integers
-    function returns a list of two swapped integers [a,b]
+def swap_variables(first_variable: int, second_variable: int) -> list:
+    """
+    Swap two variables using bit manipulations
+
+    ---
+    type first_variable: int
+    type second_variable: int
+    type return: list
+
     >>> swap_variables(1, 2)
     [2, 1]
     >>> swap_variables(2, 1)
@@ -15,10 +20,10 @@ def swap_variables(a: int, b: int) -> list:
     >>> swap_variables(-91, -10)
     [-10, -91]
     """
-    a = a ^ b
-    b = a ^ b
-    a = a ^ b
-    return [a, b]
+    first_variable = first_variable ^ second_variable
+    second_variable = first_variable ^ second_variable
+    first_variable = first_variable ^ second_variable
+    return [first_variable, second_variable]
 
 
 if __name__ == "__main__":
