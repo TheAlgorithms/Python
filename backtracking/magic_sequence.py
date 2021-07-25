@@ -17,13 +17,13 @@ import copy
 
 
 def backtrack(
-    n: int, sequence: list[any], res: list[int] = [], depth: int = 0
+    nb_element: int, sequence: list[any], res: list[int] = [], depth: int = 0
 ) -> list[int]:
     """
     this function return a list of solition
 
     Args:
-        n (int): number of element in the sequence
+        nb_element (int): number of element in the sequence
         sequence (list[any]): use for generete the solotion
         res (list[int], optional): empty list for recover the solution. Defaults to [].
         depth (int, optional): position in the three. Defaults to 0.
@@ -31,17 +31,25 @@ def backtrack(
     Returns:
         list[int]: list of solution
     """
-
+    """
+    >>> backtrack(4, [None for x in range(4)])
+    [[1, 2, 1, 0], [2, 0, 2, 0]]
+    >>> backtrack(7, [None for x in range(7)])
+    [[3, 2, 1, 1, 0, 0, 0]]
+    >>> backtrack(10, [None for x in range(10)])
+    [[6, 2, 1, 0, 0, 0, 1, 0, 0, 0]]
+    
+    """
     # check if i not exceed the length of the sequence before check the magic sequence
     if depth == len(sequence):
         if check_magic_sequence(sequence):
             res.append(copy.deepcopy(sequence))
         return 0
-    for i in range(0, n):
+    for i in range(0, nb_element):
         # check filter for pass to the next step
         if somme_elem_lower_to_len(sequence):
             sequence[depth] = i
-            backtrack(n, copy.deepcopy(sequence), res, depth + 1)
+            backtrack(nb_element, copy.deepcopy(sequence), res, depth + 1)
         else:
             break
     return res
@@ -56,6 +64,16 @@ def check_magic_sequence(sequence: list[int]) -> bool:
 
     Returns:
         bool: return true if the sequence is magic else return false
+    """
+    """
+    >>> check_magic_sequence([2,2,2])
+    False
+    >>> check_magic_sequence([3, 2, 1, 1, 0, 0, 0])
+    True
+    >>> check_magic_sequence([0])
+    False
+    >>> check_magic_sequence([1,2,1,0])
+    True
     """
     for i in range(len(sequence)):
         count = 0
@@ -82,6 +100,15 @@ def somme_elem_lower_to_len(sequence: list[any]) -> bool:
     Returns:
         bool: return true if the result is lower than the length of the sequence
     """
+    """
+    >>> somme_elem_lower_to_len([2,2,2])
+    False
+    >>> somme_elem_lower_to_len([1,0,0])
+    True
+    >>> somme_elem_lower_to_len([None]
+    True
+    """
+
     res = 0
     for i in sequence:
         if i != None:
