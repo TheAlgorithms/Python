@@ -105,7 +105,7 @@ def somme_elem_lower_to_len(sequence: list[any]) -> bool:
     False
     >>> somme_elem_lower_to_len([1,0,0])
     True
-    >>> somme_elem_lower_to_len([None]
+    >>> somme_elem_lower_to_len([None])
     True
     """
 
