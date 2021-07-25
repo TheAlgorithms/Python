@@ -20,6 +20,15 @@ def backtrack(
     nb_element: int, sequence: list[any], res: list[int] = [], depth: int = 0
 ) -> list[int]:
     """
+    >>> backtrack(4, [None for x in range(4)])
+    [[1, 2, 1, 0], [2, 0, 2, 0]]
+    >>> backtrack(7, [None for x in range(7)])
+    [[1, 2, 1, 0], [2, 0, 2, 0], [3, 2, 1, 1, 0, 0, 0]]
+    >>> backtrack(10, [None for x in range(10)])
+    [[1, 2, 1, 0], [2, 0, 2, 0], [3, 2, 1, 1, 0, 0, 0], [6, 2, 1, 0, 0, 0, 1, 0, 0, 0]]
+
+    """
+    """
     this function return a list of solition
 
     Args:
@@ -31,15 +40,7 @@ def backtrack(
     Returns:
         list[int]: list of solution
     """
-    """
-    >>> backtrack(4, [None for x in range(4)])
-    [[1, 2, 1, 0], [2, 0, 2, 0]]
-    >>> backtrack(7, [None for x in range(7)])
-    [[3, 2, 1, 1, 0, 0, 0]]
-    >>> backtrack(10, [None for x in range(10)])
-    [[6, 2, 1, 0, 0, 0, 1, 0, 0, 0]]
-    
-    """
+
     # check if i not exceed the length of the sequence before check the magic sequence
     if depth == len(sequence):
         if check_magic_sequence(sequence):
@@ -57,15 +58,6 @@ def backtrack(
 
 def check_magic_sequence(sequence: list[int]) -> bool:
     """
-    the function check if the sequence is a magic
-
-    Args:
-        sequence (list[int]): list of integer
-
-    Returns:
-        bool: return true if the sequence is magic else return false
-    """
-    """
     >>> check_magic_sequence([2,2,2])
     False
     >>> check_magic_sequence([3, 2, 1, 1, 0, 0, 0])
@@ -74,6 +66,15 @@ def check_magic_sequence(sequence: list[int]) -> bool:
     False
     >>> check_magic_sequence([1,2,1,0])
     True
+    """
+    """
+    the function check if the sequence is a magic
+
+    Args:
+        sequence (list[int]): list of integer
+
+    Returns:
+        bool: return true if the sequence is magic else return false
     """
     for i in range(len(sequence)):
         count = 0
@@ -91,6 +92,14 @@ def check_magic_sequence(sequence: list[int]) -> bool:
 
 def somme_elem_lower_to_len(sequence: list[any]) -> bool:
     """
+    >>> somme_elem_lower_to_len([2,2,2])
+    False
+    >>> somme_elem_lower_to_len([1,0,0])
+    True
+    >>> somme_elem_lower_to_len([None])
+    True
+    """
+    """
     the function check if the summe of the elements of the sequence
     are not greater than the length of the sequence
 
@@ -100,14 +109,7 @@ def somme_elem_lower_to_len(sequence: list[any]) -> bool:
     Returns:
         bool: return true if the result is lower than the length of the sequence
     """
-    """
-    >>> somme_elem_lower_to_len([2,2,2])
-    False
-    >>> somme_elem_lower_to_len([1,0,0])
-    True
-    >>> somme_elem_lower_to_len([None])
-    True
-    """
+
 
     res = 0
     for i in sequence:
