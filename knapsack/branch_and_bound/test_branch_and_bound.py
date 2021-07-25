@@ -6,7 +6,7 @@ from item import *
 
 class TestBranchAndBound:
     def main():
-        itemList = []
+        item_list = []
         item = [
             Item("Ant Repellent", 1.0, 2.0),
             Item("Blanket", 4.0, 3.0),
@@ -25,7 +25,7 @@ class TestBranchAndBound:
             for line in file:
                 content = line.split(",")
                 # Add name, weight , rating and quantity into Item object
-                itemList.append(Item(content[0], float(content[1]), float(content[2])))
+                item_list.append(Item(content[0], float(content[1]), float(content[2])))
             file.close()
 
         while True:
@@ -36,7 +36,7 @@ class TestBranchAndBound:
                 print("Please enter valid number.")
 
         # Branch and Bounce algorithm implementation
-        algorithm = BranchAndBound(capacity, itemList)
+        algorithm = BranchAndBound(capacity, item_list)
         upper = algorithm.solve_knapsack()
         # Output
         print("\nKnapsack Items")
@@ -44,7 +44,7 @@ class TestBranchAndBound:
             "----------------------------------------------------------------------------------------------"
         )
         print("Name\t\t\tWeight\t\tRating\t\tRating-Weight ratio\tQuantity")
-        for item in itemList:
+        for item in item_list:
             ratio = item.rating / item.weight
             print(
                 "{0:<20}\t{1:<5}\t\t{2:<5}\t\t\t{3:<8.2f}\t{4}".format(
@@ -56,7 +56,7 @@ class TestBranchAndBound:
         )
         print("Item Selected: | ", end="")
         total_weight = 0
-        for item in itemList:
+        for item in item_list:
             if item.quantity == 1:
                 total_weight += item.weight
                 print(item.name, " | ", end="")
