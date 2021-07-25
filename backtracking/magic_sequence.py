@@ -16,7 +16,9 @@ import sys
 import copy
 
 
-def backtrack(n: int, sequence: list[any], res: list[int] = [], depth: int = 0):
+def backtrack(
+    n: int, sequence: list[any], res: list[int] = [], depth: int = 0
+) -> list[int]:
     """
     this function return a list of solition
 
@@ -91,12 +93,13 @@ def somme_elem_lower_to_len(sequence: list[any]) -> bool:
 
 
 if __name__ == "__main__":
+
     try:
-        nbElement = int(sys.argv[1])
+        nb_element = int(sys.argv[1])
     except:
         print(
             "no first arg given so number of element is initialized to 4 because it's the first one to give a answer"
         )
-        nbElement = 4
-    res = backtrack(nbElement, [None for x in range(nbElement)])
+        nb_element = 4
+    res = backtrack(nb_element, [None for x in range(nb_element)])
     print(res)
