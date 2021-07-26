@@ -14,7 +14,7 @@
 
 import sys
 import copy
-
+import doctest
 
 def backtrack(
     nb_element: int, sequence: list[any], res: list[int] = [], depth: int = 0
@@ -122,7 +122,7 @@ def somme_elem_lower_to_len(sequence: list[any]) -> bool:
 
 
 if __name__ == "__main__":
-
+    doctest.testmod()
     try:
         nb_element = int(sys.argv[1])
     except:
