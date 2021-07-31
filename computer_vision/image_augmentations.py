@@ -12,12 +12,12 @@ import matplotlib.pyplot as plt
 import random
 
 
-def fill(image, h, w):
+def fill(image, h, w) -> image:
     image = cv2.resize(image, (h, w), cv2.INTER_CUBIC)
     return image
         
 
-def horizontal_shift(image):
+def horizontal_shift(image) -> image:
     ratio = round((random.uniform(0.0, 1.0)), 1)
     if ratio > 1 or ratio < 0:
         print('Value should be less than 1 and greater than 0')
@@ -36,7 +36,7 @@ def horizontal_shift(image):
     return image
 
 
-def vertical_shift(image):
+def vertical_shift(image) -> image:
     ratio = round((random.uniform(0.0, 1.0)), 1)
     if ratio > 1 or ratio < 0:
         print('Value should be less than 1 and greater than 0')
@@ -55,7 +55,7 @@ def vertical_shift(image):
     return image
 
 
-def brightness(image):
+def brightness(image) -> image:
     low = round((random.uniform(0.0, 1.0)), 1)
     high = random.uniform(1, 5)
     value = random.uniform(low, high)
@@ -70,7 +70,7 @@ def brightness(image):
     return image
 
 
-def zoom(image):
+def zoom(image) -> image:
     value = round((random.uniform(0.0, 1.0)), 1)
     if value > 1 or value < 0:
         print('Value for zoom should be less than 1 and greater than 0')
@@ -86,7 +86,7 @@ def zoom(image):
     return image
 
 
-def channel_shift(image):
+def channel_shift(image) -> image:
     value = random.randrange(255)
     value = int(random.uniform(-value, value))
     image = image + value
@@ -96,20 +96,20 @@ def channel_shift(image):
     return image
 
 
-def horizontal_flip(image):
+def horizontal_flip(image) -> image:
     if True:
         return cv2.flip(image, 1)
     else:
         return image
     
-def vertical_flip(image):
+def vertical_flip(image) -> image:
     if True:
         return cv2.flip(image, 0)
     else:
         return image
 
 
-def rotation(image):
+def rotation(image) -> image:
     angle = random.randrange(360)
     angle = int(random.uniform(-angle, angle))
     h, w = image.shape[:2]
@@ -119,7 +119,7 @@ def rotation(image):
 
 
 if __name__=="__main__":
-  path = str(input("Enter your path : "))
+  path = str(input("Enter your path of image: "))
   image = cv2.imread(path)
   
   cv2.imshow('Original Image', image)
@@ -127,25 +127,5 @@ if __name__=="__main__":
   Horizontal_shift_image = horizontal_shift(image)
   cv2.imshow('Horizontal Shift Image', Horizontal_shift_image)
 
-  Vertical_shift_image = vertical_shift(image)
-  cv2.imshow('Vertical Shift Image', Vertical_shift_image)
-
-  bright_image = brightness(image)
-  cv2.imshow('Bright Image', bright_image)
-
-  zoom_image = zoom(image)
-  cv2.imshow('Zoom image', zoom_image)
-
-  channel_shift_image = channel_shift(image)
-  cv2.imshow('Channel Shift Image', channel_shift_image)
-
-  horizontal_flip_image = horizontal_flip(image)
-  cv2.imshow('Horizontal Flip Image', horizontal_flip_image)
-
-  vertical_flip_image = vertical_flip(image)
-  cv2.imshow('Vertical Flip Image', vertical_flip_image)
-
-  rotated_image= rotation(image)    
-  cv2.imshow('Rotation Image', rotated_image)
   cv2.waitKey(0)
   cv2.destroyAllWindows()
