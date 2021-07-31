@@ -71,7 +71,7 @@ def level_order_1(root: Node):
     return que
 
 
-def level_order_2(root: Node, level: int):
+def level_order_2(root: Node, level: int): #function
     """
     Level-wise traversal: Print all nodes present at the given level of the binary tree
     """
@@ -84,7 +84,7 @@ def level_order_2(root: Node, level: int):
         level_order_2(root.right, level - 1)
 
 
-def print_left_to_right(root: Node, level: int):
+def print_left_to_right(root: Node, level: int): #function
     """
     Print elements on particular level from left to right direction of the binary tree.
     """
@@ -97,7 +97,7 @@ def print_left_to_right(root: Node, level: int):
         print_left_to_right(root.right, level - 1)
 
 
-def print_right_to_left(root: Node, level: int):
+def print_right_to_left(root: Node, level: int): #function
     """
     Print elements on particular level from right to left direction of the binary tree.
     """
@@ -110,7 +110,7 @@ def print_right_to_left(root: Node, level: int):
         print_right_to_left(root.left, level - 1)
 
 
-def zigzag(root: Node):
+def zigzag(root: Node): #function
     """
     ZigZag traverse: Print node left to right and right to left, alternatively.
     """
