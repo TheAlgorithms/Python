@@ -15,7 +15,7 @@ def sus_selection(p):
 
     # generate the first pointers
     r = sum(p)*np.random.rand()
-    
+   
     # list to store the two pointers
     points = []
     points.append(r)
