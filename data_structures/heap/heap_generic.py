@@ -90,6 +90,9 @@ class Heap:
             return
         index = self.pos_map[item]
         del self.pos_map[item]
+        if self.size - 1 == index:
+            self.size -= 1
+            return
         self.arr[index] = self.arr[self.size - 1]
         self.pos_map[self.arr[self.size - 1][0]] = index
         self.size -= 1
