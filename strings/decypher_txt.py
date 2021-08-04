@@ -45,5 +45,3 @@ def decode_mesage(txt):
     count+=1
  
   print(res_str)
-
-print(decode_mesage("xyzab!1234"))
