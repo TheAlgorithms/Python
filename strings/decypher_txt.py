@@ -43,7 +43,3 @@ def decode_mesage(txt):
     elif info[count] == 1:
       res_str += str(alphabet_upper[int(char)])
     count+=1
- 
-  print(res_str)
-
-print(decode_mesage("xyzab!1234"))
