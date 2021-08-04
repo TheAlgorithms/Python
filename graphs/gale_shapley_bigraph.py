@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 
-def stable_matching(donor_pref: list[int], recipient_pref: list[int]) -> list[int]:
+def stable_matching(
+    donor_pref: list[list[int]], recipient_pref: list[list[int]]
+) -> list[int]:
     """
     Finds the stable match in any bipartite graph, i.e a pairing where no 2 objects
     prefer each other over their partner.  The function accepts the preferences of
@@ -19,11 +21,13 @@ def stable_matching(donor_pref: list[int], recipient_pref: list[int]) -> list[in
     [1, 2, 3, 0]
     """
     assert len(donor_pref) == len(recipient_pref)
+
     n = len(donor_pref)
     unmatched_donors = list(range(n))
     donor_record = [-1] * n  # who the donor has donated to
     rec_record = [-1] * n  # who the recipient has received from
     num_donations = [0] * n
+
     while unmatched_donors:
         donor = unmatched_donors[0]
         donor_preference = donor_pref[donor]
@@ -31,6 +35,7 @@ def stable_matching(donor_pref: list[int], recipient_pref: list[int]) -> list[in
         num_donations[donor] += 1
         rec_preference = recipient_pref[recipient]
         prev_donor = rec_record[recipient]
+
         if prev_donor != -1:
             if rec_preference.index(prev_donor) > rec_preference.index(donor):
                 rec_record[recipient] = donor

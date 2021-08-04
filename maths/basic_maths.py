@@ -6,7 +6,17 @@ def prime_factors(n: int) -> list:
     """Find Prime Factors.
     >>> prime_factors(100)
     [2, 2, 5, 5]
+    >>> prime_factors(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive integers have prime factors
+    >>> prime_factors(-10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive integers have prime factors
     """
+    if n <= 0:
+        raise ValueError("Only positive integers have prime factors")
     pf = []
     while n % 2 == 0:
         pf.append(2)
@@ -24,7 +34,17 @@ def number_of_divisors(n: int) -> int:
     """Calculate Number of Divisors of an Integer.
     >>> number_of_divisors(100)
     9
+    >>> number_of_divisors(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
+    >>> number_of_divisors(-10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
     """
+    if n <= 0:
+        raise ValueError("Only positive numbers are accepted")
     div = 1
     temp = 1
     while n % 2 == 0:
@@ -44,7 +64,17 @@ def sum_of_divisors(n: int) -> int:
     """Calculate Sum of Divisors.
     >>> sum_of_divisors(100)
     217
+    >>> sum_of_divisors(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
+    >>> sum_of_divisors(-10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
     """
+    if n <= 0:
+        raise ValueError("Only positive numbers are accepted")
     s = 1
     temp = 1
     while n % 2 == 0:
@@ -74,7 +104,6 @@ def euler_phi(n: int) -> int:
 
 
 if __name__ == "__main__":
-    print(prime_factors(100))
-    print(number_of_divisors(100))
-    print(sum_of_divisors(100))
-    print(euler_phi(100))
+    import doctest
+
+    doctest.testmod()
