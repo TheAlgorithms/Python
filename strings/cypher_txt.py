@@ -45,7 +45,3 @@ def cypher_mesage(txt):
     count+=1
 
   print(res_str)
-
-
-
-code_mesage("xXyzabB!1234")
