@@ -5,7 +5,7 @@ A valid IP address must be in the form of A.B.C.D, where A,B,C and D are numbers
 for example: 192.168.23.1, 192.254.254.254, 192.168.76.45 are valid IP address
              192.168.255.0, 255.192.3.121, 192.0.1.255 are Invalid IP address
 """
-def check_valid_IP(ip):
+def check_valid_ip(ip):
     """
     print "Valid IP adddress" If IP is valid.
     or
@@ -29,10 +29,11 @@ def check_valid_IP(ip):
         return "Invalid"
     else:
         return "Valid"
+    return None
 if __name__ == "__main__":
     ip = input()
-    output = check_valid_IP(ip)
+    output = check_valid_ip(ip)
     if output == "Invalid":
-        print(f"{ip} is an {check_valid_IP(ip)} IP address")
+        print(f"{ip} is an {output} IP address")
     else:
-        print(f"{ip} is a {check_valid_IP(ip)} IP address")
+        print(f"{ip} is a {output} IP address")
