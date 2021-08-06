@@ -4,7 +4,7 @@ A valid IP address must be in the form of A.B.C.D, where A,B,C and D are numbers
 for example: 192.168.23.1, 192.254.254.254, 192.168.76.45 are valid IP address
              192.168.255.0, 255.192.3.121, 192.0.1.255 are Invalid IP address
 """
-def check_valid_ip(ip: str):
+def check_valid_ip(ip: str) -> str:
     """
     print "Valid IP adddress" If IP is valid.
     or
