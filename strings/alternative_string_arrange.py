@@ -5,13 +5,13 @@ def alternative_string_arrange(first_str: str, second_str: str) -> str:
     :param second_str:
     :return: String
     >>> alternative_string_arrange("ABCD", "XY")
-    "AXBYCD"
+    'AXBYCD'
     >>> alternative_string_arrange("XY", "ABCD")
-    "XAYBCD"
+    'XAYBCD'
     >>> alternative_string_arrange("AB", "XYZ")
-    "AXBYZ"
+    'AXBYZ'
     >>> alternative_string_arrange("ABC", "")
-    "ABC"
+    'ABC'
     """
     first_str_length: int = len(first_str)
     second_str_length: int = len(second_str)
