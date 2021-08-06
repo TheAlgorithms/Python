@@ -26,7 +26,7 @@ def check_valid_ip(ip: str) -> str:
         return "Invalid"
     else:
         return "Valid"
-    return None
+   
 if __name__ == "__main__":
     ip = input()
     output = check_valid_ip(ip)
