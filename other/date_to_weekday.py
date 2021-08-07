@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 def date_to_weekday(inp_date: str) -> str:
     """
     It returns the day name of the given date string.
@@ -12,7 +13,15 @@ def date_to_weekday(inp_date: str) -> str:
     >>> date_to_weekday("1/1/2021")
     'Friday'
     """
-    day_list: list = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    day_list: list = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+    ]
     day, month, year = [int(x) for x in inp_date.split("/")]
     if year % 100 == 0:
         year = "00"
