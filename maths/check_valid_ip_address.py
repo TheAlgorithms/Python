@@ -14,11 +14,14 @@ def check_valid_ip(ip: str) -> bool:
 
     >>> check_valid_IP(192.168.0.23)
     192.168.0.23 is a Valid IP address
+    
     >>> check_valid_IP(192.255.15.8)
     192.255.15.8 is an Invalid IP address
-     >>> check_valid_IP(172.100.0.8)
+    
+    >>> check_valid_IP(172.100.0.8)
     172.100.0.8 is a Valid IP address
-     >>> check_valid_IP(254.255.0.255)
+    
+    >>> check_valid_IP(254.255.0.255)
     254.255.0.255 is an Invalid IP address
 
     """
