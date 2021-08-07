@@ -5,7 +5,7 @@ def exchange_sort(numbers: list[int]) -> list[int]:
     >>> exchange_sort([5, 4, 3, 2, 1])
     [1, 2, 3, 4, 5]
     >>> exchange_sort([-1, -2, -3])
-    [-5, -4, -3, -2, -1]
+    [-3, -2, -1]
     >>> exchange_sort([1, 2, 3, 4, 5])
     [1, 2, 3, 4, 5]
     >>> exchange_sort([0, 10, -2, 5, 3])
