@@ -9,7 +9,7 @@ for example: 192.168.23.1, 172.254.254.254 are valid IP address
 
 def check_valid_ip(ip: str) -> bool:
     """
-    print "Valid IP adddress" If IP is valid.
+    print "Valid IP address" If IP is valid.
     or
     print "Invalid IP address" If IP is Invalid.
 
