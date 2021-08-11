@@ -13,8 +13,9 @@ def exchange_sort(numbers: list[int]) -> list[int]:
     >>> exchange_sort([])
     []
     """
-    for i in range(len(numbers)):
-        for j in range(i + 1, len(numbers)):
+    numbers_length = len(numbers)
+    for i in range(numbers_length):
+        for j in range(i + 1, numbers_length):
             if numbers[j] < numbers[i]:
                 numbers[i], numbers[j] = numbers[j], numbers[i]
     return numbers
