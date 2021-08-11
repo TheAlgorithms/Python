@@ -1,5 +1,4 @@
-#Python Quadratic Equation solver for three terms
-#Computes any possible solution for a qyuadratic equation
+#https://en.wikipedia.org/wiki/Quadratic_formula
 import math
 
 def quadratics_equation_solver(a: int, b: int, c: int):
