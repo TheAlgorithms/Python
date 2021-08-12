@@ -2,6 +2,8 @@ import heapq
 
 import numpy as np
 
+TPos = tuple[int, int]
+
 
 class PriorityQueue:
     def __init__(self):
@@ -53,24 +55,24 @@ class PriorityQueue:
         return (priority, item)
 
 
-def consistent_heuristic(P, goal):
+def consistent_heuristic(P: TPos, goal: TPos):
     # euclidean distance
     a = np.array(P)
     b = np.array(goal)
     return np.linalg.norm(a - b)
 
 
-def heuristic_2(P, goal):
+def heuristic_2(P: TPos, goal: TPos):
     # integer division by time variable
     return consistent_heuristic(P, goal) // t
 
 
-def heuristic_1(P, goal):
+def heuristic_1(P: TPos, goal: TPos):
     # manhattan distance
     return abs(P[0] - goal[0]) + abs(P[1] - goal[1])
 
 
-def key(start, i, goal, g_function):
+def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
     ans = g_function[start] + W1 * heuristics[i](start, goal)
     return ans
 
@@ -117,7 +119,7 @@ def do_something(back_pointer, goal, start):
     quit()
 
 
-def valid(p):
+def valid(p: TPos):
     if p[0] < 0 or p[0] > n - 1:
         return False
     if p[1] < 0 or p[1] > n - 1:
@@ -215,7 +217,6 @@ blocks_blk = [
     (18, 1),
     (19, 1),
 ]
-blocks_no = []
 blocks_all = make_common_ground()
 
 
@@ -233,7 +234,7 @@ goal = (n - 1, n - 1)
 t = 1
 
 
-def multi_a_star(start, goal, n_heuristic):
+def multi_a_star(start: TPos, goal: TPos, n_heuristic: int):
     g_function = {start: 0, goal: float("inf")}
     back_pointer = {start: -1, goal: -1}
     open_list = []
@@ -243,8 +244,8 @@ def multi_a_star(start, goal, n_heuristic):
         open_list.append(PriorityQueue())
         open_list[i].put(start, key(start, i, goal, g_function))
 
-    close_list_anchor = []
-    close_list_inad = []
+    close_list_anchor: list[int] = []
+    close_list_inad: list[int] = []
     while open_list[0].minkey() < float("inf"):
         for i in range(1, n_heuristic):
             # print(open_list[0].minkey(), open_list[i].minkey())
