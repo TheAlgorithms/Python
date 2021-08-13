@@ -1,5 +1,5 @@
 from datetime import datetime
-import calendar
+from calendar import day_name
 
 
 def date_to_weekday(inp_date: str) -> str:
@@ -20,7 +20,7 @@ def date_to_weekday(inp_date: str) -> str:
     new_base_date: str = f"{day}/{month}/{year%100} 0:0:0"
     date_time_obj: datetime.date = datetime.strptime(new_base_date, "%d/%m/%y %H:%M:%S")
     out_put_day: int = date_time_obj.weekday()
-    return str(calendar.day_name[out_put_day])
+    return str(day_name[out_put_day])
 
 
 if __name__ == "__main__":
