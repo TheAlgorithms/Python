@@ -1,42 +1,69 @@
 from collections import deque
 
+
+def _input(message):
+    return input(message).strip().split(" ")
+
+
+def initialize_unweighted_directed_graph(
+    node_count: int, edge_count: int
+) -> dict[int, list[int]]:
+    graph: dict[int, list[int]] = {}
+    for i in range(node_count):
+        graph[i + 1] = []
+
+    for e in range(edge_count):
+        x, y = [int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> ")]
+        graph[x].append(y)
+    return graph
+
+
+def initialize_unweighted_undirected_graph(
+    node_count: int, edge_count: int
+) -> dict[int, list[int]]:
+    graph: dict[int, list[int]] = {}
+    for i in range(node_count):
+        graph[i + 1] = []
+
+    for e in range(edge_count):
+        x, y = [int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> ")]
+        graph[x].append(y)
+        graph[y].append(x)
+    return graph
+
+
+def initialize_weighted_undirected_graph(
+    node_count: int, edge_count: int
+) -> dict[int, list[tuple[int, int]]]:
+    graph: dict[int, list[tuple[int, int]]] = {}
+    for i in range(node_count):
+        graph[i + 1] = []
+
+    for e in range(edge_count):
+        x, y, w = [int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> <weight> ")]
+        graph[x].append((y, w))
+        graph[y].append((x, w))
+    return graph
+
+
 if __name__ == "__main__":
-    # Accept No. of Nodes and edges
-    n, m = map(int, input().split(" "))
+    n, m = [int(i) for i in _input("Number of nodes and edges: ")]
 
-    # Initialising Dictionary of edges
-    g = {}
-    for i in range(n):
-        g[i + 1] = []
+    graph_choice = int(
+        _input(
+            "Press 1 or 2 or 3 \n"
+            "1. Unweighted directed \n"
+            "2. Unweighted undirected \n"
+            "3. Weighted undirected \n"
+        )[0]
+    )
 
-    """
-    ----------------------------------------------------------------------------
-        Accepting edges of Unweighted Directed Graphs
-    ----------------------------------------------------------------------------
-    """
-    for _ in range(m):
-        x, y = map(int, input().strip().split(" "))
-        g[x].append(y)
+    g = {
+        1: initialize_unweighted_directed_graph,
+        2: initialize_unweighted_undirected_graph,
+        3: initialize_weighted_undirected_graph,
+    }[graph_choice](n, m)
 
-    """
-    ----------------------------------------------------------------------------
-        Accepting edges of Unweighted Undirected Graphs
-    ----------------------------------------------------------------------------
-    """
-    for _ in range(m):
-        x, y = map(int, input().strip().split(" "))
-        g[x].append(y)
-        g[y].append(x)
-
-    """
-    ----------------------------------------------------------------------------
-        Accepting edges of Weighted Undirected Graphs
-    ----------------------------------------------------------------------------
-    """
-    for _ in range(m):
-        x, y, r = map(int, input().strip().split(" "))
-        g[x].append([y, r])
-        g[y].append([x, r])
 
 """
 --------------------------------------------------------------------------------
