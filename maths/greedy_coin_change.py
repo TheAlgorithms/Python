@@ -82,8 +82,7 @@ if __name__ == "__main__":
 
         for i in range(0, n):
             denominations.append(int(input(f"Denomination {i}: ").strip()))
-        value = input(
-            "Enter the change you want to make in Indian Currency: ").strip()
+        value = input("Enter the change you want to make in Indian Currency: ").strip()
     else:
         # All denominations of Indian Currency if user does not enter
         denominations = [1, 2, 5, 10, 20, 50, 100, 500, 2000]
