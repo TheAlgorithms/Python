@@ -75,9 +75,12 @@ def find_minimum_change(denominations: list[int], value: str) -> list[int]:
 if __name__ == "__main__":
 
     denominations = list()
-    value = '0'
+    value = "0"
 
-    if (input("Do you want to enter your denominations ? (yY/n): ").strip().lower() == "y"):
+    if (
+        input("Do you want to enter your denominations ? (yY/n): ").strip().lower()
+        == "y"
+    ):
         n = int(input("Enter the number of denominations you want to add: ").strip())
 
         for i in range(0, n):
