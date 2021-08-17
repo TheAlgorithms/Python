@@ -227,6 +227,6 @@ if __name__ == "__main__":
     support = get_support(cluster)
     graph = construct_graph(cluster, nodes)
     find_freq_subgraph_given_support(60, cluster, graph)
-    paths = []
+    paths: list = []
     freq_subgraph_edge_list = freq_subgraphs_edge_list(paths)
     print_all()
