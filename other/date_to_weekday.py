@@ -1,5 +1,5 @@
-from datetime import datetime
 from calendar import day_name
+from datetime import datetime
 
 
 def date_to_weekday(inp_date: str) -> str:
