@@ -1,0 +1,58 @@
+"""
+Pure implementation of Dutch national flag problem(dnf) sort algorithm in Python
+Dutch National Flag algorithm is a popular algorithm originally designed by Edsger Dijkstra.
+It is the most optimal sort for 3 unique values (eg. 0,1,2) in an Array.
+dnf sort can sort an array of n size with [0<=a[i]<=2] at guaranteed O(n) complexity in a single pass.
+  
+More info on: https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+
+For doctests run following command:
+python -m doctest -v dnf_sort.py
+or
+python3 -m doctest -v dnf_sort.py
+
+For manual testing run:
+python dnf_sort.py
+
+"""
+
+
+# Python program to sort an array with
+# 0, 1 and 2 in a single pass
+
+# Function to sort array
+def dnf_sort( a, arr_size):
+    """
+     Pure implementation of dnf sort algorithm in Python
+    :param data: 3 unique values (eg. 0,1,2) in an Array
+    :return: the same collection in ascending order
+    Examples:
+    Input: dnf_sort([2, 1, 0, 0,1, 2])
+    Output: [0, 0, 1, 1, 2, 2]
+    Input: dnf_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1])
+    Output: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
+    """
+    low = 0
+    high = arr_size - 1
+    mid = 0
+    while mid <= high:
+        if a[mid] == 0:
+            a[low], a[mid] = a[mid], a[low]
+            low = low + 1
+            mid = mid + 1
+        elif a[mid] == 1:
+            mid = mid + 1
+        else:
+            a[mid], a[high] = a[high], a[mid]
+            high = high - 1
+    return a
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
+
+    
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+print(dnf_sort(unsorted,len(unsorted)))
