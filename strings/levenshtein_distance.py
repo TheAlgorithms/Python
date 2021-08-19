@@ -41,7 +41,7 @@ def levenshtein_distance(first_word: str, second_word: str) -> int:
     if len(second_word) == 0:
         return len(first_word)
 
-    previous_row = range(len(second_word) + 1)
+    previous_row = [i for i in range(len(second_word) + 1)] 
 
     for i, c1 in enumerate(first_word):
 
@@ -58,7 +58,8 @@ def levenshtein_distance(first_word: str, second_word: str) -> int:
             current_row.append(min(insertions, deletions, substitutions))
 
         # Store the previous row
-        previous_row = current_row
+        previous_row= current_row 
+
 
     # Returns the last element (distance)
     return previous_row[-1]

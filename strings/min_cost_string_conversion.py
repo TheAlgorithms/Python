@@ -18,7 +18,7 @@ def compute_transform_tables(
     replace_cost: int,
     delete_cost: int,
     insert_cost: int,
-) -> Tuple[List[int], List[str]]:
+) -> Tuple[List[List[int]], List[List[str]]]:
     source_seq = list(source_string)
     destination_seq = list(destination_string)
     len_source_seq = len(source_seq)
@@ -28,7 +28,7 @@ def compute_transform_tables(
         [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
     ops = [
-        [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
+        ['0' for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
 
     for i in range(1, len_source_seq + 1):
@@ -59,7 +59,7 @@ def compute_transform_tables(
     return costs, ops
 
 
-def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
+def assemble_transformation(ops: List[List[str]], i: int, j: int) -> List[str]:
     if i == 0 and j == 0:
         return []
     else:
