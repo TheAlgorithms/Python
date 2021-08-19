@@ -63,7 +63,14 @@ class LRUCache(dict):
         self[key] = value
 
 def main()->None:
-    '''Example test case with LRU_Cache of size 2'''
+    '''Example test case with LRU_Cache of size 2
+    >>> main()
+    1
+    Key=2 not found in cache
+    Key=1 not found in cache
+    3
+    4
+    '''
     cache = LRUCache(2) # Creates an LRU cache with size 2
     cache.put(1,1) # cache = {1:1}
     cache.put(2,2) # cache = {1:1, 2:2}
