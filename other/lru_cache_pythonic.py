@@ -41,3 +41,39 @@ class LRUCache(dict):
         # To pop the least recently used item from the dictionary 
         else: self.pop(next(iter(self)))
         self[key] = value
+
+def main():
+    '''Example test case with LRU_Cache of size 2'''
+    cache = LRUCache(2) # Creates an LRU cache with size 2
+    cache.put(1,1) # cache = {1:1}
+    cache.put(2,2) # cache = {1:1, 2:2}
+    try:
+        print(cache.get(1)) # Prints 1
+    except KeyError:
+        print("Key not found in cache")
+    cache.put(3,3) # cache = {1:1, 3:3} key=2 is evicted because it wasn't used recently
+    try:
+        print(cache.get(2)) 
+    except KeyError:
+        print("Key=2 not found in cache") # Prints key not found
+    cache.put(4,4) # cache = {4:4, 3:3} key=1 is evicted because it wasn't used recently
+    try:
+        print(cache.get(1)) 
+    except KeyError:
+        print("Key=1 not found in cache") # Prints key not found
+    try:
+        print(cache.get(3)) # Prints value 3
+    except KeyError:
+        print("Key not found in cache")
+    
+    try:
+        print(cache.get(4)) # Prints value 4
+    except KeyError:
+        print("Key not found in cache")
+
+    import doctest
+    doctest.testmod()
+
+if __name__ == '__main__':
+    main()
+
