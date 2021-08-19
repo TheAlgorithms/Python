@@ -2,7 +2,7 @@ from typing import Any, Hashable
 
 '''
 The following implementation of LRU Cache is one of the most elegant pythonic implementations. 
-It only uses the in-built python dictionary. This works because 
+It only uses the in-built python dictionary (https://docs.python.org/3/library/stdtypes.html#typesmapping). This works because 
 the Python dictionary maintains the order of insertion of keys and ensures O(1) operations on insert, delete and access.
 '''
 class LRUCache(dict):
@@ -17,6 +17,13 @@ class LRUCache(dict):
     This method gets the value associated with the key.
     key : Hashable -> a hashable object that is mapped to a value inside of the LRU cache.
     returns -> value : Any -> any object that is stored as a value inside of the LRU cache.
+
+    >>> cache = LRUCache(2)
+    >>> cache.put(1,1)
+    >>> cache.get(1)
+    1
+    >>> cache.get(2)
+    KeyError: '2 not found.'
     '''
     def get(self, key:Hashable)->Any:
         if key not in self:
