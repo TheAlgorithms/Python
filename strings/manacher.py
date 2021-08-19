@@ -32,30 +32,30 @@ def palindromic_string(input_string: str) -> str:
     l, r = 0, 0
 
     # length[i] shows the length of palindromic substring with center i
-    length = [1 for i in range(len(new_input_string))]
+    length = [1 for _ in range(len(new_input_string))]
 
     # for each character in new_string find corresponding palindromic string
-    for i in range(len(new_input_string)):
-        k = 1 if i > r else min(length[l + r - i] // 2, r - i + 1)
+    for I in range(len(new_input_string)):
+        k = 1 if I > r else min(length[l + r - I] // 2, r - I + 1)
         while (
-            i - k >= 0
-            and i + k < len(new_input_string)
-            and new_input_string[k + i] == new_input_string[i - k]
+            I - k >= 0
+            and I + k < len(new_input_string)
+            and new_input_string[k + I] == new_input_string[I - k]
         ):
             k += 1
 
-        length[i] = 2 * k - 1
+        length[I] = 2 * k - 1
 
         # does this string is ending after the previously explored end (that is r) ?
         # if yes the update the new r to the last index of this
-        if i + k - 1 > r:
-            l = i - k + 1  # noqa: E741
-            r = i + k - 1
+        if I + k - 1 > r:
+            l = I - k + 1  # noqa: E741
+            r = I + k - 1
 
         # update max_length and start position
-        if max_length < length[i]:
-            max_length = length[i]
-            start = i
+        if max_length < length[I]:
+            max_length = length[I]
+            start = I
 
     # create that string
     s = new_input_string[start - max_length // 2 : start + max_length // 2 + 1]
