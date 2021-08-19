@@ -43,6 +43,7 @@ def levenshtein_distance(first_word: str, second_word: str) -> int:
 
     previous_row = [i for i in range(len(second_word) + 1)] 
 
+
     for i, c1 in enumerate(first_word):
 
         current_row = [i + 1]

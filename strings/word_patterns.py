@@ -28,7 +28,7 @@ if __name__ == "__main__":
     with open("dictionary.txt") as in_file:
         wordList = in_file.read().splitlines()
 
-    all_patterns = {}
+    all_patterns: dict = {}
     for word in wordList:
         pattern = get_word_pattern(word)
         if pattern in all_patterns:
