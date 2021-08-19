@@ -10,7 +10,7 @@ class LRUCache(dict):
     Initialize an LRU Cache with given capacity.
     capacity : int -> the capacity of the LRU Cache
     '''
-    def __init__(self, capacity : int):
+    def __init__(self, capacity : int)->None:
         self.remaining:int = capacity
 	
     '''
@@ -36,8 +36,15 @@ class LRUCache(dict):
     This method puts the value associated with the key provided inside of the LRU cache.
     key : Hashable -> a hashable object that is mapped to a value inside of the LRU cache.
     value: Any -> any object that is to be associated with the key inside of the LRU cache.
+    >>> cache = LRUCache(2)
+    >>> cache.put(3,3)
+    >>> cache
+    {3:3}
+    >>> cache.put(2,2)
+    >>> cache
+    {3:3, 2:2}
     '''
-    def put(self, key:Hashable, value:Any):
+    def put(self, key:Hashable, value:Any)->None:
         # To pop the last value inside of the LRU cache
         if key in self:
             self.pop(key)
@@ -49,7 +56,7 @@ class LRUCache(dict):
         else: self.pop(next(iter(self)))
         self[key] = value
 
-def main():
+def main()->None:
     '''Example test case with LRU_Cache of size 2'''
     cache = LRUCache(2) # Creates an LRU cache with size 2
     cache.put(1,1) # cache = {1:1}
