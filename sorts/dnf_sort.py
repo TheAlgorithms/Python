@@ -48,9 +48,9 @@ def dnf_sort( sequence:list, arr_size:int)->list:
     return sequence
 
 if __name__ == "__main__":
-    from doctest import testmod
+    import doctest
 
-    testmod()
+    doctest.testmod()
 
     assert dnf_sort([1, 0, 0, 2, 1],5) == [0,0,1, 1, 2]
     assert dnf_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1],12) == [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
