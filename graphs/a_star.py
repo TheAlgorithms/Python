@@ -44,7 +44,7 @@ def search(grid, init, goal, cost, heuristic):
     x = init[0]
     y = init[1]
     g = 0
-    f = g + heuristic[init[0]][init[0]]
+    f = g + heuristic[x][y]  # cost from starting cell to destination cell
     cell = [[f, g, x, y]]
 
     found = False  # flag that is set when search is complete

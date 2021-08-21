@@ -19,7 +19,7 @@ def make_dataset() -> tuple[list[int], int]:
 dataset = make_dataset()
 
 
-def triplet_sum1(arr: list[int], target: int) -> tuple[int, int, int]:
+def triplet_sum1(arr: list[int], target: int) -> tuple[int, ...]:
     """
     Returns a triplet in the array with sum equal to target,
     else (0, 0, 0).
