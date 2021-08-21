@@ -4,7 +4,7 @@
     Borůvka's algorithm is a greedy algorithm for finding a minimum spanning tree in a graph,
     or a minimum spanning forest in the case of a graph that is not connected.
 
-    The time complexity of this algorithm is O(ElogV), where E represents the number of edges,
+    The time complexity of this algorithm is O(ELogV), where E represents the number of edges,
     while V represents the number of nodes.
 
     The space complexity of this algorithm is O(V + E), since we have to keep a couple of lists whose sizes are equal
@@ -39,40 +39,40 @@ class Graph:
         self.m_edges = []
         self.m_component = {}
 
-    def add_edge(self, u: int, v: int, weight: int) -> None:
+    def add_edge(self, u_node: int, v_node: int, weight: int) -> None:
         """Adds an edge in the format [first, second, edge weight] to graph."""
 
-        self.m_edges.append([u, v, weight])
+        self.m_edges.append([u_node, v_node, weight])
 
-    def find_component(self, u: int) -> int:
+    def find_component(self, u_node: int) -> int:
         """Propagates a new component throughout a given component."""
 
-        if self.m_component[u] == u:
-            return u
-        return self.find_component(self.m_component[u])
+        if self.m_component[u_node] == u_node:
+            return u_node
+        return self.find_component(self.m_component[u_node])
 
-    def set_component(self, u: int) -> None:
+    def set_component(self, u_node: int) -> None:
         """Finds the component index of a given node"""
 
-        if self.m_component[u] == u:
+        if self.m_component[u_node] == u_node:
             return
         else:
             for k in self.m_component.keys():
                 self.m_component[k] = self.find_component(k)
 
-    def union(self, component_size: list, u: int, v: int) -> None:
+    def union(self, component_size: list, u_node: int, v_node: int) -> None:
         """Union finds the roots of components for two nodes, compares the components in terms of size,
          and attaches the smaller one to the larger one to form single component """
 
-        if component_size[u] <= component_size[v]:
-            self.m_component[u] = v
-            component_size[v] += component_size[u]
-            self.set_component(u)
+        if component_size[u_node] <= component_size[v_node]:
+            self.m_component[u_node] = v_node
+            component_size[v_node] += component_size[u_node]
+            self.set_component(u_node)
 
-        elif component_size[u] >= component_size[v]:
-            self.m_component[v] = self.find_component(u)
-            component_size[u] += component_size[v]
-            self.set_component(v)
+        elif component_size[u_node] >= component_size[v_node]:
+            self.m_component[v_node] = self.find_component(u_node)
+            component_size[u_node] += component_size[v_node]
+            self.set_component(v_node)
 
         print(self.m_component)
 
