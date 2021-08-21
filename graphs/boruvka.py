@@ -150,7 +150,7 @@ def test_vector() -> None:
     >>>g.add_edge(4, 6, 6)
     >>>g.add_edge(4, 7, 5)
     >>>g.add_edge(5, 7, 15)
-    >>>g.add_edge(5, 7, 4)
+    >>>g.add_edge(6, 7, 4)
     >>>g.boruvka()
     {0: 3, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
     Added edge [0 - 3]
@@ -169,18 +169,18 @@ def test_vector() -> None:
     Added weight: 5
 
     {0: 3, 1: 3, 2: 3, 3: 3, 4: 7, 5: 7, 6: 6, 7: 7}
-    Added edge [5 - 7]
-    Added weight: 4
+    Added edge [4 - 5]
+    Added weight: 10
 
     {0: 3, 1: 3, 2: 3, 3: 3, 4: 7, 5: 7, 6: 7, 7: 7}
-    Added edge [4 - 6]
-    Added weight: 6
+    Added edge [6 - 7]
+    Added weight: 4
 
     {0: 7, 1: 7, 2: 7, 3: 7, 4: 7, 5: 7, 6: 7, 7: 7}
     Added edge [3 - 4]
     Added weight: 8
 
-    The total weight of the minimal spanning tree is: 42
+    The total weight of the minimal spanning tree is: 46
     """
 
 
