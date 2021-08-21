@@ -25,7 +25,7 @@
 class Graph:
     """Class Graph."""
 
-    def __init__(self, num_of_nodes) -> None:
+    def __init__(self, num_of_nodes: int) -> None:
         """
         Arguments:
             num_of_nodes - the number of nodes in the graph
@@ -39,19 +39,19 @@ class Graph:
         self.m_edges = []
         self.m_component = {}
 
-    def add_edge(self, u, v, weight) -> None:
+    def add_edge(self, u: int, v: int, weight: int) -> None:
         """Adds an edge in the format [first, second, edge weight] to graph."""
 
         self.m_edges.append([u, v, weight])
 
-    def find_component(self, u) -> int:
+    def find_component(self, u: int) -> int:
         """Propagates a new component throughout a given component."""
 
         if self.m_component[u] == u:
             return u
         return self.find_component(self.m_component[u])
 
-    def set_component(self, u) -> None:
+    def set_component(self, u: int) -> None:
         """Finds the component index of a given node"""
 
         if self.m_component[u] == u:
@@ -60,7 +60,7 @@ class Graph:
             for k in self.m_component.keys():
                 self.m_component[k] = self.find_component(k)
 
-    def union(self, component_size, u, v) -> None:
+    def union(self, component_size: list, u: int, v: int) -> None:
         """Union finds the roots of components for two nodes, compares the components in terms of size,
          and attaches the smaller one to the larger one to form single component """
 
