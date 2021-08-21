@@ -62,7 +62,7 @@ class Graph:
 
     def union(self, component_size: list, u_node: int, v_node: int) -> None:
         """Union finds the roots of components for two nodes, compares the components in terms of size,
-         and attaches the smaller one to the larger one to form single component """
+        and attaches the smaller one to the larger one to form single component """
 
         if component_size[u_node] <= component_size[v_node]:
             self.m_component[u_node] = v_node
@@ -103,17 +103,23 @@ class Graph:
                 v_component = self.m_component[v]
 
                 if u_component != v_component:
-                    """If the current minimum weight edge of component u doesn't exist (is -1), or if 
-                       it's greater than the edge we're observing right now, we will assign the value
-                       of the edge we're observing to it.
-                       
-                       If the current minimum weight edge of component v doesn't exist (is -1), or if 
-                       it's greater than the edge we're observing right now, we will assign the value 
-                       of the edge we're observing to it"""
+                    """If the current minimum weight edge of component u doesn't exist (is -1), or if
+                     it's greater than the edge we're observing right now, we will assign the value
+                     of the edge we're observing to it.
+ 
+                     If the current minimum weight edge of component v doesn't exist (is -1), or if
+                     it's greater than the edge we're observing right now, we will assign the value
+                     of the edge we're observing to it"""
 
-                    if minimum_weight_edge[u_component] == -1 or minimum_weight_edge[u_component][2] > w:
+                    if (
+                         minimum_weight_edge[u_component] == -1
+                         or minimum_weight_edge[u_component][2] > w
+                     ):
                         minimum_weight_edge[u_component] = [u, v, w]
-                    if minimum_weight_edge[v_component] == -1 or minimum_weight_edge[v_component][2] > w:
+                    if (
+                         minimum_weight_edge[v_component] == -1
+                         or minimum_weight_edge[v_component][2] > w
+                     ):
                         minimum_weight_edge[v_component] = [u, v, w]
 
             for node in range(self.m_v):
@@ -128,9 +134,16 @@ class Graph:
                     if u_component != v_component:
                         mst_weight += w
                         self.union(component_size, u_component, v_component)
-                        print("Added edge [" + str(u) + " - "
-                              + str(v) + "]\n"
-                              + "Added weight: " + str(w) + "\n")
+                        print(
+                              "Added edge ["
+                              + str(u)
+                              + " - "
+                              + str(v)
+                              + "]\n"
+                              + "Added weight: "
+                              + str(w)
+                              + "\n"
+                             )
                         num_of_components -= 1
 
             minimum_weight_edge = [-1] * self.m_v
