@@ -139,47 +139,47 @@ class Graph:
 
 def test_vector() -> None:
     """
-    >>>g=Graph(8)
-    >>>g.add_edge(0, 1, 10)
-    >>>g.add_edge(0, 2, 6)
-    >>>g.add_edge(0, 3, 5)
-    >>>g.add_edge(1, 3, 15)
-    >>>g.add_edge(2, 3, 4)
-    >>>g.add_edge(3, 4, 8)
-    >>>g.add_edge(4, 5, 10)
-    >>>g.add_edge(4, 6, 6)
-    >>>g.add_edge(4, 7, 5)
-    >>>g.add_edge(5, 7, 15)
-    >>>g.add_edge(6, 7, 4)
-    >>>g.boruvka()
+    >>> g=Graph(8)
+    >>> g.add_edge(0, 1, 10)
+    >>> g.add_edge(0, 2, 6)
+    >>> g.add_edge(0, 3, 5)
+    >>> g.add_edge(1, 3, 15)
+    >>> g.add_edge(2, 3, 4)
+    >>> g.add_edge(3, 4, 8)
+    >>> g.add_edge(4, 5, 10)
+    >>> g.add_edge(4, 6, 6)
+    >>> g.add_edge(4, 7, 5)
+    >>> g.add_edge(5, 7, 15)
+    >>> g.add_edge(6, 7, 4)
+    >>> g.boruvka()
     {0: 3, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
     Added edge [0 - 3]
     Added weight: 5
-
+    <BLANKLINE>
     {0: 3, 1: 3, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
     Added edge [0 - 1]
     Added weight: 10
-
+    <BLANKLINE>
     {0: 3, 1: 3, 2: 3, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
     Added edge [2 - 3]
     Added weight: 4
-
+    <BLANKLINE>
     {0: 3, 1: 3, 2: 3, 3: 3, 4: 7, 5: 5, 6: 6, 7: 7}
     Added edge [4 - 7]
     Added weight: 5
-
+    <BLANKLINE>
     {0: 3, 1: 3, 2: 3, 3: 3, 4: 7, 5: 7, 6: 6, 7: 7}
     Added edge [4 - 5]
     Added weight: 10
-
+    <BLANKLINE>
     {0: 3, 1: 3, 2: 3, 3: 3, 4: 7, 5: 7, 6: 7, 7: 7}
     Added edge [6 - 7]
     Added weight: 4
-
+    <BLANKLINE>
     {0: 7, 1: 7, 2: 7, 3: 7, 4: 7, 5: 7, 6: 7, 7: 7}
     Added edge [3 - 4]
     Added weight: 8
-
+    <BLANKLINE>
     The total weight of the minimal spanning tree is: 46
     """
 
