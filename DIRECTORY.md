@@ -423,10 +423,12 @@
   * [Binomial Distribution](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_distribution.py)
   * [Bisection](https://github.com/TheAlgorithms/Python/blob/master/maths/bisection.py)
   * [Ceil](https://github.com/TheAlgorithms/Python/blob/master/maths/ceil.py)
+  * [Check Valid Ip Address](https://github.com/TheAlgorithms/Python/blob/master/maths/check_valid_ip_address.py)
   * [Chudnovsky Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
   * [Decimal Isolate](https://github.com/TheAlgorithms/Python/blob/master/maths/decimal_isolate.py)
+  * [Double Factorial Recursive](https://github.com/TheAlgorithms/Python/blob/master/maths/double_factorial_recursive.py)
   * [Entropy](https://github.com/TheAlgorithms/Python/blob/master/maths/entropy.py)
   * [Euclidean Distance](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_distance.py)
   * [Euclidean Gcd](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_gcd.py)
@@ -541,6 +543,7 @@
 
 ## Other
   * [Activity Selection](https://github.com/TheAlgorithms/Python/blob/master/other/activity_selection.py)
+  * [Date To Weekday](https://github.com/TheAlgorithms/Python/blob/master/other/date_to_weekday.py)
   * [Davis–Putnam–Logemann–Loveland](https://github.com/TheAlgorithms/Python/blob/master/other/davis–putnam–logemann–loveland.py)
   * [Dijkstra Bankers Algorithm](https://github.com/TheAlgorithms/Python/blob/master/other/dijkstra_bankers_algorithm.py)
   * [Doomsday](https://github.com/TheAlgorithms/Python/blob/master/other/doomsday.py)
@@ -856,6 +859,7 @@
   * [Counting Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/counting_sort.py)
   * [Cycle Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/cycle_sort.py)
   * [Double Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/double_sort.py)
+  * [Exchange Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/exchange_sort.py)
   * [External Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/external_sort.py)
   * [Gnome Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/gnome_sort.py)
   * [Heap Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/heap_sort.py)
@@ -895,6 +899,7 @@
 
 ## Strings
   * [Aho Corasick](https://github.com/TheAlgorithms/Python/blob/master/strings/aho_corasick.py)
+  * [Alternative String Arrange](https://github.com/TheAlgorithms/Python/blob/master/strings/alternative_string_arrange.py)
   * [Anagrams](https://github.com/TheAlgorithms/Python/blob/master/strings/anagrams.py)
   * [Autocomplete Using Trie](https://github.com/TheAlgorithms/Python/blob/master/strings/autocomplete_using_trie.py)
   * [Boyer Moore Search](https://github.com/TheAlgorithms/Python/blob/master/strings/boyer_moore_search.py)
