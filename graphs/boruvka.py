@@ -24,7 +24,8 @@
 
 class Graph:
     """Class Graph."""
-    def __init__(self, num_of_nodes):
+
+    def __init__(self, num_of_nodes) -> None:
         """
         Arguments:
             num_of_nodes - the number of nodes in the graph
@@ -38,19 +39,19 @@ class Graph:
         self.m_edges = []
         self.m_component = {}
 
-    def add_edge(self, u, v, weight):
+    def add_edge(self, u, v, weight) -> None:
         """Adds an edge in the format [first, second, edge weight] to graph."""
 
         self.m_edges.append([u, v, weight])
 
-    def find_component(self, u):
+    def find_component(self, u) -> int:
         """Propagates a new component throughout a given component."""
 
         if self.m_component[u] == u:
             return u
         return self.find_component(self.m_component[u])
 
-    def set_component(self, u):
+    def set_component(self, u) -> None:
         """Finds the component index of a given node"""
 
         if self.m_component[u] == u:
@@ -59,7 +60,7 @@ class Graph:
             for k in self.m_component.keys():
                 self.m_component[k] = self.find_component(k)
 
-    def union(self, component_size, u, v):
+    def union(self, component_size, u, v) -> None:
         """Union finds the roots of components for two nodes, compares the components in terms of size,
          and attaches the smaller one to the larger one to form single component """
 
@@ -75,16 +76,16 @@ class Graph:
 
         print(self.m_component)
 
-    def boruvka(self):
+    def boruvka(self) -> None:
         """Performs Borůvka's algorithm to find MST."""
-        
-        #Initialize additional lists required to algorithm.
+
+        # Initialize additional lists required to algorithm.
         component_size = []
         mst_weight = 0
 
         minimum_weight_edge = [-1] * self.m_v
-        
-        #A list of components (initialized to all of the nodes)
+
+        # A list of components (initialized to all of the nodes)
         for node in range(self.m_v):
             self.m_component.update({node: node})
             component_size.append(1)
@@ -109,7 +110,7 @@ class Graph:
                        If the current minimum weight edge of component v doesn't exist (is -1), or if 
                        it's greater than the edge we're observing right now, we will assign the value 
                        of the edge we're observing to it"""
-                       
+
                     if minimum_weight_edge[u_component] == -1 or minimum_weight_edge[u_component][2] > w:
                         minimum_weight_edge[u_component] = [u, v, w]
                     if minimum_weight_edge[v_component] == -1 or minimum_weight_edge[v_component][2] > w:
@@ -134,6 +135,7 @@ class Graph:
 
             minimum_weight_edge = [-1] * self.m_v
         print("The total weight of the minimal spanning tree is: " + str(mst_weight))
+
 
 def test_vector() -> None:
     """
@@ -180,6 +182,7 @@ def test_vector() -> None:
 
     The total weight of the minimal spanning tree is: 42
     """
+
 
 if __name__ == "__main__":
     import doctest
