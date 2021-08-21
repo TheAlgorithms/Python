@@ -91,7 +91,7 @@ def knapsack_with_example_solution(W: int, wt: list, val: list):
             )
 
     optimal_val, dp_table = knapsack(W, wt, val, num_items)
-    example_optional_set = set()
+    example_optional_set: set = set()
     _construct_solution(dp_table, wt, num_items, W, example_optional_set)
 
     return optimal_val, example_optional_set
