@@ -13,8 +13,8 @@ for i in range(int(n)):
 prodtypehighest=[]  # list to store highest type for each production
 
 # function to check left linear 
-def ll(r: str)->bool:
-    lst=list(r)
+def ll(rightofproduction: str)->bool:
+    lst=list(rightofproduction)
     if lst[0] in v:
         for char in lst[1:]:
             if char not in t:
@@ -24,8 +24,8 @@ def ll(r: str)->bool:
         return False
     
 # function to check right linear 
-def rl(r: str)->bool:
-    lst=list(r)
+def rl(rightofproduction: str)->bool:
+    lst=list(rightofproduction)
     if lst[-1] in v:
         for char in lst[:-1]:
             if char not in t:
@@ -91,7 +91,7 @@ def all_t0(production_list: list)->bool:
     return True
     
 # function to get the type (0/1/2/3) for a given production α->β 
-def get_type(prod):  
+def get_type(prod: str) -> Any:  
     prodtype='Neither of type 0, type 1, type 2 or type 3'
     flag=0
     l=[];r=[]
