@@ -1,0 +1,59 @@
+def add(a,b):
+ c=a+b
+ print(c)
+
+add(5,3)
+//output comes as 8
+
+def swpa(x,y):
+ t=x
+ x=y
+ y=t
+ print(x)
+ print(y)
+swpa(2,3)
+//Output is 3,2
+nos. are swapped
+
+text = input().split()
+length = [len(x) for x in text]
+maximum = max(length)
+text_index = length.index(maximum)
+print(text[text_index])
+//the longest text is printed from the input
+
+num = int(input())
+
+d = 0
+f = 1
+def fibonacci(n,d,f):
+	if n == 1:
+		print(d)
+	else:
+		print(d)
+		d2 = d
+		d=d+f
+		f=d2
+		return fibonacci(n-1,d,f)
+	
+
+
+fibonacci(num,0,1)
+//fibonacci series gives o/p as number of terms in need
+
+import re
+ip = str(input())
+pattern = r"\A(1|8|9).........$"
+match = re.match(pattern, ip)
+if match:
+    print ("Valid")
+else:
+    print("Invalid")
+// phone number validator starting from either 1,9,8
+
+def concatenate(*args):
+     return '^'.join(args)
+  
+
+print(concatenate("I", "love", "Python", "!"))   
+//gives ^symbol between every word
