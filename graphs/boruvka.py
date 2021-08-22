@@ -106,7 +106,7 @@ class Graph:
                     """If the current minimum weight edge of component u doesn't exist (is -1), or if
                     it's greater than the edge we're observing right now, we will assign the value
                     of the edge we're observing to it.
- 
+
                     If the current minimum weight edge of component v doesn't exist (is -1), or if
                     it's greater than the edge we're observing right now, we will assign the value
                     of the edge we're observing to it"""
