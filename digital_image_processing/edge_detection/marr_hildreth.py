@@ -7,7 +7,7 @@ from digital_image_processing.filters.convolve import img_convolve
 laplacian_kernel = np.array([[1, 1, 1], [1, -8, 1], [1, 1, 1]])
 
 
-def gaussian_kernel(sigma):
+def gaussian_kernel(sigma: float) -> np.ndarray:
     """
     Constructs a Gaussian kernel for a given variance sigma.
     Automatically adjusts kernel size to 3 sigmas.
@@ -24,7 +24,7 @@ def gaussian_kernel(sigma):
     return kernel
 
 
-def zero_crossing(image, threshold=0):
+def zero_crossing(image: np.ndarray, threshold: float = 0) -> np.ndarray:
     """
     Applies the zero crossing algorithm for edge detection on an image filtered
     with a Laplacian of Gaussian kernel.
@@ -64,7 +64,9 @@ def zero_crossing(image, threshold=0):
     return edges
 
 
-def marr_hildreth(image, sigma=1, threshold=40):
+def marr_hildreth(
+    image: np.ndarray, sigma: float = 1, threshold: float = 40
+) -> np.ndarray:
     """
     Applies the Marr-Hildreth algorithm for edge detection on a given image.
     Parameters are the variance of the Gaussian kernel sigma and
