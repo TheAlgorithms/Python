@@ -7,7 +7,7 @@ p=list()
 print("Please enter details for your productions now \n Note that \n 1) If a production is like A->aB|b, give it as two separate productions like \n A->aB \n A->b \n 2) Give $ for empty string")
 n=input("Enter number of productions: ")
 for i in range(int(n)):
-    p.append(input("Give production {}: ".format(i+1)))
+    p.append(input(F"Give production {i+1}: "))
 
 # defining global variable
 prodtypehighest=[]  # list to store highest type for each production
