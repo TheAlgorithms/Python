@@ -13,7 +13,7 @@ for i in range(int(n)):
 prodtypehighest=[]  # list to store highest type for each production
 
 # function to check left linear 
-def ll(r):
+def ll(r)->bool:
     lst=list(r)
     if lst[0] in v:
         for char in lst[1:]:
@@ -24,7 +24,7 @@ def ll(r):
         return False
     
 # function to check right linear 
-def rl(r):
+def rl(r)->bool:
     lst=list(r)
     if lst[-1] in v:
         for char in lst[:-1]:
@@ -35,7 +35,7 @@ def rl(r):
         return False
 
 # function to check the special case for type 1 grammar
-def check_specialcase(productions_list):
+def check_specialcase(productions_list)->bool:
     flag=0
     start_symbol= productions_list[0].split('->')[0]
     for p in productions_list:
@@ -57,7 +57,7 @@ def check_specialcase(productions_list):
         return False
         
 # function to check if given grammar is a mixture of left linear and right linear
-def check_mixture_of_ll_rl(productions_list):
+def check_mixture_of_ll_rl(productions_list)->bool:
     lst=['']*len(productions_list) 
     i=0
     for p in productions_list:
@@ -76,7 +76,7 @@ def check_mixture_of_ll_rl(productions_list):
     return False
 
 # function to check if all productions of a grammar are type 0
-def all_t0(production_list):
+def all_t0(production_list)->bool:
     for prod in production_list:
         count=0
         l=[]
