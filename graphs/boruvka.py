@@ -108,7 +108,7 @@ class Graph:
                 v_component = self.m_component[v]
 
                 if u_component != v_component:
-                    """If the current minimum weight edge of component u doesn't 
+                    """If the current minimum weight edge of component u doesn't
                     exist (is -1), or if it's greater than the edge we're
                     observing right now, we will assign the value of the edge
                     we're observing to it.
