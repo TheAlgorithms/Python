@@ -1,22 +1,25 @@
 """Borůvka's algorithm.
 
     Determines the minimum spanning tree(MST) of a graph using the Borůvka's algorithm.
-    Borůvka's algorithm is a greedy algorithm for finding a minimum spanning tree in a graph,
-    or a minimum spanning forest in the case of a graph that is not connected.
+    Borůvka's algorithm is a greedy algorithm for finding a minimum spanning tree in a
+    graph,or a minimum spanning forest in the case of a graph that is not connected.
 
-    The time complexity of this algorithm is O(ELogV), where E represents the number of edges,
-    while V represents the number of nodes.
+    The time complexity of this algorithm is O(ELogV), where E represents the number
+    of edges, while V represents the number of nodes.
 
-    The space complexity of this algorithm is O(V + E), since we have to keep a couple of lists whose sizes are equal
-    to the number of nodes, as well as keep all the edges of a graph inside of the data structure itself.
+    The space complexity of this algorithm is O(V + E), since we have to keep a couple
+    of lists whose sizes are equal to the number of nodes, as well as keep all the
+    edges of a graph inside of the data structure itself.
 
-    Borůvka's algorithm gives us pretty much the same result as other MST Algorithms - they all find the minimum spanning
-    tree, and the time complexity is approximately the same.
+    Borůvka's algorithm gives us pretty much the same result as other MST Algorithms -
+    they all find the minimum spanning tree, and the time complexity is approximately
+    the same.
 
-    One advantage that Borůvka's algorithm has compared to the alternatives is that it doesn't
-    need to presort the edges or maintain a priority queue in order to find the minimum spanning tree.
-    Even though that doesn't help its complexity, since it still passes the edges logE times,
-    it is a bit more simple to code.
+    One advantage that Borůvka's algorithm has compared to the alternatives is that it
+    doesn't need to presort the edges or maintain a priority queue in order to find the
+    minimum spanning tree.
+    Even though that doesn't help its complexity, since it still passes the edges logE
+    times, it is a bit more simple to code.
 
     Details: https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
 """
@@ -32,7 +35,8 @@ class Graph:
         Attributes:
             m_v - the number of nodes in the graph.
             m_edges - the list of edges.
-            m_component - the dictionary which stores the index of the component which a node belongs to.
+            m_component - the dictionary which stores the index of the component which
+            a node belongs to.
         """
 
         self.m_v = num_of_nodes
@@ -61,8 +65,9 @@ class Graph:
                 self.m_component[k] = self.find_component(k)
 
     def union(self, component_size: list, u_node: int, v_node: int) -> None:
-        """Union finds the roots of components for two nodes, compares the components in terms of size,
-        and attaches the smaller one to the larger one to form single component"""
+        """Union finds the roots of components for two nodes, compares the components
+        in terms of size, and attaches the smaller one to the larger one to form
+        single component"""
 
         if component_size[u_node] <= component_size[v_node]:
             self.m_component[u_node] = v_node
@@ -103,13 +108,15 @@ class Graph:
                 v_component = self.m_component[v]
 
                 if u_component != v_component:
-                    """If the current minimum weight edge of component u doesn't exist (is -1), or if
-                    it's greater than the edge we're observing right now, we will assign the value
-                    of the edge we're observing to it.
+                    """If the current minimum weight edge of component u doesn't 
+                    exist (is -1), or if it's greater than the edge we're
+                    observing right now, we will assign the value of the edge
+                    we're observing to it.
 
-                    If the current minimum weight edge of component v doesn't exist (is -1), or if
-                    it's greater than the edge we're observing right now, we will assign the value
-                    of the edge we're observing to it"""
+                    If the current minimum weight edge of component v doesn't
+                    exist (is -1), or if it's greater than the edge we're
+                    observing right now, we will assign the value of the edge
+                    we're observing to it"""
 
                     if (
                         minimum_weight_edge[u_component] == -1
