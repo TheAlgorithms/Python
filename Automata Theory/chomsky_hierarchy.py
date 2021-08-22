@@ -83,8 +83,8 @@ def all_t0(production_list):
         l=prod.split('->')[0]
         for char in l:
             count=count+1
-            TorF=char in v
-            if TorF == True:
+            trueorfalse=char in v
+            if trueorfalse == True:
                 break
             if count==len(l):
                 return False
@@ -100,8 +100,8 @@ def get_type(prod):
     left=ll(r)
     right=rl(r)
     for char in l:
-        TorF=char in v
-        if TorF == True:
+        trueorfalse=char in v
+        if trueorfalse == True:
             prodtype=0
             break
     if prodtype==0 and len(l)<=len(r):
