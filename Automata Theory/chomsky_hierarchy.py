@@ -1,4 +1,4 @@
-# --------------------Implementing Chomsky Hierarchy-------------------
+# ---------------------Implementing Chomsky Hierarchy--------------------
 # Taking input from user
 v=input("Enter non-terminals(Click enter if done): ").split()
 t=input("Enter terminals(Click enter if done): ").split()
