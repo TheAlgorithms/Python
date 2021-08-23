@@ -1,8 +1,5 @@
 pipeline {
-  agent { docker { image 'python:3.9' } }
-  environment {
-    PATH = "C:\\WINDOWS\\SYSTEM32"
-}
+  agent any
   stages {
     stage('build') {
       steps {
