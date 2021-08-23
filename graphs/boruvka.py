@@ -114,13 +114,13 @@ class Graph:
                     we're observing to it"""
 
                     if (
-                            minimum_weight_edge[u_component] == -1
-                            or minimum_weight_edge[u_component][2] > w
+                        minimum_weight_edge[u_component] == -1
+                        or minimum_weight_edge[u_component][2] > w
                     ):
                         minimum_weight_edge[u_component] = [u, v, w]
                     if (
-                            minimum_weight_edge[v_component] == -1
-                            or minimum_weight_edge[v_component][2] > w
+                        minimum_weight_edge[v_component] == -1
+                        or minimum_weight_edge[v_component][2] > w
                     ):
                         minimum_weight_edge[v_component] = [u, v, w]
 
