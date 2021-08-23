@@ -1,4 +1,5 @@
 # ---------------------Implementing Chomsky Hierarchy--------------------
+# For background understanding, refer https://www.geeksforgeeks.org/chomsky-hierarchy-in-theory-of-computation/ 
 # Taking input from user
 v=input("Enter non-terminals(Click enter if done): ").split()
 t=input("Enter terminals(Click enter if done): ").split()
@@ -143,3 +144,7 @@ if result==3:
 
 # printing the result to user
 print("The grammar is of type -",result)
+
+# doctests
+import doctest
+doctest.testmod()
