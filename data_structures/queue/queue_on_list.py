@@ -46,7 +46,7 @@ class Queue:
     def get_front(self):
         return self.entries[0]
 
-    """Returns the length of this.entries"""
+    #return the length
 
     def size(self):
         return self.length
