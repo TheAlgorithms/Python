@@ -26,8 +26,6 @@
 
 
 class Graph:
-    """Class Graph."""
-
     def __init__(self, num_of_nodes: int) -> None:
         """
         Arguments:
@@ -58,9 +56,7 @@ class Graph:
     def set_component(self, u_node: int) -> None:
         """Finds the component index of a given node"""
 
-        if self.m_component[u_node] == u_node:
-            return
-        else:
+        if self.m_component[u_node] != u_node:
             for k in self.m_component.keys():
                 self.m_component[k] = self.find_component(k)
 
@@ -79,8 +75,6 @@ class Graph:
             component_size[u_node] += component_size[v_node]
             self.set_component(v_node)
 
-        print(self.m_component)
-
     def boruvka(self) -> None:
         """Performs Borůvka's algorithm to find MST."""
 
@@ -98,7 +92,8 @@ class Graph:
         num_of_components = self.m_v
 
         while num_of_components > 1:
-            for i in range(len(self.m_edges)):
+            l_edges = len(self.m_edges)
+            for i in range(l_edges):
 
                 u = self.m_edges[i][0]
                 v = self.m_edges[i][1]
@@ -119,13 +114,13 @@ class Graph:
                     we're observing to it"""
 
                     if (
-                        minimum_weight_edge[u_component] == -1
-                        or minimum_weight_edge[u_component][2] > w
+                            minimum_weight_edge[u_component] == -1
+                            or minimum_weight_edge[u_component][2] > w
                     ):
                         minimum_weight_edge[u_component] = [u, v, w]
                     if (
-                        minimum_weight_edge[v_component] == -1
-                        or minimum_weight_edge[v_component][2] > w
+                            minimum_weight_edge[v_component] == -1
+                            or minimum_weight_edge[v_component][2] > w
                     ):
                         minimum_weight_edge[v_component] = [u, v, w]
 
@@ -172,31 +167,24 @@ def test_vector() -> None:
     >>> g.add_edge(5, 7, 15)
     >>> g.add_edge(6, 7, 4)
     >>> g.boruvka()
-    {0: 3, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
     Added edge [0 - 3]
     Added weight: 5
     <BLANKLINE>
-    {0: 3, 1: 3, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
     Added edge [0 - 1]
     Added weight: 10
     <BLANKLINE>
-    {0: 3, 1: 3, 2: 3, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}
     Added edge [2 - 3]
     Added weight: 4
     <BLANKLINE>
-    {0: 3, 1: 3, 2: 3, 3: 3, 4: 7, 5: 5, 6: 6, 7: 7}
     Added edge [4 - 7]
     Added weight: 5
     <BLANKLINE>
-    {0: 3, 1: 3, 2: 3, 3: 3, 4: 7, 5: 7, 6: 6, 7: 7}
     Added edge [4 - 5]
     Added weight: 10
     <BLANKLINE>
-    {0: 3, 1: 3, 2: 3, 3: 3, 4: 7, 5: 7, 6: 7, 7: 7}
     Added edge [6 - 7]
     Added weight: 4
     <BLANKLINE>
-    {0: 7, 1: 7, 2: 7, 3: 7, 4: 7, 5: 7, 6: 7, 7: 7}
     Added edge [3 - 4]
     Added weight: 8
     <BLANKLINE>
