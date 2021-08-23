@@ -11,6 +11,28 @@ def gaussian_kernel(sigma: float) -> np.ndarray:
     """
     Constructs a Gaussian kernel for a given variance sigma.
     Automatically adjusts kernel size to 3 sigmas.
+    Examples:
+    >>> gaussian_kernel(1.)
+    array([[1.96412803e-05, 2.39279779e-04, 1.07237757e-03, 1.76805171e-03,
+            1.07237757e-03, 2.39279779e-04, 1.96412803e-05],
+           [2.39279779e-04, 2.91502447e-03, 1.30642333e-02, 2.15392793e-02,
+            1.30642333e-02, 2.91502447e-03, 2.39279779e-04],
+           [1.07237757e-03, 1.30642333e-02, 5.85498315e-02, 9.65323526e-02,
+            5.85498315e-02, 1.30642333e-02, 1.07237757e-03],
+           [1.76805171e-03, 2.15392793e-02, 9.65323526e-02, 1.59154943e-01,
+            9.65323526e-02, 2.15392793e-02, 1.76805171e-03],
+           [1.07237757e-03, 1.30642333e-02, 5.85498315e-02, 9.65323526e-02,
+            5.85498315e-02, 1.30642333e-02, 1.07237757e-03],
+           [2.39279779e-04, 2.91502447e-03, 1.30642333e-02, 2.15392793e-02,
+            1.30642333e-02, 2.91502447e-03, 2.39279779e-04],
+           [1.96412803e-05, 2.39279779e-04, 1.07237757e-03, 1.76805171e-03,
+            1.07237757e-03, 2.39279779e-04, 1.96412803e-05]])
+    >>> gaussian_kernel(.3)
+    array([[2.64291611e-05, 6.83644778e-03, 2.64291611e-05],
+           [6.83644778e-03, 1.76838826e+00, 6.83644778e-03],
+           [2.64291611e-05, 6.83644778e-03, 2.64291611e-05]])
+    >>> gaussian_kernel(-1)
+    array([], shape=(0, 0), dtype=float64)
     """
     size = np.ceil(3 * sigma).astype(int)
 
@@ -31,6 +53,18 @@ def zero_crossing(image: np.ndarray, threshold: float = 0) -> np.ndarray:
     For each pixel if two adjusted pixels on a given direction change signs and
     their difference is above a threshold it is marked as an edge pixel (255).
     Otherwise it is marked as a background pixel (0).
+    Examples:
+    >>> lena = cv2.imread("../image_data/lena.jpg", 0)
+    >>> laplacian = img_convolve(img_convolve(lena, gaussian_kernel(1.)), \
+                                 laplacian_kernel)
+    >>> zero_crossing(laplacian)
+    array([[  0,   0,   0, ...,   0,   0,   0],
+           [  0, 255, 255, ...,   0, 255,   0],
+           [  0, 255, 255, ...,   0, 255,   0],
+           ...,
+           [  0, 255, 255, ...,   0, 255,   0],
+           [  0, 255, 255, ...,   0, 255,   0],
+           [  0,   0,   0, ...,   0,   0,   0]], dtype=uint8)
     """
     N, M = image.shape
 
@@ -75,6 +109,16 @@ def marr_hildreth(
     crossing algorithm. Here the process is split in two, first filtering with
     a Gaussian kernel then with a Laplacian. Results are the same.
     Source: https://en.wikipedia.org/wiki/Marr%E2%80%93Hildreth_algorithm
+    Examples:
+    >>> lena = cv2.imread("../image_data/lena.jpg", 0)
+    >>> marr_hildreth(lena)
+    array([[  0,   0,   0, ...,   0,   0,   0],
+           [  0,   0,   0, ...,   0, 255,   0],
+           [  0,   0,   0, ...,   0, 255,   0],
+           ...,
+           [  0,   0,   0, ...,   0,   0,   0],
+           [  0,   0,   0, ...,   0,   0,   0],
+           [  0,   0,   0, ...,   0,   0,   0]], dtype=uint8)
     """
 
     # Filter image with Gaussian kernel
