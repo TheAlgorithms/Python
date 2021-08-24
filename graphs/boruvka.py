@@ -136,18 +136,10 @@ class Graph:
 
 def test_vector() -> None:
     """
-    >>> g=Graph(8)
-    >>> g.add_edge(0, 1, 10)
-    >>> g.add_edge(0, 2, 6)
-    >>> g.add_edge(0, 3, 5)
-    >>> g.add_edge(1, 3, 15)
-    >>> g.add_edge(2, 3, 4)
-    >>> g.add_edge(3, 4, 8)
-    >>> g.add_edge(4, 5, 10)
-    >>> g.add_edge(4, 6, 6)
-    >>> g.add_edge(4, 7, 5)
-    >>> g.add_edge(5, 7, 15)
-    >>> g.add_edge(6, 7, 4)
+    >>> g = Graph(8)
+    >>> for u_v_w in ((0, 1, 10), (0, 2, 6), (0, 3, 5), (1, 3, 15), (2, 3, 4),
+    ...    (3, 4, 8), (4, 5, 10), (4, 6, 6), (4, 7, 5), (5, 7, 15), (6, 7, 4)):
+    ...        g.add_edge(*u_v_w)
     >>> g.boruvka()
     Added edge [0 - 3]
     Added weight: 5
