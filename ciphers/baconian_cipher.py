@@ -52,6 +52,12 @@ def encrypt(word: str) -> str:
 
 
 def decrypt(word: str) -> str:
+    """
+    >>> decrypt("ABABAABAAAABBAAABAABABBABBAABBBAAAB")
+    "linkous"
+    >>> decrypt("BAAAAAAAAAABBBAABAAAAAABBBAABBABABB")
+    "rapidum"
+    """
     result = []
     key_list = list(bacon_alpha.keys())
     value_list = list(bacon_alpha.values())
