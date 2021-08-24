@@ -4,39 +4,34 @@ from typing import List
 
 def is_luhn(string: str) -> bool:
     """
-    Perform Luhn validation on input string
+    Perform Luhn validation on an input string
     Algorithm:
     * Double every other digit starting from 2nd last digit.
     * Subtract 9 if number is greater than 9.
     * Sum the numbers
     *
-    >>> test_cases = [79927398710, 79927398711, 79927398712, 79927398713,
+    >>> test_cases = (79927398710, 79927398711, 79927398712, 79927398713,
     ...     79927398714, 79927398715, 79927398716, 79927398717, 79927398718,
-    ...     79927398719]
-    >>> test_cases = list(map(str, test_cases))
-    >>> list(map(is_luhn, test_cases))
+    ...     79927398719)
+    >>> [is_luhn(str(test_case)) for test_case in test_cases]
     [False, False, False, True, False, False, False, False, False, False]
     """
     check_digit: int
     _vector: List[str] = list(string)
     __vector, check_digit = _vector[:-1], int(_vector[-1])
-    vector: List[int] = [*map(int, __vector)]
+    vector: List[int] = [int(digit) for digit in __vector]
 
     vector.reverse()
-    for idx, i in enumerate(vector):
-
-        if idx & 1 == 0:
-            doubled: int = vector[idx] * 2
+    for i, digit in enumerate(vector):
+        if i & 1 == 0:
+            doubled: int = digit * 2
             if doubled > 9:
                 doubled -= 9
-
             check_digit += doubled
         else:
-            check_digit += i
+            check_digit += digit
 
-    if (check_digit) % 10 == 0:
-        return True
-    return False
+    return check_digit % 10 == 0
 
 
 if __name__ == "__main__":
@@ -44,3 +39,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
     assert is_luhn("79927398713")
+    assert not is_luhn("79927398714")
