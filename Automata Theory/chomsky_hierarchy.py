@@ -1,5 +1,6 @@
 # ---------------------Implementing Chomsky Hierarchy--------------------
 # For background understanding, refer https://www.geeksforgeeks.org/chomsky-hierarchy-in-theory-of-computation/ 
+from typing import List
 # Taking input from user
 v=input("Enter non-terminals(Click enter if done): ").split()
 t=input("Enter terminals(Click enter if done): ").split()
@@ -44,7 +45,7 @@ def rl(rightofproduction: str)->bool:
         return False
 
 # function to check the special case for type 1 grammar
-def check_specialcase(productions_list: list[str])->bool:
+def check_specialcase(productions_list: List[str])->bool:
     """
     >>>check_specialcase(['A->aBb','A->$','B->aAb','B->ba'])
     True
@@ -70,7 +71,7 @@ def check_specialcase(productions_list: list[str])->bool:
         return False
         
 # function to check if given grammar is a mixture of left linear and right linear
-def check_mixture_of_ll_rl(productions_list: list[str])->bool:
+def check_mixture_of_ll_rl(productions_list: List[str])->bool:
     """
     >>>check_mixture_of_ll_rl(['A->aB','A->b'])
     False
@@ -93,7 +94,7 @@ def check_mixture_of_ll_rl(productions_list: list[str])->bool:
     return False
 
 # function to check if all productions of a grammar are type 0
-def all_t0(production_list: list[str])->bool:
+def all_t0(production_list: List[str])->bool:
     """
     >>>all_t0(['A->aB','A->b','Ab->abb'])
     True
@@ -147,29 +148,31 @@ def get_type(prod: str) -> Any:
                 prodtype=3
     return prodtype
 
-# doctests 
-import doctest
-doctest.testmod()
+if __name__ == "__main__":
+    global p,v,t,prodtypehighest
+    # doctests 
+    import doctest
+    doctest.testmod()
 
-# getting and storing highest type for each production of the grammar
-for i in p:
-    prodtypehighest.append(get_type(i))
+    # getting and storing highest type for each production of the grammar
+    for i in p:
+       prodtypehighest.append(get_type(i))
 
-# type of grammar will be the highest 'common' type for all its productions
-result=min(prodtypehighest)
+    # type of grammar will be the highest 'common' type for all its productions
+    result=min(prodtypehighest)
 
-# checking for special case of type 1 grammar
-if check_specialcase(p):
-    if all_t0(p)==True:
-        result=0
-    else:
-        result='Neither of type 0, type 1, type 2 or type 3'
+    # checking for special case of type 1 grammar
+    if check_specialcase(p):
+        if all_t0(p)==True:
+            result=0
+        else:
+            result='Neither of type 0, type 1, type 2 or type 3'
 
-# checking for mixture of left linear and right linear grammar
-if result==3:
-    if check_mixture_of_ll_rl(p):
-        result=2
+    # checking for mixture of left linear and right linear grammar
+    if result==3:
+        if check_mixture_of_ll_rl(p):
+            result=2
 
-# printing the result to user
-print("The grammar is of type -",result)
+    # printing the result to user
+    print("The grammar is of type -",result)
 # ---------------------------------------------------------------------------------------------------------
