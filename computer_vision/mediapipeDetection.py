@@ -25,30 +25,30 @@ logging.FileHandler('LogFiles/anglesLog.log', "w")
 
 # FEED CAPTURE
 cap = cv2.VideoCapture(0)                           # Webcam feed
-
-pTime = 0
+#cap = cv2.VideoCapture('Videos/3.mp4')
+p_Time = 0
 
 # VIDEO PROCESSING
 
 # Resolution scaling
 
-def make_1080p():
+def make_1080p()-> None:
     cap.set(3, 1920)
     cap.set(4, 1080)
 
 make_1080p()
 
-def make_720p():
+def make_720p()-> None:
     cap.set(3, 1280)
     cap.set(4, 720)
 
-def make_480p():
+def make_480p()-> None:
     cap.set(3, 640)
     cap.set(4, 480)
 
 #make_480p()
 
-def change_res(width, height):
+def change_res(width, height)-> None:
     cap.set(3, width)
     cap.set(4, height)
 
@@ -56,7 +56,7 @@ def change_res(width, height):
 
 # Upscaling/Downscaling
 
-def rescale_frame(frame, percent=75):
+def rescale_frame(frame, percent=75)-> None:
     width = int(frame.shape[1] * percent/ 100)
     height = int(frame.shape[0] * percent/ 100)
     dim = (width, height)
@@ -64,7 +64,7 @@ def rescale_frame(frame, percent=75):
 
 # GRAPH TO PDF
 
-def pdf_save(fig_list, file_name, path_name='/path_name/'):
+def pdf_save(fig_list, file_name, path_name='/path_name/')-> None:
 
   pp=PdfPages(path_name+file_name)
   for fig in fig_list:
@@ -96,11 +96,11 @@ stage2 = None   # Right arm
 stage3 = None   # Left leg
 stage4 = None   # Right leg
 
-backStage1 = None
-backStage2 = None
-backStage = "Straight"
+back_Stage1 = None
+back_Stage2 = None
+back_Stage = "Straight"
 
-sittingStage = None # Sitting or Standing
+sitting_stage = None # Sitting or Standing
 
 # DEFAULT COLOR VALUES
 green = (0,255,0)
@@ -311,25 +311,25 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             # Back straight condition
 
             if backAngle1 > 174 and backAngle2 > 174:
-                backStage1 = "Straight"
-                backStage2 = "Straight"
+                back_Stage1 = "Straight"
+                back_Stage2 = "Straight"
                 backColor = white
-                backStage = "Straight"
-            if backAngle1 < 174 and backAngle2 < 174 and backStage1 == backStage2 =='Straight':
-                backStage1 = "Crooked"
-                backStage2 = "Crooked"
+                back_Stage = "Straight"
+            if backAngle1 < 174 and backAngle2 < 174 and back_Stage1 == back_Stage2 =='Straight':
+                back_Stage1 = "Crooked"
+                back_Stage2 = "Crooked"
                 backColor = red
-                backStage = "Crooked"
+                back_Stage = "Crooked"
                 
 
 
 
             # Sitting-Standing condition
             
-            if backStage=="Crooked" and stage3=="Folded" and stage4=="Folded":
-                sittingStage = "Sitting"
-            if backStage=="Straight" and stage3=="Stretched" and stage4=="Stretched" and sittingStage=="Sitting":
-                sittingStage = "Standing"
+            if back_Stage=="Crooked" and stage3=="Folded" and stage4=="Folded":
+                sitting_stage = "Sitting"
+            if back_Stage=="Straight" and stage3=="Stretched" and stage4=="Stretched" and sitting_stage=="Sitting":
+                sitting_stage = "Standing"
 
         except:
             pass
@@ -410,9 +410,9 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
 
 
         # CALCULATE FPS
-        cTime = time.time()
-        fps = 1/(cTime-pTime)
-        pTime = cTime
+        c_Time = time.time()
+        fps = 1/(c_Time-p_Time)
+        p_Time = c_Time
 
 
         # DISPLAY FPS
@@ -513,11 +513,11 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         
         # Back stage and sitting-standing
             
-        cv2.putText(image, str(backStage),
+        cv2.putText(image, str(back_Stage),
                     (420,50),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, backColor, 2, cv2.LINE_AA)
         
-        cv2.putText(image, str(sittingStage),
+        cv2.putText(image, str(sitting_stage),
                     (540,50),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, white, 2, cv2.LINE_AA)
 
