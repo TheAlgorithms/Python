@@ -44,7 +44,7 @@ def rl(rightofproduction: str)->bool:
         return False
 
 # function to check the special case for type 1 grammar
-def check_specialcase(productions_list: list)->bool:
+def check_specialcase(productions_list: list[str])->bool:
     """
     >>>check_specialcase(['A->aBb','A->$','B->aAb','B->ba'])
     True
@@ -70,7 +70,7 @@ def check_specialcase(productions_list: list)->bool:
         return False
         
 # function to check if given grammar is a mixture of left linear and right linear
-def check_mixture_of_ll_rl(productions_list: list)->bool:
+def check_mixture_of_ll_rl(productions_list: list[str])->bool:
     """
     >>>check_mixture_of_ll_rl(['A->aB','A->b'])
     False
@@ -93,7 +93,7 @@ def check_mixture_of_ll_rl(productions_list: list)->bool:
     return False
 
 # function to check if all productions of a grammar are type 0
-def all_t0(production_list: list)->bool:
+def all_t0(production_list: list[str])->bool:
     """
     >>>all_t0(['A->aB','A->b','Ab->abb'])
     True
