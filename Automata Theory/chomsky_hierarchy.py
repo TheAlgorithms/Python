@@ -17,7 +17,7 @@ prodtypehighest=[]  # list to store highest type for each production
 # function to check left linear 
 def ll(rightofproduction: str)->bool:
     """
-    >>>ll('Aab')
+    >>> v=['A','B','S'];t=['a','b','$'];ll('Aab');
     True
     """
     lst=list(rightofproduction)
@@ -32,7 +32,7 @@ def ll(rightofproduction: str)->bool:
 # function to check right linear 
 def rl(rightofproduction: str)->bool:
     """
-    >>>rl('aaB')
+    >>> v=['A','B','S'];t=['a','b','$'];rl('aaB');
     True
     """
     lst=list(rightofproduction)
@@ -47,7 +47,7 @@ def rl(rightofproduction: str)->bool:
 # function to check the special case for type 1 grammar
 def check_specialcase(productions_list: List[str])->bool:
     """
-    >>>check_specialcase(['A->aBb','A->$','B->aAb','B->ba'])
+    >>> check_specialcase(['A->aBb','A->$','B->aAb','B->ba'])
     True
     """
     flag=0
@@ -73,7 +73,7 @@ def check_specialcase(productions_list: List[str])->bool:
 # function to check if given grammar is a mixture of left linear and right linear
 def check_mixture_of_ll_rl(productions_list: List[str])->bool:
     """
-    >>>check_mixture_of_ll_rl(['A->aB','A->b'])
+    >>> check_mixture_of_ll_rl(['A->aB','A->b'])
     False
     """
     lst=['']*len(productions_list) 
@@ -96,7 +96,7 @@ def check_mixture_of_ll_rl(productions_list: List[str])->bool:
 # function to check if all productions of a grammar are type 0
 def all_t0(production_list: List[str])->bool:
     """
-    >>>all_t0(['A->aB','A->b','Ab->abb'])
+    >>> all_t0(['A->aB','A->b','Ab->abb'])
     True
     """
     for prod in production_list:
@@ -113,9 +113,9 @@ def all_t0(production_list: List[str])->bool:
     return True
     
 # function to get the type (0/1/2/3) for a given production α->β 
-def get_type(prod: str) -> Any:  
+def get_type(prod: str) :  
     """
-    >>>get_type('S->aabA')
+    >>> v=['A','B','S'];t=['a','b','$'];print(get_type('S->aabA'));
     3
     """
     prodtype='Neither of type 0, type 1, type 2 or type 3'
@@ -149,7 +149,6 @@ def get_type(prod: str) -> Any:
     return prodtype
 
 if __name__ == "__main__":
-    global p,v,t,prodtypehighest
     # doctests 
     import doctest
     doctest.testmod()
