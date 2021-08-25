@@ -15,10 +15,10 @@ prodtypehighest=[]  # list to store highest type for each production
 
 # function to check left linear 
 def ll(rightofproduction: str)->bool:
-    '''
+    """
     >>>ll('Aab')
     True
-    '''
+    """
     lst=list(rightofproduction)
     if lst[0] in v:
         for char in lst[1:]:
@@ -30,10 +30,10 @@ def ll(rightofproduction: str)->bool:
     
 # function to check right linear 
 def rl(rightofproduction: str)->bool:
-    '''
+    """
     >>>rl('aaB')
     True
-    '''
+    """
     lst=list(rightofproduction)
     if lst[-1] in v:
         for char in lst[:-1]:
@@ -45,10 +45,10 @@ def rl(rightofproduction: str)->bool:
 
 # function to check the special case for type 1 grammar
 def check_specialcase(productions_list: list)->bool:
-    '''
+    """
     >>>check_specialcase(['A->aBb','A->$','B->aAb','B->ba'])
     True
-    '''
+    """
     flag=0
     start_symbol= productions_list[0].split('->')[0]
     for p in productions_list:
@@ -71,10 +71,10 @@ def check_specialcase(productions_list: list)->bool:
         
 # function to check if given grammar is a mixture of left linear and right linear
 def check_mixture_of_ll_rl(productions_list: list)->bool:
-    '''
+    """
     >>>check_mixture_of_ll_rl(['A->aB','A->b'])
     False
-    '''
+    """
     lst=['']*len(productions_list) 
     i=0
     for p in productions_list:
@@ -94,10 +94,10 @@ def check_mixture_of_ll_rl(productions_list: list)->bool:
 
 # function to check if all productions of a grammar are type 0
 def all_t0(production_list: list)->bool:
-    '''
+    """
     >>>all_t0(['A->aB','A->b','Ab->abb'])
     True
-    '''
+    """
     for prod in production_list:
         count=0
         l=[]
@@ -113,10 +113,10 @@ def all_t0(production_list: list)->bool:
     
 # function to get the type (0/1/2/3) for a given production α->β 
 def get_type(prod: str) -> Any:  
-    '''
+    """
     >>>get_type('S->aabA')
     3
-    '''
+    """
     prodtype='Neither of type 0, type 1, type 2 or type 3'
     flag=0
     l=[];r=[]
@@ -147,6 +147,10 @@ def get_type(prod: str) -> Any:
                 prodtype=3
     return prodtype
 
+# doctests 
+import doctest
+doctest.testmod()
+
 # getting and storing highest type for each production of the grammar
 for i in p:
     prodtypehighest.append(get_type(i))
@@ -168,8 +172,4 @@ if result==3:
 
 # printing the result to user
 print("The grammar is of type -",result)
-
-# doctests 
-import doctest
-doctest.testmod()
 # ---------------------------------------------------------------------------------------------------------
