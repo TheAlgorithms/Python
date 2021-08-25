@@ -1,6 +1,6 @@
 # ---------------------Implementing Chomsky Hierarchy--------------------
 # For background understanding, refer https://www.geeksforgeeks.org/chomsky-hierarchy-in-theory-of-computation/ 
-from typing import List
+from typing import List,Any
 # Taking input from user
 v=input("Enter non-terminals(Click enter if done): ").split()
 t=input("Enter terminals(Click enter if done): ").split()
@@ -113,7 +113,7 @@ def all_t0(production_list: List[str])->bool:
     return True
     
 # function to get the type (0/1/2/3) for a given production α->β 
-def get_type(prod: str) :  
+def get_type(prod: str) -> Any:  
     """
     >>> v=['A','B','S'];t=['a','b','$'];print(get_type('S->aabA'));
     3
