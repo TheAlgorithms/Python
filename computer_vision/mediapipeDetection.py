@@ -26,7 +26,7 @@ logging.FileHandler('LogFiles/anglesLog.log', "w")
 # FEED CAPTURE
 cap = cv2.VideoCapture(0)                           # Webcam feed
 #cap = cv2.VideoCapture('Videos/3.mp4')
-p_Time = 0
+p_time = 0
 
 # VIDEO PROCESSING
 
@@ -38,6 +38,8 @@ def make_1080p()-> None:
 
 make_1080p()
 
+
+"""
 def make_720p()-> None:
     cap.set(3, 1280)
     cap.set(4, 720)
@@ -75,6 +77,8 @@ def pdf_save(fig_list, file_name, path_name='/path_name/')-> None:
   print ('PDF saved to %s' % path_name+file_name)
   return
 
+"""
+
 # GRAPH INIT
 # x axis values
 x = []
@@ -96,9 +100,9 @@ stage2 = None   # Right arm
 stage3 = None   # Left leg
 stage4 = None   # Right leg
 
-back_Stage1 = None
-back_Stage2 = None
-back_Stage = "Straight"
+back_stage1 = None
+back_stage2 = None
+back_stage = "Straight"
 
 sitting_stage = None # Sitting or Standing
 
@@ -136,7 +140,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         # ANGLE CALCULATIONS
         
         # X-Y PLANE
-        def calculate_angle(a, b, c):
+        def calculate_angle(a, b, c)-> None:
             a = np.array(a) # First
             b = np.array(b) # Mid
             c = np.array(c) # End
@@ -151,7 +155,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         
         
         # Y-Z PLANE
-        def calculate_angle_yz(a, b, c):
+        def calculate_angle_yz(a, b, c)-> None:
             a = np.array(a) # First
             b = np.array(b) # Mid
             c = np.array(c) # End
@@ -166,7 +170,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         
         
         # X-Z PLANE
-        def calculate_angle_xz(a, b, c):
+        def calculate_angle_xz(a, b, c)-> None:
             a = np.array(a) # First
             b = np.array(b) # Mid
             c = np.array(c) # End
@@ -182,9 +186,10 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         
         
         
-
+        
         # FONT SCALING FUNCTION
-        def get_optimal_font_scale(text, width):
+        """
+        def get_optimal_font_scale(text, width)-> None:
             for scale in reversed(range(0, 60, 1)):
                 textSize = cv2.getTextSize(text, fontFace=cv2.FONT_HERSHEY_DUPLEX, fontScale=scale/10, thickness=1)
                 new_width = textSize[0][0]
@@ -192,7 +197,9 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 if (new_width <= width):
                     return scale/10
             return 1
-
+            
+        """
+            
         # Extract landmarks
         try:
             landmarks = results.pose_landmarks.landmark
@@ -311,24 +318,24 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
             # Back straight condition
 
             if backAngle1 > 174 and backAngle2 > 174:
-                back_Stage1 = "Straight"
-                back_Stage2 = "Straight"
+                back_stage1 = "Straight"
+                back_stage2 = "Straight"
                 backColor = white
-                back_Stage = "Straight"
-            if backAngle1 < 174 and backAngle2 < 174 and back_Stage1 == back_Stage2 =='Straight':
-                back_Stage1 = "Crooked"
-                back_Stage2 = "Crooked"
+                back_stage = "Straight"
+            if backAngle1 < 174 and backAngle2 < 174 and back_stage1 == back_stage2 =='Straight':
+                back_stage1 = "Crooked"
+                back_stage2 = "Crooked"
                 backColor = red
-                back_Stage = "Crooked"
+                back_stage = "Crooked"
                 
 
 
 
             # Sitting-Standing condition
             
-            if back_Stage=="Crooked" and stage3=="Folded" and stage4=="Folded":
+            if back_stage=="Crooked" and stage3=="Folded" and stage4=="Folded":
                 sitting_stage = "Sitting"
-            if back_Stage=="Straight" and stage3=="Stretched" and stage4=="Stretched" and sitting_stage=="Sitting":
+            if back_stage=="Straight" and stage3=="Stretched" and stage4=="Stretched" and sitting_stage=="Sitting":
                 sitting_stage = "Standing"
 
         except:
@@ -410,9 +417,9 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
 
 
         # CALCULATE FPS
-        c_Time = time.time()
-        fps = 1/(c_Time-p_Time)
-        p_Time = c_Time
+        c_time = time.time()
+        fps = 1/(c_time-p_time)
+        p_time = c_time
 
 
         # DISPLAY FPS
@@ -513,7 +520,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         
         # Back stage and sitting-standing
             
-        cv2.putText(image, str(back_Stage),
+        cv2.putText(image, str(back_stage),
                     (420,50),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, backColor, 2, cv2.LINE_AA)
         
