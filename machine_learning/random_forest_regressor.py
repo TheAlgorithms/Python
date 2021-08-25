@@ -24,7 +24,7 @@ def main():
     )
 
     # Random Forest Regressor
-    rand_for = RandomForestRegressor(random_state=42, n_estimators=300)
+    rand_for = RandomForestRegressor(random_state=42, n_estimators=300,)
     rand_for.fit(x_train, y_train)
 
     # Predict target for test data

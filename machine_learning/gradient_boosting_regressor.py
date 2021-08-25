@@ -24,6 +24,8 @@ def main():
     print(df_boston.head())
     # Summary statistics
     print(df_boston.describe().T)
+    # printing number of rows and columns in the dataset
+    print(df_boston.shape)
     # Feature selection
 
     X = df_boston.iloc[:, :-1]
@@ -43,7 +45,8 @@ def main():
     test_score = model.score(X_test, y_test).round(3)
     print("Training score of GradientBoosting is :", training_score)
     print("The test score of GradientBoosting is :", test_score)
-    # Let us evaluation the model by finding the errors
+    # Let us evaluate the model by finding the errors
+    # predicting using test dataset
     y_pred = model.predict(X_test)
 
     # The mean squared error
@@ -51,6 +54,7 @@ def main():
     # Explained variance score: 1 is perfect prediction
     print("Test Variance score: %.2f" % r2_score(y_test, y_pred))
 
+    # Data Visulaization
     # So let's run the model against the test data
     fig, ax = plt.subplots()
     ax.scatter(y_test, y_pred, edgecolors=(0, 0, 0))
