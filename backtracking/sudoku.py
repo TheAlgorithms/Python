@@ -1,7 +1,6 @@
 """
 Given a partially filled 9×9 2D array, the objective is to fill a 9×9
-square grid with digits numbered 1 to 9, so that every row, column, and
-and each of the nine 3×3 sub-grids contains all of the digits.
+square grid with digits numbered 1 to 9, so that every row, column, and each of the nine 3×3 sub-grids contains all of the digits.
 
 This can be solved using Backtracking and is similar to n-queens.
 We check to see if a cell is safe or not and recursively call the
@@ -90,8 +89,9 @@ def sudoku(grid: Matrix) -> Optional[Matrix]:
      >>> sudoku(no_solution) is None
      True
     """
-    if location := find_empty_location(grid):
-        row, column = location
+    if find_empty_location(grid)!=None:
+        #Assigning list values to row and column
+        row, column = find_empty_location(grid)
     else:
         # If the location is ``None``, then the grid is solved.
         return grid
