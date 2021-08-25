@@ -1,4 +1,13 @@
 def code_mesage(txt)  -> str:
+  """
+  >>> code_mesage("Def")
+  Abc
+  >>> code_mesage("bcF")
+  yzC
+  >>> code_mesage("qva")
+  nsx
+
+  """
   alphabet_lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   alphabet_upper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', "X", 'Y', 'Z']
 
@@ -46,6 +55,6 @@ def code_mesage(txt)  -> str:
 
   print(res_str)
 
-
-
-code_mesage("abcde!1234")
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

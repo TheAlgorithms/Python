@@ -1,4 +1,13 @@
 def decode_mesage(txt) -> str:
+  """
+  >>> decode_mesage("eFg")
+  hIj
+  >>> decode_mesage("yzC")
+  bcF
+  >>> decode_mesage("nsx")
+  qva
+
+  """
   alphabet_lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
   alphabet_upper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', "X", 'Y', 'Z']
 
@@ -46,4 +55,6 @@ def decode_mesage(txt) -> str:
  
   print(res_str)
 
-print(decode_mesage("xyzab!1234"))
+if __name__ == "__main__":
+  import doctest
+  doctest.testmod()

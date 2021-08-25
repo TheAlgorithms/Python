@@ -1,4 +1,13 @@
 def decrypt(txt, symbol) -> str:
+  """
+  >>> decrypt("o$ne", "$")
+  one
+  >>> decrypt("dec@rypt", "@")
+  decrypt
+  >>> decrypt("p#ython cod#e", "#")
+  python code
+
+  """
   #here we split the string we need to decypher into a list
   txt_lst = txt.split()
   res_str = ""
@@ -24,4 +33,6 @@ def decrypt(txt, symbol) -> str:
   #and here we print out the final result
   print(res_str)
 
-decrypt("o$ne t$wo three$", "$")
+if __name__ == "__main__":
+  import doctest
+  doctest.testmod()
