@@ -3,8 +3,8 @@ from typing import Dict, List, Union
 
 
 class Automaton:
-    def __init__(self, keywords: List[str]):
-        self.adlist = list()
+    def __init__(self, keywords: list[str]):
+        self.adlist: list[dict] = list()
         self.adlist.append(
             {"value": "", "next_states": [], "fail_state": 0, "output": []}
         )
@@ -22,9 +22,8 @@ class Automaton:
     def add_keyword(self, keyword: str) -> None:
         current_state = 0
         for character in keyword:
-            if self.find_next_state(current_state, character):
-                current_state = self.find_next_state(current_state, character)
-            else:
+            next_state = self.find_next_state(current_state, character)
+            if next_state is None:
                 self.adlist.append(
                     {
                         "value": character,
@@ -35,10 +34,12 @@ class Automaton:
                 )
                 self.adlist[current_state]["next_states"].append(len(self.adlist) - 1)
                 current_state = len(self.adlist) - 1
+            else:
+                current_state = next_state
         self.adlist[current_state]["output"].append(keyword)
 
     def set_fail_transitions(self) -> None:
-        q = deque()
+        q: deque = deque()
         for node in self.adlist[0]["next_states"]:
             q.append(node)
             self.adlist[node]["fail_state"] = 0
@@ -68,7 +69,9 @@ class Automaton:
         >>> A.search_in("whatever, err ... , wherever")
         {'what': [0], 'hat': [1], 'ver': [5, 25], 'er': [6, 10, 22, 26]}
         """
-        result = dict()  # returns a dict with keywords and list of its occurrences
+        result: dict = (
+            dict()
+        )  # returns a dict with keywords and list of its occurrences
         current_state = 0
         for i in range(len(string)):
             while (
@@ -76,10 +79,11 @@ class Automaton:
                 and current_state != 0
             ):
                 current_state = self.adlist[current_state]["fail_state"]
-            current_state = self.find_next_state(current_state, string[i])
-            if current_state is None:
+            next_state = self.find_next_state(current_state, string[i])
+            if next_state is None:
                 current_state = 0
             else:
+                current_state = next_state
                 for key in self.adlist[current_state]["output"]:
                     if not (key in result):
                         result[key] = []
