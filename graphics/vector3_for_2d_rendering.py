@@ -97,6 +97,6 @@ def rotate(
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
-    print(f"{convert_to_2d(1.0, 2.0, 3.0, 10.0, 10.0) = }")
-    print(f"{rotate(1.0, 2.0, 3.0, 'y', 90.0) = }")
+    doctest.testmod(verbose=True)
+    print(f"convert_to_2d(1.0, 2.0, 3.0, 10.0, 10.0): {convert_to_2d(1.0, 2.0, 3.0, 10.0, 10.0)}")
+    print(f"rotate(1.0, 2.0, 3.0, 'y', 90.0): {rotate(1.0, 2.0, 3.0, 'y', 90.0)}")
