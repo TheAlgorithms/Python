@@ -1,4 +1,4 @@
-def decrypt(txt, symbol) -> str:
+def decrypt(txt: str, symbol: str) -> str:
   """
   >>> decrypt("o$ne", "$")
   one

@@ -1,4 +1,4 @@
-def decode_mesage(txt) -> str:
+def decode_mesage(txt: str) -> str:
   """
   >>> decode_mesage("eFg")
   hIj

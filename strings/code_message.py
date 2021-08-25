@@ -1,4 +1,4 @@
-def code_mesage(txt)  -> str:
+def code_mesage(txt: str)  -> str:
   """
   >>> code_mesage("Def")
   Abc

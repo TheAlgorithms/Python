@@ -1,4 +1,4 @@
-def censor(txt, word) -> str:
+def censor(txt: str, word: str) -> str:
     """
     >>> censor("one two three", "one")
     *** two three
