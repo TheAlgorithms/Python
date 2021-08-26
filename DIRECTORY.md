@@ -356,6 +356,7 @@
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 
 ## Knapsack
+  * [Bruteforce Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/bruteforce_knapsack.py)
   * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/greedy_knapsack.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/knapsack.py)
   * Tests
