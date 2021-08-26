@@ -10,7 +10,7 @@ python3 quick_sort.py
 from typing import List
 
 
-def quick_sort(collection: list) -> list:
+def quick_sort(collection: List) -> List:
     """A pure Python implementation of quick sort algorithm
 
     :param collection: a mutable collection of comparable items
