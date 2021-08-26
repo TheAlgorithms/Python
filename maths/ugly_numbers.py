@@ -51,4 +51,4 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod(verbose=True)
-    print(f"{ugly_numbers(200) = }")
+    print(f"ugly_numbers(200): {ugly_numbers(200)}")
