@@ -356,6 +356,10 @@
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
 
 ## Knapsack
+  * Branch And Bound
+    * [Branch And Bound](https://github.com/TheAlgorithms/Python/blob/master/knapsack/branch_and_bound/branch_and_bound.py)
+    * [Item](https://github.com/TheAlgorithms/Python/blob/master/knapsack/branch_and_bound/item.py)
+    * [Test Branch And Bound](https://github.com/TheAlgorithms/Python/blob/master/knapsack/branch_and_bound/test_branch_and_bound.py)
   * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/greedy_knapsack.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/knapsack.py)
   * Tests
