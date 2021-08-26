@@ -89,7 +89,6 @@ evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / stateme
 # used to format the message information. See doc for all details
 msg-template={path}:{module}:{line}: [{msg_id}({symbol}), {obj}] {msg}
 
-
 [BASIC]
 
 # Good variable names which should always be accepted, separated by a comma
