@@ -7,7 +7,6 @@
   * [Lu Decomposition](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/lu_decomposition.py)
   * [Newton Forward Interpolation](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_forward_interpolation.py)
   * [Newton Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_method.py)
-  * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_raphson.py)
   * [Secant Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/secant_method.py)
 
 ## Backtracking
