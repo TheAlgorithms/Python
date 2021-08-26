@@ -1,0 +1,6 @@
+Ant Repellent,1,2
+Blanket,4,3
+Brownies,3,10
+Frisbee,1,6
+Salad,5,4
+Watermelon,10,10
