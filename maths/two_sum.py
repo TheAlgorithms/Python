@@ -43,5 +43,5 @@ def two_sum(nums: list[int], target: int) -> list[int]:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
-    print(f"{two_sum([2, 7, 11, 15], 9) = }")
+    doctest.testmod(verbose=True)
+    print(f"two_sum([2, 7, 11, 15], 9): {two_sum([2, 7, 11, 15], 9)}")
