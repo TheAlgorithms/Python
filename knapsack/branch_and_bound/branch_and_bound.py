@@ -74,7 +74,7 @@ class BranchAndBound:
     ValueError: Invalid data. Please enter positive value.
     """
 
-    def __init__(self, capacity: float, item_list: list[Item]) -> None:
+    def __init__(self, capacity: float, item_list: list[Item]):
         # validation for capacity
         if capacity < 0:
             raise ValueError("Invalid data. Please enter positive value.")
@@ -247,7 +247,7 @@ class TreeNode:
     # upper_bound is the possible optimized rating for the node path
     # level us the level of node in the decision tree
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.level = 0
         self.cum_weight = 0.0
         self.cum_rating = 0.0
