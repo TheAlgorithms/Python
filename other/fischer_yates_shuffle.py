@@ -8,7 +8,7 @@ wikipedia/Fischer-Yates-Shuffle.
 import random
 
 
-def FYshuffle(list):
+def fisher_yates_shuffle(data: list) -> list:
     for _ in range(len(list)):
         a = random.randint(0, len(list) - 1)
         b = random.randint(0, len(list) - 1)
