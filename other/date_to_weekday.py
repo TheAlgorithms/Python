@@ -14,7 +14,7 @@ def date_to_weekday(inp_date: str) -> str:
     >>> date_to_weekday("1/1/2021")
     'Friday'
     """
-    day, month, year = [int(x) for x in inp_date.split("/")]
+    day, month, year = (int(x) for x in inp_date.split("/"))
     if year % 100 == 0:
         year = "00"
     new_base_date: str = f"{day}/{month}/{year%100} 0:0:0"

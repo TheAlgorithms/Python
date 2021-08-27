@@ -18,7 +18,7 @@ consecutive primes?
 from typing import List
 
 
-def prime_sieve(limit: int) -> List[int]:
+def prime_sieve(limit: int) -> list[int]:
     """
     Sieve of Erotosthenes
     Function to return all the prime numbers up to a number 'limit'

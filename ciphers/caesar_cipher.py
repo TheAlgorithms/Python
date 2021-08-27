@@ -145,7 +145,7 @@ def decrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     return encrypt(input_string, key, alphabet)
 
 
-def brute_force(input_string: str, alphabet: Optional[str] = None) -> Dict[int, str]:
+def brute_force(input_string: str, alphabet: Optional[str] = None) -> dict[int, str]:
     """
     brute_force
     ===========

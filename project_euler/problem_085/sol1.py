@@ -61,7 +61,7 @@ def solution(target: int = 2000000) -> int:
     >>> solution(2000000000)
     86595
     """
-    triangle_numbers: List[int] = [0]
+    triangle_numbers: list[int] = [0]
     idx: int
 
     for idx in range(1, ceil(sqrt(target * 2) * 1.1)):

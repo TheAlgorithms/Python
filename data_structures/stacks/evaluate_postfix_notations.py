@@ -23,7 +23,7 @@ def evaluate_postfix(postfix_notation: list) -> int:
         return 0
 
     operations = {"+", "-", "*", "/"}
-    stack: List[Any] = []
+    stack: list[Any] = []
 
     for token in postfix_notation:
         if token in operations:

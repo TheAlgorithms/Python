@@ -33,7 +33,7 @@ def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
 
 def similarity_search(
     dataset: np.ndarray, value_array: np.ndarray
-) -> List[List[Union[List[float], float]]]:
+) -> list[list[Union[list[float], float]]]:
     """
     :param dataset: Set containing the vectors. Should be ndarray.
     :param value_array: vector/vectors we want to know the nearest vector from dataset.

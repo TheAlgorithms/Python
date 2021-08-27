@@ -26,7 +26,7 @@ def is_digit_cancelling(num: int, den: int) -> bool:
     return False
 
 
-def fraction_list(digit_len: int) -> List[str]:
+def fraction_list(digit_len: int) -> list[str]:
     """
     >>> fraction_list(2)
     ['16/64', '19/95', '26/65', '49/98']

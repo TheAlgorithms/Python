@@ -4,7 +4,7 @@ from typing import Union
 
 
 def search_in_a_sorted_matrix(
-    mat: list[list], m: int, n: int, key: Union[int, float]
+    mat: list[list], m: int, n: int, key: int | float
 ) -> None:
     """
     >>> search_in_a_sorted_matrix(

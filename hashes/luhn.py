@@ -17,9 +17,9 @@ def is_luhn(string: str) -> bool:
     [False, False, False, True, False, False, False, False, False, False]
     """
     check_digit: int
-    _vector: List[str] = list(string)
+    _vector: list[str] = list(string)
     __vector, check_digit = _vector[:-1], int(_vector[-1])
-    vector: List[int] = [int(digit) for digit in __vector]
+    vector: list[int] = [int(digit) for digit in __vector]
 
     vector.reverse()
     for i, digit in enumerate(vector):

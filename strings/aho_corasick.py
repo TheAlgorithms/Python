@@ -63,7 +63,7 @@ class Automaton:
                     + self.adlist[self.adlist[child]["fail_state"]]["output"]
                 )
 
-    def search_in(self, string: str) -> Dict[str, List[int]]:
+    def search_in(self, string: str) -> dict[str, list[int]]:
         """
         >>> A = Automaton(["what", "hat", "ver", "er"])
         >>> A.search_in("whatever, err ... , wherever")

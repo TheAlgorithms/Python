@@ -30,7 +30,7 @@ for prime in range(3, ceil(NUM_PRIMES ** 0.5), 2):
 
 
 @lru_cache(maxsize=100)
-def partition(number_to_partition: int) -> Set[int]:
+def partition(number_to_partition: int) -> set[int]:
     """
     Return a set of integers corresponding to unique prime partitions of n.
     The unique prime partitions can be represented as unique prime decompositions,
@@ -47,7 +47,7 @@ def partition(number_to_partition: int) -> Set[int]:
     elif number_to_partition == 0:
         return {1}
 
-    ret: Set[int] = set()
+    ret: set[int] = set()
     prime: int
     sub: int
 

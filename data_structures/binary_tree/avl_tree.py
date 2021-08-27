@@ -13,7 +13,7 @@ from typing import Any, List, Optional
 
 class my_queue:
     def __init__(self) -> None:
-        self.data: List[Any] = []
+        self.data: list[Any] = []
         self.head: int = 0
         self.tail: int = 0
 

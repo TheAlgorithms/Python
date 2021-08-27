@@ -60,7 +60,7 @@ def sieve() -> Generator[int, None, None]:
     >>> next(primes)
     13
     """
-    factor_map: Dict[int, int] = {}
+    factor_map: dict[int, int] = {}
     prime = 2
     while True:
         factor = factor_map.pop(prime, None)

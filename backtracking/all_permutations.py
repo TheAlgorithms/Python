@@ -8,15 +8,15 @@
 from typing import List, Union
 
 
-def generate_all_permutations(sequence: List[Union[int, str]]) -> None:
+def generate_all_permutations(sequence: list[Union[int, str]]) -> None:
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
 
 def create_state_space_tree(
-    sequence: List[Union[int, str]],
-    current_sequence: List[Union[int, str]],
+    sequence: list[Union[int, str]],
+    current_sequence: list[Union[int, str]],
     index: int,
-    index_used: List[int],
+    index_used: list[int],
 ) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
@@ -44,8 +44,8 @@ print("Enter the elements")
 sequence = list(map(int, input().split()))
 """
 
-sequence: List[Union[int, str]] = [3, 1, 2, 4]
+sequence: list[Union[int, str]] = [3, 1, 2, 4]
 generate_all_permutations(sequence)
 
-sequence_2: List[Union[int, str]] = ["A", "B", "C"]
+sequence_2: list[Union[int, str]] = ["A", "B", "C"]
 generate_all_permutations(sequence_2)

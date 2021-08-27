@@ -21,7 +21,7 @@ def random_pivot(lst):
     return choice(lst)
 
 
-def kth_number(lst: List[int], k: int) -> int:
+def kth_number(lst: list[int], k: int) -> int:
     """
     Return the kth smallest number in lst.
     >>> kth_number([2, 1, 3, 4, 5], 3)

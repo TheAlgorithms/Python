@@ -25,7 +25,7 @@ class Heap:
     """
 
     def __init__(self) -> None:
-        self.h: List[float] = []
+        self.h: list[float] = []
         self.heap_size: int = 0
 
     def __repr__(self) -> str:

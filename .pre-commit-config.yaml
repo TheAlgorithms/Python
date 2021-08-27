@@ -51,6 +51,12 @@ repos:
               strings/words.txt |
               project_euler/problem_022/p022_names.txt
           )$
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.24.0
+    hooks:
+    -   id: pyupgrade
+        args:
+            - --py39-plus
   - repo: local
     hooks:
       - id: validate-filenames

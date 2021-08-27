@@ -27,7 +27,7 @@ def solution() -> int:
         if len(str(sqrt_number)) > 1:
             answer += int(str(sqrt_number)[0])
             sqrt_number = str(sqrt_number)[2:101]
-            answer += sum([int(x) for x in sqrt_number])
+            answer += sum(int(x) for x in sqrt_number)
     return answer
 
 

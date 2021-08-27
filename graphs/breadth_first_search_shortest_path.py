@@ -24,7 +24,7 @@ class Graph:
         """
         self.graph = graph
         # mapping node to its parent in resulting breadth first tree
-        self.parent: dict[str, Optional[str]] = {}
+        self.parent: dict[str, str | None] = {}
         self.source_vertex = source_vertex
 
     def breath_first_search(self) -> None:

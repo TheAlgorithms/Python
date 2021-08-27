@@ -7,7 +7,7 @@ from statistics import mean
 from typing import List
 
 
-def calculate_waiting_times(burst_times: List[int]) -> List[int]:
+def calculate_waiting_times(burst_times: list[int]) -> list[int]:
     """
     Calculate the waiting times of a list of processes that have a specified duration.
 
@@ -40,8 +40,8 @@ def calculate_waiting_times(burst_times: List[int]) -> List[int]:
 
 
 def calculate_turn_around_times(
-    burst_times: List[int], waiting_times: List[int]
-) -> List[int]:
+    burst_times: list[int], waiting_times: list[int]
+) -> list[int]:
     """
     >>> calculate_turn_around_times([1, 2, 3, 4], [0, 1, 3])
     [1, 3, 6]

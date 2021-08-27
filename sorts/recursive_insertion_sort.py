@@ -72,6 +72,6 @@ def insert_next(collection: list, index: int):
 
 if __name__ == "__main__":
     numbers = input("Enter integers separated by spaces: ")
-    number_list: List[int] = [int(num) for num in numbers.split()]
+    number_list: list[int] = [int(num) for num in numbers.split()]
     rec_insertion_sort(number_list, len(number_list))
     print(number_list)

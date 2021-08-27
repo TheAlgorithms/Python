@@ -17,7 +17,7 @@ import sys
 from typing import Tuple
 
 
-def extended_euclidean_algorithm(a: int, b: int) -> Tuple[int, int]:
+def extended_euclidean_algorithm(a: int, b: int) -> tuple[int, int]:
     """
     Extended Euclidean Algorithm.
 

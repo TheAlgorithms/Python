@@ -79,10 +79,10 @@ from typing import List
 
 
 def depth_first_search(
-    possible_board: List[int],
-    diagonal_right_collisions: List[int],
-    diagonal_left_collisions: List[int],
-    boards: List[List[str]],
+    possible_board: list[int],
+    diagonal_right_collisions: list[int],
+    diagonal_left_collisions: list[int],
+    boards: list[list[str]],
     n: int,
 ) -> None:
     """
@@ -139,7 +139,7 @@ def depth_first_search(
 
 
 def n_queens_solution(n: int) -> None:
-    boards: List[List[str]] = []
+    boards: list[list[str]] = []
     depth_first_search([], [], [], boards, n)
 
     # Print all the boards

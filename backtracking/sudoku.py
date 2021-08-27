@@ -11,7 +11,7 @@ in that cell and repeat this process.
 """
 from typing import List, Optional, Tuple
 
-Matrix = List[List[int]]
+Matrix = list[list[int]]
 
 # assigning initial values to the grid
 initial_grid: Matrix = [
@@ -59,7 +59,7 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
     return True
 
 
-def find_empty_location(grid: Matrix) -> Optional[Tuple[int, int]]:
+def find_empty_location(grid: Matrix) -> Optional[tuple[int, int]]:
     """
     This function finds an empty location so that we can assign a number
     for that particular row and column.

@@ -16,7 +16,7 @@ import math
 from typing import List
 
 
-def prime_sieve(num: int) -> List[int]:
+def prime_sieve(num: int) -> list[int]:
     """
     Returns a list with all prime numbers up to n.
 
