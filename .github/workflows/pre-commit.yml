@@ -19,4 +19,4 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install --upgrade pre-commit
-      - run: SKIP=black pre-commit run --verbose --all-files --show-diff-on-failure
+      - run: SKIP=pyupgrade pre-commit run --verbose --all-files --show-diff-on-failure
