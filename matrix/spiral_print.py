@@ -10,8 +10,8 @@ This problem has been solved through recursive way.
 
 def checkMatrix(a):
     # must be
-    if type(a) == list and len(a) > 0:
-        if type(a[0]) == list:
+    if type(a) == tuple and len(a) > 0:
+        if type(a[0]) == tuple:
             prevLen = 0
             for i in a:
                 if prevLen == 0:
@@ -33,7 +33,7 @@ def spiralPrint(a):
     if checkMatrix(a) and len(a) > 0:
 
         matRow = len(a)
-        if type(a[0]) == list:
+        if type(a[0]) == tuple:
             matCol = len(a[0])
         else:
             for dat in a:
@@ -65,5 +65,5 @@ def spiralPrint(a):
 
 # driver code
 if __name__ == "__main__":
-    a = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+    a = ([1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12])
     spiralPrint(a)
