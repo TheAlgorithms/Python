@@ -27,7 +27,6 @@ If k = O(n), time complexity is O(n)
 
 Source: https://en.wikipedia.org/wiki/Bucket_sort
 """
-from typing import List
 
 
 def bucket_sort(my_list: list) -> list:

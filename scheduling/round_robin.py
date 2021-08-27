@@ -4,7 +4,6 @@ In Round Robin each process is assigned a fixed time slot in a cyclic way.
 https://en.wikipedia.org/wiki/Round-robin_scheduling
 """
 from statistics import mean
-from typing import List
 
 
 def calculate_waiting_times(burst_times: list[int]) -> list[int]:

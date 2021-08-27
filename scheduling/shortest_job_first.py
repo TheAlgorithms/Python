@@ -3,8 +3,6 @@ Shortest job remaining first
 Please note arrival time and burst
 Please use spaces to separate times entered.
 """
-from typing import List
-
 import pandas as pd
 
 

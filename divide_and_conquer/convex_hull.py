@@ -13,7 +13,7 @@ which have not been implemented here, yet.
 
 """
 
-from typing import Iterable, List, Set, Union
+from typing import Iterable, Union
 
 
 class Point:

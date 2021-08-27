@@ -8,7 +8,7 @@ returns a list containing two data for each vector:
     2. distance between the vector and the nearest vector (float)
 """
 import math
-from typing import List, Union
+from typing import Union
 
 import numpy as np
 

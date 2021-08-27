@@ -1,6 +1,3 @@
-from typing import List
-
-
 def mean(nums: list) -> float:
     """
     Find mean of a list of numbers.

@@ -1,7 +1,6 @@
 from bisect import bisect_left
 from functools import total_ordering
 from heapq import merge
-from typing import List
 
 """
 A pure Python implementation of the patience sort algorithm

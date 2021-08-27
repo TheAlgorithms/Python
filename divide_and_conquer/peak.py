@@ -7,7 +7,6 @@ to find the maximum of the array.
 (From Kleinberg and Tardos. Algorithm Design.
 Addison Wesley 2006: Chapter 5 Solved Exercise 1)
 """
-from typing import List
 
 
 def peak(lst: list[int]) -> int:

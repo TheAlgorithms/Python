@@ -28,7 +28,6 @@ References:
 Finding totients
 https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
 """
-from typing import List
 
 
 def get_totients(max_one: int) -> list[int]:

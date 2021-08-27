@@ -4,7 +4,6 @@ It used the binary representation of the integers to sort
 them.
 https://en.wikipedia.org/wiki/Radix_sort
 """
-from typing import List
 
 
 def msd_radix_sort(list_of_ints: list[int]) -> list[int]:

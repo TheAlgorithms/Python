@@ -1,5 +1,5 @@
 from collections import deque
-from typing import Dict, List, Union
+from typing import Union
 
 
 class Automaton:

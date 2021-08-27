@@ -17,7 +17,6 @@ Time Complexity : O(n/m)
     n=length of main string
     m=length of pattern string
 """
-from typing import List
 
 
 class BoyerMooreSearch:

@@ -9,8 +9,6 @@ python radix_sort.py
 """
 from __future__ import annotations
 
-from typing import List
-
 
 def radix_sort(list_of_ints: list[int]) -> list[int]:
     """

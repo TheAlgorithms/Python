@@ -1,7 +1,5 @@
 # Knight Tour Intro: https://www.youtube.com/watch?v=ab_dY3dZFHM
 
-from typing import List, Tuple
-
 
 def get_valid_pos(position: tuple[int, int], n: int) -> list[tuple[int, int]]:
     """

@@ -29,7 +29,6 @@ References:
 """
 
 import math
-from typing import List, Set
 
 
 def get_pascal_triangle_unique_coefficients(depth: int) -> set[int]:

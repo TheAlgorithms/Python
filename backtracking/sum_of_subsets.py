@@ -6,7 +6,6 @@
         Summation of the chosen numbers must be equal to given number M and one number
         can be used only once.
 """
-from typing import List
 
 
 def generate_sum_of_subsets_soln(nums: list[int], max_sum: int) -> list[list[int]]:

@@ -1,7 +1,6 @@
 # https://www.geeksforgeeks.org/newton-forward-backward-interpolation/
 
 import math
-from typing import List
 
 
 # for calculating u value

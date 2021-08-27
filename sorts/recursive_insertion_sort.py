@@ -4,8 +4,6 @@ A recursive implementation of the insertion sort algorithm
 
 from __future__ import annotations
 
-from typing import List
-
 
 def rec_insertion_sort(collection: list, n: int):
     """

@@ -7,8 +7,6 @@
  diagonal lines.
 
 """
-from typing import List
-
 solution = []
 
 

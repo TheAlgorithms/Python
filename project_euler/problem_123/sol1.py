@@ -38,7 +38,7 @@ So it could be simplified as,
     r = 2   when n is even.
 """
 
-from typing import Dict, Generator
+from typing import Generator
 
 
 def sieve() -> Generator[int, None, None]:

@@ -9,8 +9,9 @@ python3 -m doctest -v binary_search.py
 For manual testing run:
 python3 binary_search.py
 """
+from __future__ import annotations
+
 import bisect
-from typing import List, Optional
 
 
 def bisect_left(
@@ -190,7 +191,7 @@ def insort_right(
     sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
 
-def binary_search(sorted_collection: list[int], item: int) -> Optional[int]:
+def binary_search(sorted_collection: list[int], item: int) -> int | None:
     """Pure implementation of binary search algorithm in Python
 
     Be careful collection must be ascending sorted, otherwise result will be
@@ -228,7 +229,7 @@ def binary_search(sorted_collection: list[int], item: int) -> Optional[int]:
     return None
 
 
-def binary_search_std_lib(sorted_collection: list[int], item: int) -> Optional[int]:
+def binary_search_std_lib(sorted_collection: list[int], item: int) -> int | None:
     """Pure implementation of binary search algorithm in Python using stdlib
 
     Be careful collection must be ascending sorted, otherwise result will be
@@ -259,7 +260,7 @@ def binary_search_std_lib(sorted_collection: list[int], item: int) -> Optional[i
 
 def binary_search_by_recursion(
     sorted_collection: list[int], item: int, left: int, right: int
-) -> Optional[int]:
+) -> int | None:
 
     """Pure implementation of binary search algorithm in Python by recursion
 

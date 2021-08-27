@@ -1,6 +1,5 @@
 # https://en.m.wikipedia.org/wiki/Electric_power
 from collections import namedtuple
-from typing import Tuple
 
 
 def electric_power(voltage: float, current: float, power: float) -> tuple:

@@ -1,8 +1,6 @@
 """
 Checks if a system of forces is in static equilibrium.
 """
-from typing import List
-
 from numpy import array, cos, cross, ndarray, radians, sin
 
 

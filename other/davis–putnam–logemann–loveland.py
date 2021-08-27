@@ -10,7 +10,6 @@ For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_alg
 """
 
 import random
-from typing import Dict, List
 
 
 class Clause:

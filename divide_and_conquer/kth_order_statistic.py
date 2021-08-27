@@ -9,7 +9,6 @@ For more information of this algorithm:
 https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/08/Small08.pdf
 """
 from random import choice
-from typing import List
 
 
 def random_pivot(lst):

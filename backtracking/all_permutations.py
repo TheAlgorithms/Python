@@ -5,7 +5,7 @@
         Time complexity: O(n! * n),
         where n denotes the length of the given sequence.
 """
-from typing import List, Union
+from typing import Union
 
 
 def generate_all_permutations(sequence: list[Union[int, str]]) -> None:

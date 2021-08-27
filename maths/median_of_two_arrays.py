@@ -1,6 +1,3 @@
-from typing import List
-
-
 def median_of_two_arrays(nums1: list[float], nums2: list[float]) -> float:
     """
     >>> median_of_two_arrays([1, 2], [3])

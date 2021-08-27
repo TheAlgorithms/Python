@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Set
-
 
 def depth_first_search(graph: dict, start: str) -> set[str]:
     """Depth First Search on Graph

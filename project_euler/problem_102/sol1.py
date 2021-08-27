@@ -20,7 +20,6 @@ example given above.
 """
 
 from pathlib import Path
-from typing import List, Tuple
 
 
 def vector_product(point1: tuple[int, int], point2: tuple[int, int]) -> int:

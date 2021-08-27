@@ -17,7 +17,6 @@ adjacent digits) with the same digit, is part of an eight prime value family.
 """
 
 from collections import Counter
-from typing import List
 
 
 def prime_sieve(n: int) -> list[int]:

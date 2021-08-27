@@ -1,6 +1,3 @@
-from typing import List
-
-
 def dfs(u):
     global graph, reversedGraph, scc, component, visit, stack
     if visit[u]:

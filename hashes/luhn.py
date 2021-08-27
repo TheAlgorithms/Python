@@ -1,5 +1,4 @@
 """ Luhn Algorithm """
-from typing import List
 
 
 def is_luhn(string: str) -> bool:

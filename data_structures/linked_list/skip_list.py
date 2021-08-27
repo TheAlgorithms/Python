@@ -6,7 +6,7 @@ https://epaperpress.com/sortsearch/download/skiplist.pdf
 from __future__ import annotations
 
 from random import random
-from typing import Generic, Optional, TypeVar
+from typing import Generic, TypeVar
 
 KT = TypeVar("KT")
 VT = TypeVar("VT")

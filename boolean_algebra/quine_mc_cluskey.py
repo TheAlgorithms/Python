@@ -1,6 +1,3 @@
-from typing import List
-
-
 def compare_string(string1: str, string2: str) -> str:
     """
     >>> compare_string('0010','0110')

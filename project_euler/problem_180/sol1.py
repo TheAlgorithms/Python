@@ -48,7 +48,6 @@ https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem
 
 from fractions import Fraction
 from math import gcd, sqrt
-from typing import Tuple
 
 
 def is_sq(number: int) -> bool:

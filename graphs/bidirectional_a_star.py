@@ -7,10 +7,7 @@ from __future__ import annotations
 import time
 from math import sqrt
 
-# 1 for manhattan, 0 for euclidean
-from typing import Optional
-
-HEURISTIC = 0
+HEURISTIC = 0  # 1 for manhattan, 0 for euclidean
 
 grid = [
     [0, 0, 0, 0, 0, 0, 0],

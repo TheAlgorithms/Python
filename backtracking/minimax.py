@@ -8,7 +8,6 @@ leaves of game tree is stored in scores[]
 height is maximum height of Game tree
 """
 import math
-from typing import List
 
 
 def minimax(

@@ -6,7 +6,6 @@
 
     Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path
 """
-from typing import List
 
 
 def valid_connection(

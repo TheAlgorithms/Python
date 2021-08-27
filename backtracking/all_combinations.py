@@ -3,7 +3,6 @@
         numbers out of 1 ... n. We use backtracking to solve this problem.
         Time complexity: O(C(n,k)) which is O(n choose k) = O((n!/(k! * (n - k)!)))
 """
-from typing import List
 
 
 def generate_all_combinations(n: int, k: int) -> list[list[int]]:

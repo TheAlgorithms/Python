@@ -1,5 +1,3 @@
-from typing import List
-
 """ A naive recursive implementation of 0-1 Knapsack Problem
     https://en.wikipedia.org/wiki/Knapsack_problem
 """

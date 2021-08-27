@@ -13,7 +13,6 @@ Also thanks to Dmitry (https://github.com/LizardWizzard) for finding the problem
 
 
 import math
-from typing import List
 
 
 def prime_sieve(num: int) -> list[int]:

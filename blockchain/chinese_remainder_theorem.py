@@ -11,7 +11,6 @@ Algorithm :
 1. Use extended euclid algorithm to find x,y such that a*x + b*y = 1
 2. Take n = ra*by + rb*ax
 """
-from typing import Tuple
 
 
 # Extended Euclid

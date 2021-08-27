@@ -2,8 +2,6 @@
 
 """ Author: OMKAR PATHAK """
 
-from typing import Dict, List, Set
-
 
 class Graph:
     def __init__(self) -> None:

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Generic, Iterable, Iterator, Optional, TypeVar
+from typing import Generic, Iterable, Iterator, TypeVar
 
 T = TypeVar("T")
 

@@ -7,7 +7,6 @@ python3 -m doctest -v quick_sort.py
 For manual testing run:
 python3 quick_sort.py
 """
-from typing import List
 
 
 def quick_sort(collection: list) -> list:

@@ -47,7 +47,6 @@ Reference: https://en.wikipedia.org/wiki/Triangular_number
 
 
 from math import ceil, floor, sqrt
-from typing import List
 
 
 def solution(target: int = 2000000) -> int:

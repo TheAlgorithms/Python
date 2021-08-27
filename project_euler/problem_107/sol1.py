@@ -29,7 +29,7 @@ Solution:
 """
 
 import os
-from typing import Dict, List, Mapping, Set, Tuple
+from typing import Mapping
 
 EdgeT = tuple[int, int]
 

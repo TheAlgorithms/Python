@@ -5,7 +5,7 @@ of the given sequence. We use backtracking to solve this problem.
 Time complexity: O(2^n),
 where n denotes the length of the given sequence.
 """
-from typing import Any, List
+from typing import Any
 
 
 def generate_all_subsequences(sequence: list[Any]) -> None:

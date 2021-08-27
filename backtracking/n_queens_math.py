@@ -75,7 +75,6 @@ Applying this two formulas we can check if a queen in some position is being att
 for another one or vice versa.
 
 """
-from typing import List
 
 
 def depth_first_search(

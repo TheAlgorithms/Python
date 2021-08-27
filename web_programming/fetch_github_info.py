@@ -18,7 +18,7 @@ with your token::
 export USER_TOKEN=""
 """
 import os
-from typing import Any, Dict
+from typing import Any
 
 import requests
 

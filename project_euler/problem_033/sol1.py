@@ -15,7 +15,6 @@ If the product of these four fractions is given in its lowest common
 terms, find the value of the denominator.
 """
 from fractions import Fraction
-from typing import List
 
 
 def is_digit_cancelling(num: int, den: int) -> bool:

@@ -1,5 +1,4 @@
 # https://en.wikipedia.org/wiki/Ohm%27s_law
-from typing import Dict
 
 
 def ohms_law(voltage: float, current: float, resistance: float) -> dict[str, float]:

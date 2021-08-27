@@ -1,6 +1,3 @@
-from typing import List
-
-
 def solve_maze(maze: list[list[int]]) -> bool:
     """
     This method solves the "rat in maze" problem.

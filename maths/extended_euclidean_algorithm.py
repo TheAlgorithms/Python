@@ -14,7 +14,6 @@ https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
 # @Last modified time: 2020-10-02
 
 import sys
-from typing import Tuple
 
 
 def extended_euclidean_algorithm(a: int, b: int) -> tuple[int, int]:

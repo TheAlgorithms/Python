@@ -9,7 +9,6 @@
     For manual testing run:
     python pigeon_sort.py
 """
-from typing import List
 
 
 def pigeon_sort(array: list[int]) -> list[int]:

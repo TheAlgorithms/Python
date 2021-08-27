@@ -25,12 +25,11 @@ file containing the encrypted ASCII codes, and the knowledge that the plain text
 must contain common English words, decrypt the message and find the sum of the ASCII
 values in the original text.
 """
-
+from __future__ import annotations
 
 import string
 from itertools import cycle, product
 from pathlib import Path
-from typing import List, Optional, Set, Tuple
 
 VALID_CHARS: str = (
     string.ascii_letters + string.digits + string.punctuation + string.whitespace
@@ -41,7 +40,7 @@ VALID_INTS: set[int] = {ord(char) for char in VALID_CHARS}
 COMMON_WORDS: list[str] = ["the", "be", "to", "of", "and", "in", "that", "have"]
 
 
-def try_key(ciphertext: list[int], key: tuple[int, ...]) -> Optional[str]:
+def try_key(ciphertext: list[int], key: tuple[int, ...]) -> str | None:
     """
     Given an encrypted message and a possible 3-character key, decrypt the message.
     If the decrypted message contains a invalid character, i.e. not an ASCII letter,

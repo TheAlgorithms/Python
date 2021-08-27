@@ -1,6 +1,3 @@
-from typing import Tuple
-
-
 def diophantine(a: int, b: int, c: int) -> tuple[float, float]:
     """
     Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the

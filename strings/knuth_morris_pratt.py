@@ -1,6 +1,3 @@
-from typing import List
-
-
 def kmp(pattern: str, text: str) -> bool:
     """
     The Knuth-Morris-Pratt Algorithm for finding a pattern within a piece of text

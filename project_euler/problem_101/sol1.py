@@ -42,8 +42,7 @@ Consider the following tenth degree polynomial generating function:
 Find the sum of FITs for the BOPs.
 """
 
-
-from typing import Callable, List, Union
+from typing import Callable, Union
 
 Matrix = list[list[Union[float, int]]]
 

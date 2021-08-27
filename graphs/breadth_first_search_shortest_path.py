@@ -3,8 +3,6 @@ from a given source node to a target node in an unweighted graph.
 """
 from __future__ import annotations
 
-from typing import Optional
-
 graph = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],

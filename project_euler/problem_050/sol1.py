@@ -15,7 +15,6 @@ contains 21 terms, and is equal to 953.
 Which prime, below one-million, can be written as the sum of the most
 consecutive primes?
 """
-from typing import List
 
 
 def prime_sieve(limit: int) -> list[int]:
