@@ -283,6 +283,7 @@
 
 ## Genetic Algorithm
   * [Basic String](https://github.com/TheAlgorithms/Python/blob/master/genetic_algorithm/basic_string.py)
+  * [Stochastic Universal Sampling](https://github.com/TheAlgorithms/Python/blob/master/genetic_algorithm/stochastic_universal_sampling.py)
 
 ## Geodesy
   * [Haversine Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/haversine_distance.py)
