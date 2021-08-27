@@ -78,9 +78,9 @@ def solve(matrix: Matrix, vector: Matrix) -> Matrix:
     col = 0
     while row < size and col < size:
         # pivoting
-        pivot_row = max(
-            (abs(augmented[row2][col]), row2) for row2 in range(col, size)
-        )[1]
+        pivot_row = max((abs(augmented[row2][col]), row2) for row2 in range(col, size))[
+            1
+        ]
         if augmented[pivot_row][col] == 0:
             col += 1
             continue
