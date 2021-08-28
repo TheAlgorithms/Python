@@ -167,9 +167,9 @@ def main():
     matrix_b = [[3, 4], [7, 4]]
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
-    print(f"Add Operation, {add(matrix_a, matrix_b) = } \n")
+    print(f"Add Operation, {add(matrix_a, matrix_b)} \n")
     print(
-        f"Multiply Operation, {multiply(matrix_a, matrix_b) = } \n",
+        f"Multiply Operation, {multiply(matrix_a, matrix_b)} \n",
     )
     print(f"Identity: {identity(5)}\n")
     print(f"Minor of {matrix_c} = {minor(matrix_c, 1, 2)} \n")
@@ -180,5 +180,5 @@ def main():
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(verbose=True)
     main()
