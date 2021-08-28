@@ -4,22 +4,23 @@ This problem has been solved through recursive way.
 
       Matrix must satisfy below conditions
         i) matrix should be only one or two dimensional
-        ii)column of all the row should be equal
+        ii) column of all rows should be equal
 """
 
 from collections.abc import Iterable
 
 
-def checkMatrix(a):
+def check_matrix(matrix):
     # must be
-    if a and isinstance(a, Iterable):
-        prevLen = 0
-        for i in a:
-            if prevLen == 0:
-                prevLen = len(i)
-                result = True
-            elif prevLen == len(i):
-                result = True
+    if matrix and isinstance(matrix, Iterable):
+        if isinstance(matrix[0], Iterable):
+            prev_len = 0
+            for row in matrix:
+                if prev_len == 0:
+                    prev_len = len(row)
+                    result = True
+                else:
+                    result = prev_len == len(row):
             else:
                 result = False
     else:
