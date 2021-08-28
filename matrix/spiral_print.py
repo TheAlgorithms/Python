@@ -33,7 +33,7 @@ def spiralPrint(a):
     if checkMatrix(a) and len(a) > 0:
 
         matRow = len(a)
-        if type(a[0]) == tuple:
+        if isinstance(a[0], Iterable):
             matCol = len(a[0])
         else:
             for dat in a:
