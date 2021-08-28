@@ -8,22 +8,23 @@ This problem has been solved through recursive way.
 """
 
 from collections.abc import Iterable
+
+
 def checkMatrix(a):
     # must be
-    if a and if isinstance(a, Iterable):
-            prevLen = 0
-            for i in a:
-                if prevLen == 0:
-                    prevLen = len(i)
-                    result = True
-                elif prevLen == len(i):
-                    result = True
-                else:
-                    result = False
-        else:
-            result = True
+    if a and isinstance(a, Iterable):
+        prevLen = 0
+        for i in a:
+            if prevLen == 0:
+                prevLen = len(i)
+                result = True
+            elif prevLen == len(i):
+                result = True
+            else:
+                result = False
     else:
-        result = False
+        result = True
+
     return result
 
 
