@@ -7,7 +7,7 @@ This problem has been solved through recursive way.
         ii)column of all the row should be equal
 """
 
-
+from collections.abc import Iterable
 def checkMatrix(a):
     # must be
     if type(a) == tuple and len(a) > 0:
