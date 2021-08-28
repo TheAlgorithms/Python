@@ -21,10 +21,10 @@ def check_matrix(matrix):
                     result = True
                 else:
                     result = prev_len == len(row):
-            else:
-                result = False
+        else:
+            result = True
     else:
-        result = True
+        result = False
 
     return result
 
