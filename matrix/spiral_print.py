@@ -10,8 +10,7 @@ This problem has been solved through recursive way.
 from collections.abc import Iterable
 def checkMatrix(a):
     # must be
-    if type(a) == tuple and len(a) > 0:
-        if type(a[0]) == tuple:
+    if a and if isinstance(a, Iterable):
             prevLen = 0
             for i in a:
                 if prevLen == 0:
