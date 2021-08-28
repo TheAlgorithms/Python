@@ -20,7 +20,7 @@ def check_matrix(matrix):
                     prev_len = len(row)
                     result = True
                 else:
-                    result = prev_len == len(row):
+                    result = prev_len == len(row)
         else:
             result = True
     else:
