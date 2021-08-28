@@ -4,7 +4,7 @@ This problem has been solved through recursive way.
 
       Matrix must satisfy below conditions
         i) matrix should be only one or two dimensional
-        ii) column of all rows should be equal
+        ii) number of column of all rows should be equal
 """
 
 from collections.abc import Iterable
@@ -30,9 +30,7 @@ def check_matrix(matrix):
 
 
 def spiralPrint(a):
-
-    if checkMatrix(a) and len(a) > 0:
-
+    if check_matrix(a) and len(a) > 0:
         matRow = len(a)
         if isinstance(a[0], Iterable):
             matCol = len(a[0])
