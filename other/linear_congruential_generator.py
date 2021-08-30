@@ -8,7 +8,7 @@ class LinearCongruentialGenerator:
     A pseudorandom number generator.
     """
 
-    def __init__(self, multiplier, increment, modulo, seed=int(time())):
+    def __init__(self, multiplier, increment, modulo, seed=int(time())):  # noqa: B008
         """
         These parameters are saved and used when nextNumber() is called.
 

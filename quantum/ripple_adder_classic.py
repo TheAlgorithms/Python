@@ -54,7 +54,9 @@ def full_adder(
 
 
 def ripple_adder(
-    val1: int, val2: int, backend: BaseBackend = Aer.get_backend("qasm_simulator")
+    val1: int,
+    val2: int,
+    backend: BaseBackend = Aer.get_backend("qasm_simulator"),  # noqa: B008
 ) -> int:
     """
     Quantum Equivalent of a Ripple Adder Circuit
