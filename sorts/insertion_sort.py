@@ -53,8 +53,8 @@ def insertion_sort(collection: list) -> list:
 if __name__ == "__main__":
     from doctest import testmod
 
-    testmod()
+    testmod(verbose=True)
 
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(f"{insertion_sort(unsorted) = }")
+    print(f"{insertion_sort(unsorted)}")

@@ -40,7 +40,7 @@ def cocktail_shaker_sort(unsorted: list) -> list:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(verbose=True)
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(f"{cocktail_shaker_sort(unsorted) = }")
+    print(f"{cocktail_shaker_sort(unsorted)}")
