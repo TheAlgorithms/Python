@@ -37,9 +37,9 @@ def dutch_national_flag_sort( sequence: list) -> list:
     :param data: 3 unique integer values (e.g., 0, 1, 2) in an sequence
     :return: the same collection in ascending order
     Examples:
-    Input: dnf_sort([2, 1, 0, 0,1, 2],6)
+    Input: dutch_national_flag_sort([2, 1, 0, 0,1, 2])
     Output: [0, 0, 1, 1, 2, 2]
-    Input: dnf_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1],12)
+    Input: dutch_national_flag_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1])
     Output: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
     """
     seq_size = len(sequence)   # length of sequence
