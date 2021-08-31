@@ -15,8 +15,7 @@ We have to keep in mind that this algorithm can be implemented only on an array 
 More info on: https://en.wikipedia.org/wiki/Dutch_national_flag_problem
 
 For doctests run following command:
-python -m doctest -v dnf_sort.py
-or
+
 python3 -m doctest -v dnf_sort.py
 
 For manual testing run:
@@ -27,15 +26,15 @@ python dnf_sort.py
 
 # Python program to sort an array with
 # 0, 1 and 2 in a single pass
-red = 0 # In this case this is the first color of the flag.
-white = 1 # This is the second color of the flag.
-blue = 2 # This is the third color of the flag.
-colors = [red, white, blue]
+red = 0  # In this case this is the first color of the flag.
+white = 1  # This is the second color of the flag.
+blue = 2  # This is the third color of the flag.
+colors = (red, white, blue)
 # Function to sort array
-def dnf_sort( sequence:list, arr_size:int)->list:
+def dutch_national_flag_sort( sequence: list) -> list:
     """
-     Pure implementation of dnf sort algorithm in Python
-    :param data: 3 unique values (eg. 0,1,2) in an Array
+     Pure Python implementation of Dutch National Flag sort algorithm
+    :param data: 3 unique integer values (e.g., 0, 1, 2) in an sequence
     :return: the same collection in ascending order
     Examples:
     Input: dnf_sort([2, 1, 0, 0,1, 2],6)
@@ -43,23 +42,26 @@ def dnf_sort( sequence:list, arr_size:int)->list:
     Input: dnf_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1],12)
     Output: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
     """
-    if sequence is None: return
-    if len(sequence) <= 1: return
+    seq_size = len(sequence)   # length of sequence
+    if sequence is None:
+        return []
+    if len(sequence) <= 1:
+        return []
     low = 0
-    high = arr_size - 1
+    high = seq_size - 1
     mid = 0
     while mid <= high:
         if sequence[mid] == colors[0]:
             sequence[low], sequence[mid] = sequence[mid], sequence[low]
-            low = low + 1
-            mid = mid + 1
+            low += 1
+            mid += 1
             continue
         if sequence[mid] == colors[1]:
-            mid = mid + 1
+            mid += 1
             continue
         if sequence[mid] == colors[2]:
             sequence[mid], sequence[high] = sequence[high], sequence[mid]
-            high = high - 1
+            high -= 1
             continue
             
         raise ValueError(f"The elements inside the sequence must contains only {colors} values")    
@@ -69,9 +71,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-    assert dnf_sort([1, 0, 0, 2, 1],5) == [0,0,1, 1, 2]
-    assert dnf_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1],12) == [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-print(f"{dnf_sort(unsorted,len(unsorted))}")
+    print(f"{dutch_national_flag_sort(unsorted)}")
