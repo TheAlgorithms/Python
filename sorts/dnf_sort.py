@@ -35,7 +35,7 @@ def dutch_national_flag_sort(sequence: list) -> list:
     """
      Pure Python implementation of Dutch National Flag sort algorithm
     :param data: 3 unique integer values (e.g., 0, 1, 2) in an sequence
-    :return: the same collection in ascending order
+    :return: The same collection in ascending order
     Examples:
     >>> dutch_national_flag_sort([2, 1, 0, 0, 1, 2])
     [0, 0, 1, 1, 2, 2]
