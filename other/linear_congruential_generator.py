@@ -14,6 +14,12 @@ class LinearCongruentialGenerator:
 
         modulo is the largest number that can be generated (exclusive). The most
         efficient values are powers of 2. 2^32 is a common value.
+        
+        The default value for **seed** is the result of a function call which is not
+        normally recommended and causes flake8-bugbear to raise a B008 error. However,
+        in this case, it is accptable because `LinearCongruentialGenerator.__init__()`
+        will only be called once per instance and it ensures that each instance will
+        generate a unique sequence of numbers.
         """
         self.multiplier = multiplier
         self.increment = increment
