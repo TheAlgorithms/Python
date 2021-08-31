@@ -4,17 +4,29 @@ allowing queries to be done later in log(N) time
 function takes 2 values and returns a same type value
 """
 from collections.abc import Sequence
+from functools import reduce
 from queue import Queue
+from typing import TypeVar
+
+T = TypeVar("T", int, float)
 
 
 class SegmentTreeNode:
-    def __init__(self, start, end, val, left=None, right=None):
+    def __init__(
+        self,
+        start: int,
+        end: int,
+        val: T,
+        left: "SegmentTreeNode" = None,
+        right: "SegmentTreeNode" = None,
+    ):
         self.start = start
         self.end = end
         self.val = val
         self.mid = (start + end) // 2
         self.left = left
         self.right = right
+        self.lazy: T = None
 
     def __str__(self):
         return f"val: {self.val}, start: {self.start}, end: {self.end}"
@@ -150,6 +162,27 @@ class SegmentTree:
         """
         self._update_tree(self.root, i, val)
 
+    def update_range(self, i: int, j: int, val: T) -> None:
+        """
+        Update range [i, j] with val in log(N) time, range ends included
+        :param i: left element index
+        :param j: right element index
+        :param val: new value
+        >>> import operator
+        >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
+        >>> num_arr.update_range(1, 3, 5)
+        >>> num_arr.collection
+        [2, 5, 5, 5, 4]
+        >>> num_arr.query_range(1, 3)
+        15
+        >>> num_arr.query_range(3, 4)
+        9
+        >>> num_arr.query_range(0, 1)
+        7
+        """
+        self.collection[i : j + 1] = [val] * (j - i + 1)
+        self._update_tree_range(self.root, i, j, val)
+
     def query_range(self, i, j):
         """
         Get range query value in log(N) time
@@ -187,7 +220,47 @@ class SegmentTree:
             self._update_tree(node.right, i, val)
         node.val = self.fn(node.left.val, node.right.val)
 
+    def _update_tree_range(
+        self,
+        node: SegmentTreeNode,
+        i: int,
+        j: int,
+        val: T,
+    ) -> None:
+
+        if node.lazy is not None:
+            # The node has lazy update value
+            self._update_lazy(node, node.lazy)
+            # No longer lazy
+            node.lazy = None
+
+        if node.start > j or node.end < i:
+            # Not overlapping at all
+            return
+
+        if node.start >= i and node.end <= j:
+            # Completely overlapping
+            self._update_lazy(node, val)
+            return
+
+        self._update_tree_range(node.left, i, j, val)
+        self._update_tree_range(node.right, i, j, val)
+        node.val = self.fn(node.left.val, node.right.val)
+
+    def _update_lazy(self, node: SegmentTreeNode, val: T) -> None:
+        node.val = reduce(self.fn, [val] * (node.end - node.start + 1))
+        if node.start != node.end:
+            # Not a leaf node
+            node.left.lazy = val
+            node.right.lazy = val
+
     def _query_range(self, node, i, j):
+        if node.lazy is not None:
+            # The node has lazy update value, update before querying
+            self._update_lazy(node, node.lazy)
+            # No longer lazy
+            node.lazy = None
+
         if node.start == i and node.end == j:
             return node.val
 
