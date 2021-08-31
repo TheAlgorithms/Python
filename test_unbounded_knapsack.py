@@ -1,8 +1,5 @@
 """
-Created on Fri Oct 16 09:31:07 2020
-
-@author: Dr. Tobias Schröder
-@license: MIT-license
+Created on Tue Aug 31 16:31:07 2022
 
 This file contains the test-suite for the unbounded_knapsack problem.
 """
@@ -16,36 +13,36 @@ class Test(unittest.TestCase):
         """
         test for the base case
         """
-        cap = 0
-        val = [0]
-        w = [0]
-        c = len(val)
-        self.assertEqual(k.unbounded_knapsack(cap, w, val, c), 0)
+        capacity = 0
+        value = [0]
+        weight = [0]
+        length = len(val)
+        self.assertEqual(k.unbounded_knapsack(capacity, weight, value, length), 0)
 
-        val = [60]
-        w = [10]
-        c = len(val)
-        self.assertEqual(k.unbounded_knapsack(cap, w, val, c), 0)
+        value = [60]
+        weight = [10]
+        length = len(val)
+        self.assertEqual(k.unbounded_knapsack(capacity, weight, value, length), 0)
 
     def test_easy_case(self):
         """
         test for the base case
         """
-        cap = 100
-        val = [10, 30, 20]
-        w = [5, 10, 15]
-        c = len(val)
-        self.assertEqual(k.unbounded_knapsack(cap, w, val, c), 300)
+        capacity = 100
+        value = [10, 30, 20]
+        weight = [5, 10, 15]
+        length = len(val)
+        self.assertEqual(k.unbounded_knapsack(capacity, weight, value, length), 300)
 
     def test_knapsack(self):
         """
         test for the knapsack
         """
-        cap = 8
-        val = [10, 40, 50, 70]
-        w = [1, 3, 4, 5]
-        c = len(val)
-        self.assertEqual(k.unbounded_knapsack(cap, w, val, c), 110)
+        capacity = 8
+        value = [10, 40, 50, 70]
+        weight = [1, 3, 4, 5]
+        length = len(val)
+        self.assertEqual(k.unbounded_knapsack(capacity, weight, value, length), 110)
 
 
 if __name__ == "__main__":
