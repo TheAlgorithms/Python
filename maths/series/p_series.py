@@ -12,7 +12,7 @@ python3 p_series.py
 """
 
 
-def p_series(nth_term: int, power: int) -> list:
+def p_series(nth_term: int, power: float) -> list:
     """Pure Python implementation of P-Series algorithm
 
     :return: The P-Series starting from 1 to last (nth) term
@@ -31,18 +31,38 @@ def p_series(nth_term: int, power: int) -> list:
     >>> p_series(1, 1)
     [1]
     """
-    if nth_term == "":
-        return nth_term
-    nth_term = int(nth_term)
-    power = int(power)
-    series = []
+    # raise error if nth_term input is not an int
+    if type(nth_term) != int:
+        raise ValueError("n_th term has to be an integer")
+    # raise error if power input is not a real number
+    if type(power) != float:
+        raise ValueError("power has to be a real number")
+    series: list = []
     for temp in range(int(nth_term)):
         series.append(f"1/{pow(temp + 1, int(power))}" if series else 1)
     return series
 
 
 if __name__ == "__main__":
-    nth_term = input("Enter the last number (nth term) of the P-Series")
-    power = input("Enter the power for  P-Series")
     print("Formula of P-Series => 1+1/2^p+1/3^p ..... 1/n^p")
+    nth_term_input = input("Enter the last number (nth term) of the P-Series: ")
+    # keep asking for nth_term till input is not an integer
+    done = 0
+    while not done:
+        try:
+            nth_term = int(nth_term_input)
+            done = 1
+        except ValueError:
+            print('nth term should be an integer')
+            nth_term_input = input("Enter the last number (nth term) of the P-Series: ")
+    power_input = input("Enter the power for  P-Series: ")
+    # keep asking for power till input is not a float
+    done = 0
+    while not done:
+        try:
+            power = float(power_input)
+            done = 1
+        except ValueError:
+            print('power should be a real number')
+            power_input = input("Enter the power for  P-Series: ")
     print(p_series(nth_term, power))
