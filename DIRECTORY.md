@@ -932,8 +932,6 @@
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/strings/word_patterns.py)
   * [Z Function](https://github.com/TheAlgorithms/Python/blob/master/strings/z_function.py)
 
-## [Test Unbounded Knapsack](https://github.com/TheAlgorithms/Python/blob/master//test_unbounded_knapsack.py)
-
 ## [Unbounded Knapsack](https://github.com/TheAlgorithms/Python/blob/master//unbounded_knapsack.py)
 
 ## Web Programming
