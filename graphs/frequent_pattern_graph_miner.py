@@ -168,11 +168,11 @@ def construct_graph(cluster, nodes):
     return graph
 
 
-def myDFS(graph, start, end, path=[]):
+def myDFS(graph, start, end, path=None):
     """
     find different DFS walk from given node to Header node
     """
-    path = path + [start]
+    path = (path or []) + [start]
     if start == end:
         paths.append(path)
     for node in graph[start]:
