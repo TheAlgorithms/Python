@@ -65,7 +65,12 @@ def ripple_adder(
     Currently only adds 'emulated' Classical Bits
     but nothing prevents us from doing this with hadamard'd bits :)
 
-    Only supports adding +ve Integers
+    Only supports adding positive integers
+    
+    The default value for **backend** is the result of a function call which is not
+    normally recommended and causes flake8-bugbear to raise a B008 error. However,
+    in this case, it is accptable because `Aer.get_backend()` is called when the
+    function is definition and that same backend is then reused for function calls.
 
     >>> ripple_adder(3, 4)
     7
@@ -101,7 +106,7 @@ def ripple_adder(
     res = execute(circuit, backend, shots=1).result()
 
     # The result is in binary. Convert it back to int
-    return int(list(res.get_counts().keys())[0], 2)
+    return int(list(res.get_counts())[0], 2)
 
 
 if __name__ == "__main__":
