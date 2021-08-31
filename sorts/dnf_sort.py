@@ -55,22 +55,21 @@ def dutch_national_flag_sort( sequence: list) -> list:
             sequence[low], sequence[mid] = sequence[mid], sequence[low]
             low += 1
             mid += 1
-            continue
-        if sequence[mid] == colors[1]:
+        elif sequence[mid] == colors[1]:
             mid += 1
-            continue
-        if sequence[mid] == colors[2]:
+
+        elif sequence[mid] == colors[2]:
             sequence[mid], sequence[high] = sequence[high], sequence[mid]
             high -= 1
-            continue
-            
-        raise ValueError(f"The elements inside the sequence must contains only {colors} values")    
+        else:
+            raise ValueError(f"The elements inside the sequence must contains only {colors} values")
     return sequence
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(f"{dutch_national_flag_sort(unsorted)}")
