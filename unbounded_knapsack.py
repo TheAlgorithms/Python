@@ -10,11 +10,11 @@ def knapsack(capacity: int, weights: List[int], values: List[int], counter: int)
     Returns the maximum value that can be put in a knapsack of a capacity cap,
     whereby each weight w has a specific value val.
 
-    >>> cap = 100
-    >>> val = [10, 30, 20]
-    >>> w = [5, 10, 15]
-    >>> c = len(val)
-    >>> knapsack(cap, w, val, c)
+   >>> capacity = 100
+    >>> value = [10, 30, 20]
+    >>> weight = [5, 10, 15]
+    >>> length= len(val)
+    >>> knapsack(capacity, weight, value, length)
     300
 
     The result is 300 cause the values of 100 and 120 got the weight of 50
