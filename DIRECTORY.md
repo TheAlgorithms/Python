@@ -932,6 +932,10 @@
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/strings/word_patterns.py)
   * [Z Function](https://github.com/TheAlgorithms/Python/blob/master/strings/z_function.py)
 
+## [Test Unbounded Knapsack](https://github.com/TheAlgorithms/Python/blob/master//test_unbounded_knapsack.py)
+
+## [Unbounded Knapsack](https://github.com/TheAlgorithms/Python/blob/master//unbounded_knapsack.py)
+
 ## Web Programming
   * [Co2 Emission](https://github.com/TheAlgorithms/Python/blob/master/web_programming/co2_emission.py)
   * [Covid Stats Via Xpath](https://github.com/TheAlgorithms/Python/blob/master/web_programming/covid_stats_via_xpath.py)
