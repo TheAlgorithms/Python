@@ -57,11 +57,11 @@ if __name__ == "__main__":
             ).strip()
     power_input = input("Enter the power for  P-Series: ").strip()
     # keep asking for power till input is not a float
-    done = 0
+    done = False
     while not done:
         try:
             power = float(power_input)
-            done = 1
+            done = True
         except ValueError:
             print("power should be a real number")
             power_input = input("Enter the power for  P-Series: ").strip()

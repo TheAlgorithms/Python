@@ -78,11 +78,11 @@ if __name__ == "__main__":
         "Enter the starting term (a) of the Geometric Series"
     ).strip()
     # keep asking for a till input is not a real number
-    done = 0
+    done = False
     while not done:
         try:
             start_term_a = float(start_term_a_input)
-            done = 1
+            done = True
         except ValueError:
             print("a should be a real number")
             start_term_a_input = input(
@@ -93,11 +93,11 @@ if __name__ == "__main__":
         "Enter the common ratio between two terms (r) of the Geometric Series"
     ).strip()
     # keep asking for r till input is not a real number
-    done = 0
+    done = False
     while not done:
         try:
             common_ratio_r = float(common_ratio_r_input)
-            done = 1
+            done = True
         except ValueError:
             print("r should be a real number")
             common_ratio_r_input = input(
