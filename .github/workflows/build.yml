@@ -1,0 +1,28 @@
+name: "build"
+
+on:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * *" # Run everyday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools six wheel
+          python -m pip install mypy pytest-cov -r requirements.txt
+      - run: mypy .
+      - name: Run tests
+        run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
+      - if: ${{ success() }}
+        run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
