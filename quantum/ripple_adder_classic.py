@@ -52,6 +52,7 @@ def full_adder(
     circuit.cx(input2_loc, carry_in)
     circuit.cx(input1_loc, input2_loc)
 
+
 # The default value for **backend** is the result of a function call which is not
 # normally recommended and causes flake8-bugbear to raise a B008 error. However,
 # in this case, this is accptable because `Aer.get_backend()` is called when the
