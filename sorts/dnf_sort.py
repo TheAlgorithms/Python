@@ -31,7 +31,7 @@ white = 1  # This is the second color of the flag.
 blue = 2  # This is the third color of the flag.
 colors = (red, white, blue)
 # Function to sort array
-def dutch_national_flag_sort( sequence: list) -> list:
+def dutch_national_flag_sort(sequence: list) -> list:
     """
      Pure Python implementation of Dutch National Flag sort algorithm
     :param data: 3 unique integer values (e.g., 0, 1, 2) in an sequence
@@ -42,7 +42,7 @@ def dutch_national_flag_sort( sequence: list) -> list:
     >>> dutch_national_flag_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1])
     [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
     """
-    seq_size = len(sequence)   # length of sequence
+    seq_size = len(sequence)  # length of sequence
     if sequence is None:
         return []
     if len(sequence) <= 1:
@@ -62,8 +62,11 @@ def dutch_national_flag_sort( sequence: list) -> list:
             sequence[mid], sequence[high] = sequence[high], sequence[mid]
             high -= 1
         else:
-            raise ValueError(f"The elements inside the sequence must contains only {colors} values")
+            raise ValueError(
+                f"The elements inside the sequence must contains only {colors} values"
+            )
     return sequence
+
 
 if __name__ == "__main__":
     import doctest
