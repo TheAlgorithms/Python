@@ -53,6 +53,11 @@ def full_adder(
     circuit.cx(input1_loc, input2_loc)
 
 
+# The default value for **backend** is the result of a function call which is not
+# normally recommended and causes flake8-bugbear to raise a B008 error. However,
+# in this case, it is accptable because `Aer.get_backend()` is called when the
+# function is definition and that same backend is then reused for function calls.
+
 def ripple_adder(
     val1: int,
     val2: int,
@@ -66,11 +71,6 @@ def ripple_adder(
     but nothing prevents us from doing this with hadamard'd bits :)
 
     Only supports adding positive integers
-    
-    The default value for **backend** is the result of a function call which is not
-    normally recommended and causes flake8-bugbear to raise a B008 error. However,
-    in this case, it is accptable because `Aer.get_backend()` is called when the
-    function is definition and that same backend is then reused for function calls.
 
     >>> ripple_adder(3, 4)
     7
