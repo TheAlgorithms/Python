@@ -37,10 +37,10 @@ def dutch_national_flag_sort( sequence: list) -> list:
     :param data: 3 unique integer values (e.g., 0, 1, 2) in an sequence
     :return: the same collection in ascending order
     Examples:
-    Input: dutch_national_flag_sort([2, 1, 0, 0,1, 2])
-    Output: [0, 0, 1, 1, 2, 2]
-    Input: dutch_national_flag_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1])
-    Output: [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
+    >>> dutch_national_flag_sort([2, 1, 0, 0, 1, 2])
+    [0, 0, 1, 1, 2, 2]
+    >>> dutch_national_flag_sort([0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1])
+    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2]
     """
     seq_size = len(sequence)   # length of sequence
     if sequence is None:
