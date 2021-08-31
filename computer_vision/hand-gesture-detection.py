@@ -15,7 +15,7 @@ from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
 
-
+# get_args() -> argparse.Namespace:
 def get_args():  #This is an utility function for parsing arguments
     analyzer = argparse.ArgumentParser()
 
@@ -34,10 +34,12 @@ def get_args():  #This is an utility function for parsing arguments
                         default=0.5)
 
     args = analyzer.parse_args()
-
+    
+   
     return args
+    
 
-
+# main() -> None:
 def main():
     #parsing argument
     args = get_args() #This is an utility function for parsing arguments
@@ -178,7 +180,8 @@ def main():
     cap.release()
     cv.destroyAllWindows()
 
-
+# key - key of select mode: 
+# mode - mode of select mode:
 def select_mode(key, mode):
     number = -1
     if 48 <= key <= 57:  # 0 ~ 9
@@ -191,7 +194,8 @@ def select_mode(key, mode):
         mode = 2
     return number, mode
 
-
+# image - shape of image
+# landmark - array of landmark 
 def calc_bounding_rect(image, landmarks):
     image_width, image_height = image.shape[1], image.shape[0]
 
@@ -209,7 +213,7 @@ def calc_bounding_rect(image, landmarks):
 
     return [x, y, x + w, y + h]
 
-
+# calc_landmark_list() -> list: 
 def calc_landmark_list(image, landmarks):
     image_width, image_height = image.shape[1], image.shape[0]
 
@@ -222,10 +226,11 @@ def calc_landmark_list(image, landmarks):
         # landmark_z = landmark.z
 
         landmark_point.append([landmark_x, landmark_y])
-
+    
+   
     return landmark_point
 
-
+# pre_process_landmark() -> list:
 def pre_process_landmark(landmark_list):
     temp_landmark_list = copy.deepcopy(landmark_list)
 
@@ -252,7 +257,7 @@ def pre_process_landmark(landmark_list):
 
     return temp_landmark_list
 
-
+# pre_process_point_history() -> list:
 def pre_process_point_history(image, point_history):
     image_width, image_height = image.shape[1], image.shape[0]
 
@@ -275,7 +280,7 @@ def pre_process_point_history(image, point_history):
 
     return temp_point_history
 
-
+# logging_csv() -> None:
 def logging_csv(number, mode, landmark_list, point_history_list):
     if mode == 0:
         pass
@@ -291,7 +296,7 @@ def logging_csv(number, mode, landmark_list, point_history_list):
             writer.writerow([number, *point_history_list])
     return
 
-
+# draw_landmarks() -> jpg:
 def draw_landmarks(image, landmark_point):
     if len(landmark_point) > 0:
         # Thumb
@@ -479,7 +484,7 @@ def draw_landmarks(image, landmark_point):
 
     return image
 
-
+# draw_bounding_rect() -> jpg:
 def draw_bounding_rect(use_brect, image, brect):
     if use_brect:
         # Outer rectangle
@@ -488,7 +493,7 @@ def draw_bounding_rect(use_brect, image, brect):
 
     return image
 
-
+# draw_info_text() -> jpg:
 def draw_info_text(image, brect, handedness, hand_sign_text,
                    finger_gesture_text):
     cv.rectangle(image, (brect[0], brect[1]), (brect[2], brect[1] - 22),
@@ -509,7 +514,7 @@ def draw_info_text(image, brect, handedness, hand_sign_text,
 
     return image
 
-
+# draw_point_history() -> jpg:
 def draw_point_history(image, point_history):
     for index, point in enumerate(point_history):
         if point[0] != 0 and point[1] != 0:
@@ -518,7 +523,7 @@ def draw_point_history(image, point_history):
 
     return image
 
-
+# draw_info() -> jpg:
 def draw_info(image, fps, mode, number):
     cv.putText(image, "FPS:" + str(fps), (10, 30), cv.FONT_HERSHEY_SIMPLEX,
                1.0, (0, 0, 0), 4, cv.LINE_AA)
