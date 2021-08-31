@@ -49,10 +49,10 @@ class FFT:
     A*B = 0*x^(-0+0j) + 1*x^(2+0j) + 2*x^(3+0j) + 3*x^(8+0j) + 4*x^(6+0j) + 5*x^(8+0j)
     """
 
-    def __init__(self, polyA=[0], polyB=[0]):
+    def __init__(self, polyA=None, polyB=None):
         # Input as list
-        self.polyA = list(polyA)[:]
-        self.polyB = list(polyB)[:]
+        self.polyA = list(polyA or [0])[:]
+        self.polyB = list(polyB or [0])[:]
 
         # Remove leading zero coefficients
         while self.polyA[-1] == 0:
