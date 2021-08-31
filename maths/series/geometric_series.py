@@ -39,12 +39,11 @@ def geometric_series(nth_term: int, start_term_a: float, common_ratio_r: float) 
     []
     """
     # raise error if nth_term input is not an int
-    if type(nth_term) != int:
+    if not isinstance(nth_term, int):
         raise ValueError("n_th term has to be an integer")
-    if type(start_term_a) not in [int, float] or type(common_ratio_r) not in [
-        int,
-        float,
-    ]:
+    if not isinstance(start_term_a, (int, float)) or not isinstance(
+        common_ratio_r, (int, float)
+    ):
         raise ValueError("a and r have to be real numbers")
     series: list = []
     power = 1
@@ -64,11 +63,11 @@ if __name__ == "__main__":
         "Enter the last number (n term) of the Geometric Series"
     ).strip()
     # keep asking for nth_term till input is not an integer
-    done = 0
+    done = False
     while not done:
         try:
             nth_term = int(nth_term_input)
-            done = 1
+            done = True
         except ValueError:
             print("nth term should be an integer")
             nth_term_input = input(
