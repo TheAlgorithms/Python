@@ -1,0 +1,19 @@
+{
+  "C_Cpp_Runner.cCompilerPath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\gcc.exe",
+  "C_Cpp_Runner.cppCompilerPath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\g++.exe",
+  "C_Cpp_Runner.debuggerPath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\gdb.exe",
+  "C_Cpp_Runner.makePath": "C:\\Program Files\\CodeBlocks\\MinGW\\bin\\make.exe",
+  "C_Cpp_Runner.warnings": [
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic"
+  ],
+  "C_Cpp_Runner.compilerArgs": [],
+  "C_Cpp_Runner.includePaths": [],
+  "C_Cpp_Runner.linkerArgs": [],
+  "C_Cpp_Runner.cStandard": "",
+  "C_Cpp_Runner.cppStandard": "gnu++20",
+  "C_Cpp_Runner.excludeSearch": [],
+  "C_Cpp_Runner.enableWarnings": true,
+  "C_Cpp_Runner.warningsAsError": false
+}
