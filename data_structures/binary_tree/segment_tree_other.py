@@ -6,9 +6,9 @@ function takes 2 values and returns a same type value
 from collections.abc import Sequence
 from functools import reduce
 from queue import Queue
-from typing import TypeVar
+from typing import Optional, TypeVar
 
-T = TypeVar("T", int, float)
+IntOrFloat = TypeVar("IntOrFloat", int, float)
 
 
 class SegmentTreeNode:
@@ -16,7 +16,7 @@ class SegmentTreeNode:
         self,
         start: int,
         end: int,
-        val: T,
+        val: IntOrFloat,
         left: "SegmentTreeNode" = None,
         right: "SegmentTreeNode" = None,
     ):
@@ -26,7 +26,7 @@ class SegmentTreeNode:
         self.mid = (start + end) // 2
         self.left = left
         self.right = right
-        self.lazy: T = None
+        self.lazy: Optional[IntOrFloat] = None
 
     def __str__(self):
         return f"val: {self.val}, start: {self.start}, end: {self.end}"
@@ -162,7 +162,7 @@ class SegmentTree:
         """
         self._update_tree(self.root, i, val)
 
-    def update_range(self, i: int, j: int, val: T) -> None:
+    def update_range(self, i: int, j: int, val: IntOrFloat) -> None:
         """
         Update range [i, j] with val in log(N) time, range ends included
         :param i: left element index
@@ -225,9 +225,24 @@ class SegmentTree:
         node: SegmentTreeNode,
         i: int,
         j: int,
-        val: T,
+        val: IntOrFloat,
     ) -> None:
-
+        """
+        Update range recursively in log(N) time, range ends included.
+        :param node: root node of current subtree
+        :param i: left element index
+        :param j: right element index
+        :param val: new value
+        >>> import operator
+        >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
+        >>> num_arr._update_tree_range(num_arr.root, 1, 3, 5)
+        >>> num_arr.query_range(1, 3)
+        15
+        >>> num_arr.query_range(3, 4)
+        9
+        >>> num_arr.query_range(0, 1)
+        7
+        """
         if node.lazy is not None:
             # The node has lazy update value
             self._update_lazy(node, node.lazy)
@@ -247,7 +262,38 @@ class SegmentTree:
         self._update_tree_range(node.right, i, j, val)
         node.val = self.fn(node.left.val, node.right.val)
 
-    def _update_lazy(self, node: SegmentTreeNode, val: T) -> None:
+    def _update_lazy(self, node: SegmentTreeNode, val: IntOrFloat) -> None:
+        """Update node and mark it's subtrees for a lazy update.
+
+        :param node: node to update.
+        :param val: new value.
+
+        >>> import operator
+        >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
+        >>> num_arr._update_lazy(num_arr.root, 5)
+        >>> num_arr.root.val
+        25
+        >>> l_subtree = num_arr.root.left
+        >>> r_subtree = num_arr.root.right
+        >>> l_subtree.lazy
+        5
+        >>> r_subtree.lazy
+        5
+        >>> num_arr._update_lazy(l_subtree, l_subtree.lazy)
+        >>> l_subtree.val
+        15
+        >>> num_arr._update_lazy(r_subtree, r_subtree.lazy)
+        >>> r_subtree.val
+        10
+        >>> l_subtree.left.lazy
+        5
+        >>> l_subtree.right.lazy
+        5
+        >>> r_subtree.left.lazy
+        5
+        >>> r_subtree.right.lazy
+        5
+        """
         node.val = reduce(self.fn, [val] * (node.end - node.start + 1))
         if node.start != node.end:
             # Not a leaf node
