@@ -1,6 +1,7 @@
 """
 Gamma function is a very useful tool in physics.
 It helps calculating complex integral in a convenient way.
+for more info: https://en.wikipedia.org/wiki/Gamma_function
 """
 
 # Importing packages
