@@ -64,11 +64,12 @@ if __name__ == "__main__":
             raise ValueError
     # Ensure print an error message
     except ValueError:
-        print("Invalid input: Must be an integer or an half-integer!")
+        print("Error: Input must be an integer or an half-integer!")
         number = False
     finally:
         # Ensure input is a valid number
         if number:
+            print(f"\u0393({num}) = ", end="")
             # Ensure input is an integer
             if (isinstance(gamma(num), int)):
                 # Print result
@@ -76,7 +77,7 @@ if __name__ == "__main__":
             # Otherwise print results with √π (gamma of 0.5 is √π)
             # Therefore all results will be a number times √π
             else:
-                results = "{result:.4f}".format(result=gamma(num) / sqrt(pi))
+                results = f"{gamma(num) / sqrt(pi):.4f}"
                 results = results.rstrip('0').rstrip('.')
                 if results == "1":
                     results = ""
