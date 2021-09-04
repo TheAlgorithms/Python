@@ -21,7 +21,7 @@ from math import pi, sin
 g = 9.80665
 
 
-def angle_to_radians(angle):
+def angle_to_radians(angle : float) -> float:
     """
     Convert an angle from degrees to randians
     """
