@@ -29,9 +29,8 @@ def gamma(num : Union[int, float]) -> Union[int, float]:
         return sqrt(pi)
     elif num > 1:
         return (num - 1) * gamma(num - 1)
-    else:
-        # Error
-        return -2
+    # Error
+    return -2
 
 
 def test_gamma() -> None:
