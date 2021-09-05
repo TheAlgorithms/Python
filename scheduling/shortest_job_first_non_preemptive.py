@@ -70,8 +70,8 @@ def schedule_process(process_details:list) -> tuple([list, float, float]):
             process_details[k][3] = 1
             process_details[k].append(process_end)
 
-    process_details, average_turnaround_time = calculate_turnaroundTime(process_details)
-    process_details, average_waiting_time = calculate_waitingTime(process_details)
+    process_details, average_turnaround_time = calculate_turnaround_time(process_details)
+    process_details, average_waiting_time = calculate_waiting_time(process_details)
 
     process_details.sort(key=lambda process_details: process_details[4])
     
@@ -82,12 +82,12 @@ def schedule_process(process_details:list) -> tuple([list, float, float]):
     return process_details, average_turnaround_time, average_waiting_time
 
 
-def calculate_turnaroundTime(process_details:list) -> tuple([list, float]):
+def calculate_turnaround_time(process_details:list) -> tuple([list, float]):
 
     """
     Calculate the turnaround time of each process
     Return: Updated process_details list and average turnaround time.
-    >>> calculate_turnaroundTime([[1, 0, 4, 1, 6], [2, 0, 2, 1, 2], [3, 5, 1, 1, 7]])
+    >>> calculate_turnaround_time([[1, 0, 4, 1, 6], [2, 0, 2, 1, 2], [3, 5, 1, 1, 7]])
     ([[1, 0, 4, 1, 6, 6], [2, 0, 2, 1, 2, 2], [3, 5, 1, 1, 7, 2]], 3.3333333333333335)
     """
 
@@ -109,12 +109,12 @@ def calculate_turnaroundTime(process_details:list) -> tuple([list, float]):
     return process_details, average_turnaround_time
 
 
-def calculate_waitingTime(process_details:list) -> tuple([list, float]):
+def calculate_waiting_time(process_details:list) -> tuple([list, float]):
 
     """
     Calculate the waiting time of each process
     Return: Updated process_details list and average waiting time.
-    >>> calculate_waitingTime([[1, 0, 4, 1, 6, 6], [2, 0, 2, 1, 2, 2], [3, 5, 1, 1, 7, 2]])
+    >>> calculate_waiting_time([[1, 0, 4, 1, 6, 6], [2, 0, 2, 1, 2, 2], [3, 5, 1, 1, 7, 2]])
     ([[1, 0, 4, 1, 6, 6, 2], [2, 0, 2, 1, 2, 2, 0], [3, 5, 1, 1, 7, 2, 1]], 1.0)
     """
 
