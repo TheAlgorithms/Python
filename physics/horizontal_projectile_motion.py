@@ -15,17 +15,10 @@ For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
 # Importing packages
-from math import pi, sin
+from math import pi, sin, radians as angle_to_radians
 
 # Acceleration Constant on hearth (unit m/s^2)
 g = 9.80665
-
-
-def angle_to_radians(angle : float) -> float:
-    """
-    Convert an angle from degrees to randians
-    """
-    return angle * pi / 180
 
 
 def horizontal_distance(init_velocity: float, angle: float) -> float:
