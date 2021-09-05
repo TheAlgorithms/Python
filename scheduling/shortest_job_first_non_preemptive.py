@@ -7,19 +7,19 @@ Please use spaces to separate the entered times.
 https://en.wikipedia.org/wiki/Shortest_job_next
 """
 
-def scheduleProcess(process_details:list) -> tuple([list, float, float]): 
+def schedule_process(process_details:list) -> tuple([list, float, float]): 
 
     """
     Calculate the turnaround and waiting time of each process
     Return: Updated process_details list and average turnaround and average waiting time.
-    >>> scheduleProcess([[1, 0, 4, 0], [2, 0, 2, 0], [3, 5, 1, 0]])
+    >>> schedule_process([[1, 0, 4, 0], [2, 0, 2, 0], [3, 5, 1, 0]])
     ([[2, 0, 2, 1, 2, 2, 0], [1, 0, 4, 1, 6, 6, 2], [3, 5, 1, 1, 7, 2, 1]], 3.3333333333333335, 1.0)
     """
 
     start_time = []
     end_time = []
     process_start = 0
-    process_details.sort(key=lambda x: x[1])
+    process_details.sort(key=lambda process_details: process_details[1])
 
     """
     Sort processes according to the Arrival Time
@@ -41,7 +41,7 @@ def scheduleProcess(process_details:list) -> tuple([list, float, float]):
                 temp = []
 
         if len(ready_queue) != 0:
-            ready_queue.sort(key=lambda x: x[2])
+            ready_queue.sort(key=lambda process_details: process_details[2])
       
             """
             Sort the processes according to the Burst Time
@@ -70,24 +70,24 @@ def scheduleProcess(process_details:list) -> tuple([list, float, float]):
             process_details[k][3] = 1
             process_details[k].append(process_end)
 
-    process_details ,process_turnaround_time = calculateTurnaroundTime(process_details)
-    process_details, process_waiting_time = calculateWaitingTime(process_details)
+    process_details, average_turnaround_time = calculate_turnaroundTime(process_details)
+    process_details, average_waiting_time = calculate_waitingTime(process_details)
 
-    process_details.sort(key=lambda x: x[4])
+    process_details.sort(key=lambda process_details: process_details[4])
     
     """
     Sort processes according to the Completion Time
     """
 
-    return process_details, process_turnaround_time, process_waiting_time
+    return process_details, average_turnaround_time, average_waiting_time
 
 
-def calculateTurnaroundTime(process_details:list) -> tuple([list, float]):
+def calculate_turnaroundTime(process_details:list) -> tuple([list, float]):
 
     """
     Calculate the turnaround time of each process
     Return: Updated process_details list and average turnaround time.
-    >>> calculateTurnaroundTime([[1, 0, 4, 1, 6], [2, 0, 2, 1, 2], [3, 5, 1, 1, 7]])
+    >>> calculate_turnaroundTime([[1, 0, 4, 1, 6], [2, 0, 2, 1, 2], [3, 5, 1, 1, 7]])
     ([[1, 0, 4, 1, 6, 6], [2, 0, 2, 1, 2, 2], [3, 5, 1, 1, 7, 2]], 3.3333333333333335)
     """
 
@@ -109,12 +109,12 @@ def calculateTurnaroundTime(process_details:list) -> tuple([list, float]):
     return process_details, average_turnaround_time
 
 
-def calculateWaitingTime(process_details:list) -> tuple([list, float]):
+def calculate_waitingTime(process_details:list) -> tuple([list, float]):
 
     """
     Calculate the waiting time of each process
     Return: Updated process_details list and average waiting time.
-    >>> calculateWaitingTime([[1, 0, 4, 1, 6, 6], [2, 0, 2, 1, 2, 2], [3, 5, 1, 1, 7, 2]])
+    >>> calculate_waitingTime([[1, 0, 4, 1, 6, 6], [2, 0, 2, 1, 2, 2], [3, 5, 1, 1, 7, 2]])
     ([[1, 0, 4, 1, 6, 6, 2], [2, 0, 2, 1, 2, 2, 0], [3, 5, 1, 1, 7, 2, 1]], 1.0)
     """
 
@@ -135,24 +135,6 @@ def calculateWaitingTime(process_details:list) -> tuple([list, float]):
     """
     return process_details, average_waiting_time
 
-
-def printData(process_details:list, average_turnaround_time:float, average_waiting_time:float) -> None:
-
-    print("Process ID\tArrival Time\tBurst Time\tCompletion Time\tTurnaround Time\tWaiting Time")
-
-    for i in range(len(process_details)):
-        for j in range(len(process_details[i])):
-            if j != 3:
-
-                print(process_details[i][j], end="\t\t")
-        print()
-
-    print(f'Average Turnaround Time: {average_turnaround_time}')
-
-    print(f'Average Waiting Time: {average_waiting_time}')
-
-
-
 if __name__ == "__main__":
     print("Enter number of processes: ")
     number_of_processes = int(input())
@@ -172,6 +154,19 @@ if __name__ == "__main__":
         """
         
         process_details.append(temp_list)
-    process_details, process_turnaround_time, process_waiting_time = scheduleProcess(process_details)
-    printData(process_details, process_turnaround_time, process_waiting_time)
+        
+    process_details, average_turnaround_time, average_waiting_time = schedule_process(process_details)
+    
+    print("Process ID\tArrival Time\tBurst Time\tCompletion Time\tTurnaround Time\tWaiting Time")
 
+    for i in range(len(process_details)):
+        for j in range(len(process_details[i])):
+            if j != 3:
+
+                print(process_details[i][j], end="\t\t")
+        print()
+
+    print(f'Average Turnaround Time: {average_turnaround_time}')
+
+    print(f'Average Waiting Time: {average_waiting_time}')
+    
