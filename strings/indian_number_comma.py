@@ -23,6 +23,6 @@ def indian_number_comma(number: str) -> str:
 
 
 if __name__ == "__main__":
-    print(indian_number_comma("6789"))
-    print(indian_number_comma("789"))
-    print(indian_number_comma("7980999"))
+    assert indian_number_comma("6789") == "6,789"
+    assert indian_number_comma("789") == "789"
+    assert indian_number_comma("7980999") == "79,80,999"
