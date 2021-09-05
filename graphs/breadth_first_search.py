@@ -1,13 +1,12 @@
 #!/usr/bin/python
 
 """ Author: OMKAR PATHAK """
-
-from typing import Dict, List, Set
+from __future__ import annotations
 
 
 class Graph:
     def __init__(self) -> None:
-        self.vertices: Dict[int, List[int]] = {}
+        self.vertices: dict[int, list[int]] = {}
 
     def print_graph(self) -> None:
         """
@@ -35,7 +34,7 @@ class Graph:
         else:
             self.vertices[from_vertex] = [to_vertex]
 
-    def bfs(self, start_vertex: int) -> Set[int]:
+    def bfs(self, start_vertex: int) -> set[int]:
         """
         >>> g = Graph()
         >>> g.add_edge(0, 1)

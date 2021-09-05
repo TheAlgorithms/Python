@@ -44,11 +44,10 @@ we get the right numerator and denominator.
 Reference:
 https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem
 """
-
+from __future__ import annotations
 
 from fractions import Fraction
 from math import gcd, sqrt
-from typing import Tuple
 
 
 def is_sq(number: int) -> bool:
@@ -68,7 +67,7 @@ def is_sq(number: int) -> bool:
 
 def add_three(
     x_num: int, x_den: int, y_num: int, y_den: int, z_num: int, z_den: int
-) -> Tuple[int, int]:
+) -> tuple[int, int]:
     """
     Given the numerators and denominators of three fractions, return the
     numerator and denominator of their sum in lowest form.
@@ -100,7 +99,7 @@ def solution(order: int = 35) -> int:
     unique_s: set = set()
     hcf: int
     total: Fraction = Fraction(0)
-    fraction_sum: Tuple[int, int]
+    fraction_sum: tuple[int, int]
 
     for x_num in range(1, order + 1):
         for x_den in range(x_num + 1, order + 1):

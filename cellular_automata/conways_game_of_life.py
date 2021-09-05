@@ -2,10 +2,7 @@
 Conway's Game of Life implemented in Python.
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 """
-
 from __future__ import annotations
-
-from typing import List
 
 from PIL import Image
 
@@ -25,7 +22,7 @@ GLIDER = [
 BLINKER = [[0, 1, 0], [0, 1, 0], [0, 1, 0]]
 
 
-def new_generation(cells: List[List[int]]) -> List[List[int]]:
+def new_generation(cells: list[list[int]]) -> list[list[int]]:
     """
     Generates the next generation for a given state of Conway's Game of Life.
     >>> new_generation(BLINKER)

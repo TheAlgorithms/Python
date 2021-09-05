@@ -8,13 +8,10 @@ in their paper Pessimal Algorithms and Simplexity Analysis
 
 Source: https://en.wikipedia.org/wiki/Slowsort
 """
+from __future__ import annotations
 
-from typing import Optional
 
-
-def slowsort(
-    sequence: list, start: Optional[int] = None, end: Optional[int] = None
-) -> None:
+def slowsort(sequence: list, start: int | None = None, end: int | None = None) -> None:
     """
     Sorts sequence[start..end] (both inclusive) in-place.
     start defaults to 0 if not given.

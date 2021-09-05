@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 
 def dfs(u):
@@ -39,16 +39,16 @@ if __name__ == "__main__":
     # n - no of nodes, m - no of edges
     n, m = list(map(int, input().strip().split()))
 
-    graph: List[List[int]] = [[] for i in range(n)]  # graph
-    reversedGraph: List[List[int]] = [[] for i in range(n)]  # reversed graph
+    graph: list[list[int]] = [[] for i in range(n)]  # graph
+    reversedGraph: list[list[int]] = [[] for i in range(n)]  # reversed graph
     # input graph data (edges)
     for i in range(m):
         u, v = list(map(int, input().strip().split()))
         graph[u].append(v)
         reversedGraph[v].append(u)
 
-    stack: List[int] = []
-    visit: List[bool] = [False] * n
-    scc: List[int] = []
-    component: List[int] = []
+    stack: list[int] = []
+    visit: list[bool] = [False] * n
+    scc: list[int] = []
+    component: list[int] = []
     print(kosaraju())

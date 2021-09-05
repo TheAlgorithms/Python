@@ -6,7 +6,7 @@ This is a type of divide and conquer algorithm which divides the search space in
 Time Complexity  : O(log3 N)
 Space Complexity : O(1)
 """
-from typing import List
+from __future__ import annotations
 
 # This is the precision for this function which can be altered.
 # It is recommended for users to keep this number greater than or equal to 10.
@@ -16,7 +16,7 @@ precision = 10
 # This is the linear search that will occur after the search space has become smaller.
 
 
-def lin_search(left: int, right: int, array: List[int], target: int) -> int:
+def lin_search(left: int, right: int, array: list[int], target: int) -> int:
     """Perform linear search in list. Returns -1 if element is not found.
 
     Parameters
@@ -58,7 +58,7 @@ def lin_search(left: int, right: int, array: List[int], target: int) -> int:
     return -1
 
 
-def ite_ternary_search(array: List[int], target: int) -> int:
+def ite_ternary_search(array: list[int], target: int) -> int:
     """Iterative method of the ternary search algorithm.
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
     >>> ite_ternary_search(test_list, 3)
@@ -110,7 +110,7 @@ def ite_ternary_search(array: List[int], target: int) -> int:
         return -1
 
 
-def rec_ternary_search(left: int, right: int, array: List[int], target: int) -> int:
+def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> int:
     """Recursive method of the ternary search algorithm.
 
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]

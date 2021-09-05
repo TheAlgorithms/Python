@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def mean(nums: List) -> float:
+def mean(nums: list) -> float:
     """
     Find mean of a list of numbers.
     Wiki: https://en.wikipedia.org/wiki/Mean

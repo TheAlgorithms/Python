@@ -70,10 +70,7 @@ def solution(n: str = N) -> int:
     """
 
     return max(
-        [
-            reduce(lambda x, y: int(x) * int(y), n[i : i + 13])
-            for i in range(len(n) - 12)
-        ]
+        reduce(lambda x, y: int(x) * int(y), n[i : i + 13]) for i in range(len(n) - 12)
     )
 
 

@@ -3,11 +3,12 @@ Find Volumes of Various Shapes.
 
 Wikipedia reference: https://en.wikipedia.org/wiki/Volume
 """
+from __future__ import annotations
+
 from math import pi, pow
-from typing import Union
 
 
-def vol_cube(side_length: Union[int, float]) -> float:
+def vol_cube(side_length: int | float) -> float:
     """
     Calculate the Volume of a Cube.
 

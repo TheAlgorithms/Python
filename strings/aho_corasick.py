@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from collections import deque
-from typing import Dict, List, Union
 
 
 class Automaton:
@@ -13,7 +14,7 @@ class Automaton:
             self.add_keyword(keyword)
         self.set_fail_transitions()
 
-    def find_next_state(self, current_state: int, char: str) -> Union[int, None]:
+    def find_next_state(self, current_state: int, char: str) -> int | None:
         for state in self.adlist[current_state]["next_states"]:
             if char == self.adlist[state]["value"]:
                 return state
@@ -63,7 +64,7 @@ class Automaton:
                     + self.adlist[self.adlist[child]["fail_state"]]["output"]
                 )
 
-    def search_in(self, string: str) -> Dict[str, List[int]]:
+    def search_in(self, string: str) -> dict[str, list[int]]:
         """
         >>> A = Automaton(["what", "hat", "ver", "er"])
         >>> A.search_in("whatever, err ... , wherever")

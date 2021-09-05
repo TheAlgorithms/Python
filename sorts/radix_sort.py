@@ -9,10 +9,8 @@ python radix_sort.py
 """
 from __future__ import annotations
 
-from typing import List
 
-
-def radix_sort(list_of_ints: List[int]) -> List[int]:
+def radix_sort(list_of_ints: list[int]) -> list[int]:
     """
     Examples:
     >>> radix_sort([0, 5, 3, 2, 2])
@@ -30,7 +28,7 @@ def radix_sort(list_of_ints: List[int]) -> List[int]:
     max_digit = max(list_of_ints)
     while placement <= max_digit:
         # declare and initialize empty buckets
-        buckets: List[list] = [list() for _ in range(RADIX)]
+        buckets: list[list] = [list() for _ in range(RADIX)]
         # split list_of_ints between the buckets
         for i in list_of_ints:
             tmp = int((i / placement) % RADIX)

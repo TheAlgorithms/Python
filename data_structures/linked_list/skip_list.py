@@ -2,11 +2,10 @@
 Based on "Skip Lists: A Probabilistic Alternative to Balanced Trees" by William Pugh
 https://epaperpress.com/sortsearch/download/skiplist.pdf
 """
-
 from __future__ import annotations
 
 from random import random
-from typing import Generic, Optional, TypeVar
+from typing import Generic, TypeVar
 
 KT = TypeVar("KT")
 VT = TypeVar("VT")
@@ -124,7 +123,7 @@ class SkipList(Generic[KT, VT]):
 
         return level
 
-    def _locate_node(self, key) -> tuple[Optional[Node[KT, VT]], list[Node[KT, VT]]]:
+    def _locate_node(self, key) -> tuple[Node[KT, VT] | None, list[Node[KT, VT]]]:
         """
         :param key: Searched key,
         :return: Tuple with searched node (or None if given key is not present)
@@ -222,7 +221,7 @@ class SkipList(Generic[KT, VT]):
                 else:
                     update_node.forward[i] = new_node
 
-    def find(self, key: VT) -> Optional[VT]:
+    def find(self, key: VT) -> VT | None:
         """
         :param key: Search key.
         :return: Value associated with given key or None if given key is not present.

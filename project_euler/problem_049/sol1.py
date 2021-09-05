@@ -132,7 +132,7 @@ def solution():
     for seq in passed:
         answer.add("".join([str(i) for i in seq]))
 
-    return max([int(x) for x in answer])
+    return max(int(x) for x in answer)
 
 
 if __name__ == "__main__":

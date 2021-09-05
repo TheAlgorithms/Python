@@ -1,11 +1,9 @@
 """
 https://en.wikipedia.org/wiki/Bidirectional_search
 """
-
 from __future__ import annotations
 
 import time
-from typing import Optional
 
 Path = list[tuple[int, int]]
 
@@ -24,7 +22,7 @@ delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # up, left, down, right
 
 class Node:
     def __init__(
-        self, pos_x: int, pos_y: int, goal_x: int, goal_y: int, parent: Optional[Node]
+        self, pos_x: int, pos_y: int, goal_x: int, goal_y: int, parent: Node | None
     ):
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -57,7 +55,7 @@ class BreadthFirstSearch:
         self.node_queue = [self.start]
         self.reached = False
 
-    def search(self) -> Optional[Path]:
+    def search(self) -> Path | None:
         while self.node_queue:
             current_node = self.node_queue.pop(0)
 
@@ -93,7 +91,7 @@ class BreadthFirstSearch:
             )
         return successors
 
-    def retrace_path(self, node: Optional[Node]) -> Path:
+    def retrace_path(self, node: Node | None) -> Path:
         """
         Retrace the path from parents to parents until start node
         """
@@ -125,7 +123,7 @@ class BidirectionalBreadthFirstSearch:
         self.bwd_bfs = BreadthFirstSearch(goal, start)
         self.reached = False
 
-    def search(self) -> Optional[Path]:
+    def search(self) -> Path | None:
         while self.fwd_bfs.node_queue or self.bwd_bfs.node_queue:
             current_fwd_node = self.fwd_bfs.node_queue.pop(0)
             current_bwd_node = self.bwd_bfs.node_queue.pop(0)

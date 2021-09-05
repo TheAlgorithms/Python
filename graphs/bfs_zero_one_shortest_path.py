@@ -1,13 +1,13 @@
-from collections import deque
-from collections.abc import Iterator
-from dataclasses import dataclass
-from typing import Optional, Union
-
 """
 Finding the shortest path in 0-1-graph in O(E + V) which is faster than dijkstra.
 0-1-graph is the weighted graph with the weights equal to 0 or 1.
 Link: https://codeforces.com/blog/entry/22276
 """
+from __future__ import annotations
+
+from collections import deque
+from collections.abc import Iterator
+from dataclasses import dataclass
 
 
 @dataclass
@@ -59,7 +59,7 @@ class AdjacencyList:
 
         self._graph[from_vertex].append(Edge(to_vertex, weight))
 
-    def get_shortest_path(self, start_vertex: int, finish_vertex: int) -> Optional[int]:
+    def get_shortest_path(self, start_vertex: int, finish_vertex: int) -> int | None:
         """
         Return the shortest distance from start_vertex to finish_vertex in 0-1-graph.
               1                  1         1
@@ -107,7 +107,7 @@ class AdjacencyList:
         ValueError: No path from start_vertex to finish_vertex.
         """
         queue = deque([start_vertex])
-        distances: list[Union[int, None]] = [None] * self.size
+        distances: list[int | None] = [None] * self.size
         distances[start_vertex] = 0
 
         while queue:
