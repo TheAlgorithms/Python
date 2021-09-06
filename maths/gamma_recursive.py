@@ -6,7 +6,6 @@ for more info: https://en.wikipedia.org/wiki/Gamma_function
 Python's Standard Library math.gamma() function overflows around gamma(171.624).
 """
 from math import pi, sqrt
-from re import match
 
 
 def gamma(num: float) -> float:
