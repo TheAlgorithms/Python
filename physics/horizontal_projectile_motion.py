@@ -15,7 +15,6 @@ For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
 # Importing packages
-from math import pi
 from math import radians as angle_to_radians
 from math import sin
 
