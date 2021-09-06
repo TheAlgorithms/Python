@@ -16,12 +16,12 @@ def gamma(num : Union[int, float]) -> Union[int, float]:
     where num is either an integer (1,2,3..) or a half-integer (0.5,1.5,2.5...).
     Implemented using recursion
     Examples:
-    >>> Gamma of: 0.5
-    √π
-    >>> Gamma of: 2
+    >>> gamma(0.5)
+    1.7724538509055159
+    >>> gamma(2)
     1
-    >>> Gamma of: 3.5
-    1.875√π
+    >>> gamma(3.5)
+    3.3233509704478426
     """
     if num == 1:
         return 1
@@ -43,9 +43,7 @@ def test_gamma() -> None:
 
 
 if __name__ == "__main__":
-    # Initialize boolean
-    number = True
-    # Get input from user
+    is_number = True
     input_ = input("Gamma of: ")
     # Ensure valid input
     try:
@@ -64,10 +62,10 @@ if __name__ == "__main__":
     # Ensure print an error message
     except ValueError:
         print("Error: Input must be an integer or an half-integer!")
-        number = False
+        is_number = False
     finally:
         # Ensure input is a valid number
-        if number:
+        if is_number:
             print(f"\u0393({num}) = ", end="")
             # Ensure input is an integer
             if isinstance(gamma(num), int):
