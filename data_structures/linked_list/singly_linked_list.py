@@ -91,7 +91,7 @@ class LinkedList:
         if not 0 <= index < len(self):
             raise ValueError("list index out of range.")
         current = self.head
-        for i in range(index):
+        for _ in range(index):
             current = current.next
         current.data = data
 
