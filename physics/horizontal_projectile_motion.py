@@ -15,7 +15,9 @@ For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
 # Importing packages
-from math import pi, sin, radians as angle_to_radians
+from math import pi
+from math import radians as angle_to_radians
+from math import sin
 
 # Acceleration Constant on hearth (unit m/s^2)
 g = 9.80665
