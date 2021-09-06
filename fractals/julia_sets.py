@@ -51,7 +51,7 @@ def eval_quadratic_polynomial(c: complex, z: numpy.ndarray) -> numpy.ndarray:
     >>> eval_quadratic_polynomial(-1, 1)
     0
     >>> eval_quadratic_polynomial(1.j, 0)
-    1j
+    1.j
     """
     return z * z + c
 
@@ -89,7 +89,7 @@ def iterate_function(
     This function returns the final iterates.
 
     >>> iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2]))
-    array([  0,   1, 256])
+    array([  0.+0.j,   1.+0.j, 256.+0.j], dtype=complex)
     """
 
     z_n = z_0.astype("complex64")
