@@ -65,44 +65,15 @@ def test_gamma() -> None:
     """
     assert gamma(0.5) == sqrt(pi)
     assert gamma(1) == 1.0
-    assert gamma(1.5) == sqrt(pi)
     assert gamma(2) == 1.0
 
 
 if __name__ == "__main__":
-    is_number = True
-    input_ = input("Gamma of: ")
-    # Ensure valid input
-    try:
-        # Ensure input matches half-integer (float) pattern
-        if match(r"^[0-9]*\.5$", input_):
-            # Convert string to float
-            num = float(input_)
-        # Ensure input matches an integer pattern
-        elif match(r"^[1-9][0-9]*$", input_):
-            # Convert string to int
-            num = int(input_)
-        # Input is not a valid number
-        else:
-            # raise an error
-            raise ValueError
-    # Ensure print an error message
-    except ValueError:
-        print("Error: Input must be an integer or an half-integer!")
-        is_number = False
-    finally:
-        # Ensure input is a valid number
-        if is_number:
-            print(f"\u0393({num}) = ", end="")
-            # Ensure input is an integer
-            if isinstance(gamma(num), int):
-                # Print result
-                print(gamma(num))
-            # Otherwise print results with √π (gamma of 0.5 is √π)
-            # Therefore all results will be a number times √π
-            else:
-                results = f"{gamma(num) / sqrt(pi):.4f}"
-                results = results.rstrip("0").rstrip(".")
-                if results == "1":
-                    results = ""
-                print(results + "\u221A\u03c0")
+    from doctest import testmod
+
+    testmod()
+    num = 1
+    while num:
+        num = float(input("Gamma of: "))
+        print(f"gamma({num}) = {gamma(num)}")
+        print("\nEnter 0 to exit...")
