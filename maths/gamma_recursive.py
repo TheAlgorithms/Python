@@ -5,12 +5,12 @@ for more info: https://en.wikipedia.org/wiki/Gamma_function
 """
 
 # Importing packages
-from math import sqrt, pi
+from math import pi, sqrt
 from re import match
 from typing import Union
 
 
-def gamma(num : Union[int, float]) -> Union[int, float]:
+def gamma(num: Union[int, float]) -> Union[int, float]:
     """
     Calculates the value of Gamma function of num
     where num is either an integer (1,2,3..) or a half-integer (0.5,1.5,2.5...).
