@@ -106,4 +106,3 @@ if __name__ == "__main__":
                 if results == "1":
                     results = ""
                 print(results + "\u221A\u03c0")
-
