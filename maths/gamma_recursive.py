@@ -22,6 +22,10 @@ def gamma(num : Union[int, float]) -> Union[int, float]:
     1
     >>> gamma(3.5)
     3.3233509704478426
+    >>> gamma(-4)
+    -2
+    >>> gamma(-1)
+    -2
     """
     if num == 1:
         return 1
