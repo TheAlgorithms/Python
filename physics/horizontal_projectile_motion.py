@@ -106,7 +106,7 @@ if __name__ == "__main__":
     angle = float(input("angle: "))
 
     # Ensure valid angle
-    if angle > 90 or angle <= 0:
+    if angle > 90 or angle < 1:
         print("Error: Invalid angle. Range is 1-90 degrees.")
 
     # Ensure valid velocity
