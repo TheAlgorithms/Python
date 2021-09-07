@@ -116,10 +116,7 @@ if __name__ == "__main__":
     # Print results
     else:
         print()
-        h_dis = str(horizontal_distance(init_vel, angle))
-        v_dis = str(max_height(init_vel, angle))
-        t_time = str(total_time(init_vel, angle))
         print("Results: ")
-        print(f"Horizontal Distance: {h_dis} [m]")
-        print(f"Maximum Height: {v_dis} [m]")
-        print(f"Total Time: {t_time} [s]")
+        print(f"Horizontal Distance: {str(horizontal_distance(init_vel, angle))} [m]")
+        print(f"Maximum Height: {str(max_height(init_vel, angle))} [m]")
+        print(f"Total Time: {str(total_time(init_vel, angle))} [s]")
