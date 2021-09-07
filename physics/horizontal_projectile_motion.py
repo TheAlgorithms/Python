@@ -21,6 +21,28 @@ from math import sin
 # Acceleration Constant on hearth (unit m/s^2)
 g = 9.80665
 
+
+def check_args(init_velocity: float, angle: float) -> None:
+    """
+    Check that the arguments are valid
+    """
+
+    # Ensure valid instance
+    if not isinstance(init_velocity, (int, float)):
+        raise TypeError("Invalid velocity. Should be a positive number.")
+
+    if not isinstance(angle, (int, float)):
+        raise TypeError("Invalid angle. Range is 1-90 degrees.")
+
+    # Ensure valid angle
+    if angle > 90 or angle < 1:
+        raise ValueError("Invalid angle. Range is 1-90 degrees.")
+
+    # Ensure valid velocity
+    if init_velocity < 0:
+        raise ValueError("Invalid velocity. Should be a positive number.")
+
+
 def horizontal_distance(init_velocity: float, angle: float) -> float:
     """
     Returns the horizontal distance that the object cover
@@ -37,7 +59,16 @@ def horizontal_distance(init_velocity: float, angle: float) -> float:
     91.77
     >>> horizontal_distance(100, 78)
     414.76
+    >>> horizontal_distance(-1, 20)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid velocity. Should be a positive number.
+    >>> horizontal_distance(30, -20)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid angle. Range is 1-90 degrees.
     """
+    check_args(init_velocity, angle)
     radians = angle_to_radians(2 * angle)
     return round(init_velocity ** 2 * sin(radians) / g, 2)
 
@@ -58,10 +89,18 @@ def max_height(init_velocity: float, angle: float) -> float:
     22.94
     >>> max_height(100, 78)
     487.82
+    >>> max_height("a", 20)
+    Traceback (most recent call last):
+        ...
+    TypeError: Invalid velocity. Should be a positive number.
+    >>> horizontal_distance(30, "b")
+    Traceback (most recent call last):
+        ...
+    TypeError: Invalid angle. Range is 1-90 degrees.
     """
-
+    check_args(init_velocity, angle)
     radians = angle_to_radians(angle)
-    return round((init_velocity ** 2 * sin(radians) ** 2) / (2 * g), 2)
+    return round(init_velocity ** 2 * sin(radians) ** 2 / (2 * g), 2)
 
 
 def total_time(init_velocity: float, angle: float) -> float:
@@ -80,8 +119,16 @@ def total_time(init_velocity: float, angle: float) -> float:
     4.33
     >>> total_time(100, 78)
     19.95
+    >>> total_time(-10, 40)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid velocity. Should be a positive number.
+    >>> total_time(30, "b")
+    Traceback (most recent call last):
+        ...
+    TypeError: Invalid angle. Range is 1-90 degrees.
     """
-
+    check_args(init_velocity, angle)
     radians = angle_to_radians(angle)
     return round(2 * init_velocity * sin(radians) / g, 2)
 
@@ -97,25 +144,19 @@ def test_motion() -> None:
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
 
     # Get input from user
-    init_vel = float(input("Initial Velocity: "))
+    init_vel = float(input("Initial Velocity: ").strip())
 
     # Get input from user
-    angle = float(input("angle: "))
-
-    # Ensure valid angle
-    if angle > 90 or angle < 1:
-        print("Error: Invalid angle. Range is 1-90 degrees.")
-
-    # Ensure valid velocity
-    elif init_vel < 0:
-        print("Error: Invalid velocity. Should be a positive number.")
+    angle = float(input("angle: ").strip())
 
     # Print results
-    else:
-        print()
-        print("Results: ")
-        print(f"Horizontal Distance: {str(horizontal_distance(init_vel, angle))} [m]")
-        print(f"Maximum Height: {str(max_height(init_vel, angle))} [m]")
-        print(f"Total Time: {str(total_time(init_vel, angle))} [s]")
+    print()
+    print("Results: ")
+    print(f"Horizontal Distance: {str(horizontal_distance(init_vel, angle))} [m]")
+    print(f"Maximum Height: {str(max_height(init_vel, angle))} [m]")
+    print(f"Total Time: {str(total_time(init_vel, angle))} [s]")
