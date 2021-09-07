@@ -30,7 +30,7 @@ def parse_file(file_path):
             if not c:
                 break
             chars[c] = chars[c] + 1 if c in chars.keys() else 1
-    return sorted([Letter(c, f) for c, f in chars.items()], key=lambda l: l.freq)
+    return sorted((Letter(c, f) for c, f in chars.items()), key=lambda l: l.freq)
 
 
 def build_tree(letters):

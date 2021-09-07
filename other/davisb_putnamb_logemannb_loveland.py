@@ -8,9 +8,9 @@ conjunctive normal form, i.e, for solving the Conjunctive Normal Form SATisfiabi
 
 For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_algorithm
 """
+from __future__ import annotations
 
 import random
-from typing import Dict, List
 
 
 class Clause:
@@ -27,7 +27,7 @@ class Clause:
     True
     """
 
-    def __init__(self, literals: List[int]) -> None:
+    def __init__(self, literals: list[int]) -> None:
         """
         Represent the literals and an assignment in a clause."
         """
@@ -52,7 +52,7 @@ class Clause:
         """
         return len(self.literals)
 
-    def assign(self, model: Dict[str, bool]) -> None:
+    def assign(self, model: dict[str, bool]) -> None:
         """
         Assign values to literals of the clause as given by model.
         """
@@ -68,7 +68,7 @@ class Clause:
                     value = not value
             self.literals[literal] = value
 
-    def evaluate(self, model: Dict[str, bool]) -> bool:
+    def evaluate(self, model: dict[str, bool]) -> bool:
         """
         Evaluates the clause with the assignments in model.
         This has the following steps:
@@ -97,7 +97,7 @@ class Formula:
         {{A1, A2, A3'}, {A5', A2', A1}} is ((A1 v A2 v A3') and (A5' v A2' v A1))
     """
 
-    def __init__(self, clauses: List[Clause]) -> None:
+    def __init__(self, clauses: list[Clause]) -> None:
         """
         Represent the number of clauses and the clauses themselves.
         """
@@ -146,7 +146,7 @@ def generate_formula() -> Formula:
     return Formula(set(clauses))
 
 
-def generate_parameters(formula: Formula) -> (List[Clause], List[str]):
+def generate_parameters(formula: Formula) -> (list[Clause], list[str]):
     """
     Return the clauses and symbols from a formula.
     A symbol is the uncomplemented form of a literal.
@@ -173,8 +173,8 @@ def generate_parameters(formula: Formula) -> (List[Clause], List[str]):
 
 
 def find_pure_symbols(
-    clauses: List[Clause], symbols: List[str], model: Dict[str, bool]
-) -> (List[str], Dict[str, bool]):
+    clauses: list[Clause], symbols: list[str], model: dict[str, bool]
+) -> (list[str], dict[str, bool]):
     """
     Return pure symbols and their values to satisfy clause.
     Pure symbols are symbols in a formula that exist only
@@ -225,8 +225,8 @@ def find_pure_symbols(
 
 
 def find_unit_clauses(
-    clauses: List[Clause], model: Dict[str, bool]
-) -> (List[str], Dict[str, bool]):
+    clauses: list[Clause], model: dict[str, bool]
+) -> (list[str], dict[str, bool]):
     """
     Returns the unit symbols and their values to satisfy clause.
     Unit symbols are symbols in a formula that are:
@@ -273,8 +273,8 @@ def find_unit_clauses(
 
 
 def dpll_algorithm(
-    clauses: List[Clause], symbols: List[str], model: Dict[str, bool]
-) -> (bool, Dict[str, bool]):
+    clauses: list[Clause], symbols: list[str], model: dict[str, bool]
+) -> (bool, dict[str, bool]):
     """
     Returns the model if the formula is satisfiable, else None
     This has the following steps:

@@ -18,11 +18,11 @@ Overview:
 - function squareZeroMatrix(N)
 - function randomMatrix(W,H,a,b)
 """
-
+from __future__ import annotations
 
 import math
 import random
-from typing import Collection, Optional, Union, overload
+from typing import Collection, overload
 
 
 class Vector:
@@ -46,7 +46,7 @@ class Vector:
     TODO: compare-operator
     """
 
-    def __init__(self, components: Optional[Collection[float]] = None) -> None:
+    def __init__(self, components: Collection[float] | None = None) -> None:
         """
         input: components or nothing
         simple constructor for init the vector
@@ -97,7 +97,7 @@ class Vector:
             summe += c ** 2
         return math.sqrt(summe)
 
-    def __add__(self, other: "Vector") -> "Vector":
+    def __add__(self, other: Vector) -> Vector:
         """
         input: other vector
         assumes: other vector has the same size
@@ -110,7 +110,7 @@ class Vector:
         else:
             raise Exception("must have the same size")
 
-    def __sub__(self, other: "Vector") -> "Vector":
+    def __sub__(self, other: Vector) -> Vector:
         """
         input: other vector
         assumes: other vector has the same size
@@ -124,14 +124,14 @@ class Vector:
             raise Exception("must have the same size")
 
     @overload
-    def __mul__(self, other: float) -> "Vector":
+    def __mul__(self, other: float) -> Vector:
         ...
 
     @overload
-    def __mul__(self, other: "Vector") -> float:
+    def __mul__(self, other: Vector) -> float:
         ...
 
-    def __mul__(self, other: Union[float, "Vector"]) -> Union[float, "Vector"]:
+    def __mul__(self, other: float | Vector) -> float | Vector:
         """
         mul implements the scalar multiplication
         and the dot-product
@@ -148,7 +148,7 @@ class Vector:
         else:  # error case
             raise Exception("invalid operand!")
 
-    def copy(self) -> "Vector":
+    def copy(self) -> Vector:
         """
         copies this vector and returns it.
         """
@@ -313,14 +313,14 @@ class Matrix:
             raise Exception("matrix is not square")
 
     @overload
-    def __mul__(self, other: float) -> "Matrix":
+    def __mul__(self, other: float) -> Matrix:
         ...
 
     @overload
     def __mul__(self, other: Vector) -> Vector:
         ...
 
-    def __mul__(self, other: Union[float, Vector]) -> Union[Vector, "Matrix"]:
+    def __mul__(self, other: float | Vector) -> Vector | Matrix:
         """
         implements the matrix-vector multiplication.
         implements the matrix-scalar multiplication
@@ -347,7 +347,7 @@ class Matrix:
             ]
             return Matrix(matrix, self.__width, self.__height)
 
-    def __add__(self, other: "Matrix") -> "Matrix":
+    def __add__(self, other: Matrix) -> Matrix:
         """
         implements the matrix-addition.
         """
@@ -362,7 +362,7 @@ class Matrix:
         else:
             raise Exception("matrix must have the same dimension!")
 
-    def __sub__(self, other: "Matrix") -> "Matrix":
+    def __sub__(self, other: Matrix) -> Matrix:
         """
         implements the matrix-subtraction.
         """

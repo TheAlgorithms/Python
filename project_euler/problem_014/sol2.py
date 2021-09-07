@@ -25,10 +25,10 @@ that all starting numbers finish at 1.
 
 Which starting number, under one million, produces the longest chain?
 """
-from typing import List
+from __future__ import annotations
 
 
-def collatz_sequence(n: int) -> List[int]:
+def collatz_sequence(n: int) -> list[int]:
     """Returns the Collatz sequence for n."""
     sequence = [n]
     while n != 1:
@@ -54,7 +54,7 @@ def solution(n: int = 1000000) -> int:
     13255
     """
 
-    result = max([(len(collatz_sequence(i)), i) for i in range(1, n)])
+    result = max((len(collatz_sequence(i)), i) for i in range(1, n))
     return result[1]
 
 

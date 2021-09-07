@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-
-from typing import Optional
+from __future__ import annotations
 
 
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
-    cipher_alphabet: Optional[list[str]] = None,
-    frequencies_dict: Optional[dict[str, float]] = None,
+    cipher_alphabet: list[str] | None = None,
+    frequencies_dict: dict[str, float] | None = None,
     case_sensetive: bool = False,
 ) -> tuple[int, float, str]:
     """

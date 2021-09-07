@@ -7,8 +7,7 @@ such as the with segment trees or fenwick trees. You can read more about them he
 2. https://www.youtube.com/watch?v=4aSv9PcecDw&t=811s
 3. https://www.youtube.com/watch?v=CybAgVF-MMc&t=1178s
 """
-
-from typing import Optional
+from __future__ import annotations
 
 test_array = [2, 1, 4, 5, 6, 0, 8, 9, 1, 2, 0, 6, 4, 2, 0, 6, 5, 3, 2, 7]
 
@@ -18,8 +17,8 @@ class Node:
         self.minn: int = -1
         self.maxx: int = -1
         self.map_left: list[int] = [-1] * length
-        self.left: Optional[Node] = None
-        self.right: Optional[Node] = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
     def __repr__(self) -> str:
         """

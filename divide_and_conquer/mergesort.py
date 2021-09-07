@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def merge(left_half: List, right_half: List) -> List:
+def merge(left_half: list, right_half: list) -> list:
     """Helper function for mergesort.
 
     >>> left_half = [-2]
@@ -57,7 +57,7 @@ def merge(left_half: List, right_half: List) -> List:
     return sorted_array
 
 
-def merge_sort(array: List) -> List:
+def merge_sort(array: list) -> list:
     """Returns a list of sorted array elements using merge sort.
 
     >>> from random import shuffle

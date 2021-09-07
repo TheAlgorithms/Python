@@ -27,12 +27,12 @@ Pascal's triangle.
 References:
 - https://en.wikipedia.org/wiki/Pascal%27s_triangle
 """
+from __future__ import annotations
 
 import math
-from typing import List, Set
 
 
-def get_pascal_triangle_unique_coefficients(depth: int) -> Set[int]:
+def get_pascal_triangle_unique_coefficients(depth: int) -> set[int]:
     """
     Returns the unique coefficients of a Pascal's triangle of depth "depth".
 
@@ -61,7 +61,7 @@ def get_pascal_triangle_unique_coefficients(depth: int) -> Set[int]:
     return coefficients
 
 
-def get_primes_squared(max_number: int) -> List[int]:
+def get_primes_squared(max_number: int) -> list[int]:
     """
     Calculates all primes between 2 and round(sqrt(max_number)) and returns
     them squared up.
@@ -92,7 +92,7 @@ def get_primes_squared(max_number: int) -> List[int]:
 
 
 def get_squared_primes_to_use(
-    num_to_look: int, squared_primes: List[int], previous_index: int
+    num_to_look: int, squared_primes: list[int], previous_index: int
 ) -> int:
     """
     Returns an int indicating the last index on which squares of primes
@@ -128,8 +128,8 @@ def get_squared_primes_to_use(
 
 
 def get_squarefree(
-    unique_coefficients: Set[int], squared_primes: List[int]
-) -> Set[int]:
+    unique_coefficients: set[int], squared_primes: list[int]
+) -> set[int]:
     """
     Calculates the squarefree numbers inside unique_coefficients given a
     list of square of primes.

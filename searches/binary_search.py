@@ -9,12 +9,13 @@ python3 -m doctest -v binary_search.py
 For manual testing run:
 python3 binary_search.py
 """
+from __future__ import annotations
+
 import bisect
-from typing import List, Optional
 
 
 def bisect_left(
-    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
 ) -> int:
     """
     Locates the first element in a sorted array that is larger or equal to a given
@@ -60,7 +61,7 @@ def bisect_left(
 
 
 def bisect_right(
-    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
 ) -> int:
     """
     Locates the first element in a sorted array that is larger than a given value.
@@ -105,7 +106,7 @@ def bisect_right(
 
 
 def insort_left(
-    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
 ) -> None:
     """
     Inserts a given value into a sorted array before other values with the same value.
@@ -148,7 +149,7 @@ def insort_left(
 
 
 def insort_right(
-    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
 ) -> None:
     """
     Inserts a given value into a sorted array after other values with the same value.
@@ -190,7 +191,7 @@ def insort_right(
     sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
 
 
-def binary_search(sorted_collection: List[int], item: int) -> Optional[int]:
+def binary_search(sorted_collection: list[int], item: int) -> int | None:
     """Pure implementation of binary search algorithm in Python
 
     Be careful collection must be ascending sorted, otherwise result will be
@@ -228,7 +229,7 @@ def binary_search(sorted_collection: List[int], item: int) -> Optional[int]:
     return None
 
 
-def binary_search_std_lib(sorted_collection: List[int], item: int) -> Optional[int]:
+def binary_search_std_lib(sorted_collection: list[int], item: int) -> int | None:
     """Pure implementation of binary search algorithm in Python using stdlib
 
     Be careful collection must be ascending sorted, otherwise result will be
@@ -258,8 +259,8 @@ def binary_search_std_lib(sorted_collection: List[int], item: int) -> Optional[i
 
 
 def binary_search_by_recursion(
-    sorted_collection: List[int], item: int, left: int, right: int
-) -> Optional[int]:
+    sorted_collection: list[int], item: int, left: int, right: int
+) -> int | None:
 
     """Pure implementation of binary search algorithm in Python by recursion
 

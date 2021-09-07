@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 
 class Node:
@@ -16,7 +16,7 @@ class Node:
         return "->".join(string_rep)
 
 
-def make_linked_list(elements_list: List):
+def make_linked_list(elements_list: list):
     """Creates a Linked List from the elements of the given sequence
     (list/tuple) and returns the head of the Linked List.
     >>> make_linked_list([])

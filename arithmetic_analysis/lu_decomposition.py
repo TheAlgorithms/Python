@@ -3,12 +3,12 @@
 Reference:
 - https://en.wikipedia.org/wiki/LU_decomposition
 """
-from typing import Tuple
+from __future__ import annotations
 
 import numpy as np
 
 
-def lower_upper_decomposition(table: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """Lower-Upper (LU) Decomposition
 
     Example:

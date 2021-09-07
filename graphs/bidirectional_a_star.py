@@ -1,15 +1,12 @@
 """
 https://en.wikipedia.org/wiki/Bidirectional_search
 """
-
 from __future__ import annotations
 
 import time
 from math import sqrt
 
 # 1 for manhattan, 0 for euclidean
-from typing import Optional
-
 HEURISTIC = 0
 
 grid = [
@@ -50,7 +47,7 @@ class Node:
         goal_x: int,
         goal_y: int,
         g_cost: int,
-        parent: Optional[Node],
+        parent: Node | None,
     ) -> None:
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -157,7 +154,7 @@ class AStar:
             )
         return successors
 
-    def retrace_path(self, node: Optional[Node]) -> list[TPosition]:
+    def retrace_path(self, node: Node | None) -> list[TPosition]:
         """
         Retrace the path from parents to parents until start node
         """

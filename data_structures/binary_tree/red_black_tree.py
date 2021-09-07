@@ -2,7 +2,9 @@
 python/black : true
 flake8 : passed
 """
-from typing import Iterator, Optional
+from __future__ import annotations
+
+from typing import Iterator
 
 
 class RedBlackTree:
@@ -21,11 +23,11 @@ class RedBlackTree:
 
     def __init__(
         self,
-        label: Optional[int] = None,
+        label: int | None = None,
         color: int = 0,
-        parent: Optional["RedBlackTree"] = None,
-        left: Optional["RedBlackTree"] = None,
-        right: Optional["RedBlackTree"] = None,
+        parent: RedBlackTree | None = None,
+        left: RedBlackTree | None = None,
+        right: RedBlackTree | None = None,
     ) -> None:
         """Initialize a new Red-Black Tree node with the given values:
         label: The value associated with this node
@@ -42,7 +44,7 @@ class RedBlackTree:
 
     # Here are functions which are specific to red-black trees
 
-    def rotate_left(self) -> "RedBlackTree":
+    def rotate_left(self) -> RedBlackTree:
         """Rotate the subtree rooted at this node to the left and
         returns the new root to this subtree.
         Performing one rotation can be done in O(1).
@@ -62,7 +64,7 @@ class RedBlackTree:
         right.parent = parent
         return right
 
-    def rotate_right(self) -> "RedBlackTree":
+    def rotate_right(self) -> RedBlackTree:
         """Rotate the subtree rooted at this node to the right and
         returns the new root to this subtree.
         Performing one rotation can be done in O(1).
@@ -82,7 +84,7 @@ class RedBlackTree:
         left.parent = parent
         return left
 
-    def insert(self, label: int) -> "RedBlackTree":
+    def insert(self, label: int) -> RedBlackTree:
         """Inserts label into the subtree rooted at self, performs any
         rotations necessary to maintain balance, and then returns the
         new root to this subtree (likely self).
@@ -139,7 +141,7 @@ class RedBlackTree:
                 self.grandparent.color = 1
                 self.grandparent._insert_repair()
 
-    def remove(self, label: int) -> "RedBlackTree":
+    def remove(self, label: int) -> RedBlackTree:
         """Remove label from this tree."""
         if self.label == label:
             if self.left and self.right:
@@ -337,7 +339,7 @@ class RedBlackTree:
         """
         return self.search(label) is not None
 
-    def search(self, label: int) -> "RedBlackTree":
+    def search(self, label: int) -> RedBlackTree:
         """Search through the tree for label, returning its node if
         it's found, and None otherwise.
         This method is guaranteed to run in O(log(n)) time.
@@ -411,7 +413,7 @@ class RedBlackTree:
             return self.label
 
     @property
-    def grandparent(self) -> "RedBlackTree":
+    def grandparent(self) -> RedBlackTree:
         """Get the current node's grandparent, or None if it doesn't exist."""
         if self.parent is None:
             return None
@@ -419,7 +421,7 @@ class RedBlackTree:
             return self.parent.parent
 
     @property
-    def sibling(self) -> "RedBlackTree":
+    def sibling(self) -> RedBlackTree:
         """Get the current node's sibling, or None if it doesn't exist."""
         if self.parent is None:
             return None

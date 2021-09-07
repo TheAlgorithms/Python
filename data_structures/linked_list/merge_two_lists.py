@@ -5,7 +5,6 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
-from typing import Optional
 
 test_data_odd = (3, 9, -11, 0, 7, 5, 1, -1)
 test_data_even = (4, 6, 2, 0, 8, 10, 3, -2)
@@ -14,12 +13,12 @@ test_data_even = (4, 6, 2, 0, 8, 10, 3, -2)
 @dataclass
 class Node:
     data: int
-    next: Optional[Node]
+    next: Node | None
 
 
 class SortedLinkedList:
     def __init__(self, ints: Iterable[int]) -> None:
-        self.head: Optional[Node] = None
+        self.head: Node | None = None
         for i in reversed(sorted(ints)):
             self.head = Node(i, self.head)
 

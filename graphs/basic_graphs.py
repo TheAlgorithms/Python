@@ -13,7 +13,7 @@ def initialize_unweighted_directed_graph(
         graph[i + 1] = []
 
     for e in range(edge_count):
-        x, y = [int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> ")]
+        x, y = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> "))
         graph[x].append(y)
     return graph
 
@@ -26,7 +26,7 @@ def initialize_unweighted_undirected_graph(
         graph[i + 1] = []
 
     for e in range(edge_count):
-        x, y = [int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> ")]
+        x, y = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> "))
         graph[x].append(y)
         graph[y].append(x)
     return graph
@@ -40,14 +40,14 @@ def initialize_weighted_undirected_graph(
         graph[i + 1] = []
 
     for e in range(edge_count):
-        x, y, w = [int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> <weight> ")]
+        x, y, w = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> <weight> "))
         graph[x].append((y, w))
         graph[y].append((x, w))
     return graph
 
 
 if __name__ == "__main__":
-    n, m = [int(i) for i in _input("Number of nodes and edges: ")]
+    n, m = (int(i) for i in _input("Number of nodes and edges: "))
 
     graph_choice = int(
         _input(
