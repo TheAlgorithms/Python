@@ -92,9 +92,9 @@ def test_motion() -> None:
     >>> test_motion()
     """
     v0, angle = 25, 20
-    assert 40.97 == horizontal_distance(v0, angle)
-    assert 3.73 == max_height(v0, angle)
-    assert 1.74 == total_time(v0, angle)
+    assert horizontal_distance(v0, angle) == 40.97
+    assert max_height(v0, angle) == 3.73
+    assert total_time(v0, angle) == 1.74
 
 
 if __name__ == "__main__":
