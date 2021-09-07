@@ -545,7 +545,7 @@
 ## Other
   * [Activity Selection](https://github.com/TheAlgorithms/Python/blob/master/other/activity_selection.py)
   * [Date To Weekday](https://github.com/TheAlgorithms/Python/blob/master/other/date_to_weekday.py)
-  * [Davis–Putnam–Logemann–Loveland](https://github.com/TheAlgorithms/Python/blob/master/other/davis–putnam–logemann–loveland.py)
+  * [Davisb Putnamb Logemannb Loveland](https://github.com/TheAlgorithms/Python/blob/master/other/davisb_putnamb_logemannb_loveland.py)
   * [Dijkstra Bankers Algorithm](https://github.com/TheAlgorithms/Python/blob/master/other/dijkstra_bankers_algorithm.py)
   * [Doomsday](https://github.com/TheAlgorithms/Python/blob/master/other/doomsday.py)
   * [Fischer Yates Shuffle](https://github.com/TheAlgorithms/Python/blob/master/other/fischer_yates_shuffle.py)
@@ -860,6 +860,7 @@
   * [Counting Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/counting_sort.py)
   * [Cycle Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/cycle_sort.py)
   * [Double Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/double_sort.py)
+  * [Dutch National Flag Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/dutch_national_flag_sort.py)
   * [Exchange Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/exchange_sort.py)
   * [External Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/external_sort.py)
   * [Gnome Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/gnome_sort.py)

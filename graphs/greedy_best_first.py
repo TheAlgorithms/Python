@@ -4,8 +4,6 @@ https://en.wikipedia.org/wiki/Best-first_search#Greedy_BFS
 
 from __future__ import annotations
 
-from typing import Optional
-
 Path = list[tuple[int, int]]
 
 grid = [
@@ -44,7 +42,7 @@ class Node:
         goal_x: int,
         goal_y: int,
         g_cost: float,
-        parent: Optional[Node],
+        parent: Node | None,
     ):
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -93,7 +91,7 @@ class GreedyBestFirst:
 
         self.reached = False
 
-    def search(self) -> Optional[Path]:
+    def search(self) -> Path | None:
         """
         Search for the path,
         if a path is not found, only the starting position is returned
@@ -156,7 +154,7 @@ class GreedyBestFirst:
             )
         return successors
 
-    def retrace_path(self, node: Optional[Node]) -> Path:
+    def retrace_path(self, node: Node | None) -> Path:
         """
         Retrace the path from parents to parents until start node
         """

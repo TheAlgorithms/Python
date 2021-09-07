@@ -1,7 +1,7 @@
-from typing import Union
+from __future__ import annotations
 
 
-def median(nums: list) -> Union[int, float]:
+def median(nums: list) -> int | float:
     """
     Find median of a list of numbers.
     Wiki: https://en.wikipedia.org/wiki/Median

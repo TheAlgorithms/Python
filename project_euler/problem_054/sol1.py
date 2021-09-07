@@ -135,7 +135,7 @@ class PokerHand:
         """Returns the self hand"""
         return self._hand
 
-    def compare_with(self, other: "PokerHand") -> str:
+    def compare_with(self, other: PokerHand) -> str:
         """
         Determines the outcome of comparing self hand with other hand.
         Returns the output as 'Win', 'Loss', 'Tie' according to the rules of
@@ -220,7 +220,7 @@ class PokerHand:
         else:
             return name + f", {high}"
 
-    def _compare_cards(self, other: "PokerHand") -> str:
+    def _compare_cards(self, other: PokerHand) -> str:
         # Enumerate gives us the index as well as the element of a list
         for index, card_value in enumerate(self._card_values):
             if card_value != other._card_values[index]:

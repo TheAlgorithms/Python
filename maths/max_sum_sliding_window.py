@@ -6,10 +6,10 @@ Instead of using a nested for loop, in a Brute force approach we will use a tech
 called 'Window sliding technique' where the nested loops can be converted to a single
 loop to reduce time complexity.
 """
-from typing import List
+from __future__ import annotations
 
 
-def max_sum_in_array(array: List[int], k: int) -> int:
+def max_sum_in_array(array: list[int], k: int) -> int:
     """
     Returns the maximum sum of k consecutive elements
     >>> arr = [1, 4, 2, 10, 2, 3, 1, 0, 20]

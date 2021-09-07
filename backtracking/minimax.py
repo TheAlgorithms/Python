@@ -7,12 +7,13 @@ if move is of maximizer return true else false
 leaves of game tree is stored in scores[]
 height is maximum height of Game tree
 """
+from __future__ import annotations
+
 import math
-from typing import List
 
 
 def minimax(
-    depth: int, node_index: int, is_max: bool, scores: List[int], height: float
+    depth: int, node_index: int, is_max: bool, scores: list[int], height: float
 ) -> int:
     """
     >>> import math

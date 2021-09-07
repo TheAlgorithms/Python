@@ -1,8 +1,9 @@
 """
 Convert International System of Units (SI) and Binary prefixes
 """
+from __future__ import annotations
+
 from enum import Enum
-from typing import Union
 
 
 class SI_Unit(Enum):
@@ -41,8 +42,8 @@ class Binary_Unit(Enum):
 
 def convert_si_prefix(
     known_amount: float,
-    known_prefix: Union[str, SI_Unit],
-    unknown_prefix: Union[str, SI_Unit],
+    known_prefix: str | SI_Unit,
+    unknown_prefix: str | SI_Unit,
 ) -> float:
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Binary_prefix
@@ -70,8 +71,8 @@ def convert_si_prefix(
 
 def convert_binary_prefix(
     known_amount: float,
-    known_prefix: Union[str, Binary_Unit],
-    unknown_prefix: Union[str, Binary_Unit],
+    known_prefix: str | Binary_Unit,
+    unknown_prefix: str | Binary_Unit,
 ) -> float:
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Metric_prefix

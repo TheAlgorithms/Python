@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Generic, Iterable, Iterator, Optional, TypeVar
+from typing import Generic, Iterable, Iterator, TypeVar
 
 T = TypeVar("T")
 
@@ -15,8 +15,8 @@ class SkewNode(Generic[T]):
 
     def __init__(self, value: T) -> None:
         self._value: T = value
-        self.left: Optional[SkewNode[T]] = None
-        self.right: Optional[SkewNode[T]] = None
+        self.left: SkewNode[T] | None = None
+        self.right: SkewNode[T] | None = None
 
     @property
     def value(self) -> T:
@@ -25,8 +25,8 @@ class SkewNode(Generic[T]):
 
     @staticmethod
     def merge(
-        root1: Optional[SkewNode[T]], root2: Optional[SkewNode[T]]
-    ) -> Optional[SkewNode[T]]:
+        root1: SkewNode[T] | None, root2: SkewNode[T] | None
+    ) -> SkewNode[T] | None:
         """Merge 2 nodes together."""
         if not root1:
             return root2
@@ -69,13 +69,13 @@ class SkewHeap(Generic[T]):
     [-1, 0, 1]
     """
 
-    def __init__(self, data: Optional[Iterable[T]] = ()) -> None:
+    def __init__(self, data: Iterable[T] | None = ()) -> None:
         """
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        self._root: Optional[SkewNode[T]] = None
+        self._root: SkewNode[T] | None = None
         for item in data:
             self.insert(item)
 

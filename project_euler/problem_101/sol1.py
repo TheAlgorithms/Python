@@ -41,11 +41,11 @@ Consider the following tenth degree polynomial generating function:
 
 Find the sum of FITs for the BOPs.
 """
+from __future__ import annotations
 
+from typing import Callable, Union
 
-from typing import Callable, List, Union
-
-Matrix = List[List[Union[float, int]]]
+Matrix = list[list[Union[float, int]]]
 
 
 def solve(matrix: Matrix, vector: Matrix) -> Matrix:
@@ -78,9 +78,9 @@ def solve(matrix: Matrix, vector: Matrix) -> Matrix:
     col = 0
     while row < size and col < size:
         # pivoting
-        pivot_row = max(
-            [(abs(augmented[row2][col]), row2) for row2 in range(col, size)]
-        )[1]
+        pivot_row = max((abs(augmented[row2][col]), row2) for row2 in range(col, size))[
+            1
+        ]
         if augmented[pivot_row][col] == 0:
             col += 1
             continue
@@ -109,7 +109,7 @@ def solve(matrix: Matrix, vector: Matrix) -> Matrix:
     ]
 
 
-def interpolate(y_list: List[int]) -> Callable[[int], int]:
+def interpolate(y_list: list[int]) -> Callable[[int], int]:
     """
     Given a list of data points (1,y0),(2,y1), ..., return a function that
     interpolates the data points. We find the coefficients of the interpolating
@@ -195,9 +195,9 @@ def solution(func: Callable[[int], int] = question_function, order: int = 10) ->
     >>> solution(lambda n: n ** 3, 3)
     74
     """
-    data_points: List[int] = [func(x_val) for x_val in range(1, order + 1)]
+    data_points: list[int] = [func(x_val) for x_val in range(1, order + 1)]
 
-    polynomials: List[Callable[[int], int]] = [
+    polynomials: list[Callable[[int], int]] = [
         interpolate(data_points[:max_coeff]) for max_coeff in range(1, order + 1)
     ]
 

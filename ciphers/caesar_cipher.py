@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 from string import ascii_letters
-from typing import Dict, Optional
 
 
-def encrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
+def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
     encrypt
     =======
@@ -80,7 +81,7 @@ def encrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     return result
 
 
-def decrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
+def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
     decrypt
     =======
@@ -145,7 +146,7 @@ def decrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     return encrypt(input_string, key, alphabet)
 
 
-def brute_force(input_string: str, alphabet: Optional[str] = None) -> Dict[int, str]:
+def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str]:
     """
     brute_force
     ===========

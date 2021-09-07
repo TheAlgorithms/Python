@@ -1,5 +1,7 @@
 """ A Stack using a linked list like structure """
-from typing import Any, Optional
+from __future__ import annotations
+
+from typing import Any
 
 
 class Node:
@@ -42,7 +44,7 @@ class LinkedStack:
     """
 
     def __init__(self) -> None:
-        self.top: Optional[Node] = None
+        self.top: Node | None = None
 
     def __iter__(self):
         node = self.top

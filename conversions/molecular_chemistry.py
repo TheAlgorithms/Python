@@ -20,7 +20,7 @@ def molarity_to_normality(nfactor: int, moles: float, volume: float) -> float:
       >>> molarity_to_normality(4, 11.4, 5.7)
       8
     """
-    return round((float(moles / volume) * nfactor))
+    return round(float(moles / volume) * nfactor)
 
 
 def moles_to_pressure(volume: float, moles: float, temperature: float) -> float:

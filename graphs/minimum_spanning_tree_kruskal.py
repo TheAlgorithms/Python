@@ -40,7 +40,7 @@ if __name__ == "__main__":  # pragma: no cover
     edges = []
 
     for _ in range(num_edges):
-        node1, node2, cost = [int(x) for x in input().strip().split()]
+        node1, node2, cost = (int(x) for x in input().strip().split())
         edges.append((node1, node2, cost))
 
     kruskal(num_nodes, edges)
