@@ -59,6 +59,8 @@ def horizontal_distance(init_velocity: float, angle: float) -> float:
     91.77
     >>> horizontal_distance(100, 78)
     414.76
+    >>> horizontal_distance(4.5, 5.5)
+    0.39
     >>> horizontal_distance(-1, 20)
     Traceback (most recent call last):
         ...
@@ -89,6 +91,8 @@ def max_height(init_velocity: float, angle: float) -> float:
     22.94
     >>> max_height(100, 78)
     487.82
+    >>> max_height(4.5, 5.5)
+    0.01
     >>> max_height("a", 20)
     Traceback (most recent call last):
         ...
@@ -119,6 +123,8 @@ def total_time(init_velocity: float, angle: float) -> float:
     4.33
     >>> total_time(100, 78)
     19.95
+    >>> total_time(4.5, 5.5)
+    0.09
     >>> total_time(-10, 40)
     Traceback (most recent call last):
         ...
