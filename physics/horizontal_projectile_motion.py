@@ -21,7 +21,6 @@ from math import sin
 # Acceleration Constant on hearth (unit m/s^2)
 g = 9.80665
 
-
 def horizontal_distance(init_velocity: float, angle: float) -> float:
     """
     Returns the horizontal distance that the object cover
@@ -40,7 +39,7 @@ def horizontal_distance(init_velocity: float, angle: float) -> float:
     414.76
     """
     radians = angle_to_radians(2 * angle)
-    return round((init_velocity ** 2) * sin(radians) / g, 2)
+    return round(init_velocity ** 2 * sin(radians) / g, 2)
 
 
 def max_height(init_velocity: float, angle: float) -> float:
@@ -62,7 +61,7 @@ def max_height(init_velocity: float, angle: float) -> float:
     """
 
     radians = angle_to_radians(angle)
-    return round(((init_velocity ** 2) * (sin(radians)) ** 2) / (2 * g), 2)
+    return round((init_velocity ** 2 * sin(radians) ** 2) / (2 * g), 2)
 
 
 def total_time(init_velocity: float, angle: float) -> float:
@@ -84,7 +83,7 @@ def total_time(init_velocity: float, angle: float) -> float:
     """
 
     radians = angle_to_radians(angle)
-    return round((2 * init_velocity) * (sin(radians)) / g, 2)
+    return round(2 * init_velocity * sin(radians) / g, 2)
 
 
 def test_motion() -> None:
