@@ -33,4 +33,4 @@ def solution() -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution()} = ")
+    print(f"{solution() = }")
