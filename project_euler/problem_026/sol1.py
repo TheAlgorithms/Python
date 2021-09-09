@@ -22,6 +22,7 @@ seen that 1/7 has a 6-digit recurring cycle.
 Find the value of d < 1000 for which 1/d contains the longest recurring cycle
 in its decimal fraction part.
 """
+from typing import List
 
 
 def solution(numerator: int = 1, digit: int = 1000) -> int:
@@ -39,7 +40,7 @@ def solution(numerator: int = 1, digit: int = 1000) -> int:
     longest_list_length = 0
 
     for divide_by_number in range(numerator, digit + 1):
-        has_been_divided = []
+        has_been_divided: List[int] = []
         now_divide = numerator
         for division_cycle in range(1, digit + 1):
             if now_divide in has_been_divided:
