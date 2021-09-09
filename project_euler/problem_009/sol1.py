@@ -38,6 +38,8 @@ def solution() -> int:
                         if (a + b + c) == 1000:
                             return a * b * c
 
+    return -1
+
 
 def solution_fast() -> int:
     """
@@ -57,6 +59,8 @@ def solution_fast() -> int:
             c = 1000 - a - b
             if a < b < c and (a ** 2) + (b ** 2) == (c ** 2):
                 return a * b * c
+
+    return -1
 
 
 def benchmark() -> None:
