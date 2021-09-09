@@ -11,13 +11,17 @@ from math import factorial
 
 def sum_of_digit_factorial(n: int) -> int:
     """
-    Returns the sum of the factorial of digits in n
+    Returns the sum of the factorial of digits in positive n
     >>> sum_of_digit_factorial(15)
     121
-    >>> sum_of_digit_factorial(0)
+    >>> sum_of_digit_factorial(1)
     1
     """
-    return sum(factorial(int(char)) for char in str(n))
+    result = 0
+    while n != 0:
+        result += factorial(n % 10)
+        n //= 10
+    return result
 
 
 def solution() -> int:
