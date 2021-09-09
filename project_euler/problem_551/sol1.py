@@ -12,9 +12,11 @@ You are given a(10^6) = 31054319.
 Find a(10^15)
 """
 
+from typing import Dict, List
+
 ks = [k for k in range(2, 20 + 1)]
 base = [10 ** k for k in range(ks[-1] + 1)]
-memo = {}
+memo: Dict[int, Dict[int, List[List[int]]]] = {}
 
 
 def next_term(a_i, k, i, n):
