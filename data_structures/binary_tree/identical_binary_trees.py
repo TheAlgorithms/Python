@@ -26,7 +26,7 @@ class TreeNode:
     A binary tree node has a value variable and pointers to its left and right TreeNodes
     """
 
-    def __init__(self, val=0) -> None:
+    def __init__(self, val: int = 0) -> None:
         self.value = val
         self.left: TreeNode | None = None
         self.right: TreeNode | None = None
@@ -36,6 +36,24 @@ def identical_binary_trees(root1: TreeNode | None, root2: TreeNode | None) -> bo
     """
     identical_binary_tree function takes root of the two trees and return True or False depending on if the trees are
     identical or not.
+
+    >>> tree1 = TreeNode(1)
+    >>> tree1.left = TreeNode(2)
+    >>> tree1.right = TreeNode(3)
+
+    >>> tree2 = TreeNode(1)
+    >>> tree2.left = TreeNode(2)
+    >>> tree2.right = TreeNode(3)
+
+    >>> print("Example 1: ")
+    >>> print("Tree 1  -->  ", end="")
+    >>> print_preorder(tree1)
+    >>> print()
+    >>> print("Tree 2  -->  ", end="")
+    >>> print_preorder(tree2)
+    >>> print()
+    >>> print(f'Trees are identical: {identical_binary_trees(tree1, tree2)}')
+
     """
 
     # if both the roots does not exist then in that particular condition trees are identical considering both of
@@ -57,6 +75,11 @@ def identical_binary_trees(root1: TreeNode | None, root2: TreeNode | None) -> bo
 def print_preorder(root: TreeNode | None) -> None:
     """
     print_preorder takes root of a tree as a parameter and prints the preorder traversal of the binary tree.
+    >>> root = TreeNode(1)
+    >>> root.left = TreeNode(2)
+    >>> root.right = TreeNode(3)
+    >>> print_preorder(root)
+
     """
 
     if root:
