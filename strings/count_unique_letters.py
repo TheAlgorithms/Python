@@ -1,4 +1,4 @@
-def unique_letters(word) -> None:
+def unique_letters(word: str) -> None:
     """
     >>> unique_letters('abbccc')
     {'a': 1, 'b': 2, 'c': 3}
