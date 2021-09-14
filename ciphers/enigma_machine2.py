@@ -14,7 +14,8 @@ Module includes:
 
 Created by TrapinchO
 """
-from typing import Tuple, Dict
+from typing import Dict, Tuple
+
 RotorPositionT = Tuple[int, int, int]
 RotorSelectionT = Tuple[str, str, str]
 

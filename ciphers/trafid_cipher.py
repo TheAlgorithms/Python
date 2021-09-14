@@ -1,7 +1,7 @@
 # https://en.wikipedia.org/wiki/Trifid_cipher
 
 
-from typing import Tuple, Dict
+from typing import Dict, Tuple
 
 
 def __encryptPart(messagePart: str, character2Number: Dict[str, str]) -> str:
