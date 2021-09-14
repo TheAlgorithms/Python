@@ -15,8 +15,8 @@ Module includes:
 Created by TrapinchO
 """
 from __future__ import annotations
-
 from typing import Tuple
+
 
 RotorPositionT = Tuple[int, int, int]
 RotorSelectionT = Tuple[str, str, str]
