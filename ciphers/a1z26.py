@@ -7,10 +7,11 @@ http://bestcodes.weebly.com/a1z26.html
 """
 
 
-from typing import List
+# from typing import List
+from __future__ import annotations
 
 
-def encode(plain: str) -> List[int]:
+def encode(plain: str) -> list[int]:
     """
     >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
@@ -18,7 +19,7 @@ def encode(plain: str) -> List[int]:
     return [ord(elem) - 96 for elem in plain]
 
 
-def decode(encoded: List[int]) -> str:
+def decode(encoded: list[int]) -> str:
     """
     >>> decode([13, 25, 14, 1, 13, 5])
     'myname'

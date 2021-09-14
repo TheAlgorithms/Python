@@ -14,7 +14,9 @@ Module includes:
 
 Created by TrapinchO
 """
-from typing import Dict, Tuple
+from __future__ import annotations
+
+from typing import Tuple
 
 RotorPositionT = Tuple[int, int, int]
 RotorSelectionT = Tuple[str, str, str]
@@ -70,7 +72,7 @@ rotor9 = "KOAEGVDHXPQZMLFTYWJNBRCIUS"
 
 def _validator(
     rotpos: RotorPositionT, rotsel: RotorSelectionT, pb: str
-) -> Tuple[RotorPositionT, RotorSelectionT, Dict[str, str]]:
+) -> tuple[RotorPositionT, RotorSelectionT, dict[str, str]]:
     """
     Checks if the values can be used for the 'enigma' function
 
@@ -111,7 +113,7 @@ def _validator(
     return rotpos, rotsel, pbdict
 
 
-def _plugboard(pbstring: str) -> Dict[str, str]:
+def _plugboard(pbstring: str) -> dict[str, str]:
     """
     https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 

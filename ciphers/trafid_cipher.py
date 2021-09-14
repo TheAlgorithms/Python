@@ -1,10 +1,10 @@
 # https://en.wikipedia.org/wiki/Trifid_cipher
 
 
-from typing import Dict, Tuple
+from __future__ import annotations
 
 
-def __encryptPart(messagePart: str, character2Number: Dict[str, str]) -> str:
+def __encryptPart(messagePart: str, character2Number: dict[str, str]) -> str:
     one, two, three = "", "", ""
     tmp = []
 
@@ -20,8 +20,8 @@ def __encryptPart(messagePart: str, character2Number: Dict[str, str]) -> str:
 
 
 def __decryptPart(
-    messagePart: str, character2Number: Dict[str, str]
-) -> Tuple[str, str, str]:
+    messagePart: str, character2Number: dict[str, str]
+) -> tuple[str, str, str]:
     tmp, thisPart = "", ""
     result = []
 
@@ -39,7 +39,7 @@ def __decryptPart(
 
 def __prepare(
     message: str, alphabet: str
-) -> Tuple[str, str, Dict[str, str], Dict[str, str]]:
+) -> tuple[str, str, dict[str, str], dict[str, str]]:
     # Validate message and alphabet, set to upper and remove spaces
     alphabet = alphabet.replace(" ", "").upper()
     message = message.replace(" ", "").upper()
