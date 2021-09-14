@@ -7,7 +7,6 @@ http://bestcodes.weebly.com/a1z26.html
 """
 
 
-# from typing import List
 from __future__ import annotations
 
 
