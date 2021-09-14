@@ -18,9 +18,6 @@
 """
 
 
-from typing import List
-
-
 class XORCipher:
     def __init__(self, key: int = 0):
         """
@@ -31,7 +28,7 @@ class XORCipher:
         # private field
         self.__key = key
 
-    def encrypt(self, content: str, key: int) -> List[str]:
+    def encrypt(self, content: str, key: int) -> list[str]:
         """
         input: 'content' of type string and 'key' of type int
         output: encrypted string 'content' as a list of chars
@@ -56,7 +53,7 @@ class XORCipher:
 
         return ans
 
-    def decrypt(self, content: str, key: int) -> List[str]:
+    def decrypt(self, content: str, key: int) -> list[str]:
         """
         input: 'content' of type list and 'key' of type int
         output: decrypted string 'content' as a list of chars
