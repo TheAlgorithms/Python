@@ -69,7 +69,7 @@ rotor9 = "KOAEGVDHXPQZMLFTYWJNBRCIUS"
 
 def _validator(
     rotpos: RotorPositionT, rotsel: RotorSelectionT, pb: str
-) -> Tuple[RotorPositionT, RotorSelectionT, Dict[str, str]]:
+) -> tuple[RotorPositionT, RotorSelectionT, Dict[str, str]]:
     """
     Checks if the values can be used for the 'enigma' function
 
