@@ -1,7 +1,7 @@
 def persistence(num: int) -> int:
     """
     Return the persistence of a given number.
-    
+
     https://en.wikipedia.org/wiki/Persistence_of_a_number
 
     >>> persistence(217)
@@ -20,10 +20,10 @@ def persistence(num: int) -> int:
         raise ValueError("persistence() only accepts integral values")
     if num < 0:
         raise ValueError("persistence() does not accept negative values")
-    
+
     steps = 0
     num_string = str(num)
-    
+
     while len(num_string) != 1:
         numbers = [int(i) for i in num_string]
 
@@ -36,7 +36,8 @@ def persistence(num: int) -> int:
         steps += 1
     return steps
 
+
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
