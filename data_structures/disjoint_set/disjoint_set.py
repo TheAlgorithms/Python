@@ -28,10 +28,10 @@ def union_set(x, y):
     x, y = find_set(x), find_set(y)
     if x.rank > y.rank:
         y.parent = x
+    elif x.rank == y.rank:
+        y.rank += 1
     else:
         x.parent = y
-        if x.rank == y.rank:
-            y.rank += 1
 
 
 def find_set(x):
