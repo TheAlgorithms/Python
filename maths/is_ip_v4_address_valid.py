@@ -39,6 +39,12 @@ def is_ip_v4_address_valid(ip_v4_address: str) -> bool:
 
     >>> is_ip_v4_address_valid("1.2.A.4")
     False
+
+    >>> is_ip_v4_address_valid("0.0.0.0")
+    True
+
+    >>> is_ip_v4_address_valid("1.2.3.")
+    False
     """
     octets = [int(i) for i in ip_v4_address.split(".") if i.isdigit()]
     return len(octets) == 4 and all(0 <= int(octet) <= 254 for octet in octets)
