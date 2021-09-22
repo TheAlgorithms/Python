@@ -448,6 +448,7 @@
   * [Find Min Recursion](https://github.com/TheAlgorithms/Python/blob/master/maths/find_min_recursion.py)
   * [Floor](https://github.com/TheAlgorithms/Python/blob/master/maths/floor.py)
   * [Gamma](https://github.com/TheAlgorithms/Python/blob/master/maths/gamma.py)
+  * [Gamma Recursive](https://github.com/TheAlgorithms/Python/blob/master/maths/gamma_recursive.py)
   * [Gaussian](https://github.com/TheAlgorithms/Python/blob/master/maths/gaussian.py)
   * [Greatest Common Divisor](https://github.com/TheAlgorithms/Python/blob/master/maths/greatest_common_divisor.py)
   * [Greedy Coin Change](https://github.com/TheAlgorithms/Python/blob/master/maths/greedy_coin_change.py)
