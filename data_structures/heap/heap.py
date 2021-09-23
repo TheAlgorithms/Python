@@ -1,4 +1,6 @@
-from typing import Iterable, List, Optional
+from __future__ import annotations
+
+from typing import Iterable
 
 
 class Heap:
@@ -25,19 +27,19 @@ class Heap:
     """
 
     def __init__(self) -> None:
-        self.h: List[float] = []
+        self.h: list[float] = []
         self.heap_size: int = 0
 
     def __repr__(self) -> str:
         return str(self.h)
 
-    def parent_index(self, child_idx: int) -> Optional[int]:
+    def parent_index(self, child_idx: int) -> int | None:
         """return the parent index of given child"""
         if child_idx > 0:
             return (child_idx - 1) // 2
         return None
 
-    def left_child_idx(self, parent_idx: int) -> Optional[int]:
+    def left_child_idx(self, parent_idx: int) -> int | None:
         """
         return the left child index if the left child exists.
         if not, return None.
@@ -47,7 +49,7 @@ class Heap:
             return left_child_index
         return None
 
-    def right_child_idx(self, parent_idx: int) -> Optional[int]:
+    def right_child_idx(self, parent_idx: int) -> int | None:
         """
         return the right child index if the right child exists.
         if not, return None.

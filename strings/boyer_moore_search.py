@@ -17,7 +17,7 @@ Time Complexity : O(n/m)
     n=length of main string
     m=length of pattern string
 """
-from typing import List
+from __future__ import annotations
 
 
 class BoyerMooreSearch:
@@ -59,7 +59,7 @@ class BoyerMooreSearch:
                 return currentPos + i
         return -1
 
-    def bad_character_heuristic(self) -> List[int]:
+    def bad_character_heuristic(self) -> list[int]:
         # searches pattern in text and returns index positions
         positions = []
         for i in range(self.textLen - self.patLen + 1):

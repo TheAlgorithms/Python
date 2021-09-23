@@ -11,7 +11,7 @@ from math import factorial
 
 def sum_of_digit_factorial(n: int) -> int:
     """
-    Returns the sum of the digits in n
+    Returns the sum of the factorial of digits in n
     >>> sum_of_digit_factorial(15)
     121
     >>> sum_of_digit_factorial(0)
@@ -33,4 +33,4 @@ def solution() -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution()} = ")
+    print(f"{solution() = }")

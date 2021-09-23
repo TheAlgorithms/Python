@@ -6,12 +6,12 @@
         Summation of the chosen numbers must be equal to given number M and one number
         can be used only once.
 """
-from typing import List
+from __future__ import annotations
 
 
-def generate_sum_of_subsets_soln(nums: List[int], max_sum: int) -> List[List[int]]:
-    result: List[List[int]] = []
-    path: List[int] = []
+def generate_sum_of_subsets_soln(nums: list[int], max_sum: int) -> list[list[int]]:
+    result: list[list[int]] = []
+    path: list[int] = []
     num_index = 0
     remaining_nums_sum = sum(nums)
     create_state_space_tree(nums, max_sum, num_index, path, result, remaining_nums_sum)
@@ -19,11 +19,11 @@ def generate_sum_of_subsets_soln(nums: List[int], max_sum: int) -> List[List[int
 
 
 def create_state_space_tree(
-    nums: List[int],
+    nums: list[int],
     max_sum: int,
     num_index: int,
-    path: List[int],
-    result: List[List[int]],
+    path: list[int],
+    result: list[list[int]],
     remaining_nums_sum: int,
 ) -> None:
     """

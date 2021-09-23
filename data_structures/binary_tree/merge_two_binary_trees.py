@@ -5,7 +5,7 @@ The rule for merging is that if two nodes overlap, then put the value sum of
 both nodes to the new value of the merged node. Otherwise, the NOT null node
 will be used as the node of new tree.
 """
-from typing import Optional
+from __future__ import annotations
 
 
 class Node:
@@ -15,11 +15,11 @@ class Node:
 
     def __init__(self, value: int = 0) -> None:
         self.value = value
-        self.left: Optional[Node] = None
-        self.right: Optional[Node] = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
 
-def merge_two_binary_trees(tree1: Optional[Node], tree2: Optional[Node]) -> Node:
+def merge_two_binary_trees(tree1: Node | None, tree2: Node | None) -> Node:
     """
     Returns root node of the merged tree.
 
@@ -52,7 +52,7 @@ def merge_two_binary_trees(tree1: Optional[Node], tree2: Optional[Node]) -> Node
     return tree1
 
 
-def print_preorder(root: Optional[Node]) -> None:
+def print_preorder(root: Node | None) -> None:
     """
     Print pre-order traversal of the tree.
 

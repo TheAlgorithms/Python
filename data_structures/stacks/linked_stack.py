@@ -1,4 +1,6 @@
 """ A Stack using a linked list like structure """
+from __future__ import annotations
+
 from typing import Any
 
 
@@ -42,7 +44,7 @@ class LinkedStack:
     """
 
     def __init__(self) -> None:
-        self.top = None
+        self.top: Node | None = None
 
     def __iter__(self):
         node = self.top
@@ -134,6 +136,8 @@ class LinkedStack:
         """
         if self.is_empty():
             raise IndexError("peek from empty stack")
+
+        assert self.top is not None
         return self.top.data
 
     def clear(self) -> None:

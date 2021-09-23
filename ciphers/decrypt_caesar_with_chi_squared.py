@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-
-from typing import Optional
+from __future__ import annotations
 
 
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
-    cipher_alphabet: Optional[list[str]] = None,
-    frequencies_dict: Optional[dict[str, float]] = None,
+    cipher_alphabet: list[str] | None = None,
+    frequencies_dict: dict[str, float] | None = None,
     case_sensetive: bool = False,
 ) -> tuple[int, float, str]:
     """
@@ -222,9 +221,10 @@ def decrypt_caesar_with_chi_squared(
 
     # Get the most likely cipher by finding the cipher with the smallest chi squared
     # statistic
-    most_likely_cipher: int = min(
-        chi_squared_statistic_values, key=chi_squared_statistic_values.get
-    )  # type: ignore # First argument to `min` is not optional
+    most_likely_cipher: int = min(  # type: ignore
+        chi_squared_statistic_values,  # type: ignore
+        key=chi_squared_statistic_values.get,  # type: ignore
+    )  # type: ignore
 
     # Get all the data from the most likely cipher (key, decoded message)
     (

@@ -1,4 +1,6 @@
-from typing import Callable, Optional
+from __future__ import annotations
+
+from typing import Callable
 
 
 class DoubleLinkedListNode:
@@ -119,7 +121,7 @@ class LFUCache:
         """
         return key in self.cache
 
-    def get(self, key: int) -> Optional[int]:
+    def get(self, key: int) -> int | None:
         """
         Returns the value for the input key and updates the Double Linked List. Returns
         None if key is not present in cache

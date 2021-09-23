@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 
 def compare_string(string1: str, string2: str) -> str:
@@ -22,7 +22,7 @@ def compare_string(string1: str, string2: str) -> str:
         return "".join(l1)
 
 
-def check(binary: List[str]) -> List[str]:
+def check(binary: list[str]) -> list[str]:
     """
     >>> check(['0.00.01.5'])
     ['0.00.01.5']
@@ -46,7 +46,7 @@ def check(binary: List[str]) -> List[str]:
         binary = list(set(temp))
 
 
-def decimal_to_binary(no_of_variable: int, minterms: List[float]) -> List[str]:
+def decimal_to_binary(no_of_variable: int, minterms: list[float]) -> list[str]:
     """
     >>> decimal_to_binary(3,[1.5])
     ['0.00.01.5']
@@ -82,7 +82,7 @@ def is_for_table(string1: str, string2: str, count: int) -> bool:
         return False
 
 
-def selection(chart: List[List[int]], prime_implicants: List[str]) -> List[str]:
+def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
     """
     >>> selection([[1]],['0.00.01.5'])
     ['0.00.01.5']
@@ -130,8 +130,8 @@ def selection(chart: List[List[int]], prime_implicants: List[str]) -> List[str]:
 
 
 def prime_implicant_chart(
-    prime_implicants: List[str], binary: List[str]
-) -> List[List[int]]:
+    prime_implicants: list[str], binary: list[str]
+) -> list[list[int]]:
     """
     >>> prime_implicant_chart(['0.00.01.5'],['0.00.01.5'])
     [[1]]

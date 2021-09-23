@@ -44,10 +44,9 @@ Solution:
 Reference: https://en.wikipedia.org/wiki/Triangular_number
            https://en.wikipedia.org/wiki/Quadratic_formula
 """
-
+from __future__ import annotations
 
 from math import ceil, floor, sqrt
-from typing import List
 
 
 def solution(target: int = 2000000) -> int:
@@ -61,7 +60,7 @@ def solution(target: int = 2000000) -> int:
     >>> solution(2000000000)
     86595
     """
-    triangle_numbers: List[int] = [0]
+    triangle_numbers: list[int] = [0]
     idx: int
 
     for idx in range(1, ceil(sqrt(target * 2) * 1.1)):

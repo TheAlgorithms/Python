@@ -8,8 +8,8 @@ wikipedia/Fischer-Yates-Shuffle.
 import random
 
 
-def FYshuffle(list):
-    for i in range(len(list)):
+def fisher_yates_shuffle(data: list) -> list:
+    for _ in range(len(list)):
         a = random.randint(0, len(list) - 1)
         b = random.randint(0, len(list) - 1)
         list[a], list[b] = list[b], list[a]
@@ -21,4 +21,4 @@ if __name__ == "__main__":
     strings = ["python", "says", "hello", "!"]
     print("Fisher-Yates Shuffle:")
     print("List", integers, strings)
-    print("FY Shuffle", FYshuffle(integers), FYshuffle(strings))
+    print("FY Shuffle", fisher_yates_shuffle(integers), fisher_yates_shuffle(strings))

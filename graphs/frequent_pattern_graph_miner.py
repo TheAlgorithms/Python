@@ -168,11 +168,11 @@ def construct_graph(cluster, nodes):
     return graph
 
 
-def myDFS(graph, start, end, path=[]):
+def myDFS(graph, start, end, path=None):
     """
     find different DFS walk from given node to Header node
     """
-    path = path + [start]
+    path = (path or []) + [start]
     if start == end:
         paths.append(path)
     for node in graph[start]:
@@ -227,6 +227,6 @@ if __name__ == "__main__":
     support = get_support(cluster)
     graph = construct_graph(cluster, nodes)
     find_freq_subgraph_given_support(60, cluster, graph)
-    paths = []
+    paths: list = []
     freq_subgraph_edge_list = freq_subgraphs_edge_list(paths)
     print_all()
