@@ -36,24 +36,26 @@ window_size = 2.0
 nb_pixels = 666
 
 
-def eval_exponential(c: complex, z: numpy.ndarray) -> numpy.ndarray:
+def eval_exponential(c_parameter: complex, z_values: numpy.ndarray) -> numpy.ndarray:
     """
     >>> eval_exponential(0, 0)
     1.0
     """
-    return numpy.exp(z) + c
+    return numpy.exp(z_values) + c_parameter
 
 
-def eval_quadratic_polynomial(c: complex, z: numpy.ndarray) -> numpy.ndarray:
+def eval_quadratic_polynomial(c_parameter: complex, z_values: numpy.ndarray) -> numpy.ndarray:
     """
     >>> eval_quadratic_polynomial(0, 2)
     4
     >>> eval_quadratic_polynomial(-1, 1)
     0
-    >>> eval_quadratic_polynomial(1.j, 0)
-    1.j
+    >>> round(eval_quadratic_polynomial(1.j, 0).imag)
+    1
+    >>> round(eval_quadratic_polynomial(1.j, 0).real)
+    0
     """
-    return z * z + c
+    return z_values * z_values + c_parameter
 
 
 def prepare_grid(window_size: float, nb_pixels: int) -> numpy.ndarray:
@@ -88,8 +90,14 @@ def iterate_function(
     values to iterate from.
     This function returns the final iterates.
 
-    >>> iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2]))
-    array([  0.+0.j,   1.+0.j, 256.+0.j], dtype=complex)
+    >>> iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2])).shape
+    (3,)
+    >>> numpy.round(iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2]))[0])
+    0j
+    >>> numpy.round(iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2]))[1])
+    (1+0j)
+    >>> numpy.round(iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2]))[2])
+    (256+0j)
     """
 
     z_n = z_0.astype("complex64")
