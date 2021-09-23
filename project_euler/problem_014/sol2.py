@@ -28,16 +28,16 @@ Which starting number, under one million, produces the longest chain?
 from __future__ import annotations
 
 
-def collatz_sequence(n: int) -> list[int]:
-    """Returns the Collatz sequence for n."""
-    sequence = [n]
+def collatz_sequence_length(n: int) -> int:
+    """Returns the Collatz sequence length for n."""
+    sequence_length = 1
     while n != 1:
         if n % 2 == 0:
             n //= 2
         else:
             n = 3 * n + 1
-        sequence.append(n)
-    return sequence
+        sequence_length += 1
+    return sequence_length
 
 
 def solution(n: int = 1000000) -> int:
@@ -54,7 +54,7 @@ def solution(n: int = 1000000) -> int:
     13255
     """
 
-    result = max((len(collatz_sequence(i)), i) for i in range(1, n))
+    result = max((collatz_sequence_length(i), i) for i in range(1, n))
     return result[1]
 
 
