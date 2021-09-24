@@ -26,7 +26,7 @@ def union_set(x, y):
     disjoint set tree will be more flat.
     """
     x, y = find_set(x), find_set(y)
-    if x==y:
+    if x == y:
         return
 
     elif x.rank > y.rank:
