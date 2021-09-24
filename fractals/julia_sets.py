@@ -44,7 +44,9 @@ def eval_exponential(c_parameter: complex, z_values: numpy.ndarray) -> numpy.nda
     return numpy.exp(z_values) + c_parameter
 
 
-def eval_quadratic_polynomial(c_parameter: complex, z_values: numpy.ndarray) -> numpy.ndarray:
+def eval_quadratic_polynomial(
+    c_parameter: complex, z_values: numpy.ndarray
+) -> numpy.ndarray:
     """
     >>> eval_quadratic_polynomial(0, 2)
     4
