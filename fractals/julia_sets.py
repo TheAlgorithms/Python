@@ -94,11 +94,20 @@ def iterate_function(
 
     >>> iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2])).shape
     (3,)
-    >>> numpy.round(iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2]))[0])
+    >>> numpy.round(iterate_function(eval_quadratic_polynomial,
+                                     0,
+                                     3,
+                                     numpy.array([0,1,2]))[0])
     0j
-    >>> numpy.round(iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2]))[1])
+    >>> numpy.round(iterate_function(eval_quadratic_polynomial,
+                                     0,
+                                     3,
+                                     numpy.array([0,1,2]))[1])
     (1+0j)
-    >>> numpy.round(iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2]))[2])
+    >>> numpy.round(iterate_function(eval_quadratic_polynomial,
+                                     0,
+                                     3,
+                                     numpy.array([0,1,2]))[2])
     (256+0j)
     """
 
