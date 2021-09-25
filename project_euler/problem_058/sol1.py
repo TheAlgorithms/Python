@@ -35,9 +35,9 @@ count of current primes.
 """
 
 
-def isprime(d: int) -> int:
+def isprime(n: int) -> int:
     """
-    returns whether the given digit is prime or not
+    returns whether the given number is prime or not
     >>> isprime(1)
     0
     >>> isprime(17)
@@ -45,12 +45,12 @@ def isprime(d: int) -> int:
     >>> isprime(10000)
     0
     """
-    if d == 1:
+    if n == 1:
         return 0
 
     i = 2
-    while i * i <= d:
-        if d % i == 0:
+    while i * i <= n:
+        if n % i == 0:
             return 0
         i = i + 1
     return 1
