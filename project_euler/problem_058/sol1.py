@@ -33,6 +33,7 @@ So we check individually each one of these before incrementing our
 count of current primes.
 
 """
+from math import isqrt
 
 
 def isprime(n: int) -> int:
@@ -48,11 +49,12 @@ def isprime(n: int) -> int:
     if n == 1:
         return 0
 
-    i = 2
-    while i * i <= n:
+    if n % 2 == 0 and n > 2:
+        return 0
+
+    for i in range(3, isqrt(n) + 1, 2):
         if n % i == 0:
             return 0
-        i = i + 1
     return 1
 
 
