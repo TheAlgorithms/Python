@@ -73,8 +73,8 @@ def dis_between_closest_in_strip(points, points_counts, min_dis=float("inf")):
     85
     """
 
-    for i in range(min(6, points_counts - 1), points_counts):
-        for j in range(max(0, i - 6), i):
+    for i in range(points_counts-1):
+        for j in range(i+1, min(i + 6, points_counts)):
             current_dis = euclidean_distance_sqr(points[i], points[j])
             if current_dis < min_dis:
                 min_dis = current_dis
@@ -101,10 +101,10 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     # recursion
     mid = points_counts // 2
     closest_in_left = closest_pair_of_points_sqr(
-        points_sorted_on_x, points_sorted_on_y[:mid], mid
+        points_sorted_on_x[:mid], points_sorted_on_y, mid
     )
     closest_in_right = closest_pair_of_points_sqr(
-        points_sorted_on_y, points_sorted_on_y[mid:], points_counts - mid
+        points_sorted_on_x[mid:], points_sorted_on_y, points_counts - mid
     )
     closest_pair_dis = min(closest_in_left, closest_in_right)
 
@@ -114,7 +114,7 @@ def closest_pair_of_points_sqr(points_sorted_on_x, points_sorted_on_y, points_co
     """
 
     cross_strip = []
-    for point in points_sorted_on_x:
+    for point in points_sorted_on_y:
         if abs(point[0] - points_sorted_on_x[mid][0]) < closest_pair_dis:
             cross_strip.append(point)
 
