@@ -2,7 +2,10 @@ import numpy as np
 
 
 def schur_complement(
-    a: np.ndarray, b: np.ndarray, c: np.ndarray, pseudo_inv: np.ndarray = None
+    mat_a: np.ndarray,
+    mat_b: np.ndarray,
+    mat_c: np.ndarray,
+    pseudo_inv: np.ndarray = None,
 ) -> np.ndarray:
     """
     Schur complement of a symmetric matrix X given as a 2x2 block matrix
@@ -21,9 +24,9 @@ def schur_complement(
     array([[ 5., -5.],
            [ 0.,  6.]])
     """
-    shape_a = np.shape(a)
-    shape_b = np.shape(b)
-    shape_c = np.shape(c)
+    shape_a = np.shape(mat_a)
+    shape_b = np.shape(mat_b)
+    shape_c = np.shape(mat_c)
 
     if shape_a[0] != shape_b[0]:
         raise ValueError(
@@ -40,16 +43,16 @@ def schur_complement(
     a_inv = pseudo_inv
     if a_inv is None:
         try:
-            a_inv = np.linalg.inv(a)
+            a_inv = np.linalg.inv(mat_a)
         except np.linalg.LinAlgError:
             raise ValueError(
                 "Input matrix A is not invertible. Cannot compute Schur complement."
             )
 
-    return c - b.T @ a_inv @ b
+    return mat_c - mat_b.T @ a_inv @ mat_b
 
 
-def test_schur_complement():
+def test_schur_complement() -> None:
     """
     >>> test_schur_complement()  # self running tests
     """
