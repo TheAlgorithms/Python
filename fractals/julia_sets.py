@@ -211,4 +211,4 @@ if __name__ == "__main__":
         z_0 + 2,
         infinity=1.0e10,
     )
-    show_results("exp(z)+c", c_exponential, escape_radius, z_final)
+    show_results("e^z+c", c_exponential, escape_radius, z_final)
