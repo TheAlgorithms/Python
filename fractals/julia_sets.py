@@ -137,7 +137,7 @@ def show_results(
     abs_z_final = (abs(z_final)).transpose()
     abs_z_final[:, :] = abs_z_final[::-1, :]
     pyplot.matshow(abs_z_final < escape_radius)
-    pyplot.title(f"Julia set of {function_label}\n c={function_params}")
+    pyplot.title(f"Julia set of ${function_label}$, $c={function_params}$")
     pyplot.show()
 
 
