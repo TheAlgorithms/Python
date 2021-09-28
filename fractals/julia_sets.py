@@ -178,7 +178,7 @@ if __name__ == "__main__":
         z_0,
         infinity=1.1 * escape_radius,
     )
-    show_results("z²+c", c_cauliflower, escape_radius, z_final)
+    show_results("z^2+c", c_cauliflower, escape_radius, z_final)
 
     nb_iterations = 64
     escape_radius = 2 * abs(c_polynomial_1) + 1
