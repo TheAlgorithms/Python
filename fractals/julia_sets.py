@@ -41,6 +41,10 @@ def eval_exponential(c_parameter: complex, z_values: numpy.ndarray) -> numpy.nda
     Evaluate $e^z + c$.
     >>> eval_exponential(0, 0)
     1.0
+    >>> abs(eval_exponential(1, numpy.pi*1.j)) < 1e-15
+    True
+    >>> abs(eval_exponential(1.j, 0)-1-1.j) < 1e-15
+    True
     """
     return numpy.exp(z_values) + c_parameter
 
