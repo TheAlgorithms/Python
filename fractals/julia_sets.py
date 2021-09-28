@@ -200,7 +200,7 @@ if __name__ == "__main__":
         z_0,
         infinity=1.1 * escape_radius,
     )
-    show_results("z²+c", c_polynomial_2, escape_radius, z_final)
+    show_results("z^2+c", c_polynomial_2, escape_radius, z_final)
 
     nb_iterations = 12
     escape_radius = 10000.0
