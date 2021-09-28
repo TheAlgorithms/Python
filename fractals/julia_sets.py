@@ -38,6 +38,7 @@ nb_pixels = 666
 
 def eval_exponential(c_parameter: complex, z_values: numpy.ndarray) -> numpy.ndarray:
     """
+    Evaluate $e^z + c$.
     >>> eval_exponential(0, 0)
     1.0
     """
