@@ -37,7 +37,7 @@
     <img src="https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square" height="20" alt="Gitter chat">
   </a>
 <!-- Short description: -->
-<h3>All algorithms implemented in Python - for education</h3>
+  <h3>All algorithms implemented in Python - for education</h3>
 </div>
 
 Implementations are for learning purposes only. As they may be less efficient than the implementations in the Python standard library, use them at your discretion.
