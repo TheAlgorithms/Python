@@ -1,12 +1,10 @@
-<p align="center">
+<div align="center">
+<!-- Title: -->
   <a href="https://github.com/TheAlgorithms/">
     <img src="https://raw.githubusercontent.com/TheAlgorithms/website/1cd824df116b27029f17c2d1b42d81731f28a920/public/logo.svg" height="100">
   </a>
-  <h1 align="center"><a href="https://github.com/TheAlgorithms/">The Algorithms</a> - Python</h1>
-</p>
-
-
-<p align="center">
+  <h1><a href="https://github.com/TheAlgorithms/">The Algorithms</a> - Python</h1>
+<!-- Icons: -->
   <a href="https://gitpod.io/#https://github.com/TheAlgorithms/Python">
     <img src="https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=flat-square" height="20" alt="Gitpod Ready-to-Code">
   </a>
@@ -38,9 +36,9 @@
   <a href="https://gitter.im/TheAlgorithms">
     <img src="https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square" height="20" alt="Gitter chat">
   </a>
-</p>
-
-<h3 align="center">All algorithms implemented in Python - for education</h3>
+<!-- Short description: -->
+<h3>All algorithms implemented in Python - for education</h3>
+</div>
 
 Implementations are for learning purposes only. As they may be less efficient than the implementations in the Python standard library, use them at your discretion.
 
