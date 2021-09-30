@@ -1,4 +1,5 @@
 import numpy as np
+import unittest
 
 
 def schur_complement(
@@ -52,27 +53,41 @@ def schur_complement(
     return mat_c - mat_b.T @ a_inv @ mat_b
 
 
-def test_schur_complement() -> None:
-    """
-    >>> test_schur_complement()  # self running tests
-    """
-    a = np.array([[1, 2, 1], [2, 1, 2], [3, 2, 4]])
-    b = np.array([[0, 3], [3, 0], [2, 3]])
-    c = np.array([[2, 1], [6, 3]])
+class TestSchurComplement(unittest.TestCase):
+    def test_schur_complement(self) -> None:
+        a = np.array([[1, 2, 1], [2, 1, 2], [3, 2, 4]])
+        b = np.array([[0, 3], [3, 0], [2, 3]])
+        c = np.array([[2, 1], [6, 3]])
 
-    s = schur_complement(a, b, c)
+        s = schur_complement(a, b, c)
 
-    input_matrix = np.block([[a, b], [b.T, c]])
+        input_matrix = np.block([[a, b], [b.T, c]])
 
-    det_x = np.linalg.det(input_matrix)
-    det_a = np.linalg.det(a)
-    det_s = np.linalg.det(s)
+        det_x = np.linalg.det(input_matrix)
+        det_a = np.linalg.det(a)
+        det_s = np.linalg.det(s)
 
-    assert np.abs(det_x - det_a * det_s) <= 1e-6
+        self.assertAlmostEqual(det_x, det_a * det_s)
+
+    def test_improper_a_b_dimensions(self) -> None:
+        a = np.array([[1, 2, 1], [2, 1, 2], [3, 2, 4]])
+        b = np.array([[0, 3], [3, 0], [2, 3]])
+        c = np.array([[2, 1], [6, 3]])
+
+        with self.assertRaises(ValueError):
+            schur_complement(a, b, c)
+
+    def test_improper_b_c_dimensions(self) -> None:
+        a = np.array([[1, 2, 1], [2, 1, 2], [3, 2, 4]])
+        b = np.array([[0, 3], [3, 0], [2, 3]])
+        c = np.array([[2, 1, 3], [6, 3, 5]])
+
+        with self.assertRaises(ValueError):
+            schur_complement(a, b, c)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    test_schur_complement()
+    unittest.main()
