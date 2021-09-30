@@ -1,6 +1,5 @@
-def is_operand(x): #check wheather the character is am operamd or not 
-
-	return (((x>='A') and(x<='Z')) or ((x >= 'a') and (x <= 'z')))
+def is_operand(operator): #check wheather the character is am operator or not 
+	return (((operator>='A') and(operator<='Z')) or ((operator>= 'a') and (operator<= 'z')))   
 
 def convert_infix(expression): #converts the expression
 	s = []                     #create stack to store operators
