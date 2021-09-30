@@ -1,11 +1,11 @@
-def isOperand(x): #check wheather the character is am operamd or not 
+def is_operand(x): #check wheather the character is am operamd or not 
 
 	return (((x>='A') and(x<='Z')) or ((x >= 'a') and (x <= 'z')))
 
-def convert_Infix(expression): #converts the expression
+def convert_infix(expression): #converts the expression
 	s = []                     #create stack to store operators
 	for i in expression:	
-		if (isOperand(i)) :		
+		if (is_operand(i)) :		
 			s.insert(0, i)           #if encountered character is a operand it is placed in the stack.
 		else:	                     #else 
 			operator1 = s[0]               #the first element is popped and storred
@@ -18,5 +18,5 @@ def convert_Infix(expression): #converts the expression
 
 if __name__ == '__main__':
 	expression = input()       #string
-	print(convert_Infix(expression.strip()))   #call the function
+	print(convert_infix(expression.strip()))   #call the function
 
