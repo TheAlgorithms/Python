@@ -8,7 +8,7 @@ https://en.wikipedia.org/wiki/Bisection_method
 """
 
 
-def equation(x: float) -> float:
+def equation(num: float) -> float:
     """
     >>> equation(5)
     -15
@@ -21,7 +21,7 @@ def equation(x: float) -> float:
     >>> equation(-0.1)
     9.99
     """
-    return 10 - x * x
+    return 10 - num * num
 
 
 def bisection(a: float, b: float) -> float:
