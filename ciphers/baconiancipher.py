@@ -20,6 +20,10 @@ def encrypt(message: str) -> str:
 
 
 def decrypt(message: str)-> str:
+    ```
+    baabbaabaabaababaabb abbaaaabaabaababaabaaaaaaaabbaaabaa
+    ENJOY
+    ```
     decipher = ''
     i = 0
 
@@ -54,4 +58,6 @@ def main() -> str:
     result = decrypt(message.lower())
     print (result)
 if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
     main()
