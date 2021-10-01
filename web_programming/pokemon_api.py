@@ -10,7 +10,7 @@ recieved_data=get_poke_data(pokemon_name)
 
 import matplotlib.pyplot as plt
 url_data=requests.get(recieved_data["cards"][1]["imageUrl"])
-with open("001.png","wb")as f:
+with open("001.png","wb") as f:
     for item in url_data.iter_content(1024):
         f.write(item)
 image_data=plt.imread("./001.png")
