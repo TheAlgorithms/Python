@@ -2,7 +2,7 @@ import requests
 import json
 pokemon_name=input("Enter the name of pokemon")
 def get_poke_data(name=pokemon_name):
-    url = "https://api.pokemontcg.io/v1/cards?name={}".format(name)
+    url = f"https://api.pokemontcg.io/v1/cards?name={name}"
     response = requests.get(url)
     return response.json()
 
