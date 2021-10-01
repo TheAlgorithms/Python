@@ -8,7 +8,7 @@ def crawl_and_store_google_search_result(query="potato", filename=""):
     store it in a file.
 
     Args:
-        query (str, optional): The search term provided by the user. Defaults
+        query: The search term provided by the user. Defaults
         to "potato".
         filename (str, optional): The name of the file to be saved with the
         search results. Defaults to "".
