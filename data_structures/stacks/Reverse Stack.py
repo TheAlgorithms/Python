@@ -1,6 +1,6 @@
 # Python program to reverse a stack using recursion
 
-def insertAtBottom(stack, item):
+def insertAtBottom(stack:list, item:int)-> None:
 	if isEmpty(stack):
 		push(stack, item)
 	else:
@@ -8,29 +8,29 @@ def insertAtBottom(stack, item):
 		insertAtBottom(stack, item)
 		push(stack, temp)
     
-def reverse(stack):
+def reverse(stack:list)-> None:
 	if not isEmpty(stack):
 		temp = pop(stack)
 		reverse(stack)
 		insertAtBottom(stack, temp)
 
-def createStack():
+def createStack() -> list:
 	stack = []
 	return stack
 
-def isEmpty( stack ):
+def isEmpty( stack:list )-> bool:
 	return len(stack) == 0
 
-def push( stack, item ):
+def push( stack:list, item:int )-> None:
 	stack.append( item )
 
-def pop( stack ):
+def pop( stack : list)-> int:
 	if(isEmpty( stack )):
 		print("Stack Underflow ")
 		exit(1)
 	return stack.pop()
 
-def prints(stack):
+def prints(stack:list)-> None:
 	for i in range(len(stack)-1, -1, -1):
 		print(stack[i], end = ' ')
 	print()
