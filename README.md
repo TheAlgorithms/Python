@@ -44,12 +44,12 @@ Implementations are for learning purposes only. As they may be less efficient th
 
 ## Getting Started
 
-Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+Before contributing, please read over our [Contribution Guidelines](CONTRIBUTING.md).
 
 ## Community Channels
 
-We're on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms)! Community channels are great for you to ask questions and get help. Please join us!
+You can find us on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms)! Our community channels are a great place to get help and ask questions. We welcome you!
 
 ## List of Algorithms
 
-See our [directory](DIRECTORY.md) for easier navigation and better overview of the project.
+See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
