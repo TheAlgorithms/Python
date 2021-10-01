@@ -1,9 +1,10 @@
+#wikipedia - https://en.wikipedia.org/wiki/Bacon%27s_cipher
 lookup = {'A':'aaaaa', 'B':'aaaab', 'C':'aaaba', 'D':'aaabb', 'E':'aabaa',
         'F':'aabab', 'G':'aabba', 'H':'aabbb', 'I':'abaaa', 'J':'abaab',
         'K':'ababa', 'L':'ababb', 'M':'abbaa', 'N':'abbab', 'O':'abbba',
         'P':'abbbb', 'Q':'baaaa', 'R':'baaab', 'S':'baaba', 'T':'baabb',
         'U':'babaa', 'V':'babab', 'W':'babba', 'X':'babbb', 'Y':'bbaaa', 'Z':'bbaab'}
-  
+
 def encrypt(message):
     cipher = ''
     for letter in message:
@@ -14,14 +15,14 @@ def encrypt(message):
         else:
 
             cipher += ' '
-  
+
     return cipher
-  
+
 
 def decrypt(message):
     decipher = ''
     i = 0
-  
+
     while True :
 
         if(i < len(message)-4):
@@ -34,21 +35,21 @@ def decrypt(message):
                 Just the reverse of what we were doing in encrypt function
                 '''
                 decipher += list(lookup.keys())[list(lookup.values()).index(substr)]
-                i += 5 
-  
+                i += 5
+
             else:
                 decipher += ' '
                 i += 1
         else:
-            break 
-  
+            break
+
     return decipher
-  
+
 def main():
     message = "Test Message"
     result = encrypt(message.upper())
     print (result)
-  
+
     message = "AABAAABBABABAABABBBABBAAA"
     result = decrypt(message.lower())
     print (result)
