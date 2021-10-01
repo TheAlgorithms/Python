@@ -24,7 +24,7 @@ for i in range(len(matrix)):
             graph.append([i,j,matrix[i][j]])
 
 
-def dijkstra(src, dest, graph):
+def dijkstra(src: int, dest: int, graph: List[List[int]]) -> int:
 
 	n = len(matrix)
 	dist = [100001]*n  #Set the MAX to a large number
