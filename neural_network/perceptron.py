@@ -219,7 +219,7 @@ exit = [
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(verbose=True, optionflags=doctest.ELLIPSIS)
 
     network = Perceptron(
         sample=[x[:] for x in samples], target=exit, learning_rate=0.01, epoch_number=1000, bias=-1
