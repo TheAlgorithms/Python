@@ -5,13 +5,19 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
 
-def show_images_from_google_query(query: str = "dhaka"):
+def show_images_from_google_query(query: str = "dhaka") -> None:
     """Searches google using the provided query term and opens the google image
     tab in a browser.
 
     Args:
         query : The image search term to be provided by the user. Defaults to
         "dhaka".
+
+    >>> show_images_from_google_query ()
+    Showing images for dhaka.
+
+    >>> show_images_from_google_query ("potato")
+    Showing images for potato.
     """
 
     ua = UserAgent()
@@ -23,8 +29,7 @@ def show_images_from_google_query(query: str = "dhaka"):
     print(links)
     for link in links:
         if link.text == "Images":
-            print("here")
-            print(link.get("href"))
+            print(f"Showing images for {query}.")
             webbrowser.open(f"http://google.com{link.get('href')}")
             break
 
