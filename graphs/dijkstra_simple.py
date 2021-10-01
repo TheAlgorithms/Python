@@ -1,3 +1,4 @@
+import doctest
 #Dijkstra's algorithm 
 
 '''
@@ -16,17 +17,31 @@ matrix = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
            [0, 0, 2, 0, 0, 0, 6, 7, 0]
            ]
 
-#Define a list, to store the graph in the form of (i,j, cost)
-graph = []
-for i in range(len(matrix)):
-    for j in range(len(matrix[0])):
-        if matrix[i][j]!=0:
-            graph.append([i,j,matrix[i][j]])
 
 
-def dijkstra(src: int, dest: int, graph: List[List[int]]) -> int:
+
+
+def dijkstra(src, dest):
+
+	""" Return the minumum cost from src to dest using the given graph.
+	
+	>>> dijkstra(0,3)
+	19
+	>>> dijkstra(0,29)
+	-1
+	
+	"""
+
+	#Define a list, to store the graph in the form of (i,j, cost)
+	graph = []
+	for i in range(len(matrix)):
+		for j in range(len(matrix[0])):
+		    if matrix[i][j]!=0:
+		        graph.append([i,j,matrix[i][j]])
 
 	n = len(matrix)
+	if src < 0 or dest <0 or src >=n or dest >=n :
+		return -1
 	dist = [100001]*n  #Set the MAX to a large number
 	dist[src]=0
 		
@@ -41,7 +56,7 @@ def dijkstra(src: int, dest: int, graph: List[List[int]]) -> int:
 	return curr[dest]
 	
 
-src = 0 
-dest = 3
+if __name__=="__main__":
+	import doctest
+	doctest.testmod()
 
-print(dijkstra(src,dest,graph))
