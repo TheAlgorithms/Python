@@ -20,10 +20,10 @@ def encrypt(message: str) -> str:
 
 
 def decrypt(message: str)-> str:
-    ```
+    '''
     baabbaabaabaababaabb abbaaaabaabaababaabaaaaaaaabbaaabaa
     ENJOY
-    ```
+    '''
     decipher = ''
     i = 0
 
@@ -50,6 +50,10 @@ def decrypt(message: str)-> str:
     return decipher
 
 def main() -> str:
+    '''
+    baabbaabaabaababaabb abbaaaabaabaababaabaaaaaaaabbaaabaa
+    ENJOY
+    '''
     message = "Test Message"
     result = encrypt(message.upper())
     print (result)
