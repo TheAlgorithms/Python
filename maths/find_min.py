@@ -19,7 +19,8 @@ def find_min(nums):
 
 
 def main():
-    assert find_min([0, 1, 2, 3, 4, 5, -3, 24, -56]) == -56
+    assert find_min([0, 1, 2, 3, 4, 5, -3, 24, -56]) == -56, f'expected -56 but got minimum value as {find_min([0, 1, 2, 3, 4, 5, -3, 24, -56])}'
+    
 
 
 if __name__ == "__main__":
