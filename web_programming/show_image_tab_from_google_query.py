@@ -6,7 +6,7 @@ from fake_useragent import UserAgent
 
 
 def show_images_from_google_query(query: str = "dhaka"):
-    """ Searches google using the provided query term and opens the google image
+    """Searches google using the provided query term and opens the google image
     tab in a browser.
 
     Args:
@@ -18,7 +18,7 @@ def show_images_from_google_query(query: str = "dhaka"):
     headers = {"User-Agent": ua.random}
     url = "https://www.google.com/search?q=" + query
     response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, "html.parser")
     links = list(soup.select(".eZt8xd"))
     print(links)
     for link in links:
