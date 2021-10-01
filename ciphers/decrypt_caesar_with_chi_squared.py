@@ -6,7 +6,7 @@ def decrypt_caesar_with_chi_squared(
     ciphertext: str,
     cipher_alphabet: list[str] | None = None,
     frequencies_dict: dict[str, float] | None = None,
-    case_sensetive: bool = False,
+    case_sensitive: bool = False,
 ) -> tuple[int, float, str]:
     """
     Basic Usage
@@ -20,7 +20,7 @@ def decrypt_caesar_with_chi_squared(
     * frequencies_dict (dict): a dictionary of word frequencies where keys are
       the letters and values are a percentage representation of the frequency as
       a decimal/float
-    * case_sensetive (bool): a boolean value: True if the case matters during
+    * case_sensitive (bool): a boolean value: True if the case matters during
       decryption, False if it doesn't
 
     Returns:
@@ -189,7 +189,7 @@ def decrypt_caesar_with_chi_squared(
                     # Get the amount of times the letter occurs in the message
                     occurrences = decrypted_with_shift.count(letter)
 
-                    # Get the excepcted amount of times the letter should appear based
+                    # Get the accepted amount of times the letter should appear based
                     # on letter frequencies
                     expected = frequencies[letter] * occurrences
 
@@ -203,7 +203,7 @@ def decrypt_caesar_with_chi_squared(
                     # Get the amount of times the letter occurs in the message
                     occurrences = decrypted_with_shift.count(letter)
 
-                    # Get the excepcted amount of times the letter should appear based
+                    # Get the accepted amount of times the letter should appear based
                     # on letter frequencies
                     expected = frequencies[letter] * occurrences
 
