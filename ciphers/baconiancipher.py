@@ -5,7 +5,7 @@ lookup = {'A':'aaaaa', 'B':'aaaab', 'C':'aaaba', 'D':'aaabb', 'E':'aabaa',
         'P':'abbbb', 'Q':'baaaa', 'R':'baaab', 'S':'baaba', 'T':'baabb',
         'U':'babaa', 'V':'babab', 'W':'babba', 'X':'babbb', 'Y':'bbaaa', 'Z':'bbaab'}
 
-def encrypt(message):
+def encrypt(message: str) -> str:
     cipher = ''
     for letter in message:
 
@@ -19,7 +19,7 @@ def encrypt(message):
     return cipher
 
 
-def decrypt(message):
+def decrypt(message: str)-> str:
     decipher = ''
     i = 0
 
@@ -45,7 +45,7 @@ def decrypt(message):
 
     return decipher
 
-def main():
+def main() -> str:
     message = "Test Message"
     result = encrypt(message.upper())
     print (result)
