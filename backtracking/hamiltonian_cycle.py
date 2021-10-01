@@ -15,8 +15,8 @@ def valid_connection(
     Checks whether it is possible to add next into path by validating 2 statements
     1. There should be path between current and next vertex
     2. Next vertex should not be in path
-    If both validations succeeds we return True saying that it is possible to connect
-    this vertices either we return False
+    If both validations succeed we return True, saying that it is possible to connect
+    this vertices, otherwise we return False
 
     Case 1:Use exact graph as in main function, with initialized values
     >>> graph = [[0, 1, 0, 1, 0],
