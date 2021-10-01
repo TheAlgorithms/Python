@@ -60,6 +60,7 @@ def print_imdb_topn_movies(num_movies: int = 5) -> None:
     https://www.imdb.com/title/tt0468569/
     ****************************************
     """
+    print(f"Crawling {num_movies} movies from the IMDB databse ...")
     base_url = (
         f"https://www.imdb.com/search/title?title_type="
         f"feature&sort=num_votes,desc&count={num_movies}"
