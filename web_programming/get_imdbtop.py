@@ -2,10 +2,67 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def imdb_top(imdb_top_n):
+def print_imdb_topn_movies(num_movies: int = 5) -> None:
+    """Crawls IMDB and prints the top n movies with their respective titles, genre,
+    ratings, and imdb page link released.
+
+    Args:
+        num_movies: The number of movies to crawl. Defaults to 5.
+
+    >>> print_imdb_topn_movies()
+    The Shawshank Redemption
+
+    Drama
+    9.3
+    https://www.imdb.com/title/tt0111161/
+    ****************************************
+
+    The Dark Knight
+
+    Action, Crime, Drama
+    9.0
+    https://www.imdb.com/title/tt0468569/
+    ****************************************
+
+    Inception
+
+    Action, Adventure, Sci-Fi
+    8.8
+    https://www.imdb.com/title/tt1375666/
+    ****************************************
+
+    Fight Club
+
+    Drama
+    8.8
+    https://www.imdb.com/title/tt0137523/
+    ****************************************
+
+    Pulp Fiction
+
+    Crime, Drama
+    8.9
+    https://www.imdb.com/title/tt0110912/
+    ****************************************
+
+    >>> print_imdb_topn_movies(2)
+    The Shawshank Redemption
+
+    Drama
+    9.3
+    https://www.imdb.com/title/tt0111161/
+    ****************************************
+
+    The Dark Knight
+
+    Action, Crime, Drama
+    9.0
+    https://www.imdb.com/title/tt0468569/
+    ****************************************
+    """
     base_url = (
         f"https://www.imdb.com/search/title?title_type="
-        f"feature&sort=num_votes,desc&count={imdb_top_n}"
+        f"feature&sort=num_votes,desc&count={num_movies}"
     )
     source = BeautifulSoup(requests.get(base_url).content, "html.parser")
     for m in source.findAll("div", class_="lister-item mode-advanced"):
@@ -17,4 +74,4 @@ def imdb_top(imdb_top_n):
 
 
 if __name__ == "__main__":
-    imdb_top(input("How many movies would you like to see? "))
+    print_imdb_topn_movies(input("How many movies would you like to see? "))
