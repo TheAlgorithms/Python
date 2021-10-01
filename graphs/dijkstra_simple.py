@@ -17,11 +17,7 @@ matrix = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
            [0, 0, 2, 0, 0, 0, 6, 7, 0]
            ]
 
-
-
-
-
-def dijkstra(src, dest):
+def dijkstra(src: int, dest: int) -> int:
 
 	""" Return the minumum cost from src to dest using the given graph.
 	
