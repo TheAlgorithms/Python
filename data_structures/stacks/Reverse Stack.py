@@ -37,8 +37,8 @@ def prints(stack:list)-> None:
 
 # Driver Code
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    	import doctest
+    	doctest.testmod()
 	
 	stack = createStack()
 	push( stack, str(4) )
