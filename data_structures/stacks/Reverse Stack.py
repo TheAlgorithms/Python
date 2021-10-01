@@ -36,13 +36,17 @@ def prints(stack:list)-> None:
 	print()
 
 # Driver Code
-stack = createStack()
-push( stack, str(4) )
-push( stack, str(3) )
-push( stack, str(2) )
-push( stack, str(1) )
-print("Original Stack ")
-prints(stack)
-reverse(stack)
-print("Reversed Stack ")
-prints(stack)
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+	
+	stack = createStack()
+	push( stack, str(4) )
+	push( stack, str(3) )
+	push( stack, str(2) )
+	push( stack, str(1) )
+	print("Original Stack ")
+	prints(stack)
+	reverse(stack)
+	print("Reversed Stack ")
+	prints(stack)
