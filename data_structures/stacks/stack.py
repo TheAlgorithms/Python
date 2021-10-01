@@ -66,9 +66,9 @@ def test_stack() -> None:
 
     try:
         _ = stack.pop()
-        assert False  # This should not happen
+        assert False  # This should not happen (False)
     except IndexError:
-        assert True  # This should happen
+        assert True  # This should happen (True)
 
     try:
         _ = stack.peek()
