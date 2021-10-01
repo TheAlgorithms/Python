@@ -6,6 +6,11 @@ lookup = {'A':'aaaaa', 'B':'aaaab', 'C':'aaaba', 'D':'aaabb', 'E':'aabaa',
         'U':'babaa', 'V':'babab', 'W':'babba', 'X':'babbb', 'Y':'bbaaa', 'Z':'bbaab'}
 
 def encrypt(message: str) -> str:
+    '''
+    >>> encrypt("HELLO")
+    'aabbbaabaaababbababbabbba'
+
+    '''
     cipher = ''
     for letter in message:
 
