@@ -4,7 +4,11 @@ import cv2
 import numpy as np
 import time
 
-def resizeFrame(frame, scale = 0.75):
+def resizeFrame(frame, scale = 0.75): 
+    """
+    frame = image which will be given as input the function
+    scale =  by what percent the scaling should be performed
+    """
     width = int(frame.shape[1]*scale)
     height = int(frame.shape[0]*scale)
     dims = (width, height)
