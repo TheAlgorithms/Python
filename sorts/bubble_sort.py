@@ -27,7 +27,7 @@ def bubble_sort(collection):
     >>> bubble_sort(collection) == sorted(collection)
     True
     """
-    length = len(collection)
+    length = len(collection)  
     for i in range(length - 1):
         swapped = False
         for j in range(length - 1 - i):
@@ -45,8 +45,8 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    user_input = input("Enter numbers separated by a comma:").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    start = time.process_time()
+    user_input = input("Enter numbers separated by a comma:").strip()  # this line takes comma seperated input 
+    unsorted = [int(item) for item in user_input.split(",")]   # we split the input into a list 
+    start = time.process_time()  # intial time of the process
     print(*bubble_sort(unsorted), sep=",")
     print(f"Processing time: {time.process_time() - start}")
