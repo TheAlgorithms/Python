@@ -218,6 +218,19 @@ def area_circle(radius: float) -> float:
         raise ValueError("area_circle() only accepts non-negative values")
     return pi * radius ** 2
 
+def area_semicircle(radius:float) -> float:
+    """
+    Calculate the area of a circle.
+
+    >>> area_circle(10)
+    157.07963267948966
+    >>> area_circle(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_circle() only accepts non-negative values
+    """
+    area = area_circle(radius)/2
+    return area
 
 def area_ellipse(radius_x: float, radius_y: float) -> float:
     """
@@ -282,6 +295,7 @@ if __name__ == "__main__":
     print(f"Parallelogram: {area_parallelogram(10, 20) = }")
     print(f"Trapezium: {area_trapezium(10, 20, 30) = }")
     print(f"Circle: {area_circle(20) = }")
+    print(f"SemiCircle: {area_semicircle(10) = }")
     print("\nSurface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20) = }")
     print(f"Sphere: {surface_area_sphere(20) = }")
