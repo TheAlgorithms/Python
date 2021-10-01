@@ -21,7 +21,7 @@ def test_abs_val():
     """
     assert 0 == abs_val(0)
     assert 34 == abs_val(34)
-    assert 100000000000 == abs_val(-100000000000)
+    assert 100000000000 == abs_val(-10000000000)
 
 
 if __name__ == "__main__":
