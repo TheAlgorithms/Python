@@ -13,8 +13,8 @@ import random
 class Perceptron:
     def __init__(
         self,
-        sample: list[list[float]],
-        target: list[int],
+        sample: [[float]],
+        target: [int],
         learning_rate: float = 0.01,
         epoch_number: int = 1000,
         bias: float = -1,
@@ -96,12 +96,12 @@ class Perceptron:
             epoch_count = epoch_count + 1
             # if you want control the epoch or just by error
             if not has_misclassified:
-                print(("\nEpoch:\n", epoch_count))
+                print("\nEpoch: ", epoch_count)
                 print("------------------------\n")
                 # if epoch_count > self.epoch_number or not error:
                 break
 
-    def sort(self, sample: list[float]) -> None:
+    def sort(self, sample: [float]) -> None:
         """
         :param sample: example row to classify as P1 or P2
         :return: None
@@ -119,9 +119,9 @@ class Perceptron:
             raise ValueError("Sample data can not be empty")
         sample.insert(0, self.bias)
         u = 0
-        for i in range(self.col_sample + 1):
+        for i in range(self.col_sample):
             u = u + self.weight[i] * sample[i]
-
+        
         y = self.sign(u)
 
         if y == -1:
@@ -222,17 +222,17 @@ if __name__ == "__main__":
     doctest.testmod()
 
     network = Perceptron(
-        sample=samples, target=exit, learning_rate=0.01, epoch_number=1000, bias=-1
-    )
+        sample=[x[:] for x in samples], target=exit, learning_rate=0.01, epoch_number=1000, bias=-1
+    )               # [x[:] for x in samples] ensures copy of samples, not affecting original list
     network.training()
     print("Finished training perceptron")
-    print("Enter values to predict or q to exit")
-    while True:
+    user_input = ""
+    while user_input!="q":
+        print("Enter values to predict")
         sample: list = []
         for i in range(len(samples[0])):
             user_input = input("value: ").strip()
-            if user_input == "q":
-                break
             observation = float(user_input)
             sample.insert(i, observation)
         network.sort(sample)
+        user_input = input("Try again? (Enter to continue, q to quit)\n")
