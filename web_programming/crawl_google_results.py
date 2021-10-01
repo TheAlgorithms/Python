@@ -4,7 +4,7 @@ from fake_useragent import UserAgent
 
 
 def crawl_and_store_google_search_result(query="potato", filename=""):
-    """This function will crawl google search result for the given query and
+    """Crawl google search result for the given query and
     store it in a file.
 
     Args:
