@@ -3,7 +3,7 @@ import json
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
-    name = "pikachu"
+    name = input("Enter the name of the Pokemon")
     # The image URL is in the content field of the first meta tag
     url = f"https://api.pokemontcg.io/v1/cards?name={name}"
     print(url)
