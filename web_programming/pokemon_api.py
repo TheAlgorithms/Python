@@ -1,12 +1,10 @@
 import requests
 import json
-pokemon_name=input("Enter the name of pokemon")
-def get_poke_data(name=pokemon_name):
-    url = f"https://api.pokemontcg.io/v1/cards?name={name}"
+def get_poke_data(name="pikachu"):
+    url = f"https://api.pokemontcg.io/v1/cards?name={name}" 
     response = requests.get(url)
     return response.json()
-
-recieved_data=get_poke_data(pokemon_name)
+recieved_data=get_poke_data(name)
 
 import matplotlib.pyplot as plt
 url_data=requests.get(recieved_data["cards"][1]["imageUrl"])
