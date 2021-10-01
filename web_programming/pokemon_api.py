@@ -1,6 +1,6 @@
 import requests
 import json
-def get_poke_data(name="pikachu"):
+def get_poke_data(name="pikachu") -> None:
     url = f"https://api.pokemontcg.io/v1/cards?name={name}" 
     response = requests.get(url)
     return response.json()
