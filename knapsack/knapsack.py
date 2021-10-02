@@ -20,6 +20,10 @@ def knapsack(capacity: int, weights: list[int], values: list[int], counter: int)
     which is the limit of the capacity.
     """
 
+    # Invalid Case
+    if len(val)!=len(w):
+    	return -1
+
     # Base Case
     if counter == 0 or capacity == 0:
         return 0
