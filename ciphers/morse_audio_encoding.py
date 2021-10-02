@@ -3,6 +3,8 @@
 import time
 import pygame
 from pydub import audio_segment
+# For generating audio signal please download the audio files from https://commons.wikimedia.org/wiki/Morse_code and conver them to .wav format and save them in a directory named as "morse_audio_wav"
+
 
 # creating a dictionary for all characters
 ENGLISH_TO_MORSE = {'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
