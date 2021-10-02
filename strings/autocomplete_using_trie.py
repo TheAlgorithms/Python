@@ -3,7 +3,7 @@ END = "#"
 
 class Trie:
     def __init__(self) -> None:
-        self._trie = {}
+        self._trie :dict = {}
 
     def insert_word(self, text: str) -> None:
         trie = self._trie
@@ -19,7 +19,7 @@ class Trie:
             if char in trie:
                 trie = trie[char]
             else:
-                return []
+                return tuple([])
         return self._elements(trie)
 
     def _elements(self, d: dict) -> tuple:
