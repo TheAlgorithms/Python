@@ -7,6 +7,16 @@ def parse_dictionary(movie_dict: dict = {}) -> None:
 
     Args:
         movie_dict: The dictionary to print.
+
+    >>> parse_dictionary({"name": "The Shawshank Redemption", "genre": "Drama",
+    "rating": "9.3", "page link": "https://www.imdb.com/title/tt0111161/"})
+
+    Movie:
+    The Shawshank Redemption
+    Genre:
+    Drama
+    Rating: 9.3
+    Page Link: https://www.imdb.com/title/tt0111161/
     """
     print(f"\nMovie: {movie_dict['name']}")
     print(f"Genre: {movie_dict['genre']}")
