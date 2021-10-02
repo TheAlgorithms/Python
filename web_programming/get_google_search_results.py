@@ -2,43 +2,40 @@ import requests
 from fake_useragent import UserAgent
 
 
-def get_google_search_results(query: str = "potato", filename: str = "") -> str:
-    """Reads google search result page for the given query and
-    stores it in a file.
+def get_google_search_results(query: str = "potato") -> str:
+    """Return a Google search result page for the given query.
 
     Args:
-        query: The search term provided by the user. Defaults
-        to "potato".
-        filename (str, optional): The name of the file to be saved with the
-        search results. Defaults to "".
-    >>> get_google_search_results ("hacktober", "hacktober") != None
-    True
-    >>> get_google_search_results ("hacktober","") != None
-    True
-    >>> get_google_search_results ("", "hacktober") != None
-    True
-    >>> get_google_search_results ("", "") != None
-    True
+        query: The search term provided by the user. Defaults to "potato".
 
+    >>> "hacktober" in get_google_search_results("hacktober")
+    True
+    >>> "potato" in get_google_search_results()
+    True
     """
-    if filename == "":
-        filename = query + "-query.html"
-    elif not filename.endswith(".html"):
-        filename = filename + ".html"
+    url = f"https://www.google.com/search?q={query or 'potato'}"
+    return requests.get(url, headers={"User-Agent": UserAgent().random}).content
 
-    ua = UserAgent()
-    headers = {"User-Agent": ua.random}
-    url = "https://www.google.com/search?q=" + query
-    response = requests.get(url, headers=headers)
-    with open(filename, "wb") as out_file:  # only for knowing the class
-        for data in response.iter_content(10000):
-            out_file.write(data)
-    return filename
+
+def write_google_search_results(query: str = "", filename: str = "") -> str:
+    """Stores a Google search result page for the given query into a local file.
+    Args:
+        query: The search term provided by the user.
+        filename: The name of the file into which the search results should be
+            saved.
+    """
+    filename = filename or query + "-query.html"
+    if not filename.endswith(".html"):
+        filename += ".html"
+
+    with open(filename, "wb") as out_file:
+        out_file.write(get_google_search_results(query))
+    return filename  # Just so the caller knows the filename.
 
 
 if __name__ == "__main__":
-    query = input("Enter query: ")
-    filename = input("Enter filename: ")
+    query = input("Enter query: ") or "potato"
+    filename = input("Enter optional filename: ")
     print(f"Searching Google for {query} ....")
-    filename = get_google_search_results(query, filename)
-    print(f"File saved as {filename}")
+    filename = write_google_search_results(query, filename)
+    print(f"File saved into {filename}")
