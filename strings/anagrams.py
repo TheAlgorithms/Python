@@ -10,7 +10,7 @@ with open(path[0] + "/words.txt") as f:
     word_list = sorted(list({word.strip().lower() for word in f}))
 
 
-def signature(word: str or tuple or list) -> str:
+def signature(word: str) -> str:
     return "".join(sorted(word))
 
 

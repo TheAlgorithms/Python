@@ -69,7 +69,7 @@ def getLetterCount(message: str) -> dict:
     return letterCount
 
 
-def getItemAtIndexZero(x: list or str) -> int or str:
+def getItemAtIndexZero(x: tuple) -> str:
     return x[0]
 
 
