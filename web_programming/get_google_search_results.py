@@ -2,7 +2,7 @@ import requests
 from fake_useragent import UserAgent
 
 
-def get_google_search_results(query="potato", filename="") -> str:
+def get_google_search_results(query: str = "potato", filename: str = "") -> str:
     """Reads google search result page for the given query and
     stores it in a file.
 
