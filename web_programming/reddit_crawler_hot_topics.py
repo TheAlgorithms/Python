@@ -13,10 +13,14 @@ reddit = praw.Reddit(
 )
 
 
-def crawler(subreddit: str) -> None:
+def crawler(subreddit: str)-> list[str]:
+    """
+    Crawls the data and prints them
+    """
+    data = []
     hot = reddit.subreddit(subreddit).hot(limit=100)
     for post in hot:
-        print(post.title)
+        data.append(post.title)
     return 0
 
 
@@ -24,4 +28,5 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    crawler("all")
+    data = crawler("all")
+    print(data)
