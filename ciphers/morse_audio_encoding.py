@@ -65,6 +65,7 @@ def morse_encode()-> None:
     print("\nThe given text message has completed first stage of encryption [Morse Encryption].")
 
 
-# calling the function to convert text to morse audio encrypted wav file
-if __name__ == '__main__':
-    testmod(name ='morse_encode', verbose = True)
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
