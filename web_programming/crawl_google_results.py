@@ -14,10 +14,13 @@ def crawl_and_store_google_search_result(query="potato", filename=""):
         filename (str, optional): The name of the file to be saved with the
         search results. Defaults to "".
     >>> crawl_and_store_google_search_result ("hacktober", "hacktober")
+    Searching Google for hacktober ....
     File saved as hacktober.html
     >>> crawl_and_store_google_search_result ("hacktober", "hacktober.html")
+    Searching Google for hacktober ....
     File saved as hacktober.html
     >>> crawl_and_store_google_search_result ("hacktober")
+    Searching Google for hacktober ....
     File saved as hacktober-query.html
     """
     print(f"Searching Google for {query} ....")
