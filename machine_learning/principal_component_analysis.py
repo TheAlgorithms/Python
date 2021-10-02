@@ -4,6 +4,7 @@ is used to reduce a dataset's dimensionality while keeping the
 information loss minimal. We do this by identifying the features 
 that have high correlation with the label. New variables are created 
 with linear combinations of initial variables. 
+PCA wikipedia: https://en.wikipedia.org/wiki/Principal_component_analysis
 '''
 
 import numpy as np
