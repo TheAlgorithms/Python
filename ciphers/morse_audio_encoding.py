@@ -3,6 +3,7 @@
 import time
 import pygame
 from pydub import audio_segment
+import doctype
 # For generating audio signal please download the audio files from https://commons.wikimedia.org/wiki/Morse_code and conver them to .wav format and save them in a directory named as "morse_audio_wav"
 
 
@@ -65,4 +66,5 @@ def morse_encode()-> None:
 
 
 # calling the function to convert text to morse audio encrypted wav file
-morse_encode()
+if __name__ == '__main__':
+    testmod(name ='morse_encode', verbose = True)
