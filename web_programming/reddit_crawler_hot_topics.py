@@ -17,6 +17,7 @@ def crawler(subreddit) -> None:
     hot = reddit.subreddit(subreddit).hot(limit=100)
     for post in hot:
         print(post.title)
+    return 0
 
 
 if __name__ == "__main__":
