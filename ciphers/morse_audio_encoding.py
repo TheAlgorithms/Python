@@ -18,7 +18,7 @@ PATH = "morse_audio_wav/"
 
 
 # function to check if the given string can be translated
-def verify(string):
+def verify(string)-> None:
     keys = list(ENGLISH_TO_MORSE.keys())
     for char in string:
         if char not in keys and char != " ":
@@ -27,7 +27,7 @@ def verify(string):
 
 
 # function to convert text to morse audio file
-def morse_encode():
+def morse_encode()-> None:
     # input the text message
     print("\"English to Morse Code Audio Converter\"")
     print("Enter your message in English: ")
