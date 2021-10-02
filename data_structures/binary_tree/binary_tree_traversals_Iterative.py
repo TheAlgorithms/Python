@@ -2,19 +2,21 @@
 Traversing a binary tree in Inorder,Preorder, Postorder way using Iterative method
 """
 
+
 # Node of Tree
 class Node:
-    def __init__(self,data):
+    def __init__(self, data):
         self.val = data
         self.left = None
         self.right = None
+
 
 # Inorder tree traversal
 def print_Inorder(root):
     current = root
     stack = []
     while True:
-        if current!= None:
+        if current != None:
             stack.append(current)
             current = current.left
         elif stack:
@@ -40,6 +42,7 @@ def print_Preorder(root):
             stack.append(key.left)
     return
 
+
 # Postorder tree traversal
 def print_Postorder(root):
     current = root
@@ -55,7 +58,7 @@ def print_Postorder(root):
             stack1.append(node.right)
     while stack2:
         node = stack2.pop()
-        print(node.val ,end="->")
+        print(node.val, end="->")
     return
 
 
