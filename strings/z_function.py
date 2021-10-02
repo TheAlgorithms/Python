@@ -49,7 +49,7 @@ def z_function(input_str: str) -> list:
     return z_result
 
 
-def go_next(i, z_result, s):
+def go_next(i: int, z_result: list, s:str) -> bool:
     """
     Check if we have to move forward to the next characters or not
     """

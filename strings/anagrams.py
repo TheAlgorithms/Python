@@ -10,7 +10,7 @@ with open(path[0] + "/words.txt") as f:
     word_list = sorted(list({word.strip().lower() for word in f}))
 
 
-def signature(word):
+def signature(word) -> str:
     return "".join(sorted(word))
 
 
@@ -19,7 +19,7 @@ for word in word_list:
     word_bysig[signature(word)].append(word)
 
 
-def anagram(my_word):
+def anagram(my_word: str) -> list:
     return word_bysig[signature(my_word)]
 
 
