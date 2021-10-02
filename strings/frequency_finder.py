@@ -33,7 +33,7 @@ ETAOIN = "ETAOINSHRDLCUMWFGYPBVKJXQZ"
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def getLetterCount(message):
+def getLetterCount(message: str) -> dict:
     letterCount = {
         "A": 0,
         "B": 0,
@@ -69,11 +69,11 @@ def getLetterCount(message):
     return letterCount
 
 
-def getItemAtIndexZero(x):
+def getItemAtIndexZero(x: list or str) -> int or str:
     return x[0]
 
 
-def getFrequencyOrder(message):
+def getFrequencyOrder(message: str) -> str:
     letterToFreq = getLetterCount(message)
     freqToLetter = {}
     for letter in LETTERS:
@@ -96,7 +96,7 @@ def getFrequencyOrder(message):
     return "".join(freqOrder)
 
 
-def englishFreqMatchScore(message):
+def englishFreqMatchScore(message: str) -> int:
     """
     >>> englishFreqMatchScore('Hello World')
     1

@@ -4,7 +4,7 @@ UPPERLETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + " \t\n"
 
 
-def loadDictionary():
+def loadDictionary() -> dict:
     path = os.path.split(os.path.realpath(__file__))
     englishWords = {}
     with open(path[0] + "/dictionary.txt") as dictionaryFile:
@@ -16,7 +16,7 @@ def loadDictionary():
 ENGLISH_WORDS = loadDictionary()
 
 
-def getEnglishCount(message):
+def getEnglishCount(message: str) -> float:
     message = message.upper()
     message = removeNonLetters(message)
     possibleWords = message.split()
@@ -32,7 +32,7 @@ def getEnglishCount(message):
     return float(matches) / len(possibleWords)
 
 
-def removeNonLetters(message):
+def removeNonLetters(message: str) -> str:
     lettersOnly = []
     for symbol in message:
         if symbol in LETTERS_AND_SPACE:
@@ -40,7 +40,7 @@ def removeNonLetters(message):
     return "".join(lettersOnly)
 
 
-def isEnglish(message, wordPercentage=20, letterPercentage=85):
+def isEnglish(message: str, wordPercentage: int =20, letterPercentage: int =85) -> bool:
     """
     >>> isEnglish('Hello World')
     True
