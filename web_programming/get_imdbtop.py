@@ -15,15 +15,14 @@ def crawl_imdb_topn_movies(num_movies: int = 5) -> list:
 
     >>> len(crawl_imdb_topn_movies(5)) == int(5)
     True
-    >>> crawl_imdb_topn_movies(-3)
-    Number of movies must be greater than 0.
+    >>> len(crawl_imdb_topn_movies(-3)) == int(0)
+    True
     >>> len(crawl_imdb_topn_movies(4.6)) == int(4)
     True
     """
     num_movies = int(float(num_movies))
     if int(num_movies) < 1:
-        print("Number of movies must be greater than 0.")
-        return
+        return []
     base_url = (
         f"https://www.imdb.com/search/title?title_type="
         f"feature&sort=num_votes,desc&count={num_movies}"
@@ -42,6 +41,5 @@ def crawl_imdb_topn_movies(num_movies: int = 5) -> list:
 
 
 if __name__ == "__main__":
-    num_movies = input("How many movies would you like to see? ")
-    num_movies = int(float(num_movies))
+    num_movies = int(float(input("How many movies would you like to see? ")))
     crawl_imdb_topn_movies(num_movies)
