@@ -24,7 +24,7 @@ scaler_obj.fit(feature_matrix)
 scaled_feature_matrix = scaler_obj.transform(feature_matrix)
 pca_30 = PCA(n_components=30, random_state=10)
 pca_30.fit(scaled_feature_matrix)
-X_pca_30 = pca_30.transform(scaled_feature_matrix)
+x_pca_30 = pca_30.transform(scaled_feature_matrix)
 
 # checking explained variance ratio for different number of components
 
@@ -50,10 +50,10 @@ components to 10 components. Our final dataset will contain these
 
 pca_95 = PCA(n_components=0.95, random_state=10)
 pca_95.fit(scaled_feature_matrix)
-X_pca_95 = pca_95.transform(scaled_feature_matrix)
+x_pca_95 = pca_95.transform(scaled_feature_matrix)
 
 
-new_dataframe = pd.DataFrame(X_pca_95, columns=['PC!','PC2','PC3','PC4','PC5','PC6','PC7','PC8','PC9','PC10'])
+new_dataframe = pd.DataFrame(x_pca_95, columns=['PC1','PC2','PC3','PC4','PC5','PC6','PC7','PC8','PC9','PC10'])
 new_dataframe['target_label'] = data_obj.target
 print('first 10 rows of the new dataset = ', new_dataframe.head(n=10))
 print('dimensions of new dataset = ', new_dataframe.shape)
