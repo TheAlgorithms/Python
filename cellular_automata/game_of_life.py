@@ -52,7 +52,7 @@ def seed(canvas):
 
 
 def run(canvas):
-    """This  function runs the rules of game through all points, and changes their
+    """This function runs the rules of game through all points, and changes their
     status accordingly.(in the same canvas)
     @Args:
     --
@@ -60,7 +60,7 @@ def run(canvas):
 
     @returns:
     --
-    None
+    List
     """
     canvas = np.array(canvas)
     next_gen_canvas = np.array(create_canvas(canvas.shape[0]))
@@ -71,9 +71,7 @@ def run(canvas):
                 pt, canvas[r - 1 : r + 2, c - 1 : c + 2]
             )
 
-    canvas = next_gen_canvas
-    del next_gen_canvas  # cleaning memory as we move on.
-    return canvas.tolist()
+    return next_gen_canvas.tolist()
 
 
 def __judge_point(pt, neighbours):
