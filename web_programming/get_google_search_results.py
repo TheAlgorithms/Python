@@ -14,7 +14,7 @@ def get_google_search_results(query: str = "potato") -> str:
     True
     """
     url = f"https://www.google.com/search?q={query or 'potato'}"
-    return requests.get(url, headers={"User-Agent": UserAgent().random}).content
+    return requests.get(url, headers={"User-Agent": UserAgent().random}).text
 
 
 def write_google_search_results(query: str = "", filename: str = "") -> str:
@@ -28,7 +28,7 @@ def write_google_search_results(query: str = "", filename: str = "") -> str:
     if not filename.endswith(".html"):
         filename += ".html"
 
-    with open(filename, "wb") as out_file:
+    with open(filename, "w") as out_file:
         out_file.write(get_google_search_results(query))
     return filename  # Just so the caller knows the filename.
 
