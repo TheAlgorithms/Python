@@ -1,9 +1,8 @@
+def wave_sort(arr, n): 
 """
 Python function to sort the array arr[0..n-1] in wave form,
 i.e., arr[0] >= arr[1] <= arr[2] >= arr[3] <= arr[4] >= arr[5]
 """
-
-def sort(arr, n): 
 	
 	for i in range(0, n, 2): 
 		
@@ -17,5 +16,5 @@ def sort(arr, n):
 
 arr = [22,10,3,12,21,1,200] 
 
-sort(arr, len(arr)) 
+wave_sort(arr, len(arr)) 
 print(arr)
