@@ -6,6 +6,7 @@ from numpy import array, uint8
 from PIL import Image
 
 from digital_image_processing import change_contrast as cc
+from digital_image_processing import contrast_stretching as cs
 from digital_image_processing import convert_to_negative as cn
 from digital_image_processing import sepia as sp
 from digital_image_processing.dithering import burkes as bs
@@ -91,3 +92,9 @@ def test_nearest_neighbour(
     nn = rs.NearestNeighbour(imread(file_path, 1), 400, 200)
     nn.process()
     assert nn.output.any()
+
+
+# Test: contrast_stretching()
+def test_contrast_stretching():
+    contrast_stretched_img = cs.contrast_stretching(img, 30, 60, 90, 120)
+    assert contrast_stretched_img.any()
