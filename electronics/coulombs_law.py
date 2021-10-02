@@ -5,7 +5,7 @@ from __future__ import annotations
 COULOMBS_CONSTANT = 8.988e9 # units = N * m^s * C^-2
 
 # def couloumbs_law(force: float, charge1: float, charge2: float, distance: float):
-def couloumbs_law(force: float, charge1: float, charge2: float, distance: float):
+def couloumbs_law(force: float, charge1: float, charge2: float, distance: float) -> dict[str, float]:
 
     """
     Apply Coulomb's Law on any three given values, which can be force, charge1,
