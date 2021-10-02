@@ -42,7 +42,7 @@ def crawl_imdb_topn_movies(num_movies: int = 5) -> None:
     movie_dict = {}
     for m in movies:
         movie_dict["name"] = "\n" + m.h3.a.text  # movie's name
-        movie_dict["genre"] = m.find("span", attrs={"class": "genre"}).text  # genre
+        movie_dict["genre"] = m.find("span", attrs={"class": "genre"}).text
         movie_dict["rating"] = m.strong.text  # movie's rating
         movie_dict[
             "page link"
