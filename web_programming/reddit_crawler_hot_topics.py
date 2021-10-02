@@ -21,7 +21,7 @@ def crawler(subreddit: str)-> list[str]:
     hot = reddit.subreddit(subreddit).hot(limit=100)
     for post in hot:
         data.append(post.title)
-    return 0
+    return data
 
 
 if __name__ == "__main__":
