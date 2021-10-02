@@ -13,7 +13,7 @@ reddit = praw.Reddit(
 )
 
 
-def crawler(subreddit) -> None:
+def crawler(subreddit: str) -> None:
     hot = reddit.subreddit(subreddit).hot(limit=100)
     for post in hot:
         print(post.title)
