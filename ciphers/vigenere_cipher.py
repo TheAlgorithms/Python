@@ -1,10 +1,10 @@
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" ## REFERENCED ALPHABETS
 
 
 def main() -> None:
-    message = input("Enter message: ")
-    key = input("Enter key [alphanumeric]: ")
-    mode = input("Encrypt/Decrypt [e/d]: ")
+    message = input("Enter message: ") ## MEssage to be encrypted
+    key = input("Enter key [alphanumeric]: ") ## key
+    mode = input("Encrypt/Decrypt [e/d]: ") ## decryption string
 
     if mode.lower().startswith("e"):
         mode = "encrypt"
