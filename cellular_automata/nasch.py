@@ -31,6 +31,10 @@ class InputError(Exception):
     def __str__(self) -> str:
         """
         The message that is given when a error is raised
+        >>> raise InputError(str, int)
+        nasch.InputError: Error! It works with <class 'int'> and not <class 'str'>
+        >>> raise InputError(int, str)
+        nasch.InputError: Error! It works with <class 'str'> and not <class 'int'>
         """
 
         return f"Error! It works with {self.expected_value} and not {self.value}"
