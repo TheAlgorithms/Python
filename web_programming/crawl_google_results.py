@@ -1,4 +1,5 @@
 import sys
+
 import requests
 from fake_useragent import UserAgent
 
@@ -13,11 +14,11 @@ def crawl_and_store_google_search_result(query="potato", filename=""):
         filename (str, optional): The name of the file to be saved with the
         search results. Defaults to "".
     >>> crawl_and_store_google_search_result ("hacktober", "hacktober")
-    File saved in hacktober.html
+    File saved as hacktober.html
     >>> crawl_and_store_google_search_result ("hacktober", "hacktober.html")
-    File saved in hacktober.html
+    File saved as hacktober.html
     >>> crawl_and_store_google_search_result ("hacktober")
-    File saved in hacktober-query.html
+    File saved as hacktober-query.html
     """
     print(f"Searching Google for {query} ....")
     if filename == "":
