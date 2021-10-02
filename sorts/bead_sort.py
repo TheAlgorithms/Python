@@ -1,5 +1,5 @@
 """
-Bead sort only works for sequences of nonegative integers.
+Bead sort only works for sequences of non-negative integers.
 https://en.wikipedia.org/wiki/Bead_sort
 """
 
