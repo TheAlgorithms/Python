@@ -1,11 +1,12 @@
-import webbrowser
 import sys
+import webbrowser
+
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
 
-def show_images_from_google_query(query: str = "dhaka") -> None:
+def show_images_from_google_query(query: str = "dhaka") -> bool:
     """Searches google using the provided query term and opens the google image
     tab in a browser.
 
@@ -13,11 +14,14 @@ def show_images_from_google_query(query: str = "dhaka") -> None:
         query : The image search term to be provided by the user. Defaults to
         "dhaka".
 
+    Returns:
+        True if the image tab is opened successfully.
+
     >>> show_images_from_google_query ()
-    Showing images for dhaka.
+    True
 
     >>> show_images_from_google_query ("potato")
-    Showing images for potato.
+    True
     """
 
     ua = UserAgent()
@@ -26,16 +30,12 @@ def show_images_from_google_query(query: str = "dhaka") -> None:
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
     links = list(soup.select(".eZt8xd"))
-    print(links)
     for link in links:
         if link.text == "Images":
-            print(f"Showing images for {query}.")
             webbrowser.open(f"http://google.com{link.get('href')}")
-            break
-
-        else:
-            print(f"Google search images not available for term {query}.")
+            return True
+    return False
 
 
 if __name__ == "__main__":
-    show_images_from_google_query(sys.argv[1:])
+    show_images_from_google_query(sys.argv[1])
