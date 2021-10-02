@@ -13,16 +13,16 @@ reddit = praw.Reddit(
 )
 
 
-def crawler(subreddit: str) -> [str]:
+def crawler(subreddit: str) -> list[str]:
     """
-    Crawls the data and prints them
+    >>> crawler("all")
+    ["abcd","hijk","lmn","op","qr"]
     """
     data = []
-    hot = reddit.subreddit(subreddit).hot(limit=100)
+    hot = reddit.subreddit(subreddit).hot(limit=5)
     for post in hot:
         data.append(post.title)
-    print(data)
-    return "Data is collected"
+    return data
 
 
 if __name__ == "__main__":
