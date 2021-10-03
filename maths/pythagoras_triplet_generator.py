@@ -12,7 +12,7 @@ https://www.youtube.com/watch?v=n6vL2KiWrD4
 
 """
 
-def pythagoras_generator(n):
+def pythagoras_generator(n: int) -> list:
     """
     It gives you the pythagoras triplet of the given number
     It works literally on every number greater than 2
