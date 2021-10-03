@@ -1,3 +1,6 @@
+#This cipher is really simple. It adds and subtracts a constant added to the ascii values of the letters in the messages.
+#To decrypt, the user must have both the message and the constant, otherwise it becomes a trial-and-error of guessing different values.
+
 choice = input("Choose an option: (1) - Encrypt a message (2) - Decrypt a message: ")
 choice1_location = 0
 choice2_location = 0
