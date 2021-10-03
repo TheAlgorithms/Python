@@ -36,9 +36,24 @@ def make_linked_list(numbers: list = []) -> ListNode:
     return head
 
 
+def print_linked_list(head: ListNode) -> None:
+    current = head
+    while current is not None:
+        print(current.val)
+        current = current.next
+
+
 def delete_node(node: ListNode) -> None:
     """Deletes a given node from a linked list
     without accessing the head of the linked list.
+
+
+    >>> L = make_linked_list([1,2,3])
+    >>> to_delete = L.next
+    >>> delete_node(to_delete)
+    >>> print_linked_list(L)
+    1
+    3
     """
 
     node.val = node.next.val
