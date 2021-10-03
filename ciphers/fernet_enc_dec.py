@@ -25,6 +25,13 @@ banner = """
 
 # Main function start
 def main() -> str:
+    """
+    This function first want the user to 
+    input whether he/she want to encode or
+    decode a fernet encrypted cipher and 
+    then it will run according to the user input.
+    """
+        
     print("\033c")
     print(f"{bold_blue}{banner}{reset}")
     inp = input(f"\nWhat do you want?\n\n\t{bold_yellow}1. Fernet Encode\n\t 2. Fernet Decode\n\t{reset}{bold_red}0. Exit\n\n{reset}Choose: {cyan}")
