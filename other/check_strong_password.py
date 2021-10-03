@@ -1,4 +1,4 @@
-# This Will Check Whether A Giving Password Is Strong Or Not
+# This Will Check Whether A Given Password Is Strong Or Not
 # It Follows The Rule that Length Of Password Should Be At Least 8 Characters
 # And At Least 1 Lower, 1 Upper, 1 Number And 1 Special Character
 
