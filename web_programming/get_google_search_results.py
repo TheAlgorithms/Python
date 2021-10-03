@@ -79,10 +79,10 @@ def parse_results(query: str = "") -> list:
     return output
 
 
-def write_google_search_results(query: str = "", filename: str = "") -> str:
+def write_google_search_results(query: str = "potato", filename: str = "") -> str:
     """Writes the Google search result page for the given query into a local file.
     Args:
-        query: The search term provided by the user.
+        query: The search term provided by the user. Default is "potato".
         filename: The name of the file into which the search results should be
             saved.
 
@@ -96,6 +96,12 @@ def write_google_search_results(query: str = "", filename: str = "") -> str:
     >>> write_google_search_results("python", "") != None
     True
     >>> write_google_search_results("", "") != None
+    True
+    >>> "python" in write_google_search_results("python", "test")
+    True
+    >>> "test" in write_google_search_results("", "test")
+    True
+    >>> "potato" in write_google_search_results("", "")
     True
     """
     if filename == "":
