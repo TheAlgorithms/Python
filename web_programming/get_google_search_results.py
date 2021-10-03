@@ -7,7 +7,7 @@ from requests_html import HTMLSession
 BASE_URL = "https://www.google.com"
 
 
-def parse_results(query: str) -> list:
+def parse_results(query: str = "") -> list:
     """ "Reads google search result page for the given query and
     stores all the results in with title, link and descriptions
     in a list.
@@ -72,26 +72,12 @@ def parse_results(query: str) -> list:
     return output
 
 
-def get_google_search_results(query: str = "potato", filename: str = "") -> str:
-    """Reads google search result page for the given query and
-    stores all the results in with title, link and descriptions in a text file.
-
+def write_google_search_results(query: str = "", filename: str = "") -> str:
+    """Writes the Google search result page for the given query into a local file.
     Args:
-        query: The search term provided by the user. Defaults
-        to "potato".
-        filename (str, optional): The name of the file to be saved with the
-        search results. Defaults to "".
-    Returns:
-        str: The name of the file with the search results.
-    >>> get_google_search_results ("hacktober", "hacktober") != None
-    True
-    >>> get_google_search_results ("hacktober","") != None
-    True
-    >>> get_google_search_results ("", "hacktober") != None
-    True
-    >>> get_google_search_results ("", "") != None
-    True
-
+        query: The search term provided by the user.
+        filename: The name of the file into which the search results should be
+            saved.
     """
     if filename == "":
         filename = query + "-query.txt"
@@ -108,8 +94,8 @@ def get_google_search_results(query: str = "potato", filename: str = "") -> str:
 
 
 if __name__ == "__main__":
-    query = input("Enter query: ")
-    filename = input("Enter filename: ")
+    query = input("Enter query: ") or "potato"
+    filename = input("Enter optional filename: ")
     print(f"Searching Google for {query} ....")
-    filename = get_google_search_results(query, filename)
-    print(f"File saved as {filename}")
+    filename = write_google_search_results(query, filename)
+    print(f"File saved into {filename}")
