@@ -37,6 +37,14 @@ def make_linked_list(numbers: list = []) -> ListNode:
 
 
 def print_linked_list(head: ListNode) -> None:
+    """Prints a Linked List to the console
+    >>> L = make_linked_list([0,25,6,4])
+    >>> print_linked_list(L)
+    0
+    25
+    6
+    4
+    """
     current = head
     while current is not None:
         print(current.val)
