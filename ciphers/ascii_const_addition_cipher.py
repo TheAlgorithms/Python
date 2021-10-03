@@ -33,4 +33,4 @@ elif choice == "2":
       print(choice_2_string)
       break
 else:
-  print("You were supposed to type 1 or 2, not %s!" % choice)
+  print("You were supposed to type 1 or 2, not {}!".format(choice))
