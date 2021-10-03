@@ -24,7 +24,7 @@ century_code = {
 
 
 # Function which calculates
-def which_day(date: str):
+def which_day(date: str) -> str:
     """
     Returns which day it was or will be from 1000-2299
     >>> which_day('11/8/2007')
@@ -55,6 +55,7 @@ def which_day(date: str):
 
     day = days[day_code % 7]
     return day
+
 
 if __name__ == "__main__":
     import doctest
