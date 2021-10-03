@@ -12,10 +12,10 @@ def strong_password_detector(password: str) -> str:
     'This is a strong Password'
 
     >>> strong_password_detector('Sh0r1')
-    'Your Password must be atleast 8 characters long'
+    'Your Password must be at least 8 characters long'
 
     >>> strong_password_detector('Hello123')
-    'Your Password should contain both UPPERCASE and lowercase letters with atleast 1 digit and 1 special character'
+    'Password should contain UPPERCASE, lowercase, numbers, special characters'
     """
 
     upper = re.compile(r"[A-Z]")
@@ -24,7 +24,7 @@ def strong_password_detector(password: str) -> str:
     spec_char = re.compile(r"[!@#$\^&\*\(\):;\'\"<>,\.\?\/|]")
 
     if re.compile(r"\s").search(password) or len(password) < 8:
-        return "Your Password must be atleast 8 characters long"
+        return "Your Password must be at least 8 characters long"
 
     elif (
         upper.search(password)
@@ -35,7 +35,10 @@ def strong_password_detector(password: str) -> str:
         return "This is a strong Password"
 
     else:
-        return "Your Password should contain both UPPERCASE and lowercase letters with atleast 1 digit and 1 special character"
+        return (
+            "Password should contain UPPERCASE, lowercase, "
+            "numbers, special characters"
+        )
 
 
 if __name__ == "__main__":
