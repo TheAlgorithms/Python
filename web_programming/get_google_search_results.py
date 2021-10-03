@@ -15,6 +15,11 @@ def parse_results(query: str = "") -> list:
         query (str): The search term provided by the user.
     Returns:
         list: list with search results
+
+    >>> len(parse_results("python")) != None
+    True
+    >>> len(parse_results("")) == 0
+    True
     """
     query = urllib.parse.quote_plus(query)
     url = "https://www.google.com/search?q=" + query
@@ -33,6 +38,8 @@ def parse_results(query: str = "") -> list:
     results = response.html.find(css_identifier_result)
     soup = BeautifulSoup(response.html.html, "html.parser")
     stat_table = soup.find("table")
+    if stat_table is None:
+        return []
     table_data = stat_table.select("td a")
     next_page = []
 
@@ -78,6 +85,18 @@ def write_google_search_results(query: str = "", filename: str = "") -> str:
         query: The search term provided by the user.
         filename: The name of the file into which the search results should be
             saved.
+
+    Returns:
+        str: The name of the file into which the search results were saved.
+
+    >>> write_google_search_results("python", "test") != None
+    True
+    >>> write_google_search_results("", "tet.html") != None
+    True
+    >>> write_google_search_results("python", "") != None
+    True
+    >>> write_google_search_results("", "") != None
+    True
     """
     if filename == "":
         filename = query + "-query.txt"
