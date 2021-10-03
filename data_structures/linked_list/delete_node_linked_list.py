@@ -6,7 +6,7 @@ instead you will be given access to the node to be deleted directly.
 
 
 class ListNode:
-    def __init__(self, val) -> None:
+    def __init__(self, val: int) -> None:
         self.val = val
         self.next = None
 
