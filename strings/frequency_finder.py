@@ -82,11 +82,13 @@ def getFrequencyOrder(message: str) -> str:
         else:
             freqToLetter[letterToFreq[letter]].append(letter)
 
+    freqToLetterStr = {}
+
     for freq in freqToLetter:
         freqToLetter[freq].sort(key=ETAOIN.find, reverse=True)
-        freqToLetter[freq] = "".join(freqToLetter[freq])
+        freqToLetterStr[freq] = "".join(freqToLetter[freq])
 
-    freqPairs = list(freqToLetter.items())
+    freqPairs = list(freqToLetterStr.items())
     freqPairs.sort(key=getItemAtIndexZero, reverse=True)
 
     freqOrder = []
