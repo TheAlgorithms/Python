@@ -9,6 +9,12 @@ class Graph:
         self.visited = []
 
     def add_edge(self, node_a: int, node_b: int, weight: int) -> None:
+        """
+        >>> g = Graph(9)
+        >>> g.add_edge(0, 1, 4)
+        >>> assert g.edges[0][1] == 4
+        >>> assert g.edges[1][0] == 4 
+        """
         self.edges[node_a][node_b] = weight
         self.edges[node_b][node_a] = weight
 
