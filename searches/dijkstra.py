@@ -20,6 +20,9 @@ class Graph:
 
     def dijkstra(self, start_vertex: int) -> dict:
         """
+        For more information on the Dijkstra's algorithm please visit:
+        https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
         >>> g = Graph(9)
         >>> g.add_edge(0, 1, 4)
         >>> g.add_edge(0, 6, 7)
