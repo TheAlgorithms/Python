@@ -106,7 +106,8 @@ class IndexCalculation:
 
     def __init__(self, red=None, green=None, blue=None, redEdge=None, nir=None):
         # print("Numpy version: " + np.__version__)
-        self.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
+        self.setMatrices(red=red, green=green, blue=blue,
+                         redEdge=redEdge, nir=nir)
 
     def setMatrices(self, red=None, green=None, blue=None, redEdge=None, nir=None):
         if red is not None:
@@ -128,7 +129,8 @@ class IndexCalculation:
         performs the calculation of the index with the values instantiated in the class
         :str index: abbreviation of index name to perform
         """
-        self.setMatrices(red=red, green=green, blue=blue, redEdge=redEdge, nir=nir)
+        self.setMatrices(red=red, green=green, blue=blue,
+                         redEdge=redEdge, nir=nir)
         funcs = {
             "ARVI2": self.ARVI2,
             "CCCI": self.CCCI,
@@ -393,7 +395,8 @@ class IndexCalculation:
         :return: index
         """
         return np.arctan(
-            ((2 * self.red - self.green - self.blue) / 30.5) * (self.green - self.blue)
+            ((2 * self.red - self.green - self.blue) / 30.5) *
+            (self.green - self.blue)
         )
 
     def IVI(self, a=None, b=None):
