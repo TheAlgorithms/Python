@@ -1,6 +1,8 @@
 def pascals(limit:int,times:int = 0,number:list = ["1"])->None:
 	"""
-	A function to print Pascals Triangle pattern upto given limit.Only limit is required other arguements are for controlling the loop
+	A function to print Pascals Triangle pattern upto given limit.
+	Only limit is required other arguements are for controlling the loop.
+	https://en.wikipedia.org/wiki/Pascal's_triangle
 	>>> pascals(5)
 	1
 	1 1
