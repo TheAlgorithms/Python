@@ -2,7 +2,7 @@ import urllib.parse
 
 import requests
 from bs4 import BeautifulSoup
-from requests_html import HTMLSession
+from requests import Session
 
 BASE_URL = "https://www.google.com"
 
@@ -25,7 +25,7 @@ def parse_results(query: str = "") -> list:
     url = "https://www.google.com/search?q=" + query
     response = None
     try:
-        session = HTMLSession()
+        session = Session()
         response = session.get(url)
 
     except requests.exceptions.RequestException:
