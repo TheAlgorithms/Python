@@ -19,6 +19,8 @@ class Node:
         """
         This is here for debugging/testing purposes. This is used to convert the
         nodes and its branch to string.
+        >>> Node(10, Node(20)).__repr__()
+        '10, 20'
         """
         if self.next is not None:
             return f"{str(self.item)}, {self.next.__repr__()}"
