@@ -189,7 +189,7 @@ def decrypt_caesar_with_chi_squared(
                     # Get the amount of times the letter occurs in the message
                     occurrences = decrypted_with_shift.count(letter)
 
-                    # Get the accepted amount of times the letter should appear based
+                    # Get the expected amount of times the letter should appear based
                     # on letter frequencies
                     expected = frequencies[letter] * occurrences
 
@@ -203,7 +203,7 @@ def decrypt_caesar_with_chi_squared(
                     # Get the amount of times the letter occurs in the message
                     occurrences = decrypted_with_shift.count(letter)
 
-                    # Get the accepted amount of times the letter should appear based
+                    # Get the expected amount of times the letter should appear based
                     # on letter frequencies
                     expected = frequencies[letter] * occurrences
 
