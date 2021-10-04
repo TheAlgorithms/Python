@@ -8,9 +8,9 @@ class Graph:
         self.edges = [[-1 for i in range(num_of_vertices)] for j in range(num_of_vertices)]
         self.visited = []
 
-    def add_edge(self, u: int, vertices: int, weight: int) -> None:
-        self.edges[u][vertices] = weight
-        self.edges[vertices][u] = weight
+    def add_edge(self, node_a: int, node_b: int, weight: int) -> None:
+        self.edges[node_a][node_b] = weight
+        self.edges[node_b][node_a] = weight
 
     def dijkstra(self, start_vertex: int) -> dict:
         distance = {v: float('inf') for v in range(self.v)}
