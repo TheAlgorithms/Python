@@ -13,7 +13,7 @@ def length_of_longest_substring(s: str) -> int:
 	>>> length_of_longest_substring("a")
 	1
 	"""
-	start = maxLength = 0
+	start = max_len = 0
 	used_char = {}
 	for i in range(len(s)):
 		if s[i] in used_char and start <= used_char[s[i]]:
