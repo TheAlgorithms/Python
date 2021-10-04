@@ -11,19 +11,19 @@ def permutations(n: int, r: int) -> int:
     and n >= k.
 
     Examples:
-    >>>permutations(10, 5)
+    >>> permutations(10, 5)
     30240
     
-    >>>permutations(6, 3)
+    >>> permutations(6, 3)
     120
     
-    >>>permutations(20, 1)
+    >>> permutations(20, 1)
     20
 
-    >>>permutations(0, 0)
+    >>> permutations(0, 0)
     1
 
-    >>>permutations(-4, -5)
+    >>> permutations(-4, -5)
      ...
     Traceback (most recent call last):
     ValueError: Please enter positive integers for n and k where n >= k
