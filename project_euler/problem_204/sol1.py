@@ -53,11 +53,11 @@ def solution(limit: int = 100000000, hamming: int = 100) -> int:
     If after this, it remains prime, we add it to list of primes.
     Then we apply the search function.
 
-    >>>solution(100000000, 5)
+    >>> solution(100000000, 5)
     1530
-    >>solution(100000000, 15)
+    >>> solution(100000000, 15)
     27365
-    >>>solution(1000000000,50)
+    >>> solution(1000000000,50)
     735425
     """
     for i in range(2, hamming + 1):
