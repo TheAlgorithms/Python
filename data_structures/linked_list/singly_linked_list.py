@@ -1,17 +1,53 @@
+from typing import Any
+
+
 class Node:
-    def __init__(self, data):
+    def __init__(self, data: Any):
+        """
+        Create and initialize Node class instance.
+        >>> Node(20)
+        Node(20)
+        >>> Node("Hello, world!")
+        Node(Hello, world!)
+        >>> Node(None)
+        Node(None)
+        >>> Node(True)
+        Node(True)
+        """
         self.data = data
         self.next = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
+        """
+        Get the string representation of this node.
+        >>> Node(10).__repr__()
+        'Node(10)'
+        """
         return f"Node({self.data})"
 
 
 class LinkedList:
     def __init__(self):
+        """
+        Create and initialize LinkedList class instance.
+        >>> linked_list = LinkedList()
+        """
         self.head = None
 
-    def __iter__(self):
+    def __iter__(self) -> Any:
+        """
+        This function is intended for iterators to access
+        and iterate through data inside linked list.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail("tail")
+        >>> linked_list.insert_tail("tail_1")
+        >>> linked_list.insert_tail("tail_2")
+        >>> for node in linked_list: # __iter__ used here.
+        ...     node
+        'tail'
+        'tail_1'
+        'tail_2'
+        """
         node = self.head
         while node:
             yield node.data
@@ -23,7 +59,7 @@ class LinkedList:
         >>> linked_list = LinkedList()
         >>> len(linked_list)
         0
-        >>> linked_list.insert_tail("head")
+        >>> linked_list.insert_tail("tail")
         >>> len(linked_list)
         1
         >>> linked_list.insert_head("head")
@@ -38,13 +74,18 @@ class LinkedList:
         """
         return len(tuple(iter(self)))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         String representation/visualization of a Linked Lists
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail(1)
+        >>> linked_list.insert_tail(3)
+        >>> linked_list.__repr__()
+        '1->3'
         """
         return "->".join([str(item) for item in self])
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int) -> Any:
         """
         Indexing Support. Used to get a node at particular position
         >>> linked_list = LinkedList()
@@ -68,7 +109,7 @@ class LinkedList:
                 return node
 
     # Used to change the data of a particular node
-    def __setitem__(self, index, data):
+    def __setitem__(self, index: int, data: Any) -> None:
         """
         >>> linked_list = LinkedList()
         >>> for i in range(0, 10):
@@ -95,13 +136,54 @@ class LinkedList:
             current = current.next
         current.data = data
 
-    def insert_tail(self, data) -> None:
+    def insert_tail(self, data: Any) -> None:
+        """
+        Insert data to the end of linked list.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail("tail")
+        >>> linked_list
+        tail
+        >>> linked_list.insert_tail("tail_2")
+        >>> linked_list
+        tail->tail_2
+        >>> linked_list.insert_tail("tail_3")
+        >>> linked_list
+        tail->tail_2->tail_3
+        """
         self.insert_nth(len(self), data)
 
-    def insert_head(self, data) -> None:
+    def insert_head(self, data: Any) -> None:
+        """
+        Insert data to the beginning of linked list.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_head("head")
+        >>> linked_list
+        head
+        >>> linked_list.insert_head("head_2")
+        >>> linked_list
+        head_2->head
+        >>> linked_list.insert_head("head_3")
+        >>> linked_list
+        head_3->head_2->head
+        """
         self.insert_nth(0, data)
 
-    def insert_nth(self, index: int, data) -> None:
+    def insert_nth(self, index: int, data: Any) -> None:
+        """
+        Insert data at given index.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail("first")
+        >>> linked_list.insert_tail("second")
+        >>> linked_list.insert_tail("third")
+        >>> linked_list
+        first->second->third
+        >>> linked_list.insert_nth(1, "fourth")
+        >>> linked_list
+        first->fourth->second->third
+        >>> linked_list.insert_nth(3, "fifth")
+        >>> linked_list
+        first->fourth->second->fifth->third
+        """
         if not 0 <= index <= len(self):
             raise IndexError("list index out of range")
         new_node = Node(data)
@@ -118,17 +200,96 @@ class LinkedList:
             temp.next = new_node
 
     def print_list(self) -> None:  # print every node data
+        """
+        This method prints every node data.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail("first")
+        >>> linked_list.insert_tail("second")
+        >>> linked_list.insert_tail("third")
+        >>> linked_list
+        first->second->third
+        """
         print(self)
 
-    def delete_head(self):
+    def delete_head(self) -> Any:
+        """
+        Delete the first node and return the
+        node's data.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail("first")
+        >>> linked_list.insert_tail("second")
+        >>> linked_list.insert_tail("third")
+        >>> linked_list
+        first->second->third
+        >>> linked_list.delete_head()
+        'first'
+        >>> linked_list
+        second->third
+        >>> linked_list.delete_head()
+        'second'
+        >>> linked_list
+        third
+        >>> linked_list.delete_head()
+        'third'
+        >>> linked_list.delete_head()
+        Traceback (most recent call last):
+        ...
+        IndexError: List index out of range.
+        """
         return self.delete_nth(0)
 
-    def delete_tail(self):  # delete from tail
+    def delete_tail(self) -> Any:  # delete from tail
+        """
+        Delete the tail end node and return the
+        node's data.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail("first")
+        >>> linked_list.insert_tail("second")
+        >>> linked_list.insert_tail("third")
+        >>> linked_list
+        first->second->third
+        >>> linked_list.delete_tail()
+        'third'
+        >>> linked_list
+        first->second
+        >>> linked_list.delete_tail()
+        'second'
+        >>> linked_list
+        first
+        >>> linked_list.delete_tail()
+        'first'
+        >>> linked_list.delete_tail()
+        Traceback (most recent call last):
+        ...
+        IndexError: List index out of range.
+        """
         return self.delete_nth(len(self) - 1)
 
-    def delete_nth(self, index: int = 0):
+    def delete_nth(self, index: int = 0) -> Any:
+        """
+        Delete node at given index and return the
+        node's data.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail("first")
+        >>> linked_list.insert_tail("second")
+        >>> linked_list.insert_tail("third")
+        >>> linked_list
+        first->second->third
+        >>> linked_list.delete_nth(1) # delete middle
+        'second'
+        >>> linked_list
+        first->third
+        >>> linked_list.delete_nth(5) # this raises error
+        Traceback (most recent call last):
+        ...
+        IndexError: List index out of range.
+        >>> linked_list.delete_nth(-1) # this also raises error
+        Traceback (most recent call last):
+        ...
+        IndexError: List index out of range.
+        """
         if not 0 <= index <= len(self) - 1:  # test if index is valid
-            raise IndexError("list index out of range")
+            raise IndexError("List index out of range.")
         delete_node = self.head  # default first node
         if index == 0:
             self.head = self.head.next
@@ -141,9 +302,30 @@ class LinkedList:
         return delete_node.data
 
     def is_empty(self) -> bool:
+        """
+        Check if linked list is empty.
+        >>> linked_list = LinkedList()
+        >>> linked_list.is_empty()
+        True
+        >>> linked_list.insert_head("first")
+        >>> linked_list.is_empty()
+        False
+        """
         return self.head is None
 
-    def reverse(self):
+    def reverse(self) -> None:
+        """
+        This reverses the linked list order.
+        >>> linked_list = LinkedList()
+        >>> linked_list.insert_tail("first")
+        >>> linked_list.insert_tail("second")
+        >>> linked_list.insert_tail("third")
+        >>> linked_list
+        first->second->third
+        >>> linked_list.reverse()
+        >>> linked_list
+        third->second->first
+        """
         prev = None
         current = self.head
 
@@ -200,6 +382,89 @@ def test_singly_linked_list() -> None:
     for i in range(0, 9):
         linked_list[i] = -i
     assert all(linked_list[i] == -i for i in range(0, 9)) is True
+
+    linked_list.reverse()
+    assert str(linked_list) == "->".join(str(i) for i in range(-8, 1))
+
+
+def test_singly_linked_list_2() -> None:
+    """
+    This section of the test used varying data types for input.
+    >>> test_singly_linked_list_2()
+    """
+    input = [
+        -9,
+        100,
+        Node(77345112),
+        "dlrow olleH",
+        7,
+        5555,
+        0,
+        -192.55555,
+        "Hello, world!",
+        77.9,
+        Node(10),
+        None,
+        None,
+        12.20,
+    ]
+    linked_list = LinkedList()
+    [linked_list.insert_tail(i) for i in input]
+
+    # Check if it's empty or not
+    assert linked_list.is_empty() is False
+    assert (
+        str(linked_list) == "-9->100->Node(77345112)->dlrow olleH->7->5555->0->"
+        "-192.55555->Hello, world!->77.9->Node(10)->None->None->12.2"
+    )
+
+    # Delete the head
+    result = linked_list.delete_head()
+    assert result == -9
+    assert (
+        str(linked_list) == "100->Node(77345112)->dlrow olleH->7->5555->0->-192.55555->"
+        "Hello, world!->77.9->Node(10)->None->None->12.2"
+    )
+
+    # Delete the tail
+    result = linked_list.delete_tail()
+    assert result == 12.2
+    assert (
+        str(linked_list) == "100->Node(77345112)->dlrow olleH->7->5555->0->-192.55555->"
+        "Hello, world!->77.9->Node(10)->None->None"
+    )
+
+    # Delete a node in specific location in linked list
+    result = linked_list.delete_nth(10)
+    assert result is None
+    assert (
+        str(linked_list) == "100->Node(77345112)->dlrow olleH->7->5555->0->-192.55555->"
+        "Hello, world!->77.9->Node(10)->None"
+    )
+
+    # Add a Node instance to its head
+    linked_list.insert_head(Node("Hello again, world!"))
+    assert (
+        str(linked_list)
+        == "Node(Hello again, world!)->100->Node(77345112)->dlrow olleH->"
+        "7->5555->0->-192.55555->Hello, world!->77.9->Node(10)->None"
+    )
+
+    # Add None to its tail
+    linked_list.insert_tail(None)
+    assert (
+        str(linked_list)
+        == "Node(Hello again, world!)->100->Node(77345112)->dlrow olleH->"
+        "7->5555->0->-192.55555->Hello, world!->77.9->Node(10)->None->None"
+    )
+
+    # Reverse the linked list
+    linked_list.reverse()
+    assert (
+        str(linked_list)
+        == "None->None->Node(10)->77.9->Hello, world!->-192.55555->0->5555->"
+        "7->dlrow olleH->Node(77345112)->100->Node(Hello again, world!)"
+    )
 
 
 def main():
