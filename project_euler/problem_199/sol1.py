@@ -15,15 +15,15 @@ https://en.wikipedia.org/wiki/Descartes%27_theorem
 import math
 
 
-def Area(rad: float = 1.0) -> float:
+def area(rad: float = 1.0) -> float:
     """
     return area of a circle
 
-    >>> Area(2.0)
+    >>> area(2.0)
     3.141592653589793
-    >>> Area(3.0)
+    >>> area(3.0)
     7.0685834705770345
-    >>> Area(4.0)
+    >>> area(4.0)
     12.566370614359172
     """
     return rad * rad * math.pi / 4
@@ -42,10 +42,10 @@ def descartes(k1: float = 1.0, k2: float = 1.0, k3: float = 1.0, depth: float = 
     """
     k4 = k1 + k2 + k3 + 2 * math.sqrt(k1 * k2 + k2 * k3 + k1 * k3)
     r = 1 / k4
-    area = Area(r)
+    ar = area(r)
     if depth == 1:
-        return area
-    return area + descartes(k1, k2, k4, depth - 1) + descartes(k2, k3, k4, depth - 1) + descartes(k1, k3, k4, depth - 1)
+        return ar
+    return ar + descartes(k1, k2, k4, depth - 1) + descartes(k2, k3, k4, depth - 1) + descartes(k1, k3, k4, depth - 1)
 
 
 def solution(dep: int = 10) -> float:
@@ -60,15 +60,15 @@ def solution(dep: int = 10) -> float:
     0.00550538
     """
     depth = dep
-    outerK = 3 - 2 * math.sqrt(3)
-    outerRadius = -1 / outerK
-    innerRadius = 1.0
-    innerK = 1 / innerRadius
-    initial = 3 * Area(innerRadius)
-    vShaped = descartes(outerK, innerK, innerK, depth)
-    middle = descartes(innerK, innerK, innerK, depth)
-    result = initial + 3 * vShaped + middle
-    result /= Area(outerRadius)
+    outerk = 3 - 2 * math.sqrt(3)
+    outerradius = -1 / outerk
+    innerradius = 1.0
+    innerk = 1 / innerradius
+    initial = 3 * area(innerradius)
+    vshaped = descartes(outerk, innerk, innerk, depth)
+    middle = descartes(innerk, innerk, innerk, depth)
+    result = initial + 3 * vshaped + middle
+    result /= area(outerradius)
     print(round(1 - result, 8))
 
 
