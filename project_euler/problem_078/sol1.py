@@ -23,6 +23,8 @@ References:
 MODULUS = 1000000
 
 memoize = {}
+
+
 def euler(n: int) -> int:
     """
     Return the number of partitions of n elements
@@ -39,8 +41,10 @@ def euler(n: int) -> int:
     >>> euler(33)
     10143
     """
-    if n == 0: return 1
-    if n in memoize: return memoize[n]
+    if n == 0:
+        return 1
+    if n in memoize:
+        return memoize[n]
     S = 0
     J = n - 1
     k = 2
@@ -52,6 +56,7 @@ def euler(n: int) -> int:
     S = S % MODULUS
     memoize[n] = S
     return S
+
 
 def solution() -> int:
     """
@@ -67,6 +72,7 @@ def solution() -> int:
         if x == 0:
             return n
         n += 1
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
