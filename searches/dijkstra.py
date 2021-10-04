@@ -8,13 +8,13 @@ class Graph:
         self.edges = [[-1 for i in range(num_of_vertices)] for j in range(num_of_vertices)]
         self.visited = []
 
-    def add_edge(self, u, v, weight) -> None:
-        self.edges[u][v] = weight
-        self.edges[v][u] = weight
+    def add_edge(self, u: int, vertices: int, weight: int) -> None:
+        self.edges[u][vertices] = weight
+        self.edges[vertices][u] = weight
 
     def dijkstra(self, start_vertex) -> dict:
-        D = {v: float('inf') for v in range(self.v)}
-        D[start_vertex] = 0
+        distance = {v: float('inf') for v in range(self.v)}
+        distance[start_vertex] = 0
 
         pq = PriorityQueue()
         pq.put((0, start_vertex))
@@ -27,12 +27,12 @@ class Graph:
                 if self.edges[current_vertex][neighbor] != -1:
                     distance = self.edges[current_vertex][neighbor]
                     if neighbor not in self.visited:
-                        old_cost = D[neighbor]
-                        new_cost = D[current_vertex] + distance
+                        old_cost = distance[neighbor]
+                        new_cost = distance[current_vertex] + distance
                         if new_cost < old_cost:
                             pq.put((new_cost, neighbor))
-                            D[neighbor] = new_cost
-        return D
+                            distance[neighbor] = new_cost
+        return distance
 
 
 def main():
@@ -52,10 +52,10 @@ def main():
     g.add_edge(5, 8, 12)
     g.add_edge(6, 7, 1)
     g.add_edge(7, 8, 3)
-    D = g.dijkstra(0)
+    distance = g.dijkstra(0)
 
-    for vertex in range(len(D)):
-        print("Distance from vertex 0 to vertex", vertex, "is", D[vertex])
+    for vertex in range(len(distance)):
+        print("Distance from vertex 0 to vertex", vertex, "is", distance[vertex])
 
 
 if __name__ == "__main__":
