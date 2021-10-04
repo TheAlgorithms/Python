@@ -33,12 +33,12 @@ from OpenGL.raw.GLUT.constants import GLUT_RGB, GLUT_SINGLE
 WIDTH, HEIGHT = 500, 500
 
 
+"""
+This function is used to plot points on the display.
+x: x-coordinate to be plotted
+y: y-coordinate to be plotted
+"""
 def plot_point(x: int, y: int) -> None:
-    """
-    This function is used to plot points on the display.
-	x: x-coordinate to be plotted
-	y: y-coordinate to be plotted
-    """
     glBegin(GL_POINTS)
     glVertex2i(x, y)
     glEnd()
