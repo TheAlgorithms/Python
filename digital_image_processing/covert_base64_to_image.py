@@ -5,7 +5,7 @@ import numpy as np
 
 def load_base64_2_image(base64_string: str, grayscale: bool = False, color_mode: str = 'rgb',
                         target_size: tuple = None, interpolation: str = 'AREA') -> any:
-    """Load Base64 string image to PIL format.
+    """Load Base64 string image to CV2 image format.
 
     Usage:
 
