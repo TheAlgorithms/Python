@@ -3,16 +3,16 @@ from queue import PriorityQueue
 
 class Graph:
 
-    def __init__(self, num_of_vertices):
+    def __init__(self, num_of_vertices) -> None:
         self.v = num_of_vertices
         self.edges = [[-1 for i in range(num_of_vertices)] for j in range(num_of_vertices)]
         self.visited = []
 
-    def add_edge(self, u, v, weight):
+    def add_edge(self, u, v, weight) -> None:
         self.edges[u][v] = weight
         self.edges[v][u] = weight
 
-    def dijkstra(self, start_vertex):
+    def dijkstra(self, start_vertex) -> dict:
         D = {v: float('inf') for v in range(self.v)}
         D[start_vertex] = 0
 
