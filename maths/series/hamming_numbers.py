@@ -56,5 +56,5 @@ if __name__ == "__main__":
     print("Formula of Hamming Number Series => 2^i * 3^j * 5^k")
     hamming_numbers = hamming(n)
     print("-----------------------------------------------------")
-    print("The list with nth numbers is: {}".format(hamming_numbers))
+    print(f"The list with nth numbers is: {hamming_numbers}")
     print("-----------------------------------------------------")
