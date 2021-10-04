@@ -21,7 +21,7 @@ eligible combinations of the prime factors.
 primes = []
 
 
-def find(x: int = 1, indexMinPrime: int = 0, limit: int = 1000000000) -> int:
+def find(start: int = 1, index_min_prime: int = 0, limit: int = 1000000000) -> int:
     """
     The function returns the number of hamming numbers where at least one
     prime factor is prime and a factor of x.
@@ -33,8 +33,8 @@ def find(x: int = 1, indexMinPrime: int = 0, limit: int = 1000000000) -> int:
     1
     """
     result = 1
-    for i in range(indexMinPrime, len(primes)):
-        product = primes[i]*x
+    for i in range(index_min_prime, len(primes)):
+        product = primes[i]*start
         if product > limit:
             break
         result += search(product, i)
@@ -61,14 +61,14 @@ def solution(limit: int = 100000000, hamming: int = 100) -> int:
     735425
     """
     for i in range(2, hamming + 1):
-        isPrime = True
+        is_prime = True
         for p in primes:
             if p * p > i:
                 break
             if i % p == 0:
-                isPrime = False
+                is_prime = False
                 break
-        if isPrime:
+        if is_prime:
             primes.append(i)
     return find()
 
