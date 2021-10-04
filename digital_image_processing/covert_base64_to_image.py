@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 
 
-def load_base64_2_image(base64_string, grayscale=False, color_mode='rgb',
-                        target_size=None, interpolation='AREA'):
+def load_base64_2_image(base64_string: str, grayscale: bool = False, color_mode: str = 'rgb',
+                        target_size: tuple = None, interpolation: str = 'AREA') -> any:
     """Load Base64 string image to PIL format.
 
     Usage:
