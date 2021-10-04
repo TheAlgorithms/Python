@@ -13,12 +13,33 @@ class Graph:
         >>> g = Graph(9)
         >>> g.add_edge(0, 1, 4)
         >>> assert g.edges[0][1] == 4
-        >>> assert g.edges[1][0] == 4 
+        >>> assert g.edges[1][0] == 4
         """
         self.edges[node_a][node_b] = weight
         self.edges[node_b][node_a] = weight
 
     def dijkstra(self, start_vertex: int) -> dict:
+        """
+        >>> g = Graph(9)
+        >>> g.add_edge(0, 1, 4)
+        >>> g.add_edge(0, 6, 7)
+        >>> g.add_edge(1, 6, 11)
+        >>> g.add_edge(1, 7, 20)
+        >>> g.add_edge(1, 2, 9)
+        >>> g.add_edge(2, 3, 6)
+        >>> g.add_edge(2, 4, 2)
+        >>> g.add_edge(3, 4, 10)
+        >>> g.add_edge(3, 5, 5)
+        >>> g.add_edge(4, 5, 15)
+        >>> g.add_edge(4, 7, 1)
+        >>> g.add_edge(4, 8, 5)
+        >>> g.add_edge(5, 8, 12)
+        >>> g.add_edge(6, 7, 1)
+        >>> g.add_edge(7, 8, 3)
+        >>> distance = g.dijkstra(0)
+        >>> [for dis in distance)]
+        [0, 4, 11, 17, 9, 22, 7, 8, 11]
+        """
         distance = {v: float('inf') for v in range(self.v)}
         distance[start_vertex] = 0
 
@@ -42,6 +63,27 @@ class Graph:
 
 
 def main() -> None:
+    """
+    >>> g = Graph(9)
+    >>> g.add_edge(0, 1, 4)
+    >>> g.add_edge(0, 6, 7)
+    >>> g.add_edge(1, 6, 11)
+    >>> g.add_edge(1, 7, 20)
+    >>> g.add_edge(1, 2, 9)
+    >>> g.add_edge(2, 3, 6)
+    >>> g.add_edge(2, 4, 2)
+    >>> g.add_edge(3, 4, 10)
+    >>> g.add_edge(3, 5, 5)
+    >>> g.add_edge(4, 5, 15)
+    >>> g.add_edge(4, 7, 1)
+    >>> g.add_edge(4, 8, 5)
+    >>> g.add_edge(5, 8, 12)
+    >>> g.add_edge(6, 7, 1)
+    >>> g.add_edge(7, 8, 3)
+    >>> distance = g.dijkstra(0)
+    >>> [for dis in distance)]
+    [0, 4, 11, 17, 9, 22, 7, 8, 11]
+    """
     g = Graph(9)
     g.add_edge(0, 1, 4)
     g.add_edge(0, 6, 7)
