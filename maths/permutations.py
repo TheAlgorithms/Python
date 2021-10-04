@@ -24,8 +24,8 @@ def permutations(n: int, r: int) -> int:
     1
 
     >>> permutations(-4, -5)
-     ...
     Traceback (most recent call last):
+     ...
     ValueError: Please enter positive integers for n and k where n >= k
     """
 
