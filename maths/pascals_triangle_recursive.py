@@ -36,5 +36,5 @@ def pascals(limit:int,times:int = 0,number:list = ["1"])->None:
 		times += 1
 		pascals(limit,times,newnumlis)
 if __name__ == "__main__":
-	inpu = str(input("Enter a Limit:"))
-	pascals(inpu)	
+	import doctest
+	doctest.testmod()
