@@ -35,7 +35,7 @@ class Graph:
         return distance
 
 
-def main():
+def main() -> None:
     g = Graph(9)
     g.add_edge(0, 1, 4)
     g.add_edge(0, 6, 7)
