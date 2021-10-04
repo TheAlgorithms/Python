@@ -3,7 +3,7 @@ from queue import PriorityQueue
 
 class Graph:
 
-    def __init__(self, num_of_vertices) -> None:
+    def __init__(self, num_of_vertices: int) -> None:
         self.v = num_of_vertices
         self.edges = [[-1 for i in range(num_of_vertices)] for j in range(num_of_vertices)]
         self.visited = []
@@ -12,7 +12,7 @@ class Graph:
         self.edges[u][vertices] = weight
         self.edges[vertices][u] = weight
 
-    def dijkstra(self, start_vertex) -> dict:
+    def dijkstra(self, start_vertex: int) -> dict:
         distance = {v: float('inf') for v in range(self.v)}
         distance[start_vertex] = 0
 
