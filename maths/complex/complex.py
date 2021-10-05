@@ -9,7 +9,7 @@ Definition:
 
 
 class Complex:
-    def __init__(self, real_part: float, imaginary_part: float):
+    def __init__(self, real_part: float, imaginary_part: float) -> None:
         """
         Both a and b are real numbers (float in Python).
         """
@@ -19,5 +19,13 @@ class Complex:
     def __repr__(self) -> str:
         """
         Represent the complex number as a 2-tuple.
+        >>> complex_1 = Complex(1, 2)
+        >>> complex_1.__repr__()
+        (1, 2)
         """
         return (self.real_part, self.imaginary_part)
+
+
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()
