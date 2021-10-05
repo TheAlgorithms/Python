@@ -24,8 +24,6 @@ def power(base: int, exponent: int) -> int:
     True
     """
     if exponent == 0:
-        if base == 0:
-            raise ValueError("0^0 is undefined!")
         return 1
     if exponent == 1:
         return base
