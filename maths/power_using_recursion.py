@@ -13,7 +13,7 @@
 """
 
 
-def power(base: int, exponent: int) -> float:
+def power(base: int, exponent: int) -> int:
     """
     power(3, 4)
     81
