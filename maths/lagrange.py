@@ -59,7 +59,6 @@ if __name__ == "__main__":
     RMSE = 1 / m * (math.sqrt(diff))
     print(RMSE)
     """
-    
     >>> my_columns = ["x", "y"]
     >>> dataframe = pd.DataFrame(columns=my_columns)
     >>> for i in np.arange(-1, 2, 0.001):
