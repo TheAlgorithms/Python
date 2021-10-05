@@ -58,3 +58,17 @@ if __name__ == "__main__":
     diff = pow(dataframe["y"] - res["y"], 2).sum()
     RMSE = 1 / m * (math.sqrt(diff))
     print(RMSE)
+    """
+    
+    >>> my_columns = ["x", "y"]
+    >>> dataframe = pd.DataFrame(columns=my_columns)
+    >>> for i in np.arange(-1, 2, 0.001):
+    ...    dataframe = dataframe.append(
+    ...        pd.Series([i, pow(i, 3)], index=my_columns), ignore_index=True)
+    >>> res = lagrange(np.array([-1, 1, 2]), np.array([-1, 1, 8]))
+    >>> m = len(dataframe)
+    >>> diff = pow(dataframe["y"] - res["y"], 2).sum()
+    >>> RMSE = 1 / m * (math.sqrt(diff))
+    >>> print(RMSE)
+    0.02267786838055191
+    """
