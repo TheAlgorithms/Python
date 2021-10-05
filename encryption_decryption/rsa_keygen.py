@@ -50,7 +50,7 @@ def make_valid(value: Any) -> int:
     Args:
         value: the user input
     Returns:
-        int: [description]
+        int: valid key length for the key generation algorithm.
     """
     default = 1024
     if value.isalpha():
