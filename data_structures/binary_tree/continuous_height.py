@@ -1,14 +1,14 @@
-class node(object):
-    def __init__(self, x):
+class Node(object):
+    def __init__(self, x -> int) -> None:
         self.data = x
         self.left = None
         self.right = None
 
 class BST:
-    def __init__(self): 
+    def __init__(self -> int) -> None: 
         self.root = None
 
-    def create(self, x):  
+    def create(self, x -> int) -> None:  
         if self.root == None:
             self.root = node(x)
         else:
@@ -29,10 +29,10 @@ class BST:
                 else:
                     break
 
-def heightOfTree(root):
+def height_of_tree(root -> Node) -> int:
     if not root:
         return -1
-    return 1 + max(heightOfTree(root.right), heightOfTree(root.left))
+    return 1 + max(height_of_tree(root.right), height_of_tree(root.left))
 
 if __name__ == "__main__":
     t = int(input())
@@ -42,5 +42,5 @@ if __name__ == "__main__":
         tree = BST()
         for i in range(n):
             tree.create(ar[i])
-            print(heightOfTree(tree.root), end =" ") 
+            print(height_of_tree(tree.root), end =" ") 
         print()
