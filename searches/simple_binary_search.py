@@ -54,6 +54,7 @@ def binary_search(a_list: list[int], item: int) -> bool:
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by comma:\n").strip()
     sequence = [int(item.strip()) for item in user_input.split(",")]
+    sequence.sort()
     target = int(input("Enter the number to be found in the list:\n").strip())
     not_str = "" if binary_search(sequence, target) else "not "
     print(f"{target} was {not_str}found in {sequence}")
