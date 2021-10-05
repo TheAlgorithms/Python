@@ -1,5 +1,8 @@
+from typing import Optional
+
+
 class Node:
-    def __init__(self, data: int) -> int:
+    def __init__(self, data: int) -> None:
         self.data = data
         self.next = None
 
@@ -14,11 +17,11 @@ class LinkedList:
         self.head = new_node
         return self.head.data
 
-    def middle_element(self) -> int:
+    def middle_element(self) -> Optional[int]:
         """
         >>> link = LinkedList()
-        >>> link.middle_element()
-        No element found.
+        >>> link.middle_element() is None
+        True
         >>> link.push(5)
         5
         >>> link.push(6)
@@ -53,7 +56,7 @@ class LinkedList:
                 slow_pointer = slow_pointer.next
             return slow_pointer.data
         else:
-            print("No element found.")
+            return None
 
 
 if __name__ == "__main__":
