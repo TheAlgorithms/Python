@@ -28,7 +28,7 @@ def RC4(m, key):
     return bytes(i ^ j for i, j in zip(m, keystream))
 
 
-# Prepare the key and message.
+# Prepare the key and message
 key = b"this_is_key"
 message = b"this_is_message"
 
