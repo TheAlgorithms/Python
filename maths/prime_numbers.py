@@ -1,6 +1,13 @@
 import math
 from typing import Generator
 
+"""
+Naive implementation of finding primes by checking if each number
+is divisible by 2 or any odd number up to its root.
+
+For a fast implementation see Sieve of Eratosthenes.
+"""
+
 
 def slow_primes(max: int) -> Generator[int, None, None]:
     """
@@ -9,8 +16,8 @@ def slow_primes(max: int) -> Generator[int, None, None]:
     []
     >>> list(slow_primes(-1))
     []
-    >>> list(slow_primes(-10))
-    []
+    >>> list(slow_primes(2))
+    [2]
     >>> list(slow_primes(25))
     [2, 3, 5, 7, 11, 13, 17, 19, 23]
     >>> list(slow_primes(11))
@@ -22,37 +29,14 @@ def slow_primes(max: int) -> Generator[int, None, None]:
     """
     numbers: Generator = (i for i in range(1, (max + 1)))
     for i in (n for n in numbers if n > 1):
-        for j in range(2, i):
-            if (i % j) == 0:
-                break
-        else:
-            yield i
-
-
-def primes(max: int) -> Generator[int, None, None]:
-    """
-    Return a list of all primes numbers up to max.
-    >>> list(primes(0))
-    []
-    >>> list(primes(-1))
-    []
-    >>> list(primes(-10))
-    []
-    >>> list(primes(25))
-    [2, 3, 5, 7, 11, 13, 17, 19, 23]
-    >>> list(primes(11))
-    [2, 3, 5, 7, 11]
-    >>> list(primes(33))
-    [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
-    >>> list(primes(10000))[-1]
-    9973
-    """
-    numbers: Generator = (i for i in range(1, (max + 1)))
-    for i in (n for n in numbers if n > 1):
+        if i % 2 == 0:
+            if i == 2:
+                yield 2
+            continue
         # only need to check for factors up to sqrt(i)
         bound = int(math.sqrt(i)) + 1
-        for j in range(2, bound):
-            if (i % j) == 0:
+        for j in range(3, bound, 2):
+            if i % j == 0:
                 break
         else:
             yield i
@@ -60,11 +44,5 @@ def primes(max: int) -> Generator[int, None, None]:
 
 if __name__ == "__main__":
     number = int(input("Calculate primes up to:\n>> ").strip())
-    for ret in primes(number):
+    for ret in slow_primes(number):
         print(ret)
-
-    # Let's benchmark them side-by-side...
-    from timeit import timeit
-
-    print(timeit("slow_primes(1_000_000)", setup="from __main__ import slow_primes"))
-    print(timeit("primes(1_000_000)", setup="from __main__ import primes"))
