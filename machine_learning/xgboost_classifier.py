@@ -1,7 +1,6 @@
 # illustrating working of XGBoost Classifier using Iris dataset
 
 # importing necessary libraries
-import doctest
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
@@ -43,6 +42,7 @@ def main() -> none:
     # confusion matrix
     print("\nConfusion Matrix:\n")
     print(confusion_matrix(y_test, y_pred))
+    import doctest
     doctest.testmod(name = 'main', verbose = True)
 
 if __name__ == '__main__':
