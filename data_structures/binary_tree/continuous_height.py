@@ -46,7 +46,7 @@ def bst_height():
             tree.create(ar[i])
             print(height_of_tree(tree.root), end =" ") 
         print()
-        
- if __name__ == "__main__":
+
+if __name__ == "__main__":
     doctest.testmod()
     bst_height()
