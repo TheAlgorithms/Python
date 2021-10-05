@@ -1,4 +1,4 @@
-def CharUnique(S: str):
+def CharUnique(S: str) -> bool:
 	"""
 	>>> CharUnique('deacidified')
 	False
