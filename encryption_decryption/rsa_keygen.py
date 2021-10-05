@@ -44,7 +44,15 @@ def RSAKeyGen(keylen: int = 1024) -> dict:
     return item
 
 
-def make_valid(value: Any, default: int = 1024) -> int:
+def make_valid(value: Any) -> int:
+    """Makes sure the input is valid for the Key generation algorithm.
+
+    Args:
+        value: the user input
+    Returns:
+        int: [description]
+    """
+    default = 1024
     if value.isalpha():
         print("You pressed a letter. Returning default keylength 1024.")
         return default
