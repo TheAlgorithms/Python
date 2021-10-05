@@ -36,7 +36,7 @@ def height_of_tree(root : Node) -> int:
         return -1
     return 1 + max(height_of_tree(root.right), height_of_tree(root.left))
 
-def bst_height():
+def bst_height() -> None:
     t = int(input())
     for i in range(t):
         n = int(input())
