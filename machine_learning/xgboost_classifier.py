@@ -1,6 +1,7 @@
 # illustrating working of XGBoost Classifier using Iris dataset
 
 # importing necessary libraries
+import doctest
 import pandas as pd 
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
@@ -15,7 +16,7 @@ def train_xgbclassifier(x_train, y_train):
     return xgb_classifier
 
 # main function to illustrate working of XGBClassifier
-def main():
+def main() -> none:
     # loading the dataset
     url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
@@ -45,3 +46,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    doctest.testmod()
