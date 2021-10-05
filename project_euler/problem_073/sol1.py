@@ -1,4 +1,4 @@
-'''
+"""
 Project Euler Problem 73: https://projecteuler.net/problem=73
 
 Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is called a reduced proper fraction.
@@ -11,11 +11,11 @@ How many fractions lie between 1/3 and 1/2 in the sorted set of reduced proper f
 References
   - https://en.wikipedia.org/wiki/Euclidean_division
 
-'''
+"""
 
 
 def highest_common_factor(x: int, y: int) -> int:
-    '''
+    """
     Implements the Euclid's division lemma to find the greatest common divisor of two numbers; using recursion.
 
     >>> highest_common_factor(5, 7)
@@ -24,7 +24,7 @@ def highest_common_factor(x: int, y: int) -> int:
     25
     >>> highest_common_factor(12, 14)
     2
-    '''
+    """
 
     if y == 0:
         return x
@@ -33,7 +33,7 @@ def highest_common_factor(x: int, y: int) -> int:
 
 
 def solution(d: int = 12000) -> int:
-    '''
+    """
     Returns the number of fractions lying between 1/3 and 1/2 in the sorted set of reduced proper fractions for d ≤ 12,000.
 
     >>> solution(500)
@@ -44,20 +44,23 @@ def solution(d: int = 12000) -> int:
     7295372
     >>> solution()
     7295372
-    '''
+    """
 
     result = 0
 
     # loop through all the possible fractions for a given value of d
     for numerator in range(1, d):
-        for denominator in range(numerator+1, d+1):
+        for denominator in range(numerator + 1, d + 1):
 
             # count only if the fractions are reduced and lie in the range (1/3, 1/2)
-            if highest_common_factor(numerator, denominator) == 1 and 1/3 < numerator/denominator < 1/2:
+            if (
+                highest_common_factor(numerator, denominator) == 1
+                and 1 / 3 < numerator / denominator < 1 / 2
+            ):
                 result += 1
 
     return result
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(f"{solution() = }")
