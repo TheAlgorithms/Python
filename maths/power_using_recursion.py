@@ -23,7 +23,16 @@ def power(base: int, exponent: int) -> int:
     ...     for base in range(-10, 10) for exponent in range(10))
     True
     """
-    return base * power(base, (exponent - 1)) if exponent else 1
+    if exponent == 0:
+        if base == 0:
+            raise ValueError("0^0 is undefined!")
+        return 1
+    if exponent == 1:
+        return base
+    if exponent % 2 == 0:
+        return power(base * base, exponent // 2)
+    else:
+        return base * power(base * base, (exponent - 1) // 2)
 
 
 if __name__ == "__main__":
@@ -32,5 +41,5 @@ if __name__ == "__main__":
     exponent = int(input("Enter the exponent: ").strip())
     result = power(base, abs(exponent))
     if exponent < 0:  # power() does not properly deal w/ negative exponents
-        result = 1 / result
+        result = 1.0 / result
     print(f"{base} to the power of {exponent} is {result}")
