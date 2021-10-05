@@ -23,8 +23,8 @@ def lagrange(X: List, Y: List) -> List:
             check = False
             for j in range(0, len(X)):
                 if i is not j and check is False:
-                    Lp = (pt - X[j]) / (X[i] - X[j])
-                    L = Lp
+                    line = (pt - X[j]) / (X[i] - X[j])
+                    L = line
                     check = True
                 elif i is not j:
                     L = L * (pt - X[j]) / (X[i] - X[j])
