@@ -3,7 +3,7 @@
 
 def climb_stairs(n: int) -> int:
     """
-    LeetCdoe No.70: Climbing Stairs
+    LeetCode No.70: Climbing Stairs
     Distinct ways to climb a n step staircase where
     each time you can either climb 1 or 2 steps.
 
