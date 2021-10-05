@@ -14,7 +14,7 @@ References
 """
 
 
-def highest_common_factor(x: int, y: int) -> int:
+def highest_common_factor(number_1: int, number_2: int) -> int:
     """
     Implements the Euclid's division lemma to find the greatest common divisor of two numbers; using recursion.
 
@@ -26,10 +26,10 @@ def highest_common_factor(x: int, y: int) -> int:
     2
     """
 
-    if y == 0:
-        return x
+    if number_2 == 0:
+        return number_1
 
-    return highest_common_factor(y, x % y)
+    return highest_common_factor(number_2, number_1 % number_2)
 
 
 def solution(d: int = 12000) -> int:
@@ -48,7 +48,7 @@ def solution(d: int = 12000) -> int:
 
     result = 0
 
-    # loop through all the possible fractions for a given value of d
+    # loop through all the possible fractions for a given value of `d`
     for numerator in range(1, d):
         for denominator in range(numerator + 1, d + 1):
 
