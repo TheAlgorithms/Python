@@ -9,9 +9,9 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 
 # a function which trains a XGBClassifier model
-def train_XGBClassifier(X_train, y_train):
+def train_xgbclassifier(x_train, y_train):
     xgb_classifier = XGBClassifier(n_estimators = 100, random_state = 40)
-    xgb_classifier.fit(X_train, y_train)
+    xgb_classifier.fit(x_train, y_train)
     return xgb_classifier
 
 # main function to illustrate working of XGBClassifier
@@ -22,16 +22,16 @@ def main():
     iris_dataset = pd.read_csv(url, names = names)
     
     X = iris_dataset.iloc[:, 0:4]       # features           
-    y = iris_dataset.iloc[:, 4]         # predictors
+    Y = iris_dataset.iloc[:, 4]         # predictors
 
     # splitting X and Y into train and test sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 40)
+    x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size = 0.2, random_state = 40)
 
     # building a XGBClassifier model
-    model =  train_XGBClassifier(X_train, y_train)
+    model =  train_xgblassifier(x_train, y_train)
 
     # making predictions on test set
-    y_pred = model.predict(X_test)
+    y_pred = model.predict(x_test)
 
     # using some common evaluation metrics to evaluate the model performance
     # accuracy score
