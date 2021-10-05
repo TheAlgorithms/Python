@@ -43,6 +43,7 @@ def main() -> none:
     # confusion matrix
     print("\nConfusion Matrix:\n")
     print(confusion_matrix(y_test, y_pred))
+    doctest.testmod(name = 'main', verbose = True)
 
 if __name__ == '__main__':
-    doctest.testmod(name = 'main', verbose = True)
+    main()
