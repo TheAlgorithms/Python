@@ -10,7 +10,7 @@ a polynomial of degree n given n-1 points
 """
 
 
-def lagrange(X: List, Y: List) -> List:
+def lagrange(x_coordinate: List, y_coordinate: List) -> List:
     """
     the lagrange method that takes n points as input and return a pandas dataframe
     """
@@ -23,16 +23,16 @@ def lagrange(X: List, Y: List) -> List:
             check = False
             for j in range(0, len(X)):
                 if i is not j and check is False:
-                    line = (pt - X[j]) / (X[i] - X[j])
+                    line = (pt - x_coordinate[j]) / (x_coordinate[i] - x_coordinate[j])
                     L = line
                     check = True
                 elif i is not j:
-                    L = L * (pt - X[j]) / (X[i] - X[j])
+                    L = L * (pt - x_coordinate[j]) / (x_coordinate[i] - x_coordinate[j])
             if condition is False:
-                P = Y[i] * L
+                P = y_coordinate[i] * L
                 condition = True
             else:
-                P = Y[i] * L + P
+                P = y_coordinate[i] * L + P
         dataframe = dataframe.append(
             pd.Series([pt, P], index=my_columns), ignore_index=True
         )
