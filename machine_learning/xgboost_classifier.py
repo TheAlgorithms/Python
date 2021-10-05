@@ -45,5 +45,4 @@ def main() -> none:
     print(confusion_matrix(y_test, y_pred))
 
 if __name__ == '__main__':
-    main()
-    doctest.testmod()
+    doctest.testmod(name = 'main', verbose = True)
