@@ -10,9 +10,6 @@ Reference: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 doctest provider: Bruno Simas Hadlich (https://github.com/brunohadlich)
 Also thanks to Dmitry (https://github.com/LizardWizzard) for finding the problem
 """
-from __future__ import annotations
-
-import math
 
 
 def prime_sieve(num: int) -> list[int]:
@@ -33,32 +30,34 @@ def prime_sieve(num: int) -> list[int]:
     []
     """
 
-    if num <= 0:
-        raise ValueError(f"{num}: Invalid input, please enter a positive integer.")
+    if num < 2:
+        return []
 
     sieve = [True] * (num + 1)
-    prime = []
-    start = 2
-    end = int(math.sqrt(num))
+    sieve[0] = sieve[1] = False
 
-    while start <= end:
-        # If start is a prime
-        if sieve[start] is True:
-            prime.append(start)
+    # Do even numbers separately
+    primes = [2]
+    for i in range(4, num + 1, 2):
+        sieve[i] = False
+
+    p = 3
+    while p * p <= num:
+        # If p is a prime
+        if sieve[p] is True:
+            primes.append(p)
 
             # Set multiples of start be False
-            for i in range(start * start, num + 1, start):
-                if sieve[i] is True:
-                    sieve[i] = False
+            for i in range(p * p, num + 1, p):
+                sieve[i] = False
+        p += 2
 
-        start += 1
+    for i in range(p, num + 1, 2):
+        if sieve[i] is True:
+            primes.append(i)
 
-    for j in range(end + 1, num + 1):
-        if sieve[j] is True:
-            prime.append(j)
-
-    return prime
+    return primes
 
 
 if __name__ == "__main__":
-    print(prime_sieve(int(input("Enter a positive integer: ").strip())))
+    print(prime_sieve(int(input("Get all primes less than or equal to: ").strip())))
