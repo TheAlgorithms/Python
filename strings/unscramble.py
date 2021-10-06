@@ -5,12 +5,12 @@ import nltk
 try:
     from nltk.corpus import words
 except LookupError:
-    nltk.download('words')
+    nltk.download("words")
 
 dictionary = set(w.lower() for w in words.words())
 
 
-def get_actual_word(test_word: str) -> set :
+def get_actual_word(test_word: str) -> set:
 
     """[Unscrambles the input into a meaningful word/words]
 
@@ -28,6 +28,10 @@ def get_actual_word(test_word: str) -> set :
     Traceback (most recent call last):
     ...
     ValueError: NOT-A-STRING
+    >>> get_actual_word("cl@#$$@$@@!!!")
+    Traceback (most recent call last):
+    ...
+    ValueError: NOT-A-STRING
     >>> get_actual_word("")
     Traceback (most recent call last):
     ...
@@ -37,16 +41,13 @@ def get_actual_word(test_word: str) -> set :
     if not test_word.isalpha():
         raise ValueError("NOT-A-STRING")
 
-    scrambled_words = [''.join(i) for i in permutations(test_word)]
-    solutions = []
+    scrambled_words = {"".join(i) for i in permutations(test_word)}
+    solutions = {word for word in scrambled_words if word in dictionary}
 
-    for word in set(scrambled_words):
-        if word in dictionary :
-            solutions.append(word)
-
-    return set(solutions)
+    return solutions
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
