@@ -1,0 +1,12 @@
+print("Let's find out the possible combinations of three digits")
+dig1 = int(input('Enter the first digit: '))
+dig2 = int(input('Enter the second digit: '))
+dig3 = int(input('Enter the third digit: '))
+
+print('The possible combinations are:')
+print(dig1,dig2,dig3)
+print(dig1,dig3,dig2)
+print(dig2,dig1,dig3)
+print(dig2,dig3,dig1)
+print(dig3,dig2,dig1)
+print(dig3,dig1,dig2)
