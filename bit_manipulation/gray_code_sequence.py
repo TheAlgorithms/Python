@@ -1,4 +1,4 @@
-def gray_code(n: int) -> list:
+def gray_code(bit_count: int) -> list:
     """
     Takes in an integer n and returns a n-bit
     gray code sequence
@@ -32,11 +32,13 @@ def gray_code(n: int) -> list:
         ...
     TypeError: unsupported operand type(s) for <<: 'int' and 'float'
     """
-    if n < 0:
+
+    # bit count represents no. of bits in the gray code
+    if bit_count < 0:
         raise ValueError("The given input must be positive")
 
     # get the generated string sequence
-    sequence = gray_code_sequence_string(n)
+    sequence = gray_code_sequence_string(bit_count)
     #
     # convert them to integers
     for i in range(len(sequence)):
@@ -45,7 +47,7 @@ def gray_code(n: int) -> list:
     return sequence
 
 
-def gray_code_sequence_string(n: int) -> list:
+def gray_code_sequence_string(bit_count: int) -> list:
     """
     Will output the n-bit grey sequence as a
     string of bits
@@ -59,17 +61,17 @@ def gray_code_sequence_string(n: int) -> list:
 
     # The approach is a recursive one
     # Base case achieved when either n = 0 or n=1
-    if n == 0:
+    if bit_count == 0:
         return ["0"]
 
-    if n == 1:
+    if bit_count == 1:
         return ["0", "1"]
 
-    seq_len = 1 << n  # defines the length of the sequence
+    seq_len = 1 << bit_count  # defines the length of the sequence
     # 1<< n is equivalent to 2^n
 
     # recursive answer will generate answer for n-1 bits
-    smaller_sequence = gray_code_sequence_string(n - 1)
+    smaller_sequence = gray_code_sequence_string(bit_count - 1)
 
     sequence = []
 
