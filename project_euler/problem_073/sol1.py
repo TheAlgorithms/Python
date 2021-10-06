@@ -13,23 +13,7 @@ References
 
 """
 
-
-def highest_common_factor(number_1: int, number_2: int) -> int:
-    """
-    Implements the Euclid's division lemma to find the greatest common divisor of two numbers; using recursion.
-
-    >>> highest_common_factor(5, 7)
-    1
-    >>> highest_common_factor(50, 75)
-    25
-    >>> highest_common_factor(12, 14)
-    2
-    """
-
-    if number_2 == 0:
-        return number_1
-
-    return highest_common_factor(number_2, number_1 % number_2)
+from math import gcd
 
 
 def solution(d: int = 12000) -> int:
@@ -48,14 +32,13 @@ def solution(d: int = 12000) -> int:
 
     result = 0
 
-    # loop through all the possible fractions for a given value of `d`
+    # loop through all the possible fractions for a given value of d
     for numerator in range(1, d):
         for denominator in range(numerator + 1, d + 1):
-
             # count only if the fractions are reduced and lie in the range (1/3, 1/2)
             if (
-                highest_common_factor(numerator, denominator) == 1
-                and 1 / 3 < numerator / denominator < 1 / 2
+                0.333333 < numerator / denominator < 0.5
+                and gcd(numerator, denominator) == 1
             ):
                 result += 1
 
