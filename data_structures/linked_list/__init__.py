@@ -6,28 +6,31 @@ Nodes contain data and also may link to other nodes:
     - Last node: points to null
 """
 
-from typing import Any
+from typing import Generic, Optional, TypeVar
+
+T = TypeVar("T")
 
 
-class Node:
-    def __init__(self, item: Any, next: Any) -> None:
+class Node(Generic[T]):
+    def __init__(self, item: T, next: Optional["Node[T]"]) -> None:
         self.item = item
         self.next = next
 
 
-class LinkedList:
+class LinkedList(Generic[T]):
     def __init__(self) -> None:
-        self.head = None
+        self.head: Optional[Node[T]] = None
         self.size = 0
 
-    def add(self, item: Any) -> None:
+    def add(self, item: T) -> None:
         self.head = Node(item, self.head)
         self.size += 1
 
-    def remove(self) -> Any:
+    def remove(self) -> Optional[T]:
         if self.is_empty():
             return None
         else:
+            assert self.head is not None
             item = self.head.item
             self.head = self.head.next
             self.size -= 1
