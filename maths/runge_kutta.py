@@ -8,15 +8,17 @@ def runge_kutta(f, y0, x0, h, x_end):
     https://en.wikipedia.org/wiki/Runge-Kutta_methods
 
     Arguments:
-    f -- The ode as a function of x and y
+    f -- The ODE as a f(x,y)
     y0 -- the initial value for y
     x0 -- the initial value for x
     h -- the stepsize
     x_end -- the end value for x
 
-    >>> # the exact solution is math.exp(x)
     >>> def f(x, y):
     ...     return y
+    #We can Enter Any Function
+    
+    
     >>> y0 = 1
     >>> y = runge_kutta(f, y0, 0.0, 0.01, 5)
     >>> y[-1]
@@ -32,7 +34,7 @@ def runge_kutta(f, y0, x0, h, x_end):
         k2 = f(x + 0.5 * h, y[k] + 0.5 * h * k1)
         k3 = f(x + 0.5 * h, y[k] + 0.5 * h * k2)
         k4 = f(x + h, y[k] + h * k3)
-        y[k + 1] = y[k] + (1 / 6) * h * (k1 + 2 * k2 + 2 * k3 + k4)
+        y[k + 1] = y[k] + (1.0 / 6.0) * h * (k1 + 2 * k2 + 2 * k3 + k4)
         x += h
 
     return y
