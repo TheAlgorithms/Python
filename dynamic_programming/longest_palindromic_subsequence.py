@@ -4,23 +4,23 @@
 from __future__ import annotations
 
 # function for length of longest palindromic subsequence 
-def longestPalindromeSubseq(s: str) -> int:
+def longest_palindrome_subseq(sequence: str) -> int:
 
     """
     Some examples
-    >>> longestPalindromeSubseq('sdsda')
+    >>> longest_palindrome_subseq('sdsda')
     3
-    >>> longestPalindromeSubseq('cbbd')
+    >>> longest_palindrome_subseq('cbbd')
     2
-    >>> longestPalindromeSubseq('as')
+    >>> longest_palindrome_subseq('as')
     1
-    >>> longestPalindromeSubseq('l')
+    >>> longest_palindrome_subseq('l')
     1
-    >>> longestPalindromeSubseq('')
+    >>> longest_palindrome_subseq('')
     0
     """
     
-    N = len(s)
+    N = len(sequence)
 
     if N == 0:
         return 0
@@ -30,7 +30,7 @@ def longestPalindromeSubseq(s: str) -> int:
         dp[i][i] = 1
     for r in range(N-2, -1, -1):
         for c in range(r+1, N):
-            if s[r] == s[c]:
+            if sequence[r] == sequence[c]:
                 dp[r][c] = 2 + dp[r+1][c-1] 
             else:
                 dp[r][c] = max(dp[r+1][c], dp[r][c-1])
