@@ -102,6 +102,6 @@ def test_stack() -> None:
     assert 5 in stack
     assert 55 not in stack
 
-
+"""Main function"""
 if __name__ == "__main__":
     test_stack()
