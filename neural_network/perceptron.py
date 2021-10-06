@@ -13,8 +13,8 @@ import random
 class Perceptron:
     def __init__(
         self,
-        sample: list[list[float]],
-        target: list[int],
+        sample: [[float]],
+        target: [int],
         learning_rate: float = 0.01,
         epoch_number: int = 1000,
         bias: float = -1,
@@ -56,80 +56,85 @@ class Perceptron:
         self.weight: list = []
 
     def training(self) -> None:
-        """
-        Trains perceptron for epochs <= given number of epochs
-        :return: None
-        >>> data = [[2.0149, 0.6192, 10.9263]]
-        >>> targets = [-1]
-        >>> perceptron = Perceptron(data,targets)
-        >>> perceptron.training() # doctest: +ELLIPSIS
-        ('\\nEpoch:\\n', ...)
-        ...
-        """
-        for sample in self.sample:
-            sample.insert(0, self.bias)
+        try:
+            """
+            Trains perceptron for epochs <= given number of epochs
+            :return: None
+            >>> data = [[2.0149, 0.6192, 10.9263]]
+            >>> targets = [-1]
+            >>> perceptron = Perceptron(data,targets)
+            >>> perceptron.training() # doctest: +ELLIPSIS
+            ('\\nEpoch:\\n', ...)
+            ...
+            """
+            for sample in self.sample:
+                sample.insert(0, self.bias)
 
-        for i in range(self.col_sample):
-            self.weight.append(random.random())
+            for i in range(self.col_sample):
+                self.weight.append(random.random())
 
-        self.weight.insert(0, self.bias)
+            self.weight.insert(0, self.bias)
 
-        epoch_count = 0
+            epoch_count = 0
 
-        while True:
-            has_misclassified = False
-            for i in range(self.number_sample):
-                u = 0
-                for j in range(self.col_sample + 1):
-                    u = u + self.weight[j] * self.sample[i][j]
-                y = self.sign(u)
-                if y != self.target[i]:
+            while True:
+                has_misclassified = False
+                for i in range(self.number_sample):
+                    u = 0
                     for j in range(self.col_sample + 1):
-                        self.weight[j] = (
-                            self.weight[j]
-                            + self.learning_rate
-                            * (self.target[i] - y)
-                            * self.sample[i][j]
-                        )
-                    has_misclassified = True
-            # print('Epoch: \n',epoch_count)
-            epoch_count = epoch_count + 1
-            # if you want control the epoch or just by error
-            if not has_misclassified:
-                print(("\nEpoch:\n", epoch_count))
-                print("------------------------\n")
-                # if epoch_count > self.epoch_number or not error:
-                break
+                        u = u + self.weight[j] * self.sample[i][j]
+                    y = self.sign(u)
+                    if y != self.target[i]:
+                        for j in range(self.col_sample + 1):
+                            self.weight[j] = (
+                                self.weight[j]
+                                + self.learning_rate
+                                * (self.target[i] - y)
+                                * self.sample[i][j]
+                            )
+                        has_misclassified = True
+                # print('Epoch: \n',epoch_count)
+                epoch_count = epoch_count + 1
+                # if you want control the epoch or just by error
+                if not has_misclassified:
+                    print("\nEpoch: ", epoch_count)
+                    print("------------------------\n")
+                    # if epoch_count > self.epoch_number or not error:
+                    break
+        except:
+            print("Training failed")
+    def sort(self, sample: [float]) -> None:
+        try:
+            """
+            :param sample: example row to classify as P1 or P2
+            :return: None
+            >>> data = [[2.0149, 0.6192, 10.9263]]
+            >>> targets = [-1]
+            >>> perceptron = Perceptron(data,targets)
+            >>> perceptron.training() # doctest: +ELLIPSIS
+            ('\\nEpoch:\\n', ...)
+            ...
+            >>> perceptron.sort([-0.6508, 0.1097, 4.0009]) # doctest: +ELLIPSIS
+            ('Sample: ', ...)
+            classification: P...
+            """
+            if len(self.sample) == 0:
+                raise ValueError("Sample data can not be empty")
+            sample.insert(0, self.bias)
+            u = 0
+            for i in range(self.col_sample):
+                u = u + self.weight[i] * sample[i]
+            
+            y = self.sign(u)
 
-    def sort(self, sample: list[float]) -> None:
-        """
-        :param sample: example row to classify as P1 or P2
-        :return: None
-        >>> data = [[2.0149, 0.6192, 10.9263]]
-        >>> targets = [-1]
-        >>> perceptron = Perceptron(data,targets)
-        >>> perceptron.training() # doctest: +ELLIPSIS
-        ('\\nEpoch:\\n', ...)
-        ...
-        >>> perceptron.sort([-0.6508, 0.1097, 4.0009]) # doctest: +ELLIPSIS
-        ('Sample: ', ...)
-        classification: P...
-        """
-        if len(self.sample) == 0:
-            raise ValueError("Sample data can not be empty")
-        sample.insert(0, self.bias)
-        u = 0
-        for i in range(self.col_sample + 1):
-            u = u + self.weight[i] * sample[i]
-
-        y = self.sign(u)
-
-        if y == -1:
-            print(("Sample: ", sample))
-            print("classification: P1")
-        else:
-            print(("Sample: ", sample))
-            print("classification: P2")
+            if y == -1:
+                print(("Sample: ", sample))
+                print("classification: P1")
+            else:
+                print(("Sample: ", sample))
+                print("classification: P2")
+        except:
+            print("Error")
 
     def sign(self, u: float) -> int:
         """
@@ -219,20 +224,20 @@ exit = [
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(verbose=True, optionflags=doctest.ELLIPSIS)
 
     network = Perceptron(
-        sample=samples, target=exit, learning_rate=0.01, epoch_number=1000, bias=-1
-    )
+        sample=[x[:] for x in samples], target=exit, learning_rate=0.01, epoch_number=1000, bias=-1
+    )               # [x[:] for x in samples] ensures copy of samples, not affecting original list
     network.training()
     print("Finished training perceptron")
-    print("Enter values to predict or q to exit")
-    while True:
+    user_input = ""
+    while user_input!="q":
+        print("Enter values to predict")
         sample: list = []
         for i in range(len(samples[0])):
             user_input = input("value: ").strip()
-            if user_input == "q":
-                break
             observation = float(user_input)
             sample.insert(i, observation)
         network.sort(sample)
+        user_input = input("Try again? (Enter to continue, q to quit)\n")
