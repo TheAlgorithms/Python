@@ -5,7 +5,6 @@ A number chain is created by continuously adding the square of the digits in
 a number to form a new number until it has been seen before.
 
 For example,
-
 44 → 32 → 13 → 10 → 1 → 1
 85 → 89 → 145 → 42 → 20 → 4 → 16 → 37 → 58 → 89
 
