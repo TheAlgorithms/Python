@@ -1,6 +1,7 @@
 def reverse_letters(input_str: str) -> str:
     """
     Reverses letters in a given string without adjusting the position of the words
+    with using function..
     >>> reverse_letters('The cat in the hat')
     'ehT tac ni eht tah'
     >>> reverse_letters('The quick brown fox jumped over the lazy dog.')
