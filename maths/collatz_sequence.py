@@ -7,7 +7,6 @@ def collatz_sequence(n: int) -> list[int]:
     obtained as follows:
         If n term is even, the next term is: n / 2 .
         If n is odd, the next term is: 3 * n + 1.
-
     The conjecture states the sequence will always reach 1 for any starting value n.
     Example:
     >>> collatz_sequence(2.1)
@@ -34,10 +33,10 @@ def collatz_sequence(n: int) -> list[int]:
 
 
 def main():
-    n = 43
+    n = int(input("Your number: "))
     sequence = collatz_sequence(n)
     print(sequence)
-    print(f"collatz sequence from {n} took {len(sequence)} steps.")
+    print(f"Collatz sequence from {n} took {len(sequence)} steps.")
 
 
 if __name__ == "__main__":
