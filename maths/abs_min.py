@@ -8,7 +8,7 @@ class abshead:
         0
         >> abs_min([-4,-73,12,-1])
         -1
-        >>> abs_max([])
+        >>> abs_min([])
         Traceback (most recent call last):
         ValueError: abs_min() arg is an empty sequence
         
