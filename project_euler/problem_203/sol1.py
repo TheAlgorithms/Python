@@ -75,17 +75,15 @@ def get_primes_squared(max_number: int) -> list[int]:
     >>> get_primes_squared(100)
     [4, 9, 25, 49]
     """
-    max_prime = round(math.sqrt(max_number))
-    non_primes = set()
+    max_prime = math.isqrt(max_number)
+    non_primes = [False] * (max_prime + 1)
     primes = []
     for num in range(2, max_prime + 1):
-        if num in non_primes:
+        if non_primes[num]:
             continue
 
-        counter = 2
-        while num * counter <= max_prime:
-            non_primes.add(num * counter)
-            counter += 1
+        for num_counter in range(num ** 2, max_prime + 1, num):
+            non_primes[num_counter] = True
 
         primes.append(num ** 2)
     return primes
