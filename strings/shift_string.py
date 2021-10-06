@@ -1,7 +1,7 @@
 # Shifts the charcter by 1 through it's ACII
 
 
-def shiftString(originalStr: str, shift: int = 1):
+def shiftString(originalStr: str, shift: int = 1) -> str:
     """
     Shifts the charcter by 1 through it's ACII
     >>> shiftString('Hello')
