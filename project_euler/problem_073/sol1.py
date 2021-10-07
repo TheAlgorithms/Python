@@ -37,7 +37,7 @@ def solution(d: int = 12000) -> int:
         for denominator in range(numerator + 1, d + 1):
             # count only if the fractions are reduced and lie in the range (1/3, 1/2)
             if (
-                0.333333 < numerator / denominator < 0.5
+                1/3 < numerator / denominator < 0.5
                 and gcd(numerator, denominator) == 1
             ):
                 result += 1
