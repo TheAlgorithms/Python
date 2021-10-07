@@ -81,13 +81,13 @@ def atmospheres_to_milimeter_mercury(atm: float, unit: str) -> float:
     ValueError: could not convert string to float: 'atmos'
     """
     if unit == "atm":
-        mmHg = float(atm) * 760
-        return mmHg
+        mm_hg = float(atm) * 760
+        return mm_hg
     else:
         return "Invalid unit"
 
 
-def milimeter_mercury_to_atmospheres(mmHg: float, unit: str) -> float:
+def milimeter_mercury_to_atmospheres(mm_hg: float, unit: str) -> float:
     """
     This function converts mmHg to atm
     Wikipedia reference: https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
@@ -107,7 +107,7 @@ def milimeter_mercury_to_atmospheres(mmHg: float, unit: str) -> float:
     ValueError: could not convert string to float: 'merc'
     """
     if unit == "mmHg":
-        atm = float(mmHg) / 760
+        atm = float(mm_hg) / 760
         return atm
     else:
         return "Invalid unit"
@@ -133,13 +133,13 @@ def atmospheres_to_pascals(atm: float, unit: str) -> float:
     ValueError: could not convert string to float: 'ats'
     """
     if unit == "atm":
-        Pa = float(atm) * 101325
-        return Pa
+        pa = float(atm) * 101325
+        return pa
     else:
         return "Invalid unit"
 
 
-def pascals_to_atmospheres(Pa: float, unit: str) -> float:
+def pascals_to_atmospheres(pa: float, unit: str) -> float:
     """
     This function converts Pa to atm
     Wikipedia reference: https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
@@ -160,7 +160,7 @@ def pascals_to_atmospheres(Pa: float, unit: str) -> float:
     """
 
     if unit == "Pa":
-        atm = float(Pa) / 101325
+        atm = float(pa) / 101325
         return atm
     else:
         return "Invalid unit"
@@ -186,13 +186,13 @@ def bars_to_milimeter_mercury(bar: float, unit: str) -> float:
     ValueError: could not convert string to float: 'brs'
     """
     if unit == "bar":
-        mmHg = float(bar) * round(760 / 1.01325, 2)
-        return mmHg
+        mm_hg = float(bar) * round(760 / 1.01325, 2)
+        return mm_hg
     else:
         return "Invalid unit"
 
 
-def milimeter_mercury_to_bars(mmHg: float, unit: str) -> float:
+def milimeter_mercury_to_bars(mm_hg: float, unit: str) -> float:
     """
     This function converts mmHg to bar
     Wikipedia reference: https://en.wikipedia.org/wiki/Bar_(unit)
@@ -212,7 +212,7 @@ def milimeter_mercury_to_bars(mmHg: float, unit: str) -> float:
     ValueError: could not convert string to float: 'brs'
     """
     if unit == "mmHg":
-        bar = float(mmHg) / round(760 / 1.01325, 2)
+        bar = float(mm_hg) / round(760 / 1.01325, 2)
         return bar
     else:
         return "Invalid unit"
@@ -238,13 +238,13 @@ def bars_to_pascals(bar: float, unit: str) -> float:
     ValueError: could not convert string to float: 'bP'
     """
     if unit == "bar":
-        Pa = float(bar) * 100000
-        return Pa
+        pa = float(bar) * 100000
+        return pa
     else:
         return "Invalid unit"
 
 
-def pascals_to_bars(Pa: float, unit: str) -> float:
+def pascals_to_bars(pa: float, unit: str) -> float:
     """
     This function converts Pa to bar
     Wikipedia reference: https://en.wikipedia.org/wiki/Bar_(unit)
@@ -264,13 +264,13 @@ def pascals_to_bars(Pa: float, unit: str) -> float:
     ValueError: could not convert string to float: 'pass'
     """
     if unit == "Pa":
-        bar = float(Pa) / 100000
+        bar = float(pa) / 100000
         return bar
     else:
         return "Invalid unit"
 
 
-def milimeter_mercury_to_pascals(mmHg: float, unit: str) -> float:
+def milimeter_mercury_to_pascals(mm_hg: float, unit: str) -> float:
     """
     This function converts mmHg to Pa
     Wikipedia reference: https://en.wikipedia.org/wiki/Millimetre_of_mercury
@@ -290,13 +290,13 @@ def milimeter_mercury_to_pascals(mmHg: float, unit: str) -> float:
     ValueError: could not convert string to float: 'mercurium'
     """
     if unit == "mmHg":
-        Pa = float(mmHg) * round(101325 / 760, 2)
-        return Pa
+        pa = float(mm_hg) * round(101325 / 760, 2)
+        return pa
     else:
         return "Invalid unit"
 
 
-def pascals_to_milimeter_mercury(Pa: float, unit: str) -> float:
+def pascals_to_milimeter_mercury(pa: float, unit: str) -> float:
     """
     This function converts Pa to mmHg
     Wikipedia reference: https://en.wikipedia.org/wiki/Millimetre_of_mercury
@@ -316,8 +316,8 @@ def pascals_to_milimeter_mercury(Pa: float, unit: str) -> float:
     ValueError: could not convert string to float: 'merc'
     """
     if unit == "Pa":
-        mmHg = float(Pa) / round(101325 / 760, 2)
-        return mmHg
+        mm_hg = float(pa) / round(101325 / 760, 2)
+        return mm_hg
     else:
         return "Invalid unit"
 
@@ -326,6 +326,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-
-# print(atmospeheres_to_bars("19", "mmHg"))
