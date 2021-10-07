@@ -1,6 +1,6 @@
 """
-HARMONIC MEAN : https://en.wikipedia.org/wiki/Harmonic_mean
-
+Harmonic mean
+Reference: https://en.wikipedia.org/wiki/Harmonic_mean
 """
 
 
