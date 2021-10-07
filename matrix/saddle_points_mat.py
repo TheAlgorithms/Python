@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-def saddle_points(M: list[list]) -> str:
+def saddle_points(matrix: list[list]) -> str:
     """
-    >>> M = [[1,2,3],[4,5,6],[7,8,9]]
-    >>> saddle_points(M)
+    >>> matrix = [[1,2,3],[4,5,6],[7,8,9]]
+    >>> saddle_points(matrix)
     ('Saddle point(s) is/are: ', {(2, 0)}, 'Value(s) is/are: ', [7])
-    >>> M = [[4,4,2],[3,3,7],[8,8,8]]
-    >>> saddle_points(M)
+    >>> matrix = [[4,4,2],[3,3,7],[8,8,8]]
+    >>> saddle_points(matrix)
     ('Saddle point(s) is/are: ', {(2, 0), (2, 1), (2, 2)}, 'Value(s) is/are: ', [8, 8, 8])
-    >>> M = [[6,4,8],[7,3,2],[2,1,2]]
-    >>> saddle_points(M)
+    >>> matrix = [[6,4,8],[7,3,2],[2,1,2]]
+    >>> saddle_points(matrix)
     ('Saddle point(s) is/are: ', {(0, 1)}, 'Value(s) is/are: ', [4])
     """
     """
@@ -20,15 +20,15 @@ def saddle_points(M: list[list]) -> str:
     
 
     SP = []
-    N = list(zip(*M))
+    N = list(zip(*matrix))
     points = set()
-    for i, row in enumerate(M):
+    for i, row in enumerate(matrix):
         for j, x in enumerate(row):
             if (x == min(row) and x == max(N[j])): 
                     points.add((i, j))
     L = list(points)
     for i in range(len(L)):
-        SP.append(M[(L[i])[0]][(L[i])[1]])
+        SP.append(matrix[(L[i])[0]][(L[i])[1]])
     return "Saddle point(s) is/are: ", points, "Value(s) is/are: ", SP
 
 if __name__ == "__main__":
