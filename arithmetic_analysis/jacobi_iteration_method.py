@@ -1,6 +1,7 @@
 import numpy as np
 
 
+# Method to find solution of system of linear equations
 def jacobi_iteration_method(
     coefficient_matrix: np.ndarray,
     constant_matrix: np.ndarray,
@@ -115,6 +116,7 @@ def jacobi_iteration_method(
     if isDiagonallyDominant is False:
         raise ValueError("Coefficient matrix is not strictly diagonally dominant")
 
+    # Iterates the whole matrix for given number of times
     for i in range(0, iterations):
         new_val = []
         for row in range(0, rows):
@@ -133,6 +135,7 @@ def jacobi_iteration_method(
     return new_val
 
 
+# Checks if the given matrix is strictly diagonally dominant
 def strictly_diagonally_dominant(table: np.ndarray) -> bool:
 
     rows, cols = table.shape
@@ -154,6 +157,7 @@ def strictly_diagonally_dominant(table: np.ndarray) -> bool:
     return isDiagonallyDominant
 
 
+# Test Cases
 if __name__ == "__main__":
     import doctest
 
