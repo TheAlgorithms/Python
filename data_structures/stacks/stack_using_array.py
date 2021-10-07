@@ -1,5 +1,10 @@
-class Stack:
-    def __init__(self, capacity=100):
+from typing import Generic, TypeVar
+
+T = TypeVar("T")
+
+
+class Stack(Generic[T]):
+    def __init__(self, capacity=100) -> None:
         """Stack implementation using a static array"""
 
         self.__capacity = capacity
@@ -7,7 +12,7 @@ class Stack:
         self.__size = 0
         self.__top = -1
 
-    def push(self, value):
+    def push(self, value: T) -> None:
         """Insert an item to the top of the stack
         >>> stack = Stack(3)
 
@@ -29,7 +34,7 @@ class Stack:
         self.__stack[self.__top] = value
         self.__size += 1
 
-    def peek(self):
+    def peek(self) -> T:
         """Return the top item of the stack
         >>> stack = Stack(3)
 
@@ -52,7 +57,7 @@ class Stack:
 
         return self.__stack[self.__top]
 
-    def pop(self):
+    def pop(self) -> T:
         """Remove an item from the top of the stack
 
         >>> stack = Stack(3)
@@ -84,10 +89,10 @@ class Stack:
 
         return deleted
 
-    def get_capacity(self):
+    def get_capacity(self) -> int:
         return self.__capacity
 
-    def size(self):
+    def size(self) -> int:
         """Returns the length of the stack
         >>> stack = Stack(3)
         >>> stack.size()
@@ -103,7 +108,7 @@ class Stack:
 
         return self.__size
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """Returns True if the stack is empty
 
         >>> stack = Stack(3)
@@ -119,7 +124,7 @@ class Stack:
 
         return not self.__size
 
-    def display(self):
+    def display(self) -> None:
         """Print each item inside the stack
         >>> stack = Stack(3)
 
@@ -141,7 +146,7 @@ class Stack:
 
         print("]")
 
-    def is_full(self):
+    def is_full(self) -> bool:
         """Returns True if the stack is full
 
         >>> stack = Stack(3)
@@ -159,7 +164,7 @@ class Stack:
 
         return self.__size == self.__capacity
 
-    def __resize(self):
+    def __resize(self) -> None:
         """Double the size of the stack when it's full"""
 
         self.__capacity *= 2
