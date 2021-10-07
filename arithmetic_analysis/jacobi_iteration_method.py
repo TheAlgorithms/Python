@@ -1,3 +1,7 @@
+"""
+Jacobi Iteration Method - https://en.wikipedia.org/wiki/Jacobi_method
+"""
+
 import numpy as np
 
 
