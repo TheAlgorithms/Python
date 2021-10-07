@@ -58,7 +58,7 @@ def carrier_concentration(
     elif hole_conc == 0:
         return (
             "hole_conc",
-            intrinsic_conc * intrinsic_conc / electron_conc,
+            intrinsic_conc ** 2 / electron_conc,
         )
     elif intrinsic_conc == 0:
         return (
