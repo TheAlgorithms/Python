@@ -4,6 +4,24 @@ Find the area of various geometric shapes
 from math import pi, sqrt
 
 
+def int_round(num: int): -> int:
+    """
+    Converts float inputs ending in .0 to integers.
+    >>> int_round(5.0)
+    5
+    >>> int_round(5.5)
+    5.5
+    >>> int_round("five")
+    Traceback (most recent call last):
+        ...
+    TypeError: not all arguments converted during string formatting
+    """
+    if num % 1 == 0:
+        return int(num)
+    else:
+        return(num)
+
+
 def surface_area_cube(side_length: float) -> float:
     """
     Calculate the Surface Area of a Cube.
@@ -103,7 +121,7 @@ def area_triangle(base: float, height: float) -> float:
     """
     if base < 0 or height < 0:
         raise ValueError("area_triangle() only accepts non-negative values")
-    return (base * height) / 2
+    return int_round((base * height) / 2)
 
 
 def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float:
@@ -136,7 +154,7 @@ def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float
         * (semi_perimeter - side2)
         * (semi_perimeter - side3)
     )
-    return area
+    return int_round(area)
 
 
 def area_parallelogram(base: float, height: float) -> float:
@@ -200,7 +218,7 @@ def area_trapezium(base1: float, base2: float, height: float) -> float:
     """
     if base1 < 0 or base2 < 0 or height < 0:
         raise ValueError("area_trapezium() only accepts non-negative values")
-    return 1 / 2 * (base1 + base2) * height
+    return int_round(1 / 2 * (base1 + base2) * height)
 
 
 def area_circle(radius: float) -> float:
@@ -266,7 +284,7 @@ def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     """
     if diagonal_1 < 0 or diagonal_2 < 0:
         raise ValueError("area_rhombus() only accepts non-negative values")
-    return 1 / 2 * diagonal_1 * diagonal_2
+    return int_round(1 / 2 * diagonal_1 * diagonal_2)
 
 
 if __name__ == "__main__":
