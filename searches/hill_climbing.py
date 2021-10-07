@@ -94,7 +94,7 @@ def hill_climbing(
     max_iter: int = 10000,
 ) -> SearchProblem:
     """
-    Implementation of the hill climbling algorithm.
+    Implementation of the hill climbing algorithm.
     We start with a given state, find all its neighbors,
     move towards the neighbor which provides the maximum (or minimum) change.
     We keep doing this until we are at a state where we do not have any

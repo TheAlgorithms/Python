@@ -1,7 +1,7 @@
 """Binary Exponentiation."""
 
 # Author : Junth Basnet
-# Time Complexity : O(logn)
+# Time Complexity : O(logN)
 
 
 def binary_exponentiation(a, n):

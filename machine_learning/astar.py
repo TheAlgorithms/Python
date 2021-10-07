@@ -16,10 +16,10 @@ import numpy as np
 class Cell:
     """
     Class cell represents a cell in the world which have the property
-    position : The position of the represented by  tupleof x and y
+    position : The position of the represented by  tupleOf x and y
     coordinates initially set to (0,0)
     parent : This contains the parent cell object which we visited
-    before arrinving this cell
+    before arriving this cell
     g,h,f : The parameters for constructing the heuristic function
     which can be any function. for simplicity used line
     distance
@@ -41,7 +41,7 @@ class Cell:
     def __eq__(self, cell):
         return self.position == cell.position
 
-    def showcell(self):
+    def showCell(self):
         print(self.position)
 
 

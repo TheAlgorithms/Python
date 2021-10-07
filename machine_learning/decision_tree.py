@@ -178,4 +178,4 @@ if __name__ == "__main__":
     main()
     import doctest
 
-    doctest.testmod(name="mean_squarred_error", verbose=True)
+    doctest.testmod(name="mean_squared_error", verbose=True)
