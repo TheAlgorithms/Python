@@ -74,15 +74,6 @@ def jacobi_iteration_method(
     ...
     ValueError: Iterations must be atleast 1
 
-
-    >>> coefficient = np.array([[4, 1, 1], [1, 5, 2], [1, 2, 3]])
-    >>> constant = np.array([[2], [-6], [-4]])
-    >>> init_val = [0.5, -0.5, -0.5]
-    >>> iterations = 3
-    >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
-    Traceback (most recent call last):
-    ...
-    ValueError: Coefficient matrix is not strictly diagonally dominant
     """
 
     rows1, cols1 = coefficient_matrix.shape
@@ -115,10 +106,7 @@ def jacobi_iteration_method(
 
     rows, cols = table.shape
 
-    isDiagonallyDominant = strictly_diagonally_dominant(table)
-
-    if isDiagonallyDominant is False:
-        raise ValueError("Coefficient matrix is not strictly diagonally dominant")
+    strictly_diagonally_dominant(table)
 
     # Iterates the whole matrix for given number of times
     for i in range(0, iterations):
@@ -141,10 +129,22 @@ def jacobi_iteration_method(
 
 # Checks if the given matrix is strictly diagonally dominant
 def strictly_diagonally_dominant(table: np.ndarray) -> bool:
+    """
+    >>> table = np.array([[4, 1, 1, 2], [1, 5, 2, -6], [1, 2, 4, -4]])
+    >>> strictly_diagonally_dominant(table)
+    True
+
+    >>> table = np.array([[4, 1, 1, 2], [1, 5, 2, -6], [1, 2, 3, -4]])
+    >>> strictly_diagonally_dominant(table)
+    Traceback (most recent call last):
+    ...
+    ValueError: Coefficient matrix is not strictly diagonally dominant
+
+    """
 
     rows, cols = table.shape
 
-    isDiagonallyDominant = True
+    is_diagonally_dominant = True
 
     for i in range(0, rows):
         sum = 0
@@ -155,10 +155,13 @@ def strictly_diagonally_dominant(table: np.ndarray) -> bool:
                 sum = sum + table[i][j]
 
         if table[i][i] <= sum:
-            isDiagonallyDominant = False
+            is_diagonally_dominant = False
             break
 
-    return isDiagonallyDominant
+    if is_diagonally_dominant is False:
+        raise ValueError("Coefficient matrix is not strictly diagonally dominant")
+
+    return is_diagonally_dominant
 
 
 # Test Cases
