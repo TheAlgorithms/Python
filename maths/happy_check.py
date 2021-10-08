@@ -13,7 +13,8 @@ def checkHappy():
 
     >>> Enter number: 45
     45 is a sad number
-    https://en.wikipedia.org/wiki/Happy_number
+    
+    visit https://en.wikipedia.org/wiki/Happy_number for mor clarification
     
     """
 
@@ -35,4 +36,5 @@ def checkHappy():
             return print(f"{starting_number} is a sad number")
 
 if __name__ == "__main__":
-    checkHappy()
+    import doctest
+    doctest.testmod()
