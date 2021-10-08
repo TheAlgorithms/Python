@@ -1,7 +1,7 @@
 """Happy Check."""
 
 
-def checkHappy():
+def check_happy():
     
     #A happy number is a number which eventually reaches 1 when replaced by the sum of the square of each digit. 
     #For instance, 13 is a happy number because 1**2 + 3**2 = 10 , and 1**2 + 0**2 =1 . 
@@ -21,9 +21,9 @@ def checkHappy():
     starting_number=n
     number_cycle=[]
     while True:
-        strNumber=str(n)
+        str_number=str(n)
         lst=[]
-        lst[:0]= strNumber
+        lst[:0]= str_number
         n=sum(([int(i)**2 for i in lst]))
         
         if n==1:
@@ -36,3 +36,4 @@ def checkHappy():
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+    
