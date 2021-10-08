@@ -5,14 +5,14 @@ https://epaperpress.com/sortsearch/download/skiplist.pdf
 from __future__ import annotations
 
 from random import random
-from typing import Generic, TypeVar
+from typing import Generic, Optional, TypeVar, Union
 
 KT = TypeVar("KT")
 VT = TypeVar("VT")
 
 
 class Node(Generic[KT, VT]):
-    def __init__(self, key: KT, value: VT):
+    def __init__(self, key: Union[KT, str] = "root", value: Optional[VT] = None):
         self.key = key
         self.value = value
         self.forward: list[Node[KT, VT]] = []
@@ -49,7 +49,7 @@ class Node(Generic[KT, VT]):
 
 class SkipList(Generic[KT, VT]):
     def __init__(self, p: float = 0.5, max_level: int = 16):
-        self.head = Node("root", None)
+        self.head: Node[KT, VT] = Node[KT, VT]()
         self.level = 0
         self.p = p
         self.max_level = max_level
