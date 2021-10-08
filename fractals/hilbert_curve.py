@@ -31,6 +31,8 @@ def hilbert(order: int, angle: int, step: float, pen: turtle.Turtle) -> None:
     (negative for a reflected curve), step is the length of a segment of the curve
     pen is the turtle to be used in drawing the curve. color etc of the curve can be
     changed by passing a pen of appropriate color.
+
+    >>> hilbert(3,90,200/(2**3),turtle.Turtle())
     """
     if order <= 0:
         return
@@ -54,10 +56,12 @@ def hilbert(order: int, angle: int, step: float, pen: turtle.Turtle) -> None:
     pen.right(angle)
 
 
-def draw_hilbert_curve(order: int, size: int, pen=None) -> None:
+def draw_hilbert_curve(order: int, size: int, pen: turtle.Turtle = None) -> None:
     """
     Sets up the environment for drawing a hilbert curve of specified
     order and size
+
+    >>> draw_hilbert_curve(3,200)
     """
     if pen is None:
         pen = turtle.Turtle()
