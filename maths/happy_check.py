@@ -13,6 +13,7 @@ def checkHappy():
 
     >>> Enter number: 45
     45 is a sad number
+    https://en.wikipedia.org/wiki/Happy_number
     
     """
 
