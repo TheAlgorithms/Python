@@ -4,7 +4,7 @@ T = TypeVar("T")
 
 
 class Stack(Generic[T]):
-    def __init__(self, capacity=100) -> None:
+    def __init__(self, capacity: int = 100) -> None:
         """Stack implementation using a static array"""
 
         self.__capacity = capacity
@@ -90,6 +90,19 @@ class Stack(Generic[T]):
         return deleted
 
     def get_capacity(self) -> int:
+        """Returns the capacity of the stack
+
+        >>> stack = Stack(34)
+
+        >>> stack.get_capacity()
+        34
+
+        >>> stack = Stack()
+
+        >>> stack.get_capacity()
+        100
+
+        """
         return self.__capacity
 
     def size(self) -> int:
