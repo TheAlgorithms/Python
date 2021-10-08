@@ -10,7 +10,7 @@ class Queue:
     https://en.wikipedia.org/wiki/Queue_(abstract_data_type)
     """
 
-    def __init__(self, limit: int = 10):
+    def __init__(self, limit: int = 10) -> None:
         self.stack1 = Stack(limit)
         self.stack2 = Stack(limit)
         self.limit = limit
@@ -21,7 +21,7 @@ class Queue:
     def __str__(self) -> str:
         return str(self.stack1)
 
-    def enqueue(self, data) -> None:
+    def enqueue(self, data : int) -> None:
         """Add an element to the end of queue."""
         while not self.stack1.is_empty():
             self.stack2.push(self.stack1.pop())
@@ -50,7 +50,7 @@ class Queue:
         """Return the size of the queue."""
         return self.stack1.size()
 
-    def __contains__(self, data) -> int:
+    def __contains__(self, data : int) -> int:
         """Check if item is in the queue."""
         return data in self.stack1
 
