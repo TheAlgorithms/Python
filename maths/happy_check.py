@@ -27,11 +27,11 @@ def check_happy():
         n=sum(([int(i)**2 for i in lst]))
         
         if n==1:
-            return print(f"{starting_number} is a happy number")
+            return f"{starting_number} is a happy number"
         elif n not in number_cycle :
             number_cycle.append(n)
         elif n in number_cycle:
-            return print(f"{starting_number} is a sad number")
+            return f"{starting_number} is a sad number"
 
 if __name__ == "__main__":
     import doctest
