@@ -115,6 +115,19 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
     """
     return pi * pow(radius, 2) * height
 
+def vol_tetrahedron(lenghtOfEdge: float) ->float:
+    """Calculate the Volume of a Tetrahedron.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Tetrahedron
+    :return lengthOfEdge^3 / ( 6 * sqrt(2) )
+    
+    >>> vol_tetrahedron(1)
+    0.1178511301977579
+    >>> vol_tetrahedron(5)
+    14.731391274719739
+    """
+    
+    return pow(lengthOfEdge, 3) / (6*math.sqrt(2))
+
 
 def main():
     """Print the Results of Various Volume Calculations."""
