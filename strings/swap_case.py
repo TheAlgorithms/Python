@@ -34,4 +34,4 @@ def swap_case(sentence: str) -> str:
 
 
 if __name__ == "__main__":
-    print(swap_case(input("Please input sentence: ")))
+    print(swap_case(input("Please enter the input sentence: ")))
