@@ -1,7 +1,7 @@
 """Happy Check."""
 
 
-def check_happy():
+def check_happy() -> string:
     
     #A happy number is a number which eventually reaches 1 when replaced by the sum of the square of each digit. 
     #For instance, 13 is a happy number because 1**2 + 3**2 = 10 , and 1**2 + 0**2 =1 . 
