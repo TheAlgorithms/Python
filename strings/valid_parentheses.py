@@ -1,4 +1,4 @@
-def valid_parentheses(word: str) -> str:
+def valid_parentheses(word: str) -> bool:
     """
     Will determine if the input string contains valid parentheses pair.
 
@@ -14,9 +14,12 @@ def valid_parentheses(word: str) -> str:
     true
     """
 
-    # Converting to ascii value int value and checking to see if char is a lower letter
-    # if it is a lowercase letter it is getting shift by 32 which makes it an uppercase
-    # case letter
+    # Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
+    # determine if the input string is valid.
+    # An input string is valid if:
+    # Open brackets must be closed by the same type of brackets.
+    # Open brackets must be closed in the correct order.
+
     stack = []
     for i in word:
         if i in ("[", "{", "("):
