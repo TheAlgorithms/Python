@@ -41,6 +41,33 @@ def surface_area_sphere(radius: float) -> float:
         raise ValueError("surface_area_sphere() only accepts non-negative values")
     return 4 * pi * radius ** 2
 
+def surface_area_cone(radius: float, height: float) -> float:
+    """
+    Calculate the Surface Area of a Cone.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Cone
+    Formula: pi * r * [r + √(h**2 + r**2)]
+    >>> surface_area_cone(10, 24)
+    1130.973355292
+    >>> surface_area_cone(6, 8)
+    301.592894745
+    >>> area_cone(-1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_cone() only accepts non-negative values
+    >>> area_cone(1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_cone() only accepts non-negative values
+    >>> area_cone(-1, 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_cone() only accepts non-negative values
+    """
+    if radius < 0:
+        raise ValueError("surface_area_cone() only accepts non-negative values")
+    return pi * r * [r + √(h**2 + r**2)]
+
+
 
 def area_rectangle(length: float, width: float) -> float:
     """
@@ -281,8 +308,10 @@ if __name__ == "__main__":
     print(f"Triangle: {area_triangle_three_sides(5, 12, 13) = }")
     print(f"Parallelogram: {area_parallelogram(10, 20) = }")
     print(f"Trapezium: {area_trapezium(10, 20, 30) = }")
+    print(f"Rhombus: {area_rhombus(10, 20) = }")
     print(f"Circle: {area_circle(20) = }")
     print("\nSurface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20) = }")
     print(f"Sphere: {surface_area_sphere(20) = }")
-    print(f"Rhombus: {area_rhombus(10, 20) = }")
+    print(f"Cone: {surface_area_cone(20, 20) = }")
+   
