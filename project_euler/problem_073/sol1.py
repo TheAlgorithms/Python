@@ -20,7 +20,7 @@ References
 from math import gcd
 
 
-def solution(d: int = 12000) -> int:
+def solution(input: int = 12000) -> int:
     """
     Returns the number of fractions lying between 1/3 and 1/2 in the sorted set of
     reduced proper fractions for d ≤ 12,000.
@@ -38,8 +38,8 @@ def solution(d: int = 12000) -> int:
     result = 0
 
     # loop through all the possible fractions for a given value of d
-    for numerator in range(1, d):
-        for denominator in range(numerator + 1, d + 1):
+    for numerator in range(1, input):
+        for denominator in range(numerator + 1, input + 1):
             # count only if the fractions are reduced and lie in the range (1/3, 1/2)
             if (
                 1 / 3 < numerator / denominator < 0.5
