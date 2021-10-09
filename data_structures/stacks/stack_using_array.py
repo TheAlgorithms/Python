@@ -178,7 +178,23 @@ class Stack(Generic[T]):
         return self.__size == self.__capacity
 
     def __resize(self) -> None:
-        """Double the size of the stack when it's full"""
+        """Double the size of the stack when it's full
+
+        >>> stack = Stack(10)
+
+        >>> stack.get_capacity()
+        10
+
+        >>> stack._Stack__resize()
+
+        >>> stack.get_capacity()
+        20
+
+        >>> stack._Stack__resize()
+
+        >>> stack.get_capacity()
+        40
+        """
 
         self.__capacity *= 2
         temp_list = [None] * self.__capacity
