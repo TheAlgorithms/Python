@@ -21,16 +21,7 @@ def swap_case(sentence: str) -> str:
     >>> swap_case('Algorithm.Python@89')
     'aLGORITHM.pYTHON@89'
     """
-    new_string = ""
-    for char in sentence:
-        if char.isupper():
-            new_string += char.lower()
-        elif char.islower():
-            new_string += char.upper()
-        else:
-            new_string += char
-
-    return new_string
+    return sentence.swapcase()
 
 
 if __name__ == "__main__":
