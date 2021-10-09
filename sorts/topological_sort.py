@@ -10,7 +10,7 @@ vertices = ["a", "b", "c", "d", "e"]
 
 
 def topological_sort(start, visited, sort):
-    """Perform topolical sort on a directed acyclic graph."""
+    """Perform topological sort on a directed acyclic graph."""
     current = start
     # add current to visited
     visited.append(current)
