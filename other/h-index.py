@@ -1,6 +1,6 @@
 # Problem Link: https://leetcode.com/problems/h-index/
 
-'''
+"""
 AUTHOR: github.com/shreayan98c
 
 PROBLEM STATEMENT:
@@ -40,25 +40,27 @@ the result by 1 since the current publication has to be included in the h - inde
 COMPLEXITY:
 Time Complexity: O(n), n is the length of the citations list given as the input.
 Space Complexity: O(1), no list is created or stored in the memory, just one variable to keep a track of the result.
-'''
+"""
 from typing import List
 
 
-class Solution:
+def h_index(citations: List[int]) -> int:
+    """
+    Given an array of integers citations where citations[i] is the number of citations a researcher received for their ith
+    paper, return compute the researcher's h-index. A scientist has an index h if h of their n papers have at least h
+    citations each, and the other n − h papers have no more than h citations each.
 
-    def h_index(self, citations: List[int]) -> int:
-        """
-        Given an array of integers citations where citations[i] is the number of citations a researcher received for their ith
-        paper, return compute the researcher's h-index. A scientist has an index h if h of their n papers have at least h
-        citations each, and the other n − h papers have no more than h citations each.
+    Testcases:
+    >>> h_index([3,0,6,1,5])
+    3
 
-        Testcases:
-        soln = Solution()
-        soln.h_index([3,0,6,1,5])
-        3
+    >>> h_index([1,3,1])
+    1
 
-        soln = Solution()
-        soln.h_index([3,0,6,1,5])
-        3
-        """
-        return sum(i < j for i, j in enumerate(sorted(citations, reverse=True)))
+    >>> h_index([-1,2,4,-8])
+    Traceback (most recent call last):
+        ...
+    AssertionError: Citation value cannot be negative
+    """
+    assert (isinstance(citations, list) and all(cite > 0 for cite in citations)), f"Citation value cannot be negative"
+    return sum(i < j for i, j in enumerate(sorted(citations, reverse=True)))

@@ -1,6 +1,6 @@
 # Problem Link: https://leetcode.com/problems/largest-rectangle-in-histogram/
 
-'''
+"""
 AUTHOR: github.com/shreayan98c
 
 PROBLEM STATEMENT:
@@ -32,42 +32,44 @@ the result by 1 since the current publication has to be included in the h - inde
 COMPLEXITY:
 Time Complexity: O(n), n is the length of the bars in the histogram.
 Space Complexity: O(n), one list/stack is created or stored in the memory.
-'''
+"""
 from typing import List
 
 
-class Solution:
+def largest_histogram_area(histogram: List[int]) -> int:
+    """
+    Args:
+        histogram: List[int] - an array of integers histograms representing the histogram's bar where the width of each bar is 1
+    Returns:
+        max_area: int - the area of the largest rectangle in the histogram
+    Given an array of integers histograms representing the histogram's bar histogram where the width of each bar is 1, return
+    the area of the largest rectangle in the histogram.
 
-    def largest_histogram_area(self, histogram: List[int]) -> int:
-        """
-        Args:
-            histogram: List[int] - an array of integers histograms representing the histogram's bar where the width of each bar is 1
-        Returns:
-            max_area: int - the area of the largest rectangle in the histogram
-        Given an array of integers histograms representing the histogram's bar histogram where the width of each bar is 1, return
-        the area of the largest rectangle in the histogram.
+    Testcases:
+    >>> largest_histogram_area([2,1,5,6,2,3])
+    10
 
-        Testcases:
-        soln = Solution()
-        soln.largest_histogram_area([2,1,5,6,2,3])
-        10
+    >>> largest_histogram_area([2,4])
+    4
 
-        soln = Solution()
-        soln.largest_histogram_area([2,4])
-        4
-        """
-        histogram.append(0)  # the stack maintain the indexes of buildings with ascending height.
-        # before adding a new building pop the building who is taller than the new one.
-        stack = [-1]
-        max_area = 0
-        for i in range(len(histogram)):
-            while histogram[i] < histogram[stack[-1]]:
-                # The building popped out represent the height of a rectangle with the new building as the right
-                # boundary and the current stack top as the left boundary.
-                h = histogram[stack.pop()]
-                # Calculate its area and update max_area of maximum area.
-                w = i - stack[-1] - 1
-                max_area = max(max_area, h * w)
-            stack.append(i)
-        histogram.pop()
-        return max_area
+    >>> largest_histogram_area([-1,2,4,-8])
+    Traceback (most recent call last):
+        ...
+    AssertionError: Histogram can have only positive bars
+    """
+    assert (isinstance(histogram, list) and all(bar > 0 for bar in histogram)), f"Histogram can have only positive bars"
+    histogram.append(0)  # the stack maintain the indexes of buildings with ascending height.
+    # before adding a new building pop the building who is taller than the new one.
+    stack = [-1]
+    max_area = 0
+    for i in range(len(histogram)):
+        while histogram[i] < histogram[stack[-1]]:
+            # The building popped out represent the height of a rectangle with the new building as the right
+            # boundary and the current stack top as the left boundary.
+            h = histogram[stack.pop()]
+            # Calculate its area and update max_area of maximum area.
+            w = i - stack[-1] - 1
+            max_area = max(max_area, h * w)
+        stack.append(i)
+    histogram.pop()
+    return max_area
