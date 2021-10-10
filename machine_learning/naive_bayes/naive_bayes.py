@@ -34,8 +34,8 @@ Therefore its necessary to use feature scaling to normalize,
 this uneveness in the size of the features.
 """
 sc = StandardScaler()
-X_train = sc.fit_transform(split_train_x)
-X_test = sc.fit_transform(split_test_x)
+sc.fit_transform(split_train_x)
+sc.fit_transform(split_test_x)
 
 # # creaeting a model, training model and testing it 
 classifier = GaussianNB()
