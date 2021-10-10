@@ -16,7 +16,7 @@ class StringBuilder(object):
     def __init__(self, val="":str) -> None:
         self.store = [val]
 
-    def __iadd__(self, value):
+    def __iadd__(self, value)->StringBuilder:
         self.store.append(value)
         return self
 
