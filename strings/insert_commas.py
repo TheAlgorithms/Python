@@ -13,7 +13,7 @@ python insert_commas.py
 
 
 class StringBuilder(object):
-    def __init__(self, val="":str) -> None:
+    def __init__(self, val:str) -> None:
         self.store = [val]
 
     def __iadd__(self, value)->StringBuilder:
@@ -56,7 +56,7 @@ class Queue:
         return True if self.head is None else False
 
     def __str__(self) -> str:
-        ret = StringBuilder()
+        ret = StringBuilder("")
         current = self.head
         while current:
             ret += current.info
@@ -79,7 +79,7 @@ def build_string_queue(string: str) -> Queue:
 
 
 def extract_string_from_queue(queue: Queue) -> str:
-    ret = StringBuilder()
+    ret = StringBuilder("")
     while not queue.empty():
         ret += queue.peek()
         queue.pop()
