@@ -1,30 +1,30 @@
-def find_longest_path_from_a_cell(i: int, j: int, mat: 'list[list[int]]', dp: 'list[list[int]]') -> int:
+def find_longest_path_from_a_cell(y_coordinate: int, x_coordinate: int, mat: 'list[list[int]]', dp: 'list[list[int]]') -> int:
   """
   Find the length of longest path of increasing sequence in a matrix 
-  from cell at (i,j) in matrix mat, 
+  from cell at row = y_coordinate, column = x_coordinate in matrix mat, 
   dp has the longest path from any cell (x,y), or else, -1.
   >>> find_longest_path_from_a_cell(0, 0, [[0, 1], [3, 2]], [[-1, -1], [-1, -1]])
   4
   """
   n = len(mat)
-  if (i<0 or i>= n or j<0 or j>= n):
+  if (y_coordinate<0 or y_coordinate>= n or x_coordinate<0 or x_coordinate>= n):
     return 0
-  if (dp[i][j] != -1):
-    return dp[i][j]
+  if (dp[y_coordinate][x_coordinate] != -1):
+    return dp[y_coordinate][x_coordinate]
 
   x, y, z, w = -1, -1, -1, -1
 
-  if (j<n-1 and ((mat[i][j] +1) == mat[i][j + 1])):
-    x = 1 + find_longest_path_from_a_cell(i, j + 1, mat, dp)
-  if (j>0 and (mat[i][j] +1 == mat[i][j-1])):
-    y = 1 + find_longest_path_from_a_cell(i, j-1, mat, dp)
-  if (i>0 and (mat[i][j] +1 == mat[i-1][j])):
-    z = 1 + find_longest_path_from_a_cell(i-1, j, mat, dp)
-  if (i<n-1 and (mat[i][j] +1 == mat[i + 1][j])):
-    w = 1 + find_longest_path_from_a_cell(i + 1, j, mat, dp)
+  if (x_coordinate<n-1 and ((mat[y_coordinate][x_coordinate] + 1) == mat[y_coordinate][x_coordinate + 1])):
+    x = 1 + find_longest_path_from_a_cell(y_coordinate, x_coordinate + 1, mat, dp)
+  if (x_coordinate>0 and (mat[y_coordinate][x_coordinate] + 1 == mat[y_coordinate][x_coordinate - 1])):
+    y = 1 + find_longest_path_from_a_cell(y_coordinate, x_coordinate - 1, mat, dp)
+  if (y_coordinate>0 and (mat[y_coordinate][x_coordinate] + 1 == mat[y_coordinate - 1][x_coordinate])):
+    z = 1 + find_longest_path_from_a_cell(y_coordinate - 1, x_coordinate, mat, dp)
+  if (y_coordinate<n-1 and (mat[y_coordinate][x_coordinate] + 1 == mat[y_coordinate + 1][x_coordinate])):
+    w = 1 + find_longest_path_from_a_cell(y_coordinate + 1, x_coordinate, mat, dp)
 
-  dp[i][j] = max(x, max(y, max(z, max(w, 1))))
-  return dp[i][j]
+  dp[y_coordinate][x_coordinate] = max(x, max(y, max(z, max(w, 1))))
+  return dp[y_coordinate][x_coordinate]
 
 def find_longest_path_in_a_matrix(mat: 'list[list[int]]') -> int:
   """
