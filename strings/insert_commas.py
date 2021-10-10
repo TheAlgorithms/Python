@@ -13,7 +13,7 @@ python insert_commas.py
 
 
 class StringBuilder(object):
-    def __init__(self, val="") -> None:
+    def __init__(self, val="":str) -> None:
         self.store = [val]
 
     def __iadd__(self, value):
