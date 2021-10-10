@@ -13,29 +13,29 @@ python insert_commas.py
 
 
 class StringBuilder(object):
-    def __init__(self, val=""):
+    def __init__(self, val="") -> None:
         self.store = [val]
 
     def __iadd__(self, value):
         self.store.append(value)
         return self
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "".join(self.store)
 
 
 class Node:
-    def __init__(self, info):
+    def __init__(self, info: str) -> None:
         self.info = info
         self.next = None
 
 
 class Queue:
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = None
         self.tail = None
 
-    def push(self, x):
+    def push(self, x: str):
         if self.head is None:
             self.head = Node(x)
             self.tail = self.head
@@ -49,13 +49,13 @@ class Queue:
         self.head = self.head.next
         node.next = None
 
-    def peek(self):
+    def peek(self) -> str:
         return self.head.info
 
-    def empty(self):
+    def empty(self) -> bool:
         return True if self.head is None else False
 
-    def __str__(self):
+    def __str__(self) -> str:
         ret = StringBuilder()
         current = self.head
         while current:
@@ -64,7 +64,7 @@ class Queue:
         return str(ret)
 
 
-def build_string_queue(string):
+def build_string_queue(string: str) -> Queue:
     ret = Queue()
     i = 0
     for idx, ch in enumerate(reversed(string)):
@@ -78,7 +78,7 @@ def build_string_queue(string):
     return ret
 
 
-def extract_string_from_queue(queue):
+def extract_string_from_queue(queue: Queue) -> str:
     ret = StringBuilder()
     while not queue.empty():
         ret += queue.peek()
@@ -86,7 +86,7 @@ def extract_string_from_queue(queue):
     return str(ret)[::-1]
 
 
-def insert_commas(string):
+def insert_commas(string: str) -> str:
     """Implementation of the levenshtein distance in Python.
     :param string: the string representation of a number.
     :return: the string representation of the number delimited by commas.
