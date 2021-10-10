@@ -40,6 +40,4 @@ def sylvester(number: int) -> int:
 
 
 if __name__ == "__main__":
-
-    number = 8
-    print(f"The 8th number in Sylvester's sequence: {sylvester(number)}")
+    print(f"The 8th number in Sylvester's sequence: {sylvester(8)}")
