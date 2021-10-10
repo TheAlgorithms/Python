@@ -72,7 +72,7 @@ def jacobi_iteration_method(
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
     ...
-    ValueError: Iterations must be atleast 1
+    ValueError: Iterations must be at least 1
 
     """
 
@@ -100,7 +100,7 @@ def jacobi_iteration_method(
         )
 
     if iterations <= 0:
-        raise ValueError("Iterations must be atleast 1")
+        raise ValueError("Iterations must be at least 1")
 
     table = np.concatenate((coefficient_matrix, constant_matrix), axis=1)
 
