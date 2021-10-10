@@ -4,5 +4,3 @@ def uniqueness(string: str):
     else:
         return string+" - DOSEN'T CONTAINS UNIQUE CHARACTERS"
     return None
-
-print(uniqueness("abcd"))
