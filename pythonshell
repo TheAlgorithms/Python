@@ -1,0 +1,21 @@
+$ python3
+Python 3.6.7 (default, Oct 22 2018, 11:32:17)
+[GCC 8.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+>>> print('Hello World!')
+Hello World!
+>>> 2 + 5
+7
+>>> print('Welcome to Real Python!')
+Welcome to Real Python!
+
+
+python 
+#!/usr/bin/env python3
+
+print('Hello World!')
+
+$shell
+$ python3 hello.py
+Hello World!
