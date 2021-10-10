@@ -1,6 +1,6 @@
-def uniqueness(string: str):
+def uniqueness(string: str) -> bool :
     if(len(set(string))==len(string)):
-        return string+" - CONTAINS ALL UNIQUE CHARACTERS"
+        return True
     else:
-        return string+" - DOSEN'T CONTAINS UNIQUE CHARACTERS"
+        return False
     return None
