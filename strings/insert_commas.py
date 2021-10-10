@@ -37,7 +37,7 @@ class Queue:
         self.head = None
         self.tail = None
 
-    def push(self, val: str):
+    def push(self, val: str) -> None:
         """add a new value to the queue"""
         if self.head is None:
             self.head = Node(val)
@@ -47,7 +47,7 @@ class Queue:
             self.tail.next = node
             self.tail = node
 
-    def pop(self):
+    def pop(self) -> None:
         """removes a node from a queue"""
         node = self.head
         self.head = self.head.next
