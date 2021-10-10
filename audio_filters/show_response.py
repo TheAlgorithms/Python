@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def show_frequency_response(filter, samplerate):
+def show_frequency_response(filter, samplerate: int):
     """
     Show frequency response of a filter
     """
@@ -35,7 +35,7 @@ def show_frequency_response(filter, samplerate):
     plt.show()
 
 
-def show_phase_response(filter, samplerate):
+def show_phase_response(filter, samplerate: int):
     """
     Show phase response of a filter
     """

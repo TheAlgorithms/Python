@@ -87,14 +87,14 @@ class ButterworthFilter:
         _sin = sin(w0)
         _cos = cos(w0)
         alpha = _sin / (2 * q_factor)
-        A = 10 ** (gain_db / 40)
+        big_a = 10 ** (gain_db / 40)
 
-        b0 = 1 + alpha * A
+        b0 = 1 + alpha * big_a
         b1 = -2 * _cos
-        b2 = 1 - alpha * A
-        a0 = 1 + alpha / A
+        b2 = 1 - alpha * big_a
+        a0 = 1 + alpha / big_a
         a1 = -2 * _cos
-        a2 = 1 - alpha / A
+        a2 = 1 - alpha / big_a
 
         filt = IIRFilter(2)
         filt.set_coefficients([a0, a1, a2], [b0, b1, b2])
@@ -106,16 +106,16 @@ class ButterworthFilter:
         _sin = sin(w0)
         _cos = cos(w0)
         alpha = _sin / (2 * q_factor)
-        A = 10 ** (gain_db / 40)
-        pmc = (A+1) - (A-1)*_cos
-        ppmc = (A+1) + (A-1)*_cos
-        mpc = (A-1) - (A+1)*_cos
-        pmpc = (A-1) + (A+1)*_cos
-        aa2 = 2*sqrt(A)*alpha
+        big_a = 10 ** (gain_db / 40)
+        pmc = (big_a+1) - (big_a-1)*_cos
+        ppmc = (big_a+1) + (big_a-1)*_cos
+        mpc = (big_a-1) - (big_a+1)*_cos
+        pmpc = (big_a-1) + (big_a+1)*_cos
+        aa2 = 2*sqrt(big_a)*alpha
 
-        b0 = A * (pmc + aa2)
-        b1 = 2 * A * mpc
-        b2 = A * (pmc - aa2)
+        b0 = big_a * (pmc + aa2)
+        b1 = 2 * big_a * mpc
+        b2 = big_a * (pmc - aa2)
         a0 = ppmc + aa2
         a1 = -2 * pmpc
         a2 = ppmc - aa2
@@ -130,16 +130,16 @@ class ButterworthFilter:
         _sin = sin(w0)
         _cos = cos(w0)
         alpha = _sin / (2 * q_factor)
-        A = 10 ** (gain_db / 40)
-        pmc = (A+1) - (A-1)*_cos
-        ppmc = (A+1) + (A-1)*_cos
-        mpc = (A-1) - (A+1)*_cos
-        pmpc = (A-1) + (A+1)*_cos
-        aa2 = 2*sqrt(A)*alpha
+        big_a = 10 ** (gain_db / 40)
+        pmc = (big_a+1) - (big_a-1)*_cos
+        ppmc = (big_a+1) + (big_a-1)*_cos
+        mpc = (big_a-1) - (big_a+1)*_cos
+        pmpc = (big_a-1) + (big_a+1)*_cos
+        aa2 = 2*sqrt(big_a)*alpha
 
-        b0 = A * (ppmc + aa2)
-        b1 = -2 * A * pmpc
-        b2 = A * (ppmc - aa2)
+        b0 = big_a * (ppmc + aa2)
+        b1 = -2 * big_a * pmpc
+        b2 = big_a * (ppmc - aa2)
         a0 = pmc + aa2
         a1 = 2 * mpc
         a2 = pmc - aa2

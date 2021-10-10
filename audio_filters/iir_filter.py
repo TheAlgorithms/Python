@@ -50,7 +50,7 @@ class IIRFilter:
         self.a_coeffs = a_coeffs
         self.b_coeffs = b_coeffs
 
-    def process(self, sample: float):
+    def process(self, sample: float) -> float:
         """
         Calculate y[n]
         """
