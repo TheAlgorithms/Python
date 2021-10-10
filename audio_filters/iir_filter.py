@@ -9,6 +9,9 @@ class IIRFilter:
     ---
 
     Implementation details:
+    Based on the 2nd-order function from https://en.wikipedia.org/wiki/Digital_biquad_filter,
+    this generalized N-order function was made.
+
     Using the following transfer function
     H(z)=\frac{b_{0}+b_{1}z^{-1}+b_{2}z^{-2}+...+b_{k}z^{-k}}{a_{0}+a_{1}z^{-1}+a_{2}z^{-2}+...+a_{k}z^{-k}}
     we can rewrite this to

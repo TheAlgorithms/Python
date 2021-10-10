@@ -13,6 +13,9 @@ class ButterworthFilter:
 
     @staticmethod
     def make_lowpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+        """
+        Creates a low-pass filter
+        """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
         _cos = cos(w0)
@@ -31,6 +34,9 @@ class ButterworthFilter:
 
     @staticmethod
     def make_highpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+        """
+        Creates a high-pass filter
+        """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
         _cos = cos(w0)
@@ -49,6 +55,9 @@ class ButterworthFilter:
 
     @staticmethod
     def make_bandpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+        """
+        Creates a band-pass filter
+        """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
         _cos = cos(w0)
@@ -68,6 +77,9 @@ class ButterworthFilter:
 
     @staticmethod
     def make_allpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+        """
+        Creates an all-pass filter
+        """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
         _cos = cos(w0)
@@ -83,6 +95,9 @@ class ButterworthFilter:
 
     @staticmethod
     def make_peak(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+        """
+        Creates a peak filter
+        """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
         _cos = cos(w0)
@@ -102,6 +117,9 @@ class ButterworthFilter:
 
     @staticmethod
     def make_lowshelf(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+        """
+        Creates a low-shelf filter
+        """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
         _cos = cos(w0)
@@ -126,6 +144,9 @@ class ButterworthFilter:
 
     @staticmethod
     def make_highshelf(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+        """
+        Creates a high-shelf filter
+        """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
         _cos = cos(w0)
