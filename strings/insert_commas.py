@@ -13,14 +13,16 @@ python insert_commas.py
 
 
 class StringBuilder(object):
-    def __init__(self, val:str) -> None:
+    def __init__(self, val: str) -> None:
         self.store = [val]
 
-    def __iadd__(self, value)->StringBuilder:
+    def __iadd__(self, value):
+        """appends a character to the sequence"""
         self.store.append(value)
         return self
 
     def __str__(self) -> str:
+        """string representation from the built sequence"""
         return "".join(self.store)
 
 
@@ -35,27 +37,32 @@ class Queue:
         self.head = None
         self.tail = None
 
-    def push(self, x: str):
+    def push(self, val: str):
+        """add a new value to the queue"""
         if self.head is None:
-            self.head = Node(x)
+            self.head = Node(val)
             self.tail = self.head
         else:
-            node = Node(x)
+            node = Node(val)
             self.tail.next = node
             self.tail = node
 
     def pop(self):
+        """removes a node from a queue"""
         node = self.head
         self.head = self.head.next
         node.next = None
 
     def peek(self) -> str:
+        """retrieve the content of the queue's head"""
         return self.head.info
 
     def empty(self) -> bool:
+        """checks if queue is empty"""
         return True if self.head is None else False
 
     def __str__(self) -> str:
+        """string representation of a queue"""
         ret = StringBuilder("")
         current = self.head
         while current:
@@ -65,6 +72,9 @@ class Queue:
 
 
 def build_string_queue(string: str) -> Queue:
+    """build a queue from the content of a string
+    :param string: sequence of digit
+    """
     ret = Queue()
     i = 0
     for idx, ch in enumerate(reversed(string)):
@@ -79,6 +89,9 @@ def build_string_queue(string: str) -> Queue:
 
 
 def extract_string_from_queue(queue: Queue) -> str:
+    """extract content of a queue
+    :param queue:  a queue object
+    """
     ret = StringBuilder("")
     while not queue.empty():
         ret += queue.peek()
@@ -87,7 +100,7 @@ def extract_string_from_queue(queue: Queue) -> str:
 
 
 def insert_commas(string: str) -> str:
-    """Implementation of the levenshtein distance in Python.
+    """implementation of the how to insert commas
     :param string: the string representation of a number.
     :return: the string representation of the number delimited by commas.
     Examples:
