@@ -57,8 +57,9 @@ def largest_histogram_area(histogram: list[int]) -> int:
         ...
     AssertionError: Histogram can have only positive bars
     """
-    assert (isinstance(histogram, list) and all(bar > 0 for bar in histogram)), \
-        f"Histogram can have only positive bars"
+    assert isinstance(histogram, list) and all(
+        bar > 0 for bar in histogram
+    ), f"Histogram can have only positive bars"
     histogram.append(0)  # stack to maintain indexes of bars (ascending height)
     # before adding a new bar, pop the bar who is taller than the new one
     stack = [-1]
