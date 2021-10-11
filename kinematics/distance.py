@@ -2,6 +2,9 @@
 
 # Kinematics is the physics of motion
 
+# Here is an explanation on the "big 4 equations", all of which were used to make this
+# algorithm: https://www.physicsclassroom.com/class/1dkin/Lesson-6/Kinematic-Equations
+
 # These are how we represent specific values when calculating using kinematic equations
 # x0 = Initial Position
 # x = Final Postion
