@@ -147,7 +147,27 @@ class Vector:
             return summe
         else:  # error case
             raise Exception("invalid operand!")
+    
+    def magnitude(self) -> float:
+        '''
+        Magnitude of a Vector
+        '''
+        return sum([i**2 for i in self.__components])**(1/2)
 
+    def angle(self, other: Vector, deg: bool) -> float:
+        """
+        find angle between two Vector (self, Vector)
+        """
+        try:
+            num = self * other
+            den = (self.magnitude())*(n.magnitude())
+            if deg:
+                return math.degrees(math.acos(num/den))
+            else:
+                return math.acos(num/den)
+        except Exception as e:
+            raise e
+            
     def copy(self) -> Vector:
         """
         copies this vector and returns it.
