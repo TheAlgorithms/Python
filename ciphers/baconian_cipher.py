@@ -54,12 +54,12 @@ def encode(word: str) -> str:
     Exception: encode() accepts only alphabets
     """
     encoded = ''
-	  for letter in word.lower():
-	      if letter.isalpha() or letter == " ":
-			      encoded += encode_dict[letter]
-		    else:
-			      raise Exception("encode() accepts only alphabets")
-	  return encoded
+    for letter in word.lower():
+	if letter.isalpha() or letter == " ":
+	    encoded += encode_dict[letter]
+	else:
+            raise Exception("encode() accepts only alphabets")
+    return encoded
 
 def decode(coded: str) -> str:
     """
@@ -74,18 +74,17 @@ def decode(coded: str) -> str:
         ...
     Exception: encode() accepts only alphabets
     """
+    if set(coded) - {'A', 'B', ' '} != set() and set(coded) - {'A', 'B'} != set():
+        raise Exception("decode accepts only 'A', 'B' and ' '")
     words = coded.split()
-    if (set(coded) - {'A', 'B', ' '} != set() and set(coded) - {'A', 'B'} != set())
-		    raise Exception("decode accepts only 'A', 'B' and ' '")
-	  words = coded.split()
-	  decoded = ''
-	  for word in words:
-		    while len(word) != 0:
-			      decoded += decode_dict[word[:5]]
-			      word = word[5:]
-		    decoded += ' '
+    decoded = ''
+    for word in words:
+        while len(word) != 0:
+	    decoded += decode_dict[word[:5]]
+            word = word[5:]
+	decoded += ' '
     decoded = decoded.strip(' ')
-	  return decoded
+    return decoded
 
 if "__name__" == "__main__":
     from doctest import testmod
