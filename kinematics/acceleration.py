@@ -31,9 +31,14 @@ class NotEnoughInfo(Exception):
     pass
 
 # r is the rounding place
-def acceleration(initial_velocity: Union[int,float] = None, final_velocity: Union[int,float] = None, 
-                 final_position: Union[int,float] = None, initial_position: Union[int,float] = None, 
-                 time_elapsed: Union[int,float] = None, r: int = None) -> float:
+def acceleration(
+    initial_velocity: Union[int, float, None] = None,
+    final_velocity: Union[int, float, None] = None, 
+    final_position: Union[int, float, None] = None,
+    initial_position: Union[int, float, None] = None, 
+    time_elapsed: Union[int, float, None] = None,
+    retaining_wall: int = None,
+) -> float:
     """
     Find acceleration for given initial_position, final_position, initial_velocity, final_velocity, or time_elapsed.
     
