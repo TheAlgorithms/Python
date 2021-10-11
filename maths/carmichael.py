@@ -24,9 +24,9 @@ def check_prime(number: int) -> bool:
     """
     :param number: a number to check for primality
     :return: truth value of whether number is prime
-    >>> proth(3)
+    >>> check_prime(3)
     True
-    >>> proth(6)
+    >>> check_prime(6)
     False
     """
     if number < 2:
@@ -46,9 +46,9 @@ def check_carmichael(number: int) -> bool:
     """
     :param number: a number to check whether carmichael
     :return: truth value of whether number is carmichael
-    >>> proth(561)
+    >>> check_carmichael(561)
     True
-    >>> proth(15)
+    >>> check_carmichael(15)
     False
     """
     count1=0
