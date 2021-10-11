@@ -30,7 +30,8 @@ encode_dict = {
     "x": "BABAB",
     "y": "BABBA",
     "z": "BABBB",
-    " ": " ",}
+    " ": " ",
+}
 
 decode_dict = {}
 for alphabet in encode_dict:
