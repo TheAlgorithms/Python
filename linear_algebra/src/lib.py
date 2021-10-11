@@ -163,9 +163,7 @@ class Vector:
         """
         find angle between two Vector (self, Vector)
 
-        >>> y = Vector([3, 4, -1])
-        >>> z = Vector([2, -1, 1])
-        >>> y.angle(z)
+        >>> Vector([3, 4, -1]).angle(Vector([2, -1, 1]))
         1.4906464636572374
         >>> y.angle(z, deg = True) 
         85.40775111366095
