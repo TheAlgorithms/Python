@@ -4,7 +4,12 @@ Inputs : Co-efficients of x and y in a pair of equations, Dependents
 Outputs : Values of x and y
 '''
 
-def solve(x_coefficient_1: float, y_coefficient_1: float, dependent_1: float, x_coefficient_2: float, y_coefficient_2: float, dependent_2: float) -> list:
+def solve(x_coefficient_1: float,
+          y_coefficient_1: float,
+          dependent_1: float,
+          x_coefficient_2: float,
+          y_coefficient_2: float,
+          dependent_2: float) -> list:
   '''
   >>> solve(4,5,20,1,2,13)
   [-8.333333333333332, 10.666666666666666]
