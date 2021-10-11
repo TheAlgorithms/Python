@@ -1,3 +1,5 @@
+# Foundational implementation from merge sort
+# https://en.wikipedia.org/wiki/Merge_sort
 """
 Python implementation of how to merge two string
 For doctests run following command:
