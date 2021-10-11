@@ -2,9 +2,11 @@
 * Author: Manuel Di Lullo (https://github.com/manueldilullo)
 * Python Version: 3.9
 * Description: Complete graphs generator. Uses graphs represented with an adjacency list 
+
+URL: https://en.wikipedia.org/wiki/Complete_graph
 """
 
-def complete_graph(n):
+def complete_graph(n:int):
     """
     function that generate a complete graph with n vertices
     @input: n (number of vertices), directed (False if the graph is undirected, True otherwise)
@@ -21,4 +23,7 @@ def complete_graph(n):
     return g
 
 if __name__ == "__main__":
-    print(f"Complete graph:\n{complete_graph(5)}")
+    import doctest
+    doctest.testmod()
+
+    # print(f"Complete graph:\n{complete_graph(5)}")
