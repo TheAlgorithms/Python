@@ -57,12 +57,24 @@ def check_carmichael(n: int) -> int:
 	else:
 		return 1
 
-def main():
+def main() -> None:
    num = int(input("Enter the number: "))
    if check_carmichael(num) == 0:
       print(f"{num} is a Carmichael number")
    else:
       print(f"{num} is not a Carmichael number")
+
+if __name__ == "__check_prime__":
+    import doctest
+
+    doctest.testmod()
+    check_prime()
+
+if __name__ == "__check_carmichael__":
+    import doctest
+
+    doctest.testmod()
+    check_carmichael()
 
 if __name__ == "__main__":
     import doctest
