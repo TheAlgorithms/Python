@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 grid = [
     [0, 1, 0, 0, 0, 0],
     [0, 1, 0, 0, 0, 0],  # 0 are free path whereas 1's are obstacles
@@ -14,7 +16,8 @@ heuristic = [[9, 8, 7, 6, 5, 4],
              [5, 4, 3, 2, 1, 0]]"""
 
 init = [0, 0]
-goal = [len(grid) - 1, len(grid[0]) - 1]  # all coordinates are given in format [y,x]
+# all coordinates are given in format [y,x]
+goal = [len(grid) - 1, len(grid[0]) - 1]
 cost = 1
 
 # the cost map which pushes the path closer to the goal
@@ -27,17 +30,18 @@ for i in range(len(grid)):
 
 
 # the actions we can take
-delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # go up  # go left  # go down  # go right
+# go up  # go left  # go down  # go right
+delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]
 
 
 # function to search the path
 def search(
-    grid: "list[list[int]]",
-    init: "list[int]",
-    goal: "list[int]",
+    grid: list[list[int]],
+    init: list[int],
+    goal: list[int],
     cost: int,
-    heuristic: "list[list[int]]",
-) -> "list[list[int]]":
+    heuristic: list[list[int]],
+) -> list[list[int]]:
 
     closed = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))
