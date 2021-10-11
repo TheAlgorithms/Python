@@ -22,7 +22,11 @@ class StringBuilder(object):
         return self
 
     def __str__(self) -> str:
-        """string representation from the built sequence"""
+        """string representation from the built sequence
+
+        >>> str(StringBuilder("Test string"))
+        'Test string'
+        """
         return "".join(self.store)
 
 
