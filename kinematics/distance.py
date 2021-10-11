@@ -32,7 +32,7 @@ from typing import Union
 class NotEnoughInfo(Exception):
     pass
 
-# r is rounding number
+# r is rounding place
 def distance(initial_velocity: Union[int,float] = None, final_velocity: Union[int,float] = None, 
              initial_position: Union[int,float] = None, acceleration: Union[int,float] = None, 
              time_elapsed: Union[int,float] = None, r: int = None) -> float:
