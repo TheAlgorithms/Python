@@ -1,24 +1,23 @@
 """
 * Author: Manuel Di Lullo (https://github.com/manueldilullo)
-* Python Version: 3.9
-* Description: Approximization algotihm for minimum vertex cover problem. Greedy Approach. Uses graphs represented with an adjacency list 
+* Description: Approximization algorithm for minimum vertex cover problem.
+               Greedy Approach. Uses graphs represented with an adjacency list
 
-URL: https://en.wikipedia.org/wiki/Vertex_cover
 URL: https://mathworld.wolfram.com/MinimumVertexCover.html
 URL: https://cs.stackexchange.com/questions/129017/greedy-algorithm-for-vertex-cover
 """
 
 import heapq
 
-def greedy_min_vertex_cover(graph:dict) -> set:
+
+def greedy_min_vertex_cover(graph: dict) -> set:
     """
-    APX Algorithm for min Vertex Cover: GREEDY STRATEGY
-    @input: graph (a graph stored in an adjacency list where each vertex is represented with an integer)
+    Greedy APX Algorithm for min Vertex Cover
+    @input: graph (graph stored in an adjacency list where each vertex
+            is represented with an integer)
     @example:
     >>> graph = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
     >>> print(f"Minimum vertex cover:\n{greedy_min_vertex_cover(graph)}")
-    Minimum vertex cover:
-    {0, 1, 2, 4}
     """
     # s = set of chosen vertices
     S = set()
@@ -44,11 +43,11 @@ def greedy_min_vertex_cover(graph:dict) -> set:
             # if v haven't adjacent node, skip
             if elem[0] == 0:
                 continue
-            # if argmax is reachable from elem 
+            # if argmax is reachable from elem
             # remove argmax from elem's adjacent list and update his rank
             if argmax in elem[1][1]:
                 index = elem[1][1].index(argmax)
-                del (elem[1][1][index])
+                del elem[1][1][index]
                 elem[0] += 1
         # re-order the queue
         heapq.heapify(queue)
@@ -57,7 +56,8 @@ def greedy_min_vertex_cover(graph:dict) -> set:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-    
+
     # graph = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
     # print(f"Minimum vertex cover:\n{greedy_min_vertex_cover(graph)}")
