@@ -52,13 +52,13 @@ def check_carmichael(number: int) -> bool:
 					count1 = count1 + 1
 
 	if count1==0 and count2>2 and count3==0:
-		return False
-	else:
 		return True
+	else:
+		return False
 
 if __name__ == "__main__":
    num = int(input("Enter the number: "))
-   if not check_carmichael(num):
+   if check_carmichael(num):
       print(f"{num} is a Carmichael number")
    else:
       print(f"{num} is not a Carmichael number")
