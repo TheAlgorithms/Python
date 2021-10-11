@@ -1,90 +1,91 @@
-"""
 
- The nqueens problem is of placing N queens on a N * N
- chess board such that no queen can attack any other queens placed
- on that chess board.
- This means that one queen cannot have any other queen on its horizontal, vertical and
- diagonal lines.
-
-"""
-from __future__ import annotations
-
-solution = []
-
-
-def isSafe(board: list[list[int]], row: int, column: int) -> bool:
-    """
-    This function returns a boolean value True if it is safe to place a queen there
-    considering the current state of the board.
-
-    Parameters :
-    board(2D matrix) : board
-    row ,column : coordinates of the cell on a board
-
-    Returns :
-    Boolean Value
-
-    """
-    for i in range(len(board)):
+# Python3 program to solve N Queen 
+# Problem using backtracking
+global N
+N = 4
+  
+def printSolution(board):
+    for i in range(N):
+        for j in range(N):
+            print (board[i][j], end = " ")
+        print()
+  
+# A utility function to check if a queen can
+# be placed on board[row][col]. Note that this
+# function is called when "col" queens are
+# already placed in columns from 0 to col -1.
+# So we need to check only left side for
+# attacking queens
+def isSafe(board, row, col):
+  
+    # Check this row on left side
+    for i in range(col):
         if board[row][i] == 1:
             return False
-    for i in range(len(board)):
-        if board[i][column] == 1:
-            return False
-    for i, j in zip(range(row, -1, -1), range(column, -1, -1)):
+  
+    # Check upper diagonal on left side
+    for i, j in zip(range(row, -1, -1), 
+                    range(col, -1, -1)):
         if board[i][j] == 1:
             return False
-    for i, j in zip(range(row, -1, -1), range(column, len(board))):
+  
+    # Check lower diagonal on left side
+    for i, j in zip(range(row, N, 1), 
+                    range(col, -1, -1)):
         if board[i][j] == 1:
             return False
+  
     return True
-
-
-def solve(board: list[list[int]], row: int) -> bool:
-    """
-    It creates a state space tree and calls the safe function until it receives a
-    False Boolean and terminates that branch and backtracks to the next
-    possible solution branch.
-    """
-    if row >= len(board):
-        """
-        If the row number exceeds N we have board with a successful combination
-        and that combination is appended to the solution list and the board is printed.
-
-        """
-        solution.append(board)
-        printboard(board)
-        print()
+  
+def solveNQUtil(board, col):
+      
+    # base case: If all queens are placed
+    # then return true
+    if col >= N:
         return True
-    for i in range(len(board)):
-        """
-        For every row it iterates through each column to check if it is feasible to
-        place a queen there.
-        If all the combinations for that particular branch are successful the board is
-        reinitialized for the next possible combination.
-        """
-        if isSafe(board, row, i):
-            board[row][i] = 1
-            solve(board, row + 1)
-            board[row][i] = 0
+  
+    # Consider this column and try placing
+    # this queen in all rows one by one
+    for i in range(N):
+  
+        if isSafe(board, i, col):
+              
+            # Place this queen in board[i][col]
+            board[i][col] = 1
+  
+            # recur to place rest of the queens
+            if solveNQUtil(board, col + 1) == True:
+                return True
+  
+            # If placing queen in board[i][col
+            # doesn't lead to a solution, then
+            # queen from board[i][col]
+            board[i][col] = 0
+  
+    # if the queen can not be placed in any row in
+    # this colum col then return false
     return False
-
-
-def printboard(board: list[list[int]]) -> None:
-    """
-    Prints the boards that have a successful combination.
-    """
-    for i in range(len(board)):
-        for j in range(len(board)):
-            if board[i][j] == 1:
-                print("Q", end=" ")
-            else:
-                print(".", end=" ")
-        print()
-
-
-# n=int(input("The no. of queens"))
-n = 8
-board = [[0 for i in range(n)] for j in range(n)]
-solve(board, 0)
-print("The total no. of solutions are :", len(solution))
+  
+# This function solves the N Queen problem using
+# Backtracking. It mainly uses solveNQUtil() to
+# solve the problem. It returns false if queens
+# cannot be placed, otherwise return true and
+# placement of queens in the form of 1s.
+# note that there may be more than one
+# solutions, this function prints one of the
+# feasible solutions.
+def solveNQ():
+    board = [ [0, 0, 0, 0],
+              [0, 0, 0, 0],
+              [0, 0, 0, 0],
+              [0, 0, 0, 0] ]
+  
+    if solveNQUtil(board, 0) == False:
+        print ("Solution does not exist")
+        return False
+  
+    printSolution(board)
+    return True
+  
+# Driver Code
+solveNQ()
