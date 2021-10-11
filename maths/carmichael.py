@@ -23,13 +23,13 @@ FAILING: tuple = ("A", [], {}, None)
 import numpy as np
 
 def check_carmichael(number: int) -> bool:
-    """
-    Return True if number is a Carmichael number or False if it is not.
-    >>> all(check_carmichael(n) for n in PASSING)
-    True
-    >>> any(check_carmichael(n) for n in FAILING)
-    False
-    """
+	"""
+	Return True if number is a Carmichael number or False if it is not.
+	>>> all(check_carmichael(n) for n in PASSING)
+	True
+	>>> any(check_carmichael(n) for n in FAILING)
+	False
+	"""
 	n = number
 	count1=0
 	count2=0
