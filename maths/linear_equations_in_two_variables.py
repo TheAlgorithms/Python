@@ -26,6 +26,6 @@ def solve(
     return list(answers)
 
 if __name__ == "__main__":
-  from doctest import testmod
+    from doctest import testmod
 
-  testmod()
+    testmod()
