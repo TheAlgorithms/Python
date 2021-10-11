@@ -4,6 +4,7 @@ Inputs : Co-efficients of x and y in a pair of equations, Dependents
 Outputs : Values of x and y
 """
 
+
 def solve(
     x_coefficient_1: float,
     y_coefficient_1: float,
@@ -24,6 +25,7 @@ def solve(
     dependents = numpy.array([dependent_1, dependent_2])
     answers = numpy.linalg.solve(coefficients, dependents)
     return list(answers)
+
 
 if __name__ == "__main__":
     from doctest import testmod
