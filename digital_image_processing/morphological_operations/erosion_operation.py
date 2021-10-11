@@ -37,11 +37,11 @@ def gray2binary(gray: np.array) -> np.array:
 
 
 def erosion(image: np.array, kernel: np.array) -> np.array:
-    """
+   """
     Return eroded image
-    >>> erosion(np.array([[True, True, False]]), np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]]))
+    >>> erosion(np.array([[True, True, False]]), np.array([[0, 1, 0]]))
     array([[False, False, False]])
-    >>> erosion(np.array([[True, False, False]]), np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]]))
+    >>> erosion(np.array([[True, False, False]]), np.array([[1, 1, 0]]))
     array([[False, False, False]])
     """
     output = np.zeros_like(image)
