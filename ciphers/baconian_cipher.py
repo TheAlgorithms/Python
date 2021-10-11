@@ -35,8 +35,6 @@ encode_dict = {
 
 
 decode_dict = {}
-
-
 for alphabet in encode_dict:
     decode_dict[encode_dict[alphabet]] = alphabet
 
