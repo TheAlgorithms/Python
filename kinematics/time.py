@@ -31,7 +31,8 @@
 class NotEnoughInfo(Exception):
     pass
 
-# Named "ktime", as in "kinematics time", to prevent clashing and confusion between this and the function time()
+# Named "ktime", as in "kinematics time", to prevent clashing and confusion 
+# between this and the function time()
 def ktime(x0=None, x=None, v0=None, v=None, a=None, r=None):
     """
     Return time for given x0, x, v0, v, or a.
@@ -48,6 +49,19 @@ def ktime(x0=None, x=None, v0=None, v=None, a=None, r=None):
     32.8
     >>> ktime(x0=0, x=1720, v0=0, v=104.96, r=2)
     32.77
+    
+    The variable 'r' can only be an integer.
+    >>> ktime(x0=0, x=1720, v0=0, v=104.96, r=True)
+    Traceback (most recent call last):
+        ...
+    ValueError: r cannot be type 'bool'
+    
+    When not given enough information, you will get an error.
+    Ex. Trying to find time without final velocity
+    ktime(v0=0, a=3.2, r=2)
+    Traceback (most recent call last):
+        ...
+    NotEnoughInfo: Not enough information to complete calculation.
     """
     if not a:
         if None in (x0,x,v0,v):
@@ -61,7 +75,7 @@ def ktime(x0=None, x=None, v0=None, v=None, a=None, r=None):
             else:
                 return float((2*(x-x0))/(v+v0))
     else:
-        if None in (v0,v,a):
+        if None in (v0,v):
             raise NotEnoughInfo("Not enough information to complete calculation.")
         else:
             if r is not None:
