@@ -47,6 +47,19 @@ def distance(v0=None, v=None, x0=None, a=None, t=None, r=None):
     1721.34
     >>> distance(v0=0, v=104.96, x0=0, t=32.8, r=2)
     1721.34
+    
+    The variable 'r' can only be an integer.
+    >>> distance(v0=0, v=104.96, x0=0, t=32.8, r='2')
+    Traceback (most recent call last):
+        ...
+    ValueError: r cannot be type 'str'
+    
+    When not given enough information, you will get an error.
+    Ex. Trying to find distance without time
+    >>> distance(v0=0, v=104.96, x0=0, r=2)
+    Traceback (most recent call last):
+        ...
+    NotEnoughInfo: Not enough information to complete calculation.
     """
     if not a:
         if None in (x0,v0,v,t):
