@@ -17,7 +17,7 @@ class IIRFilter:
     we can rewrite this to
     y[n]={\frac{1}{a_{0}}}\left(\left(b_{0}x[n]+b_{1}x[n-1]+b_{2}x[n-2]+...+b_{k}x[n-k]\right)-\left(a_{1}y[n-1]+a_{2}y[n-2]+...+a_{k}y[n-k]\right)\right)
     """
-    def __init__(self, order: int):
+    def __init__(self, order: int) -> None:
         self.order = order
 
         # a_{0} ... a_{k}
@@ -30,7 +30,7 @@ class IIRFilter:
         # y[n-1] ... y[n-k]
         self.output_history = [0.0] * self.order
 
-    def set_coefficients(self, a_coeffs: List[float], b_coeffs: List[float]):
+    def set_coefficients(self, a_coeffs: List[float], b_coeffs: List[float]) -> None:
         """
         Set the coefficients for the IIR filter. These should both be of size order + 1.
         a_0 may be left out, and it will use 1.0 as default value.
@@ -56,6 +56,10 @@ class IIRFilter:
     def process(self, sample: float) -> float:
         """
         Calculate y[n]
+
+        >>> filt = IIRFilter(2)
+        >>> filt.process(0)
+        0
         """
         result = 0.0
 

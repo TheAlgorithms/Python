@@ -15,6 +15,9 @@ class ButterworthFilter:
     def make_lowpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
         """
         Creates a low-pass filter
+
+        >>> ButterworthFilter.make_lowpass(1000, 48000)
+        <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
         """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
@@ -36,6 +39,9 @@ class ButterworthFilter:
     def make_highpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
         """
         Creates a high-pass filter
+
+        >>> ButterworthFilter.make_highpass(1000, 48000)
+        <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
         """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
@@ -57,6 +63,9 @@ class ButterworthFilter:
     def make_bandpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
         """
         Creates a band-pass filter
+
+        >>> ButterworthFilter.make_bandpass(1000, 48000)
+        <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
         """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
@@ -79,6 +88,9 @@ class ButterworthFilter:
     def make_allpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
         """
         Creates an all-pass filter
+
+        >>> ButterworthFilter.make_allpass(1000, 48000)
+        <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
         """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
@@ -97,6 +109,9 @@ class ButterworthFilter:
     def make_peak(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
         """
         Creates a peak filter
+
+        >>> ButterworthFilter.make_peak(1000, 48000, 6)
+        <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
         """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
@@ -119,6 +134,9 @@ class ButterworthFilter:
     def make_lowshelf(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
         """
         Creates a low-shelf filter
+
+        >>> ButterworthFilter.make_lowshelf(1000, 48000, 6)
+        <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
         """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)
@@ -146,6 +164,9 @@ class ButterworthFilter:
     def make_highshelf(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
         """
         Creates a high-shelf filter
+
+        >>> ButterworthFilter.make_highshelf(1000, 48000, 6)
+        <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
         """
         w0 = tau * frequency / samplerate
         _sin = sin(w0)

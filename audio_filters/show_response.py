@@ -1,10 +1,16 @@
 from math import pi
+from typing import Protocol
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 
-def show_frequency_response(filter, samplerate: int):
+class FilterType(Protocol):
+    def process(self, sample: float) -> float:
+        pass
+
+
+def show_frequency_response(filter: FilterType, samplerate: int) -> None:
     """
     Show frequency response of a filter
     """
@@ -35,7 +41,7 @@ def show_frequency_response(filter, samplerate: int):
     plt.show()
 
 
-def show_phase_response(filter, samplerate: int):
+def show_phase_response(filter: FilterType, samplerate: int) -> None:
     """
     Show phase response of a filter
     """
