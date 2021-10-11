@@ -57,11 +57,16 @@ def check_carmichael(n: int) -> int:
 	else:
 		return 1
 
-if __name__ == "__main__":
-
-	Num = int(input("Enter the number: "))
+def main():
+   Num = int(input("Enter the number: "))
 
 	if check_carmichael(Num) == 0:
 		print(f"{Num} is a Carmichael number")
 	else:
 		print(f"{Num} is not a Carmichael number")
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    main()
