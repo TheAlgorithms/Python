@@ -17,10 +17,33 @@ Examples of Carmichael numbers: 561, 1105, 1729, 2465, 2821, 6601, 8911 ....
 
 https://en.wikipedia.org/wiki/Carmichael_number
 """
-PASSING = (561, 1105, 1729, 2465, 2821, 6601, 8911)
-FAILING: tuple = ("A", [], {}, None)
+PASSING = (561, 1105, 172)
+SECOND = (2, 3, 5)
+FAILING: tuple = ([], {}, None)
 
 import numpy as np
+
+def check_prime(number: int) -> bool:
+	"""
+	Return True if number is prime or False if it is not.
+	>>> all(check_prime(n) for n in SECOND)
+	True
+	>>> any(check_prime(n) for n in FAILING)
+	False
+	"""
+	i = number
+	if i < 2:
+		return False
+	elif i == 2:
+		return True
+	else:
+		j = 2
+		while True:
+			if i % j == 0:
+				return False
+			if j * j > i:
+				return True
+			j = j + 1
 
 def check_carmichael(number: int) -> bool:
 	"""
@@ -39,19 +62,7 @@ def check_carmichael(number: int) -> bool:
 		if n%(i*i)==0:
 			count3 = count3 + 1
 		else:
-			if i < 2:
-				flag = 1
-			elif i == 2:
-				flag = 0
-			else:
-				j = 2
-				while True:
-					if i % j == 0:
-						flag = 1
-					if j * j > i:
-						flag = 0
-					j = j + 1
-			if n%i==0 and flag==0:
+			if n%i==0 and check_prime(i):
 				if (n-1)%(i-1)==0:
 					count2 = count2 + 1
 				else:
