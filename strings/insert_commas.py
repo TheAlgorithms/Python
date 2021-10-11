@@ -1,3 +1,5 @@
+# Foundational implementation from merge sort
+# https://en.wikipedia.org/wiki/Merge_sort
 """
 This is a Python implementation of the how to insert commas
 between a given sequence if string digit
