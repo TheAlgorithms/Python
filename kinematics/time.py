@@ -37,12 +37,12 @@ class NotEnoughInfo(Exception):
 # between this and the function time()
 # retaining_wall is rounding place
 def ktime(
-    initial_position: Union[int, float] = None,
-    final_position: Union[int, float] = None,
-    initial_velocity: Union[int, float] = None,
-    final_velocity: Union[int, float] = None,
-    acceleration: Union[int, float] = None,
-    retaining_wall: int = None,
+    initial_position: Union[int, float, None] = None,
+    final_position: Union[int, float, None] = None,
+    initial_velocity: Union[int, float, None] = None,
+    final_velocity: Union[int, float, None] = None,
+    acceleration: Union[int, float, None] = None,
+    retaining_wall: Union[int, None] = None,
 ) -> float:
     """
     Return time for given initial_position, final_position, initial_velocity,
@@ -63,12 +63,12 @@ def ktime(
     ... final_velocity=104.96, retaining_wall=2)
     32.77
 
-    The variable 'r' can only be an integer.
+    The variable 'retaining_wall' can only be an integer.
     >>> ktime(initial_position=0, final_position=1720, initial_velocity=0,
     ... final_velocity=104.96, retaining_wall=True)
     Traceback (most recent call last):
         ...
-    ValueError: r cannot be type 'bool'
+    ValueError: retaining_wall cannot be type 'bool'
 
     When not given enough information, you will get an error.
     Ex. Trying to find time without final velocity
@@ -84,7 +84,7 @@ def ktime(
             if retaining_wall is not None:
                 if type(retaining_wall) != int:
                     raise ValueError(
-                        f"r cannot be type '{type(retaining_wall).__name__}'"
+                        f"retaining_wall cannot be type '{type(retaining_wall).__name__}'"
                     )
                 else:
                     return round(
@@ -106,7 +106,7 @@ def ktime(
             if retaining_wall is not None:
                 if type(retaining_wall) != int:
                     raise ValueError(
-                        f"r cannot be type '{type(retaining_wall).__name__}'"
+                        f"retaining_wall cannot be type '{type(retaining_wall).__name__}'"
                     )
                 else:
                     return round(
