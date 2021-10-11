@@ -47,6 +47,19 @@ def acceleration(v0=None, v=None, x=None, x0=None, t=None, r=None):
     3.2
     >>> acceleration(v0=0, v=104.96, t=32.8, r=2)
     3.2
+    
+    r can only be an integer.
+    >>> acceleration(v0=0, v=104.96, t=32.8, r=2.1)
+    Traceback (most recent call last):
+        ...
+    ValueError: r cannot be type 'float'
+    
+    When not given enough information, you will get an error.
+    Ex. Trying to find acceleration with final velocity and time only
+    >>> acceleration(v=104.96, t=32.8, r=2)
+    Traceback (most recent call last):
+        ...
+    NotEnoughInfo: Not enough information to complete calculation.
     """
     if not t:
         if None in (v0,v,x,x0):
