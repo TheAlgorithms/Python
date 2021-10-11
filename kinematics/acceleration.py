@@ -48,7 +48,7 @@ def acceleration(v0=None, v=None, x=None, x0=None, t=None, r=None):
     >>> acceleration(v0=0, v=104.96, t=32.8, r=2)
     3.2
     
-    r can only be an integer.
+    The variable 'r' can only be an integer.
     >>> acceleration(v0=0, v=104.96, t=32.8, r=2.1)
     Traceback (most recent call last):
         ...
