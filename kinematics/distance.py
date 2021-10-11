@@ -37,7 +37,7 @@ def distance(initial_velocity: Union[int,float] = None, final_velocity: Union[in
              initial_position: Union[int,float] = None, acceleration: Union[int,float] = None, 
              time_elapsed: Union[int,float] = None, r: int = None) -> float:
     """
-    Find distance for given initial_position, initial_velocity, final_velocity, acceleration* or t.
+    Find distance for given initial_position, initial_velocity, final_velocity, acceleration or time_elapsed.
     
     :param initial_velocity: int, float
     :param initial_position: int, float
