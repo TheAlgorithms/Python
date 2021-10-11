@@ -68,12 +68,12 @@ def proth(number: int) -> int:
 
 
 if __name__ == "__main__":
-    for i in range(11):
+    for number in range(11):
         value = 0
         try:
-            value = proth(i)
-        except ValueError as e:
-            print(f"ValueError: indexing starts at 1, there is no {i}th Proth number")
+            value = proth(number)
+        except ValueError:
+            print(f"ValueError: there is no {number}th Proth number")
             continue
 
-        print(f"The {i}th Proth number: {value}")
+        print(f"The {number}th Proth number: {value}")
