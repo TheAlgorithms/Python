@@ -22,23 +22,7 @@ FAILING: tuple = ("A", [], {}, None)
 
 import numpy as np
 
-def check_prime(number: int) -> int:
-
-	n = number
-	if n < 2:
-		return 1
-	elif n == 2:
-		return 0
-	else:
-		i = 2
-		while True:
-			if n % i == 0:
-				return 1
-			if i * i > n:
-				return 0
-			i = i + 1
-
-def check_carmichael(number: int) -> int:
+def check_carmichael(number: int) -> bool:
 
 	n = number
 	count1=0
@@ -49,20 +33,32 @@ def check_carmichael(number: int) -> int:
 		if n%(i*i)==0:
 			count3 = count3 + 1
 		else:
-			if n%i==0 and check_prime(i)==0:
+			if i < 2:
+				flag = 1
+			elif i == 2:
+				flag = 0
+			else:
+				j = 2
+				while True:
+					if i % j == 0:
+						flag = 1
+					if j * j > i:
+						flag = 0
+					j = j + 1
+			if n%i==0 and flag==0:
 				if (n-1)%(i-1)==0:
 					count2 = count2 + 1
 				else:
 					count1 = count1 + 1
 
 	if count1==0 and count2>2 and count3==0:
-		return 0
+		return False
 	else:
-		return 1
+		return True
 
 if __name__ == "__main__":
    num = int(input("Enter the number: "))
-   if check_carmichael(num) == 0:
+   if not check_carmichael(num):
       print(f"{num} is a Carmichael number")
    else:
       print(f"{num} is not a Carmichael number")
