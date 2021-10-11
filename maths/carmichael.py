@@ -17,7 +17,8 @@ Examples of Carmichael numbers: 561, 1105, 1729, 2465, 2821, 6601, 8911 ....
 
 https://en.wikipedia.org/wiki/Carmichael_number
 """
-
+PASSING = (561, 1105, 1729, 2465, 2821, 6601, 8911)
+FAILING: tuple = ("A", [], {}, None)
 
 import numpy as np
 
