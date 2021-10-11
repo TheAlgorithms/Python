@@ -59,6 +59,7 @@ def encode(word: str) -> str:
             raise Exception("encode() accepts only alphabets")
     return encoded
 
+
 def decode(coded: str) -> str:
     """
     Decodes from Baconian cipher
