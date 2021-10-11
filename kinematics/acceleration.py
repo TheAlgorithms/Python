@@ -26,12 +26,17 @@
 # These were calculated by hand so the output for distance is different, but the outputs 
 # are more accurate than the one used for the example.
 
+# Typing hints
+from typing import Union
+
 # FINDING ACCELERATION
 
 class NotEnoughInfo(Exception):
     pass
 
-def acceleration(v0=None, v=None, x=None, x0=None, t=None, r=None):
+def acceleration(v0: Union[int,float] = None, v: Union[int,float] = None, 
+                 x: Union[int,float] = None, x0: Union[int,float] = None, 
+                 t: Union[int,float] = None, r: int = None) -> float:
     """
     Find acceleration for given x0, x, v0, v, or t.
     
