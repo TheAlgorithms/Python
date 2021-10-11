@@ -80,6 +80,7 @@ def decode(coded: str) -> str:
     for word in words:
         while len(word) != 0:
             decoded += decode_dict[word[:5]]
+            word = word[5:]
         decoded += " "
     decoded = decoded.strip(" ")
     return decoded
