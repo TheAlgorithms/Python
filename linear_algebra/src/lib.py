@@ -175,7 +175,7 @@ class Vector:
         """
         try:
             num = self * other
-            den = (self.magnitude())*(other.magnitude())
+            den = self.magnitude() * other.magnitude()
             if deg:
                 return math.degrees(math.acos(num/den))
             else:
