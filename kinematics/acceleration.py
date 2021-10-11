@@ -23,6 +23,8 @@
 # These were calculated by hand so the output for distance is different, but the outputs 
 # are more accurate than the one used for the example.
 
+# FINDING ACCELERATION
+
 class NotEnoughInfo(Exception):
     pass
 
