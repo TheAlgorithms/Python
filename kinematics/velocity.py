@@ -69,12 +69,12 @@ class NotEnoughInfo(Exception):
 
 
 def velocity(
-    intial_position: Union[int, float] = None,
-    final_position: Union[int, float] = None,
-    intial_velocity: Union[int, float] = None,
-    acceleration: Union[int, float] = None,
-    time_elapsed: Union[int, float] = None,
-    retaining_wall: int = None,
+    intial_position: Union[int, float, None] = None,
+    final_position: Union[int, float, None] = None,
+    intial_velocity: Union[int, float, None] = None,
+    acceleration: Union[int, float, None] = None,
+    time_elapsed: Union[int, float, None] = None,
+    retaining_wall: Union[int, None] = None,
 ) -> float:
     """
     Find velocity with given intial_velocity, intial_position, final_position,
@@ -98,12 +98,12 @@ def velocity(
     ... acceleration=3.2, retaining_wall=2)
     104.92
 
-    The variable 'r' can only be an integer.
+    The variable 'retaining_wall' can only be an integer.
     >>> velocity(intial_velocity=0, intial_position=0, final_position=1720,
     ... acceleration=3.2, retaining_wall=[2])
     Traceback (most recent call last):
         ...
-    ValueError: r cannot be type 'list'
+    ValueError: retaining_wall cannot be type 'list'
 
     When not given enough information, you will get an error.
     Ex. Trying to find velocity without initial position, final position
@@ -120,7 +120,7 @@ def velocity(
             if retaining_wall is not None:
                 if type(retaining_wall) != int:
                     raise ValueError(
-                        f"r cannot be type '{type(retaining_wall).__name__}'"
+                        f"retaining_wall cannot be type '{type(retaining_wall).__name__}'"
                     )
                 else:
                     return round(
@@ -142,7 +142,7 @@ def velocity(
                     if retaining_wall is not None:
                         if type(retaining_wall) != int:
                             raise ValueError(
-                                f"r cannot be type '{type(retaining_wall).__name__}'"
+                                f"retaining_wall cannot be type '{type(retaining_wall).__name__}'"
                             )
                         else:
                             return round(
@@ -176,7 +176,7 @@ def velocity(
                     if retaining_wall is not None:
                         if type(retaining_wall) != int:
                             raise ValueError(
-                                f"r cannot be type '{type(retaining_wall).__name__}'"
+                                f"retaining_wall cannot be type '{type(retaining_wall).__name__}'"
                             )
                         else:
                             return round(float(final_result), retaining_wall)
