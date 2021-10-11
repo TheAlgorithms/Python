@@ -42,6 +42,7 @@ for alphabet in encode_dict:
 def encode(word: str) -> str:
     """
     Encodes to Baconian cipher
+    
     >>> encode("hello")
     'AABBBAABAAABABAABABAABBAB'
     >>> encode("hello world")
