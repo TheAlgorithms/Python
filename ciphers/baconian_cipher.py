@@ -53,9 +53,9 @@ def encode(word: str) -> str:
     """
     encoded = ''
     for letter in word.lower():
-	if letter.isalpha() or letter == " ":
+        if letter.isalpha() or letter == " ":
 	    encoded += encode_dict[letter]
-         else:
+        else:
             raise Exception("encode() accepts only alphabets")
     return encoded
 
@@ -80,7 +80,7 @@ def decode(coded: str) -> str:
         while len(word) != 0:
 	    decoded += decode_dict[word[:5]]
             word = word[5:]
-	decoded += ' '
+        decoded += ' '
     decoded = decoded.strip(' ')
     return decoded
 
