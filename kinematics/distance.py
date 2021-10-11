@@ -37,12 +37,12 @@ class NotEnoughInfo(Exception):
 
 # retaining_wall is rounding place
 def distance(
-    initial_velocity: Union[int, float] = None,
-    final_velocity: Union[int, float] = None,
-    initial_position: Union[int, float] = None,
-    acceleration: Union[int, float] = None,
-    time_elapsed: Union[int, float] = None,
-    retaining_wall: int = None,
+    initial_velocity: Union[int, float, None] = None,
+    final_velocity: Union[int, float, None] = None,
+    initial_position: Union[int, float, None] = None,
+    acceleration: Union[int, float, None] = None,
+    time_elapsed: Union[int, float, None] = None,
+    retaining_wall: Union[int, None] = None,
 ) -> float:
     """
     Find distance for given initial_position, initial_velocity, final_velocity,
@@ -63,7 +63,7 @@ def distance(
     ... time_elapsed=32.8, retaining_wall=2)
     1721.34
 
-    The variable 'r' can only be an integer.
+    The variable 'retaining_wall' can only be an integer.
     >>> distance(initial_velocity=0, final_velocity=104.96, initial_position=0,
     ... time_elapsed=32.8, retaining_wall='2')
     Traceback (most recent call last):
@@ -85,7 +85,7 @@ def distance(
             if retaining_wall is not None:
                 if type(retaining_wall) != int:
                     raise ValueError(
-                        f"r cannot be type '{type(retaining_wall).__name__}'"
+                        f"retaining_wall cannot be type '{type(retaining_wall).__name__}'"
                     )
                 else:
                     return round(
@@ -107,7 +107,7 @@ def distance(
             if retaining_wall is not None:
                 if type(retaining_wall) != int:
                     raise ValueError(
-                        f"r cannot be type '{type(retaining_wall).__name__}'"
+                        f"retaining_wall cannot be type '{type(retaining_wall).__name__}'"
                     )
                 else:
                     return round(
