@@ -57,15 +57,17 @@ def largest_histogram_area(histogram: list[int]) -> int:
         ...
     AssertionError: Histogram can have only positive bars
     """
-    assert (isinstance(histogram, list) and all(bar > 0 for bar in histogram)), f"Histogram can have only positive bars"
-    histogram.append(0)  # the stack maintain the indexes of buildings with ascending height.
-    # before adding a new building pop the building who is taller than the new one.
+    assert (isinstance(histogram, list) and all(bar > 0 for bar in histogram)), \
+        f"Histogram can have only positive bars"
+    histogram.append(0)  # stack to maintain indexes of bars (ascending height)
+    # before adding a new bar, pop the bar who is taller than the new one
     stack = [-1]
     max_area = 0
     for i in range(len(histogram)):
         while histogram[i] < histogram[stack[-1]]:
-            # The building popped out represent the height of a rectangle with the new building as the right
-            # boundary and the current stack top as the left boundary.
+            # The building popped out represent the height of a rectangle with
+            # the new building as the right boundary and the current stack top
+            # as the left boundary
             h = histogram[stack.pop()]
             # Calculate its area and update max_area of maximum area.
             w = i - stack[-1] - 1
