@@ -16,7 +16,7 @@ class StringBuilder(object):
     def __init__(self, val: str) -> None:
         self.store = [val]
 
-    def __iadd__(self, value):
+    def __iadd__(self, value: str) -> "StringBuilder":
         """appends a character to the sequence"""
         self.store.append(value)
         return self
