@@ -41,11 +41,13 @@ def surface_area_sphere(radius: float) -> float:
         raise ValueError("surface_area_sphere() only accepts non-negative values")
     return 4 * pi * radius ** 2
 
+
 def surface_area_cone(radius: float, height: float) -> float:
     """
     Calculate the Surface Area of a Cone.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cone
     Formula: pi * r * (r + (h ** 2 + r ** 2) ** 0.5)
+    
     
     >>> surface_area_cone(10, 24)
     1130.9733552923256
@@ -68,11 +70,13 @@ def surface_area_cone(radius: float, height: float) -> float:
         raise ValueError("surface_area_cone() only accepts non-negative values")
     return pi * radius * (radius + (height ** 2 + radius ** 2) ** 0.5)
 
+
 def surface_area_cylinder(radius: float, height: float) -> float:
     """
     Calculate the Surface Area of a Cylinder.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
     Formula: 2 * pi * r * (h + r)
+    
     
     >>> surface_area_cylinder(7, 10)
     747.6990515543707
@@ -94,6 +98,7 @@ def surface_area_cylinder(radius: float, height: float) -> float:
     if radius < 0 or height < 0:
         raise ValueError("surface_area_cylinder() only accepts non-negative values")
     return 2 * pi * radius * (height + radius)
+
 
 def area_rectangle(length: float, width: float) -> float:
     """
