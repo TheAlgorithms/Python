@@ -26,12 +26,17 @@
 # These were calculated by hand so the output for distance is different, but the outputs 
 # are more accurate than the one used for the example.
 
+# Typing hints
+from typing import Union
+
 # FINDING DISTANCE #
 
 class NotEnoughInfo(Exception):
     pass
 
-def distance(v0=None, v=None, x0=None, a=None, t=None, r=None):
+def distance(v0: Union[int,float] = None, v: Union[int,float] = None, 
+             x0: Union[int,float] = None, a: Union[int,float] = None, 
+             t: Union[int,float] = None, r: int = None) -> float:
     """
     Find distance for given x0, v0, v, a, or t.
     
