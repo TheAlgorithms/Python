@@ -33,7 +33,7 @@ COMPLEXITY:
 Time Complexity: O(n), n is the length of the bars in the histogram.
 Space Complexity: O(n), one list/stack is created or stored in the memory.
 """
-from typing import List
+from __future__ import annotations
 
 
 def largest_histogram_area(histogram: List[int]) -> int:
