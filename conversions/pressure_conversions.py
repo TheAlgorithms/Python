@@ -7,8 +7,10 @@ on it's own can never be negative,
 except in cases where it is relative to another kind of pressure
 """
 
+from typing import Union
 
-def atmospeheres_to_bars(atm: float, unit: str) -> float:
+
+def atmospeheres_to_bars(atm: float, unit: str) -> Union[float, str]:
     """
     This function converts atm to bar
     Wikipedia reference: https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
@@ -34,7 +36,7 @@ def atmospeheres_to_bars(atm: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def bars_to_atmospheres(bar: float, unit: str) -> float:
+def bars_to_atmospheres(bar: float, unit: str) -> Union[float, str]:
     """
     This function converts bar to atm
     Wikipedia reference: https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
@@ -61,7 +63,7 @@ def bars_to_atmospheres(bar: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def atmospheres_to_milimeter_mercury(atm: float, unit: str) -> float:
+def atmospheres_to_milimeter_mercury(atm: float, unit: str) -> Union[float, str]:
     """
     This function converts atm to mmHg
     Wikipedia reference: https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
@@ -87,7 +89,7 @@ def atmospheres_to_milimeter_mercury(atm: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def milimeter_mercury_to_atmospheres(mm_hg: float, unit: str) -> float:
+def milimeter_mercury_to_atmospheres(mm_hg: float, unit: str) -> Union[float, str]:
     """
     This function converts mmHg to atm
     Wikipedia reference: https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
@@ -113,7 +115,7 @@ def milimeter_mercury_to_atmospheres(mm_hg: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def atmospheres_to_pascals(atm: float, unit: str) -> float:
+def atmospheres_to_pascals(atm: float, unit: str) -> Union[float, str]:
     """
     This function converts atm to Pa
     Wikipedia reference: https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
@@ -139,7 +141,7 @@ def atmospheres_to_pascals(atm: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def pascals_to_atmospheres(pa: float, unit: str) -> float:
+def pascals_to_atmospheres(pa: float, unit: str) -> Union[float, str]:
     """
     This function converts Pa to atm
     Wikipedia reference: https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
@@ -166,7 +168,7 @@ def pascals_to_atmospheres(pa: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def bars_to_milimeter_mercury(bar: float, unit: str) -> float:
+def bars_to_milimeter_mercury(bar: float, unit: str) -> Union[float, str]:
     """
     This function converts bar to mmHg
     Wikipedia reference: https://en.wikipedia.org/wiki/Bar_(unit)
@@ -192,7 +194,7 @@ def bars_to_milimeter_mercury(bar: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def milimeter_mercury_to_bars(mm_hg: float, unit: str) -> float:
+def milimeter_mercury_to_bars(mm_hg: float, unit: str) -> Union[float, str]:
     """
     This function converts mmHg to bar
     Wikipedia reference: https://en.wikipedia.org/wiki/Bar_(unit)
@@ -218,7 +220,7 @@ def milimeter_mercury_to_bars(mm_hg: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def bars_to_pascals(bar: float, unit: str) -> float:
+def bars_to_pascals(bar: float, unit: str) -> Union[float, str]:
     """
     This function converts bar to Pa
     Wikipedia reference: https://en.wikipedia.org/wiki/Bar_(unit)
@@ -244,7 +246,7 @@ def bars_to_pascals(bar: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def pascals_to_bars(pa: float, unit: str) -> float:
+def pascals_to_bars(pa: float, unit: str) -> Union[float, str]:
     """
     This function converts Pa to bar
     Wikipedia reference: https://en.wikipedia.org/wiki/Bar_(unit)
@@ -270,7 +272,7 @@ def pascals_to_bars(pa: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def milimeter_mercury_to_pascals(mm_hg: float, unit: str) -> float:
+def milimeter_mercury_to_pascals(mm_hg: float, unit: str) -> Union[float, str]:
     """
     This function converts mmHg to Pa
     Wikipedia reference: https://en.wikipedia.org/wiki/Millimetre_of_mercury
@@ -296,7 +298,7 @@ def milimeter_mercury_to_pascals(mm_hg: float, unit: str) -> float:
         return "Invalid unit"
 
 
-def pascals_to_milimeter_mercury(pa: float, unit: str) -> float:
+def pascals_to_milimeter_mercury(pa: float, unit: str) -> Union[float, str]:
     """
     This function converts Pa to mmHg
     Wikipedia reference: https://en.wikipedia.org/wiki/Millimetre_of_mercury
