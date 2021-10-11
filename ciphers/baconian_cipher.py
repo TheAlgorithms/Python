@@ -76,10 +76,9 @@ def decode(coded: str) -> str:
     words = coded.split()
     decoded = ""
     for word in words:
-        while len(word) != 0:
-	    decoded += decode_dict[word[:5]]
-            word = word[5:]
-	decoded += " "
+        while len(word) > 0:
+            decoded += decode_dict[word[:5]]
+        decoded += " "
     decoded = decoded.strip(" ")
     return decoded
 
