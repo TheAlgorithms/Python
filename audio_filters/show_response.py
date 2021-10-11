@@ -7,12 +7,22 @@ import numpy as np
 
 class FilterType(Protocol):
     def process(self, sample: float) -> float:
+        """
+        Calculate y[n]
+
+        >>> filt = FilterType()
+        >>> filt.process(0)
+        """
         pass
 
 
 def show_frequency_response(filter: FilterType, samplerate: int) -> None:
     """
     Show frequency response of a filter
+
+    >>> from audio_filters.iir_filter import IIRFilter
+    >>> filt = IIRFilter(4)
+    >>> show_frequency_response(filt, 48000)
     """
 
     size = 512
@@ -44,6 +54,10 @@ def show_frequency_response(filter: FilterType, samplerate: int) -> None:
 def show_phase_response(filter: FilterType, samplerate: int) -> None:
     """
     Show phase response of a filter
+
+    >>> from audio_filters.iir_filter import IIRFilter
+    >>> filt = IIRFilter(4)
+    >>> show_phase_response(filt, 48000)
     """
 
     size = 512
