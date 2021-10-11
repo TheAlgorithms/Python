@@ -4,8 +4,9 @@
 AUTHOR: github.com/shreayan98c
 
 PROBLEM STATEMENT:
-Given an array of integers histograms representing the histogram's bar histogram where the width of each bar is 1, return
-the area of the largest rectangle in the histogram.
+Given an array of integers histograms representing the histogram's bar histogram
+where the width of each bar is 1, return the area of the largest rectangle in the
+histogram.
 
 EXAMPLES:
 
@@ -20,12 +21,14 @@ Input: histograms = [2,4]
 Output: 4
 
 LOGIC:
-1. The h-index is calculated by counting the number of publications for which an author has been cited by other authors
-at least that same number of times.
+1. The h-index is calculated by counting the number of publications for which an
+author has been cited by other authors at least that same number of times.
 2. First sort the citations list in reverse order.
-3. Now traverse the reverse sorted list of the citations - At each index, it will give us a track of how many
-publications have been counted yet and what is the number of citations at the current index.
-4. If our number of publications that have been counted is greater than the current citation, we will be incrementing
+3. Now traverse the reverse sorted list of the citations - At each index, it will
+give us a track of how many publications have been counted yet and what is the
+number of citations at the current index.
+4. If our number of publications that have been counted is greater than the
+current citation, we will be incrementing
 the result by 1 since the current publication has to be included in the h - index.
 5. Return the total number of the publications counted in the previous step.
 
@@ -39,11 +42,13 @@ from __future__ import annotations
 def largest_histogram_area(histogram: list[int]) -> int:
     """
     Args:
-        histogram: List[int] - an array of integers histograms representing the histogram's bar where the width of each bar is 1
+        histogram: List[int] - an array of integers histograms representing the
+        histogram's bar where the width of each bar is 1
     Returns:
         max_area: int - the area of the largest rectangle in the histogram
-    Given an array of integers histograms representing the histogram's bar histogram where the width of each bar is 1, return
-    the area of the largest rectangle in the histogram.
+    Given an array of integers histograms representing the histogram's bar
+    histogram where the width of each bar is 1, return the area of the largest
+    rectangle in the histogram.
 
     Testcases:
     >>> largest_histogram_area([2,1,5,6,2,3])
@@ -59,7 +64,7 @@ def largest_histogram_area(histogram: list[int]) -> int:
     """
     assert isinstance(histogram, list) and all(
         bar > 0 for bar in histogram
-    ), f"Histogram can have only positive bars"
+    ), "Histogram can have only positive bars"
     histogram.append(0)  # stack to maintain indexes of bars (ascending height)
     # before adding a new bar, pop the bar who is taller than the new one
     stack = [-1]
