@@ -40,11 +40,11 @@ def merge_string(str_1: str, str_2: str) -> str:
     >>> merge_string("mnin", "aso")
     'mansion'
     """
-    if len(str_1) < 0 and len(str_2) < 0:
+    if len(str_1) == 0 and len(str_2) == 0:
         return ""
-    if len(str_1) < 0 and len(str_2):
+    if len(str_1) == 0 and len(str_2):
         return str_2
-    if len(str_2) < 0 and len(str_1):
+    if len(str_2) == 0 and len(str_1):
         return str_1
 
     ret = StringBuilder("")
