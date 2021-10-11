@@ -26,6 +26,9 @@
 # These were calculated by hand so the output for distance is different, but the outputs 
 # are more accurate than the one used for the example.
 
+# Typing hints
+from typing import Union
+
 # FINDING TIME #
 
 class NotEnoughInfo(Exception):
@@ -33,7 +36,9 @@ class NotEnoughInfo(Exception):
 
 # Named "ktime", as in "kinematics time", to prevent clashing and confusion 
 # between this and the function time()
-def ktime(x0=None, x=None, v0=None, v=None, a=None, r=None):
+def ktime(x0: Union[int,float] = None, x: Union[int,float] = None, 
+          v0: Union[int,float] = None, v: Union[int,float] = None, 
+          a: Union[int,float] = None, r: int = None) -> float:
     """
     Return time for given x0, x, v0, v, or a.
     
