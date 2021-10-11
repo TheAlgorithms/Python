@@ -5,16 +5,6 @@
 # Here is an explanation on the "big 4 equations", all of which were used to make this
 # algorithm: https://www.physicsclassroom.com/class/1dkin/Lesson-6/Kinematic-Equations
 
-# These are how we represent specific values when calculating using kinematic equations
-# x0 = Initial Position
-# x = Final Postion
-# v0 = Intial Velocity
-# v = Final Velocity
-# a = acceleration
-# t = time
-
-# r = rounding place
-
 # Output will always be a float, so if you need to round, set r to whatever place you 
 # are rounding to
 
@@ -22,12 +12,17 @@
 # very close. Typically you would only show sig 
 # figs when you calculate with these equations.
 
-# Doctests are all tested with v0=0, v=104.96, x0=0, x=1720, a=3.2, t=32.8, r=2
+# Doctests are all tested with initial_velocity=0, final_velocity=104.96, initial_position=0, final_position=1720, acceleration=3.2, time_elapsed=32.8, r=2
 # These were calculated by hand so the output for distance is different, but the outputs 
 # are more accurate than the one used for the example.
 
+# In all cases distance is final_position-initial_position
+# TOTAL distance is final_position+initial_position
+# If you want to find distance from one point to another assume initial_position=0
+
 # Typing hints
 from typing import Union
+import doctest
 
 # FINDING TIME #
 
@@ -36,57 +31,58 @@ class NotEnoughInfo(Exception):
 
 # Named "ktime", as in "kinematics time", to prevent clashing and confusion 
 # between this and the function time()
-def ktime(x0: Union[int,float] = None, x: Union[int,float] = None, 
-          v0: Union[int,float] = None, v: Union[int,float] = None, 
-          a: Union[int,float] = None, r: int = None) -> float:
+# r is rounding place
+def ktime(initial_position: Union[int,float] = None, final_position: Union[int,float] = None, 
+          initial_velocity: Union[int,float] = None, final_velocity: Union[int,float] = None, 
+          acceleration: Union[int,float] = None, r: int = None) -> float:
     """
-    Return time for given x0, x, v0, v, or a.
+    Return time for given initial_position, final_position, initial_velocity, final_velocity, or acceleration.
     
-    :param x0: int, float
-    :param x: int, float
-    :param v0: int, float
-    :param v: int, float
-    :param a: int, float
+    :param initial_position: int, float
+    :param final_position: int, float
+    :param initial_velocity: int, float
+    :param final_velocity: int, float
+    :param acceleration: int, float
     :param r: int
     :return: float
     
-    >>> ktime(v0=0, v=104.96, a=3.2, r=2)
+    >>> ktime(initial_velocity=0, final_velocity=104.96, acceleration=3.2, r=2)
     32.8
-    >>> ktime(x0=0, x=1720, v0=0, v=104.96, r=2)
+    >>> ktime(initial_position=0, final_position=1720, initial_velocity=0, final_velocity=104.96, r=2)
     32.77
     
     The variable 'r' can only be an integer.
-    >>> ktime(x0=0, x=1720, v0=0, v=104.96, r=True)
+    >>> ktime(initial_position=0, final_position=1720, initial_velocity=0, final_velocity=104.96, r=True)
     Traceback (most recent call last):
         ...
     ValueError: r cannot be type 'bool'
     
     When not given enough information, you will get an error.
     Ex. Trying to find time without final velocity
-    ktime(v0=0, a=3.2, r=2)
+    ktime(initial_velocity=0, acceleration=3.2, r=2)
     Traceback (most recent call last):
         ...
     NotEnoughInfo: Not enough information to complete calculation.
     """
-    if not a:
-        if None in (x0,x,v0,v):
+    if not acceleration:
+        if None in (initial_position,final_position,initial_velocity,final_velocity):
             raise NotEnoughInfo("Not enough information to complete calculation.")
         else:
             if r is not None:
                 if type(r) != int:
                     raise ValueError(f"r cannot be type '{type(r).__name__}'")
                 else:
-                    return round(float((2*(x-x0))/(v+v0)), r)
+                    return round(float((2*(final_position-initial_position))/(final_velocity+initial_velocity)), r)
             else:
-                return float((2*(x-x0))/(v+v0))
+                return float((2*(final_position-initial_position))/(final_velocity+initial_velocity))
     else:
-        if None in (v0,v):
+        if None in (initial_velocity,final_velocity):
             raise NotEnoughInfo("Not enough information to complete calculation.")
         else:
             if r is not None:
                 if type(r) != int:
                     raise ValueError(f"r cannot be type '{type(r).__name__}'")
                 else:
-                    return round(float((v-v0)/a), r)
+                    return round(float((final_velocity-initial_velocity)/acceleration), r)
             else:
-                return float((v-v0)/a)
+                return float((final_velocity-initial_velocity)/acceleration)
