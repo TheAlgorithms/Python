@@ -34,12 +34,12 @@ def check_prime(number: int) -> bool:
     elif number == 2:
         return True
     else:
-	i = 2
-	while True:
-	    if number % i == 0:
+        i = 2
+        while True:
+            if number % i == 0:
                 return False
             elif i * i > number:
-		return True
+                return True
             i = i + 1
 
 def check_carmichael(number: int) -> bool:
