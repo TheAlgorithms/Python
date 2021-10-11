@@ -37,7 +37,7 @@ def merge_string(str_1: str, str_2: str) -> str:
     Examples:
     >>> merge_string("abc", "def")
     'adbecf'
-    >>> merge_string("mnin","aso")
+    >>> merge_string("mnin", "aso")
     'mansion'
     """
     if len(str_1) < 0 and len(str_2) < 0:
