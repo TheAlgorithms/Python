@@ -11,9 +11,10 @@ class FilterType(Protocol):
         Calculate y[n]
 
         >>> filt = FilterType()
-        >>> filt.process(0)
+        >>> filt.process(0.0)
+        0.0
         """
-        pass
+        return 0.0
 
 
 def show_frequency_response(filter: FilterType, samplerate: int) -> None:
