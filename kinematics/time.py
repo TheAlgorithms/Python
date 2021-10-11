@@ -27,7 +27,8 @@
 
 class NotEnoughInfo(Exception):
     pass
-  
+
+# Named "ktime", as in "kinematics time", to prevent clashing and confusion between this and the function time()
 def ktime(x0=None, x=None, v0=None, v=None, a=None, r=None):
     """
     Return time for given x0, x, v0, v, or a.
