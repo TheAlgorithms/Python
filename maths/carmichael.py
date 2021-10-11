@@ -21,58 +21,58 @@ https://en.wikipedia.org/wiki/Carmichael_number
 import numpy as np
 
 def check_prime(number: int) -> bool:
-	"""
-	Return True if number is prime or False if it is not.
-	>>> all(check_prime(n) for n in [2,3,5,7])
-	True
-	>>> any(check_prime(n) for n in [1,4,6,8])
-	False
-	"""
-	i = number
-	if i < 2:
-		return False
-	elif i == 2:
+    """
+    :param number: a number to check for primality
+    :return: truth value of whether number is prime
+    >>> proth(3)
+    True
+    >>> proth(6)
+    False
+    """
+    if number < 2:
+        return False
+    elif number == 2:
+	return True
+    else:
+	i = 2
+	while True:
+	    if number % i == 0:
+                return False
+            elif i * i > number:
 		return True
-	else:
-		j = 2
-		while True:
-			if i % j == 0:
-				return False
-			if j * j > i:
-				return True
-			j = j + 1
+            i = i + 1
 
 def check_carmichael(number: int) -> bool:
-	"""
-	Return True if number is a Carmichael number or False if it is not.
-	>>> all(check_carmichael(n) for n in [561, 1105, 1729, 2465, 2821])
-	True
-	>>> any(check_carmichael(n) for n in [1,2,3,4,5])
-	False
-	"""
-	n = number
-	count1=0
-	count2=0
-	count3=0
+    """
+    :param number: a number to check whether carmichael
+    :return: truth value of whether number is carmichael
+    >>> proth(561)
+    True
+    >>> proth(15)
+    False
+    """
+    count1=0
+    count2=0
+    count3=0
 
-	for i in range(3,n):
-		if n%(i*i)==0:
-			count3 = count3 + 1
-		else:
-			if n%i==0 and check_prime(i):
-				if (n-1)%(i-1)==0:
-					count2 = count2 + 1
-				else:
-					count1 = count1 + 1
-
-	if count1==0 and count2>2 and count3==0:
-		return True
+    for i in range(3,number):
+        if n%(i*i)==0:
+	    count3 = count3 + 1
 	else:
-		return False
+	    if number%i == 0 and check_prime(i) == True:
+                if (n-1)%(i-1)==0:
+		    count2 = count2 + 1
+		else:
+		    count1 = count1 + 1
+
+        if count1==0 and count2>2 and count3==0:
+            return True
+	else:
+            return False
 
 if __name__ == "__main__":
-   num = int(input("Enter the number: "))
-   if check_carmichael(num):
-      print(f"{num} is a Carmichael number")
-   else:
-      print(f"{num} is not a Carmichael number")
+    number = int(input("Enter the number: "))
+    if check_carmichael(number):
+        print(f"{number} is a Carmichael number")
+    else:
+        print(f"{number} is not a Carmichael number")
