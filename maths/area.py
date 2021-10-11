@@ -47,8 +47,7 @@ def surface_area_cone(radius: float, height: float) -> float:
     Calculate the Surface Area of a Cone.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cone
     Formula: pi * r * (r + (h ** 2 + r ** 2) ** 0.5)
-    
-    
+
     >>> surface_area_cone(10, 24)
     1130.9733552923256
     >>> surface_area_cone(6, 8)
@@ -76,8 +75,7 @@ def surface_area_cylinder(radius: float, height: float) -> float:
     Calculate the Surface Area of a Cylinder.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
     Formula: 2 * pi * r * (h + r)
-    
-    
+
     >>> surface_area_cylinder(7, 10)
     747.6990515543707
     >>> surface_area_cylinder(6, 8)
