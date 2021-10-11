@@ -38,13 +38,13 @@ def show_frequency_response(filter: FilterType, samplerate: int) -> None:
     fft_db = 20 * np.log10(fft_out)
 
     # Frequencies on log scale from 24 to nyquist frequency
-    plt.xlim(24, samplerate/2-1)
+    plt.xlim(24, samplerate / 2 - 1)
     plt.xlabel("Frequency (Hz)")
-    plt.xscale('log')
+    plt.xscale("log")
 
     # Display within reasonable bounds
-    lowest = min([-20, np.min(fft_db[1:samplerate//2-1])])
-    highest = max([20, np.max(fft_db[1:samplerate//2-1])])
+    lowest = min([-20, np.min(fft_db[1 : samplerate // 2 - 1])])
+    highest = max([20, np.max(fft_db[1 : samplerate // 2 - 1])])
     plt.ylim(max([-80, lowest]), min([80, highest]))
     plt.ylabel("Gain (dB)")
 
@@ -74,9 +74,9 @@ def show_phase_response(filter: FilterType, samplerate: int) -> None:
     # Frequencies on log scale from 24 to nyquist frequency
     plt.xlim(24, samplerate / 2 - 1)
     plt.xlabel("Frequency (Hz)")
-    plt.xscale('log')
+    plt.xscale("log")
 
-    plt.ylim(-2*pi, 2*pi)
+    plt.ylim(-2 * pi, 2 * pi)
     plt.ylabel("Phase shift (Radians)")
-    plt.plot(np.unwrap(fft_out, -2*pi))
+    plt.plot(np.unwrap(fft_out, -2 * pi))
     plt.show()

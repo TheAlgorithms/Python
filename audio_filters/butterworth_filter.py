@@ -1,7 +1,6 @@
-from math import sqrt, sin, tau, cos
+from math import cos, sin, sqrt, tau
 
 from audio_filters.iir_filter import IIRFilter
-
 
 """
 Create 2nd-order IIR filters with Butterworth design.
@@ -11,7 +10,9 @@ Alternatively you can use scipy.signal.butter, which should yield the same resul
 """
 
 
-def make_lowpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_lowpass(
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """
     Creates a low-pass filter
 
@@ -35,7 +36,9 @@ def make_lowpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2))
     return filt
 
 
-def make_highpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_highpass(
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """
     Creates a high-pass filter
 
@@ -48,7 +51,7 @@ def make_highpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
     alpha = _sin / (2 * q_factor)
 
     b0 = (1 + _cos) / 2
-    b1 = - 1 - _cos
+    b1 = -1 - _cos
 
     a0 = 1 + alpha
     a1 = -2 * _cos
@@ -59,7 +62,9 @@ def make_highpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
     return filt
 
 
-def make_bandpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_bandpass(
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """
     Creates a band-pass filter
 
@@ -73,7 +78,7 @@ def make_bandpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
 
     b0 = _sin / 2
     b1 = 0
-    b2 = - b0
+    b2 = -b0
 
     a0 = 1 + alpha
     a1 = -2 * _cos
@@ -84,7 +89,9 @@ def make_bandpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
     return filt
 
 
-def make_allpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_allpass(
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """
     Creates an all-pass filter
 
@@ -105,7 +112,9 @@ def make_allpass(frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2))
     return filt
 
 
-def make_peak(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_peak(
+    frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """
     Creates a peak filter
 
@@ -130,7 +139,9 @@ def make_peak(frequency: int, samplerate: int, gain_db: float, q_factor: float =
     return filt
 
 
-def make_lowshelf(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_lowshelf(
+    frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """
     Creates a low-shelf filter
 
@@ -142,11 +153,11 @@ def make_lowshelf(frequency: int, samplerate: int, gain_db: float, q_factor: flo
     _cos = cos(w0)
     alpha = _sin / (2 * q_factor)
     big_a = 10 ** (gain_db / 40)
-    pmc = (big_a+1) - (big_a-1)*_cos
-    ppmc = (big_a+1) + (big_a-1)*_cos
-    mpc = (big_a-1) - (big_a+1)*_cos
-    pmpc = (big_a-1) + (big_a+1)*_cos
-    aa2 = 2*sqrt(big_a)*alpha
+    pmc = (big_a + 1) - (big_a - 1) * _cos
+    ppmc = (big_a + 1) + (big_a - 1) * _cos
+    mpc = (big_a - 1) - (big_a + 1) * _cos
+    pmpc = (big_a - 1) + (big_a + 1) * _cos
+    aa2 = 2 * sqrt(big_a) * alpha
 
     b0 = big_a * (pmc + aa2)
     b1 = 2 * big_a * mpc
@@ -160,7 +171,9 @@ def make_lowshelf(frequency: int, samplerate: int, gain_db: float, q_factor: flo
     return filt
 
 
-def make_highshelf(frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)) -> IIRFilter:
+def make_highshelf(
+    frequency: int, samplerate: int, gain_db: float, q_factor: float = 1 / sqrt(2)
+) -> IIRFilter:
     """
     Creates a high-shelf filter
 
@@ -172,11 +185,11 @@ def make_highshelf(frequency: int, samplerate: int, gain_db: float, q_factor: fl
     _cos = cos(w0)
     alpha = _sin / (2 * q_factor)
     big_a = 10 ** (gain_db / 40)
-    pmc = (big_a+1) - (big_a-1)*_cos
-    ppmc = (big_a+1) + (big_a-1)*_cos
-    mpc = (big_a-1) - (big_a+1)*_cos
-    pmpc = (big_a-1) + (big_a+1)*_cos
-    aa2 = 2*sqrt(big_a)*alpha
+    pmc = (big_a + 1) - (big_a - 1) * _cos
+    ppmc = (big_a + 1) + (big_a - 1) * _cos
+    mpc = (big_a - 1) - (big_a + 1) * _cos
+    pmpc = (big_a - 1) + (big_a + 1) * _cos
+    aa2 = 2 * sqrt(big_a) * alpha
 
     b0 = big_a * (ppmc + aa2)
     b1 = -2 * big_a * pmpc
