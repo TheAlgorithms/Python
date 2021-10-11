@@ -21,7 +21,7 @@ https://en.wikipedia.org/wiki/Carmichael_number
 
 import numpy as np
 
-def check_prime(n) -> int:
+def check_prime(n: int) -> int:
 
 	if n < 2:
 		return 1
@@ -36,7 +36,7 @@ def check_prime(n) -> int:
 				return 0
 			i = i + 1
 
-def check_carmichael(n) -> int:
+def check_carmichael(n: int) -> int:
 
 	count1=0
 	count2=0
