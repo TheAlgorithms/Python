@@ -26,6 +26,9 @@
 # These were calculated by hand so the output for distance is different, but the outputs 
 # are more accurate than the one used for the example.
 
+# Typing hints
+from typing import Union
+
 # Square root function just so I don't have to import math and it looks cleaner
 def sqrt(num):
     if num < 0:
@@ -42,7 +45,9 @@ def sqrt(num):
 class NotEnoughInfo(Exception):
     pass
   
-def velocity(x0=None, x=None, v0=None, a=None, t=None, r=None):
+def velocity(x0: Union[int,float] = None, x: Union[int,float] = None, 
+v0: Union[int,float] = None, a: Union[int,float] = None, 
+t: Union[int,float] = None, r: int = None) -> float:
     """
     Find velocity with given v0, x0, x, a, or t.
     
