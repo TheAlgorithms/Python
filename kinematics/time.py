@@ -12,7 +12,8 @@
 # very close. Typically you would only show sig 
 # figs when you calculate with these equations.
 
-# Doctests are all tested with initial_velocity=0, final_velocity=104.96, initial_position=0, final_position=1720, acceleration=3.2, time_elapsed=32.8, r=2
+# Doctests are all tested with initial_velocity=0, final_velocity=104.96, initial_position=0,
+# final_position=1720, acceleration=3.2, time_elapsed=32.8, r=2
 # These were calculated by hand so the output for distance is different, but the outputs 
 # are more accurate than the one used for the example.
 
