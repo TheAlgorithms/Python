@@ -107,3 +107,5 @@ The core idea is as followed.
 - If we are visiting a gray node, print it.
 
 Implementation of preorder and postorder traversal algorithms can be easily done by changing the order of pushing the child nodes into the stack.
+
+Reference: [LeetCode](https://github.com/azl397985856/leetcode/blob/master/thinkings/binary-tree-traversal.en.md)
