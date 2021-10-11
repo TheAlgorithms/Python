@@ -39,7 +39,7 @@ def solution(numerator: int = 1, digit: int = 1000) -> int:
     longest_list_length = 0
 
     for divide_by_number in range(numerator, digit + 1):
-        has_been_divided = []
+        has_been_divided: list[int] = []
         now_divide = numerator
         for division_cycle in range(1, digit + 1):
             if now_divide in has_been_divided:
