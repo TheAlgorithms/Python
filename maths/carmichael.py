@@ -56,11 +56,11 @@ def check_carmichael(number: int) -> bool:
 	count3=0
 
 	for i in range(3,number):
-		if n%(i*i)==0:
+		if number%(i*i)==0:
 			count3 = count3 + 1
 		else:
 			if number%i == 0 and check_prime(i) == True:
-				if (n-1)%(i-1)==0:
+				if (number-1)%(i-1)==0:
 					count2 = count2 + 1
 				else:
 					count1 = count1 + 1
