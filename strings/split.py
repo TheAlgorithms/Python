@@ -18,6 +18,7 @@ def split(string: str, separator: str = " ") -> list:
 
     return string.split(separator)
 
+
 if __name__ == "__main__":
     from doctest import testmod
 
