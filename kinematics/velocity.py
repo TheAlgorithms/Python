@@ -22,7 +22,35 @@ from typing import Union
 
 
 # Square root function just so I don't have to import math and it looks cleaner
-def sqrt(num: Union[int, float]) -> Union[int, float]:
+def sqrt(num: Union[int, float]) -> float:
+    """
+    Get square root of num or negative square root of positive num if num is negative.
+
+    :param num: int, float
+    :return: float
+
+    >>> sqrt(0)
+    0.0
+    >>> sqrt(1)
+    1.0
+    >>> sqrt(81)
+    9.0
+
+    With negative number.
+    >>> sqrt(-4)
+    -2.0
+
+    Value error.
+    >>> sqrt('4')
+    Traceback (most recent call last):
+        ...
+    ValueError: num must be an int or float, not type 'str'
+    """
+    if type(num) != int and type(num) != float:
+        raise ValueError(
+            f"num must be an int or float, not type '{type(num).__name__}'"
+        )
+
     if num < 0:
         multiplier = -1
         final_result = abs(num)
