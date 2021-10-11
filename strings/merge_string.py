@@ -35,7 +35,7 @@ def merge_string(str_1: str, str_2: str) -> str:
     :param str_1 : first input string
     :param str_2 : second input string
     Examples:
-    >>> merge_string("abc","def")
+    >>> merge_string("abc", "def")
     'adbecf'
     >>> merge_string("mnin","aso")
     'mansion'
