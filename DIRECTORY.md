@@ -423,6 +423,7 @@
   * [Binomial Coefficient](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_coefficient.py)
   * [Binomial Distribution](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_distribution.py)
   * [Bisection](https://github.com/TheAlgorithms/Python/blob/master/maths/bisection.py)
+  * [Carmichael Number](https://github.com/TheAlgorithms/Python/blob/master/maths/carmichael.py)
   * [Ceil](https://github.com/TheAlgorithms/Python/blob/master/maths/ceil.py)
   * [Chudnovsky Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
