@@ -36,7 +36,7 @@ Space Complexity: O(n), one list/stack is created or stored in the memory.
 from __future__ import annotations
 
 
-def largest_histogram_area(histogram: List[int]) -> int:
+def largest_histogram_area(histogram: list[int]) -> int:
     """
     Args:
         histogram: List[int] - an array of integers histograms representing the histogram's bar where the width of each bar is 1
