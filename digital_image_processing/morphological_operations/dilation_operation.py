@@ -39,10 +39,10 @@ def gray2binary(gray: np.array) -> np.array:
 def dilation(image: np.array, kernel: np.array) -> np.array:
     """
     Return dilated image
-    >>> dilation(np.array([[True, False, True]]), np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]]))
-    array([[ True,  True,  True]])
-    >>> dilation(np.array([[True, False, False]]), np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]]))
-    array([[ True,  True, False]])
+    >>> dilation(np.array([[True, False, True]]), np.array([[0, 1, 0]]))
+    array([[False, False, False]])
+    >>> dilation(np.array([[False, False, True]]), np.array([[1, 0, 1]]))
+    array([[False, False, False]])
     """
     output = np.zeros_like(image)
     image_padded = np.zeros(
