@@ -33,11 +33,9 @@ encode_dict = {
     " ": " "
 }
 
-
 decode_dict = {}
 for alphabet in encode_dict:
     decode_dict[encode_dict[alphabet]] = alphabet
-
 
 def encode(word: str) -> str:
     """
@@ -52,14 +50,14 @@ def encode(word: str) -> str:
         ...
     Exception: encode() accepts only alphabets
     """
-    encoded = ''
-    for letter in word.lower() :
-        if letter.isalpha() or letter == " " :
-	    encoded += encode_dict[letter]
+    encoded = ""
+    for letter in word.lower():
+        if letter.isalpha() or letter == " ":
+          encoded += encode_dict[letter]
         else:
-            raise Exception("encode() accepts only alphabets")
+          raise Exception("encode() accepts only alphabets")
     return encoded
-
+  
 def decode(coded: str) -> str:
     """
     Decodes from Baconian cipher
@@ -76,16 +74,16 @@ def decode(coded: str) -> str:
     if set(coded) - {'A', 'B', ' '} != set() and set(coded) - {'A', 'B'} != set():
         raise Exception("decode accepts only 'A', 'B' and ' '")
     words = coded.split()
-    decoded = ''
+    decoded = ""
     for word in words:
         while len(word) != 0:
-	    decoded += decode_dict[word[:5]]
+	          decoded += decode_dict[word[:5]]
             word = word[5:]
-        decoded += ' '
-    decoded = decoded.strip(' ')
+	      decoded += " "
+    decoded = decoded.strip(" ")
     return decoded
 
 if "__name__" == "__main__":
     from doctest import testmod
-
+    
     testmod()
