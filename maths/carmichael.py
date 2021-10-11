@@ -21,8 +21,9 @@ https://en.wikipedia.org/wiki/Carmichael_number
 
 import numpy as np
 
-def check_prime(n: int) -> int:
+def check_prime(number: int) -> int:
 
+	n = number
 	if n < 2:
 		return 1
 	elif n == 2:
@@ -36,8 +37,9 @@ def check_prime(n: int) -> int:
 				return 0
 			i = i + 1
 
-def check_carmichael(n: int) -> int:
+def check_carmichael(number: int) -> int:
 
+	n = number
 	count1=0
 	count2=0
 	count3=0
@@ -64,20 +66,7 @@ def main() -> None:
    else:
       print(f"{num} is not a Carmichael number")
 
-if __name__ == "__check_prime__":
-    import doctest
-
-    doctest.testmod()
-    check_prime()
-
-if __name__ == "__check_carmichael__":
-    import doctest
-
-    doctest.testmod()
-    check_carmichael()
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     main()
