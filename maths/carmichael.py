@@ -32,7 +32,7 @@ def check_prime(number: int) -> bool:
     if number < 2:
         return False
     elif number == 2:
-	return True
+        return True
     else:
 	i = 2
 	while True:
