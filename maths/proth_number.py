@@ -20,6 +20,11 @@ def proth(number: int) -> int:
     >>> proth(6)
     25
 
+    >>> proth(0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Input value of [number=0] has to be > 0
+
     >>> proth(-1)
     Traceback (most recent call last):
     ...
@@ -63,4 +68,12 @@ def proth(number: int) -> int:
 
 
 if __name__ == "__main__":
-    print(f"The 6th Proth number: {proth(6)}")
+    for i in range(11):
+        value = 0
+        try:
+            value = proth(i)
+        except ValueError as e:
+            print(f"ValueError: indexing starts at 1, there is no {i}th Proth number")
+            continue
+
+        print(f"The {i}th Proth number: {value}")
