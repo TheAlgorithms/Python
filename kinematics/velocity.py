@@ -60,6 +60,20 @@ def velocity(x0=None, x=None, v0=None, a=None, t=None, r=None):
     104.88
     >>> velocity(v0=0, x0=0, x=1720, a=3.2, r=2)
     104.92
+    
+    The variable 'r' can only be an integer.
+    >>> velocity(v0=0, x0=0, x=1720, a=3.2, r=[2])
+    Traceback (most recent call last):
+        ...
+    ValueError: r cannot be type 'list'
+    
+    When not given enough information, you will get an error.
+    Ex. Trying to find velocity without initial position, final position
+    and time
+    >>> velocity(v0=0, a=3.2, r=2)
+    Traceback (most recent call last):
+        ...
+    NotEnoughInfo: Not enough information to complete calculation.
     """
     if not x0 and not x:
         if None in (v0,a,t):
