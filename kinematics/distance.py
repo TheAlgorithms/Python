@@ -5,9 +5,9 @@
 # Here is an explanation on the "big 4 equations", all of which were used to make this
 # algorithm: https://www.physicsclassroom.com/class/1dkin/Lesson-6/Kinematic-Equations
 
-# r = rounding place
+# retaining_wall = rounding place
 
-# Output will always be a float, so if you need to round, set r to whatever place you
+# Output will always be a float, so if you need to round, set retaining_wall to whatever place you
 # are rounding to
 
 # NOTE: Not all of these equations will give you an exactly same answer, but will be
