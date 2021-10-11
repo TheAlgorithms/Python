@@ -46,8 +46,8 @@ class NotEnoughInfo(Exception):
     pass
   
 def velocity(x0: Union[int,float] = None, x: Union[int,float] = None, 
-v0: Union[int,float] = None, a: Union[int,float] = None, 
-t: Union[int,float] = None, r: int = None) -> float:
+             v0: Union[int,float] = None, a: Union[int,float] = None, 
+             t: Union[int,float] = None, r: int = None) -> float:
     """
     Find velocity with given v0, x0, x, a, or t.
     
