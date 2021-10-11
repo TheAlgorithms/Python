@@ -151,22 +151,40 @@ class Vector:
     def magnitude(self) -> float:
         '''
         Magnitude of a Vector
+
+        >>> x = Vector([2, 3, 4])
+        >>> x.magnitude()
+        5.385164807134504
+
         '''
         return sum([i**2 for i in self.__components])**(1/2)
 
-    def angle(self, other: Vector, deg: bool) -> float:
+    def angle(self, other: Vector, deg: bool = False) -> float:
         """
         find angle between two Vector (self, Vector)
+
+        >>> y = Vector([3, 4, -1])
+        >>> z = Vector([2, -1, 1])
+        >>> y.angle(z)
+        1.4906464636572374
+        >>> y.angle(z, deg = True) 
+        85.40775111366095
+        >>> z = Vector([2, -1])    
+        >>> y.angle(z)             
+        Traceback (most recent call last):
+         ...
+        Exception: invalid operand!
         """
         try:
             num = self * other
-            den = (self.magnitude())*(n.magnitude())
+            den = (self.magnitude())*(other.magnitude())
             if deg:
                 return math.degrees(math.acos(num/den))
             else:
                 return math.acos(num/den)
         except Exception as e:
             raise e
+
             
     def copy(self) -> Vector:
         """
