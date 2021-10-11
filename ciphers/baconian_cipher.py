@@ -54,9 +54,9 @@ def encode(word: str) -> str:
     encoded = ''
     for letter in word.lower():
         if letter.isalpha() or letter == " ":
-	    encoded += encode_dict[letter]
+	  encoded += encode_dict[letter]
         else:
-            raise Exception("encode() accepts only alphabets")
+          raise Exception("encode() accepts only alphabets")
     return encoded
 
 def decode(coded: str) -> str:
