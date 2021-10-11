@@ -6,7 +6,7 @@
 URL: https://en.wikipedia.org/wiki/Complete_graph
 """
 
-def complete_graph(n:int) -> dict:
+def complete_graph(vertices_number:int) -> dict:
     """
     function that generate a complete graph with n vertices
     @input: n (number of vertices), directed (False if the graph is undirected, True otherwise)
@@ -15,9 +15,9 @@ def complete_graph(n:int) -> dict:
     {0: [1, 2], 1: [2], 2: []}
     """
     g = {}
-    for i in range(n):
+    for i in range(vertices_number):
         g[i] = []
-        for j in range(0,n):
+        for j in range(0,vertices_number):
             if i != j:
                 g[i].append(j)
     return g
