@@ -152,8 +152,7 @@ class Vector:
         '''
         Magnitude of a Vector
 
-        >>> x = Vector([2, 3, 4])
-        >>> x.magnitude()
+        >>> Vector([2, 3, 4]).magnitude()
         5.385164807134504
 
         '''
@@ -165,12 +164,11 @@ class Vector:
 
         >>> Vector([3, 4, -1]).angle(Vector([2, -1, 1]))
         1.4906464636572374
-        >>> y.angle(z, deg = True) 
+        >>> Vector([3, 4, -1]).angle(Vector([2, -1, 1]), deg = True) 
         85.40775111366095
-        >>> z = Vector([2, -1])    
-        >>> y.angle(z)             
+        >>> Vector([3, 4, -1]).angle(Vector([2, -1]))             
         Traceback (most recent call last):
-         ...
+        ...
         Exception: invalid operand!
         """
         try:
@@ -180,8 +178,8 @@ class Vector:
                 return math.degrees(math.acos(num/den))
             else:
                 return math.acos(num/den)
-        except Exception as e:
-            raise e
+        except:
+            raise
 
             
     def copy(self) -> Vector:
