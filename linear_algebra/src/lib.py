@@ -147,16 +147,16 @@ class Vector:
             return summe
         else:  # error case
             raise Exception("invalid operand!")
-    
+
     def magnitude(self) -> float:
-        '''
+        """
         Magnitude of a Vector
 
         >>> Vector([2, 3, 4]).magnitude()
         5.385164807134504
 
-        '''
-        return sum([i**2 for i in self.__components])**(1/2)
+        """
+        return sum([i ** 2 for i in self.__components]) ** (1 / 2)
 
     def angle(self, other: Vector, deg: bool = False) -> float:
         """
@@ -164,24 +164,20 @@ class Vector:
 
         >>> Vector([3, 4, -1]).angle(Vector([2, -1, 1]))
         1.4906464636572374
-        >>> Vector([3, 4, -1]).angle(Vector([2, -1, 1]), deg = True) 
+        >>> Vector([3, 4, -1]).angle(Vector([2, -1, 1]), deg = True)
         85.40775111366095
-        >>> Vector([3, 4, -1]).angle(Vector([2, -1]))             
+        >>> Vector([3, 4, -1]).angle(Vector([2, -1]))
         Traceback (most recent call last):
         ...
         Exception: invalid operand!
         """
-        try:
-            num = self * other
-            den = self.magnitude() * other.magnitude()
-            if deg:
-                return math.degrees(math.acos(num/den))
-            else:
-                return math.acos(num/den)
-        except:
-            raise
+        num = self * other
+        den = self.magnitude() * other.magnitude()
+        if deg:
+            return math.degrees(math.acos(num / den))
+        else:
+            return math.acos(num / den)
 
-            
     def copy(self) -> Vector:
         """
         copies this vector and returns it.
