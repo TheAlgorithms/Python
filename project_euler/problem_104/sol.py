@@ -11,7 +11,7 @@ Given that Fk is the first Fibonacci number for which the first nine digits AND 
 """
 
 
-def check(a : int) ->bool : 
+def check(number : int) ->bool : 
   '''
   Takes a number and checks if it is pandigital both from start and end
 
@@ -27,43 +27,43 @@ def check(a : int) ->bool :
 
   '''
 
-  checkLast=[0]*11 
-  checkFront=[0]*11
+  check_last=[0]*11 
+  check_front=[0]*11
   
   #mark last 9 numbers
   for x in range(9):
-      checkLast[int(a%10)]=1
-      a=a//10
+      check_last[int(number%10)]=1
+      number=number//10
   #flag
   f=True
 
   #check last 9 numbers for pandigitality
   
   for x in range(9):
-      if( not checkLast[x+1]):
+      if( not check_last[x+1]):
           f=False
   if(not f):
     return f
   
   
   #mark first 9 numbers
-  a= int(str(a)[:9])
+  number= int(str(number)[:9])
   
   for x in range(9):
-      checkFront[int(a%10)]=1
-      a=a//10
+      check_front[int(number%10)]=1
+      number=number//10
 
   #check first 9 numbers for pandigitality
 
   for x in range(9):
-      if( not checkFront[x+1]):
+      if( not check_front[x+1]):
           f=False
   return f
 
 
 
 
-def check1(a : int) ->bool:
+def check1(number : int) ->bool:
   '''
   Takes a number and checks if it is pandigital from END
 
@@ -79,19 +79,19 @@ def check1(a : int) ->bool:
 
   '''
 
-  checkLast=[0]*11 
+  check_last=[0]*11 
   
   #mark last 9 numbers
   for x in range(9):
-      checkLast[int(a%10)]=1
-      a=a//10
+      check_last[int(number%10)]=1
+      number=number//10
   #flag
   f=True
 
   #check last 9 numbers for pandigitality
   
   for x in range(9):
-      if( not checkLast[x+1]):
+      if( not check_last[x+1]):
           f=False
   return f
 
