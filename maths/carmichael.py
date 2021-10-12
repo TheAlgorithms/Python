@@ -70,8 +70,5 @@ def check_carmichael(number: int) -> bool:
 			return False
 
 if __name__ == "__main__":
-	number = int(input("Enter the number: "))
-	if check_carmichael(number):
-		print(f"{number} is a Carmichael number")
-	else:
-		print(f"{number} is not a Carmichael number")
+	number = int(input("Enter the number: ").strip())
+	print(f"{number} is {"" if check_carmichael(number) else 'not } a Carmichael number.")
