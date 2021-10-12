@@ -1,4 +1,4 @@
-# Shifts the charcter by 1 through it's ACII
+# Shifts the character by 1 through it's ASCII
 
 
 def shift_string(original_str: str, shift: int = 1) -> str:
