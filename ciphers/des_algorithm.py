@@ -97,10 +97,10 @@ class DesAlgo:
     def single_string(self, s: str) -> str:
         return ''.join(s.split())
 
-    def hex_to_bin(self, n) -> str:
+    def hex_to_bin(self, n: str) -> str:
         return bin(int(n, 16))
 
-    def bin_to_hex(self, n) -> str:
+    def bin_to_hex(self, n: str) -> str:
         n = self.single_string(n)
         temp = hex(int(n, 2))[2:]
         return '0' * (16 - len(temp)) + temp
