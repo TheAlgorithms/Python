@@ -73,7 +73,7 @@ def solution(nth: int = 10001) -> int:
         raise TypeError("Parameter nth must be int or castable to int.") from None
     if nth <= 0:
         raise ValueError("Parameter nth must be greater than or equal to one.")
-    primes = []
+    primes: list[int] = []
     num = 2
     while len(primes) < nth:
         if isprime(num):

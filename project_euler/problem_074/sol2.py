@@ -20,8 +20,8 @@
     counter increases.
 """
 
-factorial_cache = {}
-factorial_sum_cache = {}
+factorial_cache: dict[int, int] = {}
+factorial_sum_cache: dict[int, int] = {}
 
 
 def factorial(a: int) -> int:
