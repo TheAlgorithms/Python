@@ -12,21 +12,21 @@
 
 import random
 
-def generateRandomNumber() -> str:
+def generate_random_number() -> str:
     return str(int(random.random() * 100))
 
-def generateUppercase() -> str:
+def generate_uppercase() -> str:
     r = random.randint(65,90)
     return chr(r)
 
-def generateLowercase() -> str:
+def generate_lowercase() -> str:
     r = random.randint(97,122) 
     return chr(r)
 
 id_len = 10
 generation_count = 100
 
-def generateId() -> str:
+def generate_id() -> str:
     res = ""
     while(len(res) < id_len):
 
@@ -34,19 +34,19 @@ def generateId() -> str:
         s = int(random.random() * 10) % 6
         t = int(random.random() * 10) % 10
         for i in range(r):
-            res += generateRandomNumber()
+            res += generate_random_number()
 
         for i in range(s):
-            res += generateUppercase()
+            res += generate_uppercase()
         for i in range(t):
-            res += generateLowercase()
+            res += generate_lowercase()
 
     return res[0:id_len]
 
 ids = []
 
 for i in range(generation_count):
-    ids.append(generateId())
+    ids.append(generate_id())
 
 print(",".join(ids))
 
