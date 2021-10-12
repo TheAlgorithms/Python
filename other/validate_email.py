@@ -29,9 +29,9 @@ def validate_email(email: str) -> bool:
         # email domain
         [a-zA-Z0-9.-]+
         # email suffix
-		[\.]
+        [\.]
         ([a-zA-Z]{2,4})
-    """,
+        """,
         re.VERBOSE,
     )
     try:
@@ -40,7 +40,7 @@ def validate_email(email: str) -> bool:
         else:
             return False
     except AttributeError:
-        raise False
+        return False
 
 
 if __name__ == "__main__":
