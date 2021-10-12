@@ -105,4 +105,5 @@ def test_queue() -> None:
 
 
 if __name__ == "__main__":
-    test_queue()
+    import doctest
+    doctest.testmod()
