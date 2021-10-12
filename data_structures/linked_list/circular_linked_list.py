@@ -1,10 +1,10 @@
-from typing import Any
+from typing import Any, Iterator, Optional
 
 
 class Node:
     def __init__(self, data: Any):
-        self.data = data
-        self.next = None
+        self.data: Any = data
+        self.next: Optional[Node] = None
 
 
 class CircularLinkedList:
@@ -12,7 +12,7 @@ class CircularLinkedList:
         self.head = None
         self.tail = None
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Any]:
         node = self.head
         while self.head:
             yield node.data
@@ -54,10 +54,10 @@ class CircularLinkedList:
     def delete_front(self):
         return self.delete_nth(0)
 
-    def delete_tail(self) -> None:
+    def delete_tail(self) -> Any:
         return self.delete_nth(len(self) - 1)
 
-    def delete_nth(self, index: int = 0):
+    def delete_nth(self, index: int = 0) -> Any:
         if not 0 <= index < len(self):
             raise IndexError("list index out of range.")
         delete_node = self.head
@@ -76,7 +76,7 @@ class CircularLinkedList:
                 self.tail = temp
         return delete_node.data
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return len(self) == 0
 
 
