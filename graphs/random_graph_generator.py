@@ -20,10 +20,10 @@ def random_graph(
             directed (if True: g will be a directed graph,
                       otherwise it will be an undirected graph)
     @examples:
-    >>> print(random_graph(5, 0.5))
-    {0: [1, 2, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2, 4], 4: [2, 3]}
-    >>> print(random_graph(5, 0.5, True))
-    {0: [2], 1: [], 2: [3, 4], 3: [4], 4: []}
+    >>> random_graph(4, 1)
+    {0: [1, 2, 3], 1: [0, 2, 3], 2: [0, 1, 3], 3: [0, 1, 2]}
+    >>> random_graph(4, 1, True)
+    {0: [1, 2, 3], 1: [0, 2, 3], 2: [0, 1, 3], 3: [0, 1, 2]}
     """
     g = dict(zip(range(vertices_number), [[] for _ in range(vertices_number)]))
 
@@ -53,7 +53,7 @@ def complete_graph(vertices_number: int) -> dict:
             directed (False if the graph is undirected, True otherwise)
     @example:
     >>> print(complete_graph(3))
-    {0: [1, 2], 1: [2], 2: []}
+    {0: [1, 2], 1: [0, 2], 2: [0, 1]}
     """
     g = {}
     for i in range(vertices_number):
