@@ -1,8 +1,9 @@
 import numpy as np
 import math
+from typing import Callable
 
 
-def euler_modified(ode_func, y0, x0, step_size, x_end):
+def euler_modified(ode_func: Callable, y0: float, x0: float, step_size: float, x_end: float) -> np.array:
     """
     Calculate numeric solution at each step to an ODE using Euler's Modified Method
     The Euler forward scheme may be straightforward to implement, but it can't give accurate solutions.
@@ -20,12 +21,12 @@ def euler_modified(ode_func, y0, x0, step_size, x_end):
     >>> # the exact solution is math.exp(x)
     >>> def f1(x, y):
     ...     return -2*x*(y**2)
-    >>> y = euler_modified(f1, 1, 0, 0.2, 1.0)
+    >>> y = euler_modified(f1, 1.0, 0.0, 0.2, 1.0)
     >>> y[-1]
     0.503338255442106
     >>> def f2(x, y):
     ...     return -2*y + (x**3)*math.exp(-2*x)
-    >>> y = euler_modified(f2, 1, 0, 0.1, 0.3)
+    >>> y = euler_modified(f2, 1.0, 0.0, 0.1, 0.3)
     >>> y[-1]
     0.5525976431951775
     """
