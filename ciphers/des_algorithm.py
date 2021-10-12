@@ -207,7 +207,7 @@ class DesAlgo:
         print("Now applying PC-1 we get: ")
         key = self.pc1(key)
         print(self.pretty(key))
-        print("Rotating {} bit to the left we get:".format(self.shifts[rnd]))
+        print(f"Rotating {self.shifts[rnd]} bit to the left we get:")
         key = self.shift_left(key, rnd)
         print(self.pretty(key))
         print("Applying PC-2 we get:")
