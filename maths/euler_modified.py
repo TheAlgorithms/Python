@@ -9,7 +9,7 @@ def euler_modified(ode_func: Callable, y0: float, x0: float, step_size: float, x
     The Euler forward scheme may be straightforward to implement, but it can't give accurate solutions.
     So, they Proposed some changes to the base function to improve the accuracy
 
-    https://en.wikipedia.org/wiki/Euler_method
+    https://math.iitm.ac.in/public_html/sryedida/caimna/ode/euler/ie.html
 
     Arguments:
     ode_func -- The ode as a function of x and y
