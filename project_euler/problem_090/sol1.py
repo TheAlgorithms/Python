@@ -27,7 +27,7 @@ square numbers to be displayed?
 from itertools import permutations, combinations
 
 
-def set_to_bit(t: tuple) -> int:
+def set_to_bit(bit_tuple: tuple) -> int:
     """
     returns bit representation of a given iterable, preferably tuple.
     @param t - tuple representing the 1 bits
@@ -37,32 +37,34 @@ def set_to_bit(t: tuple) -> int:
     10
     """
     res = 0
-    for i in t:
+    for i in bit_tuple:
         res |= 1 << i
     return res
 
 
-def is_bit_set(n: int, c: int) -> bool:
+def is_bit_set(number: int, bit: int) -> bool:
     """
     checks if a given bit is 1 in the given number (work around for 6 and 9)
-    @param n - the number/set to search in
-    @param c - the index to look for
+    @param number - the number/set to search in
+    @param bit - the index to look for
     >>> is_bit_set(10, 1)
     True
     >>> is_bit_set(64, 9)
     True
     """
-    if c == 6 or c == 9:
-        return bool((1 << 6 & n) or (1 << 9 & n))
-    return bool(1 << c & n)
+    if bit == 6 or bit == 9:
+        return bool((1 << 6 & number) or (1 << 9 & number))
+    return bool(1 << bit & number)
 
 
-def validate_cubes(cubes: tuple, sq: list):
+def validate_cubes(cubes: tuple, sq: list) -> bool:
     """
     verifies whether or not the selected combination of cubes is valid,
     by iterating through all square values.
     @param cubes - tuple of cubes represented by numbers (having six 1 bits (0-9))
     @param sq - list of squares to validate
+    >>> validate_cubes((63,), ['4'])
+    True
     """
     for s in sq:
         res = False
@@ -76,22 +78,18 @@ def validate_cubes(cubes: tuple, sq: list):
     return True
 
 
-def solution(n: int = 9, m: int = 2) -> int:
+def solution(squares: int = 9, number_of_dice: int = 2) -> int:
     """
     returns the solution of problem 90 using helper functions
     e.g 1217 for the default argument values
-
-    @param n - the number of squares to validate.
-    @param m - the number of dice to use.
-
     >>> solution(3, 1)
     55
     >>> solution(7, 2)
     2365
     """
-    sq = [str(i ** 2).zfill(m) for i in range(1, n + 1)]
+    sq = [str(i ** 2).zfill(number_of_dice) for i in range(1, squares + 1)]
     all_dices = [set_to_bit(c) for c in combinations(range(10), 6)]
-    dices = [p for p in combinations(all_dices, m)]
+    dices = [p for p in combinations(all_dices, number_of_dice)]
 
     res = 0
     for d in dices:
