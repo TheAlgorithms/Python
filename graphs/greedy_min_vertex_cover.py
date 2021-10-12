@@ -17,7 +17,8 @@ def greedy_min_vertex_cover(graph: dict) -> set:
             is represented with an integer)
     @example:
     >>> graph = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
-    >>> print(f"Minimum vertex cover:\n{greedy_min_vertex_cover(graph)}")
+    >>> greedy_min_vertex_cover(graph)
+    {0, 1, 2, 4}
     """
     # s = set of chosen vertices
     S = set()
