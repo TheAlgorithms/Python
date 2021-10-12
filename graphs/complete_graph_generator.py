@@ -14,7 +14,7 @@ def complete_graph(vertices_number: int) -> dict:
             directed (False if the graph is undirected, True otherwise)
     @example:
     >>> print(complete_graph(3))
-    {0: [1, 2], 1: [2], 2: []}
+    {0: [1, 2], 1: [0, 2], 2: [0, 1]}
     """
     g = {}
     for i in range(vertices_number):
