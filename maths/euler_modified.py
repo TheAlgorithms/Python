@@ -3,13 +3,15 @@ import math
 from typing import Callable
 
 
-def euler_modified(ode_func: Callable, y0: float, x0: float, step_size: float, x_end: float) -> np.array:
+def euler_modified(
+    ode_func: Callable, y0: float, x0: float, step_size: float, x_end: float
+) -> np.array:
     """
     Calculate numeric solution at each step to an ODE using Euler's Modified Method
     The Euler forward scheme may be straightforward to implement, but it can't give accurate solutions.
     So, they Proposed some changes to the base function to improve the accuracy
 
-    https://math.iitm.ac.in/public_html/sryedida/caimna/ode/euler/ie.html
+    https://en.wikipedia.org/wiki/Euler_method
 
     Arguments:
     ode_func -- The ode as a function of x and y
@@ -37,8 +39,9 @@ def euler_modified(ode_func: Callable, y0: float, x0: float, step_size: float, x
 
     for k in range(N):
         y_get = y[k] + step_size * ode_func(x, y[k])
-        y[k + 1] = y[k] + \
-            ((step_size/2)*(ode_func(x, y[k])+ode_func(x+step_size, y_get)))
+        y[k + 1] = y[k] + (
+            (step_size/2)*(ode_func(x, y[k])+ode_func(x+step_size, y_get))
+        )
         x += step_size
 
     return y
