@@ -40,7 +40,7 @@ def euler_modified(
     for k in range(N):
         y_get = y[k] + step_size * ode_func(x, y[k])
         y[k + 1] = y[k] + (
-            (step_size/2)*(ode_func(x, y[k])+ode_func(x+step_size, y_get))
+            (step_size / 2) * (ode_func(x, y[k]) + ode_func(x + step_size, y_get))
         )
         x += step_size
 
