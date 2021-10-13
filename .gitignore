@@ -107,3 +107,4 @@ venv.bak/
 .idea
 .try
 .vscode/
+data_structures/built_in_data_structures/list.ipynb
