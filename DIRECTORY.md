@@ -468,6 +468,7 @@
   * [Largest Of Very Large Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/largest_of_very_large_numbers.py)
   * [Largest Subarray Sum](https://github.com/TheAlgorithms/Python/blob/master/maths/largest_subarray_sum.py)
   * [Least Common Multiple](https://github.com/TheAlgorithms/Python/blob/master/maths/least_common_multiple.py)
+  * [Legendre's Conjecture](https://github.com/TheAlgorithms/Python/blob/master/maths/legendre_conjecture.py
   * [Line Length](https://github.com/TheAlgorithms/Python/blob/master/maths/line_length.py)
   * [Lucas Lehmer Primality Test](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_lehmer_primality_test.py)
   * [Lucas Series](https://github.com/TheAlgorithms/Python/blob/master/maths/lucas_series.py)
