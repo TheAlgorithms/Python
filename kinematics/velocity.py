@@ -18,7 +18,7 @@
 # are more accurate than the one used for the example.
 
 # Typing hints
-from typing import Union
+from typing import Union, Optional
 
 
 # Square root function just so I don't have to import math and it looks cleaner
@@ -69,12 +69,12 @@ class NotEnoughInfo(Exception):
 
 
 def velocity(
-    intial_position: Union[int, float, None] = None,
-    final_position: Union[int, float, None] = None,
-    intial_velocity: Union[int, float, None] = None,
-    acceleration: Union[int, float, None] = None,
-    time_elapsed: Union[int, float, None] = None,
-    retaining_wall: Union[int, None] = None,
+    intial_position: Optional[Union[int, float]] = None,
+    final_position: Optional[Union[int, float]] = None,
+    intial_velocity: Optional[Union[int, float]] = None,
+    acceleration: Optional[Union[int, float]] = None,
+    time_elapsed: Optional[Union[int, float]] = None,
+    retaining_wall: Optional[int] = None,
 ) -> float:
     """
     Find velocity with given intial_velocity, intial_position, final_position,
@@ -113,6 +113,14 @@ def velocity(
         ...
     NotEnoughInfo: Not enough information to complete calculation.
     """
+    # initializing variables so mypy won't give me an error
+    initial_position = initial_position
+    final_position = final_position
+    intial_velocity = initial_velocity
+    acceleration = acceleration
+    time_elapsed = time_elapsed
+    retaining_wall = retaining_wall
+    
     if not intial_position and not final_position:
         if None in (intial_velocity, acceleration, time_elapsed):
             raise NotEnoughInfo("Not enough information to complete calculation.")
