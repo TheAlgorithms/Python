@@ -24,7 +24,7 @@
 # If you want to find distance from one point to another assume initial_position=0
 
 # Typing hints
-from typing import Union
+from typing import Union, Optional
 
 # FINDING ACCELERATION
 
@@ -35,12 +35,12 @@ class NotEnoughInfo(Exception):
 
 # retaining_wall is the rounding place
 def acceleration(
-    initial_velocity: Union[int, float, None] = None,
-    final_velocity: Union[int, float, None] = None,
-    final_position: Union[int, float, None] = None,
-    initial_position: Union[int, float, None] = None,
-    time_elapsed: Union[int, float, None] = None,
-    retaining_wall: int = None,
+    initial_velocity: Optional[Union[int, float]] = None,
+    final_velocity: Optional[Union[int, float]] = None,
+    final_position: Optional[Union[int, float]] = None,
+    initial_position: Optional[Union[int, float]] = None,
+    time_elapsed: Optional[Union[int, float]] = None,
+    retaining_wall: Optional[int] = None,
 ) -> float:
     """
     Find acceleration for given initial_position, final_position, initial_velocity,
@@ -75,6 +75,14 @@ def acceleration(
         ...
     NotEnoughInfo: Not enough information to complete calculation.
     """
+    # intializing variables so mypy won't give me an error
+    initial_velocity = initial_velocity
+    final_velocity = final_velocity
+    final_position = final_position
+    initial_position = initial_position
+    time_elapsed = time_elapsed
+    retaining_wall = retaining_wall
+    
     if not time_elapsed:
         if None in (initial_velocity, final_velocity, final_position, initial_position):
             raise NotEnoughInfo("Not enough information to complete calculation.")
