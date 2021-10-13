@@ -8,9 +8,7 @@ def euler_modified(
 ) -> np.array:
     """
     Calculate solution at each step to an ODE using Euler's Modified Method
-    
-    The Euler forward scheme may be straightforward to implement, 
-    but it can't give accurate solutions.
+    The Euler is straightforward to implement, but can't give accurate solutions.
     So, they Proposed some changes to improve the accuracy
 
     https://en.wikipedia.org/wiki/Euler_method
