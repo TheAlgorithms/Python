@@ -24,7 +24,7 @@
 # If you want to find distance from one point to another assume initial_position=0
 
 # Typing hints
-from typing import Union
+from typing import Union, Optional
 
 # FINDING TIME #
 
@@ -37,12 +37,12 @@ class NotEnoughInfo(Exception):
 # between this and the function time()
 # retaining_wall is rounding place
 def ktime(
-    initial_position: Union[int, float, None] = None,
-    final_position: Union[int, float, None] = None,
-    initial_velocity: Union[int, float, None] = None,
-    final_velocity: Union[int, float, None] = None,
-    acceleration: Union[int, float, None] = None,
-    retaining_wall: Union[int, None] = None,
+    initial_position: Optional[Union[int, float]] = None,
+    final_position: Optional[Union[int, float]] = None,
+    initial_velocity: Optional[Union[int, float]] = None,
+    final_velocity: Optional[Union[int, float]] = None,
+    acceleration: Optional[Union[int, float]] = None,
+    retaining_wall: Optional[int] = None,
 ) -> float:
     """
     Return time for given initial_position, final_position, initial_velocity,
@@ -77,6 +77,14 @@ def ktime(
         ...
     NotEnoughInfo: Not enough information to complete calculation.
     """
+    # initialze variables so mypy won't give me an error
+    acceleration = acceleration
+    initial_position = initial_position
+    final_position = final_position
+    inital_velocity = initial_velocity
+    final_velocity = final_velocity
+    retaining_wall = retaining_wall
+    
     if not acceleration:
         if None in (initial_position, final_position, initial_velocity, final_velocity):
             raise NotEnoughInfo("Not enough information to complete calculation.")
