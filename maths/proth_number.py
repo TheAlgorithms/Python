@@ -1,10 +1,8 @@
 """
-
-Calculates the nth Proth number
+Calculate the nth Proth number
 
 Source:
     https://handwiki.org/wiki/Proth_number
-
 """
 
 import math
@@ -23,24 +21,24 @@ def proth(number: int) -> int:
     >>> proth(0)
     Traceback (most recent call last):
     ...
-    ValueError: Input value of [number=0] has to be > 0
+    ValueError: Input value of [number=0] must be > 0
 
     >>> proth(-1)
     Traceback (most recent call last):
     ...
-    ValueError: Input value of [number=-1] has to be > 0
+    ValueError: Input value of [number=-1] must be > 0
 
     >>> proth(6.0)
     Traceback (most recent call last):
     ...
-    TypeError: Input value of [number=6.0] has to be an integer
+    TypeError: Input value of [number=6.0] must be an integer
     """
 
     if not isinstance(number, int):
-        raise TypeError(f"Input value of [number={number}] has to be an integer")
+        raise TypeError(f"Input value of [number={number}] must be an integer")
 
     if number < 1:
-        raise ValueError(f"Input value of [number={number}] has to be > 0")
+        raise ValueError(f"Input value of [number={number}] must be > 0")
     elif number == 1:
         return 3
     elif number == 2:
