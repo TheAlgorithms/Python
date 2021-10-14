@@ -1,10 +1,10 @@
 # Implementation of Quick sort algo-> https://en.wikipedia.org/wiki/Quicksort
 class QuickSort():
-    def __init__(self, array,asc=True):
+    def __init__(self, array,asc=True)->None:
         self.asc=asc
         self.array = array
 
-    def partition(self, start, end):  # Will sort in ascending order by default
+    def partition(self, start, end)->integer:  # Will sort in ascending order by default
         '''Normal partition routine read more about it here: google Lomuto partition algorithm. '''
         i = start
         j = start+1
@@ -21,7 +21,7 @@ class QuickSort():
                 j += 1
         self.array[start], self.array[i] = self.array[i], self.array[start]
         return i
-    def sort(self,start,end): #recursive implementation of quick sort
+    def sort(self,start,end)->None: #recursive implementation of quick sort
         if(start>=end):
             return
         i=self.partition(start,end)
