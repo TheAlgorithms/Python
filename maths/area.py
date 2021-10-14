@@ -51,6 +51,10 @@ def surface_area_hemisphere(radius: float) -> float:
     235.61944901923448
     >>> surface_area_hemisphere(1)
     9.42477796076938
+    >>> surface_area_hemisphere(0)
+    0.0
+    >>> surface_area_hemisphere(1.1)
+    11.40398133253095
     >>> surface_area_hemisphere(-1)
     Traceback (most recent call last):
         ...
