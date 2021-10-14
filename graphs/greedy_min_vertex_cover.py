@@ -20,8 +20,6 @@ def greedy_min_vertex_cover(graph: dict) -> set:
     >>> greedy_min_vertex_cover(graph)
     {0, 1, 2, 4}
     """
-    # s = set of chosen vertices
-    S = set()
     # queue used to store nodes and their rank
     queue = []
 
@@ -31,13 +29,16 @@ def greedy_min_vertex_cover(graph: dict) -> set:
     for k, v in graph.items():
         # O(log(n))
         heapq.heappush(queue, [-1 * len(v), (k, v)])
+    
+    # s = set of chosen vertices
+    s = set()
 
     # while queue isn't empty and there are still edges
     #   (queue[0][0] is the rank of the node with max rank)
-    while queue and not queue[0][0] == 0:
+    while queue and queue[0][0] != 0:
         # extract vertex with max rank from queue and add it to s
         argmax = heapq.heappop(queue)[1][0]
-        S.add(argmax)
+        s.add(argmax)
 
         # Remove all arcs adjacent to argmax
         for elem in queue:
@@ -52,7 +53,7 @@ def greedy_min_vertex_cover(graph: dict) -> set:
                 elem[0] += 1
         # re-order the queue
         heapq.heapify(queue)
-    return S
+    return s
 
 
 if __name__ == "__main__":
