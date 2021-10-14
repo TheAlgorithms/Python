@@ -11,7 +11,7 @@ import json
 def convert_csv_to_json(csv_path: Any, json_path: Any) -> Any:
     """
     I used a csv file called ratings from this link : https://github.com/gangtao/datasets/blob/master/csv/ratings.csv
-    >>>convert_csv_to_json(ratings.csv,ratings.json)
+    >>> convert_csv_to_json(ratings.csv,ratings.json)
     {
         "1": {
                 "user": "1",
