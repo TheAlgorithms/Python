@@ -85,6 +85,14 @@ def decrypt(message):
 
 # Function to run the program
 def main() -> None:
+"""
+>>> s = "DOG"
+>>> decrypt(encrypt(s)) == s
+True
+>>> s = "Dog"
+>>> decrypt(encrypt(s)) == s
+True
+"""
 
 	x = input("Do you want to encode or decode a morse code? ").strip().lower()
 
