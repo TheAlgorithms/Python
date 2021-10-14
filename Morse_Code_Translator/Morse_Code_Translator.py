@@ -89,7 +89,7 @@ def main():
 	x = input("Do you want to encode or decode a morse code? ").strip().lower()
 
 	# If the user wants to encode in a morse code
-	if x == "encode" or x == "Encode" or x == "ENCODE":
+	if x == "encode":
 		message = input("Enter the English string: ")
 		result = encrypt(message.upper())
 		print ("The given English string in morse code is ", result)
