@@ -33,8 +33,6 @@ encode_dict = {
     " ": " ",
 }
 
-decode_dict = {value: key for key, value in encode_dict.items()}
-
 
 def encode(word: str) -> str:
     """
