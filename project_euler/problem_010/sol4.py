@@ -10,7 +10,7 @@ References:
 
 import math
 
-def primeList(n):
+def primeList(n: int) -> list:
     """
     Returns a boolean list where true means the index represents a prime number
     >>> primeList(10)
@@ -27,7 +27,7 @@ def primeList(n):
                 primes[j] = False
     return primes
 
-def sumPrime(n):
+def sumPrime(n: int) -> int:
     """
     Return the sum of all primes < n
     >>> sumPrime(10)
