@@ -91,11 +91,7 @@ def solution(squares: int = 9, number_of_dice: int = 2) -> int:
     all_dices = [set_to_bit(c) for c in combinations(range(10), 6)]
     dices = [p for p in combinations(all_dices, number_of_dice)]
 
-    res = 0
-    for d in dices:
-        if validate_cubes(d, sq):
-            res += 1
-    return res
+    return len([d for d in dices if validate_cubes(d, sq)])
 
 
 if __name__ == "__main__":
