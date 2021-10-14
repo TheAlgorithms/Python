@@ -84,7 +84,7 @@ def decrypt(message):
 	return decipher
 
 # Function to run the program
-def main():
+def main() -> None:
 
 	x = input("Do you want to encode or decode a morse code? ").strip().lower()
 
