@@ -11,6 +11,13 @@ References:
 import math
 
 def primeList(n):
+    """
+    Returns a boolean list where true means the index represents a prime number
+    >>> primeList(10)
+    [False, False, True, True, False, True, False, True, False, False, False]
+    >>> primeList(23)
+    [False, False, True, True, False, True, False, True, False, False, False, True, False, True, False, False, False, True, False, True, False, False, False, True]
+    """
     primes = [True] * (n+1)
     primes[0] = False # 0 is no prime
     primes[1] = False # 1 is no prime
@@ -21,6 +28,15 @@ def primeList(n):
     return primes
 
 def sumPrime(n):
+    """
+    Return the sum of all primes < n
+    >>> sumPrime(10)
+    17
+    >>> sumPrime(1000)
+    76127
+    >>> sumPrime(5000)
+    1548136
+    """
     sum = 0 # Set initial sum to zero, in case a number less than 2 is passed
     primes = primeList(n) # get boolean-list of all numbers from 0 - n where true means the number is prime
     for i in range(2,n+1):
