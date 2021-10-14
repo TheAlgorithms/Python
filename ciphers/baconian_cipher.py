@@ -33,9 +33,7 @@ encode_dict = {
     " ": " ",
 }
 
-decode_dict = {}
-for alphabet in encode_dict:
-    decode_dict[encode_dict[alphabet]] = alphabet
+decode_dict = {value : key for key, value in encode_dict.items()}
 
 
 def encode(word: str) -> str:
@@ -49,14 +47,14 @@ def encode(word: str) -> str:
     >>> encode("hello world!")
     Traceback (most recent call last):
         ...
-    Exception: encode() accepts only alphabets
+    Exception: encode() accepts only letters of the alphabet and spaces
     """
     encoded = ""
     for letter in word.lower():
         if letter.isalpha() or letter == " ":
             encoded += encode_dict[letter]
         else:
-            raise Exception("encode() accepts only alphabets")
+            raise Exception("encode() accepts only letters of the alphabet and spaces")
     return encoded
 
 
@@ -75,15 +73,13 @@ def decode(coded: str) -> str:
     """
     if set(coded) - {"A", "B", " "} != set() and set(coded) - {"A", "B"} != set():
         raise Exception("decode accepts only 'A', 'B' and ' '")
-    words = coded.split()
-    decoded = ""
-    for word in words:
+        decoded = ""
+    for word in coded.split():
         while len(word) != 0:
             decoded += decode_dict[word[:5]]
             word = word[5:]
         decoded += " "
-    decoded = decoded.strip(" ")
-    return decoded
+    return decoded.strip()
 
 
 if "__name__" == "__main__":
