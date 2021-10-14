@@ -14,7 +14,10 @@ with Listener(on_press = writeofile) as l:
     l.join()
 
 def type_hint(key: str) -> str:
+    import doctest
+    doctest.testmod()
     return key
+
 
 if __name__ == "__main__":
     import doctest
