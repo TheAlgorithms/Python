@@ -6,7 +6,7 @@ def power_iteration(
     vector: np.ndarray,
     error_tol: float = 1e-12,
     max_iterations: int = 100,
-    ord: int = None,
+    ord: int = 2,
 ) -> tuple[float, np.ndarray]:
     """
     Power Iteration.
@@ -39,7 +39,7 @@ def power_iteration(
     ... ])
     >>> vector = np.array([41,4,20])
     >>> power_iteration(input_matrix,vector)
-    (79.66086378788381, array([0.44472726, 0.46209842, 0.76725662]))
+    (79.6608637878838, array([0.44472726, 0.46209842, 0.76725662]))
     """
 
     # Ensure matrix is square.
@@ -61,8 +61,9 @@ def power_iteration(
         # Normalize the resulting output vector.
         vector = w / np.linalg.norm(w, ord)
         # Find rayleigh quotient
-        # (faster than usual b/c we know vector is normalized already)
-        lamda = np.dot(vector.T, np.dot(input_matrix, vector))
+        lamda = np.dot(vector.T, np.dot(input_matrix, vector)) / np.dot(
+            vector.T, vector
+        )
 
         # Check convergence.
         error = np.abs(lamda - lamda_previous) / lamda
@@ -70,6 +71,8 @@ def power_iteration(
 
         if error <= error_tol or iterations >= max_iterations:
             convergence = True
+            # Nornmalize vector with 2 norm
+            vector = vector / np.linalg.norm(vector)
 
         lamda_previous = lamda
 
@@ -80,39 +83,49 @@ def test_power_iteration() -> None:
     """
     >>> test_power_iteration()  # self running tests
     """
-    # Our implementation with norm 2
-    input_matrix = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
+    # Our implementation with norm 2 on a symmetric matrix
+    input_matrix_symmetric = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
     vector = np.array([41, 4, 20])
-    eigen_value, eigen_vector = power_iteration(input_matrix, vector)
+    eigen_value, eigen_vector = power_iteration(input_matrix_symmetric, vector)
 
-    # Our implementation with norm inf
-    input_matrix = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
-    vector = np.array([41, 4, 20])
-    eigen_value_inf, eigen_vector_inf = power_iteration(
-        input_matrix, vector, ord=np.inf
-    )
-
-    # Numpy implementation.
-
-    # Get eigen values and eigen vectors using built in numpy
-    # eigh (eigh used for symmetric or hermetian matrices).
-    eigen_values, eigen_vectors = np.linalg.eigh(input_matrix)
+    # Numpy implementation on a symmetric matrix.
+    # Get eigen values and eigen vectors using built in numpy eigh
+    eigen_values, eigen_vectors = np.linalg.eigh(input_matrix_symmetric)
     # Last eigen value is the maximum one.
     eigen_value_max = eigen_values[-1]
     # Last column in this matrix is eigen vector corresponding to largest eigen value.
     eigen_vector_max = eigen_vectors[:, -1]
 
-    # Check our implementation and numpy for eigen value.
+    # Compare our implementation to numpy for eigen value.
     assert np.abs(eigen_value - eigen_value_max) <= 1e-6
-    # Check our implementation with norm 2 and norm inf for eigen value.
-    assert np.abs(eigen_value - eigen_value_inf) <= 1e-6
 
-    # Check our implementation and numpy for eigen vector
-    # by take absolute values element wise of each eigenvector as they are only
+    # Compare our implementation to numpy for eigen vector.
+    # Take absolute values element wise of each eigenvector since they are only
     # unique to a minus sign.
     assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_max)) <= 1e-6
-    # Check our implementation with norm 2 and norm inf  for eigen vector.
-    assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_inf)) <= 1e-6
+
+    # Our implementation with norm inf on a nonsymmetric matrix.
+    # It is standard to use the inf norm for nonsymmetric matrices and
+    # the 2 norm for symmetric matrices.
+    input_matrix_nonsymmetric = np.array([[41, 10, 17], [4, 26, 4], [39, 30, 50]])
+    eigen_value, eigen_vector = power_iteration(
+        input_matrix_nonsymmetric, vector, ord=np.inf
+    )
+
+    # Numpy implementation on a nonsymmetric matrix.
+    # Get eigen values and eigen vectors using built in numpy eig
+    eigen_values, eigen_vectors = np.linalg.eig(input_matrix_nonsymmetric)
+    # Get the largest eigen value
+    i = np.argmax(eigen_values)
+    eigen_value_max = eigen_values[i]
+    # Last column in this matrix is eigen vector corresponding to largest eigen value.
+    eigen_vector_max = eigen_vectors[:, i]
+
+    # Check our implementation and numpy for eigen value.
+    assert np.abs(eigen_value - eigen_value_max) <= 1e-6
+
+    # Check our implementation and numpy for eigen vector.
+    assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_max)) <= 1e-6
 
 
 if __name__ == "__main__":
