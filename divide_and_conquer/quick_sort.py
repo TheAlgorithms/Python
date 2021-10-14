@@ -1,4 +1,4 @@
-# Implementation of Quick sort algo
+# Implementation of Quick sort algo-> https://en.wikipedia.org/wiki/Quicksort
 class QuickSort():
     def __init__(self, array,asc=True):
         self.asc=asc
