@@ -34,7 +34,7 @@ for which the largest value of x is obtained.
 from sympy.solvers.diophantine.diophantine import diop_DN
 
 
-def solution(D_limit: int = 1001) -> int:
+def solution(d_limit: int = 1001) -> int:
     """
     This function finds the value of D in minimal solutions of x
     in the Diophantine equation x**2 – D*(y**2) = 1 for which the
@@ -44,19 +44,19 @@ def solution(D_limit: int = 1001) -> int:
     661
     """
     largest_x = 0
-    corresponding_D = 0
+    corresponding_d = 0
 
-    for D in range(1, D_limit):
-        # diop_DN(D, 1)       --> [(x,y)]
-        # diop_DN(D, 1)[0]    --> (x,y)
-        # diop_DN(D, 1)[0][0] --> x
-        x_value = diop_DN(D, 1)[0][0]
+    for d in range(1, d_limit):
+        # diop_DN(d, 1)       --> [(x,y)]
+        # diop_DN(d, 1)[0]    --> (x,y)
+        # diop_DN(d, 1)[0][0] --> x
+        x_value = diop_DN(d, 1)[0][0]
 
         if x_value > largest_x:
             largest_x = x_value
-            corresponding_D = D
+            corresponding_d = d
 
-    return corresponding_D
+    return corresponding_d
 
 
 if __name__ == "__main__":
