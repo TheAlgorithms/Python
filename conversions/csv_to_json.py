@@ -7,7 +7,6 @@ import json
 # Function to convert a CSV file to JSON file
 # Takes the path of the files to be converted as arguments
 def convert_csv_to_json(csv_path: Any, json_path: Any) -> Any:
-
     """
     I used a csv file called ratings from this link : https://github.com/gangtao/datasets/blob/master/csv/ratings.csv
     >>>convert_csv_to_json(ratings.csv,ratings.json)
