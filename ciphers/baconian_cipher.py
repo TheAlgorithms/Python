@@ -70,9 +70,9 @@ def decode(coded: str) -> str:
     >>> decode("AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB!")
     Traceback (most recent call last):
         ...
-    Exception: decode() accepts only alphabets 'A', 'B' and spaces
+    Exception: decode() accepts only 'A', 'B' and spaces
     """
-    if set(coded) - {"A", "B", " "} != set() and set(coded) - {"A", "B"} != set():
+    if set(coded) - {"A", "B", " "} != set():
         raise Exception("decode() accepts only 'A', 'B' and spaces")
     decoded = ""
     for word in coded.split():
