@@ -95,7 +95,7 @@ def main():
 		print ("The given English string in morse code is ", result)
 
 	# If the user wants to decode a morse code
-	elif x == "decode" or x == "Decode" or x == "DECODE":
+	elif x == "decode":
 		message = input("Enter the morse code: ")
 		result = decrypt(message)
 		print ("The given morse code in English language is ", result)
