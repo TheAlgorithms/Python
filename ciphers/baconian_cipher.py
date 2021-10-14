@@ -33,7 +33,7 @@ encode_dict = {
     " ": " ",
 }
 
-decode_dict = {value : key for key, value in encode_dict.items()}
+decode_dict = {value: key for key, value in encode_dict.items()}
 
 
 def encode(word: str) -> str:
@@ -69,7 +69,7 @@ def decode(coded: str) -> str:
     >>> encode("AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB!")
     Traceback (most recent call last):
         ...
-    Exception: encode() accepts only alphabets
+    Exception: decode() accepts only alphabets 'A', 'B' and spaces
     """
     if set(coded) - {"A", "B", " "} != set() and set(coded) - {"A", "B"} != set():
         raise Exception("decode accepts only 'A', 'B' and ' '")
