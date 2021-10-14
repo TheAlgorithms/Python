@@ -10,12 +10,12 @@ References:
 
 import math
 
-def primeList(n: int) -> list:
+def prime_list(n: int) -> list:
     """
     Returns a boolean list where true means the index represents a prime number
-    >>> primeList(10)
+    >>> prime_list(10)
     [False, False, True, True, False, True, False, True, False, False, False]
-    >>> primeList(23)
+    >>> prime_list(23)
     [False, False, True, True, False, True, False, True, False, False, False, True, False, True, False, False, False, True, False, True, False, False, False, True]
     """
     primes = [True] * (n+1)
@@ -27,21 +27,21 @@ def primeList(n: int) -> list:
                 primes[j] = False
     return primes
 
-def sumPrime(n: int) -> int:
+def sum_prime(n: int) -> int:
     """
     Return the sum of all primes < n
-    >>> sumPrime(10)
+    >>> sum_prime(10)
     17
-    >>> sumPrime(1000)
+    >>> sum_prime(1000)
     76127
-    >>> sumPrime(5000)
+    >>> sum_prime(5000)
     1548136
     """
     sum = 0 # Set initial sum to zero, in case a number less than 2 is passed
-    primes = primeList(n) # get boolean-list of all numbers from 0 - n where true means the number is prime
+    primes = prime_list(n) # get boolean-list of all numbers from 0 - n where true means the number is prime
     for i in range(2,n+1):
         if primes[i]:
             sum = sum + (i)
     return sum
 
-print(sumPrime(2000000))
+print(sum_prime(2000000))
