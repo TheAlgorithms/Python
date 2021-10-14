@@ -41,6 +41,24 @@ def surface_area_sphere(radius: float) -> float:
         raise ValueError("surface_area_sphere() only accepts non-negative values")
     return 4 * pi * radius ** 2
 
+def surface_area_hemisphere(radius: float) -> float:
+    """
+    Calculate the Surface Area of a Hemisphere.
+    Formula: 3 * pi * r^2
+
+    >>> surface_area_hemisphere(5)
+    235.61944901923448
+    >>> surface_area_hemisphere(1)
+    9.42477796076938
+    >>> surface_area_hemisphere(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_hemisphere() only accepts non-negative values
+    """
+    if radius < 0:
+        raise ValueError("surface_area_hemisphere() only accepts non-negative values")
+    return 3 * pi * radius ** 2
+
 
 def surface_area_cone(radius: float, height: float) -> float:
     """
@@ -342,5 +360,6 @@ if __name__ == "__main__":
     print("\nSurface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20) = }")
     print(f"Sphere: {surface_area_sphere(20) = }")
+    print(f"Hemisphere: {surface_area_hemisphere(20) = }")
     print(f"Cone: {surface_area_cone(10, 20) = }")
     print(f"Cylinder: {surface_area_cylinder(10, 20) = }")
