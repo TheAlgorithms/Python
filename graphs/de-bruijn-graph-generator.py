@@ -2,7 +2,7 @@
 from itertools import permutations
 #De brujin graph via matrix
 
-alphaBet = ['a','b','c']
+alpha_bet = ['a','b','c']
 
 
 def generate_de_bruijn_graph(alphaBet,n):
