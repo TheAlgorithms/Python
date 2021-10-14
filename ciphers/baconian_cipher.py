@@ -34,6 +34,9 @@ encode_dict = {
 }
 
 
+decode_dict = {value: key for key, value in encode_dict.items()}
+
+
 def encode(word: str) -> str:
     """
     Encodes to Baconian cipher
@@ -70,7 +73,7 @@ def decode(coded: str) -> str:
     Exception: decode() accepts only alphabets 'A', 'B' and spaces
     """
     if set(coded) - {"A", "B", " "} != set() and set(coded) - {"A", "B"} != set():
-        raise Exception("decode accepts only alphabets 'A', 'B' and spaces")
+        raise Exception("decode accepts only 'A', 'B' and ' '")
     decoded = ""
     for word in coded.split():
         while len(word) != 0:
@@ -82,5 +85,5 @@ def decode(coded: str) -> str:
 
 if "__name__" == "__main__":
     from doctest import testmod
-
+    
     testmod()
