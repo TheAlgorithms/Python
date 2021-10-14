@@ -6,6 +6,7 @@ def power_iteration(
     vector: np.ndarray,
     error_tol: float = 1e-12,
     max_iterations: int = 100,
+    ord: int = None,
 ) -> tuple[float, np.ndarray]:
     """
     Power Iteration.
@@ -19,6 +20,10 @@ def power_iteration(
     Numpy array. np.shape(input_matrix) == (N,N).
     vector: random initial vector in same space as matrix.
     Numpy array. np.shape(vector) == (N,) or (N,1)
+    ord: The order of the norm used in normalization. Optional.
+    {non-zero int, np.inf, -1*np.inf, ‘fro’, ‘nuc’}
+    See https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html
+    for more details on the valid inputs of ord.
 
     Output
     largest_eigenvalue: largest eigenvalue of the matrix input_matrix.
@@ -54,7 +59,7 @@ def power_iteration(
         # Multiple matrix by the vector.
         w = np.dot(input_matrix, vector)
         # Normalize the resulting output vector.
-        vector = w / np.linalg.norm(w)
+        vector = w / np.linalg.norm(w, ord)
         # Find rayleigh quotient
         # (faster than usual b/c we know vector is normalized already)
         lamda = np.dot(vector.T, np.dot(input_matrix, vector))
@@ -75,10 +80,17 @@ def test_power_iteration() -> None:
     """
     >>> test_power_iteration()  # self running tests
     """
-    # Our implementation.
+    # Our implementation with norm 2
     input_matrix = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
     vector = np.array([41, 4, 20])
     eigen_value, eigen_vector = power_iteration(input_matrix, vector)
+
+    # Our implementation with norm inf
+    input_matrix = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
+    vector = np.array([41, 4, 20])
+    eigen_value_inf, eigen_vector_inf = power_iteration(
+        input_matrix, vector, ord=np.inf
+    )
 
     # Numpy implementation.
 
@@ -90,11 +102,17 @@ def test_power_iteration() -> None:
     # Last column in this matrix is eigen vector corresponding to largest eigen value.
     eigen_vector_max = eigen_vectors[:, -1]
 
-    # Check our implementation and numpy gives close answers.
+    # Check our implementation and numpy for eigen value.
     assert np.abs(eigen_value - eigen_value_max) <= 1e-6
-    # Take absolute values element wise of each eigenvector.
-    # as they are only unique to a minus sign.
+    # Check our implementation with norm 2 and norm inf for eigen value.
+    assert np.abs(eigen_value - eigen_value_inf) <= 1e-6
+
+    # Check our implementation and numpy for eigen vector
+    # by take absolute values element wise of each eigenvector as they are only
+    # unique to a minus sign.
     assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_max)) <= 1e-6
+    # Check our implementation with norm 2 and norm inf  for eigen vector.
+    assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_inf)) <= 1e-6
 
 
 if __name__ == "__main__":
