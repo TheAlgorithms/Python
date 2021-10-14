@@ -32,7 +32,11 @@ class Stack:
 
     def pop(self):
         """Pop an element off of the top of the stack."""
-        return self.stack.pop()
+        if not self.stack.is_empty():
+            return self.stack.pop()
+        else:
+            # one can raise an error here instead of pointing it out
+            print("Stack is empty")
 
     def peek(self):
         """Peek at the top-most element of the stack."""
