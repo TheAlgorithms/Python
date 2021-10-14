@@ -1,11 +1,10 @@
 """
- Problem Statement - Find the sum of contiguous subarray within a one-dimensional array of numbers that has the largest sum. 
- Example - [6 , 9, -1, 3, -7, -5, 10]   Output - 17 
- Time Complexity - O(n) 
-
-Approach  - The approach is to look for all positive contiguous segments of the array (s is used for this).
-And keep track of maximum sum contiguous segment among all positive segments (res is used for this).
-Each time we compare s with res and update res if it is greater than res 
+Problem Statement- Find the sum of contiguous subarray having the largest sum. 
+Example- [6,9,-1,3,-7,-5,10]   Output- 17 
+Time Complexity- O(n) 
+Approach- To look for all positive contiguous segments of the array(s).
+And keep track of maximum sum contiguous segment among all positive segments(res).
+Each time compare s with res and update res if it is greater than res 
 """
 
 
