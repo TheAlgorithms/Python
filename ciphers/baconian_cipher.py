@@ -67,7 +67,7 @@ def decode(coded: str) -> str:
     'hello world'
     >>> decode("AABBBAABAAABABAABABAABBAB")
     'hello'
-    >>> encode("AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB!")
+    >>> decode("AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB!")
     Traceback (most recent call last):
         ...
     Exception: decode() accepts only alphabets 'A', 'B' and spaces
