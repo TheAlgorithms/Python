@@ -16,6 +16,3 @@ sympy
 tensorflow
 types-requests
 xgboost
-typing
-csv
-json
