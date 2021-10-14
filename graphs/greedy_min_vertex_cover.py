@@ -29,7 +29,7 @@ def greedy_min_vertex_cover(graph: dict) -> set:
     for k, v in graph.items():
         # O(log(n))
         heapq.heappush(queue, [-1 * len(v), (k, v)])
-    
+
     # s = set of chosen vertices
     s = set()
 
