@@ -268,6 +268,25 @@ def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
         raise ValueError("area_rhombus() only accepts non-negative values")
     return 1 / 2 * diagonal_1 * diagonal_2
 
+def surface_area_hemisphere(radius: float) -> float:
+    """
+    Calculate the Surface Area of a Hemiphere.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
+    Formula: 3 * pi * r^2
+
+    >>> surface_area_hemisphere(5)
+    235.619449019
+    >>> surface_area_hemisphere(1)
+    9.42477796077
+    >>> surface_area_hemisphere(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_hemisphere() only accepts non-negative values
+    """
+    if radius < 0:
+        raise ValueError("surface_area_hemisphere() only accepts non-negative values")
+    return 3 * pi * radius ** 2
+
 
 if __name__ == "__main__":
     import doctest
@@ -285,4 +304,5 @@ if __name__ == "__main__":
     print("\nSurface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20) = }")
     print(f"Sphere: {surface_area_sphere(20) = }")
+    print(f"Hemiphere: {surface_area_hemisphere(20) = }")
     print(f"Rhombus: {area_rhombus(10, 20) = }")
