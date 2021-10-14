@@ -26,19 +26,19 @@ def greedy_min_vertex_cover(graph: dict) -> set:
     # for each node and his adjacency list add them and the rank of the node to queue
     # using heapq module the queue will be filled like a Priority Queue
     # heapq works with a min priority queue, so I used -1*len(v) to build it
-    for k, v in graph.items():
+    for key, value in graph.items():
         # O(log(n))
-        heapq.heappush(queue, [-1 * len(v), (k, v)])
+        heapq.heappush(queue, [-1 * len(value), (key, value)])
 
-    # s = set of chosen vertices
-    s = set()
+    # chosen_vertices = set of chosen vertices
+    chosen_vertices = set()
 
     # while queue isn't empty and there are still edges
     #   (queue[0][0] is the rank of the node with max rank)
     while queue and queue[0][0] != 0:
-        # extract vertex with max rank from queue and add it to s
+        # extract vertex with max rank from queue and add it to chosen_vertices
         argmax = heapq.heappop(queue)[1][0]
-        s.add(argmax)
+        chosen_vertices.add(argmax)
 
         # Remove all arcs adjacent to argmax
         for elem in queue:
@@ -53,7 +53,7 @@ def greedy_min_vertex_cover(graph: dict) -> set:
                 elem[0] += 1
         # re-order the queue
         heapq.heapify(queue)
-    return s
+    return chosen_vertices
 
 
 if __name__ == "__main__":
