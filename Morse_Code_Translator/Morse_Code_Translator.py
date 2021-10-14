@@ -98,7 +98,7 @@ def main():
 	elif x == "decode":
 		message = input("Enter the morse code: ")
 		result = decrypt(message)
-		print ("The given morse code in English language is ", result)
+		print(f"The given morse code in English language is {result}")
 
 	else:
 		print("Please input by writing encode or decode /nIf you want to exit the program, just press Ctrl+C")
