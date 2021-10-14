@@ -10,7 +10,7 @@ References:
 
 import math
 
-def prime_list(n: int) -> list:
+def prime_list(upper_border: int) -> list:
     """
     Returns a boolean list where true means the index represents a prime number
     >>> prime_list(10)
@@ -18,16 +18,16 @@ def prime_list(n: int) -> list:
     >>> prime_list(23)
     [False, False, True, True, False, True, False, True, False, False, False, True, False, True, False, False, False, True, False, True, False, False, False, True]
     """
-    primes = [True] * (n+1)
+    primes = [True] * (upper_border+1)
     primes[0] = False # 0 is no prime
     primes[1] = False # 1 is no prime
-    for i in range(2,math.floor(math.sqrt(n))+1): # using sieve of eratosthenes to strike all none primes in the list
+    for i in range(2,math.floor(math.sqrt(upper_border))+1): # using sieve of eratosthenes to strike all none primes in the list
         if primes[i]:
-            for j in range(i*i,n+1,i):
+            for j in range(i*i,upper_border+1,i):
                 primes[j] = False
     return primes
 
-def sum_prime(n: int) -> int:
+def sum_prime(upper_border: int) -> int:
     """
     Return the sum of all primes < n
     >>> sum_prime(10)
@@ -38,8 +38,8 @@ def sum_prime(n: int) -> int:
     1548136
     """
     sum = 0 # Set initial sum to zero, in case a number less than 2 is passed
-    primes = prime_list(n) # get boolean-list of all numbers from 0 - n where true means the number is prime
-    for i in range(2,n+1):
+    primes = prime_list(upper_border) # get boolean-list of all numbers from 0 - n where true means the number is prime
+    for i in range(2,upper_border+1):
         if primes[i]:
             sum = sum + (i)
     return sum
