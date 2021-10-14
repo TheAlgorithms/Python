@@ -43,9 +43,8 @@ def convert_csv_to_json(csv_path: Any, json_path: Any) -> Any:
 
     # read csv file using in-built function of csv module called DictReader
 
-    with open(
-        csv_path, encoding="utf-8"
-    ) as csvf:  # don't forget to mention utf-8 encoding
+     # don't forget to mention utf-8 encoding
+    with open(csv_path, encoding="utf-8") as csv_file:
         csv_reader = csv.DictReader(csvf)
 
         # Convert each row into a dictionary and add it to data
