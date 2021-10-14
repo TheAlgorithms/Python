@@ -73,7 +73,7 @@ def decode(coded: str) -> str:
     """
     if set(coded) - {"A", "B", " "} != set() and set(coded) - {"A", "B"} != set():
         raise Exception("decode accepts only 'A', 'B' and ' '")
-        decoded = ""
+    decoded = ""
     for word in coded.split():
         while len(word) != 0:
             decoded += decode_dict[word[:5]]
