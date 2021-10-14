@@ -86,7 +86,7 @@ def decrypt(message):
 # Function to run the program
 def main():
 
-	x = input("Do you want to encode or decode a morse code? ")
+	x = input("Do you want to encode or decode a morse code? ").strip().lower()
 
 	# If the user wants to encode in a morse code
 	if x == "encode" or x == "Encode" or x == "ENCODE":
