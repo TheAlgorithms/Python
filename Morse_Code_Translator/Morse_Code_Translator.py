@@ -26,7 +26,7 @@ MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
 
 # Function to encrypt the string
 # according to the morse code chart
-def encrypt(message):
+def encrypt(message: str) -> str:
 	cipher = ''
 	for letter in message:
 		if letter != ' ':
