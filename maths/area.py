@@ -41,6 +41,7 @@ def surface_area_sphere(radius: float) -> float:
         raise ValueError("surface_area_sphere() only accepts non-negative values")
     return 4 * pi * radius ** 2
 
+
 def surface_area_hemisphere(radius: float) -> float:
     """
     Calculate the Surface Area of a Hemisphere.
