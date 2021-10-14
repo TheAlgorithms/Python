@@ -61,7 +61,7 @@ def convert_csv_to_json(csv_path: Any, json_path: Any) -> Any:
 
     # Open a json writer and use the json.dumps() function to dump data
 
-    with open(json_path, "w", encoding="utf-8") as jsonf:
+    with open(json_path, "w", encoding="utf-8") as json_file:
 
         jsonf.write(
             json.dumps(data, indent=3)
