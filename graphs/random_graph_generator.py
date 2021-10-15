@@ -1,6 +1,5 @@
 """
 * Author: Manuel Di Lullo (https://github.com/manueldilullo)
-* Python Version: 3.9
 * Description: Random graphs generator.
                Uses graphs represented with an adjacency list.
 
@@ -48,7 +47,7 @@ def random_graph(
 
 def complete_graph(vertices_number: int) -> dict:
     """
-    function that generate a complete graph with vertices_number vertices
+    function that generates a complete graph with vertices_number vertices
     @input: vertices_number (number of vertices),
             directed (False if the graph is undirected, True otherwise)
     @example:
