@@ -36,6 +36,7 @@ def find_longest_path_from_a_cell(
     dp[y_coordinate][x_coordinate] = max(x, max(y, max(z, max(w, 1))))
     return dp[y_coordinate][x_coordinate]
 
+
 def find_longest_path_in_a_matrix(mat: "list[list[int]]") -> int:
     """
     Find the length of longest path of increasing sequence in a matrix mat.
@@ -51,6 +52,7 @@ def find_longest_path_in_a_matrix(mat: "list[list[int]]") -> int:
                 find_longest_path_from_a_cell(i, j, mat, dp)
             result = max(result, dp[i][j])
     return result
+
 
 if __name__ == "__main__":
     import doctest
