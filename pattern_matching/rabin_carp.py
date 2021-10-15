@@ -1,7 +1,7 @@
 # Following program is the python implementation of
 # Rabin Karp Algorithm given in CLRS book
 
-# d is the number of characters in the input alphabet
+# dmnt is the number of characters in the input alphabet
 dmnt = 256
 
 # pat  -> would be pattern
@@ -9,7 +9,7 @@ dmnt = 256
 # prime_n    -> nth  prime number
 
 
-def search(pat, txt, prime_n):
+def search(pat, txt, prime_n) -> None:
     pal_len = len(pat)
     txt_len = len(txt)
     st_idx = 0
@@ -23,16 +23,13 @@ def search(pat, txt, prime_n):
         h = (h * dmnt) % prime_n
 
     # Calculate the hash value of pattern and first window
-    # of text
     for st_idx in range(pal_len):
         p_hash = (dmnt * p_hash + ord(pat[st_idx])) % prime_n
         t_hash = (dmnt * t_hash + ord(txt[st_idx])) % prime_n
 
     # Slide the pattern over text one by one
     for st_idx in range(txt_len-pal_len + 1):
-        # Check the hash values of current window of text and
-        # pattern if the hash values match then only check
-        # for characters on by one
+        # Check the hash values of current window of text and pattern if the hash values match then only check
         if p_hash == t_hash:
             # Check for characters one by one
             for en_idx in range(pal_len):
@@ -50,8 +47,7 @@ def search(pat, txt, prime_n):
             t_hash = (dmnt*(t_hash-ord(txt[st_idx])*h) +
                       ord(txt[st_idx + pal_len])) % prime_n
 
-            # We might get negative values of t, converting it to
-            # positive
+            # We might get negative values of t, converting it to positive
             if t_hash < 0:
                 t_hash = t_hash + prime_n
     print("No pattern was found")
