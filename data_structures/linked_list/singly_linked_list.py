@@ -115,7 +115,7 @@ class LinkedList:
                 temp = temp.next
             new_node.next = temp.next
             temp.next = new_node
-        self.length+=1
+        self.length += 1
 
     def print_list(self) -> None:  # print every node data
         print(self)
@@ -138,7 +138,7 @@ class LinkedList:
                 temp = temp.next
             delete_node = temp.next
             temp.next = temp.next.next
-        self.length-=1
+        self.length -= 1
         return delete_node.data
 
     def is_empty(self) -> bool:
