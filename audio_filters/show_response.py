@@ -10,9 +10,7 @@ class FilterType(Protocol):
         """
         Calculate y[n]
 
-        >>> filt = FilterType()
-        >>> filt.process(0.0)
-        0.0
+        >>> None  # We can't test Protocols
         """
         return 0.0
 

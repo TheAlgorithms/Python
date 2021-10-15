@@ -16,8 +16,7 @@ def make_lowpass(
     """
     Creates a low-pass filter
 
-    >>> make_lowpass(1000, 48000)
-    <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
+    >>> filter = make_lowpass(1000, 48000)
     """
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
@@ -42,8 +41,7 @@ def make_highpass(
     """
     Creates a high-pass filter
 
-    >>> make_highpass(1000, 48000)
-    <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
+    >>> filter = make_highpass(1000, 48000)
     """
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
@@ -68,8 +66,7 @@ def make_bandpass(
     """
     Creates a band-pass filter
 
-    >>> make_bandpass(1000, 48000)
-    <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
+    >>> filter = make_bandpass(1000, 48000)
     """
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
@@ -95,8 +92,7 @@ def make_allpass(
     """
     Creates an all-pass filter
 
-    >>> make_allpass(1000, 48000)
-    <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
+    >>> filter = make_allpass(1000, 48000)
     """
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
@@ -118,8 +114,7 @@ def make_peak(
     """
     Creates a peak filter
 
-    >>> make_peak(1000, 48000, 6)
-    <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
+    >>> filter = make_peak(1000, 48000, 6)
     """
     w0 = tau * frequency / samplerate
     _sin = sin(w0)
@@ -145,8 +140,7 @@ def make_lowshelf(
     """
     Creates a low-shelf filter
 
-    >>> make_lowshelf(1000, 48000, 6)
-    <audio_filters.iir_filter.IIRFilter object at 0x7f3dbb93d040>
+    >>> filter = make_lowshelf(1000, 48000, 6)
     """
     w0 = tau * frequency / samplerate
     _sin = sin(w0)

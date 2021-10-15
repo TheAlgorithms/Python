@@ -39,6 +39,7 @@ class IIRFilter:
 
         This method works well with scipy's filter design functions
             >>> # Make a 2nd-order 1000Hz butterworth lowpass filter
+            >>> import scipy.signal
             >>> b_coeffs, a_coeffs = scipy.signal.butter(2, 1000,
             ...                                          btype='lowpass',
             ...                                          fs=samplerate)
@@ -69,7 +70,7 @@ class IIRFilter:
 
         >>> filt = IIRFilter(2)
         >>> filt.process(0)
-        0
+        0.0
         """
         result = 0.0
 
