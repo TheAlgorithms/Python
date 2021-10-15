@@ -37,13 +37,13 @@ or y values that are < 0.
 
 def check_xy_negative(solution: (int, int)) -> bool:
     """
-    >>> check_xy_negative([-1, 1])
+    >>> check_xy_negative((-1, 1))
     True
-    >>> check_xy_positive([5, -7])
+    >>> check_xy_negative((5, -7))
     True
-    >>> check_xy_positive([0, 0])
+    >>> check_xy_negative((0, 0))
     False
-    >>> check_xy_positive([7, 85])
+    >>> check_xy_negative((7, 85))
     False
     """
     if solution[0] < 0 or solution[1] < 0:
