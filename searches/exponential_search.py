@@ -20,6 +20,10 @@ def binary_search(sequence: list, left: int, right: int, target: int) -> int | N
     :param right: The right bound of the section of the sequence being searched
     :param target: item value to search
     :return: index of found item or None if item is not found
+
+    Example:
+    >>> binary_search([1,2,3,4,5], 0, 4, 3)
+    2
     """
     if left > right:
         return None
@@ -47,9 +51,11 @@ def exponential_search(sequence: list, target: int) -> int | None:
     :param target: item value to search
     :return: index of found item or None if item is not found
 
-    Example: 
+    Examples: 
     >>> exponential_search([1, 2, 3, 4, 5], 3)
     2
+    >>> exponential_search([0, 5, 7, 10, 15], 15)
+    4
     """
     if sequence[0] == target:
         return 0
