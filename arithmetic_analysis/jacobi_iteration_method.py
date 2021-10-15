@@ -157,11 +157,7 @@ def strictly_diagonally_dominant(table: np.ndarray) -> bool:
                 sum = sum + table[i][j]
 
         if table[i][i] <= sum:
-            is_diagonally_dominant = False
-            break
-
-    if is_diagonally_dominant is False:
-        raise ValueError("Coefficient matrix is not strictly diagonally dominant")
+            raise ValueError("Coefficient matrix is not strictly diagonally dominant")
 
     return is_diagonally_dominant
 
