@@ -4,18 +4,16 @@ class Graph:
         self.graph = [[0] * vertex for i in range(vertex)]
 
     def add_edge(self, u, v):
-        try:
-            self.graph[u - 1][v - 1] = 1
-            self.graph[v - 1][u - 1] = 1
-        except IndexError as e:
-            print(e)
+         if u>self.vertex or v>self.vertex or u<1 or v<1:
+            raise IndexError("Invalid Edge")
+        self.graph[u - 1][v - 1] = 1
+        self.graph[v - 1][u - 1] = 1
         
     def remove_edge(self,u,v):
-        try:
-            self.graph[u - 1][v - 1] = 0
-            self.graph[v - 1][u - 1] = 0
-        except IndexError as e:
-            print(e)
+        if u>self.vertex or v>self.vertex or u<1 or v<1:
+            raise IndexError("Invalid Edge")
+        self.graph[u - 1][v - 1] = 0
+        self.graph[v - 1][u - 1] = 0
 
     def show(self):
 
