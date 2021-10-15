@@ -31,10 +31,17 @@ def warp(
 
     Returns: Warped image
 
+    >>> warp(np.array([[0, 1, 2], [0, 3, 0], [2, 2, 2]]), \
+    np.array([[0, 1, -1], [-1, 0, 0], [1, 1, 1]]), \
+    np.array([[0, 0, 0], [0, 1, 0], [0, 0, 1]]))
+    array([[0, 0, 0],
+           [3, 1, 0],
+           [0, 2, 3]])
     """
     flow = np.stack((horizontal_flow, vertical_flow), 2)
 
-    # Create a grid of all pixel coordinates and subtract the offsets
+    # Create a grid of all pixel coordinates and subtract the flow to get the
+    # target pixels coordinates
     grid = np.stack(
         np.meshgrid(np.arange(0, image.shape[1]), np.arange(0, image.shape[0])), 2
     )
@@ -69,9 +76,16 @@ def horn_schunck(
         alpha: Regularization constant
         num_iter: Number of iterations performed
 
-    Returns:
-        horizontal_flow: Horizontal flow
-        vertical_flow: Vertical flow
+    Returns: estimated horizontal & vertical flow
+
+    >>> np.round(horn_schunck(np.array([[0, 0, 2], [0, 0, 2]]), \
+    np.array([[0, 2, 0], [0, 2, 0]]), alpha=0.1, num_iter=110)).\
+    astype(np.int32)
+    array([[[ 0, -1, -1],
+            [ 0, -1, -1]],
+    <BLANKLINE>
+           [[ 0,  0,  0],
+            [ 0,  0,  0]]])
     """
     if alpha is None:
         alpha = 0.1
@@ -84,7 +98,7 @@ def horn_schunck(
     kernel_x = np.array([[-1, 1], [-1, 1]]) * 0.25
     kernel_y = np.array([[-1, -1], [1, 1]]) * 0.25
     kernel_t = np.array([[1, 1], [1, 1]]) * 0.25
-    laplacian_kernel = np.array(
+    kernel_laplacian = np.array(
         [[1 / 12, 1 / 6, 1 / 12], [1 / 6, 0, 1 / 6], [1 / 12, 1 / 6, 1 / 12]]
     )
 
@@ -95,8 +109,8 @@ def horn_schunck(
         derivative_y = convolve(warped_image, kernel_y) + convolve(image1, kernel_y)
         derivative_t = convolve(warped_image, kernel_t) + convolve(image1, -kernel_t)
 
-        avg_horizontal_velocity = convolve(horizontal_flow, laplacian_kernel)
-        avg_vertical_velocity = convolve(vertical_flow, laplacian_kernel)
+        avg_horizontal_velocity = convolve(horizontal_flow, kernel_laplacian)
+        avg_vertical_velocity = convolve(vertical_flow, kernel_laplacian)
 
         # This updates the flow as proposed in the paper (Step 12)
         update = (
