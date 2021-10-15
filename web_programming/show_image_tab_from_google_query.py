@@ -35,4 +35,8 @@ def show_images_from_google_query(query: str = "dhaka") -> bool:
 
 
 if __name__ == "__main__":
-    show_images_from_google_query(sys.argv[1])
+    try:
+        show_images_from_google_query(sys.argv[1])
+    except IndexError:
+        print("Please provide a search term.")
+        raise
