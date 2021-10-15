@@ -46,9 +46,7 @@ def check_xy_negative(solution: (int, int)) -> bool:
     >>> check_xy_negative((7, 85))
     False
     """
-    if solution[0] < 0 or solution[1] < 0:
-        return True
-    return False
+    return solution[0] < 0 or solution[1] < 0
 
 
 """
