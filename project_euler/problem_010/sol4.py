@@ -27,14 +27,14 @@ def prime_list(upper_border: int) -> list:
                 primes[j] = False
     return primes
 
-def sum_prime(upper_border: int) -> int:
+def solution(upper_border: int) -> int:
     """
     Return the sum of all primes < n
-    >>> sum_prime(10)
+    >>> solution(10)
     17
-    >>> sum_prime(1000)
+    >>> solution(1000)
     76127
-    >>> sum_prime(5000)
+    >>> solution(5000)
     1548136
     """
     sum = 0 # Set initial sum to zero, in case a number less than 2 is passed
@@ -44,4 +44,5 @@ def sum_prime(upper_border: int) -> int:
             sum = sum + (i)
     return sum
 
-print(sum_prime(2000000))
+if __name__ == "__main__":
+    print(f"{solution(2000000) = }")
