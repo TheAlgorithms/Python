@@ -6,14 +6,14 @@ alpha_bet = ['a','b','c']
 
 
 def generate_de_bruijn_graph(alphaBet,n):
-    return list(permutations(alphaBet,len(alphaBet)))
+    return list(permutations(alpha_bet,len(alpha_bet)))
     pass
 
 
 
 ##Tests...
-print(generate_de_bruijn_graph(alphaBet,2))
+print(generate_de_bruijn_graph(alpha_bet,2))
 
 print("###################################3")
 
-print(generate_de_bruijn_graph(alphaBet,3))
+print(generate_de_bruijn_graph(alpha_bet,3))
