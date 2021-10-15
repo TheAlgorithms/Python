@@ -16,6 +16,11 @@ def gabor_filter_kernel(
     :param gamma:   The spatial aspect ratio and specifies the ellipticity
                     of the support of Gabor function.
     :param psi:     The phase offset of the sinusoidal function.
+
+    >>> gabor_filter_kernel(3, 8, 0, 10, 0, 0).tolist()
+    [[0.8027212023735046, 1.0, 0.8027212023735046], [0.8027212023735046, 1.0, \
+0.8027212023735046], [0.8027212023735046, 1.0, 0.8027212023735046]]
+
     """
 
     # prepare kernel
