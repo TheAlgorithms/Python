@@ -16,7 +16,9 @@ from scipy.ndimage.filters import convolve
 from typing_extensions import SupportsIndex
 
 
-def warp(image: np.ndarray, u: np.ndarray, v: np.ndarray) -> np.ndarray:
+def warp(
+    image: np.ndarray, horizontal_flow: np.ndarray, vertical_flow: np.ndarray
+) -> np.ndarray:
     """
     Warps the pixels of an image into a new image using the horizontal and vertical
     flows.
@@ -24,18 +26,19 @@ def warp(image: np.ndarray, u: np.ndarray, v: np.ndarray) -> np.ndarray:
 
     Parameters:
         image: Grayscale image
-        u: Horizontal flow
-        v: Vertical flow
+        horizontal_flow: Horizontal flow
+        vertical_flow: Vertical flow
 
     Returns: Warped image
+
     """
-    flow = np.stack((u, v), 2)
+    flow = np.stack((horizontal_flow, vertical_flow), 2)
 
     # Create a grid of all pixel coordinates and subtract the offsets
     grid = np.stack(
         np.meshgrid(np.arange(0, image.shape[1]), np.arange(0, image.shape[0])), 2
     )
-    grid = np.round(grid - flow).astype(np.int)
+    grid = np.round(grid - flow).astype(np.int32)
 
     # Find the locations outside of the original image
     invalid = (grid < 0) | (grid >= np.array([image.shape[1], image.shape[0]]))
@@ -49,38 +52,9 @@ def warp(image: np.ndarray, u: np.ndarray, v: np.ndarray) -> np.ndarray:
     return warped
 
 
-def calc_derivatives(
-    im0: np.ndarray, im1: np.ndarray
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """
-    Calculates the vertical and horizontal image derivatives as well as the
-    time derivatives used in the Horn-Schunck algorithm
-
-    Parameters:
-        im0: First image
-        im1: Warped second image
-
-    Returns:
-        dX: Horizontal image derivative
-        dY: Vertical image derivative
-        dT: Time derivative
-    """
-    # Prepare kernels for the calculation of the derivatives
-    kernel_x = np.array([[-1, 1], [-1, 1]]) * 0.25
-    kernel_y = np.array([[-1, -1], [1, 1]]) * 0.25
-    kernel_t = np.array([[1, 1], [1, 1]]) * 0.25
-
-    # Calculate the derivatives
-    dX = convolve(im0, kernel_x) + convolve(im1, kernel_x)
-    dY = convolve(im0, kernel_y) + convolve(im1, kernel_y)
-    dT = convolve(im0, kernel_t) + convolve(im1, -kernel_t)
-
-    return dX, dY, dT
-
-
 def horn_schunck(
-    im0: np.ndarray,
-    im1: np.ndarray,
+    image0: np.ndarray,
+    image1: np.ndarray,
     num_iter: SupportsIndex,
     alpha: Optional[float] = None,
 ) -> tuple[np.ndarray, np.ndarray]:
@@ -90,37 +64,49 @@ def horn_schunck(
     normalized to be in [0, 1].
 
     Parameters:
-        im0: First image
-        im1: Second image
+        image0: First image of the sequence
+        image1: Second image of the sequence
         alpha: Regularization constant
         num_iter: Number of iterations performed
 
     Returns:
-        u: Horizontal flow
-        v: Vertical flow
+        horizontal_flow: Horizontal flow
+        vertical_flow: Vertical flow
     """
     if alpha is None:
         alpha = 0.1
 
     # Initialize flow
-    u = np.zeros_like(im0)
-    v = np.zeros_like(im0)
+    horizontal_flow = np.zeros_like(image0)
+    vertical_flow = np.zeros_like(image0)
 
+    # Prepare kernels for the calculation of the derivatives and the average velocity
+    kernel_x = np.array([[-1, 1], [-1, 1]]) * 0.25
+    kernel_y = np.array([[-1, -1], [1, 1]]) * 0.25
+    kernel_t = np.array([[1, 1], [1, 1]]) * 0.25
     laplacian_kernel = np.array(
         [[1 / 12, 1 / 6, 1 / 12], [1 / 6, 0, 1 / 6], [1 / 12, 1 / 6, 1 / 12]]
     )
 
     # Iteratively refine the flow
     for _ in range(num_iter):
-        dx, dy, dt = calc_derivatives(warp(im0, u, v), im1)
+        warped_image = warp(image0, horizontal_flow, vertical_flow)
+        derivative_x = convolve(warped_image, kernel_x) + convolve(image1, kernel_x)
+        derivative_y = convolve(warped_image, kernel_y) + convolve(image1, kernel_y)
+        derivative_t = convolve(warped_image, kernel_t) + convolve(image1, -kernel_t)
 
-        avg_u = convolve(u, laplacian_kernel)
-        avg_v = convolve(v, laplacian_kernel)
+        avg_horizontal_velocity = convolve(horizontal_flow, laplacian_kernel)
+        avg_vertical_velocity = convolve(vertical_flow, laplacian_kernel)
 
         # This updates the flow as proposed in the paper (Step 12)
-        d = (dx * avg_u + dy * avg_v + dt) / (alpha ** 2 + dx ** 2 + dy ** 2)
+        update = (
+            derivative_x * avg_horizontal_velocity
+            + derivative_y * avg_vertical_velocity
+            + derivative_t
+        )
+        update = update / (alpha ** 2 + derivative_x ** 2 + derivative_y ** 2)
 
-        u = avg_u - dx * d
-        v = avg_v - dy * d
+        horizontal_flow = avg_horizontal_velocity - derivative_x * update
+        vertical_flow = avg_vertical_velocity - derivative_y * update
 
-    return u, v
+    return horizontal_flow, vertical_flow
