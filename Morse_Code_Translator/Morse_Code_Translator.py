@@ -123,6 +123,9 @@ def main() -> None:
 >>> s = "DOG"
 >>> decrypt(encrypt(s)) == s
 True
+>>> s = "Dog"
+>>> decrypt(encrypt(s)) == s.upper()
+True
 """
 
 # Executes the main function
