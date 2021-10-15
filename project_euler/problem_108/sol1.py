@@ -67,7 +67,7 @@ def find_num_solutions(n_value: int) -> int:
     solutions = diophantine(Eq(1 / x + 1 / y, S(1) / n_value))
     positive_solutions = filter(check_xy_negative, solutions)
 
-    return len(list(set(positive_solutions)))
+    return len(set(positive_solutions))
 
 
 """
