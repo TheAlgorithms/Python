@@ -57,7 +57,7 @@ to the Diophantine equation 1/x + 1/y = 1/n given n.
 """
 
 
-def find_num_solutions(n: int) -> int:
+def find_num_solutions(n_value: int) -> int:
     """
     >>> find_num_solutions(500)
     34
@@ -66,7 +66,7 @@ def find_num_solutions(n: int) -> int:
     >>> find_num_solutions(180180)
     2024
     """
-    solutions = diophantine(Eq(1 / x + 1 / y, S(1) / n))
+    solutions = diophantine(Eq(1 / x + 1 / y, S(1) / n_value))
     positive_solutions = filter(check_xy_negative, solutions)
 
     return len(list(set(positive_solutions)))
