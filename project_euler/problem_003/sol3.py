@@ -57,7 +57,7 @@ def solution(n: int = 600851475143) -> int:
             i += 1
         ans = i
         while n % i == 0:
-            n = n / i
+            n = n // i
         i += 1
     return int(ans)
 
