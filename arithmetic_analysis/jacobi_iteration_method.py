@@ -2,7 +2,7 @@
 Jacobi Iteration Method - https://en.wikipedia.org/wiki/Jacobi_method
 """
 
-from typing import List
+from __future__ import annotations
 
 import numpy as np
 
@@ -13,7 +13,7 @@ def jacobi_iteration_method(
     constant_matrix: np.ndarray,
     init_val: list,
     iterations: int,
-) -> List[float]:
+) -> list[float]:
     """
     Jacobi Iteration Method:
     An iterative algorithm to determine the solutions of strictly diagonally dominant
