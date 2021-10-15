@@ -80,7 +80,7 @@ Returns n if found within the range
 """
 
 
-def solution(lower_bound: int, upper_bound: int) -> int:
+def solution(lower_bound: int = 10 ** 5, upper_bound: int = 10 ** 6) -> int:
     """
     >>> solution(1, 10 ** 6)
     180180
