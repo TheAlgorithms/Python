@@ -7,6 +7,7 @@ URL: https://mathworld.wolfram.com/MinimumVertexCover.html
 URL: https://www.princeton.edu/~aaa/Public/Teaching/ORF523/ORF523_Lec6.pdf
 """
 
+
 def matching_min_vertex_cover(graph: dict) -> set:
     """
     APX Algorithm for min Vertex Cover using Matching Approach
@@ -23,16 +24,17 @@ def matching_min_vertex_cover(graph: dict) -> set:
     edges = get_edges(graph)
 
     # while there are still elements in edges' list
-    # take an arbitrary edge (u,v) and add his extremity to s
-    # then remove all arcs adjacent to the u and v
+    # take an arbitrary edge (node_from,node_to) and add his extremity to s
+    # then remove all arcs adjacent to the node_from and node_to
     while edges:
-        u, v = edges.pop()
-        chosen_vertices.add(u)
-        chosen_vertices.add(v)
+        node_from, node_to = edges.pop()
+        chosen_vertices.add(node_from)
+        chosen_vertices.add(node_to)
         for edge in edges.copy():
-            if (u in edge) or (v in edge):
+            if (node_from in edge) or (node_to in edge):
                 edges.discard(edge)
     return chosen_vertices
+
 
 def get_edges(graph: dict) -> set:
     """
@@ -46,6 +48,7 @@ def get_edges(graph: dict) -> set:
         for node_to in graph[node_from]:
             edges.add((node_from, node_to))
     return edges
+
 
 if __name__ == "__main__":
     import doctest
