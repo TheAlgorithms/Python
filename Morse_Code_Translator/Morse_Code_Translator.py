@@ -44,6 +44,13 @@ def encrypt(message: str) -> str:
 
 	return cipher
 
+# Doctest for encrypt()
+"""
+>>> s = "DOG"
+>>> encrypt(s) == "-.. --- --."
+True
+"""
+
 # Function to decrypt the string
 # from morse to english
 def decrypt(message: str) -> str:
@@ -83,6 +90,13 @@ def decrypt(message: str) -> str:
 				citext = ''
 
 	return decipher
+
+# Doctest for decrypt()
+"""
+>>> s = "-.. --- --."
+>>> decrypt(s) == "DOG"
+True
+"""
 
 # Function to run the program
 def main() -> None:
