@@ -1,7 +1,7 @@
 # Implementation of the Gaborfilter
 # https://en.wikipedia.org/wiki/Gabor_filter
 import numpy as np
-from cv2 import imread, cvtColor, COLOR_BGR2GRAY, filter2D, CV_8UC3, imshow, waitKey
+from cv2 import COLOR_BGR2GRAY, CV_8UC3, cvtColor, filter2D, imread, imshow, waitKey
 
 
 def gabor_filter_kernel(
