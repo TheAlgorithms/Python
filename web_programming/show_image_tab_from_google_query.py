@@ -24,8 +24,7 @@ def show_images_from_google_query(query: str = "dhaka") -> bool:
     True
     """
 
-    ua = UserAgent()
-    headers = {"User-Agent": ua.random}
+    headers = {"User-Agent": UserAgent().random}
     url = "https://www.google.com/search?q=" + query
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
