@@ -28,7 +28,7 @@ def show_frequency_response(filter: FilterType, samplerate: int) -> None:
 
     size = 512
     inputs = [1] + [0] * (size - 1)
-    outputs = [0] * size
+    outputs = [0.0] * size
     for i in range(size):
         outputs[i] = filter.process(inputs[i])
 
@@ -63,7 +63,7 @@ def show_phase_response(filter: FilterType, samplerate: int) -> None:
 
     size = 512
     inputs = [1] + [0] * (size - 1)
-    outputs = [0] * size
+    outputs = [0.0] * size
     for i in range(size):
         outputs[i] = filter.process(inputs[i])
 
