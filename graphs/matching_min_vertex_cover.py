@@ -34,7 +34,7 @@ def matching_min_vertex_cover(graph: dict) -> set:
                 edges.discard(edge)
     return chosen_vertices
 
-def get_edges(graph: dict) -> tuple:
+def get_edges(graph: dict) -> set:
     """
     Function that returns a set of couples that represents
     the set of all the edges
