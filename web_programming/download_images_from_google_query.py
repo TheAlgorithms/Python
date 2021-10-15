@@ -1,22 +1,19 @@
-import requests
-import re
 import json
-import urllib.request
-from bs4 import BeautifulSoup
 import os
+import re
 import sys
+import urllib.request
+
+import requests
+from bs4 import BeautifulSoup
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-    + " (KHTML, like Gecko)"
-    + "Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582"
+    " (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582"
 }
-max_image = 999
 
 
-def download_images_from_google_query(
-    query: str = "dhaka", image_numbers: int = 5
-) -> bool:
+def download_images_from_google_query(query: str = "dhaka", max_images: int = 5) -> int:
     """Searches google using the provided query term and downloads the images in a folder.
 
     Args:
@@ -25,14 +22,14 @@ def download_images_from_google_query(
         image_numbers : [description]. Defaults to 5.
 
     Returns:
-        True if the image is downloaded successfully.
+        The number of images successfully downloaded.
 
-    >>> download_images_from_google_query ()
-    True
-    >>> download_images_from_google_query ("potato")
-    True
+    >>> download_images_from_google_query()
+    5
+    >>> download_images_from_google_query("potato")
+    5
     """
-
+    max_images = min(max_images, 50)  # Prevent abuse!
     params = {
         "q": query,
         "tbm": "isch",
@@ -41,7 +38,7 @@ def download_images_from_google_query(
     }
 
     html = requests.get("https://www.google.com/search", params=params, headers=headers)
-    soup = BeautifulSoup(html.text, "lxml")
+    soup = BeautifulSoup(html.text, "html.parser")
     matched_images_data = "".join(
         re.findall(r"AF_initDataCallback\(([^<]+)\);", str(soup.select("script")))
     )
@@ -53,8 +50,9 @@ def download_images_from_google_query(
         r"\[\"GRID_STATE0\",null,\[\[1,\[0,\".*?\",(.*),\"All\",",
         matched_images_data_json,
     )
-    if not len(matched_google_image_data):
-        return False
+    if not matched_google_image_data:
+        return 0
+
     removed_matched_google_images_thumbnails = re.sub(
         r"\[\"(https\:\/\/encrypted-tbn0\.gstatic\.com\/images\?.*?)\",\d+,\d+\]",
         "",
@@ -66,8 +64,8 @@ def download_images_from_google_query(
         removed_matched_google_images_thumbnails,
     )
     for index, fixed_full_res_image in enumerate(matched_google_full_resolution_images):
-        if index == image_numbers or index == max_image:
-            return True
+        if index >= max_images:
+            return index
         original_size_img_not_fixed = bytes(fixed_full_res_image, "ascii").decode(
             "unicode-escape"
         )
@@ -79,22 +77,23 @@ def download_images_from_google_query(
             (
                 "User-Agent",
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-                + " (KHTML, like Gecko)"
-                + "Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582",
+                " (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19582",
             )
         ]
         urllib.request.install_opener(opener)
-        if not os.path.exists("query-" + query):
-            os.makedirs("query-" + query)
+        path_name = f"query_{query.replace(' ', '_')}"
+        if not os.path.exists(path_name):
+            os.makedirs(path_name)
         urllib.request.urlretrieve(
-            original_size_img, f"query-{query}/original_size_img_{index}.jpg"
+            original_size_img, f"{path_name}/original_size_img_{index}.jpg"
         )
-    return True
+    return index
 
 
 if __name__ == "__main__":
     try:
-        download_images_from_google_query(sys.argv[1])
+        image_count = download_images_from_google_query(sys.argv[1])
+        print(f"{image_count} images were downloaded to disk.")
     except IndexError:
         print("Please provide a search term.")
         raise
