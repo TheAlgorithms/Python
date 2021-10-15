@@ -7,7 +7,7 @@ VARIABLE KEY
 'message' -> 'stores the string to be encoded or decoded'
 '''
 
-# Dictionary representing the morse code chart
+# Dictionary representing the Morse code chart
 
 MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
 					'C':'-.-.', 'D':'-..', 'E':'.',
