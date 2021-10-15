@@ -42,6 +42,10 @@ def get_edges(graph: dict) -> set:
     the set of all the edges
     @input: graph (graph stored in an adjacency list where each vertex
             is represented with an integer)
+    @example:
+    >>> graph = {0: [1, 3], 1: [0, 3], 2: [0, 3], 3: [0, 1, 2]}
+    >>> get_edges(graph)
+    {(0, 1), (3, 1), (0, 3), (2, 0), (3, 0), (2, 3), (1, 0), (3, 2), (1, 3)}
     """
     edges = set()
     for node_from in graph.keys():
