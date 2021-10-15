@@ -19,9 +19,9 @@ class Graph:
 
     def all_edges(self):
         edges=[]
-        for node in self.graph:
-            for neighbour in self.graph[node]:
-                edges.append((node,neighbour))
+        for u in self.graph:
+            for v in self.graph[u]:
+                edges.append((u,v))
         print(edges)
 
     def display(self):
