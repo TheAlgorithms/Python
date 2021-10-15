@@ -8,6 +8,7 @@ VARIABLE KEY
 '''
 
 # Dictionary representing the morse code chart
+
 MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
 					'C':'-.-.', 'D':'-..', 'E':'.',
 					'F':'..-.', 'G':'--.', 'H':'....',
@@ -45,7 +46,7 @@ def encrypt(message: str) -> str:
 
 # Function to decrypt the string
 # from morse to english
-def decrypt(message):
+def decrypt(message: str) -> str:
 
 	# extra space added at the end to access the
 	# last morse code
@@ -85,14 +86,6 @@ def decrypt(message):
 
 # Function to run the program
 def main() -> None:
-"""
->>> s = "DOG"
->>> decrypt(encrypt(s)) == s
-True
->>> s = "Dog"
->>> decrypt(encrypt(s)) == s
-True
-"""
 
 	x = input("Do you want to encode or decode a morse code? ").strip().lower()
 
@@ -110,6 +103,13 @@ True
 
 	else:
 		print("Please input by writing encode or decode /nIf you want to exit the program, just press Ctrl+C")
+
+# Doctest for main()
+"""
+>>> s = "DOG"
+>>> decrypt(encrypt(s)) == s
+True
+"""
 
 # Executes the main function
 main()
