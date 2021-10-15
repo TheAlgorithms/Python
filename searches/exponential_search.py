@@ -41,6 +41,8 @@ def exponential_search(sequence: list, target: int) -> int | None:
     Make sure that the sequence being searched is sorted ascendingly or 
     the algorithm may not work as expected. 
 
+    https://en.wikipedia.org/wiki/Exponential_search
+
     :param sequence: A sequence of comparable items sorted ascendingly
     :param target: item value to search
     :return: index of found item or None if item is not found
