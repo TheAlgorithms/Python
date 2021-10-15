@@ -29,8 +29,7 @@ def show_images_from_google_query(query: str = "dhaka") -> bool:
     url = "https://www.google.com/search?q=" + query
     response = requests.get(url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
-    links = list(soup.select(".eZt8xd"))
-    for link in links:
+    for link in soup.select(".eZt8xd"):
         if link.text == "Images":
             webbrowser.open(f"http://google.com{link.get('href')}")
             return True
