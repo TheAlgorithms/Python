@@ -10,7 +10,7 @@ class Node:
 class LinkedList:
     def __init__(self):
         self.head = None
-
+        self.length = 0
     def __iter__(self):
         node = self.head
         while node:
@@ -36,8 +36,7 @@ class LinkedList:
         >>> len(linked_list)
         0
         """
-        return len(tuple(iter(self)))
-
+        return self.length
     def __repr__(self):
         """
         String representation/visualization of a Linked Lists
@@ -116,6 +115,7 @@ class LinkedList:
                 temp = temp.next
             new_node.next = temp.next
             temp.next = new_node
+        self.length+=1
 
     def print_list(self) -> None:  # print every node data
         print(self)
@@ -138,6 +138,7 @@ class LinkedList:
                 temp = temp.next
             delete_node = temp.next
             temp.next = temp.next.next
+        self.length-=1
         return delete_node.data
 
     def is_empty(self) -> bool:
