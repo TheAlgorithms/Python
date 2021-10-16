@@ -1,6 +1,6 @@
 # Following program is the python implementation of
 # Rabin Karp Algorithm given in CLRS book
-
+from __future__ import annotations
 # dmnt is the number of characters in the input alphabet
 dmnt = 256
 
