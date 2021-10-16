@@ -9,9 +9,9 @@ def rgb2gray(rgb: np.array) -> np.array:
     array([[187.6453]])
     >>> rgb2gray(np.array([[[0, 0, 0]]]))
     array([[0.]])
-    >>> rgb2gray(np.array([[[2,  4,  1]]]))
+    >>> rgb2gray(np.array([[[2, 4, 1]]]))
     array([[3.0598]])
-    >>> rgb2gray(np.array([[[26,  255,  14], [ 5,  147, 20], [ 1,  200,  0]]]))
+    >>> rgb2gray(np.array([[[26, 255, 14], [5, 147, 20], [1, 200, 0]]]))
     array([[159.0524,  90.0635, 117.6989]])
     """
     r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
@@ -25,9 +25,9 @@ def gray2binary(gray: np.array) -> np.array:
     array([[False,  True, False]])
     >>> gray2binary(np.array([[0]]))
     array([[False]])
-    >>> gray2binary(np.array([[26.2409,  4.9315,  1.4729]]))
+    >>> gray2binary(np.array([[26.2409, 4.9315, 1.4729]]))
     array([[False, False, False]])
-    >>> gray2binary(np.array([[26,  255,  14], [ 5,  147, 20], [ 1,  200,  0]]))
+    >>> gray2binary(np.array([[26, 255, 14], [5, 147, 20], [1, 200, 0]]))
     array([[False,  True, False],
            [False,  True, False],
            [False,  True, False]])
