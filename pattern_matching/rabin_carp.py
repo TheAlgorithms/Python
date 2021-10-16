@@ -9,7 +9,7 @@ dmnt = 256
 # prime_n    -> nth  prime number
 
 
-def search(pattern: str,  text: str,  nth_prime_number: int) -> None:
+def search(pattern: str,  text: str,  nth_prime_number: int) -> bool:
     """
     The  Rabin-Carp alrternatively  named as rolling-has is an Algorithm for finding a pattern within a piece of text
     with complexity O(N) ->  N is the lenth of the text
@@ -33,11 +33,11 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> None:
         h = (h * dmnt) % nth_prime_number
 
     # Calculate the hash value of pattern and first window
-    for start_index in range(pat_len):
+    for i, char in enumerate(pattern):
         pattern_hash = (dmnt * pattern_hash +
-                        ord(pattern[start_index])) % nth_prime_number
+                        ord(char)) % nth_prime_number
         text_hash = (dmnt * text_hash +
-                     ord(text[start_index])) % nth_prime_number
+                     ord(text[i])) % nth_prime_number
 
     # Slide the pattern over text one by one
     for start_index in range(txt_len-pat_len + 1):
