@@ -62,7 +62,8 @@ def box_cipher_decryption() -> None:
     last=''
     for i in range(l%r):
     	last+=message[i][-1]
-	print("The encrypted message is:\n"+str(jj+last))
+    print("The encrypted message is:\n"+str(jj+last))
+
 
 if(__name__=="__main"):
     inp=input("Please choose an option:\n1)Encrypt\n2)Decrypt\n-$~")
