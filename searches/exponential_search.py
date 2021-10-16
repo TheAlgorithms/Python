@@ -58,7 +58,8 @@ def exponential_search(sequence: list, target: int) -> int:
     2
     >>> exponential_search([0, 5, 7, 10, 15], 15)
     4
-    >>> exponential_search(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'], "J")
+    >>> exponential_search(['A', 'B', 'C', 'D', 'E', 'F', \
+        'G', 'H', 'I', 'J', \'K', 'L'], "J")
     9
     >>> exponential_search([0, 1, 2, 3, 4], 10)
     -1
