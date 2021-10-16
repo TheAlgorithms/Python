@@ -87,8 +87,11 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
 if __name__ == "__main__":
 
     # inputing the strings
-    input_string = input("input a string :")
-    pattern = input("input a pattern :")
+    # input_string = input("input a string :")
+    # pattern = input("input a pattern :")
+    
+    input_string = "aab"
+    pattern = "c*a*b"
 
     # using function to check whether given string matches the given pattern
     if string_match_pattern(input_string, pattern):
