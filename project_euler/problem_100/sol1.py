@@ -9,7 +9,6 @@ By finding the first arrangement to contain over 1012 = 1,000,000,000,000 discs 
 
 References:
 - https://www.mathblog.dk/project-euler-100-blue-discs-two-blue/
-
 """
 
 def solution(b: int, n: int) -> int:
