@@ -53,6 +53,7 @@
   * [A1Z26](https://github.com/TheAlgorithms/Python/blob/master/ciphers/a1z26.py)
   * [Affine Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/affine_cipher.py)
   * [Atbash](https://github.com/TheAlgorithms/Python/blob/master/ciphers/atbash.py)
+  * [Baconian Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/baconian_cipher.py)
   * [Base16](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base16.py)
   * [Base32](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base32.py)
   * [Base64 Encoding](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base64_encoding.py)
@@ -104,6 +105,7 @@
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
   * [Binary To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_octal.py)
+  * [Csv To Json](https://github.com/TheAlgorithms/Python/blob/master/conversions/csv_to_json.py)
   * [Decimal To Any](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_any.py)
   * [Decimal To Binary](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary.py)
   * [Decimal To Binary Recursion](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary_recursion.py)
@@ -210,6 +212,9 @@
   * Histogram Equalization
     * [Histogram Stretch](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/histogram_equalization/histogram_stretch.py)
   * [Index Calculation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/index_calculation.py)
+  * Morphological Operations
+    * [Dilation Operation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/morphological_operations/dilation_operation.py)
+    * [Erosion Operation](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/morphological_operations/erosion_operation.py)
   * Resize
     * [Resize](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/resize/resize.py)
   * Rotation
@@ -328,10 +333,12 @@
   * [Graph Matrix](https://github.com/TheAlgorithms/Python/blob/master/graphs/graph_matrix.py)
   * [Graphs Floyd Warshall](https://github.com/TheAlgorithms/Python/blob/master/graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](https://github.com/TheAlgorithms/Python/blob/master/graphs/greedy_best_first.py)
+  * [Greedy Min Vertex Cover](https://github.com/TheAlgorithms/Python/blob/master/graphs/greedy_min_vertex_cover.py)
   * [Kahns Algorithm Long](https://github.com/TheAlgorithms/Python/blob/master/graphs/kahns_algorithm_long.py)
   * [Kahns Algorithm Topo](https://github.com/TheAlgorithms/Python/blob/master/graphs/kahns_algorithm_topo.py)
   * [Karger](https://github.com/TheAlgorithms/Python/blob/master/graphs/karger.py)
   * [Markov Chain](https://github.com/TheAlgorithms/Python/blob/master/graphs/markov_chain.py)
+  * [Matching Min Vertex Cover](https://github.com/TheAlgorithms/Python/blob/master/graphs/matching_min_vertex_cover.py)
   * [Minimum Spanning Tree Boruvka](https://github.com/TheAlgorithms/Python/blob/master/graphs/minimum_spanning_tree_boruvka.py)
   * [Minimum Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/minimum_spanning_tree_kruskal.py)
   * [Minimum Spanning Tree Kruskal2](https://github.com/TheAlgorithms/Python/blob/master/graphs/minimum_spanning_tree_kruskal2.py)
@@ -497,6 +504,7 @@
   * [Prime Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_numbers.py)
   * [Prime Sieve Eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_sieve_eratosthenes.py)
   * [Primelib](https://github.com/TheAlgorithms/Python/blob/master/maths/primelib.py)
+  * [Proth Number](https://github.com/TheAlgorithms/Python/blob/master/maths/proth_number.py)
   * [Pythagoras](https://github.com/TheAlgorithms/Python/blob/master/maths/pythagoras.py)
   * [Qr Decomposition](https://github.com/TheAlgorithms/Python/blob/master/maths/qr_decomposition.py)
   * [Quadratic Equations Complex Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/quadratic_equations_complex_numbers.py)
@@ -951,6 +959,7 @@
   * [Current Stock Price](https://github.com/TheAlgorithms/Python/blob/master/web_programming/current_stock_price.py)
   * [Current Weather](https://github.com/TheAlgorithms/Python/blob/master/web_programming/current_weather.py)
   * [Daily Horoscope](https://github.com/TheAlgorithms/Python/blob/master/web_programming/daily_horoscope.py)
+  * [Download Images From Google Query](https://github.com/TheAlgorithms/Python/blob/master/web_programming/download_images_from_google_query.py)
   * [Emails From Url](https://github.com/TheAlgorithms/Python/blob/master/web_programming/emails_from_url.py)
   * [Fetch Bbc News](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_github_info.py)
