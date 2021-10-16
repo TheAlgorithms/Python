@@ -2,6 +2,14 @@
 import math
 
 def box_cipher() -> None:
+    '''
+    Enter Message to be encrypted: Alakazam!!
+    ['A', 'l', 'a']
+    ['k', 'a', 'z']
+    ['a', 'm', '!']
+    ['!']
+    Aka! lam az!
+    '''
     message = input("Enter Message to be encrypted: ").strip()
     message = message.replace(" ", "")
     l = len(message)
@@ -23,7 +31,12 @@ def box_cipher() -> None:
     	print(message[i : l : r], end = " ")
 
 def box_cipher_decryption() -> None:
-	message=input("Please enter message to be Decrypted:")
+	'''
+    Please enter message to be Decrypted:Aka! lam az!
+    The encrypted message is:
+    Alakazam!!
+    '''
+    message=input("Please enter message to be Decrypted:")
 	message=message.split(" ")
 	tex=''
 	for i in range(len(message)):
