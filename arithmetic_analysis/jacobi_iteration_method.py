@@ -54,7 +54,6 @@ def jacobi_iteration_method(
     ValueError: Coefficient and constant matrices dimensions must be nxn and nx1 but
                 received 3x3 and 2x1
 
-
     >>> coefficient = np.array([[4, 1, 1], [1, 5, 2], [1, 2, 4]])
     >>> constant = np.array([[2], [-6], [-4]])
     >>> init_val = [0.5, -0.5]
