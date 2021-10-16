@@ -3,7 +3,7 @@ import math
 
 def box_cipher() -> None:
     '''
-    Enter Message to be encrypted: Alakazam!!
+    >>> Enter Message to be encrypted: Alakazam!!
     ['A', 'l', 'a']
     ['k', 'a', 'z']
     ['a', 'm', '!']
@@ -45,7 +45,7 @@ def box_cipher_decryption() -> None:
 	#for i in range(0, c):
 	#	print(tex[i : l : c+1], end = " ")
     '''
-    Please enter message to be Decrypted:Aka! lam az!
+    >>> Please enter message to be Decrypted:Aka! lam az!
     The encrypted message is:
     Alakazam!!
     '''
