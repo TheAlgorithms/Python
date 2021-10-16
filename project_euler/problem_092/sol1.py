@@ -25,11 +25,12 @@ def next_number(number: int) -> int:
     >>> next_number(32)
     13
     """
-    num = 0
-    for i in range(len(str(number))):
-        num += int(str(number)[i]) ** 2
+    sum_of_digits_squared = 0
+    while number:
+        sum_of_digits_squared += (number % 10) ** 2
+        number //= 10
 
-    return num
+    return sum_of_digits_squared
 
 
 def chain(number: int) -> bool:
@@ -51,11 +52,7 @@ def chain(number: int) -> bool:
     while number != 1 and number != 89:
         number = next_number(number)
 
-    if number == 1:
-        return True
-
-    elif number == 89:
-        return False
+    return True if number == 1 else False
 
 
 def solution(number: int = 10000000) -> int:
@@ -63,11 +60,11 @@ def solution(number: int = 10000000) -> int:
     The function returns the total numbers that end up in 89 after the chain generation.
     The function accepts a range number and the function checks all the values
     under value number.
-    if the chain generation leads to the end number as 1 or 89. If the chain()
-    returns True, then total is incremented, implying that the number we
-    started with ended up with 1 else total2 is incremented, implying that
+    If the chain generation leads to the end number as 1 or 89. If the chain()
+    returns True, then total_1 is incremented, implying that the number we
+    started with ended up with 1. Otherwise, total_89 is incremented, implying that
     the number we started with ended up in 89 after chain generation.
-    But the function returns total2 as the requirement of question is
+    But the function returns total_89 as the requirement of question is
     to find out how many ended up in 89.
 
     >>> solution(100)
@@ -75,19 +72,20 @@ def solution(number: int = 10000000) -> int:
     >>> solution(10000000)
     8581146
     """
-    total = 0
-    total2 = 0
+    total_1 = 0
+    total_89 = 0
     for i in range(1, number):
-        val = chain(i)
+        if chain(i):
+            total_1 += 1
+        else:
+            total_89 += 1
 
-        if val is True:
-            total += 1
-
-        elif val is False:
-            total2 += 1
-
-    return total2
+    return total_89
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     print(f"{solution() = }")
