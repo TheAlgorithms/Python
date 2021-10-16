@@ -16,11 +16,11 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> None:
 
     1. determine the length of the of the pettern sting and make a window size of that sting and try to overlap on the text string
 
-    2. if the hash value of the pattern string and the selected text is not equal then move on to the next character and remove 1st careacter from the beginning. 
+    2. if the hash value of the pattern string and the selected text is not equal then move on to the next character and remove 1st careacter from the beginning.
 
-    3. continue this process untill  you reach the end of the string. 
+    3. continue this process untill  you reach the end of the string.
     """
-    pal_len = len(pattern)
+    pat_len = len(pattern)
     txt_len = len(text)
     start_index = 0
     end_index = 0
@@ -29,36 +29,38 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> None:
     h = 1
 
     # The value of h would be "pow(d, M-1)% q"
-    for _ in range(pal_len-1):
+    for _ in range(pat_len-1):
         h = (h * dmnt) % nth_prime_number
 
     # Calculate the hash value of pattern and first window
-    for st_idx in range(pal_len):
-        p_hash = (dmnt * p_hash + ord(pattern[st_idx])) % nth_prime_number
-        t_hash = (dmnt * t_hash + ord(text[st_idx])) % nth_prime_number
+    for start_index in range(pat_len):
+        pattern_hash = (dmnt * pattern_hash +
+                        ord(pattern[start_index])) % nth_prime_number
+        text_hash = (dmnt * text_hash +
+                     ord(text[start_index])) % nth_prime_number
 
     # Slide the pattern over text one by one
-    for st_idx in range(txt_len-pal_len + 1):
+    for start_index in range(txt_len-pat_len + 1):
         # Check the hash values of current window of text and pattern if the hash values match then only check
-        if p_hash == t_hash:
+        if pattern_hash == text_hash:
             # Check for characters one by one
-            for en_idx in range(pal_len):
-                if text[st_idx + en_idx] != pattern[en_idx]:
+            for end_index in range(pat_len):
+                if text[start_index + end_index] != pattern[end_index]:
                     break
 
-            en_idx += 1
+            end_index += 1
             # if p == t and pat[0...M-1] = txt[i, i + 1, ...i + M-1]
-            if en_idx == pal_len:
+            if end_index == pat_len:
                 return True
 
         # Calculate the hash value for next window of text: Remove
-        if st_idx < txt_len-pal_len:
-            t_hash = (dmnt*(t_hash-ord(text[st_idx])*h) +
-                      ord(text[st_idx + pal_len])) % nth_prime_number
+        if start_index < txt_len-pat_len:
+            text_hash = (dmnt*(text_hash-ord(text[start_index])*h) +
+                         ord(text[start_index + pat_len])) % nth_prime_number
 
             # We might get negative values of t, converting it to positive
-            if t_hash < 0:
-                t_hash = t_hash + nth_prime_number
+            if text_hash < 0:
+                text_hash = text_hash + nth_prime_number
     return False
 
 
