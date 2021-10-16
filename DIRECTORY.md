@@ -264,6 +264,7 @@
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
 
 ## Electronics
+  * [Carrier Concentration](https://github.com/TheAlgorithms/Python/blob/master/electronics/carrier_concentration.py)
   * [Electric Power](https://github.com/TheAlgorithms/Python/blob/master/electronics/electric_power.py)
   * [Ohms Law](https://github.com/TheAlgorithms/Python/blob/master/electronics/ohms_law.py)
 
@@ -274,6 +275,7 @@
     * [Test Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/tests/test_send_file.py)
 
 ## Fractals
+  * [Julia Sets](https://github.com/TheAlgorithms/Python/blob/master/fractals/julia_sets.py)
   * [Koch Snowflake](https://github.com/TheAlgorithms/Python/blob/master/fractals/koch_snowflake.py)
   * [Mandelbrot](https://github.com/TheAlgorithms/Python/blob/master/fractals/mandelbrot.py)
   * [Sierpinski Triangle](https://github.com/TheAlgorithms/Python/blob/master/fractals/sierpinski_triangle.py)
@@ -344,6 +346,9 @@
   * Tests
     * [Test Min Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_prim.py)
+
+## Greedy Methods
+  * [Optimal Merge Pattern](https://github.com/TheAlgorithms/Python/blob/master/greedy_methods/optimal_merge_pattern.py)
 
 ## Hashes
   * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
@@ -424,15 +429,18 @@
   * [Binomial Distribution](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_distribution.py)
   * [Bisection](https://github.com/TheAlgorithms/Python/blob/master/maths/bisection.py)
   * [Ceil](https://github.com/TheAlgorithms/Python/blob/master/maths/ceil.py)
+  * [Check Polygon](https://github.com/TheAlgorithms/Python/blob/master/maths/check_polygon.py)
   * [Chudnovsky Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
   * [Decimal Isolate](https://github.com/TheAlgorithms/Python/blob/master/maths/decimal_isolate.py)
+  * [Double Factorial Iterative](https://github.com/TheAlgorithms/Python/blob/master/maths/double_factorial_iterative.py)
   * [Double Factorial Recursive](https://github.com/TheAlgorithms/Python/blob/master/maths/double_factorial_recursive.py)
   * [Entropy](https://github.com/TheAlgorithms/Python/blob/master/maths/entropy.py)
   * [Euclidean Distance](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_distance.py)
   * [Euclidean Gcd](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_gcd.py)
   * [Euler Method](https://github.com/TheAlgorithms/Python/blob/master/maths/euler_method.py)
+  * [Euler Modified](https://github.com/TheAlgorithms/Python/blob/master/maths/euler_modified.py)
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
   * [Factorial Iterative](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_iterative.py)
@@ -511,6 +519,7 @@
   * [Sum Of Arithmetic Series](https://github.com/TheAlgorithms/Python/blob/master/maths/sum_of_arithmetic_series.py)
   * [Sum Of Digits](https://github.com/TheAlgorithms/Python/blob/master/maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](https://github.com/TheAlgorithms/Python/blob/master/maths/sum_of_geometric_progression.py)
+  * [Sylvester Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/sylvester_sequence.py)
   * [Test Prime Check](https://github.com/TheAlgorithms/Python/blob/master/maths/test_prime_check.py)
   * [Trapezoidal Rule](https://github.com/TheAlgorithms/Python/blob/master/maths/trapezoidal_rule.py)
   * [Triplet Sum](https://github.com/TheAlgorithms/Python/blob/master/maths/triplet_sum.py)
@@ -928,7 +937,6 @@
   * [Reverse Letters](https://github.com/TheAlgorithms/Python/blob/master/strings/reverse_letters.py)
   * [Reverse Words](https://github.com/TheAlgorithms/Python/blob/master/strings/reverse_words.py)
   * [Split](https://github.com/TheAlgorithms/Python/blob/master/strings/split.py)
-  * [Swap Case](https://github.com/TheAlgorithms/Python/blob/master/strings/swap_case.py)
   * [Upper](https://github.com/TheAlgorithms/Python/blob/master/strings/upper.py)
   * [Word Occurrence](https://github.com/TheAlgorithms/Python/blob/master/strings/word_occurrence.py)
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/strings/word_patterns.py)
