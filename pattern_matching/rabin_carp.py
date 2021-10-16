@@ -24,8 +24,8 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> None:
     txt_len = len(text)
     start_index = 0
     end_index = 0
-    p_hash = 0    # hash value for search pattern
-    t_hash = 0    # hash value for given  txt
+    pattern_hash = 0    # hash value for search pattern
+    text_hash = 0    # hash value for given  txt
     h = 1
 
     # The value of h would be "pow(d, M-1)% q"
