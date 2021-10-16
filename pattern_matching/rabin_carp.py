@@ -22,8 +22,8 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> None:
     """
     pal_len = len(pattern)
     txt_len = len(text)
-    st_idx = 0
-    en_idx = 0
+    start_index = 0
+    end_index = 0
     p_hash = 0    # hash value for search pattern
     t_hash = 0    # hash value for given  txt
     h = 1
