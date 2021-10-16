@@ -15,8 +15,7 @@ def rgb2gray(rgb: np.array) -> np.array:
     array([[159.0524,  90.0635, 117.6989]])
     """
     r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
-    gray = 0.2989 * r + 0.5870 * g + 0.1140 * b
-    return gray
+    return 0.2989 * r + 0.5870 * g + 0.1140 * b
 
 
 def gray2binary(gray: np.array) -> np.array:
@@ -58,10 +57,7 @@ def dilation(image: np.array, kernel: np.array) -> np.array:
             summation = (
                 kernel * image_padded[y : y + kernel.shape[0], x : x + kernel.shape[1]]
             ).sum()
-            if summation > 0:
-                output[y, x] = 1
-            else:
-                output[y, x] = 0
+            output[y, x] = int(summation > 0)
     return output
 
 
