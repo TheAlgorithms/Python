@@ -31,37 +31,37 @@ def box_cipher() -> None:
     	print(message[i : l : r], end = " ")
 
 def box_cipher_decryption() -> None:
-	'''
+    message=input("Please enter message to be Decrypted:")
+    message=message.split(" ")
+    tex=''
+    for i in range(len(message)):
+	    tex+=message[i]
+    l=len(tex)
+    sl=math.sqrt(l)
+    r=math.floor(sl)
+    c=int(sl)
+    fin=list(tex)
+    boxr=[fin[i:i+c] for i in range(0,len(fin),c)]
+	#for i in range(0, c):
+	#	print(tex[i : l : c+1], end = " ")
+    '''
     Please enter message to be Decrypted:Aka! lam az!
     The encrypted message is:
     Alakazam!!
     '''
-    message=input("Please enter message to be Decrypted:")
-	message=message.split(" ")
-	tex=''
-	for i in range(len(message)):
-		tex+=message[i]
-	l=len(tex)
-	sl=math.sqrt(l)
-	r=math.floor(sl)
-	c=int(sl)
-	fin=list(tex)
-	boxr=[fin[i:i+c] for i in range(0,len(fin),c)]
-	#for i in range(0, c):
-	#	print(tex[i : l : c+1], end = " ")
-	jj=''
-	x=0
-	for i in range(c):
-		for j in range(l%r):
-			jj+=tex[x]
-			x+=c+1
-		for j in range(r-l%r):
-			jj+=tex[x]
-			x+=c
-		x=i+1
-	last=''
-	for i in range(l%r):
-		last+=message[i][-1]
+    jj=''
+    x=0
+    for i in range(c):
+    	for j in range(l%r):
+    		jj+=tex[x]
+    		x+=c+1
+    	for j in range(r-l%r):
+    		jj+=tex[x]
+    		x+=c
+    	x=i+1
+    last=''
+    for i in range(l%r):
+    	last+=message[i][-1]
 	print("The encrypted message is:\n"+str(jj+last))
 
 if(__name__=="__main"):
