@@ -30,7 +30,7 @@ def get_imdb_top_movies(num_movies: int = 5) -> tuple:
     """
     num_movies = int(float(num_movies))
     if num_movies < 1:
-        return (, )
+        return ()
     base_url = (
         "https://www.imdb.com/search/title?title_type="
         f"feature&sort=num_votes,desc&count={num_movies}"
