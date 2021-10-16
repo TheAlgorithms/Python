@@ -9,7 +9,7 @@ dmnt = 256
 # prime_n    -> nth  prime number
 
 
-def search(pat, txt, prime_n) -> None:
+def search(pattern: str, text: str, nth_prime_number: int) -> None:
     pal_len = len(pat)
     txt_len = len(txt)
     st_idx = 0
