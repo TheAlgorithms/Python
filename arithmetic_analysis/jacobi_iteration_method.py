@@ -72,7 +72,6 @@ def jacobi_iteration_method(
     Traceback (most recent call last):
     ...
     ValueError: Iterations must be at least 1
-
     """
 
     rows1, cols1 = coefficient_matrix.shape
