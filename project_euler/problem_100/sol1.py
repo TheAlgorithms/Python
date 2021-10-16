@@ -11,7 +11,7 @@ References:
 - https://www.mathblog.dk/project-euler-100-blue-discs-two-blue/
 """
 
-def solution(b: int, n: int) -> int:
+def solution(blue_discs: int, total_discs: int) -> int:
     """
     Finds number of blue discs
     1st parameter is the total blue discs
@@ -20,12 +20,12 @@ def solution(b: int, n: int) -> int:
     soultion(15, 21) - 756872327473
     """
     target = 1000000000000
-    while(n < target):
-        btemp = 3 * b + 2 * n - 2
-        ntemp = 4 * b + 3 * n - 3
-        b = btemp
-        n = ntemp
-    return b
+    while(total_discs < target):
+        btemp = 3 * blue_discs + 2 * total_discs - 2
+        ntemp = 4 * blue_discs + 3 * total_discs - 3
+        blue_discs = btemp
+        total_discs = ntemp
+    return blue_discs
 
 if __name__ == "__main__":
     print("number of blue discs ", solution(15, 21))
