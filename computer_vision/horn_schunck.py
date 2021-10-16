@@ -85,7 +85,7 @@ def horn_schunck(
             [ 0, -1, -1]],
     <BLANKLINE>
            [[ 0,  0,  0],
-            [ 0,  0,  0]]])
+            [ 0,  0,  0]]], dtype=int32)
     """
     if alpha is None:
         alpha = 0.1
