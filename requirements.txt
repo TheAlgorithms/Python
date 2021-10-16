@@ -5,7 +5,7 @@ lxml
 matplotlib
 numpy
 opencv-python; python_version < '3.10'
-git+https://github.com/opencv/opencv-python.git@master; python_version >= '3.10'
+git+https://github.com/opencv/opencv-python.git; python_version >= '3.10'
 pandas
 pillow
 qiskit
