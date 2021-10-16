@@ -67,11 +67,25 @@ def transpose(matrix: list[list]) -> list[list]:
 
 
 def reverse_row(matrix: list[list]) -> list[list]:
+    """
+    Reverses rows
+    
+    >>> reverse_row([[1,3,5],[7,8,9],[1,0,1]])
+    [[1, 0, 1], [7, 8, 9], [1, 3, 5]]
+    
+    """
     matrix[:] = matrix[::-1]
     return matrix
 
 
 def reverse_column(matrix: list[list]) -> list[list]:
+    """
+    Reverses columns
+    
+    >>> reverse_column([[1,3,5],[7,8,9],[1,0,1]])
+    [[5, 3, 1], [9, 8, 7], [1, 0, 1]]
+    
+    """
     matrix[:] = [x[::-1] for x in matrix]
     return matrix
 

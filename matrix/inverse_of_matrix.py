@@ -38,3 +38,8 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     swapped_matrix[1][0], swapped_matrix[0][1] = -matrix[1][0], -matrix[0][1]
     # Calculate the inverse of the matrix
     return [[float(D(n) / determinant) or 0.0 for n in row] for row in swapped_matrix]
+
+if __name__ == '__main__':
+    print('Inverse of matrix example: [[2, 5], [2, 0]]^-1:')
+    print(inverse_of_matrix([[2, 5], [2, 0]]))
+    
