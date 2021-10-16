@@ -68,10 +68,7 @@ structuring_element = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
 if __name__ == "__main__":
     # read original image
     image = np.array(Image.open(r"..\image_data\lena.jpg"))
-    # convert it into binary image
-    binary = gray2binary(rgb2gray(image))
-    # Apply dilation operation
-    output = dilation(binary, structuring_element)
+    output = dilation(gray2binary(rgb2gray(image)), structuring_element)
     # Save the output image
     pil_img = Image.fromarray(output).convert("RGB")
     pil_img.save("result_dilation.png")
