@@ -264,6 +264,7 @@
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
 
 ## Electronics
+  * [Carrier Concentration](https://github.com/TheAlgorithms/Python/blob/master/electronics/carrier_concentration.py)
   * [Electric Power](https://github.com/TheAlgorithms/Python/blob/master/electronics/electric_power.py)
   * [Ohms Law](https://github.com/TheAlgorithms/Python/blob/master/electronics/ohms_law.py)
 
@@ -345,6 +346,9 @@
   * Tests
     * [Test Min Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_prim.py)
+
+## Greedy Methods
+  * [Optimal Merge Pattern](https://github.com/TheAlgorithms/Python/blob/master/greedy_methods/optimal_merge_pattern.py)
 
 ## Hashes
   * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
@@ -436,6 +440,7 @@
   * [Euclidean Distance](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_distance.py)
   * [Euclidean Gcd](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_gcd.py)
   * [Euler Method](https://github.com/TheAlgorithms/Python/blob/master/maths/euler_method.py)
+  * [Euler Modified](https://github.com/TheAlgorithms/Python/blob/master/maths/euler_modified.py)
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
   * [Factorial Iterative](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_iterative.py)
