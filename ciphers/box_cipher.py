@@ -31,6 +31,11 @@ def box_cipher() -> None:
     	print(message[i : l : r], end = " ")
 
 def box_cipher_decryption() -> None:
+    '''
+    >>> Please enter message to be Decrypted:Aka! lam az!
+    The encrypted message is:
+    Alakazam!!
+    '''
     message=input("Please enter message to be Decrypted:")
     message=message.split(" ")
     tex=''
@@ -44,11 +49,6 @@ def box_cipher_decryption() -> None:
     boxr=[fin[i:i+c] for i in range(0,len(fin),c)]
 	#for i in range(0, c):
 	#	print(tex[i : l : c+1], end = " ")
-    '''
-    >>> Please enter message to be Decrypted:Aka! lam az!
-    The encrypted message is:
-    Alakazam!!
-    '''
     jj=''
     x=0
     for i in range(c):
