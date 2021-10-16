@@ -11,128 +11,124 @@ Given that Fk is the first Fibonacci number for which the first nine digits AND 
 """
 
 
-def check(number : int) ->bool : 
-  '''
-  Takes a number and checks if it is pandigital both from start and end
+def check(number: int) -> bool:
+    """
+    Takes a number and checks if it is pandigital both from start and end
 
 
-  >>> check(123456789987654321)
-  True
+    >>> check(123456789987654321)
+    True
 
-  >>> check(120000987654321)
-  False
+    >>> check(120000987654321)
+    False
 
-  >>> check(1234567895765677987654321)
-  True
+    >>> check(1234567895765677987654321)
+    True
 
-  '''
+    """
 
-  check_last=[0]*11 
-  check_front=[0]*11
-  
-  #mark last 9 numbers
-  for x in range(9):
-      check_last[int(number%10)]=1
-      number=number//10
-  #flag
-  f=True
+    check_last = [0] * 11
+    check_front = [0] * 11
 
-  #check last 9 numbers for pandigitality
-  
-  for x in range(9):
-      if( not check_last[x+1]):
-          f=False
-  if(not f):
+    # mark last 9 numbers
+    for x in range(9):
+        check_last[int(number % 10)] = 1
+        number = number // 10
+    # flag
+    f = True
+
+    # check last 9 numbers for pandigitality
+
+    for x in range(9):
+        if not check_last[x + 1]:
+            f = False
+    if not f:
+        return f
+
+    # mark first 9 numbers
+    number = int(str(number)[:9])
+
+    for x in range(9):
+        check_front[int(number % 10)] = 1
+        number = number // 10
+
+    # check first 9 numbers for pandigitality
+
+    for x in range(9):
+        if not check_front[x + 1]:
+            f = False
     return f
-  
-  
-  #mark first 9 numbers
-  number= int(str(number)[:9])
-  
-  for x in range(9):
-      check_front[int(number%10)]=1
-      number=number//10
-
-  #check first 9 numbers for pandigitality
-
-  for x in range(9):
-      if( not check_front[x+1]):
-          f=False
-  return f
 
 
+def check1(number: int) -> bool:
+    """
+    Takes a number and checks if it is pandigital from END
 
 
-def check1(number : int) ->bool:
-  '''
-  Takes a number and checks if it is pandigital from END
+    >>> check1(123456789987654321)
+    True
+
+    >>> check1(120000987654321)
+    True
+
+    >>> check1(12345678957656779870004321)
+    False
+
+    """
+
+    check_last = [0] * 11
+
+    # mark last 9 numbers
+    for x in range(9):
+        check_last[int(number % 10)] = 1
+        number = number // 10
+    # flag
+    f = True
+
+    # check last 9 numbers for pandigitality
+
+    for x in range(9):
+        if not check_last[x + 1]:
+            f = False
+    return f
 
 
-  >>> check1(123456789987654321)
-  True
-
-  >>> check1(120000987654321)
-  True
-
-  >>> check1(12345678957656779870004321)
-  False
-
-  '''
-
-  check_last=[0]*11 
-  
-  #mark last 9 numbers
-  for x in range(9):
-      check_last[int(number%10)]=1
-      number=number//10
-  #flag
-  f=True
-
-  #check last 9 numbers for pandigitality
-  
-  for x in range(9):
-      if( not check_last[x+1]):
-          f=False
-  return f
-
-
-def solution()->int:
+def solution() -> int:
     """
     Outputs the answer ie the least fib number pandigital from both sides.
     >>> solution()
     329468
     """
 
-    a=1
-    b=1
-    c=2
+    a = 1
+    b = 1
+    c = 2
     # temporary fibonacci numbers
 
-    a1=1
-    b1=1
-    c1=2
+    a1 = 1
+    b1 = 1
+    c1 = 2
     # temporary fibonacci numbers mod 1e9
 
-    #mod m=1e9, done for fast optimisation
-    tocheck=[0]*1000000
-    m=1000000000
+    # mod m=1e9, done for fast optimisation
+    tocheck = [0] * 1000000
+    m = 1000000000
 
     for x in range(1000000):
-        c1= (a1+b1)%m
-        a1=b1%m
-        b1=c1%m
-        if(check1(b1)):
-            tocheck[x+3]=1
-        
+        c1 = (a1 + b1) % m
+        a1 = b1 % m
+        b1 = c1 % m
+        if check1(b1):
+            tocheck[x + 3] = 1
 
-    for x in range(1000000) :
-        c= (a+b)
-        a=b
-        b=c
-        #perform check only if in tocheck
-        if(tocheck[x+3] and check(b)):
-            return x+3 #first 2 already done
-        
+    for x in range(1000000):
+        c = a + b
+        a = b
+        b = c
+        # perform check only if in tocheck
+        if tocheck[x + 3] and check(b):
+            return x + 3  # first 2 already done
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
