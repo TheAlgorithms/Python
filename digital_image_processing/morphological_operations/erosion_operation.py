@@ -15,8 +15,7 @@ def rgb2gray(rgb: np.array) -> np.array:
     array([[159.0524,  90.0635, 117.6989]])
     """
     r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
-    gray = 0.2989 * r + 0.5870 * g + 0.1140 * b
-    return gray
+    return 0.2989 * r + 0.5870 * g + 0.1140 * b
 
 
 def gray2binary(gray: np.array) -> np.array:
@@ -58,10 +57,7 @@ def erosion(image: np.array, kernel: np.array) -> np.array:
             summation = (
                 kernel * image_padded[y : y + kernel.shape[0], x : x + kernel.shape[1]]
             ).sum()
-            if summation == 5:
-                output[y, x] = 1
-            else:
-                output[y, x] = 0
+            output[y, x] = int(summation == 5)
     return output
 
 
@@ -71,10 +67,8 @@ structuring_element = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
 if __name__ == "__main__":
     # read original image
     image = np.array(Image.open(r"..\image_data\lena.jpg"))
-    # convert it into binary image
-    binary = gray2binary(rgb2gray(image))
-    # Apply erosion operation
-    output = erosion(binary, structuring_element)
+    # Apply erosion operation to a binary image
+    output = erosion(gray2binary(rgb2gray(image)), structuring_element)
     # Save the output image
     pil_img = Image.fromarray(output).convert("RGB")
     pil_img.save("result_erosion.png")
