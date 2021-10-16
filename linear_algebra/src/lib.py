@@ -92,10 +92,8 @@ class Vector:
         """
         returns the euclidean length of the vector
         """
-        summe: float = 0
-        for c in self.__components:
-            summe += c ** 2
-        return math.sqrt(summe)
+        squares = [c ** 2 for c in self.__components]
+        return math.sqrt(sum(squares))
 
     def __add__(self, other: Vector) -> Vector:
         """
@@ -139,12 +137,10 @@ class Vector:
         if isinstance(other, float) or isinstance(other, int):
             ans = [c * other for c in self.__components]
             return Vector(ans)
-        elif isinstance(other, Vector) and (len(self) == len(other)):
+        elif isinstance(other, Vector) and len(self) == len(other):
             size = len(self)
-            summe: float = 0
-            for i in range(size):
-                summe += self.__components[i] * other.component(i)
-            return summe
+            prods = [self.__components[i] * other.component(i) for i in range(size)]
+            return sum(prods)
         else:  # error case
             raise Exception("invalid operand!")
 
@@ -156,7 +152,8 @@ class Vector:
         5.385164807134504
 
         """
-        return sum([i ** 2 for i in self.__components]) ** (1 / 2)
+        squares = [c ** 2 for c in self.__components]
+        return math.sqrt(sum(squares))
 
     def angle(self, other: Vector, deg: bool = False) -> float:
         """
@@ -355,20 +352,20 @@ class Matrix:
         implements the matrix-vector multiplication.
         implements the matrix-scalar multiplication
         """
-        if isinstance(other, Vector):  # vector-matrix
+        if isinstance(other, Vector):  # matrix-vector
             if len(other) == self.__width:
                 ans = zeroVector(self.__height)
                 for i in range(self.__height):
-                    summe: float = 0
-                    for j in range(self.__width):
-                        summe += other.component(j) * self.__matrix[i][j]
-                    ans.changeComponent(i, summe)
-                    summe = 0
+                    prods = [
+                        self.__matrix[i][j] * other.component(j)
+                        for j in range(self.__width)
+                    ]
+                    ans.changeComponent(i, sum(prods))
                 return ans
             else:
                 raise Exception(
                     "vector must have the same size as the "
-                    + "number of columns of the matrix!"
+                    "number of columns of the matrix!"
                 )
         elif isinstance(other, int) or isinstance(other, float):  # matrix-scalar
             matrix = [
@@ -384,9 +381,10 @@ class Matrix:
         if self.__width == other.width() and self.__height == other.height():
             matrix = []
             for i in range(self.__height):
-                row = []
-                for j in range(self.__width):
-                    row.append(self.__matrix[i][j] + other.component(i, j))
+                row = [
+                    self.__matrix[i][j] + other.component(i, j)
+                    for j in range(self.__width)
+                ]
                 matrix.append(row)
             return Matrix(matrix, self.__width, self.__height)
         else:
@@ -399,9 +397,10 @@ class Matrix:
         if self.__width == other.width() and self.__height == other.height():
             matrix = []
             for i in range(self.__height):
-                row = []
-                for j in range(self.__width):
-                    row.append(self.__matrix[i][j] - other.component(i, j))
+                row = [
+                    self.__matrix[i][j] - other.component(i, j)
+                    for j in range(self.__width)
+                ]
                 matrix.append(row)
             return Matrix(matrix, self.__width, self.__height)
         else:
