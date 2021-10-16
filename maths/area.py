@@ -42,6 +42,85 @@ def surface_area_sphere(radius: float) -> float:
     return 4 * pi * radius ** 2
 
 
+def surface_area_hemisphere(radius: float) -> float:
+    """
+    Calculate the Surface Area of a Hemisphere.
+    Formula: 3 * pi * r^2
+
+    >>> surface_area_hemisphere(5)
+    235.61944901923448
+    >>> surface_area_hemisphere(1)
+    9.42477796076938
+    >>> surface_area_hemisphere(0)
+    0.0
+    >>> surface_area_hemisphere(1.1)
+    11.40398133253095
+    >>> surface_area_hemisphere(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_hemisphere() only accepts non-negative values
+    """
+    if radius < 0:
+        raise ValueError("surface_area_hemisphere() only accepts non-negative values")
+    return 3 * pi * radius ** 2
+
+
+def surface_area_cone(radius: float, height: float) -> float:
+    """
+    Calculate the Surface Area of a Cone.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Cone
+    Formula: pi * r * (r + (h ** 2 + r ** 2) ** 0.5)
+
+    >>> surface_area_cone(10, 24)
+    1130.9733552923256
+    >>> surface_area_cone(6, 8)
+    301.59289474462014
+    >>> surface_area_cone(-1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cone() only accepts non-negative values
+    >>> surface_area_cone(1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cone() only accepts non-negative values
+    >>> surface_area_cone(-1, 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cone() only accepts non-negative values
+    """
+    if radius < 0 or height < 0:
+        raise ValueError("surface_area_cone() only accepts non-negative values")
+    return pi * radius * (radius + (height ** 2 + radius ** 2) ** 0.5)
+
+
+def surface_area_cylinder(radius: float, height: float) -> float:
+    """
+    Calculate the Surface Area of a Cylinder.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
+    Formula: 2 * pi * r * (h + r)
+
+    >>> surface_area_cylinder(7, 10)
+    747.6990515543707
+    >>> surface_area_cylinder(6, 8)
+    527.7875658030853
+    >>> surface_area_cylinder(-1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cylinder() only accepts non-negative values
+    >>> surface_area_cylinder(1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cylinder() only accepts non-negative values
+    >>> surface_area_cylinder(-1, 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cylinder() only accepts non-negative values
+    """
+    if radius < 0 or height < 0:
+        raise ValueError("surface_area_cylinder() only accepts non-negative values")
+    return 2 * pi * radius * (height + radius)
+
+
 def area_rectangle(length: float, width: float) -> float:
     """
     Calculate the area of a rectangle.
@@ -280,9 +359,12 @@ if __name__ == "__main__":
     print(f"Triangle: {area_triangle(10, 10) = }")
     print(f"Triangle: {area_triangle_three_sides(5, 12, 13) = }")
     print(f"Parallelogram: {area_parallelogram(10, 20) = }")
+    print(f"Rhombus: {area_rhombus(10, 20) = }")
     print(f"Trapezium: {area_trapezium(10, 20, 30) = }")
     print(f"Circle: {area_circle(20) = }")
     print("\nSurface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20) = }")
     print(f"Sphere: {surface_area_sphere(20) = }")
-    print(f"Rhombus: {area_rhombus(10, 20) = }")
+    print(f"Hemisphere: {surface_area_hemisphere(20) = }")
+    print(f"Cone: {surface_area_cone(10, 20) = }")
+    print(f"Cylinder: {surface_area_cylinder(10, 20) = }")

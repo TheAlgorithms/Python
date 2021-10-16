@@ -1,13 +1,21 @@
+from __future__ import annotations
+
 from .abs import abs_val
 
 
-def absMin(x):
+def abs_min(x: list[int]) -> int:
     """
-    >>> absMin([0,5,1,11])
+    >>> abs_min([0,5,1,11])
     0
-    >>> absMin([3,-10,-2])
+    >>> abs_min([3,-10,-2])
     -2
+    >>> abs_min([])
+    Traceback (most recent call last):
+        ...
+    ValueError: abs_min() arg is an empty sequence
     """
+    if len(x) == 0:
+        raise ValueError("abs_min() arg is an empty sequence")
     j = x[0]
     for i in x:
         if abs_val(i) < abs_val(j):
@@ -17,8 +25,11 @@ def absMin(x):
 
 def main():
     a = [-3, -1, 2, -11]
-    print(absMin(a))  # = -1
+    print(abs_min(a))  # = -1
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod(verbose=True)
     main()
