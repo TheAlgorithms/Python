@@ -34,14 +34,7 @@ def validate_email(email: str) -> bool:
         """,
         re.VERBOSE,
     )
-    try:
-        if regex_.search(email):
-            return True
-        else:
-            return False
-    except AttributeError:
-        return False
-
+    return bool(regex_.search(email))
 
 if __name__ == "__main__":
     import doctest
