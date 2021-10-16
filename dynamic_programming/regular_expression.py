@@ -33,13 +33,19 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
     Examples
     -------
     >>> string_match_pattern("aab", "c*a*b")
-    1
+    True
     >>> string_match_pattern("aaa", "aa")
-    0
+    False
     >>> string_match_pattern("aaab", "aa*")
-    0
+    False
     >>> string_match_pattern("aaab", ".*")
-    1
+    True
+    >>> string_match_pattern("a", "bbbb")
+    False
+    >>> string_match_pattern("", "bbbb")
+    False
+    >>> string_match_pattern("a", "")
+    False
     """
 
     len_string = len(input_string) + 1
@@ -81,7 +87,7 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
             else:
                 dp[i][j] = 0
 
-    return dp[-1][-1]
+    return bool(dp[-1][-1])
 
 
 if __name__ == "__main__":
@@ -89,7 +95,7 @@ if __name__ == "__main__":
     # inputing the strings
     # input_string = input("input a string :")
     # pattern = input("input a pattern :")
-    
+
     input_string = "aab"
     pattern = "c*a*b"
 
