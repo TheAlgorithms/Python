@@ -60,10 +60,7 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
     # since string of zero length will match with pattern where there
     # is at least one * alternatively
     for j in range(1, len_pattern):
-        if pattern[j - 1] == "*":
-            dp[0][j] = dp[0][j - 2]
-        else:
-            dp[0][j] = 0
+        dp[0][j] = dp[0][j - 2] if pattern[j - 1] == "*" else 0
 
     # now using bottom-up approach to find for all remaining lengths
     for i in range(1, len_string):
@@ -74,7 +71,7 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
             elif pattern[j - 1] == "*":
                 if dp[i][j - 2] == 1:
                     dp[i][j] = 1
-                elif pattern[j - 2] == input_string[i - 1] or pattern[j - 2] == ".":
+                elif pattern[j - 2] in (input_string[i - 1], "."):
                     dp[i][j] = dp[i - 1][j]
                 else:
                     dp[i][j] = 0
