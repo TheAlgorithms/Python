@@ -13,7 +13,7 @@ def get_movie_data_from_soup(soup: bs4.element.ResultSet) -> dict[str, str]:
 
 def get_imdb_top_movies(num_movies: int = 5) -> tuple:
     """Get the top num_movies most highly rated movies from IMDB and
-    return a tuple of dicts discribing each movie's name, genre, rating, and URL.
+    return a tuple of dicts describing each movie's name, genre, rating, and URL.
 
     Args:
         num_movies: The number of movies to get. Defaults to 5.
@@ -30,7 +30,7 @@ def get_imdb_top_movies(num_movies: int = 5) -> tuple:
     """
     num_movies = int(float(num_movies))
     if num_movies < 1:
-        return []
+        return (, )
     base_url = (
         "https://www.imdb.com/search/title?title_type="
         f"feature&sort=num_votes,desc&count={num_movies}"
