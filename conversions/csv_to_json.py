@@ -10,7 +10,8 @@ def convert_csv_to_json(csvPath:Any, jsonPath:Any)-> Any:
 
             """
             I used a csv file called ratings from this link : https://github.com/gangtao/datasets/blob/master/csv/ratings.csv
-            >>>convert_csv_to_json(ratings.csv,ratings.json)
+	    I assumed the key user to be the primary key
+            >>> convert_csv_to_json(ratings.csv,ratings.json)
             {
                     "1": {
                             "user": "1",
@@ -41,8 +42,8 @@ def convert_csv_to_json(csvPath:Any, jsonPath:Any)-> Any:
 	data = {}
 	
 	# read csv file using in-built function of csv module called DictReader
-	with open(csvPath, encoding='utf-8') as csvf: # don't forget to mention utf-8 encoding
-		csvReader = csv.DictReader(csvf)
+	with open(csvPath, encoding='utf-8') as csv_file: # don't forget to mention utf-8 encoding
+		csvReader = csv.DictReader(csv_file)
 		
 		# Convert each row into a dictionary and add it to data
 		for rows in csvReader:
@@ -53,8 +54,8 @@ def convert_csv_to_json(csvPath:Any, jsonPath:Any)-> Any:
 			data[key] = rows
 
 	# Open a json writer and use the json.dumps() function to dump data
-	with open(jsonPath, 'w', encoding='utf-8') as jsonf: 
-		jsonf.write(json.dumps(data, indent=3)) # indent is used to improve the readability of the josn file, can be None also
+	with open(jsonPath, 'w', encoding='utf-8') as json_file: 
+		json_file.write(json.dumps(data, indent=3)) # indent is used to improve the readability of the josn file, can be None also
 		# https://docs.python.org/3/library/json.html read this documentation for difference between json.dump() and json.dumps()
 
 # Driver Code
