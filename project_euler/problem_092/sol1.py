@@ -35,8 +35,9 @@ def next_number(number: int) -> int:
 
 def chain(number: int) -> bool:
     """
-    Generates the chain of numbers until the nest number generated is 1 or 89.
-    for example, if starting number is 44, then the function generates the
+    The function generates the chain of numbers until the nest number
+    generated is 1 or 89.
+    For example, if starting number is 44, then the function generates the
     following chain of numbers.
     chain: 44 → 32 → 13 → 10 → 1 → 1
     Once the next number generated is 1 or 89, the function returns whether
