@@ -29,7 +29,7 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> None:
     h = 1
 
     # The value of h would be "pow(d, M-1)% q"
-    for st_idx in range(pal_len-1):
+    for _ in range(pal_len-1):
         h = (h * dmnt) % nth_prime_number
 
     # Calculate the hash value of pattern and first window
