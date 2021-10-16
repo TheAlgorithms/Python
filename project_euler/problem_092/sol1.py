@@ -53,6 +53,7 @@ def chain(number: int) -> bool:
 
     return number == 1
 
+
 def solution(number: int = 10000000) -> int:
     """
     The function returns the total numbers that end up in 89 after the chain generation.
