@@ -17,7 +17,8 @@ def solution(blue_discs: int, total_discs: int) -> int:
     1st parameter is the total blue discs
     2nd parameter is the total number of discs
     
-    soultion(15, 21) - 756872327473
+    >>> soultion(15, 21)
+    756872327473
     """
     target = 1000000000000
     while(total_discs < target):
