@@ -137,7 +137,6 @@ def strictly_diagonally_dominant(table: np.ndarray) -> bool:
     Traceback (most recent call last):
     ...
     ValueError: Coefficient matrix is not strictly diagonally dominant
-
     """
 
     rows, cols = table.shape
