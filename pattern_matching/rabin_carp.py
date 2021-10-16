@@ -20,8 +20,8 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> bool:
 
     3. continue this process untill  you reach the end of the string.
     """
-    pat_len = len(pattern)
-    txt_len = len(text)
+    pattern_len = len(pattern)
+    text_len = len(text)
     start_index = 0
     end_index = 0
     pattern_hash = 0    # hash value for search pattern
@@ -29,7 +29,7 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> bool:
     h = 1
 
     # The value of h would be "pow(d, M-1)% q"
-    for _ in range(pat_len-1):
+    for _ in range(pattern_len-1):
         h = (h * dmnt) % nth_prime_number
 
     # Calculate the hash value of pattern and first window
@@ -40,23 +40,23 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> bool:
                      ord(text[i])) % nth_prime_number
 
     # Slide the pattern over text one by one
-    for start_index in range(txt_len-pat_len + 1):
+    for start_index in range(text_len-pattern_len + 1):
         # Check the hash values of current window of text and pattern if the hash values match then only check
         if pattern_hash == text_hash:
             # Check for characters one by one
-            for end_index in range(pat_len):
+            for end_index in range(pattern_len):
                 if text[start_index + end_index] != pattern[end_index]:
                     break
 
             end_index += 1
             # if p == t and pat[0...M-1] = txt[i, i + 1, ...i + M-1]
-            if end_index == pat_len:
+            if end_index == pattern_len:
                 return True
 
         # Calculate the hash value for next window of text: Remove
-        if start_index < txt_len-pat_len:
+        if start_index < text_len-pattern_len:
             text_hash = (dmnt*(text_hash-ord(text[start_index])*h) +
-                         ord(text[start_index + pat_len])) % nth_prime_number
+                         ord(text[start_index + pattern_len])) % nth_prime_number
 
             # We might get negative values of t, converting it to positive
             if text_hash < 0:
