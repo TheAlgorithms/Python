@@ -1,6 +1,7 @@
+# https://www.wikihow.com/Decode-a-Caesar-Box-Code
 import math
 
-def BoxCipher():
+def BoxCipher() -> None:
     message = input("Enter Message to be encrypted: ").strip()
     message = message.replace(" ", "")
     l = len(message)
@@ -21,7 +22,7 @@ def BoxCipher():
     for i in range(0, c):
     	print(message[i : l : r], end = " ")
 
-def BoxCipherDecryption():
+def BoxCipherDecryption() -> None:
 	message=input("Please enter message to be Decrypted:")
 	message=message.split(" ")
 	tex=''
