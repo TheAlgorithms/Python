@@ -107,11 +107,12 @@ def jacobi_iteration_method(
     strictly_diagonally_dominant(table)
 
     # Iterates the whole matrix for given number of times
-    for i in range(0, iterations):
+    for i in range(iterations):
         new_val = []
-        for row in range(0, rows):
+        for row in range(rows):
             temp = 0
-            for col in range(0, cols):
+            for col in range(cols):
+
                 if col == row:
                     denom = table[row][col]
                 elif col == cols - 1:
