@@ -9,7 +9,7 @@ https://www.braingle.com/brainteasers/codes/polybius.php
 import numpy as np
 
 
-class PolybiusCypher:
+class PolybiusCipher:
     def __init__(self) -> None:
         SQUARE = [
             ["a", "b", "c", "d", "e"],
@@ -24,10 +24,10 @@ class PolybiusCypher:
         """
         Return the pair of numbers that represents the given letter in the
         polybius square
-        >>> letter_to_numbers('a')
+        >>> PolybiusCipher().letter_to_numbers('a')
         [1, 1]
 
-        >>> letter_to_numbers('u')
+        >>> PolybiusCipher().letter_to_numbers('u')
         [4, 5]
         """
         index1, index2 = np.where(self.SQUARE == letter)
@@ -39,10 +39,10 @@ class PolybiusCypher:
         Return the letter corresponding to the position [index1, index2] in
         the polybius square
 
-        >>> numbers_to_letters(4, 5)
+        >>> PolybiusCipher()..numbers_to_letters(4, 5)
         "u"
 
-        >>> numbers_to_letters(1, 1)
+        >>> PolybiusCipher()..numbers_to_letters(1, 1)
         "a"
         """
         letter = self.SQUARE[index1 - 1, index2 - 1]
@@ -50,12 +50,12 @@ class PolybiusCypher:
 
     def encode(self, message: str) -> str:
         """
-        Return the encoded version of message according to the polybius cypher
+        Return the encoded version of message according to the polybius cipher
 
-        >>> encode("test message")
+        >>> PolybiusCipher().encode("test message")
         "44154344 32154343112215"
 
-        >>> encode("Test Message")
+        >>> PolybiusCipher().encode("Test Message")
         44154344 32154343112215"
         """
         message = message.lower()
@@ -73,12 +73,12 @@ class PolybiusCypher:
 
     def decode(self, message: str) -> str:
         """
-        Return the decoded version of message according to the polybius cypher
+        Return the decoded version of message according to the polybius cipher
 
-        >>> decode("44154344 32154343112215")
+        >>> PolybiusCipher().decode("44154344 32154343112215")
         "test message"
 
-        >>> decode("4415434432154343112215")
+        >>> PolybiusCipher().decode("4415434432154343112215")
         testmessage"
         """
         message = message.replace(" ", "  ")
