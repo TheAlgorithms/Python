@@ -56,7 +56,7 @@ class PolybiusCipher:
         "44154344 32154343112215"
 
         >>> PolybiusCipher().encode("Test Message")
-        44154344 32154343112215"
+        "44154344 32154343112215"
         """
         message = message.lower()
         message = message.replace("j", "i")
@@ -79,7 +79,7 @@ class PolybiusCipher:
         "test message"
 
         >>> PolybiusCipher().decode("4415434432154343112215")
-        testmessage"
+        "testmessage"
         """
         message = message.replace(" ", "  ")
         decoded_message = ""
