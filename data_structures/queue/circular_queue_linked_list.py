@@ -1,6 +1,5 @@
 class CircularQueueLinkedList:
     def __init__(self):
-        self.is_empty_queue = True
         self.elem = None
 
     def is_empty(self) -> bool:
@@ -16,7 +15,7 @@ class CircularQueueLinkedList:
         >>> cq.is_empty()
         True
         """
-        return self.is_empty_queue
+        return self.elem is None
 
     def first(self):
         """
@@ -41,7 +40,6 @@ class CircularQueueLinkedList:
         return self.elem
 
     def enqueue(self, data):
-        self.is_empty_queue = False
         self.elem = data
 
     def dequeue(self):
@@ -62,7 +60,6 @@ class CircularQueueLinkedList:
         if self.elem is None:
             raise Exception("Empty Queue")
 
-        self.is_empty_queue = True
         elem = self.elem
         self.elem = None
         return elem
