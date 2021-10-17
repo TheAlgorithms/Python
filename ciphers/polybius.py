@@ -39,10 +39,10 @@ class PolybiusCipher:
         Return the letter corresponding to the position [index1, index2] in
         the polybius square
 
-        >>> PolybiusCipher().numbers_to_letters(4, 5)
+        >>> PolybiusCipher().numbers_to_letter(4, 5)
         "u"
 
-        >>> PolybiusCipher().numbers_to_letters(1, 1)
+        >>> PolybiusCipher().numbers_to_letter(1, 1)
         "a"
         """
         letter = self.SQUARE[index1 - 1, index2 - 1]
