@@ -6,13 +6,13 @@ Program to join a list of strings with a given separator
 def join(separated: list, separator: str = "") -> str:
     """
     >>> join(["a", "b", "c", "d"])
-    abcd
+    'abcd'
     >>> join(["a", "b", "c", "d"], "#")
-    a#b#c#d
+    'a#b#c#d'
     >>> join("a", "#")
-    a
+    'a'
     >>> join(["You", "are", "amazing!"], " ")
-    You are amazing!
+    'You are amazing!'
     >>> join(["a", "b", "c", 1], "#")
     Traceback (most recent call last):
     ...
