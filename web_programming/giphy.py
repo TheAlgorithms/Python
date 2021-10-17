@@ -17,9 +17,9 @@ def getgif(query: str) -> str:
       Total urls received:  50
       https://giphy.com/gifs/startrekfleetcommand-BPVIRni1Z70QO2nJMX
     """
-    query: str = "+".join(query.split(" "))
-    print("Topic: ", query)
-    url: str = f"http://api.giphy.com/v1/gifs/search?q={query}&api_key={api_key}"
+    formatted_query: str = "+".join(query.split(" "))
+    print("Topic: ", formatted_query)
+    url: str = f"http://api.giphy.com/v1/gifs/search?q={formatted_query}&api_key={api_key}"
     jsdata = requests.get(url)
     data: dict = json.loads(jsdata.content)
     print("Total urls received: ", len(data["data"]))
