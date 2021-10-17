@@ -34,9 +34,7 @@ class CircularQueueLinkedList:
            ...
         Exception: Empty Queue
         """
-        if self.elem is None:
-            raise Exception("Empty Queue")
-
+        self.check_can_perform_operation()
         return self.elem
 
     def enqueue(self, data):
@@ -57,12 +55,14 @@ class CircularQueueLinkedList:
            ...
         Exception: Empty Queue
         """
-        if self.elem is None:
-            raise Exception("Empty Queue")
-
+        self.check_can_perform_operation()
         elem = self.elem
         self.elem = None
         return elem
+
+    def check_can_perform_operation(self):
+        if self.elem is None:
+            raise Exception("Empty Queue")
 
 
 if __name__ == "__main__":
