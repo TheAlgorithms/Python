@@ -13,15 +13,17 @@ while Q is non-empty:
             add w to Q (at the end)
 """
 from __future__ import annotations
+from queue import Queue
+
 
 G = {
-    "A": ["B", "C"],
-    "B": ["A", "D", "E"],
-    "C": ["A", "F"],
-    "D": ["B"],
-    "E": ["B", "F"],
-    "F": ["C", "E"],
-}
+        "A": ["B", "C"],
+        "B": ["A", "D", "E"],
+        "C": ["A", "F"],
+        "D": ["B"],
+        "E": ["B", "F"],
+        "F": ["C", "E"],
+    }
 
 
 def breadth_first_search(graph: dict, start: str) -> set[str]:
@@ -30,13 +32,14 @@ def breadth_first_search(graph: dict, start: str) -> set[str]:
     'ABCDEF'
     """
     explored = {start}
-    queue = [start]
-    while queue:
-        v = queue.pop(0)  # queue.popleft()
+    queue = Queue()
+    queue.put(start)
+    while not queue.empty():
+        v = queue.get()
         for w in graph[v]:
             if w not in explored:
                 explored.add(w)
-                queue.append(w)
+                queue.put(w)
     return explored
 
 
