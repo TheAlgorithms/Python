@@ -47,7 +47,6 @@ LENGTH_TYPE_CHART: dict[str, float] = {
     "millimeter": 0.001,
 }
 
-
 def length_conversion(from_type: str, to_type: str, value: float) -> float:
     """
     Conversion of length unit with the help of LENGTH_CHART
@@ -104,10 +103,6 @@ def length_conversion(from_type: str, to_type: str, value: float) -> float:
         )
     return value * METER_CHART[to_type] * LENGTH_TYPE_CHART[from_type]
 
-
 if __name__ == "__main__":
-
     import doctest
-
     doctest.testmod()
-    
