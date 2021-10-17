@@ -6,55 +6,55 @@ so this method achieves much higher speed in all cases.
 """
 
 
-def multiply(A: list, B: list) -> list:
+def multiply(matrix_a: list, matrix_b: list) -> list:
     """
     Inputs: lists of polynomial coefficients.
-    Such that the polyomial = x^n * A[n] + ... + x^1 * A[1] + A[0]
-    A: A[i] is the i'th coefficient of the first polynomial.
-    B: B[i] is the i'th coefficient of the second polynomial.
+    Such that the polyomial = x^n * matrix_a[n] + ... + x^1 * matrix_a[1] + matrix_a[0]
+    matrix_a: matrix_a[i] is the i'th coefficient of the first polynomial.
+    matrix_b: matrix_b[i] is the i'th coefficient of the second polynomial.
     """
-    max_degree = (len(A) - 1) + (len(B) - 1)
-    result = karatsuba(A, B)
+    max_degree = (len(matrix_a) - 1) + (len(matrix_b) - 1)
+    result = karatsuba(matrix_a, matrix_b)
     result = result[: max_degree + 1]
     return result
 
 
-def long(A: list, B: list) -> list:
+def long(matrix_a: list, matrix_b: list) -> list:
     """
     Polynomial multiplication by regular long multiplication
     """
-    result = [0] * len(A)
-    for i, element in enumerate(B):
-        intermediate = [element * x for x in A]
+    result = [0] * len(matrix_a)
+    for i, element in enumerate(matrix_b):
+        intermediate = [element * x for x in matrix_a]
         intermediate = [0] * i + intermediate
         result = [x + y for x, y in zip(result, intermediate)]
         result.append(0)
     return result
 
 
-def karatsuba(A: list, B: list) -> list:
+def karatsuba(matrix_a: list, matrix_b: list) -> list:
     """
     Karatsuba's algorithm runs recursively.
     When it reaches a step with length <= 100, it switches to long multiplication.
     https://en.wikipedia.org/wiki/Karatsuba_algorithm
     """
-    N = len(A)
+    N = len(matrix_a)
     if N % 2 != 0:
-        A.append(0.0)
-        B.append(0.0)
+        matrix_a.append(0.0)
+        matrix_b.append(0.0)
         N += 1
 
     if N <= 100:
-        return long(A, B)
+        return long(matrix_a, matrix_b)
     else:
         slicer = N // 2
-        A0, A1 = A[:slicer], A[slicer:]
-        B0, B1 = B[:slicer], B[slicer:]
+        A0, A1 = matrix_a[:slicer], matrix_a[slicer:]
+        B0, B1 = matrix_b[:slicer], matrix_b[slicer:]
         C0 = karatsuba(A0[:], B0[:])
         C2 = karatsuba(A1[:], B1[:])
-        A_sum = [x + y for x, y in zip(A0, A1)]
-        B_sum = [x + y for x, y in zip(B0, B1)]
-        intermediate = karatsuba(A_sum, B_sum)
+        matrix_a_sum = [x + y for x, y in zip(A0, A1)]
+        matrix_b_sum = [x + y for x, y in zip(B0, B1)]
+        intermediate = karatsuba(matrix_a_sum, matrix_b_sum)
         C1 = [x - y - z for x, y, z in zip(intermediate, C0, C2)]
     C0.extend([0] * (N))
     C1 = [0] * (N // 2) + C1
