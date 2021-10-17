@@ -29,5 +29,5 @@ def join(separated: list, separator: str = "") -> str:
 
 if "__name__" == "__main__":
     from doctest import testmod
- 
+
     testmod()
