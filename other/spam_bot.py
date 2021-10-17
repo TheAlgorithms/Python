@@ -14,7 +14,7 @@ for linux
 
 import pyautogui as pp
 
-def SpamBot() -> None:
+def spam_bot() -> None:
     """Return the spambot for input given in gui.
 
     >>> Spambot()
@@ -60,4 +60,4 @@ def SpamBot() -> None:
         pp.sleep(spam_rate)
 
 if __name__ == "__main__":
-    SpamBot()    
+    spam_bot()    
