@@ -45,7 +45,7 @@ def convert_csv_to_json(csv_path: Any, json_path: Any) -> Any:
 
      # don't forget to mention utf-8 encoding
     with open(csv_path, encoding="utf-8") as csv_file:
-        csv_reader = csv.DictReader(csvf)
+        csv_reader = csv.DictReader(csv_file)
 
         # Convert each row into a dictionary and add it to data
 
@@ -62,7 +62,7 @@ def convert_csv_to_json(csv_path: Any, json_path: Any) -> Any:
 
     with open(json_path, "w", encoding="utf-8") as json_file:
 
-        jsonf.write(
+        json_file.write(
             json.dumps(data, indent=3)
         )  # indent is used to improve the readability of the json file, can be None also
 
