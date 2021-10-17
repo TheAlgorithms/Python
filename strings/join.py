@@ -5,14 +5,11 @@ Program to join a list of strings with a given separator
 
 def join(separated: list, separator: str = "") -> str:
     """
-    test_list = ["a", "b", "c", "d"]
-    >>> join(test_list)
+    >>> join(["a", "b", "c", "d"])
     abcd
-    >>> join(test_list, "#")
+    >>> join(["a", "b", "c", "d"], "#")
     a#b#c#d
-    >>> join(test_list[:2], "#")
-    a#b
-    >>> join(test_list[0], "#")
+    >>> join("a", "#")
     a
     >>> join(["You", "are", "amazing!"], " ")
     You are amazing!
