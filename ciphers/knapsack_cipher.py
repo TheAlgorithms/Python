@@ -5,7 +5,7 @@ for more information visit this url : https://www.geeksforgeeks.org/knapsack-enc
 from typing import List
 
 
-def get_value_from_message_bits(s: str) -> int:
+def get_value_from_message_bits(message_bits: str) -> int:
     """
     Return the value of message bits string s using public key
     >>> get_value_from_message_bits("00001")
@@ -14,8 +14,8 @@ def get_value_from_message_bits(s: str) -> int:
     92
     """
     summ = 0
-    for i in range(len(s)):
-        if s[i] == "1":
+    for i in range(len(message_bits)):
+        if message_bits[i] == "1":
             summ += public_key[i]
     return summ
 
@@ -58,6 +58,8 @@ def get_message_bits_from_value(target: int) -> str:
 def decode(n_inv: int, m: int, coded: List[int]) -> str:
     """
     Return the decoded message bits string
+    >>> decode(4,89,[11, 92, 91, 148, 142, 97])
+    '000011010011000011010111010110'
     """
     ans = ""
     for i in coded:
@@ -68,6 +70,8 @@ def decode(n_inv: int, m: int, coded: List[int]) -> str:
 def encode(mess: str) -> List[int]:
     """
     Return the array of coded number
+    >>> encode('000011010011000011010111010110')
+    [11, 92, 91, 148, 142, 97]
     """
     coded_message = []
     for k in range(len(mess) // len(private_key)):
@@ -81,7 +85,7 @@ if __name__ == "__main__":
     n = 67
     m = 89
 
-    public_key = list(map(lambda x: (x * n) % m, private_key))
+    public_key = list(map(lambda element: (element * n) % m, private_key))
 
     message = "000011010011000011010111010110"
     coded_message = encode(message)
