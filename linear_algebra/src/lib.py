@@ -10,13 +10,13 @@ with linear algebra in python.
 Overview:
 
 - class Vector
-- function zeroVector(dimension)
-- function unitBasisVector(dimension,pos)
+- function zero_vector(dimension)
+- function unit_basis_vector(dimension,pos)
 - function axpy(scalar,vector1,vector2)
-- function randomVector(N,a,b)
+- function random_vector(N,a,b)
 - class Matrix
-- function squareZeroMatrix(N)
-- function randomMatrix(W,H,a,b)
+- function square_zero_matrix(N)
+- function random_matrix(W,H,a,b)
 """
 from __future__ import annotations
 
@@ -37,12 +37,12 @@ class Vector:
     __str__() : toString method
     component(i : int): gets the i-th component (start by 0)
     __len__() : gets the size of the vector (number of components)
-    euclidLength() : returns the euclidean length of the vector.
+    euclidean_length() : returns the euclidean length of the vector.
     operator + : vector addition
     operator - : vector subtraction
     operator * : scalar multiplication and dot product
     copy() : copies this vector and returns it.
-    changeComponent(pos,value) : changes the specified component.
+    change_component(pos,value) : changes the specified component.
     TODO: compare-operator
     """
 
@@ -88,7 +88,7 @@ class Vector:
         """
         return len(self.__components)
 
-    def euclidLength(self) -> float:
+    def euclidean_length(self) -> float:
         """
         returns the euclidean length of the vector
         """
@@ -181,7 +181,7 @@ class Vector:
         """
         return Vector(self.__components)
 
-    def changeComponent(self, pos: int, value: float) -> None:
+    def change_component(self, pos: int, value: float) -> None:
         """
         input: an index (pos) and a value
         changes the specified component (pos) with the
@@ -192,7 +192,7 @@ class Vector:
         self.__components[pos] = value
 
 
-def zeroVector(dimension: int) -> Vector:
+def zero_vector(dimension: int) -> Vector:
     """
     returns a zero-vector of size 'dimension'
     """
@@ -201,7 +201,7 @@ def zeroVector(dimension: int) -> Vector:
     return Vector([0] * dimension)
 
 
-def unitBasisVector(dimension: int, pos: int) -> Vector:
+def unit_basis_vector(dimension: int, pos: int) -> Vector:
     """
     returns a unit basis vector with a One
     at index 'pos' (indexing at 0)
@@ -222,13 +222,13 @@ def axpy(scalar: float, x: Vector, y: Vector) -> Vector:
     # precondition
     assert (
         isinstance(x, Vector)
-        and (isinstance(y, Vector))
+        and isinstance(y, Vector)
         and (isinstance(scalar, int) or isinstance(scalar, float))
     )
     return x * scalar + y
 
 
-def randomVector(N: int, a: int, b: int) -> Vector:
+def random_vector(n: int, a: int, b: int) -> Vector:
     """
     input: size (N) of the vector.
            random range (a,b)
@@ -236,26 +236,29 @@ def randomVector(N: int, a: int, b: int) -> Vector:
             random integer components between 'a' and 'b'.
     """
     random.seed(None)
-    ans = [random.randint(a, b) for _ in range(N)]
+    ans = [random.randint(a, b) for _ in range(n)]
     return Vector(ans)
 
 
 class Matrix:
     """
     class: Matrix
-    This class represents a arbitrary matrix.
+    This class represents an arbitrary matrix.
 
     Overview about the methods:
 
            __str__() : returns a string representation
            operator * : implements the matrix vector multiplication
-                        implements the matrix-scalar multiplication.
-           changeComponent(x,y,value) : changes the specified component.
-           component(x,y) : returns the specified component.
+                        implements the matrix scalar multiplication
+           change_component(x, y, value) : changes the specified component
+           component(x, y) : returns the specified component
            width() : returns the width of the matrix
            height() : returns the height of the matrix
-           operator + : implements the matrix-addition.
-           operator - _ implements the matrix-subtraction
+           minor() : returns the minor of the matrix along (x, y)
+           cofactor() : returns the cofactor of the matrix along (x, y)
+           determinant() : returns the determinant of the matrix
+           operator + : implements matrix addition
+           operator - : implements matrix subtraction
     """
 
     def __init__(self, matrix: list[list[float]], w: int, h: int) -> None:
@@ -282,14 +285,14 @@ class Matrix:
                     ans += str(self.__matrix[i][j]) + "|\n"
         return ans
 
-    def changeComponent(self, x: int, y: int, value: float) -> None:
+    def change_component(self, x: int, y: int, value: float) -> None:
         """
         changes the x-y component of this matrix
         """
         if 0 <= x < self.__height and 0 <= y < self.__width:
             self.__matrix[x][y] = value
         else:
-            raise Exception("changeComponent: indices out of bounds")
+            raise Exception("change_component: indices out of bounds")
 
     def component(self, x: int, y: int) -> float:
         """
@@ -298,7 +301,7 @@ class Matrix:
         if 0 <= x < self.__height and 0 <= y < self.__width:
             return self.__matrix[x][y]
         else:
-            raise Exception("changeComponent: indices out of bounds")
+            raise Exception("change_component: indices out of bounds")
 
     def width(self) -> int:
         """
@@ -312,32 +315,48 @@ class Matrix:
         """
         return self.__height
 
-    def determinate(self) -> float:
+    def minor(self, x: int, y: int) -> float:
         """
-        returns the determinate of an nxn matrix using Laplace expansion
+        returns the minor along (x, y)
         """
-        if self.__height == self.__width and self.__width >= 2:
-            total = 0
-            if self.__width > 2:
-                for x in range(0, self.__width):
-                    for y in range(0, self.__height):
-                        total += (
-                            self.__matrix[x][y]
-                            * (-1) ** (x + y)
-                            * Matrix(
-                                self.__matrix[0:x] + self.__matrix[x + 1 :],
-                                self.__width - 1,
-                                self.__height - 1,
-                            ).determinate()
-                        )
-            else:
-                return (
-                    self.__matrix[0][0] * self.__matrix[1][1]
-                    - self.__matrix[0][1] * self.__matrix[1][0]
-                )
-            return total
+        if self.__height != self.__width:
+            raise Exception("Matrix is not square")
+        minor = self.__matrix[:x] + self.__matrix[x + 1 :]
+        for i in range(len(minor)):
+            minor[i] = minor[i][:y] + minor[i][y + 1 :]
+        return Matrix(minor, self.__width - 1, self.__height - 1).determinant()
+
+    def cofactor(self, x: int, y: int) -> float:
+        """
+        returns the cofactor (signed minor) along (x, y)
+        """
+        if self.__height != self.__width:
+            raise Exception("Matrix is not square")
+        if 0 <= x < self.__height and 0 <= y < self.__width:
+            return (-1) ** (x + y) * self.minor(x, y)
         else:
-            raise Exception("matrix is not square")
+            raise Exception("Indices out of bounds")
+
+    def determinant(self) -> float:
+        """
+        returns the determinant of an nxn matrix using Laplace expansion
+        """
+        if self.__height != self.__width:
+            raise Exception("Matrix is not square")
+        if self.__height < 1:
+            raise Exception("Matrix has no elements")
+        elif self.__height == 1:
+            return self.__matrix[0][0]
+        elif self.__height == 2:
+            return (
+                self.__matrix[0][0] * self.__matrix[1][1]
+                - self.__matrix[0][1] * self.__matrix[1][0]
+            )
+        else:
+            cofactor_prods = [
+                self.__matrix[0][y] * self.cofactor(0, y) for y in range(self.__width)
+            ]
+            return sum(cofactor_prods)
 
     @overload
     def __mul__(self, other: float) -> Matrix:
@@ -354,13 +373,13 @@ class Matrix:
         """
         if isinstance(other, Vector):  # matrix-vector
             if len(other) == self.__width:
-                ans = zeroVector(self.__height)
+                ans = zero_vector(self.__height)
                 for i in range(self.__height):
                     prods = [
                         self.__matrix[i][j] * other.component(j)
                         for j in range(self.__width)
                     ]
-                    ans.changeComponent(i, sum(prods))
+                    ans.change_component(i, sum(prods))
                 return ans
             else:
                 raise Exception(
@@ -407,21 +426,21 @@ class Matrix:
             raise Exception("matrix must have the same dimension!")
 
 
-def squareZeroMatrix(N: int) -> Matrix:
+def square_zero_matrix(n: int) -> Matrix:
     """
     returns a square zero-matrix of dimension NxN
     """
-    ans: list[list[float]] = [[0] * N for _ in range(N)]
-    return Matrix(ans, N, N)
+    ans: list[list[float]] = [[0] * n for _ in range(n)]
+    return Matrix(ans, n, n)
 
 
-def randomMatrix(W: int, H: int, a: int, b: int) -> Matrix:
+def random_matrix(width: int, height: int, a: int, b: int) -> Matrix:
     """
     returns a random matrix WxH with integer components
     between 'a' and 'b'
     """
     random.seed(None)
     matrix: list[list[float]] = [
-        [random.randint(a, b) for _ in range(W)] for _ in range(H)
+        [random.randint(a, b) for _ in range(width)] for _ in range(height)
     ]
-    return Matrix(matrix, W, H)
+    return Matrix(matrix, width, height)

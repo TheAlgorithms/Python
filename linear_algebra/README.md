@@ -17,20 +17,20 @@ This module contains classes and functions for doing linear algebra.
     - \_\_str\_\_() : toString method
     - component(i : int): gets the i-th component (start by 0)
     - \_\_len\_\_() : gets the size / length of the vector (number of components)
-    - euclidLength() : returns the eulidean length of the vector.
+    - euclidean_length() : returns the eulidean length of the vector.
     - operator + : vector addition
     - operator - : vector subtraction
     - operator * : scalar multiplication and dot product
     - copy() : copies this vector and returns it.
-    - changeComponent(pos,value) : changes the specified component.
+    - change_component(pos,value) : changes the specified component.
 
-- function zeroVector(dimension)
+- function zero_vector(dimension)
     - returns a zero vector of 'dimension'
-- function unitBasisVector(dimension,pos)
+- function unit_basis_vector(dimension,pos)
     - returns a unit basis vector with a One at index 'pos' (indexing at 0)
 - function axpy(scalar,vector1,vector2)
     - computes the axpy operation
-- function randomVector(N,a,b)
+- function random_vector(N,a,b)
     - returns a random vector of size N, with random integer components between 'a' and 'b'.
 
 ### class Matrix
@@ -42,24 +42,24 @@ This module contains classes and functions for doing linear algebra.
     -  \_\_str\_\_() : returns a string representation
     - operator * : implements the matrix vector multiplication
                    implements the matrix-scalar multiplication.
-    - changeComponent(x,y,value) : changes the specified component.
+    - change_component(x,y,value) : changes the specified component.
     - component(x,y) : returns the specified component.
     - width() : returns the width of the matrix
     - height() : returns the height of the matrix
-    - determinate() : returns the determinate of the matrix if it is square
+    - determinant() : returns the determinant of the matrix if it is square
     - operator + : implements the matrix-addition.
     - operator - _ implements the matrix-subtraction
 
-- function squareZeroMatrix(N)
+- function square_zero_matrix(N)
     - returns a square zero-matrix of dimension NxN
-- function randomMatrix(W,H,a,b)
+- function random_matrix(W,H,a,b)
     - returns a random matrix WxH with integer components between 'a' and 'b'
 ---
 
 ## Documentation
 
 This module uses docstrings to enable the use of Python's in-built `help(...)` function.
-For instance, try `help(Vector)`, `help(unitBasisVector)`, and `help(CLASSNAME.METHODNAME)`.
+For instance, try `help(Vector)`, `help(unit_basis_vector)`, and `help(CLASSNAME.METHODNAME)`.
 
 ---
 
