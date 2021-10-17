@@ -6,17 +6,17 @@ https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form
 PRIME = 30011
 
 
-def matmul(A: list, B: list) -> list:
+def matmul(matrix_A: list, matrix_B: list) -> list:
     """
     >>> matmul([[1, 0], [0, 1]], [[1, 0], [0, 1]])
     [[1, 0], [0, 1]]
     """
     result = list()
-    for i in range(len(A)):
+    for i in range(len(matrix_A)):
         result.append(list())
-        for j in range(len(B[0])):
-            column = [x[j] for x in B]
-            result[i].append(dot(A[i], column))
+        for j in range(len(matrix_B[0])):
+            column = [x[j] for x in matrix_B]
+            result[i].append(dot(matrix_A[i], column))
     return result
 
 
@@ -31,15 +31,15 @@ def dot(x: list, y: list) -> list:
     return result % PRIME
 
 
-def square(A: list) -> list:
+def square(matrix_A: list) -> list:
     """
     >>> square([[1, 0], [0, 1]])
     [[1, 0], [0, 1]]
     """
-    return matmul(A, A)
+    return matmul(matrix_A, matrix_A)
 
 
-def power(X: list, n: int) -> list:
+def power(matrix_X: list, n: int) -> list:
     """
     >>> power([[1, 0], [0, 1]], 1)
     [[1, 0], [0, 1]]
@@ -49,24 +49,24 @@ def power(X: list, n: int) -> list:
     [[1, 0], [0, 1]]
     """
     if n < 0:
-        return X
+        return matrix_X
     if n == 0:
         return [[1, 0], [0, 1]]
     if n == 1:
         return X
     if n % 2 == 0:
-        return square(power(X, n / 2))
+        return square(power(matrix_X, n / 2))
     if n % 2 != 0:
-        return matmul(square(power(X, (n - 1) / 2)), X)
+        return matmul(square(power(matrix_X, (n - 1) / 2)), matrix_X)
 
 
-def FibRepSq(n: int):
+def fib_repeated_squaring(n: int) -> int:
     """
-    >>> FibRepSq(1)
+    >>> fib_repeated_squaring(1)
     1
-    >>> FibRepSq(5)
+    >>> fib_repeated_squaring(5)
     5
-    >>> FibRepSq(10)
+    >>> fib_repeated_squaring(10)
     55
     """
     if n == 0:
