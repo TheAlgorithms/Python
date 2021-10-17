@@ -14,7 +14,12 @@ for linux
 
 import pyautogui as pp
 
-def spambot():
+def SpamBot() -> None:
+    """Return the spambot for input given in gui.
+
+    >>> Spambot()
+    
+    """
     while(True):
         try:
             spam_times = pp.prompt(text="Enter the number of messages you wanted to spam !!!", title = 'ChatBot', default = '0')
@@ -55,4 +60,4 @@ def spambot():
         pp.sleep(spam_rate)
 
 if __name__ == "__main__":
-    spambot()    
+    SpamBot()    
