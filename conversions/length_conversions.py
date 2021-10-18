@@ -9,7 +9,6 @@ USAGE :
     -> value : The number of from units you want to convert
     -> from_type : From which type you want to convert
     -> to_type : To which type you want to convert
-    
 
 REFERENCES :
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Meter
