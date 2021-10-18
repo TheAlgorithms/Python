@@ -9,7 +9,7 @@ light_year = c * 31536000
 
 # Function to return results
 
-def event_horizon(mass : float):
+def event_horizon(mass : float) -> none:
     # The Formula for the Event Horizon (Schwarzschild) Radius.
     # The event horizon of a black hole is the distance where light cannot escape due to gravitational forces.
     # There's already a formula for escape velocity, so this just calculates the distance where you need C speed to
