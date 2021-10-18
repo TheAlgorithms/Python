@@ -122,6 +122,4 @@ history = network.fit(
 
 # Check the results
 score = network.evaluate(test_images, test_labels, verbose=0)
-print("test_acc:", score[1])
-print("Test fails", "%0.2f" % (100 - score[1] * 100))
-# print('Time: ', "%0.2f" %elapsed_time)
+test_accuracy = score[1]
