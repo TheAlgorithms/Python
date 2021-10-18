@@ -28,7 +28,7 @@ def check_polygon(nums: list[float]) -> bool:
         raise ValueError("List is invalid")
     copy_nums = nums.copy()
     copy_nums.sort()
-    return copy_nums.pop() < sum(copy_nums)
+    return copy_nums[-1] < sum(copy_nums[:-1])
 
 
 if __name__ == "__main__":
