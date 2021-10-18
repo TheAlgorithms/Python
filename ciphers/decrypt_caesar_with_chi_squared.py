@@ -178,8 +178,9 @@ def decrypt_caesar_with_chi_squared(
                 new_key = (alphabet_letters.index(letter.lower()) - shift) % len(
                     alphabet_letters
                 )
-                decrypted_with_shift += (alphabet_letters[new_key].upper()
-                    if case_sensitive and letter.isupper() 
+                decrypted_with_shift += (
+                    alphabet_letters[new_key].upper()
+                    if case_sensitive and letter.isupper()
                     else alphabet_letters[new_key]
                 )
             except ValueError:
