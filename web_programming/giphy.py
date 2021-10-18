@@ -5,7 +5,7 @@ giphy_api_key = "YOUR API KEY"
 # Can be fetched from https://developers.giphy.com/dashboard/
 
 
-def get_gifs(query: str, api_key : str = giphy_api_key) -> list:
+def get_gifs(query: str, api_key: str = giphy_api_key) -> list:
     """
     Get a list of URLs of GIFs based on a given query..
     """
