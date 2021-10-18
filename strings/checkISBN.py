@@ -1,7 +1,6 @@
-# Python code to check if a
-# given ISBN is valid or not.
+# Python code to check if a given ISBN is valid or not.
 
-def isValidISBN(isbn):
+def is_valid_isbn(isbn: str) -> bool:
 
 	# check for length
 	if len(isbn) != 10:
@@ -30,8 +29,7 @@ def isValidISBN(isbn):
 	return (_sum % 11 == 0)
 
 # Test
-isbn = "007462542X"
-if isValidISBN(isbn):
+if isValidISBN(isbn="007462542X"):
 	print('Valid')
 else:
 	print("Invalid")
