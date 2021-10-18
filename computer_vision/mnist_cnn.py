@@ -2,6 +2,7 @@
 
 """
 @author: Fernando Roldan
+        @FernandoRoldan93
 
 Objective : Train a CNN to classify handwritten numbers from the MNIST dataset.
 Resources CNN Theory:
