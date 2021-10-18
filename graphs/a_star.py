@@ -33,6 +33,14 @@ delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # go up  # go left  # go down  # go 
 # function to search the path
 def search(grid, init, goal, cost, heuristic):
 
+    if (grid[goal[0]][goal[1]]==1):
+        print("Error: Goal cannot be an obstacle")
+        return
+
+    if (grid[init[0]][init[1]]==1):
+        print("Error: Cannot start at an obstacle")
+        return
+
     closed = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))
     ]  # the reference grid
