@@ -1,34 +1,5 @@
 from __future__ import annotations
 
-grid = [
-    [0, 1, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0],  # 0 are free path whereas 1's are obstacles
-    [0, 1, 0, 0, 0, 0],
-    [0, 1, 0, 0, 1, 0],
-    [0, 0, 0, 0, 1, 0],
-]
-
-"""
-heuristic = [[9, 8, 7, 6, 5, 4],
-             [8, 7, 6, 5, 4, 3],
-             [7, 6, 5, 4, 3, 2],
-             [6, 5, 4, 3, 2, 1],
-             [5, 4, 3, 2, 1, 0]]"""
-
-init = [0, 0]
-# all coordinates are given in format [y,x]
-goal = [len(grid) - 1, len(grid[0]) - 1]
-cost = 1
-
-# the cost map which pushes the path closer to the goal
-heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
-for i in range(len(grid)):
-    for j in range(len(grid[0])):
-        heuristic[i][j] = abs(i - goal[0]) + abs(j - goal[1])
-        if grid[i][j] == 1:
-            heuristic[i][j] = 99  # added extra penalty in the heuristic map
-
-
 # the actions we can take
 # go up  # go left  # go down  # go right
 DIRECTIONS = [[-1, 0], [0, -1], [1, 0], [0, 1]]
@@ -105,6 +76,36 @@ def search(
     return path
 
 
-a = search(grid, init, goal, cost, heuristic)
-for i in range(len(a)):
-    print(a[i])
+if __name__ == "__main__":
+    grid = [
+        [0, 1, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0],  # 0 are free path whereas 1's are obstacles
+        [0, 1, 0, 0, 0, 0],
+        [0, 1, 0, 0, 1, 0],
+        [0, 0, 0, 0, 1, 0],
+    ]
+
+    """
+    heuristic = [[9, 8, 7, 6, 5, 4],
+                [8, 7, 6, 5, 4, 3],
+                [7, 6, 5, 4, 3, 2],
+                [6, 5, 4, 3, 2, 1],
+                [5, 4, 3, 2, 1, 0]]"""
+
+    init = [0, 0]
+    # all coordinates are given in format [y,x]
+    goal = [len(grid) - 1, len(grid[0]) - 1]
+    cost = 1
+
+    # the cost map which pushes the path closer to the goal
+    heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            heuristic[i][j] = abs(i - goal[0]) + abs(j - goal[1])
+            if grid[i][j] == 1:
+                # added extra penalty in the heuristic map
+                heuristic[i][j] = 99
+
+    a = search(grid, init, goal, cost, heuristic)
+    for i in range(len(a)):
+        print(a[i])
