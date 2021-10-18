@@ -74,9 +74,9 @@ def search(
             if x == goal[0] and y == goal[1]:
                 found = True
             else:
-                for i in range(len(delta)):  # to try out different valid actions
-                    x2 = x + delta[i][0]
-                    y2 = y + delta[i][1]
+                for i in range(len(DIRECTIONS)):  # to try out different valid actions
+                    x2 = x + DIRECTIONS[i][0]
+                    y2 = y + DIRECTIONS[i][1]
                     if x2 >= 0 and x2 < len(grid) and y2 >= 0 and y2 < len(grid[0]):
                         if closed[x2][y2] == 0 and grid[x2][y2] == 0:
                             g2 = g + cost
@@ -89,8 +89,8 @@ def search(
     y = goal[1]
     invpath.append([x, y])  # we get the reverse path from here
     while x != init[0] or y != init[1]:
-        x2 = x - delta[action[x][y]][0]
-        y2 = y - delta[action[x][y]][1]
+        x2 = x - DIRECTIONS[action[x][y]][0]
+        y2 = y - DIRECTIONS[action[x][y]][1]
         x = x2
         y = y2
         invpath.append([x, y])
