@@ -1,4 +1,4 @@
-def unjumble(word) -> None:
+def unjumble(word: str) -> None:
 
     r"""
     This function converts given input jumbled word into its lowercase equivalent, sorts it, and
