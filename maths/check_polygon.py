@@ -22,10 +22,16 @@ def check_polygon(nums: list[float]) -> bool:
     >>> check_polygon([])
     Traceback (most recent call last):
         ...
-    ValueError: List is invalid
+    ValueError: List must have at least two values
+    >>> check_polygon([-2, 5, 6])
+    Traceback (most recent call last):
+        ...
+    ValueError: All values must be greater than 0
     """
-    if not nums:
-        raise ValueError("List is invalid")
+    if len(nums) < 2:
+        raise ValueError("List must have at least two values")
+    if any(i <= 0 for i in nums):
+        raise ValueError("All values must be greater than 0")
     copy_nums = nums.copy()
     copy_nums.sort()
     return copy_nums[-1] < sum(copy_nums[:-1])
