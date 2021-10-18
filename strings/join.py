@@ -6,7 +6,9 @@ Program to join a list of strings with a given separator
 def join(separator: str, separated: list) -> str:
     """
     >>> join(["a", "b", "c", "d"])
-    'abcd'
+    Traceback (most recent call last):
+    ...
+    TypeError: join() missing 1 required positional argument: 'separated'
     >>> join(["a", "b", "c", "d"], "#")
     'a#b#c#d'
     >>> join("a", "#")
