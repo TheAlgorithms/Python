@@ -9,54 +9,58 @@ from numpy.core.function_base import (
 )  # import module to get access to square root and linspace
 
 
-def f(x):  # define your function that goes into parameter f here
-    maxF = x ** 3 - 6 * x ** 2 + 4 * x + 12
-    return maxF
+def your_function(x) -> int:  # define your function that goes into parameter f here
+    max_f = (
+        x ** 3 - 6 * x ** 2 + 4 * x + 12
+    )  # change this to the function you'd like to test (use x as variable preferably)
+    return max_f
 
 
-def max_golden_search(f, u: float, l: float, tol: float = 1e-8) -> float:
+def max_golden_search(
+    func_to_max, upper: float, lower: float, tol: float = 1e-8
+) -> float:
 
     """
     Function in python that calculates the maximum point of function in a specified interval
         f : the function to maximize
-        u: upper boundary of interval
-        l: lower boundary of interval
+        upper: upper boundary of interval
+        lower: lower boundary of interval
         tol: set an appropriate tolerance value
         return: maximum of specified interval
 
 
-    >>> max_golden_search(f, -2, 4)
+    >>> max_golden_search(your_function, -2, 4)
     count = 43
     0.3670068499227286
-    >>> max_golden_search(f, 'm', 4)
+    >>> max_golden_search(your_function, 'm', 4)
     Traceback (most recent call last):
             ...
     ValueError: Please give numerical values for upper, lower limits
 
     """
 
-    if type(u) is str or type(l) is str:
+    if type(upper) is str or type(lower) is str:
         raise ValueError("Please give numerical values for upper, lower limits")
     else:
 
-        inv_gr = (np.sqrt(5) - 1) * 0.5  # ~ 0.618
-        d_max = (u - l) * inv_gr  # # Sets initial value for d
-        q1 = l + d_max  # Sets initial value for q1
-        q2 = u - d_max  # and q2
+        inv_gr = (np.sqrt(5) - 1) * 0.5  # ~ 0.618, this is the inverse golden ratio
+        d_max = (upper - lower) * inv_gr  # # Sets initial value for d
+        q1 = lower + d_max  # Sets initial value for q1
+        q2 = upper - d_max  # and q2
 
         count = 0  # Creates a count variable with initial value zero
 
         while (
-            abs(u - l) > tol
+            abs(upper - lower) > tol
         ):  # Sets the tolerance condition. Will stop running once |u -l| < tol
 
-            if f(q1) > f(q2):
-                l = q2
+            if func_to_max(q1) > func_to_max(q2):
+                lower = q2
             else:
-                u = q1
-            d_max = (u - l) * inv_gr
-            q1 = l + d_max
-            q2 = u - d_max
+                upper = q1
+            d_max = (upper - lower) * inv_gr
+            q1 = lower + d_max
+            q2 = upper - d_max
             count += 1  # Adds one to the count per iteration
 
         print("count =", count)  # Prints the count number
@@ -67,13 +71,14 @@ def max_golden_search(f, u: float, l: float, tol: float = 1e-8) -> float:
 
 
 def plot_point(
-    point, x_axis=np.linspace(-5, 5, 200)
+    point: float = max_golden_search(your_function, -2, 4),
+    x_axis:'np.linspace' = np.linspace(-5, 5, 200),
 ):  # 1st parameter is the maximum point 2nd parameter is a numpy linspace
     """
     Plots function and maximum point
     """
-    plt.plot(x_axis, f(x_axis))
-    plt.plot(point, f(point), "bo")
+    plt.plot(x_axis, your_function(x_axis))
+    plt.plot(point, your_function(point), "bo")
     plt.show()
 
 
@@ -81,6 +86,7 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
 """
 # References
 https://en.wikipedia.org/wiki/Golden-section_search
