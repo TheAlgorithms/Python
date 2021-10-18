@@ -10,7 +10,7 @@ headers = {
 
 
 def parse_results(query: str = "", num_q: int = 20) -> list:
-    """ "Reads google search result page for the given query and
+    """Reads google search result page for the given query and
     stores all the results in with title, link and descriptions
     in a list.
     Args:
