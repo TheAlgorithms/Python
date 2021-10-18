@@ -1,8 +1,15 @@
 """
-for more information visit this url : https://www.geeksforgeeks.org/knapsack-encryption-algorithm-in-cryptography/
+for more information visit below url
+https://www.geeksforgeeks.org/knapsack-encryption-algorithm-in-cryptography/
 """
 
 from typing import List
+
+private_key = [3, 5, 9, 20, 44]
+n = 67
+m = 89
+
+public_key = list(map(lambda element: (element * n) % m, private_key))
 
 
 def get_value_from_message_bits(message_bits: str) -> int:
@@ -13,6 +20,7 @@ def get_value_from_message_bits(message_bits: str) -> int:
     >>> get_value_from_message_bits("10100")
     92
     """
+    global public_key
     summ = 0
     for i in range(len(message_bits)):
         if message_bits[i] == "1":
@@ -42,6 +50,7 @@ def get_message_bits_from_value(target: int) -> str:
     >>> get_message_bits_from_value(92)
     '11111'
     """
+    global private_key
     mess = ""
     for i in range(len(private_key) - 1, -1, -1):
         curr = 0
@@ -73,6 +82,7 @@ def encode(mess: str) -> List[int]:
     >>> encode('000011010011000011010111010110')
     [11, 92, 91, 148, 142, 97]
     """
+    global private_key
     coded_message = []
     for k in range(len(mess) // len(private_key)):
         curr = mess[(k * len(private_key)) : (k * len(private_key)) + len(private_key)]
@@ -81,12 +91,6 @@ def encode(mess: str) -> List[int]:
 
 
 if __name__ == "__main__":
-    private_key = [3, 5, 9, 20, 44]
-    n = 67
-    m = 89
-
-    public_key = list(map(lambda element: (element * n) % m, private_key))
-
     message = "000011010011000011010111010110"
     coded_message = encode(message)
 
