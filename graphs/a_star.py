@@ -31,7 +31,7 @@ for i in range(len(grid)):
 
 # the actions we can take
 # go up  # go left  # go down  # go right
-delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]
+DIRECTIONS = [[-1, 0], [0, -1], [1, 0], [0, 1]]
 
 
 # function to search the path
