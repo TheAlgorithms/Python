@@ -46,22 +46,15 @@ train_labels = to_categorical(train_labels)
 y_train = train_labels
 test_labels = to_categorical(test_labels)
 
+# Increase the number of training images using elastic deformations
+pipe = aug.Pipeline()
+pipe.random_distortion(probability=1, grid_width=5, grid_height=5, magnitude=1)
+g = pipe.keras_generator_from_array(train_images, train_labels, batch_size=40000)
 
-def elastic_augmentor(train_images, train_labels):
-    """
-    Increase the number of training images using elastic deformations
-    """
-    pipe = aug.Pipeline()
-    pipe.random_distortion(probability=1, grid_width=5, grid_height=5, magnitude=1)
-    g = pipe.keras_generator_from_array(train_images, train_labels, batch_size=40000)
-
-    X, y = next(g)
-    train_images = np.concatenate((train_images, X), axis=0)
-    train_labels = np.concatenate((train_labels, y), axis=0)
-    return [train_images, train_labels]
-
-
-[train_images, train_labels] = elastic_augmentor(train_images, train_labels)
+# Concatenate the images and labels with the generated ones
+X, y = next(g)
+train_images = np.concatenate((train_images, X), axis=0)
+train_labels = np.concatenate((train_labels, y), axis=0)
 
 # Shuffle images to prevent overfitting
 train_images, train_labels = shuffle(train_images, train_labels, random_state=0)
