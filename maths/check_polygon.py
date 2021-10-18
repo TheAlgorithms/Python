@@ -14,6 +14,8 @@ def check_polygon(nums: list[float]) -> bool:
     True
     >>> check_polygon([3, 7, 13, 2])
     False
+    >>> check_polygon([1, 4.3, 5.2, 12.2])
+    False
     >>> check_polygon([])
     Traceback (most recent call last):
         ...
