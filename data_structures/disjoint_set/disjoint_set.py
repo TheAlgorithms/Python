@@ -15,8 +15,8 @@ def make_set(x: Node) -> None:
     """
     Make x as a set.
     """
-    # rank is the upper bound for hieght but not height
-    # We store rank instead of hieght because hieght can change during find operation and we will have to do some extra calculations to keep the hieght correct.
+    # rank is the upper bound for hieght but not always equal to height
+    # We store rank instead of hieght because hieght can change during find operation and then we will have to do some extra calculations to keep the hieght correct.
     x.rank = 0 #Initially all nodes rank is taken as zero by convention
     x.parent = x
 
