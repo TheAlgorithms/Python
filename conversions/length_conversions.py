@@ -82,18 +82,18 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
     >>> length_conversion(4, "wrongUnit", "inch")
     Traceback (most recent call last):
       ...
-    ValueError: Invalid 'from_type' value: 'wrongUnit'
-    Supported values are: meter, kilometer, feet, inch, centimeter, yard, foot, mile, millimeter
+    ValueError: Invalid 'from_type' value: 'wrongUnit'.  Supported values are: 
+    meter, kilometer, feet, inch, centimeter, yard, foot, mile, millimeter
     """
     if from_type not in METRIC_CONVERSION:
         raise ValueError(
-            f"Invalid 'from_type' value: {from_type!r}\n"
-            f"Supported values are: {', '.join(METRIC_CONVERSION)}"
+            f"Invalid 'from_type' value: {from_type!r}  Supported values are:\n"
+            ", ".join(METRIC_CONVERSION)
         )
     if to_type not in METRIC_CONVERSION:
         raise ValueError(
-            f"Invalid 'to_type' value: {to_type!r}\n"
-            f"Supported values are: {', '.join(METRIC_CONVERSION)}"
+            f"Invalid 'to_type' value: {to_type!r}.  Supported values are:\n"
+            ", ".join(METRIC_CONVERSION)
         )
     return value * METRIC_CONVERSION[from_type].from_ * METRIC_CONVERSION[to_type].to
 
