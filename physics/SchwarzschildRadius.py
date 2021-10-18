@@ -14,7 +14,7 @@ def event_horizon(mass : float):
     # The event horizon of a black hole is the distance where light cannot escape due to gravitational forces.
     # There's already a formula for escape velocity, so this just calculates the distance where you need C speed to
     # break free from the black hole's gravity.
-
+    
     event_horizon_radius = mass * (2 * G) / (c ** 2)
 
     # Here we return the result in different units
