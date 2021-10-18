@@ -16,6 +16,9 @@ def check_polygon(nums: list[float]) -> bool:
     False
     >>> check_polygon([1, 4.3, 5.2, 12.2])
     False
+    >>> nums = [3, 7, 13, 2];check_polygon(nums); nums
+    False
+    [3, 7, 13, 2]
     >>> check_polygon([])
     Traceback (most recent call last):
         ...
@@ -23,8 +26,9 @@ def check_polygon(nums: list[float]) -> bool:
     """
     if not nums:
         raise ValueError("List is invalid")
-    nums.sort()
-    return nums.pop() < sum(nums)
+    copy_nums = nums.copy()
+    copy_nums.sort()
+    return copy_nums.pop() < sum(copy_nums)
 
 
 if __name__ == "__main__":
