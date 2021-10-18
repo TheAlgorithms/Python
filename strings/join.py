@@ -3,9 +3,9 @@ Program to join a list of strings with a given separator
 """
 
 
-def join(separator: str = "", separated: list) -> str:
+def join(separator: str, separated: list) -> str:
     """
-    >>> join(separated = ["a", "b", "c", "d"])
+    >>> join("", ["a", "b", "c", "d"])
     'abcd'
     >>> join("#", ["a", "b", "c", "d"])
     'a#b#c#d'
