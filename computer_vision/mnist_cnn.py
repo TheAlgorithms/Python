@@ -29,10 +29,8 @@ from tensorflow.keras.layers import (
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.utils import to_categorical
 
-# Common configurations for Neural network layers
-batch_size = 128
+# Number of classes to classify
 num_classes = 10
-epochs = 20
 
 # Load Dataset
 (train_images, train_labels), (test_images, test_labels) = mnist.load_data()
@@ -48,8 +46,10 @@ y_train = train_labels
 test_labels = to_categorical(test_labels)
 
 
-# Increase the number of training images through elastic deformations.
 def elastic_augmentor(train_images, train_labels):
+    """
+    Increase the number of training images using elastic deformations
+    """
     pipe = aug.Pipeline()
     pipe.random_distortion(probability=1, grid_width=5, grid_height=5, magnitude=1)
     g = pipe.keras_generator_from_array(train_images, train_labels, batch_size=40000)
@@ -111,6 +111,10 @@ network.add(Dense(num_classes, activation="softmax"))
 network.compile(
     optimizer="adamax", loss="categorical_crossentropy", metrics=["accuracy"]
 )
+
+# Training configuration
+batch_size = 128
+epochs = 20
 
 # Start training
 history = network.fit(
