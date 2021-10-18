@@ -39,11 +39,11 @@ class PolybiusCipher:
         Return the letter corresponding to the position [index1, index2] in
         the polybius square
 
-        >>> PolybiusCipher().numbers_to_letter(4, 5)
-        "u"
+        >>> PolybiusCipher().numbers_to_letter(4, 5) == "u"
+        True
 
-        >>> PolybiusCipher().numbers_to_letter(1, 1)
-        "a"
+        >>> PolybiusCipher().numbers_to_letter(1, 1) == "a"
+        True
         """
         letter = self.SQUARE[index1 - 1, index2 - 1]
         return letter
@@ -52,11 +52,11 @@ class PolybiusCipher:
         """
         Return the encoded version of message according to the polybius cipher
 
-        >>> PolybiusCipher().encode("test message")
-        "44154344 32154343112215"
+        >>> PolybiusCipher().encode("test message") == "44154344 32154343112215"
+        True
 
-        >>> PolybiusCipher().encode("Test Message")
-        "44154344 32154343112215"
+        >>> PolybiusCipher().encode("Test Message") == "44154344 32154343112215"
+        True
         """
         message = message.lower()
         message = message.replace("j", "i")
@@ -75,11 +75,11 @@ class PolybiusCipher:
         """
         Return the decoded version of message according to the polybius cipher
 
-        >>> PolybiusCipher().decode("44154344 32154343112215")
-        "test message"
+        >>> PolybiusCipher().decode("44154344 32154343112215") == "test message"
+        True
 
-        >>> PolybiusCipher().decode("4415434432154343112215")
-        "testmessage"
+        >>> PolybiusCipher().decode("4415434432154343112215") == "testmessage"
+        True
         """
         message = message.replace(" ", "  ")
         decoded_message = ""
