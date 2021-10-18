@@ -24,11 +24,11 @@ class PolybiusCipher:
         """
         Return the pair of numbers that represents the given letter in the
         polybius square
-        >>> PolybiusCipher().letter_to_numbers('a')
-        [1, 1]
+        >>> np.array_equal(PolybiusCipher().letter_to_numbers('a'), [1,1])
+        True
 
-        >>> PolybiusCipher().letter_to_numbers('u')
-        [4, 5]
+        >>> np.array_equal(PolybiusCipher().letter_to_numbers('u'), [4,5])
+        True
         """
         index1, index2 = np.where(self.SQUARE == letter)
         indexes = np.concatenate([index1 + 1, index2 + 1])
