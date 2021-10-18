@@ -31,7 +31,7 @@ delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # go up  # go left  # go down  # go 
 
 
 # function to search the path
-def search(grid, init, goal, cost, heuristic):
+def search(grid, init, goal, cost, heuristic=heuristic):
 
     if (grid[goal[0]][goal[1]]==1):
         print("Error: Goal cannot be an obstacle")
