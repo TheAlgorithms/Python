@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def check_polygon(nums: List) -> bool:
+def check_polygon(nums: list[float]) -> bool:
     """
     Takes list of possible side lengths and determines whether a
     two-dimensional polygon with such side lengths can exist.
