@@ -48,6 +48,9 @@ def gabor_filter_kernel(
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     # read original image
     img = imread("../image_data/lena.jpg")
     # turn image in gray scale value
