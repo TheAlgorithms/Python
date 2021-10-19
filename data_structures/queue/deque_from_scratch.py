@@ -15,6 +15,10 @@ class Deque:
 
     appendleft(val: Any) -> None
 
+    extend(iter: list) -> None
+
+    extendleft(iter: list) -> None
+
     pop() -> Any
 
     popleft() -> Any
