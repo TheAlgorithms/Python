@@ -122,9 +122,9 @@ def jacobi_iteration_method(
             temp = (temp + val) / denom
             new_val.append(temp)
         init_val = new_val
-    
+
     new_val = [float(i) for i in new_val]
-    
+
     return new_val
 
 
