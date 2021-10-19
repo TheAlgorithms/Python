@@ -1,0 +1,113 @@
+"""
+* Author: Manuel Di Lullo (https://github.com/manueldilullo)
+* Description: Convert a number to use the correct SI or Binary unit prefix.
+
+Inspired by prefix_conversion.py file in this repository by lance-pyles
+
+URL: https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+URL: https://en.wikipedia.org/wiki/Binary_prefix
+"""
+
+from __future__ import annotations
+
+from enum import Enum, unique
+
+@unique
+class Binary_Unit(Enum):
+    yotta = 80
+    zetta = 70
+    exa = 60
+    peta = 50
+    tera = 40
+    giga = 30
+    mega = 20
+    kilo = 10
+
+@unique
+class SI_Unit(Enum):
+    yotta = 24
+    zetta = 21
+    exa = 18
+    peta = 15
+    tera = 12
+    giga = 9
+    mega = 6
+    kilo = 3
+    hecto = 2
+    deca = 1
+    deci = -1
+    centi = -2
+    milli = -3
+    micro = -6
+    nano = -9
+    pico = -12
+    femto = -15
+    atto = -18
+    zepto = -21
+    yocto = -24
+
+    @classmethod
+    def get_positive(cls: SI_Unit) -> dict:
+        """
+        Returns a dictionary with only the elements of this enum
+        that has a positive value
+        >>> from itertools import islice
+        >>> positive = SI_Unit.get_positive()
+        >>> inc = iter(positive.items())
+        >>> dict(islice(inc, len(positive) // 2))
+        {'yotta': 24, 'zetta': 21, 'exa': 18, 'peta': 15, 'tera': 12}
+        >>> dict(inc)
+        {'giga': 9, 'mega': 6, 'kilo': 3, 'hecto': 2, 'deca': 1}
+        """
+        return {unit.name:unit.value for unit in cls if unit.value > 0}
+
+    @classmethod
+    def get_negative(cls: SI_Unit) -> dict:
+        """
+        Returns a dictionary with only the elements of this enum
+        that has a negative value
+        >>> from itertools import islice
+        >>> negative = SI_Unit.get_negative()
+        >>> inc = iter(negative.items())
+        >>> dict(islice(inc, len(negative) // 2)) 
+        {'deci': -1, 'centi': -2, 'milli': -3, 'micro': -6, 'nano': -9}
+        >>> dict(inc)
+        {'pico': -12, 'femto': -15, 'atto': -18, 'zepto': -21, 'yocto': -24}
+        """
+        return {unit.name:unit.value for unit in cls if unit.value < 0}
+
+
+
+def add_si_prefix(value: float) -> str:
+    """
+    Function that converts a number to his version with SI prefix
+    @input value (an integer)
+    @example:
+    >>> add_si_prefix(10000)
+    '10.0 kilo'
+    """
+    prefixes = SI_Unit.get_positive() if value > 0 else SI_Unit.get_negative()
+    for name_prefix, value_prefix in prefixes.items():
+        numerical_part = value / (10 ** value_prefix)
+        if numerical_part > 1:
+            return "{} {}".format(str(numerical_part), name_prefix)
+
+
+def add_binary_prefix(value: float) -> str:
+    """
+    Function that converts a number to his version with Binary prefix
+    @input value (an integer)
+    @example: 
+    >>> add_binary_prefix(65536)
+    '64.0 kilo'
+    """
+    for prefix in Binary_Unit:
+        numerical_part = value / (2 ** prefix.value)
+        if numerical_part > 1:
+            return "{} {}".format(str(numerical_part), prefix.name)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
