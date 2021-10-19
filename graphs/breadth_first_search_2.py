@@ -17,13 +17,13 @@ from queue import Queue
 
 
 G = {
-        "A": ["B", "C"],
-        "B": ["A", "D", "E"],
-        "C": ["A", "F"],
-        "D": ["B"],
-        "E": ["B", "F"],
-        "F": ["C", "E"],
-    }
+    "A": ["B", "C"],
+    "B": ["A", "D", "E"],
+    "C": ["A", "F"],
+    "D": ["B"],
+    "E": ["B", "F"],
+    "F": ["C", "E"],
+}
 
 
 def breadth_first_search(graph: dict, start: str) -> set[str]:
