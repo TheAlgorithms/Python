@@ -11,8 +11,11 @@ class Deque:
     Operations
     ----------
     append(val: Any) -> None
+
     appendleft(val: Any) -> None
+
     pop() -> Any
+
     popleft() -> Any
 
 
@@ -55,13 +58,27 @@ class Deque:
         """
         __slots__ = ["_cur"]
 
-        def __init__(self, cur):
+        def __init__(self, cur: "_Node") -> None:
             self._cur = cur
 
-        def __iter__(self):
+        def __iter__(self) -> "_Iterator":
+            """
+            >>> d = Deque([1, 2, 3])
+            >>> iterator = iter(d)
+            """
             return self
 
-        def __next__(self):
+        def __next__(self) -> Any:
+            """
+            >>> d = Deque([1, 2, 3])
+            >>> iterator = iter(d)
+            >>> next(iterator)
+            1
+            >>> next(iterator)
+            2
+            >>> next(iterator)
+            3
+            """
             if self._cur is None:
                 # finished iterating
                 raise StopIteration
@@ -70,7 +87,7 @@ class Deque:
 
             return val
 
-    def __init__(self, iterable = None):
+    def __init__(self, iterable: list = None) -> None:
         self._front = self._back = None
         self._len = 0
 
@@ -217,7 +234,7 @@ class Deque:
         """
         return self._len
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: "Deque") -> bool:
         """
         Implements "==" operator. Returns if *self* is equal to *other*.
         Time complexity: O(n)
@@ -246,7 +263,7 @@ class Deque:
 
         return True
 
-    def __iter__(self):
+    def __iter__(self) -> "_Iterator":
         """
         Implements iteration.
         Time complexity: O(1)
