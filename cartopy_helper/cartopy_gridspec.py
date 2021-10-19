@@ -3,7 +3,9 @@ import cartopy.crs as ccrs
 import matplotlib.gridspec as gs
 
 
-def make_grid(rows=0, cols=0, proj=ccrs.PlateCarree(), cbar=False):
+def make_grid(
+    rows: int = 0, cols: int = 0, proj=ccrs.PlateCarree(), cbar: bool = False
+) -> list:
     """Creates a list of axes for a figure with gridspec layout of
     pre-defined number of rows and columns
 
