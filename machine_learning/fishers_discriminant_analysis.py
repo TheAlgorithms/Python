@@ -1,5 +1,6 @@
 """
 Binary Fishers Linear Discriminant.
+https://en.wikipedia.org/wiki/Linear_discriminant_analysis#Fisher's_linear_discriminant
 
 Given an input data x of dimension D
 Binary labels T
@@ -31,10 +32,53 @@ import numpy as np
 from numpy.linalg import inv
 
 
-def get_XT():
+def get_XT() -> tuple:
     """
     Placeholder code to generate the training data, X, Y.
     (Y is also referred to as T in the code / docs).
+
+    >>> get_XT()
+    (array([[  0,   0],
+           [  1,   0],
+           [  2,   0],
+           [  0,   1],
+           [  1,   1],
+           [  2,   1],
+           [  3,   1],
+           [  4,   1],
+           [  5,   1],
+           [100,   1],
+           [  0,   2],
+           [  1,   2],
+           [  2,   2],
+           [  3,   2],
+           [  4,   2],
+           [  5,   2],
+           [100,   2],
+           [  3,   3],
+           [  4,   3],
+           [  5,   3],
+           [100,   3]]), array([[1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [1., 0.],
+           [0., 1.],
+           [0., 1.],
+           [0., 1.],
+           [0., 1.]]))
     """
     X = [
         [0, 0],
@@ -67,11 +111,14 @@ def get_XT():
     for t in range(T.shape[0]):
         T[t, labels[t]] = 1
 
-    return X, T
+    return (X, T)
 
 
-def get_X_by_T(X, T):
-    X, T = get_XT()
+def get_X_by_T(X, T) -> tuple:
+    """
+    >>> get_X_by_T([[1,1],[2,2]], [[1,0],[0,1]])
+    (array([[1, 1]]), array([[2, 2]]))
+    """
 
     # We could use better numpy operations, but for
     # learning purposes the code needn't be over-complex.
@@ -89,10 +136,51 @@ def get_X_by_T(X, T):
     X_1 = np.array(X_1)
     X_2 = np.array(X_2)
 
-    return X_1, X_2
+    return (X_1, X_2)
 
 
-def main():
+def main() -> None:
+    """
+    >>> main()
+    <BLANKLINE>
+    <BLANKLINE>
+    Step 1: Get X, T training data.
+    <BLANKLINE>
+    <BLANKLINE>
+    Step 2: Get X by classes in T, i.e. all X points of
+            class 1 as X_1, all points of class 2 as X_2.
+    <BLANKLINE>
+    <BLANKLINE>
+    Step 3: Get means of X by class. i.e. m1_mat
+            and m2_mat as means of data X_1 and X_2 respectively.
+    Mean 1 : [[13.70588235  1.23529412]]
+    Mean 2 : [[28.  3.]]
+    <BLANKLINE>
+    <BLANKLINE>
+    Step 4: Calculate Between Class s_b
+    [[204.32179931  25.22491349]
+     [ 25.22491349   3.11418685]]
+    <BLANKLINE>
+    <BLANKLINE>
+    Step 5: Calculate Within Class Sw
+    [[2.38355294e+04 5.71764706e+01]
+     [5.71764706e+01 9.05882353e+00]]
+    <BLANKLINE>
+    <BLANKLINE>
+    Step 6: Calculate dimension w
+    [[-1.34436264e-04]
+     [-1.93956675e-01]]
+    <BLANKLINE>
+    <BLANKLINE>
+    Step 7: Calculate Fisher's Criterion J(w)
+    [[0.34419813]]
+    <BLANKLINE>
+    <BLANKLINE>
+    Step 8: Perform Prediction on last data point in the training set.
+    Point      : [[0 0]]
+    True Label : 1
+    Prediction Label : [1]
+    """
     print("\n\nStep 1: Get X, T training data.")
     X, T = get_XT()
 
@@ -112,9 +200,9 @@ def main():
     print("Mean 1 :", np.transpose(m1_mat))
     print("Mean 2 :", np.transpose(m2_mat))
 
-    print("\n\nStep 4: Calculate Between Class s_B")
-    s_B = np.matmul((m1_mat - m2_mat), np.transpose(m1_mat - m2_mat))
-    print(s_B)
+    print("\n\nStep 4: Calculate Between Class s_b")
+    s_b = np.matmul((m1_mat - m2_mat), np.transpose(m1_mat - m2_mat))
+    print(s_b)
 
     print("\n\nStep 5: Calculate Within Class Sw")
 
@@ -141,11 +229,11 @@ def main():
     print(w)
 
     print("\n\nStep 7: Calculate Fisher's Criterion J(w)")
-    num = np.matmul(np.matmul(np.transpose(w), s_B), w)
+    num = np.matmul(np.matmul(np.transpose(w), s_b), w)
     den = np.matmul(np.matmul(np.transpose(w), sw), w)
-    Jw = num / den
+    J_w = num / den
 
-    print(Jw)
+    print(J_w)
 
     print("\n\nStep 8: Perform Prediction on last data point in the training set.")
     point = X[0].reshape(2, 1)
@@ -164,4 +252,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    # main()
+
+    doctest.testmod(name="main", verbose=True)
