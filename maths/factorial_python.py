@@ -22,9 +22,11 @@ def factorial(input_number: int) -> int:
         raise ValueError("factorial() not defined for negative values")
     if not isinstance(input_number, int):
         raise ValueError("factorial() only accepts integral values")
-    result = 1
-    for i in range(1, input_number):
-        result = result * (i + 1)
+    factorial = 1
+    int i
+    while i < input_number:
+        factorial = factorial* i
+        i++
     return result
 
 
