@@ -35,4 +35,5 @@ def btc_close_price() -> List[float]:
     return close_prices
 
 
-print(btc_close_price())
+if __name__ == "__main__":
+    print(btc_close_price())
