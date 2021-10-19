@@ -88,7 +88,9 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
 
 
 if __name__ == "__main__":
+    import doctest
 
+    doctest.testmod()
     # inputing the strings
     # input_string = input("input a string :")
     # pattern = input("input a pattern :")
