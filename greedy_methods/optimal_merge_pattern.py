@@ -8,7 +8,7 @@ python3 -m doctest -v greedy_merge_sort.py
 Objective
 Merge a set of sorted files of different length into a single sorted file.
 We need to find an optimal solution, where the resultant file
-will be generated in minimum time.
+will be generated with minimum time complexity, as the function is linear.
 
 Approach
 If the number of sorted files are given, there are many ways
