@@ -18,7 +18,7 @@ goal = [len(grid) - 1, len(grid[0]) - 1]  # all coordinates are given in format 
 cost = 1
 
 
-def getHeuristicMap(cost):
+def get_heuristic_map(cost):
 
     heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
     for i in range(len(grid)):
