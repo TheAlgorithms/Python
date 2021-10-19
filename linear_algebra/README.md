@@ -17,7 +17,7 @@ This module contains classes and functions for doing linear algebra.
     - \_\_str\_\_() : toString method
     - component(i : int): gets the i-th component (start by 0)
     - \_\_len\_\_() : gets the size / length of the vector (number of components)
-    - euclidean_length() : returns the eulidean length of the vector.
+    - euclidean_length() : returns the eulidean length of the vector
     - operator + : vector addition
     - operator - : vector subtraction
     - operator * : scalar multiplication and dot product
