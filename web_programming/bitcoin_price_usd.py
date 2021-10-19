@@ -14,7 +14,7 @@ REQUEST_HEADERS = {
 }
 
 
-def btc_close_price(url) -> List[float]:
+def btc_close_price(url: str) -> List[float]:
     """
     a function that gets a list closing prices of bitcoin in USD
     from the past seven days.
