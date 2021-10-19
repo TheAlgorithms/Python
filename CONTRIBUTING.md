@@ -53,7 +53,7 @@ Algorithms in this repo should not be how-to examples for existing Python packag
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
 
 ```bash
-python3 -m pip install pre-commit  # required only once
+python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
 That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
