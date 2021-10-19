@@ -1,7 +1,8 @@
 PHI = 1.6180339
 
 f = [ 0, 1, 1, 2, 3, 5 ]
-
+# Function to find nth
+# Fibonacci number
 def fib ( n ):
  
 
