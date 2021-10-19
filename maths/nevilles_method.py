@@ -9,12 +9,12 @@
 """
 
 
-def neville_interpolate(x: list, y: list, x0: int) -> list:
+def neville_interpolate(x_points: list, y_points: list, x0: int) -> list:
     """
        Interpolate and evaluate a polynomial using Neville's method.
 
        Arguments:
-           x, y: Iterables of x and corresponding y points through which the
+           x_points, y_points: Iterables of x and corresponding y points through which the
                  polynomial passes.
            x0: The value of x to evaluate the polynomial for.
 
