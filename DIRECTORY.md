@@ -113,7 +113,7 @@
   * [Decimal To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_octal.py)
   * [Hex To Bin](https://github.com/TheAlgorithms/Python/blob/master/conversions/hex_to_bin.py)
   * [Hexadecimal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/hexadecimal_to_decimal.py)
-  * [Length Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/length_conversions.py)
+  * [Length Conversion](https://github.com/TheAlgorithms/Python/blob/master/conversions/length_conversion.py)
   * [Molecular Chemistry](https://github.com/TheAlgorithms/Python/blob/master/conversions/molecular_chemistry.py)
   * [Octal To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/octal_to_decimal.py)
   * [Prefix Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/prefix_conversions.py)
