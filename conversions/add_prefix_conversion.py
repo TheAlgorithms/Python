@@ -11,6 +11,10 @@ URL: https://en.wikipedia.org/wiki/Binary_prefix
 from __future__ import annotations
 
 from enum import Enum, unique
+from typing import Type, TypeVar
+
+# Create a generic variable that can be 'Enum', or any subclass.
+T = TypeVar("T", bound="Enum")
 
 
 @unique
@@ -49,7 +53,7 @@ class SIUnit(Enum):
     yocto = -24
 
     @classmethod
-    def get_positive(cls: SIUnit) -> dict:
+    def get_positive(cls: Type[T]) -> dict:
         """
         Returns a dictionary with only the elements of this enum
         that has a positive value
@@ -64,7 +68,7 @@ class SIUnit(Enum):
         return {unit.name: unit.value for unit in cls if unit.value > 0}
 
     @classmethod
-    def get_negative(cls: SIUnit) -> dict:
+    def get_negative(cls: Type[T]) -> dict:
         """
         Returns a dictionary with only the elements of this enum
         that has a negative value
@@ -93,6 +97,7 @@ def add_si_prefix(value: float) -> str:
         numerical_part = value / (10 ** value_prefix)
         if numerical_part > 1:
             return f"{str(numerical_part)} {name_prefix}"
+    return str(value)
 
 
 def add_binary_prefix(value: float) -> str:
@@ -107,6 +112,7 @@ def add_binary_prefix(value: float) -> str:
         numerical_part = value / (2 ** prefix.value)
         if numerical_part > 1:
             return f"{str(numerical_part)} {prefix.name}"
+    return str(value)
 
 
 if __name__ == "__main__":
