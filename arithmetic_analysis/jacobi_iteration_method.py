@@ -123,9 +123,7 @@ def jacobi_iteration_method(
             new_val.append(temp)
         init_val = new_val
 
-    new_val = [float(i) for i in new_val]
-
-    return new_val
+    return [float(i) for i in new_val]
 
 
 # Checks if the given matrix is strictly diagonally dominant
