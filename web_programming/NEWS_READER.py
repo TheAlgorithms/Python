@@ -18,7 +18,7 @@ def speak(audio):
 
 if __name__ == '__main__':
     # speak("News for today.. Lets begin")
-    urls = [""] //Enter URL of NEWS API
+    urls = [""] #Enter URL of NEWS API
     for url in urls:
         news = requests.get(url).text
         news_dict = json.loads(news)
