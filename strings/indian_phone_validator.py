@@ -16,6 +16,8 @@ def indian_phone_validator(phone: str) -> bool:
     True
     >>> indian_phone_validator("+91-1234567899")
     False
+    >>> indian_phone_validator("+91-9876543218")
+    True
     """
     pat = re.compile(r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")
     match = re.search(pat, phone)
