@@ -15,8 +15,10 @@ def prime_factors(n: int) -> list:
         ...
     ValueError: Only positive integers have prime factors
     """
-    if n <= 0:
+    while  (n<=0):
         raise ValueError("Only positive integers have prime factors")
+        break
+        
     pf = []
     while n % 2 == 0:
         pf.append(2)
