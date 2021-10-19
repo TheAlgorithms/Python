@@ -18,7 +18,7 @@ def speak(audio):
 
 if __name__ == '__main__':
     # speak("News for today.. Lets begin")
-    urls = ["https://gnews.io/api/v4/top-headlines?token=7b27c9ba6dc514839d294825a256f9e8&country=in&lang=en&max=4","https://gnews.io/api/v4/top-headlines?token=7b27c9ba6dc514839d294825a256f9e8&country=in&lang=en&topic=science&max=4","https://gnews.io/api/v4/top-headlines?token=7b27c9ba6dc514839d294825a256f9e8&lang=en&country=in&topic=health&max=4","https://gnews.io/api/v4/top-headlines?token=7b27c9ba6dc514839d294825a256f9e8&country=in&lang=en&topic=sports&max=4","https://gnews.io/api/v4/top-headlines?token=7b27c9ba6dc514839d294825a256f9e8&lang=en&country=in&topic=technology&max=4"]
+    urls = [""] //Enter URL of NEWS API
     for url in urls:
         news = requests.get(url).text
         news_dict = json.loads(news)
