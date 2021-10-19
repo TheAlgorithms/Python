@@ -3,6 +3,7 @@ Implementation of double ended queue.
 """
 from dataclasses import dataclass
 from typing import Any
+import collections # just for doctests
 
 class Deque:
     """
@@ -105,10 +106,11 @@ class Deque:
         >>> d.append(4)
         >>> print(d)
         [1, 2, 3, 4]
-        >>> d2 = Deque([51, "str", True])
-        >>> d2.append([1, "2"])
+
+        >>> d2 = collections.deque([1, 2, 3])
+        >>> d2.append(4)
         >>> print(d2)
-        [51, 'str', True, [1, '2']]
+        deque([1, 2, 3, 4])
         """
         node = self._Node(val, None, None)
         if self.is_empty():
@@ -135,10 +137,11 @@ class Deque:
         >>> d.appendleft(1)
         >>> print(d)
         [1, 2, 3]
-        >>> d2 = Deque(["b", "c"])
-        >>> d2.appendleft("a")
+
+        >>> d2 = collections.deque([2, 3])
+        >>> d2.appendleft(1)
         >>> print(d2)
-        ['a', 'b', 'c']
+        deque([1, 2, 3])
         """
         node = self._Node(val, None, None)
         if self.is_empty():
@@ -156,6 +159,40 @@ class Deque:
             # make sure there was no errors
             assert not self.is_empty(), "Error on appending value."
 
+    def extend(self, iter: list) -> None:
+        """
+        Appends every value of iter to the end of the deque.
+        
+        >>> d = Deque([1, 2, 3])
+        >>> d.extend([4, 5])
+        >>> print(d)
+        [1, 2, 3, 4, 5]
+
+        >>> d2 = collections.deque([1, 2, 3])
+        >>> d2.extend([4, 5])
+        >>> print(d2)
+        deque([1, 2, 3, 4, 5])
+        """
+        for val in iter:
+            self.append(val)
+
+    def extendleft(self, iter: list) -> None:
+        """
+        Appends every value of iter to the beginning of the deque.
+        
+        >>> d = Deque([1, 2, 3])
+        >>> d.extendleft([0, -1])
+        >>> print(d)
+        [-1, 0, 1, 2, 3]
+
+        >>> d2 = collections.deque([1, 2, 3])
+        >>> d2.extendleft([0, -1])
+        >>> print(d2)
+        deque([-1, 0, 1, 2, 3])
+        """
+        for val in iter:
+            self.appendleft(val)
+
     def pop(self) -> Any:
         """
         Removes the last element of the deque and returns it.
@@ -169,6 +206,13 @@ class Deque:
         15182
         >>> print(d)
         [1, 2, 3]
+
+        >>> d2 = collections.deque([1, 2, 3, 15182])
+        >>> popped = d2.pop()
+        >>> print(popped)
+        15182
+        >>> print(d2)
+        deque([1, 2, 3])
         """
         # make sure the deque has elements to pop
         assert not self.is_empty(), "Deque is empty."
@@ -194,6 +238,13 @@ class Deque:
         15182
         >>> print(d)
         [1, 2, 3]
+
+        >>> d2 = collections.deque([15182, 1, 2, 3])
+        >>> popped = d2.popleft()
+        >>> print(popped)
+        15182
+        >>> print(d2)
+        deque([1, 2, 3])
         """
         # make sure the deque has elements to pop
         assert not self.is_empty(), "Deque is empty."
@@ -231,6 +282,13 @@ class Deque:
         >>> d2 = Deque()
         >>> print(len(d2))
         0
+
+        >>> d3 = collections.deque([1, 2, 3])
+        >>> print(len(d3))
+        3
+        >>> d4 = collections.deque()
+        >>> print(len(d4))
+        0
         """
         return self._len
 
@@ -245,6 +303,14 @@ class Deque:
         True
         >>> d3 = Deque([1, 2])
         >>> print(d == d3)
+        False
+
+        >>> d4 = collections.deque([1, 2, 3])
+        >>> d5 = collections.deque([1, 2, 3])
+        >>> print(d4 == d5)
+        True
+        >>> d6 = collections.deque([1, 2])
+        >>> print(d5 == d6)
         False
         """
         me = self._front
@@ -274,12 +340,19 @@ class Deque:
         1
         2
         3
+
+        >>> d2 = collections.deque([1, 2, 3])
+        >>> for v in d:
+        ...     print(v)
+        1
+        2
+        3
         """
         return Deque._Iterator(self._front)
 
     def __repr__(self) -> str:
         """
-        Implements representation of the deque.
+        Implements representation of the deque. Represents it as a list, with its values between '[' and ']'.
         Time complexity: O(n)
 
         >>> d = Deque([1, 2, 3])
