@@ -34,6 +34,8 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
     -------
     >>> string_match_pattern("aab", "c*a*b")
     True
+    >>> string_match_pattern("dabc", "*abc")
+    False
     >>> string_match_pattern("aaa", "aa")
     False
     >>> string_match_pattern("aaa", "a.a")
@@ -57,7 +59,7 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
 
     # dp is a 2d matrix where dp[i][j] denotes whether prefix string of
     # length i of input_string matches with prefix string of length j of
-    # given pattern
+    # given pattern.
     # "dp" stands for dynamic programming.
     dp = [[0 for i in range(len_pattern)] for j in range(len_string)]
 
