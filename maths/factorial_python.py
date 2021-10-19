@@ -26,7 +26,7 @@ def factorial(input_number: int) -> int:
     int i
     while i < input_number:
         factorial = factorial* i
-        i++
+        i=i+1
     return result
 
 
