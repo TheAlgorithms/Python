@@ -13,10 +13,6 @@ REQUEST_HEADERS = {
     (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
 }
 
-# -https://finance.yahoo.com/quote/BTC-USD/history?period1=1633824000&period2=1634342400&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
-# -https://finance.yahoo.com/quote/BTC-USD/history?period1=1578182400&period2=1578700800&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
-# -https://finance.yahoo.com/quote/BTC-USD/history?period1=1545696000&period2=1546214400&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
-
 
 def btc_close_price(url) -> List[float]:
     """
