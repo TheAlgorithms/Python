@@ -36,6 +36,8 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
     True
     >>> string_match_pattern("aaa", "aa")
     False
+    >>> string_match_pattern("aaa", "a.a")
+    True
     >>> string_match_pattern("aaab", "aa*")
     False
     >>> string_match_pattern("aaab", ".*")
@@ -46,6 +48,8 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
     False
     >>> string_match_pattern("a", "")
     False
+    >>> string_match_pattern("", "")
+    True
     """
 
     len_string = len(input_string) + 1
