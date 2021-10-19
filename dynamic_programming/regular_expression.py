@@ -9,26 +9,26 @@ The matching should cover the entire input string (not partial).
 
 def string_match_pattern(input_string: str, pattern: str) -> bool:
     """
-    using bottom-up dynamic programming solution for matching the input
+    uses bottom-up dynamic programming solution for matching the input
     string with a given pattern.
 
     Runtime: O(len(input_string)*len(pattern))
 
     Arguments
     --------
-    input_string: str, any string which should be compared with pattern
-    pattern: str, the string that has to be used as pattern and should contain
-    '.' for single character match and '*' for zero or more of preceding character
-    match
+    input_string: str, any string which should be compared with the pattern
+    pattern: str, the string that represents a pattern and may contain
+    '.' for single character matches and '*' for zero or more of preceding character
+    matches
 
     Note
     ----
-    the pattern can not start with a '*',
+    the pattern cannot start with a '*',
     because there should be at least one character before *
 
     Returns
     -------
-    the bool value denoting whether given string follows the pattern
+    A Boolean denoting whether the given string follows the pattern
 
     Examples
     -------
@@ -58,6 +58,7 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
     # dp is a 2d matrix where dp[i][j] denotes whether prefix string of
     # length i of input_string matches with prefix string of length j of
     # given pattern
+    # "dp" stands for dynamic programming.
     dp = [[0 for i in range(len_pattern)] for j in range(len_string)]
 
     # since string of zero length match pattern of zero length
