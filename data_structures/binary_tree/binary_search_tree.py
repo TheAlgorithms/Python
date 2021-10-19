@@ -6,7 +6,8 @@ A binary search Tree
 class Node:
     def __init__(self, value, parent):
         self.value = value
-        self.parent = parent  # Added in order to delete a node easier
+        self.parent = parent
+        # Added in order to delete a node easier
         self.left = None
         self.right = None
 
@@ -29,10 +30,13 @@ class BinarySearchTree:
         return str(self.root)
 
     def __reassign_nodes(self, node, new_children):
-        if new_children is not None:  # reset its kids
+        if new_children is not None: 
+            # reset its kids
             new_children.parent = node.parent
-        if node.parent is not None:  # reset its parent
-            if self.is_right(node):  # If it is the right children
+        if node.parent is not None: 
+            # reset its parent
+            if self.is_right(node): 
+                # If it is the right children
                 node.parent.right = new_children
             else:
                 node.parent.left = new_children
