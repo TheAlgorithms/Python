@@ -1,15 +1,18 @@
-# Python function that calculates maximum point in a specified interval of a unimodal function. Simply change the maxF variable to the function you'd like to test and set the parameters of max_grs.
+# Python function that calculates maximum
+# point in a specified interval of a unimodal function.
+# Simply change the maxF variable to the function
+# you'd like to test and set the parameters of max_grs.
 # ---WORKS ONLY FOR ONE VARIABLE FUNCTIONS----
 # ---  IT IS RECOMMENDED TO  USE 'x' AS VARIABLE---
 
 from matplotlib import pyplot as plt  # import module to plot the result
 import numpy as np
-from numpy.core.function_base import (
-    linspace,
-)  # import module to get access to square root and linspace
 
 
-def your_function(x) -> int:  # define your function that goes into parameter f here
+# import module to get access to square root and linspace
+
+
+def your_function(x):  # define your function that goes into parameter f here
     max_f = (
         x ** 3 - 6 * x ** 2 + 4 * x + 12
     )  # change this to the function you'd like to test (use x as variable preferably)
@@ -21,26 +24,23 @@ def max_golden_search(
 ) -> float:
 
     """
-    Function in python that calculates the maximum point of function in a specified interval
+    Function in python that calculates the maximum
+    point of function in a specified interval
         f : the function to maximize
         upper: upper boundary of interval
         lower: lower boundary of interval
         tol: set an appropriate tolerance value
         return: maximum of specified interval
-
-
     >>> max_golden_search(your_function, -2, 4)
     count = 43
     0.3670068499227286
     >>> max_golden_search(your_function, 'm', 4)
     Traceback (most recent call last):
             ...
-    ValueError: Please give numerical values for upper, lower limits
-
+    ValueError: give numerical values for upper, lower limits
     """
-
     if type(upper) is str or type(lower) is str:
-        raise ValueError("Please give numerical values for upper, lower limits")
+        raise ValueError("give numerical values for upper, lower limits")
     else:
 
         inv_gr = (np.sqrt(5) - 1) * 0.5  # ~ 0.618, this is the inverse golden ratio
@@ -65,14 +65,13 @@ def max_golden_search(
 
         print("count =", count)  # Prints the count number
 
-        return (
-            q1 + q2
-        ) * 0.5  # Returns the midpoint of the final interval as the maximum point in the range
+        return (q1 + q2) * 0.5  # Returns the midpoint of the
+        # final interval as the maximum point in the range
 
 
 def plot_point(
     point: float = max_golden_search(your_function, -2, 4),
-    x_axis:'np.linspace' = np.linspace(-5, 5, 200),
+    x_axis: "np.linspace" = np.linspace(-5, 5, 200),
 ):  # 1st parameter is the maximum point 2nd parameter is a numpy linspace
     """
     Plots function and maximum point
@@ -89,8 +88,8 @@ if __name__ == "__main__":
 
 """
 # References
-https://en.wikipedia.org/wiki/Golden-section_search
 
+https://en.wikipedia.org/wiki/Golden-section_search
 
 
 """
