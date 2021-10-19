@@ -24,6 +24,7 @@
 
     Details: https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
 """
+from __future__ import annotations
 
 
 class Graph:
@@ -39,8 +40,8 @@ class Graph:
         """
 
         self.m_num_of_nodes = num_of_nodes
-        self.m_edges = []
-        self.m_component = {}
+        self.m_edges: list[list[int]] = []
+        self.m_component: dict[int, int] = {}
 
     def add_edge(self, u_node: int, v_node: int, weight: int) -> None:
         """Adds an edge in the format [first, second, edge weight] to graph."""
@@ -83,7 +84,7 @@ class Graph:
         component_size = []
         mst_weight = 0
 
-        minimum_weight_edge = [-1] * self.m_num_of_nodes
+        minimum_weight_edge: list[int] = [-1] * self.m_num_of_nodes
 
         # A list of components (initialized to all of the nodes)
         for node in range(self.m_num_of_nodes):
