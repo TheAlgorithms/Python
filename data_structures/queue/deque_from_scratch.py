@@ -1,7 +1,6 @@
 """
 Implementation of double ended queue.
 """
-import collections  # just for doctests
 from dataclasses import dataclass
 from typing import Any, Iterable
 
@@ -16,9 +15,9 @@ class Deque:
 
     appendleft(val: Any) -> None
 
-    extend(iter: list) -> None
+    extend(iter: Iterable) -> None
 
-    extendleft(iter: list) -> None
+    extendleft(iter: Iterable) -> None
 
     pop() -> Any
 
@@ -52,8 +51,8 @@ class Deque:
         """
 
         val: Any = None
-        next: "_Node" = None
-        prev: "_Node" = None
+        next: "Deque._Node" = None
+        prev: "Deque._Node" = None
 
     class _Iterator:
         """
@@ -67,10 +66,10 @@ class Deque:
 
         __slots__ = ["_cur"]
 
-        def __init__(self, cur: "_Node") -> None:
+        def __init__(self, cur: "Deque._Node") -> None:
             self._cur = cur
 
-        def __iter__(self) -> "_Iterator":
+        def __iter__(self) -> "Deque._Iterator":
             """
             >>> d = Deque([1, 2, 3])
             >>> iterator = iter(d)
@@ -115,6 +114,7 @@ class Deque:
         >>> print(d)
         [1, 2, 3, 4]
 
+        >>> import collections
         >>> d2 = collections.deque([1, 2, 3])
         >>> d2.append(4)
         >>> print(d2)
@@ -146,6 +146,7 @@ class Deque:
         >>> print(d)
         [1, 2, 3]
 
+        >>> import collections
         >>> d2 = collections.deque([2, 3])
         >>> d2.appendleft(1)
         >>> print(d2)
@@ -177,6 +178,7 @@ class Deque:
         >>> print(d)
         [1, 2, 3, 4, 5]
 
+        >>> import collections
         >>> d2 = collections.deque([1, 2, 3])
         >>> d2.extend([4, 5])
         >>> print(d2)
@@ -195,6 +197,7 @@ class Deque:
         >>> print(d)
         [-1, 0, 1, 2, 3]
 
+        >>> import collections
         >>> d2 = collections.deque([1, 2, 3])
         >>> d2.extendleft([0, -1])
         >>> print(d2)
@@ -217,6 +220,7 @@ class Deque:
         >>> print(d)
         [1, 2, 3]
 
+        >>> import collections
         >>> d2 = collections.deque([1, 2, 3, 15182])
         >>> popped = d2.pop()
         >>> print(popped)
@@ -251,6 +255,7 @@ class Deque:
         >>> print(d)
         [1, 2, 3]
 
+        >>> import collections
         >>> d2 = collections.deque([15182, 1, 2, 3])
         >>> popped = d2.popleft()
         >>> print(popped)
@@ -295,6 +300,7 @@ class Deque:
         >>> print(len(d2))
         0
 
+        >>> import collections
         >>> d3 = collections.deque([1, 2, 3])
         >>> print(len(d3))
         3
@@ -317,6 +323,7 @@ class Deque:
         >>> print(d == d3)
         False
 
+        >>> import collections
         >>> d4 = collections.deque([1, 2, 3])
         >>> d5 = collections.deque([1, 2, 3])
         >>> print(d4 == d5)
@@ -353,6 +360,7 @@ class Deque:
         2
         3
 
+        >>> import collections
         >>> d2 = collections.deque([1, 2, 3])
         >>> for v in d2:
         ...     print(v)
@@ -364,18 +372,19 @@ class Deque:
 
     def __repr__(self) -> str:
         """
-        Implements representation of the deque. Represents it as a list, with its values between '[' and ']'.
+        Implements representation of the deque.
+        Represents it as a list, with its values between '[' and ']'.
         Time complexity: O(n)
 
         >>> d = Deque([1, 2, 3])
         >>> print(d)
         [1, 2, 3]
         """
-        l = []
+        values_list = []
         aux = self._front
         while aux is not None:
             # append the values in a list to display
-            l.append(aux.val)
+            values_list.append(aux.val)
             aux = aux.next
 
-        return "[" + ", ".join(repr(x) for x in l) + "]"
+        return "[" + ", ".join(repr(val) for val in values_list) + "]"
