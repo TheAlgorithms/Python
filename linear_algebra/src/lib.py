@@ -123,7 +123,7 @@ class Vector:
         """
         input: new components
         changes the components of the vector.
-        replace the components with newer one.
+        replaces the components with newer one.
         """
         if len(components) > 0:
             self.__components = list(components)
@@ -319,7 +319,7 @@ class Matrix:
                 matrix.append(row)
             return Matrix(matrix, self.__width, self.__height)
         else:
-            raise Exception("matrix must have the same dimension!")
+            raise Exception("matrices must have the same dimension!")
 
     @overload
     def __mul__(self, other: float) -> Matrix:
@@ -415,7 +415,7 @@ class Matrix:
         if self.__height != self.__width:
             raise Exception("Matrix is not square")
         if self.__height < 1:
-            raise Exception("Matrix has no elements")
+            raise Exception("Matrix has no element")
         elif self.__height == 1:
             return self.__matrix[0][0]
         elif self.__height == 2:
