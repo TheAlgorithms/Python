@@ -76,7 +76,7 @@ def compute_truncated_primes(count: int = 11) -> list[int]:
     >>> compute_truncated_primes(11)
     [23, 37, 53, 73, 313, 317, 373, 797, 3137, 3797, 739397]
     """
-    list_truncated_primes = []
+    list_truncated_primes: list[int] = []
     num = 13
     while len(list_truncated_primes) != count:
         if validate(num):
