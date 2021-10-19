@@ -13,7 +13,7 @@ from __future__ import annotations
 from enum import Enum, unique
 
 @unique
-class Binary_Unit(Enum):
+class BinaryUnit(Enum):
     yotta = 80
     zetta = 70
     exa = 60
@@ -24,7 +24,7 @@ class Binary_Unit(Enum):
     kilo = 10
 
 @unique
-class SI_Unit(Enum):
+class SIUnit(Enum):
     yotta = 24
     zetta = 21
     exa = 18
@@ -52,7 +52,7 @@ class SI_Unit(Enum):
         Returns a dictionary with only the elements of this enum
         that has a positive value
         >>> from itertools import islice
-        >>> positive = SI_Unit.get_positive()
+        >>> positive = SIUnit.get_positive()
         >>> inc = iter(positive.items())
         >>> dict(islice(inc, len(positive) // 2))
         {'yotta': 24, 'zetta': 21, 'exa': 18, 'peta': 15, 'tera': 12}
@@ -67,7 +67,7 @@ class SI_Unit(Enum):
         Returns a dictionary with only the elements of this enum
         that has a negative value
         >>> from itertools import islice
-        >>> negative = SI_Unit.get_negative()
+        >>> negative = SIUnit.get_negative()
         >>> inc = iter(negative.items())
         >>> dict(islice(inc, len(negative) // 2)) 
         {'deci': -1, 'centi': -2, 'milli': -3, 'micro': -6, 'nano': -9}
@@ -86,11 +86,11 @@ def add_si_prefix(value: float) -> str:
     >>> add_si_prefix(10000)
     '10.0 kilo'
     """
-    prefixes = SI_Unit.get_positive() if value > 0 else SI_Unit.get_negative()
+    prefixes = SIUnit.get_positive() if value > 0 else SIUnit.get_negative()
     for name_prefix, value_prefix in prefixes.items():
         numerical_part = value / (10 ** value_prefix)
         if numerical_part > 1:
-            return "{} {}".format(str(numerical_part), name_prefix)
+            return f"{str(numerical_part)} {name_prefix}"
 
 
 def add_binary_prefix(value: float) -> str:
@@ -101,10 +101,10 @@ def add_binary_prefix(value: float) -> str:
     >>> add_binary_prefix(65536)
     '64.0 kilo'
     """
-    for prefix in Binary_Unit:
+    for prefix in BinaryUnit:
         numerical_part = value / (2 ** prefix.value)
         if numerical_part > 1:
-            return "{} {}".format(str(numerical_part), prefix.name)
+            return f"{str(numerical_part)} {prefix.name}"
 
 
 if __name__ == "__main__":
