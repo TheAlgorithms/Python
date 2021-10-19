@@ -83,7 +83,6 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
     Traceback (most recent call last):
       ...
     ValueError: Invalid 'from_type' value: 'wrongUnit'.  Supported values are:
-    meter, kilometer, feet, inch, centimeter, yard, foot, mile, millimeter
     """
     if from_type not in METRIC_CONVERSION:
         raise ValueError(
