@@ -3,7 +3,7 @@ Implementation of double ended queue.
 """
 import collections  # just for doctests
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Iterable
 
 
 class Deque:
@@ -96,7 +96,7 @@ class Deque:
 
             return val
 
-    def __init__(self, iterable: list = None) -> None:
+    def __init__(self, iterable: Iterable = None) -> None:
         self._front = self._back = None
         self._len = 0
 
@@ -167,9 +167,10 @@ class Deque:
             # make sure there was no errors
             assert not self.is_empty(), "Error on appending value."
 
-    def extend(self, iter: list) -> None:
+    def extend(self, iter: Iterable) -> None:
         """
         Appends every value of iter to the end of the deque.
+        Time complexity: O(n)
 
         >>> d = Deque([1, 2, 3])
         >>> d.extend([4, 5])
@@ -184,9 +185,10 @@ class Deque:
         for val in iter:
             self.append(val)
 
-    def extendleft(self, iter: list) -> None:
+    def extendleft(self, iter: Iterable) -> None:
         """
         Appends every value of iter to the beginning of the deque.
+        Time complexity: O(n)
 
         >>> d = Deque([1, 2, 3])
         >>> d.extendleft([0, -1])
