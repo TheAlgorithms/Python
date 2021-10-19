@@ -25,7 +25,7 @@ from __future__ import annotations
 def check_if_odd(sum: int) -> int:
     """
     Check if the last digit in the sum is even or odd. If even return 0.
-    If odd then floor devision by 10 is used to remove the last number.
+    If odd then floor division by 10 is used to remove the last number.
     Process continues until sum becomes 0 because no more numbers.
     >>> check_if_odd(36)
     0
@@ -60,8 +60,8 @@ def find_reverse_nr(nr: int) -> int:
 def solution(nr: int) -> int:
     """
     Loops over the range of numbers.
-    Checks if they have ending zeros which disqualifies them from being reversable.
-    If that condition is passed it generates the reveresed number.
+    Checks if they have ending zeros which disqualifies them from being reversible.
+    If that condition is passed it generates the reversed number.
     Then sum up n and reverse(n).
     Then check if all the numbers in the sum are odd. If true add to the answer.
     >>> solution(1000000000)
