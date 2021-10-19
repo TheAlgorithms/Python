@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from enum import Enum, unique
 
+
 @unique
 class BinaryUnit(Enum):
     yotta = 80
@@ -22,6 +23,7 @@ class BinaryUnit(Enum):
     giga = 30
     mega = 20
     kilo = 10
+
 
 @unique
 class SIUnit(Enum):
@@ -47,7 +49,7 @@ class SIUnit(Enum):
     yocto = -24
 
     @classmethod
-    def get_positive(cls: SI_Unit) -> dict:
+    def get_positive(cls: SIUnit) -> dict:
         """
         Returns a dictionary with only the elements of this enum
         that has a positive value
@@ -59,23 +61,23 @@ class SIUnit(Enum):
         >>> dict(inc)
         {'giga': 9, 'mega': 6, 'kilo': 3, 'hecto': 2, 'deca': 1}
         """
-        return {unit.name:unit.value for unit in cls if unit.value > 0}
+        return {unit.name: unit.value for unit in cls if unit.value > 0}
 
     @classmethod
-    def get_negative(cls: SI_Unit) -> dict:
+    def get_negative(cls: SIUnit) -> dict:
         """
         Returns a dictionary with only the elements of this enum
         that has a negative value
+        @example
         >>> from itertools import islice
         >>> negative = SIUnit.get_negative()
         >>> inc = iter(negative.items())
-        >>> dict(islice(inc, len(negative) // 2)) 
+        >>> dict(islice(inc, len(negative) // 2))
         {'deci': -1, 'centi': -2, 'milli': -3, 'micro': -6, 'nano': -9}
         >>> dict(inc)
         {'pico': -12, 'femto': -15, 'atto': -18, 'zepto': -21, 'yocto': -24}
         """
-        return {unit.name:unit.value for unit in cls if unit.value < 0}
-
+        return {unit.name: unit.value for unit in cls if unit.value < 0}
 
 
 def add_si_prefix(value: float) -> str:
@@ -97,7 +99,7 @@ def add_binary_prefix(value: float) -> str:
     """
     Function that converts a number to his version with Binary prefix
     @input value (an integer)
-    @example: 
+    @example:
     >>> add_binary_prefix(65536)
     '64.0 kilo'
     """
