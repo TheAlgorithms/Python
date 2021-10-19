@@ -80,7 +80,7 @@ def get_xt() -> tuple:
            [0., 1.],
            [0., 1.]]))
     """
-    X = [
+    x_input = [
         [0, 0],
         [1, 0],
         [2, 0],
@@ -104,17 +104,17 @@ def get_xt() -> tuple:
         [100, 3],
     ]
 
-    X = np.array(X)
+    x_input = np.array(x_input)
 
-    T = np.zeros((21, 2))
-    labels = (X[:, 1] > 2) + 0
-    for t in range(T.shape[0]):
-        T[t, labels[t]] = 1
+    t_input = np.zeros((21, 2))
+    labels = (x_input[:, 1] > 2) + 0
+    for t in range(t_input.shape[0]):
+        t_input[t, labels[t]] = 1
 
-    return (X, T)
+    return (x_input, t_input)
 
 
-def get_x_by_t(X_input: np.ndarray, T_input: np.ndarray) -> tuple:
+def get_x_by_t(x_input: np.ndarray, t_input: np.ndarray) -> tuple:
     """
     >>> get_x_by_t([[1,1],[2,2]], [[1,0],[0,1]])
     (array([[1, 1]]), array([[2, 2]]))
@@ -127,11 +127,11 @@ def get_x_by_t(X_input: np.ndarray, T_input: np.ndarray) -> tuple:
     x_1 = []
     x_2 = []
 
-    for ix, t in enumerate(T_input):
+    for ix, t in enumerate(t_input):
         if t[0] == 1:
-            x_1.append(X_input[ix])
+            x_1.append(x_input[ix])
         else:
-            x_2.append(X_input[ix])
+            x_2.append(x_input[ix])
 
     x_1 = np.array(x_1)
     x_2 = np.array(x_2)
@@ -182,13 +182,13 @@ def main() -> None:
     Prediction Label : [1]
     """
     print("\n\nStep 1: Get X, T training data.")
-    X, T = get_xt()
+    x_input, t_input = get_xt()
 
     print(
         """\n\nStep 2: Get X by classes in T, i.e. all X points of
         class 1 as x_1, all points of class 2 as x_2."""
     )
-    x_1, x_2 = get_x_by_t(X, T)
+    x_1, x_2 = get_x_by_t(x_input, t_input)
 
     print(
         """\n\nStep 3: Get means of X by class. i.e. m1_mat
@@ -236,8 +236,8 @@ def main() -> None:
     print(j_w)
 
     print("\n\nStep 8: Perform Prediction on last data point in the training set.")
-    point = X[0].reshape(2, 1)
-    true_label = T[0]
+    point = x_input[0].reshape(2, 1)
+    true_label = t_input[0]
     print("Point      :", np.transpose(point))
     print("True Label :", np.argmax(np.transpose(true_label)) + 1)
     # Remember numpy is indexed from 0, but our labels are 1 and 2. (not 0 and 1).
