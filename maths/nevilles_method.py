@@ -9,7 +9,7 @@
 """
 
 
-def neville_interpolate(x, y, x0) -> list:
+def neville_interpolate(x: list, y: list, x0: int) -> list:
     """
        Interpolate and evaluate a polynomial using Neville's method.
 
