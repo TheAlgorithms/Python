@@ -1,9 +1,10 @@
 """
 Implementation of double ended queue.
 """
+import collections  # just for doctests
 from dataclasses import dataclass
 from typing import Any
-import collections # just for doctests
+
 
 class Deque:
     """
@@ -40,14 +41,16 @@ class Deque:
     _len: int
         the number of nodes
     """
+
     __slots__ = ["_front", "_back", "_len"]
 
     @dataclass
     class _Node:
         """
-        Representation of a node. 
+        Representation of a node.
         Contains a value and a pointer to the next node as well as to the previous one.
         """
+
         val: Any = None
         next: "_Node" = None
         prev: "_Node" = None
@@ -61,6 +64,7 @@ class Deque:
         _cur: _Node
             the current node of the iteration.
         """
+
         __slots__ = ["_cur"]
 
         def __init__(self, cur: "_Node") -> None:
@@ -125,7 +129,7 @@ class Deque:
             # connect nodes
             self._back.next = node
             node.prev = self._back
-            self._back = node # assign new back to the new node
+            self._back = node  # assign new back to the new node
 
             self._len += 1
 
@@ -156,7 +160,7 @@ class Deque:
             # connect nodes
             node.next = self._front
             self._front.prev = node
-            self._front = node # assign new front to the new node
+            self._front = node  # assign new front to the new node
 
             self._len += 1
 
@@ -166,7 +170,7 @@ class Deque:
     def extend(self, iter: list) -> None:
         """
         Appends every value of iter to the end of the deque.
-        
+
         >>> d = Deque([1, 2, 3])
         >>> d.extend([4, 5])
         >>> print(d)
@@ -183,7 +187,7 @@ class Deque:
     def extendleft(self, iter: list) -> None:
         """
         Appends every value of iter to the beginning of the deque.
-        
+
         >>> d = Deque([1, 2, 3])
         >>> d.extendleft([0, -1])
         >>> print(d)
@@ -222,8 +226,10 @@ class Deque:
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._back
-        self._back = self._back.prev # set new back
-        self._back.next = None # drop the last node - python will deallocate memory automatically
+        self._back = self._back.prev  # set new back
+        self._back.next = (
+            None  # drop the last node - python will deallocate memory automatically
+        )
 
         self._len -= 1
 
@@ -254,7 +260,7 @@ class Deque:
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._front
-        self._front = self._front.next # set new front and drop the first node
+        self._front = self._front.next  # set new front and drop the first node
         self._front.prev = None
 
         self._len -= 1
@@ -370,4 +376,4 @@ class Deque:
             l.append(aux.val)
             aux = aux.next
 
-        return '[' + ', '.join(repr(x) for x in l) + ']'
+        return "[" + ", ".join(repr(x) for x in l) + "]"
