@@ -45,7 +45,7 @@ The array elements are taken from a Standard Normal Distribution , having mean =
 ```python
 >>>import matplotlib.pyplot as plt
 
-    # Normal Disrtibution QuickSort is red
+# Normal Disrtibution QuickSort is red
 >>> plt.plot([1,2,4,16,32,64,128,256,512,1024,2048],[1,1,6,15,43,136,340,800,2156,6821,16325],linewidth=2, color='r')
 
     #Ordinary QuickSort is green
