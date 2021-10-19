@@ -346,7 +346,7 @@ class Deque:
         3
 
         >>> d2 = collections.deque([1, 2, 3])
-        >>> for v in d:
+        >>> for v in d2:
         ...     print(v)
         1
         2
