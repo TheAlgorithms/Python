@@ -10,6 +10,7 @@ pillow
 qiskit
 requests
 scikit-fuzzy
+selenium
 sklearn
 statsmodels
 sympy
