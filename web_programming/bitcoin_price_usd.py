@@ -8,22 +8,32 @@ import pandas as pd
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 
-ROOT_URL = "https://finance.yahoo.com/quote/BTC-USD/history/"
 REQUEST_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 \
     (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
 }
 
+# -https://finance.yahoo.com/quote/BTC-USD/history?period1=1633824000&period2=1634342400&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
+# -https://finance.yahoo.com/quote/BTC-USD/history?period1=1578182400&period2=1578700800&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
+# -https://finance.yahoo.com/quote/BTC-USD/history?period1=1545696000&period2=1546214400&interval=1d&filter=history&frequency=1d&includeAdjustedClose=true
 
-def btc_close_price() -> List[float]:
+
+def btc_close_price(url) -> List[float]:
     """
     a function that gets a list closing prices of bitcoin in USD
-    from the past seven days
+    from the past seven days.
+    the urls are being shortened by bitly in order for it to be flake8 compliant.
+    >>> btc_close_price("https://yhoo.it/3pcVYYt")
+    [60892.18, 61593.95, 57321.52, 57401.1, 56041.06, 57484.79, 54771.58]
+    >>> btc_close_price("https://yhoo.it/3vnaE8o")
+    [8037.54, 8166.55, 7879.07, 8079.86, 8163.69, 7769.22, 7411.32]
+    >>> btc_close_price("https://yhoo.it/3aQlxGb")
+    [3742.7, 3865.95, 3820.41, 3923.92, 3654.83, 3857.3, 3815.49]
     """
     options = Options()
     firefox_browser = Firefox(options=options)
     firefox_browser.implicitly_wait(30)
-    firefox_browser.get(ROOT_URL)
+    firefox_browser.get(url)
     # soup = firefox_browser.find_element_by_tag_name('table')
     soup = firefox_browser.page_source
 
@@ -36,4 +46,5 @@ def btc_close_price() -> List[float]:
 
 
 if __name__ == "__main__":
-    print(btc_close_price())
+    url = "https://finance.yahoo.com/quote/BTC-USD/history/"
+    print(btc_close_price(url))
