@@ -26,16 +26,28 @@ from collections import namedtuple
 
 from_to = namedtuple("from_to", "from_ to")
 
+TYPE_CONVERSION = {
+    "millimeter": "mm",
+    "centimeter": "cm",
+    "meter": "m",
+    "kilometer": "km",
+    "inch": "in",
+    "inche": "in",  # Trailing 's' has been stripped off
+    "feet": "ft",
+    "foot": "ft",
+    "yard": "yd",
+    "mile": "mi",
+}
+
 METRIC_CONVERSION = {
-    "meter": from_to(1, 1),
-    "kilometer": from_to(1000, 0.001),
-    "feet": from_to(0.3048, 3.28084),
-    "inch": from_to(0.0254, 39.3701),
-    "centimeter": from_to(0.01, 100),
-    "yard": from_to(0.9144, 1.09361),
-    "foot": from_to(0.3048, 3.28084),
-    "mile": from_to(1609.34, 0.000621371),
-    "millimeter": from_to(0.001, 1000),
+    "mm": from_to(0.001, 1000),
+    "cm": from_to(0.01, 100),
+    "m": from_to(1, 1),
+    "km": from_to(1000, 0.001),
+    "in": from_to(0.0254, 39.3701),
+    "ft": from_to(0.3048, 3.28084),
+    "yd": from_to(0.9144, 1.09361),
+    "mi": from_to(1609.34, 0.000621371),
 }
 
 
@@ -43,7 +55,9 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
     """
     Conversion between length units.
 
-    >>> length_conversion(4, "meter", "feet")
+    >>> length_conversion(4, "METER", "FEET")
+    13.12336
+    >>> length_conversion(4, "M", "FT")
     13.12336
     >>> length_conversion(1, "meter", "kilometer")
     0.001
@@ -73,29 +87,33 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
     36.00001944
     >>> length_conversion(4, "mile", "kilometer")
     6.43736
-    >>> length_conversion(2, "mile", "inch")
+    >>> length_conversion(2, "miles", "InChEs")
     126719.753468
     >>> length_conversion(3, "millimeter", "centimeter")
     0.3
-    >>> length_conversion(3, "millimeter", "inch")
+    >>> length_conversion(3, "mm", "in")
     0.1181103
     >>> length_conversion(4, "wrongUnit", "inch")
     Traceback (most recent call last):
       ...
-    ValueError: Invalid 'from_type' value: 'wrongUnit'  Supported values are:
-    meter, kilometer, feet, inch, centimeter, yard, foot, mile, millimeter
+    ValueError: Invalid 'from_type' value: 'wrongUnit'.
+    Conversion abbreviations are: mm, cm, m, km, in, ft, yd, mi
     """
-    if from_type not in METRIC_CONVERSION:
+    new_from = from_type.lower().rstrip("s")
+    new_from = TYPE_CONVERSION.get(new_from, new_from)
+    new_to = to_type.lower().rstrip("s")
+    new_to = TYPE_CONVERSION.get(new_to, new_to)
+    if new_from not in METRIC_CONVERSION:
         raise ValueError(
-            f"Invalid 'from_type' value: {from_type!r}  Supported values are:\n"
-            + ", ".join(METRIC_CONVERSION)
+            f"Invalid 'from_type' value: {from_type!r}.\n"
+            f"Conversion abbreviations are: {', '.join(METRIC_CONVERSION)}"
         )
-    if to_type not in METRIC_CONVERSION:
+    if new_to not in METRIC_CONVERSION:
         raise ValueError(
-            f"Invalid 'to_type' value: {to_type!r}.  Supported values are:\n"
-            + ", ".join(METRIC_CONVERSION)
+            f"Invalid 'to_type' value: {to_type!r}.\n"
+            f"Conversion abbreviations are: {', '.join(METRIC_CONVERSION)}"
         )
-    return value * METRIC_CONVERSION[from_type].from_ * METRIC_CONVERSION[to_type].to
+    return value * METRIC_CONVERSION[new_from].from_ * METRIC_CONVERSION[new_to].to
 
 
 if __name__ == "__main__":
