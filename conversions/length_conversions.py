@@ -81,11 +81,7 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
     0.1181103
     >>> length_conversion(4, "wrongUnit", "inch")
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest __main__.length_conversion[18]>", line 1, in <module>
-        length_conversion(4, "wrongUnit", "inch")
-      File "<string>", line 85, in length_conversion
+      ...
     ValueError: Invalid 'from_type' value: 'wrongUnit'  Supported values are:
     meter, kilometer, feet, inch, centimeter, yard, foot, mile, millimeter
     """
