@@ -5,9 +5,9 @@ def read_from_zigzag(given_string :str,num_rows :int) -> str:
   """
   You are given a string and number of rows, you need to form zigzag pattern based on it and then return the string as you will normally read.
   example:
-  given_string = "THISISEXAMPLE"
+  given_string = 'THISISEXAMPLE'
   num_rows = 4
-  Output: "TEEHSXLIIAPSM"
+  Output: 'TEEHSXLIIAPSM'
   Explantion:
   T     E     E
   H   S X   L 
@@ -15,6 +15,12 @@ def read_from_zigzag(given_string :str,num_rows :int) -> str:
   S     M 
   :param given_string,num_rows:
   :return: String 
+  
+  >>> read_from_zigzag('THISISEXAMPLE',4)
+  'TEEHSXLIIAPSM'
+  
+  >>> read_from_zigzag('ABCDEFGHIJK',4)
+  'AGBFHCEIKDJ'
   """
   if num_rows == 1 or num_rows >= len(given_string):
     return given_string
@@ -34,4 +40,6 @@ def read_from_zigzag(given_string :str,num_rows :int) -> str:
 
 
 if __name__ == "__main__":
-    print(read_from_zigzag("THISISEXAMPLE",4))
+  import doctest
+  doctest.testmod()
+  print(read_from_zigzag("THISISEXAMPLE",4))
