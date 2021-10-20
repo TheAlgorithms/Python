@@ -31,7 +31,7 @@ def odd_digits(num: int) -> bool:
     return True
 
 
-def solution(n: int = 1_000_000_000) -> int:
+def solution(max_num: int = 1_000_000_000) -> int:
     """
     To evaluate the solution, use solution()
     >>> solution(1000)
@@ -45,7 +45,7 @@ def solution(n: int = 1_000_000_000) -> int:
     # All single digit numbers reverse to themselves, so their sums are even
     # Therefore at least one digit in their sum is even
     # Last digit cannot be 0, else it causes leading zeros in reverse
-    for num in range(11, n):
+    for num in range(11, max_num):
         if num % 10 == 0:
             continue
         num_sum = num + int(str(num)[::-1])
