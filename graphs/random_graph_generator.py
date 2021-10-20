@@ -13,14 +13,16 @@ def random_graph(
     vertices_number: int, probability: float, directed: bool = False
 ) -> dict:
     """
-    Function that generates a random graph
+    Generate a random graph
     @input: vertices_number (number of vertices),
             probability (probability that a generic edge (u,v) exists),
             directed (if True: graph will be a directed graph,
                       otherwise it will be an undirected graph)
     @examples:
+    >>> random.seed(1)
     >>> random_graph(4, 0.5)
     {0: [1], 1: [0, 2, 3], 2: [1, 3], 3: [1, 2]}
+    >>> random.seed(1)
     >>> random_graph(4, 0.5, True)
     {0: [1], 1: [2, 3], 2: [3], 3: []}
     """
@@ -33,7 +35,6 @@ def random_graph(
     if probability <= 0:
         return graph
 
-    random.seed(1)
     # for each couple of nodes, add an edge from u to v
     # if the number randomly generated is greater than probability probability
     for i in range(vertices_number):
@@ -48,7 +49,7 @@ def random_graph(
 
 def complete_graph(vertices_number: int) -> dict:
     """
-    Function that generates a complete graph with vertices_number vertices.
+    Generate a complete graph with vertices_number vertices.
     @input: vertices_number (number of vertices),
             directed (False if the graph is undirected, True otherwise)
     @example:
