@@ -10,7 +10,7 @@ def search(
     goal: list[int],
     cost: int,
     heuristic: list[list[int]],
-) -> list[list[int]]:
+) -> tuple[list[list[int]], list[list[int]]]:
 
     closed = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))
@@ -31,7 +31,7 @@ def search(
 
     while not found and not resign:
         if len(cell) == 0:
-            return "FAIL"
+            raise ValueError("Algorithm is unable to find solution")
         else:  # to choose the least costliest action so as to move closer to the goal
             cell.sort()
             cell.reverse()
@@ -67,11 +67,7 @@ def search(
     path = []
     for i in range(len(invpath)):
         path.append(invpath[len(invpath) - 1 - i])
-    print("ACTION MAP")
-    for i in range(len(action)):
-        print(action[i])
-
-    return path
+    return path, action
 
 
 if __name__ == "__main__":
@@ -97,6 +93,11 @@ if __name__ == "__main__":
                 # added extra penalty in the heuristic map
                 heuristic[i][j] = 99
 
-    a = search(grid, init, goal, cost, heuristic)
-    for i in range(len(a)):
-        print(a[i])
+    path, action = search(grid, init, goal, cost, heuristic)
+
+    print("ACTION MAP")
+    for i in range(len(action)):
+        print(action[i])
+
+    for i in range(len(path)):
+        print(path[i])
