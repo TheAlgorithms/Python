@@ -31,10 +31,8 @@ def base32_decode(encoded_bytes: bytes) -> str:
     """
 
     # decode the bytes from base32
-    decoded_bytes = base64.b32decode(encoded_bytes)
-    # decode the bytes-like object to return as a string
-    decoded_string = decoded_bytes.decode("utf-8")
-    return decoded_string
+    # then, decode the bytes-like object to return as a string
+    return base64.b32decode(encoded_bytes).decode("utf-8")
 
 
 if __name__ == "__main__":
