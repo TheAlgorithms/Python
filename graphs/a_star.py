@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-# the actions we can take
-# go up  # go left  # go down  # go right
-DIRECTIONS = [[-1, 0], [0, -1], [1, 0], [0, 1]]
+DIRECTIONS = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # left  # down  # right  # up
 
 
 # function to search the path
