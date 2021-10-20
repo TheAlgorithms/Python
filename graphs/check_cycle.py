@@ -7,9 +7,11 @@ def chk_cycle(graph: dict) -> bool:
     """
     Returns True if graph is cyclic else False
 
-    >>> chk_cycle({0:[], 1:[0, 3], 2:[0, 4], 3:[5], 4:[5], 5:[]})
+    >>> graph1 = {0:[], 1:[0, 3], 2:[0, 4], 3:[5], 4:[5], 5:[]}
+    >>> chk_cycle(graph1)
     False
-    >>> chk_cycle({0:[1, 2], 1:[2], 2:[0, 3], 3:[3]})
+    >>> graph2 = {0:[1, 2], 1:[2], 2:[0, 3], 3:[3]}
+    >>> chk_cycle(graph2)
     True
     """
     # Keep track of visited nodes
@@ -24,12 +26,19 @@ def chk_cycle(graph: dict) -> bool:
 
 
 def depth_first_search(graph: dict, vertex: int, visited: set, rec_stk: set) -> bool:
+    """
+    Recur for all neighbours.
+    If any neighbour is visited and in rec_stk then graph is cyclic.
+
+    >>> graph = {0:[], 1:[0, 3], 2:[0, 4], 3:[5], 4:[5], 5:[]}
+    >>> vertex, visited, rec_stk = 0, set(), set()
+    >>> depth_first_search(graph, vertex, visited, rec_stk)
+    False
+    """
     # Mark current node as visited and add to recursion stack
     visited.add(vertex)
     rec_stk.add(vertex)
 
-    # Recur for all neighbours
-    # If any neighbour is visited and in rec_stk then graph is cyclic
     for node in graph[vertex]:
         if node not in visited:
             if depth_first_search(graph, node, visited, rec_stk):
