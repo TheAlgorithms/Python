@@ -16,8 +16,9 @@ def check_polygon(nums: list[float]) -> bool:
     False
     >>> check_polygon([1, 4.3, 5.2, 12.2])
     False
-    >>> nums = [3, 7, 13, 2];check_polygon(nums); nums
-    False
+    >>> nums = [3, 7, 13, 2]
+    >>> _ = check_polygon(nums) #   Run function, do not show answer in output
+    >>> nums #  Check numbers are not reordered
     [3, 7, 13, 2]
     >>> check_polygon([])
     Traceback (most recent call last):
