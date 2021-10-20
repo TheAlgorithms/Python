@@ -149,7 +149,7 @@ def prime_implicant_chart(
 def main() -> None:
     no_of_variable = int(input("Enter the no. of variables\n"))
     minterms = [
-        int(x)
+        float(x)
         for x in input(
             "Enter the decimal representation of Minterms 'Spaces Separated'\n"
         ).split()
