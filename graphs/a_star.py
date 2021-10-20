@@ -83,13 +83,6 @@ if __name__ == "__main__":
         [0, 0, 0, 0, 1, 0],
     ]
 
-    """
-    heuristic = [[9, 8, 7, 6, 5, 4],
-                [8, 7, 6, 5, 4, 3],
-                [7, 6, 5, 4, 3, 2],
-                [6, 5, 4, 3, 2, 1],
-                [5, 4, 3, 2, 1, 0]]"""
-
     init = [0, 0]
     # all coordinates are given in format [y,x]
     goal = [len(grid) - 1, len(grid[0]) - 1]
