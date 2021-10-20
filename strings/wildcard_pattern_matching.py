@@ -7,7 +7,7 @@ The matching should cover the entire input string (not partial).
 """
 
 
-def string_match_pattern(input_string: str, pattern: str) -> bool:
+def match_pattern(input_string: str, pattern: str) -> bool:
     """
     uses bottom-up dynamic programming solution for matching the input
     string with a given pattern.
@@ -32,25 +32,25 @@ def string_match_pattern(input_string: str, pattern: str) -> bool:
 
     Examples
     -------
-    >>> string_match_pattern("aab", "c*a*b")
+    >>> match_pattern("aab", "c*a*b")
     True
-    >>> string_match_pattern("dabc", "*abc")
+    >>> match_pattern("dabc", "*abc")
     False
-    >>> string_match_pattern("aaa", "aa")
+    >>> match_pattern("aaa", "aa")
     False
-    >>> string_match_pattern("aaa", "a.a")
+    >>> match_pattern("aaa", "a.a")
     True
-    >>> string_match_pattern("aaab", "aa*")
+    >>> match_pattern("aaab", "aa*")
     False
-    >>> string_match_pattern("aaab", ".*")
+    >>> match_pattern("aaab", ".*")
     True
-    >>> string_match_pattern("a", "bbbb")
+    >>> match_pattern("a", "bbbb")
     False
-    >>> string_match_pattern("", "bbbb")
+    >>> match_pattern("", "bbbb")
     False
-    >>> string_match_pattern("a", "")
+    >>> match_pattern("a", "")
     False
-    >>> string_match_pattern("", "")
+    >>> match_pattern("", "")
     True
     """
 
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     pattern = "c*a*b"
 
     # using function to check whether given string matches the given pattern
-    if string_match_pattern(input_string, pattern):
+    if match_pattern(input_string, pattern):
         print(f"{input_string} matches the given pattern {pattern}")
     else:
         print(f"{input_string} does not match with the given pattern {pattern}")
