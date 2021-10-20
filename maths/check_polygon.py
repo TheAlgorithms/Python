@@ -23,7 +23,7 @@ def check_polygon(nums: list[float]) -> bool:
     >>> check_polygon([])
     Traceback (most recent call last):
         ...
-    ValueError: List must have at least two values
+    ValueError: Monogons and Digons are not polygons in the Euclidean space
     >>> check_polygon([-2, 5, 6])
     Traceback (most recent call last):
         ...
