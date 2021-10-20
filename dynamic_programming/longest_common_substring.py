@@ -8,16 +8,18 @@ order and is necessarily continuous.
 Name: Atharva Patil
 Github Profile link:  https://github.com/atharvapatil123 
 """
- 
+"""
+Parameters
+
+X: 1st string
+Y: 2nd string
+n: length of X string
+m: length of Y string
+"""
+
 def longest_common_substring(X: str, Y: str, n: int, m: int):
+
     """
-    Parameters
-
-    X: 1st string
-    Y: 2nd string
-    n: length of X string
-    m: length of Y string
-
     Returns
 
     The funtion longest_common_substring returns 2 things:
@@ -85,6 +87,12 @@ def longest_common_substring(X: str, Y: str, n: int, m: int):
 # Driver Code
 
 if __name__ == "__main__":
+
+    import doctest
+
+    doctest.testmod()
+
+
     X = "abcde"
     Y = "abfcde"
     
@@ -119,6 +127,4 @@ if __name__ == "__main__":
         print('\nLength of Longest Common Substring is', length)
         print('Longest Common Substring is', string)
 
-    import doctest
 
-    doctest.testmod()
