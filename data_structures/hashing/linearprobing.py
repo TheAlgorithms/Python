@@ -1,9 +1,12 @@
 import numpy as np
 
 # Linear probing program
-class Hash_table() :
+class hashTable() :
     
-    def __init__(self,size) :
+    def __init__(self,size: int) -> None:
+        """
+        :param size as integer
+        """
         self.size = size
         self.hashtable = np.array([None]*self.size)
 
@@ -25,7 +28,7 @@ class Hash_table() :
 
             return index
 
-    def insert(self,key: int):
+    def insert(self,key: int) -> None:
         """
         this function inserts an element into the hash table.
         :param: key
@@ -50,7 +53,7 @@ class Hash_table() :
         else :
             return None
 
-    def print_hashtable(self) :
+    def print_hashtable(self) -> None:
         """
         prints the hash table when called
         """
@@ -59,7 +62,7 @@ class Hash_table() :
             print(x,"\t",self.hashtable[x])
 
 # Initializing hash table of size 10
-HT = Hash_table(10)
+HT = hashTable(10)
 
 # Inserting only 5 values to make λ <= 0.5
 HT.insert(10)
@@ -82,7 +85,7 @@ else :
 '''Hash table is :-
 
 index 	 value
-0 	 10
+0 	 10T
 1 	 90
 2 	 None
 3 	 None
