@@ -146,7 +146,7 @@ def prime_implicant_chart(
     return chart
 
 
-def main():
+def main() -> None:
     no_of_variable = int(input("Enter the no. of variables\n"))
     minterms = [
         int(x)
