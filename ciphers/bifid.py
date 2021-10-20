@@ -76,9 +76,9 @@ class BifidCipher:
 
         second_step = first_step.reshape(2 * len(message))
         encoded_message = ""
-        for numbersIndex in range(len(message)):
-            index1 = int(second_step[numbersIndex * 2])
-            index2 = int(second_step[(numbersIndex * 2) + 1])
+        for numbers_index in range(len(message)):
+            index1 = int(second_step[numbers_index * 2])
+            index2 = int(second_step[(numbers_index * 2) + 1])
             letter = self.numbers_to_letter(index1, index2)
             encoded_message = encoded_message + letter
 
@@ -101,9 +101,9 @@ class BifidCipher:
 
         second_step = first_step.reshape((2, len(message)))
         decoded_message = ""
-        for numbersIndex in range(len(message)):
-            index1 = int(second_step[0, numbersIndex])
-            index2 = int(second_step[1, numbersIndex])
+        for numbers_index in range(len(message)):
+            index1 = int(second_step[0, numbers_index])
+            index2 = int(second_step[1, numbers_index])
             letter = self.numbers_to_letter(index1, index2)
             decoded_message = decoded_message + letter
 
