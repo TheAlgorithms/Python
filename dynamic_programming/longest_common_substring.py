@@ -18,22 +18,21 @@ m: length of string2
 """
 
 def longest_common_substring(string1: str, string2: str, len_of_string1: int, len_of_string2: int) -> (int, str) : 
-    import doctest
 
-    doctest.testmod()
 
     """
-    longest_common_substring("coding", "code")
-    length = 3, string = 'cod')
+    >>> longest_common_substring("coding", "code", 6, 4)
+    (3, 'cod')
 
-    longest_common_substring("fishing", "fighting")
-    length = 3, string = 'ing')
+    >>> longest_common_substring("fishing", "fighting", 7, 8)
+    (3, 'ing')
 
-    longest_common_substring("health", "wealth")
-    length = 5, string = 'ealth'
+    >>> longest_common_substring("health", "wealth", 6, 6)
+    (5, 'ealth')
 
-    longest_common_substring("no", "yes")
-    length = 0, string = none
+    >>> longest_common_substring("no", "yes", 2, 3)
+    (0, '')
+
     """
 
     res = 0 # res variable is used to store the result: Maximum length of common subtring
@@ -122,5 +121,7 @@ if __name__ == "__main__":
     else:        
         print('\nLength of Longest Common Substring is', length)
         print('Longest Common Substring is', string)
+    
+    # doctest.testmod(name ='longest_common_substring', verbose = True)
 
 
