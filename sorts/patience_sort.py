@@ -29,7 +29,7 @@ class Stack(list):
 
 
 def patience_sort(collection: list) -> list:
-    """A pure implementation of quick sort algorithm in Python
+    """A pure implementation of patience sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside

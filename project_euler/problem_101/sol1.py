@@ -202,7 +202,7 @@ def solution(func: Callable[[int], int] = question_function, order: int = 10) ->
     ]
 
     ret: int = 0
-    poly: int
+    poly: Callable[[int], int]
     x_val: int
 
     for poly in polynomials:
