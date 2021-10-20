@@ -22,7 +22,7 @@ Here a brute force solution is used to find and count the reversible numbers.
 from __future__ import annotations
 
 
-def check_if_odd(sum: int) -> int:
+def check_if_odd(sum: int = 36) -> int:
     """
     Check if the last digit in the sum is even or odd. If even return 0.
     If odd then floor division by 10 is used to remove the last number.
@@ -39,7 +39,7 @@ def check_if_odd(sum: int) -> int:
     return 1
 
 
-def find_reverse_nr(nr: int) -> int:
+def find_reverse_nr(nr: int = 36) -> int:
     """
     Reverses the given number. Does not work with number that end in zero.
     >>> find_reverse_nr(36)
@@ -57,7 +57,7 @@ def find_reverse_nr(nr: int) -> int:
     return reverse
 
 
-def solution(nr: int) -> int:
+def solution(nr: int = 1000000000) -> int:
     """
     Loops over the range of numbers.
     Checks if they have ending zeros which disqualifies them from being reversible.
