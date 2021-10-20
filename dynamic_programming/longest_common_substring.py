@@ -17,16 +17,12 @@ n: length of string1
 m: length of string2
 """
 
-def longest_common_substring(string1: str, string2: str, len_of_string1: int, len_of_string2: int):
+def longest_common_substring(string1: str, string2: str, len_of_string1: int, len_of_string2: int) -> (int, str) : 
+    import doctest
+
+    doctest.testmod()
 
     """
-    Returns
-
-    The funtion longest_common_substring returns 2 things:
-    1. length: This is the length of longest common substring of the 2 strings
-    2. string: This is the actual string (longest common substring)
-
-
     longest_common_substring("coding", "code")
     length = 3, string = 'cod')
 
