@@ -30,7 +30,7 @@ def check_polygon(nums: list[float]) -> bool:
     ValueError: All values must be greater than 0
     """
     if len(nums) < 2:
-        raise ValueError("List must have at least two values")
+        raise ValueError("Monogons and Digons are not polygons in the Euclidean space")
     if any(i <= 0 for i in nums):
         raise ValueError("All values must be greater than 0")
     copy_nums = nums.copy()
