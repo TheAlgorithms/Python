@@ -42,7 +42,7 @@ class IIRFilter:
             >>> import scipy.signal
             >>> b_coeffs, a_coeffs = scipy.signal.butter(2, 1000,
             ...                                          btype='lowpass',
-            ...                                          fs=samplerate)
+            ...                                          fs=48000)
             >>> filt = IIRFilter(2)
             >>> filt.set_coefficients(a_coeffs, b_coeffs)
         """
