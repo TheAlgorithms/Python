@@ -11,7 +11,7 @@ import numpy as np
 
 
 class BifidCipher:
-    def __init__(self):
+    def __init__(self) -> None:
         SQUARE = [
             ["a", "b", "c", "d", "e"],
             ["f", "g", "h", "i", "k"],
