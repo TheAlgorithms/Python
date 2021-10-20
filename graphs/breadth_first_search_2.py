@@ -13,6 +13,7 @@ while Q is non-empty:
             add w to Q (at the end)
 """
 from __future__ import annotations
+
 from queue import Queue
 
 
