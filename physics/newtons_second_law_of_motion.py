@@ -63,7 +63,7 @@ def newtons_second_law_of_motion(mass: float, acceleration: float) -> float:
     force = float()
     try:
         force = mass * acceleration
-    except Exception as e:
+    except Exception:
         return -0.0
     return force
 
