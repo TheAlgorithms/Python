@@ -1,3 +1,6 @@
+<!-- This Code helpful for your Algorithms and Colledge Project Also -->
+
+Read more: https://html.com/tags/comment-tag/#ixzz79ojXE3xG
 <div align="center">
 <!-- Title: -->
   <a href="https://github.com/TheAlgorithms/">
