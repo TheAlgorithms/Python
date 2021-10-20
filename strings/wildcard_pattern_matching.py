@@ -7,7 +7,7 @@ The matching should cover the entire input string (not partial).
 """
 
 
-def string_match_pattern(input_string: str, pattern: str) -> bool:
+def match_pattern(input_string: str, pattern: str) -> bool:
     """
     uses bottom-up dynamic programming solution for matching the input
     string with a given pattern.
