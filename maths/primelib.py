@@ -8,7 +8,6 @@ prime numbers and whole numbers.
 
 Overview:
 
-isPrime(number)
 sieveEr(N)
 getPrimeNumbers(N)
 primeFactorization(number)
@@ -38,41 +37,7 @@ goldbach(number)  // Goldbach's assumption
 
 """
 
-from math import sqrt
-
-
-def isPrime(number):
-    """
-    input: positive integer 'number'
-    returns true if 'number' is prime otherwise false.
-    """
-
-    # precondition
-    assert isinstance(number, int) and (
-        number >= 0
-    ), "'number' must been an int and positive"
-
-    status = True
-
-    # 0 and 1 are none primes.
-    if number <= 1:
-        status = False
-
-    for divisor in range(2, int(round(sqrt(number))) + 1):
-
-        # if 'number' divisible by 'divisor' then sets 'status'
-        # of false and break up the loop.
-        if number % divisor == 0:
-            status = False
-            break
-
-    # precondition
-    assert isinstance(status, bool), "'status' must been from type bool"
-
-    return status
-
-
-# ------------------------------------------
+from prime_check import prime_check
 
 
 def sieveEr(N):
@@ -129,7 +94,7 @@ def getPrimeNumbers(N):
     # if a number is prime then appends to list 'ans'
     for number in range(2, N + 1):
 
-        if isPrime(number):
+        if prime_check(number):
 
             ans.append(number)
 
@@ -164,11 +129,11 @@ def primeFactorization(number):
         ans.append(number)
 
     # if 'number' not prime then builds the prime factorization of 'number'
-    elif not isPrime(number):
+    elif not prime_check(number):
 
         while quotient != 1:
 
-            if isPrime(factor) and (quotient % factor == 0):
+            if prime_check(factor) and (quotient % factor == 0):
                 ans.append(factor)
                 quotient /= factor
             else:
@@ -317,8 +282,8 @@ def goldbach(number):
         isinstance(ans, list)
         and (len(ans) == 2)
         and (ans[0] + ans[1] == number)
-        and isPrime(ans[0])
-        and isPrime(ans[1])
+        and prime_check(ans[0])
+        and prime_check(ans[1])
     ), "'ans' must contains two primes. And sum of elements must been eq 'number'"
 
     return ans
@@ -462,11 +427,11 @@ def getPrime(n):
 
         # if ans not prime then
         # runs to the next prime number.
-        while not isPrime(ans):
+        while not prime_check(ans):
             ans += 1
 
     # precondition
-    assert isinstance(ans, int) and isPrime(
+    assert isinstance(ans, int) and prime_check(
         ans
     ), "'ans' must been a prime number and from type int"
 
@@ -486,7 +451,7 @@ def getPrimesBetween(pNumber1, pNumber2):
 
     # precondition
     assert (
-        isPrime(pNumber1) and isPrime(pNumber2) and (pNumber1 < pNumber2)
+        prime_check(pNumber1) and prime_check(pNumber2) and (pNumber1 < pNumber2)
     ), "The arguments must been prime numbers and 'pNumber1' < 'pNumber2'"
 
     number = pNumber1 + 1  # jump to the next number
@@ -495,7 +460,7 @@ def getPrimesBetween(pNumber1, pNumber2):
 
     # if number is not prime then
     # fetch the next prime number.
-    while not isPrime(number):
+    while not prime_check(number):
         number += 1
 
     while number < pNumber2:
@@ -505,7 +470,7 @@ def getPrimesBetween(pNumber1, pNumber2):
         number += 1
 
         # fetch the next prime number.
-        while not isPrime(number):
+        while not prime_check(number):
             number += 1
 
     # precondition

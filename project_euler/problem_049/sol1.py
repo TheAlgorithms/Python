@@ -26,32 +26,8 @@ The bruteforce of this solution will be about 1 sec.
 """
 
 from itertools import permutations
-from math import floor, sqrt
 
-
-def is_prime(number: int) -> bool:
-    """
-    function to check whether the number is prime or not.
-    >>> is_prime(2)
-    True
-    >>> is_prime(6)
-    False
-    >>> is_prime(1)
-    False
-    >>> is_prime(-800)
-    False
-    >>> is_prime(104729)
-    True
-    """
-
-    if number < 2:
-        return False
-
-    for i in range(2, floor(sqrt(number)) + 1):
-        if number % i == 0:
-            return False
-
-    return True
+from maths.prime_check import prime_check
 
 
 def search(target: int, prime_list: list) -> bool:
@@ -84,7 +60,7 @@ def solution():
     >>> solution()
     296962999629
     """
-    prime_list = [n for n in range(1001, 10000, 2) if is_prime(n)]
+    prime_list = [n for n in range(1001, 10000, 2) if prime_check(n)]
     candidates = []
 
     for number in prime_list:

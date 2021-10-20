@@ -12,33 +12,7 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 
-from math import sqrt
-
-
-def is_prime(num: int) -> bool:
-    """
-    Determines whether the given number is prime or not
-
-    >>> is_prime(2)
-    True
-    >>> is_prime(15)
-    False
-    >>> is_prime(29)
-    True
-    >>> is_prime(0)
-    False
-    """
-
-    if num == 2:
-        return True
-    elif num % 2 == 0:
-        return False
-    else:
-        sq = int(sqrt(num)) + 1
-        for i in range(3, sq, 2):
-            if num % i == 0:
-                return False
-    return True
+from maths.prime_check import prime_check
 
 
 def solution(nth: int = 10001) -> int:
@@ -63,11 +37,11 @@ def solution(nth: int = 10001) -> int:
     number = 1
     while count != nth and number < 3:
         number += 1
-        if is_prime(number):
+        if prime_check(number):
             count += 1
     while count != nth:
         number += 2
-        if is_prime(number):
+        if prime_check(number):
             count += 1
     return number
 
