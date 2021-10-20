@@ -2,10 +2,10 @@
 # It Follows The Rule that Length Of Password Should Be At Least 8 Characters
 # And At Least 1 Lower, 1 Upper, 1 Number And 1 Special Character
 
-from string import ascii_uppercase, ascii_lowercase, digits, punctuation
+from string import ascii_lowercase, ascii_uppercase, digits, punctuation
 
 
-def strong_password_detector(password: str) -> str:
+def strong_password_detector(password: str, min_length: int = 8) -> str:
     """
     >>> strong_password_detector('Hwea7$2!')
     'This is a strong Password'
