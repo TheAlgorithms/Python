@@ -17,21 +17,33 @@ init = [0, 0]
 goal = [len(grid) - 1, len(grid[0]) - 1]  # all coordinates are given in format [y,x]
 cost = 1
 
-# the cost map which pushes the path closer to the goal
-heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
-for i in range(len(grid)):
-    for j in range(len(grid[0])):
-        heuristic[i][j] = abs(i - goal[0]) + abs(j - goal[1])
-        if grid[i][j] == 1:
-            heuristic[i][j] = 99  # added extra penalty in the heuristic map
 
+def get_heuristic_map(cost):
+
+    heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            heuristic[i][j] = cost * (abs(i - goal[0]) + abs(j - goal[1]))
+            if grid[i][j] == 1:
+                heuristic[i][j] = 99  # added extra penalty in the heuristic map
+
+    return heuristic
+                
 
 # the actions we can take
 delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # go up  # go left  # go down  # go right
 
 
 # function to search the path
-def search(grid, init, goal, cost, heuristic):
+def search(grid, init, goal, cost, heuristic=getHeuristicMap(cost)):
+
+    if (grid[goal[0]][goal[1]]==1):
+        print("Error: Goal cannot be an obstacle")
+        return
+
+    if (grid[init[0]][init[1]]==1):
+        print("Error: Cannot start at an obstacle")
+        return
 
     closed = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))
@@ -95,6 +107,6 @@ def search(grid, init, goal, cost, heuristic):
     return path
 
 
-a = search(grid, init, goal, cost, heuristic)
+a = search(grid, init, goal, cost)
 for i in range(len(a)):
     print(a[i])
