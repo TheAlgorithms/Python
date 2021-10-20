@@ -26,7 +26,7 @@ def join(separator: str, separated: list[str]) -> str:
     return joined.strip(separator)
 
 
-if "__name__" == "__main__":
+if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
