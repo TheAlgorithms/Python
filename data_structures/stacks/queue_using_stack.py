@@ -1,4 +1,4 @@
-from stack import Stack, StackOverflowError
+from .stack import Stack, StackOverflowError
 
 
 class Queue:
