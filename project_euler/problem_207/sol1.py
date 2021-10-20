@@ -90,7 +90,7 @@ def solution(max_proportion: float = 1 / 12345) -> int:
                 perfect_partitions += 1
         if perfect_partitions > 0:
             if perfect_partitions / total_partitions < max_proportion:
-                return partition_candidate
+                return int(partition_candidate)
         integer += 1
 
 
