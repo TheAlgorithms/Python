@@ -3,7 +3,7 @@
 
 def shift_string(original_str: str, shift: int = 1) -> str:
     """
-    Shifts the charcter by 1 through it's ACII
+    Shifts the character by 1 through it's ASCII
     >>> shift_string('Hello')
     'Ifmmp'
 
