@@ -6,16 +6,16 @@ from typing import Tuple, Dict
 
 # Stack data-structure implementation
 class Stack:
-    def __init__(self):
+    def __init__(self) -> None:
         self.items = []
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return self.items == []
 
-    def push(self, item):
+    def push(self, item) -> None:
         self.items.append(item)
 
-    def pop(self):
+    def pop(self) -> []:
         return self.items.pop()
 
 
