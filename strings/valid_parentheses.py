@@ -34,7 +34,7 @@ def sanitize_line(_line, _regex) -> str:
 
 
 # Validates line against provided symbol dictionary
-def validate_line(_line, _regex, _symbol_dict):
+def validate_line(_line, _regex, _symbol_dict) -> None:
     __line = sanitize_line(_line, _regex)
     # Converts _line string to character array
     char_list = list(__line)
@@ -59,7 +59,7 @@ def validate_line(_line, _regex, _symbol_dict):
                 raise Exception("Submitted input contain non valid parentheses.")
 
 
-def validate_file(_file_path, _regex, _symbol_dict):
+def validate_file(_file_path, _regex, _symbol_dict) -> None:
     file = open(_file_path, 'r')
     lines = file.readlines()
 
