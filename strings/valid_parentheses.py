@@ -1,6 +1,7 @@
 import argparse
 import textwrap
 import re
+from typing import Tuple, Dict
 
 
 # Stack data-structure implementation
@@ -23,12 +24,12 @@ stack = Stack()
 
 
 # Initializes defaults for regex and symbols
-def initialize_default_regex_and_symbols():
+def initialize_default_regex_and_symbols() -> Tuple[str, Dict[str, str]]:
     return "^\\{\\}\\[\\]\\(\\)]*", {"{": "}", "[": "]", "(": ")"}
 
 
 # Removes non parentheses-symbol characters from line
-def sanitize_line(_line, _regex):
+def sanitize_line(_line, _regex) -> str:
     return re.subn(_regex, "", _line)[0]
 
 
@@ -67,7 +68,7 @@ def validate_file(_file_path, _regex, _symbol_dict):
         validate_line(line, _regex, _symbol_dict)
 
 
-def initialize_regex_and_symbols(_parentheses_symbol_param_arr):
+def initialize_regex_and_symbols(_parentheses_symbol_param_arr) -> Tuple[str, Dict[str, str]]:
     _regex = ""
     _symbol_dict = {}
     for i in range(len(_parentheses_symbol_param_arr)):
