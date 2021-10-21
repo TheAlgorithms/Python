@@ -26,12 +26,12 @@ def circle_sort(collection: list) -> list:
     if len(collection) < 2:
         return collection
 
-    def swap(collection: list, left: int, right: int):
+    def swap(collection: list, left: int, right: int) -> None:
         temp = collection[left]
         collection[left] = collection[right]
         collection[right] = temp
 
-    def circle_sort_util(collection: list, low: int, high: int):
+    def circle_sort_util(collection: list, low: int, high: int) -> list:
         swapped = False
        
         if low == high:
@@ -60,10 +60,10 @@ def circle_sort(collection: list) -> list:
 
         return swapped or left_swap or right_swap
 
-    isNotSorted = True
+    is_not_sorted = True
 
-    while isNotSorted == True:
-        isNotSorted = circle_sort_util(collection, 0, len(collection) - 1)
+    while is_not_sorted == True:
+        is_not_sorted = circle_sort_util(collection, 0, len(collection) - 1)
     
     return collection
 
