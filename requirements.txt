@@ -4,8 +4,7 @@ keras
 lxml
 matplotlib
 numpy
-opencv-python; python_version < '3.10'
-git+https://github.com/opencv/opencv-python.git; python_version >= '3.10'
+opencv-python
 pandas
 pillow
 qiskit
