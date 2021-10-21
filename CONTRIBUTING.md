@@ -13,7 +13,7 @@ We are very happy that you consider implementing algorithms and data structure f
 - You did your work - no plagiarism allowed
   - Any plagiarized work will not be merged.
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
-- You submitted work fulfils or mostly fulfils our styles and standards
+- Your submitted work fulfils or mostly fulfils our styles and standards
 
 __New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
@@ -53,7 +53,7 @@ Algorithms in this repo should not be how-to examples for existing Python packag
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
 
 ```bash
-python3 -m pip install pre-commit  # required only once
+python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
 That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
