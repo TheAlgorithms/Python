@@ -9,23 +9,23 @@ def prime_check(number: int) -> bool:
 
     A number is prime if it has exactly two factors: 1 and itself.
 
-    >>> is_prime(0)
+    >>> prime_check(0)
     False
-    >>> is_prime(1)
+    >>> prime_check(1)
     False
-    >>> is_prime(2)
+    >>> prime_check(2)
     True
-    >>> is_prime(3)
+    >>> prime_check(3)
     True
-    >>> is_prime(27)
+    >>> prime_check(27)
     False
-    >>> is_prime(87)
+    >>> prime_check(87)
     False
-    >>> is_prime(563)
+    >>> prime_check(563)
     True
-    >>> is_prime(2999)
+    >>> prime_check(2999)
     True
-    >>> is_prime(67483)
+    >>> prime_check(67483)
     False
     """
 
