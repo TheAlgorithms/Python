@@ -10,7 +10,7 @@ The great-circle distance, orthodromic distance, or spherical distance is the di
 WIKI : https://en.wikipedia.org/wiki/Great-circle_distance#:~:text=The%20great%2Dcircle%20distance%2C%20orthodromic,line%20through%20the%20sphere's%20interior).
 '''
 
-def getdist(lat1:float,lon1:float,lat2:float,lon2:float):
+def getdist(lat1:float,lon1:float,lat2:float,lon2:float) -> float:
     """Return the great circle distance between 2 co-ordinates on earth.
 
     >>> getdist(52.47608904123904,-1.8896484375000002,51.48822432632349,-0.13183593750000003)
