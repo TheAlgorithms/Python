@@ -17,7 +17,9 @@ n: length of string1
 m: length of string2
 """
 
-def longest_common_substring(string1: str, string2: str, len_of_string1: int, len_of_string2: int) -> (int, str) : 
+def longest_common_substring(
+    string1: str, string2: str, len_of_string1: int, len_of_string2: int
+) -> [int, str] : 
 
 
     """
@@ -35,44 +37,46 @@ def longest_common_substring(string1: str, string2: str, len_of_string1: int, le
 
     """
 
-    res = 0 # res variable is used to store the result: Maximum length of common subtring
-    string="" # string is used to store the longest common substring
+    res = (
+        0 # res variable is used to store the result: Maximum length of common subtring
+    )
+    string = "" # string is used to store the longest common substring
 
     """
     Create a table to store Longest Common suffixes 
     Initially, all cells are initialized with -1
     """
-    table = [[-1 for i in range(len_of_string2+1)] for j in range(len_of_string1+1)]
+    table = [[-1 for i in range(len_of_string2 + 1)] for j in range(len_of_string1 + 1)]
 
     # Making first row and column entirely 0
-    for i in range(len_of_string1+1):
-        for j in range(len_of_string2+1):
-            if(i==0 or j==0): 
-                table[i][j]=0
+    for i in range(len_of_string1 + 1):
+        for j in range(len_of_string2 + 1):
+            if(i == 0 or j == 0): 
+                table[i][j] = 0
 
             
     # To store the indices of the table with maximum value
-    k=0
-    l=0
+    k = 0
+    l = 0
 
-    for i in range(1,len_of_string1+1):
-        for j in range(1,len_of_string2+1):
-            if(string1[i-1]==string2[j-1]):
-                table[i][j] = 1 + table[i-1][j-1]
+    for i in range(1, len_of_string1 + 1):
+        for j in range(1, len_of_string2 + 1):
+            if(string1[i - 1]==string2[j - 1]):
+                table[i][j] = 1 + table[i - 1][j - 1]
                 if(table[i][j]>res):
                     res = table[i][j]
-                    k=i # stores row value with maximum value in table
-                    l=j # stores column value with maximum value in table
+                    k = i # stores row value with maximum value in table
+                    l = j # stores column value with maximum value in table
             else:
-                table[i][j] = 0;
+                table[i][j] = 0
 
-    i=k
-    j=l
-    while(i>0 and j>0):
-        if(string1[i-1]==string2[j-1]):
-            string = string+string1[i-1] # Use to store longest common substring
-        i=i-1
-        j=j-1
+    i = k
+    j = l
+    while i > 0 and j > 0:
+        if(string1[i - 1] == string2[j - 1]):
+            string = string + string1[i - 1] # Use to store longest common substring
+        i = i - 1
+        j = j - 1
 
     string = "".join(reversed(string))
 
@@ -102,10 +106,13 @@ if __name__ == "__main__":
     len_of_string1 represent length of string string2
     """
     len_of_string1 = len(string1)
+
     len_of_string2 = len(string2) 
 
     
-    length, string = longest_common_substring(string1, string2, len_of_string1, len_of_string2)
+    length, string = longest_common_substring(
+        string1, string2, len_of_string1, len_of_string2
+    )
     """
     The function returns 2 things
     1. length: This is the length of longest common substring of the 2 strings
@@ -115,12 +122,12 @@ if __name__ == "__main__":
     """
     If length=0, then no common substring is present between the two strings
     """
-    if(length==0):
-        print('\nThere is no longest common substring possible')
+    if(length == 0):
+        print("\nThere is no longest common substring possible")
 
     else:        
-        print('\nLength of Longest Common Substring is', length)
-        print('Longest Common Substring is', string)
+        print("\nLength of Longest Common Substring is", length)
+        print("Longest Common Substring is", string)
     
     # doctest.testmod(name ='longest_common_substring', verbose = True)
 
