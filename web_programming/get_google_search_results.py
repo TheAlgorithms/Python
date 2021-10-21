@@ -9,13 +9,12 @@ HEADERS = {
 }
 
 
-def parse_results(query: str = "", num_q: int = 20) -> list:
+def parse_results(query: str = "") -> list:
     """Reads google search result page for the given query and
     stores all the results in with title, link and descriptions
     in a list.
     Args:
         query : The search term provided by the user.
-        num_q : The number of search results to fetch.
     Returns:
         list: list with search results
 
@@ -27,7 +26,7 @@ def parse_results(query: str = "", num_q: int = 20) -> list:
     params = {"q": str(query)}
     response = None
     try:
-        response = requests.get(BASE_URL + "/search", headers=headers, params=params)
+        response = requests.get(BASE_URL + "/search", headers=HEADERS, params=params)
     except requests.exceptions.RequestException:
         return []
     css_identifier_result = ".tF2Cxc"
@@ -59,7 +58,7 @@ def parse_results(query: str = "", num_q: int = 20) -> list:
     for next_page_link in next_page:
         new_link = BASE_URL + next_page_link
         try:
-            response = requests.get(new_link, headers=headers)
+            response = requests.get(new_link, headers=HEADERS)
 
         except requests.exceptions.RequestException:
             continue
