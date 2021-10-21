@@ -24,12 +24,12 @@ def factorial(number: int) -> int:
     >>> factorial(0)
     1
     """
-    if input_number != int(input_number):
+    if number != int(number):
         raise ValueError("factorial() only accepts integral values")
-    if input_number < 0:
+    if number < 0:
         raise ValueError("factorial() not defined for negative values")
     value = 1
-    for i in range(1, input_number + 1):
+    for i in range(1, number + 1):
         value *= i
     return value
 
