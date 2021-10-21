@@ -20,6 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
+          python -m pip install --upgrade numpy
           python -m pip install mypy pytest-cov -r requirements.txt
       - run: mypy --install-types --non-interactive .
       - name: Run tests
