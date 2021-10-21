@@ -454,7 +454,6 @@
   * [Eulers Totient](https://github.com/TheAlgorithms/Python/blob/master/maths/eulers_totient.py)
   * [Extended Euclidean Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/extended_euclidean_algorithm.py)
   * [Factorial Iterative](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_iterative.py)
-  * [Factorial Python](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_python.py)
   * [Factorial Recursive](https://github.com/TheAlgorithms/Python/blob/master/maths/factorial_recursive.py)
   * [Factors](https://github.com/TheAlgorithms/Python/blob/master/maths/factors.py)
   * [Fermat Little Theorem](https://github.com/TheAlgorithms/Python/blob/master/maths/fermat_little_theorem.py)
