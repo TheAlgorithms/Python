@@ -2,7 +2,7 @@
 """
 
 
-def factorial(input_number: int) -> int:
+def factorial(number: int) -> int:
     """
     Calculate the factorial of specified number (n!).
 
