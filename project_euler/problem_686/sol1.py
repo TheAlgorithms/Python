@@ -1,11 +1,11 @@
 """
 Project Euler Problem 686: https://projecteuler.net/problem=686
 
-2**7 = 128 is the first power of two whose leading digits are "12".
-The next power of two whose leading digits are "12" is 2**80.
+2^7 = 128 is the first power of two whose leading digits are "12".
+The next power of two whose leading digits are "12" is 2^80.
 
 Define p(L,n) to be the nth-smallest value of j such that
-the base 10 representation of 2**j begins with the digits of L.
+the base 10 representation of 2^j begins with the digits of L.
 
 So p(12, 1) = 7 and p(12, 2) = 80.
 
@@ -24,8 +24,8 @@ def log_difference(number: int) -> float:
     large exponents is time consuming. Hence we use log to reduce compute time.
 
     We can find out that the first power of 2 with starting digits 123 is 90.
-    Computing 2**90 is time consuming.
-    Hence we find log(2**90) = 90*log(2) = 27.092699609758302
+    Computing 2^90 is time consuming.
+    Hence we find log(2^90) = 90*log(2) = 27.092699609758302
     But we require only the decimal part to determine whether the power starts with 123.
     SO we just return the decimal part of the log product.
     Therefore we return 0.092699609758302
@@ -43,14 +43,11 @@ def log_difference(number: int) -> float:
     return difference
 
 
-# series = 90, 379, 575, 864, 1060, 1545, 1741, 2030, 2226, 2515
-
-
 def solution(number: int = 678910) -> int:
     """
     This function calculates the power of two which is nth (n = number)
     smallest value of power of 2
-    such that the starting digits of the 2**power is 123.
+    such that the starting digits of the 2^power is 123.
 
     For example the powers of 2 for which starting digits is 123 are:
     90, 379, 575, 864, 1060, 1545, 1741, 2030, 2226, 2515 and so on.
@@ -64,7 +61,7 @@ def solution(number: int = 678910) -> int:
     lowerbound = log(1.23), upperbound = log(1.24)
     because we need to find the powers that yield 123 as starting digits.
 
-    log(1.23) = 08990511143939792, log(1,24) = 09342168516223506.
+    log(1.23) = 0.08990511143939792, log(1,24) = 0.09342168516223506.
     We use 1.23 and not 12.3 or 123, because log(1.23) yields only decimal value
     which is less than 1.
     log(12.3) will be same decimal vale but 1 added to it
