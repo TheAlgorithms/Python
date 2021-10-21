@@ -4,6 +4,9 @@ from __future__ import annotations
 class StackOverflowError(BaseException):
     pass
 
+class StackUnderflowError(BaseException):
+    pass
+
 
 class Stack:
     """A stack is an abstract data type that serves as a collection of
@@ -32,6 +35,8 @@ class Stack:
 
     def pop(self):
         """Pop an element off of the top of the stack."""
+        if len(self.stack) <= 0:
+            raise StackUnderflowError
         return self.stack.pop()
 
     def peek(self):
