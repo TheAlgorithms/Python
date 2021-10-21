@@ -2,7 +2,7 @@
 
 ## Overview
 
-Binary tree as a basic data structure and traversal as a fundamental algorithm, their combination leads to a lot of classic problems. This patern is often seen in many problems, either directly or indirectly.
+Binary tree as a basic data structure and traversal as a fundamental algorithm, their combination leads to a lot of classic problems. This pattern is often seen in many problems, either directly or indirectly.
 
 > If you have grasped the traversal of binary trees, other complicated trees will probably be easy for you.
 
@@ -34,9 +34,9 @@ Algorithm Preorder
 
 3. Repeat step 2.
 
-Conclusion: This problem involves the clasic recursive data structure (i.e. a binary tree), and the algorithm above demonstrates how a simplified solution can be reached by using a stack.
+Conclusion: This problem involves the classic recursive data structure (i.e. a binary tree), and the algorithm above demonstrates how a simplified solution can be reached by using a stack.
 
-If you look at the bigger picture, you'll find that the process of traversal is as followed. `Visit the left subtrees repectively from top to bottom, and visit the right subtrees repectively from bottom to top`. If we are to implement it from this perspective, things will be somewhat different. For the `top to bottom` part we can simply use recursion, and for the `bottom to top` part we can turn to stack.
+If you look at the bigger picture, you'll find that the process of traversal is as followed. `Visit the left subtrees respectively from top to bottom, and visit the right subtrees respectively from bottom to top`. If we are to implement it from this perspective, things will be somewhat different. For the `top to bottom` part we can simply use recursion, and for the `bottom to top` part we can turn to stack.
 
 ## Inorder Traversal
 
@@ -60,7 +60,7 @@ It's worth pointing out that the inorder traversal of a binary search tree (BST)
 
 The traversal order of postorder traversal is `left-right-root`.
 
-This one is a bit of a challange. It deserves the `hard` tag of leetcode.
+This one is a bit of a challenge. It deserves the `hard` tag of leetcode.
 
 In this case, the root node is printed not as the first but the last one. A cunning way to do it is to:
 
@@ -84,7 +84,7 @@ Algorithm Level Order
 
 3. If the node equals `null`, it means that all nodes of the current level have been visited. If the queue is empty, we do nothing. Or else we put in another `null`.
 
-4. If the node is not `null`, meaning the traversal of current level has not finished yet, we enqueue its left subtree and right subtree repectively.
+4. If the node is not `null`, meaning the traversal of current level has not finished yet, we enqueue its left subtree and right subtree respectively.
 
 ## Bi-color marking
 
