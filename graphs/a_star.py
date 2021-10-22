@@ -7,6 +7,7 @@ DIRECTIONS = [
     [0, 1],  # up
 ]
 
+
 # function to search the path
 def search(
     grid: list[list[int]],
