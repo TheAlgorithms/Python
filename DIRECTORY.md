@@ -272,6 +272,7 @@
 
 ## Electronics
   * [Carrier Concentration](https://github.com/TheAlgorithms/Python/blob/master/electronics/carrier_concentration.py)
+  * [Coulombs Law](https://github.com/TheAlgorithms/Python/blob/master/electronics/coulombs_law.py)
   * [Electric Power](https://github.com/TheAlgorithms/Python/blob/master/electronics/electric_power.py)
   * [Ohms Law](https://github.com/TheAlgorithms/Python/blob/master/electronics/ohms_law.py)
 
