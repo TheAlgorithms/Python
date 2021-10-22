@@ -1,5 +1,5 @@
 """ A Queue using a linked list like structure """
-from typing import Any, Optional
+from typing import Any, Iterator, Optional
 
 
 class Node:
@@ -42,7 +42,7 @@ class LinkedQueue:
         self.front: Optional[Node] = None
         self.rear: Optional[Node] = None
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Any]:
         node = self.front
         while node:
             yield node.data
