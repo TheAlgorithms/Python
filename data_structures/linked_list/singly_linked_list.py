@@ -409,7 +409,9 @@ def test_singly_linked_list_2() -> None:
         12.20,
     ]
     linked_list = LinkedList()
-    [linked_list.insert_tail(i) for i in input]
+
+    for i in input:
+        linked_list.insert_tail(i)
 
     # Check if it's empty or not
     assert linked_list.is_empty() is False
