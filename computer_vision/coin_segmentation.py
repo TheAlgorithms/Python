@@ -32,7 +32,7 @@ from skimage import io
 from skimage.transform import resize
 
 
-def binarizeImage(img):
+def binarize_image(img) -> list[list[int]]:
     """
     Function used to filter and apply threshold on a given image
     """
@@ -59,7 +59,7 @@ def binarizeImage(img):
     return binary_s
 
 
-def cropCoinFromBinary(img, binarizedImg):
+def crop_coin_from_binary(img, binarizedImg) -> list[list[int]]:
     """
     Function used to crop a closed region from an image based on its binarized form
 
@@ -132,10 +132,10 @@ if __name__ == "__main__":
 
         try:
             # Binarize the image
-            bin = binarizeImage(img)
+            bin = binarize_image(img)
 
             # Crop the image based on the binary of the same image
-            croped_img = cropCoinFromBinary(img, bin)
+            croped_img = crop_coin_from_binary(img, bin)
 
             # Verifies if the returned image is None, in which case the function was
             # not able to recognize a region
