@@ -16,13 +16,17 @@ class StringBuilder(object):
     def __init__(self, val: str) -> None:
         self.store = [val]
 
-    def __iadd__(self, value):
+    def __iadd__(self, value: str) -> "StringBuilder":
         """appends a character to the sequence"""
         self.store.append(value)
         return self
 
     def __str__(self) -> str:
-        """string representation from the built sequence"""
+        """string representation from the built sequence
+
+        >>> str(StringBuilder("Test string"))
+        'Test string'
+        """
         return "".join(self.store)
 
 
@@ -31,16 +35,16 @@ def merge_string(str_1: str, str_2: str) -> str:
     :param str_1 : first input string
     :param str_2 : second input string
     Examples:
-    >>> merge_string("abc","def")
+    >>> merge_string("abc", "def")
     'adbecf'
-    >>> merge_string("mnin","aso")
+    >>> merge_string("mnin", "aso")
     'mansion'
     """
-    if len(str_1) < 0 and len(str_2) < 0:
+    if len(str_1) == 0 and len(str_2) == 0:
         return ""
-    if len(str_1) < 0 and len(str_2):
+    if len(str_1) == 0 and len(str_2):
         return str_2
-    if len(str_2) < 0 and len(str_1):
+    if len(str_2) == 0 and len(str_1):
         return str_1
 
     ret = StringBuilder("")
