@@ -7,11 +7,11 @@ longest word)) lookup time making it an optimal approach when space is not an is
 
 
 class TrieNode:
-    def __init__(self):
-        self.nodes = dict()  # Mapping from char to TrieNode
+    def __init__(self) -> None:
+        self.nodes: dict[str, TrieNode] = dict()  # Mapping from char to TrieNode
         self.is_leaf = False
 
-    def insert_many(self, words: list[str]):
+    def insert_many(self, words: list[str]) -> None:
         """
         Inserts a list of words into the Trie
         :param words: list of string words
@@ -20,7 +20,7 @@ class TrieNode:
         for word in words:
             self.insert(word)
 
-    def insert(self, word: str):
+    def insert(self, word: str) -> None:
         """
         Inserts a word into the Trie
         :param word: word to be inserted
@@ -46,14 +46,14 @@ class TrieNode:
             curr = curr.nodes[char]
         return curr.is_leaf
 
-    def delete(self, word: str):
+    def delete(self, word: str) -> None:
         """
         Deletes a word in a Trie
         :param word: word to delete
         :return: None
         """
 
-        def _delete(curr: TrieNode, word: str, index: int):
+        def _delete(curr: TrieNode, word: str, index: int) -> bool:
             if index == len(word):
                 # If word does not exist
                 if not curr.is_leaf:
@@ -75,7 +75,7 @@ class TrieNode:
         _delete(self, word, 0)
 
 
-def print_words(node: TrieNode, word: str):
+def print_words(node: TrieNode, word: str) -> None:
     """
     Prints all the words in a Trie
     :param node: root node of Trie
@@ -89,7 +89,7 @@ def print_words(node: TrieNode, word: str):
         print_words(value, word + key)
 
 
-def test_trie():
+def test_trie() -> bool:
     words = "banana bananas bandana band apple all beast".split()
     root = TrieNode()
     root.insert_many(words)
@@ -112,11 +112,11 @@ def print_results(msg: str, passes: bool) -> None:
     print(str(msg), "works!" if passes else "doesn't work :(")
 
 
-def pytests():
+def pytests() -> None:
     assert test_trie()
 
 
-def main():
+def main() -> None:
     """
     >>> pytests()
     """
