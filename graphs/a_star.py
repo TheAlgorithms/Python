@@ -1,7 +1,11 @@
 from __future__ import annotations
 
-DIRECTIONS = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # left  # down  # right  # up
-
+DIRECTIONS = [
+    [-1, 0], # left
+    [0, -1], # down
+    [1, 0],  # right
+    [0, 1],  # up
+]
 
 # function to search the path
 def search(
