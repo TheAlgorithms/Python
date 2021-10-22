@@ -13,10 +13,8 @@ def base32_encode(string: str) -> bytes:
     """
 
     # encoded the input (we need a bytes like object)
-    string_bytes = string.encode("utf-8")
-    # b32encoded the bytes-like object
-    b32_encoded = base64.b32encode(string_bytes)
-    return b32_encoded
+    # then, b32encoded the bytes-like object
+    return base64.b32encode(string.encode("utf-8"))
 
 
 def base32_decode(encoded_bytes: bytes) -> str:
@@ -31,10 +29,8 @@ def base32_decode(encoded_bytes: bytes) -> str:
     """
 
     # decode the bytes from base32
-    decoded_bytes = base64.b32decode(encoded_bytes)
-    # decode the bytes-like object to return as a string
-    decoded_string = decoded_bytes.decode("utf-8")
-    return decoded_string
+    # then, decode the bytes-like object to return as a string
+    return base64.b32decode(encoded_bytes).decode("utf-8")
 
 
 if __name__ == "__main__":
