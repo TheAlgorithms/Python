@@ -59,7 +59,7 @@ def binarize_image(img) -> list[list[int]]:
     return binary_s
 
 
-def crop_coin_from_binary(img, binarizedImg) -> list[list[int]]:
+def crop_coin_from_binary(img, binarized_img) -> list[list[int]]:
     """
     Function used to crop a closed region from an image based on its binarized form
 
@@ -68,7 +68,7 @@ def crop_coin_from_binary(img, binarizedImg) -> list[list[int]]:
     """
 
     # Read the image in a more useful format
-    binary = util.img_as_ubyte(binarizedImg)
+    binary = util.img_as_ubyte(binarized_img)
 
     # Recognize connected borders in the image
     labeled = label(binary)
