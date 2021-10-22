@@ -150,6 +150,11 @@ def main() -> None:
 
     # unittest.main()
 
+    import doctest
+
+    doctest.testmod()
+
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-s",
@@ -178,7 +183,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-    import doctest
-
-    doctest.testmod()
