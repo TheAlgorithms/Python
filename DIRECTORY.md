@@ -274,6 +274,7 @@
     * [Test Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/tests/test_send_file.py)
 
 ## Fractals
+  * [Julia Sets](https://github.com/TheAlgorithms/Python/blob/master/fractals/julia_sets.py)
   * [Koch Snowflake](https://github.com/TheAlgorithms/Python/blob/master/fractals/koch_snowflake.py)
   * [Mandelbrot](https://github.com/TheAlgorithms/Python/blob/master/fractals/mandelbrot.py)
   * [Sierpinski Triangle](https://github.com/TheAlgorithms/Python/blob/master/fractals/sierpinski_triangle.py)
@@ -424,10 +425,12 @@
   * [Binomial Distribution](https://github.com/TheAlgorithms/Python/blob/master/maths/binomial_distribution.py)
   * [Bisection](https://github.com/TheAlgorithms/Python/blob/master/maths/bisection.py)
   * [Ceil](https://github.com/TheAlgorithms/Python/blob/master/maths/ceil.py)
+  * [Check Polygon](https://github.com/TheAlgorithms/Python/blob/master/maths/check_polygon.py)
   * [Chudnovsky Algorithm](https://github.com/TheAlgorithms/Python/blob/master/maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](https://github.com/TheAlgorithms/Python/blob/master/maths/collatz_sequence.py)
   * [Combinations](https://github.com/TheAlgorithms/Python/blob/master/maths/combinations.py)
   * [Decimal Isolate](https://github.com/TheAlgorithms/Python/blob/master/maths/decimal_isolate.py)
+  * [Double Factorial Iterative](https://github.com/TheAlgorithms/Python/blob/master/maths/double_factorial_iterative.py)
   * [Double Factorial Recursive](https://github.com/TheAlgorithms/Python/blob/master/maths/double_factorial_recursive.py)
   * [Entropy](https://github.com/TheAlgorithms/Python/blob/master/maths/entropy.py)
   * [Euclidean Distance](https://github.com/TheAlgorithms/Python/blob/master/maths/euclidean_distance.py)
