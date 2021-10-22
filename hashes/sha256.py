@@ -16,6 +16,8 @@ https://en.wikipedia.org/wiki/SHA-2 --> Pseudocode
 
 import argparse
 import struct
+import unittest
+import hashlib  # used only inside Test class
 
 
 class SHA256:
@@ -29,7 +31,7 @@ class SHA256:
     'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9'
     """
 
-    def __init__(self, data: bytes):
+    def __init__(self, data: bytes) -> None:
         self.data = data
 
         # fmt: off
@@ -54,12 +56,12 @@ class SHA256:
         self.preprocessing()
         self.final_hash()
 
-    def preprocessing(self):
+    def preprocessing(self) -> None:
         padding = b"\x80" + (b"\x00" * (63 - (len(self.data) + 8) % 64))
         big_endian_integer = struct.pack(">Q", (len(self.data) * 8))
         self.preprocessed_data = self.data + padding + big_endian_integer
 
-    def final_hash(self):
+    def final_hash(self) -> None:
         # Convert into blocks of 64 bytes
         self.blocks = [
             self.preprocessed_data[x : (x + 64)]
@@ -130,11 +132,24 @@ class SHA256:
         return (0xFFFFFFFF & (value << (32 - rotations))) | (value >> rotations)
 
 
-def main():
+class SHA256HashTest(unittest.TestCase):
+    """
+    Test class for the SHA256 class. Inherits the TestCase class from unittest
+    """
+
+    def testMatchHashes(self) -> None:
+        msg = bytes("Test String", "utf-8")
+        self.assertEqual(SHA256(msg).hash, hashlib.sha256(msg).hexdigest())
+
+
+def main() -> None:
     """
     Provides option 'string' or 'file' to take input
     and prints the calculated SHA-256 hash
     """
+
+    # unittest.main()
+
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "-s",
