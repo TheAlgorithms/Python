@@ -7,7 +7,7 @@ def base64_encode(data: bytes) -> bytes:
     The data is first transformed to binary and appended with binary digits so that its
     length becomes a multiple of 6, then each 6 binary digits will match a character in
     the B64_CHARSET string. The number of appended binary digits would later determine
-    how many "=" sign should be added, the padding.
+    how many "=" signs should be added, the padding.
     For every 2 binary digits added, a "=" sign is added in the output.
     We can add any binary digits to make it a multiple of 6, for instance, consider the
     following example:
