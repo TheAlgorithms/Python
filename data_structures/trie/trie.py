@@ -11,6 +11,7 @@ class TrieNode:
         self.nodes: dict[str, TrieNode] = dict()  # Mapping from char to TrieNode
         self.is_leaf = False
 
+
     def insert_many(self, words: list[str]) -> None:
         """
         Inserts a list of words into the Trie
