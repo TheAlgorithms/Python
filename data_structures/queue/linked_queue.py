@@ -1,11 +1,11 @@
 """ A Queue using a linked list like structure """
-from typing import Any
+from typing import Any, Optional
 
 
 class Node:
     def __init__(self, data: Any) -> None:
-        self.data = data
-        self.next = None
+        self.data: Any = data
+        self.next: Optional[Node] = None
 
     def __str__(self) -> str:
         return f"{self.data}"
@@ -39,7 +39,8 @@ class LinkedQueue:
     """
 
     def __init__(self) -> None:
-        self.front = self.rear = None
+        self.front: Optional[Node] = None
+        self.rear: Optional[Node] = None
 
     def __iter__(self):
         node = self.front
@@ -87,7 +88,7 @@ class LinkedQueue:
         """
         return len(self) == 0
 
-    def put(self, item) -> None:
+    def put(self, item: Any) -> None:
         """
         >>> queue = LinkedQueue()
         >>> queue.get()
