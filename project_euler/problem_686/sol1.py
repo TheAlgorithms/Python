@@ -114,6 +114,9 @@ def solution(number: int = 678910) -> int:
     we will increment by 93.
     3) if log_difference() < lowerbound, we increment by 196.
 
+    Ref link to the above logic:
+    https://math.stackexchange.com/questions/4093970/powers-of-2-starting-with-123-does-a-pattern-exist
+
     >>> solution(1000)
     284168
 
