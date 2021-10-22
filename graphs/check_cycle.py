@@ -3,7 +3,7 @@ Program to check if a cycle is present in a given graph
 """
 
 
-def chk_cycle(graph: dict) -> bool:
+def check_cycle(graph: dict) -> bool:
     """
     Returns True if graph is cyclic else False
 
