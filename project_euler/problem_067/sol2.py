@@ -14,7 +14,7 @@ one-hundred rows.
 import os
 
 
-def solution():
+def solution() -> int:
     """
     Finds the maximum total in a triangle as described by the problem statement
     above.
