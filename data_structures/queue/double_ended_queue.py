@@ -1,6 +1,8 @@
 """
 Implementation of double ended queue.
 """
+from __future__ import annotations
+
 from dataclasses import dataclass
 from typing import Any, Iterable
 
@@ -51,8 +53,8 @@ class Deque:
         """
 
         val: Any = None
-        next: "Deque._Node" = None
-        prev: "Deque._Node" = None
+        next: Deque._Node | None = None
+        prev: Deque._Node | None = None
 
     class _Iterator:
         """
@@ -66,10 +68,10 @@ class Deque:
 
         __slots__ = ["_cur"]
 
-        def __init__(self, cur: "Deque._Node") -> None:
+        def __init__(self, cur: Deque._Node | None) -> None:
             self._cur = cur
 
-        def __iter__(self) -> "Deque._Iterator":
+        def __iter__(self) -> Deque._Iterator:
             """
             >>> our_deque = Deque([1, 2, 3])
             >>> iterator = iter(our_deque)
@@ -95,9 +97,10 @@ class Deque:
 
             return val
 
-    def __init__(self, iterable: Iterable = None) -> None:
-        self._front = self._back = None
-        self._len = 0
+    def __init__(self, iterable: Iterable[Any] | None = None) -> None:
+        self._front: Any = None
+        self._back: Any = None
+        self._len: int = 0
 
         if iterable is not None:
             # append every value to the deque
@@ -194,7 +197,7 @@ class Deque:
             # make sure there were no errors
             assert not self.is_empty(), "Error on appending value."
 
-    def extend(self, iter: Iterable) -> None:
+    def extend(self, iter: Iterable[Any]) -> None:
         """
         Appends every value of iter to the end of the deque.
         Time complexity: O(n)
@@ -226,7 +229,7 @@ class Deque:
         for val in iter:
             self.append(val)
 
-    def extendleft(self, iter: Iterable) -> None:
+    def extendleft(self, iter: Iterable[Any]) -> None:
         """
         Appends every value of iter to the beginning of the deque.
         Time complexity: O(n)
@@ -379,7 +382,7 @@ class Deque:
         """
         return self._len
 
-    def __eq__(self, other: "Deque") -> bool:
+    def __eq__(self, other: object) -> bool:
         """
         Implements "==" operator. Returns if *self* is equal to *other*.
         Time complexity: O(n)
@@ -406,6 +409,10 @@ class Deque:
         >>> (our_deque_1 == our_deque_3) == (deque_collections_1 == deque_collections_3)
         True
         """
+
+        if not isinstance(other, Deque):
+            return NotImplemented
+
         me = self._front
         oth = other._front
 
@@ -422,7 +429,7 @@ class Deque:
 
         return True
 
-    def __iter__(self) -> "_Iterator":
+    def __iter__(self) -> Deque._Iterator:
         """
         Implements iteration.
         Time complexity: O(1)
