@@ -32,7 +32,7 @@ class IIRFilter:
         # y[n-1] ... y[n-k]
         self.output_history = [0.0] * self.order
 
-    def set_coefficients(self, a_coeffs: List[float], b_coeffs: list[float]) -> None:
+    def set_coefficients(self, a_coeffs: list[float], b_coeffs: list[float]) -> None:
         """
         Set the coefficients for the IIR filter. These should both be of size order + 1.
         a_0 may be left out, and it will use 1.0 as default value.

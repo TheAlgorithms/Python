@@ -18,7 +18,9 @@ class FilterType(Protocol):
         return 0.0
 
 
-def get_bounds(fft_results: np.ndarray, samplerate: int) -> tuple[int | float, int | float]:
+def get_bounds(
+    fft_results: np.ndarray, samplerate: int
+) -> tuple[int | float, int | float]:
     """
     Get bounds for printing fft results
 
