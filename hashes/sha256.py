@@ -35,7 +35,7 @@ class SHA256:
         self.data = data
 
         # Initialize hash values
-        self.h = [
+        self.hashes = [
             0x6A09E667,
             0xBB67AE85,
             0x3C6EF372,
@@ -114,13 +114,14 @@ class SHA256:
             0xC67178F2,
         ]
 
-        self.preprocessed_data = self.preprocessing()
+        self.preprocessed_data = self.preprocessing(self.data)
         self.final_hash()
 
-    def preprocessing(self) -> bytes:
-        padding = b"\x80" + (b"\x00" * (63 - (len(self.data) + 8) % 64))
-        big_endian_integer = struct.pack(">Q", (len(self.data) * 8))
-        return self.data + padding + big_endian_integer
+    @staticmethod
+    def preprocessing(data) -> bytes:
+        padding = b"\x80" + (b"\x00" * (63 - (len(data) + 8) % 64))
+        big_endian_integer = struct.pack(">Q", (len(data) * 8))
+        return data + padding + big_endian_integer
 
     def final_hash(self) -> None:
         # Convert into blocks of 64 bytes
@@ -135,7 +136,7 @@ class SHA256:
             # add 48 0-ed integers
             words += [0] * 48
 
-            a, b, c, d, e, f, g, h = self.h
+            a, b, c, d, e, f, g, h = self.hashes
 
             for index in range(0, 64):
                 if index > 15:
@@ -179,12 +180,12 @@ class SHA256:
             mutated_hash_values = [a, b, c, d, e, f, g, h]
 
             # Modify final values
-            self.h = [
+            self.hashes = [
                 ((element + mutated_hash_values[index]) % 0x100000000)
-                for index, element in enumerate(self.h)
+                for index, element in enumerate(self.hashes)
             ]
 
-        self.hash = "".join([hex(value)[2:].zfill(8) for value in self.h])
+        self.hash = "".join([hex(value)[2:].zfill(8) for value in self.hashes])
 
     def ror(self, value: int, rotations: int) -> int:
         """
