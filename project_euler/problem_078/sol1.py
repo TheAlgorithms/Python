@@ -46,7 +46,3 @@ def solution() -> str:
         if item == 0:
             return str(i)
         partitions.append(item)
-
-
-if __name__ == "__main__":
-    print(solution())
