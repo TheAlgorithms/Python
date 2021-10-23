@@ -21,17 +21,15 @@ def circle_sort(collection: list) -> list:
     []
     >>> circle_sort([-2, 5, 0, -45])
     [-45, -2, 0, 5]
+    >>> collections = ([], [0, 5, 3, 2, 2], [-2, 5, 0, -45], "Python is fun!")
+    >>> all(sorted(collection) == circle_sort(collection) for collection in collections)
+    True
     """
 
     if len(collection) < 2:
         return collection
 
-    def swap(collection: list, left: int, right: int) -> None:
-        temp = collection[left]
-        collection[left] = collection[right]
-        collection[right] = temp
-
-    def circle_sort_util(collection: list, low: int, high: int) -> list:
+    def circle_sort_util(collection: list, low: int, high: int) -> bool:
         swapped = False
        
         if low == high:
@@ -42,7 +40,7 @@ def circle_sort(collection: list) -> list:
 
         while left < right:
             if collection[left] > collection[right]:
-                swap(collection, left, right)
+                collection[left], collection[right] = collection[right], collection[left]
                 swapped = True
 
             left += 1
@@ -50,7 +48,7 @@ def circle_sort(collection: list) -> list:
 
         if left == right:
             if collection[left] > collection[right + 1]:
-                swap(collection, left, right + 1)
+                collection[left], collection[right + 1] = collection[right + 1], collection[left]
                 
                 swapped = True
                 
