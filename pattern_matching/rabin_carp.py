@@ -20,6 +20,7 @@ def search(pattern: str,  text: str,  nth_prime_number: int) -> bool:
 
     3. continue this process untill  you reach the end of the string.
     """
+    
     pattern_len = len(pattern)
     text_len = len(text)
     start_index = 0
