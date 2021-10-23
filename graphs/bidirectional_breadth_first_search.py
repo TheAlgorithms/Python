@@ -36,7 +36,7 @@ class BreadthFirstSearch:
     """
     # Comment out slow pytests...
     # 9.15s call     graphs/bidirectional_breadth_first_search.py:: \
-    #                graphs.bidirectional_breadth_first_search.BreadthFirstSearch 
+    #                graphs.bidirectional_breadth_first_search.BreadthFirstSearch
     # >>> bfs = BreadthFirstSearch((0, 0), (len(grid) - 1, len(grid[0]) - 1))
     # >>> (bfs.start.pos_y + delta[3][0], bfs.start.pos_x + delta[3][1])
     (0, 1)
