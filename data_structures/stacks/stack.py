@@ -35,13 +35,27 @@ class Stack:
         self.stack.append(data)
 
     def pop(self):
-        """Pop an element off of the top of the stack."""
+        """
+        Pop an element off of the top of the stack.
+
+        >>> Stack().pop()
+        Traceback (most recent call last):
+        ....
+        StackOverflowError
+        """
         if not self.stack:
             raise StackUnderflowError
         return self.stack.pop()
 
     def peek(self):
-        """Peek at the top-most element of the stack."""
+        """
+        Peek at the top-most element of the stack.
+
+        >>> Stack().pop()
+        Traceback (most recent call last):
+        ....
+        StackOverflowError
+        """
         if not self.stack:
             raise StackUnderflowError
         return self.stack[-1]
