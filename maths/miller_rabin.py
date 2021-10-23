@@ -9,7 +9,7 @@ from .binary_exp_mod import bin_exp_mod
 def is_prime(n, prec=1000):
     """
     >>> from .prime_check import prime_check
-    # >>> all(is_prime(i) == prime_check(i) for i in range(1000))  # 3.45s
+    >>> # all(is_prime(i) == prime_check(i) for i in range(1000))  # 3.45s
     >>> all(is_prime(i) == prime_check(i) for i in range(500))
     True
     """
