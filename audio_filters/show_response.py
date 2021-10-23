@@ -16,6 +16,20 @@ class FilterType(Protocol):
         return 0.0
 
 
+def get_bounds(fft_results: np.ndarray, samplerate: int):
+    """
+    Get bounds for printing fft results
+
+    >>> import numpy
+    >>> array = numpy.linspace(-20.0, 20.0, 1000)
+    >>> get_bounds(array, 1000)
+    (-20, 20)
+    """
+    lowest = min([-20, np.min(fft_results[1:samplerate // 2 - 1])])
+    highest = max([20, np.max(fft_results[1:samplerate // 2 - 1])])
+    return lowest, highest
+
+
 def show_frequency_response(filter: FilterType, samplerate: int) -> None:
     """
     Show frequency response of a filter
@@ -40,9 +54,8 @@ def show_frequency_response(filter: FilterType, samplerate: int) -> None:
     plt.xscale("log")
 
     # Display within reasonable bounds
-    lowest = min([-20, np.min(fft_db[1 : samplerate // 2 - 1])])
-    highest = max([20, np.max(fft_db[1 : samplerate // 2 - 1])])
-    plt.ylim(max([-80, lowest]), min([80, highest]))
+    bounds = get_bounds(fft_db, samplerate)
+    plt.ylim(max([-80, bounds[0]]), min([80, bounds[1]]))
     plt.ylabel("Gain (dB)")
 
     plt.plot(fft_db)
