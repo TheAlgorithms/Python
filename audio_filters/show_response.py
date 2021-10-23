@@ -1,5 +1,5 @@
 from math import pi
-from typing import Protocol
+from typing import Protocol, Tuple, Union
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,7 +16,7 @@ class FilterType(Protocol):
         return 0.0
 
 
-def get_bounds(fft_results: np.ndarray, samplerate: int):
+def get_bounds(fft_results: np.ndarray, samplerate: int) -> Tuple[Union[int, float], Union[int, float]]:
     """
     Get bounds for printing fft results
 
