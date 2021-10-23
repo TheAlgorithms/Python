@@ -371,6 +371,7 @@
   * [Md5](https://github.com/TheAlgorithms/Python/blob/master/hashes/md5.py)
   * [Sdbm](https://github.com/TheAlgorithms/Python/blob/master/hashes/sdbm.py)
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
+  * [Sha256](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha256.py)
 
 ## Knapsack
   * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/greedy_knapsack.py)

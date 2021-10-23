@@ -24,9 +24,10 @@ def download_images_from_google_query(query: str = "dhaka", max_images: int = 5)
     Returns:
         The number of images successfully downloaded.
 
-    >>> download_images_from_google_query()
+    # Comment out slow (4.20s call) doctests
+    # >>> download_images_from_google_query()
     5
-    >>> download_images_from_google_query("potato")
+    # >>> download_images_from_google_query("potato")
     5
     """
     max_images = min(max_images, 50)  # Prevent abuse!
