@@ -18,7 +18,7 @@ def shift_string(original_str: str, shift: int = 1) -> str:
     if len(original_str) < 1:
         return Exception("String can't be empty")
     new_str = ""
-    # ord function gives the ascii of the charcter for ex. ord(a) gives 97
+    # ord function gives the ascii of the character for ex. ord(a) gives 97
     # and it's inverse is chr which will turn 97 to a
     for i in original_str:
         asc = ord(i)
