@@ -15,7 +15,7 @@ from pathlib import Path
 import pandas as pd
 
 
-def csv_to_json(filename):
+def csv_to_json(filename: string):
     """
     Convert data from CSV to JSON
 
@@ -34,7 +34,7 @@ def csv_to_json(filename):
     return json_from_csv
 
 
-def json_to_csv(filename):
+def json_to_csv(filename: string):
     """
     Convert data from JSON to CSV
 
