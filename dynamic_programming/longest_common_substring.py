@@ -17,9 +17,11 @@ n: length of string1
 m: length of string2
 """
 
+from typing import Tuple
+
 def longest_common_substring(
     string1: str, string2: str, len_of_string1: int, len_of_string2: int
-) -> [int, str] : 
+) -> Tuple[str, int]: 
 
 
     """
@@ -38,9 +40,9 @@ def longest_common_substring(
     """
 
     res = (
-        0 # res variable is used to store the result: Maximum length of common subtring
+        0  # res variable is used to store the result: Maximum length of common subtring
     )
-    string = "" # string is used to store the longest common substring
+    string = ""  # string is used to store the longest common substring
 
     """
     Create a table to store Longest Common suffixes 
@@ -51,7 +53,7 @@ def longest_common_substring(
     # Making first row and column entirely 0
     for i in range(len_of_string1 + 1):
         for j in range(len_of_string2 + 1):
-            if(i == 0 or j == 0): 
+            if i == 0 or j == 0: 
                 table[i][j] = 0
 
             
@@ -61,28 +63,28 @@ def longest_common_substring(
 
     for i in range(1, len_of_string1 + 1):
         for j in range(1, len_of_string2 + 1):
-            if(string1[i - 1]==string2[j - 1]):
+            if(string1[i - 1] == string2[j - 1]):
                 table[i][j] = 1 + table[i - 1][j - 1]
-                if(table[i][j]>res):
+                if(table[i][j] > res):
                     res = table[i][j]
-                    k = i # stores row value with maximum value in table
-                    l = j # stores column value with maximum value in table
+                    k = i  # stores row value with maximum value in table
+                    l = j  # stores column value with maximum value in table
             else:
                 table[i][j] = 0
 
     i = k
     j = l
     while i > 0 and j > 0:
-        if(string1[i - 1] == string2[j - 1]):
-            string = string + string1[i - 1] # Use to store longest common substring
+        if string1[i - 1] == string2[j - 1]:
+            string = string + string1[i - 1]  # Use to store longest common substring
         i = i - 1
         j = j - 1
 
     string = "".join(reversed(string))
 
     return res, string
- 
- 
+
+
 # Driver Code
 
 if __name__ == "__main__":
@@ -90,7 +92,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
 
     string1 = "abcde"
     string2 = "abfcde"
@@ -106,7 +107,6 @@ if __name__ == "__main__":
     len_of_string1 represent length of string string2
     """
     len_of_string1 = len(string1)
-
     len_of_string2 = len(string2) 
 
     
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     """
     If length=0, then no common substring is present between the two strings
     """
-    if(length == 0):
+    if length == 0:
         print("\nThere is no longest common substring possible")
 
     else:        
