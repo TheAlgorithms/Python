@@ -1,5 +1,10 @@
+# Implementation of Circular Queue using linked lists
+
+
 class CircularQueueLinkedList:
     """
+    Circular FIFO list with the given capacity (default queue length : 6)
+
     >>> cq = CircularQueueLinkedList(2)
     >>> cq.enqueue('a')
     >>> cq.enqueue('b')
@@ -29,6 +34,7 @@ class CircularQueueLinkedList:
 
     def is_empty(self) -> bool:
         """
+        Checks where the queue is empty or not
         >>> cq = CircularQueueLinkedList()
         >>> cq.is_empty()
         True
@@ -44,6 +50,7 @@ class CircularQueueLinkedList:
 
     def first(self):
         """
+        Returns the first element of the queue
         >>> cq = CircularQueueLinkedList()
         >>> cq.first()
         Traceback (most recent call last):
@@ -58,13 +65,18 @@ class CircularQueueLinkedList:
         Traceback (most recent call last):
            ...
         Exception: Empty Queue
+        >>> cq.enqueue('b')
+        >>> cq.enqueue('c')
+        >>> cq.first()
+        'b'
         """
         self.check_can_perform_operation()
         return self.front.data
 
     def enqueue(self, data):
-
         """
+        Saves data at the end of the queue
+
         >>> cq = CircularQueueLinkedList()
         >>> cq.enqueue('a')
         >>> cq.enqueue('b')
@@ -86,6 +98,8 @@ class CircularQueueLinkedList:
 
     def dequeue(self):
         """
+        Removes and retrieves the first element of the queue
+
         >>> cq = CircularQueueLinkedList()
         >>> cq.dequeue()
         Traceback (most recent call last):
