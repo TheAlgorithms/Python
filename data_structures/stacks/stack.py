@@ -5,6 +5,10 @@ class StackOverflowError(BaseException):
     pass
 
 
+class StackUnderflowError(BaseException):
+    pass
+
+
 class Stack:
     """A stack is an abstract data type that serves as a collection of
     elements with two principal operations: push() and pop(). push() adds an
@@ -31,11 +35,29 @@ class Stack:
         self.stack.append(data)
 
     def pop(self):
-        """Pop an element off of the top of the stack."""
+        """
+        Pop an element off of the top of the stack.
+
+        >>> Stack().pop()
+        Traceback (most recent call last):
+            ...
+        data_structures.stacks.stack.StackUnderflowError
+        """
+        if not self.stack:
+            raise StackUnderflowError
         return self.stack.pop()
 
     def peek(self):
-        """Peek at the top-most element of the stack."""
+        """
+        Peek at the top-most element of the stack.
+
+        >>> Stack().pop()
+        Traceback (most recent call last):
+            ...
+        data_structures.stacks.stack.StackUnderflowError
+        """
+        if not self.stack:
+            raise StackUnderflowError
         return self.stack[-1]
 
     def is_empty(self) -> bool:
@@ -67,22 +89,22 @@ def test_stack() -> None:
     try:
         _ = stack.pop()
         assert False  # This should not happen
-    except IndexError:
+    except StackUnderflowError:
         assert True  # This should happen
 
     try:
         _ = stack.peek()
         assert False  # This should not happen
-    except IndexError:
+    except StackUnderflowError:
         assert True  # This should happen
 
     for i in range(10):
         assert stack.size() == i
         stack.push(i)
 
-    assert bool(stack) is True
-    assert stack.is_empty() is False
-    assert stack.is_full() is True
+    assert bool(stack)
+    assert not stack.is_empty()
+    assert stack.is_full()
     assert str(stack) == str(list(range(10)))
     assert stack.pop() == 9
     assert stack.peek() == 8
@@ -96,7 +118,7 @@ def test_stack() -> None:
     except StackOverflowError:
         assert True  # This should happen
 
-    assert stack.is_empty() is False
+    assert not stack.is_empty()
     assert stack.size() == 10
 
     assert 5 in stack
