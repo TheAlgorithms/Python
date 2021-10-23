@@ -125,7 +125,7 @@ class SHA256:
     def final_hash(self) -> None:
         # Convert into blocks of 64 bytes
         self.blocks = [
-            self.preprocessed_data[x:(x + 64)]
+            self.preprocessed_data[x : x + 64]
             for x in range(0, len(self.preprocessed_data), 64)
         ]
 
@@ -190,9 +190,7 @@ class SHA256:
         """
         Right rotate a given unsigned number by a certain amount of rotations
         """
-        return (
-            (0xFFFFFFFF & (value << (32 - rotations))) | (value >> rotations)
-            )
+        return 0xFFFFFFFF & (value << (32 - rotations)) | (value >> rotations)
 
 
 class SHA256HashTest(unittest.TestCase):
