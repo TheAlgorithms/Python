@@ -17,7 +17,6 @@ https://en.wikipedia.org/wiki/SHA-2 --> Pseudocode
 import argparse
 import struct
 import unittest
-import hashlib  # used only inside Test class
 
 
 class SHA256:
@@ -53,13 +52,13 @@ class SHA256:
 
         # fmt: on
 
-        self.preprocessing()
+        self.preprocessed_data = self.preprocessing()
         self.final_hash()
 
-    def preprocessing(self) -> None:
+    def preprocessing(self) -> bytes:
         padding = b"\x80" + (b"\x00" * (63 - (len(self.data) + 8) % 64))
         big_endian_integer = struct.pack(">Q", (len(self.data) * 8))
-        self.preprocessed_data = self.data + padding + big_endian_integer
+        return self.data + padding + big_endian_integer
 
     def final_hash(self) -> None:
         # Convert into blocks of 64 bytes
@@ -138,6 +137,8 @@ class SHA256HashTest(unittest.TestCase):
     """
 
     def test_match_hashes(self) -> None:
+        import hashlib
+
         msg = bytes("Test String", "utf-8")
         self.assertEqual(SHA256(msg).hash, hashlib.sha256(msg).hexdigest())
 
@@ -148,12 +149,11 @@ def main() -> None:
     and prints the calculated SHA-256 hash
     """
 
-    unittest.main()
+    # unittest.main()
 
     import doctest
 
     doctest.testmod()
-
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
