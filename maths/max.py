@@ -13,7 +13,7 @@ import numpy as np
 
 
 def your_function(
-    x,
+    x
 ) -> np.poly1d:  # define your function that goes into parameter func_to_max here
 
     max_f = (
