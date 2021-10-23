@@ -12,7 +12,10 @@ import numpy as np
 # import module to get access to square root and linspace
 
 
-def your_function(x):  # define your function that goes into parameter f here
+def your_function(
+    x,
+) -> np.poly1d:  # define your function that goes into parameter func_to_max here
+
     max_f = (
         x ** 3 - 6 * x ** 2 + 4 * x + 12
     )  # change this to the function you'd like to test (use x as variable preferably)
@@ -20,7 +23,7 @@ def your_function(x):  # define your function that goes into parameter f here
 
 
 def max_golden_search(
-    func_to_max, upper: float, lower: float, tol: float = 1e-8
+    func_to_max: np.poly1d, upper: float, lower: float, tol: float = 1e-8
 ) -> float:
 
     """
@@ -71,8 +74,8 @@ def max_golden_search(
 
 def plot_point(
     point: float = max_golden_search(your_function, -2, 4),
-    x_axis: "np.linspace" = np.linspace(-5, 5, 200),
-):  # 1st parameter is the maximum point 2nd parameter is a numpy linspace
+    x_axis: np.linspace = np.linspace(-5, 5, 200),
+)->None:  # 1st parameter is the maximum point 2nd parameter is a numpy linspace
     """
     Plots function and maximum point
     """
