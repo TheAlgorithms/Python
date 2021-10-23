@@ -7,11 +7,12 @@ to find hash of string or hash of text from a file.
 
 Usage: python sha256.py --string "Hello World!!"
        python sha256.py --file "hello_world.txt"
-       When run without any arguments, it prints the hash of the string "Hello World!! Welcome to Cryptography"
+       When run without any arguments,
+       it prints the hash of the string "Hello World!! Welcome to Cryptography"
 
 References:
-https://qvault.io/cryptography/how-sha-2-works-step-by-step-sha-256/ --> in detail
-https://en.wikipedia.org/wiki/SHA-2 --> Pseudocode
+https://qvault.io/cryptography/how-sha-2-works-step-by-step-sha-256/
+https://en.wikipedia.org/wiki/SHA-2
 """
 
 import argparse
@@ -124,7 +125,7 @@ class SHA256:
     def final_hash(self) -> None:
         # Convert into blocks of 64 bytes
         self.blocks = [
-            self.preprocessed_data[x : (x + 64)]
+            self.preprocessed_data[x:(x + 64)]
             for x in range(0, len(self.preprocessed_data), 64)
         ]
 
@@ -189,7 +190,9 @@ class SHA256:
         """
         Right rotate a given unsigned number by a certain amount of rotations
         """
-        return (0xFFFFFFFF & (value << (32 - rotations))) | (value >> rotations)
+        return (
+            (0xFFFFFFFF & (value << (32 - rotations))) | (value >> rotations)
+            )
 
 
 class SHA256HashTest(unittest.TestCase):
