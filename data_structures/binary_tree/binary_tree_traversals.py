@@ -2,20 +2,24 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Optional, Sequence
 
 
 @dataclass
 class Node:
     data: int
-    left: Node | None = None
-    right: Node | None = None
+    left: NodeType = None
+    right: NodeType = None
+
+
+NodeType = Optional[Node]
 
 
 def make_tree() -> Node:
     return Node(1, Node(2, Node(4), Node(5)), Node(3))
 
 
-def preorder(root: Node):
+def preorder(root: NodeType) -> list[int]:
     """
     Pre-order traversal visits root node, left subtree, right subtree.
     >>> preorder(make_tree())
@@ -24,7 +28,7 @@ def preorder(root: Node):
     return [root.data] + preorder(root.left) + preorder(root.right) if root else []
 
 
-def postorder(root: Node):
+def postorder(root: NodeType) -> list[int]:
     """
     Post-order traversal visits left subtree, right subtree, root node.
     >>> postorder(make_tree())
@@ -33,7 +37,7 @@ def postorder(root: Node):
     return postorder(root.left) + postorder(root.right) + [root.data] if root else []
 
 
-def inorder(root: Node):
+def inorder(root: NodeType) -> list[int]:
     """
     In-order traversal visits left subtree, root node, right subtree.
     >>> inorder(make_tree())
@@ -42,7 +46,7 @@ def inorder(root: Node):
     return inorder(root.left) + [root.data] + inorder(root.right) if root else []
 
 
-def height(root: Node):
+def height(root: NodeType) -> int:
     """
     Recursive function for calculating the height of the binary tree.
     >>> height(None)
@@ -53,31 +57,31 @@ def height(root: Node):
     return (max(height(root.left), height(root.right)) + 1) if root else 0
 
 
-def level_order_1(root: Node):
+def level_order_1(root: NodeType) -> Sequence[NodeType]:
     """
     Print whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
     """
     if not root:
-        return
+        return []
     temp = root
-    que = [temp]
-    while len(que) > 0:
-        print(que[0].data, end=" ")
-        temp = que.pop(0)
+    queue = [temp]
+    while queue:
+        print(queue[0].data, end=" ")
+        temp = queue.pop(0)
         if temp.left:
-            que.append(temp.left)
+            queue.append(temp.left)
         if temp.right:
-            que.append(temp.right)
-    return que
+            queue.append(temp.right)
+    return queue
 
 
-def level_order_2(root: Node, level: int):
+def level_order_2(root: NodeType, level: int) -> None:
     """
     Level-wise traversal: Print all nodes present at the given level of the binary tree
     """
     if not root:
-        return root
+        return
     if level == 1:
         print(root.data, end=" ")
     elif level > 1:
@@ -85,7 +89,7 @@ def level_order_2(root: Node, level: int):
         level_order_2(root.right, level - 1)
 
 
-def print_left_to_right(root: Node, level: int):
+def print_left_to_right(root: NodeType, level: int) -> None:
     """
     Print elements on particular level from left to right direction of the binary tree.
     """
@@ -98,7 +102,7 @@ def print_left_to_right(root: Node, level: int):
         print_left_to_right(root.right, level - 1)
 
 
-def print_right_to_left(root: Node, level: int):
+def print_right_to_left(root: NodeType, level: int) -> None:
     """
     Print elements on particular level from right to left direction of the binary tree.
     """
@@ -111,7 +115,7 @@ def print_right_to_left(root: Node, level: int):
         print_right_to_left(root.left, level - 1)
 
 
-def zigzag(root: Node):
+def zigzag(root: NodeType) -> None:
     """
     ZigZag traverse: Print node left to right and right to left, alternatively.
     """
@@ -126,7 +130,7 @@ def zigzag(root: Node):
             flag = 0
 
 
-def main():  # Main function for testing.
+def main() -> None:  # Main function for testing.
     """
     Create binary tree.
     """
