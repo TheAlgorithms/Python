@@ -24,10 +24,10 @@ class SHA256:
     """
     Class to contain the entire pipeline for SHA1 Hashing Algorithm
 
-    >>> SHA256(bytes('Python', 'utf-8')).hash
+    >>> SHA256(b'Python').hash
     '18885f27b5af9012df19e496460f9294d5ab76128824c6f993787004f6d9a7db'
 
-    >>> SHA256(bytes('hello world', 'utf-8')).hash
+    >>> SHA256(b'hello world').hash
     'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9'
     """
 
@@ -118,7 +118,7 @@ class SHA256:
         self.final_hash()
 
     @staticmethod
-    def preprocessing(data) -> bytes:
+    def preprocessing(data: bytes) -> bytes:
         padding = b"\x80" + (b"\x00" * (63 - (len(data) + 8) % 64))
         big_endian_integer = struct.pack(">Q", (len(data) * 8))
         return data + padding + big_endian_integer
