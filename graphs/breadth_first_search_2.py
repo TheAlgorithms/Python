@@ -16,7 +16,6 @@ from __future__ import annotations
 
 from queue import Queue
 
-
 G = {
     "A": ["B", "C"],
     "B": ["A", "D", "E"],
