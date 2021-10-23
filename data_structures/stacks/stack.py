@@ -41,7 +41,7 @@ class Stack:
         >>> Stack().pop()
         Traceback (most recent call last):
             ...
-        StackUnderflowError
+        data_structures.stacks.stack.StackUnderflowError
         """
         if not self.stack:
             raise StackUnderflowError
@@ -54,7 +54,7 @@ class Stack:
         >>> Stack().pop()
         Traceback (most recent call last):
             ...
-        StackUnderflowError
+        data_structures.stacks.stack.StackUnderflowError
         """
         if not self.stack:
             raise StackUnderflowError
@@ -89,13 +89,13 @@ def test_stack() -> None:
     try:
         _ = stack.pop()
         assert False  # This should not happen
-    except IndexError:
+    except StackUnderflowError:
         assert True  # This should happen
 
     try:
         _ = stack.peek()
         assert False  # This should not happen
-    except IndexError:
+    except StackUnderflowError:
         assert True  # This should happen
 
     for i in range(10):
