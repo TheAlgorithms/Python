@@ -21,7 +21,7 @@ def circle_sort(collection: list) -> list:
     []
     >>> circle_sort([-2, 5, 0, -45])
     [-45, -2, 0, 5]
-    >>> collections = ([], [0, 5, 3, 2, 2], [-2, 5, 0, -45], "Python is fun!")
+    >>> collections = ([], [0, 5, 3, 2, 2], [-2, 5, 0, -45])
     >>> all(sorted(collection) == circle_sort(collection) for collection in collections)
     True
     """
