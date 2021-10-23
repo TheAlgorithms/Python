@@ -97,11 +97,11 @@ def crop_coin_from_binary(
         offset = 5
 
         # Crop from original image based on region
-        cropedImg = img[
+        croped_img = img[
             min_h - offset : max_h + offset, min_w - offset : max_w + offset
         ]
 
-        return cropedImg
+        return croped_img
 
 
 if __name__ == "__main__":
