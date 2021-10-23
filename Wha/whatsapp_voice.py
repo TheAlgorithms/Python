@@ -47,7 +47,7 @@ def takecommand() -> None:
     return query
    
 # this function is for  sending a message 
-def sendMessage() -> None:
+def send_message() -> None:
     print("in sendmessage")
     e.say("to whom you want to send a message")
     e.runAndWait()
@@ -57,7 +57,7 @@ def sendMessage() -> None:
     e.runAndWait()
     flag = takecommand()
     if "yes" in flag:
-        target = '"{}"'.format(target)
+        target = f'"{target}"'
         # Replace the below string with your own message 
         x_arg = '//span[contains(@title,' + target + ')]' ## this line is for path for contact name
         group_title = wait.until(EC.presence_of_element_located((By.XPATH, x_arg)))  ## this line wait until find the element
@@ -82,14 +82,14 @@ def sendMessage() -> None:
         e.runAndWait()
         choice = takecommand()
         if "yes" in choice:
-            sendMessage()
+            send_message()
         if "terminate" in choice:
             sys.exit()
 ## main function starting from here
 if __name__ == "__main__":
     e.say("hi welcome to voice based whatsapp chat ")
     e.runAndWait()
-    sendMessage()               ## call the sendmessage function 
+    send_message()               ## call the sendmessage function 
     print("in main \n")
     e.say("want to send more message? say yes or no")
     # e.say("say yes or no")
@@ -101,7 +101,7 @@ if __name__ == "__main__":
         stop = takecommand()
         print("in stop \n")
         while(True):              ## this loop continue untill user says terminate
-            sendMessage()
+            send_message()
             if("stop" in stop):
                 sys.exit()
     if "no" in choice:
