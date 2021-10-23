@@ -10,8 +10,9 @@ https://en.wikipedia.org/wiki/JSON
 
 import csv
 import json
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 
 def csv_to_json(filename):
