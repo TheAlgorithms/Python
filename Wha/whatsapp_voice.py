@@ -28,7 +28,7 @@ driver.get("https://web.whatsapp.com/")
 wait = WebDriverWait(driver, 60) 
 
 ## this function take the input 
-def takecommand():
+def takecommand() -> None:
     with sr.Microphone() as source:  ## this make the microphone able to listen voice 
         print("Listening...")
         # e.say("to whome you want to send a message ")
@@ -47,7 +47,7 @@ def takecommand():
     return query
    
 # this function is for  sending a message 
-def sendMessage():
+def sendMessage() -> None:
     print("in sendmessage")
     e.say("to whom you want to send a message")
     e.runAndWait()
