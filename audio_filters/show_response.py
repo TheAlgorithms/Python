@@ -10,7 +10,8 @@ class FilterType(Protocol):
         """
         Calculate y[n]
 
-        >>> None  # We can't test Protocols
+        >>> issubclass(FilterType, Protocol)
+        True
         """
         return 0.0
 
