@@ -13,7 +13,7 @@ def get_apod_data(api_key: str, download: bool = False, path: str = ".") -> dict
 
 
 def save_apod(api_key: str, path: str = ".") -> dict:
-    apod_data = get_apod_data(api_key):
+    apod_data = get_apod_data(api_key)
     img_url = apod_data["url"]
     img_name = img_url.split("/")[-1]
     response = requests.get(img_url, stream=True)
