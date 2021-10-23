@@ -317,6 +317,7 @@
   * [Breadth First Search Shortest Path](https://github.com/TheAlgorithms/Python/blob/master/graphs/breadth_first_search_shortest_path.py)
   * [Check Bipartite Graph Bfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/check_bipartite_graph_bfs.py)
   * [Check Bipartite Graph Dfs](https://github.com/TheAlgorithms/Python/blob/master/graphs/check_bipartite_graph_dfs.py)
+  * [Check Cycle](https://github.com/TheAlgorithms/Python/blob/master/graphs/check_cycle.py)
   * [Connected Components](https://github.com/TheAlgorithms/Python/blob/master/graphs/connected_components.py)
   * [Depth First Search](https://github.com/TheAlgorithms/Python/blob/master/graphs/depth_first_search.py)
   * [Depth First Search 2](https://github.com/TheAlgorithms/Python/blob/master/graphs/depth_first_search_2.py)
@@ -370,6 +371,7 @@
   * [Md5](https://github.com/TheAlgorithms/Python/blob/master/hashes/md5.py)
   * [Sdbm](https://github.com/TheAlgorithms/Python/blob/master/hashes/sdbm.py)
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
+  * [Sha256](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha256.py)
 
 ## Knapsack
   * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/greedy_knapsack.py)
@@ -979,6 +981,7 @@
   * [Instagram Crawler](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_crawler.py)
   * [Instagram Pic](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_pic.py)
   * [Instagram Video](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_video.py)
+  * [Nasa Data](https://github.com/TheAlgorithms/Python/blob/master/web_programming/nasa_data.py)
   * [Random Anime Character](https://github.com/TheAlgorithms/Python/blob/master/web_programming/random_anime_character.py)
   * [Recaptcha Verification](https://github.com/TheAlgorithms/Python/blob/master/web_programming/recaptcha_verification.py)
   * [Slack Message](https://github.com/TheAlgorithms/Python/blob/master/web_programming/slack_message.py)
