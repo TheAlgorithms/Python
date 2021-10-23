@@ -18,6 +18,10 @@ import itertools
 
 
 def solution():
+    """
+    >>> solution()
+    55374
+    """
     MODULUS = 10 ** 6
     partitions = [1]
     for i in itertools.count(len(partitions)):
