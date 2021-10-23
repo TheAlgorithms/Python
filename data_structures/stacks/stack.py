@@ -17,6 +17,7 @@ class Stack:
     Last In, First Out (LIFO).
     https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
     """
+
     def __init__(self, limit: int = 10):
         self.stack: list[int] = []
         self.limit = limit
@@ -35,12 +36,14 @@ class Stack:
 
     def pop(self):
         """Pop an element off of the top of the stack."""
-        if not self.stack:  # Condition to check Underflow of stack
-            pass        
+        if not self.stack:
+            raise StackUnderflowError
         return self.stack.pop()
 
     def peek(self):
         """Peek at the top-most element of the stack."""
+        if not self.stack:
+            raise StackUnderflowError
         return self.stack[-1]
 
     def is_empty(self) -> bool:
