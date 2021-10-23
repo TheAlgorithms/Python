@@ -52,10 +52,13 @@ def solution(gon_side: int = 5) -> int:
 
     >>> solution(3)
     432621513
-    >>> solution(4)
+    >>> solution(4)
     426561813732
     >>> solution()
     6531031914842725
+    >>> solution(6)
+    Traceback (most recent call last):
+    ValueError: gon_side must be in the range [3, 5]
     """
     if gon_side < 3 or gon_side > 5:
         raise ValueError("gon_side must be in the range [3, 5]")
@@ -112,6 +115,9 @@ def is_magic_gon(numbers: list[int]) -> bool:
     True
     >>> is_magic_gon([1, 2, 3, 4, 5, 6, 7, 8, 9])
     False
+    >>> is_magic_gon([1])
+    Traceback (most recent call last):
+    ValueError: a gon ring should have a length that is a multiple of 3
     """
     if len(numbers) % 3 != 0:
         raise ValueError("a gon ring should have a length that is a multiple of 3")
@@ -125,4 +131,4 @@ def is_magic_gon(numbers: list[int]) -> bool:
 
 
 if __name__ == "__main__":
-    print(solution(4))
+    print(solution())
