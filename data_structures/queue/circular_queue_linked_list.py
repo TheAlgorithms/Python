@@ -53,6 +53,20 @@ class CircularQueueLinkedList:
         return self.front.data
 
     def enqueue(self, data):
+
+        """
+        >>> cq = CircularQueueLinkedList()
+        >>> cq.enqueue('a')
+        >>> cq.enqueue('b')
+        >>> cq.dequeue()
+        'a'
+        >>> cq.dequeue()
+        'b'
+        >>> cq.dequeue()
+        Traceback (most recent call last):
+           ...
+        Exception: Empty Queue
+        """
         if self.is_empty():
             self.rear.data = data
         else:
