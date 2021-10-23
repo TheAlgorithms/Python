@@ -40,7 +40,7 @@ class Stack:
 
         >>> Stack().pop()
         Traceback (most recent call last):
-        ....
+            ...
         StackUnderflowError
         """
         if not self.stack:
@@ -53,7 +53,7 @@ class Stack:
 
         >>> Stack().pop()
         Traceback (most recent call last):
-        ....
+            ...
         StackUnderflowError
         """
         if not self.stack:
