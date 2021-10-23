@@ -1,11 +1,13 @@
 """ A Queue using a linked list like structure """
-from typing import Any, Iterator, Optional
+from __future__ import annotations
+
+from typing import Any, Iterator
 
 
 class Node:
     def __init__(self, data: Any) -> None:
         self.data: Any = data
-        self.next: Optional[Node] = None
+        self.next: Node | None = None
 
     def __str__(self) -> str:
         return f"{self.data}"
@@ -39,8 +41,8 @@ class LinkedQueue:
     """
 
     def __init__(self) -> None:
-        self.front: Optional[Node] = None
-        self.rear: Optional[Node] = None
+        self.front: Node | None = None
+        self.rear: Node | None = None
 
     def __iter__(self) -> Iterator[Any]:
         node = self.front
