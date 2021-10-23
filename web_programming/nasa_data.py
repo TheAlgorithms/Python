@@ -6,9 +6,8 @@ def get_apod_data(api_key: str) -> dict:
     Get the APOD(Astronomical Picture of the day) data
     Get the API Key from : https://api.nasa.gov/
     """
-    return requests.get(
-        f"https://api.nasa.gov/planetary/apod/?api_key={api_key}"
-    ).json()
+    url = "https://api.nasa.gov/planetary/apod/"
+    return requests.get(url, params={"api_key": api_key}).json()
 
 
 def get_archive_data(query: str) -> dict:
@@ -21,4 +20,4 @@ def get_archive_data(query: str) -> dict:
 
 if __name__ == "__main__":
     print(get_apod_data("YOUR API KEY"))
-    print(get_archive_data("apollo 2011"))
+    # print(get_archive_data("apollo 2011"))
