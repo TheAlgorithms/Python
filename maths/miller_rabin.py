@@ -10,7 +10,7 @@ def is_prime(n, prec=1000):
     """
     >>> from .prime_check import prime_check
     >>> # all(is_prime(i) == prime_check(i) for i in range(1000))  # 3.45s
-    >>> all(is_prime(i) == prime_check(i) for i in range(500))
+    >>> all(is_prime(i) == prime_check(i) for i in range(256))
     True
     """
     if n < 2:
