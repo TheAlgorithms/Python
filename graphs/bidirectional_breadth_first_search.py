@@ -106,14 +106,16 @@ class BreadthFirstSearch:
 
 class BidirectionalBreadthFirstSearch:
     """
-    >>> bd_bfs = BidirectionalBreadthFirstSearch((0, 0), (len(grid) - 1,
+    # Comment out slow pytests...
+    # 9.15s call     graphs/bidirectional_breadth_first_search.py::graphs.bidirectional_breadth_first_search.BreadthFirstSearch
+    # >>> bd_bfs = BidirectionalBreadthFirstSearch((0, 0), (len(grid) - 1,
     ...                                                   len(grid[0]) - 1))
-    >>> bd_bfs.fwd_bfs.start.pos == bd_bfs.bwd_bfs.target.pos
+    # >>> bd_bfs.fwd_bfs.start.pos == bd_bfs.bwd_bfs.target.pos
     True
-    >>> bd_bfs.retrace_bidirectional_path(bd_bfs.fwd_bfs.start,
+    # >>> bd_bfs.retrace_bidirectional_path(bd_bfs.fwd_bfs.start,
     ...                                     bd_bfs.bwd_bfs.start)
     [(0, 0)]
-    >>> bd_bfs.search()  # doctest: +NORMALIZE_WHITESPACE
+    # >>> bd_bfs.search()  # doctest: +NORMALIZE_WHITESPACE
     [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2), (2, 3),
      (2, 4), (3, 4), (3, 5), (3, 6), (4, 6), (5, 6), (6, 6)]
     """
