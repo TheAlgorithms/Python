@@ -1,6 +1,21 @@
 class CircularQueueLinkedList:
     def __init__(self):
-        self.elem = None
+        self.front = None
+        self.rear = None
+        self.create_linked_list()
+
+    def create_linked_list(self):
+        current_node = Node()
+        self.front = current_node
+        self.rear = current_node
+        previous_node = current_node
+        for i in range(6):
+            current_node = Node()
+            previous_node.next = current_node
+            current_node.prev = previous_node
+            previous_node = current_node
+        previous_node.next = self.front
+        self.front.prev = previous_node
 
     def is_empty(self) -> bool:
         """
@@ -15,7 +30,7 @@ class CircularQueueLinkedList:
         >>> cq.is_empty()
         True
         """
-        return self.elem is None
+        return self.front == self.rear and self.front.data is None
 
     def first(self):
         """
@@ -35,10 +50,14 @@ class CircularQueueLinkedList:
         Exception: Empty Queue
         """
         self.check_can_perform_operation()
-        return self.elem
+        return self.front.data
 
     def enqueue(self, data):
-        self.elem = data
+        if self.is_empty():
+            self.rear.data = data
+        else:
+            self.rear = self.rear.next
+            self.rear.data = data
 
     def dequeue(self):
         """
@@ -56,13 +75,27 @@ class CircularQueueLinkedList:
         Exception: Empty Queue
         """
         self.check_can_perform_operation()
-        elem = self.elem
-        self.elem = None
-        return elem
+        if self.front == self.rear:
+            data = self.front.data
+            self.front.data = None
+            return data
+
+        old_front = self.front
+        self.front = old_front.next
+        data = old_front.data
+        old_front.data = None
+        return data
 
     def check_can_perform_operation(self):
-        if self.elem is None:
+        if self.is_empty():
             raise Exception("Empty Queue")
+
+
+class Node:
+    def __init__(self):
+        self.data = None
+        self.next = None
+        self.prev = None
 
 
 if __name__ == "__main__":
