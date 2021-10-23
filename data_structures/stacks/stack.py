@@ -7,7 +7,6 @@ class StackOverflowError(BaseException):
 class StackUnderflowError(BaseException):
     pass
 
-
 class Stack:
     """A stack is an abstract data type that serves as a collection of
     elements with two principal operations: push() and pop(). push() adds an
@@ -35,8 +34,8 @@ class Stack:
 
     def pop(self):
         """Pop an element off of the top of the stack."""
-        if len(self.stack) <= 0:
-            raise StackUnderflowError
+        if not self.stack: # Condition to check Underflow of stack
+            pass        
         return self.stack.pop()
 
     def peek(self):
@@ -68,6 +67,7 @@ def test_stack() -> None:
     assert stack.is_empty() is True
     assert stack.is_full() is False
     assert str(stack) == "[]"
+
 
     try:
         _ = stack.pop()
