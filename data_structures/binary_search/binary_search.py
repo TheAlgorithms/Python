@@ -1,7 +1,7 @@
-# It returns index of x in given array arr if present,
-# else returns -1 such as in this case if you're searching for 6 which is not in the array, it would return False represented by -1.
-
 def binary_search(arr, x):
+    """
+    Returns index of x in given array arr if present, else returns -1. If number is not in array, it would return False represented by -1.
+    """
     low = 0
     high = len(arr) - 1
     mid = 0
