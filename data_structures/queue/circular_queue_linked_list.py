@@ -1,4 +1,6 @@
-# Implementation of Circular Queue using linked lists
+# Implementation of Circular Queue using linked lists\
+# https://en.wikipedia.org/wiki/Circular_buffer
+
 from typing import Any
 
 
