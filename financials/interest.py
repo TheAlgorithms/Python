@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-def simple_interest(principle:float, daily_interest_rate:float, number_of_days_between_payments:int) -> float:
+
+def simple_interest(
+    principle: float, daily_interest_rate: float, number_of_days_between_payments: int
+) -> float:
     """
     >>> simple_interest(18000.0,0.06,3)
     3240.0
@@ -25,17 +28,21 @@ def simple_interest(principle:float, daily_interest_rate:float, number_of_days_b
         ...
     ValueError: number_of_days_between_payments must be >= 0
     """
-    if(number_of_days_between_payments < 0):
+    if number_of_days_between_payments < 0:
         raise ValueError("number_of_days_between_payments must be >= 0")
-    if(daily_interest_rate < 0.0):
+    if daily_interest_rate < 0.0:
         raise ValueError("daily_interest_rate must be >= 0")
-    if(principle < 0.0):
+    if principle < 0.0:
         raise ValueError("principle must be >= 0")
 
     return principle * daily_interest_rate * number_of_days_between_payments
 
 
-def compound_interest(principle:float, nominal_annual_interest_rate_percentage:float, number_of_compounding_periods:int)-> float:
+def compound_interest(
+    principle: float,
+    nominal_annual_interest_rate_percentage: float,
+    number_of_compounding_periods: int,
+) -> float:
     """
     >>> compound_interest(10000.0,0.05,3)
     1576.2500000000014
@@ -58,11 +65,11 @@ def compound_interest(principle:float, nominal_annual_interest_rate_percentage:f
         ...
     ValueError: principle must be >= 0
     """
-    if(number_of_compounding_periods < 0):
+    if number_of_compounding_periods < 0:
         raise ValueError("number_of_compounding_periods must be >= 0")
-    if(nominal_annual_interest_rate_percentage < 0.0):
+    if nominal_annual_interest_rate_percentage < 0.0:
         raise ValueError("nominal_annual_interest_rate_percentage must be >= 0")
-    if(principle < 0.0):
+    if principle < 0.0:
         raise ValueError("principle must be >= 0")
 
     return principle * ((1 + nominal_annual_interest_rate_percentage) ** number_of_compounding_periods - 1)
