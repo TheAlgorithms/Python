@@ -41,7 +41,19 @@ def luhn_validation(credit_card_number: str) -> bool:
 
 def validate_credit_card_number(number: str) -> None:
     """
-    Function to validate the given credit card number
+    Function to validate the given credit card number.
+    >>> validate_credit_card_number('4111111111111111')
+    Given number(4111111111111111) is Valid
+    >>> validate_credit_card_number('helloworld$')
+    Invalid number(helloworld$) given: Contains alphabets or special characters
+    >>> validate_credit_card_number('32323')
+    Invalid number(32323) given: Check number length
+    >>> validate_credit_card_number('32323323233232332323')
+    Invalid number(32323323233232332323) given: Check number length
+    >>> validate_credit_card_number('36111111111111')
+    Invalid number(36111111111111) given: Check starting number
+    >>> validate_credit_card_number('41111111111111')
+    Invalid number(41111111111111) given: Invalid Number
     """
     credit_card_number = str(number)
     if credit_card_number.isdigit():
