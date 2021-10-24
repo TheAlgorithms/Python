@@ -22,7 +22,7 @@ class CircularQueueLinkedList:
         self.rear = None
         self.create_linked_list(initial_capacity)
 
-    def create_linked_list(self, initial_capacity) -> None:
+    def create_linked_list(self, initial_capacity: int) -> None:
         current_node = Node()
         self.front = current_node
         self.rear = current_node
