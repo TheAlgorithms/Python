@@ -33,7 +33,7 @@ NUM_BALLS = BALLS_PER_COLOUR * NUM_COLOURS
 
 def solution(num_picks: int = 20) -> float:
     """
-    Calculates the expected number of distinct colors
+    Calculates the expected number of distinct colours
 
     >>> f'{solution(10):.9f}'
     '5.669644129'
