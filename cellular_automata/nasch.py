@@ -15,10 +15,10 @@ More information here: https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg
 
 Examples for doctest:
 >>> highway = construct_highway(6, 3, 0)
->>>simulate(highway, 2, 0, 2)
+>>> simulate(highway, 2, 0, 2)
 [[0, -1, -1, 0, -1, -1], [-1, 1, -1, -1, 1, -1], [-1, -1, 1, -1, -1, 1]]
->>>highway = construct_highway(5, 2, -2)
->>>simulate(highway, 3, 0, 2)
+>>> highway = construct_highway(5, 2, -2)
+>>> simulate(highway, 3, 0, 2)
 [[0, -1, 0, -1, 0], [0, -1, 0, -1, -1], [0, -1, -1, 1, -1], [-1, 1, -1, 0, -1]]
 """
 
