@@ -27,6 +27,7 @@ def solution() -> str:
     MODULUS = 10 ** 6
     partitions = [1]
     result = ""
+
     for i in itertools.count(len(partitions)):
 
         item = 0
@@ -46,5 +47,6 @@ def solution() -> str:
 
         if item == 0:
             result = str(i)
+            break
 
     return result
