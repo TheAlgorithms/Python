@@ -17,12 +17,12 @@ class CircularQueueLinkedList:
     Exception: Full Queue
     """
 
-    def __init__(self, initial_capacity: int = 6):
+    def __init__(self, initial_capacity: int = 6) -> None:
         self.front = None
         self.rear = None
         self.create_linked_list(initial_capacity)
 
-    def create_linked_list(self, initial_capacity):
+    def create_linked_list(self, initial_capacity) -> None:
         current_node = Node()
         self.front = current_node
         self.rear = current_node
@@ -76,7 +76,7 @@ class CircularQueueLinkedList:
         self.check_can_perform_operation()
         return self.front.data
 
-    def enqueue(self, data: Any):
+    def enqueue(self, data: Any) -> None:
         """
         Saves data at the end of the queue
 
@@ -128,17 +128,17 @@ class CircularQueueLinkedList:
         old_front.data = None
         return data
 
-    def check_can_perform_operation(self):
+    def check_can_perform_operation(self) -> None:
         if self.is_empty():
             raise Exception("Empty Queue")
 
-    def check_is_full(self):
+    def check_is_full(self) -> None:
         if self.rear.next == self.front:
             raise Exception("Full Queue")
 
 
 class Node:
-    def __init__(self):
+    def __init__(self) -> None:
         self.data = None
         self.next = None
         self.prev = None
