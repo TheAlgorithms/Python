@@ -51,7 +51,7 @@ def construct_highway(
         SPEED_START = 0
     while i < NUMBER_OF_CELLS:
         highway[0][i] = randint(0, MAX_SPEED) if random_speed else SPEED_START  # Place the cars
-        i = i + randint(1, MAX_SPEED * 2) if random_frequency else i + FREQUENCY  # Arbitrary number, may need tuning
+        i += randint(1, MAX_SPEED * 2) if random_frequency else FREQUENCY  # Arbitrary number, may need tuning
     return highway
 
 
