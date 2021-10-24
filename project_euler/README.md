@@ -1,12 +1,11 @@
 # Project Euler
 
-Problems are taken from https://projecteuler.net/, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright).
+Problems are taken from <https://projecteuler.net/>, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright).
 
 Project Euler is a series of challenging mathematical/computer programming problems that require more than just mathematical
 insights to solve. Project Euler is ideal for mathematicians who are learning to code.
 
 The solutions will be checked by our [automated testing on Travis CI](https://travis-ci.com/github/TheAlgorithms/Python/pull_requests) with the help of [this script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). The efficiency of your code is also checked. You can view the top 10 slowest solutions on Travis CI logs (under `slowest 10 durations`) and open a pull request to improve those solutions.
-
 
 ## Solution Guidelines
 
