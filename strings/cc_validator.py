@@ -1,4 +1,27 @@
 def validate_initial_digits(credit_card_number: str) -> bool:
+    """
+    Function to validate initial digits of a given credit card number.
+    >>> validate_initial_digits('4111111111111111')
+    True
+    >>> validate_initial_digits('32323')
+    False
+    >>> validate_initial_digits('36111111111111')
+    False
+    >>> validate_initial_digits('41111111111111')
+    True
+    >>> validate_initial_digits('37')
+    True
+    >>> validate_initial_digits('34')
+    True
+    >>> validate_initial_digits('35')
+    True
+    >>> validate_initial_digits('412345')
+    True
+    >>> validate_initial_digits('523456')
+    True
+    >>> validate_initial_digits('634567')
+    True
+    """
     first_digit = int(credit_card_number[0])
     if first_digit == 4 or first_digit == 5 or first_digit == 6:
         return True
@@ -12,6 +35,15 @@ def validate_initial_digits(credit_card_number: str) -> bool:
 
 
 def luhn_validation(credit_card_number: str) -> bool:
+    """
+    Function to luhn algorithm validation for a given credit card number.
+    >>> luhn_validation('4111111111111111')
+    True
+    >>> luhn_validation('36111111111111')
+    True
+    >>> luhn_validation('41111111111111')
+    False
+    """
     cc_number = credit_card_number
     total = 0
     half_len = len(cc_number) - 2
