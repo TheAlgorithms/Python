@@ -29,11 +29,11 @@ def max_golden_search(
     """
     Function in python that calculates the maximum
     point of function in a specified interval
-        f : the function to maximize
-        upper: upper boundary of interval
-        lower: lower boundary of interval
-        tol: set an appropriate tolerance value
-        return: maximum of specified interval
+        :param func_to_max : the function to maximize (target_function)
+        :param upper: upper boundary of interval
+        :param lower: lower boundary of interval
+        :param tol: set an appropriate tolerance value
+        :returns maximum of specified interval
     >>> max_golden_search(target_function, -2, 4)
     count = 43
     0.3670068499227286
