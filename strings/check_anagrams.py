@@ -5,7 +5,7 @@ wiki: https://en.wikipedia.org/wiki/Anagram
 
 def check_anagrams(first_str: str, second_str: str) -> bool:
     """
-    Two strings are anagrams if they are made of the same letters
+    Two strings are anagrams if they are made up of the same letters but are
     arranged differently (ignoring the case).
     >>> check_anagrams('Silent', 'Listen')
     True
