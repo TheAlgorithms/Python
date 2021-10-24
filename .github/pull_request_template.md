@@ -4,7 +4,7 @@
 * [ ] Fix a bug or typo in an existing algorithm?
 * [ ] Documentation change?
 
-## **Checklist:**
+# **Checklist:**
 
 * [ ] I have read [CONTRIBUTING.md](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md).
 * [ ] This pull request is all my own work -- I have not plagiarized.
