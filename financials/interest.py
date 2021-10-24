@@ -14,21 +14,26 @@ def simple_interest(principle:float, daily_interest_rate:float, number_of_days_b
     5500.0
     >>> simple_interest(10000.0,-0.06,3)
     Traceback (most recent call last):
-    Exception: daily_interest_rate must be a positive value
+        ...
+    ValueError: daily_interest_rate must be >= 0
     >>> simple_interest(-10000.0,0.06,3)
     Traceback (most recent call last):
-    Exception: principle must be a positive value
+        ...
+    ValueError: principle must be >= 0
     >>> simple_interest(5500.0,0.01,-5)
     Traceback (most recent call last):
-    Exception: number_of_days_between_payments must be a positive value
+        ...
+    ValueError: number_of_days_between_payments must be >= 0
     """
     if(number_of_days_between_payments < 0):
-        raise Exception("number_of_days_between_payments must be a positive value")
+        raise ValueError("number_of_days_between_payments must be >= 0")
     if(daily_interest_rate < 0.0):
-        raise Exception("daily_interest_rate must be a positive value")
+        raise ValueError("daily_interest_rate must be >= 0")
     if(principle < 0.0):
-        raise Exception("principle must be a positive value")
+        raise ValueError("principle must be >= 0")
+
     return principle * daily_interest_rate * number_of_days_between_payments
+
 
 def compound_interest(principle:float, nominal_annual_interest_rate_percentage:float, number_of_compounding_periods:int)-> float:
     """
@@ -42,20 +47,24 @@ def compound_interest(principle:float, nominal_annual_interest_rate_percentage:f
     0.0
     >>> compound_interest(10000.0,0.06,-4)
     Traceback (most recent call last):
-    Exception: number_of_compounding_periods must be a positive value
+        ...
+    ValueError: number_of_compounding_periods must be >= 0
     >>> compound_interest(10000.0,-3.5,3.0)
     Traceback (most recent call last):
-    Exception: nominal_annual_interest_rate_percentage must be a positive value
+        ...
+    ValueError: nominal_annual_interest_rate_percentage must be >= 0
     >>> compound_interest(-5500.0,0.01,5)
     Traceback (most recent call last):
-    Exception: principle must be a positive value
+        ...
+    ValueError: principle must be >= 0
     """
     if(number_of_compounding_periods < 0):
-        raise Exception("number_of_compounding_periods must be a positive value")
+        raise ValueError("number_of_compounding_periods must be >= 0")
     if(nominal_annual_interest_rate_percentage < 0.0):
-        raise Exception("nominal_annual_interest_rate_percentage must be a positive value")
+        raise ValueError("nominal_annual_interest_rate_percentage must be >= 0")
     if(principle < 0.0):
-        raise Exception("principle must be a positive value")
+        raise ValueError("principle must be >= 0")
+
     return principle * ((1 + nominal_annual_interest_rate_percentage) ** number_of_compounding_periods - 1)
 
 
