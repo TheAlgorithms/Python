@@ -39,7 +39,7 @@ def luhn_validation(credit_card_number: str) -> bool:
     return False
 
 
-def validate_credit_card_number(number: str):
+def validate_credit_card_number(number: str) -> None:
     """
     Function to validate the given credit card number
     """
