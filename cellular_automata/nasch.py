@@ -14,7 +14,7 @@ Some information about speed:
 More information here: https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model
 
 Examples for doctest:
->>>highway = construct_highway(6, 3, 0)
+>>> highway = construct_highway(6, 3, 0)
 >>>simulate(highway, 2, 0, 2)
 [[0, -1, -1, 0, -1, -1], [-1, 1, -1, -1, 1, -1], [-1, -1, 1, -1, -1, 1]]
 >>>highway = construct_highway(5, 2, -2)
