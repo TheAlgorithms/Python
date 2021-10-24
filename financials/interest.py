@@ -72,7 +72,10 @@ def compound_interest(
     if principle < 0.0:
         raise ValueError("principle must be >= 0")
 
-    return principle * ((1 + nominal_annual_interest_rate_percentage) ** number_of_compounding_periods - 1)
+    return principle * (
+        (1 + nominal_annual_interest_rate_percentage) ** number_of_compounding_periods
+        - 1
+    )
 
 
 if __name__ == "__main__":
