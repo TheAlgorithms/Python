@@ -82,8 +82,7 @@ def get_distance(highway_now: list, car_index: int) -> int:
         else:
             distance += 1
     # Here if the car is near the end of the highway
-    distance += get_distance(highway_now, -1)
-    return distance
+    return distance + get_distance(highway_now, -1)
 
 
 def update(highway_now: list, PROBABILITY: float, MAX_SPEED: int) -> list:
