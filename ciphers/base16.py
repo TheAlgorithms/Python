@@ -28,7 +28,7 @@ def decode_from_b16(b16encoded: bytes) -> str:
     >>> decode_from_b16(b'')
     ''
     """
-    encoded = base64.b16decode(b16encoded)  #b16decoded the input
+    encoded = base64.b16decode(b16encoded)  # b16decoded the input
     return encoded.decode("utf-8")  # decoded the bytes like object to a string
 
 
