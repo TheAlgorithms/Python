@@ -26,7 +26,7 @@ frequency = 5  # How many cells there are between two cars at the start
 max_speed = 5  # The maximum speed a car will go to
 number_of_cells = 1024  # How many cell are there in the highway
 number_of_update = 2048  # How many times will the position be updated
-highway = []  # Where every position and speed of every car will be stored
+highway: list[int] = []  # Where every position and speed of every car will be stored
 
 
 def construct_highway(
