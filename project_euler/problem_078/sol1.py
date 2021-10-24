@@ -22,7 +22,7 @@ import itertools
 def solution() -> str:
     """
     >>> solution()
-    55374
+    '55374'
     """
     MODULUS = 10 ** 6
     partitions = [1]
