@@ -19,7 +19,7 @@ Find the least value of n for which p(n) is divisible by one million.
 import itertools
 
 
-def solution() -> int:
+def solution() -> str:
     """
     >>> solution()
     55374
@@ -45,6 +45,6 @@ def solution() -> int:
         partitions.append(item)
 
         if item == 0:
-            result = i
+            result = str(i)
 
     return result
