@@ -1,6 +1,6 @@
 # Bit manipulation
 
-Bit manipulation is the act of manipulating bits (incredible!) to detect errors (hamming code), encrypts and decrypts messages (more on that in the 'ciphers' folders) or just do anything at the core level of your computer.
+Bit manipulation is the act of manipulating bits (incredible!) to detect errors (hamming code), encrypts and decrypts messages (more on that in the 'ciphers' folder) or just do anything at the core level of your computer.
 
 * <https://en.wikipedia.org/wiki/Bit_manipulation>
 * <https://docs.python.org/3/reference/expressions.html#binary-bitwise-operations>
