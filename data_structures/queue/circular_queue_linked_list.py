@@ -1,4 +1,5 @@
 # Implementation of Circular Queue using linked lists
+from typing import Any
 
 
 class CircularQueueLinkedList:
@@ -14,7 +15,7 @@ class CircularQueueLinkedList:
     Exception: Full Queue
     """
 
-    def __init__(self, initial_capacity=6):
+    def __init__(self, initial_capacity: int = 6):
         self.front = None
         self.rear = None
         self.create_linked_list(initial_capacity)
@@ -48,7 +49,7 @@ class CircularQueueLinkedList:
         """
         return self.front == self.rear and self.front.data is None
 
-    def first(self):
+    def first(self) -> Any:
         """
         Returns the first element of the queue
         >>> cq = CircularQueueLinkedList()
@@ -73,7 +74,7 @@ class CircularQueueLinkedList:
         self.check_can_perform_operation()
         return self.front.data
 
-    def enqueue(self, data):
+    def enqueue(self, data: Any):
         """
         Saves data at the end of the queue
 
@@ -96,7 +97,7 @@ class CircularQueueLinkedList:
             self.rear = self.rear.next
             self.rear.data = data
 
-    def dequeue(self):
+    def dequeue(self) -> Any:
         """
         Removes and retrieves the first element of the queue
 
