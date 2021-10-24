@@ -15,10 +15,8 @@ More information here: https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg
 
 Examples for doctest:
 >>> simulate(construct_highway(6, 3, 0), 2, 0, 2)
->>> simulate(highway, 2, 0, 2)
 [[0, -1, -1, 0, -1, -1], [-1, 1, -1, -1, 1, -1], [-1, -1, 1, -1, -1, 1]]
->>> highway = construct_highway(5, 2, -2)
->>> simulate(highway, 3, 0, 2)
+>>> simulate(construct_highway(5, 2, -2), 3, 0, 2)
 [[0, -1, 0, -1, 0], [0, -1, 0, -1, -1], [0, -1, -1, 1, -1], [-1, 1, -1, 0, -1]]
 """
 
@@ -32,7 +30,7 @@ highway = []  # Where every position and speed of every car will be stored
 
 
 def construct_highway(
-    NUMBER_OF_CELLS: int,
+    number_of_cells: int,
     FREQUENCY: int,
     SPEED_START: int,
     random_frequency: bool = False,
@@ -52,14 +50,8 @@ def construct_highway(
     if SPEED_START < 0:
         SPEED_START = 0
     while i < NUMBER_OF_CELLS:
-        if random_speed:
-            highway[0][i] = randint(0, MAX_SPEED)
-        else:
-            highway[0][i] = SPEED_START  # Place the cars
-        if random_frequency:
-            i += randint(1, MAX_SPEED * 2)  # Arbitrary number, may need tuning
-        else:
-            i += FREQUENCY
+        highway[0][i] = randint(0, MAX_SPEED) if random_speed else SPEED_START  # Place the cars
+        i = i + randint(1, MAX_SPEED * 2) if random_frequency else i + FREQUENCY  # Arbitrary number, may need tuning
     return highway
 
 
