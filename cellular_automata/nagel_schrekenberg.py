@@ -21,21 +21,21 @@ Examples for doctest:
 """
 
 PROBABILITY = 0.1  # The probability that a driver will slow down
-SPEED_START = 1  # The speed of the cars a the start
-FREQUENCY = 5  # How many cells there are between two cars at the start
-MAX_SPEED = 5  # The maximum speed a car will go to
-NUMBER_OF_CELLS = 1024  # How many cell are there in the highway
-NUMBER_OF_UPDATE = 2048  # How many times will the position be updated
+initial_speed = 1  # The speed of the cars a the start
+frequency = 5  # How many cells there are between two cars at the start
+max_speed = 5  # The maximum speed a car will go to
+number_of_cells = 1024  # How many cell are there in the highway
+number_of_update = 2048  # How many times will the position be updated
 highway = []  # Where every position and speed of every car will be stored
 
 
 def construct_highway(
     number_of_cells: int,
-    FREQUENCY: int,
-    SPEED_START: int,
+    frequency: int,
+    initial_speed: int,
     random_frequency: bool = False,
     random_speed: bool = False,
-    MAX_SPEED: int = 5,
+    max_speed: int = 5,
 ) -> list:
     """
     Build the highway following the parameters given
@@ -45,13 +45,17 @@ def construct_highway(
     [[2, -1, -1, -1, -1, -1, -1, -1, -1, -1]]
     """
 
-    highway = [[-1] * NUMBER_OF_CELLS]  # Create a highway without any car
+    highway = [[-1] * number_of_cells]  # Create a highway without any car
     i = 0
-    if SPEED_START < 0:
-        SPEED_START = 0
-    while i < NUMBER_OF_CELLS:
-        highway[0][i] = randint(0, MAX_SPEED) if random_speed else SPEED_START  # Place the cars
-        i += randint(1, MAX_SPEED * 2) if random_frequency else FREQUENCY  # Arbitrary number, may need tuning
+    if initial_speed < 0:
+        initial_speed = 0
+    while i < number_of_cells:
+        highway[0][i] = (
+            randint(0, max_speed) if random_speed else initial_speed
+        )  # Place the cars
+        i += (
+            randint(1, max_speed * 2) if random_frequency else frequency
+        )  # Arbitrary number, may need tuning
     return highway
 
 
@@ -71,13 +75,12 @@ def get_distance(highway_now: list, car_index: int) -> int:
     for cell in range(len(cells)):  # May need a better name for this
         if cells[cell] != -1:  # If the cell is not empty then
             return distance  # we have the distance we wanted
-        else:
-            distance += 1
+        distance += 1
     # Here if the car is near the end of the highway
     return distance + get_distance(highway_now, -1)
 
 
-def update(highway_now: list, PROBABILITY: float, MAX_SPEED: int) -> list:
+def update(highway_now: list, PROBABILITY: float, max_speed: int) -> list:
     """
     Update the speed of the cars
     >>> update([-1,-1,-1,-1,-1,2,-1,-1,-1,-1,3], 0.0, 5)
@@ -86,14 +89,14 @@ def update(highway_now: list, PROBABILITY: float, MAX_SPEED: int) -> list:
     [-1, -1, 3, -1, -1, -1, -1, 1]
     """
 
-    NUMBER_OF_CELLS = len(highway_now)
+    number_of_cells = len(highway_now)
     # Beforce calculations, the highway is empty
-    next_highway = [-1] * NUMBER_OF_CELLS
+    next_highway = [-1] * number_of_cells
 
-    for car_index in range(NUMBER_OF_CELLS):
+    for car_index in range(number_of_cells):
         if highway_now[car_index] != -1:
             # Add 1 to the current speed of the car and cap the speed
-            next_highway[car_index] = min(highway_now[car_index] + 1, MAX_SPEED)
+            next_highway[car_index] = min(highway_now[car_index] + 1, max_speed)
             # Number of empty cell before the next car
             dn = get_distance(highway_now, car_index) - 1
             # We can't have the car causing an accident
@@ -105,7 +108,7 @@ def update(highway_now: list, PROBABILITY: float, MAX_SPEED: int) -> list:
 
 
 def simulate(
-    highway: list, NUMBER_OF_UPDATE: int, PROBABILITY: float, MAX_SPEED: int
+    highway: list, number_of_update: int, PROBABILITY: float, max_speed: int
 ) -> list:
     """
     The main function, it will simulate the evolution of the highway
@@ -115,17 +118,17 @@ def simulate(
     [[-1, 2, -1, 3], [-1, 0, -1, 0], [-1, 0, -1, 0], [-1, 0, -1, 0], [-1, 0, -1, 0]]
     """
 
-    NUMBER_OF_CELLS = len(highway[0])
+    number_of_cells = len(highway[0])
 
-    for i in range(NUMBER_OF_UPDATE):
-        next_speeds_calculated = update(highway[i], PROBABILITY, MAX_SPEED)
-        real_next_speeds = [-1] * NUMBER_OF_CELLS
+    for i in range(number_of_update):
+        next_speeds_calculated = update(highway[i], PROBABILITY, max_speed)
+        real_next_speeds = [-1] * number_of_cells
 
-        for car_index in range(NUMBER_OF_CELLS):
+        for car_index in range(number_of_cells):
             speed = next_speeds_calculated[car_index]
             if speed != -1:
                 # Change the position based on the speed (with % to create the loop)
-                index = (car_index + speed) % NUMBER_OF_CELLS
+                index = (car_index + speed) % number_of_cells
                 # Commit the change of position
                 real_next_speeds[index] = speed
         highway.append(real_next_speeds)
