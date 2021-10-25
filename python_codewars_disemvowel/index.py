@@ -7,7 +7,7 @@ TheFunction will spin your words
 'Hey fellow warriors'
 """
 
-def spin_words(sentence):
+def spin_words(sentence: str ) -> str:
     sentences = sentence.split(" ")
 
     for i in range(len(sentences)):
