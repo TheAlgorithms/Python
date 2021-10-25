@@ -8,7 +8,7 @@ access_key = ""
 access_secret = ""
 
 
-def get_all_tweets(screen_name: str):
+def get_all_tweets(screen_name: str) -> None:
 
     # authorize twitter, initialize tweepy
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
