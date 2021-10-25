@@ -13,9 +13,9 @@ def spin_words(sentence):
     for i in range(len(sentences)):
         if len(sentences[i]) >= 5:
             word = sentences[i]
-            newWord = "".join([(word[len(word) - e])  for e in range(1,len(sentences[i]) + 1)])
+            new_word = "".join([(word[len(word) - e])  for e in range(1,len(sentences[i]) + 1)])
             sentences.remove(sentences[i])
-            sentences.insert(i, newWord)
+            sentences.insert(i, new_word)
     result = " ".join(sentences)
     return result
 
