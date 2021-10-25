@@ -1,5 +1,6 @@
-import tweepy
 import csv
+
+import tweepy
 
 # Twitter API credentials
 consumer_key = ""
