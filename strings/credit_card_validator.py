@@ -52,7 +52,7 @@ def luhn_validation(credit_card_number: str) -> bool:
     return total % 10 == 0
 
 
-def validate_credit_card_number(number: str) -> None:
+def validate_credit_card_number(number: str) -> bool:
     """
     Function to validate the given credit card number.
     >>> validate_credit_card_number('4111111111111111')
@@ -68,23 +68,27 @@ def validate_credit_card_number(number: str) -> None:
     >>> validate_credit_card_number('41111111111111')
     Invalid number(41111111111111) given: Invalid Number
     """
+    error_message = f"Invalid number({number}) given: "
     credit_card_number = str(number)
-    if credit_card_number.isdigit():
-        credit_card_number_length = len(credit_card_number)
-        if credit_card_number_length >= 13 and credit_card_number_length <= 16:
-            if validate_initial_digits(credit_card_number):
-                if luhn_validation(credit_card_number):
-                    print(f"Given number({number}) is Valid")
-                else:
-                    print(f"Invalid number({number}) given: Invalid Number")
-            else:
-                print(f"Invalid number({number}) given: Check starting number")
-        else:
-            print(f"Invalid number({number}) given: Check number length")
-    else:
-        print(
-            f"Invalid number({number}) given: Contains alphabets or special characters"
-        )
+    if not credit_card_number.isdigit():
+        print(error_message + "Contains alphabets or special characters")
+        return False
+
+    credit_card_number_length = len(credit_card_number)
+    if credit_card_number_length < 13 and credit_card_number_length > 16:
+        print(error_message + "Check number length")
+        return False
+
+    if not validate_initial_digits(credit_card_number):
+        print(error_message + "Check starting number")
+        return False
+
+    if not luhn_validation(credit_card_number):
+        print(error_message + "Invalid Number")
+        return False
+    
+    print(f"Given number({number}) is Valid")
+    return True
 
 
 if __name__ == "__main__":
