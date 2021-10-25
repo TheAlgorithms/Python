@@ -81,7 +81,7 @@ def validate_credit_card_number(number: str) -> bool:
         return False
 
     credit_card_number_length = len(credit_card_number)
-    if not (credit_card_number_length >= 13 and credit_card_number_length <= 16):
+    if not (13 <= len(credit_card_number) <= 16):
         print(error_message + "Check number length")
         return False
 
