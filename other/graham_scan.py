@@ -83,7 +83,7 @@ def graham_scan(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
 
     sorted_points = sorted(points, key=lambda point: angle_comparer(point, minx, miny))
     # This insert actually costs complexity,
-    # and you should insteadly add (minx, miny) into stack later.
+    # and you should instead add (minx, miny) into stack later.
     # I'm using insert just for easy understanding.
     sorted_points.insert(0, (minx, miny))
 
