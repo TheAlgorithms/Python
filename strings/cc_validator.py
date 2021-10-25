@@ -9,7 +9,7 @@ def validate_initial_digits(credit_card_number: str) -> bool:
     True
     """
     first_digit = int(credit_card_number[0])
-    if first_digit == 4 or first_digit == 5 or first_digit == 6:
+    if first_digit in (4, 5, 6):
         return True
     elif first_digit == 3:
         second_digit = int(credit_card_number[1])
