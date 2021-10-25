@@ -1,25 +1,11 @@
 def validate_initial_digits(credit_card_number: str) -> bool:
     """
     Function to validate initial digits of a given credit card number.
-    >>> validate_initial_digits('4111111111111111')
+    >>> valid = "4111111111111111 41111111111111 34 35 37 412345 523456 634567"
+    >>> all(validate_initial_digits(cc) for cc in valid.split())
     True
-    >>> validate_initial_digits('32323')
-    False
-    >>> validate_initial_digits('36111111111111')
-    False
-    >>> validate_initial_digits('41111111111111')
-    True
-    >>> validate_initial_digits('37')
-    True
-    >>> validate_initial_digits('34')
-    True
-    >>> validate_initial_digits('35')
-    True
-    >>> validate_initial_digits('412345')
-    True
-    >>> validate_initial_digits('523456')
-    True
-    >>> validate_initial_digits('634567')
+    >>> invalid = "32323 36111111111111"
+     >>> all(validate_initial_digits(cc) is False for cc in invalid.split())
     True
     """
     first_digit = int(credit_card_number[0])
