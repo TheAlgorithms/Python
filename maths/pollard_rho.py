@@ -14,6 +14,7 @@ def pollard_rho(
     If the algorithm will return None if it fails to find a factor within
     the specified number of attempts or within the specified number of steps.
     If ``n`` is prime, this algorithm is guaranteed to return None.
+    https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm
 
     >>> pollard_rho(18446744073709551617)
     274177
@@ -34,7 +35,7 @@ def pollard_rho(
     """
     # A value less than 2 can cause an infinite loop in the algorithm.
     if n < 2:
-        raise ValueError(f"The input value cannot be less than 2")
+        raise ValueError("The input value cannot be less than 2")
 
     # Because of the relationship between ``f(f(x))`` and ``f(x)``, this
     # algorithm struggles to find factors that are divisible by two.
@@ -54,7 +55,8 @@ def pollard_rho(
         # determined in part by the initial seed and the chosen random function.
         # To make retries easier, we will instead use ``f(x) = (x**2 + C) % n``
         # where ``C`` is a value that we can modify between each attempt.
-        rand_fn = lambda x: (pow(x, 2) + step) % n
+        def rand_fn(x):
+            return (pow(x, 2) + step) % n
 
         # These track the position within the cycle detection logic.
         tortoise = seed
