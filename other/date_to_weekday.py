@@ -1,5 +1,6 @@
 from calendar import day_name
 from datetime import datetime
+from typing import Union
 
 
 def date_to_weekday(inp_date: str) -> str:
@@ -14,11 +15,12 @@ def date_to_weekday(inp_date: str) -> str:
     >>> date_to_weekday("1/1/2021")
     'Friday'
     """
+    year: Union[int, str]
     day, month, year = (int(x) for x in inp_date.split("/"))
     if year % 100 == 0:
         year = "00"
     new_base_date: str = f"{day}/{month}/{year%100} 0:0:0"
-    date_time_obj: datetime.date = datetime.strptime(new_base_date, "%d/%m/%y %H:%M:%S")
+    date_time_obj: datetime = datetime.strptime(new_base_date, "%d/%m/%y %H:%M:%S")
     out_put_day: int = date_time_obj.weekday()
     return day_name[out_put_day]
 
