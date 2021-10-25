@@ -27,7 +27,7 @@ def solution() -> int:
     a = []
     with open(triangle) as f:
         for line in f:
-            a.append(list(map(int, line.split(" "))))
+            a.append([int(i) for i in line.split()])
 
     while len(a) != 1:
         b = a.pop()
