@@ -5,7 +5,7 @@ def validate_initial_digits(credit_card_number: str) -> bool:
     >>> all(validate_initial_digits(cc) for cc in valid.split())
     True
     >>> invalid = "32323 36111111111111"
-     >>> all(validate_initial_digits(cc) is False for cc in invalid.split())
+    >>> all(validate_initial_digits(cc) is False for cc in invalid.split())
     True
     """
     first_digit = int(credit_card_number[0])
@@ -57,16 +57,22 @@ def validate_credit_card_number(number: str) -> bool:
     Function to validate the given credit card number.
     >>> validate_credit_card_number('4111111111111111')
     Given number(4111111111111111) is Valid
+    True
     >>> validate_credit_card_number('helloworld$')
     Invalid number(helloworld$) given: Contains alphabets or special characters
+    False
     >>> validate_credit_card_number('32323')
     Invalid number(32323) given: Check number length
+    False
     >>> validate_credit_card_number('32323323233232332323')
     Invalid number(32323323233232332323) given: Check number length
+    False
     >>> validate_credit_card_number('36111111111111')
     Invalid number(36111111111111) given: Check starting number
+    False
     >>> validate_credit_card_number('41111111111111')
     Invalid number(41111111111111) given: Invalid Number
+    False
     """
     error_message = f"Invalid number({number}) given: "
     credit_card_number = str(number)
@@ -75,7 +81,7 @@ def validate_credit_card_number(number: str) -> bool:
         return False
 
     credit_card_number_length = len(credit_card_number)
-    if credit_card_number_length < 13 and credit_card_number_length > 16:
+    if not (credit_card_number_length >= 13 and credit_card_number_length <= 16):
         print(error_message + "Check number length")
         return False
 
@@ -86,7 +92,7 @@ def validate_credit_card_number(number: str) -> bool:
     if not luhn_validation(credit_card_number):
         print(error_message + "Invalid Number")
         return False
-    
+
     print(f"Given number({number}) is Valid")
     return True
 
