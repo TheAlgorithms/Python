@@ -1,0 +1,131 @@
+from math import gcd
+from typing import Union
+
+
+def pollard_rho(
+    n: int,
+    seed: int = 2,
+    step: int = 1,
+    attempts: int = 3,
+) -> Union[int, None]:
+    """
+    Use Pollard's Rho algorithm to return a nontrivial factor of ``n``.
+    The returned factor may be composite and require further factorization.
+    If the algorithm will return None if it fails to find a factor within
+    the specified number of attempts or within the specified number of steps.
+    If ``n`` is prime, this algorithm is guaranteed to return None.
+
+    >>> pollard_rho(18446744073709551617)
+    274177
+    >>> pollard_rho(97546105601219326301)
+    9876543191
+    >>> pollard_rho(100)
+    2
+    >>> pollard_rho(17)
+    >>> pollard_rho(17**3)
+    17
+    >>> pollard_rho(17**3, attempts=1)
+    >>> pollard_rho(3*5*7)
+    21
+    >>> pollard_rho(1)
+    Traceback (most recent call last):
+        ...
+    ValueError: The input value cannot be less than 2
+    """
+    # A value less than 2 can cause an infinite loop in the algorithm.
+    if n < 2:
+        raise ValueError(f"The input value cannot be less than 2")
+
+    # Because of the relationship between ``f(f(x))`` and ``f(x)``, this
+    # algorithm struggles to find factors that are divisible by two.
+    # As a workaround, we specifically check for two and even inputs.
+    #   See: https://math.stackexchange.com/a/2856214/165820
+    if n > 2 and n % 2 == 0:
+        return 2
+
+    for attempt in range(attempts):
+        # Pollard's Rho algorithm requires a function that returns pseudorandom
+        # values between 0 <= X < ``n``.  It doesn't need to be random in the
+        # sense that the output value is cryptographically secure or difficult
+        # to calculate, it only needs to be random in the sense that all output
+        # values should be equally likely to appear.
+        # For this reason, Pollard suggested using ``f(x) = (x**2 - 1) % n``
+        # However, the success of Pollard's algorithm isn't guaranteed and is
+        # determined in part by the initial seed and the chosen random function.
+        # To make retries easier, we will instead use ``f(x) = (x**2 + C) % n``
+        # where ``C`` is a value that we can modify between each attempt.
+        rand_fn = lambda x: (pow(x, 2) + step) % n
+
+        # These track the position within the cycle detection logic.
+        tortoise = seed
+        hare = seed
+
+        while True:
+            # At each iteration, the tortoise moves one step and the hare moves two.
+            tortoise = rand_fn(tortoise)
+            hare = rand_fn(hare)
+            hare = rand_fn(hare)
+
+            # At some point both the tortoise and the hare will enter a cycle whose
+            # length ``p`` is a divisor of ``n``.  Once in that cycle, at some point
+            # the tortoise and hare will end up on the same value modulo ``p``.
+            # We can detect when this happens because the position difference between
+            # the tortoise and the hare will share a common divisor with ``n``.
+            divisor = gcd(hare - tortoise, n)
+
+            if divisor == 1:
+                # No common divisor yet, just keep searching.
+                continue
+            else:
+                # We found a common divisor!
+                if divisor == n:
+                    # Unfortunately, the divisor is ``n`` itself and is useless.
+                    break
+                else:
+                    # The divisor is a nontrivial factor of ``n``!
+                    return divisor
+
+        # If we made it here, then this attempt failed.
+        # We need to pick a new starting seed for the tortoise and hare
+        # in addition to a new step value for the random function.
+        # To keep this example implementation deterministic, the
+        # new values will be generated based on currently available
+        # values instead of using something like ``random.randint``.
+
+        # We can use the hare's position as the new seed.
+        # This is actually what Richard Brent's the "optimized" variant does.
+        seed = hare
+
+        # The new step value for the random function can just be incremented.
+        # At first the results will be similar to what the old function would
+        # have produced, but the value will quickly diverge after a bit.
+        step += 1
+
+    # We haven't found a divisor within the requested number of attempts.
+    # We were unlucky or ``n`` itself is actually prime.
+    return None
+
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "n",
+        type=int,
+        help="The value to find a divisor of",
+    )
+    parser.add_argument(
+        "--attempts",
+        type=int,
+        default=3,
+        help="The number of attempts before giving up",
+    )
+    args = parser.parse_args()
+
+    divisor = pollard_rho(args.n, attempts=args.attempts)
+    if divisor is None:
+        print(f"{args.n} is probably prime")
+    else:
+        quotient = args.n // divisor
+        print(f"{args.n} = {divisor} * {quotient}")
