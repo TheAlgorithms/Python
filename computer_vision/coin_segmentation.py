@@ -14,27 +14,36 @@ The SciKit-Image library is used to perform the image retrieving and operations:
 
 Although the example shows a coin, the algorithm crops the first thing in a given image
 that forms a closed region.
+
+You can set plot_result variable to True in order to show the result using pyplot, or
+else, the final image is only appended in the croped_images list
+
+>>> img = [[[134, 135, 139],[134, 135, 139]],[[133, 134, 138],[133, 134, 138]]]
+>>> img = np.array(img)
+>>> bin = binarize_image(img)
+>>> croped_img = crop_coin_from_binary(img, bin)
+>>> isinstance(croped_img, type(None))
+True
 """
 
-# Modules used for image filtering
-from skimage import filters
-from skimage.color import rgb2hsv
-
-# Modules used for segmentation
-from skimage import util
-from skimage.morphology import label
-from skimage.measure import regionprops
-
-# Other modules
-import numpy as np
 import matplotlib.pyplot as plt
-from skimage import io
+import numpy as np
+from skimage import filters, io, util
+from skimage.color import rgb2hsv
+from skimage.measure import regionprops
+from skimage.morphology import label
 from skimage.transform import resize
 
 
 def binarize_image(img: np.ndarray) -> np.ndarray:
     """
     Function used to filter and apply threshold on a given image
+
+    >>> img = [[[134, 135, 139],[134, 135, 139]],[[133, 134, 138],[133, 134, 138]]]
+    >>> img = np.array(img)
+    >>> binarize_image(img)
+    array([[False, False],
+           [ True,  True]])
     """
 
     # Load image in HSV channels
@@ -65,6 +74,11 @@ def crop_coin_from_binary(img: np.ndarray, binarized_img: np.ndarray) -> np.ndar
 
     The retrieved image is only considered valid if it has minimum area of 20 pixels
     and its proportions do not deviate much from a square
+
+    >>> img = [[[134, 135, 139],[134, 135, 139]],[[133, 134, 138],[133, 134, 138]]]
+    >>> img = np.array(img)
+    >>> bin = binarize_image(img)
+    >>> crop_coin_from_binary(img, bin)
     """
 
     # Read the image in a more useful format
@@ -104,8 +118,8 @@ def crop_coin_from_binary(img: np.ndarray, binarized_img: np.ndarray) -> np.ndar
 
 if __name__ == "__main__":
     imgs = []
-    cropeds = []
-    not_cropeds = []
+    croped_images = []
+    not_croped_images = []
 
     # Example image from original Kaggle competition for brazilian coin classification
     # Link for Kaggle competition: https://www.kaggle.com/lgmoneda/br-coins
@@ -127,40 +141,44 @@ if __name__ == "__main__":
     # Retrive image from url. Skimage imread is capable of retrieving images from urls
     imgs.append(io.imread(example_url))
 
+    print("\noriginal: \n", imgs[0][200:202, 200:202])
+    plt.imshow(imgs[0])
+    plt.show()
     # Iterate our images, we use enumerate for extra info
-    for cont, img in enumerate(imgs):
+    for img in imgs:
 
         try:
             # Binarize the image
             bin = binarize_image(img)
-
+            print("\nbin: \n", bin[200:202, 200:202])
             # Crop the image based on the binary of the same image
             croped_img = crop_coin_from_binary(img, bin)
 
             # Verifies if the returned image is None, in which case the function was
             # not able to recognize a region
             if isinstance(img, type(None)):
-                print("NoneType crop ", cont)
                 continue
 
             # Verifies if the image has width or height equals 0, making it invalid
             if croped_img.shape[1] == 0 or croped_img.shape[0] == 0:
-                not_cropeds.append(img)
-                print("0 sized image ", cont)
+                not_croped_images.append(img)
                 continue
 
-            cropeds.append(croped_img)
+            croped_images.append(croped_img)
+            print("\ncroped_img: \n", croped_img[50:52, 50:52])
         except TypeError:
-            not_cropeds.append(img)
-            print("Error on img ", cont)
+            not_croped_images.append(img)
             continue
 
+    plot_result = True
+
     # Plot normalized image
-    plt.imshow(
-        resize(
-            cropeds[0] if len(cropeds) > 0 else not_cropeds[0],
-            (128, 128),
-            anti_aliasing=True,
+    if plot_result:
+        plt.imshow(
+            resize(
+                croped_images[0] if len(croped_images) > 0 else not_croped_images[0],
+                (128, 128),
+                anti_aliasing=True,
+            )
         )
-    )
-    plt.show()
+        plt.show()
