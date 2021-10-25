@@ -14,5 +14,6 @@ sklearn
 statsmodels
 sympy
 tensorflow
+tweepy
 types-requests
 xgboost
