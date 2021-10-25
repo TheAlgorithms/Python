@@ -14,9 +14,7 @@ def validate_initial_digits(credit_card_number: str) -> bool:
     elif first_digit == 3:
         second_digit = int(credit_card_number[1])
         return second_digit in (4, 5, 7)
-            return True
-        else:
-            return False
+
     return False
 
 
@@ -51,10 +49,7 @@ def luhn_validation(credit_card_number: str) -> bool:
     for i in range(len(cc_number) - 1, -1, -2):
         total += int(cc_number[i])
 
-    if total % 10 == 0:
-        return True
-
-    return False
+    return total % 10 == 0
 
 
 def validate_credit_card_number(number: str) -> None:
