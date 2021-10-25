@@ -8,14 +8,11 @@
 # References
 https://en.wikipedia.org/wiki/Golden-section_search
 https://en.wikipedia.org/wiki/Vertex
-
 """
 
 
-
-from matplotlib import pyplot as plt  # import module to plot the result
 import numpy as np
-  
+from matplotlib import pyplot as plt  # import module to plot the result
 
 target_function = (
     lambda x: x ** 3 - 6 * x ** 2 + 4 * x + 12
@@ -78,7 +75,7 @@ max_point = max_golden_search(target_function, -2, 4)
 def plot_point(
     maximum_point: float = max_point,
     x_axis_linspace: np.linspace = np.linspace(-5, 5, 200),
-) -> None:  
+) -> None:
     """
     Plots function and maximum point
     """
