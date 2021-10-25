@@ -3,17 +3,17 @@ from typing import Union
 
 
 def pollard_rho(
-    n: int,
+    num: int,
     seed: int = 2,
     step: int = 1,
     attempts: int = 3,
 ) -> Union[int, None]:
     """
-    Use Pollard's Rho algorithm to return a nontrivial factor of ``n``.
+    Use Pollard's Rho algorithm to return a nontrivial factor of ``num``.
     The returned factor may be composite and require further factorization.
     If the algorithm will return None if it fails to find a factor within
     the specified number of attempts or within the specified number of steps.
-    If ``n`` is prime, this algorithm is guaranteed to return None.
+    If ``num`` is prime, this algorithm is guaranteed to return None.
     https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm
 
     >>> pollard_rho(18446744073709551617)
@@ -34,29 +34,29 @@ def pollard_rho(
     ValueError: The input value cannot be less than 2
     """
     # A value less than 2 can cause an infinite loop in the algorithm.
-    if n < 2:
+    if num < 2:
         raise ValueError("The input value cannot be less than 2")
 
     # Because of the relationship between ``f(f(x))`` and ``f(x)``, this
     # algorithm struggles to find factors that are divisible by two.
     # As a workaround, we specifically check for two and even inputs.
     #   See: https://math.stackexchange.com/a/2856214/165820
-    if n > 2 and n % 2 == 0:
+    if num > 2 and num % 2 == 0:
         return 2
 
     for attempt in range(attempts):
         # Pollard's Rho algorithm requires a function that returns pseudorandom
-        # values between 0 <= X < ``n``.  It doesn't need to be random in the
+        # values between 0 <= X < ``num``.  It doesn't need to be random in the
         # sense that the output value is cryptographically secure or difficult
         # to calculate, it only needs to be random in the sense that all output
         # values should be equally likely to appear.
-        # For this reason, Pollard suggested using ``f(x) = (x**2 - 1) % n``
+        # For this reason, Pollard suggested using ``f(x) = (x**2 - 1) % num``
         # However, the success of Pollard's algorithm isn't guaranteed and is
         # determined in part by the initial seed and the chosen random function.
-        # To make retries easier, we will instead use ``f(x) = (x**2 + C) % n``
+        # To make retries easier, we will instead use ``f(x) = (x**2 + C) % num``
         # where ``C`` is a value that we can modify between each attempt.
-        def rand_fn(x):
-            return (pow(x, 2) + step) % n
+        def rand_fn(x: int) -> int:
+            return (pow(x, 2) + step) % num
 
         # These track the position within the cycle detection logic.
         tortoise = seed
@@ -69,22 +69,22 @@ def pollard_rho(
             hare = rand_fn(hare)
 
             # At some point both the tortoise and the hare will enter a cycle whose
-            # length ``p`` is a divisor of ``n``.  Once in that cycle, at some point
+            # length ``p`` is a divisor of ``num``.  Once in that cycle, at some point
             # the tortoise and hare will end up on the same value modulo ``p``.
             # We can detect when this happens because the position difference between
-            # the tortoise and the hare will share a common divisor with ``n``.
-            divisor = gcd(hare - tortoise, n)
+            # the tortoise and the hare will share a common divisor with ``num``.
+            divisor = gcd(hare - tortoise, num)
 
             if divisor == 1:
                 # No common divisor yet, just keep searching.
                 continue
             else:
                 # We found a common divisor!
-                if divisor == n:
-                    # Unfortunately, the divisor is ``n`` itself and is useless.
+                if divisor == num:
+                    # Unfortunately, the divisor is ``num`` itself and is useless.
                     break
                 else:
-                    # The divisor is a nontrivial factor of ``n``!
+                    # The divisor is a nontrivial factor of ``num``!
                     return divisor
 
         # If we made it here, then this attempt failed.
@@ -104,7 +104,7 @@ def pollard_rho(
         step += 1
 
     # We haven't found a divisor within the requested number of attempts.
-    # We were unlucky or ``n`` itself is actually prime.
+    # We were unlucky or ``num`` itself is actually prime.
     return None
 
 
@@ -113,7 +113,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "n",
+        "num",
         type=int,
         help="The value to find a divisor of",
     )
@@ -125,9 +125,9 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    divisor = pollard_rho(args.n, attempts=args.attempts)
+    divisor = pollard_rho(args.num, attempts=args.attempts)
     if divisor is None:
-        print(f"{args.n} is probably prime")
+        print(f"{args.num} is probably prime")
     else:
-        quotient = args.n // divisor
-        print(f"{args.n} = {divisor} * {quotient}")
+        quotient = args.num // divisor
+        print(f"{args.num} = {divisor} * {quotient}")
