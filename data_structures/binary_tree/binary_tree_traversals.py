@@ -1,8 +1,8 @@
 # https://en.wikipedia.org/wiki/Tree_traversal
 from __future__ import annotations
 
-from dataclasses import dataclass
 from collections import deque
+from dataclasses import dataclass
 from typing import Optional, Sequence
 
 
@@ -80,19 +80,6 @@ def level_order_1(root: NodeType) -> Sequence[NodeType]:
     return process_queue
 
 
-def level_order_2(root: NodeType, level: int) -> None:
-    """
-    Level-wise traversal: Print all nodes present at the given level of the binary tree
-    """
-    if not root:
-        return
-    if level == 1:
-        print(root.data, end=" ")
-    elif level > 1:
-        level_order_2(root.left, level - 1)
-        level_order_2(root.right, level - 1)
-
-
 def print_left_to_right(root: NodeType, level: int) -> None:
     """
     Print elements on particular level from left to right direction of the binary tree.
@@ -150,7 +137,7 @@ def main() -> None:  # Main function for testing.
     level_order_1(root)
     print("\nLevel-wise order Traversal is : ")
     for h in range(1, height(root) + 1):
-        level_order_2(root, h)
+        print_left_to_right(root, h)
     print("\nZigZag order Traversal is : ")
     zigzag(root)
     print()
