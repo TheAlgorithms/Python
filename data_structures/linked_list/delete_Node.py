@@ -1,23 +1,23 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self, data)-> None:
         self.data = data
         self.next = None
-class LinkedList:
-    def __init__(self):
+class Linkedlist:
+    def __init__(self)-> None:
         self.head = None
-    def push_at_head(self, data):
+    def push_at_head(self, data)-> None:
         new_node = Node(data)
         new_node.next = self.head
         self.head = new_node
     # **deletion code starts**
-    def delete_node(self, key):
+    def delete_node(self, key)-> None:
         temp = self.head
         while temp.next:
             if temp.next.data == key:       #if next node is the node what we want to delete
                 temp.next = temp.next.next  #breaking the link of node which has to be deleted
             temp = temp.next                #if condition not satisy then go to next node
     # **deletion code ends**
-    def print_list(self):
+    def print_list(self)-> None:
         temp = self.head
         while temp:
             print(temp.data, end="->")
@@ -25,7 +25,7 @@ class LinkedList:
         print("NULL")
 
 if __name__=='__main__':
-    myobj = LinkedList()
+    myobj = Linkedlist()
     myobj.push_at_head(4)
     myobj.push_at_head(3)       
     myobj.push_at_head(2)       
