@@ -12,9 +12,8 @@ def encode_to_b16(inp: str) -> bytes:
     >>> encode_to_b16('')
     b''
     """
-    encoded = inp.encode("utf-8")  # encoded the input (we need a bytes like object)
-    b16encoded = base64.b16encode(encoded)  # b16encoded the encoded string
-    return b16encoded
+    # encode the input into a bytes-like object and then encode b16encode the bytes
+    return base64.b16encode(inp.encode("utf-8"))
 
 
 def decode_from_b16(b16encoded: bytes) -> str:
@@ -28,8 +27,8 @@ def decode_from_b16(b16encoded: bytes) -> str:
     >>> decode_from_b16(b'')
     ''
     """
-    encoded = base64.b16decode(b16encoded)  # b16decoded the input
-    return encoded.decode("utf-8")  # decoded the bytes like object to a string
+    # b16decode the input into bytes and then decode the bytes into a human readable string
+    return base64.b16decode(b16encoded).decode("utf-8")
 
 
 if __name__ == "__main__":
