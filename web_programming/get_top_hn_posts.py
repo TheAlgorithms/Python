@@ -1,8 +1,7 @@
 import requests
-from texttable import Texttable
 
 
-def hackernews_top_stories(max_stories: int = 10) -> dict:
+def hackernews_top_stories(max_stories: int = 10) -> list:
     """
     Get the top 10 posts from HackerNews and display
     them as a table inside the terminal
@@ -13,9 +12,7 @@ def hackernews_top_stories(max_stories: int = 10) -> dict:
 
     top_10 = requests.get(top_stories).json()[:max_stories]
 
-    table_data = [
-        ["Title", "URL"],
-    ]
+    table_data = []
 
     for story_id in top_10:
         story_url = (
@@ -25,10 +22,10 @@ def hackernews_top_stories(max_stories: int = 10) -> dict:
         content = [story_content["title"], story_content["url"]]
         table_data.append(content)
 
-    table = Texttable()
-    table.set_cols_dtype(["t", "a"])
-    table.add_rows(table_data)
-    print(table.draw())
+    for row in table_data:
+        print(f"{'-' * 150} \n | {row[0]} \n | {row[1]}")
+
+    return table_data
 
 
 if __name__ == "__main__":
