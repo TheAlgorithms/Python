@@ -2,7 +2,13 @@ import requests
 from texttable import Texttable
 
 
-def stories():
+def stories() -> None:
+    """
+    Get the top 10 latest posts from HackerNews and display
+    them as a table inside the terminal
+    https://news.ycombinator.com/
+    """
+
     top_stories = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
 
     data = requests.get(top_stories)
