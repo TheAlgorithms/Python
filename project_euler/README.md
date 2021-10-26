@@ -28,7 +28,7 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
   * When the `solution` function is called without any arguments like so: `solution()`, it should return the answer to the problem.
 
 * Every function, which includes all the helper functions, if any, and the main solution function, should have `doctest` in the function docstring along with a brief statement mentioning what the function is about.
-  * There should not be a `doctest` for testing the answer as that is done by our Travis CI build using this [script](https://github.com/TheAlgorithms/Python/blob/master/project_euler/validate_solutions.py). Keeping in mind the above example of [Problem 1](https://projecteuler.net/problem=1):
+  * There should not be a `doctest` for testing the answer as that is done by our Travis CI build using this [script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). Keeping in mind the above example of [Problem 1](https://projecteuler.net/problem=1):
 
   ```python
   def solution(limit: int = 1000):
