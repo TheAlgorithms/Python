@@ -11,7 +11,7 @@ def hackernews_top_stories(max_stories: int = 10) -> dict:
 
     top_stories = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
 
-    top_10 = requests.get(top_stories).json()[:10]
+    top_10 = requests.get(top_stories).json()[:max_stories]
 
     table_data = [
         ["Title", "URL"],
@@ -32,4 +32,4 @@ def hackernews_top_stories(max_stories: int = 10) -> dict:
 
 
 if __name__ == "__main__":
-    stories()
+    hackernews_top_stories()
