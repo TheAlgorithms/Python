@@ -2,7 +2,7 @@ import requests
 from texttable import Texttable
 
 
-def stories() -> None:
+def hackernews_top_stories(max_stories: int = 10) -> dict:
     """
     Get the top 10 latest posts from HackerNews and display
     them as a table inside the terminal
