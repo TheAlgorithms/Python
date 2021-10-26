@@ -16,6 +16,7 @@ REFERENCES :
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Torr
 -> https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
 -> https://msestudent.com/what-are-the-units-of-pressure/
+-> https://www.unitconverters.net/pressure-converter.html
 """
 
 from collections import namedtuple
