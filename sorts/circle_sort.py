@@ -73,7 +73,6 @@ def circle_sort(collection: list) -> list:
     return collection
 
 
-# hard coded driver function to run the program
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
