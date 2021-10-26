@@ -1,6 +1,6 @@
 # Required imports to run this file
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
 
 
@@ -33,7 +33,9 @@ def local_weight(
     Return the weighted matrix.
     """
     weight = weighted_matrix(point, training_data_x, bandwidth)
-    W = (training_data.T * (weight * training_data)).I * (training_data.T * weight * training_data_y.T)
+    W = (training_data.T * (weight * training_data)).I * (
+        training_data.T * weight * training_data_y.T
+    )
     return W
 
 
@@ -59,8 +61,8 @@ def load_data(dataset_name: str, cola_name: str, colb_name: str) -> np.mat:
     Function used for loading data from the seaborn splitting into x and y points
     """
     data = sns.load_dataset(dataset_name)
-    col_a = np.array(data[cola_name]) #total_bill
-    col_b = np.array(data[colb_name]) #tip
+    col_a = np.array(data[cola_name])  # total_bill
+    col_b = np.array(data[colb_name])  # tip
 
     mcol_a = np.mat(col_a)
     mcol_b = np.mat(col_b)
@@ -83,7 +85,12 @@ def get_preds(training_data: np.mat, mcol_b: np.mat, tau: float) -> np.ndarray:
 
 
 def plot_preds(
-    training_data: np.mat, predictions: np.ndarray, col_x: np.ndarray, col_y: np.ndarray, cola_name: str, colb_name: str 
+    training_data: np.mat,
+    predictions: np.ndarray,
+    col_x: np.ndarray,
+    col_y: np.ndarray,
+    cola_name: str,
+    colb_name: str,
 ) -> plt.plot:
     """
     This function used to plot predictions and display the graph
@@ -91,23 +98,19 @@ def plot_preds(
     xsort = training_data.copy()
     xsort.sort(axis=0)
     plt.scatter(col_x, col_y, color="blue")
-    plt.plot(xsort[:, 1], predictions[training_data[:, 1].argsort(0)], color="yellow", linewidth=5)
+    plt.plot(
+        xsort[:, 1],
+        predictions[training_data[:, 1].argsort(0)],
+        color="yellow",
+        linewidth=5,
+    )
     plt.title("Local Weighted Regression")
     plt.xlabel(cola_name)
     plt.ylabel(colb_name)
     plt.show()
 
-def test_lwl() -> None:
-    """
-    Test function 
-    """
-    training_data, mcol_b, col_a, col_b = load_data("tips", 'total_bill', 'tip')
-    predictions = get_preds(training_data, mcol_b, 0.6)
-    plot_preds(training_data, predictions, col_a, col_b, 'total_bill', 'tip')
-
 
 if __name__ == "__main__":
-    training_data, mcol_b, col_a, col_b = load_data("tips", 'total_bill', 'tip')
+    training_data, mcol_b, col_a, col_b = load_data("tips", "total_bill", "tip")
     predictions = get_preds(training_data, mcol_b, 0.5)
-    plot_preds(training_data, predictions, col_a, col_b, 'total_bill', 'tip')
-    
+    plot_preds(training_data, predictions, col_a, col_b, "total_bill", "tip")

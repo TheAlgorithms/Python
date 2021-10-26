@@ -21,9 +21,9 @@ Predict output: for given query point x, \
 
 <img src="https://miro.medium.com/max/700/1*FZsLp8yTULf77qrp0Qd91g.png" alt="Linear Regression">
 
-This training phase is possible when data points are linear, but there again comes a question can we predict non-linear relationship between x and y ? as shown below 
+This training phase is possible when data points are linear, but there again comes a question can we predict non-linear relationship between x and y ? as shown below
 
-<img src="https://miro.medium.com/max/700/1*DHYvJg55uN-Kj8jHaxDKvQ.png" alt="Non-linear Data"> 
+<img src="https://miro.medium.com/max/700/1*DHYvJg55uN-Kj8jHaxDKvQ.png" alt="Non-linear Data">
 <br />
 <br />
 So, here comes the role of non-parametric algorithm which doesn't compute predictions based on fixed set of params. Rather parameters $\theta$ are computed individually for each query point/data point x.
@@ -35,7 +35,7 @@ Cost Function J($\theta$) = $\sum_{i=1}^m$ $w^i$ (($\theta$)$^T$ $x^i$ - $y^i$)$
 
 $w^i$ is non-negative weight associated to training point $x^i$. \
 $w^i$ is large fr $x^i$'s lying closer to query point $x_i$. \
-$w^i$ is small for $x^i$'s lying farther to query point $x_i$. 
+$w^i$ is small for $x^i$'s lying farther to query point $x_i$.
 
 A Typical weight can be computed using \
 
@@ -45,7 +45,7 @@ Where $\tau$ is the bandwidth parameter that controls $w^i$ distance from x.
 
 Let's look at a example :
 
-Suppose, we had a query point x=5.0 and training points $x^1$=4.9 and $x^2$=5.0 than we can calculate weights as : 
+Suppose, we had a query point x=5.0 and training points $x^1$=4.9 and $x^2$=5.0 than we can calculate weights as :
 
 $w^i$ = $\exp$(-$\frac{(x^i-x)(x^i-x)^T}{2\tau^2}$) with $\tau$=0.5
 
@@ -58,7 +58,7 @@ So, J($\theta$) = 0.9802*($\theta$ $^T$ $x^1$ - $y^1$) + 0.000335*($\theta$ $^T$
 So, here by we can conclude that the weight fall exponentially as the distance between x & $x^i$ increases and So, does the contribution of error in prediction for $x^i$ to the cost.
 
 Steps involved in LWL are : \
-Compute \theta to minimize the cost.  
+Compute \theta to minimize the cost.
 J($\theta$) = $\sum_{i=1}^m$ $w^i$ (($\theta$)$^T$ $x^i$ - $y^i$)$^2$ \
 Predict Output: for given query point x, \
 return : $\theta$ $^T$ x
