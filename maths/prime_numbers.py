@@ -98,5 +98,24 @@ if __name__ == "__main__":
     # Let's benchmark them side-by-side...
     from timeit import timeit
 
-    print(timeit("slow_primes(1_000_000)", setup="from __main__ import slow_primes"))
-    print(timeit("primes(1_000_000)", setup="from __main__ import primes"))
+    print(
+        timeit(
+            "slow_primes(1_000_000_000_000)",
+            setup="from __main__ import slow_primes",
+            number=10000,
+        )
+    )
+    print(
+        timeit(
+            "primes(1_000_000_000_000)",
+            setup="from __main__ import primes",
+            number=10000,
+        )
+    )
+    print(
+        timeit(
+            "fast_primes(1_000_000_000_000)",
+            setup="from __main__ import fast_primes",
+            number=10000,
+        )
+    )
