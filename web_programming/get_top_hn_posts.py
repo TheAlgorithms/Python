@@ -30,9 +30,6 @@ def hackernews_top_stories(max_stories: int = 10) -> int:
         content = [story_content["title"], story_content["url"]]
         table_data.append(content)
 
-    for row in table_data:
-        print(f"{'-' * 150} \n | {row[0]} \n | {row[1]}")
-
     return len(table_data)
 
 
