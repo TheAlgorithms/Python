@@ -46,7 +46,7 @@ def solution(number: int = 1000000) -> int:
         partitions.append(item)
 
         if item == 0:
-            result = i
+            result = int(i)
             break
 
     return result
