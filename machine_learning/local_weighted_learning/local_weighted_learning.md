@@ -5,7 +5,7 @@ So, here comes a question of what is *linear regression*? \
 
 ### Terminology Involved
 
-number_of_features(i) = Number of featues involved. \
+number_of_features(i) = Number of features involved. \
 number_of_training_examples(m) = Number of training examples. \
 output_sequence(y) = Output Sequence. \
 $\theta$ $^T$ x = predicted point. \
