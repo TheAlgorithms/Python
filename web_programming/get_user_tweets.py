@@ -21,7 +21,7 @@ def get_all_tweets(screen_name: str) -> str:
     auth.set_access_token(access_key, access_secret)
     api = tweepy.API(auth)
     status = ""
-    
+
     # initialize a list to hold all the tweepy Tweets
     alltweets = []
 
@@ -62,8 +62,9 @@ def get_all_tweets(screen_name: str) -> str:
         status = "success"
 
     pass
-    
+
     return status
+
 
 if __name__ == "__main__":
     # pass in the username of the account you want to download
