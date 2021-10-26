@@ -28,8 +28,8 @@ There are two classes 1 and 2.
 
 """
 
-import numpy as np
-from numpy.linalg import inv
+import numpy as np  # type: ignore
+from numpy.linalg import inv  # type: ignore
 
 
 def get_xt() -> tuple:
@@ -107,11 +107,13 @@ def get_xt() -> tuple:
     x_input = np.array(x_input)
 
     t_input = np.zeros((21, 2))
-    labels = (x_input[:, 1] > 2) + 0
+    labels = (x_input[:, 1] > 2) + 0  # type: ignore[call-overload]
     for t in range(t_input.shape[0]):
         t_input[t, labels[t]] = 1
 
-    return (x_input, t_input)
+    result = (x_input, t_input)
+    print(type(result))
+    return result
 
 
 def get_x_by_t(x_input: np.ndarray, t_input: np.ndarray) -> tuple:
