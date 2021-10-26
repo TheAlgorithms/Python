@@ -1,37 +1,26 @@
+from __future__ import annotations
+
 import requests
 
 
-def hackernews_top_stories(max_stories: int = 10) -> int:
+def get_hackernews_story(story_id: str) -> dict:
+    url = f"https://hacker-news.firebaseio.com/v0/item/{story_id}.json?print=pretty"
+    return requests.get(url).json()
+
+
+def hackernews_top_stories(max_stories: int = 10) -> list[dict]:
     """
-    Get the top 10 posts from HackerNews and display
-    them as a table inside the terminal
-    https://news.ycombinator.com/
-
-    >>> max_stories = 10
-    >>> hackernews_top_stories(max_stories)
-    10
-
-    >>> max_stories = 5
-    >>> hackernews_top_stories(max_stories)
-    5
+    Get the top max_stories posts from HackerNews - https://news.ycombinator.com/
     """
+    url = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+    story_ids = requests.get(url).json()[:max_stories]
+    return [get_hackernews_story(story_id) for story_id in story_ids]
 
-    top_stories = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
 
-    top_10 = requests.get(top_stories).json()[:max_stories]
-
-    table_data = []
-
-    for story_id in top_10:
-        story_url = (
-            f"https://hacker-news.firebaseio.com/v0/item/{story_id}.json?print=pretty"
-        )
-        story_content = requests.get(story_url).json()
-        content = [story_content["title"], story_content["url"]]
-        table_data.append(content)
-
-    return len(table_data)
+def hackernews_top_stories_as_markdown(max_stories: int = 10) -> str:
+    stories = hackernews_top_stories(max_stories)
+    return "\n".join("* [{title}]({url})".format(**story) for story in stories)
 
 
 if __name__ == "__main__":
-    hackernews_top_stories()
+    print(hackernews_top_stories_as_markdown())
