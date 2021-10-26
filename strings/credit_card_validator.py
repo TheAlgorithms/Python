@@ -1,3 +1,10 @@
+"""
+Functions for testing the validity of credit card numbers.
+
+https://en.wikipedia.org/wiki/Luhn_algorithm
+"""
+
+
 def validate_initial_digits(credit_card_number: str) -> bool:
     """
     Function to validate initial digits of a given credit card number.
@@ -8,14 +15,9 @@ def validate_initial_digits(credit_card_number: str) -> bool:
     >>> all(validate_initial_digits(cc) is False for cc in invalid.split())
     True
     """
-    first_digit = int(credit_card_number[0])
-    if first_digit in (4, 5, 6):
-        return True
-    elif first_digit == 3:
-        second_digit = int(credit_card_number[1])
-        return second_digit in (4, 5, 7)
-
-    return False
+    if len(credit_card_number) < 2:
+        return False
+    return credit_card_number[0] in "456" or credit_card_number[1] in "457"
 
 
 def luhn_validation(credit_card_number: str) -> bool:
@@ -52,48 +54,46 @@ def luhn_validation(credit_card_number: str) -> bool:
     return total % 10 == 0
 
 
-def validate_credit_card_number(number: str) -> bool:
+def validate_credit_card_number(credit_card_number: str) -> bool:
     """
     Function to validate the given credit card number.
     >>> validate_credit_card_number('4111111111111111')
-    Given number(4111111111111111) is Valid
+    4111111111111111 is a valid credit card number.
     True
     >>> validate_credit_card_number('helloworld$')
-    Invalid number(helloworld$) given: Contains alphabets or special characters
+    helloworld$ is an invalid credit card number because it has nonnumerical characters.
     False
     >>> validate_credit_card_number('32323')
-    Invalid number(32323) given: Check number length
+    32323 is an invalid credit card number because of its length.
     False
     >>> validate_credit_card_number('32323323233232332323')
-    Invalid number(32323323233232332323) given: Check number length
+    32323323233232332323 is an invalid credit card number because of its length.
     False
     >>> validate_credit_card_number('36111111111111')
-    Invalid number(36111111111111) given: Check starting number
+    36111111111111 is an invalid credit card number because of its first two digits.
     False
     >>> validate_credit_card_number('41111111111111')
-    Invalid number(41111111111111) given: Invalid Number
+    41111111111111 is an invalid credit card number because it fails the Lhun check.
     False
     """
-    error_message = f"Invalid number({number}) given: "
-    credit_card_number = str(number)
+    error_message = f"{credit_card_number} is an invalid credit card number because"
     if not credit_card_number.isdigit():
-        print(error_message + "Contains alphabets or special characters")
+        print(f"{error_message} it has nonnumerical characters.")
         return False
 
-    credit_card_number_length = len(credit_card_number)
-    if not (13 <= len(credit_card_number) <= 16):
-        print(error_message + "Check number length")
+    if not 13 <= len(credit_card_number) <= 16:
+        print(f"{error_message} of its length.")
         return False
 
     if not validate_initial_digits(credit_card_number):
-        print(error_message + "Check starting number")
+        print(f"{error_message} of its first two digits.")
         return False
 
     if not luhn_validation(credit_card_number):
-        print(error_message + "Invalid Number")
+        print(f"{error_message} it fails the Lhun check.")
         return False
 
-    print(f"Given number({number}) is Valid")
+    print(f"{credit_card_number} is a valid credit card number.")
     return True
 
 
@@ -101,3 +101,5 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    validate_credit_card_number("4111111111111111")
+    validate_credit_card_number("32323")
