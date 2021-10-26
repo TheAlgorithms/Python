@@ -9,13 +9,19 @@ access_key = ""
 access_secret = ""
 
 
-def get_all_tweets(screen_name: str) -> None:
+def get_all_tweets(screen_name: str) -> str:
+    """
+    Save tweets of a user in a CSV file
+    >>> get_all_tweets()
+    'success'
+    """
 
     # authorize twitter, initialize tweepy
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_key, access_secret)
     api = tweepy.API(auth)
-
+    status = ""
+    
     # initialize a list to hold all the tweepy Tweets
     alltweets = []
 
@@ -53,9 +59,11 @@ def get_all_tweets(screen_name: str) -> None:
         writer = csv.writer(f)
         writer.writerow(["id", "created_at", "text"])
         writer.writerows(outtweets)
+        status = "success"
 
     pass
-
+    
+    return status
 
 if __name__ == "__main__":
     # pass in the username of the account you want to download
