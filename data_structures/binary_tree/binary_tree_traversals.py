@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from collections import deque
 from typing import Optional, Sequence
 
 
@@ -64,16 +65,19 @@ def level_order_1(root: NodeType) -> Sequence[NodeType]:
     """
     if not root:
         return []
+
     temp = root
-    queue = [temp]
-    while queue:
-        print(queue[0].data, end=" ")
-        temp = queue.pop(0)
+    process_queue = deque([temp])
+
+    while process_queue:
+        print(process_queue[0].data, end=" ")
+        temp = process_queue.popleft()
+
         if temp.left:
-            queue.append(temp.left)
+            process_queue.append(temp.left)
         if temp.right:
-            queue.append(temp.right)
-    return queue
+            process_queue.append(temp.right)
+    return process_queue
 
 
 def level_order_2(root: NodeType, level: int) -> None:
