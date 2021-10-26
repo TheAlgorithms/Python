@@ -57,7 +57,7 @@ def find_reverse_nr(nr: int = 36) -> int:
     return reverse
 
 
-def solution(nr: int = 1000000000) -> int:
+def solution(number: int = 1000000000) -> int:
     """
     Loops over the range of numbers.
     Checks if they have ending zeros which disqualifies them from being reversible.
