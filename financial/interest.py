@@ -4,7 +4,7 @@ from __future__ import annotations
 
 
 def simple_interest(
-    principle: float, daily_interest_rate: float, days_between_payments: int
+    principal: float, daily_interest_rate: float, days_between_payments: int
 ) -> float:
     """
     >>> simple_interest(18000.0, 0.06, 3)
@@ -24,7 +24,7 @@ def simple_interest(
     >>> simple_interest(-10000.0, 0.06, 3)
     Traceback (most recent call last):
         ...
-    ValueError: principle must be > 0
+    ValueError: principal must be > 0
     >>> simple_interest(5500.0, 0.01, -5)
     Traceback (most recent call last):
         ...
@@ -34,13 +34,13 @@ def simple_interest(
         raise ValueError("days_between_payments must be > 0")
     if daily_interest_rate < 0:
         raise ValueError("daily_interest_rate must be >= 0")
-    if principle <= 0:
-        raise ValueError("principle must be > 0")
-    return principle * daily_interest_rate * days_between_payments
+    if principal <= 0:
+        raise ValueError("principal must be > 0")
+    return principal * daily_interest_rate * days_between_payments
 
 
 def compound_interest(
-    principle: float,
+    principal: float,
     nominal_annual_interest_rate_percentage: float,
     number_of_compounding_periods: int,
 ) -> float:
@@ -62,16 +62,16 @@ def compound_interest(
     >>> compound_interest(-5500.0, 0.01, 5)
     Traceback (most recent call last):
         ...
-    ValueError: principle must be > 0
+    ValueError: principal must be > 0
     """
     if number_of_compounding_periods <= 0:
         raise ValueError("number_of_compounding_periods must be > 0")
     if nominal_annual_interest_rate_percentage < 0:
         raise ValueError("nominal_annual_interest_rate_percentage must be >= 0")
-    if principle <= 0:
-        raise ValueError("principle must be > 0")
+    if principal <= 0:
+        raise ValueError("principal must be > 0")
 
-    return principle * (
+    return principal * (
         (1 + nominal_annual_interest_rate_percentage) ** number_of_compounding_periods
         - 1
     )
