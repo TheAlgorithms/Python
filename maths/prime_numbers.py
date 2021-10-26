@@ -102,20 +102,20 @@ if __name__ == "__main__":
         timeit(
             "slow_primes(1_000_000_000_000)",
             setup="from __main__ import slow_primes",
-            number=10000,
+            number=1_000_000,
         )
     )
     print(
         timeit(
             "primes(1_000_000_000_000)",
             setup="from __main__ import primes",
-            number=10000,
+            number=1_000_000,
         )
     )
     print(
         timeit(
             "fast_primes(1_000_000_000_000)",
             setup="from __main__ import fast_primes",
-            number=10000,
+            number=1_000_000,
         )
     )
