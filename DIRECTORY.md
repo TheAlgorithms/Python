@@ -129,6 +129,7 @@
   * [Rgb Hsv Conversion](https://github.com/TheAlgorithms/Python/blob/master/conversions/rgb_hsv_conversion.py)
   * [Roman Numerals](https://github.com/TheAlgorithms/Python/blob/master/conversions/roman_numerals.py)
   * [Temperature Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/temperature_conversions.py)
+  * [Volume Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/volume_conversions.py)
   * [Weight Conversion](https://github.com/TheAlgorithms/Python/blob/master/conversions/weight_conversion.py)
 
 ## Data Structures
@@ -289,6 +290,9 @@
   * [Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/send_file.py)
   * Tests
     * [Test Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/tests/test_send_file.py)
+
+## Financial
+  * [Interest](https://github.com/TheAlgorithms/Python/blob/master/financial/interest.py)
 
 ## Fractals
   * [Julia Sets](https://github.com/TheAlgorithms/Python/blob/master/fractals/julia_sets.py)
