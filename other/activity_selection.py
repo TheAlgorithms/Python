@@ -10,7 +10,7 @@ single person, one at a time"""
 # finish[] --> An array that contains finish time of all activities
 
 
-def printMaxActivities(start, finish):
+def printMaxActivities(start: list[int], finish: list[int]) -> None:
     """
     >>> start = [1, 3, 0, 5, 8, 5]
     >>> finish = [2, 4, 6, 7, 9, 9]
