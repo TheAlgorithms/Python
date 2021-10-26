@@ -112,7 +112,6 @@ def get_xt() -> tuple:
         t_input[t, labels[t]] = 1
 
     result = (x_input, t_input)
-    print(type(result))
     return result
 
 
