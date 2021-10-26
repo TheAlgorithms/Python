@@ -40,7 +40,7 @@
   <h3>All algorithms implemented in Python - for education</h3>
 </div>
 
-Implementations are for learning purposes only. As they may be less efficient than the implementations in the Python standard library, use them at your discretion.
+Implementations are for learning purposes only. As they may be less efficient than the implementations in the Python 3 standard library, use them at your discretion.
 
 ## Getting Started
 
