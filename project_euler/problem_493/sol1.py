@@ -31,14 +31,14 @@ NUM_COLOURS = 7
 NUM_BALLS = BALLS_PER_COLOUR * NUM_COLOURS
 
 
-def solution(num_picks: int = 20) -> float:
+def solution(num_picks: int = 20) -> str:
     """
     Calculates the expected number of distinct colours
 
-    >>> f'{solution(10):.9f}'
+    >>> solution(10)
     '5.669644129'
 
-    >>> f'{solution(30):.9f}'
+    >>> solution(30)
     '6.985042712'
     """
     total = math.comb(NUM_BALLS, num_picks)
@@ -46,8 +46,8 @@ def solution(num_picks: int = 20) -> float:
 
     result = NUM_COLOURS * (1 - missing_colour / total)
 
-    return result
+    return f"{result:.9f}"
 
 
 if __name__ == "__main__":
-    print(f"{solution(20):.9f}")
+    print(solution(20))
