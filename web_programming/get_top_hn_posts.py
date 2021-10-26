@@ -4,7 +4,7 @@ from texttable import Texttable
 
 def hackernews_top_stories(max_stories: int = 10) -> dict:
     """
-    Get the top 10 latest posts from HackerNews and display
+    Get the top 10 posts from HackerNews and display
     them as a table inside the terminal
     https://news.ycombinator.com/
     """
