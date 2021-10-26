@@ -29,5 +29,5 @@ jobs:
       - name: Mypy reality check
         run: |
           mv mypy.ini was_mypy.ini
-          mypy --install-types --non-interactive . || true
+          mypy --ignore-missing-imports --install-types --non-interactive . || true
           mv was_mypy.ini mypy.ini
