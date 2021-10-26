@@ -45,8 +45,7 @@ class PolybiusCipher:
         >>> PolybiusCipher().numbers_to_letter(1, 1) == "a"
         True
         """
-        letter = self.SQUARE[index1 - 1, index2 - 1]
-        return letter
+        return self.SQUARE[index1 - 1, index2 - 1]
 
     def encode(self, message: str) -> str:
         """
