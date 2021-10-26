@@ -4,8 +4,8 @@ repos:
     hooks:
       - id: check-executables-have-shebangs
       - id: check-yaml
-      - id: end-of-file-fixer
-        types: [python]
+      #- id: end-of-file-fixer
+      #  types: [python]
       - id: trailing-whitespace
         exclude: |
           (?x)^(
