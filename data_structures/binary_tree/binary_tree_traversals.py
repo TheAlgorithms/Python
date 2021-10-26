@@ -13,7 +13,7 @@ class Node:
     right: NodeType = None
 
 
-NodeType = Optional[Node]
+NodeType = Node | None
 
 
 def make_tree() -> Node:
