@@ -12,10 +12,10 @@ def compare_string(string1: str, string2: str) -> str:
     list1 = list(string1)
     list2 = list(string2)
     count = 0
-    for index in range(len(list1)):
-        if list1[index] != list2[index]:
+    for i in range(len(list1)):
+        if list1[i] != list2[i]:
             count += 1
-            list1[index] = "_"
+            list1[i] = "_"
     if count > 1:
         return "X"
     else:
@@ -54,7 +54,7 @@ def decimal_to_binary(no_of_variable: int, minterms: list[float]) -> list[str]:
     temp = []
     string = ""
     for minterm in minterms:
-        for index in range(no_of_variable):
+        for i in range(no_of_variable):
             string = str(minterm % 2) + string
             minterm //= 2
         temp.append(string)
@@ -73,8 +73,8 @@ def is_for_table(string1: str, string2: str, count: int) -> bool:
     list1 = list(string1)
     list2 = list(string2)
     count_n = 0
-    for index in range(len(list1)):
-        if list1[index] != list2[index]:
+    for i in range(len(list1)):
+        if list1[i] != list2[i]:
             count_n += 1
     return count_n == count
 
