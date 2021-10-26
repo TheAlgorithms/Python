@@ -16,3 +16,4 @@ sympy
 tensorflow
 types-requests
 xgboost
+nltk
