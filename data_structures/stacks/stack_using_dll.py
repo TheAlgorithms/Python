@@ -1,7 +1,9 @@
 # A complete working Python program to demonstrate all
 # stack operations using a doubly linked list
 
-from typing import Generic, Optional, TypeVar
+from __future__ import annotations
+
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -9,8 +11,8 @@ T = TypeVar("T")
 class Node(Generic[T]):
     def __init__(self, data: T):
         self.data = data  # Assign data
-        self.next: Optional[Node[T]] = None  # Initialize next as null
-        self.prev: Optional[Node[T]] = None  # Initialize prev as null
+        self.next: Node[T] | None = None  # Initialize next as null
+        self.prev: Node[T] | None = None  # Initialize prev as null
 
 
 class Stack(Generic[T]):
@@ -40,7 +42,7 @@ class Stack(Generic[T]):
     """
 
     def __init__(self) -> None:
-        self.head: Optional[Node[T]] = None
+        self.head: Node[T] | None = None
 
     def push(self, data: T) -> None:
         """add a Node to the stack"""
@@ -53,7 +55,7 @@ class Stack(Generic[T]):
             new_node.prev = None
             self.head = new_node
 
-    def pop(self) -> Optional[T]:
+    def pop(self) -> T | None:
         """pop the top element off the stack"""
         if self.head is None:
             return None
@@ -65,7 +67,7 @@ class Stack(Generic[T]):
                 self.head.prev = None
             return temp
 
-    def top(self) -> Optional[T]:
+    def top(self) -> T | None:
         """return the top element of the stack"""
         return self.head.data if self.head is not None else None
 
