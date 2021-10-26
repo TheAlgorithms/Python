@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 from calendar import day_name
 from datetime import datetime
-from typing import Union
 
 
 def date_to_weekday(inp_date: str) -> str:
@@ -15,7 +16,7 @@ def date_to_weekday(inp_date: str) -> str:
     >>> date_to_weekday("1/1/2021")
     'Friday'
     """
-    year: Union[int, str]
+    year: int | str
     day, month, year = (int(x) for x in inp_date.split("/"))
     if year % 100 == 0:
         year = "00"
