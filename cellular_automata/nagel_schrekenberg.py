@@ -1,15 +1,20 @@
-from random import randint, random
-
 """
-This algorithm simulate the evolution of a highway with only one road
-The highway is divided in cells, each cell can have at most one car in it
-The highway make a loop. That means that when a car comes to one end, they will
- come out of the other
-A car is represented by it's speed (from 0 to 5)
+Simulate the evolution of a highway with only one road that is a loop.
+The highway is divided in cells, each cell can have at most one car in it.
+The highway is a loop so when a car comes to one end, it will come out on the other.
+Each car is represented by its speed (from 0 to 5).
 
 Some information about speed:
     -1 means that the cell on the highway is empty
     0 to 5 are the speed of the cars with 0 being the lowest and 5 the highest
+
+highway: list[int]  Where every position and speed of every car will be stored
+probability         The probability that a driver will slow down
+initial_speed       The speed of the cars a the start
+frequency           How many cells there are between two cars at the start
+max_speed           The maximum speed a car can go to
+number_of_cells     How many cell are there in the highway
+number_of_update    How many times will the position be updated
 
 More information here: https://en.wikipedia.org/wiki/Nagel%E2%80%93Schreckenberg_model
 
@@ -19,14 +24,7 @@ Examples for doctest:
 >>> simulate(construct_highway(5, 2, -2), 3, 0, 2)
 [[0, -1, 0, -1, 0], [0, -1, 0, -1, -1], [0, -1, -1, 1, -1], [-1, 1, -1, 0, -1]]
 """
-
-PROBABILITY = 0.1  # The probability that a driver will slow down
-initial_speed = 1  # The speed of the cars a the start
-frequency = 5  # How many cells there are between two cars at the start
-max_speed = 5  # The maximum speed a car will go to
-number_of_cells = 1024  # How many cell are there in the highway
-number_of_update = 2048  # How many times will the position be updated
-highway: list[int] = []  # Where every position and speed of every car will be stored
+from random import randint, random
 
 
 def construct_highway(
@@ -62,11 +60,11 @@ def construct_highway(
 def get_distance(highway_now: list, car_index: int) -> int:
     """
     Get the distance between a car (at index car_index) and the next car
-    >>> get_distance([6,-1,6,-1,6], 2)
+    >>> get_distance([6, -1, 6, -1, 6], 2)
     1
-    >>> get_distance([2,-1,-1,-1,3,1,0,1,3,2], 0)
+    >>> get_distance([2, -1, -1, -1, 3, 1, 0, 1, 3, 2], 0)
     3
-    >>> get_distance([-1,-1,-1,-1,2,-1,-1,-1,3], -1)
+    >>> get_distance([-1, -1, -1, -1, 2, -1, -1, -1, 3], -1)
     4
     """
 
@@ -80,12 +78,12 @@ def get_distance(highway_now: list, car_index: int) -> int:
     return distance + get_distance(highway_now, -1)
 
 
-def update(highway_now: list, PROBABILITY: float, max_speed: int) -> list:
+def update(highway_now: list, probability: float, max_speed: int) -> list:
     """
     Update the speed of the cars
-    >>> update([-1,-1,-1,-1,-1,2,-1,-1,-1,-1,3], 0.0, 5)
+    >>> update([-1, -1, -1, -1, -1, 2, -1, -1, -1, -1, 3], 0.0, 5)
     [-1, -1, -1, -1, -1, 3, -1, -1, -1, -1, 4]
-    >>> update([-1,-1,2,-1,-1,-1,-1,3], 0.0, 5)
+    >>> update([-1, -1, 2, -1, -1, -1, -1, 3], 0.0, 5)
     [-1, -1, 3, -1, -1, -1, -1, 1]
     """
 
@@ -101,27 +99,27 @@ def update(highway_now: list, PROBABILITY: float, max_speed: int) -> list:
             dn = get_distance(highway_now, car_index) - 1
             # We can't have the car causing an accident
             next_highway[car_index] = min(next_highway[car_index], dn)
-            if random() < PROBABILITY:
+            if random() < probability:
                 # Randomly, a driver will slow down
                 next_highway[car_index] = max(next_highway[car_index] - 1, 0)
     return next_highway
 
 
 def simulate(
-    highway: list, number_of_update: int, PROBABILITY: float, max_speed: int
+    highway: list, number_of_update: int, probability: float, max_speed: int
 ) -> list:
     """
     The main function, it will simulate the evolution of the highway
-    >>> simulate([[-1,2,-1,-1,-1,3]], 2, 0.0, 3)
+    >>> simulate([[-1, 2, -1, -1, -1, 3]], 2, 0.0, 3)
     [[-1, 2, -1, -1, -1, 3], [-1, -1, -1, 2, -1, 0], [1, -1, -1, 0, -1, -1]]
-    >>> simulate([[-1,2,-1,3]], 4, 0.0, 3)
+    >>> simulate([[-1, 2, -1, 3]], 4, 0.0, 3)
     [[-1, 2, -1, 3], [-1, 0, -1, 0], [-1, 0, -1, 0], [-1, 0, -1, 0], [-1, 0, -1, 0]]
     """
 
     number_of_cells = len(highway[0])
 
     for i in range(number_of_update):
-        next_speeds_calculated = update(highway[i], PROBABILITY, max_speed)
+        next_speeds_calculated = update(highway[i], probability, max_speed)
         real_next_speeds = [-1] * number_of_cells
 
         for car_index in range(number_of_cells):
