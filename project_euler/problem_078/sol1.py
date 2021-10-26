@@ -24,9 +24,9 @@ def solution(number: int = 1000000) -> int:
     >>> solution()
     55374
     """
-    MODULUS = 10 ** 6
+
     partitions = [1]
-    result = ""
+    result = 0
 
     for i in itertools.count(len(partitions)):
 
@@ -41,7 +41,7 @@ def solution(number: int = 1000000) -> int:
             if index > i:
                 break
             item += partitions[i - index] * sign
-            item %= MODULUS
+            item %= number
 
         partitions.append(item)
 
