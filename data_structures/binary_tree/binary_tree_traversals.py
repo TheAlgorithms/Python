@@ -134,7 +134,7 @@ def main() -> None:  # Main function for testing.
     print(f"Post-order Traversal is {postorder(root)}")
     print(f"Height of Tree is {height(root)}")
     print("Complete Level Order Traversal is : ")
-    level_order_1(root)
+    level_order(root)
     print("\nLevel-wise order Traversal is : ")
     for h in range(1, height(root) + 1):
         print_left_to_right(root, h)
