@@ -23,20 +23,20 @@ from collections import namedtuple
 from_to = namedtuple("from_to", "from_ to")
 
 METRIC_CONVERSION = {
-
     "cubicmeter": from_to(1, 1),
     "litre": from_to(0.001, 1000),
     "kilolitre": from_to(1, 1),
     "gallon": from_to(0.00454, 264.172),
     "cubicyard": from_to(0.76455, 1.30795),
     "cubicfoot": from_to(0.028, 35.3147),
-    "cup": from_to(0.000236588, 4226.75)
+    "cup": from_to(0.000236588, 4226.75),
 }
 
 
 def volume_conversion(value: float, from_type: str, to_type: str) -> float:
     """
     Conversion between volume units.
+    
     >>> volume_conversion(4, "cubicmeter", "litre")
     4000
     >>> volume_conversion(1, "litre", "gallon")
