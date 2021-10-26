@@ -1,11 +1,19 @@
 import requests
 
 
-def hackernews_top_stories(max_stories: int = 10) -> list:
+def hackernews_top_stories(max_stories: int = 10) -> int:
     """
     Get the top 10 posts from HackerNews and display
     them as a table inside the terminal
     https://news.ycombinator.com/
+    
+    >>> max_stories = 10
+    >>> hackernews_top_stories(max_stories)
+    10
+    
+    >>> max_stories = 5
+    >>> hackernews_top_stories(max_stories)
+    5
     """
 
     top_stories = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
@@ -25,7 +33,7 @@ def hackernews_top_stories(max_stories: int = 10) -> list:
     for row in table_data:
         print(f"{'-' * 150} \n | {row[0]} \n | {row[1]}")
 
-    return table_data
+    return len(table_data)
 
 
 if __name__ == "__main__":
