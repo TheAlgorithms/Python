@@ -15,6 +15,7 @@ REFERENCES :
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Inch_of_mercury
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Torr
 -> https://en.wikipedia.org/wiki/Standard_atmosphere_(unit)
+-> https://msestudent.com/what-are-the-units-of-pressure/
 """
 
 from collections import namedtuple
