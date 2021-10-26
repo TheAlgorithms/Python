@@ -28,7 +28,7 @@ PRESSURE_CONVERSION = {
     "megapascal": from_to(9.86923, 0.101325),
     "psi": from_to(0.068046, 14.6959),
     "inHg": from_to(0.0334211, 29.9213),
-    "torr": from_to(0.00131579, 760)
+    "torr": from_to(0.00131579, 760),
 }
 
 
@@ -71,7 +71,9 @@ def pressure_conversion(value: float, from_type: str, to_type: str) -> float:
             f"Invalid 'to_type' value: {to_type!r}.  Supported values are:\n"
             + ", ".join(PRESSURE_CONVERSION)
         )
-    return value * PRESSURE_CONVERSION[from_type].from_ * PRESSURE_CONVERSION[to_type].to
+    return (
+        value * PRESSURE_CONVERSION[from_type].from_ * PRESSURE_CONVERSION[to_type].to
+    )
 
 
 if __name__ == "__main__":
