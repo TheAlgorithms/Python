@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterator
-from typing import Generic, Optional, TypeVar
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -10,7 +10,7 @@ T = TypeVar("T")
 class Node(Generic[T]):
     def __init__(self, data: T):
         self.data = data
-        self.next: Optional[Node[T]] = None
+        self.next: Node[T] | None = None
 
     def __str__(self) -> str:
         return f"{self.data}"
@@ -47,7 +47,7 @@ class LinkedStack(Generic[T]):
     """
 
     def __init__(self) -> None:
-        self.top: Optional[Node[T]] = None
+        self.top: Node[T] | None = None
 
     def __iter__(self) -> Iterator[T]:
         node = self.top
