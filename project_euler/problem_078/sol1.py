@@ -19,10 +19,10 @@ Find the least value of n for which p(n) is divisible by one million.
 import itertools
 
 
-def solution(number: int = 1000000) -> str:
+def solution(number: int = 1000000) -> int:
     """
     >>> solution()
-    '55374'
+    55374
     """
     MODULUS = 10 ** 6
     partitions = [1]
@@ -46,7 +46,15 @@ def solution(number: int = 1000000) -> str:
         partitions.append(item)
 
         if item == 0:
-            result = str(i)
+            result = i
             break
 
     return result
+
+
+if __name__ == "__main__":
+
+    import doctest
+
+    doctest.testmod()
+    print(f"{solution() = }")
