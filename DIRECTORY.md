@@ -53,6 +53,7 @@
 ## Cellular Automata
   * [Conways Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/conways_game_of_life.py)
   * [Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/game_of_life.py)
+  * [Nagel Schrekenberg](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/nagel_schrekenberg.py)
   * [One Dimensional](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/one_dimensional.py)
 
 ## Ciphers
@@ -987,6 +988,7 @@
   * [Fetch Jobs](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_jobs.py)
   * [Get Imdb Top 250 Movies Csv](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdbtop.py)
+  * [Get Top Hn Posts](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_top_hn_posts.py)
   * [Get User Tweets](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_user_tweets.py)
   * [Giphy](https://github.com/TheAlgorithms/Python/blob/master/web_programming/giphy.py)
   * [Instagram Crawler](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_crawler.py)
