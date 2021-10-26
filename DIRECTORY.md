@@ -10,6 +10,11 @@
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_raphson.py)
   * [Secant Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/secant_method.py)
 
+## Audio Filters
+  * [Butterworth Filter](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/butterworth_filter.py)
+  * [Iir Filter](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/iir_filter.py)
+  * [Show Response](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/show_response.py)
+
 ## Backtracking
   * [All Combinations](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_combinations.py)
   * [All Permutations](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_permutations.py)
@@ -60,6 +65,7 @@
   * [Base64 Encoding](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base64_encoding.py)
   * [Base85](https://github.com/TheAlgorithms/Python/blob/master/ciphers/base85.py)
   * [Beaufort Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/beaufort_cipher.py)
+  * [Bifid](https://github.com/TheAlgorithms/Python/blob/master/ciphers/bifid.py)
   * [Brute Force Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/brute_force_caesar_cipher.py)
   * [Caesar Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/caesar_cipher.py)
   * [Cryptomath Module](https://github.com/TheAlgorithms/Python/blob/master/ciphers/cryptomath_module.py)
@@ -106,8 +112,8 @@
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
-  * [Binary To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_octal.py)
   * [Binary To Hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_hexadecimal.py)
+  * [Binary To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_octal.py)
   * [Decimal To Any](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_any.py)
   * [Decimal To Binary](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary.py)
   * [Decimal To Binary Recursion](https://github.com/TheAlgorithms/Python/blob/master/conversions/decimal_to_binary_recursion.py)
@@ -352,6 +358,7 @@
   * [Multi Heuristic Astar](https://github.com/TheAlgorithms/Python/blob/master/graphs/multi_heuristic_astar.py)
   * [Page Rank](https://github.com/TheAlgorithms/Python/blob/master/graphs/page_rank.py)
   * [Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/prim.py)
+  * [Random Graph Generator](https://github.com/TheAlgorithms/Python/blob/master/graphs/random_graph_generator.py)
   * [Scc Kosaraju](https://github.com/TheAlgorithms/Python/blob/master/graphs/scc_kosaraju.py)
   * [Strongly Connected Components](https://github.com/TheAlgorithms/Python/blob/master/graphs/strongly_connected_components.py)
   * [Tarjans Scc](https://github.com/TheAlgorithms/Python/blob/master/graphs/tarjans_scc.py)
@@ -978,6 +985,7 @@
   * [Fetch Jobs](https://github.com/TheAlgorithms/Python/blob/master/web_programming/fetch_jobs.py)
   * [Get Imdb Top 250 Movies Csv](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_imdbtop.py)
+  * [Get User Tweets](https://github.com/TheAlgorithms/Python/blob/master/web_programming/get_user_tweets.py)
   * [Giphy](https://github.com/TheAlgorithms/Python/blob/master/web_programming/giphy.py)
   * [Instagram Crawler](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_crawler.py)
   * [Instagram Pic](https://github.com/TheAlgorithms/Python/blob/master/web_programming/instagram_pic.py)
