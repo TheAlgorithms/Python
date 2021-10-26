@@ -54,7 +54,6 @@ def get_all_tweets(screen_name: str) -> None:
         writer.writerow(["id", "created_at", "text"])
         writer.writerows(outtweets)
 
-    pass
 
 
 if __name__ == "__main__":
