@@ -35,13 +35,19 @@ def vol_spheres_intersect(
     radius_1: float, radius_2: float, centers_distance: float
 ) -> float:
     """
-    Calculate the Volume of the intersection of two spheres.
-    The intersection is composed by two spherical caps and therefore its volume is the sum of the volumes of the spherical caps.
-    First it calculates the heights (h1, h2) of the the spherical caps, then the two volumes and it returns the sum.
+    Calculate the volume of the intersection of two spheres.
+
+    The intersection is composed by two spherical caps and therefore its volume is the
+    sum of the volumes of the spherical caps.  First it calculates the heights (h1, h2)
+    of the the spherical caps, then the two volumes and it returns the sum.
     The height formulas are
-    h1 = (radius_1-radius_2+centers_distance)*(radius_1+radius_2-centers_distance)/(2*centers_distance)
-    h2 = (radius_2-radius_1+centers_distance)*(radius_2+radius_1-centers_distance)/(2*centers_distance)
-    if centers_distance is 0 it returns the volume of the smallers sphere
+    h1 = (radius_1 - radius_2 + centers_distance)
+       * (radius_1 + radius_2 - centers_distance)
+       / (2 * centers_distance)
+    h2 = (radius_2 - radius_1 + centers_distance)
+       * (radius_2 + radius_1 - centers_distance)
+       / (2 * centers_distance)
+    if centers_distance is 0 then it returns the volume of the smallers sphere
     :return vol_spherical_cap(h1, radius_2) + vol_spherical_cap(h2, radius_1)
 
     >>> vol_spheres_intersect(2, 2, 1)
