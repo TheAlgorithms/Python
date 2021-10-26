@@ -18,7 +18,7 @@ In the following, d and x will always be natural numbers.
         1) f(d, x) < 1/2 for every d and x
         2) d(x, x) > 1/3 has a closed form solution, for a fixed d, that is x < d/6
     
-    Therefore, the number of possible fractions that lie between 1/3 and 1/2 for an even d is: x = math.floor(d/6.000000001)
+    Therefore, the number of possible fractions that lie between 1/3 and 1/2 for an even d is: x = math.floor(d/6)
     where the additional small value is added keeping in mind that we want x to be strictly smaller than d/6
 
     For each of those candidate, if the gcd between the candidate itself and d is 1 then we found a valid fraction.
@@ -27,7 +27,7 @@ In the following, d and x will always be natural numbers.
 - Now consider the odd values for d.
     Following the same reasoning and defining "f(d, x) = (((d-1)/2) - x) / d", we can conclude that
         1) The function is always smaller than 1/2
-        2) The number of valid candidates is x < (d-3)/6, which is given by math.floor((d-3.000000001)/6.000000001) + 1, keeping in mind that x must be an integer.
+        2) The number of valid candidates is x < (d-3)/6, which is given by math.floor((d-3)/6) + 1, keeping in mind that x must be an integer. The +1 comes from the fact that x=0 gives us always a valid candidate.
 
     The final part follows exactly the case for even values.  
 
@@ -54,7 +54,10 @@ def solution(maximum_d: int = 12000) -> int:
     for d in list_d:
         # even case
         if d % 2 == 0:
-            x = floor(d/6.000000001)
+            if d % 6 == 0:
+                x = d//6 - 1
+            else:
+                x = floor(d/6)
             min_n = d//2 - x
             for num in range(min_n, d//2):
                 if gcd(num, d) == 1:
@@ -62,7 +65,10 @@ def solution(maximum_d: int = 12000) -> int:
 
         # odd case
         else:
-            x = floor((d-3.000000001)/6.000000001)
+            if (d-3) % 6 == 0:
+                x = (d-3)//6 - 1
+            else:
+                x = floor((d-3)/6)
             min_n = (d-1)//2 - x
             for num in range(min_n, ((d-1)//2)+1):
                 if gcd(num, d) == 1:
