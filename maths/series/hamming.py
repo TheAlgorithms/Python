@@ -1,27 +1,18 @@
 """
-Run the doctests with the following command:
-python3 -m doctest -v hamming_numbers.py
-or
-python -m doctest -v hamming_numbers.py
-For manual testing run:
-python3 hamming_numbers.py
+A Hamming number is a positive integer of the form 2^i*3^j*5^k, for some
+non-negative integers i, j, and k. They often refer to a regular number.
+More info at: https://en.wikipedia.org/wiki/Regular_number .
 
 """
 
-
 def hamming(n_element: int) -> list:
     """
-    A Hamming number is a positive integer of the form 2^i*3^j*5^k, for some
-    non-negative integers i, j, and k.
-    More info at: https://en.wikipedia.org/wiki/Regular_number .
-
     This function creates an ordered list of n length as requested, and afterwards
     returns the last value of the list. It must be given a positive integer.
 
     :param n_element: The number of elements on the list
     :return: The nth element of the list
 
-        Examples:
     >>> hamming(5)
     [1, 2, 3, 4, 5]
     >>> hamming(10)
@@ -31,7 +22,7 @@ def hamming(n_element: int) -> list:
     """
     n_element = int(n_element)
     if n_element < 1:
-        my_error= ValueError("a should be a positive number")
+        my_error = ValueError("a should be a positive number")
         raise my_error
 
     hamming_list = [1]
