@@ -58,7 +58,7 @@ def height(root: NodeType) -> int:
     return (max(height(root.left), height(root.right)) + 1) if root else 0
 
 
-def level_order_1(root: NodeType) -> Sequence[NodeType]:
+def level_order(root: NodeType) -> Sequence[NodeType]:
     """
     Print whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
