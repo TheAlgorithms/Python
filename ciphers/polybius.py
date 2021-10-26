@@ -46,7 +46,6 @@ class PolybiusCipher:
         True
         """
         return self.SQUARE[index1 - 1, index2 - 1]
-        return letter
 
     def encode(self, message: str) -> str:
         """
