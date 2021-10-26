@@ -39,7 +39,7 @@ def check_if_odd(sum: int = 36) -> int:
     return 1
 
 
-def find_reverse_nr(nr: int = 36) -> int:
+def find_reverse_nr(number: int = 36) -> int:
     """
     Reverses the given number. Does not work with number that end in zero.
     >>> find_reverse_nr(36)
@@ -49,10 +49,10 @@ def find_reverse_nr(nr: int = 36) -> int:
     """
     reverse = 0
 
-    while nr > 0:
-        temp = nr % 10
+    while number > 0:
+        temp = number % 10
         reverse = reverse * 10 + temp
-        nr = nr // 10
+        number = number // 10
 
     return reverse
 
@@ -74,7 +74,7 @@ def solution(number: int = 1000000000) -> int:
     120
     """
     answer = 0
-    for x in range(1, nr):
+    for x in range(1, number):
         if x % 10 != 0:
             reversed_nr = find_reverse_nr(x)
             sum = x + reversed_nr
