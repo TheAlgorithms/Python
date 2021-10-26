@@ -49,7 +49,7 @@ def solution(number: int = 1000000) -> int:
             result = int(i)
             break
 
-    return result
+    return int(result)
 
 
 if __name__ == "__main__":
