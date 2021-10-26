@@ -6,11 +6,11 @@ def hackernews_top_stories(max_stories: int = 10) -> int:
     Get the top 10 posts from HackerNews and display
     them as a table inside the terminal
     https://news.ycombinator.com/
-    
+
     >>> max_stories = 10
     >>> hackernews_top_stories(max_stories)
     10
-    
+
     >>> max_stories = 5
     >>> hackernews_top_stories(max_stories)
     5
