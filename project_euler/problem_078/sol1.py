@@ -25,7 +25,6 @@ def solution(number: int = 1000000) -> int:
     55374
     """
     partitions = [1]
-    result = 0
 
     for i in itertools.count(len(partitions)):
         item = 0
@@ -42,10 +41,10 @@ def solution(number: int = 1000000) -> int:
             item %= number
 
         if item == 0:
-            return result
+            return i
         partitions.append(item)
 
-    return result
+    return 0
 
 
 if __name__ == "__main__":
