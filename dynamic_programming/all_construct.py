@@ -4,7 +4,7 @@ constructed from the given list of substrings
 """
 
 
-def all_construct(target, word_bank=[]):
+def all_construct(target:str, word_bank:list=[]) -> list:
     """
         returns the list containing all the possible
         combinations a string(target) can be constructed from
