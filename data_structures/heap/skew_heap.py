@@ -59,7 +59,7 @@ class SkewHeap(Generic[T]):
     values. Both operations take O(logN) time where N is the size of the
     structure.
     Wiki: https://en.wikipedia.org/wiki/Skew_heap
-    Visualisation: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
+    Visualization: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
 
     >>> list(SkewHeap([2, 3, 1, 5, 1, 7]))
     [1, 1, 2, 3, 5, 7]
