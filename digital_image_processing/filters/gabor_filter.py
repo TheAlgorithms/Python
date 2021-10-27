@@ -71,7 +71,7 @@ if __name__ == "__main__":
     out = out / out.max() * 255
     out = out.astype(np.uint8)
 
-    imshow("original", gray)
-    imshow("gabor filter with 20x20 mask and 6 directions", out)
+    imshow("Original", gray)
+    imshow("Gabor filter with 20x20 mask and 6 directions", out)
 
     waitKey(0)
