@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from abc import ABCMeta, abstractmethod
-from typing import Generic, Iterable, Iterator, TypeVar
+from typing import Any, Generic, Iterable, Iterator, TypeVar
 
 
 class Comparable(metaclass=ABCMeta):
@@ -78,14 +78,16 @@ class SkewHeap(Generic[T]):
     """
 
     def __init__(self, data: Iterable[T] | None = ()) -> None:
+
         """
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)
         [1, 3, 3, 7]
         """
         self._root: SkewNode[T] | None = None
-        for item in data:
-            self.insert(item)
+        if data:
+            for item in data:
+                self.insert(item)
 
     def __bool__(self) -> bool:
         """
@@ -111,7 +113,7 @@ class SkewHeap(Generic[T]):
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        result = []
+        result: list[Any] = []
         while self:
             result.append(self.pop())
 
@@ -135,7 +137,7 @@ class SkewHeap(Generic[T]):
         """
         self._root = SkewNode.merge(self._root, SkewNode(value))
 
-    def pop(self) -> T:
+    def pop(self) -> T | None:
         """
         Pop the smallest value from the heap and return it.
 
@@ -154,7 +156,9 @@ class SkewHeap(Generic[T]):
         IndexError: Can't get top element for the empty heap.
         """
         result = self.top()
-        self._root = SkewNode.merge(self._root.left, self._root.right)
+        self._root = (
+            SkewNode.merge(self._root.left, self._root.right) if self._root else None
+        )
 
         return result
 
@@ -180,7 +184,7 @@ class SkewHeap(Generic[T]):
             raise IndexError("Can't get top element for the empty heap.")
         return self._root.value
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear the heap.
 
