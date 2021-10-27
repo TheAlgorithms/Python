@@ -23,6 +23,10 @@ def day_of_week(datetime_obj: datetime) -> str:
     'Friday'
     >>> day_of_week(datetime(year=2021, month=1, day=31))
     'Sunday'
+    >>> day_of_week(datetime(year=1900, month=1, day=1))
+    'Monday'
+    >>> day_of_week(datetime(year=2000, month=1, day=1))
+    'Saturday'
     """
     day_of_week: int = datetime_obj.weekday()  # Monday = 0 .. Sunday = 6
     return day_name[day_of_week]
@@ -144,3 +148,15 @@ if __name__ == "__main__":
           day_of_week_dmy("1/10/2021"),
           day_of_week_mdy("10/1/2021"),
           day_of_week_ymd("2021/10/01"))
+
+    print("Monday January 1, 1900: \n    ",
+          day_of_week_fmt("19000101"),
+          day_of_week_dmy("1/1/1900"),
+          day_of_week_mdy("1/1/1900"),
+          day_of_week_ymd("1900/1/01"))
+
+    print("Saturday January 1, 2000: \n    ",
+          day_of_week_fmt("20000101"),
+          day_of_week_dmy("1/1/2000"),
+          day_of_week_mdy("1/1/2000"),
+          day_of_week_ymd("2000/1/01"))
