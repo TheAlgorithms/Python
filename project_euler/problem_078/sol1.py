@@ -24,12 +24,10 @@ def solution(number: int = 1000000) -> int:
     >>> solution()
     55374
     """
-
     partitions = [1]
     result = 0
 
     for i in itertools.count(len(partitions)):
-
         item = 0
         for j in itertools.count(1):
             sign = -1 if j % 2 == 0 else +1
@@ -43,18 +41,16 @@ def solution(number: int = 1000000) -> int:
             item += partitions[i - index] * sign
             item %= number
 
+        if item == 0:
+            return result
         partitions.append(item)
 
-        if item == 0:
-            result = int(i)
-            break
-
-    return int(result)
+    return result
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()
+
     print(f"{solution() = }")
