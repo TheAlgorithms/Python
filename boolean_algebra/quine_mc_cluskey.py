@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Sequence
+
 
 def compare_string(string1: str, string2: str) -> str:
     """
@@ -46,7 +48,7 @@ def check(binary: list[str]) -> list[str]:
         binary = list(set(temp))
 
 
-def decimal_to_binary(no_of_variable: int, minterms: list[float]) -> list[str]:
+def decimal_to_binary(no_of_variable: int, minterms: Sequence[float]) -> list[str]:
     """
     >>> decimal_to_binary(3,[1.5])
     ['0.00.01.5']
@@ -142,7 +144,7 @@ def prime_implicant_chart(
     return chart
 
 
-def main():
+def main() -> None:
     no_of_variable = int(input("Enter the no. of variables\n"))
     minterms = [
         int(x)
