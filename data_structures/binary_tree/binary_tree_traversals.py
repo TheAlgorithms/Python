@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from collections import deque
 from dataclasses import dataclass
-from typing import Sequence
+from typing import Any, Sequence
 
 
 @dataclass
@@ -57,64 +57,94 @@ def height(root: Node | None) -> int:
 
 def level_order(root: Node | None) -> Sequence[Node | None]:
     """
-    Print whole binary tree in Level Order Traverse.
+    Returns a list of nodes value from a whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
     """
-    if not root:
-        return []
+    output: list[Any] = []
 
-    temp = root
-    process_queue = deque([temp])
+    if root is None:
+        return output
+
+    process_queue = deque([root])
 
     while process_queue:
-        temp = process_queue.popleft()
+        node = process_queue.popleft()
+        output.append(node.data)
 
-        if temp.left:
-            process_queue.append(temp.left)
-        if temp.right:
-            process_queue.append(temp.right)
-    return process_queue
+        if node.left:
+            process_queue.append(node.left)
+        if node.right:
+            process_queue.append(node.right)
+    return output
 
 
-def print_left_to_right(root: Node | None, level: int) -> None:
+def get_nodes_from_left_to_right(
+    root: Node | None, level: int
+) -> Sequence[Node | None]:
     """
-    Print elements on particular level from left to right direction of the binary tree.
+    Returns a list of nodes value from a particular level:
+    Left to right direction of the binary tree.
     """
-    if not root:
-        return
-    if level == 1:
-        print(root.data, end=" ")
-    elif level > 1:
-        print_left_to_right(root.left, level - 1)
-        print_left_to_right(root.right, level - 1)
+    output: list[Any] = []
+
+    def populate_output(root: Node | None, level: int) -> None:
+        if not root:
+            return
+        if level == 1:
+
+            output.append(root.data)
+        elif level > 1:
+            populate_output(root.left, level - 1)
+            populate_output(root.right, level - 1)
+
+    populate_output(root, level)
+    return output
 
 
-def print_right_to_left(root: Node | None, level: int) -> None:
+def get_nodes_from_right_to_left(
+    root: Node | None, level: int
+) -> Sequence[Node | None]:
     """
-    Print elements on particular level from right to left direction of the binary tree.
+    Returns a list of nodes value from a particular level:
+    Right to left direction of the binary tree.
     """
-    if not root:
-        return
-    if level == 1:
-        print(root.data, end=" ")
-    elif level > 1:
-        print_right_to_left(root.right, level - 1)
-        print_right_to_left(root.left, level - 1)
+    output: list[Any] = []
+
+    def populate_output(root: Node | None, level: int) -> None:
+        if root is None:
+            return
+        if level == 1:
+            output.append(root.data)
+        elif level > 1:
+            populate_output(root.right, level - 1)
+            populate_output(root.left, level - 1)
+
+    populate_output(root, level)
+    return output
 
 
-def zigzag(root: Node | None) -> None:
+def zigzag(root: Node | None) -> Sequence[Node | None] | list[Any]:
     """
-    ZigZag traverse: Print node left to right and right to left, alternatively.
+    ZigZag traverse:
+    Returns a list of nodes value from left to right and right to left, alternatively.
     """
+    if root is None:
+        return []
+
+    output: list[Sequence[Node | None]] = []
+
     flag = 0
     height_tree = height(root)
+
     for h in range(1, height_tree + 1):
-        if flag == 0:
-            print_left_to_right(root, h)
+        if not flag:
+            output.append(get_nodes_from_left_to_right(root, h))
             flag = 1
         else:
-            print_right_to_left(root, h)
+            output.append(get_nodes_from_right_to_left(root, h))
             flag = 0
+
+    return output
 
 
 def main() -> None:  # Main function for testing.
@@ -125,18 +155,23 @@ def main() -> None:  # Main function for testing.
     """
     All Traversals of the binary are as follows:
     """
-    print(f"  In-order Traversal is {inorder(root)}")
-    print(f" Pre-order Traversal is {preorder(root)}")
-    print(f"Post-order Traversal is {postorder(root)}")
-    print(f"Height of Tree is {height(root)}")
-    print("Complete Level Order Traversal is : ")
-    level_order(root)
-    print("\nLevel-wise order Traversal is : ")
-    for h in range(1, height(root) + 1):
-        print_left_to_right(root, h)
-    print("\nZigZag order Traversal is : ")
-    zigzag(root)
-    print()
+
+    print(f"In-order Traversal: {inorder(root)}")
+    print(f"Pre-order Traversal: {preorder(root)}")
+    print(f"Post-order Traversal: {postorder(root)}", "\n")
+
+    print(f"Height of Tree: {height(root)}", "\n")
+
+    print("Complete Level Order Traversal: ")
+    print(level_order(root), "\n")
+
+    print("Level-wise order Traversal: ")
+
+    for level in range(1, height(root) + 1):
+        print(f"Level {level}:", get_nodes_from_left_to_right(root, level=level))
+
+    print("\nZigZag order Traversal: ")
+    print(zigzag(root))
 
 
 if __name__ == "__main__":
