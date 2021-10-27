@@ -2,9 +2,17 @@
 
 from __future__ import annotations
 
+from abc import ABCMeta, abstractmethod
 from typing import Generic, Iterable, Iterator, TypeVar
 
-T = TypeVar("T")
+
+class Comparable(metaclass=ABCMeta):
+    @abstractmethod
+    def __gt__(self, other: object) -> bool:
+        ...
+
+
+T = TypeVar("T", bound=Comparable)
 
 
 class SkewNode(Generic[T]):
