@@ -59,7 +59,7 @@ class Graph:
         visited.add(start_vertex)
         queue.put(start_vertex)
 
-        while queue:
+        while not queue.empty():
             vertex = queue.get()
 
             # loop through all adjacent vertex and enqueue it if not yet visited
