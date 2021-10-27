@@ -42,7 +42,7 @@ def all_construct(target, word_bank=[]):
     return table[len(target)]
 
 
-def main():
+if __name__ == "__main__":
     print(all_construct("jwajalapa", ["jwa", "j", "w", "a", "la", "lapa"]))
     print(all_construct("rajamati", ["s", "raj", "amat", "raja", "ma", "i", "t"]))
     print(
@@ -51,7 +51,3 @@ def main():
             ["h", "ex", "hex", "ag", "ago", "ru", "auru", "rus", "go", "no", "o", "s"],
         )
     )
-
-
-if __name__ == "__main__":
-    main()
