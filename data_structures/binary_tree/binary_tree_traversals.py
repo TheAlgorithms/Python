@@ -67,7 +67,6 @@ def level_order(root: Node | None) -> Sequence[Node | None]:
     process_queue = deque([temp])
 
     while process_queue:
-        print(process_queue[0].data, end=" ")
         temp = process_queue.popleft()
 
         if temp.left:
