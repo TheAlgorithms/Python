@@ -20,9 +20,6 @@ We want the vehicle with the lowest price,
 lowest mileage but newest registration year.
 Thus the weights for each column are as follows:
 [0, 0, 1]
-
->>> procentual_proximity([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1])
-[[20, 60, 2012, 2.0], [23, 90, 2015, 1.0], [22, 50, 2011, 1.3333333333333335]]
 """
 
 
@@ -33,6 +30,9 @@ def procentual_proximity(source_data: list, weights: list) -> list:
     possible values - 0 / 1
     0 if lower values have higher weight in the data set
     1 if higher values have higher weight in the data set
+
+    >>> procentual_proximity([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]], [0, 0, 1])
+    [[20, 60, 2012, 2.0], [23, 90, 2015, 1.0], [22, 50, 2011, 1.3333333333333335]]
     """
 
     # getting data
