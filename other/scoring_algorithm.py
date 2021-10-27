@@ -23,7 +23,7 @@ Thus the weights for each column are as follows:
 """
 
 
-def procentual_proximity(source_data: list, weights: list) -> list:
+def procentual_proximity(source_data: list[list[float]], weights: list[int]) -> list[list[float]]:
 
     """
     weights - int list
@@ -36,7 +36,7 @@ def procentual_proximity(source_data: list, weights: list) -> list:
     """
 
     # getting data
-    data_lists = []
+    data_lists: list[list[float]] = []
     for item in source_data:
         for i in range(len(item)):
             try:
@@ -46,13 +46,13 @@ def procentual_proximity(source_data: list, weights: list) -> list:
                 data_lists.append([])
                 data_lists[i].append(float(item[i]))
 
-    score_lists = []
+    score_lists: list[list[float]] = []
     # calculating each score
     for dlist, weight in zip(data_lists, weights):
         mind = min(dlist)
         maxd = max(dlist)
 
-        score = []
+        score: list[float] = []
         # for weight 0 score is 1 - actual score
         if weight == 0:
             for item in dlist:
@@ -75,7 +75,7 @@ def procentual_proximity(source_data: list, weights: list) -> list:
         score_lists.append(score)
 
     # initialize final scores
-    final_scores = [0 for i in range(len(score_lists[0]))]
+    final_scores: list[float] = [0 for i in range(len(score_lists[0]))]
 
     # generate final scores
     for i, slist in enumerate(score_lists):
