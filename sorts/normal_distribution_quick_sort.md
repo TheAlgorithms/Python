@@ -36,7 +36,7 @@ The array elements are taken from a Standard Normal Distribution , having mean =
 ```
 
 ------
-![normal distribution large](https://www.mathsisfun.com/data/images/normal-distrubution-large.gif)
+![normal distribution large](https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/The_Normal_Distribution.svg/1280px-The_Normal_Distribution.svg.png)
 
 ------
 
