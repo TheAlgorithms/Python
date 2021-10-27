@@ -18,8 +18,6 @@ def solution(n: int = 1000) -> int:
     0
     >>> solution(4)
     3
-    >>> solution(10)
-    23
     >>> solution(600)
     83700
     >>> solution(-7)
