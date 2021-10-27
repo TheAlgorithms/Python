@@ -38,13 +38,13 @@ def procentual_proximity(source_data: list[list[float]], weights: list[int]) -> 
     # getting data
     data_lists: list[list[float]] = []
     for data in source_data:
-        for i in range(len(data)):
+        for i, el in enumerate(data):
             try:
-                data_lists[i].append(float(data[i]))
+                data_lists[i].append(float(el))
             except IndexError:
                 # generate corresponding number of lists
                 data_lists.append([])
-                data_lists[i].append(float(data[i]))
+                data_lists[i].append(float(el))
 
     score_lists: list[list[float]] = []
     # calculating each score
