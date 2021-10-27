@@ -113,50 +113,62 @@ def day_of_week_ymd(date_string: str) -> str:
 
 
 if __name__ == "__main__":
-    print("Tuesday August 7, 2035:\n    ",
-          day_of_week_fmt("7/8/2035", format="%d/%m/%Y"),
-          day_of_week_fmt("8/07/2035", format="%m/%d/%Y"),
-          day_of_week_fmt("2035-08-07", format="%Y-%m-%d"),
-          day_of_week_fmt("20350807"),
-          day_of_week_dmy("7/8/2035"),
-          day_of_week_mdy("8/7/2035"),
-          day_of_week_ymd("2035/08/07"))
+    print(
+        "Tuesday August 7, 2035:\n    ",
+        day_of_week_fmt("7/8/2035", format="%d/%m/%Y"),
+        day_of_week_fmt("8/07/2035", format="%m/%d/%Y"),
+        day_of_week_fmt("2035-08-07", format="%Y-%m-%d"),
+        day_of_week_fmt("20350807"),
+        day_of_week_dmy("7/8/2035"),
+        day_of_week_mdy("8/7/2035"),
+        day_of_week_ymd("2035/08/07"),
+    )
 
-    print("Sunday August 7, 2021:\n    ",
-          day_of_week_fmt("7/8/2021", format="%d/%m/%Y"),
-          day_of_week_fmt("8/07/2021", format="%m/%d/%Y"),
-          day_of_week_fmt("2021-08-07", format="%Y-%m-%d"),
-          day_of_week_fmt("20210807"),
-          day_of_week_dmy("7/8/2021"),
-          day_of_week_mdy("8/7/2021"),
-          day_of_week_ymd("2021/08/07"))
+    print(
+        "Sunday August 7, 2021:\n    ",
+        day_of_week_fmt("7/8/2021", format="%d/%m/%Y"),
+        day_of_week_fmt("8/07/2021", format="%m/%d/%Y"),
+        day_of_week_fmt("2021-08-07", format="%Y-%m-%d"),
+        day_of_week_fmt("20210807"),
+        day_of_week_dmy("7/8/2021"),
+        day_of_week_mdy("8/7/2021"),
+        day_of_week_ymd("2021/08/07"),
+    )
 
-    print("Friday January 1, 2021:\n    ",
-          day_of_week_fmt("1/1/2021", format="%d/%m/%Y"),
-          day_of_week_fmt("1/1/2021", format="%m/%d/%Y"),
-          day_of_week_fmt("2021-01-01", format="%Y-%m-%d"),
-          day_of_week_fmt("20210101"),
-          day_of_week_dmy("1/1/2021"),
-          day_of_week_mdy("1/1/2021"),
-          day_of_week_ymd("2021/01/1"))
+    print(
+        "Friday January 1, 2021:\n    ",
+        day_of_week_fmt("1/1/2021", format="%d/%m/%Y"),
+        day_of_week_fmt("1/1/2021", format="%m/%d/%Y"),
+        day_of_week_fmt("2021-01-01", format="%Y-%m-%d"),
+        day_of_week_fmt("20210101"),
+        day_of_week_dmy("1/1/2021"),
+        day_of_week_mdy("1/1/2021"),
+        day_of_week_ymd("2021/01/1"),
+    )
 
-    print("Friday October 1, 2021:\n    ",
-          day_of_week_fmt("1/10/2021", format="%d/%m/%Y"),
-          day_of_week_fmt("10/1/2021", format="%m/%d/%Y"),
-          day_of_week_fmt("2021-10-01", format="%Y-%m-%d"),
-          day_of_week_fmt("20211001"),
-          day_of_week_dmy("1/10/2021"),
-          day_of_week_mdy("10/1/2021"),
-          day_of_week_ymd("2021/10/01"))
+    print(
+        "Friday October 1, 2021:\n    ",
+        day_of_week_fmt("1/10/2021", format="%d/%m/%Y"),
+        day_of_week_fmt("10/1/2021", format="%m/%d/%Y"),
+        day_of_week_fmt("2021-10-01", format="%Y-%m-%d"),
+        day_of_week_fmt("20211001"),
+        day_of_week_dmy("1/10/2021"),
+        day_of_week_mdy("10/1/2021"),
+        day_of_week_ymd("2021/10/01"),
+    )
 
-    print("Monday January 1, 1900: \n    ",
-          day_of_week_fmt("19000101"),
-          day_of_week_dmy("1/1/1900"),
-          day_of_week_mdy("1/1/1900"),
-          day_of_week_ymd("1900/1/01"))
+    print(
+        "Monday January 1, 1900: \n    ",
+        day_of_week_fmt("19000101"),
+        day_of_week_dmy("1/1/1900"),
+        day_of_week_mdy("1/1/1900"),
+        day_of_week_ymd("1900/1/01"),
+    )
 
-    print("Saturday January 1, 2000: \n    ",
-          day_of_week_fmt("20000101"),
-          day_of_week_dmy("1/1/2000"),
-          day_of_week_mdy("1/1/2000"),
-          day_of_week_ymd("2000/1/01"))
+    print(
+        "Saturday January 1, 2000: \n    ",
+        day_of_week_fmt("20000101"),
+        day_of_week_dmy("1/1/2000"),
+        day_of_week_mdy("1/1/2000"),
+        day_of_week_ymd("2000/1/01"),
+    )
