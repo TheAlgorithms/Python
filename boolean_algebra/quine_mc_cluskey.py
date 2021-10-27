@@ -52,13 +52,12 @@ def decimal_to_binary(no_of_variable: int, minterms: list[float]) -> list[str]:
     ['0.00.01.5']
     """
     temp = []
-    string = ""
     for minterm in minterms:
+        string = ""
         for i in range(no_of_variable):
             string = str(minterm % 2) + string
             minterm //= 2
         temp.append(string)
-        string = ""
     return temp
 
 
