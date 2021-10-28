@@ -1,7 +1,6 @@
 # Required imports to run this file
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 
 
 # weighted matrix
@@ -60,6 +59,8 @@ def load_data(dataset_name: str, cola_name: str, colb_name: str) -> np.mat:
     """
     Function used for loading data from the seaborn splitting into x and y points
     """
+    import seaborn as sns
+
     data = sns.load_dataset(dataset_name)
     col_a = np.array(data[cola_name])  # total_bill
     col_b = np.array(data[colb_name])  # tip
