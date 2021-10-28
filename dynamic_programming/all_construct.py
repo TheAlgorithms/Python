@@ -4,7 +4,7 @@ constructed from the given list of substrings
 """
 
 
-def all_construct(target:str, word_bank:list=[]) -> list:
+def all_construct(target: str, word_bank: list = None) -> list:
     """
         returns the list containing all the possible
         combinations a string(target) can be constructed from
@@ -14,6 +14,9 @@ def all_construct(target:str, word_bank:list=[]) -> list:
     >>> all_construct("purple",["purp","p","ur","le","purpl"])
     [['purp', 'le'], ['p', 'ur', 'p', 'le']]
     """
+
+    if word_bank is None:
+        word_bank = []
     # create a table
     table_size = len(target) + 1
     table = []
@@ -30,7 +33,7 @@ def all_construct(target:str, word_bank:list=[]) -> list:
             for word in word_bank:
                 # slice condition
                 if target[i : i + len(word)] == word:
-                    new_combinations = list(map(lambda way: [word] + way, table[i]))
+                    new_combinations = [[word] + way for way in table[i]]
                     # adds the word to every combination the current position holds
                     # now,push that combination to the table[i+len(word)]
                     table[i + len(word)] += new_combinations
