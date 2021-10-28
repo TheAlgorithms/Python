@@ -22,19 +22,19 @@ def solution() -> int:
     7273
     """
     script_dir = os.path.dirname(os.path.realpath(__file__))
-    triangle = os.path.join(script_dir, "triangle.txt")
+    triangle_path = os.path.join(script_dir, "triangle.txt")
 
-    a = []
-    with open(triangle) as f:
+    triangle = []
+    with open(triangle_path) as f:
         for line in f:
-            a.append([int(i) for i in line.split()])
+            triangle.append([int(i) for i in line.split()])
 
-    while len(a) != 1:
-        b = a.pop()
-        x = a[-1]
-        for j in range(len(b) - 1):
-            x[j] += max(b[j], b[j + 1])
-    return a[0][0]
+    while len(triangle) != 1:
+        last_row = triangle.pop()
+        curr_row = triangle[-1]
+        for j in range(len(last_row) - 1):
+            curr_row[j] += max(last_row[j], last_row[j + 1])
+    return triangle[0][0]
 
 
 if __name__ == "__main__":
