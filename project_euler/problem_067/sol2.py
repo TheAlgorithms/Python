@@ -27,7 +27,7 @@ def solution() -> int:
     triangle = []
     with open(triangle_path) as f:
         for line in f:
-            triangle.append([int(i) for i in line.split()])
+            triangle = [[int(i) for i in line.split()] for line in in_file]
 
     while len(triangle) != 1:
         last_row = triangle.pop()
