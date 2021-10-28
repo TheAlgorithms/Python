@@ -161,7 +161,7 @@ def range_counting(
     node: Node | None, start: int, end: int, start_num: int, end_num: int
 ) -> int:
     """
-    Returns the number of elememts in range [start_num, end_num]
+    Returns the number of elements in range [start_num, end_num]
     in interval [start, end] in the list
 
     >>> root = build_tree(test_array)
