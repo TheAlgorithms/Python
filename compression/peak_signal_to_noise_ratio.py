@@ -12,7 +12,7 @@ import cv2
 import numpy as np
 
 
-def psnr(original, contrast):
+def psnr(original: float, contrast: float) -> float:
     mse = np.mean((original - contrast) ** 2)
     if mse == 0:
         return 100
@@ -21,7 +21,7 @@ def psnr(original, contrast):
     return PSNR
 
 
-def main():
+def main() -> None:
     dir_path = os.path.dirname(os.path.realpath(__file__))
     # Loading images (original image and compressed image)
     original = cv2.imread(os.path.join(dir_path, "image_data/original_image.png"))

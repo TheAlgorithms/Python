@@ -11,13 +11,11 @@ def validate_initial_digits(credit_card_number: str) -> bool:
     >>> valid = "4111111111111111 41111111111111 34 35 37 412345 523456 634567"
     >>> all(validate_initial_digits(cc) for cc in valid.split())
     True
-    >>> invalid = "32323 36111111111111"
+    >>> invalid = "14 25 76 32323 36111111111111"
     >>> all(validate_initial_digits(cc) is False for cc in invalid.split())
     True
     """
-    if len(credit_card_number) < 2:
-        return False
-    return credit_card_number[0] in "456" or credit_card_number[1] in "457"
+    return credit_card_number.startswith(("34", "35", "37", "4", "5", "6"))
 
 
 def luhn_validation(credit_card_number: str) -> bool:

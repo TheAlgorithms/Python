@@ -1,6 +1,6 @@
 # Audio Filter
 
-Audio filters work on the frequency of a audio signal to attenuate unwanted frequency, amplify wanted ones.
+Audio filters work on the frequency of a audio signal to attenuate unwanted frequency and amplify wanted ones.
 They are used within anything related to sound, whether it's radio communication or a hi-fi system.
 
 * <https://www.masteringbox.com/filter-types/>
