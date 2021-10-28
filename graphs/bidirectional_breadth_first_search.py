@@ -34,16 +34,19 @@ class Node:
 
 class BreadthFirstSearch:
     """
-    >>> bfs = BreadthFirstSearch((0, 0), (len(grid) - 1, len(grid[0]) - 1))
-    >>> (bfs.start.pos_y + delta[3][0], bfs.start.pos_x + delta[3][1])
+    # Comment out slow pytests...
+    # 9.15s call     graphs/bidirectional_breadth_first_search.py:: \
+    #                graphs.bidirectional_breadth_first_search.BreadthFirstSearch
+    # >>> bfs = BreadthFirstSearch((0, 0), (len(grid) - 1, len(grid[0]) - 1))
+    # >>> (bfs.start.pos_y + delta[3][0], bfs.start.pos_x + delta[3][1])
     (0, 1)
-    >>> [x.pos for x in bfs.get_successors(bfs.start)]
+    # >>> [x.pos for x in bfs.get_successors(bfs.start)]
     [(1, 0), (0, 1)]
-    >>> (bfs.start.pos_y + delta[2][0], bfs.start.pos_x + delta[2][1])
+    # >>> (bfs.start.pos_y + delta[2][0], bfs.start.pos_x + delta[2][1])
     (1, 0)
-    >>> bfs.retrace_path(bfs.start)
+    # >>> bfs.retrace_path(bfs.start)
     [(0, 0)]
-    >>> bfs.search()  # doctest: +NORMALIZE_WHITESPACE
+    # >>> bfs.search()  # doctest: +NORMALIZE_WHITESPACE
     [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1),
      (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
     """

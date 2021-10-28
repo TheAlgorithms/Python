@@ -203,6 +203,18 @@ def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float
     Traceback (most recent call last):
         ...
     ValueError: area_triangle_three_sides() only accepts non-negative values
+    >>> area_triangle_three_sides(2, 4, 7)
+    Traceback (most recent call last):
+        ...
+    ValueError: Given three sides do not form a triangle
+    >>> area_triangle_three_sides(2, 7, 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Given three sides do not form a triangle
+    >>> area_triangle_three_sides(7, 2, 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: Given three sides do not form a triangle
     """
     if side1 < 0 or side2 < 0 or side3 < 0:
         raise ValueError("area_triangle_three_sides() only accepts non-negative values")
