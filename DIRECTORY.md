@@ -186,6 +186,7 @@
     * [Swap Nodes](https://github.com/TheAlgorithms/Python/blob/master/data_structures/linked_list/swap_nodes.py)
   * Queue
     * [Circular Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/circular_queue.py)
+    * [Circular Queue Linked List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/circular_queue_linked_list.py)
     * [Double Ended Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/double_ended_queue.py)
     * [Linked Queue](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/linked_queue.py)
     * [Priority Queue Using List](https://github.com/TheAlgorithms/Python/blob/master/data_structures/queue/priority_queue_using_list.py)
