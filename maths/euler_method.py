@@ -1,18 +1,25 @@
+from typing import Callable
+
 import numpy as np
 
 
-def explicit_euler(ode_func, y0, x0, step_size, x_end):
-    """
-    Calculate numeric solution at each step to an ODE using Euler's Method
+def explicit_euler(
+    ode_func: Callable, y0: float, x0: float, step_size: float, x_end: float
+) -> np.ndarray:
+    """Calculate numeric solution at each step to an ODE using Euler's Method
 
-    https://en.wikipedia.org/wiki/Euler_method
+    For reference to Euler's method refer to https://en.wikipedia.org/wiki/Euler_method.
 
-    Arguments:
-    ode_func -- The ode as a function of x and y
-    y0 -- the initial value for y
-    x0 -- the initial value for x
-    stepsize -- the increment value for x
-    x_end -- the end value for x
+    Args:
+        ode_func (Callable):  The ordinary differential equation
+            as a function of x and y.
+        y0 (float): The initial value for y.
+        x0 (float): The initial value for x.
+        step_size (float): The increment value for x.
+        x_end (float): The final value of x to be calculated.
+
+    Returns:
+        np.ndarray: Solution of y for every step in x.
 
     >>> # the exact solution is math.exp(x)
     >>> def f(x, y):
