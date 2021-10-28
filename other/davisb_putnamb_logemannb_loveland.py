@@ -315,15 +315,10 @@ def dpll_algorithm(
         return True, model
 
     # 3. Pure symbols
-    try:
-        pure_symbols, assignment = find_pure_symbols(clauses, symbols, model)
-    except RecursionError:
-        print("raises a RecursionError and is")
-        return None, {}
-
+    pure_symbols, assignment = find_pure_symbols(clauses, symbols, model)
     if pure_symbols:
         P, value = pure_symbols[0], assignment[pure_symbols[0]]
-        tmp_model = model
+        tmp_model = model.copy()
         tmp_model[P] = value
         tmp_symbols = [i for i in symbols]
         if P in tmp_symbols:
@@ -334,12 +329,13 @@ def dpll_algorithm(
     unit_symbols, assignment = find_unit_clauses(clauses, model)
     if unit_symbols:
         P, value = unit_symbols[0], assignment[unit_symbols[0]]
-        tmp_model = model
-        tmp_model[P] = value
-        tmp_symbols = [i for i in symbols]
-        if P in tmp_symbols:
-            tmp_symbols.remove(P)
-        return dpll_algorithm(clauses, tmp_symbols, tmp_model)
+        if P in symbols:
+            tmp_model = model
+            tmp_model[P] = value
+            tmp_symbols = [i for i in symbols]
+            if P in tmp_symbols:
+                tmp_symbols.remove(P)
+            return dpll_algorithm(clauses, tmp_symbols, tmp_model)
 
     # 5. recurse through next symbol True and False:
     P = symbols[0]
