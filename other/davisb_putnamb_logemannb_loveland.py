@@ -77,15 +77,21 @@ class Clause:
         3. Return None(unable to complete evaluation) if a literal has no assignment.
         4. Compute disjunction of all values assigned in clause.
         """
+
+        # 1. literal and complement in clause
         for literal in self.literals:
             symbol = literal.rstrip("'") if literal.endswith("'") else literal + "'"
             if symbol in self.literals:
                 return True
 
+        # 2. Any literal is True and
+        # 3. Any literal is False
         self.assign(model)
         for value in self.literals.values():
             if value in (True, None):
                 return value
+
+        # 4. disjunction
         return any(self.literals.values())
 
 
@@ -292,6 +298,9 @@ def dpll_algorithm(
     >>> model
     {'A4': True}
     """
+
+    # 2. Check any False
+    # 1. Check All True
     check_clause_all_true = True
     for clause in clauses:
         clause_check = clause.evaluate(model)
@@ -304,6 +313,7 @@ def dpll_algorithm(
     if check_clause_all_true:
         return True, model
 
+    # 3. Pure symbols
     try:
         pure_symbols, assignment = find_pure_symbols(clauses, symbols, model)
     except RecursionError:
@@ -321,6 +331,7 @@ def dpll_algorithm(
             tmp_symbols.remove(P)
         return dpll_algorithm(clauses, tmp_symbols, tmp_model)
 
+    # 4. Unit symbols
     unit_symbols, assignment = find_unit_clauses(clauses, model)
     P = None
     if len(unit_symbols) > 0:
@@ -332,6 +343,8 @@ def dpll_algorithm(
         if P in tmp_symbols:
             tmp_symbols.remove(P)
         return dpll_algorithm(clauses, tmp_symbols, tmp_model)
+
+    # 5. recurse through next symbol True and False:
     P = symbols[0]
     rest = symbols[1:]
     tmp1, tmp2 = model, model
