@@ -14,9 +14,9 @@ This module contains classes and functions for doing linear algebra.
 
   - constructor(components) : init the vector
   - set(components) : changes the vector components.
-  - \_\_str\_\_() : toString method
+  - `__str__()` : toString method
   - component(i): gets the i-th component (0-indexed)
-  - \_\_len\_\_() : gets the size / length of the vector (number of components)
+  - `__len__()` : gets the size / length of the vector (number of components)
   - euclidean_length() : returns the eulidean length of the vector
   - operator + : vector addition
   - operator - : vector subtraction
@@ -39,9 +39,10 @@ This module contains classes and functions for doing linear algebra.
 
     **Overview of the methods:**
 
-  - \_\_str\_\_() : returns a string representation
-  - operator * : implements the matrix vector multiplication
-                   implements the matrix-scalar multiplication.
+  - `__str__()` : returns a string representation
+  - operator * :
+    - implements the matrix vector multiplication
+    - implements the matrix-scalar multiplication.
   - change_component(x, y, value) : changes the specified component.
   - component(x, y) : returns the specified component.
   - width() : returns the width of the matrix
