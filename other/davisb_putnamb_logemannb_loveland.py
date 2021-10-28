@@ -319,11 +319,9 @@ def dpll_algorithm(
     except RecursionError:
         print("raises a RecursionError and is")
         return None, {}
-    P = None
-    if len(pure_symbols) > 0:
-        P, value = pure_symbols[0], assignment[pure_symbols[0]]
 
-    if P:
+    if pure_symbols:
+        P, value = pure_symbols[0], assignment[pure_symbols[0]]
         tmp_model = model
         tmp_model[P] = value
         tmp_symbols = [i for i in symbols]
@@ -333,10 +331,8 @@ def dpll_algorithm(
 
     # 4. Unit symbols
     unit_symbols, assignment = find_unit_clauses(clauses, model)
-    P = None
-    if len(unit_symbols) > 0:
+    if unit_symbols:
         P, value = unit_symbols[0], assignment[unit_symbols[0]]
-    if P:
         tmp_model = model
         tmp_model[P] = value
         tmp_symbols = [i for i in symbols]
