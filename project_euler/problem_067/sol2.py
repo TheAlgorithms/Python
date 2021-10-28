@@ -25,8 +25,7 @@ def solution() -> int:
     triangle_path = os.path.join(script_dir, "triangle.txt")
 
     with open(triangle_path) as in_file:
-        for line in f:
-            triangle = [[int(i) for i in line.split()] for line in in_file]
+        triangle = [[int(i) for i in line.split()] for line in in_file]
 
     while len(triangle) != 1:
         last_row = triangle.pop()
