@@ -288,6 +288,7 @@ def dpll_algorithm(
     2. If some clause in clauses is False, return False.
     3. Find pure symbols.
     4. Find unit symbols.
+    5. recurse on symbol = True or symbol = False
 
     >>> formula = Formula([Clause(["A4", "A3", "A5'", "A1", "A3'"]), Clause(["A4"])])
     >>> clauses, symbols = generate_parameters(formula)
@@ -343,7 +344,7 @@ def dpll_algorithm(
     # 5. recurse through next symbol True and False:
     P = symbols[0]
     rest = symbols[1:]
-    tmp1, tmp2 = model, model
+    tmp1, tmp2 = model.copy(), model.copy()
     tmp1[P], tmp2[P] = True, False
 
     return dpll_algorithm(clauses, rest, tmp1) or dpll_algorithm(clauses, rest, tmp2)
