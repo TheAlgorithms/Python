@@ -3,7 +3,7 @@ Program to join a list of strings with a given separator
 """
 
 
-def join(separator: str, separated: list) -> str:
+def join(separator: str, separated: list[str]) -> str:
     """
     >>> join("", ["a", "b", "c", "d"])
     'abcd'
@@ -26,7 +26,7 @@ def join(separator: str, separated: list) -> str:
     return joined.strip(separator)
 
 
-if "__name__" == "__main__":
+if __name__ == "__main__":
     from doctest import testmod
 
     testmod()

@@ -51,7 +51,7 @@ def bisect_left(
         hi = len(sorted_collection)
 
     while lo < hi:
-        mid = (lo + hi) // 2
+        mid = lo + (hi - lo) // 2
         if sorted_collection[mid] < item:
             lo = mid + 1
         else:
@@ -96,7 +96,7 @@ def bisect_right(
         hi = len(sorted_collection)
 
     while lo < hi:
-        mid = (lo + hi) // 2
+        mid = lo + (hi - lo) // 2
         if sorted_collection[mid] <= item:
             lo = mid + 1
         else:

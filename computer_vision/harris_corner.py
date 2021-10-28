@@ -21,11 +21,11 @@ class Harris_Corner:
         else:
             raise ValueError("invalid k value")
 
-    def __str__(self):
+    def __str__(self) -> str:
 
         return f"Harris Corner  detection with k : {self.k}"
 
-    def detect(self, img_path: str):
+    def detect(self, img_path: str) -> tuple[cv2.Mat, list[list[int]]]:
 
         """
         Returns the image with corners identified
@@ -35,7 +35,7 @@ class Harris_Corner:
 
         img = cv2.imread(img_path, 0)
         h, w = img.shape
-        corner_list = []
+        corner_list: list[list[int]] = []
         color_img = img.copy()
         color_img = cv2.cvtColor(color_img, cv2.COLOR_GRAY2RGB)
         dy, dx = np.gradient(img)

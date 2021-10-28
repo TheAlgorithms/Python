@@ -38,7 +38,7 @@ def infix_to_postfix(expression_str: str) -> str:
     """
     if not balanced_parentheses(expression_str):
         raise ValueError("Mismatched parentheses")
-    stack = Stack()
+    stack: Stack[str] = Stack()
     postfix = []
     for char in expression_str:
         if char.isalpha() or char.isdigit():
