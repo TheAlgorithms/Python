@@ -7,8 +7,6 @@ will be used as the node of new tree.
 """
 from __future__ import annotations
 
-from typing import Optional
-
 
 class Node:
     """
