@@ -12,39 +12,7 @@ References:
 """
 import math
 
-
-def isprime(num: int) -> bool:
-    """
-    Returns boolean representing primality of given number num.
-
-    >>> isprime(2)
-    True
-    >>> isprime(3)
-    True
-    >>> isprime(27)
-    False
-    >>> isprime(2999)
-    True
-    >>> isprime(0)
-    Traceback (most recent call last):
-        ...
-    ValueError: Parameter num must be greater than or equal to two.
-    >>> isprime(1)
-    Traceback (most recent call last):
-        ...
-    ValueError: Parameter num must be greater than or equal to two.
-    """
-
-    if num <= 1:
-        raise ValueError("Parameter num must be greater than or equal to two.")
-    if num == 2:
-        return True
-    elif num % 2 == 0:
-        return False
-    for i in range(3, int(math.sqrt(num)) + 1, 2):
-        if num % i == 0:
-            return False
-    return True
+from maths.prime_check import prime_check
 
 
 def solution(n: int = 600851475143) -> int:
@@ -84,18 +52,18 @@ def solution(n: int = 600851475143) -> int:
     if n <= 0:
         raise ValueError("Parameter n must be greater than or equal to one.")
     max_number = 0
-    if isprime(n):
+    if prime_check(n):
         return n
     while n % 2 == 0:
         n //= 2
-    if isprime(n):
+    if prime_check(n):
         return n
     for i in range(3, int(math.sqrt(n)) + 1, 2):
         if n % i == 0:
-            if isprime(n // i):
+            if prime_check(n // i):
                 max_number = n // i
                 break
-            elif isprime(i):
+            elif prime_check(i):
                 max_number = i
     return max_number
 

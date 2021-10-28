@@ -13,26 +13,8 @@ pandigital prime.
 from __future__ import annotations
 
 from itertools import permutations
-from math import sqrt
 
-
-def is_prime(n: int) -> bool:
-    """
-    Returns True if n is prime,
-    False otherwise.
-    >>> is_prime(67483)
-    False
-    >>> is_prime(563)
-    True
-    >>> is_prime(87)
-    False
-    """
-    if n % 2 == 0:
-        return False
-    for i in range(3, int(sqrt(n) + 1), 2):
-        if n % i == 0:
-            return False
-    return True
+from maths.prime_check import prime_check
 
 
 def solution(n: int = 7) -> int:
@@ -48,7 +30,7 @@ def solution(n: int = 7) -> int:
     """
     pandigital_str = "".join(str(i) for i in range(1, n + 1))
     perm_list = [int("".join(i)) for i in permutations(pandigital_str, n)]
-    pandigitals = [num for num in perm_list if is_prime(num)]
+    pandigitals = [num for num in perm_list if prime_check(num)]
     return max(pandigitals) if pandigitals else 0
 
 

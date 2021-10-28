@@ -12,24 +12,8 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 import itertools
-import math
 
-
-def prime_check(number: int) -> bool:
-    """
-    Determines whether a given number is prime or not
-
-    >>> prime_check(2)
-    True
-    >>> prime_check(15)
-    False
-    >>> prime_check(29)
-    True
-    """
-
-    if number % 2 == 0 and number > 2:
-        return False
-    return all(number % i for i in range(3, int(math.sqrt(number)) + 1, 2))
+from maths.prime_check import prime_check
 
 
 def prime_generator():

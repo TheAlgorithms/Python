@@ -33,29 +33,7 @@ So we check individually each one of these before incrementing our
 count of current primes.
 
 """
-from math import isqrt
-
-
-def isprime(number: int) -> int:
-    """
-    returns whether the given number is prime or not
-    >>> isprime(1)
-    0
-    >>> isprime(17)
-    1
-    >>> isprime(10000)
-    0
-    """
-    if number == 1:
-        return 0
-
-    if number % 2 == 0 and number > 2:
-        return 0
-
-    for i in range(3, isqrt(number) + 1, 2):
-        if number % i == 0:
-            return 0
-    return 1
+from maths.prime_check import prime_check
 
 
 def solution(ratio: float = 0.1) -> int:
@@ -76,7 +54,7 @@ def solution(ratio: float = 0.1) -> int:
 
     while primes / (2 * j - 1) >= ratio:
         for i in range(j * j + j + 1, (j + 2) * (j + 2), j + 1):
-            primes = primes + isprime(i)
+            primes = primes + prime_check(i)
 
         j = j + 2
     return j

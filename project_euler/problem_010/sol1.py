@@ -11,28 +11,7 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 
-from math import sqrt
-
-
-def is_prime(n: int) -> bool:
-    """
-    Returns boolean representing primality of given number num.
-
-    >>> is_prime(2)
-    True
-    >>> is_prime(3)
-    True
-    >>> is_prime(27)
-    False
-    >>> is_prime(2999)
-    True
-    """
-
-    for i in range(2, int(sqrt(n)) + 1):
-        if n % i == 0:
-            return False
-
-    return True
+from maths.prime_check import prime_check
 
 
 def solution(n: int = 2000000) -> int:
@@ -55,7 +34,7 @@ def solution(n: int = 2000000) -> int:
         return 0
 
     for i in range(3, n, 2):
-        if is_prime(i):
+        if prime_check(i):
             sum_of_primes += i
 
     return sum_of_primes

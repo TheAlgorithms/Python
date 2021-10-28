@@ -10,28 +10,10 @@ Find the sum of all the primes below two million.
 References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
-import math
 from itertools import takewhile
 from typing import Iterator
 
-
-def is_prime(number: int) -> bool:
-    """
-    Returns boolean representing primality of given number num.
-
-    >>> is_prime(2)
-    True
-    >>> is_prime(3)
-    True
-    >>> is_prime(27)
-    False
-    >>> is_prime(2999)
-    True
-    """
-
-    if number % 2 == 0 and number > 2:
-        return False
-    return all(number % i for i in range(3, int(math.sqrt(number)) + 1, 2))
+from maths.prime_check import prime_check
 
 
 def prime_generator() -> Iterator[int]:
@@ -41,7 +23,7 @@ def prime_generator() -> Iterator[int]:
 
     num = 2
     while True:
-        if is_prime(num):
+        if prime_check(num):
             yield num
         num += 1
 

@@ -19,27 +19,7 @@ Find the product of the coefficients, a and b, for the quadratic expression that
 produces the maximum number of primes for consecutive values of n, starting with
 n = 0.
 """
-
-import math
-
-
-def is_prime(k: int) -> bool:
-    """
-    Determine if a number is prime
-    >>> is_prime(10)
-    False
-    >>> is_prime(11)
-    True
-    """
-    if k < 2 or k % 2 == 0:
-        return False
-    elif k == 2:
-        return True
-    else:
-        for x in range(3, int(math.sqrt(k) + 1), 2):
-            if k % x == 0:
-                return False
-    return True
+from maths.prime_check import prime_check
 
 
 def solution(a_limit: int = 1000, b_limit: int = 1000) -> int:
@@ -58,10 +38,10 @@ def solution(a_limit: int = 1000, b_limit: int = 1000) -> int:
     longest = [0, 0, 0]  # length, a, b
     for a in range((a_limit * -1) + 1, a_limit):
         for b in range(2, b_limit):
-            if is_prime(b):
+            if prime_check(b):
                 count = 0
                 n = 0
-                while is_prime((n ** 2) + (a * n) + b):
+                while prime_check((n ** 2) + (a * n) + b):
                     count += 1
                     n += 1
                 if count > longest[0]:

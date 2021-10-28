@@ -12,23 +12,7 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 
-
-def isprime(number: int) -> bool:
-    """
-    Determines whether the given number is prime or not
-
-    >>> isprime(2)
-    True
-    >>> isprime(15)
-    False
-    >>> isprime(29)
-    True
-    """
-
-    for i in range(2, int(number ** 0.5) + 1):
-        if number % i == 0:
-            return False
-    return True
+from maths.prime_check import prime_check
 
 
 def solution(nth: int = 10001) -> int:
@@ -76,7 +60,7 @@ def solution(nth: int = 10001) -> int:
     primes: list[int] = []
     num = 2
     while len(primes) < nth:
-        if isprime(num):
+        if prime_check(num):
             primes.append(num)
             num += 1
         else:

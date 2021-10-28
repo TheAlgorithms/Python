@@ -17,6 +17,8 @@ generate each circular combination of the number and check if all are prime.
 """
 from __future__ import annotations
 
+from maths.prime_check import prime_check
+
 seive = [True] * 1000001
 i = 2
 while i * i <= 1000000:
@@ -24,19 +26,6 @@ while i * i <= 1000000:
         for j in range(i * i, 1000001, i):
             seive[j] = False
     i += 1
-
-
-def is_prime(n: int) -> bool:
-    """
-    For 2 <= n <= 1000000, return True if n is prime.
-    >>> is_prime(87)
-    False
-    >>> is_prime(23)
-    True
-    >>> is_prime(25363)
-    False
-    """
-    return seive[n]
 
 
 def contains_an_even_digit(n: int) -> bool:
@@ -62,10 +51,10 @@ def find_circular_primes(limit: int = 1000000) -> list[int]:
     """
     result = [2]  # result already includes the number 2.
     for num in range(3, limit + 1, 2):
-        if is_prime(num) and not contains_an_even_digit(num):
+        if prime_check(num) and not contains_an_even_digit(num):
             str_num = str(num)
             list_nums = [int(str_num[j:] + str_num[:j]) for j in range(len(str_num))]
-            if all(is_prime(i) for i in list_nums):
+            if all(prime_check(i) for i in list_nums):
                 result.append(num)
     return result
 
