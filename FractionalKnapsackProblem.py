@@ -1,4 +1,4 @@
-Items as (value, weight) pairs ,arr[] = {{60, 10}, {100, 20}, {130, 30}} , Knapsack Capacity, W = 50; 
+#Items as (value, weight) pairs ,arr[] = {{60, 10}, {100, 20}, {130, 30}} , Knapsack Capacity, W = 50; 
 
 
 class ItemValue:
