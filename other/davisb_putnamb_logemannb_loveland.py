@@ -345,13 +345,38 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    formula = generate_formula()
-    print(f"The formula {formula} is", end=" ")
+    # recursion example:
+    # {A4} , {A3} , {A2' , A1' , A3 , A4} , {A2'} , {A1' , A1 , A5'} , {A3' , A1}
 
-    clauses, symbols = generate_parameters(formula)
-    solution, model = dpll_algorithm(clauses, symbols, {})
+    # no recursion problem:
+    clauses_ok = [
+        Clause(x)
+        for x in [
+            ["A3'", "A1"],
+            ["A3"],
+            ["A4"],
+        ]
+    ]
+    clauses_recursion = [
+        Clause(x)
+        for x in [
+            ["A3'", "A1"],
+            ["A4"],
+            ["A3"],
+        ]
+    ]
 
-    if solution:
-        print(f"satisfiable with the assignment {model}.")
-    else:
-        print("not satisfiable.")
+    for formula in [
+        Formula(clauses_ok),
+        Formula(clauses_recursion),
+        generate_formula(),
+    ]:
+        print(f"The formula {formula} is", end=" ")
+        clauses, symbols = generate_parameters(formula)
+        solution, model = dpll_algorithm(clauses, symbols, {})
+
+        if solution:
+            print(f"satisfiable with the assignment {model}.")
+        else:
+            print("not satisfiable.")
+        print()
