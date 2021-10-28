@@ -318,32 +318,34 @@ def dpll_algorithm(
     pure_symbols, assignment = find_pure_symbols(clauses, symbols, model)
     if pure_symbols:
         P, value = pure_symbols[0], assignment[pure_symbols[0]]
-        tmp_model = model.copy()
-        tmp_model[P] = value
-        tmp_symbols = [i for i in symbols]
-        if P in tmp_symbols:
-            tmp_symbols.remove(P)
-        return dpll_algorithm(clauses, tmp_symbols, tmp_model)
+        model_true = model.copy()
+        model_true[P] = value
+        symbols_without_p = [i for i in symbols if i != P]
+        return dpll_algorithm(clauses, symbols_without_p, model_true)
 
     # 4. Unit symbols
     unit_symbols, assignment = find_unit_clauses(clauses, model)
     if unit_symbols:
         P, value = unit_symbols[0], assignment[unit_symbols[0]]
         if P in symbols:
-            tmp_model = model
-            tmp_model[P] = value
-            tmp_symbols = [i for i in symbols]
-            if P in tmp_symbols:
-                tmp_symbols.remove(P)
-            return dpll_algorithm(clauses, tmp_symbols, tmp_model)
+            model_with_p = model.copy()
+            model_with_p[P] = value
+            symbols_without_p = [i for i in symbols if i != P]
+            return dpll_algorithm(clauses, symbols_without_p, model_with_p)
 
     # 5. recurse through next symbol True and False:
     P = symbols[0]
     rest = symbols[1:]
-    tmp1, tmp2 = model.copy(), model.copy()
-    tmp1[P], tmp2[P] = True, False
 
-    return dpll_algorithm(clauses, rest, tmp1) or dpll_algorithm(clauses, rest, tmp2)
+    # duplicate model for update, python passes objects by reference
+    model_true = model.copy()
+    model_true[P] = True
+    model_false = model.copy()
+    model_false[P] = False
+
+    return dpll_algorithm(clauses, rest, model_true) or dpll_algorithm(
+        clauses, rest, model_false
+    )
 
 
 if __name__ == "__main__":
