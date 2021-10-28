@@ -21,7 +21,7 @@ class Node:
         self.right: Node | None = None
 
 
-def merge_two_binary_trees(tree1: Node | None, tree2: Node | None) -> Optional[Node]:
+def merge_two_binary_trees(tree1: Node | None, tree2: Node | None) -> Node | None:
     """
     Returns root node of the merged tree.
 

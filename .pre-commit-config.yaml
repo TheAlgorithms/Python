@@ -22,6 +22,12 @@ repos:
       - id: isort
         args:
           - --profile=black
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.29.0
+    hooks:
+      - id: pyupgrade
+        args:
+          - --py39-plus
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.9.1
     hooks:
