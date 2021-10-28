@@ -24,8 +24,7 @@ def solution() -> int:
     script_dir = os.path.dirname(os.path.realpath(__file__))
     triangle_path = os.path.join(script_dir, "triangle.txt")
 
-    triangle = []
-    with open(triangle_path) as f:
+    with open(triangle_path) as in_file:
         for line in f:
             triangle = [[int(i) for i in line.split()] for line in in_file]
 
