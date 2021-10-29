@@ -17,6 +17,7 @@ so that they share one vertex.
 
 """
 
+
 class ValueLessThanZero(Exception):
     """Raised when the input value is less than zero"""
 
@@ -25,7 +26,13 @@ class ValueIsZero(Exception):
     """Raised when the input value is zero"""
 
 
-def len_check(length:int) -> None:
+def len_check(length: int) -> None:
+    """
+    :param length: number to check if it is 0 or less than 0
+    :type length: int
+    :return: None
+    """
+
     if length < 0:
         raise ValueLessThanZero
     elif length == 0:
@@ -50,5 +57,5 @@ def hexagonal_numbers(length: int) -> list[int]:
 
 
 if __name__ == "__main__":
-    print(hexagonal_numbers(length=10))
+    print(hexagonal_numbers(length=5))
     print(hexagonal_numbers(length=10))
