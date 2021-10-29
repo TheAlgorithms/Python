@@ -12,25 +12,11 @@ class Fibonacci:
         for _ in range(number):
             self.fib_array.append(self.fib_array[-1] + self.fib_array[-2])
 
-    def get(self, sequence_no=None):
-        """
-        >>> Fibonacci(5).get(3)
-        [0, 1, 1, 2, 3, 5]
-        [0, 1, 1, 2]
-        >>> Fibonacci(5).get(6)
-        [0, 1, 1, 2, 3, 5]
-        Out of bound.
-        >>> Fibonacci(5).get(-1)
-        [0, 1, 1, 2, 3, 5]
-        []
-        """
-        if sequence_no is not None:
-            if sequence_no < len(self.fib_array):
-                return print(self.fib_array[: sequence_no + 1])
-            else:
-                print("Out of bound.")
-        else:
-            print("Please specify a value")
+    def get(self, number: int) -> list:
+        difference = number - (len(self.fib_array) - 2)
+        if difference >= 1:
+            self.calculate(difference)
+        return self.fib_array
 
 
 if __name__ == "__main__":
@@ -38,7 +24,8 @@ if __name__ == "__main__":
     print("\n Enter the upper limit for the fibonacci sequence: ", end="")
     try:
         N = int(input().strip())
-        fib = Fibonacci(N)
+        fib = Fibonacci()
+        fib.calculate(N)
         print(
             "\n********* Enter different values to get the corresponding fibonacci "
             "sequence, enter any negative number to exit. ************\n"
@@ -49,7 +36,7 @@ if __name__ == "__main__":
                 if i < 0:
                     print("\n********* Good Bye!! ************\n")
                     break
-                fib.get(i)
+                print(fib.get(i))
             except NameError:
                 print("\nInvalid input, please try again.")
     except NameError:
