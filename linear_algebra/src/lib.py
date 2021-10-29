@@ -163,7 +163,7 @@ class Vector:
         >>> Vector([2, 3, 4]).euclidean_length()
         5.385164807134504
         >>> Vector([1]).euclidean_length()
-        1
+        1.0
         >>> Vector([0, -1, -2, -3, 4, 5, 6]).euclidean_length()
         9.539392014169456
         >>> Vector([]).euclidean_length()
