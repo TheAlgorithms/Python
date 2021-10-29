@@ -5,15 +5,12 @@ sequence problem.
 
 
 class Fibonacci:
-    def __init__(self, N=None):
+    def __init__(self):
         self.fib_array = [0, 1]
-        if N:
-            N = int(N)
-            for i in range(2, N + 1):
-                self.fib_array.append(self.fib_array[i - 1] + self.fib_array[i - 2])
-        elif N == 0:
-            self.fib_array.append(0)
-        print(self.fib_array)
+
+    def calculate(self, number: int) -> None:
+        for _ in range(number):
+            self.fib_array.append(self.fib_array[-1] + self.fib_array[-2])
 
     def get(self, sequence_no=None):
         """
