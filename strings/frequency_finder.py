@@ -102,11 +102,7 @@ def englishFreqMatchScore(message):
     1
     """
     freqOrder = getFrequencyOrder(message)
-    matchScore = 0
-    for commonLetter in ETAOIN[:6]:
-        if commonLetter in freqOrder[:6]:
-            matchScore += 1
-
+    matchScore = sum(commonLetter in freqOrder[:6] for commonLetter in ETAOIN[:6])
     for uncommonLetter in ETAOIN[-6:]:
         if uncommonLetter in freqOrder[-6:]:
             matchScore += 1

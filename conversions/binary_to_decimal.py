@@ -29,7 +29,7 @@ def bin_to_decimal(bin_string: str) -> int:
     is_negative = bin_string[0] == "-"
     if is_negative:
         bin_string = bin_string[1:]
-    if not all(char in "01" for char in bin_string):
+    if any(char not in "01" for char in bin_string):
         raise ValueError("Non-binary value was passed to the function")
     decimal_number = 0
     for char in bin_string:

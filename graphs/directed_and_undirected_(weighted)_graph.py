@@ -63,12 +63,12 @@ class DirectedGraph:
             if s == ss:
                 stack.pop()
                 if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                    s = stack[-1]
             else:
                 s = ss
 
             # check if se have reached the starting point
-            if len(stack) == 0:
+            if not stack:
                 return visited
 
     # c is the count of nodes you want and if you leave it or pass -1 to the function
@@ -135,12 +135,12 @@ class DirectedGraph:
             if s == ss:
                 sorted_nodes.append(stack.pop())
                 if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                    s = stack[-1]
             else:
                 s = ss
 
             # check if se have reached the starting point
-            if len(stack) == 0:
+            if not stack:
                 return sorted_nodes
 
     def cycle_nodes(self):
@@ -185,7 +185,7 @@ class DirectedGraph:
                 stack.pop()
                 on_the_way_back = True
                 if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                    s = stack[-1]
             else:
                 on_the_way_back = False
                 indirect_parents.append(parent)
@@ -193,7 +193,7 @@ class DirectedGraph:
                 s = ss
 
             # check if se have reached the starting point
-            if len(stack) == 0:
+            if not stack:
                 return list(anticipating_nodes)
 
     def has_cycle(self):
@@ -221,14 +221,10 @@ class DirectedGraph:
                     ):
                         len_stack_minus_one = len(stack) - 1
                         while True and len_stack_minus_one >= 0:
-                            if stack[len_stack_minus_one] == node[1]:
-                                anticipating_nodes.add(node[1])
-                                break
-                            else:
+                            if stack[len_stack_minus_one] != node[1]:
                                 return True
-                                # TODO:The following code is unreachable.
-                                anticipating_nodes.add(stack[len_stack_minus_one])
-                                len_stack_minus_one -= 1
+                            anticipating_nodes.add(node[1])
+                            break
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])
@@ -240,7 +236,7 @@ class DirectedGraph:
                 stack.pop()
                 on_the_way_back = True
                 if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                    s = stack[-1]
             else:
                 on_the_way_back = False
                 indirect_parents.append(parent)
@@ -248,7 +244,7 @@ class DirectedGraph:
                 s = ss
 
             # check if se have reached the starting point
-            if len(stack) == 0:
+            if not stack:
                 return False
 
     def dfs_time(self, s=-2, e=-1):
@@ -332,12 +328,12 @@ class Graph:
             if s == ss:
                 stack.pop()
                 if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                    s = stack[-1]
             else:
                 s = ss
 
             # check if se have reached the starting point
-            if len(stack) == 0:
+            if not stack:
                 return visited
 
     # c is the count of nodes you want and if you leave it or pass -1 to the function
@@ -413,7 +409,7 @@ class Graph:
                 stack.pop()
                 on_the_way_back = True
                 if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                    s = stack[-1]
             else:
                 on_the_way_back = False
                 indirect_parents.append(parent)
@@ -421,7 +417,7 @@ class Graph:
                 s = ss
 
             # check if se have reached the starting point
-            if len(stack) == 0:
+            if not stack:
                 return list(anticipating_nodes)
 
     def has_cycle(self):
@@ -449,15 +445,10 @@ class Graph:
                     ):
                         len_stack_minus_one = len(stack) - 1
                         while True and len_stack_minus_one >= 0:
-                            if stack[len_stack_minus_one] == node[1]:
-                                anticipating_nodes.add(node[1])
-                                break
-                            else:
+                            if stack[len_stack_minus_one] != node[1]:
                                 return True
-                                # TODO: the following code is unreachable
-                                # is this meant to be called in the else ?
-                                anticipating_nodes.add(stack[len_stack_minus_one])
-                                len_stack_minus_one -= 1
+                            anticipating_nodes.add(node[1])
+                            break
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])
@@ -469,7 +460,7 @@ class Graph:
                 stack.pop()
                 on_the_way_back = True
                 if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                    s = stack[-1]
             else:
                 on_the_way_back = False
                 indirect_parents.append(parent)
@@ -477,7 +468,7 @@ class Graph:
                 s = ss
 
             # check if se have reached the starting point
-            if len(stack) == 0:
+            if not stack:
                 return False
 
     def all_nodes(self):

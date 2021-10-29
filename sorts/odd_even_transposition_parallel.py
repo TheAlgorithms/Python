@@ -33,7 +33,7 @@ def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
     # we perform n swaps since after n swaps we know we are sorted
     # we *could* stop early if we are sorted already, but it takes as long to
     # find out we are sorted as it does to sort the list with this algorithm
-    for i in range(0, 10):
+    for i in range(10):
 
         if (i + position) % 2 == 0 and RSend is not None:
             # send your value to your right neighbor
@@ -74,10 +74,7 @@ arr = the list to be sorted
 
 def OddEvenTransposition(arr):
     processArray = []
-    resultPipe = []
-    # initialize the list of pipes where the values will be retrieved
-    for _ in arr:
-        resultPipe.append(Pipe())
+    resultPipe = [Pipe() for _ in arr]
     # creates the processes
     # the first and last process only have one neighbor so they are made outside
     # of the loop
@@ -124,7 +121,7 @@ def OddEvenTransposition(arr):
         p.start()
 
     # wait for the processes to end and write their values to the list
-    for p in range(0, len(resultPipe)):
+    for p in range(len(resultPipe)):
         arr[p] = resultPipe[p][0].recv()
         processArray[p].join()
     return arr

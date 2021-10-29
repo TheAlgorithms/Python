@@ -16,14 +16,14 @@ def ucal(u: float, p: int) -> float:
     """
     temp = u
     for i in range(1, p):
-        temp = temp * (u - i)
+        temp *= u - i
     return temp
 
 
 def main() -> None:
     n = int(input("enter the numbers of values: "))
     y: list[list[float]] = []
-    for i in range(n):
+    for _ in range(n):
         y.append([])
     for i in range(n):
         for j in range(n):

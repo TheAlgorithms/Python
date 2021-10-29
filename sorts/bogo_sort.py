@@ -33,10 +33,9 @@ def bogo_sort(collection):
     def is_sorted(collection):
         if len(collection) < 2:
             return True
-        for i in range(len(collection) - 1):
-            if collection[i] > collection[i + 1]:
-                return False
-        return True
+        return all(
+            collection[i] <= collection[i + 1] for i in range(len(collection) - 1)
+        )
 
     while not is_sorted(collection):
         random.shuffle(collection)

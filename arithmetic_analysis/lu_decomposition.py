@@ -44,15 +44,11 @@ def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray
     upper = np.zeros((rows, columns))
     for i in range(columns):
         for j in range(i):
-            total = 0
-            for k in range(j):
-                total += lower[i][k] * upper[k][j]
+            total = sum(lower[i][k] * upper[k][j] for k in range(j))
             lower[i][j] = (table[i][j] - total) / upper[j][j]
         lower[i][i] = 1
         for j in range(i, columns):
-            total = 0
-            for k in range(i):
-                total += lower[i][k] * upper[k][j]
+            total = sum(lower[i][k] * upper[k][j] for k in range(i))
             upper[i][j] = table[i][j] - total
     return lower, upper
 

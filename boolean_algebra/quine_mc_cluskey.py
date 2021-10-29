@@ -41,7 +41,7 @@ def check(binary: list[str]) -> list[str]:
         for i in range(len(binary)):
             if check1[i] == "$":
                 pi.append(binary[i])
-        if len(temp) == 0:
+        if not temp:
             return pi
         binary = list(set(temp))
 
@@ -54,7 +54,7 @@ def decimal_to_binary(no_of_variable: int, minterms: list[float]) -> list[str]:
     temp = []
     s = ""
     for m in minterms:
-        for i in range(no_of_variable):
+        for _ in range(no_of_variable):
             s = str(m % 2) + s
             m //= 2
         temp.append(s)
@@ -72,14 +72,8 @@ def is_for_table(string1: str, string2: str, count: int) -> bool:
     """
     l1 = list(string1)
     l2 = list(string2)
-    count_n = 0
-    for i in range(len(l1)):
-        if l1[i] != l2[i]:
-            count_n += 1
-    if count_n == count:
-        return True
-    else:
-        return False
+    count_n = sum(l1[i] != l2[i] for i in range(len(l1)))
+    return count_n == count
 
 
 def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
@@ -105,8 +99,8 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
         if select[i] == 1:
             for j in range(len(chart[0])):
                 if chart[i][j] == 1:
-                    for k in range(len(chart)):
-                        chart[k][j] = 0
+                    for item_ in chart:
+                        item_[j] = 0
             temp.append(prime_implicants[i])
     while 1:
         max_n = 0
@@ -125,8 +119,8 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
 
         for i in range(len(chart[0])):
             if chart[rem][i] == 1:
-                for j in range(len(chart)):
-                    chart[j][i] = 0
+                for item in chart:
+                    item[i] = 0
 
 
 def prime_implicant_chart(

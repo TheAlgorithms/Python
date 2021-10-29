@@ -10,7 +10,7 @@ def reverse_letters(input_str: str) -> str:
     >>> reverse_letters("I   love       Python")
     'I evol nohtyP'
     """
-    return " ".join([word[::-1] for word in input_str.split()])
+    return " ".join(word[::-1] for word in input_str.split())
 
 
 if __name__ == "__main__":

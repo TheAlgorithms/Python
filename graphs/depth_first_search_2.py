@@ -11,7 +11,7 @@ class Graph:
     def print_graph(self) -> None:
         print(self.vertex)
         for i in self.vertex:
-            print(i, " -> ", " -> ".join([str(j) for j in self.vertex[i]]))
+            print(i, " -> ", " -> ".join(str(j) for j in self.vertex[i]))
 
     # for adding the edge between two vertices
     def add_edge(self, from_vertex: int, to_vertex: int) -> None:

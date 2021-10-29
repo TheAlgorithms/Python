@@ -48,14 +48,14 @@ def bucket_sort(my_list: list) -> list:
     >>> bucket_sort(collection) == sorted(collection)
     True
     """
-    if len(my_list) == 0:
+    if not my_list:
         return []
     min_value, max_value = min(my_list), max(my_list)
     bucket_count = int(max_value - min_value) + 1
     buckets: list[list] = [[] for _ in range(bucket_count)]
 
-    for i in range(len(my_list)):
-        buckets[(int(my_list[i] - min_value) // bucket_count)].append(my_list[i])
+    for my in my_list:
+        buckets[int(my - min_value) // bucket_count].append(my)
 
     return [v for bucket in buckets for v in sorted(bucket)]
 

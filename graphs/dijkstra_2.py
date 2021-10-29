@@ -23,7 +23,7 @@ def Dijkstra(graph, V, src):
     vset = [False for i in range(V)]
     mdist[src] = 0.0
 
-    for i in range(V - 1):
+    for _ in range(V - 1):
         u = minDist(mdist, vset, V)
         vset[u] = True
 

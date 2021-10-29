@@ -24,7 +24,7 @@ def pigeon_sort(array: list[int]) -> list[int]:
     >>> pigeon_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    if len(array) == 0:
+    if not array:
         return array
 
     _min, _max = min(array), max(array)

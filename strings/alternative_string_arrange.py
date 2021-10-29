@@ -15,9 +15,7 @@ def alternative_string_arrange(first_str: str, second_str: str) -> str:
     """
     first_str_length: int = len(first_str)
     second_str_length: int = len(second_str)
-    abs_length: int = (
-        first_str_length if first_str_length > second_str_length else second_str_length
-    )
+    abs_length: int = max(first_str_length, second_str_length)
     output_list: list = []
     for char_count in range(abs_length):
         if char_count < first_str_length:

@@ -16,7 +16,7 @@ def is_palindrome(s: str) -> bool:
     """
     # Since Punctuation, capitalization, and spaces are usually ignored while checking
     # Palindrome,  we first remove them from our string.
-    s = "".join([character for character in s.lower() if character.isalnum()])
+    s = "".join(character for character in s.lower() if character.isalnum())
     return s == s[::-1]
 
 

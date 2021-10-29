@@ -38,7 +38,7 @@ def rabin_karp(pattern: str, text: str) -> bool:
             continue
         modulus_power = (modulus_power * alphabet_size) % modulus
 
-    for i in range(0, t_len - p_len + 1):
+    for i in range(t_len - p_len + 1):
         if text_hash == p_hash and text[i : i + p_len] == pattern:
             return True
         if i == t_len - p_len:

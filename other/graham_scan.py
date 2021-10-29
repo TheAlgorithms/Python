@@ -78,8 +78,7 @@ def graham_scan(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
         # sort the points accorgind to the angle from the lowest and the most left point
         x = point[0]
         y = point[1]
-        angle = degrees(atan2(y - miny, x - minx))
-        return angle
+        return degrees(atan2(y - miny, x - minx))
 
     sorted_points = sorted(points, key=lambda point: angle_comparer(point, minx, miny))
     # This insert actually costs complexity,

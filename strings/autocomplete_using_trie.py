@@ -25,10 +25,7 @@ class Trie:
     def _elements(self, d):
         result = []
         for c, v in d.items():
-            if c == END:
-                sub_result = [" "]
-            else:
-                sub_result = [c + s for s in self._elements(v)]
+            sub_result = [" "] if c == END else [c + s for s in self._elements(v)]
             result.extend(sub_result)
         return tuple(result)
 

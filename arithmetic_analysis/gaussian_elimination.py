@@ -29,10 +29,7 @@ def retroactive_resolution(coefficients: np.matrix, vector: np.ndarray) -> np.nd
 
     x = np.zeros((rows, 1), dtype=float)
     for row in reversed(range(rows)):
-        sum = 0
-        for col in range(row + 1, columns):
-            sum += coefficients[row, col] * x[col]
-
+        sum = sum(coefficients[row, col] * x[col] for col in range(row + 1, columns))
         x[row, 0] = (vector[row] - sum) / coefficients[row, row]
 
     return x
@@ -70,11 +67,9 @@ def gaussian_elimination(coefficients: np.matrix, vector: np.ndarray) -> np.ndar
             factor = augmented_mat[col, row] / pivot
             augmented_mat[col, :] -= factor * augmented_mat[row, :]
 
-    x = retroactive_resolution(
+    return retroactive_resolution(
         augmented_mat[:, 0:columns], augmented_mat[:, columns : columns + 1]
     )
-
-    return x
 
 
 if __name__ == "__main__":

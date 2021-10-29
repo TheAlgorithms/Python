@@ -67,14 +67,13 @@ def can_string_be_rearranged_as_palindrome(input_str: str = "") -> bool:
     Step 2:If we find more than 1 character that appears odd number of times,
     It is not possible to rearrange as a palindrome
     """
-    oddChar = 0
+    oddChar = sum(
+        bool(character_count % 2)
+        for character_count in character_freq_dict.values()
+    )
 
-    for character_count in character_freq_dict.values():
-        if character_count % 2:
-            oddChar += 1
-    if oddChar > 1:
-        return False
-    return True
+
+    return oddChar <= 1
 
 
 def benchmark(input_str: str = "") -> None:
