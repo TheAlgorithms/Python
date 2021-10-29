@@ -14,5 +14,4 @@ sklearn
 statsmodels
 sympy
 tensorflow; python_version < '3.10'
-types-requests
 xgboost
