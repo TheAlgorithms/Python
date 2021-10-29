@@ -17,9 +17,9 @@ class Fibonacci:
         Get the Fibonacci number of `index`. If the number does not exist,
         calculate all missing numbers leading up to the number of `index`.
 
-        >>>Fibonacci().get(10)
+        >>> Fibonacci().get(10)
         [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
-        >>>Fibonacci().get(5)
+        >>> Fibonacci().get(5)
         [0, 1, 1, 2, 3]
         """
         difference = index - (len(self.sequence) - 2)
