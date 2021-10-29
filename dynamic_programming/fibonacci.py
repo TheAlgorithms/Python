@@ -16,7 +16,7 @@ class Fibonacci:
         difference = index - (len(self.sequence) - 2)
         if difference >= 1:
             self.calculate(difference)
-        return self.sequence
+        return self.sequence[:index]
 
 
 if __name__ == "__main__":
