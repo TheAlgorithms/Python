@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import sys
 from collections import deque
 from typing import Generic, TypeVar
@@ -51,11 +53,11 @@ class LRUCache(Generic[T]):
 
 if __name__ == "__main__":
 
-    lru_cache = LRUCache(4)
-    lru_cache.refer(1)
+    lru_cache: LRUCache[str | int] = LRUCache(4)
+    lru_cache.refer("A")
     lru_cache.refer(2)
     lru_cache.refer(3)
-    lru_cache.refer(1)
+    lru_cache.refer("A")
     lru_cache.refer(4)
     lru_cache.refer(5)
     lru_cache.display()
