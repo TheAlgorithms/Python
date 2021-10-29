@@ -103,9 +103,11 @@ class DoubleLinkedList:
         Adds the given node to the end of the list (before rear)
         """
 
-        temp = self.rear.prev
-        temp.next, node.prev = node, temp
-        self.rear.prev, node.next = node, self.rear
+        previous = self.rear.prev
+        previous.next = node
+        node.prev = previous
+        self.rear.prev = node
+        node.next = self.rear
 
     def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode | None:
         """
