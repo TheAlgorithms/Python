@@ -26,7 +26,7 @@ jobs:
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/validate_solutions.py --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
-      - name: Mypy reality check
+      - name: A mypy reality check
         run: |
           mv mypy.ini was_mypy.ini
           mypy --ignore-missing-imports --install-types --non-interactive . || true
