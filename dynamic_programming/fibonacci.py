@@ -8,12 +8,12 @@ class Fibonacci:
     def __init__(self):
         self.sequence = [0, 1]
 
-    def calculate(self, number: int) -> None:
-        for _ in range(number):
+    def calculate(self, index: int) -> None:
+        for _ in range(index):
             self.sequence.append(self.sequence[-1] + self.sequence[-2])
 
-    def get(self, number: int) -> list:
-        difference = number - (len(self.sequence) - 2)
+    def get(self, index: int) -> list:
+        difference = index - (len(self.sequence) - 2)
         if difference >= 1:
             self.calculate(difference)
         return self.sequence
