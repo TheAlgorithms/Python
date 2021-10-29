@@ -6,9 +6,12 @@ For more details visit
 wikipedia/Fischer-Yates-Shuffle.
 """
 import random
+from typing import TypeVar
+
+T = TypeVar('T')
 
 
-def fisher_yates_shuffle(data: list) -> list:
+def fisher_yates_shuffle(data: list[T]) -> list[T]:
     for _ in range(len(data)):
         a = random.randint(0, len(data) - 1)
         b = random.randint(0, len(data) - 1)
