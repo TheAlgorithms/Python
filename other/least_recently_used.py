@@ -52,6 +52,7 @@ class LRUCache:
 
 
 if __name__ == "__main__":
+
     lru_cache = LRUCache(4)
     lru_cache.refer(1)
     lru_cache.refer(2)
