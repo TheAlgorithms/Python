@@ -20,5 +20,5 @@ if __name__ == "__main__":
     integers = [0, 1, 2, 3, 4, 5, 6, 7]
     strings = ["python", "says", "hello", "!"]
     print("Fisher-Yates Shuffle:")
-    print("List", integers, strings)
+    print("Lists     ", integers, strings)
     print("FY Shuffle", fisher_yates_shuffle(integers), fisher_yates_shuffle(strings))
