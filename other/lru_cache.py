@@ -6,6 +6,10 @@ from typing import Callable
 class DoubleLinkedListNode:
     """
     Double Linked List Node built specifically for LRU Cache
+
+    >>> node = DoubleLinkedListNode(1,1)
+    >>> node
+    Node: key: 1, val: 1, has next: False, has prev: False
     """
 
     def __init__(self, key: int, val: int):
@@ -14,16 +18,81 @@ class DoubleLinkedListNode:
         self.next = None
         self.prev = None
 
+    def __repr__(self) -> str:
+        return "Node: key: {}, val: {}, has next: {}, has prev: {}".format(
+            self.key, self.val, self.next is not None, self.prev is not None
+        )
+
 
 class DoubleLinkedList:
     """
     Double Linked List built specifically for LRU Cache
+
+    >>> dll: DoubleLinkedList = DoubleLinkedList()
+    >>> dll
+    DoubleLinkedList:,
+        Node: key: None, val: None, has next: True, has prev: False,
+        Node: key: None, val: None, has next: False, has prev: True
+
+    >>> new_node = DoubleLinkedListNode(1,1)
+    >>> new_node
+    Node: key: 1, val: 1, has next: False, has prev: False
+
+    >>> dll.add(new_node)
+    >>> dll
+    DoubleLinkedList:,
+        Node: key: None, val: None, has next: True, has prev: False,
+        Node: key: 1, val: 1, has next: True, has prev: True,
+        Node: key: None, val: None, has next: False, has prev: True
+
+    >>> # node is mutated
+    >>> new_node
+    Node: key: 1, val: 1, has next: True, has prev: True
+
+    >>> removed_node = dll.remove(new_node)
+    >>> dll
+    DoubleLinkedList:,
+        Node: key: None, val: None, has next: True, has prev: False,
+        Node: key: None, val: None, has next: False, has prev: True
+
+    >>> removed_node = dll.remove(first_node)
+    >>> assert removed_node == first_node
+    >>> dll
+    DoubleLinkedList,
+        Node: key: None, val: None, has next: True, has prev: False,
+        Node: key: 2, val: 20, has next: True, has prev: True,
+        Node: key: None, val: None, has next: False, has prev: True
+
+
+    >>> # Attempt to remove node not on list
+    >>> removed_node = dll.remove(first_node)
+    >>> removed_node is None
+    True
+
+    >>> # Attempt to remove head or rear
+    >>> dll.head
+    Node: key: None, val: None, has next: True, has prev: False
+    >>> dll.remove(dll.head) is None
+    True
+
+    >>> # Attempt to remove head or rear
+    >>> # removed_node = dll.remove(DoubleLinkedListNode(None, None))
+
     """
 
     def __init__(self):
         self.head = DoubleLinkedListNode(None, None)
         self.rear = DoubleLinkedListNode(None, None)
         self.head.next, self.rear.prev = self.rear, self.head
+
+    def __repr__(self) -> str:
+        rep = ["DoubleLinkedList:"]
+        node = self.head
+        while node.next is not None:
+            rep.append(str(node))
+            node = node.next
+        rep.append(str(self.rear))
+        return ",\n    ".join(rep)
 
     def add(self, node: DoubleLinkedListNode) -> None:
         """
@@ -54,19 +123,19 @@ class LRUCache:
     >>> cache = LRUCache(2)
 
     >>> cache.set(1, 1)
-
     >>> cache.set(2, 2)
-
     >>> cache.get(1)
     1
 
     >>> cache.set(3, 3)
 
-    >>> cache.get(2)    # None returned
+    >>> cache.get(2) is None
+    True
 
     >>> cache.set(4, 4)
 
-    >>> cache.get(1)    # None returned
+    >>> cache.get(1) is None
+    True
 
     >>> cache.get(3)
     3
@@ -129,8 +198,8 @@ class LRUCache:
 
     def get(self, key: int) -> int | None:
         """
-        Returns the value for the input key and updates the Double Linked List. Returns
-        None if key is not present in cache
+        Returns the value for the input key and updates the Double Linked List.
+        Returns None if key is not present in cache
         """
 
         if key in self.cache:
