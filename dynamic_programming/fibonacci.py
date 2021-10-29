@@ -19,25 +19,28 @@ class Fibonacci:
         return self.sequence[:index]
 
 
+def main():
+    print(
+        'Fibonacci Series Using Dynamic Programming\n',
+        'Enter the index of the Fibonacci number you want to calculate ',
+        'in the prompt below. (To exit enter exit or Ctrl-C)\n',
+        sep="",
+    )
+    fibonacci = Fibonacci()
+
+    while True:
+        prompt = input('>> ')
+        if prompt in ['exit', 'quit']:
+            break
+
+        try:
+            index = int(prompt)
+        except ValueError:
+            print('Enter a number or "exit"')
+            continue
+
+        print(fibonacci.get(index))
+
+
 if __name__ == "__main__":
-    print("\n********* Fibonacci Series Using Dynamic Programming ************\n")
-    print("\n Enter the upper limit for the fibonacci sequence: ", end="")
-    try:
-        N = int(input().strip())
-        fib = Fibonacci()
-        fib.calculate(N)
-        print(
-            "\n********* Enter different values to get the corresponding fibonacci "
-            "sequence, enter any negative number to exit. ************\n"
-        )
-        while True:
-            try:
-                i = int(input("Enter value: ").strip())
-                if i < 0:
-                    print("\n********* Good Bye!! ************\n")
-                    break
-                print(fib.get(i))
-            except NameError:
-                print("\nInvalid input, please try again.")
-    except NameError:
-        print("\n********* Invalid input, good bye!! ************\n")
+    main()
