@@ -46,7 +46,10 @@ top_word_indices = single_topic.argsort()[-10:]
 for index in top_word_indices:
     print(cv.get_feature_names()[index])
 
-
+for index,topic in enumerate(LDA.components_):
+    print(f'THE TOP 15 WORDS FOR TOPIC #{index}')
+    print([cv.get_feature_names()[i] for i in topic.argsort()[-15:]])
+    print('\n')
 
 
 
