@@ -26,10 +26,14 @@ def hexagonal_numbers(length: int) -> list[int]:
     [0, 1, 6, 15, 28, 45, 66, 91, 120, 153]
     >>> hexagonal_numbers(5)
     [0, 1, 6, 15, 28]
+    >>> hexagonal_numbers(0)
+    Traceback (most recent call last):
+      ...
+    ValueError: Length must be a positive integer.
     """
 
-    if length <= 0:
-        raise ValueError("Length must be a positive number.")
+    if length <= 0 or not isinstance(length, int):
+        raise ValueError("Length must be a positive integer.")
     return [n * (2 * n - 1) for n in range(length)]
 
 
