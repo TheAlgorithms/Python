@@ -9,11 +9,11 @@ import random
 
 
 def fisher_yates_shuffle(data: list) -> list:
-    for _ in range(len(list)):
-        a = random.randint(0, len(list) - 1)
-        b = random.randint(0, len(list) - 1)
-        list[a], list[b] = list[b], list[a]
-    return list
+    for _ in range(len(data)):
+        a = random.randint(0, len(data) - 1)
+        b = random.randint(0, len(data) - 1)
+        data[a], data[b] = data[b], data[a]
+    return data
 
 
 if __name__ == "__main__":
