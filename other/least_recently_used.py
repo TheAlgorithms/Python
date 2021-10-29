@@ -33,12 +33,7 @@ class LRUCache:
                 last_element = self.dq_store.pop()
                 self.key_reference_map.remove(last_element)
         else:
-            index_remove = 0
-            for idx, key in enumerate(self.dq_store):
-                if key == x:
-                    index_remove = idx
-                    break
-            self.dq_store.remove(index_remove)
+            self.dq_store.remove(x)
 
         self.dq_store.appendleft(x)
         self.key_reference_map.add(x)
