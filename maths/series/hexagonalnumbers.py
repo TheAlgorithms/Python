@@ -23,7 +23,7 @@ def length_check(length: int) -> None:
     :param length: number to check if it is 0 or less than 0
     :type length: int
     :return: None
-    
+
     Tests:
     >>> len_check(10)
     >>> len_check(0)
