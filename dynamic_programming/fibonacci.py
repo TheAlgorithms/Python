@@ -6,17 +6,17 @@ sequence problem.
 
 class Fibonacci:
     def __init__(self):
-        self.fib_array = [0, 1]
+        self.sequence = [0, 1]
 
     def calculate(self, number: int) -> None:
         for _ in range(number):
-            self.fib_array.append(self.fib_array[-1] + self.fib_array[-2])
+            self.sequence.append(self.sequence[-1] + self.sequence[-2])
 
     def get(self, number: int) -> list:
-        difference = number - (len(self.fib_array) - 2)
+        difference = number - (len(self.sequence) - 2)
         if difference >= 1:
             self.calculate(difference)
-        return self.fib_array
+        return self.sequence
 
 
 if __name__ == "__main__":
