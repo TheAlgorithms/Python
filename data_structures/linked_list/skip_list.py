@@ -5,14 +5,14 @@ https://epaperpress.com/sortsearch/download/skiplist.pdf
 from __future__ import annotations
 
 from random import random
-from typing import Generic, Optional, TypeVar, Union
+from typing import Generic, TypeVar
 
 KT = TypeVar("KT")
 VT = TypeVar("VT")
 
 
 class Node(Generic[KT, VT]):
-    def __init__(self, key: Union[KT, str] = "root", value: Optional[VT] = None):
+    def __init__(self, key: KT | str = "root", value: VT | None = None):
         self.key = key
         self.value = value
         self.forward: list[Node[KT, VT]] = []
