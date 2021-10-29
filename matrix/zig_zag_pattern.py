@@ -5,7 +5,7 @@ in zig-zag fashion.
 
 from __future__ import annotations
 
-def get_zig_zag_pattern(matrix):
+def get_zig_zag_pattern(matrix: list[list[float]]) -> list[list[float]]:
     
     """
     >>> get_zig_zag_pattern([[12,22],[31,42]])
