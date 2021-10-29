@@ -30,29 +30,36 @@ class DoubleLinkedList:
 
     >>> dll: DoubleLinkedList = DoubleLinkedList()
     >>> dll
-    DoubleLinkedList:,
+    DoubleLinkedList,
         Node: key: None, val: None, has next: True, has prev: False,
         Node: key: None, val: None, has next: False, has prev: True
 
-    >>> new_node = DoubleLinkedListNode(1,1)
-    >>> new_node
-    Node: key: 1, val: 1, has next: False, has prev: False
+    >>> first_node = DoubleLinkedListNode(1,10)
+    >>> first_node
+    Node: key: 1, val: 10, has next: False, has prev: False
 
-    >>> dll.add(new_node)
+
+    >>> dll.add(first_node)
     >>> dll
-    DoubleLinkedList:,
+    DoubleLinkedList,
         Node: key: None, val: None, has next: True, has prev: False,
-        Node: key: 1, val: 1, has next: True, has prev: True,
+        Node: key: 1, val: 10, has next: True, has prev: True,
         Node: key: None, val: None, has next: False, has prev: True
 
     >>> # node is mutated
-    >>> new_node
-    Node: key: 1, val: 1, has next: True, has prev: True
+    >>> first_node
+    Node: key: 1, val: 10, has next: True, has prev: True
 
-    >>> removed_node = dll.remove(new_node)
+    >>> second_node = DoubleLinkedListNode(2,20)
+    >>> second_node
+    Node: key: 2, val: 20, has next: False, has prev: False
+
+    >>> dll.add(second_node)
     >>> dll
-    DoubleLinkedList:,
+    DoubleLinkedList,
         Node: key: None, val: None, has next: True, has prev: False,
+        Node: key: 1, val: 10, has next: True, has prev: True,
+        Node: key: 2, val: 20, has next: True, has prev: True,
         Node: key: None, val: None, has next: False, has prev: True
 
     >>> removed_node = dll.remove(first_node)
@@ -90,7 +97,7 @@ class DoubleLinkedList:
         self.head.next, self.rear.prev = self.rear, self.head
 
     def __repr__(self) -> str:
-        rep = ["DoubleLinkedList:"]
+        rep = ["DoubleLinkedList"]
         node = self.head
         while node.next is not None:
             rep.append(str(node))
@@ -141,7 +148,27 @@ class LRUCache:
     >>> cache.get(1)
     1
 
+    >>> cache.list
+    DoubleLinkedList,
+        Node: key: None, val: None, has next: True, has prev: False,
+        Node: key: 2, val: 2, has next: True, has prev: True,
+        Node: key: 1, val: 1, has next: True, has prev: True,
+        Node: key: None, val: None, has next: False, has prev: True
+
+    >>> cache.cache
+    {1: Node: key: 1, val: 1, has next: True, has prev: True, 2: Node: key: 2, val: 2, has next: True, has prev: True}
+
     >>> cache.set(3, 3)
+
+    >>> cache.list
+    DoubleLinkedList,
+        Node: key: None, val: None, has next: True, has prev: False,
+        Node: key: 1, val: 1, has next: True, has prev: True,
+        Node: key: 3, val: 3, has next: True, has prev: True,
+        Node: key: None, val: None, has next: False, has prev: True
+
+    >>> cache.cache
+    {1: Node: key: 1, val: 1, has next: True, has prev: True, 3: Node: key: 3, val: 3, has next: True, has prev: True}
 
     >>> cache.get(2) is None
     True
