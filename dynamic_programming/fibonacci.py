@@ -5,7 +5,7 @@ sequence problem.
 
 
 class Fibonacci:
-    def __init__(self):
+    def __init__(self) -> None:
         self.sequence = [0, 1]
 
     def calculate(self, index: int) -> None:
@@ -38,12 +38,12 @@ def main():
     fibonacci = Fibonacci()
 
     while True:
-        prompt = input('>> ')
-        if prompt in ['exit', 'quit']:
+        prompt: str = input('>> ')
+        if prompt in {'exit', 'quit'}:
             break
 
         try:
-            index = int(prompt)
+            index: int = int(prompt)
         except ValueError:
             print('Enter a number or "exit"')
             continue
