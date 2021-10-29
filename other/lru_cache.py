@@ -76,7 +76,11 @@ class DoubleLinkedList:
     True
 
     >>> # Attempt to remove head or rear
-    >>> # removed_node = dll.remove(DoubleLinkedListNode(None, None))
+    >>> dll.rear
+    Node: key: None, val: None, has next: False, has prev: True
+    >>> dll.remove(dll.rear) is None
+    True
+
 
     """
 
@@ -103,14 +107,22 @@ class DoubleLinkedList:
         temp.next, node.prev = node, temp
         self.rear.prev, node.next = node, self.rear
 
-    def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode:
+    def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode | None:
         """
         Removes and returns the given node from the list
+
+        Returns None if node.prev or node.next is None
         """
 
-        temp_last, temp_next = node.prev, node.next
-        node.prev, node.next = None, None
-        temp_last.next, temp_next.prev = temp_next, temp_last
+        if node.prev is None:
+            return None
+        elif node.next is None:
+            return None
+        else:
+            node.prev.next = node.next
+            node.next.prev = node.prev
+            node.prev = None
+            node.next = None
 
         return node
 
