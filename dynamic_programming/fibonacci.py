@@ -8,10 +8,6 @@ class Fibonacci:
     def __init__(self) -> None:
         self.sequence = [0, 1]
 
-    def calculate(self, index: int) -> None:
-        for _ in range(index):
-            self.sequence.append(self.sequence[-1] + self.sequence[-2])
-
     def get(self, index: int) -> list:
         """
         Get the Fibonacci number of `index`. If the number does not exist,
@@ -24,7 +20,8 @@ class Fibonacci:
         """
         difference = index - (len(self.sequence) - 2)
         if difference >= 1:
-            self.calculate(difference)
+            for _ in range(index):
+                self.sequence.append(self.sequence[-1] + self.sequence[-2])
         return self.sequence[:index]
 
 
