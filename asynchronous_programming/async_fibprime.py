@@ -1,9 +1,10 @@
 from typing import Union
 from asyncio import gather, run
 from math import sqrt
+from async_lru import alru_cache
 import doctest
 
-
+@alru_cache(maxsize=256)
 async def fib(digit: int) -> Union[int, str]:
 
     """
