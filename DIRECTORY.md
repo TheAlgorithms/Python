@@ -539,6 +539,7 @@
     * [Geometric Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/geometric_series.py)
     * [Harmonic](https://github.com/TheAlgorithms/Python/blob/master/maths/series/harmonic.py)
     * [Harmonic Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/harmonic_series.py)
+    * [Hexagonal Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/series/hexagonal_numbers.py)
     * [P Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/p_series.py)
   * [Sieve Of Eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/sieve_of_eratosthenes.py)
   * [Sigmoid](https://github.com/TheAlgorithms/Python/blob/master/maths/sigmoid.py)
