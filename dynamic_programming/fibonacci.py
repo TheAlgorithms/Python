@@ -27,22 +27,22 @@ class Fibonacci:
 
 def main():
     print(
-        'Fibonacci Series Using Dynamic Programming\n',
-        'Enter the index of the Fibonacci number you want to calculate ',
-        'in the prompt below. (To exit enter exit or Ctrl-C)\n',
+        "Fibonacci Series Using Dynamic Programming\n",
+        "Enter the index of the Fibonacci number you want to calculate ",
+        "in the prompt below. (To exit enter exit or Ctrl-C)\n",
         sep="",
     )
     fibonacci = Fibonacci()
 
     while True:
-        prompt: str = input('>> ')
-        if prompt in {'exit', 'quit'}:
+        prompt: str = input(">> ")
+        if prompt in {"exit", "quit"}:
             break
 
         try:
             index: int = int(prompt)
         except ValueError:
-            print('Enter a number or "exit"')
+            print("Enter a number or 'exit'")
             continue
 
         print(fibonacci.get(index))
