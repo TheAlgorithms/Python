@@ -71,6 +71,10 @@ def local_weight_regression(
 def load_data(dataset_name: str, cola_name: str, colb_name: str) -> np.mat:
     """
     Function used for loading data from the seaborn splitting into x and y points
+    >>> np.ones((3,2))*np.ones((1,2))
+    array([[1., 1.],
+           [1., 1.],
+           [1., 1.]])
     """
     import seaborn as sns
 
@@ -111,6 +115,10 @@ def plot_preds(
 ) -> plt.plot:
     """
     This function used to plot predictions and display the graph
+    >>> np.ones((3,2))*np.ones((1,2))
+    array([[1., 1.],
+           [1., 1.],
+           [1., 1.]])
     """
     xsort = training_data_x.copy()
     xsort.sort(axis=0)
