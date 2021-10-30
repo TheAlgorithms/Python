@@ -44,7 +44,6 @@ class Vector:
         component(i): gets the i-th component (0-indexed)
         change_component(pos: int, value: float): changes specified component
         euclidean_length(): returns the euclidean length of the vector
-        magnitude(): returns the magnitude of the vector
         angle(other: Vector, deg: bool): returns the angle between two vectors
         TODO: compare-operator
     """
