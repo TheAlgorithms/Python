@@ -18,5 +18,3 @@ texttable
 tweepy
 types-requests
 xgboost
-async-lru
-
