@@ -12,6 +12,9 @@ How many starting numbers below ten million will arrive at 89?
 """
 
 
+DIGITS_SQUARED = [digit ** 2 for digit in range(10)]
+
+
 def next_number(number: int) -> int:
     """
     Returns the next number of the chain by adding the square of each digit
@@ -27,10 +30,13 @@ def next_number(number: int) -> int:
     """
     sum_of_digits_squared = 0
     while number:
-        sum_of_digits_squared += (number % 10) ** 2
+        sum_of_digits_squared += DIGITS_SQUARED[number % 10]
         number //= 10
 
     return sum_of_digits_squared
+
+
+CHAINS = {1: True, 58: False}
 
 
 def chain(number: int) -> bool:
@@ -48,10 +54,13 @@ def chain(number: int) -> bool:
     >>> chain(1)
     True
     """
-    while number != 1 and number != 89:
-        number = next_number(number)
+    if number in CHAINS:
+        return CHAINS[number]
 
-    return number == 1
+    number_chain = chain(next_number(number))
+    CHAINS[number] = number_chain
+
+    return number_chain
 
 
 def solution(number: int = 10000000) -> int:
