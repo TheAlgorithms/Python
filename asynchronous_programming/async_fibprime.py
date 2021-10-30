@@ -1,10 +1,9 @@
-from typing import Any
 from asyncio import gather, run
 from math import sqrt
 import doctest
 
 
-async def fib(digit: int) -> Any:
+async def fib(digit: int) -> int | str:
 
     """
     >>> run(fib(10))
