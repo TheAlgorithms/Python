@@ -20,7 +20,7 @@ class Fibonacci:
         """
         difference = index - (len(self.sequence) - 2)
         if difference >= 1:
-            for _ in range(index):
+            for _ in range(difference):
                 self.sequence.append(self.sequence[-1] + self.sequence[-2])
         return self.sequence[:index]
 
