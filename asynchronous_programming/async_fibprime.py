@@ -1,25 +1,21 @@
+import doctest
 from asyncio import gather, run
 from math import sqrt
-import doctest
 
 
-async def fib(digit: int) -> int | str:
+async def fib(digit: int) -> int:
 
     """
     >>> run(fib(10))
     55
     >>> run(fib(20))
     6765
-    >>> run(fib(-7))
-    'Number must be a positive integer!'
     >>> run(fib(1))
     1
 
     """
 
-    if digit < 0:
-        return "Number must be a positive integer!"
-    elif digit == 0:
+    if digit == 0:
         return 0
     elif digit == 1:
         return 1
@@ -52,8 +48,14 @@ async def is_prime(digit: int) -> bool:
 async def main() -> None:
     try:
         put_num = int(input("Enter a number: "))
-        ret_fib, ret_prime = await gather(fib(put_num), is_prime(put_num))
-        print(f"{put_num}th fibo series is", ret_fib)
+        ret_fib, ret_prime = (
+            await gather(fib(put_num), is_prime(put_num))
+            if put_num >= 0
+            else (None, await is_prime(put_num))
+        )
+        print(f"{put_num}th fibo series is", ret_fib) if ret_fib else print(
+            "Invalid input"
+        )
 
         print(f"{put_num} is a prime number") if ret_prime else print(
             f"{put_num} is not a prime number"

@@ -11,7 +11,6 @@ def retroactive_resolution(coefficients: np.matrix, vector: np.ndarray) -> np.nd
     """
     This function performs a retroactive linear system resolution
         for triangular matrix
-
     Examples:
         2x1 + 2x2 - 1x3 = 5         2x1 + 2x2 = -1
         0x1 - 2x2 - 1x3 = -7        0x1 - 2x2 = -1
@@ -29,7 +28,10 @@ def retroactive_resolution(coefficients: np.matrix, vector: np.ndarray) -> np.nd
 
     x = np.zeros((rows, 1), dtype=float)
     for row in reversed(range(rows)):
-        sum = sum(coefficients[row, col] * x[col] for col in range(row + 1, columns))
+        sum = 0
+        for col in range(row + 1, columns):
+            sum += coefficients[row, col] * x[col]
+
         x[row, 0] = (vector[row] - sum) / coefficients[row, row]
 
     return x
@@ -38,7 +40,6 @@ def retroactive_resolution(coefficients: np.matrix, vector: np.ndarray) -> np.nd
 def gaussian_elimination(coefficients: np.matrix, vector: np.ndarray) -> np.ndarray:
     """
     This function performs Gaussian elimination method
-
     Examples:
         1x1 - 4x2 - 2x3 = -2        1x1 + 2x2 = 5
         5x1 + 2x2 - 2x3 = -3        5x1 + 2x2 = 5
@@ -67,9 +68,11 @@ def gaussian_elimination(coefficients: np.matrix, vector: np.ndarray) -> np.ndar
             factor = augmented_mat[col, row] / pivot
             augmented_mat[col, :] -= factor * augmented_mat[row, :]
 
-    return retroactive_resolution(
+    x = retroactive_resolution(
         augmented_mat[:, 0:columns], augmented_mat[:, columns : columns + 1]
     )
+
+    return x
 
 
 if __name__ == "__main__":
