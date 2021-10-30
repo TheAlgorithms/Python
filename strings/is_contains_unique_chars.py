@@ -9,16 +9,18 @@ def is_contains_unique_chars(input_str: str) -> bool:
     Time complexity: O(n)
     Space compexity: O(1) 19320 bytes as we are having 144697 characters in unicode
     """
+
+    # Each bit will represent each unicode character
+    # For example 65th bit representing 'A'
     bitmap = 0
     for ch in input_str:
         ch_unicode = ord(ch)
         ch_bit_index_on = pow(2, ch_unicode)
 
-        if bitmap & ch_bit_index_on == ch_bit_index_on:
+        # If we already turned on bit for current character's unicode
+        if bitmap >> ch_unicode & 1 == 1:
             return False
-
         bitmap |= ch_bit_index_on
-
     return True
 
 
