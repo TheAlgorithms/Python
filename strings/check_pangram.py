@@ -24,9 +24,7 @@ def check_pangram(
     input_str = input_str.replace(
         " ", ""
     )  # Replacing all the Whitespaces in our sentence
-    frequency = {
-        alpha.lower() for alpha in input_str if "a" <= alpha.lower() <= "z"
-    }
+    frequency = {alpha.lower() for alpha in input_str if "a" <= alpha.lower() <= "z"}
 
     return len(frequency) == 26
 

@@ -68,10 +68,8 @@ def can_string_be_rearranged_as_palindrome(input_str: str = "") -> bool:
     It is not possible to rearrange as a palindrome
     """
     oddChar = sum(
-        bool(character_count % 2)
-        for character_count in character_freq_dict.values()
+        bool(character_count % 2) for character_count in character_freq_dict.values()
     )
-
 
     return oddChar <= 1
 

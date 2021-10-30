@@ -52,8 +52,7 @@ def bin_to_hexadecimal(binary_str: str) -> str:
     )
 
     hexadecimal = [
-        BITS_TO_HEX[binary_str[x : x + 4]]
-        for x in range(0, len(binary_str), 4)
+        BITS_TO_HEX[binary_str[x : x + 4]] for x in range(0, len(binary_str), 4)
     ]
 
     hexadecimal_str = "0x" + "".join(hexadecimal)
