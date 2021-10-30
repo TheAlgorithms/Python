@@ -41,6 +41,7 @@ if __name__ == "__main__":
     bdd_difference = fuzz.fuzzy_or(X, zero, X, young - middle_aged)[1]
 
     # max-min composition
+    
     # max-product composition
 
     # Plot each set A, set B and each operation result using plot() and subplot().
