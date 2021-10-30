@@ -11,7 +11,7 @@
   * [Secant Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/secant_method.py)
 
 ## Asynchronous Programming
-  * [Async Fibprime](https://github.com/TheAlgorithms/Python/blob/master/asynchronous%20programming/async_fibprime.py)
+  * [Async Fibprime](https://github.com/TheAlgorithms/Python/blob/master/asynchronous_programming/async_fibprime.py)
 
 ## Audio Filters
   * [Butterworth Filter](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/butterworth_filter.py)
