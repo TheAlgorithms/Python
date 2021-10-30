@@ -12,6 +12,7 @@ def is_contains_unique_chars(input_str: str) -> bool:
 
     # Each bit will represent each unicode character
     # For example 65th bit representing 'A'
+    # https://stackoverflow.com/a/12811293
     bitmap = 0
     for ch in input_str:
         ch_unicode = ord(ch)
