@@ -3,6 +3,8 @@
 """ Author: OMKAR PATHAK """
 from __future__ import annotations
 
+from queue import Queue
+
 
 class Graph:
     def __init__(self) -> None:
@@ -51,19 +53,19 @@ class Graph:
         visited = set()
 
         # create a first in first out queue to store all the vertices for BFS
-        queue = []
+        queue = Queue()
 
         # mark the source node as visited and enqueue it
         visited.add(start_vertex)
-        queue.append(start_vertex)
+        queue.put(start_vertex)
 
-        while queue:
-            vertex = queue.pop(0)
+        while not queue.empty():
+            vertex = queue.get()
 
             # loop through all adjacent vertex and enqueue it if not yet visited
             for adjacent_vertex in self.vertices[vertex]:
                 if adjacent_vertex not in visited:
-                    queue.append(adjacent_vertex)
+                    queue.put(adjacent_vertex)
                     visited.add(adjacent_vertex)
         return visited
 
