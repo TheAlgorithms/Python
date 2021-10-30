@@ -10,6 +10,9 @@
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_raphson.py)
   * [Secant Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/secant_method.py)
 
+## Asynchronous Programming
+  * [Async Fibprime](https://github.com/TheAlgorithms/Python/blob/master/asynchronous%20programming/async_fibprime.py)
+
 ## Audio Filters
   * [Butterworth Filter](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/butterworth_filter.py)
   * [Iir Filter](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/iir_filter.py)
@@ -517,6 +520,7 @@
   * [Perfect Number](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_number.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
   * [Pi Monte Carlo Estimation](https://github.com/TheAlgorithms/Python/blob/master/maths/pi_monte_carlo_estimation.py)
+  * [Pollard Rho](https://github.com/TheAlgorithms/Python/blob/master/maths/pollard_rho.py)
   * [Polynomial Evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
   * [Power Using Recursion](https://github.com/TheAlgorithms/Python/blob/master/maths/power_using_recursion.py)
   * [Prime Check](https://github.com/TheAlgorithms/Python/blob/master/maths/prime_check.py)
@@ -539,6 +543,7 @@
     * [Geometric Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/geometric_series.py)
     * [Harmonic](https://github.com/TheAlgorithms/Python/blob/master/maths/series/harmonic.py)
     * [Harmonic Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/harmonic_series.py)
+    * [Hexagonal Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/series/hexagonal_numbers.py)
     * [P Series](https://github.com/TheAlgorithms/Python/blob/master/maths/series/p_series.py)
   * [Sieve Of Eratosthenes](https://github.com/TheAlgorithms/Python/blob/master/maths/sieve_of_eratosthenes.py)
   * [Sigmoid](https://github.com/TheAlgorithms/Python/blob/master/maths/sigmoid.py)
@@ -584,7 +589,6 @@
 ## Other
   * [Activity Selection](https://github.com/TheAlgorithms/Python/blob/master/other/activity_selection.py)
   * [Check Strong Password](https://github.com/TheAlgorithms/Python/blob/master/other/check_strong_password.py)
-  * [Date To Weekday](https://github.com/TheAlgorithms/Python/blob/master/other/date_to_weekday.py)
   * [Davisb Putnamb Logemannb Loveland](https://github.com/TheAlgorithms/Python/blob/master/other/davisb_putnamb_logemannb_loveland.py)
   * [Dijkstra Bankers Algorithm](https://github.com/TheAlgorithms/Python/blob/master/other/dijkstra_bankers_algorithm.py)
   * [Doomsday](https://github.com/TheAlgorithms/Python/blob/master/other/doomsday.py)
