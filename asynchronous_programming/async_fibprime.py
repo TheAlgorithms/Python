@@ -1,8 +1,10 @@
 import doctest
 from asyncio import gather, run
 from math import sqrt
+from async_lru import alru_cache
 
 
+@alru_cache(maxsize=256)
 async def fib(digit: int) -> int:
 
     """
@@ -45,20 +47,30 @@ async def is_prime(digit: int) -> bool:
     return prime_flag == 0
 
 
-async def main() -> None:
+async def main(input_n: int) -> None:
+    """
+    >>> run(main(10))
+    10th fibo series is 55
+    10 is not a prime number
+
+    >>> run(main(20))
+    20th fibo series is 6765
+    20 is not a prime number
+
+    """
+
     try:
-        put_num = int(input("Enter a number: "))
         ret_fib, ret_prime = (
-            await gather(fib(put_num), is_prime(put_num))
-            if put_num >= 0
-            else (None, await is_prime(put_num))
+            await gather(fib(input_n), is_prime(input_n))
+            if input_n >= 0
+            else (None, await is_prime(input_n))
         )
-        print(f"{put_num}th fibo series is", ret_fib) if ret_fib else print(
+        print(f"{input_n}th fibo series is", ret_fib) if ret_fib else print(
             "Invalid input"
         )
 
-        print(f"{put_num} is a prime number") if ret_prime else print(
-            f"{put_num} is not a prime number"
+        print(f"{input_n} is a prime number") if ret_prime else print(
+            f"{input_n} is not a prime number"
         )
     except ValueError:
         print("Invalid input!")
@@ -66,4 +78,8 @@ async def main() -> None:
 
 if __name__ == "__main__":
     doctest.testmod(verbose=True)
-    run(main())
+    try:
+        n = int(input("Enter a number: "))
+        run(main(n))
+    except ValueError:
+        print("Input must an integer!")
