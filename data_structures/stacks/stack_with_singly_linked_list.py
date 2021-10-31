@@ -1,19 +1,22 @@
 """ A Stack using a linked list like structure """
 from __future__ import annotations
 
-from typing import Any
+from collections.abc import Iterator
+from typing import Generic, TypeVar
+
+T = TypeVar("T")
 
 
-class Node:
-    def __init__(self, data):
+class Node(Generic[T]):
+    def __init__(self, data: T):
         self.data = data
-        self.next = None
+        self.next: Node[T] | None = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.data}"
 
 
-class LinkedStack:
+class LinkedStack(Generic[T]):
     """
     Linked List Stack implementing push (to top),
     pop (from top) and is_empty
@@ -44,15 +47,15 @@ class LinkedStack:
     """
 
     def __init__(self) -> None:
-        self.top: Node | None = None
+        self.top: Node[T] | None = None
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[T]:
         node = self.top
         while node:
             yield node.data
             node = node.next
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         >>> stack = LinkedStack()
         >>> stack.push("c")
@@ -63,7 +66,7 @@ class LinkedStack:
         """
         return "->".join([str(item) for item in self])
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         >>> stack = LinkedStack()
         >>> len(stack) == 0
@@ -87,7 +90,7 @@ class LinkedStack:
         """
         return self.top is None
 
-    def push(self, item: Any) -> None:
+    def push(self, item: T) -> None:
         """
         >>> stack = LinkedStack()
         >>> stack.push("Python")
@@ -101,7 +104,7 @@ class LinkedStack:
             node.next = self.top
         self.top = node
 
-    def pop(self) -> Any:
+    def pop(self) -> T:
         """
         >>> stack = LinkedStack()
         >>> stack.pop()
@@ -125,7 +128,7 @@ class LinkedStack:
         self.top = self.top.next
         return pop_node.data
 
-    def peek(self) -> Any:
+    def peek(self) -> T:
         """
         >>> stack = LinkedStack()
         >>> stack.push("Java")
