@@ -3,10 +3,11 @@ Python implementation of a sort algorithm.
 Best Case Scenario : O(n)
 Worst Case Scenario : O(n^2) because native Python functions:min, max and remove are
 already O(n)
+Explanation: https://en.wikipedia.org/wiki/Merge_sort
 """
 
 
-def merge_sort(collection):
+def merge_sort(collection: list) -> list:
     """Pure implementation of the fastest merge sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
