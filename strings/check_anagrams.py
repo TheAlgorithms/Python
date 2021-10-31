@@ -2,6 +2,7 @@
 wiki: https://en.wikipedia.org/wiki/Anagram
 """
 from collections import defaultdict
+from typing import DefaultDict
 
 
 def check_anagrams(first_str: str, second_str: str) -> bool:
