@@ -24,6 +24,8 @@ class Linkedlist:
         """
         >>> linked_list = Linkedlist()
 
+        >>> linked_list.push_at_head(3)
+
         >>> linked_list.push_at_head(2)
 
         >>> linked_list.push_at_head(1)
@@ -31,7 +33,12 @@ class Linkedlist:
         >>> linked_list.push_at_head(0)
 
         >>> linked_list.print_list()
-        0->1->2->NULL
+        0->1->2->3->NULL
+
+        >>> linked_list.delete_node(2)
+
+        >>> linked_list.print_list()
+        0->1->3->NULL
         
         """
         temp = self.head
