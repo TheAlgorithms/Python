@@ -5,7 +5,7 @@ import json
 chain = []
 
 
-def create_block(proof,previous_hash):
+def create_block(proof: int,previous_hash: str) -> dict:
     block = {'index': len(chain) + 1,
     'timestamp': str(datetime.datetime.now()),
     'proof':proof,
@@ -17,10 +17,10 @@ def create_block(proof,previous_hash):
 
 create_block(proof=1, previous_hash='0')
 
-def print_previous_block():
+def print_previous_block() -> dict:
     return chain[-1]
 
-def proof_of_work(previous_proof):
+def proof_of_work(previous_proof: int) -> int:
     new_proof = 1
     check_proof = False
 
@@ -35,11 +35,11 @@ def proof_of_work(previous_proof):
 
         return new_proof
 
-def hash(block):
+def hash(block: dict) -> str:
     encoded_block = json.dumps(block,sort_keys=True).encode()
     return hashlib.sha256(encoded_block).hexdigest()
 
-def chain_valid(chain):
+def chain_valid(chain: dict) -> bool:
     previous_block = chain[0]
     block_index = 1
 
