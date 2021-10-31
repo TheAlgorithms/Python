@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 
-def main():
+def main() -> None:
 
     """
     Random Forest Feature Importance Example using sklearn function.
@@ -44,4 +44,6 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
     main()
+    doctest.testmod()
