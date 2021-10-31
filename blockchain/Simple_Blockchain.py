@@ -59,7 +59,7 @@ def chain_valid(chain):
         block_index += 1
 
 
-def mine_block():
+def mine_block() -> None:
 
     """
     The mine block is the one where blockchain is formed by mining blocks
@@ -79,7 +79,7 @@ def mine_block():
         
     print(response)
 
-def display_chain():
+def display_chain() -> None:
 
     """
     Displaying the present chain and the length of the chain
@@ -89,7 +89,7 @@ def display_chain():
             'length': len(chain)}
     print(response)
 
-def valid():
+def valid() -> None:
 
     """
     Checking the validation
