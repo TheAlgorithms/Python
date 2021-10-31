@@ -44,7 +44,6 @@ class Vector:
         component(i): gets the i-th component (0-indexed)
         change_component(pos: int, value: float): changes specified component
         euclidean_length(): returns the euclidean length of the vector
-        magnitude(): returns the magnitude of the vector
         angle(other: Vector, deg: bool): returns the angle between two vectors
         TODO: compare-operator
     """
@@ -159,18 +158,20 @@ class Vector:
     def euclidean_length(self) -> float:
         """
         returns the euclidean length of the vector
-        """
-        squares = [c ** 2 for c in self.__components]
-        return math.sqrt(sum(squares))
 
-    def magnitude(self) -> float:
-        """
-        Magnitude of a Vector
-
-        >>> Vector([2, 3, 4]).magnitude()
+        >>> Vector([2, 3, 4]).euclidean_length()
         5.385164807134504
-
+        >>> Vector([1]).euclidean_length()
+        1.0
+        >>> Vector([0, -1, -2, -3, 4, 5, 6]).euclidean_length()
+        9.539392014169456
+        >>> Vector([]).euclidean_length()
+        Traceback (most recent call last):
+        ...
+        Exception: Vector is empty
         """
+        if len(self.__components) == 0:
+            raise Exception("Vector is empty")
         squares = [c ** 2 for c in self.__components]
         return math.sqrt(sum(squares))
 
@@ -188,7 +189,7 @@ class Vector:
         Exception: invalid operand!
         """
         num = self * other
-        den = self.magnitude() * other.magnitude()
+        den = self.euclidean_length() * other.euclidean_length()
         if deg:
             return math.degrees(math.acos(num / den))
         else:
@@ -267,8 +268,7 @@ class Matrix:
 
     def __init__(self, matrix: list[list[float]], w: int, h: int) -> None:
         """
-        simple constructor for initializing
-        the matrix with components.
+        simple constructor for initializing the matrix with components.
         """
         self.__matrix = matrix
         self.__width = w
@@ -276,8 +276,7 @@ class Matrix:
 
     def __str__(self) -> str:
         """
-        returns a string representation of this
-        matrix.
+        returns a string representation of this matrix.
         """
         ans = ""
         for i in range(self.__height):
@@ -291,7 +290,7 @@ class Matrix:
 
     def __add__(self, other: Matrix) -> Matrix:
         """
-        implements the matrix-addition.
+        implements matrix addition.
         """
         if self.__width == other.width() and self.__height == other.height():
             matrix = []
@@ -307,7 +306,7 @@ class Matrix:
 
     def __sub__(self, other: Matrix) -> Matrix:
         """
-        implements the matrix-subtraction.
+        implements matrix subtraction.
         """
         if self.__width == other.width() and self.__height == other.height():
             matrix = []
