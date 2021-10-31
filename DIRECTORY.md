@@ -964,6 +964,7 @@
   * [Detecting English Programmatically](https://github.com/TheAlgorithms/Python/blob/master/strings/detecting_english_programmatically.py)
   * [Frequency Finder](https://github.com/TheAlgorithms/Python/blob/master/strings/frequency_finder.py)
   * [Indian Phone Validator](https://github.com/TheAlgorithms/Python/blob/master/strings/indian_phone_validator.py)
+  * [Is Contains Unique Chars](https://github.com/TheAlgorithms/Python/blob/master/strings/is_contains_unique_chars.py)
   * [Is Palindrome](https://github.com/TheAlgorithms/Python/blob/master/strings/is_palindrome.py)
   * [Jaro Winkler](https://github.com/TheAlgorithms/Python/blob/master/strings/jaro_winkler.py)
   * [Join](https://github.com/TheAlgorithms/Python/blob/master/strings/join.py)
