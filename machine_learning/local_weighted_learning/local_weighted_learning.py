@@ -21,7 +21,7 @@ def weighted_matrix(point: np.mat, training_data_x: np.mat, bandwidth: float) ->
     # m is the number of training samples
     m, n = np.shape(training_data_x)
     # Initializing weights as identity matrix
-    weights = np.mat(np.eye((m)))
+    weights = np.mat(np.eye(m))
     # calculating weights for all training examples [x(i)'s]
     for j in range(m):
         diff = point - training_data_x[j]
@@ -37,8 +37,8 @@ def local_weight(
     Return the weighted matrix.
     >>> local_weight(np.array([1., 1.]),np.mat([[16.99, 10.34], [21.01,23.68],
     ...                 [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
-    matrix([[0.    ],
-            [0.0625]])
+    matrix([[0.00873174],
+            [0.08272556]])
     """
     weight = weighted_matrix(point, training_data_x, bandwidth)
     W = (training_data_x.T * (weight * training_data_x)).I * (
@@ -55,7 +55,7 @@ def local_weight_regression(
     Calculate predictions for each data point on axis.
     >>> local_weight_regression(np.mat([[16.99, 10.34], [21.01,23.68],
     ...                            [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
-    array([1.2925    , 1.6589624 , 3.50142395])
+    array([1.07173261, 1.65970737, 3.50160179])
     """
     m, n = np.shape(training_data_x)
     ypred = np.zeros(m)
@@ -96,7 +96,7 @@ def get_preds(training_data_x: np.mat, mcol_b: np.mat, tau: float) -> np.ndarray
     Get predictions with minimum error for each training data
     >>> get_preds(np.mat([[16.99, 10.34], [21.01,23.68],
     ...                     [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
-    array([1.2925    , 1.6589624 , 3.50142395])
+    array([1.07173261, 1.65970737, 3.50160179])
     """
     ypred = local_weight_regression(training_data_x, mcol_b, tau)
     return ypred
