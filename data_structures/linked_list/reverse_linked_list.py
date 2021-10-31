@@ -41,7 +41,7 @@ class LinkedList:
 	def printList(self):
 		temp = self.head
 		while(temp):
-			print temp.data,
+			print temp.data
 			temp = temp.next
 
 
@@ -58,5 +58,4 @@ llist.reverse()
 print "\nReversed Linked List"
 llist.printList()
 
-# This code is contributed by Nikhil Kumar Singh(nickzuck_007)
 
