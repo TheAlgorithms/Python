@@ -29,7 +29,7 @@ def check_anagrams(first_str: str, second_str: str) -> bool:
         return False
 
     # Default values for count should be 0
-    count = defaultdict(int)
+    count: DefaultDict[str, int] = defaultdict(int)
 
     # For each character in input strings,
     # increment count in the corresponding
