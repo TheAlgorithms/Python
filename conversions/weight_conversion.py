@@ -90,7 +90,7 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     >>> weight_conversion("kilogram","pound",4)
     8.8184976808
     >>> weight_conversion("kilogram","stone",5)
-    0.7873652
+    0.7873658640000001
     >>> weight_conversion("kilogram","ounce",4)
     141.095962892
     >>> weight_conversion("kilogram","carrat",3)
@@ -112,7 +112,7 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     >>> weight_conversion("gram","pound",3)
     0.0066138732606
     >>> weight_conversion("gram","stone",4)
-    0.0006298922
+    0.0006298926912000001
     >>> weight_conversion("gram","ounce",1)
     0.035273990723
     >>> weight_conversion("gram","carrat",2)
@@ -220,23 +220,23 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     >>> weight_conversion("pound","atomic-mass-unit",4)
     1.0926372033015936e+27
     >>> weight_conversion("stone","kilogram",5)
-    31.75147
+    31.751450000000002
     >>> weight_conversion("stone","gram",2)
-    12700.59
+    12700.58
     >>> weight_conversion("stone","milligram",3)
-    19050880
+    19050870.0
     >>> weight_conversion("stone","metric-ton",3)
-    0.01905088
+    0.01905087
     >>> weight_conversion("stone","long-ton",3)
-    0.01874994
+    0.018750005325351003
     >>> weight_conversion("stone","short-ton",3)
-    0.02099999
+    0.021000006421614002
     >>> weight_conversion("stone","pound",2)
-    28
+    28.00000881870372
     >>> weight_conversion("stone","ounce",1)
-    224
+    224.00007054835967
     >>> weight_conversion("stone","carrat",2)
-    63502.93
+    63502.9
     >>> weight_conversion("ounce","kilogram",3)
     0.0850485
     >>> weight_conversion("ounce","gram",3)
