@@ -21,6 +21,12 @@ import itertools
 
 def solution(number: int = 1000000) -> int:
     """
+    >>> solution(1)
+    1
+
+    >>> solution(9)
+    14
+
     >>> solution()
     55374
     """
