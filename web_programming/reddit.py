@@ -30,8 +30,11 @@ def get_data(
             'created_utc', 'permalink'
         ]
     """
-    response = requests.get(f"https://reddit.com/r/{sub}/{age}.json?limit={limit}")
-    if response.raise_for_status():
+    response = requests.get(
+        f"https://reddit.com/r/{sub}/{age}.json?limit={limit}",
+        headers={"User-agent": "A random string"},
+    )
+    if response.status_code == 429:
         raise requests.HTTPError
 
     data = response.json()
