@@ -1,5 +1,3 @@
-from logging import raiseExceptions
-
 import requests
 
 
@@ -34,7 +32,7 @@ def get_data(
     """
     response = requests.get(f"https://reddit.com/r/{sub}/{age}.json?limit={limit}")
     if response.raise_for_status():
-        raiseExceptions
+        raise requests.HTTPError
 
     data = response.json()
     data_dict = {}
