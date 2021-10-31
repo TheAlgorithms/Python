@@ -13,7 +13,7 @@ def weighted_matrix(point: np.mat, training_data_x: np.mat, bandwidth: float) ->
     xmat -->Training data
     point --> the x where we want to make predictions
     >>> weighted_matrix(np.array([1., 1.]),np.mat([[16.99, 10.34], [21.01,23.68],
-                        [24.59,25.69]]), 0.6)
+    ...                    [24.59,25.69]]), 0.6)
     matrix([[1.43807972e-207, 0.00000000e+000, 0.00000000e+000],
             [0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
             [0.00000000e+000, 0.00000000e+000, 0.00000000e+000]])
@@ -36,7 +36,7 @@ def local_weight(
     Calculate the local weights using the weight_matrix function on training data.
     Return the weighted matrix.
     >>> local_weight(np.array([1., 1.]),np.mat([[16.99, 10.34], [21.01,23.68],
-                     [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
+    ...                 [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
     matrix([[0.    ],
             [0.0625]])
     """
@@ -54,7 +54,7 @@ def local_weight_regression(
     """
     Calculate predictions for each data point on axis.
     >>> local_weight_regression(np.mat([[16.99, 10.34], [21.01,23.68],
-                                [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
+    ...                            [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
     array([1.2925    , 1.6589624 , 3.50142395])
     """
     m, n = np.shape(training_data_x)
@@ -71,6 +71,7 @@ def local_weight_regression(
 def load_data(dataset_name: str, cola_name: str, colb_name: str) -> np.mat:
     """
     Function used for loading data from the seaborn splitting into x and y points
+    >>> pass # this function has no doctest
     """
     import seaborn as sns
 
@@ -94,7 +95,7 @@ def get_preds(training_data_x: np.mat, mcol_b: np.mat, tau: float) -> np.ndarray
     """
     Get predictions with minimum error for each training data
     >>> get_preds(np.mat([[16.99, 10.34], [21.01,23.68],
-                         [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
+    ...                     [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
     array([1.2925    , 1.6589624 , 3.50142395])
     """
     ypred = local_weight_regression(training_data_x, mcol_b, tau)
@@ -111,6 +112,7 @@ def plot_preds(
 ) -> plt.plot:
     """
     This function used to plot predictions and display the graph
+    >>> pass #this function has no doctest
     """
     xsort = training_data_x.copy()
     xsort.sort(axis=0)
