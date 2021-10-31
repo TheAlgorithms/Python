@@ -40,6 +40,7 @@ def solution(number: int = 1000000) -> int:
             if index > i:
                 break
             item += partitions[i - index] * sign
+            item %= number
             index += j
             if index > i:
                 break
