@@ -1,4 +1,5 @@
 from __future__ import annotations
+from collections import deque
 
 
 class Node:
@@ -93,17 +94,15 @@ def level_order_display(tree: Node | None) -> None:
     if not tree:
         return
 
-    queue = [tree]
-    queuePointer = 0
-    while len(queue) > queuePointer:
-        thisNode = queue[queuePointer]
-        queuePointer += 1
+    queue = deque()
+    queue.append(tree)
+    while len(queue) > 0:
+        thisNode = queue.popleft()
         if thisNode.left:
             queue.append(thisNode.left)
         if thisNode.right:
             queue.append(thisNode.right)
-        
-        print(thisNode.data)
+        print(thisNode.data) 
 
 
 def depth_of_tree(tree: Node | None) -> int:
