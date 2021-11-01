@@ -1,7 +1,7 @@
 import base64
 
 
-def encode_to_b16(inp: str) -> bytes:
+def base16_encode(inp: str) -> bytes:
     """
     Encodes a given utf-8 string into base-16.
 
@@ -16,7 +16,7 @@ def encode_to_b16(inp: str) -> bytes:
     return base64.b16encode(inp.encode("utf-8"))
 
 
-def decode_from_b16(b16encoded: bytes) -> str:
+def base16_decode(b16encoded: bytes) -> str:
     """
     Decodes from base-16 to a utf-8 string.
 
