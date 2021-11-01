@@ -24,6 +24,9 @@ def gabor_filter_kernel(
     """
 
     # prepare kernel
+    # the kernel size have to be odd
+    if (ksize % 2) == 0:
+        ksize = ksize + 1
     gabor = np.zeros((ksize, ksize), dtype=np.float32)
 
     # each value
@@ -33,11 +36,16 @@ def gabor_filter_kernel(
             px = x - ksize // 2
             py = y - ksize // 2
 
+            # degree to radiant
+            _theta = theta / 180 * np.pi
+            cos_theta = np.cos(_theta)
+            sin_theta = np.sin(_theta)
+
             # get kernel x
-            _x = np.cos(theta) * px + np.sin(theta) * py
+            _x = cos_theta * px + sin_theta * py
 
             # get kernel y
-            _y = -np.sin(theta) * px + np.cos(theta) * py
+            _y = -sin_theta * px + cos_theta * py
 
             # fill kernel
             gabor[y, x] = np.exp(
