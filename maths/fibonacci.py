@@ -65,18 +65,22 @@ def fib_binet(n: int) -> list[int]:
 
     NOTE 2: this function doesn't accept n >= 1475 because it overflows
     thereafter due to the size limitations of Python floats
-    >>> fib_iterative(0)
+    >>> fib_binet(0)
     [0]
-    >>> fib_iterative(1)
+    >>> fib_binet(1)
     [0, 1]
-    >>> fib_iterative(5)
+    >>> fib_binet(5)
     [0, 1, 1, 2, 3, 5]
-    >>> fib_iterative(10)
+    >>> fib_binet(10)
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
+    >>> fib_binet(-1)
     Traceback (most recent call last):
     ...
     Exception: n is negative
+    >>> fib_binet(1500)
+    Traceback (most recent call last):
+    ...
+    Exception: n is too large
     """
     if n < 0:
         raise Exception("n is negative")
