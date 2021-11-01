@@ -1,83 +1,76 @@
+"""
+Get book and author data from https://openlibrary.org
+
+ISBN: https://en.wikipedia.org/wiki/International_Standard_Book_Number
+"""
+from json import JSONDecodeError  # Workaround for requests.exceptions.JSONDecodeError
+
 import requests
 
-URL_BASE = "https://openlibrary.org"
 
-def get_book_by_isbn(isbn: str = "0140328726") -> dict:
+def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
     """
-    Given a isbn code, return a dict.
+    Given an 'isbn/0140328726', return book data from Open Library as a Python dict.
+    Given an '/authors/OL34184A', return authors data as a Python dict.
+    This code must work for olids with or without a leading slash ('/').
 
-    :param isbn: string
-    :return: dict
-
-    >>> get_book_by_isbn('0140328726')
-    {'publishers': ['Puffin'], 'number_of_pages': 96, 'isbn_10': ['0140328726'], 'covers': [8739161], 'key': '/books/OL7353617M', 'authors': [{'key': '/authors/OL34184A'}], 'ocaid': 'fantasticmrfoxpu00roal', 'contributions': ['Tony Ross (Illustrator)'], 'languages': [{'key': '/languages/eng'}], 'classifications': {}, 'source_records': ['ia:fantasticmrfox00dahl_834', 'marc:marc_openlibraries_sanfranciscopubliclibrary/sfpl_chq_2018_12_24_run02.mrc:85081404:4525'], 'title': 'Fantastic Mr. Fox', 'identifiers': {'goodreads': ['1507552'], 'librarything': ['6446']}, 'isbn_13': ['9780140328721'], 'local_id': ['urn:sfpl:31223064402481', 'urn:sfpl:31223117624784', 'urn:sfpl:31223113969183', 'urn:sfpl:31223117624800', 'urn:sfpl:31223113969225', 'urn:sfpl:31223106484539', 'urn:sfpl:31223117624792', 'urn:sfpl:31223117624818', 'urn:sfpl:31223117624768', 'urn:sfpl:31223117624743', 'urn:sfpl:31223113969209', 'urn:sfpl:31223117624750', 'urn:sfpl:31223117624727', 'urn:sfpl:31223117624776', 'urn:sfpl:31223117624719', 'urn:sfpl:31223117624735', 'urn:sfpl:31223113969241'], 'publish_date': 'October 1, 1988', 'works': [{'key': '/works/OL45883W'}], 'type': {'key': '/type/edition'}, 'first_sentence': {'type': '/type/text', 'value': 'And these two very old people are the father and mother of Mrs. Bucket.'}, 'latest_revision': 14, 'revision': 14, 'created': {'type': '/type/datetime', 'value': '2008-04-29T13:35:46.876380'}, 'last_modified': {'type': '/type/datetime', 'value': '2021-06-18T22:46:46.648233'}}
+    # Comment out doctests if they take too long or have results that may change
+    # >>> get_openlibrary_data(olid='isbn/0140328726')  # doctest: +ELLIPSIS
+    {'publishers': ['Puffin'], 'number_of_pages': 96, 'isbn_10': ['0140328726'], ...
+    # >>> get_openlibrary_data(olid='/authors/OL7353617A')  # doctest: +ELLIPSIS
+    {'name': 'Adrian Brisku', 'created': {'type': '/type/datetime', ...
+    >>> pass  # Placate https://github.com/apps/algorithms-keeper
     """
+    new_olid = olid.strip().strip("/")  # Remove leading/trailing whitespace & slashes
+    if new_olid.count("/") != 1:
+        raise ValueError(f"{olid} is not a valid Open Library olid")
+    return requests.get(f"https://openlibrary.org/{new_olid}.json").json()
 
-    url = URL_BASE + "/isbn/" + isbn + ".json"
-    return requests.get(url, params=locals()).json()
 
-def get_author(author_url: str = "/authors/OL34184A") -> dict:
+def summerize_book(ol_book_data: dict) -> dict:
     """
-    Given a valid url, return a dict.
+     Given Open Library book data, return a summary as a Python dict.
 
-    :param author_url: string
-    :return: dict
-
-    >>> get_author('/authors/OL7353617A')
-    {'name': 'Adrian Brisku', 'created': {'type': '/type/datetime', 'value': '2016-10-19T02:33:46.926858'}, 'last_modified': {'type': '/type/datetime', 'value': '2016-10-19T02:33:46.926858'}, 'latest_revision': 1, 'key': '/authors/OL7353617A', 'type': {'key': '/type/author'}, 'revision': 1}
+    >>> pass  # Placate TheAlgorithms @
     """
+    desired_keys = {
+        "title": "Title",
+        "publish_date": "Publish date",
+        "authors": "Authors",
+        "number_of_pages": "Number of pages:",
+        "first_sentence": "First sentence",
+        "isbn_10": "ISBN (10)",
+        "isbn_13": "ISBN (13)",
+    }
+    data = {better_key: ol_book_data[key] for key, better_key in desired_keys.items()}
+    data["Authors"] = [
+        get_openlibrary_data(author["key"])["name"] for author in data["Authors"]
+    ]
+    data["First sentence"] = data["First sentence"]["value"]
+    for key, value in data.items():
+        if isinstance(value, list):
+            data[key] = ", ".join(value)
+    return data
 
-    url = URL_BASE + author_url + ".json"
-    return requests.get(url, params=locals()).json()
 
 if __name__ == "__main__":
-
     import doctest
+
     doctest.testmod()
 
     while True:
-        book = input("\nEnter the ISBN code to search (or CTRL+C to stop): ").strip()
-
-        if book.isnumeric() and (len(book) == 10 or len(book) == 13):
-
-            print("\nSearching...\n")
-
-            result = get_book_by_isbn(book)
-
-            keys = result.keys()
-            keys_title = {
-                'title': 'Title',
-                'publish_date': 'Publish date',
-                'authors': 'Authors',
-                'number_of_pages': 'Number of pages:',
-                'first_sentence': 'First sentence',
-                'isbn_10': 'ISBN (10)',
-                'isbn_13': 'ISBN (13)'
-            }
-
-            if result:
-
-                print("\nLoading...\n")
-
-                authors = []
-
-                for author in result['authors']:
-                    partial_result = get_author(author['key'])
-                    authors.append(partial_result['name'])
-
-                ",".join(authors)
-
-                for key in keys_title.keys():
-                    if (key in result.keys()):
-                        if (key == 'first_sentence'):     
-                            print(keys_title[key], ": ", str(result[key]['value']).strip('[]'))
-                        elif (key == 'authors'):
-                            print(keys_title[key], ": ", str(authors).strip('[]'))
-                        else:
-                            print(keys_title[key], ": ", str(result[key]).strip('[]'))
-            
-            else:
-                print("Sorry, there are no results for this search")
-        else:
-            print("Sorry, not a valid ISBN, please, inform some valid code")
+        isbn = input("\nEnter the ISBN code to search (or 'quit' to stop): ").strip()
+        if isbn.lower() in ("", "q", "quit", "exit", "stop"):
             break
+
+        if len(isbn) not in (10, 13) or not isbn.isdigit():
+            print(f"Sorry, {isbn} is not a valid ISBN.  Please, input a valid ISBN.")
+            continue
+
+        print(f"\nSearching Open Library for ISBN: {isbn}...\n")
+
+        try:
+            book_summary = summerize_book(get_openlibrary_data(f"isbn/{isbn}"))
+            print("\n".join(f"{key}: {value}" for key, value in book_summary.items()))
+        except JSONDecodeError:  # Workaround for requests.exceptions.RequestException:
+            print(f"Sorry, there are no results for ISBN: {isbn}.")
