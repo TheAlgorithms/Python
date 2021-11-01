@@ -2,21 +2,25 @@ import requests
 
 URL_BASE = "https://openlibrary.org"
 
-def get_book_by_isbn(isbn):
+def get_book_by_isbn(isbn: str = "0140328726") -> dict:
     url = URL_BASE + "/isbn/" + isbn + ".json"
-    return requests.get(url).json()
+    return requests.get(url, params=locals()).json()
 
-def get_author(author_url):
+def get_author(author_url: str = "/authors/OL34184A") -> dict:
     url = URL_BASE + author_url + ".json"
-    return requests.get(url).json()
+    return requests.get(url, params=locals()).json()
 
 if __name__ == "__main__":
 
     while True:
         book = input("\nEnter the ISBN code to search (or CTRL+C to stop): ").strip()
 
-        if book.isnumeric() and (len(book) >= 10 and len(book) <= 13):
+        if book.isnumeric() and (len(book) == 10 or len(book) == 13):
+
+            print("\nSearching...\n")
+
             result = get_book_by_isbn(book)
+
             keys = result.keys()
             keys_title = {
                 'title': 'Title',
