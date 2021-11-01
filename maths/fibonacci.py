@@ -10,30 +10,39 @@ NOTE 2: the Binet's formula function is much more limited in the size of inputs
 that it can handle due to the size limitations of Python floats
 """
 
-import functools
-import time
 from math import sqrt
+from time import time
 
 
-def timer_decorator(func):
-    @functools.wraps(func)
-    def timer_wrapper(*args, **kwargs):
-        start = time.time()
-        func(*args, **kwargs)
-        end = time.time()
-        if int(end - start) > 0:
-            print(f"{func.__name__} runtime: {(end - start):0.4f} s")
-        else:
-            print(f"{func.__name__} runtime: {(end - start) * 1000:0.4f} ms")
-        return func(*args, **kwargs)
+def time_func(func, *args, **kwargs):
+    """
+    Times the execution of a function with parameters
+    """
+    start = time()
+    output = func(*args, **kwargs)
+    end = time()
+    if int(end - start) > 0:
+        print(f"{func.__name__} runtime: {(end - start):0.4f} s")
+    else:
+        print(f"{func.__name__} runtime: {(end - start) * 1000:0.4f} ms")
+    return output
 
-    return timer_wrapper
 
-
-@timer_decorator
 def fib_iterative(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using iteration
+    >>> fib_iterative(0)
+    [0]
+    >>> fib_iterative(1)
+    [0, 1]
+    >>> fib_iterative(5)
+    [0, 1, 1, 2, 3, 5]
+    >>> fib_iterative(10)
+    [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+    >>> fib_iterative(-1)
+    Traceback (most recent call last):
+    ...
+    Exception: n is negative
     """
     if n < 0:
         raise Exception("n is negative")
@@ -45,7 +54,6 @@ def fib_iterative(n: int) -> list[int]:
     return fib
 
 
-@timer_decorator
 def fib_binet(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using a simplified form
@@ -57,6 +65,18 @@ def fib_binet(n: int) -> list[int]:
 
     NOTE 2: this function doesn't accept n >= 1475 because it overflows
     thereafter due to the size limitations of Python floats
+    >>> fib_iterative(0)
+    [0]
+    >>> fib_iterative(1)
+    [0, 1]
+    >>> fib_iterative(5)
+    [0, 1, 1, 2, 3, 5]
+    >>> fib_iterative(10)
+    [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+    >>> fib_iterative(-1)
+    Traceback (most recent call last):
+    ...
+    Exception: n is negative
     """
     if n < 0:
         raise Exception("n is negative")
@@ -69,5 +89,5 @@ def fib_binet(n: int) -> list[int]:
 
 if __name__ == "__main__":
     num = 50
-    fib_iterative(num)
-    fib_binet(num)
+    time_func(fib_iterative, num)
+    time_func(fib_binet, num)
