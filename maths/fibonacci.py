@@ -92,10 +92,6 @@ def fib_binet(n: int) -> list[int]:
 
 
 if __name__ == "__main__":
-    # num = 50
-    # time_func(fib_iterative, num)
-    # time_func(fib_binet, num)
-
-    import doctest
-
-    doctest.testmod(verbose=True)
+    num = 50
+    time_func(fib_iterative, num)
+    time_func(fib_binet, num)
