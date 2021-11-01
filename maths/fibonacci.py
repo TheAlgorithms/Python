@@ -112,10 +112,12 @@ def fib_binet(n: int) -> list[int]:
     >>> fib_binet(1475)
     Traceback (most recent call last):
     ...
-    OverflowError: (34, 'Result too large')
+    Exception: n is too large
     """
     if n < 0:
         raise Exception("n is negative")
+    if n >= 1475:
+        raise Exception("n is too large")
     sqrt_5 = sqrt(5)
     phi = (1 + sqrt_5) / 2
     return [round(phi ** i / sqrt_5) for i in range(n + 1)]
