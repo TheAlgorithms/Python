@@ -25,9 +25,8 @@ def solution(n: int = 1000000) -> int:
     n → n/2 (n is even)
     n → 3n + 1 (n is odd)
 
-    # The code below has been commented due to slow execution affecting Travis.
-    # >>> solution(1000000)
-    # 837799
+    >>> solution(1000000)
+    837799
     >>> solution(200)
     171
     >>> solution(5000)
