@@ -30,6 +30,82 @@ def display(tree: Node | None) -> None:  # In Order traversal of the tree
         display(tree.right)
 
 
+def post_order_display(tree: Node | None) -> None:
+    """
+    >>> root = Node(1)
+    >>> root.left = Node(0)
+    >>> root.left.left = Node(2)
+    >>> root.left.right = Node(3)
+    >>> root.right = Node(4)
+    >>> root.right.left = Node(5)
+    >>> post_order_display(root)
+    2
+    3
+    0
+    5
+    4
+    1
+    """
+    if tree:
+        post_order_display(tree.left)
+        post_order_display(tree.right)
+        print(tree.data)
+
+
+def pre_order_display(tree: Node | None) -> None:
+    """
+    >>> root = Node(1)
+    >>> root.left = Node(0)
+    >>> root.left.left = Node(2)
+    >>> root.left.right = Node(3)
+    >>> root.right = Node(4)
+    >>> root.right.left = Node(5)
+    >>> post_order_display(root)
+    1
+    0
+    2
+    3
+    4
+    5
+    """
+    if tree:
+        print(tree.data)
+        pre_order_display(tree.left)
+        pre_order_display(tree.right)
+
+
+def level_order_display(tree: Node | None) -> None:
+    """
+    >>> root = Node(1)
+    >>> root.left = Node(0)
+    >>> root.left.left = Node(2)
+    >>> root.left.right = Node(3)
+    >>> root.right = Node(4)
+    >>> root.right.left = Node(5)
+    >>> post_order_display(root)
+    1
+    0
+    4
+    2
+    3
+    5
+    """
+    if not tree:
+        return
+
+    queue = [tree]
+    queuePointer = 0
+    while len(queue) > queuePointer:
+        thisNode = queue[queuePointer]
+        queuePointer += 1
+        if thisNode.left:
+            queue.append(thisNode.left)
+        if thisNode.right:
+            queue.append(thisNode.right)
+        
+        print(thisNode.data)
+
+
 def depth_of_tree(tree: Node | None) -> int:
     """
     Recursive function that returns the depth of a binary tree.
@@ -93,8 +169,14 @@ def main() -> None:  # Main function for testing.
 
     print(is_full_binary_tree(tree))
     print(depth_of_tree(tree))
-    print("Tree is: ")
+    print("Tree is:")
     display(tree)
+    print("\nPre-order Traversal:")
+    pre_order_display(tree)
+    print("\nPost-order Traversal:")
+    post_order_display(tree)
+    print("\nLevel-order Traversal:")
+    level_order_display(tree)
 
 
 if __name__ == "__main__":
