@@ -47,9 +47,8 @@ def collatz_sequence_length(n: int) -> int:
 def solution(n: int = 1000000) -> int:
     """Returns the number under n that generates the longest Collatz sequence.
 
-    # The code below has been commented due to slow execution affecting Travis.
-    # >>> solution(1000000)
-    # 837799
+    >>> solution(1000000)
+    837799
     >>> solution(200)
     171
     >>> solution(5000)
