@@ -31,7 +31,7 @@ def summerize_book(ol_book_data: dict) -> dict:
     """
      Given Open Library book data, return a summary as a Python dict.
 
-    >>> pass  # Placate TheAlgorithms @
+    >>> pass  # Placate https://github.com/apps/algorithms-keeper
     """
     desired_keys = {
         "title": "Title",
