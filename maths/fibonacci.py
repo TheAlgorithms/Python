@@ -95,8 +95,8 @@ def fib_binet(n: int) -> list[int]:
     NOTE 1: this function diverges from fib_iterative at around n = 71, likely
     due to compounding floating-point arithmetic errors
 
-    NOTE 2: this function overflows on n >= 1475 because of the size limitations
-    of Python floats
+    NOTE 2: this function doesn't accept n >= 1475 because it overflows
+    thereafter due to the size limitations of Python floats
     >>> fib_binet(0)
     [0]
     >>> fib_binet(1)
