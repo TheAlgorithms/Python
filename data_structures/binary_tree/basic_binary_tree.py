@@ -60,7 +60,7 @@ def pre_order_display(tree: Node | None) -> None:
     >>> root.left.right = Node(3)
     >>> root.right = Node(4)
     >>> root.right.left = Node(5)
-    >>> post_order_display(root)
+    >>> pre_order_display(root)
     1
     0
     2
@@ -82,7 +82,7 @@ def level_order_display(tree: Node | None) -> None:
     >>> root.left.right = Node(3)
     >>> root.right = Node(4)
     >>> root.right.left = Node(5)
-    >>> post_order_display(root)
+    >>> level_order_display(root)
     1
     0
     4
