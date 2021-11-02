@@ -38,7 +38,7 @@ def solution(n: int = 1000000) -> int:
     pre_counter = 1
     counters = {1: 1}
 
-    for input1 in range(1, n):
+    for input1 in range(2, n):
         counter = 0
         number = input1
 
