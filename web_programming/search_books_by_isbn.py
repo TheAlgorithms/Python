@@ -27,7 +27,7 @@ def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
     return requests.get(f"https://openlibrary.org/{new_olid}.json").json()
 
 
-def summerize_book(ol_book_data: dict) -> dict:
+def summarize_book(ol_book_data: dict) -> dict:
     """
      Given Open Library book data, return a summary as a Python dict.
 
@@ -70,7 +70,7 @@ if __name__ == "__main__":
         print(f"\nSearching Open Library for ISBN: {isbn}...\n")
 
         try:
-            book_summary = summerize_book(get_openlibrary_data(f"isbn/{isbn}"))
+            book_summary = summarize_book(get_openlibrary_data(f"isbn/{isbn}"))
             print("\n".join(f"{key}: {value}" for key, value in book_summary.items()))
         except JSONDecodeError:  # Workaround for requests.exceptions.RequestException:
             print(f"Sorry, there are no results for ISBN: {isbn}.")
