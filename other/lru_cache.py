@@ -12,11 +12,11 @@ class DoubleLinkedListNode:
     Node: key: 1, val: 1, has next: False, has prev: False
     """
 
-    def __init__(self, key: int, val: int):
+    def __init__(self, key: int | None, val: int | None):
         self.key = key
         self.val = val
-        self.next = None
-        self.prev = None
+        self.next: DoubleLinkedListNode | None = None
+        self.prev: DoubleLinkedListNode | None = None
 
     def __repr__(self) -> str:
         return "Node: key: {}, val: {}, has next: {}, has prev: {}".format(
@@ -91,7 +91,7 @@ class DoubleLinkedList:
 
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = DoubleLinkedListNode(None, None)
         self.rear = DoubleLinkedListNode(None, None)
         self.head.next, self.rear.prev = self.rear, self.head
@@ -111,6 +111,10 @@ class DoubleLinkedList:
         """
 
         previous = self.rear.prev
+
+        # All nodes other than self.head are guaranteed to have non-None previous
+        assert previous is not None
+
         previous.next = node
         node.prev = previous
         self.rear.prev = node
@@ -136,6 +140,7 @@ class DoubleLinkedList:
         return node
 
 
+# class LRUCache(Generic[T]):
 class LRUCache:
     """
     LRU Cache to store a given capacity of data. Can be used as a stand-alone object
@@ -201,7 +206,7 @@ class LRUCache:
     """
 
     # class variable to map the decorator functions to their respective instance
-    decorator_function_to_instance_map = {}
+    decorator_function_to_instance_map: dict[Callable, LRUCache] = {}
 
     def __init__(self, capacity: int):
         self.list = DoubleLinkedList()
@@ -209,7 +214,9 @@ class LRUCache:
         self.num_keys = 0
         self.hits = 0
         self.miss = 0
-        self.cache = {}
+        # self.cache: dict[int, int] = {}
+        # self.cache: dict[int, T] = {}
+        self.cache: dict[int, DoubleLinkedListNode] = {}
 
     def __repr__(self) -> str:
         """
@@ -245,8 +252,14 @@ class LRUCache:
 
         if key in self.cache:
             self.hits += 1
-            self.list.add(self.list.remove(self.cache[key]))
-            return self.cache[key].val
+            value_node = self.cache[key]
+            node = self.list.remove(self.cache[key])
+            assert node == value_node
+
+            # node is guaranteed not None because it is in self.cache
+            assert node is not None
+            self.list.add(node)
+            return node.val
         self.miss += 1
         return None
 
@@ -257,16 +270,25 @@ class LRUCache:
 
         if key not in self.cache:
             if self.num_keys >= self.capacity:
-                key_to_delete = self.list.head.next.key
-                self.list.remove(self.cache[key_to_delete])
-                del self.cache[key_to_delete]
+                # delete first node (oldest) when over capacity
+                first_node = self.list.head.next
+
+                # guaranteed to have a non-None first node when num_keys > 0
+                # explain to type checker via assertions
+                assert first_node is not None
+                assert first_node.key is not None
+                assert self.list.remove(first_node) is not None  # node guaranteed to be in list assert node.key is not None
+
+                del self.cache[first_node.key]
                 self.num_keys -= 1
             self.cache[key] = DoubleLinkedListNode(key, value)
             self.list.add(self.cache[key])
             self.num_keys += 1
 
         else:
+            # bump node to the end of the list, update value
             node = self.list.remove(self.cache[key])
+            assert node is not None  # node guaranteed to be in list
             node.val = value
             self.list.add(node)
 
@@ -289,10 +311,10 @@ class LRUCache:
                     )
                 return result
 
-            def cache_info():
+            def cache_info() -> LRUCache:
                 return LRUCache.decorator_function_to_instance_map[func]
 
-            cache_decorator_wrapper.cache_info = cache_info
+            setattr(cache_decorator_wrapper, "cache_info", cache_info)
 
             return cache_decorator_wrapper
 
