@@ -55,7 +55,7 @@ def gray_code_sequence_string(bit_count: int) -> list:
     >>> gray_code_sequence_string(2)
     ['00', '01', '11', '10']
 
-    >> gray_code_sequence_string(1)
+    >>> gray_code_sequence_string(1)
     ['0', '1']
     """
 
