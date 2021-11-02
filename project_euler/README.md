@@ -5,7 +5,7 @@ Problems are taken from https://projecteuler.net/, the Project Euler. [Problems 
 Project Euler is a series of challenging mathematical/computer programming problems that require more than just mathematical
 insights to solve. Project Euler is ideal for mathematicians who are learning to code.
 
-The solutions will be checked by our [automated testing on Travis CI](https://travis-ci.com/github/TheAlgorithms/Python/pull_requests) with the help of [this script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). The efficiency of your code is also checked. You can view the top 10 slowest solutions on Travis CI logs (under `slowest 10 durations`) and open a pull request to improve those solutions.
+The solutions will be checked by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) with the help of [this script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). The efficiency of your code is also checked. You can view the top 10 slowest solutions on GitHub Actions logs (under `slowest 10 durations`) and open a pull request to improve those solutions.
 
 
 ## Solution Guidelines
@@ -28,7 +28,7 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
   * When the `solution` function is called without any arguments like so: `solution()`, it should return the answer to the problem.
 
 * Every function, which includes all the helper functions, if any, and the main solution function, should have `doctest` in the function docstring along with a brief statement mentioning what the function is about.
-  * There should not be a `doctest` for testing the answer as that is done by our Travis CI build using this [script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). Keeping in mind the above example of [Problem 1](https://projecteuler.net/problem=1):
+  * There should not be a `doctest` for testing the answer as that is done by our GitHub Actions build using this [script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). Keeping in mind the above example of [Problem 1](https://projecteuler.net/problem=1):
 
   ```python
   def solution(limit: int = 1000):
