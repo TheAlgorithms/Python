@@ -6,7 +6,7 @@ def decrypt_caesar_with_chi_squared(
     ciphertext: str,
     cipher_alphabet: list[str] | None = None,
     frequencies_dict: dict[str, float] | None = None,
-    case_sensetive: bool = False,
+    case_sensitive: bool = False,
 ) -> tuple[int, float, str]:
     """
     Basic Usage
@@ -20,7 +20,7 @@ def decrypt_caesar_with_chi_squared(
     * frequencies_dict (dict): a dictionary of word frequencies where keys are
       the letters and values are a percentage representation of the frequency as
       a decimal/float
-    * case_sensetive (bool): a boolean value: True if the case matters during
+    * case_sensitive (bool): a boolean value: True if the case matters during
       decryption, False if it doesn't
 
     Returns:
@@ -117,6 +117,9 @@ def decrypt_caesar_with_chi_squared(
     >>> decrypt_caesar_with_chi_squared('crybd cdbsxq')
     (10, 233.35343938980898, 'short string')
 
+    >>> decrypt_caesar_with_chi_squared('Crybd Cdbsxq', case_sensitive=True)
+    (10, 233.35343938980898, 'Short String')
+
     >>> decrypt_caesar_with_chi_squared(12)
     Traceback (most recent call last):
     AttributeError: 'int' object has no attribute 'lower'
@@ -158,7 +161,7 @@ def decrypt_caesar_with_chi_squared(
         # Custom frequencies dictionary
         frequencies = frequencies_dict
 
-    if not case_sensetive:
+    if not case_sensitive:
         ciphertext = ciphertext.lower()
 
     # Chi squared statistic values
@@ -172,10 +175,14 @@ def decrypt_caesar_with_chi_squared(
         for letter in ciphertext:
             try:
                 # Try to index the letter in the alphabet
-                new_key = (alphabet_letters.index(letter) - shift) % len(
+                new_key = (alphabet_letters.index(letter.lower()) - shift) % len(
                     alphabet_letters
                 )
-                decrypted_with_shift += alphabet_letters[new_key]
+                decrypted_with_shift += (
+                    alphabet_letters[new_key].upper()
+                    if case_sensitive and letter.isupper()
+                    else alphabet_letters[new_key]
+                )
             except ValueError:
                 # Append the character if it isn't in the alphabet
                 decrypted_with_shift += letter
@@ -184,10 +191,11 @@ def decrypt_caesar_with_chi_squared(
 
         # Loop through each letter in the decoded message with the shift
         for letter in decrypted_with_shift:
-            if case_sensetive:
+            if case_sensitive:
+                letter = letter.lower()
                 if letter in frequencies:
                     # Get the amount of times the letter occurs in the message
-                    occurrences = decrypted_with_shift.count(letter)
+                    occurrences = decrypted_with_shift.lower().count(letter)
 
                     # Get the excepcted amount of times the letter should appear based
                     # on letter frequencies
