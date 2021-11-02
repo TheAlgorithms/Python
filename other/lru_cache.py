@@ -296,8 +296,10 @@ class LRUCache(Generic[T, U]):
             node.val = value
             self.list.add(node)
 
-    @staticmethod
-    def decorator(size: int = 128) -> Callable[[Callable[[T], U]], Callable[..., U]]:
+    @classmethod
+    def decorator(
+        cls, size: int = 128
+    ) -> Callable[[Callable[[T], U]], Callable[..., U]]:
         """
         Decorator version of LRU Cache
 
@@ -306,19 +308,17 @@ class LRUCache(Generic[T, U]):
 
         def cache_decorator_inner(func: Callable[[T], U]) -> Callable[..., U]:
             def cache_decorator_wrapper(*args: T) -> U:
-                if func not in LRUCache.decorator_function_to_instance_map:
-                    LRUCache.decorator_function_to_instance_map[func] = LRUCache(size)
+                if func not in cls.decorator_function_to_instance_map:
+                    cls.decorator_function_to_instance_map[func] = LRUCache(size)
 
-                result = LRUCache.decorator_function_to_instance_map[func].get(args[0])
+                result = cls.decorator_function_to_instance_map[func].get(args[0])
                 if result is None:
                     result = func(*args)
-                    LRUCache.decorator_function_to_instance_map[func].set(
-                        args[0], result
-                    )
+                    cls.decorator_function_to_instance_map[func].set(args[0], result)
                 return result
 
-            def cache_info() -> LRUCache:
-                return LRUCache.decorator_function_to_instance_map[func]
+            def cache_info() -> LRUCache[T, U]:
+                return cls.decorator_function_to_instance_map[func]
 
             setattr(cache_decorator_wrapper, "cache_info", cache_info)
 
