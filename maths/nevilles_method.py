@@ -32,9 +32,7 @@ def neville_interpolate(x_points: list, y_points: list, x0: int) -> list:
     >>> neville_interpolate((1,2,3,4,6), (6,7,8,9,11), '')
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "/home/mattwisdom/thealgo/nevilles_method.py", line 35, in neville_interpo
-      ... late
-        for i in range(2, n):
+      ...
     TypeError: unsupported operand type(s) for -: 'str' and 'int'
     """
     n = len(x_points)
