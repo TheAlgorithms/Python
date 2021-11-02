@@ -293,19 +293,20 @@ class LRUCache:
             self.list.add(node)
 
     @staticmethod
-    def decorator(size: int = 128):
+    def decorator(size: int = 128) -> Callable[[Callable[[int], int]], Callable[..., int]]:
         """
         Decorator version of LRU Cache
-        """
 
-        def cache_decorator_inner(func: Callable):
-            def cache_decorator_wrapper(*args, **kwargs):
+        Decorated function must be function of int -> int
+        """
+        def cache_decorator_inner(func: Callable[[int], int]) -> Callable[..., int]:
+            def cache_decorator_wrapper(*args: int) -> int:
                 if func not in LRUCache.decorator_function_to_instance_map:
                     LRUCache.decorator_function_to_instance_map[func] = LRUCache(size)
 
                 result = LRUCache.decorator_function_to_instance_map[func].get(args[0])
                 if result is None:
-                    result = func(*args, **kwargs)
+                    result = func(*args)
                     LRUCache.decorator_function_to_instance_map[func].set(
                         args[0], result
                     )
