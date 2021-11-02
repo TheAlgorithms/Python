@@ -1,12 +1,11 @@
 # Project Euler
 
-Problems are taken from https://projecteuler.net/, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright).
+Problems are taken from <https://projecteuler.net/>, the Project Euler. [Problems are licensed under CC BY-NC-SA 4.0](https://projecteuler.net/copyright).
 
 Project Euler is a series of challenging mathematical/computer programming problems that require more than just mathematical
 insights to solve. Project Euler is ideal for mathematicians who are learning to code.
 
 The solutions will be checked by our [automated testing on Travis CI](https://travis-ci.com/github/TheAlgorithms/Python/pull_requests) with the help of [this script](https://github.com/TheAlgorithms/Python/blob/master/scripts/validate_solutions.py). The efficiency of your code is also checked. You can view the top 10 slowest solutions on Travis CI logs (under `slowest 10 durations`) and open a pull request to improve those solutions.
-
 
 ## Solution Guidelines
 
@@ -23,7 +22,7 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
 
 * All imports should come ***after*** the module-level docstring.
 
-* You can have as many helper functions as you want but there should be one main function called `solution` which should satisfy the conditions as stated below:
+* You can have as many helper functions as you want, but there should be one main function called `solution` which should satisfy the conditions as stated below:
   * It should contain positional argument(s) whose default value is the question input. Example: Please take a look at [Problem 1](https://projecteuler.net/problem=1) where the question is to *Find the sum of all the multiples of 3 or 5 below 1000.* In this case the main solution function will be `solution(limit: int = 1000)`.
   * When the `solution` function is called without any arguments like so: `solution()`, it should return the answer to the problem.
 
@@ -49,7 +48,7 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
 
 ### Solution Template
 
-You can use the below template as your starting point but please read the [Coding Style](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#coding-style) first to understand how the template works.
+You can use the below template as your starting point, but please read the [Coding Style](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md#coding-style) first to understand how the template works.
 
 Please change the name of the helper functions accordingly, change the parameter names with a descriptive one, replace the content within `[square brackets]` (including the brackets) with the appropriate content.
 
