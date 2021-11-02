@@ -10,9 +10,13 @@ def complex_sum(complex_1: Complex, complex_2: Complex) -> Complex:
     >>> c.__repr__()
     (1, 1)
     """
-    return Complex(complex_1.real_part + complex_2.real_part, complex_1.imaginary_part + complex_2.imaginary_part)
+    return Complex(
+        complex_1.real_part + complex_2.real_part,
+        complex_1.imaginary_part + complex_2.imaginary_part,
+    )
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

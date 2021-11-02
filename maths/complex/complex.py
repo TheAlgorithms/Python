@@ -26,6 +26,7 @@ class Complex:
         return (self.real_part, self.imaginary_part)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

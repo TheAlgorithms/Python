@@ -11,11 +11,14 @@ def complex_mul(complex_1: Complex, complex_2: Complex) -> Complex:
     (-1, 0)
     """
     return Complex(
-        complex_1.real_part * complex_2.real_part - complex_1.imaginary_part * complex_2.imaginary_part,
-        complex_1.real_part * complex_2.imaginary_part + complex_2.real_part * complex_1.imaginary_part,
+        complex_1.real_part * complex_2.real_part
+        - complex_1.imaginary_part * complex_2.imaginary_part,
+        complex_1.real_part * complex_2.imaginary_part
+        + complex_2.real_part * complex_1.imaginary_part,
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
