@@ -51,18 +51,13 @@ class RedBlackTree:
         """
         parent = self.parent
         right = self.right
-
         if right is None:
             return self
-
         self.right = right.left
-
         if self.right:
             self.right.parent = self
         self.parent = right
-
         right.left = self
-
         if parent is not None:
             if parent.left == self:
                 parent.left = right
@@ -80,16 +75,11 @@ class RedBlackTree:
             return self
         parent = self.parent
         left = self.left
-
         self.left = left.right
-
         if self.left:
             self.left.parent = self
-
         self.parent = left
-
         left.right = self
-
         if parent is not None:
             if parent.right is self:
                 parent.right = left
@@ -143,24 +133,20 @@ class RedBlackTree:
                     self.parent.rotate_left()
                     if self.left:
                         self.left._insert_repair()
-
                 elif self.is_left():
                     if self.grandparent:
                         self.grandparent.rotate_right()
                         self.parent.color = 0
-
                     if self.parent.right:
                         self.parent.right.color = 1
                 else:
                     if self.grandparent:
                         self.grandparent.rotate_left()
                         self.parent.color = 0
-
                     if self.parent.left:
                         self.parent.left.color = 1
             else:
                 self.parent.color = 0
-
                 if uncle and self.grandparent:
                     uncle.color = 0
                     self.grandparent.color = 1
@@ -186,7 +172,6 @@ class RedBlackTree:
                     # is if both children are None leaves.
                     # We can just remove this node and call it a day.
                     if self.parent:
-
                         if self.is_left():
                             self.parent.left = None
                         else:
@@ -232,7 +217,6 @@ class RedBlackTree:
             or self.grandparent is None
         ):
             return
-
         if color(self.sibling) == 1:
             self.sibling.color = 0
             self.parent.color = 1
@@ -266,7 +250,6 @@ class RedBlackTree:
         ):
             self.sibling.rotate_right()
             self.sibling.color = 0
-
             if self.sibling.right:
                 self.sibling.right.color = 1
         if (
@@ -277,7 +260,6 @@ class RedBlackTree:
         ):
             self.sibling.rotate_left()
             self.sibling.color = 0
-
             if self.sibling.left:
                 self.sibling.left.color = 1
         if (
@@ -314,21 +296,17 @@ class RedBlackTree:
         """
         # I assume property 1 to hold because there is nothing that can
         # make the color be anything other than 0 or 1.
-
         # Property 2
         if self.color:
             # The root was red
             print("Property 2")
             return False
-
         # Property 3 does not need to be checked, because None is assumed
         # to be black and is all the leaves.
-
         # Property 4
         if not self.check_coloring():
             print("Property 4")
             return False
-
         # Property 5
         if self.black_height() is None:
             print("Property 5")
@@ -385,7 +363,6 @@ class RedBlackTree:
         """
         if self.label == label:
             return self
-
         elif self.label is not None and label > self.label:
             if self.right is None:
                 return None
@@ -474,7 +451,6 @@ class RedBlackTree:
         """Returns true iff this node is the left child of its parent."""
         if self.parent is None:
             return False
-
         return self.parent.left is self.parent.left is self
 
     def is_right(self) -> bool:
@@ -491,7 +467,6 @@ class RedBlackTree:
         Return the number of nodes in this tree.
         """
         ln = 1
-
         if self.left:
             ln += len(self.left)
         if self.right:
@@ -538,7 +513,6 @@ class RedBlackTree:
         """Test if two trees are equal."""
         if not isinstance(other, RedBlackTree):
             return NotImplemented
-
         if self.label == other.label:
             return self.left == other.left and self.right == other.right
         else:
@@ -563,9 +537,7 @@ def test_rotations() -> bool:
     """Test that the rotate_left and rotate_right functions work."""
     # Make a tree to test on
     tree = RedBlackTree(0)
-
     tree.left = RedBlackTree(-10, parent=tree)
-
     tree.right = RedBlackTree(10, parent=tree)
     tree.left.left = RedBlackTree(-20, parent=tree.left)
     tree.left.right = RedBlackTree(-5, parent=tree.left)
@@ -580,10 +552,8 @@ def test_rotations() -> bool:
     left_rot.left.left.right = RedBlackTree(-5, parent=left_rot.left.left)
     left_rot.right = RedBlackTree(20, parent=left_rot)
     tree = tree.rotate_left()
-
     if tree != left_rot:
         return False
-
     tree = tree.rotate_right()
     tree = tree.rotate_right()
     # Make the left rotation
@@ -752,19 +722,12 @@ def main() -> None:
     >>> pytests()
     """
     print_results("Rotating right and left", test_rotations())
-
     print_results("Inserting", test_insert())
-
     print_results("Searching", test_insert_and_search())
-
     print_results("Deleting", test_insert_delete())
-
     print_results("Floor and ceil", test_floor_ceil())
-
     print_results("Tree traversal", test_tree_traversal())
-
     print_results("Tree traversal", test_tree_chaining())
-
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
     test_insertion_speed()
