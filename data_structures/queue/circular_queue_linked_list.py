@@ -26,20 +26,14 @@ class CircularQueueLinkedList:
 
     def create_linked_list(self, initial_capacity: int) -> None:
         current_node = Node()
-
         self.front = current_node
         self.rear = current_node
-
         previous_node = current_node
-
         for _ in range(1, initial_capacity):
             current_node = Node()
-
             previous_node.next = current_node
             current_node.prev = previous_node
-
             previous_node = current_node
-
         previous_node.next = self.front
         self.front.prev = previous_node
 
@@ -109,10 +103,8 @@ class CircularQueueLinkedList:
             return
 
         self.check_is_full()
-
         if not self.is_empty():
             self.rear = self.rear.next
-
         if self.rear:
             self.rear.data = data
 
@@ -134,10 +126,8 @@ class CircularQueueLinkedList:
         Exception: Empty Queue
         """
         self.check_can_perform_operation()
-
         if self.rear is None or self.front is None:
             return
-
         if self.front == self.rear:
             data = self.front.data
             self.front.data = None
