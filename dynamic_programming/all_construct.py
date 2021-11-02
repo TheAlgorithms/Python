@@ -4,7 +4,7 @@ constructed from the given list of substrings
 """
 
 
-def all_construct(target: str, word_bank: list = None) -> list:
+def all_construct(target: str, word_bank: list[str] = None) -> list[list[str]]:
     """
         returns the list containing all the possible
         combinations a string(target) can be constructed from
@@ -18,8 +18,8 @@ def all_construct(target: str, word_bank: list = None) -> list:
     if word_bank is None:
         word_bank = []
     # create a table
-    table_size = len(target) + 1
-    table = []
+    table_size: int = len(target) + 1
+    table: list[list[str]] = []
     for i in range(table_size):
         table.append([])
 
@@ -33,7 +33,7 @@ def all_construct(target: str, word_bank: list = None) -> list:
             for word in word_bank:
                 # slice condition
                 if target[i : i + len(word)] == word:
-                    new_combinations = [[word] + way for way in table[i]]
+                    new_combinations: list[str] = [[word] + way for way in table[i]]
                     # adds the word to every combination the current position holds
                     # now,push that combination to the table[i+len(word)]
                     table[i + len(word)] += new_combinations
