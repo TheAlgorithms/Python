@@ -1,9 +1,12 @@
 from __future__ import annotations
 
-from typing import Callable
+from typing import Callable, Generic, TypeVar
+
+T = TypeVar("T")
+U = TypeVar("U")
 
 
-class DoubleLinkedListNode:
+class DoubleLinkedListNode(Generic[T, U]):
     """
     Double Linked List Node built specifically for LRU Cache
 
@@ -12,11 +15,11 @@ class DoubleLinkedListNode:
     Node: key: 1, val: 1, has next: False, has prev: False
     """
 
-    def __init__(self, key: int | None, val: int | None):
+    def __init__(self, key: T | None, val: U | None):
         self.key = key
         self.val = val
-        self.next: DoubleLinkedListNode | None = None
-        self.prev: DoubleLinkedListNode | None = None
+        self.next: DoubleLinkedListNode[T, U] | None = None
+        self.prev: DoubleLinkedListNode[T, U] | None = None
 
     def __repr__(self) -> str:
         return "Node: key: {}, val: {}, has next: {}, has prev: {}".format(
@@ -24,7 +27,7 @@ class DoubleLinkedListNode:
         )
 
 
-class DoubleLinkedList:
+class DoubleLinkedList(Generic[T, U]):
     """
     Double Linked List built specifically for LRU Cache
 
@@ -92,8 +95,8 @@ class DoubleLinkedList:
     """
 
     def __init__(self) -> None:
-        self.head = DoubleLinkedListNode(None, None)
-        self.rear = DoubleLinkedListNode(None, None)
+        self.head: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
+        self.rear: DoubleLinkedListNode[T, U] = DoubleLinkedListNode(None, None)
         self.head.next, self.rear.prev = self.rear, self.head
 
     def __repr__(self) -> str:
@@ -105,7 +108,7 @@ class DoubleLinkedList:
         rep.append(str(self.rear))
         return ",\n    ".join(rep)
 
-    def add(self, node: DoubleLinkedListNode) -> None:
+    def add(self, node: DoubleLinkedListNode[T, U]) -> None:
         """
         Adds the given node to the end of the list (before rear)
         """
@@ -120,7 +123,9 @@ class DoubleLinkedList:
         self.rear.prev = node
         node.next = self.rear
 
-    def remove(self, node: DoubleLinkedListNode) -> DoubleLinkedListNode | None:
+    def remove(
+        self, node: DoubleLinkedListNode[T, U]
+    ) -> DoubleLinkedListNode[T, U] | None:
         """
         Removes and returns the given node from the list
 
@@ -140,8 +145,7 @@ class DoubleLinkedList:
         return node
 
 
-# class LRUCache(Generic[T]):
-class LRUCache:
+class LRUCache(Generic[T, U]):
     """
     LRU Cache to store a given capacity of data. Can be used as a stand-alone object
     or as a function decorator.
@@ -206,17 +210,15 @@ class LRUCache:
     """
 
     # class variable to map the decorator functions to their respective instance
-    decorator_function_to_instance_map: dict[Callable, LRUCache] = {}
+    decorator_function_to_instance_map: dict[Callable[[T], U], LRUCache[T, U]] = {}
 
     def __init__(self, capacity: int):
-        self.list = DoubleLinkedList()
+        self.list: DoubleLinkedList[T, U] = DoubleLinkedList()
         self.capacity = capacity
         self.num_keys = 0
         self.hits = 0
         self.miss = 0
-        # self.cache: dict[int, int] = {}
-        # self.cache: dict[int, T] = {}
-        self.cache: dict[int, DoubleLinkedListNode] = {}
+        self.cache: dict[T, DoubleLinkedListNode[T, U]] = {}
 
     def __repr__(self) -> str:
         """
@@ -229,7 +231,7 @@ class LRUCache:
             f"capacity={self.capacity}, current size={self.num_keys})"
         )
 
-    def __contains__(self, key: int) -> bool:
+    def __contains__(self, key: T) -> bool:
         """
         >>> cache = LRUCache(1)
 
@@ -244,7 +246,7 @@ class LRUCache:
 
         return key in self.cache
 
-    def get(self, key: int) -> int | None:
+    def get(self, key: T) -> U | None:
         """
         Returns the value for the input key and updates the Double Linked List.
         Returns None if key is not present in cache
@@ -252,7 +254,7 @@ class LRUCache:
 
         if key in self.cache:
             self.hits += 1
-            value_node = self.cache[key]
+            value_node: DoubleLinkedListNode[T, U] = self.cache[key]
             node = self.list.remove(self.cache[key])
             assert node == value_node
 
@@ -263,7 +265,7 @@ class LRUCache:
         self.miss += 1
         return None
 
-    def set(self, key: int, value: int) -> None:
+    def set(self, key: T, value: U) -> None:
         """
         Sets the value for the input key and updates the Double Linked List
         """
@@ -277,7 +279,9 @@ class LRUCache:
                 # explain to type checker via assertions
                 assert first_node is not None
                 assert first_node.key is not None
-                assert self.list.remove(first_node) is not None  # node guaranteed to be in list assert node.key is not None
+                assert (
+                    self.list.remove(first_node) is not None
+                )  # node guaranteed to be in list assert node.key is not None
 
                 del self.cache[first_node.key]
                 self.num_keys -= 1
@@ -293,14 +297,15 @@ class LRUCache:
             self.list.add(node)
 
     @staticmethod
-    def decorator(size: int = 128) -> Callable[[Callable[[int], int]], Callable[..., int]]:
+    def decorator(size: int = 128) -> Callable[[Callable[[T], U]], Callable[..., U]]:
         """
         Decorator version of LRU Cache
 
-        Decorated function must be function of int -> int
+        Decorated function must be function of T -> U
         """
-        def cache_decorator_inner(func: Callable[[int], int]) -> Callable[..., int]:
-            def cache_decorator_wrapper(*args: int) -> int:
+
+        def cache_decorator_inner(func: Callable[[T], U]) -> Callable[..., U]:
+            def cache_decorator_wrapper(*args: T) -> U:
                 if func not in LRUCache.decorator_function_to_instance_map:
                     LRUCache.decorator_function_to_instance_map[func] = LRUCache(size)
 
