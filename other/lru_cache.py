@@ -165,7 +165,8 @@ class LRUCache(Generic[T, U]):
         Node: key: None, val: None, has next: False, has prev: True
 
     >>> cache.cache
-    {1: Node: key: 1, val: 1, has next: True, has prev: True, 2: Node: key: 2, val: 2, has next: True, has prev: True}
+    {1: Node: key: 1, val: 1, has next: True, has prev: True, \
+2: Node: key: 2, val: 2, has next: True, has prev: True}
 
     >>> cache.set(3, 3)
 
@@ -177,7 +178,8 @@ class LRUCache(Generic[T, U]):
         Node: key: None, val: None, has next: False, has prev: True
 
     >>> cache.cache
-    {1: Node: key: 1, val: 1, has next: True, has prev: True, 3: Node: key: 3, val: 3, has next: True, has prev: True}
+    {1: Node: key: 1, val: 1, has next: True, has prev: True, \
+3: Node: key: 3, val: 3, has next: True, has prev: True}
 
     >>> cache.get(2) is None
     True
