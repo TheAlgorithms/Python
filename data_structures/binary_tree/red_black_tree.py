@@ -160,8 +160,9 @@ class RedBlackTree:
                 # so we replace this node with the greatest one less than
                 # it and remove that.
                 value = self.left.get_max()
-                self.label = value
-                self.left.remove(value) if value else None
+                if value is not None:
+                    self.label = value
+                    self.left.remove(value)
             else:
                 # This node has at most one non-None child, so we don't
                 # need to replace
