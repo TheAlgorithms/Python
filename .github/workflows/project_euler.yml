@@ -16,11 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-      - name: Install python-dev, pytest and pytest-cov
+      - name: Install python3-dev, pytest and pytest-cov
         run: |
           python -m pip install --upgrade pip
           sudo apt update
-          sudo apt install python-dev
+          sudo apt install python3-dev
           python -m pip install --upgrade pytest pytest-cov
       - run: pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
   validate-solutions:
