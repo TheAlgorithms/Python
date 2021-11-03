@@ -1,6 +1,6 @@
 beautifulsoup4
 fake_useragent
-keras
+# keras
 lxml
 matplotlib
 numpy
