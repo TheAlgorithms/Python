@@ -1,5 +1,3 @@
-"""Count equal element pairs in the given array"""
-
 import doctest
 from collections import Counter
 
