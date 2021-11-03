@@ -15,14 +15,13 @@ def all_construct(target: str, word_bank: list[str] = None) -> list[list[str]]:
     [['purp', 'le'], ['p', 'ur', 'p', 'le']]
     """
 
-    if word_bank is None:
-        word_bank = []
+    word_bank = word_bank or []
     # create a table
     table_size: int = len(target) + 1
+
     table: list[list[str]] = []
     for i in range(table_size):
         table.append([])
-
     # seed value
     table[0] = [[]]  # because empty string has empty combination
 
