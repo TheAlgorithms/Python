@@ -19,8 +19,8 @@ jobs:
       - name: Install python-dev, pytest and pytest-cov
         run: |
           python -m pip install --upgrade pip
-          apt update
-          apt install python-dev
+          sudo apt update
+          sudo apt install python-dev
           python -m pip install --upgrade pytest pytest-cov
       - run: pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
   validate-solutions:
