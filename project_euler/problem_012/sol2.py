@@ -29,7 +29,18 @@ def triangle_number_generator():
 
 
 def count_divisors(n):
-    return sum(2 for i in range(1, int(n ** 0.5) + 1) if n % i == 0 and i * i != n)
+    divisors_count = 1
+    i = 2
+    while i * i <= n:
+        multiplicity = 0
+        while n % i == 0:
+            n //= i
+            multiplicity += 1
+        divisors_count *= multiplicity + 1
+        i += 1
+    if n > 1:
+        divisors_count *= 2
+    return divisors_count
 
 
 def solution():
