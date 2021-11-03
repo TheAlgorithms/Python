@@ -50,7 +50,7 @@ def lowest_common_ancestor(
         return u
     # moving both nodes upwards till lca in found
     for i in range(18, -1, -1):
-        if parent[i][u] != 0 and parent[i][u] != parent[i][v]:
+        if parent[i][u] not in [0, parent[i][v]]:
             u, v = parent[i][u], parent[i][v]
     # returning longest common ancestor of u,v
     return parent[0][u]
