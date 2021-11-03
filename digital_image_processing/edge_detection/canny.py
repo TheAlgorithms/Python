@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+
 from digital_image_processing.filters.convolve import img_convolve
 from digital_image_processing.filters.sobel_filter import sobel_filter
 
