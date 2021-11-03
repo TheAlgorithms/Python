@@ -494,7 +494,7 @@
   * [Integration By Simpson Approx](https://github.com/TheAlgorithms/Python/blob/master/maths/integration_by_simpson_approx.py)
   * [Is Ip V4 Address Valid](https://github.com/TheAlgorithms/Python/blob/master/maths/is_ip_v4_address_valid.py)
   * [Is Square Free](https://github.com/TheAlgorithms/Python/blob/master/maths/is_square_free.py)
-  * [Iterative Pair](https://github.com/TheAlgorithms/Python/blob/master/maths/iterative_pair.py)
+  * [Sock Merchant](https://github.com/TheAlgorithms/Python/blob/master/maths/sock_merchant.py)
   * [Jaccard Similarity](https://github.com/TheAlgorithms/Python/blob/master/maths/jaccard_similarity.py)
   * [Kadanes](https://github.com/TheAlgorithms/Python/blob/master/maths/kadanes.py)
   * [Karatsuba](https://github.com/TheAlgorithms/Python/blob/master/maths/karatsuba.py)
