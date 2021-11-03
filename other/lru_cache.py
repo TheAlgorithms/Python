@@ -132,16 +132,13 @@ class DoubleLinkedList(Generic[T, U]):
         Returns None if node.prev or node.next is None
         """
 
-        if node.prev is None:
+        if node.prev is None or node.next is None:
             return None
-        elif node.next is None:
-            return None
-        else:
-            node.prev.next = node.next
-            node.next.prev = node.prev
-            node.prev = None
-            node.next = None
 
+        node.prev.next = node.next
+        node.next.prev = node.prev
+        node.prev = None
+        node.next = None
         return node
 
 
