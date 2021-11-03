@@ -2,7 +2,7 @@ import doctest
 from collections import Counter
 
 
-def sockMerchant(n, ar):
+def sockMerchant(n: int, ar: list[int]) -> int:
     """
     >>> sockMerchant(9, [10, 20, 20, 10, 10, 30, 50, 10, 20])
     3
