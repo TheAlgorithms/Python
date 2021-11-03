@@ -5,7 +5,7 @@ constructed from the given list of substrings
 from __future__ import annotations
 
 
-def all_construct(target: str, word_bank: list[str] = None) -> list[list[str]]:
+def all_construct(target: str, word_bank: list[str] | None = None) -> list[list[str]]:
     """
         returns the list containing all the possible
         combinations a string(target) can be constructed from
