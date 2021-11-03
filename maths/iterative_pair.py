@@ -2,7 +2,7 @@ import doctest
 from collections import Counter
 
 
-def sockMerchant(n: int, ar: list[int]) -> int:
+def sock_merchant(n: int, ar: list[int]) -> int:
     """
     >>> sockMerchant(9, [10, 20, 20, 10, 10, 30, 50, 10, 20])
     3
@@ -25,6 +25,6 @@ if __name__ == "__main__":
 
     ar = list(map(int, input().rstrip().split()))
 
-    result = sockMerchant(n, ar)
+    result = sock_merchant(n, ar)
     print(result)
     doctest.testmod()
