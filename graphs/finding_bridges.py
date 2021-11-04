@@ -26,7 +26,7 @@ def __get_demo_graph(index):
     ][index]
 
 
-def compute_bridges(graph: dict) -> list:
+def compute_bridges(graph: dict[int, list[int]]) -> list[tuple[int, int]]:
     """
     Return the list of undirected graph bridges [(a1, b1), ..., (ak, bk)]; ai <= bi
     >>> compute_bridges(__get_demo_graph(0))
