@@ -14,10 +14,11 @@ def next_greatest_element_slow(arr: list[float]) -> list[float]:
     """
 
     result = []
+    arr_size = len(arr)
 
-    for i in range(0, len(arr), 1):
+    for i in range(arr_size):
         next: float = -1
-        for j in range(i + 1, len(arr), 1):
+        for j in range(i + 1, arr_size):
             if arr[i] < arr[j]:
                 next = arr[j]
                 break
@@ -57,21 +58,19 @@ def next_greatest_element(arr: list[float]) -> list[float]:
     >>> next_greatest_element(arr) == expect
     True
     """
+    arr_size = len(arr)
     stack: list[float] = []
-    result: list[float] = [-1] * len(arr)
+    result: list[float] = [-1] * arr_size
 
-    for index in reversed(range(len(arr))):
-        if len(stack):
+    for index in reversed(range(arr_size)):
+        if stack:
             while stack[-1] <= arr[index]:
                 stack.pop()
-                if len(stack) == 0:
+                if not stack:
                     break
-
-        if len(stack) != 0:
+        if stack:
             result[index] = stack[-1]
-
         stack.append(arr[index])
-
     return result
 
 
