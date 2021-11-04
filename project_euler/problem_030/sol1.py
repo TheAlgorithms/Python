@@ -1,4 +1,4 @@
-""" Problem Statement (Digit Fifth Power ): https://projecteuler.net/problem=30
+""" Problem Statement (Digit Fifth Powers): https://projecteuler.net/problem=30
 
 Surprisingly there are only three numbers that can be written as the sum of fourth
 powers of their digits:
@@ -13,12 +13,12 @@ The sum of these numbers is 1634 + 8208 + 9474 = 19316.
 Find the sum of all the numbers that can be written as the sum of fifth powers of their
 digits.
 
-(9^5)=59,049‬
-59049*7=4,13,343 (which is only 6 digit number )
-So, number greater than 9,99,999 are rejected
-and also 59049*3=1,77,147 (which exceeds the criteria of number being 3 digit)
-So, n>999
-and hence a bound between (1000,1000000)
+9^5 = 59049
+59049 * 7 = 413343 (which is only 6 digit number)
+So, numbers greater than 999999 are rejected
+and also 59049 * 3 = 177147 (which exceeds the criteria of number being 3 digit)
+So, number > 999
+and hence a number between 1000 and 1000000
 """
 
 
