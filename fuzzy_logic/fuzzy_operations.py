@@ -8,6 +8,7 @@ Python:
   - 3.5
 """
 import numpy as np
+
 try:
     import skfuzzy as fuzz
 except ImportError:
