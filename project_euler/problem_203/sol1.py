@@ -72,9 +72,9 @@ def get_squarefrees(unique_coefficients: set[int]) -> set[int]:
     that n = p*p*r, then the number is non-squarefree.
 
     >>> get_squarefrees({1})
-    set()
+    {1}
     >>> get_squarefrees({1, 2})
-    set()
+    {1, 2}
     >>> get_squarefrees({1, 2, 3, 4, 5, 6, 7, 35, 10, 15, 20, 21})
     {1, 2, 3, 5, 6, 7, 35, 10, 15, 21}
     """
@@ -101,7 +101,7 @@ def solution(n: int = 51) -> int:
     Returns the sum of squarefrees for a given Pascal's Triangle of depth n.
 
     >>> solution(1)
-    0
+    1
     >>> solution(8)
     105
     >>> solution(9)
