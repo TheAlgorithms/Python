@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import collections
 import pprint
 
@@ -14,7 +16,7 @@ def signature(word: str) -> str:
     return "".join(sorted(word))
 
 
-def anagram(my_word: str) -> list[str, ...]:
+def anagram(my_word: str) -> list[str]:
     """Return every anagram of the given word
     >>> anagram('test')
     ['sett', 'stet', 'test']
