@@ -29,7 +29,7 @@ jobs:
       - name: A mypy reality check
         run: |
           mv mypy.ini was_mypy.ini
-          mypy --ignore-missing-imports --install-types --non-interactive ./graphs          || true  # Errors: 10  -> 9
+          mypy --ignore-missing-imports --install-types --non-interactive ./graphs          || true  # Errors: 10  -> 9 
           mypy --ignore-missing-imports --install-types --non-interactive ./maths           || true  # Errors: 14  -> 14
           mypy --ignore-missing-imports --install-types --non-interactive ./matrix          || true  # Errors: 15  -> 15
           mypy --ignore-missing-imports --install-types --non-interactive ./searches        || true  # Errors: 45  -> 21
