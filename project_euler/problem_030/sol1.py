@@ -22,17 +22,27 @@ and hence a number between 1000 and 1000000
 """
 
 
-def digitsum(s: str) -> int:
+DIGITS_FIFTH_POWER = {str(digit): digit ** 5 for digit in range(10)}
+
+
+def digits_fifth_powers_sum(number: int) -> int:
     """
-    >>> all(digitsum(str(i)) == (1 if i == 1 else 0) for i in range(100))
-    True
+    >>> digits_fifth_powers_sum(1234)
+    1300
     """
-    i = sum(pow(int(c), 5) for c in s)
-    return i if i == int(s) else 0
+    return sum(DIGITS_FIFTH_POWER[digit] for digit in str(number))
 
 
 def solution() -> int:
-    return sum(digitsum(str(i)) for i in range(1000, 1000000))
+    """
+    >>> solution()
+    443839
+    """
+    return sum(
+        number
+        for number in range(1000, 1000000)
+        if number == digits_fifth_powers_sum(number)
+    )
 
 
 if __name__ == "__main__":
