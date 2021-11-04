@@ -39,5 +39,5 @@ if __name__ == "__main__":
     all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
 
     with open("anagrams.txt", "w") as file:
-        file.write("all_anagrams = ")
+        file.write("all_anagrams = \n ")
         file.write(pprint.pformat(all_anagrams))
