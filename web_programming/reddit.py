@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import requests
 
-
 valid_terms = set(
     """approved_at_utc approved_by author_flair_background_color
 author_flair_css_class author_flair_richtext author_flair_template_id author_fullname
@@ -24,6 +23,8 @@ def get_subreddit_data(
     limit : Number of posts to fetch
     age : ["new", "top", "hot"]
     wanted_data : Get only the required data in the list
+    
+    >>> pass
     """
     wanted_data = wanted_data or []
     if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
