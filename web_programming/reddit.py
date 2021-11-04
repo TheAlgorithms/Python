@@ -1,59 +1,52 @@
+from __future__ import annotations
+
 import requests
 
 
-def get_data(
-    sub: str, limit: int = 1, age: str = "new", wanted_data: list = []
+valid_terms = set(
+    """approved_at_utc approved_by author_flair_background_color
+author_flair_css_class author_flair_richtext author_flair_template_id author_fullname
+author_premium can_mod_post category clicked content_categories created_utc downs
+edited gilded gildings hidden hide_score is_created_from_ads_ui is_meta
+is_original_content is_reddit_media_domain is_video link_flair_css_class
+link_flair_richtext link_flair_text link_flair_text_color media_embed mod_reason_title
+name permalink pwls quarantine saved score secure_media secure_media_embed selftext
+subreddit subreddit_name_prefixed subreddit_type thumbnail title top_awarded_type
+total_awards_received ups upvote_ratio url user_reports""".split()
+)
+
+
+def get_subreddit_data(
+    subreddit: str, limit: int = 1, age: str = "new", wanted_data: list | None = None
 ) -> dict:
     """
-    sub : Subreddit to query
+    subreddit : Subreddit to query
     limit : Number of posts to fetch
     age : ["new", "top", "hot"]
     wanted_data : Get only the required data in the list
-    Possible values:
-        [
-            'approved_at_utc', 'subreddit', 'selftext',
-            'author_fullname', 'saved', mod_reason_title',
-            'gilded', 'clicked', 'title', 'link_flair_richtext',
-            'subreddit_name_prefixed', 'hidden', 'pwls',
-            'link_flair_css_class', 'downs', 'top_awarded_type',
-            'hide_score', 'name', 'quarantine', 'link_flair_text_color',
-            'upvote_ratio', 'author_flair_background_color',
-            'subreddit_type', 'ups', 'total_awards_received',
-            'media_embed', 'author_flair_template_id',
-            'is_original_content', 'user_reports', 'secure_media',
-            'is_reddit_media_domain', 'is_meta', 'category',
-            'secure_media_embed', 'link_flair_text', 'can_mod_post',
-            'score', 'approved_by', 'is_created_from_ads_ui',
-            'author_premium', 'thumbnail', 'edited',
-            'author_flair_css_class', 'author_flair_richtext',
-            'gildings', 'content_categories','url', 'is_video',
-            'created_utc', 'permalink'
-        ]
     """
+    wanted_data = wanted_data or []
+    if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
+        raise ValueError(f"Invalid search term: {invalid_search_terms}")
     response = requests.get(
-        f"https://reddit.com/r/{sub}/{age}.json?limit={limit}",
+        f"https://reddit.com/r/{subreddit}/{age}.json?limit={limit}",
         headers={"User-agent": "A random string"},
     )
     if response.status_code == 429:
         raise requests.HTTPError
 
     data = response.json()
+    if not wanted_data:
+        return {id_: data["data"]["children"][id_] for id_ in range(limit)}
+
     data_dict = {}
-
-    if wanted_data == []:
-        for id_ in range(limit):
-            data_dict[id_] = data["data"]["children"][id_]
-    else:
-        for id_ in range(limit):
-            singleton = {}
-            for item in wanted_data:
-                singleton[item] = data["data"]["children"][id_]["data"][item]
-
-            data_dict[id_] = singleton
-
+    for id_ in range(limit):
+        data_dict[id_] = {
+            item: data["data"]["children"][id_]["data"][item] for item in wanted_data
+        }
     return data_dict
 
 
 if __name__ == "__main__":
     # If you get Error 429, that means you are rate limited.Try after some time
-    print(get_data("learnpython", wanted_data=["title", "url", "selftext"]))
+    print(get_subreddit_data("learnpython", wanted_data=["title", "url", "selftext"]))
