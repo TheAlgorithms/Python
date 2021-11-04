@@ -13,5 +13,6 @@ scikit-fuzzy
 sklearn
 statsmodels
 sympy
-tensorflow; python_version < '3.10'
+tensorflow
+types-requests
 xgboost
