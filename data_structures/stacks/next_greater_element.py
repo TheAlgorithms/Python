@@ -1,8 +1,10 @@
+from __future__ import annotations
+
 arr = [-10, -5, 0, 5, 5.1, 11, 13, 21, 3, 4, -21, -10, -5, -1, 0]
 expect = [-5, 0, 5, 5.1, 11, 13, 21, -1, 4, -1, -10, -5, -1, 0, -1]
 
 
-def next_greatest_element_slow(arr: list) -> list:
+def next_greatest_element_slow(arr: list[float]) -> list[float]:
     """
     Get the Next Greatest Element (NGE) for all elements in a list.
     Maximum element present after the current one which is also greater than the
@@ -10,9 +12,11 @@ def next_greatest_element_slow(arr: list) -> list:
     >>> next_greatest_element_slow(arr) == expect
     True
     """
+
     result = []
+
     for i in range(0, len(arr), 1):
-        next = -1
+        next: float = -1
         for j in range(i + 1, len(arr), 1):
             if arr[i] < arr[j]:
                 next = arr[j]
@@ -21,7 +25,7 @@ def next_greatest_element_slow(arr: list) -> list:
     return result
 
 
-def next_greatest_element_fast(arr: list) -> list:
+def next_greatest_element_fast(arr: list[float]) -> list[float]:
     """
     Like next_greatest_element_slow() but changes the loops to use
     enumerate() instead of range(len()) for the outer loop and
@@ -31,7 +35,7 @@ def next_greatest_element_fast(arr: list) -> list:
     """
     result = []
     for i, outer in enumerate(arr):
-        next = -1
+        next: float = -1
         for inner in arr[i + 1 :]:
             if outer < inner:
                 next = inner
@@ -40,7 +44,7 @@ def next_greatest_element_fast(arr: list) -> list:
     return result
 
 
-def next_greatest_element(arr: list) -> list:
+def next_greatest_element(arr: list[float]) -> list[float]:
     """
     Get the Next Greatest Element (NGE) for all elements in a list.
     Maximum element present after the current one which is also greater than the
@@ -53,8 +57,8 @@ def next_greatest_element(arr: list) -> list:
     >>> next_greatest_element(arr) == expect
     True
     """
-    stack = []
-    result = [-1] * len(arr)
+    stack: list[float] = []
+    result: list[float] = [-1] * len(arr)
 
     for index in reversed(range(len(arr))):
         if len(stack):
