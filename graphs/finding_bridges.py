@@ -9,6 +9,7 @@ For more details, refer this article:
 https://www.geeksforgeeks.org/bridge-in-a-graph/
 """
 
+
 def __get_demo_graph(index):
     return [
         {
@@ -54,6 +55,7 @@ def __get_demo_graph(index):
             4: [1, 2, 3],
         },
     ][index]
+
 
 def compute_bridges(graph: dict[int, list[int]]) -> list[tuple[int, int]]:
     """
