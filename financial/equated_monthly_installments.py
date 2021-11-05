@@ -34,20 +34,21 @@ def equated_monthly_installments(
         ...
     Exception: Years to repay must be an integer > 0
     """
-    if p <= 0:
+    if principal <= 0:
         raise Exception("Principal borrowed must be > 0")
-    if r < 0:
+    if rate_per_annum < 0:
         raise Exception("Rate of interest must be >= 0")
-    if y <= 0 or not isinstance(y, int):
+    if years_to_repay <= 0 or not isinstance(years_to_repay, int):
         raise Exception("Years to repay must be an integer > 0")
 
     # Yearly rate is divided by 12 to get monthly rate
-    rate_per_month = r_m = rate_per_annum / 12
+    rate_per_month = rate_per_annum / 12
 
     # Years to repay is multiplied by 12 to get number of payments as payment is monthly
-    number_of_payments = n = years_to_repay * 12
+    number_of_payments = years_to_repay * 12
 
-    return p * r_m * (1 + r_m) ** n / ((1 + r_m) ** n - 1)
+    return principal * rate_per_annum * (1 + rate_per_annum) ** number_of_payments /
+((1 + rate_per_month) ** number_of_payments - 1)
 
 
 if __name__ == "__main__":
