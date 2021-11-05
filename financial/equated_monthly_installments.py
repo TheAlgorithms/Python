@@ -47,8 +47,12 @@ def equated_monthly_installments(
     # Years to repay is multiplied by 12 to get number of payments as payment is monthly
     number_of_payments = years_to_repay * 12
 
-    return (principal * rate_per_annum * (1 + rate_per_annum) ** number_of_payments /
-((1 + rate_per_month) ** number_of_payments - 1))
+     return (
+        principal
+        * rate_per_month
+        * (1 + rate_per_month) ** number_of_payments
+        / ((1 + rate_per_month) ** number_of_payments - 1)
+    )
 
 
 if __name__ == "__main__":
