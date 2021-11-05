@@ -21,7 +21,28 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools six wheel
           python -m pip install mypy pytest-cov -r requirements.txt
-      - run: mypy --install-types --non-interactive .
+      - run: mypy --install-types --non-interactive
+                  --exclude=data_structures/stacks/next_greater_element.py
+                  --exclude=graphs/boruvka.py
+                  --exclude=graphs/breadth_first_search.py
+                  --exclude=graphs/breadth_first_search_2.py
+                  --exclude=graphs/check_cycle.py
+                  --exclude=graphs/finding_bridges.py
+                  --exclude=graphs/greedy_min_vertex_cover.py
+                  --exclude=graphs/random_graph_generator.py
+                  --exclude=maths/average_mode.py
+                  --exclude=maths/gamma_recursive.py
+                  --exclude=maths/proth_number.py
+                  --exclude=maths/series/geometric_series.py
+                  --exclude=maths/series/p_series.py
+                  --exclude=matrix/matrix_operation.py
+                  --exclude=other/fischer_yates_shuffle.py
+                  --exclude=other/least_recently_used.py
+                  --exclude=other/lfu_cache.py
+                  --exclude=other/lru_cache.py
+                  --exclude=searches/simulated_annealing.py
+                  --exclude=searches/ternary_search.py
+                  .
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/validate_solutions.py --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
