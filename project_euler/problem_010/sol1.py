@@ -49,7 +49,7 @@ def solution(n: int = 2000000) -> int:
     10
     """
     
-    return sum([num for num in range(3, n, 2) if prime_check(num)]) + 2 if n > 2 else 0
+    return sum([num for num in range(3, n, 2) if is_prime(num)]) + 2 if n > 2 else 0
 
 
 if __name__ == "__main__":
