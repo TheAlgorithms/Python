@@ -33,9 +33,18 @@ def is_substring_divisible(num: tuple) -> bool:
     >>> is_substring_divisible((1, 4, 0, 6, 3, 5, 7, 2, 8, 9))
     True
     """
-    tests = [2, 3, 5, 7, 11, 13, 17]
+    if num[3] % 2 != 0:
+        return False
+
+    if (num[2] + num[3] + num[4]) % 3 != 0:
+        return False
+
+    if num[5] % 5 != 0:
+        return False
+
+    tests = [7, 11, 13, 17]
     for i, test in enumerate(tests):
-        if (num[i + 1] * 100 + num[i + 2] * 10 + num[i + 3]) % test != 0:
+        if (num[i + 4] * 100 + num[i + 5] * 10 + num[i + 6]) % test != 0:
             return False
     return True
 
@@ -43,17 +52,15 @@ def is_substring_divisible(num: tuple) -> bool:
 def solution(n: int = 10) -> int:
     """
     Returns the sum of all pandigital numbers which pass the
-    divisiility tests.
+    divisibility tests.
     >>> solution(10)
     16695334890
     """
-    list_nums = [
+    return sum(
         int("".join(map(str, num)))
         for num in permutations(range(n))
         if is_substring_divisible(num)
-    ]
-
-    return sum(list_nums)
+    )
 
 
 if __name__ == "__main__":
