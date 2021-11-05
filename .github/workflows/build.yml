@@ -26,13 +26,3 @@ jobs:
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/validate_solutions.py --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
-      - name: A mypy reality check
-        run: |
-          mv mypy.ini was_mypy.ini
-          mypy --ignore-missing-imports --install-types --non-interactive ./graphs          || true  # Errors: 10  -> 9
-          mypy --ignore-missing-imports --install-types --non-interactive ./maths           || true  # Errors: 14  -> 14
-          mypy --ignore-missing-imports --install-types --non-interactive ./matrix          || true  # Errors: 15  -> 15
-          mypy --ignore-missing-imports --install-types --non-interactive ./searches        || true  # Errors: 45  -> 21
-          mypy --ignore-missing-imports --install-types --non-interactive ./other           || true  # Errors: 51  -> 43
-          mypy --ignore-missing-imports --install-types --non-interactive ./data_structures || true  # Errors: 117 -> 67
-          mv was_mypy.ini mypy.ini
