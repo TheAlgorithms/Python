@@ -2,7 +2,7 @@ beautifulsoup4
 fake_useragent
 keras
 lxml
-matplotlib
+matplotlib>=3.4.3
 numpy
 opencv-python
 pandas
