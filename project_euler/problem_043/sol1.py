@@ -43,7 +43,7 @@ def is_substring_divisible(num: tuple) -> bool:
 def solution(n: int = 10) -> int:
     """
     Returns the sum of all pandigital numbers which pass the
-    divisiility tests.
+    divisibility tests.
     >>> solution(10)
     16695334890
     """
