@@ -253,6 +253,7 @@
 
 ## Dynamic Programming
   * [Abbreviation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/abbreviation.py)
+  * [All Construct](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/all_construct.py)
   * [Bitmask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/bitmask.py)
   * [Catalan Numbers](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/catalan_numbers.py)
   * [Climbing Stairs](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/climbing_stairs.py)
@@ -612,6 +613,7 @@
 
 ## Physics
   * [N Body Simulation](https://github.com/TheAlgorithms/Python/blob/master/physics/n_body_simulation.py)
+  * [Newtons Second Law Of Motion](https://github.com/TheAlgorithms/Python/blob/master/physics/newtons_second_law_of_motion.py)
 
 ## Project Euler
   * Problem 001
@@ -1018,6 +1020,7 @@
   * [Nasa Data](https://github.com/TheAlgorithms/Python/blob/master/web_programming/nasa_data.py)
   * [Random Anime Character](https://github.com/TheAlgorithms/Python/blob/master/web_programming/random_anime_character.py)
   * [Recaptcha Verification](https://github.com/TheAlgorithms/Python/blob/master/web_programming/recaptcha_verification.py)
+  * [Reddit](https://github.com/TheAlgorithms/Python/blob/master/web_programming/reddit.py)
   * [Search Books By Isbn](https://github.com/TheAlgorithms/Python/blob/master/web_programming/search_books_by_isbn.py)
   * [Slack Message](https://github.com/TheAlgorithms/Python/blob/master/web_programming/slack_message.py)
   * [Test Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/test_fetch_github_info.py)
