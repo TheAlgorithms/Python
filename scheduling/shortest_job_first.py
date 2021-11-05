@@ -123,7 +123,7 @@ if __name__ == "__main__":
     processes = list(range(1, no_of_processes + 1))
 
     for i in range(no_of_processes):
-        print("Enter the arrival time and brust time for process:--" + str(i + 1))
+        print("Enter the arrival time and burst time for process:--" + str(i + 1))
         arrival_time[i], burst_time[i] = map(int, input().split())
 
     waiting_time = calculate_waitingtime(arrival_time, burst_time, no_of_processes)
