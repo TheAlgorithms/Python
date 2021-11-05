@@ -21,28 +21,8 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools six wheel
           python -m pip install mypy pytest-cov -r requirements.txt
-      - run: mypy --install-types --non-interactive
-                  --exclude ./data_structures/stacks/next_greater_element.py
-                  --exclude ./graphs/boruvka.py
-                  --exclude ./graphs/breadth_first_search.py
-                  --exclude ./graphs/breadth_first_search_2.py
-                  --exclude ./graphs/check_cycle.py
-                  --exclude ./graphs/finding_bridges.py
-                  --exclude ./graphs/greedy_min_vertex_cover.py
-                  --exclude ./graphs/random_graph_generator.py
-                  --exclude ./maths/average_mode.py
-                  --exclude ./maths/gamma_recursive.py
-                  --exclude ./maths/proth_number.py
-                  --exclude ./maths/series/geometric_series.py
-                  --exclude ./maths/series/p_series.py
-                  --exclude ./matrix/matrix_operation.py
-                  --exclude ./other/fischer_yates_shuffle.py
-                  --exclude ./other/least_recently_used.py
-                  --exclude ./other/lfu_cache.py
-                  --exclude ./other/lru_cache.py
-                  --exclude ./searches/simulated_annealing.py
-                  --exclude ./searches/ternary_search.py
-                  .
+      - run: mypy --exclude (data_structures/stacks/next_greater_element.py|graphs/boruvka.py|graphs/breadth_first_search.py|graphs/breadth_first_search_2.py|graphs/check_cycle.py|graphs/finding_bridges.py|graphs/greedy_min_vertex_cover.py|graphs/random_graph_generator.py|maths/average_mode.py|maths/gamma_recursive.py|maths/proth_number.py|maths/series/geometric_series.py|maths/series/p_series.py|matrix/matrix_operation.py|other/fischer_yates_shuffle.py|other/least_recently_used.py|other/lfu_cache.py|other/lru_cache.py|searches/simulated_annealing.py|searches/ternary_search.py)/$
+                  --install-types --non-interactive .
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/validate_solutions.py --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
@@ -50,7 +30,7 @@ jobs:
       - name: A mypy reality check
         run: |
           mv mypy.ini was_mypy.ini
-          mypy --ignore-missing-imports --install-types --non-interactive ./graphs          || true  # Errors: 10  -> 9 
+          mypy --ignore-missing-imports --install-types --non-interactive ./graphs          || true  # Errors: 10  -> 9
           mypy --ignore-missing-imports --install-types --non-interactive ./maths           || true  # Errors: 14  -> 14
           mypy --ignore-missing-imports --install-types --non-interactive ./matrix          || true  # Errors: 15  -> 15
           mypy --ignore-missing-imports --install-types --non-interactive ./searches        || true  # Errors: 45  -> 21
