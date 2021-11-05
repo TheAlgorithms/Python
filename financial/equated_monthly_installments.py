@@ -1,14 +1,16 @@
 """
 Program to calculate the amortization amount per month, given
-- Principal borrowed (p)
-- Rate of interest per annum (r)
-- Years to repay the loan (y)
+- Principal borrowed
+- Rate of interest per annum
+- Years to repay the loan
 
 Wikipedia Reference: https://en.wikipedia.org/wiki/Equated_monthly_installment
 """
 
 
-def equated_monthly_installments(p: float, r: float, y: int) -> float:
+def equated_monthly_installments(
+    principal: float, rate_per_annum: float, years_to_repay: int
+) -> float:
     """
     Formula for amortization amount per month:
     A = p * r * (1 + r)^n / ((1 + r)^n - 1)
@@ -40,12 +42,12 @@ def equated_monthly_installments(p: float, r: float, y: int) -> float:
         raise Exception("Years to repay must be an integer > 0")
 
     # Yearly rate is divided by 12 to get monthly rate
-    rate_per_month = r_m = r / 12
+    rate_per_month = r_m = rate_per_annum / 12
 
     # Years to repay is multiplied by 12 to get number of payments as payment is monthly
-    number_of_payments = n = y * 12
+    number_of_payments = n = years_to_repay * 12
 
-    return p * r_m * (1 + r_m)**n / ((1 + r_m)**n - 1)
+    return p * r_m * (1 + r_m) ** n / ((1 + r_m) ** n - 1)
 
 
 if __name__ == "__main__":
