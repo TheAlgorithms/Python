@@ -23,9 +23,9 @@ def mode(input_list: list):  # Defining function "mode."
     ['x', 'y']
     """
     counts: list[int] = list((Counter(input_list)).values())
-    return list(sorted(
-        {val for val in input_list if input_list.count(val) == max(counts)}
-    ))
+    return list(
+        sorted({val for val in input_list if input_list.count(val) == max(counts)})
+    )
 
 
 if __name__ == "__main__":
