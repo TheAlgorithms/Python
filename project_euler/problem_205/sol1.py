@@ -18,10 +18,10 @@ def total_frequency_distribution(sides_number: int, dice_number: int) -> list[in
     """
     Returns frequency distribution of total
 
-    >>> total_frequency_distribution(6, 1)
+    >>> total_frequency_distribution(sides_number=6, dice_number=1)
     [0, 1, 1, 1, 1, 1, 1]
 
-    >>> total_frequency_distribution(4, 2)
+    >>> total_frequency_distribution(sides_number=4, dice_number=2)
     [0, 0, 1, 2, 3, 4, 3, 2, 1]
     """
 
