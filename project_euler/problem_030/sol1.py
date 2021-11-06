@@ -34,10 +34,6 @@ def digits_fifth_powers_sum(number: int) -> int:
 
 
 def solution() -> int:
-    """
-    >>> solution()
-    443839
-    """
     return sum(
         number
         for number in range(1000, 1000000)
