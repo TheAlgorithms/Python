@@ -2,7 +2,7 @@ from collections import Counter
 from typing import Any
 
 
-def mode(input_list: list) -> list[Any]:  # Defining function "mode."
+def mode(input_list: list):  # Defining function "mode."
     """This function returns the mode(Mode as in the measures of
     central tendency) of the input data.
     The input list may contain any Datastructure or any Datatype.
@@ -23,7 +23,9 @@ def mode(input_list: list) -> list[Any]:  # Defining function "mode."
     ['x', 'y']
     """
     counts: list[int] = list((Counter(input_list)).values())
-    return list({val for val in input_list if input_list.count(val) == max(counts)}).sort()
+    return list(sorted(
+        {val for val in input_list if input_list.count(val) == max(counts)}
+    ))
 
 
 if __name__ == "__main__":
