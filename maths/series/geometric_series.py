@@ -15,13 +15,13 @@ def geometric_series(
 ) -> list[float]:
     """
     Pure Python implementation of Geometric Series algorithm
-    
+
     :param nth_term: The last term (nth term of Geometric Series)
     :param start_term_a : The first term of Geometric Series
     :param common_ratio_r : The common ratio between all the terms
     :return: The Geometric Series starting from first term a and multiple of common
         ration with first term with increase in power till last term (nth term)
-        
+
     Examples:
     >>> geometric_series(4.0, 2.0, 2.0)
     [2.0, 4.0, 8.0, 16.0]
@@ -38,7 +38,7 @@ def geometric_series(
     >>> geometric_series(0, 100.0, 500.0)
     []
     >>> geometric_series(1.0, 1.0, 1.0)
-    [1]
+    [1.0]
     >>> geometric_series(0, 0, 0)
     []
     """
