@@ -27,7 +27,7 @@ def p_series(nth_term: int, power: int) -> list[float]:
     [1.0]
     """
     series = []
-    for temp in range(nth_term + 1):
+    for temp in range(nth_term):
         series.append(1 / (pow(temp + 1, power)) if series else 1.0)
     return series
 
