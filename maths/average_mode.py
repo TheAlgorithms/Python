@@ -1,9 +1,11 @@
-def mode(input_list: list) -> list:  # Defining function "mode."
+from typing import Any
+from collections import Counter
+
+
+def mode(input_list: list) -> list[Any]:  # Defining function "mode."
     """This function returns the mode(Mode as in the measures of
     central tendency) of the input data.
-
     The input list may contain any Datastructure or any Datatype.
-
     >>> input_list = [2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2]
     >>> mode(input_list)
     [2]
@@ -20,15 +22,8 @@ def mode(input_list: list) -> list:  # Defining function "mode."
     >>> mode(input_list)
     ['x', 'y']
     """
-    result = list()  # Empty list to store the counts of elements in input_list
-    for x in input_list:
-        result.append(input_list.count(x))
-    if not result:
-        return []
-    y = max(result)  # Gets the maximum value in the result list.
-    # Gets values of modes
-    result = {input_list[i] for i, value in enumerate(result) if value == y}
-    return sorted(result)
+    counts: list[int] = list((Counter(input_list)).values())
+    return list({val for val in input_list if input_list.count(val) == max(counts)})
 
 
 if __name__ == "__main__":
