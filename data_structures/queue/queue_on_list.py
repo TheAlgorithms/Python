@@ -1,52 +1,77 @@
 """Queue represented by a Python list"""
 
+from typing import TypeVar, NoReturn, Union
+
+T = TypeVar("T")
+
 
 class Queue:
-    def __init__(self):
-        self.entries = []
-        self.length = 0
-        self.front = 0
+    """
+    >>> queue = Queue()
+    >>> queue.peek()
+    Traceback (most recent call last):
+    ...
+    IndexError: The queue is empty
+    >>> queue.size == 0
+    True
+    >>> queue.is_empty()
+    True
+    >>> queue.enqueue(2)
+    >>> queue.peek()
+    2
+    >>> for i in range(3, 10):
+    ...     queue.enqueue(i)
+    >>> queue.dequeue()
+    2
+    >>> queue.dequeue()
+    3
+    >>> queue.rotate(2)
+    >>> queue.dequeue()
+    6
+    """
 
-    def __str__(self):
-        printed = "<" + str(self.entries)[1:-1] + ">"
-        return printed
+    def __init__(self) -> None:
+        self._queue: list[T] = []
 
-    """Enqueues {@code item}
-    @param item
-        item to enqueue"""
+    def __repr__(self) -> str:
+        return f"{self._queue}"
 
-    def put(self, item):
-        self.entries.append(item)
-        self.length = self.length + 1
+    def enqueue(self, item: T) -> None:
+        """Add an item to the queue"""
+        self._queue.append(item)
 
-    """Dequeues {@code item}
-    @requirement: |self.length| > 0
-    @return dequeued
-        item that was dequeued"""
+    def dequeue(self) -> Union[T, NoReturn]:
+        """Remove and return the first item in the queue.
 
-    def get(self):
-        self.length = self.length - 1
-        dequeued = self.entries[self.front]
-        # self.front-=1
-        # self.entries = self.entries[self.front:]
-        self.entries = self.entries[1:]
-        return dequeued
+        :raises IndexError if queue is empty
+        """
 
-    """Rotates the queue {@code rotation} times
-    @param rotation
-        number of times to rotate queue"""
+        if not self.is_empty():
+            return self._queue.pop(0)
 
-    def rotate(self, rotation):
-        for i in range(rotation):
-            self.put(self.get())
+        raise IndexError("The queue is empty")
 
-    """Enqueues {@code item}
-    @return item at front of self.entries"""
+    def peek(self) -> Union[T, NoReturn]:
+        """
+        Return the first item in the queue without removing it from the queue
 
-    def get_front(self):
-        return self.entries[0]
+        :return: First item in the queue.
+        :raises IndexError if queue is empty
+        """
 
-    """Returns the length of this.entries"""
+        if not self.is_empty():
+            return self._queue[0]
 
-    def size(self):
-        return self.length
+        raise IndexError("The queue is empty")
+
+    @property
+    def size(self) -> int:
+        return len(self._queue)
+
+    def is_empty(self) -> bool:
+        return self.size == 0
+
+    def rotate(self, number_of_rotations: int) -> None:
+        """Rotate a queue by `number_of_rotation` times"""
+        for _ in range(number_of_rotations):
+            self.enqueue(self.dequeue())
