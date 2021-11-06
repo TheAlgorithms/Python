@@ -42,6 +42,9 @@ def solution() -> float:
     """
     Returns probability that Pyramidal Peter beats Cubic Colin
     rounded to seven decimal places in the form 0.abcdefg
+
+    >>> solution()
+    0.5731441
     """
 
     peter_totals_frequencies = total_frequency_distribution(
