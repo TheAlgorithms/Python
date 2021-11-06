@@ -71,8 +71,3 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    num = 1
-    while num:
-        num = float(input("Gamma of: "))
-        print(f"gamma({num}) = {gamma(num)}")
-        print("\nEnter 0 to exit...")
