@@ -1,5 +1,5 @@
-from typing import Any
 from collections import Counter
+from typing import Any
 
 
 def mode(input_list: list) -> list[Any]:  # Defining function "mode."
@@ -23,7 +23,7 @@ def mode(input_list: list) -> list[Any]:  # Defining function "mode."
     ['x', 'y']
     """
     counts: list[int] = list((Counter(input_list)).values())
-    return list({val for val in input_list if input_list.count(val) == max(counts)})
+    return list({val for val in input_list if input_list.count(val) == max(counts)}).sort()
 
 
 if __name__ == "__main__":
