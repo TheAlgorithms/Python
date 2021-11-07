@@ -10,12 +10,12 @@ python3 p_series.py
 """
 
 
-from typing import Union
+from __future__ import annotations
 
 
 def p_series(
-    nth_term: Union[int, float, str], power: Union[int, float, str]
-) -> Union[list[str], str]:
+    nth_term: int | float | str, power: int | float | str
+) -> list[str] | str:
     """
     Pure Python implementation of P-Series algorithm
     :return: The P-Series starting from 1 to last (nth) term
@@ -39,7 +39,7 @@ def p_series(
     power = int(power)
     series: list[str] = []
     for temp in range(int(nth_term)):
-        series.append(f"1/{pow(temp + 1, int(power))}" if series else '1')
+        series.append(f"1 / {pow(temp + 1, int(power))}" if series else '1')
     return series
 
 
