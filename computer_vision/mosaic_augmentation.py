@@ -18,6 +18,11 @@ NUMBER_IMAGES = 250
 
 
 def main() -> None:
+    """
+    Get images list and annotations list from input dir.
+    Update new images and annotations.
+    Save images and annotations in output dir.
+    """
     img_paths, annos = get_dataset(LABEL_DIR, IMG_DIR)
     for index in range(NUMBER_IMAGES):
         idxs = random.sample(range(len(annos)), 4)
@@ -150,7 +155,7 @@ def update_image_and_anno(all_img_list: List, all_annos: List, idxs: int, output
     return output_img, new_anno, path_list[0]
 
 
-def random_chars(number_char):
+def random_chars(number_char: int) -> str:
     # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
     letter_code = 'abcdefghijklmnopqrstuvwxyz0123456789'
     return ''.join(random.choice(letter_code) for _ in range(number_char))

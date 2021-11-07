@@ -17,6 +17,11 @@ FLIP_TYPE = 1  # (0 is vertical, 1 is horizontal)
 
 
 def main() -> None:
+    """
+    Get images list and annotations list from input dir.
+    Update new images and annotations.
+    Save images and annotations in output dir.
+    """
     img_paths, annos = get_dataset(LABEL_DIR, IMAGE_DIR)
     print('Processing...')
     new_image, new_annos, path = update_image_and_anno(
@@ -98,7 +103,7 @@ def update_image_and_anno(img_list: List, anno_list: List, flip_type: int=1) -> 
     return new_imgs_list, new_annos_lists, path_list
 
 
-def random_chars(number_char):
+def random_chars(number_char: int) -> str:
     # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
     letter_code = 'abcdefghijklmnopqrstuvwxyz0123456789'
     return ''.join(random.choice(letter_code) for _ in range(number_char))
