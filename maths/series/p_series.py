@@ -15,7 +15,7 @@ from __future__ import annotations
 
 def p_series(
     nth_term: int | float | str, power: int | float | str
-) -> list[str] | str:
+) -> list[str]:
     """
     Pure Python implementation of P-Series algorithm
     :return: The P-Series starting from 1 to last (nth) term
@@ -27,19 +27,19 @@ def p_series(
     >>> p_series(5, -2)
     ['1', '1/0.25', '1/0.1111111111111111', '1/0.0625', '1/0.04']
     >>> p_series("", 1000)
-    ''
+    ['']
     >>> p_series(0, 0)
     []
     >>> p_series(1, 1)
     ['1']
     """
     if nth_term == "":
-        return ''
+        return ['']
     nth_term = int(nth_term)
     power = int(power)
     series: list[str] = []
     for temp in range(int(nth_term)):
-        series.append(f"1 / {pow(temp + 1, int(power))}" if series else '1')
+        series.append(f"1 / {pow(temp + 1, int(power))}" if series else "1")
     return series
 
 
