@@ -1,4 +1,3 @@
-from collections import Counter
 from typing import Any
 
 
@@ -19,10 +18,15 @@ def mode(input_list: list) -> list[Any]:  # Defining function "mode."
     >>> mode(["x", "x" , "y", "y", "z"])
     ['x', 'y']
     """
-    counts: list[int] = list((Counter(input_list)).values())
-    return list(
-        sorted({val for val in input_list if input_list.count(val) == max(counts)})
-    )
+    result = list()  # Empty list to store the counts of elements in input_list
+    for x in input_list:
+        result.append(input_list.count(x))
+    if not result:
+        return []
+    y = max(result)  # Gets the maximum value in the result list.
+    # Gets values of modes
+    result = list({input_list[i] for i, value in enumerate(result) if value == y})
+    return sorted(result)
 
 
 if __name__ == "__main__":
