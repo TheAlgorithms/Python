@@ -66,10 +66,10 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    nth_term = input("Enter the last number (n term) of the Geometric Series")
-    start_term_a = input("Enter the starting term (a) of the Geometric Series")
-    common_ratio_r = input(
-        "Enter the common ratio between two terms (r) of the Geometric Series"
+    nth_term = float(input("Enter the last number (n term) of the Geometric Series"))
+    start_term_a = float(input("Enter the starting term (a) of the Geometric Series"))
+    common_ratio_r = float(
+        input("Enter the common ratio between two terms (r) of the Geometric Series")
     )
     print("Formula of Geometric Series => a + ar + ar^2 ... +ar^n")
     print(geometric_series(nth_term, start_term_a, common_ratio_r))
