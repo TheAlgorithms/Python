@@ -56,7 +56,7 @@ def geometric_series(
             series.append(start_term_a)
         else:
             power += 1
-            series.append(start_term_a * multiple)
+            series.append(float(start_term_a * multiple))
             multiple = pow(float(common_ratio_r), power)
     return series
 
