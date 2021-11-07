@@ -1,12 +1,13 @@
 '''Source: https://github.com/jason9075/opencv-mosaic-data-aug'''
 
-import random
-import os
 import glob
+import os
+import random
 from string import digits, ascii_lowercase
 
-import numpy as np
 import cv2
+import numpy as np
+
 
 # Parrameters
 OUTPUT_SIZE = (720, 1280)  # Height, Width

@@ -1,10 +1,11 @@
-import random
-import os
 import glob
+import os
+import random
 from string import digits, ascii_lowercase
 
-import numpy as np
 import cv2
+import numpy as np
+
 
 """
 Flip image and bounding box for computer vision task
