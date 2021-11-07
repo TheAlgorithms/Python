@@ -31,13 +31,13 @@ def main() -> None:
         # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
         letter_code = random_chars(32)
         file_name = path[index].split('/')[-1].rsplit('.', 1)[0]
-        cv2.imwrite(OUTPUT_DIR + f"/{file_name}_FLIP_{letter_code}.jpg", new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85])
+        file_root = f"{OUTPUT_DIR}/{file_name}_FLIP_{letter_code}"
+        cv2.imwrite(f"/{file_root}.jpg", new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85])
         print(f'Success {index+1}/{len(new_image)} with {file_name}')
         annos_list = []
-        for anno in new_annos[index]:
-            obj = f'{anno[0]} {anno[1]} {anno[2]} {anno[3]} {anno[4]}'
-            annos_list.append(obj)
-        with open(OUTPUT_DIR + f"/{file_name}_FLIP{letter_code}.txt", "w") as outfile:
+        obj = ["{} {} {} {} {}".format(*anno) for anno in new_annos[index]]
+        annos_list.append(obj[0])
+        with open(f"/{file_root}.txt", "w") as outfile:
             outfile.write("\n".join(line for line in annos_list))
 
 
@@ -103,10 +103,12 @@ def update_image_and_anno(img_list: List, anno_list: List, flip_type: int=1) -> 
     return new_imgs_list, new_annos_lists, path_list
 
 
-def random_chars(number_char: int) -> str:
+def random_chars(number_char: int=32) -> str:
     """
     Automatic generate random 32 characters.
     Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
+    >>> random_chars(32)
+    '7b7ad245cdff75241935e4dd860f3bad'
     """
     letter_code = 'abcdefghijklmnopqrstuvwxyz0123456789'
     return ''.join(random.choice(letter_code) for _ in range(number_char))
