@@ -200,6 +200,35 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float):
         * (pow(radius_1, 2) + pow(radius_2, 2) + radius_1 * radius_2)
     )
 
+def vol_ellipsoid(a: float, b: float, c: float) -> float:
+    """Calculate the Volume of a Ellipsoid.
+    
+    a, b & c are axis.
+    
+    Wikipedia refrence: https://en.wikipedia.org/wiki/Ellipsoid
+    :return 4/3 * pi * a * b * c
+     
+     >>> vol_ellipsoid(2.5, 5.2, 7.5)
+     408.4070449666731
+     >>> vol_ellipsoid(7.2, 2.2, 5.7)
+     378.1974900097537
+    """
+    return float(4/3 * pi * a * b * c)
+
+
+def vol_tetrahedron(edge: float) -> float:
+    """Calculate the Volume of a Tetrahedron.
+    Wikipedia refrence: https://en.wikipedia.org/wiki/Tetrahedron
+    formula: edge**2/6√2
+    :return edge**3 / (6 * pow(2, 1/2) )
+    
+    >>> vol_tetrahedron(2.7)
+    2.319663795682469
+    >>> vol_tetrahedron(7.752)
+    54.900341245289894
+    """
+    return float(edge**3/(6*pow(2,1/2)))
+
 
 def main():
     """Print the Results of Various Volume Calculations."""
@@ -216,6 +245,8 @@ def main():
     print("Conical Frustum: " + str(vol_conical_frustum(2, 2, 4)))  # ~= 58.6
     print("Spherical cap: " + str(vol_spherical_cap(1, 2)))  # ~= 5.24
     print("Spheres intersetion: " + str(vol_spheres_intersect(2, 2, 1)))  # ~= 21.21
+    print("Ellipsoid: " + str(vol_ellipsoid(1, 2, 3)))  # ~= 25.13
+    print("Tetrahedron: " + str(vol_tetrahedron(2)))  # ~= 0.94
 
 
 if __name__ == "__main__":
