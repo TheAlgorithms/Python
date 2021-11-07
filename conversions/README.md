@@ -1,6 +1,6 @@
 # Conversion
 
-The act to convert a type of data, a number from a numerical base or unit into one of another type, base, unit.
+Conversion programs convert a type of data, a number from a numerical base or unit into one of another type, base, unit.
 (binary to decimal, integer to string or foot to meters)
 
 * <https://en.wikipedia.org/wiki/Data_conversion>
