@@ -1,10 +1,10 @@
 import glob
 import os
 import random
-from string import digits, ascii_lowercase
+from string import ascii_lowercase, digits
+from typing import List, Tuple
 
 import cv2
-import numpy as np
 
 
 """
@@ -47,7 +47,7 @@ def main() -> None:
             outfile.write("\n".join(line for line in annos_list))
 
 
-def get_dataset(label_dir: str, img_dir: str) -> tuple(list, list):
+def get_dataset(label_dir: str, img_dir: str) -> Tuple[List, List]:
     """
     - label_dir <type: str>: Path to label include annotation of images
     - img_dir <type: str>: Path to folder contain images
@@ -58,7 +58,7 @@ def get_dataset(label_dir: str, img_dir: str) -> tuple(list, list):
     labels = []
     for label_file in glob.glob(os.path.join(label_dir, "*.txt")):
         label_name = label_file.split("/")[-1].rsplit(".", 1)[0]
-        with open(label_file, "r") as in_file:
+        with open(label_file) as in_file:
             obj_lists = in_file.readlines()
         img_path = os.path.join(img_dir, f"{label_name}.jpg")
 
@@ -83,7 +83,7 @@ def get_dataset(label_dir: str, img_dir: str) -> tuple(list, list):
 
 def update_image_and_anno(
     img_list: list, anno_list: list, flip_type: int = 1
-) -> tuple(list, list, list):
+) -> Tuple[List, List, List]:
     """
     - img_list <type: list>: list of all images
     - anno_list <type: list>: list of all annotations of specific image
