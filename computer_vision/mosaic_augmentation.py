@@ -16,7 +16,7 @@ OUTPUT_DIR = ''
 NUMBER_IMAGES = 250
 
 
-def main():
+def main() -> None:
     img_paths, annos = get_dataset(LABEL_DIR, IMG_DIR)
     for index in range(NUMBER_IMAGES):
         idxs = random.sample(range(len(annos)), 4)
@@ -28,29 +28,27 @@ def main():
         # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
         letter_code = random_chars(32)
         file_name = path.split('/')[-1].rsplit('.', 1)[0]
-        cv2.imwrite(OUTPUT_DIR + "/{}_MOSAIC_{}.jpg".format(file_name,
-                    letter_code), new_image, [cv2.IMWRITE_JPEG_QUALITY, 85])
-        print('Successed {}/{} with {}'.format(index+1, NUMBER_IMAGES, file_name))
+        cv2.imwrite(OUTPUT_DIR + f"/{file_name}_MOSAIC_{letter_code}.jpg", new_image, [cv2.IMWRITE_JPEG_QUALITY, 85])
+        print(f'Successed {index+1}/{NUMBER_IMAGES} with {file_name}')
         annos_list = []
         for anno in new_annos:
             width = anno[3] - anno[1]
             height = anno[4] - anno[2]
             x_center = anno[1] + width/2
             y_center = anno[2] + height/2
-            obj = '{} {} {} {} {}'.format(
-                anno[0], x_center, y_center, width, height)
+            obj = f'{anno[0]} {x_center} {y_center} {width} {height}'
             annos_list.append(obj)
-        with open(OUTPUT_DIR + "/{}_MOSAIC_{}.txt".format(file_name, letter_code), "w") as outfile:
+        with open(OUTPUT_DIR + f"/{file_name}_MOSAIC_{letter_code}.txt", "w") as outfile:
             outfile.write("\n".join(line for line in annos_list))
 
 
 def get_dataset(label_dir, img_dir):
-    '''
+    """
     Params:
         - label_dir <type: list>: Path to label include annotation of images
         - img_dir <type: list>: Path to folder contain images
     Return <type: list>: List of images path and labels
-    '''
+    """
     img_paths = []
     labels = []
     for label_file in glob.glob(os.path.join(label_dir, '*.txt')):
@@ -76,7 +74,7 @@ def get_dataset(label_dir, img_dir):
 
 
 def update_image_and_anno(all_img_list, all_annos, idxs, output_size, scale_range, filter_scale=0.):
-    '''
+    """
     Params:
         - all_img_list <type: list>: list of all images
         - all_annos <type: list>: list of all annotations of specific image
@@ -88,7 +86,7 @@ def update_image_and_anno(all_img_list, all_annos, idxs, output_size, scale_rang
         - output_img <type: narray>: image after resize
         - new_anno <type: list>: list of new annotation after scale
         - path[0] <type: string>: get the name of image file
-    '''
+    """
     output_img = np.zeros([output_size[0], output_size[1], 3], dtype=np.uint8)
     scale_x = scale_range[0] + \
         random.random() * (scale_range[1] - scale_range[0])

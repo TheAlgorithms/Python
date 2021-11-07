@@ -10,7 +10,7 @@ OUTPUT_DIR = ''
 FLIP_TYPE = 1  # (0 is vertical, 1 is horizontal)
 
 
-def main():
+def main() -> None:
     img_paths, annos = get_dataset(LABEL_DIR, IMAGE_DIR)
     print('Processing...')
     new_image, new_annos, path = update_image_and_anno(
@@ -20,25 +20,23 @@ def main():
         # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
         letter_code = random_chars(32)
         file_name = path[index].split('/')[-1].rsplit('.', 1)[0]
-        cv2.imwrite(OUTPUT_DIR + "/{}_FLIP_{}.jpg".format(file_name,letter_code
-                                                                  ), new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85])
-        print('Success {}/{} with {}'.format(index+1, len(new_image), file_name))
+        cv2.imwrite(OUTPUT_DIR + f"/{file_name}_FLIP_{letter_code}.jpg", new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85])
+        print(f'Success {index+1}/{len(new_image)} with {file_name}')
         annos_list = []
         for anno in new_annos[index]:
-            obj = '{} {} {} {} {}'.format(
-                anno[0], anno[1], anno[2], anno[3], anno[4])
+            obj = f'{anno[0]} {anno[1]} {anno[2]} {anno[3]} {anno[4]}'
             annos_list.append(obj)
-        with open(OUTPUT_DIR + "/{}_FLIP.txt".format(file_name), "w") as outfile:
+        with open(OUTPUT_DIR + f"/{file_name}_FLIP{letter_code}.txt", "w") as outfile:
             outfile.write("\n".join(line for line in annos_list))
 
 
 def get_dataset(label_dir, img_dir):
-    '''
+    """
     Params:
         - label_dir <type: list>: Path to label include annotation of images
         - img_dir <type: list>: Path to folder contain images
     Return <type: list>: List of images path and labels 
-    '''
+    """
     img_paths = []
     labels = []
     for label_file in glob.glob(os.path.join(label_dir, '*.txt')):
@@ -60,7 +58,7 @@ def get_dataset(label_dir, img_dir):
 
 
 def update_image_and_anno(img_list, anno_list, flip_type=1):
-    '''
+    """
     Params:
         - img_list <type: list>: list of all images
         - anno_list <type: list>: list of all annotations of specific image
@@ -68,8 +66,8 @@ def update_image_and_anno(img_list, anno_list, flip_type=1):
     Return:
         - new_imgs_list <type: narray>: image after resize
         - new_annos_lists <type: list>: list of new annotation after scale
-        - path_list <type: list>: list the name of image file    
-    '''
+        - path_list <type: list>: list the name of image file  
+    """
     new_annos_lists = []
     path_list = []
     new_imgs_list = []
