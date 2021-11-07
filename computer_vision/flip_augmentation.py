@@ -28,8 +28,7 @@ def main() -> None:
     """
     img_paths, annos = get_dataset(LABEL_DIR, IMAGE_DIR)
     print("Processing...")
-    new_image, new_annos, path = update_image_and_anno(
-        img_paths, annos, FLIP_TYPE)
+    new_image, new_annos, path = update_image_and_anno(img_paths, annos, FLIP_TYPE)
 
     for index in range(len(new_image)):
         # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
@@ -37,8 +36,7 @@ def main() -> None:
         file_name = path[index].split("/")[-1].rsplit(".", 1)[0]
         file_root = f"{OUTPUT_DIR}/{file_name}_FLIP_{letter_code}"
         cv2.imwrite(
-            f"/{file_root}.jpg", new_image[index], [
-                cv2.IMWRITE_JPEG_QUALITY, 85]
+            f"/{file_root}.jpg", new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85]
         )
         print(f"Success {index+1}/{len(new_image)} with {file_name}")
         annos_list = []
@@ -49,7 +47,7 @@ def main() -> None:
             outfile.write("\n".join(line for line in annos_list))
 
 
-def get_dataset(label_dir: str, img_dir: str) -> list:
+def get_dataset(label_dir: str, img_dir: str) -> tuple(list, list):
     """
     - label_dir <type: str>: Path to label include annotation of images
     - img_dir <type: str>: Path to folder contain images
@@ -83,7 +81,9 @@ def get_dataset(label_dir: str, img_dir: str) -> list:
     return img_paths, labels
 
 
-def update_image_and_anno(img_list: list, anno_list: list, flip_type: int = 1) -> list:
+def update_image_and_anno(
+    img_list: list, anno_list: list, flip_type: int = 1
+) -> tuple(list, list, list):
     """
     - img_list <type: list>: list of all images
     - anno_list <type: list>: list of all annotations of specific image
@@ -107,14 +107,12 @@ def update_image_and_anno(img_list: list, anno_list: list, flip_type: int = 1) -
             new_img = cv2.flip(img, flip_type)
             for bbox in img_annos:
                 x_center_new = 1 - bbox[1]
-                new_annos.append(
-                    [bbox[0], x_center_new, bbox[2], bbox[3], bbox[4]])
+                new_annos.append([bbox[0], x_center_new, bbox[2], bbox[3], bbox[4]])
         elif flip_type == 0:
             new_img = cv2.flip(img, flip_type)
             for bbox in img_annos:
                 y_center_new = 1 - bbox[2]
-                new_annos.append(
-                    [bbox[0], bbox[1], y_center_new, bbox[3], bbox[4]])
+                new_annos.append([bbox[0], bbox[1], y_center_new, bbox[3], bbox[4]])
         new_annos_lists.append(new_annos)
         new_imgs_list.append(new_img)
     return new_imgs_list, new_annos_lists, path_list
