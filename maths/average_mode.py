@@ -5,7 +5,9 @@ from typing import Any
 def mode(input_list: list) -> list[Any]:  # Defining function "mode."
     """This function returns the mode(Mode as in the measures of
     central tendency) of the input data.
+    
     The input list may contain any Datastructure or any Datatype.
+    
     >>> input_list = [2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2]
     >>> mode(input_list)
     [2]
