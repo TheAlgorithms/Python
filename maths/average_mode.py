@@ -8,20 +8,15 @@ def mode(input_list: list) -> list[Any]:  # Defining function "mode."
 
     The input list may contain any Datastructure or any Datatype.
 
-    >>> input_list = [2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2]
-    >>> mode(input_list)
+    >>> mode([2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2])
     [2]
-    >>> input_list = [3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 2, 2, 2]
-    >>> mode(input_list)
+    >>> mode([3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 2, 2, 2])
     [2]
-    >>> input_list = [3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 4, 2, 2, 4, 2]
-    >>> mode(input_list)
+    >>> mode([3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 4, 2, 2, 4, 2])
     [2, 4]
-    >>> input_list = ["x", "y", "y", "z"]
-    >>> mode(input_list)
+    >>> mode(["x", "y", "y", "z"])
     ['y']
-    >>> input_list = ["x", "x" , "y", "y", "z"]
-    >>> mode(input_list)
+    >>> mode(["x", "x" , "y", "y", "z"])
     ['x', 'y']
     """
     counts: list[int] = list((Counter(input_list)).values())
