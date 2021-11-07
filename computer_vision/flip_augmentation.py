@@ -3,6 +3,10 @@ import cv2
 import os
 import glob
 
+"""
+Flip image and bounding box for computer vision task
+"""
+
 # Params
 LABEL_DIR = ''
 IMAGE_DIR = ''
@@ -32,9 +36,8 @@ def main() -> None:
 
 def get_dataset(label_dir, img_dir):
     """
-    Params:
-        - label_dir <type: list>: Path to label include annotation of images
-        - img_dir <type: list>: Path to folder contain images
+    - label_dir <type: list>: Path to label include annotation of images
+    - img_dir <type: list>: Path to folder contain images
     Return <type: list>: List of images path and labels 
     """
     img_paths = []
@@ -59,10 +62,9 @@ def get_dataset(label_dir, img_dir):
 
 def update_image_and_anno(img_list, anno_list, flip_type=1):
     """
-    Params:
-        - img_list <type: list>: list of all images
-        - anno_list <type: list>: list of all annotations of specific image
-        - flip_type <type: int>: 0 is vertical, 1 is horizontal
+    - img_list <type: list>: list of all images
+    - anno_list <type: list>: list of all annotations of specific image
+    - flip_type <type: int>: 0 is vertical, 1 is horizontal
     Return:
         - new_imgs_list <type: narray>: image after resize
         - new_annos_lists <type: list>: list of new annotation after scale

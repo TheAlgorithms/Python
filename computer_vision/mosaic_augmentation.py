@@ -44,9 +44,8 @@ def main() -> None:
 
 def get_dataset(label_dir, img_dir):
     """
-    Params:
-        - label_dir <type: list>: Path to label include annotation of images
-        - img_dir <type: list>: Path to folder contain images
+    - label_dir <type: list>: Path to label include annotation of images
+    - img_dir <type: list>: Path to folder contain images
     Return <type: list>: List of images path and labels
     """
     img_paths = []
@@ -75,13 +74,12 @@ def get_dataset(label_dir, img_dir):
 
 def update_image_and_anno(all_img_list, all_annos, idxs, output_size, scale_range, filter_scale=0.):
     """
-    Params:
-        - all_img_list <type: list>: list of all images
-        - all_annos <type: list>: list of all annotations of specific image
-        - idxs <type: list>: index of image in list
-        - output_size <type: tuple>: size of output image (Height, Width)
-        - scale_range <type: tuple>: range of scale image
-        - filter_scale <type: float>: the condition of downscale image and bounding box
+    - all_img_list <type: list>: list of all images
+    - all_annos <type: list>: list of all annotations of specific image
+    - idxs <type: list>: index of image in list
+    - output_size <type: tuple>: size of output image (Height, Width)
+    - scale_range <type: tuple>: range of scale image
+    - filter_scale <type: float>: the condition of downscale image and bounding box
     Return:
         - output_img <type: narray>: image after resize
         - new_anno <type: list>: list of new annotation after scale
