@@ -45,7 +45,8 @@ def solid_pressure(force: float, area: float) -> float:
         return force / area
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+
     import doctest
 
     # run doctest
