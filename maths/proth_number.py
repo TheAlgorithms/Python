@@ -59,6 +59,7 @@ def proth(number: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     for number in range(11):
