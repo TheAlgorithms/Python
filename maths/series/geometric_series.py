@@ -11,8 +11,10 @@ python3 geometric_series.py
 
 
 def geometric_series(
-    nth_term: float, start_term_a: float, common_ratio_r: float
-) -> list[float]:
+    nth_term: float | int,
+    start_term_a: float | int,
+    common_ratio_r: float | int,
+) -> list[float | int]:
     """
     Pure Python implementation of Geometric Series algorithm
 
@@ -21,28 +23,27 @@ def geometric_series(
     :param common_ratio_r : The common ratio between all the terms
     :return: The Geometric Series starting from first term a and multiple of common
         ration with first term with increase in power till last term (nth term)
-
     Examples:
-    >>> geometric_series(4.0, 2.0, 2.0)
-    [2.0, 4.0, 8.0, 16.0]
+    >>> geometric_series(4, 2, 2)
+    [2, 4.0, 8.0, 16.0]
     >>> geometric_series(4.0, 2.0, 2.0)
     [2.0, 4.0, 8.0, 16.0]
     >>> geometric_series(4.1, 2.1, 2.1)
     [2.1, 4.41, 9.261000000000001, 19.448100000000004]
-    >>> geometric_series(4.0, 2.0, -2.0)
-    [2.0, -4.0, 8.0, -16.0]
-    >>> geometric_series(4.0, -2.0, 2.0)
-    [-2.0, -4.0, -8.0, -16.0]
-    >>> geometric_series(-4.0, 2.0, 2.0)
+    >>> geometric_series(4, 2, -2)
+    [2, -4.0, 8.0, -16.0]
+    >>> geometric_series(4, -2, 2)
+    [-2, -4.0, -8.0, -16.0]
+    >>> geometric_series(-4, 2, 2)
     []
-    >>> geometric_series(0, 100.0, 500.0)
+    >>> geometric_series(0, 100, 500)
     []
-    >>> geometric_series(1.0, 1.0, 1.0)
-    [1.0]
+    >>> geometric_series(1, 1, 1)
+    [1]
     >>> geometric_series(0, 0, 0)
     []
     """
-    if 0 in (nth_term, start_term_a, common_ratio_r):
+    if not all((nth_term, start_term_a, common_ratio_r)):
         return []
     series: list[float] = []
     power: int = 1
@@ -59,5 +60,14 @@ def geometric_series(
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
+
+    nth_term = float(input("Enter the last number (n term) of the Geometric Series"))
+    start_term_a = float(input("Enter the starting term (a) of the Geometric Series"))
+    common_ratio_r = float(
+        input(
+        "Enter the common ratio between two terms (r) of the Geometric Series"
+        )
+    )
+    print("Formula of Geometric Series => a + ar + ar^2 ... +ar^n")
+    print(geometric_series(nth_term, start_term_a, common_ratio_r))
