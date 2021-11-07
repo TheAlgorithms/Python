@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import collections
 import pprint
+from pathlib import Path
 
 
 def signature(word: str) -> str:
@@ -28,8 +29,8 @@ def anagram(my_word: str) -> list[str]:
     return word_bysig[signature(my_word)]
 
 
-with open("words.txt") as f:
-    word_list = sorted(list({word.strip().lower() for word in f}))
+data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
+word_list = sorted(list({word.strip().lower() for word in data.split("\n")}))
 
 word_bysig = collections.defaultdict(list)
 for word in word_list:
