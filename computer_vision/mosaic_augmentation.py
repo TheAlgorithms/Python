@@ -1,11 +1,12 @@
 '''Source: https://github.com/jason9075/opencv-mosaic-data-aug'''
 
 import random
-import cv2
 import os
 import glob
+from string import digits, ascii_lowercase
+
 import numpy as np
-from typing import List
+import cv2
 
 # Parrameters
 OUTPUT_SIZE = (720, 1280)  # Height, Width
@@ -22,6 +23,7 @@ def main() -> None:
     Get images list and annotations list from input dir.
     Update new images and annotations.
     Save images and annotations in output dir.
+    >>> pass  # A doctest is not possible for this function.
     """
     img_paths, annos = get_dataset(LABEL_DIR, IMG_DIR)
     for index in range(NUMBER_IMAGES):
@@ -35,7 +37,8 @@ def main() -> None:
         letter_code = random_chars(32)
         file_name = path.split('/')[-1].rsplit('.', 1)[0]
         file_root = f"{OUTPUT_DIR}/{file_name}_MOSAIC_{letter_code}"
-        cv2.imwrite(f"{file_root}.jpg", new_image, [cv2.IMWRITE_JPEG_QUALITY, 85])
+        cv2.imwrite(f"{file_root}.jpg", new_image,
+                    [cv2.IMWRITE_JPEG_QUALITY, 85])
         print(f'Successed {index+1}/{NUMBER_IMAGES} with {file_name}')
         annos_list = []
         for anno in new_annos:
@@ -49,18 +52,19 @@ def main() -> None:
             outfile.write("\n".join(line for line in annos_list))
 
 
-def get_dataset(label_dir: str, img_dir: str) -> List:
+def get_dataset(label_dir: str, img_dir: str) -> list:
     """
     - label_dir <type: str>: Path to label include annotation of images
     - img_dir <type: str>: Path to folder contain images
     Return <type: list>: List of images path and labels
+    >>> pass  # A doctest is not possible for this function.
     """
     img_paths = []
     labels = []
     for label_file in glob.glob(os.path.join(label_dir, '*.txt')):
         label_name = label_file.split('/')[-1].rsplit('.', 1)[0]
-        f = open(label_file, 'r')
-        obj_lists = f.readlines()
+        with open(label_file, 'r') as in_file:
+            obj_lists = in_file.readlines()
         img_path = os.path.join(img_dir, f'{label_name}.jpg')
 
         boxes = []
@@ -79,7 +83,7 @@ def get_dataset(label_dir: str, img_dir: str) -> List:
     return img_paths, labels
 
 
-def update_image_and_anno(all_img_list: List, all_annos: List, idxs: int, output_size: int, scale_range: int, filter_scale: int=0.) -> List:
+def update_image_and_anno(all_img_list: list, all_annos: list, idxs: int, output_size: int, scale_range: int, filter_scale: int = 0.) -> list:
     """
     - all_img_list <type: list>: list of all images
     - all_annos <type: list>: list of all annotations of specific image
@@ -91,6 +95,7 @@ def update_image_and_anno(all_img_list: List, all_annos: List, idxs: int, output
         - output_img <type: narray>: image after resize
         - new_anno <type: list>: list of new annotation after scale
         - path[0] <type: string>: get the name of image file
+    >>> pass  # A doctest is not possible for this function.
     """
     output_img = np.zeros([output_size[0], output_size[1], 3], dtype=np.uint8)
     scale_x = scale_range[0] + \
@@ -162,8 +167,11 @@ def random_chars(number_char: int) -> str:
     Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
     >>> random_chars(32)
     '7b7ad245cdff75241935e4dd860f3bad'
+    >>> len(random_chars(32))
+    32
     """
-    letter_code = 'abcdefghijklmnopqrstuvwxyz0123456789'
+    assert number_char > 1, "The number of character should greater than 1"
+    letter_code = ascii_lowercase + digits
     return ''.join(random.choice(letter_code) for _ in range(number_char))
 
 

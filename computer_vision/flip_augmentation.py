@@ -1,8 +1,10 @@
 import random
-import cv2
 import os
 import glob
-from typing import List
+from string import digits, ascii_lowercase
+
+import numpy as np
+import cv2
 
 """
 Flip image and bounding box for computer vision task
@@ -21,6 +23,7 @@ def main() -> None:
     Get images list and annotations list from input dir.
     Update new images and annotations.
     Save images and annotations in output dir.
+    >>> pass  # A doctest is not possible for this function.
     """
     img_paths, annos = get_dataset(LABEL_DIR, IMAGE_DIR)
     print('Processing...')
@@ -32,7 +35,8 @@ def main() -> None:
         letter_code = random_chars(32)
         file_name = path[index].split('/')[-1].rsplit('.', 1)[0]
         file_root = f"{OUTPUT_DIR}/{file_name}_FLIP_{letter_code}"
-        cv2.imwrite(f"/{file_root}.jpg", new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85])
+        cv2.imwrite(f"/{file_root}.jpg",
+                    new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85])
         print(f'Success {index+1}/{len(new_image)} with {file_name}')
         annos_list = []
         obj = ["{} {} {} {} {}".format(*anno) for anno in new_annos[index]]
@@ -41,18 +45,19 @@ def main() -> None:
             outfile.write("\n".join(line for line in annos_list))
 
 
-def get_dataset(label_dir: str, img_dir: str) -> List:
+def get_dataset(label_dir: str, img_dir: str) -> list:
     """
     - label_dir <type: str>: Path to label include annotation of images
     - img_dir <type: str>: Path to folder contain images
-    Return <type: list>: List of images path and labels 
+    Return <type: list>: List of images path and labels
+    >>> pass  # A doctest is not possible for this function. 
     """
     img_paths = []
     labels = []
     for label_file in glob.glob(os.path.join(label_dir, '*.txt')):
         label_name = label_file.split('/')[-1].rsplit('.', 1)[0]
-        f = open(label_file, 'r')
-        obj_lists = f.readlines()
+        with open(label_file, 'r') as in_file:
+            obj_lists = in_file.readlines()
         img_path = os.path.join(img_dir, f'{label_name}.jpg')
 
         boxes = []
@@ -67,7 +72,7 @@ def get_dataset(label_dir: str, img_dir: str) -> List:
     return img_paths, labels
 
 
-def update_image_and_anno(img_list: List, anno_list: List, flip_type: int=1) -> List:
+def update_image_and_anno(img_list: list, anno_list: list, flip_type: int = 1) -> list:
     """
     - img_list <type: list>: list of all images
     - anno_list <type: list>: list of all annotations of specific image
@@ -76,6 +81,7 @@ def update_image_and_anno(img_list: List, anno_list: List, flip_type: int=1) -> 
         - new_imgs_list <type: narray>: image after resize
         - new_annos_lists <type: list>: list of new annotation after scale
         - path_list <type: list>: list the name of image file  
+    >>> pass  # A doctest is not possible for this function.
     """
     new_annos_lists = []
     path_list = []
@@ -103,14 +109,15 @@ def update_image_and_anno(img_list: List, anno_list: List, flip_type: int=1) -> 
     return new_imgs_list, new_annos_lists, path_list
 
 
-def random_chars(number_char: int=32) -> str:
+def random_chars(number_char: int = 32) -> str:
     """
     Automatic generate random 32 characters.
     Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
     >>> random_chars(32)
     '7b7ad245cdff75241935e4dd860f3bad'
     """
-    letter_code = 'abcdefghijklmnopqrstuvwxyz0123456789'
+    assert number_char > 1, "The number of character should greater than 1"
+    letter_code = ascii_lowercase + digits
     return ''.join(random.choice(letter_code) for _ in range(number_char))
 
 
