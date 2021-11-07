@@ -19,11 +19,11 @@ def p_series(nth_term: int | float | str, power: int | float | str) -> list[str]
     :return: The P-Series starting from 1 to last (nth) term
     Examples:
     >>> p_series(5, 2)
-    ['1', '1/4', '1/9', '1/16', '1/25']
+    ['1', '1 / 4', '1 / 9', '1 / 16', '1 / 25']
     >>> p_series(-5, 2)
     []
     >>> p_series(5, -2)
-    ['1', '1/0.25', '1/0.1111111111111111', '1/0.0625', '1/0.04']
+    ['1', '1 / 0.25', '1 / 0.1111111111111111', '1 / 0.0625', '1 / 0.04']
     >>> p_series("", 1000)
     ['']
     >>> p_series(0, 0)
