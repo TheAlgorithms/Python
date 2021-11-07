@@ -39,7 +39,7 @@ def main() -> None:
 
         # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
         letter_code = random_chars(32)
-        file_name = path.split("/")[-1].rsplit(".", 1)[0]
+        file_name = path.split(os.sep)[-1].rsplit(".", 1)[0]
         file_root = f"{OUTPUT_DIR}/{file_name}_MOSAIC_{letter_code}"
         cv2.imwrite(f"{file_root}.jpg", new_image, [cv2.IMWRITE_JPEG_QUALITY, 85])
         print(f"Successed {index+1}/{NUMBER_IMAGES} with {file_name}")
@@ -65,7 +65,7 @@ def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
     img_paths = []
     labels = []
     for label_file in glob.glob(os.path.join(label_dir, "*.txt")):
-        label_name = label_file.split("/")[-1].rsplit(".", 1)[0]
+        label_name = label_file.split(os.sep)[-1].rsplit(".", 1)[0]
         with open(label_file) as in_file:
             obj_lists = in_file.readlines()
         img_path = os.path.join(img_dir, f"{label_name}.jpg")

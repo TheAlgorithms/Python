@@ -26,17 +26,15 @@ def main() -> None:
     """
     img_paths, annos = get_dataset(LABEL_DIR, IMAGE_DIR)
     print("Processing...")
-    new_image, new_annos, path = update_image_and_anno(img_paths, annos, FLIP_TYPE)
+    new_images, new_annos, paths = update_image_and_anno(img_paths, annos, FLIP_TYPE)
 
-    for index in range(len(new_image)):
+    for index, image in enumerate(new_images):
         # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
         letter_code = random_chars(32)
-        file_name = path[index].split("/")[-1].rsplit(".", 1)[0]
+        file_name = paths[index].split(os.sep)[-1].rsplit(".", 1)[0]
         file_root = f"{OUTPUT_DIR}/{file_name}_FLIP_{letter_code}"
-        cv2.imwrite(
-            f"/{file_root}.jpg", new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85]
-        )
-        print(f"Success {index+1}/{len(new_image)} with {file_name}")
+        cv2.imwrite(f"/{file_root}.jpg", image, [cv2.IMWRITE_JPEG_QUALITY, 85])
+        print(f"Success {index+1}/{len(new_images)} with {file_name}")
         annos_list = []
         for anno in new_annos[index]:
             obj = f"{anno[0]} {anno[1]} {anno[2]} {anno[3]} {anno[4]}"
@@ -55,7 +53,7 @@ def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
     img_paths = []
     labels = []
     for label_file in glob.glob(os.path.join(label_dir, "*.txt")):
-        label_name = label_file.split("/")[-1].rsplit(".", 1)[0]
+        label_name = label_file.split(os.sep)[-1].rsplit(".", 1)[0]
         with open(label_file) as in_file:
             obj_lists = in_file.readlines()
         img_path = os.path.join(img_dir, f"{label_name}.jpg")
