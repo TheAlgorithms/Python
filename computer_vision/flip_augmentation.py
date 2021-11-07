@@ -104,7 +104,10 @@ def update_image_and_anno(img_list: List, anno_list: List, flip_type: int=1) -> 
 
 
 def random_chars(number_char: int) -> str:
-    # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
+    """
+    Automatic generate random 32 characters.
+    Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
+    """
     letter_code = 'abcdefghijklmnopqrstuvwxyz0123456789'
     return ''.join(random.choice(letter_code) for _ in range(number_char))
 
