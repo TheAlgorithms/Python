@@ -18,15 +18,12 @@ def mode(input_list: list) -> list[Any]:  # Defining function "mode."
     >>> mode(["x", "x" , "y", "y", "z"])
     ['x', 'y']
     """
-    result = list()  # Empty list to store the counts of elements in input_list
-    for x in input_list:
-        result.append(input_list.count(x))
-    if not result:
+    if not input_list:
         return []
-    y = max(result)  # Gets the maximum value in the result list.
+    result = [input_list.count(value) for value in input_list]
+    y = max(result)  # Gets the maximum count in the input list.
     # Gets values of modes
-    result = list({input_list[i] for i, value in enumerate(result) if value == y})
-    return sorted(result)
+    return sorted({input_list[i] for i, value in enumerate(result) if value == y})
 
 
 if __name__ == "__main__":
