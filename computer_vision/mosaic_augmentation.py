@@ -4,7 +4,6 @@ import glob
 import os
 import random
 from string import ascii_lowercase, digits
-
 import cv2
 import numpy as np
 
@@ -91,10 +90,10 @@ def update_image_and_anno(
     all_img_list: list,
     all_annos: list,
     idxs: list[int],
-    output_size: tuple(int, int),
-    scale_range: tuple(float, float),
+    output_size: tuple[int, int],
+    scale_range: tuple[float, float],
     filter_scale: float = 0.0,
-) -> tuple(list, list, str):
+) -> tuple[list, list, str]:
     """
     - all_img_list <type: list>: list of all images
     - all_annos <type: list>: list of all annotations of specific image

@@ -2,7 +2,6 @@ import glob
 import os
 import random
 from string import ascii_lowercase, digits
-
 import cv2
 
 
