@@ -298,6 +298,7 @@
 
 ## Financial
   * [Interest](https://github.com/TheAlgorithms/Python/blob/master/financial/interest.py)
+  * [EMI Calculation](https://github.com/TheAlgorithms/Python/blob/master/financial/equated_monthly_installments.py)
 
 ## Fractals
   * [Julia Sets](https://github.com/TheAlgorithms/Python/blob/master/fractals/julia_sets.py)
