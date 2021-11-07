@@ -2,7 +2,6 @@ import glob
 import os
 import random
 from string import ascii_lowercase, digits
-from typing import List, Tuple
 
 import cv2
 
@@ -47,7 +46,7 @@ def main() -> None:
             outfile.write("\n".join(line for line in annos_list))
 
 
-def get_dataset(label_dir: str, img_dir: str) -> Tuple[List, List]:
+def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
     """
     - label_dir <type: str>: Path to label include annotation of images
     - img_dir <type: str>: Path to folder contain images
@@ -83,7 +82,7 @@ def get_dataset(label_dir: str, img_dir: str) -> Tuple[List, List]:
 
 def update_image_and_anno(
     img_list: list, anno_list: list, flip_type: int = 1
-) -> Tuple[List, List, List]:
+) -> tuple[list, list, list]:
     """
     - img_list <type: list>: list of all images
     - anno_list <type: list>: list of all annotations of specific image
