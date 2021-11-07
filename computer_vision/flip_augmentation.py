@@ -40,8 +40,9 @@ def main() -> None:
                     new_image[index], [cv2.IMWRITE_JPEG_QUALITY, 85])
         print(f'Success {index+1}/{len(new_image)} with {file_name}')
         annos_list = []
-        obj = ["{} {} {} {} {}".format(*anno) for anno in new_annos[index]]
-        annos_list.append(obj[0])
+        for anno in new_annos[index]:
+            obj = f"{anno[0]} {anno[1]} {anno[2]} {anno[3]} {anno[4]}"
+            annos_list.append(obj)
         with open(f"/{file_root}.txt", "w") as outfile:
             outfile.write("\n".join(line for line in annos_list))
 
