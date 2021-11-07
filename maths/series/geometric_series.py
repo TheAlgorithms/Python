@@ -10,14 +10,14 @@ python3 geometric_series.py
 """
 
 
-from typing import Union
+from __future__ import annotations
 
 
 def geometric_series(
-    nth_term: Union[float, int],
-    start_term_a: Union[float, int],
-    common_ratio_r: Union[float, int],
-) -> list[Union[float, int]]:
+    nth_term: float | int,
+    start_term_a: float | int,
+    common_ratio_r: float | int,
+) -> list[float | int]:
     """
     Pure Python implementation of Geometric Series algorithm
 
@@ -48,7 +48,7 @@ def geometric_series(
     """
     if not all((nth_term, start_term_a, common_ratio_r)):
         return []
-    series: list[Union[float, int]] = []
+    series: list[float | int] = []
     power = 1
     multiple = common_ratio_r
     for _ in range(int(nth_term)):
@@ -65,3 +65,11 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
+    nth_term = input("Enter the last number (n term) of the Geometric Series")
+    start_term_a = input("Enter the starting term (a) of the Geometric Series")
+    common_ratio_r = input(
+        "Enter the common ratio between two terms (r) of the Geometric Series"
+    )
+    print("Formula of Geometric Series => a + ar + ar^2 ... +ar^n")
+    print(geometric_series(nth_term, start_term_a, common_ratio_r))
