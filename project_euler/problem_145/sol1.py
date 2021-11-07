@@ -83,7 +83,5 @@ def solution(number: int = 1000000000) -> int:
     return answer
 
 
-nr = 1000000000
-
 if __name__ == "__main__":
-    print(f"{solution(nr) = }")
+    print(f"{solution() = }")
