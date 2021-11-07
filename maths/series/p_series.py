@@ -13,9 +13,7 @@ python3 p_series.py
 from __future__ import annotations
 
 
-def p_series(
-    nth_term: int | float | str, power: int | float | str
-) -> list[str]:
+def p_series(nth_term: int | float | str, power: int | float | str) -> list[str]:
     """
     Pure Python implementation of P-Series algorithm
     :return: The P-Series starting from 1 to last (nth) term
@@ -34,7 +32,7 @@ def p_series(
     ['1']
     """
     if nth_term == "":
-        return ['']
+        return [""]
     nth_term = int(nth_term)
     power = int(power)
     series: list[str] = []
