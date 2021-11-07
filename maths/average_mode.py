@@ -1,7 +1,7 @@
 from typing import Any
 
 
-def mode(input_list: list) -> list[Any]:  # Defining function "mode."
+def mode(input_list: list) -> list[Any]:
     """This function returns the mode(Mode as in the measures of
     central tendency) of the input data.
 
