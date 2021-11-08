@@ -30,7 +30,7 @@ def anagram(my_word: str) -> list[str]:
 
 
 data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
-word_list = sorted(list({word.strip().lower() for word in data.split("\n")}))
+word_list = sorted({word.strip().lower() for word in data.splitlines()})
 
 word_bysig = collections.defaultdict(list)
 for word in word_list:
