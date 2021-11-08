@@ -98,3 +98,8 @@ def compute_bridges(graph: dict[int, list[int]]) -> list[tuple[int, int]]:
         if not visited[i]:
             dfs(i, -1, bridges, id)
     return bridges
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
