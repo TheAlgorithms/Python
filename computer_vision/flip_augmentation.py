@@ -2,8 +2,8 @@ import glob
 import os
 import random
 from string import ascii_lowercase, digits
-import cv2
 
+import cv2
 
 """
 Flip image and bounding box for computer vision task

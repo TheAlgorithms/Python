@@ -4,9 +4,9 @@ import glob
 import os
 import random
 from string import ascii_lowercase, digits
+
 import cv2
 import numpy as np
-
 
 # Parrameters
 OUTPUT_SIZE = (720, 1280)  # Height, Width
