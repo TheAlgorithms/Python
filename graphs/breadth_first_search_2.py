@@ -44,4 +44,7 @@ def breadth_first_search(graph: dict, start: str) -> set[str]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     print(breadth_first_search(G, "A"))
