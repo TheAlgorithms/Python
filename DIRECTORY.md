@@ -109,8 +109,10 @@
 
 ## Computer Vision
   * [Cnn Classification](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/cnn_classification.py)
+  * [Flip Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/flip_augmentation.py)
   * [Harris Corner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harris_corner.py)
   * [Mean Threshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mean_threshold.py)
+  * [Mosaic Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mosaic_augmentation.py)
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
@@ -297,8 +299,8 @@
     * [Test Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/tests/test_send_file.py)
 
 ## Financial
+  * [Equated Monthly Installments](https://github.com/TheAlgorithms/Python/blob/master/financial/equated_monthly_installments.py)
   * [Interest](https://github.com/TheAlgorithms/Python/blob/master/financial/interest.py)
-  * [EMI Calculation](https://github.com/TheAlgorithms/Python/blob/master/financial/equated_monthly_installments.py)
 
 ## Fractals
   * [Julia Sets](https://github.com/TheAlgorithms/Python/blob/master/fractals/julia_sets.py)
