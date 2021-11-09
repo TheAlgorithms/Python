@@ -4,6 +4,7 @@
   * [Gaussian Elimination](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/gaussian_elimination.py)
   * [In Static Equilibrium](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/in_static_equilibrium.py)
   * [Intersection](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/intersection.py)
+  * [Jacobi Iteration Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/jacobi_iteration_method.py)
   * [Lu Decomposition](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/lu_decomposition.py)
   * [Newton Forward Interpolation](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_forward_interpolation.py)
   * [Newton Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_method.py)
@@ -865,6 +866,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
   * Problem 203
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_203/sol1.py)
+  * Problem 205
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_205/sol1.py)
   * Problem 206
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_206/sol1.py)
   * Problem 207
