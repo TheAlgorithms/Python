@@ -1,5 +1,3 @@
-
-  
 """
 Functions for 2D matrix operations
 """
