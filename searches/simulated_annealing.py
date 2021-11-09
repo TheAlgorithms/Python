@@ -1,9 +1,9 @@
 # https://en.wikipedia.org/wiki/Simulated_annealing
 import math
 import random
+from typing import Any
 
 from .hill_climbing import SearchProblem
-from typing import Any
 
 
 def simulated_annealing(
