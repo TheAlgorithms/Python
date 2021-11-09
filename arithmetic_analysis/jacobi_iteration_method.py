@@ -1,7 +1,6 @@
 """
 Jacobi Iteration Method - https://en.wikipedia.org/wiki/Jacobi_method
 """
-
 from __future__ import annotations
 
 import numpy as np
@@ -112,13 +111,12 @@ def jacobi_iteration_method(
         for row in range(rows):
             temp = 0
             for col in range(cols):
-
                 if col == row:
                     denom = table[row][col]
                 elif col == cols - 1:
                     val = table[row][col]
                 else:
-                    temp = temp + (-1) * table[row][col] * init_val[col]
+                    temp += (-1) * table[row][col] * init_val[col]
             temp = (temp + val) / denom
             new_val.append(temp)
         init_val = new_val
@@ -150,7 +148,7 @@ def strictly_diagonally_dominant(table: np.ndarray) -> bool:
             if i == j:
                 continue
             else:
-                sum = sum + table[i][j]
+                sum += table[i][j]
 
         if table[i][i] <= sum:
             raise ValueError("Coefficient matrix is not strictly diagonally dominant")
