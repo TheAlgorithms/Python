@@ -157,6 +157,10 @@ def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> 
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     user_input = input("Enter numbers separated by comma:\n").strip()
     collection = [int(item.strip()) for item in user_input.split(",")]
     assert collection == sorted(collection), f"List must be ordered.\n{collection}."
