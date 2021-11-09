@@ -5,6 +5,7 @@ import random
 from .hill_climbing import SearchProblem
 from typing import Any
 
+
 def simulated_annealing(
     search_prob,
     find_max: bool = True,
