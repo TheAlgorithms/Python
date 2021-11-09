@@ -1,9 +1,10 @@
+
+  
 """
 Functions for 2D matrix operations
 """
 
 from __future__ import annotations
-from typing import Optional
 
 
 def add(*matrix_s: list[list]) -> list[list]:
@@ -19,7 +20,6 @@ def add(*matrix_s: list[list]) -> list[list]:
         for i in matrix_s[1:]:
             _verify_matrix_sizes(matrix_s[0], i)
         return [[sum(t) for t in zip(*m)] for m in zip(*matrix_s)]
-    return []
 
 
 def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
@@ -35,10 +35,9 @@ def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
         and _verify_matrix_sizes(matrix_a, matrix_b)
     ):
         return [[i - j for i, j in zip(*m)] for m in zip(matrix_a, matrix_b)]
-    return []
 
 
-def scalar_multiply(matrix: list[list], n: int | float) -> list[list]:
+def scalar_multiply(matrix: list[list], n: int) -> list[list]:
     """
     >>> scalar_multiply([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
@@ -82,7 +81,7 @@ def identity(n: int) -> list[list]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(matrix: list[list], return_map: bool = True) -> list[list] | map[list]:
+def transpose(matrix: list[list], return_map: bool = True) -> list[list]:
     """
     >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
@@ -94,7 +93,6 @@ def transpose(matrix: list[list], return_map: bool = True) -> list[list] | map[l
             return map(list, zip(*matrix))
         else:
             return list(map(list, zip(*matrix)))
-    return []
 
 
 def minor(matrix: list[list], row: int, column: int) -> list[list]:
@@ -106,7 +104,7 @@ def minor(matrix: list[list], row: int, column: int) -> list[list]:
     return [row[:column] + row[column + 1 :] for row in minor]
 
 
-def determinant(matrix: list[list]) -> int | float:
+def determinant(matrix: list[list]) -> int:
     """
     >>> determinant([[1, 2], [3, 4]])
     -2
@@ -122,7 +120,7 @@ def determinant(matrix: list[list]) -> int | float:
     )
 
 
-def inverse(matrix: list[list]) -> Optional[list[list]]:
+def inverse(matrix: list[list]) -> list[list]:
     """
     >>> inverse([[1, 2], [3, 4]])
     [[-2.0, 1.0], [1.5, -0.5]]
@@ -142,20 +140,21 @@ def inverse(matrix: list[list]) -> Optional[list[list]]:
         [x * (-1) ** (row + col) for col, x in enumerate(matrix_minor[row])]
         for row in range(len(matrix))
     ]
-    adjugate = list(transpose(cofactors))
+    adjugate = transpose(cofactors)
     return scalar_multiply(adjugate, 1 / det)
 
 
 def _check_not_integer(matrix: list[list]) -> bool:
     if not isinstance(matrix, int) and not isinstance(matrix[0], int):
         return True
-    return False
+    raise TypeError("Expected a matrix, got int/list instead")
 
-def _shape(matrix: list[list]) -> tuple:
+
+def _shape(matrix: list[list]) -> list:
     return len(matrix), len(matrix[0])
 
 
-def _verify_matrix_sizes(matrix_a: list[list], matrix_b: list[list]) -> tuple[tuple, tuple]:
+def _verify_matrix_sizes(matrix_a: list[list], matrix_b: list[list]) -> tuple[list]:
     shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
         raise ValueError(
