@@ -1,4 +1,7 @@
-def bubble_sort(collection):
+from typing import Any
+
+
+def bubble_sort(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
