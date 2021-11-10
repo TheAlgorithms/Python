@@ -281,7 +281,7 @@ class LFUCache(Generic[T, U]):
 
     @classmethod
     def decorator(
-        cls, size: int = 128
+        cls: type[LFUCache[T, U]], size: int = 128
     ) -> Callable[[Callable[[T], U]], Callable[..., U]]:
         """
         Decorator version of LFU Cache
