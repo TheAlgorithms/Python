@@ -1,5 +1,5 @@
 def find_longest_path_from_a_cell(
-    y_coordinate: int, x_coordinate: int, mat: "list[list[int]]", dp: "list[list[int]]"
+    y_coordinate: int, x_coordinate: int, mat: list[list[int]], dp: list[list[int]]
 ) -> int:
     """
     Find the length of longest path of increasing sequence in a matrix
@@ -37,7 +37,7 @@ def find_longest_path_from_a_cell(
     return dp[y_coordinate][x_coordinate]
 
 
-def find_longest_path_in_a_matrix(mat: "list[list[int]]") -> int:
+def find_longest_path_in_a_matrix(mat: list[list[int]]) -> int:
     """
     Find the length of longest path of increasing sequence in a matrix mat.
     >>> find_longest_path_in_a_matrix([[0, 1], [3, 2]])
