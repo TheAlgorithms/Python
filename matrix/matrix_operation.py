@@ -95,6 +95,10 @@ def transpose(matrix: list[list], return_map: bool = True) -> list[list] | map[l
     <map object at ...
     >>> transpose([[1,2],[3,4]], return_map=False)
     [[1, 3], [2, 4]]
+    >>> transpose([1, [2, 3]])
+    Traceback (most recent call last):
+      ...
+    TypeError: Expected a matrix, got int/list instead
     """
     if _check_not_integer(matrix):
         if return_map:
@@ -154,9 +158,7 @@ def inverse(matrix: list[list]) -> list[list] | None:
 
 
 def _check_not_integer(matrix: list[list]) -> bool:
-    if not isinstance(matrix, int) and not isinstance(matrix[0], int):
-        return True
-    return False
+    return not isinstance(matrix, int) and not isinstance(matrix[0], int)
 
 
 def _shape(matrix: list[list]) -> tuple[int, int]:
