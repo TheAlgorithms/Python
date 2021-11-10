@@ -31,9 +31,9 @@ def bubble_sort(collection: list[Any]) -> list[Any]:
     True
     """
     length = len(collection)
-    for i in range(length - 1):
+    for i in reversed(range(length)):
         swapped = False
-        for j in range(length - 1 - i):
+        for j in range(i):
             if collection[j] > collection[j + 1]:
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
