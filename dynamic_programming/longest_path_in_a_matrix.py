@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 def find_longest_path_from_a_cell(
     y_coordinate: int, x_coordinate: int, mat: list[list[int]], dp: list[list[int]]
 ) -> int:
