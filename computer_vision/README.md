@@ -1,6 +1,6 @@
 # Computer Vision
 
-Computer vision is a field of computer science that works on enabling computers to see, identify and process images in the same way that human vision does, and then provide appropriate output.
+Computer vision is a field of computer science that works on enabling computers to see, identify and process images in the same way that human does, and provide appropriate output.
 
 It is like imparting human intelligence and instincts to a computer.
 Image processing and computer vision are a little different from each other. Image processing means applying some algorithms for transforming image from one form to the other like smoothing, contrasting, stretching, etc.
