@@ -13,6 +13,10 @@ def add(*matrix_s: list[list]) -> list[list]:
     [[3.2, 5.4], [7, 9]]
     >>> add([[1, 2], [4, 5]], [[3, 7], [3, 4]], [[3, 5], [5, 7]])
     [[7, 14], [12, 16]]
+    >>> add([3], [4, 5])
+    Traceback (most recent call last):
+      ...
+    TypeError: Expected a matrix, got int/list instead
     """
     if all(_check_not_integer(m) for m in matrix_s):
         for i in matrix_s[1:]:
@@ -27,6 +31,10 @@ def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
     [[-1, -1], [-1, -1]]
     >>> subtract([[1,2.5],[3,4]],[[2,3],[4,5.5]])
     [[-1, -0.5], [-1, -1.5]]
+    >>> subtract([3], [4, 5])
+    Traceback (most recent call last):
+      ...
+    TypeError: Expected a matrix, got int/list instead
     """
     if (
         _check_not_integer(matrix_a)
