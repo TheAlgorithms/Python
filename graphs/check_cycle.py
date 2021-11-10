@@ -6,16 +6,15 @@ Program to check if a cycle is present in a given graph
 def check_cycle(graph: dict) -> bool:
     """
     Returns True if graph is cyclic else False
-
     >>> check_cycle(graph={0:[], 1:[0, 3], 2:[0, 4], 3:[5], 4:[5], 5:[]})
     False
     >>> check_cycle(graph={0:[1, 2], 1:[2], 2:[0, 3], 3:[3]})
     True
     """
     # Keep track of visited nodes
-    visited = set()
+    visited: set[int] = set()
     # To detect a back edge, keep track of vertices currently in the recursion stack
-    rec_stk = set()
+    rec_stk: set[int] = set()
     for node in graph:
         if node not in visited:
             if depth_first_search(graph, node, visited, rec_stk):
@@ -27,7 +26,6 @@ def depth_first_search(graph: dict, vertex: int, visited: set, rec_stk: set) -> 
     """
     Recur for all neighbours.
     If any neighbour is visited and in rec_stk then graph is cyclic.
-
     >>> graph = {0:[], 1:[0, 3], 2:[0, 4], 3:[5], 4:[5], 5:[]}
     >>> vertex, visited, rec_stk = 0, set(), set()
     >>> depth_first_search(graph, vertex, visited, rec_stk)

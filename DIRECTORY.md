@@ -4,6 +4,7 @@
   * [Gaussian Elimination](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/gaussian_elimination.py)
   * [In Static Equilibrium](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/in_static_equilibrium.py)
   * [Intersection](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/intersection.py)
+  * [Jacobi Iteration Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/jacobi_iteration_method.py)
   * [Lu Decomposition](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/lu_decomposition.py)
   * [Newton Forward Interpolation](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_forward_interpolation.py)
   * [Newton Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_method.py)
@@ -109,8 +110,10 @@
 
 ## Computer Vision
   * [Cnn Classification](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/cnn_classification.py)
+  * [Flip Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/flip_augmentation.py)
   * [Harris Corner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harris_corner.py)
   * [Mean Threshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mean_threshold.py)
+  * [Mosaic Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mosaic_augmentation.py)
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
@@ -253,6 +256,7 @@
 
 ## Dynamic Programming
   * [Abbreviation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/abbreviation.py)
+  * [All Construct](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/all_construct.py)
   * [Bitmask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/bitmask.py)
   * [Catalan Numbers](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/catalan_numbers.py)
   * [Climbing Stairs](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/climbing_stairs.py)
@@ -296,6 +300,7 @@
     * [Test Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/tests/test_send_file.py)
 
 ## Financial
+  * [Equated Monthly Installments](https://github.com/TheAlgorithms/Python/blob/master/financial/equated_monthly_installments.py)
   * [Interest](https://github.com/TheAlgorithms/Python/blob/master/financial/interest.py)
 
 ## Fractals
@@ -612,6 +617,7 @@
 
 ## Physics
   * [N Body Simulation](https://github.com/TheAlgorithms/Python/blob/master/physics/n_body_simulation.py)
+  * [Newtons Second Law Of Motion](https://github.com/TheAlgorithms/Python/blob/master/physics/newtons_second_law_of_motion.py)
 
 ## Project Euler
   * Problem 001
@@ -860,6 +866,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
   * Problem 203
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_203/sol1.py)
+  * Problem 205
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_205/sol1.py)
   * Problem 206
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_206/sol1.py)
   * Problem 207
@@ -1018,6 +1026,7 @@
   * [Nasa Data](https://github.com/TheAlgorithms/Python/blob/master/web_programming/nasa_data.py)
   * [Random Anime Character](https://github.com/TheAlgorithms/Python/blob/master/web_programming/random_anime_character.py)
   * [Recaptcha Verification](https://github.com/TheAlgorithms/Python/blob/master/web_programming/recaptcha_verification.py)
+  * [Reddit](https://github.com/TheAlgorithms/Python/blob/master/web_programming/reddit.py)
   * [Search Books By Isbn](https://github.com/TheAlgorithms/Python/blob/master/web_programming/search_books_by_isbn.py)
   * [Slack Message](https://github.com/TheAlgorithms/Python/blob/master/web_programming/slack_message.py)
   * [Test Fetch Github Info](https://github.com/TheAlgorithms/Python/blob/master/web_programming/test_fetch_github_info.py)
