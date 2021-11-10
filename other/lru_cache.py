@@ -10,8 +10,7 @@ class DoubleLinkedListNode(Generic[T, U]):
     """
     Double Linked List Node built specifically for LRU Cache
 
-    >>> node = DoubleLinkedListNode(1,1)
-    >>> node
+    >>> DoubleLinkedListNode(1,1)
     Node: key: 1, val: 1, has next: False, has prev: False
     """
 
@@ -161,9 +160,9 @@ class LRUCache(Generic[T, U]):
         Node: key: 1, val: 1, has next: True, has prev: True,
         Node: key: None, val: None, has next: False, has prev: True
 
-    >>> cache.cache
+    >>> cache.cache  # doctest: +NORMALIZE_WHITESPACE
     {1: Node: key: 1, val: 1, has next: True, has prev: True, \
-2: Node: key: 2, val: 2, has next: True, has prev: True}
+     2: Node: key: 2, val: 2, has next: True, has prev: True}
 
     >>> cache.set(3, 3)
 
@@ -174,9 +173,9 @@ class LRUCache(Generic[T, U]):
         Node: key: 3, val: 3, has next: True, has prev: True,
         Node: key: None, val: None, has next: False, has prev: True
 
-    >>> cache.cache
+    >>> cache.cache  # doctest: +NORMALIZE_WHITESPACE
     {1: Node: key: 1, val: 1, has next: True, has prev: True, \
-3: Node: key: 3, val: 3, has next: True, has prev: True}
+     3: Node: key: 3, val: 3, has next: True, has prev: True}
 
     >>> cache.get(2) is None
     True
@@ -250,6 +249,7 @@ class LRUCache(Generic[T, U]):
         Returns the value for the input key and updates the Double Linked List.
         Returns None if key is not present in cache
         """
+        # Note: pythonic interface would throw KeyError rather than return None
 
         if key in self.cache:
             self.hits += 1
