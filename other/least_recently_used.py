@@ -1,9 +1,12 @@
 import sys
+from abc import ABCMeta
 from collections import deque
 
 
-class LRUCache:
+class LRUCache(object):
     """Page Replacement Algorithm, Least Recently Used (LRU) Caching."""
+
+    __metaclass__ = ABCMeta
 
     dq_store = object()  # Cache store of keys
     key_reference_map = object()  # References of the keys in cache
