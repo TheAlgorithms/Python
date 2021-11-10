@@ -1,6 +1,6 @@
 beautifulsoup4
 fake_useragent
-keras
+keras<2.7.0
 lxml
 matplotlib
 numpy
@@ -9,10 +9,12 @@ pandas
 pillow
 qiskit
 requests
-scikit-fuzzy
+# scikit-fuzzy  # Causing broken builds
 sklearn
 statsmodels
 sympy
 tensorflow
+texttable
+tweepy
 types-requests
 xgboost

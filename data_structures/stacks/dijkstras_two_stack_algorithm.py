@@ -51,8 +51,8 @@ def dijkstras_two_stack_algorithm(equation: str) -> int:
     """
     operators = {"*": op.mul, "/": op.truediv, "+": op.add, "-": op.sub}
 
-    operand_stack = Stack()
-    operator_stack = Stack()
+    operand_stack: Stack[int] = Stack()
+    operator_stack: Stack[str] = Stack()
 
     for i in equation:
         if i.isdigit():
