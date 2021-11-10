@@ -1,16 +1,17 @@
 import sys
-from abc import abstractmethod
+from abc import ABCMeta
 from collections import deque
 
 
 class LRUCache:
     """Page Replacement Algorithm, Least Recently Used (LRU) Caching."""
 
+    __metaclass__ = ABCMeta
+
     dq_store = object()  # Cache store of keys
     key_reference_map = object()  # References of the keys in cache
     _MAX_CAPACITY: int = 10  # Maximum capacity of cache
 
-    @abstractmethod
     def __init__(self, n: int):
         """Creates an empty store and map for the keys.
         The LRUCache is set the size n.
