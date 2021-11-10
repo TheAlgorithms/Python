@@ -96,6 +96,7 @@ def transpose(matrix: list[list], return_map: bool = True) -> list[list] | map[l
             return list(map(list, zip(*matrix)))
     raise TypeError("Expected a matrix, got int/list instead")
 
+
 def minor(matrix: list[list], row: int, column: int) -> list[list]:
     """
     >>> minor([[1, 2], [3, 4]], 1, 1)
@@ -155,8 +156,9 @@ def _shape(matrix: list[list]) -> tuple[int, int]:
     return len(matrix), len(matrix[0])
 
 
-def _verify_matrix_sizes(matrix_a: list[list], matrix_b: list[list]) -> tuple[tuple, tuple]:
-    shape = _shape(matrix_a) + _shape(matrix_b)
+def _verify_matrix_sizes(
+    matrix_a: list[list], matrix_b: list[list]
+) -> tuple[tuple, tuple]:
     if shape[0] != shape[3] or shape[1] != shape[2]:
         raise ValueError(
             f"operands could not be broadcast together with shape "
