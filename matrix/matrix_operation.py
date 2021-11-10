@@ -13,11 +13,16 @@ def add(*matrix_s: list[list]) -> list[list]:
     [[3.2, 5.4], [7, 9]]
     >>> add([[1, 2], [4, 5]], [[3, 7], [3, 4]], [[3, 5], [5, 7]])
     [[7, 14], [12, 16]]
+    >>> add([3], [4, 5])
+    Traceback (most recent call last):
+      ...
+    TypeError: Expected a matrix, got int/list instead
     """
     if all(_check_not_integer(m) for m in matrix_s):
         for i in matrix_s[1:]:
             _verify_matrix_sizes(matrix_s[0], i)
         return [[sum(t) for t in zip(*m)] for m in zip(*matrix_s)]
+    raise TypeError("Expected a matrix, got int/list instead")
 
 
 def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
@@ -26,6 +31,10 @@ def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
     [[-1, -1], [-1, -1]]
     >>> subtract([[1,2.5],[3,4]],[[2,3],[4,5.5]])
     [[-1, -0.5], [-1, -1.5]]
+    >>> subtract([3], [4, 5])
+    Traceback (most recent call last):
+      ...
+    TypeError: Expected a matrix, got int/list instead
     """
     if (
         _check_not_integer(matrix_a)
@@ -33,9 +42,10 @@ def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
         and _verify_matrix_sizes(matrix_a, matrix_b)
     ):
         return [[i - j for i, j in zip(*m)] for m in zip(matrix_a, matrix_b)]
+    raise TypeError("Expected a matrix, got int/list instead")
 
 
-def scalar_multiply(matrix: list[list], n: int) -> list[list]:
+def scalar_multiply(matrix: list[list], n: int | float) -> list[list]:
     """
     >>> scalar_multiply([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
@@ -79,18 +89,23 @@ def identity(n: int) -> list[list]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(matrix: list[list], return_map: bool = True) -> list[list]:
+def transpose(matrix: list[list], return_map: bool = True) -> list[list] | map[list]:
     """
     >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
     >>> transpose([[1,2],[3,4]], return_map=False)
     [[1, 3], [2, 4]]
+    >>> transpose([1, [2, 3]])
+    Traceback (most recent call last):
+      ...
+    TypeError: Expected a matrix, got int/list instead
     """
     if _check_not_integer(matrix):
         if return_map:
             return map(list, zip(*matrix))
         else:
             return list(map(list, zip(*matrix)))
+    raise TypeError("Expected a matrix, got int/list instead")
 
 
 def minor(matrix: list[list], row: int, column: int) -> list[list]:
@@ -118,7 +133,7 @@ def determinant(matrix: list[list]) -> int:
     )
 
 
-def inverse(matrix: list[list]) -> list[list]:
+def inverse(matrix: list[list]) -> list[list] | None:
     """
     >>> inverse([[1, 2], [3, 4]])
     [[-2.0, 1.0], [1.5, -0.5]]
@@ -138,21 +153,21 @@ def inverse(matrix: list[list]) -> list[list]:
         [x * (-1) ** (row + col) for col, x in enumerate(matrix_minor[row])]
         for row in range(len(matrix))
     ]
-    adjugate = transpose(cofactors)
+    adjugate = list(transpose(cofactors))
     return scalar_multiply(adjugate, 1 / det)
 
 
 def _check_not_integer(matrix: list[list]) -> bool:
-    if not isinstance(matrix, int) and not isinstance(matrix[0], int):
-        return True
-    raise TypeError("Expected a matrix, got int/list instead")
+    return not isinstance(matrix, int) and not isinstance(matrix[0], int)
 
 
-def _shape(matrix: list[list]) -> list:
+def _shape(matrix: list[list]) -> tuple[int, int]:
     return len(matrix), len(matrix[0])
 
 
-def _verify_matrix_sizes(matrix_a: list[list], matrix_b: list[list]) -> tuple[list]:
+def _verify_matrix_sizes(
+    matrix_a: list[list], matrix_b: list[list]
+) -> tuple[tuple, tuple]:
     shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
         raise ValueError(
