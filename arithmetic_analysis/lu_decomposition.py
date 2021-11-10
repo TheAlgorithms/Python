@@ -6,9 +6,9 @@ Reference:
 from __future__ import annotations
 
 import numpy as np
+import typing
 
-
-def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+def lower_upper_decomposition(table: np.ndarray) -> typing.Tuple[np.ndarray, np.ndarray]:
     """Lower-Upper (LU) Decomposition
 
     Example:

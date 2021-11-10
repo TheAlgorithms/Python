@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import math
-
+import typing
 
 # for calculating u value
 def ucal(u: float, p: int) -> float:
@@ -22,7 +22,7 @@ def ucal(u: float, p: int) -> float:
 
 def main() -> None:
     n = int(input("enter the numbers of values: "))
-    y: list[list[float]] = []
+    y: typing.List[typing.List[float]] = []
     for i in range(n):
         y.append([])
     for i in range(n):
