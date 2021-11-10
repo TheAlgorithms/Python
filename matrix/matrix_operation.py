@@ -3,7 +3,6 @@ Functions for 2D matrix operations
 """
 
 from __future__ import annotations
-from typing import Optional
 
 
 def add(*matrix_s: list[list]) -> list[list]:
@@ -122,7 +121,7 @@ def determinant(matrix: list[list]) -> int:
     )
 
 
-def inverse(matrix: list[list]) -> Optional[list[list]]:
+def inverse(matrix: list[list]) -> list[list] | None:
     """
     >>> inverse([[1, 2], [3, 4]])
     [[-2.0, 1.0], [1.5, -0.5]]
@@ -159,6 +158,7 @@ def _shape(matrix: list[list]) -> tuple[int, int]:
 def _verify_matrix_sizes(
     matrix_a: list[list], matrix_b: list[list]
 ) -> tuple[tuple, tuple]:
+    shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
         raise ValueError(
             f"operands could not be broadcast together with shape "
