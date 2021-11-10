@@ -3,7 +3,7 @@ from abc import ABCMeta
 from collections import deque
 
 
-class LRUCache(object):
+class LRUCache:
     """Page Replacement Algorithm, Least Recently Used (LRU) Caching."""
 
     __metaclass__ = ABCMeta
