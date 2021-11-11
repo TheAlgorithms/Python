@@ -35,7 +35,7 @@ ETAOIN = "ETAOINSHRDLCUMWFGYPBVKJXQZ"
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def get_letter_count(message: str) -> dict:
+def get_letter_count(message: str) -> dict[str, int]:
     letter_count = {letter: 0 for letter in string.ascii_uppercase}
     for letter in message.upper():
         if letter in LETTERS:
@@ -44,13 +44,13 @@ def get_letter_count(message: str) -> dict:
     return letter_count
 
 
-def get_item_at_index_zero(x: tuple) -> str:
+def get_item_at_index_zero(x: tuple[str, int]) -> str:
     return x[0]
 
 
 def get_frequency_order(message: str) -> str:
     letter_to_freq = get_letter_count(message)
-    freq_to_letter: dict[int, list] = {
+    freq_to_letter: dict[int, list[str]] = {
         freq: [] for letter, freq in letter_to_freq.items()
     }
     for letter in LETTERS:
@@ -65,7 +65,7 @@ def get_frequency_order(message: str) -> str:
     freq_pairs = list(freq_to_letter_str.items())
     freq_pairs.sort(key=get_item_at_index_zero, reverse=True)
 
-    freq_order = []
+    freq_order: list[str] = []
     for freq_pair in freq_pairs:
         freq_order.append(freq_pair[1])
 
