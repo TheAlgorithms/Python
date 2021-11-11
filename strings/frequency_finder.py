@@ -44,7 +44,7 @@ def get_letter_count(message: str) -> dict[str, int]:
     return letter_count
 
 
-def get_item_at_index_zero(x: tuple[str, int]) -> str:
+def get_item_at_index_zero(x: tuple) -> str:
     return x[0]
 
 
