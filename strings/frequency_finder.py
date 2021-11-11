@@ -55,7 +55,7 @@ def get_frequency_order(message: str) -> str:
     }
     for letter in LETTERS:
         freq_to_letter[letter_to_freq[letter]].append(letter)
-    
+
     freq_to_letter_str: dict[int, str] = {}
 
     for freq in freq_to_letter:
