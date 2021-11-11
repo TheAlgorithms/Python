@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 END = "#"
 
 
@@ -49,9 +48,9 @@ def autocomplete_using_trie(string: str) -> tuple:
     ...     trie.insert_word(word)
     ...
     >>> matches = autocomplete_using_trie("de")
-    "detergent " in matches
+    >>> "detergent " in matches
     True
-    "dog " in matches
+    >>> "dog " in matches
     False
     """
     suffixes = trie.find_word(string)
