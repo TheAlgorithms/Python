@@ -42,7 +42,7 @@ def remove_non_letters(message: str) -> str:
 
 def is_english(
     message: str, word_percentage: int = 20, letter_percentage: int = 85
-)-> bool:
+) -> bool:
     """
     >>> is_english('Hello World')
     True
