@@ -27,7 +27,7 @@ def z_function(input_str: str) -> list[int]:
     >>> z_function("zxxzxxz")
     [0, 0, 0, 4, 0, 0, 1]
     """
-    z_result = [0 for i in range(len(input_str)]
+    z_result = [0 for i in range(len(input_str))]
 
     # initialize interval's left pointer and right pointer
     left_pointer, right_pointer = 0, 0
