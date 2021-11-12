@@ -42,7 +42,7 @@ def solution(number: int = 1000000000) -> int:
         x_reverse = int(str(x)[::-1])
         summ = x + x_reverse
         if all([i not in str(summ) for i in ["2", "4", "6", "8", "0"]]):
-            answer += 1        
+            answer += 1
     return answer
 
 
