@@ -65,9 +65,7 @@ def get_frequency_order(message: str) -> str:
     freq_pairs = list(freq_to_letter_str.items())
     freq_pairs.sort(key=get_item_at_index_zero, reverse=True)
 
-    freq_order: list[str] = []
-    for freq_pair in freq_pairs:
-        freq_order.append(freq_pair[1])
+    freq_order: list[str] = [freq_pair[1] for freq_pair in freq_pairs]
 
     return "".join(freq_order)
 
