@@ -1,0 +1,38 @@
+name: Feature request
+description: Suggest features, propose improvements, discuss new ideas.
+title: "[FEATURE]"
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: Provide a general summary of the issue in the Title above
+  - type: textarea
+    id: description
+    attributes:
+      label: Detailed description
+      description: Provide a detailed description of the change or addition you are proposing
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: |
+        Why is this change important to you? How would you use it?
+        How can it benefit other users?
+    validations:
+      required: true
+  - type: textarea
+    id: possibleimpl
+    attributes:
+      label: Possible implementation
+      description: Not obligatory, but suggest an idea for implementing addition or change
+    validations:
+      required: false
+  - type: textarea
+    id: extrainformation
+    attributes:
+      label: Additional information
+      description: Is there anything else we should know about this feature?
+    validations:
+      required: false

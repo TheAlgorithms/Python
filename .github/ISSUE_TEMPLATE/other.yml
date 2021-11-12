@@ -1,0 +1,29 @@
+name: Other
+description: Use this for any other issues. PLEASE do not create blank issues
+title: "[OTHER]"
+labels: ["awaiting triage"]
+body:
+  - type: markdown
+    attributes:
+      value: "# Other issue"
+  - type: textarea
+    id: issuedescription
+    attributes:
+      label: What would you like to share?
+      description: Provide a clear and concise explanation of your issue.
+    validations:
+      required: true
+  - type: textarea
+    id: extrainfo
+    attributes:
+      label: Additional information
+      description: Is there anything else we should know about this issue?
+    validations:
+      required: false
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Would you like to work on this issue?
+      options:
+        - label: Yes, I want to work on this issue!
+          required: false
