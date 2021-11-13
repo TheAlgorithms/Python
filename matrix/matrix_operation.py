@@ -177,7 +177,7 @@ def _verify_matrix_sizes(
     return (shape[0], shape[2]), (shape[1], shape[3])
 
 
-def main():
+def main() -> None:
     matrix_a = [[12, 10], [3, 9]]
     matrix_b = [[3, 4], [7, 4]]
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
