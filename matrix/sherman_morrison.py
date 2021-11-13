@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class Matrix:
     """
     <class Matrix>
@@ -194,7 +195,6 @@ class Matrix:
             for c in range(self.column):
                 result[c, r] = self[r, c]
         return result
-    
 
     def ShermanMorrison(self, u: Matrix, v: Matrix) -> Matrix | None:
         """
