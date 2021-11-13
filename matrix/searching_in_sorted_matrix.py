@@ -30,7 +30,7 @@ def search_in_a_sorted_matrix(
     print(f"Key {key} not found")
 
 
-def main():
+def main() -> None:
     mat = [[2, 5, 7], [4, 8, 13], [9, 11, 15], [12, 17, 20]]
     x = int(input("Enter the element to be searched:"))
     print(mat)
