@@ -29,7 +29,7 @@ def check_matrix(matrix: list[list]) -> bool:
 
 def spiral_print_clockwise(a: list[list]) -> None:
     """
-    >>> spiral_print([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+    >>> spiral_print_clockwise([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
     1
     2
     3
