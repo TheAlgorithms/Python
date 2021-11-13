@@ -9,7 +9,7 @@
 # The second line of each test case contains a string S of length N, representing which houses have trash bins in front of them. If the i-th character in string S is equal to 1, then it means that the i-th house has a trash bin in front of it. Otherwise, if it is equal to 0, then it means that the i-th house does not have a trash bin in front of it.
 # Output
 # For each test case, output one line containing Case #x: y, where x is the test case number (starting from 1) and y is the sum of the distances that each house owner has to walk to take their trashes out.
-tc = int(input())
+tc = ['101110', '100010']
 
 def search(ss : str) -> list:
     c = 0
@@ -20,9 +20,9 @@ def search(ss : str) -> list:
         c += 1
     return loc
 
-def solve() -> int:
-    sl = int(input())
-    st = input()
+def solve(p : str) -> int:
+    sl = int(p)
+    st = p
     tbl = search(st)
     td = 0
     idex = 0
@@ -39,5 +39,5 @@ def solve() -> int:
             
 
     
-for i in range(tc):
-    print("Case #"+str(i+1)+": "+str(solve()))
+for i in tc:
+    print("Case #"+str(i+1)+": "+str(solve(i)))
