@@ -1,6 +1,6 @@
 # An OOP approach to representing and manipulating matrices
 
-from __future__ import annotation
+from __future__ import annotations
 
 
 class Matrix:
@@ -19,23 +19,23 @@ class Matrix:
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]]
-    
+
     Matrix rows and columns are available as 2D arrays
     >>> print(matrix.rows)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     >>> print(matrix.columns())
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-    
+
     Order is returned as a tuple
     >>> matrix.order
     (3, 3)
-    
+
     Squareness and invertability are represented as bool
     >>> matrix.is_square
     True
     >>> matrix.is_invertable()
     False
-    
+
     Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
     a Matrix or Nonetype
     >>> print(matrix.identity())
@@ -59,11 +59,11 @@ class Matrix:
     Traceback (most recent call last):
         ...
     TypeError: Only matrices with a non-zero determinant have an inverse
-    
+
     Determinant is an int, float, or Nonetype
     >>> matrix.determinant()
     0
-    
+
     Negation, scalar multiplication, addition, subtraction, multiplication and
     exponentiation are available and all return a Matrix
     >>> print(-matrix)
@@ -87,7 +87,7 @@ class Matrix:
     [[468. 576. 684.]
      [1062. 1305. 1548.]
      [1656. 2034. 2412.]]
-    
+
     Matrices can also be modified
     >>> matrix.add_row([10, 11, 12])
     >>> print(matrix)
