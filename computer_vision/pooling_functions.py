@@ -5,7 +5,7 @@ from PIL import Image
 
 
 # Maxpooling Function
-def maxpooling(arr, size, stride):
+def maxpooling(arr:list, size:int, stride:int) -> list:
     """
     This function is used to perform maxpooling on the input array of 2D matrix(image)
 
@@ -47,7 +47,7 @@ def maxpooling(arr, size, stride):
 
 
 # Averagepooling Function
-def avgpooling(arr, size, stride):
+def avgpooling(arr:list, size:int, stride:int) -> list:
     """
     This function is used to perform avgpooling on the input array of 2D matrix(image)
     Args:
