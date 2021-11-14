@@ -7,6 +7,8 @@ from PIL import Image
 # Maxpooling Function
 def maxpooling(arr, size, stride):
     """
+    This function is used to perform maxpooling on the input array of 2D matrix(image)
+
     Args:
         arr: numpy array
         size: size of pooling matrix
@@ -14,6 +16,8 @@ def maxpooling(arr, size, stride):
     Returns:
         numpy array
     """
+    if arr.shape[0] != arr.shape[1]:
+        raise ValueError("The input array is not a square matrix")
     i = 0
     j = 0
     maxpool_shape = (arr.shape[0]-size)//stride + 1
@@ -35,6 +39,8 @@ def maxpooling(arr, size, stride):
 # Averagepooling Function
 def avgpooling(arr, size, stride):
     """
+    This function is used to perform avgpooling on the input array of 2D matrix(image)
+    
     Args:
         arr: numpy array
         size: size of pooling matrix
@@ -42,6 +48,8 @@ def avgpooling(arr, size, stride):
     Returns:
         numpy array
     """
+    if arr.shape[0] != arr.shape[1]:
+        raise ValueError("The input array is not a square matrix")
     i = 0
     j = 0
     # compute the shape of the output matrix
