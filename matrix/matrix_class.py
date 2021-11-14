@@ -1,7 +1,6 @@
 # An OOP approach to representing and manipulating matrices
 
-from __future__ import annotations
-from typing import Optional
+from __future__ import annotation
 
 
 class Matrix:
@@ -20,19 +19,23 @@ class Matrix:
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]]
+    
     Matrix rows and columns are available as 2D arrays
     >>> print(matrix.rows)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     >>> print(matrix.columns())
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+    
     Order is returned as a tuple
     >>> matrix.order
     (3, 3)
+    
     Squareness and invertability are represented as bool
     >>> matrix.is_square
     True
     >>> matrix.is_invertable()
     False
+    
     Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
     a Matrix or Nonetype
     >>> print(matrix.identity())
@@ -53,10 +56,14 @@ class Matrix:
      [6. -12. 6.]
      [-3. 6. -3.]]
     >>> print(matrix.inverse())
-    None
+    Traceback (most recent call last):
+        ...
+    TypeError: Only matrices with a non-zero determinant have an inverse
+    
     Determinant is an int, float, or Nonetype
     >>> matrix.determinant()
     0
+    
     Negation, scalar multiplication, addition, subtraction, multiplication and
     exponentiation are available and all return a Matrix
     >>> print(-matrix)
@@ -80,6 +87,7 @@ class Matrix:
     [[468. 576. 684.]
      [1062. 1305. 1548.]
      [1656. 2034. 2412.]]
+    
     Matrices can also be modified
     >>> matrix.add_row([10, 11, 12])
     >>> print(matrix)
@@ -211,9 +219,11 @@ class Matrix:
         ]
         return Matrix(values)
 
-    def inverse(self) -> Matrix | int:
+    def inverse(self) -> Matrix:
         determinant = self.determinant()
-        return 0 if not determinant else self.adjugate() * (1 / determinant)
+        if not determinant:
+            raise TypeError("Only matrices with a non-zero determinant have an inverse")
+        return self.adjugate() * (1 / determinant)
 
     def __repr__(self) -> str:
         return str(self.rows)
@@ -235,7 +245,7 @@ class Matrix:
         )
 
     # MATRIX MANIPULATION
-    def add_row(self, row: list, position: Optional[int] = None) -> None:
+    def add_row(self, row: list, position: int | None = None) -> None:
         type_error = TypeError("Row must be a list containing all ints and/or floats")
         if not isinstance(row, list):
             raise type_error
@@ -251,7 +261,7 @@ class Matrix:
         else:
             self.rows = self.rows[0:position] + [row] + self.rows[position:]
 
-    def add_column(self, column: list, position: Optional[int] = None) -> None:
+    def add_column(self, column: list, position: int | None = None) -> None:
         type_error = TypeError(
             "Column must be a list containing all ints and/or floats"
         )
