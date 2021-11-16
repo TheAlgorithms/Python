@@ -48,7 +48,7 @@ repos:
         args:
           - --ignore-missing-imports
         additional_dependencies:
-          - Pillow=8.3.7
+          - Pillow==8.3.7
           - types-all
 
   - repo: https://github.com/codespell-project/codespell
