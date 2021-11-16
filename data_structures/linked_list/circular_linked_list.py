@@ -1,10 +1,12 @@
-from typing import Any, Iterator, Optional
+from __future__ import annotations
+
+from typing import Any, Iterator
 
 
 class Node:
     def __init__(self, data: Any):
         self.data: Any = data
-        self.next: Optional[Node] = None
+        self.next: Node | None = None
 
 
 class CircularLinkedList:
