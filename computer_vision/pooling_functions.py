@@ -118,7 +118,8 @@ def avgpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
 
 # Main Function
 if __name__ == "__main__":
-    # test the functions
+    from doctest import testmod
+
     testmod(name='avgpooling', verbose=True)
 
     # Loading the image
