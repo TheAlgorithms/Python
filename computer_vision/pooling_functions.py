@@ -44,7 +44,7 @@ def maxpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
             if j + size > arr.shape[1]:
                 break
             # compute the maximum of the pooling matrix
-            updated_arr[mat_i][mat_j] = np.max(arr[i:i + size, j:j + size])
+            updated_arr[mat_i][mat_j] = np.max(arr[i : i + size, j : j + size])
             # shift the pooling matrix by stride of column pixels
             j += stride
             mat_j += 1
@@ -100,7 +100,7 @@ def avgpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
             if j + size > arr.shape[1]:
                 break
             # compute the average of the pooling matrix
-            updated_arr[mat_i][mat_j] = int(np.average(arr[i:i + size, j:j + size]))
+            updated_arr[mat_i][mat_j] = int(np.average(arr[i : i + size, j : j + size]))
             # shift the pooling matrix by stride of column pixels
             j += stride
             mat_j += 1
@@ -119,7 +119,7 @@ def avgpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
 if __name__ == "__main__":
     from doctest import testmod
 
-    testmod(name='avgpooling', verbose=True)
+    testmod(name="avgpooling", verbose=True)
 
     # Loading the image
     image = Image.open("path_to_image")
