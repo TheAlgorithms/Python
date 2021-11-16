@@ -45,11 +45,6 @@ repos:
     rev: v0.910
     hooks:
       - id: mypy
-        args:
-          - --ignore-missing-imports
-        additional_dependencies:
-          - Pillow==8.3.2
-          - types-all
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.0.0
