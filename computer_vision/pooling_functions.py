@@ -3,9 +3,8 @@
 import numpy as np
 from PIL import Image
 
+
 # Maxpooling Function
-
-
 def maxpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
     """
     This function is used to perform maxpooling on the input array of 2D matrix(image)
@@ -28,8 +27,8 @@ def maxpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
         raise ValueError("The input array is not a square matrix")
     i = 0
     j = 0
-    max_mat_i = 0
-    max_mat_j = 0
+    mat_i = 0
+    mat_j = 0
 
     # compute the shape of the output matrix
     maxpool_shape = (arr.shape[0] - size) // stride + 1
@@ -45,18 +44,18 @@ def maxpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
             if j + size > arr.shape[1]:
                 break
             # compute the maximum of the pooling matrix
-            updated_arr[max_mat_i][max_mat_j] = np.max(arr[i:i + size, j:j + size])
+            updated_arr[mat_i][mat_j] = np.max(arr[i:i + size, j:j + size])
             # shift the pooling matrix by stride of column pixels
             j += stride
-            max_mat_j += 1
+            mat_j += 1
 
         # shift the pooling matrix by stride of row pixels
         i += stride
-        max_mat_i += 1
+        mat_i += 1
 
         # reset the column index to 0
         j = 0
-        max_mat_j = 0
+        mat_j = 0
 
     return updated_arr
 
