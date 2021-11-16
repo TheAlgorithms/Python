@@ -2,7 +2,6 @@
 # Importing the libraries
 import numpy as np
 from PIL import Image
-from doctest import testmod
 
 # Maxpooling Function
 
