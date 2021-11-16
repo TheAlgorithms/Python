@@ -133,7 +133,4 @@ if __name__ == "__main__":
     # Converting the image to numpy array and averagepooling, displaying the result
     # Ensure that the image is a square matrix
 
-    # Parameters
-    size = 3
-    stride = 2
-    Image.fromarray(avgpooling(np.array(image), size, stride)).show()
+    Image.fromarray(avgpooling(np.array(image), size=3, stride=2)).show()
