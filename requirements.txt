@@ -16,5 +16,4 @@ sympy
 tensorflow
 texttable
 tweepy
-types-requests
 xgboost
