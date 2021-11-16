@@ -128,10 +128,7 @@ if __name__ == "__main__":
     # Converting the image to numpy array and maxpooling, displaying the result
     # Ensure that the image is a square matrix
 
-    # Parameters
-    size = 3
-    stride = 2
-    Image.fromarray(maxpooling(np.array(image), size, stride)).show()
+    Image.fromarray(maxpooling(np.array(image), size=3, stride=2)).show()
 
     # Converting the image to numpy array and averagepooling, displaying the result
     # Ensure that the image is a square matrix
