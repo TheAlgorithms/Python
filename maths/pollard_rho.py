@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from math import gcd
-from typing import Union
 
 
 def pollard_rho(
@@ -7,7 +8,7 @@ def pollard_rho(
     seed: int = 2,
     step: int = 1,
     attempts: int = 3,
-) -> Union[int, None]:
+) -> int | None:
     """
     Use Pollard's Rho algorithm to return a nontrivial factor of ``num``.
     The returned factor may be composite and require further factorization.

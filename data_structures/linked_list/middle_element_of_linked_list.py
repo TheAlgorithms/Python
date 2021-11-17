@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 
 class Node:
@@ -17,7 +17,7 @@ class LinkedList:
         self.head = new_node
         return self.head.data
 
-    def middle_element(self) -> Optional[int]:
+    def middle_element(self) -> int | None:
         """
         >>> link = LinkedList()
         >>> link.middle_element()
