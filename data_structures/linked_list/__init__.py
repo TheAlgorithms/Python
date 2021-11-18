@@ -5,8 +5,9 @@ Nodes contain data and also may link to other nodes:
                  head node gives us access of the complete list
     - Last node: points to null
 """
+from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 
 class Node:
@@ -17,7 +18,7 @@ class Node:
 
 class LinkedList:
     def __init__(self) -> None:
-        self.head: Optional[Node] = None
+        self.head: Node | None = None
         self.size = 0
 
     def add(self, item: Any) -> None:
