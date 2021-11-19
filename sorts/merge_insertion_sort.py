@@ -160,7 +160,7 @@ def merge_insertion_sort(collection: list[int]) -> list[int]:
     """
     is_last_odd_item_inserted_before_this_index = False
     for i in range(len(sorted_list_2d) - 1):
-        if result[i] == collection[-1]:
+        if result[i] == collection[-1] and has_last_odd_item:
             is_last_odd_item_inserted_before_this_index = True
         pivot = sorted_list_2d[i][1]
         # If last_odd_item is inserted before the item's index,
