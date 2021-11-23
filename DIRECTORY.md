@@ -525,6 +525,7 @@
   * [Perfect Cube](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_cube.py)
   * [Perfect Number](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_number.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
+  * [Persistence](https://github.com/TheAlgorithms/Python/blob/master/maths/persistence.py)
   * [Pi Monte Carlo Estimation](https://github.com/TheAlgorithms/Python/blob/master/maths/pi_monte_carlo_estimation.py)
   * [Pollard Rho](https://github.com/TheAlgorithms/Python/blob/master/maths/pollard_rho.py)
   * [Polynomial Evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
