@@ -30,6 +30,12 @@ def merge_insertion_sort(collection: list[int]) -> list[int]:
 
     >>> merge_insertion_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    Testing with all permutations on range(0,5):
+    >>> import itertools
+    >>> permutations = list(itertools.permutations([0, 1, 2, 3, 4]))
+    >>> [x for x in permutations if merge_insertion_sort(x) != [0, 1, 2, 3, 4]]
+    []
     """
 
     def binary_search_insertion(sorted_list, item):
