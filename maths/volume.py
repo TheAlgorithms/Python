@@ -200,6 +200,23 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float):
         * (pow(radius_1, 2) + pow(radius_2, 2) + radius_1 * radius_2)
     )
 
+def vol_tetrahedron(edge: float) -> float:
+    """Calculate the Volume of a Tetrahedron.
+    Wikipedia Reference: https://en.wikipedia.org/wiki/Tetrahedron
+    :return edge^3 / (6 * 2^0.5)
+    >>> vol_tetrahedron(5)
+    14.731391274719739
+    
+    >>> vol_tetrahedron(93)
+    94794.38153247796
+    """
+
+    return (
+        pow(edge,3)
+        / (6 * pow(2,0.5))
+
+    )
+
 
 def main():
     """Print the Results of Various Volume Calculations."""
@@ -216,6 +233,7 @@ def main():
     print("Conical Frustum: " + str(vol_conical_frustum(2, 2, 4)))  # ~= 58.6
     print("Spherical cap: " + str(vol_spherical_cap(1, 2)))  # ~= 5.24
     print("Spheres intersetion: " + str(vol_spheres_intersect(2, 2, 1)))  # ~= 21.21
+    print("Tetrahedron: " + str(vol_tetrahedron(2))) # ~=0.94
 
 
 if __name__ == "__main__":
