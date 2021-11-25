@@ -1,5 +1,6 @@
 """
 Shortest job first (non-preemptive)
+https://en.wikipedia.org/wiki/Shortest_job_next
 Please note arrival time and burst
 Please use spaces to separate times entered.
 """

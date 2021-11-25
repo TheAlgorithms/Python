@@ -1,5 +1,6 @@
 """
 Shortest job remaining first
+https://en.wikipedia.org/wiki/Shortest_remaining_time
 Please note arrival time and burst
 Please use spaces to separate times entered.
 """
