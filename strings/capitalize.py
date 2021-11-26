@@ -14,7 +14,10 @@ def capitalize(sentence: str) -> str:
     'A'
     >>> capitalize("")
     ''
+    >>> capitalize(" abc")
+    ' abc'
     """
+    
     if not sentence:
         return ""
     lower_to_upper = {lc: uc for lc, uc in zip(ascii_lowercase, ascii_uppercase)}
