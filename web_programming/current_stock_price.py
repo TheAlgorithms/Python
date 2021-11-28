@@ -1,14 +1,20 @@
-import requests
+import urllib.request
+searchStr = input("Enter Search Query \n")
+r = urllib.request.urlopen("https://cve.mitre.org/cgi-bin/cvekey.cgi?
+keyword="+searchStr)
+source_code = r.read()
 from bs4 import BeautifulSoup
+soup = BeautifulSoup(source_code, 'html.parser')
 
+# FIRST OF ALL SEE THAT THE ID "TableWithRules" is associated to the divtag 
 
-def stock_price(symbol: str = "AAPL") -> str:
-    url = f"https://in.finance.yahoo.com/quote/{symbol}?s={symbol}"
-    soup = BeautifulSoup(requests.get(url).text, "html.parser")
-    class_ = "My(6px) Pos(r) smartphone_Mt(6px)"
-    return soup.find("div", class_=class_).find("span").text
-
-
-if __name__ == "__main__":
-    for symbol in "AAPL AMZN IBM GOOG MSFT ORCL".split():
-        print(f"Current {symbol:<4} stock price is {stock_price(symbol):>8}")
+table = soup.find('div', {"id" : 'TableWithRules'})
+rows=table.find_all("tr")   # here you have to use find_all for finding all rows of table
+for tr in rows:
+    cols = tr.find_all('td') #here also you have to use find_all for finding all columns of current row
+    if cols==[]: # This is a sanity check if columns are empty it will jump to next row
+        continue
+    p = cols[0].text.strip()
+    d = cols[1].text.strip()
+    print(p)
+    print(d)

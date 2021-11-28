@@ -3,7 +3,7 @@ if __name__ == "__main__":
 
     sock = socket.socket()  # Create a socket object
     host = socket.gethostname()  # Get local machine name
-    port = 12312
+    port = 00000
 
     sock.connect((host, port))
     sock.send(b"Hello server!")
