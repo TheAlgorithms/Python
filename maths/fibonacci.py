@@ -1,10 +1,10 @@
 # fibonacci.py
 """
-Calculates the Fibonacci sequence using iteration, recursion, and a simplified
-form of Binet's formula
+Calculates the Fibonacci sequence using iteration, recursion, memoization,
+and a simplified form of Binet's formula
 
-NOTE 1: the iterative and recursive functions are more accurate than the Binet's
-formula function because the iterative function doesn't use floats
+NOTE 1: the iterative, recursive, memoization functions are more accurate than
+the Binet's formula function because the iterative function doesn't use floats
 
 NOTE 2: the Binet's formula function is much more limited in the size of inputs
 that it can handle due to the size limitations of Python floats
@@ -12,6 +12,7 @@ that it can handle due to the size limitations of Python floats
 
 from math import sqrt
 from time import time
+from typing import Callable
 
 
 def time_func(func, *args, **kwargs):
@@ -86,6 +87,35 @@ def fib_recursive(n: int) -> list[int]:
     return [fib_recursive_term(i) for i in range(n + 1)]
 
 
+def fib_memoization() -> Callable[[int], int]:
+    """
+    Calculates the nth fibonacci number using Memoization
+    >>> fib_memoization()(5)
+    5
+    >>> fib_memoization()(100)
+    354224848179261915075
+    >>> fib_memoization()(25)
+    75025
+    >>> fib_memoization()(40)
+    102334155
+    """
+    # Cache must be outside recursuive function
+    # other it will reset every time it calls itself.
+    cache: dict[int, int] = {1: 1, 2: 1}  # Prefilled cache
+
+    def rec_fn_memoized(num: int) -> int:
+        if num < 1:
+            raise Exception("n is negative")
+        if num in cache:
+            return cache[num]
+
+        value = rec_fn_memoized(num - 1) + rec_fn_memoized(num - 2)
+        cache[num] = value
+        return value
+
+    return rec_fn_memoized
+
+
 def fib_binet(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using a simplified form
@@ -127,4 +157,5 @@ if __name__ == "__main__":
     num = 20
     time_func(fib_iterative, num)
     time_func(fib_recursive, num)
+    time_func(fib_memoization(), num)
     time_func(fib_binet, num)
