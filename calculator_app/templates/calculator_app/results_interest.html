@@ -1,0 +1,68 @@
+{% extends 'calculator_app/base.html' %}
+
+{% block content %}
+<div class = "container">
+	<div class = "page-header">
+	<h1>Welcome to the results page</h1>
+	</div>
+
+</div>
+	
+
+
+{% if error_text %}
+	<div class = "container">
+		<div class = "alert alert-warning">
+			{{ error_text }}
+			<br>
+			<a href = "{% url 'interest_calculator'%}"}>Try again</a>
+		</div>
+	</div>
+	
+{% endif %}
+
+
+{% if is_valid %}
+<br><br>
+<div class = "container">
+	<div class = "well well-lg">
+<h2>Compounded Interest Rate for the given inputs is: <strong>{{ compound_interest }}</strong></h2>
+
+<br>
+Your Inputs were
+<br>
+Amount: <strong>{{ amount }}</strong>
+<br>
+Interest Rate: <strong>{{ interest_rate }}</strong>
+<br>
+
+Number of times interest is calculated: <strong>{{ num_times_interest }}</strong>
+<br>
+Time Period: <strong>{{ time_period }} {{ time_periods }}</strong>
+
+<br><br>
+<a href = "{% url 'interest_calculator' %}">Try again</a>
+
+</div></div>
+
+
+
+{% elif not is_valid and not error_text %}
+	<br><br>
+	<div class = "container">
+		<div class = "well well-lg" >
+			
+			It looks like the format of the data is invalid. 
+			<br> Please <a href = "{% url 'interest_calculator' %}">try again</a>
+		</div>
+	</div>
+
+
+{% endif %}
+
+
+
+
+
+
+{% endblock content %}

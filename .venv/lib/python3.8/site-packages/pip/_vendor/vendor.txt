@@ -1,0 +1,22 @@
+appdirs==1.4.4
+CacheControl==0.12.6
+colorama==0.4.4
+distlib==0.3.1
+distro==1.5.0
+html5lib==1.1
+msgpack==1.0.2
+packaging==20.9
+pep517==0.10.0
+progress==1.5
+pyparsing==2.4.7
+requests==2.25.1
+    certifi==2020.12.05
+    chardet==4.0.0
+    idna==3.1
+    urllib3==1.26.4
+resolvelib==0.7.0
+setuptools==44.0.0
+six==1.15.0
+tenacity==7.0.0
+toml==0.10.2
+webencodings==0.5.1

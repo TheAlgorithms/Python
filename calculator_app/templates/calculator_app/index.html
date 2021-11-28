@@ -1,0 +1,18 @@
+{% extends 'calculator_app/base.html' %}
+
+
+{% block content %}
+<div class = "container">
+	<div class = "jumbotron">
+		<h1>Welcome to Financial Calculator</h1>
+
+		<p>Hi, this is my first website. It allows you to calculate periodic compound interests and also allows you to calculate loan predictions. There are lots of new features that are coming.<br><br>
+		To get started, <a href = "{% url 'interest_calculator' %}">Here's a link to interest calculator</a> and
+		<a href = "{% url 'loan_calculator' %}">a link to the Loan Calculator</a> which calculates the equal monthly payments to repay your loan!  Enjoy</p>
+	</div>
+</div>
+
+
+
+
+{% endblock content %}

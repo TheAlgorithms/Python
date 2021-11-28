@@ -1,0 +1,68 @@
+{% extends 'calculator_app/base.html' %}
+
+{% block content %}
+<div class = "container">
+<h1>Interest Calculator</h1>
+</div>
+<br>
+
+
+
+<div class = "container">
+	<div class = "well">
+	<form action = "{% url 'results_interest' %}" method = "POST" autocomplete="off">
+		{% csrf_token %}
+
+		<label for = "amt">Enter the Amount: </label>
+		<input type = "text" id = "amt" name = "amount">
+
+		<br><br>
+
+		<label for = "ir">Enter the annual Interest Rate(in percentage): </label>
+		<input id = "ir" type = "text" name = interest_rate>
+
+		<br><br>
+
+
+		<label for = "num_times">Number of times interest is calculated in a year: </label>
+		<select id = "num_times" name = "num_times_interest">
+
+			<option value = "Yearly">Yearly</option>
+			<option value = "Quarterly">Quarterly</option>
+			<option value = "Monthly">Monthly</option>
+			<option value = "Continuous">Continous</option>
+
+
+		</select>
+
+
+		<br><br>
+
+
+
+		<label for = "time">Time Period: </label>
+		<input id = "time" type = "text" name = time_period>
+
+		<select name = "time_periods">
+
+			<option value = "Years">Years</option>
+			<option value = "Months">Months</option>
+			<option value = "Days">Days</option>
+
+		</select>
+
+
+
+		<br><br>
+
+		<input type = "submit" value = "Submit" class = "btn btn-primary">
+
+
+	</form>
+	</div>
+
+
+</div>
+
+
+{% endblock content %}

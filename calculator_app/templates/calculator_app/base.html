@@ -1,0 +1,67 @@
+<! doctype html>
+<html lang = "eng">
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width = device-width, initial_scale = 1">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<title>{% block title %}Financial Calculator{% endblock title %}</title>
+
+
+</head>
+
+<body>
+
+
+
+<!--     
+	<div class="container">
+		<div class="jumbotron">
+      	<h1>Financial Calculator App</h1>
+    	<p>Hi, this is my first website. It allows you to calculate periodic compound interests and also allows you to calculate loan predictions. Enjoy</p>
+  		</div>
+  	<p>This is some text.</p>
+  	<p>This is another text.</p>
+	</div>
+
+ -->
+
+ 	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'index' %}">Calculator</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="{% url 'interest_calculator' %}">Interest Calculator</a></li>
+      <li><a href="{% url 'loan_calculator' %}">Loan Calculator</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+		{% block content %}
+
+		Welcome to base.html
+		{% endblock content %}
+
+
+
+</html>
+
+
+
+
+

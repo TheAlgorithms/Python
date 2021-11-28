@@ -1,4 +1,0 @@
-[report]
-sort = Cover
-omit =
-    .env/*

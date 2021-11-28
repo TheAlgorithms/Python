@@ -1,0 +1,2 @@
+https://files.pythonhosted.org/packages/source/c/certifi/certifi-2016.9.26.tar.gz#md5=baa81e951a29958563689d868ef1064d
+https://files.pythonhosted.org/packages/source/w/wincertstore/wincertstore-0.2.zip#md5=ae728f2f007185648d0c7a8679b361e2

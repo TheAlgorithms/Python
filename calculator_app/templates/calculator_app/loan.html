@@ -1,0 +1,96 @@
+{% extends 'calculator_app/base.html' %}
+
+
+{% block content %}
+
+
+<div class = "container">
+	<div class = "jumbotron">
+		<h1>Loan Calculator</h1>
+		<h3>This Loan calculator page calculates the fixed monthly payments you can make for a given time period in which 
+		you're willing to payoff your loan!</h3>
+	</div>
+</div>
+<form action = "{% url 'loan_calculator' %}" autocomplete = "off" method = "POST">
+	{% csrf_token %}
+	<div class = "container">
+	<div class = "well">
+	<label for = "loan_amount">Enter the loan amount to be paid-off(in percentage): </label>
+	<input type = "text" id = "loan_amount" name = "loan_amt">
+
+
+	<br><br>
+
+
+	<label for = "interest_rate">Enter the annual interest rate: </label>
+	<input type = "text" id = "interest_rate" name = "interest">
+
+	<br><br>
+
+	<label for = "time-period">Enter the time period: </label>
+	<input type = "text" id = "time-period" name = "time_period">
+
+	<select name = "time_interval">
+		<option value = "Years">Years</option>
+		<option value = "Months">Months</option>
+	</select>
+
+
+	<br><br>
+
+
+	<input type = "submit" value = "Submit">
+
+	</div>
+	</div>
+</form>
+
+
+
+
+{% if data_entered %}
+	
+
+{% if valid_data %}
+	<div class = "container">
+	<div class = "well">
+	<h1>
+	The Monthly Payments to repay the loan in <strong>{{ time_period }} {{ time_interval }}</strong> on <strong>{{interest}}%</strong> interest is <strong>{{ monthly_amount }}</strong></h1>
+
+
+	<br><br>
+	Your inputs were: 
+	<br>
+	Loan amount to be paid off: {{ amount }}<br>
+	Annual interest rate: {{ interest }}%<br>
+	Time Period: {{ time_period }} {{time_interval }}
+
+	</div>
+	</div>
+
+{% elif not valid_data %}
+
+	<div class = "container">
+	<div class = "well well-lg">
+	The inputs that you entered are of invalid format!<br>
+	Make sure you're typing numbers in the above fields. Try again
+	<br>
+	</div>
+	</div>
+
+{% endif %}
+
+
+
+{% endif %}
+
+
+
+<br>
+<br>
+
+<!-- ending container division -->
+</div>
+
+
+{% endblock content %}
