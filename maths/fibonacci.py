@@ -1,13 +1,19 @@
 # fibonacci.py
 """
-Calculates the Fibonacci sequence using iteration, recursion, and a simplified
-form of Binet's formula
+Calculates the Fibonacci sequence using iteration, recursion, memoization,
+and a simplified form of Binet's formula
 
-NOTE 1: the iterative and recursive functions are more accurate than the Binet's
-formula function because the iterative function doesn't use floats
+NOTE 1: the iterative, recursive, memoization functions are more accurate than
+the Binet's formula function because the Binet formula function  uses floats
 
 NOTE 2: the Binet's formula function is much more limited in the size of inputs
 that it can handle due to the size limitations of Python floats
+
+RESULTS: (n = 20)
+fib_iterative runtime: 0.0055 ms
+fib_recursive runtime: 6.5627 ms
+fib_memoization runtime: 0.0107 ms
+fib_binet runtime: 0.0174 ms
 """
 
 from math import sqrt
@@ -86,6 +92,39 @@ def fib_recursive(n: int) -> list[int]:
     return [fib_recursive_term(i) for i in range(n + 1)]
 
 
+def fib_memoization(n: int) -> list[int]:
+    """
+    Calculates the first n (0-indexed) Fibonacci numbers using memoization
+    >>> fib_memoization(0)
+    [0]
+    >>> fib_memoization(1)
+    [0, 1]
+    >>> fib_memoization(5)
+    [0, 1, 1, 2, 3, 5]
+    >>> fib_memoization(10)
+    [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+    >>> fib_iterative(-1)
+    Traceback (most recent call last):
+    ...
+    Exception: n is negative
+    """
+    if n < 0:
+        raise Exception("n is negative")
+    # Cache must be outside recursuive function
+    # other it will reset every time it calls itself.
+    cache: dict[int, int] = {0: 0, 1: 1, 2: 1}  # Prefilled cache
+
+    def rec_fn_memoized(num: int) -> int:
+        if num in cache:
+            return cache[num]
+
+        value = rec_fn_memoized(num - 1) + rec_fn_memoized(num - 2)
+        cache[num] = value
+        return value
+
+    return [rec_fn_memoized(i) for i in range(n + 1)]
+
+
 def fib_binet(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using a simplified form
@@ -127,4 +166,5 @@ if __name__ == "__main__":
     num = 20
     time_func(fib_iterative, num)
     time_func(fib_recursive, num)
+    time_func(fib_memoization, num)
     time_func(fib_binet, num)
