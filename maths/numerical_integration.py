@@ -37,6 +37,13 @@ def right_endpt_rule(
     is the length of the function (x_end-x_start)/steps. By 
     summing the area of each of these rectangles, we are 
     approximating the area underneath the curve
+
+    Doctests:
+    >>> def f(x):
+    ...    return x**2
+
+    >>> right_endpt_rule(f, 0, 1, 4)
+    0.46875
     """
     area = 0.0
     dx = (x_end - x_start) / steps
@@ -74,6 +81,13 @@ def left_endpt_rule(
     is the length of the function (x_end-x_start)/steps. By 
     summing the area of each of these rectangles, we are 
     approximating the area underneath the curve
+    
+    Doctests:
+    >>> def f(x):
+    ...    return x**2
+
+    >>> left_endpt_rule(f, 1, 5, 4)
+    30.0
     """
     area = 0.0
     dx = (x_end - x_start) / steps
@@ -111,6 +125,13 @@ def midpoint_rule(
     is the length of the function (x_end-x_start)/steps. By 
     summing the area of each of these rectangles, we are 
     approximating the area underneath the curve
+
+    Doctests:
+    >>> def f(x):
+    ...    return x**2
+
+    >>> midpoint_rule(f, 1, 5, 4)
+    41.0
     """
     area = 0.0
     dx = (x_end - x_start) / steps
@@ -151,6 +172,13 @@ def simpsons_rule(
     Note that this is NOT the Simpson's 1/3 rule or the simpson's 3/8th
     rule. The algrorithm employed is the general form which allows for an
     arbitrary amount of steps
+
+    Doctests:
+    >>> def f(x):
+    ...    return x**2
+
+    >>> simpsons_rule(f, 1, 5, 4)
+    41.33333333333333
     """
 
     # Steps must be even
@@ -258,3 +286,8 @@ if __name__ == "__main__":
         print(f"Trapezoidal rule ({i} steps):    \t {t_area}\n")
 
         i *= 10
+
+    def g(x):
+        return x**2
+    
+    print(simpsons_rule(g, 1, 5, 4))
