@@ -1,10 +1,115 @@
 """
-Approximates the area under the curve using the trapezoidal rule
+Approximates the area under the curve using many different 
+methods of numerical integration. For more information on 
+numerical integration see here:
+
+https://en.wikipedia.org/wiki/Numerical_integration
+
+The methods used are described in order from most 
+accurate to least accurate:
+1. Right endpoint rule
+2. Left endpoint rule
+3. Midpoint rule
+4. Trapezoidal rule
+5. Simpson's rule
+
 """
 from __future__ import annotations
 
 from typing import Callable
 
+def right_endpt_rule(
+    fnc: Callable[[int | float], int | float],
+    x_start: int | float,
+    x_end: int | float,
+    steps: int = 100,
+) -> float:
+    
+    """
+    Construct a rectangle on each subinterval, the height of 
+    the rectangle is determined by the function value at the 
+    right endpoint of the subinterval. The rectangle width 
+    is the length of the function (x_end-x_start)/steps. By 
+    summing the area of each of these rectangles, we are 
+    approximating the area underneath the curve
+    """
+    area = 0.0
+    dx = (x_end - x_start) / steps
+
+    # For the RIGHT endpoint rule, we start at the 
+    # right-hand side of each reactangle 
+    # so our starting point must be x_start+dx
+    i = x_start + dx
+
+    # Looping through each subinterval 
+    # till the end of the interval
+    while i < x_end:
+        # Calculate the height of rectangle
+        height = fnc(i)
+        # Calculate the area of rectangle and 
+        # add it to our total area
+        area += (height*dx)
+
+        # Increment to the next subinterval
+        i += dx
+
+    return area
+
+def left_endpt_rule(
+    fnc: Callable[[int | float], int | float],
+    x_start: int | float,
+    x_end: int | float,
+    steps: int = 100,
+) -> float:
+
+    """
+    Construct a rectangle on each subinterval, the height of 
+    the rectangle is determined by the function value at the 
+    left endpoint of the subinterval. The rectangle width 
+    is the length of the function (x_end-x_start)/steps. By 
+    summing the area of each of these rectangles, we are 
+    approximating the area underneath the curve
+    """
+    area = 0.0
+    dx = (x_end - x_start) / steps
+
+    # For the LEFT endpoint rule, we start at the 
+    # left-hand side of each reactangle 
+    # so our starting point must be x_start
+    i = x_start
+
+    # Looping through each subinterval 
+    # till the end of the interval
+    while i <= x_end-dx:
+        # Calculate the height of rectangle
+        height = fnc(i)
+        # Calculate the area of rectangle and 
+        # add it to our total area
+        area += (height*dx)
+
+        # Increment to the next subinterval
+        i += dx
+
+    return area
+
+def midpoint_rule(
+    fnc: Callable[[int | float], int | float],
+    x_start: int | float,
+    x_end: int | float,
+    steps: int = 100,
+) -> float:
+
+    """
+    Construct a rectangle on each subinterval, the height of 
+    the rectangle is determined by the function value at the 
+    midpoint of the subinterval. The rectangle width 
+    is the length of the function (x_end-x_start)/steps. By 
+    summing the area of each of these rectangles, we are 
+    approximating the area underneath the curve
+    """
+    area = 0.0
+
+    return area
 
 def trapezoidal_area(
     fnc: Callable[[int | float], int | float],
@@ -52,6 +157,14 @@ def trapezoidal_area(
         fx1 = fx2
     return area
 
+def simpsons_rule(
+    fnc: Callable[[int | float], int | float],
+    x_start: int | float,
+    x_end: int | float,
+    steps: int = 100,
+) -> float:
+
+    pass
 
 if __name__ == "__main__":
 
@@ -59,9 +172,13 @@ if __name__ == "__main__":
         return x ** 3
 
     print("f(x) = x^3")
-    print("The area between the curve, x = -10, x = 10 and the x axis is:")
+    print("The area between the curve, x = 0, x = 5 and the x axis is:")
     i = 10
     while i <= 100000:
-        area = trapezoidal_area(f, -5, 5, i)
-        print(f"with {i} steps: {area}")
+        r_area = right_endpt_rule(f, 0, 5, i)
+        l_area = left_endpt_rule (f, 0, 5, i)
+        t_area = trapezoidal_area(f, 0, 5, i)
+        print(f"Right endpoint rule ({i} steps): \t {r_area}")
+        print(f"Left endpoint rule ({i} steps):  \t {l_area}")
+        print(f"Trapezoidal rule ({i} steps):    \t {t_area}\n")
         i *= 10
