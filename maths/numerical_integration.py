@@ -108,6 +108,25 @@ def midpoint_rule(
     approximating the area underneath the curve
     """
     area = 0.0
+    dx = (x_end - x_start) / steps
+
+    # For the midpoint rule, we start at the 
+    # middle of each sub-interval 
+    # so our starting point must be (x_start + (x_start+dx))/2
+    # i.e. the average of the left point and the right point
+    i = (x_start + (x_start+dx))/2
+
+    # Looping through each subinterval 
+    # till the end of the interval
+    while i <= x_end:
+        # Calculate the height of rectangle
+        height = fnc(i)
+        # Calculate the area of rectangle and 
+        # add it to our total area
+        area += (height*dx)
+
+        # Increment to the next subinterval
+        i += dx
 
     return area
 
@@ -177,8 +196,10 @@ if __name__ == "__main__":
     while i <= 100000:
         r_area = right_endpt_rule(f, 0, 5, i)
         l_area = left_endpt_rule (f, 0, 5, i)
+        m_area = midpoint_rule   (f, 0, 5, i)
         t_area = trapezoidal_area(f, 0, 5, i)
         print(f"Right endpoint rule ({i} steps): \t {r_area}")
         print(f"Left endpoint rule ({i} steps):  \t {l_area}")
+        print(f"Midpoint rule ({i} steps):       \t {m_area}")
         print(f"Trapezoidal rule ({i} steps):    \t {t_area}\n")
         i *= 10
