@@ -1,13 +1,10 @@
 """
-Pascal's Triangle is a triangular array that tabulates the result of binomial expansions.
-The row x of the triangle may be thought of as the coefficients for a binomial expression
-raised to the power of x.
-
+Pascal's Triangle is a triangular array that tabulates the result of binomial 
+expansions. The nth row of the triangle can be thought of as the coefficients 
+for a binomial expression raised to the power of x.
+		
 e.g. (a + b)^3 --> 1 (a^3) + 3 (a^2b) + 3 (ab^2) + 1 (b^3) --> 1 3 3 1,
 which is equivalent to the third row of pascal's triangle.
-
-The triangle may be constructed by summing the two values immediately
-above each index or by using the binomial expansion therom.
 
 More information is available at: https://en.wikipedia.org/wiki/Pascal%27s_triangle
 """
@@ -17,26 +14,28 @@ from typing import List
 
 def pascals_triangle_row(n: int) -> List[int]:
     """
-    Compute the given row of Pascal's Triangle using binomial expansion therom.
+    Compute the nth row of Pascal's Triangle using the binomial theorem.
 
-    Each row of the triangle can be represented as the binomial expansion of that number,
-    so we can represent each position as "N choose k" (alternatively called nCk or nCr)
-    of each index, where N is the row number and k is the current index.
+    Each row n can be represented as a binomial expression raised to the power n.
+    Each value is therefore the binomial coefficient of its index. This value can be
+    found using the combinations formula (alternatively called C(N, k) or nCk) where 
+    N is the row number and k is the current index.
 
-    so, triangle[n][k] = C(n, k) = n! / k! (n-k)!, which applies for each k in the row.
+    So, triangle[n][k] = C(n, k) = n! / k! (n-k)!, which applies for each index k in row n.
 
-    However, this can be further simplified by computing each value dynamically from the
-    previous value.
+    This can be further simplified by computing each value dynamically from the previous 
+    value. This is done by multiplying each value by (N-k) / (k+1) to find the next value:
 
     C(N, 0) = 1
     C(N, 1) = N / 1
     C(N, 2) = (N)(N-1) / 1*2
     C(N, 3) = (N)(N-1)(N-2) / 1*2*3
 
-    Therefore, each C(N, k+1) = C(N, k) * (N-k) / (k+1)
+    This pattern is generalized as C(N, k+1) = C(N, k) * (N-k) / (k+1)
 
     More information is available at:
     https://en.wikipedia.org/wiki/Pascal%27s_triangle#Calculating_a_row_or_diagonal_by_itself
+    https://en.wikipedia.org/wiki/Binomial_theorem
 
     >>> pascals_triangle_row(0)
     [1]
@@ -69,7 +68,7 @@ def pascals_triangle_total(rows: int) -> List[List[int]]:
     """
     Compute all of pascal's triangle up to the given depth by summing the
     two values immediately above each index. Note that depth is zero-indexed,
-    so calculating depth = 5 will return layers 0 through 5, inclusive.
+    so calculating 5 rows will return rows 0 through 5, inclusive.
 
     >>> pascals_triangle_total(0)
     [[1]]
