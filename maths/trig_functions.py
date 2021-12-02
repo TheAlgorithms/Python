@@ -57,17 +57,22 @@ def sine(
     if x >= ((3*pi)/2):
         x = (2*pi)-x
 
-
+    # This summation is supposed to be infinite but computers are 
+    # discrete systems. Note that with 85 iterations, this accurately 
+    # computes sin to a degree that is useful for most applications
     for n in range(accuracy):
         numerator = (-1)**n * pow(x, (2*n)+1)
         denominator = factorial((2*n)+1)
-        sum += float(numerator) / float (denominator)
+        sum += float(numerator) / float(denominator)
+
+    if sum < 1E-15:
+        sum = 0.0
 
     return sum
 
 def cosine(
     x: float,
-    accuracy: int = 100
+    accuracy: int = 85
 ) -> float:
     """
     Algorithm used: taylor series
@@ -75,7 +80,55 @@ def cosine(
 
     Doctests:
     """
-    pass
+
+    # Value to be returned
+    sum = 0.0
+    
+    # Because of the way this taylor series works, we need 
+    # to flip the sign after the sum has been computed
+    is_negative = False
+
+    # Python imposed limitation
+    if accuracy > 85:
+        accuracy = 85
+
+    # We can reduce our range of angles to just 
+    # be from [0, 2pi] because trig functions are periodic
+    x = x%(2*pi)
+
+    # We can further reduce our range of inputs to just [-pi/2, pi/2]
+    if x > (pi/2) and pi < ((3*pi)/2):
+        # Output must then be negative if it's in the second or third
+        # quadrant
+        is_negative = True
+        # Move the value out of that quadrant
+        x += pi
+
+    # And we can once again reduce the range of inputs to [0, pi/2]
+    if x >= ((3*pi)/2):
+        x = (2*pi)-x
+
+    # This summation is supposed to be infinite but computers are 
+    # discrete systems. Note that with 85 iterations, this accurately 
+    # computes cosine to a degree that is useful for most applications. 
+    # Note also that the first term of this series will always be one. 
+    # This causes a problem with changing the sign of the output. We 
+    # will need to use a flag for that instead
+    for n in range(accuracy):
+        numerator = (-1)**n * pow(x, (2*n))
+        denominator = factorial(2*n)
+        sum += float(numerator) / float(denominator)
+
+    # Because of the way this taylor seriees works, we sometimes 
+    # get numbers so small that they are practically 0 (instead of 0)
+    if sum < 1E-15:
+        sum = 0.0
+    
+    # Flag for flipping the sign
+    if is_negative:
+        sum *= -1
+    
+    return sum
 
 def tangent(
     x: float,
@@ -200,12 +253,4 @@ def arc_cotangent(
 if __name__ == "__main__":
 
     # do some testing stuff
-    print(sine(0))
-    print(sine(pi/3))
-    print(sine(pi/2))
-    print(sine((3*pi)/4))
-    print(sine(pi))
-    print(sine((5*pi)/4))
-    print(sine((3*pi)/2))
-    print(sine((7*pi)/3))
-    print(sine(2*pi))
+    pass
