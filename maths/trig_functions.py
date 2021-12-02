@@ -6,19 +6,37 @@ list. In keeping with the spirit of what this repository aims to
 achieve, I decided to use a taylor series expansion so that everything
 is clear
 """
+from math import pi
+
+# A lot of the maclaurin series require 
+# a factorial in their expressions. This
+# is just a simple O(n) algo for factorial
+def factorial(x: int) -> int:
+    value = 1
+    for n in range(2,x):
+        value *= n
+    
+    return value
 
 def sine(
     x: float,
-    accuracy: int = 100
+    accuracy: int = 85
 ) -> float:
-
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions#Trigonometric_functions
 
     Doctests:
     """
-    pass
+
+    sum = 0.0
+
+    for n in range(accuracy):
+        top = (-1)**n * pow(x, (2*n)+1)
+        bottom = factorial((2*n)+1)
+        sum += float(top) / float(bottom)
+        
+    return sum
 
 def cosine(
     x: float,
@@ -26,7 +44,7 @@ def cosine(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -38,7 +56,7 @@ def tangent(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -50,7 +68,7 @@ def cosecant(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -62,7 +80,7 @@ def secant(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -74,7 +92,7 @@ def cotangent(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -86,7 +104,7 @@ def arc_sine(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -98,7 +116,7 @@ def arc_cosine(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -110,7 +128,7 @@ def arc_tangent(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -122,7 +140,7 @@ def arc_cosecant(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -134,7 +152,7 @@ def arc_secant(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -146,7 +164,7 @@ def arc_cotangent(
 ) -> float:
     """
     Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series
+    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
     """
@@ -155,5 +173,4 @@ def arc_cotangent(
 if __name__ == "__main__":
 
     # do some testing stuff
-
-    pass
+    print(sine(2*pi))
