@@ -1,6 +1,6 @@
 """
 Pascal's Triangle is a triangular array that tabulates the result of binomial expansions.
-The row x of the triangle may be though of as the coefficients for a binomial expression
+The row x of the triangle may be thought of as the coefficients for a binomial expression
 raised to the power of x.
 
 e.g. (a + b)^3 --> 1 (a^3) + 3 (a^2b) + 3 (ab^2) + 1 (b^3) --> 1 3 3 1,
