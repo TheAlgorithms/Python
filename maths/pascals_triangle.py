@@ -21,7 +21,7 @@ def pascals_triangle_row(n: int) -> List[int]:
     found using the combinations formula (alternatively called C(N, k) or nCk) where 
     N is the row number and k is the current index.
 
-    So, triangle[n][k] = C(n, k) = n! / k! (n-k)!, which applies for each index k in row n.
+    So, triangle[N][k] = C(N, k) = N! / k! (N-k)!, which applies for each index k in row N.
 
     This can be further simplified by computing each value dynamically from the previous 
     value. This is done by multiplying each value by (N-k) / (k+1) to find the next value:
@@ -66,9 +66,9 @@ def pascals_triangle_row(n: int) -> List[int]:
 
 def pascals_triangle_total(rows: int) -> List[List[int]]:
     """
-    Compute all of pascal's triangle up to the given depth by summing the
-    two values immediately above each index. Note that depth is zero-indexed,
-    so calculating 5 rows will return rows 0 through 5, inclusive.
+    Compute all of pascal's triangle up to the given depth by summing the two values 
+    immediately above each index. Note that the number of rows is zero-indexed, so 
+    calculating 5 rows will return rows 0 through 5, inclusive.
 
     >>> pascals_triangle_total(0)
     [[1]]
