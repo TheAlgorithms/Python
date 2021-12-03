@@ -41,6 +41,8 @@ def sine(
 
     # Value to be returned
     sum = 0.0
+
+    print(f"Original angle: {x}")
     
     # Python imposed limitation
     if accuracy > 85:
@@ -61,6 +63,11 @@ def sine(
     # And we can once again reduce the range of inputs to [0, pi/2]
     if x >= ((3*pi)/2):
         x = (2*pi)-x
+    
+    # Sometimes when we shift the angle around a lot we get a negative 
+    # result and things break down a bit if that's the case
+    if x < 0:
+        x *= -1
 
     # This summation is supposed to be infinite but computers are 
     # discrete systems. Note that with 85 iterations, this accurately 
@@ -70,6 +77,8 @@ def sine(
         denominator = factorial((2*n)+1)
         sum += float(numerator) / float(denominator)
 
+    # Because of the way this taylor seriees works, we sometimes 
+    # get numbers so small that they are practically 0 (instead of 0)
     if sum < 1E-15:
         sum = 0.0
 
@@ -154,18 +163,18 @@ def tangent(x: float) -> float:
     except ZeroDivisionError:
         pass
 
-
-def cosecant(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def cosecant(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used: The definition of cosecant is 1/sin(x)
 
     Doctests:
     """
-    pass
+
+    # Note that csc(x) is undefined when sin(x) = 0
+    try:
+        return 1/sine(x)
+    except ZeroDivisionError:
+        pass
 
 def secant(
     x: float,
@@ -272,9 +281,11 @@ if __name__ == "__main__":
     while counter < 12:
         
         print(f"sin({angle}) = {sine(angle)}")
-        print(f"cos({angle}) = {cosine(angle)}")
-        print(f"tan({angle}) = {tangent(angle)}")
-
+        #print(f"cos({angle}) = {cosine(angle)}")
+        #print(f"tan({angle}) = {tangent(angle)}")
+        print(f"cosecant({angle}) = {cosecant(angle)}")
+        #print(f"secant({angle}) = {secant(angle)}")
+        #print(f"cotangent({angle}) = {cotangent(angle)}")
 
         angle += (pi/3)
         counter+=1
