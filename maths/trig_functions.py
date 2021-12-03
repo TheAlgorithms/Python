@@ -5,8 +5,13 @@ but this requires a load of pre-calculated values stored in some
 list. In keeping with the spirit of what this repository aims to
 achieve, I decided to use a taylor series expansion so that everything
 is clear
+
+Note also that we only need to create a maclaurin expansion for sin(x)
+and cos(x). Using trig identities, we can bootstrap our way into the 
+other 4 trignometric functions.
+https://en.wikipedia.org/wiki/List_of_trigonometric_identities
 """
-from math import pi
+from math import copysign, log, pi
 
 # A lot of the maclaurin series require 
 # a factorial in their expressions. This
@@ -130,17 +135,25 @@ def cosine(
     
     return sum
 
-def tangent(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def tangent(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used: trignometric identity
+    https://en.wikipedia.org/wiki/List_of_trigonometric_identities
 
     Doctests:
     """
-    pass
+
+    # We can reduce our range of angles to just 
+    # be from [0, 2pi] because trig functions are periodic
+    x = x%(2*pi)
+
+    # There are a handful of angles where tan(x) is undefined 
+    # and we need to approriately handle that.
+    try:
+        return sine(x)/cosine(x)
+    except ZeroDivisionError:
+        pass
+
 
 def cosecant(
     x: float,
@@ -252,5 +265,16 @@ def arc_cotangent(
 
 if __name__ == "__main__":
 
-    # do some testing stuff
-    pass
+    # Test every 30 degrees
+
+    counter = 0
+    angle = 0.0
+    while counter < 12:
+        
+        print(f"sin({angle}) = {sine(angle)}")
+        print(f"cos({angle}) = {cosine(angle)}")
+        print(f"tan({angle}) = {tangent(angle)}")
+
+
+        angle += (pi/3)
+        counter+=1
