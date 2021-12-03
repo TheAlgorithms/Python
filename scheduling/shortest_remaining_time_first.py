@@ -98,22 +98,22 @@ def calculate_average_times(
     This function calculates the average of the waiting & turnaround times
     Prints: Average Waiting time & Average Turn Around Time
     >>> calculate_average_times([0,3,5,0],[3,6,10,1],4)
-    Average waiting time = 2.00000
-    Average turn around time = 5.00000
+    Average waiting time = 2.0
+    Average turn around time = 5.0
     >>> calculate_average_times([2,3],[3,6],2)
-    Average waiting time = 2.50000
-    Average turn around time = 4.50000
+    Average waiting time = 2.5
+    Average turn around time = 4.5
     >>> calculate_average_times([10,4,3],[2,7,6],3)
-    Average waiting time = 5.66667
-    Average turn around time = 5.00000
+    Average waiting time = 5.666666666666667
+    Average turn around time = 5.0
     """
     total_waiting_time = 0
     total_turn_around_time = 0
     for i in range(no_of_processes):
         total_waiting_time = total_waiting_time + waiting_time[i]
         total_turn_around_time = total_turn_around_time + turn_around_time[i]
-    print(f"Average waiting time = {total_waiting_time / no_of_processes:.5f}")
-    print(f"Average turn around time = {total_turn_around_time / no_of_processes:.5f}")
+    print(f"Average waiting time = {total_waiting_time / no_of_processes}")
+    print(f"Average turn around time = {total_turn_around_time / no_of_processes}")
 
 
 if __name__ == "__main__":
