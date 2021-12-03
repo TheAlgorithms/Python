@@ -94,13 +94,13 @@ def calculate_average_times(
     Prints: Average Waiting time & Average Turn Around Time
     >>> calculate_average_times([0,3,5,0],[3,6,10,1],4)
     Average waiting time = 2.00000
-    Average turn around time = 5.0
+    Average turn around time = 5.00000
     >>> calculate_average_times([2,3],[3,6],2)
     Average waiting time = 2.50000
-    Average turn around time = 4.5
+    Average turn around time = 4.50000
     >>> calculate_average_times([10,4,3],[2,7,6],3)
     Average waiting time = 5.66667
-    Average turn around time = 5.0
+    Average turn around time = 5.00000
     """
     total_waiting_time = 0
     total_turn_around_time = 0
