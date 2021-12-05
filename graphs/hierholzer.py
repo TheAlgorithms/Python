@@ -5,6 +5,13 @@ def check_all_edges_marked(
     graph: dict[int, list[int]],
     marked_edges: dict[int, list[int]],
 ) -> bool:
+    """
+        >>> check_all_edges_marked(
+        ... {0:[1], 1:[0]},
+        ... {1:[0], 0:[1]}
+        ... )
+        True
+    """
     for vertex, neighbours in graph.items():
         for neighbour in neighbours:
             if neighbour not in marked_edges[vertex]:
