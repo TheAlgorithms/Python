@@ -41,8 +41,6 @@ def sine(
 
     # Value to be returned
     sum = 0.0
-
-    print(f"Original angle: {x}")
     
     # Python imposed limitation
     if accuracy > 85:
@@ -105,23 +103,26 @@ def cosine(
     # Python imposed limitation
     if accuracy > 85:
         accuracy = 85
-
+    
     # We can reduce our range of angles to just 
     # be from [0, 2pi] because trig functions are periodic
     x = x%(2*pi)
 
-    # We can further reduce our range of inputs to just [-pi/2, pi/2]
-    if x > (pi/2) and pi < ((3*pi)/2):
-        # Output must then be negative if it's in the second or third
-        # quadrant
+    # If our intial angle is in the second or third 
+    # quadrant, mark the answer as negative
+    if x <= pi and x > (pi/2):
         is_negative = True
-        # Move the value out of that quadrant
-        x += pi
+
+    # We can further reduce our range of inputs to just [0, pi]
+    if x > (pi) and pi < (2*pi):
+        # Move the value to the equivalent value in [0, pi]
+        x -= pi
 
     # And we can once again reduce the range of inputs to [0, pi/2]
-    if x >= ((3*pi)/2):
-        x = (2*pi)-x
-
+    if x >= (pi/2):
+        # Move the angle to it's equivelent angle in [0, pi/2]
+        x = pi-x
+    
     # This summation is supposed to be infinite but computers are 
     # discrete systems. Note that with 85 iterations, this accurately 
     # computes cosine to a degree that is useful for most applications. 
@@ -152,10 +153,6 @@ def tangent(x: float) -> float:
     Doctests:
     """
 
-    # We can reduce our range of angles to just 
-    # be from [0, 2pi] because trig functions are periodic
-    x = x%(2*pi)
-
     # There are a handful of angles where tan(x) is undefined 
     # and we need to approriately handle that.
     try:
@@ -181,12 +178,16 @@ def secant(
     accuracy: int = 100
 ) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used: The definition of secant is 1/cos(x)
 
     Doctests:
     """
-    pass
+
+    # Note that sec(x) is undefinde when cos(x) = 0
+    try:
+        return 1/cosine(x)
+    except ZeroDivisionError:
+        pass
 
 def cotangent(
     x: float,
@@ -281,9 +282,9 @@ if __name__ == "__main__":
     while counter < 12:
         
         print(f"sin({angle}) = {sine(angle)}")
-        #print(f"cos({angle}) = {cosine(angle)}")
-        #print(f"tan({angle}) = {tangent(angle)}")
-        print(f"cosecant({angle}) = {cosecant(angle)}")
+        print(f"cos({angle}) = {cosine(angle)}")
+        print(f"tan({angle}) = {tangent(angle)}\n")
+        #print(f"cosecant({angle}) = {cosecant(angle)}")
         #print(f"secant({angle}) = {secant(angle)}")
         #print(f"cotangent({angle}) = {cotangent(angle)}")
 
