@@ -1,5 +1,47 @@
+## Table of Contents
+- [Arithmetic Analysis](#arithemtic-analysis)
+- [Audio Filters](#audio-filters)
+- [Backtracking](#backtracking)
+- [Bit Manipulation](#bit-manipulation)
+- [Blockchain](#blockchain)
+- [Boolean Algebra](#boolean-algebra)
+- [Cellular Automata](#cellular-automata)
+- [Ciphers](#ciphers)
+- [Compression](#compression)
+- [Computer Vision](#computer-vision)
+- [Data Structures](#data-structures)
+- [Digital Image Processing](#digital-image-processing)
+- [Divide And Conquer](#divide-and-conquer)
+- [Dynamic Programming](#dynamic-programming)
+- [Electronics](#electronics)
+- [File Transfer](#file-transfer)
+- [Financial](#financial)
+- [Fractals](#fractals)
+- [Fuzzy Logic](#fuzzy-logic)
+- [Genetic Algorithm](#genetic-algorithm)
+- [Geodesy](#geodesy)
+- [Graphics](#graphics)
+- [Graphs](#graphs)
+- [Greedy Methods](#greedy-methods)
+- [Hashes](#hashes)
+- [Knapsack](#knapsack)
+- [Linear Algebra](#linear-algebra)
+- [Machine Learning](#machine-learning)
+- [Maths](#maths)
+- [Matrix](#matrix)
+- [Networking Flow](#networking-flow)
+- [Neural Network](#neural-network)
+- [Other](#other)
+- [Physics](#physics)
+- [Project Euler](#project-euler)
+- [Quantum](#quantum)
+- [Scheduling](#scheduling)
+- [Searches](#searches)
+- [Sorts](#sorts)
+- [Strings](#strings)
+- [Web Programming](#web-programming)
 
-## Arithmetic Analysis
+## Arithmetic Analysis [⬆️](#table-of-contents)
   * [Bisection](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/bisection.py)
   * [Gaussian Elimination](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/gaussian_elimination.py)
   * [In Static Equilibrium](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/in_static_equilibrium.py)
@@ -11,12 +53,12 @@
   * [Newton Raphson](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_raphson.py)
   * [Secant Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/secant_method.py)
 
-## Audio Filters
+## Audio Filters [⬆️](#table-of-contents)
   * [Butterworth Filter](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/butterworth_filter.py)
   * [Iir Filter](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/iir_filter.py)
   * [Show Response](https://github.com/TheAlgorithms/Python/blob/master/audio_filters/show_response.py)
 
-## Backtracking
+## Backtracking [⬆️](#table-of-contents)
   * [All Combinations](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_combinations.py)
   * [All Permutations](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_permutations.py)
   * [All Subsequences](https://github.com/TheAlgorithms/Python/blob/master/backtracking/all_subsequences.py)
@@ -30,7 +72,7 @@
   * [Sudoku](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sudoku.py)
   * [Sum Of Subsets](https://github.com/TheAlgorithms/Python/blob/master/backtracking/sum_of_subsets.py)
 
-## Bit Manipulation
+## Bit Manipulation [⬆️](#table-of-contents)
   * [Binary And Operator](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_and_operator.py)
   * [Binary Count Setbits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_count_setbits.py)
   * [Binary Count Trailing Zeros](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/binary_count_trailing_zeros.py)
@@ -44,21 +86,21 @@
   * [Reverse Bits](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](https://github.com/TheAlgorithms/Python/blob/master/bit_manipulation/single_bit_manipulation_operations.py)
 
-## Blockchain
+## Blockchain [⬆️](#table-of-contents)
   * [Chinese Remainder Theorem](https://github.com/TheAlgorithms/Python/blob/master/blockchain/chinese_remainder_theorem.py)
   * [Diophantine Equation](https://github.com/TheAlgorithms/Python/blob/master/blockchain/diophantine_equation.py)
   * [Modular Division](https://github.com/TheAlgorithms/Python/blob/master/blockchain/modular_division.py)
 
-## Boolean Algebra
+## Boolean Algebra [⬆️](#table-of-contents)
   * [Quine Mc Cluskey](https://github.com/TheAlgorithms/Python/blob/master/boolean_algebra/quine_mc_cluskey.py)
 
-## Cellular Automata
+## Cellular Automata [⬆️](#table-of-contents)
   * [Conways Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/conways_game_of_life.py)
   * [Game Of Life](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/game_of_life.py)
   * [Nagel Schrekenberg](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/nagel_schrekenberg.py)
   * [One Dimensional](https://github.com/TheAlgorithms/Python/blob/master/cellular_automata/one_dimensional.py)
 
-## Ciphers
+## Ciphers [⬆️](#table-of-contents)
   * [A1Z26](https://github.com/TheAlgorithms/Python/blob/master/ciphers/a1z26.py)
   * [Affine Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/affine_cipher.py)
   * [Atbash](https://github.com/TheAlgorithms/Python/blob/master/ciphers/atbash.py)
@@ -101,21 +143,21 @@
   * [Vigenere Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/vigenere_cipher.py)
   * [Xor Cipher](https://github.com/TheAlgorithms/Python/blob/master/ciphers/xor_cipher.py)
 
-## Compression
+## Compression [⬆️](#table-of-contents)
   * [Burrows Wheeler](https://github.com/TheAlgorithms/Python/blob/master/compression/burrows_wheeler.py)
   * [Huffman](https://github.com/TheAlgorithms/Python/blob/master/compression/huffman.py)
   * [Lempel Ziv](https://github.com/TheAlgorithms/Python/blob/master/compression/lempel_ziv.py)
   * [Lempel Ziv Decompress](https://github.com/TheAlgorithms/Python/blob/master/compression/lempel_ziv_decompress.py)
   * [Peak Signal To Noise Ratio](https://github.com/TheAlgorithms/Python/blob/master/compression/peak_signal_to_noise_ratio.py)
 
-## Computer Vision
+## Computer Vision [⬆️](#table-of-contents)
   * [Cnn Classification](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/cnn_classification.py)
   * [Flip Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/flip_augmentation.py)
   * [Harris Corner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harris_corner.py)
   * [Mean Threshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mean_threshold.py)
   * [Mosaic Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mosaic_augmentation.py)
 
-## Conversions
+## Conversions [⬆️](#table-of-contents)
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
   * [Binary To Hexadecimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_hexadecimal.py)
   * [Binary To Octal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_octal.py)
@@ -137,7 +179,7 @@
   * [Volume Conversions](https://github.com/TheAlgorithms/Python/blob/master/conversions/volume_conversions.py)
   * [Weight Conversion](https://github.com/TheAlgorithms/Python/blob/master/conversions/weight_conversion.py)
 
-## Data Structures
+## Data Structures [⬆️](#table-of-contents)
   * Binary Tree
     * [Avl Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](https://github.com/TheAlgorithms/Python/blob/master/data_structures/binary_tree/basic_binary_tree.py)
@@ -212,7 +254,7 @@
   * Trie
     * [Trie](https://github.com/TheAlgorithms/Python/blob/master/data_structures/trie/trie.py)
 
-## Digital Image Processing
+## Digital Image Processing [⬆️](#table-of-contents)
   * [Change Brightness](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_brightness.py)
   * [Change Contrast](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/change_contrast.py)
   * [Convert To Negative](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/convert_to_negative.py)
@@ -240,7 +282,7 @@
   * [Sepia](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/sepia.py)
   * [Test Digital Image Processing](https://github.com/TheAlgorithms/Python/blob/master/digital_image_processing/test_digital_image_processing.py)
 
-## Divide And Conquer
+## Divide And Conquer [⬆️](#table-of-contents)
   * [Closest Pair Of Points](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/closest_pair_of_points.py)
   * [Convex Hull](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/convex_hull.py)
   * [Heaps Algorithm](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/heaps_algorithm.py)
@@ -254,7 +296,7 @@
   * [Power](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/power.py)
   * [Strassen Matrix Multiplication](https://github.com/TheAlgorithms/Python/blob/master/divide_and_conquer/strassen_matrix_multiplication.py)
 
-## Dynamic Programming
+## Dynamic Programming [⬆️](#table-of-contents)
   * [Abbreviation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/abbreviation.py)
   * [All Construct](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/all_construct.py)
   * [Bitmask](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/bitmask.py)
@@ -287,43 +329,43 @@
   * [Subset Generation](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/subset_generation.py)
   * [Sum Of Subset](https://github.com/TheAlgorithms/Python/blob/master/dynamic_programming/sum_of_subset.py)
 
-## Electronics
+## Electronics [⬆️](#table-of-contents)
   * [Carrier Concentration](https://github.com/TheAlgorithms/Python/blob/master/electronics/carrier_concentration.py)
   * [Coulombs Law](https://github.com/TheAlgorithms/Python/blob/master/electronics/coulombs_law.py)
   * [Electric Power](https://github.com/TheAlgorithms/Python/blob/master/electronics/electric_power.py)
   * [Ohms Law](https://github.com/TheAlgorithms/Python/blob/master/electronics/ohms_law.py)
 
-## File Transfer
+## File Transfer [⬆️](#table-of-contents)
   * [Receive File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/receive_file.py)
   * [Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/send_file.py)
   * Tests
     * [Test Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/tests/test_send_file.py)
 
-## Financial
+## Financial [⬆️](#table-of-contents)
   * [Equated Monthly Installments](https://github.com/TheAlgorithms/Python/blob/master/financial/equated_monthly_installments.py)
   * [Interest](https://github.com/TheAlgorithms/Python/blob/master/financial/interest.py)
 
-## Fractals
+## Fractals [⬆️](#table-of-contents)
   * [Julia Sets](https://github.com/TheAlgorithms/Python/blob/master/fractals/julia_sets.py)
   * [Koch Snowflake](https://github.com/TheAlgorithms/Python/blob/master/fractals/koch_snowflake.py)
   * [Mandelbrot](https://github.com/TheAlgorithms/Python/blob/master/fractals/mandelbrot.py)
   * [Sierpinski Triangle](https://github.com/TheAlgorithms/Python/blob/master/fractals/sierpinski_triangle.py)
 
-## Fuzzy Logic
+## Fuzzy Logic [⬆️](#table-of-contents)
   * [Fuzzy Operations](https://github.com/TheAlgorithms/Python/blob/master/fuzzy_logic/fuzzy_operations.py)
 
-## Genetic Algorithm
+## Genetic Algorithm [⬆️](#table-of-contents)
   * [Basic String](https://github.com/TheAlgorithms/Python/blob/master/genetic_algorithm/basic_string.py)
 
-## Geodesy
+## Geodesy [⬆️](#table-of-contents)
   * [Haversine Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/haversine_distance.py)
   * [Lamberts Ellipsoidal Distance](https://github.com/TheAlgorithms/Python/blob/master/geodesy/lamberts_ellipsoidal_distance.py)
 
-## Graphics
+## Graphics [⬆️](#table-of-contents)
   * [Bezier Curve](https://github.com/TheAlgorithms/Python/blob/master/graphics/bezier_curve.py)
   * [Vector3 For 2D Rendering](https://github.com/TheAlgorithms/Python/blob/master/graphics/vector3_for_2d_rendering.py)
 
-## Graphs
+## Graphs [⬆️](#table-of-contents)
   * [A Star](https://github.com/TheAlgorithms/Python/blob/master/graphs/a_star.py)
   * [Articulation Points](https://github.com/TheAlgorithms/Python/blob/master/graphs/articulation_points.py)
   * [Basic Graphs](https://github.com/TheAlgorithms/Python/blob/master/graphs/basic_graphs.py)
@@ -380,10 +422,10 @@
     * [Test Min Spanning Tree Kruskal](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](https://github.com/TheAlgorithms/Python/blob/master/graphs/tests/test_min_spanning_tree_prim.py)
 
-## Greedy Methods
+## Greedy Methods [⬆️](#table-of-contents)
   * [Optimal Merge Pattern](https://github.com/TheAlgorithms/Python/blob/master/greedy_methods/optimal_merge_pattern.py)
 
-## Hashes
+## Hashes [⬆️](#table-of-contents)
   * [Adler32](https://github.com/TheAlgorithms/Python/blob/master/hashes/adler32.py)
   * [Chaos Machine](https://github.com/TheAlgorithms/Python/blob/master/hashes/chaos_machine.py)
   * [Djb2](https://github.com/TheAlgorithms/Python/blob/master/hashes/djb2.py)
@@ -395,14 +437,14 @@
   * [Sha1](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha1.py)
   * [Sha256](https://github.com/TheAlgorithms/Python/blob/master/hashes/sha256.py)
 
-## Knapsack
+## Knapsack [⬆️](#table-of-contents)
   * [Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/greedy_knapsack.py)
   * [Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/knapsack.py)
   * Tests
     * [Test Greedy Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/tests/test_greedy_knapsack.py)
     * [Test Knapsack](https://github.com/TheAlgorithms/Python/blob/master/knapsack/tests/test_knapsack.py)
 
-## Linear Algebra
+## Linear Algebra [⬆️](#table-of-contents)
   * Src
     * [Conjugate Gradient](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/conjugate_gradient.py)
     * [Lib](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/lib.py)
@@ -413,7 +455,7 @@
     * [Test Linear Algebra](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/test_linear_algebra.py)
     * [Transformations 2D](https://github.com/TheAlgorithms/Python/blob/master/linear_algebra/src/transformations_2d.py)
 
-## Machine Learning
+## Machine Learning [⬆️](#table-of-contents)
   * [Astar](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/astar.py)
   * [Data Transformations](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/data_transformations.py)
   * [Decision Tree](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/decision_tree.py)
@@ -442,7 +484,7 @@
   * [Support Vector Machines](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](https://github.com/TheAlgorithms/Python/blob/master/machine_learning/word_frequency_functions.py)
 
-## Maths
+## Maths [⬆️](#table-of-contents)
   * [3N Plus 1](https://github.com/TheAlgorithms/Python/blob/master/maths/3n_plus_1.py)
   * [Abs](https://github.com/TheAlgorithms/Python/blob/master/maths/abs.py)
   * [Abs Max](https://github.com/TheAlgorithms/Python/blob/master/maths/abs_max.py)
@@ -571,7 +613,7 @@
   * [Volume](https://github.com/TheAlgorithms/Python/blob/master/maths/volume.py)
   * [Zellers Congruence](https://github.com/TheAlgorithms/Python/blob/master/maths/zellers_congruence.py)
 
-## Matrix
+## Matrix [⬆️](#table-of-contents)
   * [Count Islands In Matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/count_islands_in_matrix.py)
   * [Inverse Of Matrix](https://github.com/TheAlgorithms/Python/blob/master/matrix/inverse_of_matrix.py)
   * [Matrix Class](https://github.com/TheAlgorithms/Python/blob/master/matrix/matrix_class.py)
@@ -584,17 +626,17 @@
   * Tests
     * [Test Matrix Operation](https://github.com/TheAlgorithms/Python/blob/master/matrix/tests/test_matrix_operation.py)
 
-## Networking Flow
+## Networking Flow [⬆️](#table-of-contents)
   * [Ford Fulkerson](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/ford_fulkerson.py)
   * [Minimum Cut](https://github.com/TheAlgorithms/Python/blob/master/networking_flow/minimum_cut.py)
 
-## Neural Network
+## Neural Network [⬆️](#table-of-contents)
   * [2 Hidden Layers Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/2_hidden_layers_neural_network.py)
   * [Back Propagation Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](https://github.com/TheAlgorithms/Python/blob/master/neural_network/convolution_neural_network.py)
   * [Perceptron](https://github.com/TheAlgorithms/Python/blob/master/neural_network/perceptron.py)
 
-## Other
+## Other [⬆️](#table-of-contents)
   * [Activity Selection](https://github.com/TheAlgorithms/Python/blob/master/other/activity_selection.py)
   * [Alternative List Arrange](https://github.com/TheAlgorithms/Python/blob/master/other/alternative_list_arrange.py)
   * [Check Strong Password](https://github.com/TheAlgorithms/Python/blob/master/other/check_strong_password.py)
@@ -616,11 +658,11 @@
   * [Sdes](https://github.com/TheAlgorithms/Python/blob/master/other/sdes.py)
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
 
-## Physics
+## Physics [⬆️](#table-of-contents)
   * [N Body Simulation](https://github.com/TheAlgorithms/Python/blob/master/physics/n_body_simulation.py)
   * [Newtons Second Law Of Motion](https://github.com/TheAlgorithms/Python/blob/master/physics/newtons_second_law_of_motion.py)
 
-## Project Euler
+## Project Euler [⬆️](#table-of-contents)
   * Problem 001
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol1.py)
     * [Sol2](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_001/sol2.py)
@@ -886,7 +928,7 @@
   * Problem 686
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_686/sol1.py)
 
-## Quantum
+## Quantum [⬆️](#table-of-contents)
   * [Deutsch Jozsa](https://github.com/TheAlgorithms/Python/blob/master/quantum/deutsch_jozsa.py)
   * [Half Adder](https://github.com/TheAlgorithms/Python/blob/master/quantum/half_adder.py)
   * [Not Gate](https://github.com/TheAlgorithms/Python/blob/master/quantum/not_gate.py)
@@ -894,12 +936,12 @@
   * [Ripple Adder Classic](https://github.com/TheAlgorithms/Python/blob/master/quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](https://github.com/TheAlgorithms/Python/blob/master/quantum/single_qubit_measure.py)
 
-## Scheduling
+## Scheduling [⬆️](#table-of-contents)
   * [First Come First Served](https://github.com/TheAlgorithms/Python/blob/master/scheduling/first_come_first_served.py)
   * [Round Robin](https://github.com/TheAlgorithms/Python/blob/master/scheduling/round_robin.py)
   * [Shortest Job First](https://github.com/TheAlgorithms/Python/blob/master/scheduling/shortest_job_first.py)
 
-## Searches
+## Searches [⬆️](#table-of-contents)
   * [Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_search.py)
   * [Binary Tree Traversal](https://github.com/TheAlgorithms/Python/blob/master/searches/binary_tree_traversal.py)
   * [Double Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/double_linear_search.py)
@@ -916,7 +958,7 @@
   * [Tabu Search](https://github.com/TheAlgorithms/Python/blob/master/searches/tabu_search.py)
   * [Ternary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/ternary_search.py)
 
-## Sorts
+## Sorts [⬆️](#table-of-contents)
   * [Bead Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/bead_sort.py)
   * [Bitonic Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/bitonic_sort.py)
   * [Bogo Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/bogo_sort.py)
@@ -966,7 +1008,7 @@
   * [Unknown Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/unknown_sort.py)
   * [Wiggle Sort](https://github.com/TheAlgorithms/Python/blob/master/sorts/wiggle_sort.py)
 
-## Strings
+## Strings [⬆️](#table-of-contents)
   * [Aho Corasick](https://github.com/TheAlgorithms/Python/blob/master/strings/aho_corasick.py)
   * [Alternative String Arrange](https://github.com/TheAlgorithms/Python/blob/master/strings/alternative_string_arrange.py)
   * [Anagrams](https://github.com/TheAlgorithms/Python/blob/master/strings/anagrams.py)
@@ -1004,7 +1046,7 @@
   * [Word Patterns](https://github.com/TheAlgorithms/Python/blob/master/strings/word_patterns.py)
   * [Z Function](https://github.com/TheAlgorithms/Python/blob/master/strings/z_function.py)
 
-## Web Programming
+## Web Programming [⬆️](#table-of-contents)
   * [Co2 Emission](https://github.com/TheAlgorithms/Python/blob/master/web_programming/co2_emission.py)
   * [Covid Stats Via Xpath](https://github.com/TheAlgorithms/Python/blob/master/web_programming/covid_stats_via_xpath.py)
   * [Crawl Google Results](https://github.com/TheAlgorithms/Python/blob/master/web_programming/crawl_google_results.py)
