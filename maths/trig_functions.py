@@ -1,6 +1,6 @@
 """
-The 6 normal trig functions and their inverses. In theory, I could 
-have used a CORDIC algorithm https://en.wikipedia.org/wiki/CORDIC
+The 6 normal trig functions. In theory, I could have used a 
+CORDIC algorithm https://en.wikipedia.org/wiki/CORDIC
 but this requires a load of pre-calculated values stored in some
 list. In keeping with the spirit of what this repository aims to
 achieve, I decided to use a taylor series expansion so that everything
@@ -36,7 +36,18 @@ def sine(
     this algorithm because python 
     runs into issues with converting 
     huge factorials into floats.
+
     Doctests:
+    >>> from math import pi
+    >>> sine(0.0)
+    0.0
+
+    >>> sine(2*pi/3)
+    0.866025403788779
+
+    >>> sine(5*pi/3)
+    0.8660254037844389
+
     """
 
     # Value to be returned
@@ -91,6 +102,15 @@ def cosine(
     https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
 
     Doctests:
+    >>> from math import pi
+    >>> cosine(0.0)
+    1.0
+
+    >>> cosine(2*pi/3)
+    -0.5
+
+    >>> cosine(5*pi/3)
+    0.49999999999999956
     """
 
     # Value to be returned
@@ -151,6 +171,15 @@ def tangent(x: float) -> float:
     https://en.wikipedia.org/wiki/List_of_trigonometric_identities
 
     Doctests:
+    >>> from math import pi
+    >>> tangent(0.0)
+    0.0
+
+    >>> tangent(2*pi/3)
+    -1.7320508075688779
+
+    >>> tangent(5*pi/3)
+    1.7320508075688794
     """
 
     # There are a handful of angles where tan(x) is undefined 
@@ -165,6 +194,15 @@ def cosecant(x: float) -> float:
     Algorithm used: The definition of cosecant is 1/sin(x)
 
     Doctests:
+    >>> from math import pi
+    >>> cosecant(0.0)
+    None
+
+    >>> cosecant(2*pi/3)
+    1.1547005383792512
+
+    >>> cosecant(5*pi/3)
+    1.1547005383792512
     """
 
     # Note that csc(x) is undefined when sin(x) = 0
@@ -181,6 +219,15 @@ def secant(
     Algorithm used: The definition of secant is 1/cos(x)
 
     Doctests:
+    >>> from math import pi
+    >>> secant(0.0)
+    1.0
+
+    >>> secant(2*pi/3)
+    -2.0
+
+    >>> secant(5*pi/3)
+    2.0000000000000018
     """
 
     # Note that sec(x) is undefinde when cos(x) = 0
@@ -194,6 +241,15 @@ def cotangent(x: float) -> float:
     Algorithm used: The defintion of cotangent is 1/tan(x)
 
     Doctests:
+    >>> from math import pi
+    >>> cotangent(0.0)
+    None
+
+    >>> cotangent(2*pi/3)
+    -0.5773502691896256
+
+    >>> cotangent(5*pi/3)
+    0.5773502691896251
     """
     try:
         return 1/tangent(x)
