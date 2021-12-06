@@ -195,55 +195,10 @@ def cotangent(x: float) -> float:
 
     Doctests:
     """
-    pass
-
-def arc_sine(x: float) -> float:
-    """
-    Algorithm used:
-
-    Doctests:
-    """
-    pass
-
-def arc_cosine(x: float) -> float:
-    """
-    Algorithm used:
-
-    Doctests:
-    """
-    pass
-
-def arc_tangent(x: float) -> float:
-    """
-    Algorithm used:
-
-    Doctests:
-    """
-    pass
-
-def arc_cosecant(x: float) -> float:
-    """
-    Algorithm used:
-
-    Doctests:
-    """
-    pass
-
-def arc_secant(x: float) -> float:
-    """
-    Algorithm used:
-
-    Doctests:
-    """
-    pass
-
-def arc_cotangent(x: float) -> float:
-    """
-    Algorithm used:
-
-    Doctests:
-    """
-    pass
+    try:
+        return 1/tangent(x)
+    except ZeroDivisionError:
+        pass
 
 if __name__ == "__main__":
 
@@ -253,12 +208,13 @@ if __name__ == "__main__":
     angle = 0.0
     while counter < 12:
         
+        # Test each trig function at a variety of angles
         print(f"sin({angle}) = {sine(angle)}")
         print(f"cos({angle}) = {cosine(angle)}")
-        print(f"tan({angle}) = {tangent(angle)}\n")
-        #print(f"cosecant({angle}) = {cosecant(angle)}")
-        #print(f"secant({angle}) = {secant(angle)}")
-        #print(f"cotangent({angle}) = {cotangent(angle)}")
+        print(f"tan({angle}) = {tangent(angle)}")
+        print(f"cosecant({angle}) = {cosecant(angle)}")
+        print(f"secant({angle}) = {secant(angle)}")
+        print(f"cotangent({angle}) = {cotangent(angle)}\n")
 
         angle += (pi/3)
         counter+=1
