@@ -189,85 +189,57 @@ def secant(
     except ZeroDivisionError:
         pass
 
-def cotangent(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def cotangent(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used: The defintion of cotangent is 1/tan(x)
 
     Doctests:
     """
     pass
 
-def arc_sine(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def arc_sine(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used:
 
     Doctests:
     """
     pass
 
-def arc_cosine(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def arc_cosine(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used:
 
     Doctests:
     """
     pass
 
-def arc_tangent(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def arc_tangent(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used:
 
     Doctests:
     """
     pass
 
-def arc_cosecant(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def arc_cosecant(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used:
 
     Doctests:
     """
     pass
 
-def arc_secant(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def arc_secant(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used:
 
     Doctests:
     """
     pass
 
-def arc_cotangent(
-    x: float,
-    accuracy: int = 100
-) -> float:
+def arc_cotangent(x: float) -> float:
     """
-    Algorithm used: taylor series
-    https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+    Algorithm used:
 
     Doctests:
     """
