@@ -1,9 +1,27 @@
+import secrets
+# TODO: Document code and fucntions
+# TODO: Ensure script meets pull request requirements
+# TODO: Black it
+# TODO: Check linting
+# TODO: Check encode/decode of long messages
+# TODO: Perform final cheks on printing and readability
+# TODO: Remove  todo's
+
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def main() -> None:
     message = input("Enter message: ")
-    key = input("Enter key [alphanumeric]: ")
+
+    print("\nEnter key [alphanumeric], "
+          "leave blank for a random key as long as the message.")
+    key = str(input("Enter the Key: ").strip())
+
+    randomKey = False
+    if not len(key):
+        randomKey = True
+        key = generateRandomKey(message)
+
     mode = input("Encrypt/Decrypt [e/d]: ")
 
     if mode.lower().startswith("e"):
@@ -15,6 +33,23 @@ def main() -> None:
 
     print("\n%sed message:" % mode.title())
     print(translated)
+
+    if randomKey and mode.lower().startswith("e"):
+        print("Message key:\n%s" % key.lower())
+
+
+def generateRandomKey(message: str) -> str:
+    """DOC STRING
+
+    parameters
+
+    returns
+    """
+    message = message.strip()
+    randomKey = []
+
+    [randomKey.append(secrets.choice(LETTERS)) for i, letter in enumerate(message)]
+    return ''.join(randomKey)
 
 
 def encryptMessage(key: str, message: str) -> str:
