@@ -23,6 +23,7 @@ def main() -> None:
 
     mode = input("Encrypt/Decrypt [e/d]: ")
 
+    translated = ''
     if mode.lower().startswith("e"):
         mode = "encrypt"
         translated = encryptMessage(key, message)
