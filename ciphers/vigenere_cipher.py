@@ -1,9 +1,6 @@
 import secrets
-# TODO: Document code and fucntions
-# TODO: Ensure script meets pull request requirements
-# TODO: Black it
+
 # TODO: Check linting
-# TODO: Check encode/decode of long messages
 # TODO: Perform final cheks on printing and readability
 # TODO: Remove  todo's
 
@@ -13,8 +10,10 @@ LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def main() -> None:
     message = input("Enter message: ")
 
-    print("\nEnter key [alphanumeric], "
-          "leave blank for a random key as long as the message.")
+    print(
+        "\nEnter key [alphanumeric], "
+        "leave blank for a random key as long as the message."
+    )
     key = str(input("Enter the Key: ").strip())
 
     randomKey = False
@@ -34,22 +33,31 @@ def main() -> None:
     print("\n%sed message:" % mode.title())
     print(translated)
 
+    # Print the random key, if selected, after encryption.
     if randomKey and mode.lower().startswith("e"):
         print("Message key:\n%s" % key.lower())
 
 
 def generateRandomKey(message: str) -> str:
-    """DOC STRING
+    """Generates a randomized key with a length equal to that of the
+    message length, including white space within the message and excluding
+    leading and trailing whitespace. Whether used for encrypting or decrypting
+    the key is not case sensitive.
+
+    Include module
+        secrets
 
     parameters
+        message [str]: The user entered message.
 
     returns
+        [str]: Randomized string of letters with length equal to message length.
     """
     message = message.strip()
     randomKey = []
 
     [randomKey.append(secrets.choice(LETTERS)) for i, letter in enumerate(message)]
-    return ''.join(randomKey)
+    return "".join(randomKey)
 
 
 def encryptMessage(key: str, message: str) -> str:
