@@ -1,9 +1,5 @@
 import secrets
 
-# TODO: Check linting
-# TODO: Perform final cheks on printing and readability
-# TODO: Remove  todo's
-
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
@@ -23,7 +19,7 @@ def main() -> None:
 
     mode = input("Encrypt/Decrypt [e/d]: ")
 
-    translated = ''
+    translated = ""
     if mode.lower().startswith("e"):
         mode = "encrypt"
         translated = encryptMessage(key, message)
@@ -57,7 +53,11 @@ def generateRandomKey(message: str) -> str:
     message = message.strip()
     randomKey = []
 
-    [randomKey.append(secrets.choice(LETTERS)) for i, letter in enumerate(message)]
+    for i, letter in enumerate(message):
+        secret_letter = secrets.choice(LETTERS)
+        randomKey.append(secret_letter)
+
+    # [randomKey.append(secrets.choice(LETTERS)) for i, letter in enumerate(message)]
     return "".join(randomKey)
 
 
