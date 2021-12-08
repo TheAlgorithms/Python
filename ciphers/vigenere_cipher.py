@@ -57,7 +57,6 @@ def generateRandomKey(message: str) -> str:
         secret_letter = secrets.choice(LETTERS)
         randomKey.append(secret_letter)
 
-    # [randomKey.append(secrets.choice(LETTERS)) for i, letter in enumerate(message)]
     return "".join(randomKey)
 
 
