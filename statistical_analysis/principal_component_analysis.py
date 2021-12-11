@@ -14,11 +14,7 @@ def centering_matrix(n_dim: int) -> np.ndarray:
     array([[0.]])
     """
 
-    identity = np.diag(
-        np.ones(
-            n_dim
-        )
-    )
+    identity = np.diag(np.ones(n_dim))
     ones = np.ones((n_dim, n_dim))
     centering = identity - ones / n_dim
     return centering
@@ -68,6 +64,7 @@ def principal_comoponent_analysis(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     data_matrix = np.array([[1, 0], [2, 1], [3, 2], [4, 3]])
@@ -75,5 +72,5 @@ if __name__ == "__main__":
 
     print("The first Principal component of ")
     print(data_matrix)
-    print('is')
+    print("is")
     print(result)
