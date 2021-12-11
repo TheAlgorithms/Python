@@ -33,12 +33,6 @@ def principal_comoponent_analysis(
     Returns
     Data matrix of size (n, n_components), array like
 
-    >>> principal_comoponent_analysis(np.array([[1, 0], [2, 1], [3, 2], [4, 3]]))
-    array([[-2.12132034e+00,  2.22044605e-16],
-           [-7.07106781e-01,  5.55111512e-17],
-           [ 7.07106781e-01, -5.55111512e-17],
-           [ 2.12132034e+00, -2.22044605e-16]])
-
     https://en.wikipedia.org/wiki/Principal_component_analysis
     """
     n_obs = len(data_matrix)
