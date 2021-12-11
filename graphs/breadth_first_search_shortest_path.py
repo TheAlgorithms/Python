@@ -3,8 +3,6 @@ from a given source node to a target node in an unweighted graph.
 """
 from __future__ import annotations
 
-from typing import Optional
-
 graph = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],
@@ -24,7 +22,7 @@ class Graph:
         """
         self.graph = graph
         # mapping node to its parent in resulting breadth first tree
-        self.parent: dict[str, Optional[str]] = {}
+        self.parent: dict[str, str | None] = {}
         self.source_vertex = source_vertex
 
     def breath_first_search(self) -> None:

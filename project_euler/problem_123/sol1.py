@@ -37,8 +37,9 @@ So it could be simplified as,
     r = 2pn when n is odd
     r = 2   when n is even.
 """
+from __future__ import annotations
 
-from typing import Dict, Generator
+from typing import Generator
 
 
 def sieve() -> Generator[int, None, None]:
@@ -60,7 +61,7 @@ def sieve() -> Generator[int, None, None]:
     >>> next(primes)
     13
     """
-    factor_map: Dict[int, int] = {}
+    factor_map: dict[int, int] = {}
     prime = 2
     while True:
         factor = factor_map.pop(prime, None)

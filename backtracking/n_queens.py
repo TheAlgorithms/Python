@@ -7,12 +7,12 @@
  diagonal lines.
 
 """
-from typing import List
+from __future__ import annotations
 
 solution = []
 
 
-def isSafe(board: List[List[int]], row: int, column: int) -> bool:
+def isSafe(board: list[list[int]], row: int, column: int) -> bool:
     """
     This function returns a boolean value True if it is safe to place a queen there
     considering the current state of the board.
@@ -40,7 +40,7 @@ def isSafe(board: List[List[int]], row: int, column: int) -> bool:
     return True
 
 
-def solve(board: List[List[int]], row: int) -> bool:
+def solve(board: list[list[int]], row: int) -> bool:
     """
     It creates a state space tree and calls the safe function until it receives a
     False Boolean and terminates that branch and backtracks to the next
@@ -70,7 +70,7 @@ def solve(board: List[List[int]], row: int) -> bool:
     return False
 
 
-def printboard(board: List[List[int]]) -> None:
+def printboard(board: list[list[int]]) -> None:
     """
     Prints the boards that have a successful combination.
     """

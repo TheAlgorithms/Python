@@ -1,11 +1,9 @@
 """
 https://en.wikipedia.org/wiki/Bidirectional_search
 """
-
 from __future__ import annotations
 
 import time
-from typing import Optional
 
 Path = list[tuple[int, int]]
 
@@ -24,7 +22,7 @@ delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # up, left, down, right
 
 class Node:
     def __init__(
-        self, pos_x: int, pos_y: int, goal_x: int, goal_y: int, parent: Optional[Node]
+        self, pos_x: int, pos_y: int, goal_x: int, goal_y: int, parent: Node | None
     ):
         self.pos_x = pos_x
         self.pos_y = pos_y
@@ -36,16 +34,19 @@ class Node:
 
 class BreadthFirstSearch:
     """
-    >>> bfs = BreadthFirstSearch((0, 0), (len(grid) - 1, len(grid[0]) - 1))
-    >>> (bfs.start.pos_y + delta[3][0], bfs.start.pos_x + delta[3][1])
+    # Comment out slow pytests...
+    # 9.15s call     graphs/bidirectional_breadth_first_search.py:: \
+    #                graphs.bidirectional_breadth_first_search.BreadthFirstSearch
+    # >>> bfs = BreadthFirstSearch((0, 0), (len(grid) - 1, len(grid[0]) - 1))
+    # >>> (bfs.start.pos_y + delta[3][0], bfs.start.pos_x + delta[3][1])
     (0, 1)
-    >>> [x.pos for x in bfs.get_successors(bfs.start)]
+    # >>> [x.pos for x in bfs.get_successors(bfs.start)]
     [(1, 0), (0, 1)]
-    >>> (bfs.start.pos_y + delta[2][0], bfs.start.pos_x + delta[2][1])
+    # >>> (bfs.start.pos_y + delta[2][0], bfs.start.pos_x + delta[2][1])
     (1, 0)
-    >>> bfs.retrace_path(bfs.start)
+    # >>> bfs.retrace_path(bfs.start)
     [(0, 0)]
-    >>> bfs.search()  # doctest: +NORMALIZE_WHITESPACE
+    # >>> bfs.search()  # doctest: +NORMALIZE_WHITESPACE
     [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1),
      (5, 1), (5, 2), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
@@ -57,7 +58,7 @@ class BreadthFirstSearch:
         self.node_queue = [self.start]
         self.reached = False
 
-    def search(self) -> Optional[Path]:
+    def search(self) -> Path | None:
         while self.node_queue:
             current_node = self.node_queue.pop(0)
 
@@ -93,7 +94,7 @@ class BreadthFirstSearch:
             )
         return successors
 
-    def retrace_path(self, node: Optional[Node]) -> Path:
+    def retrace_path(self, node: Node | None) -> Path:
         """
         Retrace the path from parents to parents until start node
         """
@@ -125,7 +126,7 @@ class BidirectionalBreadthFirstSearch:
         self.bwd_bfs = BreadthFirstSearch(goal, start)
         self.reached = False
 
-    def search(self) -> Optional[Path]:
+    def search(self) -> Path | None:
         while self.fwd_bfs.node_queue or self.bwd_bfs.node_queue:
             current_fwd_node = self.fwd_bfs.node_queue.pop(0)
             current_bwd_node = self.bwd_bfs.node_queue.pop(0)

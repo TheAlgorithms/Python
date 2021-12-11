@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import math
-from typing import List, Union
 
 
 class SegmentTree:
@@ -38,7 +37,7 @@ class SegmentTree:
         return idx * 2 + 1
 
     def build(
-        self, idx: int, left_element: int, right_element: int, A: List[int]
+        self, idx: int, left_element: int, right_element: int, A: list[int]
     ) -> None:
         if left_element == right_element:
             self.segment_tree[idx] = A[left_element - 1]
@@ -89,7 +88,7 @@ class SegmentTree:
     # query with O(lg n)
     def query(
         self, idx: int, left_element: int, right_element: int, a: int, b: int
-    ) -> Union[int, float]:
+    ) -> int | float:
         """
         query(1, 1, size, a, b) for query max of [a,b]
         >>> A = [1, 2, -4, 7, 3, -5, 6, 11, -20, 9, 14, 15, 5, 2, -8]

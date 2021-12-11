@@ -18,12 +18,12 @@ the number of triangles for which the interior contains the origin.
 NOTE: The first two examples in the file represent the triangles in the
 example given above.
 """
+from __future__ import annotations
 
 from pathlib import Path
-from typing import List, Tuple
 
 
-def vector_product(point1: Tuple[int, int], point2: Tuple[int, int]) -> int:
+def vector_product(point1: tuple[int, int], point2: tuple[int, int]) -> int:
     """
     Return the 2-d vector product of two vectors.
     >>> vector_product((1, 2), (-5, 0))
@@ -43,9 +43,9 @@ def contains_origin(x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> boo
     >>> contains_origin(-175, 41, -421, -714, 574, -645)
     False
     """
-    point_a: Tuple[int, int] = (x1, y1)
-    point_a_to_b: Tuple[int, int] = (x2 - x1, y2 - y1)
-    point_a_to_c: Tuple[int, int] = (x3 - x1, y3 - y1)
+    point_a: tuple[int, int] = (x1, y1)
+    point_a_to_b: tuple[int, int] = (x2 - x1, y2 - y1)
+    point_a_to_c: tuple[int, int] = (x3 - x1, y3 - y1)
     a: float = -vector_product(point_a, point_a_to_b) / vector_product(
         point_a_to_c, point_a_to_b
     )
@@ -64,12 +64,12 @@ def solution(filename: str = "p102_triangles.txt") -> int:
     """
     data: str = Path(__file__).parent.joinpath(filename).read_text(encoding="utf-8")
 
-    triangles: List[List[int]] = []
+    triangles: list[list[int]] = []
     for line in data.strip().split("\n"):
         triangles.append([int(number) for number in line.split(",")])
 
     ret: int = 0
-    triangle: List[int]
+    triangle: list[int]
 
     for triangle in triangles:
         ret += contains_origin(*triangle)

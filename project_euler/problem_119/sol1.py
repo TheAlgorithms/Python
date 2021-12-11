@@ -23,7 +23,7 @@ def digit_sum(n: int) -> int:
     >>> digit_sum(78910)
     25
     """
-    return sum([int(digit) for digit in str(n)])
+    return sum(int(digit) for digit in str(n))
 
 
 def solution(n: int = 30) -> int:

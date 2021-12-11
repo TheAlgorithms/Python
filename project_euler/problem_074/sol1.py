@@ -66,7 +66,7 @@ def sum_digit_factorials(n: int) -> int:
     """
     if n in CACHE_SUM_DIGIT_FACTORIALS:
         return CACHE_SUM_DIGIT_FACTORIALS[n]
-    ret = sum([DIGIT_FACTORIALS[let] for let in str(n)])
+    ret = sum(DIGIT_FACTORIALS[let] for let in str(n))
     CACHE_SUM_DIGIT_FACTORIALS[n] = ret
     return ret
 

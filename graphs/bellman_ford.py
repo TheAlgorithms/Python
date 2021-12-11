@@ -11,7 +11,7 @@ def check_negative_cycle(
     graph: list[dict[str, int]], distance: list[float], edge_count: int
 ):
     for j in range(edge_count):
-        u, v, w = [graph[j][k] for k in ["src", "dst", "weight"]]
+        u, v, w = (graph[j][k] for k in ["src", "dst", "weight"])
         if distance[u] != float("inf") and distance[u] + w < distance[v]:
             return True
     return False
@@ -38,7 +38,7 @@ def bellman_ford(
 
     for i in range(vertex_count - 1):
         for j in range(edge_count):
-            u, v, w = [graph[j][k] for k in ["src", "dst", "weight"]]
+            u, v, w = (graph[j][k] for k in ["src", "dst", "weight"])
 
             if distance[u] != float("inf") and distance[u] + w < distance[v]:
                 distance[v] = distance[u] + w
@@ -62,10 +62,10 @@ if __name__ == "__main__":
 
     for i in range(E):
         print("Edge ", i + 1)
-        src, dest, weight = [
+        src, dest, weight = (
             int(x)
             for x in input("Enter source, destination, weight: ").strip().split(" ")
-        ]
+        )
         graph[i] = {"src": src, "dst": dest, "weight": weight}
 
     source = int(input("\nEnter shortest path source:").strip())

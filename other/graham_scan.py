@@ -14,7 +14,7 @@ from math import atan2, degrees
 from sys import maxsize
 
 
-def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
+def graham_scan(points: list[tuple[int, int]]) -> list[tuple[int, int]]:
     """Pure implementation of graham scan algorithm in Python
 
     :param points: The unique points on coordinates.
@@ -57,7 +57,7 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
     # remove the lowest and the most left point from points for preparing for sort
     points.pop(minidx)
 
-    def angle_comparer(point: list[int, int], minx: int, miny: int) -> float:
+    def angle_comparer(point: tuple[int, int], minx: int, miny: int) -> float:
         """Return the angle toward to point from (minx, miny)
 
         :param point: The target point
@@ -66,13 +66,13 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
         :return: the angle
 
         Examples:
-        >>> angle_comparer([1,1], 0, 0)
+        >>> angle_comparer((1,1), 0, 0)
         45.0
 
-        >>> angle_comparer([100,1], 10, 10)
+        >>> angle_comparer((100,1), 10, 10)
         -5.710593137499642
 
-        >>> angle_comparer([5,5], 2, 3)
+        >>> angle_comparer((5,5), 2, 3)
         33.690067525979785
         """
         # sort the points accorgind to the angle from the lowest and the most left point
@@ -83,7 +83,7 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
 
     sorted_points = sorted(points, key=lambda point: angle_comparer(point, minx, miny))
     # This insert actually costs complexity,
-    # and you should insteadly add (minx, miny) into stack later.
+    # and you should instead add (minx, miny) into stack later.
     # I'm using insert just for easy understanding.
     sorted_points.insert(0, (minx, miny))
 
@@ -95,7 +95,7 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
         right = 3
 
     def check_direction(
-        starting: list[int, int], via: list[int, int], target: list[int, int]
+        starting: tuple[int, int], via: tuple[int, int], target: tuple[int, int]
     ) -> Direction:
         """Return the direction toward to the line from via to target from starting
 
@@ -105,13 +105,13 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
         :return: the Direction
 
         Examples:
-        >>> check_direction([1,1], [2,2], [3,3])
+        >>> check_direction((1,1), (2,2), (3,3))
         Direction.straight
 
-        >>> check_direction([60,1], [-50,199], [30,2])
+        >>> check_direction((60,1), (-50,199), (30,2))
         Direction.left
 
-        >>> check_direction([0,0], [5,5], [10,0])
+        >>> check_direction((0,0), (5,5), (10,0))
         Direction.right
         """
         x0, y0 = starting
@@ -132,12 +132,12 @@ def graham_scan(points: list[list[int, int]]) -> list[list[int, int]]:
         # If they are same, it means they are on a same line of convex hull.
         if target_angle > via_angle:
             return Direction.left
-        if target_angle == via_angle:
+        elif target_angle == via_angle:
             return Direction.straight
-        if target_angle < via_angle:
+        else:
             return Direction.right
 
-    stack = deque()
+    stack: deque[tuple[int, int]] = deque()
     stack.append(sorted_points[0])
     stack.append(sorted_points[1])
     stack.append(sorted_points[2])

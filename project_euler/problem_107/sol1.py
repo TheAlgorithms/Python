@@ -27,11 +27,12 @@ Solution:
     We use Prim's algorithm to find a Minimum Spanning Tree.
     Reference: https://en.wikipedia.org/wiki/Prim%27s_algorithm
 """
+from __future__ import annotations
 
 import os
-from typing import Dict, List, Mapping, Set, Tuple
+from typing import Mapping
 
-EdgeT = Tuple[int, int]
+EdgeT = tuple[int, int]
 
 
 class Graph:
@@ -39,9 +40,9 @@ class Graph:
     A class representing an undirected weighted graph.
     """
 
-    def __init__(self, vertices: Set[int], edges: Mapping[EdgeT, int]) -> None:
-        self.vertices: Set[int] = vertices
-        self.edges: Dict[EdgeT, int] = {
+    def __init__(self, vertices: set[int], edges: Mapping[EdgeT, int]) -> None:
+        self.vertices: set[int] = vertices
+        self.edges: dict[EdgeT, int] = {
             (min(edge), max(edge)): weight for edge, weight in edges.items()
         }
 
@@ -59,7 +60,7 @@ class Graph:
         self.vertices.add(edge[1])
         self.edges[(min(edge), max(edge))] = weight
 
-    def prims_algorithm(self) -> "Graph":
+    def prims_algorithm(self) -> Graph:
         """
         Run Prim's algorithm to find the minimum spanning tree.
         Reference: https://en.wikipedia.org/wiki/Prim%27s_algorithm
@@ -98,13 +99,13 @@ def solution(filename: str = "p107_network.txt") -> int:
     """
     script_dir: str = os.path.abspath(os.path.dirname(__file__))
     network_file: str = os.path.join(script_dir, filename)
-    adjacency_matrix: List[List[str]]
-    edges: Dict[EdgeT, int] = dict()
-    data: List[str]
+    adjacency_matrix: list[list[str]]
+    edges: dict[EdgeT, int] = dict()
+    data: list[str]
     edge1: int
     edge2: int
 
-    with open(network_file, "r") as f:
+    with open(network_file) as f:
         data = f.read().strip().split("\n")
 
     adjaceny_matrix = [line.split(",") for line in data]

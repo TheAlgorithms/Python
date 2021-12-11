@@ -1,14 +1,15 @@
 """
 Approximates the area under the curve using the trapezoidal rule
 """
+from __future__ import annotations
 
-from typing import Callable, Union
+from typing import Callable
 
 
 def trapezoidal_area(
-    fnc: Callable[[Union[int, float]], Union[int, float]],
-    x_start: Union[int, float],
-    x_end: Union[int, float],
+    fnc: Callable[[int | float], int | float],
+    x_start: int | float,
+    x_end: int | float,
     steps: int = 100,
 ) -> float:
     """

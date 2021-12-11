@@ -41,7 +41,7 @@ Following is minimal   change for 456 :
 """
 
 
-def find_minimum_change(denominations: list[int], value: int) -> list[int]:
+def find_minimum_change(denominations: list[int], value: str) -> list[int]:
     """
     Find the minimum change from the given denominations and value
     >>> find_minimum_change([1, 5, 10, 20, 50, 100, 200, 500, 1000,2000], 18745)
@@ -75,7 +75,7 @@ def find_minimum_change(denominations: list[int], value: int) -> list[int]:
 if __name__ == "__main__":
 
     denominations = list()
-    value = 0
+    value = "0"
 
     if (
         input("Do you want to enter your denominations ? (yY/n): ").strip().lower()

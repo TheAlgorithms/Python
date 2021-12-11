@@ -85,6 +85,8 @@ def compute_nums(n: int) -> list[int]:
             if len(list_nums) == n:
                 return list_nums
 
+    return []
+
 
 def solution() -> int:
     """Return the solution to the problem"""

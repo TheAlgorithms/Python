@@ -68,7 +68,7 @@ def calculate_prob(text: str) -> None:
             my_fir_sum += prob * math.log2(prob)  # entropy formula.
 
     # print entropy
-    print("{:.1f}".format(round(-1 * my_fir_sum)))
+    print(f"{round(-1 * my_fir_sum):.1f}")
 
     # two len string
     all_sum = sum(two_char_strings.values())
@@ -83,10 +83,10 @@ def calculate_prob(text: str) -> None:
                 my_sec_sum += prob * math.log2(prob)
 
     # print second entropy
-    print("{:.1f}".format(round(-1 * my_sec_sum)))
+    print(f"{round(-1 * my_sec_sum):.1f}")
 
     # print the difference between them
-    print("{:.1f}".format(round((-1 * my_sec_sum) - (-1 * my_fir_sum))))
+    print(f"{round((-1 * my_sec_sum) - (-1 * my_fir_sum)):.1f}")
 
 
 def analyze_text(text: str) -> tuple[dict, dict]:

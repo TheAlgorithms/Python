@@ -21,8 +21,8 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools six wheel
           python -m pip install mypy pytest-cov -r requirements.txt
-      - run: mypy .
+      - run: mypy --ignore-missing-imports --install-types --non-interactive .
       - name: Run tests
-        run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/ --cov-report=term-missing:skip-covered --cov=. .
+        run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/validate_solutions.py --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md

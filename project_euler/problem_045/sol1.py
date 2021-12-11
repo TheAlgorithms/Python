@@ -43,7 +43,7 @@ def is_pentagonal(n: int) -> bool:
 
 def solution(start: int = 144) -> int:
     """
-    Returns the next number which is traingular, pentagonal and hexagonal.
+    Returns the next number which is triangular, pentagonal and hexagonal.
     >>> solution(144)
     1533776805
     """

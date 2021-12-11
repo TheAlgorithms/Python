@@ -7,10 +7,10 @@ to find the maximum of the array.
 (From Kleinberg and Tardos. Algorithm Design.
 Addison Wesley 2006: Chapter 5 Solved Exercise 1)
 """
-from typing import List
+from __future__ import annotations
 
 
-def peak(lst: List[int]) -> int:
+def peak(lst: list[int]) -> int:
     """
     Return the peak value of `lst`.
     >>> peak([1, 2, 3, 4, 5, 4, 3, 2, 1])

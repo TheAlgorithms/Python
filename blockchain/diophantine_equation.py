@@ -1,7 +1,7 @@
-from typing import Tuple
+from __future__ import annotations
 
 
-def diophantine(a: int, b: int, c: int) -> Tuple[float, float]:
+def diophantine(a: int, b: int, c: int) -> tuple[float, float]:
     """
     Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the
     diophantine equation a*x + b*y = c has a solution (where x and y are integers)
@@ -95,7 +95,7 @@ def greatest_common_divisor(a: int, b: int) -> int:
     return b
 
 
-def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
+def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     """
     Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers
     x and y, then d = gcd(a,b)

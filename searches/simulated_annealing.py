@@ -1,6 +1,7 @@
 # https://en.wikipedia.org/wiki/Simulated_annealing
 import math
 import random
+from typing import Any
 
 from .hill_climbing import SearchProblem
 
@@ -16,7 +17,7 @@ def simulated_annealing(
     start_temperate: float = 100,
     rate_of_decrease: float = 0.01,
     threshold_temp: float = 1,
-) -> SearchProblem:
+) -> Any:
     """
     Implementation of the simulated annealing algorithm. We start with a given state,
     find all its neighbors. Pick a random neighbor, if that neighbor improves the

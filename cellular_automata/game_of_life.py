@@ -40,18 +40,18 @@ choice = [0] * 100 + [1] * 10
 random.shuffle(choice)
 
 
-def create_canvas(size):
+def create_canvas(size: int) -> list[list[bool]]:
     canvas = [[False for i in range(size)] for j in range(size)]
     return canvas
 
 
-def seed(canvas):
+def seed(canvas: list[list[bool]]) -> None:
     for i, row in enumerate(canvas):
         for j, _ in enumerate(row):
             canvas[i][j] = bool(random.getrandbits(1))
 
 
-def run(canvas):
+def run(canvas: list[list[bool]]) -> list[list[bool]]:
     """This  function runs the rules of game through all points, and changes their
     status accordingly.(in the same canvas)
     @Args:
@@ -62,21 +62,22 @@ def run(canvas):
     --
     None
     """
-    canvas = np.array(canvas)
-    next_gen_canvas = np.array(create_canvas(canvas.shape[0]))
-    for r, row in enumerate(canvas):
+    current_canvas = np.array(canvas)
+    next_gen_canvas = np.array(create_canvas(current_canvas.shape[0]))
+    for r, row in enumerate(current_canvas):
         for c, pt in enumerate(row):
             # print(r-1,r+2,c-1,c+2)
             next_gen_canvas[r][c] = __judge_point(
-                pt, canvas[r - 1 : r + 2, c - 1 : c + 2]
+                pt, current_canvas[r - 1 : r + 2, c - 1 : c + 2]
             )
 
-    canvas = next_gen_canvas
+    current_canvas = next_gen_canvas
     del next_gen_canvas  # cleaning memory as we move on.
-    return canvas.tolist()
+    return_canvas: list[list[bool]] = current_canvas.tolist()
+    return return_canvas
 
 
-def __judge_point(pt, neighbours):
+def __judge_point(pt: bool, neighbours: list[list[bool]]) -> bool:
     dead = 0
     alive = 0
     # finding dead or alive neighbours count.

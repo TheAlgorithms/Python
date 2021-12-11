@@ -1,14 +1,14 @@
 """
 Checks if a system of forces is in static equilibrium.
 """
-from typing import List
+from __future__ import annotations
 
 from numpy import array, cos, cross, ndarray, radians, sin
 
 
 def polar_force(
     magnitude: float, angle: float, radian_mode: bool = False
-) -> List[float]:
+) -> list[float]:
     """
     Resolves force along rectangular components.
     (force, angle) => (force_x, force_y)

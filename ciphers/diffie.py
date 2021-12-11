@@ -1,7 +1,7 @@
-from typing import Optional
+from __future__ import annotations
 
 
-def find_primitive(n: int) -> Optional[int]:
+def find_primitive(n: int) -> int | None:
     for r in range(1, n):
         li = []
         for x in range(n - 1):

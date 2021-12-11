@@ -92,8 +92,8 @@ def solution(n: int = 600851475143) -> int:
         return n
     for i in range(3, int(math.sqrt(n)) + 1, 2):
         if n % i == 0:
-            if isprime(n / i):
-                max_number = n / i
+            if isprime(n // i):
+                max_number = n // i
                 break
             elif isprime(i):
                 max_number = i

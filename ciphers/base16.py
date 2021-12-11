@@ -1,19 +1,34 @@
 import base64
 
 
-def encode_to_b16(inp: str) -> bytes:
+def base16_encode(inp: str) -> bytes:
     """
     Encodes a given utf-8 string into base-16.
-    >>> encode_to_b16('Hello World!')
+
+    >>> base16_encode('Hello World!')
     b'48656C6C6F20576F726C6421'
-    >>> encode_to_b16('HELLO WORLD!')
+    >>> base16_encode('HELLO WORLD!')
     b'48454C4C4F20574F524C4421'
-    >>> encode_to_b16('')
+    >>> base16_encode('')
     b''
     """
-    encoded = inp.encode("utf-8")  # encoded the input (we need a bytes like object)
-    b16encoded = base64.b16encode(encoded)  # b16encoded the encoded string
-    return b16encoded
+    # encode the input into a bytes-like object and then encode b16encode that
+    return base64.b16encode(inp.encode("utf-8"))
+
+
+def base16_decode(b16encoded: bytes) -> str:
+    """
+    Decodes from base-16 to a utf-8 string.
+
+    >>> base16_decode(b'48656C6C6F20576F726C6421')
+    'Hello World!'
+    >>> base16_decode(b'48454C4C4F20574F524C4421')
+    'HELLO WORLD!'
+    >>> base16_decode(b'')
+    ''
+    """
+    # b16decode the input into bytes and decode that into a human readable string
+    return base64.b16decode(b16encoded).decode("utf-8")
 
 
 if __name__ == "__main__":

@@ -6,9 +6,10 @@ edges in the tree is minimized. The algorithm operates by building this tree one
 at a time, from an arbitrary starting vertex, at each step adding the cheapest possible
 connection from the tree to another vertex.
 """
+from __future__ import annotations
 
 from sys import maxsize
-from typing import Generic, Optional, TypeVar
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
@@ -219,7 +220,7 @@ class GraphUndirectedWeighted(Generic[T]):
 
 def prims_algo(
     graph: GraphUndirectedWeighted[T],
-) -> tuple[dict[T, int], dict[T, Optional[T]]]:
+) -> tuple[dict[T, int], dict[T, T | None]]:
     """
     >>> graph = GraphUndirectedWeighted()
 
@@ -240,7 +241,7 @@ def prims_algo(
     """
     # prim's algorithm for minimum spanning tree
     dist: dict[T, int] = {node: maxsize for node in graph.connections}
-    parent: dict[T, Optional[T]] = {node: None for node in graph.connections}
+    parent: dict[T, T | None] = {node: None for node in graph.connections}
 
     priority_queue: MinPriorityQueue[T] = MinPriorityQueue()
     for node, weight in dist.items():
