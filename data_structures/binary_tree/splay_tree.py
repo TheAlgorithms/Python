@@ -1,3 +1,7 @@
+"""
+Splay tree
+Reference: https://en.wikipedia.org/wiki/Splay_tree
+"""
 from __future__ import annotations
 from typing import Any, Optional
 
