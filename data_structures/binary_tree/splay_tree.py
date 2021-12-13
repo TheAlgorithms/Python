@@ -23,7 +23,7 @@ class Node:
     >>> print(root.get_right().get_parent().get_data())
     1
     """
-    def __init__(self, data: Any):
+    def __init__(self, data: Any) -> None:
         self.data = data
         self.left = None
         self.right = None
@@ -69,10 +69,10 @@ class SplayTree:
     ----------------------------------------------------------------------------------------------------
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.root = None
 
-    def left_rotate(self, x: Node):
+    def left_rotate(self, x: Node) -> None:
         r"""
           P              x
          / \            / \
@@ -96,7 +96,7 @@ class SplayTree:
             y.left = x
         x.parent = y
 
-    def right_rotate(self, x: Node):
+    def right_rotate(self, x: Node) -> None:
         r"""
             P            x
            / \          / \
@@ -120,7 +120,7 @@ class SplayTree:
             y.right = x
         x.parent = y
 
-    def splay(self, x: Node):
+    def splay(self, x: Node) -> None:
         while x.parent:
             if x.parent.parent:
                 if x == x.parent.left and x.parent == x.parent.parent.left:  # zig-zig
@@ -180,7 +180,7 @@ class SplayTree:
                 x = x.right
         return None
 
-    def insert(self, data: Any):
+    def insert(self, data: Any) -> None:
         x = self.root
         y = None
         while x:
@@ -201,7 +201,7 @@ class SplayTree:
 
         self.splay(node)
 
-    def delete(self, data: Any):
+    def delete(self, data: Any) -> None:
         x = self.find(data)
         if x is None:
             print("data not found")
@@ -235,7 +235,7 @@ class SplayTree:
             return []
         return self.postorder(node.left) + self.postorder(node.right) + [node.data]
 
-    def print(self):
+    def print(self) -> None:
         if self.root is None:
             return
         queue = [(self.root, 1, 1)]
