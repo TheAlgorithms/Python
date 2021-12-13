@@ -72,7 +72,7 @@ class SplayTree:
     def __init__(self) -> None:
         self.root = None
 
-    def left_rotate(self, x: Node) -> None:
+    def left_rotate(self, node: Node) -> None:
         r"""
           P              x
          / \            / \
@@ -80,23 +80,23 @@ class SplayTree:
            / \        / \
           B   C      A   B
         """
-        y = x.right
+        y = node.right
         if y:
-            x.right = y.left
+            node.right = y.left
             if y.left:
-                y.left.parent = x
-            y.parent = x.parent
-        if x.parent is None:
+                y.left.parent = node
+            y.parent = node.parent
+        if node.parent is None:
             self.root = y
-        elif x == x.parent.left:
-            x.parent.left = y
+        elif node == node.parent.left:
+            node.parent.left = y
         else:
-            x.parent.right = y
+            node.parent.right = y
         if y:
-            y.left = x
-        x.parent = y
+            y.left = node
+        node.parent = y
 
-    def right_rotate(self, x: Node) -> None:
+    def right_rotate(self, node: Node) -> None:
         r"""
             P            x
            / \          / \
@@ -104,69 +104,69 @@ class SplayTree:
          / \              / \
         A   B            B   C
         """
-        y = x.left
+        y = node.left
         if y:
-            x.left = y.right
+            node.left = y.right
             if y.right:
-                y.right.parent = x
-            y.parent = x.parent
-        if x.parent is None:
+                y.right.parent = node
+            y.parent = node.parent
+        if node.parent is None:
             self.root = y
-        elif x == x.parent.left:
-            x.parent.left = y
+        elif node == node.parent.left:
+            node.parent.left = y
         else:
-            x.parent.right = y
+            node.parent.right = y
         if y:
-            y.right = x
-        x.parent = y
+            y.right = node
+        node.parent = y
 
-    def splay(self, x: Node) -> None:
-        while x.parent:
-            if x.parent.parent:
-                if x == x.parent.left and x.parent == x.parent.parent.left:  # zig-zig
-                    self.right_rotate(x.parent.parent)
-                    self.right_rotate(x.parent)
+    def splay(self, node: Node) -> None:
+        while node.parent:
+            if node.parent.parent:
+                if node == node.parent.left and node.parent == node.parent.parent.left:  # zig-zig
+                    self.right_rotate(node.parent.parent)
+                    self.right_rotate(node.parent)
                 elif (
-                    x == x.parent.right and x.parent == x.parent.parent.left
+                    node == node.parent.right and node.parent == node.parent.parent.left
                 ):  # zig-zag
-                    self.left_rotate(x.parent)
-                    self.right_rotate(x.parent)
+                    self.left_rotate(node.parent)
+                    self.right_rotate(node.parent)
                 elif (
-                    x == x.parent.right and x.parent == x.parent.parent.right
+                    node == node.parent.right and node.parent == node.parent.parent.right
                 ):  # zag-zag
-                    self.left_rotate(x.parent.parent)
-                    self.left_rotate(x.parent)
+                    self.left_rotate(node.parent.parent)
+                    self.left_rotate(node.parent)
                 else:  # zag-zig
-                    self.right_rotate(x.parent)
-                    self.left_rotate(x.parent)
+                    self.right_rotate(node.parent)
+                    self.left_rotate(node.parent)
             else:
-                if x == x.parent.left:  # zig
-                    self.right_rotate(x.parent)
+                if node == node.parent.left:  # zig
+                    self.right_rotate(node.parent)
                 else:  # zag
-                    self.left_rotate(x.parent)
+                    self.left_rotate(node.parent)
 
     def empty(self) -> bool:
         return self.root is None
 
-    def find_min(self, x: Node) -> Node:
-        while x.left:
-            x = x.left
-        return x
+    def find_min(self, node: Node) -> Node:
+        while node.left:
+            node = node.left
+        return node
 
-    def find_max(self, x: Node) -> Node:
-        while x.right:
-            x = x.right
-        return x
+    def find_max(self, node: Node) -> Node:
+        while node.right:
+            node = node.right
+        return node
 
-    def join(self, s: Optional[Node], t: Optional[Node]) -> Optional[Node]:
-        if s is None:
-            return t
-        if t is None:
-            return s
-        x = self.find_max(s)
+    def join(self, left_tree_root: Optional[Node], right_tree_root: Optional[Node]) -> Optional[Node]:
+        if left_tree_root is None:
+            return right_tree_root
+        if right_tree_root is None:
+            return left_tree_root
+        x = self.find_max(left_tree_root)
         self.splay(x)
-        x.right = t
-        t.parent = x
+        x.right = right_tree_root
+        right_tree_root.parent = x
         return x
 
     def find(self, data: Any) -> Optional[Node]:
