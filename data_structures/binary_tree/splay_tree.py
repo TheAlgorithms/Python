@@ -7,6 +7,22 @@ from typing import Any, Optional
 
 
 class Node:
+    """
+    Implementation of tree node.
+    >>> root = Node(1)
+    >>> root.left = Node(2)
+    >>> root.right = Node(3)
+    >>> root.left.parent = root
+    >>> root.right.parent = root
+    >>> print(root.get_data())
+    1
+    >>> print(root.get_left().get_data())
+    2
+    >>> print(root.get_right().get_data())
+    3
+    >>> print(root.get_right().get_parent().get_data())
+    1
+    """
     def __init__(self, data: Any):
         self.data = data
         self.left = None
