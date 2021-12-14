@@ -21,7 +21,7 @@ def centering_matrix(n_dim: int) -> np.ndarray:
 
 
 def principal_comoponent_analysis(
-    data_matrix: np.ndarray, n_components: int = 2
+    data_matrix: np.ndarray, n_components: int = 2, n_digits: int = -1
 ) -> np.ndarray:
     """
     Input
@@ -29,9 +29,16 @@ def principal_comoponent_analysis(
                     and p is the number of different variables.
     n_components  - is the number of principal components to be
                     included
+    n_digits      - Number of digits wanted after decimal (negative values corresponds to no rounding)
 
     Returns
     Data matrix of size (n, n_components), array like
+
+    >>> principal_comoponent_analysis(np.array([[1, 0], [2, 1], [3, 2], [4, 3]]), n_digits = 2)
+    array([[-2.12,  0.  ],
+           [-0.71,  0.  ],
+           [ 0.71, -0.  ],
+           [ 2.12, -0.  ]])
 
     https://en.wikipedia.org/wiki/Principal_component_analysis
     """
@@ -53,7 +60,11 @@ def principal_comoponent_analysis(
     order = np.argsort(eigen_values)[::-1]
     eigen_vectors = eigen_vectors[:, order]
 
-    return np.array(centering @ data_matrix @ eigen_vectors[:, :n_components])
+    result = np.array(centering @ data_matrix @ eigen_vectors[:, :n_components])
+
+    if n_digits <= 0:
+        return result
+    return np.round(result, n_digits)
 
 
 if __name__ == "__main__":
@@ -62,7 +73,7 @@ if __name__ == "__main__":
     doctest.testmod()
 
     data_matrix = np.array([[1, 0], [2, 1], [3, 2], [4, 3]])
-    result = principal_comoponent_analysis(data_matrix, 1)
+    result = principal_comoponent_analysis(data_matrix, 1, 2)
 
     print("The first Principal component of ")
     print(data_matrix)
