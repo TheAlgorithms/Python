@@ -29,12 +29,14 @@ def principal_comoponent_analysis(
                     and p is the number of different variables.
     n_components  - is the number of principal components to be
                     included
-    n_digits      - Number of digits wanted after decimal (negative values corresponds to no rounding)
+    n_digits      - Number of digits wanted after decimal
+                    (negative values corresponds to no rounding)
 
     Returns
     Data matrix of size (n, n_components), array like
 
-    >>> principal_comoponent_analysis(np.array([[1, 0], [2, 1], [3, 2], [4, 3]]), n_digits = 2)
+    >>> x = np.array([[1, 0], [2, 1], [3, 2], [4, 3]])
+    >>> principal_comoponent_analysis(x, n_digits = 2)
     array([[-2.12,  0.  ],
            [-0.71,  0.  ],
            [ 0.71, -0.  ],
