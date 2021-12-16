@@ -9,7 +9,10 @@ import pandas as pd
 import doctest
 
 def calculate_waitingtime(
-    arrival_time: list[int], burst_time: list[int], priority: list[int], no_of_processes: int
+    arrival_time: list[int],
+    burst_time: list[int],
+    priority: list[int],
+    no_of_processes: int
 ) -> list[int]:
     """
     Calculate the waiting time of each processes
@@ -131,10 +134,14 @@ if __name__ == "__main__":
     processes = list(range(1, no_of_processes + 1))
 
     for i in range(no_of_processes):
-        print(f"Enter the arrival time and burst time and priority for process:--{str(i + 1)}")
+        print(
+            f"Enter the arrival time and burst time and priority for process:--{str(i + 1)}"
+        )
         arrival_time[i], burst_time[i], priority[i] = map(int, input().split())
 
-    waiting_time = calculate_waitingtime(arrival_time, burst_time, priority, no_of_processes)
+    waiting_time = calculate_waitingtime(
+        arrival_time, burst_time, priority, no_of_processes
+    )
 
     bt = burst_time
     n = no_of_processes
@@ -144,7 +151,16 @@ if __name__ == "__main__":
     calculate_average_times(waiting_time, turn_around_time, no_of_processes)
 
     fcfs = pd.DataFrame(
-        list(zip(processes, burst_time, arrival_time, priority, waiting_time, turn_around_time)),
+        list(
+            zip(
+                processes,
+                burst_time,
+                arrival_time,
+                priority,
+                waiting_time,
+                turn_around_time
+            )
+        ),
         columns=[
             "Process",
             "BurstTime",
