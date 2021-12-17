@@ -23,6 +23,7 @@ class Node:
     >>> print(root.get_right().get_parent().get_data())
     1
     """
+
     def __init__(self, data: Any) -> None:
         self.data = data
         self.left = None
@@ -123,7 +124,9 @@ class SplayTree:
     def splay(self, node: Node) -> None:
         while node.parent:
             if node.parent.parent:
-                if node == node.parent.left and node.parent == node.parent.parent.left:  # zig-zig
+                if (
+                    node == node.parent.left and node.parent == node.parent.parent.left
+                ):  # zig-zig
                     self.right_rotate(node.parent.parent)
                     self.right_rotate(node.parent)
                 elif (
@@ -132,7 +135,8 @@ class SplayTree:
                     self.left_rotate(node.parent)
                     self.right_rotate(node.parent)
                 elif (
-                    node == node.parent.right and node.parent == node.parent.parent.right
+                    node == node.parent.right
+                    and node.parent == node.parent.parent.right
                 ):  # zag-zag
                     self.left_rotate(node.parent.parent)
                     self.left_rotate(node.parent)
@@ -158,7 +162,9 @@ class SplayTree:
             node = node.right
         return node
 
-    def join(self, left_tree_root: Optional[Node], right_tree_root: Optional[Node]) -> Optional[Node]:
+    def join(
+        self, left_tree_root: Optional[Node], right_tree_root: Optional[Node]
+    ) -> Optional[Node]:
         if left_tree_root is None:
             return right_tree_root
         if right_tree_root is None:
