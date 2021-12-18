@@ -3,7 +3,7 @@ Splay tree
 Reference: https://en.wikipedia.org/wiki/Splay_tree
 """
 from __future__ import annotations
-from typing import Any, Optional
+from typing import Any, Optional, Tuple
 
 
 class Node:
@@ -25,10 +25,10 @@ class Node:
     """
 
     def __init__(self, data: Any) -> None:
-        self.data = data
-        self.left = None
-        self.right = None
-        self.parent = None
+        self.data: Any = data
+        self.left: Optional[Node] = None
+        self.right: Optional[Node] = None
+        self.parent: Optional[Node] = None
 
     def get_data(self) -> Any:
         return self.data
@@ -71,7 +71,7 @@ class SplayTree:
     """
 
     def __init__(self) -> None:
-        self.root = None
+        self.root: Optional[Node] = None
 
     def left_rotate(self, node: Node) -> None:
         r"""
@@ -226,26 +226,11 @@ class SplayTree:
             x.right = None
         self.root = self.join(s, t)
 
-    def preorder(self, node: Node) -> list:
-        if node is None:
-            return []
-        return [node.data] + self.preorder(node.left) + self.preorder(node.right)
-
-    def inorder(self, node: Node) -> list:
-        if node is None:
-            return []
-        return self.inorder(node.left) + [node.data] + self.inorder(node.right)
-
-    def postorder(self, node: Node) -> list:
-        if node is None:
-            return []
-        return self.postorder(node.left) + self.postorder(node.right) + [node.data]
-
     def print(self) -> None:
         if self.root is None:
             return
         queue = [(self.root, 1, 1)]
-        d = {}
+        d: dict[int, list[tuple[Any, int]]] = {}
         while queue:
             node, height, idx = queue.pop(0)
             if height not in d:
