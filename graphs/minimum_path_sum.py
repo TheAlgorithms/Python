@@ -44,8 +44,6 @@ def min_path(grid):
 
 
 def fill_row(current_row, row_above):
-    if row_above is None:
-        return current_row
 
     current_row[0] += row_above[0]
     for cell_n in range(1, len(current_row)):
