@@ -1,4 +1,4 @@
-def min_path(grid):
+def min_path(grid: list) -> int:
 
     """
     Find the path from top left to bottom right of array of numbers
@@ -45,7 +45,11 @@ def min_path(grid):
     return grid[-1][-1]
 
 
-def fill_row(current_row, row_above):
+def fill_row(current_row: list, row_above: list) -> list:
+    """
+    >>> fill_row([2, 2, 2], [1, 2, 3])
+    [3, 4, 5]
+    """
 
     current_row[0] += row_above[0]
     for cell_n in range(1, len(current_row)):
