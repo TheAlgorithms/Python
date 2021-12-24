@@ -1,6 +1,8 @@
 def min_path(grid):
 
     """
+    Find the path from top left to bottom right of array of numbers
+    with the lowest possible sum and return the sum along this path.
     >>> min_path([
     ...     [1, 3, 1],
     ...     [1, 5, 1],
