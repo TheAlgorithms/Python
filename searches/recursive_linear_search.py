@@ -24,12 +24,10 @@ def recursive_linear_search(array:list,target:int,index:int =0)-> int:
                  
                  ValueError: This exception will be raised when the 1st argument of type string and 2nd argument(target) will be of type non-string.As you cannot search non-str element in str.
     Examples :
-    >>>recursive_linear_search([1,2,3,4,5],5)
+    >>> recursive_linear_search([1,2,3,4,5],5)
     4
-    >>>recursive_linear_search([5,4,3,2,1],3)
-    2
-    >>recursive_linear_search([-1,4,3,-10,8],-1)
-    0         
+    >>> recursive_linear_search([5,4,3,2,1],3)
+    2       
     """
     if type(array) not in (list,tuple,str) : raise TypeError("Invalid input(argument 1) only list,tuple,str allowed")
 
