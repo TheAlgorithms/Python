@@ -25,7 +25,7 @@ def rabinMiller(num: int) -> bool:
     return True
 
 
-def isPrime(num: int) -> bool:
+def low_num_is_prime(num: int) -> bool:
     if num < 2:
         return False
 
@@ -213,11 +213,11 @@ def isPrime(num: int) -> bool:
 def generateLargePrime(keysize: int = 1024) -> int:
     while True:
         num = random.randrange(2 ** (keysize - 1), 2 ** (keysize))
-        if isPrime(num):
+        if low_num_is_prime(num):
             return num
 
 
 if __name__ == "__main__":
     num = generateLargePrime()
     print(("Prime number:", num))
-    print(("isPrime:", isPrime(num)))
+    print(("low_num_is_prime:", low_num_is_prime(num)))
