@@ -4,6 +4,7 @@
   * [Gaussian Elimination](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/gaussian_elimination.py)
   * [In Static Equilibrium](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/in_static_equilibrium.py)
   * [Intersection](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/intersection.py)
+  * [Jacobi Iteration Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/jacobi_iteration_method.py)
   * [Lu Decomposition](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/lu_decomposition.py)
   * [Newton Forward Interpolation](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_forward_interpolation.py)
   * [Newton Method](https://github.com/TheAlgorithms/Python/blob/master/arithmetic_analysis/newton_method.py)
@@ -109,8 +110,10 @@
 
 ## Computer Vision
   * [Cnn Classification](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/cnn_classification.py)
+  * [Flip Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/flip_augmentation.py)
   * [Harris Corner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harris_corner.py)
   * [Mean Threshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mean_threshold.py)
+  * [Mosaic Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mosaic_augmentation.py)
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
@@ -297,6 +300,7 @@
     * [Test Send File](https://github.com/TheAlgorithms/Python/blob/master/file_transfer/tests/test_send_file.py)
 
 ## Financial
+  * [Equated Monthly Installments](https://github.com/TheAlgorithms/Python/blob/master/financial/equated_monthly_installments.py)
   * [Interest](https://github.com/TheAlgorithms/Python/blob/master/financial/interest.py)
 
 ## Fractals
@@ -521,6 +525,7 @@
   * [Perfect Cube](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_cube.py)
   * [Perfect Number](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_number.py)
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
+  * [Persistence](https://github.com/TheAlgorithms/Python/blob/master/maths/persistence.py)
   * [Pi Monte Carlo Estimation](https://github.com/TheAlgorithms/Python/blob/master/maths/pi_monte_carlo_estimation.py)
   * [Pollard Rho](https://github.com/TheAlgorithms/Python/blob/master/maths/pollard_rho.py)
   * [Polynomial Evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
@@ -850,6 +855,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_135/sol1.py)
   * Problem 144
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_144/sol1.py)
+  * Problem 145
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_145/sol1.py)
   * Problem 173
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_173/sol1.py)
   * Problem 174
@@ -862,6 +869,8 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_191/sol1.py)
   * Problem 203
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_203/sol1.py)
+  * Problem 205
+    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_205/sol1.py)
   * Problem 206
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_206/sol1.py)
   * Problem 207
