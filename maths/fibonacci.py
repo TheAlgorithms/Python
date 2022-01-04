@@ -63,15 +63,15 @@ def fib_iterative(n: int) -> list[int]:
 def fib_recursive(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
-    >>> fib_iterative(0)
+    >>> fib_recursive(0)
     [0]
-    >>> fib_iterative(1)
+    >>> fib_recursive(1)
     [0, 1]
-    >>> fib_iterative(5)
+    >>> fib_recursive(5)
     [0, 1, 1, 2, 3, 5]
-    >>> fib_iterative(10)
+    >>> fib_recursive(10)
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-    >>> fib_iterative(-1)
+    >>> fib_recursive(-1)
     Traceback (most recent call last):
     ...
     Exception: n is negative
@@ -80,6 +80,14 @@ def fib_recursive(n: int) -> list[int]:
     def fib_recursive_term(i: int) -> int:
         """
         Calculates the i-th (0-indexed) Fibonacci number using recursion
+        
+        NOTE: The current recursion depth limit is 1000 (thus n > 1000 won't work) and it will throw an error if it's exceeded to prevent infinite recursion / stack overflow.
+              The limit can be changed with the sys module, but setting it too high might evoke a crash:
+          
+              import sys
+              sys.setrecursionlimit(limit)
+          
+              A better solution is to rewrite the code without recursion e.g. with loops, like the iterative method.
         """
         if i < 0:
             raise Exception("n is negative")
