@@ -5,9 +5,28 @@ import unittest
 
 
 def prime_check(number: int) -> bool:
-    """Checks to see if a number is a prime.
+    """Checks to see if a number is a prime in O(sqrt(n)).
 
     A number is prime if it has exactly two factors: 1 and itself.
+
+    >>> prime_check(0)
+    False
+    >>> prime_check(1)
+    False
+    >>> prime_check(2)
+    True
+    >>> prime_check(3)
+    True
+    >>> prime_check(27)
+    False
+    >>> prime_check(87)
+    False
+    >>> prime_check(563)
+    True
+    >>> prime_check(2999)
+    True
+    >>> prime_check(67483)
+    False
     """
 
     if 1 < number < 4:

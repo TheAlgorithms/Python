@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import random
-from typing import Generic, Iterable, TypeVar
+from typing import Any, Generic, Iterable, TypeVar
 
-T = TypeVar("T")
+T = TypeVar("T", bound=bool)
 
 
 class RandomizedHeapNode(Generic[T]):
@@ -76,8 +76,10 @@ class RandomizedHeap(Generic[T]):
         [1, 3, 3, 7]
         """
         self._root: RandomizedHeapNode[T] | None = None
-        for item in data:
-            self.insert(item)
+
+        if data:
+            for item in data:
+                self.insert(item)
 
     def insert(self, value: T) -> None:
         """
@@ -93,7 +95,7 @@ class RandomizedHeap(Generic[T]):
         """
         self._root = RandomizedHeapNode.merge(self._root, RandomizedHeapNode(value))
 
-    def pop(self) -> T:
+    def pop(self) -> T | None:
         """
         Pop the smallest value from the heap and return it.
 
@@ -111,7 +113,12 @@ class RandomizedHeap(Generic[T]):
             ...
         IndexError: Can't get top element for the empty heap.
         """
+
         result = self.top()
+
+        if self._root is None:
+            return None
+
         self._root = RandomizedHeapNode.merge(self._root.left, self._root.right)
 
         return result
@@ -138,7 +145,7 @@ class RandomizedHeap(Generic[T]):
             raise IndexError("Can't get top element for the empty heap.")
         return self._root.value
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear the heap.
 
@@ -151,7 +158,7 @@ class RandomizedHeap(Generic[T]):
         """
         self._root = None
 
-    def to_sorted_list(self) -> list[T]:
+    def to_sorted_list(self) -> list[Any]:
         """
         Returns sorted list containing all the values in the heap.
 
