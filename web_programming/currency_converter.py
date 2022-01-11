@@ -10,8 +10,9 @@ import requests
 URL_BASE = "https://www.amdoren.com/api/currency.php"
 TESTING = os.getenv("CI", False)
 API_KEY = os.getenv("AMDOREN_API_KEY", "")
+
 if not API_KEY and not TESTING:
-    raise KeyError("Please put your API key in an environment variable.")
+    raise KeyError("API key must be set as AMDOREN_API_KEY")
 
 
 # Currency and their description
@@ -173,12 +174,12 @@ ZMW	Zambian Kwacha
 
 
 def convert_currency(
-    from_: str = "USD", to: str = "INR", amount: float = 1.0, api_key: str = API_KEY
+    from="USD", to="INR", amount=1.0, api_key=API_KEY
 ) -> str:
     """https://www.amdoren.com/currency-api/"""
-    params = locals()
-    params["from"] = params.pop("from_")
+    params = dict(from=from, to=to, amount=amount, api_key=api_key)
     res = requests.get(URL_BASE, params=params).json()
+
     return str(res["amount"]) if res["error"] == 0 else res["error_message"]
 
 
