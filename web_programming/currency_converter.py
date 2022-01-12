@@ -174,10 +174,10 @@ ZMW	Zambian Kwacha
 
 
 def convert_currency(
-    from="USD", to="INR", amount=1.0, api_key=API_KEY
+    from_: str = "USD", to: str = "INR", amount: float = 1.0, api_key: str = API_KEY
 ) -> str:
     """https://www.amdoren.com/currency-api/"""
-    params = dict(from=from, to=to, amount=amount, api_key=api_key)
+    params = dict(from=from_, to=to, amount=amount, api_key=api_key)
     res = requests.get(URL_BASE, params=params).json()
 
     return str(res["amount"]) if res["error"] == 0 else res["error_message"]
