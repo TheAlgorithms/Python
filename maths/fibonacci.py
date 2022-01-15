@@ -81,13 +81,19 @@ def fib_recursive(n: int) -> list[int]:
         """
         Calculates the i-th (0-indexed) Fibonacci number using recursion
         
-        NOTE: The current recursion depth limit is 1000 (thus n > 1000 won't work) and it will throw an error if it's exceeded to prevent infinite recursion / stack overflow.
-              The limit can be changed with the sys module, but setting it too high might evoke a crash:
+        NOTE: The current recursion depth limit is 1000
+              (thus n > 1000 won't work)
+              It will throw an error if it's exceeded
+              (It might be an infinite recursion / stack overflow)
+              
+              The limit can be changed with the sys module,
+              but setting it too high might evoke a crash:
+              
+              >>> import sys
+              >>> sys.setrecursionlimit(limit)
           
-              import sys
-              sys.setrecursionlimit(limit)
-          
-              A better solution is to rewrite the code without recursion e.g. with loops, like the iterative method.
+              A better solution is to rewrite the code without recursions
+              e.g. with loops, like the iterative method
         """
         if i < 0:
             raise Exception("n is negative")
