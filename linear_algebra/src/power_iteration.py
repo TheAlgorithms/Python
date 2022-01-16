@@ -130,4 +130,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    unittest.main()
+    test_power_iteration()
