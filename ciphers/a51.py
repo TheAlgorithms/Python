@@ -21,27 +21,27 @@ tapped_bits_1:list = [13,16,17,18]
 tapped_bits_2:list = [20,21]
 tapped_bits_3:list = [7,20,21,22]
 
-def set_register(type:int, i:int, a:str) -> None:
+def set_register(type:int, index:int, string:str) -> None:
     """
         >>> set_register(1, 0, "0")
     """
     if (type == 1):
         # register 1
         intermediate_xor = LFSR1[tapped_bits_1[0]] ^ LFSR1[tapped_bits_1[1]] ^ LFSR1[tapped_bits_1[2]] ^ LFSR1[tapped_bits_1[3]]
-        if i < 19:
-            LFSR1[i] = intermediate_xor ^ int(a)
+        if index < 19:
+            LFSR1[index] = intermediate_xor ^ int(string)
 
     if (type == 2):
         # register 2
         intermediate_xor = LFSR2[tapped_bits_1[0]] ^ LFSR2[tapped_bits_1[1]] 
-        if i < 22:
-            LFSR2[i] = intermediate_xor ^ int(a)
+        if index < 22:
+            LFSR2[index] = intermediate_xor ^ int(string)
             
     if (type == 3):
         # register 3
         intermediate_xor =  LFSR3[tapped_bits_1[0]] ^ LFSR3[tapped_bits_1[1]] ^ LFSR3[tapped_bits_1[2]] ^ LFSR3[tapped_bits_1[3]]
-        if i < 23:
-            LFSR3[i] = intermediate_xor ^ int(a)
+        if index < 23:
+            LFSR3[index] = intermediate_xor ^ int(string)
 
 def majority(arr:list) -> int:
     """
@@ -53,19 +53,19 @@ def majority(arr:list) -> int:
         if(val > 1):
             return key
 
-def set_register_majority(mv:int) -> None:
+def set_register_majority(majority_value:int) -> None:
     """
     >>> set_register_majority(0)
     """
-    if (mv == LFSR1[8]):
+    if (majority_value == LFSR1[8]):
         intermediate_xor = LFSR1[tapped_bits_1[0]] ^ LFSR1[tapped_bits_1[1]] ^ LFSR1[tapped_bits_1[2]] ^ LFSR1[tapped_bits_1[3]]
         LFSR1.insert(0, intermediate_xor)
         LFSR1.pop()
-    if (mv == LFSR2[10]):
+    if (majority_value == LFSR2[10]):
         intermediate_xor = LFSR2[tapped_bits_1[0]] ^ LFSR2[tapped_bits_1[1]] 
         LFSR2.insert(0, intermediate_xor)
         LFSR2.pop()
-    if (mv == LFSR3[10]):
+    if (majority_value == LFSR3[10]):
         intermediate_xor = LFSR3[tapped_bits_1[0]] ^ LFSR3[tapped_bits_1[1]] ^ LFSR3[tapped_bits_1[2]] ^ LFSR3[tapped_bits_1[3]]
         LFSR3.insert(0, intermediate_xor)
         LFSR3.pop()
