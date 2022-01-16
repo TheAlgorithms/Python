@@ -21,7 +21,7 @@ tapped_bits_1:list = [13,16,17,18]
 tapped_bits_2:list = [20,21]
 tapped_bits_3:list = [7,20,21,22]
 
-def set_register(type:int, i:int, a:str):
+def set_register(type:int, i:int, a:str) -> None:
     """
         (tapped bits ^) ^ incomming bit
         replace the i th bit with result 
@@ -44,13 +44,13 @@ def set_register(type:int, i:int, a:str):
         if i < 23:
             LFSR3[i] = intermediate_xor ^ int(a)
 
-def majority(arr:list):
+def majority(arr:list) -> None:
     freq = Counter(arr)
     for (key,val) in freq.items():
         if(val > 1):
             return key
 
-def set_register_majority(mv:int):
+def set_register_majority(mv:int) -> None:
     if (mv == LFSR1[8]):
         intermediate_xor = LFSR1[tapped_bits_1[0]] ^ LFSR1[tapped_bits_1[1]] ^ LFSR1[tapped_bits_1[2]] ^ LFSR1[tapped_bits_1[3]]
         LFSR1.insert(0, intermediate_xor)
@@ -64,7 +64,7 @@ def set_register_majority(mv:int):
         LFSR3.insert(0, intermediate_xor)
         LFSR3.pop()
 
-def main():
+def main() -> None:
     #Example of 64-bit key: 1101001000011010110001110001100100101001000000110111111010110111
     incomming_str = str(input('Enter a 64-bit key: '))
     if ((not (len(incomming_str) == 64)) and (not (re.match("^([01])+", incomming_str)))): return 
