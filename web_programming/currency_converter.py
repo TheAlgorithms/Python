@@ -12,7 +12,7 @@ TESTING = os.getenv("CI", False)
 API_KEY = os.getenv("AMDOREN_API_KEY", "")
 
 if not API_KEY and not TESTING:
-    raise KeyError("API key must be set as 'AMDOREN_API_KEY' in environment variables")
+    raise KeyError("API key must be provided with 'AMDOREN_API_KEY' environment variable.")
 
 
 # Currency and their description
