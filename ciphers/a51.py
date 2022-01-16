@@ -2,13 +2,13 @@
 from collections import Counter
 import re
 
-reg1_len = 19
-reg2_len = 22
-reg3_len = 23
+reg1_len:int = 19
+reg2_len:int = 22
+reg3_len:int = 23
 
-LFSR1 = [] # 19  -> 8
-LFSR2 = [] # 22 -> 10
-LFSR3 = [] # 23 -> 10
+LFSR1:list = [] # 19  -> 8
+LFSR2:list = [] # 22 -> 10
+LFSR3:list = [] # 23 -> 10
 
 for _ in range(reg1_len):
     LFSR1.append(0)
@@ -17,9 +17,9 @@ for _ in range(reg2_len):
 for _ in range(reg3_len):
     LFSR3.append(0)
 
-tapped_bits_1 = [13,16,17,18]
-tapped_bits_2 = [20,21]
-tapped_bits_3 = [7,20,21,22]
+tapped_bits_1:list = [13,16,17,18]
+tapped_bits_2:list = [20,21]
+tapped_bits_3:list = [7,20,21,22]
 
 def set_register(type:int, i:int, a:str):
     """
