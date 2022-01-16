@@ -23,8 +23,7 @@ tapped_bits_3:list = [7,20,21,22]
 
 def set_register(type:int, i:int, a:str) -> None:
     """
-        (tapped bits ^) ^ incomming bit
-        replace the i th bit with result 
+        >>> set_register(1, 0, "0")
     """
     if (type == 1):
         # register 1
@@ -44,13 +43,20 @@ def set_register(type:int, i:int, a:str) -> None:
         if i < 23:
             LFSR3[i] = intermediate_xor ^ int(a)
 
-def majority(arr:list) -> None:
+def majority(arr:list) -> int:
+    """
+    >>> majority([0,1,1])
+    1
+    """
     freq = Counter(arr)
     for (key,val) in freq.items():
         if(val > 1):
             return key
 
 def set_register_majority(mv:int) -> None:
+    """
+    >>> set_register_majority(0)
+    """
     if (mv == LFSR1[8]):
         intermediate_xor = LFSR1[tapped_bits_1[0]] ^ LFSR1[tapped_bits_1[1]] ^ LFSR1[tapped_bits_1[2]] ^ LFSR1[tapped_bits_1[3]]
         LFSR1.insert(0, intermediate_xor)
@@ -65,6 +71,11 @@ def set_register_majority(mv:int) -> None:
         LFSR3.pop()
 
 def main() -> None:
+    """
+    >>> incomming_str = "1101001000011010110001110001100100101001000000110111111010110111"
+    >>> main()
+    Enter a 64-bit key: 
+    """
     #Example of 64-bit key: 1101001000011010110001110001100100101001000000110111111010110111
     incomming_str = str(input('Enter a 64-bit key: '))
     if ((not (len(incomming_str) == 64)) and (not (re.match("^([01])+", incomming_str)))): return 
@@ -94,6 +105,10 @@ def main() -> None:
     print("LFSR3: ", LFSR3)
     print("KEY: ", key)
     print("Cipher: ", cipher)
-    print(len(cipher))
 
-main()
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    main()
