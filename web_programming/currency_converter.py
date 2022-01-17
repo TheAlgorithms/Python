@@ -180,7 +180,7 @@ def convert_currency(
     params = {
         "from": from_,
         "to": to,
-        "amount": amount
+        "amount": amount,
         "api_key": api_key
     }
     res = requests.get(URL_BASE, params=params).json()
