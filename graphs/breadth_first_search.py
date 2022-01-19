@@ -49,7 +49,7 @@ class Graph:
         >>> sorted(g.bfs(2))
         [0, 1, 2, 3]
         """
-        # initialize set for storing already visited vertices
+        # initializing set for storing already visited vertices
         visited = set()
 
         # create a first in first out queue to store all the vertices for BFS
