@@ -24,7 +24,6 @@ def pivoted_binary_search(arr: list, n: int, key: int) -> int:
     2
     >>> pivoted_binary_search([-18, 2], -18, 3)
     0
-    
     """
     
     pivot = find_pivot(arr, 0, n-1);
@@ -47,7 +46,7 @@ def pivoted_binary_search(arr: list, n: int, key: int) -> int:
 # Function to get pivot. For array 
 # 3, 4, 5, 6, 1, 2 it returns 3 
 # (index of 6)
-   """Searches an element key in a pivoted
+    """Searches an element key in a pivoted
         Parameters
         ----------
         arr :
@@ -64,7 +63,7 @@ def pivoted_binary_search(arr: list, n: int, key: int) -> int:
         >>> find_pivot([4, 5, 6, 7], 1, 2)
         0
     
-   """
+    """
 def find_pivot(arr: list, low: int, high: int) -> int:
 
     if high < low:
