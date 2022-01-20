@@ -114,6 +114,7 @@
   * [Harris Corner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harris_corner.py)
   * [Mean Threshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mean_threshold.py)
   * [Mosaic Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mosaic_augmentation.py)
+  * [Pooling Functions](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/pooling_functions.py)
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
@@ -910,6 +911,7 @@
   * [Jump Search](https://github.com/TheAlgorithms/Python/blob/master/searches/jump_search.py)
   * [Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/linear_search.py)
   * [Quick Select](https://github.com/TheAlgorithms/Python/blob/master/searches/quick_select.py)
+  * [Search Around Pivot](https://github.com/TheAlgorithms/Python/blob/master/searches/search_around_pivot.py)
   * [Sentinel Linear Search](https://github.com/TheAlgorithms/Python/blob/master/searches/sentinel_linear_search.py)
   * [Simple Binary Search](https://github.com/TheAlgorithms/Python/blob/master/searches/simple_binary_search.py)
   * [Simulated Annealing](https://github.com/TheAlgorithms/Python/blob/master/searches/simulated_annealing.py)
