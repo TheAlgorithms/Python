@@ -3,7 +3,7 @@
 
 
 # sorted array arr[] of size n 
-def pivoted_binary_search(arr, n, key) -> int:
+def pivoted_binary_search(arr: list, n: int, key: int) -> int:
     """Searches an element key in a pivoted
         Parameters
         ----------
@@ -17,6 +17,13 @@ def pivoted_binary_search(arr, n, key) -> int:
         ---------
         int :
          Element of the array.
+         
+    >>> pivoted_binary_search([4, 5, 6, 7], 4, 6)
+    6
+    >>> pivoted_binary_search([4, 5, 6, 7], 2, -10)
+    2
+    >>> pivoted_binary_search([-18, 2], -18, 3)
+    0
     
     """
     
@@ -40,7 +47,25 @@ def pivoted_binary_search(arr, n, key) -> int:
 # Function to get pivot. For array 
 # 3, 4, 5, 6, 1, 2 it returns 3 
 # (index of 6) 
-def find_pivot(arr, low, high) -> int:
+def find_pivot(arr: list, low: int, high: int) -> int:
+   """Searches an element key in a pivoted
+        Parameters
+        ----------
+        arr :
+            Array to use.
+        low : 
+            Low value.
+        high:
+            High value.
+        Returns
+        ---------
+        int:
+            Element of the array.
+            
+        >>> find_pivot([4, 5, 6, 7], 1, 2)
+        0
+    
+    """
     if high < low:
         return -1
     if high == low:
@@ -58,7 +83,7 @@ def find_pivot(arr, low, high) -> int:
     return find_pivot(arr, mid + 1, high)
 
 # Standard Binary Search function*/
-def binary_search(arr, low, high, key) -> int:
+def binary_search(arr: list, low: int, high: int, key: int) -> int:
     """Binary search
         ----------
         arr :
@@ -74,6 +99,13 @@ def binary_search(arr, low, high, key) -> int:
         ---------
          int   
             Element of the array.
+       
+        >>> binary_search([0, 5, 7, 10, 15], 0)
+        0
+        >>> binary_search([0, 5, 7, 10, 15], 15)
+        4
+        >>> binary_search([0, 5, 7, 10, 15], 5)
+        1
     
     """
     if high < low:
