@@ -3,13 +3,13 @@
 
 
 # sorted array arr[] of size n 
-def pivoted_binary_search(arr: list, n: int, key: int) -> int:
+def pivoted_binary_search(arr: list, size: int, key: int) -> int:
     """Searches an element key in a pivoted
         Parameters
         ----------
         arr :
             Array to use.
-        n : 
+        size : 
             Size of arr.
         key :
             Pivot value.
@@ -26,12 +26,12 @@ def pivoted_binary_search(arr: list, n: int, key: int) -> int:
     0
     """
     
-    pivot = find_pivot(arr, 0, n-1);
+    pivot = find_pivot(arr, 0, size-1);
 
     # If we didn't find a pivot, 
     # then array is not rotated at all
     if pivot == -1:
-        return binary_search(arr, 0, n-1, key);
+        return binary_search(arr, 0, size-1, key);
 
     # If we found a pivot, then first
     # compare with pivot and then
