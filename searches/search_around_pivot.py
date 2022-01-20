@@ -41,24 +41,7 @@ def pivoted_binary_search(arr, n, key) -> int:
 # 3, 4, 5, 6, 1, 2 it returns 3 
 # (index of 6) 
 def find_pivot(arr, low, high) -> int:
-   """Searches an element key in a pivoted
-        Parameters
-        ----------
-        arr :
-            Array to use.
-        low : 
-            Low value.
-        high:
-            High value.
-        Returns
-        ---------
-        int:
-            Element of the array.
-    
-    """
-
-    # base cases
-   if high < low:
+    if high < low:
         return -1
     if high == low:
         return low
