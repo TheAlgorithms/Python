@@ -56,7 +56,7 @@ def find_pivot(arr, low, high) -> int:
             Element of the array.
     
     """
-    
+
     # base cases
     if high < low:
         return -1
