@@ -1,16 +1,31 @@
 # Python Program to search an element
 # in a sorted and pivoted array
 
-# Searches an element key in a pivoted
-# sorted array arrp[] of size n 
-def pivotedBinarySearch(arr, n, key):
 
-    pivot = findPivot(arr, 0, n-1);
+# sorted array arr[] of size n 
+def pivoted_binary_search(arr, n, key) -> int:
+    """Searches an element key in a pivoted
+        Parameters
+        ----------
+        arr :
+            Array to use.
+        n : 
+            Size of arr.
+        key :
+            Pivot value.
+        Returns
+        ---------
+        int :
+         Element of the array.
+    
+    """
+    
+    pivot = find_pivot(arr, 0, n-1);
 
     # If we didn't find a pivot, 
     # then array is not rotated at all
     if pivot == -1:
-        return binarySearch(arr, 0, n-1, key);
+        return binary_search(arr, 0, n-1, key);
 
     # If we found a pivot, then first
     # compare with pivot and then
@@ -18,14 +33,29 @@ def pivotedBinarySearch(arr, n, key):
     if arr[pivot] == key:
         return pivot
     if arr[0] <= key:
-        return binarySearch(arr, 0, pivot-1, key);
-    return binarySearch(arr, pivot + 1, n-1, key);
+        return binary_search(arr, 0, pivot-1, key);
+    return binarys_earch(arr, pivot + 1, n-1, key);
 
 
 # Function to get pivot. For array 
 # 3, 4, 5, 6, 1, 2 it returns 3 
 # (index of 6) 
-def findPivot(arr, low, high):
+def find_pivot(arr, low, high) -> int:
+   """Searches an element key in a pivoted
+        Parameters
+        ----------
+        arr :
+            Array to use.
+        low : 
+            Low value.
+        high:
+            High value.
+        Returns
+        ---------
+        int:
+            Element of the array.
+    
+    """
     
     # base cases
     if high < low:
@@ -41,12 +71,28 @@ def findPivot(arr, low, high):
     if mid > low and arr[mid] < arr[mid - 1]:
         return (mid-1)
     if arr[low] >= arr[mid]:
-        return findPivot(arr, low, mid-1)
-    return findPivot(arr, mid + 1, high)
+        return find_pivot(arr, low, mid-1)
+    return find_pivot(arr, mid + 1, high)
 
 # Standard Binary Search function*/
-def binarySearch(arr, low, high, key):
-
+def binary_search(arr, low, high, key) -> int:
+    """Binary search
+        ----------
+        arr :
+            Array to use.
+        low : 
+            Low value
+        high :
+            High value
+        key : 
+            value were looking for.
+        
+        Returns
+        ---------
+         int   
+            Element of the array.
+    
+    """
     if high < low:
         return -1
         
@@ -56,15 +102,6 @@ def binarySearch(arr, low, high, key):
     if key == arr[mid]:
         return mid
     if key > arr[mid]:
-        return binarySearch(arr, (mid + 1), high,
+        return binary_search(arr, (mid + 1), high,
                                             key);
-    return binarySearch(arr, low, (mid -1), key);
-
-
-# Driver program to check above functions */
-# Let us search 3 in below array
-arr1 = [5, 6, 7, 8, 9, 10, 1, 2, 3]
-n = len(arr1)
-key = 3
-print("Index of the element is : ", 
-      pivotedBinarySearch(arr1, n, key))
+    return binary_search(arr, low, (mid -1), key);
