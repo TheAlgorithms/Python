@@ -88,12 +88,14 @@ class Gridworld:
         return neighbours
 
 
-def astar(world, start, goal):
+def astar(world, start, goal, obstacle):
     """
     Implementation of a start algorithm
     world : Object of the world object
     start : Object of the cell as  start position
     stop  : Object of the cell as goal position
+
+    obstacle : Object of the cell as obstacle
 
     >>> p = Gridworld()
     >>> start = Cell()
@@ -114,6 +116,13 @@ def astar(world, start, goal):
         if current == goal:
             break
         for n in world.get_neigbours(current):
+            bump_into_obstacle = False
+            for o in obstacle:
+                if o == n:
+                    bump_into_obstacle = True
+                    break
+            if bump_into_obstacle:
+                continue
             for c in _closed:
                 if c == n:
                     continue
@@ -142,9 +151,18 @@ if __name__ == "__main__":
     start.position = (0, 0)
     goal = Cell()
     goal.position = (4, 4)
+    obstacle_test1 = Cell()
+    obstacle_test1.position = (1, 1)
+    obstacle_test2 = Cell()
+    obstacle_test2.position = (1, 2)
+    obstacle_all = [obstacle_test1, obstacle_test2]
+
     print(f"path from {start.position} to {goal.position}")
-    s = astar(world, start, goal)
+    s = astar(world, start, goal, obstacle_all)
     #   Just for visual reasons
+    #   Where 1 represents to the path, 9 represents to the obstacle
     for i in s:
         world.w[i] = 1
+    for j in obstacle_all:
+        world.w[j.position] = 9
     print(world.w)
