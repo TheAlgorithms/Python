@@ -1,4 +1,14 @@
-name: "build"
+GLOW7:
+BEGIN:
+:Build:
+RUN:
+SCRIOT:
+build_script: Name
+Name: ci
+ci: runs'@travis.yml/test
+-with:WeBaseUrl/src/code/.dir/element/inspect/properties/sec/.dir:runs:on:run:
+
+Name: "build"
 
 on:
   pull_request:
