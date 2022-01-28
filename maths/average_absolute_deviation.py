@@ -22,15 +22,14 @@ def average_absolute_deviation(nums: list) -> float:
     Returns:
         AAD.
     """
-    if not nums: # Makes sure that the list is not empty
+    if not nums:  # Makes sure that the list is not empty
         raise ValueError("List is empty")
-    
-    average = sum(nums)/len(nums) # Calculates the average
-    return sum([abs(x - average) for x in nums])/len(nums) # Calculates the AAD
+
+    average = sum(nums) / len(nums)  # Calculates the average
+    return sum([abs(x - average) for x in nums]) / len(nums)  # Calculates the AAD
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
