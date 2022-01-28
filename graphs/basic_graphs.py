@@ -5,6 +5,17 @@ def _input(message):
     return input(message).strip().split(" ")
 
 
+"""
+--------------------------------------------------------------------------------
+    Creating Unweighted Directed Graphs
+        Args :  node_count - Number of nodes to be added
+                edge_count - Number of edges to be added
+        Retn :  graph - A dictionary that maps a vertex
+                        to a list of vertices it is directed towards
+--------------------------------------------------------------------------------
+"""
+
+
 def initialize_unweighted_directed_graph(
     node_count: int, edge_count: int
 ) -> dict[int, list[int]]:
@@ -16,6 +27,17 @@ def initialize_unweighted_directed_graph(
         x, y = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> "))
         graph[x].append(y)
     return graph
+
+
+"""
+--------------------------------------------------------------------------------
+    Creating Unweighted Undirected Graphs
+        Args :  node_count - Number of nodes to be added
+                edge_count - Number of edges to be added
+        Retn :  graph - A dictionary that maps a vertex
+                        to a list of vertices it is connected to
+--------------------------------------------------------------------------------
+"""
 
 
 def initialize_unweighted_undirected_graph(
@@ -30,6 +52,17 @@ def initialize_unweighted_undirected_graph(
         graph[x].append(y)
         graph[y].append(x)
     return graph
+
+
+"""
+--------------------------------------------------------------------------------
+    Creating Weighted Undirected Graphs
+        Args :  node_count - Number of nodes to be added
+                edge_count - Number of edges to be added
+        Retn :  graph - A dictionary that maps a vertex
+                to a list of tuples of the form (vertex, edge weight)
+--------------------------------------------------------------------------------
+"""
 
 
 def initialize_weighted_undirected_graph(
