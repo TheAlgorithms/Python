@@ -12,8 +12,9 @@ TESTING = os.getenv("CI", False)
 API_KEY = os.getenv("AMDOREN_API_KEY", "")
 
 if not API_KEY and not TESTING:
-    raise KeyError("API key must be provided with 'AMDOREN_API_KEY' environment variable.")
-
+    raise KeyError(
+        "API key must be provided in the 'AMDOREN_API_KEY' environment variable."
+    )
 
 # Currency and their description
 list_of_currencies = """
@@ -177,14 +178,9 @@ def convert_currency(
     from_: str = "USD", to: str = "INR", amount: float = 1.0, api_key: str = API_KEY
 ) -> str:
     """https://www.amdoren.com/currency-api/"""
-    params = {
-        "from": from_,
-        "to": to,
-        "amount": amount,
-        "api_key": api_key
-    }
+    params = locals()
+    params["from"] = params.pop("from_")
     res = requests.get(URL_BASE, params=params).json()
-
     return str(res["amount"]) if res["error"] == 0 else res["error_message"]
 
 
