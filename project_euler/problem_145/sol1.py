@@ -41,20 +41,14 @@ def check_if_odd(sum: int = 36) -> int:
 
 def find_reverse_number(number: int = 36) -> int:
     """
-    Reverses the given number. Does not work with number that end in zero.
+    Reverses the given number.
     >>> find_reverse_number(36)
     63
     >>> find_reverse_number(409)
     904
     """
-    reverse = 0
 
-    while number > 0:
-        temp = number % 10
-        reverse = reverse * 10 + temp
-        number = number // 10
-
-    return reverse
+    return int(str(number)[len(str(number)) :: -1])
 
 
 def solution(number: int = 1000000000) -> int:
@@ -84,4 +78,4 @@ def solution(number: int = 1000000000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution() = }")
+    print(f"{solution(1000000) = }")
