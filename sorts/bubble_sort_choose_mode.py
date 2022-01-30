@@ -3,7 +3,7 @@ def bubble_sort(collection, mode):
     
     """Pure implementation of bubble sort algorithm in Python
 
-    code and comments below not relating to mode(ascending vs descending) are from the original file bubble_sort.py
+    code and comments below not relating to mode(ascending vs descending) are from the original file bubble_sort.py,
     added choosing ascending or descending order and sorting the numbers accordingly based on user input
     
     :param collection: some mutable ordered collection with heterogeneous
