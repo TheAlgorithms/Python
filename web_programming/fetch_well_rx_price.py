@@ -38,7 +38,7 @@ def format_price(price: str) -> float:
     return formatted_price
 
 
-def fetch_pharmacy_and_price_list(drug_name: str = None, zip_code: str = None) -> Union[list, None]:
+def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, None]:
     """[summary]
 
     This function will take input of drug name and zipcode, then request to the BASE_URL site,
@@ -51,17 +51,17 @@ def fetch_pharmacy_and_price_list(drug_name: str = None, zip_code: str = None) -
     Returns:
         list: [List of pharmacy name and price]
 
-    >>> fetch_pharmacy_and_price_list()
-
-    >>> fetch_pharmacy_and_price_list("Eliqus")
+    >>> fetch_pharmacy_and_price_list(None, None)
 
     >>> fetch_pharmacy_and_price_list(None, 30303)
+
+    >>> fetch_pharmacy_and_price_list("eliquis", None)
 
     """
 
     try:
 
-        # has user provided both inputs?
+        # Has user provided both inputs?
         if not drug_name or not zip_code:
             return None
 
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     # Enter a drug name and a zip code
     drug_name: str = input("Enter drug Name:\n")
     zip_code: str = input("Enter zip code:\n")
-    pharmacy_price_list: list = fetch_pharmacy_and_price_list(
+    pharmacy_price_list: Union[list, None] = fetch_pharmacy_and_price_list(
         drug_name, zip_code)
 
     if pharmacy_price_list:
