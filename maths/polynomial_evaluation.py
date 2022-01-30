@@ -12,7 +12,7 @@ def evaluate_poly(poly: Sequence[float], x: float) -> float:
     >>> evaluate_poly((0.0, 0.0, 5.0, 9.3, 7.0), 10.0)
     79800.0
     """
-    return sum(c * (x ** i) for i, c in enumerate(poly))
+    return sum(c * (x**i) for i, c in enumerate(poly))
 
 
 def horner(poly: Sequence[float], x: float) -> float:

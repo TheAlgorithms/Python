@@ -159,16 +159,16 @@ class BodySystem:
 
                     # Calculation of the distance using Pythagoras's theorem
                     # Extra factor due to the softening technique
-                    distance = (dif_x ** 2 + dif_y ** 2 + self.softening_factor) ** (
+                    distance = (dif_x**2 + dif_y**2 + self.softening_factor) ** (
                         1 / 2
                     )
 
                     # Newton's law of universal gravitation.
                     force_x += (
-                        self.gravitation_constant * body2.mass * dif_x / distance ** 3
+                        self.gravitation_constant * body2.mass * dif_x / distance**3
                     )
                     force_y += (
-                        self.gravitation_constant * body2.mass * dif_y / distance ** 3
+                        self.gravitation_constant * body2.mass * dif_y / distance**3
                     )
 
             # Update the body's velocity once all the force components have been added

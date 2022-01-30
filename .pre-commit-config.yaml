@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.1.0
     hooks:
       - id: check-executables-have-shebangs
       - id: check-yaml
@@ -14,26 +14,26 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/psf/black
-    rev: 21.4b0
+    rev: 22.1.0
     hooks:
       - id: black
 
   - repo: https://github.com/PyCQA/isort
-    rev: 5.8.0
+    rev: 5.10.1
     hooks:
       - id: isort
         args:
           - --profile=black
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.29.0
+    rev: v2.31.0
     hooks:
       - id: pyupgrade
         args:
           - --py39-plus
 
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.1
+    rev: 3.9.2
     hooks:
       - id: flake8
         args:
@@ -42,7 +42,7 @@ repos:
           - --max-line-length=88
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.910
+    rev: v0.931
     hooks:
       - id: mypy
         args:
@@ -51,11 +51,11 @@ repos:
           - --non-interactive
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.0.0
+    rev: v2.1.0
     hooks:
       - id: codespell
         args:
-          - --ignore-words-list=ans,crate,fo,followings,hist,iff,mater,secant,som,tim
+          - --ignore-words-list=ans,crate,fo,followings,hist,iff,mater,secant,som,sur,tim
           - --skip="./.*,./strings/dictionary.txt,./strings/words.txt,./project_euler/problem_022/p022_names.txt"
         exclude: |
           (?x)^(
