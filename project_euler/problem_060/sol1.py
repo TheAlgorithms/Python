@@ -107,12 +107,8 @@ def find_solution(prime_list: list[int], length: int, previous: list[int]) -> in
     Finds solutions that start with the list previous
     and have the length of length and contain only the numbers in prime length.
     Checks if adding next_number to the list still makes the solution valid.
-    >>> prime_list = [2, 3, 5, 7, 11, 13, 17,
-    >>>               19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]
-    >>> find_solution(prime_list, 3, [67, 37])
-    107
-    >>> find_solution(prime_list, 3, [67])
-    107
+    >>> find_solution([2, 3, 5], 2, [7])
+    10
 
     Args:
         prime_list: A list of primes that are being checked
