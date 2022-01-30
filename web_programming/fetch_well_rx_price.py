@@ -5,37 +5,10 @@ after providing the drug name and zipcode.
 
 """
 
-import lxml
-
 from typing import Union
-from requests import Response, get
+from urllib.error import HTTPError
+from requests import get, exceptions
 from bs4 import BeautifulSoup
-
-
-def format_price(price: str) -> float:
-    """[summary]
-
-    Remove the dollar from the string and convert it to float.
-
-    Args:
-        price (str): [price of drug in string format]
-
-    Returns:
-        float: [formatted price of drug in float]
-
-    >>> format_price("$14")
-    14.0
-
-    >>> format_price("$15.67")
-    15.67
-
-    >>> format_price("$0.00")
-    0.0
-
-    """
-    dollar_removed: str = price.replace("$", "")
-    formatted_price: float = float(dollar_removed)
-    return formatted_price
 
 
 def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, None]:
@@ -65,51 +38,48 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, 
         if not drug_name or not zip_code:
             return None
 
-        request_url: str = f"https://www.wellrx.com/prescriptions/{drug_name}/{zip_code}/?freshSearch=true"
-        response: Response = get(request_url)
+        request_url = f"https://www.wellrx.com/prescriptions/{drug_name}/{zip_code}/?freshSearch=true"
+        response = get(request_url)
 
-        # Is the status code ok?
-        if response.status_code == 200:
+        # Is the response ok?
+        response.raise_for_status()
 
-            # Scrape the data using bs4
-            soup: BeautifulSoup = BeautifulSoup(response.text, "lxml")
+        # Scrape the data using bs4
+        soup = BeautifulSoup(response.text, "html.parser")
 
-            # This list will store the name and price.
-            pharmacy_price_list: list = []
+        # This list will store the name and price.
+        pharmacy_price_list = []
 
-            # Fetch all the grids that contains the items.
-            grid_list: list = soup.find_all("div", {"class": "grid-x pharmCard"})
-            if grid_list and len(grid_list) > 0:
-                for grid in grid_list:
+        # Fetch all the grids that contains the items.
+        grid_list = soup.find_all("div", {"class": "grid-x pharmCard"})
+        if grid_list and len(grid_list) > 0:
+            for grid in grid_list:
 
-                    # Get the pharmacy price.
-                    pharmacy_name: str = grid.find("p", {"class": "list-title"}).text
+                # Get the pharmacy price.
+                pharmacy_name = grid.find("p", {"class": "list-title"}).text
 
-                    # Get price of the drug.
-                    price: str = grid.find("span", {"p", "price price-large"}).text
-                    formatted_price: float = format_price(price)
+                # Get price of the drug.
+                price = grid.find("span", {"p", "price price-large"}).text
 
-                    pharmacy_price_list.append(
-                        {
-                            "pharmacy_name": pharmacy_name,
-                            "price": formatted_price,
-                        }
-                    )
+                pharmacy_price_list.append(
+                    {
+                        "pharmacy_name": pharmacy_name,
+                        "price": price,
+                    }
+                )
 
-            return pharmacy_price_list
+        return pharmacy_price_list
 
-        else:
-            return None
-
-    except Exception as e:
+    except (HTTPError, exceptions.RequestException, ValueError):
         return None
 
 
 if __name__ == "__main__":
 
     # Enter a drug name and a zip code
-    drug_name: str = input("Enter drug Name:\n")
-    zip_code: str = input("Enter zip code:\n")
+    drug_name = input("Enter drug name: ").strip()
+    zip_code = input("Enter zip code: ").strip()
+
     pharmacy_price_list: Union[list, None] = fetch_pharmacy_and_price_list(
         drug_name, zip_code
     )
@@ -119,8 +89,8 @@ if __name__ == "__main__":
         print(f"\nSearch results for {drug_name} at location {zip_code}:")
         for pharmacy_price in pharmacy_price_list:
 
-            name: str = pharmacy_price["pharmacy_name"]
-            price: float = pharmacy_price["price"]
+            name = pharmacy_price["pharmacy_name"]
+            price = pharmacy_price["price"]
 
             print(f"Pharmacy: {name} Price: {price}")
     else:
