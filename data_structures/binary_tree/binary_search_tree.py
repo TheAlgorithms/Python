@@ -84,6 +84,30 @@ class BinarySearchTree:
                 node = node.left if value < node.value else node.right
             return node
 
+    def get_successor(self, node=None):
+        if node is None:
+            return None
+        elif node.right is not None:
+            return self.get_min(node.right)
+        elif node.value < node.parent.value:
+            return node.parent
+        else:
+            while node.value > node.parent.value:
+                node=node.parent
+            return node.parent
+
+    def get_predeccessor(self, node=None):
+        if node is None:
+            return None
+        elif node.left is not None:
+            return self.get_max(node.left)
+        elif node.value < node.parent.value:
+            while node.value < node.parent.value:
+                node=node.parent
+            return node.parent
+        else:
+            return node.parent
+
     def get_max(self, node=None):
         """
         We go deep on the right branch
