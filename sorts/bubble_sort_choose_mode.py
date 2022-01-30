@@ -1,4 +1,4 @@
-def bubble_sort(collection, mode):
+def bubble_sort_choose_mode(collection, mode):
 
     
     """Pure implementation of bubble sort algorithm in Python
@@ -64,5 +64,5 @@ if __name__ == "__main__":
     unsorted = [int(item) for item in user_input.split(",")]
     start = time.process_time()
     mode = input("Enter 'a' for ascending sort, 'd' for descending sort")
-    print(*bubble_sort(unsorted, mode), sep=",")
+    print(*bubble_sort_choose_mode(unsorted, mode), sep=",")
     print(f"Processing time: {time.process_time() - start}")
