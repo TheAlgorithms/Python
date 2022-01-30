@@ -159,7 +159,7 @@ def fib_binet(n: int) -> list[int]:
         raise Exception("n is too large")
     sqrt_5 = sqrt(5)
     phi = (1 + sqrt_5) / 2
-    return [round(phi ** i / sqrt_5) for i in range(n + 1)]
+    return [round(phi**i / sqrt_5) for i in range(n + 1)]
 
 
 if __name__ == "__main__":

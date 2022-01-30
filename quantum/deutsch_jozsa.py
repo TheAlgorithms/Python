@@ -39,7 +39,7 @@ def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
     if case == "balanced":
         # First generate a random number that tells us which CNOTs to
         # wrap in X-gates:
-        b = np.random.randint(1, 2 ** num_qubits)
+        b = np.random.randint(1, 2**num_qubits)
         # Next, format 'b' as a binary string of length 'n', padded with zeros:
         b_str = format(b, f"0{num_qubits}b")
         # Next, we place the first X-gates. Each digit in our binary string

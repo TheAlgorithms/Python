@@ -11,7 +11,7 @@ class Point:
         True, if the point lies in the unit circle
         False, otherwise
         """
-        return (self.x ** 2 + self.y ** 2) <= 1
+        return (self.x**2 + self.y**2) <= 1
 
     @classmethod
     def random_unit_square(cls):

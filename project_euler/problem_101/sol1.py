@@ -175,15 +175,15 @@ def question_function(variable: int) -> int:
     return (
         1
         - variable
-        + variable ** 2
-        - variable ** 3
-        + variable ** 4
-        - variable ** 5
-        + variable ** 6
-        - variable ** 7
-        + variable ** 8
-        - variable ** 9
-        + variable ** 10
+        + variable**2
+        - variable**3
+        + variable**4
+        - variable**5
+        + variable**6
+        - variable**7
+        + variable**8
+        - variable**9
+        + variable**10
     )
 
 

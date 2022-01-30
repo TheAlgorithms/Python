@@ -55,7 +55,7 @@ def get_digits(num: int) -> str:
     >>> get_digits(123)
     '0166788'
     """
-    return "".join(sorted(list(str(num ** 3))))
+    return "".join(sorted(list(str(num**3))))
 
 
 if __name__ == "__main__":
