@@ -11,12 +11,16 @@ from urllib.error import HTTPError
 from bs4 import BeautifulSoup
 from requests import exceptions, get
 
+BASE_URL = "https://www.wellrx.com/prescriptions/{0}/{1}/?freshSearch=true"
+
 
 def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, None]:
     """[summary]
 
-    This function will take input of drug name and zipcode, then request to the BASE_URL site,
-    Get the page data and scrape it to the generate the list of lowest prices for the prescription drug.
+    This function will take input of drug name and zipcode,
+    then request to the BASE_URL site.
+    Get the page data and scrape it to the generate the
+    list of lowest prices for the prescription drug.
 
     Args:
         drug_name (str): [Drug name]
@@ -39,7 +43,7 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, 
         if not drug_name or not zip_code:
             return None
 
-        request_url = f"https://www.wellrx.com/prescriptions/{drug_name}/{zip_code}/?freshSearch=true"
+        request_url = BASE_URL.format(drug_name, zip_code)
         response = get(request_url)
 
         # Is the response ok?
