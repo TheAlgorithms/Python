@@ -6,7 +6,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
 
 
-def engineer_features():
+def engineer_features() -> list:
     """
     Loads the data set and engineers features of it
     """
@@ -46,6 +46,7 @@ def train_SVM(train_x, test_x, train_y, test_y):
     """
     Trains the model using Linear Regression
     """
+    # https://en.wikipedia.org/wiki/Support-vector_machine
     # train the model using SVC
     model = SVC(kernel='linear')
     model.fit(train_x, train_y)
@@ -69,6 +70,7 @@ def train_KNN(train_x, test_x, train_y, test_y):
     """
     Trains the model using K Nearest Neighbors
     """
+    # https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
     knn = KNeighborsClassifier(n_neighbors=1)
     knn.fit(train_x, train_y)
 
