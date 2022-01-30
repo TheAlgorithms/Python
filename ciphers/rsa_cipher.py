@@ -29,8 +29,8 @@ def get_text_from_blocks(
         block_message: list[str] = []
         for i in range(block_size - 1, -1, -1):
             if len(message) + i < message_length:
-                ascii_number = block_int // (BYTE_SIZE ** i)
-                block_int = block_int % (BYTE_SIZE ** i)
+                ascii_number = block_int // (BYTE_SIZE**i)
+                block_int = block_int % (BYTE_SIZE**i)
                 block_message.insert(0, chr(ascii_number))
         message.extend(block_message)
     return "".join(message)

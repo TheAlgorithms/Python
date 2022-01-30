@@ -39,8 +39,8 @@ class Harris_Corner:
         color_img = img.copy()
         color_img = cv2.cvtColor(color_img, cv2.COLOR_GRAY2RGB)
         dy, dx = np.gradient(img)
-        ixx = dx ** 2
-        iyy = dy ** 2
+        ixx = dx**2
+        iyy = dy**2
         ixy = dx * dy
         k = 0.04
         offset = self.window_size // 2
@@ -56,9 +56,9 @@ class Harris_Corner:
                     y - offset : y + offset + 1, x - offset : x + offset + 1
                 ].sum()
 
-                det = (wxx * wyy) - (wxy ** 2)
+                det = (wxx * wyy) - (wxy**2)
                 trace = wxx + wyy
-                r = det - k * (trace ** 2)
+                r = det - k * (trace**2)
                 # Can change the value
                 if r > 0.5:
                     corner_list.append([x, y, r])

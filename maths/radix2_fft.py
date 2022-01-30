@@ -91,7 +91,7 @@ class FFT:
         next_ncol = self.C_max_length // 2
         while next_ncol > 0:
             new_dft = [[] for i in range(next_ncol)]
-            root = self.root ** next_ncol
+            root = self.root**next_ncol
 
             # First half of next step
             current_root = 1
