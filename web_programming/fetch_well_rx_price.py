@@ -11,13 +11,17 @@ from requests import Response, get
 from bs4 import BeautifulSoup
 
 
-BASE_URL: str = "https://www.wellrx.com/prescriptions/{0}/{1}/?freshSearch=true"
-
-
 def format_price(price: str) -> float:
+
     """[summary]
 
     Remove the dollar from the string and convert it to float.
+
+    Args:
+        price (str): [price of drug in string format]
+
+    Returns:
+        float: [formatted price of drug in float]
 
     >>> format_price("$14")
     14.0
@@ -28,18 +32,13 @@ def format_price(price: str) -> float:
     >>> format_price("$0.00")
     0.0
 
-    Args:
-        price (str): [price of drug in string format]
-
-    Returns:
-        float: [formatted price of drug in float]
     """
     dollar_removed: str = price.replace("$", "")
     formatted_price: str = float(dollar_removed)
     return formatted_price
 
 
-def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list:
+def fetch_pharmacy_and_price_list(drug_name: str=None, zip_code: str=None) -> list or None:
 
     """[summary]
 
@@ -52,15 +51,22 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list:
 
     Returns:
         list: [List of pharmacy name and price]
+
+    >>> fetch_pharmacy_and_price_list()
+
+    >>> fetch_pharmacy_and_price_list("Eliqus")
+
+    >>> fetch_pharmacy_and_price_list(None, 30303)
+
     """
 
     try:
 
         # has user provided both inputs?
         if not drug_name or not zip_code:
-            return []
+            return None
 
-        request_url: str = BASE_URL.format(drug_name, zip_code)
+        request_url: str = f'https://www.wellrx.com/prescriptions/{drug_name}/{zip_code}/?freshSearch=true'
         response: Response = get(request_url)
 
         # Is the status code ok?
@@ -89,15 +95,13 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list:
                         "price": formatted_price,
                     })
 
-            # Print the pharmacy name and price for the drug.
-
             return pharmacy_price_list
             
         else:
-            return []
+            return None
 
     except Exception as e:
-        return []
+        return None
 
 
 if __name__ == "__main__":
@@ -107,6 +111,9 @@ if __name__ == "__main__":
     zip_code: str = input("Enter zip code:\n")
     pharmacy_price_list: list = fetch_pharmacy_and_price_list(drug_name, zip_code)
 
-    print("Search results for {0} at location {1}\n".format(drug_name, zip_code))
-    for pharmacy_price in pharmacy_price_list:
-        print("Pharmacy: {0} Price: {1}".format(pharmacy_price["pharmacy_name"], pharmacy_price["price"]))
+    if pharmacy_price_list:
+        print(f'\nSearch results for {drug_name} at location {zip_code}:')
+        for pharmacy_price in pharmacy_price_list:
+            print(f'Pharmacy: {pharmacy_price["pharmacy_name"]} Price: {pharmacy_price["price"]}')
+    else:
+        print("No results found")
