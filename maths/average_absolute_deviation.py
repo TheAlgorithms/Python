@@ -26,7 +26,7 @@ def average_absolute_deviation(nums: list) -> float:
         raise ValueError("List is empty")
 
     average = sum(nums) / len(nums)  # Calculates the average
-    return sum([abs(x - average) for x in nums]) / len(nums)  # Calculates the AAD
+    return sum(abs(x - average) for x in nums) / len(nums)  # Calculates the AAD
 
 
 if __name__ == "__main__":
