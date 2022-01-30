@@ -19,40 +19,48 @@ def format_price(price: str) -> float:
 
     Remove the dollar from the string and convert it to float.
 
+    >>> format_price("$14")
+    14.0
+
+    >>> format_price("$15.67")
+    15.67
+
+    >>> format_price("$0.00")
+    0.0
+
     Args:
-        price (str): [description]
+        price (str): [price of drug in string format]
 
     Returns:
-        float: [description]
+        float: [formatted price of drug in float]
     """
     dollar_removed: str = price.replace("$", "")
     formatted_price: str = float(dollar_removed)
     return formatted_price
 
 
-def main() -> None:
+def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list:
 
     """[summary]
 
-    This function will take input of drug name and zipcode, the request to the BASE_URL site,
-    get the page data and scrape it to the generate the list of lowest prices for the prescription drug.
+    This function will take input of drug name and zipcode, then request to the BASE_URL site,
+    Get the page data and scrape it to the generate the list of lowest prices for the prescription drug.
 
-    Raises:
-        e: [description]
+    Args:
+        drug_name (str): [Drug name]
+        zip_code(str): [Zip code]
+
+    Returns:
+        list: [List of pharmacy name and price]
     """
 
     try:
 
-        drug_name: str = input("Enter drug Name:\n")
-        zip_code: str = input("Enter zip code:\n")
-
         # has user provided both inputs?
         if not drug_name or not zip_code:
-            return 
+            return []
 
         request_url: str = BASE_URL.format(drug_name, zip_code)
-        print("Requesting to url: {0}".format(request_url))
-
         response: Response = get(request_url)
 
         # Is the status code ok?
@@ -61,7 +69,7 @@ def main() -> None:
             # Scrape the data using bs4
             soup: BeautifulSoup = BeautifulSoup(response.text, "lxml")
 
-            # This list will store the drugs.
+            # This list will store the name and price.
             pharmacy_price_list: list = []
 
             # Fetch all the grids that contains the items.
@@ -82,16 +90,23 @@ def main() -> None:
                     })
 
             # Print the pharmacy name and price for the drug.
-            print("Search results for {0} at location {1}\n".format(drug_name, zip_code))
-            for pharmacy_price in pharmacy_price_list:
-                print("Pharmacy: {0} Price: {1}".format(pharmacy_price["pharmacy_name"], pharmacy_price["price"]))
 
+            return pharmacy_price_list
+            
         else:
-            print("Request failed with status code", response.status_code)
+            return []
 
     except Exception as e:
-        raise e
+        return []
 
 
 if __name__ == "__main__":
-    main()
+
+    # Enter a drug name and a zip code
+    drug_name: str = input("Enter drug Name:\n")
+    zip_code: str = input("Enter zip code:\n")
+    pharmacy_price_list: list = fetch_pharmacy_and_price_list(drug_name, zip_code)
+
+    print("Search results for {0} at location {1}\n".format(drug_name, zip_code))
+    for pharmacy_price in pharmacy_price_list:
+        print("Pharmacy: {0} Price: {1}".format(pharmacy_price["pharmacy_name"], pharmacy_price["price"]))
