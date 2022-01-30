@@ -1,14 +1,15 @@
 """
 
 Scrape the price and pharmacy name for a prescription drug from rx site
-after providing the drug name and zipcode. 
+after providing the drug name and zipcode.
 
 """
 
 from typing import Union
 from urllib.error import HTTPError
-from requests import get, exceptions
+
 from bs4 import BeautifulSoup
+from requests import exceptions, get
 
 
 def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, None]:
