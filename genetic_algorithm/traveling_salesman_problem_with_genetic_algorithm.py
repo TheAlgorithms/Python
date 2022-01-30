@@ -3,6 +3,8 @@ Traveling salesperson problem, fastest route between a random distribution of
 points ie: cities using genetic algorithm (evaluation, selection, ordered cross,
  mutation, and roulette selection)
 Author: Gabinson200
+TSP Wikipedia: https://en.wikipedia.org/wiki/Travelling_salesman_problem
+Genetic Algorithm Wikipedia: https://en.wikipedia.org/wiki/Genetic_algorithm
 """
 
 
@@ -220,7 +222,7 @@ if __name__ == "__main__":
     quit = False
     while quit != True:
         print()
-        seed = input("Input a seed to randomly generate the city locations: ")
+        seed = int(input("Input a seed to randomly generate the city locations: ").strip())
         random.seed(seed)
 
         city_list = []
@@ -229,13 +231,10 @@ if __name__ == "__main__":
 
         mapPoints(city_list)
         print("Input number of generations to run evolution for")
-        gens = input("(higher is better, but increases computational time)(50 or above is recommended): ")
+        gens = int(input("(higher is better, but increases computational time)(50 or above is recommended): ").strip())
 
         best_route_obj_list = geneticAlgorithm(population=city_list, pop_size=100, elite_size=20, mutation_rate=0.01, generations=int(gens))
         best_route_cities = np.array(best_route_obj_list)
-        #print()
-        #for city in best_route_cities:
-        #  print(city.label, "(", city.x, ",", city.y, ")")
 
         mapPath(best_route_cities)
 
