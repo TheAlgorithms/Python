@@ -6,7 +6,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
 
 
-def engineer_features() -> list:
+def engineer_features():
     """
     Loads the data set and engineers features of it
     """
