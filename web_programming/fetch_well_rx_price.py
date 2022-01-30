@@ -65,7 +65,7 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, 
         if not drug_name or not zip_code:
             return None
 
-        request_url: str = f'https://www.wellrx.com/prescriptions/{drug_name}/{zip_code}/?freshSearch=true'
+        request_url: str = f"https://www.wellrx.com/prescriptions/{drug_name}/{zip_code}/?freshSearch=true"
         response: Response = get(request_url)
 
         # Is the status code ok?
@@ -78,24 +78,23 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, 
             pharmacy_price_list: list = []
 
             # Fetch all the grids that contains the items.
-            grid_list: list = soup.find_all(
-                "div", {"class": "grid-x pharmCard"})
+            grid_list: list = soup.find_all("div", {"class": "grid-x pharmCard"})
             if grid_list and len(grid_list) > 0:
                 for grid in grid_list:
 
                     # Get the pharmacy price.
-                    pharmacy_name: str = grid.find(
-                        "p", {"class": "list-title"}).text
+                    pharmacy_name: str = grid.find("p", {"class": "list-title"}).text
 
                     # Get price of the drug.
-                    price: str = grid.find(
-                        "span", {"p", "price price-large"}).text
+                    price: str = grid.find("span", {"p", "price price-large"}).text
                     formatted_price: float = format_price(price)
 
-                    pharmacy_price_list.append({
-                        "pharmacy_name": pharmacy_name,
-                        "price": formatted_price,
-                    })
+                    pharmacy_price_list.append(
+                        {
+                            "pharmacy_name": pharmacy_name,
+                            "price": formatted_price,
+                        }
+                    )
 
             return pharmacy_price_list
 
@@ -112,12 +111,17 @@ if __name__ == "__main__":
     drug_name: str = input("Enter drug Name:\n")
     zip_code: str = input("Enter zip code:\n")
     pharmacy_price_list: Union[list, None] = fetch_pharmacy_and_price_list(
-        drug_name, zip_code)
+        drug_name, zip_code
+    )
 
     if pharmacy_price_list:
-        print(f'\nSearch results for {drug_name} at location {zip_code}:')
+
+        print(f"\nSearch results for {drug_name} at location {zip_code}:")
         for pharmacy_price in pharmacy_price_list:
-            print(
-                f'Pharmacy: {pharmacy_price["pharmacy_name"]} Price: {pharmacy_price["price"]}')
+
+            name: str = pharmacy_price["pharmacy_name"]
+            price: float = pharmacy_price["price"]
+
+            print(f"Pharmacy: {name} Price: {price}")
     else:
-        print("No results found")
+        print(f"No results found for {drug_name}")
