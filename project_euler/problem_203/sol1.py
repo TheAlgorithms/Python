@@ -82,10 +82,10 @@ def get_primes_squared(max_number: int) -> list[int]:
         if non_primes[num]:
             continue
 
-        for num_counter in range(num ** 2, max_prime + 1, num):
+        for num_counter in range(num**2, max_prime + 1, num):
             non_primes[num_counter] = True
 
-        primes.append(num ** 2)
+        primes.append(num**2)
     return primes
 
 

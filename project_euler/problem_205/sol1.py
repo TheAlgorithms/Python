@@ -63,7 +63,7 @@ def solution() -> float:
             colin_totals_frequencies[min_colin_total:peter_total]
         )
 
-    total_games_number = (4 ** 9) * (6 ** 6)
+    total_games_number = (4**9) * (6**6)
     peter_win_probability = peter_wins_count / total_games_number
 
     rounded_peter_win_probability = round(peter_win_probability, ndigits=7)
