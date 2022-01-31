@@ -3,6 +3,8 @@ def valid_parentheses_brackets(input_string: str) -> bool:
     Determine whether the brackets, braces, and parentheses in a string are valid.
     Works only on strings containing only brackets, braces, and parentheses.
 
+    Explanation: https://www.educative.io/edpresso/the-valid-parentheses-problem
+
     :param input_string:
     :return: Boolean
 
@@ -18,7 +20,7 @@ def valid_parentheses_brackets(input_string: str) -> bool:
     Time complexity: O(n) where n is the length of the input string.
     Space complexity: O(n) where n is the length of the input string.
     """
-    
+
     open_stack: list = []
     map_close_to_open: dict = {
         ')': '(',
