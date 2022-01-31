@@ -31,11 +31,11 @@ class Fitness:
     self.fitness = 0.0
 
 # Uses pythagorean theorem to find distance between two points (cities) on the map
-  def distance_between(self, pointA, pointB):
-    return math.sqrt(math.pow(pointB.x - pointA.x, 2) + math.pow(pointB.y - pointA.y, 2))
+  def distance_between(self, point_a, point_b):
+    return math.sqrt(math.pow(point_b.x - point_a.x, 2) + math.pow(point_b.y - point_a.y, 2))
     
 # Returns the total distance along a route
-  def routeDistance(self):
+  def route_distance(self):
     distance = 0
     for i in range(1,len(self.route)):
       distance += self.distance_between(self.route[i], self.route[i-1])
@@ -43,14 +43,14 @@ class Fitness:
     return distance
     
 # Returns the fitness value (inverse of the route distance)
-  def routeFitness(self):
+  def route_fitness(self):
     if self.fitness == 0:
-      self.fitness = 1 / float(self.routeDistance())
+      self.fitness = 1 / float(self.route_distance())
     return self.fitness 
     
     
 # Creates a list of size pop_size made of randomly sampled city lists
-def initialPopulation(pop_size, city_list):
+def initial_population(pop_size, city_list):
   population = []
   for i in range(0, pop_size):
     population.append(random.sample(city_list, len(city_list)))
@@ -58,11 +58,11 @@ def initialPopulation(pop_size, city_list):
   
   
   #represents the fitness of individuals and their fitness using a dictionary
-def rankRoutes(population):
+def rank_routes(population):
   #empty dictionary
   fitness_results = {}
   for i in range(0, len(population)):
-    fitness_results[i] = Fitness(population[i]).routeFitness()
+    fitness_results[i] = Fitness(population[i]).route_fitness()
   #sorts dictionary based off of fitness
   sorted_fitness_results = sorted(fitness_results.items(), key = operator.itemgetter(1), reverse = True)
   #uncomment below to see results
@@ -111,10 +111,10 @@ def ordered_cross(parent1, parent2):
   child_parent2 = []
   
   #this part is just so we can get a range which is less than the size of the list of cities
-  geneA = int(random.random() * len(parent1))
-  geneB = int(random.random() * len(parent1))
-  start_gene = min(geneA, geneB)
-  end_gene = max(geneA, geneB)
+  gene_a = int(random.random() * len(parent1))
+  gene_b = int(random.random() * len(parent1))
+  start_gene = min(gene_a, gene_b)
+  end_gene = max(gene_a, gene_b)
 
   for i in range(start_gene, end_gene):
     child_parent1.append(parent1[i])
@@ -125,7 +125,7 @@ def ordered_cross(parent1, parent2):
   return child
   
  # breeds the population using ordered crossover and automatically includes the elite genes
-def breedPopulation(mating_pool, elite_size):
+def breed_population(mating_pool, elite_size):
   children = []
   length = len(mating_pool) - elite_size
   pool = random.sample(mating_pool, len(mating_pool))
@@ -156,7 +156,7 @@ def mutate(individual, mutation_rate):
    
    
    #loops through the population and mutates the individuals inside 
-def mutatePopulation(population, mutation_rate):
+def mutate_population(population, mutation_rate):
   mutated_pop = []
   for ind in range(0, len(population)):
     mutated_ind = mutate(population[ind], mutation_rate)
@@ -165,25 +165,25 @@ def mutatePopulation(population, mutation_rate):
   
   
 #creates the next generation using the breeding function from the mating pool and mutates the children 
-def nextGenerationRoulette(current_gen, elite_size, mutation_rate):
-  pop_ranked = rankRoutes(current_gen)
+def next_generation_roulette(current_gen, elite_size, mutation_rate):
+  pop_ranked = rank_routes(current_gen)
   selection_results = selection(pop_ranked, elite_size)
   mating_pool = matingPool(current_gen, selection_results)
-  children = breedPopulation(mating_pool, elite_size)
-  next_gen = mutatePopulation(children, mutation_rate)
+  children = breed_population(mating_pool, elite_size)
+  next_gen = mutate_population(children, mutation_rate)
   return next_gen
   
  
 #combines the functions above and takes the main hyperparameters and returns the best route
-def geneticAlgorithm(population, pop_size, elite_size, mutation_rate, generations):
-  pop = initialPopulation(pop_size, population)
-  print("Initial distance: " + str(1 / rankRoutes(pop)[0][1]))
+def genetic_algorithm(population, pop_size, elite_size, mutation_rate, generations):
+  pop = initial_population(pop_size, population)
+  print("Initial distance: " + str(1 / rank_routes(pop)[0][1]))
   
   for i in range(0, generations):
-    pop = nextGenerationRoulette(pop, elite_size, mutation_rate)
+    pop = next_generation_roulette(pop, elite_size, mutation_rate)
   
-  print("Final distance: " + str(1/ rankRoutes(pop)[0][1]))
-  best_route_indexes = rankRoutes(pop)
+  print("Final distance: " + str(1/ rank_routes(pop)[0][1]))
+  best_route_indexes = rank_routes(pop)
   best_route_index = best_route_indexes[0][0]
   best_route = pop[best_route_index]
 
@@ -195,14 +195,14 @@ def geneticAlgorithm(population, pop_size, elite_size, mutation_rate, generation
   return best_route
   
 # used to randomly scatter points on map to act as cities
-def mapPoints(points):
+def map_points(points):
   for point in points:
     plt.scatter(point.x, point.y, c = "red", marker = "o")
     plt.text(point.x, point.y, point.label, fontweight = "bold")
   plt.show()
 
 #used for plotting the path between cities
-def mapPath(path):
+def map_path(path):
   x = []
   y = []
   for point in path:
@@ -229,14 +229,14 @@ if __name__ == "__main__":
         for i in range(0,25):
           city_list.append(City(x = int(random.random() * 200), y = int(random.random() * 200), label = chr(65 + i)))
 
-        mapPoints(city_list)
+        map_points(city_list)
         print("Input number of generations to run evolution for")
         gens = int(input("(higher is better, but increases computational time)(50 or above is recommended): ").strip())
 
-        best_route_obj_list = geneticAlgorithm(population=city_list, pop_size=100, elite_size=20, mutation_rate=0.01, generations=int(gens))
+        best_route_obj_list = genetic_algorithm(population=city_list, pop_size=100, elite_size=20, mutation_rate=0.01, generations=int(gens))
         best_route_cities = np.array(best_route_obj_list)
 
-        mapPath(best_route_cities)
+        map_path(best_route_cities)
 
         check = input("Would you like to retry with another seed or number of generations (Y or N): ")
 
