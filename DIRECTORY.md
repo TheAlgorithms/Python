@@ -114,6 +114,7 @@
   * [Harris Corner](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/harris_corner.py)
   * [Mean Threshold](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mean_threshold.py)
   * [Mosaic Augmentation](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/mosaic_augmentation.py)
+  * [Pooling Functions](https://github.com/TheAlgorithms/Python/blob/master/computer_vision/pooling_functions.py)
 
 ## Conversions
   * [Binary To Decimal](https://github.com/TheAlgorithms/Python/blob/master/conversions/binary_to_decimal.py)
@@ -855,8 +856,6 @@
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_135/sol1.py)
   * Problem 144
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_144/sol1.py)
-  * Problem 145
-    * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_145/sol1.py)
   * Problem 173
     * [Sol1](https://github.com/TheAlgorithms/Python/blob/master/project_euler/problem_173/sol1.py)
   * Problem 174

@@ -56,7 +56,7 @@ def trapezoidal_area(
 if __name__ == "__main__":
 
     def f(x):
-        return x ** 3
+        return x**3
 
     print("f(x) = x^3")
     print("The area between the curve, x = -10, x = 10 and the x axis is:")
