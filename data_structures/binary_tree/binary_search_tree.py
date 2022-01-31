@@ -154,6 +154,40 @@ class BinarySearchTree:
         arr: list = []
         self.inorder(arr, node)  # append all values to list using inorder traversal
         return arr[k - 1]
+    
+        def get_predecessor(self, value):
+        """
+        Returns the inorder predecessor of the node with the given value,
+        or None if the node doesn't exist for the given value
+        """
+        node = self.search(value)  # search for indicated node
+
+        if node is not None:  # if node exists in tree
+            if node.left is None:  # if left branch is empty, return parent
+                node = node.parent
+            else:  # find rightmost in left branch
+                node = node.left
+                while node.right is not None:
+                    node = node.right
+
+        return node
+
+    def get_successor(self, value):
+        """
+        Returns the inorder successor of the node with the given value,
+        or None the if node doesn't exist for the given value
+        """
+        node = self.search(value)
+
+        if node is not None:  # if node exists in tree
+            if node.right is None:  # if right branch is empty, return parent
+                node = node.parent
+            else:  # find leftmost node in right branch
+                node = node.right
+                while node.left is not None:
+                    node = node.left
+
+        return node
 
 
 def postorder(curr_node):
