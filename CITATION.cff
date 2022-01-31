@@ -1,0 +1,8 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Your First Name
+    given-names: Your Last Name
+title: "The Algorithms"
+version: 1.0.0
+date-released: 2022-01-30
