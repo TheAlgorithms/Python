@@ -1,4 +1,3 @@
-from types import NoneType
 from urllib.error import HTTPError
 from xml.dom import NotFoundErr
 
@@ -146,7 +145,7 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
         episode_url = soup.find("iframe", {"id": "playerframe"})["src"]
         download_url = episode_url.replace("/embed/", "/playlist/") + ".m3u8"
-        return [f"{BASE_URL}{episode_url}", f"${BASE_URL}{download_url}"]
+        return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
 
     except (
         KeyError,
@@ -161,7 +160,7 @@ if __name__ == "__main__":
 
     try:
 
-        anime_name = input("Enter anime name: ").split()
+        anime_name = input("Enter anime name: ").strip()
         anime_list = search_scraper(anime_name)
         print("\n")
 
@@ -197,11 +196,8 @@ if __name__ == "__main__":
                 print("You chose {}. Searching...".format(chosen_episode["title"]))
 
                 episode_url, download_url = get_anime_episode(chosen_episode["url"])
-                print(
-                    "\nTo watch, ctrl+click on {}. To download, ctrl+click on {}".format(
-                        episode_url, download_url
-                    )
-                )
+                print(f"\nTo watch, ctrl+click on {episode_url}.")
+                print(f"To download, ctrl+click on {download_url}.")
 
     except (ValueError, IndexError, TypeError) as e:
         raise e
