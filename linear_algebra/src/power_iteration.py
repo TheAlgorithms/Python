@@ -106,12 +106,12 @@ def test_power_iteration() -> None:
 
         # Numpy implementation.
 
-        # Get eigen values and eigen vectors using built in numpy
+        # Get eigenvalues and eigenvectors using built-in numpy
         # eigh (eigh used for symmetric or hermetian matrices).
         eigen_values, eigen_vectors = np.linalg.eigh(input_matrix)
-        # Last eigen value is the maximum one.
+        # Last eigenvalue is the maximum one.
         eigen_value_max = eigen_values[-1]
-        # Last column in this matrix is eigen vector corresponding to largest eigen value.
+        # Last column in this matrix is eigenvector corresponding to largest eigenvalue.
         eigen_vector_max = eigen_vectors[:, -1]
 
         # Check our implementation and numpy gives close answers.
