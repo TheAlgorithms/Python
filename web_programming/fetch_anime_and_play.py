@@ -11,7 +11,7 @@ def search_scraper(anime_name: str) -> list:
 
     """[summary]
 
-    This function will take an url and
+    Take an url and
     return list of anime after scraping the site.
 
     >>> type(search_scraper("demon_slayer"))
@@ -69,7 +69,7 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
 
     """[summary]
 
-    This function will take an url and
+    Take an url and
     return list of episodes after scraping the site
     for an url.
 
@@ -154,44 +154,35 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
 if __name__ == "__main__":
 
-    try:
+    anime_name = input("Enter anime name: ").strip()
+    anime_list = search_scraper(anime_name)
+    print("\n")
 
-        anime_name = input("Enter anime name: ").strip()
-        anime_list = search_scraper(anime_name)
-        print("\n")
+    if len(anime_list) == 0:
+        print("No anime found with this name")
+    else:
 
-        if len(anime_list) == 0:
-            print("No anime found with this name")
+        print(f"Found {len(anime_list)} results: ")
+        for (i, anime) in enumerate(anime_list):
+            anime_title = anime["title"]
+            print(f"{i+1}. {anime_title}")
+
+        anime_choice = int(input("\nPlease choose from the following list: ").strip())
+        chosen_anime = anime_list[anime_choice - 1]
+        print(f"You chose {chosen_anime['title']}. Searching for episodes...")
+
+        episode_list = search_anime_episode_list(chosen_anime["url"])
+        if len(episode_list) == 0:
+            print("No episode found for this anime")
         else:
+            print(f"Found {len(episode_list)} results: ")
+            for (i, episode) in enumerate(episode_list):
+                print(f"{i+1}. {episode['title']}")
 
-            print(f"Found {len(anime_list)} results: ")
-            for (i, anime) in enumerate(anime_list):
-                anime_title = anime["title"]
-                print(f"{i+1}. {anime_title}")
+            episode_choice = int(input("\nChoose an episode by serial no: ").strip())
+            chosen_episode = episode_list[episode_choice - 1]
+            print(f"You chose {chosen_episode['title']}. Searching...")
 
-            anime_choice = int(
-                input("\nPlease choose from the following list: ").strip()
-            )
-            chosen_anime = anime_list[anime_choice - 1]
-            print(f"You chose {chosen_anime['title']}. Searching for episodes...")
-
-            episode_list = search_anime_episode_list(chosen_anime["url"])
-            if len(episode_list) == 0:
-                print("No episode found for this anime")
-            else:
-                print(f"Found {len(episode_list)} results: ")
-                for (i, episode) in enumerate(episode_list):
-                    print(f"{i+1}. {episode['title']}")
-
-                episode_choice = int(
-                    input("\nChoose an episode by serial no: ").strip()
-                )
-                chosen_episode = episode_list[episode_choice - 1]
-                print(f"You chose {chosen_episode['title']}. Searching...")
-
-                episode_url, download_url = get_anime_episode(chosen_episode["url"])
-                print(f"\nTo watch, ctrl+click on {episode_url}.")
-                print(f"To download, ctrl+click on {download_url}.")
-
-    except (ValueError, IndexError, TypeError) as e:
-        raise e
+            episode_url, download_url = get_anime_episode(chosen_episode["url"])
+            print(f"\nTo watch, ctrl+click on {episode_url}.")
+            print(f"To download, ctrl+click on {download_url}.")
