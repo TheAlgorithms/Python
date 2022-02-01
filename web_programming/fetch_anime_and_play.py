@@ -1,9 +1,9 @@
-from urllib.error import HTTPError
 from xml.dom import NotFoundErr
 
 import requests
 from bs4 import BeautifulSoup, NavigableString
 from fake_useragent import UserAgent
+from requests.exceptions import RequestException
 
 BASE_URL = "https://ww1.gogoanime2.org"
 
@@ -28,28 +28,31 @@ def search_scraper(anime_name: str) -> list:
         [list]: [List of animes]
     """
 
-    try:
+    # concat the name to form the search url.
+    search_url = f"{BASE_URL}/search/{anime_name}"
 
-        # concat the name to form the search url.
-        search_url = f"{BASE_URL}/search/{anime_name}"
+    try:
         response = requests.get(
             search_url, headers={"UserAgent": UserAgent().chrome}
         )  # request the url.
 
         # Is the response ok?
         response.raise_for_status()
+    except RequestException as e:
+        raise e
 
-        # parse with soup.
-        soup = BeautifulSoup(response.text, "html.parser")
+    # parse with soup.
+    soup = BeautifulSoup(response.text, "html.parser")
 
-        # get list of anime
-        items_ul = soup.find("ul", {"class": "items"})
-        items_li = items_ul.children
+    # get list of anime
+    items_ul = soup.find("ul", {"class": "items"})
+    items_li = items_ul.children
 
-        # for each anime, insert to list. the name and url.
-        anime_list = []
-        for li in items_li:
-            if not isinstance(li, NavigableString):
+    # for each anime, insert to list. the name and url.
+    anime_list = []
+    for li in items_li:
+        if not isinstance(li, NavigableString):
+            try:
                 anime_url, anime_title = li.find("a")["href"], li.find("a")["title"]
                 anime_list.append(
                     {
@@ -57,11 +60,10 @@ def search_scraper(anime_name: str) -> list:
                         "url": anime_url,
                     }
                 )
+            except (NotFoundErr, KeyError):
+                pass
 
-        return anime_list
-
-    except (requests.exceptions.RequestException, HTTPError, TypeError) as e:
-        raise e
+    return anime_list
 
 
 def search_anime_episode_list(episode_endpoint: str) -> list:
@@ -85,37 +87,38 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
         [list]: [List of episodes]
     """
 
-    try:
+    request_url = f"{BASE_URL}{episode_endpoint}"
 
-        request_url = f"{BASE_URL}{episode_endpoint}"
+    try:
         response = requests.get(
             url=request_url, headers={"UserAgent": UserAgent().chrome}
         )
-        soup = BeautifulSoup(response.text, "html.parser")
-
-        # With this id. get the episode list.
-        episode_page_ul = soup.find("ul", {"id": "episode_related"})
-        episode_page_li = episode_page_ul.children
-
-        episode_list = []
-        for children in episode_page_li:
-            try:
-                if not isinstance(children, NavigableString):
-                    episode_list.append(
-                        {
-                            "title": children.find(
-                                "div", {"class": "name"}
-                            ).text.replace(" ", ""),
-                            "url": children.find("a")["href"],
-                        }
-                    )
-            except (KeyError, NotFoundErr, TypeError):
-                pass
-
-        return episode_list
-
-    except (requests.exceptions.RequestException) as e:
+        response.raise_for_status()
+    except RequestException as e:
         raise e
+
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    # With this id. get the episode list.
+    episode_page_ul = soup.find("ul", {"id": "episode_related"})
+    episode_page_li = episode_page_ul.children
+
+    episode_list = []
+    for children in episode_page_li:
+        try:
+            if not isinstance(children, NavigableString):
+                episode_list.append(
+                    {
+                        "title": children.find("div", {"class": "name"}).text.replace(
+                            " ", ""
+                        ),
+                        "url": children.find("a")["href"],
+                    }
+                )
+        except (KeyError, NotFoundErr):
+            pass
+
+    return episode_list
 
 
 def get_anime_episode(episode_endpoint: str) -> list:
@@ -137,26 +140,24 @@ def get_anime_episode(episode_endpoint: str) -> list:
         [list]: [List of download and watch url]
     """
 
+    episode_page_url = f"{BASE_URL}{episode_endpoint}"
+
     try:
-
-        episode_page_url = f"{BASE_URL}{episode_endpoint}"
-
         response = requests.get(
             url=episode_page_url, headers={"User-Agent": UserAgent().chrome}
         )
-        soup = BeautifulSoup(response.text, "lxml")
+    except RequestException as e:
+        raise e
 
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    try:
         episode_url = soup.find("iframe", {"id": "playerframe"})["src"]
         download_url = episode_url.replace("/embed/", "/playlist/") + ".m3u8"
-        return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
-
-    except (
-        KeyError,
-        NotFoundErr,
-        TypeError,
-        requests.exceptions.RequestException,
-    ) as e:
+    except (KeyError, NotFoundErr) as e:
         raise e
+
+    return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
 
 
 if __name__ == "__main__":
