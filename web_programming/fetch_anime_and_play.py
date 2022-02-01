@@ -41,15 +41,18 @@ def search_scraper(anime_name: str) -> list:
     soup = BeautifulSoup(response.text, "html.parser")
 
     # get list of anime
-    items_ul = soup.find("ul", {"class": "items"})
-    items_li = items_ul.children
+    anime_ul = soup.find("ul", {"class": "items"})
+    anime_li = anime_ul.children
 
     # for each anime, insert to list. the name and url.
     anime_list = []
-    for li in items_li:
-        if not isinstance(li, NavigableString):
+    for anime in anime_li:
+        if not isinstance(anime, NavigableString):
             try:
-                anime_url, anime_title = li.find("a")["href"], li.find("a")["title"]
+                anime_url, anime_title = (
+                    anime.find("a")["href"],
+                    anime.find("a")["title"],
+                )
                 anime_list.append(
                     {
                         "title": anime_title,
@@ -95,15 +98,15 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
     episode_page_li = episode_page_ul.children
 
     episode_list = []
-    for children in episode_page_li:
+    for episode in episode_page_li:
         try:
-            if not isinstance(children, NavigableString):
+            if not isinstance(episode, NavigableString):
                 episode_list.append(
                     {
-                        "title": children.find("div", {"class": "name"}).text.replace(
+                        "title": episode.find("div", {"class": "name"}).text.replace(
                             " ", ""
                         ),
-                        "url": children.find("a")["href"],
+                        "url": episode.find("a")["href"],
                     }
                 )
         except (KeyError, NotFoundErr):
