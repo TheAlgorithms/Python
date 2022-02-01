@@ -1,11 +1,10 @@
 from types import NoneType
 from urllib.error import HTTPError
 from xml.dom import NotFoundErr
+
 import requests
 from bs4 import BeautifulSoup, NavigableString
-
 from fake_useragent import UserAgent
-
 
 BASE_URL = "https://ww1.gogoanime2.org"
 
@@ -19,6 +18,9 @@ def search_scraper(anime_name: str) -> list:
 
     >>> type(search_scraper("demon_slayer"))
     <class 'list'>
+
+    Args:
+        anime_name (str): [Name of anime]
 
     Raises:
         e: [Raises exception on failure]
@@ -74,6 +76,9 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
     >>> type(search_anime_episode_list("/anime/kimetsu-no-yaiba"))
     <class 'list'>
 
+    Args:
+        episode_endpoint (str): [Endpoint of episode]
+
     Raises:
         e: [description]
 
@@ -120,6 +125,9 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     Get click url and download url from episode url
 
+    Args:
+        episode_endpoint (str): [Endpoint of episode]
+
     Raises:
         e: [description]
 
@@ -164,14 +172,14 @@ if __name__ == "__main__":
             print(f"Found {len(anime_list)} results: ")
             for (i, anime) in enumerate(anime_list):
                 anime_title = anime["title"]
-                print((f"{i+1}. {anime_title}"))
+                print(f"{i+1}. {anime_title}")
 
             anime_choice = int(
                 input("\nPlease choose from the following list: ").strip()
             )
             chosen_anime = anime_list[anime_choice - 1]
             print(
-                "You chose {0}. Searching for episodes...".format(chosen_anime["title"])
+                "You chose {}. Searching for episodes...".format(chosen_anime["title"])
             )
 
             episode_list = search_anime_episode_list(chosen_anime["url"])
@@ -180,17 +188,17 @@ if __name__ == "__main__":
             else:
                 print(f"Found {len(episode_list)} results: ")
                 for (i, episode) in enumerate(episode_list):
-                    print(("{0}. {1}").format(i + 1, episode["title"]))
+                    print(("{}. {}").format(i + 1, episode["title"]))
 
                 episode_choice = int(
                     input("\nChoose an episode by serial no: ").strip()
                 )
                 chosen_episode = episode_list[episode_choice - 1]
-                print("You chose {0}. Searching...".format(chosen_episode["title"]))
+                print("You chose {}. Searching...".format(chosen_episode["title"]))
 
                 episode_url, download_url = get_anime_episode(chosen_episode["url"])
                 print(
-                    "\nTo watch, ctrl+click on {0}. To download, ctrl+click on {1}".format(
+                    "\nTo watch, ctrl+click on {}. To download, ctrl+click on {}".format(
                         episode_url, download_url
                     )
                 )
