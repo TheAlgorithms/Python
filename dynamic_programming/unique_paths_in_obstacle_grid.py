@@ -1,6 +1,6 @@
 from doctest import testmod
 
-def uniquePathsWithObstacles(obstacleGrid):
+def uniquePathsWithObstacles(obstacleGrid: list[list[int]]) -> int:
     """
     >>> print(uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]]))
     2
