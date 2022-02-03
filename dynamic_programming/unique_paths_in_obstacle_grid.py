@@ -4,6 +4,7 @@ We have a 2D grid with obstacles.
 Starting form the top left corner we have to
 find the no of unique paths to reach the bottom rightcorner
 We can only move right or down
+video explanation: https://www.youtube.com/watch?v=TmhpgXScLyY
 """
 
 
