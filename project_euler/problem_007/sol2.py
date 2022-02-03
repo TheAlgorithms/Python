@@ -11,17 +11,18 @@ What is the 10001st prime number?
 References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
+from typing import List
 
 
-def isprime(number: int) -> bool:
+def is_prime(number: int) -> bool:
     """
     Determines whether the given number is prime or not
 
-    >>> isprime(2)
+    >>> is_prime(2)
     True
-    >>> isprime(15)
+    >>> is_prime(15)
     False
-    >>> isprime(29)
+    >>> is_prime(29)
     True
     """
 
@@ -73,10 +74,10 @@ def solution(nth: int = 10001) -> int:
         raise TypeError("Parameter nth must be int or castable to int.") from None
     if nth <= 0:
         raise ValueError("Parameter nth must be greater than or equal to one.")
-    primes: list[int] = []
+    primes: List[int] = []
     num = 2
     while len(primes) < nth:
-        if isprime(num):
+        if is_prime(num):
             primes.append(num)
             num += 1
         else:

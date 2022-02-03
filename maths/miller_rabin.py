@@ -1,6 +1,6 @@
 import random
 
-from binary_exp_mod import bin_exp_mod
+from .binary_exp_mod import bin_exp_mod
 
 
 # This is a probabilistic check to test primality, useful for big numbers!
