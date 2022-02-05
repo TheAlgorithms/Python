@@ -54,7 +54,7 @@ def sin(
     b = -1
 
     for _ in range(accuracy):
-        result += (b * (angle_in_radians ** a)) / factorial(a)
+        result += (b * (angle_in_radians**a)) / factorial(a)
 
         b = -b  # One positive term and the next will be negative and so on...
         a += 2  # Increased by 2 for every term.
