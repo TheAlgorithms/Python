@@ -1,4 +1,4 @@
-def average_welford(values):
+def average_welford(values: list) -> float:
   """
     >>> average_welford([1, 2, 3, 4, 5])
     3.0
