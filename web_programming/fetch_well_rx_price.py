@@ -5,7 +5,6 @@ after providing the drug name and zipcode.
 
 """
 
-from typing import Union
 from urllib.error import HTTPError
 
 from bs4 import BeautifulSoup
