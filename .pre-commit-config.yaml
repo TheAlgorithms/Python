@@ -30,7 +30,7 @@ repos:
     hooks:
       - id: pyupgrade
         args:
-          - --py39-plus
+          - --py310-plus
 
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.9.2
