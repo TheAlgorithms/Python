@@ -28,11 +28,11 @@ Read More:
     https://math.stackexchange.com/a/1951650
 """
 
-Vector = tuple[float, float, float]
-Point = tuple[float, float, float]
+Vector3d = tuple[float, float, float]
+Point3d = tuple[float, float, float]
 
 
-def create_vector(point1: Point, point2: Point) -> Vector:
+def create_vector(end_point1: Point3d, end_point2: Point3d) -> Vector3d:
     """
     Pass two points to get the vector from them in the form (x, y, z).
 
@@ -43,14 +43,14 @@ def create_vector(point1: Point, point2: Point) -> Vector:
     >>> create_vector((-14, -1, -8), (-7, 6, 4))
     (7, 7, 12)
     """
-    x = point2[0] - point1[0]
-    y = point2[1] - point1[1]
-    z = point2[2] - point1[2]
+    x = end_point2[0] - end_point1[0]
+    y = end_point2[1] - end_point1[1]
+    z = end_point2[2] - end_point1[2]
 
     return (x, y, z)
 
 
-def get_3d_vectors_cross(ab: Vector, ac: Vector) -> Vector:
+def get_3d_vectors_cross(ab: Vector3d, ac: Vector3d) -> Vector3d:
     """
     Get the cross of the two vectors AB and AC.
 
@@ -76,7 +76,7 @@ def get_3d_vectors_cross(ab: Vector, ac: Vector) -> Vector:
     return (x, y, z)
 
 
-def is_zero_vector(vector: Vector, accuracy: int) -> bool:
+def is_zero_vector(vector: Vector3d, accuracy: int) -> bool:
     """
     Check if vector is equal to (0, 0, 0) of not.
 
@@ -95,7 +95,7 @@ def is_zero_vector(vector: Vector, accuracy: int) -> bool:
     return tuple(round(x, accuracy) for x in vector) == (0, 0, 0)
 
 
-def are_collinear(a: Point, b: Point, c: Point, accuracy: int = 10) -> bool:
+def are_collinear(a: Point3d, b: Point3d, c: Point3d, accuracy: int = 10) -> bool:
     """
     Check if three points are collinear or not.
 
