@@ -20,10 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
-          python -m pip install mypy pytest-cov -r requirements.txt
-      - run: |
-          mkdir -p .mypy_cache
-          mypy --ignore-missing-imports --install-types --non-interactive . || true
+          python -m pip install pytest-cov -r requirements.txt
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/validate_solutions.py --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}

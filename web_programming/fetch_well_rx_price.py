@@ -5,7 +5,6 @@ after providing the drug name and zipcode.
 
 """
 
-from typing import Union
 from urllib.error import HTTPError
 
 from bs4 import BeautifulSoup
@@ -14,7 +13,7 @@ from requests import exceptions, get
 BASE_URL = "https://www.wellrx.com/prescriptions/{0}/{1}/?freshSearch=true"
 
 
-def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> Union[list, None]:
+def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
     """[summary]
 
     This function will take input of drug name and zipcode,
@@ -85,7 +84,7 @@ if __name__ == "__main__":
     drug_name = input("Enter drug name: ").strip()
     zip_code = input("Enter zip code: ").strip()
 
-    pharmacy_price_list: Union[list, None] = fetch_pharmacy_and_price_list(
+    pharmacy_price_list: list | None = fetch_pharmacy_and_price_list(
         drug_name, zip_code
     )
 
