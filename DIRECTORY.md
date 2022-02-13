@@ -454,6 +454,7 @@
   * [Area](https://github.com/TheAlgorithms/Python/blob/master/maths/area.py)
   * [Area Under Curve](https://github.com/TheAlgorithms/Python/blob/master/maths/area_under_curve.py)
   * [Armstrong Numbers](https://github.com/TheAlgorithms/Python/blob/master/maths/armstrong_numbers.py)
+  * [Average Absolute Deviation](https://github.com/TheAlgorithms/Python/blob/master/maths/average_absolute_deviation.py)
   * [Average Mean](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mean.py)
   * [Average Median](https://github.com/TheAlgorithms/Python/blob/master/maths/average_median.py)
   * [Average Mode](https://github.com/TheAlgorithms/Python/blob/master/maths/average_mode.py)
