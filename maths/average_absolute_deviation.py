@@ -1,6 +1,6 @@
-def average_absolute_deviation(nums: list) -> float:
+def average_absolute_deviation(nums: list[int]) -> float:
     """
-    Find AAD of a list of numbers.
+    Return the average absolute deviation of a list of numbers.
     Wiki: https://en.wikipedia.org/wiki/Average_absolute_deviation
 
     >>> average_absolute_deviation([0])
@@ -15,18 +15,12 @@ def average_absolute_deviation(nums: list) -> float:
     Traceback (most recent call last):
         ...
     ValueError: List is empty
-
-    Args:
-        nums: List of nums
-
-    Returns:
-        AAD.
     """
     if not nums:  # Makes sure that the list is not empty
         raise ValueError("List is empty")
 
-    average = sum(nums) / len(nums)  # Calculates the average
-    return sum(abs(x - average) for x in nums) / len(nums)  # Calculates the AAD
+    average = sum(nums) / len(nums)  # Calculate the average
+    return sum(abs(x - average) for x in nums) / len(nums)
 
 
 if __name__ == "__main__":
