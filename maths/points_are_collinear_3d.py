@@ -5,12 +5,12 @@ In short, the idea is that we are able to create a triangle using three points,
 and the area of that triangle can determine if the three points are collinear or not.
 
 
-First we well create tow vectors with the same initial point from the three points,
-then we will calcolate the cross product of them.
+First, we create two vectors with the same initial point from the three points,
+then we will calculate the cross-product of them.
 
 The length of the cross vector is numerically equal to the area of a parallelogram.
 
-Finally the area of the triangle is equal to the half of the area of the parallelogram.
+Finally, the area of the triangle is equal to half of the area of the parallelogram.
 
 Since we are only differentiating between zero and anything else,
 we can get rid of the square root when calculating the length of the vector,
@@ -34,7 +34,7 @@ Point = tuple[float, float, float]
 
 def create_vector(point1: Point, point2: Point) -> Vector:
     """
-    Pass tow points to get the vector from them in the form (x, y, z).
+    Pass two points to get the vector from them in the form (x, y, z).
 
     >>> create_vector((0, 0, 0), (1, 1, 1))
     (1, 1, 1)
@@ -52,7 +52,7 @@ def create_vector(point1: Point, point2: Point) -> Vector:
 
 def get_3d_vectors_cross(ab: Vector, ac: Vector) -> Vector:
     """
-    Get the cross of the tow vectors AB and AC.
+    Get the cross of the two vectors AB and AC.
 
     I used determinant of 2x2 to get the determinant of the 3x3 matrix in the process.
 
@@ -92,12 +92,7 @@ def is_zero_vector(vector: Vector, accuracy: int) -> bool:
     >>> is_zero_vector((-15, -74, -32), accuracy=10)
     False
     """
-    rounded_vector = tuple(round(x, accuracy) for x in vector)
-
-    if rounded_vector == (0, 0, 0):
-        return True
-    else:
-        return False
+    return tuple(round(x, accuracy) for x in vector) == (0, 0, 0)
 
 
 def are_collinear(a: Point, b: Point, c: Point, accuracy: int = 10) -> bool:
@@ -131,6 +126,4 @@ def are_collinear(a: Point, b: Point, c: Point, accuracy: int = 10) -> bool:
     ab = create_vector(a, b)
     ac = create_vector(a, c)
 
-    ab_cross_ac = get_3d_vectors_cross(ab, ac)
-
-    return is_zero_vector(ab_cross_ac, accuracy)
+    return is_zero_vector(get_3d_vectors_cross(ab, ac), accuracy)
