@@ -65,6 +65,14 @@ def knapsack_with_example_solution(W: int, wt: list, val: list):
     (142, {2, 3, 4})
     >>> knapsack_with_example_solution(6, [4, 3, 2, 3], [3, 2, 4, 4])
     (8, {3, 4})
+    >>> knapsack_with_example_solution(6, {4, 3, 2, 3}, [3, 2, 4, 4])
+    Traceback (most recent call last):
+        ...
+    ValueError: Both the weights and values vectors must be either lists or tuples
+    >>> knapsack_with_example_solution(6, [4, 3, 2, 3.4], [3, 2, 4, 4])
+    Traceback (most recent call last):
+        ...
+    TypeError: All weights must be integers but got weight of type <class 'float'> at index 3
     >>> knapsack_with_example_solution(6, [4, 3, 2, 3], [3, 2, 4])
     Traceback (most recent call last):
         ...
@@ -148,3 +156,5 @@ if __name__ == "__main__":
     assert optimal_subset == {3, 4}
     print("optimal_value = ", optimal_solution)
     print("An optimal subset corresponding to the optimal value", optimal_subset)
+    import doctest
+    doctest.testmod()
