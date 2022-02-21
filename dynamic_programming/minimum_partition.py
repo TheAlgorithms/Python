@@ -4,6 +4,17 @@ Partition a set into two subsets such that the difference of subset sums is mini
 
 
 def findMin(arr):
+    """
+    Return the kth smallest number in lst.
+    >>> findMin([2,1])
+    1
+    >>> findMin([1,3,7,10])
+    1
+    >>> findMin([2])
+    0
+    """
+
+
     n = len(arr)
     s = sum(arr)
 
@@ -28,3 +39,7 @@ def findMin(arr):
             break
 
     return diff
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
