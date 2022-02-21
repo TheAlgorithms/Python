@@ -55,7 +55,7 @@ class Stack(Generic[T]):
         """
         Peek at the top-most element of the stack.
 
-        >>> Stack().pop()
+        >>> Stack().peek()
         Traceback (most recent call last):
             ...
         data_structures.stacks.stack.StackUnderflowError
@@ -66,9 +66,10 @@ class Stack(Generic[T]):
 
     def is_empty(self) -> bool:
         """Check if a stack is empty."""
-        return not bool(self.stack)
+        return (not self.stack)
 
     def is_full(self) -> bool:
+        """Check if a stack is full."""
         return self.size() == self.limit
 
     def size(self) -> int:
@@ -76,7 +77,7 @@ class Stack(Generic[T]):
         return len(self.stack)
 
     def __contains__(self, item: T) -> bool:
-        """Check if item is in stack"""
+        """Check if item is in stack."""
         return item in self.stack
 
 
