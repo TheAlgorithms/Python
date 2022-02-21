@@ -660,6 +660,32 @@ def test_remove_last_element() -> bool:
     print(ans)
     return tree == ans
 
+def test_remove_right_child() -> bool:
+    """Test the remove() method of the tree correctly balances, colors,
+    and removes. The tested tree should be the same as in test_insert()
+    to rule out any insertion errors.
+    This instance should test removing a right-side red child.
+    """
+    tree = RedBlackTree(0)
+    tree.insert(8)
+    tree.insert(-8)
+    tree.insert(-5)
+    tree.insert(-6)
+    tree.insert(4)
+    tree.insert(12)
+    tree.insert(10)
+    tree.insert(11)
+    tree.remove(12)
+    ans = RedBlackTree(0, 0)
+    ans.left = RedBlackTree(-6, 0, ans)
+    ans.left.left = RedBlackTree(-8, 1, ans)
+    ans.left.right = RedBlackTree(-5, 1, ans)
+    ans.right = RedBlackTree(8, 1, ans)
+    ans.right.left = RedBlackTree(4, 0, ans.right)
+    ans.right.right = RedBlackTree(11, 0, ans.right)
+    ans.right.right.left = RedBlackTree(10, 1, ans.right.right)
+    return tree == ans
+
 
 def test_insert_and_search() -> bool:
     """Tests searching through the tree for values."""
@@ -788,6 +814,7 @@ def main() -> None:
     print_results("Rotating right and left", test_rotations())
     print_results("Inserting", test_insert())
     print_results("Removing", test_remove())
+    print_results("Removing right child", test_remove_right_child())
     print_results("Emptying tree", test_remove_last_element())
     print_results("Searching", test_insert_and_search())
     print_results("Deleting", test_insert_delete())
@@ -796,7 +823,7 @@ def main() -> None:
     print_results("Tree traversal", test_tree_chaining())
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
-    #test_insertion_speed()
+    test_insertion_speed()
     print("Done!")
     coverageList = list(dict.fromkeys(coverageList))
     coverageList.sort()
