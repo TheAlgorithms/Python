@@ -116,38 +116,55 @@ class RedBlackTree:
 
     def _insert_repair(self) -> None:
         """Repair the coloring from inserting into a tree."""
+        coverageList.append(1)
         if self.parent is None:
+            coverageList.append(2)
             # This node is the root, so it just needs to be black
             self.color = 0
         elif color(self.parent) == 0:
+            coverageList.append(3)
             # If the parent is black, then it just needs to be red
             self.color = 1
         else:
+            coverageList.append(4)
             uncle = self.parent.sibling
             if color(uncle) == 0:
+                coverageList.append(5)
                 if self.is_left() and self.parent.is_right():
+                    coverageList.append(6)
                     self.parent.rotate_right()
                     if self.right:
+                        coverageList.append(7)
                         self.right._insert_repair()
                 elif self.is_right() and self.parent.is_left():
+                    coverageList.append(8)
                     self.parent.rotate_left()
                     if self.left:
+                        coverageList.append(9)
                         self.left._insert_repair()
                 elif self.is_left():
+                    coverageList.append(10)
                     if self.grandparent:
+                        coverageList.append(11)
                         self.grandparent.rotate_right()
                         self.parent.color = 0
                     if self.parent.right:
+                        coverageList.append(12)
                         self.parent.right.color = 1
                 else:
+                    coverageList.append(13)
                     if self.grandparent:
+                        coverageList.append(14)
                         self.grandparent.rotate_left()
                         self.parent.color = 0
                     if self.parent.left:
+                        coverageList.append(15)
                         self.parent.left.color = 1
             else:
+                coverageList.append(16)
                 self.parent.color = 0
                 if uncle and self.grandparent:
+                    coverageList.append(17)
                     uncle.color = 0
                     self.grandparent.color = 1
                     self.grandparent._insert_repair()
@@ -719,6 +736,9 @@ def pytests() -> None:
 
 
 def main() -> None:
+    global coverageList
+    coverageList = []
+    coverageList.append(0)  #this ID is excluded from the percentage calculation at the end main()
     """
     >>> pytests()
     """
@@ -731,8 +751,12 @@ def main() -> None:
     print_results("Tree traversal", test_tree_chaining())
     print("Testing tree balancing...")
     print("This should only be a few seconds.")
-    test_insertion_speed()
+    #test_insertion_speed()
     print("Done!")
+    coverageList = list(dict.fromkeys(coverageList))
+    coverageList.sort()
+    print("Covered IDs:", coverageList)
+    print("Coverage percentage: ", (len(coverageList)-1)/17  )
 
 
 if __name__ == "__main__":
