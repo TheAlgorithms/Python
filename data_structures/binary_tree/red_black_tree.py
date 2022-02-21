@@ -646,6 +646,20 @@ def test_remove() -> bool:
     ans.right.right.right = RedBlackTree(12, 1, ans.right.right)
     return tree == ans
 
+def test_remove_last_element() -> bool:
+    """Test the remove() method of the tree correctly removes
+    the final element in a tree. Afterwards, the tree should be
+    empty. 
+    """
+    tree = RedBlackTree(0)
+    tree.insert(8)
+    tree.remove(0)
+    tree.remove(8)
+    print(tree)
+    ans = RedBlackTree(None)
+    print(ans)
+    return tree == ans
+
 
 def test_insert_and_search() -> bool:
     """Tests searching through the tree for values."""
@@ -774,6 +788,7 @@ def main() -> None:
     print_results("Rotating right and left", test_rotations())
     print_results("Inserting", test_insert())
     print_results("Removing", test_remove())
+    print_results("Emptying tree", test_remove_last_element())
     print_results("Searching", test_insert_and_search())
     print_results("Deleting", test_insert_delete())
     print_results("Floor and ceil", test_floor_ceil())
