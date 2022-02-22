@@ -130,36 +130,9 @@ class RedBlackTree:
             uncle = self.parent.sibling
             if color(uncle) == 0:
                 coverageList.append(5)
-                if self.is_left() and self.parent.is_right():
-                    coverageList.append(6)
-                    self.parent.rotate_right()
-                    if self.right:
-                        coverageList.append(7)
-                        self.right._insert_repair()
-                elif self.is_right() and self.parent.is_left():
-                    coverageList.append(8)
-                    self.parent.rotate_left()
-                    if self.left:
-                        coverageList.append(9)
-                        self.left._insert_repair()
-                elif self.is_left():
-                    coverageList.append(10)
-                    if self.grandparent:
-                        coverageList.append(11)
-                        self.grandparent.rotate_right()
-                        self.parent.color = 0
-                    if self.parent.right:
-                        coverageList.append(12)
-                        self.parent.right.color = 1
-                else:
-                    coverageList.append(13)
-                    if self.grandparent:
-                        coverageList.append(14)
-                        self.grandparent.rotate_left()
-                        self.parent.color = 0
-                    if self.parent.left:
-                        coverageList.append(15)
-                        self.parent.left.color = 1
+                # There are four separate cases when the uncle is black,
+                # handled in a separate function with explanations
+                self._insert_case_handler()
             else:
                 coverageList.append(16)
                 self.parent.color = 0
@@ -168,6 +141,81 @@ class RedBlackTree:
                     uncle.color = 0
                     self.grandparent.color = 1
                     self.grandparent._insert_repair()
+
+    def _insert_case_handler(self) -> None:
+        """ When inserting into a red-black tree and finding that the uncle
+            of the new node is black, there are four separate cases which
+            must be handled differently in order to rebalance correctly.
+            Two of them require further traversal, calling insert_repair again.
+        """
+        # Parent right, me left. 
+        # Rotate parent right and insert_repair again (now right-right case).
+        if self.parent.is_right() and self.is_left():
+            self._insert_case_right_left()
+        # Parent left, me right. 
+        # Rotate parent left and insert_repair again (now left-left case).
+        elif self.parent.is_left() and self.is_right():
+            self._insert_case_left_right()
+        # Parent left, me left. 
+        # Rotate grandparent and recolour -> done.
+        elif self.is_left():
+            self._insert_case_left_left()
+        # Parent right, me right. 
+        # Rotate grandparent and recolour -> done.
+        else:
+            self._insert_case_right_right()
+
+    def _insert_case_right_right(self) -> None:
+        """Parent is a right child, node is a right child.
+            Rotate grandparent left and swap colours of grandparent
+            and parent. Then we are balanced again.
+        """
+        coverageList.append(13)
+        if self.grandparent:
+            coverageList.append(14)
+            self.grandparent.rotate_left()
+            self.parent.color = 0
+        if self.parent.left:
+            coverageList.append(15)
+            self.parent.left.color = 1
+
+    def _insert_case_left_left(self) -> None:
+        """Parent is a left child, node is a left child.
+            Rotate grandparent right and swap colours of grandparent
+            and parent. Then we are balanced again.
+        """
+        coverageList.append(10)
+        if self.grandparent:
+            coverageList.append(11)
+            self.grandparent.rotate_right()
+            self.parent.color = 0
+        if self.parent.right:
+            coverageList.append(12)
+            self.parent.right.color = 1
+
+    def _insert_case_right_left(self) -> None:
+        """ Parent is a right child, node is a left child.
+            Must rotate parent right so that node becomes
+            its parent and both are right children, then we can apply
+            right-right case.
+        """
+        coverageList.append(6)
+        self.parent.rotate_right()
+        if self.right:
+            coverageList.append(7)
+            self.right._insert_repair()
+
+    def _insert_case_left_right(self) -> None:
+        """ Parent is a left child, node is a right child.
+            Must rotate parent left so that node becomes
+            its parent and both are left children, then we can apply
+            left-left case.
+        """
+        coverageList.append(8)
+        self.parent.rotate_left()
+        if self.left:
+            coverageList.append(9)
+            self.left._insert_repair()
 
     def remove(self, label: int) -> RedBlackTree:
         """Remove label from this tree."""
