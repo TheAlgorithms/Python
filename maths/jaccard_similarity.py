@@ -36,45 +36,62 @@ def jaccard_similariy(setA, setB, alternativeUnion=False):
     >>> setA = {'a', 'b', 'c', 'd', 'e'}
     >>> setB = {'c', 'd', 'e', 'f', 'h', 'i'}
     >>> jaccard_similariy(setA,setB)
-    0.375
+    (0.375, {'b': 1})
+
 
     >>> jaccard_similariy(setA,setA)
-    1.0
+    (1.0, {'b': 1})
 
     >>> jaccard_similariy(setA,setA,True)
-    0.5
+    (0.5, {'a': 1})
 
-    >>> setA = ['a', 'b', 'c', 'd', 'e']
-    >>> setB = ('c', 'd', 'e', 'f', 'h', 'i')
-    >>> jaccard_similariy(setA,setB)
-    0.375
+    >>> setC = ['a', 'b', 'c', 'd', 'e']
+    >>> setD = ['c', 'd', 'e', 'f', 'h', 'i']
+    >>> setE = ('a', 'b', 'c', 'd', 'e')
+    >>> setF = ('c', 'd', 'e', 'f', 'h', 'i')
+    >>> jaccard_similariy(setC,setD)
+    (0.375, {'d': 1})
+    >>> jaccard_similariy(setA,setB, True)
+    (0.2727272727272727, {'a': 1})
+    >>> jaccard_similariy(setE,setF, True)
+    (0.2727272727272727, {'c': 1})
     """
-
+    dico = {}
     if isinstance(setA, set) and isinstance(setB, set):
 
         intersection = len(setA.intersection(setB))
 
         if alternativeUnion:
+            dico['a'] = dico.get('a', 0) + 1
             union = len(setA) + len(setB)
         else:
+            dico['b'] = dico.get('b', 0) + 1
             union = len(setA.union(setB))
 
-        return intersection / union
+        return (intersection / union, dico)
 
     if isinstance(setA, (list, tuple)) and isinstance(setB, (list, tuple)):
 
         intersection = [element for element in setA if element in setB]
+        len_intersection = len(intersection)
+        len_union = 1
 
         if alternativeUnion:
+            dico['c'] = dico.get('c', 0) + 1
             union = len(setA) + len(setB)
-        else:
-            union = setA + [element for element in setB if element not in setA]
+            len_union = union
 
-        return len(intersection) / len(union)
+        else:
+            dico['d'] = dico.get('d', 0) + 1
+            union = setA + [element for element in setB if element not in setA]
+            len_union = len(union)
+        return (len_intersection / len_union, dico)
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
 
-    setA = {"a", "b", "c", "d", "e"}
-    setB = {"c", "d", "e", "f", "h", "i"}
-    print(jaccard_similariy(setA, setB))
+    # setA = {"a", "b", "c", "d", "e"}
+    # setB = {"c", "d", "e", "f", "h", "i"}
+    # print(jaccard_similariy(setA, setB))

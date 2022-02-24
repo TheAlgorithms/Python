@@ -17,7 +17,7 @@ be carried.
 """
 
 
-def calc_profit(profit: list, weight: list, max_weight: int) -> int:
+def calc_profit(profit: list, weight: list, max_weight: int):
     """
     Function description is as follows-
     :param profit: Take a list of profits
@@ -26,17 +26,27 @@ def calc_profit(profit: list, weight: list, max_weight: int) -> int:
     :return: Maximum expected gain
 
     >>> calc_profit([1, 2, 3], [3, 4, 5], 15)
-    6
+    (6, {'e': 3})
+
     >>> calc_profit([10, 9 , 8], [3 ,4 , 5], 25)
-    27
+    (27, {'e': 3})
+
+    >>> calc_profit([10, 20, 30], [3, 7, 5], 5)
+    (30.0, {'e': 1, 'f': 1})
     """
+    dico = {}
+
     if len(profit) != len(weight):
+        dico['a'] = dico.get('a', 0) + 1
         raise ValueError("The length of profit and weight must be same.")
     if max_weight <= 0:
+        dico['b'] = dico.get('b', 0) + 1
         raise ValueError("max_weight must greater than zero.")
     if any(p < 0 for p in profit):
+        dico['c'] = dico.get('c', 0) + 1
         raise ValueError("Profit can not be negative.")
     if any(w < 0 for w in weight):
+        dico['d'] = dico.get('d', 0) + 1
         raise ValueError("Weight can not be negative.")
 
     # List created to store profit gained for the 1kg in case of each weight
@@ -74,25 +84,32 @@ def calc_profit(profit: list, weight: list, max_weight: int) -> int:
             # Adding profit gained for the given weight 1 ===
             # weight[index]/weight[index]
             gain += 1 * profit[index]
+            dico['e'] = dico.get('e', 0) + 1
         else:
             # Since the weight encountered is greater than limit, therefore take the
             # required number of remaining kgs and calculate profit for it.
             # weight remaining / weight[index]
+            dico['f'] = dico.get('f', 0) + 1
             gain += (max_weight - limit) / weight[index] * profit[index]
             break
         i += 1
-    return gain
+    return gain, dico
 
 
 if __name__ == "__main__":
-    print(
-        "Input profits, weights, and then max_weight (all positive ints) separated by "
-        "spaces."
-    )
+    import doctest
+    doctest.testmod()
 
-    profit = [int(x) for x in input("Input profits separated by spaces: ").split()]
-    weight = [int(x) for x in input("Input weights separated by spaces: ").split()]
-    max_weight = int(input("Max weight allowed: "))
+    # print(
+    #     "Input profits, weights, and then max_weight (all positive ints) separated by "
+    #     "spaces."
+    # )
 
-    # Function Call
-    calc_profit(profit, weight, max_weight)
+    # profit = [int(x)
+    #           for x in input("Input profits separated by spaces: ").split()]
+    # weight = [int(x)
+    #           for x in input("Input weights separated by spaces: ").split()]
+    # max_weight = int(input("Max weight allowed: "))
+
+    # # Function Call
+    # calc_profit(profit, weight, max_weight)
