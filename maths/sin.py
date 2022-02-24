@@ -42,9 +42,7 @@ def sin(
     0.9999862922
     """
     # Simplify the angle to be between 360 and -360 degrees.
-    extra_loops = angle_in_degrees // 360.0
-    extra_loops_angle = extra_loops * 360.0
-    angle_in_degrees = angle_in_degrees - extra_loops_angle
+    angle_in_degrees = angle_in_degrees - ((angle_in_degrees // 360.0) * 360.0)
 
     # Converting from degrees to radians
     angle_in_radians = radians(angle_in_degrees)
@@ -54,7 +52,7 @@ def sin(
     b = -1
 
     for _ in range(accuracy):
-        result += (b * (angle_in_radians**a)) / factorial(a)
+        result += (b * (angle_in_radians ** a)) / factorial(a)
 
         b = -b  # One positive term and the next will be negative and so on...
         a += 2  # Increased by 2 for every term.
