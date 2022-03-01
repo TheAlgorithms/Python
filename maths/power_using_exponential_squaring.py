@@ -1,5 +1,6 @@
 def power_using_exponential_squaring(base: int, exponent: int) -> int:
     """Returns the result of base^exponent
+    https://en.wikipedia.org/wiki/Exponentiation_by_squaring
 
     >>> power_using_exponential_squaring(3, 3)
     27
