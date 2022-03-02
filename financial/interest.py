@@ -77,6 +77,43 @@ def compound_interest(
     )
 
 
+def apr_interest(
+    principal: float,
+    nominal_annual_percentage_rate: float,
+    number_of_years: float,
+) -> float:
+    """
+    >>> apr_interest(10000.0, 0.05, 3)
+    1618.223072263547
+    >>> apr_interest(10000.0, 0.05, 1)
+    512.6749646744732
+    >>> apr_interest(0.5, 0.05, 3)
+    0.08091115361317736
+    >>> apr_interest(10000.0, 0.06, -4)
+    Traceback (most recent call last):
+        ...
+    ValueError: number_of_years must be > 0
+    >>> apr_interest(10000.0, -3.5, 3.0)
+    Traceback (most recent call last):
+        ...
+    ValueError: nominal_annual_percentage_rate must be >= 0
+    >>> apr_interest(-5500.0, 0.01, 5)
+    Traceback (most recent call last):
+        ...
+    ValueError: principal must be > 0
+    """
+    if number_of_years <= 0:
+        raise ValueError("number_of_years must be > 0")
+    if nominal_annual_percentage_rate < 0:
+        raise ValueError("nominal_annual_percentage_rate must be >= 0")
+    if principal <= 0:
+        raise ValueError("principal must be > 0")
+
+    return compound_interest(principal,
+                             nominal_annual_percentage_rate/365,
+                             number_of_years*365)
+
+
 if __name__ == "__main__":
     import doctest
 
