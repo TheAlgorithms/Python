@@ -1,4 +1,61 @@
+class Node:
+    def __init__(self, val=None, next=None):
+        self.val = val
+        self.next = next
+
+    def get_data(self):
+        return self.val
+
+    def get_next(self):
+        return self.next
+
+    def set_next(self, new):
+        self.next = new
+
+
+class LinkedList:
+    def __init__(self, head=None):
+        self.head = head
+
+    def insert(self, val):
+        new_node = Node(val)
+        new_node.set_next(self.head)
+        self.head = new_node
+
+
 def is_palindrome(head):
+    """
+    Returns true if the linked list is a palindrome, false otherwise.
+    Uses 2 pointers to traverse the linked list, reverses the second half
+    and compares nodes on both sides of the split one by one
+    >>> linked_list = LinkedList()
+    >>> is_palindrome(linked_list.head)
+    True
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome(linked_list.head)
+    True
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome(linked_list.head)
+    True
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(20)
+    >>> is_palindrome(linked_list.head)
+    False
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert(12)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome(linked_list.head)
+    False
+    """
     if not head:
         return True
     # split the list to two parts
@@ -26,6 +83,40 @@ def is_palindrome(head):
 
 
 def is_palindrome_stack(head):
+    """
+    Returns true if the linked list is a palindrome, false otherwise
+    Pushes nodes in the second half of the linked list
+    one by one into a stack; once the stack is full,
+    pop the node off the stack and compares
+    it with nodes in the original list
+    >>> linked_list = LinkedList()
+    >>> is_palindrome_stack(linked_list.head)
+    True
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome_stack(linked_list.head)
+    True
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome_stack(linked_list.head)
+    True
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(20)
+    >>> is_palindrome_stack(linked_list.head)
+    False
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert(12)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome_stack(linked_list.head)
+    False
+    """
     if not head or not head.next:
         return True
 
@@ -50,6 +141,42 @@ def is_palindrome_stack(head):
 
 
 def is_palindrome_dict(head):
+    """
+    Returns true if the linked list is a palindrome, false otherwise
+    Creates a dictionary of with the node's value
+    as the key, and the list of positions
+    of where this value occurs in the linked list as the value.
+    Iterates through the list
+    of values and checks that their indexes sum up to the length of the list - 1
+    (ie same value at index 0 and l -1, same at 2 and l - 3 etc)
+    >>> linked_list = LinkedList()
+    >>> is_palindrome_dict(linked_list.head)
+    True
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome_dict(linked_list.head)
+    True
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome_dict(linked_list.head)
+    True
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> linked_list.insert(20)
+    >>> is_palindrome_dict(linked_list.head)
+    False
+    >>> linked_list = LinkedList()
+    >>> linked_list.insert(12)
+    >>> linked_list.insert(11)
+    >>> linked_list.insert(20)
+    >>> is_palindrome_dict(linked_list.head)
+    False
+    """
     if not head or not head.next:
         return True
     d = {}
