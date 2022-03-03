@@ -163,8 +163,7 @@ def postorder(curr_node):
     """
     node_list = list()
     if curr_node is not None:
-        node_list = postorder(curr_node.left) + \
-            postorder(curr_node.right) + [curr_node]
+        node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
     return node_list
 
 
@@ -188,7 +187,6 @@ def binary_search_tree():
     Traceback (most recent call last):
     ...
     IndexError: Warning: Tree is empty! please use another.
-
     >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
     >>> t.search(6)
     {'6': (4, 7)}
