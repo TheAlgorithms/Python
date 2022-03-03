@@ -19,8 +19,14 @@ class Node:
 
 
 def make_linked_list(elements_list):
-    """Creates a Linked List from the elements of the given sequence
-    (list/tuple) and returns the head of the Linked List."""
+    """
+    Creates a Linked List from the elements of the given sequence
+    (list/tuple) and returns the head of the Linked List.
+    >>> list_data = [1, 3, 5, 32, 44, 12, 43]
+    >>> linked_list = make_linked_list(list_data)
+    >>> print(linked_list)
+    <1> ---> <3> ---> <5> ---> <32> ---> <44> ---> <12> ---> <43> ---> <END>
+    """
 
     # if elements_list is empty
     if not elements_list:
@@ -34,11 +40,3 @@ def make_linked_list(elements_list):
         current.next = Node(data)
         current = current.next
     return head
-
-
-list_data = [1, 3, 5, 32, 44, 12, 43]
-print(f"List: {list_data}")
-print("Creating Linked List from List.")
-linked_list = make_linked_list(list_data)
-print("Linked List:")
-print(linked_list)
