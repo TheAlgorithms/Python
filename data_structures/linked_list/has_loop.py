@@ -41,22 +41,3 @@ class Node:
             return False
         except ContainsLoopError:
             return True
-
-
-if __name__ == "__main__":
-    root_node = Node(1)
-    root_node.next_node = Node(2)
-    root_node.next_node.next_node = Node(3)
-    root_node.next_node.next_node.next_node = Node(4)
-    print(root_node.has_loop)  # False
-    root_node.next_node.next_node.next_node = root_node.next_node
-    print(root_node.has_loop)  # True
-
-    root_node = Node(5)
-    root_node.next_node = Node(6)
-    root_node.next_node.next_node = Node(5)
-    root_node.next_node.next_node.next_node = Node(6)
-    print(root_node.has_loop)  # False
-
-    root_node = Node(1)
-    print(root_node.has_loop)  # False
