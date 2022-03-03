@@ -116,28 +116,21 @@ class RedBlackTree:
 
     def _insert_repair(self) -> None:
         """Repair the coloring from inserting into a tree."""
-        coverageList.append(1)
         if self.parent is None:
-            coverageList.append(2)
             # This node is the root, so it just needs to be black
             self.color = 0
         elif color(self.parent) == 0:
-            coverageList.append(3)
             # If the parent is black, then it just needs to be red
             self.color = 1
         else:
-            coverageList.append(4)
             uncle = self.parent.sibling
             if color(uncle) == 0:
-                coverageList.append(5)
                 # There are four separate cases when the uncle is black,
                 # handled in a separate function with explanations
                 self._insert_case_handler()
             else:
-                coverageList.append(16)
                 self.parent.color = 0
                 if uncle and self.grandparent:
-                    coverageList.append(17)
                     uncle.color = 0
                     self.grandparent.color = 1
                     self.grandparent._insert_repair()
@@ -170,13 +163,10 @@ class RedBlackTree:
             Rotate grandparent left and swap colours of grandparent
             and parent. Then we are balanced again.
         """
-        coverageList.append(13)
         if self.grandparent:
-            coverageList.append(14)
             self.grandparent.rotate_left()
             self.parent.color = 0
         if self.parent.left:
-            coverageList.append(15)
             self.parent.left.color = 1
 
     def _insert_case_left_left(self) -> None:
@@ -184,13 +174,10 @@ class RedBlackTree:
             Rotate grandparent right and swap colours of grandparent
             and parent. Then we are balanced again.
         """
-        coverageList.append(10)
         if self.grandparent:
-            coverageList.append(11)
             self.grandparent.rotate_right()
             self.parent.color = 0
         if self.parent.right:
-            coverageList.append(12)
             self.parent.right.color = 1
 
     def _insert_case_right_left(self) -> None:
@@ -199,10 +186,8 @@ class RedBlackTree:
             its parent and both are right children, then we can apply
             right-right case.
         """
-        coverageList.append(6)
         self.parent.rotate_right()
         if self.right:
-            coverageList.append(7)
             self.right._insert_repair()
 
     def _insert_case_left_right(self) -> None:
@@ -211,10 +196,8 @@ class RedBlackTree:
             its parent and both are left children, then we can apply
             left-left case.
         """
-        coverageList.append(8)
         self.parent.rotate_left()
         if self.left:
-            coverageList.append(9)
             self.left._insert_repair()
 
     def remove(self, label: int) -> RedBlackTree:
@@ -275,7 +258,61 @@ class RedBlackTree:
         return self.parent or self
 
     def _remove_repair(self) -> None:
-        """Repair the coloring of the tree that may have been messed up."""
+        """Repair the coloring of the tree that may have been messed up.
+        
+        For unit testing, we will pretend that a node has been removed, not actually
+        removing it because then the repair would fix the tree.
+        An example of a tree that never needs repair after a pretend remove:
+        >>> tree = RedBlackTree(0)
+        >>> tree.right = RedBlackTree(1, 1, tree)
+        >>> tree.left = RedBlackTree(-1, 1, tree)
+        >>> tree.left._remove_repair()  # no parent.sibling so we don't need a repair
+
+        Some examples of trees in need of repair after a pretend remove:
+        >>> tree = RedBlackTree(0)
+        >>> tree.right = RedBlackTree(1, 0, tree)
+        >>> tree.left = RedBlackTree(-2, 0, tree)
+        >>> tree.left.left = RedBlackTree(-3, 1, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 1, tree.left)
+        >>> tree.left.left._remove_repair()
+        Traceback (most recent call last):
+            ...
+        AttributeError: 'NoneType' object has no attribute 'left'
+        >>> tree.left.left = RedBlackTree(-3, 1, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 1, tree.left)
+        >>> tree.left.right._remove_repair()
+        Traceback (most recent call last):
+            ...
+        AttributeError: 'NoneType' object has no attribute 'left'
+
+        >>> tree = RedBlackTree(0)
+        >>> tree.right = RedBlackTree(1, 0, tree)
+        >>> tree.left = RedBlackTree(-4, 0, tree)
+        >>> tree.left.left = RedBlackTree(-6, 0, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 0, tree.left)
+        >>> tree.left.left.left = RedBlackTree(-10, 0, tree.left.left)
+        >>> tree.left.left.right = RedBlackTree(-5, 0, tree.left.left)
+        >>> tree.left.right._remove_repair()
+        >>> tree
+        {'0 blk': ({'-4 blk': ({'-6 red': ('-10 blk', '-5 blk')}, '-2 blk')}, '1 blk')}
+        >>> tree.left = RedBlackTree(-4, 1, tree)
+        >>> tree.left.left = RedBlackTree(-6, 0, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 0, tree.left)
+        >>> tree.left.left.left = RedBlackTree(-10, 0, tree.left.left)
+        >>> tree.left.left.right = RedBlackTree(-5, 0, tree.left.left)
+        >>> tree.left.right._remove_repair()
+        >>> tree
+        {'0 blk': ({'-4 blk': ({'-6 red': ('-10 blk', '-5 blk')}, '-2 blk')}, '1 blk')}
+        >>> tree.left = RedBlackTree(-4, 1, tree)
+        >>> tree.left.left = RedBlackTree(-6, 0, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 0, tree.left)
+        >>> tree.left.left.left = RedBlackTree(-10, 0, tree.left.left)
+        >>> tree.left.left.right = RedBlackTree(-5, 1, tree.left.left)
+        >>> tree.left.right._remove_repair()
+        >>> tree
+        {'0 blk': ({'-5 red': ({'-6 blk': ('-10 blk', None)}, {'-4 blk': (None, '-2 blk')})},
+                   '1 blk')}
+        """
         if (
             self.parent is None
             or self.sibling is None
@@ -359,6 +396,21 @@ class RedBlackTree:
             has the same number of black nodes.
         This function runs in O(n) time, because properties 4 and 5 take
         that long to check.
+
+        Force falsy colouring test
+        >>> tree = RedBlackTree(0)                                                                                           
+        >>> tree.right = RedBlackTree(1, 1, tree)                                                                            
+        >>> tree.right.right = RedBlackTree(1,1,tree)                                                                        
+        >>> tree.right.right
+        '1 red'
+        >>> tree.check_color_properties()
+        Property 4
+        False
+        >>> tree = RedBlackTree(0,1)
+        >>> tree.check_color_properties()
+        Property 2
+        False
+
         """
         # I assume property 1 to hold because there is nothing that can
         # make the color be anything other than 0 or 1.
@@ -488,6 +540,14 @@ class RedBlackTree:
     def get_min(self) -> int | None:
         """Returns the smallest element in this tree.
         This method is guaranteed to run in O(log(n)) time.
+        >>> tree = RedBlackTree(0)
+        >>> tree = tree.insert(-12)
+        >>> tree = tree.insert(8)
+        >>> tree = tree.insert(-8)
+        >>> tree = tree.insert(15)
+        >>> tree = tree.insert(4)
+        >>> tree.get_min()
+        -12
         """
         if self.left:
             # Go as far left as possible
@@ -497,7 +557,14 @@ class RedBlackTree:
 
     @property
     def grandparent(self) -> RedBlackTree | None:
-        """Get the current node's grandparent, or None if it doesn't exist."""
+        """Get the current node's grandparent, or None if it doesn't exist.
+            >>> tree = RedBlackTree(0)
+            >>> me = tree.insert(2)
+            >>> me.grandparent()
+            Traceback (most recent call last):
+                ...
+            TypeError: 'NoneType' object is not callable
+            """
         if self.parent is None:
             return None
         else:
@@ -505,7 +572,13 @@ class RedBlackTree:
 
     @property
     def sibling(self) -> RedBlackTree | None:
-        """Get the current node's sibling, or None if it doesn't exist."""
+        """Get the current node's sibling, or None if it doesn't exist.
+            >>> tree = RedBlackTree(0)
+            >>> tree.sibling()
+            Traceback (most recent call last):
+                ...
+            TypeError: 'NoneType' object is not callable
+        """
         if self.parent is None:
             return None
         elif self.parent.left is self:
@@ -514,13 +587,23 @@ class RedBlackTree:
             return self.parent.left
 
     def is_left(self) -> bool:
-        """Returns true iff this node is the left child of its parent."""
+        """Returns true iff this node is the left child of its parent.
+        >>> tree = RedBlackTree(0)
+        >>> me = tree.insert(2)
+        >>> me.is_left()
+        False
+        """
         if self.parent is None:
             return False
         return self.parent.left is self.parent.left is self
 
     def is_right(self) -> bool:
-        """Returns true iff this node is the right child of its parent."""
+        """Returns true iff this node is the right child of its parent.
+        >>> tree = RedBlackTree(0)
+        >>> me = tree.insert(-2)
+        >>> me.is_right()
+        False
+        """
         if self.parent is None:
             return False
         return self.parent.right is self
@@ -531,6 +614,15 @@ class RedBlackTree:
     def __len__(self) -> int:
         """
         Return the number of nodes in this tree.
+
+        >>> tree = RedBlackTree(0)
+        >>> tree.__len__()
+        1
+        >>> tree = tree.insert(-12)
+        >>> tree = tree.insert(8)
+        >>> tree = tree.insert(-8)
+        >>> tree.__len__()
+        4
         """
         ln = 1
         if self.left:
@@ -853,9 +945,6 @@ def pytests() -> None:
 
 
 def main() -> None:
-    global coverageList
-    coverageList = []
-    coverageList.append(0)  #this ID is excluded from the percentage calculation at the end main()
     """
     >>> pytests()
     """
@@ -869,15 +958,13 @@ def main() -> None:
     print_results("Floor and ceil", test_floor_ceil())
     print_results("Tree traversal", test_tree_traversal())
     print_results("Tree traversal", test_tree_chaining())
-    print("Testing tree balancing...")
-    print("This should only be a few seconds.")
-    test_insertion_speed()
+    # print("Testing tree balancing...")
+    # print("This should only be a few seconds.")
+    # test_insertion_speed() //TODO toggle comment
     print("Done!")
-    coverageList = list(dict.fromkeys(coverageList))
-    coverageList.sort()
-    print("Covered IDs:", coverageList)
-    print("Coverage percentage: ", (len(coverageList)-1)/17  )
 
 
 if __name__ == "__main__":
     main()
+    import doctest
+    doctest.testmod()
