@@ -958,9 +958,9 @@ def main() -> None:
     print_results("Floor and ceil", test_floor_ceil())
     print_results("Tree traversal", test_tree_traversal())
     print_results("Tree traversal", test_tree_chaining())
-    # print("Testing tree balancing...")
-    # print("This should only be a few seconds.")
-    # test_insertion_speed() //TODO toggle comment
+    print("Testing tree balancing...")
+    print("This should only be a few seconds.")
+    test_insertion_speed()
     print("Done!")
 
 
