@@ -86,9 +86,6 @@ def binary_tree_count(node_count: int) -> int:
     """
     return catalan_number(node_count) * factorial(node_count)
 
-def number_of_binary_trees(node_count: int) -> None:
-    '''
-    :param n: number of nodes
 
 def number_of_binary_trees(node_count: int) -> None:
     """
@@ -106,4 +103,3 @@ def number_of_binary_trees(node_count: int) -> None:
         f"Given {node_count} nodes, there are {binary_tree_count(node_count)} "
         f"binary trees and {catalan_number(node_count)} binary search trees."
     )
-
