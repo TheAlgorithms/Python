@@ -1,12 +1,30 @@
 from __future__ import annotations
 
+import re
 from random import random
+
+__all__ = ("re",)
 
 
 class Node:
-    """
+    r"""
     Treap's node
     Treap is a binary tree by value and heap by priority
+
+    >>> root = interactTreap(None, "+1")
+    >>> root = interactTreap(root, "+2")
+    >>> str(root) == '1 2 ' or str(root) == '2 1 '
+    True
+
+    As treaps are randomized, we need to match its representation by regex,
+    we can't know which value will be where or what its priority will be.
+    However, we do know that the root should be either 1 or 2 here, and that
+    the children should be None and the other number.
+    >>> reg1 = r"{'(1|2): \d\.\d+': \((None|'(1|2): \d\.\d+'),"
+    >>> reg = reg1 + r" (None|'(1|2): \d\.\d+')\)}"
+    >>> x = re.findall(reg, repr(root))
+    >>> len(x)
+    1
     """
 
     def __init__(self, value: int | None = None):
@@ -38,6 +56,7 @@ def split(root: Node | None, value: int) -> tuple[Node | None, Node | None]:
 
     Left tree contains all values less than split value.
     Right tree contains all values greater or equal, than split value
+
     """
     if root is None:  # None tree is split into 2 Nones
         return None, None
