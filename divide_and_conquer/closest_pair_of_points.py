@@ -128,7 +128,8 @@ def closest_pair_of_points(points, points_counts):
     """
     >>> closest_pair_of_points([(2, 3), (12, 30)], len([(2, 3), (12, 30)]))
     28.792360097775937
-    >>> closest_pair_of_points([(2, 3), (12, 30), (40, 50), (5, 1), (12, 10), (3, 4)], len([(2, 3), (12, 30), (40, 50), (5, 1), (12, 10), (3, 4)]))
+    >>> closest_pair_of_points([(2, 3), (12, 30), (40, 50), (5, 1), (12, 10)\
+    , (3, 4)], len([(2, 3), (12, 30), (40, 50), (5, 1), (12, 10), (3, 4)]))
     1.4142135623730951
     """
     points_sorted_on_x = column_based_sort(points, column=0)
@@ -142,4 +143,5 @@ def closest_pair_of_points(points, points_counts):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
