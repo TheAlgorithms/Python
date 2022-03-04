@@ -27,6 +27,8 @@ def binomial_coefficient(n: int, k: int) -> int:
 
     >>> binomial_coefficient(4, 2)
     6
+    >>> binomial_coefficient(5, 3)
+    10
     """
     result = 1  # To kept the Calculated Value
     # Since C(n, k) = C(n, n-k)
@@ -92,8 +94,17 @@ def binary_tree_count(node_count: int) -> int:
     return catalan_number(node_count) * factorial(node_count)
 
 
-if __name__ == "__main__":
-    node_count = int(input("Enter the number of nodes: ").strip() or 0)
+def number_of_binary_trees(node_count: int) -> None:
+    """
+    :param n: number of nodes
+
+    >>> number_of_binary_trees(-5)
+    Traceback (most recent call last):
+    ...
+    ValueError: We need some nodes to work with.
+    >>> number_of_binary_trees(5)
+    Given 5 nodes, there are 5040 binary trees and 42 binary search trees.
+    """
     if node_count <= 0:
         raise ValueError("We need some nodes to work with.")
     print(
