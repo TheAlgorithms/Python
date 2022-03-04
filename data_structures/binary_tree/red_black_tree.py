@@ -93,6 +93,16 @@ class RedBlackTree:
         rotations necessary to maintain balance, and then returns the
         new root to this subtree (likely self).
         This is guaranteed to run in O(log(n)) time.
+        
+        >>> tree = RedBlackTree()
+        >>> tree
+        'None blk'
+        >>> tree.insert(0)
+        '0 blk'
+        >>> tree.insert(0)
+        '0 blk'
+        >>> tree
+        '0 blk'
         """
         if self.label is None:
             # Only possible with an empty tree
