@@ -87,10 +87,6 @@ def binary_tree_count(node_count: int) -> int:
     return catalan_number(node_count) * factorial(node_count)
 
 
-if __name__ == "__main__":
-    node_count = int(input("Enter the number of nodes: ").strip() or 0)
-
-
 def number_of_binary_trees(node_count: int) -> None:
     """
     :param n: number of nodes
