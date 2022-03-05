@@ -11,7 +11,7 @@ class QuadraticProbing(HashTable):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def _collision_resolution(self, key):
+    def _collision_resolution(self, key, data=None):
         """
         >>> hashTable = QuadraticProbing(7)
         >>> hashTable.insert_data(0)

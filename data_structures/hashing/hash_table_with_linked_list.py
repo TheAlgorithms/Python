@@ -32,7 +32,7 @@ class HashTableWithLinkedList(HashTable):
             * self.charge_factor
         )
 
-    def _collision_resolution(self, key):
+    def _collision_resolution(self, key, data=None):
         """
         >>> hashTable = HashTableWithLinkedList(3)
         >>> hashTable.bulk_insert([0, 1])
