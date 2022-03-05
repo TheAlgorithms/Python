@@ -26,6 +26,12 @@ class matrix:  # Public class to implement a graph
                 self.diffs(i + rowNbr[k], j + colNbr[k], visited)
 
     def count_islands(self) -> int:  # And finally, count all islands.
+        """
+        >>> test_matrix = matrix(4, 4, [[1, 0, 1, 1], [0, 0, 0, 0],\
+            [1, 1, 1, 0], [1, 0, 0, 1]])
+        >>> test_matrix.count_islands()
+        3
+        """
         visited = [[False for j in range(self.COL)] for i in range(self.ROW)]
         count = 0
         for i in range(self.ROW):
@@ -34,3 +40,9 @@ class matrix:  # Public class to implement a graph
                     self.diffs(i, j, visited)
                     count += 1
         return count
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
