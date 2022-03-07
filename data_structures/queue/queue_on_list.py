@@ -50,3 +50,9 @@ class Queue:
 
     def size(self):
         return self.length
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

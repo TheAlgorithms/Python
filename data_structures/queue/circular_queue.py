@@ -92,3 +92,9 @@ class CircularQueue:
         self.front = (self.front + 1) % self.n
         self.size -= 1
         return temp
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

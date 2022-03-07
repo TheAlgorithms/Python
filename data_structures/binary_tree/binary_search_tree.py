@@ -152,7 +152,8 @@ class BinarySearchTree:
     def find_kth_smallest(self, k: int, node: Node) -> int:
         """Return the kth smallest element in a binary search tree"""
         arr: list = []
-        self.inorder(arr, node)  # append all values to list using inorder traversal
+        # append all values to list using inorder traversal
+        self.inorder(arr, node)
         return arr[k - 1]
 
 
@@ -186,36 +187,35 @@ def binary_search_tree():
     Traceback (most recent call last):
     ...
     IndexError: Warning: Tree is empty! please use another.
+    >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+    >>> t.search(6)
+    {'6': (4, 7)}
+    >>> t.search(-1)
+    >>> print(t.root.value)
+    8
+    >>> print(t)
+    {'8': ({'3': (1, {'6': (4, 7)})}, {'10': (None, {'14': (13, None)})})}
+    >>> t.get_max().value
+    14
+    >>> t.get_min().value
+    1
+    >>> t.find_kth_smallest(k=2,node=t.root)
+    3
+    >>> t.find_kth_smallest(k=5,node=t.root)
+    7
+    >>> t.remove(7)
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+    8 3 1 6 4 10 14 13
+    >>> t.remove(10)
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+    8 3 1 6 4 14 13
+    >>> t.remove(14)
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+    8 3 1 6 4 13
     """
-    testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
-    t = BinarySearchTree()
-    for i in testlist:
-        t.insert(i)
-
-    # Prints all the elements of the list in order traversal
-    print(t)
-
-    if t.search(6) is not None:
-        print("The value 6 exists")
-    else:
-        print("The value 6 doesn't exist")
-
-    if t.search(-1) is not None:
-        print("The value -1 exists")
-    else:
-        print("The value -1 doesn't exist")
-
-    if not t.empty():
-        print("Max Value: ", t.get_max().value)
-        print("Min Value: ", t.get_min().value)
-
-    for i in testlist:
-        t.remove(i)
-        print(t)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    # binary_search_tree()

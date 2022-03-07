@@ -59,7 +59,7 @@ class FixedPriorityQueue:
     >>> fpq.dequeue()
     Traceback (most recent call last):
     ...
-    data_structures.queue.priority_queue_using_list.UnderFlowError: All queues are empty
+    priority_queue_using_list.UnderFlowError: All queues are empty
     >>> print(fpq)
     Priority 0: []
     Priority 1: []
@@ -78,6 +78,21 @@ class FixedPriorityQueue:
         Add an element to a queue based on its priority.
         If the priority is invalid ValueError is raised.
         If the queue is full an OverFlowError is raised.
+
+        Examples
+        Those test should fail and raise Overflowerror and value exception.
+
+        >>> fpq = FixedPriorityQueue()
+        >>> fpq.enqueue(3, 10)
+        Traceback (most recent call last):
+        ...
+        ValueError: Valid priorities are 0, 1, and 2
+        >>> fpq = FixedPriorityQueue()
+        >>> q = [fpq.enqueue(0,5) for _ in range(101)]
+        Traceback (most recent call last):
+        ...
+        OverflowError: Maximum queue size is 100
+
         """
         try:
             if len(self.queues[priority]) >= 100:
@@ -141,9 +156,16 @@ class ElementPriorityQueue:
     >>> epq.dequeue()
     Traceback (most recent call last):
         ...
-    data_structures.queue.priority_queue_using_list.UnderFlowError: The queue is empty
+    priority_queue_using_list.UnderFlowError: The queue is empty
     >>> print(epq)
     []
+
+
+    >>> epq2 = ElementPriorityQueue()
+    >>> q = [[epq2.enqueue(11)] for _ in range(101)]
+    Traceback (most recent call last):
+    ...
+    priority_queue_using_list.OverFlowError: Maximum queue size is 100
     """
 
     def __init__(self):
@@ -153,6 +175,7 @@ class ElementPriorityQueue:
         """
         This function enters the element into the queue
         If the queue is full an Exception is raised saying Over Flow!
+
         """
         if len(self.queue) == 100:
             raise OverFlowError("Maximum queue size is 100")
@@ -177,56 +200,7 @@ class ElementPriorityQueue:
         return str(self.queue)
 
 
-def fixed_priority_queue():
-    fpq = FixedPriorityQueue()
-    fpq.enqueue(0, 10)
-    fpq.enqueue(1, 70)
-    fpq.enqueue(0, 100)
-    fpq.enqueue(2, 1)
-    fpq.enqueue(2, 5)
-    fpq.enqueue(1, 7)
-    fpq.enqueue(2, 4)
-    fpq.enqueue(1, 64)
-    fpq.enqueue(0, 128)
-    print(fpq)
-    print(fpq.dequeue())
-    print(fpq.dequeue())
-    print(fpq.dequeue())
-    print(fpq.dequeue())
-    print(fpq.dequeue())
-    print(fpq)
-    print(fpq.dequeue())
-    print(fpq.dequeue())
-    print(fpq.dequeue())
-    print(fpq.dequeue())
-    print(fpq.dequeue())
-
-
-def element_priority_queue():
-    epq = ElementPriorityQueue()
-    epq.enqueue(10)
-    epq.enqueue(70)
-    epq.enqueue(100)
-    epq.enqueue(1)
-    epq.enqueue(5)
-    epq.enqueue(7)
-    epq.enqueue(4)
-    epq.enqueue(64)
-    epq.enqueue(128)
-    print(epq)
-    print(epq.dequeue())
-    print(epq.dequeue())
-    print(epq.dequeue())
-    print(epq.dequeue())
-    print(epq.dequeue())
-    print(epq)
-    print(epq.dequeue())
-    print(epq.dequeue())
-    print(epq.dequeue())
-    print(epq.dequeue())
-    print(epq.dequeue())
-
-
 if __name__ == "__main__":
-    fixed_priority_queue()
-    element_priority_queue()
+    import doctest
+
+    doctest.testmod()
