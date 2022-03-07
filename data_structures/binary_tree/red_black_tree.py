@@ -93,6 +93,16 @@ class RedBlackTree:
         rotations necessary to maintain balance, and then returns the
         new root to this subtree (likely self).
         This is guaranteed to run in O(log(n)) time.
+        
+        >>> tree = RedBlackTree()
+        >>> tree
+        'None blk'
+        >>> tree.insert(0)
+        '0 blk'
+        >>> tree.insert(0)
+        '0 blk'
+        >>> tree
+        '0 blk'
         """
         if self.label is None:
             # Only possible with an empty tree
@@ -125,32 +135,80 @@ class RedBlackTree:
         else:
             uncle = self.parent.sibling
             if color(uncle) == 0:
-                if self.is_left() and self.parent.is_right():
-                    self.parent.rotate_right()
-                    if self.right:
-                        self.right._insert_repair()
-                elif self.is_right() and self.parent.is_left():
-                    self.parent.rotate_left()
-                    if self.left:
-                        self.left._insert_repair()
-                elif self.is_left():
-                    if self.grandparent:
-                        self.grandparent.rotate_right()
-                        self.parent.color = 0
-                    if self.parent.right:
-                        self.parent.right.color = 1
-                else:
-                    if self.grandparent:
-                        self.grandparent.rotate_left()
-                        self.parent.color = 0
-                    if self.parent.left:
-                        self.parent.left.color = 1
+                # There are four separate cases when the uncle is black,
+                # handled in a separate function with explanations
+                self._insert_case_handler()
             else:
                 self.parent.color = 0
                 if uncle and self.grandparent:
                     uncle.color = 0
                     self.grandparent.color = 1
                     self.grandparent._insert_repair()
+
+    def _insert_case_handler(self) -> None:
+        """When inserting into a red-black tree and finding that the uncle
+        of the new node is black, there are four separate cases which
+        must be handled differently in order to rebalance correctly.
+        Two of them require further traversal, calling insert_repair again.
+        """
+        # Parent right, me left.
+        # Rotate parent right and insert_repair again (now right-right case).
+        if self.parent.is_right() and self.is_left():
+            self._insert_case_right_left()
+        # Parent left, me right.
+        # Rotate parent left and insert_repair again (now left-left case).
+        elif self.parent.is_left() and self.is_right():
+            self._insert_case_left_right()
+        # Parent left, me left.
+        # Rotate grandparent and recolour -> done.
+        elif self.is_left():
+            self._insert_case_left_left()
+        # Parent right, me right.
+        # Rotate grandparent and recolour -> done.
+        else:
+            self._insert_case_right_right()
+
+    def _insert_case_right_right(self) -> None:
+        """Parent is a right child, node is a right child.
+        Rotate grandparent left and swap colours of grandparent
+        and parent. Then we are balanced again.
+        """
+        if self.grandparent:
+            self.grandparent.rotate_left()
+            self.parent.color = 0
+        if self.parent.left:
+            self.parent.left.color = 1
+
+    def _insert_case_left_left(self) -> None:
+        """Parent is a left child, node is a left child.
+        Rotate grandparent right and swap colours of grandparent
+        and parent. Then we are balanced again.
+        """
+        if self.grandparent:
+            self.grandparent.rotate_right()
+            self.parent.color = 0
+        if self.parent.right:
+            self.parent.right.color = 1
+
+    def _insert_case_right_left(self) -> None:
+        """Parent is a right child, node is a left child.
+        Must rotate parent right so that node becomes
+        its parent and both are right children, then we can apply
+        right-right case.
+        """
+        self.parent.rotate_right()
+        if self.right:
+            self.right._insert_repair()
+
+    def _insert_case_left_right(self) -> None:
+        """Parent is a left child, node is a right child.
+        Must rotate parent left so that node becomes
+        its parent and both are left children, then we can apply
+        left-left case.
+        """
+        self.parent.rotate_left()
+        if self.left:
+            self.left._insert_repair()
 
     def remove(self, label: int) -> RedBlackTree:
         """Remove label from this tree."""
@@ -210,7 +268,62 @@ class RedBlackTree:
         return self.parent or self
 
     def _remove_repair(self) -> None:
-        """Repair the coloring of the tree that may have been messed up."""
+        """Repair the coloring of the tree that may have been messed up.
+
+        For unit testing, we will pretend that a node has been removed, not actually
+        removing it because then the repair would fix the tree.
+        An example of a tree that never needs repair after a pretend remove:
+        >>> tree = RedBlackTree(0)
+        >>> tree.right = RedBlackTree(1, 1, tree)
+        >>> tree.left = RedBlackTree(-1, 1, tree)
+        >>> tree.left._remove_repair()  # no parent.sibling so we don't need a repair
+
+        Some examples of trees in need of repair after a pretend remove:
+        >>> tree = RedBlackTree(0)
+        >>> tree.right = RedBlackTree(1, 0, tree)
+        >>> tree.left = RedBlackTree(-2, 0, tree)
+        >>> tree.left.left = RedBlackTree(-3, 1, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 1, tree.left)
+        >>> tree.left.left._remove_repair()
+        Traceback (most recent call last):
+            ...
+        AttributeError: 'NoneType' object has no attribute 'left'
+        >>> tree.left.left = RedBlackTree(-3, 1, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 1, tree.left)
+        >>> tree.left.right._remove_repair()
+        Traceback (most recent call last):
+            ...
+        AttributeError: 'NoneType' object has no attribute 'left'
+
+        >>> tree = RedBlackTree(0)
+        >>> tree.right = RedBlackTree(1, 0, tree)
+        >>> tree.left = RedBlackTree(-4, 0, tree)
+        >>> tree.left.left = RedBlackTree(-6, 0, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 0, tree.left)
+        >>> tree.left.left.left = RedBlackTree(-10, 0, tree.left.left)
+        >>> tree.left.left.right = RedBlackTree(-5, 0, tree.left.left)
+        >>> tree.left.right._remove_repair()
+        >>> tree
+        {'0 blk': ({'-4 blk': ({'-6 red': ('-10 blk', '-5 blk')}, '-2 blk')}, '1 blk')}
+        >>> tree.left = RedBlackTree(-4, 1, tree)
+        >>> tree.left.left = RedBlackTree(-6, 0, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 0, tree.left)
+        >>> tree.left.left.left = RedBlackTree(-10, 0, tree.left.left)
+        >>> tree.left.left.right = RedBlackTree(-5, 0, tree.left.left)
+        >>> tree.left.right._remove_repair()
+        >>> tree
+        {'0 blk': ({'-4 blk': ({'-6 red': ('-10 blk', '-5 blk')}, '-2 blk')}, '1 blk')}
+        >>> tree.left = RedBlackTree(-4, 1, tree)
+        >>> tree.left.left = RedBlackTree(-6, 0, tree.left)
+        >>> tree.left.right = RedBlackTree(-2, 0, tree.left)
+        >>> tree.left.left.left = RedBlackTree(-10, 0, tree.left.left)
+        >>> tree.left.left.right = RedBlackTree(-5, 1, tree.left.left)
+        >>> tree.left.right._remove_repair()
+        >>> tree
+        {'0 blk': ({'-5 red': ({'-6 blk': ('-10 blk', None)}, {'-4 blk': \
+(None, '-2 blk')})},
+                   '1 blk')}
+        """
         if (
             self.parent is None
             or self.sibling is None
@@ -294,6 +407,21 @@ class RedBlackTree:
             has the same number of black nodes.
         This function runs in O(n) time, because properties 4 and 5 take
         that long to check.
+
+        Force falsy colouring test
+        >>> tree = RedBlackTree(0)
+        >>> tree.right = RedBlackTree(1, 1, tree)
+        >>> tree.right.right = RedBlackTree(1,1,tree)
+        >>> tree.right.right
+        '1 red'
+        >>> tree.check_color_properties()
+        Property 4
+        False
+        >>> tree = RedBlackTree(0,1)
+        >>> tree.check_color_properties()
+        Property 2
+        False
+
         """
         # I assume property 1 to hold because there is nothing that can
         # make the color be anything other than 0 or 1.
@@ -423,6 +551,14 @@ class RedBlackTree:
     def get_min(self) -> int | None:
         """Returns the smallest element in this tree.
         This method is guaranteed to run in O(log(n)) time.
+        >>> tree = RedBlackTree(0)
+        >>> tree = tree.insert(-12)
+        >>> tree = tree.insert(8)
+        >>> tree = tree.insert(-8)
+        >>> tree = tree.insert(15)
+        >>> tree = tree.insert(4)
+        >>> tree.get_min()
+        -12
         """
         if self.left:
             # Go as far left as possible
@@ -432,7 +568,14 @@ class RedBlackTree:
 
     @property
     def grandparent(self) -> RedBlackTree | None:
-        """Get the current node's grandparent, or None if it doesn't exist."""
+        """Get the current node's grandparent, or None if it doesn't exist.
+        >>> tree = RedBlackTree(0)
+        >>> me = tree.insert(2)
+        >>> me.grandparent()
+        Traceback (most recent call last):
+            ...
+        TypeError: 'NoneType' object is not callable
+        """
         if self.parent is None:
             return None
         else:
@@ -440,7 +583,13 @@ class RedBlackTree:
 
     @property
     def sibling(self) -> RedBlackTree | None:
-        """Get the current node's sibling, or None if it doesn't exist."""
+        """Get the current node's sibling, or None if it doesn't exist.
+        >>> tree = RedBlackTree(0)
+        >>> tree.sibling()
+        Traceback (most recent call last):
+            ...
+        TypeError: 'NoneType' object is not callable
+        """
         if self.parent is None:
             return None
         elif self.parent.left is self:
@@ -449,13 +598,23 @@ class RedBlackTree:
             return self.parent.left
 
     def is_left(self) -> bool:
-        """Returns true iff this node is the left child of its parent."""
+        """Returns true iff this node is the left child of its parent.
+        >>> tree = RedBlackTree(0)
+        >>> me = tree.insert(2)
+        >>> me.is_left()
+        False
+        """
         if self.parent is None:
             return False
         return self.parent.left is self.parent.left is self
 
     def is_right(self) -> bool:
-        """Returns true iff this node is the right child of its parent."""
+        """Returns true iff this node is the right child of its parent.
+        >>> tree = RedBlackTree(0)
+        >>> me = tree.insert(-2)
+        >>> me.is_right()
+        False
+        """
         if self.parent is None:
             return False
         return self.parent.right is self
@@ -466,6 +625,15 @@ class RedBlackTree:
     def __len__(self) -> int:
         """
         Return the number of nodes in this tree.
+
+        >>> tree = RedBlackTree(0)
+        >>> tree.__len__()
+        1
+        >>> tree = tree.insert(-12)
+        >>> tree = tree.insert(8)
+        >>> tree = tree.insert(-8)
+        >>> tree.__len__()
+        4
         """
         ln = 1
         if self.left:
@@ -587,17 +755,89 @@ def test_insert() -> bool:
     tree = RedBlackTree(0)
     tree.insert(8)
     tree.insert(-8)
+    tree.insert(-5)
+    tree.insert(-6)
     tree.insert(4)
     tree.insert(12)
     tree.insert(10)
     tree.insert(11)
     ans = RedBlackTree(0, 0)
-    ans.left = RedBlackTree(-8, 0, ans)
+    ans.left = RedBlackTree(-6, 0, ans)
+    ans.left.left = RedBlackTree(-8, 0, ans)
+    ans.left.right = RedBlackTree(-5, 0, ans)
     ans.right = RedBlackTree(8, 1, ans)
     ans.right.left = RedBlackTree(4, 0, ans.right)
     ans.right.right = RedBlackTree(11, 0, ans.right)
     ans.right.right.left = RedBlackTree(10, 1, ans.right.right)
     ans.right.right.right = RedBlackTree(12, 1, ans.right.right)
+    return tree == ans
+
+
+def test_remove() -> bool:
+    """Test the remove() method of the tree correctly balances, colors,
+    and removes. The tested tree should be the same as in test_insert()
+    to rule out any insertion errors.
+    """
+    tree = RedBlackTree(0)
+    tree.insert(8)
+    tree.insert(-8)
+    tree.insert(-5)
+    tree.insert(-6)
+    tree.insert(4)
+    tree.insert(12)
+    tree.insert(10)
+    tree.insert(11)
+    tree.remove(-6)
+    ans = RedBlackTree(0, 0)
+    ans.left = RedBlackTree(-8, 0, ans)
+    ans.left.right = RedBlackTree(-5, 1, ans)
+    ans.right = RedBlackTree(8, 1, ans)
+    ans.right.left = RedBlackTree(4, 0, ans.right)
+    ans.right.right = RedBlackTree(11, 0, ans.right)
+    ans.right.right.left = RedBlackTree(10, 1, ans.right.right)
+    ans.right.right.right = RedBlackTree(12, 1, ans.right.right)
+    return tree == ans
+
+
+def test_remove_last_element() -> bool:
+    """Test the remove() method of the tree correctly removes
+    the final element in a tree. Afterwards, the tree should be
+    empty.
+    """
+    tree = RedBlackTree(0)
+    tree.insert(8)
+    tree.remove(0)
+    tree.remove(8)
+    print(tree)
+    ans = RedBlackTree(None)
+    print(ans)
+    return tree == ans
+
+
+def test_remove_right_child() -> bool:
+    """Test the remove() method of the tree correctly balances, colors,
+    and removes. The tested tree should be the same as in test_insert()
+    to rule out any insertion errors.
+    This instance should test removing a right-side red child.
+    """
+    tree = RedBlackTree(0)
+    tree.insert(8)
+    tree.insert(-8)
+    tree.insert(-5)
+    tree.insert(-6)
+    tree.insert(4)
+    tree.insert(12)
+    tree.insert(10)
+    tree.insert(11)
+    tree.remove(12)
+    ans = RedBlackTree(0, 0)
+    ans.left = RedBlackTree(-6, 0, ans)
+    ans.left.left = RedBlackTree(-8, 1, ans)
+    ans.left.right = RedBlackTree(-5, 1, ans)
+    ans.right = RedBlackTree(8, 1, ans)
+    ans.right.left = RedBlackTree(4, 0, ans.right)
+    ans.right.right = RedBlackTree(11, 0, ans.right)
+    ans.right.right.left = RedBlackTree(10, 1, ans.right.right)
     return tree == ans
 
 
@@ -724,6 +964,9 @@ def main() -> None:
     """
     print_results("Rotating right and left", test_rotations())
     print_results("Inserting", test_insert())
+    print_results("Removing", test_remove())
+    print_results("Removing right child", test_remove_right_child())
+    print_results("Emptying tree", test_remove_last_element())
     print_results("Searching", test_insert_and_search())
     print_results("Deleting", test_insert_delete())
     print_results("Floor and ceil", test_floor_ceil())
@@ -737,3 +980,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    import doctest
+
+    doctest.testmod()
