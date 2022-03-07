@@ -34,9 +34,23 @@ class Point:
     (1.0, 2.0)
     >>> Point(1, 2) > Point(0, 1)
     True
+    >>> Point(1, 2) >= Point(0, 1)
+    True
+    >>> Point(1, 1) >= Point(1, 0)
+    True
+    >>> Point(0, 1) >= Point(1, 2)
+    False
+    >>> Point(1, 2) <= Point(0, 1)
+    False
+    >>> Point(0, 1) <= Point(1, 2)
+    True
+    >>> Point(1, 1) <= Point(1, 0)
+    False
     >>> Point(1, 1) == Point(1, 1)
     True
     >>> Point(-0.5, 1) == Point(0.5, 1)
+    False
+    >>> Point(1, 1) != Point(1, 1)
     False
     >>> Point("pi", "e")
     Traceback (most recent call last):
@@ -435,6 +449,8 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
     [(0.0, 0.0), (1.0, 0.0), (10.0, 1.0)]
     >>> convex_hull_melkman([[0, 0], [1, 0], [10, 0]])
     [(0.0, 0.0), (10.0, 0.0)]
+    >>> convex_hull_melkman([[0, 0], [10, 0], [12, 0], [0, 10], [5, 5]])
+    [(0.0, 0.0), (0.0, 10.0), (12.0, 0.0)]
     >>> convex_hull_melkman([[-1, 1],[-1, -1], [0, 0], [0.5, 0.5], [1, -1], [1, 1],
     ...                 [-0.75, 1]])
     [(-1.0, -1.0), (-1.0, 1.0), (1.0, -1.0), (1.0, 1.0)]
@@ -478,6 +494,10 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
 
 
 def main():
+    """
+    >>> main()
+    [(0.0, 0.0), (0.0, 3.0), (1.0, -3.0), (2.0, -4.0), (3.0, 0.0), (3.0, 3.0)]
+    """
     points = [
         (0, 3),
         (2, 2),
@@ -505,3 +525,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    import doctest
+
+    doctest.testmod()

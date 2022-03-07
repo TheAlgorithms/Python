@@ -5,6 +5,11 @@ class Matrix:
     """
     Matrix object generated from a 2D array where each element is an array representing
     a row.
+    Matrix can be empty.
+    >>> matrix = Matrix([])
+    >>> print(matrix)
+    []
+
     Rows can contain type int or float.
     Common operations and information available.
     >>> rows = [
@@ -17,6 +22,26 @@ class Matrix:
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]]
+
+    Some constraints are placed on Matrix object
+    >>> matrix_error = Matrix([[]])
+    Traceback (most recent call last):
+        ...
+    TypeError: Matrices must be formed from a list \
+of zero or more lists containing at least one and the \
+same number of values, each of which must be of type int or float.
+    >>> matrix_error = Matrix([[1, 2, 3], [1, 2], [1, 2]])
+    Traceback (most recent call last):
+        ...
+    TypeError: Matrices must be formed from a list \
+of zero or more lists containing at least one and the \
+same number of values, each of which must be of type int or float.
+    >>> matrix_error = Matrix([[1, 2, 3], [4, 5, 6], [7, 8, "s"]])
+    Traceback (most recent call last):
+    ...
+    TypeError: Matrices must be formed from a list \
+of zero or more lists containing at least one and the \
+same number of values, each of which must be of type int or float.
 
     Matrix rows and columns are available as 2D arrays
     >>> print(matrix.rows)
@@ -33,6 +58,7 @@ class Matrix:
     True
     >>> matrix.is_invertable()
     False
+
 
     Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
     a Matrix or Nonetype
@@ -56,9 +82,24 @@ class Matrix:
     >>> print(matrix.inverse())
     None
 
+    Each cofector can be access directly
+    >>> matrix.get_cofactor(1,1)
+    -12
+    >>> matrix.get_cofactor(1,2)
+    6
+
     Determinant is an int, float, or Nonetype
     >>> matrix.determinant()
     0
+    >>> matrix2 = Matrix([])
+    >>> matrix2.determinant()
+    1
+    >>> matrix2 = Matrix([[5]])
+    >>> matrix2.determinant()
+    5
+    >>> matrix2 = Matrix([[5, 6]])
+    >>> print(matrix2.determinant())
+    None
 
     Negation, scalar multiplication, addition, subtraction, multiplication and
     exponentiation are available and all return a Matrix
@@ -79,29 +120,124 @@ class Matrix:
     [[-2. -4. -6.]
      [-8. -10. -12.]
      [-14. -16. -18.]]
+    >>> matrix_2x2 = Matrix([[1, 2], [1, 2]])
+    >>> print(matrix + matrix_2x2)
+    Traceback (most recent call last):
+        ...
+    ValueError: Addition requires matrices of the same order
+    >>> print(matrix - matrix_2x2)
+    Traceback (most recent call last):
+        ...
+    ValueError: Subtraction requires matrices of the same order
     >>> print(matrix ** 3)
     [[468. 576. 684.]
      [1062. 1305. 1548.]
      [1656. 2034. 2412.]]
+    >>> print(matrix ** 0)
+    [[1. 0. 0.]
+     [0. 1. 0.]
+     [0. 0. 1.]]
+    >>> matrix_invertable = Matrix([[2, 2], [1, 3]])
+    >>> matrix_invertable ** -3
+    [[0.671875, -0.65625], [-0.328125, 0.34375]]
+
+
+    There are some constraints when apply __pow__ to matrix
+    >>> print(matrix ** 3.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: A Matrix can only be raised to the power of an int
+    >>> print(matrix ** (-2))
+    Traceback (most recent call last):
+        ...
+    ValueError: Only invertable matrices can be raised to a negative power
+    >>> matrix_error = Matrix([[1, 2]])
+    >>> matrix_error ** 3
+    Traceback (most recent call last):
+        ...
+    ValueError: Only square matrices can be raised to a power
+
+
+    Matrix can be compared
+    >>> print(matrix != matrix2)
+    True
+    >>> print(matrix == 3)
+    Traceback (most recent call last):
+        ...
+    TypeError: A Matrix can only be compared with another Matrix
+
+    Matrix can be converted to string by using repr() or str()
+    >>> print(repr(matrix))
+    [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    >>> print(str(matrix))
+    [[1. 2. 3.]
+     [4. 5. 6.]
+     [7. 8. 9.]]
 
     Matrices can also be modified
+    >>> matrix_copy = matrix * 1
     >>> matrix.add_row([10, 11, 12])
     >>> print(matrix)
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]
      [10. 11. 12.]]
+    >>> matrix_copy.add_row([10, 11, 12], 1)
+    >>> print(matrix_copy)
+    [[1. 2. 3.]
+     [10. 11. 12.]
+     [4. 5. 6.]
+     [7. 8. 9.]]
+    >>> matrix.add_row(2)
+    Traceback (most recent call last):
+        ...
+    TypeError: Row must be a list containing all ints and/or floats
+    >>> matrix.add_row([1, 2, "s"])
+    Traceback (most recent call last):
+        ...
+    TypeError: Row must be a list containing all ints and/or floats
+    >>> matrix.add_row([1, 2, 3, 4, 5])
+    Traceback (most recent call last):
+    ...
+    ValueError: Row must be equal in length to the other rows in the matrix
+    >>> matrix_copy = matrix2 * 1
     >>> matrix2.add_column([8, 16, 32])
     >>> print(matrix2)
     [[3. 6. 9. 8.]
      [12. 15. 18. 16.]
      [21. 24. 27. 32.]]
+    >>> matrix_copy.add_column([8, 16, 32], 1)
+    >>> print(matrix_copy)
+    [[3. 8. 6. 9.]
+     [12. 16. 15. 18.]
+     [21. 32. 24. 27.]]
+    >>> matrix2.add_column("s")
+    Traceback (most recent call last):
+    ...
+    TypeError: Column must be a list containing all ints and/or floats
+    >>> matrix2.add_column([1, 2, "s"])
+    Traceback (most recent call last):
+    ...
+    TypeError: Column must be a list containing all ints and/or floats
+    >>> matrix2.add_column([1, 2, 3, 4, 5])
+    Traceback (most recent call last):
+    ...
+    ValueError: Column must be equal in length to the other columns in the matrix
     >>> print(matrix *  matrix2)
     [[90. 108. 126. 136.]
      [198. 243. 288. 304.]
      [306. 378. 450. 472.]
      [414. 513. 612. 640.]]
-
+    >>> matrix_2x2 = Matrix([[1, 2], [1, 2]])
+    >>> print(matrix * matrix_2x2)
+    Traceback (most recent call last):
+    ...
+    ValueError: The number of columns in the first matrix \
+must be equal to the number of rows in the second
+    >>> print(matrix * "s")
+    Traceback (most recent call last):
+        ...
+    TypeError: A Matrix can only be multiplied by an int, float, or another matrix
     """
 
     def __init__(self, rows):
@@ -134,6 +270,8 @@ class Matrix:
 
     @property
     def num_columns(self):
+        if self == Matrix([]):
+            return 0
         return len(self.rows[0])
 
     @property
@@ -226,8 +364,6 @@ class Matrix:
     def __str__(self):
         if self.num_rows == 0:
             return "[]"
-        if self.num_rows == 1:
-            return "[[" + ". ".join(self.rows[0]) + "]]"
         return (
             "["
             + "\n ".join(
@@ -337,7 +473,7 @@ class Matrix:
         if other == 0:
             return self.identity()
         if other < 0:
-            if self.is_invertable:
+            if self.is_invertable():
                 return self.inverse() ** (-other)
             raise ValueError(
                 "Only invertable matrices can be raised to a negative power"
