@@ -102,7 +102,7 @@ class UniqueItemsInRange(MosOperation):
         first_value = self.arr[self.cur_start]
         self.unique_items_count[first_value] = 1
 
-    def move_start(self, new_loc: int):
+    def move_start(self, new_loc: int) -> int:
         super().move_start(new_loc)
         step = new_loc - self.cur_start
         if step < 0:
@@ -117,7 +117,7 @@ class UniqueItemsInRange(MosOperation):
 
         return self.num_unique_items
 
-    def move_end(self, new_loc: int):
+    def move_end(self, new_loc: int) -> int:
         super().move_end(new_loc)
         step = new_loc - self.cur_end
         if step < 0:
@@ -154,7 +154,7 @@ class SumInRange(MosOperation):
     def init_first_position(self):
         self.cur_sum = self.arr[self.cur_start]
 
-    def move_start(self, new_loc):
+    def move_start(self, new_loc: int) -> int:
         super().move_start(new_loc)
         step = new_loc - self.cur_start
         if step < 0:
@@ -169,7 +169,7 @@ class SumInRange(MosOperation):
 
         return self.cur_sum
 
-    def move_end(self, new_loc):
+    def move_end(self, new_loc: int) -> int:
         super().move_end(new_loc)
         step = new_loc - self.cur_end
         if step < 0:
@@ -225,7 +225,7 @@ class MosAlgorithm:
         processed_queries = sorted(processed_queries, key=self.comparator)
         self.sorted_queries, self.inverse_map = list(zip(*processed_queries))
 
-    def _compartor_processed(self, x, y):
+    def _compartor_processed(self, x, y) -> int:
         x_start_block = math.floor(x[QUERY][START] / self.len_sqrt)
         y_start_block = math.floor(y[QUERY][START] / self.len_sqrt)
 
@@ -248,7 +248,7 @@ class MosAlgorithm:
         else:
             return -1
 
-    def run_queries(self, operation: Type[MosOperation]):
+    def run_queries(self, operation: Type[MosOperation]) -> List:
         first_start = self.sorted_queries[0][START]
         op = operation(self.arr, first_start)
 
