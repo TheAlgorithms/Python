@@ -22,7 +22,7 @@ END = 1
 QUERY = 0
 
 
-class MosOperation(ABC):
+class MosOperation:
     """
     A template class for operations used by Mo's algorithm.
     It provides methods for moving both boundaries of the query's range
@@ -35,7 +35,7 @@ class MosOperation(ABC):
     first_start_id: int, the id of the first query's left boundary
 
     """
-    def __init__(self, arr: Union[List, Tuple], first_start_id: int):
+    def __init__(self, arr: Union[List, Tuple], first_start_id: int) -> None:
         if first_start_id < 0 or first_start_id >= len(arr):
             raise ValueError("Invalid first start id {0}".format(
                 first_start_id))
@@ -46,19 +46,51 @@ class MosOperation(ABC):
         self.cur_end = self.cur_start
         self.init_first_position()
 
-    @abstractmethod
-    def init_first_position(self):
+    def init_first_position(self) -> None:
+        """
+        init first position
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = MosOperation(input_array, first_start_id=0)
+        >>> sir_operation.init_first_position()
+        """
         pass
 
-    @abstractmethod
-    def move_start(self, new_loc: int):
-        if new_loc < 0 or new_loc >= self.len:
-            raise ValueError("Invalid location of start: {0}".format(new_loc))
+    def move_start(self, new_loc: int) -> None:
+        """
+        Since it's a skelaton class only checks the validity of new_loc
 
-    @abstractmethod
-    def move_end(self, new_loc: int):
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = MosOperation(input_array, first_start_id=2)
+        >>> sir_operation.move_start(0)
+        >>> sir_operation.move_start(100)
+        Traceback (most recent call last):
+            ...
+        ValueError: Invalid location of start: 100
+        """
         if new_loc < 0 or new_loc >= self.len:
-            raise ValueError("Invalid location of end: {0}".format(new_loc))
+            raise ValueError(f"Invalid location of start: {new_loc}")
+
+    def move_end(self, new_loc: int) -> None:
+        """
+        Since it's a skelaton class only checks the validity of new_loc
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = MosOperation(input_array, first_start_id=2)
+        >>> sir_operation.move_end(4)
+        >>> sir_operation.move_end(100)
+        Traceback (most recent call last):
+            ...
+        ValueError: Invalid location of end: 100
+        """
+        if new_loc < 0 or new_loc >= self.len:
+            raise ValueError(f"Invalid location of end: {new_loc}")
 
 
 class UniqueItemsInRange(MosOperation):
@@ -75,12 +107,31 @@ class UniqueItemsInRange(MosOperation):
     first_start_id: int, the id of the first query's left boundary
 
     """
-    def __init__(self, arr: Union[List, Tuple], first_start_id: int):
+    def __init__(self, arr: Union[List, Tuple], first_start_id: int) -> None:
         self.num_unique_items = 0
         self.unique_items_count = dict()
         super().__init__(arr, first_start_id)
 
-    def _enlarge_range(self, added_id: int):
+    def _enlarge_range(self, added_id: int) -> None:
+        """
+        process range enlarged by 1 element
+
+        Parameters
+        ---------
+
+        added_id: int, the id of the added item
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = UniqueItemsInRange(input_array, first_start_id=0)
+        >>> sir_operation.move_end(3)
+        2
+        >>> sir_operation._enlarge_range(4)
+        >>> sir_operation.num_unique_items
+        3
+        """
+
         new_value = self.arr[added_id]
         if new_value in self.unique_items_count.keys():
             self.unique_items_count[new_value] += 1
@@ -90,19 +141,70 @@ class UniqueItemsInRange(MosOperation):
         if self.unique_items_count[new_value] == 1:
             self.num_unique_items += 1
 
-    def _reduce_range(self, reduced_id: int):
+    def _reduce_range(self, reduced_id: int) -> None:
+        """
+        process range reduced by 1 elemnt
+
+        Parameters
+        ---------
+
+        reduced_id: int, the id of the reduced item
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = UniqueItemsInRange(input_array, first_start_id=0)
+        >>> sir_operation.move_end(2)
+        2
+        >>> sir_operation._reduce_range(2)
+        >>> sir_operation.num_unique_items
+        1
+        """
         reduced_value = self.arr[reduced_id]
         self.unique_items_count[reduced_value] -= 1
 
         if self.unique_items_count[reduced_value] == 0:
             self.num_unique_items -= 1
 
-    def init_first_position(self):
+    def init_first_position(self) -> None:
+        """
+        init the first position
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = UniqueItemsInRange(input_array, first_start_id=4)
+        >>> sir_operation.cur_start
+        4
+        >>> sir_operation.cur_end
+        4
+        >>> sir_operation.num_unique_items
+        1
+        """
         self.num_unique_items = 1
         first_value = self.arr[self.cur_start]
         self.unique_items_count[first_value] = 1
 
     def move_start(self, new_loc: int) -> int:
+        """
+        set the range's left boundary
+
+        Parameters
+        ---------
+
+        new_loc: int, the id of the new location of the range's left boundary
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = UniqueItemsInRange(input_array, first_start_id=2)
+        >>> sir_operation.move_start(new_loc=0)
+        2
+        >>> sir_operation.num_unique_items
+        2
+        >>> sir_operation.cur_start
+        0
+        """
         super().move_start(new_loc)
         step = new_loc - self.cur_start
         if step < 0:
@@ -118,6 +220,25 @@ class UniqueItemsInRange(MosOperation):
         return self.num_unique_items
 
     def move_end(self, new_loc: int) -> int:
+        """
+        set the range's right boundary
+
+        Parameters
+        ---------
+
+        new_loc: int, the id of the new location of the range's right boundary
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = UniqueItemsInRange(input_array, first_start_id=0)
+        >>> sir_operation.move_end(new_loc=2)
+        2
+        >>> sir_operation.num_unique_items
+        2
+        >>> sir_operation.cur_end
+        2
+        """
         super().move_end(new_loc)
         step = new_loc - self.cur_end
         if step < 0:
@@ -147,14 +268,47 @@ class SumInRange(MosOperation):
     first_start_id: int, the id of the first query's left boundary
 
     """
-    def __init__(self, arr: Union[List, Tuple], first_start_id: int):
+    def __init__(self, arr: Union[List, Tuple], first_start_id: int) -> None:
         self.cur_sum = 0
         super().__init__(arr, first_start_id)
 
-    def init_first_position(self):
+    def init_first_position(self) -> None:
+        """
+        init the first position
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = SumInRange(input_array, first_start_id=4)
+        >>> sir_operation.cur_start
+        4
+        >>> sir_operation.cur_end
+        4
+        >>> sir_operation.cur_sum
+        3
+        """
         self.cur_sum = self.arr[self.cur_start]
 
     def move_start(self, new_loc: int) -> int:
+        """
+        set the range's left boundary
+
+        Parameters
+        ---------
+
+        new_loc: int, the id of the new location of the range's left boundary
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = SumInRange(input_array, first_start_id=2)
+        >>> sir_operation.move_start(new_loc=0)
+        4
+        >>> sir_operation.cur_sum
+        4
+        >>> sir_operation.cur_start
+        0
+        """
         super().move_start(new_loc)
         step = new_loc - self.cur_start
         if step < 0:
@@ -170,6 +324,25 @@ class SumInRange(MosOperation):
         return self.cur_sum
 
     def move_end(self, new_loc: int) -> int:
+        """
+        set the range's right boundary
+
+        Parameters
+        ---------
+
+        new_loc: int, the id of the new location of the range's right boundary
+
+        Examples
+        -------
+        >>> input_array = [1, 1, 2, 1, 3, 4, 5, 2, 8]
+        >>> sir_operation = SumInRange(input_array, first_start_id=0)
+        >>> sir_operation.move_end(new_loc=2)
+        4
+        >>> sir_operation.cur_sum
+        4
+        >>> sir_operation.cur_end
+        2
+        """
         super().move_end(new_loc)
         step = new_loc - self.cur_end
         if step < 0:
@@ -208,7 +381,8 @@ class MosAlgorithm:
     [8, 4, 6]
 
     """
-    def __init__(self, arr: Union[List, Tuple], queries: List[Tuple[int, int]]):
+    def __init__(self, arr: Union[List, Tuple], queries: List[Tuple[int, int]])\
+            -> None:
         self.len, self.len_sqrt = len(arr), int(math.ceil(math.sqrt(len(arr))))
         self.num_queries = len(queries)
         self.arr = arr
@@ -225,24 +399,24 @@ class MosAlgorithm:
         processed_queries = sorted(processed_queries, key=self.comparator)
         self.sorted_queries, self.inverse_map = list(zip(*processed_queries))
 
-    def _compartor_processed(self, x, y) -> int:
-        x_start_block = math.floor(x[QUERY][START] / self.len_sqrt)
-        y_start_block = math.floor(y[QUERY][START] / self.len_sqrt)
+    def _compartor_processed(self, left: List, right: List) -> int:
+        left_start_block = math.floor(left[QUERY][START] / self.len_sqrt)
+        right_start_block = math.floor(right[QUERY][START] / self.len_sqrt)
 
-        if x_start_block == y_start_block:
-            if x[QUERY][END] > y[QUERY][END]:
+        if left_start_block == right_start_block:
+            if left[QUERY][END] > right[QUERY][END]:
                 return 1
-            elif x[QUERY][END] < y[QUERY][END]:
+            elif left[QUERY][END] < right[QUERY][END]:
                 return -1
             else:
-                if x[QUERY][START] == y[QUERY][START]:
+                if left[QUERY][START] == right[QUERY][START]:
                     return 0
-                elif x[QUERY][START] < y[QUERY][START]:
+                elif left[QUERY][START] < right[QUERY][START]:
                     return -1
                 else:
                     return 1
 
-        elif x_start_block > y_start_block:
+        elif left_start_block > right_start_block:
             return 1
 
         else:
