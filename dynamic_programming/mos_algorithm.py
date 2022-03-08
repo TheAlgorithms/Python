@@ -37,8 +37,7 @@ class MosOperation:
     """
     def __init__(self, arr: Union[List, Tuple], first_start_id: int) -> None:
         if first_start_id < 0 or first_start_id >= len(arr):
-            raise ValueError("Invalid first start id {0}".format(
-                first_start_id))
+            raise ValueError(f"Invalid first start id {first_start_id}")
 
         self.arr = arr
         self.len = len(arr)
