@@ -14,8 +14,8 @@ def karatsuba(a, b):
         m1 = max(len(str(a)), len(str(b)))
         m2 = m1 // 2
 
-        a1, a2 = divmod(a, 10 ** m2)
-        b1, b2 = divmod(b, 10 ** m2)
+        a1, a2 = divmod(a, 10**m2)
+        b1, b2 = divmod(b, 10**m2)
 
         x = karatsuba(a2, b2)
         y = karatsuba((a1 + a2), (b1 + b2))

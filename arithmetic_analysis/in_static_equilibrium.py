@@ -13,9 +13,9 @@ def polar_force(
     Resolves force along rectangular components.
     (force, angle) => (force_x, force_y)
     >>> polar_force(10, 45)
-    [7.0710678118654755, 7.071067811865475]
+    [7.071067811865477, 7.0710678118654755]
     >>> polar_force(10, 3.14, radian_mode=True)
-    [-9.999987317275394, 0.01592652916486828]
+    [-9.999987317275396, 0.01592652916486828]
     """
     if radian_mode:
         return [magnitude * cos(angle), magnitude * sin(angle)]
@@ -23,7 +23,7 @@ def polar_force(
 
 
 def in_static_equilibrium(
-    forces: ndarray, location: ndarray, eps: float = 10 ** -1
+    forces: ndarray, location: ndarray, eps: float = 10**-1
 ) -> bool:
     """
     Check if a system is in equilibrium.
