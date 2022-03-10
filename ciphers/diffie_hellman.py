@@ -1,6 +1,7 @@
 from binascii import hexlify
-from hashlib import sha256
 from os import urandom
+
+from hashes.sha256 import SHA256
 
 # RFC 3526 - More Modular Exponential (MODP) Diffie-Hellman groups for
 # Internet Key Exchange (IKE) https://tools.ietf.org/html/rfc3526
@@ -238,7 +239,7 @@ class DiffieHellman:
         if not self.is_valid_public_key(other_key):
             raise ValueError("Invalid public key")
         shared_key = pow(other_key, self.__private_key, self.prime)
-        return sha256(str(shared_key).encode()).hexdigest()
+        return SHA256(str(shared_key).encode()).hash
 
     @staticmethod
     def is_valid_public_key_static(remote_public_key_str: int, prime: int) -> bool:
@@ -258,7 +259,7 @@ class DiffieHellman:
         if not DiffieHellman.is_valid_public_key_static(remote_public_key, prime):
             raise ValueError("Invalid public key")
         shared_key = pow(remote_public_key, local_private_key, prime)
-        return sha256(str(shared_key).encode()).hexdigest()
+        return SHA256(str(shared_key).encode()).hash
 
 
 if __name__ == "__main__":
