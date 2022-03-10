@@ -9,11 +9,11 @@ Wikipedia reference: https://en.wikipedia.org/wiki/Garbled_circuit
 import random
 from typing import Callable
 
+from cryptograpic_algorithms.hashes.sha256 import SHA256
 from cryptograpic_algorithms.transfer_protocol.oblivious_transfer import (
     Receiver,
     Sender,
 )
-from hashes.sha256 import SHA256
 
 
 def _generate_key(key_size: int) -> int:

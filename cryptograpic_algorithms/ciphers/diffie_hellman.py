@@ -1,7 +1,7 @@
 from binascii import hexlify
 from os import urandom
 
-from hashes.sha256 import SHA256
+from cryptograpic_algorithms.hashes.sha256 import SHA256
 
 # RFC 3526 - More Modular Exponential (MODP) Diffie-Hellman groups for
 # Internet Key Exchange (IKE) https://tools.ietf.org/html/rfc3526

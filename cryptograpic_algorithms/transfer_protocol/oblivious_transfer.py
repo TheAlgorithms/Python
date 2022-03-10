@@ -8,7 +8,7 @@ Wikipedia reference: https://en.wikipedia.org/wiki/Oblivious_transfer
 
 import random
 
-from ciphers.rsa_key_generator import generateKey
+from cryptograpic_algorithms.ciphers.rsa_key_generator import generateKey
 
 
 class Sender:
