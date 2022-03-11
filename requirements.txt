@@ -17,3 +17,5 @@ tensorflow
 texttable
 tweepy
 xgboost
+
+And a lot of Python and GitHub knowledge! :(
