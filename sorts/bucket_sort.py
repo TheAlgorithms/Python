@@ -58,7 +58,7 @@ def bucket_sort(my_list: list) -> list:
 
     for val in my_list:
         # add elements to a bucket according to its value from min_vale
-        buckets[(int(my_list[i] - min_value) // bucket_size)].append(val)
+        buckets[(int(val - min_value) // bucket_size)].append(val)
 
     return [v for bucket in buckets for v in sorted(bucket)]
 
