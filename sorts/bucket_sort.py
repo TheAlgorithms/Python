@@ -52,7 +52,9 @@ def bucket_sort(my_list: list) -> list:
         return []
     bucket_size = 5
     min_value, max_value = min(my_list), max(my_list)
-    # evenly separate the distance between min_value and max_value to several buckets, such that [min_val,min_val+bucket_size), [min_val+bucket_size, min_val+2*bucket_size)...
+    # evenly separate the distance between min_value and max_value to several buckets
+    #, such that [min_val,min_val+bucket_size), 
+    # [min_val+bucket_size, min_val+2*bucket_size)...
     bucket_count = int(max_value - min_value) // bucket_size + 1
     buckets: list[list] = [[] for _ in range(bucket_count)]
 
