@@ -50,12 +50,15 @@ def bucket_sort(my_list: list) -> list:
     """
     if len(my_list) == 0:
         return []
+    bucket_size = 5
     min_value, max_value = min(my_list), max(my_list)
-    bucket_count = int(max_value - min_value) + 1
+    # evenly separate the distance between min_value and max_value to several buckets, such that [min_val,min_val+bucket_size), [min_val+bucket_size, min_val+2*bucket_size)...
+    bucket_count = int(max_value - min_value) // bucket_size + 1
     buckets: list[list] = [[] for _ in range(bucket_count)]
 
-    for i in range(len(my_list)):
-        buckets[(int(my_list[i] - min_value) // bucket_count)].append(my_list[i])
+    for val in my_list:
+        # add elements to a bucket according to its value from min_vale
+        buckets[(int(my_list[i] - min_value) // bucket_size)].append(val)
 
     return [v for bucket in buckets for v in sorted(bucket)]
 
