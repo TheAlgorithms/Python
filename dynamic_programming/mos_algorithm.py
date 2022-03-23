@@ -13,7 +13,7 @@ For more explanations :
 """
 
 import math
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from functools import cmp_to_key
 from typing import List, Tuple, Union, Type
 
@@ -35,6 +35,7 @@ class MosOperation:
     first_start_id: int, the id of the first query's left boundary
 
     """
+
     def __init__(self, arr: Union[List, Tuple], first_start_id: int) -> None:
         if first_start_id < 0 or first_start_id >= len(arr):
             raise ValueError(f"Invalid first start id {first_start_id}")
@@ -45,6 +46,7 @@ class MosOperation:
         self.cur_end = self.cur_start
         self.init_first_position()
 
+    @abstractmethod
     def init_first_position(self) -> None:
         """
         init first position
@@ -57,6 +59,7 @@ class MosOperation:
         """
         pass
 
+    @abstractmethod
     def move_start(self, new_loc: int) -> None:
         """
         Since it's a skelaton class only checks the validity of new_loc
@@ -74,6 +77,7 @@ class MosOperation:
         if new_loc < 0 or new_loc >= self.len:
             raise ValueError(f"Invalid location of start: {new_loc}")
 
+    @abstractmethod
     def move_end(self, new_loc: int) -> None:
         """
         Since it's a skelaton class only checks the validity of new_loc
@@ -106,6 +110,7 @@ class UniqueItemsInRange(MosOperation):
     first_start_id: int, the id of the first query's left boundary
 
     """
+
     def __init__(self, arr: Union[List, Tuple], first_start_id: int) -> None:
         self.num_unique_items = 0
         self.unique_items_count = dict()
@@ -267,6 +272,7 @@ class SumInRange(MosOperation):
     first_start_id: int, the id of the first query's left boundary
 
     """
+
     def __init__(self, arr: Union[List, Tuple], first_start_id: int) -> None:
         self.cur_sum = 0
         super().__init__(arr, first_start_id)
@@ -380,14 +386,18 @@ class MosAlgorithm:
     [8, 4, 6]
 
     """
-    def __init__(self, arr: Union[List, Tuple], queries: List[Tuple[int, int]])\
-            -> None:
+
+    def __init__(self, arr: Union[List, Tuple], queries: List[Tuple[int, int]]) -> None:
         self.len, self.len_sqrt = len(arr), int(math.ceil(math.sqrt(len(arr))))
         self.num_queries = len(queries)
         self.arr = arr
 
-        if any([(q[START] < 0) or (q[END] >= self.len) or (q[START] > q[END])
-                for q in queries]):
+        if any(
+            [
+                (q[START] < 0) or (q[END] >= self.len) or (q[START] > q[END])
+                for q in queries
+            ]
+        ):
             raise ValueError("At least one of the queries is invalid")
 
         self.comparator = cmp_to_key(self._compartor_processed)
