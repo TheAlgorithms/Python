@@ -12,6 +12,7 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 
+
 def is_prime(number: int) -> bool:
     """
     Determines whether the given number is prime or not
