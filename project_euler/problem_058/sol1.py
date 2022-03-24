@@ -38,7 +38,7 @@ from math import isqrt
 
 def is_prime(number: int) -> int:
     """
-    returns whether the given number is prime or not
+    Returns whether the given number is prime or not
     >>> is_prime(1)
     0
     >>> is_prime(17)
@@ -60,7 +60,7 @@ def is_prime(number: int) -> int:
 
 def solution(ratio: float = 0.1) -> int:
     """
-    returns the side length of the square spiral of odd length greater
+    Returns the side length of the square spiral of odd length greater
     than 1 for which the ratio of primes along both diagonals
     first falls below the given ratio.
     >>> solution(.5)
