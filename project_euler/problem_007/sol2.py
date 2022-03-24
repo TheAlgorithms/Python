@@ -11,8 +11,6 @@ What is the 10001st prime number?
 References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
-from typing import List
-
 
 def is_prime(number: int) -> bool:
     """
@@ -74,7 +72,7 @@ def solution(nth: int = 10001) -> int:
         raise TypeError("Parameter nth must be int or castable to int.") from None
     if nth <= 0:
         raise ValueError("Parameter nth must be greater than or equal to one.")
-    primes: List[int] = []
+    primes: list[int] = []
     num = 2
     while len(primes) < nth:
         if is_prime(num):
