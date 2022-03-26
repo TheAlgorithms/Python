@@ -30,8 +30,8 @@ def decrypt(txt: str, symbol: str) -> str:
       #here we add the newly created, decyphered word to a new string which will contain our full result
       res_str += res_wrd + " "
     res_str = res_str[:-1]
-    #and here we print out the final result
-    print(res_str)
+    #and here we return out the final result
+    return res_str
 
 if __name__ == "__main__":
   import doctest

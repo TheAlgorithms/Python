@@ -19,7 +19,7 @@ def censor(txt: str, word: str) -> str:
     for word1 in txt_lst:
       txt += word1 + " "
     txt = txt[:-1]
-    print(txt)
+    return txt
     
 if __name__ == "__main__":
     import doctest
