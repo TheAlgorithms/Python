@@ -32,7 +32,7 @@ def main():
         "in the prompt below. (To exit enter exit or Ctrl-C)\n",
         sep="",
     )
-    fibonacci = Fibonacci()
+    fib = Fib()
 
     while True:
         prompt: str = input(">> ")
