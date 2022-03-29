@@ -48,4 +48,4 @@ def sieve(n):
     return prime
 
 
-print(sieve(10**6))
+print(sieve(10 ** 6))
