@@ -13,7 +13,7 @@ def polar_force(
     Resolves force along rectangular components.
     (force, angle) => (force_x, force_y)
     >>> polar_force(10, 45)
-    [7.071067811865477, 7.0710678118654755]
+    [7.0710678118654755, 7.071067811865475]
     >>> polar_force(10, 3.14, radian_mode=True)
     [-9.999987317275396, 0.01592652916486828]
     """
@@ -50,7 +50,11 @@ def in_static_equilibrium(
 if __name__ == "__main__":
     # Test to check if it works
     forces = array(
-        [polar_force(718.4, 180 - 30), polar_force(879.54, 45), polar_force(100, -90)]
+        [
+            polar_force(718.4, 180 - 30),
+            polar_force(879.54, 45),
+            polar_force(100, -90),
+        ]
     )
 
     location = array([[0, 0], [0, 0], [0, 0]])
