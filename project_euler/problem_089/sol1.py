@@ -125,7 +125,7 @@ def solution(roman_numerals_filename: str = "/p089_roman.txt") -> int:
 
     savings = 0
 
-    file1 = open(os.path.dirname(__file__) + roman_numerals_filename, "r")
+    file1 = open(os.path.dirname(__file__) + roman_numerals_filename)
     lines = file1.readlines()
     for line in lines:
         original = line.strip()

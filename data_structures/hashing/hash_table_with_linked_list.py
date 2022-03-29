@@ -14,7 +14,7 @@ class HashTableWithLinkedList(HashTable):
 
     def balanced_factor(self):
         return (
-            sum([self.charge_factor - len(slot) for slot in self.values])
+            sum(self.charge_factor - len(slot) for slot in self.values)
             / self.size_table
             * self.charge_factor
         )

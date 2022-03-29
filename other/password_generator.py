@@ -1,4 +1,4 @@
-"""Password generator allows you to generate a random password of length N."""
+"""Password Generator allows you to generate a random password of length N."""
 from random import choice, shuffle
 from string import ascii_letters, digits, punctuation
 
@@ -24,7 +24,7 @@ def password_generator(length=8):
 # ctbi= characters that must be in password
 # i= how many letters or characters the password length will be
 def alternative_password_generator(ctbi, i):
-    # Password generator = full boot with random_number, random_letters, and
+    # Password Generator = full boot with random_number, random_letters, and
     # random_character FUNCTIONS
     # Put your code here...
     i = i - len(ctbi)

@@ -28,7 +28,7 @@ def solution(num: int = 100) -> int:
     >>> solution(1)
     1
     """
-    return sum([int(x) for x in str(factorial(num))])
+    return sum(int(x) for x in str(factorial(num)))
 
 
 if __name__ == "__main__":

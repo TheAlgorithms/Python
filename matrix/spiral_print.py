@@ -4,36 +4,35 @@ This problem has been solved through recursive way.
 
       Matrix must satisfy below conditions
         i) matrix should be only one or two dimensional
-        ii)column of all the row should be equal
+        ii) number of column of all rows should be equal
 """
 
+from collections.abc import Iterable
 
-def checkMatrix(a):
+
+def check_matrix(matrix):
     # must be
-    if type(a) == list and len(a) > 0:
-        if type(a[0]) == list:
-            prevLen = 0
-            for i in a:
-                if prevLen == 0:
-                    prevLen = len(i)
-                    result = True
-                elif prevLen == len(i):
+    if matrix and isinstance(matrix, Iterable):
+        if isinstance(matrix[0], Iterable):
+            prev_len = 0
+            for row in matrix:
+                if prev_len == 0:
+                    prev_len = len(row)
                     result = True
                 else:
-                    result = False
+                    result = prev_len == len(row)
         else:
             result = True
     else:
         result = False
+
     return result
 
 
 def spiralPrint(a):
-
-    if checkMatrix(a) and len(a) > 0:
-
+    if check_matrix(a) and len(a) > 0:
         matRow = len(a)
-        if type(a[0]) == list:
+        if isinstance(a[0], Iterable):
             matCol = len(a[0])
         else:
             for dat in a:
@@ -64,5 +63,6 @@ def spiralPrint(a):
 
 
 # driver code
-a = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
-spiralPrint(a)
+if __name__ == "__main__":
+    a = ([1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12])
+    spiralPrint(a)

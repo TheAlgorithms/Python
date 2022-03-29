@@ -1,4 +1,5 @@
 # https://en.wikipedia.org/wiki/Trifid_cipher
+from __future__ import annotations
 
 
 def __encryptPart(messagePart: str, character2Number: dict[str, str]) -> str:

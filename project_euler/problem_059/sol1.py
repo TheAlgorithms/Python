@@ -25,23 +25,22 @@ file containing the encrypted ASCII codes, and the knowledge that the plain text
 must contain common English words, decrypt the message and find the sum of the ASCII
 values in the original text.
 """
-
+from __future__ import annotations
 
 import string
 from itertools import cycle, product
 from pathlib import Path
-from typing import List, Optional, Set, Tuple
 
 VALID_CHARS: str = (
     string.ascii_letters + string.digits + string.punctuation + string.whitespace
 )
-LOWERCASE_INTS: List[int] = [ord(letter) for letter in string.ascii_lowercase]
-VALID_INTS: Set[int] = {ord(char) for char in VALID_CHARS}
+LOWERCASE_INTS: list[int] = [ord(letter) for letter in string.ascii_lowercase]
+VALID_INTS: set[int] = {ord(char) for char in VALID_CHARS}
 
-COMMON_WORDS: List[str] = ["the", "be", "to", "of", "and", "in", "that", "have"]
+COMMON_WORDS: list[str] = ["the", "be", "to", "of", "and", "in", "that", "have"]
 
 
-def try_key(ciphertext: List[int], key: Tuple[int, ...]) -> Optional[str]:
+def try_key(ciphertext: list[int], key: tuple[int, ...]) -> str | None:
     """
     Given an encrypted message and a possible 3-character key, decrypt the message.
     If the decrypted message contains a invalid character, i.e. not an ASCII letter,
@@ -66,7 +65,7 @@ def try_key(ciphertext: List[int], key: Tuple[int, ...]) -> Optional[str]:
     return decoded
 
 
-def filter_valid_chars(ciphertext: List[int]) -> List[str]:
+def filter_valid_chars(ciphertext: list[int]) -> list[str]:
     """
     Given an encrypted message, test all 3-character strings to try and find the
     key. Return a list of the possible decrypted messages.
@@ -77,7 +76,7 @@ def filter_valid_chars(ciphertext: List[int]) -> List[str]:
     >>> text in filter_valid_chars(encoded)
     True
     """
-    possibles: List[str] = []
+    possibles: list[str] = []
     for key in product(LOWERCASE_INTS, repeat=3):
         encoded = try_key(ciphertext, key)
         if encoded is not None:
@@ -85,7 +84,7 @@ def filter_valid_chars(ciphertext: List[int]) -> List[str]:
     return possibles
 
 
-def filter_common_word(possibles: List[str], common_word: str) -> List[str]:
+def filter_common_word(possibles: list[str], common_word: str) -> list[str]:
     """
     Given a list of possible decoded messages, narrow down the possibilities
     for checking for the presence of a specified common word. Only decoded messages
@@ -106,8 +105,8 @@ def solution(filename: str = "p059_cipher.txt") -> int:
     >>> solution("test_cipher.txt")
     3000
     """
-    ciphertext: List[int]
-    possibles: List[str]
+    ciphertext: list[int]
+    possibles: list[str]
     common_word: str
     decoded_text: str
     data: str = Path(__file__).parent.joinpath(filename).read_text(encoding="utf-8")
@@ -121,7 +120,7 @@ def solution(filename: str = "p059_cipher.txt") -> int:
             break
 
     decoded_text = possibles[0]
-    return sum([ord(char) for char in decoded_text])
+    return sum(ord(char) for char in decoded_text)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 import random
 import string
-from typing import Optional
 
 
 class ShuffledShiftCipher:
@@ -27,7 +28,7 @@ class ShuffledShiftCipher:
     cip2 = ShuffledShiftCipher()
     """
 
-    def __init__(self, passcode: Optional[str] = None) -> None:
+    def __init__(self, passcode: str | None = None) -> None:
         """
         Initializes a cipher object with a passcode as it's entity
         Note: No new passcode is generated if user provides a passcode

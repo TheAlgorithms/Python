@@ -43,7 +43,7 @@ def can_string_be_rearranged_as_palindrome(input_str: str = "") -> bool:
         return True
     lower_case_input_str = input_str.replace(" ", "").lower()
     # character_freq_dict: Stores the frequency of every character in the input string
-    character_freq_dict = {}
+    character_freq_dict: dict[str, int] = {}
 
     for character in lower_case_input_str:
         character_freq_dict[character] = character_freq_dict.get(character, 0) + 1

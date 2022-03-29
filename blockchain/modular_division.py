@@ -1,4 +1,4 @@
-from typing import Tuple
+from __future__ import annotations
 
 
 def modular_division(a: int, b: int, n: int) -> int:
@@ -73,7 +73,7 @@ def modular_division2(a: int, b: int, n: int) -> int:
     return x
 
 
-def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
+def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     """
     Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers x
     and y, then d = gcd(a,b)
@@ -101,7 +101,7 @@ def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
     return (d, x, y)
 
 
-def extended_euclid(a: int, b: int) -> Tuple[int, int]:
+def extended_euclid(a: int, b: int) -> tuple[int, int]:
     """
     Extended Euclid
     >>> extended_euclid(10, 6)

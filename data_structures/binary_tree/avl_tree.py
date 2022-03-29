@@ -5,15 +5,16 @@ python3 -m doctest -v avl_tree.py
 For testing run:
 python avl_tree.py
 """
+from __future__ import annotations
 
 import math
 import random
-from typing import Any, List, Optional
+from typing import Any
 
 
 class my_queue:
     def __init__(self) -> None:
-        self.data: List[Any] = []
+        self.data: list[Any] = []
         self.head: int = 0
         self.tail: int = 0
 
@@ -41,17 +42,17 @@ class my_queue:
 class my_node:
     def __init__(self, data: Any) -> None:
         self.data = data
-        self.left: Optional[my_node] = None
-        self.right: Optional[my_node] = None
+        self.left: my_node | None = None
+        self.right: my_node | None = None
         self.height: int = 1
 
     def get_data(self) -> Any:
         return self.data
 
-    def get_left(self) -> Optional["my_node"]:
+    def get_left(self) -> my_node | None:
         return self.left
 
-    def get_right(self) -> Optional["my_node"]:
+    def get_right(self) -> my_node | None:
         return self.right
 
     def get_height(self) -> int:
@@ -61,11 +62,11 @@ class my_node:
         self.data = data
         return
 
-    def set_left(self, node: Optional["my_node"]) -> None:
+    def set_left(self, node: my_node | None) -> None:
         self.left = node
         return
 
-    def set_right(self, node: Optional["my_node"]) -> None:
+    def set_right(self, node: my_node | None) -> None:
         self.right = node
         return
 
@@ -74,7 +75,7 @@ class my_node:
         return
 
 
-def get_height(node: Optional["my_node"]) -> int:
+def get_height(node: my_node | None) -> int:
     if node is None:
         return 0
     return node.get_height()
@@ -149,7 +150,7 @@ def rl_rotation(node: my_node) -> my_node:
     return left_rotation(node)
 
 
-def insert_node(node: Optional["my_node"], data: Any) -> Optional["my_node"]:
+def insert_node(node: my_node | None, data: Any) -> my_node | None:
     if node is None:
         return my_node(data)
     if data < node.get_data():
@@ -197,7 +198,7 @@ def get_leftMost(root: my_node) -> Any:
     return root.get_data()
 
 
-def del_node(root: my_node, data: Any) -> Optional["my_node"]:
+def del_node(root: my_node, data: Any) -> my_node | None:
     left_child = root.get_left()
     right_child = root.get_right()
     if root.get_data() == data:
@@ -275,7 +276,7 @@ class AVLtree:
     """
 
     def __init__(self) -> None:
-        self.root: Optional[my_node] = None
+        self.root: my_node | None = None
 
     def get_height(self) -> int:
         return get_height(self.root)

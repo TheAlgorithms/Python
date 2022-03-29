@@ -1,20 +1,19 @@
 """
     Graph Coloring also called "m coloring problem"
-    consists of coloring given graph with at most m colors
-    such that no adjacent vertices are assigned same color
+    consists of coloring a given graph with at most m colors
+    such that no adjacent vertices are assigned the same color
 
     Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
 """
-from typing import List
 
 
 def valid_coloring(
-    neighbours: List[int], colored_vertices: List[int], color: int
+    neighbours: list[int], colored_vertices: list[int], color: int
 ) -> bool:
     """
-    For each neighbour check if coloring constraint is satisfied
+    For each neighbour check if the coloring constraint is satisfied
     If any of the neighbours fail the constraint return False
-    If all neighbours validate constraint return True
+    If all neighbours validate the constraint return True
 
     >>> neighbours = [0,1,0,1,0]
     >>> colored_vertices = [0, 2, 1, 2, 0]
@@ -35,21 +34,21 @@ def valid_coloring(
 
 
 def util_color(
-    graph: List[List[int]], max_colors: int, colored_vertices: List[int], index: int
+    graph: list[list[int]], max_colors: int, colored_vertices: list[int], index: int
 ) -> bool:
     """
     Pseudo-Code
 
     Base Case:
     1. Check if coloring is complete
-        1.1 If complete return True (meaning that we successfully colored graph)
+        1.1 If complete return True (meaning that we successfully colored the graph)
 
     Recursive Step:
-    2. Itterates over each color:
-        Check if current coloring is valid:
+    2. Iterates over each color:
+        Check if the current coloring is valid:
             2.1. Color given vertex
-            2.2. Do recursive call check if this coloring leads to solving problem
-            2.4. if current coloring leads to solution return
+            2.2. Do recursive call, check if this coloring leads to a solution
+            2.4. if current coloring leads to a solution return
             2.5. Uncolor given vertex
 
     >>> graph = [[0, 1, 0, 0, 0],
@@ -86,7 +85,7 @@ def util_color(
     return False
 
 
-def color(graph: List[List[int]], max_colors: int) -> List[int]:
+def color(graph: list[list[int]], max_colors: int) -> list[int]:
     """
     Wrapper function to call subroutine called util_color
     which will either return True or False.
