@@ -18,9 +18,9 @@ def create_ngram(sentence: str, ngram_size: int) -> list:
     ['I ', ' a', 'am', 'm ', ' a', 'an', 'n ', ' N', 'NL', 'LP', 'Pe', 'er']
     """
 
-    ngrams = []
-    for i in range(len(sentence) - ngram_size + 1):
-        ngrams.append(sentence[i : i + ngram_size])
+    ngrams = [
+        sentence[i : i + ngram_size] for i in range(len(sentence) - ngram_size + 1)
+    ]
     return ngrams
 
 
