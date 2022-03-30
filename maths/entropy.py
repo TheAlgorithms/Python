@@ -112,15 +112,15 @@ def main():
 
     doctest.testmod()
     # text = (
-    #     "Had repulsive dashwoods suspicion sincerity but advantage now him. Remark "
+    #     "Had repulsive dashwoods suspicion sincerity but advantage now them. Remark "
     #     "easily garret nor nay. Civil those mrs enjoy shy fat merry. You greatest "
-    #     "jointure saw horrible. He private he on be imagine suppose. Fertile "
+    #     "jointure saw horrible. They private they on be imagine suppose. Fertile "
     #     "beloved evident through no service elderly is. Blind there if every no so "
-    #     "at. Own neglected you preferred way sincerity delivered his attempted. To "
+    #     "at. Own neglected you preferred way sincerity delivered their attempted. To "
     #     "of message cottage windows do besides against uncivil.  Delightful "
-    #     "unreserved impossible few estimating men favourable see entreaties. She "
-    #     "propriety immediate was improving. He or entrance humoured likewise "
-    #     "moderate. Much nor game son say feel. Fat make met can must form into "
+    #     "unreserved impossible few estimating men favourable see entreaties. They "
+    #     "propriety immediate was improving. They or entrance humoured likewise "
+    #     "moderate. Much nor game child say feel. Fat make met can must form into "
     #     "gate. Me we offending prevailed discovery. "
     # )
 

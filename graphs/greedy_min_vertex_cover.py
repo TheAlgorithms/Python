@@ -22,7 +22,7 @@ def greedy_min_vertex_cover(graph: dict) -> set[int]:
     # queue used to store nodes and their rank
     queue: list[list] = []
 
-    # for each node and his adjacency list add them and the rank of the node to queue
+    # for each node and their adjacency list add them and the rank of the node to queue
     # using heapq module the queue will be filled like a Priority Queue
     # heapq works with a min priority queue, so I used -1*len(v) to build it
     for key, value in graph.items():
@@ -45,7 +45,7 @@ def greedy_min_vertex_cover(graph: dict) -> set[int]:
             if elem[0] == 0:
                 continue
             # if argmax is reachable from elem
-            # remove argmax from elem's adjacent list and update his rank
+            # remove argmax from elem's adjacent list and update their rank
             if argmax in elem[1][1]:
                 index = elem[1][1].index(argmax)
                 del elem[1][1][index]

@@ -24,7 +24,7 @@ def matching_min_vertex_cover(graph: dict) -> set:
     edges = get_edges(graph)
 
     # While there are still elements in edges list, take an arbitrary edge
-    # (from_node, to_node) and add his extremity to chosen_vertices and then
+    # (from_node, to_node) and add their extremity to chosen_vertices and then
     # remove all arcs adjacent to the from_node and to_node
     while edges:
         from_node, to_node = edges.pop()
