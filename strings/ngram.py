@@ -8,9 +8,6 @@ https://en.wikipedia.org/wiki/N-gram
 def create_ngram(sentence: str, ngram_size: int) -> list:
     """
     Create ngrams from a sentence
-    :param sentence: str
-    :param ngram_size: int
-    :return: list
 
     >>> create_ngram("I am a sentence", 2)
     ['I ', ' a', 'am', 'm ', ' a', 'a ', ' s', 'se', 'en', 'nt', 'te', 'en', 'nc', 'ce']
