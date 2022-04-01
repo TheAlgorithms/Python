@@ -203,7 +203,7 @@ class IndexCalculation:
         https://www.indexdatabase.de/db/i-single.php?id=391
         :return: index
         """
-        return self.nir * (self.red / (self.green ** 2))
+        return self.nir * (self.red / (self.green**2))
 
     def GLI(self):
         """
@@ -295,7 +295,7 @@ class IndexCalculation:
         """
         return a * (
             (self.nir - a * self.red - b)
-            / (a * self.nir + self.red - a * b + X * (1 + a ** 2))
+            / (a * self.nir + self.red - a * b + X * (1 + a**2))
         )
 
     def BWDRVI(self):
@@ -363,7 +363,7 @@ class IndexCalculation:
         https://www.indexdatabase.de/db/i-single.php?id=25
         :return: index
         """
-        n = (2 * (self.nir ** 2 - self.red ** 2) + 1.5 * self.nir + 0.5 * self.red) / (
+        n = (2 * (self.nir**2 - self.red**2) + 1.5 * self.nir + 0.5 * self.red) / (
             self.nir + self.red + 0.5
         )
         return n * (1 - 0.25 * n) - (self.red - 0.125) / (1 - self.red)

@@ -38,7 +38,7 @@ def continuous_fraction_period(n: int) -> int:
     period = 0
     while integer_part != 2 * ROOT:
         numerator = denominator * integer_part - numerator
-        denominator = (n - numerator ** 2) / denominator
+        denominator = (n - numerator**2) / denominator
         integer_part = int((ROOT + numerator) / denominator)
         period += 1
     return period

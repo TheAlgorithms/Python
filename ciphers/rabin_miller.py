@@ -21,7 +21,7 @@ def rabinMiller(num: int) -> bool:
                     return False
                 else:
                     i = i + 1
-                    v = (v ** 2) % num
+                    v = (v**2) % num
     return True
 
 

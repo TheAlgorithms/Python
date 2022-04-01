@@ -97,7 +97,7 @@ def simulated_annealing(
 if __name__ == "__main__":
 
     def test_f1(x, y):
-        return (x ** 2) + (y ** 2)
+        return (x**2) + (y**2)
 
     # starting the problem with initial coordinates (12, 47)
     prob = SearchProblem(x=12, y=47, step_size=1, function_to_optimize=test_f1)
@@ -120,7 +120,7 @@ if __name__ == "__main__":
     )
 
     def test_f2(x, y):
-        return (3 * x ** 2) - (6 * y)
+        return (3 * x**2) - (6 * y)
 
     prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
     local_min = simulated_annealing(prob, find_max=False, visualization=True)
