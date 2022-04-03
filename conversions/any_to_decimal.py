@@ -12,6 +12,10 @@ def toDecimal(base_str: str, base: int):
 		
 	"""
 
+	# check base_str type
+	if not isinstance(base_str, str):
+		raise ValueError("invalid string type: string woud be str")
+
 	base_str = base_str.strip().lower()
 	chars = digits + letters
 	valid_chars = chars[:base]
@@ -28,7 +32,7 @@ def toDecimal(base_str: str, base: int):
 		else:
 			base = int(base)
 	else:
-		raise ValueError
+		raise ValueError("invalid base: base would be integer")
 
 	# check if base_str is valid
 	if match(rf"^(-|\+)?[{valid_chars}]+", base_str) is None:
