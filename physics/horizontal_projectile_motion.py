@@ -66,7 +66,7 @@ def horizontal_distance(init_velocity: float, angle: float) -> float:
     """
     check_args(init_velocity, angle)
     radians = angle_to_radians(2 * angle)
-    return round(init_velocity ** 2 * sin(radians) / g, 2)
+    return round(init_velocity**2 * sin(radians) / g, 2)
 
 
 def max_height(init_velocity: float, angle: float) -> float:
@@ -93,7 +93,7 @@ def max_height(init_velocity: float, angle: float) -> float:
     """
     check_args(init_velocity, angle)
     radians = angle_to_radians(angle)
-    return round(init_velocity ** 2 * sin(radians) ** 2 / (2 * g), 2)
+    return round(init_velocity**2 * sin(radians) ** 2 / (2 * g), 2)
 
 
 def total_time(init_velocity: float, angle: float) -> float:
