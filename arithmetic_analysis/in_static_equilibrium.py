@@ -13,10 +13,10 @@ def polar_force(
     Resolves force along rectangular components.
     (force, angle) => (force_x, force_y)
     >>> force = polar_force(10, 45)
-    >>> round(force[0], 13)
-    7.0710678118654
-    >>> round(force[1], 13)
-    7.0710678118654
+    >>> round(force[0], 12)
+    7.071067811865
+    >>> round(force[1], 12)
+    7.071067811865
     >>> polar_force(10, 3.14, radian_mode=True)
     [-9.999987317275396, 0.01592652916486828]
     """
