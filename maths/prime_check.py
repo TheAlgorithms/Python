@@ -32,7 +32,7 @@ def prime_check(number: int) -> bool:
     if 1 < number < 4:
         # 2 and 3 are primes
         return True
-    elif number < 2 or not number % 2 or number % 3 == 0:
+    elif number < 2 or number % 2 == 0 or number % 3 == 0:
         # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
         return False
 
