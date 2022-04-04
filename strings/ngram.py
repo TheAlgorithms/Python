@@ -1,11 +1,9 @@
 """
 https://en.wikipedia.org/wiki/N-gram
-
-
 """
 
 
-def create_ngram(sentence: str, ngram_size: int) -> list:
+def create_ngram(sentence: str, ngram_size: int) -> list[str]:
     """
     Create ngrams from a sentence
 
@@ -16,7 +14,6 @@ def create_ngram(sentence: str, ngram_size: int) -> list:
     >>> create_ngram("This is short", 50)
     []
     """
-
     return [sentence[i : i + ngram_size] for i in range(len(sentence) - ngram_size + 1)]
 
 
