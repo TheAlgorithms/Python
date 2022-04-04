@@ -94,7 +94,7 @@ def not32(i):
 
 
 def sum32(a, b):
-    return (a + b) % 2 ** 32
+    return (a + b) % 2**32
 
 
 def leftrot32(i, s):
@@ -114,7 +114,7 @@ def md5me(testString):
         bs += format(ord(i), "08b")
     bs = pad(bs)
 
-    tvals = [int(2 ** 32 * abs(math.sin(i + 1))) for i in range(64)]
+    tvals = [int(2**32 * abs(math.sin(i + 1))) for i in range(64)]
 
     a0 = 0x67452301
     b0 = 0xEFCDAB89
@@ -211,7 +211,7 @@ def md5me(testString):
             dtemp = D
             D = C
             C = B
-            B = sum32(B, leftrot32((A + f + tvals[i] + m[g]) % 2 ** 32, s[i]))
+            B = sum32(B, leftrot32((A + f + tvals[i] + m[g]) % 2**32, s[i]))
             A = dtemp
         a0 = sum32(a0, A)
         b0 = sum32(b0, B)

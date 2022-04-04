@@ -5,6 +5,7 @@ Nodes contain data and also may link to other nodes:
                  head node gives us access of the complete list
     - Last node: points to null
 """
+from __future__ import annotations
 
 from typing import Any
 
@@ -17,7 +18,7 @@ class Node:
 
 class LinkedList:
     def __init__(self) -> None:
-        self.head = None
+        self.head: Node | None = None
         self.size = 0
 
     def add(self, item: Any) -> None:
@@ -25,7 +26,10 @@ class LinkedList:
         self.size += 1
 
     def remove(self) -> Any:
-        if self.is_empty():
+        # Switched 'self.is_empty()' to 'self.head is None'
+        # because mypy was considering the possibility that 'self.head'
+        # can be None in below else part and giving error
+        if self.head is None:
             return None
         else:
             item = self.head.item
@@ -50,7 +54,7 @@ class LinkedList:
         else:
             iterate = self.head
             item_str = ""
-            item_list = []
+            item_list: list[str] = []
             while iterate:
                 item_list.append(str(iterate.item))
                 iterate = iterate.next

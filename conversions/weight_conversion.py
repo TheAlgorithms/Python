@@ -3,7 +3,7 @@ Conversion of weight units.
 
 __author__ = "Anubhav Solanki"
 __license__ = "MIT"
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __maintainer__ = "Anubhav Solanki"
 __email__ = "anubhavsolanki0@gmail.com"
 
@@ -27,6 +27,7 @@ REFERENCES :
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Ounce
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Fineness#Karat
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Dalton_(unit)
+-> Wikipedia reference: https://en.wikipedia.org/wiki/Stone_(unit)
 """
 
 KILOGRAM_CHART: dict[str, float] = {
@@ -37,6 +38,7 @@ KILOGRAM_CHART: dict[str, float] = {
     "long-ton": 0.0009842073,
     "short-ton": 0.0011023122,
     "pound": 2.2046244202,
+    "stone": 0.1574731728,
     "ounce": 35.273990723,
     "carrat": 5000,
     "atomic-mass-unit": 6.022136652e26,
@@ -50,6 +52,7 @@ WEIGHT_TYPE_CHART: dict[str, float] = {
     "long-ton": 1016.04608,
     "short-ton": 907.184,
     "pound": 0.453592,
+    "stone": 6.35029,
     "ounce": 0.0283495,
     "carrat": 0.0002,
     "atomic-mass-unit": 1.660540199e-27,
@@ -67,6 +70,7 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     "long-ton" : 0.0009842073,
     "short-ton" : 0.0011023122,
     "pound" : 2.2046244202,
+    "stone": 0.1574731728,
     "ounce" : 35.273990723,
     "carrat" : 5000,
     "atomic-mass-unit" : 6.022136652E+26
@@ -85,6 +89,8 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     0.0011023122
     >>> weight_conversion("kilogram","pound",4)
     8.8184976808
+    >>> weight_conversion("kilogram","stone",5)
+    0.7873658640000001
     >>> weight_conversion("kilogram","ounce",4)
     141.095962892
     >>> weight_conversion("kilogram","carrat",3)
@@ -105,6 +111,8 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     3.3069366000000003e-06
     >>> weight_conversion("gram","pound",3)
     0.0066138732606
+    >>> weight_conversion("gram","stone",4)
+    0.0006298926912000001
     >>> weight_conversion("gram","ounce",1)
     0.035273990723
     >>> weight_conversion("gram","carrat",2)
@@ -211,6 +219,24 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
     2267.96
     >>> weight_conversion("pound","atomic-mass-unit",4)
     1.0926372033015936e+27
+    >>> weight_conversion("stone","kilogram",5)
+    31.751450000000002
+    >>> weight_conversion("stone","gram",2)
+    12700.58
+    >>> weight_conversion("stone","milligram",3)
+    19050870.0
+    >>> weight_conversion("stone","metric-ton",3)
+    0.01905087
+    >>> weight_conversion("stone","long-ton",3)
+    0.018750005325351003
+    >>> weight_conversion("stone","short-ton",3)
+    0.021000006421614002
+    >>> weight_conversion("stone","pound",2)
+    28.00000881870372
+    >>> weight_conversion("stone","ounce",1)
+    224.00007054835967
+    >>> weight_conversion("stone","carrat",2)
+    63502.9
     >>> weight_conversion("ounce","kilogram",3)
     0.0850485
     >>> weight_conversion("ounce","gram",3)

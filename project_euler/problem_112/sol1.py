@@ -47,7 +47,9 @@ def check_bouncy(n: int) -> bool:
     """
     if not isinstance(n, int):
         raise ValueError("check_bouncy() accepts only integer arguments")
-    return "".join(sorted(str(n))) != str(n) and "".join(sorted(str(n)))[::-1] != str(n)
+    str_n = str(n)
+    sorted_str_n = "".join(sorted(str_n))
+    return sorted_str_n != str_n and sorted_str_n[::-1] != str_n
 
 
 def solution(percent: float = 99) -> int:

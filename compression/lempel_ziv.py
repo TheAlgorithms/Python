@@ -26,7 +26,7 @@ def read_file_binary(file_path: str) -> str:
 
 
 def add_key_to_lexicon(
-    lexicon: dict, curr_string: str, index: int, last_match_id: str
+    lexicon: dict[str, str], curr_string: str, index: int, last_match_id: str
 ) -> None:
     """
     Adds new strings (curr_string + "0",  curr_string + "1") to the lexicon
@@ -110,7 +110,7 @@ def write_file_binary(file_path: str, to_write: str) -> None:
         sys.exit()
 
 
-def compress(source_path, destination_path: str) -> None:
+def compress(source_path: str, destination_path: str) -> None:
     """
     Reads source file, compresses it and writes the compressed result in destination
     file

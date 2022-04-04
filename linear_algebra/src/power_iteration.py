@@ -9,10 +9,10 @@ def power_iteration(
 ) -> tuple[float, np.ndarray]:
     """
     Power Iteration.
-    Find the largest eignevalue and corresponding eigenvector
+    Find the largest eigenvalue and corresponding eigenvector
     of matrix input_matrix given a random vector in the same space.
     Will work so long as vector has component of largest eigenvector.
-    input_matrix must be symmetric.
+    input_matrix must be either real or Hermitian.
 
     Input
     input_matrix: input matrix whose largest eigenvalue we will find.
@@ -41,6 +41,12 @@ def power_iteration(
     assert np.shape(input_matrix)[0] == np.shape(input_matrix)[1]
     # Ensure proper dimensionality.
     assert np.shape(input_matrix)[0] == np.shape(vector)[0]
+    # Ensure inputs are either both complex or both real
+    assert np.iscomplexobj(input_matrix) == np.iscomplexobj(vector)
+    is_complex = np.iscomplexobj(input_matrix)
+    if is_complex:
+        # Ensure complex input_matrix is Hermitian
+        assert np.array_equal(input_matrix, input_matrix.conj().T)
 
     # Set convergence to False. Will define convergence when we exceed max_iterations
     # or when we have small changes from one iteration to next.
@@ -57,7 +63,8 @@ def power_iteration(
         vector = w / np.linalg.norm(w)
         # Find rayleigh quotient
         # (faster than usual b/c we know vector is normalized already)
-        lamda = np.dot(vector.T, np.dot(input_matrix, vector))
+        vectorH = vector.conj().T if is_complex else vector.T
+        lamda = np.dot(vectorH, np.dot(input_matrix, vector))
 
         # Check convergence.
         error = np.abs(lamda - lamda_previous) / lamda
@@ -68,6 +75,9 @@ def power_iteration(
 
         lamda_previous = lamda
 
+    if is_complex:
+        lamda = np.real(lamda)
+
     return lamda, vector
 
 
@@ -75,26 +85,40 @@ def test_power_iteration() -> None:
     """
     >>> test_power_iteration()  # self running tests
     """
-    # Our implementation.
-    input_matrix = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
-    vector = np.array([41, 4, 20])
-    eigen_value, eigen_vector = power_iteration(input_matrix, vector)
+    real_input_matrix = np.array([[41, 4, 20], [4, 26, 30], [20, 30, 50]])
+    real_vector = np.array([41, 4, 20])
+    complex_input_matrix = real_input_matrix.astype(np.complex128)
+    imag_matrix = np.triu(1j * complex_input_matrix, 1)
+    complex_input_matrix += imag_matrix
+    complex_input_matrix += -1 * imag_matrix.T
+    complex_vector = np.array([41, 4, 20]).astype(np.complex128)
 
-    # Numpy implementation.
+    for problem_type in ["real", "complex"]:
+        if problem_type == "real":
+            input_matrix = real_input_matrix
+            vector = real_vector
+        elif problem_type == "complex":
+            input_matrix = complex_input_matrix
+            vector = complex_vector
 
-    # Get eigen values and eigen vectors using built in numpy
-    # eigh (eigh used for symmetric or hermetian matrices).
-    eigen_values, eigen_vectors = np.linalg.eigh(input_matrix)
-    # Last eigen value is the maximum one.
-    eigen_value_max = eigen_values[-1]
-    # Last column in this matrix is eigen vector corresponding to largest eigen value.
-    eigen_vector_max = eigen_vectors[:, -1]
+        # Our implementation.
+        eigen_value, eigen_vector = power_iteration(input_matrix, vector)
 
-    # Check our implementation and numpy gives close answers.
-    assert np.abs(eigen_value - eigen_value_max) <= 1e-6
-    # Take absolute values element wise of each eigenvector.
-    # as they are only unique to a minus sign.
-    assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_max)) <= 1e-6
+        # Numpy implementation.
+
+        # Get eigenvalues and eigenvectors using built-in numpy
+        # eigh (eigh used for symmetric or hermetian matrices).
+        eigen_values, eigen_vectors = np.linalg.eigh(input_matrix)
+        # Last eigenvalue is the maximum one.
+        eigen_value_max = eigen_values[-1]
+        # Last column in this matrix is eigenvector corresponding to largest eigenvalue.
+        eigen_vector_max = eigen_vectors[:, -1]
+
+        # Check our implementation and numpy gives close answers.
+        assert np.abs(eigen_value - eigen_value_max) <= 1e-6
+        # Take absolute values element wise of each eigenvector.
+        # as they are only unique to a minus sign.
+        assert np.linalg.norm(np.abs(eigen_vector) - np.abs(eigen_vector_max)) <= 1e-6
 
 
 if __name__ == "__main__":

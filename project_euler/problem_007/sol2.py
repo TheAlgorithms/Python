@@ -25,7 +25,7 @@ def isprime(number: int) -> bool:
     True
     """
 
-    for i in range(2, int(number ** 0.5) + 1):
+    for i in range(2, int(number**0.5) + 1):
         if number % i == 0:
             return False
     return True
@@ -73,7 +73,7 @@ def solution(nth: int = 10001) -> int:
         raise TypeError("Parameter nth must be int or castable to int.") from None
     if nth <= 0:
         raise ValueError("Parameter nth must be greater than or equal to one.")
-    primes = []
+    primes: list[int] = []
     num = 2
     while len(primes) < nth:
         if isprime(num):

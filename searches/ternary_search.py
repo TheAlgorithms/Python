@@ -89,8 +89,8 @@ def ite_ternary_search(array: list[int], target: int) -> int:
         if right - left < precision:
             return lin_search(left, right, array, target)
 
-        one_third = (left + right) / 3 + 1
-        two_third = 2 * (left + right) / 3 + 1
+        one_third = (left + right) // 3 + 1
+        two_third = 2 * (left + right) // 3 + 1
 
         if array[one_third] == target:
             return one_third
@@ -138,8 +138,8 @@ def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> 
     if left < right:
         if right - left < precision:
             return lin_search(left, right, array, target)
-        one_third = (left + right) / 3 + 1
-        two_third = 2 * (left + right) / 3 + 1
+        one_third = (left + right) // 3 + 1
+        two_third = 2 * (left + right) // 3 + 1
 
         if array[one_third] == target:
             return one_third
@@ -157,6 +157,10 @@ def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> 
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     user_input = input("Enter numbers separated by comma:\n").strip()
     collection = [int(item.strip()) for item in user_input.split(",")]
     assert collection == sorted(collection), f"List must be ordered.\n{collection}."

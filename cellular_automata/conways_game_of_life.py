@@ -70,7 +70,7 @@ def new_generation(cells: list[list[int]]) -> list[list[int]]:
     return next_generation
 
 
-def generate_images(cells: list[list[int]], frames) -> list[Image.Image]:
+def generate_images(cells: list[list[int]], frames: int) -> list[Image.Image]:
     """
     Generates a list of images of subsequent Game of Life states.
     """

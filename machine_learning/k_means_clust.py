@@ -112,7 +112,7 @@ def compute_heterogeneity(data, k, centroids, cluster_assignment):
             distances = pairwise_distances(
                 member_data_points, [centroids[i]], metric="euclidean"
             )
-            squared_distances = distances ** 2
+            squared_distances = distances**2
             heterogeneity += np.sum(squared_distances)
 
     return heterogeneity

@@ -36,7 +36,7 @@ def armstrong_number(n: int) -> bool:
     temp = n
     while temp > 0:
         rem = temp % 10
-        sum += rem ** number_of_digits
+        sum += rem**number_of_digits
         temp //= 10
     return n == sum
 
@@ -63,7 +63,7 @@ def pluperfect_number(n: int) -> bool:
         digit_total += 1
 
     for (cnt, i) in zip(digit_histogram, range(len(digit_histogram))):
-        sum += cnt * i ** digit_total
+        sum += cnt * i**digit_total
 
     return n == sum
 

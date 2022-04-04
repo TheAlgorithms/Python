@@ -101,9 +101,11 @@ def get_image(
     of the Mandelbrot set is viewed. The main area of the Mandelbrot set is
     roughly between "-1.5 < x < 0.5" and "-1 < y < 1" in the figure-coordinates.
 
-    >>> get_image().load()[0,0]
+    Commenting out tests that slow down pytest...
+    # 13.35s call     fractals/mandelbrot.py::mandelbrot.get_image
+    # >>> get_image().load()[0,0]
     (255, 0, 0)
-    >>> get_image(use_distance_color_coding = False).load()[0,0]
+    # >>> get_image(use_distance_color_coding = False).load()[0,0]
     (255, 255, 255)
     """
     img = Image.new("RGB", (image_width, image_height))
