@@ -10,7 +10,6 @@ the motion starts from the ground as can be seen below:
     *        *
    *          *
 GROUND      GROUND
-
 For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
@@ -46,21 +45,16 @@ def check_args(init_velocity: float, angle: float) -> None:
 def horizontal_distance(init_velocity: float, angle: float) -> float:
     """
     Returns the horizontal distance that the object cover
-
     Formula:
             v_0^2 * sin(2 * alpha)
             ---------------------
                    g
-
     v_0 - initial velocity
     alpha - angle
-
     >>> horizontal_distance(30, 45)
     91.77
     >>> horizontal_distance(100, 78)
     414.76
-    >>> horizontal_distance(4.5, 5.5)
-    0.39
     >>> horizontal_distance(-1, 20)
     Traceback (most recent call last):
         ...
@@ -78,21 +72,16 @@ def horizontal_distance(init_velocity: float, angle: float) -> float:
 def max_height(init_velocity: float, angle: float) -> float:
     """
     Returns the maximum height that the object reach
-
     Formula:
             v_0^2 * sin^2(alpha)
             --------------------
                    2g
-
     v_0 - initial velocity
     alpha - angle
-
     >>> max_height(30, 45)
     22.94
     >>> max_height(100, 78)
     487.82
-    >>> max_height(4.5, 5.5)
-    0.01
     >>> max_height("a", 20)
     Traceback (most recent call last):
         ...
@@ -110,21 +99,16 @@ def max_height(init_velocity: float, angle: float) -> float:
 def total_time(init_velocity: float, angle: float) -> float:
     """
     Returns total time of the motion
-
     Formula:
             2 * v_0 * sin(alpha)
             --------------------
                    g
-
     v_0 - initial velocity
     alpha - angle
-
     >>> total_time(30, 45)
     4.33
     >>> total_time(100, 78)
     19.95
-    >>> total_time(4.5, 5.5)
-    0.09
     >>> total_time(-10, 40)
     Traceback (most recent call last):
         ...
