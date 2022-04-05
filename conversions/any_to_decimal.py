@@ -3,7 +3,7 @@ from re import match
 
 
 def toDecimal(base_str: str, base: int) -> int:
-    """ convert any string in base n to decimal,
+    """ convert any string from base n to decimal,
         >>> toDecimal("-FF", 16)
         -255
         >>> toDecimal("RidoineEl", 30)
