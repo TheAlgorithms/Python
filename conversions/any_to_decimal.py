@@ -61,4 +61,5 @@ def main():
 	print(dec)
 
 if __name__ == '__main__':
-	main()
+	import doctest
+	doctest.testmod()
