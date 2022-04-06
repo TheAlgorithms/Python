@@ -27,7 +27,7 @@ def decrypt(txt: str, symbol: str) -> str:
     #we loop throuh the list containing all the charachters from the word, and append those charachters to a new string
     for char1 in word1_lst:
       res_wrd += char1
-    #here we add the newly created, decyphered word to a new string which will contain our full result
+    #here we add the newly created, decyphered word to a new string which will contain our full result.
     res_str += res_wrd + " "
   res_str = res_str[:-1]
   #and here we print out the final result
