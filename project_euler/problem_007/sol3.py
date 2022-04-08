@@ -15,15 +15,15 @@ import itertools
 import math
 
 
-def prime_check(number: int) -> bool:
+def is_prime(number: int) -> bool:
     """
     Determines whether a given number is prime or not
 
-    >>> prime_check(2)
+    >>> is_prime(2)
     True
-    >>> prime_check(15)
+    >>> is_prime(15)
     False
-    >>> prime_check(29)
+    >>> is_prime(29)
     True
     """
 
@@ -39,7 +39,7 @@ def prime_generator():
 
     num = 2
     while True:
-        if prime_check(num):
+        if is_prime(num):
             yield num
         num += 1
 
