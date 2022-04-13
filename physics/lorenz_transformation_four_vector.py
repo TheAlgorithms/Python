@@ -17,14 +17,14 @@ So, the Lorenz transformation using a four vector is defined as:
 Where:
            1
 γ = ---------------
-	  -----------
-	 /	   v^2	|
+      -----------
+     /     v^2  |
     /(1 -  ---
-  -/	   c^2
+  -/       c^2
 
-	  v
+      v
 β = -----
-	  c
+      c
 """
 from __future__ import annotations
 
@@ -38,18 +38,24 @@ from sympy import symbols  # type: ignore
 c = 299792458
 
 # Vehicle's speed divided by speed of light (no units)
-beta_u = lambda u: u / c
+def beta(u: float) -> float:
+    return u / c
 
-gamma_u = lambda u: 1 / (sqrt(1 - beta_u(u) ** 2))
 
-transformation_matrix = lambda u: np.array(
-    [
-        [gamma_u(u), -gamma_u(u) * beta_u(u), 0, 0],
-        [-gamma_u(u) * beta_u(u), gamma_u(u), 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, 1],
-    ]
-)
+def gamma(u: float) -> float:
+    return 1 / (sqrt(1 - beta(u) ** 2))
+
+
+def transformation_matrix(u: float) -> np.array:
+    return np.array(
+        [
+            [gamma(u), -gamma(u) * beta(u), 0, 0],
+            [-gamma(u) * beta(u), gamma(u), 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1],
+        ]
+    )
+
 
 ct, x, y, z = symbols("ct x y z")
 ct_p, x_p, y_p, z_p = symbols("ct' x' y' z'")
