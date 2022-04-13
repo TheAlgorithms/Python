@@ -37,6 +37,7 @@ from sympy import symbols  # type: ignore
 # Speed of light (m/s)
 c = 299792458
 
+
 # Vehicle's speed divided by speed of light (no units)
 def beta(u: float) -> float:
     return u / c
