@@ -26,7 +26,7 @@ Where:
 β = -----
       c
 
-Reference: http://hyperphysics.phy-astr.gsu.edu/hbase/Relativ/vec4.html 
+Reference: http://hyperphysics.phy-astr.gsu.edu/hbase/Relativ/vec4.html
 """
 from __future__ import annotations
 
