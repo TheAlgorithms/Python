@@ -39,7 +39,7 @@ from sympy import symbols  # type: ignore
 # Speed of light (m/s)
 c = 299792458
 
-# Symbols 
+# Symbols
 ct, x, y, z = symbols("ct x y z")
 ct_p, x_p, y_p, z_p = symbols("ct' x' y' z'")
 
@@ -125,7 +125,9 @@ def transformation_matrix(velocity: float) -> np.array:
     )
 
 
-def transform(velocity: float, event: np.array = np.zeros(4), symbolic = True) -> np.array:
+def transform(
+    velocity: float, event: np.array = np.zeros(4), symbolic=True
+) -> np.array:
     """
     >>> transform(29979245,np.array([1,2,3,4]), False)
     array([ 3.01302757e+08, -3.01302729e+07,  3.00000000e+00,  4.00000000e+00])
