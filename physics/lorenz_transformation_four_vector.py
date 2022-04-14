@@ -41,19 +41,19 @@ c = 299792458
 
 
 # Vehicle's speed divided by speed of light (no units)
-def beta(u: float) -> float:
-    return u / c
+def beta(velocity: float) -> float:
+    return velocity / c
 
 
-def gamma(u: float) -> float:
-    return 1 / (sqrt(1 - beta(u) ** 2))
+def gamma(velocity: float) -> float:
+    return 1 / (sqrt(1 - beta(velocity) ** 2))
 
 
-def transformation_matrix(u: float) -> np.array:
+def transformation_matrix(velocity: float) -> np.array:
     return np.array(
         [
-            [gamma(u), -gamma(u) * beta(u), 0, 0],
-            [-gamma(u) * beta(u), gamma(u), 0, 0],
+            [gamma(velocity), -gamma(velocity) * beta(velocity), 0, 0],
+            [-gamma(velocity) * beta(velocity), gamma(velocity), 0, 0],
             [0, 0, 1, 0],
             [0, 0, 0, 1],
         ]
@@ -64,7 +64,7 @@ ct, x, y, z = symbols("ct x y z")
 ct_p, x_p, y_p, z_p = symbols("ct' x' y' z'")
 
 
-def transform(v: float, event: np.array = np.zeros(4)):
+def transform(velocity: float, event: np.array = np.zeros(4)) -> np.array:
     """
         >>> transform(29979245,np.array([1,2,3,4]))
         array([ 3.01302757e+08, -3.01302729e+07,  3.00000000e+00,  4.00000000e+00])
@@ -89,11 +89,11 @@ def transform(v: float, event: np.array = np.zeros(4)):
           ...
         ValueError: Speed must be a positive integer!
     """
-    if v >= c:
+    if velocity >= c:
         raise ValueError("Speed must not exceed Light Speed 299,792,458 [m/s]!")
 
     # Usually the speed u should be much higher than 1 (c order of magnitude)
-    elif v < 1:
+    elif velocity < 1:
         raise ValueError("Speed must be a positive integer!")
     # Ensure event is not a vector of zeros
     if np.all(event):
@@ -105,7 +105,7 @@ def transform(v: float, event: np.array = np.zeros(4)):
         # Symbolic four vector
         event = np.array([ct, x, y, z])
 
-    return transformation_matrix(v).dot(event)
+    return transformation_matrix(velocity).dot(event)
 
 
 if __name__ == "__main__":
