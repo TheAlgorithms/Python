@@ -39,17 +39,82 @@ from sympy import symbols  # type: ignore
 # Speed of light (m/s)
 c = 299792458
 
+# Symbols 
+ct, x, y, z = symbols("ct x y z")
+ct_p, x_p, y_p, z_p = symbols("ct' x' y' z'")
+
 
 # Vehicle's speed divided by speed of light (no units)
 def beta(velocity: float) -> float:
+    """
+    >>> beta(c)
+    1.0
+
+    >>> beta(199792458)
+    0.666435904801848
+
+    >> beta(1e5)
+    4.5031152851750526e-07
+
+    >>> beta(0.2)
+    Traceback (most recent call last):
+      ...
+    ValueError: Speed must be greater than 1!
+    """
+    if velocity > c:
+        raise ValueError("Speed must not exceed Light Speed 299,792,458 [m/s]!")
+
+    # Usually the speed u should be much higher than 1 (c order of magnitude)
+    elif velocity < 1:
+        raise ValueError("Speed must be greater than 1!")
     return velocity / c
 
 
 def gamma(velocity: float) -> float:
+    """
+    >> gamma(4)
+    1.0000000000000002
+
+    >> gamma(1e5)
+    1.0000000556325075
+
+    >> gamma(3e7)
+    1.005044845777813
+
+    >> gamma(2.8e8)
+    2.7985595722318277
+
+    >> gamma(299792451)
+    4627.49902669495
+    """
     return 1 / (sqrt(1 - beta(velocity) ** 2))
 
 
 def transformation_matrix(velocity: float) -> np.array:
+    """
+    >> transformation_matrix(29979245)
+    [[ 1.00503781 -0.10050378  0.          0.        ]
+     [-0.10050378  1.00503781  0.          0.        ]
+     [ 0.          0.          1.          0.        ]
+     [ 0.          0.          0.          1.        ]]
+
+    >> transformation_matrix(19979245.2)
+    [[ 1.00222811 -0.06679208  0.          0.        ]
+     [-0.06679208  1.00222811  0.          0.        ]
+     [ 0.          0.          1.          0.        ]
+     [ 0.          0.          0.          1.        ]]
+
+    >> transformation_matrix(1)
+    [[ 1.00000000e+00 -3.33564095e-09  0.00000000e+00  0.00000000e+00]
+     [-3.33564095e-09  1.00000000e+00  0.00000000e+00  0.00000000e+00]
+     [ 0.00000000e+00  0.00000000e+00  1.00000000e+00  0.00000000e+00]
+     [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+
+    >> transformation_matrix(0)
+    Traceback (most recent call last):
+      ...
+    ValueError: Speed must be greater than 1!
+    """
     return np.array(
         [
             [gamma(velocity), -gamma(velocity) * beta(velocity), 0, 0],
@@ -60,41 +125,31 @@ def transformation_matrix(velocity: float) -> np.array:
     )
 
 
-ct, x, y, z = symbols("ct x y z")
-ct_p, x_p, y_p, z_p = symbols("ct' x' y' z'")
-
-
 def transform(velocity: float, event: np.array = np.zeros(4)) -> np.array:
     """
-        >>> transform(29979245,np.array([1,2,3,4]))
-        array([ 3.01302757e+08, -3.01302729e+07,  3.00000000e+00,  4.00000000e+00])
+    >>> transform(29979245,np.array([1,2,3,4]))
+    array([ 3.01302757e+08, -3.01302729e+07,  3.00000000e+00,  4.00000000e+00])
 
-        >>> transform(29979245)
-        array([1.00503781498831*ct - 0.100503778816875*x,
-               -0.100503778816875*ct + 1.00503781498831*x, 1.0*y, 1.0*z],
-              dtype=object)
+    >>> transform(29979245)
+    array([1.00503781498831*ct - 0.100503778816875*x,
+           -0.100503778816875*ct + 1.00503781498831*x, 1.0*y, 1.0*z],
+          dtype=object)
 
     >>> transform(19879210.2)
     array([1.0022057787097*ct - 0.066456172618675*x,
            -0.066456172618675*ct + 1.0022057787097*x, 1.0*y, 1.0*z],
           dtype=object)
 
-        >>> transform(299792459, np.array([1,1,1,1]))
-        Traceback (most recent call last):
-          ...
-        ValueError: Speed must not exceed Light Speed 299,792,458 [m/s]!
+    >>> transform(299792459, np.array([1,1,1,1]))
+    Traceback (most recent call last):
+      ...
+    ValueError: Speed must not exceed Light Speed 299,792,458 [m/s]!
 
-        >>> transform(-1, np.array([1,1,1,1]))
-        Traceback (most recent call last):
-          ...
-        ValueError: Speed must be a positive integer!
+    >>> transform(-1, np.array([1,1,1,1]))
+    Traceback (most recent call last):
+      ...
+    ValueError: Speed must be greater than 1!
     """
-    if velocity >= c:
-        raise ValueError("Speed must not exceed Light Speed 299,792,458 [m/s]!")
-
-    # Usually the speed u should be much higher than 1 (c order of magnitude)
-    elif velocity < 1:
-        raise ValueError("Speed must be a positive integer!")
     # Ensure event is not a vector of zeros
     if np.all(event):
 
