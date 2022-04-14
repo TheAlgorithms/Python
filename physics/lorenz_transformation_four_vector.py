@@ -125,9 +125,9 @@ def transformation_matrix(velocity: float) -> np.array:
     )
 
 
-def transform(velocity: float, event: np.array = np.zeros(4)) -> np.array:
+def transform(velocity: float, event: np.array = np.zeros(4), symbolic = True) -> np.array:
     """
-    >>> transform(29979245,np.array([1,2,3,4]))
+    >>> transform(29979245,np.array([1,2,3,4]), False)
     array([ 3.01302757e+08, -3.01302729e+07,  3.00000000e+00,  4.00000000e+00])
 
     >>> transform(29979245)
@@ -151,7 +151,7 @@ def transform(velocity: float, event: np.array = np.zeros(4)) -> np.array:
     ValueError: Speed must be greater than 1!
     """
     # Ensure event is not a vector of zeros
-    if np.all(event):
+    if not symbolic:
 
         # x0 is ct (speed of ligt * time)
         event[0] = event[0] * c
