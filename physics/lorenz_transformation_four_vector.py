@@ -86,6 +86,16 @@ def gamma(velocity: float) -> float:
 
     >> gamma(299792451)
     4627.49902669495
+
+    >>> gamma(0.3)
+    Traceback (most recent call last):
+      ...
+    ValueError: Speed must be greater than 1!
+
+    >>> gamma(2*c)
+    Traceback (most recent call last):
+      ...
+    ValueError: Speed must not exceed Light Speed 299,792,458 [m/s]!
     """
     return 1 / (sqrt(1 - beta(velocity) ** 2))
 
@@ -114,6 +124,11 @@ def transformation_matrix(velocity: float) -> np.array:
     Traceback (most recent call last):
       ...
     ValueError: Speed must be greater than 1!
+
+    >> transformation_matrix(c * 1.5)
+    Traceback (most recent call last):
+      ...
+    ValueError: Speed must not exceed Light Speed 299,792,458 [m/s]!
     """
     return np.array(
         [
