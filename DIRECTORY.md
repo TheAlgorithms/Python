@@ -529,6 +529,7 @@
   * [Perfect Square](https://github.com/TheAlgorithms/Python/blob/master/maths/perfect_square.py)
   * [Persistence](https://github.com/TheAlgorithms/Python/blob/master/maths/persistence.py)
   * [Pi Monte Carlo Estimation](https://github.com/TheAlgorithms/Python/blob/master/maths/pi_monte_carlo_estimation.py)
+  * [Points Are Collinear 3D](https://github.com/TheAlgorithms/Python/blob/master/maths/points_are_collinear_3d.py)
   * [Pollard Rho](https://github.com/TheAlgorithms/Python/blob/master/maths/pollard_rho.py)
   * [Polynomial Evaluation](https://github.com/TheAlgorithms/Python/blob/master/maths/polynomial_evaluation.py)
   * [Power Using Recursion](https://github.com/TheAlgorithms/Python/blob/master/maths/power_using_recursion.py)
@@ -619,6 +620,7 @@
   * [Tower Of Hanoi](https://github.com/TheAlgorithms/Python/blob/master/other/tower_of_hanoi.py)
 
 ## Physics
+  * [Horizontal Projectile Motion](https://github.com/TheAlgorithms/Python/blob/master/physics/horizontal_projectile_motion.py)
   * [N Body Simulation](https://github.com/TheAlgorithms/Python/blob/master/physics/n_body_simulation.py)
   * [Newtons Second Law Of Motion](https://github.com/TheAlgorithms/Python/blob/master/physics/newtons_second_law_of_motion.py)
 
@@ -990,6 +992,7 @@
   * [Manacher](https://github.com/TheAlgorithms/Python/blob/master/strings/manacher.py)
   * [Min Cost String Conversion](https://github.com/TheAlgorithms/Python/blob/master/strings/min_cost_string_conversion.py)
   * [Naive String Search](https://github.com/TheAlgorithms/Python/blob/master/strings/naive_string_search.py)
+  * [Ngram](https://github.com/TheAlgorithms/Python/blob/master/strings/ngram.py)
   * [Palindrome](https://github.com/TheAlgorithms/Python/blob/master/strings/palindrome.py)
   * [Prefix Function](https://github.com/TheAlgorithms/Python/blob/master/strings/prefix_function.py)
   * [Rabin Karp](https://github.com/TheAlgorithms/Python/blob/master/strings/rabin_karp.py)
