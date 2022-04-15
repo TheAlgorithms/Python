@@ -19,7 +19,7 @@ def polar_force(
     >>> math.isclose(force[1], 7.0710678118654755)
     True
     >>> polar_force(10, 3.14, radian_mode=True)
-    [-9.999987317275396, 0.01592652916486828]
+    [-9.999987317275394, 0.01592652916486828]
     """
     if radian_mode:
         return [magnitude * cos(angle), magnitude * sin(angle)]
