@@ -66,7 +66,7 @@ class Stack(Generic[T]):
 
     def is_empty(self) -> bool:
         """Check if a stack is empty."""
-        return (not self.stack)
+        return not self.stack
 
     def is_full(self) -> bool:
         """Check if a stack is full."""
