@@ -19,6 +19,6 @@ def is_narcissistic(num: int) -> bool:
   return sum([int(char)**len(str(num)) for char in str(num)]) == num
 
 
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+  if __name__ == "__main__":
+      import doctest
+      doctest.testmod()
