@@ -102,30 +102,34 @@ def gamma(velocity: float) -> float:
 
 def transformation_matrix(velocity: float) -> np.array:
     """
-    >> transformation_matrix(29979245)
-    [[ 1.00503781 -0.10050378  0.          0.        ]
-     [-0.10050378  1.00503781  0.          0.        ]
-     [ 0.          0.          1.          0.        ]
-     [ 0.          0.          0.          1.        ]]
+    >>> transformation_matrix(29979245)
+    array([[ 1.00503781, -0.10050378,  0.        ,  0.        ],
+           [-0.10050378,  1.00503781,  0.        ,  0.        ],
+           [ 0.        ,  0.        ,  1.        ,  0.        ],
+           [ 0.        ,  0.        ,  0.        ,  1.        ]])
 
-    >> transformation_matrix(19979245.2)
-    [[ 1.00222811 -0.06679208  0.          0.        ]
-     [-0.06679208  1.00222811  0.          0.        ]
-     [ 0.          0.          1.          0.        ]
-     [ 0.          0.          0.          1.        ]]
+    >>> transformation_matrix(19979245.2)
+    array([[ 1.00222811, -0.06679208,  0.        ,  0.        ],
+           [-0.06679208,  1.00222811,  0.        ,  0.        ],
+           [ 0.        ,  0.        ,  1.        ,  0.        ],
+           [ 0.        ,  0.        ,  0.        ,  1.        ]])
 
-    >> transformation_matrix(1)
-    [[ 1.00000000e+00 -3.33564095e-09  0.00000000e+00  0.00000000e+00]
-     [-3.33564095e-09  1.00000000e+00  0.00000000e+00  0.00000000e+00]
-     [ 0.00000000e+00  0.00000000e+00  1.00000000e+00  0.00000000e+00]
-     [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+    >>> transformation_matrix(1)
+    array([[ 1.00000000e+00, -3.33564095e-09,  0.00000000e+00,
+             0.00000000e+00],
+           [-3.33564095e-09,  1.00000000e+00,  0.00000000e+00,
+             0.00000000e+00],
+           [ 0.00000000e+00,  0.00000000e+00,  1.00000000e+00,
+             0.00000000e+00],
+           [ 0.00000000e+00,  0.00000000e+00,  0.00000000e+00,
+             1.00000000e+00]])
 
-    >> transformation_matrix(0)
+    >>> transformation_matrix(0)
     Traceback (most recent call last):
       ...
     ValueError: Speed must be greater than 1!
 
-    >> transformation_matrix(c * 1.5)
+    >>> transformation_matrix(c * 1.5)
     Traceback (most recent call last):
       ...
     ValueError: Speed must not exceed Light Speed 299,792,458 [m/s]!
