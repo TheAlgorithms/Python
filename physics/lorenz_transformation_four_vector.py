@@ -53,8 +53,8 @@ def beta(velocity: float) -> float:
     >>> beta(199792458)
     0.666435904801848
 
-    >> beta(1e5)
-    4.5031152851750526e-07
+    >>> beta(1e5)
+    0.00033356409519815205
 
     >>> beta(0.2)
     Traceback (most recent call last):
@@ -72,19 +72,19 @@ def beta(velocity: float) -> float:
 
 def gamma(velocity: float) -> float:
     """
-    >> gamma(4)
+    >>> gamma(4)
     1.0000000000000002
 
-    >> gamma(1e5)
+    >>> gamma(1e5)
     1.0000000556325075
 
-    >> gamma(3e7)
+    >>> gamma(3e7)
     1.005044845777813
 
-    >> gamma(2.8e8)
+    >>> gamma(2.8e8)
     2.7985595722318277
 
-    >> gamma(299792451)
+    >>> gamma(299792451)
     4627.49902669495
 
     >>> gamma(0.3)
