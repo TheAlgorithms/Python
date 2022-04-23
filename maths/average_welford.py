@@ -16,6 +16,6 @@ def average_welford(values: list) -> float:
       avg += (values[index]-avg)/(index+1)
     return avg
 
-  if __name__ == "__main__":
-        import doctest
-        doctest.testmod()
+if __name__ == "__main__":
+      import doctest
+      doctest.testmod()
