@@ -10,11 +10,10 @@ def n31(a: int) -> tuple[list[int], int]:
 
     if not isinstance(a, int):
         raise TypeError(f"Must be int, not {type(a).__name__}")
-    if a < 1:
-        raise ValueError(f"Given integer must be greater than 1, not {a}")
 
     path = [a]
-    while a != 1:
+    cycles = {1, 0, -1, -5, -17}
+    while a not in cycles:
         if a % 2 == 0:
             a = a // 2
         else:
@@ -27,6 +26,9 @@ def test_n31():
     """
     >>> test_n31()
     """
+    assert n31(-14) == ([-14, -7, -20, -10, -5], 5)
+    assert n31(-8) == ([-8, -4, -2, -1], 4)
+    assert n31(-50) == ([-50, -25, -74, -37, -110, -55, -164, -82, -41, -122, -61, -182, -91, -272, -136, -68, -34, -17], 18)
     assert n31(4) == ([4, 2, 1], 3)
     assert n31(11) == ([11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1], 15)
     assert n31(31) == (
