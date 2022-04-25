@@ -12,8 +12,9 @@ def n31(a: int) -> tuple[list[int], int]:
         raise TypeError(f"Must be int, not {type(a).__name__}")
 
     path = [a]
-    cycles = {1, 0, -1, -5, -17}
-    while a not in cycles:
+    # https://en.wikipedia.org/wiki/Collatz_conjecture#Iterating_on_all_integers
+    CYCLES = {1, 0, -1, -5, -17}
+    while a not in CYCLES:
         if a % 2 == 0:
             a = a // 2
         else:
