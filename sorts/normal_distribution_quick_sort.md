@@ -49,7 +49,7 @@ We can plot the function for Checking 'The Number of Comparisons' taking place b
     # Normal Distribution QuickSort is red
 >>> plt.plot([1,2,4,16,32,64,128,256,512,1024,2048],[1,1,6,15,43,136,340,800,2156,6821,16325],linewidth=2, color='r')
 
-    #Ordinary QuickSort is green
+    # Ordinary QuickSort is green
 >>> plt.plot([1,2,4,16,32,64,128,256,512,1024,2048],[1,1,4,16,67,122,362,949,2131,5086,12866],linewidth=2, color='g')
 
 >>> plt.show()
