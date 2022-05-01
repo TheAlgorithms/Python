@@ -11,7 +11,7 @@ URL: https://en.wikipedia.org/wiki/Binary_prefix
 from __future__ import annotations
 
 from enum import Enum, unique
-from typing import Type, TypeVar
+from typing import TypeVar
 
 # Create a generic variable that can be 'Enum', or any subclass.
 T = TypeVar("T", bound="Enum")
