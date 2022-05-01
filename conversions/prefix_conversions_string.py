@@ -94,7 +94,7 @@ def add_si_prefix(value: float) -> str:
     """
     prefixes = SIUnit.get_positive() if value > 0 else SIUnit.get_negative()
     for name_prefix, value_prefix in prefixes.items():
-        numerical_part = value / (10 ** value_prefix)
+        numerical_part = value / (10**value_prefix)
         if numerical_part > 1:
             return f"{str(numerical_part)} {name_prefix}"
     return str(value)
@@ -109,7 +109,7 @@ def add_binary_prefix(value: float) -> str:
     '64.0 kilo'
     """
     for prefix in BinaryUnit:
-        numerical_part = value / (2 ** prefix.value)
+        numerical_part = value / (2**prefix.value)
         if numerical_part > 1:
             return f"{str(numerical_part)} {prefix.name}"
     return str(value)
