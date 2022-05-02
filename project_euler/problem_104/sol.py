@@ -67,7 +67,6 @@ def check1(number: int) -> bool:
     """
     Takes a number and checks if it is pandigital from END
 
-
     >>> check1(123456789987654321)
     True
 
@@ -98,7 +97,7 @@ def check1(number: int) -> bool:
 
 def solution() -> int:
     """
-    Outputs the answer ie the least fib number pandigital from both sides.
+    Outputs the answer is the least Fibonacci numberpandigital from both sides.
     >>> solution()
     329468
     """
