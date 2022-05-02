@@ -97,7 +97,7 @@ def check1(number: int) -> bool:
 
 def solution() -> int:
     """
-    Outputs the answer is the least Fibonacci numberpandigital from both sides.
+    Outputs the answer is the least Fibonacci number pandigital from both sides.
     >>> solution()
     329468
     """
