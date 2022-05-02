@@ -130,6 +130,7 @@ def solution() -> int:
         # perform check only if in tocheck
         if tocheck[x + 3] and check(b):
             return x + 3  # first 2 already done
+    return -1
 
 
 if __name__ == "__main__":
