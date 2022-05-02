@@ -118,7 +118,7 @@ def horn_schunck(
             + derivative_y * avg_vertical_velocity
             + derivative_t
         )
-        update = update / (alpha ** 2 + derivative_x ** 2 + derivative_y ** 2)
+        update = update / (alpha**2 + derivative_x**2 + derivative_y**2)
 
         horizontal_flow = avg_horizontal_velocity - derivative_x * update
         vertical_flow = avg_vertical_velocity - derivative_y * update
