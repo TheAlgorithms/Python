@@ -124,3 +124,9 @@ def horn_schunck(
         vertical_flow = avg_vertical_velocity - derivative_y * update
 
     return horizontal_flow, vertical_flow
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
