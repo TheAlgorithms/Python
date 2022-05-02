@@ -7,7 +7,6 @@ Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
 It turns out that F541, which contains 113 digits, is the first Fibonacci number for which the last nine digits are 1-9 pandigital (contain all the digits 1 to 9, but not necessarily in order). And F2749, which contains 575 digits, is the first Fibonacci number for which the first nine digits are 1-9 pandigital.
 
 Given that Fk is the first Fibonacci number for which the first nine digits AND the last nine digits are 1-9 pandigital, find k.
-
 """
 
 
@@ -103,12 +102,12 @@ def solution() -> int:
     a = 1
     b = 1
     c = 2
-    # temporary fibonacci numbers
+    # temporary Fibonacci numbers
 
     a1 = 1
     b1 = 1
     c1 = 2
-    # temporary fibonacci numbers mod 1e9
+    # temporary Fibonacci numbers mod 1e9
 
     # mod m=1e9, done for fast optimisation
     tocheck = [0] * 1000000
