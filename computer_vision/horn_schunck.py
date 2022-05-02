@@ -63,7 +63,7 @@ def horn_schunck(
     image0: np.ndarray,
     image1: np.ndarray,
     num_iter: SupportsIndex,
-    alpha: Optional[float] = None,
+    alpha: float | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
     """
     This function performs the Horn-Schunck algorithm and returns the estimated
