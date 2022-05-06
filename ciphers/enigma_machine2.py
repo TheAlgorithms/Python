@@ -94,7 +94,7 @@ def _validator(
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if not 0 < rotorpos1 <= len(abc):
         raise ValueError(
-            f"First rotor position is not within range of 1..26 (" f"{rotorpos1}"
+            "First rotor position is not within range of 1..26 (" f"{rotorpos1}"
         )
     if not 0 < rotorpos2 <= len(abc):
         raise ValueError(
