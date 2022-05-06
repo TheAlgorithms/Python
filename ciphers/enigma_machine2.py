@@ -98,11 +98,11 @@ def _validator(
         )
     if not 0 < rotorpos2 <= len(abc):
         raise ValueError(
-            f"Second rotor position is not within range of 1..26 (" f"{rotorpos2})"
+            "Second rotor position is not within range of 1..26 (" f"{rotorpos2})"
         )
     if not 0 < rotorpos3 <= len(abc):
         raise ValueError(
-            f"Third rotor position is not within range of 1..26 (" f"{rotorpos3})"
+            "Third rotor position is not within range of 1..26 (" f"{rotorpos3})"
         )
 
     # Validates string and returns dict
