@@ -5,7 +5,6 @@ def descending_sort(array: list) -> list:
                 array[i], array[j] = array[j], array[i]
     return array
 
-
 def ascending_sort(array: list) -> list:
     for i in range(len(array) - 1):
         for j in range(i + 1, len(array)):
