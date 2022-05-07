@@ -156,11 +156,15 @@ def intro_sort(
         if max_depth == 0:
             return heap_sort(array)
         max_depth -= 1
-        pivot = median_of_3(array, start, start + ((end - start) // 2) + 1, end - 1)
+        pivot = median_of_3(array, start, start +
+                            ((end - start) // 2) + 1, end - 1)
         p = partition(array, start, end, pivot)
         intro_sort(array, p, end, size_threshold, max_depth)
         end = p
     return insertion_sort(array, start, end)
+
+
+'''function that sorts a list in ascending order using the quick sort algorithm'''
 
 
 if __name__ == "__main__":
