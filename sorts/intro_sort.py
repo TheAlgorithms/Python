@@ -164,9 +164,6 @@ def intro_sort(
     return insertion_sort(array, start, end)
 
 
-'''function that sorts a list in ascending order using the quick sort algorithm'''
-
-
 if __name__ == "__main__":
     import doctest
 
