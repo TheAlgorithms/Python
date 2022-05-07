@@ -54,10 +54,25 @@ def sum_of_digits_compact(n: int) -> int:
     """
     return sum(int(c) for c in str(abs(n)))
 
+def digital_root(n: int) -> int:
+    """
+    finding the digital root of n
+    https://en.wikipedia.org/wiki/Digital_root
+
+    >>> digital_root(394328)
+    2
+    >>> digital_root(-394328)
+    "Input wasn't valid"
+    >>> digital_root(123)
+    6
+    >>> digital_root(0)
+    0
+    """
+    return n%9 or n and 9 if n >= 0 else "Input wasn't valid"
 
 def benchmark() -> None:
     """
-    Benchmark code for comparing 3 functions,
+    Benchmark code for comparing 4 functions,
     with 3 different length int values.
     """
     print("\nFor small_num = ", small_num, ":")
@@ -83,6 +98,14 @@ def benchmark() -> None:
         sum_of_digits_compact(small_num),
         "\ttime =",
         timeit("z.sum_of_digits_compact(z.small_num)", setup="import __main__ as z"),
+        "seconds",
+    )
+    print(
+        "> digital_root()",
+        "\tans =",
+        digital_root(small_num),
+        "\ttime =",
+        timeit("z.digital_root(z.small_num)", setup="import __main__ as z"),
         "seconds",
     )
 
@@ -111,6 +134,14 @@ def benchmark() -> None:
         timeit("z.sum_of_digits_compact(z.medium_num)", setup="import __main__ as z"),
         "seconds",
     )
+    print(
+        "> digital_root()",
+        "\t\tans =",
+        digital_root(medium_num),
+        "\ttime =",
+        timeit("z.digital_root(z.medium_num)", setup="import __main__ as z"),
+        "seconds",
+    )
 
     print("\nFor large_num = ", large_num, ":")
     print(
@@ -135,6 +166,14 @@ def benchmark() -> None:
         sum_of_digits_compact(large_num),
         "\ttime =",
         timeit("z.sum_of_digits_compact(z.large_num)", setup="import __main__ as z"),
+        "seconds",
+    )
+    print(
+        "> digital_root()",
+        "\tans =",
+        digital_root(large_num),
+        "\ttime =",
+        timeit("z.digital_root(z.large_num)", setup="import __main__ as z"),
         "seconds",
     )
 
