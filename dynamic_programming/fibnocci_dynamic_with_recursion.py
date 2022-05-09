@@ -1,23 +1,23 @@
 
 memo={}
 
-def fib(y,memorise={}):
-    if(y in memorise.keys()):
-        return memorise[y]
-    if(y<=1):
+def fib(int fibvalue,memorise={}) -> int:
+    if(fibvalue in memorise.keys()):
+        return memorise[fibvalue]
+    if(fibvalue<=1):
         return 1
     
-    memorise[y] =fib(y-1)+fib(y-2)
+    memorise[fibvalue] =fib(fibvalue-1)+fib(fibvalue-2)
 
-    return memorise[y]
+    return memorise[fibvalue]
 
 
-def fibslow(y):
+def fibslow(int fibvalue) -> int:
     
-    if(y<=1):
+    if(fibvalue<=1):
         return 1
     
-    return fibslow(y-1)+fibslow(y-2)
+    return fibslow(y-1)+fibslow(fibvalue-2)
 
 
 if __name__ == "__main__":
