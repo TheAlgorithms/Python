@@ -29,7 +29,7 @@ def test_fib(x:int) -> int:
     
 if __name__ == "__main__":
     for i in range(10):
-        print("Fibnocci addition till number {} is {}".format(i,test_fib(i)))
+        print(f"Fibnocci addition till number {i} is {test_fib(i)}")
 
 
 
