@@ -24,8 +24,8 @@ def fibslow(fibvalue :int) -> int:
 
 
 #return integer
-def test_fib(x:int) -> int:
-    return fib(x)
+def test_fib(max_value:int) -> int:
+    return fib(max_value)
     
 if __name__ == "__main__":
     for i in range(10):
