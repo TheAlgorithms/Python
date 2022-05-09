@@ -4,7 +4,7 @@ This program provides the addition of fibnocci series with recursion, using memo
 
 memo={}
 
-def fib(fibvalue :int,memorise={}) -> int:
+def fib(fibvalue :int,memorise: dict={} ) -> int:
     if(fibvalue in memorise.keys()):
         return memorise[fibvalue]
     if(fibvalue<=1):
@@ -14,7 +14,7 @@ def fib(fibvalue :int,memorise={}) -> int:
 
     return memorise[fibvalue]
 
-
+#returns integer
 def fibslow(fibvalue :int) -> int:
     
     if(fibvalue<=1):
@@ -23,7 +23,13 @@ def fibslow(fibvalue :int) -> int:
     return fibslow(y-1)+fibslow(fibvalue-2)
 
 
+#return integer
+def test_fib(x:int):
+    return fib(x)
+    
 if __name__ == "__main__":
-    x= int(input())
-    print(fib(x))
+    for i in range(10):
+        print("Fibnocci addition till number {} is {}".format(i,test_fib(i)))
+
+
 
