@@ -24,7 +24,7 @@ def fibslow(fibvalue :int) -> int:
 
 
 #return integer
-def test_fib(x:int):
+def test_fib(x:int) -> int:
     return fib(x)
     
 if __name__ == "__main__":
