@@ -1,7 +1,10 @@
+'''
+This program provides the addition of fibnocci series with recursion, using memoization technique in dynamic programming
+'''
 
 memo={}
 
-def fib(int fibvalue,memorise={}) -> int:
+def fib(fibvalue :int,memorise={}) -> int:
     if(fibvalue in memorise.keys()):
         return memorise[fibvalue]
     if(fibvalue<=1):
@@ -12,7 +15,7 @@ def fib(int fibvalue,memorise={}) -> int:
     return memorise[fibvalue]
 
 
-def fibslow(int fibvalue) -> int:
+def fibslow(fibvalue :int) -> int:
     
     if(fibvalue<=1):
         return 1
@@ -23,3 +26,4 @@ def fibslow(int fibvalue) -> int:
 if __name__ == "__main__":
     x= int(input())
     print(fib(x))
+
