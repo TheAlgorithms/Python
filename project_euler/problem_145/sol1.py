@@ -27,6 +27,7 @@ def odd_digits(num: int) -> bool:
         digit = num % 10
         if digit % 2 == 0:
             return False
+        num //= 10
     return True
 
 
