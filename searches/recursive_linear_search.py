@@ -6,8 +6,8 @@ python3 -m doctest -v recursive_linear_search.py
 
 For manual testing run:
 python3 recursive_linear_search.py
-
 """
+
 def recursive_linear_search(array:list,target:int,index:int =0)-> int:
     """
     This a python implementation of recursive linear search algorithm. Where we are applying linear search algorithm with recursion.
