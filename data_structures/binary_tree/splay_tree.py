@@ -9,6 +9,7 @@ from typing import Any, Optional, Tuple
 class Node:
     """
     Implementation of tree node.
+
     >>> root = Node(1)
     >>> root.left = Node(2)
     >>> root.right = Node(3)
@@ -46,6 +47,7 @@ class Node:
 class SplayTree:
     """
     Implementation of splay tree.
+
     >>> tree = SplayTree()
     >>> tree.insert(30)
     >>> tree.insert(40)
