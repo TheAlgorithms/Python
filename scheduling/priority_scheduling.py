@@ -1,7 +1,7 @@
 """
 Priority Scheduling
-Please note arrival time, burst, priority
-Please use spaces to separate inputs entered.
+Please input arrival time, burst and priority.
+Please use spaces to separate inputs.
 """
 from __future__ import annotations
 
