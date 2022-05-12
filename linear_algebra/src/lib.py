@@ -172,7 +172,7 @@ class Vector:
         """
         if len(self.__components) == 0:
             raise Exception("Vector is empty")
-        squares = [c ** 2 for c in self.__components]
+        squares = [c**2 for c in self.__components]
         return math.sqrt(sum(squares))
 
     def angle(self, other: Vector, deg: bool = False) -> float:

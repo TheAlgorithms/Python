@@ -25,7 +25,7 @@ def weighted_matrix(point: np.mat, training_data_x: np.mat, bandwidth: float) ->
     # calculating weights for all training examples [x(i)'s]
     for j in range(m):
         diff = point - training_data_x[j]
-        weights[j, j] = np.exp(diff * diff.T / (-2.0 * bandwidth ** 2))
+        weights[j, j] = np.exp(diff * diff.T / (-2.0 * bandwidth**2))
     return weights
 
 

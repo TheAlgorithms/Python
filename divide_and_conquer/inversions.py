@@ -11,7 +11,7 @@ algorithm which runs in nlogn and the brute-force n^2 algorithm.
 
 def count_inversions_bf(arr):
     """
-    Counts the number of inversions using a a naive brute-force algorithm
+    Counts the number of inversions using a naive brute-force algorithm
     Parameters
     ----------
     arr: arr: array-like, the list containing the items for which the number
