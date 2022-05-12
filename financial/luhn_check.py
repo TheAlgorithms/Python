@@ -1,3 +1,5 @@
+#https://en.wikipedia.org/wiki/Luhn_algorithm
+
 def luhn_check(cardNumber):
     cardDigits = len(str(cardNumber))
     totalSum = 0
