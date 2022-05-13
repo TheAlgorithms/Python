@@ -14,7 +14,7 @@ def check_prime(number):
     elif number == special_non_primes[-1]:
         return 3
 
-    return all([number % i for i in range(2, number)])
+    return all(number % i for i in range(2, number))
 
 
 def next_prime(value, factor=1, **kwargs):
