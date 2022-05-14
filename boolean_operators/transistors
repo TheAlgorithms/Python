@@ -1,0 +1,86 @@
+# Transistor gate logic for lists
+
+# Logic for booleans
+def my_and_bool(ls: list[bool]) -> bool:
+    for i in ls:
+        if i == False:
+            return False
+    return True
+
+def my_nand_bool(ls: list[bool]) -> bool:
+    return not Nand(ls)
+
+def my_or_bool(ls: list[bool]) -> bool:
+    for i in ls:
+        if i == True:
+            return True
+    return False
+
+def my_nor_bool(ls: list[bool]) -> bool:
+    return not Or(ls)
+
+def my_xor_bool(ls: list[bool]) -> bool:
+    true_count = 0
+    for i in ls:
+        if i == True:
+            true_count += 1
+    return true_count % 2 != 0
+
+def my_nor_bool(ls: list[bool]) -> bool:
+    return not Xor(ls)
+
+# Logic for integers
+def my_and_int(ls: list[int]) -> int:
+    for i in ls:
+        if i == 0:
+            return 0
+    return 1
+
+def my_nand_int(ls: list[int]) -> int:
+    return not Nand(ls)
+
+def my_or_int(ls: list[int]) -> int:
+    for i in ls:
+        if i == 1:
+            return 1
+    return 0
+
+def my_nor_int(ls: list[int]) -> int:
+    return not Or(ls)
+
+def my_xor_int(ls: list[int]) -> int:
+    true_count = 0
+    for i in ls:
+        if i == 1:
+            true_count += 1
+    return true_count % 2 != 0
+
+def my_nor_int(ls: list[int]) -> int:
+    return not Xor(ls)
+
+# Helper class for list of unknown types
+class GateInput:
+    ls: list[bool or int]
+    is_bool: bool
+
+    def __init__(self, _ls: list[bool] or list[int]):
+        self.ls = _ls
+        self.is_bool = len(_ls) == 0 or isinstance(_ls[0], bool)
+
+def my_and(gate_input: GateInput) -> bool or int:
+    return my_and_bool(gate_input.ls) if gate_input.is_bool else my_and_int(gate_input.ls)
+
+def my_nand(gate_input: GateInput) -> bool or int:
+    return not my_and(gate_input) if gate_input.is_bool else 1 - my_and(gate_input)
+
+def my_or(gate_input: GateInput) -> bool or int:
+    return my_or_bool(gate_input.ls) if gate_input.is_bool else my_or_int(gate_input.ls)
+
+def my_nor(gate_input: GateInput) -> bool or int:
+    return not my_or(gate_input) if gate_input.is_bool else 1 - my_or(gate_input)
+
+def my_xor(gate_input: GateInput) -> bool or int:
+    return my_xor_bool(gate_input.ls) if gate_input.is_bool else my_xor_int(gate_input.ls)
+
+def my_xnor(gate_input: GateInput) -> bool or int:
+    return not my_xnor(gate_input) if gate_input.is_bool else 1 - my_xnor(gate_input)
