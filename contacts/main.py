@@ -3,6 +3,7 @@
 
 # this code uses MIT LICENSE
 print("this code uses MIT LICENSE")
+print("some features aren't supported due to unsupported file type for repo. get it at github.com/JymPatel/Python-FirstEdition")
 print()
 
 # start of code
