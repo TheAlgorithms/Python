@@ -7,11 +7,11 @@ def getKEYchar(a, KEY):
     # CHECK FOR INT OR CHAR A DO AS PER THAT
     try:
         a = int(a)
-        tmpVAR = int(KEY[a - 1]) * 1923
+        tmp_var = int(KEY[a - 1]) * 1923
     except ValueError:
-        tmpVAR = ord(KEY[a - 1]) * 125
+        tmp_var = ord(KEY[a - 1]) * 125
     # RETURN INTEGRAL VALUE
-    return tmpVAR
+    return tmp_var
 
 
 
@@ -42,23 +42,23 @@ def encryptARRAY(array, KEY):
                 encryptedARRAY[i][j].append([])
                 # ENCRYPTION RULES
                 try:
-                    tmpVAR3 = int(array[i][j][k])
+                    tmp_var3 = int(array[i][j][k])
                     if (i + j*2 - k) % 3 == 0:
-                        tmpVAR04 = tmpVAR3 * getKEYchar(i + j - k, KEY) - 245 * (i + j + 7)
+                        tmp_var04 = tmp_var3 * getKEYchar(i + j - k, KEY) - 245 * (i + j + 7)
                     elif (i + j**2 - 7) % 2 == 0:
-                        tmpVAR04 = tmpVAR3 * 2 - (i + 2*k) * j + getKEYchar(12, KEY)
+                        tmp_var04 = tmp_var3 * 2 - (i + 2*k) * j + getKEYchar(12, KEY)
                     else:
-                        tmpVAR04 = tmpVAR3 ** 2 + i * getKEYchar(tmpVAR3, KEY) - (j + k) ** 2 + getKEYchar(i, KEY)
-                    # SAVE TMPVAR04 IN ENCRYPTED ARRAY
-                    encryptedARRAY[i][j][k] = chr(tmpVAR04)
+                        tmp_var04 = tmp_var3 ** 2 + i * getKEYchar(tmp_var3, KEY) - (j + k) ** 2 + getKEYchar(i, KEY)
+                    # SAVE tmp_var04 IN ENCRYPTED ARRAY
+                    encryptedARRAY[i][j][k] = chr(tmp_var04)
                 # FOR CHAR CHARACTERS
                 except ValueError:
-                    tmpVAR3 = ord(array[i][j][k])
+                    tmp_var3 = ord(array[i][j][k])
                     if (i + j*2 - k) % 3 == 0:
-                        tmpVAR04 = tmpVAR3 + 11 + getKEYchar(i + k, KEY) + (i + 5 - k)
+                        tmp_var04 = tmp_var3 + 11 + getKEYchar(i + k, KEY) + (i + 5 - k)
                     else:
-                        tmpVAR04 = tmpVAR3 + (i * j * k) * 54 - 32 * getKEYchar(i * k / (j + 1), KEY)
-                    encryptedARRAY[i][j][k] = int(tmpVAR04)
+                        tmp_var04 = tmp_var3 + (i * j * k) * 54 - 32 * getKEYchar(i * k / (j + 1), KEY)
+                    encryptedARRAY[i][j][k] = int(tmp_var04)
     return encryptedARRAY
 
 
@@ -78,25 +78,25 @@ def decryptARRAY(array, KEY):
                 decryptedARRAY[i][j].append(array[i][j][k])
                 # ENCRYPTION RULES
                 try:
-                    tmpVAR3 = int(array[i][j][k])
+                    tmp_var3 = int(array[i][j][k])
                     if (i + j*2 - k) % 3 == 0:
-                        tmpVAR04 = tmpVAR3 - (i + 5 - k) - 11 - getKEYchar(i + k, KEY)
+                        tmp_var04 = tmp_var3 - (i + 5 - k) - 11 - getKEYchar(i + k, KEY)
                     else:
-                        tmpVAR04 = tmpVAR3 - (i * j * k) * 54 + 32 * getKEYchar(i * k / (j + 1), KEY)
-                    # PUT VALUE OF TMPVAR04 IN DECRYPTED BUT CHR() WONT WORK ON BIG VALUES SO MAKE SURE
+                        tmp_var04 = tmp_var3 - (i * j * k) * 54 + 32 * getKEYchar(i * k / (j + 1), KEY)
+                    # PUT VALUE OF tmp_var04 IN DECRYPTED BUT CHR() WONT WORK ON BIG VALUES SO MAKE SURE
                     try:
-                        decryptedARRAY[i][j][k] = chr(tmpVAR04)
+                        decryptedARRAY[i][j][k] = chr(tmp_var04)
                     except ValueError:
                         return 'ERRORx379'
                 except ValueError:
-                    tmpVAR3 = ord(array[i][j][k])
+                    tmp_var3 = ord(array[i][j][k])
                     if (i + j*2 - k) % 3 == 0:
-                        tmpVAR04 = int(tmpVAR3 + 245 * (i + j + 7)) / getKEYchar(i + j - k, KEY)
+                        tmp_var04 = int(tmp_var3 + 245 * (i + j + 7)) / getKEYchar(i + j - k, KEY)
                     elif (i + j**2 - 7) % 2 == 0:
-                        tmpVAR04 = (tmpVAR3 - getKEYchar(12, KEY) + (i + 2*k) * j) / 2
+                        tmp_var04 = (tmp_var3 - getKEYchar(12, KEY) + (i + 2*k) * j) / 2
                     else:
-                        tmpVAR04 = (tmpVAR3 - getKEYchar(i, KEY) + (j + k) ** 2 - i * getKEYchar(tmpVAR3, KEY)) ** 0.5
-                    decryptedARRAY[i][j][k] = int(tmpVAR04)
+                        tmp_var04 = (tmp_var3 - getKEYchar(i, KEY) + (j + k) ** 2 - i * getKEYchar(tmp_var3, KEY)) ** 0.5
+                    decryptedARRAY[i][j][k] = int(tmp_var04)
     # CONVET DECRYPTED ARRAY TO STRINGS WHERE IT NEEDS AND RETURN NEW ARRAY
     finalARRAY = [[] for i in range(4)]
     for i in range(4):

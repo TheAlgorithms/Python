@@ -16,15 +16,15 @@ import functions as fuN
 import encrypt10n as encrypt
 
 # check encryption status and get array
-encryptionStatus = False
-encryptionKey = input("ENCRYPTION KEY ('noKEY' or is default KEY): ")
-if encryptionKey.upper() == 'NOENCRYPTION' or encryptionKey.upper() == '' or encryptionKey.upper() == 'NOKEY':
+encryption_status = False
+encryption_key = input("ENCRYPTION KEY ('noKEY' or is default KEY): ")
+if encryption_key.upper() == 'NOENCRYPTION' or encryption_key.upper() == '' or encryption_key.upper() == 'NOKEY':
     print("your data is not encrypted")
     print("you can encrypt while saving program")
-    encryptionKey = "noENCRYPTION"
+    encryption_key = "noENCRYPTION"
 else:
-    encryptionStatus = True
-array = encrypt.getArray(encryptionKey)
+    encryption_status = True
+array = encrypt.getArray(encryption_key)
 # sometimes wrong key doesn't make sense to decrypt like chr(9589395959359)
 if array == 'ERRORx379':
     print("PROGRAM EXITED WITH ERROR CODE 379!")
@@ -114,20 +114,20 @@ while loopvar < 1:
 
     # ending program
     elif a == 0:
-        if encryptionStatus == False:
+        if encryption_status == False:
             # ask to encrypt data
             print("would you like to encrypt your data")
             stra = input("y/n?  ")
             try:
                 if stra[0].upper() == 'Y':
-                    encryptionKey = input("create your encryption key ...")
-                    print("\n YOUR ENCRYPTION KEY IS", encryptionKey)
+                    encryption_key = input("create your encryption key ...")
+                    print("\n YOUR ENCRYPTION KEY IS", encryption_key)
                     print("\n IF YOU FORGET KEY, FORGET YOUR DATA")
             except IndexError:
-                encryptionKey = 'noENCRYPTION'
+                encryption_key = 'noENCRYPTION'
         # saving data to pickle file
         print("Saving your Data ...")
-        encrypt.saveData(array, encryptionKey)
+        encrypt.saveData(array, encryption_key)
         print("YOUR DATA HAS BEEN SAVED SUCESSFULLY!")
         loopvar += 1
 
