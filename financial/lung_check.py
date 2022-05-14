@@ -1,21 +1,21 @@
 #https://en.wikipedia.org/wiki/Luhn_algorithm
-def luhn_check(cardNo):
-    cardDigits = len(str(cardNo))
-    luhnSum = 0
+def luhn_check(card_no) -> bool:
+    card_digits = len(str(card_no))
+    luhn_sum = 0
     second = False
 
-    for i in range(cardDigits - 1, -1, -1):
-        d = ord(cardNo[i]) - ord('0')
+    for i in range(card_digits - 1, -1, -1):
+        d = ord(card_no[i]) - ord('0')
 
         if (second == True):
             d = d * 2
 
-        luhnSum += d // 10
-        luhnSum += d % 10
+        luhn_sum += d // 10
+        luhn_sum += d % 10
 
         second = not second
 
-    if (luhnSum % 10 == 0):
+    if (luhn_sum % 10 == 0):
         return True
     else:
         return False
