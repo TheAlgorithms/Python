@@ -1,5 +1,5 @@
 #https://en.wikipedia.org/wiki/Luhn_algorithm
-def luhn_check(card_no) -> bool:
+def luhn_check(card_no: str) -> bool:
     card_digits = len(str(card_no))
     luhn_sum = 0
     second = False
