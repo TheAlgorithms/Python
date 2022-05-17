@@ -32,6 +32,22 @@ def iter_merge_sort(input_list: list) -> list:
 
     >>> iter_merge_sort([5, 9, 8, 7, 1, 2, 7])
     [1, 2, 5, 7, 7, 8, 9]
+    >>> iter_merge_sort([1])
+    [1]
+    >>> iter_merge_sort([2, 1])
+    [1, 2]
+    >>> iter_merge_sort([2, 1, 3])
+    [1, 2, 3]
+    >>> iter_merge_sort([4, 3, 2, 1])
+    [1, 2, 3, 4]
+    >>> iter_merge_sort([5, 4, 3, 2, 1])
+    [1, 2, 3, 4, 5]
+    >>> iter_merge_sort(['c', 'b', 'a'])
+    ['a', 'b', 'c']
+    >>> iter_merge_sort([0.3, 0.2, 0.1])
+    [0.1, 0.2, 0.3]
+    >>> iter_merge_sort(['dep', 'dang', 'trai'])
+    ['dang', 'dep', 'trai']
     >>> iter_merge_sort([6])
     [6]
     >>> iter_merge_sort([])
