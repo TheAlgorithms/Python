@@ -18,7 +18,6 @@ def wave(txt: str) -> list:
         if txt[a].isalpha()
     ]
 
+
 if __name__ == "__main__":
-    import doctest
-    
-    doctest.testmod()
+    __import__("doctest").testmod()
