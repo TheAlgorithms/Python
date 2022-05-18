@@ -68,7 +68,7 @@ def digital_root(n: int) -> int:
     >>> digital_root(0)
     0
     """
-    return n%9 or n and 9 if n >= 0 else "Input wasn't valid"
+    return n % 9 or n and 9 if n >= 0 else "Input wasn't valid"
 
 def benchmark() -> None:
     """
@@ -186,3 +186,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+  
