@@ -94,7 +94,7 @@ class MLFQ:
         """
         process.waiting_time += self.current_time - process.stop_time
 
-    def FCFS(self, ready_queue: list[Process]) -> list[Process]:
+    def first_come_first_served(self, ready_queue: list[Process]) -> list[Process]:
         """
         FCFS(First Come, First Served)
         FCFS will be applied to MLFQ's last queue
@@ -123,7 +123,7 @@ class MLFQ:
         # FCFS will finish all remaining processes
         return finished
 
-    def RR(self, ready_queue: list[Process], time_slice: int) -> list[Process]:
+    def round_robin(self, ready_queue: list[Process], time_slice: int) -> list[Process]:
         """
         RR(Round Robin)
         RR will be applied to MLFQ's all queues except last queue
@@ -168,10 +168,10 @@ class MLFQ:
 
     def MLFQ(self) -> list[Process]:
         for i in range(self.number_of_queues - 1):
-            finished, self.ready_queue = self.RR(self.ready_queue, self.time_slices[i])
+            finished, self.ready_queue = self.round_robin(self.ready_queue, self.time_slices[i])
             self.finish_queue.extend(finished)
 
-        finished = self.FCFS(self.ready_queue)
+        finished = self.first_come_first_served(self.ready_queue)
         self.finish_queue.extend(finished)
 
         return self.finish_queue
