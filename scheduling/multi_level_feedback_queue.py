@@ -5,6 +5,7 @@ class Process:
     """
     Process should have these fields below
     """
+
     def __init__(self, process_name: str, arrival_time: int, burst_time: int) -> None:
         self.process_name = process_name  # process name
         self.arrival_time = arrival_time  # arrival time of the process
@@ -24,12 +25,13 @@ class MLFQ:
     The first Queue(0) to last second Queue(N-2) of MLFQ has Round Robin Algorithm
     The last Queue(N-1) has First Come, First Served Algorithm
     """
+
     def __init__(
         self,
         number_of_queues: int,
         time_slices: int,
         queue: list[Process],
-        current_time: int
+        current_time: int,
     ) -> None:
         # total number of mlfq's queues
         self.number_of_queues = number_of_queues
@@ -111,8 +113,7 @@ class MLFQ:
         return completion_times
 
     def calculate_remaining_burst_time_of_processes(
-        self,
-        queue: list[Process]
+        self, queue: list[Process]
     ) -> list[int]:
         """
         This method calculate remaining burst time of processes
@@ -168,11 +169,11 @@ class MLFQ:
         ['P1', 'P2', 'P3', 'P4']
         """
         finished = deque()  # sequence deque of finished process
-        while (len(ready_queue) != 0):
+        while len(ready_queue) != 0:
             cp = ready_queue.popleft()  # current process
 
             # if process's arrival time is later than current time, update current time
-            if (self.current_time < cp.arrival_time):
+            if self.current_time < cp.arrival_time:
                 self.current_time += cp.arrival_time
 
             # update waiting time of current process
@@ -213,13 +214,13 @@ class MLFQ:
             cp = ready_queue.popleft()  # current process
 
             # if process's arrival time is later than current time, update current time
-            if (self.current_time < cp.arrival_time):
+            if self.current_time < cp.arrival_time:
                 self.current_time += cp.arrival_time
 
             # update waiting time of unfinished processes
             self.update_waiting_time(cp)
             # if the burst time of process is bigger than time-slice
-            if (cp.burst_time > time_slice):
+            if cp.burst_time > time_slice:
                 # use CPU for only time-slice
                 self.current_time += time_slice
                 # update remaining burst time
@@ -260,7 +261,8 @@ class MLFQ:
         #  all queues except last one have round_robin algorithm
         for i in range(self.number_of_queues - 1):
             finished, self.ready_queue = self.round_robin(
-                self.ready_queue, self.time_slices[i])
+                self.ready_queue, self.time_slices[i]
+            )
         #  the last queue has first_come_first_served algorithm
         self.first_come_first_served(self.ready_queue)
 
@@ -269,6 +271,7 @@ class MLFQ:
 
 if __name__ == "__main__":
     import doctest
+
     P1 = Process("P1", 0, 53)
     P2 = Process("P2", 0, 17)
     P3 = Process("P3", 0, 68)
@@ -277,10 +280,10 @@ if __name__ == "__main__":
     time_slices = [17, 25]
     queue = deque([P1, P2, P3, P4])
 
-    if (len(time_slices) != number_of_queues - 1):
+    if len(time_slices) != number_of_queues - 1:
         exit()
 
-    doctest.testmod(extraglobs={'queue': deque([P1, P2, P3, P4])})
+    doctest.testmod(extraglobs={"queue": deque([P1, P2, P3, P4])})
 
     P1 = Process("P1", 0, 53)
     P2 = Process("P2", 0, 17)
@@ -293,14 +296,22 @@ if __name__ == "__main__":
     finish_queue = mlfq.multi_level_feedback_queue()
 
     # print total waiting times of processes(P1, P2, P3, P4)
-    print(f"waiting time:\
-        \t\t\t{MLFQ.calculate_waiting_time(mlfq, [P1, P2, P3, P4])}")
+    print(
+        f"waiting time:\
+        \t\t\t{MLFQ.calculate_waiting_time(mlfq, [P1, P2, P3, P4])}"
+    )
     # print completion times of processes(P1, P2, P3, P4)
-    print(f"completion time:\
-        \t\t{MLFQ.calculate_completion_time(mlfq, [P1, P2, P3, P4])}")
+    print(
+        f"completion time:\
+        \t\t{MLFQ.calculate_completion_time(mlfq, [P1, P2, P3, P4])}"
+    )
     # print total turnaround times of processes(P1, P2, P3, P4)
-    print(f"turnaround time:\
-        \t\t{MLFQ.calculate_turnaround_time(mlfq, [P1, P2, P3, P4])}")
+    print(
+        f"turnaround time:\
+        \t\t{MLFQ.calculate_turnaround_time(mlfq, [P1, P2, P3, P4])}"
+    )
     # print sequence of finished processes
-    print(f"sequnece of finished processes:\
-        {mlfq.calculate_sequence_of_finish_queue()}")
+    print(
+        f"sequnece of finished processes:\
+        {mlfq.calculate_sequence_of_finish_queue()}"
+    )
