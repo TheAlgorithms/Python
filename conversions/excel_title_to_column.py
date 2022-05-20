@@ -13,7 +13,7 @@ def excel_title_to_column(column_title: str) -> int:
     >>> excel_title_to_column("Z")
     26
     """
-    assert(column_title.isupper())
+    assert column_title.isupper()
     answer = 0
     index = len(column_title) - 1
     power = 0
