@@ -86,7 +86,7 @@ def iter_merge_sort(input_list: list) -> list:
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
-    if user_input == '':
+    if user_input == "":
         unsorted = []
     else:
         unsorted = [int(item.strip()) for item in user_input.split(",")]
