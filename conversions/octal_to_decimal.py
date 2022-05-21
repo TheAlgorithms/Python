@@ -30,8 +30,6 @@ def oct_to_decimal(oct_string: str) -> int:
     1
     >>> oct_to_decimal("-1")
     -1
-    
-    
     >>> oct_to_decimal("12")
     10
     >>> oct_to_decimal(" 12   ")
