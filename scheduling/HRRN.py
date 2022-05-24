@@ -91,24 +91,6 @@ def calculate_waiting_time(
     return waiting_time
 
 
-def calculate_average_time(
-    process_name: list, waiting_time: list, turn_around_time: list, no_of_process: int
-) -> None:
-    """
-    Calculate the average time
-    """
-
-    merge_waiting_time = 0
-    merge_turn_around_time = 0
-
-    for i in range(0, no_of_process):
-        merge_waiting_time += waiting_time[i]
-        merge_turn_around_time += turn_around_time[i]
-
-    print(f"average waiting time : {merge_waiting_time / no_of_process}")
-    print(f"average turn around time : {merge_turn_around_time / no_of_process}")
-
-
 if __name__ == "__main__":
 
     no_of_process = 5
