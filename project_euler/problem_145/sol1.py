@@ -23,10 +23,11 @@ def odd_digits(num: int) -> bool:
     >>> odd_digits(135797531)
     True
     """
-    num_str = str(num)
-    for i in ["0", "2", "4", "6", "8"]:
-        if i in num_str:
+    while num > 0:
+        digit = num % 10
+        if digit % 2 == 0:
             return False
+        num //= 10
     return True
 
 
