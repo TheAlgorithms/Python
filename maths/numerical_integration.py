@@ -29,7 +29,6 @@ def right_endpt_rule(
     x_end: int | float,
     steps: int = 100,
 ) -> float:
-    
     """
     Construct a rectangle on each subinterval, the height of 
     the rectangle is determined by the function value at the 
@@ -73,7 +72,6 @@ def left_endpt_rule(
     x_end: int | float,
     steps: int = 100,
 ) -> float:
-
     """
     Construct a rectangle on each subinterval, the height of 
     the rectangle is determined by the function value at the 
@@ -117,7 +115,6 @@ def midpoint_rule(
     x_end: int | float,
     steps: int = 100,
 ) -> float:
-
     """
     Construct a rectangle on each subinterval, the height of 
     the rectangle is determined by the function value at the 
@@ -162,7 +159,6 @@ def simpsons_rule(
     x_end: int | float,
     steps: int = 100,
 ) -> float:
-
     """
     For simpson's rule, there must be an even number of subintervals.
     The exact derivation for this rule is complicated; the motivated 
@@ -222,7 +218,6 @@ def trapezoidal_area(
     x_end: int | float,
     steps: int = 100,
 ) -> float:
-
     """
     Treats curve as a collection of linear lines and sums the area of the
     trapezium shape they form
