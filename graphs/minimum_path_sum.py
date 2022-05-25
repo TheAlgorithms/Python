@@ -1,5 +1,4 @@
 def min_path(grid: list) -> int:
-
     """
     Find the path from top left to bottom right of array of numbers
     with the lowest possible sum and return the sum along this path.
