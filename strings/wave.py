@@ -1,7 +1,7 @@
 def wave(txt: str) -> list:
     """
-    >>> wave('wave algorithm')
-    ['Wave algorithm', 'wAve algorithm', 'waVe algorithm', 'wavE algorithm', 'wave Algorithm', 'wave aLgorithm', 'wave alGorithm', 'wave algOrithm', 'wave algoRithm', 'wave algorIthm', 'wave algoriThm', 'wave algoritHm', 'wave algorithM']
+    >>> wave('cat')
+    ['Cat', 'cAt', 'caT']
     >>> wave('one')
     ['One', 'oNe', 'onE']
     >>> wave('book')
@@ -10,7 +10,7 @@ def wave(txt: str) -> list:
 
     """this algorithm returns a so called 'wave' of
     a given string [ a list of each of it's capitalized
-    charachters one by one??? ]"""
+    characters one by one??? ]"""
 
     return [
         txt[:a] + txt[a].upper() + txt[a + 1 :]
