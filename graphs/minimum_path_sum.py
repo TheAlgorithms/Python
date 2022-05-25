@@ -1,15 +1,15 @@
-def min_path(grid: list) -> int:
+def min_path_sum(grid: list) -> int:
     """
     Find the path from top left to bottom right of array of numbers
     with the lowest possible sum and return the sum along this path.
-    >>> min_path([
+    >>> min_path_sum([
     ...     [1, 3, 1],
     ...     [1, 5, 1],
     ...     [4, 2, 1],
     ... ])
     7
 
-    >>> min_path([
+    >>> min_path_sum([
     ...     [1, 0, 5, 6, 7],
     ...     [8, 9, 0, 4, 2],
     ...     [4, 4, 4, 5, 1],
@@ -18,12 +18,12 @@ def min_path(grid: list) -> int:
     ... ])
     20
 
-    >>> min_path(None)
+    >>> min_path_sum(None)
     Traceback (most recent call last):
         ...
     TypeError: The grid does not contain the appropriate information
 
-    >>> min_path([[]])
+    >>> min_path_sum([[]])
     Traceback (most recent call last):
         ...
     TypeError: The grid does not contain the appropriate information
