@@ -29,8 +29,8 @@ class MLFQ:
     def __init__(
         self,
         number_of_queues: int,
-        time_slices: int,
-        queue: list[Process],
+        time_slices: list[int],
+        queue: deque[Process],
         current_time: int,
     ) -> None:
         # total number of mlfq's queues
@@ -42,7 +42,7 @@ class MLFQ:
         # current time
         self.current_time = current_time
         # finished process is in this sequence queue
-        self.finish_queue = deque()
+        self.finish_queue: deque[Process] = deque()
 
     def calculate_sequence_of_finish_queue(self) -> list[str]:
         """
@@ -113,7 +113,7 @@ class MLFQ:
         return completion_times
 
     def calculate_remaining_burst_time_of_processes(
-        self, queue: list[Process]
+        self, queue: deque[Process]
     ) -> list[int]:
         """
         This method calculate remaining burst time of processes
@@ -154,7 +154,7 @@ class MLFQ:
         process.waiting_time += self.current_time - process.stop_time
         return process.waiting_time
 
-    def first_come_first_served(self, ready_queue: list[Process]) -> list[Process]:
+    def first_come_first_served(self, ready_queue: deque[Process]) -> deque[Process]:
         """
         FCFS(First Come, First Served)
         FCFS will be applied to MLFQ's last queue
@@ -168,7 +168,7 @@ class MLFQ:
         >>> mlfq.calculate_sequence_of_finish_queue()
         ['P1', 'P2', 'P3', 'P4']
         """
-        finished = deque()  # sequence deque of finished process
+        finished: deque[Process] = deque()  # sequence deque of finished process
         while len(ready_queue) != 0:
             cp = ready_queue.popleft()  # current process
 
@@ -193,7 +193,9 @@ class MLFQ:
         # FCFS will finish all remaining processes
         return finished
 
-    def round_robin(self, ready_queue: list[Process], time_slice: int) -> list[Process]:
+    def round_robin(
+        self, ready_queue: deque[Process], time_slice: int
+    ) -> tuple[deque[Process], deque[Process]]:
         """
         RR(Round Robin)
         RR will be applied to MLFQ's all queues except last queue
@@ -208,7 +210,7 @@ class MLFQ:
         >>> mlfq.calculate_sequence_of_finish_queue()
         ['P2']
         """
-        finished = deque()  # sequence deque of terminated process
+        finished: deque[Process] = deque()  # sequence deque of terminated process
         # just for 1 cycle and unfinished processes will go back to queue
         for i in range(len(ready_queue)):
             cp = ready_queue.popleft()  # current process
@@ -245,7 +247,7 @@ class MLFQ:
         # return finished processes queue and remaining processes queue
         return finished, ready_queue
 
-    def multi_level_feedback_queue(self) -> list[Process]:
+    def multi_level_feedback_queue(self) -> deque[Process]:
         """
         MLFQ(Multi Level Feedback Queue)
         >>> P1 = Process("P1", 0, 53)
