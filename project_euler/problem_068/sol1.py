@@ -90,7 +90,6 @@ def generate_gon_ring(gon_side: int, perm: list[int]) -> list[int]:
     result[0:3] = perm[0:3]
     perm.append(perm[1])
 
-    # idk why, but it works
     magic_number = 1 if gon_side < 5 else 2
 
     for i in range(1, len(perm) // 3 + magic_number):
