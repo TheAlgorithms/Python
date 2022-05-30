@@ -33,11 +33,16 @@ def prime_factors(n: int) -> list[int]:
     TypeError: '<=' not supported between instances of 'int' and 'list'
 
     """
-    i = 2
+
     factors = []
+    while n % 2 == 0:
+        n //= 2
+        factors.append(2)
+
+    i = 3
     while i * i <= n:
         if n % i:
-            i += 1
+            i += 2
         else:
             n //= i
             factors.append(i)
