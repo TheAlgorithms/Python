@@ -1,4 +1,3 @@
-# SJF
 """
 Non-preemptive Shortest Job First
 Shortest execution time process is chosen for the next execution.
@@ -15,7 +14,6 @@ from statistics import mean
 def calculate_waitingtime(
     arrival_time: list[int], burst_time: list[int], no_of_processes: int
 ) -> list[int]:
-
     """
     Calculate the waiting time of each processes
 
@@ -31,28 +29,26 @@ def calculate_waitingtime(
     waiting_time = [0] * no_of_processes
     remaining_time = [0] * no_of_processes
 
-    """
-    Initialize remaining_time to waiting_time.
-    """
+    # Initialize remaining_time to waiting_time.
+
     for i in range(no_of_processes):
         remaining_time[i] = burst_time[i]
-    ready_process = []
+    ready_process = []  # ready_process: List[int]
 
     completed = 0
     total_time = 0
 
-    """
-     When processes are not completed,
-        A process whose arrival time has passed \
-        and has remaining execution time is put into the ready_process.
-        The shortest process in the ready_process, target_process is executed.
-    """
+    # When processes are not completed,
+    # A process whose arrival time has passed \
+    # and has remaining execution time is put into the ready_process.
+    # The shortest process in the ready_process, target_process is executed.
+
     while completed != no_of_processes:
         ready_process = []
         target_process = -1
 
         for i in range(no_of_processes):
-            if (arrival_time[i] <= total_time) & (remaining_time[i] > 0):
+            if (arrival_time[i] <= total_time) and (remaining_time[i] > 0):
                 ready_process.append(i)
 
         if len(ready_process) > 0:
@@ -76,7 +72,7 @@ def calculate_turnaroundtime(
     burst_time: list[int], no_of_processes: int, waiting_time: list[int]
 ) -> list[int]:
     """
-    Calculate the turnaround time of each Processes
+    Calculate the turnaround time of each process.
 
     Return: The turnaround time for each process.
     >>> calculate_turnaroundtime([0,1,2], 3, [0, 10, 15])
@@ -99,7 +95,6 @@ if __name__ == "__main__":
     no_of_processes = 4
     burst_time = [2, 5, 3, 7]
     arrival_time = [0, 0, 0, 0]
-    processes = list(range(1, 5))
     waiting_time = calculate_waitingtime(arrival_time, burst_time, no_of_processes)
     turn_around_time = calculate_turnaroundtime(
         burst_time, no_of_processes, waiting_time
@@ -107,9 +102,9 @@ if __name__ == "__main__":
 
     # Printing the Result
     print("PID\tBurst Time\tArrival Time\tWaiting Time\tTurnaround Time")
-    for i, processes in enumerate(processes):
+    for i, process_ID in enumerate(list(range(1, 5))):
         print(
-            f"{processes}\t{burst_time[i]}\t\t\t{arrival_time[i]}\t\t\t\t"
+            f"{process_ID}\t{burst_time[i]}\t\t\t{arrival_time[i]}\t\t\t\t"
             f"{waiting_time[i]}\t\t\t\t{turn_around_time[i]}"
         )
     print(f"\nAverage waiting time = {mean(waiting_time):.5f}")
