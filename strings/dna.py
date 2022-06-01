@@ -1,5 +1,5 @@
-import string
 import re
+import string
 
 
 def dna(dna: str) -> str:
@@ -18,8 +18,8 @@ def dna(dna: str) -> str:
     """ https://en.wikipedia.org/wiki/DNA """
 
     """this algorithm, given one side
-    of a DNA strand returns the other, 
-    complementary side of said strand"""
+    of a DNA strand returns the other
+    side of said strand"""
 
     r = len(re.findall("[ATCG]", dna)) != len(dna)
     val = dna.translate(dna.maketrans("ATCG", "TAGC"))
