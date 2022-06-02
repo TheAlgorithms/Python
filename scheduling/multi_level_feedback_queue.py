@@ -133,10 +133,7 @@ class MLFQ:
         >>> mlfq.calculate_remaining_burst_time_of_processes(ready_queue)
         [11, 26]
         """
-        remaining_burst_times = []
-        for i in range(len(queue)):
-            remaining_burst_times.append(queue[i].burst_time)
-        return remaining_burst_times
+        return [q.burst_time for q in queue]
 
     def update_waiting_time(self, process: Process) -> int:
         """
