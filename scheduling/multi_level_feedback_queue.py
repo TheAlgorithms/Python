@@ -22,7 +22,7 @@ class MLFQ:
     https://en.wikipedia.org/wiki/Multilevel_feedback_queue
     MLFQ has a lot of queues that have different priority
     In this MLFQ,
-    The first Queue(0) to last second Queue(N-2) of MLFQ has Round Robin Algorithm
+    The first Queue(0) to last second Queue(N-2) of MLFQ have Round Robin Algorithm
     The last Queue(N-1) has First Come, First Served Algorithm
     """
 
