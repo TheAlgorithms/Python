@@ -2,9 +2,6 @@ from collections import deque
 
 
 class Process:
-    """
-    Process should have these fields below
-    """
 
     def __init__(self, process_name: str, arrival_time: int, burst_time: int) -> None:
         self.process_name = process_name  # process name
