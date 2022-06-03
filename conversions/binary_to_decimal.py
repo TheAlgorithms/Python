@@ -4,7 +4,7 @@ def bin_to_decimal(bin_string: str) -> int:
 
     >>> bin_to_decimal("101")
     5
-    >>> bin_to_decimal(" 1010   ")
+    >>> bin_to_decimal("1010")
     10
     >>> bin_to_decimal("-11101")
     -29
@@ -39,5 +39,4 @@ def bin_to_decimal(bin_string: str) -> int:
 
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
