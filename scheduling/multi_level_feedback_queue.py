@@ -2,7 +2,6 @@ from collections import deque
 
 
 class Process:
-
     def __init__(self, process_name: str, arrival_time: int, burst_time: int) -> None:
         self.process_name = process_name  # process name
         self.arrival_time = arrival_time  # arrival time of the process
