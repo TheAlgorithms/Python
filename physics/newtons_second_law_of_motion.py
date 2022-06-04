@@ -3,7 +3,6 @@ Description :
 Newton's second law of motion pertains to the behavior of objects for which
 all existing forces are not balanced.
 The second law of motion states that the force acting on a body is directly proportional to the rate of change of momentum of the object.
-
 But when we consider the mass of the body as constant, then, the acceleration of the body depends upon two factors,
 - the net force acting upon the object and the mass of the object.
 The acceleration of an object depends directly
