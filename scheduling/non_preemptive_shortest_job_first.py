@@ -10,8 +10,6 @@ from __future__ import annotations
 
 from statistics import mean
 
-"from typing import List"
-
 
 def calculate_waitingtime(
     arrival_time: list[int], burst_time: list[int], no_of_processes: int
