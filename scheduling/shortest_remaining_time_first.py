@@ -1,6 +1,6 @@
 """
-Shortest job first (non-preemptive)
-https://en.wikipedia.org/wiki/Shortest_job_next
+Shortest job remaining first
+https://en.wikipedia.org/wiki/Shortest_remaining_time
 Please note arrival time and burst
 Please use spaces to separate times entered.
 """
@@ -20,7 +20,7 @@ def calculate_waitingtime(
     >>> calculate_waitingtime([1,2,3],[2,5,1],3)
     [0, 2, 0]
     >>> calculate_waitingtime([2,3],[5,1],2)
-    [0, 4]
+    [1, 0]
     """
     remaining_time = [0] * no_of_processes
     waiting_time = [0] * no_of_processes
@@ -43,27 +43,32 @@ def calculate_waitingtime(
                         minm = remaining_time[j]
                         short = j
                         check = True
-        # Increment time when no process has arrived
+
         if not check:
             increment_time += 1
             continue
+        remaining_time[short] -= 1
 
-        increment_time += remaining_time[short]
-        remaining_time[short] = 0
-        minm = 999999999
-        complete += 1
-        check = False
+        minm = remaining_time[short]
+        if minm == 0:
+            minm = 999999999
 
-        # Find finish time of current process
-        finish_time = increment_time
+        if remaining_time[short] == 0:
+            complete += 1
+            check = False
 
-        # Calculate waiting time
-        finar = finish_time - arrival_time[short]
-        waiting_time[short] = finar - burst_time[short]
+            # Find finish time of current process
+            finish_time = increment_time + 1
 
-        if waiting_time[short] < 0:
-            waiting_time[short] = 0
+            # Calculate waiting time
+            finar = finish_time - arrival_time[short]
+            waiting_time[short] = finar - burst_time[short]
 
+            if waiting_time[short] < 0:
+                waiting_time[short] = 0
+
+        # Increment time
+        increment_time += 1
     return waiting_time
 
 
