@@ -4,8 +4,9 @@ It was developed as modification of shortest job next or shortest job first (SJN
 to mitigate the problem of process starvation.
 https://en.wikipedia.org/wiki/Highest_response_ratio_next
 """
-import numpy as np
 from statistics import mean
+
+import numpy as np
 
 
 def calculate_turn_around_time(
@@ -15,9 +16,9 @@ def calculate_turn_around_time(
     Calculate the turn around time of each processes
 
     Return: The turn around time time for each process.
-    >>> calculate_turn_around_time(['A', 'B', 'C'], [3, 5, 8], [2, 4, 6], 3)
+    >>> calculate_turn_around_time(["A", "B", "C"], [3, 5, 8], [2, 4, 6], 3)
     [2, 4, 7]
-    >>> calculate_turn_around_time(['A', 'B', 'C'], [0, 2, 4], [3, 5, 7], 3)
+    >>> calculate_turn_around_time(["A", "B", "C"], [0, 2, 4], [3, 5, 7], 3)
     [3, 6, 11]
     """
 
@@ -43,7 +44,7 @@ def calculate_turn_around_time(
         change the current time.
         """
         i = 0
-        while(finished_process[i] == 1):
+        while finished_process[i] == 1:
             i += 1
         if current_time < arrival_time[i]:
             current_time = arrival_time[i]
@@ -55,8 +56,9 @@ def calculate_turn_around_time(
         temp = 0
         for i in range(0, no_of_process):
             if finished_process[i] == 0 and arrival_time[i] <= current_time:
-                temp = (burst_time[i] + (current_time - arrival_time[i])) /\
-                    burst_time[i]
+                temp = (burst_time[i] + (current_time - arrival_time[i])) / burst_time[
+                    i
+                ]
             if response_ratio < temp:
                 response_ratio = temp
                 loc = i
@@ -79,9 +81,9 @@ def calculate_waiting_time(
     Calculate the waiting time of each processes.
 
     Return: The waiting time for each process.
-    >>> calculate_waiting_time(['A', 'B', 'C'], [2, 4, 7], [2, 4, 6], 3)
+    >>> calculate_waiting_time(["A", "B", "C"], [2, 4, 7], [2, 4, 6], 3)
     [0, 0, 1]
-    >>> calculate_waiting_time(['A', 'B', 'C'], [3, 6, 11], [3, 5, 7], 3)
+    >>> calculate_waiting_time(["A", "B", "C"], [3, 6, 11], [3, 5, 7], 3)
     [0, 1, 4]
     """
 
@@ -94,20 +96,24 @@ def calculate_waiting_time(
 if __name__ == "__main__":
 
     no_of_process = 5
-    process_name = ['A', 'B', 'C', 'D', 'E']
+    process_name = ["A", "B", "C", "D", "E"]
     arrival_time = [1, 2, 3, 4, 5]
     burst_time = [1, 2, 3, 4, 5]
 
     turn_around_time = calculate_turn_around_time(
-        process_name, arrival_time, burst_time, no_of_process)
+        process_name, arrival_time, burst_time, no_of_process
+    )
     waiting_time = calculate_waiting_time(
-        process_name, turn_around_time, burst_time, no_of_process)
+        process_name, turn_around_time, burst_time, no_of_process
+    )
 
     print("Process name \tArrival time \tBurst time \tTurn around time \tWaiting time")
     for i in range(0, no_of_process):
         print(
             f"{process_name[i]}\t\t{arrival_time[i]}\t\t{burst_time[i]}\t\t"
-            f"{turn_around_time[i]}\t\t\t{waiting_time[i]}")
+            f"{turn_around_time[i]}\t\t\t{waiting_time[i]}"
+        )
 
     print(f"average waiting time : {mean(waiting_time):.5f}")
     print(f"average turn around time : {mean(turn_around_time):.5f}")
+
