@@ -54,6 +54,7 @@ def sum_of_digits_compact(n: int) -> int:
     """
     return sum(int(c) for c in str(abs(n)))
 
+
 def digital_root(n: int) -> int:
     """
     finding the digital root of n
@@ -69,6 +70,7 @@ def digital_root(n: int) -> int:
     0
     """
     return n % 9 or n and 9 if n >= 0 else "Input wasn't valid"
+
 
 def benchmark() -> None:
     """
