@@ -116,4 +116,3 @@ if __name__ == "__main__":
 
     print(f"average waiting time : {mean(waiting_time):.5f}")
     print(f"average turn around time : {mean(turn_around_time):.5f}")
-
