@@ -31,11 +31,6 @@ def hamming_distance(string1: str, string2: str) -> int:
 
 if __name__ == "__main__":
 
-    def test_hamming_distance():
-        assert hamming_distance("", "") == 0
-        assert hamming_distance("python", "python") == 0
-        assert hamming_distance("karolin", "kathrin") == 3
-        assert hamming_distance("kathrin", "kerstin") == 4
-        assert hamming_distance("00000", "11111") == 5
+    import doctest
 
-    test_hamming_distance()
+    doctest.testmod()
