@@ -176,6 +176,7 @@ class Graph:
             w (int): weight
 
         Examples:
+            >>> graph = Graph(2)
             >>> graph.add_edge(0, 1, 4)
 
             adds the edge 0 -> 1(4) and 1 -> 0(4)
@@ -259,8 +260,12 @@ class Graph:
             >>> graph.add_edge(0, 2, 7)
             >>> graph.add_edge(1, 2, 2)
             >>> graph.dijkstra(0)
+            Distance from node: 0
+            Node 0 has distance: 0
+            Node 1 has distance: 4
+            Node 2 has distance: 6
             >>> graph.show_distances(0)
-            Distances from node: 0
+            Distance from node: 0
             Node 0 has distance: 0
             Node 1 has distance: 4
             Node 2 has distance: 6
@@ -286,10 +291,14 @@ class Graph:
             >>> graph.add_edge(0, 2, 7)
             >>> graph.add_edge(1, 2, 2)
             >>> graph.dijkstra(0)
+            Distance from node: 0
+            Node 0 has distance: 0
+            Node 1 has distance: 4
+            Node 2 has distance: 6
             >>> graph.show_path(0, 2)
             ----Path to reach 2 from 0----
-            0 -> 1 -> 2
-            Total cost of path: 6
+            0 -> 1 -> 2 
+            Total cost of path:  6
 
         """
         path = []
@@ -317,6 +326,8 @@ class Graph:
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     graph = Graph(9)
     graph.add_edge(0, 1, 4)
     graph.add_edge(0, 7, 8)
