@@ -69,7 +69,7 @@ def digital_root(n: int) -> int:
     >>> digital_root(0)
     0
     """
-    return n % 9 or n and 9 if n >= 0 else "Input wasn't valid"
+    return n % 9 or n and 9 if n >= 0 else 0
 
 
 def benchmark() -> None:
