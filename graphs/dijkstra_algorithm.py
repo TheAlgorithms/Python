@@ -9,16 +9,27 @@ import sys
 
 
 class PriorityQueue:
-    # Based on Min Heap
+    """Priority queue implementation based on Min Heap"""
+
     def __init__(self):
         self.cur_size = 0
         self.array = []
         self.pos = {}  # To store the pos of node in array
 
     def isEmpty(self):
+        """Returns True if the PriorityQueue is empty, else False"""
         return self.cur_size == 0
 
     def min_heapify(self, idx):
+        """
+        Ensures element at idx is well placed on the heap after change
+
+        Note:
+            element can only change to have a lower rank
+
+        Args:
+            idx (int): index of the element that has changed
+        """
         lc = self.left(idx)
         rc = self.right(idx)
         if lc < self.cur_size and self.array(lc)[0] < self.array(idx)[0]:
@@ -32,14 +43,29 @@ class PriorityQueue:
             self.min_heapify(smallest)
 
     def insert(self, tup):
-        # Inserts a node into the Priority Queue
+        """
+        Inserts an element in the Priority Queue
+
+        Args:
+            (rank (int), value): element to insert
+
+        Note:
+            Lower rank means higher priority
+
+        """
         self.pos[tup[1]] = self.cur_size
         self.cur_size += 1
         self.array.append((sys.maxsize, tup[1]))
         self.decrease_key((sys.maxsize, tup[1]), tup[0])
 
     def extract_min(self):
-        # Removes and returns the min element at top of priority queue
+        """
+        Removes and return the min element at the top of the Priority Queue
+
+        Returns:
+            Element with lowest rank (highest priority)
+
+        """
         min_node = self.array[0][1]
         self.array[0] = self.array[self.cur_size - 1]
         self.cur_size -= 1
@@ -48,20 +74,55 @@ class PriorityQueue:
         return min_node
 
     def left(self, i):
-        # returns the index of left child
+        """
+        Returns the index of the left child
+
+        Args:
+            i (int): index
+
+        Returns:
+            int: index of the left child
+
+        """
         return 2 * i + 1
 
     def right(self, i):
-        # returns the index of right child
+        """
+        Returns the index of the right child
+
+        Args:
+            i (int): index
+
+        Returns:
+            int: index of the right child
+
+        """
         return 2 * i + 2
 
     def par(self, i):
-        # returns the index of parent
+        """
+        Returns the index of parent
+
+        Args:
+            i (int): index
+
+        Returns:
+            int: the index of the parent
+
+        """
         return math.floor(i / 2)
 
     def swap(self, i, j):
-        # swaps array elements at indices i and j
-        # update the pos{}
+        """
+        Swaps array elements at indices i and j
+
+        Args:
+            i, j (int): indices which values will be swapped
+
+        Updates:
+            self.pos
+
+        """
         self.pos[self.array[i][1]] = j
         self.pos[self.array[j][1]] = i
         temp = self.array[i]
@@ -69,6 +130,17 @@ class PriorityQueue:
         self.array[j] = temp
 
     def decrease_key(self, tup, new_d):
+        """
+        Decreases rank of tup (increases priority)
+
+        Note:
+            Assumes new_d is lower than tup[0] (lower rank is higher priority)
+
+        Args:
+            tup (int, something): (rank, value) pair representing element
+            new_d (int): new rank
+
+        """
         idx = self.pos[tup[1]]
         # assuming the new_d is atmost old_d
         self.array[idx] = (new_d, tup[1])
@@ -78,6 +150,15 @@ class PriorityQueue:
 
 
 class Graph:
+    """
+    Implementation of undirected graph with dijkstra algorithm
+
+    Args:
+        num (int): number of nodes in the graph
+                   nodes should be between 0 and (num-1)
+
+    """
+
     def __init__(self, num):
         self.adjList = {}  # To store graph: u -> (v,w)
         self.num_nodes = num  # Number of nodes in graph
@@ -86,8 +167,20 @@ class Graph:
         self.par = [-1] * self.num_nodes  # To store the path
 
     def add_edge(self, u, v, w):
-        #  Edge going from node u to v and v to u with weight w
-        # u (w)-> v, v (w) -> u
+        """
+        Adds undirect edge u <-> v with weight w
+
+        Args:
+            u (int): node1
+            v (int): node2
+            w (int): weight
+
+        Examples:
+            >>> graph.add_edge(0, 1, 4)
+
+            adds the edge 0 -> 1(4) and 1 -> 0(4)
+
+        """
         # Check if u already in graph
         if u in self.adjList.keys():
             self.adjList[u].append((v, w))
@@ -101,11 +194,33 @@ class Graph:
             self.adjList[v] = [(u, w)]
 
     def show_graph(self):
-        # u -> v(w)
+        """
+        Prints the graph to the screen
+
+        Examples:
+            >>> graph = Graph(3)
+            >>> graph.add_edge(0, 1, 4)
+            >>> graph.add_edge(0, 2, 8)
+            >>> graph.show_graph()
+            0 -> 1(4) -> 2(8)
+            1 -> 0(4)
+            2 -> 0(8)
+
+        """
         for u in self.adjList:
             print(u, "->", " -> ".join(str(f"{v}({w})") for v, w in self.adjList[u]))
 
     def dijkstra(self, src):
+        """
+        Computes the shortest distances from src
+
+        Args:
+            src (int): source node
+
+        Updates:
+            self.dist: contains the shortest distances to src
+
+        """
         # Flush old junk values in par[]
         self.par = [-1] * self.num_nodes
         # src is the source node
@@ -135,13 +250,48 @@ class Graph:
         self.show_distances(src)
 
     def show_distances(self, src):
+        """
+        Prints the distances to src on the screen
+
+        Examples:
+            >>> graph = Graph(3)
+            >>> graph.add_edge(0, 1, 4)
+            >>> graph.add_edge(0, 2, 7)
+            >>> graph.add_edge(1, 2, 2)
+            >>> graph.dijkstra(0)
+            >>> graph.show_distances(0)
+            Distances from node: 0
+            Node 0 has distance: 0
+            Node 1 has distance: 4
+            Node 2 has distance: 6
+
+        """
         print(f"Distance from node: {src}")
         for u in range(self.num_nodes):
             print(f"Node {u} has distance: {self.dist[u]}")
 
     def show_path(self, src, dest):
-        # To show the shortest path from src to dest
-        # WARNING: Use it *after* calling dijkstra
+        """
+        Prints the shortest path from src to dest
+
+        Args:
+            src (int): source
+            dest (int): destination
+
+        WARNING: Use if *after* calling dijkstra
+
+        Examples:
+            >>> graph = Graph(3)
+            >>> graph.add_edge(0, 1, 4)
+            >>> graph.add_edge(0, 2, 7)
+            >>> graph.add_edge(1, 2, 2)
+            >>> graph.dijkstra(0)
+            >>> graph.show_path(0, 2)
+            ----Path to reach 2 from 0----
+            0 -> 1 -> 2
+            Total cost of path: 6
+
+        """
         path = []
         cost = 0
         temp = dest
