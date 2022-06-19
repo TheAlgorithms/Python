@@ -12,7 +12,7 @@ python3 binary_search_alphabet.py
 """
 
 
-def binary_search_alphabet(array, target):
+def binary_search_alphabet(array->list[str], target->str) -> int:
     """
     Locates the alphabet in a sorted array.
 
