@@ -29,7 +29,7 @@ def solution():
         triangle = f.readlines()
 
     a = map(lambda x: x.rstrip("\r\n").split(" "), triangle)
-    a = list(map(lambda x: list(map(lambda y: int(y), x)), a))
+    a = list(map(lambda x: list(map(int, x)), a))
 
     for i in range(1, len(a)):
         for j in range(len(a[i])):
