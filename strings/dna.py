@@ -5,6 +5,9 @@ import string
 def dna(dna: str) -> str:
 
     """
+    https://en.wikipedia.org/wiki/DNA
+    Returns the second side of a DNA strand
+    
     >>> dna("GCTA")
     'CGAT'
     >>> dna("ATGC")
@@ -14,12 +17,6 @@ def dna(dna: str) -> str:
     >>> dna("GFGG")
     'Invalid Strand'
     """
-
-    """ https://en.wikipedia.org/wiki/DNA """
-
-    """this algorithm, given one side
-    of a DNA strand returns the other
-    side of said strand"""
 
     r = len(re.findall("[ATCG]", dna)) != len(dna)
     val = dna.translate(dna.maketrans("ATCG", "TAGC"))
