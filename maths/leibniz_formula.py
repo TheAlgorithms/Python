@@ -18,8 +18,8 @@ ValueError: The input needs to be an integer.
 """
 
 
-def leibniz_formula_for_pi(rounds):
-    sum = 0
+def leibniz_formula_for_pi(rounds: int) -> float:
+    sum = 0.0
     denominator = 1
 
     if type(rounds) != int:
