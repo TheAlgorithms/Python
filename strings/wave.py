@@ -1,5 +1,6 @@
 def wave(txt: str) -> list:
     """
+    Returns a so called 'wave' of a given string
     >>> wave('cat')
     ['Cat', 'cAt', 'caT']
     >>> wave('one')
@@ -7,10 +8,6 @@ def wave(txt: str) -> list:
     >>> wave('book')
     ['Book', 'bOok', 'boOk', 'booK']
     """
-
-    """this algorithm returns a so called 'wave' of
-    a given string [ a list of each of it's capitalized
-    characters one by one??? ]"""
 
     return [
         txt[:a] + txt[a].upper() + txt[a + 1 :]
