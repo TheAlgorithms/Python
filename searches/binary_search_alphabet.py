@@ -12,7 +12,7 @@ python3 binary_search_alphabet.py
 """
 
 
-def binary_search_alphabet(array: list[str], target: str) -> int:
+def binary_search_alphabet(array: list[int], target: str) -> int:
     """
     Locates the alphabet in a sorted array.
 
@@ -56,11 +56,15 @@ if __name__ == "__main__":
     except IndexError:
         """
         If user input ended with a comma => simply ignor the comma
+        If user input a word the first letter will be taken => prompt user
         If user input empty              => prompt user
+
         """
         if len(user_input) > 0:
             if user_input[-1] == ",":
-                array = sorted(alphabet[0] for alphabet in user_input.split(",")[:-1])
+                array = sorted(
+                    alphabet[0] for alphabet in user_input.split(",")[:-1]
+                    )
         else:
             print("Input error")
 
@@ -69,6 +73,10 @@ if __name__ == "__main__":
     result = binary_search_alphabet(array_in_ascii, target)
 
     if result is None:
-        print(f"The alphabet ({target}) was not found in {array}.")
+        print(
+            f"The alphabet ({target}) was not found in {array}."
+            )
     else:
-        print(f"The alphabet ({target}) was found at position {result} in {array}.")
+        print(
+            f"The alphabet ({target}) was found at position {result} in {array}."
+            )
