@@ -10,10 +10,12 @@ it is an inefficient approach to calculate the digits of π (pi).
 IN: the amount of iterations (int); OUT: the calculated value (float)
 
 Usage:
->>> round(leibniz_formula_for_pi(1000000000), 3)
+>>> round(leibniz_formula_for_pi(100000), 3)
 3.142
 
 >>> leibniz_formula_for_pi("this_is_a_string")
+Traceback (most recent call last):
+    ...
 ValueError: The input needs to be an integer.
 """
 
