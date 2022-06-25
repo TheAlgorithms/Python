@@ -7,7 +7,7 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     """
     encrypt
     =======
-    Encodes a given string with the caesar cipher and returns the encoded
+    Encodes a given string with the Caesar cipher and returns the encoded
     message
 
     Parameters:
@@ -17,7 +17,7 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
 
     Optional:
     *   alphabet (None): the alphabet used to encode the cipher, if not
-        specified, the standard english alphabet with upper and lowercase
+        specified, the standard English alphabet with upper and lowercase
         letters is used
 
     Returns:
@@ -25,9 +25,9 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
 
     More on the caesar cipher
     =========================
-    The caesar cipher is named after Julius Caesar who used it when sending
+    The Caesar cipher is named after Julius Caesar who used it when sending
     secret military messages to his troops. This is a simple substitution cipher
-    where very character in the plain-text is shifted by a certain number known
+    where every character in the plain-text is shifted by a certain number known
     as the "key" or "shift".
 
     Example:
@@ -61,7 +61,7 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
     'f qtbjwhfxj fqumfgjy'
     """
-    # Set default alphabet to lower and upper case english chars
+    # Set default alphabet to lower and upper case English chars
     alpha = alphabet or ascii_letters
 
     # The final result string
@@ -77,7 +77,7 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
 
             # Append the encoded character to the alphabet
             result += alpha[new_key]
-
+            
     return result
 
 
@@ -100,11 +100,11 @@ def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     Returns:
     *   A string containing the decoded plain-text
 
-    More on the caesar cipher
+    More on the Caesar cipher
     =========================
-    The caesar cipher is named after Julius Caesar who used it when sending
+    The Caesar cipher is named after Julius Caesar who used it when sending
     secret military messages to his troops. This is a simple substitution cipher
-    where very character in the plain-text is shifted by a certain number known
+    where every character in the plain-text is shifted by a certain number known
     as the "key" or "shift". Please keep in mind, here we will be focused on
     decryption.
 
@@ -159,15 +159,15 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
 
     Optional:
     *   alphabet:  (None): the alphabet used to decode the cipher, if not
-        specified, the standard english alphabet with upper and lowercase
+        specified, the standard English alphabet with upper and lowercase
         letters is used
 
     More about brute force
     ======================
     Brute force is when a person intercepts a message or password, not knowing
-    the key and tries every single combination. This is easy with the caesar
-    cipher since there are only all the letters in the alphabet. The more
-    complex the cipher, the larger amount of time it will take to do brute force
+    the key and tries every single combination. This is easy with the Caesar
+    cipher since there are only the letters in the alphabet. However, other ciphers may vary in time necessary. The more
+    complex the cipher, the larger amount of time required to do brute force.
 
     Ex:
     Say we have a 5 letter alphabet (abcde), for simplicity and we intercepted the
@@ -192,7 +192,7 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
     Traceback (most recent call last):
     TypeError: 'int' object is not iterable
     """
-    # Set default alphabet to lower and upper case english chars
+    # Set default alphabet to lower and upper case English chars
     alpha = alphabet or ascii_letters
 
     # To store data on all the combinations
@@ -209,7 +209,7 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
 if __name__ == "__main__":
     while True:
         print(f'\n{"-" * 10}\n Menu\n{"-" * 10}')
-        print(*["1.Encrypt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
+        print("1. Encrypt", "2. Decrypt", "3. BruteForce", "4. Quit", sep="\n")
 
         # get user input
         choice = input("\nWhat would you like to do?: ").strip() or "4"
