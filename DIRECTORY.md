@@ -920,6 +920,7 @@
   * [Binary Tree Traversal](searches/binary_tree_traversal.py)
   * [Double Linear Search](searches/double_linear_search.py)
   * [Double Linear Search Recursion](searches/double_linear_search_recursion.py)
+  * [Exponential Search](searches/exponential_search.py)
   * [Fibonacci Search](searches/fibonacci_search.py)
   * [Hill Climbing](searches/hill_climbing.py)
   * [Interpolation Search](searches/interpolation_search.py)
