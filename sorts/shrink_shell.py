@@ -18,7 +18,7 @@ It is a good choice for sorting large arrays of data.
 
 """
 
-def shell_sort(collection):
+def shell_sort(collection: list) -> list:
     """Implementation of shell sort algorithm in Python
     :param collection:  Some mutable ordered collection with heterogeneous
     comparable items inside
