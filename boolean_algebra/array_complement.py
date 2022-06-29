@@ -1,7 +1,7 @@
-def array_complement(a: list, b: list) -> list:
+def array_complement(initial_lst: list, diff_lst: list) -> list:
     """
-    removes all values from list a which
-    are also present in list b [ while keeping
+    removes all values from list initial_lst which
+    are also present in list diff_lst [ while keeping
     the initial order of the elements ]
 
     https://en.wikipedia.org/wiki/Complement_(set_theory)
@@ -14,7 +14,7 @@ def array_complement(a: list, b: list) -> list:
     [35]
     """
 
-    return [c for c in a if c not in b]
+    return [c for c in initial_lst if c not in diff_lst]
 
 if __name__ == "__main__":
     __import__("doctest").testmod()
