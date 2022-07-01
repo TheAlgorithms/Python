@@ -44,7 +44,6 @@ def margin_hard(xs: list[Vector], y: Vector) -> tuple[Vector, float]:
     # At the end we can get b ~= mean(yn - w . xn)
 
     n, = np.shape(y)
-    print(n)
 
     def to_minimize(l: Vector) -> float:
         """Negative of the function to maximize"""
