@@ -57,6 +57,8 @@ def number_of_divisors(n: int) -> int:
             temp += 1
             n = int(n / i)
         div *= temp
+    if n > 1:
+        div *= 2
     return div
 
 
