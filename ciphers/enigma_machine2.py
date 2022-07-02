@@ -79,7 +79,7 @@ def _validator(
 'ZJXESIUQLHAVRMDOYGTNFWPBKC'), \
 {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
 
-    :param rotpos: rotor_positon
+    :param rotpos: rotor_position
     :param rotsel: rotor_selection
     :param pb: plugb -> validated and transformed
     :return: (rotpos, rotsel, pb)
