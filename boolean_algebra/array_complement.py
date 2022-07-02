@@ -13,10 +13,11 @@ def array_complement(initial_lst: list, diff_lst: list) -> list:
     >>> array_complement([35], [36])
     [35]
     
-    """
     
+    """
 
     return [c for c in initial_lst if c not in diff_lst]
+
 
 if __name__ == "__main__":
     __import__("doctest").testmod()
