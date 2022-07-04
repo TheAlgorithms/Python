@@ -17,8 +17,11 @@ def hamming_distance(string1: str, string2: str) -> int:
     3
     >>> hamming_distance("00000", "11111")
     5
+    >>> hamming_distance("karolin", "kath")
+    ValueError: String lengths must match!
     """
-    assert len(string1) == len(string2)
+    if len(string1) != len(string2):
+        raise ValueError("String lengths must match!")
 
     count = 0
 
