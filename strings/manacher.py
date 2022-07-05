@@ -17,15 +17,15 @@ def palindromic_string(input_string: str) -> str:
     """
     max_length = 0
 
-    # if input_string is "aba" than new_input_string become "a|b|a"
+    # if input_string is "aba" then new_input_string become "a|b|a"
     new_input_string = ""
     output_string = ""
 
     # append each character + "|" in new_string for range(0, length-1)
     for i in input_string[: len(input_string) - 1]:
         new_input_string += i + "|"
-    # append last character
-    new_input_string += input_string[-1]
+    # append the last character and then add the surrounding markers.
+    new_input_string = '|' + new_input_string + input_string[-1] + '|'   
 
     # we will store the starting and ending of previous furthest ending palindromic
     # substring
