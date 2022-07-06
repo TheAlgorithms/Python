@@ -1,3 +1,8 @@
+"""
+URL reference to A* algorithm: https://en.wikipedia.org/wiki/A*_search_algorithm
+"""
+
+
 def a_star(start_vertex, vertex_target):
     open_set = set(start_vertex)
     closed_set = set()
@@ -10,7 +15,9 @@ def a_star(start_vertex, vertex_target):
     while len(open_set) > 0:
         x = None
         for v in open_set:
-            if x is None or dist_from_startnode[v] + heuristic(v) < dist_from_startnode[x] + heuristic(x):
+            if x is None or dist_from_startnode[v] + heuristic(v) < dist_from_startnode[
+                x
+            ] + heuristic(x):
                 x = v
 
         if x == vertex_target or Nodes[x] is None:
@@ -46,7 +53,7 @@ def a_star(start_vertex, vertex_target):
 
             path.reverse()
 
-            print('Path found: {}'.format(path))
+            print(f"Path found: {path}")
             return path
         open_set.remove(x)
         closed_set.add(x)
@@ -63,20 +70,24 @@ def get_neighbors(v):
 
 
 def heuristic(n):
-    h_distance = {'A': 11,
-                  'B': 6,
-                  'C': 99,
-                  'D': 1,
-                  'E': 7,
-                  'G': 0, }
+    h_distance = {
+        "A": 11,
+        "B": 6,
+        "C": 99,
+        "D": 1,
+        "E": 7,
+        "G": 0,
+    }
     return h_distance[n]
 
 
-Nodes = {'A': [('B', 2), ('E', 3)],
-         'B': [('C', 1), ('G', 9)],
-         'C': None,
-         'E': [('D', 6)],
-         'D': [('G', 1)]}
+Nodes = {
+    "A": [("B", 2), ("E", 3)],
+    "B": [("C", 1), ("G", 9)],
+    "C": None,
+    "E": [("D", 6)],
+    "D": [("G", 1)],
+}
 
-if __name__ == '__main__':
-    a_star('A', 'G')
+if __name__ == "__main__":
+    a_star("A", "G")
