@@ -13,7 +13,7 @@ def main() -> None:
         mode = "decrypt"
         translated = decryptMessage(key, message)
 
-    print("\n%sed message:" % mode.title())
+    print(f"\n{mode.title()}ed message:")
     print(translated)
 
 
