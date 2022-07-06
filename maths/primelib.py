@@ -41,7 +41,7 @@ goldbach(number)  // Goldbach's assumption
 from math import sqrt
 
 
-def is_prime(number):
+def is_prime(number: int) -> bool:
     """
     input: positive integer 'number'
     returns true if 'number' is prime otherwise false.

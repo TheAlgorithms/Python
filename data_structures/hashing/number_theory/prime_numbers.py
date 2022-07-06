@@ -6,7 +6,7 @@
 import math
 
 
-def is_prime(number):
+def is_prime(number: int) -> bool:
     """Checks to see if a number is a prime in O(sqrt(n)).
 
     A number is prime if it has exactly two factors: 1 and itself.
