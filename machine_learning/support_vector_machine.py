@@ -15,15 +15,29 @@ class SVC:
             Default: unbound
     """
 
-    kernels = {
-        "linear": lambda x, y: np.dot(x, y),
-    }
-
     def __init__(
         self, *, C: float = np.inf, kern: str = "linear", gamma: float = None
     ) -> None:
         self.C = C
-        self.kern = SVC.kernels[kern]
+        self.gamma = gamma
+        if kern == "linear":
+            self.kern = self.__linear
+        elif kern == "rbf":
+            self.kern = self.__rbf
+            if not self.gamma:
+                raise ValueError("rbf kernel requires gamma")
+            # in the future, there could be a default value like in sklearn
+            # sklear: def_gamma = 1/(n_features * X.var()) (wiki)
+            # previously it was 1/(n_features)
+        else:
+            raise ValueError("unknown kernel:", kern)
+
+    # kernels
+    def __linear(self, x: ndarray, y: ndarray) -> float:
+        return np.dot(x, y)
+
+    def __rbf(self, x: ndarray, y: ndarray) -> float:
+        return np.exp(-(self.gamma * np.dot(x - y, x - y)))
 
     def fit(self, xs: list[ndarray], y: ndarray) -> None:
         """
