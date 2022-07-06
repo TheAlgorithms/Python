@@ -4,6 +4,20 @@ URL reference to A* algorithm: https://en.wikipedia.org/wiki/A*_search_algorithm
 
 
 def a_star(start_vertex, vertex_target):
+    """
+    STEP 1: Firstly, add the beginning node to the open list
+    STEP 2: Then repeat the following step
+        – In the open list, find the square with the lowest F cost – and this denotes the current square.
+        – Now we move to the closed square.
+        – Consider 8 squares adjacent to the current square and :
+            + Ignore it if it is on the closed list, or if it is not workable. Do the following if it is workable
+            + Check if it is on the open list; if not, add it. You need to make the current square as this square’s a parent. You will now record the different costs of the square like the F, G and H costs.
+            + If it is on the open list, use G cost to measure the better path. Lower the G cost, the better the path. If this path is better, make the current square as the parent square. Now you need to recalculate the other scores – the G and F scores of this square.
+        – You’ll stop:
+            + If you find the path, you need to check the closed list and add the target square to it.
+            + There is no path if the open list is empty and you could not find the target square.
+    STEP 3: Now you can save the path and work backwards starting from the target square, going to the parent square from each square you go, till it takes you to the starting square. You’ve found your path now.
+    """
     open_set = set(start_vertex)
     closed_set = set()
     dist_from_startnode = {}
