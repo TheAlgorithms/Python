@@ -8,7 +8,7 @@ the famous Enigma machine from WWII.
 Module includes:
 - enigma function
 - showcase of function usage
-- 9 randnomly generated rotors
+- 9 randomly generated rotors
 - reflector (aka static rotor)
 - original alphabet
 
