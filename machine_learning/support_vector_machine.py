@@ -13,6 +13,21 @@ class SVC:
                 - linear
         C: constraint for soft margin (data not linearly separable)
             Default: unbound
+
+    >>> SVC(kern="asdf")
+    Traceback (most recent call last):
+        ...
+    ValueError: Unknown kernel: asdf
+
+    >>> SVC(kern="rbf")
+    Traceback (most recent call last):
+        ...
+    ValueError: rbf kernel requires gamma
+
+    >>> SVC(kern="rbf", gamma=-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: gamma must be > 0
     """
 
     def __init__(
@@ -26,11 +41,15 @@ class SVC:
             self.kern = self.__rbf
             if not self.gamma:
                 raise ValueError("rbf kernel requires gamma")
+            if not (isinstance(self.gamma, float) or isinstance(self.gamma, int)):
+                raise ValueError("gamma must be float or int")
+            if not self.gamma > 0:
+                raise ValueError("gamma must be > 0")
             # in the future, there could be a default value like in sklearn
             # sklear: def_gamma = 1/(n_features * X.var()) (wiki)
             # previously it was 1/(n_features)
         else:
-            raise ValueError("unknown kernel:", kern)
+            raise ValueError(f"Unknown kernel: {kern}")
 
     # kernels
     def __linear(self, x: ndarray, y: ndarray) -> float:
@@ -101,17 +120,29 @@ class SVC:
 
         Returns:
             int {1, -1}: expected class
+
+        >>> xs = [
+        ...     np.asarray([0, 1]), np.asarray([0, 2]),
+        ...     np.asarray([1, 1]), np.asarray([1, 2])
+        ... ]
+        >>> y = np.asarray([1, 1, -1, -1])
+        >>> s = SVC()
+        >>> s.fit(xs, y)
+        >>> s.predict(np.asarray([0, 1]))
+        1
+        >>> s.predict(np.asarray([1, 1]))
+        -1
+        >>> s.predict(np.asarray([2, 2]))
+        -1
         """
-        s = sum(self.l_star[n] * self.y[n] * self.kern(xs[n], x) for n in range(len(y)))
+        s = sum(
+            self.l_star[n] * self.y[n] * self.kern(self.xs[n], x)
+            for n in range(len(self.y))
+        )
         return 1 if s + self.b >= 0 else -1
-        # return 1 if self.kern(self.w, x) + self.b >= 0 else -1
 
 
-xs = [np.asarray([0, 1]), np.asarray([0, 2]), np.asarray([1, 1]), np.asarray([1, 2])]
-y = np.asarray([1, 1, -1, -1])
+if __name__ == "__main__":
+    import doctest
 
-s = SVC()
-s.fit(xs, y)
-print(s.predict(np.asarray([0, 1])))
-print(s.predict(np.asarray([0, 3])))
-print(s.predict(np.asarray([2, 2])))
+    doctest.testmod()
