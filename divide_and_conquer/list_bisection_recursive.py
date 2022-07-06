@@ -1,5 +1,5 @@
 import typing
-def bisection_recursive(element_to_find:Any, list_to_search:list[Any], index:int =0) -> int:
+def bisection_recursive(element_to_find:typing.Any, list_to_search:list[typing.Any], index:int =0) -> int:
     """The bisection quickly finds the (index of) the desired element in a sorted list. The sorting itself is not relevant, it merely must lend itself to Python's "<" operator.
     It is extremely efficient. The following demonstrates: 
     
