@@ -18,6 +18,8 @@ def hamming_distance(string1: str, string2: str) -> int:
     >>> hamming_distance("00000", "11111")
     5
     >>> hamming_distance("karolin", "kath")
+    Traceback (most recent call last):
+      ...
     ValueError: String lengths must match!
     """
     if len(string1) != len(string2):
