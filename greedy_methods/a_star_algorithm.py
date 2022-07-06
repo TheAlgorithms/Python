@@ -77,6 +77,9 @@ def a_star(start_vertex, vertex_target):
 
 
 def get_neighbors(v):
+    """
+    This function to return neighbor and its distance from the previous passed vertex
+    """
     if v in Nodes:
         return Nodes[v]
     else:
@@ -84,6 +87,9 @@ def get_neighbors(v):
 
 
 def heuristic(n):
+    """
+    Suposed that this heuristic distances given
+    """
     h_distance = {
         "A": 11,
         "B": 6,
