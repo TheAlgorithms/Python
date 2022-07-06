@@ -1,12 +1,13 @@
 import typing
-def bisection_recursive(element_to_find:typing.Any, list_to_search:list[typing.Any], index:int =0) -> int:
+def bisection_recursive(element_to_find:typing.Any, list_to_search:typing.List[float], index:int =0) -> int:
     """The bisection quickly finds the (index of) the desired element in a sorted list. The sorting itself is not relevant, it merely must lend itself to Python's "<" operator.
     It is extremely efficient. The following demonstrates: 
     
     >>> import numpy as np
-    >>> L = np.arange(5e8).astype(np.int64)
-    >>> %time bisection_recursive(3, L)
-    1 ms
+    >>> L = np.arange(5e8) # In this specific "list", element contents are their indices.
+    >>> bisection_recursive(3, L) # Inspecting this line with %time  gives "Wall time: 9 ms"
+    3
+    
     
     Rules: 
         1. Look up the element in the middle of the list (call it list_middle).
@@ -21,7 +22,7 @@ def bisection_recursive(element_to_find:typing.Any, list_to_search:list[typing.A
         2 < 5, so the algorithm continues with the right part of the list, setting index to 1
         bisection_recursive(5, [2, 5], 1) gets called
         bisection_recursive(5, [2, 5], 1) returns 2
-    >>> 2
+    
     Example B)
         bisection_recursive(5, [-2, -1, 0, 1, 1.5, 2, 5, 6, 7, 8, 9], 0) gets called
         2 < 5, so the algorithm continues with the right part of the list, setting index to 5
@@ -29,7 +30,6 @@ def bisection_recursive(element_to_find:typing.Any, list_to_search:list[typing.A
         list_to_search[3] = 7 > 5 = element_to_find, so the algorithm continues with the left part of the list
         bisection_recursive(5, [2, 5, 6], 5) gets called
         bisection_recursive(5, [2, 5, 6], 5) returns 6
-    >>> 6
     """
     middle = len(list_to_search)//2
     # Recursion end: Once we divided the list up into single elements, we have conquered, as either the element we look at is the right one or our element is not in the list. Either way, we are done.
