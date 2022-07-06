@@ -3,18 +3,48 @@
     module to operations with prime numbers
 """
 
+import math
+
 
 def is_prime(number):
-    """
-    it's not the best solution
-    """
-    special_non_primes = [0, 1, 2]
-    if number in special_non_primes[:2]:
-        return 2
-    elif number == special_non_primes[-1]:
-        return 3
+    """Checks to see if a number is a prime in O(sqrt(n)).
 
-    return all(number % i for i in range(2, number))
+    A number is prime if it has exactly two factors: 1 and itself.
+
+    >>> is_prime(0)
+    False
+    >>> is_prime(1)
+    False
+    >>> is_prime(2)
+    True
+    >>> is_prime(3)
+    True
+    >>> is_prime(27)
+    False
+    >>> is_prime(87)
+    False
+    >>> is_prime(563)
+    True
+    >>> is_prime(2999)
+    True
+    >>> is_prime(67483)
+    False
+    """
+
+    # precondition
+    assert isinstance(number, int) and (
+        number >= 0
+    ), "'number' must been an int and positive"
+
+    if 1 < number < 4:
+        # 2 and 3 are primes
+        return True
+    elif number < 2 or not number % 2:
+        # Negatives, 0, 1 and all even numbers are not primes
+        return False
+
+    odd_numbers = range(3, int(math.sqrt(number) + 1), 2)
+    return not any(not number % i for i in odd_numbers)
 
 
 def next_prime(value, factor=1, **kwargs):
