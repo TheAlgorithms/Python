@@ -1,6 +1,7 @@
 import typing
 def bisection_recursive(element_to_find:typing.Any, list_to_search:typing.List[float], index:int =0) -> int:
-    """The bisection quickly finds the (index of) the desired element in a sorted list. The sorting itself is not relevant, it merely must lend itself to Python's "<" operator.
+    """The bisection quickly finds roots of functions (see https://en.wikipedia.org/wiki/Bisection_method ). 
+    It can also be used to find the (index of) the desired element in a sorted list. The sorting itself is not relevant, it merely must lend itself to Python's "<" operator.
     It is extremely efficient. The following demonstrates: 
     
     >>> import numpy as np
