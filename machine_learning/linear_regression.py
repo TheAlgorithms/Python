@@ -99,7 +99,7 @@ def main():
     len_result = theta.shape[1]
     print("Resultant Feature vector : ")
     for i in range(0, len_result):
-        print("%.5f" % (theta[0, i]))
+        print(f"{theta[0, i]:.5f}")
 
 
 if __name__ == "__main__":
