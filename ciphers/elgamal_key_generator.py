@@ -38,9 +38,7 @@ def generate_key(key_size: int) -> tuple[tuple[int, int, int, int], tuple[int, i
 
 
 def make_key_files(name: str, keySize: int) -> None:
-    if os.path.exists(f"{name}_pubkey.txt") or os.path.exists(
-        f"{name}_privkey.txt"
-    ):
+    if os.path.exists(f"{name}_pubkey.txt") or os.path.exists(f"{name}_privkey.txt"):
         print("\nWARNING:")
         print(
             '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \n'
