@@ -21,7 +21,11 @@ class DoubleLinkedListNode(Generic[T, U]):
         self.prev: DoubleLinkedListNode[T, U] | None = None
 
     def __repr__(self) -> str:
-        return f"Node: key: {self.key}, val: {self.val}, has next: {self.next is not None}, has prev: {self.prev is not None}"
+        key_str = f"key: {self.key}"
+        val_str = f"val: {self.val}"
+        next_str = f"next: {self.next is not None}"
+        prev_str = f"prev: {self.prev is not None}"
+        return f"Node: {key_str}, {val_str}, has {next_str}, has {prev_str}"
 
 
 class DoubleLinkedList(Generic[T, U]):
