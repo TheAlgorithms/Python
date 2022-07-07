@@ -34,8 +34,8 @@ def generateKey(keySize: int) -> tuple[tuple[int, int], tuple[int, int]]:
 
 
 def makeKeyFiles(name: str, keySize: int) -> None:
-    if os.path.exists(f"{name}_pubkey.txt") or os.path.exists(
-        f"{name}_privkey.txt"
+    if os.path.exists("%s_pubkey.txt" % (name)) or os.path.exists(
+        "%s_privkey.txt" % (name)
     ):
         print("\nWARNING:")
         print(
