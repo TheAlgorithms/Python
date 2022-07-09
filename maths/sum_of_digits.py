@@ -63,13 +63,13 @@ def digital_root(n: int) -> int:
     >>> digital_root(394328)
     2
     >>> digital_root(-394328)
-    "Input wasn't valid"
+    -1
     >>> digital_root(123)
     6
     >>> digital_root(0)
     0
     >>> digital_root("109820394")
-    'Please enter a non-negative integer'
+    -1
     """
 
     try:
