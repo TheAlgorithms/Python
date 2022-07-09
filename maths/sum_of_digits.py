@@ -73,9 +73,9 @@ def digital_root(n: int) -> int:
     """
 
     try:
-        return n % 9 or n and 9 if n >= 0 else "Input wasn't valid"
+        return n % 9 or n and 9 if n >= 0 else -1
     except TypeError:
-        return "Please enter a non-negative integer"
+        return -1
 
 
 def benchmark() -> None:
