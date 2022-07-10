@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.3.0
     hooks:
       - id: check-executables-have-shebangs
       - id: check-yaml
@@ -14,7 +14,7 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/psf/black
-    rev: 22.3.0
+    rev: 22.6.0
     hooks:
       - id: black
 
@@ -26,7 +26,7 @@ repos:
           - --profile=black
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.0
+    rev: v2.34.0
     hooks:
       - id: pyupgrade
         args:
@@ -42,7 +42,7 @@ repos:
           - --max-line-length=88
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.931
+    rev: v0.961
     hooks:
       - id: mypy
         args:

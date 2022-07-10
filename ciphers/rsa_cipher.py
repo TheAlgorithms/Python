@@ -129,7 +129,7 @@ def main() -> None:
 
         message = input("\nEnter message: ")
         pubkey_filename = "rsa_pubkey.txt"
-        print("Encrypting and writing to %s..." % (filename))
+        print(f"Encrypting and writing to {filename}...")
         encryptedText = encrypt_and_write_to_file(filename, pubkey_filename, message)
 
         print("\nEncrypted text:")
@@ -137,7 +137,7 @@ def main() -> None:
 
     elif mode == "decrypt":
         privkey_filename = "rsa_privkey.txt"
-        print("Reading from %s and decrypting..." % (filename))
+        print(f"Reading from {filename} and decrypting...")
         decrypted_text = read_from_file_and_decrypt(filename, privkey_filename)
         print("writing decryption to rsa_decryption.txt...")
         with open("rsa_decryption.txt", "w") as dec:
