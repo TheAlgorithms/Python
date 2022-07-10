@@ -55,5 +55,5 @@ if __name__ == "__main__":
     print("\n" + "".join(code))
     print(
         f"\nYour Token is {token} please write it down.\nIf you want to decode "
-        f"this message again you should input same digits as token!"
+        "this message again you should input same digits as token!"
     )

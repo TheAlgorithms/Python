@@ -3,8 +3,6 @@
 import os
 from typing import Iterator
 
-URL_BASE = "https://github.com/TheAlgorithms/Python/blob/master"
-
 
 def good_file_paths(top_dir: str = ".") -> Iterator[str]:
     for dir_path, dir_names, filenames in os.walk(top_dir):
@@ -36,7 +34,7 @@ def print_directory_md(top_dir: str = ".") -> None:
         if filepath != old_path:
             old_path = print_path(old_path, filepath)
         indent = (filepath.count(os.sep) + 1) if filepath else 0
-        url = "/".join((URL_BASE, filepath, filename)).replace(" ", "%20")
+        url = "/".join((filepath, filename)).replace(" ", "%20")
         filename = os.path.splitext(filename.replace("_", " ").title())[0]
         print(f"{md_prefix(indent)} [{filename}]({url})")
 

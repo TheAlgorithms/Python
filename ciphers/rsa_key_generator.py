@@ -34,9 +34,7 @@ def generateKey(keySize: int) -> tuple[tuple[int, int], tuple[int, int]]:
 
 
 def makeKeyFiles(name: str, keySize: int) -> None:
-    if os.path.exists("%s_pubkey.txt" % (name)) or os.path.exists(
-        "%s_privkey.txt" % (name)
-    ):
+    if os.path.exists(f"{name}_pubkey.txt") or os.path.exists(f"{name}_privkey.txt"):
         print("\nWARNING:")
         print(
             '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \n'
@@ -46,12 +44,12 @@ def makeKeyFiles(name: str, keySize: int) -> None:
         sys.exit()
 
     publicKey, privateKey = generateKey(keySize)
-    print("\nWriting public key to file %s_pubkey.txt..." % name)
-    with open("%s_pubkey.txt" % name, "w") as out_file:
+    print(f"\nWriting public key to file {name}_pubkey.txt...")
+    with open(f"{name}_pubkey.txt", "w") as out_file:
         out_file.write(f"{keySize},{publicKey[0]},{publicKey[1]}")
 
-    print("Writing private key to file %s_privkey.txt..." % name)
-    with open("%s_privkey.txt" % name, "w") as out_file:
+    print(f"Writing private key to file {name}_privkey.txt...")
+    with open(f"{name}_privkey.txt", "w") as out_file:
         out_file.write(f"{keySize},{privateKey[0]},{privateKey[1]}")
 
 

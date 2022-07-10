@@ -38,8 +38,8 @@ def vol_spheres_intersect(
     Calculate the volume of the intersection of two spheres.
 
     The intersection is composed by two spherical caps and therefore its volume is the
-    sum of the volumes of the spherical caps.  First it calculates the heights (h1, h2)
-    of the the spherical caps, then the two volumes and it returns the sum.
+    sum of the volumes of the spherical caps. First, it calculates the heights (h1, h2)
+    of the spherical caps, then the two volumes and it returns the sum.
     The height formulas are
     h1 = (radius_1 - radius_2 + centers_distance)
        * (radius_1 + radius_2 - centers_distance)

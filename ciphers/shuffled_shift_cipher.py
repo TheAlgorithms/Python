@@ -9,7 +9,7 @@ class ShuffledShiftCipher:
     This algorithm uses the Caesar Cipher algorithm but removes the option to
     use brute force to decrypt the message.
 
-    The passcode is a a random password from the selection buffer of
+    The passcode is a random password from the selection buffer of
     1. uppercase letters of the English alphabet
     2. lowercase letters of the English alphabet
     3. digits from 0 to 9
