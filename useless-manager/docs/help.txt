@@ -1,0 +1,30 @@
+-  manager.py is licensed under GNU General Public License v3.0
+-  get this code at https://github.com/JymPatel/useless-manager
+
+╔═══════════════════════════════════════════════════════════════╗
+║ help doc version 1.1                                          ║
+║ ------------------------------------------------------------- ║
+║                                                               ║
+║                                                               ║
+║ python3 manager.py [OPTIONS] [EXTENSIONS]                     ║
+║                                                               ║
+║                                                               ║
+║ options               usage                                   ║
+║ ```````               `````                                   ║
+║                                                               ║
+║ help                  open help doc.                          ║
+║ -h or --version                                               ║
+║                                                               ║
+║ version               check current version of manager.py     ║
+║ -v or --version                                               ║
+║                                                               ║
+║ newaccount            create new account for cliet            ║
+║                                                               ║
+║ transact              create new transaction (beta)           ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+
+░  for best view use
+░  monospaced font 
+░  with atleast 65 
+░  column width.
