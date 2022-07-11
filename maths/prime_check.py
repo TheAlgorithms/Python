@@ -4,30 +4,35 @@ import math
 import unittest
 
 
-def prime_check(number: int) -> bool:
+def is_prime(number: int) -> bool:
     """Checks to see if a number is a prime in O(sqrt(n)).
 
     A number is prime if it has exactly two factors: 1 and itself.
 
-    >>> prime_check(0)
+    >>> is_prime(0)
     False
-    >>> prime_check(1)
+    >>> is_prime(1)
     False
-    >>> prime_check(2)
+    >>> is_prime(2)
     True
-    >>> prime_check(3)
+    >>> is_prime(3)
     True
-    >>> prime_check(27)
+    >>> is_prime(27)
     False
-    >>> prime_check(87)
+    >>> is_prime(87)
     False
-    >>> prime_check(563)
+    >>> is_prime(563)
     True
-    >>> prime_check(2999)
+    >>> is_prime(2999)
     True
-    >>> prime_check(67483)
+    >>> is_prime(67483)
     False
     """
+
+    # precondition
+    assert isinstance(number, int) and (
+        number >= 0
+    ), "'number' must been an int and positive"
 
     if 1 < number < 4:
         # 2 and 3 are primes
@@ -42,35 +47,35 @@ def prime_check(number: int) -> bool:
 
 class Test(unittest.TestCase):
     def test_primes(self):
-        self.assertTrue(prime_check(2))
-        self.assertTrue(prime_check(3))
-        self.assertTrue(prime_check(5))
-        self.assertTrue(prime_check(7))
-        self.assertTrue(prime_check(11))
-        self.assertTrue(prime_check(13))
-        self.assertTrue(prime_check(17))
-        self.assertTrue(prime_check(19))
-        self.assertTrue(prime_check(23))
-        self.assertTrue(prime_check(29))
+        self.assertTrue(is_prime(2))
+        self.assertTrue(is_prime(3))
+        self.assertTrue(is_prime(5))
+        self.assertTrue(is_prime(7))
+        self.assertTrue(is_prime(11))
+        self.assertTrue(is_prime(13))
+        self.assertTrue(is_prime(17))
+        self.assertTrue(is_prime(19))
+        self.assertTrue(is_prime(23))
+        self.assertTrue(is_prime(29))
 
     def test_not_primes(self):
         self.assertFalse(
-            prime_check(-19),
+            is_prime(-19),
             "Negative numbers are excluded by definition of prime numbers.",
         )
         self.assertFalse(
-            prime_check(0),
+            is_prime(0),
             "Zero doesn't have any positive factors, primes must have exactly two.",
         )
         self.assertFalse(
-            prime_check(1),
+            is_prime(1),
             "One only has 1 positive factor, primes must have exactly two.",
         )
-        self.assertFalse(prime_check(2 * 2))
-        self.assertFalse(prime_check(2 * 3))
-        self.assertFalse(prime_check(3 * 3))
-        self.assertFalse(prime_check(3 * 5))
-        self.assertFalse(prime_check(3 * 5 * 7))
+        self.assertFalse(is_prime(2 * 2))
+        self.assertFalse(is_prime(2 * 3))
+        self.assertFalse(is_prime(3 * 3))
+        self.assertFalse(is_prime(3 * 5))
+        self.assertFalse(is_prime(3 * 5 * 7))
 
 
 if __name__ == "__main__":

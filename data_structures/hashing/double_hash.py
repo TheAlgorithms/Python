@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from .hash_table import HashTable
-from .number_theory.prime_numbers import check_prime, next_prime
+from .number_theory.prime_numbers import is_prime, next_prime
 
 
 class DoubleHash(HashTable):
@@ -15,7 +15,7 @@ class DoubleHash(HashTable):
 
         next_prime_gt = (
             next_prime(value % self.size_table)
-            if not check_prime(value % self.size_table)
+            if not is_prime(value % self.size_table)
             else value % self.size_table
         )  # gt = bigger than
         return next_prime_gt - (data % next_prime_gt)
