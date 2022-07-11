@@ -6,7 +6,7 @@ def crypto_prices(tickers: list ) -> str:
 
     Args:
         tickers (list): cryptocurrency Symbols
-        
+
     Returns:
         String: latest closing prices
 
@@ -14,18 +14,22 @@ def crypto_prices(tickers: list ) -> str:
     - BTC-UASD: No data found, symbol may be delisted
     """
 
+    results = []
+
     for ticker in tickers:
 
         try:
             crypto_yahoo = yf.Ticker(ticker)
             data = crypto_yahoo.history()
-            prices = data['Close'].iloc[-1]   
+            price = data['Close'].iloc[-1]   
 
-        except:
+        except IndexError:
             continue
 
 
-        print(ticker, prices)
+        results.append((ticker, price))
+
+        return results
 
 
 if __name__ == "__main__":
@@ -34,5 +38,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-
-
+    
