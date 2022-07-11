@@ -1,4 +1,6 @@
-# this code is licensed under GNU General Public License v3 (https://github.com/JymPatel/useless-manager/blob/master/LICENSE)
+#!./.venv/bin/python3
+
+# # this code is licensed under MIT License (https://github.com/TheAlgorithms/Python/blob/master/LICENSE.md)
 
 import sys
 import pickle
@@ -16,29 +18,34 @@ data_folder = "data/"
 
 class Transaction:
     def __init__(self, amount, user_id, description=None):
+        # add time and description
+        self.time = datetime.now()
+        self.description = description
+        # add transaction number
+        ... # TODO add self.transact attribute
         # add transfer amount
         try:
             self.amount_change = float(amount)
         except ValueError:
             raise ValueError("amount is not float!")
         # add user.ID if valid user exists
-        if user_id in [user.ID for user in users]:
-            self.ID = user_id
+        for user in users:
+            if user.ID == user_id:
+                user.ID = self.transact_number
+                self.user = user.ID
         else:
             raise IndexError("Invalid User ID!")
-        # add time and description
-        self.time = datetime.now()
-        self.description = description
 
 
 class Person:
     def __init__(self, first, last, middle, entered_ID, balance=0):
         self.balance = balance
+        self.transactions = []
         # set Person name
-        if middle == "":
-            self.name = first + " " + last
+        if middle:
+            self.name = f"{first} {middle} {{last}}"
         else:
-            self.name = first + " " + middle + " " + last
+            self.name = f"{first} {last}"
         # set Person id
         try:
             self.ID = entered_ID
@@ -57,6 +64,10 @@ class Person:
         else:
             raise ValueError("user ID already taken!")
 
+    # print user data when told to
+    def print_data(self):
+        print(f"{self.name} with userID {self.ID} has balance of {self.balance}")
+
 
 
 def main():
@@ -74,10 +85,11 @@ def main():
 
     elif task == "listusers":
         for user in users:
-            print(user.name, user.ID, user.balance)
+            user.print_data()
 
     # smooth end
-    print(colored("\nthis code is licensed under GNU Public License V3\nget this code at https://github.com/JymPatel/useless-manager", "blue"))
+    print(colored("\nthis code is licensed under MIT License", "blue"))
+    print(colored("get this code at https://github.com/JymPatel/useless-manager", "blue"))
 
 
 def get_task(): # returns task as string from command line input
@@ -107,7 +119,7 @@ def create_user(): # returns user of type Person created by taking input
     last = input("Last Name: ")
     while True:
         try:
-            unique_id = input("create UNIQUE ID: ")
+            unique_id = input("create userID: ")
 
             if unique_id == "": # empty ID
                 print(colored("you can't use empty string!", "red"))
@@ -117,13 +129,13 @@ def create_user(): # returns user of type Person created by taking input
             break
 
         except ValueError:
-            print(colored("UNIQUE ID already taken, try another!", "red"))
+            print(colored("userID already taken, try another!", "red"))
             continue
     return user
 
 
 def create_transaction():
-    ...
+    ... # TODO create transaction function
 
 
 def load_data():
@@ -148,12 +160,10 @@ def reset_datafile(location):
     file.close()
 
 def save_data():
-    users_file = open(data_folder + "users.pickle", "wb")
-    pickle.dump(users, users_file)
-    users_file.close()
-    transactions_file = open(data_folder + "transactions.pickle", "wb")
-    pickle.dump(transactions, transactions_file)
-    transactions_file.close()
+    with open(f"{data_folder}users.pickle", "wb") as users_file:
+        pickle.dump(users, users_file)
+    with open(f"{data_folder}transactions.pickle", "wb") as transactions_file:
+        pickle.dump(transactions, transactions_file)
 
 
 

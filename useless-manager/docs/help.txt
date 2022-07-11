@@ -1,4 +1,4 @@
--  manager.py is licensed under GNU General Public License v3.0
+-  manager.py is licensed under MIT License
 -  get this code at https://github.com/JymPatel/useless-manager
 
 ╔═══════════════════════════════════════════════════════════════╗
