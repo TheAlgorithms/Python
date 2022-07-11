@@ -11,7 +11,7 @@ For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_alg
 from __future__ import annotations
 
 import random
-from typing import Iterable
+from collections.abc import Iterable
 
 
 class Clause:

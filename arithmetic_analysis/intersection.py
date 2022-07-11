@@ -1,5 +1,5 @@
 import math
-from typing import Callable
+from collections.abc import Callable
 
 
 def intersection(function: Callable[[float], float], x0: float, x1: float) -> float:
