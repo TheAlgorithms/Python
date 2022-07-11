@@ -44,9 +44,8 @@ Find the sum of FITs for the BOPs.
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Union
 
-Matrix = list[list[Union[float, int]]]
+Matrix = list[list[float | int]]
 
 
 def solve(matrix: Matrix, vector: Matrix) -> Matrix:
