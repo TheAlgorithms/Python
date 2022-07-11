@@ -54,23 +54,23 @@ class Person:
 
     # lock ID of person not to duplicate
     @property
-    def ID(self):
+    def ID(self) -> str:
         return self.id
     
     @ID.setter
-    def ID(self, ID):
+    def ID(self, ID) -> None:
         if ID not in [user.id for user in users]:
             self.id = ID
         else:
             raise ValueError("user ID already taken!")
 
     # print user data when told to
-    def print_data(self):
+    def print_data(self) -> None:
         print(f"{self.name} with userID {self.ID} has balance of {self.balance}")
 
 
 
-def main():
+def main() -> None:
     task = get_task()
     
     if task == "version":
@@ -92,7 +92,7 @@ def main():
     print(colored("get this code at https://github.com/JymPatel/useless-manager", "blue"))
 
 
-def get_task(): # returns task as string from command line input
+def get_task() -> str: # returns task as string from command line input
     try: 
         task =  sys.argv[1]
 
@@ -113,7 +113,7 @@ def get_task(): # returns task as string from command line input
         sys.exit(colored(generated_error, "red"))
 
 
-def create_user(): # returns user of type Person created by taking input
+def create_user() -> Person: # returns user of type Person created by taking input
     first = input("First Name: ")
     middle = input("Middle Name: ")
     last = input("Last Name: ")
@@ -134,11 +134,11 @@ def create_user(): # returns user of type Person created by taking input
     return user
 
 
-def create_transaction():
+def create_transaction() -> None:
     ... # TODO create transaction function
 
 
-def load_data():
+def load_data() -> None:
     global users 
     global transactions
     try:
@@ -154,12 +154,12 @@ def load_data():
         if input("would you like to RESET data? y/n: ").lower() in ["yes", "y", "yeah"]:
             reset_datafile(data_folder + "transactions.pickle")
 
-def reset_datafile(location):
+def reset_datafile(location) -> None:
     file = open(location, "wb")
     pickle.dump([], file)
     file.close()
 
-def save_data():
+def save_data() ->:
     with open(f"{data_folder}users.pickle", "wb") as users_file:
         pickle.dump(users, users_file)
     with open(f"{data_folder}transactions.pickle", "wb") as transactions_file:
@@ -167,14 +167,14 @@ def save_data():
 
 
 
-def get_help(): # opens help doc
+def get_help() -> None: # opens help doc
     print(colored("\nopening docs/help ...", "yellow"))
     print(open("./docs/help.txt", 'r').read())
 
-def current_version(): # returns string of version
+def current_version() -> str: # returns string of version
     major = 1
     minor = 1
-    return str(major) + "." + str(minor)
+    return f"{major}.{minor}"
 
 
 if __name__ == __name__:
