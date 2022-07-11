@@ -159,7 +159,7 @@ def reset_datafile(location) -> None:
     pickle.dump([], file)
     file.close()
 
-def save_data() ->:
+def save_data() -> None:
     with open(f"{data_folder}users.pickle", "wb") as users_file:
         pickle.dump(users, users_file)
     with open(f"{data_folder}transactions.pickle", "wb") as transactions_file:
