@@ -24,9 +24,9 @@ def palindromic_string(input_string: str) -> str:
     # append each character + "|" in new_string for range(0, length-1)
     for i in input_string[: len(input_string) - 1]:
         new_input_string += i + "|"
-    # append the last character and then add the surrounding markers. 
+    # append the last character and then add the surrounding markers.
     # it becomes "|a|b|a|".
-    new_input_string = '|' + new_input_string + input_string[-1] + '|'   
+    new_input_string = "|" + new_input_string + input_string[-1] + "|"   
 
     # we will store the starting and ending of previous furthest ending palindromic
     # substring
