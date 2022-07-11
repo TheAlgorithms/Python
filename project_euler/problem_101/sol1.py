@@ -45,7 +45,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-Matrix = list[list[Union[float | int]]]
+Matrix = list[list[float | int]]
 
 
 def solve(matrix: Matrix, vector: Matrix) -> Matrix:
