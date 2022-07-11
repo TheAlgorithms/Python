@@ -3,7 +3,7 @@ Scraping jobs given job title and location from indeed website
 """
 from __future__ import annotations
 
-from typing import Generator
+from collections.abc import Generator
 
 import requests
 from bs4 import BeautifulSoup
