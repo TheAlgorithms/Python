@@ -37,12 +37,15 @@ def is_prime(number: int) -> bool:
     if 1 < number < 4:
         # 2 and 3 are primes
         return True
-    elif number < 2 or not number % 2:
-        # Negatives, 0, 1 and all even numbers are not primes
+    elif number < 2 or number % 2 == 0 or number % 3 == 0:
+        # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
         return False
 
-    odd_numbers = range(3, int(math.sqrt(number) + 1), 2)
-    return not any(not number % i for i in odd_numbers)
+    # All primes number are in format of 6k +/- 1
+    for i in range(5, int(math.sqrt(number) + 1), 6):
+        if number % i == 0 or number % (i + 2) == 0:
+            return False
+    return True
 
 
 class Test(unittest.TestCase):
