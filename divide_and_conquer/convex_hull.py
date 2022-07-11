@@ -14,7 +14,7 @@ which have not been implemented here, yet.
 """
 from __future__ import annotations
 
-from typing import Iterable
+from collections.abc import Iterable
 
 
 class Point:

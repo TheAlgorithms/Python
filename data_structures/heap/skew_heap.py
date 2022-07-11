@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, Generic, Iterable, Iterator, TypeVar
+from collections.abc import Iterable, Iterator
+from typing import Any, Generic, TypeVar
 
 T = TypeVar("T", bound=bool)
 

@@ -43,7 +43,8 @@ Find the sum of FITs for the BOPs.
 """
 from __future__ import annotations
 
-from typing import Callable, Union
+from collections.abc import Callable
+from typing import Union
 
 Matrix = list[list[Union[float, int]]]
 
