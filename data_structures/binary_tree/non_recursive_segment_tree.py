@@ -37,7 +37,8 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 """
 from __future__ import annotations
 
-from typing import Any, Callable, Generic, TypeVar
+from collections.abc import Callable
+from typing import Any, Generic, TypeVar
 
 T = TypeVar("T")
 

@@ -41,7 +41,7 @@ goldbach(number)  // Goldbach's assumption
 from math import sqrt
 
 
-def isPrime(number):
+def is_prime(number: int) -> bool:
     """
     input: positive integer 'number'
     returns true if 'number' is prime otherwise false.
@@ -129,7 +129,7 @@ def getPrimeNumbers(N):
     # if a number is prime then appends to list 'ans'
     for number in range(2, N + 1):
 
-        if isPrime(number):
+        if is_prime(number):
 
             ans.append(number)
 
@@ -164,11 +164,11 @@ def primeFactorization(number):
         ans.append(number)
 
     # if 'number' not prime then builds the prime factorization of 'number'
-    elif not isPrime(number):
+    elif not is_prime(number):
 
         while quotient != 1:
 
-            if isPrime(factor) and (quotient % factor == 0):
+            if is_prime(factor) and (quotient % factor == 0):
                 ans.append(factor)
                 quotient /= factor
             else:
@@ -317,8 +317,8 @@ def goldbach(number):
         isinstance(ans, list)
         and (len(ans) == 2)
         and (ans[0] + ans[1] == number)
-        and isPrime(ans[0])
-        and isPrime(ans[1])
+        and is_prime(ans[0])
+        and is_prime(ans[1])
     ), "'ans' must contains two primes. And sum of elements must been eq 'number'"
 
     return ans
@@ -462,11 +462,11 @@ def getPrime(n):
 
         # if ans not prime then
         # runs to the next prime number.
-        while not isPrime(ans):
+        while not is_prime(ans):
             ans += 1
 
     # precondition
-    assert isinstance(ans, int) and isPrime(
+    assert isinstance(ans, int) and is_prime(
         ans
     ), "'ans' must been a prime number and from type int"
 
@@ -486,7 +486,7 @@ def getPrimesBetween(pNumber1, pNumber2):
 
     # precondition
     assert (
-        isPrime(pNumber1) and isPrime(pNumber2) and (pNumber1 < pNumber2)
+        is_prime(pNumber1) and is_prime(pNumber2) and (pNumber1 < pNumber2)
     ), "The arguments must been prime numbers and 'pNumber1' < 'pNumber2'"
 
     number = pNumber1 + 1  # jump to the next number
@@ -495,7 +495,7 @@ def getPrimesBetween(pNumber1, pNumber2):
 
     # if number is not prime then
     # fetch the next prime number.
-    while not isPrime(number):
+    while not is_prime(number):
         number += 1
 
     while number < pNumber2:
@@ -505,7 +505,7 @@ def getPrimesBetween(pNumber1, pNumber2):
         number += 1
 
         # fetch the next prime number.
-        while not isPrime(number):
+        while not is_prime(number):
             number += 1
 
     # precondition

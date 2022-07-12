@@ -14,8 +14,10 @@ jobs:
   project-euler:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
       - name: Install pytest and pytest-cov
         run: |
           python -m pip install --upgrade pip
@@ -24,8 +26,10 @@ jobs:
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
       - name: Install pytest and requests
         run: |
           python -m pip install --upgrade pip

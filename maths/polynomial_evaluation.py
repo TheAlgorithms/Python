@@ -1,4 +1,4 @@
-from typing import Sequence
+from collections.abc import Sequence
 
 
 def evaluate_poly(poly: Sequence[float], x: float) -> float:

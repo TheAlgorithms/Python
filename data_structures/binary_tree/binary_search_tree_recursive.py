@@ -10,7 +10,7 @@ python binary_search_tree_recursive.py
 from __future__ import annotations
 
 import unittest
-from typing import Iterator
+from collections.abc import Iterator
 
 
 class Node:

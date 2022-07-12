@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import os
-from typing import Iterator
+from collections.abc import Iterator
 
 
 def good_file_paths(top_dir: str = ".") -> Iterator[str]:
