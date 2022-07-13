@@ -108,14 +108,8 @@ def benchmark() -> None:
         timeit("z.sum_of_digits_compact(z.small_num)", setup="import __main__ as z"),
         "seconds",
     )
-    print(
-        "> digital_root()",
-        "\tans =",
-        digital_root(small_num),
-        "\ttime =",
-        timeit("z.digital_root(z.small_num)", setup="import __main__ as z"),
-        "seconds",
-    )
+    result = timeit("z.digital_root(z.small_num)", setup="import __main__ as z")
+    print(f"> digital_root()\tans = {digital_root(small_num)}\ttime = {result} seconds")
 
     print("\nFor medium_num = ", medium_num, ":")
     print(
