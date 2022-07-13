@@ -9,7 +9,7 @@ Point quadtrees are important because of their completeness.
 """
 
 class Point:
-    def __init__(self, x, y, name="") -> None:
+    def __init__(self, x: float, y: float, name="") -> None:
         """
         Point
         x (float): x coordinate of point
@@ -26,7 +26,7 @@ class Point:
 
 
 class Rectangle:
-    def __init__(self, x, y, w, h) -> None:
+    def __init__(self, x: float, y: float, w: float, h: float) -> None:
         """
         Rectangle. Used for defining bounding region of QuadTree
         x (float): x coordinate of center of rectangle
@@ -41,7 +41,7 @@ class Rectangle:
         self.h = h
         return
 
-    def ContainsPoint(self, pt) -> bool:
+    def contains_point(self, pt: Point) -> bool:
         """
         Test if bounding region contains Point pt
         :param point: (Point): Point being tested
@@ -53,11 +53,11 @@ class Rectangle:
         p2 = Point(100, 25)
         p3 = Point(0.9, 1.1)
         rect = Rectangle(0.5, 0.5, 0.5, 0.5)
-        >>> rect.ContainsPoint(p1)
+        >>> rect.contains_point(p1)
         True
-        >>> rect.ContainsPoint(p2)
+        >>> rect.contains_point(p2)
         False
-        >>> rect.ContainsPoint(p3)
+        >>> rect.contains_point(p3)
         False
         """
         return (
@@ -65,7 +65,7 @@ class Rectangle:
             and self.y - self.h < pt.y < self.y + self.h
         )
 
-    def IntersectsRegion(self, region) -> bool:
+    def intersects_region(self, region: Rectangle) -> bool:
         """
         Test if the rectangle intersects a given region
         :param region: (Rectangle) Region to test
@@ -76,11 +76,11 @@ class Rectangle:
         rect1 = Rectangle(0.5, 0.5, 0.5, 0.5)
         rect2 = Rectangle(1, 1, 0.2, 0.1)
         rect3 = Rectangle(5, 4, 4, 4)
-        >>> rect1.IntersectsRegion(rect2)
+        >>> rect1.intersects_region(rect2)
         True
-        >>> rect1.IntersectsRegion(rect3)
+        >>> rect1.intersects_region(rect3)
         True
-        >>> rect2.IntersectsRegion(rect3)
+        >>> rect2.intersects_region(rect3)
         True
         """
         return not (
@@ -92,7 +92,7 @@ class Rectangle:
 
 
 class QuadTree:
-    def __init__(self, boundary, capacity=4) -> None:
+    def __init__(self, boundary: Rectangle, capacity=4) -> None:
         """
         QuadTree data structure.
         self.points tracks the points within the QuadTree
@@ -132,7 +132,7 @@ class QuadTree:
         self.divided = True
         return
 
-    def InsertPoint(self, point) -> None:
+    def insert_point(self, point: Point) -> None:
         """
         Insert point into the QuadTree
         If the QuadTree is already at maximum capacity, subdivide the QuadTree
@@ -147,19 +147,19 @@ class QuadTree:
         p3 = Point(0.5, 0.1)
         p4 = Point(0.4, 0.7)
         >>> for p in [p1, p2, p3, p4]
-        >>>     qt.InsertPoint(p)
+        >>>     qt.insert_point(p)
         >>> qt.points
         [(0.1, 0.1), (0.2, 0.2), (0.5, 0.1), (0.4, 0.7)]
         >>> qt.divided
         False
-        >>> qt.InsertPoint(Point(0.75, 0.75))
+        >>> qt.insert_point(Point(0.75, 0.75))
         >>> qt.divided
         True
         """
         # Check if point is within bounding region
         # If not, get outta there
         # Otherwise, proceed with adding points and possibly subdividing
-        if not self.boundary.ContainsPoint(point):
+        if not self.boundary.contains_point(point):
             return
         else:
             if len(self.points) < self.capacity:
@@ -170,13 +170,13 @@ class QuadTree:
                 # If we're forced to subdivide the QuadTree,
                 # call this function recursively
                 # until all QuadTrees are at or below their maximum capacity
-                self.northeast.InsertPoint(point)
-                self.northwest.InsertPoint(point)
-                self.southeast.InsertPoint(point)
-                self.southwest.InsertPoint(point)
+                self.northeast.insert_point(point)
+                self.northwest.insert_point(point)
+                self.southeast.insert_point(point)
+                self.southwest.insert_point(point)
             return
 
-    def QueryRegion(self, region, found=[]) -> list:
+    def query_region(self, region: Rectangle, found=[]) -> list:
         """
         Find points within a given region
         :param found: (array) List of points found within specified region
@@ -193,8 +193,8 @@ class QuadTree:
         p3 = Point(0.5, 0.1)
         p4 = Point(0.4, 0.7)
         >>> for p in [p1, p2, p3, p4]
-        >>>     qt.InsertPoint(p)
-        >>> found = qt.QueryRegion(rect2)
+        >>>     qt.insert_point(p)
+        >>> found = qt.query_region(rect2)
         >>> found
         [(0.6, 0.7)]
         """
@@ -207,22 +207,22 @@ class QuadTree:
         # Determine if region and QuadTree overlap
         # If there is no overlap,
         # there is no way the QuadTree can find any points within the region
-        if not self.boundary.IntersectsRegion(region):
+        if not self.boundary.intersects_region(region):
             return found
         else:
             # Iterate through all points within QuadTree
             # and determine if they are also within region of intersection
             for p in self.points:
-                if region.ContainsPoint(p):
+                if region.contains_point(p):
                     found.append(p)
             # If the region has subdivided, determine which points
             # are within the regions spawned from this node
             # i.e., check all points contained within the daughter nodes
             if self.divided:
-                self.northeast.QueryRegion(region, found)
-                self.northwest.QueryRegion(region, found)
-                self.southeast.QueryRegion(region, found)
-                self.southwest.QueryRegion(region, found)
+                self.northeast.query_region(region, found)
+                self.northwest.query_region(region, found)
+                self.southeast.query_region(region, found)
+                self.southwest.query_region(region, found)
             return found
 
 
