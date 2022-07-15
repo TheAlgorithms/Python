@@ -1,17 +1,15 @@
 import yfinance as yf
 
-def crypto_prices(tickers: list ) -> str:
+def crypto_prices(tickers: list ) -> list:
     """Get the latest price of cryptocurrencies using 
     Yahoo's publicly available API.
-
     Args:
         tickers (list): cryptocurrency Symbols
-
     Returns:
         String: latest closing prices
-
-    >>> crypto_prices(["BTC-UaSD"])
+    >>> crypto_prices(["BTC-UASD"])
     - BTC-UASD: No data found, symbol may be delisted
+    []
     """
 
     results = []
@@ -29,7 +27,7 @@ def crypto_prices(tickers: list ) -> str:
 
         results.append((ticker, price))
 
-        return results
+    return results
 
 
 if __name__ == "__main__":
