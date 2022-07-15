@@ -9,9 +9,10 @@
     Paper: http://image.diku.dk/imagecanon/material/HornSchunckOptical_Flow.pdf
 """
 
+from typing import SupportsIndex
+
 import numpy as np
 from scipy.ndimage.filters import convolve
-from typing_extensions import SupportsIndex
 
 
 def warp(

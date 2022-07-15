@@ -7,7 +7,7 @@
 
 import heapq as hq
 import math
-from typing import Iterator
+from collections.abc import Iterator
 
 
 class Vertex:

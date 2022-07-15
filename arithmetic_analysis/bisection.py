@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 
 def bisection(function: Callable[[float], float], a: float, b: float) -> float:
