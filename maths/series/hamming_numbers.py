@@ -1,8 +1,7 @@
 """
 A Hamming number is a positive integer of the form 2^i*3^j*5^k, for some
-non-negative integers i, j, and k. They often refer to a regular number.
-More info at: https://en.wikipedia.org/wiki/Regular_number .
-
+non-negative integers i, j, and k. They are often referred to as regular numbers.
+More info at: https://en.wikipedia.org/wiki/Regular_number.
 """
 
 def hamming(n_element: int) -> list:
