@@ -31,6 +31,14 @@ def circle_sort(collection: list) -> list:
         return collection
 
     def circle_sort_util(collection: list, low: int, high: int) -> bool:
+        """
+        >>> arr = [5,4,3,2,1]
+        >>> circle_sort_util(lst, 0, 2)
+        True
+        >>> arr
+        [3, 4, 5, 2, 1]
+        """
+
         swapped = False
 
         if low == high:
