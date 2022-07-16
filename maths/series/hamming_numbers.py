@@ -45,7 +45,7 @@ def hamming(n_element: int) -> list:
 if __name__ == "__main__":
     n = input("Enter the last number (nth term) of the Hamming Number Series: ")
     print("Formula of Hamming Number Series => 2^i * 3^j * 5^k")
-    hamming_numbers = hamming(n)
+    hamming_numbers = hamming(int(n))
     print("-----------------------------------------------------")
     print(f"The list with nth numbers is: {hamming_numbers}")
     print("-----------------------------------------------------")
