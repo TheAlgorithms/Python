@@ -62,10 +62,8 @@ class Test(unittest.TestCase):
         self.assertTrue(is_prime(29))
 
     def test_not_primes(self):
-        self.assertFalse(
-            is_prime(-19),
-            "Negative numbers are excluded by definition of prime numbers.",
-        )
+        with self.assertRaises(AssertionError):
+            is_prime(-19)
         self.assertFalse(
             is_prime(0),
             "Zero doesn't have any positive factors, primes must have exactly two.",
