@@ -4,6 +4,7 @@ non-negative integers i, j, and k. They are often referred to as regular numbers
 More info at: https://en.wikipedia.org/wiki/Regular_number.
 """
 
+
 def hamming(n_element: int) -> list:
     """
     This function creates an ordered list of n length as requested, and afterwards
