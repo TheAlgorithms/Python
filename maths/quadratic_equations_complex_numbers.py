@@ -19,8 +19,8 @@ def quadratic_roots(a: int, b: int, c: int) -> tuple[complex, complex]:
     if a == 0:
         raise ValueError("Coefficient 'a' must not be zero.")
 
-    root_1 = (((-b) + ((b**2)-(4*a*c))**5))/(2*a))
-    root_2 = (((-b) - ((b**2)-(4*a*c))**5))/(2*a))
+    root_1 = (((-b) + ((b**2)-(4*a*c))**0.5))/(2*a))
+    root_2 = (((-b) - ((b**2)-(4*a*c))**0.5))/(2*a))
 
     return (
         root_1.real if not root_1.imag else root_1,
