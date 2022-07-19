@@ -16,20 +16,46 @@ import math
 
 
 def is_prime(number: int) -> bool:
-    """
-    Determines whether a given number is prime or not
+    """Checks to see if a number is a prime in O(sqrt(n)).
+    A number is prime if it has exactly two factors: 1 and itself.
+    Returns boolean representing primality of given number num (i.e., if the
+    result is true, then the number is indeed prime else it is not).
 
     >>> is_prime(2)
     True
-    >>> is_prime(15)
-    False
-    >>> is_prime(29)
+    >>> is_prime(3)
     True
+    >>> is_prime(27)
+    False
+    >>> is_prime(2999)
+    True
+    >>> is_prime(0)
+    False
+    >>> is_prime(1)
+    False
+    >>> is_prime(3.14)
+    Traceback (most recent call last):
+        ...
+    AssertionError: 'number' must been an int and positive
     """
 
-    if number % 2 == 0 and number > 2:
+    # precondition
+    assert isinstance(number, int) and (
+        number >= 0
+    ), "'number' must been an int and positive"
+
+    if 1 < number < 4:
+        # 2 and 3 are primes
+        return True
+    elif number < 2 or number % 2 == 0 or number % 3 == 0:
+        # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
         return False
-    return all(number % i for i in range(3, int(math.sqrt(number)) + 1, 2))
+
+    # All primes number are in format of 6k +/- 1
+    for i in range(5, int(math.sqrt(number) + 1), 6):
+        if number % i == 0 or number % (i + 2) == 0:
+            return False
+    return True
 
 
 def prime_generator():
