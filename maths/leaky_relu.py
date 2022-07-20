@@ -1,5 +1,5 @@
 """
-This algorithm implements the leaky rectified linear (LReLU).
+This algorithm implements the leaky rectified linear algorithm (LReLU).
 
 LReLU is at times used as a substitute to ReLU because it fixes the dying ReLU problem.
 This is done by adding a slight slope to the negative portion of the function.
@@ -15,6 +15,10 @@ from __future__ import annotations
 def leaky_relu(vector: float | list[float], slope: float = 0.01) -> float | list[float]:
     """
     Implements the leaky rectified linear activation function
+
+    :param vector: The float or list of floats to apply the algorithm to
+    :param slope: The multiplier that is applied to every negative value in the list
+    :return: The modified value or list of values after applying LReLU
 
     >>> leaky_relu([-5])
     [-0.05]
