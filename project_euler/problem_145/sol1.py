@@ -18,7 +18,7 @@ ODD_DIGITS = [digit for digit in range(10) if digit % 2 == 1]
 
 
 def reversible_numbers(
-    remaining_length: int, remainder: int, digits: list[int], length: int
+    remaining_length: int, remainder: int, digits: list, length: int
 ) -> int:
     """
     Count the number of reversible numbers of given length.
