@@ -31,10 +31,6 @@ def is_prime(number: int) -> bool:
     False
     >>> is_prime(1)
     False
-    >>> is_prime(3.14)
-    Traceback (most recent call last):
-        ...
-    AssertionError: 'number' must been an int and positive
     """
 
     if 1 < number < 4:
