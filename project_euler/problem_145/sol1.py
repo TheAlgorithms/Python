@@ -1,6 +1,6 @@
 """
 Project Euler problem 145: https://projecteuler.net/problem=145
-Author: Vineet Rao
+Author: Vineet Rao, Maxim Smolskiy
 Problem statement:
 
 Some positive integers n have the property that the sum [ n + reverse(n) ]
@@ -13,44 +13,81 @@ There are 120 reversible numbers below one-thousand.
 
 How many reversible numbers are there below one-billion (10^9)?
 """
+EVEN_DIGITS = [digit for digit in range(10) if digit % 2 == 0]
+ODD_DIGITS = [digit for digit in range(10) if digit % 2 == 1]
 
 
-def odd_digits(num: int) -> bool:
+def reversible_numbers(
+    remaining_length: int, remainder: int, digits: list[int], length: int
+) -> int:
     """
-    Check if the number passed as argument has only odd digits.
-    >>> odd_digits(123)
-    False
-    >>> odd_digits(135797531)
-    True
+    Count the number of reversible numbers of given length.
+    >>> reversible_numbers(1, 0, [None], 1)
+    0
+    >>> reversible_numbers(2, 0, [None] * 2, 2)
+    20
+    >>> reversible_numbers(3, 0, [None] * 3, 3)
+    100
     """
-    while num > 0:
-        digit = num % 10
-        if digit % 2 == 0:
-            return False
-        num //= 10
-    return True
+    if remaining_length == 0:
+        if digits[0] == 0 or digits[-1] == 0:
+            return 0
+
+        for i in range(length // 2 - 1, -1, -1):
+            remainder += digits[i] + digits[length - i - 1]
+
+            if remainder % 2 == 0:
+                return 0
+
+            remainder //= 10
+
+        return 1
+
+    if remaining_length == 1:
+        if remainder % 2 == 0:
+            return 0
+
+        result = 0
+        for digit in range(10):
+            digits[length // 2] = digit
+            result += reversible_numbers(
+                0, (remainder + 2 * digit) // 10, digits, length
+            )
+        return result
+
+    result = 0
+    for digit1 in range(10):
+        digits[(length + remaining_length) // 2 - 1] = digit1
+
+        if (remainder + digit1) % 2 == 0:
+            OTHER_DIGITS = ODD_DIGITS
+        else:
+            OTHER_DIGITS = EVEN_DIGITS
+
+        for digit2 in OTHER_DIGITS:
+            digits[(length - remaining_length) // 2] = digit2
+            result += reversible_numbers(
+                remaining_length - 2,
+                (remainder + digit1 + digit2) // 10,
+                digits,
+                length,
+            )
+    return result
 
 
-def solution(max_num: int = 1_000_000_000) -> int:
+def solution(max_power: int = 9) -> int:
     """
     To evaluate the solution, use solution()
-    >>> solution(1000)
+    >>> solution(3)
     120
-    >>> solution(1_000_000)
+    >>> solution(6)
     18720
-    >>> solution(10_000_000)
+    >>> solution(7)
     68720
     """
     result = 0
-    # All single digit numbers reverse to themselves, so their sums are even
-    # Therefore at least one digit in their sum is even
-    # Last digit cannot be 0, else it causes leading zeros in reverse
-    for num in range(11, max_num):
-        if num % 10 == 0:
-            continue
-        num_sum = num + int(str(num)[::-1])
-        num_is_reversible = odd_digits(num_sum)
-        result += 1 if num_is_reversible else 0
+    for length in range(1, max_power + 1):
+        result += reversible_numbers(length, 0, [None] * length, length)
     return result
 
 
