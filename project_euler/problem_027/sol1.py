@@ -41,16 +41,9 @@ def is_prime(number: int) -> bool:
     False
     >>> is_prime(1)
     False
-    >>> is_prime(3.14)
-    Traceback (most recent call last):
-        ...
-    AssertionError: 'number' must been an int and positive
+    >>> is_prime(-10)
+    False
     """
-
-    # precondition
-    assert isinstance(number, int) and (
-        number >= 0
-    ), "'number' must been an int and positive"
 
     if 1 < number < 4:
         # 2 and 3 are primes
