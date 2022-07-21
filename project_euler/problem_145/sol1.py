@@ -13,20 +13,21 @@ There are 120 reversible numbers below one-thousand.
 
 How many reversible numbers are there below one-billion (10^9)?
 """
-EVEN_DIGITS = [digit for digit in range(10) if digit % 2 == 0]
-ODD_DIGITS = [digit for digit in range(10) if digit % 2 == 1]
+EVEN_DIGITS = [0, 2, 4, 6, 8]
+ODD_DIGITS = [1, 3, 5, 7, 9]
 
 
 def reversible_numbers(
-    remaining_length: int, remainder: int, digits: list, length: int
+    remaining_length: int, remainder: int, digits: list[int], length: int
 ) -> int:
     """
     Count the number of reversible numbers of given length.
-    >>> reversible_numbers(1, 0, [None], 1)
+    Iterate over possible digits considering parity of current sum remainder.
+    >>> reversible_numbers(1, 0, [0], 1)
     0
-    >>> reversible_numbers(2, 0, [None] * 2, 2)
+    >>> reversible_numbers(2, 0, [0] * 2, 2)
     20
-    >>> reversible_numbers(3, 0, [None] * 3, 3)
+    >>> reversible_numbers(3, 0, [0] * 3, 3)
     100
     """
     if remaining_length == 0:
@@ -60,11 +61,11 @@ def reversible_numbers(
         digits[(length + remaining_length) // 2 - 1] = digit1
 
         if (remainder + digit1) % 2 == 0:
-            OTHER_DIGITS = ODD_DIGITS
+            other_parity_digits = ODD_DIGITS
         else:
-            OTHER_DIGITS = EVEN_DIGITS
+            other_parity_digits = EVEN_DIGITS
 
-        for digit2 in OTHER_DIGITS:
+        for digit2 in other_parity_digits:
             digits[(length - remaining_length) // 2] = digit2
             result += reversible_numbers(
                 remaining_length - 2,
@@ -87,7 +88,7 @@ def solution(max_power: int = 9) -> int:
     """
     result = 0
     for length in range(1, max_power + 1):
-        result += reversible_numbers(length, 0, [None] * length, length)
+        result += reversible_numbers(length, 0, [0] * length, length)
     return result
 
 
