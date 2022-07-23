@@ -12,7 +12,9 @@ https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 from __future__ import annotations
 
 
-def leaky_relu(vector: float | list[float], slope: float = 0.01) -> float | list[float]:
+def leaky_relu(
+    vector: float | list[float], negative_slope: float = 0.01
+) -> float | list[float]:
     """
     Implements the leaky rectified linear activation function
 
@@ -35,17 +37,17 @@ def leaky_relu(vector: float | list[float], slope: float = 0.01) -> float | list
         raise ValueError(
             "leaky_relu() only accepts floats or a list of floats for vector"
         )
-    if not isinstance(slope, float):
-        raise ValueError("leaky_relu() only accepts a float value for slope")
+    if not isinstance(negative_slope, float):
+        raise ValueError("leaky_relu() only accepts a float value for negative_slope")
 
     if isinstance(vector, float):
         if vector < 0:
-            return vector * slope
+            return vector * negative_slope
         return vector
 
     for index, value in enumerate(vector):
         if value < 0:
-            vector[index] = value * slope
+            vector[index] = value * negative_slope
 
     return vector
 
