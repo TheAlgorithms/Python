@@ -8,9 +8,9 @@ from .binary_exp_mod import bin_exp_mod
 # if it's not a prime, the chance of it returning true is at most 1/4**prec
 def is_prime_big(n, prec=1000):
     """
-    >>> from maths.prime_check import prime_check
-    >>> # all(is_prime_big(i) == prime_check(i) for i in range(1000))  # 3.45s
-    >>> all(is_prime_big(i) == prime_check(i) for i in range(256))
+    >>> from maths.prime_check import is_prime
+    >>> # all(is_prime_big(i) == is_prime(i) for i in range(1000))  # 3.45s
+    >>> all(is_prime_big(i) == is_prime(i) for i in range(256))
     True
     """
     if n < 2:
