@@ -2,7 +2,6 @@
 Gamma function is a very useful tool in math and physics.
 It helps calculating complex integral in a convenient way.
 for more info: https://en.wikipedia.org/wiki/Gamma_function
-
 Python's Standard Library math.gamma() function overflows around gamma(171.624).
 """
 from math import pi, sqrt
@@ -71,7 +70,7 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    num = 1
+    num = 1.0
     while num:
         num = float(input("Gamma of: "))
         print(f"gamma({num}) = {gamma(num)}")

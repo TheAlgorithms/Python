@@ -1,6 +1,6 @@
 beautifulsoup4
 fake_useragent
-keras<2.7.0
+keras
 lxml
 matplotlib
 numpy
@@ -16,5 +16,4 @@ sympy
 tensorflow
 texttable
 tweepy
-types-requests
 xgboost

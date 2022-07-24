@@ -10,9 +10,11 @@ import requests
 URL_BASE = "https://www.amdoren.com/api/currency.php"
 TESTING = os.getenv("CI", False)
 API_KEY = os.getenv("AMDOREN_API_KEY", "")
-if not API_KEY and not TESTING:
-    raise KeyError("Please put your API key in an environment variable.")
 
+if not API_KEY and not TESTING:
+    raise KeyError(
+        "API key must be provided in the 'AMDOREN_API_KEY' environment variable."
+    )
 
 # Currency and their description
 list_of_currencies = """

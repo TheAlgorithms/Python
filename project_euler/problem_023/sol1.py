@@ -30,7 +30,7 @@ def solution(limit=28123):
     """
     sumDivs = [1] * (limit + 1)
 
-    for i in range(2, int(limit ** 0.5) + 1):
+    for i in range(2, int(limit**0.5) + 1):
         sumDivs[i * i] += i
         for k in range(i + 1, limit // i + 1):
             sumDivs[k * i] += k + i

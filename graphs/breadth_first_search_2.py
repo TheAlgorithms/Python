@@ -32,7 +32,7 @@ def breadth_first_search(graph: dict, start: str) -> set[str]:
     'ABCDEF'
     """
     explored = {start}
-    queue = Queue()
+    queue: Queue = Queue()
     queue.put(start)
     while not queue.empty():
         v = queue.get()
@@ -44,4 +44,7 @@ def breadth_first_search(graph: dict, start: str) -> set[str]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     print(breadth_first_search(G, "A"))

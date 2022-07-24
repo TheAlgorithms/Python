@@ -2,7 +2,6 @@
 * Author: Manuel Di Lullo (https://github.com/manueldilullo)
 * Description: Approximization algorithm for minimum vertex cover problem.
                Greedy Approach. Uses graphs represented with an adjacency list
-
 URL: https://mathworld.wolfram.com/MinimumVertexCover.html
 URL: https://cs.stackexchange.com/questions/129017/greedy-algorithm-for-vertex-cover
 """
@@ -10,7 +9,7 @@ URL: https://cs.stackexchange.com/questions/129017/greedy-algorithm-for-vertex-c
 import heapq
 
 
-def greedy_min_vertex_cover(graph: dict) -> set:
+def greedy_min_vertex_cover(graph: dict) -> set[int]:
     """
     Greedy APX Algorithm for min Vertex Cover
     @input: graph (graph stored in an adjacency list where each vertex
@@ -21,7 +20,7 @@ def greedy_min_vertex_cover(graph: dict) -> set:
     {0, 1, 2, 4}
     """
     # queue used to store nodes and their rank
-    queue = []
+    queue: list[list] = []
 
     # for each node and his adjacency list add them and the rank of the node to queue
     # using heapq module the queue will be filled like a Priority Queue
@@ -61,5 +60,5 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    # graph = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
-    # print(f"Minimum vertex cover:\n{greedy_min_vertex_cover(graph)}")
+    graph = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
+    print(f"Minimum vertex cover:\n{greedy_min_vertex_cover(graph)}")

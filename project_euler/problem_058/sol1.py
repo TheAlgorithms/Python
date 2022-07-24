@@ -36,14 +36,14 @@ count of current primes.
 from math import isqrt
 
 
-def isprime(number: int) -> int:
+def is_prime(number: int) -> int:
     """
-    returns whether the given number is prime or not
-    >>> isprime(1)
+    Returns whether the given number is prime or not
+    >>> is_prime(1)
     0
-    >>> isprime(17)
+    >>> is_prime(17)
     1
-    >>> isprime(10000)
+    >>> is_prime(10000)
     0
     """
     if number == 1:
@@ -60,7 +60,7 @@ def isprime(number: int) -> int:
 
 def solution(ratio: float = 0.1) -> int:
     """
-    returns the side length of the square spiral of odd length greater
+    Returns the side length of the square spiral of odd length greater
     than 1 for which the ratio of primes along both diagonals
     first falls below the given ratio.
     >>> solution(.5)
@@ -76,9 +76,8 @@ def solution(ratio: float = 0.1) -> int:
 
     while primes / (2 * j - 1) >= ratio:
         for i in range(j * j + j + 1, (j + 2) * (j + 2), j + 1):
-            primes = primes + isprime(i)
-
-        j = j + 2
+            primes += is_prime(i)
+        j += 2
     return j
 
 

@@ -88,7 +88,7 @@ iv) a1 is corresponding equal character of a5 in palindrome with center a3 (reme
 now for a5 we will calculate the length of palindromic substring with center as a5 but
 can we use previously calculated information in some way?
 Yes, look the above string we know that a5 is inside the palindrome with center a3 and
-previously we have have calculated that
+previously we have calculated that
 a0==a2 (palindrome of center a1)
 a2==a4 (palindrome of center a3)
 a0==a6 (palindrome of center a3)
