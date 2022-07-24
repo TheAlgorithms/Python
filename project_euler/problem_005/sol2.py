@@ -18,7 +18,7 @@ References:
 
 def greatest_common_divisor(x: int, y: int) -> int:
     """
-    Euclidean Greatest Comman Divisor algorithm
+    Euclidean Greatest Common Divisor algorithm
 
     >>> greatest_common_divisor(0, 0)
     0
