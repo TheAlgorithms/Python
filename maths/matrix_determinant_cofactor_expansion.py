@@ -44,7 +44,7 @@ def determinant(matrix: list) -> int or float:
     return det
 
 
-def aux_matrix(matrix: list, i: int, j: int) -> list:
+def aux_matrix(matrix: list, row: int, column: int) -> list:
     """
     returns a new matrix without the row i and the column j from 
     matrix
@@ -57,11 +57,11 @@ def aux_matrix(matrix: list, i: int, j: int) -> list:
     [[1, 2], [7, 8]]
     """
     mat = []
-    for row_i, row in enumerate(matrix):
-        if row_i != i:
+    for i, row_i in enumerate(matrix):
+        if i != row:
             aux = []
-            for column_j, value in enumerate(row):
-                if column_j != j:
+            for j, value in enumerate(row_i):
+                if column != j:
                     aux.append(value)
             mat.append(aux)
     return mat
