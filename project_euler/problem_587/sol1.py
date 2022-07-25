@@ -29,7 +29,7 @@ from itertools import count
 from math import asin, pi, sqrt
 
 
-def circle_bottom_arc_integral(x: float) -> float:
+def circle_bottom_arc_integral(point: float) -> float:
     """
     Returns integral of circle bottom arc y = 1 / 2 - sqrt(1 / 4 - (x - 1 / 2) ^ 2)
 
@@ -43,10 +43,12 @@ def circle_bottom_arc_integral(x: float) -> float:
     0.5
     """
 
-    return ((1 - 2 * x) * sqrt(x - x**2) + 2 * x + asin(sqrt(1 - x))) / 4
+    return (
+        (1 - 2 * point) * sqrt(point - point**2) + 2 * point + asin(sqrt(1 - point))
+    ) / 4
 
 
-def concave_triangle_area(n: int) -> float:
+def concave_triangle_area(circles_number: int) -> float:
     """
     Returns area of concave triangle
 
@@ -57,8 +59,10 @@ def concave_triangle_area(n: int) -> float:
     0.01956236140083944
     """
 
-    intersection_y = (n + 1 - sqrt(2 * n)) / (2 * (n**2 + 1))
-    intersection_x = n * intersection_y
+    intersection_y = (circles_number + 1 - sqrt(2 * circles_number)) / (
+        2 * (circles_number**2 + 1)
+    )
+    intersection_x = circles_number * intersection_y
 
     triangle_area = intersection_x * intersection_y / 2
     concave_region_area = circle_bottom_arc_integral(
