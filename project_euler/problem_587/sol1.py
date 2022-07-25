@@ -83,6 +83,8 @@ def solution(fraction: float = 1 / 1000) -> int:
         if concave_triangle_area(n) / L_section_area < fraction:
             return n
 
+    return -1
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
