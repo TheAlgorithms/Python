@@ -77,10 +77,10 @@ def solution(fraction: float = 1 / 1000) -> int:
     15
     """
 
-    L_section_area = (1 - pi / 4) / 4
+    l_section_area = (1 - pi / 4) / 4
 
     for n in count(1):
-        if concave_triangle_area(n) / L_section_area < fraction:
+        if concave_triangle_area(n) / l_section_area < fraction:
             return n
 
     return -1
