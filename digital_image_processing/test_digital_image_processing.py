@@ -14,7 +14,7 @@ from digital_image_processing.filters import convolve as conv
 from digital_image_processing.filters import gaussian_filter as gg
 from digital_image_processing.filters import median_filter as med
 from digital_image_processing.filters import sobel_filter as sob
-from digital_image_processing.Intensity_Transformation import Log_Transformation as log
+from digital_image_processing.intensity_transformation import log_transformation as log
 from digital_image_processing.resize import resize as rs
 
 img = imread(r"digital_image_processing/image_data/lena_small.jpg")
