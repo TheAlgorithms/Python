@@ -25,15 +25,15 @@ img = cv2.imread(
     'digital_image_processing/image_data/lena.jpg')
 
 
-def Negatives_Linear(img):
+def negatives_linear(img: jpg) -> negative_linear_function:
     return 255-img
 
 
-cv2.imshow('Negatives_Linear ', Negatives_Linear(img))
+cv2.imshow('negatives_linear ', negatives_linear(img))
 # ------------------------------------------------------------------
 
 
-def log_transform(img):
+def log_transform(img: jpg)-> log_transformation_function:
     c = 255/(np.log(1 + np.max(img)))
     log_transformed = c * np.log(1 + img)
     log_transformed = np.array(log_transformed, dtype=np.uint8)
@@ -45,15 +45,15 @@ cv2.imshow('log_transformed '+str(c), log_transformed)
 # ------------------------------------------------------------------
 
 
-def Inverse_log_transformation(inv_log):
+def inverse_log_transformation(inv_log: jpg)-> inverse_transformation_function:
     c = 255/(np.log(1 + np.max(inv_log)))
-    Inverse_log_trans = np.exp(inv_log**1/c)-1
-    Inverse_log_trans = np.array(Inverse_log_trans, dtype=np.uint8)
-    return Inverse_log_trans, c
+    inverse_log_trans = np.exp(inv_log**1/c)-1
+    inverse_log_trans = np.array(inverse_log_trans, dtype=np.uint8)
+    return inverse_log_trans, c
 
 
-Inverse_log_transformation,  c = Inverse_log_transformation(log_transformed)
-cv2.imshow('Inverse_log '+str(c), Inverse_log_transformation)
+inverse_log_transformation,  c = inverse_log_transformation(log_transformed)
+cv2.imshow('Inverse_log '+str(c), inverse_log_transformation)
 cv2.imshow('Original ', img)
 
 
