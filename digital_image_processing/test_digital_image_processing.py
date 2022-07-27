@@ -20,9 +20,6 @@ from digital_image_processing.resize import resize as rs
 img = imread(r"digital_image_processing/image_data/lena_small.jpg")
 gray = cvtColor(img, COLOR_BGR2GRAY)
 
-img2 = imread(r"digital_image_processing/image_data/gamma_scan.png")
-gamma = cvtColor(img2, COLOR_BGR2GRAY)
-
 # Test: convert_to_negative()
 def test_convert_to_negative():
     negative_img = cn.convert_to_negative(img)
@@ -47,7 +44,7 @@ def test_gen_gaussian_kernel():
 
 # log.py
 def test_log():
-    log_img = imread("digital_image_processing/image_data/gamma_scan.png", 0)
+    log_img = imread("digital_image_processing/image_data/lena_small.jpg", 0)
     assert log.Negatives_Linear(log_img).any()
     assert log.log_transform(log_img).any()
     assert log.Inverse_log_transformation(log_img).any()
