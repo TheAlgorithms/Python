@@ -22,7 +22,7 @@ cv2.destroyAllWindows()
 # ------------------------------------------------------------------
 # Open the image.
 img = cv2.imread(
-    'digital_image_processing/image_data/gamma_scan.png')
+    'digital_image_processing/image_data/lena.jpg')
 
 
 def Negatives_Linear(img):
