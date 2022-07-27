@@ -7,10 +7,7 @@ class SoundCloud:
         self.info = self.extract_info()
 
     def ydl_option(self):
-        return {
-            "dumpjson": True,
-            "extract_flat": True
-        }
+        return {"dumpjson": True, "extract_flat": True}
 
     def extract_info(self):
         try:
@@ -21,56 +18,56 @@ class SoundCloud:
 
     @property
     def genre(self):
-        return self.info['genre']
-    
+        return self.info["genre"]
+
     @property
     def formats(self):
-        return self.info['formats']
+        return self.info["formats"]
 
     @property
     def caption(self):
-        return self.info['description']
-    
+        return self.info["description"]
+
     @property
     def thumbnails(self):
-        return self.info['thumbnails']
+        return self.info["thumbnails"]
 
     @property
     def view_count(self):
-        return self.info['view_count']
-    
-    @property
-    def comment_count(self):
-        return self.info['comment_count']
-    
-    @property
-    def repost_count(self):
-        return self.info['repost_count']
-    @property
-    def like_count(self):
-        return self.info['like_count']
+        return self.info["view_count"]
 
     @property
-    def idd(self)
-        return self.info['id']
+    def comment_count(self):
+        return self.info["comment_count"]
+
+    @property
+    def repost_count(self):
+        return self.info["repost_count"]
+
+    @property
+    def like_count(self):
+        return self.info["like_count"]
+
+    @property
+    def idd(self):
+        return self.info["id"]
 
     @property
     def uploader(self):
-        return self.info['uploader']
+        return self.info["uploader"]
 
     @property
     def uploader_id(self):
-        return self.info['uploader_id']
-    
+        return self.info["uploader_id"]
+
     @property
     def uploader_url(self):
-        return self.info['uploader_url']
+        return self.info["uploader_url"]
 
     @property
     def upload_date(self):
-        return self.info['timestamp']
-    
+        return self.info["timestamp"]
+
     @property
     def title(self):
-        return self.info['title']
-
+        return self.info["title"]
