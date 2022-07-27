@@ -1,5 +1,3 @@
-# flake8: noqa
-
 from __future__ import annotations
 
 from random import random
@@ -11,13 +9,13 @@ class Node:
     Treap is a binary tree by value and heap by priority
     """
 
-    def __init__(self, value: int = None):
+    def __init__(self, value: int | None = None):
         self.value = value
         self.prior = random()
-        self.left = None
-        self.right = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         from pprint import pformat
 
         if self.left is None and self.right is None:
@@ -27,14 +25,14 @@ class Node:
                 {f"{self.value}: {self.prior:.5}": (self.left, self.right)}, indent=1
             )
 
-    def __str__(self):
+    def __str__(self) -> str:
         value = str(self.value) + " "
         left = str(self.left or "")
         right = str(self.right or "")
         return value + left + right
 
 
-def split(root: Node, value: int) -> tuple[Node, Node]:
+def split(root: Node | None, value: int) -> tuple[Node | None, Node | None]:
     """
     We split current tree into 2 trees with value:
 
@@ -42,9 +40,9 @@ def split(root: Node, value: int) -> tuple[Node, Node]:
     Right tree contains all values greater or equal, than split value
     """
     if root is None:  # None tree is split into 2 Nones
-        return (None, None)
+        return None, None
     elif root.value is None:
-        return (None, None)
+        return None, None
     else:
         if value < root.value:
             """
@@ -54,16 +52,16 @@ def split(root: Node, value: int) -> tuple[Node, Node]:
             Right tree's left son: right part of that split
             """
             left, root.left = split(root.left, value)
-            return (left, root)
+            return left, root
         else:
             """
             Just symmetric to previous case
             """
             root.right, right = split(root.right, value)
-            return (root, right)
+            return root, right
 
 
-def merge(left: Node, right: Node) -> Node:
+def merge(left: Node | None, right: Node | None) -> Node | None:
     """
     We merge 2 trees into one.
     Note: all left tree's values must be less than all right tree's
@@ -85,7 +83,7 @@ def merge(left: Node, right: Node) -> Node:
         return right
 
 
-def insert(root: Node, value: int) -> Node:
+def insert(root: Node | None, value: int) -> Node | None:
     """
     Insert element
 
@@ -98,7 +96,7 @@ def insert(root: Node, value: int) -> Node:
     return merge(merge(left, node), right)
 
 
-def erase(root: Node, value: int) -> Node:
+def erase(root: Node | None, value: int) -> Node | None:
     """
     Erase element
 
@@ -111,7 +109,7 @@ def erase(root: Node, value: int) -> Node:
     return merge(left, right)
 
 
-def inorder(root: Node):
+def inorder(root: Node | None) -> None:
     """
     Just recursive print of a tree
     """
@@ -123,7 +121,7 @@ def inorder(root: Node):
         inorder(root.right)
 
 
-def interactTreap(root, args):
+def interactTreap(root: Node | None, args: str) -> Node | None:
     """
     Commands:
     + value to add value into treap
@@ -160,7 +158,7 @@ def interactTreap(root, args):
     return root
 
 
-def main():
+def main() -> None:
     """After each command, program prints treap"""
     root = None
     print(

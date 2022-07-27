@@ -1,7 +1,7 @@
 # https://www.tutorialspoint.com/python3/bitwise_operators_example.htm
 
 
-def binary_or(a: int, b: int):
+def binary_or(a: int, b: int) -> str:
     """
     Take in 2 integers, convert them to binary, and return a binary number that is the
     result of a binary or operation on the integers provided.
@@ -21,7 +21,7 @@ def binary_or(a: int, b: int):
     >>> binary_or(0, -1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of both input must be positive
+    ValueError: the value of both inputs must be positive
     >>> binary_or(0, 1.1)
     Traceback (most recent call last):
         ...
@@ -32,7 +32,7 @@ def binary_or(a: int, b: int):
     TypeError: '<' not supported between instances of 'str' and 'int'
     """
     if a < 0 or b < 0:
-        raise ValueError("the value of both input must be positive")
+        raise ValueError("the value of both inputs must be positive")
     a_binary = str(bin(a))[2:]  # remove the leading "0b"
     b_binary = str(bin(b))[2:]
     max_len = max(len(a_binary), len(b_binary))

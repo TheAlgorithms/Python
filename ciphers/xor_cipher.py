@@ -16,6 +16,7 @@
         - encrypt_file : boolean
         - decrypt_file : boolean
 """
+from __future__ import annotations
 
 
 class XORCipher:
@@ -28,7 +29,7 @@ class XORCipher:
         # private field
         self.__key = key
 
-    def encrypt(self, content: str, key: int) -> [str]:
+    def encrypt(self, content: str, key: int) -> list[str]:
         """
         input: 'content' of type string and 'key' of type int
         output: encrypted string 'content' as a list of chars
@@ -41,19 +42,12 @@ class XORCipher:
 
         key = key or self.__key or 1
 
-        # make sure key can be any size
-        while key > 255:
-            key -= 255
+        # make sure key is an appropriate size
+        key %= 255
 
-        # This will be returned
-        ans = []
+        return [chr(ord(ch) ^ key) for ch in content]
 
-        for ch in content:
-            ans.append(chr(ord(ch) ^ key))
-
-        return ans
-
-    def decrypt(self, content: str, key: int) -> [str]:
+    def decrypt(self, content: str, key: int) -> list[str]:
         """
         input: 'content' of type list and 'key' of type int
         output: decrypted string 'content' as a list of chars
@@ -66,17 +60,10 @@ class XORCipher:
 
         key = key or self.__key or 1
 
-        # make sure key can be any size
-        while key > 255:
-            key -= 255
+        # make sure key is an appropriate size
+        key %= 255
 
-        # This will be returned
-        ans = []
-
-        for ch in content:
-            ans.append(chr(ord(ch) ^ key))
-
-        return ans
+        return [chr(ord(ch) ^ key) for ch in content]
 
     def encrypt_string(self, content: str, key: int = 0) -> str:
         """

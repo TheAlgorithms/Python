@@ -1,7 +1,7 @@
 r"""
 Problem:
 
-The n queens problem is of placing N queens on a N * N chess board such that no queen
+The n queens problem is: placing N queens on a N * N chess board such that no queen
 can attack any other queens placed on that chess board.  This means that one queen
 cannot have any other queen on its horizontal, vertical and diagonal lines.
 
@@ -31,7 +31,7 @@ So if we use an array and we verify that each value in the array is different to
 other we know that at least the queens can't attack each other in horizontal and
 vertical.
 
-At this point we have that halfway completed and we will treat the chessboard as a
+At this point we have it halfway completed and we will treat the chessboard as a
 Cartesian plane.  Hereinafter we are going to remember basic math, so in the school we
 learned this formula:
 
@@ -47,7 +47,7 @@ This formula allow us to get the slope. For the angles 45º (right diagonal) and
 See::
 https://www.enotes.com/homework-help/write-equation-line-that-hits-origin-45-degree-1474860
 
-Then we have this another formula:
+Then we have this other formula:
 
 Slope intercept:
 
@@ -59,7 +59,7 @@ we would have:
 
 y - mx = b
 
-And like we already have the m values for the angles 45º and 135º, this formula would
+And since we already have the m values for the angles 45º and 135º, this formula would
 look like this:
 
 45º: y - (1)x = b
@@ -71,7 +71,7 @@ look like this:
 y = row
 x = column
 
-Applying this two formulas we can check if a queen in some position is being attacked
+Applying these two formulas we can check if a queen in some position is being attacked
 for another one or vice versa.
 
 """
@@ -94,40 +94,33 @@ def depth_first_search(
     ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']
     """
 
-    """ Get next row in the current board (possible_board) to fill it with a queen """
+    # Get next row in the current board (possible_board) to fill it with a queen
     row = len(possible_board)
 
-    """
-    If row is equal to the size of the board it means there are a queen in each row in
-    the current board (possible_board)
-    """
+    # If row is equal to the size of the board it means there are a queen in each row in
+    # the current board (possible_board)
     if row == n:
-        """
-        We convert the variable possible_board that looks like this: [1, 3, 0, 2] to
-        this: ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
-        """
-        possible_board = [". " * i + "Q " + ". " * (n - 1 - i) for i in possible_board]
-        boards.append(possible_board)
+        # We convert the variable possible_board that looks like this: [1, 3, 0, 2] to
+        # this: ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
+        boards.append([". " * i + "Q " + ". " * (n - 1 - i) for i in possible_board])
         return
 
-    """ We iterate each column in the row to find all possible results in each row """
+    # We iterate each column in the row to find all possible results in each row
     for col in range(n):
 
-        """
-        We apply that we learned previously. First we check that in the current board
-        (possible_board) there are not other same value because if there is it means
-        that there are a collision in vertical. Then we apply the two formulas we
-        learned before:
-
-        45º: y - x = b or 45: row - col = b
-        135º: y + x = b or row + col = b.
-
-        And we verify if the results of this two formulas not exist in their variables
-        respectively.  (diagonal_right_collisions, diagonal_left_collisions)
-
-        If any or these are True it means there is a collision so we continue to the
-        next value in the for loop.
-        """
+        # We apply that we learned previously. First we check that in the current board
+        # (possible_board) there are not other same value because if there is it means
+        # that there are a collision in vertical. Then we apply the two formulas we
+        # learned before:
+        #
+        # 45º: y - x = b or 45: row - col = b
+        # 135º: y + x = b or row + col = b.
+        #
+        # And we verify if the results of this two formulas not exist in their variables
+        # respectively.  (diagonal_right_collisions, diagonal_left_collisions)
+        #
+        # If any or these are True it means there is a collision so we continue to the
+        # next value in the for loop.
         if (
             col in possible_board
             or row - col in diagonal_right_collisions
@@ -135,7 +128,7 @@ def depth_first_search(
         ):
             continue
 
-        """ If it is False we call dfs function again and we update the inputs """
+        # If it is False we call dfs function again and we update the inputs
         depth_first_search(
             possible_board + [col],
             diagonal_right_collisions + [row - col],
@@ -146,10 +139,10 @@ def depth_first_search(
 
 
 def n_queens_solution(n: int) -> None:
-    boards = []
+    boards: list[list[str]] = []
     depth_first_search([], [], [], boards, n)
 
-    """ Print all the boards """
+    # Print all the boards
     for board in boards:
         for column in board:
             print(column)

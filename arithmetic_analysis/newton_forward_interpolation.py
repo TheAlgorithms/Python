@@ -1,10 +1,11 @@
 # https://www.geeksforgeeks.org/newton-forward-backward-interpolation/
+from __future__ import annotations
 
 import math
 
 
 # for calculating u value
-def ucal(u, p):
+def ucal(u: float, p: int) -> float:
     """
     >>> ucal(1, 2)
     0
@@ -19,9 +20,9 @@ def ucal(u, p):
     return temp
 
 
-def main():
+def main() -> None:
     n = int(input("enter the numbers of values: "))
-    y = []
+    y: list[list[float]] = []
     for i in range(n):
         y.append([])
     for i in range(n):

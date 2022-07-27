@@ -8,12 +8,17 @@ the famous Enigma machine from WWII.
 Module includes:
 - enigma function
 - showcase of function usage
-- 9 randnomly generated rotors
+- 9 randomly generated rotors
 - reflector (aka static rotor)
 - original alphabet
 
 Created by TrapinchO
 """
+from __future__ import annotations
+
+RotorPositionT = tuple[int, int, int]
+RotorSelectionT = tuple[str, str, str]
+
 
 # used alphabet --------------------------
 # from string.ascii_uppercase
@@ -63,7 +68,9 @@ rotor8 = "LFKIJODBEGAMQPXVUHYSTCZRWN"
 rotor9 = "KOAEGVDHXPQZMLFTYWJNBRCIUS"
 
 
-def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
+def _validator(
+    rotpos: RotorPositionT, rotsel: RotorSelectionT, pb: str
+) -> tuple[RotorPositionT, RotorSelectionT, dict[str, str]]:
     """
     Checks if the values can be used for the 'enigma' function
 
@@ -87,24 +94,24 @@ def _validator(rotpos: tuple, rotsel: tuple, pb: str) -> tuple:
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if not 0 < rotorpos1 <= len(abc):
         raise ValueError(
-            f"First rotor position is not within range of 1..26 (" f"{rotorpos1}"
+            "First rotor position is not within range of 1..26 (" f"{rotorpos1}"
         )
     if not 0 < rotorpos2 <= len(abc):
         raise ValueError(
-            f"Second rotor position is not within range of 1..26 (" f"{rotorpos2})"
+            "Second rotor position is not within range of 1..26 (" f"{rotorpos2})"
         )
     if not 0 < rotorpos3 <= len(abc):
         raise ValueError(
-            f"Third rotor position is not within range of 1..26 (" f"{rotorpos3})"
+            "Third rotor position is not within range of 1..26 (" f"{rotorpos3})"
         )
 
     # Validates string and returns dict
-    pb = _plugboard(pb)
+    pbdict = _plugboard(pb)
 
-    return rotpos, rotsel, pb
+    return rotpos, rotsel, pbdict
 
 
-def _plugboard(pbstring: str) -> dict:
+def _plugboard(pbstring: str) -> dict[str, str]:
     """
     https://en.wikipedia.org/wiki/Enigma_machine#Plugboard
 
@@ -145,17 +152,17 @@ def _plugboard(pbstring: str) -> dict:
 
     # Created the dictionary
     pb = {}
-    for i in range(0, len(pbstring) - 1, 2):
-        pb[pbstring[i]] = pbstring[i + 1]
-        pb[pbstring[i + 1]] = pbstring[i]
+    for j in range(0, len(pbstring) - 1, 2):
+        pb[pbstring[j]] = pbstring[j + 1]
+        pb[pbstring[j + 1]] = pbstring[j]
 
     return pb
 
 
 def enigma(
     text: str,
-    rotor_position: tuple,
-    rotor_selection: tuple = (rotor1, rotor2, rotor3),
+    rotor_position: RotorPositionT,
+    rotor_selection: RotorSelectionT = (rotor1, rotor2, rotor3),
     plugb: str = "",
 ) -> str:
     """

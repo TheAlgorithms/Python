@@ -33,32 +33,34 @@ So we check individually each one of these before incrementing our
 count of current primes.
 
 """
+from math import isqrt
 
 
-def isprime(d: int) -> int:
+def is_prime(number: int) -> int:
     """
-    returns whether the given digit is prime or not
-    >>> isprime(1)
+    Returns whether the given number is prime or not
+    >>> is_prime(1)
     0
-    >>> isprime(17)
+    >>> is_prime(17)
     1
-    >>> isprime(10000)
+    >>> is_prime(10000)
     0
     """
-    if d == 1:
+    if number == 1:
         return 0
 
-    i = 2
-    while i * i <= d:
-        if d % i == 0:
+    if number % 2 == 0 and number > 2:
+        return 0
+
+    for i in range(3, isqrt(number) + 1, 2):
+        if number % i == 0:
             return 0
-        i = i + 1
     return 1
 
 
 def solution(ratio: float = 0.1) -> int:
     """
-    returns the side length of the square spiral of odd length greater
+    Returns the side length of the square spiral of odd length greater
     than 1 for which the ratio of primes along both diagonals
     first falls below the given ratio.
     >>> solution(.5)
@@ -74,9 +76,8 @@ def solution(ratio: float = 0.1) -> int:
 
     while primes / (2 * j - 1) >= ratio:
         for i in range(j * j + j + 1, (j + 2) * (j + 2), j + 1):
-            primes = primes + isprime(i)
-
-        j = j + 2
+            primes += is_prime(i)
+        j += 2
     return j
 
 

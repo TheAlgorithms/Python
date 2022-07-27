@@ -114,14 +114,14 @@ def strassen(matrix1: list, matrix2: list) -> list:
     """
     if matrix_dimensions(matrix1)[1] != matrix_dimensions(matrix2)[0]:
         raise Exception(
-            f"Unable to multiply these matrices, please check the dimensions. \n"
+            "Unable to multiply these matrices, please check the dimensions. \n"
             f"Matrix A:{matrix1} \nMatrix B:{matrix2}"
         )
     dimension1 = matrix_dimensions(matrix1)
     dimension2 = matrix_dimensions(matrix2)
 
     if dimension1[0] == dimension1[1] and dimension2[0] == dimension2[1]:
-        return matrix1, matrix2
+        return [matrix1, matrix2]
 
     maximum = max(max(dimension1), max(dimension2))
     maxim = int(math.pow(2, math.ceil(math.log2(maximum))))

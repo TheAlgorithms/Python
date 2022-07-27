@@ -21,7 +21,7 @@ values = {
 }
 
 
-def decimal_to_hexadecimal(decimal):
+def decimal_to_hexadecimal(decimal: float) -> str:
     """
     take integer decimal value, return hexadecimal representation as str beginning
     with 0x
@@ -58,6 +58,7 @@ def decimal_to_hexadecimal(decimal):
     True
     """
     assert type(decimal) in (int, float) and decimal == int(decimal)
+    decimal = int(decimal)
     hexadecimal = ""
     negative = False
     if decimal < 0:

@@ -6,6 +6,9 @@ Classic examples of simple stack implementations
 Valid operators are +, -, *, /.
 Each operand may be an integer or another expression.
 """
+from __future__ import annotations
+
+from typing import Any
 
 
 def evaluate_postfix(postfix_notation: list) -> int:
@@ -21,7 +24,7 @@ def evaluate_postfix(postfix_notation: list) -> int:
         return 0
 
     operations = {"+", "-", "*", "/"}
-    stack = []
+    stack: list[Any] = []
 
     for token in postfix_notation:
         if token in operations:

@@ -1,10 +1,12 @@
 """
 https://en.wikipedia.org/wiki/Rayleigh_quotient
 """
+from typing import Any
+
 import numpy as np
 
 
-def is_hermitian(matrix: np.array) -> bool:
+def is_hermitian(matrix: np.ndarray) -> bool:
     """
     Checks if a matrix is Hermitian.
     >>> import numpy as np
@@ -24,7 +26,7 @@ def is_hermitian(matrix: np.array) -> bool:
     return np.array_equal(matrix, matrix.conjugate().T)
 
 
-def rayleigh_quotient(A: np.array, v: np.array) -> float:
+def rayleigh_quotient(A: np.ndarray, v: np.ndarray) -> Any:
     """
     Returns the Rayleigh quotient of a Hermitian matrix A and
     vector v.
@@ -43,7 +45,9 @@ def rayleigh_quotient(A: np.array, v: np.array) -> float:
     array([[3.]])
     """
     v_star = v.conjugate().T
-    return (v_star.dot(A).dot(v)) / (v_star.dot(v))
+    v_star_dot = v_star.dot(A)
+    assert isinstance(v_star_dot, np.ndarray)
+    return (v_star_dot.dot(v)) / (v_star.dot(v))
 
 
 def tests() -> None:

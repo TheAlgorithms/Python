@@ -42,10 +42,11 @@
 
     Author: @EverLookNeverSee
 """
+from collections.abc import Callable
 from math import log
 from os import name, system
 from random import gauss, seed
-from typing import Callable, TypeVar
+from typing import TypeVar
 
 
 # Make a training dataset drawn from a gaussian distribution
@@ -283,7 +284,7 @@ def valid_input(
 
 # Main Function
 def main():
-    """ This function starts execution phase """
+    """This function starts execution phase"""
     while True:
         print(" Linear Discriminant Analysis ".center(50, "*"))
         print("*" * 50, "\n")

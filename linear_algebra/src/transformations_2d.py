@@ -11,8 +11,6 @@ projection(45) = [[0.27596319193541496, 0.446998331800279],
 reflection(45) = [[0.05064397763545947, 0.893996663600558],
                   [0.893996663600558, 0.7018070490682369]]
 """
-from __future__ import annotations
-
 from math import cos, sin
 
 

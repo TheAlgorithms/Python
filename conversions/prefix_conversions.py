@@ -1,8 +1,9 @@
 """
 Convert International System of Units (SI) and Binary prefixes
 """
+from __future__ import annotations
+
 from enum import Enum
-from typing import Union
 
 
 class SI_Unit(Enum):
@@ -41,8 +42,8 @@ class Binary_Unit(Enum):
 
 def convert_si_prefix(
     known_amount: float,
-    known_prefix: Union[str, SI_Unit],
-    unknown_prefix: Union[str, SI_Unit],
+    known_prefix: str | SI_Unit,
+    unknown_prefix: str | SI_Unit,
 ) -> float:
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Binary_prefix
@@ -59,17 +60,19 @@ def convert_si_prefix(
     1000
     """
     if isinstance(known_prefix, str):
-        known_prefix: SI_Unit = SI_Unit[known_prefix.lower()]
+        known_prefix = SI_Unit[known_prefix.lower()]
     if isinstance(unknown_prefix, str):
-        unknown_prefix: SI_Unit = SI_Unit[unknown_prefix.lower()]
-    unknown_amount = known_amount * (10 ** (known_prefix.value - unknown_prefix.value))
+        unknown_prefix = SI_Unit[unknown_prefix.lower()]
+    unknown_amount: float = known_amount * (
+        10 ** (known_prefix.value - unknown_prefix.value)
+    )
     return unknown_amount
 
 
 def convert_binary_prefix(
     known_amount: float,
-    known_prefix: Union[str, Binary_Unit],
-    unknown_prefix: Union[str, Binary_Unit],
+    known_prefix: str | Binary_Unit,
+    unknown_prefix: str | Binary_Unit,
 ) -> float:
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Metric_prefix
@@ -85,10 +88,10 @@ def convert_binary_prefix(
     1024
     """
     if isinstance(known_prefix, str):
-        known_prefix: Binary_Unit = Binary_Unit[known_prefix.lower()]
+        known_prefix = Binary_Unit[known_prefix.lower()]
     if isinstance(unknown_prefix, str):
-        unknown_prefix: Binary_Unit = Binary_Unit[unknown_prefix.lower()]
-    unknown_amount = known_amount * (
+        unknown_prefix = Binary_Unit[unknown_prefix.lower()]
+    unknown_amount: float = known_amount * (
         2 ** ((known_prefix.value - unknown_prefix.value) * 10)
     )
     return unknown_amount

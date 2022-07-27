@@ -28,9 +28,9 @@ def decimal_to_binary(num: int) -> str:
     TypeError: 'str' object cannot be interpreted as an integer
     """
 
-    if type(num) == float:
+    if isinstance(num, float):
         raise TypeError("'float' object cannot be interpreted as an integer")
-    if type(num) == str:
+    if isinstance(num, str):
         raise TypeError("'str' object cannot be interpreted as an integer")
 
     if num == 0:
@@ -42,7 +42,7 @@ def decimal_to_binary(num: int) -> str:
         negative = True
         num = -num
 
-    binary = []
+    binary: list[int] = []
     while num > 0:
         binary.insert(0, num % 2)
         num >>= 1

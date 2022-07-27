@@ -5,9 +5,13 @@ Gaussian elimination - https://en.wikipedia.org/wiki/Gaussian_elimination
 
 
 import numpy as np
+from numpy import float64
+from numpy.typing import NDArray
 
 
-def retroactive_resolution(coefficients: np.matrix, vector: np.array) -> np.array:
+def retroactive_resolution(
+    coefficients: NDArray[float64], vector: NDArray[float64]
+) -> NDArray[float64]:
     """
     This function performs a retroactive linear system resolution
         for triangular matrix
@@ -27,7 +31,7 @@ def retroactive_resolution(coefficients: np.matrix, vector: np.array) -> np.arra
 
     rows, columns = np.shape(coefficients)
 
-    x = np.zeros((rows, 1), dtype=float)
+    x: NDArray[float64] = np.zeros((rows, 1), dtype=float)
     for row in reversed(range(rows)):
         sum = 0
         for col in range(row + 1, columns):
@@ -38,7 +42,9 @@ def retroactive_resolution(coefficients: np.matrix, vector: np.array) -> np.arra
     return x
 
 
-def gaussian_elimination(coefficients: np.matrix, vector: np.array) -> np.array:
+def gaussian_elimination(
+    coefficients: NDArray[float64], vector: NDArray[float64]
+) -> NDArray[float64]:
     """
     This function performs Gaussian elimination method
 
@@ -57,10 +63,10 @@ def gaussian_elimination(coefficients: np.matrix, vector: np.array) -> np.array:
     # coefficients must to be a square matrix so we need to check first
     rows, columns = np.shape(coefficients)
     if rows != columns:
-        return []
+        return np.array((), dtype=float)
 
     # augmented matrix
-    augmented_mat = np.concatenate((coefficients, vector), axis=1)
+    augmented_mat: NDArray[float64] = np.concatenate((coefficients, vector), axis=1)
     augmented_mat = augmented_mat.astype("float64")
 
     # scale the matrix leaving it triangular

@@ -9,7 +9,7 @@ def n31(a: int) -> tuple[list[int], int]:
     """
 
     if not isinstance(a, int):
-        raise TypeError("Must be int, not {}".format(type(a).__name__))
+        raise TypeError(f"Must be int, not {type(a).__name__}")
     if a < 1:
         raise ValueError(f"Given integer must be greater than 1, not {a}")
 

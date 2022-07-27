@@ -37,8 +37,7 @@ a has 3 digits, etc...
 =>  100 <= a < 334, candidate = a * 10^6 + 2a * 10^3 + 3a
                               = 1002003 * a
 """
-
-from typing import Union
+from __future__ import annotations
 
 
 def is_9_pandigital(n: int) -> bool:
@@ -55,7 +54,7 @@ def is_9_pandigital(n: int) -> bool:
     return len(s) == 9 and set(s) == set("123456789")
 
 
-def solution() -> Union[int, None]:
+def solution() -> int | None:
     """
     Return the largest 1 to 9 pandigital 9-digital number that can be formed as the
     concatenated product of an integer with (1,2,...,n) where n > 1.

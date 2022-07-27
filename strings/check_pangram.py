@@ -38,9 +38,9 @@ def check_pangram_faster(
     """
     >>> check_pangram_faster("The quick brown fox jumps over the lazy dog")
     True
-    >>> check_pangram("Waltz, bad nymph, for quick jigs vex.")
+    >>> check_pangram_faster("Waltz, bad nymph, for quick jigs vex.")
     True
-    >>> check_pangram("Jived fox nymph grabs quick waltz.")
+    >>> check_pangram_faster("Jived fox nymph grabs quick waltz.")
     True
     >>> check_pangram_faster("The quick brown fox jumps over the la_y dog")
     False
@@ -50,7 +50,9 @@ def check_pangram_faster(
     flag = [False] * 26
     for char in input_str:
         if char.islower():
-            flag[ord(char) - ord("a")] = True
+            flag[ord(char) - 97] = True
+        elif char.isupper():
+            flag[ord(char) - 65] = True
     return all(flag)
 
 

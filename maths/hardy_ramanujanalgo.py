@@ -37,7 +37,7 @@ def exactPrimeFactorCount(n):
 if __name__ == "__main__":
     n = 51242183
     print(f"The number of distinct prime factors is/are {exactPrimeFactorCount(n)}")
-    print("The value of log(log(n)) is {:.4f}".format(math.log(math.log(n))))
+    print(f"The value of log(log(n)) is {math.log(math.log(n)):.4f}")
 
     """
     The number of distinct prime factors is/are 3

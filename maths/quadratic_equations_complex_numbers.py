@@ -30,8 +30,8 @@ def quadratic_roots(a: int, b: int, c: int) -> tuple[complex, complex]:
 
 
 def main():
-    solutions = quadratic_roots(a=5, b=6, c=1)
-    print("The solutions are: {} and {}".format(*solutions))
+    solution1, solution2 = quadratic_roots(a=5, b=6, c=1)
+    print(f"The solutions are: {solution1} and {solution2}")
 
 
 if __name__ == "__main__":

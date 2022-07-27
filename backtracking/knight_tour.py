@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 
-def get_valid_pos(position: tuple[int], n: int) -> list[tuple[int]]:
+def get_valid_pos(position: tuple[int, int], n: int) -> list[tuple[int, int]]:
     """
     Find all the valid positions a knight can move to from the current position.
 
@@ -46,7 +46,9 @@ def is_complete(board: list[list[int]]) -> bool:
     return not any(elem == 0 for row in board for elem in row)
 
 
-def open_knight_tour_helper(board: list[list[int]], pos: tuple[int], curr: int) -> bool:
+def open_knight_tour_helper(
+    board: list[list[int]], pos: tuple[int, int], curr: int
+) -> bool:
     """
     Helper function to solve knight tour problem.
     """

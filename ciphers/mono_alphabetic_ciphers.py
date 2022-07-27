@@ -1,7 +1,11 @@
+from typing import Literal
+
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def translate_message(key, message, mode):
+def translate_message(
+    key: str, message: str, mode: Literal["encrypt", "decrypt"]
+) -> str:
     """
     >>> translate_message("QWERTYUIOPASDFGHJKLZXCVBNM","Hello World","encrypt")
     'Pcssi Bidsm'
@@ -40,7 +44,7 @@ def decrypt_message(key: str, message: str) -> str:
     return translate_message(key, message, "decrypt")
 
 
-def main():
+def main() -> None:
     message = "Hello World"
     key = "QWERTYUIOPASDFGHJKLZXCVBNM"
     mode = "decrypt"  # set to 'encrypt' or 'decrypt'

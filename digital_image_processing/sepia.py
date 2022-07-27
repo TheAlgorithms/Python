@@ -19,7 +19,7 @@ def make_sepia(img, factor: int):
         return 0.2126 * red + 0.587 * green + 0.114 * blue
 
     def normalize(value):
-        """ Helper function to normalize R/G/B value -> return 255 if value > 255"""
+        """Helper function to normalize R/G/B value -> return 255 if value > 255"""
         return min(value, 255)
 
     for i in range(pixel_h):
