@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-
-from typing import Tuple
+from __future__ import annotations
 
 
 def decrypt_caesar_with_chi_squared(
     ciphertext: str,
-    cipher_alphabet: str = None,
-    frequencies_dict: str = None,
-    case_sensetive: bool = False,
-) -> Tuple[int, float, str]:
+    cipher_alphabet: list[str] | None = None,
+    frequencies_dict: dict[str, float] | None = None,
+    case_sensitive: bool = False,
+) -> tuple[int, float, str]:
     """
     Basic Usage
     ===========
@@ -21,7 +20,7 @@ def decrypt_caesar_with_chi_squared(
     * frequencies_dict (dict): a dictionary of word frequencies where keys are
       the letters and values are a percentage representation of the frequency as
       a decimal/float
-    * case_sensetive (bool): a boolean value: True if the case matters during
+    * case_sensitive (bool): a boolean value: True if the case matters during
       decryption, False if it doesn't
 
     Returns:
@@ -118,14 +117,17 @@ def decrypt_caesar_with_chi_squared(
     >>> decrypt_caesar_with_chi_squared('crybd cdbsxq')
     (10, 233.35343938980898, 'short string')
 
+    >>> decrypt_caesar_with_chi_squared('Crybd Cdbsxq', case_sensitive=True)
+    (10, 233.35343938980898, 'Short String')
+
     >>> decrypt_caesar_with_chi_squared(12)
     Traceback (most recent call last):
     AttributeError: 'int' object has no attribute 'lower'
     """
     alphabet_letters = cipher_alphabet or [chr(i) for i in range(97, 123)]
-    frequencies_dict = frequencies_dict or {}
 
-    if frequencies_dict == {}:
+    # If the argument is None or the user provided an empty dictionary
+    if not frequencies_dict:
         # Frequencies of letters in the english language (how much they show up)
         frequencies = {
             "a": 0.08497,
@@ -159,11 +161,11 @@ def decrypt_caesar_with_chi_squared(
         # Custom frequencies dictionary
         frequencies = frequencies_dict
 
-    if not case_sensetive:
+    if not case_sensitive:
         ciphertext = ciphertext.lower()
 
     # Chi squared statistic values
-    chi_squared_statistic_values = {}
+    chi_squared_statistic_values: dict[int, tuple[float, str]] = {}
 
     # cycle through all of the shifts
     for shift in range(len(alphabet_letters)):
@@ -173,10 +175,14 @@ def decrypt_caesar_with_chi_squared(
         for letter in ciphertext:
             try:
                 # Try to index the letter in the alphabet
-                new_key = (alphabet_letters.index(letter) - shift) % len(
+                new_key = (alphabet_letters.index(letter.lower()) - shift) % len(
                     alphabet_letters
                 )
-                decrypted_with_shift += alphabet_letters[new_key]
+                decrypted_with_shift += (
+                    alphabet_letters[new_key].upper()
+                    if case_sensitive and letter.isupper()
+                    else alphabet_letters[new_key]
+                )
             except ValueError:
                 # Append the character if it isn't in the alphabet
                 decrypted_with_shift += letter
@@ -185,10 +191,11 @@ def decrypt_caesar_with_chi_squared(
 
         # Loop through each letter in the decoded message with the shift
         for letter in decrypted_with_shift:
-            if case_sensetive:
+            if case_sensitive:
+                letter = letter.lower()
                 if letter in frequencies:
                     # Get the amount of times the letter occurs in the message
-                    occurrences = decrypted_with_shift.count(letter)
+                    occurrences = decrypted_with_shift.lower().count(letter)
 
                     # Get the excepcted amount of times the letter should appear based
                     # on letter frequencies
@@ -215,22 +222,26 @@ def decrypt_caesar_with_chi_squared(
                     chi_squared_statistic += chi_letter_value
 
         # Add the data to the chi_squared_statistic_values dictionary
-        chi_squared_statistic_values[shift] = [
+        chi_squared_statistic_values[shift] = (
             chi_squared_statistic,
             decrypted_with_shift,
-        ]
+        )
 
     # Get the most likely cipher by finding the cipher with the smallest chi squared
     # statistic
-    most_likely_cipher = min(
-        chi_squared_statistic_values, key=chi_squared_statistic_values.get
+    def chi_squared_statistic_values_sorting_key(key: int) -> tuple[float, str]:
+        return chi_squared_statistic_values[key]
+
+    most_likely_cipher: int = min(
+        chi_squared_statistic_values,
+        key=chi_squared_statistic_values_sorting_key,
     )
 
     # Get all the data from the most likely cipher (key, decoded message)
-    most_likely_cipher_chi_squared_value = chi_squared_statistic_values[
-        most_likely_cipher
-    ][0]
-    decoded_most_likely_cipher = chi_squared_statistic_values[most_likely_cipher][1]
+    (
+        most_likely_cipher_chi_squared_value,
+        decoded_most_likely_cipher,
+    ) = chi_squared_statistic_values[most_likely_cipher]
 
     # Return the data on the most likely shift
     return (

@@ -6,8 +6,8 @@
 
 
 # using dfs for finding eulerian path traversal
-def dfs(u, graph, visited_edge, path=[]):
-    path = path + [u]
+def dfs(u, graph, visited_edge, path=None):
+    path = (path or []) + [u]
     for v in graph[u]:
         if visited_edge[u][v] is False:
             visited_edge[u][v], visited_edge[v][u] = True, True

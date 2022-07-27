@@ -1,5 +1,8 @@
+from __future__ import annotations
+
+
 class Node:
-    def __init__(self, data: int) -> int:
+    def __init__(self, data: int) -> None:
         self.data = data
         self.next = None
 
@@ -14,7 +17,7 @@ class LinkedList:
         self.head = new_node
         return self.head.data
 
-    def middle_element(self) -> int:
+    def middle_element(self) -> int | None:
         """
         >>> link = LinkedList()
         >>> link.middle_element()
@@ -54,6 +57,7 @@ class LinkedList:
             return slow_pointer.data
         else:
             print("No element found.")
+            return None
 
 
 if __name__ == "__main__":

@@ -5,17 +5,17 @@ import time
 from . import transposition_cipher as transCipher
 
 
-def main():
+def main() -> None:
     inputFile = "Prehistoric Men.txt"
     outputFile = "Output.txt"
     key = int(input("Enter key: "))
     mode = input("Encrypt/Decrypt [e/d]: ")
 
     if not os.path.exists(inputFile):
-        print("File %s does not exist. Quitting..." % inputFile)
+        print(f"File {inputFile} does not exist. Quitting...")
         sys.exit()
     if os.path.exists(outputFile):
-        print("Overwrite %s? [y/n]" % outputFile)
+        print(f"Overwrite {outputFile}? [y/n]")
         response = input("> ")
         if not response.lower().startswith("y"):
             sys.exit()

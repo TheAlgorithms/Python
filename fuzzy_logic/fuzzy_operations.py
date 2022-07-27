@@ -1,4 +1,5 @@
-"""README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
+"""
+README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
 Requirements:
   - scikit-fuzzy
   - numpy
@@ -7,7 +8,11 @@ Python:
   - 3.5
 """
 import numpy as np
-import skfuzzy as fuzz
+
+try:
+    import skfuzzy as fuzz
+except ImportError:
+    fuzz = None
 
 if __name__ == "__main__":
     # Create universe of discourse in Python using linspace ()

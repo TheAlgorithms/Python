@@ -2,12 +2,48 @@ def oct_to_decimal(oct_string: str) -> int:
     """
     Convert a octal value to its decimal equivalent
 
+    >>> oct_to_decimal("")
+    Traceback (most recent call last):
+    ...
+    ValueError: Empty string was passed to the function
+    >>> oct_to_decimal("-")
+    Traceback (most recent call last):
+    ...
+    ValueError: Non-octal value was passed to the function
+    >>> oct_to_decimal("e")
+    Traceback (most recent call last):
+    ...
+    ValueError: Non-octal value was passed to the function
+    >>> oct_to_decimal("8")
+    Traceback (most recent call last):
+    ...
+    ValueError: Non-octal value was passed to the function
+    >>> oct_to_decimal("-e")
+    Traceback (most recent call last):
+    ...
+    ValueError: Non-octal value was passed to the function
+    >>> oct_to_decimal("-8")
+    Traceback (most recent call last):
+    ...
+    ValueError: Non-octal value was passed to the function
+    >>> oct_to_decimal("1")
+    1
+    >>> oct_to_decimal("-1")
+    -1
     >>> oct_to_decimal("12")
     10
     >>> oct_to_decimal(" 12   ")
     10
     >>> oct_to_decimal("-45")
     -37
+    >>> oct_to_decimal("-")
+    Traceback (most recent call last):
+    ...
+    ValueError: Non-octal value was passed to the function
+    >>> oct_to_decimal("0")
+    0
+    >>> oct_to_decimal("-4055")
+    -2093
     >>> oct_to_decimal("2-0Fm")
     Traceback (most recent call last):
     ...

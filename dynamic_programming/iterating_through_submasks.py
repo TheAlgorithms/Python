@@ -37,8 +37,9 @@ def list_of_submasks(mask: int) -> list[int]:
 
     """
 
-    fmt = "mask needs to be positive integer, your input {}"
-    assert isinstance(mask, int) and mask > 0, fmt.format(mask)
+    assert (
+        isinstance(mask, int) and mask > 0
+    ), f"mask needs to be positive integer, your input {mask}"
 
     """
     first submask iterated will be mask itself then operation will be performed

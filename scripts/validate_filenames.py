@@ -4,7 +4,7 @@ import os
 try:
     from .build_directory_md import good_file_paths
 except ImportError:
-    from build_directory_md import good_file_paths
+    from build_directory_md import good_file_paths  # type: ignore
 
 filepaths = list(good_file_paths())
 assert filepaths, "good_file_paths() failed!"

@@ -1,59 +1,92 @@
 #!/usr/bin/python
 
 """ Author: OMKAR PATHAK """
+from __future__ import annotations
+
+from queue import Queue
 
 
 class Graph:
-    def __init__(self):
-        self.vertices = {}
+    def __init__(self) -> None:
+        self.vertices: dict[int, list[int]] = {}
 
-    def printGraph(self):
-        """prints adjacency list representation of graaph"""
-        for i in self.vertices.keys():
+    def print_graph(self) -> None:
+        """
+        prints adjacency list representation of graaph
+        >>> g = Graph()
+        >>> g.print_graph()
+        >>> g.add_edge(0, 1)
+        >>> g.print_graph()
+        0  :  1
+        """
+        for i in self.vertices:
             print(i, " : ", " -> ".join([str(j) for j in self.vertices[i]]))
 
-    def addEdge(self, fromVertex, toVertex):
-        """adding the edge between two vertices"""
-        if fromVertex in self.vertices.keys():
-            self.vertices[fromVertex].append(toVertex)
+    def add_edge(self, from_vertex: int, to_vertex: int) -> None:
+        """
+        adding the edge between two vertices
+        >>> g = Graph()
+        >>> g.print_graph()
+        >>> g.add_edge(0, 1)
+        >>> g.print_graph()
+        0  :  1
+        """
+        if from_vertex in self.vertices:
+            self.vertices[from_vertex].append(to_vertex)
         else:
-            self.vertices[fromVertex] = [toVertex]
+            self.vertices[from_vertex] = [to_vertex]
 
-    def BFS(self, startVertex):
+    def bfs(self, start_vertex: int) -> set[int]:
+        """
+        >>> g = Graph()
+        >>> g.add_edge(0, 1)
+        >>> g.add_edge(0, 1)
+        >>> g.add_edge(0, 2)
+        >>> g.add_edge(1, 2)
+        >>> g.add_edge(2, 0)
+        >>> g.add_edge(2, 3)
+        >>> g.add_edge(3, 3)
+        >>> sorted(g.bfs(2))
+        [0, 1, 2, 3]
+        """
         # initialize set for storing already visited vertices
         visited = set()
 
         # create a first in first out queue to store all the vertices for BFS
-        queue = []
+        queue: Queue = Queue()
 
         # mark the source node as visited and enqueue it
-        visited.add(startVertex)
-        queue.append(startVertex)
+        visited.add(start_vertex)
+        queue.put(start_vertex)
 
-        while queue:
-            vertex = queue.pop(0)
+        while not queue.empty():
+            vertex = queue.get()
 
             # loop through all adjacent vertex and enqueue it if not yet visited
             for adjacent_vertex in self.vertices[vertex]:
                 if adjacent_vertex not in visited:
-                    queue.append(adjacent_vertex)
+                    queue.put(adjacent_vertex)
                     visited.add(adjacent_vertex)
         return visited
 
 
 if __name__ == "__main__":
-    g = Graph()
-    g.addEdge(0, 1)
-    g.addEdge(0, 2)
-    g.addEdge(1, 2)
-    g.addEdge(2, 0)
-    g.addEdge(2, 3)
-    g.addEdge(3, 3)
+    from doctest import testmod
 
-    g.printGraph()
+    testmod(verbose=True)
+
+    g = Graph()
+    g.add_edge(0, 1)
+    g.add_edge(0, 2)
+    g.add_edge(1, 2)
+    g.add_edge(2, 0)
+    g.add_edge(2, 3)
+    g.add_edge(3, 3)
+
+    g.print_graph()
     # 0  :  1 -> 2
     # 1  :  2
     # 2  :  0 -> 3
     # 3  :  3
 
-    assert sorted(g.BFS(2)) == [0, 1, 2, 3]
+    assert sorted(g.bfs(2)) == [0, 1, 2, 3]

@@ -10,7 +10,9 @@ test_graph_1 = {0: [2, 3], 1: [0], 2: [1], 3: [4], 4: []}
 test_graph_2 = {0: [1, 2, 3], 1: [2], 2: [0], 3: [4], 4: [5], 5: [3]}
 
 
-def topology_sort(graph: dict, vert: int, visited: list) -> list:
+def topology_sort(
+    graph: dict[int, list[int]], vert: int, visited: list[bool]
+) -> list[int]:
     """
     Use depth first search to sort graph
     At this time graph is the same as input
@@ -32,7 +34,9 @@ def topology_sort(graph: dict, vert: int, visited: list) -> list:
     return order
 
 
-def find_components(reversed_graph: dict, vert: int, visited: list) -> list:
+def find_components(
+    reversed_graph: dict[int, list[int]], vert: int, visited: list[bool]
+) -> list[int]:
     """
     Use depth first search to find strongliy connected
     vertices. Now graph is reversed
@@ -52,7 +56,7 @@ def find_components(reversed_graph: dict, vert: int, visited: list) -> list:
     return component
 
 
-def strongly_connected_components(graph: dict) -> list:
+def strongly_connected_components(graph: dict[int, list[int]]) -> list[list[int]]:
     """
     This function takes graph as a parameter
     and then returns the list of strongly connected components
@@ -63,7 +67,7 @@ def strongly_connected_components(graph: dict) -> list:
     """
 
     visited = len(graph) * [False]
-    reversed_graph = {vert: [] for vert in range(len(graph))}
+    reversed_graph: dict[int, list[int]] = {vert: [] for vert in range(len(graph))}
 
     for vert, neighbours in graph.items():
         for neighbour in neighbours:
@@ -84,9 +88,3 @@ def strongly_connected_components(graph: dict) -> list:
             components_list.append(component)
 
     return components_list
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()

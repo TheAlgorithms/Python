@@ -112,7 +112,7 @@ def compute_heterogeneity(data, k, centroids, cluster_assignment):
             distances = pairwise_distances(
                 member_data_points, [centroids[i]], metric="euclidean"
             )
-            squared_distances = distances ** 2
+            squared_distances = distances**2
             heterogeneity += np.sum(squared_distances)
 
     return heterogeneity
@@ -164,9 +164,7 @@ def kmeans(
             num_changed = np.sum(prev_cluster_assignment != cluster_assignment)
             if verbose:
                 print(
-                    "    {:5d} elements changed their cluster assignment.".format(
-                        num_changed
-                    )
+                    f"    {num_changed:5d} elements changed their cluster assignment."
                 )
 
         # Record heterogeneity convergence metric
@@ -200,7 +198,7 @@ if False:  # change to true to run this test case.
 
 
 def ReportGenerator(
-    df: pd.DataFrame, ClusteringVariables: np.array, FillMissingReport=None
+    df: pd.DataFrame, ClusteringVariables: np.ndarray, FillMissingReport=None
 ) -> pd.DataFrame:
     """
     Function generates easy-erading clustering report. It takes 2 arguments as an input:

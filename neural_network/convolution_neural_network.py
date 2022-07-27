@@ -71,7 +71,7 @@ class CNN:
         with open(save_path, "wb") as f:
             pickle.dump(model_dic, f)
 
-        print("Model saved： %s" % save_path)
+        print(f"Model saved： {save_path}")
 
     @classmethod
     def ReadModel(cls, model_path):
@@ -303,7 +303,7 @@ class CNN:
             plt.show()
 
         print("------------------Training Complished---------------------")
-        print((" - - Training epoch: ", rp, "     - - Mse: %.6f" % mse))
+        print((" - - Training epoch: ", rp, f"     - - Mse: {mse:.6f}"))
         if draw_e:
             draw_error()
         return mse

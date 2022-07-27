@@ -1,20 +1,35 @@
+"""
+Linked Lists consists of Nodes.
+Nodes contain data and also may link to other nodes:
+    - Head Node: First node, the address of the
+                 head node gives us access of the complete list
+    - Last node: points to null
+"""
+from __future__ import annotations
+
+from typing import Any
+
+
 class Node:
-    def __init__(self, item, next):
+    def __init__(self, item: Any, next: Any) -> None:
         self.item = item
         self.next = next
 
 
 class LinkedList:
-    def __init__(self):
-        self.head = None
+    def __init__(self) -> None:
+        self.head: Node | None = None
         self.size = 0
 
-    def add(self, item):
+    def add(self, item: Any) -> None:
         self.head = Node(item, self.head)
         self.size += 1
 
-    def remove(self):
-        if self.is_empty():
+    def remove(self) -> Any:
+        # Switched 'self.is_empty()' to 'self.head is None'
+        # because mypy was considering the possibility that 'self.head'
+        # can be None in below else part and giving error
+        if self.head is None:
             return None
         else:
             item = self.head.item
@@ -22,10 +37,33 @@ class LinkedList:
             self.size -= 1
             return item
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return self.head is None
 
-    def __len__(self):
+    def __str__(self) -> str:
+        """
+        >>> linked_list = LinkedList()
+        >>> linked_list.add(23)
+        >>> linked_list.add(14)
+        >>> linked_list.add(9)
+        >>> print(linked_list)
+        9 --> 14 --> 23
+        """
+        if not self.is_empty:
+            return ""
+        else:
+            iterate = self.head
+            item_str = ""
+            item_list: list[str] = []
+            while iterate:
+                item_list.append(str(iterate.item))
+                iterate = iterate.next
+
+            item_str = " --> ".join(item_list)
+
+            return item_str
+
+    def __len__(self) -> int:
         """
         >>> linked_list = LinkedList()
         >>> len(linked_list)

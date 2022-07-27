@@ -13,7 +13,7 @@ import math
 import random
 
 
-def rsafactor(d: int, e: int, N: int) -> [int]:
+def rsafactor(d: int, e: int, N: int) -> list[int]:
     """
     This function returns the factors of N, where p*q=N
       Return: [p, q]
@@ -40,7 +40,7 @@ def rsafactor(d: int, e: int, N: int) -> [int]:
         while True:
             if t % 2 == 0:
                 t = t // 2
-                x = (g ** t) % N
+                x = (g**t) % N
                 y = math.gcd(x - 1, N)
                 if x > 1 and y > 1:
                     p = y

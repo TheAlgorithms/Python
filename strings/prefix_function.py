@@ -14,7 +14,7 @@ Time Complexity: O(n) - where n is the length of the string
 def prefix_function(input_string: str) -> list:
     """
     For the given string this function computes value for each index(i),
-    which represents the longest coincidence of prefix and sufix
+    which represents the longest coincidence of prefix and suffix
     for given substring (input_str[0...i])
 
     For the value of the first element the algorithm always returns 0
@@ -45,7 +45,7 @@ def prefix_function(input_string: str) -> list:
 def longest_prefix(input_str: str) -> int:
     """
     Prefix-function use case
-    Finding longest prefix which is sufix as well
+    Finding longest prefix which is suffix as well
 
     >>> longest_prefix("aabcdaabc")
     4

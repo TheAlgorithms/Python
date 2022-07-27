@@ -2,7 +2,7 @@
 # https://www.tutorialspoint.com/computer_graphics/computer_graphics_curves.htm
 from __future__ import annotations
 
-from scipy.special import comb
+from scipy.special import comb  # type: ignore
 
 
 class BezierCurve:
@@ -40,7 +40,7 @@ class BezierCurve:
         for i in range(len(self.list_of_points)):
             # basis function for each i
             output_values.append(
-                comb(self.degree, i) * ((1 - t) ** (self.degree - i)) * (t ** i)
+                comb(self.degree, i) * ((1 - t) ** (self.degree - i)) * (t**i)
             )
         # the basis must sum up to 1 for it to produce a valid Bezier curve.
         assert round(sum(output_values), 5) == 1
@@ -78,7 +78,7 @@ class BezierCurve:
             step_size: defines the step(s) at which to evaluate the Bezier curve.
             The smaller the step size, the finer the curve produced.
         """
-        from matplotlib import pyplot as plt
+        from matplotlib import pyplot as plt  # type: ignore
 
         to_plot_x: list[float] = []  # x coordinates of points to plot
         to_plot_y: list[float] = []  # y coordinates of points to plot

@@ -5,13 +5,19 @@
         Time complexity: O(n! * n),
         where n denotes the length of the given sequence.
 """
+from __future__ import annotations
 
 
-def generate_all_permutations(sequence):
+def generate_all_permutations(sequence: list[int | str]) -> None:
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
 
-def create_state_space_tree(sequence, current_sequence, index, index_used):
+def create_state_space_tree(
+    sequence: list[int | str],
+    current_sequence: list[int | str],
+    index: int,
+    index_used: list[int],
+) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
     We know that each state has exactly len(sequence) - index children.
@@ -38,8 +44,8 @@ print("Enter the elements")
 sequence = list(map(int, input().split()))
 """
 
-sequence = [3, 1, 2, 4]
+sequence: list[int | str] = [3, 1, 2, 4]
 generate_all_permutations(sequence)
 
-sequence = ["A", "B", "C"]
-generate_all_permutations(sequence)
+sequence_2: list[int | str] = ["A", "B", "C"]
+generate_all_permutations(sequence_2)

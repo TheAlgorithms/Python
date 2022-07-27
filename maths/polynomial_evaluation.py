@@ -1,18 +1,18 @@
-from typing import Sequence
+from collections.abc import Sequence
 
 
 def evaluate_poly(poly: Sequence[float], x: float) -> float:
     """Evaluate a polynomial f(x) at specified point x and return the value.
 
     Arguments:
-    poly -- the coeffiecients of a polynomial as an iterable in order of
+    poly -- the coefficients of a polynomial as an iterable in order of
             ascending degree
     x -- the point at which to evaluate the polynomial
 
     >>> evaluate_poly((0.0, 0.0, 5.0, 9.3, 7.0), 10.0)
     79800.0
     """
-    return sum(c * (x ** i) for i, c in enumerate(poly))
+    return sum(c * (x**i) for i, c in enumerate(poly))
 
 
 def horner(poly: Sequence[float], x: float) -> float:
@@ -26,7 +26,7 @@ def horner(poly: Sequence[float], x: float) -> float:
     https://en.wikipedia.org/wiki/Horner's_method
 
     Arguments:
-    poly -- the coeffiecients of a polynomial as an iterable in order of
+    poly -- the coefficients of a polynomial as an iterable in order of
             ascending degree
     x -- the point at which to evaluate the polynomial
 

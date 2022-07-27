@@ -61,7 +61,7 @@ def term_frequency(term: str, document: str) -> int:
     return len([word for word in tokenize_document if word.lower() == term.lower()])
 
 
-def document_frequency(term: str, corpus: str) -> int:
+def document_frequency(term: str, corpus: str) -> tuple[int, int]:
     """
     Calculate the number of documents in a corpus that contain a
     given term

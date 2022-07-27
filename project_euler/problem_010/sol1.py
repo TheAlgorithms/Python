@@ -28,11 +28,11 @@ def is_prime(n: int) -> bool:
     True
     """
 
-    for i in range(2, int(sqrt(n)) + 1):
-        if n % i == 0:
-            return False
-
-    return True
+    if 1 < n < 4:
+        return True
+    elif n < 2 or not n % 2:
+        return False
+    return not any(not n % i for i in range(3, int(sqrt(n) + 1), 2))
 
 
 def solution(n: int = 2000000) -> int:
@@ -49,16 +49,7 @@ def solution(n: int = 2000000) -> int:
     10
     """
 
-    if n > 2:
-        sum_of_primes = 2
-    else:
-        return 0
-
-    for i in range(3, n, 2):
-        if is_prime(i):
-            sum_of_primes += i
-
-    return sum_of_primes
+    return sum(num for num in range(3, n, 2) if is_prime(num)) + 2 if n > 2 else 0
 
 
 if __name__ == "__main__":

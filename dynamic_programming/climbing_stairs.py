@@ -25,8 +25,9 @@ def climb_stairs(n: int) -> int:
         ...
     AssertionError: n needs to be positive integer, your input -7
     """
-    fmt = "n needs to be positive integer, your input {}"
-    assert isinstance(n, int) and n > 0, fmt.format(n)
+    assert (
+        isinstance(n, int) and n > 0
+    ), f"n needs to be positive integer, your input {n}"
     if n == 1:
         return 1
     dp = [0] * (n + 1)

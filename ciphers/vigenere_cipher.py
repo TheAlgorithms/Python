@@ -1,7 +1,7 @@
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def main():
+def main() -> None:
     message = input("Enter message: ")
     key = input("Enter key [alphanumeric]: ")
     mode = input("Encrypt/Decrypt [e/d]: ")
@@ -13,7 +13,7 @@ def main():
         mode = "decrypt"
         translated = decryptMessage(key, message)
 
-    print("\n%sed message:" % mode.title())
+    print(f"\n{mode.title()}ed message:")
     print(translated)
 
 

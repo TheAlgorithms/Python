@@ -6,18 +6,26 @@
         Summation of the chosen numbers must be equal to given number M and one number
         can be used only once.
 """
+from __future__ import annotations
 
 
-def generate_sum_of_subsets_soln(nums, max_sum):
-    result = []
-    path = []
+def generate_sum_of_subsets_soln(nums: list[int], max_sum: int) -> list[list[int]]:
+    result: list[list[int]] = []
+    path: list[int] = []
     num_index = 0
     remaining_nums_sum = sum(nums)
     create_state_space_tree(nums, max_sum, num_index, path, result, remaining_nums_sum)
     return result
 
 
-def create_state_space_tree(nums, max_sum, num_index, path, result, remaining_nums_sum):
+def create_state_space_tree(
+    nums: list[int],
+    max_sum: int,
+    num_index: int,
+    path: list[int],
+    result: list[list[int]],
+    remaining_nums_sum: int,
+) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
     It terminates the branching of a node when any of the two conditions

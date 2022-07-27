@@ -41,7 +41,7 @@ class FileSplitter:
                 i += 1
 
     def cleanup(self):
-        map(lambda f: os.remove(f), self.block_filenames)
+        map(os.remove, self.block_filenames)
 
 
 class NWayMerge:
