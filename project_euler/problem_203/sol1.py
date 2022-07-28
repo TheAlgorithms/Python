@@ -83,7 +83,7 @@ def get_squarefrees(unique_coefficients: set[int]) -> set[int]:
     for number in unique_coefficients:
         divisor = 2
         copy_number = number
-        while divisor ** 2 <= copy_number:
+        while divisor**2 <= copy_number:
             multiplicity = 0
             while copy_number % divisor == 0:
                 copy_number //= divisor
