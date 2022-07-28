@@ -98,7 +98,7 @@ if __name__ == "__main__":
     sequence = [int(item.strip()) for item in user_input.split(",")]
 
     target = int(input("Enter a single number to be found in the list:\n").strip())
-    result = linear_search_by_recursion(sequence, target)
+    result = linear_search(sequence, target)
     if result != -1:
         print(f"linear_search({sequence}, {target}) = {result}")
     else:
