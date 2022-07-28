@@ -22,7 +22,7 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
 
     a = x0  # set the initial guess
     steps = [a]
-    error = abs(f(a))
+#    error = abs(f(a))
     f1 = lambda x: calc_derivative(f, x, h=step)  # noqa: E731  Derivative of f(x)
     for _ in range(maxiter):
         if f1(a) == 0:
@@ -30,6 +30,7 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
         a = a - f(a) / f1(a)  # Calculate the next estimate
         if logsteps:
             steps.append(a)
+        error = abs(f(a))
         if error < maxerror:
             break
     else:
@@ -52,3 +53,7 @@ if __name__ == "__main__":
     plt.ylabel("error")
     plt.show()
     print(f"solution = {{{solution:f}}}, error = {{{error:f}}}")
+    xrange = [(-5+i/1000) for i in range(0,5000)]
+    yrange = [abs(f(x)) for x in xrange]
+    plt.plot(xrange,yrange)
+    plt.show()
