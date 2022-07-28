@@ -1,10 +1,10 @@
 """
 @author: MatteoRaso
 """
+from collections.abc import Callable
 from math import pi, sqrt
 from random import uniform
 from statistics import mean
-from typing import Callable
 
 
 def pi_estimator(iterations: int):
@@ -20,7 +20,7 @@ def pi_estimator(iterations: int):
     """
     # A local function to see if a dot lands in the circle.
     def is_in_circle(x: float, y: float) -> bool:
-        distance_from_centre = sqrt((x ** 2) + (y ** 2))
+        distance_from_centre = sqrt((x**2) + (y**2))
         # Our circle has a radius of 1, so a distance
         # greater than 1 would land outside the circle.
         return distance_from_centre <= 1

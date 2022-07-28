@@ -181,7 +181,7 @@ def _enforce_args(n: int, prices: list):
 
     if n > len(prices):
         raise ValueError(
-            f"Each integral piece of rod must have a corresponding "
+            "Each integral piece of rod must have a corresponding "
             f"price. Got n = {n} but length of prices = {len(prices)}"
         )
 

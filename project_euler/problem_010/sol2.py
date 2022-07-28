@@ -11,8 +11,8 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 import math
+from collections.abc import Iterator
 from itertools import takewhile
-from typing import Iterator
 
 
 def is_prime(number: int) -> bool:

@@ -1,5 +1,5 @@
 import math
-from typing import Generator
+from collections.abc import Generator
 
 
 def slow_primes(max: int) -> Generator[int, None, None]:

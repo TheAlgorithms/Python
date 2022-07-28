@@ -12,7 +12,7 @@ How many starting numbers below ten million will arrive at 89?
 """
 
 
-DIGITS_SQUARED = [digit ** 2 for digit in range(10)]
+DIGITS_SQUARED = [digit**2 for digit in range(10)]
 
 
 def next_number(number: int) -> int:

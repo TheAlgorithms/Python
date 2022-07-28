@@ -1,6 +1,6 @@
 import itertools
 import string
-from typing import Generator, Iterable
+from collections.abc import Generator, Iterable
 
 
 def chunker(seq: Iterable[str], size: int) -> Generator[tuple[str, ...], None, None]:

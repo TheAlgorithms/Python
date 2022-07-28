@@ -26,7 +26,7 @@ def random_graph(
     >>> random_graph(4, 0.5, True)
     {0: [1], 1: [2, 3], 2: [3], 3: []}
     """
-    graph = {i: [] for i in range(vertices_number)}
+    graph: dict = {i: [] for i in range(vertices_number)}
 
     # if probability is greater or equal than 1, then generate a complete graph
     if probability >= 1:

@@ -15,7 +15,7 @@ class Node:
 
         if self.left is None and self.right is None:
             return str(self.value)
-        return pformat({"%s" % (self.value): (self.left, self.right)}, indent=1)
+        return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
 
 
 class BinarySearchTree:
