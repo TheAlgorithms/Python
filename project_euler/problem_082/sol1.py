@@ -18,6 +18,8 @@ Find the minimal path sum from the left column to the right column in matrix.txt
 a 31K text file containing an 80 by 80 matrix.
 """
 
+import os
+
 
 def solution(filename: str = "p082_matrix.txt") -> int:
     """
@@ -29,7 +31,7 @@ def solution(filename: str = "p082_matrix.txt") -> int:
     994
     """
 
-    with open(filename) as input_file:
+    with open(os.path.join(os.path.dirname(__file__), filename)) as input_file:
         matrix = [
             [int(element) for element in line.split(",")]
             for line in input_file.readlines()
