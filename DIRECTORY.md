@@ -444,7 +444,6 @@
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
-  * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
 
 ## Maths
@@ -910,6 +909,7 @@
 
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
+  * [Highest Response Ratio Next](scheduling/highest_response_ratio_next.py)
   * [Multi Level Feedback Queue](scheduling/multi_level_feedback_queue.py)
   * [Non Preemptive Shortest Job First](scheduling/non_preemptive_shortest_job_first.py)
   * [Round Robin](scheduling/round_robin.py)
@@ -1016,6 +1016,7 @@
   * [Reverse Words](strings/reverse_words.py)
   * [Split](strings/split.py)
   * [Upper](strings/upper.py)
+  * [Wave](strings/wave.py)
   * [Wildcard Pattern Matching](strings/wildcard_pattern_matching.py)
   * [Word Occurrence](strings/word_occurrence.py)
   * [Word Patterns](strings/word_patterns.py)
