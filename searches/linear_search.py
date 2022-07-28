@@ -65,12 +65,40 @@ def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
     return rec_linear_search(sequence, low + 1, high - 1, target)
 
 
+def linear_search_by_recursion(sequence: list, target: int, pos: int = 0) -> int:
+    """A pure Python implementation of a linear search algorithm by recursion
+
+    :param sequence: a collection with comparable items (as sorted items not required
+        in Linear Search)
+    :param target: item value to search
+    :return: index of found item or None if item is not found
+
+    Examples:
+    >>> linear_search_by_recursion([0, 5, 7, 10, 15], 0)
+    0
+    >>> linear_search_by_recursion([0, 5, 7, 10, 15], 15)
+    4
+    >>> linear_search_by_recursion([0, 5, 7, 10, 15], 5)
+    1
+    >>> linear_search_by_recursion([0, 5, 7, 10, 15], 6)
+    -1
+    """
+    if (len(sequence) - 1) < pos:
+        return -1
+
+    if sequence[pos] == target:
+        return pos
+    else:
+        pos += 1
+        return linear_search_by_recursion(sequence=sequence, target=target, pos=pos)
+
+
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by comma:\n").strip()
     sequence = [int(item.strip()) for item in user_input.split(",")]
 
     target = int(input("Enter a single number to be found in the list:\n").strip())
-    result = linear_search(sequence, target)
+    result = linear_search_by_recursion(sequence, target)
     if result != -1:
         print(f"linear_search({sequence}, {target}) = {result}")
     else:
