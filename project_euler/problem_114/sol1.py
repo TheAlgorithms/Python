@@ -6,23 +6,23 @@ of three units placed on it, such that any two red blocks
 (which are allowed to be different lengths) are separated by at least one grey square.
 There are exactly seventeen ways of doing this.
 
-    |g|g|g|g|g|g|g|    |r|r|r|g|g|g|g|
+    |g|g|g|g|g|g|g|    |r,r,r|g|g|g|g|
 
-    |g|r|r|r|g|g|g|    |g|g|r|r|r|g|g|
+    |g|r,r,r|g|g|g|    |g|g|r,r,r|g|g|
 
-    |g|g|g|r|r|r|g|    |g|g|g|g|r|r|r|
+    |g|g|g|r,r,r|g|    |g|g|g|g|r,r,r|
 
-    |r|r|r|g|r|r|r|    |r|r|r|r|g|g|g|
+    |r,r,r|g|r,r,r|    |r,r,r,r|g|g|g|
 
-    |g|r|r|r|r|g|g|    |g|g|r|r|r|r|g|
+    |g|r,r,r,r|g|g|    |g|g|r,r,r,r|g|
 
-    |g|g|g|r|r|r|r|    |r|r|r|r|r|g|g|
+    |g|g|g|r,r,r,r|    |r,r,r,r,r|g|g|
 
-    |g|r|r|r|r|r|g|    |g|g|r|r|r|r|r|
+    |g|r,r,r,r,r|g|    |g|g|r,r,r,r,r|
 
-    |r|r|r|r|r|r|g|    |g|r|r|r|r|r|r|
+    |r,r,r,r,r,r|g|    |g|r,r,r,r,r,r|
 
-    |r|r|r|r|r|r|r|
+    |r,r,r,r,r,r,r|
 
 How many ways can a row measuring fifty units in length be filled?
 
