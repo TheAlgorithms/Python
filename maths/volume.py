@@ -123,8 +123,8 @@ def vol_prism(area_of_base: float, height: float) -> float:
     11.0
     """
     return float(area_of_base * height)
-
-
+    
+    
 def vol_pyramid(area_of_base: float, height: float) -> float:
     """
     Calculate the Volume of a Pyramid.
@@ -166,6 +166,19 @@ def vol_hemisphere(radius: float):
     718.3775201208659
     """
     return 2 / 3 * pi * pow(radius, 3)
+
+
+def vol_torus(tube_radius: float, radius_of_revolution: float) -> float:
+    """Calculate the volume of a Torus
+    Wikipedia Reference: https://en.wikipedia.org/wiki/Torus
+    :return 2 * pi^2 * R * r^2
+    
+    >>> vol_torus(1, 1)
+    19.739208802178716
+    >>> vol_torus(3, 4)
+    710.6115168784338
+    """
+    return 2 * pow(pi, 2) * radius_of_revolution * pow(tube_radius, 2)
 
 
 def vol_circular_cylinder(radius: float, height: float) -> float:
@@ -216,6 +229,7 @@ def main():
     print("Conical Frustum: " + str(vol_conical_frustum(2, 2, 4)))  # ~= 58.6
     print("Spherical cap: " + str(vol_spherical_cap(1, 2)))  # ~= 5.24
     print("Spheres intersetion: " + str(vol_spheres_intersect(2, 2, 1)))  # ~= 21.21
+    print("Torus: " + str(vol_torus(2, 2)))  # ~= 157.91
 
 
 if __name__ == "__main__":
