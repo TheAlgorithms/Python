@@ -2,8 +2,6 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-image = cv2.imread(r"../image_data/lena.jpg", 0)
-cv2.imshow('original ', image)
 
 r1 = 100
 s1 = 50
@@ -29,9 +27,13 @@ def pixel_value(img: np.ndarray, r1: int, s1: int, r2: int, s2: int) -> np.ndarr
         return ((255-s2)/(255-r2)) * (img-r2)+s2
 
 
-picture_value = np.vectorize(pixel_value)
-
-piecewise_value = picture_value(image, r1, s1, r2, s2)
-piecewise_value = piecewise_value.astype(np.uint8)
-cv2.imshow('const_value', piecewise_value)
-cv2.waitKey(0)
+if __name__ == "__main__":
+    # read original image in gray mode
+    image = cv2.imread(r"../image_data/lena.jpg", 0)
+    cv2.imshow('original ', image)
+    # Piecewise linear transform detection
+    picture_value = np.vectorize(pixel_value)
+    piecewise_value = picture_value(image, r1, s1, r2, s2)
+    piecewise_value = piecewise_value.astype(np.uint8)
+    cv2.imshow('piecewise_value', piecewise_value)
+    cv2.waitKey(0)
