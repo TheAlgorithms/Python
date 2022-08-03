@@ -12,6 +12,15 @@ s2 = 200
 
 
 def pixel_value(img, r1, s1, r2, s2):
+    """
+    Non-maximum suppression. Piece-wise Linear Transformation is type of gray level
+    transformation that is used for image enhancement. We obtain low contrast image 
+    due to poor illumination (wrong setting of lens aperture), and that effect can 
+    be overcome using contrast stretching. The basic idea behind contrast stretching 
+    is to increase the contrast of an image by making darker portion more darker and 
+    brighter portion brighter.
+    """
+    
     if (0 <= img and img <= r1):
         return (s1/r1)*img
     elif (r1 <= img and img <= r2):
