@@ -42,6 +42,7 @@ def test_gen_gaussian_kernel():
     # Assert ambiguous array
     assert resp.all()
     
+    
 # piecewise.py
 def test_piecewise():
     pw_img = imread("digital_image_processing/image_data/lena_small.jpg", 0)
