@@ -11,7 +11,7 @@ r2 = 180
 s2 = 200
 
 
-def pixel_value(img, r1, s1, r2, s2):
+def pixel_value(img: np.ndarray, r1: int, s1: int, r2: int, s2: int) -> np.ndarray:
     """
     Non-maximum suppression. Piece-wise Linear Transformation is type of gray level
     transformation that is used for image enhancement. We obtain low contrast image 
