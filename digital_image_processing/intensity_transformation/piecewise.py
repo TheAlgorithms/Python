@@ -2,8 +2,6 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-#image = cv2.imread('img/lena.png', 0)
-
 image = cv2.imread(r"../image_data/lena.jpg", 0)
 cv2.imshow('original ', image)
 
