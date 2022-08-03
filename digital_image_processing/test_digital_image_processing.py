@@ -14,7 +14,6 @@ from digital_image_processing.filters import convolve as conv
 from digital_image_processing.filters import gaussian_filter as gg
 from digital_image_processing.filters import median_filter as med
 from digital_image_processing.filters import sobel_filter as sob
-from digital_image_processing.intensity_transformation import log_transformation as log
 from digital_image_processing.intensity_transformation import piecewise as pw
 from digital_image_processing.resize import resize as rs
 
@@ -42,13 +41,6 @@ def test_gen_gaussian_kernel():
     resp = canny.gen_gaussian_kernel(9, sigma=1.4)
     # Assert ambiguous array
     assert resp.all()
-
-# log.py
-def test_log():
-    log_img = imread("digital_image_processing/image_data/lena_small.jpg", 0)
-    assert log.Negatives_Linear(log_img).any()
-    assert log.log_transform(log_img).any()
-    assert log.Inverse_log_transformation(log_img).any()
     
 # piecewise.py
 def test_piecewise():
