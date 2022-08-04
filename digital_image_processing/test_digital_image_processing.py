@@ -100,7 +100,7 @@ def test_local_binary_pattern():
     file_path: str = "digital_image_processing/image_data/lena.jpg"
 
     # Reading the image and converting it to grayscale.
-    image = imread(file_path, 1)
+    image = imread(file_path, 0)
 
     # Create a numpy array as the same height and width of read image
     lbp_image = np.zeros((image.shape[0], image.shape[1]))
