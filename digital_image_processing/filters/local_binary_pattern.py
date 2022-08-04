@@ -28,13 +28,15 @@ def get_neighbors_pixel(image: np.ndarray, x: int, y: int, center: int) -> int:
 
 def local_binary_value(image: np.ndarray, x: int, y: int) -> int:
     """
-    It takes an image, an x and y coordinate, and returns the decimal value of the local binary pattern
-    of the pixel at that coordinate
+    It takes an image, an x and y coordinate, and returns the 
+    decimal value of the local binary patternof the pixel 
+    at that coordinate
 
     :param image: the image to be processed
     :param x: x coordinate of the pixel
     :param y: the y coordinate of the pixel
-    :return: The decimal value of the binary value of the pixels around the center pixel.
+    :return: The decimal value of the binary value of the pixels 
+    around the center pixel.
     """
     binary_value = []
     center = image[x][y]
@@ -68,7 +70,8 @@ if __name__ == "main":
     # Create a numpy array as the same height and width of read image
     lbp_image = np.zeros((image.shape[0], image.shape[1]))
 
-    # Iterating through the image and calculating the local binary pattern value for each pixel.
+    # Iterating through the image and calculating the 
+    # local binary pattern value for each pixel.
     for i in range(0, image.shape[0]):
         for j in range(0, image.shape[1]):
             lbp_image[i][j] = local_binary_value(image, i, j)
