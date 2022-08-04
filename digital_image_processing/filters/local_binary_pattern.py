@@ -20,8 +20,8 @@ def get_neighbors_pixel(image: np.ndarray, x: int, y: int, center: int) -> int:
     try:
         if image[x][y] >= center:
             value = 1
-    except Exception as ex:
-        print(ex)
+    except Exception:
+        pass
 
     return value
 
@@ -63,9 +63,9 @@ def local_binary_value(image: np.ndarray, x: int, y: int) -> int:
 if __name__ == "main":
 
     # Reading the image and converting it to grayscale.
-    image = cv2.imread("../image_data/lena.jpg", cv2.IMREAD_GRAYSCALE)
-
-    cv2.imshow("Original Image", image)
+    image = cv2.imread(
+        "digital_image_processing/image_data/lena.jpg", cv2.IMREAD_GRAYSCALE
+    )
 
     # Create a numpy array as the same height and width of read image
     lbp_image = np.zeros((image.shape[0], image.shape[1]))
