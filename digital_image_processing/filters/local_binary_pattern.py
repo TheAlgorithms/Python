@@ -54,10 +54,7 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
     binary_value.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate - 1, center))
 
     # Converting the binary value to decimal.
-    for i in range(len(binary_value)):
-        decimal_val += binary_value[i] * powers[i]
-
-    return decimal_val
+    return sum(binary_value * power for binary_value, power in zip(binary_values, powers))
 
 
 if __name__ == "main":
