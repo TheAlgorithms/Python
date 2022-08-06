@@ -229,6 +229,7 @@
     * [Convolve](digital_image_processing/filters/convolve.py)
     * [Gabor Filter](digital_image_processing/filters/gabor_filter.py)
     * [Gaussian Filter](digital_image_processing/filters/gaussian_filter.py)
+    * [Intensity Transformation](digital_image_processing/intensity_transformation/piecewise.py)
     * [Median Filter](digital_image_processing/filters/median_filter.py)
     * [Sobel Filter](digital_image_processing/filters/sobel_filter.py)
   * Histogram Equalization
