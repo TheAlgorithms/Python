@@ -35,14 +35,14 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
     decimal_val = 0
 
     # Starting from top right,assigning value to pixels clockwise
-    binary_value.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate + 1, center))
-    binary_value.append(get_neighbors_pixel(image, x_coordinate, y_coordinate + 1, center))
-    binary_value.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate, center))
-    binary_value.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate + 1, center))
-    binary_value.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate, center))
-    binary_value.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate - 1, center))
-    binary_value.append(get_neighbors_pixel(image, x_coordinate, y_coordinate - 1, center))
-    binary_value.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate - 1, center))
+    binary_values.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate + 1, center))
+    binary_values.append(get_neighbors_pixel(image, x_coordinate, y_coordinate + 1, center))
+    binary_values.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate, center))
+    binary_values.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate + 1, center))
+    binary_values.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate, center))
+    binary_values.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate - 1, center))
+    binary_values.append(get_neighbors_pixel(image, x_coordinate, y_coordinate - 1, center))
+    binary_values.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate - 1, center))
 
     # Converting the binary value to decimal.
     return sum(binary_value * power for binary_value, power in zip(binary_values, powers))
