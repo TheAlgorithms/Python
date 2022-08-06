@@ -102,6 +102,18 @@ def test_local_binary_pattern():
     # Reading the image and converting it to grayscale.
     image = imread(file_path, 0)
 
+    # Test for get_neighbors_pixel function() return not None
+    x_coordinate = 0
+    y_coordinate = 0
+    center = image[x_coordinate][y_coordinate]
+
+    neighbors_pixels = lbp.get_neighbors_pixel(
+        image, x_coordinate, y_coordinate, center
+    )
+
+    assert neighbors_pixels is not None
+
+    # Test for local_binary_pattern function()
     # Create a numpy array as the same height and width of read image
     lbp_image = np.zeros((image.shape[0], image.shape[1]))
 
