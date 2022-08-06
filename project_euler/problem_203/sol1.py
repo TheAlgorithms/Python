@@ -29,8 +29,6 @@ References:
 """
 from __future__ import annotations
 
-import math
-
 
 def get_pascal_triangle_unique_coefficients(depth: int) -> set[int]:
     """
@@ -61,76 +59,9 @@ def get_pascal_triangle_unique_coefficients(depth: int) -> set[int]:
     return coefficients
 
 
-def get_primes_squared(max_number: int) -> list[int]:
+def get_squarefrees(unique_coefficients: set[int]) -> set[int]:
     """
-    Calculates all primes between 2 and round(sqrt(max_number)) and returns
-    them squared up.
-
-    >>> get_primes_squared(2)
-    []
-    >>> get_primes_squared(4)
-    [4]
-    >>> get_primes_squared(10)
-    [4, 9]
-    >>> get_primes_squared(100)
-    [4, 9, 25, 49]
-    """
-    max_prime = math.isqrt(max_number)
-    non_primes = [False] * (max_prime + 1)
-    primes = []
-    for num in range(2, max_prime + 1):
-        if non_primes[num]:
-            continue
-
-        for num_counter in range(num**2, max_prime + 1, num):
-            non_primes[num_counter] = True
-
-        primes.append(num**2)
-    return primes
-
-
-def get_squared_primes_to_use(
-    num_to_look: int, squared_primes: list[int], previous_index: int
-) -> int:
-    """
-    Returns an int indicating the last index on which squares of primes
-    in primes are lower than num_to_look.
-
-    This method supposes that squared_primes is sorted in ascending order and that
-    each num_to_look is provided in ascending order as well. Under these
-    assumptions, it needs a previous_index parameter that tells what was
-    the index returned by the method for the previous num_to_look.
-
-    If all the elements in squared_primes are greater than num_to_look, then the
-    method returns -1.
-
-    >>> get_squared_primes_to_use(1, [4, 9, 16, 25], 0)
-    -1
-    >>> get_squared_primes_to_use(4, [4, 9, 16, 25], 0)
-    1
-    >>> get_squared_primes_to_use(16, [4, 9, 16, 25], 1)
-    3
-    """
-    idx = max(previous_index, 0)
-
-    while idx < len(squared_primes) and squared_primes[idx] <= num_to_look:
-        idx += 1
-
-    if idx == 0 and squared_primes[idx] > num_to_look:
-        return -1
-
-    if idx == len(squared_primes) and squared_primes[-1] > num_to_look:
-        return -1
-
-    return idx
-
-
-def get_squarefree(
-    unique_coefficients: set[int], squared_primes: list[int]
-) -> set[int]:
-    """
-    Calculates the squarefree numbers inside unique_coefficients given a
-    list of square of primes.
+    Calculates the squarefree numbers inside unique_coefficients.
 
     Based on the definition of a non-squarefree number, then any non-squarefree
     n can be decomposed as n = p*p*r, where p is positive prime number and r
@@ -140,27 +71,27 @@ def get_squarefree(
     squarefree as r cannot be negative. On the contrary, if any r exists such
     that n = p*p*r, then the number is non-squarefree.
 
-    >>> get_squarefree({1}, [])
-    set()
-    >>> get_squarefree({1, 2}, [])
-    set()
-    >>> get_squarefree({1, 2, 3, 4, 5, 6, 7, 35, 10, 15, 20, 21}, [4, 9, 25])
+    >>> get_squarefrees({1})
+    {1}
+    >>> get_squarefrees({1, 2})
+    {1, 2}
+    >>> get_squarefrees({1, 2, 3, 4, 5, 6, 7, 35, 10, 15, 20, 21})
     {1, 2, 3, 5, 6, 7, 35, 10, 15, 21}
     """
 
-    if len(squared_primes) == 0:
-        return set()
-
     non_squarefrees = set()
-    prime_squared_idx = 0
-    for num in sorted(unique_coefficients):
-        prime_squared_idx = get_squared_primes_to_use(
-            num, squared_primes, prime_squared_idx
-        )
-        if prime_squared_idx == -1:
-            continue
-        if any(num % prime == 0 for prime in squared_primes[:prime_squared_idx]):
-            non_squarefrees.add(num)
+    for number in unique_coefficients:
+        divisor = 2
+        copy_number = number
+        while divisor**2 <= copy_number:
+            multiplicity = 0
+            while copy_number % divisor == 0:
+                copy_number //= divisor
+                multiplicity += 1
+            if multiplicity >= 2:
+                non_squarefrees.add(number)
+                break
+            divisor += 1
 
     return unique_coefficients.difference(non_squarefrees)
 
@@ -170,15 +101,14 @@ def solution(n: int = 51) -> int:
     Returns the sum of squarefrees for a given Pascal's Triangle of depth n.
 
     >>> solution(1)
-    0
+    1
     >>> solution(8)
     105
     >>> solution(9)
     175
     """
     unique_coefficients = get_pascal_triangle_unique_coefficients(n)
-    primes = get_primes_squared(max(unique_coefficients))
-    squarefrees = get_squarefree(unique_coefficients, primes)
+    squarefrees = get_squarefrees(unique_coefficients)
     return sum(squarefrees)
 
 
