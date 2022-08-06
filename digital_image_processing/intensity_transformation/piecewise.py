@@ -21,7 +21,7 @@ def pixel_value(img: np.ndarray, r1: int, s1: int, r2: int, s2: int) -> np.ndarr
     
     if 0 <= img <= r1:
         return (s1/r1)*img
-    elif r1 <= img <= r2:
+    elif r1 < img <= r2:
         return ((s2-s1)/(r2-r1)) * (img-r1)+s1
     else:
         return ((255-s2)/(255-r2)) * (img-r2)+s2
