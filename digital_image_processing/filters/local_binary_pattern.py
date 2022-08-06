@@ -14,16 +14,7 @@ def get_neighbors_pixel(image: np.ndarray, x_coordinate: int, y_coordinate: int,
     :param center: center pixel value
     :return: The value of the pixel is being returned.
     """
-
-    value = 0
-
-    try:
-        if image[x_coordinate][y_coordinate] >= center:
-            value = 1
-    except Exception:
-        pass
-
-    return value
+    return int(image[x_coordinate][y_coordinate] or (center - 1) >= center)
 
 
 def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) -> int:
