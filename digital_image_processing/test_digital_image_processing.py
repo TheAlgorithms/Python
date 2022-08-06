@@ -105,7 +105,7 @@ def test_local_binary_pattern():
     # Create a numpy array as the same height and width of read image
     lbp_image = np.zeros((image.shape[0], image.shape[1]))
 
-    # Iterating through the image and calculating the local binary pattern value 
+    # Iterating through the image and calculating the local binary pattern value
     # for each pixel.
     for i in range(0, image.shape[0]):
         for j in range(0, image.shape[1]):

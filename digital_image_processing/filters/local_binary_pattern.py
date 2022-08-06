@@ -2,7 +2,9 @@ import cv2
 import numpy as np
 
 
-def get_neighbors_pixel(image: np.ndarray, x_coordinate: int, y_coordinate: int, center: int) -> int:
+def get_neighbors_pixel(
+    image: np.ndarray, x_coordinate: int, y_coordinate: int, center: int
+) -> int:
     """
     Comparing local neighborhood pixel value with threshold value of centre pixel.
     Exception is required when neighborhood value of a center pixel value is null.
@@ -40,20 +42,37 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
     binary_values = []
     center = image[x_coordinate][y_coordinate]
     powers = [1, 2, 4, 8, 16, 32, 64, 128]
-    decimal_val = 0
 
     # Starting from top right,assigning value to pixels clockwise
-    binary_values.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate + 1, center))
-    binary_values.append(get_neighbors_pixel(image, x_coordinate, y_coordinate + 1, center))
-    binary_values.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate, center))
-    binary_values.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate + 1, center))
-    binary_values.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate, center))
-    binary_values.append(get_neighbors_pixel(image, x_coordinate + 1, y_coordinate - 1, center))
-    binary_values.append(get_neighbors_pixel(image, x_coordinate, y_coordinate - 1, center))
-    binary_values.append(get_neighbors_pixel(image, x_coordinate - 1, y_coordinate - 1, center))
+    binary_values.append(
+        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate + 1, center)
+    )
+    binary_values.append(
+        get_neighbors_pixel(image, x_coordinate, y_coordinate + 1, center)
+    )
+    binary_values.append(
+        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate, center)
+    )
+    binary_values.append(
+        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate + 1, center)
+    )
+    binary_values.append(
+        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate, center)
+    )
+    binary_values.append(
+        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate - 1, center)
+    )
+    binary_values.append(
+        get_neighbors_pixel(image, x_coordinate, y_coordinate - 1, center)
+    )
+    binary_values.append(
+        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate - 1, center)
+    )
 
     # Converting the binary value to decimal.
-    return sum(binary_value * power for binary_value, power in zip(binary_values, powers))
+    return sum(
+        binary_value * power for binary_value, power in zip(binary_values, powers)
+    )
 
 
 if __name__ == "main":
