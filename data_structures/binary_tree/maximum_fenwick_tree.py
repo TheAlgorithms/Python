@@ -21,13 +21,17 @@ class MaxFenwickTree:
         self.arr = [0] * (n + 1)
         self.tree = [0] * (n + 1)
 
-    def update(self, i, val) -> None:  # Set value of index i (1-Based) to val in O(lg^2 N)
+    def update(
+        self, i, val
+    ) -> None:  # Set value of index i (1-Based) to val in O(lg^2 N)
         self.arr[i] = val
         while i < self.n:
             self.tree[i] = max(val, self.query(i, i - i & -i))
             i += i & (-i)
 
-    def query(self, l, r) -> int:  # Query maximum value from range (l, r] (1-Based) in O(lg N)
+    def query(
+        self, l, r
+    ) -> int:  # Query maximum value from range (l, r] (1-Based) in O(lg N)
         res = 0
         while l < r:
             ll = r - r & -r
