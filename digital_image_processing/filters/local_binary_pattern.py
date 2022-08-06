@@ -39,35 +39,20 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
     :return: The decimal value of the binary value of the pixels
     around the center pixel.
     """
-    binary_values = []
     center = image[x_coordinate][y_coordinate]
     powers = [1, 2, 4, 8, 16, 32, 64, 128]
 
-    # Starting from top right,assigning value to pixels clockwise
-    binary_values.append(
-        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate + 1, center)
-    )
-    binary_values.append(
-        get_neighbors_pixel(image, x_coordinate, y_coordinate + 1, center)
-    )
-    binary_values.append(
-        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate, center)
-    )
-    binary_values.append(
-        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate + 1, center)
-    )
-    binary_values.append(
-        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate, center)
-    )
-    binary_values.append(
-        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate - 1, center)
-    )
-    binary_values.append(
-        get_neighbors_pixel(image, x_coordinate, y_coordinate - 1, center)
-    )
-    binary_values.append(
-        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate - 1, center)
-    )
+    # Starting from the top right, assigning value to pixels clockwise
+    binary_values = [
+        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate + 1, center),
+        get_neighbors_pixel(image, x_coordinate, y_coordinate + 1, center),
+        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate, center),
+        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate + 1, center),
+        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate, center),
+        get_neighbors_pixel(image, x_coordinate + 1, y_coordinate - 1, center),
+        get_neighbors_pixel(image, x_coordinate, y_coordinate - 1, center),
+        get_neighbors_pixel(image, x_coordinate - 1, y_coordinate - 1, center),
+    ]
 
     # Converting the binary value to decimal.
     return sum(
