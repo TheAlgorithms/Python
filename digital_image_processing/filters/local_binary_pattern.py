@@ -42,6 +42,10 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
     center = image[x_coordinate][y_coordinate]
     powers = [1, 2, 4, 8, 16, 32, 64, 128]
 
+    # skip get_neighbors_pixel if center is null
+    if center is None:
+        return 0
+
     # Starting from the top right, assigning value to pixels clockwise
     binary_values = [
         get_neighbors_pixel(image, x_coordinate - 1, y_coordinate + 1, center),
@@ -63,9 +67,7 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
 if __name__ == "main":
 
     # Reading the image and converting it to grayscale.
-    image = cv2.imread(
-        "digital_image_processing/image_data/lena.jpg", cv2.IMREAD_GRAYSCALE
-    )
+    image = cv2.imread("digital_image_processing/image_data/lena.jpg", cv2.IMREAD_GRAYSCALE)
 
     # Create a numpy array as the same height and width of read image
     lbp_image = np.zeros((image.shape[0], image.shape[1]))
