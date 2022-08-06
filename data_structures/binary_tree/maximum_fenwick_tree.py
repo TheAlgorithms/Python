@@ -16,31 +16,31 @@ class MaxFenwickTree:
     10
     """
 
-    def __init__(self, n: int):  # Create Fenwick tree with size n
+    def __init__(self, n: int) -> None:  # Create Fenwick tree with size n
         self.n = n
         self.arr = [0] * (n + 1)
         self.tree = [0] * (n + 1)
 
     def update(
-        self, i, val
-    ) -> None:  # Set value of index i (1-Based) to val in O(lg^2 N)
-        self.arr[i] = val
-        while i < self.n:
-            self.tree[i] = max(val, self.query(i, i - i & -i))
-            i += i & (-i)
+        self, index: int, value: int
+    ) -> None:  # Set index (1-Based) to value in O(lg^2 N)
+        self.arr[index] = value
+        while index < self.n:
+            self.tree[index] = max(value, self.query(index, index - index & -index))
+            index += index & (-index)
 
     def query(
-        self, l, r
-    ) -> int:  # Query maximum value from range (l, r] (1-Based) in O(lg N)
+        self, left: int, right: int
+    ) -> int:  # Query maximum value from range (left, right] (1-Based) in O(lg N)
         res = 0
-        while l < r:
-            ll = r - r & -r
-            if l < ll:
-                res = max(res, self.tree[r])
-                r = ll
+        while left < right:
+            x = right - right & -right
+            if left < x:
+                res = max(res, self.tree[right])
+                right = x
             else:
-                res = max(res, self.arr[r])
-                r -= 1
+                res = max(res, self.arr[right])
+                right -= 1
         return res
 
 
