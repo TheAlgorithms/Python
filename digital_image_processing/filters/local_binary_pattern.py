@@ -16,15 +16,11 @@ def get_neighbors_pixel(
     :param center: center pixel value
     :return: The value of the pixel is being returned.
     """
-    value = 0
 
     try:
-        if image[x_coordinate][y_coordinate] >= center:
-            value = 1
-    except Exception:
-        pass
-
-    return value
+        return int(image[x_coordinate][y_coordinate] >= center)
+    except (IndexError, TypeError):
+        return 0
 
 
 def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) -> int:
@@ -67,7 +63,9 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
 if __name__ == "main":
 
     # Reading the image and converting it to grayscale.
-    image = cv2.imread("digital_image_processing/image_data/lena.jpg", cv2.IMREAD_GRAYSCALE)
+    image = cv2.imread(
+        "digital_image_processing/image_data/lena.jpg", cv2.IMREAD_GRAYSCALE
+    )
 
     # Create a numpy array as the same height and width of read image
     lbp_image = np.zeros((image.shape[0], image.shape[1]))
@@ -78,6 +76,6 @@ if __name__ == "main":
         for j in range(0, image.shape[1]):
             lbp_image[i][j] = local_binary_value(image, i, j)
 
-    cv2.imshow("Local Binary Pattern", lbp_image)
+    cv2.imshow("local binary pattern", lbp_image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
