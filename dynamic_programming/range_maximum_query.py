@@ -28,6 +28,24 @@ class RangeMaximumQuery:
     def _preprocess(self) -> None:
         """
         Preprocess the DP array for RMQ in O(n log n).
+        ------------------------------
+        >>> rmq = RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        >>> rmq.log[7]
+        2
+        >>> rmq.log[8]
+        3
+        >>> rmq.log[9]
+        3
+        >>> rmq.dp[0][0]
+        1
+        >>> rmq.dp[0][9]
+        10
+        >>> rmq.dp[1][0]
+        2
+        >>> rmq.dp[1][9]
+        10
+        >>> rmq.dp[1][8]
+        10
         """
         # Fill logarithm array for O(1) usage
         self.log = [0] * (self.size + 1)
