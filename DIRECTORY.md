@@ -858,6 +858,8 @@
     * [Sol1](project_euler/problem_114/sol1.py)
   * Problem 115
     * [Sol1](project_euler/problem_115/sol1.py)
+  * Problem 116
+    * [Sol1](project_euler/problem_116/sol1.py)
   * Problem 119
     * [Sol1](project_euler/problem_119/sol1.py)
   * Problem 120
