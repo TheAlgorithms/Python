@@ -27,9 +27,9 @@ for which the fill-count function first exceeds one million.
 from itertools import count
 
 
-def solution(m: int = 50) -> int:
+def solution(min_block_length: int = 50) -> int:
     """
-    Returns for given m the least value of n
+    Returns for given minimum block length the least value of n
     for which the fill-count function first exceeds one million
 
     >>> solution(3)
@@ -39,12 +39,12 @@ def solution(m: int = 50) -> int:
     57
     """
 
-    fill_count_functions = [1] * m
+    fill_count_functions = [1] * min_block_length
 
-    for n in count(m):
+    for n in count(min_block_length):
         fill_count_functions.append(1)
 
-        for block_length in range(m, n + 1):
+        for block_length in range(min_block_length, n + 1):
             for block_start in range(n - block_length):
                 fill_count_functions[n] += fill_count_functions[
                     n - block_start - block_length - 1
