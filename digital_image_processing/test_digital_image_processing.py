@@ -13,11 +13,10 @@ from digital_image_processing.dithering import burkes as bs
 from digital_image_processing.edge_detection import canny as canny
 from digital_image_processing.filters import convolve as conv
 from digital_image_processing.filters import gaussian_filter as gg
+from digital_image_processing.filters import local_binary_pattern as lbp
 from digital_image_processing.filters import median_filter as med
 from digital_image_processing.filters import sobel_filter as sob
 from digital_image_processing.resize import resize as rs
-from digital_image_processing.filters import local_binary_pattern as lbp
-
 
 img = imread(r"digital_image_processing/image_data/lena_small.jpg")
 gray = cvtColor(img, COLOR_BGR2GRAY)
