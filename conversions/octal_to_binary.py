@@ -19,7 +19,10 @@ def octal_to_binary(oct_num: int) -> int:
     Traceback (most recent call last):
     ...
     ValueError: Non-octal value was passed to the function
-
+    >>> octal_to_binary("aa")
+    Traceback (most recent call last):
+    ...
+    ValueError: Please enter an integer
     """
 
     binary = ""  # initialising bin as String
@@ -93,3 +96,4 @@ if __name__ == "__main__":
     from doctest import testmod
 
 testmod()
+
