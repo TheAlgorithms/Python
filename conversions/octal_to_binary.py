@@ -23,6 +23,10 @@ def octal_to_binary(oct_num: int) -> int:
     Traceback (most recent call last):
     ...
     ValueError: Please enter an integer
+    >>> octal_to_binary(-1)
+    Traceback (most recent call last):
+    ...
+    ValueError: Non-octal value was passed to the function
     """
 
     binary = ""  # initialising bin as String
