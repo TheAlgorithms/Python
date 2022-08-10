@@ -7,7 +7,6 @@ def runge_kutta4(f, y0, h, t):
 
     # https://en.wikipedia.org/wiki/Runge-Kutta_methods
 
-    Parameters:
     @param f: function of the form f(x, y)
         The ode as a function of t and y
     @param y0: float or array like
@@ -53,7 +52,6 @@ def bogacki_shampine(f, y0, h,  t):
 
     https://en.wikipedia.org/wiki/Bogacki%E2%80%93Shampine_method
 
-    Parameters:
     @param f: function of the form f(x, y)
         The ode as a function of t and y
     @param y0: float or array like
