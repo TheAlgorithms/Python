@@ -201,6 +201,23 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float):
     )
 
 
+
+def vol_torus(minor_radius: int | float, major_radius: int | float):
+    """Calculate the Volume of a Torus.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Torus
+    :return (pi * minor_radius^2) * (2 * pi * major_radius)
+
+    >>> vol_torus(20, 10)
+    39478.4176
+
+    >>> vol_torus(20, 15)
+    88826.43961
+    """
+    if not major_radius > minor_radius:
+        raise ValueError("major_radius must be greater than minor_radius")
+    return pi * pow(minor_radius, 2) * 2 * pi * major_radius
+
+
 def main():
     """Print the Results of Various Volume Calculations."""
     print("Volumes:")
@@ -216,6 +233,7 @@ def main():
     print("Conical Frustum: " + str(vol_conical_frustum(2, 2, 4)))  # ~= 58.6
     print("Spherical cap: " + str(vol_spherical_cap(1, 2)))  # ~= 5.24
     print("Spheres intersetion: " + str(vol_spheres_intersect(2, 2, 1)))  # ~= 21.21
+    print("Torus: " + str(vol_torus(20, 10)))  # ~= 39478.4
 
 
 if __name__ == "__main__":
