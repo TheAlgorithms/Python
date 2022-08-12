@@ -36,17 +36,19 @@ def recursive_match(text: str, pattern: str) -> bool:
     if text and not pattern:
         return False
 
-    if not text and pattern and pattern[-1] != '*':
+    if not text and pattern and pattern[-1] != "*":
         return False
 
-    if not text and pattern and pattern[-1] == '*':
+    if not text and pattern and pattern[-1] == "*":
         return recursive_match(text, pattern[:-2])
 
-    if text[-1] == pattern[-1] or pattern[-1] == '.':
+    if text[-1] == pattern[-1] or pattern[-1] == ".":
         return recursive_match(text[:-1], pattern[:-1])
 
-    if pattern[-1] == '*':
-        return recursive_match(text[:-1], pattern) or recursive_match(text, pattern[:-2])
+    if pattern[-1] == "*":
+        return recursive_match(text[:-1], pattern) or recursive_match(
+            text, pattern[:-2]
+        )
 
     return False
 
@@ -82,14 +84,14 @@ def dp_match(text: str, pattern: str) -> bool:
         dp[i][0] = False
 
     for j in range(1, n + 1):
-        dp[0][j] = pattern[j - 1] == '*' and dp[0][j - 2]
+        dp[0][j] = pattern[j - 1] == "*" and dp[0][j - 2]
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            if pattern[j - 1] == '.' or pattern[j - 1] == text[i - 1]:
+            if pattern[j - 1] == "." or pattern[j - 1] == text[i - 1]:
                 dp[i][j] = dp[i - 1][j - 1]
-            elif pattern[j - 1] == '*':
-                dp[i][j] = dp[i][j - 2] or (dp[i - 1][j] and (pattern[j - 2] == '.' or pattern[j - 2] == text[i - 1]))
+            elif pattern[j - 1] == "*":
+                dp[i][j] = dp[i][j - 2] or ((pattern[j - 2] == "." or pattern[j - 2] == text[i - 1]) and dp[i - 1][j])
             else:
                 dp[i][j] = False
 
