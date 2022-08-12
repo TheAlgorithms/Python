@@ -7,6 +7,10 @@ class MaxFenwickTree:
     >>> ft = MaxFenwickTree(5)
     >>> ft.query(0, 5)
     0
+    >>> ft.update(4, 100)
+    >>> ft.query(0, 5)
+    100
+    >>> ft.update(4, 0)
     >>> ft.update(2, 20)
     >>> ft.query(0, 5)
     20
@@ -41,14 +45,14 @@ class MaxFenwickTree:
         """
         Get next index in O(1)
         """
-        return index + index & -index
+        return index + (index & -index)
 
     @staticmethod
     def get_prev(index: int) -> int:
         """
         Get previous index in O(1)
         """
-        return index - index & -index
+        return index - (index & -index)
 
     def update(self, index: int, value: int) -> None:
         """
@@ -63,7 +67,7 @@ class MaxFenwickTree:
         """
         self.arr[index] = value
         index += 1  # 1-indexed
-        while index < self.size:
+        while index < self.size + 1:
             self.tree[index] = max(value, self.query(self.get_prev(index), index))
             index = self.get_next(index)
 
