@@ -1,5 +1,5 @@
 """
-Regex matching check if a text matches wildcard pattern or not.
+Regex matching check if a text matches pattern or not.
 Pattern:
     '.' Matches any single character.
     '*' Matches zero or more of the preceding element.
