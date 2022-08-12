@@ -12,8 +12,8 @@ def recursive_match(text: str, pattern: str) -> bool:
     """
     Recursive matching algorithm.
 
-    Time complexity: O(2 ^ (m + n)), where m is the length of text and n is the length of pattern.
-    Space complexity: Recursion depth is O(m + n).
+    Time complexity: O(2 ^ (|text| + |pattern|))
+    Space complexity: Recursion depth is O(|text| + |pattern|).
 
     :param text: Text to match.
     :param pattern: Pattern to match.
@@ -57,8 +57,8 @@ def dp_match(text: str, pattern: str) -> bool:
     """
     Dynamic programming matching algorithm.
 
-    Time complexity: O(m * n), where m is the length of text and n is the length of pattern.
-    Space complexity: O(m * n).
+    Time complexity: O(|text| * |pattern|)
+    Space complexity: O(|text| * |pattern|)
 
     :param text: Text to match.
     :param pattern: Pattern to match.
@@ -91,7 +91,9 @@ def dp_match(text: str, pattern: str) -> bool:
             if pattern[j - 1] == "." or pattern[j - 1] == text[i - 1]:
                 dp[i][j] = dp[i - 1][j - 1]
             elif pattern[j - 1] == "*":
-                dp[i][j] = dp[i][j - 2] or ((pattern[j - 2] == "." or pattern[j - 2] == text[i - 1]) and dp[i - 1][j])
+                dp[i][j] = dp[i][j - 2]
+                if pattern[j - 2] == "." or pattern[j - 2] == text[i - 1]:
+                    dp[i][j] |= dp[i - 1][j]
             else:
                 dp[i][j] = False
 
