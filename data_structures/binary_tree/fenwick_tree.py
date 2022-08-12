@@ -30,7 +30,7 @@ class FenwickTree:
     30
     """
 
-    def __init__(self, arr: List[int] = None, size: int = None):
+    def __init__(self, arr: List[int] = None, size: int = None) -> None:
         """
         Constructor for the Fenwick tree
 
@@ -41,7 +41,7 @@ class FenwickTree:
 
         if arr is None and size is not None:
             self.size = size
-            self.tree = [0] * (size + 1)
+            self.tree = [0] * size
         elif arr is not None:
             self.init(arr)
         else:
@@ -66,10 +66,10 @@ class FenwickTree:
         True
         """
         self.size = len(arr)
-        self.tree = [0] + arr
-        for i in range(1, self.size + 1):
+        self.tree = deepcopy(arr)
+        for i in range(1, self.size):
             j = self.next(i)
-            if j < self.size + 1:
+            if j < self.size:
                 self.tree[j] += self.tree[i]
 
     @staticmethod
@@ -91,8 +91,10 @@ class FenwickTree:
         Returns:
             None
         """
-        index += 1  # 1-indexed
-        while index < self.size + 1:
+        if index == 0:
+            self.tree[0] += value
+            return
+        while index < self.size:
             self.tree[index] += value
             index = self.next(index)
 
@@ -119,7 +121,10 @@ class FenwickTree:
         Returns:
             int: sum of all elements in [0, right)
         """
-        result = 0
+        if right == 0:
+            return 0
+        result = self.tree[0]
+        right -= 1  # make right inclusive
         while right > 0:
             result += self.tree[right]
             right = self.prev(right)
