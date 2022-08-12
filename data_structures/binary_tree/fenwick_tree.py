@@ -1,3 +1,4 @@
+from copy import deepcopy
 from typing import List
 
 
@@ -154,6 +155,51 @@ class FenwickTree:
             int: Value of element at index
         """
         return self.query(index, index + 1)
+
+    def rank_query(self, value: int) -> int:
+        """
+        Find the largest index with prefix(i) <= value in O(lg N)
+        NOTE: Requires that all values are non-negative!
+
+        Parameters:
+            value (int): value to find the largest index of
+
+        Returns:
+            -1: if value is smaller than all elements in prefix sum
+            int: largest index with prefix(i) <= value
+
+        >>> f = FenwickTree([1, 2, 0, 3, 0, 5])
+        >>> f.rank_query(0)
+        -1
+        >>> f.rank_query(2)
+        0
+        >>> f.rank_query(1)
+        0
+        >>> f.rank_query(3)
+        2
+        >>> f.rank_query(5)
+        2
+        >>> f.rank_query(6)
+        4
+        >>> f.rank_query(11)
+        5
+        """
+        value -= self.tree[0]
+        if value < 0:
+            return -1
+
+        j = 1  # Largest power of 2 <= size
+        while j * 2 < self.size:
+            j *= 2
+
+        i = 0
+
+        while j > 0:
+            if i + j < self.size and self.tree[i + j] <= value:
+                value -= self.tree[i + j]
+                i += j
+            j //= 2
+        return i
 
 
 if __name__ == "__main__":
