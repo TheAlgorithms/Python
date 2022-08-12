@@ -3,6 +3,8 @@ Regex matching check if a text matches wildcard pattern or not.
 Pattern:
     '.' Matches any single character.
     '*' Matches zero or more of the preceding element.
+More info:
+    https://medium.com/trick-the-interviwer/regular-expression-matching-9972eb74c03
 """
 
 
