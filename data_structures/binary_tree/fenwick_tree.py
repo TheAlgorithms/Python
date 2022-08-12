@@ -47,7 +47,7 @@ class FenwickTree:
         else:
             raise ValueError("Either arr or size must be specified")
 
-    def init(self, arr: List[int]):
+    def init(self, arr: List[int]) -> None:
         """
         Initialize the Fenwick tree with arr in O(N)
 
@@ -73,14 +73,14 @@ class FenwickTree:
                 self.tree[j] += self.tree[i]
 
     @staticmethod
-    def next(index: int):
+    def next(index: int) -> int:
         return index + (index & (-index))
 
     @staticmethod
-    def prev(index: int):
+    def prev(index: int) -> int:
         return index - (index & (-index))
 
-    def add(self, index: int, value: int):
+    def add(self, index: int, value: int) -> None:
         """
         Add a value to index in O(lg N)
 
@@ -96,7 +96,7 @@ class FenwickTree:
             self.tree[index] += value
             index = self.next(index)
 
-    def update(self, index: int, value: int):
+    def update(self, index: int, value: int) -> None:
         """
         Set the value of index in O(lg N)
 
@@ -107,9 +107,9 @@ class FenwickTree:
         Returns:
             None
         """
-        self.add(index, value - self.query(index, index + 1))
+        self.add(index, value - self.get(index))
 
-    def prefix(self, right: int):
+    def prefix(self, right: int) -> int:
         """
         Prefix sum of all elements in [0, right) in O(lg N)
 
@@ -125,7 +125,7 @@ class FenwickTree:
             right = self.prev(right)
         return result
 
-    def query(self, left: int, right: int):
+    def query(self, left: int, right: int) -> int:
         """
         Query the sum of all elements in [left, right) in O(lg N)
 
@@ -137,6 +137,18 @@ class FenwickTree:
             int: sum of all elements in [left, right)
         """
         return self.prefix(right) - self.prefix(left)
+
+    def get(self, index: int) -> int:
+        """
+        Get value at index in O(lg N)
+
+        Parameters:
+            index (int): index to get the value
+
+        Returns:
+            int: Value of element at index
+        """
+        return self.query(index, index + 1)
 
 
 if __name__ == "__main__":
