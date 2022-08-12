@@ -7,6 +7,10 @@ class FenwickTree:
     >>> f = FenwickTree(10)
     >>> f.query(0, 10)
     0
+    >>> f.add(9, 10)
+    >>> f.prefix(10)
+    10
+    >>> f.add(9, -10)
     >>> f.add(1, 20)
     >>> f.query(0, 1)
     0
@@ -53,7 +57,7 @@ class FenwickTree:
             None
         """
         index += 1  # 1-indexed
-        while index < self.size:
+        while index < self.size + 1:
             self.tree[index] += value
             index = self.next(index)
 
