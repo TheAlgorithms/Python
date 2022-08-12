@@ -73,6 +73,25 @@ class FenwickTree:
             if j < self.size:
                 self.tree[j] += self.tree[i]
 
+    def get_array(self) -> List[int]:
+        """
+        Get the Normal Array of the Fenwick tree in O(N)
+
+        Returns:
+            list: Normal Array of the Fenwick tree
+
+        >>> a = [i for i in range(128)]
+        >>> f = FenwickTree(a)
+        >>> f.get_array() == a
+        True
+        """
+        arr = deepcopy(self.tree)
+        for i in range(self.size - 1, 0, -1):
+            j = self.next(i)
+            if j < self.size:
+                arr[j] -= arr[i]
+        return arr
+
     @staticmethod
     def next(index: int) -> int:
         return index + (index & (-index))
