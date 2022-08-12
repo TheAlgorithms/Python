@@ -1,28 +1,64 @@
 class FenwickTree:
-    def __init__(self, SIZE):  # create fenwick tree with size SIZE
-        self.Size = SIZE
-        self.ft = [0 for i in range(0, SIZE)]
+    """
+    Fenwick Tree
 
-    def update(self, i, val):  # update data (adding) in index i in O(lg N)
-        while i < self.Size:
-            self.ft[i] += val
-            i += i & (-i)
+    More info: https://en.wikipedia.org/wiki/Fenwick_tree
 
-    def query(self, i):  # query cumulative data from index 0 to i in O(lg N)
-        ret = 0
-        while i > 0:
-            ret += self.ft[i]
-            i -= i & (-i)
-        return ret
+    >>> f = FenwickTree(10)
+    >>> f.query(10)
+    0
+    >>> f.update(1, 20)
+    >>> f.query(1)
+    0
+    >>> f.query(2)
+    20
+    >>> f.query(3)
+    20
+    >>> f.update(2, 10)
+    >>> f.query(2)
+    20
+    >>> f.query(3)
+    30
+    >>> f.query(10)
+    30
+    """
+
+    def __init__(self, size: int):
+        """
+        Initialize a Fenwick tree with size elements
+        """
+        self.size = size
+        self.tree = [0] * (size + 1)
+
+    @staticmethod
+    def next(index: int):
+        return index + (index & (-index))
+
+    @staticmethod
+    def prev(index: int):
+        return index - (index & (-index))
+
+    def update(self, index: int, value: int):
+        """
+        Add a value to index in O(lg N)
+        """
+        index += 1  # 1-indexed
+        while index < self.size:
+            self.tree[index] += value
+            index = self.next(index)
+
+    def query(self, right: int):
+        """
+        Query the sum of all elements in [0, right) in O(lg N)
+        """
+        result = 0
+        while right > 0:
+            result += self.tree[right]
+            right = self.prev(right)
+        return result
 
 
 if __name__ == "__main__":
-    f = FenwickTree(100)
-    f.update(1, 20)
-    f.update(4, 4)
-    print(f.query(1))
-    print(f.query(3))
-    print(f.query(4))
-    f.update(2, -5)
-    print(f.query(1))
-    print(f.query(3))
+    import doctest
+
+    doctest.testmod()
