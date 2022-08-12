@@ -7,28 +7,6 @@ class FenwickTree:
     Fenwick Tree
 
     More info: https://en.wikipedia.org/wiki/Fenwick_tree
-
-    >>> f = FenwickTree(size=10)
-    >>> f.query(0, 10)
-    0
-    >>> f.add(9, 10)
-    >>> f.prefix(10)
-    10
-    >>> f.add(9, -10)
-    >>> f.add(1, 20)
-    >>> f.query(0, 1)
-    0
-    >>> f.query(1, 10)
-    20
-    >>> f.query(0, 10)
-    20
-    >>> f.update(2, 10)
-    >>> f.query(0, 2)
-    20
-    >>> f.query(2, 3)
-    10
-    >>> f.query(0, 10)
-    30
     """
 
     def __init__(self, arr: List[int] = None, size: int = None) -> None:
@@ -110,6 +88,15 @@ class FenwickTree:
 
         Returns:
             None
+
+        >>> f = FenwickTree([1, 2, 3, 4, 5])
+        >>> f.add(0, 1)
+        >>> f.add(1, 2)
+        >>> f.add(2, 3)
+        >>> f.add(3, 4)
+        >>> f.add(4, 5)
+        >>> f.get_array()
+        [2, 4, 6, 8, 10]
         """
         if index == 0:
             self.tree[0] += value
@@ -128,6 +115,15 @@ class FenwickTree:
 
         Returns:
             None
+
+        >>> f = FenwickTree([5, 4, 3, 2, 1])
+        >>> f.update(0, 1)
+        >>> f.update(1, 2)
+        >>> f.update(2, 3)
+        >>> f.update(3, 4)
+        >>> f.update(4, 5)
+        >>> f.get_array()
+        [1, 2, 3, 4, 5]
         """
         self.add(index, value - self.get(index))
 
@@ -140,6 +136,14 @@ class FenwickTree:
 
         Returns:
             int: sum of all elements in [0, right)
+
+        >>> a = [i for i in range(128)]
+        >>> f = FenwickTree(a)
+        >>> res = True
+        >>> for i in range(len(a)):
+        ...     res = res and f.prefix(i) == sum(a[:i])
+        >>> res
+        True
         """
         if right == 0:
             return 0
@@ -160,6 +164,15 @@ class FenwickTree:
 
         Returns:
             int: sum of all elements in [left, right)
+
+        >>> a = [i for i in range(128)]
+        >>> f = FenwickTree(a)
+        >>> res = True
+        >>> for i in range(len(a)):
+        ...     for j in range(i + 1, len(a)):
+        ...         res = res and f.query(i, j) == sum(a[i:j])
+        >>> res
+        True
         """
         return self.prefix(right) - self.prefix(left)
 
@@ -172,6 +185,14 @@ class FenwickTree:
 
         Returns:
             int: Value of element at index
+
+        >>> a = [i for i in range(128)]
+        >>> f = FenwickTree(a)
+        >>> res = True
+        >>> for i in range(len(a)):
+        ...     res = res and f.get(i) == a[i]
+        >>> res
+        True
         """
         return self.query(index, index + 1)
 
