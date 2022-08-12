@@ -1,10 +1,13 @@
+from typing import List
+
+
 class FenwickTree:
     """
     Fenwick Tree
 
     More info: https://en.wikipedia.org/wiki/Fenwick_tree
 
-    >>> f = FenwickTree(10)
+    >>> f = FenwickTree(size=10)
     >>> f.query(0, 10)
     0
     >>> f.add(9, 10)
@@ -27,15 +30,47 @@ class FenwickTree:
     30
     """
 
-    def __init__(self, size: int):
+    def __init__(self, arr: List[int] = None, size: int = None):
         """
-        Initialize a Fenwick tree with size elements
+        Constructor for the Fenwick tree
 
         Parameters:
-            size (int): size of the Fenwick tree
+            arr (list): list of elements to initialize the tree with (optional)
+            size (int): size of the Fenwick tree (if arr is None)
         """
-        self.size = size
-        self.tree = [0] * (size + 1)
+
+        if arr is None and size is not None:
+            self.size = size
+            self.tree = [0] * (size + 1)
+        elif arr is not None:
+            self.init(arr)
+        else:
+            raise ValueError("Either arr or size must be specified")
+
+    def init(self, arr: List[int]):
+        """
+        Initialize the Fenwick tree with arr in O(N)
+
+        Parameters:
+            arr (list): list of elements to initialize the tree with
+
+        Returns:
+            None
+
+        >>> a = [1, 2, 3, 4, 5]
+        >>> f1 = FenwickTree(a)
+        >>> f2 = FenwickTree(size=len(a))
+        >>> for index, value in enumerate(a):
+        ...     f2.add(index, value)
+        >>> f1.tree == f2.tree
+        True
+        """
+        self.size = len(arr)
+        self.tree = [0] + arr
+        for i in range(1, self.size + 1):
+            j = self.next(i)
+            if j < self.size + 1:
+                self.tree[j] += self.tree[i]
 
     @staticmethod
     def next(index: int):
