@@ -7,14 +7,14 @@ class FenwickTree:
     >>> f = FenwickTree(10)
     >>> f.query(10)
     0
-    >>> f.update(1, 20)
+    >>> f.add(1, 20)
     >>> f.query(1)
     0
     >>> f.query(2)
     20
     >>> f.query(3)
     20
-    >>> f.update(2, 10)
+    >>> f.add(2, 10)
     >>> f.query(2)
     20
     >>> f.query(3)
@@ -38,7 +38,7 @@ class FenwickTree:
     def prev(index: int):
         return index - (index & (-index))
 
-    def update(self, index: int, value: int):
+    def add(self, index: int, value: int):
         """
         Add a value to index in O(lg N)
         """
