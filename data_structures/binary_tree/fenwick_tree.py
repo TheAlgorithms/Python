@@ -63,7 +63,7 @@ class FenwickTree:
         >>> f.get_array() == a
         True
         """
-        arr = deepcopy(self.tree)
+        arr = self.tree[:]
         for i in range(self.size - 1, 0, -1):
             j = self.next(i)
             if j < self.size:
