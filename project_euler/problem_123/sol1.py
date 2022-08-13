@@ -39,7 +39,7 @@ So it could be simplified as,
 """
 from __future__ import annotations
 
-from typing import Generator
+from collections.abc import Generator
 
 
 def sieve() -> Generator[int, None, None]:

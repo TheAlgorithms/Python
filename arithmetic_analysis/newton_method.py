@@ -1,7 +1,7 @@
 """Newton's Method."""
 
 # Newton's Method - https://en.wikipedia.org/wiki/Newton%27s_method
-from typing import Callable
+from collections.abc import Callable
 
 RealFunc = Callable[[float], float]  # type alias for a real -> real function
 
