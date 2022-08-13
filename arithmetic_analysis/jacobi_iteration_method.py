@@ -4,13 +4,15 @@ Jacobi Iteration Method - https://en.wikipedia.org/wiki/Jacobi_method
 from __future__ import annotations
 
 import numpy as np
+from numpy import float64
+from numpy.typing import NDArray
 
 
 # Method to find solution of system of linear equations
 def jacobi_iteration_method(
-    coefficient_matrix: np.ndarray,
-    constant_matrix: np.ndarray,
-    init_val: list,
+    coefficient_matrix: NDArray[float64],
+    constant_matrix: NDArray[float64],
+    init_val: list[int],
     iterations: int,
 ) -> list[float]:
     """
@@ -99,7 +101,9 @@ def jacobi_iteration_method(
     if iterations <= 0:
         raise ValueError("Iterations must be at least 1")
 
-    table = np.concatenate((coefficient_matrix, constant_matrix), axis=1)
+    table: NDArray[float64] = np.concatenate(
+        (coefficient_matrix, constant_matrix), axis=1
+    )
 
     rows, cols = table.shape
 
@@ -125,7 +129,7 @@ def jacobi_iteration_method(
 
 
 # Checks if the given matrix is strictly diagonally dominant
-def strictly_diagonally_dominant(table: np.ndarray) -> bool:
+def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
     """
     >>> table = np.array([[4, 1, 1, 2], [1, 5, 2, -6], [1, 2, 4, -4]])
     >>> strictly_diagonally_dominant(table)

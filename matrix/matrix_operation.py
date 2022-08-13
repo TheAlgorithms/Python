@@ -171,7 +171,7 @@ def _verify_matrix_sizes(
     shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
         raise ValueError(
-            f"operands could not be broadcast together with shape "
+            "operands could not be broadcast together with shape "
             f"({shape[0], shape[1]}), ({shape[2], shape[3]})"
         )
     return (shape[0], shape[2]), (shape[1], shape[3])

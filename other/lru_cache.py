@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Callable, Generic, TypeVar
+from collections.abc import Callable
+from typing import Generic, TypeVar
 
 T = TypeVar("T")
 U = TypeVar("U")
@@ -21,8 +22,9 @@ class DoubleLinkedListNode(Generic[T, U]):
         self.prev: DoubleLinkedListNode[T, U] | None = None
 
     def __repr__(self) -> str:
-        return "Node: key: {}, val: {}, has next: {}, has prev: {}".format(
-            self.key, self.val, self.next is not None, self.prev is not None
+        return (
+            f"Node: key: {self.key}, val: {self.val}, "
+            f"has next: {bool(self.next)}, has prev: {bool(self.prev)}"
         )
 
 

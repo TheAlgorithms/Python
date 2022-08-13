@@ -3,7 +3,7 @@
 # https://en.wikipedia.org/wiki/Controlled_NOT_gate
 
 from qiskit import Aer, QuantumCircuit, execute
-from qiskit.providers import BaseBackend
+from qiskit.providers import Backend
 
 
 def store_two_classics(val1: int, val2: int) -> tuple[QuantumCircuit, str, str]:
@@ -62,7 +62,7 @@ def full_adder(
 def ripple_adder(
     val1: int,
     val2: int,
-    backend: BaseBackend = Aer.get_backend("qasm_simulator"),  # noqa: B008
+    backend: Backend = Aer.get_backend("qasm_simulator"),  # noqa: B008
 ) -> int:
     """
     Quantum Equivalent of a Ripple Adder Circuit

@@ -3,7 +3,8 @@ Checks if a system of forces is in static equilibrium.
 """
 from __future__ import annotations
 
-from numpy import array, cos, cross, ndarray, radians, sin
+from numpy import array, cos, cross, float64, radians, sin
+from numpy.typing import NDArray
 
 
 def polar_force(
@@ -12,10 +13,17 @@ def polar_force(
     """
     Resolves force along rectangular components.
     (force, angle) => (force_x, force_y)
-    >>> polar_force(10, 45)
-    [7.0710678118654755, 7.071067811865475]
-    >>> polar_force(10, 3.14, radian_mode=True)
-    [-9.999987317275394, 0.01592652916486828]
+    >>> import math
+    >>> force = polar_force(10, 45)
+    >>> math.isclose(force[0], 7.071067811865477)
+    True
+    >>> math.isclose(force[1], 7.0710678118654755)
+    True
+    >>> force = polar_force(10, 3.14, radian_mode=True)
+    >>> math.isclose(force[0], -9.999987317275396)
+    True
+    >>> math.isclose(force[1], 0.01592652916486828)
+    True
     """
     if radian_mode:
         return [magnitude * cos(angle), magnitude * sin(angle)]
@@ -23,7 +31,7 @@ def polar_force(
 
 
 def in_static_equilibrium(
-    forces: ndarray, location: ndarray, eps: float = 10 ** -1
+    forces: NDArray[float64], location: NDArray[float64], eps: float = 10**-1
 ) -> bool:
     """
     Check if a system is in equilibrium.
@@ -42,7 +50,7 @@ def in_static_equilibrium(
     False
     """
     # summation of moments is zero
-    moments: ndarray = cross(location, forces)
+    moments: NDArray[float64] = cross(location, forces)
     sum_moments: float = sum(moments)
     return abs(sum_moments) < eps
 
@@ -50,10 +58,14 @@ def in_static_equilibrium(
 if __name__ == "__main__":
     # Test to check if it works
     forces = array(
-        [polar_force(718.4, 180 - 30), polar_force(879.54, 45), polar_force(100, -90)]
+        [
+            polar_force(718.4, 180 - 30),
+            polar_force(879.54, 45),
+            polar_force(100, -90),
+        ]
     )
 
-    location = array([[0, 0], [0, 0], [0, 0]])
+    location: NDArray[float64] = array([[0, 0], [0, 0], [0, 0]])
 
     assert in_static_equilibrium(forces, location)
 

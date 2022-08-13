@@ -112,7 +112,7 @@ def compute_heterogeneity(data, k, centroids, cluster_assignment):
             distances = pairwise_distances(
                 member_data_points, [centroids[i]], metric="euclidean"
             )
-            squared_distances = distances ** 2
+            squared_distances = distances**2
             heterogeneity += np.sum(squared_distances)
 
     return heterogeneity
@@ -164,9 +164,7 @@ def kmeans(
             num_changed = np.sum(prev_cluster_assignment != cluster_assignment)
             if verbose:
                 print(
-                    "    {:5d} elements changed their cluster assignment.".format(
-                        num_changed
-                    )
+                    f"    {num_changed:5d} elements changed their cluster assignment."
                 )
 
         # Record heterogeneity convergence metric

@@ -58,15 +58,15 @@ def next_point(
     # y^2 + 4x^2 = 100
     # y - b = m * (x - a)
     # ==> A x^2 + B x + C = 0
-    quadratic_term = outgoing_gradient ** 2 + 4
+    quadratic_term = outgoing_gradient**2 + 4
     linear_term = 2 * outgoing_gradient * (point_y - outgoing_gradient * point_x)
     constant_term = (point_y - outgoing_gradient * point_x) ** 2 - 100
 
     x_minus = (
-        -linear_term - sqrt(linear_term ** 2 - 4 * quadratic_term * constant_term)
+        -linear_term - sqrt(linear_term**2 - 4 * quadratic_term * constant_term)
     ) / (2 * quadratic_term)
     x_plus = (
-        -linear_term + sqrt(linear_term ** 2 - 4 * quadratic_term * constant_term)
+        -linear_term + sqrt(linear_term**2 - 4 * quadratic_term * constant_term)
     ) / (2 * quadratic_term)
 
     # two solutions, one of which is our input point
