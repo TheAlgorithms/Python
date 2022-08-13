@@ -1,5 +1,4 @@
 from copy import deepcopy
-from typing import List
 
 
 class FenwickTree:
