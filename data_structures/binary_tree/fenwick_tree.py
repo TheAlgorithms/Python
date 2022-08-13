@@ -25,7 +25,7 @@ class FenwickTree:
         else:
             raise ValueError("Either arr or size must be specified")
 
-    def init(self, arr: List[int]) -> None:
+    def init(self, arr: list[int]) -> None:
         """
         Initialize the Fenwick tree with arr in O(N)
 
@@ -50,7 +50,7 @@ class FenwickTree:
             if j < self.size:
                 self.tree[j] += self.tree[i]
 
-    def get_array(self) -> List[int]:
+    def get_array(self) -> list[int]:
         """
         Get the Normal Array of the Fenwick tree in O(N)
 
