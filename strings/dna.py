@@ -1,5 +1,4 @@
 import re
-import string
 
 
 def dna(dna: str) -> str:
