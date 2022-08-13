@@ -7,7 +7,7 @@ def dna(dna: str) -> str:
     """
     https://en.wikipedia.org/wiki/DNA
     Returns the second side of a DNA strand
-    
+
     >>> dna("GCTA")
     'CGAT'
     >>> dna("ATGC")
