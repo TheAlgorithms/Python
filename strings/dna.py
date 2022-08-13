@@ -24,4 +24,4 @@ def dna(dna: str) -> str:
 
 
 if __name__ == "__main__":
-	__import__("doctest").testmod()
+  __import__("doctest").testmod()
