@@ -16,7 +16,7 @@ class MaxFenwickTree:
     20
     >>> ft.update(4, 10)
     >>> ft.query(2, 5)
-    10
+    20
     >>> ft.query(1, 5)
     20
     >>> ft.update(2, 0)
@@ -26,6 +26,14 @@ class MaxFenwickTree:
     >>> ft.update(255, 30)
     >>> ft.query(0, 10000)
     30
+    >>> ft = MaxFenwickTree(6)
+    >>> ft.update(5, 1)
+    >>> ft.query(5, 6)
+    1
+    >>> ft = MaxFenwickTree(6)
+    >>> ft.update(0, 1000)
+    >>> ft.query(0, 1)
+    1000
     """
 
     def __init__(self, size: int) -> None:
@@ -47,14 +55,14 @@ class MaxFenwickTree:
         """
         Get next index in O(1)
         """
-        return index + (index & -index)
+        return index | (index + 1)
 
     @staticmethod
     def get_prev(index: int) -> int:
         """
         Get previous index in O(1)
         """
-        return index - (index & -index)
+        return (index & (index + 1)) - 1
 
     def update(self, index: int, value: int) -> None:
         """
@@ -69,7 +77,11 @@ class MaxFenwickTree:
         """
         self.arr[index] = value
         while index < self.size:
-            self.tree[index] = max(value, self.query(self.get_prev(index), index))
+            current_left_border = self.get_prev(index) + 1
+            if current_left_border == index:
+                self.tree[index] = value
+            else:
+                self.tree[index] = max(value, current_left_border, index)
             index = self.get_next(index)
 
     def query(self, left: int, right: int) -> int:
@@ -85,9 +97,9 @@ class MaxFenwickTree:
         """
         right -= 1  # Because of right is exclusive
         result = 0
-        while left < right:
+        while left <= right:
             current_left = self.get_prev(right)
-            if left < current_left:
+            if left <= current_left:
                 result = max(result, self.tree[right])
                 right = current_left
             else:
