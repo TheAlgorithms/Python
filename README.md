@@ -1,3 +1,5 @@
+Added, by Sean Gibson... part of Meta Training:
+
 <div align="center">
 <!-- Title: -->
   <a href="https://github.com/TheAlgorithms/">
