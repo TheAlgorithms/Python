@@ -207,10 +207,10 @@ def vol_torus(minor_radius: int | float, major_radius: int | float):
     Wikipedia reference: https://en.wikipedia.org/wiki/Torus
     :return (pi * minor_radius^2) * (2 * pi * major_radius)
 
-    >>> vol_torus(20, 10)
+    >>> vol_torus(10, 20)
     39478.4176
 
-    >>> vol_torus(20, 15)
+    >>> vol_torus(15, 20)
     88826.43961
     """
     if not major_radius > minor_radius:
@@ -233,7 +233,7 @@ def main():
     print("Conical Frustum: " + str(vol_conical_frustum(2, 2, 4)))  # ~= 58.6
     print("Spherical cap: " + str(vol_spherical_cap(1, 2)))  # ~= 5.24
     print("Spheres intersetion: " + str(vol_spheres_intersect(2, 2, 1)))  # ~= 21.21
-    print("Torus: " + str(vol_torus(20, 10)))  # ~= 39478.4
+    print("Torus: " + str(vol_torus(10, 20)))  # ~= 39478.4
 
 
 if __name__ == "__main__":
