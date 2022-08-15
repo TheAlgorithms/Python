@@ -23,11 +23,16 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
     a = x0  # set the initial guess
     steps = [a]
     error = abs(f(a))
+    privestimate = a
+    nextestimate = 0
     f1 = lambda x: calc_derivative(f, x, h=step)  # noqa: E731  Derivative of f(x)
     for _ in range(maxiter):
         if f1(a) == 0:
             raise ValueError("No converging solution found")
         a = a - f(a) / f1(a)  # Calculate the next estimate
+        nextestimate = a
+        error = abs(privestimate-nextestimate)
+        privestimate = nextestimate
         if logsteps:
             steps.append(a)
         if error < maxerror:
