@@ -25,6 +25,7 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
     error = abs(f(a))
     privestimate = a
     nextestimate = 0
+    
     f1 = lambda x: calc_derivative(f, x, h=step)  # noqa: E731  Derivative of f(x)
     for _ in range(maxiter):
         if f1(a) == 0:
