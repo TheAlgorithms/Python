@@ -4,7 +4,7 @@ from timeit import timeit
 def sum_of_digits(n: int) -> int:
     """
     Find the sum of digits of a number.
-   
+
     >>> sum_of_digits(12345)
     15
     >>> sum_of_digits(123)
