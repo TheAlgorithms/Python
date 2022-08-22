@@ -20,7 +20,7 @@ class Graph:
         0  :  1
         """
         for i in self.vertices:
-            print(i, " : ", " -> ".join([str(j) for j in self.vertices[i]]))
+            print(i, " -> ", ", ".join([str(j) for j in self.vertices[i]]))
 
     def add_edge(self, from_vertex: int, to_vertex: int) -> None:
         """
@@ -84,9 +84,9 @@ if __name__ == "__main__":
     g.add_edge(3, 3)
 
     g.print_graph()
-    # 0  :  1 -> 2
-    # 1  :  2
-    # 2  :  0 -> 3
-    # 3  :  3
+    # 0  ->  1, 2
+    # 1  ->  2
+    # 2  ->  0, 3
+    # 3  ->  3
 
     assert sorted(g.bfs(2)) == [0, 1, 2, 3]
