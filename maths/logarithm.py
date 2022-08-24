@@ -3,11 +3,11 @@ https://en.wikipedia.org/wiki/Logarithm
 """
 
 
-def logarithm(x: int, base: int) -> float:
+def logarithm(end: int, base: int) -> float:
     """
     Return the logarithm with base base of x
-    :param x: the number
-    :param b: the base of the exponential
+    :param end: the number
+    :param base: the base of the exponential
     :return:
 
     >>> logarithm(32, 2)
@@ -17,13 +17,12 @@ def logarithm(x: int, base: int) -> float:
     >>> logarithm(2937846, 3)
     13.556363215077281
     """
-    if base < 0 or x < 0:
+    if base < 0 or end < 0:
         raise ValueError('logarithm() takes 2 positive values')
     
     if base == 0:
         return 1
     start = 0
-    end = x
     prev = 0
     accuracy = 1
     e = 0.000001
