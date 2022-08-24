@@ -3,12 +3,12 @@ https://en.wikipedia.org/wiki/Logarithm
 """
 
 
-def logarithm(x: int, b: int):
+def logarithm(x: int, base: int) -> float:
     """
     Return the logarithm with base base of x
     :param x: the number
     :param b: the base of the exponential
-    :return
+    :return:
 
     >>> logarithm(32, 2)
     5
