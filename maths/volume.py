@@ -1,6 +1,5 @@
 """
 Find Volumes of Various Shapes.
-
 Wikipedia reference: https://en.wikipedia.org/wiki/Volume
 """
 from __future__ import annotations
@@ -11,7 +10,6 @@ from math import pi, pow
 def vol_cube(side_length: int | float) -> float:
     """
     Calculate the Volume of a Cube.
-
     >>> vol_cube(1)
     1.0
     >>> vol_cube(3)
@@ -24,7 +22,6 @@ def vol_spherical_cap(height: float, radius: float) -> float:
     """
     Calculate the Volume of the spherical cap.
     :return 1/3 pi * height ^ 2 * (3 * radius - height)
-
     >>> vol_spherical_cap(1, 2)
     5.235987755982988
     """
@@ -36,7 +33,6 @@ def vol_spheres_intersect(
 ) -> float:
     """
     Calculate the volume of the intersection of two spheres.
-
     The intersection is composed by two spherical caps and therefore its volume is the
     sum of the volumes of the spherical caps. First, it calculates the heights (h1, h2)
     of the spherical caps, then the two volumes and it returns the sum.
@@ -49,7 +45,6 @@ def vol_spheres_intersect(
        / (2 * centers_distance)
     if centers_distance is 0 then it returns the volume of the smallers sphere
     :return vol_spherical_cap(h1, radius_2) + vol_spherical_cap(h2, radius_1)
-
     >>> vol_spheres_intersect(2, 2, 1)
     21.205750411731103
     """
@@ -74,7 +69,6 @@ def vol_cuboid(width: float, height: float, length: float) -> float:
     """
     Calculate the Volume of a Cuboid.
     :return multiple of width, length and height
-
     >>> vol_cuboid(1, 1, 1)
     1.0
     >>> vol_cuboid(1, 2, 3)
@@ -86,10 +80,8 @@ def vol_cuboid(width: float, height: float, length: float) -> float:
 def vol_cone(area_of_base: float, height: float) -> float:
     """
     Calculate the Volume of a Cone.
-
     Wikipedia reference: https://en.wikipedia.org/wiki/Cone
     :return (1/3) * area_of_base * height
-
     >>> vol_cone(10, 3)
     10.0
     >>> vol_cone(1, 1)
@@ -101,10 +93,8 @@ def vol_cone(area_of_base: float, height: float) -> float:
 def vol_right_circ_cone(radius: float, height: float) -> float:
     """
     Calculate the Volume of a Right Circular Cone.
-
     Wikipedia reference: https://en.wikipedia.org/wiki/Cone
     :return (1/3) * pi * radius^2 * height
-
     >>> vol_right_circ_cone(2, 3)
     12.566370614359172
     """
@@ -116,7 +106,6 @@ def vol_prism(area_of_base: float, height: float) -> float:
     Calculate the Volume of a Prism.
     Wikipedia reference: https://en.wikipedia.org/wiki/Prism_(geometry)
     :return V = Bh
-
     >>> vol_prism(10, 2)
     20.0
     >>> vol_prism(11, 1)
@@ -130,7 +119,6 @@ def vol_pyramid(area_of_base: float, height: float) -> float:
     Calculate the Volume of a Pyramid.
     Wikipedia reference: https://en.wikipedia.org/wiki/Pyramid_(geometry)
     :return  (1/3) * Bh
-
     >>> vol_pyramid(10, 3)
     10.0
     >>> vol_pyramid(1.5, 3)
@@ -144,7 +132,6 @@ def vol_sphere(radius: float) -> float:
     Calculate the Volume of a Sphere.
     Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
     :return (4/3) * pi * r^3
-
     >>> vol_sphere(5)
     523.5987755982989
     >>> vol_sphere(1)
@@ -158,10 +145,8 @@ def vol_hemisphere(radius: float):
     Wikipedia reference: https://en.wikipedia.org/wiki/Hemisphere
     Other references: https://www.cuemath.com/geometry/hemisphere
     :return 2/3 * pi * radius^3
-
     >>> vol_hemisphere(1)
     2.0943951023931953
-
     >>> vol_hemisphere(7)
     718.3775201208659
     """
@@ -172,7 +157,6 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
     """Calculate the Volume of a Circular Cylinder.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
     :return pi * radius^2 * height
-
     >>> vol_circular_cylinder(1, 1)
     3.141592653589793
     >>> vol_circular_cylinder(4, 3)
@@ -185,10 +169,8 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float):
     """Calculate the Volume of a Conical Frustum.
     Wikipedia reference: https://en.wikipedia.org/wiki/Frustum
     :return 1/3 * pi * height * (radius_1^2 + radius_top^2 + radius_1 * radius_2)
-
     >>> vol_conical_frustum(45, 7, 28)
     48490.482608158454
-
     >>> vol_conical_frustum(1, 1, 2)
     7.330382858376184
     """
