@@ -160,6 +160,7 @@
     * [Segment Tree](data_structures/binary_tree/segment_tree.py)
     * [Segment Tree Other](data_structures/binary_tree/segment_tree_other.py)
     * [Treap](data_structures/binary_tree/treap.py)
+    * [Validate Binary Search Tree](data_structures/binary_tree/validate_binary_search_tree.py)
     * [Wavelet Tree](data_structures/binary_tree/wavelet_tree.py)
   * Disjoint Set
     * [Alternate Disjoint Set](data_structures/disjoint_set/alternate_disjoint_set.py)
