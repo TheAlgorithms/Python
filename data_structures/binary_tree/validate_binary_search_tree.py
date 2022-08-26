@@ -85,7 +85,30 @@ def is_valid_bst(tree: Node) -> bool:
     return True
 
 
-def main() -> None:  # Main function for testing.
+def main() -> None:
+    """
+    Main function for testing.
+
+    >>> tree = Node(20)
+    >>> tree.left = Node(10)
+    >>> tree.right = Node(30)
+    >>> display(tree)
+    10
+    20
+    30
+    >>> is_valid_bst(tree)
+    True
+
+    >>> tree = Node(10)
+    >>> tree.left = Node(30)
+    >>> tree.right = Node(20)
+    >>> display(tree)
+    30
+    10
+    20
+    >>> is_valid_bst(tree)
+    False
+    """
     tree = Node(2)
     tree.left = Node(1)
     tree.right = Node(3)
