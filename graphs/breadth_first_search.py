@@ -7,8 +7,34 @@ from queue import Queue
 
 
 class Graph:
-    def __init__(self) -> None:
-        self.vertices: dict[int, list[int]] = {}
+    def __init__(self, directed: bool =True) -> None:
+        """
+        To define a non-directed graph, simply
+        set the directed argument to false
+        """
+        _Type = None
+        if directed is False:
+            _Type = Type[dict[int, list[Optional[int]]]]
+        else:
+            _Type = Type[dict[int, list[int]]]
+
+        self.vertices:_Type  = {}
+        self._directed = directed
+
+    def operation_for_nondirected(self, possibly_mono_connected_vertex: int) -> None:
+        """
+
+        :param possibly_mono_connected_vertex: alias of the `to_vertex` in add_edge
+        :return: None
+        makes nondirected graphs consistent with the original setup
+        >>> g = Graph(directed=False)
+        >>> g.add_edge(0, 1)
+        >>> g.print_graph()
+        0  :  1
+        """
+        if self._directed is False:
+            if possibly_mono_connected_vertex not in self.vertices:
+                self.vertices[possibly_mono_connected_vertex] = []
 
     def print_graph(self) -> None:
         """
@@ -20,6 +46,8 @@ class Graph:
         0  :  1
         """
         for i in self.vertices:
+            if not self.vertices[i]:
+                continue
             print(i, " : ", " -> ".join([str(j) for j in self.vertices[i]]))
 
     def add_edge(self, from_vertex: int, to_vertex: int) -> None:
@@ -31,10 +59,10 @@ class Graph:
         >>> g.print_graph()
         0  :  1
         """
-        if from_vertex in self.vertices:
-            self.vertices[from_vertex].append(to_vertex)
-        else:
-            self.vertices[from_vertex] = [to_vertex]
+        from_v = self.vertices[from_vertex] = self.vertices.get(from_vertex, [])
+        from_v.append(to_vertex)
+        # what to do if the graph itself is non-directed
+        self.operation_for_nondirected(to_vertex)
 
     def bfs(self, start_vertex: int) -> set[int]:
         """
