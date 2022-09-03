@@ -4,15 +4,15 @@ This program provides the addition of fibnocci series with recursion, using memo
 
 memo={}
 
-def fib(fibvalue :int,memorise: dict={} ) -> int:
-    if(fibvalue in memorise.keys()):
-        return memorise[fibvalue]
+def fib(fibvalue :int,memoize: dict={} ) -> int:
+    if(fibvalue in memoize.keys()):
+        return memoize[fibvalue]
     if(fibvalue<=1):
         return 1
     
-    memorise[fibvalue] =fib(fibvalue-1)+fib(fibvalue-2)
+    memoize[fibvalue] =fib(fibvalue-1)+fib(fibvalue-2)
 
-    return memorise[fibvalue]
+    return memoize[fibvalue]
 
 #returns integer
 def fibslow(fibvalue :int) -> int:
