@@ -36,6 +36,9 @@
   <a href="https://github.com/psf/black">
     <img src="https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square" height="20" alt="code style: black">
   </a>
+  <a href="https://liberapay.com/TheAlgorithms/donate">
+    <img src="https://liberapay.com/assets/widgets/donate.svg?style=flat-square" height="20" alt="Donate">
+  </a>
 <!-- Short description: -->
   <h3>All algorithms implemented in Python - for education</h3>
 </div>
