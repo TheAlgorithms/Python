@@ -26,9 +26,25 @@ def logarithm(end: float, base: float, err: float = 0.000001) -> float:
     -1.3652123999999999
     >>> logarithm(0.9, 2)
     -0.15200200000000003
+    >>> logarithm(0, 1)
+    ...
+    Traceback (most recent call last):
+    ValueError: logarithm() takes 2 positive values
+    >>> logarithm(-1, 1)
+    ...
+    Traceback (most recent call last):
+    ValueError: logarithm() takes 2 positive values
+    >>> logarithm(1, 0)
+    ...
+    Traceback (most recent call last):
+    ValueError: logarithm() takes 2 positive values
+    >>> logarithm(-1, 0)
+    ...
+    Traceback (most recent call last):
+    ValueError: logarithm() takes 2 positive values
     """
     
-    if base < 0 or end < 0:
+    if base <= 0 or end <= 0:
         raise ValueError('logarithm() takes 2 positive values')
     
     frac = False
@@ -65,7 +81,6 @@ def logarithm(end: float, base: float, err: float = 0.000001) -> float:
                 accuracy /= 10
             else:
                 prev = start
-    return start
 
 
 if __name__ == "__main__":
