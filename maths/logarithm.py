@@ -69,7 +69,7 @@ def logarithm(end: float, base: float, err: float = 0.000001) -> float:
 
 
 if __name__ == "__main__":
-    print(logarithm(2, 9))
+    print(f"{logarithm(2, 9) = }")
     print(logarithm(9, 2))
     print(logarithm(0.2, 0.9))
     print(logarithm(0.9, 0.2))
