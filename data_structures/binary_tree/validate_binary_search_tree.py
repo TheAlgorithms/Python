@@ -11,7 +11,8 @@ class Node:
 
 def display(tree: Node | None) -> str:
     """
-    In Order traversal of the tree
+    Calls inner_display function and
+    appends node values to string `inorder_string`
 
     >>> root = Node(1)
     >>> root.left = Node(0)
@@ -24,6 +25,9 @@ def display(tree: Node | None) -> str:
     inorder_string: str = ""
 
     def inner_display(tree: Node | None) -> str:
+        """
+        Recursive function to get inorder string.
+        """
         nonlocal inorder_string
         if tree:
             inner_display(tree.left)
@@ -37,8 +41,8 @@ def display(tree: Node | None) -> str:
 
 def inorder_traversal(tree: Node | None) -> list:
     """
-    Iterate recursively and insert value of nodes into
-    list `traversed_node_values` inorder fashion
+    Calls inner_inorder_traversal function then inserts node values
+    into list `traversed_node_values` and returns it.
     >>> root = Node(10)
     >>> root.left = Node(0)
     >>> root.right = Node(20)
@@ -49,6 +53,9 @@ def inorder_traversal(tree: Node | None) -> list:
     traversed_node_values: list[int] = []
 
     def inner_inorder_traversal(tree: Node | None) -> None:
+        """
+        Recursive function to get list of values inorder fashion.
+        """
         if tree is None:
             return
         nonlocal traversed_node_values
