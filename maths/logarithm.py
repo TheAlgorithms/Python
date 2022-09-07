@@ -5,7 +5,7 @@ https://en.wikipedia.org/wiki/Logarithm
 
 def logarithm(end: float, base: float, err: float = 0.000001) -> float:
     """
-    Return the logarithm with base base of x
+    Return the logarithm with base [base] of x
     :param end: the number
     :param base: the base of the exponential
     :return:
@@ -28,50 +28,49 @@ def logarithm(end: float, base: float, err: float = 0.000001) -> float:
     -0.15200200000000003
     >>> logarithm(0, 1)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: logarithm() takes 2 positive values
     >>> logarithm(-1, 1)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: logarithm() takes 2 positive values
     >>> logarithm(1, 0)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: logarithm() takes 2 positive values
-    >>> logarithm(-1, 0)
+    >>> logarithm(1, -1)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: logarithm() takes 2 positive values
     """
     
     if base <= 0 or end <= 0:
         raise ValueError('logarithm() takes 2 positive values')
     
-    frac = False
-    
+    fractional = False
     accuracy = 1
     
     if end < 1 and base < 1:
         accuracy = 1
-        frac = True
+        fractional = True
     elif base < 1:
         accuracy = -1
     elif end < 1:
         accuracy = -1
-        frac = True
-    
+        fractional = True
 
     if base == 0:
         return 1
     start = 0
     prev = 0
+    
     while True:
         start = prev + accuracy
         _curr = base ** start
 
         if abs(_curr - end) <= err:
             return start
-        if frac:
+        if fractional:
             if _curr < end:
                 accuracy /= 10
             else:
@@ -84,7 +83,7 @@ def logarithm(end: float, base: float, err: float = 0.000001) -> float:
 
 
 if __name__ == "__main__":
-    print(f"{logarithm(2, 9) = }")
+    print(logarithm(2, 9))
     print(logarithm(9, 2))
     print(logarithm(0.2, 0.9))
     print(logarithm(0.9, 0.2))
