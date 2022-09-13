@@ -23,10 +23,7 @@ def valid_parentheses(input_str: str) -> bool:
                     return False
                 else:
                     continue
-        if len(stack) == 0:
-            return True
-        else:
-            return False
+        return not stack
 
 
 if __name__ == "__main__":
