@@ -6,7 +6,6 @@ Range Maximum Query Problem:
 
     More details:
         https://www.geeksforgeeks.org/range-maximum-query-using-sparse-table/
-
 """
 
 
