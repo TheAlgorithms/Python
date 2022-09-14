@@ -446,7 +446,6 @@
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
-  * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
 
 ## Maths
@@ -984,6 +983,7 @@
   * [Recursive Quick Sort](sorts/recursive_quick_sort.py)
   * [Selection Sort](sorts/selection_sort.py)
   * [Shell Sort](sorts/shell_sort.py)
+  * [Shrink Shell](sorts/shrink_shell.py)
   * [Slowsort](sorts/slowsort.py)
   * [Stooge Sort](sorts/stooge_sort.py)
   * [Strand Sort](sorts/strand_sort.py)
