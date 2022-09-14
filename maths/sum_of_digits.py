@@ -57,7 +57,7 @@ def sum_of_digits_compact(n: int) -> int:
 
 def digital_root(n: int) -> int:
 	"""
-	finding the digital root of n
+	finding the digital root of n 
 	https://en.wikipedia.org/wiki/Digital_root
 
 	>>> digital_root(394328)
