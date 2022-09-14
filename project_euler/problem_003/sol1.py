@@ -16,7 +16,7 @@ import math
 def is_prime(number: int) -> bool:
     """Checks to see if a number is a prime in O(sqrt(n)).
     A number is prime if it has exactly two factors: 1 and itself.
-    Returns boolean representing primality of given number num (i.e., if the
+    Returns boolean representing primality of given number (i.e., if the
     result is true, then the number is indeed prime else it is not).
 
     >>> is_prime(2)
