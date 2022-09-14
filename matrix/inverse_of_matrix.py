@@ -27,7 +27,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     [[0.25, -0.5], [-0.3, 1.0]]
     """
 
-    D = Decimal  # An abbreviation to be conciseness
+    D = Decimal  # An abbreviation for conciseness
     # Calculate the determinant of the matrix
     determinant = D(matrix[0][0]) * D(matrix[1][1]) - D(matrix[1][0]) * D(matrix[0][1])
     if determinant == 0:
