@@ -76,7 +76,6 @@ if __name__ == "__main__":
     # tests for .get approach
     for sentence, expected_result in test_data.items():
         actual: Dict[str, int] = word_occurence_with_get(sentence)
-        expected: Dict[str, int] = expected_result
         assert actual == expected_result
 
 
