@@ -18,7 +18,7 @@ class RangeMaximumQuery:
             array: list[int]
 
         Example:
-            >>> rmq = RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        >>> rmq = RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         """
         self.array = array
         self.size = len(array)
@@ -75,16 +75,16 @@ class RangeMaximumQuery:
             int, the maximum value in the range [left, right)
 
         Example:
-            >>> array = [1, 3, 5, 7, 9, 11]
-            >>> queries = [(0, 1), (1, 4), (0, 5), (2, 3), (0, 6)]
-            >>> rmq = RangeMaximumQuery(array)
-            >>> for l, r in queries:
-            ...     print(rmq.query(l, r))
-            1
-            7
-            9
-            5
-            11
+        >>> array = [1, 3, 5, 7, 9, 11]
+        >>> queries = [(0, 1), (1, 4), (0, 5), (2, 3), (0, 6)]
+        >>> rmq = RangeMaximumQuery(array)
+        >>> for l, r in queries:
+        ...     print(rmq.query(l, r))
+        1
+        7
+        9
+        5
+        11
         """
         p = self.log[right - left]  # Find the logarithm of the size of range
         return max(self.dp[p][left], self.dp[p][right - (1 << p)])
