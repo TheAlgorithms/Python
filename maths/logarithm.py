@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Logarithm
 """
 
 
-def logarithm(end: float, base: float, err: float = 0.000001) -> float:
+def logarithm(end, base, err = 0.000001) -> float:
     """
     Return the logarithm with base [base] of x
     :param end: the number
@@ -42,7 +42,18 @@ def logarithm(end: float, base: float, err: float = 0.000001) -> float:
     Traceback (most recent call last):
         ...
     ValueError: logarithm() takes 2 positive values
+    >>> logarithm("2", "1")
+    Traceback (most recent call last):
+        ...
+    ValueError: logarithm() requires int or float inputs
     """
+
+    try:
+        end = float(end)
+        base = float(base)
+        err = float(err)
+    except ValueError:
+        raise ValueError('logarithm() requires int or float inputs')
     
     if base <= 0 or end <= 0:
         raise ValueError('logarithm() takes 2 positive values')
@@ -69,7 +80,7 @@ def logarithm(end: float, base: float, err: float = 0.000001) -> float:
         _curr = base ** start
 
         if abs(_curr - end) <= err:
-            return start
+            return float(start)
         if fractional:
             if _curr < end:
                 accuracy /= 10
