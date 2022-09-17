@@ -200,6 +200,21 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float):
         * (pow(radius_1, 2) + pow(radius_2, 2) + radius_1 * radius_2)
     )
 
+def vol_torus(major_radius : float , minor_radius)->float:
+	"""Calulate the volume of a Torus.
+	Wikipedia reference: https://en.wikipedia.org/wiki/Torus
+	:return (pi * minor_radius)*(2*pi*major_radius)
+	
+	>>> vol_torus(2,1)
+	39.47841760435743
+	
+	>>> vol_torus(3,1)
+	59.21762640653615
+	
+	>>> vol_torus(1,1)
+	"""
+	if major_radius > minor_radius and major_radius > 0 and minor_radius > 0:
+		return (pi * minor_radius) * (2*pi*major_radius) 
 
 def main():
     """Print the Results of Various Volume Calculations."""
@@ -216,7 +231,10 @@ def main():
     print("Conical Frustum: " + str(vol_conical_frustum(2, 2, 4)))  # ~= 58.6
     print("Spherical cap: " + str(vol_spherical_cap(1, 2)))  # ~= 5.24
     print("Spheres intersetion: " + str(vol_spheres_intersect(2, 2, 1)))  # ~= 21.21
+    print("Torus: " + str(vol_torus(2,1))) # ~= 39.48 
 
 
 if __name__ == "__main__":
     main()
+    import doctest
+    doctest.testmod()
