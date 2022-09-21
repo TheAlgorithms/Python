@@ -7,7 +7,7 @@ def is_contains_unique_chars(input_str: str) -> bool:
     False
 
     Time complexity: O(n)
-    Space compexity: O(1) 19320 bytes as we are having 144697 characters in unicode
+    Space complexity: O(1) 19320 bytes as we are having 144697 characters in unicode
     """
 
     # Each bit will represent each unicode character
