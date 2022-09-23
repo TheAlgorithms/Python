@@ -1,10 +1,10 @@
 """
 @author: MatteoRaso
 """
+from collections.abc import Callable
 from math import pi, sqrt
 from random import uniform
 from statistics import mean
-from typing import Callable
 
 
 def pi_estimator(iterations: int):

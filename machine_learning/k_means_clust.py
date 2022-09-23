@@ -164,9 +164,7 @@ def kmeans(
             num_changed = np.sum(prev_cluster_assignment != cluster_assignment)
             if verbose:
                 print(
-                    "    {:5d} elements changed their cluster assignment.".format(
-                        num_changed
-                    )
+                    f"    {num_changed:5d} elements changed their cluster assignment."
                 )
 
         # Record heterogeneity convergence metric

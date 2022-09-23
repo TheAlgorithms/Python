@@ -62,7 +62,7 @@ class HillCipher:
     # take x and return x % len(key_string)
     modulus = numpy.vectorize(lambda x: x % 36)
 
-    to_int = numpy.vectorize(lambda x: round(x))
+    to_int = numpy.vectorize(round)
 
     def __init__(self, encrypt_key: numpy.ndarray) -> None:
         """

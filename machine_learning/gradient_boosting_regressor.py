@@ -47,9 +47,9 @@ def main():
     y_pred = model.predict(X_test)
 
     # The mean squared error
-    print("Mean squared error: %.2f" % mean_squared_error(y_test, y_pred))
+    print(f"Mean squared error: {mean_squared_error(y_test, y_pred):.2f}")
     # Explained variance score: 1 is perfect prediction
-    print("Test Variance score: %.2f" % r2_score(y_test, y_pred))
+    print(f"Test Variance score: {r2_score(y_test, y_pred):.2f}")
 
     # So let's run the model against the test data
     fig, ax = plt.subplots()
