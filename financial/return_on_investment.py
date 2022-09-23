@@ -23,7 +23,9 @@ Source: https://www.investopedia.com/terms/i/inflation_adjusted_return.asp
 """
 
 
-def nominal_rate_of_return(current_market_value: int, original_investment_value: int):
+def nominal_rate_of_return(
+        current_market_value: int,
+        original_investment_value: int):
     """
     >>> nominal_rate_of_return(108000,100000)
     8.0
@@ -37,11 +39,11 @@ def nominal_rate_of_return(current_market_value: int, original_investment_value:
 
 
 def inflation_adjusted_rate_of_return(
-    ending_price: int,
-    beginning_price: int,
-    dividends: int,
-    ending_cpi_level: int,
-    beginning_cpi_level: int,
+        ending_price: int,
+        beginning_price: int,
+        dividends: int,
+        ending_cpi_level: int,
+        beginning_cpi_level: int,
 ):
     """
     >>> inflation_adjusted_rate_of_return(90000,75000,2500,721,700)
@@ -59,13 +61,15 @@ def inflation_adjusted_rate_of_return(
         raise Exception("Dividend cannot be negative.")
 
     # Step 1: Calculate Stock Return
-    stock_return = (ending_price - beginning_price + dividends) / beginning_price
+    stock_return = (ending_price - beginning_price +
+                    dividends) / beginning_price
 
     # Step 2: Calculate Inflation
     inflation = (ending_cpi_level - beginning_cpi_level) / beginning_cpi_level
 
     # Step 3: Calculate Inflation adjusted return
-    inflation_adjusted_rate_of_return = ((1 + stock_return) / (1 + inflation) - 1) * 100
+    inflation_adjusted_rate_of_return = (
+        (1 + stock_return) / (1 + inflation) - 1) * 100
     return round(inflation_adjusted_rate_of_return, 2)
 
 
