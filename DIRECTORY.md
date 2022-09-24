@@ -152,6 +152,7 @@
     * [Fenwick Tree](data_structures/binary_tree/fenwick_tree.py)
     * [Lazy Segment Tree](data_structures/binary_tree/lazy_segment_tree.py)
     * [Lowest Common Ancestor](data_structures/binary_tree/lowest_common_ancestor.py)
+    * [Maximum Fenwick Tree](data_structures/binary_tree/maximum_fenwick_tree.py)
     * [Merge Two Binary Trees](data_structures/binary_tree/merge_two_binary_trees.py)
     * [Non Recursive Segment Tree](data_structures/binary_tree/non_recursive_segment_tree.py)
     * [Number Of Possible Binary Trees](data_structures/binary_tree/number_of_possible_binary_trees.py)
@@ -229,6 +230,7 @@
     * [Convolve](digital_image_processing/filters/convolve.py)
     * [Gabor Filter](digital_image_processing/filters/gabor_filter.py)
     * [Gaussian Filter](digital_image_processing/filters/gaussian_filter.py)
+    * [Local Binary Pattern](digital_image_processing/filters/local_binary_pattern.py)
     * [Median Filter](digital_image_processing/filters/median_filter.py)
     * [Sobel Filter](digital_image_processing/filters/sobel_filter.py)
   * Histogram Equalization
@@ -444,7 +446,6 @@
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
-  * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
 
 ## Maths
@@ -984,6 +985,7 @@
   * [Recursive Quick Sort](sorts/recursive_quick_sort.py)
   * [Selection Sort](sorts/selection_sort.py)
   * [Shell Sort](sorts/shell_sort.py)
+  * [Shrink Shell](sorts/shrink_shell.py)
   * [Slowsort](sorts/slowsort.py)
   * [Stooge Sort](sorts/stooge_sort.py)
   * [Strand Sort](sorts/strand_sort.py)

@@ -1,6 +1,7 @@
 """
 PyTest's for Digital Image Processing
 """
+import numpy as np
 from cv2 import COLOR_BGR2GRAY, cvtColor, imread
 from numpy import array, uint8
 from PIL import Image
@@ -12,6 +13,7 @@ from digital_image_processing.dithering import burkes as bs
 from digital_image_processing.edge_detection import canny as canny
 from digital_image_processing.filters import convolve as conv
 from digital_image_processing.filters import gaussian_filter as gg
+from digital_image_processing.filters import local_binary_pattern as lbp
 from digital_image_processing.filters import median_filter as med
 from digital_image_processing.filters import sobel_filter as sob
 from digital_image_processing.resize import resize as rs
@@ -91,3 +93,33 @@ def test_nearest_neighbour(
     nn = rs.NearestNeighbour(imread(file_path, 1), 400, 200)
     nn.process()
     assert nn.output.any()
+
+
+def test_local_binary_pattern():
+    file_path: str = "digital_image_processing/image_data/lena.jpg"
+
+    # Reading the image and converting it to grayscale.
+    image = imread(file_path, 0)
+
+    # Test for get_neighbors_pixel function() return not None
+    x_coordinate = 0
+    y_coordinate = 0
+    center = image[x_coordinate][y_coordinate]
+
+    neighbors_pixels = lbp.get_neighbors_pixel(
+        image, x_coordinate, y_coordinate, center
+    )
+
+    assert neighbors_pixels is not None
+
+    # Test for local_binary_pattern function()
+    # Create a numpy array as the same height and width of read image
+    lbp_image = np.zeros((image.shape[0], image.shape[1]))
+
+    # Iterating through the image and calculating the local binary pattern value
+    # for each pixel.
+    for i in range(0, image.shape[0]):
+        for j in range(0, image.shape[1]):
+            lbp_image[i][j] = lbp.local_binary_value(image, i, j)
+
+    assert lbp_image.any()
