@@ -29,7 +29,8 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
     D = Decimal  # An abbreviation for conciseness
 
-    # Check if the provided matrix has 2 rows and 2 columns, since this implementation only works for 2x2 matrices
+    # Check if the provided matrix has 2 rows and 2 columns
+    # since this implementation only works for 2x2 matrices
     if len(matrix) != 2 or len(matrix[0]) != 2 or len(matrix[1]) != 2:
         raise ValueError("Please provide a matrix of size 2x2.")
 

@@ -446,6 +446,7 @@
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
+  * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
 
 ## Maths
@@ -859,6 +860,8 @@
     * [Sol1](project_euler/problem_114/sol1.py)
   * Problem 115
     * [Sol1](project_euler/problem_115/sol1.py)
+  * Problem 116
+    * [Sol1](project_euler/problem_116/sol1.py)
   * Problem 119
     * [Sol1](project_euler/problem_119/sol1.py)
   * Problem 120
@@ -983,7 +986,7 @@
   * [Recursive Quick Sort](sorts/recursive_quick_sort.py)
   * [Selection Sort](sorts/selection_sort.py)
   * [Shell Sort](sorts/shell_sort.py)
-  * [Shrink Shell](sorts/shrink_shell.py)
+  * [Shrink Shell Sort](sorts/shrink_shell_sort.py)
   * [Slowsort](sorts/slowsort.py)
   * [Stooge Sort](sorts/stooge_sort.py)
   * [Strand Sort](sorts/strand_sort.py)
@@ -1005,6 +1008,7 @@
   * [Check Pangram](strings/check_pangram.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)
+  * [Dna](strings/dna.py)
   * [Frequency Finder](strings/frequency_finder.py)
   * [Hamming Distance](strings/hamming_distance.py)
   * [Indian Phone Validator](strings/indian_phone_validator.py)
