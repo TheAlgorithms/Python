@@ -17,9 +17,6 @@ def diagonalDifference(arr):
         b = b-1
     return abs(sum(result))
 
-
-# Can replace with other matrox with same order
-arr = [[11, 2, 4], 
-        [4, 5, 6], 
-        [10, 8, -12]]
-print(diagonalDifference(arr))
+if __name__ == "__main__":
+	arr = [[11, 2, 4],  [4, 5, 6], [10, 8, -12]]
+	print(diagonalDifference(arr))
