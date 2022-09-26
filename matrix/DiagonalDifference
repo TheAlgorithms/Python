@@ -1,0 +1,25 @@
+#!/bin/python3
+#
+# Complete the 'diagonalDifference' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts 2D_INTEGER_ARRAY arr as parameter.
+#
+
+def diagonalDifference(arr):
+    # Write your code here
+    a = 0; b = len(arr)-1;result = []
+    
+    # Processing
+    for i in arr:
+        result.append(i[a] - i[b])
+        a = a+1
+        b = b-1
+    return abs(sum(result))
+
+
+# Can replace with other matrox with same order
+arr = [[11, 2, 4], 
+        [4, 5, 6], 
+        [10, 8, -12]]
+print(diagonalDifference(arr))
