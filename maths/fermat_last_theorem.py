@@ -21,14 +21,21 @@ def test_vals(values: tuple[int, int, int, int]) -> tuple[int, int, int, int] | 
     return False
 
 
-def prove_theorem():
+def test_values_against_theorem(highest_n: int = HIGHEST_N) -> bool:
     """
-    Tries all possible combinations of a, b, c, and n.
+    Tries all possible combinations of a, b, c, and n. Returns 
+
+    >>> test_values_against_theorem(1000)
+    False
+    >>> test_values_against_theorem(4000)
+    False
     """
     tried_values = []
     
-    for _ in range((max_tries := math.comb(HIGHEST_N, 4))):
-        while (values := (random.randint(3, HIGHEST_N) for _ in range(4))) in tried_values:
+    for _ in range((max_tries := math.comb(highest_n, 4))):
+        while (
+            values := (random.randint(3, highest_n) for _ in range(4))
+        ) in tried_values:
             pass
 
         # Run the test
@@ -39,6 +46,7 @@ def prove_theorem():
         print(f"Tried all {max_tries} combinations, and none worked.")
 
 
-if __name__ == '__main__':
-    main()
-    
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
