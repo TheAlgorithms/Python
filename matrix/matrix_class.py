@@ -19,23 +19,19 @@ class Matrix:
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]]
-
     Matrix rows and columns are available as 2D arrays
     >>> print(matrix.rows)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     >>> print(matrix.columns())
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-
     Order is returned as a tuple
     >>> matrix.order
     (3, 3)
-
     Squareness and invertability are represented as bool
     >>> matrix.is_square
     True
     >>> matrix.is_invertable()
     False
-
     Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
     a Matrix or Nonetype
     >>> print(matrix.identity())
@@ -59,11 +55,9 @@ class Matrix:
     Traceback (most recent call last):
         ...
     TypeError: Only matrices with a non-zero determinant have an inverse
-
     Determinant is an int, float, or Nonetype
     >>> matrix.determinant()
     0
-
     Negation, scalar multiplication, addition, subtraction, multiplication and
     exponentiation are available and all return a Matrix
     >>> print(-matrix)
@@ -87,7 +81,6 @@ class Matrix:
     [[468. 576. 684.]
      [1062. 1305. 1548.]
      [1656. 2034. 2412.]]
-
     Matrices can also be modified
     >>> matrix.add_row([10, 11, 12])
     >>> print(matrix)
@@ -107,7 +100,7 @@ class Matrix:
      [414. 513. 612. 640.]]
     """
 
-    def __init__(self, rows: list[list]):
+    def __init__(self, rows: list[list[int]]):
         error = TypeError(
             "Matrices must be formed from a list of zero or more lists containing at "
             "least one and the same number of values, each of which must be of type "
@@ -128,7 +121,7 @@ class Matrix:
             self.rows = []
 
     # MATRIX INFORMATION
-    def columns(self) -> list[list]:
+    def columns(self) -> list[list[int]]:
         return [[row[i] for row in self.rows] for i in range(len(self.rows[0]))]
 
     @property
@@ -160,11 +153,11 @@ class Matrix:
         if self.order == (0, 0):
             return 1
         if self.order == (1, 1):
-            return self.rows[0][0]
+            return int(self.rows[0][0])
         if self.order == (2, 2):
-            return (self.rows[0][0] * self.rows[1][1]) - (
+            return int((self.rows[0][0] * self.rows[1][1]) - (
                 self.rows[0][1] * self.rows[1][0]
-            )
+            ))
         else:
             return sum(
                 self.rows[0][column] * self.cofactors().rows[0][column]
@@ -232,7 +225,7 @@ class Matrix:
         if self.num_rows == 0:
             return "[]"
         if self.num_rows == 1:
-            return "[[" + ". ".join(self.rows[0]) + "]]"
+            return "[[" + ". ".join(str(self.rows[0])) + "]]"
         return (
             "["
             + "\n ".join(
@@ -245,7 +238,7 @@ class Matrix:
         )
 
     # MATRIX MANIPULATION
-    def add_row(self, row: list, position: int | None = None) -> None:
+    def add_row(self, row: list[int], position: int | None = None) -> None:
         type_error = TypeError("Row must be a list containing all ints and/or floats")
         if not isinstance(row, list):
             raise type_error
@@ -261,7 +254,7 @@ class Matrix:
         else:
             self.rows = self.rows[0:position] + [row] + self.rows[position:]
 
-    def add_column(self, column: list, position: int | None = None) -> None:
+    def add_column(self, column: list[int], position: int | None = None) -> None:
         type_error = TypeError(
             "Column must be a list containing all ints and/or floats"
         )
@@ -316,7 +309,7 @@ class Matrix:
 
     def __mul__(self, other: Matrix | int | float) -> Matrix:
         if isinstance(other, (int, float)):
-            return Matrix([[element * other for element in row] for row in self.rows])
+            return Matrix([[int(element * other) for element in row] for row in self.rows])
         elif isinstance(other, Matrix):
             if self.num_columns != other.num_rows:
                 raise ValueError(
@@ -353,7 +346,7 @@ class Matrix:
         return result
 
     @classmethod
-    def dot_product(cls, row: list, column: list) -> int:
+    def dot_product(cls, row: list[int], column: list[int]) -> int:
         return sum(row[i] * column[i] for i in range(len(row)))
 
 
