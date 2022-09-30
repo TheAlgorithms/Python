@@ -22,6 +22,30 @@ def surface_area_cube(side_length: float) -> float:
     return 6 * side_length**2
 
 
+def surface_area_cuboid(length: float, breadth: float, height: float) -> float:
+    """
+    Calculate the Surface Area of a Cuboid.
+
+    >>> surface_area_cuboid(1, 2, 3)
+    22
+    >>> surface_area_cuboid(-1, 2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cuboid() only accepts non-negative values
+    >>> surface_area_cube(1, -2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cuboid() only accepts non-negative values
+    >>> surface_area_cube(1, 2, -3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_cuboid() only accepts non-negative values
+    """
+    if length < 0 or breadth < 0 or height < 0:
+        raise ValueError("surface_area_cuboid() only accepts non-negative values")
+    return 2 * ((length * breadth) + (breadth * height) + (length * height))
+
+
 def surface_area_sphere(radius: float) -> float:
     """
     Calculate the Surface Area of a Sphere.
@@ -91,6 +115,35 @@ def surface_area_cone(radius: float, height: float) -> float:
     if radius < 0 or height < 0:
         raise ValueError("surface_area_cone() only accepts non-negative values")
     return pi * radius * (radius + (height**2 + radius**2) ** 0.5)
+
+
+def surface_area_conical_frustum(radius_1: float, radius_2: float, height: float) -> float:
+    """
+    Calculate the Surface Area of a Conical Frustum.
+
+    >>> surface_area_conical_frustum(1, 2, 3)
+    45.511728065337266
+    >>> surface_area_conical_frustum(4, 5, 6)
+    300.7913575056268
+    >>> surface_area_conical_frustum(-1, 2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_conical_frustum() only accepts non-negative values
+    >>> surface_area_conical_frustum(1, -2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_conical_frustum() only accepts non-negative values
+    >>> surface_area_conical_frustum(1, 2, -3)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_conical_frustum() only accepts non-negative values
+    """
+    if radius_1 < 0 or radius_2 < 0 or height < 0:
+        raise ValueError(
+            "surface_area_conical_frustum() only accepts non-negative values"
+        )
+    slant_height = (height ** 2 + (radius_1 - radius_2) ** 2) ** 0.5
+    return pi * ((slant_height * (radius_1 + radius_2)) + radius_1 ** 2 + radius_2 ** 2)
 
 
 def surface_area_cylinder(radius: float, height: float) -> float:
@@ -376,7 +429,9 @@ if __name__ == "__main__":
     print(f"Circle: {area_circle(20) = }")
     print("\nSurface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20) = }")
+    print(f"Cuboid: {surface_area_cuboid(10, 20, 30) = }")
     print(f"Sphere: {surface_area_sphere(20) = }")
     print(f"Hemisphere: {surface_area_hemisphere(20) = }")
     print(f"Cone: {surface_area_cone(10, 20) = }")
+    print(f"Conical Frustum: {surface_area_conical_frustum(10, 20, 30) = }")
     print(f"Cylinder: {surface_area_cylinder(10, 20) = }")
