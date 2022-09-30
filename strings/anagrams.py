@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def signature(word: str) -> str:
-    """Return a word sorted
+    """Returns a word sorted
     >>> signature("test")
     'estt'
     >>> signature("this is a test")
@@ -18,7 +18,7 @@ def signature(word: str) -> str:
 
 
 def anagram(my_word: str) -> list[str]:
-    """Return every anagram of the given word
+    """Returns every anagram of the given word
     >>> anagram('test')
     ['sett', 'stet', 'test']
     >>> anagram('this is a test')
@@ -26,15 +26,15 @@ def anagram(my_word: str) -> list[str]:
     >>> anagram('final')
     ['final']
     """
-    return word_bysig[signature(my_word)]
+    return word_by_sig[signature(my_word)]
 
 
 data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
 word_list = sorted({word.strip().lower() for word in data.splitlines()})
 
-word_bysig = collections.defaultdict(list)
+word_by_sig = collections.defaultdict(list)
 for word in word_list:
-    word_bysig[signature(word)].append(word)
+    word_by_sig[signature(word)].append(word)
 
 if __name__ == "__main__":
     all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
