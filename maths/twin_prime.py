@@ -49,10 +49,7 @@ def twin_prime(n1: int , n2: int) -> bool:
     >>> twin_prime(6,8)
     False
     '''
-    assert isinstance(n1, int) and isinstance(n2, int) and (n1 >= 0), "both 'numbers' must been an int and positive"
-   if not isinstance(n1, int) and not isinstance(n2, int) and not (n1 >= 0):
-       return TypeError(...)
-
+    assert isinstance(n1, int) and isinstance(n2, int) and (n1 >= 0) and (n2 >=0), "both 'numbers' must been an int and positive"
 
     return (is_prime(n1) and is_prime(n2) and abs(n1 - n2) == 2)
 
