@@ -24,30 +24,31 @@ def sigmoid_function(value: float, deriv: bool = False) -> float:
 # Initial Value
 INITIAL_VALUE = 0.02
 
-# Output
-expected = int(input("What is the expected value? (1-100): "))
 
-expected = expected / 100
+def forward_propagation(expected: int, number_propagations: int) -> float:
+    """Return the value found after the forward propagation training.
 
-# Number of propagations
-n = int(input("How many propagations?: "))
+    >>> res = forward_propagation(32, 10000000)
+    >>> res > 31 and res < 33
+    True
 
-# Random weight
-syn0 = 2 * (ran.randint(1, 34)) - 1
+    >>> res = forward_propagation(32, 1000)
+    >>> res > 31 and res < 33
+    False
+    """
+    expected = expected / 100
 
-for _ in range(n):
+    # Random weight
+    weight = 2 * (ran.randint(1, 100)) - 1
 
-    # Forward propagation
-    layer_1 = sigmoid_function((INITIAL_VALUE * syn0))
+    for _ in range(number_propagations):
+        # Forward propagation
+        layer_1 = sigmoid_function((INITIAL_VALUE * weight))
+        # How much did we miss?
+        layer_1_error = expected - layer_1
+        # Error delta
+        layer_1_delta = layer_1_error * sigmoid_function(layer_1, True)
+        # Update weight
+        weight += INITIAL_VALUE * layer_1_delta
 
-    # How much did we miss?
-    layer_1_error = expected - layer_1
-
-    # Error delta
-    layer_1_delta = layer_1_error * sigmoid_function(layer_1, True)
-
-    # Update weight
-    syn0 += INITIAL_VALUE * layer_1_delta
-
-print("Output after training:")
-print(layer_1 * 100)
+    return layer_1 * 100
