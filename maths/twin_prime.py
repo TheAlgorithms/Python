@@ -11,7 +11,7 @@ import math
 import unittest
 
 #Simple Function to check if a number is prime or not
-def isPrime(n: int) -> bool:
+def is_prime(n: int) -> bool:
 	
 	if n <= 1:
 		return False
@@ -27,59 +27,59 @@ def isPrime(n: int) -> bool:
 	
 	return True
 
-#Function to check if two numbers are twinPrime or Not
-def twinPrime(n1: int , n2: int) -> bool:
+#Function to check if two numbers are twin prime or Not
+def twin_prime(n1: int , n2: int) -> bool:
     '''
-    >>> twinPrime(0,2)
+    >>> twin_prime(0,2)
     False
-    >>> twinPrime(1,3)
+    >>> twin_prime(1,3)
     False
-    >>> twinPrime(3,5)
+    >>> twin_prime(3,5)
     True
-    >>> twinPrime(5,7)
+    >>> twin_prime(5,7)
     True
-    >>> twinPrime(2,7)
+    >>> twin_prime(2,7)
     False
-    >>> twinPrime(8,7)
+    >>> twin_prime(8,7)
     False
-    >>> twinPrime(41,43)
+    >>> twin_prime(41,43)
     True
-    >>> twinPrime(29,31)
+    >>> twin_prime(29,31)
     True
-    >>> twinPrime(6,8)
+    >>> twin_prime(6,8)
     False
     '''
     assert isinstance(n1, int) and isinstance(n2, int) and (n1 >= 0), "both 'numbers' must been an int and positive"
 
-    return (isPrime(n1) and isPrime(n2) and abs(n1 - n2) == 2)
+    return (is_prime(n1) and is_prime(n2) and abs(n1 - n2) == 2)
 
 
 class Test(unittest.TestCase):
-    def test_twin_primes(self):
-        self.assertTrue(twinPrime(3,5))
-        self.assertTrue(twinPrime(5,7))
-        self.assertTrue(twinPrime(11,13))
-        self.assertTrue(twinPrime(17,19))
-        self.assertTrue(twinPrime(29,31))
-        self.assertTrue(twinPrime(41,43))
-        self.assertTrue(twinPrime(59,61))
+    def test_twin_primes(self) -> None:
+        self.assertTrue(twin_prime(3,5))
+        self.assertTrue(twin_prime(5,7))
+        self.assertTrue(twin_prime(11,13))
+        self.assertTrue(twin_prime(17,19))
+        self.assertTrue(twin_prime(29,31))
+        self.assertTrue(twin_prime(41,43))
+        self.assertTrue(twin_prime(59,61))
 
-    def test_not_twin_primes(self):
+    def test_not_twin_primes(self) -> None:
         with self.assertRaises(AssertionError):
-            twinPrime(-19,-17)
+            twin_prime(-19,-17)
         self.assertFalse(
-            twinPrime(0,2),
+            twin_prime(0,2),
             "Zero doesn't have any positive factors, primes must have exactly two.",
         )
         self.assertFalse(
-            twinPrime(1,3),
+            twin_prime(1,3),
             "One only has 1 positive factor, primes must have exactly two.",
         )
-        self.assertFalse(twinPrime(2,4))
-        self.assertFalse(twinPrime(6,8))
-        self.assertFalse(twinPrime(4,8))
-        self.assertFalse(twinPrime(12,30))
-        self.assertFalse(twinPrime(16,24))
+        self.assertFalse(twin_prime(2,4))
+        self.assertFalse(twin_prime(6,8))
+        self.assertFalse(twin_prime(4,8))
+        self.assertFalse(twin_prime(12,30))
+        self.assertFalse(twin_prime(16,24))
 
 #driver code
 if __name__ == "__main__":
