@@ -52,3 +52,8 @@ def forward_propagation(expected: int, number_propagations: int) -> float:
         weight += INITIAL_VALUE * layer_1_delta
 
     return layer_1 * 100
+
+if __name__ == "__main__":
+    expected = int(input("Expected value: "))
+    number_propagations = int(input("Number of propagations: "))
+    print(forward_propagation(expected, number_propagations))
