@@ -34,4 +34,4 @@ class matrix:  # Public class to implement a graph
                 if visited[i][j] is False and self.graph[i][j] == 1:
                     self.diffs(i, j, visited)
                     count += 1
-        return int(count)
+        return count
