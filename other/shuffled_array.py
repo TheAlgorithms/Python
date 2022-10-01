@@ -7,7 +7,10 @@ To Understand more of random number generation follow https://en.wikipedia.org/w
 import random
 import time
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c81a8c97d8f3e56ee32d1018559b42c875628511
 class Solution:
     """
     >>> Solution().__init__(array=[1,2,3])
