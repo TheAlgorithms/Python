@@ -50,7 +50,7 @@ def fizz_buzz(
         raise ValueError("buzz_number must be defined as an integer")
     if not iterations >= 1:
         raise ValueError("iterations must be done more than 0 times to play FizzBuzz")
-    if not type(number) == int or not number >= 1:
+    if not isisinstance(number, int) or not number >= 1: 
         raise ValueError("starting number must be and integer and be more than 0")
 
     while number <= iterations:
