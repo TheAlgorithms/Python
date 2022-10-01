@@ -3,7 +3,7 @@
 
 def fizz_buzz(
     number: int, out: str, iterations: int, fizz_number: int, buzz_number: int
-) -> None:
+) -> str:
     """
     Plays FizzBuzz.
     Prints Fizz if number is a multiple of 3.
@@ -61,7 +61,7 @@ def fizz_buzz(
         if out == "":
             out = str(number)
 
-        print(out)
+        return out
         number += 1
         out = ""
 
