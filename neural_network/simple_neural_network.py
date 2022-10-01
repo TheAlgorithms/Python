@@ -3,8 +3,8 @@ Forward propagation explanation:
 https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250
 """
 
-import random as ran
 import math
+import random
 
 
 # Sigmoid
@@ -36,22 +36,22 @@ def forward_propagation(expected: int, number_propagations: int) -> float:
     >>> res > 31 and res < 33
     False
     """
-    expected = expected / 100
 
     # Random weight
-    weight = 2 * (ran.randint(1, 100)) - 1
+    weight = float(2 * (random.randint(1, 100)) - 1)
 
     for _ in range(number_propagations):
         # Forward propagation
-        layer_1 = sigmoid_function((INITIAL_VALUE * weight))
+        layer_1 = sigmoid_function(INITIAL_VALUE * weight)
         # How much did we miss?
-        layer_1_error = expected - layer_1
+        layer_1_error = (expected / 100) - layer_1
         # Error delta
         layer_1_delta = layer_1_error * sigmoid_function(layer_1, True)
         # Update weight
         weight += INITIAL_VALUE * layer_1_delta
 
     return layer_1 * 100
+
 
 if __name__ == "__main__":
     expected = int(input("Expected value: "))
