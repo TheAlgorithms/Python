@@ -6,12 +6,12 @@ To Understand more of random number generation follow https://en.wikipedia.org/w
 
 import random
 import time
-class solution:
+class Solution:
     def __init__(self,array:list)->list :
         self.arr = array    
         self.seed = int(str(time.time())[-1:-5:-1])                  #generating a 4 digit number randomly using decimals of current time
 
-    def prng(self,i:int)->int:                           #pseudo random number generator
+    def prng(self,num:int)->int:                           #pseudo random number generator
         self.seed*=self.seed
         any = str(self.seed)
         if any != '0' :
@@ -19,13 +19,14 @@ class solution:
         else:
             self.seed = int(str(time.time())[-1:-5:-1])
             any = str(self.seed)
-        if int(any[4])<i :
+        if int(any[4])<num:
             return int(any[4])
-        return self.prng(i)
+        return self.prng(num)
 
-    def reset(self):
+    def reset(self)-> None:
         print(self.arr)
 
+    
     def shuffle(self)->list:
         
         temp = self.arr.copy()
@@ -34,8 +35,8 @@ class solution:
             temp[a],temp[i] = temp[i],temp[a]
         return temp
 
-solclass = solution([18,2,3,4,5,7,8,10,21])
-shuffled_Arr = solclass.shuffle()
-print(shuffled_Arr)
+solclass = Solution([18,2,3,4,5,7,8,10,21])
+shuffled_arr = solclass.shuffle()
+print(shuffled_arr)
 solclass.reset()
 
