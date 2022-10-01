@@ -17,7 +17,7 @@
 
 
 def is_parenthesis(c):
-    return (c == "(") or (c == ")")
+    return c in ["(", ")"]
 
 
 """
