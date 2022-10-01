@@ -12,20 +12,20 @@
 """
 
 """
-    'isParenthesis' Method checks if character is parenthesis(open or closed)
+    'is_parenthesis' Method checks if character is parenthesis(open or closed)
 """
 
 
-def isParenthesis(c):
+def is_parenthesis(c):
     return (c == "(") or (c == ")")
 
 
 """
-    'isValidString' method returns true if contains valid parenthesis
+    'is_valid_string' method returns true if contains valid parenthesis
 """
 
 
-def isValidString(str):
+def is_valid_string(str):
     cnt = 0
     for i in range(len(str)):
         if str[i] == "(":
@@ -38,11 +38,11 @@ def isValidString(str):
 
 
 """
-    'removeInvalidParenthesis method to remove invalid parenthesis
+    'remove_invalid_parenthesis method to remove invalid parenthesis
 """
 
 
-def removeInvalidParenthesis(str):
+def remove_invalid_parenthesis(str):
     if len(str) == 0:
         return
 
