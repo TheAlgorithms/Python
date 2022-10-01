@@ -62,6 +62,7 @@ def fizz_buzz(
             out = str(number)
 
         return out
+        # print(out)
         number += 1
         out = ""
 
