@@ -3,6 +3,7 @@ Functions for 2D matrix operations
 """
 
 from __future__ import annotations
+
 from typing import Any
 
 
@@ -90,7 +91,9 @@ def identity(n: int) -> list[list[int]]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(matrix: list[list[int]], return_map: bool = True) -> list[list[int]] | map[list[int]]:
+def transpose(
+    matrix: list[list[int]], return_map: bool = True
+) -> list[list[int]] | map[list[int]]:
     """
     >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
