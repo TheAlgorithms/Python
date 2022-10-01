@@ -1,3 +1,5 @@
+# Time Complexity Of Quick Sort: O(n^2)
+
 """
 A pure Python implementation of the quick sort algorithm
 
