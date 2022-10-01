@@ -42,7 +42,7 @@ def fizz_buzz(
 
     """
 
-    if not type(iterations) == int:
+    if not isisinstance(iterations, int):
         raise ValueError("iterations must be defined as integers")
     if not type(fizz_number) == int:
         raise ValueError("fizz_number must be defined as an integer")
