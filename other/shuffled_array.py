@@ -7,11 +7,11 @@ To Understand more of random number generation follow https://en.wikipedia.org/w
 import random
 import time
 class solution:
-    def __init__(self,array) :
+    def __init__(self,array:list)->list :
         self.arr = array    
         self.seed = int(str(time.time())[-1:-5:-1])                  #generating a 4 digit number randomly using decimals of current time
 
-    def prng(self,i):                           #pseudo random number generator
+    def prng(self,i:int)->int:                           #pseudo random number generator
         self.seed*=self.seed
         any = str(self.seed)
         if any != '0' :
@@ -26,7 +26,7 @@ class solution:
     def reset(self):
         print(self.arr)
 
-    def shuffle(self):
+    def shuffle(self)->list:
         
         temp = self.arr.copy()
         for i in range(1,len(self.arr)):
@@ -34,7 +34,7 @@ class solution:
             temp[a],temp[i] = temp[i],temp[a]
         return temp
 
-solclass = solution([1,2,3,4,5,7,8,10,21])
+solclass = solution([18,2,3,4,5,7,8,10,21])
 shuffled_Arr = solclass.shuffle()
 print(shuffled_Arr)
 solclass.reset()
