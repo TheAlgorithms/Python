@@ -29,9 +29,15 @@ def fizz_buzz(number: int, out: str, iterations: int) -> str:
     if not type(iterations) == int:
         raise ValueError("iterations must be defined as integers")
     if not iterations >= 1:
-        raise ValueError("iterations must be done more than 0 times to play FizzBuzz")
+        raise ValueError(
+            """iterations must be done more
+                         than 0 times to play FizzBuzz"""
+        )
     if not type(number) == int or not number >= 1:
-        raise ValueError("starting number must be and integer and be more than 0")
+        raise ValueError(
+            """starting number must be
+                         and integer and be more than 0"""
+        )
 
     while number <= iterations:
         if number % 3 == 0:
@@ -45,7 +51,9 @@ def fizz_buzz(number: int, out: str, iterations: int) -> str:
         number += 1
         out += " "
     return out
-if __name__ == "__main__":
-  import doctest
 
-  doctest.testmod()
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
