@@ -8,7 +8,7 @@ h(n) is the heuristic estimate or the cost or a path
 from node n to a goal.A* algorithm introduces a heuristic into a
 regular graph-searching algorithm,
 essentially planning ahead at each step so a more optimal decision
-is made.A* also known as the algorithm with brains
+is made. A* also known as the algorithm with brains.
 """
 import numpy as np
 
@@ -17,12 +17,12 @@ class Cell:
     """
     Class cell represents a cell in the world which have the property
     position : The position of the represented by  tupleof x and y
-    coordinates initially set to (0,0)
+    coordinates initially set to (0,0).
     parent : This contains the parent cell object which we visited
-    before arrinving this cell
+    before arrinving this cell.
     g,h,f : The parameters for constructing the heuristic function
-    which can be any function. for simplicity used line
-    distance
+    which can be any function.
+    For simplicity used line distance.
     """
 
     def __init__(self):
@@ -34,8 +34,8 @@ class Cell:
         self.f = 0
 
     """
-    overrides equals method because otherwise cell assign will give
-    wrong results
+    Overrides equals method because otherwise cell assign will give
+    wrong results.
     """
 
     def __eq__(self, cell):
@@ -48,8 +48,8 @@ class Cell:
 class Gridworld:
     """
     Gridworld class represents the  external world here a grid M*M
-    matrix
-    world_size: create a numpy array with the given world_size default is 5
+    matrix.
+    world_size: create a numpy array with the given world_size default is 5.
     """
 
     def __init__(self, world_size=(5, 5)):
@@ -90,10 +90,10 @@ class Gridworld:
 
 def astar(world, start, goal):
     """
-    Implementation of a start algorithm
-    world : Object of the world object
-    start : Object of the cell as  start position
-    stop  : Object of the cell as goal position
+    Implementation of a start algorithm.
+    world : Object of the world object.
+    start : Object of the cell as  start position.
+    stop  : Object of the cell as goal position.
 
     >>> p = Gridworld()
     >>> start = Cell()
@@ -137,14 +137,14 @@ def astar(world, start, goal):
 
 if __name__ == "__main__":
     world = Gridworld()
-    #   stat position and Goal
+    #   Stat position and goal.
     start = Cell()
     start.position = (0, 0)
     goal = Cell()
     goal.position = (4, 4)
     print(f"path from {start.position} to {goal.position}")
     s = astar(world, start, goal)
-    #   Just for visual reasons
+    #   Just for visual reasons.
     for i in s:
         world.w[i] = 1
     print(world.w)
