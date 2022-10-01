@@ -1,22 +1,23 @@
-# If the desired change is 15, the minimum number of coins required is 3
+'''
+If the desired change is 15, the minimum number of coins required is 3
 
-# (7 + 7 + 1) or (5 + 5 + 5) or (3 + 5 + 7)
+(7 + 7 + 1) or (5 + 5 + 5) or (3 + 5 + 7)
 
-# If the desired change is 18, the minimum number of coins required is 4
+If the desired change is 18, the minimum number of coins required is 4
 
-# (7 + 7 + 3 + 1) or (5 + 5 + 5 + 3) or (7 + 5 + 5 + 1)
+(7 + 7 + 3 + 1) or (5 + 5 + 5 + 3) or (7 + 5 + 5 + 1)
 
+'''
 
 import sys
 
 
 # Function to find the minimum number of coins required
 # to get a total of `target` from set `S`
-def Find_minimum_coins(S, target) -> int:
-    
+def find_minimum_coins(S, target) -> int:
     '''
     S = { 1, 3, 5, 7 }
-    target = 18
+    target = 15
     '''
 
     # if the total is 0, no coins are needed
@@ -25,10 +26,10 @@ def Find_minimum_coins(S, target) -> int:
 
     # return infinity if total becomes negative
     if target < 0:
-        return sys.maxsize
+        return sys.maximum_size
 
     # initialize the minimum number of coins needed to infinity
-    coins = sys.maxsize
+    coins = sys.maximum_size
 
     # do for each coin
     for c in S:
@@ -38,7 +39,7 @@ def Find_minimum_coins(S, target) -> int:
 
         # update the minimum number of coins needed if choosing the current
         # coin resulted in a solution
-        if result != sys.maxsize:
+        if result != sys.maximum_size:
             coins = min(coins, result + 1)
 
     # return the minimum number of coins needed
@@ -49,11 +50,10 @@ if __name__ == '__main__':
 
     # coins of given denominations
     S = [1, 3, 5, 7]
-
     # total change required
     target = 18
 
     coins = Find_minimum_coins(S, target)
-    if coins != sys.maxsize:
+    if coins != sys.maximum_size:
         print('The minimum number of coins required to get the desired change is',
               coins)
