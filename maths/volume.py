@@ -260,11 +260,11 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
     >>> vol_circular_cylinder(-1, 1)
     Traceback (most recent call last):
         ...
-    ValueError: vol_circular_cylinder only accepts non-negative values
+    ValueError: vol_circular_cylinder() only accepts non-negative values
     >>> vol_circular_cylinder(1, -1)
     Traceback (most recent call last):
         ...
-    ValueError: vol_circular_cylinder only accepts non-negative values
+    ValueError: vol_circular_cylinder() only accepts non-negative values
     """
     if height < 0 or radius < 0:
         raise ValueError("vol_circular_cylinder() only accepts non-negative values")
