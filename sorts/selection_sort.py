@@ -1,3 +1,5 @@
+# Time Complexity Of Selection Sort: O(n^2)
+
 """
 This is a pure Python implementation of the selection sort algorithm
 
