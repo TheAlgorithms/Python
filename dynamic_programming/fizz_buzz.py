@@ -8,6 +8,7 @@ while number <= iterations:
       out += "Fizz"
   if number % 5 == 0:
       out += "Buzz"
-  if out == "": out = number
+  if out == "":
+      out = number
   print(out)
   number += 1
