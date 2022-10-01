@@ -31,7 +31,7 @@ def binary_and(a: int, b: int) -> str:
     Traceback (most recent call last):
         ...
     TypeError: '<' not supported between instances of 'str' and 'int'
-    """
+    """ 
     if a < 0 or b < 0:
         raise ValueError("the value of both inputs must be positive")
 
