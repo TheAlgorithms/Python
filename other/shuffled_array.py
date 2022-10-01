@@ -6,6 +6,7 @@ To Understand more of random number generation follow https://en.wikipedia.org/w
 
 import random
 import time
+
 class Solution:
     def __init__(self,array:list)->None :
         """
