@@ -1,3 +1,5 @@
+# Merge Sort Time Complexity: O(nlogn)
+
 """
 This is a pure Python implementation of the merge sort algorithm
 For doctests run following command:
