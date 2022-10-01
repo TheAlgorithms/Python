@@ -54,6 +54,16 @@ def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
     >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, -6)
     -1
     """
+    """
+    EXPLANATION FOR RECURSIVE APPROACH:
+    We iterate through the array from the end by decrementing the size variable and recursively calling the function searchElement(). 
+    If the size variable becomes less than zero it means the element is not present in the array and we return "-1." 
+    If a match is found, we return the size variable which is the index of the found element.
+    
+    NOTE:For duplicate element index of last matched element will be returned due to recursion.
+    Time complexity :O(N)
+    Space complexity:O(1)
+    """
     if not (0 <= high < len(sequence) and 0 <= low < len(sequence)):
         raise Exception("Invalid upper or lower bound!")
     if high < low:
@@ -62,7 +72,7 @@ def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
         return low
     if sequence[high] == target:
         return high
-    return rec_linear_search(sequence, low + 1, high - 1, target)
+    return rec_linear_search(sequence, low + 1, high - 1, target)                              
 
 
 if __name__ == "__main__":
