@@ -51,6 +51,3 @@ print(f'Win: {win}\nLose: {lose}')
 print('\n\033[01;31mWithout change:\033[m ')
 print(f'Win: {victory}\nLose: {defeat}')
 
-
-
-
