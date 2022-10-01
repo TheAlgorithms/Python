@@ -1,3 +1,5 @@
+# Insertion Sort Time Complexity: O(n^2)
+
 """
 A pure Python implementation of the insertion sort algorithm
 
