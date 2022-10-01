@@ -1,9 +1,10 @@
 import serial
+import time
 import argparse
-"""
-Send SMS with command control port
-"""
 
+"""
+Send SMS Command Control Port
+"""
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--port', default="/dev/ttyUSB0", help="Command Control Port. Windows: COM | Linux: /dev/ttyUSB0")
@@ -24,9 +25,9 @@ def send_sms(port, baudrate, recipient, message):
         time.sleep(0.5)
         phone.write(bytes([26]))
         time.sleep(0.5)
-        print("Message Sent")
+        return "Message Sent"
     except:
-        print("Failed sending message")
+        return "Failed sending message"
     finally:
         phone.close()
 
