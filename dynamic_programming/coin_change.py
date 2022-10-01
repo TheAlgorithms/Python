@@ -12,7 +12,12 @@ import sys
 
 # Function to find the minimum number of coins required
 # to get a total of `target` from set `S`
-def Find_minimum_coins(S, target):
+def Find_minimum_coins(S, target) -> int:
+    
+    '''
+    S = { 1, 3, 5, 7 }
+    target = 18
+    '''
 
     # if the total is 0, no coins are needed
     if target == 0:
