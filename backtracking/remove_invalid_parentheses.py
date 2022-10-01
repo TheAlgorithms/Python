@@ -6,6 +6,8 @@
     input string valid. If multiple valid outputs are possible,
     remove the same number of brackets to print all of them.
 
+    GeeksforGeeks: https://www.geeksforgeeks.org/remove-invalid-parentheses/
+
     Below is the Python3 implementation of the above problem.
 """
 
