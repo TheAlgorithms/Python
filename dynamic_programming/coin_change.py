@@ -14,7 +14,7 @@ import sys
 
 # Function to find the minimum number of coins required
 # to get a total of `target` from set `S`
-def find_minimum_coins(Segment, target) -> int:
+def find_minimum_coins(input_coin, target) -> int:
     '''
     >>> find_minimum_coins([1, 2, 3], 4)
     2
@@ -38,10 +38,10 @@ def find_minimum_coins(Segment, target) -> int:
     coins = sys.maxsize
 
     # do for each coin
-    for c in Segment:
+    for c in input_coin:
 
         # recur to see if total can be reached by including current coin `c`
-        result = find_minimum_coins(Segment, target - c)
+        result = find_minimum_coins(input_coin, target - c)
 
         # update the minimum number of coins needed if choosing the current
         # coin resulted in a solution
