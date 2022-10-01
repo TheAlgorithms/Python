@@ -18,11 +18,13 @@ def fizz_buzz(number: int, out: str, iterations: int) -> str:
     >>> fizz_buzz(1,"",0)
     Traceback (most recent call last):
       ...
-    ValueError: iterations must be done more than 0 times to play FizzBuzz
+    ValueError: iterations must be done more
+                             than 0 times to play FizzBuzz
     >>> fizz_buzz('a',"",5)
     Traceback (most recent call last):
       ...
-    ValueError: starting number must be and integer and be more than 0
+    ValueError: starting number must be
+                             and integer and be more than 0
 
     """
 
