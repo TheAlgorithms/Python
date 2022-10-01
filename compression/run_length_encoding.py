@@ -1,3 +1,6 @@
+# https://en.wikipedia.org/wiki/Run-length_encoding
+
+
 def run_length_encode(input: str) -> list:
     """
     Performs Run Length Encoding
