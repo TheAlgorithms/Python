@@ -96,15 +96,15 @@ economics.head()
 
 from sklearn.model_selection import train_test_split
  
-X = economics.drop(["unemploy"],axis =1)
+x = economics.drop(["unemploy"],axis =1)
 y = economics["unemploy"]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.1, random_state = 123)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.1, random_state = 123)
 
 """Melakukan proses pengecekan dengan tujuan memastikan jumlah data yang terbagi."""
 
-print(f'Total # of sample in whole dataset: {len(X)}')
-print(f'Total # of sample in train dataset: {len(X_train)}')
-print(f'Total # of sample in test dataset: {len(X_test)}')
+print(f'Total # of sample in whole dataset: {len(x)}')
+print(f'Total # of sample in train dataset: {len(x_train)}')
+print(f'Total # of sample in test dataset: {len(x_test)}')
 
 """Standarisasi perlu dilakukan agar menghindari kebocoran data selama proses training (pelatihan). Standarisasi dapat dilakukan dengan mudah dengan mengimpor fungsi StandardScaler. Lakukan terlebih dahulu untuk training data."""
 
@@ -112,13 +112,13 @@ from sklearn.preprocessing import StandardScaler
  
 numerical_features = ['uempmed', 'pop']
 scaler = StandardScaler()
-scaler.fit(X_train[numerical_features])
-X_train[numerical_features] = scaler.transform(X_train.loc[:, numerical_features])
-X_train[numerical_features].head()
+scaler.fit(x_train[numerical_features])
+x_train[numerical_features] = scaler.transform(x_train.loc[:, numerical_features])
+x_train[numerical_features].head()
 
 """Melakukan pengecekan untuk memastikan standarisasi dilakukan dengan tepat."""
 
-X_train[numerical_features].describe().round(4)
+x_train[numerical_features].describe().round(4)
 
 """Mempersiapkan dataframe baru untuk proses pelatihan model-model yang akan digunakan, terdiri dari 'K-Nearest Neighborhood, Random Forest, Boosting Algorithm (Seperti yang dijelaskan dalam dokumen)"""
 
@@ -142,21 +142,21 @@ from sklearn.ensemble import RandomForestRegressor
  
 # buat model prediksi
 RF = RandomForestRegressor(n_estimators=50, max_depth=16, random_state=55, n_jobs=-1)
-RF.fit(X_train, y_train)
+RF.fit(x_train, y_train)
  
-models.loc['train_mse','RandomForest'] = mean_squared_error(y_pred=RF.predict(X_train), y_true=y_train)
+models.loc['train_mse','RandomForest'] = mean_squared_error(y_pred=RF.predict(x_train), y_true=y_train)
 
 """Kemudian algoritma selanjutnya yang akan digunakan adalah algoritma boosting. Dalam prosesnya, Anda melakukan impor dengan bantuan sklearn library dengan method ensemble dengan membuat instantiate menggunakan fungi AdaBoostRegressor Anda dapat mengubah hyperparameter sesuai dengan yang Anda inginkan. Hyperprameter tersebut terdiri dari learning_rate serta random_state. """
 
 from sklearn.ensemble import AdaBoostRegressor
  
 boosting = AdaBoostRegressor(learning_rate=0.05, random_state=55)                             
-boosting.fit(X_train, y_train)
+boosting.fit(x_train, y_train)
 models.loc['train_mse','Boosting'] = mean_squared_error(y_pred=boosting.predict(X_train), y_true=y_train)
 
 """Melakukan scaling terhadap fitur numerik pada X_test sehingga memiliki rata-rata=0 dan standar deviasi=1"""
 
-X_test.loc[:, numerical_features] = scaler.transform(X_test[numerical_features])
+x_test.loc[:, numerical_features] = scaler.transform(x_test[numerical_features])
 
 """Kemudian evaluasi model dilakukan dengan menggunakan algoritma mean squared error dengan membuat dataframe baru ditambahkan dengan kolom test dan train serta dictionary untuk setiap algoritma yang digunakan. Kemudian di akhir menghitung mse menggunakan for loop untuk train dan test data. Setelah itu, lakukan pemanggilan variabel mse."""
 
@@ -181,7 +181,7 @@ ax.grid(zorder=0)
 
 """Lakukan perhitungan prediksi model untuk mengetahui tingkat akurasi dari prediksi yang dilakukan oleh model dengan hasil aktual."""
 
-prediksi = X_test.iloc[:1].copy()
+prediksi = x_test.iloc[:1].copy()
 pred_dict = {'y_true':y_test[:1]}
 for name, model in model_dict.items():
     pred_dict['prediksi_'+name] = model.predict(prediksi).round(1)
