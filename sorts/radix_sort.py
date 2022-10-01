@@ -1,11 +1,7 @@
 """
-This is a pure Python implementation of the quick sort algorithm
-For doctests run following command:
-python -m doctest -v radix_sort.py
-or
-python3 -m doctest -v radix_sort.py
-For manual testing run:
-python radix_sort.py
+This is a pure Python implementation of the radix sort algorithm
+
+Source: https://en.wikipedia.org/wiki/Radix_sort
 """
 from __future__ import annotations
 
