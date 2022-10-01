@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     # Step 1 - Convolution
     classifier.add(
-        layers.Conv2D(32, (3, 3), input_shape=(64, 64, 3), activation="relu")
+        layers.Conv2D(16, (3, 3), input_shape=(64, 64, 3), activation="relu")
     )
 
     # Step 2 - Pooling
@@ -42,12 +42,23 @@ if __name__ == "__main__":
 
     # Adding a second convolutional layer
     classifier.add(layers.Conv2D(32, (3, 3), activation="relu"))
+    classifier.add(layers.Conv2D(64, (3, 3), activation="relu"))
+    classifier.add(layers.Conv2D(64, (3, 3), activation="relu"))
+    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
+
+    # Adding a dropout layer 
+    classifier.add(layers.Dropout(0.2))
+    
+    #Adding a third convolutional layer
+    classifier.add(layers.Conv2D(128, (3, 3), activation="relu"))
+    classifier.add(layers.Conv2D(128, (3, 3), activation="relu"))
     classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
 
     # Step 3 - Flattening
     classifier.add(layers.Flatten())
 
     # Step 4 - Full connection
+    classifier.add(layers.Dense(units=128, activation="relu"))
     classifier.add(layers.Dense(units=128, activation="relu"))
     classifier.add(layers.Dense(units=1, activation="sigmoid"))
 
@@ -64,7 +75,8 @@ if __name__ == "__main__":
     # regressor=load_model('cnn.h5')
 
     train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
-        rescale=1.0 / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True
+        rescale=1.0 / 255, shear_range=0.2, zoom_range=0.2, width_shift_range=0.05,
+        height_shift_range=0.05, horizontal_flip=True
     )
 
     test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1.0 / 255)
