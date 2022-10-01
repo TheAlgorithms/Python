@@ -57,6 +57,7 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     expected = int(input("Expected value: "))
     number_propagations = int(input("Number of propagations: "))
     print(forward_propagation(expected, number_propagations))
