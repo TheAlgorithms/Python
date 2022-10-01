@@ -92,7 +92,16 @@ def sum_of_divisors(n: int) -> int:
         if temp > 1:
             s *= (i**temp - 1) / (i - 1)
     return int(s)
-
+def primeornot(n: int)-> int:
+    if n > 1:
+        for i in range(2,n):
+            if (n % i) == 0:
+                print(n,"is not a prime number")
+                return 0
+                
+            else:
+                print(num,"is a prime number")
+                return 1
 
 def euler_phi(n: int) -> int:
     """Calculate Euler's Phi Function.
