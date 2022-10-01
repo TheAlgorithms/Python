@@ -1,3 +1,5 @@
+# Time Complexity Of Bubble Sort: O(n^2)
+
 def bubble_sort(collection):
     """Pure implementation of bubble sort algorithm in Python
 
