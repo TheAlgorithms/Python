@@ -3,7 +3,7 @@ number = 1
 out = ""
 iterations = 100
 
-while number <= int(iterations):
+while number <= iterations:
   if number % 3 == 0: out += "Fizz"
   if number % 5 == 0: out +="Buzz"
   if out == "": out = number
