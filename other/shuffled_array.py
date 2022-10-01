@@ -53,11 +53,11 @@ class Solution:
             temp[a],temp[i] = temp[i],temp[a]
         return temp
 
-# solclass = Solution([18,2,3,4,5,7,8,10,21])
-# shuffled_arr = solclass.shuffle()
-# print(shuffled_arr)
-# solclass.reset()
-import doctest
-doctest.testmod()
+solclass = Solution([18,2,3,4,5,7,8,10,21])
+shuffled_arr = solclass.shuffle()
+print(shuffled_arr)
+solclass.reset()
+# import doctest
+# doctest.testmod()
 
 
