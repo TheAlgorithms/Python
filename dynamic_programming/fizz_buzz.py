@@ -10,5 +10,6 @@ while number <= iterations:
       out += "Buzz"
   if out == "":
       out = number
-  print(out)
-  number += 1
+if __name__ == "__main__":
+      print(out)
+      number += 1
