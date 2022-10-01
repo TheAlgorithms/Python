@@ -28,7 +28,7 @@ driver.get("https://web.whatsapp.com")
 input("Press enter when whatsapp has loaded ")
 
 
-def send_message(text):
+def send_message(text) -> None:
     print(f"Opening chat for {NAME}")
     user = driver.find_element(by=By.XPATH, value=f'//span[@title="{NAME}"]')
     user.click()
@@ -54,7 +54,7 @@ def send_message(text):
 xp = './/span[@class="ggj6brxn gfz4du6o r7fjleex g0rxnol2 lhj4utae"]'
 
 
-def has_unread():
+def has_unread() -> bool:
     all_chats = driver.find_elements(by=By.XPATH, value='//div[@class="_3OvU8"]')
     for chat in all_chats:
         try:
@@ -78,9 +78,10 @@ def has_unread():
             )
             # print(our_target.get_attribute("title"))
             continue
+    return False
 
 
-def get_last_message():
+def get_last_message() -> str:
     print(f"Opening chat for {NAME}")
     user = driver.find_element(by=By.XPATH, value=f'//span[@title="{NAME}"]')
     user.click()
