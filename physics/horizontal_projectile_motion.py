@@ -15,7 +15,7 @@ For more info: https://en.wikipedia.org/wiki/Projectile_motion
 
 # Importing packages
 from math import radians as angle_to_radians
-from math import sin
+from math import sin, cos, tan
 
 # Acceleration Constant on Earth (unit m/s^2)
 g = 9.80665
@@ -122,6 +122,38 @@ def total_time(init_velocity: float, angle: float) -> float:
     radians = angle_to_radians(angle)
     return round(2 * init_velocity * sin(radians) / g, 2)
 
+def equation_of_trajectory(init_velocity: float, angle: float) -> float:
+    """
+    Prints the Equation of a trajectory of the object in the projectile motion
+    (Assumes the object starts at x=0 and y=0)
+    Formula:
+                                         g
+            y= x * tan(alpha) - ---------------------- x^2
+                                2 * v_0^2 * cos^2(alpha)
+    v_0 - initial velocity
+    alpha - angle
+    g - accelaration of gravity
+    y - y coordinate
+    x - x coordinate
+
+    >>> equation_of_trajectory(30, 45)
+    Equation of trajectory: y = 1.0x-0.01x^2
+    >>> equation_of_trajectory(100, 78)
+    Equation of trajectory: y = 4.7x-0.01x^2
+    >>> equation_of_trajectory(-10, 40)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid velocity. Should be a positive number.
+    >>> equation_of_trajectory(30, "b")
+    Traceback (most recent call last):
+        ...
+    TypeError: Invalid angle. Range is 1-90 degrees.
+    """
+    check_args(init_velocity, angle)
+    radians = angle_to_radians(angle)
+    x_coeffecient=round(tan(radians),2)
+    x2_coeffecient=round(g/(2*pow(init_velocity,2)*pow(cos(radians),2)),2)
+    print(f"Equation of trajectory: y = {str(x_coeffecient)}x-{str(x2_coeffecient)}x^2")
 
 def test_motion() -> None:
     """
@@ -150,3 +182,4 @@ if __name__ == "__main__":
     print(f"Horizontal Distance: {str(horizontal_distance(init_vel, angle))} [m]")
     print(f"Maximum Height: {str(max_height(init_vel, angle))} [m]")
     print(f"Total Time: {str(total_time(init_vel, angle))} [s]")
+    equation_of_trajectory(init_vel, angle)
