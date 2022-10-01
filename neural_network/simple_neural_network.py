@@ -3,7 +3,6 @@ Forward propagation explanation:
 https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250
 """
 
-import doctest
 import math
 import random
 
@@ -55,7 +54,9 @@ def forward_propagation(expected: int, number_propagations: int) -> float:
 
 
 if __name__ == "__main__":
-    print(doctest.testmod())
+    import doctest
+
+    doctest.testmod()
     expected = int(input("Expected value: "))
     number_propagations = int(input("Number of propagations: "))
     print(forward_propagation(expected, number_propagations))
