@@ -34,16 +34,13 @@ def is_prime(number: int) -> bool:
         number >= 0
     ), "'number' must been an int and positive"
 
-    if 1 < number < 4:
-        # 2 and 3 are primes
-        return True
-    elif number < 2 or number % 2 == 0 or number % 3 == 0:
-        # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
+    #check if number is one or not if it's one then it's not prime so return false
+    if number==1:
         return False
 
-    # All primes number are in format of 6k +/- 1
-    for i in range(5, int(math.sqrt(number) + 1), 6):
-        if number % i == 0 or number % (i + 2) == 0:
+    #check if any integer in range [2,sqrt(number)] can divide the number 
+    for i in range(2, int(math.sqrt(number) + 1)):
+        if number % i == 0 :
             return False
     return True
 
