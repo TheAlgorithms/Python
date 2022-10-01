@@ -1069,4 +1069,5 @@
   * [Search Books By Isbn](web_programming/search_books_by_isbn.py)
   * [Slack Message](web_programming/slack_message.py)
   * [Test Fetch Github Info](web_programming/test_fetch_github_info.py)
+  * [Whatsapp Web Autorespond](web_programming/whatsapp_web_autorespond.py)
   * [World Covid19 Stats](web_programming/world_covid19_stats.py)
