@@ -1,16 +1,10 @@
 #https://en.wikipedia.org/wiki/Fizz_buzz#Programming
 
-def fizz_buzz(number=None: int,out=None: str,iterations=None: int,fizz_number=None: int,buzz_number=None: int) -> None:
+def fizz_buzz(number: int,out: str,iterations: int,fizz_number: int,buzz_number: int) -> None:
   """
   Plays FizzBuzz. Prints Fizz if number is a multiple of 3 and Buzz if its a multiple of 5
   Prints FizzBuzz if its a multiple of both 3 and 5 or 15. Else Prints The Number Itself.
   
-  >>> fizz_buzz()
-  1
-  2
-  Fizz
-  4
-  Buzz
   >>> fizz_buzz(1,"",7,3,5)
   1
   2
@@ -41,12 +35,6 @@ def fizz_buzz(number=None: int,out=None: str,iterations=None: int,fizz_number=No
   ValueError: starting number must be and integer and be more than 0
   
   """
-  if number is None and out is None and iterations is None and fizz_number is None and buzz_number is None:
-    number = 1
-    out = ""
-    iterations = 5
-    fizz_number = 3
-    buzz_number = 5
     
   if not type(iterations) == int:
     raise ValueError("iterations must be defined as integers")
