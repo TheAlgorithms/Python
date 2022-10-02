@@ -21,7 +21,7 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
         return False
     if array[r] < value:
         return binary_search(array, r + 1, upper_bound, value)
-    if array[r] > value:
+    else:
         return binary_search(array, lower_bound, r, value)
 def mat_bin_search(value: int, matrix: list) -> bool:
     """
