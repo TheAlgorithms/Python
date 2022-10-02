@@ -58,7 +58,6 @@ def binary_insertion_sort(array: list[int]):
         )
     return array
 
-
 if __name__ == "__main__":
     res = binary_insertion_sort([29, 10, 14, 37, 14])
     print(res)
