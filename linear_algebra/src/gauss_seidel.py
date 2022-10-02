@@ -9,9 +9,7 @@
 # as A matrix(nxn), Solution and B matrix and max iterations
 
 
-def update_solution(
-    a: list[list[float]], x: list[float], b: list[float]
-) -> list[float]:
+def update_solution(a: list[list], x: list, b: list) -> list:
     """
     Function to update the solution
     a: coefficient matrix
@@ -36,7 +34,7 @@ def update_solution(
     return x
 
 
-def gauss_seidel(a: list[list[float]], x: list[float], b: list[float], m: int) -> None:
+def gauss_seidel(a: list[list], x: list, b: list, m: int) -> None:
     """
     Function to perform Gauss Seidel Iteration
     a: coefficient matrix
