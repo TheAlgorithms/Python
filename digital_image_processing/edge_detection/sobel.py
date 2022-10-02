@@ -4,7 +4,7 @@ import cv2
 import argparse
 import matplotlib.pyplot as plt
 
-def convolution(image, kernel, average=False, verbose=False):
+def convolution(image, kernel, average: bool = False, verbose: bool = False):
     if len(image.shape) == 3:
         print(f"Found 3 Channels : {image.shape}")
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
