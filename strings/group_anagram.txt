@@ -1,0 +1,15 @@
+The ``group anagram`` module
+======================
+
+Using ``find_anagrams``
+-------------------
+
+This is an example text file in reStructuredText format.  First import
+``factorial`` from the ``example`` module:
+
+    >>> from group_anagram import find_anagrams
+
+Now use it:
+    >>> input = ['could', 'cloud', 'areas', 'arena', 'artsy', 'grips', 'hello', 'parts', 'prigs', 'strap', 'traps']
+    >>> find_anagrams(input)
+    [['cloud', 'could'], ['grips', 'prigs'], ['parts', 'strap', 'traps']]

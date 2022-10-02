@@ -1,4 +1,10 @@
-def anagram(_list):
+import doctest
+
+
+def find_anagrams(_list: list) -> list[list[str]]:
+    """
+    Find the characters and number of occurrence in each words
+    """
     char_map = {}
     anagrams = []
     for each in _list:
@@ -9,6 +15,9 @@ def anagram(_list):
             else:
                 char_map[each][char] += 1
 
+    """
+    Match each words with the occurrence count
+    """
     _keys = list(char_map.keys())
     for itr1 in range(0, len(_keys)):
         res = []
@@ -17,12 +26,13 @@ def anagram(_list):
                 res.append(_keys[itr1])
                 res.append(_keys[itr2])
                 char_map[_keys[itr2]]['is_visited'] = 1
-        _set = list(set(res))
+        _set = sorted(list(set(res)))
         if len(_set) != 0:
             anagrams.append(_set)
-    print(anagrams)
+    return anagrams
 
 
 if __name__ == "__main__":
-    _list = ['could', 'cloud', 'areas', 'arena', 'artsy', 'grips', 'hello', 'parts', 'prigs', 'strap', 'traps']
-    anagram(_list)
+    input = ['could', 'cloud', 'areas', 'arena', 'artsy', 'grips', 'hello', 'parts', 'prigs', 'strap', 'traps']
+    doctest.testfile('group_anagram.txt')
+    find_anagrams(input)
