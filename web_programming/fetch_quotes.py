@@ -6,8 +6,9 @@ For more details and premium features visit:
     https://zenquotes.io/
 """
 
-import requests
 import pprint
+
+import requests
 
 
 def quote_of_the_day() -> list:
