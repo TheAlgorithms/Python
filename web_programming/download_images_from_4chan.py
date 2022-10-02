@@ -11,7 +11,7 @@ def get_links(url: str) -> list[str]:
 
     Args:
         url: URL of 4chan thread
-    
+
     Returns:
         list containing all image URLs
     """
@@ -33,7 +33,7 @@ def save_links(links: list[str]) -> None:
 
     Args:
         links: list containing all image URLs
-    
+
     Returns:
         None
     """
@@ -50,7 +50,7 @@ def save_links(links: list[str]) -> None:
     print("File saved as `links.txt`")
 
 
-def download(links:list[str]) -> None:
+def download(links: list[str]) -> None:
     """
     Downloads all the images from the list of URLs
 
@@ -80,15 +80,15 @@ def main() -> None:
     Returns:
         None
     """
-    url:str = input("URL of 4chan thread: ")
-    _save:bool = (
+    url: str = input("URL of 4chan thread: ")
+    _save: bool = (
         True
         if input("Save links? (overwrites [links.txt] if exists)[No]: ")
         in ["y", "yes", "true"]
         else False
     )
 
-    links:list[str] = get_links(url)
+    links: list[str] = get_links(url)
 
     if _save:
         save_links(links)
