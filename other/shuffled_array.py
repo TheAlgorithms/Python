@@ -5,7 +5,7 @@
 # To Understand more of random number generation
 # follow https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator
 
-# import doctest
+import doctest
 import time
 
 
@@ -45,8 +45,8 @@ class Solution:
     def reset(self) -> list:
         # it will return the original given array
         """
-        >>> Solution([2,3,4,56]).reset()
-        [2, 3, 4, 56]
+        >>> Solution([-2, 0, 140, 15, 220]).reset()
+        [-2, 0, 140, 15, 220]
         """
         return self.arr
 
@@ -63,9 +63,9 @@ class Solution:
             temp[a], temp[i] = temp[i], temp[a]
         return temp
 
+if __name__ == '__main__':
+    solclass = Solution([18, 2, 3, 4, 5, 7, 8, 10, 21])
+    shuffled_arr = solclass.shuffle()
+    print(shuffled_arr)
 
-solclass = Solution([18, 2, 3, 4, 5, 7, 8, 10, 21])
-shuffled_arr = solclass.shuffle()
-print(shuffled_arr)
-
-# doctest.testmod()
+    doctest.testmod()
