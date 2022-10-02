@@ -23,14 +23,11 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
         return binary_search(array, r + 1, upper_bound, value)
     else:
         return binary_search(array, lower_bound, r, value)
-
-
 def mat_bin_search(value: int, matrix: list) -> bool:
     """
     This function loops over a 2d matrix and calls binarySearch on the selected 1d array
     value : value ment to be searched
     matrix = a sorted 2d matrix
-
     >>> matrix = [[1, 4, 7, 11, 15],
               [2, 5, 8, 12, 19],
               [3, 6, 9, 16, 22],
@@ -48,5 +45,4 @@ def mat_bin_search(value: int, matrix: list) -> bool:
         if binary_search(matrix[index], 0, len(matrix[index]) - 1, value):
             return True
         index += 1
-
     return False
