@@ -10,6 +10,8 @@ def find_anagrams(_list: list) -> list[list[str]]:
     for each in _list:
         char_map[each] = {'is_visited': 0}
         for char in each:
+            # if the letter is not present already add it
+            # if it is already present add the count of each letter
             if char not in char_map[each]:
                 char_map[each][char] = 1
             else:
@@ -20,15 +22,23 @@ def find_anagrams(_list: list) -> list[list[str]]:
     """
     _keys = list(char_map.keys())
     for itr1 in range(0, len(_keys)):
+        # One word is taken at a time
         res = []
         for itr2 in range(itr1 + 1, len(_keys)):
+            # now the character count of each work is compared with the main word
+            # if the character count is matched it is considered as an anagram
             if char_map[_keys[itr1]] == char_map[_keys[itr2]] and char_map[_keys[itr2]]['is_visited'] == 0:
                 res.append(_keys[itr1])
                 res.append(_keys[itr2])
+                # once the word is compared and match is found it is marked as visited
                 char_map[_keys[itr2]]['is_visited'] = 1
+        # now sort the words and remove the duplicates if present
         _set = sorted(list(set(res)))
+
+        # if there are anagrams, push it to the res array
         if len(_set) != 0:
             anagrams.append(_set)
+        # if there are no anagrams found return []
     return anagrams
 
 
