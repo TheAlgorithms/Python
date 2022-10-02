@@ -11,17 +11,17 @@
 
 def update_solution(a: list[list[float]], x: list[float], b: list[float]) -> list[float]:
     """
-        Function to update the solution
-        a: coefficient matrix
-        x: solution vector
-        b: constant vector
+    Function to update the solution
+    a: coefficient matrix
+    x: solution vector
+    b: constant vector
 
-        Example:
-        >>> a = [[10, -1, 2, 0], [-1, 11, -1, 3], [2, -1, 10, -1], [0, 3, -1, 8]]
-        >>> x = [0, 0, 0, 0]
-        >>> b = [6, 25, -11, 15]
-        >>> update_solution(a, x, b)
-        [0.6, 2.3272727272727276, -0.9872727272727271, 0.8788636363636363]
+    Example:
+    >>> a = [[10, -1, 2, 0], [-1, 11, -1, 3], [2, -1, 10, -1], [0, 3, -1, 8]]
+    >>> x = [0, 0, 0, 0]
+    >>> b = [6, 25, -11, 15]
+    >>> update_solution(a, x, b)
+    [0.6, 2.3272727272727276, -0.9872727272727271, 0.8788636363636363]
     """
     n = len(a)  # number of variables
     for i in range(0, n):
