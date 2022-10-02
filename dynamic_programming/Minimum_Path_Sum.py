@@ -1,5 +1,5 @@
 class Solution:
-    def minPathSum(self, grid: List[List[int]]) -> int:
+    def minPathSum(grid):
     
         n = len(grid)
         m = len(grid[0])
@@ -20,3 +20,6 @@ class Solution:
         
         return grid[-1][-1]
 
+if __name__ == "__main__":
+     grid = [[1,8,1], [2,6,9], [4,3,1]]
+     print(Solution.minPathSum(grid))
