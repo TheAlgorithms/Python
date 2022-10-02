@@ -19,9 +19,7 @@ For the loop of the array, running from 0 to array length, given x is an element
 3 - then check If (hash(x) + 2*2) % SizeofHashtable is also full, then we try (hash(x) + 3*3) % SizeofHashtable.
 ...
 This process is repeated for all the values of i until an empty slot is found.
-
 """
-
 from .hash_table import HashTable
 
 
