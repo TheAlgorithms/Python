@@ -6,13 +6,21 @@ Python program for Binary Insertion Sort.
 from __future__ import annotations
 
 
-def binary_search(array: list[int], key: int, start: int, end: int):
+def binary_search(array: list[int], key: int, start: int, end: int) -> int:
     """Pure implementation of binary search algorithm in Python
 
     :param array: some ascending sorted list with comparable items
     :param key: key value to search
     :param start: start index of the array consideration
     :param end: end index of the array consideration
+
+    Explanation: https://makereading.com/binary-insertion-sort
+
+    Examples:
+
+    >>> res = binary_search([1,2,3,4], 3, 0, 3)
+    >>> print(res)
+    2
 
     """
 
@@ -34,10 +42,12 @@ def binary_search(array: list[int], key: int, start: int, end: int):
         return mid
 
 
-def binary_insertion_sort(array: list[int]):
+def binary_insertion_sort(array: list[int]) -> list[int]:
     """Implementation of insertion sort with binary search to find position.
 
     :param array: list of elements to be sorted.
+
+    Explanation: https://makereading.com/binary-insertion-sort
 
     Examples:
 
