@@ -70,14 +70,14 @@ if __name__ == "__main__":
 
     # Find value of e
     print(
-        "The root of log(y) - 1 = 0 is "
-        f"{newton_raphson('log(y) - 1', 2, variable='y')}"
+        "The root of log(y) - 1 = 0 is ",
+        f"{newton_raphson('log(y) - 1', 2, variable='y')}",
     )
 
     # Exponential Roots
     print(
-        f"The root of exp(x) - 1 = 0 is \
-{newton_raphson('exp(x) - 1', 10, precision=0.005)}"
+        "The root of exp(x) - 1 = 0 is",
+        f"{newton_raphson('exp(x) - 1', 10, precision=0.005)}",
     )
 
     # Find root of cos(x)
