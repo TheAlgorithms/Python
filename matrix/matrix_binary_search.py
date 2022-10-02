@@ -38,7 +38,7 @@ def mat_bin_search(value: int, matrix: list) -> bool:
               [10, 13, 14, 17, 24],
               [18, 21, 23, 26, 30]]
     target = 1
-    >>> mat_bin_search( target, matrix)
+    >>> mat_bin_search(target, matrix)
     True    
     >>> mat_bin_search(target, matrix)
     False
