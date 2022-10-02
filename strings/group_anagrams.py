@@ -1,5 +1,5 @@
 from typing import List
-
+import doctest
 
 def signature(word: str) -> str:
   """
@@ -54,4 +54,5 @@ def isolate_anagrams(anagrams: dict) -> List[str]:
 
 if __name__ == "__main__":
   data = ['could', 'cloud', 'areas', 'arena', 'artsy', 'grips', 'hello', 'parts', 'prigs', 'strap', 'traps']
-  print(isolate_anagrams(remove_non_anagrams(group_anagrams(data))))
+  doctest.testfile('group_anagram.txt')
+  isolate_anagrams(remove_non_anagrams(group_anagrams(data)))
