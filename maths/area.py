@@ -294,7 +294,7 @@ def area_trapezium(base1: float, base2: float, height: float) -> float:
     ValueError: area_trapezium() only accepts non-negative values
     """
     
-    # Area = (parellel side 1 + parellel side 2) * height / 2
+    # Area = (parallel side 1 + parallel side 2) * height / 2
     if base1 < 0 or base2 < 0 or height < 0:
         raise ValueError("area_trapezium() only accepts non-negative values")
     return 1 / 2 * (base1 + base2) * height
