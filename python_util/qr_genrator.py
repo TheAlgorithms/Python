@@ -1,4 +1,4 @@
-##qr code using python
+##url to qr code converter
 import pyqrcode
 import png
 link = "https://https://github.com/shashank1623"
