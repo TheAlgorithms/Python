@@ -13,6 +13,7 @@ def main():
         sample_values.append(input('Please enter a number. Enter "Q" to quit: '))
         if sample_values[-1].upper()  == 'Q':
             break
+
     sample_values = [float(i)  for i in sample_values if i.isnumeric()]
     
     print(f"Sample values are {sample_values}")
