@@ -1,4 +1,4 @@
-"""Hello World 
+"""Hello World
 To create a shuffled array. Generate a pseudo random number(pseudo number is generate with random time provided as its seed value) , Swap that number with any other element in the list run this swapping len(Array) times to get desired shuffled array
 
 To Understand more of random number generation follow https://en.wikipedia.org/wiki/Lagged_Fibonacci_generator
@@ -33,7 +33,7 @@ class Solution:
         if any != "0":
             self.seed = int(any[-1:-5:-1])
         else:
-            any = any[:]+str(len(self.arr)//2)
+            any = any[:] + str(len(self.arr) // 2)
         if int(any[-1]) < num:
             return int(any[-1])
         return self.prng(num)
@@ -67,4 +67,5 @@ print(shuffled_arr)
 print(solclass.reset())
 
 import doctest
+
 doctest.testmod()
