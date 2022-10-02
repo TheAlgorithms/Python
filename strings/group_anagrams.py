@@ -49,6 +49,7 @@ def isolate_anagrams(anagrams: dict) -> List[str]:
   """
   return sorted([sorted(_) for _ in anagrams.values()])
 
-data = ['could', 'cloud', 'areas', 'arena', 'artsy', 'grips', 'hello', 'parts', 'prigs', 'strap', 'traps']
 
-print(isolate_anagrams(remove_non_anagrams(group_anagrams(data))))
+if __name__ == "__main__":
+  data = ['could', 'cloud', 'areas', 'arena', 'artsy', 'grips', 'hello', 'parts', 'prigs', 'strap', 'traps']
+  print(isolate_anagrams(remove_non_anagrams(group_anagrams(data))))
