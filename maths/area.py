@@ -22,7 +22,8 @@ def surface_area_cube(side_length: float) -> float:
         raise ValueError("surface_area_cube() only accepts non-negative values")
     return (
         6 * side_length**2
-    )  # Side length is squared to get the area of 1 side which is then multiplied by 6 because a cube has 6 sides
+    )  # Side length is squared to get the area of 1 side \
+    # which is then multiplied by 6 because a cube has 6 sides
 
 
 def surface_area_sphere(radius: float) -> float:
