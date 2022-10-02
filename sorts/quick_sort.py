@@ -7,34 +7,46 @@ python3 -m doctest -v quick_sort.py
 For manual testing run:
 python3 quick_sort.py
 """
-from __future__ import annotations
+def partition(array, start, end):
+    pivot = array[start]
+    low = start + 1
+    high = end
 
+    while True:
+        # If the current value we're looking at is larger than the pivot
+        # it's in the right place (right side of pivot) and we can move left,
+        # to the next element.
+        # We also need to make sure we haven't surpassed the low pointer, since that
+        # indicates we have already moved all the elements to their correct side of the pivot
+        while low <= high and array[high] >= pivot:
+            high = high - 1
 
-def quick_sort(collection: list) -> list:
-    """A pure Python implementation of quick sort algorithm
+        # Opposite process of the one above
+        while low <= high and array[low] <= pivot:
+            low = low + 1
 
-    :param collection: a mutable collection of comparable items
-    :return: the same collection ordered by ascending
+        # We either found a value for both high and low that is out of order
+        # or low is higher than high, in which case we exit the loop
+        if low <= high:
+            array[low], array[high] = array[high], array[low]
+            # The loop continues
+        else:
+            # We exit out of the loop
+            break
 
-    Examples:
-    >>> quick_sort([0, 5, 3, 2, 2])
-    [0, 2, 2, 3, 5]
-    >>> quick_sort([])
-    []
-    >>> quick_sort([-2, 5, 0, -45])
-    [-45, -2, 0, 5]
-    """
-    if len(collection) < 2:
-        return collection
-    pivot = collection.pop()  # Use the last element as the first pivot
-    greater: list[int] = []  # All elements greater than pivot
-    lesser: list[int] = []  # All elements less than or equal to pivot
-    for element in collection:
-        (greater if element > pivot else lesser).append(element)
-    return quick_sort(lesser) + [pivot] + quick_sort(greater)
+    array[start], array[high] = array[high], array[start]
 
+    return high
 
-if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(quick_sort(unsorted))
+def quick_sort(array, start, end):
+    if start >= end:
+        return
+
+    p = partition(array, start, end)
+    quick_sort(array, start, p-1)
+    quick_sort(array, p+1, end)
+    
+if __name__ == '__main__':
+    array = [29,99,27,41,66,28,44,78,87,19,31,76,58,88,83,97,12,21,44] #Just for an example
+    quick_sort(array, 0, len(array) - 1)
+    print(array)
