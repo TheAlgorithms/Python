@@ -5,8 +5,8 @@
 # Then in each iteration improves the solution by using the previous solution
 
 
-# Defining our function as seidel which takes 3 arguments
-# as A matrix, Solution and B matrix
+# Defining our function as gauss_seidel which takes 4 arguments
+# as A matrix(nxn), Solution and B matrix and max iterations
 
 
 def update_solution(a: list[list[float]], x: list[float], b: list[float]) -> list[float]:
@@ -58,24 +58,6 @@ def gauss_seidel(a: list[list[float]], x: list[float], b: list[float], m: int) -
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-# if __name__ == "__main__":
-#     n = int(input("Enter the number of variables: "))	# variables
-#     a = []		# Coefficient Matrix
-#     b = []		# Constant Matrix
-#     x = []      # Solution Matrix
-#     m=1000
-#     # initial solution depending on n(here n=3)
-#     print("Enter the coefficient Matrix (nxn)\n")
-#     for i in range(0, n):
-#         a.append([])
-#         for j in range(0, n):
-#             a[i].append(int(input("Enter a["+str(i)+"]["+ str(j)+"]: ")))
-#         x.append(0)
-#     for i in range(0, n):
-#         b.append(int(input("Enter b["+str(i)+"]: ")))
-#     m = int(input("Enter the number of iterations: "))	# iterations
-#     print("Initial Guess : {}".format(x))
-#     gauss_seidel(a, x, b, m)
 
 # ------------ Sample Input ------------
 # 4x + y + 2z = 4
