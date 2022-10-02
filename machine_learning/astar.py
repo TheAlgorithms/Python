@@ -134,7 +134,7 @@ def astar(world, start, goal):
 
 if __name__ == "__main__":
     world = Gridworld()
-    #   Stat position and goal.
+    #   Stat position and goal
     start = Cell()
     start.position = (0, 0)
     goal = Cell()
