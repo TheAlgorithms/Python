@@ -42,7 +42,7 @@ def binary_search(array: list[int], key: int, start: int, end: int) -> int:
         return mid
 
 
-def binary_insertion_sort(array: list[int]) -> list[int]:
+def binary_insertion_sort(array: list[int]) -> list:
     """Implementation of insertion sort with binary search to find position.
 
     :param array: list of elements to be sorted.
