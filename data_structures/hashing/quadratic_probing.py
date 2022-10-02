@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python3
 """
 Hashing is a technique that  uses a hash function that converts a given  number 
 or any other key to a smaller number and uses the small number as the index in a table called a hash table. 
@@ -21,7 +21,6 @@ For the loop of the array, running from 0 to array length, given x is an element
 This process is repeated for all the values of i until an empty slot is found.
 
 """
-#!/usr/bin/env python3
 
 from .hash_table import HashTable
 
