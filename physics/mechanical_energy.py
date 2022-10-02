@@ -3,7 +3,7 @@
 
 def calculate_gravitational_potential_energy(
     mass: float, gravity: float, height: float
-):
+) -> str:
     """
     Gravitational Potential Energy Is The Energy
     An Object Possesses Due To Its State Of Rest
@@ -32,7 +32,7 @@ def calculate_gravitational_potential_energy(
     return gravitational_potential_energy
 
 
-def calculate_kinetic_energy(mass: float, velocity: float):
+def calculate_kinetic_energy(mass: float, velocity: float) -> str:
     """
 
      Kinetic Energy is the energy a body possesses due
