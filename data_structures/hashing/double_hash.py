@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Double hashing is a collision resolving technique in 
 Open Addressed Hash tables. Double hashing uses the idea of 
@@ -18,9 +19,7 @@ Here hash1() and hash2() are hash functions and TABLE_SIZE
 is size of hash table. 
 
 Reference: https://en.wikipedia.org/wiki/Double_hashing#:~:text=Double%20hashing%20is%20a%20computer,data%20structure%20on%20a%20table%20.
-
 """
-#!/usr/bin/env python3
 from .hash_table import HashTable
 from .number_theory.prime_numbers import is_prime, next_prime
 
