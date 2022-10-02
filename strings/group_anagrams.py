@@ -42,7 +42,6 @@ def remove_non_anagrams(anagrams: dict) -> dict:
 
 def isolate_anagrams(anagrams: dict) -> List[str]:
   """
-  >>> from grpAna import isolate_anagrams
   >>> isolate_anagrams({'cdlou': ['cloud', 'could']})
   [['cloud', 'could']]
   >>> isolate_anagrams({'aprst': ['strap', 'traps']})
