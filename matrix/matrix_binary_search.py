@@ -9,20 +9,23 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     matrix = [1, 4, 7, 11, 15]
     
     target = 1
-
-    >>> binary_search(matrix, 0, len(matrix)-1, 1)
+    
+    >>> binary_search(matrix, 0, len(matrix) - 1, 1)
     True
+    
+    target = 23
+    >> binary_search(matrix, 0, len(matrix) - 1, 1) 
+    False
     """
     r = int((lower_bound + upper_bound) // 2)
     
     if (array[r] == value):
-        
         return True
     if r in (lower_bound, upper_bound):
         return False
-    if (array[r] < value):
+    if array[r] < value:
         return binary_search(array, r + 1, upper_bound, value)
-    if (array[r] > value):
+    if array[r] > value:
         return binary_search(array, lower_bound, r, value)
 
 
@@ -42,6 +45,9 @@ def mat_bin_search(value: int, matrix: list) -> bool:
 
     >>> mat_bin_search( target, matrix)
     True
+    
+    >>> mat_bin_search(target, matrix)
+    False
     """
     index = 0
     while matrix[index][0] < value:
@@ -49,6 +55,3 @@ def mat_bin_search(value: int, matrix: list) -> bool:
             return True
         else : index = index+1
     return False
-
-
-
