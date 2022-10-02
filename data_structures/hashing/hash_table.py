@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Hash Table is a data structure which stores data in an associative manner. 
 In a hash table, data is stored in an array format, where each data value has its own unique index value. 
@@ -10,9 +11,7 @@ where an element is to be inserted or is to be located from.
 
 Hashing is a technique to convert a range of key values into a range of indexes of an array. 
 We're going to use modulo operator to get a range of key values. 
-
 """
-#!/usr/bin/env python3
 from .number_theory.prime_numbers import next_prime
 
 
