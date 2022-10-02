@@ -70,8 +70,8 @@ if __name__ == "__main__":
 
     # Find value of e
     print(
-        f"The root of log(y) - 1 = 0 is \
-{newton_raphson('log(y) - 1', 2, variable='y')}"
+        "The root of log(y) - 1 = 0 is "
+        f"{newton_raphson('log(y) - 1', 2, variable='y')}"
     )
 
     # Exponential Roots
