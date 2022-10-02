@@ -129,11 +129,9 @@ class SplayTree:
             self.post_order(n.left)
             self.post_order(n.right)
             print(n.data)
-    
-    
 
 
-if __name__ == '__main__':
+def main():
     tree = SplayTree()
 
     tree.insert(Node(90))
@@ -239,3 +237,7 @@ if __name__ == '__main__':
     '''
     The traversal of the tree is:   34, 25, 18, 90, 60, 100, 10
     '''
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
