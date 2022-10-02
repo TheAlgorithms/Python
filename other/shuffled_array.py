@@ -11,12 +11,12 @@ import time
 
 class Solution:
 
-    """
-    >>> Solution().__init__(array=[1,2,3])
-    Traceback (most recent call last):
-               ....
-    TypeError: __init__() missing 1 required positional argument: 'array'
-    """
+    # """
+    # >>> Solution().__init__(array=[1,2,3])
+    # Traceback (most recent call last):
+    #            ....
+    # TypeError: __init__() missing 1 required positional argument: 'array'
+    # """
 
     def __init__(self, array: list) -> None:
         self.arr = array
