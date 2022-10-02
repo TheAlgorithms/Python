@@ -39,5 +39,5 @@ def print_directory_md(top_dir: str = ".") -> None:
         print(f"{md_prefix(indent)} [{filename}]({url})")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     print_directory_md(".")
