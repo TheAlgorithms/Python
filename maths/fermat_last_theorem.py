@@ -1,9 +1,8 @@
 # Proving Fermat's last theorem
 # Wikipedia reference: https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem
 
-import random
 import math
-
+import random
 
 # --- Parameters ----
 HIGHEST_N = 1000
@@ -14,7 +13,7 @@ def test_vals(values: list[int]) -> list[int]:
     Tests the theorem on pre-generated inputted values.
     """
     a, b, c, n = values
-    
+
     if a**n + b**n == c**n:
         return values
 
@@ -30,7 +29,7 @@ def test_values_against_theorem(highest_n: int = HIGHEST_N) -> bool:
     False
     """
     tried_values: list[list[int]] = []
-    
+
     for _ in range(math.comb(highest_n, 4)):
         while (
             values := [random.randint(3, highest_n) for _ in range(4)]
