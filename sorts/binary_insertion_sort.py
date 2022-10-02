@@ -16,23 +16,28 @@ python3 binary_insertion_sort.py
 
 def binary_search(collection: list, val: int, start: int, end: int) -> int:
     """
-    we need to distinugish whether we
-    should insert before or after the
-    left boundary. imagine [0] is the last
-    step of the binary search and we need
-    to decide where to insert -1
+    A pure Python implementation of the binary search  algorithm.
+
+    :param collection: some ascending sorted collection with comparable items
+    :param item: item value to search
+    :return: index of found item
+
+    Examples:
+    >>> binary_search([0, 5, 7, 10, 15], 0, 0, 4)
+    0
+
+    >>> binary_search([0, 5, 7, 10, 15], 15, 0, 4)
+    5
+
+    >>> binary_search([0, 5, 7, 10, 15], 5, 0, 4)
+    2
+
     """
     if start == end:
         if collection[start] > val:
             return start
         else:
             return start + 1
-    """
-    this occurs if we are moving
-    beyond left's boundary meaning
-    the left boundary is the least
-    position to find a number greater than val
-    """
     if start > end:
         return start
     mid = (start + end) // 2
