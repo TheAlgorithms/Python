@@ -32,6 +32,7 @@ Below a Django function for the views.py file contains a login form for demonstr
 recaptcha verification.
 """
 import requests
+import os
 
 try:
     from django.contrib.auth import authenticate, login
@@ -52,7 +53,7 @@ def login_using_recaptcha(request):
     # from the frontend, get username, password, and client_key
     username = request.POST.get("username")
     password = request.POST.get("password")
-    client_key = request.POST.get("g-recaptcha-response")
+    client_key = client_key = os.environ.get("secret_key", "default_key")  # getting value from env variable. 
 
     # post recaptcha response to Google's recaptcha api
     response = requests.post(url, data={"secret": secret_key, "response": client_key})
