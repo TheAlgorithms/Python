@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, data):
+    def __init__(self, data) -> None:
         self.data = data
         self.parent = None
         self.left = None
@@ -7,10 +7,10 @@ class Node:
 
 
 class SplayTree:
-    def __init__(self):
+    def __init__(self) -> None:
         self.root = None
 
-    def leftRotate(self, x):
+    def left_rotate(self, x) -> None:
         y = x.right
         x.right = y.left
         if y.left != None:
@@ -30,7 +30,7 @@ class SplayTree:
         y.left = x
         x.parent = y
 
-    def rightRotate(self, x):
+    def right_rotate(self, x) -> None:
         y = x.left
         x.left = y.right
         if y.right != None:
@@ -50,37 +50,37 @@ class SplayTree:
         y.right = x
         x.parent = y
 
-    def splay(self, n):
+    def splay(self, n) -> None:
         # node is not root
         while n.parent != None:
             # node is child of root, one rotation
             if n.parent == self.root:
                 if n == n.parent.left:
-                    self.rightRotate(n.parent)
+                    self.right_rotate(n.parent)
                 else:
-                    self.leftRotate(n.parent)
+                    self.left_rotate(n.parent)
 
             else:
                 p = n.parent
                 g = p.parent  # grandparent
 
                 if n.parent.left == n and p.parent.left == p:  # both are left children
-                    self.rightRotate(g)
-                    self.rightRotate(p)
+                    self.right_rotate(g)
+                    self.right_rotate(p)
 
                 elif n.parent.right == n and p.parent.right == p:  # both are right children
-                    self.leftRotate(g)
-                    self.leftRotate(p)
+                    self.left_rotate(g)
+                    self.left_rotate(p)
 
                 elif n.parent.right == n and p.parent.left == p:
-                    self.leftRotate(p)
-                    self.rightRotate(g)
+                    self.left_rotate(p)
+                    self.right_rotate(g)
 
                 elif n.parent.left == n and p.parent.right == p:
-                    self.rightRotate(p)
-                    self.leftRotate(g)
+                    self.right_rotate(p)
+                    self.left_rotate(g)
 
-    def insert(self, n):
+    def insert(self, n) -> None:
         y = None
         temp = self.root
         while temp != None:
@@ -101,33 +101,33 @@ class SplayTree:
 
         self.splay(n)
 
-    def bstSearch(self, n, x):
+    def bst_search(self, n, x) -> None:
         if x == n.data:
             self.splay(n)
             return n
         elif x < n.data:
-            return self.bstSearch(n.left, x)
+            return self.bst_search(n.left, x)
         elif x > n.data:
-            return self.bstSearch(n.right, x)
+            return self.bst_search(n.right, x)
         else:
             return None
 
-    def preOrder(self, n):
+    def pre_order(self, n) -> None:
         if n != None:
             print(n.data)
-            self.preOrder(n.left)
-            self.preOrder(n.right)
+            self.pre_order(n.left)
+            self.pre_order(n.right)
     
-    def inOrder(self, n):
+    def in_order(self, n) -> None:
         if n != None:
-            self.inOrder(n.left)
+            self.in_order(n.left)
             print(n.data)
-            self.inOrder(n.right)
+            self.in_order(n.right)
     
-    def postOrder(self, n):
+    def post_order(self, n) -> None:
         if n != None:
-            self.postOrder(n.left)
-            self.postOrder(n.right)
+            self.post_order(n.left)
+            self.post_order(n.right)
             print(n.data)
     
     
@@ -206,7 +206,7 @@ if __name__ == '__main__':
               10
     '''
     
-    tree.bstSearch(tree.root, 10) # splay 10 to root 
+    tree.bst_search(tree.root, 10) # splay 10 to root 
     '''
     The tree looks like this:
                         10
@@ -223,19 +223,19 @@ if __name__ == '__main__':
     '''   
 
     print("The Pre-order traveral of the tree is:")
-    tree.preOrder(tree.root)
+    tree.pre_order(tree.root)
     '''
     The traversal of the tree is:   10, 100, 60, 18, 25, 34, 90
     '''
 
     print("The In-order traveral of the tree is:")
-    tree.inOrder(tree.root)
+    tree.in_order(tree.root)
     '''
     The traversal of the tree is:   10, 100, 60, 18, 25, 34, 90
     '''
 
     print("The Post-order traveral of the tree is:")
-    tree.postOrder(tree.root)
+    tree.post_order(tree.root)
     '''
     The traversal of the tree is:   34, 25, 18, 90, 60, 100, 10
     '''
