@@ -48,10 +48,9 @@ def find_anagrams(_list: list) -> list[list[str]]:
 def test_find_anagrams() -> None:
     """
     Determine whether the list can be grouped into anagrams
-    >>> find_anagrams(['could', 'cloud', 'areas', 'arena', 'artsy', 'grips',
-    'hello', 'parts', 'prigs', 'strap', 'traps'])
+    >>> find_anagrams(['could', 'cloud', 'areas', 'arena', 'artsy', 'grips', 'hello', 'parts', 'prigs', 'strap', 'traps'])
     [['cloud', 'could'], ['grips', 'prigs'], ['parts', 'strap', 'traps']]
-     >>> find_anagrams(['could', 'arena'])
+    >>> find_anagrams(['could', 'arena'])
     []
     """
 
