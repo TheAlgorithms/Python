@@ -18,7 +18,7 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     if (array[r] == value):
         
         return True
-    if((lower_bound == r) or (upper_bound == r)):
+    if r in (lower_bound, upper_bound):
         return False
     if (array[r] < value):
         return binary_search(array, r + 1, upper_bound, value)
