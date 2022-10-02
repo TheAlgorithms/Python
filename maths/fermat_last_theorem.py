@@ -6,7 +6,7 @@ import math
 
 
 # --- Parameters ----
-HIGHEST_N = 4000
+HIGHEST_N = 1000
 
 
 def test_vals(values: list[int]) -> list[int]:
@@ -24,9 +24,9 @@ def test_vals(values: list[int]) -> list[int]:
 def test_values_against_theorem(highest_n: int = HIGHEST_N) -> bool:
     """
     Tries all possible combinations of a, b, c, and n. Returns 
-    >>> test_values_against_theorem(1000)
+    >>> test_values_against_theorem(10)
     False
-    >>> test_values_against_theorem(4000)
+    >>> test_values_against_theorem(20)
     False
     """
     tried_values: list[list[int]] = []
@@ -39,12 +39,10 @@ def test_values_against_theorem(highest_n: int = HIGHEST_N) -> bool:
 
         # Run the test
         if (solution := test_vals(values)):
-            print(f"Solved! The winning combination is {solution}.")
             return True
 
         tried_values.append(values)
     else:
-        print(f"Tried all {max_tries} combinations, and none worked.")
         return False
 
 
