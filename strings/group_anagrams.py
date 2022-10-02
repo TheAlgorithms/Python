@@ -47,7 +47,7 @@ def isolate_anagrams(anagrams: dict) -> list:
     >>> isolate_anagrams({})
     []
     """
-    return sorted([sorted(_) for _ in anagrams.values()])
+    return sorted(sorted(_) for _ in anagrams.values())
 
 
 if __name__ == "__main__":
