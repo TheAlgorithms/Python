@@ -1,7 +1,7 @@
 # https://en.wikipedia.org/wiki/Run-length_encoding
 
 
-def run_length_encode(input: str) -> list:
+def run_length_encode(text: str) -> list:
     """
     Performs Run Length Encoding
     >>> run_length_encode("AAAABBBCCDAA")
@@ -16,17 +16,17 @@ def run_length_encode(input: str) -> list:
     encoded = []
     count = 1
 
-    for i in range(len(input)):
-        if i + 1 < len(input) and input[i] == input[i + 1]:
+    for i in range(len(text)):
+        if i + 1 < len(text) and text[i] == text[i + 1]:
             count += 1
         else:
-            encoded.append((input[i], count))
+            encoded.append((text[i], count))
             count = 1
 
     return encoded
 
 
-def run_length_decode(input: list) -> str:
+def run_length_decode(encoded: list) -> str:
     """
     Performs Run Length Decoding
     >>> run_length_decode([('A', 4), ('B', 3), ('C', 2), ('D', 1), ('A', 2)])
@@ -38,12 +38,7 @@ def run_length_decode(input: list) -> str:
     >>> run_length_decode([('A', 3), ('D', 6), ('F', 3), ('C', 3), ('A', 2), ('V', 4)])
     'AAADDDDDDFFFCCCAAVVVV'
     """
-    decoded = ""
-
-    for i in input:
-        decoded += i[0] * i[1]
-
-    return decoded
+    return "".join(char * length for char, length in encoded)
 
 
 if __name__ == "__main__":
