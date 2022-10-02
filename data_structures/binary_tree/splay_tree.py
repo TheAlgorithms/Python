@@ -1,4 +1,4 @@
-class TreeNode:
+class Node:
     def __init__(self, data):
         self.data = data
         self.parent = None
@@ -117,18 +117,32 @@ class SplayTree:
             print(n.data)
             self.preOrder(n.left)
             self.preOrder(n.right)
+    
+    def inOrder(self, n):
+        if n != None:
+            self.inOrder(n.left)
+            print(n.data)
+            self.inOrder(n.right)
+    
+    def postOrder(self, n):
+        if n != None:
+            self.postOrder(n.left)
+            self.postOrder(n.right)
+            print(n.data)
+    
+    
 
 
 if __name__ == '__main__':
     tree = SplayTree()
 
-    tree.insert(TreeNode(90))
+    tree.insert(Node(90))
     '''
     The tree looks like this:
                         90
     '''
 
-    tree.insert(TreeNode(10))
+    tree.insert(Node(10))
     '''
     The tree looks like this:
                         90
@@ -136,7 +150,7 @@ if __name__ == '__main__':
                       10
     '''
 
-    tree.insert(TreeNode(34))
+    tree.insert(Node(34))
     '''
     The tree looks like this:
                         34
@@ -144,7 +158,7 @@ if __name__ == '__main__':
                       10   90
     '''
 
-    tree.insert(TreeNode(18))
+    tree.insert(Node(18))
     '''
     The tree looks like this:
                         18
@@ -154,7 +168,7 @@ if __name__ == '__main__':
                             90
     '''
 
-    tree.insert(TreeNode(25))
+    tree.insert(Node(25))
     '''
     The tree looks like this:
                         25
@@ -164,7 +178,7 @@ if __name__ == '__main__':
                    10        90
     '''
 
-    tree.insert(TreeNode(60))
+    tree.insert(Node(60))
     '''
     The tree looks like this:
                         60
@@ -176,7 +190,7 @@ if __name__ == '__main__':
                 10
     '''
 
-    tree.insert(TreeNode(100))
+    tree.insert(Node(100))
     '''
     Finally the tree looks like this:
                         100 
@@ -208,8 +222,20 @@ if __name__ == '__main__':
                             34
     '''   
 
+    print("The Pre-order traveral of the tree is:")
     tree.preOrder(tree.root)
     '''
     The traversal of the tree is:   10, 100, 60, 18, 25, 34, 90
     '''
 
+    print("The In-order traveral of the tree is:")
+    tree.inOrder(tree.root)
+    '''
+    The traversal of the tree is:   10, 100, 60, 18, 25, 34, 90
+    '''
+
+    print("The Post-order traveral of the tree is:")
+    tree.postOrder(tree.root)
+    '''
+    The traversal of the tree is:   34, 25, 18, 90, 60, 100, 10
+    '''
