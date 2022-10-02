@@ -33,7 +33,6 @@ def pressure_of_gas_system(moles: float, kelvin: float, volume: float) -> float:
     pressure: float = moles * kelvin * UNIVERSAL_GAS_CONSTANT / volume
     return pressure
 
-
 def volume_of_gas_system(moles: float, kelvin: float, pressure: float) -> float:
     """
     >>> volume_of_gas_system(2, 100, 5)
