@@ -1,3 +1,6 @@
+from typing import List
+
+
 def signature(word: str) -> str:
   """
   >>> signature("python")
