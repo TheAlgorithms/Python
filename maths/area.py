@@ -20,7 +20,9 @@ def surface_area_cube(side_length: float) -> float:
     """
     if side_length < 0:
         raise ValueError("surface_area_cube() only accepts non-negative values")
-    return 6 * side_length**2  # Side length is squared to get the area of 1 side which is then multiplied by 6 because a cube has 6 sides
+    return (
+        6 * side_length**2
+    )  # Side length is squared to get the area of 1 side which is then multiplied by 6 because a cube has 6 sides
 
 
 def surface_area_sphere(radius: float) -> float:
@@ -217,12 +219,14 @@ def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float
         ...
     ValueError: Given three sides do not form a triangle
     """
-    
+
     # Area = √(s(s-a)(s-b)(s-c)) - Mathematical notation of Heron's Formula
-    
+
     if side1 < 0 or side2 < 0 or side3 < 0:
         raise ValueError("area_triangle_three_sides() only accepts non-negative values")
-    elif side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1:  # Sum of 2 sides must be higher than 1 side - Math Axiom 
+    elif (
+        side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1
+    ):  # Sum of 2 sides must be higher than 1 side - Math Axiom
         raise ValueError("Given three sides do not form a triangle")
     semi_perimeter = (side1 + side2 + side3) / 2  # Math semi-perimeter formula
     area = sqrt(
@@ -293,7 +297,7 @@ def area_trapezium(base1: float, base2: float, height: float) -> float:
         ...
     ValueError: area_trapezium() only accepts non-negative values
     """
-    
+
     # Area = (parallel side 1 + parallel side 2) * height / 2
     if base1 < 0 or base2 < 0 or height < 0:
         raise ValueError("area_trapezium() only accepts non-negative values")
