@@ -26,6 +26,7 @@ def calculate_gravitational_potential_energy(
         gravitational_potential_energy = mass * gravity * height
     except Exception:
         return -0.0
+
     gravitational_potential_energy = str(gravitational_potential_energy)
     gravitational_potential_energy += " " + unit
     return gravitational_potential_energy
