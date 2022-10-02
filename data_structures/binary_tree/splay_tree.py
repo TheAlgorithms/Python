@@ -131,7 +131,7 @@ class SplayTree:
             print(n.data)
 
 
-def main():
+def main() -> None:
     tree = SplayTree()
 
     tree.insert(Node(90))
