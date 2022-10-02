@@ -13,7 +13,7 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     >>> binary_search(matrix, 0, len(matrix)-1, 1)
     True
     """
-    r = int((lower_bound+upper_bound)/2)
+    r = int((lower_bound + upper_bound) // 2)
     
     if (array[r] == value):
         
