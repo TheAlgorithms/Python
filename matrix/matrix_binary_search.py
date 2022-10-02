@@ -5,11 +5,11 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     lower_bound: the lowest index for the binary search algorithm
     upper_bound: the highest index for the binary search algorithm
     value : the value ment to be searched
-    matrix = [1, 4, 7, 11, 15]
-    target = 1
+    >>> matrix = [1, 4, 7, 11, 15]
+    >>> target = 1
     >>> binary_search(matrix, 0, len(matrix) - 1, 1)
     True
-    target = 23
+    >>> target = 23
     >>> binary_search(matrix, 0, len(matrix) - 1, 1) 
     False
     """
@@ -32,14 +32,15 @@ def mat_bin_search(value: int, matrix: list) -> bool:
     value : value ment to be searched
     matrix = a sorted 2d matrix
 
-    matrix = [[1, 4, 7, 11, 15],
+    >>> matrix = [[1, 4, 7, 11, 15],
               [2, 5, 8, 12, 19],
               [3, 6, 9, 16, 22],
               [10, 13, 14, 17, 24],
               [18, 21, 23, 26, 30]]
-    target = 1
+    >>> target = 1
     >>> mat_bin_search(target, matrix)
-    True    
+    True 
+    >>> target = 34
     >>> mat_bin_search(target, matrix)
     False
     """
