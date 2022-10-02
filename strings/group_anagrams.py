@@ -1,4 +1,4 @@
-def signature(s: str) -> str:
+def signature(word: str) -> str:
   """
   >>> signature("python")
   'hnopty'
@@ -7,7 +7,7 @@ def signature(s: str) -> str:
   >>> signature("cloud")
   'cdlou'
   """
-  return ''.join(sorted(s))
+  return ''.join(sorted(word))
 
 def group_anagrams(words: List[str]) -> dict:
   """
