@@ -4,37 +4,42 @@ Dataset - Iris Dataset
 Know more about XGBoost - https://en.wikipedia.org/wiki/XGBoost
 """
 
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix, plot_confusion_matrix
-from xgboost import XGBClassifier    # might have to do `!pip install xgboost`
 import warnings
+
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.metrics import accuracy_score, confusion_matrix, plot_confusion_matrix
+from sklearn.model_selection import train_test_split
+from xgboost import XGBClassifier  # might have to do `!pip install xgboost`
+
 warnings.filterwarnings("ignore")
+
 
 def main():
     # load the iris dataset
     iris = load_iris()
 
-    print(type(iris))   # Currently the type is sklearn.utils.Bunch
+    print(type(iris))  # Currently the type is sklearn.utils.Bunch
 
     # convert it to a dataframe
     df = pd.DataFrame(iris.data, columns=iris.feature_names)
 
     # add the target column
-    df['target'] = iris.target
+    df["target"] = iris.target
 
-    print(df['target'].unique())  # 0 -> sentosa, 1 -> versicolor, 2 -> virginica
+    print(df["target"].unique())  # 0 -> sentosa, 1 -> versicolor, 2 -> virginica
 
     # how the dataset looks
     print(df.head())
 
-    X = df.drop('target', axis=1)
-    y = df['target']
+    X = df.drop("target", axis=1)
+    y = df["target"]
 
     # split dataset into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.25, random_state=0
+    )
 
     # initialize the model
     xgb = XGBClassifier(random_state=0)
@@ -65,6 +70,7 @@ def main():
     )
     plt.title("Normalized Confusion Matrix - IRIS Dataset")
     plt.show()
+
 
 if __name__ == "__main__":
     main()
