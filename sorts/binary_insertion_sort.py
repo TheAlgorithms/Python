@@ -2,6 +2,8 @@ def binary_search(arr: list[int], val: int, start: int, end: int) -> int:
 
     """
     Algorithm for Binary Search
+    >>> binary_search([1,2,3,4], 3, 0, 3)
+    2
     """
 
     if start == end:
