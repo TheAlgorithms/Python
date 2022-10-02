@@ -7,11 +7,17 @@ def main():
     Identifying  most common numerical measures
     from a sample using statistical tools.
     """
+  
+    sample_values = []
+    while True:
+        sample_values.append(input('Please enter a number. Enter "Q" to quit: '))
+        if sample_values[-1].upper()  == 'Q':
+            break
 
-    sample_values = [26, 15, 8, 44, 26, 13, 38, 24, 17, 29]
+    sample_values = [float(i)  for i in sample_values if i.isnumeric()]
     
     print(f"Sample values are {sample_values}")
-    print(f"Mean is {np.mean(sample_values)}")
+    print(f"Mean is {round(np.mean(sample_values),2)}")
     print(f"Median is {np.median(sample_values)}")
     print(f"Mode is {stats.mode(sample_values)[0][0]}")
     print(f"1st(Q1) and 3rd(Q3) quartiles are {np.percentile(sample_values,[25,75])}")
