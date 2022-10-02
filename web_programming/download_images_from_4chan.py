@@ -24,13 +24,7 @@ def get_links(url: str) -> list[str]:
 
     results = soup.find_all(class_="fileText")
 
-    links = []
-
-    for i in results:
-        k = i.find("a")
-        links.append("https://" + k["href"][2:])
-
-    return links
+    return [f"https://{result.find('a')['href'][2:]}" for result in results]
 
 
 def save_links(links: list[str]) -> None:
