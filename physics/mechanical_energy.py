@@ -56,6 +56,7 @@ def calculate_kinetic_energy(mass: float, velocity: float) -> str:
         kinetic_energy = 0.5 * mass * velocity * velocity
     except Exception:
         return -0.0
+
     kinetic_energy = str(kinetic_energy)
     kinetic_energy += " " + unit
     return kinetic_energy
