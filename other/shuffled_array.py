@@ -23,18 +23,19 @@ class Solution:
     # generating a 4 digit number randomly by taking the last four numbers of the system generated time which keeps on changing and therefore making it a pseudo random number but this function generate number less than the size of array
     def prng(self, num: int) -> int:  # pseudo random number generator
         """
-        >>> Solution([2,3,4,56]).prng(1)
+        >>> Solution([56]).prng(1)
         0
         """
+        if num == 1:
+            return 0
         self.seed *= self.seed
         any = str(self.seed)
         if any != "0":
-            self.seed = int(any[2:6])
+            self.seed = int(any[-1:-5:-1])
         else:
-            self.seed = int(str(time.time())[-1:-5:-1])
-            any = str(self.seed)
-        if int(any[3]) < num:
-            return int(any[3])
+            any = any[:]+str(len(self.arr)//2)
+        if int(any[-1]) < num:
+            return int(any[-1])
         return self.prng(num)
 
     def reset(self) -> list:
@@ -52,7 +53,7 @@ class Solution:
         [2]
         """
         temp = self.arr.copy()
-        for i in range(1, len(self.arr)):
+        for i in range(len(self.arr)):
             a = self.prng(len(self.arr))
             temp[a], temp[i] = temp[i], temp[a]
         return temp
@@ -65,5 +66,5 @@ print(shuffled_arr)
 
 print(solclass.reset())
 
-# import doctest
-# doctest.testmod()
+import doctest
+doctest.testmod()
