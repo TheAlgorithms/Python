@@ -63,7 +63,8 @@ class Solution:
             temp[a], temp[i] = temp[i], temp[a]
         return temp
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     solclass = Solution([18, 2, 3, 4, 5, 7, 8, 10, 21])
     shuffled_arr = solclass.shuffle()
     print(shuffled_arr)
