@@ -8,7 +8,7 @@ def find_anagrams(_list: list) -> list[list[str]]:
     char_map = {}
     anagrams = []
     for each in _list:
-        char_map[each] = {'is_visited': 0}
+        char_map[each] = {"is_visited": 0}
         for char in each:
             # if the letter is not present already add it
             # if it is already present add the count of each letter
@@ -27,11 +27,14 @@ def find_anagrams(_list: list) -> list[list[str]]:
         for itr2 in range(itr1 + 1, len(_keys)):
             # now the character count of each work is compared with the main word
             # if the character count is matched it is considered as an anagram
-            if char_map[_keys[itr1]] == char_map[_keys[itr2]] and char_map[_keys[itr2]]['is_visited'] == 0:
+            if (
+                char_map[_keys[itr1]] == char_map[_keys[itr2]]
+                and char_map[_keys[itr2]]["is_visited"] == 0
+            ):
                 res.append(_keys[itr1])
                 res.append(_keys[itr2])
                 # once the word is compared and match is found it is marked as visited
-                char_map[_keys[itr2]]['is_visited'] = 1
+                char_map[_keys[itr2]]["is_visited"] = 1
         # now sort the words and remove the duplicates if present
         _set = sorted(list(set(res)))
 
@@ -42,7 +45,17 @@ def find_anagrams(_list: list) -> list[list[str]]:
     return anagrams
 
 
+def test_find_anagrams():
+    """
+    Determine whether the list can be grouped into anagrams
+    >>> find_anagrams(['could', 'cloud', 'areas', 'arena', 'artsy', 'grips',
+    'hello', 'parts', 'prigs', 'strap', 'traps'])
+    [['cloud', 'could'], ['grips', 'prigs'], ['parts', 'strap', 'traps']]
+     >>> find_anagrams(['could', 'arena'])
+    []
+    """
+
+
 if __name__ == "__main__":
-    input = ['could', 'cloud', 'areas', 'arena', 'artsy', 'grips', 'hello', 'parts', 'prigs', 'strap', 'traps']
-    doctest.testfile('group_anagram.txt')
-    find_anagrams(input)
+    doctest.testfile("group_anagram.txt")
+    test_find_anagrams()
