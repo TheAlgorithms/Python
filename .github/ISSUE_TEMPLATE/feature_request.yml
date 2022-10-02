@@ -4,7 +4,7 @@ labels: [enhancement]
 body:
   - type: markdown
     attributes:
-      value: |
+      value: >
         Before requesting please search [existing issues](https://github.com/TheAlgorithms/Python/labels/enhancement).
         Usage questions such as "How do I...?"  belong on the
         [Discord](https://discord.gg/c7MnfGFGa6) and will be closed.
@@ -12,7 +12,7 @@ body:
   - type: textarea
     attributes:
       label: "Feature description"
-      description: |
+      description: >
         This could be new algorithms, data structures or improving any existing
         implementations.
     validations:

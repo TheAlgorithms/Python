@@ -4,7 +4,7 @@ labels: [bug]
 body:
   - type: markdown
     attributes:
-      value: |
+      value: >
         Before requesting please search [existing issues](https://github.com/TheAlgorithms/Python/labels/bug).
         Usage questions such as "How do I...?"  belong on the
         [Discord](https://discord.gg/c7MnfGFGa6) and will be closed.
@@ -12,7 +12,7 @@ body:
   - type: input
     attributes:
       label: "Repository commit"
-      description: |
+      description: >
         The commit hash for `TheAlgorithms/Python` repository. You can get this
         by running the command `git rev-parse HEAD` locally.
       placeholder: "a0b0f414ae134aa1772d33bb930e5a960f9979e8"
@@ -26,10 +26,10 @@ body:
     validations:
       required: true
 
-  - type: input
+  - type: textarea
     attributes:
       label: "Dependencies version (pip freeze)"
-      description: |
+      description: >
         This is the output of the command `pip freeze --all`. Note that the
         actual output might be different as compared to the placeholder text.
       placeholder: |
