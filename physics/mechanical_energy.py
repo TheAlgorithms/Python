@@ -34,7 +34,6 @@ def calculate_gravitational_potential_energy(
 
 def calculate_kinetic_energy(mass: float, velocity: float) -> str:
     """
-
      Kinetic Energy is the energy a body possesses due
      to its state of motion. The Potential Energy applied
      on a body to change its state from motion to rest
