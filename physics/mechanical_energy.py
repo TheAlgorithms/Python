@@ -46,8 +46,6 @@ def calculate_kinetic_energy(mass: float, velocity: float) -> str:
     '8000.0 joules'
     >>> calculate_kinetic_energy(4.25,18.9)
     '759.0712499999998 joules'
-
-
     """
     unit = "joules"
 
