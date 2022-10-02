@@ -19,7 +19,6 @@ def calculate_gravitational_potential_energy(
     '1e+300 joules'
     >>> calculate_gravitational_potential_energy(15.5,9.8,25.5)
     '3873.4500000000003 joules'
-
     """
     unit = "joules"
 
