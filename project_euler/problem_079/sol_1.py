@@ -1,3 +1,10 @@
+# problem: 'https://projecteuler.net/problem=79'
+# please read the problem from site as it better explained
+
+
+
+
+
 at = open('atempts.txt')
 atemptsls = at.readlines()
 at.close()
