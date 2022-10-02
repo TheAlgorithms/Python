@@ -1,4 +1,4 @@
-def binary_search(arr, val, start, end) -> int:
+def binary_search(arr: list[int], val: int, start: int, end: int) -> int:
 
     """
     Algorithm for Binary Search
@@ -22,7 +22,7 @@ def binary_search(arr, val, start, end) -> int:
         return mid
 
 
-def insertion_sort(arr) -> list:
+def insertion_sort(arr: list[int]) -> list:
 
     """
     Algorithm for insertion sort
