@@ -4,7 +4,7 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     Array: A 1d sorted array
     lower_bound: the lowest index for the binary search algorithm
     upper_bound: the highest index for the binary search algorithm
-    value : the value ment to be searched
+    value : the value meant to be searched
     >>> matrix = [1, 4, 7, 11, 15]
     >>> target = 1
     >>> binary_search(matrix, 0, len(matrix) - 1, 1)
@@ -27,7 +27,7 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
 def mat_bin_search(value: int, matrix: list) -> bool:
     """
     This function loops over a 2d matrix and calls binarySearch on the selected 1d array
-    value : value ment to be searched
+    value : value meant to be searched
     matrix = a sorted 2d matrix
     >>> matrix = [[1, 4, 7, 11, 15],
     ...           [2, 5, 8, 12, 19],
