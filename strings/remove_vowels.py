@@ -22,7 +22,7 @@ def remove_vowels(sentence: str) -> str:
     # iterating over a list of vowels
     for vowel in vow:
         # replacing the vowel with blank
-        sentence = sentence.replace(f"{vowel}", "")
+        sentence = sentence.replace(vowel, "")
 
     # returning a updated string
     return sentence  # return --str
