@@ -1,6 +1,8 @@
 """
 This script first converts a byetarray to its corresponding sugned/unsigned binary number and the converts the binary number to an integer.
 """
+
+
 def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
     try:
         binval = ""
@@ -16,7 +18,7 @@ def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
         if signed is True:
             temp = ""
             for j in binval:
-                flag = (j == "0")
+                flag = j == "0"
                 if flag is True:
                     temp = str(temp) + "1"
                 else:
@@ -26,8 +28,7 @@ def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
 
         for k in binval:
             rslt = 2 * rslt + int(k)
-            
-            
+
         if signed is True:
             rslt *= -1
 
@@ -36,4 +37,3 @@ def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
     except Exception as e:
         print(f"ERROR - {e}")
         return 0
- 
