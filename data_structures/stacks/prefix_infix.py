@@ -3,7 +3,7 @@ def prefix_infix(prefix):
 
     i = len(prefix) - 1
     while i >= 0:
-        if not is_perator(prefix[i]):
+        if not is_operator(prefix[i]):
             stack.append(prefix[i])
             i -= 1
         else:
