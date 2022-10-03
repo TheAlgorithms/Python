@@ -9,6 +9,7 @@
   * [Newton Forward Interpolation](arithmetic_analysis/newton_forward_interpolation.py)
   * [Newton Method](arithmetic_analysis/newton_method.py)
   * [Newton Raphson](arithmetic_analysis/newton_raphson.py)
+  * [Newton Raphson New](arithmetic_analysis/newton_raphson_new.py)
   * [Secant Method](arithmetic_analysis/secant_method.py)
 
 ## Audio Filters
@@ -107,6 +108,7 @@
   * [Lempel Ziv](compression/lempel_ziv.py)
   * [Lempel Ziv Decompress](compression/lempel_ziv_decompress.py)
   * [Peak Signal To Noise Ratio](compression/peak_signal_to_noise_ratio.py)
+  * [Run Length Encoding](compression/run_length_encoding.py)
 
 ## Computer Vision
   * [Cnn Classification](computer_vision/cnn_classification.py)
@@ -621,6 +623,7 @@
   * [Linear Congruential Generator](other/linear_congruential_generator.py)
   * [Lru Cache](other/lru_cache.py)
   * [Magicdiamondpattern](other/magicdiamondpattern.py)
+  * [Maximum Subarray](other/maximum_subarray.py)
   * [Nested Brackets](other/nested_brackets.py)
   * [Password Generator](other/password_generator.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
@@ -1053,6 +1056,7 @@
   * [Fetch Bbc News](web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](web_programming/fetch_github_info.py)
   * [Fetch Jobs](web_programming/fetch_jobs.py)
+  * [Fetch Quotes](web_programming/fetch_quotes.py)
   * [Fetch Well Rx Price](web_programming/fetch_well_rx_price.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](web_programming/get_imdbtop.py)
