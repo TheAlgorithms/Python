@@ -28,11 +28,11 @@ def dodecahedron_surface_area(edge: float) -> float:
     >>> dodecahedron_surface_area(0)
     Traceback (most recent call last):
       ...
-    ValueError: Length must be a positive.
+    ValueError: Length must be positive.
     """
 
     if edge <= 0 or not isinstance(edge, int):
-        raise ValueError("Length must be a positive.")
+        raise ValueError("Length must be positive.")
     surface_area = 3 * ((25 + 10 * (5 ** (1 / 2))) ** (1 / 2)) * (edge**2)
     return surface_area
 
@@ -59,11 +59,11 @@ def dodecahedron_volume(edge: float) -> float:
     >>> dodecahedron_volume(0)
     Traceback (most recent call last):
       ...
-    ValueError: Length must be a positive.
+    ValueError: Length must be positive.
     """
 
     if edge <= 0 or not isinstance(edge, int):
-        raise ValueError("Length must be a positive.")
+        raise ValueError("Length must be positive.")
 
     volume = ((15 + (7 * (5 ** (1 / 2)))) / 4) * (edge**3)
     return volume
