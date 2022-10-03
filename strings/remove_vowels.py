@@ -4,7 +4,8 @@
 
 def remove_vowels(sentence: str) -> str:
     """
-    This remove_vowels function will remove all the vowels from a given sentence or a word
+    This remove_vowels function will remove all the vowels
+    from a given sentence or a word
     >>> remove_vowels('Hello world')
     'Hll wrld'
     >>> remove_vowels('Programming is my passion')
