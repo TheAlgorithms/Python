@@ -3,6 +3,7 @@ this function focuses on converting camel case (eg: camelCase)
 to snake case (snake_case)
 """
 
+
 def to_snake_case(word: str) -> str:
     """
     This to_snake_case function
