@@ -35,7 +35,7 @@ def count_ways_to_jump(arr):
     return count_jump
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
