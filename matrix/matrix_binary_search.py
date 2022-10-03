@@ -15,9 +15,10 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     -1
     """
     r = int((lower_bound + upper_bound) // 2)
+    print("r = {}, lb ={}, up = {}".format(r, lower_bound, upper_bound))
     if array[r] == value:
         return r
-    if r in (lower_bound, upper_bound):
+    if lower_bound >= upper_bound:
         return -1
     if array[r] < value:
         return binary_search(array, r + 1, upper_bound, value)
@@ -44,6 +45,8 @@ def mat_bin_search(value: int, matrix: list) -> list:
     [-1, -1]
     """
     index = 0
+    if matrix[index][0] == value:
+        return [index, 0]
     while matrix[index][0] < value:
         if binary_search(matrix[index], 0, len(matrix[index]) - 1, value) != -1:
             r = binary_search(matrix[index], 0, len(matrix[index]) - 1, value)
