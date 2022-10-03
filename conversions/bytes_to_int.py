@@ -43,4 +43,4 @@ def bytes_to_int(bytes_var: bytearray, signed: bool):
         print(f"ERROR - {e}")
         return
 
- 
+
