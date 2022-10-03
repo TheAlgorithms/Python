@@ -1,4 +1,4 @@
-def print_multiplication_table(number: int, number_of_terms: int):
+def print_multiplication_table(number: int, number_of_terms: int) -> None:
     """
     Prints the multiplication table of a given number till the given number of terms
     >>> print_multiplication_table(3,5)
