@@ -3,12 +3,10 @@ this function focuses on converting camel case (eg: camelCase)
 to snake case (snake_case)
 """
 
-import sys
-
-
 def to_snake_case(word: str) -> str:
     """
-    This to_snake_case function convert camel case words (eg: camelCase)
+    This to_snake_case function
+    convert camel case words (eg: camelCase)
     to snake case (eg: snake_case)
     >>> to_snake_case('helloWorld')
     'hello_world'
