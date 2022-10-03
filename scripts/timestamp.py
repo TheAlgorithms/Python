@@ -1,5 +1,5 @@
-from datetime import tzinfo , timedelta , datetime
 import time as t
+from datetime import datetime, timedelta, tzinfo
 
 zero = timedelta(0)
 
@@ -11,6 +11,7 @@ else:
     DSTOFFSET = STDOFFSET
 
 DSTDIFF = DSTOFFSET - STDOFFSET
+
 
 class UTC(tzinfo):
     def utcoffset(self, dt):
@@ -29,14 +30,23 @@ class UTC(tzinfo):
             return zero
 
     def _isdst(self, dt):
-        tt = (dt.year, dt.month, dt.day,
-              dt.hour, dt.minute, dt.second,
-              dt.weekday(), 0, 0)
+        tt = (
+            dt.year,
+            dt.month,
+            dt.day,
+            dt.hour,
+            dt.minute,
+            dt.second,
+            dt.weekday(),
+            0,
+            0,
+        )
         stamp = t.mktime(tt)
         tt = t.localtime(stamp)
         return tt.tm_isdst > 0
 
+
 Local = UTC()
 
 d = datetime.now(Local)
-print(d.isoformat('T'))
+print(d.isoformat("T"))
