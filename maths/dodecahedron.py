@@ -1,7 +1,7 @@
 ## dodecahedron.py
 
 """
-A regular dodecahedron is a three-dimensional figure made up of 
+A regular dodecahedron is a three-dimensional figure made up of
 12 pentagon faces having the same equal size.
 """
 
