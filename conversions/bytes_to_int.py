@@ -12,7 +12,8 @@ and then converts the binary number to an integer.
 >>> bytes_to_int('abc',False)
 ERROR - 'str' object cannot be interpreted as an integer
 """
-def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
+
+def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int | None):
     try:
         binval = ""
         for i in bytes_var:
@@ -46,6 +47,7 @@ def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
 
     except Exception as e:
         print(f"ERROR - {e}")
+        return
  
 if __name__ == "__main__":
     import doctest
