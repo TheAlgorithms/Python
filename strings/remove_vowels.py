@@ -17,7 +17,7 @@ def remove_vowels(sentence: str) -> str:
     """
 
     # List of all the vowels
-    vow = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
+    vowel_list = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
 
     # iterating over a list of vowels
     for vowel in vow:
