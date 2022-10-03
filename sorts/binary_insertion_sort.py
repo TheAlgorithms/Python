@@ -14,59 +14,60 @@ python3 binary_insertion_sort.py
 """
 
 
-def binary_search(collection: list, val: int, start: int, end: int) -> int:
+def binary_search(collection: list[int], value: int, start: int, end: int) -> int:
     """
-    A pure Python implementation of the binary search  algorithm.
+    A pure implementation of the binary search  algorithm in Python
 
-    :param collection: some ascending sorted collection with comparable items
-    :param item: item value to search
+    :param collection: some ascending sorted collection with comparable items inside
+    :param value: item value to search
+    :param start: first index in the sub-collection
+    :param end: last index in the sub-collection
     :return: index of found item
 
     Examples:
-    >>> binary_search([0, 5, 7, 10, 15], 0, 0, 4)
-    0
+    >>> binary_search([-2, 3, 7, 9, 255], 0, 0, 4)
+    1
 
-    >>> binary_search([0, 5, 7, 10, 15], 15, 0, 4)
-    5
+    >>> binary_search([-62, -50, -41, -8, -1], -12, 0, 4)
+    3
 
-    >>> binary_search([0, 5, 7, 10, 15], 5, 0, 4)
+    >>> binary_search([0, 0, 8, 10, 15], 1, 0, 4)
     2
 
     """
     if start == end:
-        if collection[start] > val:
+        if collection[start] > value:
             return start
         else:
             return start + 1
     if start > end:
         return start
     mid = (start + end) // 2
-    if collection[mid] < val:
-        return binary_search(collection, val, mid + 1, end)
-    elif collection[mid] > val:
-        return binary_search(collection, val, start, mid - 1)
+    if collection[mid] < value:
+        return binary_search(collection, value, mid + 1, end)
+    elif collection[mid] > value:
+        return binary_search(collection, value, start, mid - 1)
     else:
         return mid
 
 
-def binary_insertion_sort(collection: list) -> list:
+def binary_insertion_sort(collection: list[int]) -> list[int]:
     """A pure Python implementation of the binary insertion sort algorithm
 
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
+    :param collection: a mutable collection of comparable items in any order
     :return: the same collection ordered by ascending
 
     Examples:
-    >>> binary_insertion_sort([0, 5, 3, 2, 2])
-    [0, 2, 2, 3, 5]
+    >>> binary_insertion_sort([0.1, -2.4, 4.4, 2.2])
+    [-2.4, 0.1, 2.2, 4.4]
     >>> binary_insertion_sort([]) == sorted([])
     True
-    >>> binary_insertion_sort([-2, -5, -45]) == sorted([-2, -5, -45])
-    True
-    >>> binary_insertion_sort(['d', 'a', 'e', 'c']) == sorted(['d', 'a', 'e', 'c'])
+    >>> binary_insertion_sort([-2, 5, 0, -45])
+    [-45, -2, 0, 5]
+    >>> binary_insertion_sort(['d', 'a', 'b', 'c']) == sorted(['d', 'a', 'b', 'c'])
     True
     >>> import random
-    >>> collection = random.sample(range(-50, 50), 100)
+    >>> collection = random.sample(range(-100, 100), 200)
     >>> binary_insertion_sort(collection) == sorted(collection)
     True
     >>> import string
@@ -74,20 +75,22 @@ def binary_insertion_sort(collection: list) -> list:
     >>> binary_insertion_sort(collection) == sorted(collection)
     True
     """
-    for index in range(1, len(collection)):
-        val = collection[index]
-        mid = binary_search(collection, val, 0, index - 1)
+    for ind, val in enumerate(collection[1:]):
+        mid = binary_search(collection, val, 0, ind)
         collection = (
-            collection[:mid] + [val] + collection[mid:index] + collection[index + 1 :]
+            collection[:mid] + [val] + collection[mid : ind + 1] + collection[ind + 2 :]
         )
     return collection
 
 
 if __name__ == "__main__":
-    from doctest import testmod
+    from argparse import ArgumentParser
 
-    testmod()
-
-    user_input = input("Enter numbers separated by a comma:\n").strip()
+    parser = ArgumentParser()
+    parser.add_argument(
+        "user_input", type=str, help="Numbers separated by a comma (example: 0,5,3,2,2)"
+    )
+    args = parser.parse_args()
+    user_input = args.user_input.strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(f"{binary_insertion_sort(unsorted) = }")
