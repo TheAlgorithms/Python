@@ -1,5 +1,6 @@
 """
 Calculates the sum of two positive numbers using bitwise operator
+Wikipedia explanation: https://en.wikipedia.org/wiki/Binary_number
 """
 
 def sum_of_two_positive_numbers_bitwise(
