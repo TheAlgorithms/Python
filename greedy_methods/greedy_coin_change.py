@@ -11,7 +11,9 @@ in the remaining amount until
 the remaining sum is <=0.
 
 As seen in the third test, the greedy algorithm is not always optimal.#
-For more information: https://stackoverflow.com/questions/13557979/why-does-the-greedy-coin-change-algorithm-not-work-for-some-coin-sets
+For more information:
+https://stackoverflow.com/questions/13557979/why-does-the-greedy-coin-change\
+-algorithm-not-work-for-some-coin-sets
 """
 
 
@@ -31,7 +33,8 @@ def compute_coins(amount: int, coin_set: set[int]) -> list[int]:
     >>> compute_coins(10, {2, 6, 5})
     [6, 2, 2]
     >>> compute_coins(130, {200, 150, 100, 50, 1})
-    [100, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    [100, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, \
+1, 1, 1, 1, 1, 1, 1]
     """
     coins: list = []
 
