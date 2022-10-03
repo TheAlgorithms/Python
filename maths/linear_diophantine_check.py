@@ -1,4 +1,4 @@
-""" 
+"""
    Program to check for solutions
    of linear diophantine equations
    can be possible or not
@@ -83,8 +83,7 @@ def test3()->int:
 # main code
 
 if __name__ == '__main__':
-   
+
    test1()  # testcase 1
    test2()  # testcase 2
    test3()  # testcase 3
-
