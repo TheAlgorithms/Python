@@ -1,6 +1,3 @@
-
-
-
 def search_quadruplets(sequence, target):
     """
     >> > search_quadruplets([4, 1, 2, -1, 1, -3], 1)
@@ -60,5 +57,3 @@ def search_quadruplets(sequence, target):
                 else:
                     right -= 1
     return quadruplets
-
-
