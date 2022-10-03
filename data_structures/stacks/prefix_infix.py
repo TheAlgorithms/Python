@@ -1,4 +1,4 @@
-def prefixToInfix(prefix):
+def prefix_infix(prefix):
     stack = []
 
     i = len(prefix) - 1
@@ -14,7 +14,7 @@ def prefixToInfix(prefix):
     return stack.pop()
 
 
-def isOperator(c):
+def is_operator(c):
     if c == "*" or c == "+" or c == "-" or c == "/" or c == "^" or c == "(" or c == ")":
         return True
     else:
@@ -23,4 +23,4 @@ def isOperator(c):
 
 if __name__ == "__main__":
     str = "*-A/BC-/ADE"
-    print(prefixToInfix(str))
+    print(prefix_infix(str))
