@@ -15,15 +15,12 @@ def sieve(n):
         if temp[start] is True:
             in_prime.append(start)
             for i in range(start * start, end + 1, start):
-                if temp[i] is True:
-                    temp[i] = False
+                temp[i] = False
         start += 1
     prime += in_prime
 
     low = end + 1
-    high = low + end - 1
-    if high > n:
-        high = n
+    high = min(2 * end, n)
 
     while low <= n:
         temp = [True] * (high - low + 1)
@@ -41,9 +38,7 @@ def sieve(n):
                 prime.append(j + low)
 
         low = high + 1
-        high = low + end - 1
-        if high > n:
-            high = n
+        high = min(high + end, n)
 
     return prime
 
