@@ -31,9 +31,7 @@ def fizz_buzz(number: int, iterations: int) -> str:
     if not type(iterations) == int:
         raise ValueError("iterations must be defined as integers")
     if not iterations >= 1:
-        raise ValueError(
-            "Iterations must be done more than 0 times to play FizzBuzz"
-        )
+        raise ValueError("Iterations must be done more than 0 times to play FizzBuzz")
     if not type(number) == int or not number >= 1:
         raise ValueError(
             """starting number must be
