@@ -11,8 +11,8 @@ def dodecahedron_surface_area(edge: float) -> float:
     where:
     a --> is the area of the dodecahedron
     e --> is the length of the edge
-    reference-->"Dodecahedron" Study.com
-    <https://study.com/academy/lesson/dodecahedron-volume-surface-area-formulas.html>
+    reference-->"Dodecahedron" Wikipedia
+    <https://en.wikipedia.org/wiki/Regular_dodecahedron#Surface_area_and_volume>
 
     :param edge: length of the edge of the dodecahedron
     :type edge: float
@@ -43,8 +43,8 @@ def dodecahedron_volume(edge: float) -> float:
     where:
     v --> is the volume of the dodecahedron
     e --> is the length of the edge
-    reference-->"Dodecahedron" Study.com
-    <https://study.com/academy/lesson/dodecahedron-volume-surface-area-formulas.html>
+    reference-->"Dodecahedron" Wikipedia
+    <https://en.wikipedia.org/wiki/Regular_dodecahedron#Surface_area_and_volume>
 
     :param edge: length of the edge of the dodecahedron
     :type edge: float
