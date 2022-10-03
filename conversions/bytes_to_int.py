@@ -1,5 +1,7 @@
 """
-This script first converts a byetarray to its corresponding sugned/unsigned binary number and the converts the binary number to an integer.
+This script first converts a bytearray,
+to its corresponding signed/unsigned binary number,
+and then converts the binary number to an integer.
 """
 def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
     try:
