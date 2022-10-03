@@ -20,7 +20,7 @@ def remove_vowels(sentence: str) -> str:
     vowel_list = ["a", "e", "i", "o", "u", "A", "E", "I", "O", "U"]
 
     # iterating over a list of vowels
-    for vowel in vow:
+    for vowel in vowel_list:
         # replacing the vowel with blank
         sentence = sentence.replace(vowel, "")
 
