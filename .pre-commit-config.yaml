@@ -49,6 +49,7 @@ repos:
           - --ignore-missing-imports
           - --install-types  # See mirrors-mypy README.md
           - --non-interactive
+        additional_dependencies: [types-requests]
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.1.0
