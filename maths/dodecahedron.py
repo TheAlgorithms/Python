@@ -24,9 +24,9 @@ def dodecahedron_surface_area(edge: float) -> float:
     Tests:
     >>> dodecahedron_surface_area(5)
     516.1432201766901
-    >>> dodecahedron_surface_area(5)
+    >>> dodecahedron_surface_area(10)
     2064.5728807067603
-    >>> dodecahedron_surface_area(0)
+    >>> dodecahedron_surface_area(-1)
     Traceback (most recent call last):
       ...
     ValueError: Length must be a positive.
@@ -57,7 +57,7 @@ def dodecahedron_volume(edge: float) -> float:
     957.8898700780791
     >>> dodecahedron_volume(10)
     7663.118960624633
-    >>> dodecahedron_volume(0)
+    >>> dodecahedron_volume(-1)
     Traceback (most recent call last):
       ...
     ValueError: Length must be a positive.
