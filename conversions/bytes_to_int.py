@@ -1,20 +1,28 @@
-"""
-This script first converts a bytearray,
-to its corresponding signed/unsigned binary number,
-and then converts the binary number to an integer.
+def bytes_to_int(bytes_var: bytearray, signed: bool, byteorder: str) -> (int):
+    
+    """
+    This script first converts a bytearray,
+    to its corresponding signed/unsigned binary number,
+    and then converts the binary number to an integer.
 
->>> bytes_to_int(b'\\x00\\x10',False)
-16
->>> bytes_to_int(b'\\xfc\\x00',True)
--1024
->>> bytes_to_int(b'\\x00\\x01',False)
-1
->>> bytes_to_int('abc',False)
-ERROR - 'str' object cannot be interpreted as an integer
-0
-"""
-def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
+    >>> bytes_to_int(b'\\x00\\x10',False,'big')
+    16
+    >>> bytes_to_int(b'\\xfc\\x00',True,'big')
+    -1024
+    >>> bytes_to_int(b'\\x00\\x01',False,'big')
+    1
+    >>> bytes_to_int('abc',False,'big')
+    ERROR - 'str' object cannot be interpreted as an integer
+    0
+    >>> bytes_to_int(b'\\x00\\x10',False,'little')
+    4096
+    """
+    
+    
     try:
+        byteorder = byteorder.lower()
+        if(byteorder == 'little'):
+            bytes_var = bytes_var[::-1]
         binval = ""
         for i in bytes_var:
             binnum = str(bin(i))[2:]
