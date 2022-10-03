@@ -13,36 +13,36 @@ References:
 import math
 
 
-def isprime(num: int) -> bool:
-    """
-    Returns boolean representing primality of given number num.
+def is_prime(number: int) -> bool:
+    """Checks to see if a number is a prime in O(sqrt(n)).
+    A number is prime if it has exactly two factors: 1 and itself.
+    Returns boolean representing primality of given number (i.e., if the
+    result is true, then the number is indeed prime else it is not).
 
-    >>> isprime(2)
+    >>> is_prime(2)
     True
-    >>> isprime(3)
+    >>> is_prime(3)
     True
-    >>> isprime(27)
+    >>> is_prime(27)
     False
-    >>> isprime(2999)
+    >>> is_prime(2999)
     True
-    >>> isprime(0)
-    Traceback (most recent call last):
-        ...
-    ValueError: Parameter num must be greater than or equal to two.
-    >>> isprime(1)
-    Traceback (most recent call last):
-        ...
-    ValueError: Parameter num must be greater than or equal to two.
+    >>> is_prime(0)
+    False
+    >>> is_prime(1)
+    False
     """
 
-    if num <= 1:
-        raise ValueError("Parameter num must be greater than or equal to two.")
-    if num == 2:
+    if 1 < number < 4:
+        # 2 and 3 are primes
         return True
-    elif num % 2 == 0:
+    elif number < 2 or number % 2 == 0 or number % 3 == 0:
+        # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
         return False
-    for i in range(3, int(math.sqrt(num)) + 1, 2):
-        if num % i == 0:
+
+    # All primes number are in format of 6k +/- 1
+    for i in range(5, int(math.sqrt(number) + 1), 6):
+        if number % i == 0 or number % (i + 2) == 0:
             return False
     return True
 
@@ -84,18 +84,18 @@ def solution(n: int = 600851475143) -> int:
     if n <= 0:
         raise ValueError("Parameter n must be greater than or equal to one.")
     max_number = 0
-    if isprime(n):
+    if is_prime(n):
         return n
     while n % 2 == 0:
         n //= 2
-    if isprime(n):
+    if is_prime(n):
         return n
     for i in range(3, int(math.sqrt(n)) + 1, 2):
         if n % i == 0:
-            if isprime(n // i):
+            if is_prime(n // i):
                 max_number = n // i
                 break
-            elif isprime(i):
+            elif is_prime(i):
                 max_number = i
     return max_number
 

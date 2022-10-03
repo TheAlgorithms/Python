@@ -114,7 +114,7 @@ def strassen(matrix1: list, matrix2: list) -> list:
     """
     if matrix_dimensions(matrix1)[1] != matrix_dimensions(matrix2)[0]:
         raise Exception(
-            f"Unable to multiply these matrices, please check the dimensions. \n"
+            "Unable to multiply these matrices, please check the dimensions. \n"
             f"Matrix A:{matrix1} \nMatrix B:{matrix2}"
         )
     dimension1 = matrix_dimensions(matrix1)

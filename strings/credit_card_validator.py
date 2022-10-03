@@ -71,7 +71,7 @@ def validate_credit_card_number(credit_card_number: str) -> bool:
     36111111111111 is an invalid credit card number because of its first two digits.
     False
     >>> validate_credit_card_number('41111111111111')
-    41111111111111 is an invalid credit card number because it fails the Lhun check.
+    41111111111111 is an invalid credit card number because it fails the Luhn check.
     False
     """
     error_message = f"{credit_card_number} is an invalid credit card number because"
@@ -88,7 +88,7 @@ def validate_credit_card_number(credit_card_number: str) -> bool:
         return False
 
     if not luhn_validation(credit_card_number):
-        print(f"{error_message} it fails the Lhun check.")
+        print(f"{error_message} it fails the Luhn check.")
         return False
 
     print(f"{credit_card_number} is a valid credit card number.")

@@ -12,25 +12,45 @@ pandigital prime.
 """
 from __future__ import annotations
 
+import math
 from itertools import permutations
-from math import sqrt
 
 
-def is_prime(n: int) -> bool:
-    """
-    Returns True if n is prime,
-    False otherwise.
-    >>> is_prime(67483)
+def is_prime(number: int) -> bool:
+    """Checks to see if a number is a prime in O(sqrt(n)).
+
+    A number is prime if it has exactly two factors: 1 and itself.
+
+    >>> is_prime(0)
+    False
+    >>> is_prime(1)
+    False
+    >>> is_prime(2)
+    True
+    >>> is_prime(3)
+    True
+    >>> is_prime(27)
+    False
+    >>> is_prime(87)
     False
     >>> is_prime(563)
     True
-    >>> is_prime(87)
+    >>> is_prime(2999)
+    True
+    >>> is_prime(67483)
     False
     """
-    if n % 2 == 0:
+
+    if 1 < number < 4:
+        # 2 and 3 are primes
+        return True
+    elif number < 2 or number % 2 == 0 or number % 3 == 0:
+        # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
         return False
-    for i in range(3, int(sqrt(n) + 1), 2):
-        if n % i == 0:
+
+    # All primes number are in format of 6k +/- 1
+    for i in range(5, int(math.sqrt(number) + 1), 6):
+        if number % i == 0 or number % (i + 2) == 0:
             return False
     return True
 

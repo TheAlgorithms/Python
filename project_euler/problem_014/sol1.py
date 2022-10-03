@@ -25,9 +25,8 @@ def solution(n: int = 1000000) -> int:
     n → n/2 (n is even)
     n → 3n + 1 (n is odd)
 
-    # The code below has been commented due to slow execution affecting Travis.
-    # >>> solution(1000000)
-    # 837799
+    >>> solution(1000000)
+    837799
     >>> solution(200)
     171
     >>> solution(5000)
@@ -35,20 +34,27 @@ def solution(n: int = 1000000) -> int:
     >>> solution(15000)
     13255
     """
-    largest_number = 0
-    pre_counter = 0
+    largest_number = 1
+    pre_counter = 1
+    counters = {1: 1}
 
-    for input1 in range(n):
-        counter = 1
+    for input1 in range(2, n):
+        counter = 0
         number = input1
 
-        while number > 1:
+        while True:
+            if number in counters:
+                counter += counters[number]
+                break
             if number % 2 == 0:
                 number //= 2
                 counter += 1
             else:
                 number = (3 * number) + 1
                 counter += 1
+
+        if input1 not in counters:
+            counters[input1] = counter
 
         if counter > pre_counter:
             largest_number = input1

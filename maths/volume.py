@@ -38,8 +38,8 @@ def vol_spheres_intersect(
     Calculate the volume of the intersection of two spheres.
 
     The intersection is composed by two spherical caps and therefore its volume is the
-    sum of the volumes of the spherical caps.  First it calculates the heights (h1, h2)
-    of the the spherical caps, then the two volumes and it returns the sum.
+    sum of the volumes of the spherical caps. First, it calculates the heights (h1, h2)
+    of the spherical caps, then the two volumes and it returns the sum.
     The height formulas are
     h1 = (radius_1 - radius_2 + centers_distance)
        * (radius_1 + radius_2 - centers_distance)
@@ -153,6 +153,21 @@ def vol_sphere(radius: float) -> float:
     return 4 / 3 * pi * pow(radius, 3)
 
 
+def vol_hemisphere(radius: float):
+    """Calculate the volume of a hemisphere
+    Wikipedia reference: https://en.wikipedia.org/wiki/Hemisphere
+    Other references: https://www.cuemath.com/geometry/hemisphere
+    :return 2/3 * pi * radius^3
+
+    >>> vol_hemisphere(1)
+    2.0943951023931953
+
+    >>> vol_hemisphere(7)
+    718.3775201208659
+    """
+    return 2 / 3 * pi * pow(radius, 3)
+
+
 def vol_circular_cylinder(radius: float, height: float) -> float:
     """Calculate the Volume of a Circular Cylinder.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
@@ -166,6 +181,26 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
     return pi * pow(radius, 2) * height
 
 
+def vol_conical_frustum(height: float, radius_1: float, radius_2: float):
+    """Calculate the Volume of a Conical Frustum.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Frustum
+    :return 1/3 * pi * height * (radius_1^2 + radius_top^2 + radius_1 * radius_2)
+
+    >>> vol_conical_frustum(45, 7, 28)
+    48490.482608158454
+
+    >>> vol_conical_frustum(1, 1, 2)
+    7.330382858376184
+    """
+    return (
+        1
+        / 3
+        * pi
+        * height
+        * (pow(radius_1, 2) + pow(radius_2, 2) + radius_1 * radius_2)
+    )
+
+
 def main():
     """Print the Results of Various Volume Calculations."""
     print("Volumes:")
@@ -176,7 +211,9 @@ def main():
     print("Prism: " + str(vol_prism(2, 2)))  # = 4
     print("Pyramid: " + str(vol_pyramid(2, 2)))  # ~= 1.33
     print("Sphere: " + str(vol_sphere(2)))  # ~= 33.5
+    print("Hemisphere: " + str(vol_hemisphere(2)))  # ~= 16.75
     print("Circular Cylinder: " + str(vol_circular_cylinder(2, 2)))  # ~= 25.1
+    print("Conical Frustum: " + str(vol_conical_frustum(2, 2, 4)))  # ~= 58.6
     print("Spherical cap: " + str(vol_spherical_cap(1, 2)))  # ~= 5.24
     print("Spheres intersetion: " + str(vol_spheres_intersect(2, 2, 1)))  # ~= 21.21
 

@@ -22,7 +22,8 @@ Remark: Some overflow runtime warnings are suppressed. This is because of the
 """
 
 import warnings
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 import numpy
 from matplotlib import pyplot

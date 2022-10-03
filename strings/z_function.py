@@ -10,7 +10,7 @@ Time Complexity: O(n) - where n is the length of the string
 """
 
 
-def z_function(input_str: str) -> list:
+def z_function(input_str: str) -> list[int]:
     """
     For the given string this function computes value for each index,
     which represents the maximal length substring starting from the index
@@ -27,7 +27,7 @@ def z_function(input_str: str) -> list:
     >>> z_function("zxxzxxz")
     [0, 0, 0, 4, 0, 0, 1]
     """
-    z_result = [0] * len(input_str)
+    z_result = [0 for i in range(len(input_str))]
 
     # initialize interval's left pointer and right pointer
     left_pointer, right_pointer = 0, 0
@@ -49,7 +49,7 @@ def z_function(input_str: str) -> list:
     return z_result
 
 
-def go_next(i, z_result, s):
+def go_next(i: int, z_result: list[int], s: str) -> bool:
     """
     Check if we have to move forward to the next characters or not
     """

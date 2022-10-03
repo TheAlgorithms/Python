@@ -42,12 +42,18 @@ class Test(unittest.TestCase):
         x = Vector([1, 2, 3, 4])
         self.assertEqual(len(x), 4)
 
-    def test_euclidLength(self) -> None:
+    def test_euclidean_length(self) -> None:
         """
         test for method euclidean_length()
         """
         x = Vector([1, 2])
+        y = Vector([1, 2, 3, 4, 5])
+        z = Vector([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        w = Vector([1, -1, 1, -1, 2, -3, 4, -5])
         self.assertAlmostEqual(x.euclidean_length(), 2.236, 3)
+        self.assertAlmostEqual(y.euclidean_length(), 7.416, 3)
+        self.assertEqual(z.euclidean_length(), 0)
+        self.assertAlmostEqual(w.euclidean_length(), 7.616, 3)
 
     def test_add(self) -> None:
         """

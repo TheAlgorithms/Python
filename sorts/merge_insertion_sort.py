@@ -30,6 +30,12 @@ def merge_insertion_sort(collection: list[int]) -> list[int]:
 
     >>> merge_insertion_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    Testing with all permutations on range(0,5):
+    >>> import itertools
+    >>> permutations = list(itertools.permutations([0, 1, 2, 3, 4]))
+    >>> all(merge_insertion_sort(p) == [0, 1, 2, 3, 4] for p in permutations)
+    True
     """
 
     def binary_search_insertion(sorted_list, item):
@@ -160,7 +166,7 @@ def merge_insertion_sort(collection: list[int]) -> list[int]:
     """
     is_last_odd_item_inserted_before_this_index = False
     for i in range(len(sorted_list_2d) - 1):
-        if result[i] == collection[-i]:
+        if result[i] == collection[-1] and has_last_odd_item:
             is_last_odd_item_inserted_before_this_index = True
         pivot = sorted_list_2d[i][1]
         # If last_odd_item is inserted before the item's index,

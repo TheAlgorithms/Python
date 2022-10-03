@@ -41,7 +41,7 @@ def solution(n: int = 100) -> int:
 
     for a in range(2, N):
         for b in range(2, N):
-            currentPow = a ** b  # calculates the current power
+            currentPow = a**b  # calculates the current power
             collectPowers.add(currentPow)  # adds the result to the set
     return len(collectPowers)
 

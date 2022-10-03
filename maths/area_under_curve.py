@@ -3,7 +3,7 @@ Approximates the area under the curve using the trapezoidal rule
 """
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 
 def trapezoidal_area(
@@ -50,7 +50,7 @@ def trapezoidal_area(
 if __name__ == "__main__":
 
     def f(x):
-        return x ** 3 + x ** 2
+        return x**3 + x**2
 
     print("f(x) = x^3 + x^2")
     print("The area between the curve, x = -5, x = 5 and the x axis is:")

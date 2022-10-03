@@ -63,8 +63,8 @@ def pull():
         params_space[key] = (machine_time * 0.01 + r * 1.01) % 1 + 3
 
     # Choosing Chaotic Data
-    X = int(buffer_space[(key + 2) % m] * (10 ** 10))
-    Y = int(buffer_space[(key - 2) % m] * (10 ** 10))
+    X = int(buffer_space[(key + 2) % m] * (10**10))
+    Y = int(buffer_space[(key - 2) % m] * (10**10))
 
     # Machine Time
     machine_time += 1
@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
     # Pulling Data (Output)
     while inp in ("e", "E"):
-        print("%s" % format(pull(), "#04x"))
+        print(f"{format(pull(), '#04x')}")
         print(buffer_space)
         print(params_space)
         inp = input("(e)exit? ").strip()
