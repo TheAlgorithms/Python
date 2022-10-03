@@ -8,8 +8,8 @@ import sys
 
 def to_snake_case(word: str) -> str:
     """
-    This to_snake_case function removes all the vowels
-    from a given sentence or a word
+    This to_snake_case function convert camel case words (eg: camelCase)
+    to snake case (eg: snake_case)
     >>> to_snake_case('helloWorld')
     'hello_world'
     >>> to_snake_case('camelCase')
