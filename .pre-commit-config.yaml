@@ -56,7 +56,7 @@ repos:
     hooks:
       - id: codespell
         args:
-          - --ignore-words-list=ans,crate,fo,followings,hist,iff,mater,secant,som,sur,tim
+          - --ignore-words-list=ans,crate,damon,fo,followings,hist,iff,mater,secant,som,sur,tim,zar
           - --skip="./.*,./strings/dictionary.txt,./strings/words.txt,./project_euler/problem_022/p022_names.txt"
         exclude: |
           (?x)^(
