@@ -1,9 +1,8 @@
-# dodecahedron.py
+# hexagonalnumbers.py
 
 """
 A regular dodecahedron is a three-dimensional figure made up of 12 pentagon faces having the same equal size.
 """
-
 
 def dodecahedron_surface_area(edge: float) -> float:
     """
@@ -12,8 +11,8 @@ def dodecahedron_surface_area(edge: float) -> float:
     where:
     a --> is the area of the dodecahedron
     e --> is the length of the edge
-    reference-->"Dodecahedron" Wikipedia
-    <https://en.wikipedia.org/wiki/Regular_dodecahedron#Surface_area_and_volume>
+    reference-->"Dodecahedron" Study.com
+    <https://study.com/academy/lesson/dodecahedron-volume-surface-area-formulas.html>
 
     :param edge: length of the edge of the dodecahedron
     :type edge: float
@@ -28,7 +27,7 @@ def dodecahedron_surface_area(edge: float) -> float:
     >>> dodecahedron_surface_area(0)
     Traceback (most recent call last):
       ...
-    ValueError: Length must be a positive integer.
+    ValueError: Length must be a positive.
     """
 
     if edge <= 0 or not isinstance(edge, int):
@@ -44,8 +43,8 @@ def dodecahedron_volume(edge: float) -> float:
     where:
     v --> is the volume of the dodecahedron
     e --> is the length of the edge
-    reference-->"Dodecahedron" Wikipedia
-    <https://en.wikipedia.org/wiki/Regular_dodecahedron#Surface_area_and_volume>
+    reference-->"Dodecahedron" Study.com
+    <https://study.com/academy/lesson/dodecahedron-volume-surface-area-formulas.html>
 
     :param edge: length of the edge of the dodecahedron
     :type edge: float
@@ -59,7 +58,7 @@ def dodecahedron_volume(edge: float) -> float:
     >>> dodecahedron_volume(0)
     Traceback (most recent call last):
       ...
-    ValueError: Length must be a positive integer.
+    ValueError: Length must be a positive.
     """
 
     if edge <= 0 or not isinstance(edge, int):
