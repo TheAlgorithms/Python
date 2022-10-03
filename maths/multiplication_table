@@ -11,7 +11,7 @@ print("https://github.com/AbhinavMangla02")
 print("for: hacktober")
 print("----------------")
 
-a = int(input("whose multiplication table do you want: ")) 
+a = int(input("whose multiplication table do you want: "))
 
 print("----------------")
 
