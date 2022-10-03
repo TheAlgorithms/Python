@@ -1,5 +1,5 @@
 def bytes_to_int(bytes_var: bytearray, signed: bool, byteorder: str) -> (int):
-    
+
     """
     This script first converts a bytearray,
     to its corresponding signed/unsigned binary number,
@@ -17,11 +17,10 @@ def bytes_to_int(bytes_var: bytearray, signed: bool, byteorder: str) -> (int):
     >>> bytes_to_int(b'\\x00\\x10',False,'little')
     4096
     """
-    
-    
+
     try:
         byteorder = byteorder.lower()
-        if(byteorder == 'little'):
+        if byteorder == "little":
             bytes_var = bytes_var[::-1]
         binval = ""
         for i in bytes_var:
@@ -36,7 +35,7 @@ def bytes_to_int(bytes_var: bytearray, signed: bool, byteorder: str) -> (int):
         if signed is True:
             temp = ""
             for j in binval:
-                flag = (j == "0")
+                flag = j == "0"
                 if flag is True:
                     temp = str(temp) + "1"
                 else:
@@ -46,8 +45,7 @@ def bytes_to_int(bytes_var: bytearray, signed: bool, byteorder: str) -> (int):
 
         for k in binval:
             rslt = 2 * rslt + int(k)
-            
-            
+
         if signed is True:
             rslt *= -1
 
@@ -56,7 +54,9 @@ def bytes_to_int(bytes_var: bytearray, signed: bool, byteorder: str) -> (int):
     except Exception as e:
         print(f"ERROR - {e}")
         return 0
- 
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
