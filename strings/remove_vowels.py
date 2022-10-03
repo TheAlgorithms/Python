@@ -2,7 +2,7 @@
 # returns the modified version of that string.
 
 
-def removeVowels(sentence: str) -> str:
+def remove_vowels(sentence: str) -> str:
     """
     This removeVowel function will remove all the vowels from a given sentence or a word
     >>> removeVowels('Hello world')
@@ -33,4 +33,4 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # passing a string to a function removeVowels and printing the result
-    print(removeVowels("Welcome to HACKTOBERFEST 2022"))
+    print(remove_vowels("Welcome to HACKTOBERFEST 2022"))
