@@ -4,10 +4,6 @@ from __future__ import print_function
 def reverse_num(num:str) -> str:
     """
     Return reversed number
-    Parameters:
-        num (string): representing input number.
-    Returns:
-        string: representing reverse of input number
     >>> reverse_num("123")
     321
 
