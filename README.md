@@ -41,11 +41,11 @@ Implementations are for learning purposes only. As they may be less efficient th
 
 ## Getting Started
 
-Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
+Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute. Contributing to Open Source is a great way to learn. We look forward to your participation in the community and are happy and excited to have you on board.
 
 ## Community Channels
 
-We're on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms)! Community channels are great for you to ask questions and get help. Please join us!
+We're on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms)! Community channels are great for you to ask questions and get help. You can ask your doubts as well as you can solve others doubt and help them. Please join us!
 
 ## List of Algorithms
 
