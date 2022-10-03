@@ -1,6 +1,6 @@
 """
-A Radix Tree is a data structure that represents a space-optimized trie (prefix tree) in which 
-each node that is the only child is merged with its parent
+A Radix Tree is a data structure that represents a space-optimized trie (prefix tree) in which
+each node that is the only child is merged with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
 
 
@@ -22,6 +22,9 @@ class RadixNode:
 
         Returns:
             (str, str, str): common substring, remaining prefix, remaining word
+
+        >>> RadixNode("myprefix").match("mystring")
+        ('my', 'prefix', 'string')
         """
         x = 0
         for q, w in zip(self.prefix, word):
@@ -37,6 +40,8 @@ class RadixNode:
 
         Args:
             words (list[str]): list of words
+
+        >>> RadixNode("myprefix").insert_many(["mystring", "hello"])
         """
         for word in words:
             self.insert(word)
@@ -46,6 +51,8 @@ class RadixNode:
 
         Args:
             word (str): word to insert
+
+        >>> RadixNode("myprefix").insert("mystring")
         """
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
@@ -90,6 +97,9 @@ class RadixNode:
 
         Returns:
             bool: True if the word appears on the tree
+
+        >>> RadixNode("myprefix").find("mystring")
+        False
         """
         incoming_node = self.nodes.get(word[0], None)
         if not incoming_node:
@@ -116,6 +126,9 @@ class RadixNode:
 
         Returns:
             bool: _description_
+
+        >>> RadixNode("myprefix").delete("mystring")
+        False
         """
         incoming_node = self.nodes.get(word[0], None)
         if not incoming_node:
@@ -201,7 +214,6 @@ def main() -> None:
     print("Words:", words)
     print("Tree:")
     root.print_tree()
-
 
 
 if __name__ == "__main__":
