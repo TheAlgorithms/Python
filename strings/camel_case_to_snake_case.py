@@ -4,10 +4,10 @@ to snake case (snake_case)
 """
 
 
+
 def to_snake_case(word: str) -> str:
     """
-    This to_snake_case function
-    convert camel case words (eg: camelCase)
+    This to_snake_case function convert camel case words (eg: camelCase)
     to snake case (eg: snake_case)
     >>> to_snake_case('helloWorld')
     'hello_world'
@@ -73,6 +73,7 @@ def to_snake_case(word: str) -> str:
 
     except RuntimeError:
         print("Provide camel case eg: helloWord")
+        
 
 
 if __name__ == "__main__":
