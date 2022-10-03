@@ -1,9 +1,10 @@
 ##url to qr code converter
-import pyqrcode
 import png
+import pyqrcode
+
 link = "https://https://github.com/shashank1623"
 qr_code = pyqrcode.create(link)
-qr_code.png("github1.png",scale = 5)
+qr_code.png("github1.png", scale=5)
 
 ##before running this run this cmd
 ## 1 . pip install pyqrcode
