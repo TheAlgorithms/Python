@@ -1,21 +1,21 @@
 """
-Title : Finding the value of either Gravitational Force, one of the masses or distance 
+Title : Finding the value of either Gravitational Force, one of the masses or distance
 provided that the other three parameters are given.
 
-Description : Newton's Law of Universal Gravitation explains the presence 
-of force of attraction between bodies having a definite mass situated at a distance. 
-It is usually stated as that, every particle attracts every other particle 
-in the universe with a force that is directly proportional to the product 
-of their masses and inversely proportional to the square of the distance 
-between their centers. The publication of the theory has become known as 
-the "first great unification", as it marked the unification of the previously 
-described phenomena of gravity on Earth with known astronomical 
+Description : Newton's Law of Universal Gravitation explains the presence
+of force of attraction between bodies having a definite mass situated at a distance.
+It is usually stated as that, every particle attracts every other particle
+in the universe with a force that is directly proportional to the product
+of their masses and inversely proportional to the square of the distance
+between their centers. The publication of the theory has become known as
+the "first great unification", as it marked the unification of the previously
+described phenomena of gravity on Earth with known astronomical
 behaviors.
 
 The equation for the universal gravitation is as follows:
 F = (G * mass_1 * mass_2) / (distance)^2
 
-Source : 
+Source :
 - https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation
 - Newton (1687) "Philosophiæ Naturalis Principia Mathematica"
 """
@@ -23,12 +23,12 @@ Source :
 from __future__ import annotations
 
 # Define the Gravitational Constant G
-GRAVITATIONAL_CONSTANT = 6.6743e-11 # unit of G : m^3 * kg^-1 * s^-2
+GRAVITATIONAL_CONSTANT = 6.6743e-11  # unit of G : m^3 * kg^-1 * s^-2
 
 # Define the function
 def gravitational_law(
     force: float, mass_1: float, mass_2: float, distance: float
-    ) -> dict[str, float]:
+) -> dict[str, float]:
 
     """
     Input Parameters
@@ -38,7 +38,7 @@ def gravitational_law(
     mass_1 : magnitude in float, unit in Kilogram
 
     mass_2 : magnitude in float, unit in Kilogram
-    
+
     distance : magnitude in float, unit in Meter
 
     Returns
@@ -88,11 +88,13 @@ def gravitational_law(
         mass_2 = (force) * (distance**2) / (GRAVITATIONAL_CONSTANT * mass_1)
         return {"mass_2": mass_2}
     elif distance == 0:
-        distance = (GRAVITATIONAL_CONSTANT * product_of_mass / (force))** 0.5
+        distance = (GRAVITATIONAL_CONSTANT * product_of_mass / (force)) ** 0.5
         return {"distance": distance}
     raise ValueError("One argument must be 0")
+
 
 # Run doctest
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
