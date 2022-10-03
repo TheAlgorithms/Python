@@ -9,13 +9,15 @@
 # as A matrix(nxn), Solution and B matrix and max iterations
 
 
-def update_solution(a: list[list], x: list, b: list) -> list:
+def update_solution(
+    coefficient_matrix: list[list], solution_vector: list, constant_vector: list
+) -> list:
     """
     Function to update the solution
-    a: coefficient matrix
-    x: solution vector
-    b: constant vector
-
+    :param coefficient_matrix: list, Coefficient Matrix
+    :param solution_vector: list, Solution Vector
+    :param constant_vector: list, Constant Vector
+    :return: list, Updated Solution Vector
     Example:
     >>> a = [[10, -1, 2, 0], [-1, 11, -1, 3], [2, -1, 10, -1], [0, 3, -1, 8]]
     >>> x = [0, 0, 0, 0]
@@ -23,24 +25,30 @@ def update_solution(a: list[list], x: list, b: list) -> list:
     >>> update_solution(a, x, b)
     [0.6, 2.3272727272727276, -0.9872727272727271, 0.8788636363636363]
     """
-    n = len(a)  # number of variables
+    n = len(coefficient_matrix)  # number of variables
     for i in range(0, n):
         # Update each variable
-        d = b[i]
+        d = constant_vector[i]
         for j in range(0, n):
             if i != j:
-                d -= a[i][j] * x[j]
-        x[i] = d / a[i][i]
-    return x
+                d -= coefficient_matrix[i][j] * solution_vector[j]
+        solution_vector[i] = d / coefficient_matrix[i][i]
+    return solution_vector
 
 
-def gauss_seidel(a: list[list], x: list, b: list, m: int) -> None:
+def gauss_seidel(
+    coefficient_matrix: list[list],
+    solution_vector: list,
+    constant_vector: list,
+    maximum_iterations: int,
+) -> None:
     """
     Function to perform Gauss Seidel Iteration
-    a: coefficient matrix
-    x: solution vector
-    b: constant vector
-    m: max iterations
+    :param coefficient_matrix: list, Coefficient Matrix
+    :param solution_vector: list, Solution Vector
+    :param constant_vector: list, Constant Vector
+    :param maximum_iterations: int, Maximum Iterations
+    :return: None
 
     Example:
     >>> a = [[10, -1, 2, 0], [-1, 11, -1, 3], [2, -1, 10, -1], [0, 3, -1, 8]]
@@ -49,10 +57,12 @@ def gauss_seidel(a: list[list], x: list, b: list, m: int) -> None:
     >>> gauss_seidel(a, x, b, 100)
     [1.0, 2.0, -1.0, 1.0]
     """
-    for i in range(0, m):
-        x = update_solution(a, x, b)
+    for i in range(0, maximum_iterations):
+        solution_vector = update_solution(
+            coefficient_matrix, solution_vector, constant_vector
+        )
         # print("Iteration {}: {}".format(i, x))
-    print(x)
+    print(solution_vector)
 
 
 if __name__ == "__main__":
