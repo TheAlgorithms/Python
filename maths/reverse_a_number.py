@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 
-def reverse_num(num):
+def reverse_num(num:str) -> str:
     """
     Return reversed number
     Parameters:
@@ -18,6 +18,9 @@ def reverse_num(num):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     number_input = input("Please input any number (integer): ")
     try:
         converted = int(number_input)
