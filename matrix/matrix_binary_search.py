@@ -15,7 +15,6 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     -1
     """
     r = int((lower_bound + upper_bound) // 2)
-    print(f"r = {r}, lb ={lower_bound}, up = {upper_bound}")
     if array[r] == value:
         return r
     if lower_bound >= upper_bound:
