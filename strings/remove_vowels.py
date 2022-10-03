@@ -1,3 +1,6 @@
+#This function will remove all the vowels present from the given sentence or a word.
+#returns the modified version of that string.
+
 def removeVowels(sentence: str) -> str:
     """
     This removeVowel function will remove all the vowels from a given sentence or a word
