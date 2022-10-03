@@ -1,4 +1,4 @@
-"""
+""" 
    Program to check for solutions
    of linear diophantine equations
    can be possible or not
@@ -16,10 +16,10 @@ from math import gcd
 """
 
 def is_possible(a, b, c)->bool:
-"""
-returns true if solutions exists otherwise false
-param a,b,c if first,second,third coeff. of equation
-"""
+   """
+   returns true if solutions exists otherwise false
+   param a,b,c if first,second,third coeff. of equation
+   """
    return (c % gcd(a, b) == 0)
 
 """
@@ -83,7 +83,8 @@ def test3()->int:
 # main code
 
 if __name__ == '__main__':
-
+   
    test1()  # testcase 1
    test2()  # testcase 2
    test3()  # testcase 3
+
