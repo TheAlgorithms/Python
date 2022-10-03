@@ -1,6 +1,7 @@
 """
-A Radix Tree is a data structure that represents a space-optimized trie (prefix tree) in which
-each node that is the only child is merged with its parent [https://en.wikipedia.org/wiki/Radix_tree]
+A Radix Tree is a data structure that represents a space-optimized
+trie (prefix tree) in whicheach node that is the only child is merged
+with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
 
 
@@ -60,7 +61,8 @@ class RadixNode:
             self.is_leaf = True
 
         # Case 2: The node has no edges that have a prefix to the word
-        # Solution: We create an edge from the current node to a new one containing the word
+        # Solution: We create an edge from the current node to a new one
+        # containing the word
         elif word[0] not in self.nodes:
             self.nodes[word[0]] = RadixNode(prefix=word, is_leaf=True)
 
@@ -76,7 +78,8 @@ class RadixNode:
                 self.nodes[matching_string[0]].insert(remaining_word)
 
             # Case 4: The word is greater equal to the matching
-            # Solution: Create a node in between both nodes, change prefixes and add the new node for the remaining word
+            # Solution: Create a node in between both nodes, change
+            # prefixes and add the new node for the remaining word
             else:
                 incoming_node.prefix = remaining_prefix
 
@@ -173,7 +176,7 @@ class RadixNode:
         """Print the tree
 
         Args:
-            height (int, optional): Height of the node that is being printed. Defaults to 0.
+            height (int, optional): Height of the printed node
         """
         if self.prefix != "":
             print("-" * height, self.prefix, "  (leaf)" if self.is_leaf else "")
