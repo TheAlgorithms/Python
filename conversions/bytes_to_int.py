@@ -2,9 +2,7 @@
 """
 This script first converts a byetarray to its corresponding sugned/unsigned binary number and the converts the binary number to an integer.
 """
-from typing import Union
-
-def bytes_to_int(bytes_var: bytearray, signed: bool) -> Union[int,None]:
+def bytes_to_int(bytes_var: bytearray, signed: bool) -> int:
     try:
         binval = ""
         for i in bytes_var:
@@ -36,5 +34,5 @@ def bytes_to_int(bytes_var: bytearray, signed: bool) -> Union[int,None]:
 
     except Exception as e:
         print(f"ERROR - {e}")
-        return
+        return 0
  
