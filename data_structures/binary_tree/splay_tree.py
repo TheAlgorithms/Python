@@ -64,7 +64,9 @@ class SplayTree:
                 p = node.parent
                 g = p.parent  # grandparent
 
-                if node.parent.left == node and p.parent.left == p:  # both are left children
+                if (
+                    node.parent.left == node and p.parent.left == p
+                ):  # both are left children
                     self.right_rotate(g)
                     self.right_rotate(p)
 
