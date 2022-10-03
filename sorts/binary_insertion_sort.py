@@ -87,10 +87,8 @@ if __name__ == "__main__":
     from argparse import ArgumentParser
 
     parser = ArgumentParser()
-    parser.add_argument(
-        "user_input", type=str, help="Numbers separated by a comma (example: 0,5,3,2,2)"
-    )
+    parser.add_argument("integers", type=int, nargs="+", help="integers to sort")
     args = parser.parse_args()
-    user_input = args.user_input.strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(f"{binary_insertion_sort(unsorted) = }")
+
+    print(f"Unsorted: {args.integers}")
+    print(f"Sorted: {binary_insertion_sort(args.integers)}")
