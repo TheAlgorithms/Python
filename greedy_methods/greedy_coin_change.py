@@ -42,10 +42,10 @@ def compute_coins(amount: int, coin_set: set[int]) -> list[int]:
                 amount -= coin
                 coin_fit = True
                 break
-        
+
         if not coin_fit:
             return []
-    
+
     return coins
 
 
