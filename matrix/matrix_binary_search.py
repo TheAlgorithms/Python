@@ -1,6 +1,6 @@
-def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -> bool:
+def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -> list:
     """
-    This function carries out Binary search on a 1d array
+    This function carries out Binary search on a 1d array and return -1 if it do not exist
     Array: A 1d sorted array
     lower_bound: the lowest index for the binary search algorithm
     upper_bound: the highest index for the binary search algorithm
@@ -8,25 +8,25 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     >>> matrix = [1, 4, 7, 11, 15]
     >>> target = 1
     >>> binary_search(matrix, 0, len(matrix) - 1, 1)
-    True
+    0
     >>> target = 23
     >>> binary_search(matrix, 0, len(matrix) - 1, 23)
-    False
+    -1
     """
     r = int((lower_bound + upper_bound) // 2)
     if array[r] == value:
-        return True
+        return r
     if r in (lower_bound, upper_bound):
-        return False
+        return -1
     if array[r] < value:
         return binary_search(array, r + 1, upper_bound, value)
     else:
         return binary_search(array, lower_bound, r, value)
 
 
-def mat_bin_search(value: int, matrix: list) -> bool:
+def mat_bin_search(value: int, matrix: list) -> list:
     """
-    This function loops over a 2d matrix and calls binarySearch on the selected 1d array
+    This function loops over a 2d matrix and calls binarySearch on the selected 1d array and returns [-1, -1] is it do not exist
     value : value meant to be searched
     matrix = a sorted 2d matrix
     >>> matrix = [[1, 4, 7, 11, 15],
@@ -36,14 +36,15 @@ def mat_bin_search(value: int, matrix: list) -> bool:
     ...           [18, 21, 23, 26, 30]]
     >>> target = 1
     >>> mat_bin_search(target, matrix)
-    True
+    [0, 0]
     >>> target = 34
     >>> mat_bin_search(target, matrix)
-    False
+    [-1, -1]
     """
     index = 0
     while matrix[index][0] < value:
-        if binary_search(matrix[index], 0, len(matrix[index]) - 1, value):
-            return True
+        if binary_search(matrix[index], 0, len(matrix[index]) - 1, value) != -1:
+            r = binary_search(matrix[index], 0, len(matrix[index]) - 1, value)
+            return [index, r]
         index += 1
-    return False
+    return [-1, -1]
