@@ -2,6 +2,15 @@
 This script first converts a bytearray,
 to its corresponding signed/unsigned binary number,
 and then converts the binary number to an integer.
+
+>>> bytes_to_int(b'\\x00\\x10',False)
+16
+>>> bytes_to_int(b'\\xfc\\x00',True)
+-1024
+>>> bytes_to_int(b'\\x00\\x01',False)
+1
+>>> bytes_to_int('abc',False)
+ERROR - 'str' object cannot be interpreted as an integer
 """
 def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
     try:
@@ -37,5 +46,7 @@ def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
 
     except Exception as e:
         print(f"ERROR - {e}")
-        return 0
  
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
