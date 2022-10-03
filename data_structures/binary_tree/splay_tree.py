@@ -103,34 +103,34 @@ class SplayTree:
 
         self.splay(n)
 
-    def bst_search(self, n, x) -> None:
-        if x == n.data:
-            self.splay(n)
-            return n
-        elif x < n.data:
-            return self.bst_search(n.left, x)
-        elif x > n.data:
-            return self.bst_search(n.right, x)
+    def bst_search(self, node, value) -> None:
+        if value == node.data:
+            self.splay(node)
+            return node
+        elif value < node.data:
+            return self.bst_search(node.left, value)
+        elif value > node.data:
+            return self.bst_search(node.right, value)
         else:
             return None
 
-    def pre_order(self, n) -> None:
-        if n != None:
-            print(n.data)
-            self.pre_order(n.left)
-            self.pre_order(n.right)
+    def pre_order(self, node) -> None:
+        if node != None:
+            print(node.data)
+            self.pre_order(node.left)
+            self.pre_order(node.right)
 
-    def in_order(self, n) -> None:
-        if n != None:
-            self.in_order(n.left)
-            print(n.data)
-            self.in_order(n.right)
+    def in_order(self, node) -> None:
+        if node != None:
+            self.in_order(node.left)
+            print(node.data)
+            self.in_order(node.right)
 
-    def post_order(self, n) -> None:
-        if n != None:
-            self.post_order(n.left)
-            self.post_order(n.right)
-            print(n.data)
+    def post_order(self, node) -> None:
+        if node != None:
+            self.post_order(node.left)
+            self.post_order(node.right)
+            print(node.data)
 
 
 def main() -> None:
