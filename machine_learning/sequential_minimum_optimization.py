@@ -145,7 +145,7 @@ class SmoSVM:
             if self._is_unbound(i2):
                 self._error[i2] = 0
 
-    # Predict test samles
+    # Predict test samples
     def predict(self, test_samples, classify=True):
 
         if test_samples.shape[1] > self.samples.shape[1]:
