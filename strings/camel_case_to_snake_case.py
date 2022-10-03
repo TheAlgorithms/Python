@@ -15,11 +15,11 @@ def to_snake_case(word: str) -> str:
     >>> to_snake_case('hacktoberFest')
     'hacktober_fest'
     >>> to_snake_case('')
-    Provide camel case eg: helloWord
+    Provide camel case eg: helloWorld
     >>> to_snake_case('HelloWorld')
-    Provide camel case eg: helloWord
+    Provide camel case eg: helloWorld
     >>> to_snake_case(' ')
-    Provide camel case eg: helloWord
+    Provide camel case eg: helloWorld
     """
 
     """
@@ -68,10 +68,10 @@ def to_snake_case(word: str) -> str:
             return snake_case
 
         else:
-            raise RuntimeError  # raising RuntimeError
+            raise Exception  # raising RuntimeError
 
-    except RuntimeError:
-        print("Provide camel case eg: helloWord")
+    except Exception:
+        print("Provide camel case eg: helloWorld")
 
 
 if __name__ == "__main__":
