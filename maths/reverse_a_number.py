@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 
-def reverse_num(num:str) -> str:
+def reverse_num(num: str) -> str:
     """
     Return reversed number
     >>> reverse_num("123")
