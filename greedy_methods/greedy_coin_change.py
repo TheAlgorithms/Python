@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
     testmod()
 
-    user_input_coin_set = input("Enter coins seperated by a comma: ").strip()
+    user_input_coin_set = input("Enter coins separated by a comma: ").strip()
     coin_set = {int(coin) for coin in user_input_coin_set.split(",")}
 
     user_input_amount = input("Enter amount: ").strip()
