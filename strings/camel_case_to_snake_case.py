@@ -80,4 +80,4 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Example
-    print(to_snake_case("HelloWorld"))  #--> hello_world
+    print(to_snake_case("HelloWorld"))  # --> hello_world
