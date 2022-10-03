@@ -19,7 +19,7 @@ def group_anagrams(words: list) -> dict:
     >>> group_anagrams(['astro', 'plastic', 'kite'])
     {'aorst': ['astro'], 'acilpst': ['plastic'], 'eikt': ['kite']}
     """
-    anagrams = defaultdict()
+    anagrams = defaultdict()  # type: DefaultDict[str, list]
     for word in words:
         sign = signature(word)
         anagrams.setdefault(sign, []).append(word)
@@ -28,11 +28,11 @@ def group_anagrams(words: list) -> dict:
 
 def remove_non_anagrams(anagrams: dict) -> dict:
     """
-    >>> remove_non_anagrams({'cdlou': ['cloud', 'could'], 'hnopty': ['python']})
+    >>> remove_non_anagrams({'cdlou': ['cloud', 'could']})
     {'cdlou': ['cloud', 'could']}
     >>> remove_non_anagrams({'aprst': ['strap', 'traps'], 'amps': ['maps']})
     {'aprst': ['strap', 'traps']}
-    >>> remove_non_anagrams({'aorst': ['astro'], 'acilpst': ['plastic'], 'eikt': ['kite']})
+    >>> remove_non_anagrams({'aorst': ['astro'], 'eikt': ['kite']})
     {}
     """
     return {key: anagrams[key] for key in anagrams if len(anagrams[key]) > 1}
@@ -47,12 +47,12 @@ def isolate_anagrams(anagrams: dict) -> list:
     >>> isolate_anagrams({})
     []
     """
-    return sorted(sorted(_) for _ in anagrams.values())
+    return sorted([sorted(_) for _ in anagrams.values()])
 
 
 if __name__ == "__main__":
-    import doctest
     from collections import defaultdict
+    from typing import DefaultDict
 
     data = [
         "could",
@@ -67,5 +67,4 @@ if __name__ == "__main__":
         "strap",
         "traps",
     ]
-    doctest.testfile("group_anagram.txt")
     isolate_anagrams(remove_non_anagrams(group_anagrams(data)))
