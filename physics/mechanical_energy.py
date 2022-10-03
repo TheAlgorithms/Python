@@ -12,7 +12,6 @@ def calculate_gravitational_potential_energy(
     of rest is converted into potential energy
     and stored in the body, hence potential and
     kinetic energies are related.
-
     >>> calculate_gravitational_potential_energy(15,9.8,10)
     '1470.0 joules'
     >>> calculate_gravitational_potential_energy(1e100,1e100,1e100)
@@ -39,7 +38,6 @@ def calculate_kinetic_energy(mass: float, velocity: float) -> str:
      on a body to change its state from motion to rest
      converts into kinetic energy, thus kinetic and potential
      energies are related.
-
     >>> calculate_kinetic_energy(10,20)
     '2000.0 joules'
     >>> calculate_kinetic_energy(10,40)
@@ -63,4 +61,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
