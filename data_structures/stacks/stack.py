@@ -45,7 +45,7 @@ class Stack(Generic[T]):
         >>> Stack().pop()
         Traceback (most recent call last):
             ...
-        data_structures.stacks.stack.StackUnderflowError
+        stack.StackUnderflowError
         """
         if not self.stack:
             raise StackUnderflowError
@@ -58,7 +58,7 @@ class Stack(Generic[T]):
         >>> Stack().pop()
         Traceback (most recent call last):
             ...
-        data_structures.stacks.stack.StackUnderflowError
+        stack.StackUnderflowError
         """
         if not self.stack:
             raise StackUnderflowError
