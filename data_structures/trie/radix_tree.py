@@ -6,7 +6,7 @@ with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 
 
 class RadixNode:
-    def __init__(self, prefix="", is_leaf=False) -> None:
+    def __init__(self, prefix: str = "", is_leaf: bool = False) -> None:
         # Mapping from the first character of the prefix of the node
         self.nodes: dict[str, RadixNode] = dict()
 
@@ -15,7 +15,7 @@ class RadixNode:
 
         self.prefix = prefix
 
-    def match(self, word):
+    def match(self, word: str) -> tuple[str, str, str]:
         """Compute the common substring of the prefix of the node and a word
 
         Args:
@@ -172,7 +172,7 @@ class RadixNode:
 
                     return True
 
-    def print_tree(self, height=0) -> None:
+    def print_tree(self, height: int = 0) -> None:
         """Print the tree
 
         Args:
