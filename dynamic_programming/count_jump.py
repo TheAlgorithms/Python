@@ -6,7 +6,7 @@ If an element is 0, then a move cannot be made through that element. The element
 from typing import List
 
 
-def count_ways_to_jump(arr: List[int]) -> List[int]:
+def count_ways_to_jump(arr: list[int]) -> list[int]:
     """
     >>> count_ways_to_jump([3,2,0,1])
     [2, 1, -1, 0]
