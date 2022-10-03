@@ -1,16 +1,18 @@
 """
 This is a pure Python implementation of the greedy coin change algorithm.
 
-For more information on the coin change problem see: https://en.wikipedia.org/wiki/Change-making_problem
+For more information on the coin change problem see:
+https://en.wikipedia.org/wiki/Change-making_problem
 
-This algorithm computes the needed coins from a given set of coins that make up a given amount.
-It works greedy, so it chooses the biggest possible coin that fits in the remaining amount until
+This algorithm computes the needed coins from a given set of coins that
+make up a given amount.
+It works greedy, so it chooses the biggest possible coin that fits
+in the remaining amount until
 the remaining sum is <=0.
 
-As seen in the third test, the greedy algorithm is not always optimal. For more information: https://stackoverflow.com/questions/13557979/why-does-the-greedy-coin-change-algorithm-not-work-for-some-coin-sets
+As seen in the third test, the greedy algorithm is not always optimal.#
+For more information: https://stackoverflow.com/questions/13557979/why-does-the-greedy-coin-change-algorithm-not-work-for-some-coin-sets
 """
-
-import typing
 
 
 def compute_coins(amount: int, coin_set: set[int]) -> list[int]:
@@ -18,7 +20,8 @@ def compute_coins(amount: int, coin_set: set[int]) -> list[int]:
     Implementation of the greedy coin change algorithm.
     :param amount: Amount to compute the coin change for
     :param coin_set: Set of coins to use for the coin change
-    :return: List of coins that make up the amount or empty list if not possible with greedy
+    :return: List of coins that make up the amount or empty list
+    if not possible with greedy
 
     Examples:
     >>> compute_coins(34, {1, 2, 5, 10, 20, 50})
@@ -32,20 +35,20 @@ def compute_coins(amount: int, coin_set: set[int]) -> list[int]:
     """
     coins: list = []
 
-    coin_set = sorted(coin_set, reverse=True)
+    coin_set_sorted = sorted(coin_set, reverse=True)
 
     while amount > 0:
         coin_fit = False
-        for coin in coin_set:
+        for coin in coin_set_sorted:
             if coin <= amount:
                 coins.append(coin)
                 amount -= coin
                 coin_fit = True
                 break
-        
+
         if not coin_fit:
             return []
-    
+
     return coins
 
 
