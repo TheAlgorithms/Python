@@ -17,7 +17,7 @@ def bytes_to_int(bytes_var: bytearray, signed: bool):
         if signed == True:
             temp = ""
             for i in binval:
-                if i == "0":
+                if str(i) == "0":
                     temp = str(temp) + "1"
                 else:
                     temp = str(temp) + "0"
