@@ -5,10 +5,10 @@ def reverse_num(num: str) -> str:
     """
     Return reversed number
     >>> reverse_num("123")
-    "321"
+    '321'
 
     >>> reverse_num("321")
-    "123"
+    '123'
     """
     return num[::-1]
 
