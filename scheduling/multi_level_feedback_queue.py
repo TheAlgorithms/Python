@@ -307,6 +307,6 @@ if __name__ == "__main__":
     )
     # print sequence of finished processes
     print(
-        f"sequnece of finished processes:\
+        f"sequence of finished processes:\
         {mlfq.calculate_sequence_of_finish_queue()}"
     )
