@@ -19,9 +19,9 @@ def bytes_to_int(bytes_var: bytearray, signed: bool):
             temp = ""
             for i in binval:
                 if i == "0":
-                    temp = str(temp) + str("1")
+                    temp = str(temp) + "1"
                 else:
-                    temp = str(temp) + str("0")
+                    temp = str(temp) + "0"
             binval = temp
             binval = str(bin(int(binval, 2) + int("1", 2)))[2:]
 
