@@ -3,9 +3,10 @@ Given an array of numbers where each element represents the max number of jumps 
 For each array element, count the number of ways jumps can be made from that element to reach the end of the array.
 If an element is 0, then a move cannot be made through that element. The element that cannot reach the end should have a count "-1".
 """
+from typing import List
 
 
-def count_ways_to_jump(arr):
+def count_ways_to_jump(arr: List[int]) -> List[int]:
     """
     >>> count_ways_to_jump([3,2,0,1])
     [2, 1, -1, 0]
