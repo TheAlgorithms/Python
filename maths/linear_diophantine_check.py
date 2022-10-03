@@ -17,7 +17,7 @@ from math import gcd
 """
 
 
-def isPossible(a, b, c):
+def is_possible(a, b, c):
     return c % gcd(a, b) == 0
 
 
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     b = 6
     c = 9
 
-    if isPossible(a, b, c):
+    if is_possible(a, b, c):
         print("Possible")
     else:
         print("Not Possible")
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     b = 6
     c = 8
 
-    if isPossible(a, b, c):
+    if is_possible(a, b, c):
         print("Possible")
     else:
         print("Not Possible")
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     a = 2
     b = 5
     c = 1
-    if isPossible(a, b, c):
+    if is_possible(a, b, c):
         print("Possible")
     else:
         print("Not Possible")
