@@ -1,4 +1,4 @@
-#This function will remove all the vowels present from the given sentence or a word.
+#This function removes all the vowels present in the given sentence or a word.
 #returns the modified version of that string.
 
 def remove_vowels(sentence: str) -> str:
@@ -23,7 +23,7 @@ def remove_vowels(sentence: str) -> str:
         sentence=sentence.replace(f"{vowel}", "")
 
     #returning a updated string
-    return sentence
+    return sentence     #return --str
 
 if __name__ == "__main__":
     import doctest
