@@ -4,7 +4,7 @@ from __future__ import print_function
 def reverse_num(num):
     """
     Return reversed number
-    :param num: representing input number
+    :param string: representing input number
     :return string: representing the reverse of input number
     >>> reverse_num("123")
     321
