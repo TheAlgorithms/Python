@@ -2,7 +2,7 @@
 """
 This script first converts a byetarray to its corresponding sugned/unsigned binary number and the converts the binary number to an integer.
 """
-def bytes_to_int(bytes_var: bytearray, signed: bool):
+def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
     try:
         binval = ""
         for i in bytes_var:
@@ -34,5 +34,5 @@ def bytes_to_int(bytes_var: bytearray, signed: bool):
 
     except Exception as e:
         print(f"ERROR - {e}")
-        return
+        return 0
  
