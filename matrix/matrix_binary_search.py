@@ -1,6 +1,7 @@
-def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -> list:
+def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -> int:
     """
-    This function carries out Binary search on a 1d array and return -1 if it do not exist
+    This function carries out Binary search on a 1d array and
+    return -1 if it do not exist
     Array: A 1d sorted array
     lower_bound: the lowest index for the binary search algorithm
     upper_bound: the highest index for the binary search algorithm
@@ -26,7 +27,8 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
 
 def mat_bin_search(value: int, matrix: list) -> list:
     """
-    This function loops over a 2d matrix and calls binarySearch on the selected 1d array and returns [-1, -1] is it do not exist
+    This function loops over a 2d matrix and calls binarySearch on
+    the selected 1d array and returns [-1, -1] is it do not exist
     value : value meant to be searched
     matrix = a sorted 2d matrix
     >>> matrix = [[1, 4, 7, 11, 15],
@@ -44,7 +46,8 @@ def mat_bin_search(value: int, matrix: list) -> list:
     index = 0
     while matrix[index][0] < value:
         if binary_search(matrix[index], 0, len(matrix[index]) - 1, value) != -1:
-            r = binary_search(matrix[index], 0, len(matrix[index]) - 1, value)
+            r = binary_search(matrix[index], 0,
+                                len(matrix[index]) - 1, value)
             return [index, r]
         index += 1
     return [-1, -1]
