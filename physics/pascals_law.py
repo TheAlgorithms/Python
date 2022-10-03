@@ -2,10 +2,10 @@
 Description :
 This law states that pressure exerted in some liquid which is at rest is the same in all the directions.
 OR
-Whenever an external pressure is applied on any part of a fluid contained in a vessel, it is transmitted undiminished and equally in all directions.    
+Whenever an external pressure is applied on any part of a fluid contained in a vessel, it is transmitted undiminished and equally in all directions.
 
 Source: https://www.vedantu.com/physics/pascal-law
-Formulation: F = P * A 
+Formulation: F = P * A
 Where, P= Pressure, F=Force and A=Area of contact
 
 Units:
