@@ -1,4 +1,4 @@
-""" 
+"""
    Program to check for solutions
    of linear diophantine equations
    can be possible or not
@@ -15,70 +15,69 @@ from math import gcd
    ax + by = c
 """
 
-#returns true if solutions exists otherwise false
-#param a,b,c if first,second,third coeff. of equation
-def isPossible(a, b, c)->bool:
-   return (c % gcd(a, b) == 0)
+# returns true if solutions exists otherwise false
+# param a,b,c if first,second,third coeff. of equation
+def isPossible(a, b, c) -> bool:
+    return c % gcd(a, b) == 0
 
 
 # function for testcase 1
-def test1()->int:
-   '''
-      First example
-      3x + 6y =9
-   '''
-   a = 3  # param a is first coeff. of equation
-   b = 6  # param b is second coeff. of equation
-   c = 9  # param c is third coeff. of equation
+def test1() -> int:
+    """
+    First example
+    3x + 6y =9
+    """
+    a = 3  # param a is first coeff. of equation
+    b = 6  # param b is second coeff. of equation
+    c = 9  # param c is third coeff. of equation
 
-   if (isPossible(a, b, c)):
-      print("Possible")
-   else:
-      print("Not Possible")
+    if isPossible(a, b, c):
+        print("Possible")
+    else:
+        print("Not Possible")
 
-   return 0
+    return 0
+
 
 # function for test case 2
-def test2()->int:
-   '''
-      second example
-      3x + 6y =9
-   '''
-   a = 3
-   b = 6
-   c = 9
+def test2() -> int:
+    """
+    second example
+    3x + 6y =9
+    """
+    a = 3
+    b = 6
+    c = 9
 
-   if (isPossible(a, b, c)):
-      print("Possible")
-   else:
-      print("Not Possible")
+    if isPossible(a, b, c):
+        print("Possible")
+    else:
+        print("Not Possible")
 
-   return 0
+    return 0
 
 
 # function for test case 3
-def test3()->int:
-   '''
-      third example
-      2x + 5y =1
-   '''
-   a = 2
-   b = 5
-   c = 1
-   if (isPossible(a, b, c)):
-      print("Possible")
-   else:
-      print("Not Possible")
+def test3() -> int:
+    """
+    third example
+    2x + 5y =1
+    """
+    a = 2
+    b = 5
+    c = 1
+    if isPossible(a, b, c):
+        print("Possible")
+    else:
+        print("Not Possible")
 
-   return 0
-
+    return 0
 
 
 # main code
 
-if __name__ == '__main__':
-   
-   test1()  # testcase 1
-   test2()  # testcase 2
-   test3()  # testcase 3
+if __name__ == "__main__":
 
+    test1()  # testcase 1
+    test2()  # testcase 2
+    test3()  # testcase 3
