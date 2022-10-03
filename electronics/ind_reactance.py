@@ -3,11 +3,14 @@ from __future__ import annotations
 
 PI = 3.14159
 
-def ind_reactance(inductance: float, frequency: float, reactance: float) -> dict[str, float]:
+
+def ind_reactance(
+    inductance: float, frequency: float, reactance: float
+) -> dict[str, float]:
     """
-    Calculate inductive reactance, frequency or inductance from two given electrical 
+    Calculate inductive reactance, frequency or inductance from two given electrical
     properties then return name/value pair of the zero value in a Python dict.
-    
+
     Parameters
     ----------
     inductance : float with units in Henries
@@ -41,7 +44,7 @@ def ind_reactance(inductance: float, frequency: float, reactance: float) -> dict
     {'reactance': 0.21991129999999995}
 
     """
-    
+
     if (inductance, frequency, reactance).count(0) != 1:
         raise ValueError("One and only one argument must be 0")
     if inductance < 0:
@@ -51,15 +54,16 @@ def ind_reactance(inductance: float, frequency: float, reactance: float) -> dict
     if reactance < 0:
         raise ValueError("Inductive reactance cannot be negative")
     if inductance == 0:
-        return {"inductance": reactance / (2*PI*frequency)}
+        return {"inductance": reactance / (2 * PI * frequency)}
     elif frequency == 0:
-        return {"frequency": reactance / (2*PI*inductance)}
+        return {"frequency": reactance / (2 * PI * inductance)}
     elif reactance == 0:
-        return {"reactance": 2*PI*frequency*inductance}
+        return {"reactance": 2 * PI * frequency * inductance}
     else:
         raise ValueError("Exactly one argument must be 0")
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
