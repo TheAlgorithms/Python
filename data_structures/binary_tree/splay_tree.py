@@ -68,7 +68,9 @@ class SplayTree:
                     self.right_rotate(g)
                     self.right_rotate(p)
 
-                elif n.parent.right == n and p.parent.right == p:  # both are right children
+                elif (
+                    n.parent.right == n and p.parent.right == p
+                ):  # both are right children
                     self.left_rotate(g)
                     self.left_rotate(p)
 
@@ -117,13 +119,13 @@ class SplayTree:
             print(n.data)
             self.pre_order(n.left)
             self.pre_order(n.right)
-    
+
     def in_order(self, n) -> None:
         if n != None:
             self.in_order(n.left)
             print(n.data)
             self.in_order(n.right)
-    
+
     def post_order(self, n) -> None:
         if n != None:
             self.post_order(n.left)
@@ -135,49 +137,49 @@ def main() -> None:
     tree = SplayTree()
 
     tree.insert(Node(90))
-    '''
+    """
     The tree looks like this:
                         90
-    '''
+    """
 
     tree.insert(Node(10))
-    '''
+    """
     The tree looks like this:
                         90
                        /
                       10
-    '''
+    """
 
     tree.insert(Node(34))
-    '''
+    """
     The tree looks like this:
                         34
                        /  \
                       10   90
-    '''
+    """
 
     tree.insert(Node(18))
-    '''
+    """
     The tree looks like this:
                         18
                        /  \
                       10   34
                             \
                             90
-    '''
+    """
 
     tree.insert(Node(25))
-    '''
+    """
     The tree looks like this:
                         25
                        /  \
                      18    34
                     /        \
                    10        90
-    '''
+    """
 
     tree.insert(Node(60))
-    '''
+    """
     The tree looks like this:
                         60
                        /  \
@@ -186,12 +188,12 @@ def main() -> None:
                    18   34
                   /
                 10
-    '''
+    """
 
     tree.insert(Node(100))
-    '''
+    """
     Finally the tree looks like this:
-                        100 
+                        100
                        /
                       90
                      /
@@ -202,10 +204,10 @@ def main() -> None:
                 18   34
                /
               10
-    '''
-    
-    tree.bst_search(tree.root, 10) # splay 10 to root 
-    '''
+    """
+
+    tree.bst_search(tree.root, 10)  # splay 10 to root
+    """
     The tree looks like this:
                         10
                           \
@@ -218,26 +220,28 @@ def main() -> None:
                          25
                            \
                             34
-    '''   
+    """
 
     print("The Pre-order traveral of the tree is:")
     tree.pre_order(tree.root)
-    '''
+    """
     The traversal of the tree is:   10, 100, 60, 18, 25, 34, 90
-    '''
+    """
 
     print("The In-order traveral of the tree is:")
     tree.in_order(tree.root)
-    '''
+    """
     The traversal of the tree is:   10, 100, 60, 18, 25, 34, 90
-    '''
+    """
 
     print("The Post-order traveral of the tree is:")
     tree.post_order(tree.root)
-    '''
+    """
     The traversal of the tree is:   34, 25, 18, 90, 60, 100, 10
-    '''
+    """
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
