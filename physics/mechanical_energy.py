@@ -25,10 +25,9 @@ def calculate_gravitational_potential_energy(
         gravitational_potential_energy = mass * gravity * height
     except Exception:
         return -0.0
-
-    gravitational_potential_energy = str(gravitational_potential_energy)
-    gravitational_potential_energy += " " + unit
-    return gravitational_potential_energy
+    out = str(gravitational_potential_energy)
+    out += " " + unit
+    return out
 
 
 def calculate_kinetic_energy(mass: float, velocity: float) -> str:
@@ -52,9 +51,9 @@ def calculate_kinetic_energy(mass: float, velocity: float) -> str:
     except Exception:
         return -0.0
 
-    kinetic_energy = str(kinetic_energy)
-    kinetic_energy += " " + unit
-    return kinetic_energy
+    out = str(kinetic_energy)
+    out += " " + unit
+    return out
 
 
 if __name__ == "__main__":
