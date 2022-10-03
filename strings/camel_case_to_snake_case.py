@@ -16,6 +16,13 @@ def to_snake_case(word: str) -> str:
     'camel_case'
     >>> to_snake_case('hacktoberFest')
     'hacktober_fest'
+    doctest: for exceptions
+    >>> to_snake_case('')
+    Provide camel case eg: helloWord
+    >>> to_snake_case('HelloWorld')
+    Provide camel case eg: helloWord
+    >>> to_snake_case(' ')
+    Provide camel case eg: helloWord
     """
 
     """
