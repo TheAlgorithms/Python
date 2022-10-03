@@ -13,10 +13,11 @@ def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
 
         rslt = 0
 
-        if signed == True:
+        if signed is True:
             temp = ""
             for j in binval:
-                if (j == "0") is True:
+                flag = (j == "0")
+                if flag is True:
                     temp = str(temp) + "1"
                 else:
                     temp = str(temp) + "0"
@@ -25,8 +26,9 @@ def bytes_to_int(bytes_var: bytearray, signed: bool) -> (int):
 
         for k in binval:
             rslt = 2 * rslt + int(k)
-
-        if (signed == True) is True:
+            
+            
+        if signed is True:
             rslt *= -1
 
         return rslt
