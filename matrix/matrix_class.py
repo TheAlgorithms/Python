@@ -317,7 +317,9 @@ class Matrix:
 
     def __mul__(self, other: Matrix | int | float) -> Matrix:
         if isinstance(other, (int, float)):
-            return Matrix([[int(element * other) for element in row] for row in self.rows])
+            return Matrix(
+                [[int(element * other) for element in row] for row in self.rows]
+            )
         elif isinstance(other, Matrix):
             if self.num_columns != other.num_rows:
                 raise ValueError(
