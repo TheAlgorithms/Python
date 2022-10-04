@@ -1,6 +1,3 @@
-from typing import Dict, List, Tuple
-
-
 def get_best_match(
     group1: dict[object, list], group2: dict[object, list]
 ) -> list[tuple]:
@@ -22,8 +19,10 @@ def get_best_match(
     :param group2: Preferences of elements of group2 as a dict of the form
     {<group2_elemt>: [...<List of group1_elemts in descending order of preference>]}
     """
-    group1_checklist = dict(zip(group1.keys(), list(group1.values()).copy()))
-    group2_possible_matches = dict(zip(group2.keys(), [[]] * 5))
+    group1_checklist: dict[object, List[object]] = dict(
+        zip(group1.keys(), list(group1.values()).copy()))
+    group2_possible_matches: dict[object, List[object]] = dict(
+        zip(group2.keys(), [[]] * 5))
 
     def best_match_found():
         """
@@ -53,7 +52,7 @@ def get_best_match(
         Then we return the match as a list of tuples in the form:
         [(group2_elemt, group1_elemt), ...]
         """
-        # Each group1 element tries to match with their avaialable top match in group2
+        # Each group1 element tries to match with their available top match in group2
         for group1_element, checklist in group1_checklist.items():
             group2_possible_matches[checklist[0]] = list(
                 set(group2_possible_matches[checklist[0]] + [group1_element])
