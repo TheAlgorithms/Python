@@ -9,7 +9,9 @@ def find_anagrams(_list: list):
         if check_key in empty_dict:
             if empty_dict.get(check_key) != word:
                 if check_key is not None:
-                    empty_dict.update({check_key: empty_dict.get(check_key) + "," + word})
+                    empty_dict.update(
+                        {check_key: empty_dict.get(check_key) + "," + word}
+                    )
         else:
             empty_dict.update({check_key: word})
     for key, value in empty_dict.items():
