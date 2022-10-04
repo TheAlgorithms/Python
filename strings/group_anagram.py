@@ -17,7 +17,7 @@ def find_anagrams(_list: list):
         else:
             empty_dict.update({"".join(sorted(word)): word})
     for key, value in empty_dict.items():
-        listword = value.split(",")
+        list_word = value.split(",")
         if len(listword) > 1:
             empty_list.append(listword)
     return empty_list
