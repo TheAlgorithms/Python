@@ -19,10 +19,10 @@ def get_best_match(
     :param group2: Preferences of elements of group2 as a dict of the form
     {<group2_elemt>: [...<List of group1_elemts in descending order of preference>]}
     """
-    group1_checklist: dict[object, List[object]] = dict(
+    group1_checklist: dict[object, list[object]] = dict(
         zip(group1.keys(), list(group1.values()).copy())
     )
-    group2_possible_matches: dict[object, List[object]] = dict(
+    group2_possible_matches: dict[object, list[object]] = dict(
         zip(group2.keys(), [[]] * 5)
     )
 
