@@ -1,11 +1,11 @@
 from random import randint
 from timeit import repeat
 
+
 def run_sorting_algorithm(algorithm, arrayLen):
     # Set up the context and prepare the call to the specified
     # algorithm using the supplied array length.
-    setup_code = f"from __main__ import {algorithm}" \
-        if algorithm != "sorted" else ""
+    setup_code = f"from __main__ import {algorithm}" if algorithm != "sorted" else ""
     array = [randint(0, 1000) for i in range(arrayLen)]
     stmt = f"{algorithm}({array})"
 
@@ -15,7 +15,9 @@ def run_sorting_algorithm(algorithm, arrayLen):
 
     # Finally, display the name of the algorithm and the
     # minimum time it took to run with supplied array length
-    print(f"Algorithm: {algorithm}. Minimum execution time: {min(times)} with array having length: {arrayLen}")
+    print(
+        f"Algorithm: {algorithm}. Minimum execution time: {min(times)} with array having length: {arrayLen}"
+    )
 
 
 def merge(left, right):
@@ -58,6 +60,7 @@ def merge(left, right):
 
     return result
 
+
 def merge_sort(array):
     # If the input array contains fewer than two elements,
     # then return it as the result of the function
@@ -69,8 +72,7 @@ def merge_sort(array):
     # Sort the array by recursively splitting the input
     # into two equal halves, sorting each half and merging them
     # together into the final result
-    return merge(
-        left=merge_sort(array[:midpoint]),
-        right=merge_sort(array[midpoint:]))
+    return merge(left=merge_sort(array[:midpoint]), right=merge_sort(array[midpoint:]))
 
-run_sorting_algorithm("merge_sort",100)
+
+run_sorting_algorithm("merge_sort", 100)
