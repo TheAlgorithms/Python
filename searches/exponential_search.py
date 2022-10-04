@@ -37,7 +37,7 @@ if __name__ == "__main__":
     arr = [2, 3, 4, 10, 40]
     n = len(arr)
     x = 10
-    result = exponentialSearch(arr, n, x)
+    result = exponential_search(arr, n, x)
     if result == -1:
         print("Element not found in the array")
     else:
