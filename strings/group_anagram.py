@@ -18,8 +18,8 @@ def find_anagrams(_list: list):
             empty_dict.update({"".join(sorted(word)): word})
     for key, value in empty_dict.items():
         list_word = value.split(",")
-        if len(listword) > 1:
-            empty_list.append(listword)
+        if len(list_word) > 1:
+            empty_list.append(list_word)
     return empty_list
 
 
