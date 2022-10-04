@@ -11,12 +11,13 @@ https://qiskit.org/textbook/ch-algorithms/teleportation.html
 """
 
 import numpy as np
+import qiskit
 from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
 
 def quantum_teleportation(
     theta: float = np.pi / 2, phi: float = np.pi / 2, lam: float = np.pi / 2
-):
+) -> qiskit.result.counts.Counts:
 
     """
     # >>> quantum_teleportation()
