@@ -44,20 +44,23 @@ def quantum_teleportation(
 
     # Build the circuit
     quantum_circuit.u(theta, phi, lam, 0)  # Quantum State to teleport
-    quantum_circuit.h(1) # add hadamard gate
-    quantum_circuit.cx(1, 2) # add control gate with qubit 1 as control and 2 as target.
+    quantum_circuit.h(1)  # add hadamard gate
+    quantum_circuit.cx(
+        1, 2
+    )  # add control gate with qubit 1 as control and 2 as target.
     quantum_circuit.cx(0, 1)
     quantum_circuit.h(0)
-    quantum_circuit.cz(0, 2) # add control z gate.
+    quantum_circuit.cz(0, 2)  # add control z gate.
     quantum_circuit.cx(1, 2)
 
-    quantum_circuit.measure([2], [0]) # measure the qubit.
+    quantum_circuit.measure([2], [0])  # measure the qubit.
 
     # Simulate the circuit using qasm simulator
     backend = Aer.get_backend("qasm_simulator")
     job = execute(quantum_circuit, backend, shots=1000)
 
     return job.result().get_counts(quantum_circuit)
+
 
 if __name__ == "__main__":
     print(
