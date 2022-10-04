@@ -27,13 +27,12 @@ def dice_coefficient(a: str, b: str) -> float:
 
 
 def test_dice_coeff():
-    assert dice_coefficient("JP Morgan", "JP Morgan Chase and Co INC") > 0.5
+    assert dice_coefficient("sitting", "kitten") < 0.5
+    assert dice_coefficient("dice coeff", "dice coefficient") > 0.5
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
     test_dice_coeff()
-    print(dice_coefficient("JP Morgan", "JP Morgan Chase and Co INC"))
