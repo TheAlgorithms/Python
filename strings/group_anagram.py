@@ -8,7 +8,7 @@ def find_anagrams(_list: list):
         check_key = "".join(sorted(word))
         if check_key in empty_dict:
             if empty_dict.get(check_key) != word:
-                if check_key is not None:
+                if check_key is not None or check_key != "None":
                     empty_dict.update(
                         {check_key: empty_dict.get(check_key) + "," + word}
                     )
