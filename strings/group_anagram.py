@@ -2,8 +2,8 @@ import doctest
 
 
 def find_anagrams(_list: list):
-    emptyDict = dict()
-    emptylist = []
+    empty_dict = {}  # Python names variables using snake_case.
+    empty_list = []
     for word in _list:
         if "".join(sorted(word)) in emptyDict:
             if emptyDict.get("".join(sorted(word))) != word:
