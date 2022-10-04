@@ -1,5 +1,6 @@
 import doctest
 
+
 def find_anagrams(_list: list):
     empty_dict: dict[str, str] = {}
     empty_list = []
