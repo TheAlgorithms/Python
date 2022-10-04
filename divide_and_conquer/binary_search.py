@@ -5,7 +5,8 @@
    Space Complexity : O(1)
 """
 
-def binary_search(nums:list,k:int,n:int) -> int:
+
+def binary_search(nums: list, k: int, n: int) -> int:
     """This function uses divide & conquer paradigm to find the number in a sorted list and return its index.
 
     Args:
@@ -31,9 +32,9 @@ def binary_search(nums:list,k:int,n:int) -> int:
     # Iterate over the list until left is less than right or k is find
     while left < right:
         # Find the middle within left and right
-        mid = (left + right)//2
+        mid = (left + right) // 2
 
-        # Base Case 
+        # Base Case
         if nums[mid] == k:
             return mid
 
@@ -48,4 +49,5 @@ def binary_search(nums:list,k:int,n:int) -> int:
     # Return -1 if k is not present in the list
     return -1
 
-print(binary_search([1,4,5,6,7],7,5))
+
+print(binary_search([1, 4, 5, 6, 7], 7, 5))
