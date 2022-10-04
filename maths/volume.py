@@ -14,6 +14,10 @@ def vol_cube(side_length: int | float) -> float:
     1.0
     >>> vol_cube(3)
     27.0
+    >>> vol_cube(0)
+    0
+    >>> vol_cube(1.6)
+    4.096000000000001
     >>> vol_cube(-1)
     Traceback (most recent call last):
         ...
@@ -30,6 +34,10 @@ def vol_spherical_cap(height: float, radius: float) -> float:
     :return 1/3 pi * height ^ 2 * (3 * radius - height)
     >>> vol_spherical_cap(1, 2)
     5.235987755982988
+    >>> vol_spherical_cap(1.6, 2.6)
+    16.621119532592402
+    >>> vol_spherical_cap(0, 0)
+    0.0
     >>> vol_spherical_cap(-1, 2)
     Traceback (most recent call last):
         ...
@@ -63,6 +71,10 @@ def vol_spheres_intersect(
     :return vol_spherical_cap(h1, radius_2) + vol_spherical_cap(h2, radius_1)
     >>> vol_spheres_intersect(2, 2, 1)
     21.205750411731103
+    >>> vol_spheres_intersect(2.6, 2.6, 1.6)
+    40.71504079052372
+    >>> vol_spheres_intersect(0, 0, 0)
+    0.0
     >>> vol_spheres_intersect(-2, 2, 1)
     Traceback (most recent call last):
         ...
@@ -103,6 +115,10 @@ def vol_cuboid(width: float, height: float, length: float) -> float:
     1.0
     >>> vol_cuboid(1, 2, 3)
     6.0
+    >>> vol_cuboid(1.6, 2.6, 3.6)
+    14.976
+    >>> vol_cuboid(0, 0, 0)
+    0.0
     >>> vol_cuboid(-1, 2, 3)
     Traceback (most recent call last):
         ...
@@ -130,6 +146,10 @@ def vol_cone(area_of_base: float, height: float) -> float:
     10.0
     >>> vol_cone(1, 1)
     0.3333333333333333
+    >>> vol_cone(1.6, 1.6)
+    0.8533333333333335
+    >>> vol_cone(0, 0)
+    0.0
     >>> vol_cone(-1, 1)
     Traceback (most recent call last):
         ...
@@ -151,6 +171,10 @@ def vol_right_circ_cone(radius: float, height: float) -> float:
     :return (1/3) * pi * radius^2 * height
     >>> vol_right_circ_cone(2, 3)
     12.566370614359172
+    >>> vol_right_circ_cone(0, 0)
+    0.0
+    >>> vol_right_circ_cone(1.6, 1.6)
+    4.289321169701265
     >>> vol_right_circ_cone(-1, 1)
     Traceback (most recent call last):
         ...
@@ -174,6 +198,10 @@ def vol_prism(area_of_base: float, height: float) -> float:
     20.0
     >>> vol_prism(11, 1)
     11.0
+    >>> vol_prism(1.6, 1.6)
+    2.5600000000000005
+    >>> vol_prism(0, 0)
+    0.0
     >>> vol_prism(-1, 1)
     Traceback (most recent call last):
         ...
@@ -197,6 +225,10 @@ def vol_pyramid(area_of_base: float, height: float) -> float:
     10.0
     >>> vol_pyramid(1.5, 3)
     1.5
+    >>> vol_pyramid(1.6, 1.6)
+    0.8533333333333335
+    >>> vol_pyramid(0, 0)
+    0.0
     >>> vol_pyramid(-1, 1)
     Traceback (most recent call last):
         ...
@@ -220,6 +252,10 @@ def vol_sphere(radius: float) -> float:
     523.5987755982989
     >>> vol_sphere(1)
     4.1887902047863905
+    >>> vol_sphere(1.6)
+    17.15728467880506
+    >>> vol_sphere(0)
+    0.0
     >>> vol_sphere(-1)
     Traceback (most recent call last):
         ...
@@ -239,6 +275,10 @@ def vol_hemisphere(radius: float) -> float:
     2.0943951023931953
     >>> vol_hemisphere(7)
     718.3775201208659
+    >>> vol_hemisphere(1.6)
+    8.57864233940253
+    >>> vol_hemisphere(0)
+    0.0
     >>> vol_hemisphere(-1)
     Traceback (most recent call last):
         ...
@@ -257,6 +297,10 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
     3.141592653589793
     >>> vol_circular_cylinder(4, 3)
     150.79644737231007
+    >>> vol_circular_cylinder(1.6, 1.6)
+    12.867963509103795
+    >>> vol_circular_cylinder(0, 0)
+    0.0
     >>> vol_circular_cylinder(-1, 1)
     Traceback (most recent call last):
         ...
@@ -277,6 +321,8 @@ def vol_hollow_circular_cylinder(
     """Calculate the Volume of a Hollow Circular Cylinder.
     >>> vol_hollow_circular_cylinder(1, 2, 3)
     28.274333882308138
+    >>> vol_hollow_circular_cylinder(1.6, 2.6, 3.6)
+    47.50088092227767
     >>> vol_hollow_circular_cylinder(-1, 2, 3)
     Traceback (most recent call last):
         ...
@@ -290,6 +336,10 @@ def vol_hollow_circular_cylinder(
         ...
     ValueError: vol_hollow_circular_cylinder() only accepts non-negative values
     >>> vol_hollow_circular_cylinder(2, 1, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: outer_radius must be greater than inner_radius
+     >>> vol_hollow_circular_cylinder(0, 0, 0)
     Traceback (most recent call last):
         ...
     ValueError: outer_radius must be greater than inner_radius
@@ -311,6 +361,10 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> floa
     48490.482608158454
     >>> vol_conical_frustum(1, 1, 2)
     7.330382858376184
+    >>> vol_conical_frustum(1.6, 2.6, 3.6)
+    48.7240076620753
+    >>> vol_conical_frustum(0, 0, 0)
+    0.0
     >>> vol_conical_frustum(-2, 2, 1)
     Traceback (most recent call last):
         ...
