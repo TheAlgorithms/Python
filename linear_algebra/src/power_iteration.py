@@ -52,7 +52,7 @@ def power_iteration(
     # or when we have small changes from one iteration to next.
 
     convergence = False
-    lamda_previous = 0
+    lambda_previous = 0
     iterations = 0
     error = 1e12
 
@@ -64,21 +64,21 @@ def power_iteration(
         # Find rayleigh quotient
         # (faster than usual b/c we know vector is normalized already)
         vectorH = vector.conj().T if is_complex else vector.T
-        lamda = np.dot(vectorH, np.dot(input_matrix, vector))
+        lambda_ = np.dot(vectorH, np.dot(input_matrix, vector))
 
         # Check convergence.
-        error = np.abs(lamda - lamda_previous) / lamda
+        error = np.abs(lambda_ - lambda_previous) / lambda_
         iterations += 1
 
         if error <= error_tol or iterations >= max_iterations:
             convergence = True
 
-        lamda_previous = lamda
+        lambda_previous = lambda_
 
     if is_complex:
-        lamda = np.real(lamda)
+        lambda_ = np.real(lambda_)
 
-    return lamda, vector
+    return lambda_, vector
 
 
 def test_power_iteration() -> None:

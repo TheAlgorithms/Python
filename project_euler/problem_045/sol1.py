@@ -8,7 +8,7 @@ Hexagonal	 	H(n) = n * (2 * n − 1)	 	1, 6, 15, 28, 45, ...
 It can be verified that T(285) = P(165) = H(143) = 40755.
 
 Find the next triangle number that is also pentagonal and hexagonal.
-All trinagle numbers are hexagonal numbers.
+All triangle numbers are hexagonal numbers.
 T(2n-1) = n * (2 * n - 1) = H(n)
 So we shall check only for hexagonal numbers which are also pentagonal.
 """
