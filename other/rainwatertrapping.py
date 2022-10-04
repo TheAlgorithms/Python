@@ -1,5 +1,5 @@
-def maxTrappedWater(arr, n):
-    size = n - 1
+def max_trapped_water(arr):
+    size = len(arr) - 1
     prev = arr[0]
     prev_index = 0
     water = 0
@@ -26,5 +26,4 @@ def maxTrappedWater(arr, n):
 
 if __name__ == "__main__":
     arr = [0, 6, 0, 4, 1, 3, 2, 6, 1, 2, 1, 3]
-    N = len(arr)
-    print(maxTrappedWater(arr, N))
+    print(max_trapped_water(arr))
