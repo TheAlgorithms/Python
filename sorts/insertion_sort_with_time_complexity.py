@@ -1,11 +1,11 @@
 from random import randint
 from timeit import repeat
 
+
 def run_sorting_algorithm(algorithm, arrayLen):
     # Set up the context and prepare the call to the specified
     # algorithm using the supplied array length.
-    setup_code = f"from __main__ import {algorithm}" \
-        if algorithm != "sorted" else ""
+    setup_code = f"from __main__ import {algorithm}" if algorithm != "sorted" else ""
     array = [randint(0, 1000) for i in range(arrayLen)]
     stmt = f"{algorithm}({array})"
 
@@ -15,7 +15,9 @@ def run_sorting_algorithm(algorithm, arrayLen):
 
     # Finally, display the name of the algorithm and the
     # minimum time it took to run with supplied array length
-    print(f"Algorithm: {algorithm}. Minimum execution time: {min(times)} with array having length: {arrayLen}")
+    print(
+        f"Algorithm: {algorithm}. Minimum execution time: {min(times)} with array having length: {arrayLen}"
+    )
 
 
 def insertion_sort(array):
@@ -49,5 +51,4 @@ def insertion_sort(array):
     return array
 
 
-
-run_sorting_algorithm("insertion_sort",100)
+run_sorting_algorithm("insertion_sort", 100)
