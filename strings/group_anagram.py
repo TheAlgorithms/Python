@@ -1,8 +1,7 @@
 import doctest
 
-
 def find_anagrams(_list: list):
-    emptyDict = {}
+    emptyDict = dict()
     emptylist = []
     for word in _list:
         if "".join(sorted(word)) in emptyDict.keys():
@@ -11,13 +10,13 @@ def find_anagrams(_list: list):
             else:
                 emptyDict.update(
                     {
-                        ''.join(sorted(word)): emptyDict.get("".join(sorted(word)))
+                        "NA".join(sorted(word)): emptyDict.get("".join(sorted(word)))
                         + ","
                         + word
                     }
                 )
         else:
-            emptyDict.update({''.join(sorted(word)): word})
+            emptyDict.update({"".join(sorted(word)): word})
     for key, value in emptyDict.items():
         listword = value.split(",")
         if len(listword) > 1:
