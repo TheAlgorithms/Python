@@ -2,7 +2,7 @@
 """
 Build quantum teleportation circuit using three quantum bits
 and 1 classical bit. The main idea is to send one qubit from
-Alice to Bob using the entanglement propertie. This experiment
+Alice to Bob using the entanglement properties. This experiment
 run in IBM Q simulator with 1000 shots.
 .
 References:
@@ -30,9 +30,9 @@ def quantum_teleportation(
     #                         └───┘             └───┘└╥┘
     #cr: 1/═══════════════════════════════════════════╩═
     Args:
-        theta (float): Single qubit rotation U Gate theta parameter. Defaults to np.pi/2
-        phi (float): Single qubit rotation U Gate phi parameter. Defaul to np.pi/2
-        lam (float): Single qubit rotation U Gate lam parameter. Defaul to np.pi/2
+        theta (float): Single qubit rotation U Gate theta parameter. Default to np.pi/2
+        phi (float): Single qubit rotation U Gate phi parameter. Default to np.pi/2
+        lam (float): Single qubit rotation U Gate lam parameter. Default to np.pi/2
     Returns:
         qiskit.result.counts.Counts: Teleported qubit counts.
     """
@@ -44,21 +44,20 @@ def quantum_teleportation(
 
     # Build the circuit
     quantum_circuit.u(theta, phi, lam, 0)  # Quantum State to teleport
-    quantum_circuit.h(1)
-    quantum_circuit.cx(1, 2)
+    quantum_circuit.h(1) # add hadamard gate
+    quantum_circuit.cx(1, 2) # add control gate with qubit 1 as control and 2 as target.
     quantum_circuit.cx(0, 1)
     quantum_circuit.h(0)
-    quantum_circuit.cz(0, 2)
+    quantum_circuit.cz(0, 2) # add control z gate.
     quantum_circuit.cx(1, 2)
 
-    quantum_circuit.measure([2], [0])
+    quantum_circuit.measure([2], [0]) # measure the qubit.
 
     # Simulate the circuit using qasm simulator
     backend = Aer.get_backend("qasm_simulator")
-    job = execute(qc, backend, shots=1000)
+    job = execute(quantum_circuit, backend, shots=1000)
 
-    return job.result().get_counts(qc)
-
+    return job.result().get_counts(quantum_circuit)
 
 if __name__ == "__main__":
     print(
