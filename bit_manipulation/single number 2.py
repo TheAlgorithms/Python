@@ -7,3 +7,5 @@ class Solution:
         for i,j in d.items():
             if(i==1):
                 return (j)
+
+            
