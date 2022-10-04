@@ -5,17 +5,18 @@ def find_anagrams(_list: list):
     empty_dict = dict()  # Python names variables using snake_case.
     empty_list = []
     for word in _list:
-        if "".join(sorted(word)) in empty_dict:
-            if empty_dict.get("".join(sorted(word))) != word:
+        check_key="".join(sorted(word))
+        if check_key in empty_dict:
+            if empty_dict.get(check_key) != word:
                 empty_dict.update(
                     {
-                        "".join(sorted(word)): empty_dict.get("".join(sorted(word)))
+                        check_key: empty_dict.get(check_key)
                         + ","
                         + word
                     }
                 )
         else:
-            empty_dict.update({"".join(sorted(word)): word})
+            empty_dict.update({check_key: word})
     for key, value in empty_dict.items():
         list_word = value.split(",")
         if len(list_word) > 1:
