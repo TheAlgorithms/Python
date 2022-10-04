@@ -3,7 +3,7 @@ from typing import Dict
 
 
 def find_anagrams(_list: list):
-    empty_dict: Dict[str, str] = {}
+    empty_dict: dict[str, str] = {}
     empty_list = []
     for word in _list:
         check_key = "".join(sorted(word))
