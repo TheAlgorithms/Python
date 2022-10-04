@@ -65,5 +65,6 @@ def quantum_teleportation(
 
 if __name__ == "__main__":
     print(
-        f"Total count for teleported state is: {quantum_teleportation(np.pi/2, np.pi/2, np.pi/2)}"
+        "Total count for teleported state is: "
+        f"{quantum_teleportation(np.pi/2, np.pi/2, np.pi/2)}"
     )
