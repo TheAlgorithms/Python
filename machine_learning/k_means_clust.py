@@ -52,19 +52,28 @@ warnings.filterwarnings("ignore")
 TAG = "K-MEANS-CLUST/ "
 
 
-def get_initial_centroids(data, k, seed=None):
+def get_initial_centroids(data, k, init=None, seed=None):
     """Randomly choose k data points as initial centroids"""
     if seed is not None:  # useful for obtaining consistent results
         np.random.seed(seed)
-    n = data.shape[0]  # number of data points
+    n, d = data.shape[0], data.shape[1]  # number of data points
 
     # Pick K indices from range [0, N).
-    rand_indices = np.random.randint(0, n, k)
+    if init=='kmeans++':
+        centroids = np.zeros((k, d))
+        centroids[0, :] = data[np.random.randint(0, n), :]
+        for c in range(1, k):
+            distance = np.zeros((n, 1))
+            for i in range(1, n):
+                distance[i] = np.linalg.norm(centroids - data[i, :], axis=1).min()
+            centroids[c, :] = data[np.argmax(distance), :]
+    else:
+        rand_indices = np.random.randint(0, n, k)
 
-    # Keep centroids as dense format, as many entries will be nonzero due to averaging.
-    # As long as at least one document in a cluster contains a word,
-    # it will carry a nonzero weight in the TF-IDF vector of the centroid.
-    centroids = data[rand_indices, :]
+        # Keep centroids as dense format, as many entries will be nonzero due to averaging.
+        # As long as at least one document in a cluster contains a word,
+        # it will carry a nonzero weight in the TF-IDF vector of the centroid.
+        centroids = data[rand_indices, :]
 
     return centroids
 
@@ -185,7 +194,7 @@ if False:  # change to true to run this test case.
     dataset = ds.load_iris()
     k = 3
     heterogeneity = []
-    initial_centroids = get_initial_centroids(dataset["data"], k, seed=0)
+    initial_centroids = get_initial_centroids(dataset["data"], k, init='kmeans++', seed=0)
     centroids, cluster_assignment = kmeans(
         dataset["data"],
         k,
