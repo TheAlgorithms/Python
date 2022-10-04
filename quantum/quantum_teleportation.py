@@ -40,18 +40,18 @@ def quantum_teleportation(
     qr = QuantumRegister(3, "qr")  # Define the number of quantum bits
     cr = ClassicalRegister(1, "cr")  # Define the number of classical bits
 
-    qc = QuantumCircuit(qr, cr)  # Define the quantum circuit.
+    quantum_circuit = QuantumCircuit(qr, cr)  # Define the quantum circuit.
 
     # Build the circuit
-    qc.u(theta, phi, lam, 0)  # Quantum State to teleport
-    qc.h(1)
-    qc.cx(1, 2)
-    qc.cx(0, 1)
-    qc.h(0)
-    qc.cz(0, 2)
-    qc.cx(1, 2)
+    quantum_circuit.u(theta, phi, lam, 0)  # Quantum State to teleport
+    quantum_circuit.h(1)
+    quantum_circuit.cx(1, 2)
+    quantum_circuit.cx(0, 1)
+    quantum_circuit.h(0)
+    quantum_circuit.cz(0, 2)
+    quantum_circuit.cx(1, 2)
 
-    qc.measure([2], [0])
+    quantum_circuit.measure([2], [0])
 
     # Simulate the circuit using qasm simulator
     backend = Aer.get_backend("qasm_simulator")
