@@ -13,11 +13,11 @@ def points_cover_naive(starts, ends, points):
     return count
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data = list(map(int, stdin.read().split()))
     n, m = data[0], data[1]
-    input_starts, input_ends = data[2:2 * n + 2:2], data[3:2 * n + 2:2]
-    input_points = data[2 * n + 2:]
+    input_starts, input_ends = data[2 : 2 * n + 2 : 2], data[3 : 2 * n + 2 : 2]
+    input_points = data[2 * n + 2 :]
 
     output_count = points_cover_naive(input_starts, input_ends, input_points)
     print(*output_count)
