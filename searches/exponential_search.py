@@ -9,15 +9,15 @@ https://en.wikipedia.org/wiki/Exponential_search
 """
 
 
-def binary_search(arr, l, r, x):
-    if r >= l:
-        mid = l + (r - l) // 2
+def binary_search(arr, i, r, x):
+    if r >= i:
+        mid = i + (r - i) // 2
 
         if arr[mid] == x:
             return mid
 
         if arr[mid] > x:
-            return binary_search(arr, l, mid - 1, x)
+            return binary_search(arr, i, mid - 1, x)
 
         return binary_search(arr, mid + 1, r, x)
     return -1
