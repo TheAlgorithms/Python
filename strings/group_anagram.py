@@ -1,5 +1,5 @@
 import doctest
-from tokenize import String
+from typing import Dict
 
 
 def find_anagrams(_list: list):
