@@ -9,10 +9,10 @@ def timsort(array):
     while size < n:
         for start in range(0, n, size * 2):
             midpoint = start + size - 1
-            end = min((start + size * 2 - 1), (n-1))
+            end = min((start + size * 2 - 1), (n - 1))
             merged_array = merge(
-                left=array[start:midpoint + 1],
-                right=array[midpoint + 1:end + 1])
-            array[start:start + len(merged_array)] = merged_array
+                left=array[start : midpoint + 1], right=array[midpoint + 1 : end + 1]
+            )
+            array[start : start + len(merged_array)] = merged_array
         size *= 2
     return array
