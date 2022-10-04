@@ -39,5 +39,5 @@ if __name__ == "__main__":
         "strap",
         "traps",
     ]
-    # doctest.testfile("group_anagram.txt")
-    print(find_anagrams(input))
+    doctest.testfile("group_anagram.txt")
+    find_anagrams(input)
