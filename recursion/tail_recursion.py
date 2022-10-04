@@ -10,18 +10,18 @@ Ususally the compiler can easily optimize tail recursive functions by completely
 
 def example_of_tail_recursive_factorial(n: int, ans: int = 1) -> int:
     """
-    this fuction simply prints numbers from 1 to n 
+    this fuction simply prints numbers from 1 to n
     >>> example_of_tail_recursive_factorial(5)
     120
     >>> example_of_tail_recursive_factorial(4)
     24
     """
 
-    if(n <= 1):
+    if n <= 1:
         return ans
 
     # last statement of the function is recursive call this is tail recursive function
-    return example_of_tail_recursive_factorial(n-1, ans*n)
+    return example_of_tail_recursive_factorial(n - 1, ans * n)
 
 
 if __name__ == "__main__":
