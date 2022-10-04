@@ -51,7 +51,7 @@ def bisect_left(
         hi = len(sorted_collection)
 
     while lo < hi:
-        mid = lo + (hi - lo) // 2
+        mid = lo + (hi - lo) >> 2
         if sorted_collection[mid] < item:
             lo = mid + 1
         else:
@@ -96,7 +96,7 @@ def bisect_right(
         hi = len(sorted_collection)
 
     while lo < hi:
-        mid = lo + (hi - lo) // 2
+        mid = lo + (hi - lo) >> 2
         if sorted_collection[mid] <= item:
             lo = mid + 1
         else:
@@ -218,7 +218,7 @@ def binary_search(sorted_collection: list[int], item: int) -> int | None:
     right = len(sorted_collection) - 1
 
     while left <= right:
-        midpoint = left + (right - left) // 2
+        midpoint = left + (right - left) >> 2
         current_item = sorted_collection[midpoint]
         if current_item == item:
             return midpoint
@@ -288,7 +288,7 @@ def binary_search_by_recursion(
     if right < left:
         return None
 
-    midpoint = left + (right - left) // 2
+    midpoint = left + (right - left) >> 2
 
     if sorted_collection[midpoint] == item:
         return midpoint
