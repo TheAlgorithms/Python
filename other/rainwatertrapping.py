@@ -1,3 +1,9 @@
+"""
+Given n non-negative integers representing an elevation map
+where the width of each bar is 1,
+the function max_trapped_water computes how much water it traps after pouring.
+"""
+
 def max_trapped_water(arr):
     size = len(arr) - 1
     prev = arr[0]
