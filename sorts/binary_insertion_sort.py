@@ -13,42 +13,10 @@ For manual testing run:
 python3 binary_insertion_sort.py
 """
 
+import sys
 
-def binary_search(collection: list[int], value: int, start: int, end: int) -> int:
-    """
-    A pure implementation of the binary search  algorithm in Python
-
-    :param collection: some ascending sorted collection with comparable items inside
-    :param value: item value to search
-    :param start: first index in the sub-collection
-    :param end: last index in the sub-collection
-    :return: index of found item
-
-    Examples:
-    >>> binary_search([-2, 3, 7, 9, 255], 0, 0, 4)
-    1
-
-    >>> binary_search([-62, -50, -41, -8, -1], -12, 0, 4)
-    3
-
-    >>> binary_search([0, 0, 8, 10, 15], 1, 0, 4)
-    2
-
-    """
-    if start == end:
-        if collection[start] > value:
-            return start
-        else:
-            return start + 1
-    if start > end:
-        return start
-    mid = (start + end) // 2
-    if collection[mid] < value:
-        return binary_search(collection, value, mid + 1, end)
-    elif collection[mid] > value:
-        return binary_search(collection, value, start, mid - 1)
-    else:
-        return mid
+sys.path.append("../searches")
+from binary_search import bisect_left
 
 
 def binary_insertion_sort(collection: list[int]) -> list[int]:
@@ -58,6 +26,8 @@ def binary_insertion_sort(collection: list[int]) -> list[int]:
     :return: the same collection ordered by ascending
 
     Examples:
+    >>> binary_insertion_sort([1, 2, 3, 2, 4, 5])
+    [1, 2, 2, 3, 4, 5]
     >>> binary_insertion_sort([0.1, -2.4, 4.4, 2.2])
     [-2.4, 0.1, 2.2, 4.4]
     >>> binary_insertion_sort([]) == sorted([])
@@ -76,7 +46,7 @@ def binary_insertion_sort(collection: list[int]) -> list[int]:
     True
     """
     for ind, val in enumerate(collection[1:]):
-        mid = binary_search(collection, val, 0, ind)
+        mid = bisect_left(collection, val, 0, ind + 1)
         collection = (
             collection[:mid] + [val] + collection[mid : ind + 1] + collection[ind + 2 :]
         )
