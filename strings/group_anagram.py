@@ -5,7 +5,7 @@ def find_anagrams(_list: list):
     emptyDict = dict()
     emptylist = []
     for word in _list:
-        if "".join(sorted(word)) in emptyDict.keys():
+        if "".join(sorted(word)) in emptyDict:
             if emptyDict.get("".join(sorted(word))) != word:
                 emptyDict.update(
                     {
