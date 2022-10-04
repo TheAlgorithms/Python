@@ -59,7 +59,7 @@ def get_initial_centroids(data, k, init=None, seed=None):
     n, d = data.shape[0], data.shape[1]  # number of data points
 
     # Pick K indices from range [0, N).
-    if init=='kmeans++':
+    if init == "kmeans++":
         centroids = np.zeros((k, d))
         centroids[0, :] = data[np.random.randint(0, n), :]
         for c in range(1, k):
@@ -194,7 +194,9 @@ if False:  # change to true to run this test case.
     dataset = ds.load_iris()
     k = 3
     heterogeneity = []
-    initial_centroids = get_initial_centroids(dataset["data"], k, init='kmeans++', seed=0)
+    initial_centroids = get_initial_centroids(
+        dataset["data"], k, init="kmeans++", seed=0
+    )
     centroids, cluster_assignment = kmeans(
         dataset["data"],
         k,
