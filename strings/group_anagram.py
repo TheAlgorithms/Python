@@ -8,10 +8,8 @@ def find_anagrams(_list: list):
         check_key = "".join(sorted(word))
         if check_key in empty_dict:
             if empty_dict.get(check_key) != word:
-                if check_key is not None or check_key != "None":
-                    empty_dict.update(
-                        {check_key: empty_dict.get(check_key) + "," + word}
-                    )
+                if check_key is not None:
+                    empty_dict.update({check_key: empty_dict.get(check_key) + "," + word})
         else:
             empty_dict.update({check_key: word})
     for key, value in empty_dict.items():
