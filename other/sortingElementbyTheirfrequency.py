@@ -20,10 +20,12 @@ def sortingelebyfreq(arr):
 
 # method 2 (easy method) using built in function
 from collections import Counter
+
+
 def sortingelebyfreq(arr):
   counter = Counter(arr)
   return sorted(arr, key = lambda x: (-counter[x],x)))
-  
+
 
 # method 3 (one liner)
 def sortingelebyfreq(arr):
