@@ -15,7 +15,7 @@ def vol_cube(side_length: int | float) -> float:
     >>> vol_cube(3)
     27.0
     >>> vol_cube(0)
-    0
+    0.0
     >>> vol_cube(1.6)
     4.096000000000001
     >>> vol_cube(-1)
@@ -339,7 +339,7 @@ def vol_hollow_circular_cylinder(
     Traceback (most recent call last):
         ...
     ValueError: outer_radius must be greater than inner_radius
-     >>> vol_hollow_circular_cylinder(0, 0, 0)
+    >>> vol_hollow_circular_cylinder(0, 0, 0)
     Traceback (most recent call last):
         ...
     ValueError: outer_radius must be greater than inner_radius
