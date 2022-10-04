@@ -1,7 +1,9 @@
 """
 LSB Steganography is steganography method to hide a message in the image file
 
-I contribute this algorithm to celebrate my girl friend called Indriani A. M., her bachelor graduation. cheers
+I contribute this algorithm to celebrate my girl friend called Indriani A. Mentari, 
+    her bachelor graduation. cheers
+
 """
 
 import cv2
@@ -14,23 +16,39 @@ class lsb_steganography:
     def set_message(self, message):
         self.message = message.lower() + "`"
 
-    def preprocessing_image(self):
-        img = cv2.imread(self.img_path,0)
-        
-        return img
+    def int_to_binary(self, words):
+        return format(words,'08b')
 
-    def preprocessing_message(self):
+    def binary_to_int(self, words):
+        return int(words,2)
+
+    def preprocessing_encrypt_message(self):
 
         words_container = []
 
         for words in self.message:
-            result = self.abjad.find(words)
-            words_container.append(result)
+            result = self.int_to_binary(self.abjad.find(words))
+            for char in result:
+                words_container.append(int(char))
 
         return words_container
 
+    def preprocessing_decrypt_message(self):
+        pass
+
+    def preprocessing_image(self):
+        img = cv2.imread(self.img_path,0)
+
+        # for height in range(len(img)):
+        #     for width in range(len(img[height])):
+        #         print(width)
+        #     print("---")
+        
+        return img
+
+
     def lsb(self):
-        print(self.preprocessing_image())
+        print(self.preprocessing_encrypt_message())
 
 
         
