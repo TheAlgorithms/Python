@@ -1,9 +1,9 @@
-from typing import List, Tuple, Dict
+from typing import Dict, List, Tuple
 
 
 def get_best_match(
-    group1: Dict[object, List], group2: Dict[object, List]
-) -> List[Tuple]:
+    group1: dict[object, list], group2: dict[object, list]
+) -> list[tuple]:
     """
     Match elements from group1 and group2 based on their preferences,
     such that there are no rogue couples (Two elements such that they
