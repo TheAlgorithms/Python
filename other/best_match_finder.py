@@ -20,9 +20,11 @@ def get_best_match(
     {<group2_elemt>: [...<List of group1_elemts in descending order of preference>]}
     """
     group1_checklist: dict[object, List[object]] = dict(
-        zip(group1.keys(), list(group1.values()).copy()))
+        zip(group1.keys(), list(group1.values()).copy())
+    )
     group2_possible_matches: dict[object, List[object]] = dict(
-        zip(group2.keys(), [[]] * 5))
+        zip(group2.keys(), [[]] * 5)
+    )
 
     def best_match_found():
         """
