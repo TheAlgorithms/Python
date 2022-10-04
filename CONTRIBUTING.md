@@ -176,7 +176,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Most importantly,
   - __Be consistent in the use of these guidelines when submitting.__
-  - __Join__ [Gitter](https://gitter.im/TheAlgorithms) __now!__
+  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms) __now!__
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.
