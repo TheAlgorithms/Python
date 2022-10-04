@@ -31,10 +31,10 @@
 
 # method 3 (one liner)
 def sortingelebyfreq(arr):
-  return sorted(arr, key = arr.count, reverse = True)
+    return sorted(arr, key=arr.count, reverse=True)
 
 
 # main function
 if __name__ == "__main__":
-  arr = [1,2,2,6,5]
-  print(sortingelebyfreq(arr))
+    arr = [1, 2, 2, 6, 5]
+    print(sortingelebyfreq(arr))
