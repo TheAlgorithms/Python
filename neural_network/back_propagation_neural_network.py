@@ -18,10 +18,12 @@ Date: 2017.11.23
 
 """
 import numpy as np
+
+
 from matplotlib import pyplot as plt
 
 
-def sigmoid(x):
+def sigmoid(x) -> float:
     return 1 / (1 + np.exp(-1 * x))
 
 
