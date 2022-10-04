@@ -12,7 +12,7 @@ def factors_of_a_number(num: int) -> list:
     >>> factors_of_a_number(-24)
     []
     """
-    facs = []
+    facs: list[int] = []
     if num < 1:
         return facs
     facs.append(1)
