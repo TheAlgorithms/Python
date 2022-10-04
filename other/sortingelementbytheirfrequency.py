@@ -24,7 +24,7 @@ from collections import Counter
 
 def sortingelebyfreq(arr):
   counter = Counter(arr)
-  return sorted(arr, key = lambda x: (-counter[x],x)))
+  return sorted(arr, key = lambda x: (-counter[x],x))
 
 
 # method 3 (one liner)
