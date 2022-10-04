@@ -19,7 +19,7 @@ try:
     server.ehlo()
     server.login(email, password)
     server.sendmail(email, to, message.as_string())
-    print('Email have been successfully send')
+    print("Email have been successfully send")
 
 except Exception as ex:
     print(ex)
