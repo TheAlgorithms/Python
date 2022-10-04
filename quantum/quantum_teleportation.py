@@ -53,7 +53,7 @@ def quantum_teleportation(
 
     qc.measure([2], [0])
 
-    # Simulate the circuit usong qasm simulator
+    # Simulate the circuit using qasm simulator
     backend = Aer.get_backend("qasm_simulator")
     job = execute(qc, backend, shots=1000)
 
