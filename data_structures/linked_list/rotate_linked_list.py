@@ -3,15 +3,17 @@ from typing import Any
 
 # Definition for singly-linked list.
 
+
 class Node:
     def __init__(self, data=0, next=None):
         self.data = data
         self.next = next
 
+
 class RotateLinkedList:
     def __init__(self) -> None:
         self.head = None
-    
+
     def __iter__(self) -> Iterator[Any]:
         node = self.head
         while self.head:
@@ -25,7 +27,7 @@ class RotateLinkedList:
 
     def __repr__(self):
         return "->".join(str(item) for item in iter(self))
-    
+
     def is_empty(self) -> bool:
         return len(self) == 0
 
@@ -45,10 +47,10 @@ class RotateLinkedList:
     def rotateRight(self, k: int) -> None:
         if k == 0:
             return self.head
-        
+
         if self.head == None:
             return None
-        
+
         current = Node()
         current = self.head
 
@@ -57,17 +59,18 @@ class RotateLinkedList:
         while current.next != None:
             current = current.next
             length += 1
-        
+
         current.next = self.head
         current = self.head
 
-        for i in range(0, length-(k % length)-1):
+        for i in range(0, length - (k % length) - 1):
             current = current.next
-        
+
         self.head = current.next
         current.next = None
 
         return self.head
+
 
 def test_rotate_linked_list() -> None:
     """
@@ -87,14 +90,12 @@ def test_rotate_linked_list() -> None:
     >>> str(rotate_linked_list)
     1->2->3->4->5
     """
-    
+
     rotate_linked_list.rotateRight(2)
     """
     >>> str(rotate_linked_list)
     3->4->5->1->2
     """
-    
-
 
 
 if __name__ == "__main__":
