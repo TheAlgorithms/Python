@@ -1,9 +1,6 @@
-import numpy as np 
 import math 
 import time 
 from queue import PriorityQueue
-import os
-
 
 # Different Modes for Node class 
 START = 'S'
@@ -19,7 +16,7 @@ SIZE = 10
 
 # Node class for each pixel in the Image matrix 
 class Node :
-    def __init__(self,row,column):
+    def __init__(self, row: str, column: str)->None:
         self.parent = None 
         # Setting g, h, f as Infinity 
         self.g = 2e50
@@ -31,27 +28,27 @@ class Node :
         self.column = column
     
     # Method for converting the Node into Start Mode 
-    def start(self):
+    def start(self)->None:
         self.mode = START
 
     # Method for converting the Node into End Node 
-    def end(self):
+    def end(self)->None:
         self.mode = END
 
     # Method for converting the Node into Obstacle Mode 
-    def obstacle(self):
+    def obstacle(self)->None:
         self.mode = OBSTACLE
 
 
 # isValid function for checking if a poition for a Node is valid 
-def isValid(i, j):
+def isValid(i: int, j: int)->bool:
     if i >= 0 and j >= 0 and i < SIZE and j < SIZE:
         return True
     else:
         return False
 
 # Function returns valid obstacle free Neighbours of a particular Node in 4 directions
-def neighbours1(A, matrix):
+def neighbours1(A: Node, matrix: list)->list:
     neighbour = []
     if isValid(A.row,A.column-1) and matrix[A.row][A.column-1].mode != OBSTACLE:
         neighbour.append(matrix[A.row][A.column-1])
@@ -65,7 +62,7 @@ def neighbours1(A, matrix):
     return neighbour
 
 # Function returns valid obstacle free Neighbours of a particular Node in other 4 directions
-def neighbours2(A,matrix):
+def neighbours2(A: Node, matrix: list)->list:
     neighbour = []
     if isValid(A.row-1,A.column+1) and matrix[A.row-1][A.column+1].mode != OBSTACLE:
         neighbour.append(matrix[A.row-1][A.column+1])
@@ -75,28 +72,26 @@ def neighbours2(A,matrix):
         neighbour.append(matrix[A.row+1][A.column+1])
     if isValid(A.row+1,A.column-1) and matrix[A.row+1][A.column-1].mode != OBSTACLE:
         neighbour.append(matrix[A.row+1][A.column-1])
-
     return neighbour
-
 
 # Heuristic Function calculating Functions :
 
 # Manhattan Distance
-def manhattan(A, B):
+def manhattan(A: Node, B: Node)->float:
     return abs(A.row - B.row) + abs(A.column - B.column)
 
 # Euclidean Distance
-def euclidean(A, B):
+def euclidean(A: Node, B: Node)->float:
     return math.sqrt((A.row - B.row) ** 2 + (A.column - B.column) ** 2)
 
 # Diagonal Distance
-def diagonal(A, B):
+def diagonal(A: Node, B: Node)->float:
     return min(abs(A.row - B.row), abs(A.column - B.column)) * 1.414 + max(abs(A.row - B.row), abs(A.column - B.column)) - min(abs(A.row - B.row), abs(A.column - B.column))
 
 
 # Function for finding the starting Node in the given Node Matrix : 
 
-def findStart(matrix):
+def findStart(matrix: list)->None:
     for i in range(SIZE):
         for j in range(SIZE):
             if matrix[i][j].mode == START:
@@ -104,30 +99,27 @@ def findStart(matrix):
 
 
 # Function for finding the destination Node in the given Node Matrix
-def findEnd(matrix):
+def findEnd(matrix: list)->None:
     for i in range(SIZE):
         for j in range(SIZE):
             if matrix[i][j].mode == END:
                 return matrix[i][j]
 
 # Function constructs Path and calculates Cost of the Path 
-def constructPath(start, end, matrix):
+def constructPath(start: Node, end: Node, matrix: list)->None:
     current = end.parent
     ans = 0
     while not current.mode == START:
         current.mode = PATH
-
         if current.row == current.parent.row or current.column == current.parent.column:
             ans += 1
         else:
             ans += math.sqrt(2)
-
         current = current.parent
-        
-    print("Cost of path is " ,ans)
+    print("Cost of path is ", ans)
 
 
-def AstarEuclidean2(matrix):
+def a_star_euclidean_2(matrix: list)->bool:
     count = 0
 
     start = findStart(matrix)
@@ -147,11 +139,11 @@ def AstarEuclidean2(matrix):
         openSet.remove(current)
 
         for neig in neighbours1(current,matrix):
-            tempGscore = current.g + 1
+            temp_g_score = current.g + 1
 
-            if tempGscore < neig.g:
+            if temp_g_score < neig.g:
                 neig.parent = current
-                neig.g = tempGscore
+                neig.g = temp_g_score
                 neig.f = neig.g + euclidean(neig, end)
 
                 if neig not in openSet:
@@ -166,11 +158,11 @@ def AstarEuclidean2(matrix):
                         PQ.put((neig.f, count, neig))
 
         for neig in neighbours2(current,matrix):
-            tempGscore = current.g + math.sqrt(2)
+            temp_g_score = current.g + math.sqrt(2)
 
-            if tempGscore < neig.g:
+            if temp_g_score < neig.g:
                 neig.parent = current
-                neig.g = tempGscore
+                neig.g = temp_g_score
                 neig.f = neig.g + euclidean(neig, end)
 
                 if neig not in openSet:
@@ -186,8 +178,6 @@ def AstarEuclidean2(matrix):
 
         if not current.mode == START:
             current.mode = CLOSED
-
-
     return False 
 
 
@@ -219,7 +209,7 @@ def main():
 
         
     t0 = time.time()
-    AstarEuclidean2(matrix)
+    a_star_euclidean_2(matrix)
     t1 = time.time()
     print("Time taken: ", t1-t0)
     
