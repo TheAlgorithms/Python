@@ -9,12 +9,12 @@ from typing import List as list
 # function to split bill among group
 def split_bill(pool: list[Any]) -> Any:
     """
-    >>> split_bill([{'name': 'sam', 'contribution': 500}, {'name': 'rohan', 'contribution'\
-: 200}, {'name': 'john', 'contribution': 50}])
+    >>> split_bill([{'name': 'sam', 'contribution': 500}, {'name': 'rohan'\
+, 'contribution': 200}, {'name': 'john', 'contribution': 50}])
     {'solution': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contribution'\
-: 50.0}, {'name': 'john', 'contribution': 200.0}]}], 'total': 750, 'each': 250.0\
-, 'pool': [{'name': 'sam', 'contribution': 500}, {'name': 'rohan', 'contribution'\
-: 200}, {'name': 'john', 'contribution': 50}]}
+: 50.0}, {'name': 'john', 'contribution': 200.0}]}], 'total': 750, 'each'\
+: 250.0, 'pool': [{'name': 'sam', 'contribution': 500}, {'name': 'rohan'\
+, 'contribution': 200}, {'name': 'john', 'contribution': 50}]}
     """
     contribution_list = [x["contribution"] for x in pool]
     total = sum(contribution_list)
@@ -55,9 +55,9 @@ def split_bill(pool: list[Any]) -> Any:
 def print_solutionution(result: Any) -> None:
     """
     >>> print_solutionution({'solution': [{'name': 'sam', 'payment': [{'name': 'rohan'\
-, 'contribution': 50.0}, {'name': 'john', 'contribution': 200.0}]}], 'total': 750, 'each'\
-: 250.0, 'pool': [{'name': 'sam', 'contribution': 500}, {'name': 'rohan', 'contribution'\
-: 200}, {'name': 'john', 'contribution': 50}]})
+, 'contribution': 50.0}, {'name': 'john', 'contribution': 200.0}]}], 'total'\
+: 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contribution': 500}, {'name': 'rohan'\
+, 'contribution': 200}, {'name': 'john', 'contribution': 50}]})
     sam paid    $500
     rohan paid    $200
     john paid    $50
