@@ -18,12 +18,12 @@ def dna_matching_strand (dna: str) -> str:
     Exception: Invalid Strand
     """
 
-    r = len(re.findall("[ATCG]", dna)) != len(dna)
-    val = dna.translate(dna.maketrans("ATCG", "TAGC"))
-    if r:
+    is_strand = len(re.findall("[ATCG]", dna)) != len(dna)
+    strand = dna.translate(dna.maketrans("ATCG", "TAGC"))
+    if is_strand:
       raise Exception("Invalid Strand")
     else:
-      return val
+      return strand
 
 
 if __name__ == "__main__":
