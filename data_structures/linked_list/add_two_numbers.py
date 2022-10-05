@@ -1,4 +1,4 @@
-       carry = 0;
+carry = 0;
         res = n = ListNode(0);
         while l1 or l2 or carry:
             if l1:
