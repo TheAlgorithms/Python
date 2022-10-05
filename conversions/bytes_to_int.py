@@ -15,8 +15,7 @@ def bytes_to_int(
     ...     for a,b,c in tests)
     True
     >>> bytes_to_int('abc',False,'big')
-    ValueError -  byteorder must be either 'little' or 'big' 
-    0
+    
     >>> bytes_to_int(7.1, 'little', signed=True)
     TypeError - 'float' object is not subscriptable
     0
@@ -24,10 +23,11 @@ def bytes_to_int(
     """
     
     try:
-        if byteorder not in ("little", "big"):
-            raise ValueError(" byteorder must be either 'little' or 'big' ")
-    
         byteorder = byteorder.lower()
+        
+        if byteorder not in ("little", "big"):
+            raise ValueError("byteorder must be either 'little' or 'big'")
+    
         if byteorder == "little":
             bytes_var = bytes_var[::-1]
         binval = ""
