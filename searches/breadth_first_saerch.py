@@ -44,3 +44,7 @@ if __name__ == '__main__':
     graph = {0: [3, 2], 1: [2], 2: [3], 3: [1, 2]}
     print("Following is Breadth First Traversal: ")
     bfs(graph, 0)
+
+"""
+For Explanation visit: https://en.wikipedia.org/wiki/Breadth-first_search
+"""    
