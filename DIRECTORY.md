@@ -195,6 +195,7 @@
     * [Singly Linked List](data_structures/linked_list/singly_linked_list.py)
     * [Skip List](data_structures/linked_list/skip_list.py)
     * [Swap Nodes](data_structures/linked_list/swap_nodes.py)
+    * [Reverse Linked List](data_structures/linked_list/reverse_linked_list.py)
   * Queue
     * [Circular Queue](data_structures/queue/circular_queue.py)
     * [Circular Queue Linked List](data_structures/queue/circular_queue_linked_list.py)
