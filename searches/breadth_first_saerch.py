@@ -12,6 +12,7 @@ python3 breadth_first_search.py
 
 import collections
 
+
 # BFS algorithm
 def bfs(graph, root):
     """
@@ -34,17 +35,18 @@ def bfs(graph, root):
                 visited.add(neighbour)
                 queue.append(neighbour)
 
+
 """
-The graph has some values which are hard-codded and this graph has 0-3 index 
+The graph has some values which are hard-codded and this graph has 0-3 index
 having different nodes.
 
 """
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     graph = {0: [3, 2], 1: [2], 2: [3], 3: [1, 2]}
     print("Following is Breadth First Traversal: ")
     bfs(graph, 0)
 
 """
 For Explanation visit: https://en.wikipedia.org/wiki/Breadth-first_search
-"""    
+"""
