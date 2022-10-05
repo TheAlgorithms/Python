@@ -1,6 +1,5 @@
 # The algorithm's most common use is to make purchase recommendations based on the goods the customer already has in their shopping basket.
 
-
 # Importing necessary modules
 import numpy as np  
 import pandas as pd  
