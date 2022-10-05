@@ -16,7 +16,7 @@ We can decrease the n times multiplication by following the divide and conquer a
 """
 
 
-def multiply(matrix_a, matrix_b):
+def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     matrix_c = []
     n = len(matrix_a)
     for i in range(n):
@@ -30,11 +30,11 @@ def multiply(matrix_a, matrix_b):
     return matrix_c
 
 
-def identity(n):
+def identity(n: int) -> list[list[int]]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def nth_fibonacci_matrix(n):
+def nth_fibonacci_matrix(n: int) -> int:
     """
     >>> nth_fibonacci_matrix(100)
     354224848179261915075
@@ -54,7 +54,7 @@ def nth_fibonacci_matrix(n):
     return res_matrix[0][0]
 
 
-def nth_fibonacci_bruteforce(n):
+def nth_fibonacci_bruteforce(n: int) -> int:
     """
     >>> nth_fibonacci_bruteforce(100)
     354224848179261915075
@@ -70,7 +70,7 @@ def nth_fibonacci_bruteforce(n):
     return fib1
 
 
-def main():
+def main() -> None:
     for ordinal in "0th 1st 2nd 3rd 10th 100th 1000th".split():
         n = int("".join(c for c in ordinal if c in "0123456789"))  # 1000th --> 1000
         print(
