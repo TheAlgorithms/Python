@@ -6,90 +6,101 @@ Program to split bills among a group by given
 """
 
 from typing import List
+
 from typing_extensions import TypedDict
 
 
 class Contribution(TypedDict):
-  name: str 
-  contri: int 
+    name: str
+    contri: int
+
+
 class Solution(TypedDict):
-  name: str
-  payment: List[Contribution]
+    name: str
+    payment: list[Contribution]
+
+
 class Result(TypedDict):
-  sol: List[Solution]
-  total: int
-  each: float
-  pool:List[Contribution]
-
-#function to split bill among group
-#pool: [...{'name':str,'contri':int},{'name':str,'contri':int}]
-def split_bill(pool:List[Contribution])->Result:
-  '''
-  >>> split_bill([{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}])
-  {'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]}
-  '''
-  contri_list=[x['contri'] for x in pool]
-  total=sum(contri_list)
-  each=total/len(contri_list)
-  more=[]
-  less=[]
-  sol=[]
-  for i in pool:
-    if i['contri']<each:
-      less.append({'name':i['name'],'contri':each-i['contri']})
-    else:
-      more.append({'name':i['name'],'contri':i['contri']-each})
-  for i in more:
-    a=i['contri']
-    m = [{'name':k['name'],'contri':0} for k in less]
-    for j in range(len(less)):
-      b=less[j]['contri']
-      if a==0:
-        m[j]['contri']=0
-      elif a-b==0:
-        a=a-b
-        m[j]['contri']=b
-        less[j]['contri']=0
-      elif a-b>0:
-        a=a-b
-        less[j]['contri']=0
-        m[j]['contri']=b
-      elif a-b<0:
-        less[j]['contri']=b-a
-        m[j]['contri']=a
-        a=0
-    sol.append({'name':i['name'],'payment':m})
-  return {'sol':sol,'total':total,'each':each,'pool':pool}
+    sol: list[Solution]
+    total: int
+    each: float
+    pool: list[Contribution]
 
 
-#function to print solution in a format
-#result is the value returned by splitBill(pool) function
-def print_solution(result:Result)-> None:
-  '''
-  >>> print_solution({'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]})
-  sam  paid    $ 500
-  rohan  paid    $ 200
-  john  paid    $ 50
-  -------------------------------------------------------------------------------
-  Total pool amount  : $ 750
-  Per head           : $ 250.0
-  -------------------------------------------------------------------------------
-  rohan  should pay $ 50.0  to  sam
-  john  should pay $ 200.0  to  sam
-  -------------------------------------------------------------------------------
-  '''
-  for i in result['pool']:
-    print(i['name'],' paid    $',i['contri'])
-  print('-------------------------------------------------------------------------------')
-  print('Total pool amount  : $',result['total'])
-  print('Per head           : $',result['each'])
-  print('-------------------------------------------------------------------------------')
-  for i in result['sol']:
-    for j in i['payment']:
-      if j['contri']>0:
-        print(j['name'],' should pay $',j['contri'],' to ', i['name'])
-    print('-------------------------------------------------------------------------------')
+# function to split bill among group
+# pool: [...{'name':str,'contri':int},{'name':str,'contri':int}]
+def split_bill(pool: list[Contribution]) -> Result:
+    """
+    >>> split_bill([{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}])
+    {'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]}
+    """
+    contri_list = [x["contri"] for x in pool]
+    total = sum(contri_list)
+    each = total / len(contri_list)
+    more = []
+    less = []
+    sol = []
+    for i in pool:
+        if i["contri"] < each:
+            less.append({"name": i["name"], "contri": each - i["contri"]})
+        else:
+            more.append({"name": i["name"], "contri": i["contri"] - each})
+    for i in more:
+        a = i["contri"]
+        m = [{"name": k["name"], "contri": 0} for k in less]
+        for j in range(len(less)):
+            b = less[j]["contri"]
+            if a == 0:
+                m[j]["contri"] = 0
+            elif a - b == 0:
+                a = a - b
+                m[j]["contri"] = b
+                less[j]["contri"] = 0
+            elif a - b > 0:
+                a = a - b
+                less[j]["contri"] = 0
+                m[j]["contri"] = b
+            elif a - b < 0:
+                less[j]["contri"] = b - a
+                m[j]["contri"] = a
+                a = 0
+        sol.append({"name": i["name"], "payment": m})
+    return {"sol": sol, "total": total, "each": each, "pool": pool}
 
+
+# function to print solution in a format
+# result is the value returned by splitBill(pool) function
+def print_solution(result: Result) -> None:
+    """
+    >>> print_solution({'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]})
+    sam  paid    $ 500
+    rohan  paid    $ 200
+    john  paid    $ 50
+    -------------------------------------------------------------------------------
+    Total pool amount  : $ 750
+    Per head           : $ 250.0
+    -------------------------------------------------------------------------------
+    rohan  should pay $ 50.0  to  sam
+    john  should pay $ 200.0  to  sam
+    -------------------------------------------------------------------------------
+    """
+    for i in result["pool"]:
+        print(i["name"], " paid    $", i["contri"])
+    print(
+        "-------------------------------------------------------------------------------"
+    )
+    print("Total pool amount  : $", result["total"])
+    print("Per head           : $", result["each"])
+    print(
+        "-------------------------------------------------------------------------------"
+    )
+    for i in result["sol"]:
+        for j in i["payment"]:
+            if j["contri"] > 0:
+                print(j["name"], " should pay $", j["contri"], " to ", i["name"])
+        print(
+            "-------------------------------------------------------------------------------"
+        )
 
 
 if __name__ == "__main__":
