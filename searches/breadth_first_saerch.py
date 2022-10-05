@@ -15,10 +15,7 @@ import unittest
 import doctest
 
 # BFS algorithm
-"""
-def function() -> None;
-"""
-def bfs(graph, root):
+def bfs(graph: int, root: int) -> int:
     """
     The graph in the function will take the values of the given nodes
     while root has the main node's value.
@@ -50,7 +47,12 @@ if __name__ == "__main__":
     graph = {0: [3, 2], 1: [2], 2: [3], 3: [1, 2]}
     print("Following is Breadth First Traversal: ")
     bfs(graph, 0)
+<<<<<<< HEAD
     
+=======
+    import doctest
+
+>>>>>>> d01b56ee32d3880854c6f8c804f3849b13bd2dd0
     doctest.testmod()
     unittest.main()
 """
