@@ -1,4 +1,4 @@
-def bytes_to_int(bytes_var: bytearray,byteorder: str,signed: bool,) -> (int):
+def bytes_to_int(bytes_var: bytes,byteorder: str,signed: bool,) -> int:
 
     r"""
     This script first converts a bytearray,
