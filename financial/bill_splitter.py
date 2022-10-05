@@ -2,7 +2,8 @@
 Program to split bills among a group
 """
 
-from typing import Any, List as list
+from typing import Any
+from typing import List as list
 
 
 # function to split bill among group
