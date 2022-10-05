@@ -14,8 +14,6 @@ def bytes_to_int(
     >>> all(bytes_to_int(a,b,c) == int.from_bytes(a,b,signed=c)
     ...     for a,b,c in tests)
     True
-    >>> bytes_to_int('abc',False,'big')
-    
     >>> bytes_to_int(7.1, 'little', signed=True)
     TypeError - 'float' object is not subscriptable
     0
@@ -30,7 +28,7 @@ def bytes_to_int(
     
         if byteorder == "little":
             bytes_var = bytes_var[::-1]
-        binval = ""
+        binval = ""              
         for i in bytes_var:
             binnum = str(bin(i))[2:]
             if len(binnum) < 8:
