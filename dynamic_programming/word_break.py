@@ -1,4 +1,4 @@
-def wordbreak(word, word_dict) -> bool:
+def wordbreak(word, word_dict):
     """
     word ---> Input word
     word_dict ---> Input dictionary
