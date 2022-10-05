@@ -14,18 +14,18 @@ def insertion_sort(a) -> None:
     Sorted array:
     [2, 5, 7, 8, 10, 13, 15]
     
-    >>> a=[-6,-5,-12]
-    >>>insertion_sort(a)
+    >>> a=[-6, -5, -12]
+    >>> insertion_sort(a)
     Sorted array:
-    [-12,-6,-5]
+    [-12, -6, -5]
     
-    >>> a=['s','h','y']
-    >>>insertion_sort(a)
+    >>> a=['s', 'h', 'y']
+    >>> insertion_sort(a)
     Sorted array:
-    ['h','s','y']
+    ['h', 's', 'y']
     
     >>> a=[]
-    >>>insertion_sort(a)
+    >>> insertion_sort(a)
     Sorted array:
     []
     
@@ -47,3 +47,10 @@ print(a)
 # method call
 insertion_sort(a)
 
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
+    input = input("Enter comma separated number:\n").strip()
+    list = [int(item) for item in input.split(",")]
+    print(f"{insertion_sort(list) = }")
