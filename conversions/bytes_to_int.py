@@ -11,10 +11,10 @@ def bytes_to_int(bytes_var: bytearray,byteorder: str,signed: bool,) -> (int):
     ...     for bytes, byteorder, signed in tests)
     True
     >>> bytes_to_int('abc',False,'big')
-    ERROR - AttributeError - 'bool' object has no attribute 'lower'
+    AttributeError - 'bool' object has no attribute 'lower'
     0
     >>> bytes_to_int(7.1, 'little', signed=True)
-    ERROR - TypeError - 'float' object is not subscriptable
+    TypeError - 'float' object is not subscriptable
     0
 
     """
@@ -50,7 +50,7 @@ def bytes_to_int(bytes_var: bytearray,byteorder: str,signed: bool,) -> (int):
         return rslt
 
     except Exception as e:
-        print(f"ERROR - {type(e).__name__} - {e}")
+        print(f"{type(e).__name__} - {e}")
         return 0
 
 
