@@ -1,8 +1,8 @@
-from other.best_match_finder import best_match_found, perform_matching, get_best_match
+from other.best_match_finder import best_match_found, get_best_match, perform_matching
 
 
 def test_best_match_found():
-    assert best_match_found({0: ['A'], 1: ['B'], 2: ['C']}) == True
+    assert best_match_found({0: ["A"], 1: ["B"], 2: ["C"]}) == True
 
 
 def test_perform_matching():
@@ -30,9 +30,8 @@ def test_perform_matching():
         group1=boys,
         group2=girls,
         group1_checklist=boys_checklist,
-        group2_possible_matches=girls_possible_matches
-    ) == [
-        ('A', 5), ('B', 2), ('C', 4), ('D', 3), ('E', 1)]
+        group2_possible_matches=girls_possible_matches,
+    ) == [("A", 5), ("B", 2), ("C", 4), ("D", 3), ("E", 1)]
 
 
 def test_get_best_match():
@@ -53,4 +52,9 @@ def test_get_best_match():
     }
 
     assert get_best_match(boys, girls) == [
-        ('A', 5), ('B', 2), ('C', 4), ('D', 3), ('E', 1)]
+        ("A", 5),
+        ("B", 2),
+        ("C", 4),
+        ("D", 3),
+        ("E", 1),
+    ]
