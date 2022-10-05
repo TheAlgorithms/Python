@@ -58,27 +58,27 @@ def print_solution(result: Any) -> None:
 , 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each'\
 : 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri'\
 : 200}, {'name': 'john', 'contri': 50}]})
-    sam  paid    $ 500
-    rohan  paid    $ 200
-    john  paid    $ 50
+    sam paid    $500
+    rohan paid    $200
+    john paid    $50
     ------------------------------------------------------------------
-    Total pool amount  : $ 750
-    Per head           : $ 250.0
+    Total pool amount  : $750
+    Per head           : $250.0
     ------------------------------------------------------------------
-    rohan  should pay $ 50.0  to  sam
-    john  should pay $ 200.0  to  sam
+    rohan should pay $50.0 to sam
+    john should pay $200.0 to sam
     ------------------------------------------------------------------
     """
     for i in result["pool"]:
-        print(i["name"], " paid    $", i["contri"])
+        print(f"{i['name']} paid    ${i['contri']}")
     print("------------------------------------------------------------------")
-    print("Total pool amount  : $", result["total"])
-    print("Per head           : $", result["each"])
+    print(f"Total pool amount  : ${result['total']}")
+    print(f"Per head           : ${result['each']}")
     print("------------------------------------------------------------------")
     for i in result["sol"]:
         for j in i["payment"]:
             if j["contri"] > 0:
-                print(j["name"], " should pay $", j["contri"], " to ", i["name"])
+                print(f"{j['name']} should pay ${j['contri']} to {i['name']}")
         print("------------------------------------------------------------------")
 
 
