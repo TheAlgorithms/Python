@@ -20,7 +20,7 @@ from math import sqrt
 
 pairs: list[str] = []
 minimum_sum = 0
-primes: list[int] = []
+primes: list[str] = []
 
 
 def is_prime(number: int) -> bool:
@@ -68,15 +68,22 @@ def is_prime(number: int) -> bool:
     return True
 
 
-def combiner(i, length):
+def combiner(index: int, length: int) -> bool:
     """
     This function goes through all the combinations of the primes list in
     ascending order, and finds pairs that satisfy the question until the
     minimum_sum is low enough that it can stop and the minimum_sum is the minimum.
+
+    Returns True if the recursion should continue else False.
+
+    >>> combiner(1,2)
+    False
+    >>> combiner(2,3)
+    False
     """
 
     global pairs, minimum_sum
-    j = i  # local variable j retains the original index
+    j = i = index  # local variable j retains the original index and i gets changed
 
     if len(pairs) == length:  # if it is one of the pairs we want
         s = sum(int(x) for x in pairs)
@@ -109,11 +116,12 @@ def combiner(i, length):
             ):  # works for most test cases
                 return False
             return True
+    return False
 
 
-def solution(n=5, limit=10000):
+def solution(prime_count: int = 5, limit: int = 10000) -> int:
     """
-    The function returns the lowest sum for a set of n primes (n > 1) for which
+    The function returns the lowest sum for a set of n primes (prime_count) for which
     any two primes concatenate to produce another prime.
 
     Limit is the maximum number of natural numbers to be checked up to.
@@ -134,7 +142,7 @@ def solution(n=5, limit=10000):
         if is_prime(i):
             primes.append(str(i))
     minimum_sum = limit * 5
-    combiner(0, n)
+    combiner(0, prime_count)
     return minimum_sum
 
 
