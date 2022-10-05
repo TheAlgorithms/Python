@@ -1,7 +1,7 @@
-from pytube import YouTube
-from pathlib import Path
 import os
+from pathlib import Path
 
+from pytube import YouTube
 
 
 def download(requestedLink):
