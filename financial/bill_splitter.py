@@ -20,9 +20,9 @@ def split_bill(pool: "list[dict]") -> dict:
     less = []
     solution = []
     for i in pool:
-        #divide the pool into to types of list
-        #more[] - people who have contributed more than they should
-        #less[] - people who have contributed less than they should
+        # divide the pool into to types of list
+        # more[] - people who have contributed more than they should
+        # less[] - people who have contributed less than they should
         if i["contribution"] < each:
             less.append({"name": i["name"], "contribution": each - i["contribution"]})
         else:
