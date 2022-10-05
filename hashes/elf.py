@@ -1,4 +1,4 @@
-def elf_hash(data: str):
+def elf_hash(data: str) -> int:
     """
     Implementation of ElfHash Algorithm, a variant of PJW hash function.
 
