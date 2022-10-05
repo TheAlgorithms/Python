@@ -1,25 +1,29 @@
 import re
 
 
-def dna(dna: str) -> str:
+def dna_matching_strand (dna: str) -> str:
 
     """
     https://en.wikipedia.org/wiki/DNA
     Returns the second side of a DNA strand
 
-    >>> dna("GCTA")
+    >>> dna_matching_strand("GCTA")
     'CGAT'
-    >>> dna("ATGC")
+    >>> dna_matching_strand("ATGC")
     'TACG'
-    >>> dna("CTGA")
+    >>> dna_matching_strand("CTGA")
     'GACT'
-    >>> dna("GFGG")
-    'Invalid Strand'
+    >>> dna_matching_strand("GFGG")
+    Traceback (most recent call last):
+    Exception: Invalid Strand
     """
 
     r = len(re.findall("[ATCG]", dna)) != len(dna)
     val = dna.translate(dna.maketrans("ATCG", "TAGC"))
-    return "Invalid Strand" if r else val
+    if r:
+      raise Exception("Invalid Strand")
+    else:
+      return val
 
 
 if __name__ == "__main__":
