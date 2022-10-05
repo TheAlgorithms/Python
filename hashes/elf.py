@@ -7,9 +7,9 @@ def elf_hash(data: str) -> int:
     >>> elf_hash('lorem ipsum')
     253956621
     """
-    hash = x = i = 0
-    for i in range(len(data)):
-        hash = (hash << 4) + ord(data[i])
+    hash = x = 0
+    for letter in data:
+        hash = (hash << 4) + ord(letter)
         x = hash & 0xF0000000
         if x != 0:
             hash ^= x >> 24
