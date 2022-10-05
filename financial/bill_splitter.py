@@ -13,13 +13,16 @@ def split_bill(pool: "list[dict]") -> dict:
 : 250.0, 'pool': [{'name': 'sam', 'contribution': 500}, {'name': 'rohan'\
 , 'contribution': 200}, {'name': 'john', 'contribution': 50}]}
     """
-    contribution_List = [x["contribution"] for x in pool]
-    total = sum(contribution_List)
-    each = total / len(contribution_List)
+    contribution_list = [x["contribution"] for x in pool]
+    total = sum(contribution_list)
+    each = total / len(contribution_list)
     more = []
     less = []
     solution = []
     for i in pool:
+        #divide the pool into to types of list
+        #more[] - people who have contributed more than they should
+        #less[] - people who have contributed less than they should
         if i["contribution"] < each:
             less.append({"name": i["name"], "contribution": each - i["contribution"]})
         else:
