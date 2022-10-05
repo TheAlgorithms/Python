@@ -23,9 +23,9 @@ class Result(TypedDict):
 
 #function to split bill among group
 #pool: [...{'name':str,'contri':int},{'name':str,'contri':int}]
-def splitBill(pool:List[Contribution])->Result:
+def split_bill(pool:List[Contribution])->Result:
   '''
-  >>> splitBill([{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}])
+  >>> split_bill([{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}])
   {'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]}
   '''
   contri_list=[x['contri'] for x in pool]
@@ -64,9 +64,9 @@ def splitBill(pool:List[Contribution])->Result:
 
 #function to print solution in a format
 #result is the value returned by splitBill(pool) function
-def printSolution(result:Result)-> None:
+def print_solution(result:Result)-> None:
   '''
-  >>> printSolution({'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]})
+  >>> print_solution({'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]})
   sam  paid    $ 500
   rohan  paid    $ 200
   john  paid    $ 50
