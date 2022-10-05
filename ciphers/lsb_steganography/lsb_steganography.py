@@ -55,26 +55,33 @@ class lsb_steganography:
 
     def lsb_encrypt(self):
         
+        image_pixel = self.preprocessing_image()
+
         i = 0
-        while i <= len(self.preprocessing_encrypt_message()):
+        while i < len(self.preprocessing_encrypt_message()):
             for height in range(len(self.preprocessing_image())):
                 for width in range(len(self.preprocessing_image()[height])):
-                    if(i<=len(self.preprocessing_encrypt_message())):
-                        print(str(i)+" = "+self.preprocessing_image()[height][width])
+                    if(i<len(self.preprocessing_encrypt_message())):
+
+                        words = list(self.preprocessing_image()[height][width])
+                        words[-1] = self.preprocessing_encrypt_message()[i]
+                        new_binary = ''.join(words)
+                        image_pixel[height][width] = new_binary
+                        print(image_pixel[height][width])
                         i+=1
                     else:
-                        break    
-            print("-----")
+                        break  
 
-        print(self.preprocessing_image())
+                if(i>=len(self.preprocessing_encrypt_message())):
+                    break  
 
-
-        
-
+        return image_pixel
+            
+    
 
 def main():
     abjad = "abcdefghijklmnopqrstuvwxyz 1234567890`"
-    message = "Hello World"
+    message = "Hello Goddamn Fucking World"
     path = "image_assets/lsb.png"
 
     algo = lsb_steganography(abjad, path)
