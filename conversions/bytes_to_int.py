@@ -7,8 +7,8 @@ def bytes_to_int(bytes_var: bytearray,byteorder: str,signed: bool,) -> (int):
 
     >>> tests = ((b"\x00\x10", "big", False), (b'\xfc\x00', "big", True),
     ...          (b'\x00\x01', "big", False), (b'\x00\x10', 'little', False))
-    >>> all(bytes_to_int(bytes, byteorder, signed=signed) == int.from_bytes(bytes, byteorder, signed=signed)
-    ...     for bytes, byteorder, signed in tests)
+    >>> all(bytes_to_int(a,b,c) == int.from_bytes(a,b,signed=c)
+    ...     for a,b,c in tests)
     True
     >>> bytes_to_int('abc',False,'big')
     AttributeError - 'bool' object has no attribute 'lower'
