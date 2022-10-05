@@ -14,7 +14,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import cross_val_score
 
 
-def main():
+def main()-> None:
         
     "Dataset used is Iris link-https://archive.ics.uci.edu/ml/datasets/iris"
     
