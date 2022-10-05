@@ -5,20 +5,25 @@ Program to split bills among a group by given
 
 """
 from os import system
-def createContri(s):
+def createContri(s:str):
   '''
   >>> createContri('Rohan 500')
-  {'name':'Rohan','contri':500}
+  {'name': 'Rohan', 'contri': 500}
   >>> createContri('Sam 10')
-  {'name':'Sam','contri':10}
+  {'name': 'Sam', 'contri': 10}
   >>> createContri('Peter 0')
-  {'name':'Peter','contri':0}
+  {'name': 'Peter', 'contri': 0}
   '''
   s=s.split(' ')
   return {'name':s[0],'contri':int(s[1])}
 
 #function to split bill among group
+#pool: [...{'name':str,'contri':int},{'name':str,'contri':int}]
 def splitBill(pool):
+  '''
+  >>> splitBill([{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}])
+  {'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]}
+  '''
   contriList=[x['contri'] for x in pool]
   total=sum(contriList)
   each=total/len(contriList)
@@ -87,3 +92,8 @@ for i in range(n):
 system('cls')
 printBanner()
 printSolution(splitBill(pool))
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
