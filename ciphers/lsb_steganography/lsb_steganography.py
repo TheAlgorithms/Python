@@ -7,6 +7,7 @@ I contribute this algorithm to celebrate my girl friend called Indriani A. Menta
 """
 
 import cv2
+import numpy as np
 
 class lsb_steganography:
     def __init__(self, abjad, img_path):
@@ -75,9 +76,43 @@ class lsb_steganography:
                 if(i>=len(self.preprocessing_encrypt_message())):
                     break  
 
+        # while i < len(self.preprocessing_encrypt_message()):
+
+        # print(len(image_pixel))
+
+        # cv2.imshow('image',image_pixel)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
         return image_pixel
-            
+
+    def generate_encrypted_image(self):
+        image_pixel = self.lsb_encrypt()
+
+        final_pixel = []
+
+        for height in range(len(image_pixel)):
+            result_width = []
+            for width in range(len(image_pixel[height])):
+                pixel_width = self.binary_to_int(image_pixel[height][width])
+                result_width.append(pixel_width)
+
+            final_pixel.append(result_width)
+        print(final_pixel)
+        ar = np.asarray(final_pixel)
+        cv2.imwrite("Hasil.png", ar)
+        # return final_pixel
+        print("save success")
+
+        # cv2.imshow('image',img)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
+ 
     
+        
+    def lsb_decrypt(self):
+        pass
+
+
 
 def main():
     abjad = "abcdefghijklmnopqrstuvwxyz 1234567890`"
@@ -86,7 +121,9 @@ def main():
 
     algo = lsb_steganography(abjad, path)
     algo.set_message(message)
-    algo.lsb_encrypt()
+    algo.generate_encrypted_image()
+
+    
 
 
 
