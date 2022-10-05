@@ -13,9 +13,7 @@ Find a time slot i, such that slot is empty and i < deadline and i is greatest.P
 this slot and mark this slot filled. 
 If no such i exists, then ignore the job. 
 """
-
-def print_job_scheduling(Jobs : x, MaxDeadline:t) -> List:
-  """Function to print all jobs which can be completed
+"""Function to print all jobs which can be completed
     Args:
         Jobs [list]: A list of all jobs along with deadline and profits
         MaxDeadline [int]: Maximum deadline among all the jobs
@@ -27,6 +25,7 @@ def print_job_scheduling(Jobs : x, MaxDeadline:t) -> List:
            [5, 3, 15]])
     [3,1,5]
     """
+def print_job_scheduling(Jobs : x, MaxDeadline:t) -> List:
     n = len(x)
  
     for i in range(n):
