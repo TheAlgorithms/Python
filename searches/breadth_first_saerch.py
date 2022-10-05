@@ -11,7 +11,6 @@ python3 breadth_first_search.py
 """
 
 import collections
-import doctest
 import unittest
 
 
@@ -48,14 +47,9 @@ if __name__ == "__main__":
     graph = {0: [3, 2], 1: [2], 2: [3], 3: [1, 2]}
     print("Following is Breadth First Traversal: ")
     bfs(graph, 0)
-<<<<<<< HEAD
-    
-=======
-<<<<<<< HEAD
 
-=======
     import doctest
->>>>>>> 08a0cb322843a6383be5555c80ec53ee3f9dc768
+
 
     doctest.testmod()
     unittest.main()
