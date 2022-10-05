@@ -1,4 +1,4 @@
-def elf_hash(data):
+def elf_hash(data: str):
     """
     Implementation of ElfHash Algorithm, a variant of PJW hash function.
 
@@ -15,7 +15,6 @@ def elf_hash(data):
             hash ^= x >> 24
         hash &= ~x
     return hash
-
 
 if __name__ == "__main__":
     import doctest
