@@ -51,6 +51,7 @@ if __name__ == "__main__":
     print("Following is Breadth First Traversal: ")
     bfs(graph, 0)
     import doctest
+
     doctest.testmod()
 
 """
