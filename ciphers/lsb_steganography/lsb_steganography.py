@@ -29,7 +29,7 @@ class lsb_steganography:
         for words in self.message:
             result = self.int_to_binary(self.abjad.find(words))
             for char in result:
-                words_container.append(int(char))
+                words_container.append(char)
 
         return words_container
 
@@ -37,18 +37,36 @@ class lsb_steganography:
         pass
 
     def preprocessing_image(self):
+
+        result_binary = []
+
         img = cv2.imread(self.img_path,0)
 
-        # for height in range(len(img)):
-        #     for width in range(len(img[height])):
-        #         print(width)
-        #     print("---")
+        for height in range(len(img)):
+            result_width = []
+            for width in range(len(img[height])):
+                binary_width = self.int_to_binary(img[height][width])
+                result_width.append(binary_width)
+
+            result_binary.append(result_width)
         
-        return img
+        return result_binary
 
 
-    def lsb(self):
-        print(self.preprocessing_encrypt_message())
+    def lsb_encrypt(self):
+        
+        i = 0
+        while i <= len(self.preprocessing_encrypt_message()):
+            for height in range(len(self.preprocessing_image())):
+                for width in range(len(self.preprocessing_image()[height])):
+                    if(i<=len(self.preprocessing_encrypt_message())):
+                        print(str(i)+" = "+self.preprocessing_image()[height][width])
+                        i+=1
+                    else:
+                        break    
+            print("-----")
+
+        print(self.preprocessing_image())
 
 
         
@@ -61,7 +79,7 @@ def main():
 
     algo = lsb_steganography(abjad, path)
     algo.set_message(message)
-    algo.lsb()
+    algo.lsb_encrypt()
 
 
 
