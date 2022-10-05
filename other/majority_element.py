@@ -1,4 +1,4 @@
-def majorityElement(nums: list[int]) -> int:
+def majority_element(nums: list[int]) -> int:
 
     """
     The majority element is the element that appears more than ⌊n / 2⌋ times.
@@ -6,9 +6,9 @@ def majorityElement(nums: list[int]) -> int:
 
     Solution is based on the Moore's Voting Algorithm
 
-    >>> majorityElement([3,2,3])
+    >>> majority_element([3,2,3])
     3
-    >>> majorityElement([2,2,1,1,1,2,2])
+    >>> majority_element([2,2,1,1,1,2,2])
     2
     """
 
@@ -26,4 +26,4 @@ def majorityElement(nums: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    print(majorityElement([3, 2, 3]))
+    print(majority_element([3, 2, 3]))
