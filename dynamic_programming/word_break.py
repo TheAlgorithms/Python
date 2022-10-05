@@ -1,4 +1,3 @@
-
 def wordbreak(s, word_dict) -> bool:
     """
     >>> wordbreak('deepImpact',['deep,'Im','pact'])
@@ -23,4 +22,5 @@ def wordbreak(s, word_dict) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
