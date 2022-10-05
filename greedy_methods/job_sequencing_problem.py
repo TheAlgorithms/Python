@@ -31,4 +31,4 @@ if __name__ == '__main__':
               [4, 1, 30]
  
 
-    printJobScheduling(arr, 3)
+    printJobScheduling(arr, 4)
