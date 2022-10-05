@@ -16,7 +16,6 @@ If no such i exists, then ignore the job.
 """Function to print all jobs which can be completed
     Args:
         Jobs [list]: A list of all jobs along with deadline and profits
-        MaxDeadline [int]: Maximum deadline among all the jobs
     Examples:
     >>> print_job_scheduling [[1, 2, 100],
            [2, 1, 19],
@@ -25,9 +24,13 @@ If no such i exists, then ignore the job.
            [5, 3, 15]])
     [3,1,5]
     """
-def print_job_scheduling(Jobs : x, MaxDeadline:t) -> List:
+def print_job_scheduling(x):
     n = len(x)
- 
+    t = 1
+    for i in range(n):
+        if x[i][1]>t:
+            t = x[i][1]
+
     for i in range(n):
         for j in range(n - 1 - i):
             if x[j][2] < x[j + 1][2]:
