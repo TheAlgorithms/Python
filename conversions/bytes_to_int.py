@@ -17,9 +17,13 @@ def bytes_to_int(
     >>> bytes_to_int(7.1, 'little', signed=True)
     TypeError - 'float' object is not subscriptable
     0
-
+    >>> bytes_to_int(b"", "medium","")
+    ValueError - byteorder must be either 'little' or 'big'
+    0
+    >>> bytes_to_int('abc',False,'big')
+    AttributeError - 'bool' object has no attribute 'lower'
+    0
     """
-    
     try:
         byteorder = byteorder.lower()
         
