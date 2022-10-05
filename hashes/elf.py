@@ -16,6 +16,7 @@ def elf_hash(data: str):
         hash &= ~x
     return hash
 
+
 if __name__ == "__main__":
     import doctest
 
