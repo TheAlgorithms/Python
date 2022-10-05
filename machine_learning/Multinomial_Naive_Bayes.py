@@ -7,7 +7,10 @@ import numpy as np  # Array and matrix math operations
 import pandas as pd  # Used for reading CSV files
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import cross_val_score, train_test_split
-from sklearn.naive_bayes import MultinomialNB # sklearn is liberay for Using Machine learning algorithms
+from sklearn.naive_bayes import (  # sklearn is liberay for Using Machine learning algorithms
+    MultinomialNB,
+)
+
 
 def main() -> None:
 
@@ -20,7 +23,7 @@ def main() -> None:
 
     # else:
     iris = pd.read_csv("iris.csv")
-    
+
     X = [
         "Sepal.Length",
         "Sepal.Width",
@@ -43,7 +46,7 @@ def main() -> None:
     # Predict target for test data
     predict = pred_mnb.predict(x_test)
     predict = predict.reshape(len(predict), 1)
-    
+
     # the score, or accuracy of the model
     # print(imnb.score(Xtest, ytest))
     print(f"Accuracy of the model:\t {MNB.score(x_test, y_test)}")
@@ -54,7 +57,8 @@ def main() -> None:
     print(
         f"Cross Val Accuracy:\t {np.mean(cross_val_score(MNB, x_train, y_train.values.ravel(), cv=10)) }"
     )
-    
+
+
 if __name__ == "__main__":
     main()
     import doctest
