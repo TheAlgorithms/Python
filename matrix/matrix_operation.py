@@ -4,8 +4,10 @@ Functions for 2D matrix operations
 
 from __future__ import annotations
 
+from typing import Any
 
-def add(*matrix_s: list[list]) -> list[list]:
+
+def add(*matrix_s: list[list[int]]) -> list[list[int]]:
     """
     >>> add([[1,2],[3,4]],[[2,3],[4,5]])
     [[3, 5], [7, 9]]
@@ -25,7 +27,7 @@ def add(*matrix_s: list[list]) -> list[list]:
     raise TypeError("Expected a matrix, got int/list instead")
 
 
-def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
+def subtract(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     """
     >>> subtract([[1,2],[3,4]],[[2,3],[4,5]])
     [[-1, -1], [-1, -1]]
@@ -45,7 +47,7 @@ def subtract(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
     raise TypeError("Expected a matrix, got int/list instead")
 
 
-def scalar_multiply(matrix: list[list], n: int | float) -> list[list]:
+def scalar_multiply(matrix: list[list[int]], n: int | float) -> list[list[float]]:
     """
     >>> scalar_multiply([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
@@ -55,7 +57,7 @@ def scalar_multiply(matrix: list[list], n: int | float) -> list[list]:
     return [[x * n for x in row] for row in matrix]
 
 
-def multiply(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
+def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     """
     >>> multiply([[1,2],[3,4]],[[5,5],[7,5]])
     [[19, 15], [43, 35]]
@@ -77,7 +79,7 @@ def multiply(matrix_a: list[list], matrix_b: list[list]) -> list[list]:
     ]
 
 
-def identity(n: int) -> list[list]:
+def identity(n: int) -> list[list[int]]:
     """
     :param n: dimension for nxn matrix
     :type n: int
@@ -89,7 +91,9 @@ def identity(n: int) -> list[list]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(matrix: list[list], return_map: bool = True) -> list[list] | map[list]:
+def transpose(
+    matrix: list[list[int]], return_map: bool = True
+) -> list[list[int]] | map[list[int]]:
     """
     >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
@@ -108,7 +112,7 @@ def transpose(matrix: list[list], return_map: bool = True) -> list[list] | map[l
     raise TypeError("Expected a matrix, got int/list instead")
 
 
-def minor(matrix: list[list], row: int, column: int) -> list[list]:
+def minor(matrix: list[list[int]], row: int, column: int) -> list[list[int]]:
     """
     >>> minor([[1, 2], [3, 4]], 1, 1)
     [[1]]
@@ -117,7 +121,7 @@ def minor(matrix: list[list], row: int, column: int) -> list[list]:
     return [row[:column] + row[column + 1 :] for row in minor]
 
 
-def determinant(matrix: list[list]) -> int:
+def determinant(matrix: list[list[int]]) -> Any:
     """
     >>> determinant([[1, 2], [3, 4]])
     -2
@@ -133,7 +137,7 @@ def determinant(matrix: list[list]) -> int:
     )
 
 
-def inverse(matrix: list[list]) -> list[list] | None:
+def inverse(matrix: list[list[int]]) -> list[list[float]] | None:
     """
     >>> inverse([[1, 2], [3, 4]])
     [[-2.0, 1.0], [1.5, -0.5]]
@@ -157,27 +161,27 @@ def inverse(matrix: list[list]) -> list[list] | None:
     return scalar_multiply(adjugate, 1 / det)
 
 
-def _check_not_integer(matrix: list[list]) -> bool:
+def _check_not_integer(matrix: list[list[int]]) -> bool:
     return not isinstance(matrix, int) and not isinstance(matrix[0], int)
 
 
-def _shape(matrix: list[list]) -> tuple[int, int]:
+def _shape(matrix: list[list[int]]) -> tuple[int, int]:
     return len(matrix), len(matrix[0])
 
 
 def _verify_matrix_sizes(
-    matrix_a: list[list], matrix_b: list[list]
-) -> tuple[tuple, tuple]:
+    matrix_a: list[list[int]], matrix_b: list[list[int]]
+) -> tuple[tuple[int, int], tuple[int, int]]:
     shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
         raise ValueError(
-            "operands could not be broadcast together with shape "
+            f"operands could not be broadcast together with shape "
             f"({shape[0], shape[1]}), ({shape[2], shape[3]})"
         )
     return (shape[0], shape[2]), (shape[1], shape[3])
 
 
-def main():
+def main() -> None:
     matrix_a = [[12, 10], [3, 9]]
     matrix_b = [[3, 4], [7, 4]]
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
