@@ -170,7 +170,7 @@ def surface_area_cylinder(radius: float, height: float) -> float:
     >>> surface_area_cylinder(7, 10)
     747.6990515543707
     >>> surface_area_cylinder(1.6, 2.6)
-    42.22300526424682    
+    42.22300526424682
     >>> surface_area_cylinder(0, 0)
     0.0
     >>> surface_area_cylinder(6, 8)
