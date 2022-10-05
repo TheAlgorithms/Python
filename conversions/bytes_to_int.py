@@ -26,13 +26,13 @@ def bytes_to_int(
     """
     try:
         byteorder = byteorder.lower()
-        
+
         if byteorder not in ("little", "big"):
             raise ValueError("byteorder must be either 'little' or 'big'")
-    
+
         if byteorder == "little":
             bytes_var = bytes_var[::-1]
-        binval = ""              
+        binval = ""
         for i in bytes_var:
             binnum = str(bin(i))[2:]
             if len(binnum) < 8:
