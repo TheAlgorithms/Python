@@ -148,7 +148,7 @@ def test_algorithm_equivalence():
     weights1 = [4, 3, 2, 3]
     n = 4
     w = 6
-    optimal_solution, optimal_subset = knapsack_with_example_solution(
+    optimal_solution, optimal_subset = knapsack_with_constructed_solution(
         w, weights1, values1
     )
     assert optimal_solution == 8
