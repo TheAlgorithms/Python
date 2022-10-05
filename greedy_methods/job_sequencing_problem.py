@@ -19,15 +19,13 @@ def print_job_scheduling(Jobs : x, MaxDeadline:t) -> List:
     Args:
         Jobs [list]: A list of all jobs along with deadline and profits
         MaxDeadline [int]: Maximum deadline among all the jobs
-    Returns:
-        job [list]: Jobs that can be completed
     Examples:
     >>> print_job_scheduling [[1, 2, 100],
            [2, 1, 19],
            [3, 2, 27],
            [4, 1, 25],
            [5, 3, 15]])
-    [2,-1,1,-1,3]
+    [3,1,5]
     """
     n = len(x)
  
@@ -48,7 +46,7 @@ def print_job_scheduling(Jobs : x, MaxDeadline:t) -> List:
                 result[j] = True
                 job[j] = x[i][0]
                 break
-    return job
+    print(job)
  
 if __name__ == "__main__":
     import doctest
