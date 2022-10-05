@@ -1,4 +1,4 @@
-def search_quadruplets(sequence: list[int], target: int ) -> list[int]:
+def search_quadruplets(sequence: list[int], target: int) -> list[int]:
     """
     >> > search_quadruplets([4, 1, 2, -1, 1, -3], 1)
 
