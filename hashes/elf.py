@@ -12,7 +12,7 @@ def elf_hash(data):
         hash = (hash << 4) + ord(data[i])
         x = hash & 0xF0000000
         if x != 0:
-            hash ^= (x >> 24)
+            hash ^= x >> 24
         hash &= ~x
     return hash
 
