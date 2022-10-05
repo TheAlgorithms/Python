@@ -1,4 +1,6 @@
 """
+See: https://en.wikipedia.org/wiki/Knapsack_problem
+
 Given weights and values of n items, put these items in a knapsack of
  capacity W to get the maximum total value in the knapsack.
 
@@ -9,28 +11,10 @@ Note that only the integer weights 0-1 knapsack problem is solvable
 cache = None
 
 
-def cached_knapsack(i: int, weights: list, values: list, j: int):
-    """
-    This code involves the concept of memory functions (cache).
-    Here we solve the subproblems which are needed, unlike the below example.
-    cache is a 2D array with -1s filled up.
-    """
-    global cache  # a global dynamic programming table for knapsack
-    assert cache is not None
-
-    if cache[i][j] < 0:
-        if j < weights[i - 1]:
-            optimal_value = cached_knapsack(i - 1, weights, values, j)
-        else:
-            optimal_value = max(
-                cached_knapsack(i - 1, weights, values, j),
-                cached_knapsack(i - 1, weights, values, j - weights[i - 1]) + values[i - 1],
-            )
-        cache[i][j] = optimal_value
-    return cache[i][j]
-
-
 def knapsack(max_weight: int, weights: list, values: list, n: int):
+    """
+    A solution to the classic knapsack problem, without using global variables.
+    """
     dp = [[0 for _ in range(max_weight + 1)] for _ in range(n + 1)]
 
     for i in range(1, n + 1):
@@ -43,7 +27,7 @@ def knapsack(max_weight: int, weights: list, values: list, n: int):
     return dp[n][max_weight], dp
 
 
-def knapsack_with_example_solution(max_weight: int, weights: list, values: list):
+def knapsack_with_constructed_solution(max_weight: int, weights: list, values: list):
     """
     Solves the integer weights knapsack problem returns one of
     the several possible optimal subsets.
@@ -65,11 +49,11 @@ def knapsack_with_example_solution(max_weight: int, weights: list, values: list)
 
     Examples
     -------
-    >>> knapsack_with_example_solution(10, [1, 3, 5, 2], [10, 20, 100, 22])
+    >>> knapsack_with_constructed_solution(10, [1, 3, 5, 2], [10, 20, 100, 22])
     (142, {2, 3, 4})
-    >>> knapsack_with_example_solution(6, [4, 3, 2, 3], [3, 2, 4, 4])
+    >>> knapsack_with_constructed_solution(6, [4, 3, 2, 3], [3, 2, 4, 4])
     (8, {3, 4})
-    >>> knapsack_with_example_solution(6, [4, 3, 2, 3], [3, 2, 4])
+    >>> knapsack_with_constructed_solution(6, [4, 3, 2, 3], [3, 2, 4])
     Traceback (most recent call last):
         ...
     ValueError: The number of weights must be the same as the number of values.
@@ -132,6 +116,27 @@ def _construct_solution(dp: list, weights: list, i: int, j: int, optimal_set: se
             _construct_solution(dp, weights, i - 1, j - weights[i - 1], optimal_set)
 
 
+def cached_knapsack(i: int, weights: list, values: list, j: int):
+    """
+    This code involves the concept of memory functions (cache).
+    Here we solve the subproblems which are needed, unlike the below example.
+    cache is a 2D array with -1s filled up.
+    """
+    global cache  # a global dynamic programming table for knapsack
+    assert cache is not None
+
+    if cache[i][j] < 0:
+        if j < weights[i - 1]:
+            optimal_value = cached_knapsack(i - 1, weights, values, j)
+        else:
+            optimal_value = max(
+                cached_knapsack(i - 1, weights, values, j),
+                cached_knapsack(i - 1, weights, values, j - weights[i - 1]) + values[i - 1],
+            )
+        cache[i][j] = optimal_value
+    return cache[i][j]
+
+
 def test_algorithm_equivalence():
     """
     test that both knapsack algorithms return the optimal result.
@@ -140,7 +145,7 @@ def test_algorithm_equivalence():
     weights1 = [4, 3, 2, 3]
     n = 4
     w = 6
-    optimal_solution, optimal_subset = knapsack_with_example_solution(w, weights1, values1)
+    optimal_solution, optimal_subset = knapsack_with_constructed_solution(w, weights1, values1)
     assert (optimal_solution == 8)
     assert (optimal_subset == {3, 4})
 
