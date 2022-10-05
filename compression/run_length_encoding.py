@@ -13,16 +13,11 @@ def run_length_encode(text: str) -> list:
     >>> run_length_encode("AAADDDDDDFFFCCCAAVVVV")
     [('A', 3), ('D', 6), ('F', 3), ('C', 3), ('A', 2), ('V', 4)]
     """
-    encoded = []
-    count = 1
-
-    for i in range(len(text)):
-        if i + 1 < len(text) and text[i] == text[i + 1]:
-            count += 1
-        else:
-            encoded.append((text[i], count))
-            count = 1
-
+    encoded=[]
+    while text > "":
+        z=text.lstrip(text[0])    
+        encoded.append((text[0],str(len(text)-len(z))))
+        text=z
     return encoded
 
 
