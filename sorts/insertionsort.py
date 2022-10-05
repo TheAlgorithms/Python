@@ -5,7 +5,7 @@ run ->python insertion_sort2.py
 """
 
 
-def insertion_sort(a) -> None:
+def insertion_sort(input_list) -> None:
     
     '''
     Examples:
@@ -30,22 +30,22 @@ def insertion_sort(a) -> None:
     []
     
     '''
-    for i in range(1, len(a)):
-        temp = a[i]
+    for i in range(1, len(input_list)):
+        temp = input_list[i]
         j = i - 1
-        while j >= 0 and temp < a[j]:
-            a[j + 1] = a[j]
+        while j >= 0 and temp < input_list[j]:
+            input_list[j + 1] = input_list[j]
             j -= 1
-        a[j + 1] = temp
+        input_list[j + 1] = temp
     print("Sorted array:")
-    print(a)
+    print(input_list)
 
 # array to be sorted
-a = [15, 10, 5, 7, 13, 8, 2]
+input_list = [15, 10, 5, 7, 13, 8, 2]
 print("Unsorted array:")
-print(a)
+print(input_list)
 # method call
-insertion_sort(a)
+insertion_sort(input_list)
 
 if __name__ == "__main__":
     from doctest import testmod
