@@ -5,16 +5,32 @@ Program to split bills among a group by given
 
 """
 
+from typing import List
+from typing_extensions import TypedDict
+
+
+class Contribution(TypedDict):
+  name: str 
+  contri: int 
+class Solution(TypedDict):
+  name: str
+  payment: List[Contribution]
+class Result(TypedDict):
+  sol: List[Solution]
+  total: int
+  each: float
+  pool:List[Contribution]
+
 #function to split bill among group
 #pool: [...{'name':str,'contri':int},{'name':str,'contri':int}]
-def splitBill(pool):
+def splitBill(pool:List[Contribution])->Result:
   '''
   >>> splitBill([{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}])
   {'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]}
   '''
-  contriList=[x['contri'] for x in pool]
-  total=sum(contriList)
-  each=total/len(contriList)
+  contri_list=[x['contri'] for x in pool]
+  total=sum(contri_list)
+  each=total/len(contri_list)
   more=[]
   less=[]
   sol=[]
@@ -48,7 +64,7 @@ def splitBill(pool):
 
 #function to print solution in a format
 #result is the value returned by splitBill(pool) function
-def printSolution(result):
+def printSolution(result:Result)-> None:
   '''
   >>> printSolution({'sol': [{'name': 'sam', 'payment': [{'name': 'rohan', 'contri': 50.0}, {'name': 'john', 'contri': 200.0}]}], 'total': 750, 'each': 250.0, 'pool': [{'name': 'sam', 'contri': 500}, {'name': 'rohan', 'contri': 200}, {'name': 'john', 'contri': 50}]})
   sam  paid    $ 500
