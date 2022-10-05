@@ -5,7 +5,7 @@ def elf_hash(data):
     Returns:
         [int] -- [32 bit binary int]
     >>> elf_hash('lorem ipsum')
-    '253956621'
+    253956621
     """
     hash = x = i = 0
     for i in range(len(data)):
