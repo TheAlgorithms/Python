@@ -1,4 +1,3 @@
-
 def wordbreak(word, word_dict) -> bool:
     """
     word ---> Input word
@@ -25,4 +24,5 @@ def wordbreak(word, word_dict) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
