@@ -13,6 +13,9 @@ python3 breadth_first_search.py
 import collections
 
 # BFS algorithm
+"""
+def function() -> None;
+"""
 def bfs(graph, root):
     """
     The graph in the function will take the values of the given nodes
