@@ -623,6 +623,7 @@
   * [Linear Congruential Generator](other/linear_congruential_generator.py)
   * [Lru Cache](other/lru_cache.py)
   * [Magicdiamondpattern](other/magicdiamondpattern.py)
+  * [Majority Element](other/majority_element.py)
   * [Maximum Subarray](other/maximum_subarray.py)
   * [Nested Brackets](other/nested_brackets.py)
   * [Password Generator](other/password_generator.py)
@@ -632,7 +633,7 @@
 
 ## Physics
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
-  * [Lorenz Transformation Four Vector](physics/lorenz_transformation_four_vector.py)
+  * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
 
@@ -949,6 +950,7 @@
 
 ## Sorts
   * [Bead Sort](sorts/bead_sort.py)
+  * [Binary Insertion Sort](sorts/binary_insertion_sort.py)
   * [Bitonic Sort](sorts/bitonic_sort.py)
   * [Bogo Sort](sorts/bogo_sort.py)
   * [Bubble Sort](sorts/bubble_sort.py)
