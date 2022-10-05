@@ -20,7 +20,9 @@ def knapsack(max_weight: int, weights: list, values: list, n: int):
     for i in range(1, n + 1):
         for w in range(1, max_weight + 1):
             if weights[i - 1] <= w:
-                dp[i][w] = max(values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w])
+                dp[i][w] = max(
+                    values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w]
+                )
             else:
                 dp[i][w] = dp[i - 1][w]
 
@@ -131,7 +133,8 @@ def cached_knapsack(i: int, weights: list, values: list, j: int):
         else:
             optimal_value = max(
                 cached_knapsack(i - 1, weights, values, j),
-                cached_knapsack(i - 1, weights, values, j - weights[i - 1]) + values[i - 1],
+                cached_knapsack(i - 1, weights, values, j - weights[i - 1])
+                + values[i - 1],
             )
         cache[i][j] = optimal_value
     return cache[i][j]
@@ -145,14 +148,16 @@ def test_algorithm_equivalence():
     weights1 = [4, 3, 2, 3]
     n = 4
     w = 6
-    optimal_solution, optimal_subset = knapsack_with_constructed_solution(w, weights1, values1)
-    assert (optimal_solution == 8)
-    assert (optimal_subset == {3, 4})
+    optimal_solution, optimal_subset = knapsack_with_example_solution(
+        w, weights1, values1
+    )
+    assert optimal_solution == 8
+    assert optimal_subset == {3, 4}
 
     global cache
     cache = [[0] * (w + 1)] + [[0] + [-1 for _ in range(w + 1)] for _ in range(n + 1)]
     optimal_solution_again = cached_knapsack(n, weights1, values1, w)
-    assert (optimal_solution_again == 8)
+    assert optimal_solution_again == 8
 
 
 if __name__ == "__main__":
