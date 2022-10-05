@@ -8,10 +8,9 @@ def find_anagrams(_list: list):
         check_key = "".join(sorted(word))
         if check_key in empty_dict:
             if empty_dict.get(check_key) != word:
-                if empty_dict.get(check_key) is not None:
-                    empty_dict.update(
-                        {check_key: empty_dict.get(check_key) + "," + word}
-                    )
+                empty_dict.update(
+                    {check_key: empty_dict.get(check_key) + "," + word}
+                )
         else:
             empty_dict.update({check_key: word})
     for key, value in empty_dict.items():
@@ -35,5 +34,5 @@ if __name__ == "__main__":
         "strap",
         "traps",
     ]
-    # doctest.testfile("group_anagram.txt")
-    print(find_anagrams(input))
+    doctest.testfile("group_anagram.txt")
+    find_anagrams(input)
