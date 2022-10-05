@@ -11,8 +11,9 @@ python3 breadth_first_search.py
 """
 
 import collections
-import unittest
 import doctest
+import unittest
+
 
 # BFS algorithm
 def bfs(graph: int, root: int) -> int:
@@ -48,7 +49,7 @@ if __name__ == "__main__":
     print("Following is Breadth First Traversal: ")
     bfs(graph, 0)
 <<<<<<< HEAD
-    
+
 =======
     import doctest
 
