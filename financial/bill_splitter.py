@@ -2,12 +2,9 @@
 Program to split bills among a group
 """
 
-from typing import Any
-from typing import List as list
-
 
 # function to split bill among group
-def split_bill(pool: list[Any]) -> Any:
+def split_bill(pool: "list[dict]") -> dict:
     """
     >>> split_bill([{'name': 'sam', 'contribution': 500}, {'name': 'rohan'\
 , 'contribution': 200}, {'name': 'john', 'contribution': 50}])
@@ -16,9 +13,9 @@ def split_bill(pool: list[Any]) -> Any:
 : 250.0, 'pool': [{'name': 'sam', 'contribution': 500}, {'name': 'rohan'\
 , 'contribution': 200}, {'name': 'john', 'contribution': 50}]}
     """
-    contribution_list = [x["contribution"] for x in pool]
-    total = sum(contribution_list)
-    each = total / len(contribution_list)
+    contribution_List = [x["contribution"] for x in pool]
+    total = sum(contribution_List)
+    each = total / len(contribution_List)
     more = []
     less = []
     solution = []
@@ -52,7 +49,7 @@ def split_bill(pool: list[Any]) -> Any:
 
 # function to print solutionution in a format
 # result is the value returned by splitBill(pool) function
-def print_solutionution(result: Any) -> None:
+def print_solutionution(result: dict) -> None:
     """
     >>> print_solutionution({'solution': [{'name': 'sam', 'payment': [{'name': 'rohan'\
 , 'contribution': 50.0}, {'name': 'john', 'contribution': 200.0}]}], 'total'\
