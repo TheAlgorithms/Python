@@ -5,7 +5,7 @@ run ->python insertion_sort2.py
 """
 
 
-def insertion_sort(a):
+def insertion_sort(a) -> None:
     for i in range(1, len(a)):
         temp = a[i]
         j = i - 1
