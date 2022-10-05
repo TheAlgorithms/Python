@@ -11,7 +11,7 @@ What is most amazing is that EVERY starting number will eventually arrive at 1 o
 How many starting numbers below ten million will arrive at 89?
 """
 
-DIGITS_SQUARED = [sum(int(c) ** 2 for c in str(i)) for i in range(1000)]
+DIGITS_SQUARED = [sum(int(c, 10) ** 2 for c in i.__str__()) for i in range(100000)]
 
 
 def next_number(number: int) -> int:
@@ -32,9 +32,9 @@ def next_number(number: int) -> int:
     sum_of_digits_squared = 0
     while number:
 
-        # Increased Speed Slightly by checking every 3 digits together.
-        sum_of_digits_squared += DIGITS_SQUARED[number % 1000]
-        number //= 1000
+        # Increased Speed Slightly by checking every 5 digits together.
+        sum_of_digits_squared += DIGITS_SQUARED[number % 100000]
+        number //= 100000
 
     return sum_of_digits_squared
 
@@ -75,6 +75,10 @@ def chain(number: int) -> bool:
     number_chain = chain(next_number(number))
     CHAINS[number - 1] = number_chain
 
+    while number < 10000000:
+        CHAINS[number - 1] = number_chain
+        number *= 10
+
     return number_chain
 
 
@@ -89,8 +93,11 @@ def solution(number: int = 10000000) -> int:
     >>> solution(10000000)
     8581146
     """
+    for i in range(1, number):
+        if CHAINS[i] is None:
+            chain(i + 1)
 
-    return sum(1 for i in range(1, number) if not chain(i))
+    return CHAINS[:number].count(False)
 
 
 if __name__ == "__main__":
