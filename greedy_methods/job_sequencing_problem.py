@@ -1,11 +1,11 @@
-def printJobScheduling(arr, t):
+def print_job_scheduling(x, t):
  
-    n = len(arr)
+    n = len(x)
  
     for i in range(n):
         for j in range(n - 1 - i):
-            if arr[j][2] < arr[j + 1][2]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+            if x[j][2] < x[j + 1][2]:
+                x[j], x[j + 1] = x[j + 1], x[j]
  
     result = [False] * t
  
@@ -13,22 +13,20 @@ def printJobScheduling(arr, t):
  
     for i in range(len(arr)):
  
-        for j in range(min(t - 1, arr[i][1] - 1), -1, -1):
+        for j in range(min(t - 1, x[i][1] - 1), -1, -1):
  
             if result[j] is False:
                 result[j] = True
-                job[j] = arr[i][0]
+                job[j] = x[i][0]
                 break
-
+     """
+    Print the Jobs
+    """
     print(job)
  
- 
-# Driver's Code
-if __name__ == '__main__':
-    arr = [[1, 4, 20],  
+ x = [[1, 4, 20],  
               [2, 1, 20],
               [3, 1, 40],
               [4, 1, 30]
  
-
-    printJobScheduling(arr, 4)
+print_job_scheduling(x, 4)
