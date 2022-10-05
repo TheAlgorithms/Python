@@ -26,7 +26,7 @@ def get_best_match(
         zip(group2.keys(), [[]] * 5)
     )
 
-    def best_match_found():
+    def best_match_found() -> bool:
         """
         Best match corresponds to the case where each element in group2
         has exactly ONE possible match
@@ -38,7 +38,7 @@ def get_best_match(
             ]
         )
 
-    def perform_matching():
+    def perform_matching() -> list[tuple[object]]:
         """
         Performs one round of matching elements in group 1 to group 2
         1. All group 1 elements try to match with their remaining best
