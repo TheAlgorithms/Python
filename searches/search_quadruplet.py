@@ -57,3 +57,16 @@ def search_quadruplets(sequence: list[int], target: int) -> list[int]:
                 else:
                     right -= 1
     return quadruplets
+
+
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by comma:\n").strip()
+    sequence = [int(item) for item in user_input.split(",")]
+
+    target_input = input("Enter a single number to be found in the list:\n")
+    target = int(target_input)
+    result = search_quadruplets(sequence, target)
+    if result is not None:
+        print(f"result: {result}")
+    else:
+        print("Not found")
