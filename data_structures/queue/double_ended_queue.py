@@ -377,7 +377,7 @@ class Deque:
         me = self._front
         oth = other._front
 
-        # if the length of the deques are not the same, they are not equal
+        # if the length of the dequeues are not the same, they are not equal
         if len(self) != len(other):
             return False
 
