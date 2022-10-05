@@ -1,21 +1,22 @@
-def bytes_to_int(bytes_var: bytearray, signed: bool, byteorder: str) -> (int):
+def bytes_to_int(bytes_var: bytearray,byteorder: str,signed: bool,) -> (int):
 
-    """
+    r"""
     This script first converts a bytearray,
     to its corresponding signed/unsigned binary number,
     and then converts the binary number to an integer.
 
-    >>> bytes_to_int(b'\\x00\\x10',False,'big')
-    16
-    >>> bytes_to_int(b'\\xfc\\x00',True,'big')
-    -1024
-    >>> bytes_to_int(b'\\x00\\x01',False,'big')
-    1
+    >>> tests = ((b"\x00\x10", "big", False), (b'\xfc\x00', "big", True),
+    ...          (b'\x00\x01', "big", False), (b'\x00\x10', 'little', False))
+    >>> all(bytes_to_int(bytes, byteorder, signed=signed) == int.from_bytes(bytes, byteorder, signed=signed)
+    ...     for bytes, byteorder, signed in tests)
+    True
     >>> bytes_to_int('abc',False,'big')
-    ERROR - 'str' object cannot be interpreted as an integer
+    ERROR - AttributeError - 'bool' object has no attribute 'lower'
     0
-    >>> bytes_to_int(b'\\x00\\x10',False,'little')
-    4096
+    >>> bytes_to_int(7.1, 'little', signed=True)
+    ERROR - TypeError - 'float' object is not subscriptable
+    0
+
     """
 
     try:
@@ -49,7 +50,7 @@ def bytes_to_int(bytes_var: bytearray, signed: bool, byteorder: str) -> (int):
         return rslt
 
     except Exception as e:
-        print(f"ERROR - {e}")
+        print(f"ERROR - {type(e).__name__} - {e}")
         return 0
 
 
