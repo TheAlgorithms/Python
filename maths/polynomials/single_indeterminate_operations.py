@@ -8,7 +8,8 @@ Reference: https://en.wikipedia.org/wiki/Polynomial
 """
 
 from __future__ import annotations
-from typing import MutableSequence
+
+from collections.abc import MutableSequence
 
 
 class Polynomial:
