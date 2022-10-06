@@ -12,7 +12,7 @@ def scrap_info(request_url: str) -> dict:
 
     webpage_metadata = {}
     language = str(soup.html.get("lang"))
-    print("Language is ",language)
+    print("Language is ", language)
     if language == "None":
         webpage_metadata["language"] = "Not mentioned"
     else:
@@ -48,7 +48,9 @@ def scrap_info(request_url: str) -> dict:
             webpage_metadata["description"] = description
     except KeyError:
         try:
-            if description := soup.find("meta", attrs={"name": "description"})["content"]:
+            if description := soup.find("meta", attrs={"name": "description"})[
+                "content"
+            ]:
                 webpage_metadata["description"] = description
         except KeyError:
             webpage_metadata["description"] = "Not mentioned"
@@ -119,9 +121,10 @@ def scrap_info(request_url: str) -> dict:
     h2 = list(all_h2)
     h2.insert(0, "h2")
     all_tags.append(h2)
-    
+
     write_in_csv(webpage_metadata, all_tags)
     return webpage_metadata
+
 
 def write_in_csv(webpage_metadata: dict, all_tags: list) -> None:
     with open("webpage_info.csv", "w", newline="") as f:
@@ -129,5 +132,6 @@ def write_in_csv(webpage_metadata: dict, all_tags: list) -> None:
         writer.writerows(webpage_metadata)
         writer.writerows(all_tags)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     scrap_info("https://techcrunch.com/")
