@@ -574,6 +574,7 @@
   * [Sum Of Arithmetic Series](maths/sum_of_arithmetic_series.py)
   * [Sum Of Digits](maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](maths/sum_of_geometric_progression.py)
+  * [Sumset](maths/sumset.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
@@ -632,7 +633,7 @@
 
 ## Physics
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
-  * [Lorenz Transformation Four Vector](physics/lorenz_transformation_four_vector.py)
+  * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
 
