@@ -5,7 +5,7 @@ getcontext().prec = 1000
 # max possible digits = 1000
 
 
-def pi_d(n_d) -> float:
+def pi_d(n_d: int) -> float:
 
     numerator = Decimal(0)
     denominator = Decimal(0)
