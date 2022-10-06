@@ -18,7 +18,7 @@ Github : https://github.com/SetaMurdha
 Date: 2022.10.06
 
 Author Note : I contribute this simple algorithm to celebrate my friend
-    called Indriani A. Mentari for her bachelor graduation. cheers
+    called Indriani A. Mentari for her bachelor graduation. *cheerss
 
 """
 
