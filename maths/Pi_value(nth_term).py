@@ -6,7 +6,7 @@ getcontext().prec = 1000
 
 
 def pi_d(n_d: int) -> float:
-    '''
+    """
     Calculate the value of pi till n-digits before decimal
     >>> pi_d(0)
     None
@@ -18,7 +18,7 @@ def pi_d(n_d: int) -> float:
     Traceback (most recent call last):
     ...
     decimal.InvalidOperation: [<class 'decimal.InvalidOperation'>]
-    '''
+    """
     numerator = Decimal(0)
     denominator = Decimal(0)
     result = Decimal(0)
