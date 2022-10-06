@@ -29,7 +29,9 @@ def knapsack(max_weight: int, weights: list[int], values: list[int], n: int):
     return dp[n][max_weight], dp
 
 
-def knapsack_with_constructed_solution(max_weight: int, weights: list[int] | tuple[int], values: list[int]):
+def knapsack_with_constructed_solution(
+    max_weight: int, weights: list[int] | tuple[int], values: list[int]
+):
     """
     Solves the integer weights knapsack problem returns one of
     the several possible optimal subsets.
@@ -87,7 +89,13 @@ def knapsack_with_constructed_solution(max_weight: int, weights: list[int] | tup
     return optimal_val, example_optional_set
 
 
-def _construct_solution(dp: list[list[int]], weights: list[int] | tuple[int], i: int, j: int, optimal_set: set[int]):
+def _construct_solution(
+    dp: list[list[int]],
+    weights: list[int] | tuple[int],
+    i: int,
+    j: int,
+    optimal_set: set[int],
+):
     """
     Recursively reconstructs one of the optimal subsets given
     a filled DP table and the vector of weights
