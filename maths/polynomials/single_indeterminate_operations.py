@@ -1,5 +1,6 @@
 """
-Operations on single indeterminate polynomials
+
+This module implements a single indeterminate polynomials class with some basic operations
 
 Reference: https://en.wikipedia.org/wiki/Polynomial
 
