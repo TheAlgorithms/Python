@@ -1,7 +1,8 @@
 import random
 from typing import List
 
-def is_sorted(lista: List[int]) -> bool:
+
+def is_sorted(lista: list[int]) -> bool:
     """
     Given a list of integer, return True if all are ordered
 
@@ -10,10 +11,11 @@ def is_sorted(lista: List[int]) -> bool:
     >>> is_sorted([3, 2, 1])
     False
     """
-    values = [lista[i] <= lista[i+1] for i in range(len(lista) - 1)]
+    values = [lista[i] <= lista[i + 1] for i in range(len(lista) - 1)]
     return all(values)
 
-def random_sort(lista: List[int]) -> List[int]:
+
+def random_sort(lista: list[int]) -> list[int]:
     """
     efficiency? where are we going we don't need that
 
