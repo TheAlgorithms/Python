@@ -7,9 +7,10 @@ class LayerDense:
     """
     Main layer dense function for creating layers.
     """
-    def __init__(self, n_inputs:int, n_neurons:int) -> None:
+
+    def __init__(self, n_inputs: int, n_neurons: int) -> None:
         """
-        Given number of neurons input and numbers of neurons 
+        Given number of neurons input and numbers of neurons
         return a numpy array of set of weights and biases.
         """
         self.weights = np.random.randn(n_inputs, n_neurons)
@@ -18,7 +19,7 @@ class LayerDense:
     def forward(self, inputs: np.ndarray) -> np.ndarray:
         """
         Given neurons set of weights, inputs and biases return the dot
-        product of the input and weights + biases to get the output of the 
+        product of the input and weights + biases to get the output of the
         neuron.
         """
         self.output = np.dot(inputs, self.weights) + self.biases
@@ -28,6 +29,7 @@ class ActivationReLU:
     """
     Class for creating the ReLU activation function.
     """
+
     def forward(self, inputs: np.ndarray) -> np.ndarray:
         """
         Given neuron inputs, preform ReLU activatoin function and
@@ -40,6 +42,7 @@ class ActivationSoftmax:
     """
     Class for creating the softmax activation function
     """
+
     def forward(self, inputs: np.ndarray) -> np.ndarray:
         """
         Given neuron inputs, apply the softmax activation function to it
@@ -53,7 +56,8 @@ class ActivationSoftmax:
 
 
 class Loss:
-    """ Class for calculating the loss of the neuron network"""
+    """Class for calculating the loss of the neuron network"""
+
     def calculate(self, output: np.ndarray, y: np.ndarray) -> np.ndarray:
         """
         Given the output of the neuron network, return the mean of the sample losses.
@@ -66,6 +70,7 @@ class Loss:
 
 class LossCategoricalCrossentropy(Loss):
     """Clas for calculating the loss categorical cross entropy of the neural network."""
+
     def forward(self, y_pred: np.ndarray, y_true: np.ndarray) -> np.ndarray:
         """
         Given predictions and ground truth values, calcualte the mean loss
