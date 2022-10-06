@@ -5,7 +5,7 @@ import bs4
 import requests
 
 
-def scrap_info(request_url):
+def scrap_info(request_url: str) -> None:
     res = requests.get(request_url)
 
     soup = bs4.BeautifulSoup(res.text, "lxml")
