@@ -12,7 +12,7 @@ def scrap_info(request_url: str) -> dict:
 
     webpage_metadata = {}
     language = str(soup.html.get("lang"))
-    print("Language is ", language)
+    print("Language is ",language)
     if language == "None":
         webpage_metadata["language"] = "Not mentioned"
     else:
@@ -48,9 +48,7 @@ def scrap_info(request_url: str) -> dict:
             webpage_metadata["description"] = description
     except KeyError:
         try:
-            if description := soup.find("meta", attrs={"name": "description"})[
-                "content"
-            ]:
+            if description := soup.find("meta", attrs={"name": "description"})["content"]:
                 webpage_metadata["description"] = description
         except KeyError:
             webpage_metadata["description"] = "Not mentioned"
@@ -94,6 +92,12 @@ def scrap_info(request_url: str) -> dict:
         l.append(value)
         meta_list.append(l)
 
+    all_tags = process_tags
+    
+    write_in_csv(meta_list, all_tags)
+    return webpage_metadata
+
+def process_tags() -> list:
     all_tags = []
     allhrefs = set()
     for a in soup.find_all("a", href=True):
@@ -104,27 +108,19 @@ def scrap_info(request_url: str) -> dict:
     hrefs = list(allhrefs)
     hrefs.insert(0, "links")
     all_tags.append(hrefs)
-    all_images = set()
-
-    for img in soup.find_all("img", src=True):
-        all_images.add(img["src"])
+    all_images = {image["src"] for image in soup.find_all("img", src=True)}
     images = list(all_images)
     images.insert(0, "images")
     all_tags.append(images)
 
     all_h2 = set()
     for h2 in soup.find_all("h2"):
-        text = h2.text
-        text = text.strip("\n")
-        text = text.strip("\t")
-        all_h2.add(text)
+        all_h2.add(h2.text.strip())
     h2 = list(all_h2)
     h2.insert(0, "h2")
     all_tags.append(h2)
 
-    write_in_csv(webpage_metadata, all_tags)
-    return webpage_metadata
-
+    return all_tags
 
 def write_in_csv(webpage_metadata: dict, all_tags: list) -> None:
     with open("webpage_info.csv", "w", newline="") as f:
@@ -132,6 +128,5 @@ def write_in_csv(webpage_metadata: dict, all_tags: list) -> None:
         writer.writerows(webpage_metadata)
         writer.writerows(all_tags)
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     scrap_info("https://techcrunch.com/")
