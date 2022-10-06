@@ -87,8 +87,7 @@ def solution(limit: int = 120000) -> int:
                 radicals[j] *= i
 
     # Sort a values in ascending order of radical(a).
-    sorted_radicals = sorted((radical, n) for (n, radical) in
-                             enumerate(radicals))
+    sorted_radicals = sorted((radical, n) for (n, radical) in enumerate(radicals))
     sorted_radicals = sorted_radicals[1:]  # Remove (0, 0) from the list.
 
     ans = 0
@@ -98,8 +97,11 @@ def solution(limit: int = 120000) -> int:
             if radical >= c:
                 break
             b = c - a
-            if (a < b and greatest_common_divisor(a, b) == 1
-                    and radical * radicals[b] < c):
+            if (
+                a < b
+                and greatest_common_divisor(a, b) == 1
+                and radical * radicals[b] < c
+            ):
                 ans += c
     return ans
 

@@ -76,10 +76,13 @@ def solution(limit: int = 120000) -> int:
     for c in range(2, limit):
         for a in range(1, c):
             b = c - a
-            if (a < b and greatest_common_divisor(a, b) == 1
-                    and greatest_common_divisor(a, c) == 1
-                    and greatest_common_divisor(b, c) == 1
-                    and radicals[a] * radicals[b] * radicals[c] < c):
+            if (
+                a < b
+                and greatest_common_divisor(a, b) == 1
+                and greatest_common_divisor(a, c) == 1
+                and greatest_common_divisor(b, c) == 1
+                and radicals[a] * radicals[b] * radicals[c] < c
+            ):
                 ans += c
     return ans
 
