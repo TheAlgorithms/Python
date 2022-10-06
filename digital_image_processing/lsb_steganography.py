@@ -139,7 +139,7 @@ class LsbSteganography:
     def binary_to_int(self, words: str) -> int:
         return int(words, 2)
 
-    def preprocessing_encrypt_message(self) -> list:
+    def preprocessing_encrypt_message(self) -> list[str]:
         """
         Convert every character -->
         index in abjad (decimals)-->
@@ -155,7 +155,7 @@ class LsbSteganography:
 
         return words_container
 
-    def preprocessing_image(self) -> list:
+    def preprocessing_image(self) -> list[list[str]]:
 
         """
         convert image to greyscale and every pixels to binary
@@ -175,7 +175,7 @@ class LsbSteganography:
 
         return result_binary
 
-    def lsb_encrypt(self) -> list:
+    def lsb_encrypt(self) -> list[list[str]]:
         """
         #Encrypting message to image pixels
         """
