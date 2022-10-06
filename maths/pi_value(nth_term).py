@@ -9,7 +9,7 @@ def pi_d(n_d: int) -> Decimal:
     """
     Calculate the value of pi till n-digits before decimal
     >>> pi_d(0)
-    0
+    Decimal('0')
     >>> pi_d(10)
     3.1415926536
     >>> pi_d(30)
