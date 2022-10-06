@@ -39,7 +39,7 @@ def rec_linear_search(sequence: list, index: int, target: int) -> int:
 
     :param sequence: a collection with comparable items (as sorted items not required
         in Linear Search)
-    :param index: intially equal to the size of the array - 1 and represents the element that we are currently checking 
+    :param index: intially equal to the size of the array - 1 and represents the element that we are currently checking
     :param target: The element to be found
     :return: Index of the key or -1 if key not found
 
@@ -53,13 +53,13 @@ def rec_linear_search(sequence: list, index: int, target: int) -> int:
     >>> rec_linear_search([0, 30, 500, 100, 700], 5, -6)
     -1
     """
-    if index<0:
+    if index < 0:
         raise Exception("Invalid size bound!")
-    if index==0 and sequence[index]!=target:
+    if index == 0 and sequence[index] != target:
         return -1
-    if index>=0 and sequence[index]==target:
+    if index >= 0 and sequence[index] == target:
         return index
-    rec_linear_search(sequence,index-1, target)
+    rec_linear_search(sequence, index - 1, target)
     return -1
 
 
@@ -69,8 +69,8 @@ if __name__ == "__main__":
     size = len(sequence)
     target = int(input("Enter a single number to be found in the list:\n").strip())
     result = linear_search(sequence, target)
-    #result = rec_linear_search(sequence, size-1, target)
-    
+    # result = rec_linear_search(sequence, size-1, target)
+
     if result != -1:
         print(f"linear_search({sequence}, {target}) = {result}")
     else:
