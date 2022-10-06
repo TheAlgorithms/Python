@@ -632,7 +632,7 @@
 
 ## Physics
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
-  * [Lorenz Transformation Four Vector](physics/lorenz_transformation_four_vector.py)
+  * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
 
@@ -1033,6 +1033,7 @@
   * [Reverse Letters](strings/reverse_letters.py)
   * [Reverse Long Words](strings/reverse_long_words.py)
   * [Reverse Words](strings/reverse_words.py)
+  * [Shortest Word](strings/shortest_word.py)
   * [Split](strings/split.py)
   * [Upper](strings/upper.py)
   * [Wave](strings/wave.py)
