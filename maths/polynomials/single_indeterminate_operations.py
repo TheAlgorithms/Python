@@ -15,7 +15,7 @@ from collections.abc import MutableSequence
 class Polynomial:
     def __init__(self, degree: int, coefficients: MutableSequence[float]) -> None:
         """
-        The coeffients should be in order of degree, from smallest to largest.
+        The coefficients should be in order of degree, from smallest to largest.
         >>> p = Polynomial(2, [1, 2, 3])
         >>> p = Polynomial(2, [1, 2, 3, 4])
         Traceback (most recent call last):
@@ -87,7 +87,7 @@ class Polynomial:
 
         return Polynomial(self.degree + polynomial_2.degree, coefficients)
 
-    def evaluate(self, subtitution: int | float) -> int | float:
+    def evaluate(self, substitution: int | float) -> int | float:
         """
         Evaluates the polynomial at x.
         >>> p = Polynomial(2, [1, 2, 3])
@@ -96,7 +96,7 @@ class Polynomial:
         """
         result: int | float = 0
         for i in range(self.degree + 1):
-            result += self.coefficients[i] * (subtitution**i)
+            result += self.coefficients[i] * (substitution**i)
         return result
 
     def __str__(self) -> str:
