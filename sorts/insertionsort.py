@@ -5,7 +5,7 @@ run ->python insertion_sort2.py
 """
 
 
-def insertion_sort(input_list : list) -> list:
+def insertion_sort(input_list: list) -> list:
 
     """
     Examples:
