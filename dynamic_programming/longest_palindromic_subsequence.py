@@ -6,10 +6,10 @@
 #############################
 from __future__ import annotations
 
-#  s is string parameter for the function
 
+#  sentence is string parameter for the function
 
-def longest_palindrome(swords: str) -> str:
+def longest_palindrome(sentence: str) -> str:
     """
 
     >>> longestPalindrome("cbbd")
@@ -23,18 +23,17 @@ def longest_palindrome(swords: str) -> str:
 
     """
 
-    dp = [[False for i in range(len(s))] for j in range(len(s))]
-    for i in range(len(s)):
+    dp = [[False for i in range(len(sentence))] for j in range(len(sentence))]
+    for i in range(len(sentence)):
         dp[i][i] = True
     maxl = 1
     begin = 0
 
     # bottom up DP always start from base case, so we will scan backward
-    for i in range(len(s) - 1, -1, -1):
-        for j in range(i + 1, len(s)):
-            if (
-                s[i] == s[j]
-            ):  # if i+1=j and they are same character,of course this is a panlindrome
+    for i in range(len(sentence) - 1, -1, -1):
+        for j in range(i + 1, len(sentence)):
+            if ( sentence[i] == sentence[j] ): 
+            # if i+1=j and they are same character,of course this is a panlindrome
                 if j - i == 1:
                     dp[i][j] = True
                 else:  # if the substring between i and j are panlindrome
@@ -44,7 +43,7 @@ def longest_palindrome(swords: str) -> str:
                     maxl = j - i + 1
                     begin = i
 
-    return s[begin : begin + maxl]
+    return sentence[begin : begin + maxl]
 
 
 if __name__ == "__main__":
