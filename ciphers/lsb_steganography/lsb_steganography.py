@@ -1,8 +1,19 @@
 """
-LSB Steganography is steganography method to hide a message in the image file
+LSB-Steganography is a steganography technique in which 
+we hide messages inside an image by replacing Least significant bit of image with the bits of message to be hidden. 
+By modifying only the first most right bit of an image we can insert our secret message and it also make the picture unnoticeable, 
+but if our message is too large it will start modifying the second right most bit and so on and an 
+attacker can notice the changes in picture. 
 
-I contribute this algorithm to celebrate my girl friend called Indriani A. Mentari, 
-    her bachelor graduation. cheers
+source : https://www.cybrary.it/blog/0p3n/hide-secret-message-inside-image-using-lsb-steganography/
+
+
+Author: Seta
+Github : https://github.com/SetaMurdha
+Date: 2022.10.06
+
+Author Note : I contribute this simple algorithm to celebrate my friend called Indriani A. Mentari, 
+                    her bachelor graduation. cheers
 
 """
 
@@ -24,9 +35,13 @@ class lsb_steganography:
         return int(words,2)
 
     def preprocessing_encrypt_message(self):
-
+        """
+        Convert every character --> index in abjad (decimals)--> binary items in list (binary) 
+        
+        """
+        print("Encrypting....")
         words_container = []
-
+        
         for words in self.message:
             result = self.int_to_binary(self.abjad.find(words))
             for char in result:
@@ -34,10 +49,11 @@ class lsb_steganography:
 
         return words_container
 
-    def preprocessing_decrypt_message(self):
-        pass
-
     def preprocessing_image(self):
+
+        """
+        convert image to greyscale and every pixels to binary
+        """
 
         result_binary = []
 
@@ -55,7 +71,9 @@ class lsb_steganography:
 
 
     def lsb_encrypt(self):
-        
+        """
+        Encrypting message to image pixels
+        """
         image_pixel = self.preprocessing_image()
 
         i = 0
@@ -78,6 +96,11 @@ class lsb_steganography:
         return image_pixel
 
     def generate_encrypted_image(self):
+
+        """
+        Create image from encrypted pixels 
+        """
+
         image_pixel = self.lsb_encrypt()
 
         final_pixel = []
@@ -96,6 +119,7 @@ class lsb_steganography:
         
     def lsb_decrypt(self, key):
         image_pixel = self.preprocessing_image()
+        print("decrypting....")
         words = ''
         for height in range(len(image_pixel)):
             for width in range(len(image_pixel[height])):
@@ -113,8 +137,8 @@ class lsb_steganography:
         return final_result
 
 def main():
-    abjad = "abcdefghijklmnopqrstuvwxyz 1234567890`"
-    message = "Hello Goddamn Fucking World"
+    abjad = "abcdefghijklmnopqrstuvwxyz 1234567890`!?"
+    message = "Hello World"
     path = "image_assets/original_image.png"
     path_decrypt = "Result.png"
     key = '`'
@@ -123,8 +147,8 @@ def main():
     algo_encrypt.set_message(message,key)
     algo_encrypt.generate_encrypted_image()
 
-    algo_decrypt = 
-    print(algo.lsb_decrypt(key))
+    algo_decrypt = lsb_steganography(abjad, path_decrypt)
+    print(algo_decrypt.lsb_decrypt(key))
 
 
 if __name__ == "__main__":
