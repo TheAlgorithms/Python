@@ -72,7 +72,7 @@ def gravitational_law(
     product_of_mass = mass_1 * mass_2
 
     if (force, mass_1, mass_2, distance).count(0) != 1:
-        raise ValueError("Only one argument must be 0")
+        raise ValueError("One and only one argument must be 0")
     if force < 0:
         raise ValueError("Gravitational force can not be negative")
     if distance < 0:
