@@ -5,7 +5,7 @@ getcontext().prec = 1000
 # max possible digits = 1000
 
 
-def pi_d(n_d: int) -> float:
+def pi_d(n_d: int) -> Decimal:
     """
     Calculate the value of pi till n-digits before decimal
     >>> pi_d(0)
