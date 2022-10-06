@@ -1,47 +1,153 @@
 """
-LSB-Steganography is a steganography technique in which 
-we hide messages inside an image by replacing Least significant bit of image with the bits of message to be hidden. 
-By modifying only the first most right bit of an image we can insert our secret message and it also make the picture unnoticeable, 
-but if our message is too large it will start modifying the second right most bit and so on and an 
-attacker can notice the changes in picture. 
+LSB-Steganography is a steganography technique in which
+we hide messages inside an image by replacing
+Least significant bit of image with the bits of message to be hidden.
+By modifying only the first most right bit of an image
+we can insert our secret message
+and it also make the picture unnoticeable,
+but if our message is too large it
+will start modifying the second right most bit and so on and an
+attacker can notice the changes in picture.
 
-source : https://www.cybrary.it/blog/0p3n/hide-secret-message-inside-image-using-lsb-steganography/
+source :
+https://www.cybrary.it/blog/0p3n/hide-secret-message-inside-image-using-lsb-steganography/
 
 
 Author: Seta
 Github : https://github.com/SetaMurdha
 Date: 2022.10.06
 
-Author Note : I contribute this simple algorithm to celebrate my friend called Indriani A. Mentari, 
-                    her bachelor graduation. cheers
+Author Note : I contribute this simple algorithm to celebrate my friend
+    called Indriani A. Mentari for her bachelor graduation. cheers
 
 """
 
 import cv2
 import numpy as np
 
+
 class lsb_steganography:
+    """
+    >>> path_encrypt = 'image_assets/original_image2.png'
+    >>> path_decrypt = 'result.png'
+    >>> abjad = 'abcdefghijklmnopqrstuvwxyz 1234567890`!?'
+    >>> encrypt = lsb_steganography('abjad', 'path_encrypt')
+    >>> encrypt.int_to_binary(23)
+    '00010111'
+
+    >>> encrypt.binary_to_int('10111001')
+    185
+
+    >>> encrypt.set_message('halo','`')
+    >>> encrypt.preprocessing_encrypt_message()
+    ['0', '0', '0', '0', '0', '1', '1', '1', '0', '0',
+    '0', '0', '0', '0', '0', '0', '0', '0', '0',
+    '0', '1', '0', '1', '1', '0', '0', '0', '0',
+    '1', '1', '1', '0', '0', '0', '1', '0', '0',
+    '1', '0', '1']
+
+    >>> encrypt.preprocessing_image()
+    [['11111111', '11111111',
+    '11111111', '11111111',
+    '11111111', '11111111',
+    '11111111', '11111111'],
+    ['11111111', '11001101',
+    '00000000', '00000000',
+    '00000000', '00000000',
+    '11001101', '11111111'],
+    ['11111111', '00000000',
+    '10111000', '00000000',
+    '00000000', '10111000',
+    '00000000', '11111111'],
+    ['11111111', '00000000',
+    '00000000', '11001101',
+    '11001101', '00000000',
+    '00000000', '11111111'],
+    ['11111111', '11111111',
+    '11111111', '00000000',
+    '00000000', '11111111',
+    '11111111', '11111111'],
+    ['11111111', '00000000',
+    '00000000', '00000000',
+    '00000000', '00000000',
+    '00000000', '11111111'],
+    ['11001101', '11111111',
+    '00000000', '11001101',
+    '11001101', '00000000',
+    '11111111', '11001101'],
+    ['11111111', '11111111',
+    '00000000', '11001101',
+    '11001101', '00000000',
+    '11111111', '11111111']]
+
+    >>> encrypt.lsb_encrypt()
+    Encrypting....
+    [['11111110', '11111110',
+    '11111110', '11111110',
+    '11111110', '11111111',
+    '11111111', '11111111'],
+    ['11111110', '11001100',
+    '00000000', '00000000',
+    '00000000', '00000000',
+    '11001100', '11111110'],
+    ['11111110', '00000000',
+    '10111000', '00000000',
+    '00000001', '10111000',
+    '00000001', '11111111'],
+    ['11111110', '00000000',
+    '00000000', '11001100',
+    '11001101', '00000001',
+    '00000001', '11111110'],
+    ['11111110', '11111110',
+    '11111111', '00000000',
+    '00000000', '11111111',
+    '11111110', '11111111'],
+    ['11111111', '00000000',
+    '00000000', '00000000',
+    '00000000', '00000000',
+    '00000000', '11111111'],
+    ['11001101', '11111111',
+    '00000000', '11001101',
+    '11001101', '00000000',
+    '11111111', '11001101'],
+    ['11111111', '11111111',
+    '00000000', '11001101',
+    '11001101', '00000000',
+    '11111111', '11111111']]
+
+    >>> encrypt.generate_encrypted_image()
+    Encrypting....
+    save success
+
+    >>> algo_decrypt = lsb_steganography('abjad', 'path_decrypt')
+    >>> print(algo_decrypt.lsb_decrypt('`'))
+    decrypting....
+    halo
+
+    """
+
     def __init__(self, abjad, img_path):
         self.abjad = abjad
         self.img_path = img_path
 
     def set_message(self, message, key):
-        self.message = message.lower() + key 
+        self.message = message.lower() + key
 
     def int_to_binary(self, words):
-        return format(words,'08b')
+        return format(words, "08b")
 
     def binary_to_int(self, words):
-        return int(words,2)
+        return int(words, 2)
 
     def preprocessing_encrypt_message(self):
         """
-        Convert every character --> index in abjad (decimals)--> binary items in list (binary) 
-        
+        Convert every character -->
+        index in abjad (decimals)-->
+        binary items in list (binary)
+
         """
-        print("Encrypting....")
         words_container = []
-        
+
         for words in self.message:
             result = self.int_to_binary(self.abjad.find(words))
             for char in result:
@@ -57,7 +163,7 @@ class lsb_steganography:
 
         result_binary = []
 
-        img = cv2.imread(self.img_path,0)
+        img = cv2.imread(self.img_path, 0)
 
         for height in range(len(img)):
             result_width = []
@@ -66,39 +172,41 @@ class lsb_steganography:
                 result_width.append(binary_width)
 
             result_binary.append(result_width)
-        
-        return result_binary
 
+        return result_binary
 
     def lsb_encrypt(self):
         """
-        Encrypting message to image pixels
+        #Encrypting message to image pixels
         """
+
+        print("Encrypting....")
         image_pixel = self.preprocessing_image()
 
         i = 0
         while i < len(self.preprocessing_encrypt_message()):
             for height in range(len(self.preprocessing_image())):
                 for width in range(len(self.preprocessing_image()[height])):
-                    if(i<len(self.preprocessing_encrypt_message())):
+                    if i < len(self.preprocessing_encrypt_message()):
 
                         words = list(self.preprocessing_image()[height][width])
                         words[-1] = self.preprocessing_encrypt_message()[i]
-                        new_binary = ''.join(words)
+                        new_binary = "".join(words)
                         image_pixel[height][width] = new_binary
-                        i+=1
+                        i += 1
                     else:
-                        break  
+                        break
 
-                if(i>=len(self.preprocessing_encrypt_message())):
-                    break  
+                if i >= len(self.preprocessing_encrypt_message()):
+                    break
 
         return image_pixel
 
     def generate_encrypted_image(self):
 
         """
-        Create image from encrypted pixels 
+        #Create image from encrypted pixels
+
         """
 
         image_pixel = self.lsb_encrypt()
@@ -113,38 +221,41 @@ class lsb_steganography:
 
             final_pixel.append(result_width)
         ar = np.asarray(final_pixel)
-        cv2.imwrite("Result.png", ar)
+        cv2.imwrite("result.png", ar)
         print("save success")
-    
-        
+
     def lsb_decrypt(self, key):
+        """
+        Decrypting images
+        """
         image_pixel = self.preprocessing_image()
         print("decrypting....")
-        words = ''
+        words = ""
         for height in range(len(image_pixel)):
             for width in range(len(image_pixel[height])):
                 words += image_pixel[height][width][-1]
 
         words_character = []
         for index in range(0, len(words), 8):
-            int_index = self.binary_to_int(words[index:index+8])
+            int_index = self.binary_to_int(words[index : index + 8])
             new_word = self.abjad[int_index]
             if new_word == key:
                 break
             else:
                 words_character.append(new_word)
-        final_result = ''.join(words_character)
+        final_result = "".join(words_character)
         return final_result
+
 
 def main():
     abjad = "abcdefghijklmnopqrstuvwxyz 1234567890`!?"
     message = "Hello World"
     path = "image_assets/original_image.png"
-    path_decrypt = "Result.png"
-    key = '`'
+    path_decrypt = "result.png"
+    key = "`"
 
     algo_encrypt = lsb_steganography(abjad, path)
-    algo_encrypt.set_message(message,key)
+    algo_encrypt.set_message(message, key)
     algo_encrypt.generate_encrypted_image()
 
     algo_decrypt = lsb_steganography(abjad, path_decrypt)
