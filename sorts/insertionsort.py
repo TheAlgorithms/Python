@@ -6,7 +6,7 @@ run ->python insertion_sort2.py
 
 
 def insertion_sort(input_list: list) -> list:
-  
+
     """
     Examples:
     >>> a=[15, 10, 5, 7, 13, 8, 2]
