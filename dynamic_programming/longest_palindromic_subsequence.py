@@ -6,7 +6,7 @@
 #############################
 from __future__ import annotations
 
-
+#  s is string parameter for the function
 def longest_palindrome(s: str) -> str:
     """
     dp[i][j] means whether s[i] to s[j] is a panlindrome
