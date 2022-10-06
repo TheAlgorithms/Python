@@ -46,4 +46,3 @@ def sort_by_datatype(array: list) -> None:
 
 if __name__ == "__main__":
     sort_by_datatype([(1, 2), "2", "15", 1, 0])  # TypeError
-    sort_by_datatype(["2", "15", 1, 0, lambda x: 1])  # TypeError
