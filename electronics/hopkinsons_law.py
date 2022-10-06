@@ -25,18 +25,14 @@ def hopkinsons_law(
     >>> hopkinsons_law(magnetomotiveforce=0, flux=-1.5, reluctance=2)
     {'magnetomotiveforce': -3.0}
     """
-    if (magnetomotiveforce, flux, reluctance).count(0) != 1:
-        raise ValueError("One and only one argument must be 0")
-    if reluctance < 0:
-        raise ValueError("Reluctance cannot be negative")
-    if magnetomotiveforce == 0:
-        return {"magnetomotiveforce": float(flux * reluctance)}
-    elif flux == 0:
+    if magnetomotiveforce is None:
+        return {"magnetomotiveforce": flux * reluctance}
+    elif flux is None:
         return {"flux": magnetomotiveforce / reluctance}
-    elif reluctance == 0:
+    elif reluctance is None:
         return {"reluctance": magnetomotiveforce / flux}
     else:
-        raise ValueError("Exactly one argument must be 0")
+        raise ValueError("All parameters are not None")
 
 
 if __name__ == "__main__":
