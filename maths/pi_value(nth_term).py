@@ -38,8 +38,5 @@ def pi_d(n_d: int) -> Decimal:
 
 if __name__ == "__main__":
     num = int(input("\nEnter the num of digits (0-999): "))
-    if num < 1000:
-        final_result = pi_d(num)
-        print(f"Values of pi to the {num} decimal places is :\n\n   {final_result}\n")
-    else:
-        print("Enter a value between 1 - 999")
+    final_result = pi_d(num)
+    print(f"Values of pi to the {num} decimal places is :\n\n   {final_result}\n")
