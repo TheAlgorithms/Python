@@ -6,8 +6,8 @@
 #############################
 from __future__ import annotations
 
-
 #  s is string parameter for the function
+
 
 def longest_palindrome(swords: str) -> str:
     """
