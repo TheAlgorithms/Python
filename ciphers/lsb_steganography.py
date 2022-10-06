@@ -26,12 +26,12 @@ import cv2
 import numpy as np
 
 
-class lsb_steganography:
+class LsbSteganography:
     """
     >>> path_encrypt = 'image_assets/original_image2.png'
     >>> path_decrypt = 'result.png'
     >>> abjad = 'abcdefghijklmnopqrstuvwxyz 1234567890`!?'
-    >>> encrypt = lsb_steganography('abjad', 'path_encrypt')
+    >>> encrypt = LsbSteganography('abjad', 'path_encrypt')
     >>> encrypt.int_to_binary(23)
     '00010111'
 
@@ -119,27 +119,33 @@ class lsb_steganography:
     Encrypting....
     save success
 
-    >>> algo_decrypt = lsb_steganography('abjad', 'path_decrypt')
+    >>> algo_decrypt = LsbSteganography('abjad', 'path_decrypt')
     >>> print(algo_decrypt.lsb_decrypt('`'))
     decrypting....
     halo
 
+    >>> main()
+    Encrypting....
+    save success
+    decrypting....
+    hello world
+
     """
 
-    def __init__(self, abjad, img_path):
+    def __init__(self, abjad: str, img_path: str) -> None:
         self.abjad = abjad
         self.img_path = img_path
 
-    def set_message(self, message, key):
+    def set_message(self, message: str, key: str) -> None:
         self.message = message.lower() + key
 
-    def int_to_binary(self, words):
+    def int_to_binary(self, words: int) -> str:
         return format(words, "08b")
 
-    def binary_to_int(self, words):
+    def binary_to_int(self, words: str) -> int:
         return int(words, 2)
 
-    def preprocessing_encrypt_message(self):
+    def preprocessing_encrypt_message(self) -> list:
         """
         Convert every character -->
         index in abjad (decimals)-->
@@ -155,7 +161,7 @@ class lsb_steganography:
 
         return words_container
 
-    def preprocessing_image(self):
+    def preprocessing_image(self) -> list:
 
         """
         convert image to greyscale and every pixels to binary
@@ -175,7 +181,7 @@ class lsb_steganography:
 
         return result_binary
 
-    def lsb_encrypt(self):
+    def lsb_encrypt(self) -> list:
         """
         #Encrypting message to image pixels
         """
@@ -202,7 +208,7 @@ class lsb_steganography:
 
         return image_pixel
 
-    def generate_encrypted_image(self):
+    def generate_encrypted_image(self) -> None:
 
         """
         #Create image from encrypted pixels
@@ -224,7 +230,7 @@ class lsb_steganography:
         cv2.imwrite("result.png", ar)
         print("save success")
 
-    def lsb_decrypt(self, key):
+    def lsb_decrypt(self, key: str) -> str:
         """
         Decrypting images
         """
@@ -254,11 +260,11 @@ def main():
     path_decrypt = "result.png"
     key = "`"
 
-    algo_encrypt = lsb_steganography(abjad, path)
+    algo_encrypt = LsbSteganography(abjad, path)
     algo_encrypt.set_message(message, key)
     algo_encrypt.generate_encrypted_image()
 
-    algo_decrypt = lsb_steganography(abjad, path_decrypt)
+    algo_decrypt = LsbSteganography(abjad, path_decrypt)
     print(algo_decrypt.lsb_decrypt(key))
 
 
