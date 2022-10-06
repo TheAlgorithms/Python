@@ -26,7 +26,7 @@ def sumset(set_a: set, set_b: set) -> set:
     AssertionError: The input value of [B=3] is not a set
     """
     assert isinstance(set_a, set), f"The input value of [set_a={set_a}] is not a set"
-    assert isinstance(set_b, set), f"The input value of [B={set_b}] is not a set"
+    assert isinstance(set_b, set), f"The input value of [set_b={set_b}] is not a set"
 
     return {a + b for a in set_a for b in set_b}
 
