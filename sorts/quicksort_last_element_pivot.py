@@ -1,6 +1,8 @@
 # Shree Ganeshaya Namah:
 # Shambhu
 
+#Auther: Pradhuman Goswami
+
 # Checkout the wiki page for this algorithm here https://en.wikipedia.org/wiki/Quicksort
 
 # Description
@@ -12,7 +14,7 @@
 # So, what are we waiting for? Let's do it without further ado.
 
 
-def quick(arr):
+def quick(arr: list)-> list:
     if len(arr) <= 1:
         return arr
     pivot = arr[-1]
@@ -26,5 +28,9 @@ def quick(arr):
     return quick(l) + [pivot] + quick(g)
 
 
-arr = [10, 20, 13, 11, 9, 4, 2, 1, 3, 5, 19, 22, 21, 18]
-print(quick(arr))
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
+    assert quick([4, 5, 3, 2, 1]) == [1, 2, 3, 4, 5]
+    assert quick([0, 1, -10, 15, 2, -2]) == [-10, -2, 0, 1, 2, 15]
