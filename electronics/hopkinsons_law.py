@@ -9,30 +9,31 @@ def hopkinsons_law(
     Hopkinson's Law can be applied, on any two given electrical values,
     which can be magnetomotive, force, flux, and reluctance,
     and then in a Python dict return name/value pair of the zero value.
-
-    >>> hopkinsons_law(magnetomotiveforce=10, flux=5, reluctance=0)
-    {'reluctance': 2.0}
-    >>> hopkinsons_law(magnetomotiveforce=0, flux=0, reluctance=10)
+    >>> hopkinsons_law(1,2,None)
+    {'reluctance': 0.5}
+    >>> hopkinsons_law(0.5,None,2)
+    {'flux': 0.25}
+    >>> hopkinsons_law(None,1,3)
+    {'magnetomotiveforce': 3.0}
+    >>> hopkinsons_law(None,None,None)
     Traceback (most recent call last):
-      ...
-    ValueError: One and only one argument must be 0
-    >>> hopkinsons_law(magnetomotiveforce=0, flux=1, reluctance=-2)
+    ...
+    ValueError: All arguments cannot be None
+    >>> hopkinsons_law(1,None,None)
     Traceback (most recent call last):
-      ...
-    ValueError: Reluctance cannot be negative
-    >>> hopkinsons_law(reluctance=0, magnetomotiveforce=-10, flux=1)
-    {'reluctance': -10.0}
-    >>> hopkinsons_law(magnetomotiveforce=0, flux=-1.5, reluctance=2)
-    {'magnetomotiveforce': -3.0}
+    ...
+    ValueError: Exactly one argument must be None
     """
-    if magnetomotiveforce is None:
-        return {"magnetomotiveforce": flux * reluctance}
+    if (magnetomotiveforce, flux, reluctance).count(None) == 3:
+        raise ValueError("All arguments cannot be None")
+    elif (magnetomotiveforce, flux, reluctance).count(None) != 1:
+        raise ValueError("Exactly one argument must be None")
+    elif magnetomotiveforce is None:
+        return {"magnetomotiveforce": float(flux * reluctance)}
     elif flux is None:
-        return {"flux": magnetomotiveforce / reluctance}
+        return {"flux": float(magnetomotiveforce / reluctance)}
     elif reluctance is None:
-        return {"reluctance": magnetomotiveforce / flux}
-    else:
-        raise ValueError("All parameters are not None")
+        return {"reluctance": float(magnetomotiveforce / flux)}
 
 
 if __name__ == "__main__":
