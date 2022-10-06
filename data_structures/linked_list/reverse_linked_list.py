@@ -1,43 +1,49 @@
 class Node:
-
 	def __init__(self, data):
 		self.data = data
 		self.next = None
 
 class LinkedList:
-
 	def __init__(self):
-		self.head = None
+		self.head = None 
 
-	def reverse(self):
-		prev = None
-		current = self.head
-		while(current is not None):
-			next = current.next
-			current.next = prev
-			prev = current
-			current = next
-		self.head = prev
+	def reverse(self, head):
 
-	def push(self, new_data):
-		new_node = Node(new_data)
-		new_node.next = self.head
-		self.head = new_node
+		if head is None or head.next is None:
+			return head
 
-	def printList(self):
+		rest = self.reverse(head.next)
+
+		head.next.next = head
+		head.next = None
+
+		return rest
+
+	def __str__(self):
+		linkedListStr = ""
 		temp = self.head
-		while(temp):
-			print temp.data,
+		while temp:
+			linkedListStr = (linkedListStr +
+							str(temp.data) + " ")
 			temp = temp.next
+		return linkedListStr
 
-llist = LinkedList()
-llist.push(20)
-llist.push(4)
-llist.push(15)
-llist.push(85)
+	def push(self, data):
+		temp = Node(data)
+		temp.next = self.head
+		self.head = temp
 
-print "Given Linked List"
-llist.printList()
-llist.reverse()
-print "\nReversed Linked List"
-llist.printList()
+linkedList = LinkedList()
+linkedList.push(20)
+linkedList.push(4)
+linkedList.push(15)
+linkedList.push(85)
+
+print("Given linked list")
+print(linkedList)
+
+linkedList.head = linkedList.reverse(linkedList.head)
+
+print("Reversed linked list")
+print(linkedList)
+
