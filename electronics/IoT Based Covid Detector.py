@@ -1,6 +1,6 @@
 ########################
 # Python script to receive and record the data
-# by Raunak Singh
+# by Naman Kansal
 ########################
 
 ## requires pySerial to be installed 
