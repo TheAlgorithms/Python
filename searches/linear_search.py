@@ -33,14 +33,14 @@ def linear_search(sequence: list, target: int) -> int:
     return -1
 
 
-def rec_linear_search(sequence,index,target):
-    if index<0 or index>=len(sequence):
+def rec_linear_search(sequence, index, target):
+    if index < 0 or index >= len(sequence):
         raise Exception("Invalid size bound!")
-    if index==0 and sequence[index]!=target:
+    if index == 0 and sequence[index] != target:
         return -1
-    if index>=0 and sequence[index]==target:
+    if index >= 0 and sequence[index] == target:
         return index
-    return rec_linear_search(sequence,index-1, target)
+    return rec_linear_search(sequence, index - 1, target)
 
 
 if __name__ == "__main__":
