@@ -8,7 +8,6 @@ References:
 https://www.quantum-inspire.com/kbase/full-adder/
 """
 
-import numpy as np
 import qiskit
 from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
