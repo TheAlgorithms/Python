@@ -1,11 +1,13 @@
 import random
 from typing import List
 
-def is_sorted(l: List[int]) -> bool:
-    values = [l[i] <= l[i+1] for i in range(len(l) - 1)]
+
+def is_sorted(l: list[int]) -> bool:
+    values = [l[i] <= l[i + 1] for i in range(len(l) - 1)]
     return all(values)
 
-def random_sort(l: List[int]) -> List[int]:
+
+def random_sort(l: list[int]) -> list[int]:
     """
     efficiency? where are we going we don't need that
     """
