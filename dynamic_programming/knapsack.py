@@ -11,9 +11,9 @@ Note that only the integer weights 0-1 knapsack problem is solvable
 cache = None
 
 
-def knapsack(max_weight: int, weights: list, values: list, n: int):
+def knapsack(max_weight: int, weights: list[int], values: list[int], n: int):
     """
-    A solution to the classic knapsack problem, without using global variables.
+    A solution to the classic knapsack problem, without the use of global variables.
     """
     dp = [[0 for _ in range(max_weight + 1)] for _ in range(n + 1)]
 
@@ -29,7 +29,7 @@ def knapsack(max_weight: int, weights: list, values: list, n: int):
     return dp[n][max_weight], dp
 
 
-def knapsack_with_constructed_solution(max_weight: int, weights: list, values: list):
+def knapsack_with_constructed_solution(max_weight: int, weights: list[int] | tuple[int], values: list[int]):
     """
     Solves the integer weights knapsack problem returns one of
     the several possible optimal subsets.
@@ -87,7 +87,7 @@ def knapsack_with_constructed_solution(max_weight: int, weights: list, values: l
     return optimal_val, example_optional_set
 
 
-def _construct_solution(dp: list, weights: list, i: int, j: int, optimal_set: set):
+def _construct_solution(dp: list[list[int]], weights: list[int] | tuple[int], i: int, j: int, optimal_set: set[int]):
     """
     Recursively reconstructs one of the optimal subsets given
     a filled DP table and the vector of weights
