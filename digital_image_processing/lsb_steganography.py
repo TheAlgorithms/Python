@@ -28,7 +28,7 @@ import numpy as np
 
 class LsbSteganography:
     """
-    >>> path_encrypt = 'image_assets/original_image2.png'
+    >>> path_encrypt = 'image_data/lena_small.jpg'
     >>> path_decrypt = 'result.png'
     >>> abjad = 'abcdefghijklmnopqrstuvwxyz 1234567890`!?'
     >>> encrypt = LsbSteganography('abjad', 'path_encrypt')
@@ -260,7 +260,7 @@ def main() -> None:
     """
     abjad = "abcdefghijklmnopqrstuvwxyz 1234567890`!?"
     message = "Hello World"
-    path = "image_assets/original_image.png"
+    path = "image_data/lena_small.jpg"
     path_decrypt = "result.png"
     key = "`"
 
