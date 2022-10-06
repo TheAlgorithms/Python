@@ -632,7 +632,7 @@
 
 ## Physics
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
-  * [Lorenz Transformation Four Vector](physics/lorenz_transformation_four_vector.py)
+  * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
 
@@ -1021,6 +1021,7 @@
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
   * [Levenshtein Distance](strings/levenshtein_distance.py)
+  * [Longest Word](strings/longest_word.py)
   * [Lower](strings/lower.py)
   * [Manacher](strings/manacher.py)
   * [Min Cost String Conversion](strings/min_cost_string_conversion.py)
