@@ -2,8 +2,9 @@ import random
 
 
 def is_sorted(l):
-    values = [l[i] <= l[i+1] for i in range(len(l) - 1)]
+    values = [l[i] <= l[i + 1] for i in range(len(l) - 1)]
     return all(values)
+
 
 def random_sort(l):
     """
@@ -14,7 +15,6 @@ def random_sort(l):
         # print(l)
 
     return l
-
 
 
 if __name__ == "__main__":
