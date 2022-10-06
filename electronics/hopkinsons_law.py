@@ -6,8 +6,8 @@ def hopkinsons_law(
     magnetomotiveforce: float, flux: float, reluctance: float
 ) -> dict[str, float]:
     """
-    Hopkinson's Law can be applied,on any two given electrical values,
-    which can be magnetomotive,force, flux, and reluctance,
+    Hopkinson's Law can be applied, on any two given electrical values,
+    which can be magnetomotive, force, flux, and reluctance,
     and then in a Python dict return name/value pair of the zero value.
 
     >>> hopkinsons_law(magnetomotiveforce=10, flux=5, reluctance=0)
