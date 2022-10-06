@@ -6,7 +6,7 @@ run ->python insertion_sort2.py
 
 
 def insertion_sort(input_list: list) -> list:
-
+  
     """
     Examples:
     >>> a=[15, 10, 5, 7, 13, 8, 2]
@@ -37,17 +37,10 @@ def insertion_sort(input_list: list) -> list:
     return input_list
 
 
-# array to be sorted
-input_list = [15, 10, 5, 7, 13, 8, 2]
-print("Unsorted array:")
-print(input_list)
-# method call
-insertion_sort(input_list)
-
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
     input = input("Enter comma separated number:\n").strip()
-    list = [int(item) for item in input.split(",")]
-    print(f"{insertion_sort(list) = }")
+    unsortedlist = [int(item) for item in input.split(",")]
+    print(f"{insertion_sort(unsortedlist) = }")
