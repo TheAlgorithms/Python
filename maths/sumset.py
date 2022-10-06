@@ -8,7 +8,7 @@ Source:
 """
 
 
-def sumset(A: set, B: set) -> set:
+def sumset(set_a: set, set_b: set) -> set:
     """
     :param first set: a set of numbers
     :param second set: a set of numbers
@@ -25,10 +25,10 @@ def sumset(A: set, B: set) -> set:
     ...
     AssertionError: The input value of [B=3] is not a set
     """
-    assert isinstance(A, set), f"The input value of [A={A}] is not a set"
-    assert isinstance(B, set), f"The input value of [B={B}] is not a set"
+    assert isinstance(set_a, set), f"The input value of [set_a={set_a}] is not a set"
+    assert isinstance(set_b, set), f"The input value of [B={set_b}] is not a set"
 
-    return {a + b for a in A for b in B}
+    return {a + b for a in set_a for b in set_b}
 
 
 if __name__ == "__main__":
