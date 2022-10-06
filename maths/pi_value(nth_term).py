@@ -34,6 +34,7 @@ def pi_d(n_d: int) -> Decimal:
         result = result**-1
 
         return round(result, n_d)
+    return(result)
 
 
 if __name__ == "__main__":
