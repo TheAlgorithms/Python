@@ -86,7 +86,7 @@ class Polynomial:
 
         return Polynomial(self.degree + polynomial_2.degree, coefficients)
 
-    def evaluate(self, x: int | float) -> int | float:
+    def evaluate(self, subtitution: int | float) -> int | float:
         """
         Evaluates the polynomial at x.
         >>> p = Polynomial(2, [1, 2, 3])
@@ -95,7 +95,7 @@ class Polynomial:
         """
         result: int | float = 0
         for i in range(self.degree + 1):
-            result += self.coefficients[i] * (x**i)
+            result += self.coefficients[i] * (subtitution**i)
         return result
 
     def __str__(self) -> str:
