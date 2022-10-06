@@ -1,7 +1,7 @@
 # Shree Ganeshaya Namah:
 # Shambhu
 
-#Auther: Pradhuman Goswami
+# Auther: Pradhuman Goswami
 
 # Checkout the wiki page for this algorithm here https://en.wikipedia.org/wiki/Quicksort
 
@@ -14,7 +14,7 @@
 # So, what are we waiting for? Let's do it without further ado.
 
 
-def quick(arr: list)-> list:
+def quick(arr: list) -> list:
     if len(arr) <= 1:
         return arr
     pivot = arr[-1]
