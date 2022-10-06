@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 
-def longestPalindrome(s) -> str:
+def longest_palindrome(s) -> str:
     """
     dp[i][j] means whether s[i] to s[j] is a panlindrome
 
