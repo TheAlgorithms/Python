@@ -124,12 +124,6 @@ class LsbSteganography:
     decrypting....
     halo
 
-    >>> main()
-    Encrypting....
-    save success
-    decrypting....
-    hello world
-
     """
 
     def __init__(self, abjad: str, img_path: str) -> None:
@@ -253,7 +247,17 @@ class LsbSteganography:
         return final_result
 
 
-def main():
+def main() -> None:
+    """
+
+    >>> main()
+    Encrypting....
+    save success
+    decrypting....
+    hello world
+
+
+    """
     abjad = "abcdefghijklmnopqrstuvwxyz 1234567890`!?"
     message = "Hello World"
     path = "image_assets/original_image.png"
