@@ -7,7 +7,7 @@ https://en.wikipedia.org/wiki/Percentage
 """
 
 
-def percent(first_num: float, second_num: float) -> float:
+def percent(first_num: float | int, second_num: float| int) -> float:
     return (first_num / second_num) * 100
 
 
