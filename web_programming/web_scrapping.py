@@ -5,101 +5,88 @@ import bs4
 import requests
 
 
-def scrap_info(request_url: str) -> None:
+def scrap_info(request_url: str) -> dict:
     res = requests.get(request_url)
 
     soup = bs4.BeautifulSoup(res.text, "lxml")
 
-    meta_info = {}
+    webpage_metadata = {}
     language = str(soup.html.get("lang"))
+    print("Language is ",language)
     if language == "None":
-        meta_info["language"] = "Not mentioned"
+        webpage_metadata["language"] = "Not mentioned"
     else:
-        meta_info["language"] = language
+        webpage_metadata["language"] = language
     charset = str(soup.meta.get("charset"))
     if charset == "None":
-        meta_info["charset"] = "Not mentioned"
+        webpage_metadata["charset"] = "Not mentioned"
     else:
-        meta_info["charset"] = charset
+        webpage_metadata["charset"] = charset
 
     try:
-        title = soup.find("meta", property="og:title")["content"]
-        if title:
-            meta_info["title"] = title
+        if title := soup.find("meta", property="og:title")["content"]:
+            webpage_metadata["title"] = title
     except KeyError:
         try:
-            title = soup.find("meta", attrs={"name": "title"})["content"]
-            if title:
-                meta_info["title"] = title
+            if title := soup.find("meta", attrs={"name": "title"})["content"]:
+                webpage_metadata["title"] = title
         except KeyError:
-            meta_info["title"] = "Not mentioned"
+            webpage_metadata["title"] = "Not mentioned"
 
     try:
-        type_ = soup.find("meta", property="og:type")["content"]
-        if type_:
-            meta_info["type"] = type_
+        if type_ := soup.find("meta", property="og:type")["content"]:
+            webpage_metadata["type"] = type_
     except KeyError:
         try:
-            type_ = soup.find("meta", attrs={"name": "type"})["content"]
-            if type_:
-                meta_info["type"] = type_
+            if type_ := soup.find("meta", attrs={"name": "type"})["content"]:
+                webpage_metadata["type"] = type_
         except KeyError:
-            meta_info["type"] = "Not mentioned"
+            webpage_metadata["type"] = "Not mentioned"
 
     try:
-        description = soup.find("meta", property="og:description")["content"]
-        if description:
-            meta_info["description"] = description
+        if description := soup.find("meta", property="og:description")["content"]:
+            webpage_metadata["description"] = description
     except KeyError:
         try:
-            description = soup.find("meta", attrs={"name": "description"})["content"]
-            if description:
-                meta_info["description"] = description
+            if description := soup.find("meta", attrs={"name": "description"})["content"]:
+                webpage_metadata["description"] = description
         except KeyError:
-            meta_info["description"] = "Not mentioned"
+            webpage_metadata["description"] = "Not mentioned"
 
     try:
-        site_name = soup.find("meta", property="og:site_name")["content"]
-        if site_name:
-            meta_info["site_name"] = site_name
+        if site_name := soup.find("meta", property="og:site_name")["content"]:
+            webpage_metadata["site_name"] = site_name
     except KeyError:
         try:
-            site_name = soup.find("meta", attrs={"name": "site_name"})["content"]
-            if site_name:
-                meta_info["site_name"] = site_name
+            if site_name := soup.find("meta", attrs={"name": "site_name"})["content"]:
+                webpage_metadata["site_name"] = site_name
         except KeyError:
-            meta_info["site_name"] = "Not mentioned"
+            webpage_metadata["site_name"] = "Not mentioned"
 
     try:
-        image = soup.find("meta", property="og:image")["content"]
-        if image:
-            meta_info["image"] = image
+        if image := soup.find("meta", property="og:image")["content"]:
+            webpage_metadata["image"] = image
     except KeyError:
         try:
-            image = soup.find("meta", attrs={"name": "image"})["content"]
-            if image:
-                meta_info["image"] = image
+            if image := soup.find("meta", attrs={"name": "image"})["content"]:
+                webpage_metadata["image"] = image
         except KeyError:
-            meta_info["image"] = "Not mentioned"
+            webpage_metadata["image"] = "Not mentioned"
 
     try:
-        keywords = soup.find("meta", property="og:keywords")["content"]
-        if keywords:
-            meta_info["keywords"] = keywords
+        if keywords := soup.find("meta", property="og:keywords")["content"]:
+            webpage_metadata["keywords"] = keywords
     except KeyError:
         try:
-            keywords = soup.find("meta", attrs={"name": "keywords"})["content"]
-            if keywords:
-                meta_info["keywords"] = keywords
+            if keywords := soup.find("meta", attrs={"name": "keywords"})["content"]:
+                webpage_metadata["keywords"] = keywords
         except KeyError:
-            meta_info["keywords"] = "Not mentioned"
+            webpage_metadata["keywords"] = "Not mentioned"
 
-    if meta_info["title"] == "Not mentioned":
-        title = soup.find("title").text
-        meta_info["title"] = title
-    print(meta_info)
+    if webpage_metadata["title"] == "Not mentioned":
+        webpage_metadata["title"] = soup.find("title").text
     meta_list = []
-    for key, value in meta_info.items():
+    for key, value in webpage_metadata.items():
         l = []
         l.insert(0, key)
         l.append(value)
@@ -109,10 +96,9 @@ def scrap_info(request_url: str) -> None:
     allhrefs = set()
     for a in soup.find_all("a", href=True):
         if a["href"].find("https://") == -1:
-            allhrefs.add("https://machinelearningmastery.com/blog/" + a["href"])
+            allhrefs.add(request_url + a["href"])
         else:
             allhrefs.add(a["href"])
-    print(allhrefs)
     hrefs = list(allhrefs)
     hrefs.insert(0, "links")
     all_tags.append(hrefs)
@@ -120,7 +106,6 @@ def scrap_info(request_url: str) -> None:
 
     for img in soup.find_all("img", src=True):
         all_images.add(img["src"])
-    print(all_images)
     images = list(all_images)
     images.insert(0, "images")
     all_tags.append(images)
@@ -131,14 +116,18 @@ def scrap_info(request_url: str) -> None:
         text = text.strip("\n")
         text = text.strip("\t")
         all_h2.add(text)
-    print(all_h2)
     h2 = list(all_h2)
     h2.insert(0, "h2")
     all_tags.append(h2)
+    
+    write_in_csv(webpage_metadata, all_tags)
+    return webpage_metadata
 
-    print(all_tags)
-
+def write_in_csv(webpage_metadata, all_tags):
     with open("webpage_info.csv", "w", newline="") as f:
         writer = csv.writer(f)
-        writer.writerows(meta_list)
+        writer.writerows(webpage_metadata)
         writer.writerows(all_tags)
+
+if __name__ == '__main__':
+    scrap_info("https://techcrunch.com/")
