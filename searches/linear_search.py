@@ -53,7 +53,7 @@ def rec_linear_search(sequence: list, index: int, target: int) -> int:
     >>> rec_linear_search([0, 30, 500, 100, 700], 5, -6)
     -1
     """
-    if index < 0:
+    if index < 0 or index >=len(sequence):
         raise Exception("Invalid size bound!")
     if index == 0 and sequence[index] != target:
         return -1
