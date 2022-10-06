@@ -14,8 +14,8 @@ class lsb_steganography:
         self.abjad = abjad
         self.img_path = img_path
 
-    def set_message(self, message):
-        self.message = message.lower() + "`"
+    def set_message(self, message, key):
+        self.message = message.lower() + key 
 
     def int_to_binary(self, words):
         return format(words,'08b')
@@ -68,7 +68,6 @@ class lsb_steganography:
                         words[-1] = self.preprocessing_encrypt_message()[i]
                         new_binary = ''.join(words)
                         image_pixel[height][width] = new_binary
-                        print(image_pixel[height][width])
                         i+=1
                     else:
                         break  
@@ -76,13 +75,6 @@ class lsb_steganography:
                 if(i>=len(self.preprocessing_encrypt_message())):
                     break  
 
-        # while i < len(self.preprocessing_encrypt_message()):
-
-        # print(len(image_pixel))
-
-        # cv2.imshow('image',image_pixel)
-        # cv2.waitKey(0)
-        # cv2.destroyAllWindows()
         return image_pixel
 
     def generate_encrypted_image(self):
@@ -97,35 +89,42 @@ class lsb_steganography:
                 result_width.append(pixel_width)
 
             final_pixel.append(result_width)
-        print(final_pixel)
         ar = np.asarray(final_pixel)
-        cv2.imwrite("Hasil.png", ar)
-        # return final_pixel
+        cv2.imwrite("Result.png", ar)
         print("save success")
-
-        # cv2.imshow('image',img)
-        # cv2.waitKey(0)
-        # cv2.destroyAllWindows()
- 
     
         
-    def lsb_decrypt(self):
-        pass
+    def lsb_decrypt(self, key):
+        image_pixel = self.preprocessing_image()
+        words = ''
+        for height in range(len(image_pixel)):
+            for width in range(len(image_pixel[height])):
+                words += image_pixel[height][width][-1]
 
-
+        words_character = []
+        for index in range(0, len(words), 8):
+            int_index = self.binary_to_int(words[index:index+8])
+            new_word = self.abjad[int_index]
+            if new_word == key:
+                break
+            else:
+                words_character.append(new_word)
+        final_result = ''.join(words_character)
+        return final_result
 
 def main():
     abjad = "abcdefghijklmnopqrstuvwxyz 1234567890`"
     message = "Hello Goddamn Fucking World"
-    path = "image_assets/lsb.png"
+    path = "image_assets/original_image.png"
+    path_decrypt = "Result.png"
+    key = '`'
 
-    algo = lsb_steganography(abjad, path)
-    algo.set_message(message)
-    algo.generate_encrypted_image()
+    algo_encrypt = lsb_steganography(abjad, path)
+    algo_encrypt.set_message(message,key)
+    algo_encrypt.generate_encrypted_image()
 
-    
-
-
+    algo_decrypt = 
+    print(algo.lsb_decrypt(key))
 
 
 if __name__ == "__main__":
