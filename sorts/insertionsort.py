@@ -5,7 +5,7 @@ run ->python insertion_sort2.py
 """
 
 
-def insertion_sort(input_list) -> list:
+def insertion_sort(input_list : list) -> list:
 
     """
     Examples:
@@ -13,22 +13,18 @@ def insertion_sort(input_list) -> list:
     >>> insertion_sort(a)
     Sorted array:
     [2, 5, 7, 8, 10, 13, 15]
-
     >>> a=[-6, -5, -12]
     >>> insertion_sort(a)
     Sorted array:
     [-12, -6, -5]
-
     >>> a=['s', 'h', 'y']
     >>> insertion_sort(a)
     Sorted array:
     ['h', 's', 'y']
-
     >>> a=[]
     >>> insertion_sort(a)
     Sorted array:
     []
-
     """
     for i in range(1, len(input_list)):
         temp = input_list[i]
