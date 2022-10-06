@@ -5,7 +5,6 @@ getcontext().prec = 1000
 # max possible digits = 1000
 
 
-
 def pi_d(n_d) -> float:
 
     numerator = Decimal(0)
@@ -23,6 +22,7 @@ def pi_d(n_d) -> float:
         result = result**-1
 
         return round(result, n_d)
+
 
 if __name__ == "__main__":
     num = int(input("\nEnter the num of digits (0-999): "))
