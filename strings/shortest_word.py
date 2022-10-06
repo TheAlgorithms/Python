@@ -1,6 +1,6 @@
 def shortest_word(sentence: str) -> str:
     """
-    Find the shortest word in a sentence. 
+    Find the shortest word in a sentence.
     If there are multiple words that are the same length, return the first one.
     
     www.geeksforgeeks.org/python-program-to-find-the-smallest-word-in-a-sentence/
