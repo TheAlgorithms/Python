@@ -8,8 +8,6 @@ This method prints a substring
 >>> print_sub_str("abcaaaaabc", 3, 7)
 None
 """
-
-
 def print_sub_str(s: str, low: int, high: int) -> None:
     """
     Inputs:
@@ -28,11 +26,9 @@ def print_sub_str(s: str, low: int, high: int) -> None:
 This method finds the starting and ending index of the longest palindrome substring.
 It also returns the length.
 
->>> longest_pal_substr("abcaaaaaabc")
+>>> longest_pal_substr("abcaaaaabc")
 5
 """
-
-
 def longest_pal_substr(s: str) -> int:
     """
     Inputs:
