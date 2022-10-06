@@ -1,6 +1,6 @@
 def sort_by_datatype(array: list) -> None:
     """
-    Inplace sorting of an heterogenous (str,int,float) list with numbers on the
+    Inplace sorting of an heterogeneous (str,int,float) list with numbers on the
     left side of the array and strings on the right side of the array (default)
     Parameters
         array : 1D array of items of types int, float and/or str
