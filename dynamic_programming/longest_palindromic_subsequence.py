@@ -6,8 +6,8 @@
 #############################
 from __future__ import annotations
 
-
 #  sentence is string parameter for the function
+
 
 def longest_palindrome(sentence: str) -> str:
     """
@@ -32,8 +32,8 @@ def longest_palindrome(sentence: str) -> str:
     # bottom up DP always start from base case, so we will scan backward
     for i in range(len(sentence) - 1, -1, -1):
         for j in range(i + 1, len(sentence)):
-            if ( sentence[i] == sentence[j] ): 
-            # if i+1=j and they are same character,of course this is a panlindrome
+            if sentence[i] == sentence[j]:
+                # if i+1=j and they are same character,of course this is a panlindrome
                 if j - i == 1:
                     dp[i][j] = True
                 else:  # if the substring between i and j are panlindrome
