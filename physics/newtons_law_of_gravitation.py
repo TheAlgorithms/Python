@@ -56,7 +56,7 @@ def gravitational_law(
     >>> gravitational_law(force=36337.283, mass_1=0, mass_2=0, distance=35584)
     Traceback (most recent call last):
         ...
-    ValueError: Only one argument must be 0
+    ValueError: One and only one argument must be 0
 
     >>> gravitational_law(force=36337.283, mass_1=-674, mass_2=0, distance=35584)
     Traceback (most recent call last):
@@ -91,7 +91,7 @@ def gravitational_law(
     elif distance == 0:
         distance = (GRAVITATIONAL_CONSTANT * product_of_mass / (force)) ** 0.5
         return {"distance": distance}
-    raise ValueError("One argument must be 0")
+    raise ValueError("One and only one argument must be 0")
 
 
 # Run doctest
