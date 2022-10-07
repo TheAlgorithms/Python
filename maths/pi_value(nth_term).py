@@ -20,23 +20,24 @@ def pi_d(n_d: int) -> Decimal:
     """
 
     k = Decimal(1)
-    
+
     # Initialize sum
     s = Decimal(0)
-    
+
     for i in range(1000000):
-    
+
         # even index elements are positive
         if i % 2 == 0:
-            s += 4/k
+            s += 4 / k
         else:
-    
+
             # odd index elements are negative
-            s -= 4/k
-    
+            s -= 4 / k
+
         # denominator is odd
         k += 2
-    return round(s,n_d)
+    return round(s, n_d)
+
 
 if __name__ == "__main__":
     num = int(input("\nEnter the num of digits (0-999): "))
