@@ -8,8 +8,10 @@ Note that only the integer weights 0-1 knapsack problem is solvable
  using dynamic programming.
 """
 
-cache = None
 from typing import Sequence
+
+cache = None
+
 
 def knapsack(max_weight: int, weights: Sequence[int], values: Sequence[int], n: int):
     """
