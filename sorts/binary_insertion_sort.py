@@ -11,6 +11,7 @@ Auxiliary Space: O(logn)
 
 """
 
+
 def binary_search(arr, N, key) -> int:
     low = 0
     high = N
@@ -21,9 +22,10 @@ def binary_search(arr, N, key) -> int:
         else:
             high = mid
     return low
-    
-def insertion_sort(arr) -> None : 
-    for i in range (1,len(arr)):
+
+
+def insertion_sort(arr) -> None:
+    for i in range(1, len(arr)):
         key = arr[i]
         pos = binary_search(arr, i, key)
         j = i
@@ -31,7 +33,8 @@ def insertion_sort(arr) -> None :
             arr[j] = arr[j - 1]
             j = j - 1
         arr[pos] = key
- 
+
+
 user_input = input("Enter numbers separated by a comma:").strip()
 arr = [int(item) for item in user_input.split(",")]
 
