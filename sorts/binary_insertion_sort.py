@@ -11,7 +11,8 @@ Auxiliary Space: O(logn)
 
 """
 
-def binary_search(arr: list[int], N: int, key:int ) -> int:
+
+def binary_search(arr: list[int], N: int, key: int) -> int:
     low = 0
     high = N
     while low < high:
@@ -21,6 +22,7 @@ def binary_search(arr: list[int], N: int, key:int ) -> int:
         else:
             high = mid
     return low
+
 
 def insertion_sort(arr: list[int]) -> None:
     for i in range(1, len(arr)):
@@ -32,13 +34,14 @@ def insertion_sort(arr: list[int]) -> None:
             j = j - 1
         arr[pos] = key
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
 
     user_input = input("Enter numbers separated by a comma:").strip()
-    arr= [int(item) for item in user_input.split(",")]
+    arr = [int(item) for item in user_input.split(",")]
     insertion_sort(arr)
     for i in range(len(arr)):
         print(arr[i])
