@@ -1,3 +1,4 @@
+'''Online Reference: https://www.geeksforgeeks.org/selection-sort/ '''
 def selectSort(arr):
     for i in range(0,len(arr)-1):
         #i is the index we will operate on, this iteration, thus we shall initialise from i
