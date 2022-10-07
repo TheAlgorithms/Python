@@ -1,4 +1,6 @@
 # https://en.wikipedia.org/wiki/Ohm%27s_law
+# Ohm's Law is the term used in physics which states that voltage across a conductor is directly proportional to the current flowing in it.
+# V = RI where R = Resistance and I = Current
 from __future__ import annotations
 
 
