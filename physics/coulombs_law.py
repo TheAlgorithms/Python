@@ -1,9 +1,13 @@
 """
-Title : Finding the value of either Coulomb Force, one of the charges or distance
+Title : Finding the value of either Coulomb Force,
+one of the charges or distance
 provided that the other three parameters are given.
-Description : Coulomb's inverse-square law, or simply Coulomb's law, is an experimental law
-of physics that quantifies the amount of force between two stationary, electrically charged particles.
-The electric force between charged bodies at rest is conventionally called electrostatic force or Coulomb force
+Description : Coulomb's inverse-square law, 
+or simply Coulomb's law, is an experimental law
+of physics that quantifies the amount of force between
+two stationary, electrically charged particles.
+The electric force between charged bodies at rest is 
+conventionally called electrostatic force or Coulomb force
 The equation for the Coulomb Force is as follows:
 F = (K * |charge_1| * |charge_2|) / (distance)^2
 Source :
@@ -42,7 +46,7 @@ def coulombs_law(
     >>> coulombs_law(force=36337.283, charge_1=-674, charge_2=0, distance=35584)
     Traceback (most recent call last):
         ...
-    ValueError: Magnitude of Coulombs force can not be negative
+    ValueError: Magnitude of charge can not be negative
     >>> coulombs_law(force=-847938e12, charge_1=674, charge_2=0, distance=9374)
     Traceback (most recent call last):
         ...
