@@ -47,8 +47,10 @@ def mat_bin_search(value: int, matrix: list) -> list:
     if matrix[index][0] == value:
         return [index, 0]
     while matrix[index][0] < value:
+        print(index)
         if binary_search(matrix[index], 0, len(matrix[index]) - 1, value) != -1:
             r = binary_search(matrix[index], 0, len(matrix[index]) - 1, value)
             return [index, r]
         index += 1
-    return [-1, -1]
+        if index >= len(matrix):
+            return [-1, -1]
