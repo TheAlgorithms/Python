@@ -3,9 +3,14 @@ Illustrate how to implement binary insertion sort algorithm.
 
 Author: REHAN SHAIKH
 
-Binary Insertion Sort: Binary insertion sort is a sorting algorithm which uses insertion sort with binary search rather than linear search to find the position where the element should be inserted . The advantage is that we reduce the number of comparisons for inserting one element from O(N) to O(log N).
+Binary Insertion Sort: Binary insertion sort is a sorting 
+algorithm which uses insertion sort with binary search rather
+than linear search to find the position where the element 
+should be inserted . The advantage is that we reduce the number
+of comparisons for inserting one element from O(N) to O(log N).
 
-Time Complexity: O(n2) is the worst case running time because of the series of swaps required for each insertion
+Time Complexity: O(n2) is the worst case running time because
+of the series of swaps required for each insertion
 
 Auxiliary Space: O(logn)
 
@@ -17,7 +22,6 @@ For manual testing run:
 python binary_insertion_sort.py
 
 """
-
 
 def binary_search_alg(arr: list, length: int, key: int) -> int:
     """
@@ -33,7 +37,7 @@ def binary_search_alg(arr: list, length: int, key: int) -> int:
     2
     >>> binary_search_alg([7, 3, 9, 5, 6], 4, 6)
     2
-
+    
     """
     low = 0
     high = length
@@ -45,9 +49,9 @@ def binary_search_alg(arr: list, length: int, key: int) -> int:
             high = mid
     return low
 
-
-def insertion_sort(arr: list) -> list:
-    """Pure implementation of binary insertion sort algorithm in Python
+def insertion_sort(arr: list) -> list: 
+    """ 
+    Pure implementation of binary insertion sort algorithm in Python
 
     :param arr: list
     :return: list
@@ -55,9 +59,9 @@ def insertion_sort(arr: list) -> list:
     Examples:
     >>> insertion_sort([7, 3, 9, 5, 2])
     [2, 3, 5, 7, 9]
-
+    
     """
-    for i in range(1, len(arr)):
+    for i in range (1,len(arr)):
         key = arr[i]
         pos = binary_search_alg(arr, i, key)
         j = i
@@ -66,7 +70,6 @@ def insertion_sort(arr: list) -> list:
             j = j - 1
         arr[pos] = key
     return arr
-
 
 if __name__ == "__main__":
     import doctest
