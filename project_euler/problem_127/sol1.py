@@ -57,10 +57,6 @@ def solution(limit: int = 120000) -> int:
     12523
     >>> solution(10000)
     441085
-    >>> solution(100000)
-    14125034
-    >>> solution(120000)
-    18407904
     """
 
     # Modified Sieve of Eratosthenes
@@ -88,4 +84,4 @@ def solution(limit: int = 120000) -> int:
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(solution(1000))
