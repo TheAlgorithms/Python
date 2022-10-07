@@ -2,11 +2,11 @@
 Title : Finding the value of either Coulomb Force,
 one of the charges or distance
 provided that the other three parameters are given.
-Description : Coulomb's inverse-square law, 
+Description : Coulomb's inverse-square law,
 or simply Coulomb's law, is an experimental law
 of physics that quantifies the amount of force between
 two stationary, electrically charged particles.
-The electric force between charged bodies at rest is 
+The electric force between charged bodies at rest is
 conventionally called electrostatic force or Coulomb force
 The equation for the Coulomb Force is as follows:
 F = (K * |charge_1| * |charge_2|) / (distance)^2
