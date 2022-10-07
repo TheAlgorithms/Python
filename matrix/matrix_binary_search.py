@@ -9,7 +9,6 @@ def binary_search(array: list, value: int) -> int:
     >>> matrix = [1, 4, 7, 11, 15]
     >>> binary_search(matrix, 0, len(matrix) - 1, 1)
     0
-    >>> target = 23
     >>> binary_search(matrix, 0, len(matrix) - 1, 23)
     -1
     """
