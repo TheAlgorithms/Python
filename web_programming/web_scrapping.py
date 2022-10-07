@@ -8,13 +8,14 @@ from bs4 import BeautifulSoup
 def get_soup(url: str) -> BeautifulSoup:
     return bs4.BeautifulSoup(requests.get(url).text, "html.parser")
 
+
 def get_webpage_metadata(url: str) -> dict:
     soup = get_soup(url)
     webpage_metadata = {
         "language": soup.html.get("lang") or "Not mentioned",
         "charset": soup.meta.get("charset") or "Not mentioned",
     }
-    
+
     try:
         if title := soup.find("meta", property="og:title")["content"]:
             webpage_metadata["title"] = title
@@ -24,7 +25,7 @@ def get_webpage_metadata(url: str) -> dict:
                 webpage_metadata["title"] = title
         except KeyError:
             webpage_metadata["title"] = "Not mentioned"
-            
+
     try:
         if type_ := soup.find("meta", property="og:type")["content"]:
             webpage_metadata["type"] = type_
@@ -34,7 +35,7 @@ def get_webpage_metadata(url: str) -> dict:
                 webpage_metadata["type"] = type_
         except KeyError:
             webpage_metadata["type"] = "Not mentioned"
-            
+
     try:
         if description := soup.find("meta", property="og:description")["content"]:
             webpage_metadata["description"] = description
@@ -130,4 +131,3 @@ def write_webpage_metadata_to_csv(webpage_metadata: dict) -> None:
 
 if __name__ == "__main__":
     write_webpage_metadata_to_csv(get_webpage_metadata("https://techcrunch.com/"))
-    
