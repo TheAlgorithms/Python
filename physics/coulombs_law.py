@@ -9,9 +9,8 @@ two stationary, electrically charged particles.
 The electric force between charged bodies at rest is
 conventionally called electrostatic force or Coulomb force
 The equation for the Coulomb Force is as follows:
-F = (K * |charge_1| * |charge_2|) / (distance)^2
-Source :
-- https://en.wikipedia.org/wiki/Coulomb%27s_law
+F = (K * |charge_1| * |charge_2|) / (distance)^
+
 """
 
 
