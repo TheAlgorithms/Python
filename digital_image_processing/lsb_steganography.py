@@ -24,8 +24,10 @@ Author Note : I contribute this simple algorithm to celebrate my friend
 import cv2
 import numpy as np
 
+
 def int_to_binary(words: int) -> str:
     return format(words, "08b")
+
 
 def binary_to_int(words: str) -> int:
     return int(words, 2)
@@ -80,13 +82,14 @@ def lsb_encrypt(message: str, abjad: str, img_path: str, key: str) -> str:
         result_width = []
         for width in range(len(image_pixel[height])):
             pixel_width = image_pixel[height][width]
-                
+
             result_width.append(binary_to_int(pixel_width))
 
         final_pixel.append(result_width)
     ar = np.asarray(final_pixel)
     cv2.imwrite("result.png", ar)
     return "save success"
+
 
 def lsb_decrypt(img_path: str, abjad: str, key: str) -> str:
     """
@@ -107,7 +110,6 @@ def lsb_decrypt(img_path: str, abjad: str, key: str) -> str:
         result_binary.append(result_width)
     image_pixel = result_binary
 
-        
     words = ""
     for height in range(len(image_pixel)):
         for width in range(len(image_pixel[height])):
