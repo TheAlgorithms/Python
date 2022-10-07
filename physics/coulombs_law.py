@@ -32,7 +32,7 @@ def coulombs_law(
     Returns the value of one of the parameters specified as 0, provided the values of
     other parameters are given.
     >>> coulombs_law(force=0, charge_1=10, charge_2=1, distance=1)
-    {'force': 8.988e10}
+    {'force': 89880000000.0}
     >>> coulombs_law(force=8.988e9, charge_1=0, charge_2=10, distance=0.1)
     {'charge_1': 0.0010000000000000002}
     >>> coulombs_law(force=36337.283, charge_1=0, charge_2=0, distance=35584)
