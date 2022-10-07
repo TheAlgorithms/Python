@@ -11,27 +11,18 @@ Auxiliary Space: O(logn)
 
 """
 
-"""
+
+def binary_search(arr: list, length: int, key: int) -> int:
+    """
     Pure implementation of binary search algorithm in Python
 
     Examples:
     >>> binary_search([7, 3, 9, 5, 2], 4, 5)
     2
+    >>> binary_search([7, 3, 9, 5, 2], 4, 9)
+    4
 
-"""
-
-"""
-    Pure implementation of binary insertion sort algorithm in Python
-
-    Examples:
-    >>> insertion_sort([7, 3, 9, 5, 2])
-    [2, 3, 5, 7, 9]
-
-"""
-
-
-def binary_search(arr: list, length: int, key: int) -> int:
-
+    """
     low = 0
     high = length
     while low < high:
@@ -42,10 +33,18 @@ def binary_search(arr: list, length: int, key: int) -> int:
             high = mid
     return low
 
+def insertion_sort(arr: list) -> None : 
+    """
+    Pure implementation of binary insertion sort algorithm in Python
 
-def insertion_sort(arr: list) -> None:
+    Examples:
+    >>> insertion_sort([7, 3, 9, 5, 2])
+    [2, 3, 5, 7, 9]
+    >>> insertion_sort([9, 2, 3, 3, 8])
+    [2, 3, 3, 8, 9]
 
-    for i in range(1, len(arr)):
+    """
+    for i in range (1,len(arr)):
         key = arr[i]
         pos = binary_search(arr, i, key)
         j = i
@@ -55,12 +54,11 @@ def insertion_sort(arr: list) -> None:
         arr[pos] = key
     return arr
 
-
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
 
     user_input = input("Enter numbers separated by a comma:").strip()
-    arr = [int(item) for item in user_input.split(",")]
+    arr= [int(item) for item in user_input.split(",")]
     print(insertion_sort(arr))
