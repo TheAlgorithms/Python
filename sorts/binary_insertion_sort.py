@@ -18,49 +18,20 @@ python binary_insertion_sort.py
 
 """
 
-"""
-    Pure implementation of binary search algorithm in Python
-
-    Examples:
-    >>> binary_search([7, 3, 9, 5, 2], 4, 5)
-    2
-    >>> binary_search([7, 3, 9, 5, 2], 4, 9)
-    4
-
-"""
-
-""" Pure implementation of binary insertion sort algorithm in Python
-
-    Examples:
-    >>> insertion_sort([7, 3, 9, 5, 2])
-    [2, 3, 5, 7, 9]
-    >>> insertion_sort([7, 3, 9, 5, 2]) == sorted([7, 3, 9, 5, 2])
-    True
-    >>> insertion_sort([]) == sorted([])
-    True
-    >>> insertion_sort([-2, -45, -5]) == sorted([-2, -45, -5])
-    True
-    >>> insertion_sort([-23, 0, 6, -4, 34]) == sorted([-23, 0, 6, -4, 34])
-    True
-    >>> insertion_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
-    True
-    >>> import random
-    >>> collection = random.sample(range(-50, 50), 50)
-    >>> insertion_sort(collection) == sorted(collection)
-    True
-"""
-
-
 def binary_search(arr: list, length: int, key: int) -> int:
     """
     Pure implementation of binary search algorithm in Python
 
+    :param collection: some mutable ordered collection with heterogeneous
+    comparable items inside
+    :return: the same collection ordered by ascending
+
     Examples:
     >>> binary_search([7, 3, 9, 5, 2], 4, 5)
     2
     >>> binary_search([7, 3, 9, 5, 2], 4, 9)
     4
-
+    
     """
     low = 0
     high = length
@@ -72,10 +43,13 @@ def binary_search(arr: list, length: int, key: int) -> int:
             high = mid
     return low
 
+def insertion_sort(arr: list) -> None : 
+    """ Pure implementation of binary insertion sort algorithm in Python
 
-def insertion_sort(arr: list) -> None:
-    """Pure implementation of binary insertion sort algorithm in Python
-
+    :param collection: some mutable ordered collection with heterogeneous
+    comparable items inside
+    :return: the same collection ordered by ascending
+    
     Examples:
     >>> insertion_sort([7, 3, 9, 5, 2])
     [2, 3, 5, 7, 9]
@@ -94,7 +68,7 @@ def insertion_sort(arr: list) -> None:
     >>> insertion_sort(collection) == sorted(collection)
     True
     """
-    for i in range(1, len(arr)):
+    for i in range (1,len(arr)):
         key = arr[i]
         pos = binary_search(arr, i, key)
         j = i
@@ -103,7 +77,6 @@ def insertion_sort(arr: list) -> None:
             j = j - 1
         arr[pos] = key
     return arr
-
 
 if __name__ == "__main__":
     from doctest import testmod
