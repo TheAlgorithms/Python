@@ -7,7 +7,6 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     upper_bound: the highest index for the binary search algorithm
     value : the value meant to be searched
     >>> matrix = [1, 4, 7, 11, 15]
-    >>> target = 1
     >>> binary_search(matrix, 0, len(matrix) - 1, 1)
     0
     >>> target = 23
