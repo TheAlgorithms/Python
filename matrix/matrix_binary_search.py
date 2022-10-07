@@ -2,7 +2,7 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     """
     This function carries out Binary search on a 1d array and
     return -1 if it do not exist
-    Array: A 1d sorted array
+    array: A 1d sorted array
     lower_bound: the lowest index for the binary search algorithm
     upper_bound: the highest index for the binary search algorithm
     value : the value meant to be searched
