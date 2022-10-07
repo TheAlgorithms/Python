@@ -49,7 +49,6 @@ def Coulombs_law(
     ValueError: Magnitude of Coulombs force can not be negative
     """
 
-
     product_of_charge = charge_1 * charge_2
 
     if (force, charge_1, charge_2, distance).count(0) != 1:
@@ -75,12 +74,10 @@ def Coulombs_law(
     raise ValueError("One and only one argument must be 0")
 
 
-
 if __name__ == "__main__":
-    print('Enter the magnitude of following  values and enter 0 in unknown value.')
-    force  =  float(input('Enter the magnitude of force:'))
-    charge_1 = float(input('Enter the magnitude of charge_1:'))
-    charge_2 = float(input('Enter the magnitude of charge_2:'))
-    distance = float(input('Enter the magnitude of distance:'))
-    print(Coulombs_law(
-    force, charge_1, charge_2, distance))
+    print("Enter the magnitude of following  values and enter 0 in unknown value.")
+    force = float(input("Enter the magnitude of force:"))
+    charge_1 = float(input("Enter the magnitude of charge_1:"))
+    charge_2 = float(input("Enter the magnitude of charge_2:"))
+    distance = float(input("Enter the magnitude of distance:"))
+    print(Coulombs_law(force, charge_1, charge_2, distance))
