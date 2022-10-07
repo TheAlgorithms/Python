@@ -40,6 +40,7 @@ def is_valid(code: int) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     """
     Enter a barcode.
