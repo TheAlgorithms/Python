@@ -1,4 +1,4 @@
-def is_number_palindromic(num : int) -> bool:
+def is_number_palindromic(num: int) -> bool:
     """
     This function checks if given number is palindromic or not.
     >>> is_number_palindromic(121)
@@ -12,7 +12,7 @@ def is_number_palindromic(num : int) -> bool:
     """
     num_rev = str(num)[::-1]
     num_rev = int(num_rev)
-    if (num == num_rev):
+    if num == num_rev:
         return True
     else:
         return False
