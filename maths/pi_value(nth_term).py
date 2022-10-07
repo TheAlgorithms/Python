@@ -8,11 +8,11 @@ def pi_d(n_d: int) -> Decimal:
     """
     Calculate the value of pi till n-digits before decimal
     >>> pi_d(0)
-    None
+    Decimal('3')
     >>> pi_d(10)
-    3.1415926536
+    Decimal('3.1415926536')
     >>> pi_d(30)
-    3.141592653589734311542867450467
+    Decimal('3.141591653589793238712643383279')
     >>> pi_d(3000)
     Traceback (most recent call last):
     ...
