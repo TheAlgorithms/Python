@@ -11,12 +11,7 @@ Auxiliary Space: O(logn)
 
 """
 
-<<<<<<< HEAD
-def binary_search(arr: list, N: int, key:int ) -> int:
-=======
-
-def binary_search(arr, N, key) -> int:
->>>>>>> c6372213067911079408475870649dbfbed27f02
+def binary_search(arr: list[int], N: int, key:int ) -> int:
     low = 0
     high = N
     while low < high:
@@ -26,16 +21,9 @@ def binary_search(arr, N, key) -> int:
         else:
             high = mid
     return low
-<<<<<<< HEAD
 
-def insertion_sort(arr: list) -> None :
-    for i in range (1,len(arr)):
-=======
-
-
-def insertion_sort(arr) -> None:
+def insertion_sort(arr: list[int]) -> None:
     for i in range(1, len(arr)):
->>>>>>> c6372213067911079408475870649dbfbed27f02
         key = arr[i]
         pos = binary_search(arr, i, key)
         j = i
@@ -43,13 +31,6 @@ def insertion_sort(arr) -> None:
             arr[j] = arr[j - 1]
             j = j - 1
         arr[pos] = key
-<<<<<<< HEAD
-=======
-
-
-user_input = input("Enter numbers separated by a comma:").strip()
-arr = [int(item) for item in user_input.split(",")]
->>>>>>> c6372213067911079408475870649dbfbed27f02
 
 if __name__ == "__main__":
     import doctest
