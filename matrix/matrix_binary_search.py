@@ -18,7 +18,7 @@ def binary_search(array: list, value: int) -> int:
     if array[r] < value:
         return binary_search(array[r + 1 : upper_bound], value)
     else:
-        return binary_search(array[lower_bound : r], value)
+        return binary_search(array[lower_bound:r], value)
 
 
 def mat_bin_search(value: int, matrix: list) -> list:
