@@ -11,29 +11,32 @@ Auxiliary Space: O(logn)
 
 """
 
+
 def binary_search(arr, N, key):
     low = 0
     high = N
-    while(low < high):
-        mid = (low + high)//2
-        if (arr[mid] <= key):
+    while low < high:
+        mid = (low + high) // 2
+        if arr[mid] <= key:
             low = mid + 1
         else:
             high = mid
     return low
-    
+
+
 def insertion_sort(arr):
-    for i in range (1,len(arr)):
+    for i in range(1, len(arr)):
         key = arr[i]
         pos = binary_search(arr, i, key)
         j = i
-        while(j > pos):
-            arr[j] = arr[j-1]
-            j = j-1
+        while j > pos:
+            arr[j] = arr[j - 1]
+            j = j - 1
         arr[pos] = key
- 
+
+
 arr = [3, 9, 2, 4, 6]
 insertion_sort(arr)
 
-for i in range (len(arr)):
+for i in range(len(arr)):
     print(arr[i])
