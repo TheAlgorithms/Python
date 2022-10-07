@@ -12,9 +12,9 @@ Auxiliary Space: O(logn)
 """
 
 
-def binary_search(arr: list[int], N: int, key: int) -> int:
+def binary_search(arr: list, length: int, key: int) -> int:
     low = 0
-    high = N
+    high = length
     while low < high:
         mid = (low + high) // 2
         if arr[mid] <= key:
@@ -23,9 +23,16 @@ def binary_search(arr: list[int], N: int, key: int) -> int:
             high = mid
     return low
 
+def insertion_sort(arr: list) -> None : 
+    """
+    Pure implementation of binary insertion sort algorithm in Python
 
-def insertion_sort(arr: list[int]) -> None:
-    for i in range(1, len(arr)):
+    Examples:
+    >>> insertion_sort([7, 3, 9, 5, 2])
+    [2, 3, 5, 7, 9]
+
+    """
+    for i in range (1,len(arr)):
         key = arr[i]
         pos = binary_search(arr, i, key)
         j = i
@@ -33,7 +40,7 @@ def insertion_sort(arr: list[int]) -> None:
             arr[j] = arr[j - 1]
             j = j - 1
         arr[pos] = key
-
+    return arr
 
 if __name__ == "__main__":
     import doctest
@@ -41,7 +48,6 @@ if __name__ == "__main__":
     doctest.testmod()
 
     user_input = input("Enter numbers separated by a comma:").strip()
-    arr = [int(item) for item in user_input.split(",")]
-    insertion_sort(arr)
-    for i in range(len(arr)):
-        print(arr[i])
+    arr= [int(item) for item in user_input.split(",")]
+    print(insertion_sort(arr))
+    
