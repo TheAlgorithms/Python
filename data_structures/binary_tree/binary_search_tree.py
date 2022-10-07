@@ -155,6 +155,46 @@ class BinarySearchTree:
         self.inorder(arr, node)  # append all values to list using inorder traversal
         return arr[k - 1]
 
+    def __get_leftmost_descendant(self, node: Node):
+        """
+        Keeps traversing left until it finds the leftmost node
+        Returns the value of the that node
+        """
+        if node.left is not None:
+            return self.__get_leftmost_descendant(node.left)
+        else:
+            return node.value
+
+    def __get_rightmost_descendant(self, node: Node):
+        """
+        Keeps traversing right until it finds the rightmost node
+        Returns the value of the that node
+        """
+        if node.right is not None:
+            return self.__get_rightmost_descendant(node.right)
+        else:
+            return node.value
+
+    def get_successor(self, value: int | str | float):
+        """
+        Returns the successor of the provided value if value is in the BST
+        Otherwise None if - no node exist with such value or
+                          - a successor does not exist
+        """
+        node = self.search(value)
+        if (node is not None) and (node.right is not None):
+            return self.__get_leftmost_descendant(node.right)
+
+    def get_predecessor(self, value: int | str | float):
+        """
+        Returns the predecessor of the provided value if it exists in the BST
+        Otherwise None if - no node exist with such value or
+                          - a predecessor does not exist
+        """
+        node = self.search(value)
+        if (node is not None) and (node.left is not None):
+            return self.__get_rightmost_descendant(node.left)
+
 
 def postorder(curr_node):
     """
@@ -212,6 +252,36 @@ def binary_search_tree():
     for i in testlist:
         t.remove(i)
         print(t)
+
+
+def test_get_successor() -> None:
+    """
+    DocString tests for get_successor method of the BinarySearchTree class
+    >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+    >>> t.get_successor(8)
+    10
+    >>> t.get_successor(5)
+    >>> t.get_successor(10)
+    13
+    >>> t.get_successor(3)
+    4
+    """
+    pass
+
+
+def test_get_predecessor() -> None:
+    """
+    Docstring tests for get_predecessor method of the BinarySearchTree class
+    >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+    >>> t.get_predecessor(8)
+    7
+    >>> t.get_predecessor(5)
+    >>> t.get_predecessor(3)
+    1
+    >>> t.get_predecessor(14)
+    13
+    """
+    pass
 
 
 if __name__ == "__main__":
