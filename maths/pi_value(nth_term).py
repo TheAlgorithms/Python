@@ -1,3 +1,10 @@
+''''
+Pi is an irrational number having non-recurring decimal values. We commonly know Pi=3.14 or Pi=22/7,
+but it is just an approximation for our ease. There are two methods to calculate the value of pi in python:
+
+Here, we are using Leibniz’s formula to find value of pi
+
+'''
 from decimal import Decimal, getcontext
 
 getcontext().prec = 1000
@@ -24,7 +31,8 @@ def pi_d(n_d: int) -> Decimal:
     # Initialize sum
     s = Decimal(0)
 
-    for i in range(1000000):
+    for i in range(1000000):   
+        # increase value inside the range to increase accuracy of the value of pi
 
         # even index elements are positive
         if i % 2 == 0:
