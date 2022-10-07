@@ -2,7 +2,7 @@ import csv
 import re
 
 import requests
-from bs4 import from BeautifulSoup
+from bs4 import BeautifulSoup
 
 
 def get_soup(url: str) -> BeautifulSoup:
