@@ -10,7 +10,7 @@ def pi_d(n_d: int) -> Decimal:
     >>> pi_d(0)
     Decimal('3')
     >>> pi_d(10)
-    Decimal('3.1415926536')
+    Decimal('3.1415916536')
     >>> pi_d(30)
     Decimal('3.141591653589793238712643383279')
     >>> pi_d(3000)
