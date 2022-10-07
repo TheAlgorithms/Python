@@ -9,9 +9,9 @@ Note that only the integer weights 0-1 knapsack problem is solvable
 """
 
 cache = None
+from typing import Sequence
 
-
-def knapsack(max_weight: int, weights: list[int], values: list[int], n: int):
+def knapsack(max_weight: int, weights: Sequence[int], values: Sequence[int], n: int):
     """
     A solution to the classic knapsack problem, without the use of global variables.
     """
@@ -29,9 +29,7 @@ def knapsack(max_weight: int, weights: list[int], values: list[int], n: int):
     return dp[n][max_weight], dp
 
 
-def knapsack_with_constructed_solution(
-    max_weight: int, weights: list[int] | tuple[int], values: list[int]
-):
+def knapsack_with_constructed_solution(max_weight: int, weights: Sequence[int], values: Sequence[int]):
     """
     Solves the integer weights knapsack problem returns one of
     the several possible optimal subsets.
@@ -63,11 +61,6 @@ def knapsack_with_constructed_solution(
     ValueError: The number of weights must be the same as the number of values.
     But got 4 weights and 3 values
     """
-    if not (isinstance(weights, (list, tuple)) and isinstance(values, (list, tuple))):
-        raise ValueError(
-            "Both the weights and values vectors must be either lists or tuples"
-        )
-
     num_items = len(weights)
     if num_items != len(values):
         raise ValueError(
@@ -89,13 +82,7 @@ def knapsack_with_constructed_solution(
     return optimal_val, example_optional_set
 
 
-def _construct_solution(
-    dp: list[list[int]],
-    weights: list[int] | tuple[int],
-    i: int,
-    j: int,
-    optimal_set: set[int],
-):
+def _construct_solution(dp: list[Sequence[int]], weights: Sequence[int], i: int, j: int, optimal_set: set[int]):
     """
     Recursively reconstructs one of the optimal subsets given
     a filled DP table and the vector of weights
@@ -105,7 +92,7 @@ def _construct_solution(
 
     dp: list of list, the table of a solved integer weight dynamic programming problem
 
-    weights: list or tuple, the vector of weights of the items
+    weights: a sequence of integers, the vector of weights of the items
     i: int, the index of the  item under consideration
     j: int, the current possible maximum weight
     optimal_set: set, the optimal subset so far. This gets modified by the function.
