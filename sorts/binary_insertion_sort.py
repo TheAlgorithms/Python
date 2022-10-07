@@ -27,8 +27,8 @@ def binary_search(arr, N, key) -> int:
             high = mid
     return low
 <<<<<<< HEAD
-    
-def insertion_sort(arr: list) -> None : 
+
+def insertion_sort(arr: list) -> None :
     for i in range (1,len(arr)):
 =======
 
