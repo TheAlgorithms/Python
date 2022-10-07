@@ -31,11 +31,12 @@ python binary_insertion_sort.py
     2
     >>> binary_search([7, 3, 9, 5, 6], 4, 6)
     2
-    
+
 """
 
+
 def binary_search(arr: list, length: int, key: int) -> int:
-   
+
     low = 0
     high = length
     while low < high:
@@ -46,8 +47,9 @@ def binary_search(arr: list, length: int, key: int) -> int:
             high = mid
     return low
 
-def insertion_sort(arr: list) -> list: 
-    """ Pure implementation of binary insertion sort algorithm in Python
+
+def insertion_sort(arr: list) -> list:
+    """Pure implementation of binary insertion sort algorithm in Python
 
     :param arr: list
     :return: list
@@ -55,9 +57,9 @@ def insertion_sort(arr: list) -> list:
     Examples:
     >>> insertion_sort([7, 3, 9, 5, 2])
     [2, 3, 5, 7, 9]
-    
+
     """
-    for i in range (1,len(arr)):
+    for i in range(1, len(arr)):
         key = arr[i]
         pos = binary_search(arr, i, key)
         j = i
@@ -66,6 +68,7 @@ def insertion_sort(arr: list) -> list:
             j = j - 1
         arr[pos] = key
     return arr
+
 
 if __name__ == "__main__":
     import doctest
