@@ -1,18 +1,18 @@
-def isNumberPalindromic(num : int) -> bool:
+def is_number_palindromic(num : int) -> bool:
     """
     This function checks if given number is palindromic or not.
-    >>> isNumberPalindromic(121)
+    >>> is_number_palindromic(121)
     True
-    >>> isNumberPalindromic(1231)
+    >>> is_number_palindromic(1231)
     False
-    >>> isNumberPalindromic(12321)
+    >>> is_number_palindromic(12321)
     True
-    >>> isNumberPalindromic(1211)
+    >>> is_number_palindromic(1211)
     False
     """
-    numRev = str(num)[::-1]
-    numRev = int(numRev)
-    if (num == numRev):
+    num_rev = str(num)[::-1]
+    num_rev = int(num_rev)
+    if (num == num_rev):
         return True
     else:
         return False
