@@ -15,7 +15,7 @@ def count_digits(num: int) -> int:
 
 
 def count_using_conversion(num: int) -> int:
-    """ by conversion integer to string and get length of string"""
+    """by conversion integer to string and get length of string"""
     return len(str(num))
 
 
