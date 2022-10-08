@@ -1,7 +1,7 @@
 import re
 
 
-def dna_matching_strand (dna: str) -> str:
+def dna_matching_strand(dna: str) -> str:
 
     """
     https://en.wikipedia.org/wiki/DNA
@@ -18,12 +18,12 @@ def dna_matching_strand (dna: str) -> str:
     Exception: Invalid Strand
     """
 
-    is_strand = len(re.findall("[ATCG]", dna)) != len(dna)
+    is_invalid_strand = len(re.findall("[ATCG]", dna)) != len(dna)
     strand = dna.translate(dna.maketrans("ATCG", "TAGC"))
-    if is_strand:
-      raise Exception("Invalid Strand")
+    if is_invalid_strand:
+        raise Exception("Invalid Strand")
     else:
-      return strand
+        return strand
 
 
 if __name__ == "__main__":
