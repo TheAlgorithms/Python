@@ -14,10 +14,16 @@ def count_digits(num: int) -> int:
     return count
 
 
+def count_using_conversion(num: int) -> int:
+    """ by conversion integer to string and get length of string"""
+    return len(str(num))
+
+
 if __name__ == "__main__":
     num = 1568468461984216484351648351648864306186431654986465151846135
     print(count_digits_recursive(num))
     print(count_digits(num))
+    print(count_using_conversion(num))
     import doctest
 
     doctest.testmod()
