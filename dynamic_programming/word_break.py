@@ -2,7 +2,7 @@ def wordbreak(word: str, word_dict: list) -> bool:
     """
     word ---> Input word
     word_dict ---> Input dictionary
-    >>> wordbreak('deepImpact',['deep,'Im','pact'])
+    >>> wordbreak('deepImpact',['deep','Im','pact'])
     True
     >>> wordbreak('mangoinmango',['mango','in'])
     True
@@ -20,4 +20,4 @@ def wordbreak(word: str, word_dict: list) -> bool:
                 start.append(i + 1)  # start of next word in dict
                 break  # - note [1]
     return start[-1] == len(word)
-print(wordbreak('deepImpact',['deep,'Im','pact']))
+print(wordbreak('deepImpact',['deep','Im','pact']))
