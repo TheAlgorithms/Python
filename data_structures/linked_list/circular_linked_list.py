@@ -136,7 +136,7 @@ def test_circular_linked_list() -> None:
     assert str(circular_linked_list) == "->".join(str(i) for i in range(1, 6))
 
     assert circular_linked_list.is_empty() is False
-
+//Circular pointer approach// 
 
 if __name__ == "__main__":
     import doctest
