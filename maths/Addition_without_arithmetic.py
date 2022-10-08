@@ -4,6 +4,7 @@ Author: suraj Kumar
 Time Complexity: 1
 """
 
+
 def add(first: int, sec: int) -> int:  # Create a function
     """
     implementation of addition of integer
@@ -24,6 +25,7 @@ def add(first: int, sec: int) -> int:  # Create a function
 
         sec = c << 1
     return first
+
 
 if __name__ == "__main__":
     import doctest
