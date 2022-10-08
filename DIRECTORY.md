@@ -475,6 +475,7 @@
   * [Binomial Coefficient](maths/binomial_coefficient.py)
   * [Binomial Distribution](maths/binomial_distribution.py)
   * [Bisection](maths/bisection.py)
+  * [Catalan Number](maths/catalan_number.py) 
   * [Ceil](maths/ceil.py)
   * [Check Polygon](maths/check_polygon.py)
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
