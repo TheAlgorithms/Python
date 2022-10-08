@@ -2,7 +2,7 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, data: int, next:Any=None) -> None:
+    def __init__(self, data: int, next: Any = None) -> None:
         """
         create and initialize Node class instance.
          >>> node(6)
