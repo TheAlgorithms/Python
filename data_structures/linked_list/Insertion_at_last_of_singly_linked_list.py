@@ -37,7 +37,7 @@ def insert_at_end_of_linkedlist(head: Any, data: int):
     then it head pointer will move iterates over the linked list.
     it will search for Null/None after that the next of head will
     Be given a node with data and Noneas address
-    
+
         1
         2
         3
