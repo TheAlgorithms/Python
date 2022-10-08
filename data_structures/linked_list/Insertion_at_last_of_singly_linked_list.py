@@ -2,7 +2,7 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, data:int, next=None) -> None:
+    def __init__(self, data: int, next=None) -> None:
         """
         create and initialize Node class instance.
          >>> node(6)
@@ -12,7 +12,7 @@ class Node:
         self.next = next
 
 
-def print_linked_list(head: Any) -> None: # Print every node data
+def print_linked_list(head: Any) -> None:  # Print every node data
     """
     This function is intended for iterators to access
           and iterate through data inside linked list.
@@ -35,7 +35,7 @@ def print_linked_list(head: Any) -> None: # Print every node data
         head = head.next
 
 
-def insert_at_end_of_linkedlist(head:Any, data:int):
+def insert_at_end_of_linkedlist(head: Any, data: int):
     """
     This method inserts data at the end of the linked list
     First it checks if there is any pre-existing node or not
