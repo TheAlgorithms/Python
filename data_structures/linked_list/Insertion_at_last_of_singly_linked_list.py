@@ -2,7 +2,7 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, data: int, next=None) -> None:
+    def __init__(self, data: int, next:Any=None) -> None:
         """
         create and initialize Node class instance.
          >>> node(6)
@@ -30,7 +30,7 @@ def print_linked_list(head: Any) -> None:  # Print every node data
         head = head.next
 
 
-def insert_at_end_of_linkedlist(head: Any, data: int):
+def insert_at_end_of_linkedlist(head: Any, data: int) -> Any:
 
     if not head:
         return Node(data)
