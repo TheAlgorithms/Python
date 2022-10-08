@@ -4,7 +4,7 @@ jobs = []
 for i in range(N):
     jobs.append(list(map(int, input().split())))
 
-#OUTPUT
+# OUTPUT
 # SORT JOBS ACCORDING TO THEIR PROFIT
 jobs.sort(key=lambda x: x[2], reverse=True)
 
@@ -16,7 +16,7 @@ slots = [0] * max_deadline
 
 # FIND SLOTS FOR JOBS
 for job in jobs:
-    for i in range(job[1]-1, -1, -1):
+    for i in range(job[1] - 1, -1, -1):
         if slots[i] == 0:
             slots[i] = job[0]
             break
@@ -27,7 +27,7 @@ profit = 0
 for i in slots:
     if i != 0:
         count += 1
-        profit += jobs[i-1][2]
+        profit += jobs[i - 1][2]
 
-# PRINTING NUMBER OF JOBS AND MAXIMUM PROFIT      
+# PRINTING NUMBER OF JOBS AND MAXIMUM PROFIT
 print(count, profit)
