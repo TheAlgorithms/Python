@@ -31,6 +31,14 @@ def print_linked_list(head: Any) -> None:  # Print every node data
 
 
 def insert_at_end_of_linkedlist(head: Any, data: int) -> Any:
+    """
+    >>> insert_at_end_of_linkedlist(a,5)
+    1
+    2
+    3
+    4
+    5
+    """
 
     if not head:
         return Node(data)
@@ -41,7 +49,7 @@ def insert_at_end_of_linkedlist(head: Any, data: int) -> Any:
     return head
 
 
-def main():
+def main() ->Any:
     from doctest import testmod
 
     a = Node(1, Node(2, Node(3, Node(4))))  # creation of a linked list
