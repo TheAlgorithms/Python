@@ -9,7 +9,7 @@ first = int(input("Enter the number for first: "))
 sec = int(input("Enter the number for sec: "))
 
 
-def add(first :int , sec : int) -> int:  # Create a function
+def add(first: int, sec: int) -> int:  # Create a function
     """
     implementation of addition of integer
     :param first: int
