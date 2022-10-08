@@ -4,11 +4,6 @@ Author: suraj Kumar
 Time Complexity: 1
 """
 
-
-first = int(input("Enter the number for first: "))
-sec = int(input("Enter the number for sec: "))
-
-
 def add(first: int, sec: int) -> int:  # Create a function
     """
     implementation of addition of integer
@@ -30,6 +25,11 @@ def add(first: int, sec: int) -> int:  # Create a function
         sec = c << 1
     return first
 
+if __name__ == "__main__":
+    import doctest
 
-print("Sum of two numbers", add(first, sec))  # call the function
-# Display sum of two numbers
+    doctest.testmod()
+    first = int(input("Enter the number for first: "))
+    sec = int(input("Enter the number for sec: "))
+    print("Sum of two numbers", add(first, sec))
+    # Display sum of two numbers
