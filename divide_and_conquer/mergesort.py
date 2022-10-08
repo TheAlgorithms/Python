@@ -1,112 +1,82 @@
-from __future__ import annotations
+#include <bits/stdc++.h>
+#define vi vector<int>
+using namespace std;
+void merge(vi &v,int e,int b,int a,int c,int r)
+{
+    vi v1,v2,v3,v4;
+    for(int i=0;i<b-e+1;i++)
+    v1.push_back(v[e+i]);
+    for(int j=0;j<a-b;j++)
+    v2.push_back(v[b+j+1]);
+    for(int j=0;j<c-a;j++)
+    v3.push_back(v[j+a+1]);
+    for(int j=0;j<r-c;j++)
+    v4.push_back(v[c+j+1]);
 
 
-def merge(left_half: list, right_half: list) -> list:
-    """Helper function for mergesort.
+    v1.push_back(INT_MAX);
+    v2.push_back(INT_MAX);
+    v3.push_back(INT_MAX);
+    v4.push_back(INT_MAX);
 
-    >>> left_half = [-2]
-    >>> right_half = [-1]
-    >>> merge(left_half, right_half)
-    [-2, -1]
+    int i=0,j=0,k=0,l=0;
+    vector<int> x;
+    while(i<v1.size() && j<v2.size() && k<v3.size() && l<v4.size())
+    {
+        if(v1[i]==INT_MAX && v2[j]==INT_MAX && v3[k]==INT_MAX  && v4[l]==INT_MAX)
+        break;
+        else if(v1[i]<v2[j] && v1[i]<v3[k] && v1[i]<v4[l])
+       { x.push_back(v1[i]);
+i++;
+       }
+        else if(v1[i]>v2[j] && v2[j]<v3[k] && v2[j]<v4[l])
+      {  x.push_back(v2[j]);
+j++;
+      }
+      else if(v1[i]>v3[k] && v2[j]>v3[k] && v4[l]>v3[k])
+      {
+        x.push_back(v3[k]);
+        k++;
 
-    >>> left_half = [1,2,3]
-    >>> right_half = [4,5,6]
-    >>> merge(left_half, right_half)
-    [1, 2, 3, 4, 5, 6]
+      }
+      else
+      {
+        x.push_back(v4[l]);
+        l++;
+      }
 
-    >>> left_half = [-2]
-    >>> right_half = [-1]
-    >>> merge(left_half, right_half)
-    [-2, -1]
+    }
+  
+   for(int i=0;i<x.size();i++)
+   {
+    v[e+i]=x[i];
 
-    >>> left_half = [12, 15]
-    >>> right_half = [13, 14]
-    >>> merge(left_half, right_half)
-    [12, 13, 14, 15]
+   }
+}
+void mergesort(vi &v,int l,int h)
+{
+    if(l<h)
+    {
+        int a=(l+h)/2;
+        int b=(a+l)/2;
+        int c=(a+h)/2;
 
-    >>> left_half = []
-    >>> right_half = []
-    >>> merge(left_half, right_half)
-    []
-    """
-    sorted_array = [None] * (len(right_half) + len(left_half))
+       
+        mergesort(v,l,b);
+        mergesort(v,b+1,a);
+        mergesort(v,a+1,c);
+        mergesort(v,c+1,h);
+        merge(v,l,b,a,c,h);
 
-    pointer1 = 0  # pointer to current index for left Half
-    pointer2 = 0  # pointer to current index for the right Half
-    index = 0  # pointer to current index for the sorted array Half
+    }
+}
+int main(int argc, char const *argv[])
+{
 
-    while pointer1 < len(left_half) and pointer2 < len(right_half):
-        if left_half[pointer1] < right_half[pointer2]:
-            sorted_array[index] = left_half[pointer1]
-            pointer1 += 1
-            index += 1
-        else:
-            sorted_array[index] = right_half[pointer2]
-            pointer2 += 1
-            index += 1
-    while pointer1 < len(left_half):
-        sorted_array[index] = left_half[pointer1]
-        pointer1 += 1
-        index += 1
+vector<int> v={23,1,100,987,-100,0,56};
+mergesort(v,0,v.size()-1);
+for(int i=0;i<v.size();i++)
+cout<<v[i]<<" ";
 
-    while pointer2 < len(right_half):
-        sorted_array[index] = right_half[pointer2]
-        pointer2 += 1
-        index += 1
-
-    return sorted_array
-
-
-def merge_sort(array: list) -> list:
-    """Returns a list of sorted array elements using merge sort.
-
-    >>> from random import shuffle
-    >>> array = [-2, 3, -10, 11, 99, 100000, 100, -200]
-    >>> shuffle(array)
-    >>> merge_sort(array)
-    [-200, -10, -2, 3, 11, 99, 100, 100000]
-
-    >>> shuffle(array)
-    >>> merge_sort(array)
-    [-200, -10, -2, 3, 11, 99, 100, 100000]
-
-    >>> array = [-200]
-    >>> merge_sort(array)
-    [-200]
-
-    >>> array = [-2, 3, -10, 11, 99, 100000, 100, -200]
-    >>> shuffle(array)
-    >>> sorted(array) == merge_sort(array)
-    True
-
-    >>> array = [-2]
-    >>> merge_sort(array)
-    [-2]
-
-    >>> array = []
-    >>> merge_sort(array)
-    []
-
-    >>> array = [10000000, 1, -1111111111, 101111111112, 9000002]
-    >>> sorted(array) == merge_sort(array)
-    True
-    """
-    if len(array) <= 1:
-        return array
-    # the actual formula to calculate the middle element = left + (right - left) // 2
-    # this avoids integer overflow in case of large N
-    middle = 0 + (len(array) - 0) // 2
-
-    # Split the array into halves till the array length becomes equal to One
-    # merge the arrays of single length returned by mergeSort function and
-    # pass them into the merge arrays function which merges the array
-    left_half = array[:middle]
-    right_half = array[middle:]
-
-    return merge(merge_sort(left_half), merge_sort(right_half))
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    return 0;
+}
