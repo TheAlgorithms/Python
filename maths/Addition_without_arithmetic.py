@@ -13,7 +13,7 @@ def add(first, sec) -> int:  # Create a function
     """
     implementation of addition of integer
     :param first: int
-    :param sec: int    
+    :param sec: int
     :return: int
     Examples:
     >>> add(3,5)
