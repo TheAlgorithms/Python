@@ -4,7 +4,7 @@ Author: Gurneet Singh
 https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
 """
 
-'''
+"""
 5 items had no tests:
     __main__
     __main__.BinaryTreeNode
@@ -22,15 +22,21 @@ Printing values of binary search tree in Inorder Traversal.
 20
 25
 60
-'''
+"""
+
+
 class BinaryTreeNode:
-    '''Defining the structure of BinaryTreeNode'''
+    """Defining the structure of BinaryTreeNode"""
+
     def __init__(self, data: int) -> None:
-        self.data = data    
+        self.data = data
         self.left_Child = None
         self.right_Child = None
 
-def insert(node : None , new_Value : int) -> BinaryTreeNode:    # if binary search tree is empty, make a new node and declare it as root
+
+def insert(
+    node: None, new_Value: int
+) -> BinaryTreeNode:  # if binary search tree is empty, make a new node and declare it as root
     if node is None:
         node = BinaryTreeNode(new_Value)
         return node
@@ -45,7 +51,7 @@ def insert(node : None , new_Value : int) -> BinaryTreeNode:    # if binary sear
     return node
 
 
-def inorder(node : None) -> None:    # if node is None,return
+def inorder(node: None) -> None:  # if node is None,return
     if node == None:
         return
     # traverse left subtree
@@ -58,6 +64,7 @@ def inorder(node : None) -> None:    # if node is None,return
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     root = insert(None, 15)
     insert(root, 10)
