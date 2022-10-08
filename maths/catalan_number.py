@@ -39,13 +39,13 @@ def catalan(number: int) -> int:
     current_number = 1
 
     for i in range(1, number):
-        current_number *= (4 * i - 2)
-        current_number //= (i + 1)
+        current_number *= 4 * i - 2
+        current_number //= i + 1
 
     return current_number
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
