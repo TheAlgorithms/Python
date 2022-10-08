@@ -1,0 +1,59 @@
+html {
+	background: #404550;
+}
+
+body {
+	font: 100% Arial, Helvetica, sans-serif;
+	line-height: 1.5;
+	position: relative;
+	background: #00004d;
+	color: rgb(76, 67, 65);
+	font-weight:normal;
+	font-style:normal;
+
+    width: 1280px;
+	margin: 20 auto;
+    padding: 20px;
+}
+
+
+form, div{
+	border-bottom: 2px solid rgb(76, 67, 65);
+	margin-bottom: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em
+}
+
+h1 {
+	font-family: Georgia, Times, "Times New Roman", serif;
+	font-size: 1.8em;
+	border-bottom: 2px solid rgb(76, 67, 65);
+	margin-bottom: 1.5em;
+	background: url(../_images/icon_sprites_50.png) no-repeat
+}
+
+.example_a {
+    border: none;
+    background: #404040;
+    color: #ffffff !important;
+    font-weight: 100;
+    padding: 20px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+
+    float: right;
+    margin-top: 2em;
+}
+
+.example_a:hover {
+    color: #404040 !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+    background: none;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.3s ease 0s;
+}

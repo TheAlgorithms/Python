@@ -1,0 +1,79 @@
+<html>
+    <head>
+	<style>
+table, th, td {
+  border: 1px solid black;
+}
+.c11{
+  border: 3px solid blue;
+}
+
+</style>
+        <title>{{ title }} Sentiment Analysis</title>
+        <!--link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body><div class="container c11" >
+	<div class="container-fluid p-5 bg-success text-white text-center">
+		<h1>Sentiment Analysis VADER Sentiment</h1>
+		<p>A machine learning end to end flask web app for <b>"Sentiment Analysis" </b>model created using Scikit-learn &amp; VADER Sentiment.</p> 
+	</div>
+        <!--h1 align="center">A machine learning end to end flask web app for <b>"Sentiment Analysis" </b>model created using Scikit-learn &amp; VADER Sentiment.</h1-->
+		</br></br><div align="center">
+			<form method="POST">
+				<textarea name="text1" placeholder="Say Something: ...." rows="10" cols="109"></textarea><br><br>
+
+				<input class="btn btn-primary" type="submit">
+			</form>
+		</div>
+        {% if final %}
+		
+<!--result start -->		
+      </br></br>  <div align="center">
+           </br>  </br>
+		   <h2 class="bg-primary text-white">The Sentiment of</h2>
+		   '{{ text1 }}' 
+		   <h2>is {{ final *100}}% positive !</h2>
+			<h2>Score table</h2>
+
+
+<div class="container table-responsive-sm">
+<table class="table table-bordered">
+  <tr>
+    <th>SENTIMENT METRIC</th>
+    <th>SCORE</th> 
+  </tr>
+  <tr>
+    <td>Positive</td>
+    <td>{{text2}}</td>
+    
+  </tr>
+  <tr>
+    <td>Neutral</td>
+    <td>{{text3}}</td>
+    
+  </tr>
+  <tr>
+    <td>Negative</td>
+    <td>{{text5}}</td>
+    
+  </tr>
+  <tr>
+    <td>Compound</td>
+    <td>{{text4}}</td>
+    
+  </tr>
+</table>
+</div>
+
+            {% else %}
+            <p></p>
+            {% endif %}
+        </div></br></br>
+<!--result end -->			
+		
+		
+  </div>  </body>
+</html>
+
