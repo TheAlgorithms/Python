@@ -54,6 +54,7 @@ def main() -> Any:
     >>> pytests()
 
 
+
     """
     a = Node(1, Node(2, Node(3, Node(4))))  # creation of a linked list
 
