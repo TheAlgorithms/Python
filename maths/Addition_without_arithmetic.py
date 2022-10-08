@@ -2,6 +2,7 @@
 Illustrate how to add the integer without arithmetic operation
 Author: suraj Kumar
 Time Complexity: 1
+https://en.wikipedia.org/wiki/Bitwise_operation
 """
 
 
@@ -28,10 +29,11 @@ def add(first: int, sec: int) -> int:  # Create a function
 
 
 if __name__ == "__main__":
+    first = int(input("Enter the number for first: "))
+    sec = int(input("Enter the number for sec: "))
     import doctest
 
     doctest.testmod()
-    first = int(input("Enter the number for first: "))
-    sec = int(input("Enter the number for sec: "))
-    print("Sum of two numbers", add(first, sec))
+    
+    # print("Sum of two numbers", add(first, sec))
     # Display sum of two numbers
