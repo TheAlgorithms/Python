@@ -476,6 +476,7 @@
   * [Binomial Distribution](maths/binomial_distribution.py)
   * [Bisection](maths/bisection.py)
   * [Ceil](maths/ceil.py)
+  * [Chakravala](maths/chakravala.py)
   * [Check Polygon](maths/check_polygon.py)
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](maths/collatz_sequence.py)
