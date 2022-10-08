@@ -23,11 +23,11 @@ Source :
 - https://en.wikipedia.org/wiki/Lami%27s_theorem
 """
 
-from math import asin, sin
 import math
+from math import asin, sin
 
 
-def lamis_theorem(C:float, c:float, Forces:list, angles:list) -> list:
+def lamis_theorem(C: float, c: float, Forces: list, angles: list) -> list:
     """
     Input Parameters:
     ---------------------
@@ -65,27 +65,29 @@ def lamis_theorem(C:float, c:float, Forces:list, angles:list) -> list:
     ValueError: Forces cannot be negative
     """
 
-    fractional_value = C / sin(math.radians(c)) # Will be used to find other values by solving
+    fractional_value = C / sin(
+        math.radians(c)
+    )  # Will be used to find other values by solving
 
-    #Performing checks for value integrity
+    # Performing checks for value integrity
     if (Forces[0], Forces[1], angles[0], angles[1]).count(0) > 2:
         raise ValueError("Only 2 arguments must be 0")
-    if (Forces[0] == 0 and angles[0] == 0):
+    if Forces[0] == 0 and angles[0] == 0:
         raise ValueError("Both vector and its opposite angle cannot be 0")
-    if (Forces[1] == 0 and angles[1] == 0):
+    if Forces[1] == 0 and angles[1] == 0:
         raise ValueError("Both vector and opposite angle cannot be 0")
-    if (Forces[0] < 0 or Forces[1] < 0):
+    if Forces[0] < 0 or Forces[1] < 0:
         raise ValueError("Forces cannot be negative")
 
-    #Calculation part
-    if (Forces[0] == 0):
-        Forces[0] = fractional_value*sin(math.radians(angles[0]))
-    if (Forces[1] == 0):
-        Forces[1] = fractional_value*sin(math.radians(angles[1]))
-    if (angles[0] == 0):
-        angles[0] = math.degrees(asin(Forces[0]/fractional_value))
-    if (angles[1] == 0):
-        angles[1] = math.degrees(asin(Forces[1]/fractional_value))
+    # Calculation part
+    if Forces[0] == 0:
+        Forces[0] = fractional_value * sin(math.radians(angles[0]))
+    if Forces[1] == 0:
+        Forces[1] = fractional_value * sin(math.radians(angles[1]))
+    if angles[0] == 0:
+        angles[0] = math.degrees(asin(Forces[0] / fractional_value))
+    if angles[1] == 0:
+        angles[1] = math.degrees(asin(Forces[1] / fractional_value))
 
     result = []
     result.append([Forces[0], angles[0]])
@@ -93,6 +95,7 @@ def lamis_theorem(C:float, c:float, Forces:list, angles:list) -> list:
     result.append([C, c])
 
     return result
+
 
 # Run doctest
 if __name__ == "__main__":
