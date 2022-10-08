@@ -480,6 +480,7 @@
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](maths/collatz_sequence.py)
   * [Combinations](maths/combinations.py)
+  * [Continued Fraction](maths/continued_fraction.py)
   * [Decimal Isolate](maths/decimal_isolate.py)
   * [Double Factorial Iterative](maths/double_factorial_iterative.py)
   * [Double Factorial Recursive](maths/double_factorial_recursive.py)
