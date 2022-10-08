@@ -49,7 +49,7 @@ def insert_at_end_of_linkedlist(head: Any, data: int) -> Any:
     return head
 
 
-def main() ->Any:
+def main() -> Any:
     from doctest import testmod
     testmod()
 
