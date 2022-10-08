@@ -31,19 +31,7 @@ def print_linked_list(head: Any) -> None:  # Print every node data
 
 
 def insert_at_end_of_linkedlist(head: Any, data: int):
-    """
-    This method inserts data at the end of the linked list
-    First it checks if there is any pre existing node or not
-    then it head pointer will move iterates over the linked list.
-    it will search for Null/None after that the next of head will
-    Be given a node with data and Noneas address
-
-        1
-        2
-        3
-        4
-        5
-    """
+    
     if not head:
         return Node(data)
     ptr = head
