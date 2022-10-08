@@ -1,4 +1,6 @@
 import pickle
+
+
 def addemployee():
     f= open("employee.bin","wb") #opens a binary file in your computer
     l=[]
@@ -29,7 +31,7 @@ def displayall():
     for i in x:
         print("em id  --name-- designation--salary")
         print(i)
-        
+
 def main()
     while True:
         print("_________Employee management________")
@@ -37,7 +39,7 @@ def main()
         print("Enter 'a' to add employee.")
         print("Enter 'd' to display all content")
         print("Enter 'p' to display employee with salary in between 25000 and 30000.")
-    
+
         print("Enter 'e' to exit>")
         print("++++++++++++++++++++++++++++++++++++++++++++++")
         g=input("Enter your option::::   ")
@@ -49,8 +51,8 @@ def main()
             display()
         else:
             break
-    
-if __name__ == "__main__":
-    main()    
 
-        
+if __name__ == "__main__":
+    main()
+
+
