@@ -31,7 +31,7 @@ def print_linked_list(head: Any) -> None:  # Print every node data
 
 
 def insert_at_end_of_linkedlist(head: Any, data: int):
-    
+
     if not head:
         return Node(data)
     ptr = head
