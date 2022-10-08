@@ -152,6 +152,7 @@
     * [Binary Tree Mirror](data_structures/binary_tree/binary_tree_mirror.py)
     * [Binary Tree Traversals](data_structures/binary_tree/binary_tree_traversals.py)
     * [Fenwick Tree](data_structures/binary_tree/fenwick_tree.py)
+    * [Inorder Tree Traversal 2022](data_structures/binary_tree/inorder_tree_traversal_2022.py)
     * [Lazy Segment Tree](data_structures/binary_tree/lazy_segment_tree.py)
     * [Lowest Common Ancestor](data_structures/binary_tree/lowest_common_ancestor.py)
     * [Maximum Fenwick Tree](data_structures/binary_tree/maximum_fenwick_tree.py)
@@ -632,8 +633,9 @@
 
 ## Physics
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
-  * [Lorenz Transformation Four Vector](physics/lorenz_transformation_four_vector.py)
+  * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
+  * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
 
 ## Project Euler
