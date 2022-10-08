@@ -29,25 +29,28 @@ def displayall():
     for i in x:
         print("em id  --name-- designation--salary")
         print(i)
-while True:
-    print("_________Employee management________")
-    print("++++++++++++++++++++++++++++++++++++++++++++++")
-    print("Enter 'a' to add employee.")
-    print("Enter 'd' to display all content")
-    print("Enter 'p' to display employee with salary in between 25000 and 30000.")
+        
+def main()
+    while True:
+        print("_________Employee management________")
+        print("++++++++++++++++++++++++++++++++++++++++++++++")
+        print("Enter 'a' to add employee.")
+        print("Enter 'd' to display all content")
+        print("Enter 'p' to display employee with salary in between 25000 and 30000.")
     
-    print("Enter 'e' to exit>")
-    print("++++++++++++++++++++++++++++++++++++++++++++++")
-    g=input("Enter your option::::   ")
-    if g=="a":
-        addemployee()
-    elif g=="d":
-        displayall()
-    elif g=="p":
-        display()
-    else:
-        break
+        print("Enter 'e' to exit>")
+        print("++++++++++++++++++++++++++++++++++++++++++++++")
+        g=input("Enter your option::::   ")
+        if g=="a":
+            addemployee()
+        elif g=="d":
+            displayall()
+        elif g=="p":
+            display()
+        else:
+            break
     
-    
+if __name__ == "__main__":
+    main()    
 
         
