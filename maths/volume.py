@@ -5,7 +5,7 @@ Wikipedia reference: https://en.wikipedia.org/wiki/Volume
 """
 from __future__ import annotations
 
-from math import pi, pow
+from math import pi,pow
 
 
 def vol_cube(side_length: int | float) -> float:
@@ -20,7 +20,7 @@ def vol_cube(side_length: int | float) -> float:
     return pow(side_length, 3)
 
 
-def vol_spherical_cap(height: float, radius: float) -> float:
+def vol_spherical_cap(height: float,radius: float) -> float:
     """
     Calculate the Volume of the spherical cap.
     :return 1/3 pi * height ^ 2 * (3 * radius - height)
