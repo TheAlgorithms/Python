@@ -27,7 +27,7 @@ import math
 from math import asin, sin
 
 
-def lamis_theorem(C: float, c: float, Forces: list, angles: list) -> list:
+def lamis_theorem(force_c: float, angle_c: float, forces: list, angles: list) -> list:
     """
     Input Parameters:
     ---------------------
@@ -65,34 +65,36 @@ def lamis_theorem(C: float, c: float, Forces: list, angles: list) -> list:
     ValueError: Forces cannot be negative
     """
 
-    fractional_value = C / sin(
-        math.radians(c)
+    fractional_value = force_c / sin(
+        math.radians(angle_c)
     )  # Will be used to find other values by solving
 
     # Performing checks for value integrity
-    if (Forces[0], Forces[1], angles[0], angles[1]).count(0) > 2:
+    if (forces[0], forces[1], angles[0], angles[1]).count(0) > 2:
         raise ValueError("Only 2 arguments must be 0")
-    if Forces[0] == 0 and angles[0] == 0:
+    if forces[0] == 0 and angles[0] == 0:
         raise ValueError("Both vector and its opposite angle cannot be 0")
-    if Forces[1] == 0 and angles[1] == 0:
+    if forces[1] == 0 and angles[1] == 0:
         raise ValueError("Both vector and opposite angle cannot be 0")
-    if Forces[0] < 0 or Forces[1] < 0:
+    if forces[0] < 0 or forces[1] < 0:
         raise ValueError("Forces cannot be negative")
 
     # Calculation part
-    if Forces[0] == 0:
-        Forces[0] = fractional_value * sin(math.radians(angles[0]))
-    if Forces[1] == 0:
-        Forces[1] = fractional_value * sin(math.radians(angles[1]))
+    if forces[0] == 0:
+        #Have to convert the degree value into radians
+        forces[0] = fractional_value * sin(math.radians(angles[0]))
+    if forces[1] == 0:
+        forces[1] = fractional_value * sin(math.radians(angles[1]))
     if angles[0] == 0:
-        angles[0] = math.degrees(asin(Forces[0] / fractional_value))
+        #Solving using usual equation solving techniques
+        angles[0] = math.degrees(asin(forces[0] / fractional_value))
     if angles[1] == 0:
-        angles[1] = math.degrees(asin(Forces[1] / fractional_value))
+        angles[1] = math.degrees(asin(forces[1] / fractional_value))
 
     result = []
-    result.append([Forces[0], angles[0]])
-    result.append([Forces[1], angles[1]])
-    result.append([C, c])
+    result.append([forces[0], angles[0]])
+    result.append([forces[1], angles[1]])
+    result.append([force_c, angle_c])
 
     return result
 
