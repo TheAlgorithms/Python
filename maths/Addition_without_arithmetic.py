@@ -34,6 +34,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    
+
     # print("Sum of two numbers", add(first, sec))
     # Display sum of two numbers
