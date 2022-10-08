@@ -24,11 +24,6 @@ def print_linked_list(head: Any) -> None:  # Print every node data
     1
     2
     3
-
-   
-    
-    
-
     """
     while head:
         print(head.data)
