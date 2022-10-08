@@ -21,13 +21,13 @@ def print_linked_list(head: Any) -> None: # Print every node data
     >>> print_linked_list(head)
     >>> print_linked_list(head)
     >>> print_linked_list(head)
-    head.data
-    head.data
-    head.data
-    .
-    .
-    .
-    >>>
+    1
+    2
+    3
+
+   
+    
+    
 
     """
     while head:
