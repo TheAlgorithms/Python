@@ -54,9 +54,9 @@ def insert(node: None, new_value: int) -> BinaryTreeNode:
     return node
 
 
-def inorder(node: None) -> None:  # if node is None,return
-    if node == None:
-        return
+def inorder(node: None) -> BinaryTreeNode:  # if node is None,return
+    if node is None:
+        return None
     # traverse left subtree
     inorder(node.left_child)
     # traverse current node
