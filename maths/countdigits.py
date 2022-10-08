@@ -15,7 +15,7 @@ def count_digits(n: int) -> int:
 
 
 if __name__ == "__main__":
-    n = input("Enter a number: ")
+    n = 1568468461984216484351648351648864306186431654986465151846135
     print(count_digits_recursive(n))
     print(count_digits(n))
     import doctest
