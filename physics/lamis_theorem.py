@@ -81,12 +81,12 @@ def lamis_theorem(force_c: float, angle_c: float, forces: list, angles: list) ->
 
     # Calculation part
     if forces[0] == 0:
-        #Have to convert the degree value into radians
+        # Have to convert the degree value into radians
         forces[0] = fractional_value * sin(math.radians(angles[0]))
     if forces[1] == 0:
         forces[1] = fractional_value * sin(math.radians(angles[1]))
     if angles[0] == 0:
-        #Solving using usual equation solving techniques
+        # Solving using usual equation solving techniques
         angles[0] = math.degrees(asin(forces[0] / fractional_value))
     if angles[1] == 0:
         angles[1] = math.degrees(asin(forces[1] / fractional_value))
