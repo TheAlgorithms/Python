@@ -51,6 +51,7 @@ def insert_at_end_of_linkedlist(head: Any, data: int) -> Any:
 
 def main() ->Any:
     from doctest import testmod
+    testmod()
 
     a = Node(1, Node(2, Node(3, Node(4))))  # creation of a linked list
 
