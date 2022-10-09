@@ -1,6 +1,6 @@
 """
 == Carmichael Numbers ==
-A number n is said to be a Carmichael number if it 
+A number n is said to be a Carmichael number if it
 satisfies the following modular arithmetic condition:
 
     power(b, n-1) MOD n = 1,
