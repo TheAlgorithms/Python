@@ -28,7 +28,10 @@ def find_anagrams(_list: list) -> list[list[str]]:
         for itr2 in range(itr1 + 1, len(_keys)):
             # now the character count of each work is compared with the main word
             # if the character count is matched it is considered as an anagram
-            if char_map[_keys[itr1]] == char_map[_keys[itr2]] and not char_map[_keys[itr2]]["is_visited"]:
+            if (
+                char_map[_keys[itr1]] == char_map[_keys[itr2]]
+                and not char_map[_keys[itr2]]["is_visited"]
+            ):
                 res.append(_keys[itr1])
                 res.append(_keys[itr2])
                 # once the word is compared and match is found it is marked as visited
