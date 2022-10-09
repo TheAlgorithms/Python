@@ -2,13 +2,14 @@ import doctest
 
 
 def find_anagrams(_list: list) -> list[list[str]]:
+    test_find_anagrams()
     """
     Find the characters and number of occurrence in each words
     """
     char_map = {}
     anagrams = []
     for each in _list:
-        char_map[each] = {"is_visited": 0}
+        char_map[each] = {"is_visited": False}
         for char in each:
             # if the letter is not present already add it
             # if it is already present add the count of each letter
@@ -20,23 +21,20 @@ def find_anagrams(_list: list) -> list[list[str]]:
     """
     Match each words with the occurrence count
     """
-    _keys = list(char_map.keys())
+    _keys = list(char_map)
     for itr1 in range(0, len(_keys)):
         # One word is taken at a time
         res = []
         for itr2 in range(itr1 + 1, len(_keys)):
             # now the character count of each work is compared with the main word
             # if the character count is matched it is considered as an anagram
-            if (
-                char_map[_keys[itr1]] == char_map[_keys[itr2]]
-                and char_map[_keys[itr2]]["is_visited"] == 0
-            ):
+            if char_map[_keys[itr1]] == char_map[_keys[itr2]] and not char_map[_keys[itr2]]["is_visited"]:
                 res.append(_keys[itr1])
                 res.append(_keys[itr2])
                 # once the word is compared and match is found it is marked as visited
-                char_map[_keys[itr2]]["is_visited"] = 1
+                char_map[_keys[itr2]]["is_visited"] = True
         # now sort the words and remove the duplicates if present
-        _set = sorted(list(set(res)))
+        _set = sorted(set(res))
 
         # if there are anagrams, push it to the res array
         if len(_set) != 0:
