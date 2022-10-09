@@ -7,12 +7,12 @@ python3 -m doctest -v greedy_merge_sort.py
 """
 
 # FUNCTION
-def job_sequencing_with_deadlines(N: int, jobs: list) -> list:
+def job_sequencing_with_deadlines(numJobs: int, jobs: list) -> list:
     """
     Function to find the maximum profit by doing jobs in a given time frame
 
     Args:
-        N [int]: Number of jobs
+        numJobs [int]: Number of jobs
         jobs [list]: A list of tuples of (job_id, deadline, profit)
 
     Returns:
