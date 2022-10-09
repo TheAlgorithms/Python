@@ -69,32 +69,26 @@ def vol_spheres_intersect(
 
     return vol_spherical_cap(h1, radius_2) + vol_spherical_cap(h2, radius_1)
 
-
 def vol_spheres_union(
     radius_1: float, radius_2: float, centers_distance: float
 ) -> float:
     """
-    Calculate the volume of the union of two spheres that possibly intersect.
-    The volume of the union is the sum of the volumes of sphere A and sphere B, less the intersection.
-
+    Calculate the volume of the union of two spheres that possibly intersect. 
+    It is the sum of sphere A and sphere B minus their intersection.
     First, it calculates the volumes (v1, v2)
     of the spheres, then the volume of the intersection (i) and it returns the sum v1+v2-i.
     if centers_distance is 0 then it returns the volume of the larger sphere
-    :return vol_sphere(radius_1) + vol_sphere(radius_2) - vol_spheres_intersect(radius_1, radius_2, centers_distance)
+    :return vol_sphere(radius_1) + vol_sphere(radius_2) 
+                - vol_spheres_intersect(radius_1, radius_2, centers_distance)
 
     >>> vol_spheres_union(2, 2, 1)
     45.814892864851146
     """
-
+    
     if centers_distance == 0:
         return vol_sphere(max(radius_1, radius_2))
 
-    return (
-        vol_sphere(radius_1)
-        + vol_sphere(radius_2)
-        - vol_spheres_intersect(radius_1, radius_2, centers_distance)
-    )
-
+    return vol_sphere(radius_1) + vol_sphere(radius_2) - vol_spheres_intersect(radius_1, radius_2, centers_distance)
 
 def vol_cuboid(width: float, height: float, length: float) -> float:
     """
