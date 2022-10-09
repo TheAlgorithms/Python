@@ -5,6 +5,7 @@ For doctests run following command:
 python3 -m doctest -v greedy_merge_sort.py
 """
 
+
 # FUNCTION
 def job_sequencing_with_deadlines(num_jobs: int, jobs: list) -> list:
     """
