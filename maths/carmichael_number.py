@@ -1,6 +1,6 @@
 """
 == Carmichael Numbers ==
-A number n is said to be a Carmichael number if it
+A number n is said to be a Carmichael number if it 
 satisfies the following modular arithmetic condition:
 
     power(b, n-1) MOD n = 1,
@@ -12,7 +12,7 @@ https://en.wikipedia.org/wiki/Carmichael_number
 """
 
 
-def gcd(a: int, b: int):
+def gcd(a: int, b: int) -> int:
     if a < b:
         return gcd(b, a)
     if a % b == 0:
@@ -20,7 +20,7 @@ def gcd(a: int, b: int):
     return gcd(b, a % b)
 
 
-def power(x, y, mod):
+def power(x: int, y: int, mod: int) -> int:
     if y == 0:
         return 1
     temp = power(x, y // 2, mod) % mod
@@ -30,7 +30,7 @@ def power(x, y, mod):
     return temp
 
 
-def isCarmichaelNumber(n):
+def isCarmichaelNumber(n: int) -> bool:
     b = 2
     while b < n:
 
@@ -46,5 +46,5 @@ if __name__ == "__main__":
     number = int(input("Enter number: ").strip())
     if isCarmichaelNumber(number):
         print(f"{number} is a Carmichael Number.")
-    else
+    else:
         print(f"{number} is not a Carmichael Number.")
