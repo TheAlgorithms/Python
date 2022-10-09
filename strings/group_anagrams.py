@@ -51,9 +51,9 @@ def isolate_anagrams(anagrams: dict) -> list:
 
 
 if __name__ == "__main__":
+    import doctest
     from collections import defaultdict
     from typing import DefaultDict
-    import doctest
 
     data = [
         "could",
