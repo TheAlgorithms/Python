@@ -569,7 +569,7 @@
   * [Sigmoid](maths/sigmoid.py)
   * [Simpson Rule](maths/simpson_rule.py)
   * [Sin](maths/sin.py)
-  * [Smith Number](maths/smith_number.py)  
+  * [Smith Number](maths/smith_number.py)
   * [Sock Merchant](maths/sock_merchant.py)
   * [Softmax](maths/softmax.py)
   * [Square Root](maths/square_root.py)
