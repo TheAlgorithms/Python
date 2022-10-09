@@ -16,4 +16,4 @@ def add(a, b):
 if __name__ == "__main__":
     a = 5
     b = 6
-    print(f"The sum of {a} + {b} is {add(a, b)}")
+    print("The sum of " + str({a}) + " and " + str({b}) + " is " + str({add(a, b)}))
