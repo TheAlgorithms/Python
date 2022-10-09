@@ -1,7 +1,6 @@
 """
 This is a pure Python implementation of the greedy-merge-sort algorithm
 
-<<<<<<< HEAD
 For doctests run following command:
 python3 -m doctest -v greedy_merge_sort.py
 """
