@@ -12,6 +12,11 @@ def is_prime(number: int) -> bool:
     """
     :param number: check if a number is prime
     :return: false if a number is not prime, otherwise true
+
+    >>> is_prime(4)
+    False
+    >>> is_prime(5)
+    True
     """
 
     for i in range(2, (number // 2) + 1):
@@ -25,6 +30,9 @@ def number_sum(number: int) -> int:
     """
     :param number: number to sum the digits of
     :return: the sum of the digits of a number
+
+    >>> number_sum(22)
+    4
     """
 
     number_total = 0
@@ -38,6 +46,9 @@ def prime_factors(number: int) -> int:
     """
     :param number: generate prime factors of a number
     :return: sum of digits of each prime factor
+
+    >>> prime_factors(22)
+    4
     """
 
     factor = 2
