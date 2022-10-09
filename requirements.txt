@@ -2,7 +2,7 @@ beautifulsoup4
 fake_useragent
 keras
 lxml
-matplotlib; python_version < "3.11"
+matplotlib
 numpy
 opencv-python
 pandas; python_version < "3.11"
@@ -11,7 +11,7 @@ qiskit; python_version < "3.11"
 requests
 # scikit-fuzzy  # Causing broken builds
 sklearn
-statsmodels
+statsmodels; python_version < "3.11"
 sympy; python_version < "3.11"
 tensorflow; python_version < "3.11"
 texttable
