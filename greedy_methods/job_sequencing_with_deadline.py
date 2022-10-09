@@ -1,15 +1,12 @@
 """
 This is a pure Python implementation of the greedy-merge-sort algorithm
 
+<<<<<<< HEAD
 For doctests run following command:
 python3 -m doctest -v greedy_merge_sort.py
 """
 
 # FUNCTION
-
-from numpy import void
-
-
 def job_sequencing_with_deadlines(N: int, jobs: list) -> list:
     """
     Function to find the maximum profit by doing jobs in a given time frame
@@ -55,3 +52,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
