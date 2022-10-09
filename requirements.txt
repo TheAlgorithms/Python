@@ -5,7 +5,7 @@ lxml
 matplotlib
 numpy
 opencv-python
-pandas; python_version < "3.11"
+pandas
 pillow
 qiskit; python_version < "3.11"
 requests
