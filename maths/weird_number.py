@@ -1,5 +1,4 @@
 from math import sqrt
-from typing import List
 
 
 def factors(n: int) -> list[int]:
