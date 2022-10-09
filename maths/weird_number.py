@@ -1,4 +1,4 @@
-rom math import sqrt
+from math import sqrt
 
 def factors(n):
 
@@ -56,10 +56,8 @@ def weird(n):
 	else:
 		return False
 
-  
 def main():
-  n = 70
-
+	n = 70
 	if (weird(n)):
 		print("Weird Number")
 	else:
