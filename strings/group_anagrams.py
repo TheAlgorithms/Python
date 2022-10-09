@@ -53,6 +53,7 @@ def isolate_anagrams(anagrams: dict) -> list:
 if __name__ == "__main__":
     from collections import defaultdict
     from typing import DefaultDict
+    import doctest
 
     data = [
         "could",
@@ -67,4 +68,5 @@ if __name__ == "__main__":
         "strap",
         "traps",
     ]
+    doctest.testfile("group_anagram.txt")
     isolate_anagrams(remove_non_anagrams(group_anagrams(data)))
