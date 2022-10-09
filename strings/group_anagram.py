@@ -9,7 +9,8 @@ def find_anagrams(_list: list) -> list[list[str]]:
     char_map = {}
     anagrams = []
     for each in _list:
-        char_map[each] = {"is_visited": False}
+        char_map[each] = {}
+        char_map[each]["is_visited"] = False
         for char in each:
             # if the letter is not present already add it
             # if it is already present add the count of each letter
