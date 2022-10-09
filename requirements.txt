@@ -2,15 +2,15 @@ beautifulsoup4
 fake_useragent
 keras
 lxml
-matplotlib
+matplotlib; python_version < "3.11"
 numpy
 opencv-python
-pandas
+pandas; python_version < "3.11"
 pillow
-qiskit
+qiskit; python_version < "3.11"
 requests
 # scikit-fuzzy  # Causing broken builds
-sklearn; python_version < "3.11"
+sklearn
 statsmodels
 sympy; python_version < "3.11"
 tensorflow; python_version < "3.11"
