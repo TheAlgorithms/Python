@@ -23,7 +23,7 @@ def job_sequencing_with_deadlines(num_jobs: int, jobs: list) -> list:
     >>> job_sequencing_with_deadlines(4, [(1, 4, 20), (2, 1, 10),
     ... (3, 1, 40), (4, 1, 30)])
     [2, 60]
-    >>> job_sequencing_with_deadlines(5, [(1, 2, 100), (2, 1, 19), \
+    >>> job_sequencing_with_deadlines(5, [(1, 2, 100), (2, 1, 19), 
     ... (3, 2, 27), (4, 1, 25), (5, 1, 15)])
     [2, 127]
     """
