@@ -1,6 +1,6 @@
 """
-Title : Finding the value of either Gravitational Force, one of the masses or distance
-provided that the other three parameters are given.
+Title: Calculating the value of the gravitational force,
+       one of the masses, or the distance given the other three parameters.
 
 Description : Newton's Law of Universal Gravitation explains the presence of force of
 attraction between bodies having a definite mass situated at a distance.  It is usually
@@ -12,7 +12,12 @@ of the previously described phenomena of gravity on Earth with known astronomica
 behaviors.
 
 The equation for the universal gravitation is as follows:
-F = (G * mass_1 * mass_2) / (distance)^2
+    F = (G * mass_1 * mass_2) / (distance)^2
+    where,
+    F is the gravitational force between bodies,
+    m1 and m2 are the masses of the bodies,
+    r is the distance between the centres of two bodies,
+    G is the universal gravitational constant.
 
 Source :
 - https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation
