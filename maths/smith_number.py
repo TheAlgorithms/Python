@@ -56,7 +56,7 @@ def prime_factors(number: int) -> int:
     while number > 1:
         if number % factor == 0:
             total += number_sum(factor)
-            number /= factor
+            number //= factor
         else:
             factor += 1
 
