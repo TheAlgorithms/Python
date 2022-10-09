@@ -1,13 +1,13 @@
 """
-Lorenz transformation describes the transition from a reference frame P
+Lorentz transformation describes the transition from a reference frame P
 to another reference frame P', each of which is moving in a direction with
-respect to the other. The Lorenz transformation implemented in this code
+respect to the other. The Lorentz transformation implemented in this code
 is the relativistic version using a four vector described by Minkowsky Space:
 x0 = ct, x1 = x, x2 = y, and x3 = z
 
 NOTE: Please note that x0 is c (speed of light) times t (time).
 
-So, the Lorenz transformation using a four vector is defined as:
+So, the Lorentz transformation using a four vector is defined as:
 
 |ct'|   | γ  -γβ  0  0|  |ct|
 |x' | = |-γβ  γ   0  0| *|x |

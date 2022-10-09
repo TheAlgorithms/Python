@@ -475,6 +475,7 @@
   * [Binomial Coefficient](maths/binomial_coefficient.py)
   * [Binomial Distribution](maths/binomial_distribution.py)
   * [Bisection](maths/bisection.py)
+  * [Catalan Number](maths/catalan_number.py)
   * [Ceil](maths/ceil.py)
   * [Check Polygon](maths/check_polygon.py)
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
@@ -632,8 +633,9 @@
 
 ## Physics
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
-  * [Lorenz Transformation Four Vector](physics/lorenz_transformation_four_vector.py)
+  * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
+  * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
 
 ## Project Euler

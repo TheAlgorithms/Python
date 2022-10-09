@@ -4,12 +4,12 @@
 
 
 class matrix:  # Public class to implement a graph
-    def __init__(self, row: int, col: int, graph: list):
+    def __init__(self, row: int, col: int, graph: list[list[bool]]) -> None:
         self.ROW = row
         self.COL = col
         self.graph = graph
 
-    def is_safe(self, i, j, visited) -> bool:
+    def is_safe(self, i: int, j: int, visited: list[list[bool]]) -> bool:
         return (
             0 <= i < self.ROW
             and 0 <= j < self.COL
@@ -17,7 +17,8 @@ class matrix:  # Public class to implement a graph
             and self.graph[i][j]
         )
 
-    def diffs(self, i, j, visited):  # Checking all 8 elements surrounding nth element
+    def diffs(self, i: int, j: int, visited: list[list[bool]]) -> None:
+        # Checking all 8 elements surrounding nth element
         rowNbr = [-1, -1, -1, 0, 0, 1, 1, 1]  # Coordinate order
         colNbr = [-1, 0, 1, -1, 1, -1, 0, 1]
         visited[i][j] = True  # Make those cells visited

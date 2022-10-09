@@ -31,8 +31,21 @@ def update_solution(
         d = constant_vector[i]
         for j in range(0, n):
             if i != j:
-                d -= coefficient_matrix[i][j] * solution_vector[j]
-        solution_vector[i] = d / coefficient_matrix[i][i]
+                d -= (
+                    coefficient_matrix[i][j] * solution_vector[j]
+                )  # we substitute the value of all the variables except the digonal
+                # variables
+        solution_vector[i] = (
+            d / coefficient_matrix[i][i]
+        )  # we divide the value of the diagonal elements
+        """
+        So, overall in each iteration we find the value of variable that is present on
+        the diagonal of the matrix this is done by substituting the value of all the
+        variables except the diagonal elements and then dividing the value of the
+        diagonal elements. We chose the diagonal elements because the matrix in gauss
+        seidel method is diagonally dominant
+        """
+
     return solution_vector
 
 

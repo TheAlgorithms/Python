@@ -1,19 +1,17 @@
 """
 This program print the matrix in spiral form.
 This problem has been solved through recursive way.
-
       Matrix must satisfy below conditions
         i) matrix should be only one or two dimensional
         ii) number of column of all rows should be equal
 """
 
-from collections.abc import Iterable
 
-
-def check_matrix(matrix):
+def check_matrix(matrix: list[list[int]]) -> bool:
     # must be
-    if matrix and isinstance(matrix, Iterable):
-        if isinstance(matrix[0], Iterable):
+    matrix = list(list(row) for row in matrix)
+    if matrix and isinstance(matrix, list):
+        if isinstance(matrix[0], list):
             prev_len = 0
             for row in matrix:
                 if prev_len == 0:
@@ -29,32 +27,48 @@ def check_matrix(matrix):
     return result
 
 
-def spiralPrint(a):
+def spiral_print_clockwise(a: list[list[int]]) -> None:
+    """
+    >>> spiral_print_clockwise([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+    1
+    2
+    3
+    4
+    8
+    12
+    11
+    10
+    9
+    5
+    6
+    7
+    """
     if check_matrix(a) and len(a) > 0:
-        matRow = len(a)
-        if isinstance(a[0], Iterable):
-            matCol = len(a[0])
+        a = list(list(row) for row in a)
+        mat_row = len(a)
+        if isinstance(a[0], list):
+            mat_col = len(a[0])
         else:
             for dat in a:
-                print(dat),
+                print(dat)
             return
 
         # horizotal printing increasing
-        for i in range(0, matCol):
-            print(a[0][i]),
+        for i in range(0, mat_col):
+            print(a[0][i])
         # vertical printing down
-        for i in range(1, matRow):
-            print(a[i][matCol - 1]),
+        for i in range(1, mat_row):
+            print(a[i][mat_col - 1])
         # horizotal printing decreasing
-        if matRow > 1:
-            for i in range(matCol - 2, -1, -1):
-                print(a[matRow - 1][i]),
+        if mat_row > 1:
+            for i in range(mat_col - 2, -1, -1):
+                print(a[mat_row - 1][i])
         # vertical printing up
-        for i in range(matRow - 2, 0, -1):
-            print(a[i][0]),
-        remainMat = [row[1 : matCol - 1] for row in a[1 : matRow - 1]]
-        if len(remainMat) > 0:
-            spiralPrint(remainMat)
+        for i in range(mat_row - 2, 0, -1):
+            print(a[i][0])
+        remain_mat = [row[1 : mat_col - 1] for row in a[1 : mat_row - 1]]
+        if len(remain_mat) > 0:
+            spiral_print_clockwise(remain_mat)
         else:
             return
     else:
@@ -64,5 +78,5 @@ def spiralPrint(a):
 
 # driver code
 if __name__ == "__main__":
-    a = ([1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12])
-    spiralPrint(a)
+    a = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+    spiral_print_clockwise(a)
