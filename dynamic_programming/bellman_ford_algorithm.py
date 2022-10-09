@@ -61,3 +61,5 @@ if __name__ == '__main__':
  
     # function call
     g.BellmanFord(0)
+   
+# Wikipedia Page for more info - https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
