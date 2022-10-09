@@ -10,13 +10,49 @@ For doctests run following command:
 python3 -m doctest -v binary_insertion_sort.py
 
 For manual testing run:
-python3 binary_insertion_sort.py
+python3 binary_insertion_sort.py 5 4 3 2 1
 """
 
-import sys
 
-sys.path.append("../searches")
-from binary_search import bisect_left
+def binary_search(collection: list[int], item: int, left: int, right: int) -> int:
+    """
+    Pure implementation of binary search algorithm in Python to locate
+    the first element in a sorted array that is larger or equal to a given value.
+
+    :param collection: some ascending sorted collection with comparable items
+    :param item: item to locate
+    :param left: Lowest index to consider (as in collection[left:right])
+    :param right: past the highest index to consider (as in collection[left:right])
+    :return: index i such that all values in collection[left:i] are < item and all
+        values in collection[i:right] are >= item.
+
+    Examples:
+    >>> binary_search([-62, -50, -41, -8, -1], -12, 0, 4)
+    3
+
+    >>> binary_search([-2, 3, 7, 9, 255], 0, 0, 4)
+    1
+
+    >>> binary_search([0, 5, 7, 10, 15], 20, 0, 1)
+    1
+
+    >>> binary_search([0, 0, 8, 10, 28, 35], 1, 0, 4)
+    2
+
+    >>> binary_search([1, 2, 3, 4, 5], 2, 0, 1)
+    1
+    """
+    if right < 0:
+        right = len(collection)
+
+    while left < right:
+        mid = left + (right - left) // 2
+        if collection[mid] < item:
+            left = mid + 1
+        else:
+            right = mid
+
+    return left
 
 
 def binary_insertion_sort(collection: list[int]) -> list[int]:
@@ -46,7 +82,7 @@ def binary_insertion_sort(collection: list[int]) -> list[int]:
     True
     """
     for ind, val in enumerate(collection[1:]):
-        mid = bisect_left(collection, val, 0, ind + 1)
+        mid = binary_search(collection, val, 0, ind + 1)
         collection = (
             collection[:mid] + [val] + collection[mid : ind + 1] + collection[ind + 2 :]
         )
