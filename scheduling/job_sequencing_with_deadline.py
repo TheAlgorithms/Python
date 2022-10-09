@@ -1,12 +1,3 @@
-"""
-This is a pure Python implementation of the greedy-merge-sort algorithm
-
-For doctests run following command:
-python3 -m doctest -v greedy_merge_sort.py
-"""
-
-
-# FUNCTION
 def job_sequencing_with_deadlines(num_jobs: int, jobs: list) -> list:
     """
     Function to find the maximum profit by doing jobs in a given time frame
@@ -20,11 +11,11 @@ def job_sequencing_with_deadlines(num_jobs: int, jobs: list) -> list:
         in a given time frame
 
     Examples:
-    >>> job_sequencing_with_deadlines(4, [(1, 4, 20), (2, 1, 10),
-    ... (3, 1, 40), (4, 1, 30)])
+    >>> job_sequencing_with_deadlines(4,
+    ... [(1, 4, 20), (2, 1, 10), (3, 1, 40), (4, 1, 30)])
     [2, 60]
-    >>> job_sequencing_with_deadlines(5, [(1, 2, 100), (2, 1, 19),
-    ... (3, 2, 27), (4, 1, 25), (5, 1, 15)])
+    >>> job_sequencing_with_deadlines(5,
+    ... [(1, 2, 100), (2, 1, 19), (3, 2, 27), (4, 1, 25), (5, 1, 15)])
     [2, 127]
     """
 
