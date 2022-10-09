@@ -6,10 +6,10 @@ for i in range(N):
 
 #OUTPUT
 # SORT JOBS ACCORDING TO THEIR PROFIT
-jobs.sort(key=lambda x: x[2], reverse=True)
+jobs.sort(key=lambda value: value[2], reverse=True)
 
 # FIND MAXIMUM DEADLINE
-max_deadline = max(jobs, key=lambda x: x[1])[1]
+max_deadline = max(jobs, key=lambda value: value[1])[1]
 
 # INITIALIZE SLOTS
 slots = [0] * max_deadline
