@@ -56,7 +56,7 @@ def weird(n):
 	else:
 		return False
 
-  
+
 def main():
   n = 70
 
@@ -64,7 +64,7 @@ def main():
 		print("Weird Number")
 	else:
 		print("Not Weird Number")
-    
+
 if __name__ == "__main__":
   import doctest
   doctest.testmod(verbose=True)
