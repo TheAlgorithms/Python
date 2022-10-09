@@ -33,7 +33,7 @@ def job_sequencing_with_deadlines(N: int, jobs: list) -> list:
     # and initialize it with -1
     max_deadline = max(jobs, key=lambda x: x[1])[1]
     time_slots = [-1] * max_deadline
-    
+
     # Finding the maximum profit and the count of jobs
     count = 0
     max_profit = 0
@@ -48,8 +48,8 @@ def job_sequencing_with_deadlines(N: int, jobs: list) -> list:
                 break
     return [count, max_profit]
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
