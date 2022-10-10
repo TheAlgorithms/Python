@@ -30,6 +30,9 @@ class MaximumAreaOfIsland:
     def dfs(self, row: int, col: int) -> int:
         """
         Returns the current Area of island
+
+        >>> dfs(0,0)
+        0
         """
         if (
             self.is_safe(row, col)
@@ -50,6 +53,9 @@ class MaximumAreaOfIsland:
     def count_max_area(self) -> int:
         """
         Finds the area of all islands and returns the maximum area.
+
+        >>> count_max_area()
+        0
         """
         max_area = 0
         for row in range(self.ROWS):
