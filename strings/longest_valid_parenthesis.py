@@ -1,6 +1,6 @@
 def longest_valid_parenthesis(self, s: str) -> int:
     """
-    Returns the length of the longest valid paranthesis
+    Returns the length of the longest valid parenthesis
      >>> longest_valid_parenthesis('(()')
      2
      >>> longest_valid_parenthesis(')()())')
