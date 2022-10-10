@@ -42,7 +42,9 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     # since this implementation only works for 2x2 matrices
     if len(matrix) == 2 and len(matrix[0]) == 2 and len(matrix[1]) == 2:
         # Calculate the determinant of the matrix
-        determinant = D(matrix[0][0]) * D(matrix[1][1]) - D(matrix[1][0]) * D(matrix[0][1])
+        determinant = D(matrix[0][0]) * D(matrix[1][1]) - D(matrix[1][0]) * D(
+            matrix[0][1]
+        )
         if determinant == 0:
             raise ValueError("This matrix has no inverse.")
 
@@ -52,29 +54,57 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
         swapped_matrix[1][0], swapped_matrix[0][1] = -matrix[1][0], -matrix[0][1]
 
         # Calculate the inverse of the matrix
-        return [[float(D(n) / determinant) or 0.0 for n in row] for row in swapped_matrix]
-    elif len(matrix) == 3 and len(matrix[0]) == 3 and len(matrix[1]) == 3 and len(matrix[2]) == 3:
+        return [
+            [float(D(n) / determinant) or 0.0 for n in row] for row in swapped_matrix
+        ]
+    elif (
+        len(matrix) == 3
+        and len(matrix[0]) == 3
+        and len(matrix[1]) == 3
+        and len(matrix[2]) == 3
+    ):
         # Calculate the determinant of the matrix using sarrus rule
-        determinant = ((D(matrix[0][0]) * D(matrix[1][1]) * D(matrix[2][2])) + (
-                    D(matrix[0][1]) * D(matrix[1][2]) * D(matrix[2][0])) + (
-                                   D(matrix[0][2]) * D(matrix[1][0]) * D(matrix[2][1]))) - (
-                                  (D(matrix[0][2]) * D(matrix[1][1]) * D(matrix[2][0])) + (
-                                      D(matrix[0][1]) * D(matrix[1][0]) * D(matrix[2][2])) + (
-                                              D(matrix[0][0]) * D(matrix[1][2]) * D(matrix[2][1])))
+        determinant = (
+            (D(matrix[0][0]) * D(matrix[1][1]) * D(matrix[2][2]))
+            + (D(matrix[0][1]) * D(matrix[1][2]) * D(matrix[2][0]))
+            + (D(matrix[0][2]) * D(matrix[1][0]) * D(matrix[2][1]))
+        ) - (
+            (D(matrix[0][2]) * D(matrix[1][1]) * D(matrix[2][0]))
+            + (D(matrix[0][1]) * D(matrix[1][0]) * D(matrix[2][2]))
+            + (D(matrix[0][0]) * D(matrix[1][2]) * D(matrix[2][1]))
+        )
         if determinant == 0:
             raise ValueError("This matrix has no inverse.")
 
         # Creating cofactor matrix
         cofactor_matrix = [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
-        cofactor_matrix[0][0] = (D(matrix[1][1]) * D(matrix[2][2])) - (D(matrix[1][2]) * D(matrix[2][1]))
-        cofactor_matrix[0][1] = -((D(matrix[1][0]) * D(matrix[2][2])) - (D(matrix[1][2]) * D(matrix[2][0])))
-        cofactor_matrix[0][2] = (D(matrix[1][0]) * D(matrix[2][1])) - (D(matrix[1][1]) * D(matrix[2][0]))
-        cofactor_matrix[1][0] = -((D(matrix[0][1]) * D(matrix[2][2])) - (D(matrix[0][2]) * D(matrix[2][1])))
-        cofactor_matrix[1][1] = (D(matrix[0][0]) * D(matrix[2][2])) - (D(matrix[0][2]) * D(matrix[2][0]))
-        cofactor_matrix[1][2] = -((D(matrix[0][0]) * D(matrix[2][1])) - (D(matrix[0][1]) * D(matrix[2][0])))
-        cofactor_matrix[2][0] = (D(matrix[0][1]) * D(matrix[1][2])) - (D(matrix[0][2]) * D(matrix[1][1]))
-        cofactor_matrix[2][1] = -((D(matrix[0][0]) * D(matrix[1][2])) - (D(matrix[0][2]) * D(matrix[1][0])))
-        cofactor_matrix[2][2] = (D(matrix[0][0]) * D(matrix[1][1])) - (D(matrix[0][1]) * D(matrix[1][0]))
+        cofactor_matrix[0][0] = (D(matrix[1][1]) * D(matrix[2][2])) - (
+            D(matrix[1][2]) * D(matrix[2][1])
+        )
+        cofactor_matrix[0][1] = -(
+            (D(matrix[1][0]) * D(matrix[2][2])) - (D(matrix[1][2]) * D(matrix[2][0]))
+        )
+        cofactor_matrix[0][2] = (D(matrix[1][0]) * D(matrix[2][1])) - (
+            D(matrix[1][1]) * D(matrix[2][0])
+        )
+        cofactor_matrix[1][0] = -(
+            (D(matrix[0][1]) * D(matrix[2][2])) - (D(matrix[0][2]) * D(matrix[2][1]))
+        )
+        cofactor_matrix[1][1] = (D(matrix[0][0]) * D(matrix[2][2])) - (
+            D(matrix[0][2]) * D(matrix[2][0])
+        )
+        cofactor_matrix[1][2] = -(
+            (D(matrix[0][0]) * D(matrix[2][1])) - (D(matrix[0][1]) * D(matrix[2][0]))
+        )
+        cofactor_matrix[2][0] = (D(matrix[0][1]) * D(matrix[1][2])) - (
+            D(matrix[0][2]) * D(matrix[1][1])
+        )
+        cofactor_matrix[2][1] = -(
+            (D(matrix[0][0]) * D(matrix[1][2])) - (D(matrix[0][2]) * D(matrix[1][0]))
+        )
+        cofactor_matrix[2][2] = (D(matrix[0][0]) * D(matrix[1][1])) - (
+            D(matrix[0][1]) * D(matrix[1][0])
+        )
 
         # Transpose the cofactor matrix (Adjoint matrix)
         adjoint_matrix = [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
@@ -92,7 +122,3 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
         return [[float(D(n)) or 0.0 for n in row] for row in inverse_matrix]
     else:
         raise ValueError("Please provide a matrix of size 2x2 or 3x3.")
-
-
-
-
