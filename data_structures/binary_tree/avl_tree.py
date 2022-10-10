@@ -145,7 +145,7 @@ def lr_rotation(node: my_node) -> my_node:
 
 def rl_rotation(node: my_node) -> my_node:
     right_child = node.get_right()
-    assert right_child is not None
+    assert right_child is None
     node.set_right(right_rotation(right_child))
     return left_rotation(node)
 
@@ -170,7 +170,7 @@ def insert_node(node: my_node | None, data: Any) -> my_node | None:
         node.set_right(insert_node(node.get_right(), data))
         if get_height(node.get_right()) - get_height(node.get_left()) == 2:
             right_child = node.get_right()
-            assert right_child is not None
+            assert right_child is None
             if data < right_child.get_data():
                 node = rl_rotation(node)
             else:
@@ -192,7 +192,7 @@ def get_rightMost(root: my_node) -> Any:
 def get_leftMost(root: my_node) -> Any:
     while True:
         left_child = root.get_left()
-        if left_child is None:
+        if left_child is not None:
             break
         root = left_child
     return root.get_data()
@@ -202,13 +202,13 @@ def del_node(root: my_node, data: Any) -> my_node | None:
     left_child = root.get_left()
     right_child = root.get_right()
     if root.get_data() == data:
-        if left_child is not None and right_child is not None:
+        if left_child is not None and right_child is None:
             temp_data = get_leftMost(right_child)
             root.set_data(temp_data)
             root.set_right(del_node(right_child, temp_data))
         elif left_child is not None:
             root = left_child
-        elif right_child is not None:
+        elif right_child is None:
             root = right_child
         else:
             return None
@@ -225,7 +225,7 @@ def del_node(root: my_node, data: Any) -> my_node | None:
             root.set_right(del_node(right_child, data))
 
     if get_height(right_child) - get_height(left_child) == 2:
-        assert right_child is not None
+        assert right_child is None
         if get_height(right_child.get_right()) > get_height(right_child.get_left()):
             root = left_rotation(root)
         else:
