@@ -1,4 +1,5 @@
-# Given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.)
+# Given an m x n binary matrix grid. An island is a group of 1's 
+# (representing land) connected 4-directionally (horizontal or vertical.)
 # You may assume all four edges of the grid are surrounded by water.
 # The area of an island is the number of cells with a value 1 in the island.
 # Return the maximum area of an island in grid.
@@ -41,7 +42,15 @@ def count_max_area(mat: list[list[bool]]) -> int:
     """
     Finds the area of all islands and returns the maximum area.
 
-    >>> count_max_area([[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],[0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],[0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]])
+    >>> count_max_area([
+        [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+        [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
+        [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]])
     6
     """
 
