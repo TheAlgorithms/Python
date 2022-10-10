@@ -78,7 +78,14 @@ score
 
 # mean function will give average of all the scores for various estimating metrices
 def mean(score: dict) ->None:
-    # score is a dictionary
+    '''
+    this function prints mean value of arrays
+    in score.value 
+    >>> mean({"a":1,2,3,4,5,
+            "b":2,4,6,8})
+    >>> accuracy: 3
+        precision: 4
+    '''
     accuracy = np.mean(score["test_accuracy"]) * 100
     precision = np.mean(score["test_precision"])
     recall = np.mean(score["test_recall"])
