@@ -5,7 +5,7 @@
 # If there is no island, return 0.
 
 
-class maximumAreaofIsland:
+class maximumAreaOfIsland:
     def __init__(self, mat: list[list[int]]) -> None:
         """
         Constructor to set the problem param.
@@ -15,35 +15,35 @@ class maximumAreaofIsland:
         self.COLS = len(mat[0])
         self.seen = set()
 
-    def is_safe(self, i: int, j: int) -> bool:
+    def is_safe(self, row: int, col: int) -> bool:
         """
         Checking weather co-ordinate (i,j) is valid or not.
         """
-        return not (i < 0 or j < 0 or i >= self.ROWS or j >= self.COLS)
+        return not (row < 0 or col < 0 or row >= self.ROWS or col >= self.COLS)
 
-    def dfs(self, i: int, j: int) -> int:
+    def dfs(self, row: int, col: int) -> int:
         """
         Returns the current Area of island
         """
-        if self.is_safe(i, j) and (i, j) not in self.seen and self.mat[i][j] == 1:
-            self.seen.add((i, j))
+        if self.is_safe(row, col) and (row, col) not in self.seen and self.mat[row][col] == 1:
+            self.seen.add((row, col))
             return (
                 1
-                + self.dfs(i + 1, j)
-                + self.dfs(i - 1, j)
-                + self.dfs(i, j + 1)
-                + self.dfs(i, j - 1)
+                + self.dfs(row + 1, col)
+                + self.dfs(row - 1, col)
+                + self.dfs(row, col + 1)
+                + self.dfs(row, col - 1)
             )
         else:
             return 0
 
     def count_max_area(self) -> int:
         max_area = 0
-        for i in range(self.ROWS):
-            for j in range(self.COLS):
-                if self.mat[i][j] == 1 and (i, j) not in self.seen:
+        for row in range(self.ROWS):
+            for col in range(self.COLS):
+                if self.mat[row][col] == 1 and (row, col) not in self.seen:
                     # Maximizing the area
-                    max_area = max(max_area, self.dfs(i, j))
+                    max_area = max(max_area, self.dfs(row, col))
 
         return max_area
 
@@ -60,7 +60,7 @@ mat = [
     [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
 ]
 
-maximum_area_1 = maximumAreaofIsland(mat)
+maximum_area_1 = maximumAreaOfIsland(mat)
 
 print(maximum_area_1.count_max_area())  # Output -> 6
 
