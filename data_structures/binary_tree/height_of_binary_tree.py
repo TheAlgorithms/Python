@@ -24,7 +24,7 @@ def height_of_tree(root: TreeNode | None, depth: int = 0) -> int:
     # Base condition of recurrsion, if the root is not present return the current depth
     if not root:
         return depth
-    # Same like dfs, go as much as you can in depth and 
+    # Same like dfs, go as much as you can in depth and
     # return the maximum possible depth
     return max(
         height_of_tree(root.left, depth + 1), height_of_tree(root.right, depth + 1)
