@@ -8,8 +8,6 @@ from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
 
 os.system("clear")
-
-
 # Start of Encryption Function
 def encrypt(plain_text, password):
   # generate a random salt
@@ -35,8 +33,6 @@ def encrypt(plain_text, password):
     'nonce': b64encode(cipher_config.nonce).decode('utf-8'),
     'tag': b64encode(tag).decode('utf-8')
   }
-
-
 # Start of Decryption Function
 def decrypt(enc_dict, password):
   # decode the dictionary entries from base64
@@ -61,7 +57,6 @@ def decrypt(enc_dict, password):
 
   return decrypted
 
-
 def main():
   print("\t\tAES 256 Encryption and Decryption Algorithm")
   print("\t\t-------------------------------------------\n\n")
@@ -79,6 +74,5 @@ def main():
   print("\n\nDecrypted:")
   print("-----------------\n")
   print(bytes.decode(decrypted))
-
 
 main()
