@@ -5,8 +5,6 @@
 # Return the maximum area of an island in grid.
 # If there is no island, return 0.
 
-from typing import List
-
 
 def is_safe(row: int, col: int, ROWS: int, COLS: int) -> bool:
     """
