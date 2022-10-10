@@ -97,3 +97,9 @@ by observation we can see that
 it has 6 unique island's of mentioned area's
 and maximum of all of them is 6 so we return 6.
 """
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
