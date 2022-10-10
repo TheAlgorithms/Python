@@ -1,7 +1,7 @@
-# Given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.) 
+# Given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.)
 # You may assume all four edges of the grid are surrounded by water.
 # The area of an island is the number of cells with a value 1 in the island.
-# Return the maximum area of an island in grid. 
+# Return the maximum area of an island in grid.
 # If there is no island, return 0.
 
 
@@ -25,9 +25,15 @@ class maximumAreaofIsland:
         """
         Returns the current Area of island
         """
-        if self.is_safe(i,j) and (i,j) not in self.seen and self.mat[i][j] == 1:
-            self.seen.add((i,j))
-            return 1 + self.dfs(i+1, j) + self.dfs(i-1, j) + self.dfs(i, j+1) + self.dfs(i, j-1)
+        if self.is_safe(i, j) and (i, j) not in self.seen and self.mat[i][j] == 1:
+            self.seen.add((i, j))
+            return (
+                1
+                + self.dfs(i + 1, j)
+                + self.dfs(i - 1, j)
+                + self.dfs(i, j + 1)
+                + self.dfs(i, j - 1)
+            )
         else:
             return 0
 
@@ -35,33 +41,32 @@ class maximumAreaofIsland:
         max_area = 0
         for i in range(self.ROWS):
             for j in range(self.COLS):
-                if self.mat[i][j] == 1 and (i,j) not in self.seen:
+                if self.mat[i][j] == 1 and (i, j) not in self.seen:
                     # Maximizing the area
-                    max_area = max(max_area, self.dfs(i,j))
+                    max_area = max(max_area, self.dfs(i, j))
 
         return max_area
 
 
-
 # Example 1:
 mat = [
-  [0,0,1,0,0,0,0,1,0,0,0,0,0],
-  [0,0,0,0,0,0,0,1,1,1,0,0,0],
-  [0,1,1,0,1,0,0,0,0,0,0,0,0],
-  [0,1,0,0,1,1,0,0,1,0,1,0,0],
-  [0,1,0,0,1,1,0,0,1,1,1,0,0],
-  [0,0,0,0,0,0,0,0,0,0,1,0,0],
-  [0,0,0,0,0,0,0,1,1,1,0,0,0],
-  [0,0,0,0,0,0,0,1,1,0,0,0,0]
+    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+    [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
 ]
 
 maximum_area_1 = maximumAreaofIsland(mat)
 
-print(maximum_area_1.count_max_area()) # Output -> 6
+print(maximum_area_1.count_max_area())  # Output -> 6
 
 """
 Explaination:
-We are allowed to move 4-directionally (horizontal or vertical.) so the possible 
+We are allowed to move 4-directionally (horizontal or vertical.) so the possible
 in a matrix if we are at x and y possition the possible moveing are
 
 >> directions = [(x,y+1),(x,y-1),(x+1,y),(x-1,y)] also we need to care of boundary cases as well
@@ -81,7 +86,7 @@ mat = [
 ]
 
 For visualization I have defined the connected island with alphabates.
-by observation we can see that 
+by observation we can see that
     A island is of area 1
     B island is of area 4
     C island is of area 4
