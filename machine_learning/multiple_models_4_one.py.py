@@ -70,13 +70,15 @@ models = {
     "KNN": KNeighborsClassifier(),
     "SVC": LinearSVC()
 }
+
+# score is a list which will contain accuracy score for all the estimators
 score = {}
 for model_name, model in models.items():
     cv_score = cross_val_score(model, x, y, cv=5).mean()
     score[model_name] = cv_score*100
 score
 
-
+# mean function will give average of all the scores for various estimating metrices
 def mean(score):
     accuracy = np.mean(score["test_accuracy"])*100
     precision = np.mean(score["test_precision"])
@@ -93,6 +95,8 @@ randomgrid = {'n_estimators': np.arange(100, 500, 40),
               'min_samples_split': [2, 6],
               'min_samples_leaf': [2, 4]}
 
+# cross validate gives scores for multiple scoring parameters
+# For RandomForestClassifier model
 np.random.seed(43)
 random = RandomForestClassifier()
 gs_random = GridSearchCV(random, randomgrid, cv=5, verbose=1, n_jobs=-1)
@@ -106,12 +110,15 @@ logisticgrid = {
     'solver': ['newton-cg', 'lbfgs', 'liblinear']
 }
 
+# For LogisticRegression model
 np.random.seed(43)
 logistic = LogisticRegression()
 gs_logistic = GridSearchCV(logistic, logisticgrid, cv=5, verbose=1, n_jobs=-1)
 scoring = ["accuracy", "precision", "recall", "f1"]
 score = cross_validate(gs_logistic, x, y, scoring=scoring)
 mean(score)
+
+# For KNeighborClassifier model
 knngrid = {
     'leaf_size': np.arange(1, 50, 10),
     'n_neighbors': np.arange(1, 30, 5),
