@@ -1,13 +1,13 @@
-def longest_valid_paranthesis(self, s: str) -> int:
+def longest_valid_parenthesis(self, s: str) -> int:
     """
     Returns the length of the longest valid paranthesis
-     >>> longest_valid_paranthesis('(()')
+     >>> longest_valid_parenthesis('(()')
      2
-     >>> longest_valid_paranthesis(')()())')
+     >>> longest_valid_parenthesis(')()())')
      4
-     >>> longest_valid_paranthesis('')
+     >>> longest_valid_parenthesis('')
      0
-     >>> longest_valid_paranthesis(''(())))((()(()()()())
+     >>> longest_valid_parenthesis(''(())))((()(()()()())
      8
     """
     stack = []
@@ -28,9 +28,6 @@ def longest_valid_paranthesis(self, s: str) -> int:
     while stack:
         res = max(res, stack.pop())
     return res * 2
-
-
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
