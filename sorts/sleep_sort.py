@@ -1,9 +1,9 @@
 """
 This is a pure Python implementation of the sleep algorithm,
-In general, sleep sort works by starting a separate task for 
-each item to be sorted, where each task sleeps for an interval 
-corresponding to the item's sort key, then emits the item. 
-Items are then collected sequentially in time. 
+In general, sleep sort works by starting a separate task for
+each item to be sorted, where each task sleeps for an interval
+corresponding to the item's sort key, then emits the item.
+Items are then collected sequentially in time.
 
 More info on: https://rosettacode.org/wiki/Sorting_algorithms/Sleep_sort
 
@@ -15,8 +15,9 @@ For manual testing run:
 python sleep_sort.py
 """
 
-from time import sleep
 from threading import Timer
+from time import sleep
+
 
 def sleep_sort(collection):
     """Pure implementation of sleep sort algorithm in Python
@@ -38,20 +39,21 @@ def sleep_sort(collection):
     True
     """
     result = []
-    
+
     def append_result(x):
         result.append(x)
 
     if len(collection) > 0:
         mx = collection[0]
         for v in collection:
-            if mx < v: 
+            if mx < v:
                 mx = v
             Timer(v, append_result, [v]).start()
 
-        sleep(mx+1)
+        sleep(mx + 1)
 
     return result
+
 
 if __name__ == "__main__":
     import doctest
