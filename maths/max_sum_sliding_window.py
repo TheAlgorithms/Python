@@ -5,6 +5,12 @@ maximum sum of 'k' consecutive elements in the array.
 Instead of using a nested for loop, in a Brute force approach we will use a technique
 called 'Window sliding technique' where the nested loops can be converted to a single
 loop to reduce time complexity.
+
+Referencing the Big O Notation, this algorithm has a liner time complexity, O(N).
+In the worst case scenario, the window will have to pass through each element of the
+list. If the list's size is N, the algorithm will make N operations, leading to O(N)
+complexity.
+[https://en.wikipedia.org/wiki/Big_O_notation#Use_in_computer_science]
 """
 from __future__ import annotations
 
