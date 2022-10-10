@@ -28,6 +28,9 @@ def longest_valid_paranthesis(self, s: str) -> int:
     while stack:
         res = max(res, stack.pop())
     return res * 2
+
+
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
