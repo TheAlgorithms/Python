@@ -4,67 +4,59 @@
 # Return the maximum area of an island in grid.
 # If there is no island, return 0.
 
+def is_safe(row: int, col: int, ROWS: int, COLS: int) -> bool:
+    """
+    Checking weather co-ordinate (row,col) is valid or not.
 
-class MaximumAreaOfIsland:
-    def __init__(self, mat: list[list[int]]) -> None:
-        """
-        Constructor to set the problem param.
-        """
-        self.mat = mat
-        self.ROWS = len(mat)
-        self.COLS = len(mat[0])
-        self.seen = set()
+    >>> is_safe(0, 0, 5, 5)
+    True
 
-    def is_safe(self, row: int, col: int) -> bool:
-        """
-        Checking weather co-ordinate (i,j) is valid or not.
+    >>> is_safe(-1,-1, 5, 5)
+    False
+    """
+    return not (row < 0 or col < 0 or row >= ROWS or col >= COLS)
 
-        >>> is_safe(0,0)
-        True
+def dfs(row: int, col: int, ROWS: int, COLS: int,seen: set) -> int:
+    """
+    Returns the current Area of island
+    >>> dfs(0,0, 8,8,set())
+    0
+    """
+    if (
+        is_safe(row, col, ROWS, COLS)
+        and (row, col) not in seen
+        and mat[row][col] == 1
+    ):
+        seen.add((row, col))
+        return (
+            1
+            + dfs(row + 1, col, ROWS, COLS, seen)
+            + dfs(row - 1, col, ROWS, COLS, seen)
+            + dfs(row, col + 1, ROWS, COLS, seen)
+            + dfs(row, col - 1, ROWS, COLS, seen)
+        )
+    else:
+        return 0
 
-        >>> is_safe(-1,-1)
-        False
-        """
-        return not (row < 0 or col < 0 or row >= self.ROWS or col >= self.COLS)
+def count_max_area(mat) -> int:
+    """
+    Finds the area of all islands and returns the maximum area.
 
-    def dfs(self, row: int, col: int) -> int:
-        """
-        Returns the current Area of island
+    >>> count_max_area([[0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],[0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],[0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],[0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]])
+    6
+    """
 
-        >>> dfs(0,0)
-        0
-        """
-        if (
-            self.is_safe(row, col)
-            and (row, col) not in self.seen
-            and self.mat[row][col] == 1
-        ):
-            self.seen.add((row, col))
-            return (
-                1
-                + self.dfs(row + 1, col)
-                + self.dfs(row - 1, col)
-                + self.dfs(row, col + 1)
-                + self.dfs(row, col - 1)
-            )
-        else:
-            return 0
+    ROWS = len(mat)
+    COLS = len(mat[0])
+    seen = set()
 
-    def count_max_area(self) -> int:
-        """
-        Finds the area of all islands and returns the maximum area.
-
-        >>> count_max_area()
-        0
-        """
-        max_area = 0
-        for row in range(self.ROWS):
-            for col in range(self.COLS):
-                if self.mat[row][col] == 1 and (row, col) not in self.seen:
-                    # Maximizing the area
-                    max_area = max(max_area, self.dfs(row, col))
-
-        return max_area
+    max_area = 0
+    for row in range(ROWS):
+        for col in range(COLS):
+            if mat[row][col] == 1 and (row, col) not in seen:
+                # Maximizing the area
+                max_area = max(max_area, dfs(row, col, ROWS, COLS,seen))
+    return max_area
 
 
 # Example 1:
@@ -79,9 +71,8 @@ mat = [
     [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
 ]
 
-maximum_area_1 = MaximumAreaOfIsland(mat)
 
-print(maximum_area_1.count_max_area())  # Output -> 6
+print(count_max_area(mat))  # Output -> 6
 
 """
 Explaination:
