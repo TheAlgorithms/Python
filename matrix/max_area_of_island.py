@@ -6,7 +6,7 @@
 
 
 class maximumAreaofIsland:
-    def __init__(self, mat) -> None:
+    def __init__(self, mat: list[list[int]]) -> None:
         """
         Constructor to set the problem param.
         """
@@ -15,13 +15,13 @@ class maximumAreaofIsland:
         self.COLS = len(mat[0])
         self.seen = set()
 
-    def is_safe(self, i, j):
+    def is_safe(self, i: int, j: int) -> bool:
         """
         Checking weather co-ordinate (i,j) is valid or not.
         """
         return not (i < 0 or j < 0 or i >= self.ROWS or j >= self.COLS)
 
-    def dfs(self, i, j):
+    def dfs(self, i: int, j: int) -> int:
         """
         Returns the current Area of island
         """
