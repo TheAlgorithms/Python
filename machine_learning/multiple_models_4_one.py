@@ -9,11 +9,7 @@ import seaborn as sns
 from sklearn.datasets import load_breast_cancer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import (
-    GridSearchCV,
-    cross_val_score,
-    cross_validate
-)
+from sklearn.model_selection import GridSearchCV, cross_val_score, cross_validate
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import LinearSVC
 
