@@ -6,7 +6,7 @@
 # If there is no island, return 0.
 
 
-def is_safe(row: int, col: int, ROWS: int, COLS: int) -> bool:
+def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
     """
     Checking weather coordinate (row,col) is valid or not.
 
