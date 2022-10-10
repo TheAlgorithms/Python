@@ -35,7 +35,6 @@ from sklearn.svm import LinearSVC
 #  fractal dimension (“coastline approximation” - 1)
 
 
-
 cancer = load_breast_cancer()
 cancer
 cancer_df = pd.DataFrame(cancer["data"], columns=cancer["feature_names"])
