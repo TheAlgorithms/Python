@@ -1,5 +1,6 @@
 # Classification Problem
-# Here we will find the best model for breast cancer dataset by trying different models on the dataset and then will improve our best model.
+# Here we will find the best model for breast cancer dataset by trying different models on the dataset
+# Then will improve our best model.
 # https://scikit-learn.org/stable/datasets/toy_dataset.html
 
 import matplotlib.pyplot as plt
@@ -82,8 +83,8 @@ for model_name, model in models.items():
 score
 
 # mean function will give average of all the scores for various estimating metrices
-# score is a dictionary containing various evaluation metrices as keys and array of scores as their values
 def mean(score):
+    # score is a dictionary containing various evaluation metrices as keys and array of scores as their values
     accuracy = np.mean(score["test_accuracy"]) * 100
     precision = np.mean(score["test_precision"])
     recall = np.mean(score["test_recall"])
@@ -101,6 +102,7 @@ randomgrid = {
     "min_samples_split": [2, 6],
     "min_samples_leaf": [2, 4],
 }
+
 
 # cross validate gives scores for multiple scoring parameters
 # For RandomForestClassifier model
