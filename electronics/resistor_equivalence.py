@@ -43,7 +43,6 @@ def resistor_series(resistors: list[float]) -> float:  # Req = R1 + R2 + ... + R
     sum = 0.00
     index = 0
     for resistor in resistors:
-
         sum += resistor
         if resistor < 0:
             raise ValueError(f"Resistor at index {index} has a negative value!")
