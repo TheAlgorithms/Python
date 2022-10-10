@@ -1,6 +1,8 @@
 def longest_valid_parenthesis(s: str) -> int:
     """
     Returns the length of the longest valid parenthesis
+    :param s:
+    :return: int
      >>> longest_valid_parenthesis('(()')
      2
      >>> longest_valid_parenthesis(')()())')
