@@ -7,7 +7,7 @@
 
 def is_safe(row: int, col: int, ROWS: int, COLS: int) -> bool:
     """
-    Checking weather co-ordinate (row,col) is valid or not.
+    Checking weather coordinate (row,col) is valid or not.
 
     >>> is_safe(0, 0, 5, 5)
     True
@@ -47,7 +47,7 @@ def count_max_area(mat: list[list[bool]]) -> int:
 
     ROWS = len(mat)
     COLS = len(mat[0])
-    seen = set()
+    seen: set = set()
 
     max_area = 0
     for row in range(ROWS):
@@ -74,12 +74,12 @@ mat = [
 print(count_max_area(mat))  # Output -> 6
 
 """
-Explaination:
+Explanation:
 We are allowed to move 4-directionally (horizontal or vertical.) so the possible
-in a matrix if we are at x and y possition the possible moveing are
+in a matrix if we are at x and y position the possible moveing are
 
 >> directions = [(x,y+1),(x,y-1),(x+1,y),(x-1,y)] also we need to care of boundary cases as well
-    which are x and y can not be smaller than 0 and greater than number of rows and colums respectively.
+    which are x and y can not be smaller than 0 and greater than number of rows and columns respectively.
 
 
 Visualization
