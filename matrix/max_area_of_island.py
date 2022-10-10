@@ -21,7 +21,7 @@ def is_safe(row: int, col: int, ROWS: int, COLS: int) -> bool:
 
 def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set) -> int:
     """
-    Returns the current Area of island
+    Returns the current area of the island
     >>> dfs(0,0, 8,8,set())
     0
     """
