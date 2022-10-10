@@ -16,7 +16,7 @@ def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
     >>> is_safe(-1,-1, 5, 5)
     False
     """
-    return not (row < 0 or col < 0 or row >= ROWS or col >= COLS)
+    return not (row < 0 or col < 0 or row >= rows or col >= cols)
 
 
 def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set) -> int:
