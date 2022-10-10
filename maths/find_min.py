@@ -1,3 +1,12 @@
+"""
+Referencing the Big O Notation, this algorithm has a liner time complexity, O(N).
+In the worst case scenario, the iterator will pass through each item's list and
+check if the item is the minimum item or not. If the list's size is N, the algorithm
+will make N operations, leading to O(N) complexity.
+[https://en.wikipedia.org/wiki/Big_O_notation#Use_in_computer_science]
+"""
+
+
 from __future__ import annotations
 
 
