@@ -2,12 +2,11 @@
 # A binary tree's maximum depth is the number of nodes along the longest
 # path from the root node down to the farthest leaf node.
 
-
-from typing import Optional
+from __future__ import annotations
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(self, val: int = 0, left: TreeNode | None = None, right: TreeNode | None = None):
         self.val = val
         self.left = left
         self.right = right
@@ -25,7 +24,8 @@ def height_of_tree(root: TreeNode | None, depth=0) -> int:
         return depth
     # Same like dfs, go as much as you can in depth and return the maximum possible depth
     return max(
-        height_of_tree(root.left, depth + 1), height_of_tree(root.right, depth + 1)
+        height_of_tree(root.left, depth + 1),
+        height_of_tree(root.right, depth + 1)
     )
 
 
