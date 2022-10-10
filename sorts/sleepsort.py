@@ -1,5 +1,7 @@
-import thread
 from time import sleep
+
+import thread
+
 items = []
 n = int(input())
 for i in range(0,n):
