@@ -5,7 +5,7 @@
 # If there is no island, return 0.
 
 
-class matrix:
+class maximumAreaofIsland:
     def __init__(self, mat) -> None:
         """
         Constructor to set the problem param.
@@ -55,7 +55,7 @@ mat = [
   [0,0,0,0,0,0,0,1,1,0,0,0,0]
 ]
 
-maximum_area_1 = matrix(mat)
+maximum_area_1 = maximumAreaofIsland(mat)
 
 print(maximum_area_1.count_max_area()) # Output -> 6
 
