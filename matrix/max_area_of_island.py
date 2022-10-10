@@ -4,6 +4,7 @@
 # Return the maximum area of an island in grid.
 # If there is no island, return 0.
 
+
 def is_safe(row: int, col: int, ROWS: int, COLS: int) -> bool:
     """
     Checking weather co-ordinate (row,col) is valid or not.
@@ -16,17 +17,14 @@ def is_safe(row: int, col: int, ROWS: int, COLS: int) -> bool:
     """
     return not (row < 0 or col < 0 or row >= ROWS or col >= COLS)
 
-def dfs(row: int, col: int, ROWS: int, COLS: int,seen: set) -> int:
+
+def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set) -> int:
     """
     Returns the current Area of island
     >>> dfs(0,0, 8,8,set())
     0
     """
-    if (
-        is_safe(row, col, ROWS, COLS)
-        and (row, col) not in seen
-        and mat[row][col] == 1
-    ):
+    if is_safe(row, col, ROWS, COLS) and (row, col) not in seen and mat[row][col] == 1:
         seen.add((row, col))
         return (
             1
@@ -37,6 +35,7 @@ def dfs(row: int, col: int, ROWS: int, COLS: int,seen: set) -> int:
         )
     else:
         return 0
+
 
 def count_max_area(mat) -> int:
     """
@@ -55,7 +54,7 @@ def count_max_area(mat) -> int:
         for col in range(COLS):
             if mat[row][col] == 1 and (row, col) not in seen:
                 # Maximizing the area
-                max_area = max(max_area, dfs(row, col, ROWS, COLS,seen))
+                max_area = max(max_area, dfs(row, col, ROWS, COLS, seen))
     return max_area
 
 
