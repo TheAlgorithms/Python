@@ -1,5 +1,5 @@
 # Classification Problem
-# Here we will find the best model for breast cancer dataset by trying different models on the dataset
+# Here we will find the best model for breast cancer dataset
 # Then will improve our best model.
 # https://scikit-learn.org/stable/datasets/toy_dataset.html
 
@@ -41,7 +41,8 @@ cancer_df.isna().sum()
 # this shows that there is no missing data
 
 cancer_df.dtypes
-# this shows that each and every column is int or float type so we need not to convert them to integers
+# this shows that each and every column is int or float type
+# so we need not to convert them to integers
 
 cancer_df.target.value_counts()
 # so this is a good dataset as there is a good ratio of both the values of target column
@@ -55,14 +56,11 @@ fig, ax = plt.subplots(figsize=(32, 26))
 ax = sns.heatmap(
     cancer_df.corr(), cmap="YlGnBu", annot=True, fmt=".2f", linewidths=0.5, cbar=False
 )
-# this heatmap shows how different parameters are correlated to each other and helps in visualising it
+# this heatmap shows how different parameters are correlated
 # now we will divide our data into x and y i.e. input and output data
-
 np.random.seed(43)
 x = cancer_df.drop("target", axis=1)
 y = cancer_df["target"]
-# we will not split our data into test and training set instead we will use cross validation (cv) which will automatically divide our data and give better results
-
 # lets list the models which we will use for this classification problem
 models = {
     "Random": RandomForestClassifier(),
@@ -80,17 +78,16 @@ score
 
 # mean function will give average of all the scores for various estimating metrices
 def mean(score):
-    # score is a dictionary containing various evaluation metrices as keys and array of scores as their values
+    # score is a dictionary
     accuracy = np.mean(score["test_accuracy"]) * 100
     precision = np.mean(score["test_precision"])
     recall = np.mean(score["test_recall"])
     f1 = np.mean(score["test_f1"])
-    print(
-        f"Accuracy: {accuracy:.2f}% \nPrecision: {precision:.2f} \nRecall: {recall:.2f} \nF1: {f1:.2f}"
-    )
+    print(f"Accuracy: {accuracy:.2f}%")
+    print(f"Precision: {precision:.2f}") 
+    print(f"Recall: {recall:.2f}") 
+    print(f"F1: {f1:.2f}")
 
-
-# Let's try different hyperparameters for RandomForest, logisticRegressor, KNN to improve the models using GridSearchCV
 RandomForestClassifier().get_params()
 randomgrid = {
     "n_estimators": np.arange(100, 500, 40),
