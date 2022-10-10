@@ -1,9 +1,11 @@
-# Given an m x n binary matrix grid. An island is a group of 1's 
+# Given an m x n binary matrix grid. An island is a group of 1's
 # (representing land) connected 4-directionally (horizontal or vertical.)
 # You may assume all four edges of the grid are surrounded by water.
 # The area of an island is the number of cells with a value 1 in the island.
 # Return the maximum area of an island in grid.
 # If there is no island, return 0.
+
+from typing import List
 
 
 def is_safe(row: int, col: int, ROWS: int, COLS: int) -> bool:
@@ -25,7 +27,8 @@ def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set) -> int:
     >>> dfs(0,0, 8,8,set())
     0
     """
-    if is_safe(row, col, ROWS, COLS) and (row, col) not in seen and mat[row][col] == 1:
+    if (is_safe(row, col, ROWS, COLS) and
+       (row, col) not in seen and mat[row][col] == 1):
         seen.add((row, col))
         return (
             1
@@ -38,7 +41,7 @@ def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set) -> int:
         return 0
 
 
-def count_max_area(mat: list[list[bool]]) -> int:
+def count_max_area(mat: List[List[int]]) -> int:
     """
     Finds the area of all islands and returns the maximum area.
 
@@ -84,11 +87,14 @@ print(count_max_area(mat))  # Output -> 6
 
 """
 Explanation:
-We are allowed to move 4-directionally (horizontal or vertical.) so the possible
+We are allowed to move 4-directionally (horizontal or vertical.)
+so the possible
 in a matrix if we are at x and y position the possible moveing are
 
->> directions = [(x,y+1),(x,y-1),(x+1,y),(x-1,y)] also we need to care of boundary cases as well
-    which are x and y can not be smaller than 0 and greater than number of rows and columns respectively.
+>> directions = [(x,y+1),(x,y-1),(x+1,y),(x-1,y)]
+also we need to care of boundary cases as well
+which are x and y can not be smaller than 0 and greater than number
+of rows and columns respectively.
 
 
 Visualization
