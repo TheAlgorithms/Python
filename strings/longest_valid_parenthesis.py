@@ -27,6 +27,8 @@ def longest_valid_parenthesis(self, s: str) -> int:
     while stack:
         res = max(res, stack.pop())
     return res * 2
+
+
 if __name__ == "__main__":
     s = input()
     print(longest_valid_parenthesis(s))
