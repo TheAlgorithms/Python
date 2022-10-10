@@ -42,6 +42,9 @@ class maximumAreaOfIsland:
             return 0
 
     def count_max_area(self) -> int:
+        """
+        Finds the area of all islands and returns the maximum area.
+        """
         max_area = 0
         for row in range(self.ROWS):
             for col in range(self.COLS):
