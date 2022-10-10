@@ -84,9 +84,10 @@ def mean(score: dict) ->None:
     recall = np.mean(score["test_recall"])
     f1 = np.mean(score["test_f1"])
     print(f"Accuracy: {accuracy:.2f}%")
-    print(f"Precision: {precision:.2f}") 
-    print(f"Recall: {recall:.2f}") 
+    print(f"Precision: {precision:.2f}")
+    print(f"Recall: {recall:.2f}")
     print(f"F1: {f1:.2f}")
+
 
 RandomForestClassifier().get_params()
 randomgrid = {
