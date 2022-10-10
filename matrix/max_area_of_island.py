@@ -25,7 +25,11 @@ class maximumAreaOfIsland:
         """
         Returns the current Area of island
         """
-        if self.is_safe(row, col) and (row, col) not in self.seen and self.mat[row][col] == 1:
+        if (
+            self.is_safe(row, col)
+            and (row, col) not in self.seen
+            and self.mat[row][col] == 1
+        ):
             self.seen.add((row, col))
             return (
                 1
