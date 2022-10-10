@@ -1,0 +1,36 @@
+Feature description
+Perhaps the newest, with updates frequently as it becomes more popular, is CatBoost. This machine-learning algorithm is especially useful for data scientists who are dealing with data that is categorical. You can think of the benefits of Random Forest and XGBoost algorithms, and apply most of them to CatBoost, while also reaping even more benefits.
+
+Here are the main benefits of CatBoost:
+
+Do not need to worry about parameters tuning — default usually wins, and it might not be worth it to manually adjust unless you are aiming for specific distributions of error by manually changing values
+More accurate — less overfitting, and tend to have more accurate results when you are using more categorical features
+Fast — this algorithm tends to be quicker than other tree-based algorithms because it does not have to worry about large, sparse datasets with one-hot encoding applied for example, because it uses a type of target encoding instead
+Predict quicker — just how you can train faster, you can also predict using your CatBoost model quicker
+SHAP — the library is integrated for easy explainability for feature importance on the overall model, as well as specific predictions
+Overall, CatBoost is great because it is easy to use, powerful, and competitive in the algorithm space as well as something to include on your resume. It can help you create better models to ultimately make your projects for your company better.
+
+IMPLEMENTATION:
+
+from catboost import CatBoostClassifier
+
+clf = CatBoostClassifier(
+iterations=5,
+learning_rate=0.1,
+#loss_function='CrossEntropy'
+)
+
+clf.fit(X_train, y_train,
+cat_features=cat_features,
+eval_set=(X_val, y_val),
+verbose=False
+)
+
+print('CatBoost model is fitted: ' + str(clf.is_fitted()))
+print('CatBoost model parameters:')
+print(clf.get_params())
+CatBoost model is fitted: True
+CatBoost model parameters:
+{'learning_rate': 0.1, 'iterations': 5}
+
+url documentation: https://www.analyticsvidhya.com/blog/2017/08/catboost-automated-categorical-data/
