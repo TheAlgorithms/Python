@@ -60,7 +60,7 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
     )
 
 
-if __name__ == "main":
+if __name__ == "__main__":
 
     # Reading the image and converting it to grayscale.
     image = cv2.imread(
