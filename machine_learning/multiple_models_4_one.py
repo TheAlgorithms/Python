@@ -6,15 +6,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-import sklearn.metrics
 from sklearn.datasets import load_breast_cancer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import (
     GridSearchCV,
     cross_val_score,
-    cross_validate,
-    train_test_split,
+    cross_validate
 )
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import LinearSVC
