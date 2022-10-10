@@ -56,7 +56,7 @@ def count_max_area(mat: list[list[int]]) -> int:
 
     ROWS = len(mat)
     COLS = len(mat[0])
-    seen = set()
+    seen: set = set()
 
     max_area = 0
     for row in range(ROWS):
