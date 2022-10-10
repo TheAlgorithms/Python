@@ -5,8 +5,8 @@ def longest_valid_parenthesis(self, s: str) -> int:
      2
      >>> longest_valid_parenthesis(')()())')
      4
-     >>> longest_valid_parenthesis('')
-     0
+     >>> longest_valid_parenthesis('(()()()()))')
+     10
      >>> longest_valid_parenthesis(''(())))((()(()()()())
      8
     """
@@ -24,13 +24,9 @@ def longest_valid_parenthesis(self, s: str) -> int:
                 res = max(res, preceeding_matched)
                 preceeding_matched = 0
     res = max(res, preceeding_matched)
-
     while stack:
         res = max(res, stack.pop())
     return res * 2
-
-
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
