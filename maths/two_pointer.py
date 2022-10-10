@@ -18,7 +18,6 @@ Meanwhile the left pointer will have to move three times, the right
 pointer will move twice, totaling 5 moves.
 Pointers Moviments == List's size == Algorithm's number of operations.
 
-
 Example:
 Given nums = [2, 7, 11, 15], target = 9,
 
