@@ -5,7 +5,7 @@
 # If there is no island, return 0.
 
 
-class maximumAreaOfIsland:
+class MaximumAreaOfIsland:
     def __init__(self, mat: list[list[int]]) -> None:
         """
         Constructor to set the problem param.
@@ -18,6 +18,12 @@ class maximumAreaOfIsland:
     def is_safe(self, row: int, col: int) -> bool:
         """
         Checking weather co-ordinate (i,j) is valid or not.
+
+        >>> is_safe(0,0)
+        True
+
+        >>> is_safe(-1,-1)
+        False
         """
         return not (row < 0 or col < 0 or row >= self.ROWS or col >= self.COLS)
 
@@ -67,7 +73,7 @@ mat = [
     [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
 ]
 
-maximum_area_1 = maximumAreaOfIsland(mat)
+maximum_area_1 = MaximumAreaOfIsland(mat)
 
 print(maximum_area_1.count_max_area())  # Output -> 6
 
