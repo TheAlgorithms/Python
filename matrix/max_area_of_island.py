@@ -27,8 +27,7 @@ def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set) -> int:
     >>> dfs(0,0, 8,8,set())
     0
     """
-    if (is_safe(row, col, ROWS, COLS) and
-       (row, col) not in seen and mat[row][col] == 1):
+    if is_safe(row, col, ROWS, COLS) and (row, col) not in seen and mat[row][col] == 1:
         seen.add((row, col))
         return (
             1
@@ -41,7 +40,7 @@ def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set) -> int:
         return 0
 
 
-def count_max_area(mat: List[List[int]]) -> int:
+def count_max_area(mat: list[list[int]]) -> int:
     """
     Finds the area of all islands and returns the maximum area.
 
