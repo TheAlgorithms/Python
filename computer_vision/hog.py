@@ -1,6 +1,7 @@
 # Módulos
 
 import copy
+import doctest
 import math
 import os
 import random
@@ -14,7 +15,6 @@ import seaborn as sn
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
 from sklearn.svm import SVC
-import doctest
 
 """
 Histogram of oriented gradients
