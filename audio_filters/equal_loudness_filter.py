@@ -1,5 +1,5 @@
 from json import load
-from os.path import dirname, abspath
+from os.path import abspath, dirname
 
 import numpy as np
 from yulewalker import yulewalk
@@ -7,8 +7,7 @@ from yulewalker import yulewalk
 from audio_filters.butterworth_filter import make_highpass
 from audio_filters.iir_filter import IIRFilter
 
-
-with open(abspath(dirname(__file__)) + "/loudness_curve.json", "r") as fp:
+with open(abspath(dirname(__file__)) + "/loudness_curve.json") as fp:
     data = load(fp)
 
 
@@ -36,12 +35,8 @@ class EqualLoudnessFilter:
         self.butterworth_filter = make_highpass(150, samplerate)
 
         # pad the data to nyquist
-        curve_freqs = np.array(
-            data["frequencies"] + [max(20000.0, samplerate / 2)]
-        )
-        curve_gains = np.array(
-            data["gains"] + [140]
-        )
+        curve_freqs = np.array(data["frequencies"] + [max(20000.0, samplerate / 2)])
+        curve_gains = np.array(data["gains"] + [140])
 
         # Convert to angular frequency
         freqs_normalized = curve_freqs / samplerate * 2
