@@ -24,8 +24,8 @@ https://en.wikipedia.org/wiki/Histogram_of_oriented_gradients
 # Establecemos una semilla
 random.seed(1234)
 
+
 class HistogramOrientedGradients:
-    
     def __init__(self, imagen: np.float32) -> None:
 
         """
