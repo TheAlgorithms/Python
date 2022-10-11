@@ -43,7 +43,7 @@ def newton_raphson(
     prev_guess = starting_point
 
     while True:
-        if diff_function(prev_guess) != 0:
+        if diff_function(prev_guess):
             next_guess = prev_guess - multiplicity * func(prev_guess) / diff_function(
                 prev_guess
             )
