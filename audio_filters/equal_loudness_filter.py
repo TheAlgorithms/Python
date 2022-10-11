@@ -1,8 +1,15 @@
+from json import load
+from os.path import dirname, abspath
+
 import numpy as np
 from yulewalker import yulewalk
 
 from audio_filters.butterworth_filter import make_highpass
 from audio_filters.iir_filter import IIRFilter
+
+
+with open(abspath(dirname(__file__)) + "/loudness_curve.json", "r") as fp:
+    data = load(fp)
 
 
 class EqualLoudnessFilter:
@@ -14,10 +21,8 @@ class EqualLoudnessFilter:
     Designed for use with samplerate of 44.1kHz and above. If you're using a lower
      samplerate, use with caution.
 
-    Code based on matlab implementation at
-     https://web.archive.org/web/20130119143147/\
-     http://replaygain.hydrogenaudio.org/proposal/equal_loudness.html
-     (url trimmed for flake8)
+    Code based on matlab implementation at https://bit.ly/3eqh2HU
+    (url shortened for flake8)
 
     Target curve: https://i.imgur.com/3g2VfaM.png
     Yulewalk response: https://i.imgur.com/J9LnJ4C.png
@@ -30,85 +35,12 @@ class EqualLoudnessFilter:
         self.yulewalk_filter = IIRFilter(10)
         self.butterworth_filter = make_highpass(150, samplerate)
 
-        # The following is a representative average of the Equal Loudness Contours
-        # as measured by Robinson and Dadson, 1956
-        curve_freqs = np.asarray(
-            [
-                0,
-                20,
-                30,
-                40,
-                50,
-                60,
-                70,
-                80,
-                90,
-                100,
-                200,
-                300,
-                400,
-                500,
-                600,
-                700,
-                800,
-                900,
-                1000,
-                1500,
-                2000,
-                2500,
-                3000,
-                3700,
-                4000,
-                5000,
-                6000,
-                7000,
-                8000,
-                9000,
-                10000,
-                12000,
-                15000,
-                20000,
-                max(20000.0, samplerate / 2),  # pad to nyquist
-            ]
+        # pad the data to nyquist
+        curve_freqs = np.array(
+            data["frequencies"] + [max(20000.0, samplerate / 2)]
         )
-        curve_gains = np.asarray(
-            [
-                120,
-                113,
-                103,
-                97,
-                93,
-                91,
-                89,
-                87,
-                86,
-                85,
-                78,
-                76,
-                76,
-                76,
-                76,
-                77,
-                78,
-                79.5,
-                80,
-                79,
-                77,
-                74,
-                71.5,
-                70,
-                70.5,
-                74,
-                79,
-                84,
-                86,
-                86,
-                85,
-                95,
-                110,
-                125,
-                140,
-            ]
+        curve_gains = np.array(
+            data["gains"] + [140]
         )
 
         # Convert to angular frequency
