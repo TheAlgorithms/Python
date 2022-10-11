@@ -5,7 +5,7 @@ import math
 
 
 # for calculating u value
-def ucal(u: float, p: int) -> float:
+def ucal(value_of_u: float, value_of_n: int) -> float:
     """
     >>> ucal(1, 2)
     2
@@ -14,13 +14,13 @@ def ucal(u: float, p: int) -> float:
     >>> ucal(1.2, 2)
     3.168
     """
-    temp = u
-    for i in range(p):
-        temp = temp * (u + i)
+    temp = value_of_u
+    for i in range(value_of_n):
+        temp = temp * (value_of_u + i)
     return temp
 
 
-def main() -> None:
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
@@ -55,7 +55,3 @@ def main() -> None:
         summ += (ucal(u, i) * y[n - 1][i]) / math.factorial(i)
 
     print(f"the value at {value} is {summ}")
-
-
-if __name__ == "__main__":
-    main()
