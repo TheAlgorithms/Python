@@ -121,7 +121,7 @@ class HistogramOrientedGradients:
         for i in range(0, int(self.imagen.shape[0] / 8) - 1):
             for j in range(0, int(self.imagen.shape[1] / 8) - 1):
 
-                aux = []
+                aux: List[float] = []
 
                 aux = aux + hog[i][j]
                 aux = aux + hog[i][j + 1]
