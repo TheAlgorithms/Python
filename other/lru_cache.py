@@ -280,8 +280,9 @@ class LRUCache(Generic[T, U]):
                 # explain to type checker via assertions
                 assert first_node is not None
                 assert first_node.key is not None
+                test_removal = self.list.remove(first_node)
                 assert (
-                    self.list.remove(first_node) is not None
+                    test_removal is not None
                 )  # node guaranteed to be in list assert node.key is not None
 
                 del self.cache[first_node.key]

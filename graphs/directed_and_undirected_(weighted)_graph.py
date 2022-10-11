@@ -225,10 +225,9 @@ class DirectedGraph:
                                 anticipating_nodes.add(node[1])
                                 break
                             else:
+                                # FIXME: there used to be unreachable code here.
+                                # Code removed because of linter complaints.
                                 return True
-                                # TODO:The following code is unreachable.
-                                anticipating_nodes.add(stack[len_stack_minus_one])
-                                len_stack_minus_one -= 1
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])
@@ -453,11 +452,9 @@ class Graph:
                                 anticipating_nodes.add(node[1])
                                 break
                             else:
+                                # FIXME: there used to be unreachable code here.
+                                # Code removed because of linter complaints.
                                 return True
-                                # TODO: the following code is unreachable
-                                # is this meant to be called in the else ?
-                                anticipating_nodes.add(stack[len_stack_minus_one])
-                                len_stack_minus_one -= 1
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])

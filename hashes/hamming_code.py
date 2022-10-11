@@ -80,7 +80,9 @@ def emitterConverter(sizePar, data):
     """
     if sizePar + len(data) <= 2**sizePar - (len(data) - 1):
         print("ERROR - size of parity don't match with size of data")
-        exit(0)
+        import sys
+
+        sys.exit(0)
 
     dataOut = []
     parity = []

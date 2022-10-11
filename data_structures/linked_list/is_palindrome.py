@@ -55,7 +55,7 @@ def is_palindrome_dict(head):
     d = {}
     pos = 0
     while head:
-        if head.val in d.keys():
+        if head.val in d:
             d[head.val].append(pos)
         else:
             d[head.val] = [pos]

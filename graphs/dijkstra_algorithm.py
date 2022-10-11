@@ -89,13 +89,13 @@ class Graph:
         #  Edge going from node u to v and v to u with weight w
         # u (w)-> v, v (w) -> u
         # Check if u already in graph
-        if u in self.adjList.keys():
+        if u in self.adjList:
             self.adjList[u].append((v, w))
         else:
             self.adjList[u] = [(v, w)]
 
         # Assuming undirected graph
-        if v in self.adjList.keys():
+        if v in self.adjList:
             self.adjList[v].append((u, w))
         else:
             self.adjList[v] = [(u, w)]
