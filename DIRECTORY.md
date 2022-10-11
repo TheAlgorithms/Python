@@ -543,6 +543,7 @@
   * [Pollard Rho](maths/pollard_rho.py)
   * [Polynomial Evaluation](maths/polynomial_evaluation.py)
   * [Power Using Recursion](maths/power_using_recursion.py)
+  * [Palindromic Number Check](maths\palindromic_number_checker.py)
   * [Prime Check](maths/prime_check.py)
   * [Prime Factors](maths/prime_factors.py)
   * [Prime Numbers](maths/prime_numbers.py)
