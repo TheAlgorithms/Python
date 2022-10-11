@@ -31,25 +31,25 @@ def height_of_tree(root: TreeNode | None, depth: int = 0) -> int:
     )
 
 
-# Example 1
-
-"""
-    3       ->  1
-   / \
-  9   20    ->  2
-     /  \
-    15   7  ->  3
-"""
-tree_1 = TreeNode(3)
-tree_1.left = TreeNode(9)
-tree_1.right = TreeNode(20)
-tree_1.right.left = TreeNode(15)
-tree_1.right.right = TreeNode(7)
-
-print(height_of_tree(tree_1))  # Output: 3
-
 
 if __name__ == "__main__":
     import doctest
+
+    # Example 1
+
+    """
+        3       ->  1
+    / \
+    9   20    ->  2
+        /  \
+        15   7  ->  3
+    """
+    tree_1 = TreeNode(3)
+    tree_1.left = TreeNode(9)
+    tree_1.right = TreeNode(20)
+    tree_1.right.left = TreeNode(15)
+    tree_1.right.right = TreeNode(7)
+
+    print(height_of_tree(tree_1))  # Output: 3
 
     doctest.testmod()
