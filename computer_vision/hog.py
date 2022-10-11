@@ -33,7 +33,7 @@ class HistogramOrientedGradients:
         """
 
         # Pasamos la imagen a float (escala 0-1)
-        self.imagen = np.float32(imagen) / 255.0
+        self.imagen = np.float32(self.imagen) / 255.0
 
         # Comenzamos obteniendo las imágenes gradiente. Para ello
         # convolucionamos la imagen con kernels Sobel 1D.
@@ -73,11 +73,13 @@ class HistogramOrientedGradients:
                         # Vemos cual es el ángulo más cercano de la lista de hog_angles
                         indx = (np.abs(hog_angles - ori_aux[i][j])).argmin()
 
-                        # Si coincide con el ángulo, añadimos la magnitud del pixel al hog
+                        # Si coincide con el ángulo, añadimos la
+                        # magnitud del pixel al hog
                         if ori_aux[i][j] == hog_angles[indx]:
                             hog_aux[indx] += mag_aux[i][j]
 
-                        # Si no coincide, dividimos la magnitud entre los ángulos adyacentes
+                        # Si no coincide, dividimos la magnitud
+                        # entre los ángulos adyacentes
                         else:
                             # Si el ángulo es menor
                             if ori_aux[i][j] < hog_angles[indx]:
@@ -112,7 +114,8 @@ class HistogramOrientedGradients:
                 # Almacenamos en hog los valores de hog_aux
                 hog[indice1][indice2] = hog_aux
 
-        # Agrupamos los histogramas/célula en bloques de histogramas. Cada bloque estará formado
+        # Agrupamos los histogramas/célula en bloques
+        # de histogramas. Cada bloque estará formado
         # por 4 células.
         hog_bloques = []
         for i in range(0, int(self.imagen.shape[0] / 8) - 1):
