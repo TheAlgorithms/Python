@@ -77,7 +77,7 @@ for model_name, model in models.items():
 score
 
 # mean function will give average of all the scores for various estimating metrices
-def mean(score: dict) ->None:
+def mean(score: dict) -> None:
     # score is a dictionary
     accuracy = np.mean(score["test_accuracy"]) * 100
     precision = np.mean(score["test_precision"])
