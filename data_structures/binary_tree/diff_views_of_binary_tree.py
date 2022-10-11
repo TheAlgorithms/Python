@@ -79,7 +79,8 @@ def binary_tree_right_side_view(root: TreeNode | None) -> list[int]:
 
     def dfs(root: TreeNode | None, depth: int, right_view: list[int]) -> None:
         """
-        A depth first search preorder traversal to append the values at right side of tree.
+        A depth first search preorder traversal to append the values at 
+        right side of tree.
 
         >>> dfs([], 0, [])
         None
@@ -110,7 +111,8 @@ def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
 
     def dfs(root: TreeNode | None, depth: int, left_view: list[int]) -> None:
         """
-        A depth first search preorder traversal to append the values at left side of tree.
+        A depth first search preorder traversal to append the values 
+        at left side of tree.
 
         >>> dfs([], 0, [])
         None
@@ -142,7 +144,8 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
 
     def bfs(root: TreeNode, top_view: list[int]) -> None:
         """
-        A breadth first search traversal with defaultdict ds to append the values of tree from top view
+        A breadth first search traversal with defaultdict ds to append 
+        the values of tree from top view
 
         >>> bfs(TreeNode(5), [])
         None
@@ -181,7 +184,8 @@ def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
 
     def bfs(root: TreeNode, bottom_view: list[int]) -> None:
         """
-        A breadth first search traversal with defaultdict ds to append the values of tree from bottom view
+        A breadth first search traversal with defaultdict ds to append 
+        the values of tree from bottom view
 
         >>> bfs(TreeNode(5), [])
         None
