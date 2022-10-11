@@ -78,6 +78,12 @@ def binary_tree_right_side_view(root: TreeNode | None) -> list[int]:
     """
 
     def dfs(root: TreeNode | None, depth: int, right_view: list[int]) -> None:
+        """
+        A depth first search preorder traversal to append the values at right side of tree.
+
+        >>> dfs([], 0, [])
+        None
+        """
         if not root:
             return
 
@@ -103,6 +109,12 @@ def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
     """
 
     def dfs(root: TreeNode | None, depth: int, left_view: list[int]) -> None:
+        """
+        A depth first search preorder traversal to append the values at left side of tree.
+
+        >>> dfs([], 0, [])
+        None
+        """
         if not root:
             return
 
@@ -129,6 +141,12 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
     from collections import defaultdict
 
     def bfs(root: TreeNode, top_view: list[int]) -> None:
+        """
+        A breadth first search traversal with defaultdict ds to append the values of tree from top view
+
+        >>> bfs(TreeNode(5), [])
+        None
+        """
         queue = [(root, 0)]
         lookup = defaultdict(list)
 
@@ -142,7 +160,7 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
             if node.right:
                 queue.append((node.right, hd + 1))
 
-        for key, val in sorted(lookup.items(), key=lambda x: x[0]):
+        for key, val in sorted(lookup.items(), key=lambda each: each[0]):
             top_view.append(val[0])
 
     top_view: list = []
@@ -162,6 +180,12 @@ def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
     from collections import defaultdict
 
     def bfs(root: TreeNode, bottom_view: list[int]) -> None:
+        """
+        A breadth first search traversal with defaultdict ds to append the values of tree from bottom view
+
+        >>> bfs(TreeNode(5), [])
+        None
+        """
         queue = [(root, 0)]
         lookup = defaultdict(list)
 
@@ -175,7 +199,7 @@ def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
             if node.right:
                 queue.append((node.right, hd + 1))
 
-        for key, val in sorted(lookup.items(), key=lambda x: x[0]):
+        for key, val in sorted(lookup.items(), key=lambda each: each[0]):
             bottom_view.append(val[-1])
 
     bottom_view: list = []
