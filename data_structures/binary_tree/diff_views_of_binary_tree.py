@@ -59,6 +59,7 @@ Output: [9, 15, 20, 7]
 
 from __future__ import annotations
 
+
 class TreeNode:
     def __init__(
         self, val: int = 0, left: TreeNode | None = None, right: TreeNode | None = None
@@ -67,20 +68,22 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 def binary_tree_right_side_view(root: TreeNode | None) -> list[int]:
     """
     Function returns the right side view of binary tree.
-    
+
     >>> binary_tree_right_side_view(None)
     []
     """
+
     def dfs(root: TreeNode | None, depth: int, right_view: list[int]) -> None:
         if not root:
             return
-        
+
         if depth == len(right_view):
             right_view.append(root.val)
-        
+
         dfs(root.right, depth + 1, right_view)
         dfs(root.left, depth + 1, right_view)
 
@@ -90,20 +93,22 @@ def binary_tree_right_side_view(root: TreeNode | None) -> list[int]:
     dfs(root, 0, right_view)
     return right_view
 
+
 def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
     """
     Function returns the left side view of binary tree.
-    
+
     >>> binary_tree_left_side_view(None)
     []
     """
+
     def dfs(root: TreeNode | None, depth: int, left_view: list[int]) -> None:
         if not root:
             return
-        
+
         if depth == len(left_view):
             left_view.append(root.val)
-        
+
         dfs(root.left, depth + 1, left_view)
         dfs(root.right, depth + 1, left_view)
 
@@ -112,6 +117,7 @@ def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
         return left_view
     dfs(root, 0, left_view)
     return left_view
+
 
 def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
     """
@@ -128,22 +134,23 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
 
         while queue:
             first = queue.pop(0)
-            node,hd = first
+            node, hd = first
             lookup[hd].append(node.val)
-            
+
             if node.left:
                 queue.append((node.left, hd - 1))
             if node.right:
                 queue.append((node.right, hd + 1))
 
-        for key, val in sorted(lookup.items(), key = lambda x:x[0]):
+        for key, val in sorted(lookup.items(), key=lambda x: x[0]):
             top_view.append(val[0])
-    
+
     top_view = []
     if not root:
         return top_view
     bfs(root, top_view)
     return top_view
+
 
 def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
     """
@@ -160,17 +167,17 @@ def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
 
         while queue:
             first = queue.pop(0)
-            node,hd = first
+            node, hd = first
             lookup[hd].append(node.val)
-            
+
             if node.left:
                 queue.append((node.left, hd - 1))
             if node.right:
                 queue.append((node.right, hd + 1))
 
-        for key, val in sorted(lookup.items(), key = lambda x:x[0]):
+        for key, val in sorted(lookup.items(), key=lambda x: x[0]):
             bottom_view.append(val[-1])
-    
+
     bottom_view = []
     if not root:
         return bottom_view
@@ -185,9 +192,9 @@ tree_1.right.left = TreeNode(15)
 tree_1.right.right = TreeNode(7)
 
 print(binary_tree_right_side_view(tree_1))  # Output: [3, 20, 7]
-print(binary_tree_left_side_view(tree_1))   # Output: [3, 9, 15]
-print(binary_tree_top_side_view(tree_1))    # Output: [9, 3, 20, 7]
-print(binary_tree_bottom_side_view(tree_1)) # Output: [9, 15, 20, 7]
+print(binary_tree_left_side_view(tree_1))  # Output: [3, 9, 15]
+print(binary_tree_top_side_view(tree_1))  # Output: [9, 3, 20, 7]
+print(binary_tree_bottom_side_view(tree_1))  # Output: [9, 15, 20, 7]
 
 if __name__ == "__main__":
     import doctest
