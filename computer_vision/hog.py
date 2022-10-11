@@ -5,6 +5,7 @@ import math
 import os
 import random
 from time import time
+
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
@@ -25,9 +26,11 @@ random.seed(1234)
 # Establecemos una semilla
 random.seed(1234)
 
+<<<<<<< HEAD
 class histogramOrientedGradients:
 
     def __init__(self, imagen: np.float32) -> None:
+
         """
         imagen : numpy array of float values
         """
@@ -165,8 +168,8 @@ class histogramOrientedGradients:
 
         return vector_descriptores
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     im = cv2.imread('path',1)
     hog = histogramOrientedGradients(im)
     descriptors = hog.HOG()
