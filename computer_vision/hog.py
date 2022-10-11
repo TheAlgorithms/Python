@@ -39,6 +39,9 @@ class HistogramOrientedGradients:
         Returns the descriptors vector of am inage
 
         :return: list of the descriptors values
+
+         >>> isinstance(HOG(), np.ndarray)
+        True
         """
 
         # Pasamos la imagen a float (escala 0-1)
