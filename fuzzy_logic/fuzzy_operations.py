@@ -13,7 +13,8 @@ try:
     import skfuzzy as fuzz
 except ImportError:
     import sys
-    sys.exit() # This is so the CI doesn't complain about an unknown library
+
+    sys.exit()  # This is so the CI doesn't complain about an unknown library
 
 if __name__ == "__main__":
     # Create universe of discourse in Python using linspace ()
