@@ -24,7 +24,7 @@ https://en.wikipedia.org/wiki/Histogram_of_oriented_gradients
 # Establecemos una semilla
 random.seed(1234)
 
-class histogramOrientedGradients:
+class HistogramOrientedGradients:
 
     def __init__(self, imagen: np.float32) -> None:
 
@@ -47,14 +47,14 @@ class histogramOrientedGradients:
         # Comenzamos obteniendo las imágenes gradiente. Para ello
         # convolucionamos la imagen con kernels Sobel 1D.
 
-        G_x = cv2.Sobel(imagen, cv2.CV_32F, 1, 0, ksize=1)
-        G_y = cv2.Sobel(imagen, cv2.CV_32F, 0, 1, ksize=1)
+        g_x = cv2.Sobel(imagen, cv2.CV_32F, 1, 0, ksize=1)
+        g_y = cv2.Sobel(imagen, cv2.CV_32F, 0, 1, ksize=1)
 
         # Calculamos la magnitud
-        magnitud = np.sqrt(G_x**2 + G_y**2)
+        magnitud = np.sqrt(g_x**2 + g_y**2)
 
         # Calculamos la orientacion
-        orientacion = np.abs(np.arctan2(G_y, G_x) * 180 / np.pi)
+        orientacion = np.abs(np.arctan2(g_y, g_x) * 180 / np.pi)
 
         # Ahora debemos calcular un histograma de orientación de gradiente
         # por cada célula 8x8 de nuestra imagen. Para ello crearemos una
