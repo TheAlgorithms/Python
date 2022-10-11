@@ -36,18 +36,22 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     ValueError: This matrix has no inverse.
 
     More examples:
+
     >>> inverse_of_matrix([])
     Traceback (most recent call last):
     ...
     ValueError: Please provide a matrix of size 2x2 or 3x3.
+
     >>> inverse_of_matrix([[],[]])
     Traceback (most recent call last):
     ...
     ValueError: Please provide a matrix of size 2x2 or 3x3.
+
     >>> inverse_of_matrix([[1, 2], [3, 4], [5, 6]])
     Traceback (most recent call last):
     ...
     ValueError: Please provide a matrix of size 2x2 or 3x3.
+
     >>> inverse_of_matrix([[1, 2, 1], [0,3, 4]])
     Traceback (most recent call last):
     ...
@@ -57,8 +61,14 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     Traceback (most recent call last):
     ...
     ValueError: This matrix has no inverse.
+
     >>> inverse_of_matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+
+    >>> inverse_of_matrix([1, 2, 3], [4, 5, 6])
+    Trackback (most recent call last):
+    ...
+    TypeError: inverse_of_matrix() takes 1 positional argument but 2 were given
     """
 
     D = Decimal  # An abbreviation for conciseness
