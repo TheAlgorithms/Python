@@ -1,4 +1,6 @@
 import random
+
+
 def pick_pivot(l):
     """
     Pick a good pivot within l, a list of numbers
@@ -40,13 +42,13 @@ def pick_pivot(l):
 
 def chunked(l, chunk_size):
     """Split list `l` it to chunks of `chunk_size` elements."""
-    return [l[i:i + chunk_size] for i in range(0, len(l), chunk_size)]
+    return [l[i : i + chunk_size] for i in range(0, len(l), chunk_size)]
 
 
 def nlogn_median(l):
     l = sorted(l)
     if len(l) % 2 == 1:
-        return l[int((len(l) / 2))]
+        return l[int(len(l) / 2)]
     else:
         return 0.5 * (l[len(l) / 2 - 1] + l[len(l) / 2])
 
@@ -55,8 +57,10 @@ def quickselect_median(l, pivot_fn=random.choice):
     if len(l) % 2 == 1:
         return quickselect(l, len(l) / 2, pivot_fn)
     else:
-        return 0.5 * (quickselect(l, len(l) / 2 - 1, pivot_fn) +
-                      quickselect(l, len(l) / 2, pivot_fn))
+        return 0.5 * (
+            quickselect(l, len(l) / 2 - 1, pivot_fn)
+            + quickselect(l, len(l) / 2, pivot_fn)
+        )
 
 
 def quickselect(l, k, pivot_fn):
@@ -86,7 +90,7 @@ def quickselect(l, k, pivot_fn):
         return quickselect(highs, k - len(lows) - len(pivots), pivot_fn)
 
 
-l = [9,1,0,2,3,4,6,8,7,10,5]
+l = [9, 1, 0, 2, 3, 4, 6, 8, 7, 10, 5]
 
 print(pick_pivot(l))
 
