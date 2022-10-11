@@ -11,7 +11,6 @@ import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sn
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
 from sklearn.svm import SVC
