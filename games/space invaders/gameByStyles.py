@@ -1,3 +1,12 @@
+'''
+Extract data.zip file
+install pygame package
+run the program and enjoy the game!
+Game by - styles3544 (GitHub)
+'''
+
+
+
 import pygame
 import random
 import math
