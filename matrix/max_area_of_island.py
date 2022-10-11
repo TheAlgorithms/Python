@@ -6,6 +6,9 @@
 # If there is no island, return 0.
 
 
+from typing import List
+
+
 def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
     """
     Checking weather coordinate (row,col) is valid or not.
@@ -38,7 +41,7 @@ def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set) -> int:
         return 0
 
 
-def count_max_area(mat: list[list[int]]) -> int:
+def count_max_area(mat: List[List[int]]) -> int:
     """
     Finds the area of all islands and returns the maximum area.
 
@@ -69,8 +72,6 @@ def count_max_area(mat: list[list[int]]) -> int:
 
 if __name__ == "__main__":
     import doctest
-
-    doctest.testmod()
 
     # Example 1:
     mat = [
@@ -122,3 +123,5 @@ if __name__ == "__main__":
     it has 6 unique island's of mentioned area's
     and maximum of all of them is 6 so we return 6.
     """
+
+    doctest.testmod()
