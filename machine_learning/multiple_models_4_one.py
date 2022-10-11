@@ -1,7 +1,7 @@
-# Classification Problem
-# Here we will find the best model for breast cancer dataset
-# Then will improve our best model.
-# https://scikit-learn.org/stable/datasets/toy_dataset.html
+'''Classification Problem
+Here we will find the best model for breast cancer dataset
+Then will improve our best model.
+https://scikit-learn.org/stable/datasets/toy_dataset.html'''
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -14,20 +14,20 @@ from sklearn.model_selection import GridSearchCV, cross_val_score, cross_validat
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import LinearSVC
 
-# Breast cancer wisconsin (diagnostic) Data Set Characteristics:
+'''Breast cancer wisconsin (diagnostic) Data Set Characteristics:
 
-# Attribute Information:
+Attribute Information:
 
-#  radius (mean of distances from center to points on the perimeter)
-#  texture (standard deviation of gray-scale values)
-#  perimeter
-#  area
-#  smoothness (local variation in radius lengths)
-#  compactness (perimeter^2 / area - 1.0)
-#  concavity (severity of concave portions of the contour)
-#  concave points (number of concave portions of the contour)
-#  symmetry
-#  fractal dimension (“coastline approximation” - 1)
+ radius (mean of distances from center to points on the perimeter)
+ texture (standard deviation of gray-scale values)
+ perimeter
+ area
+ smoothness (local variation in radius lengths)
+ compactness (perimeter^2 / area - 1.0)
+ concavity (severity of concave portions of the contour)
+ concave points (number of concave portions of the contour)
+ symmetry
+ fractal dimension (“coastline approximation” - 1)'''
 
 
 cancer = load_breast_cancer()
@@ -48,9 +48,10 @@ cancer_df.target.value_counts()
 # so this is a good dataset as there is a good ratio of both the values of target column
 
 cancer_df.corr()
-# more the positive correlation more positive dependency is there
-# and more the negative correlation more is the negative dependency
-# and more closer to 0 means they are not related to each other
+'''
+more the positive correlation more positive dependency is there
+and more the negative correlation more is the negative dependency
+and more closer to 0 means they are not related to each other'''
 
 fig, ax = plt.subplots(figsize=(32, 26))
 ax = sns.heatmap(
