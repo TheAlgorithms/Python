@@ -22,6 +22,7 @@ def ucal(u: float, p: int) -> float:
 
 def main() -> None:
     import doctest
+
     doctest.testmod()
 
     n = int(input("enter the numbers of values: "))
@@ -58,4 +59,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    
