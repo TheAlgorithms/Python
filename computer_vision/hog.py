@@ -21,12 +21,9 @@ Histogram of oriented gradients
 https://en.wikipedia.org/wiki/Histogram_of_oriented_gradients
 """
 
-random.seed(1234)
-
 # Establecemos una semilla
 random.seed(1234)
 
-<<<<<<< HEAD
 class histogramOrientedGradients:
 
     def __init__(self, imagen: np.float32) -> None:
