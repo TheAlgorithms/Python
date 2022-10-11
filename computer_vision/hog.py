@@ -1,18 +1,20 @@
 # Módulos
 
-import math
-import cv2
-import os
-from sklearn.svm import SVC
-import seaborn as sn
-from sklearn.metrics import confusion_matrix
-import numpy as np
-import matplotlib.pyplot as plt
-import tensorflow as tf
-import random
-import pandas as pd
 import copy
+import math
+import os
+import random
 from time import time
+
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sn
+import tensorflow as tf
+from sklearn.metrics import confusion_matrix
+from sklearn.svm import SVC
+
 random.seed(1234)
 
 # Establecemos una semilla
@@ -34,23 +36,26 @@ def HOG(imagen):
     magnitud = np.sqrt(Gx**2 + Gy**2)
 
     # Calculamos la orientacion
-    orientacion = np.abs(np.arctan2(Gy,Gx) * 180/np.pi)
+    orientacion = np.abs(np.arctan2(Gy, Gx) * 180 / np.pi)
 
     # Ahora debemos calcular un histograma de orientación de gradiente
     # por cada célula 8x8 de nuestra imagen. Para ello crearemos una
     # matriz de listas que iremos rellenando.
 
-    hog = [[0 for x in range(int(imagen.shape[1] / 8))] for y in range(int(imagen.shape[0] / 8))]
+    hog = [
+        [0 for x in range(int(imagen.shape[1] / 8))]
+        for y in range(int(imagen.shape[0] / 8))
+    ]
 
     # Recorremos cada célula
-    for indice1,r in enumerate(range(0, imagen.shape[0], 8)):
-        for indice2,c in enumerate(range(0, imagen.shape[1], 8)):
+    for indice1, r in enumerate(range(0, imagen.shape[0], 8)):
+        for indice2, c in enumerate(range(0, imagen.shape[1], 8)):
 
             # Inicializamos el hog de la célula actual
-            hog_aux = [0.0 for i in range(0,10)]
-            hog_angles = [10,30,50,70,90,110,130,150,170,180]
-            mag_aux = magnitud[r:r+8,c:c+8,1]
-            ori_aux = orientacion[r:r+8,c:c+8,1]
+            hog_aux = [0.0 for i in range(0, 10)]
+            hog_angles = [10, 30, 50, 70, 90, 110, 130, 150, 170, 180]
+            mag_aux = magnitud[r : r + 8, c : c + 8, 1]
+            ori_aux = orientacion[r : r + 8, c : c + 8, 1]
 
             # Recorremos la célula
             for i in range(mag_aux.shape[0]):
@@ -60,24 +65,40 @@ def HOG(imagen):
                     indx = (np.abs(hog_angles - ori_aux[i][j])).argmin()
 
                     # Si coincide con el ángulo, añadimos la magnitud del pixel al hog
-                    if (ori_aux[i][j] == hog_angles[indx]):
+                    if ori_aux[i][j] == hog_angles[indx]:
                         hog_aux[indx] += mag_aux[i][j]
 
                     # Si no coincide, dividimos la magnitud entre los ángulos adyacentes
                     else:
                         # Si el ángulo es menor
-                        if (ori_aux[i][j] < hog_angles[indx]):
+                        if ori_aux[i][j] < hog_angles[indx]:
 
-                            hog_aux[indx-1] += mag_aux[i][j]*(hog_angles[indx]-ori_aux[i][j])/(hog_angles[indx] - hog_angles[indx-1])
+                            hog_aux[indx - 1] += (
+                                mag_aux[i][j]
+                                * (hog_angles[indx] - ori_aux[i][j])
+                                / (hog_angles[indx] - hog_angles[indx - 1])
+                            )
 
-                            hog_aux[indx] += mag_aux[i][j]*(ori_aux[i][j] - hog_angles[indx-1])/(hog_angles[indx] - hog_angles[indx-1])
+                            hog_aux[indx] += (
+                                mag_aux[i][j]
+                                * (ori_aux[i][j] - hog_angles[indx - 1])
+                                / (hog_angles[indx] - hog_angles[indx - 1])
+                            )
 
                         # Si el ángulo es mayor
                         else:
 
-                            hog_aux[indx] += mag_aux[i][j]*(hog_angles[indx+1]-ori_aux[i][j])/(hog_angles[indx+1] - hog_angles[indx])
+                            hog_aux[indx] += (
+                                mag_aux[i][j]
+                                * (hog_angles[indx + 1] - ori_aux[i][j])
+                                / (hog_angles[indx + 1] - hog_angles[indx])
+                            )
 
-                            hog_aux[indx+1] += mag_aux[i][j]*(ori_aux[i][j] - hog_angles[indx])/(hog_angles[indx+1] - hog_angles[indx])
+                            hog_aux[indx + 1] += (
+                                mag_aux[i][j]
+                                * (ori_aux[i][j] - hog_angles[indx])
+                                / (hog_angles[indx + 1] - hog_angles[indx])
+                            )
 
             # Almacenamos en hog los valores de hog_aux
             hog[indice1][indice2] = hog_aux
@@ -91,14 +112,14 @@ def HOG(imagen):
             aux = []
 
             aux = aux + hog[i][j]
-            aux = aux + hog[i][j+1]
-            aux = aux + hog[i+1][j]
-            aux = aux + hog[i+1][j+1]
+            aux = aux + hog[i][j + 1]
+            aux = aux + hog[i + 1][j]
+            aux = aux + hog[i + 1][j + 1]
 
             hog_bloques.append(aux)
 
     # Normalizamos el hog por bloques
-    for i,bloque in enumerate(hog_bloques):
+    for i, bloque in enumerate(hog_bloques):
 
         # Calculamos el modulo del bloque actual
         modulo = 0.0
