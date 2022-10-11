@@ -1,19 +1,10 @@
 # Módulos
 
-import copy
 import doctest
 import math
-import os
 import random
-from time import time
-
 import cv2
-import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
-import tensorflow as tf
-from sklearn.metrics import confusion_matrix
-from sklearn.svm import SVC
 
 """
 Histogram of oriented gradients
@@ -41,13 +32,13 @@ class HistogramOrientedGradients:
         """
 
         # Pasamos la imagen a float (escala 0-1)
-        imagen = np.float32(imagen) / 255.0
+        self.imagen = np.float32(imagen) / 255.0
 
         # Comenzamos obteniendo las imágenes gradiente. Para ello
         # convolucionamos la imagen con kernels Sobel 1D.
 
-        g_x = cv2.Sobel(imagen, cv2.CV_32F, 1, 0, ksize=1)
-        g_y = cv2.Sobel(imagen, cv2.CV_32F, 0, 1, ksize=1)
+        g_x = cv2.Sobel(self.imagen, cv2.CV_32F, 1, 0, ksize=1)
+        g_y = cv2.Sobel(self.imagen, cv2.CV_32F, 0, 1, ksize=1)
 
         # Calculamos la magnitud
         magnitud = np.sqrt(g_x**2 + g_y**2)
@@ -60,13 +51,13 @@ class HistogramOrientedGradients:
         # matriz de listas que iremos rellenando.
 
         hog = [
-            [0 for x in range(int(imagen.shape[1] / 8))]
-            for y in range(int(imagen.shape[0] / 8))
+            [0 for x in range(int(self.imagen.shape[1] / 8))]
+            for y in range(int(self.imagen.shape[0] / 8))
         ]
 
         # Recorremos cada célula
-        for indice1, r in enumerate(range(0, imagen.shape[0], 8)):
-            for indice2, c in enumerate(range(0, imagen.shape[1], 8)):
+        for indice1, r in enumerate(range(0, self.imagen.shape[0], 8)):
+            for indice2, c in enumerate(range(0, self.imagen.shape[1], 8)):
 
                 # Inicializamos el hog de la célula actual
                 hog_aux = [0.0 for i in range(0, 10)]
@@ -123,8 +114,8 @@ class HistogramOrientedGradients:
         # Agrupamos los histogramas/célula en bloques de histogramas. Cada bloque estará formado
         # por 4 células.
         hog_bloques = []
-        for i in range(0, int(imagen.shape[0] / 8) - 1):
-            for j in range(0, int(imagen.shape[1] / 8) - 1):
+        for i in range(0, int(self.imagen.shape[0] / 8) - 1):
+            for j in range(0, int(self.imagen.shape[1] / 8) - 1):
 
                 aux = []
 
