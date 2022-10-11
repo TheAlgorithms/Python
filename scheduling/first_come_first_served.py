@@ -73,13 +73,15 @@ def calculate_average_waiting_time(waiting_times: list[int]) -> float:
 
 
 if __name__ == "__main__":
+    import sys
+
     # process id's
     processes = [1, 2, 3]
 
     # ensure that we actually have processes
     if len(processes) == 0:
         print("Zero amount of processes")
-        exit()
+        sys.exit()
 
     # duration time of all processes
     duration_times = [19, 8, 9]
@@ -87,7 +89,7 @@ if __name__ == "__main__":
     # ensure we can match each id to a duration time
     if len(duration_times) != len(processes):
         print("Unable to match all id's with their duration time")
-        exit()
+        sys.exit()
 
     # get the waiting times and the turnaround times
     waiting_times = calculate_waiting_times(duration_times)

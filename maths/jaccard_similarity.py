@@ -14,7 +14,7 @@ Jaccard similarity is widely used with MinHashing.
 """
 
 
-def jaccard_similariy(setA, setB, alternativeUnion=False):
+def jaccard_similarity(setA, setB, alternativeUnion=False):
     """
     Finds the jaccard similarity between two sets.
     Essentially, its intersection over union.
@@ -35,20 +35,23 @@ def jaccard_similariy(setA, setB, alternativeUnion=False):
     Examples:
     >>> setA = {'a', 'b', 'c', 'd', 'e'}
     >>> setB = {'c', 'd', 'e', 'f', 'h', 'i'}
-    >>> jaccard_similariy(setA,setB)
+    >>> jaccard_similarity(setA,setB)
     0.375
 
-    >>> jaccard_similariy(setA,setA)
+    >>> jaccard_similarity(setA,setA)
     1.0
 
-    >>> jaccard_similariy(setA,setA,True)
+    >>> jaccard_similarity(setA,setA,True)
     0.5
 
     >>> setA = ['a', 'b', 'c', 'd', 'e']
     >>> setB = ('c', 'd', 'e', 'f', 'h', 'i')
-    >>> jaccard_similariy(setA,setB)
+    >>> jaccard_similarity(setA,setB)
     0.375
     """
+
+    if len(setA) == 0 or len(setB) == 0:
+        raise ValueError("Input must not be empty")
 
     if isinstance(setA, set) and isinstance(setB, set):
 
@@ -67,14 +70,14 @@ def jaccard_similariy(setA, setB, alternativeUnion=False):
 
         if alternativeUnion:
             union = len(setA) + len(setB)
+            return len(intersection) / union
         else:
             union = setA + [element for element in setB if element not in setA]
-
-        return len(intersection) / len(union)
+            return len(intersection) / len(union)
 
 
 if __name__ == "__main__":
 
     setA = {"a", "b", "c", "d", "e"}
     setB = {"c", "d", "e", "f", "h", "i"}
-    print(jaccard_similariy(setA, setB))
+    print(jaccard_similarity(setA, setB))

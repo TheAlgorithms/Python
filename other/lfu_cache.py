@@ -264,7 +264,8 @@ class LFUCache(Generic[T, U]):
                 # explain to type checker via assertions
                 assert first_node is not None
                 assert first_node.key is not None
-                assert self.list.remove(first_node) is not None
+                remove_test = self.list.remove(first_node)
+                assert remove_test is not None
                 # first_node guaranteed to be in list
 
                 del self.cache[first_node.key]
