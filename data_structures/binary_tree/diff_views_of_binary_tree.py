@@ -87,7 +87,7 @@ def binary_tree_right_side_view(root: TreeNode | None) -> list[int]:
         dfs(root.right, depth + 1, right_view)
         dfs(root.left, depth + 1, right_view)
 
-    right_view = []
+    right_view: list = []
     if not root:
         return right_view
     dfs(root, 0, right_view)
@@ -112,7 +112,7 @@ def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
         dfs(root.left, depth + 1, left_view)
         dfs(root.right, depth + 1, left_view)
 
-    left_view = []
+    left_view: list = []
     if not root:
         return left_view
     dfs(root, 0, left_view)
@@ -128,7 +128,7 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
     """
     from collections import defaultdict
 
-    def bfs(root: TreeNode | None, top_view: list[int]) -> None:
+    def bfs(root: TreeNode, top_view: list[int]) -> None:
         queue = [(root, 0)]
         lookup = defaultdict(list)
 
@@ -145,7 +145,7 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
         for key, val in sorted(lookup.items(), key=lambda x: x[0]):
             top_view.append(val[0])
 
-    top_view = []
+    top_view: list = []
     if not root:
         return top_view
     bfs(root, top_view)
@@ -161,7 +161,7 @@ def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
     """
     from collections import defaultdict
 
-    def bfs(root: TreeNode | None, bottom_view: list[int]) -> None:
+    def bfs(root: TreeNode, bottom_view: list[int]) -> None:
         queue = [(root, 0)]
         lookup = defaultdict(list)
 
@@ -178,7 +178,7 @@ def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
         for key, val in sorted(lookup.items(), key=lambda x: x[0]):
             bottom_view.append(val[-1])
 
-    bottom_view = []
+    bottom_view: list = []
     if not root:
         return bottom_view
     bfs(root, bottom_view)
