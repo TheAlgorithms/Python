@@ -21,6 +21,9 @@ def ucal(u: float, p: int) -> float:
 
 
 def main() -> None:
+    import doctest
+    doctest.testmod()
+
     n = int(input("enter the numbers of values: "))
     y: list[list[float]] = []
     for i in range(n):
@@ -55,6 +58,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-    import doctest
-
-    doctest.testmod()
+    
