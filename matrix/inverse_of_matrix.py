@@ -64,11 +64,6 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
     >>> inverse_of_matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
-
-    >>> inverse_of_matrix([1, 2, 3], [4, 5, 6])
-    Trackback (most recent call last):
-    ...
-    TypeError: inverse_of_matrix() takes 1 positional argument but 2 were given
     """
 
     D = Decimal  # An abbreviation for conciseness
