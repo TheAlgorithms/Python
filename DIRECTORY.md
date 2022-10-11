@@ -6,6 +6,7 @@
   * [Intersection](arithmetic_analysis/intersection.py)
   * [Jacobi Iteration Method](arithmetic_analysis/jacobi_iteration_method.py)
   * [Lu Decomposition](arithmetic_analysis/lu_decomposition.py)
+  * [Newton Backward Interpolation](arithmetic_analysis/newton_backward_interpolation.py)
   * [Newton Forward Interpolation](arithmetic_analysis/newton_forward_interpolation.py)
   * [Newton Method](arithmetic_analysis/newton_method.py)
   * [Newton Raphson](arithmetic_analysis/newton_raphson.py)
