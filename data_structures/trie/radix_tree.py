@@ -125,10 +125,10 @@ class RadixNode:
         """Deletes a word from the tree if it exists
 
         Args:
-            word (str): _description_
+            word (str): word to be deleted
 
         Returns:
-            bool: _description_
+            bool: True if the word was found and deleted. False if word is not found
 
         >>> RadixNode("myprefix").delete("mystring")
         False
