@@ -25,7 +25,7 @@ https://en.wikipedia.org/wiki/Histogram_of_oriented_gradients
 random.seed(1234)
 
 class HistogramOrientedGradients:
-
+    
     def __init__(self, imagen: np.float32) -> None:
 
         """
@@ -167,7 +167,7 @@ class HistogramOrientedGradients:
 
 
 if __name__ == "__main__":
-    im = cv2.imread('path',1)
+    im = cv2.imread("path", 1)
     hog = histogramOrientedGradients(im)
     descriptors = hog.HOG()
     doctest.testmod()
