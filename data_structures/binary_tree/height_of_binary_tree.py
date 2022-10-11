@@ -31,7 +31,6 @@ def height_of_tree(root: TreeNode | None, depth: int = 0) -> int:
     )
 
 
-
 if __name__ == "__main__":
     import doctest
 
