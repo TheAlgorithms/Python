@@ -115,7 +115,7 @@ LogisticRegression().get_params()
 logisticgrid = {
     "max_iter": np.arange(5000, 10000, 500),
     "C": np.logspace(-3, 3, 7),
-    "solver": ["newton-cg", "lbfgs", "liblinear"],
+    "solver": ["newton-cg", "liblinear"],
 }
 
 # For LogisticRegression model
