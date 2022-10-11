@@ -5,6 +5,7 @@ import math
 import os
 import random
 from time import time
+
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
@@ -24,8 +25,8 @@ random.seed(1234)
 # Establecemos una semilla
 random.seed(1234)
 
-class Histogram_Oriented_Gradients:
 
+class Histogram_Oriented_Gradients:
     def __init__(self, imagen: np.float32):
         """
         imagen : numpy array of float values
@@ -35,8 +36,8 @@ class Histogram_Oriented_Gradients:
     def HOG() -> np.float32:
 
         """
-            Returns the descriptors vector of am inage
-            output : list of the descriptors values
+        Returns the descriptors vector of am inage
+        output : list of the descriptors values
         """
 
         # Pasamos la imagen a float (escala 0-1)
@@ -163,8 +164,9 @@ class Histogram_Oriented_Gradients:
 
         return vector_descriptores
 
+
 if __name__ == "__main__":
 
-    im = cv2.imread('path',1)
+    im = cv2.imread("path", 1)
     hog = Histogram_Oriented_Gradients(im)
     descriptors = hog.HOG()
