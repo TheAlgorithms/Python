@@ -26,7 +26,7 @@ class EqualLoudnessFilter:
     Images and original matlab implementation by David Robinson, 2001
     """
 
-    def __init__(self, samplerate: int = 44100):
+    def __init__(self, samplerate: int = 44100) -> None:
         self.yulewalk_filter = IIRFilter(10)
         self.butterworth_filter = make_highpass(150, samplerate)
 
