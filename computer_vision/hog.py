@@ -145,7 +145,7 @@ class HistogramOrientedGradients:
 
         # Concatenamos todos los elementos del hog de bloques
         # para obtener el vector de descriptores
-        vector_descriptores = [x for l in hog_bloques for x in l]
+        vector_descriptores = [x for lis in hog_bloques for x in lis]
 
         # Normalizamos el vector de descriptores
         modulo = 0.0
@@ -162,6 +162,6 @@ class HistogramOrientedGradients:
 
 if __name__ == "__main__":
     im = cv2.imread("path", 1)
-    hog = histogramOrientedGradients(im)
+    hog = HistogramOrientedGradients(im)
     descriptors = hog.HOG()
     doctest.testmod()
