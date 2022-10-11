@@ -20,7 +20,6 @@ def pick_pivot(l):
     # For simplicity, we can drop any chunks that aren't full. O(n)
     full_chunks = [chunk for chunk in chunks if len(chunk) == 5]
 
-
     # Next, we sort each chunk. Each group is a fixed length, so each sort
     # takes constant time. Since we have n/5 chunks, this operation
     # is also O(n)
