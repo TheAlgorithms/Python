@@ -21,26 +21,28 @@ import numpy as np
 
 # We have imported the NUMPY library using above SYNTAX.
 
+
 def Transpose(mat):
 
-# Here we create a function Transpose.
-    arr=np.array(mat)
+    # Here we create a function Transpose.
+    arr = np.array(mat)
 
     # We convert the incoming matrix in an array form using np.array() function.
-    
-    a=arr.T
+
+    a = arr.T
 
     # Here we just use the inbuild function of the NUMPY library.
     return a
+
 
 """ Let us declare a matrix and we will see the output
 
 >>>mat=[[1,2,3],
         [4,5,6]]
->>>print(Transpose(mat))     
+>>>print(Transpose(mat))
 
 OUTPUT:
->>> 
+>>>
 [[1 4]
  [2 5]
  [3 6]]
@@ -51,9 +53,8 @@ OUTPUT:
 >>>print(Transpose(mat))
 
 OUTPUT:
- >>> 
+ >>>
 [['a' 'd']
  ['b' 'e']
  ['c' 'f']]
  """
-
