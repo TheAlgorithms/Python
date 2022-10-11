@@ -13,6 +13,7 @@ import seaborn as sn
 import tensorflow as tf
 from sklearn.metrics import confusion_matrix
 from sklearn.svm import SVC
+import doctest
 
 """
 Histogram of oriented gradients
@@ -24,9 +25,9 @@ random.seed(1234)
 # Establecemos una semilla
 random.seed(1234)
 
-class Histogram_Oriented_Gradients:
+class histogramOrientedGradients:
 
-    def __init__(self, imagen: np.float32):
+    def __init__(self, imagen: np.float32) -> None:
         """
         imagen : numpy array of float values
         """
@@ -35,8 +36,9 @@ class Histogram_Oriented_Gradients:
     def HOG() -> np.float32:
 
         """
-            Returns the descriptors vector of am inage
-            output : list of the descriptors values
+        Returns the descriptors vector of am inage
+
+        :return: list of the descriptors values
         """
 
         # Pasamos la imagen a float (escala 0-1)
@@ -45,14 +47,14 @@ class Histogram_Oriented_Gradients:
         # Comenzamos obteniendo las imágenes gradiente. Para ello
         # convolucionamos la imagen con kernels Sobel 1D.
 
-        Gx = cv2.Sobel(imagen, cv2.CV_32F, 1, 0, ksize=1)
-        Gy = cv2.Sobel(imagen, cv2.CV_32F, 0, 1, ksize=1)
+        G_x = cv2.Sobel(imagen, cv2.CV_32F, 1, 0, ksize=1)
+        G_y = cv2.Sobel(imagen, cv2.CV_32F, 0, 1, ksize=1)
 
         # Calculamos la magnitud
-        magnitud = np.sqrt(Gx**2 + Gy**2)
+        magnitud = np.sqrt(G_x**2 + G_y**2)
 
         # Calculamos la orientacion
-        orientacion = np.abs(np.arctan2(Gy, Gx) * 180 / np.pi)
+        orientacion = np.abs(np.arctan2(G_y, G_x) * 180 / np.pi)
 
         # Ahora debemos calcular un histograma de orientación de gradiente
         # por cada célula 8x8 de nuestra imagen. Para ello crearemos una
@@ -166,5 +168,6 @@ class Histogram_Oriented_Gradients:
 if __name__ == "__main__":
 
     im = cv2.imread('path',1)
-    hog = Histogram_Oriented_Gradients(im)
+    hog = histogramOrientedGradients(im)
     descriptors = hog.HOG()
+    doctest.testmod()
