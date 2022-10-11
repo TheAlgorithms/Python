@@ -19,7 +19,9 @@ def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
     return not (row < 0 or col < 0 or row >= rows or col >= cols)
 
 
-def dfs(row: int, col: int, ROWS: int, COLS: int, seen: set, mat: list[list[int]]) -> int:
+def dfs(
+    row: int, col: int, ROWS: int, COLS: int, seen: set, mat: list[list[int]]
+) -> int:
     """
     Returns the current area of the island
     >>> dfs(0,0, 8,8,set(), [ \
