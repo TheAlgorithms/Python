@@ -49,7 +49,7 @@ def mat_bin_search(value: int, matrix: list) -> list:
             return [index, r]
         index += 1
     return [-1, -1]
-    
+
     if __name__ == "__main__":
     import doctest
 
