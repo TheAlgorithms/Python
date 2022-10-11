@@ -86,6 +86,18 @@ def run_linear_regression(data_x, data_y):
 
     return theta
 
+def mean_absolute_error(pred_X, org_X):
+    """Return sum of square error for error calculation
+    :param pred_X    : contains the output (result vector)
+    :param org_X    : contains our dataset
+    :return          : mean absolute error computed from given feature's
+    """
+    total = 0
+    for i in range(len(org_X)):
+        total += abs(org_X[i] - pred_X[i])
+    error = sum/len(org_X)
+    return error
+
 
 def main():
     """Driver function"""
