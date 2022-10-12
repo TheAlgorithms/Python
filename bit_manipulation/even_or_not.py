@@ -1,4 +1,4 @@
-def is_even(number:int)->bool:
+def is_even(number: int) -> bool:
     """
     return true if the input integer is even
     Explanation: Lets take a look at the following deicmal to binary conversions
@@ -8,7 +8,7 @@ def is_even(number:int)->bool:
     3 => 11
     13 => 1101
     101 => 1100101
-    from the above examples we can observe that 
+    from the above examples we can observe that
     for all the odd integers there is always 1 set bit at the end
     also, 1 in binary can be represented as 001, 00001, or 0000001
     so for any odd integer n => n&1 is always equlas 1 else the integer is even
@@ -28,11 +28,13 @@ def is_even(number:int)->bool:
     >>> is_even(101)
     False
     """
-    if(number&1==0):
+    if number & 1 == 0:
         return True
     else:
         return False
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
