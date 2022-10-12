@@ -3,7 +3,7 @@ Subtraction of two numbers
 """
 
 
-def subtract(a:int, b:int)->int:
+def subtract(a: int, b: int) -> int:
     """
     >>> subtract(2, 2)
     0
