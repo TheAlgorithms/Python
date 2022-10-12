@@ -15,64 +15,56 @@ from xgboost import XGBClassifier  # might have to do `!pip install xgboost`
 
 warnings.filterwarnings("ignore")
 
+# load the iris dataset
+iris = load_iris()
 
-def main() -> None:
-    # load the iris dataset
-    iris = load_iris()
+print(type(iris))  # Currently the type is sklearn.utils.Bunch
 
-    print(type(iris))  # Currently the type is sklearn.utils.Bunch
+# convert it to a dataframe
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
 
-    # convert it to a dataframe
-    df = pd.DataFrame(iris.data, columns=iris.feature_names)
+# add the target column
+df["target"] = iris.target
 
-    # add the target column
-    df["target"] = iris.target
+print(df["target"].unique())  # 0 -> sentosa, 1 -> versicolor, 2 -> virginica
 
-    print(df["target"].unique())  # 0 -> sentosa, 1 -> versicolor, 2 -> virginica
+# how the dataset looks
+print(df.head())
 
-    # how the dataset looks
-    print(df.head())
+X = df.drop("target", axis=1)
+y = df["target"]
 
-    X = df.drop("target", axis=1)
-    y = df["target"]
+# split dataset into training and testing sets
+x_train, x_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.25, random_state=0
+)
 
-    # split dataset into training and testing sets
-    x_train, x_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.25, random_state=0
-    )
+# initialize the model
+xgb = XGBClassifier(random_state=0)
 
-    # initialize the model
-    xgb = XGBClassifier(random_state=0)
+# start the training on training set
+xgb.fit(x_train, y_train)
 
-    # start the training on training set
-    xgb.fit(x_train, y_train)
+# get the prediction on testing set
+y_pred = xgb.predict(x_test)
 
-    # get the prediction on testing set
-    y_pred = xgb.predict(x_test)
+# calculate the accuracy
+acc = accuracy_score(y_test, y_pred)
 
-    # calculate the accuracy
-    acc = accuracy_score(y_test, y_pred)
+# print the accuracy
+print(f"Accuracy: {round(100 * acc, 2)}%")
 
-    # print the accuracy
-    print(f"Accuracy: {round(100 * acc, 2)}%")
+# print the confusion matrix
+print(confusion_matrix(y_test, y_pred))
 
-    # print the confusion matrix
-    print(confusion_matrix(y_test, y_pred))
-
-    # plot the confusion matrix
-    plot_confusion_matrix(
-        xgb,
-        x_test,
-        y_test,
-        display_labels=iris["target_names"],
-        cmap="Blues",
-        normalize="true",
-    )
-    plt.title("Normalized Confusion Matrix - IRIS Dataset")
-    plt.show()
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+# plot the confusion matrix
+plot_confusion_matrix(
+    xgb,
+    x_test,
+    y_test,
+    display_labels=iris["target_names"],
+    cmap="Blues",
+    normalize="true",
+)
+plt.title("Normalized Confusion Matrix - IRIS Dataset")
+plt.show()
