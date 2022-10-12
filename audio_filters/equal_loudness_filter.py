@@ -1,5 +1,5 @@
 from json import load
-from os.path import abspath, dirname
+from pathlib import Path
 
 import numpy as np
 from yulewalker import yulewalk
@@ -7,8 +7,8 @@ from yulewalker import yulewalk
 from audio_filters.butterworth_filter import make_highpass
 from audio_filters.iir_filter import IIRFilter
 
-with open(abspath(dirname(__file__)) + "/loudness_curve.json") as fp:
-    data = load(fp)
+
+data = load(Path("loudness_curve.json").read_text())
 
 
 class EqualLoudnessFilter:
