@@ -11,8 +11,8 @@ from numpy.typing import ArrayLike
 
 
 def lower_upper_decomposition(
-    table: NDArray[float64],
-) -> tuple[NDArray[float64], NDArray[float64]]:
+    table: ArrayLike[float64],
+) -> tuple[ArrayLike[float64], ArrayLike[float64]]:
     """Lower-Upper (LU) Decomposition
 
     Example:
