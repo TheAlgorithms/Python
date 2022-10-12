@@ -19,8 +19,8 @@ class HashTable:
         self.values = [None] * self.size_table
         self.lim_charge = 0.75 if lim_charge is None else lim_charge
         self.charge_factor = 1 if charge_factor is None else charge_factor
-        self.__aux_list = []
-        self._keys = {}
+        self.__aux_list: list = []
+        self._keys: dict = {}
 
     def keys(self):
         return self._keys
