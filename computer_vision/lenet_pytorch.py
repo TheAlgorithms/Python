@@ -10,7 +10,7 @@ import torch.nn as nn
 
 class LeNet(nn.Module):
     def __init__(self):
-        super(LeNet, self).__init__()
+        super().__init__()
 
         self.tanh = nn.Tanh()
         self.avgpool = nn.AvgPool2d(kernel_size=2, stride=2)
