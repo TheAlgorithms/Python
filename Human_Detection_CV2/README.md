@@ -6,7 +6,7 @@ Works on a Machine Trained model for the detection of people
 
 https://pypi.org/project/opencv-python/
 
-APPLICATIONS 
+APPLICATIONS
 
 --Self driving Cars
 https://en.wikipedia.org/wiki/Self-driving_car
