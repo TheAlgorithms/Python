@@ -6,9 +6,9 @@ class Heap:
 
     def __init__(self, key: int | None = None) -> None:
         # Stores actual heap items.
-        self.arr = list()
+        self.arr: list = list()
         # Stores indexes of each item for supporting updates and deletion.
-        self.pos_map = {}
+        self.pos_map: dict = {}
         # Stores current size of heap.
         self.size = 0
         # Stores function used to evaluate the score of an item on which basis ordering
