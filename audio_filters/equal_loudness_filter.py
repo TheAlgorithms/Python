@@ -7,7 +7,7 @@ from yulewalker import yulewalk
 from audio_filters.butterworth_filter import make_highpass
 from audio_filters.iir_filter import IIRFilter
 
-data = load(Path(__file__).resolve().parent / "loudness_curve.json".read_text())
+data = load((Path(__file__).resolve().parent / "loudness_curve.json").read_text())
 
 
 class EqualLoudnessFilter:
