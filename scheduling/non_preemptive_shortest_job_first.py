@@ -102,9 +102,9 @@ if __name__ == "__main__":
 
     # Printing the Result
     print("PID\tBurst Time\tArrival Time\tWaiting Time\tTurnaround Time")
-    for i, process_ID in enumerate(list(range(1, 5))):
+    for i, process_id in enumerate(list(range(1, 5))):
         print(
-            f"{process_ID}\t{burst_time[i]}\t\t\t{arrival_time[i]}\t\t\t\t"
+            f"{process_id}\t{burst_time[i]}\t\t\t{arrival_time[i]}\t\t\t\t"
             f"{waiting_time[i]}\t\t\t\t{turn_around_time[i]}"
         )
     print(f"\nAverage waiting time = {mean(waiting_time):.5f}")

@@ -26,25 +26,25 @@ def main():
     print(df_boston.describe().T)
     # Feature selection
 
-    X = df_boston.iloc[:, :-1]
+    x = df_boston.iloc[:, :-1]
     y = df_boston.iloc[:, -1]  # target variable
     # split the data with 75% train and 25% test sets.
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, random_state=0, test_size=0.25
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, random_state=0, test_size=0.25
     )
 
     model = GradientBoostingRegressor(
         n_estimators=500, max_depth=5, min_samples_split=4, learning_rate=0.01
     )
     # training the model
-    model.fit(X_train, y_train)
+    model.fit(x_train, y_train)
     # to see how good the model fit the data
-    training_score = model.score(X_train, y_train).round(3)
-    test_score = model.score(X_test, y_test).round(3)
+    training_score = model.score(x_train, y_train).round(3)
+    test_score = model.score(x_test, y_test).round(3)
     print("Training score of GradientBoosting is :", training_score)
     print("The test score of GradientBoosting is :", test_score)
     # Let us evaluation the model by finding the errors
-    y_pred = model.predict(X_test)
+    y_pred = model.predict(x_test)
 
     # The mean squared error
     print(f"Mean squared error: {mean_squared_error(y_test, y_pred):.2f}")

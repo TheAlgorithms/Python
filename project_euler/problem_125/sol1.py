@@ -35,7 +35,7 @@ def solution() -> int:
     Returns the sum of all numbers less than 1e8 that are both palindromic and
     can be written as the sum of consecutive squares.
     """
-    LIMIT = 10**8
+    LIMIT = 10**8  # noqa: N806
     answer = set()
     first_square = 1
     sum_squares = 5

@@ -17,7 +17,7 @@ def bin_to_hexadecimal(binary_str: str) -> str:
     ...
     ValueError: Empty string was passed to the function
     """
-    BITS_TO_HEX = {
+    BITS_TO_HEX = {  # noqa: N806
         "0000": "0",
         "0001": "1",
         "0010": "2",
