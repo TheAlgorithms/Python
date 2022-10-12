@@ -4,7 +4,7 @@ class Heap:
     accordingly.
     """
 
-    def __init__(self, key: int | None = None) -> None:
+    def __init__(self, key=None) -> None:
         # Stores actual heap items.
         self.arr: list = list()
         # Stores indexes of each item for supporting updates and deletion.
