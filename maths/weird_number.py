@@ -1,4 +1,4 @@
-rom math import sqrt
+from math import sqrt
 
 def factors(n):
 
