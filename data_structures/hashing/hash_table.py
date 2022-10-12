@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-from typing import Optional
-
 from .number_theory.prime_numbers import next_prime
 
 
