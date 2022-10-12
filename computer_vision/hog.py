@@ -4,7 +4,7 @@ import doctest
 import math
 import random
 from typing import List  # noqa: F401
-
+from typing import overload
 import cv2
 import numpy as np
 import numpy.typing as npt
@@ -26,9 +26,13 @@ class HistogramOrientedGradients:
         """
         self.imagen = imagen
 
-    def __setitem__(self, SupportsIndex, int) -> None: ...
+    @overload
+    def __setitem__(self, SupportsIndex, int) -> None:
+        ...
 
-    def __add__(self, List[float]) -> List[float]: ...
+    @overload
+    def __add__(self, List[float]) -> List[float]: \
+        ...
 
     def HOG(self) -> list:
 
