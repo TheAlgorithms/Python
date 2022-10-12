@@ -1,28 +1,29 @@
-def eval_key(code: int) -> int:
+def get_check_digit(barcode: int) -> int:
     """
     Returns the last digit of barcode by excluding the last digit first
     and then computing to reach the actual last digit from the remaining
     12 digits.
 
-    >>> eval_key(8718452538119)
+    >>> get_check_digit(8718452538119)
     9
+    
     """
 
-    code //= 10  # exclude the last digit
+    barcode //= 10  # exclude the last digit
     checker = False
     s = 0
 
     # extract and check each digit
-    while code != 0:
+    while barcode != 0:
         mult = 1 if checker else 3
-        s += mult * (code % 10)
-        code //= 10
+        s += mult * (barcode % 10)
+        barcode //= 10
         checker = not checker
 
     return (10 - (s % 10)) % 10
 
 
-def is_valid(code: int) -> bool:
+def is_valid(barcode: int) -> bool:
     """
     Checks for length of barcode and last-digit
     Returns boolean value of validity of barcode
@@ -33,10 +34,41 @@ def is_valid(code: int) -> bool:
     >>> is_valid(87184525)
     False
 
+    >>> is_valid(87193425381089)
+    False
+
+    >>> is_valid(0)
+    False
+
+    >>> is_valid(dwefgiweuf)
+    Traceback (most recent call last):
+    ...
+    NameError: name 'dwefgiweuf' is not defined
     """
 
-    return len(str(code)) == 13 and eval_key(code) == code % 10
+    return len(str(barcode)) == 13 and get_check_digit(barcode) == barcode % 10
 
+
+def get_barcode(barcode: str) -> int:
+    """
+    Returns the barcode as an integer
+
+    >>> get_barcode("8718452538119")
+    8718452538119
+
+    >>> get_barcode("dwefgiweuf")
+    Traceback (most recent call last):
+    ...
+    ValueError: Barcode 'dwefgiweuf' has alphabets in it
+    """
+    if str(barcode).isalpha():
+        raise ValueError("Barcode '{}' has alphabets in it".format(barcode))
+
+    if int(barcode)<0:
+        raise ValueError("The entered barcode has negative values. Try again.")
+    
+    else:
+        return int(barcode)
 
 if __name__ == "__main__":
     import doctest
@@ -44,11 +76,11 @@ if __name__ == "__main__":
     doctest.testmod()
     """
     Enter a barcode.
-    Displays whether the entered barcode is valid or invalid.
-    """
-    barcode = input("Enter a barcode: ")
-    number_barcode = int(barcode)
-    if is_valid(number_barcode):
-        print(f"|{number_barcode}| is a valid Barcode")
+    
+    """	
+    barcode = get_barcode((input("Barcode: ").strip()))
+
+    if is_valid(barcode):
+        print(f"|{barcode}| is a valid Barcode")
     else:
-        print(f"|{number_barcode}| is NOT is valid Barcode.")
+        print(f"|{barcode}| is NOT is valid Barcode.")
