@@ -15,20 +15,20 @@ if num == 0:
 elif num == 1:
     t = turtle.Turtle()
     for i in range(10):
-        t.circle(10*i)
+        t.circle(10 * i)
     print(num)
 
 elif num == 2:
     t = turtle.Turtle()
     for i in range(100):
-        t.circle(10+i, 45)
+        t.circle(10 + i, 45)
     print(num)
 
 elif num == 3:
     t = turtle.Turtle()
     for i in range(50):
-        t.circle(10*i)
+        t.circle(10 * i)
         t.up()
-        t.sety((10*i)*(-1))
+        t.sety((10 * i) * (-1))
         t.down()
     print(num)
