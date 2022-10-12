@@ -3,10 +3,11 @@
 import doctest
 import math
 import random
-from typing import List # noqa: F401
-import numpy.typing as npt
+from typing import List  # noqa: F401
+
 import cv2
 import numpy as np
+import numpy.typing as npt
 
 """
 Histogram of oriented gradients
