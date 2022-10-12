@@ -3,7 +3,7 @@
 import doctest
 import math
 import random
-from typing import List # noqa: F401
+from typing import List  # noqa: F401
 
 import cv2
 import numpy as np
