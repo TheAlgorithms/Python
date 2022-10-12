@@ -43,9 +43,7 @@ def snake_to_camel_case(input: str, use_pascal: bool = False) -> str:
 
     initial_word = "" if use_pascal else words[0]
 
-    result = "".join([initial_word] + capitalized_words)
-
-    return result
+    return "".join([initial_word] + capitalized_words)
 
 
 if __name__ == "__main__":
