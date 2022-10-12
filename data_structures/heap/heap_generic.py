@@ -110,11 +110,11 @@ class Heap:
         self.size += 1
         self._heapify_up(self.size - 1)
 
-    def get_top(self) -> int | None:
+    def get_top(self) -> tuple | None:
         """Returns top item tuple (Calculated value, item) from heap if present"""
         return self.arr[0] if self.size else None
 
-    def extract_top(self) -> int | None:
+    def extract_top(self) -> tuple | None:
         """
         Return top item tuple (Calculated value, item) from heap and removes it as well
         if present
