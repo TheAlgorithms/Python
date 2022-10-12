@@ -2,11 +2,20 @@ import os
 
 import matplotlib.pyplot as plt
 
-# https://xgboost.readthedocs.io/en/stable/
+"""
+The Url for the algorithm
+https://xgboost.readthedocs.io/en/stable/
+"""
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from xgboost import XGBRegressor
+
+ """
+    You have to download the dataset from kaggle in order to run this 
+    https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data
+    This is the link from where you can get the data.
+ """
 
 for dirname, _, filenames in os.walk("/kaggle/input"):
     for filename in filenames:
