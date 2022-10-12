@@ -5,6 +5,7 @@ import math
 import random
 from typing import List  # noqa: F401
 from typing import overload
+
 import cv2
 import numpy as np
 import numpy.typing as npt
