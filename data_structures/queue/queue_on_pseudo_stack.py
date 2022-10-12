@@ -1,6 +1,7 @@
 """Queue represented by a pseudo stack (represented by a list with pop and append)"""
 from typing import Any
 
+
 class Queue:
     def __init__(self):
         self.stack = []
