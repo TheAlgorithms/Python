@@ -62,7 +62,7 @@ def get_barcode(barcode: str) -> int:
     ValueError: Barcode 'dwefgiweuf' has alphabets in it
     """
     if str(barcode).isalpha():
-        raise ValueError("Barcode '{}' has alphabets in it".format(barcode))
+        raise ValueError(f"Barcode '{barcode}' has alphabets in it")
 
     if int(barcode)<0:
         raise ValueError("The entered barcode has negative values. Try again.")
