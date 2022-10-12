@@ -25,7 +25,7 @@ class HistogramOrientedGradients:
         """
         self.imagen = imagen
 
-    def HOG(self) -> List:
+    def HOG(self) -> list:
 
         """
         Returns the descriptors vector of am inage
