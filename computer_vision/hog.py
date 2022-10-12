@@ -4,7 +4,7 @@ import doctest
 import math
 import random
 from typing import List # noqa: F401
-
+import numpy.typing as npt
 import cv2
 import numpy as np
 
@@ -18,7 +18,7 @@ random.seed(1234)
 
 
 class HistogramOrientedGradients:
-    def __init__(self, imagen: np.float32) -> None:
+    def __init__(self, imagen: npt.NDArray[np.float32]):
 
         """
         imagen : numpy array of float values
