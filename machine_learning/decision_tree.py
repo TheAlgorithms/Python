@@ -22,17 +22,17 @@ class DecisionTree:
         @param prediction: a floating point value
         return value: mean_squared_error calculates the error if prediction is used to
             estimate the labels
-        >>> tester = Decision_Tree()
+        >>> tester = DecisionTree()
         >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
         >>> test_prediction = np.float(6)
         >>> tester.mean_squared_error(test_labels, test_prediction) == (
-        ...     Test_Decision_Tree.helper_mean_squared_error_test(test_labels,
+        ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
         ...         test_prediction))
         True
         >>> test_labels = np.array([1,2,3])
         >>> test_prediction = np.float(2)
         >>> tester.mean_squared_error(test_labels, test_prediction) == (
-        ...     Test_Decision_Tree.helper_mean_squared_error_test(test_labels,
+        ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
         ...         test_prediction))
         True
         """

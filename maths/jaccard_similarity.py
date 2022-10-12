@@ -24,8 +24,8 @@ def jaccard_similariy(set_a, set_b, alternative_union=False):
     of a set with itself be 1/2 instead of 1. [MMDS 2nd Edition, Page 77]
 
     Parameters:
-        :setA (set,list,tuple): A non-empty set/list
-        :setB (set,list,tuple): A non-empty set/list
+        :set_a (set,list,tuple): A non-empty set/list
+        :set_b (set,list,tuple): A non-empty set/list
         :alternativeUnion (boolean): If True, use sum of number of
         items as union
 
@@ -35,18 +35,18 @@ def jaccard_similariy(set_a, set_b, alternative_union=False):
     Examples:
     >>> set_a = {'a', 'b', 'c', 'd', 'e'}
     >>> set_b = {'c', 'd', 'e', 'f', 'h', 'i'}
-    >>> jaccard_similariy(setA,setB)
+    >>> jaccard_similariy(set_a, set_b)
     0.375
 
-    >>> jaccard_similariy(setA,setA)
+    >>> jaccard_similariy(set_a, set_a)
     1.0
 
-    >>> jaccard_similariy(setA,setA,True)
+    >>> jaccard_similariy(set_a, set_a, True)
     0.5
 
     >>> set_a = ['a', 'b', 'c', 'd', 'e']
     >>> set_b = ('c', 'd', 'e', 'f', 'h', 'i')
-    >>> jaccard_similariy(setA,setB)
+    >>> jaccard_similariy(set_a, set_b)
     0.375
     """
 

@@ -50,7 +50,7 @@ def test_greedy():
     [Things(Burger, 80, 40), Things(Pizza, 100, 60), Things(Coca Cola, 60, 40),
      Things(Rice, 70, 70), Things(Sambhar, 50, 100), Things(Chicken, 110, 85),
      Things(Fries, 90, 55), Things(Milk, 60, 70)]
-    >>> greedy(foods, 500, things.get_value)  # doctest: +NORMALIZE_WHITESPACE
+    >>> greedy(foods, 500, Things.get_value)  # doctest: +NORMALIZE_WHITESPACE
     ([Things(Chicken, 110, 85), Things(Pizza, 100, 60), Things(Fries, 90, 55),
       Things(Burger, 80, 40), Things(Rice, 70, 70), Things(Coca Cola, 60, 40),
       Things(Milk, 60, 70)], 570.0)

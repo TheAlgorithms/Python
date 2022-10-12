@@ -4,7 +4,7 @@ from itertools import accumulate
 
 def frac_knapsack(vl, wt, w, n):
     """
-    >>> fracKnapsack([60, 100, 120], [10, 20, 30], 50, 3)
+    >>> frac_knapsack([60, 100, 120], [10, 20, 30], 50, 3)
     240.0
     """
 

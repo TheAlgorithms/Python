@@ -70,12 +70,12 @@ def text_from_bits(bits, encoding="utf-8", errors="surrogatepass"):
 # Functions of hamming code-------------------------------------------
 def emitter_converter(size_par, data):
     """
-    :param sizePar: how many parity bits the message must have
+    :param size_par: how many parity bits the message must have
     :param data:  information bits
     :return: message to be transmitted by unreliable medium
             - bits of information merged with parity bits
 
-    >>> emitterConverter(4, "101010111111")
+    >>> emitter_converter(4, "101010111111")
     ['1', '1', '1', '1', '0', '1', '0', '0', '1', '0', '1', '1', '1', '1', '1', '1']
     """
     if size_par + len(data) <= 2**size_par - (len(data) - 1):
@@ -149,7 +149,7 @@ def emitter_converter(size_par, data):
 
 def receptor_converter(size_par, data):
     """
-    >>> receptorConverter(4, "1111010010111111")
+    >>> receptor_converter(4, "1111010010111111")
     (['1', '0', '1', '0', '1', '0', '1', '1', '1', '1', '1', '1'], True)
     """
     # data position template + parity
