@@ -114,7 +114,7 @@ class Heap:
         """Returns top item tuple (Calculated value, item) from heap if present"""
         return self.arr[0] if self.size else None
 
-    def extract_top(self) -> tuple:
+    def extract_top(self) -> int | None:
         """
         Return top item tuple (Calculated value, item) from heap and removes it as well
         if present
