@@ -6,8 +6,8 @@ Reference:
 from __future__ import annotations
 
 import numpy as np
-from numpy.typing import ArrayLike
 from numpy import float64
+from numpy.typing import ArrayLike
 
 
 def lower_upper_decomposition(
