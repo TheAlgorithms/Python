@@ -4,7 +4,7 @@ import math
 class SOM:
     # Function here computes the winning vector
     # by Euclidean distance
-    def winner(self, weights, sample):
+    def winner(self, weights: int, sample: int) --> list[int]:
         D0 = 0
         D1 = 0
         for i in range(len(sample)):
