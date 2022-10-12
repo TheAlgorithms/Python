@@ -10,7 +10,7 @@ import seaborn as sns
 from xgboost import XGBClassifier
 
  """
-    You have to download the dataset from kaggle in order to run this 
+    You have to download the dataset from kaggle in order to run this
     https://www.kaggle.com/competitions/titanic/data
     This is the link from where you can get the data.
  """
