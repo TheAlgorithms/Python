@@ -1,4 +1,5 @@
-from typing import Callable
+from collections.abc import Callable
+
 
 class Heap:
     """
@@ -6,7 +7,7 @@ class Heap:
     accordingly.
     """
 
-    def __init__(self, key: Callable | None =None) -> None:
+    def __init__(self, key: Callable | None = None) -> None:
         # Stores actual heap items.
         self.arr: list = list()
         # Stores indexes of each item for supporting updates and deletion.
