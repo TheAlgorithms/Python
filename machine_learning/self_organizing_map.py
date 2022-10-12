@@ -5,27 +5,23 @@ import math
 
 
 class SelfOrganizingMap:
-    def get_winner(
-        self, weights: list[list[int]], sample: list[int]
-    ) -> list[list[int]]:
+    def get_winner(self, weights: list[list[int]], sample: list[int]) -> int:
         """
         Compute the winning vector by Euclidean distance
 
         >>> SelfOrganizingMap().get_winner([[1, 2, 3], [4, 5, 6]], [1, 2, 3])
         1
         """
-        d0 = 0
-        d1 = 0
+        d0 = 0.0
+        d1 = 0.0
         for i in range(len(sample)):
-            d0 = d0 + math.pow((sample[i] - weights[0][i]), 2)
-            d1 = d1 + math.pow((sample[i] - weights[1][i]), 2)
-            if d0 > d1:
-                return 0
-            else:
-                return 1
+            d0 += math.pow((sample[i] - weights[0][i]), 2)
+            d1 += math.pow((sample[i] - weights[1][i]), 2)
+            return 0 if d0 > d1 else 1
+        return 0
 
     def update(
-        self, weights: list[list[int]], sample: list[int], j: int, alpha: float
+        self, weights: list[list[int | float]], sample: list[int], j: int, alpha: float
     ) -> list[list[int | float]]:
         """
         Update the winning vector.
@@ -34,7 +30,7 @@ class SelfOrganizingMap:
         [[1, 2, 3], [3.7, 4.7, 6]]
         """
         for i in range(len(weights)):
-            weights[j][i] = weights[j][i] + alpha * (sample[i] - weights[j][i])
+            weights[j][i] += alpha * (sample[i] - weights[j][i])
         return weights
 
 
