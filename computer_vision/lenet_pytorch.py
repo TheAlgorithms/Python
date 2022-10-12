@@ -41,17 +41,17 @@ class LeNet(nn.Module):
         self.linear1 = nn.Linear(120, 84)
         self.linear2 = nn.Linear(84, 10)
 
-    def forward(self, x: numpy.ndarray) -> numpy.ndarray:
-        x = self.tanh(self.conv1(x))
-        x = self.avgpool(x)
-        x = self.tanh(self.conv2(x))
-        x = self.avgpool(x)
-        x = self.tanh(self.conv3(x))
+    def forward(self, image_array: numpy.ndarray) -> numpy.ndarray:
+        image_array = self.tanh(self.conv1(image_array))
+        image_array = self.avgpool(image_array)
+        image_array = self.tanh(self.conv2(image_array))
+        image_array = self.avgpool(image_array)
+        image_array = self.tanh(self.conv3(image_array))
 
-        x = x.reshape(x.shape[0], -1)
-        x = self.tanh(self.linear1(x))
-        x = self.linear2(x)
-        return x
+        image_array = image_array.reshape(image_array.shape[0], -1)
+        image_array = self.tanh(self.linear1(image_array))
+        image_array = self.linear2(image_array)
+        return image_array
 
 
 def test_model() -> bool:
