@@ -1,10 +1,12 @@
+from typing import Callable
+
 class Heap:
     """
     A generic Heap class, can be used as min or max by passing the key function
     accordingly.
     """
 
-    def __init__(self, key=None) -> None:
+    def __init__(self, key: Callable | None =None) -> None:
         # Stores actual heap items.
         self.arr: list = list()
         # Stores indexes of each item for supporting updates and deletion.
