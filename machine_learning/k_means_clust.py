@@ -214,7 +214,7 @@ def report_generator(
     >>> data['col2'] = [100, 200, 300]
     >>> data['col3'] = [10, 20, 30]
     >>> data['Cluster'] = [1, 1, 2]
-    >>> ReportGenerator(data, ['col1', 'col2'], 0)
+    >>> report_generator(data, ['col1', 'col2'], 0)
                Features               Type   Mark           1           2
     0    # of Customers        ClusterSize  False    2.000000    1.000000
     1    % of Customers  ClusterProportion  False    0.666667    0.333333

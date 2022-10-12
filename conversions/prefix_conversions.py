@@ -48,11 +48,11 @@ def convert_si_prefix(
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Binary_prefix
     Wikipedia reference: https://en.wikipedia.org/wiki/International_System_of_Units
-    >>> convert_si_prefix(1, SI_Unit.giga, SI_Unit.mega)
+    >>> convert_si_prefix(1, SIUnit.giga, SIUnit.mega)
     1000
-    >>> convert_si_prefix(1, SI_Unit.mega, SI_Unit.giga)
+    >>> convert_si_prefix(1, SIUnit.mega, SIUnit.giga)
     0.001
-    >>> convert_si_prefix(1, SI_Unit.kilo, SI_Unit.kilo)
+    >>> convert_si_prefix(1, SIUnit.kilo, SIUnit.kilo)
     1
     >>> convert_si_prefix(1, 'giga', 'mega')
     1000
@@ -76,11 +76,11 @@ def convert_binary_prefix(
 ) -> float:
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Metric_prefix
-    >>> convert_binary_prefix(1, Binary_Unit.giga, Binary_Unit.mega)
+    >>> convert_binary_prefix(1, BinaryUnit.giga, BinaryUnit.mega)
     1024
-    >>> convert_binary_prefix(1, Binary_Unit.mega, Binary_Unit.giga)
+    >>> convert_binary_prefix(1, BinaryUnit.mega, BinaryUnit.giga)
     0.0009765625
-    >>> convert_binary_prefix(1, Binary_Unit.kilo, Binary_Unit.kilo)
+    >>> convert_binary_prefix(1, BinaryUnit.kilo, BinaryUnit.kilo)
     1
     >>> convert_binary_prefix(1, 'giga', 'mega')
     1024
