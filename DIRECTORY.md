@@ -321,6 +321,10 @@
 ## Fuzzy Logic
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
 
+## Games
+  * [Pong Game](games/pong_game/Pong.py)
+  * [Snake Game](games/snake_game/Snake.py)
+
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
 
