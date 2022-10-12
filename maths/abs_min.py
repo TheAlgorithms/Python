@@ -12,10 +12,10 @@ def abs_min(x: list[int]) -> int:
     >>> abs_min([])
     Traceback (most recent call last):
         ...
-    ValueError: abs_min() arg is an empty sequence
+    ValueError: abs_min() argument is an empty sequence
     """
     if len(x) == 0:
-        raise ValueError("abs_min() arg is an empty sequence")
+        raise ValueError("abs_min() argument is an empty sequence")
     j = x[0]
     for i in x:
         if abs_val(i) < abs_val(j):
@@ -25,7 +25,7 @@ def abs_min(x: list[int]) -> int:
 
 def main():
     a = [-3, -1, 2, -11]
-    print(abs_min(a))  # = -1
+    print(abs_min(a)) 
 
 
 if __name__ == "__main__":
