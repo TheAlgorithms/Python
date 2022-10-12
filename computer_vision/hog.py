@@ -3,7 +3,7 @@
 import doctest
 import math
 import random
-
+from typing import List
 import cv2
 import numpy as np
 
@@ -121,7 +121,7 @@ class HistogramOrientedGradients:
         for i in range(0, int(self.imagen.shape[0] / 8) - 1):
             for j in range(0, int(self.imagen.shape[1] / 8) - 1):
 
-                aux = list()
+                aux: List[float] = []
 
                 aux = aux + hog[i][j]
                 aux = aux + hog[i][j + 1]
