@@ -20,7 +20,7 @@ def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
 
 
 def dfs(
-    row: int, col: int, ROWS: int, COLS: int, seen: set, mat: list[list[int]]
+    row: int, col: int, rows: int, cols: int, seen: set, mat: list[list[int]]
 ) -> int:
     """
     Returns the current area of the island
@@ -35,14 +35,14 @@ def dfs(
         [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]])
     0
     """
-    if is_safe(row, col, ROWS, COLS) and (row, col) not in seen and mat[row][col] == 1:
+    if is_safe(row, col, rows, cols) and (row, col) not in seen and mat[row][col] == 1:
         seen.add((row, col))
         return (
             1
-            + dfs(row + 1, col, ROWS, COLS, seen, mat)
-            + dfs(row - 1, col, ROWS, COLS, seen, mat)
-            + dfs(row, col + 1, ROWS, COLS, seen, mat)
-            + dfs(row, col - 1, ROWS, COLS, seen, mat)
+            + dfs(row + 1, col, rows, cols, seen, mat)
+            + dfs(row - 1, col, rows, cols, seen, mat)
+            + dfs(row, col + 1, rows, cols, seen, mat)
+            + dfs(row, col - 1, rows, cols, seen, mat)
         )
     else:
         return 0
@@ -64,16 +64,16 @@ def count_max_area(mat: list[list[int]]) -> int:
     6
     """
 
-    ROWS = len(mat)
-    COLS = len(mat[0])
-    seen = set()
+    rows = len(mat)
+    cols = len(mat[0])
+    seen: set = set()
 
     max_area = 0
-    for row in range(ROWS):
-        for col in range(COLS):
+    for row in range(rows):
+        for col in range(cols):
             if mat[row][col] == 1 and (row, col) not in seen:
                 # Maximizing the area
-                max_area = max(max_area, dfs(row, col, ROWS, COLS, seen, mat))
+                max_area = max(max_area, dfs(row, col, rows, cols, seen, mat))
     return max_area
 
 
