@@ -14,19 +14,28 @@ def remove_digit(num: int) -> int:
     >>> remove_digit(2222222)
     222222
     >>> remove_digit("2222222")
-    0
+    Traceback (most recent call last):
+    TypeError: only integers accepted as input
     >>> remove_digit("string input")
-    0
+    Traceback (most recent call last):
+    TypeError: only integers accepted as input
     """
 
-    try:
+    if type(num) == int:
         num_str = str(abs(num))
-        num_list = [[c for c in num_str] for c in range(len(num_str))]
-        for c in range(len(num_str)):
-            num_list[c].pop(c)
-        return sorted([int("".join([a for a in c])) for c in num_list])[-1]
-    except TypeError:
-        return 0
+        num_transpositions = [
+            [char for char in num_str] for char in range(len(num_str))
+        ]
+        for index in range(len(num_str)):
+            num_transpositions[index].pop(index)
+        return sorted(
+            [
+                int("".join([char for char in transposition]))
+                for transposition in num_transpositions
+            ]
+        )[-1]
+    else:
+        raise TypeError("only integers accepted as input")
 
 
 if __name__ == "__main__":
