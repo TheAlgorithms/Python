@@ -24,10 +24,6 @@ class HistogramOrientedGradients:
         """
         self.imagen = imagen
 
-    def __setitem__(self, SupportsIndex, int) -> None
-
-    def __add__(self, List[float]) -> List[float]
-
     def HOG(self) -> np.float32:
 
         """
