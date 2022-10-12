@@ -35,7 +35,7 @@ class SelfOrganizingMap:
 
 
 # Driver code
-def main():
+def main() -> None:
     # Training Examples ( m, n )
     training_samples = [[1, 1, 0, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 0, 1, 1]]
     m, n = len(training_samples), len(training_samples[0])
