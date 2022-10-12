@@ -6,7 +6,7 @@ Reference:
 from __future__ import annotations
 
 import numpy as np
-import numpy.typing as NDArray
+import numpy.typing as NDArray  # noqa: N812
 from numpy import float64
 
 

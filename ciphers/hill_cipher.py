@@ -201,11 +201,11 @@ class HillCipher:
 
 
 def main() -> None:
-    N = int(input("Enter the order of the encryption key: "))
+    n = int(input("Enter the order of the encryption key: "))
     hill_matrix = []
 
     print("Enter each row of the encryption key with space separated integers")
-    for _ in range(N):
+    for _ in range(n):
         row = [int(x) for x in input().split()]
         hill_matrix.append(row)
 

@@ -1,4 +1,4 @@
-def kthPermutation(k, n):
+def kth_permutation(k, n):
     """
     Finds k'th lexicographic permutation (in increasing order) of
     0,1,2,...n-1 in O(n^2) time.

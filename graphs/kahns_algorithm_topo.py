@@ -1,4 +1,4 @@
-def topologicalSort(graph):
+def topological_sort(graph):
     """
     Kahn's Algorithm is used to find Topological ordering of Directed Acyclic Graph
     using BFS
@@ -33,4 +33,4 @@ def topologicalSort(graph):
 
 # Adjacency List of Graph
 graph = {0: [1, 2], 1: [3], 2: [3], 3: [4, 5], 4: [], 5: []}
-topologicalSort(graph)
+topological_sort(graph)

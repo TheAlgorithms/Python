@@ -55,21 +55,21 @@ class PriorityQueue:
         return (priority, item)
 
 
-def consistent_heuristic(P: TPos, goal: TPos):
+def consistent_heuristic(p: TPos, goal: TPos):
     # euclidean distance
-    a = np.array(P)
+    a = np.array(p)
     b = np.array(goal)
     return np.linalg.norm(a - b)
 
 
-def heuristic_2(P: TPos, goal: TPos):
+def heuristic_2(p: TPos, goal: TPos):
     # integer division by time variable
-    return consistent_heuristic(P, goal) // t
+    return consistent_heuristic(p, goal) // t
 
 
-def heuristic_1(P: TPos, goal: TPos):
+def heuristic_1(p: TPos, goal: TPos):
     # manhattan distance
-    return abs(P[0] - goal[0]) + abs(P[1] - goal[1])
+    return abs(p[0] - goal[0]) + abs(p[1] - goal[1])
 
 
 def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):

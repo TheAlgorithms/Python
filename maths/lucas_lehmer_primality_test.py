@@ -30,9 +30,9 @@ def lucas_lehmer_test(p: int) -> bool:
         return True
 
     s = 4
-    M = (1 << p) - 1
+    m = (1 << p) - 1
     for i in range(p - 2):
-        s = ((s * s) - 2) % M
+        s = ((s * s) - 2) % m
     return s == 0
 
 
