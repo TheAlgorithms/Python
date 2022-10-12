@@ -4,12 +4,13 @@ LeNet Network
 Paper: http://vision.stanford.edu/cs598_spring07/papers/Lecun98.pdf
 """
 
+import numpy
 import torch
 import torch.nn as nn
 
 
 class LeNet(nn.Module):
-    def __init__(self):
+    def __init__(self) -> None:
         super(LeNet, self).__init__()
 
         self.tanh = nn.Tanh()
@@ -40,7 +41,7 @@ class LeNet(nn.Module):
         self.linear1 = nn.Linear(120, 84)
         self.linear2 = nn.Linear(84, 10)
 
-    def forward(self, x):
+    def forward(self, x: numpy.ndarray) -> numpy.ndarray:
         x = self.tanh(self.conv1(x))
         x = self.avgpool(x)
         x = self.tanh(self.conv2(x))
