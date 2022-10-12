@@ -4,7 +4,7 @@ from collections import deque
 
 
 class Automaton:
-    def __init__(self, keywords: list[str]):
+    def __init__(self, keywords: list[str]) -> None:
         self.adlist: list[dict] = list()
         self.adlist.append(
             {"value": "", "next_states": [], "fail_state": 0, "output": []}
