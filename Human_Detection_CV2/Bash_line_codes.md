@@ -1,0 +1,1 @@
+conda install opencv numpy matplotlib
