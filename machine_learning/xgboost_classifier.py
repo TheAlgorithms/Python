@@ -16,7 +16,7 @@ from xgboost import XGBClassifier  # might have to do `!pip install xgboost`
 warnings.filterwarnings("ignore")
 
 
-def main():
+def main() -> None:
     # load the iris dataset
     iris = load_iris()
 
@@ -37,7 +37,7 @@ def main():
     y = df["target"]
 
     # split dataset into training and testing sets
-    X_train, X_test, y_train, y_test = train_test_split(
+    x_train, x_test, y_train, y_test = train_test_split(
         X, y, test_size=0.25, random_state=0
     )
 
@@ -45,10 +45,10 @@ def main():
     xgb = XGBClassifier(random_state=0)
 
     # start the training on training set
-    xgb.fit(X_train, y_train)
+    xgb.fit(x_train, y_train)
 
     # get the prediction on testing set
-    y_pred = xgb.predict(X_test)
+    y_pred = xgb.predict(x_test)
 
     # calculate the accuracy
     acc = accuracy_score(y_test, y_pred)
@@ -62,7 +62,7 @@ def main():
     # plot the confusion matrix
     plot_confusion_matrix(
         xgb,
-        X_test,
+        x_test,
         y_test,
         display_labels=iris["target_names"],
         cmap="Blues",
