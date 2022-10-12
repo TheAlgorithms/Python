@@ -927,6 +927,7 @@
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
   * [Highest Response Ratio Next](scheduling/highest_response_ratio_next.py)
+  * [Job Sequencing With Deadline](scheduling/job_sequencing_with_deadline.py)
   * [Multi Level Feedback Queue](scheduling/multi_level_feedback_queue.py)
   * [Non Preemptive Shortest Job First](scheduling/non_preemptive_shortest_job_first.py)
   * [Round Robin](scheduling/round_robin.py)
