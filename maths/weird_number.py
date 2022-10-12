@@ -21,7 +21,6 @@ def factors(number: int) -> list[int]:
 
     values = [1]
     for i in range(2, int(sqrt(number)) + 1, 1):
-
         if number % i == 0:
             values.append(i)
             if int(number // i) != i:
