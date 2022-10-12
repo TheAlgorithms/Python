@@ -1,10 +1,19 @@
 import matplotlib.pyplot as plt
 
-# https://xgboost.readthedocs.io/en/stable/
+"""
+The Url for the algorithm
+https://xgboost.readthedocs.io/en/stable/
+"""
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from xgboost import XGBClassifier
+
+ """
+    You have to download the dataset from kaggle in order to run this 
+    https://www.kaggle.com/competitions/titanic/data
+    This is the link from where you can get the data.
+ """
 
 training = pd.read_csv("../input/titanic/train.csv")
 test = pd.read_csv("../input/titanic/test.csv")
