@@ -5,7 +5,9 @@ import math
 
 
 class SelfOrganizingMap:
-    def get_winner(self, weights: list[list[int]], sample: list[int]) -> list[list[int]]:
+    def get_winner(
+        self, weights: list[list[int]], sample: list[int]
+    ) -> list[list[int]]:
         """
         Compute the winning vector by Euclidean distance
 
@@ -22,7 +24,9 @@ class SelfOrganizingMap:
             else:
                 return 1
 
-    def update(self, weights: list[list[int]], sample: list[int], j: int, alpha: float) -> list[list[int | float]]:
+    def update(
+        self, weights: list[list[int]], sample: list[int], j: int, alpha: float
+    ) -> list[list[int | float]]:
         """
         Update the winning vector.
 
