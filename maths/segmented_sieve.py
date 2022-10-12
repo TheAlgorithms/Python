@@ -3,7 +3,7 @@
 import math
 
 
-def sieve(n):
+def sieve(n: int) -> list[int]:
     """Segmented Sieve."""
     in_prime = []
     start = 2
