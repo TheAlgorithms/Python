@@ -1,6 +1,6 @@
 def snake_to_camel_case(input: str, use_pascal: bool = False) -> str:
     """
-    Transforms a snake_case fiven string to camelCase (or PascalCase if indicated)
+    Transforms a snake_case given string to camelCase (or PascalCase if indicated)
     (defaults to not use Pascal)
 
     >>> snake_to_camel_case("some_random_string")
@@ -39,15 +39,11 @@ def snake_to_camel_case(input: str, use_pascal: bool = False) -> str:
 
     words_to_capitalize = words[start_index:]
 
-    capitalized_words = []
+    capitalized_words = [word[0].upper() + word[1:] for word in words_to_capitalize]
 
-    for word in words_to_capitalize:
-        capitalized_words.append(word[0].upper() + word[1:])
+    initial_word = "" if use_pascal else words[0]
 
-    result = "" if use_pascal else words[0]
-
-    for word in capitalized_words:
-        result += word
+    result = "".join([initial_word] + capitalized_words)
 
     return result
 
