@@ -12,7 +12,7 @@ import seaborn as sns
 from xgboost import XGBRegressor
 
  """
-    You have to download the dataset from kaggle in order to run this 
+    You have to download the dataset from kaggle in order to run this
     https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data
     This is the link from where you can get the data.
  """
