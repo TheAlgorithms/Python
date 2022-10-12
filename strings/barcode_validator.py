@@ -6,7 +6,7 @@ def get_check_digit(barcode: int) -> int:
 
     >>> get_check_digit(8718452538119)
     9
-    
+
     """
 
     barcode //= 10  # exclude the last digit
@@ -62,13 +62,14 @@ def get_barcode(barcode: str) -> int:
     ValueError: Barcode 'dwefgiweuf' has alphabets in it
     """
     if str(barcode).isalpha():
-        raise ValueError("Barcode '{}' has alphabets in it".format(barcode))
+        raise ValueError(f"Barcode '{barcode}' has alphabets in it")
 
-    if int(barcode)<0:
+    if int(barcode) < 0:
         raise ValueError("The entered barcode has negative values. Try again.")
-    
+
     else:
         return int(barcode)
+
 
 if __name__ == "__main__":
     import doctest
@@ -76,9 +77,9 @@ if __name__ == "__main__":
     doctest.testmod()
     """
     Enter a barcode.
-    
-    """	
-    barcode = get_barcode((input("Barcode: ").strip()))
+
+    """
+    barcode = get_barcode(input("Barcode: ").strip())
 
     if is_valid(barcode):
         print(f"|{barcode}| is a valid Barcode")
