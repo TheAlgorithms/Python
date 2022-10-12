@@ -1,4 +1,5 @@
 """Queue represented by a pseudo stack (represented by a list with pop and append)"""
+from typing import Any
 
 
 class Queue:
@@ -14,7 +15,7 @@ class Queue:
     @param item
         item to enqueue"""
 
-    def put(self, item):
+    def put(self, item: Any) -> None:
         self.stack.append(item)
         self.length = self.length + 1
 
@@ -23,7 +24,7 @@ class Queue:
     @return dequeued
         item that was dequeued"""
 
-    def get(self):
+    def get(self) -> Any:
         self.rotate(1)
         dequeued = self.stack[self.length - 1]
         self.stack = self.stack[:-1]
@@ -35,7 +36,7 @@ class Queue:
     @param rotation
         number of times to rotate queue"""
 
-    def rotate(self, rotation):
+    def rotate(self, rotation: int) -> None:
         for i in range(rotation):
             temp = self.stack[0]
             self.stack = self.stack[1:]
@@ -45,7 +46,7 @@ class Queue:
     """Reports item at the front of self
     @return item at front of self.stack"""
 
-    def front(self):
+    def front(self) -> Any:
         front = self.get()
         self.put(front)
         self.rotate(self.length - 1)
@@ -53,5 +54,5 @@ class Queue:
 
     """Returns the length of this.stack"""
 
-    def size(self):
+    def size(self) -> int:
         return self.length
