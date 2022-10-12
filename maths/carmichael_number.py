@@ -33,12 +33,9 @@ def power(x: int, y: int, mod: int) -> int:
 def isCarmichaelNumber(n: int) -> bool:
     b = 2
     while b < n:
-
-        if gcd(b, n) == 1:
-
-            if power(b, n - 1, n) != 1:
-                return False
-        b = b + 1
+        if gcd(b, n) == 1 and power(b, n - 1, n) != 1:
+            return False
+        b += 1
     return True
 
 
