@@ -17,9 +17,22 @@ import binascii
 from hashlib import sha512
 
 # uncomment below lines after installing `pycryptodome`.
-# from Crypto.Hash import SHA256
-# from Crypto.PublicKey import RSA
-# from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
+#from Crypto.Hash import SHA256
+#from Crypto.PublicKey import RSA
+#from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
+
+# Remove below code after uncommenting above lines
+# start removing...
+class RSA:
+    def generate(self,bits:str)->str:
+        return bits
+class SHA256:
+    def new(self,hash:str)->str:
+        return hash
+class PKCS115_SigScheme:
+    def generate(self,data:str)->str:
+        return data
+# end
 
 # Generate 1024-bit RSA key-pair
 key_pair = RSA.generate(bits=1024)
@@ -68,3 +81,4 @@ try:
     print("Signature is valid.")
 except:
     print("Signature is invalid.")
+    
