@@ -26,9 +26,6 @@ def nor_gate(input_1: int, input_2: int) -> int:
     0
     """
     return int(bool(input_1 == input_2 == 0))
-        return 1
-    else:
-        return 0
 
 
 def main() -> None:
