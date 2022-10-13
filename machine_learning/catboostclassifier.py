@@ -1,5 +1,4 @@
 # CatBoost Classifier Example
-python -m pip install catboost
 from catboost import CatBoostClassifier
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
