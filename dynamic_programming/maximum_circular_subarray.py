@@ -1,5 +1,5 @@
 # The function returns maximum circular contiguous sum in a[]
-def maxCircularSum(arr: list[int], n: int) -> int:
+def max_circular_sum(arr: list[int], size: int) -> int:
     """
     Input: arr[] = {8, -7, 9, -9, 10, -11, 12}
     Output: 22
@@ -7,7 +7,7 @@ def maxCircularSum(arr: list[int], n: int) -> int:
     """
 
     # Edge Case
-    if n == 1:
+    if size == 1:
         return arr[0]
 
     # Sum variable which store total arr_sum of the array.
@@ -17,7 +17,7 @@ def maxCircularSum(arr: list[int], n: int) -> int:
     current_max = max_so_far = current_min = min_so_far = arr[0]
 
     # Concept of Kadane's Algorithm
-    for i in range(1, n):
+    for i in range(1, size):
         # Kadane's Algorithm to find Maximum subarray arr_sum.
         current_max = max(current_max + arr[i], arr[i])
         max_so_far = max(max_so_far, current_max)
