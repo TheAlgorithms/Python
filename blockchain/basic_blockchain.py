@@ -21,13 +21,12 @@ import random
 #     return hashlib.sha256((str(index) + str(previous_hash) + str(timestamp) + json.dumps(data)).encode('utf-8')).hexdigest()
 
 
-def compute_hash(hash_data: str) -> str:
-    """computes hash value"""
+def compute_hash(hash_data:str) -> str:
+    """ computes hash value """
     return hashlib.sha256(hash_data.encode("utf-8")).hexdigest()
 
-
-def proof_of_work(hash_data: str, difficulty: int) -> (str, int, int):
-    """computes proof of work for given data and difficulty level"""
+def proof_of_work(hash_data:str, difficulty:int) -> (str, int, int):
+    """ computes proof of work for given data and difficulty level """
     nonce = 1
     if difficulty == -1:
         difficulty = random.randint(1, 5)
@@ -41,9 +40,8 @@ def proof_of_work(hash_data: str, difficulty: int) -> (str, int, int):
 
 
 class Block:
-    """Class to generate individual block"""
-
-    def __init__(self, index: int, data: str, previous_hash: str, reward: int) -> None:
+    """ Class to generate individual block """
+    def __init__(self, index:int, data:str, previous_hash:str, reward:int) -> None:
         self.index = index
         self.data = data
         self.previous_hash = previous_hash
@@ -69,11 +67,10 @@ class Block:
 
 
 class BlockChain:
-    """Class for blockchain"""
-
+    """ Class for blockchain """
     # chain = []
-    def __init__(self, total_reward: int, partician: int) -> None:
-        """constructor"""
+    def __init__(self, total_reward:int, partician:int) -> None:
+        """ constructor """
         self.chain = []
         self.partician = partician
         self.total_reward = total_reward - partician
@@ -82,8 +79,8 @@ class BlockChain:
         )
         self.chain.append(genesis_block)
 
-    def add_block(self, data: str) -> None:
-        """class for adding block to the chain"""
+    def add_block(self, data:str) -> None:
+        """ class for adding block to the chain """
         assigned_reward = 0
         if self.total_reward - self.partician > 0:
             self.total_reward -= self.partician
@@ -97,19 +94,19 @@ class BlockChain:
         self.chain.append(new_block)
 
     def get_previous_block(self) -> Block:
-        """returns last block"""
+        """ returns last block """
         return self.chain[-1]
 
-    def get_specific_block(self, index: int) -> Block:
-        """returns specific block according to given index"""
+    def get_specific_block(self, index:int) -> Block:
+        """ returns specific block according to given index """
         return self.chain[index]
 
-    def print_block(self, block: Block) -> None:
-        """prints block details for given block"""
+    def print_block(self, block:Block) -> None:
+        """ prints block details for given block """
         block.print_block_details()
 
     def chain_validation(self) -> bool:
-        """validates hash values of the chain"""
+        """ validates hash values of the chain """
         hash_data, _, __ = proof_of_work(
             str(self.chain[0].index)
             + str(self.chain[0].previous_hash)
@@ -140,9 +137,110 @@ class BlockChain:
             print(f"\t> {i+1}th block is validated.")
         return True
 
+class Test():
+    print("Sample output is here")
+    """
+Enter total reward you want to assign your chain : 100
+Enter partician reward value which will be assingned to each
+block : 10
+current difficulty level is :  2
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 4
+current difficulty level is :  2
+     > genesis block is validated.
+     Chain is validated.
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 1
+          Enter data for the block : Aayush's BlockChain
+current difficulty level is :  3
+Added block at index 2
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 1
+          Enter data for the block : My roll number is
+19BCE245
+current difficulty level is :  2
+Added block at index 3
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 3
+Details for block indexed at 3 :
+     Data : My roll number is 19BCE245
+     TimeStamp : 2022-10-11 16:19:01.592967
+     Hash :
+0011c6931286dc936956d9d0543933ec2cd0537c667c8f54af5355130a5e59
+55
+
+     Previous Hash :
+0005f950f7a42b592680cd11d94894ec713c6894819d1720af17c6011f8537
+93
+     Reward : 10
+     Nonce : 175
+     Difficulty : 2
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 2
+          Enter block index : 2
+Details for block indexed at 2 :
+     Data : Aayush's BlockChain
+     TimeStamp : 2022-10-11 16:18:51.893747
+     Hash :
+0005f950f7a42b592680cd11d94894ec713c6894819d1720af17c6011f8537
+93
+     Previous Hash :
+00b44e7051101ec8071492f121db6ae2810101ae879c17bbcaaf007b9cd4ef
+50
+     Reward : 10
+     Nonce : 4922
+     Difficulty : 3
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 4
+current difficulty level is :  2
+     > genesis block is validated.
+current difficulty level is :  3
+     > 2th block is validated.
+current difficulty level is :  2
+     > 3th block is validated.
+     Chain is validated.
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 5
+Thank you!
+    """
 
 if __name__ == "__main__":
-    """main menu driven function"""
+    """ main menu driven function """
     total_reward = int(input("Enter total reward you want to assign your chain : "))
     partician = total_reward
     while partician >= total_reward:
