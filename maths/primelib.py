@@ -406,14 +406,14 @@ def kg_v(number1, number2):
                 count1 = prime_fac_1.count(n)
                 count2 = prime_fac_2.count(n)
 
-                for i in range(max(count1, count2)):
+                for _ in range(max(count1, count2)):
                     ans *= n
 
             else:
 
                 count1 = prime_fac_1.count(n)
 
-                for i in range(count1):
+                for _ in range(count1):
                     ans *= n
 
             done.append(n)
@@ -425,7 +425,7 @@ def kg_v(number1, number2):
 
             count2 = prime_fac_2.count(n)
 
-            for i in range(count2):
+            for _ in range(count2):
                 ans *= n
 
             done.append(n)
@@ -637,7 +637,7 @@ def fib(n):
     fib1 = 1
     ans = 1  # this will be return
 
-    for i in range(n - 1):
+    for _ in range(n - 1):
 
         tmp = ans
         ans += fib1

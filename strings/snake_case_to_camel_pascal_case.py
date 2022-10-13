@@ -1,4 +1,4 @@
-def snake_to_camel_case(input: str, use_pascal: bool = False) -> str:
+def snake_to_camel_case(input_str: str, use_pascal: bool = False) -> str:
     """
     Transforms a snake_case given string to camelCase (or PascalCase if indicated)
     (defaults to not use Pascal)
@@ -26,14 +26,14 @@ def snake_to_camel_case(input: str, use_pascal: bool = False) -> str:
     ValueError: Expected boolean as use_pascal parameter, found <class 'str'>
     """
 
-    if not isinstance(input, str):
-        raise ValueError(f"Expected string as input, found {type(input)}")
+    if not isinstance(input_str, str):
+        raise ValueError(f"Expected string as input, found {type(input_str)}")
     if not isinstance(use_pascal, bool):
         raise ValueError(
             f"Expected boolean as use_pascal parameter, found {type(use_pascal)}"
         )
 
-    words = input.split("_")
+    words = input_str.split("_")
 
     start_index = 0 if use_pascal else 1
 

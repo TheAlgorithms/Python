@@ -45,7 +45,7 @@ def solution(n: int = 1000) -> int:
         f = f1 + f2
         f1, f2 = f2, f
         index += 1
-        for j in str(f):
+        for _ in str(f):
             i += 1
         if i == n:
             break
