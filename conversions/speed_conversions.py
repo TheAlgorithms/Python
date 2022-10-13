@@ -22,6 +22,7 @@ speed_chart_inverse: dict[str, float] = {
     "knot": 0.539956803,
 }
 
+
 def convert_speed(speed: float, unit_from: str, unit_to: str) -> float:
     """
     Convert speed from one unit to another unit using the speed_chart
@@ -63,7 +64,7 @@ def convert_speed(speed: float, unit_from: str, unit_to: str) -> float:
 
     >>> convert_speed(100, "knot", "m/s")
     51.444
-    
+
     >>> convert_speed(100, "knot", "mph")
     115.078
     """
@@ -71,10 +72,12 @@ def convert_speed(speed: float, unit_from: str, unit_to: str) -> float:
         raise ValueError(
             f"Incorrect 'from_type' or 'to_type' value: {unit_from!r}, {unit_to!r}\n"
             f"Valid values are: {', '.join(speed_chart_inverse)}"
-            )
-    
+        )
+
     return round(speed * speed_chart[unit_from] * speed_chart_inverse[unit_to], 3)
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
