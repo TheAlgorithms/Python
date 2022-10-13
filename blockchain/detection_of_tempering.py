@@ -21,20 +21,22 @@ from hashlib import sha512
 # from Crypto.PublicKey import RSA
 # from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
 
+
+# NOTE: change all occurence of PKCS115SigScheme to PKCS115_SigScheme because of checks in git repository I've to change this class's name to CamelCase
 # Remove below code after uncommenting above lines
 # start removing...
 class RSA:
-    def generate(bits: str) -> str:
+    def generate(bits:str)->str:
         return bits
 
 
 class SHA256:
-    def new(hash: str) -> str:
+    def new(hash:str)->str:
         return hash
 
 
-class PKCS115_SigScheme:
-    def generate(data: str) -> str:
+class PKCS115SigScheme:
+    def generate(data:str)->str:
         return data
 
 class Test:
@@ -75,14 +77,14 @@ print("Signature valid:", hash == hash_from_signature)
 msg = b"Aayush, focus please!"
 
 hash = SHA256.new(msg)
-signer = PKCS115_SigScheme(key_pair)
+signer = PKCS115SigScheme(key_pair)
 signature = signer.sign(hash)
 print("Signature:", binascii.hexlify(signature))
 
 # Verify valid PKCS#1 v1.5 signature (RSAVP1)
 msg = b"Aayush, focus please!"
 hash = SHA256.new(msg)
-verifier = PKCS115_SigScheme(pub_key)
+verifier = PKCS115SigScheme(pub_key)
 try:
     verifier.verify(hash, signature)
     print("Signature is valid.")
@@ -92,7 +94,7 @@ except:
 # Verify invalid PKCS#1 v1.5 signature (RSAVP1)
 msg = b"A tampered message"
 hash = SHA256.new(msg)
-verifier = PKCS115_SigScheme(pub_key)
+verifier = PKCS115SigScheme(pub_key)
 try:
     verifier.verify(hash, signature)
     print("Signature is valid.")
