@@ -10,11 +10,11 @@ class BinaryTreeNode:
 
     def __init__(self, data: int) -> None:
         self.data = data
-        self.left_child = None
-        self.right_child = None
+        self.left_child: BinaryTreeNode | None = None
+        self.right_child: BinaryTreeNode | None = None
 
 
-def insert(node: None | BinaryTreeNode, new_value: int) -> BinaryTreeNode | None:
+def insert(node: BinaryTreeNode | None, new_value: int) -> BinaryTreeNode | None:
     """
     If the binary search tree is empty, make a new node and declare it as root.
     >>> node_a = BinaryTreeNode(12345)
