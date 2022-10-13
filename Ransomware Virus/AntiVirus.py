@@ -1,5 +1,12 @@
 from genericpath import isfile
 import os
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install('cryptography')
 from cryptography.fernet import Fernet 
 
 # Encryption key that can be genrated randomly by fernet libary by python
