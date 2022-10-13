@@ -1,16 +1,17 @@
 # import testmod for testing our function
 from doctest import testmod
 
+
 # The function returns maximum circular contiguous sum in a[]
 def max_circular_sum(arr: list[int], size: int) -> int:
     """
     Input: arr[] = {8, -7, 9, -9, 10, -11, 12}
     Output: 23
     Explanation: Subarray 12, 8, -7, 9, -9, 10 gives the maximum sum, that is 23.
-    
+
     >>> max_circular_sum([8, -7, 9, -9, 10, -11, 12], 7)
     23
-    
+
     >>> max_circular_sum([8, -7, 10, -9, 10, -11, 12], 7)
     24
     """
@@ -44,6 +45,7 @@ def max_circular_sum(arr: list[int], size: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     size = int(input("Enter size of array:\t"))
     arr = list(map(int, input("Enter the elements of the array: ").strip().split()))
