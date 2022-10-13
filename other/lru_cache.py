@@ -150,8 +150,8 @@ class LRUCache(Generic[T, U]):
 
     >>> cache = LRUCache(2)
 
-    >>> cache.set(1, 1)
-    >>> cache.set(2, 2)
+    >>> cache.set_key(1, 1)
+    >>> cache.set_key(2, 2)
     >>> cache.get(1)
     1
 
@@ -166,7 +166,7 @@ class LRUCache(Generic[T, U]):
     {1: Node: key: 1, val: 1, has next: True, has prev: True, \
      2: Node: key: 2, val: 2, has next: True, has prev: True}
 
-    >>> cache.set(3, 3)
+    >>> cache.set_key(3, 3)
 
     >>> cache.list
     DoubleLinkedList,
@@ -182,7 +182,7 @@ class LRUCache(Generic[T, U]):
     >>> cache.get(2) is None
     True
 
-    >>> cache.set(4, 4)
+    >>> cache.set_key(4, 4)
 
     >>> cache.get(1) is None
     True
@@ -238,7 +238,7 @@ class LRUCache(Generic[T, U]):
         >>> 1 in cache
         False
 
-        >>> cache.set(1, 1)
+        >>> cache.set_key(1, 1)
 
         >>> 1 in cache
         True
