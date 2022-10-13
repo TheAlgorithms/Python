@@ -264,6 +264,8 @@ def area_parallelogram(base: float, height: float) -> float:
 def area_trapezium(base1: float, base2: float, height: float) -> float:
     """
     Calculate the area of a trapezium.
+    Formula - (a+b) * height * 0.5 
+    a = parallele side 1, b = parallel side 2
 
     >>> area_trapezium(10, 20, 30)
     450.0
@@ -348,6 +350,7 @@ def area_ellipse(radius_x: float, radius_y: float) -> float:
 def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     """
     Calculate the area of a rhombus.
+    Formula - (diagonal 1 * diagonal 2)/2
 
     >>> area_rhombus(10, 20)
     100.0
