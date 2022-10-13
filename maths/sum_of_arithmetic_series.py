@@ -1,5 +1,5 @@
 # DarkCoder
-def sum_of_series(first_term, common_diff, num_of_terms):
+def sum_of_series(first_term: int, common_diff: int, num_of_terms: int) -> float:
     """
     Find the sum of n terms in an arithmetic progression.
 

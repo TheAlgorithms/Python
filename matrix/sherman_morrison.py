@@ -54,15 +54,15 @@ class Matrix:
     def __repr__(self) -> str:
         return str(self)
 
-    def validateIndices(self, loc: tuple[int, int]) -> bool:
+    def validate_indicies(self, loc: tuple[int, int]) -> bool:
         """
-        <method Matrix.validateIndices>
+        <method Matrix.validate_indicies>
         Check if given indices are valid to pick element from matrix.
         Example:
         >>> a = Matrix(2, 6, 0)
-        >>> a.validateIndices((2, 7))
+        >>> a.validate_indicies((2, 7))
         False
-        >>> a.validateIndices((0, 0))
+        >>> a.validate_indicies((0, 0))
         True
         """
         if not (isinstance(loc, (list, tuple)) and len(loc) == 2):
@@ -81,7 +81,7 @@ class Matrix:
         >>> a[1, 0]
         7
         """
-        assert self.validateIndices(loc)
+        assert self.validate_indicies(loc)
         return self.array[loc[0]][loc[1]]
 
     def __setitem__(self, loc: tuple[int, int], value: float) -> None:
@@ -96,7 +96,7 @@ class Matrix:
         [ 1,  1,  1]
         [ 1,  1, 51]
         """
-        assert self.validateIndices(loc)
+        assert self.validate_indicies(loc)
         self.array[loc[0]][loc[1]] = value
 
     def __add__(self, another: Matrix) -> Matrix:
@@ -198,9 +198,9 @@ class Matrix:
                 result[c, r] = self[r, c]
         return result
 
-    def ShermanMorrison(self, u: Matrix, v: Matrix) -> Any:
+    def sherman_morrison(self, u: Matrix, v: Matrix) -> Any:
         """
-        <method Matrix.ShermanMorrison>
+        <method Matrix.sherman_morrison>
         Apply Sherman-Morrison formula in O(n^2).
         To learn this formula, please look this:
         https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula
@@ -216,7 +216,7 @@ class Matrix:
         >>> u[0,0], u[1,0], u[2,0] = 1, 2, -3
         >>> v = Matrix(3, 1, 0)
         >>> v[0,0], v[1,0], v[2,0] = 4, -2, 5
-        >>> ainv.ShermanMorrison(u, v)
+        >>> ainv.sherman_morrison(u, v)
         Matrix consist of 3 rows and 3 columns
         [  1.2857142857142856, -0.14285714285714285,   0.3571428571428571]
         [  0.5714285714285714,   0.7142857142857143,   0.7142857142857142]
@@ -229,11 +229,11 @@ class Matrix:
         assert u.column == v.column == 1  # u, v should be column vector
 
         # Calculate
-        vT = v.transpose()
-        numerator_factor = (vT * self * u)[0, 0] + 1
+        v_t = v.transpose()
+        numerator_factor = (v_t * self * u)[0, 0] + 1
         if numerator_factor == 0:
             return None  # It's not invertable
-        return self - ((self * u) * (vT * self) * (1.0 / numerator_factor))
+        return self - ((self * u) * (v_t * self) * (1.0 / numerator_factor))
 
 
 # Testing
@@ -254,7 +254,7 @@ if __name__ == "__main__":
         print(f"v is {v}")
         print("uv^T is %s" % (u * v.transpose()))
         # Sherman Morrison
-        print(f"(a + uv^T)^(-1) is {ainv.ShermanMorrison(u, v)}")
+        print(f"(a + uv^T)^(-1) is {ainv.sherman_morrison(u, v)}")
 
     def test2() -> None:
         import doctest

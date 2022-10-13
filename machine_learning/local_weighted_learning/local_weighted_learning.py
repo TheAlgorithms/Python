@@ -41,11 +41,11 @@ def local_weight(
             [0.08272556]])
     """
     weight = weighted_matrix(point, training_data_x, bandwidth)
-    W = (training_data_x.T * (weight * training_data_x)).I * (
+    w = (training_data_x.T * (weight * training_data_x)).I * (
         training_data_x.T * weight * training_data_y.T
     )
 
-    return W
+    return w
 
 
 def local_weight_regression(

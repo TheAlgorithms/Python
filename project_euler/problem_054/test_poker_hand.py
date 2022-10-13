@@ -185,7 +185,7 @@ def test_compare_random(hand, other, expected):
 
 
 def test_hand_sorted():
-    POKER_HANDS = [PokerHand(hand) for hand in SORTED_HANDS]
+    POKER_HANDS = [PokerHand(hand) for hand in SORTED_HANDS]  # noqa: N806
     list_copy = POKER_HANDS.copy()
     shuffle(list_copy)
     user_sorted = chain(sorted(list_copy))

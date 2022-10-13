@@ -41,13 +41,13 @@ def softmax(vector):
 
     # Calculate e^x for each x in your vector where e is Euler's
     # number (approximately 2.718)
-    exponentVector = np.exp(vector)
+    exponent_vector = np.exp(vector)
 
     # Add up the all the exponentials
-    sumOfExponents = np.sum(exponentVector)
+    sum_of_exponents = np.sum(exponent_vector)
 
     # Divide every exponent by the sum of all exponents
-    softmax_vector = exponentVector / sumOfExponents
+    softmax_vector = exponent_vector / sum_of_exponents
 
     return softmax_vector
 
