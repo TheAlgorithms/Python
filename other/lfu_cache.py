@@ -297,9 +297,7 @@ class LFUCache(Generic[T, U]):
                 result = cls.decorator_function_to_instance_map[func].get(args[0])
                 if result is None:
                     result = func(*args)
-                    cls.decorator_function_to_instance_map[func].set(
-                        args[0], result
-                    )
+                    cls.decorator_function_to_instance_map[func].set(args[0], result)
                 return result
 
             def cache_info() -> LFUCache[T, U]:
