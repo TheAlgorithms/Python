@@ -15,8 +15,8 @@ class Deque:
     ----------
     append(val: Any) -> None
     appendleft(val: Any) -> None
-    extend(iter: Iterable) -> None
-    extendleft(iter: Iterable) -> None
+    extend(iterable: Iterable) -> None
+    extendleft(iterable: Iterable) -> None
     pop() -> Any
     popleft() -> Any
     Observers
@@ -181,7 +181,7 @@ class Deque:
 
     def extend(self, iterable: Iterable[Any]) -> None:
         """
-        Appends every value of iter to the end of the deque.
+        Appends every value of iterable to the end of the deque.
         Time complexity: O(n)
         >>> our_deque_1 = Deque([1, 2, 3])
         >>> our_deque_1.extend([4, 5])
@@ -210,7 +210,7 @@ class Deque:
 
     def extendleft(self, iterable: Iterable[Any]) -> None:
         """
-        Appends every value of iter to the beginning of the deque.
+        Appends every value of iterable to the beginning of the deque.
         Time complexity: O(n)
         >>> our_deque_1 = Deque([1, 2, 3])
         >>> our_deque_1.extendleft([0, -1])
