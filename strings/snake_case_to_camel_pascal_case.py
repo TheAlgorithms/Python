@@ -26,7 +26,7 @@ def snake_to_camel_case(raw_input: str, use_pascal: bool = False) -> str:
     ValueError: Expected boolean as use_pascal parameter, found <class 'str'>
     """
 
-    if not isinstance(raw_input, str):
+    if not isinstance(input_, str):
         raise ValueError(f"Expected string as input, found {type(raw_input)}")
     if not isinstance(use_pascal, bool):
         raise ValueError(
