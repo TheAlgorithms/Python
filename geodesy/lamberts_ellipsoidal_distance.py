@@ -45,9 +45,9 @@ def lamberts_ellipsoidal_distance(
 
     # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
     # Distance in metres(m)
-    AXIS_A = 6378137.0
-    AXIS_B = 6356752.314245
-    EQUATORIAL_RADIUS = 6378137
+    AXIS_A = 6378137.0  # noqa: N806
+    AXIS_B = 6356752.314245  # noqa: N806
+    EQUATORIAL_RADIUS = 6378137  # noqa: N806
 
     # Equation Parameters
     # https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
@@ -62,22 +62,22 @@ def lamberts_ellipsoidal_distance(
     sigma = haversine_distance(lat1, lon1, lat2, lon2) / EQUATORIAL_RADIUS
 
     # Intermediate P and Q values
-    P_value = (b_lat1 + b_lat2) / 2
-    Q_value = (b_lat2 - b_lat1) / 2
+    p_value = (b_lat1 + b_lat2) / 2
+    q_value = (b_lat2 - b_lat1) / 2
 
     # Intermediate X value
     # X = (sigma - sin(sigma)) * sin^2Pcos^2Q / cos^2(sigma/2)
-    X_numerator = (sin(P_value) ** 2) * (cos(Q_value) ** 2)
-    X_demonimator = cos(sigma / 2) ** 2
-    X_value = (sigma - sin(sigma)) * (X_numerator / X_demonimator)
+    x_numerator = (sin(p_value) ** 2) * (cos(q_value) ** 2)
+    x_demonimator = cos(sigma / 2) ** 2
+    x_value = (sigma - sin(sigma)) * (x_numerator / x_demonimator)
 
     # Intermediate Y value
     # Y = (sigma + sin(sigma)) * cos^2Psin^2Q / sin^2(sigma/2)
-    Y_numerator = (cos(P_value) ** 2) * (sin(Q_value) ** 2)
-    Y_denominator = sin(sigma / 2) ** 2
-    Y_value = (sigma + sin(sigma)) * (Y_numerator / Y_denominator)
+    y_numerator = (cos(p_value) ** 2) * (sin(q_value) ** 2)
+    y_denominator = sin(sigma / 2) ** 2
+    y_value = (sigma + sin(sigma)) * (y_numerator / y_denominator)
 
-    return EQUATORIAL_RADIUS * (sigma - ((flattening / 2) * (X_value + Y_value)))
+    return EQUATORIAL_RADIUS * (sigma - ((flattening / 2) * (x_value + y_value)))
 
 
 if __name__ == "__main__":

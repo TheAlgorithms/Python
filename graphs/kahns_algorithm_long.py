@@ -1,8 +1,8 @@
 # Finding longest distance in Directed Acyclic Graph using KahnsAlgorithm
-def longestDistance(graph):
+def longest_distance(graph):
     indegree = [0] * len(graph)
     queue = []
-    longDist = [1] * len(graph)
+    long_dist = [1] * len(graph)
 
     for key, values in graph.items():
         for i in values:
@@ -17,15 +17,15 @@ def longestDistance(graph):
         for x in graph[vertex]:
             indegree[x] -= 1
 
-            if longDist[vertex] + 1 > longDist[x]:
-                longDist[x] = longDist[vertex] + 1
+            if long_dist[vertex] + 1 > long_dist[x]:
+                long_dist[x] = long_dist[vertex] + 1
 
             if indegree[x] == 0:
                 queue.append(x)
 
-    print(max(longDist))
+    print(max(long_dist))
 
 
 # Adjacency list of Graph
 graph = {0: [2, 3, 4], 1: [2, 7], 2: [5], 3: [5, 7], 4: [7], 5: [6], 6: [7], 7: []}
-longestDistance(graph)
+longest_distance(graph)

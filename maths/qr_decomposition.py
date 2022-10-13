@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def qr_householder(A):
+def qr_householder(a):
     """Return a QR-decomposition of the matrix A using Householder reflection.
 
     The QR-decomposition decomposes the matrix A of shape (m, n) into an
@@ -37,14 +37,14 @@ def qr_householder(A):
     >>> np.allclose(np.triu(R), R)
     True
     """
-    m, n = A.shape
+    m, n = a.shape
     t = min(m, n)
-    Q = np.eye(m)
-    R = A.copy()
+    q = np.eye(m)
+    r = a.copy()
 
     for k in range(t - 1):
         # select a column of modified matrix A':
-        x = R[k:, [k]]
+        x = r[k:, [k]]
         # construct first basis vector
         e1 = np.zeros_like(x)
         e1[0] = 1.0
@@ -55,14 +55,14 @@ def qr_householder(A):
         v /= np.linalg.norm(v)
 
         # construct the Householder matrix
-        Q_k = np.eye(m - k) - 2.0 * v @ v.T
+        q_k = np.eye(m - k) - 2.0 * v @ v.T
         # pad with ones and zeros as necessary
-        Q_k = np.block([[np.eye(k), np.zeros((k, m - k))], [np.zeros((m - k, k)), Q_k]])
+        q_k = np.block([[np.eye(k), np.zeros((k, m - k))], [np.zeros((m - k, k)), q_k]])
 
-        Q = Q @ Q_k.T
-        R = Q_k @ R
+        q = q @ q_k.T
+        r = q_k @ r
 
-    return Q, R
+    return q, r
 
 
 if __name__ == "__main__":

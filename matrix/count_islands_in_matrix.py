@@ -3,7 +3,7 @@
 # connections.
 
 
-class matrix:  # Public class to implement a graph
+class Matrix:  # Public class to implement a graph
     def __init__(self, row: int, col: int, graph: list[list[bool]]) -> None:
         self.ROW = row
         self.COL = col
@@ -19,12 +19,12 @@ class matrix:  # Public class to implement a graph
 
     def diffs(self, i: int, j: int, visited: list[list[bool]]) -> None:
         # Checking all 8 elements surrounding nth element
-        rowNbr = [-1, -1, -1, 0, 0, 1, 1, 1]  # Coordinate order
-        colNbr = [-1, 0, 1, -1, 1, -1, 0, 1]
+        row_nbr = [-1, -1, -1, 0, 0, 1, 1, 1]  # Coordinate order
+        col_nbr = [-1, 0, 1, -1, 1, -1, 0, 1]
         visited[i][j] = True  # Make those cells visited
         for k in range(8):
-            if self.is_safe(i + rowNbr[k], j + colNbr[k], visited):
-                self.diffs(i + rowNbr[k], j + colNbr[k], visited)
+            if self.is_safe(i + row_nbr[k], j + col_nbr[k], visited):
+                self.diffs(i + row_nbr[k], j + col_nbr[k], visited)
 
     def count_islands(self) -> int:  # And finally, count all islands.
         visited = [[False for j in range(self.COL)] for i in range(self.ROW)]

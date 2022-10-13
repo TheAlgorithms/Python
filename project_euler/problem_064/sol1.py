@@ -33,7 +33,7 @@ def continuous_fraction_period(n: int) -> int:
     """
     numerator = 0.0
     denominator = 1.0
-    ROOT = int(sqrt(n))
+    ROOT = int(sqrt(n))  # noqa: N806
     integer_part = ROOT
     period = 0
     while integer_part != 2 * ROOT:

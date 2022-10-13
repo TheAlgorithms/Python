@@ -29,7 +29,7 @@ def int_to_roman(number: int) -> str:
     >>> all(int_to_roman(value) == key for key, value in tests.items())
     True
     """
-    ROMAN = [
+    ROMAN = [  # noqa: N806
         (1000, "M"),
         (900, "CM"),
         (500, "D"),

@@ -15,7 +15,7 @@ class PriorityQueue:
         self.array = []
         self.pos = {}  # To store the pos of node in array
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.cur_size == 0
 
     def min_heapify(self, idx):
@@ -110,24 +110,24 @@ class Graph:
         self.par = [-1] * self.num_nodes
         # src is the source node
         self.dist[src] = 0
-        Q = PriorityQueue()
-        Q.insert((0, src))  # (dist from src, node)
+        q = PriorityQueue()
+        q.insert((0, src))  # (dist from src, node)
         for u in self.adjList.keys():
             if u != src:
                 self.dist[u] = sys.maxsize  # Infinity
                 self.par[u] = -1
 
-        while not Q.isEmpty():
-            u = Q.extract_min()  # Returns node with the min dist from source
+        while not q.is_empty():
+            u = q.extract_min()  # Returns node with the min dist from source
             # Update the distance of all the neighbours of u and
             # if their prev dist was INFINITY then push them in Q
             for v, w in self.adjList[u]:
                 new_dist = self.dist[u] + w
                 if self.dist[v] > new_dist:
                     if self.dist[v] == sys.maxsize:
-                        Q.insert((new_dist, v))
+                        q.insert((new_dist, v))
                     else:
-                        Q.decrease_key((self.dist[v], v), new_dist)
+                        q.decrease_key((self.dist[v], v), new_dist)
                     self.dist[v] = new_dist
                     self.par[v] = u
 

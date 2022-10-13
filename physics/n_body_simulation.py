@@ -219,9 +219,11 @@ def plot(
     Utility function to plot how the given body-system evolves over time.
     No doctest provided since this function does not have a return value.
     """
+    # Frame rate of the animation
+    INTERVAL = 20  # noqa: N806
 
-    INTERVAL = 20  # Frame rate of the animation
-    DELTA_TIME = INTERVAL / 1000  # Time between time steps in seconds
+    # Time between time steps in seconds
+    DELTA_TIME = INTERVAL / 1000  # noqa: N806
 
     fig = plt.figure()
     fig.canvas.set_window_title(title)
