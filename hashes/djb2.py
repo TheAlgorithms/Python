@@ -29,7 +29,7 @@ def djb2(s: str) -> int:
     >>> djb2('scramble bits')
     1609059040
     """
-    _hash = 5381
+    hash_ = 5381
     for x in s:
         _hash = ((_hash << 5) + _hash) + ord(x)
     return _hash & 0xFFFFFFFF
