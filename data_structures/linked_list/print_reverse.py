@@ -32,8 +32,8 @@ def make_linked_list(elements_list: list):
     """
     if not elements_list:
         raise Exception("The Elements List is empty")
-
-    current = head = Node(elements_list[0])
+    head = Node(elements_list[0])
+    current = head
     for i in range(1, len(elements_list)):
         current.next = Node(elements_list[i])
         current = current.next
