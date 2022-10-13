@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
 
-def main():
+def main(): -> None:
 
     """
     The Url for the algorithm
@@ -40,8 +40,7 @@ def main():
     )
     plt.title("Normalized Confusion Matrix - IRIS Dataset")
     plt.show()
-    
-    return None
+  
 
 
 if __name__ == "__main__":
