@@ -1,10 +1,10 @@
 # The function returns maximum circular contiguous sum in a[]
 def maxCircularSum(arr: list[int], n: int) -> int:
-  """
-  Input: arr[] = {8, -7, 9, -9, 10, -11, 12}
-  Output: 22
-  Explanation: Subarray 12, 8, -7, 9, -9, 10 gives the maximum sum, that is 22.
-  """
+    """
+    Input: arr[] = {8, -7, 9, -9, 10, -11, 12}
+    Output: 22
+    Explanation: Subarray 12, 8, -7, 9, -9, 10 gives the maximum sum, that is 22.
+    """
 
     # Edge Case
     if (n == 1): return arr[0]
