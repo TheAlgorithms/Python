@@ -24,7 +24,7 @@ def insert(node: BinaryTreeNode, new_value: int) -> BinaryTreeNode | None:
     >>> node_a.right_child == node_b.right_child
     True
     >>> node_a.data == node_b.data
-    False
+    True
     """
     if node is None:
         node = BinaryTreeNode(new_value)
