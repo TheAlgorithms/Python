@@ -1,9 +1,9 @@
 # XGBoost Classifier Example
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
-from xgboost import XGBClassifier
 from sklearn.metrics import plot_confusion_matrix
 from sklearn.model_selection import train_test_split
+from xgboost import XGBClassifier
 
 
 def main():
