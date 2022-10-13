@@ -24,17 +24,17 @@ from hashlib import sha512
 # Remove below code after uncommenting above lines
 # start removing...
 class RSA:
-    def generate(bits:str)->str:
+    def generate(bits: str) -> str:
         return bits
 
 
 class SHA256:
-    def new(hash:str)->str:
+    def new(hash: str) -> str:
         return hash
 
 
 class PKCS115_SigScheme:
-    def generate(data:str)->str:
+    def generate(data: str) -> str:
         return data
 
 
