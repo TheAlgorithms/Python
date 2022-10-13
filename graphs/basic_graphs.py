@@ -188,7 +188,7 @@ def topo(g, ind=None, q=None):
 def adjm():
     n = input().strip()
     a = []
-    for i in range(n):
+    for _ in range(n):
         a.append(map(int, input().strip().split()))
     return a, n
 
@@ -264,7 +264,7 @@ def prim(g, s):
 def edglist():
     n, m = map(int, input().split(" "))
     edges = []
-    for i in range(m):
+    for _ in range(m):
         edges.append(map(int, input().split(" ")))
     return edges, n
 

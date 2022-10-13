@@ -118,7 +118,7 @@ def iterate_function(
     """
 
     z_n = z_0.astype("complex64")
-    for i in range(nb_iterations):
+    for _ in range(nb_iterations):
         z_n = eval_function(function_params, z_n)
         if infinity is not None:
             numpy.nan_to_num(z_n, copy=False, nan=infinity)

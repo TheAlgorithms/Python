@@ -1,10 +1,10 @@
 import webbrowser
 from sys import argv
-from urllib.parse import quote, parse_qs
-from fake_useragent import UserAgent
+from urllib.parse import parse_qs, quote
 
 import requests
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 
 if __name__ == "__main__":
     if len(argv) > 1:
@@ -18,9 +18,7 @@ if __name__ == "__main__":
 
     res = requests.get(
         url,
-        headers={
-            "User-Agent": str(UserAgent().random)
-        },
+        headers={"User-Agent": str(UserAgent().random)},
     )
 
     try:

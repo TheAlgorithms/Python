@@ -8,7 +8,7 @@ def topological_sort(graph):
     topo = []
     cnt = 0
 
-    for key, values in graph.items():
+    for values in graph.values():
         for i in values:
             indegree[i] += 1
 
