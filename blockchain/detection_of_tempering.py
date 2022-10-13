@@ -16,9 +16,10 @@
 import binascii
 from hashlib import sha512
 
-from Crypto.Hash import SHA256
-from Crypto.PublicKey import RSA
-from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
+# uncomment below lines after installing `pycryptodome`.
+#from Crypto.Hash import SHA256
+#from Crypto.PublicKey import RSA
+#from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
 
 # Generate 1024-bit RSA key-pair
 key_pair = RSA.generate(bits=1024)
