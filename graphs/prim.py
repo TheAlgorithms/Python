@@ -13,7 +13,7 @@ from collections.abc import Iterator
 class Vertex:
     """Class Vertex."""
 
-    def __init__(self, _id):
+    def __init__(self, id_):
         """
         Arguments:
             id - input an id to identify the vertex
