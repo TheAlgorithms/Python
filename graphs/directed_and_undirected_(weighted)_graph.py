@@ -225,8 +225,6 @@ class DirectedGraph:
                                 anticipating_nodes.add(node[1])
                                 break
                             else:
-                                # FIXME: there used to be unreachable code here.
-                                # Code removed because of linter complaints.
                                 return True
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
@@ -452,8 +450,6 @@ class Graph:
                                 anticipating_nodes.add(node[1])
                                 break
                             else:
-                                # FIXME: there used to be unreachable code here.
-                                # Code removed because of linter complaints.
                                 return True
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
