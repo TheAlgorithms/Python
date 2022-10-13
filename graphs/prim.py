@@ -21,7 +21,7 @@ class Vertex:
             neighbors - a list of the vertices it is linked to
             edges     - a dict to store the edges's weight
         """
-        self.id = str(_id)
+        self.id = str(id_)
         self.key = None
         self.pi = None
         self.neighbors = []

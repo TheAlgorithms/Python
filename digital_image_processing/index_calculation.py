@@ -498,8 +498,8 @@ class IndexCalculation:
         :return: index
         """
         max_ = np.max([np.max(self.red), np.max(self.green), np.max(self.blue)])
-        _min = np.min([np.min(self.red), np.min(self.green), np.min(self.blue)])
-        return (_max - _min) / _max
+        min_ = np.min([np.min(self.red), np.min(self.green), np.min(self.blue)])
+        return (max_ - min_) / max_
 
     def _if(self):
         """

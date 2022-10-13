@@ -20,9 +20,9 @@ def next_greatest_element_slow(arr: list[float]) -> list[float]:
         next_: float = -1
         for j in range(i + 1, arr_size):
             if arr[i] < arr[j]:
-                _next = arr[j]
+                next_ = arr[j]
                 break
-        result.append(_next)
+        result.append(next_)
     return result
 
 
@@ -36,12 +36,12 @@ def next_greatest_element_fast(arr: list[float]) -> list[float]:
     """
     result = []
     for i, outer in enumerate(arr):
-        _next: float = -1
+        next_: float = -1
         for inner in arr[i + 1 :]:
             if outer < inner:
-                _next = inner
+                next_ = inner
                 break
-        result.append(_next)
+        result.append(next_)
     return result
 
 

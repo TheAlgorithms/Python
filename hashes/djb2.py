@@ -31,5 +31,5 @@ def djb2(s: str) -> int:
     """
     hash_ = 5381
     for x in s:
-        _hash = ((_hash << 5) + _hash) + ord(x)
-    return _hash & 0xFFFFFFFF
+        hash_ = ((hash_ << 5) + hash_) + ord(x)
+    return hash_ & 0xFFFFFFFF
