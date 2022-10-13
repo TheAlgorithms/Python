@@ -45,6 +45,7 @@ def max_circular_sum(arr: list[int], size: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     size = int(input("Enter size of array:\t"))
     arr = list(map(int, input("Enter the elements of the array: ").strip().split()))
