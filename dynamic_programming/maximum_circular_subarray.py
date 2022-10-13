@@ -1,7 +1,3 @@
-# import testmod for testing our function
-from doctest import testmod
-
-
 # The function returns maximum circular contiguous sum in a[]
 def max_circular_sum(arr: list[int], size: int) -> int:
     """
