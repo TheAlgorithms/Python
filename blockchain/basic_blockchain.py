@@ -148,7 +148,7 @@ if __name__ == "__main__":
         if partician >= total_reward:
             print("Partician value should be less then reward value.")
 
-    myBlockChain = BlockChain(total_reward, partician)
+    my_block_chain = BlockChain(total_reward, partician)
 
     while True:
         print(
@@ -163,18 +163,18 @@ if __name__ == "__main__":
         # try:
         if choice == 1:
             data = input("\t\tEnter data for the block : ")
-            myBlockChain.add_block(data)
-            print(f"Added block at index {len(myBlockChain.chain)}")
+            my_block_chain.add_block(data)
+            print(f"Added block at index {len(my_block_chain.chain)}")
         elif choice == 2:
             index = int(input("\t\tEnter block index : "))
             try:
-                myBlockChain.print_block(myBlockChain.get_specific_block(index - 1))
+                my_block_chain.print_block(my_block_chain.get_specific_block(index - 1))
             except:
                 print("# Invalid index entered!")
         elif choice == 3:
-            myBlockChain.print_block(myBlockChain.get_previous_block())
+            my_block_chain.print_block(my_block_chain.get_previous_block())
         elif choice == 4:
-            if myBlockChain.chain_validation():
+            if my_block_chain.chain_validation():
                 print(f"\tChain is validated.")
             else:
                 print(f"\tChain is not validated")

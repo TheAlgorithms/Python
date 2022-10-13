@@ -22,29 +22,29 @@ from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
 
 # Generate 1024-bit RSA key-pair
 key_pair = RSA.generate(bits=1024)
-print(f"Public key:  (n={hex(keyPair.n)}, e={hex(keyPair.e)})")
-print(f"Private key: (n={hex(keyPair.n)}, d={hex(keyPair.d)})")
+print(f"Public key:  (n={hex(key_pair.n)}, e={hex(key_pair.e)})")
+print(f"Private key: (n={hex(key_pair.n)}, d={hex(key_pair.d)})")
 
-# pubKey = hex(keyPair.e)
-pubKey = keyPair.publickey()
+# pubKey = hex(key_pair.e)
+pubKey = key_pair.publickey()
 
 
 # RSA sign the message
 msg = b"Aayush, focus please!"
 hash = int.from_bytes(sha512(msg).digest(), byteorder="big")
-signature = pow(hash, keyPair.d, keyPair.n)
+signature = pow(hash, key_pair.d, key_pair.n)
 print("Signature:", hex(signature))
 
 # RSA verify signature
-hash_from_signature = pow(signature, keyPair.e, keyPair.n)
-print("Signature valid:", hash == hashFromSignature)
+hash_from_signature = pow(signature, key_pair.e, key_pair.n)
+print("Signature valid:", hash == hash_from_signature)
 
 
 # Sign the message using the PKCS#1 v1.5 signature scheme (RSASP1)
 msg = b"Aayush, focus please!"
 
 hash = SHA256.new(msg)
-signer = PKCS115_SigScheme(keyPair)
+signer = PKCS115_SigScheme(key_pair)
 signature = signer.sign(hash)
 print("Signature:", binascii.hexlify(signature))
 
