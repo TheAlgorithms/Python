@@ -1,0 +1,108 @@
+1. test output for `detection_of_tempering.py` : 
+Public key:  (n=0xd58fca3c762dbdc6ae214a6acafd4a29801e4ff13bb953ce5643678443053803d2395a075c0f71adf1b784a4b2b8b7fd6179e33fa4d2ff884e71458e1b46704f3daa7ad8930e6b6e978eea8d5259b5c32bcde2a3068225d6ba1b33aad6432ae0737e30b16df7894a5541510c91e88e6810caf05f10d69169e8fb224a8c73d7b9, e=0x10001)
+Private key: (n=0xd58fca3c762dbdc6ae214a6acafd4a29801e4ff13bb953ce5643678443053803d2395a075c0f71adf1b784a4b2b8b7fd6179e33fa4d2ff884e71458e1b46704f3daa7ad8930e6b6e978eea8d5259b5c32bcde2a3068225d6ba1b33aad6432ae0737e30b16df7894a5541510c91e88e6810caf05f10d69169e8fb224a8c73d7b9, d=0x686ed84698c3e579b2cd34c6e45cd85752ff7fb847ac68ff0dd0085ef527282d3630358643ce8998b60b38221203a27595a5352b7a3e741703c5006e6d881482c66a4faa7fb6aa0607b2e46fc7c5d0a6e655d21844e05b6c714c23db1b2e9565b3b1aa47baa05908cb4729156d08907d8d0101b9953013f2c2e60c105ac7281)
+Signature: 0x4dadb7ca1e9867ff5a8502ae5160375c82cfefec26265b97adcc754111da113e4355f7bd3eeeedc7c793d9f13004aeee47974611cb840092f9791b38a9f177df82fb5d9931bc59b70bcd1a42f1bd1bc6a4d26d84fdf1e5289f72311bec7fb34a8d125d0e2c2994cca9a9e05a07f10f72a146f6b8bc04cb5bfe324946b6db8d89
+Signature valid: True
+Signature: b'3700ad70dcb486d780461bbc810ab15687b34d670a8e55c607e948a37e9d2280839f89d5c0e0e972c617ea3ab36607e2018de8d335bf081e5dfc1ea17df8a85fc5d0824de9d1e11f4e40e35e6b2425ac1fc38a71569ab4af36a521d821849d999a9096c50fc78104f31cdf673371b038446e9cee8b03529f38dc104ddcd7206c'
+Signature is valid.
+Signature is invalid.
+
+2. test output for `basic_blockchain.py` : 
+
+Enter total reward you want to assign your chain : 100
+Enter partician reward value which will be assingned to each
+block : 10
+current difficulty level is :  2
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 4
+current difficulty level is :  2
+     > genesis block is validated.
+     Chain is validated.
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 1
+          Enter data for the block : Aayush's BlockChain
+current difficulty level is :  3
+Added block at index 2
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 1
+          Enter data for the block : My roll number is
+19BCE245
+current difficulty level is :  2
+Added block at index 3
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 3
+Details for block indexed at 3 :
+     Data : My roll number is 19BCE245
+     TimeStamp : 2022-10-11 16:19:01.592967
+     Hash :
+0011c6931286dc936956d9d0543933ec2cd0537c667c8f54af5355130a5e59
+55
+
+     Previous Hash :
+0005f950f7a42b592680cd11d94894ec713c6894819d1720af17c6011f8537
+93
+     Reward : 10
+     Nonce : 175
+     Difficulty : 2
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 2
+          Enter block index : 2
+Details for block indexed at 2 :
+     Data : Aayush's BlockChain
+     TimeStamp : 2022-10-11 16:18:51.893747
+     Hash :
+0005f950f7a42b592680cd11d94894ec713c6894819d1720af17c6011f8537
+93
+     Previous Hash :
+00b44e7051101ec8071492f121db6ae2810101ae879c17bbcaaf007b9cd4ef
+50
+     Reward : 10
+     Nonce : 4922
+     Difficulty : 3
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 4
+current difficulty level is :  2
+     > genesis block is validated.
+current difficulty level is :  3
+     > 2th block is validated.
+current difficulty level is :  2
+     > 3th block is validated.
+     Chain is validated.
+MENU :
+    1. Add block
+    2. View Specific block
+    3. View Last block
+    4. Validate chain
+    5. Exit
+Choice : 5
+Thank you!
