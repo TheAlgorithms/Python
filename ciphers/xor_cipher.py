@@ -126,7 +126,7 @@ class XORCipher:
 
                     # actual encrypt-process
                     for line in fin:
-                        fout.write(self.decrypt_string(line, key, 1))
+                        fout.write(self.decrypt(line, key, 1))
 
         except OSError:
             return False
