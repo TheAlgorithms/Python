@@ -2,8 +2,8 @@ import webbrowser
 from sys import argv
 from urllib.parse import quote
 
-from bs4 import BeautifulSoup
 import requests
+from bs4 import BeautifulSoup
 
 if __name__ == "__main__":
     if len(argv) > 1:
