@@ -17,7 +17,7 @@ def next_greatest_element_slow(arr: list[float]) -> list[float]:
     arr_size = len(arr)
 
     for i in range(arr_size):
-        _next: float = -1
+        next_: float = -1
         for j in range(i + 1, arr_size):
             if arr[i] < arr[j]:
                 _next = arr[j]
