@@ -42,7 +42,7 @@ class Deque:
         """
 
         val: Any = None
-        next: Deque._Node | None = None  # noqa: A003
+        next: Deque._Node | None = None
         prev: Deque._Node | None = None
 
     class _Iterator:

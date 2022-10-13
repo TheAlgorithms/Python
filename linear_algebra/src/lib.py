@@ -119,7 +119,7 @@ class Vector:
         else:  # error case
             raise Exception("invalid operand!")
 
-    def set_components(self, components: Collection[float]) -> None:
+    def set(self, components: Collection[float]) -> None:
         """
         input: new components
         changes the components of the vector.

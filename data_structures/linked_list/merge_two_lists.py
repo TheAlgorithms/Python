@@ -13,7 +13,7 @@ test_data_even = (4, 6, 2, 0, 8, 10, 3, -2)
 @dataclass
 class Node:
     data: int
-    next: Node | None  # noqa: A003
+    next: Node | None
 
 
 class SortedLinkedList:
