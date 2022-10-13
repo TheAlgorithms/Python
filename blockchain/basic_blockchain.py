@@ -21,10 +21,11 @@ import random
 #     return hashlib.sha256((str(index) + str(previous_hash) + str(timestamp) + json.dumps(data)).encode('utf-8')).hexdigest()
 
 
-def compute_hash(hash_data:str) -> str:
+def compute_hash(hash_data: str) -> str:
     return hashlib.sha256(hash_data.encode("utf-8")).hexdigest()
 
-def proof_of_work(hash_data:str, difficulty:int) -> (str, int, int):
+
+def proof_of_work(hash_data: str, difficulty: int) -> (str, int, int):
     nonce = 1
     if difficulty == -1:
         difficulty = random.randint(1, 5)
@@ -38,7 +39,7 @@ def proof_of_work(hash_data:str, difficulty:int) -> (str, int, int):
 
 
 class Block:
-    def __init__(self, index:int, data:str, previous_hash:str, reward:int) -> None:
+    def __init__(self, index: int, data: str, previous_hash: str, reward: int) -> None:
         self.index = index
         self.data = data
         self.previous_hash = previous_hash
@@ -65,7 +66,7 @@ class Block:
 
 class BlockChain:
     # chain = []
-    def __init__(self, total_reward:int, partician:int) -> None:
+    def __init__(self, total_reward: int, partician: int) -> None:
         self.chain = []
         self.partician = partician
         self.total_reward = total_reward - partician
@@ -74,7 +75,7 @@ class BlockChain:
         )
         self.chain.append(genesis_block)
 
-    def add_block(self, data:str) -> None:
+    def add_block(self, data: str) -> None:
         assigned_reward = 0
         if self.total_reward - self.partician > 0:
             self.total_reward -= self.partician
@@ -90,10 +91,10 @@ class BlockChain:
     def get_previous_block(self) -> Block:
         return self.chain[-1]
 
-    def get_specific_block(self, index:int) -> Block:
+    def get_specific_block(self, index: int) -> Block:
         return self.chain[index]
 
-    def print_block(self, block:Block) -> None:
+    def print_block(self, block: Block) -> None:
         block.print_block_details()
 
     def chain_validation(self) -> bool:
