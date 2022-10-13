@@ -43,7 +43,9 @@ def insert(node: BinaryTreeNode | None, new_value: int) -> BinaryTreeNode | None
     return node
 
 
-def inorder(node: None | BinaryTreeNode) -> BinaryTreeNode | None:  # if node is None,return
+def inorder(
+    node: None | BinaryTreeNode,
+) -> BinaryTreeNode | None:  # if node is None,return
     """
     >>> inorder(make_tree())
     6
