@@ -25,8 +25,8 @@ key_pair = RSA.generate(bits=1024)
 print(f"Public key:  (n={hex(key_pair.n)}, e={hex(key_pair.e)})")
 print(f"Private key: (n={hex(key_pair.n)}, d={hex(key_pair.d)})")
 
-# pubKey = hex(key_pair.e)
-pubKey = key_pair.publickey()
+# pub_key = hex(key_pair.e)
+pub_key = key_pair.publickey()
 
 
 # RSA sign the message
@@ -51,7 +51,7 @@ print("Signature:", binascii.hexlify(signature))
 # Verify valid PKCS#1 v1.5 signature (RSAVP1)
 msg = b"Aayush, focus please!"
 hash = SHA256.new(msg)
-verifier = PKCS115_SigScheme(pubKey)
+verifier = PKCS115_SigScheme(pub_key)
 try:
     verifier.verify(hash, signature)
     print("Signature is valid.")
@@ -61,7 +61,7 @@ except:
 # Verify invalid PKCS#1 v1.5 signature (RSAVP1)
 msg = b"A tampered message"
 hash = SHA256.new(msg)
-verifier = PKCS115_SigScheme(pubKey)
+verifier = PKCS115_SigScheme(pub_key)
 try:
     verifier.verify(hash, signature)
     print("Signature is valid.")
