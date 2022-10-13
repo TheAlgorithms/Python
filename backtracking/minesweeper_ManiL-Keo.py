@@ -1,4 +1,6 @@
 import random
+
+
 def GenerateMineSweeperMap(n, k):
     arr = [[0 for row in range(n)] for column in range(n)]
     for num in range(k):
@@ -14,14 +16,14 @@ def GenerateMineSweeperMap(n, k):
         if (x >= 1 and x <= n-1) and (y >= 1 and y <= n-1):
             if arr[y-1][x-1] != 'X':
                 arr[y-1][x-1] += 1 # top left
- 
+
         if (x >= 0 and x <= n-2) and (y >= 1 and y <= n-1):
             if arr[y-1][x+1] != 'X':
                 arr[y-1][x+1] += 1 # top right
         if (x >= 0 and x <= n-1) and (y >= 1 and y <= n-1):
             if arr[y-1][x] != 'X':
                 arr[y-1][x] += 1 # top center
- 
+
         if (x >=0 and x <= n-2) and (y >= 0 and y <= n-2):
             if arr[y+1][x+1] != 'X':
                 arr[y+1][x+1] += 1 # bottom right
@@ -64,7 +66,7 @@ def Game():
         else:
             n = 8
             k = 20
- 
+
         minesweeper_map = GenerateMineSweeperMap(n, k)
         player_map = GeneratePlayerMap(n)
         score = 0
@@ -84,7 +86,7 @@ def Game():
                     player_map[y][x] = minesweeper_map[y][x]
                     DisplayMap(player_map)
                     score += 1
- 
+
             else:
                 DisplayMap(player_map)
                 print("You have Won!")
