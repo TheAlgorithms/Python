@@ -264,8 +264,8 @@ def vol_sphere(radius: float) -> float:
     """
     if radius < 0:
         raise ValueError("vol_sphere() only accepts non-negative values")
-    # Volume is radius cubed * pi * 4/3
-    return pow(radius, 3) * pi * 4 / 3
+    # Volume is 4/3 * pi * radius cubed
+    return  4 / 3 * pi * pow(radius, 3)
 
 
 def vol_hemisphere(radius: float) -> float:
