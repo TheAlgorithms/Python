@@ -74,7 +74,7 @@ class CNN:
         print(f"Model saved： {save_path}")
 
     @classmethod
-    def ReadModel(cls, model_path):
+    def read_model(cls, model_path):
         # read saved model
         with open(model_path, "rb") as f:
             model_dic = pickle.load(f)
@@ -119,7 +119,7 @@ class CNN:
                 data_focus.append(focus)
         # calculate the feature map of every single kernel, and saved as list of matrix
         data_featuremap = []
-        Size_FeatureMap = int((size_data - size_conv) / conv_step + 1)
+        size_feature_map = int((size_data - size_conv) / conv_step + 1)
         for i_map in range(num_conv):
             featuremap = []
             for i_focus in range(len(data_focus)):
@@ -129,7 +129,7 @@ class CNN:
                 )
                 featuremap.append(self.sig(net_focus))
             featuremap = np.asmatrix(featuremap).reshape(
-                Size_FeatureMap, Size_FeatureMap
+                size_feature_map, size_feature_map
             )
             data_featuremap.append(featuremap)
 

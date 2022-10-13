@@ -63,18 +63,18 @@ def count_inversions_recursive(arr):
     if len(arr) <= 1:
         return arr, 0
     mid = len(arr) // 2
-    P = arr[0:mid]
-    Q = arr[mid:]
+    p = arr[0:mid]
+    q = arr[mid:]
 
-    A, inversion_p = count_inversions_recursive(P)
-    B, inversions_q = count_inversions_recursive(Q)
-    C, cross_inversions = _count_cross_inversions(A, B)
+    a, inversion_p = count_inversions_recursive(p)
+    b, inversions_q = count_inversions_recursive(q)
+    c, cross_inversions = _count_cross_inversions(a, b)
 
     num_inversions = inversion_p + inversions_q + cross_inversions
-    return C, num_inversions
+    return c, num_inversions
 
 
-def _count_cross_inversions(P, Q):
+def _count_cross_inversions(p, q):
     """
     Counts the inversions across two sorted arrays.
     And combine the two arrays into one sorted array
@@ -96,26 +96,26 @@ def _count_cross_inversions(P, Q):
     ([1, 2, 3, 3, 4, 5], 0)
     """
 
-    R = []
+    r = []
     i = j = num_inversion = 0
-    while i < len(P) and j < len(Q):
-        if P[i] > Q[j]:
+    while i < len(p) and j < len(q):
+        if p[i] > q[j]:
             # if P[1] > Q[j], then P[k] > Q[k] for all  i < k <= len(P)
             # These are all inversions. The claim emerges from the
             # property that P is sorted.
-            num_inversion += len(P) - i
-            R.append(Q[j])
+            num_inversion += len(p) - i
+            r.append(q[j])
             j += 1
         else:
-            R.append(P[i])
+            r.append(p[i])
             i += 1
 
-    if i < len(P):
-        R.extend(P[i:])
+    if i < len(p):
+        r.extend(p[i:])
     else:
-        R.extend(Q[j:])
+        r.extend(q[j:])
 
-    return R, num_inversion
+    return r, num_inversion
 
 
 def main():
