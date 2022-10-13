@@ -17,6 +17,7 @@
         - decrypt_file : boolean
 """
 
+
 class XORCipher:
     def __init__(self, key: int = 0):
         """
@@ -27,7 +28,7 @@ class XORCipher:
         # private field
         self.__key = key
 
-    def encrypt(self, content: str, key: int, type_: int) -> list[str]|str:
+    def encrypt(self, content: str, key: int, type_: int) -> list[str] | str:
         """
         input: 'content' of type string and 'key' of type int
         output: encrypted string 'content' as a list of chars
@@ -44,12 +45,12 @@ class XORCipher:
 
         # make sure key is an appropriate size
         key %= 255
-        
+
         result_list = [chr(ord(ch) ^ key) for ch in content]
         if type_ == 0:
             return result_list
         else:
-            string = ''
+            string = ""
             for i in result_list:
                 string += i
                 return string
@@ -77,7 +78,7 @@ class XORCipher:
         if type_ == 0:
             return result_list
         else:
-            string = ''
+            string = ""
             for i in result_list:
                 string += i
                 return string
