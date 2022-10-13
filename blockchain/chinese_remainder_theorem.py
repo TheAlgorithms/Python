@@ -2,6 +2,14 @@
 Chinese Remainder Theorem:
 GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
 
+In mathematics, the Chinese remainder theorem states that if one knows the remainders of the Euclidean division of an integer n by several integers, 
+then one can determine uniquely the remainder of the division of n by the product of these integers, under the condition that the divisors are pairwise 
+coprime (no two divisors share a common factor other than 1).
+
+For example, if we know that the remainder of n divided by 3 is 2, the remainder of n divided by 5 is 3, and the remainder of n divided by 7 is 2, 
+then without knowing the value of n, we can determine that the remainder of n divided by 105 (the product of 3, 5, and 7) is 23. Importantly, this tells 
+us that if n is a natural number less than 105, then 23 is the only possible value of n. 
+
 If GCD(a,b) = 1, then for any remainder ra modulo a and any remainder rb modulo b
 there exists integer n, such that n = ra (mod a) and n = ra(mod b).  If n1 and n2 are
 two such integers, then n1=n2(mod ab)
