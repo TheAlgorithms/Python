@@ -392,7 +392,7 @@ def test_singly_linked_list_2() -> None:
     This section of the test used varying data types for input.
     >>> test_singly_linked_list_2()
     """
-    input = [
+    test_input = [
         -9,
         100,
         Node(77345112),
@@ -410,7 +410,7 @@ def test_singly_linked_list_2() -> None:
     ]
     linked_list = LinkedList()
 
-    for i in input:
+    for i in test_input:
         linked_list.insert_tail(i)
 
     # Check if it's empty or not

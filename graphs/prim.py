@@ -13,7 +13,7 @@ from collections.abc import Iterator
 class Vertex:
     """Class Vertex."""
 
-    def __init__(self, id):
+    def __init__(self, _id):
         """
         Arguments:
             id - input an id to identify the vertex
@@ -21,7 +21,7 @@ class Vertex:
             neighbors - a list of the vertices it is linked to
             edges     - a dict to store the edges's weight
         """
-        self.id = str(id)
+        self.id = str(_id)
         self.key = None
         self.pi = None
         self.neighbors = []

@@ -182,7 +182,7 @@ samples = [
     [0.2012, 0.2611, 5.4631],
 ]
 
-exit = [
+target = [
     -1,
     -1,
     -1,
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     doctest.testmod()
 
     network = Perceptron(
-        sample=samples, target=exit, learning_rate=0.01, epoch_number=1000, bias=-1
+        sample=samples, target=target, learning_rate=0.01, epoch_number=1000, bias=-1
     )
     network.training()
     print("Finished training perceptron")

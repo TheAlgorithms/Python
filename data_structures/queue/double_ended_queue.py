@@ -42,7 +42,7 @@ class Deque:
         """
 
         val: Any = None
-        next: Deque._Node | None = None
+        next: Deque._Node | None = None  # noqa: A003
         prev: Deque._Node | None = None
 
     class _Iterator:
@@ -179,7 +179,7 @@ class Deque:
             # make sure there were no errors
             assert not self.is_empty(), "Error on appending value."
 
-    def extend(self, iter: Iterable[Any]) -> None:
+    def extend(self, iterable: Iterable[Any]) -> None:
         """
         Appends every value of iter to the end of the deque.
         Time complexity: O(n)
@@ -205,10 +205,10 @@ class Deque:
         >>> list(our_deque_2) == list(deque_collections_2)
         True
         """
-        for val in iter:
+        for val in iterable:
             self.append(val)
 
-    def extendleft(self, iter: Iterable[Any]) -> None:
+    def extendleft(self, iterable: Iterable[Any]) -> None:
         """
         Appends every value of iter to the beginning of the deque.
         Time complexity: O(n)
@@ -234,7 +234,7 @@ class Deque:
         >>> list(our_deque_2) == list(deque_collections_2)
         True
         """
-        for val in iter:
+        for val in iterable:
             self.appendleft(val)
 
     def pop(self) -> Any:

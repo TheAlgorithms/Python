@@ -31,7 +31,7 @@ def sdbm(plain_text: str) -> int:
     >>> sdbm('scramble bits')
     730247649148944819640658295400555317318720608290373040936089
     """
-    hash = 0
+    _hash = 0
     for plain_chr in plain_text:
-        hash = ord(plain_chr) + (hash << 6) + (hash << 16) - hash
-    return hash
+        _hash = ord(plain_chr) + (_hash << 6) + (_hash << 16) - _hash
+    return _hash

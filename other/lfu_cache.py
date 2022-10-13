@@ -250,7 +250,7 @@ class LFUCache(Generic[T, U]):
         self.miss += 1
         return None
 
-    def set(self, key: T, value: U) -> None:
+    def set_key(self, key: T, value: U) -> None:
         """
         Sets the value for the input key and updates the Double Linked List
         """
@@ -297,7 +297,9 @@ class LFUCache(Generic[T, U]):
                 result = cls.decorator_function_to_instance_map[func].get(args[0])
                 if result is None:
                     result = func(*args)
-                    cls.decorator_function_to_instance_map[func].set(args[0], result)
+                    cls.decorator_function_to_instance_map[func].set_key(
+                        args[0], result
+                    )
                 return result
 
             def cache_info() -> LFUCache[T, U]:
