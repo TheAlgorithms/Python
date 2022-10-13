@@ -29,6 +29,7 @@ def main():
     xgb.fit(x_train, y_train)
 
     # Display Confusion Matrix of Classifier
+    #with both train and test sets
     plot_confusion_matrix(
         xgb,
         x_test,
@@ -39,6 +40,8 @@ def main():
     )
     plt.title("Normalized Confusion Matrix - IRIS Dataset")
     plt.show()
+    
+    return None
 
 
 if __name__ == "__main__":
