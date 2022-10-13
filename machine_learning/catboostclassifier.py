@@ -1,3 +1,5 @@
+pip install catboost
+
 # CatBoost Classifier Example
 from catboost import CatBoostClassifier
 from matplotlib import pyplot as plt
