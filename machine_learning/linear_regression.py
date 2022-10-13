@@ -96,7 +96,7 @@ def mean_absolute_error(predicted_y, original_y):
     total = 0
     for i in range(len(original_y)):
         total += abs(original_y[i] - predicted_y[i])
-    error = total/len(original_y)
+    error = total / len(original_y)
     return error
 
 
