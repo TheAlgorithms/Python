@@ -22,7 +22,6 @@ def main() -> None:
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, test_size=0.25, random_state=1
     )
-
     # XGBoost Regressor
     xgb = XGBRegressor()
     xgb.fit(x_train, y_train)
