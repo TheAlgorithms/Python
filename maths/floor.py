@@ -1,7 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Floor_and_ceiling_functions
 """
-
+import math
 
 def floor(x: float) -> int:
     """
@@ -13,10 +13,8 @@ def floor(x: float) -> int:
     ...     in (1, -1, 0, -0, 1.1, -1.1, 1.0, -1.0, 1_000_000_000))
     True
     """
-    return int(x) if x - int(x) >= 0 else int(x) - 1
+    return math.floor(x)
 
 
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+n=float(input("Enter the number"))
+print(floor(n))
