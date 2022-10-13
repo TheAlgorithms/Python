@@ -1,15 +1,13 @@
 """
-Find Volumes of Various Shapes.
-Wikipedia reference: https://en.wikipedia.org/wiki/Volume
+Find the volume of various shapes.
+* https://en.wikipedia.org/wiki/Volume
+* https://en.wikipedia.org/wiki/Spherical_cap
 """
-
-# Imports
 from __future__ import annotations
 
 from math import pi, pow
 
 
-# Functions for calculating volumes of shapes
 def vol_cube(side_length: int | float) -> float:
     """
     Calculate the Volume of a Cube.
@@ -33,7 +31,7 @@ def vol_cube(side_length: int | float) -> float:
 
 def vol_spherical_cap(height: float, radius: float) -> float:
     """
-    Calculate the Volume of the spherical cap
+    Calculate the volume of the spherical cap.
     >>> vol_spherical_cap(1, 2)
     5.235987755982988
     >>> vol_spherical_cap(1.6, 2.6)
@@ -49,9 +47,9 @@ def vol_spherical_cap(height: float, radius: float) -> float:
         ...
     ValueError: vol_spherical_cap() only accepts non-negative values
     """
-    # Volume - 1/3 pi * height squared * (3 * radius - height)
     if height < 0 or radius < 0:
         raise ValueError("vol_spherical_cap() only accepts non-negative values")
+    # Volume is 1/3 pi * height squared * (3 * radius - height)
     return 1 / 3 * pi * pow(height, 2) * (3 * radius - height)
 
 
@@ -264,10 +262,10 @@ def vol_sphere(radius: float) -> float:
         ...
     ValueError: vol_sphere() only accepts non-negative values
     """
-    # Volume - radius cubed * pi * 4/3
     if radius < 0:
         raise ValueError("vol_sphere() only accepts non-negative values")
-    return 4 / 3 * pi * pow(radius, 3)
+    # Volume is radius cubed * pi * 4/3
+    return pow(radius, 3) * pi * 4 / 3
 
 
 def vol_hemisphere(radius: float) -> float:
@@ -288,10 +286,10 @@ def vol_hemisphere(radius: float) -> float:
         ...
     ValueError: vol_hemisphere() only accepts non-negative values
     """
-    # Volume - 4/3 * pi * radius cubed
     if radius < 0:
         raise ValueError("vol_hemisphere() only accepts non-negative values")
-    return 2 / 3 * pi * pow(radius, 3)
+    # Volume is radius cubed * pi * 2/3
+    return pow(radius, 3) * pi * 2 / 3
 
 
 def vol_circular_cylinder(radius: float, height: float) -> float:
@@ -315,10 +313,10 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
         ...
     ValueError: vol_circular_cylinder() only accepts non-negative values
     """
-    # Volume - radius squared * height * pi
     if height < 0 or radius < 0:
         raise ValueError("vol_circular_cylinder() only accepts non-negative values")
-    return pi * pow(radius, 2) * height
+    # Volume is radius squared * height * pi
+    return pow(radius, 2) * height * pi
 
 
 def vol_hollow_circular_cylinder(
