@@ -14,7 +14,7 @@ Jaccard similarity is widely used with MinHashing.
 """
 
 
-def jaccard_similariy(setA, setB, alternativeUnion=False):
+def jaccard_similariy(set_a, set_b, alternative_union=False):
     """
     Finds the jaccard similarity between two sets.
     Essentially, its intersection over union.
@@ -24,8 +24,8 @@ def jaccard_similariy(setA, setB, alternativeUnion=False):
     of a set with itself be 1/2 instead of 1. [MMDS 2nd Edition, Page 77]
 
     Parameters:
-        :setA (set,list,tuple): A non-empty set/list
-        :setB (set,list,tuple): A non-empty set/list
+        :set_a (set,list,tuple): A non-empty set/list
+        :set_b (set,list,tuple): A non-empty set/list
         :alternativeUnion (boolean): If True, use sum of number of
         items as union
 
@@ -33,48 +33,48 @@ def jaccard_similariy(setA, setB, alternativeUnion=False):
         (float) The jaccard similarity between the two sets.
 
     Examples:
-    >>> setA = {'a', 'b', 'c', 'd', 'e'}
-    >>> setB = {'c', 'd', 'e', 'f', 'h', 'i'}
-    >>> jaccard_similariy(setA,setB)
+    >>> set_a = {'a', 'b', 'c', 'd', 'e'}
+    >>> set_b = {'c', 'd', 'e', 'f', 'h', 'i'}
+    >>> jaccard_similariy(set_a, set_b)
     0.375
 
-    >>> jaccard_similariy(setA,setA)
+    >>> jaccard_similariy(set_a, set_a)
     1.0
 
-    >>> jaccard_similariy(setA,setA,True)
+    >>> jaccard_similariy(set_a, set_a, True)
     0.5
 
-    >>> setA = ['a', 'b', 'c', 'd', 'e']
-    >>> setB = ('c', 'd', 'e', 'f', 'h', 'i')
-    >>> jaccard_similariy(setA,setB)
+    >>> set_a = ['a', 'b', 'c', 'd', 'e']
+    >>> set_b = ('c', 'd', 'e', 'f', 'h', 'i')
+    >>> jaccard_similariy(set_a, set_b)
     0.375
     """
 
-    if isinstance(setA, set) and isinstance(setB, set):
+    if isinstance(set_a, set) and isinstance(set_b, set):
 
-        intersection = len(setA.intersection(setB))
+        intersection = len(set_a.intersection(set_b))
 
-        if alternativeUnion:
-            union = len(setA) + len(setB)
+        if alternative_union:
+            union = len(set_a) + len(set_b)
         else:
-            union = len(setA.union(setB))
+            union = len(set_a.union(set_b))
 
         return intersection / union
 
-    if isinstance(setA, (list, tuple)) and isinstance(setB, (list, tuple)):
+    if isinstance(set_a, (list, tuple)) and isinstance(set_b, (list, tuple)):
 
-        intersection = [element for element in setA if element in setB]
+        intersection = [element for element in set_a if element in set_b]
 
-        if alternativeUnion:
-            union = len(setA) + len(setB)
+        if alternative_union:
+            union = len(set_a) + len(set_b)
         else:
-            union = setA + [element for element in setB if element not in setA]
+            union = set_a + [element for element in set_b if element not in set_a]
 
         return len(intersection) / len(union)
 
 
 if __name__ == "__main__":
 
-    setA = {"a", "b", "c", "d", "e"}
-    setB = {"c", "d", "e", "f", "h", "i"}
-    print(jaccard_similariy(setA, setB))
+    set_a = {"a", "b", "c", "d", "e"}
+    set_b = {"c", "d", "e", "f", "h", "i"}
+    print(jaccard_similariy(set_a, set_b))

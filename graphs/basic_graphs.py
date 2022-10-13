@@ -76,20 +76,20 @@ if __name__ == "__main__":
 """
 
 
-def dfs(G, s):
-    vis, S = {s}, [s]
+def dfs(g, s):
+    vis, _s = {s}, [s]
     print(s)
-    while S:
+    while _s:
         flag = 0
-        for i in G[S[-1]]:
+        for i in g[_s[-1]]:
             if i not in vis:
-                S.append(i)
+                _s.append(i)
                 vis.add(i)
                 flag = 1
                 print(i)
                 break
         if not flag:
-            S.pop()
+            _s.pop()
 
 
 """
@@ -103,15 +103,15 @@ def dfs(G, s):
 """
 
 
-def bfs(G, s):
-    vis, Q = {s}, deque([s])
+def bfs(g, s):
+    vis, q = {s}, deque([s])
     print(s)
-    while Q:
-        u = Q.popleft()
-        for v in G[u]:
+    while q:
+        u = q.popleft()
+        for v in g[u]:
             if v not in vis:
                 vis.add(v)
-                Q.append(v)
+                q.append(v)
                 print(v)
 
 
@@ -127,10 +127,10 @@ def bfs(G, s):
 """
 
 
-def dijk(G, s):
+def dijk(g, s):
     dist, known, path = {s: 0}, set(), {s: 0}
     while True:
-        if len(known) == len(G) - 1:
+        if len(known) == len(g) - 1:
             break
         mini = 100000
         for i in dist:
@@ -138,7 +138,7 @@ def dijk(G, s):
                 mini = dist[i]
                 u = i
         known.add(u)
-        for v in G[u]:
+        for v in g[u]:
             if v[0] not in known:
                 if dist[u] + v[1] < dist.get(v[0], 100000):
                     dist[v[0]] = dist[u] + v[1]
@@ -155,27 +155,27 @@ def dijk(G, s):
 """
 
 
-def topo(G, ind=None, Q=None):
-    if Q is None:
-        Q = [1]
+def topo(g, ind=None, q=None):
+    if q is None:
+        q = [1]
     if ind is None:
-        ind = [0] * (len(G) + 1)  # SInce oth Index is ignored
-        for u in G:
-            for v in G[u]:
+        ind = [0] * (len(g) + 1)  # SInce oth Index is ignored
+        for u in g:
+            for v in g[u]:
                 ind[v] += 1
-        Q = deque()
-        for i in G:
+        q = deque()
+        for i in g:
             if ind[i] == 0:
-                Q.append(i)
-    if len(Q) == 0:
+                q.append(i)
+    if len(q) == 0:
         return
-    v = Q.popleft()
+    v = q.popleft()
     print(v)
-    for w in G[v]:
+    for w in g[v]:
         ind[w] -= 1
         if ind[w] == 0:
-            Q.append(w)
-    topo(G, ind, Q)
+            q.append(w)
+    topo(g, ind, q)
 
 
 """
@@ -206,9 +206,9 @@ def adjm():
 """
 
 
-def floy(A_and_n):
-    (A, n) = A_and_n
-    dist = list(A)
+def floy(a_and_n):
+    (a, n) = a_and_n
+    dist = list(a)
     path = [[0] * n for i in range(n)]
     for k in range(n):
         for i in range(n):
@@ -231,10 +231,10 @@ def floy(A_and_n):
 """
 
 
-def prim(G, s):
+def prim(g, s):
     dist, known, path = {s: 0}, set(), {s: 0}
     while True:
-        if len(known) == len(G) - 1:
+        if len(known) == len(g) - 1:
             break
         mini = 100000
         for i in dist:
@@ -242,7 +242,7 @@ def prim(G, s):
                 mini = dist[i]
                 u = i
         known.add(u)
-        for v in G[u]:
+        for v in g[u]:
             if v[0] not in known:
                 if v[1] < dist.get(v[0], 100000):
                     dist[v[0]] = v[1]
@@ -279,16 +279,16 @@ def edglist():
 """
 
 
-def krusk(E_and_n):
+def krusk(e_and_n):
     # Sort edges on the basis of distance
-    (E, n) = E_and_n
-    E.sort(reverse=True, key=lambda x: x[2])
+    (e, n) = e_and_n
+    e.sort(reverse=True, key=lambda x: x[2])
     s = [{i} for i in range(1, n + 1)]
     while True:
         if len(s) == 1:
             break
         print(s)
-        x = E.pop()
+        x = e.pop()
         for i in range(len(s)):
             if x[0] in s[i]:
                 break

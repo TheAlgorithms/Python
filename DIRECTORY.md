@@ -14,6 +14,7 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
+  * [Equal Loudness Filter](audio_filters/equal_loudness_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
@@ -475,6 +476,7 @@
   * [Binomial Coefficient](maths/binomial_coefficient.py)
   * [Binomial Distribution](maths/binomial_distribution.py)
   * [Bisection](maths/bisection.py)
+  * [Carmichael Number](maths/carmichael_number.py)
   * [Catalan Number](maths/catalan_number.py)
   * [Ceil](maths/ceil.py)
   * [Check Polygon](maths/check_polygon.py)

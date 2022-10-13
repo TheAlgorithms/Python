@@ -151,16 +151,16 @@ def create_edge(nodes, graph, cluster, c1):
 
 
 def construct_graph(cluster, nodes):
-    X = cluster[max(cluster.keys())]
+    x = cluster[max(cluster.keys())]
     cluster[max(cluster.keys()) + 1] = "Header"
     graph = {}
-    for i in X:
+    for i in x:
         if tuple(["Header"]) in graph:
-            graph[tuple(["Header"])].append(X[i])
+            graph[tuple(["Header"])].append(x[i])
         else:
-            graph[tuple(["Header"])] = [X[i]]
-    for i in X:
-        graph[tuple(X[i])] = [["Header"]]
+            graph[tuple(["Header"])] = [x[i]]
+    for i in x:
+        graph[tuple(x[i])] = [["Header"]]
     i = 1
     while i < max(cluster) - 1:
         create_edge(nodes, graph, cluster, i)
@@ -168,7 +168,7 @@ def construct_graph(cluster, nodes):
     return graph
 
 
-def myDFS(graph, start, end, path=None):
+def my_dfs(graph, start, end, path=None):
     """
     find different DFS walk from given node to Header node
     """
@@ -177,7 +177,7 @@ def myDFS(graph, start, end, path=None):
         paths.append(path)
     for node in graph[start]:
         if tuple(node) not in path:
-            myDFS(graph, tuple(node), end, path)
+            my_dfs(graph, tuple(node), end, path)
 
 
 def find_freq_subgraph_given_support(s, cluster, graph):
@@ -186,23 +186,23 @@ def find_freq_subgraph_given_support(s, cluster, graph):
     """
     k = int(s / 100 * (len(cluster) - 1))
     for i in cluster[k].keys():
-        myDFS(graph, tuple(cluster[k][i]), tuple(["Header"]))
+        my_dfs(graph, tuple(cluster[k][i]), tuple(["Header"]))
 
 
 def freq_subgraphs_edge_list(paths):
     """
     returns Edge list for frequent subgraphs
     """
-    freq_sub_EL = []
+    freq_sub_el = []
     for edges in paths:
-        EL = []
+        el = []
         for j in range(len(edges) - 1):
             temp = list(edges[j])
             for e in temp:
                 edge = (e[0], e[1])
-                EL.append(edge)
-        freq_sub_EL.append(EL)
-    return freq_sub_EL
+                el.append(edge)
+        freq_sub_el.append(el)
+    return freq_sub_el
 
 
 def preprocess(edge_array):

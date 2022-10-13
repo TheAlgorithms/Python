@@ -43,11 +43,11 @@ def pull():
     global buffer_space, params_space, machine_time, K, m, t
 
     # PRNG (Xorshift by George Marsaglia)
-    def xorshift(X, Y):
-        X ^= Y >> 13
-        Y ^= X << 17
-        X ^= Y >> 5
-        return X
+    def xorshift(x, y):
+        x ^= y >> 13
+        y ^= x << 17
+        x ^= y >> 5
+        return x
 
     # Choosing Dynamical Systems (Increment)
     key = machine_time % m
@@ -63,13 +63,13 @@ def pull():
         params_space[key] = (machine_time * 0.01 + r * 1.01) % 1 + 3
 
     # Choosing Chaotic Data
-    X = int(buffer_space[(key + 2) % m] * (10**10))
-    Y = int(buffer_space[(key - 2) % m] * (10**10))
+    x = int(buffer_space[(key + 2) % m] * (10**10))
+    y = int(buffer_space[(key - 2) % m] * (10**10))
 
     # Machine Time
     machine_time += 1
 
-    return xorshift(X, Y) % 0xFFFFFFFF
+    return xorshift(x, y) % 0xFFFFFFFF
 
 
 def reset():

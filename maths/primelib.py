@@ -8,27 +8,27 @@ prime numbers and whole numbers.
 
 Overview:
 
-isPrime(number)
-sieveEr(N)
-getPrimeNumbers(N)
-primeFactorization(number)
-greatestPrimeFactor(number)
-smallestPrimeFactor(number)
-getPrime(n)
-getPrimesBetween(pNumber1, pNumber2)
+is_prime(number)
+sieve_er(N)
+get_prime_numbers(N)
+prime_factorization(number)
+greatest_prime_factor(number)
+smallest_prime_factor(number)
+get_prime(n)
+get_primes_between(pNumber1, pNumber2)
 
 ----
 
-isEven(number)
-isOdd(number)
+is_even(number)
+is_odd(number)
 gcd(number1, number2)  // greatest common divisor
-kgV(number1, number2)  // least common multiple
-getDivisors(number)    // all divisors of 'number' inclusive 1, number
-isPerfectNumber(number)
+kg_v(number1, number2)  // least common multiple
+get_divisors(number)    // all divisors of 'number' inclusive 1, number
+is_perfect_number(number)
 
 NEW-FUNCTIONS
 
-simplifyFraction(numerator, denominator)
+simplify_fraction(numerator, denominator)
 factorial (n) // n!
 fib (n) // calculate the n-th fibonacci term.
 
@@ -75,7 +75,7 @@ def is_prime(number: int) -> bool:
 # ------------------------------------------
 
 
-def sieveEr(N):
+def sieve_er(n):
     """
     input: positive integer 'N' > 2
     returns a list of prime numbers from 2 up to N.
@@ -86,23 +86,23 @@ def sieveEr(N):
     """
 
     # precondition
-    assert isinstance(N, int) and (N > 2), "'N' must been an int and > 2"
+    assert isinstance(n, int) and (n > 2), "'N' must been an int and > 2"
 
     # beginList: contains all natural numbers from 2 up to N
-    beginList = [x for x in range(2, N + 1)]
+    begin_list = [x for x in range(2, n + 1)]
 
     ans = []  # this list will be returns.
 
     # actual sieve of erathostenes
-    for i in range(len(beginList)):
+    for i in range(len(begin_list)):
 
-        for j in range(i + 1, len(beginList)):
+        for j in range(i + 1, len(begin_list)):
 
-            if (beginList[i] != 0) and (beginList[j] % beginList[i] == 0):
-                beginList[j] = 0
+            if (begin_list[i] != 0) and (begin_list[j] % begin_list[i] == 0):
+                begin_list[j] = 0
 
     # filters actual prime numbers.
-    ans = [x for x in beginList if x != 0]
+    ans = [x for x in begin_list if x != 0]
 
     # precondition
     assert isinstance(ans, list), "'ans' must been from type list"
@@ -113,7 +113,7 @@ def sieveEr(N):
 # --------------------------------
 
 
-def getPrimeNumbers(N):
+def get_prime_numbers(n):
     """
     input: positive integer 'N' > 2
     returns a list of prime numbers from 2 up to N (inclusive)
@@ -121,13 +121,13 @@ def getPrimeNumbers(N):
     """
 
     # precondition
-    assert isinstance(N, int) and (N > 2), "'N' must been an int and > 2"
+    assert isinstance(n, int) and (n > 2), "'N' must been an int and > 2"
 
     ans = []
 
     # iterates over all numbers between 2 up to N+1
     # if a number is prime then appends to list 'ans'
-    for number in range(2, N + 1):
+    for number in range(2, n + 1):
 
         if is_prime(number):
 
@@ -142,7 +142,7 @@ def getPrimeNumbers(N):
 # -----------------------------------------
 
 
-def primeFactorization(number):
+def prime_factorization(number):
     """
     input: positive integer 'number'
     returns a list of the prime number factors of 'number'
@@ -186,7 +186,7 @@ def primeFactorization(number):
 # -----------------------------------------
 
 
-def greatestPrimeFactor(number):
+def greatest_prime_factor(number):
     """
     input: positive integer 'number' >= 0
     returns the greatest prime number factor of 'number'
@@ -200,9 +200,9 @@ def greatestPrimeFactor(number):
     ans = 0
 
     # prime factorization of 'number'
-    primeFactors = primeFactorization(number)
+    prime_factors = prime_factorization(number)
 
-    ans = max(primeFactors)
+    ans = max(prime_factors)
 
     # precondition
     assert isinstance(ans, int), "'ans' must been from type int"
@@ -213,7 +213,7 @@ def greatestPrimeFactor(number):
 # ----------------------------------------------
 
 
-def smallestPrimeFactor(number):
+def smallest_prime_factor(number):
     """
     input: integer 'number' >= 0
     returns the smallest prime number factor of 'number'
@@ -227,9 +227,9 @@ def smallestPrimeFactor(number):
     ans = 0
 
     # prime factorization of 'number'
-    primeFactors = primeFactorization(number)
+    prime_factors = prime_factorization(number)
 
-    ans = min(primeFactors)
+    ans = min(prime_factors)
 
     # precondition
     assert isinstance(ans, int), "'ans' must been from type int"
@@ -240,7 +240,7 @@ def smallestPrimeFactor(number):
 # ----------------------
 
 
-def isEven(number):
+def is_even(number):
     """
     input: integer 'number'
     returns true if 'number' is even, otherwise false.
@@ -256,7 +256,7 @@ def isEven(number):
 # ------------------------
 
 
-def isOdd(number):
+def is_odd(number):
     """
     input: integer 'number'
     returns true if 'number' is odd, otherwise false.
@@ -281,14 +281,14 @@ def goldbach(number):
 
     # precondition
     assert (
-        isinstance(number, int) and (number > 2) and isEven(number)
+        isinstance(number, int) and (number > 2) and is_even(number)
     ), "'number' must been an int, even and > 2"
 
     ans = []  # this list will returned
 
     # creates a list of prime numbers between 2 up to 'number'
-    primeNumbers = getPrimeNumbers(number)
-    lenPN = len(primeNumbers)
+    prime_numbers = get_prime_numbers(number)
+    len_pn = len(prime_numbers)
 
     # run variable for while-loops.
     i = 0
@@ -297,16 +297,16 @@ def goldbach(number):
     # exit variable. for break up the loops
     loop = True
 
-    while i < lenPN and loop:
+    while i < len_pn and loop:
 
         j = i + 1
 
-        while j < lenPN and loop:
+        while j < len_pn and loop:
 
-            if primeNumbers[i] + primeNumbers[j] == number:
+            if prime_numbers[i] + prime_numbers[j] == number:
                 loop = False
-                ans.append(primeNumbers[i])
-                ans.append(primeNumbers[j])
+                ans.append(prime_numbers[i])
+                ans.append(prime_numbers[j])
 
             j += 1
 
@@ -361,7 +361,7 @@ def gcd(number1, number2):
 # ----------------------------------------------------
 
 
-def kgV(number1, number2):
+def kg_v(number1, number2):
     """
     Least common multiple
     input: two positive integer 'number1' and 'number2'
@@ -382,13 +382,13 @@ def kgV(number1, number2):
     if number1 > 1 and number2 > 1:
 
         # builds the prime factorization of 'number1' and 'number2'
-        primeFac1 = primeFactorization(number1)
-        primeFac2 = primeFactorization(number2)
+        prime_fac_1 = prime_factorization(number1)
+        prime_fac_2 = prime_factorization(number2)
 
     elif number1 == 1 or number2 == 1:
 
-        primeFac1 = []
-        primeFac2 = []
+        prime_fac_1 = []
+        prime_fac_2 = []
         ans = max(number1, number2)
 
     count1 = 0
@@ -397,21 +397,21 @@ def kgV(number1, number2):
     done = []  # captured numbers int both 'primeFac1' and 'primeFac2'
 
     # iterates through primeFac1
-    for n in primeFac1:
+    for n in prime_fac_1:
 
         if n not in done:
 
-            if n in primeFac2:
+            if n in prime_fac_2:
 
-                count1 = primeFac1.count(n)
-                count2 = primeFac2.count(n)
+                count1 = prime_fac_1.count(n)
+                count2 = prime_fac_2.count(n)
 
                 for i in range(max(count1, count2)):
                     ans *= n
 
             else:
 
-                count1 = primeFac1.count(n)
+                count1 = prime_fac_1.count(n)
 
                 for i in range(count1):
                     ans *= n
@@ -419,11 +419,11 @@ def kgV(number1, number2):
             done.append(n)
 
     # iterates through primeFac2
-    for n in primeFac2:
+    for n in prime_fac_2:
 
         if n not in done:
 
-            count2 = primeFac2.count(n)
+            count2 = prime_fac_2.count(n)
 
             for i in range(count2):
                 ans *= n
@@ -441,7 +441,7 @@ def kgV(number1, number2):
 # ----------------------------------
 
 
-def getPrime(n):
+def get_prime(n):
     """
     Gets the n-th prime number.
     input: positive integer 'n' >= 0
@@ -476,7 +476,7 @@ def getPrime(n):
 # ---------------------------------------------------
 
 
-def getPrimesBetween(pNumber1, pNumber2):
+def get_primes_between(p_number_1, p_number_2):
     """
     input: prime numbers 'pNumber1' and 'pNumber2'
             pNumber1 < pNumber2
@@ -486,10 +486,10 @@ def getPrimesBetween(pNumber1, pNumber2):
 
     # precondition
     assert (
-        is_prime(pNumber1) and is_prime(pNumber2) and (pNumber1 < pNumber2)
+        is_prime(p_number_1) and is_prime(p_number_2) and (p_number_1 < p_number_2)
     ), "The arguments must been prime numbers and 'pNumber1' < 'pNumber2'"
 
-    number = pNumber1 + 1  # jump to the next number
+    number = p_number_1 + 1  # jump to the next number
 
     ans = []  # this list will be returns.
 
@@ -498,7 +498,7 @@ def getPrimesBetween(pNumber1, pNumber2):
     while not is_prime(number):
         number += 1
 
-    while number < pNumber2:
+    while number < p_number_2:
 
         ans.append(number)
 
@@ -510,7 +510,9 @@ def getPrimesBetween(pNumber1, pNumber2):
 
     # precondition
     assert (
-        isinstance(ans, list) and ans[0] != pNumber1 and ans[len(ans) - 1] != pNumber2
+        isinstance(ans, list)
+        and ans[0] != p_number_1
+        and ans[len(ans) - 1] != p_number_2
     ), "'ans' must been a list without the arguments"
 
     # 'ans' contains not 'pNumber1' and 'pNumber2' !
@@ -520,7 +522,7 @@ def getPrimesBetween(pNumber1, pNumber2):
 # ----------------------------------------------------
 
 
-def getDivisors(n):
+def get_divisors(n):
     """
     input: positive integer 'n' >= 1
     returns all divisors of n (inclusive 1 and 'n')
@@ -545,7 +547,7 @@ def getDivisors(n):
 # ----------------------------------------------------
 
 
-def isPerfectNumber(number):
+def is_perfect_number(number):
     """
     input: positive integer 'number' > 1
     returns true if 'number' is a perfect number otherwise false.
@@ -556,7 +558,7 @@ def isPerfectNumber(number):
         number > 1
     ), "'number' must been an int and >= 1"
 
-    divisors = getDivisors(number)
+    divisors = get_divisors(number)
 
     # precondition
     assert (
@@ -572,7 +574,7 @@ def isPerfectNumber(number):
 # ------------------------------------------------------------
 
 
-def simplifyFraction(numerator, denominator):
+def simplify_fraction(numerator, denominator):
     """
     input: two integer 'numerator' and 'denominator'
     assumes: 'denominator' != 0
@@ -587,16 +589,16 @@ def simplifyFraction(numerator, denominator):
     ), "The arguments must been from type int and 'denominator' != 0"
 
     # build the greatest common divisor of numerator and denominator.
-    gcdOfFraction = gcd(abs(numerator), abs(denominator))
+    gcd_of_fraction = gcd(abs(numerator), abs(denominator))
 
     # precondition
     assert (
-        isinstance(gcdOfFraction, int)
-        and (numerator % gcdOfFraction == 0)
-        and (denominator % gcdOfFraction == 0)
+        isinstance(gcd_of_fraction, int)
+        and (numerator % gcd_of_fraction == 0)
+        and (denominator % gcd_of_fraction == 0)
     ), "Error in function gcd(...,...)"
 
-    return (numerator // gcdOfFraction, denominator // gcdOfFraction)
+    return (numerator // gcd_of_fraction, denominator // gcd_of_fraction)
 
 
 # -----------------------------------------------------------------

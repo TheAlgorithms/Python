@@ -178,9 +178,9 @@ def find_neighborhood(solution, dict_of_neighbours):
             if _tmp not in neighborhood_of_solution:
                 neighborhood_of_solution.append(_tmp)
 
-    indexOfLastItemInTheList = len(neighborhood_of_solution[0]) - 1
+    index_of_last_item_in_the_list = len(neighborhood_of_solution[0]) - 1
 
-    neighborhood_of_solution.sort(key=lambda x: x[indexOfLastItemInTheList])
+    neighborhood_of_solution.sort(key=lambda x: x[index_of_last_item_in_the_list])
     return neighborhood_of_solution
 
 
