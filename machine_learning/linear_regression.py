@@ -87,16 +87,16 @@ def run_linear_regression(data_x, data_y):
     return theta
 
 
-def mean_absolute_error(pred_X, org_X):
+def mean_absolute_error(predicted_y, original_y):
     """Return sum of square error for error calculation
-    :param pred_X    : contains the output (result vector)
-    :param org_X    : contains our dataset
+    :param predicted_y   : contains the output of prediction (result vector)
+    :param original_y    : contains values of expected outcome
     :return          : mean absolute error computed from given feature's
     """
     total = 0
-    for i in range(len(org_X)):
-        total += abs(org_X[i] - pred_X[i])
-    error = sum / len(org_X)
+    for i in range(len(original_y)):
+        total += abs(original_y[i] - predicted_y[i])
+    error = total/len(original_y)
     return error
 
 
