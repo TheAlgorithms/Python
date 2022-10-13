@@ -1,4 +1,4 @@
-pip install catboost
+!pip install catboost
 
 # CatBoost Classifier Example
 from catboost import CatBoostClassifier
