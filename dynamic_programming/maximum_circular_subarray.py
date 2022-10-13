@@ -7,7 +7,8 @@ def maxCircularSum(arr: list[int], n: int) -> int:
     """
 
     # Edge Case
-    if (n == 1): return arr[0]
+    if n == 1:
+        return arr[0]
 
     # Sum variable which store total arr_sum of the array.
     arr_sum = sum(arr)
@@ -25,12 +26,14 @@ def maxCircularSum(arr: list[int], n: int) -> int:
         current_min = min(current_min + arr[i], arr[i])
         min_so_far = min(min_so_far, current_min)
 
-    if (min_so_far == arr_sum): return max_so_far
+    if min_so_far == arr_sum:
+        return max_so_far
 
     # returning the maximum value
     return max(max_so_far, arr_sum - min_so_far)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     size = int(input("Enter size of array:\t"))
-    arr = list(map(int, input("Enter the elements of the array: ").strip().split()));
+    arr = list(map(int, input("Enter the elements of the array: ").strip().split()))
     print(f"Maximum circular sum is {maxCircularSum(arr, size)}")
