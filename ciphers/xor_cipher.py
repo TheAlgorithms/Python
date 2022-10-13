@@ -51,8 +51,9 @@ class XORCipher:
         else:
             string = ''
             for i in result_list:
-                string.append(i)
+                string += i
                 return string
+        return
 
     def decrypt(self, content: str, key: int, type_: int) -> list[str]:
         """
@@ -60,6 +61,8 @@ class XORCipher:
         output: decrypted string 'content' as a list of chars
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+        if type is 0,the result will be a list[str].
+        if type is 1,the result will be a str.
         """
 
         # precondition
@@ -76,8 +79,9 @@ class XORCipher:
         else:
             string = ''
             for i in result_list:
-                string.append(i)
+                string += i
                 return string
+        return
 
     def encrypt_file(self, file: str, key: int = 0) -> bool:
         """
@@ -97,7 +101,7 @@ class XORCipher:
 
                     # actual encrypt-process
                     for line in fin:
-                        fout.write(self.encrypt_string(line, key))
+                        fout.write(self.encrypt(line, key, 1))
 
         except OSError:
             return False
@@ -122,7 +126,7 @@ class XORCipher:
 
                     # actual encrypt-process
                     for line in fin:
-                        fout.write(self.decrypt_string(line, key))
+                        fout.write(self.decrypt_string(line, key, 1))
 
         except OSError:
             return False
