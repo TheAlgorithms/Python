@@ -4,7 +4,7 @@ https://stackoverflow.com/questions/3886402/how-to-get-numbers-after-decimal-poi
 """
 
 
-def decimal_isolate(number, digitAmount):
+def decimal_isolate(number, digit_amount):
 
     """
     Isolates the decimal part of a number.
@@ -28,8 +28,8 @@ def decimal_isolate(number, digitAmount):
     >>> decimal_isolate(-14.123, 3)
     -0.123
     """
-    if digitAmount > 0:
-        return round(number - int(number), digitAmount)
+    if digit_amount > 0:
+        return round(number - int(number), digit_amount)
     return number - int(number)
 
 

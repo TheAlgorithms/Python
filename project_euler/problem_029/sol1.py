@@ -33,17 +33,17 @@ def solution(n: int = 100) -> int:
     >>> solution(1)
     0
     """
-    collectPowers = set()
+    collect_powers = set()
 
-    currentPow = 0
+    current_pow = 0
 
-    N = n + 1  # maximum limit
+    n = n + 1  # maximum limit
 
-    for a in range(2, N):
-        for b in range(2, N):
-            currentPow = a**b  # calculates the current power
-            collectPowers.add(currentPow)  # adds the result to the set
-    return len(collectPowers)
+    for a in range(2, n):
+        for b in range(2, n):
+            current_pow = a**b  # calculates the current power
+            collect_powers.add(current_pow)  # adds the result to the set
+    return len(collect_powers)
 
 
 if __name__ == "__main__":
