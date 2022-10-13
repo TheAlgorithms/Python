@@ -1,6 +1,7 @@
 import webbrowser
 from sys import argv
-from urllib.parse import quote
+from urllib.parse import quote, parse_qs
+from fake_useragent import UserAgent
 
 import requests
 from bs4 import BeautifulSoup
@@ -13,21 +14,29 @@ if __name__ == "__main__":
 
     print("Googling.....")
 
-    url = f"https://www.google.com/search?q={query}&num=2"
+    url = f"https://www.google.com/search?q={query}&num=100"
 
     res = requests.get(
         url,
         headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) "
-            "Gecko/20100101 Firefox/98.0"
+            "User-Agent": str(UserAgent().random)
         },
     )
 
-    link = (
-        BeautifulSoup(res.text, "html.parser")
-        .find("div", attrs={"class": "yuRUbf"})
-        .find("a")
-        .get("href")
-    )
+    try:
+        link = (
+            BeautifulSoup(res.text, "html.parser")
+            .find("div", attrs={"class": "yuRUbf"})
+            .find("a")
+            .get("href")
+        )
+
+    except AttributeError:
+        link = parse_qs(
+            BeautifulSoup(res.text, "html.parser")
+            .find("div", attrs={"class": "kCrYT"})
+            .find("a")
+            .get("href")
+        )["url"][0]
 
     webbrowser.open(link)
