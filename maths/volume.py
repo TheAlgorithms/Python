@@ -363,7 +363,7 @@ def vol_hollow_circular_cylinder(
 def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> float:
     """Calculate the Volume of a Conical Frustum.
     Wikipedia reference: https://en.wikipedia.org/wiki/Frustum
-    
+
     >>> vol_conical_frustum(45, 7, 28)
     48490.482608158454
     >>> vol_conical_frustum(1, 1, 2)
