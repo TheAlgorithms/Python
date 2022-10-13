@@ -3,7 +3,7 @@ from sys import argv
 from urllib.parse import quote
 
 from bs4 import BeautifulSoup
-from requests import get
+import requests
 
 if __name__ == "__main__":
     if len(argv) > 1:
@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     url = f"https://www.google.com/search?q={query}&num=2"
 
-    res = get(
+    res = requests.get(
         url,
         headers={
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0"
