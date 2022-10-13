@@ -166,14 +166,14 @@ class LFUCache(Generic[T, U]):
     or as a function decorator.
 
     >>> cache = LFUCache(2)
-    >>> cache.set(1, 1)
-    >>> cache.set(2, 2)
+    >>> cache.set_key(1, 1)
+    >>> cache.set_key(2, 2)
     >>> cache.get(1)
     1
-    >>> cache.set(3, 3)
+    >>> cache.set_key(3, 3)
     >>> cache.get(2) is None
     True
-    >>> cache.set(4, 4)
+    >>> cache.set_key(4, 4)
     >>> cache.get(1) is None
     True
     >>> cache.get(3)
@@ -224,7 +224,7 @@ class LFUCache(Generic[T, U]):
         >>> 1 in cache
         False
 
-        >>> cache.set(1, 1)
+        >>> cache.set_key(1, 1)
         >>> 1 in cache
         True
         """
