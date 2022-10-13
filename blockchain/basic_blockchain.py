@@ -21,28 +21,10 @@ import random
 #     return hashlib.sha256((str(index) + str(previous_hash) + str(timestamp) + json.dumps(data)).encode('utf-8')).hexdigest()
 
 
-def compute_hash(hash_data) -> str:
+def compute_hash(hash_data:str) -> str:
     return hashlib.sha256(hash_data.encode("utf-8")).hexdigest()
 
-
-def compute_hash(hash_data):
-    return hashlib.sha256(hash_data.encode("utf-8")).hexdigest()
-
-
-def proof_of_work(hash_data, difficulty) -> (str, int, int):
-    nonce = 1
-    if difficulty == -1:
-        difficulty = random.randint(1, 5)
-    print("current difficulty level is : ", difficulty)
-    while True:
-        temp_hash = compute_hash(hash_data + str(nonce))
-        if temp_hash[:difficulty] == "0" * difficulty:
-            break
-        nonce += 1
-    return temp_hash, nonce, difficulty
-
-
-def proof_of_work(hash_data, difficulty):
+def proof_of_work(hash_data:str, difficulty:int) -> (str, int, int):
     nonce = 1
     if difficulty == -1:
         difficulty = random.randint(1, 5)
@@ -56,7 +38,7 @@ def proof_of_work(hash_data, difficulty):
 
 
 class Block:
-    def __init__(self, index, data, previous_hash, reward) -> None:
+    def __init__(self, index:int, data:str, previous_hash:str, reward:int) -> None:
         self.index = index
         self.data = data
         self.previous_hash = previous_hash
@@ -83,7 +65,7 @@ class Block:
 
 class BlockChain:
     # chain = []
-    def __init__(self, total_reward, partician) -> None:
+    def __init__(self, total_reward:int, partician:int) -> None:
         self.chain = []
         self.partician = partician
         self.total_reward = total_reward - partician
@@ -92,7 +74,7 @@ class BlockChain:
         )
         self.chain.append(genesis_block)
 
-    def add_block(self, data) -> None:
+    def add_block(self, data:str) -> None:
         assigned_reward = 0
         if self.total_reward - self.partician > 0:
             self.total_reward -= self.partician
@@ -105,13 +87,13 @@ class BlockChain:
         )
         self.chain.append(new_block)
 
-    def get_previous_block(self) -> Block():
+    def get_previous_block(self) -> Block:
         return self.chain[-1]
 
-    def get_specific_block(self, index) -> Block():
+    def get_specific_block(self, index:int) -> Block:
         return self.chain[index]
 
-    def print_block(self, block) -> None:
+    def print_block(self, block:Block) -> None:
         block.print_block_details()
 
     def chain_validation(self) -> bool:
