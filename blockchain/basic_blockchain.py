@@ -19,10 +19,10 @@ import json
 # def compute_hash(index, previous_hash, timestamp, data):
 #     return hashlib.sha256((str(index) + str(previous_hash) + str(timestamp) + json.dumps(data)).encode('utf-8')).hexdigest()
 
-def compute_hash(hash_data):
+def compute_hash(hash_data)->str:
     return hashlib.sha256(hash_data.encode('utf-8')).hexdigest()
 
-def proof_of_work(hash_data, difficulty):
+def proof_of_work(hash_data, difficulty)->(str,int,int):
         nonce = 1
         if difficulty==-1:
             difficulty = random.randint(1, 5)
@@ -35,7 +35,7 @@ def proof_of_work(hash_data, difficulty):
         return temp_hash,nonce,difficulty
 
 class Block:
-    def __init__(self, index, data, previous_hash, reward):
+    def __init__(self, index, data, previous_hash, reward)->None:
         self.index = index
         self.data = data
         self.previous_hash = previous_hash
@@ -44,7 +44,7 @@ class Block:
         self.hash,self.nonce,self.difficulty = proof_of_work(hash_data,-1)
         self.reward = reward
 
-    def print_block_details(self):
+    def print_block_details(self)->None:
         print(f'Details for block indexed at {self.index} : ')
         print(f'\tData : {self.data}')
         print(f'\tTimeStamp : {self.timestamp}')
@@ -56,14 +56,14 @@ class Block:
 
 class BlockChain:
     # chain = []
-    def __init__(self, total_reward, partician):
+    def __init__(self, total_reward, partician)->None:
         self.chain = []
         self.partician = partician
         self.total_reward = total_reward - partician
         genesis_block = Block(len(self.chain)+1,'Aayush\'s BlockChain!',0, self.partician)
         self.chain.append(genesis_block)
     
-    def add_block(self, data):
+    def add_block(self, data)->None:
         assigned_reward = 0
         if self.total_reward-self.partician>0:
             self.total_reward -= self.partician
@@ -75,16 +75,16 @@ class BlockChain:
         self.chain.append(new_block)
         
 
-    def get_previous_block(self):
+    def get_previous_block(self)->Block():
         return self.chain[-1]
 
-    def get_specific_block(self,index):
+    def get_specific_block(self,index)->Block():
         return self.chain[index]
     
-    def print_block(self, block):
+    def print_block(self, block)->None:
         block.print_block_details()
     
-    def chain_validation(self):
+    def chain_validation(self)->bool:
         hash_data,_,__ = proof_of_work(str(self.chain[0].index) + str(self.chain[0].previous_hash) + str(self.chain[0].timestamp) + json.dumps(self.chain[0].data), self.chain[0].difficulty)
         if self.chain[0].hash != hash_data:
             return False

@@ -20,7 +20,7 @@ import binascii
 from hashlib import sha512
 
 # Generate 1024-bit RSA key-pair
-keyPair = RSA.generate(bits=1024)
+key_pair = RSA.generate(bits=1024)
 print(f"Public key:  (n={hex(keyPair.n)}, e={hex(keyPair.e)})")
 print(f"Private key: (n={hex(keyPair.n)}, d={hex(keyPair.d)})")
 
@@ -35,7 +35,7 @@ signature = pow(hash, keyPair.d, keyPair.n)
 print("Signature:", hex(signature))
 
 # RSA verify signature
-hashFromSignature = pow(signature, keyPair.e, keyPair.n)
+hash_from_signature = pow(signature, keyPair.e, keyPair.n)
 print("Signature valid:", hash == hashFromSignature)
 
 
