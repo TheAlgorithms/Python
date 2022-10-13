@@ -80,7 +80,7 @@ class SmoSVM:
 
     # Calculate alphas using SMO algorithm
     def fit(self):
-        K = self._k
+        k = self._k
         state = None
         while True:
 
@@ -106,14 +106,14 @@ class SmoSVM:
             # 3: update threshold(b)
             b1_new = np.float64(
                 -e1
-                - y1 * K(i1, i1) * (a1_new - a1)
-                - y2 * K(i2, i1) * (a2_new - a2)
+                - y1 * k(i1, i1) * (a1_new - a1)
+                - y2 * k(i2, i1) * (a2_new - a2)
                 + self._b
             )
             b2_new = np.float64(
                 -e2
-                - y2 * K(i2, i2) * (a2_new - a2)
-                - y1 * K(i1, i2) * (a1_new - a1)
+                - y2 * k(i2, i2) * (a2_new - a2)
+                - y1 * k(i1, i2) * (a1_new - a1)
                 + self._b
             )
             if 0.0 < a1_new < self._c:
@@ -134,8 +134,8 @@ class SmoSVM:
                 if s == i1 or s == i2:
                     continue
                 self._error[s] += (
-                    y1 * (a1_new - a1) * K(i1, s)
-                    + y2 * (a2_new - a2) * K(i2, s)
+                    y1 * (a1_new - a1) * k(i1, s)
+                    + y2 * (a2_new - a2) * k(i2, s)
                     + (self._b - b_old)
                 )
 
@@ -305,56 +305,56 @@ class SmoSVM:
 
     # Get the new alpha2 and new alpha1
     def _get_new_alpha(self, i1, i2, a1, a2, e1, e2, y1, y2):
-        K = self._k
+        k = self._k
         if i1 == i2:
             return None, None
 
         # calculate L and H  which bound the new alpha2
         s = y1 * y2
         if s == -1:
-            L, H = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)
+            l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)
         else:
-            L, H = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)
-        if L == H:
+            l, h = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)
+        if l == h:  # noqa: E741
             return None, None
 
         # calculate eta
-        k11 = K(i1, i1)
-        k22 = K(i2, i2)
-        k12 = K(i1, i2)
+        k11 = k(i1, i1)
+        k22 = k(i2, i2)
+        k12 = k(i1, i2)
         eta = k11 + k22 - 2.0 * k12
 
         # select the new alpha2 which could get the minimal objectives
         if eta > 0.0:
             a2_new_unc = a2 + (y2 * (e1 - e2)) / eta
             # a2_new has a boundary
-            if a2_new_unc >= H:
-                a2_new = H
-            elif a2_new_unc <= L:
-                a2_new = L
+            if a2_new_unc >= h:
+                a2_new = h
+            elif a2_new_unc <= l:
+                a2_new = l
             else:
                 a2_new = a2_new_unc
         else:
             b = self._b
-            l1 = a1 + s * (a2 - L)
-            h1 = a1 + s * (a2 - H)
+            l1 = a1 + s * (a2 - l)
+            h1 = a1 + s * (a2 - h)
 
             # way 1
-            f1 = y1 * (e1 + b) - a1 * K(i1, i1) - s * a2 * K(i1, i2)
-            f2 = y2 * (e2 + b) - a2 * K(i2, i2) - s * a1 * K(i1, i2)
+            f1 = y1 * (e1 + b) - a1 * k(i1, i1) - s * a2 * k(i1, i2)
+            f2 = y2 * (e2 + b) - a2 * k(i2, i2) - s * a1 * k(i1, i2)
             ol = (
                 l1 * f1
-                + L * f2
-                + 1 / 2 * l1**2 * K(i1, i1)
-                + 1 / 2 * L**2 * K(i2, i2)
-                + s * L * l1 * K(i1, i2)
+                + l * f2
+                + 1 / 2 * l1**2 * k(i1, i1)
+                + 1 / 2 * l**2 * k(i2, i2)
+                + s * l * l1 * k(i1, i2)
             )
             oh = (
                 h1 * f1
-                + H * f2
-                + 1 / 2 * h1**2 * K(i1, i1)
-                + 1 / 2 * H**2 * K(i2, i2)
-                + s * H * h1 * K(i1, i2)
+                + h * f2
+                + 1 / 2 * h1**2 * k(i1, i1)
+                + 1 / 2 * h**2 * k(i2, i2)
+                + s * h * h1 * k(i1, i2)
             )
             """
             # way 2
@@ -362,9 +362,9 @@ class SmoSVM:
             objectives
             """
             if ol < (oh - self._eps):
-                a2_new = L
+                a2_new = l
             elif ol > oh + self._eps:
-                a2_new = H
+                a2_new = h
             else:
                 a2_new = a2
 

@@ -40,6 +40,7 @@ repos:
           - --ignore=E203,W503
           - --max-complexity=25
           - --max-line-length=88
+        additional_dependencies: [pep8-naming]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v0.982

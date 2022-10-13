@@ -2,15 +2,15 @@ import sys
 from collections import defaultdict
 
 
-def PrimsAlgorithm(l):  # noqa: E741
+def prisms_algorithm(l):  # noqa: E741
 
-    nodePosition = []
+    node_position = []
 
     def get_position(vertex):
-        return nodePosition[vertex]
+        return node_position[vertex]
 
     def set_position(vertex, pos):
-        nodePosition[vertex] = pos
+        node_position[vertex] = pos
 
     def top_to_bottom(heap, start, size, positions):
         if start > size // 2 - 1:
@@ -64,44 +64,44 @@ def PrimsAlgorithm(l):  # noqa: E741
         for i in range(start, -1, -1):
             top_to_bottom(heap, i, len(heap), positions)
 
-    def deleteMinimum(heap, positions):
+    def delete_minimum(heap, positions):
         temp = positions[0]
         heap[0] = sys.maxsize
         top_to_bottom(heap, 0, len(heap), positions)
         return temp
 
     visited = [0 for i in range(len(l))]
-    Nbr_TV = [-1 for i in range(len(l))]  # Neighboring Tree Vertex of selected vertex
+    nbr_tv = [-1 for i in range(len(l))]  # Neighboring Tree Vertex of selected vertex
     # Minimum Distance of explored vertex with neighboring vertex of partial tree
     # formed in graph
-    Distance_TV = []  # Heap of Distance of vertices from their neighboring vertex
-    Positions = []
+    distance_tv = []  # Heap of Distance of vertices from their neighboring vertex
+    positions = []
 
     for x in range(len(l)):
         p = sys.maxsize
-        Distance_TV.append(p)
-        Positions.append(x)
-        nodePosition.append(x)
+        distance_tv.append(p)
+        positions.append(x)
+        node_position.append(x)
 
-    TreeEdges = []
+    tree_edges = []
     visited[0] = 1
-    Distance_TV[0] = sys.maxsize
+    distance_tv[0] = sys.maxsize
     for x in l[0]:
-        Nbr_TV[x[0]] = 0
-        Distance_TV[x[0]] = x[1]
-    heapify(Distance_TV, Positions)
+        nbr_tv[x[0]] = 0
+        distance_tv[x[0]] = x[1]
+    heapify(distance_tv, positions)
 
     for i in range(1, len(l)):
-        vertex = deleteMinimum(Distance_TV, Positions)
+        vertex = delete_minimum(distance_tv, positions)
         if visited[vertex] == 0:
-            TreeEdges.append((Nbr_TV[vertex], vertex))
+            tree_edges.append((nbr_tv[vertex], vertex))
             visited[vertex] = 1
             for v in l[vertex]:
-                if visited[v[0]] == 0 and v[1] < Distance_TV[get_position(v[0])]:
-                    Distance_TV[get_position(v[0])] = v[1]
-                    bottom_to_top(v[1], get_position(v[0]), Distance_TV, Positions)
-                    Nbr_TV[v[0]] = vertex
-    return TreeEdges
+                if visited[v[0]] == 0 and v[1] < distance_tv[get_position(v[0])]:
+                    distance_tv[get_position(v[0])] = v[1]
+                    bottom_to_top(v[1], get_position(v[0]), distance_tv, positions)
+                    nbr_tv[v[0]] = vertex
+    return tree_edges
 
 
 if __name__ == "__main__":  # pragma: no cover
@@ -113,4 +113,4 @@ if __name__ == "__main__":  # pragma: no cover
         l = [int(x) for x in input().strip().split()]  # noqa: E741
         adjlist[l[0]].append([l[1], l[2]])
         adjlist[l[1]].append([l[0], l[2]])
-    print(PrimsAlgorithm(adjlist))
+    print(prisms_algorithm(adjlist))

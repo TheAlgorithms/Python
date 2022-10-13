@@ -6,7 +6,7 @@ Output: The decision tree maps a real number input to a real number output.
 import numpy as np
 
 
-class Decision_Tree:
+class DecisionTree:
     def __init__(self, depth=5, min_leaf_size=5):
         self.depth = depth
         self.decision_boundary = 0
@@ -22,17 +22,17 @@ class Decision_Tree:
         @param prediction: a floating point value
         return value: mean_squared_error calculates the error if prediction is used to
             estimate the labels
-        >>> tester = Decision_Tree()
+        >>> tester = DecisionTree()
         >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
         >>> test_prediction = np.float(6)
         >>> tester.mean_squared_error(test_labels, test_prediction) == (
-        ...     Test_Decision_Tree.helper_mean_squared_error_test(test_labels,
+        ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
         ...         test_prediction))
         True
         >>> test_labels = np.array([1,2,3])
         >>> test_prediction = np.float(2)
         >>> tester.mean_squared_error(test_labels, test_prediction) == (
-        ...     Test_Decision_Tree.helper_mean_squared_error_test(test_labels,
+        ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
         ...         test_prediction))
         True
         """
@@ -41,10 +41,10 @@ class Decision_Tree:
 
         return np.mean((labels - prediction) ** 2)
 
-    def train(self, X, y):
+    def train(self, x, y):
         """
         train:
-        @param X: a one dimensional numpy array
+        @param x: a one dimensional numpy array
         @param y: a one dimensional numpy array.
         The contents of y are the labels for the corresponding X values
 
@@ -55,17 +55,17 @@ class Decision_Tree:
         this section is to check that the inputs conform to our dimensionality
         constraints
         """
-        if X.ndim != 1:
+        if x.ndim != 1:
             print("Error: Input data set must be one dimensional")
             return
-        if len(X) != len(y):
+        if len(x) != len(y):
             print("Error: X and y have different lengths")
             return
         if y.ndim != 1:
             print("Error: Data set labels must be one dimensional")
             return
 
-        if len(X) < 2 * self.min_leaf_size:
+        if len(x) < 2 * self.min_leaf_size:
             self.prediction = np.mean(y)
             return
 
@@ -74,7 +74,7 @@ class Decision_Tree:
             return
 
         best_split = 0
-        min_error = self.mean_squared_error(X, np.mean(y)) * 2
+        min_error = self.mean_squared_error(x, np.mean(y)) * 2
 
         """
         loop over all possible splits for the decision tree. find the best split.
@@ -82,34 +82,34 @@ class Decision_Tree:
         then the data set is not split and the average for the entire array is used as
         the predictor
         """
-        for i in range(len(X)):
-            if len(X[:i]) < self.min_leaf_size:
+        for i in range(len(x)):
+            if len(x[:i]) < self.min_leaf_size:
                 continue
-            elif len(X[i:]) < self.min_leaf_size:
+            elif len(x[i:]) < self.min_leaf_size:
                 continue
             else:
-                error_left = self.mean_squared_error(X[:i], np.mean(y[:i]))
-                error_right = self.mean_squared_error(X[i:], np.mean(y[i:]))
+                error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
+                error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
                 error = error_left + error_right
                 if error < min_error:
                     best_split = i
                     min_error = error
 
         if best_split != 0:
-            left_X = X[:best_split]
+            left_x = x[:best_split]
             left_y = y[:best_split]
-            right_X = X[best_split:]
+            right_x = x[best_split:]
             right_y = y[best_split:]
 
-            self.decision_boundary = X[best_split]
-            self.left = Decision_Tree(
+            self.decision_boundary = x[best_split]
+            self.left = DecisionTree(
                 depth=self.depth - 1, min_leaf_size=self.min_leaf_size
             )
-            self.right = Decision_Tree(
+            self.right = DecisionTree(
                 depth=self.depth - 1, min_leaf_size=self.min_leaf_size
             )
-            self.left.train(left_X, left_y)
-            self.right.train(right_X, right_y)
+            self.left.train(left_x, left_y)
+            self.right.train(right_x, right_y)
         else:
             self.prediction = np.mean(y)
 
@@ -134,7 +134,7 @@ class Decision_Tree:
             return None
 
 
-class Test_Decision_Tree:
+class TestDecisionTree:
     """Decision Tres test class"""
 
     @staticmethod
@@ -159,11 +159,11 @@ def main():
     predict the label of 10 different test values. Then the mean squared error over
     this test is displayed.
     """
-    X = np.arange(-1.0, 1.0, 0.005)
-    y = np.sin(X)
+    x = np.arange(-1.0, 1.0, 0.005)
+    y = np.sin(x)
 
-    tree = Decision_Tree(depth=10, min_leaf_size=10)
-    tree.train(X, y)
+    tree = DecisionTree(depth=10, min_leaf_size=10)
+    tree.train(x, y)
 
     test_cases = (np.random.rand(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
