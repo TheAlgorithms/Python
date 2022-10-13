@@ -1,3 +1,7 @@
+"""
+wikipedia - https://en.wikipedia.org/wiki/Snake_(video_game_genre)
+
+"""
 import tkinter as tk
 from tkinter import messagebox
 import math

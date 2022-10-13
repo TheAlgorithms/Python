@@ -1,3 +1,7 @@
+"""
+wikipedia - https://en.wikipedia.org/wiki/Pong
+
+"""
 import turtle
 
 trtle = turtle.Screen()
