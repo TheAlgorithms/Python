@@ -132,7 +132,7 @@ class LinkedList:
         if not 0 <= index < len(self):
             raise ValueError("list index out of range.")
         current = self.head
-        for i in range(index):
+        for _ in range(index):
             current = current.next
         current.data = data
 
@@ -352,13 +352,13 @@ def test_singly_linked_list() -> None:
 
     try:
         linked_list.delete_head()
-        assert False  # This should not happen.
+        raise AssertionError()  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
     try:
         linked_list.delete_tail()
-        assert False  # This should not happen.
+        raise AssertionError()  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 

@@ -110,7 +110,7 @@ def jacobi_iteration_method(
     strictly_diagonally_dominant(table)
 
     # Iterates the whole matrix for given number of times
-    for i in range(iterations):
+    for _ in range(iterations):
         new_val = []
         for row in range(rows):
             temp = 0

@@ -39,7 +39,7 @@ def trapezoidal_area(
     fx1 = fnc(x_start)
     area = 0.0
 
-    for i in range(steps):
+    for _ in range(steps):
 
         # Approximates small segments of curve as linear and solve
         # for trapezoidal area

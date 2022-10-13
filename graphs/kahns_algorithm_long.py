@@ -4,7 +4,7 @@ def longest_distance(graph):
     queue = []
     long_dist = [1] * len(graph)
 
-    for key, values in graph.items():
+    for values in graph.values():
         for i in values:
             indegree[i] += 1
 

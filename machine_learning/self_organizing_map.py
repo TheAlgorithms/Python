@@ -47,7 +47,7 @@ def main() -> None:
     epochs = 3
     alpha = 0.5
 
-    for i in range(epochs):
+    for _ in range(epochs):
         for j in range(len(training_samples)):
 
             # training sample

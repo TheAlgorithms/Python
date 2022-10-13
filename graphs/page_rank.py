@@ -41,7 +41,7 @@ def page_rank(nodes, limit=3, d=0.85):
 
     for i in range(limit):
         print(f"======= Iteration {i + 1} =======")
-        for j, node in enumerate(nodes):
+        for _, node in enumerate(nodes):
             ranks[node.name] = (1 - d) + d * sum(
                 ranks[ib] / outbounds[ib] for ib in node.inbound
             )
