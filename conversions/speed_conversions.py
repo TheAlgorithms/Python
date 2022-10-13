@@ -8,16 +8,17 @@ https://en.wikipedia.org/wiki/Metre_per_second
 
 """
 
+
 def convert_speed(speed: float, unit_from: str, unit_to: str) -> float:
     """
     Return speed units based on input
-    
+
     >>> convert_speed(10, 'm/s', 'km/h')
     36.0
 
     >>> convert_speed(10, 'km/h', 'm/s')
     2.78
-    
+
     >>> convert_speed(10, 'm/s', 'mph')
     22.37
 
@@ -47,7 +48,7 @@ def convert_speed(speed: float, unit_from: str, unit_to: str) -> float:
 
     >>> convert_speed(10, 'knots', 'mph')
     11.51
-    
+
     >>> convert_speed(abc, 'm/s', 'km/h')
     Traceback (most recent call last):
         ...
@@ -58,53 +59,53 @@ def convert_speed(speed: float, unit_from: str, unit_to: str) -> float:
         ...
     ValueError: invalid literal for int() with base 10: abc
     """
-    if unit_from == 'm/s':
-        if unit_to == 'km/h':
+    if unit_from == "m/s":
+        if unit_to == "km/h":
             return round(speed * 3.6, 2)
-        elif unit_to == 'mph':
+        elif unit_to == "mph":
             return round(speed * 2.23694, 2)
-        elif unit_to == 'knots':
+        elif unit_to == "knots":
             return round(speed * 1.94384, 2)
         else:
-            raise ValueError('invalid literal for int() with base 10: ' + unit_to)
+            raise ValueError("invalid literal for int() with base 10: " + unit_to)
 
-    elif unit_from == 'km/h':
-        if unit_to == 'm/s':
+    elif unit_from == "km/h":
+        if unit_to == "m/s":
             return round(speed / 3.6, 2)
-        elif unit_to == 'mph':
+        elif unit_to == "mph":
             return round(speed * 0.621371, 2)
-        elif unit_to == 'knots':
+        elif unit_to == "knots":
             return round(speed * 0.539957, 2)
         else:
-            raise ValueError('invalid literal for int() with base 10: ' + unit_to)
+            raise ValueError("invalid literal for int() with base 10: " + unit_to)
 
-    elif unit_from == 'mph':
-        if unit_to == 'm/s':
+    elif unit_from == "mph":
+        if unit_to == "m/s":
             return round(speed / 2.23694, 2)
-        elif unit_to == 'km/h':
+        elif unit_to == "km/h":
             return round(speed / 0.621371, 2)
-        elif unit_to == 'knots':
+        elif unit_to == "knots":
             return round(speed * 0.868976, 2)
         else:
-            raise ValueError('invalid literal for int() with base 10: ' + unit_to)
+            raise ValueError("invalid literal for int() with base 10: " + unit_to)
 
-    elif unit_from == 'knots':
-        if unit_to == 'm/s':
+    elif unit_from == "knots":
+        if unit_to == "m/s":
             return round(speed / 1.94384, 2)
-        elif unit_to == 'km/h':
+        elif unit_to == "km/h":
             return round(speed / 0.539957, 2)
-        elif unit_to == 'mph':
+        elif unit_to == "mph":
             return round(speed / 0.868976, 2)
         else:
-            raise ValueError('invalid literal for int() with base 10: ' + unit_to)
+            raise ValueError("invalid literal for int() with base 10: " + unit_to)
     else:
-        raise ValueError('invalid literal for int() with base 10: ' + unit_from)
+        raise ValueError("invalid literal for int() with base 10: " + unit_from)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     """
     Run doctests
-    
+
     >>> round(convert_speed(10, 'm/s', 'km/h'), 2)
     36.0
 
@@ -149,22 +150,23 @@ if __name__ == '__main__':
     >>> round(convert_speed(abc, 'm/s', 'km/h'), 2)
     Traceback (most recent call last):
     ...
-    ValueError: could not convert string to float: 'abc'    
+    ValueError: could not convert string to float: 'abc'
 
     """
     import doctest
+
     doctest.testmod()
 
     print("----Codes for speed units----")
     print("m/s: meters per second")
     print("km/h: kilometers per hour")
     print("mph: miles per hour")
-    print("knots: nautical miles per hour")  
+    print("knots: nautical miles per hour")
 
-    from_unit = input('From unit code: ')
-    to_unit = input('To unit code: ')
-    speed = input('Speed: ')
+    from_unit = input("From unit code: ")
+    to_unit = input("To unit code: ")
+    speed = input("Speed: ")
 
     speed_converted = round(convert_speed(float(speed), from_unit, to_unit), 2)
 
-    print(f'{speed} {from_unit} is {speed_converted} {to_unit}')
+    print(f"{speed} {from_unit} is {speed_converted} {to_unit}")
