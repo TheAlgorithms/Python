@@ -33,12 +33,12 @@ def euler_modified(
     >>> y[-1]
     0.5525976431951775
     """
-    N = int(np.ceil((x_end - x0) / step_size))
-    y = np.zeros((N + 1,))
+    n = int(np.ceil((x_end - x0) / step_size))
+    y = np.zeros((n + 1,))
     y[0] = y0
     x = x0
 
-    for k in range(N):
+    for k in range(n):
         y_get = y[k] + step_size * ode_func(x, y[k])
         y[k + 1] = y[k] + (
             (step_size / 2) * (ode_func(x, y[k]) + ode_func(x + step_size, y_get))

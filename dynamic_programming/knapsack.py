@@ -26,7 +26,7 @@ def knapsack(max_weight: int, weights: Sequence[int], values: Sequence[int], n: 
                     values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w]
                 )
             else:
-                dp[i][w] = dp[i - 1][w]
+                dp[i][w_] = dp[i - 1][w_]
 
     return dp[n][max_weight], dp
 

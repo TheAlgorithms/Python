@@ -12,7 +12,7 @@ import numpy as np
 
 class BifidCipher:
     def __init__(self) -> None:
-        SQUARE = [
+        SQUARE = [  # noqa: N806
             ["a", "b", "c", "d", "e"],
             ["f", "g", "h", "i", "k"],
             ["l", "m", "n", "o", "p"],

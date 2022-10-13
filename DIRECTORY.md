@@ -14,6 +14,7 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
+  * [Equal Loudness Filter](audio_filters/equal_loudness_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
@@ -152,6 +153,7 @@
     * [Binary Tree Mirror](data_structures/binary_tree/binary_tree_mirror.py)
     * [Binary Tree Traversals](data_structures/binary_tree/binary_tree_traversals.py)
     * [Fenwick Tree](data_structures/binary_tree/fenwick_tree.py)
+    * [Inorder Tree Traversal 2022](data_structures/binary_tree/inorder_tree_traversal_2022.py)
     * [Lazy Segment Tree](data_structures/binary_tree/lazy_segment_tree.py)
     * [Lowest Common Ancestor](data_structures/binary_tree/lowest_common_ancestor.py)
     * [Maximum Fenwick Tree](data_structures/binary_tree/maximum_fenwick_tree.py)
@@ -475,6 +477,8 @@
   * [Binomial Coefficient](maths/binomial_coefficient.py)
   * [Binomial Distribution](maths/binomial_distribution.py)
   * [Bisection](maths/bisection.py)
+  * [Carmichael Number](maths/carmichael_number.py)
+  * [Catalan Number](maths/catalan_number.py)
   * [Ceil](maths/ceil.py)
   * [Check Polygon](maths/check_polygon.py)
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
@@ -632,8 +636,9 @@
 
 ## Physics
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
-  * [Lorenz Transformation Four Vector](physics/lorenz_transformation_four_vector.py)
+  * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
+  * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
 
 ## Project Euler
@@ -925,6 +930,7 @@
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
   * [Highest Response Ratio Next](scheduling/highest_response_ratio_next.py)
+  * [Job Sequencing With Deadline](scheduling/job_sequencing_with_deadline.py)
   * [Multi Level Feedback Queue](scheduling/multi_level_feedback_queue.py)
   * [Non Preemptive Shortest Job First](scheduling/non_preemptive_shortest_job_first.py)
   * [Round Robin](scheduling/round_robin.py)
