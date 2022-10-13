@@ -45,8 +45,6 @@ def prime_factors(n: int) -> list[int]:
         factors.append(n)
     return factors
 
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+n=int(input("Enter the number whose prime factors is to be taken"))
+print("The prime factors are:")
+print(prime_factors(n))
