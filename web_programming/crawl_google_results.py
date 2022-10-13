@@ -1,12 +1,13 @@
+import webbrowser
 from sys import argv
 from urllib.parse import quote
-from requests import get
-import webbrowser
+
 from bs4 import BeautifulSoup
+from requests import get
 
 if __name__ == "__main__":
     if len(argv) > 1:
-        query = '%20'.join(argv[1:])
+        query = "%20".join(argv[1:])
     else:
         query = quote(str(input("Search: ")))
 
@@ -14,8 +15,18 @@ if __name__ == "__main__":
 
     url = f"https://www.google.com/search?q={query}&num=2"
 
-    res = get(url, headers={"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0"})
+    res = get(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0"
+        },
+    )
 
-    link = BeautifulSoup(res.text, "html.parser").find("div", attrs={"class" : "yuRUbf"}).find("a").get("href")
+    link = (
+        BeautifulSoup(res.text, "html.parser")
+        .find("div", attrs={"class": "yuRUbf"})
+        .find("a")
+        .get("href")
+    )
 
     webbrowser.open(link)
