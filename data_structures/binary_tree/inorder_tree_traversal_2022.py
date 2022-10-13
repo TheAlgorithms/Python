@@ -15,8 +15,17 @@ class BinaryTreeNode:
 
 
 def insert(node: BinaryTreeNode, new_value: int) -> BinaryTreeNode | None:
-    # if binary search tree is empty, make a new node
-    # and declare it as root
+    """
+    If the binary search tree is empty, make a new node and declare it as root.
+    >>> node_a = BinaryTreeNode(12345)
+    >>> node_b = insert(node_a, 67890)
+    >>> node_a.left_child == node_b.left_child
+    True
+    >>> node_a.right_child == node_b.right_child
+    True
+    >>> node_a.data == node_b.data
+    False
+    """"
     if node is None:
         node = BinaryTreeNode(new_value)
         return node
