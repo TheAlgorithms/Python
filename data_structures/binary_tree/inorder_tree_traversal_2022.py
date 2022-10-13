@@ -3,28 +3,6 @@ Illustrate how to implement inorder traversal in binary search tree.
 Author: Gurneet Singh
 https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/
 """
-
-"""
-5 items had no tests:
-    __main__
-    __main__.BinaryTreeNode
-    __main__.BinaryTreeNode.__init__
-    __main__.inorder
-    __main__.insert
-0 tests in 5 items.
-0 passed and 0 failed.
-Test passed.
-Printing values of binary search tree in Inorder Traversal.
-6
-10
-14
-15
-20
-25
-60
-"""
-
-
 class BinaryTreeNode:
     """Defining the structure of BinaryTreeNode"""
 
@@ -55,6 +33,17 @@ def insert(node: BinaryTreeNode, new_value: int) -> BinaryTreeNode:
 
 
 def inorder(node: None) -> BinaryTreeNode:  # if node is None,return
+    """
+    >>> inorder(make())
+    6
+    10
+    14
+    15
+    20
+    25
+    60
+    """
+    
     if node is None:
         return None
     # traverse left subtree
@@ -64,11 +53,8 @@ def inorder(node: None) -> BinaryTreeNode:  # if node is None,return
     # traverse right subtree
     inorder(node.right_child)
 
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+def make_tree()-> BinaryTreeNode | None:
+    
     root = insert(None, 15)
     insert(root, 10)
     insert(root, 25)
@@ -76,5 +62,17 @@ if __name__ == "__main__":
     insert(root, 14)
     insert(root, 20)
     insert(root, 60)
+    return root
+
+def main():
+    # main function 
+    root = make_tree()
     print("Printing values of binary search tree in Inorder Traversal.")
     inorder(root)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    main()
