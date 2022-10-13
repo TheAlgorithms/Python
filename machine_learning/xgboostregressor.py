@@ -1,8 +1,8 @@
 # XGBoost Regressor Example
 from sklearn.datasets import load_boston
-from xgboost import XGBRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
+from xgboost import XGBRegressor
 
 
 def main() -> None:
@@ -23,8 +23,8 @@ def main() -> None:
         x, y, test_size=0.25, random_state=1
     )
 
-    #XGBoost Regressor
-    xgb=XGBRegressor()
+    # XGBoost Regressor
+    xgb = XGBRegressor()
     xgb.fit(x_train, y_train)
 
     # Predict target for test data
