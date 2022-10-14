@@ -10,6 +10,8 @@ The implementation was tested on the leetcode: https://leetcode.com/problems/edi
 Levinstein distance
 Dynamic Programming: up -> down.
 """
+
+
 def min_distance_up_bottom(word1: str, word2: str) -> int:
     """
     >>> min_distance_up_bottom("intention", "execution")
@@ -29,7 +31,7 @@ def min_distance_up_bottom(word1: str, word2: str) -> int:
 
     @lru_cache(maxsize=None)
     def min_distance(index1, index2):
-        
+
         # if first word index is overflow - delete all from the second word
         if index1 >= len_word1:
             return len_word2 - index2
@@ -44,13 +46,15 @@ def min_distance_up_bottom(word1: str, word2: str) -> int:
             diff = 1
 
         return min(
-                    1 + min_distance(index1 + 1, index2),
-                    1 + min_distance(index1, index2 + 1),
-                    diff + min_distance(index1 + 1, index2 + 1)
+            1 + min_distance(index1 + 1, index2),
+            1 + min_distance(index1, index2 + 1),
+            diff + min_distance(index1 + 1, index2 + 1),
         )
 
     return min_distance(0, 0)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
