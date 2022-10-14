@@ -32,4 +32,5 @@ def binary_to_text(binary: str) -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
