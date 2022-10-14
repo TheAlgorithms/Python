@@ -73,7 +73,7 @@ def pollard_rho(
         """
         return (pow(value, 2) + step) % modulus
 
-    for attempt in range(attempts):
+    for _ in range(attempts):
         # These track the position within the cycle detection logic.
         tortoise = seed
         hare = seed

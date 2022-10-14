@@ -27,10 +27,10 @@ def solution():
     162
     """
     script_dir = os.path.dirname(os.path.realpath(__file__))
-    wordsFilePath = os.path.join(script_dir, "words.txt")
+    words_file_path = os.path.join(script_dir, "words.txt")
 
     words = ""
-    with open(wordsFilePath) as f:
+    with open(words_file_path) as f:
         words = f.readline()
 
     words = list(map(lambda word: word.strip('"'), words.strip("\r\n").split(",")))

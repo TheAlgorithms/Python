@@ -12,12 +12,12 @@ import requests
 
 
 def quote_of_the_day() -> list:
-    API_ENDPOINT_URL = "https://zenquotes.io/api/today/"
+    API_ENDPOINT_URL = "https://zenquotes.io/api/today/"  # noqa: N806
     return requests.get(API_ENDPOINT_URL).json()
 
 
 def random_quotes() -> list:
-    API_ENDPOINT_URL = "https://zenquotes.io/api/random/"
+    API_ENDPOINT_URL = "https://zenquotes.io/api/random/"  # noqa: N806
     return requests.get(API_ENDPOINT_URL).json()
 
 

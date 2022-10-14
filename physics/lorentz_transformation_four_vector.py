@@ -145,7 +145,7 @@ def transformation_matrix(velocity: float) -> np.array:
 
 
 def transform(
-    velocity: float, event: np.array = np.zeros(4), symbolic: bool = True
+    velocity: float, event: np.array = np.zeros(4), symbolic: bool = True  # noqa: B008
 ) -> np.array:
     """
     >>> transform(29979245,np.array([1,2,3,4]), False)

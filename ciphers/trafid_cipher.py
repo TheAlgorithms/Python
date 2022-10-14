@@ -2,12 +2,12 @@
 from __future__ import annotations
 
 
-def __encryptPart(messagePart: str, character2Number: dict[str, str]) -> str:
+def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     one, two, three = "", "", ""
     tmp = []
 
-    for character in messagePart:
-        tmp.append(character2Number[character])
+    for character in message_part:
+        tmp.append(character_to_number[character])
 
     for each in tmp:
         one += each[0]
@@ -17,18 +17,18 @@ def __encryptPart(messagePart: str, character2Number: dict[str, str]) -> str:
     return one + two + three
 
 
-def __decryptPart(
-    messagePart: str, character2Number: dict[str, str]
+def __decrypt_part(
+    message_part: str, character_to_number: dict[str, str]
 ) -> tuple[str, str, str]:
-    tmp, thisPart = "", ""
+    tmp, this_part = "", ""
     result = []
 
-    for character in messagePart:
-        thisPart += character2Number[character]
+    for character in message_part:
+        this_part += character_to_number[character]
 
-    for digit in thisPart:
+    for digit in this_part:
         tmp += digit
-        if len(tmp) == len(messagePart):
+        if len(tmp) == len(message_part):
             result.append(tmp)
             tmp = ""
 
@@ -79,51 +79,57 @@ def __prepare(
         "332",
         "333",
     )
-    character2Number = {}
-    number2Character = {}
+    character_to_number = {}
+    number_to_character = {}
     for letter, number in zip(alphabet, numbers):
-        character2Number[letter] = number
-        number2Character[number] = letter
+        character_to_number[letter] = number
+        number_to_character[number] = letter
 
-    return message, alphabet, character2Number, number2Character
+    return message, alphabet, character_to_number, number_to_character
 
 
-def encryptMessage(
+def encrypt_message(
     message: str, alphabet: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period: int = 5
 ) -> str:
-    message, alphabet, character2Number, number2Character = __prepare(message, alphabet)
+    message, alphabet, character_to_number, number_to_character = __prepare(
+        message, alphabet
+    )
     encrypted, encrypted_numeric = "", ""
 
     for i in range(0, len(message) + 1, period):
-        encrypted_numeric += __encryptPart(message[i : i + period], character2Number)
+        encrypted_numeric += __encrypt_part(
+            message[i : i + period], character_to_number
+        )
 
     for i in range(0, len(encrypted_numeric), 3):
-        encrypted += number2Character[encrypted_numeric[i : i + 3]]
+        encrypted += number_to_character[encrypted_numeric[i : i + 3]]
 
     return encrypted
 
 
-def decryptMessage(
+def decrypt_message(
     message: str, alphabet: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period: int = 5
 ) -> str:
-    message, alphabet, character2Number, number2Character = __prepare(message, alphabet)
+    message, alphabet, character_to_number, number_to_character = __prepare(
+        message, alphabet
+    )
     decrypted_numeric = []
     decrypted = ""
 
     for i in range(0, len(message) + 1, period):
-        a, b, c = __decryptPart(message[i : i + period], character2Number)
+        a, b, c = __decrypt_part(message[i : i + period], character_to_number)
 
         for j in range(0, len(a)):
             decrypted_numeric.append(a[j] + b[j] + c[j])
 
     for each in decrypted_numeric:
-        decrypted += number2Character[each]
+        decrypted += number_to_character[each]
 
     return decrypted
 
 
 if __name__ == "__main__":
     msg = "DEFEND THE EAST WALL OF THE CASTLE."
-    encrypted = encryptMessage(msg, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
-    decrypted = decryptMessage(encrypted, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
+    encrypted = encrypt_message(msg, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
+    decrypted = decrypt_message(encrypted, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
     print(f"Encrypted: {encrypted}\nDecrypted: {decrypted}")

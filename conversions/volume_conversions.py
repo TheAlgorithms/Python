@@ -52,11 +52,7 @@ def volume_conversion(value: float, from_type: str, to_type: str) -> float:
     0.000236588
     >>> volume_conversion(4, "wrongUnit", "litre")
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest __main__.volume_conversion[7]>", line 1, in <module>
-        volume_conversion(4, "wrongUnit", "litre")
-      File "<string>", line 62, in volume_conversion
+        ...
     ValueError: Invalid 'from_type' value: 'wrongUnit'  Supported values are:
     cubicmeter, litre, kilolitre, gallon, cubicyard, cubicfoot, cup
     """

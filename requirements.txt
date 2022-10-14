@@ -17,3 +17,4 @@ tensorflow
 texttable
 tweepy
 xgboost
+yulewalker

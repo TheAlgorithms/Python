@@ -16,8 +16,8 @@ def psnr(original: float, contrast: float) -> float:
     mse = np.mean((original - contrast) ** 2)
     if mse == 0:
         return 100
-    PIXEL_MAX = 255.0
-    PSNR = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
+    PIXEL_MAX = 255.0  # noqa: N806
+    PSNR = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))  # noqa: N806
     return PSNR
 
 

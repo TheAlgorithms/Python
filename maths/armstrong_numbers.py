@@ -25,7 +25,7 @@ def armstrong_number(n: int) -> bool:
         return False
 
     # Initialization of sum and number of digits.
-    sum = 0
+    total = 0
     number_of_digits = 0
     temp = n
     # Calculation of digits of the number
@@ -36,9 +36,9 @@ def armstrong_number(n: int) -> bool:
     temp = n
     while temp > 0:
         rem = temp % 10
-        sum += rem**number_of_digits
+        total += rem**number_of_digits
         temp //= 10
-    return n == sum
+    return n == total
 
 
 def pluperfect_number(n: int) -> bool:
@@ -55,7 +55,7 @@ def pluperfect_number(n: int) -> bool:
     # Init a "histogram" of the digits
     digit_histogram = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     digit_total = 0
-    sum = 0
+    total = 0
     temp = n
     while temp > 0:
         temp, rem = divmod(temp, 10)
@@ -63,9 +63,9 @@ def pluperfect_number(n: int) -> bool:
         digit_total += 1
 
     for (cnt, i) in zip(digit_histogram, range(len(digit_histogram))):
-        sum += cnt * i**digit_total
+        total += cnt * i**digit_total
 
-    return n == sum
+    return n == total
 
 
 def narcissistic_number(n: int) -> bool:
