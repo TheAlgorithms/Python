@@ -1,10 +1,11 @@
 # XGBoost Classifier Example
+from doctest import testmod
+
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.metrics import plot_confusion_matrix
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
-from doctest import testmod
 
 
 def data_handling(data) -> list:
@@ -53,4 +54,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    testmod(name ='main', verbose = True)
+    testmod(name="main", verbose=True)
