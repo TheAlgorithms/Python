@@ -14,8 +14,7 @@ from __future__ import annotations
 
 class Node:
     """
-    A Node has value variable and pointers
-    to Nodes to its left and right.
+    A Node has a value variable and pointers to Nodes to its left and right.
     """
 
     def __init__(self, value: int) -> None:
