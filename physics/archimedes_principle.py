@@ -8,7 +8,9 @@ Discovered by greek mathematician, Archimedes. The principle is named after him
 g = 9.80665
 
 
-def archimedes_principle(fluid_density: float, volume: float, gravity: float = g) -> float:
+def archimedes_principle(
+    fluid_density: float, volume: float, gravity: float = g
+) -> float:
     """
     Calculates buoyant force on object submerged within static fluid.
     Formula for buoyant force also known as Archimedes Principle.
