@@ -14,7 +14,9 @@ Source:
 g = 9.80665
 
 
-def archimedes_principle(fluid_density: float, volume: float, gravity: float = g) -> float:
+def archimedes_principle(
+    fluid_density: float, volume: float, gravity: float = g
+) -> float:
     """
     Args:
         fluid_density: density of fluid (kg/m^3)
