@@ -1,6 +1,4 @@
 # XGBoost Classifier Example
-from doctest import testmod
-
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.metrics import plot_confusion_matrix
@@ -8,14 +6,14 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
 
-def data_handling(data) -> list:
+def data_handling(data: list) -> tuple:
     # Split dataset into train and test data
     x = data["data"]  # features
     y = data["target"]
     return x, y
 
 
-def xgboost(features, target):
+def xgboost(features: list, target: list):
     classifier = XGBClassifier()
     classifier.fit(features, target)
     return classifier
@@ -54,4 +52,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    testmod(name="main", verbose=True)
+    main()
