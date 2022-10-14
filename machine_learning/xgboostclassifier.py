@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
 
-def data_handling(data: list) -> tuple[list, list]:
+def data_handling(data: list) -> tuple:
     # Split dataset into train and test data
     x = data["data"]  # features
     y = data["target"]
