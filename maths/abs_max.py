@@ -14,11 +14,7 @@ def abs_max(x: list[int]) -> int:
     """
     if len(x) == 0:
         raise ValueError("abs_max() arg is an empty sequence")
-    j = x[0]
-    for i in x:
-        if abs(i) > abs(j):
-            j = i
-    return j
+    return max(x, key=abs)
 
 
 def abs_max_sort(x: list[int]) -> int:
