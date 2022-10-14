@@ -14,7 +14,7 @@ def text_to_binary(text: str) -> str:
     return " ".join(map(lambda char: bin(ord(char))[2:], text))
 
 
-def binary_to_text(bin: str) -> str:
+def binary_to_text(binary: str) -> str:
     """
     Converts any binary to string
 
@@ -27,13 +27,16 @@ def binary_to_text(bin: str) -> str:
     >>> binary_to_text('10011101100100 1111111000001111')
     '❤️'
     """
-    return "".join(map(lambda bin_text: chr(int(bin_text, base=2)), bin.split()))
+    return "".join(map(lambda bin_text: chr(int(bin_text, base=2)), binary.split()))
 
 
 if __name__ == "__main__":
     while True:
         string = input(
-            "Choose from below options : [1,2]\n1. Convert text to binary\n2. Convert binary to text\n3. Cancel\n: "
+            """Choose from below options : [1,2]
+    1. Convert text to binary
+    2. Convert binary to text
+    3. Cancel\n: """
         )
         if string == "1":
             print(
