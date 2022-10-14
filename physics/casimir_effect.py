@@ -1,38 +1,38 @@
 """
-Title : Finding the value of magnitude of either the Casimir force, the surface area 
-of one of the plates or distance between the plates provided that the other 
+Title : Finding the value of magnitude of either the Casimir force, the surface area
+of one of the plates or distance between the plates provided that the other
 two parameters are given.
 
-Description : In quantum field theory, the Casimir effect is a physical force 
-acting on the macroscopic boundaries of a confined space which arises from the 
-quantum fluctuations of the field. It is a physical force exerted between separate 
-objects, which is due to neither charge, gravity, nor the exchange of particles, 
-but instead is due to resonance of all-pervasive energy fields in the intervening 
-space between the objects. Since the strength of the force falls off rapidly with 
-distance it is only measurable when the distance between the objects is extremely 
-small. On a submicron scale, this force becomes so strong that it becomes the 
+Description : In quantum field theory, the Casimir effect is a physical force
+acting on the macroscopic boundaries of a confined space which arises from the
+quantum fluctuations of the field. It is a physical force exerted between separate
+objects, which is due to neither charge, gravity, nor the exchange of particles,
+but instead is due to resonance of all-pervasive energy fields in the intervening
+space between the objects. Since the strength of the force falls off rapidly with
+distance it is only measurable when the distance between the objects is extremely
+small. On a submicron scale, this force becomes so strong that it becomes the
 dominant force between uncharged conductors.
 
-Dutch physicist Hendrik B. G. Casimir first proposed the existence of the force, 
-and he formulated an experiment to detect it in 1948 while participating in research 
-at Philips Research Labs. The classic form of his experiment used a pair of uncharged 
-parallel metal plates in a vacuum, and successfully demonstrated the force to within 
+Dutch physicist Hendrik B. G. Casimir first proposed the existence of the force,
+and he formulated an experiment to detect it in 1948 while participating in research
+at Philips Research Labs. The classic form of his experiment used a pair of uncharged
+parallel metal plates in a vacuum, and successfully demonstrated the force to within
 15% of the value he had predicted according to his theory.
 
 The Casimir force F for idealized, perfectly conducting plates of surface area
-A square meter and placed at a distance of a meter apart with vacuum between 
+A square meter and placed at a distance of a meter apart with vacuum between
 them is expressed as -
 
 F = - ((Reduced Planck Constant ℏ) * c * Pi^2 * A) / (240 * a^4)
 
-Here, the negative sign indicates the force is attractive in nature. For the ease 
+Here, the negative sign indicates the force is attractive in nature. For the ease
 of calculation, only the magnitude of the force is considered.
 
 Source :
 - https://en.wikipedia.org/wiki/Casimir_effect
 - https://www.cs.mcgill.ca/~rwest/wikispeedia/wpcd/wp/c/Casimir_effect.htm
-- Casimir, H. B. ; Polder, D. (1948) "The Influence of Retardation on the 
-  London-van der Waals Forces", Physical Review, vol. 73, Issue 4, pp. 360-372 
+- Casimir, H. B. ; Polder, D. (1948) "The Influence of Retardation on the
+  London-van der Waals Forces", Physical Review, vol. 73, Issue 4, pp. 360-372
 """
 
 from __future__ import annotations
@@ -41,14 +41,12 @@ from __future__ import annotations
 # Pi and the function
 REDUCED_PLANCK_CONSTANT = 1.054571817e-34  # unit of ℏ : J * s
 
-SPEED_OF_LIGHT = 3e8 # unit of c : m * s^-1
+SPEED_OF_LIGHT = 3e8  # unit of c : m * s^-1
 
 PI = 3.14
 
 
-def casimir_force(
-    force: float, area: float, distance: float
-) -> dict[str, float]:
+def casimir_force(force: float, area: float, distance: float) -> dict[str, float]:
 
     """
     Input Parameters
@@ -99,13 +97,19 @@ def casimir_force(
     if area < 0:
         raise ValueError("Area can not be negative")
     if force == 0:
-        force = (REDUCED_PLANCK_CONSTANT * SPEED_OF_LIGHT * PI**2 * area) / (240 * (distance)**4)
+        force = (REDUCED_PLANCK_CONSTANT * SPEED_OF_LIGHT * PI**2 * area) / (
+            240 * (distance) ** 4
+        )
         return {"force": force}
     elif area == 0:
-        area = (240 * force * (distance)**4) / (REDUCED_PLANCK_CONSTANT * SPEED_OF_LIGHT * PI**2)
+        area = (240 * force * (distance) ** 4) / (
+            REDUCED_PLANCK_CONSTANT * SPEED_OF_LIGHT * PI**2
+        )
         return {"area": area}
     elif distance == 0:
-        distance = ((REDUCED_PLANCK_CONSTANT * SPEED_OF_LIGHT * PI**2 * area) / (240 * force) )**(1/4)
+        distance = (
+            (REDUCED_PLANCK_CONSTANT * SPEED_OF_LIGHT * PI**2 * area) / (240 * force)
+        ) ** (1 / 4)
         return {"distance": distance}
     raise ValueError("One and only one argument must be 0")
 
