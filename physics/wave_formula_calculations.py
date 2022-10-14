@@ -3,9 +3,9 @@
 """
 Background:
 The Wave Formulas are for calculating the characteristics
-of a wave.
+of a wave. 
 
-Used for stuff like the:-
+Used for stuff like the:- 
 
 1. Speed of a wave in water
 2. Frequency of wave a in air
@@ -21,21 +21,19 @@ Not sure if this can work for really big numbers.
 """
 
 # Formula components are strings so that its easier to print them out
-v = ""  # Wave Speed/Velocity
-wavelength = ""
-frequency = ""
+v = ''  # Wave Speed/Velocity
+wavelength = ''
+frequency = ''
 
-# Constant
-CALC_TO_DO_STATEMENT = """
+
+calc_to_do_input = input("""
 Would you like to :-
 1. Calculate Speed of a Wave
 2. Calculate Wavelength of a Wave
 3. Calculate Frequency of a Wave
 
 Input 1, 2, 3 for the respective wave calculation.
-> """
-
-calc_to_do_input = input(CALC_TO_DO_STATEMENT)
+> """)
 
 while type(calc_to_do_input) != int:
     if calc_to_do_input == "1" or calc_to_do_input == "2" or calc_to_do_input == "3":
@@ -43,7 +41,14 @@ while type(calc_to_do_input) != int:
         break
     else:
         print("\nChoice out of scope")
-        calc_to_do_input = input(CALC_TO_DO_STATEMENT)
+        calc_to_do_input = input("""
+Would you like to :-
+1. Calculate Speed of a Wave
+2. Calculate Wavelength of a Wave
+3. Calculate Frequency of a Wave
+
+Input 1, 2, 3 for the respective wave calculation.
+> """)
 
 if calc_to_do == 1:
 
@@ -55,12 +60,12 @@ if calc_to_do == 1:
     frequency_input = float(input("Enter the frequency of the wave (Hz): "))
     while frequency_input <= 0:
         print("Frequency must be greater than zero.")
-        frequency_input = float(input("Enter the Frequency of the wave (Hz): "))
+        frequency_input = float(input("Enter the Frequency of the wave (Hz): ")) 
 
     # Wave Speed Formula
     calced_v = wavelength_input * frequency_input
     v = str(calced_v)
-    print("Wave Speed =", v + "m/s")
+    print("Wave Speed =", v + 'm/s')
 
 if calc_to_do == 2:
 
@@ -72,7 +77,7 @@ if calc_to_do == 2:
     frequency_input = float(input("Enter the frequency of the wave (Hz): "))
     while frequency_input <= 0:
         print("Frequency must be greater than zero.")
-        frequency_input = float(input("Enter the Frequency of the wave (Hz): "))
+        frequency_input = float(input("Enter the Frequency of the wave (Hz): ")) 
 
     # Wavelength Formula
     calced_wavelength = v_input / frequency_input
@@ -90,8 +95,8 @@ if calc_to_do == 3:
     while wavelength_input <= 0:
         print("Wavelength must be greater than zero.")
         wavelength_input = float(input("Enter the wavelength of the wave (meters): "))
-
+    
     # Frequency Formula
     calced_frequency = v_input / wavelength_input
     frequency = str(calced_frequency)
-    print("Frequency =", frequency + "Hz")
+    print("Frequency =", frequency + "Hz")   
