@@ -1,18 +1,17 @@
-def factors_of_a_number(num: int) -> list:
-    """
-    >>> factors_of_a_number(1)
-    [1]
-    >>> factors_of_a_number(5)
-    [1, 5]
-    >>> factors_of_a_number(24)
-    [1, 2, 3, 4, 6, 8, 12, 24]
-    >>> factors_of_a_number(-24)
-    []
-    """
-    return [i for i in range(1, num + 1) if num % i == 0]
+list1=[]                                                    # declaring an empty list to store the factors after calculation
+x=int(input("Enter a positive number: "))                   # accepting a number from the user
+for i in range(1,x+1):                                      # calculating and storing the factors in the list
+    if x%i==0:
+        list1.append(i)
+print("The factors of the number",x,"are:--\n",list1)       # printing out the factors of the given number in the form of a list
 
-
-if __name__ == "__main__":
-    num = int(input("Enter a number to find its factors: "))
-    factors = factors_of_a_number(num)
-    print(f"{num} has {len(factors)} factors: {', '.join(str(f) for f in factors)}")
+"""       ---::Output::---
+>>> The factors of the number 1 are:--
+[1]
+>>> The factors of the number 5 are:--
+[1, 5]
+>>> The factors of the number 24 are:--
+[1, 2, 3, 4, 6, 8, 12, 24]
+>>> The factors of the number -24 are:--
+[]
+"""
