@@ -1,3 +1,8 @@
+"""
+   Find the element that appears once in an array where every other element appears twice
+   https://www.geeksforgeeks.org/find-element-appears-array-every-element-appears-twice/
+"""
+
 def find_unique_xor(nums: list) -> float:
     """
     Find unique from a given list of numbers with 2n+1
