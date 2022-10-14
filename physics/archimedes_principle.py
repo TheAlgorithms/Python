@@ -21,7 +21,8 @@ def archimedes_principle(
     Args:
         fluid_density: density of fluid (kg/m^3)
         volume: volume of object / liquid being displaced by object
-        gravity: Acceleration from gravity. Gravitational force on system. Default is Earth Gravity
+        gravity: Acceleration from gravity. Gravitational force on system,
+            Default is Earth Gravity
     returns:
         buoyant force on object in Newtons
 
