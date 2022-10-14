@@ -1,10 +1,10 @@
 """
 Sum of all nodes in a binary tree.
 
-Python implementation: 
+Python implementation:
     O(n) time complexity - Recurses through :meth:`depth_first_search`
                             with each element.
-    O(n) space complexity - At any point in time maximum number of stack 
+    O(n) space complexity - At any point in time maximum number of stack
                             frames that could be in memory is `n`
 """
 
@@ -62,15 +62,14 @@ class BinaryTreeNodeSum:
         if node is None:
             return 0
         return node.value + (
-            self.depth_first_search(node.left) +
-            self.depth_first_search(node.right)
+            self.depth_first_search(node.left) + self.depth_first_search(node.right)
         )
 
     def node_sum(self) -> int:
         return self.depth_first_search(self.tree)
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
