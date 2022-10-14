@@ -7,15 +7,14 @@ def find_unique_xor(nums: list) -> float:
     26
     >>> find_unique_xor([1,2,1,2])
     -1
-    
+
     """
     if len(nums) % 2 == 0:
-      return -1
+        return -1
     ans = 0
     for i in nums:
-      ans = ans ^ i
+        ans = ans ^ i
     return ans
-      
 
 
 if __name__ == "__main__":
