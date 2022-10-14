@@ -1010,6 +1010,7 @@
   * [Alternative String Arrange](strings/alternative_string_arrange.py)
   * [Anagrams](strings/anagrams.py)
   * [Autocomplete Using Trie](strings/autocomplete_using_trie.py)
+  * [Binary and Text](strings/binary_and_text.py)
   * [Boyer Moore Search](strings/boyer_moore_search.py)
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
