@@ -30,9 +30,9 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     """
     # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
     # Distance in metres(m)
-    AXIS_A = 6378137.0
-    AXIS_B = 6356752.314245
-    RADIUS = 6378137
+    AXIS_A = 6378137.0  # noqa: N806
+    AXIS_B = 6356752.314245  # noqa: N806
+    RADIUS = 6378137  # noqa: N806
     # Equation parameters
     # Equation https://en.wikipedia.org/wiki/Haversine_formula#Formulation
     flattening = (AXIS_A - AXIS_B) / AXIS_A

@@ -26,10 +26,10 @@ if __name__ == "__main__":
 
     start_time = time.time()
     with open("dictionary.txt") as in_file:
-        wordList = in_file.read().splitlines()
+        word_list = in_file.read().splitlines()
 
     all_patterns: dict = {}
-    for word in wordList:
+    for word in word_list:
         pattern = get_word_pattern(word)
         if pattern in all_patterns:
             all_patterns[pattern].append(word)
@@ -39,6 +39,6 @@ if __name__ == "__main__":
     with open("word_patterns.txt", "w") as out_file:
         out_file.write(pprint.pformat(all_patterns))
 
-    totalTime = round(time.time() - start_time, 2)
-    print(f"Done!  {len(all_patterns):,} word patterns found in {totalTime} seconds.")
+    total_time = round(time.time() - start_time, 2)
+    print(f"Done!  {len(all_patterns):,} word patterns found in {total_time} seconds.")
     # Done!  9,581 word patterns found in 0.58 seconds.

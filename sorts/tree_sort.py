@@ -5,7 +5,7 @@ Build a BST and in order traverse.
 """
 
 
-class node:
+class Node:
     # BST data structure
     def __init__(self, val):
         self.val = val
@@ -16,12 +16,12 @@ class node:
         if self.val:
             if val < self.val:
                 if self.left is None:
-                    self.left = node(val)
+                    self.left = Node(val)
                 else:
                     self.left.insert(val)
             elif val > self.val:
                 if self.right is None:
-                    self.right = node(val)
+                    self.right = Node(val)
                 else:
                     self.right.insert(val)
         else:
@@ -40,7 +40,7 @@ def tree_sort(arr):
     # Build BST
     if len(arr) == 0:
         return arr
-    root = node(arr[0])
+    root = Node(arr[0])
     for i in range(1, len(arr)):
         root.insert(arr[i])
     # Traverse BST in order.

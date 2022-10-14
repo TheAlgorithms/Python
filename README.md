@@ -24,9 +24,6 @@
   <a href="https://github.com/TheAlgorithms/Python/actions">
     <img src="https://img.shields.io/github/workflow/status/TheAlgorithms/Python/build?label=CI&logo=github&style=flat-square" height="20" alt="GitHub Workflow Status">
   </a>
-  <a href="https://lgtm.com/projects/g/TheAlgorithms/Python/alerts">
-    <img src="https://img.shields.io/lgtm/alerts/github/TheAlgorithms/Python.svg?label=LGTM&logo=LGTM&style=flat-square" height="20" alt="LGTM">
-  </a>
   <a href="https://github.com/pre-commit/pre-commit">
     <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white&style=flat-square" height="20" alt="pre-commit">
   </a>
@@ -37,7 +34,7 @@
   <h3>All algorithms implemented in Python - for education</h3>
 </div>
 
-Implementations are for learning purposes only. As they may be less efficient than the implementations in the Python standard library, use them at your discretion.
+Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
 
 ## Getting Started
 
@@ -45,8 +42,8 @@ Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribut
 
 ## Community Channels
 
-We're on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms)! Community channels are great for you to ask questions and get help. Please join us!
+We are on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms)! Community channels are a great way for you to ask questions and get help. Please join us!
 
 ## List of Algorithms
 
-See our [directory](DIRECTORY.md) for easier navigation and better overview of the project.
+See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.

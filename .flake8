@@ -1,0 +1,3 @@
+[flake8]
+extend-ignore =
+    A003  # Class attribute is shadowing a python builtin

@@ -8,9 +8,9 @@ def floyd(n):
     n : size of pattern
     """
     for i in range(0, n):
-        for j in range(0, n - i - 1):  # printing spaces
+        for _ in range(0, n - i - 1):  # printing spaces
             print(" ", end="")
-        for k in range(0, i + 1):  # printing stars
+        for _ in range(0, i + 1):  # printing stars
             print("* ", end="")
         print()
 
@@ -22,10 +22,10 @@ def reverse_floyd(n):
     n : size of pattern
     """
     for i in range(n, 0, -1):
-        for j in range(i, 0, -1):  # printing stars
+        for _ in range(i, 0, -1):  # printing stars
             print("* ", end="")
         print()
-        for k in range(n - i + 1, 0, -1):  # printing spaces
+        for _ in range(n - i + 1, 0, -1):  # printing spaces
             print(" ", end="")
 
 
