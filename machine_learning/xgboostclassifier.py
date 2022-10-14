@@ -6,13 +6,19 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
 
-def data_handling(data: list) -> tuple[list,list,list]:
+def data_handling(data: list) -> tuple[list, list, list]:
     # Split dataset into train and test data
-    x=(data["data"],data["target"],data['target_names']) #data is features
+    x = (data["data"], data["target"], data["target_names"])  # data is features
     return x
 
 
-def xgboost(features: list, target: list,test_features: list,test_targets: list,namesofflowers: list) -> None:
+def xgboost(
+    features: list,
+    target: list,
+    test_features: list,
+    test_targets: list,
+    namesofflowers: list,
+) -> None:
     classifier = XGBClassifier()
     classifier.fit(features, target)
     # Display Confusion Matrix of Classifier
@@ -28,6 +34,7 @@ def xgboost(features: list, target: list,test_features: list,test_targets: list,
     plt.title("Normalized Confusion Matrix - IRIS Dataset")
     plt.show()
 
+
 def main() -> None:
 
     """
@@ -38,14 +45,16 @@ def main() -> None:
 
     # Load Iris dataset
     iris = load_iris()
-    
+
     features, target, names = data_handling(iris)
-    
+
     x_train, x_test, y_train, y_test = train_test_split(
-        features, target, test_size=0.25)
+        features, target, test_size=0.25
+    )
 
     # XGBoost Classifier
-    xgboost(x_train, y_train,x_test,y_test,names)
+    xgboost(x_train, y_train, x_test, y_test, names)
+
 
 if __name__ == "__main__":
     main()
