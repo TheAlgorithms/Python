@@ -12,7 +12,7 @@ def data_handling(data: dict) -> tuple:
     return x
 
 
-def xgboost(features: list,target: list) # -> returns a trained model:
+def xgboost(features: list,target: list) :# -> returns a trained model:
     classifier = XGBClassifier()
     classifier.fit(features, target)
     return classifier
