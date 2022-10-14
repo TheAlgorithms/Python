@@ -3,6 +3,7 @@
    https://www.geeksforgeeks.org/find-element-appears-array-every-element-appears-twice/
 """
 
+
 def find_unique_xor(nums: list) -> float:
     """
     Find unique from a given list of numbers with 2n+1
