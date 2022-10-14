@@ -351,7 +351,7 @@ def area_trapezium(base1: float, base2: float, height: float) -> float:
     """
     Calculate the area of a trapezium.
     <<<<<<< patch-2
-    Formula - (a+b) * height * 0.5 
+    Formula - (a+b) * height * 0.5
     a = parallele side 1, b = parallel side 2
 
     =======
