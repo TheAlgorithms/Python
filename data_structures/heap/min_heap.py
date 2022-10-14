@@ -52,14 +52,14 @@ class MinHeap:
         return self.heap_dict[key]
 
     def build_heap(self, array):
-        lastIdx = len(array) - 1
-        startFrom = self.get_parent_idx(lastIdx)
+        last_idx = len(array) - 1
+        start_from = self.get_parent_idx(last_idx)
 
         for idx, i in enumerate(array):
             self.idx_of_element[i] = idx
             self.heap_dict[i.name] = i.val
 
-        for i in range(startFrom, -1, -1):
+        for i in range(start_from, -1, -1):
             self.sift_down(i, array)
         return array
 
@@ -123,12 +123,12 @@ class MinHeap:
     def is_empty(self):
         return True if len(self.heap) == 0 else False
 
-    def decrease_key(self, node, newValue):
+    def decrease_key(self, node, new_value):
         assert (
-            self.heap[self.idx_of_element[node]].val > newValue
+            self.heap[self.idx_of_element[node]].val > new_value
         ), "newValue must be less that current value"
-        node.val = newValue
-        self.heap_dict[node.name] = newValue
+        node.val = new_value
+        self.heap_dict[node.name] = new_value
         self.sift_up(self.idx_of_element[node])
 
 
@@ -143,7 +143,7 @@ e = Node("E", 4)
 # Use one of these two ways to generate Min-Heap
 
 # Generating Min-Heap from array
-myMinHeap = MinHeap([r, b, a, x, e])
+my_min_heap = MinHeap([r, b, a, x, e])
 
 # Generating Min-Heap by Insert method
 # myMinHeap.insert(a)
@@ -154,14 +154,14 @@ myMinHeap = MinHeap([r, b, a, x, e])
 
 # Before
 print("Min Heap - before decrease key")
-for i in myMinHeap.heap:
+for i in my_min_heap.heap:
     print(i)
 
 print("Min Heap - After decrease key of node [B -> -17]")
-myMinHeap.decrease_key(b, -17)
+my_min_heap.decrease_key(b, -17)
 
 # After
-for i in myMinHeap.heap:
+for i in my_min_heap.heap:
     print(i)
 
 if __name__ == "__main__":

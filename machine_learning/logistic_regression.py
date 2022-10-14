@@ -35,25 +35,25 @@ def cost_function(h, y):
     return (-y * np.log(h) - (1 - y) * np.log(1 - h)).mean()
 
 
-def log_likelihood(X, Y, weights):
-    scores = np.dot(X, weights)
-    return np.sum(Y * scores - np.log(1 + np.exp(scores)))
+def log_likelihood(x, y, weights):
+    scores = np.dot(x, weights)
+    return np.sum(y * scores - np.log(1 + np.exp(scores)))
 
 
 # here alpha is the learning rate, X is the feature matrix,y is the target matrix
-def logistic_reg(alpha, X, y, max_iterations=70000):
-    theta = np.zeros(X.shape[1])
+def logistic_reg(alpha, x, y, max_iterations=70000):
+    theta = np.zeros(x.shape[1])
 
     for iterations in range(max_iterations):
-        z = np.dot(X, theta)
+        z = np.dot(x, theta)
         h = sigmoid_function(z)
-        gradient = np.dot(X.T, h - y) / y.size
+        gradient = np.dot(x.T, h - y) / y.size
         theta = theta - alpha * gradient  # updating the weights
-        z = np.dot(X, theta)
+        z = np.dot(x, theta)
         h = sigmoid_function(z)
-        J = cost_function(h, y)
+        j = cost_function(h, y)
         if iterations % 100 == 0:
-            print(f"loss: {J} \t")  # printing the loss after every 100 iterations
+            print(f"loss: {j} \t")  # printing the loss after every 100 iterations
     return theta
 
 
@@ -61,23 +61,23 @@ def logistic_reg(alpha, X, y, max_iterations=70000):
 
 if __name__ == "__main__":
     iris = datasets.load_iris()
-    X = iris.data[:, :2]
+    x = iris.data[:, :2]
     y = (iris.target != 0) * 1
 
     alpha = 0.1
-    theta = logistic_reg(alpha, X, y, max_iterations=70000)
+    theta = logistic_reg(alpha, x, y, max_iterations=70000)
     print("theta: ", theta)  # printing the theta i.e our weights vector
 
-    def predict_prob(X):
+    def predict_prob(x):
         return sigmoid_function(
-            np.dot(X, theta)
+            np.dot(x, theta)
         )  # predicting the value of probability from the logistic regression algorithm
 
     plt.figure(figsize=(10, 6))
-    plt.scatter(X[y == 0][:, 0], X[y == 0][:, 1], color="b", label="0")
-    plt.scatter(X[y == 1][:, 0], X[y == 1][:, 1], color="r", label="1")
-    (x1_min, x1_max) = (X[:, 0].min(), X[:, 0].max())
-    (x2_min, x2_max) = (X[:, 1].min(), X[:, 1].max())
+    plt.scatter(x[y == 0][:, 0], x[y == 0][:, 1], color="b", label="0")
+    plt.scatter(x[y == 1][:, 0], x[y == 1][:, 1], color="r", label="1")
+    (x1_min, x1_max) = (x[:, 0].min(), x[:, 0].max())
+    (x2_min, x2_max) = (x[:, 1].min(), x[:, 1].max())
     (xx1, xx2) = np.meshgrid(np.linspace(x1_min, x1_max), np.linspace(x2_min, x2_max))
     grid = np.c_[xx1.ravel(), xx2.ravel()]
     probs = predict_prob(grid).reshape(xx1.shape)

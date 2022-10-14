@@ -1,7 +1,7 @@
 import math
 
 
-def rearrange(bitString32):
+def rearrange(bit_string_32):
     """[summary]
     Regroups the given binary string.
 
@@ -17,21 +17,21 @@ def rearrange(bitString32):
     'pqrstuvwhijklmno90abcdfg12345678'
     """
 
-    if len(bitString32) != 32:
+    if len(bit_string_32) != 32:
         raise ValueError("Need length 32")
-    newString = ""
+    new_string = ""
     for i in [3, 2, 1, 0]:
-        newString += bitString32[8 * i : 8 * i + 8]
-    return newString
+        new_string += bit_string_32[8 * i : 8 * i + 8]
+    return new_string
 
 
-def reformatHex(i):
+def reformat_hex(i):
     """[summary]
     Converts the given integer into 8-digit hex number.
 
     Arguments:
             i {[int]} -- [integer]
-    >>> reformatHex(666)
+    >>> reformat_hex(666)
     '9a020000'
     """
 
@@ -42,7 +42,7 @@ def reformatHex(i):
     return thing
 
 
-def pad(bitString):
+def pad(bit_string):
     """[summary]
     Fills up the binary string to a 512 bit binary string
 
@@ -52,33 +52,33 @@ def pad(bitString):
     Returns:
             [string] -- [binary string]
     """
-    startLength = len(bitString)
-    bitString += "1"
-    while len(bitString) % 512 != 448:
-        bitString += "0"
-    lastPart = format(startLength, "064b")
-    bitString += rearrange(lastPart[32:]) + rearrange(lastPart[:32])
-    return bitString
+    start_length = len(bit_string)
+    bit_string += "1"
+    while len(bit_string) % 512 != 448:
+        bit_string += "0"
+    last_part = format(start_length, "064b")
+    bit_string += rearrange(last_part[32:]) + rearrange(last_part[:32])
+    return bit_string
 
 
-def getBlock(bitString):
+def get_block(bit_string):
     """[summary]
     Iterator:
             Returns by each call a list of length 16 with the 32 bit
             integer blocks.
 
     Arguments:
-            bitString {[string]} -- [binary string >= 512]
+            bit_string {[string]} -- [binary string >= 512]
     """
 
-    currPos = 0
-    while currPos < len(bitString):
-        currPart = bitString[currPos : currPos + 512]
-        mySplits = []
+    curr_pos = 0
+    while curr_pos < len(bit_string):
+        curr_part = bit_string[curr_pos : curr_pos + 512]
+        my_splits = []
         for i in range(16):
-            mySplits.append(int(rearrange(currPart[32 * i : 32 * i + 32]), 2))
-        yield mySplits
-        currPos += 512
+            my_splits.append(int(rearrange(curr_part[32 * i : 32 * i + 32]), 2))
+        yield my_splits
+        curr_pos += 512
 
 
 def not32(i):
@@ -101,7 +101,7 @@ def leftrot32(i, s):
     return (i << s) ^ (i >> (32 - s))
 
 
-def md5me(testString):
+def md5me(test_string):
     """[summary]
     Returns a 32-bit hash code of the string 'testString'
 
@@ -110,7 +110,7 @@ def md5me(testString):
     """
 
     bs = ""
-    for i in testString:
+    for i in test_string:
         bs += format(ord(i), "08b")
     bs = pad(bs)
 
@@ -188,37 +188,37 @@ def md5me(testString):
         21,
     ]
 
-    for m in getBlock(bs):
-        A = a0
-        B = b0
-        C = c0
-        D = d0
+    for m in get_block(bs):
+        a = a0
+        b = b0
+        c = c0
+        d = d0
         for i in range(64):
             if i <= 15:
                 # f = (B & C) | (not32(B) & D)
-                f = D ^ (B & (C ^ D))
+                f = d ^ (b & (c ^ d))
                 g = i
             elif i <= 31:
                 # f = (D & B) | (not32(D) & C)
-                f = C ^ (D & (B ^ C))
+                f = c ^ (d & (b ^ c))
                 g = (5 * i + 1) % 16
             elif i <= 47:
-                f = B ^ C ^ D
+                f = b ^ c ^ d
                 g = (3 * i + 5) % 16
             else:
-                f = C ^ (B | not32(D))
+                f = c ^ (b | not32(d))
                 g = (7 * i) % 16
-            dtemp = D
-            D = C
-            C = B
-            B = sum32(B, leftrot32((A + f + tvals[i] + m[g]) % 2**32, s[i]))
-            A = dtemp
-        a0 = sum32(a0, A)
-        b0 = sum32(b0, B)
-        c0 = sum32(c0, C)
-        d0 = sum32(d0, D)
+            dtemp = d
+            d = c
+            c = b
+            b = sum32(b, leftrot32((a + f + tvals[i] + m[g]) % 2**32, s[i]))
+            a = dtemp
+        a0 = sum32(a0, a)
+        b0 = sum32(b0, b)
+        c0 = sum32(c0, c)
+        d0 = sum32(d0, d)
 
-    digest = reformatHex(a0) + reformatHex(b0) + reformatHex(c0) + reformatHex(d0)
+    digest = reformat_hex(a0) + reformat_hex(b0) + reformat_hex(c0) + reformat_hex(d0)
     return digest
 
 

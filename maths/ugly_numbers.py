@@ -32,7 +32,7 @@ def ugly_numbers(n: int) -> int:
     next_3 = ugly_nums[i3] * 3
     next_5 = ugly_nums[i5] * 5
 
-    for i in range(1, n):
+    for _ in range(1, n):
         next_num = min(next_2, next_3, next_5)
         ugly_nums.append(next_num)
         if next_num == next_2:

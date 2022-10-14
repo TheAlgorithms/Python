@@ -21,10 +21,10 @@ class EditDistance:
     def __init__(self):
         self.__prepare__()
 
-    def __prepare__(self, N=0, M=0):
-        self.dp = [[-1 for y in range(0, M)] for x in range(0, N)]
+    def __prepare__(self, n=0, m=0):
+        self.dp = [[-1 for y in range(0, m)] for x in range(0, n)]
 
-    def __solveDP(self, x, y):
+    def __solve_dp(self, x, y):
         if x == -1:
             return y + 1
         elif y == -1:
@@ -32,30 +32,30 @@ class EditDistance:
         elif self.dp[x][y] > -1:
             return self.dp[x][y]
         else:
-            if self.A[x] == self.B[y]:
-                self.dp[x][y] = self.__solveDP(x - 1, y - 1)
+            if self.a[x] == self.b[y]:
+                self.dp[x][y] = self.__solve_dp(x - 1, y - 1)
             else:
                 self.dp[x][y] = 1 + min(
-                    self.__solveDP(x, y - 1),
-                    self.__solveDP(x - 1, y),
-                    self.__solveDP(x - 1, y - 1),
+                    self.__solve_dp(x, y - 1),
+                    self.__solve_dp(x - 1, y),
+                    self.__solve_dp(x - 1, y - 1),
                 )
 
             return self.dp[x][y]
 
-    def solve(self, A, B):
-        if isinstance(A, bytes):
-            A = A.decode("ascii")
+    def solve(self, a, b):
+        if isinstance(a, bytes):
+            a = a.decode("ascii")
 
-        if isinstance(B, bytes):
-            B = B.decode("ascii")
+        if isinstance(b, bytes):
+            b = b.decode("ascii")
 
-        self.A = str(A)
-        self.B = str(B)
+        self.a = str(a)
+        self.b = str(b)
 
-        self.__prepare__(len(A), len(B))
+        self.__prepare__(len(a), len(b))
 
-        return self.__solveDP(len(A) - 1, len(B) - 1)
+        return self.__solve_dp(len(a) - 1, len(b) - 1)
 
 
 def min_distance_bottom_up(word1: str, word2: str) -> int:

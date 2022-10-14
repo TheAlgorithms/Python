@@ -26,7 +26,7 @@ def primitive_root(p_val: int) -> int:
 
 def generate_key(key_size: int) -> tuple[tuple[int, int, int, int], tuple[int, int]]:
     print("Generating prime p...")
-    p = rabin_miller.generateLargePrime(key_size)  # select large prime number.
+    p = rabin_miller.generate_large_prime(key_size)  # select large prime number.
     e_1 = primitive_root(p)  # one primitive root on modulo p.
     d = random.randrange(3, p)  # private_key -> have to be greater than 2 for safety.
     e_2 = cryptomath.find_mod_inverse(pow(e_1, d, p), p)
@@ -37,7 +37,7 @@ def generate_key(key_size: int) -> tuple[tuple[int, int, int, int], tuple[int, i
     return public_key, private_key
 
 
-def make_key_files(name: str, keySize: int) -> None:
+def make_key_files(name: str, key_size: int) -> None:
     if os.path.exists(f"{name}_pubkey.txt") or os.path.exists(f"{name}_privkey.txt"):
         print("\nWARNING:")
         print(
@@ -47,16 +47,16 @@ def make_key_files(name: str, keySize: int) -> None:
         )
         sys.exit()
 
-    publicKey, privateKey = generate_key(keySize)
+    public_key, private_key = generate_key(key_size)
     print(f"\nWriting public key to file {name}_pubkey.txt...")
     with open(f"{name}_pubkey.txt", "w") as fo:
         fo.write(
-            "%d,%d,%d,%d" % (publicKey[0], publicKey[1], publicKey[2], publicKey[3])
+            "%d,%d,%d,%d" % (public_key[0], public_key[1], public_key[2], public_key[3])
         )
 
     print(f"Writing private key to file {name}_privkey.txt...")
     with open(f"{name}_privkey.txt", "w") as fo:
-        fo.write("%d,%d" % (privateKey[0], privateKey[1]))
+        fo.write("%d,%d" % (private_key[0], private_key[1]))
 
 
 def main() -> None:

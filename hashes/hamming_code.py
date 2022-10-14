@@ -68,177 +68,177 @@ def text_from_bits(bits, encoding="utf-8", errors="surrogatepass"):
 
 
 # Functions of hamming code-------------------------------------------
-def emitterConverter(sizePar, data):
+def emitter_converter(size_par, data):
     """
-    :param sizePar: how many parity bits the message must have
+    :param size_par: how many parity bits the message must have
     :param data:  information bits
     :return: message to be transmitted by unreliable medium
             - bits of information merged with parity bits
 
-    >>> emitterConverter(4, "101010111111")
+    >>> emitter_converter(4, "101010111111")
     ['1', '1', '1', '1', '0', '1', '0', '0', '1', '0', '1', '1', '1', '1', '1', '1']
     """
-    if sizePar + len(data) <= 2**sizePar - (len(data) - 1):
+    if size_par + len(data) <= 2**size_par - (len(data) - 1):
         print("ERROR - size of parity don't match with size of data")
         exit(0)
 
-    dataOut = []
+    data_out = []
     parity = []
-    binPos = [bin(x)[2:] for x in range(1, sizePar + len(data) + 1)]
+    bin_pos = [bin(x)[2:] for x in range(1, size_par + len(data) + 1)]
 
     # sorted information data for the size of the output data
-    dataOrd = []
+    data_ord = []
     # data position template + parity
-    dataOutGab = []
+    data_out_gab = []
     # parity bit counter
-    qtdBP = 0
+    qtd_bp = 0
     # counter position of data bits
-    contData = 0
+    cont_data = 0
 
-    for x in range(1, sizePar + len(data) + 1):
+    for x in range(1, size_par + len(data) + 1):
         # Performs a template of bit positions - who should be given,
         # and who should be parity
-        if qtdBP < sizePar:
+        if qtd_bp < size_par:
             if (np.log(x) / np.log(2)).is_integer():
-                dataOutGab.append("P")
-                qtdBP = qtdBP + 1
+                data_out_gab.append("P")
+                qtd_bp = qtd_bp + 1
             else:
-                dataOutGab.append("D")
+                data_out_gab.append("D")
         else:
-            dataOutGab.append("D")
+            data_out_gab.append("D")
 
         # Sorts the data to the new output size
-        if dataOutGab[-1] == "D":
-            dataOrd.append(data[contData])
-            contData += 1
+        if data_out_gab[-1] == "D":
+            data_ord.append(data[cont_data])
+            cont_data += 1
         else:
-            dataOrd.append(None)
+            data_ord.append(None)
 
     # Calculates parity
-    qtdBP = 0  # parity bit counter
-    for bp in range(1, sizePar + 1):
+    qtd_bp = 0  # parity bit counter
+    for bp in range(1, size_par + 1):
         # Bit counter one for a given parity
-        contBO = 0
+        cont_bo = 0
         # counter to control the loop reading
-        contLoop = 0
-        for x in dataOrd:
+        cont_loop = 0
+        for x in data_ord:
             if x is not None:
                 try:
-                    aux = (binPos[contLoop])[-1 * (bp)]
+                    aux = (bin_pos[cont_loop])[-1 * (bp)]
                 except IndexError:
                     aux = "0"
                 if aux == "1":
                     if x == "1":
-                        contBO += 1
-            contLoop += 1
-        parity.append(contBO % 2)
+                        cont_bo += 1
+            cont_loop += 1
+        parity.append(cont_bo % 2)
 
-        qtdBP += 1
+        qtd_bp += 1
 
     # Mount the message
-    ContBP = 0  # parity bit counter
-    for x in range(0, sizePar + len(data)):
-        if dataOrd[x] is None:
-            dataOut.append(str(parity[ContBP]))
-            ContBP += 1
+    cont_bp = 0  # parity bit counter
+    for x in range(0, size_par + len(data)):
+        if data_ord[x] is None:
+            data_out.append(str(parity[cont_bp]))
+            cont_bp += 1
         else:
-            dataOut.append(dataOrd[x])
+            data_out.append(data_ord[x])
 
-    return dataOut
+    return data_out
 
 
-def receptorConverter(sizePar, data):
+def receptor_converter(size_par, data):
     """
-    >>> receptorConverter(4, "1111010010111111")
+    >>> receptor_converter(4, "1111010010111111")
     (['1', '0', '1', '0', '1', '0', '1', '1', '1', '1', '1', '1'], True)
     """
     # data position template + parity
-    dataOutGab = []
+    data_out_gab = []
     # Parity bit counter
-    qtdBP = 0
+    qtd_bp = 0
     # Counter p data bit reading
-    contData = 0
+    cont_data = 0
     # list of parity received
-    parityReceived = []
-    dataOutput = []
+    parity_received = []
+    data_output = []
 
     for x in range(1, len(data) + 1):
         # Performs a template of bit positions - who should be given,
         #  and who should be parity
-        if qtdBP < sizePar and (np.log(x) / np.log(2)).is_integer():
-            dataOutGab.append("P")
-            qtdBP = qtdBP + 1
+        if qtd_bp < size_par and (np.log(x) / np.log(2)).is_integer():
+            data_out_gab.append("P")
+            qtd_bp = qtd_bp + 1
         else:
-            dataOutGab.append("D")
+            data_out_gab.append("D")
 
         # Sorts the data to the new output size
-        if dataOutGab[-1] == "D":
-            dataOutput.append(data[contData])
+        if data_out_gab[-1] == "D":
+            data_output.append(data[cont_data])
         else:
-            parityReceived.append(data[contData])
-        contData += 1
+            parity_received.append(data[cont_data])
+        cont_data += 1
 
     # -----------calculates the parity with the data
-    dataOut = []
+    data_out = []
     parity = []
-    binPos = [bin(x)[2:] for x in range(1, sizePar + len(dataOutput) + 1)]
+    bin_pos = [bin(x)[2:] for x in range(1, size_par + len(data_output) + 1)]
 
     #  sorted information data for the size of the output data
-    dataOrd = []
+    data_ord = []
     # Data position feedback + parity
-    dataOutGab = []
+    data_out_gab = []
     # Parity bit counter
-    qtdBP = 0
+    qtd_bp = 0
     # Counter p data bit reading
-    contData = 0
+    cont_data = 0
 
-    for x in range(1, sizePar + len(dataOutput) + 1):
+    for x in range(1, size_par + len(data_output) + 1):
         # Performs a template position of bits - who should be given,
         # and who should be parity
-        if qtdBP < sizePar and (np.log(x) / np.log(2)).is_integer():
-            dataOutGab.append("P")
-            qtdBP = qtdBP + 1
+        if qtd_bp < size_par and (np.log(x) / np.log(2)).is_integer():
+            data_out_gab.append("P")
+            qtd_bp = qtd_bp + 1
         else:
-            dataOutGab.append("D")
+            data_out_gab.append("D")
 
         # Sorts the data to the new output size
-        if dataOutGab[-1] == "D":
-            dataOrd.append(dataOutput[contData])
-            contData += 1
+        if data_out_gab[-1] == "D":
+            data_ord.append(data_output[cont_data])
+            cont_data += 1
         else:
-            dataOrd.append(None)
+            data_ord.append(None)
 
     # Calculates parity
-    qtdBP = 0  # parity bit counter
-    for bp in range(1, sizePar + 1):
+    qtd_bp = 0  # parity bit counter
+    for bp in range(1, size_par + 1):
         # Bit counter one for a certain parity
-        contBO = 0
+        cont_bo = 0
         # Counter to control loop reading
-        contLoop = 0
-        for x in dataOrd:
+        cont_loop = 0
+        for x in data_ord:
             if x is not None:
                 try:
-                    aux = (binPos[contLoop])[-1 * (bp)]
+                    aux = (bin_pos[cont_loop])[-1 * (bp)]
                 except IndexError:
                     aux = "0"
                 if aux == "1" and x == "1":
-                    contBO += 1
-            contLoop += 1
-        parity.append(str(contBO % 2))
+                    cont_bo += 1
+            cont_loop += 1
+        parity.append(str(cont_bo % 2))
 
-        qtdBP += 1
+        qtd_bp += 1
 
     # Mount the message
-    ContBP = 0  # Parity bit counter
-    for x in range(0, sizePar + len(dataOutput)):
-        if dataOrd[x] is None:
-            dataOut.append(str(parity[ContBP]))
-            ContBP += 1
+    cont_bp = 0  # Parity bit counter
+    for x in range(0, size_par + len(data_output)):
+        if data_ord[x] is None:
+            data_out.append(str(parity[cont_bp]))
+            cont_bp += 1
         else:
-            dataOut.append(dataOrd[x])
+            data_out.append(data_ord[x])
 
-    ack = parityReceived == parity
-    return dataOutput, ack
+    ack = parity_received == parity
+    return data_output, ack
 
 
 # ---------------------------------------------------------------------

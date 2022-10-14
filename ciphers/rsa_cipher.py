@@ -37,12 +37,12 @@ def get_text_from_blocks(
 
 
 def encrypt_message(
-    message: str, key: tuple[int, int], blockSize: int = DEFAULT_BLOCK_SIZE
+    message: str, key: tuple[int, int], block_size: int = DEFAULT_BLOCK_SIZE
 ) -> list[int]:
     encrypted_blocks = []
     n, e = key
 
-    for block in get_blocks_from_text(message, blockSize):
+    for block in get_blocks_from_text(message, block_size):
         encrypted_blocks.append(pow(block, e, n))
     return encrypted_blocks
 
@@ -63,8 +63,8 @@ def decrypt_message(
 def read_key_file(key_filename: str) -> tuple[int, int, int]:
     with open(key_filename) as fo:
         content = fo.read()
-    key_size, n, EorD = content.split(",")
-    return (int(key_size), int(n), int(EorD))
+    key_size, n, eor_d = content.split(",")
+    return (int(key_size), int(n), int(eor_d))
 
 
 def encrypt_and_write_to_file(
@@ -125,15 +125,15 @@ def main() -> None:
 
     if mode == "encrypt":
         if not os.path.exists("rsa_pubkey.txt"):
-            rkg.makeKeyFiles("rsa", 1024)
+            rkg.make_key_files("rsa", 1024)
 
         message = input("\nEnter message: ")
         pubkey_filename = "rsa_pubkey.txt"
         print(f"Encrypting and writing to {filename}...")
-        encryptedText = encrypt_and_write_to_file(filename, pubkey_filename, message)
+        encrypted_text = encrypt_and_write_to_file(filename, pubkey_filename, message)
 
         print("\nEncrypted text:")
-        print(encryptedText)
+        print(encrypted_text)
 
     elif mode == "decrypt":
         privkey_filename = "rsa_privkey.txt"

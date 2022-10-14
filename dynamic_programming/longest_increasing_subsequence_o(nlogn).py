@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 
-def CeilIndex(v, l, r, key):  # noqa: E741
+def ceil_index(v, l, r, key):  # noqa: E741
     while r - l > 1:
         m = (l + r) // 2
         if v[m] >= key:
@@ -17,16 +17,16 @@ def CeilIndex(v, l, r, key):  # noqa: E741
     return r
 
 
-def LongestIncreasingSubsequenceLength(v: list[int]) -> int:
+def longest_increasing_subsequence_length(v: list[int]) -> int:
     """
-    >>> LongestIncreasingSubsequenceLength([2, 5, 3, 7, 11, 8, 10, 13, 6])
+    >>> longest_increasing_subsequence_length([2, 5, 3, 7, 11, 8, 10, 13, 6])
     6
-    >>> LongestIncreasingSubsequenceLength([])
+    >>> longest_increasing_subsequence_length([])
     0
-    >>> LongestIncreasingSubsequenceLength([0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3,
-    ...                                     11, 7, 15])
+    >>> longest_increasing_subsequence_length([0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13,
+    ...                                     3, 11, 7, 15])
     6
-    >>> LongestIncreasingSubsequenceLength([5, 4, 3, 2, 1])
+    >>> longest_increasing_subsequence_length([5, 4, 3, 2, 1])
     1
     """
     if len(v) == 0:
@@ -44,7 +44,7 @@ def LongestIncreasingSubsequenceLength(v: list[int]) -> int:
             tail[length] = v[i]
             length += 1
         else:
-            tail[CeilIndex(tail, -1, length - 1, v[i])] = v[i]
+            tail[ceil_index(tail, -1, length - 1, v[i])] = v[i]
 
     return length
 
