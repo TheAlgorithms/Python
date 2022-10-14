@@ -69,7 +69,7 @@ class Perceptron:
         for sample in self.sample:
             sample.insert(0, self.bias)
 
-        for i in range(self.col_sample):
+        for _ in range(self.col_sample):
             self.weight.append(random.random())
 
         self.weight.insert(0, self.bias)
