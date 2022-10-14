@@ -4,6 +4,7 @@ from sklearn.datasets import load_iris
 from sklearn.metrics import plot_confusion_matrix
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
+import doctest
 
 
 def data_handling(data: dict) -> tuple:
