@@ -54,7 +54,6 @@ class XORCipher:
             for i in result_list:
                 string += i
                 return string
-        
 
     def decrypt(self, content: str, key: int, type_: int) -> list[str] | str:
         """
