@@ -41,7 +41,7 @@ def main() -> None:
     # Display Confusion Matrix of Classifier
     # with both train and test sets
     plot_confusion_matrix(
-        classifier,
+        xgb,
         x_test,
         y_test,
         display_labels=names,
