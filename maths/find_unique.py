@@ -1,7 +1,7 @@
 def find_unique_xor(nums: list) -> float:
     """
-    Find unique from a given list of numbers with 2n+1 
-    entries of which n element appears twice and there 
+    Find unique from a given list of numbers with 2n+1
+    entries of which n element appears twice and there
     is one unique element.
     >>> find_unique_xor([1,2,3,2,1])
     3
