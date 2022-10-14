@@ -1,3 +1,14 @@
+"""
+Sum of all nodes in a binary tree.
+
+Python implementation: 
+    O(n) time complexity - Recurses through :meth:`depth_first_search`
+                            with each element.
+    O(n) space complexity - At any point in time maximum number of stack 
+                            frames that could be in memory is `n`
+"""
+
+
 from __future__ import annotations
 
 
