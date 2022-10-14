@@ -58,7 +58,8 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(name="main", verbose=True)
     doctest.testmod(name="xgboost", verbose=True)
     doctest.testmod(name="data_handling", verbose=True)
-    #main()
+    # main()
