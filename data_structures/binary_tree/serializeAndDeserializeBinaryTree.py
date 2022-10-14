@@ -9,14 +9,14 @@
 
 class Codec:
 
-    def serialize(self, root):
+    def serialize(self, root: TreeNode) -> str:
         """Encodes a tree to a single string.
         
         :type root: TreeNode
         :rtype: str
         """
         
-        def inorder(root):
+        def inorder(root: TreeNode) -> None:
             if root is None:
                 inorder.str_ = inorder.str_ + 'None' + ' '
                 return
@@ -24,7 +24,7 @@ class Codec:
             inorder.str_ = inorder.str_ + str(root.val) + ' '
             inorder(root.right)
             
-        def preorder(root):
+        def preorder(root: TreeNode) -> None:
             if root is None:
                 preorder.str_ = preorder.str_ + 'None' + ' '
                 return
@@ -42,35 +42,35 @@ class Codec:
         return str_
         
 
-    def deserialize(self, data):
+    def deserialize(self, data: str) -> TreeNode:
         """Decodes your encoded data to tree.
         
         :type data: str
         :rtype: TreeNode
         """
         
-        def buildTree(inorder, preorder, start, end):
+        def build_tree(inorder, preorder, start, end):
             if start > end:
                 return None
             
-            tNode = TreeNode(preorder[buildTree.preIndex])
-            buildTree.preIndex += 1
+            t_node = TreeNode(preorder[build_tree.pre_index])
+            build_tree.pre_index += 1
             
             if start == end:
-                return tNode
+                return t_node
             
-            index = search(inorder, start, end, tNode.val)
-            tNode.left = buildTree(inorder, preorder, start, index-1)
-            tNode.right = buildTree(inorder, preorder, index+1, end)
+            index = search(inorder, start, end, t_node.val)
+            t_node.left = build_tree(inorder, preorder, start, index-1)
+            t_node.right = build_tree(inorder, preorder, index+1, end)
             
-            return tNode
+            return t_node
         
         def search(inorder, start, end, val):
             for i in range(start, end+1):
                 if inorder[i] == val:
                     return i
         
-        buildTree.preIndex = 0
+        build_tree.pre_index = 0
         data = data.split("/")
         in_ = data[0]
         pre = data[1]
@@ -91,23 +91,22 @@ class Codec:
             else:
                 preorder.append(int(i))
 
-        #root = buildTree(inorder, preorder, 0, len(inorder)-1)
-        def buildPreorder(root,preOrder,preorderIdx):
-            if len(preOrder) == 0:
+        def build_preorder(root,preorder,preorder_idx):
+            if len(preorder) == 0:
                 return None
-            if preOrder[0] == None :
+            if preorder[0] == None :
                 #preorderIdx[0]+=1
-                preOrder.pop(0)
+                preorder.pop(0)
                 return None
             
-            root = TreeNode(preOrder.pop(0))
-            root.left = buildPreorder(root.left,preOrder,preorderIdx)
-            root.right = buildPreorder(root.right,preOrder,preorderIdx)
+            root = TreeNode(preorder.pop(0))
+            root.left = build_preorder(root.left,preorder,pre_index)
+            root.right = build_preorder(root.right,preorder,pre_index)
             return root
         
-        preorderIdx = [0]
+        pre_index = [0]
         root = None
-        root = buildPreorder(root,preorder,preorderIdx)
+        root = build_preorder(root,preorder,pre_index)
         return root
     
         
