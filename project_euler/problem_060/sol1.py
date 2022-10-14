@@ -21,9 +21,9 @@ Solution:
 from math import floor, sqrt
 
 
-def primes_till(x: int) -> set[int]:
+def primes_till(number: int) -> set[int]:
     """
-    Returns a set of prime numbers till the number "x"
+    Returns a set of prime numbers till the number "number"
 
     >>> primes_till(10)
     {2, 3, 5, 7}
@@ -31,23 +31,23 @@ def primes_till(x: int) -> set[int]:
     {2, 3, 5, 7, 11, 13, 17, 19}
     """
 
-    marked = [0] * (x + 1)
+    marked = [0] * (number + 1)
     value = 3
     s = {2}
-    while value < x + 1:
+    while value < number + 1:
         if marked[value] == 0:
             s.add(value)
             i = value
-            while i < x + 1:
+            while i < number + 1:
                 marked[i] = 1
                 i += value
         value += 2
     return s
 
 
-def is_prime(x) -> bool:
+def is_prime(number: int) -> bool:
     """
-    Returns True if "x" is a prime number. Else, returns False
+    Returns True if "number" is a prime number. Else, returns False
 
     >>> is_prime(10)
     False
@@ -55,25 +55,27 @@ def is_prime(x) -> bool:
     True
     """
 
-    if x >= 2:
-        for i in range(2, floor(sqrt(x) + 1)):
-            if x % i == 0:
+    if number >= 2:
+        for i in range(2, floor(sqrt(number) + 1)):
+            if number % i == 0:
                 return False
         return True
     else:
         return False
 
 
-def prime_pair_test(a: int, b: int) -> bool:
+def prime_pair_test(number1: int, number2: int) -> bool:
     """
-    Checks whether "ab" and "ba" are both prime numbers or not
+    Checks whether "number1number2" and "number2number1" are both prime numbers or not
 
     >>> prime_pair_test(7, 109)
     True
     >>> prime_pair_test(15, 8)
     False
     """
-    return is_prime(int(str(a) + str(b))) and is_prime(int(str(b) + str(a)))
+    return is_prime(int(str(number1) + str(number2))) and is_prime(
+        int(str(number2) + str(number1))
+    )
 
 
 def solution(limit: int = 10_000) -> int:
