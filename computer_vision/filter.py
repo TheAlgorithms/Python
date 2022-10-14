@@ -96,7 +96,6 @@ class Filter:
 
     def average(self):
         """
-        Low Pass Spatial Domain Filtering to handel the blurring effect
         :return: image after applying the Average filter
         """
         rows, columns, image, new_image = self.get_ready()
