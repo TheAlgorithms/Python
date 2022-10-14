@@ -1,60 +1,61 @@
-"""
-Python3 program to evaluate a prefix expression.
-"""
+// C++ program to evaluate a prefix expression.
+#include <bits/stdc++.h>
+using namespace std;
 
-calc = {
-    "+": lambda x, y: x + y,
-    "-": lambda x, y: x - y,
-    "*": lambda x, y: x * y,
-    "/": lambda x, y: x / y,
+bool isOperand(char c)
+{
+	// If the character is a digit then it must
+	// be an operand
+	return isdigit(c);
 }
 
+double evaluatePrefix(string exprsn)
+{
+	stack<double> Stack;
 
-def is_operand(c):
-    """
-    Return True if the given char c is an operand, e.g. it is a number
+	for (int j = exprsn.size() - 1; j >= 0; j--) {
 
-    >>> is_operand("1")
-    True
-    >>> is_operand("+")
-    False
-    """
-    return c.isdigit()
+		// Push operand to Stack
+		// To convert exprsn[j] to digit subtract
+		// '0' from exprsn[j].
+		if (isOperand(exprsn[j]))
+			Stack.push(exprsn[j] - '0');
 
+		else {
 
-def evaluate(expression):
-    """
-    Evaluate a given expression in prefix notation.
-    Asserts that the given expression is valid.
+			// Operator encountered
+			// Pop two elements from Stack
+			double o1 = Stack.top();
+			Stack.pop();
+			double o2 = Stack.top();
+			Stack.pop();
 
-    >>> evaluate("+ 9 * 2 6")
-    21
-    >>> evaluate("/ * 10 2 + 4 1 ")
-    4.0
-    """
-    stack = []
+			// Use switch case to operate on o1
+			// and o2 and perform o1 O o2.
+			switch (exprsn[j]) {
+			case '+':
+				Stack.push(o1 + o2);
+				break;
+			case '-':
+				Stack.push(o1 - o2);
+				break;
+			case '*':
+				Stack.push(o1 * o2);
+				break;
+			case '/':
+				Stack.push(o1 / o2);
+				break;
+			}
+		}
+	}
 
-    # iterate over the string in reverse order
-    for c in expression.split()[::-1]:
+	return Stack.top();
+}
 
-        # push operand to stack
-        if is_operand(c):
-            stack.append(int(c))
-
-        else:
-            # pop values from stack can calculate the result
-            # push the result onto the stack again
-            o1 = stack.pop()
-            o2 = stack.pop()
-            stack.append(calc[c](o1, o2))
-
-    return stack.pop()
-
-
-# Driver code
-if __name__ == "__main__":
-    test_expression = "+ 9 * 2 6"
-    print(evaluate(test_expression))
-
-    test_expression = "/ * 10 2 + 4 1 "
-    print(evaluate(test_expression))
+// Driver code
+int main()
+{
+	string exprsn = "+9*26";
+	cout << evaluatePrefix(exprsn) << endl;
+	return 0;
+}
