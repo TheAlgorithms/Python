@@ -28,7 +28,7 @@ def min_distance_up_bottom(word1: str, word2: str) -> int:
     len_word2 = len(word2)
 
     @lru_cache(maxsize=None)
-    def min_distance(index1, index2):
+    def min_distance(index1: int, index2: int) -> int:
         
         # if first word index is overflow - delete all from the second word
         if index1 >= len_word1:
