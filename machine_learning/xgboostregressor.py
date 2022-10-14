@@ -5,13 +5,13 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBRegressor
 
 
-def dataset(datatype:dict) -> tuple:
+def dataset(datatype: dict) -> tuple:
     # Split dataset into train and test data
-    x = (datatype["data"],datatype["target"])  # features
+    x = (datatype["data"], datatype["target"])  # features
     return x
 
 
-def xgboost(features:list, target:list,test_features:list) -> list:
+def xgboost(features: list, target: list, test_features: list) -> list:
     xgb = XGBRegressor()
     xgb.fit(features, target)
     # Predict target for test data
@@ -30,7 +30,7 @@ def main() -> None:
     # Load Boston house price dataset
     boston = load_boston()
     print(boston.keys())
-    
+
     features, target = dataset(boston)
     x_train, x_test, y_train, y_test = train_test_split(
         features, target, test_size=0.25, random_state=1
@@ -44,6 +44,7 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(name="main", verbose=True)
     doctest.testmod(name="dataset", verbose=True)
     doctest.testmod(name="xgboost", verbose=True)
