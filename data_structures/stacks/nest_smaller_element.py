@@ -1,25 +1,25 @@
 
-def Next_smaller_element(arr, n):
-	s = []
-	mp = {}
+def next_smaller_element(arr, n):
+	stack = []
+	map = {}
 
-	s.append(arr[0])
+	stack.append(arr[0])
 
 	for i in range(1, n):
-		if (len(s) == 0):
-			s.append(arr[i])
+		if (len(stack) == 0):
+			stack.append(arr[i])
 			continue
 
-		while (len(s) != 0 and s[-1] > arr[i]):
-			mp[s[-1]] = arr[i]
-			s.pop()
+		while (len(stack) != 0 and stack[-1] > arr[i]):
+			map[stack[-1]] = arr[i]
+			stack.pop()
 
 
-		s.append(arr[i])
+		stack.append(arr[i])
 
-	while (len(s) != 0):
-		mp[s[-1]] = -1
-		s.pop()
+	while (len(stack) != 0):
+		map[stack[-1]] = -1
+		stack.pop()
     
 
 
@@ -29,5 +29,5 @@ def Next_smaller_element(arr, n):
 
 arr = [int(item) for item in input("Enter the array elements : ").split()]
 n = len(arr)
-Next_smaller_element(arr, n)
+next_smaller_element(arr, n)
 
