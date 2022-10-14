@@ -12,29 +12,11 @@ def data_handling(data: dict) -> tuple:
     return x
 
 
-def xgboost(
-    features: list,
-    target: list,
-    test_features: list,
-    test_targets: list,
-    namesofflowers: list,
-) -> None:
+def xgboost(features: list,target: list) # -> returns a trained model:
     classifier = XGBClassifier()
     classifier.fit(features, target)
-    # Display Confusion Matrix of Classifier
-    # with both train and test sets
-    plot_confusion_matrix(
-        classifier,
-        test_features,
-        test_targets,
-        display_labels=namesofflowers,
-        cmap="Blues",
-        normalize="true",
-    )
-    plt.title("Normalized Confusion Matrix - IRIS Dataset")
-    plt.show()
-
-
+    return classifier
+    
 def main() -> None:
 
     """
@@ -53,7 +35,20 @@ def main() -> None:
     )
 
     # XGBoost Classifier
-    xgboost(x_train, y_train, x_test, y_test, names)
+    xgb=xgboost(x_train, y_train)
+    
+    # Display Confusion Matrix of Classifier
+    # with both train and test sets
+    plot_confusion_matrix(
+        classifier,
+        x_test,
+        y_test,
+        display_labels=names,
+        cmap="Blues",
+        normalize="true",
+    )
+    plt.title("Normalized Confusion Matrix - IRIS Dataset")
+    plt.show()
 
 
 if __name__ == "__main__":
@@ -62,4 +57,4 @@ if __name__ == "__main__":
     doctest.testmod(name="main", verbose=True)
     doctest.testmod(name="xgboost", verbose=True)
     doctest.testmod(name="data_handling", verbose=True)
-    # main()
+    #main()
