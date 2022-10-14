@@ -1,6 +1,4 @@
 # XGBoost Classifier Example
-import doctest
-
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.metrics import plot_confusion_matrix
@@ -59,7 +57,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    import doctest
     doctest.testmod(name="main", verbose=True)
     doctest.testmod(name="xgboost", verbose=True)
     doctest.testmod(name="data_handling", verbose=True)
-    main()
+    #main()
