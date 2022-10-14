@@ -8,7 +8,7 @@ Discovered by greek mathematician, Archimedes. The principle is named after him
 g = 9.80665
 
 
-def principleArchimedes(fluid_density: float, volume: float, gravity: float = g) -> float:
+def archimedes_principle(fluid_density: float, volume: float, gravity: float = g) -> float:
     """
     Calculates buoyant force on object submerged within static fluid.
     Formula for buoyant force also known as Archimedes Principle.
@@ -43,5 +43,5 @@ if __name__ == "__main__":
     fluid_density = 997
     volume = 0.5
     g = 9.80665
-    buoyant_force = principleArchimedes(fluid_density, volume, g)
+    buoyant_force = archimedes_principle(fluid_density, volume, g)
     print("The buoyant force is", buoyant_force, "N")
