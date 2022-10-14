@@ -36,10 +36,6 @@ repos:
     rev: 5.0.4
     hooks:
       - id: flake8
-        args:
-          - --ignore=E203,W503
-          - --max-complexity=25
-          - --max-line-length=88
         additional_dependencies:
           - flake8-bugbear
           - flake8-builtins
@@ -51,7 +47,7 @@ repos:
       - id: mypy
         args:
           - --ignore-missing-imports
-          - --install-types  # See mirrors-mypy README.md
+          - --install-types # See mirrors-mypy README.md
           - --non-interactive
         additional_dependencies: [types-requests]
 
