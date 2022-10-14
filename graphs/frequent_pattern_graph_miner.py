@@ -54,7 +54,7 @@ def get_frequency_table(edge_array):
     Returns Frequency Table
     """
     distinct_edge = get_distinct_edge(edge_array)
-    frequency_table = dict()
+    frequency_table = {}
 
     for item in distinct_edge:
         bit = get_bitcode(edge_array, item)

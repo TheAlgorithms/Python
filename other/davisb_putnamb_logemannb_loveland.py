@@ -199,7 +199,7 @@ def find_pure_symbols(
     {'A1': True, 'A2': False, 'A3': True, 'A5': False}
     """
     pure_symbols = []
-    assignment: dict[str, bool | None] = dict()
+    assignment: dict[str, bool | None] = {}
     literals = []
 
     for clause in clauses:
@@ -264,7 +264,7 @@ def find_unit_clauses(
                     n_count += 1
             if f_count == len(clause) - 1 and n_count == 1:
                 unit_symbols.append(sym)
-    assignment: dict[str, bool | None] = dict()
+    assignment: dict[str, bool | None] = {}
     for i in unit_symbols:
         symbol = i[:2]
         assignment[symbol] = len(i) == 2
