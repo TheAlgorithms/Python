@@ -12,10 +12,11 @@ def data_handling(data: dict) -> tuple:
     return x
 
 
-def xgboost(features: list,target: list) :# -> returns a trained model:
+def xgboost(features: list, target: list):  # -> returns a trained model:
     classifier = XGBClassifier()
     classifier.fit(features, target)
     return classifier
+
 
 def main() -> None:
 
@@ -35,7 +36,7 @@ def main() -> None:
     )
 
     # XGBoost Classifier
-    xgb=xgboost(x_train, y_train)
+    xgb = xgboost(x_train, y_train)
 
     # Display Confusion Matrix of Classifier
     # with both train and test sets
@@ -57,4 +58,4 @@ if __name__ == "__main__":
     doctest.testmod(name="main", verbose=True)
     doctest.testmod(name="xgboost", verbose=True)
     doctest.testmod(name="data_handling", verbose=True)
-    #main()
+    # main()
