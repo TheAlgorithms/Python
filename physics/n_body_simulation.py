@@ -310,7 +310,7 @@ def example_3() -> BodySystem:
     """
 
     bodies = []
-    for i in range(10):
+    for _ in range(10):
         velocity_x = random.uniform(-0.5, 0.5)
         velocity_y = random.uniform(-0.5, 0.5)
 

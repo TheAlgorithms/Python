@@ -46,7 +46,7 @@ def iterate(initial_vectors: list[numpy.ndarray], steps: int) -> list[numpy.ndar
 0.28867513]), array([0.66666667, 0.        ]), array([1, 0])]
     """
     vectors = initial_vectors
-    for i in range(steps):
+    for _ in range(steps):
         vectors = iteration_step(vectors)
     return vectors
 

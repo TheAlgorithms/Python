@@ -79,7 +79,7 @@ def get_nodes(frequency_table):
     {'11111': ['ab', 'ac', 'df', 'bd', 'bc']}
     """
     nodes = {}
-    for i, item in enumerate(frequency_table):
+    for _, item in enumerate(frequency_table):
         nodes.setdefault(item[2], []).append(item[0])
     return nodes
 
