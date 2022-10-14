@@ -15,7 +15,20 @@ class Node:
 
 
 def make_tree() -> Node | None:
-    return Node(1, Node(2, Node(4), Node(5)), Node(3))
+    r"""
+    The below tree
+        1
+       / \
+      2   3
+     / \
+    4   5
+    """
+    tree = Node(1)
+    tree.left = Node(2)
+    tree.right = Node(3)
+    tree.left.left = Node(4)
+    tree.left.right = Node(5)
+    return tree
 
 
 def preorder(root: Node | None) -> list[int]:
