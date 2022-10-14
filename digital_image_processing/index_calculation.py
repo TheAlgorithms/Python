@@ -497,9 +497,9 @@ class IndexCalculation:
         https://www.indexdatabase.de/db/i-single.php?id=77
         :return: index
         """
-        max = np.max([np.max(self.red), np.max(self.green), np.max(self.blue)])
-        min = np.min([np.min(self.red), np.min(self.green), np.min(self.blue)])
-        return (max - min) / max
+        max_value = np.max([np.max(self.red), np.max(self.green), np.max(self.blue)])
+        min_value = np.min([np.min(self.red), np.min(self.green), np.min(self.blue)])
+        return (max_value - min_value) / max_value
 
     def _if(self):
         """

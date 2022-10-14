@@ -36,7 +36,7 @@ def bellman_ford(
     distance = [float("inf")] * vertex_count
     distance[src] = 0.0
 
-    for i in range(vertex_count - 1):
+    for _ in range(vertex_count - 1):
         for j in range(edge_count):
             u, v, w = (graph[j][k] for k in ["src", "dst", "weight"])
 

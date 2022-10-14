@@ -11,7 +11,7 @@ def rabin_miller(num: int) -> bool:
         s = s // 2
         t += 1
 
-    for trials in range(5):
+    for _ in range(5):
         a = random.randrange(2, num - 1)
         v = pow(a, s, num)
         if v != 1:
