@@ -16,8 +16,10 @@ import numpy as np
 
 
 # Mean Absolute Error
-def mae(predict, actual):
+def mae(predict, actual) -> float:
     """
+    @params actual: Ground truth (correct) target values.
+    @params predict: Estimated target values.
     Examples(rounded for precision):
     >>> actual = [1,2,3];predict = [1,4,3]
     >>> np.around(mae(predict,actual),decimals = 2)
@@ -29,16 +31,16 @@ def mae(predict, actual):
     """
     predict = np.array(predict)
     actual = np.array(actual)
-
-    difference = abs(predict - actual)
-    score = difference.mean()
+    score = abs(predict - actual).mean()
 
     return score
 
 
 # Mean Squared Error
-def mse(predict, actual):
+def mse(predict, actual) -> float:
     """
+    @params actual: Ground truth (correct) target values.
+    @params predict: Estimated target values.
     Examples(rounded for precision):
     >>> actual = [1,2,3];predict = [1,4,3]
     >>> np.around(mse(predict,actual),decimals = 2)
@@ -55,12 +57,15 @@ def mse(predict, actual):
     square_diff = np.square(difference)
 
     score = square_diff.mean()
+
     return score
 
 
 # Root Mean Squared Error
-def rmse(predict, actual):
+def rmse(predict, actual) -> float:
     """
+    @params actual: Ground truth (correct) target values.
+    @params predict: Estimated target values.
     Examples(rounded for precision):
     >>> actual = [1,2,3];predict = [1,4,3]
     >>> np.around(rmse(predict,actual),decimals = 2)
@@ -77,12 +82,15 @@ def rmse(predict, actual):
     square_diff = np.square(difference)
     mean_square_diff = square_diff.mean()
     score = np.sqrt(mean_square_diff)
+
     return score
 
 
 # Root Mean Square Logarithmic Error
-def rmsle(predict, actual):
+def rmsle(predict, actual) -> float:
     """
+    @params actual: Ground truth (correct) target values.
+    @params predict: Estimated target values.
     Examples(rounded for precision):
     >>> actual = [10,10,30];predict = [10,2,30]
     >>> np.around(rmsle(predict,actual),decimals = 2)
@@ -108,11 +116,12 @@ def rmsle(predict, actual):
 
 
 # Mean Bias Deviation
-def mbd(predict, actual):
+def mbd(predict, actual) -> float:
     """
     This value is Negative, if the model underpredicts,
     positive, if it overpredicts.
-
+    @params actual: Ground truth (correct) target values.
+    @params predict: Estimated target values.
     Example(rounded for precision):
 
     Here the model overpredicts
@@ -137,5 +146,5 @@ def mbd(predict, actual):
     return score
 
 
-def manual_accuracy(predict, actual):
+def manual_accuracy(predict, actual) -> float:
     return np.mean(np.array(actual) == np.array(predict))
