@@ -37,7 +37,7 @@ Source :
 
 from __future__ import annotations
 
-# Define the Reduced Planck Constant ℏ (H bar), speed of light C, value of 
+# Define the Reduced Planck Constant ℏ (H bar), speed of light C, value of
 # Pi and the function
 REDUCED_PLANCK_CONSTANT = 1.054571817e-34  # unit of ℏ : J * s
 
