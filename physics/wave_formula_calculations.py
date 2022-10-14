@@ -3,9 +3,9 @@
 """
 Background:
 The Wave Formulas are for calculating the characteristics
-of a wave. 
+of a wave.
 
-Used for stuff like the:- 
+Used for stuff like the:-
 
 1. Speed of a wave in water
 2. Frequency of wave a in air
@@ -53,7 +53,7 @@ if calc_to_do == 1:
     frequency = float(input("Enter the frequency of the wave (Hz): "))
     while frequency <= 0:
         print("Frequency must be greater than zero.")
-        frequency = float(input("Enter the Frequency of the wave (Hz): ")) 
+        frequency = float(input("Enter the Frequency of the wave (Hz): "))
 
     # Wave Speed Formula
     v = wavelength * frequency
@@ -61,7 +61,7 @@ if calc_to_do == 1:
     # To remove pesky decimal point from values like 25.0
     if "." in str(v):
         v = int(v)
-    print("Wave Speed =", str(v) + 'm/s')
+    print("Wave Speed =", str(v) + "m/s")
 
 if calc_to_do == 2:
 
@@ -73,7 +73,7 @@ if calc_to_do == 2:
     frequency = float(input("Enter the frequency of the wave (Hz): "))
     while frequency <= 0:
         print("Frequency must be greater than zero.")
-        frequency = float(input("Enter the Frequency of the wave (Hz): ")) 
+        frequency = float(input("Enter the Frequency of the wave (Hz): "))
 
     # Wavelength Formula
     wavelength = v / frequency
@@ -92,9 +92,9 @@ if calc_to_do == 3:
     while wavelength <= 0:
         print("Wavelength must be greater than zero.")
         wavelength = float(input("Enter the wavelength of the wave (meters): "))
-    
+
     # Frequency Formula
     frequency = v / wavelength
     if "." in str(frequency):
         frequency = int(frequency)
-    print("Frequency =", str(frequency) + "Hz")   
+    print("Frequency =", str(frequency) + "Hz")
