@@ -5,18 +5,20 @@ from sklearn.metrics import plot_confusion_matrix
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
+
 def data_handling():
-    iris=load_iris()
+    iris = load_iris()
     # Split dataset into train and test data
     x = iris["data"]  # features
     y = iris["target"]
-    return x,y
-    
-def XGBoost(features,target):
-    classifier=XGBClassifier()
-    classifier.fit(features,target)
+    return x, y
+
+
+def XGBoost(features, target):
+    classifier = XGBClassifier()
+    classifier.fit(features, target)
     return classifier
-    
+
 
 def main() -> None:
 
@@ -27,12 +29,11 @@ def main() -> None:
     """
 
     # Load Iris dataset
-    features,target = data_handling()
+    features, target = data_handling()
     x_train, x_test, y_train, y_test = train_test_split(
         features, target, test_size=0.25, random_state=1
     )
 
-    
     # XGBoost Classifier
     xgb = XGBoost(x_train, y_train)
 
