@@ -31,26 +31,5 @@ def binary_to_text(binary: str) -> str:
 
 
 if __name__ == "__main__":
-    while True:
-        string = input(
-            """Choose from below options : [1,2]
-    1. Convert text to binary
-    2. Convert binary to text
-    3. Cancel\n: """
-        )
-        if string == "1":
-            print(
-                "RESULT :\033[92m",
-                text_to_binary(input("Enter the string to convert: ")),
-                end="\033[0m\n\n",
-            )
-        elif string == "2":
-            print(
-                "RESULT :\033[92m",
-                binary_to_text(input("Enter the binary string to convert: ")),
-                end="\033[0m\n\n",
-            )
-        elif string == "3":
-            exit()
-        else:
-            print("\033[91mPlease enter a valid input.", end="\033[0m\n\n")
+    import doctest
+    doctest.testmod()
