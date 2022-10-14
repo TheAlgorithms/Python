@@ -19,7 +19,7 @@ def make_tree() -> Node | None:
     The below tree
         1
        / \
-      2   3 
+      2   3
      / \
     4   5
     """
