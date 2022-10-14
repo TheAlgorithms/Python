@@ -35,30 +35,30 @@ PROGNAME = "Sierpinski Triangle"
 points = [[-175, -125], [0, 175], [175, -125]]  # size of triangle
 
 
-def getMid(p1, p2):
+def get_mid(p1, p2):
     return ((p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2)  # find midpoint
 
 
 def triangle(points, depth):
 
-    myPen.up()
-    myPen.goto(points[0][0], points[0][1])
-    myPen.down()
-    myPen.goto(points[1][0], points[1][1])
-    myPen.goto(points[2][0], points[2][1])
-    myPen.goto(points[0][0], points[0][1])
+    my_pen.up()
+    my_pen.goto(points[0][0], points[0][1])
+    my_pen.down()
+    my_pen.goto(points[1][0], points[1][1])
+    my_pen.goto(points[2][0], points[2][1])
+    my_pen.goto(points[0][0], points[0][1])
 
     if depth > 0:
         triangle(
-            [points[0], getMid(points[0], points[1]), getMid(points[0], points[2])],
+            [points[0], get_mid(points[0], points[1]), get_mid(points[0], points[2])],
             depth - 1,
         )
         triangle(
-            [points[1], getMid(points[0], points[1]), getMid(points[1], points[2])],
+            [points[1], get_mid(points[0], points[1]), get_mid(points[1], points[2])],
             depth - 1,
         )
         triangle(
-            [points[2], getMid(points[2], points[1]), getMid(points[0], points[2])],
+            [points[2], get_mid(points[2], points[1]), get_mid(points[0], points[2])],
             depth - 1,
         )
 
@@ -69,8 +69,8 @@ if __name__ == "__main__":
             "right format for using this script: "
             "$python fractals.py <int:depth_for_fractal>"
         )
-    myPen = turtle.Turtle()
-    myPen.ht()
-    myPen.speed(5)
-    myPen.pencolor("red")
+    my_pen = turtle.Turtle()
+    my_pen.ht()
+    my_pen.speed(5)
+    my_pen.pencolor("red")
     triangle(points, int(sys.argv[1]))

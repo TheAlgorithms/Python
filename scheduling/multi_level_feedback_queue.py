@@ -205,7 +205,7 @@ class MLFQ:
         """
         finished: deque[Process] = deque()  # sequence deque of terminated process
         # just for 1 cycle and unfinished processes will go back to queue
-        for i in range(len(ready_queue)):
+        for _ in range(len(ready_queue)):
             cp = ready_queue.popleft()  # current process
 
             # if process's arrival time is later than current time, update current time
@@ -307,6 +307,6 @@ if __name__ == "__main__":
     )
     # print sequence of finished processes
     print(
-        f"sequnece of finished processes:\
+        f"sequence of finished processes:\
         {mlfq.calculate_sequence_of_finish_queue()}"
     )

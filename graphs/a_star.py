@@ -40,10 +40,10 @@ def search(
         else:  # to choose the least costliest action so as to move closer to the goal
             cell.sort()
             cell.reverse()
-            next = cell.pop()
-            x = next[2]
-            y = next[3]
-            g = next[1]
+            next_cell = cell.pop()
+            x = next_cell[2]
+            y = next_cell[3]
+            g = next_cell[1]
 
             if x == goal[0] and y == goal[1]:
                 found = True

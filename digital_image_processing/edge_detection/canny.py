@@ -43,33 +43,33 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
                 or 15 * PI / 8 <= direction <= 2 * PI
                 or 7 * PI / 8 <= direction <= 9 * PI / 8
             ):
-                W = sobel_grad[row, col - 1]
-                E = sobel_grad[row, col + 1]
-                if sobel_grad[row, col] >= W and sobel_grad[row, col] >= E:
+                w = sobel_grad[row, col - 1]
+                e = sobel_grad[row, col + 1]
+                if sobel_grad[row, col] >= w and sobel_grad[row, col] >= e:
                     dst[row, col] = sobel_grad[row, col]
 
             elif (PI / 8 <= direction < 3 * PI / 8) or (
                 9 * PI / 8 <= direction < 11 * PI / 8
             ):
-                SW = sobel_grad[row + 1, col - 1]
-                NE = sobel_grad[row - 1, col + 1]
-                if sobel_grad[row, col] >= SW and sobel_grad[row, col] >= NE:
+                sw = sobel_grad[row + 1, col - 1]
+                ne = sobel_grad[row - 1, col + 1]
+                if sobel_grad[row, col] >= sw and sobel_grad[row, col] >= ne:
                     dst[row, col] = sobel_grad[row, col]
 
             elif (3 * PI / 8 <= direction < 5 * PI / 8) or (
                 11 * PI / 8 <= direction < 13 * PI / 8
             ):
-                N = sobel_grad[row - 1, col]
-                S = sobel_grad[row + 1, col]
-                if sobel_grad[row, col] >= N and sobel_grad[row, col] >= S:
+                n = sobel_grad[row - 1, col]
+                s = sobel_grad[row + 1, col]
+                if sobel_grad[row, col] >= n and sobel_grad[row, col] >= s:
                     dst[row, col] = sobel_grad[row, col]
 
             elif (5 * PI / 8 <= direction < 7 * PI / 8) or (
                 13 * PI / 8 <= direction < 15 * PI / 8
             ):
-                NW = sobel_grad[row - 1, col - 1]
-                SE = sobel_grad[row + 1, col + 1]
-                if sobel_grad[row, col] >= NW and sobel_grad[row, col] >= SE:
+                nw = sobel_grad[row - 1, col - 1]
+                se = sobel_grad[row + 1, col + 1]
+                if sobel_grad[row, col] >= nw and sobel_grad[row, col] >= se:
                     dst[row, col] = sobel_grad[row, col]
 
             """
