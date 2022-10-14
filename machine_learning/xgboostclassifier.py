@@ -16,7 +16,7 @@ def xgboost(features: list,target: list) # -> returns a trained model:
     classifier = XGBClassifier()
     classifier.fit(features, target)
     return classifier
-    
+
 def main() -> None:
 
     """
@@ -36,7 +36,7 @@ def main() -> None:
 
     # XGBoost Classifier
     xgb=xgboost(x_train, y_train)
-    
+
     # Display Confusion Matrix of Classifier
     # with both train and test sets
     plot_confusion_matrix(
