@@ -91,7 +91,7 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
     #-----END OF PLOT SECTION (OPTIONAL)------#
     """
 
-    return sum(plt_vals) / number_of_sections  # takinf the average value
+    return sum(plt_vals) / number_of_sections  # taking the average value
 
 
 doctest.testmod()
