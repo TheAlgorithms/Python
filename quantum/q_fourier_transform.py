@@ -36,6 +36,8 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     Returns:
         qiskit.result.counts.Counts: distribute counts.
 
+    >>> quantum_fourier_transform(2)
+    {'00': 2500, '01': 2500, '10': 2500, '11': 2500}
     >>> quantum_fourier_transform(-1)
     Traceback (most recent call last):
         ...
@@ -52,8 +54,6 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     Traceback (most recent call last):
         ...
     ValueError: number of qubits must be exact integer.
-    >>> quantum_fourier_transform(2)
-     {'00': 2500, '01': 2500, '10': 2500, '11': 2500}
     """
     if type(number_of_qubits) == str:
         raise TypeError("number of qubits must be a integer.")
