@@ -43,4 +43,5 @@ def absolute_conversion(interval_start: float, interval_end: float, number: floa
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
