@@ -37,7 +37,7 @@ def zero_one_bfs(graph: dict, n: int, start: int, goal: int):
     d[start] = 0
 
 	# Creating empty deque
-	q = collections.deque([])
+    q = collectios.deque([])
 
     q.appendleft(start)
 
