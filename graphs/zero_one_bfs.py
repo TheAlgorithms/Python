@@ -56,9 +56,8 @@ def zero_one_bfs(graph: dict, n: int, start: int, goal: int) -> None:
 
 def main() -> None:
     print("This function implements the zero_one_bfs.")
-    print(
-        "Programmers can just add print statements or modify the data_types as per the applications of this."
-    )
+    print("Programmers can just add print statements or ", end="")
+    print("modify the data_types as per the applications of this.")
 
 
 if __name__ == "__main__":
