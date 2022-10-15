@@ -16,7 +16,7 @@ import collections
 import math
 
 
-def zero_one_bfs(graph: dict, n: int, start: int, goal: int):
+def zero_one_bfs(graph: dict, n: int, start: int, goal: int) -> None:
     """
     Shortest weighted path for a ZERO - ONE weighted graph
 
@@ -36,7 +36,7 @@ def zero_one_bfs(graph: dict, n: int, start: int, goal: int):
     # The distance of a node from itself is ZERO
     d[start] = 0
 
-    q = collections.deque([])
+    q: collections.deque = collections.deque([])
 
     q.appendleft(start)
 
