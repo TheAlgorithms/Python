@@ -1,3 +1,23 @@
+BITS_TO_HEX = {
+    "0000": "0",
+    "0001": "1",
+    "0010": "2",
+    "0011": "3",
+    "0100": "4",
+    "0101": "5",
+    "0110": "6",
+    "0111": "7",
+    "1000": "8",
+    "1001": "9",
+    "1010": "a",
+    "1011": "b",
+    "1100": "c",
+    "1101": "d",
+    "1110": "e",
+    "1111": "f",
+}
+
+
 def bin_to_hexadecimal(binary_str: str) -> str:
     """
     Converting a binary string into hexadecimal using Grouping Method
@@ -17,25 +37,6 @@ def bin_to_hexadecimal(binary_str: str) -> str:
     ...
     ValueError: Empty string was passed to the function
     """
-    BITS_TO_HEX = {  # noqa: N806
-        "0000": "0",
-        "0001": "1",
-        "0010": "2",
-        "0011": "3",
-        "0100": "4",
-        "0101": "5",
-        "0110": "6",
-        "0111": "7",
-        "1000": "8",
-        "1001": "9",
-        "1010": "a",
-        "1011": "b",
-        "1100": "c",
-        "1101": "d",
-        "1110": "e",
-        "1111": "f",
-    }
-
     # Sanitising parameter
     binary_str = str(binary_str).strip()
 

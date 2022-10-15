@@ -185,12 +185,12 @@ def test_compare_random(hand, other, expected):
 
 
 def test_hand_sorted():
-    POKER_HANDS = [PokerHand(hand) for hand in SORTED_HANDS]  # noqa: N806
-    list_copy = POKER_HANDS.copy()
+    poker_hands = [PokerHand(hand) for hand in SORTED_HANDS]
+    list_copy = poker_hands.copy()
     shuffle(list_copy)
     user_sorted = chain(sorted(list_copy))
     for index, hand in enumerate(user_sorted):
-        assert hand == POKER_HANDS[index]
+        assert hand == poker_hands[index]
 
 
 def test_custom_sort_five_high_straight():

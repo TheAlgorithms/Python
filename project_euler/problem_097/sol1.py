@@ -34,9 +34,9 @@ def solution(n: int = 10) -> str:
     """
     if not isinstance(n, int) or n < 0:
         raise ValueError("Invalid input")
-    MODULUS = 10**n  # noqa: N806
-    NUMBER = 28433 * (pow(2, 7830457, MODULUS)) + 1  # noqa: N806
-    return str(NUMBER % MODULUS)
+    modulus = 10**n
+    number = 28433 * (pow(2, 7830457, modulus)) + 1
+    return str(number % modulus)
 
 
 if __name__ == "__main__":

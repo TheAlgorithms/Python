@@ -1,3 +1,6 @@
+
+LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 def decrypt(message: str) -> None:
     """
     >>> decrypt('TMDETUX PMDVU')
@@ -28,7 +31,6 @@ def decrypt(message: str) -> None:
     Decryption using Key #24: VOFGVWZ ROFXW
     Decryption using Key #25: UNEFUVY QNEWV
     """
-    LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  # noqa: N806
     for key in range(len(LETTERS)):
         translated = ""
         for symbol in message:

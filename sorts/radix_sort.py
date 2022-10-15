@@ -6,6 +6,9 @@ Source: https://en.wikipedia.org/wiki/Radix_sort
 from __future__ import annotations
 
 
+RADIX = 10
+
+
 def radix_sort(list_of_ints: list[int]) -> list[int]:
     """
     Examples:
@@ -19,7 +22,6 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
     >>> radix_sort([1,100,10,1000]) == sorted([1,100,10,1000])
     True
     """
-    RADIX = 10  # noqa: N806
     placement = 1
     max_digit = max(list_of_ints)
     while placement <= max_digit:

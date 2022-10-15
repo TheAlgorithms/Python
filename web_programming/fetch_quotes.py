@@ -12,13 +12,13 @@ import requests
 
 
 def quote_of_the_day() -> list:
-    API_ENDPOINT_URL = "https://zenquotes.io/api/today/"  # noqa: N806
-    return requests.get(API_ENDPOINT_URL).json()
+    api_endpoint_url = "https://zenquotes.io/api/today/"
+    return requests.get(api_endpoint_url).json()
 
 
 def random_quotes() -> list:
-    API_ENDPOINT_URL = "https://zenquotes.io/api/random/"  # noqa: N806
-    return requests.get(API_ENDPOINT_URL).json()
+    api_endpoint_url = "https://zenquotes.io/api/random/"
+    return requests.get(api_endpoint_url).json()
 
 
 if __name__ == "__main__":

@@ -12,13 +12,15 @@ import cv2
 import numpy as np
 
 
+PIXEL_MAX = 255.0
+
 def psnr(original: float, contrast: float) -> float:
     mse = np.mean((original - contrast) ** 2)
     if mse == 0:
         return 100
-    PIXEL_MAX = 255.0  # noqa: N806
-    PSNR = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))  # noqa: N806
-    return PSNR
+
+    psnr = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
+    return psnr
 
 
 def main() -> None:
