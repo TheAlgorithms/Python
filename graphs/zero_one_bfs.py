@@ -16,11 +16,11 @@ import collections
 import math
 
 
-def zero_one_bfs(graph: dict, n: int, start: int, goal: int) -> None:
+def zero_one_bfs(graph: dict, number_of_nodes: int, start: int, goal: int) -> None:
     """
     Shortest weighted path for a ZERO - ONE weighted graph
 
-    The graph (dict) must have all keys from 0 to n - 1
+    The graph (dict) must have all keys from 0 to number_of_nodes - 1
     The values of each key must be a list of lists of length 2,
             the first element being the next node and
             the second elements being the weight of the edge connecting them
@@ -31,7 +31,7 @@ def zero_one_bfs(graph: dict, n: int, start: int, goal: int) -> None:
     """
 
     # d[i] is the distance from the node 'start' to the node i
-    distance_from_start = [math.inf for i in range(n)]
+    distance_from_start = [math.inf for i in range(number_of_nodes)]
 
     # The distance of a node from itself is ZERO
     distance_from_start[start] = 0
