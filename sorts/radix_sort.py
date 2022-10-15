@@ -5,7 +5,6 @@ Source: https://en.wikipedia.org/wiki/Radix_sort
 """
 from __future__ import annotations
 
-
 RADIX = 10
 
 

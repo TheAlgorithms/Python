@@ -15,6 +15,7 @@ be written as the sum of consecutive squares.
 
 LIMIT = 10**8
 
+
 def is_palindrome(n: int) -> bool:
     """
     Check if an integer is palindromic.

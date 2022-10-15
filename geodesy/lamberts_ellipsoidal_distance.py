@@ -2,7 +2,6 @@ from math import atan, cos, radians, sin, tan
 
 from .haversine_distance import haversine_distance
 
-
 AXIS_A = 6378137.0
 AXIS_B = 6356752.314245
 EQUATORIAL_RADIUS = 6378137

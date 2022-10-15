@@ -19,7 +19,6 @@ import random
 from matplotlib import animation
 from matplotlib import pyplot as plt
 
-
 # Frame rate of the animation
 INTERVAL = 20
 

@@ -1,5 +1,5 @@
-
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 
 def decrypt(message: str) -> None:
     """

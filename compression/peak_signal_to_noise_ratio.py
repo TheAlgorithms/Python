@@ -11,8 +11,8 @@ import os
 import cv2
 import numpy as np
 
-
 PIXEL_MAX = 255.0
+
 
 def psnr(original: float, contrast: float) -> float:
     mse = np.mean((original - contrast) ** 2)

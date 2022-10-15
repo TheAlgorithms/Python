@@ -9,7 +9,6 @@ https://www.braingle.com/brainteasers/codes/bifid.php
 
 import numpy as np
 
-
 SQUARE = [
     ["a", "b", "c", "d", "e"],
     ["f", "g", "h", "i", "k"],
@@ -17,6 +16,7 @@ SQUARE = [
     ["q", "r", "s", "t", "u"],
     ["v", "w", "x", "y", "z"],
 ]
+
 
 class BifidCipher:
     def __init__(self) -> None:
