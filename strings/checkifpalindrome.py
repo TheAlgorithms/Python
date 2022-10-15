@@ -14,8 +14,7 @@ def checkifpalindrome(s: str) -> bool:
     >>>palindrome(Madam)
     Yes
     """
-    
-    
+
     s = s.lower()
     string_rev = s[::-1]
     if string_rev == s:
@@ -23,9 +22,10 @@ def checkifpalindrome(s: str) -> bool:
     else:
         return False
 
+
 if __name__ == "__main__":
     s = input()
-    if(checkifpalindrome(s)):
+    if checkifpalindrome(s):
         print("Yes")
     else:
         print("No")
