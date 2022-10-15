@@ -26,11 +26,11 @@
 def absolute_conversion(interv_start: float, interv_end: float, number: float) -> str:
     """
     >>> absolute_conversion(0, 10, 4)
-    40.0
+    '40.0'
     >>> absolute_conversion(120, 140, 125)
-    25.0
+    '25.0'
     >>> absolute_conversion(0,20,21)
-    105.0
+    '105.0'
     """
     if interv_start > interv_end:
         message = "Invalid arguments, start is higher than the end."
