@@ -31,7 +31,7 @@ def torricelli_theorem(height: float, gravity: float = g) -> float:
     if gravity <= 0:
         raise ValueError("Impossible Gravity")
 
-    return (2 * height * gravity)**0.5
+    return (2 * height * gravity) ** 0.5
 
 
 if __name__ == "__main__":
