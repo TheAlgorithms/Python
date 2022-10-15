@@ -1,8 +1,8 @@
 alphabets = [chr(i) for i in range(32, 126)]
-gear_one = [i for i in range(len(alphabets))]
-gear_two = [i for i in range(len(alphabets))]
-gear_three = [i for i in range(len(alphabets))]
-reflector = [i for i in reversed(range(len(alphabets)))]
+gear_one = list(range(len(alphabets)))
+gear_two = list(range(len(alphabets)))
+gear_three = list(range(len(alphabets)))
+reflector = list(reversed(range(len(alphabets))))
 code = []
 gear_one_pos = gear_two_pos = gear_three_pos = 0
 

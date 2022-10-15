@@ -33,11 +33,11 @@ def solution():
     with open(words_file_path) as f:
         words = f.readline()
 
-    words = list(map(lambda word: word.strip('"'), words.strip("\r\n").split(",")))
+    words = [word.strip('"') for word in words.strip("\r\n").split(",")]
     words = list(
         filter(
             lambda word: word in TRIANGULAR_NUMBERS,
-            map(lambda word: sum(map(lambda x: ord(x) - 64, word)), words),
+            (sum(ord(x) - 64 for x in word) for word in words),
         )
     )
     return len(words)

@@ -28,8 +28,8 @@ def solution():
     with open(triangle) as f:
         triangle = f.readlines()
 
-    a = map(lambda x: x.rstrip("\r\n").split(" "), triangle)
-    a = list(map(lambda x: list(map(int, x)), a))
+    a = (x.rstrip("\r\n").split(" ") for x in triangle)
+    a = [list(map(int, x)) for x in a]
 
     for i in range(1, len(a)):
         for j in range(len(a[i])):

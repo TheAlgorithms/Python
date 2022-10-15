@@ -89,7 +89,7 @@ def sieve_er(n):
     assert isinstance(n, int) and (n > 2), "'N' must been an int and > 2"
 
     # beginList: contains all natural numbers from 2 up to N
-    begin_list = [x for x in range(2, n + 1)]
+    begin_list = list(range(2, n + 1))
 
     ans = []  # this list will be returns.
 
