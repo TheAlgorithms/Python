@@ -1,8 +1,7 @@
 # https://en.wikipedia.org/wiki/LC_circuit
 from __future__ import annotations
 
-from math import pi as PI
-from math import sqrt
+from math import (sqrt, pi)
 
 
 def resonant_frequency(inductance: float, capacitance: float) -> tuple:
@@ -32,7 +31,7 @@ def resonant_frequency(inductance: float, capacitance: float) -> tuple:
     else:
         return (
             "resonant_frequency",
-            float(1 / (2 * PI * (sqrt(inductance * capacitance)))),
+            float(1 / (2 * pi * (sqrt(inductance * capacitance)))),
         )
 
 
