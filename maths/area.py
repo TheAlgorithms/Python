@@ -458,6 +458,52 @@ def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     return 1 / 2 * diagonal_1 * diagonal_2
 
 
+def area_kite(diagonal_1: float, diagonal_2: float) -> float:
+    """
+    Calculate the area of a kite.
+    >>> area_kite(5, 10)
+    25.0
+    >>> area_kite(2.5, 3.5)
+    4.375
+    >>> area_kite(0, 0)
+    0.0
+    >>> area_kite(-1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_kite() only accepts non-negative values
+    >>> area_kite(1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_kite() only accepts non-negative values
+    >>> area_kite(-1, 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_kite() only accepts non-negative values
+    """
+    if diagonal_1 < 0 or diagonal_2 < 0:
+        raise ValueError("area_kite() only accepts non-negative values")
+    return 1 / 2 * diagonal_1 * diagonal_2
+
+
+def area_hexagon(side: float) -> float:
+    """
+    Calculate the area of a hexagon.
+    >>> area_hexagon(4)
+    41.569219381653056
+    >>> area_hexagon(1.5)
+    5.845671475544961
+    >>> area_hexagon(0)
+    0.0
+    >>> area_hexagon(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_hexagon() only accepts non-negative values
+    """
+    if side < 0:
+        raise ValueError("area_hexagon() only accepts non-negative values")
+    return ((3 * sqrt(3) * (side * side)) / 2)
+
+
 if __name__ == "__main__":
     import doctest
 
@@ -473,6 +519,8 @@ if __name__ == "__main__":
     print(f"Trapezium: {area_trapezium(10, 20, 30) = }")
     print(f"Circle: {area_circle(20) = }")
     print(f"Ellipse: {area_ellipse(10, 20) = }")
+    print(f"Kite: {area_kite(10, 20) = }")
+    print(f"Hexagon: {area_hexagon(10) = }")
     print("\nSurface Areas of various geometric shapes: \n")
     print(f"Cube: {surface_area_cube(20) = }")
     print(f"Cuboid: {surface_area_cuboid(10, 20, 30) = }")
