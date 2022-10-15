@@ -1,4 +1,7 @@
 
+## Dijkstras Algorithm
+  * [Shortest Path](Dijkstras_algorithm/shortest_path.py)
+
 ## Arithmetic Analysis
   * [Bisection](arithmetic_analysis/bisection.py)
   * [Gaussian Elimination](arithmetic_analysis/gaussian_elimination.py)
@@ -642,6 +645,7 @@
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
 
 ## Physics
+  * [Casimir Effect](physics/casimir_effect.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
