@@ -1,4 +1,4 @@
-def palindrome(s: string) -> str:
+def palindrome(s: str) -> str:
     """
     Determines whether the given word is a palindrome
     :param s: the string
@@ -14,20 +14,15 @@ def palindrome(s: string) -> str:
     >>>palindrome(madam)
     Yes
     """
-
+    
+    
+    
     string_rev = s[::-1]
     if string_rev == s:
-        return "Yes"
+        return 'Yes'
     else:
-        return "No"
-
+        return 'No'
 
 if __name__ == "__main__":
-    n_inp = int(input())  # Numbers of case test
-    for item in range(n_inp):
-        size = int(input())  # Size of string
-        n = input()  # String
-        if len(n) > size:
-            print("Oversized or is different.")
-        else:
-            print(palindrome(n))
+    s = input() # String
+    print(palindrome(s))
