@@ -23,7 +23,7 @@
 """
 
 
-def absolute_conversion(interv_start: float, interv_end: float, number: float) -> float:
+def absolute_conversion(interv_start: float, interv_end: float, number: float) -> str:
     """
     >>> absolute_conversion(0, 10, 4)
     40.0
@@ -33,13 +33,15 @@ def absolute_conversion(interv_start: float, interv_end: float, number: float) -
     105.0
     """
     if interv_start > interv_end:
-        return print("Invalid arguments, start is higher than the end.")
+        message = "Invalid arguments, start is higher than the end."
+        return message
     elif interv_start == interv_end:
-        return print("Invalid arguments, start and end should be different.")
+        message = "Invalid arguments, start and end should be different."
+        return message
     else:
         native_interval = interv_end - interv_start
-        value_percentage = float((100 * (number - interv_start)) / native_interval)
-        return value_percentage
+        value_percentage = (100 * (number - interv_start)) / native_interval
+        return str(value_percentage)
 
 
 if __name__ == "__main__":
