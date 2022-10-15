@@ -21,7 +21,8 @@ def xnor_gate(input_1: int, input_2: int) -> int:
     >>> xnor_gate(1, 1)
     1
     """
-    return int((not(input_1 != input_2)))
+    return int(not (input_1 != input_2))
+
 
 def main() -> None:
     print("Truth Table of XNOR Gate:")
@@ -31,7 +32,9 @@ def main() -> None:
     print("|      1      |", "     0      |     ", xnor_gate(1, 0), "     |")
     print("|      1      |", "     1      |     ", xnor_gate(1, 1), "     |")
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()

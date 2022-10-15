@@ -23,6 +23,7 @@ def xor_gate(input_1: int, input_2: int) -> int:
     """
     return int(input_1 != input_2)
 
+
 def main() -> None:
     print("Truth Table of XOR Gate:")
     print("| Input 1     |", " Input 2    |", " Output     |")
@@ -31,7 +32,9 @@ def main() -> None:
     print("|      1      |", "     0      |     ", xor_gate(1, 0), "     |")
     print("|      1      |", "     1      |     ", xor_gate(1, 1), "     |")
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
