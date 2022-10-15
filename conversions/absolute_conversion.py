@@ -23,13 +23,7 @@
 """
 
 
-<<<<<<< HEAD
 def absolute_conversion(interval_start: float, interval_end: float, number: float) -> float:
-=======
-def absolute_conversion(
-    interval_start: float, interval_end: float, number: float
-) -> str:
->>>>>>> 6566116fbb831053e0fc8b28805c08204bcc17cb
     """
     >>> absolute_conversion(0, 10, 4)
     40.0
