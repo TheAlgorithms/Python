@@ -50,4 +50,6 @@ if __name__ == "__main__":
     doctest.testmod()
     main()
 
-""" More information on NAND gate: https://en.wikipedia.org/wiki/NAND_gate """
+""" 
+More information on NAND gate: https://en.wikipedia.org/wiki/NAND_gate 
+"""
