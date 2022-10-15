@@ -62,28 +62,28 @@ def bernoulli_fluid_equation(
     fluid_density: float, fluid_velocity: float, initial_pressure: float = 0
 ) -> float:
     """
-    Calculates pressure/fluids-kinetic-energy - work of a dynamic non-compressible fluid through a tube
+     Calculates pressure/fluids-kinetic-energy - work of a dynamic non-compressible fluid through a tube
 
-    Bernoulli's Equation:
-        W = P1 + 0.5*ρ*v^2
+     Bernoulli's Equation:
+         W = P1 + 0.5*ρ*v^2
 
-    Args:
-        fluid_density: Density of fluid within which pressure is being calculated
-        fluid_velocity: Velocity at which the fluid is travelling at
-        initial_pressure: represents any external pressure acting on system (Pa)
-   Returns:
-        Pressure of system in Pa (Pascals)
+     Args:
+         fluid_density: Density of fluid within which pressure is being calculated
+         fluid_velocity: Velocity at which the fluid is travelling at
+         initial_pressure: represents any external pressure acting on system (Pa)
+    Returns:
+         Pressure of system in Pa (Pascals)
 
-    >>> bernoulli_fluid_equation(fluid_density=997, fluid_velocity=0.7)
-    244.26499999999996
-    >>> bernoulli_fluid_equation(fluid_density=997, fluid_velocity=0.7, initial_pressure=2)
-    246.26499999999996
+     >>> bernoulli_fluid_equation(fluid_density=997, fluid_velocity=0.7)
+     244.26499999999996
+     >>> bernoulli_fluid_equation(fluid_density=997, fluid_velocity=0.7, initial_pressure=2)
+     246.26499999999996
     """
 
     if fluid_density <= 0:
         raise ValueError("Impossible fluid density")
 
-    return 0.5 * fluid_density * fluid_velocity ** 2 + initial_pressure
+    return 0.5 * fluid_density * fluid_velocity**2 + initial_pressure
 
 
 def bernoulli_full_equation(
@@ -94,43 +94,45 @@ def bernoulli_full_equation(
     initial_pressure: float = 0,
 ) -> float:
     """
-    Bernoulli's equation represents the relation of (Pressure, KE, and GPE) of a non-compressible,
-    frictionless fluid within a container.
+     Bernoulli's equation represents the relation of (Pressure, KE, and GPE) of a non-compressible,
+     frictionless fluid within a container.
 
-    P1 + 0.5*ρ*v1^2 + ρgh1 = P2 + 0.5*ρ*v2^2 + ρgh2
-    or
-    P + 0.5*ρ*v^2 + ρgh = constant
+     P1 + 0.5*ρ*v1^2 + ρgh1 = P2 + 0.5*ρ*v2^2 + ρgh2
+     or
+     P + 0.5*ρ*v^2 + ρgh = constant
 
-    Equation is often rearranged to solve for different variables
+     Equation is often rearranged to solve for different variables
 
-    Args:
-        fluid_density: Density of fluid within which pressure is being calculated
-        fluid_velocity: Velocity at which the fluid is travelling at
-        h: height difference between two pressures being compared
-        gravity: Acceleration from gravity. Default is Earth Gravity
-        initial_pressure: represents any external pressure acting on system (Pa), Default = 0
-   Returns:
-        Pressure of system in Pa (Pascals)
+     Args:
+         fluid_density: Density of fluid within which pressure is being calculated
+         fluid_velocity: Velocity at which the fluid is travelling at
+         h: height difference between two pressures being compared
+         gravity: Acceleration from gravity. Default is Earth Gravity
+         initial_pressure: represents any external pressure acting on system (Pa), Default = 0
+    Returns:
+         Pressure of system in Pa (Pascals)
 
 
-    >>> bernoulli_full_equation(fluid_density=997, fluid_velocity=0.2, h=5, gravity=9.8, initial_pressure=7)
-    48879.94
-    >>> bernoulli_full_equation(fluid_density=997, fluid_velocity=0.2, h=5, gravity=9.8)
-    48872.94
-    >>> bernoulli_full_equation(fluid_density=997, fluid_velocity=0.2, h=5)
-    48906.09025
-    >>> bernoulli_full_equation(fluid_density=997, h=9)
-    87995.07045
+     >>> bernoulli_full_equation(fluid_density=997, fluid_velocity=0.2, h=5, gravity=9.8, initial_pressure=7)
+     48879.94
+     >>> bernoulli_full_equation(fluid_density=997, fluid_velocity=0.2, h=5, gravity=9.8)
+     48872.94
+     >>> bernoulli_full_equation(fluid_density=997, fluid_velocity=0.2, h=5)
+     48906.09025
+     >>> bernoulli_full_equation(fluid_density=997, h=9)
+     87995.07045
     """
 
     return (
-        bernoulli_fluid_equation(fluid_density=fluid_density, fluid_velocity=fluid_velocity)
+        bernoulli_fluid_equation(
+            fluid_density=fluid_density, fluid_velocity=fluid_velocity
+        )
         + bernoulli_static_equation(fluid_density=fluid_density, h=h, gravity=gravity)
         + initial_pressure
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     # run doctest
