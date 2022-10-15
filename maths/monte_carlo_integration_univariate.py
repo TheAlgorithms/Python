@@ -108,4 +108,6 @@ number_of_sections = 1000  # Number of individual ares to be considered
 # function call
 # the final area under the curve(integration) value is considered as the average
 # of all the individual areas calculated
-print(f"The value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, number_of_sections)}.")
+print(
+    f"The value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, number_of_sections)}."
+)
