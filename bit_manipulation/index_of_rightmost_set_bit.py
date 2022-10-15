@@ -33,7 +33,8 @@ def get_index_of_rightmost_set_bit(number: int) -> int:
 if __name__ == "__main__":
     """
     Finding the index of rightmost set bit has some very peculiar use-cases,
-    especially in finding missing or/and repeating numbers in a list of positive integers.
+    especially in finding missing or/and repeating numbers in a list of
+    positive integers.
     """
     import doctest
 
