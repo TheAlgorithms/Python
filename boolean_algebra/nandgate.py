@@ -49,3 +49,5 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
     main()
+
+""" More information on NAND gate: https://en.wikipedia.org/wiki/NAND_gate """
