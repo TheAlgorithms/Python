@@ -172,6 +172,8 @@
   * Disjoint Set
     * [Alternate Disjoint Set](data_structures/disjoint_set/alternate_disjoint_set.py)
     * [Disjoint Set](data_structures/disjoint_set/disjoint_set.py)
+  * Graphs
+    * [Bfs](data_structures/graphs/bfs.py)
   * Hashing
     * [Double Hash](data_structures/hashing/double_hash.py)
     * [Hash Table](data_structures/hashing/hash_table.py)
@@ -642,6 +644,7 @@
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
 
 ## Physics
+  * [Casimir Effect](physics/casimir_effect.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
