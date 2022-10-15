@@ -5,17 +5,17 @@
         - Import this file
         - Call the absolute_conversion function
         - Parameters:
-            - interval_start: The start of your internal scale.
-            - interval_end: The end of your internal scale.
+            - interv_start: The start of your internal scale.
+            - interv_end: The end of your internal scale.
             - number: The number you want to know the percentage that it
             represents of the scale.
     Exemples:
-    interval_start:0
-    interval_end:100
+    interv_start:0
+    interv_end:100
     number:50
     output: 50.0
-    interval_start:6
-    interval_end:12
+    interv_start:6
+    interv_end:12
     number:9
     output:50.0
 
@@ -23,7 +23,9 @@
 """
 
 
-def absolute_conversion(interval_start: float, interval_end: float, number: float) -> float:
+def absolute_conversion(interv_start: float,
+                        interv_end: float,
+                        number: float) -> float:
     """
     >>> absolute_conversion(0, 10, 4)
     40.0
@@ -32,16 +34,15 @@ def absolute_conversion(interval_start: float, interval_end: float, number: floa
     >>> absolute_conversion(0,20,21)
     105.0
     """
-    if interval_start > interval_end:
+    if interv_start > interv_end:
         return print("Invalid arguments, start is higher than the end.")
-    elif interval_start == interval_end:
+    elif interv_start == interv_end:
         return print("Invalid arguments, start and end shoud be different.")
     else:
-        native_interval = interval_end - interval_start
-        return (100 * (number - interval_start)) / native_interval
+        native_interval = interv_end - interv_start
+        return (100 * (number - interv_start)) / native_interval
 
 
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
