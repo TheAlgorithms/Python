@@ -1,13 +1,16 @@
-""" A NAND Gate is a logic gate in boolean algebra which results to false(1)
-    if any of the input is 0, and True(1) if  both the inputs are 1.
-   Following is the truth table of an NAND Gate:
+"""
+A NAND Gate is a logic gate in boolean algebra which results to false(1)
+if any of the input is 0, and True(1) if  both the inputs are 1.
+Following is the truth table of an NAND Gate:
    | Input 1 | Input 2 |  Output |
    |      0      |     0      |      1      |
    |      0      |     1      |      1      |
    |      1      |     0      |      1      |
    |      1      |     1      |      0      |
+
+
+Following is the code implementation of the NAND Gate
 """
-"""Following is the code implementation of the NAND Gate"""
 
 
 def nand_gate(input_1: int, input_2: int) -> int:
