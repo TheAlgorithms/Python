@@ -35,6 +35,7 @@ class MarkovChainGraphUndirectedUnweighted:
             current_probability += self.connections[node][dest]
             if current_probability > random_value:
                 return dest
+        return ""
 
 
 def get_transitions(

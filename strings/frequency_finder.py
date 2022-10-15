@@ -1,7 +1,9 @@
 # Frequency Finder
 
+import string
+
 # frequency taken from http://en.wikipedia.org/wiki/Letter_frequency
-englishLetterFreq = {
+english_letter_freq = {
     "E": 12.70,
     "T": 9.06,
     "A": 8.17,
@@ -33,85 +35,57 @@ ETAOIN = "ETAOINSHRDLCUMWFGYPBVKJXQZ"
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def getLetterCount(message):
-    letterCount = {
-        "A": 0,
-        "B": 0,
-        "C": 0,
-        "D": 0,
-        "E": 0,
-        "F": 0,
-        "G": 0,
-        "H": 0,
-        "I": 0,
-        "J": 0,
-        "K": 0,
-        "L": 0,
-        "M": 0,
-        "N": 0,
-        "O": 0,
-        "P": 0,
-        "Q": 0,
-        "R": 0,
-        "S": 0,
-        "T": 0,
-        "U": 0,
-        "V": 0,
-        "W": 0,
-        "X": 0,
-        "Y": 0,
-        "Z": 0,
-    }
+def get_letter_count(message: str) -> dict[str, int]:
+    letter_count = {letter: 0 for letter in string.ascii_uppercase}
     for letter in message.upper():
         if letter in LETTERS:
-            letterCount[letter] += 1
+            letter_count[letter] += 1
 
-    return letterCount
+    return letter_count
 
 
-def getItemAtIndexZero(x):
+def get_item_at_index_zero(x: tuple) -> str:
     return x[0]
 
 
-def getFrequencyOrder(message):
-    letterToFreq = getLetterCount(message)
-    freqToLetter = {}
+def get_frequency_order(message: str) -> str:
+    letter_to_freq = get_letter_count(message)
+    freq_to_letter: dict[int, list[str]] = {
+        freq: [] for letter, freq in letter_to_freq.items()
+    }
     for letter in LETTERS:
-        if letterToFreq[letter] not in freqToLetter:
-            freqToLetter[letterToFreq[letter]] = [letter]
-        else:
-            freqToLetter[letterToFreq[letter]].append(letter)
+        freq_to_letter[letter_to_freq[letter]].append(letter)
 
-    for freq in freqToLetter:
-        freqToLetter[freq].sort(key=ETAOIN.find, reverse=True)
-        freqToLetter[freq] = "".join(freqToLetter[freq])
+    freq_to_letter_str: dict[int, str] = {}
 
-    freqPairs = list(freqToLetter.items())
-    freqPairs.sort(key=getItemAtIndexZero, reverse=True)
+    for freq in freq_to_letter:
+        freq_to_letter[freq].sort(key=ETAOIN.find, reverse=True)
+        freq_to_letter_str[freq] = "".join(freq_to_letter[freq])
 
-    freqOrder = []
-    for freqPair in freqPairs:
-        freqOrder.append(freqPair[1])
+    freq_pairs = list(freq_to_letter_str.items())
+    freq_pairs.sort(key=get_item_at_index_zero, reverse=True)
 
-    return "".join(freqOrder)
+    freq_order: list[str] = [freq_pair[1] for freq_pair in freq_pairs]
+
+    return "".join(freq_order)
 
 
-def englishFreqMatchScore(message):
+def english_freq_match_score(message: str) -> int:
     """
-    >>> englishFreqMatchScore('Hello World')
+    >>> english_freq_match_score('Hello World')
     1
     """
-    freqOrder = getFrequencyOrder(message)
-    matchScore = 0
-    for commonLetter in ETAOIN[:6]:
-        if commonLetter in freqOrder[:6]:
-            matchScore += 1
+    freq_order = get_frequency_order(message)
+    match_score = 0
+    for common_letter in ETAOIN[:6]:
+        if common_letter in freq_order[:6]:
+            match_score += 1
 
-    for uncommonLetter in ETAOIN[-6:]:
-        if uncommonLetter in freqOrder[-6:]:
-            matchScore += 1
+    for uncommon_letter in ETAOIN[-6:]:
+        if uncommon_letter in freq_order[-6:]:
+            match_score += 1
 
-    return matchScore
+    return match_score
 
 
 if __name__ == "__main__":

@@ -3,11 +3,15 @@
 # Author: OMKAR PATHAK, Nwachukwu Chidiebere
 
 # Use a Python dictionary to construct the graph.
+from __future__ import annotations
 
 from pprint import pformat
+from typing import Generic, TypeVar
+
+T = TypeVar("T")
 
 
-class GraphAdjacencyList:
+class GraphAdjacencyList(Generic[T]):
     """
     Adjacency List type Graph Data Structure that accounts for directed and undirected
     Graphs.  Initialize graph object indicating whether it's directed or undirected.
@@ -59,18 +63,27 @@ class GraphAdjacencyList:
      5: [1, 4],
      6: [2],
      7: [2]}
+     >>> char_graph = GraphAdjacencyList(directed=False)
+     >>> char_graph.add_edge('a', 'b')
+     {'a': ['b'], 'b': ['a']}
+     >>> char_graph.add_edge('b', 'c').add_edge('b', 'e').add_edge('b', 'f')
+     {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
+     >>> print(char_graph)
+     {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
     """
 
-    def __init__(self, directed: bool = True):
+    def __init__(self, directed: bool = True) -> None:
         """
         Parameters:
         directed: (bool) Indicates if graph is directed or undirected. Default is True.
         """
 
-        self.adj_list = {}  # dictionary of lists
+        self.adj_list: dict[T, list[T]] = {}  # dictionary of lists
         self.directed = directed
 
-    def add_edge(self, source_vertex: int, destination_vertex: int) -> object:
+    def add_edge(
+        self, source_vertex: T, destination_vertex: T
+    ) -> GraphAdjacencyList[T]:
         """
         Connects vertices together. Creates and Edge from source vertex to destination
         vertex.
@@ -135,9 +148,3 @@ class GraphAdjacencyList:
 
     def __repr__(self) -> str:
         return pformat(self.adj_list)
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()

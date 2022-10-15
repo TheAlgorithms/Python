@@ -19,7 +19,7 @@ def solution(power: int = 1000) -> int:
     >>> solution(15)
     26
     """
-    n = 2 ** power
+    n = 2**power
     r = 0
     while n:
         r, n = r + n % 10, n // 10

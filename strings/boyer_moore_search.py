@@ -17,7 +17,7 @@ Time Complexity : O(n/m)
     n=length of main string
     m=length of pattern string
 """
-from typing import List
+from __future__ import annotations
 
 
 class BoyerMooreSearch:
@@ -41,13 +41,13 @@ class BoyerMooreSearch:
                 return i
         return -1
 
-    def mismatch_in_text(self, currentPos: int) -> int:
+    def mismatch_in_text(self, current_pos: int) -> int:
         """
         find the index of mis-matched character in text when compared with pattern
         from last
 
         Parameters :
-            currentPos (int): current index position of text
+            current_pos (int): current index position of text
 
         Returns :
             i (int): index of mismatched char from last in text
@@ -55,11 +55,11 @@ class BoyerMooreSearch:
         """
 
         for i in range(self.patLen - 1, -1, -1):
-            if self.pattern[i] != self.text[currentPos + i]:
-                return currentPos + i
+            if self.pattern[i] != self.text[current_pos + i]:
+                return current_pos + i
         return -1
 
-    def bad_character_heuristic(self) -> List[int]:
+    def bad_character_heuristic(self) -> list[int]:
         # searches pattern in text and returns index positions
         positions = []
         for i in range(self.textLen - self.patLen + 1):

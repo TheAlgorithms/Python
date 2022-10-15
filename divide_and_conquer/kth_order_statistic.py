@@ -8,8 +8,9 @@ This is a divide and conquer algorithm that can find a solution in O(n) time.
 For more information of this algorithm:
 https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/lectures/08/Small08.pdf
 """
+from __future__ import annotations
+
 from random import choice
-from typing import List
 
 
 def random_pivot(lst):
@@ -21,7 +22,7 @@ def random_pivot(lst):
     return choice(lst)
 
 
-def kth_number(lst: List[int], k: int) -> int:
+def kth_number(lst: list[int], k: int) -> int:
     """
     Return the kth smallest number in lst.
     >>> kth_number([2, 1, 3, 4, 5], 3)

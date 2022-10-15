@@ -10,7 +10,7 @@ such as: (5 + ((4 * 2) * (2 + 3)))
 
 THESE ARE THE ALGORITHM'S RULES:
 RULE 1: Scan the expression from left to right. When an operand is encountered,
-        push it onto the the operand stack.
+        push it onto the operand stack.
 
 RULE 2: When an operator is encountered in the expression,
         push it onto the operator stack.
@@ -51,8 +51,8 @@ def dijkstras_two_stack_algorithm(equation: str) -> int:
     """
     operators = {"*": op.mul, "/": op.truediv, "+": op.add, "-": op.sub}
 
-    operand_stack = Stack()
-    operator_stack = Stack()
+    operand_stack: Stack[int] = Stack()
+    operator_stack: Stack[str] = Stack()
 
     for i in equation:
         if i.isdigit():

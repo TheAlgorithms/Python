@@ -3,13 +3,16 @@
 Reference:
 - https://en.wikipedia.org/wiki/LU_decomposition
 """
-from typing import Tuple
+from __future__ import annotations
 
 import numpy as np
-from numpy import ndarray
+from numpy import float64
+from numpy.typing import ArrayLike
 
 
-def lower_upper_decomposition(table: ndarray) -> Tuple[ndarray, ndarray]:
+def lower_upper_decomposition(
+    table: ArrayLike[float64],
+) -> tuple[ArrayLike[float64], ArrayLike[float64]]:
     """Lower-Upper (LU) Decomposition
 
     Example:

@@ -1,4 +1,4 @@
-class things:
+class Things:
     def __init__(self, name, value, weight):
         self.name = name
         self.value = value
@@ -16,27 +16,27 @@ class things:
     def get_weight(self):
         return self.weight
 
-    def value_Weight(self):
+    def value_weight(self):
         return self.value / self.weight
 
 
 def build_menu(name, value, weight):
     menu = []
     for i in range(len(value)):
-        menu.append(things(name[i], value[i], weight[i]))
+        menu.append(Things(name[i], value[i], weight[i]))
     return menu
 
 
-def greedy(item, maxCost, keyFunc):
-    itemsCopy = sorted(item, key=keyFunc, reverse=True)
+def greedy(item, max_cost, key_func):
+    items_copy = sorted(item, key=key_func, reverse=True)
     result = []
-    totalValue, total_cost = 0.0, 0.0
-    for i in range(len(itemsCopy)):
-        if (total_cost + itemsCopy[i].get_weight()) <= maxCost:
-            result.append(itemsCopy[i])
-            total_cost += itemsCopy[i].get_weight()
-            totalValue += itemsCopy[i].get_value()
-    return (result, totalValue)
+    total_value, total_cost = 0.0, 0.0
+    for i in range(len(items_copy)):
+        if (total_cost + items_copy[i].get_weight()) <= max_cost:
+            result.append(items_copy[i])
+            total_cost += items_copy[i].get_weight()
+            total_value += items_copy[i].get_value()
+    return (result, total_value)
 
 
 def test_greedy():
@@ -47,13 +47,13 @@ def test_greedy():
     >>> weight = [40, 60, 40, 70, 100, 85, 55, 70]
     >>> foods = build_menu(food, value, weight)
     >>> foods  # doctest: +NORMALIZE_WHITESPACE
-    [things(Burger, 80, 40), things(Pizza, 100, 60), things(Coca Cola, 60, 40),
-     things(Rice, 70, 70), things(Sambhar, 50, 100), things(Chicken, 110, 85),
-     things(Fries, 90, 55), things(Milk, 60, 70)]
-    >>> greedy(foods, 500, things.get_value)  # doctest: +NORMALIZE_WHITESPACE
-    ([things(Chicken, 110, 85), things(Pizza, 100, 60), things(Fries, 90, 55),
-      things(Burger, 80, 40), things(Rice, 70, 70), things(Coca Cola, 60, 40),
-      things(Milk, 60, 70)], 570.0)
+    [Things(Burger, 80, 40), Things(Pizza, 100, 60), Things(Coca Cola, 60, 40),
+     Things(Rice, 70, 70), Things(Sambhar, 50, 100), Things(Chicken, 110, 85),
+     Things(Fries, 90, 55), Things(Milk, 60, 70)]
+    >>> greedy(foods, 500, Things.get_value)  # doctest: +NORMALIZE_WHITESPACE
+    ([Things(Chicken, 110, 85), Things(Pizza, 100, 60), Things(Fries, 90, 55),
+      Things(Burger, 80, 40), Things(Rice, 70, 70), Things(Coca Cola, 60, 40),
+      Things(Milk, 60, 70)], 570.0)
     """
 
 

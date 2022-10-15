@@ -38,23 +38,23 @@ def merge(arr: list[int]) -> list[int]:
         ):  # Runs until the lowers size of the left and right are sorted.
             if left_array[left_index] < right_array[right_index]:
                 arr[index] = left_array[left_index]
-                left_index = left_index + 1
+                left_index += 1
             else:
                 arr[index] = right_array[right_index]
-                right_index = right_index + 1
-            index = index + 1
+                right_index += 1
+            index += 1
         while (
             left_index < left_size
         ):  # Adds the left over elements in the left half of the array
             arr[index] = left_array[left_index]
-            left_index = left_index + 1
-            index = index + 1
+            left_index += 1
+            index += 1
         while (
             right_index < right_size
         ):  # Adds the left over elements in the right half of the array
             arr[index] = right_array[right_index]
-            right_index = right_index + 1
-            index = index + 1
+            right_index += 1
+            index += 1
     return arr
 
 

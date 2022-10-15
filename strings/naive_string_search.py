@@ -1,10 +1,8 @@
 """
 https://en.wikipedia.org/wiki/String-searching_algorithm#Na%C3%AFve_string_search
-
 this algorithm tries to find the pattern from every position of
 the mainString if pattern is found from position i it add it to
 the answer and does the same for position i+1
-
 Complexity : O(n*m)
     n=length of main string
     m=length of pattern string
@@ -39,4 +37,4 @@ def naive_pattern_search(s: str, pattern: str) -> list:
 
 if __name__ == "__main__":
     assert naive_pattern_search("ABCDEFG", "DE") == [3]
-    print(f"{naive_pattern_search('ABAAABCDBBABCDDEBCABC', 'ABC') = }")
+    print(naive_pattern_search("ABAAABCDBBABCDDEBCABC", "ABC"))

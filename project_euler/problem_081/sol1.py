@@ -22,7 +22,7 @@ def solution(filename: str = "matrix.txt") -> int:
     >>> solution()
     427337
     """
-    with open(os.path.join(os.path.dirname(__file__), filename), "r") as in_file:
+    with open(os.path.join(os.path.dirname(__file__), filename)) as in_file:
         data = in_file.read()
 
     grid = [[int(cell) for cell in row.split(",")] for row in data.strip().splitlines()]

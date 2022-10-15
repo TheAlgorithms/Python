@@ -15,7 +15,7 @@ class Node:
 
         if self.left is None and self.right is None:
             return str(self.value)
-        return pformat({"%s" % (self.value): (self.left, self.right)}, indent=1)
+        return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
 
 
 class BinarySearchTree:
@@ -151,7 +151,7 @@ class BinarySearchTree:
 
     def find_kth_smallest(self, k: int, node: Node) -> int:
         """Return the kth smallest element in a binary search tree"""
-        arr = []
+        arr: list = []
         self.inorder(arr, node)  # append all values to list using inorder traversal
         return arr[k - 1]
 
@@ -160,7 +160,7 @@ def postorder(curr_node):
     """
     postOrder (left, right, self)
     """
-    node_list = list()
+    node_list = []
     if curr_node is not None:
         node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
     return node_list

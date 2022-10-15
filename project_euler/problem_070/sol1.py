@@ -28,10 +28,10 @@ References:
 Finding totients
 https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
 """
-from typing import List
+from __future__ import annotations
 
 
-def get_totients(max_one: int) -> List[int]:
+def get_totients(max_one: int) -> list[int]:
     """
     Calculates a list of totients from 0 to max_one exclusive, using the
     definition of Euler's product formula.
@@ -60,37 +60,19 @@ def has_same_digits(num1: int, num2: int) -> bool:
     Return True if num1 and num2 have the same frequency of every digit, False
     otherwise.
 
-    digits[] is a frequency table where the index represents the digit from
-    0-9, and the element stores the number of appearances. Increment the
-    respective index every time you see the digit in num1, and decrement if in
-    num2. At the end, if the numbers have the same digits, every index must
-    contain 0.
-
     >>> has_same_digits(123456789, 987654321)
     True
 
-    >>> has_same_digits(123, 12)
+    >>> has_same_digits(123, 23)
     False
 
     >>> has_same_digits(1234566, 123456)
     False
     """
-    digits = [0] * 10
-
-    while num1 > 0 and num2 > 0:
-        digits[num1 % 10] += 1
-        digits[num2 % 10] -= 1
-        num1 //= 10
-        num2 //= 10
-
-    for digit in digits:
-        if digit != 0:
-            return False
-
-    return True
+    return sorted(str(num1)) == sorted(str(num2))
 
 
-def solution(max: int = 10000000) -> int:
+def solution(max_n: int = 10000000) -> int:
     """
     Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
 
@@ -103,9 +85,9 @@ def solution(max: int = 10000000) -> int:
 
     min_numerator = 1  # i
     min_denominator = 0  # φ(i)
-    totients = get_totients(max + 1)
+    totients = get_totients(max_n + 1)
 
-    for i in range(2, max + 1):
+    for i in range(2, max_n + 1):
         t = totients[i]
 
         if i * min_denominator < min_numerator * t and has_same_digits(i, t):

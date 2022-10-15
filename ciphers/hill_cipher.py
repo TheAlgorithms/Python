@@ -62,7 +62,7 @@ class HillCipher:
     # take x and return x % len(key_string)
     modulus = numpy.vectorize(lambda x: x % 36)
 
-    to_int = numpy.vectorize(lambda x: round(x))
+    to_int = numpy.vectorize(round)
 
     def __init__(self, encrypt_key: numpy.ndarray) -> None:
         """
@@ -201,11 +201,11 @@ class HillCipher:
 
 
 def main() -> None:
-    N = int(input("Enter the order of the encryption key: "))
+    n = int(input("Enter the order of the encryption key: "))
     hill_matrix = []
 
     print("Enter each row of the encryption key with space separated integers")
-    for _ in range(N):
+    for _ in range(n):
         row = [int(x) for x in input().split()]
         hill_matrix.append(row)
 
