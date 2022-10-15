@@ -2,7 +2,7 @@
 This program finds the approximate integration value/area under the curve of
 a specified function within specified limits using Monte Carlo integration method.
 
-Further, a graph of the individal areas under the curve considered for the calculation
+Further, a graph of the individual areas under the curve considered for the calculation
 is also plotted. (PLOT SECTION -> Optional implementation)
 """
 
@@ -10,8 +10,7 @@ import doctest
 
 # importing the modules
 import random
-
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 
 
@@ -108,6 +107,4 @@ number_of_sections = 1000  # Number of individual ares to be considered
 # function call
 # the final area under the curve(integration) value is considered as the average
 # of all the individual areas calculated
-print(
-    f"The value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, number_of_sections)}."
-)
+print(f"Approx. value: {monte_carlo(lower_limit,upper_limit,number_of_sections)}.")
