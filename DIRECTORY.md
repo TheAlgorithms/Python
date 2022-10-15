@@ -394,6 +394,7 @@
   * Tests
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
+  * [Topological Warshall](graphs/topological_warshall.py)
 
 ## Greedy Methods
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
@@ -642,6 +643,7 @@
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
 
 ## Physics
+  * [Casimir Effect](physics/casimir_effect.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
