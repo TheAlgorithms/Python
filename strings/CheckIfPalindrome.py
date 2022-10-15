@@ -14,15 +14,14 @@ def palindrome(s: str) -> str:
     >>>palindrome(madam)
     Yes
     """
-    
-    
-    
+
     string_rev = s[::-1]
     if string_rev == s:
-        return 'Yes'
+        return "Yes"
     else:
-        return 'No'
+        return "No"
+
 
 if __name__ == "__main__":
-    s = input() # String
+    s = input()  # String
     print(palindrome(s))
