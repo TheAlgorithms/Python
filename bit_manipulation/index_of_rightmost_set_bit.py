@@ -20,7 +20,7 @@ def get_index_of_rightmost_set_bit(number: int) -> int:
     ValueError: Input must be a non-negative integer
     """
 
-    if 0 > number and not isinstance(number, int):
+    if number<0 or not isinstance(number, int):
         raise ValueError("Input must be a non-negative integer")
 
     intermediate = number&~(number-1)
@@ -38,4 +38,4 @@ if __name__ == "__main__":
     """
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(verbose=True)
