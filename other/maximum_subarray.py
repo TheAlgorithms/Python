@@ -1,4 +1,4 @@
-def max_subarray(nums: list) -> int:
+def max_subarray(nums: list[int]) -> int:
     """
     Returns the subarray with maximum sum
     >>> max_subarray([1,2,3,4,-2])
