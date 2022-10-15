@@ -12,7 +12,7 @@ Each edge of the graph must be either ZERO or ONE
 Refer this link: https://cp-algorithms.com/graph/01_bfs.html for more details
 """
 
-from collections import deque
+import collections
 import math
 
 def zero_one_bfs(graph: dict, n: int, start: int, goal: int):
@@ -36,7 +36,7 @@ def zero_one_bfs(graph: dict, n: int, start: int, goal: int):
 	d[start] = 0
 
 	# Creating empty deque
-	q = deque([])
+	q = collections.deque([])
 
 	q.appendleft(start)
 
