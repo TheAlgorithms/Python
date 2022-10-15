@@ -1,7 +1,7 @@
 """
     Convert any interval into a 0 to 100 scale and see a respective number in between
     percentage of the whole.
-    Instalation:
+    Installation:
         - Import this file
         - Call the absolute_conversion function
         - Parameters:
@@ -9,7 +9,7 @@
             - interv_end: The end of your internal scale.
             - number: The number you want to know the percentage that it
             represents of the scale.
-    Exemples:
+    Examples:
     interv_start:0
     interv_end:100
     number:50
@@ -35,7 +35,7 @@ def absolute_conversion(interv_start: float, interv_end: float, number: float) -
     if interv_start > interv_end:
         return print("Invalid arguments, start is higher than the end.")
     elif interv_start == interv_end:
-        return print("Invalid arguments, start and end shoud be different.")
+        return print("Invalid arguments, start and end should be different.")
     else:
         native_interval = interv_end - interv_start
         value_percentage = float((100 * (number - interv_start)) / native_interval)
