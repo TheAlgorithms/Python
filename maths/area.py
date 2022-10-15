@@ -501,8 +501,7 @@ def area_hexagon(side: float) -> float:
     """
     if side < 0:
         raise ValueError("area_hexagon() only accepts non-negative values")
-    return (3 * sqrt(3) * (side * side))  * 0.5
-
+    return (3 * sqrt(3) * (side * side)) * 0.5
 
 
 if __name__ == "__main__":
