@@ -1,7 +1,7 @@
 #Topological ordering
-#In topological sorting, a temporary stack is used with the name “s”. The node number is not printed 
-#immediately; first iteratively call topological sorting for all its adjacent vertices, then push adjacent 
-#vertex to stack. Finally, print contents of stack. Note that a vertex is pushed to stack only when all of 
+#In topological sorting, a temporary stack is used with the name “s”. The node number is not printed
+#immediately; first iteratively call topological sorting for all its adjacent vertices, then push adjacent
+#vertex to stack. Finally, print contents of stack. Note that a vertex is pushed to stack only when all of
 #its adjacent vertices (and their adjacent vertices and so on) are already in stack.
 
 
@@ -33,6 +33,6 @@ for i in range(n):
  print(cost[i][j],end="\t")
  print("\n")
 
-  
-  
-  
+
+
+
