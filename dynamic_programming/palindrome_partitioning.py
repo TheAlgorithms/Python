@@ -9,9 +9,9 @@ For other explanations refer to: https://www.youtube.com/watch?v=_H8V5hJUGd0
 """
 
 
-def find_minimum_partitions(s):
+def find_minimum_partitions(string: str) -> int:
     """
-    Returns the minimum cuts needed for a palindrome partitioning of s
+    Returns the minimum cuts needed for a palindrome partitioning of string
 
     >>> find_minimum_partitions("aab")
     1
@@ -20,13 +20,13 @@ def find_minimum_partitions(s):
     >>> find_minimum_partitions("ababbbabbababa")
     3
     """
-    n = len(s)
+    n = len(string)
     cut = [0 for i in range(n)]
     ispalindrome = [[False for i in range(n)] for j in range(n)]
     for i in range(n):
         mincut = i
         for j in range(i + 1):
-            if s[i] == s[j] and (i - j < 2 or ispalindrome[j + 1][i - 1]):
+            if string[i] == string[j] and (i - j < 2 or ispalindrome[j + 1][i - 1]):
                 ispalindrome[j][i] = True
                 mincut = min(mincut, 0 if j == 0 else (cut[j - 1] + 1))
         cut[i] = mincut
