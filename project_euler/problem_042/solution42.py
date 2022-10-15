@@ -37,7 +37,7 @@ def solution():
     words = list(
         filter(
             lambda word: word in TRIANGULAR_NUMBERS,
-            map(sum(ord(x) - 64 for x in word) for word in words),
+            (sum(ord(x) - 64 for x in word) for word in words),
         )
     )
     return len(words)
