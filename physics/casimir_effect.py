@@ -36,6 +36,7 @@ Source :
 """
 
 from __future__ import annotations
+
 import math
 
 # Define the Reduced Planck Constant ℏ (H bar), speed of light C, value of
