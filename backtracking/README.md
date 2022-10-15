@@ -6,3 +6,4 @@ Backtracking is a way to speed up the search process by removing candidates when
 * <https://en.wikipedia.org/wiki/Decision_tree_pruning>
 * <https://medium.com/@priyankmistry1999/backtracking-sudoku-6e4439e4825c>
 * <https://www.geeksforgeeks.org/sudoku-backtracking-7/>
+* <https://www.geeksforgeeks.org/backtracking-algorithms/>
