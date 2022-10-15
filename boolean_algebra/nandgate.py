@@ -39,10 +39,10 @@ def nand_gate(input1: int, input2: int) -> int:
 def main() -> None:
     print("Truth table of NAND Gate:")
     print("| Input 1 | Input 2 | Output |")
-    print("|      0      |", "     0      |     ", nand(0, 0), "     |")
-    print("|      0      |", "     1      |     ", nand(0, 1), "     |")
-    print("|      1      |", "     0      |     ", nand(1, 0), "     |")
-    print("|      1      |", "     1      |     ", nand(1, 1), "     |")
+    print("|      0      |", "     0      |     ", nand_gate(0, 0), "     |")
+    print("|      0      |", "     1      |     ", nand_gate(0, 1), "     |")
+    print("|      1      |", "     0      |     ", nand_gate(1, 0), "     |")
+    print("|      1      |", "     1      |     ", nand_gate(1, 1), "     |")
 
 
 if __name__ == "__main__":
