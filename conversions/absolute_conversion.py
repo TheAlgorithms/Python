@@ -23,9 +23,7 @@
 """
 
 
-def absolute_conversion(interv_start: float,
-                        interv_end: float,
-                        number: float) -> float:
+def absolute_conversion(interv_start: float, interv_end: float, number: float) -> float:
     """
     >>> absolute_conversion(0, 10, 4)
     40.0
@@ -46,4 +44,5 @@ def absolute_conversion(interv_start: float,
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
