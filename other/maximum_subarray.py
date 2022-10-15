@@ -22,5 +22,4 @@ def max_subarray(nums: list) -> int:
 
 if __name__ == "__main__":
     array = list(map(int, input("\nEnter the numbers : ").strip().split()))
-    n = len(array)
-    print(max_subarray(array[:n]))
+    print(max_subarray(array))
