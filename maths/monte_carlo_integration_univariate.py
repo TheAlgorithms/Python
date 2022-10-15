@@ -17,21 +17,21 @@ import numpy as np
 
 # function to calculate the sin of a particular value of x
 # define your function
-def function_to_be_integrated(x: int) -> float:
+def function_to_be_integrated(univariate_variable: int) -> float:
 
     # Doctest
     """
-    :param x: int
+    :param univariate_variable: int
     :return: float
 
     >>> round(function_to_be_integrated(0))
     0
     """
 
-    return np.sin(x)  # example function
+    return np.sin(univariate_variable)  # example function
 
 
-def monte_carlo(lower_limit: int, upper_limit: int, n: int) -> float:
+def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> float:
 
     # Doctest
     """
@@ -48,12 +48,12 @@ def monte_carlo(lower_limit: int, upper_limit: int, n: int) -> float:
     plt_vals = []
 
     # array of zeros of length N
-    ar = np.zeros(n)
+    ar = np.zeros(number_of_sections)
 
     # we iterate through all the values to generate
     # multiple results and show whose intensity is
     # the most.
-    for i in range(n):
+    for i in range(number_of_sections):
 
         # iterating over each Value of ar and filling it
         # with a random value between the limits a and b
@@ -61,16 +61,16 @@ def monte_carlo(lower_limit: int, upper_limit: int, n: int) -> float:
             ar[i] = random.uniform(lower_limit, upper_limit)
 
         # variable to store sum of the functions of different
-        # values of x
+        # values of univariate_variable
         integral = 0.0
 
         # iterates and sums up values of different functions
-        # of x
+        # of univariate_variable
         for i in ar:
             integral += function_to_be_integrated(i)
 
         # we get the answer by the formula derived adobe
-        ans = (upper_limit - lower_limit) / float(n) * integral
+        ans = (upper_limit - lower_limit) / float(number_of_sections) * integral
         # appends the solution to a list for plotting the graph
         plt_vals.append(ans)
 
@@ -91,7 +91,7 @@ def monte_carlo(lower_limit: int, upper_limit: int, n: int) -> float:
     #-----END OF PLOT SECTION (OPTIONAL)------#
     """
 
-    return sum(plt_vals) / N  # takinf the average value
+    return sum(plt_vals) / number_of_sections  # takinf the average value
 
 
 doctest.testmod()
@@ -103,11 +103,9 @@ doctest.testmod()
 lower_limit = 0
 upper_limit = np.pi  # gets the value of pi
 
-n = 1000  # Number of individual ares to be considered
+number_of_sections = 1000  # Number of individual ares to be considered
 
 # function call
 # the final area under the curve(integration) value is considered as the average
 # of all the individual areas calculated
-print(
-    f"\nThe value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, n)}."
-)
+print(f"The value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, number_of_sections)}.")
