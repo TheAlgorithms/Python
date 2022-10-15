@@ -66,13 +66,13 @@ def casimir_force(force: float, area: float, distance: float) -> dict[str, float
     Returns the value of one of the parameters specified as 0, provided the values of
     other parameters are given.
     >>> casimir_force(force = 0, area = 4, distance = 0.03)
-    {'force': 6.4183063499340754e-21}
+    {'force': 6.4248189174864216e-21}
 
     >>> casimir_force(force = 2635e-13, area = 0.0023, distance = 0)
-    {'distance': 1.032043900858094e-05}
+    {'distance': 1.0323056015031114e-05}
 
     >>> casimir_force(force = 2737e-21, area = 0, distance = 0.0023746)
-    {'area': 0.06695625910516347}
+    {'area': 0.06688838837354052}
 
     >>> casimir_force(force = 3457e-12, area = 0, distance = 0)
     Traceback (most recent call last):
