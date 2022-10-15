@@ -17,14 +17,23 @@ import numpy as np
 
 # function to calculate the sin of a particular value of x
 # define your function
-def function_to_be_integrated(x) -> float:
+def function_to_be_integrated(x : int) -> float:
+    
+    # Doctest
+    """
+    :param x: int
+    :return: float
+    
+    >>> round(function_to_be_integrated(0))
+    0
+    """
+    
     return np.sin(x)  # example function
 
 
-def monte_carlo(lower_limit, upper_limit, N) -> float:
+def monte_carlo(lower_limit : int, upper_limit : int, n : int) -> float:
 
-    # Doctet
-
+    # Doctest
     """
     :param lower_limit: int
     :param upper_limit: int
@@ -39,12 +48,12 @@ def monte_carlo(lower_limit, upper_limit, N) -> float:
     plt_vals = []
 
     # array of zeros of length N
-    ar = np.zeros(N)
+    ar = np.zeros(n)
 
     # we iterate through all the values to generate
     # multiple results and show whose intensity is
     # the most.
-    for i in range(N):
+    for i in range(n):
 
         # iterating over each Value of ar and filling it
         # with a random value between the limits a and b
@@ -61,7 +70,7 @@ def monte_carlo(lower_limit, upper_limit, N) -> float:
             integral += function_to_be_integrated(i)
 
         # we get the answer by the formula derived adobe
-        ans = (upper_limit - lower_limit) / float(N) * integral
+        ans = (upper_limit - lower_limit) / float(n) * integral
         # appends the solution to a list for plotting the graph
         plt_vals.append(ans)
 
@@ -88,24 +97,15 @@ def monte_carlo(lower_limit, upper_limit, N) -> float:
 doctest.testmod()
 
 
-def main():
+# define parameters
+# limits of integration (specify limits)
+# example limits
+lower_limit = 0
+upper_limit = np.pi  # gets the value of pi
 
-    # define parameters
+n = 1000  # Number of individual ares to be considered
 
-    # limits of integration (specify limits)
-    # example limits
-    lower_limit = 0
-    upper_limit = np.pi  # gets the value of pi
-
-    N = 1000  # Number of individual ares to be considered
-
-    # function call
-    # the final area under the curve(integration) value is considered as the average
-    # of all the individual areas calculated
-    print(
-        f"\nThe value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, N)}."
-    )
-
-
-if __name__ == "__main__":
-    main()
+# function call
+# the final area under the curve(integration) value is considered as the average
+# of all the individual areas calculated
+print(f"\nThe value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, n)}.")
