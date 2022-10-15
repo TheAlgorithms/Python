@@ -1,4 +1,5 @@
-""" A XNOR Gate is a logic gate in boolean algebra which results to false(0)
+"""
+A XNOR Gate is a logic gate in boolean algebra which results to false(0)
     if both the inputs are different and results to true(1) if both the inputs are same.
    Following is the truth table of an XNOR Gate:
    | Input 1 | Input 2 |  Output |
@@ -6,8 +7,9 @@
    |      0      |     1      |      0      |
    |      1      |     0      |      0      |
    |      1      |     1      |      1      |
+
+Following is the code implementation of the XNOR Gate
 """
-"""Following is the code implementation of the XNOR Gate"""
 
 
 def xnor_gate(input_1: int, input_2: int) -> int:
