@@ -1,8 +1,8 @@
-def palindrome(s: str) -> str:
+def palindrome(s: string) -> str:
     """
     Determines whether the given word is a palindrome
-    :param str:
-    :return: string:
+    :param s: the string
+    :return: string being "YES" if it is a palindrome and "NO" if it is not a palindrome:
     >>> palindrome(bib)
     Yes
     >>>palindrome(nun)
@@ -14,19 +14,20 @@ def palindrome(s: str) -> str:
     >>>palindrome(madam)
     Yes
     """
-
+    
+    
+    
     string_rev = s[::-1]
     if string_rev == s:
-        return "Yes"
+        return 'Yes'
     else:
-        return "No"
-
+        return 'No'
 
 if __name__ == "__main__":
-    n_inp = int(input())  # Numbers of case test
+    n_inp = int(input()) #Numbers of case test
     for item in range(n_inp):
-        size = int(input())  # Size of string
-        n = input()  # String
+        size = int(input()) # Size of string
+        n = input() # String
         if len(n) > size:
             print("Oversized or is different.")
         else:
