@@ -1,5 +1,5 @@
-""" 
-The NAND gate (negated AND) gives an output of 0 if both inputs 
+"""
+The NAND gate (negated AND) gives an output of 0 if both inputs
 are 1, it gives 1 otherwise.
 
 Below is the truth table for NAND gate.
@@ -13,6 +13,7 @@ Below is the truth table for NAND gate.
 
 Code By: @rajatshenoi
 """
+
 
 def nand_gate(input1: int, input2: int) -> int:
     """
@@ -30,7 +31,7 @@ def nand_gate(input1: int, input2: int) -> int:
     1
     """
 
-    if (input1 == input2 == 1):
+    if input1 == input2 == 1:
         return 0
     else:
         return 1
@@ -47,9 +48,10 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
 
-""" 
-More information on NAND gate: https://en.wikipedia.org/wiki/NAND_gate 
+"""
+More information on NAND gate: https://en.wikipedia.org/wiki/NAND_gate
 """
