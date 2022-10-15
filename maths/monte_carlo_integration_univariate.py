@@ -17,21 +17,21 @@ import numpy as np
 
 # function to calculate the sin of a particular value of x
 # define your function
-def function_to_be_integrated(x : int) -> float:
-    
+def function_to_be_integrated(x: int) -> float:
+
     # Doctest
     """
     :param x: int
     :return: float
-    
+
     >>> round(function_to_be_integrated(0))
     0
     """
-    
+
     return np.sin(x)  # example function
 
 
-def monte_carlo(lower_limit : int, upper_limit : int, n : int) -> float:
+def monte_carlo(lower_limit: int, upper_limit: int, n: int) -> float:
 
     # Doctest
     """
@@ -108,4 +108,6 @@ n = 1000  # Number of individual ares to be considered
 # function call
 # the final area under the curve(integration) value is considered as the average
 # of all the individual areas calculated
-print(f"\nThe value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, n)}.")
+print(
+    f"\nThe value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, n)}."
+)
