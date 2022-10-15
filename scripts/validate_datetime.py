@@ -1,5 +1,3 @@
-
-
 """
 This is pure Python implementation of DateTime
 
@@ -10,8 +8,6 @@ python3 validate_datetime.py
 """
 
 
-
-
 import datetime
 import doctest
 import os
@@ -20,9 +16,9 @@ import os
 def parseOptions():
 
     import optparse
-    parser = optparse.OptionParser(usage='-h')
-    parser.add_option('-d', '--difference',
-                      type='int')
+
+    parser = optparse.OptionParser(usage="-h")
+    parser.add_option("-d", "--difference", type="int")
     (options, args) = parser.parse_args()
     return options
 
@@ -31,7 +27,7 @@ now = datetime.datetime.now()
 
 
 def subtime(a, b):
-    """ (datetime,int) -> datetime 
+    """(datetime,int) -> datetime
     Subtract b hours from a datetime.datetime and return the new datetime object
 
     >>> subtime(datetime.datetime(2013,11,11,11,0),10)
@@ -56,7 +52,10 @@ if __name__ == "__main__":
     doctest.testmod()
 
 print
-print ("This is the time now -", now.strftime("%I:%M:%S %p %a, %B %d %Y"))
+print("This is the time now -", now.strftime("%I:%M:%S %p %a, %B %d %Y"))
 difference = subtime(now, 10)
-print ("This is the time minus the difference -", difference.strftime("%I:%M:%S %p %a, %B %d %Y"))
+print(
+    "This is the time minus the difference -",
+    difference.strftime("%I:%M:%S %p %a, %B %d %Y"),
+)
 print
