@@ -2,7 +2,7 @@ def checkifpalindrome(s: str) -> str:
     """
     Determine whether the given word is a palindrome
     :param s:
-    :return: string being "YES" if it is a palindrome and "NO" if it is not a palindrome:
+    :return: string being "YES" or "NO":
     >>> palindrome(bib)
     Yes
     >>>palindrome(nun)
