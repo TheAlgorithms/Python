@@ -31,27 +31,27 @@ def zero_one_bfs(graph: dict, n: int, start: int, goal: int) -> None:
     """
 
     # d[i] is the distance from the node 'start' to the node i
-    d = [math.inf for i in range(n)]
+    distance_from_start = [math.inf for i in range(n)]
 
     # The distance of a node from itself is ZERO
-    d[start] = 0
+    distance_from_start[start] = 0
 
-    q: collections.deque = collections.deque([])
+    queuee: collections.deque = collections.deque([])
 
-    q.appendleft(start)
+    queuee.appendleft(start)
 
-    while len(q) != 0:
-        v = q[0]
-        q.popleft()
-        for edge in graph[v]:
-            u = edge[0]
-            w = edge[1]
-            if d[v] + w < d[u]:
-                d[u] = d[v] + w
-                if w == 1:
-                    q.append(u)
+    while len(queuee) != 0:
+        node_to_check = queuee[0]
+        queuee.popleft()
+        for edge in graph[node_to_check]:
+            next_node = edge[0]
+            weight_of_node = edge[1]
+            if distance_from_start[node_to_check] + weight_of_node < distance_from_start[next_node]:
+                distance_from_start[next_node] = distance_from_start[node_to_check] + weight_of_node
+                if weight_of_node == 1:
+                    queuee.append(next_node)
                 else:
-                    q.appendleft(u)
+                    queuee.appendleft(next_node)
 
 
 def main() -> None:
