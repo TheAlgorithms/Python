@@ -189,7 +189,8 @@ def binary_search_tree() -> None:
                  / \   /
                 4   7 13
 
-    >>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+    >>> t = BinarySearchTree()
+    >>> t.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
     >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
     8 3 1 6 4 7 10 14 13
     >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
