@@ -15,7 +15,7 @@ Refer this link: https://cp-algorithms.com/graph/01_bfs.html for more details
 from collections import deque
 import math
 
-def zero_one_bfs(graph: dict, n: int, start: int, goal: int) -> list[int]:
+def zero_one_bfs(graph: dict, n: int, start: int, goal: int):
 	""" 
 	Shortest weighted path for a ZERO - ONE weighted graph
 
