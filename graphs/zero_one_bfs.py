@@ -46,8 +46,13 @@ def zero_one_bfs(graph: dict, number_of_nodes: int, start: int, goal: int) -> No
         for edge in graph[node_to_check]:
             next_node = edge[0]
             weight_of_node = edge[1]
-            if distance_from_start[node_to_check] + weight_of_node < distance_from_start[next_node]:
-                distance_from_start[next_node] = distance_from_start[node_to_check] + weight_of_node
+            if (
+                distance_from_start[node_to_check] + weight_of_node
+                < distance_from_start[next_node]
+            ):
+                distance_from_start[next_node] = (
+                    distance_from_start[node_to_check] + weight_of_node
+                )
                 if weight_of_node == 1:
                     queuee.append(next_node)
                 else:
