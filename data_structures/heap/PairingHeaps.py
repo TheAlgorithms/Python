@@ -1,11 +1,11 @@
-# Pairing Heaps implementation 
+# Pairing Heaps implementation
+
 
 class PairingHeap:
-    
     def __init__(self):
         self.heap = [0]
         self.size = 0
-        self.root=min(self.heap)
+        self.root = min(self.heap)
 
     def insert(self, value):
         self.heap.append(value)
@@ -17,7 +17,7 @@ class PairingHeap:
             return root2
         elif root2 is None:
             return root1
-        elif root1< root2:
+        elif root1 < root2:
             self.heap.append(root2)
             return root1
 
@@ -25,29 +25,26 @@ class PairingHeap:
             self.heap.append(root1)
         return root2
 
-
     def delete(self):
-        self.root=None
+        self.root = None
         self.heap[1], self.heap[-1] = self.heap[-1], self.heap[1]
         deletedValue = self.heap.pop(-1)
         self.size -= 1
         return deletedValue
 
-
     def findMin(self):
-        if self.root==None:
+        if self.root == None:
             print("Pairing Heap is empty")
         else:
             return self.root
 
-
     def getSize(self):
-        print (len(self.heap))
+        print(len(self.heap))
 
-# Two Pass Method
-        
+    # Two Pass Method
+
     def BubbleUp(self, key):
-        if self.heap[key] > self.heap[key // 2] or key <= 1:          # parent and child
+        if self.heap[key] > self.heap[key // 2] or key <= 1:  # parent and child
             return ()
         else:
             self.heap[key], self.heap[key // 2] = self.heap[key // 2], self.heap[key]
@@ -73,7 +70,7 @@ print(heap.findMin())
 print()
 
 print("Merging roots in pairing heaps:")
-print("Smaller root =",heap.merge(5,1))
+print("Smaller root =", heap.merge(5, 1))
 print("Heap after merge:")
 print(heap.heap)
 print()
