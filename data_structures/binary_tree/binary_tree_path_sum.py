@@ -1,5 +1,5 @@
 """
-Given the root of a binary tree and an integer target, 
+Given the root of a binary tree and an integer target,
 find the number of paths where the sum of the values
 along the path equals target.
 
@@ -31,7 +31,7 @@ class BinaryTreePathSum:
       3   2    11
      / \   \
     3  -2   1
-    
+
 
     >>> tree = Node(10)
     >>> tree.left = Node(5)
@@ -68,7 +68,7 @@ class BinaryTreePathSum:
             self.dfs(node.left, path_sum + node.left.value)
         if node.right:
             self.dfs(node.right, path_sum + node.right.value)
-    
+
     def path_sum(self, node: Node | None, target: int | None = None) -> int:
         if node is None:
             return 0
@@ -80,7 +80,7 @@ class BinaryTreePathSum:
         self.path_sum(node.right)
 
         return self.paths
-    
+
 
 if __name__ == "__main__":
     import doctest
