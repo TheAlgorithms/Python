@@ -1,82 +1,105 @@
-"""
+'''
 This program finds the approximate integration value/area under the curve of
 a specified function within specified limits using Monte Carlo integration method.
 
 Further, a graph of the individal areas under the curve considered for the calculation
 is also plotted. (PLOT SECTION -> Optional implementation)
-"""
-
-import matplotlib.pyplot as plt
-import numpy as np
+'''
 
 # importing the modules
-from scipy import random
+import random
+import numpy as np
+import matplotlib.pyplot as plt
 
-# limits of integration (specify limits)
-# example limits
-a = 0
-b = np.pi  # gets the value of pi
-
-N = 1000  # Number of individual ares to be considered
+import doctest
 
 # function to calculate the sin of a particular value of x
 # define your function
-def f(x):
-    return np.sin(x)  # example function
+def function_to_be_integrated(x) -> float:
+    return np.sin(x) # example function
 
 
-# list to store all the values for plotting
-plt_vals = []
+def monte_carlo(lower_limit, upper_limit, N) -> float:
 
-# array of zeros of length N
-ar = np.zeros(N)
+    # Doctet
 
-# we iterate through all the values to generate
-# multiple results and show whose intensity is
-# the most.
-for i in range(N):
+    """
+    :param lower_limit: int
+    :param upper_limit: int
+    :param N: int 
+    :return: float
 
-    # iterating over each Value of ar and filling it
-    # with a random value between the limits a and b
-    for i in range(len(ar)):
-        ar[i] = random.uniform(a, b)
+    >>> round(monte_carlo(0, np.pi, 1000))
+    2
+    """
 
-    # variable to store sum of the functions of different
-    # values of x
-    integral = 0.0
+    # list to store all the values for plotting
+    plt_vals = []
+    
+    #array of zeros of length N
+    ar = np.zeros(N)
+    
+    # we iterate through all the values to generate
+    # multiple results and show whose intensity is
+    # the most.
+    for i in range(N):
 
-    # iterates and sums up values of different functions
-    # of x
-    for i in ar:
-        integral += f(i)
+	    # iterating over each Value of ar and filling it
+	    # with a random value between the limits a and b
+        for i in range (len(ar)):
+            ar[i] = random.uniform(lower_limit,upper_limit)
 
-    # we get the answer by the formula derived adobe
-    ans = (b - a) / float(N) * integral
-    # appends the solution to a list for plotting the graph
-    plt_vals.append(ans)
-    # print(ans)
+	    # variable to store sum of the functions of different
+	    # values of x
+        integral = 0.0
 
+	    # iterates and sums up values of different functions
+	    # of x
+        for i in ar:
+            integral += function_to_be_integrated(i)
 
-# --------PLOT SECTION (OPTIONAL)----------#
+	    # we get the answer by the formula derived adobe
+        ans = (upper_limit-lower_limit)/float(N)*integral
+	    # appends the solution to a list for plotting the graph
+        plt_vals.append(ans)
 
-# details of the plot to be generated
-# sets the title of the plot
-plt.title("Distributions of areas calculated")
+    '''
+    #--------PLOT SECTION (OPTIONAL)----------#
 
-# 3 parameters (array on which histogram needs
-plt.hist(plt_vals, bins=30, ec="black")
+    # details of the plot to be generated
+    # sets the title of the plot
+    plt.title("Distributions of areas calculated")
 
-# to be made, bins, separators colour between the
-# beams)
-# sets the label of the x-axis of the plot
-plt.xlabel("Areas")
-plt.show()  # shows the plot
+    # 3 parameters (array on which histogram needs
+    plt.hist(plt_vals, bins=30, ec="black")
+    
+    # sets the label of the x-axis of the plot
+    plt.xlabel("Areas")
+    plt.show() # shows the plot
 
-# -----END OF PLOT SECTION (OPTIONAL)------#
+    #-----END OF PLOT SECTION (OPTIONAL)------# 
+    '''
 
+    return sum(plt_vals)/N # takinf the average value
 
-# the final area under the curve(integration) value is considered as the average
-# of all the individual areas calculated
-print(
-    f"\nThe value calculated by monte carlo integration is {sum(plt_vals) / N}."
-)
+doctest.testmod()
+
+def main():
+    
+    # define parameters
+
+    # limits of integration (specify limits)
+    # example limits
+    lower_limit = 0
+    upper_limit = np.pi # gets the value of pi
+
+    N = 1000 # Number of individual ares to be considered
+
+    # function call
+    # the final area under the curve(integration) value is considered as the average
+    # of all the individual areas calculated
+    print(f"\nThe value calculated by monte carlo integration is {monte_carlo(lower_limit, upper_limit, N)}.")
+    
+
+if __name__=="__main__":
+    main()
