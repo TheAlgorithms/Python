@@ -154,6 +154,7 @@
     * [Binary Search Tree](data_structures/binary_tree/binary_search_tree.py)
     * [Binary Search Tree Recursive](data_structures/binary_tree/binary_search_tree_recursive.py)
     * [Binary Tree Mirror](data_structures/binary_tree/binary_tree_mirror.py)
+    * [Binary Tree Node Sum](data_structures/binary_tree/binary_tree_node_sum.py)
     * [Binary Tree Traversals](data_structures/binary_tree/binary_tree_traversals.py)
     * [Fenwick Tree](data_structures/binary_tree/fenwick_tree.py)
     * [Inorder Tree Traversal 2022](data_structures/binary_tree/inorder_tree_traversal_2022.py)
