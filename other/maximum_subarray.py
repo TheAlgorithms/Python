@@ -1,4 +1,4 @@
-def max_subarray(nums: list[int]) -> int:
+def max_subarray(nums: list) -> int:
     """
     Returns the subarray with maximum sum
     >>> max_subarray([1,2,3,4,-2])
@@ -21,6 +21,6 @@ def max_subarray(nums: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    n = int(input("Enter number of elements : ").strip())
-    array = list(map(int, input("\nEnter the numbers : ").strip().split()))[:n]
-    print(max_subarray(array))
+    array = list(map(int, input("\nEnter the numbers : ").strip().split()))
+    n = len(array)
+    print(max_subarray(array[:n]))
