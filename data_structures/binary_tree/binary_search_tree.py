@@ -45,8 +45,7 @@ class BinarySearchTree:
     def is_right(self, node: Node) -> bool:
         if node.parent and node.parent.right:
             return node == node.parent.right
-        else:
-            return False
+        return False
 
     def empty(self) -> bool:
         return self.root is None
@@ -61,7 +60,7 @@ class BinarySearchTree:
         else:  # Tree is not empty
             parent_node = self.root  # from root
             if parent_node is None:
-                return
+                return None
             while True:  # While we don't get to a leaf
                 if value < parent_node.value:  # We go left
                     if parent_node.left is None:
