@@ -1,27 +1,31 @@
-def checkifpalindrome(s: str) -> str:
+def checkifpalindrome(s: str) -> bool:
     """
     Determine whether the given word is a palindrome
     :param s:
-    :return: string being "YES" or "NO":
-    >>> palindrome(bib)
+    :return: string being "YES" if it is a palindrome and "NO" if it is not a palindrome:
+    >>> palindrome(Bib)
     Yes
-    >>>palindrome(nun)
+    >>>palindrome(Nun)
     Yes
-    >>>palindrome(a man)
+    >>>palindrome(A man)
     No
-    >>>palindrome(pedro)
+    >>>palindrome(Hello)
     No
-    >>>palindrome(madam)
+    >>>palindrome(Madam)
     Yes
     """
-
+    
+    
+    s = s.lower()
     string_rev = s[::-1]
     if string_rev == s:
-        return "Yes"
+        return True
     else:
-        return "No"
-
+        return False
 
 if __name__ == "__main__":
     s = input()
-    print(checkifpalindrome(s))
+    if(checkifpalindrome(s)):
+        print("Yes")
+    else:
+        print("No")
