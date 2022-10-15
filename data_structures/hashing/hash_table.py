@@ -34,7 +34,7 @@ class HashTable:
     def _step_by_step(self, step_ord):
 
         print(f"step {step_ord}")
-        print([i for i in range(len(self.values))])
+        print(list(range(len(self.values))))
         print(self.values)
 
     def bulk_insert(self, values):
