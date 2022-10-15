@@ -1,4 +1,5 @@
-""" A XOR Gate is a logic gate in boolean algebra which results to true(1)
+"""
+A XOR Gate is a logic gate in boolean algebra which results to true(1)
     only when the two input values are different, and false(0) if the inputs are equal.
    Following is the truth table of an XOR Gate:
    | Input 1 | Input 2 |  Output |
@@ -6,8 +7,9 @@
    |      0      |     1      |      1      |
    |      1      |     0      |      1      |
    |      1      |     1      |      0      |
+
+Following is the code implementation of the XOR Gate
 """
-"""Following is the code implementation of the XOR Gate"""
 
 
 def xor_gate(input_1: int, input_2: int) -> int:
