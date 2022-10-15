@@ -11,55 +11,54 @@ https://en.wikipedia.org/wiki/Quantum_Fourier_transform
 https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html
 """
 
-import numpy as np
 import qiskit
-from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, Aer
+import numpy as np
 
 
-def qft(n: int = 3) -> qiskit.result.counts.Counts:
+def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:
     """
-    # >>> qft(qbits_number)
-    # ideally "shots/2**qbits" counts for each state.
-    # For the default case (n=3) the average is 1250 for
-    # each quantum state.
-                                               ┌───┐
+    # >>> quantum_fourier_transform(2)
+    # {'00': 2500, '01': 2500, '11': 2500, '10': 2500}
+    # quantum circuit for number_of_qubits = 3:
+                                               ┌───┐   
     qr_0: ──────■──────────────────────■───────┤ H ├─X─
-                │                ┌───┐ │P(π/2) └───┘ │
+                │                ┌───┐ │P(π/2) └───┘ │ 
     qr_1: ──────┼────────■───────┤ H ├─■─────────────┼─
-          ┌───┐ │P(π/4)  │P(π/2) └───┘               │
+          ┌───┐ │P(π/4)  │P(π/2) └───┘               │ 
     qr_2: ┤ H ├─■────────■───────────────────────────X─
-          └───┘
+          └───┘                                        
     cr: 3/═════════════════════════════════════════════
     Args:
         n : number of qubits
     Returns:
-        qiskit.result.counts.Counts: Counts for each state.
+        qiskit.result.counts.Counts: distribute counts.
     """
-    qr = QuantumRegister(n, "qr")
-    cr = ClassicalRegister(n, "cr")
+    qr = QuantumRegister(number_of_qubits, 'qr')
+    cr = ClassicalRegister(number_of_qubits, 'cr')
 
     quantum_circuit = QuantumCircuit(qr, cr)
 
-    counter = n
-    # Add the hadamard gates and the CROT gates.
+    counter = number_of_qubits
+
     for i in range(counter):
 
-        quantum_circuit.h(n - i - 1)
-        counter = counter - 1
+        quantum_circuit.h(number_of_qubits-i-1)
+        counter -= 1
         for j in range(counter):
-            quantum_circuit.cp(np.pi / 2 ** (counter - j), j, counter)
+            quantum_circuit.cp(np.pi/2**(counter-j), j, counter)
 
-    for k in range(n // 2):
-        quantum_circuit.swap(k, n - k - 1)
+    for k in range(number_of_qubits//2):
+        quantum_circuit.swap(k, number_of_qubits-k-1)
 
     # measure all the qubits
-    quantum_circuit.measure(qr, cr)
+    quantum_circuit.measure(qr,cr)
     # simulate with 10000 shots
-    backend = Aer.get_backend("qasm_simulator")
-    job = execute(quantum_circuit, backend, shots=10000)
+    backend = Aer.get_backend('qasm_simulator')
+    job = execute(quantum_circuit,backend, shots = 10000)
 
     return job.result().get_counts(quantum_circuit)
 
-
 if __name__ == "__main__":
-    print(f"Total count for qft state is: {qft(3)}")
+    print(f"Total count for quantum fourier transform state is: \
+    {quantum_fourier_transform(3)}")
