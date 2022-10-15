@@ -1,8 +1,7 @@
 # https://en.wikipedia.org/wiki/LC_circuit
 from __future__ import annotations
 
-from math import pi as PI
-from math import sqrt
+from math import (sqrt, pi as PI)
 
 
 def resonant_frequency(inductance: float, capacitance: float) -> tuple:
