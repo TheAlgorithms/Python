@@ -83,4 +83,8 @@ def partition_graph(graph: dict[str, list[str]]) -> set[tuple[str, str]]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     print(partition_graph(TEST_GRAPH))

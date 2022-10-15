@@ -163,6 +163,10 @@ def fib_binet(n: int) -> list[int]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     num = 20
     time_func(fib_iterative, num)
     time_func(fib_recursive, num)

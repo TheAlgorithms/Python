@@ -37,6 +37,10 @@ for word in word_list:
     word_bysig[signature(word)].append(word)
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
 
     with open("anagrams.txt", "w") as file:

@@ -448,3 +448,9 @@ def random_matrix(width: int, height: int, a: int, b: int) -> Matrix:
         [random.randint(a, b) for _ in range(width)] for _ in range(height)
     ]
     return Matrix(matrix, width, height)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

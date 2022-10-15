@@ -39,6 +39,9 @@ def combinations(n: int, k: int) -> int:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
 
     print(
         "\nThe number of five-card hands possible from a standard",

@@ -34,6 +34,10 @@ def base32_decode(encoded_bytes: bytes) -> str:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     test = "Hello World!"
     encoded = base32_encode(test)
     print(encoded)

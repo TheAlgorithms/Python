@@ -37,3 +37,9 @@ def sdbm(plain_text: str) -> int:
             ord(plain_chr) + (hash_value << 6) + (hash_value << 16) - hash_value
         )
     return hash_value
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

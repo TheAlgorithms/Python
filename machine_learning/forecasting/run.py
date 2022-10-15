@@ -154,3 +154,9 @@ res_vote.append(support_vector_regressor(x_train, x_test, trn_user))
 
 # check the safety of todays'data^^
 data_safety_checker(res_vote, tst_user)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

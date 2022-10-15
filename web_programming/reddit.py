@@ -49,5 +49,9 @@ def get_subreddit_data(
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     # If you get Error 429, that means you are rate limited.Try after some time
     print(get_subreddit_data("learnpython", wanted_data=["title", "url", "selftext"]))

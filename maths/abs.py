@@ -25,4 +25,8 @@ def test_abs_val():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     print(abs_val(-34))  # --> 34

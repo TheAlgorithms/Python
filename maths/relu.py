@@ -37,4 +37,8 @@ def relu(vector: list[float]):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     print(np.array(relu([-1, 0, 5])))  # --> [0, 0, 5]

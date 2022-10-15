@@ -61,6 +61,10 @@ def benchmark() -> None:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     for example in ("ABCDEFGH", "123GGjj", "testStringtest", "with space"):
         print(f"{example} encrypted in atbash: {atbash(example)}")
     benchmark()

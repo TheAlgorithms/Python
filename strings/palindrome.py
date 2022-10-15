@@ -59,6 +59,10 @@ def is_palindrome_slice(s: str) -> bool:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     for key, value in test_data.items():
         assert is_palindrome(key) is is_palindrome_recursive(key)
         assert is_palindrome(key) is is_palindrome_slice(key)

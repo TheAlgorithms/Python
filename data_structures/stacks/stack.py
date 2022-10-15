@@ -130,4 +130,8 @@ def test_stack() -> None:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     test_stack()

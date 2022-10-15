@@ -108,3 +108,9 @@ class BifidCipher:
             decoded_message = decoded_message + letter
 
         return decoded_message
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

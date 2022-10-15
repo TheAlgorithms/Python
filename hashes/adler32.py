@@ -27,3 +27,9 @@ def adler32(plain_text: str) -> int:
         a = (a + ord(plain_chr)) % MOD_ADLER
         b = (b + a) % MOD_ADLER
     return (b << 16) | a
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

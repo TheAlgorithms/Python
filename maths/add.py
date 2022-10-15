@@ -14,6 +14,10 @@ def add(a: float, b: float) -> float:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     a = 5
     b = 6
     print(f"The sum of {a} + {b} is {add(a, b)}")

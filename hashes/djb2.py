@@ -33,3 +33,9 @@ def djb2(s: str) -> int:
     for x in s:
         hash_value = ((hash_value << 5) + hash_value) + ord(x)
     return hash_value & 0xFFFFFFFF
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

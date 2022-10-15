@@ -111,3 +111,9 @@ def color(graph: list[list[int]], max_colors: int) -> list[int]:
         return colored_vertices
 
     return []
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

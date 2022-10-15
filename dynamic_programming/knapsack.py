@@ -129,6 +129,10 @@ def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     """
     Adding test case for knapsack
     """

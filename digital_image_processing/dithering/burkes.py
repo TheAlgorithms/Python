@@ -68,6 +68,10 @@ class Burkes:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     # create Burke's instances with original images in greyscale
     burkes_instances = [
         Burkes(imread("image_data/lena.jpg", 1), threshold)

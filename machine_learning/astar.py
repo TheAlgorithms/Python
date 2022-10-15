@@ -133,6 +133,10 @@ def astar(world, start, goal):
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     world = Gridworld()
     # Start position and goal
     start = Cell()

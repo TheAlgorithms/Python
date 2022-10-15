@@ -59,6 +59,10 @@ class NearestNeighbour:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     dst_w, dst_h = 800, 600
     im = imread("image_data/lena.jpg", 1)
     n = NearestNeighbour(im, dst_w, dst_h)

@@ -57,6 +57,10 @@ def kadanes(arr: list) -> int:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     try:
         print("Enter integer values sepatated by spaces")
         arr = [int(x) for x in input().split()]
