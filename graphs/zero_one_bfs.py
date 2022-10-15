@@ -36,7 +36,6 @@ def zero_one_bfs(graph: dict, n: int, start: int, goal: int):
     # The distance of a node from itself is ZERO
     d[start] = 0
 
-	# Creating empty deque
     q = collections.deque([])
 
     q.appendleft(start)
