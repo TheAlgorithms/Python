@@ -74,7 +74,7 @@ def find_minimum_change(denominations: list[int], value: str) -> list[int]:
 # Driver Code
 if __name__ == "__main__":
 
-    denominations = list()
+    denominations = []
     value = "0"
 
     if (
