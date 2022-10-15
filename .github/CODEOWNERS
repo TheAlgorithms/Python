@@ -35,7 +35,7 @@
 
 # /divide_and_conquer/
 
-/dynamic_programming/ @Kush1101
+# /dynamic_programming/
 
 # /file_transfer/
 
@@ -59,7 +59,7 @@
 
 # /machine_learning/
 
-/maths/ @Kush1101
+# /maths/
 
 # /matrix/
 
@@ -69,7 +69,7 @@
 
 # /other/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
 
-/project_euler/  @dhruvmanila @Kush1101
+/project_euler/  @dhruvmanila
 
 # /quantum/
 

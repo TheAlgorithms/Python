@@ -41,7 +41,7 @@ def optimal_merge_pattern(files: list) -> float:
     while len(files) > 1:
         temp = 0
         # Consider two files with minimum cost to be merged
-        for i in range(2):
+        for _ in range(2):
             min_index = files.index(min(files))
             temp += files[min_index]
             files.pop(min_index)

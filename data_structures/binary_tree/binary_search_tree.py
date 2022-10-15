@@ -160,7 +160,7 @@ def postorder(curr_node):
     """
     postOrder (left, right, self)
     """
-    node_list = list()
+    node_list = []
     if curr_node is not None:
         node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
     return node_list

@@ -33,7 +33,7 @@ class MyQueue:
     def count(self) -> int:
         return self.tail - self.head
 
-    def print(self) -> None:
+    def print_queue(self) -> None:
         print(self.data)
         print("**************")
         print(self.data[self.head : self.tail])

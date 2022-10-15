@@ -140,24 +140,24 @@ class CNN:
         focus_list = np.asarray(focus1_list)
         return focus_list, data_featuremap
 
-    def pooling(self, featuremaps, size_pooling, type="average_pool"):
+    def pooling(self, featuremaps, size_pooling, pooling_type="average_pool"):
         # pooling process
         size_map = len(featuremaps[0])
         size_pooled = int(size_map / size_pooling)
         featuremap_pooled = []
         for i_map in range(len(featuremaps)):
-            map = featuremaps[i_map]
+            feature_map = featuremaps[i_map]
             map_pooled = []
             for i_focus in range(0, size_map, size_pooling):
                 for j_focus in range(0, size_map, size_pooling):
-                    focus = map[
+                    focus = feature_map[
                         i_focus : i_focus + size_pooling,
                         j_focus : j_focus + size_pooling,
                     ]
-                    if type == "average_pool":
+                    if pooling_type == "average_pool":
                         # average pooling
                         map_pooled.append(np.average(focus))
-                    elif type == "max_pooling":
+                    elif pooling_type == "max_pooling":
                         # max pooling
                         map_pooled.append(np.max(focus))
             map_pooled = np.asmatrix(map_pooled).reshape(size_pooled, size_pooled)

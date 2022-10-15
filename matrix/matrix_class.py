@@ -351,7 +351,7 @@ class Matrix:
                 "Only invertable matrices can be raised to a negative power"
             )
         result = self
-        for i in range(other - 1):
+        for _ in range(other - 1):
             result *= self
         return result
 

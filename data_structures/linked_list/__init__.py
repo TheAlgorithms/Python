@@ -11,7 +11,7 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, item: Any, next: Any) -> None:
+    def __init__(self, item: Any, next: Any) -> None:  # noqa: A002
         self.item = item
         self.next = next
 

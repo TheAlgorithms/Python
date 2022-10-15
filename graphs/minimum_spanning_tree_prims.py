@@ -91,7 +91,7 @@ def prisms_algorithm(l):  # noqa: E741
         distance_tv[x[0]] = x[1]
     heapify(distance_tv, positions)
 
-    for i in range(1, len(l)):
+    for _ in range(1, len(l)):
         vertex = delete_minimum(distance_tv, positions)
         if visited[vertex] == 0:
             tree_edges.append((nbr_tv[vertex], vertex))

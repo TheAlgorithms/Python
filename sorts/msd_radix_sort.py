@@ -52,8 +52,8 @@ def _msd_radix_sort(list_of_ints: list[int], bit_position: int) -> list[int]:
     if bit_position == 0 or len(list_of_ints) in [0, 1]:
         return list_of_ints
 
-    zeros = list()
-    ones = list()
+    zeros = []
+    ones = []
     # Split numbers based on bit at bit_position from the right
     for number in list_of_ints:
         if (number >> (bit_position - 1)) & 1:
