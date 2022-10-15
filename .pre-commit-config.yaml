@@ -35,11 +35,7 @@ repos:
   - repo: https://github.com/PyCQA/flake8
     rev: 5.0.4
     hooks:
-      - id: flake8
-        args:
-          - --ignore=E203,W503
-          - --max-complexity=25
-          - --max-line-length=88
+      - id: flake8 # See .flake8 for args
         additional_dependencies:
           - flake8-bugbear
           - flake8-builtins
@@ -51,7 +47,7 @@ repos:
       - id: mypy
         args:
           - --ignore-missing-imports
-          - --install-types  # See mirrors-mypy README.md
+          - --install-types # See mirrors-mypy README.md
           - --non-interactive
         additional_dependencies: [types-requests]
 
