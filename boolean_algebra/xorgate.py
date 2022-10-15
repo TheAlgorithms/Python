@@ -28,7 +28,7 @@ def xor_gate(input_1: int, input_2: int) -> int:
 
 def main() -> None:
     print("Truth Table of XOR Gate:")
-    print("| Input 1     |", " Input 2    |", " Output     |")
+    print("| Input 1     |  Input 2    |  Output     |")
     print(f"|      0      |      0      |      {xor_gate(0,0)}      |")
     print(f"|      0      |      1      |      {xor_gate(0,1)}      |")
     print(f"|      1      |      0      |      {xor_gate(1,0)}      |")
