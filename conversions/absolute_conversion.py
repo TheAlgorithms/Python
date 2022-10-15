@@ -38,7 +38,7 @@ def absolute_conversion(interv_start: float, interv_end: float, number: float) -
         return print("Invalid arguments, start and end shoud be different.")
     else:
         native_interval = interv_end - interv_start
-        value_percentage = float((100*(number - interv_start))/native_interval)
+        value_percentage = float((100 * (number - interv_start)) / native_interval)
         return value_percentage
 
 
