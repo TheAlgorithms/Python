@@ -5,7 +5,6 @@ from math import (sqrt, pi as PI)
 
 
 def resonant_frequency(inductance: float, capacitance: float) -> tuple:
-
     """
     This function can calculate the resonant frequency of LC circuit,
     for the given value of inductance and capacitnace.
