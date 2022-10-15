@@ -2,8 +2,6 @@
 A binary search Tree
 """
 
-from __future__ import annotations
-
 from collections.abc import Iterable
 from typing import Any
 
@@ -79,10 +77,9 @@ class BinarySearchTree:
                         parent_node = parent_node.right
             new_node.parent = parent_node
 
-    def insert(self, *values) -> BinarySearchTree:
+    def insert(self, *values) -> None:
         for value in values:
             self.__insert(value)
-        return self
 
     def search(self, value) -> Node | None:
         if self.empty():
