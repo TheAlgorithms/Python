@@ -21,10 +21,11 @@ def nand_gate(input_1: int, input_2: int) -> int:
     >>> nand_gate(1, 1)
     0
     """
-    if (input_1 == input_2 == 1):
+    if input_1 == input_2 == 1:
         return 0
     else:
         return 1
+
 
 def main() -> None:
     print("Truth Table of NAND Gate:")
