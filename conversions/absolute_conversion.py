@@ -18,10 +18,20 @@
     interval_end:12
     number:9
     output:50.0
+
+    Link: https://en.wikipedia.org/wiki/Conversion_of_units
 """
 
 
 def absolute_conversion(interval_start: float, interval_end: float, number: float):
+    """
+    >>> absolute_conversion(0, 10, 4)
+    40.0
+    >>> absolute_conversion(120, 140, 125)
+    25.0
+    >>> absolute_conversion(0,20,21)
+    105.0
+    """
     if interval_start > interval_end:
         return print("Invalid arguments, start is higher than the end.")
     elif interval_start == interval_end:
@@ -33,5 +43,4 @@ def absolute_conversion(interval_start: float, interval_end: float, number: floa
 
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
