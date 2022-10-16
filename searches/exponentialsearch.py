@@ -5,7 +5,29 @@
 # A recursive binary search function returns
 # location of x in given array arr[l..r] is
 # present, otherwise -1
-def binarySearch(arr, l, r, x):
+def binarysearch(arr: list, x: int, l: int, r: int) -> int:
+    """Pure implementation of binary search algorithm in Python by recursion
+
+    Be careful collection must be ascending sorted, otherwise result will be
+    unpredictable
+    First recursion should be started with l=0 and r=(len(arr)-1)
+    :param l:
+    :param arr: some ascending sorted collection with comparable items
+    :param x: item value to search
+    :return: index of found item or None if item is not found
+
+    Examples:
+    >>> binarysearch([0, 5, 7, 10, 15], 0, 0, 4)
+    0
+
+    >>> binarysearch([0, 5, 7, 10, 15], 15, 0, 4)
+    4
+
+    >>> binarysearch([0, 5, 7, 10, 15], 5, 0, 4)
+    1
+
+    """
+
     if r >= l:
         mid = l + (r-l) // 2
 
@@ -18,11 +40,11 @@ def binarySearch(arr, l, r, x):
         # then it can only be present in the
         # left subarray
         if arr[mid] > x:
-            return binarySearch(arr, l, mid - 1, x)
+            return binarysearch(arr, x, l, mid - 1)
 
         # Else he element can only be
         # present in the right
-        return binarySearch(arr, mid + 1, r, x)
+        return binarysearch(arr, x, mid + 1, r)
 
     # We reach here if the element is not present
     return -1
@@ -31,7 +53,7 @@ def binarySearch(arr, l, r, x):
 # occurrence of x in array
 
 
-def exponentialSearch(arr, n, x):
+def exponentialsearch(arr: list, n: int, x: int):
     # IF x is present at first
     # location itself
     if arr[0] == x:
@@ -44,15 +66,15 @@ def exponentialSearch(arr, n, x):
         i = i * 2
 
     # Call binary search for the found range
-    return binarySearch(arr, i // 2,
-                        min(i, n-1), x)
+    return binarysearch(arr, x, i // 2,
+                        min(i, n-1))
 
 
 # Driver Code
 arr = [4, 7, 10, 34, 44, 70]
 n = len(arr)
 x = 44
-result = exponentialSearch(arr, n, x)
+result = exponentialsearch(arr, n, x)
 if result == -1:
     print("Element not found in the array")
 else:
@@ -62,6 +84,6 @@ else:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(name='binarysearch', verbose=True)
 
 # URL:- https://www.tutorialspoint.com/Exponential-Search
