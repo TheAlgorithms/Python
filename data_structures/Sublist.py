@@ -1,10 +1,11 @@
-def sublist (l):
+def sublist(l):
     lists = [[]]
     for i in range(len(l) + 1):
         for j in range(i):
-            lists.append(l[j: i])
+            lists.append(l[j:i])
     return lists
- 
-#main
+
+
+# main
 l1 = [1, 2, 3]
 print(sublist(l1))
