@@ -43,6 +43,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
     main()
-    
+
 """Code provided by Divyajeet Singh (Github: divyajeettt)"""
 """Reference: nor_gate.py by Akshaj Vishwanathan"""

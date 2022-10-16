@@ -42,6 +42,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
     main()
-    
+
 """Code provided by Akshaj Vishwanathan"""
 """Reference: https://www.geeksforgeeks.org/logic-gates-in-python/"""
