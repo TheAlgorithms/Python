@@ -35,11 +35,11 @@ def main() -> None:
 
     # Value expected: 29.73dB
     print("-- First Test --")
-    print(f"PSNR value is {psnr(original, contrast)} dB")
+    print(f"PSNR value is {peak_signal_to_noise_ratio(original, contrast)} dB")
 
     # # Value expected: 31.53dB (Wikipedia Example)
     print("\n-- Second Test --")
-    print(f"PSNR value is {psnr(original2, contrast2)} dB")
+    print(f"PSNR value is {peak_signal_to_noise_ratio(original2, contrast2)} dB")
 
 
 if __name__ == "__main__":
