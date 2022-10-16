@@ -31,7 +31,7 @@ class Linkedlist:
     def __init__(self) -> None:
         self.head=None
 
-# this is how we are traverting the linked list 
+# this is how we are traverting the linked list
 
     def printall(self):
         if self.head is None:
@@ -104,7 +104,7 @@ class Linkedlist:
     def __init__(self) -> None:
         self.head=None
 
-    #this to traverse the linked list -->   
+    #this to traverse the linked list -->
     def printall(self):
         if self.head==None:
             print("Linked list is empty.")
@@ -123,7 +123,7 @@ class Linkedlist:
 
 
 
-    #this is function to insert node at the end of linked list -->      
+    #this is function to insert node at the end of linked list -->
     def insertend(self,data):
         new_node=Node(data)
         if self.head==None:
@@ -180,7 +180,7 @@ class Linkedlist:
                 temp=temp.next
             temp.next=new_node
 
-    #-->program to insert the node befor the give value of node--> 
+    #-->program to insert the node befor the give value of node-->
     # def insert_befor_value(self,data,value):
     #     new_node=Node(data)
     #     if self.head==None:
@@ -417,7 +417,7 @@ o.insertend(30)
 o.insertend(10)
 o.insertend(20)
 print("The normal linkedlist:-000")
-o.print_all()       
+o.print_all()
 print("The reverse linked list:-")
-o.reverseLinkedlist()       
+o.reverseLinkedlist()
 o.print_all()
