@@ -14,7 +14,7 @@ import numpy as np
 PIXEL_MAX = 255.0
 
 
-def psnr(original: float, contrast: float) -> float:
+def peak_signal_to_noise_ratio(original: float, contrast: float) -> float:
     mse = np.mean((original - contrast) ** 2)
     if mse == 0:
         return 100
