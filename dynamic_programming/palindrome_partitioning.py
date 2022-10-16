@@ -21,7 +21,7 @@ def find_minimum_partitions(string: str) -> int:
     3
     """
     n = len(string)
-    cut = [0 for i in range(n)]
+    cut = [0] * n
     ispalindrome = [[False for i in range(n)] for j in range(n)]
     for i in range(n):
         mincut = i
