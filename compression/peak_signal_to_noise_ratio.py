@@ -19,8 +19,7 @@ def psnr(original: float, contrast: float) -> float:
     if mse == 0:
         return 100
 
-    psnr = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
-    return psnr
+    return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
 
 
 def main() -> None:
