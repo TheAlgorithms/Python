@@ -40,6 +40,7 @@ repos:
           - flake8-bugbear
           - flake8-builtins
           - flake8-comprehensions
+          - flake8-pep3101
           - pep8-naming
 
   - repo: https://github.com/pre-commit/mirrors-mypy
