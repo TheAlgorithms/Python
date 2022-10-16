@@ -12,13 +12,13 @@ from __future__ import annotations
 def longest_palindrome(sentence: str) -> str:
     """
 
-    >>> longestPalindrome("cbbd")
+    >>> longest_palindrome("cbbd")
     2
-    >>> longestPalindrome("bbbab")
+    >>> longest_palindrome("bbbab")
     4
-    >>> longestPalindrome("zzakz")
+    >>> longest_palindrome("zzakz")
     3
-    >>> longestPalindromic(" ")
+    >>> longest_palindromic(" ")
     0
 
     """
